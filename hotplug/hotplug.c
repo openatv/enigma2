@@ -41,7 +41,7 @@ int replacechar(char *str, char orig, char rep)
 
 int main(int argc, char *argv[])
 {
-	const char *action = NULL, *devpath = NULL, *physdevpath = NULL, *mediastatus = NULL;
+	const char *action = NULL, *devpath = NULL, *physdevpath = NULL;
 	int sd = -1;
 	struct sockaddr_un serv_addr_un;
 
@@ -130,15 +130,16 @@ int main(int argc, char *argv[])
 							else
 							{
 								char devpathnorm[255];
-								snprintf(devpathnorm, sizeof(devpathnorm) - 1, "%s", getenv("DEVNAME"));
+								snprintf(devpathnorm, sizeof(devpathnorm), "%s", getenv("DEVNAME"));
+								devpathnorm[sizeof(devpathnorm) - 1] = '\0';
 								replacechar(devpathnorm, '/', '_');
 								FILE *f;
-								char fn[255];
-								snprintf(fn, sizeof(fn) - 1, "/tmp/hotplug%s", devpathnorm);
+								char fn[280];
+								snprintf(fn, sizeof(fn), "/tmp/hotplug%s", devpathnorm);
 								f = fopen(fn, "w");
 								if (f)
 								{
-									fprintf(f, data);
+									fprintf(f, "%s", data);
 									fprintf(f, "\n");
 									fclose(f);
 								}

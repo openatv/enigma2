@@ -227,7 +227,7 @@ bool ePMTClient::processEcmInfoPacket()
 {
 	int readDataLength = receivedLength - 4;
 	int fixDataLength = 15; // fix part: 2 byte program number + 2 byte caid + 2 byte pid + 4 byte prov + 4 byte ecmtime + 1 hops
-	int read, pos = 0, i = 0, old_pos;
+	int read, pos = 0, i = 0, old_pos = 0;
 	uint32_t serviceId, providerId, ecmTime;
 	uint16_t program, caid, pid;
 	int hops = -1;
@@ -235,7 +235,7 @@ bool ePMTClient::processEcmInfoPacket()
 	unsigned char reader[257];
 	unsigned char from[257];
 	unsigned char protocol[257];
-	unsigned char* dest;
+	unsigned char* dest = NULL;
 
 	if (receivedData == NULL)
 	{

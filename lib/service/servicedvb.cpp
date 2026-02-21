@@ -1075,6 +1075,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service, bool connect_event):
 	m_reference(ref),
 	m_dvb_service(service),
+	m_soft_decoder_video_info_valid(false),
 	m_is_primary(1),
 	m_decoder_index(0),
 	m_have_video_pid(0),
@@ -1101,8 +1102,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_precise_recovery_timer(eTimer::create(eApp)),
 	m_stream_corruption_detected(false),
 	m_original_timeshift_delay(0),
-	m_delay_calculated(false),
-	m_soft_decoder_video_info_valid(false)
+	m_delay_calculated(false)
 {
 #ifdef PASSTHROUGH_FIX
 	m_passthrough_fix_timer = eTimer::create(eApp);
