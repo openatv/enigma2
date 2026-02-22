@@ -105,6 +105,7 @@ public:
 	ePMTClient(eDVBCAHandler *handler, int socket);
 	void sendClientInfo();
 	int writeCAPMTObject(const char* capmt, int len);
+	bool isProtocol3() const { return m_serverInfoReceived; }
 };
 
 class eDVBCAService: public eUnixDomainSocket
@@ -177,7 +178,6 @@ DECLARE_REF(eDVBCAHandler);
 	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from softcam ECM_INFO)
 	uint32_t serviceIdCounter;
 	bool m_protocol3_established;  // SERVER_INFO received from at least one client
-	bool m_handshake_attempted;    // CLIENT_INFO sent at least once
 
 	void newConnection(int socket);
 	void processPMTForService(eDVBCAService *service, eTable<ProgramMapSection> *ptr);

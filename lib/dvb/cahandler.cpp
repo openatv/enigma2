@@ -12,6 +12,7 @@
 #include <lib/base/init_num.h>
 
 #include <linux/dvb/ca.h>
+#include <sys/socket.h>
 #include <lib/dvb/cwhandler.h>
 #include <map>
 #include <vector>
@@ -338,6 +339,48 @@ int ePMTClient::writeCAPMTObject(const char* capmt, int len)
 }
 
 
+/*
+ * Identify whether the connecting client is capable of dvbapi Protocol 3.
+ * Uses SO_PEERCRED to get the PID, then reads /proc/<pid>/exe to
+ * determine the binary. Only known Protocol 3 capable softcams are
+ * whitelisted. All other clients are treated as legacy; sending
+ * CLIENT_INFO to them may corrupt their parser and cause a crash.
+ */
+static bool isProtocol3CapableClient(int socket_fd)
+{
+	struct ucred cred;
+	socklen_t len = sizeof(cred);
+	if (getsockopt(socket_fd, SOL_SOCKET, SO_PEERCRED, &cred, &len) != 0)
+	{
+		eDebug("[eDVBCAHandler] SO_PEERCRED failed: %m, treating as legacy client");
+		return false;
+	}
+
+	char exe_path[256];
+	char proc_path[64];
+	snprintf(proc_path, sizeof(proc_path), "/proc/%d/exe", cred.pid);
+	ssize_t n = readlink(proc_path, exe_path, sizeof(exe_path) - 1);
+	if (n <= 0)
+	{
+		eDebug("[eDVBCAHandler] readlink(%s) failed: %m, treating as legacy client", proc_path);
+		return false;
+	}
+	exe_path[n] = '\0';
+
+	const char* basename = strrchr(exe_path, '/');
+	basename = basename ? basename + 1 : exe_path;
+
+	/* Whitelist: known Protocol 3 capable softcams */
+	if (strcasestr(basename, "oscam") || strcasestr(basename, "ncam"))
+	{
+		eDebug("[eDVBCAHandler] Protocol 3 capable client: %s (pid %d)", basename, cred.pid);
+		return true;
+	}
+
+	eDebug("[eDVBCAHandler] Legacy client identified: %s (pid %d), skipping Protocol 3", basename, cred.pid);
+	return false;
+}
+
 eDVBCAHandler *eDVBCAHandler::instance = NULL;
 
 DEFINE_REF(eDVBCAHandler);
@@ -347,7 +390,6 @@ eDVBCAHandler::eDVBCAHandler()
 {
 	serviceIdCounter = 1;
 	m_protocol3_established = false;
-	m_handshake_attempted = false;
 	if (instance == NULL)
 	{
 		instance = this;
@@ -370,6 +412,12 @@ eDVBCAHandler::~eDVBCAHandler()
 
 void eDVBCAHandler::newConnection(int socket)
 {
+	/*
+	 * Identify the connecting client before handing off the socket.
+	 * SO_PEERCRED must be called on the original accept() fd.
+	 */
+	bool protocol3_capable = isProtocol3CapableClient(socket);
+
 	// Route through eDVBCWHandler proxy for MainLoop-independent CW delivery
 	int client_fd = eDVBCWHandler::getInstance()->addConnection(socket);
 	if (client_fd < 0)
@@ -381,24 +429,19 @@ void eDVBCAHandler::newConnection(int socket)
 	ePMTClient *client = new ePMTClient(this, client_fd);
 	clients.push_back(client);
 
-	if (m_protocol3_established)
+	if (protocol3_capable)
 	{
-		/* Protocol-3 reconnect: complete handshake first, distributeCAPMT()
-		 * will be called from processServerInfoPacket() */
+		/*
+		 * Protocol-3-capable client: initiate handshake.
+		 * distributeCAPMT() will be called from processServerInfoPacket()
+		 * after the client responds with SERVER_INFO.
+		 */
 		client->sendClientInfo();
 	}
-	else if (!m_handshake_attempted)
-	{
-		/* First connection: send legacy CAPMTs, then probe for Protocol-3 */
-		distributeCAPMT();
-		client->sendClientInfo();
-		m_handshake_attempted = true;
-	}
-	else
-	{
-		/* Legacy softcam - send CAPMTs immediately */
-		distributeCAPMT();
-	}
+	/*
+	 * Legacy clients: no data sent on .listen.camd.socket.
+	 * They receive CAPMTs exclusively via /tmp/camd.socket (sendCAPMT path).
+	 */
 }
 
 void eDVBCAHandler::connectionLost(ePMTClient *client)
