@@ -342,9 +342,9 @@ int ePMTClient::writeCAPMTObject(const char* capmt, int len)
 /*
  * Identify whether the connecting client is capable of dvbapi Protocol 3.
  * Uses SO_PEERCRED to get the PID, then reads /proc/<pid>/exe to
- * determine the binary. Only known Protocol 3 capable softcams are
- * whitelisted. All other clients are treated as legacy; sending
- * CLIENT_INFO to them may corrupt their parser and cause a crash.
+ * determine the binary. Known legacy softcams are blacklisted to prevent
+ * sending CLIENT_INFO which may corrupt their parser and cause a crash.
+ * All other clients are assumed Protocol 3 capable.
  */
 static bool isProtocol3CapableClient(int socket_fd)
 {
@@ -370,15 +370,23 @@ static bool isProtocol3CapableClient(int socket_fd)
 	const char* basename = strrchr(exe_path, '/');
 	basename = basename ? basename + 1 : exe_path;
 
-	/* Whitelist: known Protocol 3 capable softcams */
-	if (strcasestr(basename, "oscam") || strcasestr(basename, "ncam"))
+	/* Blacklist: legacy softcams that do not support Protocol 3 */
+	static const char* const legacy_softcams[] = {
+		"cccam", "doscam", "evocamd", "gbox", "mgcamd",
+		"newcs", "rqcamd", "scam", "wicardd", nullptr
+	};
+
+	for (const char* const* p = legacy_softcams; *p; ++p)
 	{
-		eDebug("[eDVBCAHandler] Protocol 3 capable client: %s (pid %d)", basename, cred.pid);
-		return true;
+		if (strncasecmp(basename, *p, strlen(*p)) == 0)
+		{
+			eDebug("[eDVBCAHandler] Legacy client identified: %s (pid %d), skipping Protocol 3", basename, cred.pid);
+			return false;
+		}
 	}
 
-	eDebug("[eDVBCAHandler] Legacy client identified: %s (pid %d), skipping Protocol 3", basename, cred.pid);
-	return false;
+	eDebug("[eDVBCAHandler] Protocol 3 capable client: %s (pid %d)", basename, cred.pid);
+	return true;
 }
 
 eDVBCAHandler *eDVBCAHandler::instance = NULL;
