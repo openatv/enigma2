@@ -69,6 +69,7 @@ eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	, m_ecm_analyzed(false)
 	, m_csa_alt(false)
 	, m_cw_service_id(0)
+	, m_cw_alt_service_id(0)
 	, m_cw_handler_registered(false)
 	, m_first_cw_signaled(false)
 	, m_pending_cw{}
@@ -81,7 +82,11 @@ eDVBCSASession::~eDVBCSASession()
 	eDebug("[eDVBCSASession] Destroyed for service %s", m_service_ref.toString().c_str());
 
 	if (m_cw_handler_registered)
+	{
 		eDVBCWHandler::getInstance()->unregisterEngine(m_cw_service_id, m_engine);
+		if (m_cw_alt_service_id)
+			eDVBCWHandler::getInstance()->unregisterEngine(m_cw_alt_service_id, m_engine);
+	}
 
 	stopECMMonitor();
 
@@ -322,6 +327,11 @@ void eDVBCSASession::setActive(bool active)
 		if (m_cw_handler_registered)
 		{
 			eDVBCWHandler::getInstance()->unregisterEngine(m_cw_service_id, m_engine);
+			if (m_cw_alt_service_id)
+			{
+				eDVBCWHandler::getInstance()->unregisterEngine(m_cw_alt_service_id, m_engine);
+				m_cw_alt_service_id = 0;
+			}
 			m_cw_handler_registered = false;
 		}
 		m_first_cw_signaled = false;
@@ -408,6 +418,23 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 		auto& cached = s_csa_cache[svc_key];
 		cached.serviceId = serviceId;
 		cached.serviceId_valid = true;
+	}
+	else if (serviceId != 0 && serviceId != m_cw_service_id &&
+		serviceId != m_cw_alt_service_id &&
+		ref.getDVBNamespace() == m_service_ref.getDVBNamespace())
+	{
+		// ServiceId mismatch: pre-registration used cached serviceId from a different
+		// namespace variant of the same DVB triplet (e.g. C02ED8 vs C00000 for fallback
+		// tuner streams). Register ADDITIONALLY for the actual serviceId so the engine
+		// receives CWs from both connections - OScam alternates CW delivery between them.
+		eDebug("[eDVBCSASession] Additional serviceId %u registered (primary=%u)", serviceId, m_cw_service_id);
+		m_cw_alt_service_id = serviceId;
+		eDVBCWHandler::getInstance()->registerEngine(serviceId, m_engine, ecm_mode);
+		// Apply this CW directly - CWHandler already intercepted and missed it
+		m_engine->setKey(parity, ecm_mode, (const uint8_t*)cw);
+		const uint8_t* cw_bytes = (const uint8_t*)cw;
+		eDebug("[eDVBCSASession] CW set: caid=0x%04X, parity=%d, hasEven=%d, hasOdd=%d, CW=%02X",
+			caid, parity, m_engine->hasEvenKey(), m_engine->hasOddKey(), cw_bytes[0]);
 	}
 	else
 	{

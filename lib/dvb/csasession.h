@@ -126,7 +126,8 @@ private:
 	void setActive(bool active);
 
 	// eDVBCWHandler registration
-	uint32_t m_cw_service_id;       // Softcam's serviceId (set on first CW)
+	uint32_t m_cw_service_id;       // Softcam's serviceId (set on first CW or pre-registered)
+	uint32_t m_cw_alt_service_id;   // Additional serviceId from different namespace variant (0 = none)
 	bool m_cw_handler_registered;   // true once registered with eDVBCWHandler
 	bool m_first_cw_signaled;       // true once firstCwReceived signal was emitted
 
