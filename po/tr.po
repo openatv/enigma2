@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-31 09:59+0000\n"
-"PO-Revision-Date: 2026-02-10 22:48+0000\n"
+"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"PO-Revision-Date: 2026-02-24 06:09+0000\n"
 "Last-Translator: Mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -2104,6 +2104,9 @@ msgstr "Teletext için kullanılan harflerin yatay konumunu ayarlayın."
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Teletext için kullanılan harflerin dikey konumunu ayarlayın."
 
+msgid "Adjusts compensation for hardware buffer latency for DM9x0."
+msgstr "DM9x0 için donanım arabellek gecikme süresine ilişkin telafiyi ayarlar."
+
 msgid "Adult"
 msgstr "Yetişkin"
 
@@ -2882,6 +2885,9 @@ msgstr "Günlük Tam Ekran Görünümünü otomatik olarak güncelle"
 
 msgid "Autostart"
 msgstr "Otomatik başlama"
+
+msgid "Available"
+msgstr "Mevcut"
 
 #
 msgid "Available format variables"
@@ -9552,6 +9558,9 @@ msgstr "Donanım Çoklu Önyükleme cihazı"
 msgid "Hardware information"
 msgstr "Donanım bilgileri"
 
+msgid "Hardware latency correction"
+msgstr "Donanım gecikme düzeltmesi"
+
 msgid "Hardware serial"
 msgstr "Donanım seri numarası"
 
@@ -14724,7 +14733,7 @@ msgid "Prefer IPv6"
 msgstr "IPv6 tercih et"
 
 msgid "Prefer audio track stored by service"
-msgstr "Kanal tarafından kayıtlı sesi tercih et"
+msgstr "Seçilen ses dilini tercih et"
 
 msgid "Prefer graphical DVB subtitles"
 msgstr "Grafik DVB altyazıyı tercih et"
@@ -14733,7 +14742,7 @@ msgid "Prefer subtitles for hearing impaired"
 msgstr "İşitme engelliler için altyazıları tercih et"
 
 msgid "Prefer subtitles stored by service"
-msgstr "Kanal tarafından kayıtlı altyazıları tercih et"
+msgstr "Seçilen altyazı dillerini tercih et"
 
 msgid "Preferred tuner"
 msgstr "Tercih edilen tuner"
@@ -17296,7 +17305,7 @@ msgstr "Görev tamamlandığında gerçekleştirilecek bir işlem seçin."
 
 #
 msgid "Select audio track"
-msgstr "Ses İzi Seçimi"
+msgstr "Ses Dili Seçimi"
 
 msgid "Select cardserver"
 msgstr "Kart sunucusu seçin"
@@ -20720,7 +20729,7 @@ msgid "Switch To File List Panel"
 msgstr "Dosya Listesi Paneline Geç"
 
 msgid "Switch between Audio-, Subtitlepage"
-msgstr "Ses, Altyazı sayfası arasında geçiş yap"
+msgstr "Ses dili ve Altyazı sayfaları arasında geçiş yap"
 
 #
 msgid "Switch between file list/play list"
@@ -24065,7 +24074,7 @@ msgid "When enabled, the receiver will automatically return to Standby when the 
 msgstr "Etkinleştirildiğinde, alıcı TV kapatıldığında otomatik olarak bekleme moduna dönecektir."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr "Etkinleştirildiğinde, alıcı otomatik olarak daha önce seçtiğiniz ses izini kullanacaktır."
+msgstr "Etkinleştirildiğinde, alıcı otomatik olarak daha önce seçtiğiniz ses dilini kullanacaktır."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Etkinleştirildiğinde, alıcı daha önce seçtiğiniz altyazıları otomatik olarak kullanacaktır."
@@ -24841,9 +24850,6 @@ msgstr "ses izleri"
 
 msgid "automatic"
 msgstr "otomatik"
-
-msgid "Available"
-msgstr "Mevcut"
 
 #
 msgid "back"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-31 09:59+0000\n"
-"PO-Revision-Date: 2026-02-08 04:09+0000\n"
+"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"PO-Revision-Date: 2026-02-16 23:09+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1317,7 +1317,7 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Увага: Відбудеться перезавантаження після %d збоїв.)"
 
 msgid "(PiP)"
-msgstr "(ПіП)"
+msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr "(Радіо)"
@@ -1405,7 +1405,7 @@ msgid "12bit"
 msgstr "12біт"
 
 msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12біт 4:2:0/4:2:2 ПіП відсутній"
+msgstr "12біт 4:2:0/4:2:2 PiP відсутній"
 
 msgid "13 V"
 msgstr "13 В"
@@ -2088,6 +2088,9 @@ msgstr "Налаштування горизонтального положенн
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Налаштування вертикального положення букв, які використовуються для телетексту."
+
+msgid "Adjusts compensation for hardware buffer latency for DM9x0."
+msgstr "Налаштовує компенсацію затримки апаратного буфера для DM9x0."
 
 msgid "Adult"
 msgstr "Для дорослих"
@@ -2830,6 +2833,9 @@ msgstr "Автоматичне оновлення логу в повноекра
 msgid "Autostart"
 msgstr "Автостарт"
 
+msgid "Available"
+msgstr "Доступно"
+
 msgid "Available format variables"
 msgstr "Доступні формати змінних"
 
@@ -3506,7 +3512,7 @@ msgid "Cable"
 msgstr "Кабельне"
 
 msgid "Cable Scan"
-msgstr "Сканування кабельного ТВ"
+msgstr "Сканування кабельного"
 
 msgid "Cache thumbnails"
 msgstr "Кешування ескізів"
@@ -4165,7 +4171,7 @@ msgid "Choose what appears when the screen saver is active."
 msgstr "Виберіть, що відображатиметься, коли активна заставка."
 
 msgid "Choose what you want the button '0' to do when PiP is active."
-msgstr "Вкажіть дію для кнопки '0', коли вікно PIP активне."
+msgstr "Вкажіть дію для кнопки '0', коли вікно PiP активне."
 
 msgid "Choose where to mount your devices to:"
 msgstr "Виберіть точку монтування для пристрою:"
@@ -4279,7 +4285,7 @@ msgid "Close CA device at programm end"
 msgstr "Закрийте пристрій CA після завершення програми"
 
 msgid "Close PiP on exit"
-msgstr "Закрити ПІП на виході"
+msgstr "Закрити PiP на виході"
 
 msgid "Close Task List"
 msgstr "Закрити список завдань"
@@ -4526,7 +4532,7 @@ msgid "Configure if and how crypto icons will be shown in the channel selection 
 msgstr "Вкажіть, чи потрібно показуватити іконку кодування в списку вибору каналів."
 
 msgid "Configure if and how long the latest service in the PiP will be remembered."
-msgstr "Налаштуйте, чи та як довго зберігатиметься останній канал в режимі ПІП."
+msgstr "Налаштуйте, чи буде запам'ятовуватися останній канал в PiP і як довго."
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Налаштування показу іконок типів каналу і місце їх розташування у списку каналів."
@@ -4643,7 +4649,7 @@ msgid "Configure the current key map file."
 msgstr "Налаштуйте поточний файл розкладки клавіатури."
 
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
-msgstr "Налаштування поведінки курсора у списку каналів. При відкритті списку каналів кнопками, курсор можете залишити на поточному каналі або перенесеним вгору чи вниз вибором кнопки CHANNEL +/- або ж можна задати зворотний порядок."
+msgstr "Налаштуйте поведінку курсора у списку вибору каналів. Під час відкриття списку вибору каналів ви можете залишитися на поточному каналі або вже вибирати вгору/вниз, а також можете скасувати дії кнопок B+/B-."
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Налаштування розширення екрану і розмір шрифту для роботи з телетекстом."
@@ -5244,7 +5250,7 @@ msgid "Create working directories."
 msgstr "Створення робочих каталогів."
 
 msgid "Creating .ap and .sc files"
-msgstr "Створення файлів АР і SC"
+msgstr "Створення файлів .ap та .sc"
 
 msgid "Creating file system"
 msgstr "Створення файлової системи"
@@ -5427,7 +5433,7 @@ msgid "Cyan"
 msgstr "Блакитний"
 
 msgid "Cycle PiP(zap)"
-msgstr "Цикл PIP(перекл)"
+msgstr "Цикл PiP(перекл)"
 
 msgid "Cycle through the InfoBars"
 msgstr "Увімкнути/вимкнути відображення InfoBar"
@@ -6216,7 +6222,7 @@ msgid "Device Settings"
 msgstr "Налаштування пристрою"
 
 msgid "Device id"
-msgstr "ID пристрою"
+msgstr "Ідентифікатор пристрою"
 
 msgid "Device mounts"
 msgstr "Монтування пристрою"
@@ -6376,7 +6382,7 @@ msgid "Disabled"
 msgstr "Вимкнуто"
 
 msgid "Disabled PiP.\n"
-msgstr "Відключення ПІП.\n"
+msgstr "Відключення PiP.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Вимкнено, або WPA/WPA2"
@@ -7161,10 +7167,10 @@ msgid "Enable OpenTV EPG"
 msgstr "Увімкнути OpenTV EPG"
 
 msgid "Enable PiP no HDR"
-msgstr "ввімкнути ПІП без HDR"
+msgstr "ввімкнути PiP без HDR"
 
 msgid "Enable Quad PiP"
-msgstr "Включити чотирикратний ПіП"
+msgstr "Включити чотирикратний PiP"
 
 msgid "Enable Swap at startup"
 msgstr "Вкл. Swap при старті"
@@ -7185,7 +7191,7 @@ msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that
 msgstr "Активація другого інфобара з додатковою інформацією (натисніть OK двічі для показу другого інфобару)."
 
 msgid "Enable auto cable scan"
-msgstr "Включити автосканування кабельного ТБ"
+msgstr "Включити автосканування кабельного телебачення"
 
 msgid "Enable auto fast scan"
 msgstr "Включити швидке автосканування"
@@ -8046,7 +8052,7 @@ msgid "Exit picture viewer"
 msgstr "Вийти з програми перегляду зображень"
 
 msgid "Exit quad PiP"
-msgstr "Вийти з чотирьохекранного ПІП"
+msgstr "Вийти з чотирьохекранного PiP"
 
 msgid "Exit the wizard"
 msgstr "Вийти з помічника"
@@ -8118,7 +8124,7 @@ msgid "External"
 msgstr "Зовнішній"
 
 msgid "External PiP"
-msgstr "Зовнішній ПІП"
+msgstr "Зовнішній PiP"
 
 #, python-format
 msgid "External Storage %s"
@@ -8606,7 +8612,7 @@ msgid "Flash your %s %s and reboot now?"
 msgstr "Прошити Ваш %s %s і перезавантажити зараз?"
 
 msgid "Flash your receiver software on the fly."
-msgstr "Прошити приймач Вашим ПЗ."
+msgstr "Прошити приймач вашим ПЗ."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -8927,7 +8933,7 @@ msgid "Gibraltar"
 msgstr "Гібралтар"
 
 msgid "Given device id"
-msgstr "ID пристрою"
+msgstr "Вказати ідентифікатор пристрою"
 
 msgid "Go back to the previous step"
 msgstr "Повернутися до попереднього кроку"
@@ -9209,7 +9215,7 @@ msgid "Hard Disk Settings"
 msgstr "Налаштування жорсткого диску"
 
 msgid "Hard disk Standby after"
-msgstr "Відключення HDD через"
+msgstr "Відключення жорсткого диску через"
 
 msgid "Hard disk Standby in receiver Standby after"
 msgstr "Перехід HDD в режим очікування одночасно з приймачем"
@@ -9225,6 +9231,9 @@ msgstr "Пристрій MultiBoot"
 
 msgid "Hardware information"
 msgstr "Інформація про обладнання"
+
+msgid "Hardware latency correction"
+msgstr "Корекція апаратної затримки"
 
 msgid "Hardware serial"
 msgstr "Серійний номер"
@@ -9918,7 +9927,7 @@ msgid "Include timer data"
 msgstr "Включити дані таймера"
 
 msgid "Incorrect type service for PiP!"
-msgstr "Неправельний тип каналу для ПІП!"
+msgstr "Неправельний тип каналу для PiP!"
 
 msgid "Increase time scale"
 msgstr "Збільшення шкали часу"
@@ -11591,7 +11600,7 @@ msgid "Move PiP"
 msgstr "Переміщення PIP"
 
 msgid "Move PiP to main picture"
-msgstr "Перемістити ПІП на основний екран"
+msgstr "Перемістити PiP на основний екран"
 
 msgid "Move Up/Down"
 msgstr "Перемістити вгору/вниз"
@@ -12293,7 +12302,7 @@ msgid "Next higher resolution"
 msgstr "наступна вища роздільна здатність"
 
 msgid "Next quad PiP channel"
-msgstr "Наступний 4-ч какнальний ПіП"
+msgstr "Наступний 4-ч какнальний PiP"
 
 msgid "Nextsong"
 msgstr "Наступна пісня"
@@ -13064,13 +13073,13 @@ msgid "Open service list and select next service"
 msgstr "Відкрити список каналів і вибрати наступний канал"
 
 msgid "Open service list and select next service for PiP"
-msgstr "Відкрити список каналів і вибрати наступний канал для ПІП"
+msgstr "Відкрити список каналів і вибрати наступний канал для PiP"
 
 msgid "Open service list and select previous service"
 msgstr "Відкрити список каналів і вибрати попередній канал"
 
 msgid "Open service list and select previous service for PiP"
-msgstr "Відкрити список каналів і вибрати попередній канал для ПІП"
+msgstr "Відкрити список каналів і вибрати попередній канал для PiP"
 
 msgid "Open the Channel Selection Settings screen"
 msgstr "Відкрити екран налаштувань Списку каналів"
@@ -13279,7 +13288,7 @@ msgstr "Необхідний Пін-код"
 
 #. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP"
-msgstr "ПІП"
+msgstr "PiP"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -13526,19 +13535,19 @@ msgid "Philippines"
 msgstr "Філіпіни"
 
 msgid "PiP"
-msgstr "ПіП"
+msgstr "PiP"
 
 msgid "PiP with OSD"
 msgstr "PIP з OSD"
 
 msgid "PiP-Zap"
-msgstr "ПіП-Переключення"
+msgstr "PiP-переключення"
 
 msgid "PiPSetup"
-msgstr "Налаштування ПІП"
+msgstr "Налаштування PiP"
 
 msgid "PiPZap"
-msgstr "ПіП Переключення"
+msgstr "PiP переключення"
 
 msgid "Picon"
 msgstr "Пікон"
@@ -13653,7 +13662,7 @@ msgid "Play in Main"
 msgstr "Відтворити як головний"
 
 msgid "Play in PiP"
-msgstr "Відтворити в ПіП"
+msgstr "Відтворити в PiP"
 
 msgid "Play music..."
 msgstr "Відтворити музику..."
@@ -13671,7 +13680,7 @@ msgid "Play previous"
 msgstr "Відтворити попередній"
 
 msgid "Play selected service in a PiP window"
-msgstr "Відтворити вибраний канал у вікні ПіП"
+msgstr "Відтворити вибраний канал у вікні PiP"
 
 msgid "Play selected service on the main screen"
 msgstr "Відтворити вибраний канал на головному екрані"
@@ -14176,7 +14185,7 @@ msgid "Preschool"
 msgstr "Дошкільні"
 
 msgid "Press '0' to toggle PiP mode"
-msgstr "Натисніть '0' для зміни поточний режим ПІП"
+msgstr "Натисніть '0', щоб переключитися в режим PiP"
 
 msgid "Press EXIT to close."
 msgstr "Натисніть EXIT, щоб закрити."
@@ -14527,16 +14536,16 @@ msgid "Qatar"
 msgstr "Катар"
 
 msgid "Quad PiP Channel Selection"
-msgstr "Вибір каналу для ПіП"
+msgstr "Вибір каналу для PiP"
 
 msgid "Quad PiP Screen"
-msgstr "Чотирьохекранний ПіП"
+msgstr "Чотирьохекранний PiP"
 
 msgid "Quad PiP channel "
-msgstr "Канал чотирьохекранного ПіП "
+msgstr "Канал чотирьохекранного PiP"
 
 msgid "Quad PiP is not available."
-msgstr "Чотирьохекранний ПіП недоступний."
+msgstr "Чотирьохекранний PiP недоступний."
 
 msgid "Quechua"
 msgstr "Кечуа"
@@ -14869,7 +14878,7 @@ msgid "Recordings"
 msgstr "Записи"
 
 msgid "Recordings abort PiP"
-msgstr "Записи скасовують ПІП"
+msgstr "Записи скасовують PiP"
 
 msgid "Recordings abort pseudo recordings"
 msgstr "Записи скасовують псевдо записи"
@@ -15008,7 +15017,7 @@ msgid "Remarkable people"
 msgstr "відомі люди"
 
 msgid "Remember last service in PiP"
-msgstr "Запам’ятати останній канал в ПІП"
+msgstr "Запам’ятати останній канал в PiP"
 
 msgid "Remember service PIN"
 msgstr "Запам’ятати ПІН-код каналу"
@@ -18131,7 +18140,7 @@ msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "Показати статус запису в інфобарі відеоплеєра"
 
 msgid "Show PiP"
-msgstr "Показати ПІП"
+msgstr "Показати PiP"
 
 msgid "Show PiP in MiniTV"
 msgstr "Показати PIP в MiнiTВ"
@@ -19524,7 +19533,7 @@ msgid "Stop Auto Refresh"
 msgstr "Зупинити автоматичне оновлення"
 
 msgid "Stop PiP"
-msgstr "Відключити ПІП"
+msgstr "Відключити PiP"
 
 msgid "Stop Streams"
 msgstr "Зупинити Стрім"
@@ -19809,7 +19818,7 @@ msgid "Swap Manager"
 msgstr "Управління підкачкою"
 
 msgid "Swap PiP"
-msgstr "Замінити ПІП"
+msgstr "Замінити PiP"
 
 msgid "Swap PiP and main picture"
 msgstr "Поміняти PiP і основне зображення"
@@ -20022,7 +20031,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - Monja 07.02.2026"
+msgstr "Переклад: kvinto - Monja 16.02.2026"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -21290,7 +21299,7 @@ msgid "Toggle Dolby Digital down mix"
 msgstr "Перемикання мікшування Dolby Digital"
 
 msgid "Toggle HDMI-In PiP"
-msgstr "Перемикання HDMI-In в ПІП"
+msgstr "Перемикання HDMI-In в PiP"
 
 msgid "Toggle HDMI-In full screen"
 msgstr "Перемикання HDMI-In повноекранний режим"
@@ -21497,7 +21506,7 @@ msgid "Tree size"
 msgstr "Розмір всіх каталогів"
 
 msgid "Tried to disable PiP, but found no InfoBar instance!\n"
-msgstr "Спроба відключити ПІП, не виявлено Інфобар. Наприклад.\n"
+msgstr "Спроба відключити PiP, не виявлено iнфобар. Наприклад.\n"
 
 msgid "Tries left:"
 msgstr "Намагатися зліва:"
@@ -21661,13 +21670,13 @@ msgid "Turn off HDMI-IN Full screen mode"
 msgstr "Вимкнення повноекранного режиму HDMI-IN"
 
 msgid "Turn off HDMI-IN PiP mode"
-msgstr "Вимкнення HDMI-IN в режимі ПІП"
+msgstr "Вимкнення HDMI-IN в режимі PiP"
 
 msgid "Turn on HDMI-IN Full screen mode"
 msgstr "Включення HDMI-IN в повноекранному режимі"
 
 msgid "Turn on HDMI-IN PiP mode"
-msgstr "Включення HDMI-IN в режимі ПІП"
+msgstr "Включення HDMI-IN в режимі PiP"
 
 msgid "Turn on the control LED"
 msgstr "Увімкнути LED контроль"
@@ -23066,7 +23075,7 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Якщо включено, телетекст субтитрів буде відображатися у вихідному положенні."
 
 msgid "When enabled, the PiP can be closed by pressing the EXIT button."
-msgstr "Вкажіть дію по кнопці exit, при активованому піп-вікні."
+msgstr "Коли функцію PiP увімкнено, її можна закрити натисканням кнопки EXIT."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "При включенні настройки VCR SCART будуть відображатися в головному меню."
@@ -23495,7 +23504,7 @@ msgstr "You Tube"
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
-msgstr "Ваш %s %s не підтримує ПІП HD"
+msgstr "Ваш %s %s не підтримує PiP HD"
 
 #, python-format
 msgid "Your %s %s goes to WOL"
@@ -23692,7 +23701,7 @@ msgid "Zap down"
 msgstr "Переключити вниз"
 
 msgid "Zap focus to Picture in Picture"
-msgstr "Переключити фокус на ПІП"
+msgstr "Переключити фокус на PiP"
 
 msgid "Zap focus to main screen"
 msgstr "Переключити фокус на основне вікно"
@@ -23791,7 +23800,7 @@ msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "графічний інтерфейс для призначення каналів/провайдерів/caid'ів для CI-модулів"
 
 msgid "activatePiP"
-msgstr "активувати ПІП"
+msgstr "активувати PiP"
 
 msgid "address:"
 msgstr "адреса:"
@@ -23827,9 +23836,6 @@ msgstr "звукова доріжка"
 
 msgid "automatic"
 msgstr "автоматичний"
-
-msgid "Available"
-msgstr "Доступно"
 
 msgid "back"
 msgstr "назад"
@@ -24171,7 +24177,7 @@ msgid "packages"
 msgstr "пакети"
 
 msgid "pid:"
-msgstr "PID:"
+msgstr "pid:"
 
 msgid "please wait, loading picture..."
 msgstr "будь ласка, почекайте, йде завантаження зображення..."

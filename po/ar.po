@@ -7,20 +7,22 @@
 # Abdulelah Aqeil <dr.aqeil@gmail.com>, 2025, 2026.
 # Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>, 2026.
 # jbleyel <jbleyel@gmx.net>, 2026.
+# Mohamed <chemist594@gmail.com>, 2026.
+# هيثم السوداني/ Haitham ALSudani <hmeng80@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-31 09:59+0000\n"
-"PO-Revision-Date: 2026-02-11 06:16+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"PO-Revision-Date: 2026-02-24 06:09+0000\n"
+"Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -125,11 +127,9 @@ msgstr "%-I:%M%^p"
 msgid "%-I:%M:%S"
 msgstr "%-I:%M:%S"
 
-#, fuzzy
 msgid "%-I:%M:%S%P"
 msgstr "%-I:%M:%S%P"
 
-#, fuzzy
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
@@ -220,7 +220,7 @@ msgstr "%-m/%d/%Y"
 
 #, python-format
 msgid "%.0f GB"
-msgstr "%.0f GB"
+msgstr "%.0f جيجابايت"
 
 #, python-format
 msgid "%.0f MB"
@@ -233,12 +233,12 @@ msgstr "%.2f جيجابايت"
 #, python-format
 msgid "%.2f Second"
 msgid_plural "%.2f Seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%.2f ثانية"
+msgstr[1] "%.2f ثانية"
+msgstr[2] "%.2f ثانية"
+msgstr[3] "%.2f ثانية"
+msgstr[4] "%.2f ثانية"
+msgstr[5] "%.2f ثانية"
 
 #, python-format
 msgid "%02d.%02d."
@@ -452,11 +452,9 @@ msgstr "%I:%M%^p"
 msgid "%I:%M:%S"
 msgstr "%I:%M:%S"
 
-#, fuzzy
 msgid "%I:%M:%S%P"
 msgstr "%I:%M:%S%P"
 
-#, fuzzy
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
@@ -763,12 +761,12 @@ msgstr "%b=%d "
 #, python-format
 msgid "%d"
 msgid_plural "%d"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d"
+msgstr[1] "%d"
+msgstr[2] "%d"
+msgstr[3] "%d"
+msgstr[4] "%d"
+msgstr[5] "%d"
 
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
@@ -782,50 +780,50 @@ msgstr "%d %b %Y"
 #, python-format
 msgid "%d + %d + %d Minute"
 msgid_plural "%d + %d + %d Minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d + %d + %d دقيقة"
+msgstr[1] "%d + %d + %d دقيقة"
+msgstr[2] "%d + %d + %d دقيقة"
+msgstr[3] "%d + %d + %d دقيقة"
+msgstr[4] "%d + %d + %d دقيقة"
+msgstr[5] "%d + %d + %d دقيقة"
 
 #, python-format
 msgid "%d DMIPS per core"
-msgstr "%d عملية حسابية لكل نواة"
+msgstr "%d عملية حسابية DIMPS لكل نواة"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
-msgstr ""
+msgstr "%d عملية حسابية (DMIPS) بواسطة %d نواة"
 
 #, python-format
 msgid "%d Day"
 msgid_plural "%d Days"
 msgstr[0] "%d يوم"
-msgstr[1] "%d من الأيام"
-msgstr[2] "%d يومين"
-msgstr[3] "%d من الأيام"
-msgstr[4] "%d من الأيام"
-msgstr[5] "%d أيام"
+msgstr[1] "%d يوم"
+msgstr[2] "%d يوم"
+msgstr[3] "%d يوم"
+msgstr[4] "%d يوم"
+msgstr[5] "%d يوم"
 
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d رقم"
+msgstr[1] "%d رقم"
+msgstr[2] "%d رقم"
+msgstr[3] "%d رقم"
+msgstr[4] "%d رقم"
+msgstr[5] "%d رقم"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%d Event"
 msgid_plural "%d Events"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d الحدث"
+msgstr[1] "%d الحدث"
+msgstr[2] "%d الحدثان"
+msgstr[3] "%d الحدث"
+msgstr[4] "%d الأحداث"
+msgstr[5] "%d الحدث"
 
 #, python-format
 msgid "%d GB"
@@ -834,24 +832,24 @@ msgstr "%d جيجابايت"
 #, python-format
 msgid "%d Hour"
 msgid_plural "%d Hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d ساعة"
+msgstr[1] "%d ساعة"
+msgstr[2] "%d ساعة"
+msgstr[3] "%d ساعات"
+msgstr[4] "%d ساعة"
+msgstr[5] "%d ساعة"
 
 #, python-format
 msgid "%d MB"
-msgstr "%d ميقابايت"
+msgstr "%d ميجابايت"
 
 #, python-format
 msgid "%d MB/s"
-msgstr ""
+msgstr "%d ميجابايت/ث"
 
 #, python-format
 msgid "%d MHz"
-msgstr "%d MHz"
+msgstr "%d ميجاهيرتز"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -873,22 +871,22 @@ msgstr "%d MHz"
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d دقيقة"
+msgstr[1] "%d دقيقة"
+msgstr[2] "%d دقيقة"
+msgstr[3] "%d دقيقة"
+msgstr[4] "%d دقيقة"
+msgstr[5] "%d دقيقة"
 
 #, python-format
 msgid "%d Minute"
 msgid_plural "%d Minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%d دقيقة"
+msgstr[1] "%d دقيقة"
+msgstr[2] "%d دقيقة"
+msgstr[3] "%d دقائق"
+msgstr[4] "%d دقيقة"
+msgstr[5] "%d دقيقة"
 
 #, python-format
 msgid "%d Month"
@@ -959,7 +957,7 @@ msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d نواة"
 msgstr[1] "%d أنوية"
-msgstr[2] "%d نواتين"
+msgstr[2] "%d أنوية"
 msgstr[3] "%d أنوية"
 msgstr[4] "%d أنوية"
 msgstr[5] "%d نواة"
@@ -1180,106 +1178,101 @@ msgid "%d times"
 msgstr "%d مرات"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
-msgstr[0] "تم العثور على شبكه لاسلكيه"
-msgstr[1] "تم العثور على شبكه لاسلكيه"
-msgstr[2] "تم العثور على شبكه لاسلكيه"
-msgstr[3] "تم العثور على شبكه لاسلكيه"
-msgstr[4] "تم العثور على شبكه لاسلكيه"
-msgstr[5] "تم العثور على شبكه لاسلكيه"
+msgstr[0] "تم العثور على %d شبكه لاسلكيه!"
+msgstr[1] "تم العثور على %d شبكه لاسلكيه!"
+msgstr[2] "تم العثور على %d شبكه لاسلكيه!"
+msgstr[3] "تم العثور على %d شبكه لاسلكيه!"
+msgstr[4] "تم العثور على %d شبكه لاسلكيه!"
+msgstr[5] "تم العثور على %d شبكه لاسلكيه!"
 
 msgid "%d+%b_"
-msgstr ""
+msgstr "%d+%b_"
 
 msgid "%d-%B-%Y"
-msgstr ""
+msgstr "%d-%B-%Y"
 
 msgid "%d-%b"
-msgstr ""
+msgstr "%d-%b"
 
 msgid "%d-%b-%Y"
-msgstr ""
+msgstr "%d-%b-%Y"
 
-#, fuzzy
 msgid "%d. %B %Y"
 msgstr "%d.%B %Y"
 
 msgid "%d. %b"
-msgstr ""
+msgstr "%d. %b"
 
 msgid "%d. %b %Y"
-msgstr ""
+msgstr "%d. %b %Y"
 
 msgid "%d.%-m"
-msgstr ""
+msgstr "%d.%-m"
 
-#, fuzzy
 msgid "%d.%-m.%Y"
-msgstr "%d.%B %Y"
+msgstr "%d.%-m.%Y"
 
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d جيجابايت"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
-#, fuzzy
 msgid "%d.%m"
-msgstr "%d.%B %Y"
+msgstr "%d.%m"
 
-#, fuzzy
 msgid "%d.%m.%Y"
-msgstr "%d.%B %Y"
+msgstr "%d.%m.%Y"
 
 msgid "%d/%-m"
-msgstr ""
+msgstr "%d/%-m"
 
 msgid "%d/%-m "
-msgstr ""
+msgstr "%d/%-m "
 
 msgid "%d/%-m/%Y"
-msgstr ""
+msgstr "%d/%-m/%Y"
 
 msgid "%d/%m"
-msgstr ""
+msgstr "%d/%m"
 
 msgid "%d/%m "
-msgstr ""
+msgstr "%d/%m "
 
 msgid "%d/%m/%Y"
-msgstr ""
+msgstr "%d/%m/%Y"
 
 msgid "%d=%b_"
-msgstr ""
+msgstr "%d=%b_"
 
-#, fuzzy
 msgid "%e/%m, %-H:%M"
-msgstr "%H:%M"
+msgstr "%e/%m, %-H:%M"
 
 msgid "%m/%-d"
-msgstr ""
+msgstr "%m/%-d"
 
 msgid "%m/%-d "
-msgstr ""
+msgstr "%m/%-d "
 
 msgid "%m/%-d/%Y"
-msgstr ""
+msgstr "%m/%-d/%Y"
 
 msgid "%m/%d"
-msgstr ""
+msgstr "%m/%d"
 
 msgid "%m/%d "
-msgstr ""
+msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
-msgstr ""
+msgstr "%m/%d/%Y"
 
 #, python-format
 msgid "%s %02d.%02d."
-msgstr ""
+msgstr "%s %02d.%02d."
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
@@ -1290,22 +1283,22 @@ msgid "%s %s front panel"
 msgstr ""
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s ir keyboard"
-msgstr "لوحة مفاتيح اشعة فوق الحمراء %s%s"
+msgstr "لوحة مفاتيح اشعة فوق الحمراء %s %s"
 
 #, python-format
 msgid "%s %s ir mouse"
 msgstr ""
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s remote control (native)"
-msgstr "ريموت تحكم (اصلي) %s%s"
+msgstr "ريموت تحكم (اصلي) %s %s"
 
 #, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #
 #, python-format
@@ -1318,7 +1311,7 @@ msgstr ""
 
 #, python-format
 msgid "%s GHz"
-msgstr ""
+msgstr "%s قيقاهيرتز"
 
 #, python-format
 msgid "%s Information"
@@ -1464,35 +1457,35 @@ msgid "(show optional DVD audio menu)"
 msgstr "(عرض قائمة صوت ديفيدي إختياريه)"
 
 msgid "* = Restart required if this item is changed."
-msgstr ""
+msgstr "* = يتطلب اعادة التشغيل عند تغيير هذا العنصر."
 
 msgid "* current animation"
 msgstr ""
 
 msgid "+24 Hours"
-msgstr ""
+msgstr "+24 ساعة"
 
 msgctxt "Text list separator"
 msgid ", "
-msgstr ""
+msgstr "، "
 
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgid "- No space left on backup device."
-msgstr ""
+msgstr "- لا توجد مساحة متبقية كافية على جهاز النسخ الاحتياطي."
 
 msgid "- No write permission on backup device."
-msgstr ""
+msgstr "- لا توجد صلاحية للكتابة على جهاز النسخ الاحتياطي."
 
 msgid "- Wrong backup destination."
-msgstr ""
+msgstr "- وجهة نسخ احتياطي خاطئة."
 
 msgid "-24 Hours"
-msgstr ""
+msgstr "-24 ساعة"
 
 msgid "-24h/+24 Hours"
-msgstr ""
+msgstr "-24/+24 ساعة"
 
 msgid "/s"
 msgstr "/s"
@@ -1577,7 +1570,7 @@ msgid "18 V"
 msgstr "18 فولت"
 
 msgid "1st InfoBar timeout"
-msgstr ""
+msgstr "وقت الانتظار الاول لشريط المعلومات (InfoBar)"
 
 msgid "1x"
 msgstr ""
@@ -1586,21 +1579,20 @@ msgid "2"
 msgstr ""
 
 msgid "2nd InfoBar"
-msgstr ""
+msgstr "شريط المعلومات (InfoBar) الثاني"
 
 #
-#, fuzzy
 msgid "2nd InfoBar Actions"
-msgstr "إعدادات المحول"
+msgstr "إجراءات شريط المعلومات الثاني"
 
 msgid "2nd InfoBar ECM"
-msgstr ""
+msgstr "ECM شريط المعلومات الثاني"
 
 msgid "2nd InfoBar INFO"
-msgstr ""
+msgstr "INFO شريط المعلومات الثاني"
 
 msgid "2nd InfoBar timeout"
-msgstr ""
+msgstr "وقت الانتظار الثاني لشريط المعلومات (InfoBar)"
 
 msgid "2x"
 msgstr ""
@@ -1618,7 +1610,7 @@ msgid "3"
 msgstr ""
 
 msgid "3D Mode"
-msgstr ""
+msgstr "نمط ثلاثي الابعاد 3D"
 
 #
 msgid "3D Surround"
@@ -1712,6 +1704,7 @@ msgid "<no log found>"
 msgstr ""
 
 #
+#, fuzzy
 msgid "A"
 msgstr "A"
 
@@ -1736,21 +1729,21 @@ msgstr ""
 msgid "A file from media is in use!"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 "انتهاء التسجيل بالمؤقت ، يجب وضع \n"
-"الدريم بوكس فى وضع الاستعداد , أفعل ذلك الان ؟"
+"%s %s فى وضع الاستعداد , أفعل ذلك الان ؟"
 
 #, fuzzy, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"انتهاء التسجيل بالمؤقت ، يجب إغلاق الدريم بوكس \n"
-"أغلاق الان؟"
+"انتهاء التسجيل بالمؤقت ، يجب إغلاق\n"
+"%s %s. أغلاق الان؟"
 
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
@@ -1838,16 +1831,16 @@ msgstr ""
 "قم بتعطيل التليفزيون وحاول مره ثانيه؟\n"
 
 msgid "AAC downmix"
-msgstr "ترميز الصوت الرقمي المزدوج"
+msgstr "تخفيض القنوات الصوتية من ACC"
 
 msgid "AAC plus downmix"
-msgstr ""
+msgstr "تخفيض القنوات الصوتية من AAC plus"
 
 msgid "AAC transcoding"
 msgstr ""
 
 msgid "AC3 downmix"
-msgstr "ترميز الصوت الثلاثي المنخفض"
+msgstr "تخفيض القنوات الصوتية من AC3"
 
 msgid "AC3 plus transcoding"
 msgstr ""
@@ -2020,7 +2013,7 @@ msgid "Add Alternatives"
 msgstr "إضافة بدائل"
 
 msgid "Add AutoTimer"
-msgstr ""
+msgstr "اضف مؤقت آلي"
 
 msgid "Add Bookmark"
 msgstr "إضافة علامة مرجعية"
@@ -2071,20 +2064,18 @@ msgid "Add Service To Favorites"
 msgstr "إضافه القناه الى المفضله"
 
 msgid "Add Timer"
-msgstr ""
+msgstr "أضف مؤقت"
 
 msgid "Add To Parental Protection"
 msgstr "أضف حمايه أبويه"
 
 #
-#, fuzzy
 msgid "Add Zap+RecordTimer"
-msgstr "أضف مؤقت"
+msgstr "أضف مؤقت انتقال+تسجيل"
 
 #
-#, fuzzy
 msgid "Add ZapTimer"
-msgstr "أضف مؤقت"
+msgstr "أضف مؤقت انتقال"
 
 msgid "Add a RADIO service to the Volume Offset list"
 msgstr ""
@@ -2094,17 +2085,16 @@ msgid "Add a RecordTimer"
 msgstr "أضف مؤقت للتسجيل"
 
 msgid "Add a RecordTimer for current event"
-msgstr ""
+msgstr "اضف موقت تسجيل للحدث الحالي"
 
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a ZapTimer for current event"
-msgstr ""
+msgstr "اضف موقت انتقال للحدث الحالي"
 
-#, fuzzy
 msgid "Add a ZapTimer for next event"
-msgstr "الانتقال لاسفل الى البند التالى"
+msgstr "أضف مؤقت انتقال للحدث القادم"
 
 #
 msgid "Add a mark"
@@ -2120,7 +2110,7 @@ msgid "Add a new tag"
 msgstr ""
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "أضف مؤقت جديد"
 
 #
 msgid "Add a new title"
@@ -2130,10 +2120,10 @@ msgid "Add a service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a timer for the current event"
-msgstr "إضافة موقّت للحدث الحالي"
+msgstr "أضف مؤقت للحدث الحالي"
 
 msgid "Add an AutoTimer for the current event"
-msgstr ""
+msgstr "أضف مؤقت آلي للحدث الحالي"
 
 msgid "Add current directory to bookmarks"
 msgstr ""
@@ -2212,7 +2202,7 @@ msgid "Add/Remove Timer"
 msgstr "اضف/احذف مؤقت"
 
 msgid "Add/Remove a timer for the current event"
-msgstr ""
+msgstr "اضف /الغ توقيت للحدث الحالي"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -2246,6 +2236,9 @@ msgstr "عدل الموقع الأفقي للحروف المستخدمة في ا
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "عدل الموقع العامودي للحروف المستخدمة في التليتكس."
+
+msgid "Adjusts compensation for hardware buffer latency for DM9x0."
+msgstr ""
 
 msgid "Adult"
 msgstr "للكبار"
@@ -2288,7 +2281,7 @@ msgid "Advertisement/Shopping"
 msgstr "إعلان/تسوق"
 
 msgid "Afar"
-msgstr "عفار"
+msgstr "العفرية"
 
 msgid "Afghanistan"
 msgstr "أفغانستان"
@@ -2687,7 +2680,7 @@ msgid "Are you sure you want to delete this?"
 msgstr "هل أنت متأكد أنك تريد حذف هذا؟"
 
 msgid "Are you sure you want to disable Chkroot Multiboot?"
-msgstr "هل أنت متأكد من أنك تريد تعطيل متعدد الاقلاع من تشكروت (Chkroot Multiboot)؟"
+msgstr "هل أنت متأكد من أنك تريد تعطيل الاقلاع المتعدد من تشكروت (Chkroot Multiboot)؟"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "هل أنت متأكد أنك تريد الخروج من نافذه التطبيق المساعد هذه؟"
@@ -2778,18 +2771,17 @@ msgid "Aspect"
 msgstr ""
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "نسبة العرض للارتفاع"
 
-#, fuzzy
 msgid "Aspect Ratio Actions"
-msgstr "أختار الموقع"
+msgstr "اجراءات نسبة العرض للارتفاع"
 
 msgid "Aspect ratio"
-msgstr "نسبة الطول والعرض"
+msgstr "نسبة العرض للارتفاع"
 
 #, python-format
 msgid "Aspect ratio set to '%s'."
-msgstr ""
+msgstr "تم ضبط نسبة العرض للارتفاع على '%s'."
 
 msgid "Aspect switch"
 msgstr ""
@@ -2947,7 +2939,7 @@ msgid "Auto video mode selected for the TV."
 msgstr ""
 
 msgid "Auto(not available)"
-msgstr ""
+msgstr "تلقائي (غير متوفر)"
 
 msgid "AutoCam Settings"
 msgstr ""
@@ -2984,9 +2976,8 @@ msgid "Automatic Service Searching"
 msgstr "بحث آلـى"
 
 #
-#, fuzzy
 msgid "Automatic resolution"
-msgstr "بحث آلـى"
+msgstr "دقة عرض آلية"
 
 #
 #, fuzzy
@@ -3015,6 +3006,9 @@ msgid "Automatically update Log-Fullscreen View"
 msgstr ""
 
 msgid "Autostart"
+msgstr ""
+
+msgid "Available"
 msgstr ""
 
 msgid "Available format variables"
@@ -3159,8 +3153,9 @@ msgstr ""
 
 #, python-format
 msgid "Backup tool for %s %s"
-msgstr ""
+msgstr "أداة النسخ الاحتياطي لـ %s %s"
 
+#, fuzzy
 msgid "Backup your %s %s settings."
 msgstr "أخذ نسخة احتياطية من %s %s إعداداتك."
 
@@ -3177,7 +3172,7 @@ msgid "Backup your current settings. This includes E2-setup, channels, network a
 msgstr ""
 
 msgid "Backup your running %s %s image to HDD or USB."
-msgstr "قم بعمل نسخة احتياطية من صورة %s %s النشطة على محرك الأقراص الثابتة أو الـ USB."
+msgstr "نسخ نسخة احتياطية من صورة %s %s النشطة على محرك الأقراص الثابتة أو الـ USB."
 
 msgid "Bahamas"
 msgstr "الباهاما"
@@ -3383,7 +3378,7 @@ msgstr ""
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr ""
+msgstr "معلومات خانات الإقلاع على %s %s"
 
 msgid "Boot time"
 msgstr ""
@@ -3482,7 +3477,7 @@ msgstr ""
 msgid "Brunei Darussalam"
 msgstr "بروناي دار السلام"
 
-#, python-format
+#, fuzzy, python-format
 msgid "Buffering %d%%"
 msgstr "إشارة إنتظار %d%%"
 
@@ -3646,6 +3641,7 @@ msgstr ""
 msgid "CHANNEL +/-"
 msgstr "قناه +/-"
 
+#, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "ضبط الكامة الداخلية (واجهة المستخدم)"
 
@@ -3653,6 +3649,7 @@ msgid "CI Boot Delay"
 msgstr ""
 
 #
+#, fuzzy
 msgid "CI assignment"
 msgstr "مهمة واجهة المستخدم"
 
@@ -3840,7 +3837,7 @@ msgid "Cancel"
 msgstr "إلغاء"
 
 msgid "Cancel / Close the software update screen"
-msgstr ""
+msgstr "الغ /اغلق شاشه تحديث البرمجيات"
 
 msgid "Cancel Task"
 msgstr ""
@@ -3933,7 +3930,7 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr "ألغي عملية اختيار الفتحة (السلوت) واخرج من كل القوائم"
+msgstr "ألغي عملية اختيار الخانات (السلوت) واخرج من كل القوائم"
 
 msgid "Cancel the task"
 msgstr "إلغاء المهمة"
@@ -3983,6 +3980,7 @@ msgstr "كارتونز"
 msgid "Cartoons/Puppets"
 msgstr "الرسوم المتحركة/الدمى"
 
+#, fuzzy
 msgid "Cascade PiP"
 msgstr "تنظيم خاصية قناة داخل قناة"
 
@@ -4284,10 +4282,10 @@ msgid "Chkroot Manager Actions"
 msgstr ""
 
 msgid "Chkroot MultiBoot Initialization in progress!"
-msgstr ""
+msgstr "جاري التقدم في تهيئة الاقلاع المتعدد من تشكروت (Chkroot Multiboot)!"
 
 msgid "Chkroot MultiBoot Manager"
-msgstr ""
+msgstr "مدير الاقلاع المتعدد من تشكروت (Chkroot Multiboot)"
 
 msgid "Choice Box"
 msgstr "صندوق الاختيار"
@@ -4485,9 +4483,8 @@ msgstr ""
 msgid "Clients"
 msgstr "عملاء"
 
-#, fuzzy
 msgid "Clock:"
-msgstr "مغلق"
+msgstr "الساعة:"
 
 msgid "Clone TV screen to LCD"
 msgstr ""
@@ -4520,7 +4517,7 @@ msgid "Close screen"
 msgstr ""
 
 msgid "Close the Chkroot MultiBoot Manager"
-msgstr ""
+msgstr "اغلق مدير الاقلاع المتعدد من تشكروت (Chkroot Multiboot)"
 
 msgid "Close the Device Manager screen"
 msgstr ""
@@ -4529,7 +4526,7 @@ msgid "Close the Device Manager screen and exit all menus"
 msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
-msgstr ""
+msgstr "اغلق مدير الاقلاع المتعدد من كيكسيك (Kexec Multiboot)"
 
 msgid "Close the Plugin Browser screen"
 msgstr ""
@@ -4577,7 +4574,7 @@ msgid "Code rate LP"
 msgstr "معدل ترميز الضغط المنخفض"
 
 msgid "Collapse"
-msgstr ""
+msgstr "طي"
 
 msgid "Collection name"
 msgstr "اسم المجموعة"
@@ -4588,9 +4585,8 @@ msgstr "إعدادات المجموعة"
 msgid "Colombia"
 msgstr "كولومبيا"
 
-#, fuzzy
 msgid "Color"
-msgstr "نسق الالـوان"
+msgstr "اللون"
 
 msgid "Color Bottom"
 msgstr ""
@@ -4617,14 +4613,14 @@ msgid "Combo Tuner"
 msgstr ""
 
 msgid "Comedy"
-msgstr ""
+msgstr "كوميديا"
 
 #, python-format
 msgid "Command '%s' is unknown"
-msgstr ""
+msgstr "الامر '%s' غير معروف"
 
 msgid "Command execution..."
-msgstr ""
+msgstr "تنفيذ الامر..."
 
 msgid "Command finished."
 msgid_plural "Commands finished."
@@ -4639,7 +4635,7 @@ msgid "Command order"
 msgstr "ترتيب الأوامر"
 
 msgid "Command to run"
-msgstr ""
+msgstr "الامر المراد تنفيذه"
 
 msgid "Command type"
 msgstr "نوع الأمر"
@@ -4683,13 +4679,13 @@ msgid "Comoros"
 msgstr "جزر القمر"
 
 msgid "Compiled by"
-msgstr ""
+msgstr "تم تجميعها و بناؤها من طرف"
 
 msgid "Complete"
 msgstr "مكتمل"
 
 msgid "Complete Backup"
-msgstr ""
+msgstr "نسخ احتياطي كامل"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "مركب (يسمح بمزج مسارات الصوت والجوانب)"
@@ -4826,7 +4822,7 @@ msgid "Configure the amount of time that will be presented."
 msgstr ""
 
 msgid "Configure the aspect ratio of the screen."
-msgstr ""
+msgstr "اضبط نسبة العرض للارتفاع للشاشة."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr ""
@@ -4999,6 +4995,7 @@ msgstr ""
 msgid "Configure the slow motion speeds."
 msgstr "إعدادات تسارع الحركة البطيئة."
 
+#, fuzzy
 msgid "Configure the source of the frontend data as shown on the InfoBars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
 msgstr "إعدادات مصدر البيانات الواجهة كما هو مبين في شريط المعلومات. 'إعدادات' كما يتم تخزينها على الإعدادات. 'المؤالف' كما ذكرت من قبل ضبط المؤالف."
 
@@ -5087,13 +5084,13 @@ msgid "Configure your NTP server."
 msgstr "اعدادت خادم NTP."
 
 msgid "Configure your Network"
-msgstr ""
+msgstr "حدد اعدادات شبكتك"
 
 msgid "Configure your internal LAN"
 msgstr "تكوين شبة الإنترنت الداخليه الخاصة بك"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr ""
+msgstr "حدد اعدادات شبكتك٬ واضغط زر OK لبدء المسح"
 
 msgid "Configure your wireless LAN again"
 msgstr "اعد تكوين الشبكة اللاسلكيه الخاصة بك مرة اخرى"
@@ -5192,7 +5189,7 @@ msgstr "بداية الإغلاق. راجع دليل المتلقي الخاص �
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
-msgstr ""
+msgstr "جاري الاتصال بخادم IceTV وإعداد %s %s."
 
 msgid "Content"
 msgstr ""
@@ -5252,7 +5249,7 @@ msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
 
 msgid "Control the InfoBar fading speed."
-msgstr ""
+msgstr "تحكم في سرعة تلاشي شريط المعلومات"
 
 msgid "Control your Softcams"
 msgstr ""
@@ -5622,7 +5619,7 @@ msgid "Custom skip time for '4'/'6' buttons"
 msgstr "تخطي الوقت العادي مع المفاتيح '4'/'6'"
 
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "تخطي الوقت العادي مع المفاتيح '7'/'9'"
+msgstr "تخطي الوقت مخصص مع المفاتيح '7'/'9'"
 
 msgid "Customize"
 msgstr "تخصيص"
@@ -5645,9 +5642,8 @@ msgstr ""
 msgid "CutList skip time for '%s'/'%s' buttons"
 msgstr ""
 
-#, fuzzy
 msgid "Cutlist Editor"
-msgstr "محرر قائمة القطع..."
+msgstr "محرر قائمة القطع"
 
 msgid "Cutlist editor..."
 msgstr "محرر قائمة القطع..."
@@ -5659,10 +5655,10 @@ msgid "Cycle PiP(zap)"
 msgstr ""
 
 msgid "Cycle through the InfoBars"
-msgstr ""
+msgstr "بدل بالتناوب عبر اشرطة المعلومات"
 
 msgid "Cycle through the available aspect ratios"
-msgstr ""
+msgstr "بدل بالتناوب ما بين نسب العرض للارتفاع المتوفرة"
 
 msgid "Cycling"
 msgstr ""
@@ -5680,10 +5676,10 @@ msgid "D"
 msgstr ""
 
 msgid "DAC"
-msgstr "المحول الرقمي التناظري"
+msgstr "المحول الرقمي التناظري DAC"
 
 msgid "DHCP"
-msgstr "برتوكول تكوين المضيف آليا"
+msgstr "برتوكول DHCP"
 
 msgid "DLNA support"
 msgstr ""
@@ -5718,10 +5714,10 @@ msgid ""
 msgstr ""
 
 msgid "DTS HD downmix"
-msgstr ""
+msgstr "تخفيض القنوات الصوتية من DTS HD"
 
 msgid "DTS downmix"
-msgstr "الصوت الدولبي / نظام المسرح الرقمي المزدوج"
+msgstr "تخفيض القنوات الصوتية من DTS"
 
 msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgstr ""
@@ -5840,9 +5836,8 @@ msgid "Day DD-Mon"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Day DD/M"
-msgstr "تشغيل دى فى دى"
+msgstr "يوم ي ي/ ش"
 
 msgid "Day DD/MM"
 msgstr ""
@@ -6260,9 +6255,8 @@ msgstr ""
 msgid "Delete character under cursor or select PM times"
 msgstr ""
 
-#, fuzzy
 msgid "Delete current line"
-msgstr "مسح البند"
+msgstr "مسح السطر الحالي"
 
 msgid "Delete directory or file"
 msgstr ""
@@ -6360,9 +6354,8 @@ msgstr "العناصر المحذوفة"
 msgid "Deleting %s (%s)..."
 msgstr "جاري الحذف %s (%s)..."
 
-#, fuzzy
 msgid "Deleting files"
-msgstr "حذف الملف"
+msgstr "جاري حذف ملفات"
 
 msgid "Delivery system workaround"
 msgstr ""
@@ -6611,7 +6604,7 @@ msgid "Disable background scanning"
 msgstr "تعطيل البحث في الخلفية"
 
 msgid "Disable digital downmix"
-msgstr ""
+msgstr "تعطيل تخفيض القنوات الصوتية الرقمي (downmix)"
 
 msgid "Disable intro screen"
 msgstr ""
@@ -6623,7 +6616,7 @@ msgid "Disable the HDD Process on VFD."
 msgstr ""
 
 msgid "Disable the MultiBoot option"
-msgstr ""
+msgstr "عطل خيار الاقلاع المتعدد"
 
 msgid "Disable timer"
 msgstr "تعطيل المؤقت"
@@ -6715,35 +6708,35 @@ msgid "Distance"
 msgstr ""
 
 msgid "Distribution"
-msgstr ""
+msgstr "الناشر"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
-msgstr ""
+msgstr "معلومات النشرة '%s' لـ %s %s"
 
 msgid "Distribution architecture"
-msgstr ""
+msgstr "هيكل النشرة"
 
 msgid "Distribution build"
-msgstr ""
+msgstr "بنية النشرة"
 
 msgid "Distribution build date"
-msgstr ""
+msgstr "تاريخ بناء النشرة"
 
 msgid "Distribution file system"
-msgstr ""
+msgstr "نظام ملفات النشرة"
 
 msgid "Distribution folder"
-msgstr ""
+msgstr "فولدر النشرة"
 
 msgid "Distribution language"
-msgstr ""
+msgstr "لغة النشرة"
 
 msgid "Distribution revision"
-msgstr ""
+msgstr "تنقيح النشرة"
 
 msgid "Distribution version"
-msgstr ""
+msgstr "نسخة النشرة"
 
 msgid "Divehi / Dhivehi / Maldivian"
 msgstr ""
@@ -6893,7 +6886,7 @@ msgstr "هل تريد عمل بحث يدوى جديد ؟"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
-msgstr ""
+msgstr "هل تريد عمل فلاش للصورة '%s'؟"
 
 msgid "Do you want to install a channel list?"
 msgstr "هل تريد فعلا تثبيت قائمة قنوات؟"
@@ -6949,7 +6942,7 @@ msgid "Documentary"
 msgstr ""
 
 msgid "Dolby Digital downmix is now"
-msgstr ""
+msgstr "تخفيض القنوات الصوتية من Dolby Digital هو الان"
 
 msgid "Domain"
 msgstr ""
@@ -6967,40 +6960,42 @@ msgid "Don't Translate Subs On This Service"
 msgstr ""
 
 msgid "Don't add this recording"
-msgstr ""
+msgstr "لا تضف هذا التسجيل"
 
 msgid "Don't ask again!"
-msgstr ""
+msgstr "لا تسأل مره أخرى !"
 
 msgid "Don't save"
-msgstr ""
+msgstr "لا تقم بالحفظ"
 
 msgid "Don't show default"
-msgstr ""
+msgstr "لا تظهر الإفتراضى"
 
 msgid "Don't stop current event but disable future events"
 msgstr "لا توقف الحدث الحالى لكن قم بتعطيل الاحداث القادمه"
 
 msgid "Don't unscramble, record ECM"
-msgstr "لا تفتح التشفير ولا تسجل معلومات شفرة القنوات"
+msgstr "لا تفتح التشفير، سجل معلومات الشفره"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
+"لا تقلق جهازك لا يزال على ما يرام! هناك العديد من آليات السلامة المعمول بها!\n"
+"جهازك لا يزال على ما يرام كما كان قبل هذا الإجراء!"
 
 msgid "Done"
-msgstr ""
+msgstr "تم"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
-msgstr[1] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
-msgstr[2] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
-msgstr[3] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
-msgstr[4] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
-msgstr[5] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
+msgstr[0] "تم - تثبيت ، تحديث أو حذف %d من الحزم (%s)"
+msgstr[1] "تم - تثبيت ، تحديث أو حذف %d من الحزم (%s)"
+msgstr[2] "تم - تثبيت ، تحديث أو حذف %d من الحزم (%s)"
+msgstr[3] "تم - تثبيت ، تحديث أو حذف %d من الحزم (%s)"
+msgstr[4] "تم - تثبيت ، تحديث أو حذف %d من الحزم (%s)"
+msgstr[5] "تم - تثبيت ، تحديث أو حذف %d من الحزم (%s)"
 
 msgid "Down"
 msgstr ""
@@ -7015,25 +7010,26 @@ msgid "Download Plugins"
 msgstr ""
 
 msgid "Download Softcams"
-msgstr ""
+msgstr "تحميل سوفتكام"
 
 msgid "Download and flash images on your %s %s."
-msgstr ""
+msgstr "تنزيل و عمل فلاش لصور على جهاز الـ %s %s."
 
 msgid "Download and install Plugins"
-msgstr ""
+msgstr "تنزيل وتثبيت الإضافات"
 
 msgid "Download and install cam"
-msgstr ""
+msgstr "تحميل وتثبيت cam"
 
 msgid "Download error"
-msgstr ""
+msgstr "خطأ فى التنزيل"
 
 msgid "Download the selected image"
-msgstr ""
+msgstr "تحميل الصورة المختاره"
 
+#, fuzzy
 msgid "Downloadable plugins"
-msgstr ""
+msgstr "تنزيل الإضافات"
 
 msgid "Downloaded images"
 msgstr "الصور المنزلة"
@@ -7042,50 +7038,52 @@ msgid "Downloading"
 msgstr "جاري التحميل"
 
 msgid "Downloading Image"
-msgstr "جارى تنزيل الصورة"
+msgstr "جاري تنزيل الصورة"
 
 msgid "Downloading latest update list. Please wait..."
-msgstr ""
+msgstr "تنزيل قائمة التحديثات الأخيرة. انتظر من فضلك..."
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "جاري تحميل معلومات عن البلج إنز. رجاء الانتظار.."
+msgstr "جاري تحميل معلومات الإضافه. رجاء الانتظار.."
 
 msgid "Downmix"
-msgstr ""
+msgstr "تخفيض القنوات الصوتية (Downmix)"
 
 msgid "Drama"
-msgstr ""
+msgstr "درما"
 
 msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "قرص DVD للبيانات بتنسيق Dreambox (متوافق مع HDTV)"
 
 msgid "Dreambox format data DVD (won't work in other DVD players)"
-msgstr ""
+msgstr "قرص DVD لبيانات تنسيق Dreambox (لن يعمل مع مشغلات DVD الأخرى)"
 
+#, fuzzy
 msgid "Driver Packages"
-msgstr ""
+msgstr "حزم الدرايفر"
 
+#, fuzzy
 msgid "Driver and kernel information"
-msgstr ""
+msgstr "معلومات برنامج التشغيل والنواة"
 
 msgid "Drivers version"
-msgstr ""
+msgstr "إصدار الدرايفر"
 
 msgid "Duplex"
-msgstr ""
+msgstr "دوبلكس"
 
 msgid "Duplicate the current line"
-msgstr ""
+msgstr "تكرار السطر الحالي"
 
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
-msgstr ""
+msgstr "خلال هذا الوقت، يتم التحقق من جهاز الإرسال ووجهة التسجيل. إذا لم تكن الوجهة (على سبيل المثال، NAS) جاهزة في الوقت المناسب، فيمكن زيادتها هذه المرة."
 
 #
 msgid "Dutch"
 msgstr "الهولندية"
 
 msgid "Dutch / Flemish"
-msgstr ""
+msgstr "الهولندية / الفلمنكية"
 
 msgid "Dynamic contrast"
 msgstr "تباين ديناميكى"
@@ -7097,68 +7095,73 @@ msgid "E"
 msgstr "E"
 
 msgid "ECM"
-msgstr ""
+msgstr "ECM"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-msgstr ""
+msgstr "سيتم تضمين بيانات ECM في البث. هذا يتيح لجهاز الاستقبال العميل فك تشفيرها."
 
 msgid "ECM information"
-msgstr ""
+msgstr "معلومات الـ ECM"
 
 #, python-format
 msgid "ECM information for '%s'"
-msgstr ""
+msgstr "معلومات الـ ECM لـ %s"
 
+#, fuzzy
 msgid "EJECTCD"
-msgstr ""
+msgstr "إخراج"
 
 msgid "EPG"
 msgstr "دليل البرامج الإلكترونية"
 
 msgid "EPG Actions"
-msgstr ""
+msgstr "إجراءات دليل البرامج الإلكتروني"
 
 msgid "EPG Bouquet Actions"
-msgstr ""
+msgstr "إجراءات دليل قائمة القنوات"
 
 msgid "EPG Cache Check"
-msgstr ""
+msgstr "فحص ذاكرة التخزين المؤقت لـ EPG"
 
 msgid "EPG Channel/Service Selection"
-msgstr ""
+msgstr "تحديث دليل القنوات"
 
+#, fuzzy
 msgid "EPG Display Actions"
-msgstr ""
+msgstr "خيارات عرض الدليل"
 
+#, fuzzy
 msgid "EPG Jump"
-msgstr ""
+msgstr "التنقل السريع"
 
 msgid "EPG Navigation Actions"
-msgstr ""
+msgstr "إجراءات التنقل في EPG"
 
+#, fuzzy
 msgid "EPG Other Actions"
-msgstr ""
+msgstr "خيارات أخرى للدليل"
 
 msgid "EPG Search"
-msgstr ""
+msgstr "بحث في الدليل"
 
 msgid "EPG Selection"
-msgstr ""
+msgstr "تحديد EPG"
 
 msgid "EPG Settings"
-msgstr ""
+msgstr "اعدادات دليل البرامج (EPG)"
 
 msgid "EPG Setup"
-msgstr ""
+msgstr "اعدادات الدليل الالكترونى"
 
+#, fuzzy
 msgid "EPG button mode"
-msgstr ""
+msgstr "وظيفة زر EPG"
 
 msgid "EPG filename"
-msgstr ""
+msgstr "اسم ملف الدليل"
 
 msgid "EPG history"
-msgstr ""
+msgstr "سجل EPG"
 
 msgid ""
 "EPG key : Switch to channel list\n"
@@ -7166,6 +7169,10 @@ msgid ""
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
 msgstr ""
+"زر EPG : التبديل إلى قائمة القنوات \n"
+"زر موافق : حذف القناة المحددة\n"
+"زر PVR : إدخال اسم القناة\n"
+"زر خروج : إنهاء تعديل القناة"
 
 msgid ""
 "EPG key : Switch to quad PiP entry\n"
@@ -7173,6 +7180,10 @@ msgid ""
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
 msgstr ""
+"زر EPG : التبديل إلى إدخال الصورة داخل الصورة الرباعية\n"
+"زر موافق : إضافة إلى إدخال جديد\n"
+"زر PVR : إدخال اسم القناة\n"
+"زر خروج : إنهاء تعديل القناة"
 
 msgid "EPG language selection 1"
 msgstr "إختيار لغة دليل البرامج الإلكترونية الأولى"
@@ -7181,16 +7192,16 @@ msgid "EPG language selection 2"
 msgstr "إختيار لغة دليل البرامج الإلكترونية الثانية"
 
 msgid "EPG location"
-msgstr ""
+msgstr "موقع الدليل الالكترونى"
 
 msgid "EPG only"
-msgstr ""
+msgstr "فقط EPG"
 
 msgid "EPGSearch"
-msgstr ""
+msgstr "بحث فى الدليل"
 
 msgid "EXIF-Version"
-msgstr ""
+msgstr "إصدار EXIF"
 
 #
 msgid "East"
@@ -7198,14 +7209,13 @@ msgstr "شرق"
 
 #
 msgid "East limit set"
-msgstr "مجموعه الحدود الشرقية"
+msgstr "ضبط الحد الأقصى شرقاً"
 
 msgid "Easy listening"
-msgstr ""
+msgstr "استماع سهل"
 
-#, fuzzy
 msgid "EasyMedia"
-msgstr "رأسى"
+msgstr "ميديا سهلة الاستخدام"
 
 msgid "Economics/Social advisory"
 msgstr "الاقتصاد/الاستشارات الاجتماعية"
@@ -7220,53 +7230,54 @@ msgid "Edit Alternatives"
 msgstr "تحرير البدائل"
 
 msgid "Edit Mode Off"
-msgstr "نمط التحرير مغلق"
+msgstr "نمط التحرير |  غلق"
 
 msgid "Edit Mode On"
-msgstr "نمط التحرير مفعل"
+msgstr "نمط التحرير | تفعيل"
 
 msgid "Edit Quad Channel Entry"
-msgstr ""
+msgstr "تحرير إدخال القناة الرباعية"
 
+#, fuzzy
 msgid "Edit Tags"
-msgstr ""
+msgstr "تعديل العلامات"
 
 msgid "Edit Timer"
 msgstr "تعديل المؤقت"
 
 msgid "Edit Title"
-msgstr ""
+msgstr "تعديل العنوان"
 
 msgid "Edit Upgrade Source URL"
-msgstr ""
+msgstr "تعديل رابط التحديث"
 
 msgid "Edit chapters of current title"
-msgstr "تحرير الفصول والعنوان الحالي"
+msgstr "تحرير الفصول للعنوان الحالي"
 
-#, fuzzy
 msgid "Edit current line"
-msgstr "تحرير الفصول والعنوان الحالى"
+msgstr "تحرير الخط الحالى"
 
 #
 msgid "Edit settings"
 msgstr "تحرير الاعدادات"
 
 msgid "Edit the CCcam/NewCamd server hostname."
-msgstr ""
+msgstr "تغيير عنوان سيرفر الـ CCcam/NewCamd."
 
 msgid "Edit the CCcam/NewCamd server port."
-msgstr ""
+msgstr "تعديل منفذ سيرفر CCcam/NewCamd."
 
 #
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
-msgstr "حرر اعدادات الـ (دي إن إس) الخاصة بك %s %s."
+msgstr "حرر اعدادات الـ (DNS) لجهاز الـ %s %s الخاصة بك."
 
 msgid "Edit the NewCamd DES Key."
-msgstr ""
+msgstr "تعديل مفتاح DES لNewCamd."
 
+#, fuzzy
 msgid "Edit the currently selected timer"
-msgstr ""
+msgstr "تعديل اختيار المؤقت الحالى"
 
 #
 #, python-format
@@ -7274,23 +7285,23 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "حرر اعدادات الشبكة الخاصة بـ %s %s."
 
 msgid "Edit the password."
-msgstr ""
+msgstr "تعديل كلمة السر."
 
 msgid "Edit the profile name."
-msgstr ""
+msgstr "تعديل الملف الشخصي."
 
 msgid "Edit the remote CCCam port."
-msgstr ""
+msgstr "تعديل منفذ CCcam البعيد."
 
 msgid "Edit the remote IP address."
-msgstr ""
+msgstr "تعديل عنوان IP البعيد."
 
 #
 msgid "Edit the upgrade source address."
 msgstr "تحرير عنوان مصدر الترقيه."
 
 msgid "Edit the username."
-msgstr ""
+msgstr "تعديل إسم المستخدم."
 
 #
 msgid "Education"
@@ -7301,13 +7312,13 @@ msgid "Education/Information"
 msgstr "التعليم/المعلومات"
 
 msgid "Education/Science/Factual"
-msgstr ""
+msgstr "تعليم / علوم / وثائقي"
 
 msgid "Education/Science/Factual topics"
-msgstr ""
+msgstr "مواضيع تعليمية / علمية / وثائقية"
 
 msgid "Educational"
-msgstr ""
+msgstr "تعليمى"
 
 msgid "Egypt"
 msgstr "مصر"
@@ -7316,28 +7327,28 @@ msgid "El Salvador"
 msgstr "السلفادور"
 
 msgid "Elapsed"
-msgstr ""
+msgstr "الوقت المنقضى"
 
 msgid "Elapsed & Remaining"
-msgstr ""
+msgstr "المنقضي والمتبقي"
 
 msgid "Electronic Program Guide"
 msgstr "دليل البرامج الإلكتروني"
 
 msgid "Email"
-msgstr ""
+msgstr "البريد الالكتروني"
 
 msgid "Embedded"
-msgstr ""
+msgstr "مدمج"
 
 msgid "Empty"
-msgstr ""
+msgstr "فارغ"
 
 msgid "Empty file"
-msgstr ""
+msgstr "ملف فارغ"
 
 msgid "Emulator"
-msgstr ""
+msgstr "محاكى"
 
 #
 msgid "Enable"
@@ -7364,13 +7375,13 @@ msgid "Enable Bouquet Edit"
 msgstr "تفعيل تحرير الباقه"
 
 msgid "Enable Chkroot MultiBoot"
-msgstr ""
+msgstr "فعل الاقلاع المتعدد من تشكروت (Chkroot Multiboot)"
 
 msgid "Enable EIT EPG"
 msgstr "تمكين جدول معلومات الحدث في دليل البرامج الإلكتروني"
 
 msgid "Enable Fast Channel Change"
-msgstr ""
+msgstr "تفعيل التغيير السريع للقنوات"
 
 #
 msgid "Enable Favorite Edit"
@@ -7399,7 +7410,7 @@ msgid "Enable InfoBar fade-out"
 msgstr ""
 
 msgid "Enable Kexec MultiBoot"
-msgstr ""
+msgstr "فعل الاقلاع المتعدد من يكسيك (Kexec Multiboot)"
 
 msgid "Enable MHW EPG"
 msgstr "تمكين الطريقة السريعة لعرض الوسائط لدليل البرامج الإلكترونية"
@@ -7496,7 +7507,7 @@ msgid "Enable debug log *"
 msgstr ""
 
 msgid "Enable digital downmix"
-msgstr ""
+msgstr "تفعيل تخفيض القنوات الصوتية الرقمي (downmix)"
 
 #, fuzzy
 msgid "Enable fallback remote receiver"
@@ -7542,7 +7553,7 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
-msgstr ""
+msgstr "فعل هذا الخيار لإضافة معلومات الاقلاع المتعدد المكتشفه أثناء أقلاع النظام إلى ملف سجل تصحيح الاخطاء (Debug)."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
@@ -8091,7 +8102,7 @@ msgstr ""
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "فشل حذف %s (.قد يكون فارغ) ."
+msgstr "خطأ: فشل حذف الدليل '%s'! (ربما الدليل ليس فارغاً.)"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8324,7 +8335,7 @@ msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
-msgstr ""
+msgstr "توسيع"
 
 msgid "Experimental film/video"
 msgstr "فيلم تجريبي/فيديو"
@@ -8361,7 +8372,7 @@ msgid "Extended"
 msgstr "تفاصيل الأقمار"
 
 msgid "Extended Networksetup Plugin..."
-msgstr "بلج إن إعدادات الشبكه المتقدمه"
+msgstr "بلج إن إعدادات الشبكه المتقدمه..."
 
 msgid "Extended Setup..."
 msgstr "إعدادات متقدمة…"
@@ -8447,7 +8458,7 @@ msgid "FCC enabled"
 msgstr ""
 
 msgid "FEC"
-msgstr "خاصية تصحيح الخطأ"
+msgstr "تصحيح الخطأ"
 
 msgid "FEC modes"
 msgstr ""
@@ -8849,9 +8860,8 @@ msgstr ""
 msgid "Flash Expander Actions"
 msgstr ""
 
-#, fuzzy
 msgid "Flash Image"
-msgstr "شحن"
+msgstr "إجراء فلاش لصورة"
 
 #. TRANSLATORS: The variable is the name of a distribution.  E.g. "OpenATV".
 #, python-format
@@ -8888,7 +8898,7 @@ msgstr ""
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
-msgstr ""
+msgstr "هل تريد عمل فلاش لجهاز الـ %s %s و اعادة التشغيل الان؟"
 
 msgid "Flash your receiver software on the fly."
 msgstr ""
@@ -8900,9 +8910,8 @@ msgstr ""
 msgid "Flashing"
 msgstr ""
 
-#, fuzzy
 msgid "Flashing Image"
-msgstr "فشل الشحن"
+msgstr "جاري إجراء فلاش لصورة"
 
 #, python-format
 msgid "Flashing image '%s' was not successful!"
@@ -8957,10 +8966,10 @@ msgid "Force LNB Power"
 msgstr ""
 
 msgid "Force LNB Tuner Power settings."
-msgstr ""
+msgstr "افرض اعدادات الطاقة لموالف الـ LNB."
 
 msgid "Force LNB Tuner ToneBurst settings."
-msgstr ""
+msgstr "افرض اعدادات الدفقة الموجية (ToneBurst) لموالف الـ LNB."
 
 msgid "Force Legacy Signal stats"
 msgstr ""
@@ -9209,7 +9218,7 @@ msgstr ""
 
 #, python-format
 msgid "Geolocation information for %s %s"
-msgstr ""
+msgstr "معلومات عن المواقع الجغرافي لـ %s %s"
 
 msgid "Georgia"
 msgstr "جورجيا"
@@ -9548,6 +9557,9 @@ msgstr ""
 msgid "Hardware information"
 msgstr ""
 
+msgid "Hardware latency correction"
+msgstr ""
+
 msgid "Hardware serial"
 msgstr ""
 
@@ -9629,7 +9641,7 @@ msgid "Hidden / Blank"
 msgstr ""
 
 msgid "Hidden network"
-msgstr "إخفاء الشبكة"
+msgstr "شبكة مخفية"
 
 msgid "Hide"
 msgstr ""
@@ -9637,6 +9649,7 @@ msgstr ""
 msgid "Hide CI messages"
 msgstr ""
 
+#, fuzzy
 msgid "Hide InfoBar"
 msgstr "دائما إخفاء شريط المعلومات"
 
@@ -9848,13 +9861,13 @@ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 msgid "IMDb Details"
-msgstr ""
+msgstr "تفاصيل موقع IMDb"
 
 msgid "IMDb Search"
-msgstr ""
+msgstr "البحث في IMDb"
 
 msgid "IMDb search for current event"
-msgstr ""
+msgstr "البحث في قاعدة بيانات موقع IMDb عن الحدث الحالي"
 
 msgid "INFO"
 msgstr ""
@@ -9884,7 +9897,7 @@ msgid "IP Address 5"
 msgstr ""
 
 msgid "IP Address to be checked on timer activation."
-msgstr ""
+msgstr "عنوان IP ليتم فحصه عند انطلاق المؤقت."
 
 #
 msgid "IP address"
@@ -10107,7 +10120,7 @@ msgid "Image Backup To %s"
 msgstr ""
 
 msgid "Image Flash Actions"
-msgstr ""
+msgstr "إجراءات الفلاش الصورية"
 
 msgid "Image created:"
 msgstr ""
@@ -10215,7 +10228,7 @@ msgid "Include EPG data"
 msgstr ""
 
 msgid "Include MultiBoot data *"
-msgstr ""
+msgstr "اشمل بيانات الاقلاع المتعدد *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr ""
@@ -10320,6 +10333,7 @@ msgstr "شريط المعلومات"
 msgid "InfoBar fade-out speed"
 msgstr ""
 
+#, fuzzy
 msgid "InfoBar front end data source"
 msgstr "مصدر بيانات الواجهة الأمامية في شريط المعلومات"
 
@@ -10449,13 +10463,13 @@ msgstr "نثبيت"
 
 #, python-format
 msgid "Installing %s (%s)..."
-msgstr "جارى التثبيت %s (%s)..."
+msgstr "جاري تثبيت %s (%s)..."
 
 msgid "Installing Service"
 msgstr ""
 
 msgid "Installing Software..."
-msgstr "جارى تثبيت البرنامج..."
+msgstr "جاري تثبيت البرنامج..."
 
 msgid "Installing package."
 msgstr ""
@@ -10519,7 +10533,7 @@ msgstr "الفلاش الداخلى"
 
 #, python-format
 msgid "Internal flash:  %s %s "
-msgstr ""
+msgstr "الفلاشة الداخلية:  %s %s "
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
@@ -11503,7 +11517,7 @@ msgid "Main Menu"
 msgstr "القائمة الرئيسية"
 
 msgid "Maintain your multi boot device."
-msgstr "صيانة جهازك متعدد الصور"
+msgstr "ادارة اداة تعدد الاقلاع."
 
 msgid "Make"
 msgstr ""
@@ -11712,7 +11726,7 @@ msgid "Media Player"
 msgstr "مشغل الوسائط"
 
 msgid "Media Player Settings"
-msgstr ""
+msgstr "اعدادات مشغل الوسائط"
 
 msgid "Media Stream"
 msgstr ""
@@ -11730,8 +11744,9 @@ msgstr ""
 msgid "MediaInfo"
 msgstr ""
 
+#, fuzzy
 msgid "MediaPlayer"
-msgstr ""
+msgstr "مشغل الوسائط"
 
 msgid "Medical"
 msgstr "طبي"
@@ -11763,7 +11778,7 @@ msgstr "مؤشر الذاكرة"
 
 #, python-format
 msgid "Memory information for %s %s"
-msgstr ""
+msgstr "معلومات الذاكرة لـ %s %s"
 
 #
 msgid "Menu"
@@ -11857,7 +11872,7 @@ msgid "Minutes"
 msgstr "دقائق"
 
 msgid "Minutes Seconds"
-msgstr ""
+msgstr "دقائق ثواني"
 
 msgid "Minutes:"
 msgstr "دقائق:"
@@ -12268,9 +12283,8 @@ msgstr "انتقل إلى المكان في الفهرس"
 msgid "Movement"
 msgstr "الحركة"
 
-#, fuzzy
 msgid "Movie"
-msgstr "جارى الحذف"
+msgstr "فلم"
 
 msgid "Movie Event View Actions"
 msgstr ""
@@ -12278,9 +12292,8 @@ msgstr ""
 msgid "Movie List"
 msgstr ""
 
-#, fuzzy
 msgid "Movie Player Actions"
-msgstr "مكان الفيلم"
+msgstr "اجراءات مشغل الوسائط"
 
 msgid "Movie Selection"
 msgstr "أختيار الأفلام"
@@ -12298,9 +12311,8 @@ msgstr ""
 msgid "Movie/Drama"
 msgstr "فيلم/دراما"
 
-#, fuzzy
 msgid "Movieplayer"
-msgstr "إخفاء المشغل"
+msgstr "مشغل الافلام"
 
 msgid "Movies"
 msgstr ""
@@ -12328,29 +12340,28 @@ msgstr ""
 
 #
 msgid "Multi EPG"
-msgstr "دليل برنامح يومي متعدد"
+msgstr "دليل البرامج المتعدد"
 
 msgid "MultiBoot"
 msgstr "الاقلاع المتعدد (ملتي بوت)"
 
 msgid "MultiBoot Information"
-msgstr ""
+msgstr "معلومات الاقلاع المتعدد"
 
 msgid "MultiBoot Manager"
-msgstr ""
+msgstr "مدير الاقلاع المتعدد"
 
 msgid "MultiBoot Manager Actions"
-msgstr ""
+msgstr "إجراءات مدير الاقلاع المتعدد"
 
 msgid "MultiBoot boot mode"
-msgstr ""
+msgstr "نمط الاقلاع المتعدد"
 
 msgid "MultiBoot startup file"
 msgstr ""
 
-#, fuzzy
 msgid "MultiEPG Settings"
-msgstr "إعدادات المجموعه"
+msgstr "إعدادات دليل البرامج المتعدد (MultiEPG)"
 
 msgid "MultiLib"
 msgstr ""
@@ -12526,7 +12537,7 @@ msgid "Netherlands"
 msgstr "هولندا"
 
 msgid "Netmask"
-msgstr "إختفاء الشبكة"
+msgstr "قناع الشبكة (Netmask)"
 
 msgid "Network"
 msgstr "الشبكة"
@@ -12615,7 +12626,7 @@ msgid "Network mounts"
 msgstr "أختبار الشبكه"
 
 msgid "Network name (SSID)"
-msgstr "أسم الشبكة (معرِّف ضبط الخدمة)"
+msgstr "أسم الشبكة (SSID)"
 
 msgid "Network scan"
 msgstr "بحث عن الشبكة"
@@ -12986,7 +12997,7 @@ msgid "No update required!"
 msgstr ""
 
 msgid "No updates available."
-msgstr ""
+msgstr "لا يوجد تحديثات متاحه."
 
 msgid "No valid device detected - Press OK"
 msgstr ""
@@ -13032,9 +13043,8 @@ msgid "No, don't flash this image"
 msgstr "لا ، لا تقم بتنصيب هذه الصورة"
 
 #
-#, fuzzy
 msgid "No, just start my %s %s"
-msgstr "لا ، فقط قم بتشغيل %s%s"
+msgstr "لا، قم فقط بتشغيل %s %s"
 
 msgid "No, never"
 msgstr "لا,مطلقا"
@@ -13178,7 +13188,7 @@ msgstr ""
 "من فضلك قم بضبط المؤالف قبل بدأ البحث."
 
 msgid "Nothing to upgrade"
-msgstr ""
+msgstr "لا شيء يحتاج لترقية"
 
 msgid "Nothing, just leave this menu"
 msgstr ""
@@ -13257,7 +13267,7 @@ msgid "OSCam Information"
 msgstr "معلومات OSCam"
 
 msgid "OSCam Information Settings"
-msgstr ""
+msgstr "اعدادات معلومات OSCam"
 
 msgid "OSCam webif disabled"
 msgstr ""
@@ -13379,10 +13389,10 @@ msgid "One line"
 msgstr ""
 
 msgid "Online software update"
-msgstr ""
+msgstr "تحديث البرمجيات عبر الانترنت"
 
 msgid "Online update of your %s %s software."
-msgstr "تحديث عبر الإنترنت لبرنامج %s %s الخاص بك."
+msgstr "تحديث برنامج جهاز الـ %s %s الخاص بك عبر الإنترنت ."
 
 msgid "Only Flash Backup Image"
 msgstr ""
@@ -13422,7 +13432,7 @@ msgid "Open"
 msgstr ""
 
 msgid "Open Aspect Ratio Settings"
-msgstr ""
+msgstr "افتح اعدادات نسبة العرض للارتفاع"
 
 msgid "Open Audio options"
 msgstr "عرض خيارات الصوت"
@@ -13461,7 +13471,7 @@ msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Open IMDb"
-msgstr ""
+msgstr "فتح IMDb"
 
 #
 #, fuzzy
@@ -13475,9 +13485,8 @@ msgid "Open Main Menu"
 msgstr "عرض القائمه الرئيسية"
 
 #
-#, fuzzy
 msgid "Open Media Player"
-msgstr "إظهار مشغل الراديو..."
+msgstr "تشغيل مشغل الوسائط"
 
 #
 #, fuzzy
@@ -13616,10 +13625,10 @@ msgid "Open the context menu"
 msgstr ""
 
 msgid "Open the multi service EPG view"
-msgstr ""
+msgstr "اعرض واجهة دليل البرامج المتعدد"
 
 msgid "Open the single service EPG view"
-msgstr ""
+msgstr "اعرض واجهة دليل البرامج لخدمة مفردة"
 
 msgid "Open with File Commander"
 msgstr ""
@@ -13848,7 +13857,7 @@ msgstr ""
 
 #
 msgid "Package list update"
-msgstr "تحديث قائمة الباقات"
+msgstr "تحديث قائمة الحزم"
 
 msgid "Packaged locales only"
 msgstr ""
@@ -14349,7 +14358,7 @@ msgid "Please select a resolution..."
 msgstr ""
 
 msgid "Please select an aspect ratio..."
-msgstr ""
+msgstr "اختر من فضلك احدى نسب العرض للارتفاع التالية..."
 
 msgid "Please select device to use as swap file location"
 msgstr ""
@@ -14358,7 +14367,7 @@ msgid "Please select medium to be scanned"
 msgstr "الرجاء تحديد المتوسطة للبحث عنها"
 
 msgid "Please select medium to use as backup location"
-msgstr "من فضلك أختار الوسيط الذى سييستخدم مكان النسخة الإحتياطية"
+msgstr "من فضلك أختار الوسيط الذى سيستخدم كمكان للنسخة الإحتياطية"
 
 #
 msgid "Please select tag to filter..."
@@ -14386,7 +14395,7 @@ msgid "Please select the region that most closely matches your physical location
 msgstr ""
 
 msgid "Please select the sub-service to record:"
-msgstr "من فضلك أختار الخدمه الفرعيه المطلوب تسجيلها:"
+msgstr "من فضلك أختار الخدمه الفرعيه/الثانوية المطلوب تسجيلها:"
 
 msgid "Please select the target location to save the backup:"
 msgstr ""
@@ -14399,9 +14408,9 @@ msgid ""
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
-"من فضلك استخدم أذرار الاسهم لتحريك نافذه صوره داخل صوره \n"
-"أضغط ذر الباقات +/- لتغير مقاس النافذه \n"
-"أضغط موافق للعوده لوضع التليفزيون أو خروج لألغاء التحريك"
+"من فضلك استخدم أزرار الاسهم لتحريك نافذة صورة داخل صورة .\n"
+"أضغط زر الباقات +/- لتغير مقاس النافذة. \n"
+"أضغط موافق (OK) للعوده لوضع التليفزيون أو خروج (EXIT) لألغاء التحريك."
 
 msgid "Please wait"
 msgstr "يرجى الانتظار"
@@ -14415,9 +14424,8 @@ msgstr ""
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
-#, fuzzy
 msgid "Please wait while gathering data..."
-msgstr "رجاء الانتظار.... جارى إختبار الشبكه"
+msgstr "الرجاء الانتظار، جاري جمع البيانات..."
 
 msgid "Please wait while locale/language is deleted..."
 msgstr ""
@@ -14428,6 +14436,7 @@ msgstr ""
 msgid "Please wait while locales/languages are purged..."
 msgstr ""
 
+#, fuzzy
 msgid "Please wait while scanning is in progress..."
 msgstr "من فضلك أنتظر حيث جارى البحث..."
 
@@ -14440,9 +14449,8 @@ msgstr ""
 msgid "Please wait while the file is read and processed..."
 msgstr ""
 
-#, fuzzy
 msgid "Please wait while the list downloads..."
-msgstr "رجاء الانتظار.... جارى إختبار الشبكه"
+msgstr "الرجاء الانتظار، جاري تنزيل القائمة..."
 
 msgid "Please wait while the plugin is installed."
 msgid_plural "Please wait while the plugins are installed."
@@ -14478,7 +14486,7 @@ msgid "Please wait while we test your network..."
 msgstr "من فضلك أنتظر جاري إختبار إتصال الشبكة..."
 
 msgid "Please wait while your network is restarting..."
-msgstr "الرجاء الانتظار. جارى إعادة تشغيل الشبكه…"
+msgstr "الرجاء الانتظار. جاري إعادة تشغيل الشبكه…"
 
 msgid "Please wait while your skin setting is restoring..."
 msgstr ""
@@ -14754,9 +14762,8 @@ msgid "Press EXIT to close."
 msgstr ""
 
 #
-#, fuzzy
 msgid "Press EXIT to return to the help screen."
-msgstr "اضغط موافق لبدأ البحث"
+msgstr "اضغط زر الخروج (EXIT ) للعودة لشاشة المساعدة."
 
 msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
@@ -14813,7 +14820,7 @@ msgid "Press OK to select a group of satellites to configure in one block."
 msgstr "اضغط \"موافق\" لتحديد مجموعة من الأقمار الصناعية لتكوين في كتله واحده."
 
 msgid "Press OK to select a provider."
-msgstr "أضغط موافق وأختار مزود الخدمة."
+msgstr "أضغط موافق لأختيار مزود خدمة."
 
 msgid "Press OK to select a service."
 msgstr ""
@@ -14832,7 +14839,7 @@ msgid "Press OK to start the scan"
 msgstr "اضغط موافق لبدأ البحث"
 
 msgid "Press OK to start using %s %s"
-msgstr ""
+msgstr "اضغط على OK للبدء باستخدام %s %s"
 
 msgid "Press OK to toggle the selection"
 msgstr "أضغط موافق لتغيير الأختيار"
@@ -15033,7 +15040,7 @@ msgid "Protect services"
 msgstr "حماية القنوات"
 
 msgid "Protect software update screen"
-msgstr ""
+msgstr "احمي شاشة تحديث البرمجيات"
 
 msgid "Protect standby menu"
 msgstr "حماية قائمة الإغلاق"
@@ -15306,9 +15313,9 @@ msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
 msgid "Really reboot now?"
 msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Really reflash your %s %s and reboot now?"
-msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
+msgstr "هل تريد فعلا عمل فلاش مرة اخرى لـ %s %s وإعادة التشغيل الان ؟"
 
 msgid "Really restart now?"
 msgstr "هل تريد فعلا إعادة التشغيل الان؟"
@@ -15325,9 +15332,9 @@ msgstr ""
 msgid "Really upgrade the front panel processor and reboot now?"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Really upgrade your %s %s and reboot now?"
-msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
+msgstr "هل تريد فعلا عمل ترقية لـ %s %s وإعادة التشغيل الان ؟"
 
 msgid "Rear"
 msgstr ""
@@ -15337,7 +15344,7 @@ msgstr "إعادة التشغيل"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr ""
+msgstr "إعادة تشغيل %s %s الآن؟"
 
 msgid "Rec"
 msgstr ""
@@ -15356,13 +15363,13 @@ msgstr ""
 
 #, python-format
 msgid "Receiver information for %s %s"
-msgstr ""
+msgstr "معلومات ريسيفر الـ %s %s"
 
 msgid "Receiver name"
 msgstr "اسم الريسيفر"
 
 msgid "Reception Lists"
-msgstr ""
+msgstr "قوائم الاستقبال"
 
 msgid "Reception Settings"
 msgstr ""
@@ -15608,16 +15615,16 @@ msgid "Remaining & Elapsed"
 msgstr ""
 
 msgid "Remaining minutes left"
-msgstr ""
+msgstr "الدقائق المتبقية يسار"
 
 msgid "Remaining minutes right"
-msgstr ""
+msgstr "الدقائق المتبقية يمين"
 
 msgid "Remaining minutes/Progress bar left"
-msgstr ""
+msgstr "الدقائق المتبقية/ شريط التقدم يسار"
 
 msgid "Remaining minutes/Progress bar right"
-msgstr ""
+msgstr "الدقائق المتبقية/ شريط التقدم يمين"
 
 msgid "Remarkable people"
 msgstr "ملحوظة الناس"
@@ -15945,7 +15952,7 @@ msgstr ""
 
 #
 msgid "Resolution"
-msgstr "الدقة"
+msgstr "دقة العرض"
 
 msgid "Resolution unit"
 msgstr ""
@@ -16030,11 +16037,11 @@ msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your %s %s settings."
-msgstr "قم باستعادة %s %s إعداداتك."
+msgstr "استعادة إعدادات الـ %s %s الخاص بك."
 
 #
 msgid "Restore your %s %s with a new firmware."
-msgstr "قم باستعادة %s %s باستخدام برنامج ثابت جديد."
+msgstr "استعادة %s %s الخاص بك باستخدام برنامج فيرموير جديد."
 
 #
 msgid "Restore your backups by date."
@@ -16086,9 +16093,8 @@ msgstr ""
 msgid "Retrieving image list, please wait..."
 msgstr "جارى الحصول على معلومات عن البلج إن. رجاء الانتظار..."
 
-#, fuzzy
 msgid "Retrieving image slots - Please wait..."
-msgstr "بحث عن التحديثات المتاحه. رجاء الانتظار...."
+msgstr "جاري استرجاع معلومات خانات الصور المتاحه. الرجاء الانتظار..."
 
 msgid "Retrieving network server information, please wait..."
 msgstr ""
@@ -16408,7 +16414,7 @@ msgstr ""
 
 #
 msgid "Satellite"
-msgstr "قمر صناعي"
+msgstr "القمر الصناعي"
 
 #
 #, fuzzy
@@ -16572,7 +16578,7 @@ msgstr ""
 
 #
 msgid "Scan for local extensions and install them."
-msgstr "البحث عن إضافات موضعيه وتركيبها"
+msgstr "البحث عن إضافات محلية وتنصيبها."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
@@ -16596,22 +16602,22 @@ msgstr ""
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل البحث، تم العثور على %d من قنوات"
+msgstr[1] "اكتمل البحث، تم العثور على %d قناة"
+msgstr[2] "اكتمل البحث، تم العثور على %d قناة"
+msgstr[3] "اكتمل البحث، تم العثور على %d قناة"
+msgstr[4] "اكتمل البحث، تم العثور على %d قناة"
+msgstr[5] "اكتمل البحث، تم العثور على %d قناة"
 
 #, python-format
 msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل البحث، تم العثور على %d من الخدمات."
+msgstr[1] "اكتمل البحث، تم العثور على %d خدمة."
+msgstr[2] "اكتمل البحث، تم العثور على %d خدمة."
+msgstr[3] "اكتمل البحث، تم العثور على %d خدمة."
+msgstr[4] "اكتمل البحث، تم العثور على %d خدمة."
+msgstr[5] "اكتمل البحث، تم العثور على %d خدمة."
 
 msgid "Scanning failed!"
 msgstr "فشل البحث!"
@@ -16620,12 +16626,12 @@ msgstr "فشل البحث!"
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "جاري البحث: %d%% مكتمل"
+msgstr[1] "جاري البحث: %d%% مكتمل"
+msgstr[2] "جاري البحث: %d%% مكتمل"
+msgstr[3] "جاري البحث: %d%% مكتمل"
+msgstr[4] "جاري البحث: %d%% مكتمل"
+msgstr[5] "جاري البحث: %d%% مكتمل"
 
 #
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -17134,14 +17140,13 @@ msgid "Select Softcam"
 msgstr ""
 
 msgid "Select Software Update"
-msgstr ""
+msgstr "اختر تحديث البرمجيات"
 
 msgid "Select Time Shift Location"
 msgstr ""
 
-#, fuzzy
 msgid "Select Upgrade Source"
-msgstr "أختار مصدر الترقيه المراد تحريره"
+msgstr "أختار مصدر الترقيه"
 
 msgid "Select Upgrade Source To Edit"
 msgstr "أختار مصدر الترقيه المراد تحريره"
@@ -17174,7 +17179,7 @@ msgid "Select a directory from the bookmarks"
 msgstr ""
 
 msgid "Select a distribution from where images are to be obtained"
-msgstr ""
+msgstr "اختر الناشر الذي ستتحصل منه على الصور"
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
@@ -17239,7 +17244,7 @@ msgid "Select an action to perform when the task has completed."
 msgstr ""
 
 msgid "Select audio track"
-msgstr "أختار مسار الصوت"
+msgstr "إختيار مسار الصوت"
 
 msgid "Select cardserver"
 msgstr ""
@@ -17268,7 +17273,7 @@ msgid "Select files to exclude from backup"
 msgstr ""
 
 msgid "Select files/folders to backup"
-msgstr "أختار ملفات/مجلدات النسخة الإحتياطية"
+msgstr "أختار ملفات/مجلدات ليتم نسخها إحتياطياً"
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr ""
@@ -17392,7 +17397,7 @@ msgid "Select service information to view:"
 msgstr ""
 
 msgid "Select service to add..."
-msgstr "أختار القناة لإضافتها..."
+msgstr "أختار خدمة لإضافتها..."
 
 msgid "Select sort method:"
 msgstr "حدد طريقه الفرز:"
@@ -17790,7 +17795,7 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr ""
 
 msgid "Select the type of keyboard connected to the %s %s."
-msgstr ""
+msgstr "اختيار نوع لوحة المفاتيح المرتبطة بـ %s %s."
 
 msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr ""
@@ -17820,22 +17825,24 @@ msgid "Select video output port with UP/DOWN buttons"
 msgstr ""
 
 msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr ""
+msgstr "حدد الإجراء الذي يجب اتخاذه عند الوصول إلى نهاية ملف الوسائط أثناء التشغيل."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr ""
+msgstr "حدد ما يجب فعله بعد اكتمال تسجيل المؤقت."
 
+#, fuzzy
 msgid "Select what do do after the timer zap has completed."
-msgstr ""
+msgstr "حدد ما يجب فعله بعد انتهاء انطلق المؤقت."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
-msgstr ""
+msgstr "حدد ما يجب فعله عند تشغيل %s %s أو تشغيله بشكل عادي أو الانتقال إلى وضع الاستعداد."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
-msgstr ""
+msgstr "حدد ما يجب فعله عند إيقاف تشغيل %s %s بشكل غير صحيح، أو بعد انقطاع الطاقة."
 
+#, fuzzy
 msgid "Select what you want the Channel +/- button to activate."
-msgstr ""
+msgstr "حدد ما تريد زر القناة +/- للتنشيط"
 
 msgid "Select what you want the EPG button to activate."
 msgstr ""
@@ -17843,50 +17850,55 @@ msgstr ""
 msgid "Select what you want the INFO button to activate."
 msgstr ""
 
+#, fuzzy
 msgid "Select what you want the OK button to activate."
-msgstr ""
+msgstr "حدد ما تريد. الزر موافق للتنشيط."
 
+#, fuzzy
 msgid "Select what you want the TV button to activate."
-msgstr ""
+msgstr "حدد ما تريد. زر التلفزيون للتنشيط."
 
+#, fuzzy
 msgid "Select what you want the UP/DOWN button to activate."
-msgstr ""
+msgstr "حدد ما تريد. زر أعلى/أسفل للتنشيط."
 
 msgid "Select where the recording should be saved."
-msgstr ""
+msgstr "حدد المكان الذي يجب حفظ التسجيل فيه."
 
+#, fuzzy
 msgid "Select whether AAC audio tracks should be transcoded."
-msgstr ""
+msgstr "حدد ما إذا كان يجب تحويل مسارات الصوت AAC أم لا."
 
 msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr ""
+msgstr "حدد ما إذا كان ينبغي تحويل مسارات الصوت AC3 Plus إلى AC3."
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr ""
+msgstr "اختر ما إذا كان ينبغي تخفيض المسارات الصوتية من طراز AC3 إلى ستريو."
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr ""
+msgstr "اختر ما إذا كان ينبغي تخفيض المسارات الصوتية من طراز DTS إلى ستريو."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr ""
+msgstr "اختر ما إذا كان ينبغي تخفيض المسارات الصوتية من طراز DTS إلى ستريو."
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr ""
+msgstr "اختر ما إذا كان ينبغي تخفيض المسارات الصوتية من طراز WMA Pro إلى ستريو."
 
 msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr ""
 
 msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr ""
+msgstr "اختر ما إذا كان ينبغي تخفيض المسارات الصوتية المتعددة القنوات إلى ستريو."
 
 msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr ""
+msgstr "حدد ما إذا كان ينبغي إخراج المسارات الصوتية متعددة القنوات بتنسيق PCM."
 
+#, fuzzy
 msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr ""
+msgstr "حدد ما إذا كنت تريد إظهار أيقونة عند تحرك الطبق الآلي أم لا."
 
 msgid "Select wireless network"
 msgstr "أختار الشبكة اللاسلكيه"
@@ -17904,21 +17916,21 @@ msgid "Select your provider and region. If not present in this list you will nee
 msgstr "حدد مزود الخدمة والمنطقة. إذا لم تكن موجودة في هذه القائمة سوف تحتاج إلى تحديد واحد من الآخر ' أنواع البحث القناة '."
 
 msgid "Select your provider, and press OK to start the scan"
-msgstr "أختار المزود الخاص بك,أو أضغط على موافق لبدء البحث"
+msgstr "أختار المزود الخاص بك، و أضغط على موافق لبدء البحث"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "حدد منطقتك. إذا لم يكن متوفرا تغيير ' البلد ' إلى ' كل ' وحدد واحده من البدائل الافتراضية."
 
+#, fuzzy
 msgid "Select your time zone area or region."
-msgstr ""
+msgstr "اختيار المنطقة الزمنية."
 
 msgid "Select, toggle, process or edit the current entry"
-msgstr ""
+msgstr "تحديد الإدخال الحالي أو تبديله أو معالجته أو تحريره"
 
 #
-#, fuzzy
 msgid "Select/Zap to the selected service"
-msgstr "من فضلك أختار الخدمه الفرعيه"
+msgstr "حدد/انتقل إلى الخدمة المحددة"
 
 #, python-format
 msgid ""
@@ -17929,6 +17941,12 @@ msgid ""
 "\n"
 "Do you want to install this settinglist?"
 msgstr ""
+"قائمة الضبط المختارة: \n"
+"\n"
+"الضبط: %s\n"
+"التاريخ: %s\n"
+"\n"
+"هل تريد تثبيت إعدادات القائمة ؟"
 
 #, python-format
 msgid ""
@@ -17936,19 +17954,28 @@ msgid ""
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
+"قائمة الضبط المختارة: %s\n"
+"\n"
+"هل تريد إزالة إعدادات قائمة الضبط ؟"
 
 #, fuzzy, python-format
 msgid ""
 "Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
-msgstr "هل تريد إستعادة الاعدادات ؟"
+msgstr ""
+"قائمة الضبط المختارة: %s\n"
+"\n"
+"هل تريد إستعادة الاعدادات ؟"
 
 msgid ""
 "Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
 "\n"
 "Are you sure you want to continue with the factory reset?"
 msgstr ""
+"سيؤدي اختيار \"نعم\" إلى حذف بيانات المستخدم المحددة حاليًا. لا يمكن التراجع عن هذا الإجراء. قد ترغب في إنشاء نسخة احتياطية قبل المتابعة.\n"
+"\n"
+"هل أنت متأكد أنك تريد متابعة إعادة ضبط المصنع؟"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "اختيار الأقمار الصناعية 1 (نظام مواقع الأقمار الصناعية العالمية )"
@@ -18013,7 +18040,7 @@ msgstr "قنوات"
 
 #
 msgid "Service & PID"
-msgstr "الخدمة و معرفات الحزمة PID"
+msgstr "الخدمة و الـ PID"
 
 #, python-format
 msgid "Service '%s' added."
@@ -18106,7 +18133,7 @@ msgid "Service online"
 msgstr ""
 
 msgid "Service picons aspect ratio"
-msgstr ""
+msgstr "نسبة العرض للارتفاع لايقونات الخدمة (picons)"
 
 msgid "Service picons downsize"
 msgstr ""
@@ -18258,7 +18285,7 @@ msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "ادخل عنوان الايبي الخاص بالرسيفر لاستخدامه للمؤالفات الاحتياطية."
 
 msgid "Set the aspect ratio of the service picons."
-msgstr ""
+msgstr "حدد نسبة العرض للارتفاع لايقونات الخدمة."
 
 msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr ""
@@ -18794,7 +18821,7 @@ msgid "Show Movies List"
 msgstr ""
 
 msgid "Show Multi EPG"
-msgstr ""
+msgstr "أعرض دليل البرامج المتعدد"
 
 msgid "Show OSCam Information"
 msgstr ""
@@ -18848,7 +18875,7 @@ msgid "Show Setting packages"
 msgstr ""
 
 msgid "Show Single EPG"
-msgstr ""
+msgstr "اعرض دليل البرامج المفرد"
 
 msgid "Show Skin Component packages"
 msgstr ""
@@ -19039,7 +19066,7 @@ msgid "Show free space in timer view"
 msgstr ""
 
 msgid "Show graphical multi EPG"
-msgstr ""
+msgstr "إظهر دليل البرامج الإلكتروني الرسومي المتعدد"
 
 msgid "Show help"
 msgstr "عرض التعليمات"
@@ -19111,7 +19138,7 @@ msgid "Show movies"
 msgstr "عرض الأفلام"
 
 msgid "Show multi channel EPG"
-msgstr ""
+msgstr "اعرض دليل البرامج متعدد القنوات"
 
 msgid "Show next commit log"
 msgstr ""
@@ -19262,13 +19289,13 @@ msgid "Show shut down menu"
 msgstr "إظهار قائمة الاغلاق"
 
 msgid "Show single EPG for current channel"
-msgstr ""
+msgstr "اعرض دليل البرامج المفرد للقناة الحالية"
 
 msgid "Show single EPG for current channel (setup in menu)"
 msgstr ""
 
 msgid "Show single service EPG"
-msgstr ""
+msgstr "عرض دليل البرامج لخدمة مفردة"
 
 msgid "Show status messages on switch to live TV"
 msgstr ""
@@ -19327,7 +19354,7 @@ msgid "Show time remaining/elapsed"
 msgstr ""
 
 msgid "Show translation information"
-msgstr ""
+msgstr "عرض معلومات الترجمة"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr ""
@@ -19347,9 +19374,8 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr "اعرض انماط الفيديو غير المعروفة كـ"
 
-#, fuzzy
 msgid "Show vertical Program Guide"
-msgstr "دليل البرنامج الالكترونى"
+msgstr "اعرض دليل البرنامج العامدي"
 
 msgid "Show warning before restart"
 msgstr ""
@@ -19458,6 +19484,7 @@ msgid "Simple fade"
 msgstr ""
 
 #
+#, fuzzy
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "ضبط عنوان بسيط (التوافق للاعبين القديمة)"
 
@@ -19484,7 +19511,7 @@ msgid "Single"
 msgstr "مفرد"
 
 msgid "Single EPG"
-msgstr "دليل البرامج ليوم واحد"
+msgstr "دليل البرامج المفرد"
 
 msgid "Single Tuner"
 msgstr ""
@@ -19498,9 +19525,8 @@ msgid "Single step (GOP)"
 msgstr "خطوة واحدة (مرصد جيوديسي)"
 
 #
-#, fuzzy
 msgid "SingleEPG Settings"
-msgstr "تحرير الاعدادات"
+msgstr "اعدادات دليل البرامج المفرد (SingleEPG)"
 
 msgid "Sinhala / Sinhalese"
 msgstr ""
@@ -19652,12 +19678,12 @@ msgstr "وقت الانتظار لتفعيل مؤقت النوم"
 #, python-format
 msgid "SleepTimer: %d minute remains."
 msgid_plural "SleepTimer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "مؤقت النوم: %d دقيقة متبقية."
+msgstr[1] "مؤقت النوم: %d دقيقة متبقية."
+msgstr[2] "مؤقت النوم: %d دقيقة متبقية."
+msgstr[3] "مؤقت النوم: %d دقائق متبقية."
+msgstr[4] "مؤقت النوم: %d دقيقة متبقية."
+msgstr[5] "مؤقت النوم: %d دقيقة متبقية."
 
 #, python-format
 msgid "SleepTimer: %d second remains."
@@ -19704,7 +19730,7 @@ msgstr ""
 
 #, python-format
 msgid "Slot %d"
-msgstr "فتحة %d"
+msgstr "فتحة/خانة %d"
 
 #, python-format
 msgid "Slot %s / FBC in %s"
@@ -19878,10 +19904,10 @@ msgid "Software Restore"
 msgstr "إستعادة البرنامج التشغيلى"
 
 msgid "Software Update"
-msgstr ""
+msgstr "تحديث البرمجيات"
 
 msgid "Software Update Actions"
-msgstr ""
+msgstr "اجراءات تحديث البرمجيات"
 
 msgid "Software descrambling"
 msgstr ""
@@ -19893,6 +19919,8 @@ msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
+"بدء تحديث البرمجيات، انتظر من فضلك.\n"
+"\n"
 
 msgid "Softwaremanager..."
 msgstr ""
@@ -20380,7 +20408,7 @@ msgstr "معلومات وحدة التخزين / القرص"
 
 #, python-format
 msgid "Storage / Disk information for %s %s"
-msgstr ""
+msgstr "معلومات وحدة التخزين / القرص لـ %s %s"
 
 msgid "Storage / Disks"
 msgstr "وحدات التخزين / الاقراص"
@@ -20506,7 +20534,7 @@ msgstr "إختيار العناوين الفرعيه"
 
 #
 msgid "Subtitle Selection"
-msgstr "إختيار الترجمة الفرعية"
+msgstr "إختيار الترجمة النصية"
 
 msgid "Subtitle Settings"
 msgstr ""
@@ -20664,7 +20692,7 @@ msgid "Switch To File List Panel"
 msgstr ""
 
 msgid "Switch between Audio-, Subtitlepage"
-msgstr ""
+msgstr "التبديل بين صفحة اعدادات الصوت و الترجمة النصية"
 
 msgid "Switch between file list/play list"
 msgstr "التبديل بين قائمة الملفات/قائمة التشغيل"
@@ -21029,9 +21057,9 @@ msgstr ""
 msgid "Test mode"
 msgstr "وضع الاختبار"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Test the network configuration of your %s %s."
-msgstr "اختبر اعدادات الشبكه لـ %s%s."
+msgstr "اختبر اعدادات الشبكه لـ %s %s."
 
 #
 msgid "Test type"
@@ -21071,13 +21099,13 @@ msgid ""
 msgstr ""
 
 msgid "The %s %s does not have an Internet connection."
-msgstr ""
+msgstr "ليس لدى %s %s اتصال على الإنترنت."
 
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr ""
 
 msgid "The %s %s is shutting down. Please wait..."
-msgstr ""
+msgstr "يتم الان إغلاق الـ %s %s. يرجى الانتظار..."
 
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr ""
@@ -21128,6 +21156,8 @@ msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"بلج إن قاعدة بيانات IMDb غير مثبت! \n"
+"من فضلك ثبته."
 
 #, python-format
 msgid ""
@@ -21211,7 +21241,7 @@ msgid ""
 msgstr ""
 
 msgid "The aspect ratio of the recording."
-msgstr ""
+msgstr "نسبة العرض للارتفاع للتسجيل."
 
 msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr ""
@@ -21222,7 +21252,7 @@ msgid ""
 msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
-msgstr ""
+msgstr "النسخ الاحتياطي يمكن أن يستغرق حتى حوالي 15 دقيقة لإكتماله."
 
 msgid "The backup failed"
 msgstr ""
@@ -21307,7 +21337,7 @@ msgstr ""
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
-msgstr ""
+msgstr "ستستغرق العملية حوالي %d دقيقة لاستكمالها."
 
 #
 #, python-format
@@ -21355,7 +21385,7 @@ msgstr ""
 #
 #, python-format
 msgid "The user interface of your %s %s is restarting"
-msgstr "واجهة المستعمل الخاص بك %s %s تقوم بإعادة تشغيل"
+msgstr "واجهة المستعمل لجهاز الـ %s %s الخاص بك تقوم بإعادة تشغيل"
 
 #
 #, python-format
@@ -21363,7 +21393,7 @@ msgid ""
 "The user interface of your %s %s is restarting\n"
 "due to an error in StartEnigma.py"
 msgstr ""
-"واجهة المستعمل الخاص بك %s %s تقوم بإعادة تشغيل\n"
+"واجهة المستعمل لجهاز الـ %s %s الخاص بك تقوم بإعادة تشغيل\n"
 "بسبب خطأ في StartEnigma.py"
 
 #, python-format
@@ -21407,7 +21437,7 @@ msgid "There are no repositories defined so commit logs are unavailable!"
 msgstr ""
 
 msgid "There are no updates available."
-msgstr "لا توجد تحديثات متوفرة."
+msgstr "لا يوجد هناك تحديثات متاحه."
 
 msgid "There are pending tasks:"
 msgstr ""
@@ -21725,7 +21755,7 @@ msgid "This sets the prefix for each line in the debug log. The 'Boot time' is t
 msgstr ""
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
-msgstr "يسمح هذا الاعداد بان يكون تكوين الموالف تكرارا لكيفيه تكوين موالف آخر بالفعل."
+msgstr "يسمح هذا الاعداد بان يكون تكوين الموالف نسخة مطابقة لتكوين موالف آخر."
 
 msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
 msgstr ""
@@ -21942,7 +21972,7 @@ msgid "Time to execute command or script"
 msgstr ""
 
 msgid "Time update in minutes"
-msgstr ""
+msgstr "تحديث الوقت في دقائق"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr ""
@@ -22247,19 +22277,18 @@ msgid "Translate Subs On This Service"
 msgstr ""
 
 msgid "Translation"
-msgstr ""
+msgstr "الترجمة"
 
 #
-#, fuzzy
 msgid "Translation Information"
-msgstr "معلومات"
+msgstr "معلومات الترجمة"
 
 msgid "Translation information"
-msgstr ""
+msgstr "معلومات الترجمة"
 
 #, python-format
 msgid "Translation information for %s %s"
-msgstr ""
+msgstr "معلومات الترجمة لـ %s %s"
 
 #
 msgid "Transmission mode"
@@ -22389,7 +22418,7 @@ msgid "Tuner Information"
 msgstr ""
 
 msgid "Tuner Settings"
-msgstr ""
+msgstr "اعدادات الموالف"
 
 msgid "Tuner Setup"
 msgstr ""
@@ -22402,13 +22431,13 @@ msgstr ""
 
 #, python-format
 msgid "Tuner information for %s %s"
-msgstr ""
+msgstr "معلومات التونر لـ %s %s"
 
 msgid "Tuner is not supported"
 msgstr "مؤالف غير معتمد"
 
 msgid "Tuner slot"
-msgstr "فتحة المؤالف"
+msgstr "فتحة/خانة المؤالف"
 
 #, fuzzy
 msgid "Tuner status FAILED"
@@ -22442,7 +22471,7 @@ msgid "Tuners"
 msgstr "الموالفات (تيونرز)"
 
 msgid "Tuners, Scanning & Reception"
-msgstr ""
+msgstr "الموالفات، البحث عن و استقبال القنوات"
 
 msgid "Tuning algorithm"
 msgstr ""
@@ -22789,7 +22818,7 @@ msgid "Update failed!"
 msgstr "فشل الكتابه !"
 
 msgid "Update finished!"
-msgstr "إنتهاء الترقيه !"
+msgstr "إنتهى التحديث!"
 
 msgid ""
 "Update succeeded!\n"
@@ -22812,11 +22841,11 @@ msgid "Updated version unknown"
 msgstr ""
 
 msgid "Updates available:"
-msgstr ""
+msgstr "التحديثات المتاحة:"
 
 #
 msgid "Updating"
-msgstr "جارى الترقيه"
+msgstr "جاري التحديث"
 
 msgid "Updating package list."
 msgstr ""
@@ -22825,7 +22854,7 @@ msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
-msgstr "إنتهاء الترقيه ."
+msgstr "إنتهت الترقيه."
 
 #, python-format
 msgid ""
@@ -22833,6 +22862,9 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
+"جاري التقدم في الترقية\n"
+"من فضلك انتظر حتى يتم إعادة تشغيل %s %s\n"
+"هذا قد يستغرق بضع دقائق"
 
 msgid "Upgrade with GUI"
 msgstr ""
@@ -23008,6 +23040,7 @@ msgstr ""
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr ""
 
+#, fuzzy
 msgid "Use interface"
 msgstr "استخدم واجهة المستخدم"
 
@@ -23166,7 +23199,7 @@ msgstr "يحددها المستخدم"
 #
 #, fuzzy, python-format
 msgid "User defined 0x%02x"
-msgstr "يحددها المستخدم"
+msgstr "يحددها المستخدم 0x%02x"
 
 #
 msgid "User defined transponder"
@@ -23452,8 +23485,9 @@ msgid "View File"
 msgstr ""
 
 #
+#, fuzzy
 msgid "View Rass interactive"
-msgstr "مشاهدة شريط الاخبار التفاعلي..."
+msgstr "خطأ: فشل حذف الدليل '%s'! (ربما الدليل ليس فارغاً.)"
 
 #
 msgid "View Teletext"
@@ -23583,28 +23617,28 @@ msgid "WEP"
 msgstr "مفتاح الخصوصية السلكية المتكافئة"
 
 msgid "WLAN connection"
-msgstr "إتصال شبكة عبر الوايفاي"
+msgstr "إتصال شبكة WiFi"
 
 msgid "WMA Pro"
 msgstr ""
 
 msgid "WMA Pro downmix"
-msgstr ""
+msgstr "تخفيض القنوات الصوتية من WMA Pro"
 
 msgid "WOL Standby"
 msgstr ""
 
 #
 msgid "WPA"
-msgstr "الدخول المحمي لشبكة الوايفاي"
+msgstr "WPA"
 
 #
 msgid "WPA or WPA2"
-msgstr "الدخول المحمي لشبكة الوايفاي أو الدخول المحمي لشبكة الوايفاي الثاني"
+msgstr "WPA او WPA2"
 
 #
 msgid "WPA2"
-msgstr "الدخول المحمي الثاني لشبكة الوايفاي"
+msgstr "WPA2"
 
 #
 msgid "WSS on 4:3"
@@ -23936,22 +23970,23 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "عند تمكين اندفاع اللاقط سيتم فرضه"
+msgstr "عند التفعيل، يتم جلب المؤقت من التيونر الاحتياطي."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "عند تمكين اندفاع اللاقط سيتم فرضه"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "عند التمكين، يكون هذا العدد أكثر وزنا من 'المؤالف المفضل للتسجيلات'."
+msgstr "عند التمكين، يكون هذا الاعداد أكثر وزنا و اولوية من 'المؤالف المفضل للتسجيلات'."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "عند التمكين، يكون هذا العدد أكثر وزنا من 'المؤالف المفضل'."
+msgstr "عند التمكين، يكون هذا الاعداد أكثر وزنا و افضلية من 'المؤالف المفضل'."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
 
+#, fuzzy
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr "عند التمكين,سوف سيتخدم خاصية الحصول التلقائي على عنوان الايبي لتكوين الايبي في الجهاز."
+msgstr "عند التمكين، سوف يتم استخدام خاصية الحصول التلقائي على عنوان الايبي لتكوين الايبي في الجهاز."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr ""
@@ -23982,10 +24017,10 @@ msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted se
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "عندما يكون المحتوى على نسبة العرض إلى الارتفاع 16: 9، واختيار ما إذا كان مقياس / تمتد الصورة."
+msgstr "عندما يكون المحتوى على نسبة العرض إلى الارتفاع 16:9، اختر ما إذا كان يتوجب التمديد مع الحفاظ علر قياس/ تمديد الصورة."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "عندما يكون المحتوى على نسبة العرض إلى الارتفاع 4: 3، واختيار ما إذا كان مقياس / تمتد الصورة."
+msgstr "عندما يكون المحتوى على نسبة العرض إلى الارتفاع 4:3، اختر ما إذا كان يتوجب التمديد مع الحفاظ علر قياس/ تمديد الصورة."
 
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr ""
@@ -24125,7 +24160,7 @@ msgstr "هل ستقوم بحفظ كلمة السر %s التي تم إدخاله
 
 #, fuzzy
 msgid "Wrestling"
-msgstr "جارى التثبيت"
+msgstr "المصارعة"
 
 #, python-format
 msgid ""
@@ -24334,7 +24369,7 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
-msgstr ""
+msgstr "جهاز الـ %s %s الخاص بك لا يدعم الصورة داخل صورة عالية الوضوح (PiP HD)"
 
 #, python-format
 msgid "Your %s %s goes to WOL"
@@ -24344,29 +24379,29 @@ msgstr ""
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
 "Your Internet connection is working now.\n"
 "\n"
 msgstr ""
-"الدريم بوكس جاهز للاستخدام الان.\n"
+"جهاز الـ %s %s الخاص بك جاهز للاستخدام الان.\n"
 "\n"
 "الاتصال بالانترنت يعمل الان.\n"
 "\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Your %s %s is rebooting"
-msgstr "جاري اعادة تشغيل جهاز %s%s الخاص بك"
+msgstr "جاري اعادة تشغيل جهاز %s %s الخاص بك"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
-msgstr "جاري اعادة تشغيل جهاز %s%s الخاص بك لنمط الإستعادة"
+msgstr "جاري اعادة تشغيل جهاز %s %s الخاص بك لنمط الإستعادة"
 
 #, python-format
 msgid "Your %s %s is shutting down"
-msgstr ""
+msgstr "يتم الان إغلاق الـ %s %s"
 
 #, python-format
 msgid ""
@@ -24374,14 +24409,17 @@ msgid ""
 "\n"
 "Do you want to put it in %s?"
 msgstr ""
+"لم يتم إيقاف الـ %s %s بشكل صحيح\n"
+"\n"
+"هل تريد وضع الجهاز في حالة %s؟"
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr ""
+msgstr "سيقوم الـ %s %s باعادة الاقلاع..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
-msgstr ""
+msgstr "سيقوم الـ %s %s باعادة التشغيل..."
 
 #, python-format
 msgid ""
@@ -24446,11 +24484,16 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
+"جاري ترقية معالج اللوحة الامامية\n"
+"من فضلك انتظر حتى يتم إعادة تشغيل %s %s\n"
+"هذا قد يستغرق بضع دقائق"
 
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
+"جاري ترقية اللوحة الامامية\n"
+"هذا قد يستغرق بضع دقائق"
 
 msgid "Your network configuration has been activated."
 msgstr "تم تفعيل تكوين شبكة الانترنت الخاصة بك."
@@ -24665,9 +24708,6 @@ msgstr "مسارات الصوت"
 msgid "automatic"
 msgstr "تلقائي"
 
-msgid "Available"
-msgstr ""
-
 #
 msgid "back"
 msgstr "للخلف"
@@ -24792,7 +24832,7 @@ msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
-msgstr "الخروج من مشغل الدى فى دى أو العوده الى متصفح الملفات"
+msgstr "الخروج من مشغل الـ DVD أو العوده الى متصفح الملفات"
 
 msgid "externally loopthrough to"
 msgstr ""
@@ -25014,7 +25054,7 @@ msgid "of a SINGLE layer medium used."
 msgstr "من الطبقة الأحادية أستخدم الوسط."
 
 msgid "off or wpa2 on"
-msgstr "إغلاق أو تشغيل الدخول المحمي لشبكة الوايفاي الثاني"
+msgstr "إغلاق أو تشغيل WPA2"
 
 msgid "offset is"
 msgstr "يوازن هو"
@@ -25267,15 +25307,15 @@ msgstr "واجهة الشبكة اللاسلكية"
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "مع وجود %d من الاخطاء"
+msgstr[1] "مع وجود %d خطأ"
+msgstr[2] "مع وجود %d من الاخطاء"
+msgstr[3] "مع وجود %d من الاخطاء"
+msgstr[4] "مع وجود %d خطأ"
+msgstr[5] "مع وجود %d من الاخطاء"
 
 msgid "with errors"
-msgstr ""
+msgstr "مع وجود أخطاء"
 
 msgid "working"
 msgstr "يعمل"
@@ -25288,7 +25328,7 @@ msgid "yes (keep feeds)"
 msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
-msgstr ""
+msgstr "®"
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* متوفر فقط إذا أكثر من واجهة نشطة."

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-31 09:59+0000\n"
-"PO-Revision-Date: 2026-02-10 22:48+0000\n"
+"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"PO-Revision-Date: 2026-02-27 06:09+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 msgid ""
 "\n"
@@ -33,7 +33,7 @@ msgid " "
 msgstr " "
 
 msgid "  Menu key : Select quad channel"
-msgstr "  MENU näppäin: Valitse 4 kanava ryhmä"
+msgstr "  MENU näppäin: Valitse 4 kanavaa"
 
 msgid "  REC  "
 msgstr "  REC  "
@@ -95,7 +95,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloaderi Päivitys !!"
 
 msgid "# = Reboot required if this item is changed."
-msgstr "# Uudelleen käynnistys tarvitaan"
+msgstr "# Uudelleen käynnistys tarvitaan."
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1028,8 +1028,8 @@ msgstr "%d ajat"
 #, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
-msgstr[0] "%d WLAN verkko löytyi!"
-msgstr[1] "%d WLAN verkkoa löytyi!"
+msgstr[0] "%d Langaton verkko löytyi!"
+msgstr[1] "%d Langattomia verkkoja löytyi!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1293,7 +1293,7 @@ msgid "(show optional DVD audio menu)"
 msgstr "(näytä DVD äänen lisävalikko)"
 
 msgid "* = Restart required if this item is changed."
-msgstr "* = Vaatii uudelleenkäynnistyksen"
+msgstr "* = Vaatii uudelleenkäynnistyksen."
 
 msgid "* current animation"
 msgstr "* nykyinen animaatio"
@@ -1363,7 +1363,7 @@ msgid "12bit"
 msgstr "12bit"
 
 msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12bit 4:2:0/4:2:2 ei PIP"
+msgstr "12bit 4:2:0/4:2:2 ei PiP"
 
 msgid "13 V"
 msgstr "13 V"
@@ -1768,7 +1768,7 @@ msgid "Accessed"
 msgstr "Tukiasema:"
 
 msgid "Action"
-msgstr "Hakemisto"
+msgstr "Alusta"
 
 msgid "Action at end of media"
 msgstr "Toiminto kun tallenne loppuu"
@@ -1795,7 +1795,7 @@ msgid "Activate Picture in Picture"
 msgstr "Avaa PiP-kuva"
 
 msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikille ylös / alas toiminnolle? (sarakkeen alussa / lopussa)"
+msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikille ylös / alas toiminnolle? sarakkeen alussa / lopussa."
 
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-komentoja komentoriviltä."
@@ -2058,6 +2058,9 @@ msgstr "Säädä teksti-TV:ssä käytettävien kirjainten vaakasuuntaista sijain
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Säädä teksti-TV:ssä käytettävien kirjainten pystysuuntaista sijaintia."
+
+msgid "Adjusts compensation for hardware buffer latency for DM9x0."
+msgstr "Säätää laitteistopuskurin viiveen kompensaatiota DM9x0."
 
 msgid "Adult"
 msgstr "Aikuisviihde"
@@ -2586,7 +2589,7 @@ msgstr "Kuvasuhde"
 
 #, python-format
 msgid "Aspect ratio set to '%s'."
-msgstr "AV kuvasuhde on %s."
+msgstr "AV kuvasuhde on '%s'."
 
 msgid "Aspect switch"
 msgstr "Muuta ulkonäköä"
@@ -2800,6 +2803,9 @@ msgstr "Päivitä loki näyttö automaattisesti"
 msgid "Autostart"
 msgstr "Aut. käynn."
 
+msgid "Available"
+msgstr "Saatavilla"
+
 msgid "Available format variables"
 msgstr "Formaattimuuttujat"
 
@@ -2951,7 +2957,7 @@ msgid "Backup your current image"
 msgstr "Luo täydellinen varmuuskopio ohjelmistosta"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
-msgstr "Varmuuskopioi ohjelmisto kiintolevylle tai USB-muistitikulle. Tämä luo 1:1 kopion laitteen nykyisestä ohjelmistosta"
+msgstr "Varmuuskopioi ohjelmisto ssd tai USB-muistitikulle. Tämä luo 1:1 kopion laitteen nykyisestä ohjelmistosta."
 
 msgid "Backup your current settings"
 msgstr "Varmuuskopioi nykyiset asetukset"
@@ -3983,7 +3989,7 @@ msgid "Check for PDC"
 msgstr "Tarkista PDC"
 
 msgid "Check for PDC availability on each service."
-msgstr "Tarkista PDC:n saatavuus jokaisessa palvelussa"
+msgstr "Tarkista PDC:n saatavuus jokaisessa palvelussa."
 
 msgid "Check power and input state from TV"
 msgstr "Tarkista virta ja tulo tila tv:eltä"
@@ -4486,7 +4492,7 @@ msgid "Configure front panel LEDs"
 msgstr "Määritä etupaneelin LEDit"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
-msgstr "Määritä tallenteiden tiedostonimien rakenne"
+msgstr "Määritä tallenteiden tiedostonimien muoto. Vakio: Päivämäärä ja aika – Kanava – Otsikko. Erittäin lyhyt: Otsikko. Lyhyt: Otsikko – Päivämäärä ja aika. Lyhyt ajalla: Päivämäärä ja aika – Otsikko. Päivämäärä: Päivämäärä – Otsikko. Pitkä: Päivämäärä ja aika – Kanava – Otsikko – Tiedot."
 
 msgid "Configure if 'epg.dat' should be saved at all."
 msgstr "Määrittää, talletetaanko epg.dat -tiedostoa."
@@ -4546,7 +4552,7 @@ msgid "Configure the IP address."
 msgstr "Määritä IP-osoite."
 
 msgid "Configure the IP of the fallback remote receiver."
-msgstr "IP osoite etävastaanottimelle"
+msgstr "IP osoite etävastaanottimelle."
 
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
@@ -4558,10 +4564,10 @@ msgstr ""
 "Kun asetukset ovat oikein, jatka painamalla OK."
 
 msgid "Configure the Port of the fallback remote receiver."
-msgstr "Etävastaanottimen portti"
+msgstr "Etävastaanottimen portti."
 
 msgid "Configure the URL of the fallback remote receiver."
-msgstr "Etävastaanottimen URL-osoite"
+msgstr "Etävastaanottimen URL-osoite."
 
 msgid "Configure the alignment of events."
 msgstr "Ohjelmatiedon sijainti."
@@ -4874,7 +4880,7 @@ msgid "Connect to IceTV server every"
 msgstr "Muodosta yhteys IceTV palvelimeen joka kerta"
 
 msgid "Connect to a wireless network"
-msgstr "Yhdistä WLAN-verkkoon"
+msgstr "Yhdistä langattomaan verkkoon"
 
 msgid "Connect to the Internet"
 msgstr "Yhdistä internettiin"
@@ -5090,7 +5096,7 @@ msgid "Could not load Medium! No disc inserted?"
 msgstr "Ei voitu ladata! Ei levyä asetettu?"
 
 msgid "Could not open Picture in Picture"
-msgstr "PIP-kuvaa ei voitu avata"
+msgstr "PIP kuvaa ei voitu avata"
 
 #, python-format
 msgid "Could not open the file %s!"
@@ -5213,7 +5219,7 @@ msgid "Create working directories."
 msgstr "Luo työhakemistoja."
 
 msgid "Creating .ap and .sc files"
-msgstr "Luodaan AP- ja SC-tiedostot"
+msgstr "Luodaan .ap ja .sc tiedostot"
 
 msgid "Creating file system"
 msgstr "Luodaan tiedostojärjestelmää"
@@ -5396,7 +5402,7 @@ msgid "Cyan"
 msgstr "Syaani"
 
 msgid "Cycle PiP(zap)"
-msgstr "Kierrä PIP(zap)"
+msgstr "Kierrä PiP(zap)"
 
 msgid "Cycle through the InfoBars"
 msgstr "Näytä ohjelman tiedot"
@@ -5665,7 +5671,7 @@ msgid "Dayname MM/DD/Year"
 msgstr "Viikonpäivä KK/PP"
 
 msgid "Dayname Month D Year"
-msgstr "Viikonpäivä KK P"
+msgstr "Viikonpäivä KK P Vuosi"
 
 msgid "Dayname Month DD Year"
 msgstr "Viikonpäivä KK PP"
@@ -5811,7 +5817,7 @@ msgid "Default volume offset"
 msgstr "Oletus äänenvoimakkuuden offsetti"
 
 msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Oletusasetus on herätä valmiustilasta on 5 minuuttia aikaisemmin. Tämä voi tarpeen mukaan muutta (esim. herätysaika on epätarkka tai liian myöhäistä, odottaa verkkoasemaa, jne.)"
+msgstr "Oletusasetus on herätä valmiustilasta 5 minuuttia etukäteen. Tämä voi tarpeen mukaan muutta (esim. herätysaika on epätarkka tai liian myöhäistä, odottaa verkkoasemaa, jne.)"
 
 #, python-format
 msgid "Default: '%s'."
@@ -6155,7 +6161,7 @@ msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "Etävastaanottimen kohde DVB-T"
 
 msgid "Destination of fallback remote receiver."
-msgstr "Etävastaanottimen kohde"
+msgstr "Etävastaanottimen sijainti."
 
 msgid "Detail of GStreamer log."
 msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
@@ -6670,7 +6676,7 @@ msgid "Documentary"
 msgstr "Dokumenttit"
 
 msgid "Dolby Digital downmix is now"
-msgstr "Dolby Digital / DTS muunto stereoksi on nyt"
+msgstr "Dolby Digital stereoksi on nyt käytössä"
 
 msgid "Domain"
 msgstr "Verkkotunnus"
@@ -7132,7 +7138,7 @@ msgid "Enable PiP no HDR"
 msgstr "Aktivoi PIP ilman HDR:ää"
 
 msgid "Enable Quad PiP"
-msgstr "Aktivoi 4 kanava PIP"
+msgstr "Aktivoi 4 Kanavan PIP"
 
 msgid "Enable Swap at startup"
 msgstr "Aktivoi swap käynnistettäessä"
@@ -7458,7 +7464,7 @@ msgid "Enter persistent PIN code"
 msgstr "Syötä katselun PIN koodi"
 
 msgid "Enter pin code"
-msgstr "Syötä PIN koodi"
+msgstr "Syötä pin koodi"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Kirjoita teksti liitetyn näppäimistön kautta"
@@ -7528,7 +7534,7 @@ msgid "Entry text only"
 msgstr "Vain teksti"
 
 msgid "Epg/Guide"
-msgstr "EPG-näppäin"
+msgstr "EPG/Opas"
 
 msgid "Equal to"
 msgstr "Sama kuin"
@@ -9192,6 +9198,9 @@ msgstr "Ohjelmisto sijainti"
 msgid "Hardware information"
 msgstr "Laitteen tiedot"
 
+msgid "Hardware latency correction"
+msgstr "Laitteistoviiveen korjaus"
+
 msgid "Hardware serial"
 msgstr "Laitteen sarjanumero"
 
@@ -9645,7 +9654,7 @@ msgid "If an event is interrupted and divided into separate recordings, this fea
 msgstr "Jos ohjelma keskeytetään ja jaetaan erillisiin tapahtumiin, laajennus etsii yhdistettyjä tapahtumia."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
-msgstr "Jos päällä, ulostulon resoluutio pyritään pitämään samana kuin kanavalla tai tallenteessa"
+msgstr "Jos päällä, ulostulon resoluutio pyritään pitämään samana kuin kanavalla tai tallenteessa."
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Jos päällä, kuvasignaalille tehdään aina lomituksenpoisto."
@@ -9768,13 +9777,13 @@ msgid "Immediately restart selected devices."
 msgstr "Käynnistä valitut laitteet välittömästi uudelleen."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
-msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
-msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä."
 
 msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
-msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta valmiustilasta poistuttaessa"
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta valmiustilasta poistuttaessa."
 
 msgid "Import from remote receiver URL"
 msgstr "Tuo etävastaanottimelta"
@@ -11072,7 +11081,7 @@ msgid "Make"
 msgstr "Tee"
 
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
-msgstr "Lisää valinta kanavien ja/tai ohjelmaopas -tiedon tuonnille laajennusvalikkoon"
+msgstr "Lisää valinta kanavien ja/tai ohjelmaopas -tiedon tuonnille laajennusvalikkoon."
 
 msgid "Make this mark an 'in' point"
 msgstr "Tee tästä merkistä aloituspiste"
@@ -11121,7 +11130,7 @@ msgid "Manage Plugins"
 msgstr "Hallitse lisäosia"
 
 msgid "Manage Plugins. This will remove/install Plugins on your receiver."
-msgstr "Hallitse liitännäisiä. Tämä poistaa/asentaa Lisäosat"
+msgstr "Hallitse Lisäosia. Tämä poistaa/asentaa Lisäosat."
 
 msgid "Manage and explore directories and files."
 msgstr "Hallitse ja tutki hakemistoja ja tiedostoja."
@@ -12497,7 +12506,7 @@ msgid "No valid region details were found"
 msgstr "Kelvollisia aluetietoja ei löytynyt"
 
 msgid "No wireless networks found! Searching..."
-msgstr "WLAN-verkkoja ei löytynyt! Etsitään..."
+msgstr "Langattomia verkkoja ei löytynyt! Etsitään..."
 
 msgid ""
 "No working local network adapter found.\n"
@@ -13110,10 +13119,10 @@ msgid "Option"
 msgstr "Vaihtoehto"
 
 msgid "Option to disable picons on the InfoBar."
-msgstr "'Kyllä' valinnalla kanavalogot näytetään tietopalkissa"
+msgstr "'Kyllä' valinnalla kanavalogot näytetään tietopalkissa."
 
 msgid "Option to enable the hardware Standby timer."
-msgstr "Käytä kiintolevyn sisäistä virransäästötoimintoa"
+msgstr "Käytä kiintolevyn sisäistä virransäästötoimintoa."
 
 msgid "Optional parameter"
 msgstr "Valinnainen parametri"
@@ -13548,7 +13557,7 @@ msgid "Picture in Picture Settings"
 msgstr "PiP asetukset"
 
 msgid "Picture in graphics"
-msgstr "TV kuva grafiikan seassa"
+msgstr "Kuva grafiikassa"
 
 msgid "Picture player"
 msgstr "Kuvien katselu"
@@ -14258,7 +14267,7 @@ msgid "Pressing the panic button will zap you to this channel number in your fir
 msgstr "Paniikkinäppäimen painallus vaihtaa tälle kanavalle (ensimmäisessä suosikkilistassasi)."
 
 msgid "Prev quad PiP channel"
-msgstr "4 kuvan PIP"
+msgstr "Edell. 4 PIP kanava"
 
 msgid "Preview"
 msgstr "Esikatselu"
@@ -14502,10 +14511,10 @@ msgid "Qatar"
 msgstr "Qatar"
 
 msgid "Quad PiP Channel Selection"
-msgstr "Neljä PIP Kanava Valinta"
+msgstr "4 PIP Kanavan Valinta"
 
 msgid "Quad PiP Screen"
-msgstr "Neljä PIP kuva"
+msgstr "Neljä PIP Ruutua"
 
 msgid "Quad PiP channel "
 msgstr "Neljä PIP Kanava "
@@ -14730,7 +14739,7 @@ msgid "Receiver Information Actions"
 msgstr "Vastaanottimen tietotoiminnot"
 
 msgid "Receiver does not support Quad PiP."
-msgstr "Vastaanottimesi tai ajuri ei tue neljää kuvaa PIP:ssä."
+msgstr "Vastaanottimesi tai ajuri ei tue neljää kuvaa PIP."
 
 #, python-format
 msgid "Receiver information for %s %s"
@@ -20005,7 +20014,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 10.2.2026\n"
+"Suomenkielinen käännös: 26.2.2026\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -23821,9 +23830,6 @@ msgstr "ääniraidat"
 
 msgid "automatic"
 msgstr "automaattinen"
-
-msgid "Available"
-msgstr "Saatavilla"
 
 msgid "back"
 msgstr "Takaisin"
