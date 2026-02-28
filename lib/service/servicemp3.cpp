@@ -1978,7 +1978,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 			/* avoid taking the audio play position if audio sink is in state NULL */
 			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos) || 0 && dvb_videosink)
+				if (!GST_CLOCK_TIME_IS_VALID(pos) && dvb_videosink)
 					g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos))
 					return -1;
