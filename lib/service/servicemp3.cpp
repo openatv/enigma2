@@ -1966,33 +1966,35 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 	// todo :Check if amlogic stb's are always using gstreamer < 1
 	// if not this procedure needs to be altered.
 	// if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused && !m_sourceinfo.is_hls)
+	bool got_decoder_time = false;
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused) {
 		// eDebug("[eServiceMP3] getPlayPosition Check dvb_audiosink or dvb_videosink");
 		if (m_sourceinfo.is_audio && dvb_audiosink) {
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
-			if (!GST_CLOCK_TIME_IS_VALID(pos))
-				return -1;
+			if (GST_CLOCK_TIME_IS_VALID(pos))
+				got_decoder_time = true;
 		} else if (!m_sourceinfo.is_audio) {
-			/* most stb's work better when pts is taken by audio by some video must be taken cause
+			/* most stb's work better when pts is taken by audio but some video must be taken cause
 			 * audio is 0 or invalid */
 			/* avoid taking the audio play position if audio sink is in state NULL */
 			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos) && dvb_videosink)
 					g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos))
-					return -1;
+				if (GST_CLOCK_TIME_IS_VALID(pos))
+					got_decoder_time = true;
 			} else if (dvb_videosink) {
 				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos))
-					return -1;
+				if (GST_CLOCK_TIME_IS_VALID(pos))
+				got_decoder_time = true;
 			}
-			else
-				return -1;
 		}
-		else
-			return -1;
-	} else {
+	}
+
+	if (!got_decoder_time) {
+		/* Fallback: query playbin position directly. This is needed when dvb sinks
+		* exist but get-decoder-time returns invalid values (e.g. MP4 playback on
+		* some chipsets like HiSilicon), or when no dvb sinks are available at all. */
 		GstFormat fmt = GST_FORMAT_TIME;
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos)) {
 			// eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
