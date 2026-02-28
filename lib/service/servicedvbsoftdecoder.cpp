@@ -81,7 +81,7 @@ void eDVBSoftDecoder::onFirstCwReceived()
 	if (m_decoder_started)
 		return;  // Already started
 
-	eDebug("[eDVBSoftDecoder] First CW received - starting decoder with DVR wait");
+	eDebug("[eDVBSoftDecoder] First CW received - starting decoder");
 
 	// Stop timer
 	if (m_start_timer)
@@ -91,7 +91,7 @@ void eDVBSoftDecoder::onFirstCwReceived()
 	if (m_first_cw_conn.connected())
 		m_first_cw_conn.disconnect();
 
-	startDecoderWithDvrWait();
+	startDecoder();
 }
 
 void eDVBSoftDecoder::onWaitForFirstDataTimeout()
@@ -99,35 +99,19 @@ void eDVBSoftDecoder::onWaitForFirstDataTimeout()
 	if (m_decoder_started)
 		return;  // Already started
 
-	eWarning("[eDVBSoftDecoder] CW timeout - starting decoder with DVR wait anyway");
+	eWarning("[eDVBSoftDecoder] CW timeout - starting decoder anyway");
 
 	// Disconnect signal
 	if (m_first_cw_conn.connected())
 		m_first_cw_conn.disconnect();
 
-	startDecoderWithDvrWait();
+	startDecoder();
 }
 
-void eDVBSoftDecoder::startDecoderWithDvrWait()
+void eDVBSoftDecoder::startDecoder()
 {
 	if (m_decoder_started)
 		return;
-
-	// Safety check: m_record must exist
-	if (!m_record)
-	{
-		eWarning("[eDVBSoftDecoder] startDecoderWithDvrWait: m_record is NULL!");
-		return;
-	}
-
-	// Wait for DVR data (blocking)
-	int wait_timeout = eSimpleConfig::getInt("config.softcsa.waitForDataTimeout", 800);
-	eDebug("[eDVBSoftDecoder] Waiting for DVR data (timeout=%dms)", wait_timeout);
-
-	if (!m_record->waitForFirstData(wait_timeout))
-	{
-		eWarning("[eDVBSoftDecoder] DVR timeout - starting decoder anyway");
-	}
 
 	// Start decoder
 	eDebug("[eDVBSoftDecoder] Starting decoder");
@@ -349,12 +333,24 @@ int eDVBSoftDecoder::setupRecorder()
 	// Reset state
 	m_decoder_started = false;
 
+	// Start record thread
+	m_record->start();
+
+	int wait_timeout = eSimpleConfig::getInt("config.softcsa.waitForDataTimeout", 800);
+
+	// Disabled (0): start decoder immediately, no CW waiting
+	if (wait_timeout == 0)
+	{
+		eDebug("[eDVBSoftDecoder] CW wait disabled - starting decoder immediately");
+		startDecoder();
+		return 0;
+	}
+
 	// Check if CW is already available (e.g. fast channel switch)
 	if (m_session && m_session->hasKeys())
 	{
-		eDebug("[eDVBSoftDecoder] First CW already available - starting decoder with DVR wait");
-		m_record->start();
-		startDecoderWithDvrWait();
+		eDebug("[eDVBSoftDecoder] First CW already available - starting decoder");
+		startDecoder();
 		return 0;
 	}
 
@@ -366,15 +362,11 @@ int eDVBSoftDecoder::setupRecorder()
 	}
 
 	// Start timeout timer for CW
-	int wait_timeout = eSimpleConfig::getInt("config.softcsa.waitForDataTimeout", 800);
 	eDebug("[eDVBSoftDecoder] Waiting for first CW (timeout=%dms)", wait_timeout);
 
 	m_start_timer = eTimer::create(eApp);
 	CONNECT(m_start_timer->timeout, eDVBSoftDecoder::onWaitForFirstDataTimeout);
 	m_start_timer->start(wait_timeout, true);  // single-shot
-
-	// Start record thread
-	m_record->start();
 
 	return 0;
 }
