@@ -274,12 +274,10 @@ public:
 		std::string codec; /* clear text codec description */
 		std::string title;
 		audioStream() : pad(0), type(atUnknown) {}
-		bool operator==(const audioStream& lhs) const {
-			return (lhs.type == type) && (lhs.language_code == language_code) && (lhs.codec == codec);
-		}
-		bool operator!=(const audioStream& lhs) const {
-			return (lhs.type != type) || (lhs.language_code != language_code) || (lhs.codec != codec);
-		}
+
+		bool operator==(const audioStream& rhs) const { return type == rhs.type && language_code == rhs.language_code && codec == rhs.codec; }
+
+		bool operator!=(const audioStream& rhs) const { return !(*this == rhs); }
 	};
 	struct subtitleStream {
 		GstPad* pad;
@@ -287,12 +285,11 @@ public:
 		std::string language_code; /* iso-639, if available. */
 		std::string title;
 		subtitleStream() : pad(0) {}
-		bool operator==(const subtitleStream& lhs) const {
-			return (lhs.type == type) && (lhs.language_code == language_code) && (lhs.title == title);
-		}
-		bool operator!=(const subtitleStream& lhs) const {
-			return (lhs.type != type) || (lhs.language_code != language_code) || (lhs.title != title);
-		}
+
+
+		bool operator==(const subtitleStream& rhs) const { return type == rhs.type && language_code == rhs.language_code && title == rhs.title; }
+
+		bool operator!=(const subtitleStream& rhs) const { return !(*this == rhs); }
 	};
 	struct sourceStream {
 		audiotype_t audiotype;

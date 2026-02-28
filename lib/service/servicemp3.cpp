@@ -1968,26 +1968,30 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 	// if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused && !m_sourceinfo.is_hls)
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused) {
 		// eDebug("[eServiceMP3] getPlayPosition Check dvb_audiosink or dvb_videosink");
-		if (m_sourceinfo.is_audio) {
+		if (m_sourceinfo.is_audio && dvb_audiosink) {
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 			if (!GST_CLOCK_TIME_IS_VALID(pos))
 				return -1;
-		} else {
+		} else if (!m_sourceinfo.is_audio) {
 			/* most stb's work better when pts is taken by audio by some video must be taken cause
 			 * audio is 0 or invalid */
 			/* avoid taking the audio play position if audio sink is in state NULL */
-			if (!m_audiosink_not_running) {
+			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos) || 0)
+				if (!GST_CLOCK_TIME_IS_VALID(pos) || 0 && dvb_videosink)
 					g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos))
 					return -1;
-			} else {
+			} else if (dvb_videosink) {
 				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos))
 					return -1;
 			}
+			else
+				return -1;
 		}
+		else
+			return -1;
 	} else {
 		GstFormat fmt = GST_FORMAT_TIME;
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos)) {
@@ -2598,6 +2602,12 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
 #ifdef PASSTHROUGH_FIX
 			GstPad* pad = 0;
 			g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
+			if (!pad) {
+				eDebug("[eServiceMP3] cannot get audio pad for stream %d", i);
+				clearBuffers();
+				setCacheEntry(true, i);
+				return 0;
+			}
 			GstCaps* caps = gst_pad_get_current_caps(pad);
 			gst_object_unref(pad);
 			if (caps) {
@@ -3111,6 +3121,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					GstTagList* tags = NULL;
 					GstPad* pad = 0;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
+					if(!pad)
+						continue;
 					GstCaps* caps = gst_pad_get_current_caps(pad);
 					gst_object_unref(pad);
 					if (!caps)
@@ -3175,10 +3187,11 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					g_signal_emit_by_name(m_gst_playbin, "get-text-pad", i, &pad);
 					if (pad) {
 						g_signal_connect(G_OBJECT(pad), "notify::caps", G_CALLBACK(gstTextpadHasCAPS), this);
+						/*
 						GstCaps* caps = gst_pad_get_current_caps(pad);
-						// eDebug("[eServiceMP3] subtitle Text pad %d caps: %s", i, gst_caps_to_string (caps));
+						eDebug("[eServiceMP3] subtitle Text pad %d caps: %s", i, gst_caps_to_string (caps));
 						gst_caps_unref(caps);
-
+						*/
 						subs.type = getSubtitleType(pad, g_codec);
 
 						if (i == 0 && !m_external_subtitle_extension.empty()) {
@@ -3200,20 +3213,14 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					subtitleStreams_temp.push_back(subs);
 				}
 
-				bool hasChanges = m_audioStreams.size() != audioStreams_temp.size() ||
-								  std::equal(m_audioStreams.begin(), m_audioStreams.end(), audioStreams_temp.begin());
+				bool hasChanges = m_audioStreams != audioStreams_temp;
 				if (!hasChanges)
-					hasChanges =
-						m_subtitleStreams.size() != subtitleStreams_temp.size() ||
-						std::equal(m_subtitleStreams.begin(), m_subtitleStreams.end(), subtitleStreams_temp.begin());
+					hasChanges = m_subtitleStreams != subtitleStreams_temp;
 
 				if (hasChanges) {
 					eTrace("[eServiceMP3] audio or subtitle stream difference -- re enumerating");
-					m_audioStreams.clear();
-					m_subtitleStreams.clear();
-					std::copy(audioStreams_temp.begin(), audioStreams_temp.end(), back_inserter(m_audioStreams));
-					std::copy(subtitleStreams_temp.begin(), subtitleStreams_temp.end(),
-							  back_inserter(m_subtitleStreams));
+					m_audioStreams.assign(audioStreams_temp.begin(), audioStreams_temp.end());
+					m_subtitleStreams.assign(subtitleStreams_temp.begin(), subtitleStreams_temp.end());
 					eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE before evUpdatedInfo");
 					m_event((iPlayableService*)this, evUpdatedInfo);
 				}
@@ -3690,13 +3697,10 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement* subsink, GstBuffer* buffer, gpo
 		return;
 	}
 
-	// Check array bounds
-	if (_this->m_currentSubtitleStream >= (int)_this->m_subtitleStreams.size()) {
-		if (buffer)
-			gst_buffer_unref(buffer);
-		return;
-	}
-
+	/* Note: No bounds check on m_subtitleStreams here - this callback runs on
+	 * the GStreamer thread and m_subtitleStreams can be modified by the main
+	 * thread during stream re-enumeration. The bounds check is done in
+	 * pullSubtitle() which runs on the main thread via the pump. */	
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
 
@@ -3917,6 +3921,9 @@ void eServiceMP3::pushSubtitles() {
 	int32_t next_timer = 0, decoder_ms = 0, start_ms, end_ms, diff_start_ms, diff_end_ms, delay_ms;
 	double convert_fps = 1.0;
 	subtitle_pages_map_t::iterator current;
+
+	if (m_currentSubtitleStream < 0 || m_currentSubtitleStream >= (int)m_subtitleStreams.size())
+		return;
 
 	// For live streams, get decoder time directly from videosink
 	if (m_vtt_live && dvb_videosink) {
