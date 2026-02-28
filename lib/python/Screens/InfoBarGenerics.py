@@ -200,7 +200,7 @@ class InfoBarUnhandledKey:
 			KEYIDS["KEY_DOWN"],  # 108.
 			KEYIDS["KEY_CHANNELUP"],  # 402.
 			KEYIDS["KEY_CHANNELDOWN"],  # 403.
-			KEYIDS["KEY_NEXT"],  #407.
+			KEYIDS["KEY_NEXT"],  # 407.
 			KEYIDS["KEY_PREVIOUS"]  # 412.
 		)
 
@@ -4309,7 +4309,7 @@ class InfoBarResolutionSelection:
 		xRes = avControl.getResolutionX(0)
 		resList = []
 		resList.append((_("Exit"), "exit"))
-		resList.append((_("Auto(not available)"), "auto"))
+		resList.append((_("Auto (not available)"), "auto"))
 		resList.append((_("Video") + ": %dx%d@%gHz" % (xRes, yRes, fps), ""))
 		resList.append(("--", ""))
 		# Do we need a new sorting with this way here or should we disable some choices?

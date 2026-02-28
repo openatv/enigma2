@@ -1346,7 +1346,7 @@ class PackageAction(Screen, NumericalTextInput):
 				pluginList.append(data)
 		print(f"[PluginBrowser] PackageAction Packages: {len(packages)} returned from opkg, {allCount} matched, {installCount} installed, {updateCount} have updates.")
 		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
-		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount
+		updateText = ngettext("%d package has an update.", "%d packages have updates.", updateCount) % updateCount
 		match self.mode:
 			case self.MODE_REMOVE:
 				self.descriptionText = installedText

@@ -70,7 +70,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			messageBox.close()
 
 		print("[StartWizard] DEBUG createSwapFileFlashExpander")
-		messageBox = self.session.openWithCallback(messageBoxCallback, MessageBox, _("Please wait, swap is is being created. This could take a few minutes to complete."), MessageBox.TYPE_INFO, enable_input=False, windowTitle=_("Create swap"))
+		messageBox = self.session.openWithCallback(messageBoxCallback, MessageBox, _("Please wait, swap is being created. This could take a few minutes to complete."), MessageBox.TYPE_INFO, enable_input=False, windowTitle=_("Create swap"))
 		fileName = join("/.FlashExpander", "swapfile")
 		commands = []
 		commands.append("/bin/dd if=/dev/zero of='%s' bs=1024 count=131072 2>/dev/null" % fileName)  # Use 128 MB because creation of bigger swap is very slow.
@@ -275,7 +275,7 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 if config.misc.firstrun.value:
 	wizardManager.registerWizard(WizardLanguage, config.misc.wizardLanguageEnabled.value, priority=0)
 wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority=1)
-#wizardManager.registerWizard(LocaleWizard, config.misc.languageselected.value, priority=2)
+# wizardManager.registerWizard(LocaleWizard, config.misc.languageselected.value, priority=2)
 # FrontprocessorUpgrade FPUpgrade priority = 8
 # FrontprocessorUpgrade SystemMessage priority = 9
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority=30)
