@@ -134,7 +134,7 @@ private:
 	void onSessionActivated(bool active);
 	void onFirstCwReceived();
 	void onWaitForFirstDataTimeout();
-	void startDecoderWithDvrWait();
+	void startDecoder();
 	void serviceEventSource(int event);
 	void recordEvent(int event);
 	void videoEvent(struct iTSMPEGDecoder::videoEvent event);
