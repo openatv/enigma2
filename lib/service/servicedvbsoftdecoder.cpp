@@ -219,6 +219,16 @@ void eDVBSoftDecoder::stop()
 		m_dvr_fd = -1;
 	}
 
+	// Stop decoder - release PID filters and pause
+	if (m_decoder)
+	{
+		eDebug("[eDVBSoftDecoder] Stopping decoder");
+		m_decoder->pause();
+		m_decoder->setVideoPID(-1, -1);
+		m_decoder->setAudioPID(-1, -1);
+		m_decoder->set();  // Apply the changes to release PID filters
+	}
+
 	// Release decode demux
 	if (m_decode_demux)
 	{
@@ -226,20 +236,16 @@ void eDVBSoftDecoder::stop()
 		m_decode_demux = nullptr;
 	}
 
-	// Stop decoder - release video/audio devices
-	if (m_decoder)
-	{
-		eDebug("[eDVBSoftDecoder] Stopping decoder");
-		m_decoder->pause();
-		m_decoder->setVideoPID(-1, -1);
-		m_decoder->setAudioPID(-1, -1);
-		m_decoder->set();  // Apply the changes to release devices
-		m_decoder = nullptr;
-	}
-
-	// Free PVR handler last
+	// Free PVR handler before releasing the decoder
 	eDebug("[eDVBSoftDecoder] Freeing PVR handler");
 	m_pvr_handler.free();
+
+	// Release decoder
+	if (m_decoder)
+	{
+		eDebug("[eDVBSoftDecoder] Releasing decoder");
+		m_decoder = nullptr;
+	}
 
 	m_pids_active.clear();
 	m_running = false;
