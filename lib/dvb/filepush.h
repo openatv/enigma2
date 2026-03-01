@@ -79,6 +79,9 @@ public:
 	int getProtocol() { return m_protocol;}
 	void setProtocol(int i){ m_protocol = i;}
 	void setSession(int se, int st) { m_session_id = se; m_stream_id = st;}
+	static const size_t minWriteDefault = 32 * 1024;
+	static const size_t minWriteMPEG = 4 * 1024;
+	void setMinWrite(size_t s) { m_buffer_min_write = s; }
 	int read_dmx(int fd, void *m_buffer, int size);
 	int pushReply(void *buf, int len);	
 	void sendEvent(int evt);
@@ -98,7 +101,7 @@ protected:
 	unsigned char* m_buffer;
 	unsigned int m_overflow_count;
 	size_t m_buffer_fill;
-	size_t m_buffer_min_write;
+	size_t m_buffer_min_write = minWriteDefault;
 	int m_stop;
 private:
 	eFixedMessagePump<int> m_messagepump;

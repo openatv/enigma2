@@ -708,6 +708,20 @@ void eDVBSoftDecoder::updateDecoder(int vpid, int vpidtype, int pcrpid)
 			{
 				m_decoder->setAudioPID(apid, atype);
 
+				// On Broadcom, MPEG audio decoders have tiny internal buffers
+				// and need frequent writes to avoid underruns. Reduce write
+				// threshold so data reaches the decoder with less delay.
+#if !defined(HAVE_HISILICON) && !defined(DREAMNEXTGEN)
+				if (m_record)
+				{
+					bool mpeg = (atype == eDVBServicePMTHandler::audioStream::atMPEG);
+					size_t threshold = mpeg ? eFilePushThreadRecorder::minWriteMPEG : eFilePushThreadRecorder::minWriteDefault;
+					m_record->setMinWrite(threshold);
+					eDebug("[eDVBSoftDecoder] Write threshold set to %zu KB (%s audio)",
+						threshold >> 10, mpeg ? "MPEG" : "non-MPEG");
+				}
+#endif
+
 				// Notify parent about selected audio PID
 				m_audio_pid_selected(apid);
 			}
@@ -784,6 +798,16 @@ int eDVBSoftDecoder::setAudioPID(int pid, int type)
 {
 	if (m_noaudio)
 		return 0;
+#if !defined(HAVE_HISILICON) && !defined(DREAMNEXTGEN)
+	if (m_record)
+	{
+		bool mpeg = (type == eDVBServicePMTHandler::audioStream::atMPEG);
+		size_t threshold = mpeg ? eFilePushThreadRecorder::minWriteMPEG : eFilePushThreadRecorder::minWriteDefault;
+		m_record->setMinWrite(threshold);
+		eDebug("[eDVBSoftDecoder] Write threshold set to %zu KB (%s audio)",
+			threshold >> 10, mpeg ? "MPEG" : "non-MPEG");
+	}
+#endif
 	if (m_decoder)
 		return m_decoder->setAudioPID(pid, type);
 	return -1;
