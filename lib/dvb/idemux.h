@@ -57,6 +57,9 @@ public:
 	// Wait for first data to be written (for SoftDecoder sync)
 	virtual bool waitForFirstData(int timeout_ms) = 0;
 
+	// Set write accumulation threshold (0 = continuous writing)
+	virtual void setMinWrite(size_t size) = 0;
+
 	enum {
 		eventWriteError,
 				/* a write error has occurred. data won't get lost if fd is writable after return. */

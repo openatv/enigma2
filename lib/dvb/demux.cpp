@@ -486,7 +486,7 @@ int eDVBRecordFileThread::getFirstPTS(pts_t &pts)
 
 int eDVBRecordFileThread::AsyncIO::wait(volatile int* stop_flag)
 {
-	if (aio.aio_buf == NULL) // Only if we had a request outstanding
+	if (aio.aio_buf == nullptr) // No request outstanding
 		return 0;
 
 	// Limit consecutive timeouts to prevent infinite blocking
@@ -634,12 +634,14 @@ int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, vo
 	return aio_write(&aio);
 }
 
-// AIO write mode state - locked after first determination for entire session.
-// -1 = unknown (not yet tested), 0 = not supported, 1 = supported
+// AIO write mode detection: locked after verification for entire session.
+// -1 = unknown (probing), 0 = not supported (sync), 1 = supported (async)
 static int s_aio_state = -1;
+static const int AIO_VERIFY_THRESHOLD = 3;
 
 int eDVBRecordFileThread::asyncWrite(int len)
 {
+	static int s_aio_verify_count = 0;
 #ifdef SHOW_WRITE_TIME
 	struct timeval starttime = {};
 	struct timeval now = {};
@@ -672,11 +674,6 @@ int eDVBRecordFileThread::asyncWrite(int len)
 		eDebug("[eDVBRecordFileThread] aio_write failed: %m");
 		return r;
 	}
-	if (s_aio_state != 1)
-	{
-		s_aio_state = 1;
-		eDebug("[eDVBRecordFileThread] AIO supported - locked for session");
-	}
 	m_current_offset += len;
 
 #ifdef SHOW_WRITE_TIME
@@ -708,6 +705,19 @@ int eDVBRecordFileThread::asyncWrite(int len)
 		}
 	}
 	++m_buffer_use_histogram[busy_count];
+
+	// Verify AIO by counting successful write+poll roundtrips.
+	// On broken kernels, the poll loop fails on the 2nd
+	// write when checking the previous buffer, so we never reach the threshold.
+	if (s_aio_state != 1)
+	{
+		++s_aio_verify_count;
+		if (s_aio_verify_count >= AIO_VERIFY_THRESHOLD)
+		{
+			s_aio_state = 1;
+			eDebug("[eDVBRecordFileThread] AIO verified after %d writes - locked for session", s_aio_verify_count);
+		}
+	}
 
 	++m_current_buffer;
 	if (m_current_buffer == m_aio.end())
@@ -768,6 +778,8 @@ int eDVBRecordFileThread::writeData(int len)
 				continue;
 			if (w < 0 && (errno == EAGAIN || errno == EWOULDBLOCK))
 			{
+				if (m_stop)
+					return -1;
 				usleep(1000);
 				continue;
 			}
@@ -804,7 +816,7 @@ int eDVBRecordFileThread::writeData(int len)
 			{
 				if (s_aio_state == 1)
 				{
-					eDebug("[eDVBRecordFileThread] ENOSYS ignored - AIO confirmed for session");
+					eDebug("[eDVBRecordFileThread] ENOSYS ignored - AIO verified for session");
 					return -1;
 				}
 				s_aio_state = 0;
@@ -825,7 +837,7 @@ int eDVBRecordFileThread::writeData(int len)
 			{
 				if (s_aio_state == 1)
 				{
-					eDebug("[eDVBRecordFileThread] ENOSYS in wait ignored - AIO confirmed for session");
+					eDebug("[eDVBRecordFileThread] ENOSYS in wait ignored - AIO verified for session");
 					return len;
 				}
 				s_aio_state = 0;
@@ -1362,4 +1374,9 @@ bool eDVBTSRecorder::waitForFirstData(int timeout_ms)
 	// Delegate to thread - only ScrambledThread actually implements waiting
 	// Other thread types return immediately via base class default
 	return m_thread->waitForFirstData(timeout_ms);
+}
+
+void eDVBTSRecorder::setMinWrite(size_t size)
+{
+	m_thread->setMinWrite(size);
 }
