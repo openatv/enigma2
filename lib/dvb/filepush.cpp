@@ -357,7 +357,6 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t b
 																							 m_buffersize(buffersize),
 																							 m_buffer(buffer),
 																							 m_overflow_count(0),
-																							 m_stop(1),
 																							 m_buffer_fill(0),
 																							 m_stop(1),
 																							 m_messagepump(eApp, 0, "eFilePushThreadRecorder")
