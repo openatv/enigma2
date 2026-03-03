@@ -123,9 +123,9 @@ protected:
 			memset(&aio, 0, sizeof(aiocb));
 			buffer = NULL;
 		}
-		int wait(volatile int* stop_flag = nullptr);
+		int wait(const volatile int* stop_flag = nullptr, int* short_write_count = nullptr);
 		int start(int fd, off_t offset, size_t nbytes, void* buffer);
-		int poll(); // returns 1 if busy, 0 if ready, <0 on error return
+		int poll(int* short_write_count = nullptr); // returns 1 if busy, 0 if ready, <0 on error return
 		int cancel(int fd); // returns <0 on error, 0 cancelled, >0 bytes written?
 	};
 	eMPEGStreamParserTS m_ts_parser;
@@ -139,6 +139,7 @@ protected:
 	AsyncIOvector::iterator m_current_buffer;
 	std::vector<int> m_buffer_use_histogram;
 	ePtr<iServiceScrambled> m_serviceDescrambler;
+	int m_aio_short_write_count = 0;
 };
 
 class eDVBRecordStreamThread: public eDVBRecordFileThread
