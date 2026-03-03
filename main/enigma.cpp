@@ -489,7 +489,7 @@ const char *getGStreamerVersionString()
 
 int getE2Flags()
 {
-	return 3; // start/stop Audio = 1 | WebP = 2
+	return 7; // start/stop Audio = 1 | WebP = 2 | NativeCutFileSupport = 4
 }
 
 bool checkLogin(const char *user, const char *password)
