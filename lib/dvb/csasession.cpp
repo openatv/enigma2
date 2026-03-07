@@ -439,6 +439,13 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 	else
 	{
 		eDVBCWHandler::getInstance()->updateEcmMode(m_cw_service_id, m_engine, ecm_mode);
+		// Set key if engine missed it (e.g. replayed CW from m_pending_cw)
+		if ((parity == 0 && !m_engine->hasEvenKey()) || (parity == 1 && !m_engine->hasOddKey()))
+		{
+			m_engine->setKey(parity, ecm_mode, (const uint8_t*)cw);
+			eDebug("[eDVBCSASession] CW set (missed by CWHandler): parity=%d, hasEven=%d, hasOdd=%d",
+				parity, m_engine->hasEvenKey(), m_engine->hasOddKey());
+		}
 	}
 
 	if (m_ecm_mode != ecm_mode)
