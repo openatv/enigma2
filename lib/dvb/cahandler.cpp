@@ -879,6 +879,7 @@ int eDVBCAHandler::getServiceReference(eServiceReferenceDVB &service, uint32_t s
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service, uint32_t id)
 	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_id(id), m_version(-1), m_retryTimer(eTimer::create(eApp)), m_force_cw_send(false)
 {
+	close(); // Don't keep unused legacy socket in poll set; connectToPath() recreates when needed
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	memset(m_capmt, 0, sizeof(m_capmt));
 	CONNECT(connectionClosed_, eDVBCAService::connectionLost);
