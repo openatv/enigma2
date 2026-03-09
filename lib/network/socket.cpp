@@ -195,6 +195,10 @@ void eSocket::notifier(int what)
 			::getsockopt(getDescriptor(), SOL_SOCKET, SO_ERROR, &res, &size);
 			close();
 			error_(res);
+		} else
+		{
+			eWarning("[eSocket] unexpected POLLHUP in state %d on fd %d - closing to prevent busy loop", mystate, getDescriptor());
+			close();
 		}
 	}
 }
