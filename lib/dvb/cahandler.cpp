@@ -302,14 +302,9 @@ bool ePMTClient::processEcmInfoPacket()
 					memcpy(&ecmTime, receivedData + 11, sizeof(uint32_t));
 					ecmTime = ntohl(ecmTime);
 
-					eServiceReferenceDVB service;
-					if (parent->getServiceReference(service, serviceId) == 0)
-					{
-						eDebug("[ePMTClient] ECM Info %s", service.toString().c_str());
-					}
 					// Store CAID for this service (will be sent with next CW)
 					parent->m_service_caid[serviceId] = caid;
-					eTrace("[ePMTClient] ECM Info serviceId %u, caid %04X, ecmTime %u, cardsystem %s, reader %s, from %s, protocol %s, hops %d", serviceId, caid, ecmTime, cardsystem, reader, from, protocol, hops);
+					eDebug("[ePMTClient] ECM Info msgid %u | caid %04X pid %04X prov %06X | %ums | %s via %s from %s hops %d", serviceId, caid, pid, providerId, ecmTime, reader, protocol, from, hops);
 
 					return true;
 				}

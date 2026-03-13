@@ -1,12 +1,12 @@
 #ifndef __AES_XCBC_H_
 #define __AES_XCBC_H_
 
-#include <openssl/aes.h>
+#include <openssl/evp.h>
 
 struct aes_xcbc_mac_ctx {
 	uint8_t K[3][16];
 	uint8_t IV[16];
-	AES_KEY key;
+	EVP_CIPHER_CTX *key;
 	int buflen;
 };
 

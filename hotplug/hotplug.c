@@ -139,8 +139,7 @@ int main(int argc, char *argv[])
 								f = fopen(fn, "w");
 								if (f)
 								{
-									fprintf(f, "%s", data);
-									fprintf(f, "\n");
+									fprintf(f, "%s\n", data);
 									fclose(f);
 								}
 							}

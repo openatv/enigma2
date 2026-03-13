@@ -697,7 +697,58 @@ RESULT eStaticServiceMP3Info::getName(const eServiceReference& ref, std::string&
 	return 0;
 }
 
+/**
+ * @brief eStaticServiceMP3Info::getLength
+ *
+ * Retrieve the playback length (in whole seconds) for the given service reference.
+ *
+ * Operation:
+ *  - Attempts to parse metadata via m_parser.parseMeta(ref.path). If parsing
+ *    succeeds (parseMeta returns 0), uses m_parser.m_length (interpreted in
+ *    MPEG timebase units) and returns m_parser.m_length / MPEG_TIMEBASE.
+ *  - If parsing fails, falls back to reading a sidecar ".cuts" file at
+ *    ref.path + ".cuts". The file is read as a sequence of records:
+ *      [uint64_t where (big-endian)] [uint32_t what (network byte order)]
+ *    For each record, if ntohl(what) == CUT_TYPE_LENGTH, returns
+ *    be64toh(where) / MPEG_TIMEBASE.
+ *
+ * Parameters:
+ *  - ref: reference to the service whose length is requested (path used for
+ *         metadata parsing and .cuts filename).
+ *
+ * Return value:
+ *  - non-negative int: length in seconds (fractional part discarded).
+ *  - -1: if metadata cannot be obtained, the .cuts file cannot be opened, or
+ *         no CUT_TYPE_LENGTH entry is found.
+ *
+ * Notes:
+ *  - MPEG_TIMEBASE is 90000.
+ *  - The function performs file I/O and endian conversions (ntohl, be64toh).
+ */
 int eStaticServiceMP3Info::getLength(const eServiceReference& ref) {
+	constexpr int MPEG_TIMEBASE = 90000;
+
+	eDebug("[eStaticServiceMP3Info] getLength called for ref: %s", ref.path.c_str());
+	if (m_parser.parseMeta(ref.path) == 0)
+		return static_cast<int>(m_parser.m_length / MPEG_TIMEBASE);
+
+	/* Fallback: read CUT_TYPE_LENGTH from .cuts file */
+	std::string filename = ref.path + ".cuts";
+	std::ifstream file(filename, std::ios::binary);
+
+	if (!file)
+		return -1;
+
+	uint64_t where;
+	uint32_t what;
+
+	while (file.read(reinterpret_cast<char*>(&where), sizeof(where)) && file.read(reinterpret_cast<char*>(&what), sizeof(what))) {
+		if (ntohl(what) == 5) // CUT_TYPE_LENGTH
+		{
+			return static_cast<int>(be64toh(where) / MPEG_TIMEBASE);
+		}
+	}
+
 	return -1;
 }
 
@@ -1966,29 +2017,35 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 	// todo :Check if amlogic stb's are always using gstreamer < 1
 	// if not this procedure needs to be altered.
 	// if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused && !m_sourceinfo.is_hls)
+	bool got_decoder_time = false;
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused) {
 		// eDebug("[eServiceMP3] getPlayPosition Check dvb_audiosink or dvb_videosink");
-		if (m_sourceinfo.is_audio) {
+		if (m_sourceinfo.is_audio && dvb_audiosink) {
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
-			if (!GST_CLOCK_TIME_IS_VALID(pos))
-				return -1;
-		} else {
-			/* most stb's work better when pts is taken by audio by some video must be taken cause
+			if (GST_CLOCK_TIME_IS_VALID(pos))
+				got_decoder_time = true;
+		} else if (!m_sourceinfo.is_audio) {
+			/* most stb's work better when pts is taken by audio but some video must be taken cause
 			 * audio is 0 or invalid */
 			/* avoid taking the audio play position if audio sink is in state NULL */
-			if (!m_audiosink_not_running) {
+			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos) || 0)
+				if (!GST_CLOCK_TIME_IS_VALID(pos) && dvb_videosink)
 					g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos))
-					return -1;
-			} else {
+				if (GST_CLOCK_TIME_IS_VALID(pos))
+					got_decoder_time = true;
+			} else if (dvb_videosink) {
 				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
-				if (!GST_CLOCK_TIME_IS_VALID(pos))
-					return -1;
+				if (GST_CLOCK_TIME_IS_VALID(pos))
+				got_decoder_time = true;
 			}
 		}
-	} else {
+	}
+
+	if (!got_decoder_time) {
+		/* Fallback: query playbin position directly. This is needed when dvb sinks
+		* exist but get-decoder-time returns invalid values (e.g. MP4 playback on
+		* some chipsets like HiSilicon), or when no dvb sinks are available at all. */
 		GstFormat fmt = GST_FORMAT_TIME;
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos)) {
 			// eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
@@ -3111,6 +3168,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					GstTagList* tags = NULL;
 					GstPad* pad = 0;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
+					if(!pad)
+						continue;
 					GstCaps* caps = gst_pad_get_current_caps(pad);
 					gst_object_unref(pad);
 					if (!caps)
@@ -3200,20 +3259,14 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					subtitleStreams_temp.push_back(subs);
 				}
 
-				bool hasChanges = m_audioStreams.size() != audioStreams_temp.size() ||
-								  std::equal(m_audioStreams.begin(), m_audioStreams.end(), audioStreams_temp.begin());
+				bool hasChanges = m_audioStreams != audioStreams_temp;
 				if (!hasChanges)
-					hasChanges =
-						m_subtitleStreams.size() != subtitleStreams_temp.size() ||
-						std::equal(m_subtitleStreams.begin(), m_subtitleStreams.end(), subtitleStreams_temp.begin());
+					hasChanges = m_subtitleStreams != subtitleStreams_temp;
 
 				if (hasChanges) {
 					eTrace("[eServiceMP3] audio or subtitle stream difference -- re enumerating");
-					m_audioStreams.clear();
-					m_subtitleStreams.clear();
-					std::copy(audioStreams_temp.begin(), audioStreams_temp.end(), back_inserter(m_audioStreams));
-					std::copy(subtitleStreams_temp.begin(), subtitleStreams_temp.end(),
-							  back_inserter(m_subtitleStreams));
+					m_audioStreams.assign(audioStreams_temp.begin(), audioStreams_temp.end());
+					m_subtitleStreams.assign(subtitleStreams_temp.begin(), subtitleStreams_temp.end());
 					eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE before evUpdatedInfo");
 					m_event((iPlayableService*)this, evUpdatedInfo);
 				}
@@ -3690,13 +3743,10 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement* subsink, GstBuffer* buffer, gpo
 		return;
 	}
 
-	// Check array bounds
-	if (_this->m_currentSubtitleStream >= (int)_this->m_subtitleStreams.size()) {
-		if (buffer)
-			gst_buffer_unref(buffer);
-		return;
-	}
-
+	/* Note: No bounds check on m_subtitleStreams here - this callback runs on
+	 * the GStreamer thread and m_subtitleStreams can be modified by the main
+	 * thread during stream re-enumeration. The bounds check is done in
+	 * pullSubtitle() which runs on the main thread via the pump. */	
 	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer));
 }
 
@@ -3914,6 +3964,9 @@ void eServiceMP3::pushSubtitles() {
 	int32_t next_timer = 0, decoder_ms = 0, start_ms, end_ms, diff_start_ms, diff_end_ms, delay_ms;
 	double convert_fps = 1.0;
 	subtitle_pages_map_t::iterator current;
+
+	if (m_currentSubtitleStream < 0 || m_currentSubtitleStream >= (int)m_subtitleStreams.size())
+		return;
 
 	// For live streams, get decoder time directly from videosink
 	if (m_vtt_live && dvb_videosink) {
@@ -4580,7 +4633,7 @@ void eServiceMP3::loadCuesheet() {
 			where = be64toh(where);
 			what = ntohl(what);
 
-			if (what < 4)
+			if (what < 256)
 				m_cue_entries.insert(cueEntry(where, what));
 
 			// if (m_cuesheet_changed == 2)
@@ -4610,6 +4663,46 @@ void eServiceMP3::saveCuesheet() {
 		return;
 
 	filename.append(".cuts");
+
+	/* Update CUT_TYPE_LAST (type 3) with the last known play position,
+	 * analogous to what eDVBServicePlay::stop() does for TV recordings.
+	 * m_last_seek_pos holds the cached position from getPlayPosition().
+	 * m_cutlist_enabled bit 2 is the "don't remember" flag, set by
+	 * MovieSelection via setCutListEnable(2) for background playback.
+	 * Don't save if position is < 10 seconds or within 10 seconds of end. */
+
+	/* Save old CUT_TYPE_LAST as CUT_TYPE_SAVEDLAST before replacing it */
+	pts_t old_last = 0;
+	for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();) {
+		if (i->what == 3) { /* CUT_TYPE_LAST */
+			old_last = i->where;
+			i = m_cue_entries.erase(i);
+		} else if (i->what == 4) { /* CUT_TYPE_SAVEDLAST */
+			i = m_cue_entries.erase(i);
+		} else
+			++i;
+	}
+	if (old_last > 0) {
+		m_cue_entries.insert(cueEntry(old_last, 4));
+	}
+	if ((m_cutlist_enabled & 2) == 0 && m_last_seek_pos > 900000) {
+		if (!m_media_lenght || m_last_seek_pos < (m_media_lenght - 900000)) {
+			m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
+			eDebug("[eServiceMP3] last play position saved: %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
+		}
+	}
+
+	/* Update CUT_TYPE_LENGTH with the media length */
+	for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();) {
+		if (i->what == 5) /* CUT_TYPE_LENGTH */
+			i = m_cue_entries.erase(i);
+		else
+			++i;
+	}
+	if (m_media_lenght > 0) {
+		m_cue_entries.insert(cueEntry(m_media_lenght, 5));
+	}
+
 
 	struct stat s = {};
 	bool removefile = false;

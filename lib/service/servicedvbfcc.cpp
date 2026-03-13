@@ -105,7 +105,7 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 						ePtr<iDVBDemux> demux;
 						if (m_service_handler.getDataDemux(demux) == 0 && demux)
 						{
-							eDebug("[eDVBServiceFCCPlay] Starting ECM monitor: PID=%d, CAID=0x%04X", ecm_pid, caid);
+							eDebug("[eDVBServiceFCCPlay] Requesting ECM monitor: PID=%d, CAID=0x%04X", ecm_pid, caid);
 							m_csa_session->startECMMonitor(demux, ecm_pid, caid);
 						}
 					}

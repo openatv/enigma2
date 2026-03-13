@@ -6,7 +6,6 @@
 #include <lib/base/itssource.h>
 #include <lib/base/thread.h>
 
-#include <openssl/bio.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 

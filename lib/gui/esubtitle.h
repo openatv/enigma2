@@ -61,6 +61,7 @@ public:
 		Subtitle_Italic,
 		Subtitle_MAX
 	} subfont_t;
+#ifndef SWIG
 	struct eSubtitleStyle
 	{
 		subfont_t face;
@@ -69,6 +70,7 @@ public:
 		int border_width;
 		ePtr<gFont> font;
 	};
+#endif
 
 	static void setFontStyle(subfont_t face, gFont *font, int autoColor, const gRGB &col, const gRGB &borderCol, int borderWidth);
 

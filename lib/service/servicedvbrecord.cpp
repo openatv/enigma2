@@ -377,12 +377,12 @@ int eDVBServiceRecord::setupSoftwareDescrambler(eDVBServicePMTHandler::program& 
 	// This is needed for timer recordings where no Live-TV is running
 	if (!program.caids.empty())
 	{
-		uint16_t ecm_pid = program.caids.front().capid;
-		uint16_t caid = program.caids.front().caid;
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux) == 0 && demux)
 		{
-			eDebug("[eDVBServiceRecord] Starting ECM monitor on PID %d, CAID 0x%04X", ecm_pid, caid);
+			uint16_t ecm_pid = program.caids.front().capid;
+			uint16_t caid = program.caids.front().caid;
+			eDebug("[eDVBServiceRecord] Requesting ECM monitor on PID %d, CAID 0x%04X", ecm_pid, caid);
 			m_csa_session->startECMMonitor(demux, ecm_pid, caid);
 		}
 	}

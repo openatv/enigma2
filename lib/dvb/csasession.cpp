@@ -146,14 +146,14 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 		m_ecm_mode = info.ecm_mode;
 		m_ecm_mode_detected = true;
 
+		m_ecm_analyzed = true;
+		m_csa_alt = info.is_csa_alt;
+
 		if (info.is_csa_alt && !m_active)
 		{
-			m_ecm_analyzed = true;
-			m_csa_alt = true;
 			if (shouldSuppressActivation && shouldSuppressActivation())
 			{
 				eDebug("[eDVBCSASession] ECM Monitor: CSA-ALT cached but activation suppressed (CI module)");
-				stopECMMonitor();
 			}
 			else
 			{
@@ -161,6 +161,8 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 				setActive(true);
 			}
 		}
+
+		return;
 	}
 
 	// Create section reader
@@ -256,7 +258,6 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 				if (shouldSuppressActivation && shouldSuppressActivation())
 				{
 					eDebug("[eDVBCSASession] Activation suppressed (CI module handles decryption)");
-					stopECMMonitor();
 				}
 				else
 				{
@@ -267,8 +268,9 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 		else
 		{
 			eDebug("[eDVBCSASession] ECM analyzed: Not CSA-ALT, hardware descrambling will be used");
-			stopECMMonitor();
 		}
+
+		stopECMMonitor();
 	}
 }
 

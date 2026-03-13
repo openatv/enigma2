@@ -10,6 +10,7 @@
 
 #include <openssl/aes.h>
 #include <openssl/err.h>
+#include <openssl/rsa.h>
 
 eDVBCICcSession::eDVBCICcSession(eDVBCISlot *slot, int version) : m_slot(slot), m_akh_index(0),
 																  m_root_ca_store(nullptr), m_cust_cert(nullptr), m_device_cert(nullptr),
@@ -71,9 +72,9 @@ eDVBCICcSession::~eDVBCICcSession()
 	if (m_ci_device_cert)
 		X509_free(m_ci_device_cert);
 	if (m_rsa_device_key)
-		RSA_free(m_rsa_device_key);
+		EVP_PKEY_free(m_rsa_device_key);
 	if (m_dh)
-		DH_free(m_dh);
+		EVP_PKEY_free(m_dh);
 
 	m_ci_elements.init();
 }
@@ -388,7 +389,7 @@ int eDVBCICcSession::data_req_loop(uint8_t *dest, unsigned int dest_len, const u
 		dt_id = data[i];
 		data_req_handle_new(dt_id); /* check if there is any action needed before we answer */
 
-		len = m_ci_elements.get_buf(NULL, dt_id);
+		len = m_ci_elements.get_buf(nullptr, dt_id);
 		if ((len + 3) > dest_len)
 		{
 			eWarning("[CI%d RCC] req element %d: not enough space", m_slot->getSlotID(), dt_id);
@@ -494,13 +495,16 @@ int eDVBCICcSession::data_req_handle_new(unsigned int id)
 int eDVBCICcSession::generate_akh()
 {
 	uint8_t akh[32];
-	SHA256_CTX sha;
+	unsigned int md_len;
+	EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
 
-	SHA256_Init(&sha);
-	SHA256_Update(&sha, m_ci_elements.get_ptr(CICAM_ID), m_ci_elements.get_buf(NULL, CICAM_ID));
-	SHA256_Update(&sha, m_ci_elements.get_ptr(HOST_ID), m_ci_elements.get_buf(NULL, HOST_ID));
-	SHA256_Update(&sha, m_dhsk, 256);
-	SHA256_Final(akh, &sha);
+	EVP_DigestInit_ex(mdctx, EVP_sha256(), nullptr);
+	EVP_DigestUpdate(mdctx, m_ci_elements.get_ptr(CICAM_ID), m_ci_elements.get_buf(nullptr, CICAM_ID));
+	EVP_DigestUpdate(mdctx, m_ci_elements.get_ptr(HOST_ID), m_ci_elements.get_buf(nullptr, HOST_ID));
+	EVP_DigestUpdate(mdctx, m_dhsk, 256);
+	EVP_DigestFinal_ex(mdctx, akh, &md_len);
+
+	EVP_MD_CTX_free(mdctx);
 
 	m_ci_elements.set(AKH, akh, sizeof(akh));
 
@@ -509,48 +513,67 @@ int eDVBCICcSession::generate_akh()
 
 int eDVBCICcSession::compute_dh_key()
 {
-	int len = DH_size(m_dh);
+	BIGNUM *p = nullptr;
+	EVP_PKEY_get_bn_param(m_dh, OSSL_PKEY_PARAM_FFC_P, &p);
+	int len = BN_num_bytes(p);
 	if (len > 256)
 	{
+		BN_free(p);
 		eWarning("[CI%d RCC] too long shared key", m_slot->getSlotID());
 		return -1;
 	}
 
-	BIGNUM *bn_in = BN_bin2bn(m_ci_elements.get_ptr(DHPM), 256, NULL);
+	BIGNUM *bn_in = BN_bin2bn(m_ci_elements.get_ptr(DHPM), 256, nullptr);
 
-#if 0
-	// verify DHPM
-	BN_CTX *ctx = BN_CTX_new();
-	BIGNUM *out = BN_new();
-
-	if (BN_cmp(BN_value_one(), bn_in) >= 0)
-		eWarning("[CI%d RCC] DHPM <= 1!!!", m_slot->getSlotID());
-
-	if (BN_cmp(bn_in, m_dh->p) >= 0)
-		eWarning("[CI%d RCC] DHPM >= dh_p!!!", m_slot->getSlotID());
-
-	BN_mod_exp(out, bn_in, m_dh->q, m_dh->p, ctx);
-	if (BN_cmp(out, BN_value_one()) != 0)
-		eWarning("[CI%d RCC] DHPM ^ dh_q mod dh_p != 1!!!", m_slot->getSlotID());
-
-	BN_free(out);
-	BN_CTX_free(ctx);
-#endif
-
-	int codes = 0;
-	int ok = DH_check_pub_key(m_dh, bn_in, &codes);
-	if (ok == 0)
-		eDebug("[CI%d RCC] check_pub_key failed", m_slot->getSlotID());
-	if (codes & DH_CHECK_PUBKEY_TOO_SMALL)
+	/* validate peer public key */
+	if (BN_cmp(bn_in, BN_value_one()) <= 0)
 		eDebug("[CI%d RCC] too small public key", m_slot->getSlotID());
-	if (codes & DH_CHECK_PUBKEY_TOO_LARGE)
+
+	BIGNUM *p_minus_1 = BN_dup(p);
+	BN_sub_word(p_minus_1, 1);
+	if (BN_cmp(bn_in, p_minus_1) >= 0)
 		eDebug("[CI%d RCC] too large public key", m_slot->getSlotID());
+	BN_free(p_minus_1);
 
-	int gap = 256 - len;
-	memset(m_dhsk, 0, gap);
-	DH_compute_key(m_dhsk + gap, bn_in, m_dh);
+	/* build peer EVP_PKEY with same DH params + peer public key */
+	BIGNUM *g = nullptr, *q = nullptr;
+	EVP_PKEY_get_bn_param(m_dh, OSSL_PKEY_PARAM_FFC_G, &g);
+	EVP_PKEY_get_bn_param(m_dh, OSSL_PKEY_PARAM_FFC_Q, &q);
 
+	OSSL_PARAM_BLD *bld = OSSL_PARAM_BLD_new();
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_FFC_P, p);
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_FFC_G, g);
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_FFC_Q, q);
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_PUB_KEY, bn_in);
+	OSSL_PARAM *params = OSSL_PARAM_BLD_to_param(bld);
+
+	EVP_PKEY_CTX *pctx = EVP_PKEY_CTX_new_from_name(nullptr, "DH", nullptr);
+	EVP_PKEY_fromdata_init(pctx);
+	EVP_PKEY *peer_key = nullptr;
+	EVP_PKEY_fromdata(pctx, &peer_key, EVP_PKEY_PUBLIC_KEY, params);
+	EVP_PKEY_CTX_free(pctx);
+	OSSL_PARAM_free(params);
+	OSSL_PARAM_BLD_free(bld);
+	BN_free(p);
+	BN_free(g);
+	BN_free(q);
 	BN_free(bn_in);
+
+	/* derive shared secret */
+	EVP_PKEY_CTX *dctx = EVP_PKEY_CTX_new_from_pkey(nullptr, m_dh, nullptr);
+	EVP_PKEY_derive_init(dctx);
+	EVP_PKEY_derive_set_peer(dctx, peer_key);
+
+	size_t secret_len = 256;
+	uint8_t secret[256];
+	EVP_PKEY_derive(dctx, secret, &secret_len);
+	EVP_PKEY_CTX_free(dctx);
+	EVP_PKEY_free(peer_key);
+
+	/* pad to 256 bytes */
+	int gap = 256 - (int)secret_len;
+	memset(m_dhsk, 0, gap);
+	memcpy(m_dhsk + gap, secret, secret_len);
 
 	return 0;
 }
@@ -585,47 +608,52 @@ int eDVBCICcSession::generate_dh_key()
 	uint8_t dhph[256];
 	int len;
 	unsigned int gap;
-	BIGNUM *p, *g, *q;
-	const BIGNUM *pub_key;
 
-	m_dh = DH_new();
+	/* build DH parameters */
+	BIGNUM *p = BN_bin2bn(m_dh_p, sizeof(m_dh_p), nullptr);
+	BIGNUM *g = BN_bin2bn(m_dh_g, sizeof(m_dh_g), nullptr);
+	BIGNUM *q = BN_bin2bn(m_dh_q, sizeof(m_dh_q), nullptr);
 
-	p = BN_bin2bn(m_dh_p, sizeof(m_dh_p), 0);
-	g = BN_bin2bn(m_dh_g, sizeof(m_dh_g), 0);
-	q = BN_bin2bn(m_dh_q, sizeof(m_dh_q), 0);
-	DH_set0_pqg(m_dh, p, q, g);
-	DH_set_flags(m_dh, DH_FLAG_NO_EXP_CONSTTIME);
+	OSSL_PARAM_BLD *bld = OSSL_PARAM_BLD_new();
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_FFC_P, p);
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_FFC_G, g);
+	OSSL_PARAM_BLD_push_BN(bld, OSSL_PKEY_PARAM_FFC_Q, q);
+	OSSL_PARAM *params = OSSL_PARAM_BLD_to_param(bld);
+	BN_free(p);
+	BN_free(g);
+	BN_free(q);
 
-	DH_generate_key(m_dh);
+	EVP_PKEY_CTX *pctx = EVP_PKEY_CTX_new_from_name(nullptr, "DH", nullptr);
+	EVP_PKEY_fromdata_init(pctx);
+	EVP_PKEY *dh_params = nullptr;
+	EVP_PKEY_fromdata(pctx, &dh_params, EVP_PKEY_KEY_PARAMETERS, params);
+	EVP_PKEY_CTX_free(pctx);
+	OSSL_PARAM_free(params);
+	OSSL_PARAM_BLD_free(bld);
 
-	DH_get0_key(m_dh, &pub_key, NULL);
+	/* generate key pair */
+	EVP_PKEY_CTX *gctx = EVP_PKEY_CTX_new_from_pkey(nullptr, dh_params, nullptr);
+	EVP_PKEY_keygen_init(gctx);
+	m_dh = nullptr;
+	EVP_PKEY_keygen(gctx, &m_dh);
+	EVP_PKEY_CTX_free(gctx);
+	EVP_PKEY_free(dh_params);
+
+	/* extract public key */
+	BIGNUM *pub_key = nullptr;
+	EVP_PKEY_get_bn_param(m_dh, OSSL_PKEY_PARAM_PUB_KEY, &pub_key);
 	len = BN_num_bytes(pub_key);
 	if (len > 256)
 	{
+		BN_free(pub_key);
 		eWarning("[CI%d RCC] too long public key", m_slot->getSlotID());
 		return -1;
 	}
 
-#if 0
-	// verify DHPH
-	BN_CTX *ctx = BN_CTX_new();
-	BIGNUM *out = BN_new();
-
-	if (BN_cmp(BN_value_one(), m_dh->pub_key) >= 0)
-		eWarning("[CI%d RCC] DHPH <= 1!!!", m_slot->getSlotID());
-	if (BN_cmp(m_dh->pub_key, m_dh->p) >= 0)
-		eWarning("[CI%d RCC] DHPH >= dh_p!!!", m_slot->getSlotID());
-	BN_mod_exp(out, m_dh->pub_key, m_dh->q, m_dh->p, ctx);
-	if (BN_cmp(out, BN_value_one()) != 0)
-		eWarning("[CI%d RCC] DHPH ^ dh_q mod dh_p != 1!!!", m_slot->getSlotID());
-
-	BN_free(out);
-	BN_CTX_free(ctx);
-#endif
-
 	gap = 256 - len;
 	memset(dhph, 0, gap);
 	BN_bn2bin(pub_key, &dhph[gap]);
+	BN_free(pub_key);
 
 	m_ci_elements.set(DHPH, dhph, sizeof(dhph));
 
@@ -635,8 +663,6 @@ int eDVBCICcSession::generate_dh_key()
 int eDVBCICcSession::generate_sign_A()
 {
 	unsigned char dest[302];
-	uint8_t hash[20];
-	unsigned char dbuf[256];
 	unsigned char sign_A[256];
 
 	if (!m_ci_elements.valid(AUTH_NONCE))
@@ -665,8 +691,6 @@ int eDVBCICcSession::generate_sign_A()
 	dest[0x2d] = 0x00; /* len (bits) */
 	memcpy(&dest[0x2e], m_ci_elements.get_ptr(DHPH), 256);
 
-	SHA1(dest, 0x12e, hash);
-
 	m_rsa_device_key = rsa_privatekey_open("/etc/ciplus/device.pem");
 	if (!m_rsa_device_key)
 	{
@@ -674,8 +698,15 @@ int eDVBCICcSession::generate_sign_A()
 		return -1;
 	}
 
-	RSA_padding_add_PKCS1_PSS(m_rsa_device_key, dbuf, hash, EVP_sha1(), 20);
-	RSA_private_encrypt(sizeof(dbuf), dbuf, sign_A, m_rsa_device_key, RSA_NO_PADDING);
+	EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
+	EVP_PKEY_CTX *pkey_ctx = nullptr;
+	EVP_DigestSignInit(mdctx, &pkey_ctx, EVP_sha1(), nullptr, m_rsa_device_key);
+	EVP_PKEY_CTX_set_rsa_padding(pkey_ctx, RSA_PKCS1_PSS_PADDING);
+	EVP_PKEY_CTX_set_rsa_pss_saltlen(pkey_ctx, 20);
+	EVP_DigestSignUpdate(mdctx, dest, 0x12e);
+	size_t siglen = sizeof(sign_A);
+	EVP_DigestSignFinal(mdctx, sign_A, &siglen);
+	EVP_MD_CTX_free(mdctx);
 
 	m_ci_elements.set(SIGNATURE_A, sign_A, sizeof(sign_A));
 
@@ -696,7 +727,7 @@ int eDVBCICcSession::restart_dh_challenge()
 		return -1;
 	}
 
-	if (X509_STORE_load_locations(m_root_ca_store, "/etc/ciplus/root.pem", NULL) != 1)
+	if (X509_STORE_load_locations(m_root_ca_store, "/etc/ciplus/root.pem", nullptr) != 1)
 	{
 		eWarning("[CI%d RCC] can not load root_ca", m_slot->getSlotID());
 		return -1;
@@ -733,22 +764,25 @@ int eDVBCICcSession::restart_dh_challenge()
 
 int eDVBCICcSession::generate_uri_confirm()
 {
-	SHA256_CTX sha;
 	uint8_t uck[32];
 	uint8_t uri_confirm[32];
+	unsigned int md_len;
 
 	// eDebug("[CI%d RCC] uri_confirm...", m_slot->getSlotID());
 
 	// UCK
-	SHA256_Init(&sha);
-	SHA256_Update(&sha, m_sak, 16);
-	SHA256_Final(uck, &sha);
+	EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
+	EVP_DigestInit_ex(mdctx, EVP_sha256(), nullptr);
+	EVP_DigestUpdate(mdctx, m_sak, 16);
+	EVP_DigestFinal_ex(mdctx, uck, &md_len);
 
 	// uri_confirm
-	SHA256_Init(&sha);
-	SHA256_Update(&sha, m_ci_elements.get_ptr(URI_MESSAGE), m_ci_elements.get_buf(NULL, URI_MESSAGE));
-	SHA256_Update(&sha, uck, 32);
-	SHA256_Final(uri_confirm, &sha);
+	EVP_DigestInit_ex(mdctx, EVP_sha256(), nullptr);
+	EVP_DigestUpdate(mdctx, m_ci_elements.get_ptr(URI_MESSAGE), m_ci_elements.get_buf(nullptr, URI_MESSAGE));
+	EVP_DigestUpdate(mdctx, uck, 32);
+	EVP_DigestFinal_ex(mdctx, uri_confirm, &md_len);
+
+	EVP_MD_CTX_free(mdctx);
 
 	m_ci_elements.set(URI_CONFIRM, uri_confirm, 32);
 
@@ -757,11 +791,11 @@ int eDVBCICcSession::generate_uri_confirm()
 
 void eDVBCICcSession::check_new_key()
 {
-	AES_KEY aes_ctx;
 	uint8_t dec[32];
 	uint8_t *kp;
 	uint8_t slot;
 	unsigned int i;
+	int outlen;
 
 	if (!m_ci_elements.valid(KP))
 		return;
@@ -774,9 +808,12 @@ void eDVBCICcSession::check_new_key()
 	kp = m_ci_elements.get_ptr(KP);
 	m_ci_elements.get_buf(&slot, KEY_REGISTER);
 
-	AES_set_encrypt_key(m_s_key, 128, &aes_ctx);
+	EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
+	EVP_EncryptInit_ex(ctx, EVP_aes_128_ecb(), nullptr, m_s_key, nullptr);
+	EVP_CIPHER_CTX_set_padding(ctx, 0);
 	for (i = 0; i < 32; i += 16)
-		AES_ecb_encrypt(&kp[i], &dec[i], &aes_ctx, 1);
+		EVP_EncryptUpdate(ctx, &dec[i], &outlen, &kp[i], 16);
+	EVP_CIPHER_CTX_free(ctx);
 
 	for (i = 0; i < 32; i++)
 		dec[i] ^= kp[i];
@@ -828,14 +865,17 @@ void eDVBCICcSession::set_descrambler_key()
 
 void eDVBCICcSession::generate_key_seed()
 {
-	SHA256_CTX sha;
+	unsigned int md_len;
+	EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
 
-	SHA256_Init(&sha);
-	SHA256_Update(&sha, &m_dhsk[240], 16);
-	SHA256_Update(&sha, m_ci_elements.get_ptr(AKH), m_ci_elements.get_buf(NULL, AKH));
-	SHA256_Update(&sha, m_ci_elements.get_ptr(NS_HOST), m_ci_elements.get_buf(NULL, NS_HOST));
-	SHA256_Update(&sha, m_ci_elements.get_ptr(NS_MODULE), m_ci_elements.get_buf(NULL, NS_MODULE));
-	SHA256_Final(m_ks_host, &sha);
+	EVP_DigestInit_ex(mdctx, EVP_sha256(), nullptr);
+	EVP_DigestUpdate(mdctx, &m_dhsk[240], 16);
+	EVP_DigestUpdate(mdctx, m_ci_elements.get_ptr(AKH), m_ci_elements.get_buf(nullptr, AKH));
+	EVP_DigestUpdate(mdctx, m_ci_elements.get_ptr(NS_HOST), m_ci_elements.get_buf(nullptr, NS_HOST));
+	EVP_DigestUpdate(mdctx, m_ci_elements.get_ptr(NS_MODULE), m_ci_elements.get_buf(nullptr, NS_MODULE));
+	EVP_DigestFinal_ex(mdctx, m_ks_host, &md_len);
+
+	EVP_MD_CTX_free(mdctx);
 }
 
 void eDVBCICcSession::generate_ns_host()
@@ -847,14 +887,18 @@ void eDVBCICcSession::generate_ns_host()
 
 int eDVBCICcSession::generate_SAK_SEK()
 {
-	AES_KEY key;
 	uint8_t dec[32];
 	int i;
+	int outlen;
 
-	AES_set_encrypt_key(m_key_data, 128, &key);
+	EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
+	EVP_EncryptInit_ex(ctx, EVP_aes_128_ecb(), nullptr, m_key_data, nullptr);
+	EVP_CIPHER_CTX_set_padding(ctx, 0);
 
 	for (i = 0; i < 2; i++)
-		AES_ecb_encrypt(&m_ks_host[16 * i], &dec[16 * i], &key, 1);
+		EVP_EncryptUpdate(ctx, &dec[16 * i], &outlen, &m_ks_host[16 * i], 16);
+
+	EVP_CIPHER_CTX_free(ctx);
 
 	for (i = 0; i < 16; i++)
 		m_sek[i] = m_ks_host[i] ^ dec[i];
@@ -906,16 +950,24 @@ int eDVBCICcSession::sac_gen_auth(uint8_t *out, uint8_t *in, unsigned int len)
 
 int eDVBCICcSession::sac_crypt(uint8_t *dst, const uint8_t *src, unsigned int len, int encrypt)
 {
-	AES_KEY key;
 	uint8_t iv[16];
-	memcpy(iv, m_iv, 16); // use copy as iv is changed by AES_cbc_encrypt
+	int outlen;
+
+	memcpy(iv, m_iv, 16);
+
+	EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
+	if (encrypt)
+		EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, m_sek, iv);
+	else
+		EVP_DecryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, m_sek, iv);
+	EVP_CIPHER_CTX_set_padding(ctx, 0);
 
 	if (encrypt)
-		AES_set_encrypt_key(m_sek, 128, &key);
+		EVP_EncryptUpdate(ctx, dst, &outlen, src, len);
 	else
-		AES_set_decrypt_key(m_sek, 128, &key);
+		EVP_DecryptUpdate(ctx, dst, &outlen, src, len);
 
-	AES_cbc_encrypt(src, dst, len, &key, iv, encrypt);
+	EVP_CIPHER_CTX_free(ctx);
 
 	return 0;
 }
@@ -927,14 +979,14 @@ X509 *eDVBCICcSession::import_ci_certificates(unsigned int id)
 	if (!m_ci_elements.valid(id))
 	{
 		eWarning("[CI%d RCC] %u not valid", m_slot->getSlotID(), id);
-		return NULL;
+		return nullptr;
 	}
 
-	cert = certificate_import_and_check(m_root_ca_store, m_ci_elements.get_ptr(id), m_ci_elements.get_buf(NULL, id));
+	cert = certificate_import_and_check(m_root_ca_store, m_ci_elements.get_ptr(id), m_ci_elements.get_buf(nullptr, id));
 	if (!cert)
 	{
 		eWarning("[CI%d RCC] can not verify certificate %u", m_slot->getSlotID(), id);
-		return NULL;
+		return nullptr;
 	}
 
 	return cert;
@@ -948,13 +1000,13 @@ int eDVBCICcSession::check_ci_certificates()
 	if (!m_ci_elements.valid(CICAM_DEV_CERT))
 		return -1;
 
-	if ((m_ci_cust_cert = import_ci_certificates(CICAM_BRAND_CERT)) == NULL)
+	if ((m_ci_cust_cert = import_ci_certificates(CICAM_BRAND_CERT)) == nullptr)
 	{
 		eWarning("[CI%d RCC] can not import CICAM brand certificate", m_slot->getSlotID());
 		return -1;
 	}
 
-	if ((m_ci_device_cert = import_ci_certificates(CICAM_DEV_CERT)) == NULL)
+	if ((m_ci_device_cert = import_ci_certificates(CICAM_DEV_CERT)) == nullptr)
 	{
 		eWarning("[CI%d RCC] can not import CICAM device certificate", m_slot->getSlotID());
 		return -1;
@@ -971,7 +1023,7 @@ int eDVBCICcSession::check_ci_certificates()
 
 bool eDVBCICcSession::ci_element_set_certificate(unsigned int id, X509 *cert)
 {
-	unsigned char *cert_der = NULL;
+	unsigned char *cert_der = nullptr;
 	int cert_len;
 
 	cert_len = i2d_X509(cert, &cert_der);

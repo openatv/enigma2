@@ -24,7 +24,9 @@ struct eComponentData
 	std::string m_text;
 public:
 	eComponentData(const eComponentData& d) { *this = d; }
+#ifndef SWIG
 	eComponentData& operator =(const eComponentData &) = default;
+#endif
 	eComponentData() { m_streamContent = m_componentType = m_componentTag = 0; }
 	int getStreamContent(void) const { return m_streamContent; }
 	int getComponentType(void) const { return m_componentType; }
@@ -45,7 +47,9 @@ struct eGenreData
 	uint8_t m_user2;
 public:
 	eGenreData(const eGenreData& d) { *this = d; }
+#ifndef SWIG
 	eGenreData& operator =(const eGenreData &) = default;
+#endif
 	eGenreData() { m_level1 = m_level2 = m_user1 = m_user2 = 0; }
 	int getLevel1(void) const { return m_level1; }
 	int getLevel2(void) const { return m_level2; }
@@ -63,7 +67,9 @@ struct eParentalData
 	uint8_t m_rating;
 public:
 	eParentalData(const eParentalData& d) { *this = d; }
+#ifndef SWIG
 	eParentalData& operator =(const eParentalData &) = default;
+#endif
 	eParentalData() { m_country_code = ""; m_rating = 0; }
 	std::string getCountryCode(void) const { return m_country_code; }
 	int getRating(void) const { return m_rating; }
@@ -189,20 +195,24 @@ public:
 	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, eServiceReference &parent, int num) const;
 	SWIG_VOID(RESULT) getGenreData(ePtr<eGenreData> &SWIG_OUTPUT) const;
 	PyObject *getGenreDataList() const;
+#ifndef SWIG
 	// Deprecated, doesn't differentiate from
 	// getGenreData(ePtr<eGenreData> &SWIG_OUTPUT) in Python
 	PyObject *getGenreData() const
 	{
 		return getGenreDataList();
 	}
+#endif
 	SWIG_VOID(RESULT) getParentalData(ePtr<eParentalData> &SWIG_OUTPUT) const;
 	PyObject *getParentalDataList() const;
+#ifndef SWIG
 	// Deprecated, doesn't differentiate from
-	// getGenreData(ePtr<eGenreData> &SWIG_OUTPUT) in Python
+	// getParentalData(ePtr<eParentalData> &SWIG_OUTPUT) in Python
 	PyObject *getParentalData() const
 	{
 		return getParentalDataList();
 	}
+#endif
 
 	PyObject *getCridData(int mask) const;
 	static void setDebug(bool debug) {m_Debug = debug;}

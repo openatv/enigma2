@@ -115,9 +115,6 @@ private:
 	bool m_csa_alt;               // true if CSA-ALT was detected
 	void ecmDataReceived(const uint8_t *data);
 
-	// Signal Connections
-	ePtr<eConnection> m_cw_connection;
-
 	// CW Handler (called from eDVBCAHandler signal)
 	void onCwReceived(eServiceReferenceDVB ref, int parity, const char* cw, uint16_t caid, uint32_t serviceId);
 

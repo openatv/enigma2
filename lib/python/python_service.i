@@ -130,11 +130,6 @@ PyObject *getInfoObject(int w)
 	return Py_None;
 }
 
-PyObject *getHbbTVApplications()
-{
-	return self->getHbbTVApplications();
-}
-
 PyObject *getAITApplications()
 {
 	std::map<int, std::string> aitlist;

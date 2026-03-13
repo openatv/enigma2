@@ -104,6 +104,7 @@ protected:
 	bool processEcmInfoPacket();
 public:
 	ePMTClient(eDVBCAHandler *handler, int socket);
+	~ePMTClient() { delete[] receivedData; }
 	void sendClientInfo();
 	int writeCAPMTObject(const char* capmt, int len);
 	bool isProtocol3() const { return m_serverInfoReceived; }

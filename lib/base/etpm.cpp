@@ -6,8 +6,6 @@
 #include <string.h>
 #include <sys/un.h>
 #include <unistd.h>
-#include <openssl/bn.h>
-#include <openssl/sha.h>
 #include <lib/base/eerror.h>
 
 #include "etpm.h"
