@@ -4,7 +4,7 @@
 
 [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/build.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/build.yml)
 
-[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_76.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_modern_76.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
