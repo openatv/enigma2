@@ -1047,9 +1047,24 @@ class AVSwitchBase:
 			self.on_hotplug("HDMI")  # must be HDMI
 
 	def getWindowsAxis(self):
-		port = config.av.videoport.value
-		mode = config.av.videomode[port].value
-		return self.axis[mode]
+		port = getattr(config.av.videoport, "value", None)
+		mode = None
+		if port and port in config.av.videomode:
+			mode = config.av.videomode[port].value
+		elif "HDMI" in config.av.videomode:
+			port = "HDMI"
+			mode = config.av.videomode[port].value
+		else:
+			for fallbackPort in config.av.videomode.keys():
+				port = fallbackPort
+				mode = config.av.videomode[fallbackPort].value
+				break
+
+		if mode not in self.axis:
+			print(f"[AVSwitch] getWindowsAxis: Missing port/mode mapping for port='{port}', mode='{mode}', fallback to 720p.")
+			mode = "720p"
+
+		return self.axis.get(mode, self.axis["720p"])
 
 	def createConfig(self, *args):
 		config.av.videomode = ConfigSubDict()

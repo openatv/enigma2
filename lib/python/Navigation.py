@@ -324,7 +324,7 @@ class Navigation:
 		# from Components.ServiceEventTracker import InfoBarCount
 		# InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 		InfoBarInstance = InfoBar.instance
-		isHandled = False
+		isAsyncPlay = False
 
 		currentServiceSource = None
 		if InfoBarInstance:
@@ -401,8 +401,15 @@ class Navigation:
 					if wrappererror:
 						return 1
 
-				for f in Navigation.playServiceExtensions:
-					playref, isHandled = f(self, playref, event, InfoBarInstance)
+				originalPlayref = playref.toString()
+				for extensionFunc in Navigation.playServiceExtensions:
+					ret = extensionFunc(self, playref, event, InfoBarInstance)
+					if isinstance(ret, (ServiceReference.ServiceReference, eServiceReference)):
+						playref = ret
+					else:
+						playref, isAsyncPlay = ret
+					if isAsyncPlay or playref.toString() != originalPlayref:
+						break
 
 				print(f"[Navigation] Playref is '{playref.toString()}'.")
 				self.currentlyPlayingServiceOrGroup = ref
@@ -422,7 +429,7 @@ class Navigation:
 					self.firstStart = False
 					self.retryServicePlayTimer.start(delay, True)
 					return 0
-				elif not isHandled and self.pnav.playService(playref):
+				elif not isAsyncPlay and self.pnav.playService(playref):
 					print(f"[Navigation] Failed to start '{playref.toString()}'.")
 					self.currentlyPlayingServiceReference = None
 					self.originalPlayingServiceReference = None
