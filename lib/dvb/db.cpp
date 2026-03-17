@@ -1,8 +1,10 @@
+#include <array>
 #include <errno.h>
 #include <unistd.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
+#include <lib/dvb/pmtparse.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/base/cfile.h>
 #include <lib/base/eenv.h>
@@ -401,6 +403,29 @@ bool eDVBService::cacheAudioEmpty()
 			if (m_cache[audioCacheTags[i]] != -1)
 				return false;
 	return true;
+}
+
+void eDVBService::updateAudioCache(int apid, int apidtype)
+{
+	struct audioMapEntry {
+		int streamType;
+		cacheID cacheTag;
+	};
+	static const std::array<audioMapEntry, 10> audioMap = {{
+		{ eDVBPMTParser::audioStream::atMPEG,  cMPEGAPID  },
+		{ eDVBPMTParser::audioStream::atAC3,   cAC3PID    },
+		{ eDVBPMTParser::audioStream::atAC4,   cAC4PID    },
+		{ eDVBPMTParser::audioStream::atDDP,   cDDPPID    },
+		{ eDVBPMTParser::audioStream::atAAC,   cAACAPID   },
+		{ eDVBPMTParser::audioStream::atDTS,   cDTSPID    },
+		{ eDVBPMTParser::audioStream::atLPCM,  cLPCMPID   },
+		{ eDVBPMTParser::audioStream::atDTSHD, cDTSHDPID  },
+		{ eDVBPMTParser::audioStream::atAACHE, cAACHEAPID },
+		{ eDVBPMTParser::audioStream::atDRA,   cDRAAPID   },
+	}};
+
+	for (const auto &entry : audioMap)
+		setCacheEntry(entry.cacheTag, apidtype == entry.streamType ? apid : -1);
 }
 
 void eDVBService::initCache()

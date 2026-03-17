@@ -2727,28 +2727,7 @@ void eDVBServicePlay::updateAudioCache(int apid, int apidtype)
 	if (!m_dvb_service)
 		return;
 
-	const static struct {
-		int streamType;
-		eDVBService::cacheID cacheTag;
-	} audioMap [] = {
-		{ eDVBAudio::aMPEG,  eDVBService::cMPEGAPID,  },
-		{ eDVBAudio::aAC3,   eDVBService::cAC3PID,    },
-		{ eDVBAudio::aAC4,   eDVBService::cAC4PID,    },
-		{ eDVBAudio::aDDP,   eDVBService::cDDPPID,    },
-		{ eDVBAudio::aAAC,   eDVBService::cAACAPID,   },
-		{ eDVBAudio::aDTS,   eDVBService::cDTSPID,    },
-		{ eDVBAudio::aLPCM,  eDVBService::cLPCMPID,   },
-		{ eDVBAudio::aDTSHD, eDVBService::cDTSHDPID,  },
-		{ eDVBAudio::aAACHE, eDVBService::cAACHEAPID, },
-		{ eDVBAudio::aDRA,   eDVBService::cDRAAPID,   },
-	};
-	static const int nAudioMap = sizeof audioMap / sizeof audioMap[0];
-
-	for(int m = 0; m < nAudioMap; m++)
-	{
-		m_dvb_service->setCacheEntry(audioMap[m].cacheTag, apidtype == audioMap[m].streamType ? apid : -1);
-	}
-
+	m_dvb_service->updateAudioCache(apid, apidtype);
 	eDebug("[eDVBServicePlay] updateAudioCache: pid=%04x type=%d", apid, apidtype);
 }
 
