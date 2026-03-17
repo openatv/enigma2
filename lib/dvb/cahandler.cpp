@@ -564,10 +564,10 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 		// the same service, the PMT is unchanged so buildCAPMT() would skip
 		// sending ("don't build the same CA PMT twice"). Force the softcam to
 		// restart descrambling so it resends CWs for the new CSA session.
-		if (service_already_registered && servicetype != 7 && servicetype != 8)
+		if (service_already_registered && (servicetype == 0 || servicetype == 12))
 		{
-			// Non-streamserver (Live-TV, PiP): DEFER the CW resend to
-			// handlePMT() so the new CSA session is already activated and
+			// PiP/swap (livetv=0, scrambled_livetv=12): DEFER the CW resend
+			// to handlePMT() so the new CSA session is already activated and
 			// its engine registered with CWHandler when the CW arrives.
 			caservice->m_force_cw_send = true;
 			eDebug("[eDVBCAService] deferred softcam CW resend (re-register, type %d)", servicetype);
