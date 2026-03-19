@@ -4686,10 +4686,8 @@ void eServiceMP3::saveCuesheet() {
 		m_cue_entries.insert(cueEntry(old_last, 4));
 	}
 	if ((m_cutlist_enabled & 2) == 0 && m_last_seek_pos > 900000) {
-		if (!m_media_lenght || m_last_seek_pos < (m_media_lenght - 900000)) {
-			m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-			eDebug("[eServiceMP3] last play position saved: %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
-		}
+		m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
+		eDebug("[eServiceMP3] last play position saved: %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
 	}
 
 	/* Update CUT_TYPE_LENGTH with the media length */
