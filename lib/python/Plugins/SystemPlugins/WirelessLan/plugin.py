@@ -15,15 +15,12 @@ from Tools.LoadPixmap import LoadPixmap
 from .Wlan import iWlan, iStatus, getWlanConfigName
 
 
-liste = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
-
-weplist = ["ASCII", "HEX"]
+liste = ["Unencrypted", "WPA2", "WPA3"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
 config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
 config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default="WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 
@@ -158,7 +155,7 @@ class WlanStatus(Screen):
 						if accesspoint == "Not-Associated":
 							encryption = _("Disabled")
 						else:
-							encryption = _("off or wpa2 on")
+							encryption = _("off or wpa2/3 on")
 					else:
 						encryption = _("Enabled")
 					if "enc" in self:
@@ -420,8 +417,6 @@ def configStrings(iface):
 	ret = ""
 	if driver == "brcm-wl":
 		encryption = config.plugins.wlan.encryption.value
-		if encryption == "WPA/WPA2":
-			encryption = "WPA2"
 		encryption = encryption.lower()
 		if encryption == "unencrypted":
 			encryption = "None"

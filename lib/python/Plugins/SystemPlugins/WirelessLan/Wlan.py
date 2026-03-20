@@ -8,14 +8,12 @@ from Components.Network import iNetwork
 from Tools.Directories import fileReadLines, fileWriteLines
 
 MODULE_NAME = __name__.split(".")[-1]
-MODE_LIST = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
-WEP_LIST = ["ASCII", "HEX"]
+MODE_LIST = ["WPA3", "WPA2", "Unencrypted"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
 config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(MODE_LIST, default="WPA/WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(WEP_LIST, default="ASCII"))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(MODE_LIST, default="WPA2"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 
@@ -121,15 +119,10 @@ class brcmWLConfig:
 		essid = config.plugins.wlan.essid.value
 		hiddenessid = config.plugins.wlan.hiddenessid.value  # noqa F841
 		encryption = config.plugins.wlan.encryption.value
-		wepkeytype = config.plugins.wlan.wepkeytype.value  # noqa F841
 		psk = config.plugins.wlan.psk.value
 		contents = ["ssid=%s\n" % essid]
-		if encryption in ("WPA", "WPA2", "WPA/WPA2", "WEP"):
-			if encryption == "WPA/WPA2":
-				encryption = "WPA2"
-			contents.append("method=%s" % encryption.lower())
-			if encryption.lower() == "unencrypted":
-				contents.append("method=None")
+		if encryption == "WPA2":
+			contents.append("method=wpa2")
 			contents.append("key=%s" % psk)
 		fileWriteLines(getWlanConfigName(iface), lines=contents, source=MODULE_NAME)
 
@@ -165,7 +158,6 @@ class brcmWLConfig:
 			"hiddenessid": config.plugins.wlan.hiddenessid.value,
 			"ssid": config.plugins.wlan.essid.value,
 			"encryption": config.plugins.wlan.encryption.value,
-			"wepkeytype": config.plugins.wlan.wepkeytype.value,
 			"key": config.plugins.wlan.psk.value,
 		}
 		return wsconf
@@ -187,7 +179,6 @@ class wpaSupplicant:
 		wsconf["ssid"] = ""
 		wsconf["hiddenessid"] = False  # Not used.
 		wsconf["encryption"] = "WPA2"
-		wsconf["wepkeytype"] = "ASCII"  # Not used.
 		wsconf["key"] = ""
 		configFile = getWlanConfigName(iface)
 		lines = fileReadLines(configFile, default=None, source=MODULE_NAME)
@@ -229,33 +220,25 @@ class wpaSupplicant:
 		contents.append("eapol_version=1")
 		contents.append("fast_reauth=1")
 		contents.append("ap_scan=1")
+		if encryption == "WPA3":
+			contents.append("sae_pwe=2")
 		contents.append("network={")
 		contents.append("\tssid=\"%s\"" % essid)
 		if hiddenessid:
 			contents.append("\tscan_ssid=1")
 		else:
 			contents.append("\tscan_ssid=0")
-		if encryption in ("WPA", "WPA2", "WPA/WPA2"):
+		if encryption == "WPA2":
 			contents.append("\tkey_mgmt=WPA-PSK")
-			if encryption == "WPA":
-				contents.append("\tproto=WPA")
-				contents.append("\tpairwise=TKIP")
-				contents.append("\tgroup=TKIP")
-			elif encryption == "WPA2":
-				contents.append("\tproto=RSN")
-				contents.append("\tpairwise=CCMP")
-				contents.append("\tgroup=CCMP")
-			else:
-				contents.append("\tproto=WPA RSN")
-				contents.append("\tpairwise=CCMP TKIP")
-				contents.append("\tgroup=CCMP TKIP")
+			contents.append("\tproto=RSN")
+			contents.append("\tpairwise=CCMP")
+			contents.append("\tgroup=CCMP")
 			contents.append("\tpsk=\"%s\"" % psk)
-		elif encryption == "WEP":
-			contents.append("\tkey_mgmt=NONE")
-			if wepkeytype == "ASCII":
-				contents.append("\twep_key0=\"%s\"" % psk)
-			else:
-				contents.append("\twep_key0=%s" % psk)
+		elif encryption == "WPA3":
+			contents.append("\tkey_mgmt=SAE WPA-PSK-SHA256")
+			contents.append("\tproto=RSN")
+			contents.append("\tpsk=\"%s\"" % psk)
+			contents.append("\tieee80211w=2")
 		else:
 			contents.append("\tkey_mgmt=NONE")
 		contents.append("}")
@@ -284,22 +267,11 @@ class wpaSupplicant:
 					config.plugins.wlan.hiddenessid.value = split[1] == "1"
 				elif split[0] == "ssid":
 					config.plugins.wlan.essid.value = split[1][1:-1]
-				elif split[0] == "proto":
-					if split[1] == "WPA":
-						mode = "WPA"
-					if split[1] == "RSN":
-						mode = "WPA2"
-					if split[1] in ("WPA RSN", "WPA WPA2"):
-						mode = "WPA/WPA2"
-					encryption = mode
-				elif split[0] == "wep_key0":
-					encryption = "WEP"
-					if split[1].startswith("\"") and split[1].endswith("\""):
-						config.plugins.wlan.wepkeytype.value = "ASCII"
-						config.plugins.wlan.psk.value = split[1][1:-1]
-					else:
-						config.plugins.wlan.wepkeytype.value = "HEX"
-						config.plugins.wlan.psk.value = split[1]
+				elif split[0] == "key_mgmt" and "SAE" in split[1]:
+					encryption = "WPA3"
+				elif split[0] == "proto" and encryption != "WPA3":
+					if split[1] in ("WPA", "RSN", "WPA RSN", "WPA WPA2"):
+						encryption = "WPA2"
 				elif split[0] == "psk":
 					config.plugins.wlan.psk.value = split[1][1:-1]
 				else:
@@ -309,7 +281,6 @@ class wpaSupplicant:
 				"hiddenessid": config.plugins.wlan.hiddenessid.value,
 				"ssid": config.plugins.wlan.essid.value,
 				"encryption": config.plugins.wlan.encryption.value,
-				"wepkeytype": config.plugins.wlan.wepkeytype.value,
 				"key": config.plugins.wlan.psk.value,
 			}
 			for (key, item) in list(wsconfig.items()):
@@ -320,8 +291,6 @@ class wpaSupplicant:
 						wsconfig["ssid"] = ""
 					if key == "encryption":
 						wsconfig["encryption"] = "WPA2"
-					if key == "wepkeytype":
-						wsconfig["wepkeytype"] = "ASCII"
 					if key == "key":
 						wsconfig["key"] = ""
 		return wsconfig
