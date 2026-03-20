@@ -1129,7 +1129,7 @@ eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux, int packetsize, bool streaming,
 		// sync_mode forced if AIO short writes were detected in a previous channel
 		// is_streaming_output=true when target is a socket (streaming encrypted channels)
 		m_thread = new eDVBRecordScrambledThread(packetsize,
-			256*188, s_aio_sync_fallback || sync_mode, is_streaming_output);
+			-1, s_aio_sync_fallback || sync_mode, is_streaming_output);
 	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
 }
 
