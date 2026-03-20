@@ -177,6 +177,7 @@ struct gUnmanagedSurface
 	gPalette clut;
 	void *data;
 	int data_phys;
+	unsigned int gl_texture_id;
 	bool transparent = true;
 
 	gUnmanagedSurface();

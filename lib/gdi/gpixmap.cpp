@@ -151,7 +151,8 @@ void gLookup::build(int _size, const gPalette &pal, const gRGB &start, const gRG
 gUnmanagedSurface::gUnmanagedSurface():
 	x(0), y(0), bpp(0), bypp(0), stride(0),
 	data(0),
-	data_phys(0)
+	data_phys(0),
+	gl_texture_id(0)
 {
 }
 
@@ -160,7 +161,8 @@ gUnmanagedSurface::gUnmanagedSurface(int width, int height, int _bpp):
 	y(height),
 	bpp(_bpp),
 	data(0),
-	data_phys(0)
+	data_phys(0),
+	gl_texture_id(0)
 {
 	switch (_bpp)
 	{
@@ -234,6 +236,12 @@ gSurface::gSurface(int width, int height, int _bpp, int accel):
 gSurface::~gSurface()
 {
 	gAccel::getInstance()->accelFree(this);
+
+	extern void egl_queue_texture_deletion(unsigned int tx_id) __attribute__((weak));
+	if (egl_queue_texture_deletion && gl_texture_id != 0) {
+		egl_queue_texture_deletion(gl_texture_id);
+	}
+
 	if (data)
 	{
 		delete [] (unsigned char*)data;

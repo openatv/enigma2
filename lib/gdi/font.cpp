@@ -22,6 +22,7 @@
 #include <lib/base/eerror.h>
 #include <lib/gdi/lcd.h>
 #include <lib/gdi/grc.h>
+#include <lib/gdi/gpixmap.h>
 #include <lib/base/elock.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -1115,6 +1116,25 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 			sybase=glyph_bitmap->height;
 			pitch = glyph_bitmap->pitch;
 		}
+
+		if (dc.isHardwareAccelerated())
+		{
+			gUnmanagedSurface s;
+			s.x = sxbase;
+			s.y = sybase;
+			s.bpp = 8;
+			s.bypp = 1;
+			s.stride = pitch;
+			s.data = sbase;
+			s.clut.data = 0;
+			s.clut.colors = 0;
+
+			gPixmap pm(&s);
+			gRGB hardwareColor = (i->flags & GS_INVERT) ? background : currentforeground;
+			dc.renderGlyph(ePoint(rxbase, rybase), &pm, hardwareColor);
+			continue;
+		}
+
 		dbase = (__u8*)(surface->data)+buffer_stride*rybase+rxbase*surface->bypp;
 		for (unsigned int c = 0; c < clip.rects.size(); ++c)
 		{

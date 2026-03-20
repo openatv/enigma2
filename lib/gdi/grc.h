@@ -85,7 +85,6 @@ struct gOpcode
 		setView,
 #endif
 	} opcode;
-
 	gDC *dc;
 	union para
 	{
@@ -377,6 +376,10 @@ public:
 	void flush();
 	void sendShow(ePoint point, eSize size);
 	void sendHide(ePoint point, eSize size);
+
+	/* Returns the underlying DC so widgets can query e.g. isHardwareAccelerated()
+	 * at paint time without reaching into private members. */
+	const gDC *getDC() const { return m_dc; }
 #ifdef USE_LIBVUGLES2
 	void sendShowItem(long dir, ePoint point, eSize size);
 	void setFlush(bool val);
@@ -430,6 +433,9 @@ public:
 	gRGB getRGB(gColor col);
 	virtual eSize size() { return m_pixmap->size(); }
 	virtual int islocked() const { return 0; }
+	virtual bool isHardwareAccelerated() const { return false; }
+
+	virtual void renderGlyph(const ePoint &pos, gPixmap *glyph_mask, const gRGB &color);
 
 	virtual void enableSpinner();
 	virtual void disableSpinner();
