@@ -1,6 +1,7 @@
+from glob import glob
 from errno import ENOENT
 from os import remove
-from os.path import exists
+from os.path import exists, isfile
 import sys  # This is needed for the twisted redirection access to stderr and stdout.
 from time import time
 
@@ -409,9 +410,10 @@ def runScreenTest():
 	enigma.eProfileWrite("Wizards")
 	screensToRun = []
 	RestoreSettings = None
-	if exists("/media/hdd/images/config/settings") and config.misc.firstrun.value:
+	if config.misc.firstrun.value and (firstPath := next((p for p in glob("/media/*/images/config/settings") if isfile(p)), None)):
 		if autorestoreLoop():
 			RestoreSettings = True
+			config.plugins.configurationbackup.backuplocation.value = firstPath.replace("images/config/settings", "")
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
 			session.open(RestoreScreen, runRestore=True)
 		else:
