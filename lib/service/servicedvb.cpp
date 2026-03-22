@@ -4503,6 +4503,7 @@ void eDVBServicePlay::cleanupSoftwareDescrambling()
 	if (m_soft_decoder)
 	{
 		eDebug("[eDVBServicePlay] Cleaning up SoftDecoder");
+		m_video_event_connection = nullptr;
 		m_soft_decoder->stop();
 		m_soft_decoder = nullptr;
 	}
