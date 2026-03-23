@@ -9,10 +9,8 @@
 #define EGL_OPENGL_ES3_BIT_KHR 0x00000040
 #endif
 
-#ifdef HWDREAMONE
-#include "amlogic/amlogic_window_provider.h"
-eAutoInitPtr<gEGLDC> init_gEGLDC(eAutoInitNumbers::graphic - 1, "gEGLDC");
-#endif
+// Initialization is now managed by gEGLDCAutoInit in egl_init.cpp
+// to support runtime fallback to FBDC/SDLDC.
 
 // ---------------------------------------------------------------------------
 // tryInitEGL – attempts to create an EGL context for a specific GLES version.

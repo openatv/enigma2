@@ -467,9 +467,44 @@ void gFBDC::reloadSettings()
 	setPalette();
 }
 
-#ifndef HWDREAMONE
-eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
-#endif
+class gFBDCAutoInit : protected eAutoInit
+{
+	gFBDC *m_dc;
+	void initNow() override
+	{
+		ePtr<gMainDC> ptr;
+		if (gMainDC::getInstance(ptr) == 0)
+		{
+			eDebug("[gFBDC] gMainDC already initialized, skipping GFBDC");
+			return;
+		}
+		eDebug("[eInit] + (%d) GFBDC", rl);
+		m_dc = new gFBDC();
+	}
+
+	void closeNow() override
+	{
+		if (m_dc)
+		{
+			delete m_dc;
+			m_dc = nullptr;
+		}
+	}
+
+public:
+	gFBDCAutoInit()
+		: eAutoInit(eAutoInitNumbers::graphic - 1, "GFBDC"), m_dc(nullptr)
+	{
+		eInit::add(rl, this);
+	}
+
+	~gFBDCAutoInit()
+	{
+		eInit::remove(rl, this);
+	}
+};
+
+static gFBDCAutoInit init_gFBDC_custom;
 
 #ifdef HAVE_OSDANIMATION
 void setAnimation_current(int a) {

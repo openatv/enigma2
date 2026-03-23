@@ -21,6 +21,9 @@
 #include <lib/base/esimpleconfig.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#ifdef HAVE_EGL
+#include <lib/gdi/egl/egl_config.h>
+#endif
 #include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
@@ -275,6 +278,14 @@ int main(int argc, char **argv)
 
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
+#endif
+
+#ifdef HAVE_EGL
+	for (int i = 1; i < argc; ++i)
+	{
+		if (strcmp(argv[i], "--no-egl") == 0)
+			egl_config::disable_egl = true;
+	}
 #endif
 
 	gst_init(&argc, &argv);
