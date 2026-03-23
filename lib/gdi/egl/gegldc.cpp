@@ -429,7 +429,7 @@ gEGLDC::gEGLDC(INativeWindowProvider* window_provider, int width, int height) : 
 		}
 		width = xres;
 		height = yres;
-#ifdef HWDREAMONE
+#ifdef DREAMNEXTGEN
 		window_provider = new AmlogicWindowProvider(width, height);
 #endif
 	}

@@ -1,5 +1,5 @@
 #include "gtext_shader.h"
-#include "gles_version.h"
+#include <lib/gdi/egl/gles_version.h>
 #include <lib/base/eerror.h>
 
 // ---------------------------------------------------------------------------
