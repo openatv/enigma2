@@ -1189,7 +1189,7 @@ class NetworkInformation(InformationBase):
 				if "Duplex:" in line:
 					self.interfaceData[extraArgs]["duplex"] = _(line.split(":")[1].strip().capitalize())
 				if "Transceiver:" in line:
-					self.interfaceData[extraArgs]["transeiver"] = _(line.split(":")[1].strip().capitalize())
+					self.interfaceData[extraArgs]["transceiver"] = _(line.split(":")[1].strip().capitalize())
 				if "Auto-negotiation:" in line:
 					self.interfaceData[extraArgs]["autoNegotiation"] = line.split(":")[1].strip().lower() == "on"
 				if "Link detected:" in line:
@@ -1221,8 +1221,6 @@ class NetworkInformation(InformationBase):
 							addr, scope = addr6.split()
 							info.append(formatLine("P1", _("IPv6 address"), addr))
 							info.append(formatLine("P3V2", _("Scope"), scope))
-						info.append(formatLine("P1", _("IPv6 address"), "2003:0000:4021:4700:4270:0000:0000:8250/64"))
-						info.append(formatLine("P3V2", _("Scope"), "Global"))
 					if "mac" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("MAC address"), self.interfaceData[interface]["mac"]))
 					if "speed" in self.interfaceData[interface]:
@@ -1725,7 +1723,6 @@ class ServiceInformation(InformationBase):
 			subtitle = self.service and self.service.subtitle()
 			subList = subtitle and subtitle.getSubtitleList() or []
 			for subtitle in subList:
-				print(subtitle)
 				indent = "P1F0" if subtitle[:3] == subtitleSelected else "P1"
 				subtitleLang = subtitle[4]
 				if subtitle[0] == 0:  # DVB PID.

@@ -120,6 +120,10 @@ def getCPUInfoString():
 			cpuSpeedMhz = float(line[1])
 		elif line[0] == "processor":
 			cpuCount += 1
+	if not cpuCount:
+		cpuCount = len(glob("/sys/devices/system/cpu/cpu[0-9]*"))
+	if not cpuCount:
+		cpuCount = 1
 	if processor.startswith("ARM") and isfile("/proc/stb/info/chipset"):
 		processor = f"{fileReadLine("/proc/stb/info/chipset", default="", source=MODULE_NAME).upper()} ({processor})"
 	if not cpuSpeedMhz:
