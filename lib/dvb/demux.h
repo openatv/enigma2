@@ -95,12 +95,12 @@ class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
 	eDVBRecordFileThread(int packetsize, int bufferCount, int buffersize = -1, bool sync_mode = false);
-	~eDVBRecordFileThread();
+	virtual ~eDVBRecordFileThread();
 	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
-	int getFirstPTS(pts_t &pts);
+	virtual int getFirstPTS(pts_t &pts);
 	void setTargetFD(int fd) { m_fd_dest = fd; }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 	void setDescrambler(ePtr<iServiceScrambled> serviceDescrambler) { m_serviceDescrambler = serviceDescrambler; };
@@ -212,6 +212,7 @@ public:
 	// Wait for first data to be written (for SoftDecoder sync)
 	bool waitForFirstData(int timeout_ms);
 	void setMinWrite(size_t size) override;
+	void replaceThread(eDVBRecordFileThread *newThread);
 private:
 	RESULT startPID(int pid);
 	void stopPID(int pid);
@@ -229,6 +230,7 @@ private:
 	eDVBRecordFileThread *m_thread;
 	std::string m_target_filename;
 	int m_packetsize;
+	bool m_ram_mode;
 	friend class eRTSPStreamClient;
 };
 

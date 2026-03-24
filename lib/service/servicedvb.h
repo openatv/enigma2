@@ -253,7 +253,7 @@ protected:
 	void gotNewEvent(int error);
 
 	void serviceEvent(int event);
-	void serviceEventTimeshift(int event);
+	virtual void serviceEventTimeshift(int event);
 	sigc::signal<void(iPlayableService*, int)> m_event;
 
 	bool m_is_stream;
@@ -350,7 +350,7 @@ protected:
 	virtual ePtr<iTsSource> createTsSource(eServiceReferenceDVB& ref, int packetsize = 188);
 
 	ePtr<eConnection> m_con_record_event;
-	void recordEvent(int event);
+	virtual void recordEvent(int event);
 
 	// Software descrambling
 	virtual void setupSpeculativeDescrambling();
@@ -362,18 +362,21 @@ protected:
 	// Audio cache helper
 	void updateAudioCache(int apid, int apidtype);
 
+	void resetRecoveryState(); // Resets all recovery state variables.
+
 private:
 	// -- START: Precise Recovery System --
 	// This system handles stream corruption during timeshift, with support for a custom recovery delay.
 	ePtr<eTimer> m_precise_recovery_timer;
-	bool m_stream_corruption_detected;
 	pts_t m_original_timeshift_delay; // Stores the target timeshift delay.
 	bool m_delay_calculated = false; // Flag to ensure delay is calculated only once.
 
 	void handleEofRecovery();
 	void startPreciseRecoveryCheck();
-	void resetRecoveryState(); // Resets all recovery state variables.
 	// -- END: Precise Recovery System --
+
+protected:
+	bool m_stream_corruption_detected;
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {

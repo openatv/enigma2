@@ -1,0 +1,463 @@
+#include "eramserviceplay.h"
+#include <lib/base/cfile.h>
+#include <lib/dvb/csasession.h>
+#include <lib/base/esimpleconfig.h>
+#include <algorithm>
+#include <unistd.h>
+
+DEFINE_REF(eRamServicePlay);
+
+eRamServicePlay::eRamServicePlay(const eServiceReference &ref,
+                                 eDVBService *service,
+                                 int delay_seconds)
+	: eDVBServicePlay(ref, service, true)
+{
+	m_ts_source           = nullptr;
+	m_ram_recorder        = nullptr;
+	m_frozen_play_position  = 0;
+
+	int cap_mb       = std::max(32, delay_seconds * 4);
+	m_capacity_bytes = (size_t)cap_mb * 1024 * 1024;
+
+	eDebug("[eRamServicePlay] cap=%dMB", cap_mb);
+}
+
+eRamServicePlay::~eRamServicePlay()
+{
+	stopTimeshift(false);
+}
+
+/* ------------------------------------------------------------------ */
+/* startTimeshift                                                      */
+/* ------------------------------------------------------------------ */
+
+RESULT eRamServicePlay::startTimeshift()
+{
+	if (m_timeshift_enabled)
+		return -1;
+
+	ePtr<iDVBDemux> demux;
+	if (m_service_handler.getDataDemux(demux))
+		return -2;
+
+	m_ram_ring = std::make_shared<eRamRingBuffer>(m_capacity_bytes, 8192);
+	if (!m_ram_ring->isValid())
+	{
+		eWarning("[eRamServicePlay] RAM buffer allocation failed");
+		m_ram_ring.reset();
+		return -3;
+	}
+
+	demux->createTSRecorder(m_record, 188, false);
+	eDVBTSRecorder *recorder =
+		static_cast<eDVBTSRecorder *>(static_cast<iDVBTSRecorder *>(m_record));
+	eRamRecorder *ram_rec = new eRamRecorder(m_ram_ring.get(), 188);
+	m_ram_recorder = ram_rec;
+	recorder->replaceThread(ram_rec);
+
+	m_record->setTargetFD(-1);
+	m_record->enableAccessPoints(false);
+	m_record->connectEvent(
+		sigc::mem_fun(*this, &eRamServicePlay::recordEvent),
+		m_con_record_event);
+
+	/* StreamRelay / CSA-ALT channels need per-session descrambling */
+	if (m_csa_session && m_csa_session->isActive())
+	{
+		eServiceReferenceDVB dvb_ref = (eServiceReferenceDVB &)m_reference;
+		m_timeshift_csa_session      = new eDVBCSASession(dvb_ref);
+		if (m_timeshift_csa_session && m_timeshift_csa_session->init())
+		{
+			m_timeshift_csa_session->forceActivate();
+			m_record->setDescrambler(
+				static_cast<iServiceScrambled *>(
+					m_timeshift_csa_session.operator->()));
+		}
+	}
+
+	/* Use the ap base path as the "file" so eDVBTSTools finds our .ap.
+	 * createTsSource() returns eRamTsSource (ring buffer), not a real file.
+	 * Create an empty .ap sentinel so tstools doesn't log ENOENT warnings. */
+	m_timeshift_file = "/tmp/ram_timeshift";
+	CFile::writeStr("/tmp/ram_timeshift.ap", "");
+
+	m_timeshift_enabled = 1;
+	updateTimeshiftPids();
+
+	/* Ensure the PCR PID is recorded — updateTimeshiftPids() adds video/audio/
+	 * subtitle PIDs but the PCR PID can be a separate PID.  Without it,
+	 * extractPCR() in eRamRecorder never fires and the Precise Recovery
+	 * System and seek bar fail silently. */
+	{
+		eDVBServicePMTHandler::program program;
+		if (m_service_handler.getProgramInfo(program) == 0 && program.pcrPid != -1)
+			m_record->addPID(program.pcrPid);
+	}
+
+	const int sret = m_record->start();
+	if (sret < 0)
+	{
+		eWarning("[eRamServicePlay] record->start() failed: %d", sret);
+		if (m_timeshift_csa_session)
+		{
+			m_record->setDescrambler(nullptr);
+			m_timeshift_csa_session = nullptr;
+		}
+		m_ram_recorder      = nullptr;
+		m_record            = 0;
+		m_ram_ring.reset();
+		::unlink("/tmp/ram_timeshift.ap");
+		m_timeshift_file.clear();
+		m_timeshift_enabled = 0;
+		return sret;
+	}
+
+	CFile::writeStr("/proc/stb/lcd/symbol_timeshift", "1");
+	CFile::writeStr("/proc/stb/lcd/symbol_record",    "1");
+
+	eDebug("[eRamServicePlay] recording started (%zuMB)", m_capacity_bytes >> 20);
+	return 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* activateTimeshift — start watchdog after parent activates          */
+/* ------------------------------------------------------------------ */
+
+RESULT eRamServicePlay::activateTimeshift()
+{
+	RESULT r = eDVBServicePlay::activateTimeshift();
+	if (r != 0)
+		return r;
+
+	m_watchdog_timer = eTimer::create(eApp);
+	m_watchdog_timer->timeout.connect(
+		sigc::mem_fun(*this, &eRamServicePlay::checkLapAndSeek));
+	m_watchdog_timer->start(200, false);
+	return 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* checkLapAndSeek (watchdog, every 200ms)                            */
+/* ------------------------------------------------------------------ */
+
+void eRamServicePlay::checkLapAndSeek()
+{
+	if (!m_timeshift_active)
+		return;
+
+	/* --- Lap detection (ring buffer overtook read position) ---
+	 *
+	 * When the ring buffer wraps and overwrites data that the push thread
+	 * is still reading, eRamTsSource::read() sets the lap flag.
+	 *
+	 * Recovery: force the push thread's read position to the first valid
+	 * byte in the ring buffer via forceSourcePosition().  This bypasses
+	 * tstools entirely (which has stale .ap data) and directly moves the
+	 * push thread's m_current_position in eFilePushThread. */
+	ePtr<eRamTsSource> src = m_ts_source;
+	if (!src)
+		return;
+
+	off_t lapped_at = 0;
+	if (!src->getLappedOffset(lapped_at))
+		return;
+
+	if (!m_ram_ring)
+		return;
+
+	off_t min_off = m_ram_ring->getMinOffset();
+	/* Align up to 188-byte packet boundary */
+	off_t safe = min_off + (188 - min_off % 188) % 188;
+
+	eDebug("[eRamServicePlay] watchdog: lap at %lld, jumping to min_off=%lld",
+	       (long long)lapped_at, (long long)safe);
+
+	ePtr<iDVBPVRChannel> pvr_channel;
+	if (m_service_handler_timeshift.getPVRChannel(pvr_channel) == 0)
+		pvr_channel->forceSourcePosition(safe);
+}
+
+void eRamServicePlay::recordEvent(int event)
+{
+	if (event == iDVBTSRecorder::eventStreamCorrupt)
+	{
+		/* Save play position NOW — before base class sets
+		 * m_stream_corruption_detected = true.
+		 * On Hisilicon, getPTS() advances even in pause(), so we must
+		 * freeze it at the exact moment corruption is detected. */
+		if (!m_stream_corruption_detected)
+			getPlayPosition(m_frozen_play_position);
+	}
+	eDVBServicePlay::recordEvent(event);
+}
+
+/* ------------------------------------------------------------------ */
+/* serviceEventTimeshift — suppress EOF-triggered switchToLive        */
+/* ------------------------------------------------------------------ */
+/*
+ * On disk timeshift, eventEOF means the push thread reached the end of
+ * the timeshift file — the base class responds with switchToLive().
+ *
+ * On RAM timeshift there is no end-of-file: the ring buffer always has
+ * data up to the write offset.  An eventEOF from the push thread means
+ * one of two things:
+ *   1. The ring has lapped the read position (handled by checkLapAndSeek)
+ *   2. The push thread reached the live edge (normal — just wait for data)
+ *
+ * In both cases, ignoring the EOF and letting the watchdog handle recovery
+ * is the correct response.  Calling switchToLive() here would tear down
+ * the entire timeshift session.
+ */
+void eRamServicePlay::serviceEventTimeshift(int event)
+{
+	if (event == eDVBServicePMTHandler::eventEOF)
+	{
+		eTrace("[eRamServicePlay] ignoring eventEOF — watchdog handles lap/live-edge");
+		return;
+	}
+	eDVBServicePlay::serviceEventTimeshift(event);
+}
+
+/* ------------------------------------------------------------------ */
+/* stopTimeshift                                                       */
+/* ------------------------------------------------------------------ */
+
+RESULT eRamServicePlay::stopTimeshift(bool swToLive)
+{
+	if (!m_timeshift_enabled)
+		return -1;
+
+	if (m_watchdog_timer) { m_watchdog_timer->stop(); m_watchdog_timer = nullptr; }
+
+	resetRecoveryState();
+
+	if (m_record)
+	{
+		/* Stop the push thread FIRST — guarantees eRamTsSource::read() /
+		 * offset() are no longer executing before we release the source.
+		 * Reversing this order (nulling m_ts_source before stop()) would
+		 * create a use-after-free window because eFilePushThread holds a
+		 * raw pointer to the source and may be mid-read. */
+		m_record->stop();
+
+		if (m_timeshift_csa_session)
+		{
+			m_record->setDescrambler(nullptr);
+			m_timeshift_csa_session = nullptr;
+		}
+		m_record = 0;
+	}
+
+	/* Safe to release now — push thread is guaranteed stopped. */
+	m_ts_source    = nullptr;
+	m_ram_recorder = nullptr;
+
+	m_ram_ring.reset();
+	m_timeshift_enabled = 0;
+
+	CFile::writeStr("/proc/stb/lcd/symbol_timeshift", "0");
+	CFile::writeStr("/proc/stb/lcd/symbol_record",    "0");
+
+	/* Clean up sentinel file and clear path last so any remaining
+	 * code that checks m_timeshift_file still finds a valid value. */
+	::unlink("/tmp/ram_timeshift.ap");
+	m_timeshift_file.clear();
+
+	if (swToLive)
+		switchToLive();
+
+	eDebug("[eRamServicePlay] stopped");
+	return 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* seekTo — bypass tstools, resolve offset directly from PCR history  */
+/* ------------------------------------------------------------------ */
+/*
+ * eDVBTSTools::setSource() loads the .ap file ONCE into m_access_points
+ * in memory and never re-reads it.  After ring buffer wrap-around, those
+ * stored offsets are stale/invalid, so any tstools-based seek would give
+ * wrong results or an EAGAIN loop.
+ *
+ * Fix: resolve the target byte offset ourselves from the PCR history
+ * inside eRamRecorder, then set it directly on eRamTsSource.
+ * The push thread picks it up on its next wakeup — no pipeline rebuild.
+ */
+RESULT eRamServicePlay::seekTo(pts_t to)
+{
+	if (!m_timeshift_active || !m_ram_recorder)
+		return eDVBServicePlay::seekTo(to);
+
+	/* Get current window [first, last] PCR values */
+	pts_t first = 0, last = 0;
+	if (m_ram_recorder->getPTSWindow(first, last) != 0)
+		return -1;
+
+	/* Clamp relative seek position to window size */
+	pts_t win = pts_delta(last, first);
+	if (to < 0)   to = 0;
+	if (to > win) to = win;
+
+	/* Convert relative PTS offset → absolute PCR value in the ring */
+	pts_t abs_target = (first + to) & ((1LL << 33) - 1);
+
+	/* Find the nearest byte offset for this PCR in the ring buffer */
+	off_t byte_offset = m_ram_recorder->findOffsetForPTS(abs_target);
+
+	if (byte_offset >= 0)
+	{
+		eDebug("[eRamServicePlay] seekTo: pts=%lld → offset=%lld",
+		       (long long)to, (long long)byte_offset);
+		ePtr<iDVBPVRChannel> pvr_channel;
+		if (m_service_handler_timeshift.getPVRChannel(pvr_channel) == 0)
+		{
+			pvr_channel->forceSourcePosition(byte_offset);
+			return 0;
+		}
+	}
+
+	/* Fallback: guard against empty PCR history */
+	eWarning("[eRamServicePlay] seekTo: findOffsetForPTS failed, falling back");
+	return eDVBServicePlay::seekTo(to);
+}
+
+/* ------------------------------------------------------------------ */
+/* seekRelative — convert to absolute and use our seekTo()            */
+/* ------------------------------------------------------------------ */
+/*
+ * The parent implementation uses m_cue->seekTo() which goes through
+ * tstools for offset resolution.  After ring wrap, tstools has stale
+ * access points, so relative seeks would resolve to invalid offsets.
+ * Convert to absolute position and delegate to our PCR-based seekTo().
+ */
+RESULT eRamServicePlay::seekRelative(int direction, pts_t to)
+{
+	if (!m_timeshift_active || !m_ram_recorder)
+		return eDVBServicePlay::seekRelative(direction, to);
+
+	pts_t pos = 0;
+	if (getPlayPosition(pos) != 0)
+		return -1;
+
+	pos += to * direction;
+	if (pos < 0) pos = 0;
+
+	return seekTo(pos);
+}
+
+/* ------------------------------------------------------------------ */
+/* saveTimeshiftFile — no-op for RAM (nothing on disk to save)        */
+/* ------------------------------------------------------------------ */
+
+RESULT eRamServicePlay::saveTimeshiftFile()
+{
+	/* RAM timeshift has no disk file to save/copy.
+	 * Return success to prevent the parent from trying to copy
+	 * a non-existent file. */
+	return 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* createTsSource — return ring buffer source, not a real file        */
+/* ------------------------------------------------------------------ */
+
+ePtr<iTsSource> eRamServicePlay::createTsSource(eServiceReferenceDVB &ref,
+                                                int /*packetsize*/)
+{
+	if (!m_ram_ring)
+		return eDVBServicePlay::createTsSource(ref);
+	eRamTsSource *src = new eRamTsSource(m_ram_ring);
+	m_ts_source = src;
+	return ePtr<iTsSource>(src);
+}
+
+/* ------------------------------------------------------------------ */
+/* getLength — use PCR window, not pvr_channel / .ap                  */
+/* ------------------------------------------------------------------ */
+/*
+ * Design note: returns total elapsed time since recording start,
+ * NOT just the buffered window.  This is deliberate:
+ *
+ * getPlayPosition() = pts_delta(decoder_pts, m_first_pcr) — grows
+ * monotonically from 0.  getLength() must use the same reference
+ * (m_first_pcr) so the seek bar stays consistent (pos <= len).
+ *
+ * Using the sliding window (getPTSWindow first/last) would cause
+ * pos > len after wrap, and would also break the Precise Recovery
+ * System's delay calculation which depends on a stable reference.
+ *
+ * seekTo() independently clamps to the live buffer window, so
+ * seeking beyond what's buffered safely lands at the window edge.
+ */
+RESULT eRamServicePlay::getLength(pts_t &len)
+{
+	if (!m_ram_recorder)
+		return eDVBServicePlay::getLength(len);
+
+	pts_t first_pcr = 0, last = 0;
+	if (m_ram_recorder->getFirstPCR(first_pcr) != 0)
+		return -1;
+
+	pts_t dummy = 0;
+	if (m_ram_recorder->getPTSWindow(dummy, last) != 0)
+		return -1;
+
+	pts_t d = pts_delta(last, first_pcr);
+	if (d <= 0)
+		return -1;
+
+	len = d;
+	return 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* getPlayPosition — use decoder PTS + PCR window                     */
+/* ------------------------------------------------------------------ */
+
+RESULT eRamServicePlay::getPlayPosition(pts_t &pos)
+{
+	if (!m_timeshift_active || !m_ram_recorder || !m_decoder)
+		return eDVBServicePlay::getPlayPosition(pos);
+
+	/* During stream corruption, freeze play position.
+	 * On Hisilicon, m_decoder->getPTS() keeps advancing even in pause()
+	 * because the hardware decoder drains its internal buffer.
+	 * Freezing pos here prevents current_delay from shrinking → PRS waits. */
+	if (m_stream_corruption_detected)
+	{
+		pos = m_frozen_play_position;
+		return 0;
+	}
+
+	/* Return decoder PTS directly — same reference as getLastPTS().
+	 * getCurrentPCR() uses getLastPTS() (absolute PTS from PES headers).
+	 * delay = getLastPTS() - dec = real delay, identical to disk timeshift. */
+	pts_t dec = 0;
+	if (m_decoder->getPTS(0, dec) != 0)
+		if (m_decoder->getPTS(1, dec) != 0)
+			return -1;
+
+	pos = dec;
+	return 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Status helpers                                                      */
+/* ------------------------------------------------------------------ */
+
+bool eRamServicePlay::isRamBufferReady() const
+{
+	return m_ram_ring && m_ram_ring->getWriteOffset() > 0;
+}
+
+float eRamServicePlay::ramBufferedSeconds() const
+{
+	return m_ram_ring ? (float)(m_ram_ring->bufferedMs() / 1000.0) : 0.f;
+}
+
+int eRamServicePlay::ramFillPercent() const
+{
+	if (!m_ram_ring) return 0;
+	off_t filled = m_ram_ring->getWriteOffset() - m_ram_ring->getMinOffset();
+	return (int)(filled * 100 / (off_t)(m_capacity_bytes));
+}

@@ -83,6 +83,11 @@ public:
 	virtual void addAccessPoint(off_t offset, pts_t pts, bool streamtime);
 	void writeStructureEntry(off_t offset, unsigned long long data);
 	void commit();
+	size_t getAccessPointCount() const
+	{
+		return m_access_points.size()
+		     + m_streamtime_access_points.size();
+	}
 private:
 	void close();
 	struct AccessPoint

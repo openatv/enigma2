@@ -29,6 +29,7 @@
 #include <lib/base/httpstream.h>
 #include <lib/base/esettings.h>
 #include <lib/service/servicedvbfcc.h>
+#include <lib/service/eramserviceplay.h>
 #include "servicepeer.h"
 
 /* for subtitles */
@@ -964,6 +965,12 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 		// check resources...
 	if (eFCCServiceManager::checkAvailable(ref))
 		ptr = new eDVBServiceFCCPlay(ref, service);
+	else if (ref.path.empty() && eConfigManager::getConfigBoolValue("config.timeshift.ram_mode", false))
+	{
+		int delay = eConfigManager::getConfigIntValue(
+			"config.timeshift.ram_delay_seconds", 10);
+		ptr = new eRamServicePlay(ref, service, delay);
+	}
 	else
 		ptr = new eDVBServicePlay(ref, service);
 	return 0;

@@ -2536,6 +2536,12 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	return 0;
 }
 
+void eDVBChannel::forceSourcePosition(off_t offset)
+{
+	if (m_pvr_thread)
+		m_pvr_thread->forcePosition(offset);
+}
+
 void eDVBChannel::flushPVR(iDVBDemux *decoding_demux)
 {
 			/* when seeking, we have to ensure that all buffers are flushed.

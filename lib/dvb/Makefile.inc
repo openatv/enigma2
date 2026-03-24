@@ -41,7 +41,8 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/encoder.cpp \
 	dvb/atsc.cpp \
 	dvb/fcc.cpp \
-	dvb/fccdecoder.cpp
+	dvb/fccdecoder.cpp \
+	dvb/eramtimeshift.cpp
 
 dvbincludedir = $(pkgincludedir)/lib/dvb
 dvbinclude_HEADERS = \
@@ -90,7 +91,8 @@ dvbinclude_HEADERS = \
 	dvb/encoder.h \
 	dvb/atsc.h \
 	dvb/fcc.h \
-	dvb/fccdecoder.h
+	dvb/fccdecoder.h \
+	dvb/eramtimeshift.h
 
 if DREAMNEXTGEN
 dvbinclude_HEADERS += \

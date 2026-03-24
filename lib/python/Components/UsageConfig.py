@@ -2495,6 +2495,8 @@ def InitUsageConfig():
 		(0, _("Disabled"))
 	] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (2, 3, 4, 5, 10, 20, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 5)]
 	config.timeshift.startDelay = ConfigSelection(default=0, choices=choiceList)
+	config.timeshift.ram_mode = ConfigYesNo(default=False)
+	config.timeshift.ram_delay_seconds = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (5, 10, 15, 20, 30, 45, 60)])
 	config.timeshift.stopWhileRecording = ConfigYesNo(default=False)
 	config.timeshift.recoveryBufferDelay = ConfigSelection(default=300, choices=[(x, _("%d ms") % x) for x in range(100, 1500, 100)])
 	config.timeshift.hwLatencyCorrection = ConfigSelection(default=2000, choices=[(x, _("%d ms") % x) for x in range(0, 2100, 100)])

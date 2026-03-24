@@ -1117,7 +1117,8 @@ eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux, int packetsize, bool streaming,
 	m_demux(demux),
 	m_running(0),
 	m_target_fd(-1),
-	m_packetsize(packetsize)
+	m_packetsize(packetsize),
+	m_ram_mode(false)
 {
 	if (streaming)
 		// For streaming: use StreamThread for FTA (no descrambling needed)
@@ -1138,6 +1139,33 @@ eDVBTSRecorder::~eDVBTSRecorder()
 	delete m_thread;
 }
 
+void eDVBTSRecorder::replaceThread(eDVBRecordFileThread *newThread)
+{
+	if (m_running)
+	{
+		eWarning("[eDVBTSRecorder] replaceThread() called while running - ignored");
+		return;
+	}
+	if (!newThread)
+	{
+		eWarning("[eDVBTSRecorder] replaceThread() called with null thread - ignored");
+		return;
+	}
+
+	/* Deleting m_thread destroys its m_event signal, which automatically
+	 * disconnects all slots connected to it (including filepushEvent). */
+	delete m_thread;
+	m_thread = newThread;
+
+	/* Re-connect so filepushEvent() keeps receiving thread events. */
+	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
+
+	/* Allow start() to proceed even when m_target_fd == -1. */
+	m_ram_mode = true;
+
+	eDebug("[eDVBTSRecorder] replaceThread() - RAM mode activated");
+}
+
 RESULT eDVBTSRecorder::start()
 {
 	std::map<int,int>::iterator i(m_pids.begin());
@@ -1145,7 +1173,7 @@ RESULT eDVBTSRecorder::start()
 	if (m_running)
 		return -1;
 
-	if (m_target_fd == -1)
+	if (m_target_fd == -1 && !m_ram_mode)
 		return -2;
 
 	if (i == m_pids.end())

@@ -74,6 +74,17 @@ void eFilePushThread::thread()
 
 		while (!m_stop)
 		{
+			/* Check if an external caller wants us to jump to a new position.
+			 * Used by RAM timeshift for seek and lap-recovery because the
+			 * normal cue-sheet path goes through tstools which has no valid
+			 * .ap data for RAM-based ring buffers. */
+			if (m_force_position >= 0)
+			{
+				m_current_position = m_force_position;
+				m_force_position = -1;
+				current_span_remaining = 0;
+			}
+
 			// eTrace("[FilePushThread][DATA] Pumping data at pos=%lld", (long long)m_current_position);
 			if (m_sg && !current_span_remaining)
 			{
@@ -169,6 +180,14 @@ void eFilePushThread::thread()
 				if (m_stop)
 					break;
 
+				if (m_flags == 1) { // timeshift -- at live edge, just wait for more data
+#ifdef DREAMNEXTGEN
+					usleep(15000);  // 15 milliseconds - balance between responsiveness and CPU
+#else
+					usleep(200000);  // 200 milliseconds
+#endif
+					continue;
+				}
 				/* in stream_mode, we are sending EOF events
 				   over and over until somebody responds.
 
@@ -181,14 +200,6 @@ void eFilePushThread::thread()
 				if (m_stream_mode) {
 					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 1 second.");
 					sleep(1);
-					continue;
-				}
-				else if (m_flags == 1) { // timeshift
-#ifdef DREAMNEXTGEN
-					usleep(15000);  // 15 milliseconds - balance between responsiveness and CPU
-#else
-					usleep(200000);  // 200 milliseconds
-#endif
 					continue;
 				}
 				else if (++eofcount < 10)
@@ -269,9 +280,15 @@ void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 	m_source = source;
 	m_fd_dest = fd_dest;
 	m_current_position = 0;
+	m_force_position = -1;
 	m_run_state = 1;
 	m_stop = 0;
 	run();
+}
+
+void eFilePushThread::forcePosition(off_t pos)
+{
+	m_force_position = pos;
 }
 
 void eFilePushThread::stop()

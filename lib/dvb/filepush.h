@@ -33,6 +33,13 @@ public:
 	void setStreamMode(int);
 	void setScatterGather(iFilePushScatterGather *);
 
+	/* Force the read position to the given byte offset.
+	 * Thread-safe: called from the main thread, picked up by the
+	 * push thread on its next loop iteration.  Used by RAM timeshift
+	 * for seek and lap-recovery because the normal cue-sheet path
+	 * goes through tstools which has no valid .ap data for RAM. */
+	void forcePosition(off_t pos);
+
 	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
 	sigc::signal<void(int)> m_event;
 
@@ -54,6 +61,7 @@ private:
 	size_t m_buffersize;
 	unsigned char* m_buffer;
 	off_t m_current_position;
+	volatile off_t m_force_position;
 
 	ePtr<iTsSource> m_source;
 

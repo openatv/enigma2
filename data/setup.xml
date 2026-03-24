@@ -1021,6 +1021,8 @@
 		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
+		<item level="1" text="RAM time shift mode" description="When enabled, time shift data is stored in RAM instead of on disk. This avoids disk wear and provides faster access, but buffer size is limited by available memory.">config.timeshift.ram_mode</item>
+		<item level="1" text="RAM time shift delay" description="The number of seconds of live TV to buffer in RAM before time shift activates. A longer delay uses more memory." conditional="config.timeshift.ram_mode.value">config.timeshift.ram_delay_seconds</item>
 		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
 		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
 		<item level="2" text="Enable Autorecord" description="Set to 'Yes', to enable automatic recording of the background time shift buffer.">config.timeshift.autorecord</item>
