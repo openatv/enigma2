@@ -467,11 +467,15 @@ void eDVBCAHandler::newConnection(int socket)
 
 void eDVBCAHandler::connectionLost(ePMTClient *client)
 {
-	ePtrList<ePMTClient>::iterator it = std::find(clients.begin(), clients.end(), client );
-	if (it != clients.end())
+	if (auto it = std::find(clients.begin(), clients.end(), client); it != clients.end())
 	{
 		delete *it;
 		clients.erase(it);
+	}
+	if (clients.empty())
+	{
+		m_protocol3_established = false;
+		eDebug("[eDVBCAHandler] last Protocol 3 client disconnected, falling back to legacy sendCAPMT");
 	}
 }
 
