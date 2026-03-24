@@ -220,9 +220,9 @@ class BenchmarkInformation(InformationBase):  # This code can't be used until we
 
 	def cpuBenchmarkFinished(self, result, retVal, extraArgs):
 		for line in result.split("\n"):
-			if line.startswith("Open Vision DMIPS"):
+			if line.startswith("DMIPS"):
 				self.cpuBenchmark = int([x.strip() for x in line.split(":")][1])
-			if line.startswith("Open Vision CPU status"):
+			if line.startswith("CPU status"):
 				self.cpuRating = [x.strip() for x in line.split(":")][1]
 		# Serialize the tests for better accuracy.
 		self.console.ePopen(("/usr/bin/streambench", "/usr/bin/streambench"), self.ramBenchmarkFinished)
@@ -232,7 +232,7 @@ class BenchmarkInformation(InformationBase):  # This code can't be used until we
 
 	def ramBenchmarkFinished(self, result, retVal, extraArgs):
 		for line in result.split("\n"):
-			if line.startswith("Open Vision copy rate"):
+			if line.startswith("Copy rate"):
 				self.ramBenchmark = float([x.strip() for x in line.split(":")][1])
 		for callback in self.onInformationUpdated:
 			if callable(callback):
