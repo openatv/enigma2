@@ -292,13 +292,12 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				painter.blit(local_style->m_background, ePoint(x, y), eRect(), 0);
 			}
 		}
-		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[selected ? 1 : 0] || radius))
+		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[0] || radius))
 		{
-			int mode = selected ? 1 : 0;
-			if (local_style->m_gradient_set[mode])
+			if (local_style->m_gradient_set[0])
 			{
-				alphablendtext = local_style->m_gradient_set[mode];
-				painter.setGradient(local_style->m_gradient_colors[mode], local_style->m_gradient_direction[mode], local_style->m_gradient_alphablend[mode]);
+				alphablendtext = local_style->m_gradient_set[0];
+				painter.setGradient(local_style->m_gradient_colors[0], local_style->m_gradient_direction[0], local_style->m_gradient_alphablend[0]);
 			}
 			if (radius)
 				painter.setRadius(radius, edges);
@@ -351,7 +350,18 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (itemRect.height() - local_style->m_selection->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_selection, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
+		else if (selected && local_style && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection)
+		{
 
+			if (local_style->m_gradient_set[1])
+			{
+				alphablendtext = local_style->m_gradient_set[1];
+				painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
+			}
+			if (radius)
+				painter.setRadius(radius, edges);
+			painter.drawRectangle(itemRect);
+		}
 
 		if (!item || item == Py_None)
 		{
@@ -838,13 +848,12 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (m_itemsize.height() - local_style->m_background->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_background, ePoint(x, y), eRect(), 0);
 		}
-		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[selected ? 1 : 0] || radius))
+		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[0] || radius))
 		{
-			int mode = selected ? 1 : 0;
-			if (local_style->m_gradient_set[mode])
+			if (local_style->m_gradient_set[0])
 			{
-				alphablendtext = local_style->m_gradient_set[mode];
-				painter.setGradient(local_style->m_gradient_colors[mode], local_style->m_gradient_direction[mode], local_style->m_gradient_alphablend[mode]);
+				alphablendtext = local_style->m_gradient_set[0];
+				painter.setGradient(local_style->m_gradient_colors[0], local_style->m_gradient_direction[0], local_style->m_gradient_alphablend[0]);
 			}
 			if (radius)
 				painter.setRadius(radius, edges);
@@ -886,7 +895,17 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			y += (orientation & 1) ? (m_itemsize.height() - local_style->m_selection->size().height()) / 2 : 0; // horizontal
 			painter.blit(local_style->m_selection, ePoint(x, y), eRect(), gPainter::BT_ALPHATEST);
 		}
-
+		else if (selected && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection)
+		{
+			if (local_style->m_gradient_set[1])
+			{
+				alphablendtext = local_style->m_gradient_set[1];
+				painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
+			}
+			if (radius)
+				painter.setRadius(radius, edges);
+			painter.drawRectangle(itemRect);
+		}
 		int alphablendflag = (alphablendtext) ? gPainter::RT_BLEND : 0;
 
 		/* the first tuple element is a string for the left side.
