@@ -1196,6 +1196,11 @@ void gDC::exec(const gOpcode *o)
 	}
 }
 
+// Base implementation for software fallback
+void gDC::renderGlyph(const ePoint &pos, gPixmap *glyph_mask, const gRGB &color)
+{
+}
+
 gRGB gDC::getRGB(gColor col)
 {
 	if ((!m_pixmap) || (!m_pixmap->surface->clut.data))

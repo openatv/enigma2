@@ -171,4 +171,41 @@ void gSDLDC::thread()
 	}
 }
 
-eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");
+class gSDLDCAutoInit : protected eAutoInit
+{
+	gSDLDC *m_dc;
+	void initNow() override
+	{
+		ePtr<gMainDC> ptr;
+		if (gMainDC::getInstance(ptr) == 0)
+		{
+			eDebug("[gSDLDC] gMainDC already initialized, skipping gSDLDC");
+			return;
+		}
+		eDebug("[eInit] + (%d) gSDLDC", rl);
+		m_dc = new gSDLDC();
+	}
+
+	void closeNow() override
+	{
+		if (m_dc)
+		{
+			delete m_dc;
+			m_dc = nullptr;
+		}
+	}
+
+public:
+	gSDLDCAutoInit()
+		: eAutoInit(eAutoInitNumbers::graphic - 1, "gSDLDC"), m_dc(nullptr)
+	{
+		eInit::add(rl, this);
+	}
+
+	~gSDLDCAutoInit()
+	{
+		eInit::remove(rl, this);
+	}
+};
+
+static gSDLDCAutoInit init_gSDLDC_custom;
