@@ -7,7 +7,7 @@ from os.path import basename, getmtime, isdir, isfile, join
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation, eDVBCSAEngine
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -23,18 +23,19 @@ from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-# from Components.Storage import Harddisk, storageManager
-from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
+
+# from Components.Storage import storageManager
+from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
-from Tools.Conversions import scaleNumber, formatDate
+from Tools.Conversions import formatDate, scaleNumber
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot
-from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType
+from Tools.StbHardware import getBoxProc, getBoxProcType, getBoxRCType, getFPVersion, getHWSerial
 from Tools.Transponder import ConvertToHumanReadable
 
 MODULE_NAME = __name__.split(".")[-1]
