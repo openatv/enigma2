@@ -5,9 +5,10 @@ from locale import format_string
 from os import listdir, remove, statvfs
 from os.path import basename, getmtime, isdir, isfile, join
 from subprocess import PIPE, Popen
+from time import strftime, strptime
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation, eDVBCSAEngine
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -23,7 +24,7 @@ from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-# from Components.Storage import Harddisk, storageManager
+# from Components.Storage import storageManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
