@@ -98,6 +98,8 @@ bool gEGLDC::initEGL() {
 	gles::version = m_gles_version;
 	eDebug("[gEGLDC] GLES%d context created.", m_gles_version);
 
+	m_texture_manager.setDisplay(m_egl_display);
+
 	// 7. basic GL state
 	glViewport(0, 0, m_width, m_height);
 	eglSwapInterval(m_egl_display, 1);

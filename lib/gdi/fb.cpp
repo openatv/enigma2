@@ -131,6 +131,7 @@ fbClass::fbClass(const char *fb)
 		if (lion)
 		{
 			eDebug("[fb] %dkB available for acceleration surfaces (via ION).", ACCEL_MEM_SIZE / 1024);
+			m_accel_phys_addr = phys_data.addr;
 			gAccel::getInstance()->setAccelMemorySpace(lion, phys_data.addr, ACCEL_MEM_SIZE);
 		}
 		else

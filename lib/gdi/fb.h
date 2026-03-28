@@ -22,6 +22,7 @@ class fbClass
 	int m_manual_blit;
 	int m_number_of_pages;
 	int m_phys_mem;
+	unsigned long m_accel_phys_addr;
 #ifdef SWIG
 	fbClass(const char *fb=FB_DEV);
 	~fbClass();
@@ -42,6 +43,7 @@ public:
 	int getNumPages() { return m_number_of_pages; }
 
 	unsigned long getPhysAddr() { return m_phys_mem; }
+	unsigned long getAccelPhysAddr() { return m_accel_phys_addr; }
 
 	int setOffset(int off);
 	int waitVSync();
