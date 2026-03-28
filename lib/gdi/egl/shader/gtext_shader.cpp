@@ -1,4 +1,4 @@
-#include "gtext_shader.h"
+#include <lib/gdi/egl/shader/gtext_shader.h>
 #include <lib/gdi/egl/gles_version.h>
 #include <lib/base/eerror.h>
 
@@ -6,6 +6,7 @@
 // GLES 3.0 shader sources
 // Two vertex attributes: pos_uv (location 0) and color (location 1)
 // ---------------------------------------------------------------------------
+#if defined(HAVE_GLES3)
 static const char *vertex_shader_es3 = R"(
     #version 300 es
     layout(location = 0) in vec4 pos_uv;
@@ -38,6 +39,7 @@ static const char *fragment_shader_es3 = R"(
         frag_color = vec4(v_color.rgb, v_color.a * mask);
     }
 )";
+#endif
 
 // ---------------------------------------------------------------------------
 // GLES 2.0 shader sources
@@ -79,13 +81,19 @@ static const char *fragment_shader_es2 = R"(
 
 // ---------------------------------------------------------------------------
 
+#if defined(HAVE_GLES3)
 gTextShader::gTextShader() : m_program_id(0), m_vao(0), m_vbo(0)
+#else
+gTextShader::gTextShader() : m_program_id(0), m_vbo(0)
+#endif
 {
 }
 
 gTextShader::~gTextShader()
 {
+#if defined(HAVE_GLES3)
     if (gles::isGLES3() && m_vao) glDeleteVertexArrays(1, &m_vao);
+#endif
     if (m_vbo) glDeleteBuffers(1, &m_vbo);
     if (m_program_id) glDeleteProgram(m_program_id);
 }
@@ -114,8 +122,13 @@ bool gTextShader::init()
     int vertices_per_glyph = 6;
     int buffer_size = max_glyphs * vertices_per_glyph * floats_per_vertex * sizeof(float);
 
+#if defined(HAVE_GLES3)
     const char *vs_src = gles::isGLES3() ? vertex_shader_es3   : vertex_shader_es2;
     const char *fs_src = gles::isGLES3() ? fragment_shader_es3 : fragment_shader_es2;
+#else
+    const char *vs_src = vertex_shader_es2;
+    const char *fs_src = fragment_shader_es2;
+#endif
 
     GLuint vertex_shader   = compileShader(GL_VERTEX_SHADER,   vs_src);
     GLuint fragment_shader = compileShader(GL_FRAGMENT_SHADER, fs_src);
@@ -140,10 +153,12 @@ bool gTextShader::init()
     m_color_location      = glGetUniformLocation(m_program_id, "u_text_color");
     m_texture_location    = glGetUniformLocation(m_program_id, "u_texture");
 
+#if defined(HAVE_GLES3)
     if (gles::isGLES3()) {
         glGenVertexArrays(1, &m_vao);
         glBindVertexArray(m_vao);
     }
+#endif
 
     glGenBuffers(1, &m_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
@@ -158,7 +173,9 @@ bool gTextShader::init()
     glEnableVertexAttribArray(1);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+#if defined(HAVE_GLES3)
     if (gles::isGLES3()) glBindVertexArray(0);
+#endif
 
     return true;
 }
@@ -170,9 +187,12 @@ void gTextShader::bind()
 
 void gTextShader::bindVAO()
 {
+#if defined(HAVE_GLES3)
     if (gles::isGLES3()) {
         glBindVertexArray(m_vao);
-    } else {
+    } else
+#endif
+    {
         // ES2: re-specify both vertex attributes per batch
         int floats_per_vertex = 8;
         glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
@@ -185,9 +205,12 @@ void gTextShader::bindVAO()
 
 void gTextShader::unbindVAO()
 {
+#if defined(HAVE_GLES3)
     if (gles::isGLES3()) {
         glBindVertexArray(0);
-    } else {
+    } else
+#endif
+    {
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
     }

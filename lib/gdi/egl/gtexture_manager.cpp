@@ -39,7 +39,7 @@ GLuint gTextureManager::createTextureFromDmabuf(gPixmap* pixmap) {
 	if (!fb || fb->m_accel_fd < 0 || m_egl_display == EGL_NO_DISPLAY)
 		return 0;
 
-	gSurface* surface = pixmap->surface;
+	gUnmanagedSurface* surface = pixmap->surface;
 	if (surface->bpp != 32 || surface->data_phys == 0)
 		return 0;
 
@@ -98,11 +98,10 @@ GLuint gTextureManager::createTextureFromPixmap(gPixmap* pixmap) {
 	if (texture_id != 0)
 		return texture_id;
 
-	gSurface* surface = pixmap->surface;
+	gUnmanagedSurface* surface = pixmap->surface;
 	int width = surface->x;
 	int height = surface->y;
 
-	GLuint texture_id;
 	glGenTextures(1, &texture_id);
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 

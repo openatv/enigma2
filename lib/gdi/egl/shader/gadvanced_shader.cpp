@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------------------
 // GLES 3.0 shader sources
 // ---------------------------------------------------------------------------
+#if defined(HAVE_GLES3)
 static const char* vertex_shader_es3 = R"(
     #version 300 es
     layout(location = 0) in vec2 position;
@@ -90,6 +91,7 @@ static const char* fragment_shader_es3 = R"(
         frag_color = final_color;
     }
 )";
+#endif
 
 // ---------------------------------------------------------------------------
 // GLES 2.0 shader sources
@@ -187,11 +189,17 @@ static const char* fragment_shader_es2 = R"(
 
 // ---------------------------------------------------------------------------
 
+#if defined(HAVE_GLES3)
 gAdvancedShader::gAdvancedShader() : m_program_id(0), m_vao(0), m_vbo(0) {}
+#else
+gAdvancedShader::gAdvancedShader() : m_program_id(0), m_vbo(0) {}
+#endif
 
 gAdvancedShader::~gAdvancedShader() {
+#if defined(HAVE_GLES3)
 	if (gles::isGLES3() && m_vao)
 		glDeleteVertexArrays(1, &m_vao);
+#endif
 	if (m_vbo)
 		glDeleteBuffers(1, &m_vbo);
 	if (m_program_id)
@@ -215,8 +223,13 @@ GLuint gAdvancedShader::compileShader(GLenum type, const char* source) {
 }
 
 bool gAdvancedShader::init() {
+#if defined(HAVE_GLES3)
 	const char* vs_src = gles::isGLES3() ? vertex_shader_es3 : vertex_shader_es2;
 	const char* fs_src = gles::isGLES3() ? fragment_shader_es3 : fragment_shader_es2;
+#else
+	const char* vs_src = vertex_shader_es2;
+	const char* fs_src = fragment_shader_es2;
+#endif
 
 	GLuint vertex_shader = compileShader(GL_VERTEX_SHADER, vs_src);
 	GLuint fragment_shader = compileShader(GL_FRAGMENT_SHADER, fs_src);
@@ -256,10 +269,12 @@ bool gAdvancedShader::init() {
 		m_edges_br_location = glGetUniformLocation(m_program_id, "u_r_br");
 	}
 
+#if defined(HAVE_GLES3)
 	if (gles::isGLES3()) {
 		glGenVertexArrays(1, &m_vao);
 		glBindVertexArray(m_vao);
 	}
+#endif
 
 	glGenBuffers(1, &m_vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
@@ -268,8 +283,10 @@ bool gAdvancedShader::init() {
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+#if defined(HAVE_GLES3)
 	if (gles::isGLES3())
 		glBindVertexArray(0);
+#endif
 
 	return true;
 }
@@ -279,9 +296,12 @@ void gAdvancedShader::bind() {
 }
 
 void gAdvancedShader::bindVAO() {
+#if defined(HAVE_GLES3)
 	if (gles::isGLES3()) {
 		glBindVertexArray(m_vao);
-	} else {
+	} else
+#endif
+	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
@@ -289,9 +309,12 @@ void gAdvancedShader::bindVAO() {
 }
 
 void gAdvancedShader::unbindVAO() {
+#if defined(HAVE_GLES3)
 	if (gles::isGLES3()) {
 		glBindVertexArray(0);
-	} else {
+	} else
+#endif
+	{
 		glDisableVertexAttribArray(0);
 	}
 }

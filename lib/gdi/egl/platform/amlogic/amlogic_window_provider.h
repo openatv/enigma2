@@ -1,14 +1,7 @@
 #pragma once
 
+#include <EGL/fbdev_window.h>
 #include <lib/gdi/egl/inative_window_provider.h>
-
-// Standard Mali fbdev window structure used on Amlogic fbdev platforms.
-// The Mali kernel driver resolves the display from the fbdev node itself,
-// so no wl_display / X Display handle is needed here.
-struct fbdev_window {
-	unsigned short width;
-	unsigned short height;
-};
 
 class AmlogicWindowProvider : public INativeWindowProvider {
 private:

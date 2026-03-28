@@ -599,16 +599,24 @@ AC_ARG_WITH(amlogic,
 FFMPEG_CFLAGS=" "
 
 AC_ARG_WITH([egl],
-  AS_HELP_STRING([--with-egl], [enable EGL/GLES2 backend]),
+  AS_HELP_STRING([--with-egl], [enable EGL/GLES2/GLES3 backend]),
   [],
   [with_egl=auto])
 
 have_egl=no
 have_gles2=no
+have_gles3=no
 
 AS_IF([test "x$with_egl" != "xno"], [
   PKG_CHECK_MODULES([EGL], [egl], [have_egl=yes], [have_egl=no])
   PKG_CHECK_MODULES([GLES2], [glesv2], [have_gles2=yes], [have_gles2=no])
+])
+
+AS_IF([test "x$have_gles2" = "xyes"], [
+  saved_CPPFLAGS="$CPPFLAGS"
+  CPPFLAGS="$CPPFLAGS $GLES2_CFLAGS"
+  AC_CHECK_HEADERS([GLES3/gl3.h], [have_gles3=yes], [have_gles3=no])
+  CPPFLAGS="$saved_CPPFLAGS"
 ])
 
 AS_IF([test "x$with_egl" = "xyes"], [
@@ -619,6 +627,14 @@ AS_IF([test "x$with_egl" = "xyes"], [
 
 AS_IF([test "x$have_egl" = "xyes" -a "x$have_gles2" = "xyes"], [
   AC_DEFINE([HAVE_EGL], [1], [Define if EGL/GLES2 support is available])
+  use_egl=yes
+], [
+  use_egl=no
+])
+
+AS_IF([test "x$have_egl" = "xyes" -a "x$have_gles3" = "xyes"], [
+  AC_DEFINE([HAVE_EGL], [1], [Define if EGL/GLES3 support is available])
+  AC_DEFINE([HAVE_GLES3], [1], [Define if GLES3 support is available])
   use_egl=yes
 ], [
   use_egl=no
@@ -970,7 +986,7 @@ CFLAGS="$CFLAGS -Wall"
 CXXFLAGS="$CXXFLAGS -Wall -Wno-psabi \
  	-Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
  	-Wimplicit-fallthrough=5 -Wdangling-else -Wno-error=stringop-truncation \
- 	$BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $EGL_CFLAGS $GLES2_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS $FFMPEG_CFLAGS"
+	$BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $EGL_CFLAGS $GLES2_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS $FFMPEG_CFLAGS"
 
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 
