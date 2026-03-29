@@ -1,14 +1,22 @@
 #pragma once
 
 #include <EGL/egl.h>
+#ifdef HAVE_GLES3
+#include <GLES3/gl3.h>
+#else
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
+#endif
 #include <lib/gdi/egl/gtexture_manager.h>
 #include <lib/gdi/egl/inative_window_provider.h>
 #include <lib/gdi/egl/shader/gadvanced_shader.h>
 #include <lib/gdi/egl/shader/gshader.h>
+#include <lib/gdi/egl/shader/gtext_shader.h>
+#include <lib/gdi/egl/shader/gtexture_shader.h>
 #include <lib/gdi/gfont_atlas.h>
 #include <lib/gdi/gmaindc.h>
+
+class gEGLDCAutoInit;
 
 class gEGLDC : public gMainDC {
 private:
@@ -35,7 +43,6 @@ private:
 	const size_t MAX_BATCH_GLYPHS = 1024;
 
 	bool tryInitEGL(int version);
-	bool initEGL();
 	void cleanupEGL();
 
 	// dedicated opcode handlers
@@ -53,6 +60,7 @@ private:
 	void renderGlyph(const ePoint& pos, gPixmap* glyph_mask, const gRGB& color) override;
 
 public:
+	bool initEGL();
 	gEGLDC(INativeWindowProvider* window_provider = nullptr, int width = 1280, int height = 720);
 	virtual ~gEGLDC();
 

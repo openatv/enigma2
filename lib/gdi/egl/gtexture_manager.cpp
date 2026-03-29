@@ -3,7 +3,7 @@
 
 static gTextureManager* s_active_manager = nullptr;
 
-gTextureManager::gTextureManager() {
+gTextureManager::gTextureManager() : m_egl_display(EGL_NO_DISPLAY) {
 	s_active_manager = this;
 }
 
@@ -12,15 +12,96 @@ gTextureManager::~gTextureManager() {
 		s_active_manager = nullptr;
 }
 
+#ifndef EGL_LINUX_DMA_BUF_EXT
+#define EGL_LINUX_DMA_BUF_EXT 0x3270
+#endif
+#ifndef EGL_LINUX_DRM_FOURCC_EXT
+#define EGL_LINUX_DRM_FOURCC_EXT 0x3271
+#endif
+#ifndef EGL_DMA_BUF_PLANE0_FD_EXT
+#define EGL_DMA_BUF_PLANE0_FD_EXT 0x3272
+#endif
+#ifndef EGL_DMA_BUF_PLANE0_OFFSET_EXT
+#define EGL_DMA_BUF_PLANE0_OFFSET_EXT 0x3273
+#endif
+#ifndef EGL_DMA_BUF_PLANE0_PITCH_EXT
+#define EGL_DMA_BUF_PLANE0_PITCH_EXT 0x3274
+#endif
+
+// DRM FourCC formats
+#define DRM_FORMAT_ARGB8888 0x34325241
+
+#include <lib/gdi/fb.h>
+
+GLuint gTextureManager::createTextureFromDmabuf(gPixmap* pixmap) {
+#ifdef CONFIG_ION
+	fbClass* fb = fbClass::getInstance();
+	if (!fb || fb->m_accel_fd < 0 || m_egl_display == EGL_NO_DISPLAY)
+		return 0;
+
+	gUnmanagedSurface* surface = pixmap->surface;
+	if (surface->bpp != 32 || surface->data_phys == 0)
+		return 0;
+
+	unsigned long offset = surface->data_phys - fb->getAccelPhysAddr();
+	int width = surface->x;
+	int height = surface->y;
+	int stride = surface->stride;
+
+	EGLint attribs[] = {
+		EGL_WIDTH, width,
+		EGL_HEIGHT, height,
+		EGL_LINUX_DRM_FOURCC_EXT, DRM_FORMAT_ARGB8888,
+		EGL_DMA_BUF_PLANE0_FD_EXT, fb->m_accel_fd,
+		EGL_DMA_BUF_PLANE0_OFFSET_EXT, (EGLint)offset,
+		EGL_DMA_BUF_PLANE0_PITCH_EXT, stride,
+		EGL_NONE
+	};
+
+	PFNEGLCREATEIMAGEKHRPROC eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC)eglGetProcAddress("eglCreateImageKHR");
+	PFNGLEGLIMAGETARGETTEXTURE2DOESPROC glEGLImageTargetTexture2DOES = (PFNGLEGLIMAGETARGETTEXTURE2DOESPROC)glGetProcAddress("glEGLImageTargetTexture2DOES");
+
+	if (!eglCreateImageKHR || !glEGLImageTargetTexture2DOES) {
+		eDebug("[gTextureManager] EGL dmabuf extensions not available");
+		return 0;
+	}
+
+	EGLImageKHR image = eglCreateImageKHR(m_egl_display, EGL_NO_CONTEXT, EGL_LINUX_DMA_BUF_EXT, (EGLClientBuffer)NULL, attribs);
+	if (image == EGL_NO_IMAGE_KHR) {
+		eDebug("[gTextureManager] eglCreateImageKHR failed: 0x%x", eglGetError());
+		return 0;
+	}
+
+	GLuint texture_id;
+	glGenTextures(1, &texture_id);
+	glBindTexture(GL_TEXTURE_2D, texture_id);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glEGLImageTargetTexture2DOES(GL_TEXTURE_2D, image);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	m_texture_to_image_map[texture_id] = image;
+	return texture_id;
+#else
+	return 0;
+#endif
+}
+
 GLuint gTextureManager::createTextureFromPixmap(gPixmap* pixmap) {
 	if (!pixmap || !pixmap->surface)
 		return 0;
 
-	gSurface* surface = pixmap->surface;
+	GLuint texture_id = createTextureFromDmabuf(pixmap);
+	if (texture_id != 0)
+		return texture_id;
+
+	gUnmanagedSurface* surface = pixmap->surface;
 	int width = surface->x;
 	int height = surface->y;
 
-	GLuint texture_id;
 	glGenTextures(1, &texture_id);
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 
@@ -89,6 +170,17 @@ void gTextureManager::processDeletions() {
 	std::lock_guard<std::mutex> lock(m_deletion_mutex);
 	if (!m_pending_deletions.empty()) {
 		glDeleteTextures(m_pending_deletions.size(), m_pending_deletions.data());
+
+		PFNEGLDESTROYIMAGEKHRPROC eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC)eglGetProcAddress("eglDestroyImageKHR");
+		for (GLuint texture_id : m_pending_deletions) {
+			auto it = m_texture_to_image_map.find(texture_id);
+			if (it != m_texture_to_image_map.end()) {
+				if (eglDestroyImageKHR && m_egl_display != EGL_NO_DISPLAY) {
+					eglDestroyImageKHR(m_egl_display, it->second);
+				}
+				m_texture_to_image_map.erase(it);
+			}
+		}
 
 		m_pending_deletions.clear();
 	}
