@@ -4,7 +4,7 @@
 #include <lib/gdi/egl/egl_config.h>
 #include <lib/gdi/egl/gegldc.h>
 
-#ifdef HWDREAMONE
+#ifdef DREAMNEXTGEN
 #include <lib/gdi/egl/platform/amlogic/amlogic_window_provider.h>
 #endif
 
@@ -21,7 +21,7 @@ class gEGLDCAutoInit : protected eAutoInit
 
 		INativeWindowProvider *provider = nullptr;
 
-#ifdef HWDREAMONE
+#ifdef DREAMNEXTGEN
 		provider = new AmlogicWindowProvider();
 #else
 		// Fallback for other platforms (SDL/Wayland) once implemented
