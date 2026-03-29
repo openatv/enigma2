@@ -10,9 +10,9 @@ from Components.AVSwitch import avSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Plugins.Plugin import PluginDescriptor
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary
@@ -574,7 +574,7 @@ class Menu(Screen, ProtectedScreen):
 		count = self["menu"].count()
 		if self.number and self.number <= count:
 			self["menu"].setIndex(self.number - 1)
-			if count < 10 or self.number >= 10:
+			if count < 10 or self.number * 10 > count:
 				self.okbuttonClick()
 			else:
 				self.nextNumberTimer.start(1500, True)
