@@ -7,6 +7,7 @@
 #include <lib/base/message.h>
 #include <sys/types.h>
 #include <lib/base/rawfile.h>
+#include <atomic>
 
 class iFilePushScatterGather
 {
@@ -20,7 +21,7 @@ class eFilePushThread: public eThread, public sigc::trackable, public iObject
 	DECLARE_REF(eFilePushThread);
 public:
 	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024, int flags=0);
-	~eFilePushThread();
+	~eFilePushThread() override;
 	void thread();
 	void stop();
 	void start(ePtr<iTsSource> &source, int destfd);
@@ -34,10 +35,14 @@ public:
 	void setScatterGather(iFilePushScatterGather *);
 
 	/* Force the read position to the given byte offset.
-	 * Thread-safe: called from the main thread, picked up by the
-	 * push thread on its next loop iteration.  Used by RAM timeshift
-	 * for seek and lap-recovery because the normal cue-sheet path
-	 * goes through tstools which has no valid .ap data for RAM. */
+	 * Thread-safe: stored via std::atomic, picked up by the push
+	 * thread on its next loop iteration via exchange().  Used by RAM
+	 * timeshift for seek and lap-recovery because the normal cue-sheet
+	 * path goes through tstools which has no valid .ap data for RAM.
+	 *
+	 * exchange() atomically reads the current value and resets to -1
+	 * in one operation — prevents the lost-update race that exists
+	 * with separate read+write on volatile (as in the original code). */
 	void forcePosition(off_t pos);
 
 	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
@@ -61,7 +66,7 @@ private:
 	size_t m_buffersize;
 	unsigned char* m_buffer;
 	off_t m_current_position;
-	volatile off_t m_force_position;
+	std::atomic<off_t> m_force_position;
 
 	ePtr<iTsSource> m_source;
 
@@ -91,17 +96,17 @@ public:
 	static const size_t minWriteMPEG = 4 * 1024;
 	void setMinWrite(size_t s) { m_buffer_min_write = s; }
 	int read_dmx(int fd, void *m_buffer, int size);
-	int pushReply(void *buf, int len);	
+	int pushReply(void *buf, int len);
 	void sendEvent(int evt);
 	static int64_t getTick();
 	static int read_ts(int fd, unsigned char *buf, int size);
 protected:
-	// This method should write the data out and return the number of bytes written.
-	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
-	// The method may freely modify m_buffer and m_buffersize
+	/* Write data to the output destination. Returns bytes written.
+	 * On failure returns <0 and sets errno. The implementation may
+	 * freely modify m_buffer. */
 	virtual int writeData(int len) = 0;
-	// Called when terminating the recording thread. Allows to clean up memory and
-	// flush buffers, terminate outstanding IO requests.
+	/* Called when the recording thread is stopping. Allows cleanup
+	 * of memory, flushing buffers, and terminating outstanding IO. */
 	virtual void flush() = 0;
 
 	int m_fd_source;

@@ -28,6 +28,8 @@ eRamRingBuffer::eRamRingBuffer(size_t capacity_bytes, size_t max_blocks)
 	, m_block_write_idx(0)
 	, m_total_blocks(0)
 {
+	/* Align capacity down to 188-byte boundary so every read/write
+	 * is always a whole number of TS packets. */
 	m_capacity = capacity_bytes - (capacity_bytes % 188);
 
 	m_buf = static_cast<uint8_t *>(malloc(m_capacity));
@@ -59,6 +61,7 @@ eRamRingBuffer::~eRamRingBuffer()
 
 int eRamRingBuffer::write(const uint8_t *data, size_t len, bool is_access_point)
 {
+	/* Round down to whole TS packets — partial packets are not valid. */
 	len -= len % 188;
 	if (!data || len == 0 || len > m_capacity)
 		return 0;
@@ -71,6 +74,7 @@ int eRamRingBuffer::write(const uint8_t *data, size_t len, bool is_access_point)
 
 	size_t ring_pos = (size_t)(m_write_offset % (off_t)m_capacity);
 
+	/* Handle wrap-around: split memcpy if data crosses ring boundary. */
 	size_t part1 = m_capacity - ring_pos;
 	if (part1 >= len)
 	{
@@ -82,6 +86,7 @@ int eRamRingBuffer::write(const uint8_t *data, size_t len, bool is_access_point)
 		memcpy(m_buf,            data + part1, len - part1);
 	}
 
+	/* Record block metadata for access-point lookup. */
 	eRamBlock &blk      = m_blocks[m_block_write_idx];
 	blk.offset          = m_write_offset;
 	blk.is_access_point = is_access_point;
@@ -114,11 +119,14 @@ int eRamRingBuffer::read(off_t offset, uint8_t *buf, size_t len)
 
 	if (offset < min_off || avail <= 0)
 	{
+		/* Offset has been overwritten by the ring — caller must seek
+		 * forward to the current minimum. */
 		pthread_mutex_unlock(&m_mutex);
 		errno = EAGAIN;
 		return -1;
 	}
 
+	/* Clamp read length to available data (rounded down to 188). */
 	if ((off_t)len > avail)
 		len = (size_t)(avail - (avail % 188));
 
@@ -129,6 +137,7 @@ int eRamRingBuffer::read(off_t offset, uint8_t *buf, size_t len)
 		return -1;
 	}
 
+	/* Map absolute offset → ring position, handle wrap-around. */
 	size_t ring_pos = (size_t)(offset % (off_t)m_capacity);
 	size_t part1    = m_capacity - ring_pos;
 
@@ -180,6 +189,9 @@ off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const
 	              ? m_write_offset - (off_t)m_capacity
 	              : 0;
 
+	/* Linear scan for the first access point >= from_offset that is
+	 * still inside the valid ring window (>= min_off).
+	 * TODO: consider binary search if m_max_blocks grows beyond ~8K. */
 	off_t best = -1;
 	for (size_t i = 0; i < m_total_blocks; i++)
 	{
@@ -220,6 +232,8 @@ ssize_t eRamTsSource::read(off_t offset, void *buf, size_t count)
 	if (!m_buf || !buf || count == 0)
 		return 0;
 
+	/* Pre-check: if offset is already below min, the ring has lapped
+	 * us.  Compute the nearest safe 188-aligned offset. */
 	off_t min_off = m_buf->getMinOffset();
 	if (offset < min_off)
 	{
@@ -256,7 +270,9 @@ ssize_t eRamTsSource::read(off_t offset, void *buf, size_t count)
 			pthread_mutex_unlock(&m_offset_mutex);
 			return -1; /* real lap — error */
 		}
-		return 0; /* at write edge — no new data yet, retry */
+		/* At write edge — no new data yet.  Return 0 to let the
+		 * push thread retry without treating it as an error. */
+		return 0;
 	}
 	return (ssize_t)rc;
 }
@@ -287,6 +303,8 @@ off_t eRamTsSource::offset()
 		m_start_offset = -1;
 	pthread_mutex_unlock(&m_offset_mutex);
 
+	/* First call after setStartOffset() returns the forced offset.
+	 * Subsequent calls return the live write edge. */
 	if (o >= 0)
 		return o;
 	return m_buf ? m_buf->getWriteOffset() : 0;
@@ -306,6 +324,7 @@ void eRamTsSource::setStartOffset(off_t o)
 eRamRecorder::eRamRecorder(eRamRingBuffer *buf, int packetsize)
 	: eDVBRecordScrambledThread(packetsize, 188 * 256, false, false)
 	, m_ring(buf)
+	, m_write_offset_atomic(0)
 	, m_last_pcr(0)
 	, m_last_pcr_valid(false)
 	, m_first_pcr(0)
@@ -326,6 +345,28 @@ eRamRecorder::~eRamRecorder()
 	pthread_mutex_destroy(&m_pcr_mutex);
 }
 
+/*
+ * waitForFirstData()
+ *
+ * Fast non-blocking check to see if the ring buffer has data.
+ * Fixes the "200ms Glitch" (black screen timeout) on unpause.
+ *
+ * Uses atomic load of the write offset so we avoid reading
+ * eRamRingBuffer internals from the main thread while the recorder
+ * thread is actively writing. */
+bool eRamRecorder::waitForFirstData(int timeout_ms)
+{
+	int slept = 0;
+	while (slept < timeout_ms)
+	{
+		if (m_write_offset_atomic.load(std::memory_order_acquire) > 0)
+			return true;
+		usleep(10000); /* Check every 10ms */
+		slept += 10;
+	}
+	return false;
+}
+
 void eRamRecorder::updatePCR(pts_t pcr)
 {
 	pthread_mutex_lock(&m_pcr_mutex);
@@ -337,7 +378,10 @@ void eRamRecorder::updatePCR(pts_t pcr)
 		m_first_pcr_valid = true;
 	}
 
-	/* Store sample for sliding window (getPTSWindow). */
+	/* Store sample for sliding window (getPTSWindow).
+	 * m_current_offset is the parent's write position — safe to read
+	 * here because we are on the recorder thread (same thread that
+	 * writes m_current_offset in writeData). */
 	m_pcr_history[m_pcr_hist_write].offset = m_current_offset;
 	m_pcr_history[m_pcr_hist_write].pcr    = pcr;
 	m_pcr_hist_write = (m_pcr_hist_write + 1) % PCR_HISTORY;
@@ -350,25 +394,24 @@ void eRamRecorder::updatePCR(pts_t pcr)
 /*
  * extractPCR()
  *
- * Reads PCR from the adaptation field of a single 188-byte TS packet.
- * The adaptation field is ALWAYS unencrypted per the DVB standard,
- * even for scrambled channels.
- * Returns the 33-bit PCR base in 90 kHz units (same unit as PTS).
+ * Parse the 33-bit PCR base from the TS adaptation field.
+ * The adaptation field is always unencrypted per DVB spec,
+ * so this works on scrambled streams without decryption.
  */
 bool eRamRecorder::extractPCR(const uint8_t *pkt, pts_t &pcr)
 {
 	if (pkt[0] != 0x47)
 		return false;
-	/* adaptation_field_control bits [5:4] must have 0x20 set */
+	/* adaptation_field_control bits [5:4] must be 0b10 or 0b11 */
 	if (!(pkt[3] & 0x20))
 		return false;
-	/* adaptation_field_length >= 7 for PCR */
+	/* adaptation_field_length >= 7 for PCR to fit */
 	if (pkt[4] < 7)
 		return false;
-	/* PCR_flag bit */
+	/* PCR_flag (bit 4 of adaptation field flags byte) */
 	if (!(pkt[5] & 0x10))
 		return false;
-	/* PCR base (33 bits): (b6<<25)|(b7<<17)|(b8<<9)|(b9<<1)|(b10>>7) */
+	/* PCR base (33 bits): bytes 6..10 */
 	pcr = ((pts_t)pkt[6] << 25)
 	    | ((pts_t)pkt[7] << 17)
 	    | ((pts_t)pkt[8] <<  9)
@@ -382,6 +425,7 @@ int eRamRecorder::writeData(int len)
 	if (len <= 0 || !m_ring)
 		return 0;
 
+	/* Descramble in place (same as disk recorder path). */
 	if (m_serviceDescrambler)
 		m_serviceDescrambler->descramble(m_buffer, len);
 
@@ -421,7 +465,13 @@ int eRamRecorder::writeData(int len)
 	int written = m_ring->write(m_buffer, (size_t)len, is_ap);
 	if (written > 0)
 	{
+		/* Advance parent offset (recorder thread — same thread). */
 		m_current_offset += written;
+
+		/* Publish the new offset atomically so the main thread can
+		 * read it in waitForFirstData() without a data race.
+		 * release pairs with the acquire in waitForFirstData(). */
+		m_write_offset_atomic.store(m_current_offset, std::memory_order_release);
 
 		/* Only update PCR after a successful write — guarantees that
 		 * getCurrentPCR() never advances past data not yet in the ring. */
@@ -438,33 +488,15 @@ int eRamRecorder::writeData(int len)
 
 void eRamRecorder::flush()
 {
+	/* Nothing to flush — ring buffer is purely in-memory. */
 }
 
 /*
- * getFirstPTS()
+ * getFirstPCR()
  *
- * Override of virtual eDVBRecordFileThread::getFirstPTS().
- * Returns the first PCR seen, used for seek bar / getLength().
- */
-int eRamRecorder::getFirstPTS(pts_t &pts)
-{
-	pthread_mutex_lock(&m_pcr_mutex);
-	bool valid = m_first_pcr_valid;
-	pts_t val  = m_first_pcr;
-	pthread_mutex_unlock(&m_pcr_mutex);
-	if (!valid)
-		return -1;
-	pts = val;
-	return 0;
-}
-
-/*
- * getPTSWindow()
- *
- * Returns the oldest and newest PCR currently inside the ring buffer window.
- * Unlike getFirstPTS() which is frozen at recording start, this slides forward
- * as the ring buffer wraps. Used by eRamServicePlay for seek bar and getLength
- * so the bar always reflects the live buffer window, not the full recording.
+ * Returns the very first PCR seen since recording started.
+ * Stable across ring wraps — used as fixed reference by getPlayPosition()
+ * to match the disk timeshift pts_begin semantics.
  */
 int eRamRecorder::getFirstPCR(pts_t &pcr) const
 {
@@ -477,6 +509,16 @@ int eRamRecorder::getFirstPCR(pts_t &pcr) const
 	return 0;
 }
 
+/*
+ * getPTSWindow()
+ *
+ * Returns the oldest and newest PCR values still inside the valid
+ * ring buffer window.  Used by the seek bar to show the available
+ * timeshift range.
+ *
+ * Thread safety: called from main thread, protected by m_pcr_mutex.
+ * Samples below min_off are skipped (they've been overwritten).
+ */
 int eRamRecorder::getPTSWindow(pts_t &first, pts_t &last) const
 {
 	if (!m_ring)
@@ -494,8 +536,8 @@ int eRamRecorder::getPTSWindow(pts_t &first, pts_t &last) const
 
 	last = m_last_pcr;
 
-	/* Scan history for the oldest sample whose offset is still
-	 * inside the ring buffer (offset >= min_off). */
+	/* Scan the entire history for the oldest valid sample.
+	 * The history is circular, so we can't just take index 0. */
 	pts_t  oldest_pcr    = 0;
 	off_t  oldest_offset = -1;
 	bool   found         = false;
@@ -526,11 +568,15 @@ int eRamRecorder::getPTSWindow(pts_t &first, pts_t &last) const
 /*
  * findOffsetForPTS()
  *
- * Scans PCR history for the sample whose PCR is closest to `target`
- * and whose byte offset is still inside the live ring buffer window.
- * Returns the byte offset, or -1 if not found.
+ * Locates the byte offset in the ring buffer closest to the given
+ * absolute PCR value.  Uses the circular PCR history for lookup.
  *
- * Used by eRamServicePlay::seekTo() to bypass the .ap file mechanism.
+ * 1. Linear scan through all valid (non-overwritten) samples.
+ * 2. Find the sample with smallest PCR distance (handles 33-bit wrap).
+ * 3. Snap down to 188-byte packet boundary.
+ * 4. Snap to nearest I-frame (access point) for clean decode start.
+ *
+ * Thread safety: called from main thread, protected by m_pcr_mutex.
  */
 off_t eRamRecorder::findOffsetForPTS(pts_t target) const
 {
@@ -548,11 +594,13 @@ off_t eRamRecorder::findOffsetForPTS(pts_t target) const
 	for (size_t i = 0; i < m_pcr_hist_count; i++)
 	{
 		const PcrSample &s = m_pcr_history[i];
+
+		/* Skip overwritten samples. */
 		if (s.offset < min_off)
 			continue;
 
-		/* Wrap-safe circular distance between sample PCR and target.
-		 * Use the shorter arc of the 33-bit circle to handle PCR wrap. */
+		/* PCR wrap-aware distance: take the shorter path around
+		 * the 33-bit counter. */
 		pts_t mask = (1LL << 33) - 1;
 		pts_t fwd  = (s.pcr  - target) & mask;
 		pts_t bwd  = (target - s.pcr)  & mask;
@@ -564,18 +612,17 @@ off_t eRamRecorder::findOffsetForPTS(pts_t target) const
 			best_offset = s.offset;
 			best_found  = true;
 			if (diff == 0)
-				break; /* exact match */
+				break; /* exact match — no need to keep scanning */
 		}
 	}
 
 	pthread_mutex_unlock(&m_pcr_mutex);
 
-	/* Align down to 188-byte TS packet boundary */
+	/* Snap down to 188-byte packet boundary. */
 	if (best_offset > 0)
 		best_offset -= best_offset % 188;
 
-	/* Snap forward to the nearest I-frame so the decoder gets a clean
-	 * picture immediately — identical behaviour to .ap file seeks. */
+	/* Snap to nearest I-frame for clean decode start. */
 	if (best_offset >= 0)
 	{
 		off_t ap = m_ring->findNearestAccessPoint(best_offset);

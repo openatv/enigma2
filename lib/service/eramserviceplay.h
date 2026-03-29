@@ -27,7 +27,7 @@ public:
 	eRamServicePlay(const eServiceReference &ref,
 	                eDVBService *service,
 	                int delay_seconds = 10);
-	virtual ~eRamServicePlay();
+	~eRamServicePlay() override;
 
 	bool	isRamBufferReady() const;
 	float	ramBufferedSeconds() const;
@@ -52,17 +52,35 @@ private:
 	void	checkLapAndSeek();
 	void	recordEvent(int event) override;
 
+	/* PTS delta with 33-bit wrap-around (standard DVB/MPEG behavior). */
 	static inline pts_t pts_delta(pts_t newer, pts_t older)
 	{ return (newer - older) & ((1LL << 33) - 1); }
 
+	/* Shared ownership with eRamTsSource — reader and writer both
+	 * need the buffer alive until both are done. */
 	std::shared_ptr<eRamRingBuffer>	m_ram_ring;
+
+	/* 200ms periodic watchdog that detects ring-buffer lap events
+	 * and forces the push thread to jump to the safe read position. */
 	ePtr<eTimer>			m_watchdog_timer;
+
+	/* Buffer size in bytes (aligned down to 188 in eRamRingBuffer). */
 	size_t				m_capacity_bytes;
+
+	/* iTsSource wrapping the ring buffer for eFilePushThread. */
 	ePtr<eRamTsSource>		m_ts_source;
 
 	/* Raw pointer to the RAM recorder thread — owned by m_record via
-	 * replaceThread(). Valid for the lifetime of m_record. */
+	 * replaceThread().  Valid for the lifetime of m_record only.
+	 * DO NOT delete — m_record owns the lifecycle through the
+	 * eDVBRecordScrambledThread base. */
 	eRamRecorder			*m_ram_recorder;
+
+	/* Frozen play position captured at stream corruption detection.
+	 * On Hisilicon, getPTS() advances even during pause (HW decoder
+	 * drains internal buffer).  Freezing prevents current_delay from
+	 * shrinking, which would cause the Precise Recovery System to
+	 * loop forever waiting for a stable PTS. */
 	pts_t				m_frozen_play_position;
 };
 
