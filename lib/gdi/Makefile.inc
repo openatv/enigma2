@@ -51,7 +51,6 @@ if HAVE_EGL
 gdi_libenigma_gdi_a_SOURCES += \
 	gdi/egl/egl_config.cpp \
 	gdi/egl/egl_init.cpp \
-	gdi/egl/platform/amlogic/amlogic_window_provider.cpp \
 	gdi/egl/shader/gadvanced_shader.cpp \
 	gdi/egl/shader/gshader.cpp \
 	gdi/egl/shader/gtext_shader.cpp \
@@ -61,7 +60,6 @@ gdi_libenigma_gdi_a_SOURCES += \
 	gdi/egl/gtexture_manager.cpp
 gdiinclude_HEADERS += \
 	gdi/egl/egl_config.h \
-	gdi/egl/platform/amlogic/amlogic_window_provider.h \
 	gdi/egl/shader/gadvanced_shader.h \
 	gdi/egl/shader/gshader.h \
 	gdi/egl/shader/gtext_shader.h \
@@ -69,6 +67,13 @@ gdiinclude_HEADERS += \
 	gdi/egl/gegldc.h \
 	gdi/egl/gles_version.h \
 	gdi/egl/gtexture_manager.h
+endif
+
+if DREAMNEXTGEN
+gdi_libenigma_gdi_a_SOURCES += \
+	gdi/egl/platform/amlogic/amlogic_window_provider.cpp
+gdiinclude_HEADERS += \
+	gdi/egl/platform/amlogic/amlogic_window_provider.h
 endif
 
 
