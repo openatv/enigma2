@@ -510,13 +510,14 @@ class Navigation:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
 			if type != (pNavigation.isPseudoRecording | pNavigation.isFromEPGrefresh):
-				ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
+				ref, is_stream_relay = streamrelay.streamrelayChecker(ref)
 				for f in Navigation.recordServiceExtensions:
 					ref = f(self, ref)
-				"""
-				if not isStreamRelay:
+				if not is_stream_relay:
 					ref, wrappererror = self.serviceHook(ref)
-				"""
+					if wrappererror:
+						print(f"[Navigation] Error getting link via serviceHook. '{wrappererror}'")
+						return None
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
 			if service is None:
 				print("[Navigation] Record returned non-zero.")
