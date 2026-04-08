@@ -352,7 +352,7 @@ class ImageBackup(Screen):
 			kernelFile = BoxInfo.getItem("kernelfile")
 			if boxName in ("dm820", "dm7080"):
 				cmdLines.append(f"{self.echoCmd} \"dummy file dont delete\" > {workDir}{kernelFile}")
-			elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "hzero"):
+			elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "h8se", "hzero"):
 				if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
 					cmdLines.append(f"{self.copyCmd} /{mtdKernel} {workDir}{kernelFile}")
 				else:
@@ -480,7 +480,7 @@ class ImageBackup(Screen):
 				if not recovery:
 					if model in ("dm800se", "dm500hd", "dreamone", "dreamtwo"):
 						cmdLines.append(f"{self.touchCmd} {mainDestination}{kernelFile}")
-					elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "hzero"):
+					elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "h8se", "hzero"):
 						cmdLines.append(f"{self.moveCmd} {workDir}{kernelFile} {mainDestination}")
 					else:
 						cmdLines.append(f"{self.moveCmd} {workDir}vmlinux.gz {mainDestination}{kernelFile}")
