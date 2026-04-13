@@ -109,10 +109,18 @@ public:
   static void setAudioDefaultDDP(bool value) { audio_defaultddp = value; }
   static void setAudioUseCache(bool value) { audio_usecache = value; }
   static void setHttpStartDelay(int value) { http_startdelay = value; }
+  static void setRamTimeshift(int delay) {
+      if (delay < 0)
+          delay = 0;
+      if (delay > 30)
+          delay = 30;
+      ram_timeshift_delay_seconds = delay; 
+  }
 
   static bool remote_fallback_enabled;
   static bool use_ci_assignment;
   static std::string timeshift_path;
+  static int ram_timeshift_delay_seconds;
 
   static bool audio_defaultac3;
   static bool audio_defaultddp;

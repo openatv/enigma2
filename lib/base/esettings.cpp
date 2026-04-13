@@ -37,6 +37,7 @@ std::string eSubtitleSettings::subtitle_autoselect4 = "";
 bool eSettings::remote_fallback_enabled = false;
 bool eSettings::use_ci_assignment = false;
 std::string eSettings::timeshift_path = "";
+int eSettings::ram_timeshift_delay_seconds = 0;
 
 bool eSettings::audio_defaultac3 = false;
 bool eSettings::audio_defaultddp = false;

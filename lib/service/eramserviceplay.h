@@ -17,7 +17,7 @@
  * calls activateTimeshift() which starts playback from the RAM buffer
  * at the accumulated delay — identical to disk timeshift behavior.
  *
- * Enabled via: config.timeshift.ram_mode = true
+ * Enabled via: eSettings::ram_timeshift_delay_seconds > 0
  * Instantiated by eServiceFactoryDVB::play() when that config is set.
  */
 class eRamServicePlay : public eDVBServicePlay

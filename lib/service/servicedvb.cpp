@@ -965,11 +965,9 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 		// check resources...
 	if (eFCCServiceManager::checkAvailable(ref))
 		ptr = new eDVBServiceFCCPlay(ref, service);
-	else if (ref.path.empty() && eConfigManager::getConfigBoolValue("config.timeshift.ram_mode", false))
+	else if (ref.path.empty() && eSettings::ram_timeshift_delay_seconds > 0)
 	{
-		int delay = eConfigManager::getConfigIntValue(
-			"config.timeshift.ram_delay_seconds", 10);
-		ptr = new eRamServicePlay(ref, service, delay);
+		ptr = new eRamServicePlay(ref, service, eSettings::ram_timeshift_delay_seconds);
 	}
 	else
 		ptr = new eDVBServicePlay(ref, service);
