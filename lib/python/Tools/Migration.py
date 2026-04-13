@@ -1,4 +1,4 @@
-from Components.config import ConfigBoolean, ConfigText, config
+from Components.config import ConfigBoolean, ConfigSubsection, ConfigText, config
 
 
 def migrateSettings():
@@ -10,9 +10,9 @@ def migrateSettings():
 	if migrationVersion < 1:
 		migrateMenuSort()
 		migrateTimeshift()
-	# elif migrationVersion < 2:
-	# 	migrateNextChange()
-	config.misc.migrationVersion.value = "1"
+	elif migrationVersion < 2:
+		migrateFileCommander()
+	config.misc.migrationVersion.value = "2"
 	config.misc.migrationVersion.save()
 
 
@@ -61,12 +61,12 @@ def migrateMenuSort():  # This function needs to called in StartEnigma after ini
 		for key in menuMappings.keys():
 			newSettings = newSettings.replace("'%s':" % key, "'%s':" % menuMappings[key])
 		if newSettings != oldSettings:
-			print("[Migration] migrateMenuSort: Value changed from '%s' to '%s'." % (oldSettings, newSettings))
+			print(f"[Migration] migrateMenuSort: Value changed from '{oldSettings}' to '{newSettings}'.")
 			try:
 				config.usage.menu_sort_weight.value = eval(newSettings)  # Test and save the new settings.
 				config.usage.menu_sort_weight.save()
 			except Exception as err:
-				print("[Migration] migrateMenuSort Error: %s!" % str(err))
+				print(f"[Migration] migrateMenuSort Error: {err}!")
 
 
 def migrateTimeshift():
@@ -104,4 +104,52 @@ def migrateTimeshift():
 				getattr(config.timeshift, item[0]).save()
 				getattr(config.timeshift, item[1]).save()
 	except Exception as err:
-		print("[Migration] migrateTimeshift Error: %s!" % str(err))
+		print(f"[Migration] migrateTimeshift Error: {err}!")
+
+
+def migrateFileCommander():
+	attributes = (
+		("add_extensionmenu_entry", "addToExtensionMenu"),
+		("add_mainmenu_entry", "addToMainMenu"),
+		("bookmarks", "bookmarks"),
+		("calculate_directorysize", None),
+		("change_navbutton", None),
+		("diashow", None),
+		("editposition_lineend", "editLineEnd"),
+		("extension", "extension"),
+		("firstDirs", "directoriesFirst"),
+		("hashes", None),
+		("input_length", None),
+		("my_extension", "myExtensions"),
+		("path_default", "defaultPathLeft"),
+		("pathDefault", "defaultPathLeft"),
+		("path_left", None),
+		("path_right", None),
+		("savedir_left", "savePathLeft"),
+		("savedir_right", "savePathRight"),
+		("script_messagelen", "scriptMessageLength"),
+		("script_priority_ionice", "scriptPriorityIONice"),
+		("script_priority_nice", "scriptPriorityNice"),
+		("showScriptCompleted_message", "showScriptCompletedMessage"),
+		("showTaskCompleted_message", "showTaskCompletedMessage"),
+		("sortDirs", "sortDirectories"),
+		("sortFiles_left", "sortFilesLeft"),
+		("sortFiles_right", "sortFilesRight"),
+		("unknown_extension_as_text", "useViewerForUnknown")
+	)
+	config.plugins.FileCommander = ConfigSubsection()
+	config.plugins.filecommander = ConfigSubsection()
+	for old, new in attributes:
+		setattr(config.plugins.filecommander, old, ConfigText(default=""))
+		value = getattr(config.plugins.filecommander, old).value
+		if value and new:
+			if value == "True":
+				value = True
+			if value == "False":
+				value = False
+			if old == "bookmarks":
+				value = [x for x in value[2:-2].split("', '")]
+			getattr(config.plugins.FileCommander, new).value = value
+		getattr(config.plugins.filecommander, old).value = ""
+	config.plugins.filecommander.save()
+	config.plugins.FileCommander.save()

@@ -869,6 +869,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				return fileList.getCurrentDirectory()
 			elif fileList.getPath():
 				return normpath(fileList.getPath())
+
 		if config.plugins.FileCommander.savePathLeft.value:
 			config.plugins.FileCommander.pathLeft.value = getSavePath(self["listleft"])
 		else:
@@ -3060,62 +3061,6 @@ def taskProcessStderr(data):
 		taskSTDErr.pop(0)
 
 
-conversionDone = False
-
-
-# Start Routines
-#
-def convertSettings():
-	global conversionDone
-	if conversionDone:
-		return
-	attributes = (
-		("add_extensionmenu_entry", "addToExtensionMenu"),
-		("add_mainmenu_entry", "addToMainMenu"),
-		("bookmarks", "bookmarks"),
-		("calculate_directorysize", None),
-		("change_navbutton", None),
-		("diashow", None),
-		("editposition_lineend", "editLineEnd"),
-		("extension", "extension"),
-		("firstDirs", "directoriesFirst"),
-		("hashes", None),
-		("input_length", None),
-		("my_extension", "myExtensions"),
-		("path_default", "defaultPathLeft"),
-		("pathDefault", "defaultPathLeft"),
-		("path_left", None),
-		("path_right", None),
-		("savedir_left", "savePathLeft"),
-		("savedir_right", "savePathRight"),
-		("script_messagelen", "scriptMessageLength"),
-		("script_priority_ionice", "scriptPriorityIONice"),
-		("script_priority_nice", "scriptPriorityNice"),
-		("showScriptCompleted_message", "showScriptCompletedMessage"),
-		("showTaskCompleted_message", "showTaskCompletedMessage"),
-		("sortDirs", "sortDirectories"),
-		("sortFiles_left", "sortFilesLeft"),
-		("sortFiles_right", "sortFilesRight"),
-		("unknown_extension_as_text", "useViewerForUnknown")
-	)
-	config.plugins.filecommander = ConfigSubsection()
-	for old, new in attributes:
-		setattr(config.plugins.filecommander, old, ConfigText(default=""))
-		value = getattr(config.plugins.filecommander, old).value
-		if value and new:
-			if value == "True":
-				value = True
-			if value == "False":
-				value = False
-			if old == "bookmarks":
-				value = [x for x in value[2:-2].split("', '")]
-			getattr(config.plugins.FileCommander, new).value = value
-		getattr(config.plugins.filecommander, old).value = ""
-	config.plugins.filecommander.save()
-	config.plugins.FileCommander.save()
-	conversionDone = True
-
-
 def filescanOpen(list, session, **kwargs):
 	path = "/".join(list[0].path.split("/")[:-1]) + "/"
 	session.open(FileCommander, pathLeft=path)
@@ -3136,13 +3081,11 @@ def startFromFilescan(**kwargs):
 
 def startFromMainMenu(menuid, **kwargs):
 	if menuid == "mainmenu":  # Starting from main menu.
-		convertSettings()
 		return [(PROGRAM_NAME, startFromPluginMenu, "filecommand", 1)]
 	return []
 
 
 def startFromPluginMenu(session, **kwargs):
-	convertSettings()
 	session.openWithCallback(exit, FileCommander)
 
 

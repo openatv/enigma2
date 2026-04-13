@@ -1,7 +1,7 @@
 from datetime import date
 from glob import glob
 from os import access, makedirs, listdir, stat, rename, remove, F_OK, R_OK, W_OK
-from os.path import exists, isdir, join
+from os.path import exists, isdir, isfile, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -25,6 +25,7 @@ from . import ShellCompatibleFunctions
 
 
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
+MEDIA_BLACKLIST = ("audiocd", "autofs")
 
 
 def eEnv_resolve_multi(path):
@@ -504,6 +505,13 @@ class RestoreScreen(ConfigListScreen, Screen):
 
 	def doRestore(self):
 		fullbackupfilename = join(self.backuppath, self.backupfile)
+		if not exists(fullbackupfilename):
+			for directory in (d for d in listdir("/media") if d not in MEDIA_BLACKLIST):
+				possiblefile = join("/media", directory, f"backup_{BoxInfo.getItem('distro')}_{MACHINEBUILD}")
+				if exists(possiblefile):
+					fullbackupfilename = possiblefile
+					break
+
 		tarcmd = f"tar -C / -xzvf {fullbackupfilename}"
 		for f in BLACKLISTED:
 			tarcmd = tarcmd + f" --exclude {f.strip('/')}"
@@ -520,7 +528,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 
 	def checkPlugins(self):
 		if exists("/tmp/installed-list.txt"):
-			if exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
+			if config.misc.firstrun.value and any(isfile(f"/media/{d}/images/config/noplugins") for d in listdir("/media") if d not in MEDIA_BLACKLIST):
 				self.userRestoreScript()
 			else:
 				self.session.openWithCallback(self.userRestoreScript, installedPlugins)
@@ -529,12 +537,11 @@ class RestoreScreen(ConfigListScreen, Screen):
 
 	def userRestoreScript(self, ret=None):
 		scriptPath = None
-		for directory in listdir("/media"):
-			if directory not in ("audiocd", "autofs"):
-				configPath = join("/media", directory, "images/config/myrestore.sh")
-				if exists(configPath):
-					scriptPath = configPath
-					break
+		for directory in (d for d in listdir("/media") if d not in MEDIA_BLACKLIST):
+			configPath = join("/media", directory, "images/config/myrestore.sh")
+			if exists(configPath):
+				scriptPath = configPath
+				break
 
 		if scriptPath:
 			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[scriptPath], closeOnSuccess=True, showScripts=False)
@@ -687,7 +694,7 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0 and len(self.PluginRemoveList) == 0:
 			self.close()
 		else:
-			if exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+			if config.misc.firstrun.value and any(isfile(f"/media/{d}/images/config/plugins") for d in listdir("/media") if d not in MEDIA_BLACKLIST):
 				self.startInstall(True)
 			else:
 				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
@@ -757,7 +764,7 @@ class RestorePlugins(Screen):
 	def runOnce(self):
 		self.onShown.remove(self.runOnce)
 		self.selectionChanged()
-		if (exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value) or len(self.list) == 0:
+		if len(self.list) == 0 or (config.misc.firstrun.value and any(isfile(f"/media/{d}/images/config/plugins") for d in listdir("/media") if d not in MEDIA_BLACKLIST)):
 			self.green()
 
 	def green(self):

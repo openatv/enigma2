@@ -3,7 +3,7 @@
 # pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023, 2024, 2025, 2026.
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
-# drakulis <drakulis@interia.pl>, 2022, 2023, 2024, 2025.
+# drakulis <drakulis@interia.pl>, 2022, 2023, 2024, 2025, 2026.
 # lareq <lareq@o2.pl>, 2022, 2023.
 # Karol Sz <kaolsz@interia.pl>, 2022, 2023, 2024.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
@@ -13,10 +13,10 @@
 # pololoko111 <pololoko111@o2.pl>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
-"PO-Revision-Date: 2026-02-27 13:18+0000\n"
+"POT-Creation-Date: 2026-03-02 11:34+0000\n"
+"PO-Revision-Date: 2026-03-17 11:09+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16.1-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -951,7 +951,7 @@ msgstr[2] "Znaleziono %d pakietów."
 #, python-format
 msgid "%d package has an update."
 msgid_plural "%d packages have updates."
-msgstr[0] "%d pakiet ma aktualizację"
+msgstr[0] "%d pakiet ma aktualizację."
 msgstr[1] "%d pakiety mają aktualizacje."
 msgstr[2] "%d pakietów ma aktualizacje."
 
@@ -2311,13 +2311,13 @@ msgid "Alphanumeric"
 msgstr "Alfanumeryczny"
 
 msgid "Also import at reboot/restart"
-msgstr "Importuj również przy ponownym uruchomieniu/restarcie enigma2"
+msgstr "Importuj również przy ponownym uruchomieniu/restarcie interfejsu"
 
 msgid "Also import from the extension menu"
 msgstr "Importuj również z menu rozszerzeń"
 
 msgid "Also import when leaving Standby"
-msgstr "Importuj również, gdy urządzenie opuszcza tryb czuwania"
+msgstr "Importuj również po wyjściu z trybu czuwania"
 
 msgid "Also on standby"
 msgstr "Również w trybie czuwania"
@@ -2721,6 +2721,9 @@ msgstr "Tryb autorski"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Auto (niedostępne)"
+
 msgid "Auto Language"
 msgstr "Automatyczny język"
 
@@ -2778,9 +2781,6 @@ msgstr "Wybrano tryb automatycznego wideo"
 msgid "Auto video mode selected for the TV."
 msgstr "Tryb automatycznego wideo wybrany dla TV."
 
-msgid "Auto (not available)"
-msgstr "Opcja Auto (nie dostępna)"
-
 msgid "AutoCam Settings"
 msgstr "Ustawienia AutoCam"
 
@@ -2800,7 +2800,7 @@ msgid "AutoTimer"
 msgstr "Auto Timer"
 
 msgid "AutoUpdate"
-msgstr "Automatyczna Aktualizacja"
+msgstr "Automatyczna aktualizacja"
 
 msgid "Automatic"
 msgstr "Automatyczny"
@@ -3004,7 +3004,7 @@ msgid "Backup your current settings. This includes E2-setup, channels, network a
 msgstr "Kopia zapasowa aktualnych ustawień. Obejmuje ustawienia, kanały, sieć i wszystkie zaznaczone pliki"
 
 msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Utwórz kopię zapasową działającego systemu %s %s na dysku HDD lub urządzeniu USB."
+msgstr "Utwórz kopię zapasową systemu %s %s na dysku HDD lub urządzeniu USB."
 
 msgid "Bahamas"
 msgstr "Bahamy"
@@ -4218,7 +4218,7 @@ msgid "Classical"
 msgstr "Klasyczny"
 
 msgid "Clean (Just flash and start clean)"
-msgstr "Wyczyść (Wystarczy zainstalować i skonfigurować od zera)"
+msgstr "Wyczyść (zainstaluj i skonfiguruj od zera)"
 
 msgid "Clean network 'Trash'"
 msgstr "Wyczyść kosz ze śmieci"
@@ -5780,6 +5780,9 @@ msgstr "Format czasu w logu debugowania *"
 msgid "Decoder release strategy"
 msgstr "Strategia udostępnienia dekodera"
 
+msgid "Decoder start delay"
+msgstr "Opóźnienie startu dekodera"
+
 msgid "Decoder start timeout"
 msgstr "Limit czasu uruchamiania dekodera"
 
@@ -5836,7 +5839,7 @@ msgid "Default right column directory"
 msgstr "Domyślny katalog w prawej kolumnie"
 
 msgid "Default sort order for directories in the left column."
-msgstr "Domyślny porządek sortowania dla katalogów w lewej kolumnie"
+msgstr "Domyślna kolejność sortowania katalogów w lewej kolumnie."
 
 msgid "Default sort order for directories in the right column."
 msgstr "Domyślny porządek sortowania dla katalogów w prawej kolumnie."
@@ -6472,7 +6475,7 @@ msgid "Distance"
 msgstr "Odległość"
 
 msgid "Distribution"
-msgstr "Wydanie"
+msgstr "Inne systemy"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
@@ -6518,7 +6521,7 @@ msgid "Do not change"
 msgstr "Nie zmieniaj"
 
 msgid "Do not flash image"
-msgstr "Nie instaluj systemu"
+msgstr "Anuluj (nie instaluj systemu)"
 
 msgid "Do not record"
 msgstr "Nie nagrywaj"
@@ -8589,7 +8592,7 @@ msgid "Flash Manager - %s Images"
 msgstr "Menedżer instalowania - Systemy %s"
 
 msgid "Flash Manager - Distributions"
-msgstr "Menedżer Flash - Dystrybucje"
+msgstr "Menedżer Flash - Inni wydawcy"
 
 msgid "Flash Manager Actions"
 msgstr "Akcje Flash Manager"
@@ -8601,10 +8604,10 @@ msgid "Flash Online a new image"
 msgstr "Zainstaluj nowy system z sieci"
 
 msgid "Flash and restore settings and no plugins"
-msgstr "Instalowanie i przywracanie ustawień bez wtyczek"
+msgstr "Zainstaluj i przywróć ustawienia bez wtyczek"
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr "Instalowanie i przywracanie ustawień oraz wybranych wtyczek (Zapytaj użytkownika)"
+msgstr "Zainstaluj i przywróć ustawienia oraz wybrane wtyczki (zapytaj które)"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
@@ -9975,7 +9978,7 @@ msgid "Info file checksum"
 msgstr "Suma kontrolna"
 
 msgid "Info file override"
-msgstr "Nadpisanie pliku informacyjnego"
+msgstr "Plik informacyjny"
 
 msgid "Info icon width"
 msgstr "Ikona Informacji szerokość"
@@ -11299,8 +11302,8 @@ msgstr "Maksymalna liczba dni w EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maksymalna powierzchnia używana (MB):"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr "Maksymalny czas oczekiwania na dane przychodzące i klucze deszyfrujące (CW) przed uruchomieniem dekodera. Zwykle oba docierają znacznie szybciej i dotyczy to tylko szczególnych przypadków."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
+msgstr "Maksymalny czas oczekiwania na pierwszy klucz deszyfrujący (CW) przed uruchomieniem dekodera. 'Wyłączone' uruchamia dekoder natychmiast, bez oczekiwania."
 
 msgid "Mayotte"
 msgstr "Majotta"
@@ -13225,7 +13228,7 @@ msgid "Overscan Test"
 msgstr "Test Overscan"
 
 msgid "Overwrite Bootlogo Files?"
-msgstr "Nadpisać pliki Bootlogo?"
+msgstr "Nadpisać pliki bootlogo?"
 
 msgid "Overwrite Driver Files?"
 msgstr "Nadpisać pliki sterownika?"
@@ -15902,7 +15905,7 @@ msgstr "Zapisywanie plików time shift"
 msgid "Scaler sharpness"
 msgstr "Skalowanie ostrości"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Skalowanie pionowe"
 
 msgid "Scaling mode"
@@ -16875,6 +16878,9 @@ msgstr "Wybierz domyślny katalog, który będzie używany, jeśli katalog w pra
 msgid "Select the delay before the timer activates."
 msgstr "Wybierz opóźnienie przed aktywacją timera."
 
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr "Wybierz opóźnienie buforowania odszyfrowanych danych przed rozpoczęciem odtwarzania. Może to zmniejszyć zaniki dźwięku AC3, zapewniając wystarczającą ilość danych podczas uruchamiania dekodera. Wyższe wartości zapewniają większą stabilność, ale wydłużają czas przełączania kanałów."
+
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Wybierz opóźnienie, które będzie używane podczas zamykania usługi Stream Relay przed ponownym przydzieleniem tunera dla innej usługi. Używanie „0” jest zalecane tylko w przypadku odbiorników z wieloma tunerami satelitarnymi."
 
@@ -16947,7 +16953,7 @@ msgid "Select the layout of the information in the services list, from the optio
 msgstr "Wybierz układ informacji na liście kanałów z opcji udostępnionych przez skórkę wyświetlaną na ekranie List kanałów."
 
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
-msgstr "Wybierz układ zainstalowanych wtyczek na ekranie Przeglądarka wtyczek. UWAGA: Zmiana nie jest natychmiastowa, ale będzie widoczna po ponownym uruchomieniu przeglądarki wtyczek!"
+msgstr "Wybierz układ zainstalowanych wtyczek na ekranie przeglądarki wtyczek. UWAGA: Zmiana nie nastąpi natychmiast, ale będzie widoczna po ponownym uruchomieniu przeglądarki wtyczek!"
 
 msgid "Select the list of LCN rules to be applied to the scan."
 msgstr "Wybierz listę reguł LCN, które mają zostać zastosowane do skanowania."
@@ -17047,7 +17053,7 @@ msgid "Select the satellite you want to configure. Once configured you can selec
 msgstr "Wybierz satelitę, którą chcesz skonfigurować. Po skonfigurowaniu tego satelity możesz wybrać i skonfigurować inne satelity, które będą dostępne za pomocą tego samego tunera."
 
 msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
-msgstr "Wybierz układ ekranu spośród opcji dostępnych w skórce, który będzie używany na ekranie Wyboru kanału."
+msgstr "Wybierz układ ekranu z opcji udostępnionych przez skórkę, który będzie używany na ekranie wyboru kanału."
 
 msgid "Select the shifted character set"
 msgstr "Wybierz przesunięty zestaw znaków"
@@ -18111,7 +18117,7 @@ msgid "Show Log Manager in Extension Menu"
 msgstr "Pokaż Log Menedżera w Menu rozszerzenia"
 
 msgid "Show M2k packages"
-msgstr "Pokaż pakiety M2k"
+msgstr "Pokaż pakiety m2k"
 
 msgid "Show Media Player in Main Menu"
 msgstr "pokaż odtwarzacz multimedialny w menu głównym"
@@ -18192,7 +18198,7 @@ msgid "Show Skin packages"
 msgstr "Pokaż pakiety skórek"
 
 msgid "Show Softcam packages"
-msgstr "Pokaż pakiety Softcam"
+msgstr "Pokaż pakiety softcam"
 
 msgid "Show Source packages"
 msgstr "Pokaż pakiety źródłowe"
@@ -18228,7 +18234,7 @@ msgid "Show WLAN status"
 msgstr "Pokaż status WiFi"
 
 msgid "Show Web Link packages"
-msgstr "Pokaż pakiety łączy sieci Web"
+msgstr "Pokaż pakiety łączy internetowych"
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Wyświetlaj wirujące logo, gdy system jest zajęty."
@@ -20766,34 +20772,10 @@ msgstr "Ta opcja pozwala na zmniejszenie bloku szumu w obrazie. Jest to kosztem 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ta opcja pozwala na ustawienie poziomu kontrastu dynamicznego obrazu."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Ta opcja pozwala na ustawienie przestrzeni kolorów dla UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Ta opcja pozwala na ustawienie Kolorymetrii dla HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Ta opcja pozwala na ustawienie przestrzeni kolorów z Auto na RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Ta opcja pozwala włączyć lub wyłączyć 10-bitowy tryb kolorów"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Ta opcja pozwala włączyć lub wyłączyć 12-bitowy tryb kolorów"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Ta opcja pozwala wymusić tryby HDR dla UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Ta opcja pozwala wymusić tryb HDR10 dla UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Ta opcja pozwala wymusić tryby HLG dla UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Ta opcja pozwala włączyć filtr wygładzający proces kontroli symulowania."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Ta opcja pozwala włączyć skalowanie pionowe."
 
 msgid "This option allows you to Power Off the display."
@@ -20809,7 +20791,7 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Ta opcja pozwala na zwiększenie zielonego tonu w obrazie."
 
 msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Ta opcja pozwala na ominięcie sprawdzania HDMI EDID"
+msgstr "Opcja ta umożliwia pominięcie sprawdzania EDID HDMI."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Ta opcja pozwala na zmianę położenia/obciążenia głośników."
@@ -20874,8 +20856,32 @@ msgstr "Opcja ta umożliwia wybranie, do którego przycisku na ekranie listy kan
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ta opcja pozwala wybrać, czy wyświetlać informacje o gatunku dla zdarzenia."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Opcja ta umożliwia skonfigurowanie głębi kolorów dla rozdzielczości UHD."
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Opcja ta umożliwia konfigurację kolorymetrii dla HDR."
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Opcja ta umożliwia skonfigurowanie przestrzeni kolorów z Auto na RGB."
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ta opcja umożliwia włączenie dźwięku przestrzennego 3D."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Opcja ta umożliwia włączenie lub wyłączenie 10-bitowego trybu koloru."
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Opcja ta umożliwia włączenie lub wyłączenie 12-bitowego trybu koloru."
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Opcja ta umożliwia wymuszenie trybów HDR dla rozdzielczości UHD."
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Opcja ta umożliwia wymuszenie trybów HDR10 dla rozdzielczości UHD."
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Opcja ta umożliwia wymuszenie trybów HLG dla UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Ta opcja umożliwia ustawienie wartości przesunięcia dla różnych rozdzielczości Letterbox."
@@ -20893,7 +20899,7 @@ msgid "This option allows you to the SNR as a percentage (not all receivers supp
 msgstr "Ta opcja pozwala SNR pokazać jako procentowe (nie wszystkie odbiorniki mają wsparcie )."
 
 msgid "This option allows you to use all HDMI Modes."
-msgstr "Ta opcja pozwala na korzystanie ze wszystkich trybów HDMI"
+msgstr "Opcja ta umożliwia korzystanie ze wszystkich trybów HDMI."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Ta opcja pozwala Ci zobaczyć stare i nowe ustawienia obok siebie."
@@ -21660,7 +21666,7 @@ msgid "Turbo"
 msgstr "Turbo"
 
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
-msgstr "Turbo: Jedno ponowne uruchomienie po flashowaniu; Szybko: Jedno ponowne uruchomienie po flashowaniu, jedno ponowne uruchomienie po przywróceniu; Wolno: Jedno ponowne uruchomienie po flashowaniu, jedno ponowne uruchomienie po przywróceniu w interfejsie GUI."
+msgstr "Turbo: Jedno ponowne uruchomienie po flashowaniu. Szybko: Jedno ponowne uruchomienie po flashowaniu, jedno ponowne uruchomienie po przywróceniu. Wolno: Jedno ponowne uruchomienie po flashowaniu, jedno ponowne uruchomienie po przywróceniu w interfejsie GUI."
 
 msgid "Turkey"
 msgstr "Turcja"
@@ -22005,7 +22011,7 @@ msgid "Updating package list."
 msgstr "Aktualizowanie listy pakietów."
 
 msgid "Upgrade (Flash & restore all)"
-msgstr "Aktualizacja (Instalowanie i przywracanie wszystkiego)"
+msgstr "Aktualizacja (zainstaluj i przywróć wszystko)"
 
 msgid "Upgrade finished."
 msgstr "Aktualizacja zakończona."
@@ -24432,6 +24438,9 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+#~ msgstr "Maksymalny czas oczekiwania na dane przychodzące i klucze deszyfrujące (CW) przed uruchomieniem dekodera. Zwykle oba docierają znacznie szybciej i dotyczy to tylko szczególnych przypadków."
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Błąd podczas pobierania lokalizacji pliku 'epg.dat' na zdalnym odbiorniku!"

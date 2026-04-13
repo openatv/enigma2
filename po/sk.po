@@ -9,10 +9,10 @@
 # Warder <ciksa@seznam.cz>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
-"PO-Revision-Date: 2026-02-12 11:09+0000\n"
+"POT-Creation-Date: 2026-03-02 11:34+0000\n"
+"PO-Revision-Date: 2026-03-03 15:08+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 msgid ""
 "\n"
@@ -945,7 +945,7 @@ msgstr[2] "Našlo sa %d balíčkov."
 #, python-format
 msgid "%d package has an update."
 msgid_plural "%d packages have updates."
-msgstr[0] "Je dostupná aktualizácia pre %d balíček"
+msgstr[0] "Je dostupná aktualizácia pre %d balíček."
 msgstr[1] "Je dostupná aktualizácia pre %d balíčky."
 msgstr[2] "Je dostupná aktualizácia pre %d balíčkov."
 
@@ -2713,6 +2713,9 @@ msgstr "Režim authoringu"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Auto (nedostupné)"
+
 msgid "Auto Language"
 msgstr "Automatický jazyk"
 
@@ -2769,9 +2772,6 @@ msgstr "Automatický režim videa vybraný"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Automatický režim videa zvolený pre TV."
-
-msgid "Auto (not available)"
-msgstr "Auto (nedostupné)"
 
 msgid "AutoCam Settings"
 msgstr "Nastavenie Autocamu"
@@ -5771,6 +5771,9 @@ msgstr "Formát času v denníku pre ladenie *"
 msgid "Decoder release strategy"
 msgstr "Stratégia uvoľnenia dekodéra"
 
+msgid "Decoder start delay"
+msgstr "Oneskorenie spustenia dekodéra"
+
 msgid "Decoder start timeout"
 msgstr "Časový limit pre spustenie dekodéra"
 
@@ -5827,7 +5830,7 @@ msgid "Default right column directory"
 msgstr "Predvolený priečinok v pravom stĺpci"
 
 msgid "Default sort order for directories in the left column."
-msgstr "Predvolené poradie zoraďovania pre priečinky v ľavom stĺpci"
+msgstr "Predvolené poradie zoraďovania pre priečinky v ľavom stĺpci."
 
 msgid "Default sort order for directories in the right column."
 msgstr "Predvolené poradie zoraďovania pre priečinky v pravom stĺpci."
@@ -11289,8 +11292,8 @@ msgstr "Maximálny počet dní v EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maximálna použitá veľkosť (MB):"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr "Max. čas čakania pre prichádzajúce údaje a dešifrovacie kľúče (CW), pred spustením dekodéra. Zvyčajne dorazia oveľa rýchlejšie a toto nastavenie je určené len pre špecifické prípady."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
+msgstr "Max. čas čakania na prvý dekódovací kľúč (CW) pred spustením dekodéra. Voľbou 'Vypnuté' spustíte dekodér ihneď, bez čakania."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -15892,7 +15895,7 @@ msgstr "Ukladajú sa súbory timeshiftu"
 msgid "Scaler sharpness"
 msgstr "Ostrosť škálovania"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Škálovanie – vertikálne vyhladzovanie hrán"
 
 msgid "Scaling mode"
@@ -16865,8 +16868,11 @@ msgstr "Vyberte predvolený priečinok, ktorý sa použije, ak nebude uložený 
 msgid "Select the delay before the timer activates."
 msgstr "Vyberte oneskorenie pred aktiváciou časovača."
 
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr "Výber oneskorenia pre uloženie dekódovaných údajov do vyrov. pamäte, pred prehrávaním. Môže to znížiť výpadky zvuku AC3 tým, že pri spustení dekodéra je dostupných dosť údajov. Väčšie hodnoty zlepšujú stabilitu, ale rastie aj doba potrebná na prepnutie stanice."
+
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
-msgstr "Vyberte oneskorenie, ktoré sa použije pri ukončení služby prenosu streamu pred opätovným pridelením tunera pre inú službu. Hodnota '0' sa odporúča pre prijímače s viacerými satelitnými tunermi."
+msgstr "Vyberte oneskorenie, ktoré sa použije pri ukončení služby prenosu streamu pred opätovným pridelením tunera pre inú službu/stanicu. Hodnota '0' sa odporúča pre prijímače s viacerými satelitnými tunermi."
 
 msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr "Používateľom určené oneskorenie po stlačení iného tlačidla na prepnutie na daný kanál."
@@ -20755,34 +20761,10 @@ msgstr "Redukcia blokového šumu v obraze. Zhorší sa tým však jeho ostrosť
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Nastavenie úrovne dynamického kontrastu obrazu."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Konfigurácia farebnej hĺbky pre UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Konfigurácia kolorimetrie pre HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Zmena farebného priestoru z Auto na RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Zapnutie/vypnutie režimu 10 bitových farieb"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Zapnutie/vypnutie režimu 12 bitových farieb"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Vynútenie režimov HDR pre UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Vynútenie režimov HDR10 pre UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Vynútenie režimov HLG pre UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Zapnutie vyhladzovacieho filtra ditheringu."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Zapnutie vyhladzovania vertikálnych hrán."
 
 msgid "This option allows you to Power Off the display."
@@ -20798,7 +20780,7 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Zvýraznenie zelených tónov v obraze."
 
 msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Nastavenie možnosti obísť kontrolu HDMI EDID"
+msgstr "Nastavenie možnosti obídenia kontroly HDMI EDID."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Zmena pozície virtuálneho reproduktora."
@@ -20863,8 +20845,32 @@ msgstr "Nastavenie reakcie na prvé stlačenie tlačidla na obrazovke so zoznamo
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Nastavenie, či sa pre udalosť zobrazí informácia o žánri."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Konfigurácia farebnej hĺbky pre UHD."
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Konfigurácia kolorimetrie pre HDR."
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Zmena farebného priestoru z Auto na RGB."
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Zapnutie zvuku 3D Surround."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Zapnutie/vypnutie režimu 10 bitových farieb."
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Zapnutie/vypnutie režimu 12 bitových farieb."
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Vynútenie režimov HDR pre UHD."
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Vynútenie režimov HDR10 pre UHD."
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Vynútenie režimov HLG pre UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Nastavenie hodnoty odsadenia pre rôzne rozlíšenia letterboxu."
@@ -20882,7 +20888,7 @@ msgid "This option allows you to the SNR as a percentage (not all receivers supp
 msgstr "Zobrazenie SNR v percentách namiesto dB (nepodporujú všetky prijímače)."
 
 msgid "This option allows you to use all HDMI Modes."
-msgstr "Táto voľba umožňuje používať všetky režimy HDMI"
+msgstr "Táto voľba umožňuje používať všetky režimy HDMI."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Zobrazenie starých a nových nastavení vedľa seba."
@@ -24421,6 +24427,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+#~ msgstr "Max. čas čakania pre prichádzajúce údaje a dešifrovacie kľúče (CW), pred spustením dekodéra. Zvyčajne dorazia oveľa rýchlejšie a toto nastavenie je určené len pre špecifické prípady."
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Chyba pri získavaní umiestnenia 'epg.dat' na vzdialenom prijímači!"
