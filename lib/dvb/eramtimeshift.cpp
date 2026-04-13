@@ -1,38 +1,30 @@
 #include "eramtimeshift.h"
-#include <lib/base/eerror.h>
 #include <algorithm>
-#include <vector>
-#include <string>
 #include <assert.h>
 #include <errno.h>
-#include <string.h>
-#include <stdlib.h>
 #include <fcntl.h>
+#include <lib/base/eerror.h>
+#include <stdlib.h>
+#include <string.h>
+#include <string>
 #include <unistd.h>
+#include <vector>
 
 // ------------------------------------------------------------------
 // eRamRingBuffer
 // ------------------------------------------------------------------
-int64_t eRamRingBuffer::nowMs()
-{
+int64_t eRamRingBuffer::nowMs() {
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (int64_t)(ts.tv_sec * 1000) + (ts.tv_nsec / 1000000);
 }
 
-eRamRingBuffer::eRamRingBuffer(size_t capacity_bytes, size_t max_blocks)
-	: m_max_blocks(max_blocks)
-	, m_write_offset(0)
-	, m_first_write_ms(0)
-	, m_block_write_idx(0)
-	, m_total_blocks(0)
-{
+eRamRingBuffer::eRamRingBuffer(size_t capacity_bytes, size_t max_blocks) : m_max_blocks(max_blocks), m_write_offset(0), m_first_write_ms(0), m_block_write_idx(0), m_total_blocks(0) {
 	m_capacity = capacity_bytes - (capacity_bytes % 188);
-	m_buf = static_cast<uint8_t *>(malloc(m_capacity));
-	m_blocks = m_buf ? static_cast<eRamBlock *>(calloc(m_max_blocks, sizeof(eRamBlock))) : nullptr;
+	m_buf = static_cast<uint8_t*>(malloc(m_capacity));
+	m_blocks = m_buf ? static_cast<eRamBlock*>(calloc(m_max_blocks, sizeof(eRamBlock))) : nullptr;
 	pthread_mutex_init(&m_mutex, nullptr);
-	if (!m_buf || !m_blocks)
-	{
+	if (!m_buf || !m_blocks) {
 		eWarning("[eRamRingBuffer] allocation failed (%zu MB) — RAM timeshift disabled", m_capacity >> 20);
 		free(m_buf);
 		free(m_blocks);
@@ -43,15 +35,13 @@ eRamRingBuffer::eRamRingBuffer(size_t capacity_bytes, size_t max_blocks)
 	eDebug("[eRamRingBuffer] ready: %zu MB, %zu blocks", m_capacity >> 20, m_max_blocks);
 }
 
-eRamRingBuffer::~eRamRingBuffer()
-{
+eRamRingBuffer::~eRamRingBuffer() {
 	pthread_mutex_destroy(&m_mutex);
 	free(m_blocks);
 	free(m_buf);
 }
 
-int eRamRingBuffer::write(const uint8_t *data, size_t len, bool is_access_point)
-{
+int eRamRingBuffer::write(const uint8_t* data, size_t len, bool is_access_point) {
 	len -= len % 188;
 	if (!data || len == 0 || len > m_capacity)
 		return 0;
@@ -61,16 +51,13 @@ int eRamRingBuffer::write(const uint8_t *data, size_t len, bool is_access_point)
 		m_first_write_ms = now;
 	size_t ring_pos = (size_t)(m_write_offset % (off_t)m_capacity);
 	size_t part1 = m_capacity - ring_pos;
-	if (part1 >= len)
-	{
+	if (part1 >= len) {
 		memcpy(m_buf + ring_pos, data, len);
-	}
-	else
-	{
+	} else {
 		memcpy(m_buf + ring_pos, data, part1);
 		memcpy(m_buf, data + part1, len - part1);
 	}
-	eRamBlock &blk = m_blocks[m_block_write_idx];
+	eRamBlock& blk = m_blocks[m_block_write_idx];
 	blk.offset = m_write_offset;
 	blk.is_access_point = is_access_point;
 	m_block_write_idx = (m_block_write_idx + 1) % m_max_blocks;
@@ -81,41 +68,32 @@ int eRamRingBuffer::write(const uint8_t *data, size_t len, bool is_access_point)
 	return (int)len;
 }
 
-int eRamRingBuffer::read(off_t offset, uint8_t *buf, size_t len)
-{
+int eRamRingBuffer::read(off_t offset, uint8_t* buf, size_t len) {
 	len -= len % 188;
-	if (!buf || len == 0)
-	{
+	if (!buf || len == 0) {
 		errno = EAGAIN;
 		return -1;
 	}
 	pthread_mutex_lock(&m_mutex);
-	off_t min_off = (m_write_offset > (off_t)m_capacity)
-		? m_write_offset - (off_t)m_capacity
-		: 0;
+	off_t min_off = (m_write_offset > (off_t)m_capacity) ? m_write_offset - (off_t)m_capacity : 0;
 	off_t avail = m_write_offset - offset;
-	if (offset < min_off || avail <= 0)
-	{
+	if (offset < min_off || avail <= 0) {
 		pthread_mutex_unlock(&m_mutex);
 		errno = EAGAIN;
 		return -1;
 	}
 	if ((off_t)len > avail)
 		len = (size_t)(avail - (avail % 188));
-	if (len == 0)
-	{
+	if (len == 0) {
 		pthread_mutex_unlock(&m_mutex);
 		errno = EAGAIN;
 		return -1;
 	}
 	size_t ring_pos = (size_t)(offset % (off_t)m_capacity);
 	size_t part1 = m_capacity - ring_pos;
-	if (part1 >= len)
-	{
+	if (part1 >= len) {
 		memcpy(buf, m_buf + ring_pos, len);
-	}
-	else
-	{
+	} else {
 		memcpy(buf, m_buf + ring_pos, part1);
 		memcpy(buf + part1, m_buf, len - part1);
 	}
@@ -123,44 +101,34 @@ int eRamRingBuffer::read(off_t offset, uint8_t *buf, size_t len)
 	return (int)len;
 }
 
-off_t eRamRingBuffer::getWriteOffset() const
-{
+off_t eRamRingBuffer::getWriteOffset() const {
 	pthread_mutex_lock(&m_mutex);
 	off_t v = m_write_offset;
 	pthread_mutex_unlock(&m_mutex);
 	return v;
 }
 
-off_t eRamRingBuffer::getMinOffset() const
-{
+off_t eRamRingBuffer::getMinOffset() const {
 	pthread_mutex_lock(&m_mutex);
-	off_t v = (m_write_offset > (off_t)m_capacity)
-		? m_write_offset - (off_t)m_capacity
-		: 0;
+	off_t v = (m_write_offset > (off_t)m_capacity) ? m_write_offset - (off_t)m_capacity : 0;
 	pthread_mutex_unlock(&m_mutex);
 	return v;
 }
 
-int64_t eRamRingBuffer::bufferedMs() const
-{
+int64_t eRamRingBuffer::bufferedMs() const {
 	pthread_mutex_lock(&m_mutex);
 	int64_t v = (m_first_write_ms == 0) ? 0 : (nowMs() - m_first_write_ms);
 	pthread_mutex_unlock(&m_mutex);
 	return v;
 }
 
-off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const
-{
+off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const {
 	pthread_mutex_lock(&m_mutex);
-	off_t min_off = (m_write_offset > (off_t)m_capacity)
-		? m_write_offset - (off_t)m_capacity
-		: 0;
+	off_t min_off = (m_write_offset > (off_t)m_capacity) ? m_write_offset - (off_t)m_capacity : 0;
 	off_t best = -1;
-	for (size_t i = 0; i < m_total_blocks; i++)
-	{
-		const eRamBlock &b = m_blocks[i];
-		if (b.offset >= from_offset && b.offset >= min_off && b.is_access_point)
-		{
+	for (size_t i = 0; i < m_total_blocks; i++) {
+		const eRamBlock& b = m_blocks[i];
+		if (b.offset >= from_offset && b.offset >= min_off && b.is_access_point) {
 			if (best == -1 || b.offset < best)
 				best = b.offset;
 		}
@@ -174,30 +142,21 @@ off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const
 // ------------------------------------------------------------------
 DEFINE_REF(eRamTsSource);
 
-eRamTsSource::eRamTsSource(std::shared_ptr<eRamRingBuffer> buf)
-	: m_buf(buf)
-	, m_lapped(false)
-	, m_lapped_offset(0)
-	, m_start_offset(-1)
-{
+eRamTsSource::eRamTsSource(std::shared_ptr<eRamRingBuffer> buf) : m_buf(buf), m_lapped(false), m_lapped_offset(0), m_start_offset(-1) {
 	pthread_mutex_init(&m_offset_mutex, nullptr);
 }
 
-eRamTsSource::~eRamTsSource()
-{
+eRamTsSource::~eRamTsSource() {
 	pthread_mutex_destroy(&m_offset_mutex);
 }
 
-ssize_t eRamTsSource::read(off_t offset, void *buf, size_t count)
-{
+ssize_t eRamTsSource::read(off_t offset, void* buf, size_t count) {
 	if (!m_buf || !buf || count == 0)
 		return 0;
 	off_t min_off = m_buf->getMinOffset();
-	if (offset < min_off)
-	{
+	if (offset < min_off) {
 		off_t aligned = min_off + (188 - min_off % 188) % 188;
-		eDebug("[eRamTsSource] LAP pre-check: offset=%lld < min_off=%lld -> lapped (aligned=%lld)",
-			(long long)offset, (long long)min_off, (long long)aligned);
+		eDebug("[eRamTsSource] LAP pre-check: offset=%lld < min_off=%lld -> lapped (aligned=%lld)", (long long)offset, (long long)min_off, (long long)aligned);
 		pthread_mutex_lock(&m_offset_mutex);
 		m_lapped = true;
 		m_lapped_offset = aligned;
@@ -205,9 +164,8 @@ ssize_t eRamTsSource::read(off_t offset, void *buf, size_t count)
 		errno = EAGAIN;
 		return -1;
 	}
-	int rc = m_buf->read(offset, static_cast<uint8_t *>(buf), count);
-	if (rc < 0 && errno == EAGAIN)
-	{
+	int rc = m_buf->read(offset, static_cast<uint8_t*>(buf), count);
+	if (rc < 0 && errno == EAGAIN) {
 		// EAGAIN has two causes:
 		// 1. At write edge — push thread caught up, no new data yet (normal)
 		// 2. Data overwritten — ring buffer lapped the read position (error)
@@ -216,11 +174,9 @@ ssize_t eRamTsSource::read(off_t offset, void *buf, size_t count)
 		// min_off. Case 1 returns 0 so eFilePushThread treats it as
 		// "no data yet" and retries, rather than -1 which signals EOF.
 		off_t cur_min = m_buf->getMinOffset();
-		if (offset < cur_min)
-		{
+		if (offset < cur_min) {
 			off_t aligned = cur_min + (188 - cur_min % 188) % 188;
-			eDebug("[eRamTsSource] LAP TOCTOU: offset=%lld < cur_min=%lld -> lapped (aligned=%lld)",
-				(long long)offset, (long long)cur_min, (long long)aligned);
+			eDebug("[eRamTsSource] LAP TOCTOU: offset=%lld < cur_min=%lld -> lapped (aligned=%lld)", (long long)offset, (long long)cur_min, (long long)aligned);
 			pthread_mutex_lock(&m_offset_mutex);
 			m_lapped = true;
 			m_lapped_offset = aligned;
@@ -232,12 +188,10 @@ ssize_t eRamTsSource::read(off_t offset, void *buf, size_t count)
 	return (ssize_t)rc;
 }
 
-bool eRamTsSource::getLappedOffset(off_t &out_offset)
-{
+bool eRamTsSource::getLappedOffset(off_t& out_offset) {
 	pthread_mutex_lock(&m_offset_mutex);
 	bool lapped = m_lapped;
-	if (lapped)
-	{
+	if (lapped) {
 		out_offset = m_lapped_offset;
 		m_lapped = false;
 	}
@@ -245,13 +199,11 @@ bool eRamTsSource::getLappedOffset(off_t &out_offset)
 	return lapped;
 }
 
-off_t eRamTsSource::length()
-{
+off_t eRamTsSource::length() {
 	return m_buf ? m_buf->getWriteOffset() : -1;
 }
 
-off_t eRamTsSource::offset()
-{
+off_t eRamTsSource::offset() {
 	pthread_mutex_lock(&m_offset_mutex);
 	off_t o = m_start_offset;
 	if (o >= 0)
@@ -262,8 +214,7 @@ off_t eRamTsSource::offset()
 	return m_buf ? m_buf->getWriteOffset() : 0;
 }
 
-void eRamTsSource::setStartOffset(off_t o)
-{
+void eRamTsSource::setStartOffset(off_t o) {
 	pthread_mutex_lock(&m_offset_mutex);
 	m_start_offset = o;
 	pthread_mutex_unlock(&m_offset_mutex);
@@ -272,22 +223,16 @@ void eRamTsSource::setStartOffset(off_t o)
 // ------------------------------------------------------------------
 // eRamRecorder
 // ------------------------------------------------------------------
-eRamRecorder::eRamRecorder(eRamRingBuffer *buf, int packetsize)
-	: eDVBRecordScrambledThread(packetsize, 188 * 256, false, false)
-	, m_ring(buf)
-{
+eRamRecorder::eRamRecorder(eRamRingBuffer* buf, int packetsize) : eDVBRecordScrambledThread(packetsize, 188 * 256, false, false), m_ring(buf) {
 	// PCR scan loop in writeData() assumes 188-byte TS packets.
 	// RAM timeshift always uses packetsize=188 (see startTimeshift()),
 	// but assert here to catch any future misuse early.
 	assert(packetsize == 188);
 }
 
-eRamRecorder::~eRamRecorder()
-{
-}
+eRamRecorder::~eRamRecorder() {}
 
-int eRamRecorder::writeData(int len)
-{
+int eRamRecorder::writeData(int len) {
 	if (len <= 0 || !m_ring)
 		return 0;
 	if (m_serviceDescrambler)
@@ -295,11 +240,9 @@ int eRamRecorder::writeData(int len)
 
 	size_t ap_before = m_ts_parser.getAccessPointCount();
 	bool is_corrupt = false;
-	if (!getProtocol())
-	{
+	if (!getProtocol()) {
 		int parse_result = m_ts_parser.parseData(m_current_offset, m_buffer, len);
-		if (parse_result == -2)
-		{
+		if (parse_result == -2) {
 			is_corrupt = true;
 			m_event(eFilePushThreadRecorder::evtStreamCorrupt);
 		}
@@ -314,13 +257,10 @@ int eRamRecorder::writeData(int len)
 
 	bool is_ap = (m_ts_parser.getAccessPointCount() > ap_before);
 	int written = m_ring->write(m_buffer, (size_t)len, is_ap);
-	if (written > 0)
-	{
+	if (written > 0) {
 		m_current_offset += written;
 	}
 	return written;
 }
 
-void eRamRecorder::flush()
-{
-}
+void eRamRecorder::flush() {}
