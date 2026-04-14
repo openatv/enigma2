@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
-"PO-Revision-Date: 2026-02-13 00:17+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-03-29 21:51+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -33,9 +33,6 @@ msgid ""
 msgstr ""
 "\n"
 "Registrazione in corso."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Tasto menu: seleziona quad channel"
@@ -2676,6 +2673,9 @@ msgstr "Modalità creazione"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Automatico (non disponibile)"
+
 msgid "Auto Language"
 msgstr "Lingua automatica"
 
@@ -2732,9 +2732,6 @@ msgstr "Modalità video automatica selezionata"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Modalità video automatica selezionata per la TV."
-
-msgid "Auto (not available)"
-msgstr "Automatico (non disponibile)"
 
 msgid "AutoCam Settings"
 msgstr "Impostazioni AutoCam"
@@ -5219,6 +5216,16 @@ msgstr "Creazione file system"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Creazione di un hard link al file timeshift non riuscita!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"La creazione o l'attivazione del file di swap non è riuscita..\n"
+"\n"
+"%s"
+
 msgid "Creating partition"
 msgstr "Creazione partizione"
 
@@ -5732,6 +5739,9 @@ msgstr "Formato dell'ora del registro debug *"
 msgid "Decoder release strategy"
 msgstr "Strategia di rilascio del decoder"
 
+msgid "Decoder start delay"
+msgstr "Ritardo di avvio del decoder"
+
 msgid "Decoder start timeout"
 msgstr "Timeout di avvio del decoder"
 
@@ -5788,7 +5798,7 @@ msgid "Default right column directory"
 msgstr "Cartella predefinita colonna di destra"
 
 msgid "Default sort order for directories in the left column."
-msgstr "Ordinamento predefinito per le cartelle nella colonna di sinistra"
+msgstr "Ordinamento predefinito per le cartelle nella colonna di sinistra."
 
 msgid "Default sort order for directories in the right column."
 msgstr "Ordinamento predefinito per le cartelle nella colonna di destra"
@@ -11245,8 +11255,8 @@ msgstr "Numero massimo di giorni in EPG"
 msgid "Maximum space used (MB)"
 msgstr "Spazio massimo usato (MB)"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr "Tempo massimo di attesa per i dati in arrivo e le chiavi di decriptazione (CW) prima di avviare il decoder. Di solito entrambi arrivano molto più velocemente e questo vale solo per casi speciali."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
+msgstr "Tempo massimo di attesa per la prima chiave di decodifica (CW) prima di avviare il decoder. 'Disabilitato' avvia il decoder immediatamente senza attendere."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -15846,7 +15856,7 @@ msgstr "Salvataggio di file timeshift"
 msgid "Scaler sharpness"
 msgstr "Nitidezza scaler"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Dejagging verticale scaler"
 
 msgid "Scaling mode"
@@ -16815,6 +16825,9 @@ msgstr "Seleziona cartella predefinita da usare se la cartella della colonna di 
 
 msgid "Select the delay before the timer activates."
 msgstr "Seleziona ritardo prima dell'attivazione del timer."
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr "Seleziona ritardo per il buffering dei dati decodificati prima di avviare la riproduzione. Questo può ridurre le interruzioni dell'audio AC3 assicurando che siano disponibili dati sufficienti all'avvio del decoder. Valori più alti sono più stabili, ma aumentano il tempo di cambio canale."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Seleziona ritardo da usatre quando si chiude un servizio di Stream Relay prima di riallocare il tuner per un altro servizio. L'uso di '0' è consigliato solo per apparecchi con più tuner satellitari."
@@ -20701,34 +20714,10 @@ msgstr "Questa opzione consente di ridurre il rumore dell'immagine. Ovviamente q
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Questa opzione consente di impostare il livello di contrasto dinamico dell'immagine."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Questa opzione consente di configurare la profondità del colore per UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Questa opzione consente di configurare la colorimetria per HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Questa opzione consente di configurare lo spazio colore da Auto a RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Questa opzione consente di abilitare o disabilitare la modalità colore a 10 bit"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Questa opzione consente di abilitare o disabilitare la modalità colore a 12 bit"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Questa opzione consente di forzare le modalità HDR per UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Questa opzione consente di forzare le modalità HDR10 per UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Questa opzione consente di forzare le modalità HLG per UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Questa opzione consente di abilitare il filtro smoothing per controllare il processo di dithering."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Questa opzione consente di abilitare il dejagging verticale dello scaler."
 
 msgid "This option allows you to Power Off the display."
@@ -20744,7 +20733,7 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Questa opzione consente di aumentare i toni verdi nell'immagine."
 
 msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Questa opzione consente di ignorare il controllo EDID HDMI"
+msgstr "Questa opzione consente di ignorare il controllo EDID HDMI."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Questa opzione consente di modificare la posizione dell'altoparlante virtuale."
@@ -20809,8 +20798,32 @@ msgstr "Questa opzione consente di scegliere a cosa si accede premendo il primo 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Questa opzione consente di scegliere se visualizzare o meno le informazioni sul genere per l'evento."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Questa opzione consente di configurare la profondità del colore per UHD."
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Questa opzione consente di configurare la colorimetria per HDR."
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Questa opzione consente di configurare lo spazio colore da Auto a RGB."
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Questa opzione consente di abilitare l'audio surround 3D."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Questa opzione consente di abilitare o disabilitare la modalità colore a 10 bit."
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Questa opzione consente di abilitare o disabilitare la modalità colore a 12 bit."
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Questa opzione consente di forzare le modalità HDR per UHD."
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Questa opzione consente di forzare le modalità HDR10 per UHD."
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Questa opzione consente di forzare le modalità HLG per UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Questa opzione consente di impostare valori di offset per diverse risoluzioni Letterbox."
@@ -20828,7 +20841,7 @@ msgid "This option allows you to the SNR as a percentage (not all receivers supp
 msgstr "Questa opzione consente di avere l'SNR in percentuale (non tutti i ricevitori lo supportano)."
 
 msgid "This option allows you to use all HDMI Modes."
-msgstr "Questa opzione consente di usare tutte le modalità HDMI"
+msgstr "Questa opzione consente di usare tutte le modalità HDMI."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Questa opzione consente di visualizzare le vecchie e le nuove impostazioni fianco a fianco."
@@ -24366,6 +24379,12 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+#~ msgstr "Tempo massimo di attesa per i dati in arrivo e le chiavi di decriptazione (CW) prima di avviare il decoder. Di solito entrambi arrivano molto più velocemente e questo vale solo per casi speciali."
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Errore nel recupero della posizione di 'epg.dat' sul ricevitore remoto!"

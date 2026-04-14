@@ -60,7 +60,7 @@ fi
 # So if parameters are changed in Makefile please report the same changes in this script.
 #
 printf "Creating temporary file enigma2-py.pot\n"
-find $findoptions .. -name "*.py" -exec xgettext --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2-py.pot {} \+
+find $findoptions .. -name "*.py" -exec xgettext --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d enigma2 --package-name="OpenATV Enigma2" -s -o enigma2-py.pot {} \+
 $localgsed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
 printf "Creating temporary file enigma2-xml.pot\n"
 which python

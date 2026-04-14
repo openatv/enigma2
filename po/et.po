@@ -2,9 +2,9 @@
 # openATV <openatv@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV-Enigma2\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -28,9 +28,6 @@ msgid ""
 msgstr ""
 "\n"
 "Toimub salvestamine."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu: Vali Quad PiP kanal"
@@ -2708,6 +2705,10 @@ msgid "Auto"
 msgstr "Auto"
 
 #
+msgid "Auto (not available)"
+msgstr "Autom. (pole saadaval)"
+
+#
 msgid "Auto Language"
 msgstr "Automaatne keelevalik"
 
@@ -2765,10 +2766,6 @@ msgstr ""
 
 msgid "Auto video mode selected for the TV."
 msgstr ""
-
-#
-msgid "Auto (not available)"
-msgstr "Autom. (pole saadaval)"
 
 msgid "AutoCam Settings"
 msgstr ""
@@ -5289,6 +5286,13 @@ msgstr "Failisüsteemi loomine"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Ajanihke failile püsiviida loomine nurjus!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Partitsiooni loomine"
 
@@ -5813,6 +5817,9 @@ msgid "Debug log time format *"
 msgstr ""
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11459,7 +11466,7 @@ msgstr "Suurim EPG kuvatav päevade arv"
 msgid "Maximum space used (MB)"
 msgstr "Suurim lubatud kettaruum (MB)"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -16240,7 +16247,7 @@ msgid "Scaler sharpness"
 msgstr "Skaleerimise teravus"
 
 # VideoEnhancement
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Püstloodsete sakiservade eemaldamine"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
@@ -17221,6 +17228,9 @@ msgid "Select the default directory to be used if the right column directory is 
 msgstr ""
 
 msgid "Select the delay before the timer activates."
+msgstr ""
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
@@ -21151,36 +21161,12 @@ msgstr "See valik võimaldab vähendada pildi plokkmüra (block-noise). Seda teh
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Siin saab muuta pildi dünaamilise kontrasti taset."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Siin saab seadistada UHD värvisügavust"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Siin saab seadistada HDR värviprofiili"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "See valik võimaldab muuta värviruumi automaatne > RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "See valik võimaldab 10-bit värvirežiimi lubada või keelata"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "See valik võimaldab 12-bit värvirežiimi lubada või keelata"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "See valik võimaldab HDR režiimide jõuga kasutamise UHD jaoks"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "See valik võimaldab HDR10 režiimide jõuga kasutamise UHD jaoks"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "See valik võimaldab HLG režiimide jõuga kasutamise UHD jaoks"
-
 # VideoEnhancement
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "See valik võtab kasutusse pehmendusfiltri värvitoonide segamisel."
 
 # VideoEnhancement
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "See valik võtab kasutusse skaleerija püstloodse sakiservade eemaldamise."
 
 # Box Display
@@ -21264,9 +21250,33 @@ msgstr "See valik määrab, kuhu kursor esimesel nupuvajutusel liigub 'Kiirtegev
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "See valik määrab, kuidas näidatakse kulunud ja allesolevat aega telesaadete esitusel."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Siin saab seadistada UHD värvisügavust"
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Siin saab seadistada HDR värviprofiili"
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "See valik võimaldab muuta värviruumi automaatne > RGB"
+
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Selles valikus saad lubada väljundile 3D ruumheli."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "See valik võimaldab 10-bit värvirežiimi lubada või keelata"
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "See valik võimaldab 12-bit värvirežiimi lubada või keelata"
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "See valik võimaldab HDR režiimide jõuga kasutamise UHD jaoks"
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "See valik võimaldab HDR10 režiimide jõuga kasutamise UHD jaoks"
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "See valik võimaldab HLG režiimide jõuga kasutamise UHD jaoks"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
@@ -24883,6 +24893,9 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

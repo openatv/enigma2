@@ -5,20 +5,21 @@
 # Bujar Tafili <bujartafili@yahoo.com>, 2021.
 # BliNeR-KeY <blinerg@gmail.com>, 2021, 2022.
 # W L <wl@mailhole.de>, 2023.
+# Denis Çerri <deniscerri3@gmail.com>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
-"PO-Revision-Date: 2023-12-11 00:50+0000\n"
-"Last-Translator: W L <wl@mailhole.de>\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-04-03 18:09+0000\n"
+"Last-Translator: Denis Çerri <deniscerri3@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 msgid ""
 "\n"
@@ -33,9 +34,6 @@ msgid ""
 msgstr ""
 "\n"
 "Regjistrimi po vijon."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Butoni i Menysë: Përzgjidhni kanalin e katërfishtë"
@@ -100,7 +98,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Përditësimi i Bootloader-it !!"
 
 msgid "# = Reboot required if this item is changed."
-msgstr ""
+msgstr "# = Restart i detyrueshëm nëse ky artikull ndryshohet."
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -226,8 +224,8 @@ msgstr "%.2f GB"
 #, python-format
 msgid "%.2f Second"
 msgid_plural "%.2f Seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%.2f Sekondë"
+msgstr[1] "%.2f Sekonda"
 
 #, python-format
 msgid "%02d.%02d."
@@ -2684,6 +2682,9 @@ msgstr "Modalitet autorisimi"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Auto(nuk është në dispozicion)"
+
 msgid "Auto Language"
 msgstr "Gjuha automatike"
 
@@ -2740,9 +2741,6 @@ msgstr ""
 
 msgid "Auto video mode selected for the TV."
 msgstr ""
-
-msgid "Auto (not available)"
-msgstr "Auto(nuk është në dispozicion)"
 
 msgid "AutoCam Settings"
 msgstr ""
@@ -5221,6 +5219,13 @@ msgstr "Krijimi i sistemit të skedarëve"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Krijimi i skedarit Hardlink në Timeshift dështoi!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Krijimi i ndarjes"
 
@@ -5730,6 +5735,9 @@ msgid "Debug log time format *"
 msgstr "Formati i kohës së regjistrit të korrigjimit *"
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11235,7 +11243,7 @@ msgstr ""
 msgid "Maximum space used (MB)"
 msgstr ""
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -15797,7 +15805,7 @@ msgstr ""
 msgid "Scaler sharpness"
 msgstr ""
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr ""
 
 msgid "Scaling mode"
@@ -16765,6 +16773,9 @@ msgid "Select the default directory to be used if the right column directory is 
 msgstr ""
 
 msgid "Select the delay before the timer activates."
+msgstr ""
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
@@ -20588,34 +20599,10 @@ msgstr ""
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
-msgid "This option allows you to config the Colordepth for UHD."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr ""
 
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr ""
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr ""
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr ""
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr ""
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr ""
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr ""
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr ""
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
-msgstr ""
-
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr ""
 
 msgid "This option allows you to Power Off the display."
@@ -20696,7 +20683,31 @@ msgstr ""
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr ""
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr ""
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr ""
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr ""
+
 msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr ""
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr ""
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr ""
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr ""
+
+msgid "This option allows you to force the HLG Modes for UHD."
 msgstr ""
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
@@ -24178,6 +24189,9 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

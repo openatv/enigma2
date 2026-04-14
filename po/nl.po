@@ -5,9 +5,9 @@
 # jbleyel <jbleyel@gmx.net>, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -33,9 +33,6 @@ msgid ""
 msgstr ""
 "\n"
 "Opname is bezig."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu knop : Selecteer Quad zender"
@@ -2683,6 +2680,9 @@ msgstr "Bewerkingswijze"
 msgid "Auto"
 msgstr "Automatisch"
 
+msgid "Auto (not available)"
+msgstr "Auto (niet beschikbaar)"
+
 msgid "Auto Language"
 msgstr "Automatische taalkeuze"
 
@@ -2739,9 +2739,6 @@ msgstr "Automatische beeldresolutie geselecteerd"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Automatische beeldresolutie geselecteerd voor de TV."
-
-msgid "Auto (not available)"
-msgstr "Auto (niet beschikbaar)"
 
 msgid "AutoCam Settings"
 msgstr "AutoCam instellingen"
@@ -5336,6 +5333,13 @@ msgstr "Creëert bestandssyeteem"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Creëert partitie"
 
@@ -5847,6 +5851,9 @@ msgid "Debug log time format *"
 msgstr "Debug log tijd format *"
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11396,7 +11403,7 @@ msgstr "Maximum aantal dagen in EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maximale grootte (MB):"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -16005,7 +16012,7 @@ msgstr "Bewaart Timeshift bestanden"
 msgid "Scaler sharpness"
 msgstr "Scaler scherpte"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Scaler verticale dejagging"
 
 msgid "Scaling mode"
@@ -16984,6 +16991,9 @@ msgstr "Selecteer de standaardmap die moet worden gebruikt als de map in de rech
 
 msgid "Select the delay before the timer activates."
 msgstr "Kies de vertraging voordat de timer actief moet worden."
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "De vertraging instellen, die bij het zappen van een Stream Relay zender wordt gebruikt, voordat de tuner naar een andere zender schakelt. Het gebruik van '0' wordt alleen aanbevolen bij ontvangers met meerdere satelliet-tuners."
@@ -20914,36 +20924,12 @@ msgstr ""
 "Hiermee bepaalt u de mate van dynamisch contrast in het beeld.\n"
 "(Default: 0)"
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Met deze optie kunt u de kleurdiepte van UHD instellen"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Met deze optie kunt u de Colorimetry van HDR instellen"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Met deze optie kunt u de kleurruimte van Automatisch naar RGB wijzigen."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Met deze optie kunt u de 10 Bit kleurmodus in of uitschakelen"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Met deze optie kunt u de 12 Bit kleurmodus in of uitschakelen"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Met deze optie kunt u de HDR10 modus voor UHD forceren"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Met deze optie kunt u de HDR10 modus voor UHD forceren"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Met deze optie kunt u de HLG modus voor UHD forceren"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr ""
 "Met deze optie kunt u een Dithering-filter activeren. Dithering is het gebruiken van tussenkleuren om het beeld meer vloeiender, dus minder blokkerig te maken.\n"
 "(Default: Gedeactiveerd)"
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr ""
 "Met deze optie kunt dat u de verticale scaler dejagging inschakelen.\n"
 "(Default: Gedeactiveerd)"
@@ -21032,8 +21018,32 @@ msgstr "Stel hier in wat er moet gebeuren wanneer u op de eerste knop drukt in d
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Hier kunt u instellen of u genre informatie voor het programma wilt zien of niet."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Met deze optie kunt u de kleurdiepte van UHD instellen"
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Met deze optie kunt u de Colorimetry van HDR instellen"
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Met deze optie kunt u de kleurruimte van Automatisch naar RGB wijzigen."
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "U kunt deze optie gebruiken om 3D Surround geluid te activeren."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Met deze optie kunt u de 10 Bit kleurmodus in of uitschakelen"
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Met deze optie kunt u de 12 Bit kleurmodus in of uitschakelen"
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Met deze optie kunt u de HDR10 modus voor UHD forceren"
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Met deze optie kunt u de HDR10 modus voor UHD forceren"
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Met deze optie kunt u de HLG modus voor UHD forceren"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Offset-waarden voor diverse Letterbox-resoluties instellen."
@@ -24634,6 +24644,9 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Fout bij het lezen van de epg.dat locatie op de Fallback tuner!"

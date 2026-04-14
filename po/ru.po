@@ -7,9 +7,9 @@
 # Warder <ciksa@seznam.cz>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: Enigma2 OpenXXX\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -34,9 +34,6 @@ msgid ""
 msgstr ""
 "\n"
 "Идёт запись."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Кнопка MENU: Выбор канала в 4x PiP"
@@ -2712,6 +2709,9 @@ msgstr "Режиме разработки"
 msgid "Auto"
 msgstr "Автоматически"
 
+msgid "Auto (not available)"
+msgstr "Авто (Не доступен)"
+
 msgid "Auto Language"
 msgstr "Автовыбор языка"
 
@@ -2768,9 +2768,6 @@ msgstr "Выбран автоматический режим видео"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Для телевизора выбран автоматический видеорежим."
-
-msgid "Auto (not available)"
-msgstr "Авто (Не доступен)"
 
 msgid "AutoCam Settings"
 msgstr "Настройки AutoCam"
@@ -5257,6 +5254,13 @@ msgstr "Создание файловой системы"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Ошибка создания жёсткой ссылки таймшифта!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Создание раздела"
 
@@ -5768,6 +5772,9 @@ msgid "Debug log time format *"
 msgstr "Формат времени лога отладки *"
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11288,7 +11295,7 @@ msgstr "Максимальное количество дней в ТВ-гиде"
 msgid "Maximum space used (MB)"
 msgstr "Максимальное использование пространства диска (Mб)"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -15891,7 +15898,7 @@ msgstr "Сохранение файлов таймшифта"
 msgid "Scaler sharpness"
 msgstr "Резкость при масштабировании"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Cглаживание ступенчатости при масштабировании"
 
 msgid "Scaling mode"
@@ -16863,6 +16870,9 @@ msgstr "Выберите каталог по умолчанию, который 
 
 msgid "Select the delay before the timer activates."
 msgstr "Выберите задержку перед активацией таймера."
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Задайте время задержки требуемой для остановки внутренней ретрансляции потока перед переключением занятого тюнера на другой канал. Значение '0' рекомендуется только для устройств с несколькими спутниковыми тюнерами."
@@ -20754,34 +20764,10 @@ msgstr "Опция позволяет уменьшить блочность из
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Эта опция позволяет установить значение для динамической контрастности изображения."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Эта опция позволяет изменять глубину цвета в режиме UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Эта опция позволяет настроить цветопередачу для HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Эта опция позволяет настроить цветовое пространство от Авто до RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Этот параметр позволяет включить или выключить 10-битный цветовой режим"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Эта опция позволяет включить или отключить 12-битный цветовой режим"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Эта опция позволяет принудительно установить режимы HDR для UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Эта опция позволяет принудительно установить режимы HDR10 для UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Эта опция позволяет принудительно установить режимы HLG для UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Эта опция позволяет активировать сглаживающий фильтр, чтобы контролировать процесс отбора."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Эта опция позволяет включить сглаживание ступенчатости при масштабировании картинки."
 
 msgid "This option allows you to Power Off the display."
@@ -20862,8 +20848,32 @@ msgstr "Этот параметр определяет, куда будет пр
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Эта опция позволяет Вам выбрать, отображать ли информацию о жанре для события."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Эта опция позволяет изменять глубину цвета в режиме UHD"
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Эта опция позволяет настроить цветопередачу для HDR"
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Эта опция позволяет настроить цветовое пространство от Авто до RGB"
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Позволяет включить поддержку объемного звука 3D."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Этот параметр позволяет включить или выключить 10-битный цветовой режим"
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Эта опция позволяет включить или отключить 12-битный цветовой режим"
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Эта опция позволяет принудительно установить режимы HDR для UHD"
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Эта опция позволяет принудительно установить режимы HDR10 для UHD"
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Эта опция позволяет принудительно установить режимы HLG для UHD"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Этот параметр позволяет задать значения компенсации масштаба для различных разрешений в режиме ящика."
@@ -24420,6 +24430,9 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Ошибка при получении местоположения epg.dat на резервном ресивере!"

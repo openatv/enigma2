@@ -1092,6 +1092,7 @@
 		<!--item level="2" text="Remote control model shown" description="Which remote control gets shown. Only influences graphical representation.">config.usage.rc_model</item-->
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files, e.g. mp4.">config.usage.useVideoCuesheet</item>
 		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files, e.g. mp3.">config.usage.useAudioCuesheet</item>
+		<item level="2" text="Enable extended cut file support" description="Enable extended cut file support. This will write cut with more information and not only marker.">config.usage.nativeCuesheetSupport</item>
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files.">config.usage.useChapterInfo</item>
 		<!--item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
 	</setup>

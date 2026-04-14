@@ -129,6 +129,7 @@ def InitUsageConfig():
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)  # Use marker for video media file.
 	config.usage.useAudioCuesheet = ConfigYesNo(default=True)  # Use marker for audio media file.
 	config.usage.useChapterInfo = ConfigYesNo(default=True)  # Show chapter positions (gst >= 1 and supported media files).
+	config.usage.nativeCuesheetSupport = ConfigYesNo(default=False)  # Enable extended cut file support.
 
 	config.usage.shutdownOK = ConfigBoolean(default=True)
 	config.usage.shutdownNOK_action = ConfigSelection(default="normal", choices=[

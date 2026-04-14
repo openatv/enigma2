@@ -1,9 +1,9 @@
 # T. Rylle <dk-translation@pm.me>, 2021.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -28,9 +28,6 @@ msgid ""
 msgstr ""
 "\n"
 "Optagelse i gang."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu taste: Firekanals valg"
@@ -2677,6 +2674,9 @@ msgstr "Oprettelsestilstand"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Auto (ikke tilgængelig)"
+
 msgid "Auto Language"
 msgstr "Automatisk sprog"
 
@@ -2733,9 +2733,6 @@ msgstr ""
 
 msgid "Auto video mode selected for the TV."
 msgstr ""
-
-msgid "Auto (not available)"
-msgstr "Auto (ikke tilgængelig)"
 
 msgid "AutoCam Settings"
 msgstr ""
@@ -5222,6 +5219,13 @@ msgstr "Opretter filsystem"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Oprettelse af hårdlænke til Timeshift-fil mislykkedes!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Opretter partition"
 
@@ -5731,6 +5735,9 @@ msgid "Debug log time format *"
 msgstr "Fejlsøgningslog tidsformat *"
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11283,7 +11290,7 @@ msgstr "Maksimal antal dage i EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maksimal plads brugt (MB):"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -15934,7 +15941,7 @@ msgstr "Gemmer Timeshift filer"
 msgid "Scaler sharpness"
 msgstr "Skaler skarphed"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Lodret dejagging skalering"
 
 msgid "Scaling mode"
@@ -16904,6 +16911,9 @@ msgid "Select the default directory to be used if the right column directory is 
 msgstr ""
 
 msgid "Select the delay before the timer activates."
+msgstr ""
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
@@ -20775,34 +20785,10 @@ msgstr "Denne mulighed tillader at reducere block-støj i billedet. Dette er nat
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Denne mulighed tillader at sætte niveauet for billedets dynamisk kontrast."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Denne mulighed tillader dig at konfigurere farvedybden for UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Denne mulighed tillader dig at konfigurere kolorimetri for HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Denne mulighed tillader dig at konfigurere farverummet fra Auto til RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Denne mulighed tillader dig at aktivere eller deaktivere 10 bit farvetilstanden"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Denne mulighed tillader dig at aktivere eller deaktivere 12 bit farvetilstanden"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Denne mulighed tillader dig at tvinge HDR tilstanden til UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Denne mulighed tillader dig at tvinge HDR10 tilstanden til UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Denne mulighed tillader dig at tvinge HLG Tilstande til UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Denne mulighed tillader dig at aktivere udjævningsfilter til at styre simuleringsprocessen."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Denne mulighed tillader dig at aktivere lodret dejagging."
 
 msgid "This option allows you to Power Off the display."
@@ -20883,8 +20869,32 @@ msgstr "Denne mulighed tillader dig at vælge hvad det første knaptryk hopper t
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Denne mulighed tillader dig at vælge om genre-information for begivenheden skal vises eller ikke."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Denne mulighed tillader dig at konfigurere farvedybden for UHD"
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Denne mulighed tillader dig at konfigurere kolorimetri for HDR"
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Denne mulighed tillader dig at konfigurere farverummet fra Auto til RGB"
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Denne mulighed tillader dig at aktivere 3D Surround Sound."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Denne mulighed tillader dig at aktivere eller deaktivere 10 bit farvetilstanden"
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Denne mulighed tillader dig at aktivere eller deaktivere 12 bit farvetilstanden"
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Denne mulighed tillader dig at tvinge HDR tilstanden til UHD"
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Denne mulighed tillader dig at tvinge HDR10 tilstanden til UHD"
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Denne mulighed tillader dig at tvinge HLG Tilstande til UHD"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
@@ -24416,6 +24426,9 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

@@ -4664,43 +4664,49 @@ void eServiceMP3::saveCuesheet() {
 
 	filename.append(".cuts");
 
-	/* Update CUT_TYPE_LAST (type 3) with the last known play position,
-	 * analogous to what eDVBServicePlay::stop() does for TV recordings.
-	 * m_last_seek_pos holds the cached position from getPlayPosition().
-	 * m_cutlist_enabled bit 2 is the "don't remember" flag, set by
-	 * MovieSelection via setCutListEnable(2) for background playback.
-	 * Don't save if position is < 10 seconds or within 10 seconds of end. */
+	bool nativeCuesheetSupport = eSimpleConfig::getBool("config.usage.nativeCuesheetSupport", false);
 
-	/* Save old CUT_TYPE_LAST as CUT_TYPE_SAVEDLAST before replacing it */
-	pts_t old_last = 0;
-	for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();) {
-		if (i->what == 3) { /* CUT_TYPE_LAST */
-			old_last = i->where;
-			i = m_cue_entries.erase(i);
-		} else if (i->what == 4) { /* CUT_TYPE_SAVEDLAST */
-			i = m_cue_entries.erase(i);
-		} else
-			++i;
-	}
-	if (old_last > 0) {
-		m_cue_entries.insert(cueEntry(old_last, 4));
-	}
-	if ((m_cutlist_enabled & 2) == 0 && m_last_seek_pos > 900000) {
-		m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-		eDebug("[eServiceMP3] last play position saved: %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
-	}
+	if(nativeCuesheetSupport)
+	{
 
-	/* Update CUT_TYPE_LENGTH with the media length */
-	for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();) {
-		if (i->what == 5) /* CUT_TYPE_LENGTH */
-			i = m_cue_entries.erase(i);
-		else
-			++i;
-	}
-	if (m_media_lenght > 0) {
-		m_cue_entries.insert(cueEntry(m_media_lenght, 5));
-	}
+		/* Update CUT_TYPE_LAST (type 3) with the last known play position,
+		* analogous to what eDVBServicePlay::stop() does for TV recordings.
+		* m_last_seek_pos holds the cached position from getPlayPosition().
+		* m_cutlist_enabled bit 2 is the "don't remember" flag, set by
+		* MovieSelection via setCutListEnable(2) for background playback.
+		* Don't save if position is < 10 seconds or within 10 seconds of end. */
 
+		/* Save old CUT_TYPE_LAST as CUT_TYPE_SAVEDLAST before replacing it */
+		pts_t old_last = 0;
+		for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();) {
+			if (i->what == 3) { /* CUT_TYPE_LAST */
+				old_last = i->where;
+				i = m_cue_entries.erase(i);
+			} else if (i->what == 4) { /* CUT_TYPE_SAVEDLAST */
+				i = m_cue_entries.erase(i);
+			} else
+				++i;
+		}
+		if (old_last > 0) {
+			m_cue_entries.insert(cueEntry(old_last, 4));
+		}
+		if ((m_cutlist_enabled & 2) == 0 && m_last_seek_pos > 900000) {
+			m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
+			eDebug("[eServiceMP3] last play position saved: %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
+		}
+
+		/* Update CUT_TYPE_LENGTH with the media length */
+		for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();) {
+			if (i->what == 5) /* CUT_TYPE_LENGTH */
+				i = m_cue_entries.erase(i);
+			else
+				++i;
+		}
+		if (m_media_lenght > 0) {
+			m_cue_entries.insert(cueEntry(m_media_lenght, 5));
+		}
+
+	}
 
 	struct stat s = {};
 	bool removefile = false;

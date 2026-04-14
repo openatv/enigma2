@@ -15,7 +15,7 @@ class eDVBAudio: public iObject
 	DECLARE_REF(eDVBAudio);
 private:
 	ePtr<eDVBDemux> m_demux;
-	int m_fd, m_fd_demux, m_dev, m_is_freezed;
+	int m_fd, m_fd_demux, m_dev, m_is_freezed, m_bypass;
 	static int m_debug;
 #ifdef DREAMNEXTGEN
 	eTsParser *m_TsPaser;
@@ -47,7 +47,7 @@ private:
 	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	sigc::signal<void(struct iTSMPEGDecoder::videoEvent)> m_event;
-	int m_width, m_height, m_framerate, m_aspect, m_progressive, m_gamma;
+	int m_width, m_height, m_framerate, m_aspect, m_progressive, m_gamma, m_streamtype;
 	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
 #ifdef DREAMNEXTGEN
 	ePtr<eTimer> m_sysfs_poll_timer;

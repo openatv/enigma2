@@ -3,53 +3,55 @@ from Tools.SubRip import SubRipParser
 from Tools.TolerantDict import TolerantDict
 
 
-class SubtitleRenderer():
+class SubtitleRenderer:
 	def __init__(self, player):
 		self.player = player
 		self.subtitle_window = player.subtitle_window
-		self.checkSubs = eTimer()
-		self.checkSubs.callback.append(self.checkPTSAndShowSub)
-		self.hideSubs = eTimer()
-		self.hideSubs.callback.append(self.onhideSubs)
-		self.currentSubsList = TolerantDict({})
-		self.currentSubPTS = -1
-		self.currentSubEndPTS = -1
+		self.check_subs = eTimer()
+		self.check_subs.callback.append(self._check_pts_and_show_sub)
+		self.hide_subs = eTimer()
+		self.hide_subs.callback.append(self._on_hide_subs)
+		self.current_subs_list = TolerantDict({})
+		self.current_sub_pts = -1
+		self.current_sub_end_pts = -1
 
-	def checkPTSAndShowSub(self):
+	def _check_pts_and_show_sub(self):
 		seek = self.player.getSeek()
 		if seek is None:
 			return
 		pos = seek.getPlayPosition()
-		currentPTS = int(pos[1])
+		current_pts = int(pos[1])
 
-		if self.currentSubEndPTS > -1 and currentPTS >= self.currentSubEndPTS:
-			self.onhideSubs()
+		if self.current_sub_end_pts > -1 and current_pts >= self.current_sub_end_pts:
+			self._on_hide_subs()
 
-		currentLine = None
-		window_matches = self.currentSubsList.get_all_in_window(currentPTS, 150 * 90)
+		current_line = None
+		window_matches = self.current_subs_list.get_all_in_window(current_pts, 150 * 90)
 		if window_matches and len(window_matches) > 0:
-			currentLine = window_matches[0][1]
+			current_line = window_matches[0][1]
 
-		if currentLine and (self.currentSubPTS < 0 or self.currentSubPTS != currentLine["start"]) and currentPTS >= currentLine["start"]:
-			self.currentSubPTS = currentLine["start"]
-			self.currentSubEndPTS = currentLine["end"]
-			subtitleText = currentLine["text"]
-			self.subtitle_window.showSubtitles(subtitleText)
+		if current_line and (self.current_sub_pts < 0 or self.current_sub_pts != current_line["start"]) and current_pts >= current_line["start"]:
+			self.current_sub_pts = current_line["start"]
+			self.current_sub_end_pts = current_line["end"]
+			subtitle_text = current_line["text"]
+			self.subtitle_window.showSubtitles(subtitle_text)
 
-	def onhideSubs(self):
-		self.currentSubEndPTS = -1
+	def _on_hide_subs(self):
+		self.current_sub_end_pts = -1
 		self.subtitle_window.showSubtitles("")
 		self.subtitle_window.hideSubtitles()
 
 	def loadSubtitles(self, text, subtitleType):
 		if subtitleType == "SRT":
 			subs_parser = SubRipParser()
-			self.currentSubsList = TolerantDict(subs_parser.parse(text))
+			self.current_subs_list = TolerantDict(subs_parser.parse(text))
+			return True
+		return False
 
 	def stopSubtitles(self):
-		self.checkSubs.stop()
-		self.currentSubPTS = -1
-		self.currentSubsList = TolerantDict({})
+		self.check_subs.stop()
+		self.current_sub_pts = -1
+		self.current_subs_list = TolerantDict({})
 
 	def startSubtitle(self):
-		self.checkSubs.start(10)
+		self.check_subs.start(10)

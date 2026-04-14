@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -26,9 +26,6 @@ msgstr ""
 msgid ""
 "\n"
 "Recording in progress."
-msgstr ""
-
-msgid " "
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -2748,6 +2745,9 @@ msgstr "โหมดแต่ง"
 msgid "Auto"
 msgstr "อัตโนมัติ"
 
+msgid "Auto (not available)"
+msgstr ""
+
 msgid "Auto Language"
 msgstr ""
 
@@ -2808,9 +2808,6 @@ msgid "Auto video mode selected"
 msgstr ""
 
 msgid "Auto video mode selected for the TV."
-msgstr ""
-
-msgid "Auto (not available)"
 msgstr ""
 
 msgid "AutoCam Settings"
@@ -5333,6 +5330,13 @@ msgstr "กำลังตรวจสอบระบบไฟล์..."
 msgid "Creating hard link to time shift file failed!"
 msgstr ""
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr ""
 
@@ -5856,6 +5860,9 @@ msgid "Debug log time format *"
 msgstr ""
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11470,7 +11477,7 @@ msgstr ""
 msgid "Maximum space used (MB)"
 msgstr ""
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -16212,7 +16219,7 @@ msgstr ""
 msgid "Scaler sharpness"
 msgstr "Scaler sharpness"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr ""
 
 #, fuzzy
@@ -17195,6 +17202,9 @@ msgid "Select the default directory to be used if the right column directory is 
 msgstr ""
 
 msgid "Select the delay before the timer activates."
+msgstr ""
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
@@ -21089,34 +21099,10 @@ msgstr ""
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
-msgid "This option allows you to config the Colordepth for UHD."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr ""
 
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr ""
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr ""
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr ""
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr ""
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr ""
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr ""
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr ""
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
-msgstr ""
-
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr ""
 
 msgid "This option allows you to Power Off the display."
@@ -21197,7 +21183,31 @@ msgstr ""
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr ""
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr ""
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr ""
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr ""
+
 msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr ""
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr ""
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr ""
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr ""
+
+msgid "This option allows you to force the HLG Modes for UHD."
 msgstr ""
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."

@@ -4,9 +4,9 @@
 # Daniel Nylander <daniel@danielnylander.se>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -31,9 +31,6 @@ msgid ""
 msgstr ""
 "\n"
 "Inspelning pågår."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menyknapp : Välj fyrkanal"
@@ -2793,6 +2790,9 @@ msgstr "Läge för författande"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Auto(ej tillgänglig)"
+
 msgid "Auto Language"
 msgstr "Auto Språk"
 
@@ -2856,9 +2856,6 @@ msgstr "Auto-videoläge valt"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Auto-videoläge valt för TV:n."
-
-msgid "Auto (not available)"
-msgstr "Auto(ej tillgänglig)"
 
 msgid "AutoCam Settings"
 msgstr "AutoCam-inställningar"
@@ -5449,6 +5446,13 @@ msgstr "Skapa filsystem"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Skapande av hård länk till tidsskiftfil misslyckades!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Skapa partition"
 
@@ -5987,6 +5991,9 @@ msgid "Debug log time format *"
 msgstr "Tidsformat för debugglogg *"
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -11821,7 +11828,7 @@ msgstr "Maximalt antal dagar i EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maximalt använt utrymme (MB)"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -16755,7 +16762,7 @@ msgstr "Spara filer för tidsförskjutning"
 msgid "Scaler sharpness"
 msgstr "Skalarens skärpa"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Fininnstill vertikal dejagging"
 
 #
@@ -17758,6 +17765,9 @@ msgstr "Välj den standardkatalog som ska användas om katalogen för högerkolu
 
 msgid "Select the delay before the timer activates."
 msgstr "Välj fördröjning innan timern aktiveras."
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Välj den fördröjning som ska användas när en Stream Relay-tjänst stängs innan tunern omfördelas till en annan tjänst. Användning av '0' rekommenderas endast för boxar med flera satellitmottagare."
@@ -21830,34 +21840,10 @@ msgstr "Detta alternativ gör det möjligt att minska blockbruset i bilden. Sjä
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Med detta alternativ kan du ställa in nivån på bildens dynamiska kontrast."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Med det här alternativet kan du konfigurera färgdjupet för UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Med det här alternativet kan du konfigurera kolorimetri för HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Med det här alternativet kan du konfigurera färgrymden från Auto till RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Med det här alternativet kan du aktivera eller inaktivera 10-bitars färgläge"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Med det här alternativet kan du aktivera eller inaktivera 12-bitars färgläge"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Med detta alternativ kan du tvinga fram HDR-lägena för UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Med detta alternativ kan du tvinga fram HDR10-lägena för UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Med detta alternativ kan du tvinga fram HLG-lägena för UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Med det här alternativet kan du aktivera ett utjämningsfilter för att styra ditheringprocessen."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Med det här alternativet kan du aktivera den vertikala skalarens dejagging."
 
 msgid "This option allows you to Power Off the display."
@@ -21938,8 +21924,32 @@ msgstr "Med det här alternativet kan du välja vad den första knapptryckningen
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Med det här alternativet kan du välja om du vill visa genreinformation för evenemanget eller inte."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Med det här alternativet kan du konfigurera färgdjupet för UHD"
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Med det här alternativet kan du konfigurera kolorimetri för HDR"
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Med det här alternativet kan du konfigurera färgrymden från Auto till RGB"
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Med det här alternativet kan du aktivera 3D Surround Sound."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Med det här alternativet kan du aktivera eller inaktivera 10-bitars färgläge"
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Med det här alternativet kan du aktivera eller inaktivera 12-bitars färgläge"
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Med detta alternativ kan du tvinga fram HDR-lägena för UHD"
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Med detta alternativ kan du tvinga fram HDR10-lägena för UHD"
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Med detta alternativ kan du tvinga fram HLG-lägena för UHD"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Med det här alternativet kan du ställa in offsetvärden för olika Letterbox-upplösningar."
@@ -25742,6 +25752,9 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Fel vid hämtning av platsen för 'epg.dat' på fjärrmottagaren!"

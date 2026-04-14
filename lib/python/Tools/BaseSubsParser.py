@@ -31,15 +31,15 @@ HEX_COLORS = {
 			"olive": "#808000"}
 
 
-class BaseParser(object):
+class BaseParser:
 	parsing = ()
 
 	@classmethod
 	def canParse(cls, ext):
 		return ext in cls.parsing
 
-	def __init__(self, rowParse=False):
-		self.rowParse = rowParse
+	def __init__(self, row_parse=False):
+		self.row_parse = row_parse
 
 	def __str__(self):
 		return self.__class__.__name__
@@ -55,20 +55,20 @@ class BaseParser(object):
 		# convert to pts
 		start = int(start * 90)
 		end = int(end * 90)
-		if self.rowParse:
+		if self.row_parse:
 			rows = []
-			style = newStyle = 'regular'
-			color = newColor = 'default'
-			for rowText in text.split('\n'):
-				rowStyle, newStyle = self.getStyle(rowText, newStyle)
-				rowColor, newColor = self.getColor(rowText, newColor)
-				rowText = self.removeTags(rowText)
-				rows.append({"text": rowText, "style": rowStyle, 'color': rowColor})
+			new_style = 'regular'
+			new_color = 'default'
+			for row_text in text.split('\n'):
+				row_style, new_style = self.get_style(row_text, new_style)
+				row_color, new_color = self.get_color(row_text, new_color)
+				row_text = self.remove_tags(row_text)
+				rows.append({"text": row_text, "style": row_style, 'color': row_color})
 			return {'rows': rows, 'start': start, 'end': end, 'duration': duration}
 		else:
-			style, newStyle = self.getStyle(text)
-			color, newColor = self.getColor(text)
-			text = self.removeTags(text)
+			style, new_style = self.get_style(text)
+			color, new_color = self.get_color(text)
+			text = self.remove_tags(text)
 			return {'text': text, 'style': style, 'color': color, 'start': start, 'end': end, 'duration': duration}
 
 	def parse(self, text, fps=None):
@@ -86,24 +86,24 @@ class BaseParser(object):
 			raise NoSubtitlesParseError()
 		return sublist
 
-	def getColor(self, text, color=None):
-		color, newColor = self._getColor(text, color)
-		return color or 'default', newColor or 'default'
+	def get_color(self, text, color=None):
+		color, new_color = self._get_color(text, color)
+		return color or 'default', new_color or 'default'
 
-	def getStyle(self, text, style=None):
-		style, newStyle = self._getStyle(text, style)
-		return style or 'regular', newStyle or 'regular'
+	def get_style(self, text, style=None):
+		style, new_style = self._get_style(text, style)
+		return style or 'regular', new_style or 'regular'
 
-	def removeTags(self, text):
-		return self._removeTags(text)
+	def remove_tags(self, text):
+		return self._remove_tags(text)
 
-	def _removeTags(self, text):
+	def _remove_tags(self, text):
 		return text
 
-	def _getStyle(self, text, style):
+	def _get_style(self, text, style):
 		return '', ''
 
-	def _getColor(self, text, color):
+	def _get_color(self, text, color):
 		return '', ''
 
 	def _parse(self, text, fps):

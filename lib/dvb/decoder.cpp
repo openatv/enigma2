@@ -42,7 +42,7 @@ DEFINE_REF(eDVBAudio);
 int eDVBAudio::m_debug = -1;
 
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
-	:m_demux(demux), m_dev(dev)
+	:m_demux(demux), m_dev(dev), m_bypass(-1)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux ? demux->adapter : 0, dev);
@@ -168,17 +168,23 @@ int eDVBAudio::startPid(int pid, int type)
 		break;
 		}
 
-		if(eDVBAudio::m_debug)
-		{
-			eDebugNoNewLineStart("[eDVBAudio%d] AUDIO_SET_BYPASS bypass=%d ", m_dev, bypass);
-			if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
-				eDebugNoNewLine("failed: %m");
+		if (m_bypass != bypass) {
+
+			if(eDVBAudio::m_debug)
+			{
+				eDebugNoNewLineStart("[eDVBAudio%d] AUDIO_SET_BYPASS bypass=%d ", m_dev, bypass);
+				if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
+					eDebugNoNewLine("failed: %m");
+				else
+					eDebugNoNewLine("ok");
+			}
 			else
-				eDebugNoNewLine("ok");
+				::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass);
+			freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
+			m_bypass = bypass;
+
 		}
-		else
-			::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass);
-		freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
+
 
 		if(eDVBAudio::m_debug)
 		{
@@ -370,7 +376,7 @@ int eDVBVideo::m_debug = -1;
 
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	: m_demux(demux), m_dev(dev), m_fcc_enable(fcc_enable),
-	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1), m_gamma(-1)
+	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1), m_gamma(-1), m_streamtype(-1)
 {
 
 	if (eDVBVideo::m_debug < 0)
@@ -494,17 +500,19 @@ int eDVBVideo::startPid(int pid, int type)
 			break;
 		}
 
-		if(eDVBVideo::m_debug)
-		{
-			eDebugNoNewLineStart("[eDVBVideo%d] VIDEO_SET_STREAMTYPE %d - ", m_dev, streamtype);
-			if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
-				eDebugNoNewLine("failed: %m");
+		if (m_streamtype != streamtype) {
+			if(eDVBVideo::m_debug)
+			{
+				eDebugNoNewLineStart("[eDVBVideo%d] VIDEO_SET_STREAMTYPE %d - ", m_dev, streamtype);
+				if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
+					eDebugNoNewLine("failed: %m");
+				else
+					eDebugNoNewLine("ok");
+			}
 			else
-				eDebugNoNewLine("ok");
+				::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype);
+			m_streamtype = streamtype;
 		}
-		else
-			::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype);
-
 	}
 
 	if (m_fd_demux >= 0)

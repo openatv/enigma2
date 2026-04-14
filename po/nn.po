@@ -2,9 +2,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -24,9 +24,6 @@ msgstr ""
 msgid ""
 "\n"
 "Recording in progress."
-msgstr ""
-
-msgid " "
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -2968,6 +2965,9 @@ msgstr "Administrativ modus"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr ""
+
 msgid "Auto Language"
 msgstr ""
 
@@ -3031,9 +3031,6 @@ msgid "Auto video mode selected"
 msgstr ""
 
 msgid "Auto video mode selected for the TV."
-msgstr ""
-
-msgid "Auto (not available)"
 msgstr ""
 
 msgid "AutoCam Settings"
@@ -5667,6 +5664,13 @@ msgstr "Opprette filsystem"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Opprette hardlink til Timeshifts filen mislyktes!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+
 msgid "Creating partition"
 msgstr "Oppretting av partisjon"
 
@@ -6214,6 +6218,9 @@ msgid "Debug log time format *"
 msgstr ""
 
 msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start delay"
 msgstr ""
 
 msgid "Decoder start timeout"
@@ -12150,7 +12157,7 @@ msgstr "Maksimalt antall dager"
 msgid "Maximum space used (MB)"
 msgstr ""
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr ""
 
 msgid "Mayotte"
@@ -17199,7 +17206,7 @@ msgstr "Lagrer Timeshift filer"
 msgid "Scaler sharpness"
 msgstr "Skarphet"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Skalerer vertikal dejagging"
 
 #
@@ -18204,6 +18211,9 @@ msgid "Select the default directory to be used if the right column directory is 
 msgstr ""
 
 msgid "Select the delay before the timer activates."
+msgstr ""
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
@@ -22283,41 +22293,10 @@ msgstr "Dette alternativet gjør det mulig å redusere blokk-støy i bildet. Sel
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Dette alternativet gjør det mulig å sette nivået av dynamisk kontrast i bildet."
 
-#, fuzzy
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Dette valget gjør at du kan øke blå toner i bildet."
-
-#, fuzzy
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Dette alternativet lar deg deaktivere sortering av menyene"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr ""
-
-#, fuzzy
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Med dette alternativet kan du aktivere vertikal skalering dejagging."
-
-#, fuzzy
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Med dette alternativet kan du aktivere vertikal skalering dejagging."
-
-#, fuzzy
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Dette alternativet lar deg velge 3D-modus"
-
-#, fuzzy
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Dette alternativet lar deg velge 3D-modus"
-
-#, fuzzy
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Dette alternativet lar deg velge 3D-modus"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Dette alternativet lar deg aktivere sortering av valg i utjamnings prosessen."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Med dette alternativet kan du aktivere vertikal skalering dejagging."
 
 msgid "This option allows you to Power Off the display."
@@ -22403,8 +22382,39 @@ msgstr ""
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Med dette alternativet kan du velge hvordan du vil vise den gjenværende/medgåtte tid for tv."
 
+#, fuzzy
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Dette valget gjør at du kan øke blå toner i bildet."
+
+#, fuzzy
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Dette alternativet lar deg deaktivere sortering av menyene"
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr ""
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Dette alternativet lar deg aktivere 3D Surround Sound."
+
+#, fuzzy
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Med dette alternativet kan du aktivere vertikal skalering dejagging."
+
+#, fuzzy
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Med dette alternativet kan du aktivere vertikal skalering dejagging."
+
+#, fuzzy
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Dette alternativet lar deg velge 3D-modus"
+
+#, fuzzy
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Dette alternativet lar deg velge 3D-modus"
+
+#, fuzzy
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Dette alternativet lar deg velge 3D-modus"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""

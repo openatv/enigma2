@@ -6,10 +6,10 @@
 # Milan Koljanin <lane58@gmail.com>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenATV 7.6.0\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
-"PO-Revision-Date: 2026-02-13 00:17+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-03-31 05:09+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 msgid ""
 "\n"
@@ -32,9 +32,6 @@ msgid ""
 msgstr ""
 "\n"
 "Snimanje u tijeku."
-
-msgid " "
-msgstr " . "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Tipka izbornika: Odabir četverokanala"
@@ -942,7 +939,7 @@ msgstr[2] "%d paketa pronađeno."
 #, python-format
 msgid "%d package has an update."
 msgid_plural "%d packages have updates."
-msgstr[0] "%d paket ima ispravku"
+msgstr[0] "%d paket ima ispravku."
 msgstr[1] "%d paketi imaju ispravku."
 msgstr[2] "%d paketi imaju ispravku."
 
@@ -2710,6 +2707,9 @@ msgstr "Autorski način"
 msgid "Auto"
 msgstr "Auto"
 
+msgid "Auto (not available)"
+msgstr "Auto(nije dostupno)"
+
 msgid "Auto Language"
 msgstr "Auto Jezik"
 
@@ -2766,9 +2766,6 @@ msgstr "Auto video način odabira"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Auto video način odabira za TV."
-
-msgid "Auto (not available)"
-msgstr "Auto(nije dostupno)"
 
 msgid "AutoCam Settings"
 msgstr "AutoCam Postavke"
@@ -5255,6 +5252,16 @@ msgstr "Stvaranje datotečnog sustava"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Stvaranje čvrste veze na datoteku s vremenskim pomakom nije uspjelo!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"Kreiranje ili aktiviranje zamjene datoteke nije uspjelo.\n"
+"\n"
+"%s"
+
 msgid "Creating partition"
 msgstr "Stvaranje particije"
 
@@ -5768,6 +5775,9 @@ msgstr "Format vremena otklanjanja grešaka *"
 msgid "Decoder release strategy"
 msgstr "Strategija izlaska dekodera"
 
+msgid "Decoder start delay"
+msgstr "Kašnjenje pokretanja dekodera"
+
 msgid "Decoder start timeout"
 msgstr "Isteklo vrijeme pokretanja dekodera"
 
@@ -5824,7 +5834,7 @@ msgid "Default right column directory"
 msgstr "Zadani direktorij desne kolone"
 
 msgid "Default sort order for directories in the left column."
-msgstr "Zadani redoslijed sortiranja za direktorije u lijevom stupcu"
+msgstr "Zadani redoslijed sortiranja za direktorije u lijevom stupcu."
 
 msgid "Default sort order for directories in the right column."
 msgstr "Zadani redoslijed sortiranja za direktorije u desnom stupcu."
@@ -11286,8 +11296,8 @@ msgstr "Maksimalni broj dana u EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maksimalno iskorišćen prostor (MB)"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr "Maksimalno vrijeme čekanja na dolazne podatke i ključeve za dešifriranje (CW) prije pokretanja dekodera. Obično oboje stigne puno brže i ovo je samo za posebne slučajeve."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
+msgstr "Maksimalno vrijeme čekanja na prvi ključ za dešifriranje (CW) prije pokretanja dekodera. 'Onemogućeno' pokreće dekoder odmah bez čekanja."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -15889,7 +15899,7 @@ msgstr "Spremi timeshift datoteku"
 msgid "Scaler sharpness"
 msgstr "Oštrina skale"
 
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Skaler okomito uklanjanje"
 
 msgid "Scaling mode"
@@ -16861,6 +16871,9 @@ msgstr "Odaberi zadani direktorijum koji će se koristiti ako direktorijum desne
 
 msgid "Select the delay before the timer activates."
 msgstr "Odaberi odlaganje prije nego što se tajmer aktivira."
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr "Odaberite kašnjenje za spremanje dešifriranih podataka u međuspremnik prije početka reprodukcije. To može smanjiti ispadanje AC3 zvuka osiguravajući dovoljno podataka kada dekoder počne s radom. Veće vrijednosti su stabilnije, ali povećavaju vrijeme prebacivanja kanala."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Odaberite vremensko odgodu koja će se koristiti prilikom zatvaranja Stream Relay usluge prije ponovne dodjele tunera za drugu uslugu. Korištenje '0' preporučuje se samo za prijemnike s više satelitskih tunera."
@@ -20752,34 +20765,10 @@ msgstr "Ova opcija omogućuje smanjenje šuma bloka na slici. Očito je to po ci
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ova opcija omogućuje postavljanje razine dinamičkog kontrasta slike."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Ova opcija omogućuje vam da konfigurirate dubinu boje za UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Ova opcija omogućuje vam da konfigurirate kolorimetriju za HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Ova opcija omogućuje vam da konfigurirate prostor boja iz Auto u RGB"
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Ova opcija omogućuje vam da omogućite ili onemogućite 10-bitni način rada u boji"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Ova opcija omogućuje vam da omogućite ili onemogućite 12-bitni način rada u boji"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Ova opcija omogućuje forsiranje HDR načina rada za UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Ova opcija omogućuje vam da forsirate HDR10 načine rada za UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Ova opcija omogućuje vam da forsirate HLG načine rada za UHD"
-
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Ova opcija omogućuje vam da omogućite filtar za izglađivanje za kontrolu procesa ditheringa."
 
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Ova opcija omogućuje vam da omogućite uklanjanje okomitog skalera."
 
 msgid "This option allows you to Power Off the display."
@@ -20795,7 +20784,7 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Ova opcija omogućuje vam da pojačate zelene tonove na slici."
 
 msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Ova vam opcija omogućuje zaobilaženje HDMI EDID provjere"
+msgstr "Ova vam opcija omogućuje zaobilaženje HDMI EDID provjere."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Ova opcija omogućuje vam promjenu položaja virtualnog zvučnika."
@@ -20860,8 +20849,32 @@ msgstr "Ova opcija omogućuje vam da odaberete na što prelazi prvi pritisak tip
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ova vam opcija omogućuje da odaberete želite li prikazati informacije o žanru događaja ili ne."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Ova opcija omogućuje vam da konfigurirate dubinu boje za UHD."
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Ova opcija omogućuje vam da konfigurirate kolorimetriju za HDR."
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Ova opcija omogućuje vam da konfigurirate prostor boja iz Auto u RGB."
+
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ova opcija omogućuje vam da omogućite 3D surround zvuk."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Ova opcija omogućuje vam da omogućite ili onemogućite 10-bitni način rada u boji."
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Ova opcija omogućuje vam da omogućite ili onemogućite 12-bitni način rada u boji."
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Ova opcija omogućuje forsiranje HDR načina rada za UHD."
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Ova opcija omogućuje vam da forsirate HDR10 načine rada za UHD."
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Ova opcija omogućuje vam da forsirate HLG načine rada za UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Ova opcija omogućuje postavljanje vrijednosti pomaka za različite razlučivosti Letterboxa."
@@ -20879,7 +20892,7 @@ msgid "This option allows you to the SNR as a percentage (not all receivers supp
 msgstr "Ova opcija vam omogućuje SNR kao postotak (ne podržavaju svi prijemnici ovo)."
 
 msgid "This option allows you to use all HDMI Modes."
-msgstr "Ova vam opcija omogućuje korištenje svih HDMI načina rada"
+msgstr "Ova vam opcija omogućuje korištenje svih HDMI načina rada."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Ova vam opcija omogućuje pregled starih i novih postavki jednu pored druge."
@@ -24418,6 +24431,12 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " . "
+
+#~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+#~ msgstr "Maksimalno vrijeme čekanja na dolazne podatke i ključeve za dešifriranje (CW) prije pokretanja dekodera. Obično oboje stigne puno brže i ovo je samo za posebne slučajeve."
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Pogreška pri dohvaćanju lokacije 'epg.dat' na udaljenom tuneru!"

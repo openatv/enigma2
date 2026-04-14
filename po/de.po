@@ -17,18 +17,18 @@
 # VfBFan <vfbfan@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 10:12+0000\n"
-"PO-Revision-Date: 2026-02-20 20:30+0000\n"
-"Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-04-13 12:07+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -44,9 +44,6 @@ msgid ""
 msgstr ""
 "\n"
 "Es wird aufgenommen."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  MENU: Sendergruppe auswählen"
@@ -2830,6 +2827,10 @@ msgid "Auto"
 msgstr "Auto"
 
 #
+msgid "Auto (not available)"
+msgstr "Automatisch (nicht verfügbar)"
+
+#
 msgid "Auto Language"
 msgstr "Automatische Sprachauswahl"
 
@@ -2888,10 +2889,6 @@ msgstr "Automatischer Videomodus ausgewählt"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Automatischer Videomodus für den Fernseher ausgewählt."
-
-#
-msgid "Auto (not available)"
-msgstr "Auto (nicht verfügbar)"
 
 msgid "AutoCam Settings"
 msgstr "AutoCam-Einstellungen"
@@ -5496,6 +5493,16 @@ msgstr "Dateisystem wird erstellt"
 msgid "Creating hard link to time shift file failed!"
 msgstr "Hardlink-Verbindung zur Timeshiftdatei fehlgeschlagen!"
 
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"Erstellen oder Aktivieren der Swapdatei fehlgeschlagen.\n"
+"\n"
+"%s"
+
 msgid "Creating partition"
 msgstr "Partition wird erstellt"
 
@@ -6027,6 +6034,9 @@ msgstr "Debug-Log-Zeitformat *"
 msgid "Decoder release strategy"
 msgstr "Strategie zur Freigabe des Decoders"
 
+msgid "Decoder start delay"
+msgstr "Decoderstartverzögerung"
+
 msgid "Decoder start timeout"
 msgstr "Decoderstart-Timeout"
 
@@ -6085,22 +6095,22 @@ msgid "Default right column directory"
 msgstr "Standardverzeichnis in der rechten Spalte"
 
 msgid "Default sort order for directories in the left column."
-msgstr "Standardsortierung für Verzeichnisse in der linken Spalte."
+msgstr "Die Standardsortierung für Verzeichnisse in der linken Spalte."
 
 msgid "Default sort order for directories in the right column."
-msgstr "Standardsortierung für Verzeichnisse in der rechten Spalte."
+msgstr "Die Standardsortierung für Verzeichnisse in der rechten Spalte."
 
 msgid "Default sort order for files in the left column."
-msgstr "Standardsortierung für Dateien in der linken Spalte."
+msgstr "Die Standardsortierung für Dateien in der linken Spalte."
 
 msgid "Default sort order for files in the right column."
-msgstr "Standardsortierung für Dateien in der rechten Spalte."
+msgstr "Die Standardsortierung für Dateien in der rechten Spalte."
 
 msgid "Default video mode selected"
 msgstr "Standardvideomodus ausgewählt"
 
 msgid "Default video mode selected for the TV."
-msgstr "Standardvideomodus für den Fernseher ausgewählt."
+msgstr "Der für den Fernseher ausgewählte Standardvideomodus."
 
 msgid "Default volume offset"
 msgstr "Standardlautstärkeoffset"
@@ -6122,13 +6132,13 @@ msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Legt die zusätzliche Verzögerung in Millisekunden vor dem Start von http(s)-Streams fest."
 
 msgid "Define the custom mountpoint for the device."
-msgstr "Benutzerdefinierten Einhängepunkt für das Gerät festlegen."
+msgstr "Den benutzerdefinierten Einhängepunkt für das Gerät festlegen."
 
 msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr "Das Ziel für die Einstellungssicherung vorgeben. Bei 'Benutzer fragen' kann es vor dem Ausführen der Sicherung geändert werden."
 
 msgid "Define the file system mount options."
-msgstr "Einhängeoptionen für das Dateisystem festlegen."
+msgstr "Die Einhängeoptionen für das Dateisystem festlegen."
 
 msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
@@ -11822,8 +11832,8 @@ msgstr "Maximale Anzahl von Tagen im EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maximale Speicherplatznutzung (MB):"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr "Maximale Wartezeit für eingehende Daten und Entschlüsselungsschlüssel (CW) vor dem Start des Decoders. In der Regel treffen beide viel schneller ein, so dass dies nur für Sonderfälle gilt."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
+msgstr "Maximale Wartezeit für den ersten Entschlüsselungsschlüssel (CW) vor dem Start des Decoders. Bei „Deaktiviert” startet der Decoder sofort ohne Wartezeit."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -14696,16 +14706,16 @@ msgid "Please wait whilst feeds state is checked."
 msgstr "Der Feedstatus wird überprüft. Bitte warten …"
 
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
-msgstr "Die Kopie des Flashspeichers wird gerade gelöscht. Dies kann einige Minuten dauern, bitte warten …"
+msgstr "Die Kopie des Flashspeichers wird gerade gelöscht. Dies kann einige Minuten dauern. Bitte warten …"
 
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
-msgstr "Der Flashspeicher wird auf diesen Flash-Expander kopiert. Dies kann einige Minuten dauern, bitte warten …"
+msgstr "Der Flashspeicher wird auf diesen Flash-Expander kopiert. Dies kann einige Minuten dauern. Bitte warten …"
 
 msgid "Please wait, loading picture..."
 msgstr "Das Bild wird geladen. Bitte warten …"
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
-msgstr "Die Auslagerungsdatei wird gerade erstellt. Dies kann einige Minuten dauern, bitte warten …"
+msgstr "Die Auslagerungsdatei wird gerade erstellt. Dies kann einige Minuten dauern. Bitte warten …"
 
 #
 msgid "Please wait..."
@@ -14713,7 +14723,7 @@ msgstr "Bitte warten …"
 
 #
 msgid "Please wait... Loading list..."
-msgstr "Die Liste wird geladen. Bitte warten …"
+msgstr "Die Liste wird geladen. Bitte warten …"
 
 msgid "Plug in USB device"
 msgstr "USB-Gerät einstecken"
@@ -15746,7 +15756,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Aktualisierung gestartet.\n"
-"Bitte warten bis %s %s neu gestartet wurde.\n"
+"Bitte warten, bis %s %s neu gestartet wurde.\n"
 "Dies kann einige Minuten dauern."
 
 msgid "Refresh"
@@ -16495,7 +16505,7 @@ msgid "Running"
 msgstr "Läuft"
 
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Myrestore-Skript wird ausgeführt, bitte warten …"
+msgstr "Myrestore-Skript wird ausgeführt. Bitte warten …"
 
 #, python-format
 msgid "Running command %d: '%s'."
@@ -16796,7 +16806,7 @@ msgid "Scaler sharpness"
 msgstr "Skalierschärfe"
 
 # VideoEnhancement
-msgid "Scaler vertical dejagging"
+msgid "Scaler vertical anti-aliasing"
 msgstr "Vertikale Kantenglättung"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
@@ -17814,6 +17824,9 @@ msgstr "Standardverzeichnis für die rechte Spalte auswählen, wenn kein Verzeic
 msgid "Select the delay before the timer activates."
 msgstr "Die Verzögerung auswählen, bevor der Timer aktiviert wird."
 
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr "Die Verzögerung auswählen, mit der die entschlüsselten Daten vor Beginn der Wiedergabe gepuffert werden. Damit können AC3-Tonunterbrechungen reduziert werden, da sichergestellt wird, dass beim Start des Decoders genügend Daten verfügbar sind. Höhere Werte sind stabiler, verlängern jedoch die Senderumschaltzeit."
+
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Die Verzögerung auswählen, die beim Wechsel von einem Stream-Relay-Sender verwendet wird, bevor der Tuner auf einen anderen Sender wechselt. Die Verwendung von '0' wird nur für Receiver mit mehreren Satelliten-Tunern empfohlen."
 
@@ -18051,7 +18064,7 @@ msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT t
 msgstr "Die Zeit auswählen, auf die der EPG gesetzt werden soll. Links/Rechts verringert/erhöht diese Zeit um eine Stunde. Hoch/Runter verringert/erhöht diese Zeit um einen Tag."
 
 msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
-msgstr "Die Zeit auswählen, wann diese Sofortaufnahme enden soll. Links/Rechts verringert/erhöht diese Zeit um eine Minute. Hoch/Runter verringert/erhöht diese Zeit um eine Stunde."
+msgstr "Die Zeit auswählen, wann diese Sofortaufnahme enden soll. Am Steuerkreuz Links/Rechts verringert/erhöht diese Zeit um eine Minute. Mit Pfeil Links/Rechts (neben der '0') verringert/erhöht sich diese Zeit um eine Stunde."
 
 msgid "Select the time when this timer should end."
 msgstr "Die Uhrzeit auswählen, zu der dieser Timer enden soll."
@@ -20222,7 +20235,7 @@ msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-"Softwareupdate startet, bitte warten …\n"
+"Softwareupdate startet. Bitte warten …\n"
 "\n"
 
 msgid "Softwaremanager..."
@@ -21899,36 +21912,12 @@ msgstr "Das Blockrauschen im Bild kann reduziert werden – dies geht jedoch zul
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Den dynamischen Kontrast des Bildes einstellen."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Die Farbtiefe im UHD-Modus einstellen."
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Die Farbprofilsteuerung für den HDR-Modus einstellen."
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Den Farbraum einstellen."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Den 10-Bit-Farbmodus aktivieren oder deaktivieren."
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Den 12-Bit-Farbmodus aktivieren oder deaktivieren."
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Die HDR-Modi für UHD erzwingen."
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Die HDR10-Modi für UHD erzwingen."
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Die HLG-Modi für UHD erzwingen."
-
 # VideoEnhancement
-msgid "This option allows you enable smoothing filter to control the dithering process."
+msgid "Control the smoothing filter used for the dithering process."
 msgstr "Den Glättungsfilter für das Dithering-Verfahren aktivieren."
 
 # VideoEnhancement
-msgid "This option allows you enable the vertical scaler dejagging."
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr "Die vertikale Kantenglättung aktivieren."
 
 # Box Display
@@ -22012,9 +22001,33 @@ msgstr "Einstellen, was der erste Tastendruck in der Senderliste bewirken soll. 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Bei 'Ja' werden Genre-Informationen für die Sendung angezeigt."
 
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Die Farbtiefe im UHD-Modus einstellen."
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Die Farbprofilsteuerung für den HDR-Modus einstellen."
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Den Farbraum einstellen."
+
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Die Ausgabe von 3D-Surround-Sound aktivieren."
+
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Den 10-Bit-Farbmodus aktivieren oder deaktivieren."
+
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Den 12-Bit-Farbmodus aktivieren oder deaktivieren."
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Die HDR-Modi für UHD erzwingen."
+
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Die HDR10-Modi für UHD erzwingen."
+
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Die HLG-Modi für UHD erzwingen."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Die Offsetwerte für verschiedene Letterboxauflösungen einstellen."
@@ -23245,7 +23258,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Aktualisierung gestartet.\n"
-"Bitte warten bis %s %s neu gestartet wurde.\n"
+"Bitte warten, bis %s %s neu gestartet wurde.\n"
 "Dies kann einige Minuten dauern."
 
 #
@@ -24973,7 +24986,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Der Frontprozessor wird jetzt aktualisiert.\n"
-"Bitte warten bis %s %s neu gestartet wurde.\n"
+"Bitte warten, bis %s %s neu gestartet wurde.\n"
 "Dies kann einige Minuten dauern."
 
 msgid ""
@@ -25858,6 +25871,12 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+#~ msgstr "Maximale Wartezeit für eingehende Daten und Entschlüsselungsschlüssel (CW) vor dem Start des Decoders. In der Regel treffen beide viel schneller ein, so dass dies nur für Sonderfälle gilt."
 
 #~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 #~ msgstr "Fehler beim Abrufen des Speicherorts der Datei 'epg.dat' des Reservereceivers!"
