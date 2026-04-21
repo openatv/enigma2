@@ -35,7 +35,7 @@ class NTPSyncPoller:
 	def updateSchedule(self, data=None, retVal=None, extraArgs=None):
 		if retVal and data:
 			print(f"[NetworkTime] Error {retVal}: Unable to synchronize the time!\n{data.strip()}")
-		nowTime = time()
+		nowTime = int(time())
 		if nowTime > 10000:
 			timeSource = config.misc.SyncTimeUsing.value
 			print(f"[NetworkTime] Setting time to '{ctime(nowTime)}' ({str(nowTime)}) from '{config.misc.SyncTimeUsing.toDisplayString(timeSource)}'.")
