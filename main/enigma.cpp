@@ -477,6 +477,15 @@ const char *getOARev()
 	return OAREV;
 }
 
+#ifndef IMAGE_FINGERPRINT
+#define IMAGE_FINGERPRINT 0
+#endif
+
+int getImageFingerprint()
+ {
+	return IMAGE_FINGERPRINT;
+ }
+
 int getVFDSymbolsPoll()
 {
 	return VFDSymbolsPoll;
