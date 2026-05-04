@@ -154,12 +154,16 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 		ePtr<gPixmap> subtitleFrame = new gPixmap(eSize(p.m_display_size.width(), p.m_display_size.height()), 32, 0);
 		if (subtitleFrame)
 		{
-			gRegion clip(eRect(0, 0, p.m_display_size.width(), p.m_display_size.height()));
-			subtitleFrame->fill(clip, gRGB(0, 0, 0, 0));
+			eRect clipRect(eRect(0, 0, p.m_display_size.width(), p.m_display_size.height()));
+			ePtr<gDC> subtitleFrameDC = new gDC(subtitleFrame);
+			gPainter subtitlePainter(subtitleFrameDC, eRect());
+			subtitlePainter.resetClip(clipRect);
+			subtitlePainter.setBackgroundColor(gRGB(0, 0, 0, 0));
+			subtitlePainter.clear();
 			for (std::list<eDVBSubtitleRegion>::const_iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 			{
 				if (it->m_pixmap)
-					subtitleFrame->blit(*it->m_pixmap, eRect(it->m_position, it->m_pixmap->size()), clip, 0, 0, gPixmap::blitAlphaBlend);
+					subtitlePainter.blit(it->m_pixmap, eRect(it->m_position, it->m_pixmap->size()), clipRect, gPainter::BT_ALPHABLEND);
 			}
 			savePNG("/tmp/current_sub.png", &*subtitleFrame);
 		}
