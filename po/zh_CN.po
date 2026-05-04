@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 11:34+0000\n"
-"PO-Revision-Date: 2026-03-03 07:42+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-04-09 22:09+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -32,9 +32,6 @@ msgid ""
 msgstr ""
 "\n"
 "正在录制。"
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu 键：选择四路频道"
@@ -5217,6 +5214,16 @@ msgstr "正在创建文件系统"
 
 msgid "Creating hard link to time shift file failed!"
 msgstr "创建硬链到时移文件时失败！"
+
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"创建或激活交换文件失败。\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "正在创建分区"
@@ -24371,6 +24378,9 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 #~ msgstr "等待输入数据和解扰密钥（CW）的最长时间，超时后才开始解码。通常两者到达都快得多，此设置仅用于特殊情况。"

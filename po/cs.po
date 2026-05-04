@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 11:34+0000\n"
-"PO-Revision-Date: 2026-03-12 19:09+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-03-31 21:50+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -33,9 +33,6 @@ msgid ""
 msgstr ""
 "\n"
 "Probíhá nahrávání."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Tlačítko Menu: Vyberte čtvrtý kanál"
@@ -5255,6 +5252,16 @@ msgstr "Vytváření souborového systému"
 
 msgid "Creating hard link to time shift file failed!"
 msgstr "Vytvoření pevného odkazu na soubor časového posunu se nezdařilo!"
+
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"Vytvoření nebo aktivace odkládacího souboru selhala.\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "Zakládá se tabulka rozdělení disku"
@@ -24425,6 +24432,9 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 #~ msgstr "Maximální doba čekání na příchozí data a dekódovací klíče (CW) před spuštěním dekodéru. Obvykle obojí dorazí mnohem rychleji a to platí pouze pro zvláštní případy."

@@ -304,11 +304,20 @@ class Scheduler(Timer):
 			# state is kept. The timer entry itself will fix up the delay.
 			if timer.activate():
 				timer.state += 1
+		# Remove timer from both lists before re-inserting
 		if timer in self.timer_list:
 			try:
 				self.timer_list.remove(timer)
 			except ValueError:
 				print("[Scheduler] Remove timer from timer list failed!")
+		if timer in self.processed_timers:
+			try:
+				self.processed_timers.remove(timer)
+			except ValueError:
+				print("[Scheduler] Remove timer from processed timers failed!")
+		# If timer was cancelled (by removeEntry), move it to ended state
+		if timer.cancelled:
+			timer.state = SchedulerEntry.StateEnded
 		if timer.state < SchedulerEntry.StateEnded:  # Did this timer reached the last state?
 			insort(self.timer_list, timer)  # No, sort it into active list.
 		else:  # Yes, process repeated, and re-add.
@@ -317,7 +326,6 @@ class Scheduler(Timer):
 				timer.state = SchedulerEntry.StateWaiting
 				self.addTimerEntry(timer)
 			else:
-
 				self.cleanupDaily(config.recording.keep_timers.value)  # Remove old timers as set in config.
 				insort(self.processed_timers, timer)
 		self.stateChanged(timer)
@@ -569,6 +577,8 @@ class SchedulerEntry(TimerEntry):
 		now = int(time())
 		nextState = self.state + 1
 		autoSleepDelay = self.autosleepdelay * 60
+		if self.state == self.StateFailed:
+			return False  # No more processing of failed timers.
 		self.log(5, f"Activating state {nextState}.")
 		if nextState == self.StatePrepared and self.timerType in (TIMERTYPE.AUTOSTANDBY, TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction("", -maxsize, self.keyPressed)
@@ -916,12 +926,13 @@ class SchedulerEntry(TimerEntry):
 		elif nextState == self.StateEnded:
 			if DEBUG:
 				print(f"[Scheduler] DEBUG nextState self.StateEnded / self.cancelled={self.cancelled} / self.failed={self.failed}")
-			if self.timerType == TIMERTYPE.OTHER and self.function and self.cancelled and self.cancelFunction and callable(self.cancelFunction):
-				if DEBUG:
-					print("[Scheduler] DEBUG Call cancelFunction")
-				self.cancelFunction()
-				self.cancelFunction = None
-				return True
+			if self.timerType == TIMERTYPE.OTHER and self.function and self.cancelled:
+				if self.cancelFunction and callable(self.cancelFunction):
+					if DEBUG:
+						print("[Scheduler] DEBUG Call cancelFunction")
+					self.cancelFunction()
+					self.cancelFunction = None
+				return False
 			if self.afterEvent == AFTEREVENT.WAKEUP:
 				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
 				if Screens.Standby.inStandby:
@@ -1008,6 +1019,8 @@ class SchedulerEntry(TimerEntry):
 			result = entryFunction(self.functionTimerCallback, self)
 			if DEBUG:
 				print(f"[Scheduler] DEBUG startFunctionTimer own thread started {result}")
+			if result is False:
+				self.functionTimerCallback(success=False)
 		else:
 			self.timerThread = FunctionTimerThread(entryFunction, self.functionTimerCallback, self)
 			self.timerThread.start()
@@ -1031,7 +1044,7 @@ class SchedulerEntry(TimerEntry):
 		NavigationInstance.instance.Scheduler.doActivate(self)
 
 	def getNextActivation(self):
-		if self.state in (self.StateEnded, self.StateFailed):
+		if self.state in (self.StateEnded, self.StateFailed, self.StateDisabled):
 			return int(time()) - 1 if self.function else self.end
 		nextState = self.state + 1
 		return {

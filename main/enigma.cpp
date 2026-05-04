@@ -477,6 +477,15 @@ const char *getOARev()
 	return OAREV;
 }
 
+#ifndef IMAGE_FINGERPRINT
+#define IMAGE_FINGERPRINT 0
+#endif
+
+int getImageFingerprint()
+ {
+	return IMAGE_FINGERPRINT;
+ }
+
 int getVFDSymbolsPoll()
 {
 	return VFDSymbolsPoll;
@@ -489,7 +498,7 @@ const char *getGStreamerVersionString()
 
 int getE2Flags()
 {
-	return 7; // start/stop Audio = 1 | WebP = 2 | NativeCutFileSupport = 4
+	return 3; // start/stop Audio = 1 | WebP = 2
 }
 
 bool checkLogin(const char *user, const char *password)

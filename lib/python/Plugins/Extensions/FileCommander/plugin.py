@@ -1430,26 +1430,27 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 					if not path:
 						return
 					fileType = splitext(path)[1].lower()
-					try:
-						magicType = fromfile(path)
-					except (PureError, ValueError) as err:
-						magicType = None
-						print(f"[FileCommander] Error: Unable to identify file via magic fingerprint!  ({err})")
-					except OSError as err:
-						self.session.open(MessageBox, _("Error %d: File '%s' cannot be opened!  (%s)") % (err.errno, basename(path), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
-						return
-					except Exception as err:
-						self.session.open(MessageBox, _("Error: File '%s' cannot be opened!  (%s)") % (basename(path), str(err)), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
-						return
-					if fileType and magicType and fileType != magicType:
-						# print(f"[FileCommander] DEBUG: File identified as extension='{fileType}', magic='{magicType}'.")
-						if fileType == ".ipk" and magicType == ".lib":
-							magicType = ".ipk"
-						if fileType == ".py" and magicType == ".wsgi":
-							magicType = ".py"
-						if fileType == ".mvi" and magicType == ".mpg":
-							magicType = ".mvi"
-						fileType = magicType
+					if fileType not in (".sh",):  # Ignore .sh files for magic type detection.
+						try:
+							magicType = fromfile(path)
+						except (PureError, ValueError) as err:
+							magicType = None
+							print(f"[FileCommander] Error: Unable to identify file via magic fingerprint!  ({err})")
+						except OSError as err:
+							self.session.open(MessageBox, _("Error %d: File '%s' cannot be opened!  (%s)") % (err.errno, basename(path), err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+							return
+						except Exception as err:
+							self.session.open(MessageBox, _("Error: File '%s' cannot be opened!  (%s)") % (basename(path), str(err)), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+							return
+						if fileType and magicType and fileType != magicType:
+							# print(f"[FileCommander] DEBUG: File identified as extension='{fileType}', magic='{magicType}'.")
+							if fileType == ".ipk" and magicType == ".lib":
+								magicType = ".ipk"
+							if fileType == ".py" and magicType == ".wsgi":
+								magicType = ".py"
+							if fileType == ".mvi" and magicType == ".mpg":
+								magicType = ".mvi"
+							fileType = magicType
 					if fileType == ".mvi" and not exists("/usr/bin/ffmpeg"):  # Disable .mvi viewer if ffmpeg is not available!
 						self.session.open(MessageBox, _("FFmpeg is not installed so '.mvi' file actions are not available!"), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
 						fileType = None

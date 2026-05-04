@@ -70,7 +70,7 @@ class Processing:
 			self.timer.start(100)
 
 	def updateProgress(self):
-		self.progress = 0 if self.progress > 100 else self.progress + 1
+		self.progress = (self.progress + 1) % 101
 		self.processingDialog.setProgress(self.progress)
 
 	def hideProgress(self):

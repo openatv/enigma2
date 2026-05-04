@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 11:34+0000\n"
-"PO-Revision-Date: 2026-03-05 11:32+0000\n"
-"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-04-13 12:07+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -44,9 +44,6 @@ msgid ""
 msgstr ""
 "\n"
 "Es wird aufgenommen."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  MENU: Sendergruppe auswählen"
@@ -5495,6 +5492,16 @@ msgstr "Dateisystem wird erstellt"
 
 msgid "Creating hard link to time shift file failed!"
 msgstr "Hardlink-Verbindung zur Timeshiftdatei fehlgeschlagen!"
+
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"Erstellen oder Aktivieren der Swapdatei fehlgeschlagen.\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "Partition wird erstellt"
@@ -18057,7 +18064,7 @@ msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT t
 msgstr "Die Zeit auswählen, auf die der EPG gesetzt werden soll. Links/Rechts verringert/erhöht diese Zeit um eine Stunde. Hoch/Runter verringert/erhöht diese Zeit um einen Tag."
 
 msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
-msgstr "Die Zeit auswählen, wann diese Sofortaufnahme enden soll. Links/Rechts verringert/erhöht diese Zeit um eine Minute. Hoch/Runter verringert/erhöht diese Zeit um eine Stunde."
+msgstr "Die Zeit auswählen, wann diese Sofortaufnahme enden soll. Am Steuerkreuz Links/Rechts verringert/erhöht diese Zeit um eine Minute. Mit Pfeil Links/Rechts (neben der '0') verringert/erhöht sich diese Zeit um eine Stunde."
 
 msgid "Select the time when this timer should end."
 msgstr "Die Uhrzeit auswählen, zu der dieser Timer enden soll."
@@ -25864,6 +25871,9 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 #~ msgstr "Maximale Wartezeit für eingehende Daten und Entschlüsselungsschlüssel (CW) vor dem Start des Decoders. In der Regel treffen beide viel schneller ein, so dass dies nur für Sonderfälle gilt."

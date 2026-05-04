@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 11:34+0000\n"
-"PO-Revision-Date: 2026-03-03 15:08+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-03-31 05:09+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -35,9 +35,6 @@ msgid ""
 msgstr ""
 "\n"
 "Prebieha nahrávanie."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Tlačidlo Menu: Výber quad kanála"
@@ -5235,7 +5232,7 @@ msgid "Create slots for the selected device"
 msgstr "Vytvoriť sloty pre vybrané zariadenie"
 
 msgid "Create swap"
-msgstr "Vytvoriť swap"
+msgstr "Vytvoriť odkladací (swap) priestor"
 
 msgid "Create tar file of root file system."
 msgstr "Vytvoriť súbor TAR z koreňového systému súborov."
@@ -5257,6 +5254,16 @@ msgstr "Vytvára sa súborový systém"
 
 msgid "Creating hard link to time shift file failed!"
 msgstr "Vytvorenie hardlinku na súbor timeshiftu neúspešné!"
+
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"Nepodarilo sa vytvoriť alebo aktivovať odkladací (swap) súbor\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "Vytvára sa partícia"
@@ -7176,7 +7183,7 @@ msgid "Enable Quad PiP"
 msgstr "Zapnúť Quad PiP"
 
 msgid "Enable Swap at startup"
-msgstr "Povoliť Swap pri spúšťaní"
+msgstr "Povoliť odkladací súbor pri spúšťaní"
 
 msgid "Enable VPS"
 msgstr "Povoliť VPS"
@@ -10757,7 +10764,7 @@ msgid "Limit west"
 msgstr "Limit – západ"
 
 msgid "Limited memory size, swap file required"
-msgstr "Obmedzená veľkosť pamäte, vyžaduje sa súbor swap"
+msgstr "Obmedzená veľkosť pamäte, vyžaduje sa odkladací (swap) súbor"
 
 msgid "Limits cancelled"
 msgstr "Limity zrušené"
@@ -13816,7 +13823,7 @@ msgid "Please select an aspect ratio..."
 msgstr "Prosím, vyberte pomer strán…"
 
 msgid "Please select device to use as swap file location"
-msgstr "Prosím, vyberte zariadenie na umiestnenie swap súboru"
+msgstr "Prosím, vyberte zariadenie na umiestnenie odkladacieho (swap) súboru"
 
 msgid "Please select medium to be scanned"
 msgstr "Prosím, vyberte médium na prehľadanie"
@@ -13954,7 +13961,7 @@ msgid "Please wait, loading picture..."
 msgstr "Prosím čakajte, načítava sa obrázok…"
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
-msgstr "Vytvára sa priestor pre swap. Môže to trvať niekoľko minút. Čakajte, prosím."
+msgstr "Vytvára sa priestor pre odkladanie. Môže to trvať niekoľko minút. Čakajte, prosím."
 
 msgid "Please wait..."
 msgstr "Čakajte, prosím…"
@@ -13966,7 +13973,7 @@ msgid "Plug in USB device"
 msgstr "Pripojte USB zariadenie"
 
 msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
-msgstr "Pripojte USB zariadenie, ktoré sa môže použiť pre swap. Nezabudnite, že toto zariadenie sa počas spustenia %s %s nesmie odstrániť!"
+msgstr "Pripojte USB zariadenie, ktoré sa môže použiť ako odkladacie. Nezabudnite, že toto zariadenie sa počas spustenia %s %s nesmie odstrániť!"
 
 msgid "Plugin"
 msgstr "Plugin"
@@ -15896,7 +15903,7 @@ msgid "Scaler sharpness"
 msgstr "Ostrosť škálovania"
 
 msgid "Scaler vertical anti-aliasing"
-msgstr "Škálovanie – vertikálne vyhladzovanie hrán"
+msgstr "Vertikálne vyhladzovanie hrán pomocou škálovača"
 
 msgid "Scaling mode"
 msgstr "Režim škálovania"
@@ -16405,7 +16412,7 @@ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpf
 msgstr "Ak chcete použiť alternatívne IP adresy zdroja na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť, ak používate VPN a nie je možný prístup k bežným zdrojom prostredníctvom zverejnených DNS mien."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
-msgstr "Ak chcete používať staršie navigovanie (CH+/- prepína aktívny stĺpec), vyberte 'Áno'. Ak chcete používať novšie, unifikované navigovanie (konzistentné s iným obrazovkami, kde tlačidlá DOĽAVA/DOPRAVA prepínajú aktívny stĺpec a CH+/- prepína o stránku nahor/nadol), vyberte možnosť 'Nie'."
+msgstr "Ak chcete používať staršie navigovanie (CH+/- prepína aktívny stĺpec), vyberte 'Áno'. Ak chcete používať novšie, unifikované navigovanie (konzistentné s inými obrazovkami, kde tlačidlá DOĽAVA/DOPRAVA prepínajú aktívny stĺpec a CH+/- prepína o stránku nahor/nadol), vyberte možnosť 'Nie'."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Ak je nastavené na 'áno', hodnoty signálu (SNR atď.) sa budú vypočítavať z API V3. Je to staršia verzia API, ktorá je v súčasnosti už nahradená."
@@ -16766,7 +16773,7 @@ msgid "Select the Softcam protocol."
 msgstr "Vyberte protokol pre softcam."
 
 msgid "Select the Swap File Size:"
-msgstr "Vyberte veľkosť súboru pre swap:"
+msgstr "Vyberte veľkosť odkladacieho (swap) súboru:"
 
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "Vyberte kanál Unicable, ktorý sa pridelí tomuto tuneru. Táto hodnota je unikátna. Žiadne iné zariadenie pripojené k tomuto systému nesmie mať priradený rovnaký Unicable kanál."
@@ -19208,7 +19215,7 @@ msgid "Sorry, no backups found!"
 msgstr "Žiaľ, nenašli sa žiadne zálohy!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Prepáčte, nie sú pripojené žiadne zariadenia podporujúce SWAP. Súbor SWAP nie je možné vytvoriť v sieti alebo v súborových systémoch FAT32"
+msgstr "Prepáčte, nie sú pripojené žiadne zariadenia podporujúce odkladanie. Odkladací (swap) súbor nie je možné vytvoriť v sieti alebo v súborových systémoch FAT32"
 
 msgid "Sorry, there was a problem:"
 msgstr "Prepáčte, vyskytol sa problém:"
@@ -19812,16 +19819,16 @@ msgid "Swahili"
 msgstr "svahilčina"
 
 msgid "Swap"
-msgstr "Swap"
+msgstr "Odkladanie (swap)"
 
 msgid "Swap File Manager"
-msgstr "Správca swap súboru"
+msgstr "Správca odkladacieho (swap) súboru"
 
 msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Swap súbor sa nenašiel. Prosím, pred aktiváciou ho najskôr vytvorte."
+msgstr "Odkladací (swap) súbor sa nenašiel. Pred aktivovaním ho musíte najskôr vytvoriť."
 
 msgid "Swap Manager"
-msgstr "Správca Swap"
+msgstr "Správca odkladania (swap)"
 
 msgid "Swap PiP"
 msgstr "Vymeniť PiP"
@@ -19830,13 +19837,13 @@ msgid "Swap PiP and main picture"
 msgstr "Zameniť PiP a hlavný obraz"
 
 msgid "Swap Place:"
-msgstr "Swap umiestenie:"
+msgstr "Miesto na odkladanie (swap):"
 
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Zameniť SNR v '%' za SNR v 'dB'"
 
 msgid "Swap Size:"
-msgstr "Veľkosť swap:"
+msgstr "Veľkosť pre odkladanie (swap):"
 
 msgid "Swap services"
 msgstr "Vymeniť stanice/služby"
@@ -20283,7 +20290,7 @@ msgid "The %s %s does not have an Internet connection."
 msgstr "Zariadenie %s %s nie je pripojené k internetu."
 
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
-msgstr "Zariadenie %s %s má obmedzenú kapacitu pamäte. Na zvýšenie množstva dostupnej pamäte je potrebný súbor swap, inak %s %s nemusí fungovať správne. Vyberte cieľové zariadenie, na ktorom bude umiestnený súbor swap."
+msgstr "Zariadenie %s %s má obmedzenú kapacitu pamäte. Na zvýšenie množstva dostupnej pamäte je potrebný odkladací (swap) súbor, inak %s %s nemusí fungovať správne. Vyberte cieľové zariadenie, na ktorom bude umiestnený odkladací (swap) súbor."
 
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s sa vypína. Čakajte, prosím…"
@@ -20762,10 +20769,10 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Nastavenie úrovne dynamického kontrastu obrazu."
 
 msgid "Control the smoothing filter used for the dithering process."
-msgstr "Zapnutie vyhladzovacieho filtra ditheringu."
+msgstr "Ovládanie použitia vyhladzovacieho filtra pre proces rozptylu (ditheringu)."
 
 msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Zapnutie vyhladzovania vertikálnych hrán."
+msgstr "Ovládanie použitia vertikálneho škálovania pre vyhladzovanie hrán."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Nastavenie úplného vypnutia displeja."
@@ -21435,7 +21442,7 @@ msgid "Total memory"
 msgstr "Celková pamäť"
 
 msgid "Total swap"
-msgstr "Celkový swap"
+msgstr "Celkové odkladanie"
 
 msgid "Total:"
 msgstr "Celkom:"
@@ -22801,7 +22808,7 @@ msgid "Wait for timesync at startup"
 msgstr "Pri spustení počkať na synchronizáciu času"
 
 msgid "Wait please while creating swap file..."
-msgstr "Vytvára sa swap súbor. Čakajte, prosím…"
+msgstr "Počkajte na vytvorenie odkladacieho (swap) súboru…"
 
 msgid "Wait please while scanning..."
 msgstr "Prebieha vyhľadávanie. Čakajte, prosím…"
@@ -23474,7 +23481,7 @@ msgid "You have selected no logs to delete."
 msgstr "Nevybrali ste žiadne denníky na vymazanie."
 
 msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Pred aktiváciou automatického spustenia sa najskôr musí vytvoriť swap súbor."
+msgstr "Pred aktiváciou automatického spustenia sa najskôr musí vytvoriť odkladací (swap) súbor."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -24427,6 +24434,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 #~ msgstr "Max. čas čakania pre prichádzajúce údaje a dešifrovacie kľúče (CW), pred spustením dekodéra. Zvyčajne dorazia oveľa rýchlejšie a toto nastavenie je určené len pre špecifické prípady."

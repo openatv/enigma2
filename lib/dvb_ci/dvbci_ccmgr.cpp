@@ -1046,7 +1046,7 @@ bool eDVBCICcSession::ci_element_set_certificate(unsigned int id, X509 *cert)
 
 bool eDVBCICcSession::ci_element_set_hostid_from_certificate(unsigned int id, X509 *cert)
 {
-	X509_NAME *subject;
+	const X509_NAME *subject;
 	char hostid[16 + 1];
 	uint8_t bin_hostid[8];
 

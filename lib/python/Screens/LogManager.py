@@ -1,12 +1,10 @@
 from datetime import datetime
 from glob import glob
+from os import SEEK_END, remove, replace, rmdir, stat, walk
+from os.path import basename, exists, getsize, isdir, join
 from re import compile
-from os import remove, walk, stat, rmdir
-from os.path import exists, join, getsize, isdir, basename
-from time import time, ctime
-from enigma import eTimer, eBackgroundFileEraser, eLabel, gFont, fontRenderClass
-
-from Screens.Screen import Screen
+from time import ctime, time
+from enigma import eBackgroundFileEraser, eLabel, eTimer, fontRenderClass, gFont
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config, configfile
@@ -16,9 +14,10 @@ from Components.MenuList import MenuList
 import Components.Task
 from Components.VariableText import VariableText
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from skin import getSkinFactor
-from Tools.TextBoundary import getTextBoundarySize
 from Tools.Directories import fileReadLines
+from Tools.TextBoundary import getTextBoundarySize
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -49,45 +48,45 @@ class LogManagerPoller:
 
 	def __init__(self):
 		# Init Timer
-		self.TrimTimer = eTimer()
-		self.TrashTimer = eTimer()
+		self.trim_timer = eTimer()
+		self.trash_timer = eTimer()
 
 	def start(self):
-		if self.TrimTimerJob not in self.TrimTimer.callback:
-			self.TrimTimer.callback.append(self.TrimTimerJob)
-		if self.TrashTimerJob not in self.TrashTimer.callback:
-			self.TrashTimer.callback.append(self.TrashTimerJob)
-		self.TrimTimer.startLongTimer(0)
-		self.TrashTimer.startLongTimer(0)
+		if self.trim_timer_job not in self.trim_timer.callback:
+			self.trim_timer.callback.append(self.trim_timer_job)
+		if self.trash_timer_job not in self.trash_timer.callback:
+			self.trash_timer.callback.append(self.trash_timer_job)
+		self.trim_timer.startLongTimer(0)
+		self.trash_timer.startLongTimer(0)
 
 	def stop(self):
-		if self.TrimTimerJob in self.TrimTimer.callback:
-			self.TrimTimer.callback.remove(self.TrimTimerJob)
-		if self.TrashTimerJob in self.TrashTimer.callback:
-			self.TrashTimer.callback.remove(self.TrashTimerJob)
-		self.TrimTimer.stop()
-		self.TrashTimer.stop()
+		if self.trim_timer_job in self.trim_timer.callback:
+			self.trim_timer.callback.remove(self.trim_timer_job)
+		if self.trash_timer_job in self.trash_timer.callback:
+			self.trash_timer.callback.remove(self.trash_timer_job)
+		self.trim_timer.stop()
+		self.trash_timer.stop()
 
-	def TrimTimerJob(self):
+	def trim_timer_job(self):
 		print('[LogManager] Trim Poll Started')
-		Components.Task.job_manager.AddJob(self.createTrimJob())
+		Components.Task.job_manager.AddJob(self.create_trim_job())
 
-	def TrashTimerJob(self):
+	def trash_timer_job(self):
 		print('[LogManager] Trash Poll Started')
-		self.JobTrash()
+		self.job_trash()
 		# Components.Task.job_manager.AddJob(self.createTrashJob())
 
-	def createTrimJob(self):
+	def create_trim_job(self):
 		job = Components.Task.Job(_("LogManager"))
 		task = Components.Task.PythonTask(job, _("Checking Logs..."))
-		task.work = self.JobTrim
+		task.work = self.job_trim
 		task.weighting = 1
 		return job
 
-	def createTrashJob(self):
+	def create_trash_job(self):
 		job = Components.Task.Job(_("LogManager"))
 		task = Components.Task.PythonTask(job, _("Checking Logs..."))
-		task.work = self.JobTrash
+		task.work = self.job_trash
 		task.weighting = 1
 		return job
 
@@ -95,25 +94,39 @@ class LogManagerPoller:
 		ctimeLimit = ctimeLimit
 		allowedBytes = allowedBytes
 
-	def JobTrim(self):
+	def job_trim(self):
 		filename = ""
+		limit = config.crash.debugloglimit.value * 1024 * 1024
 		for filename in glob(config.crash.debug_path.value + '*.log'):
 			try:
-				if getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
-					fh = open(filename, 'rb+')
-					fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
+				size = getsize(filename)
+				if size <= limit:
+					continue
+
+				with open(filename, 'rb') as fh:
+					fh.seek(0, SEEK_END)
+					size = fh.tell()
+					if size <= limit:
+						continue
+					fh.seek(-limit, SEEK_END)
 					data = fh.read()
-					fh.seek(0)  # rewind
-					fh.write(data)
-					fh.truncate()
-					fh.close()
+
+				nl = data.find(b'\n')
+				if nl != -1:
+					data = data[nl + 1:]
+				tmp_filename = filename + '.tmp'
+
+				with open(tmp_filename, 'wb') as out:
+					out.write(data)
+				replace(tmp_filename, filename)
+
 			except OSError:
 				pass
-		self.TrimTimer.startLongTimer(3600)  # once an hour
+		self.trim_timer.startLongTimer(3600)  # once an hour
 
-	def JobTrash(self):
-		ctimeLimit = time() - (config.crash.daysloglimit.value * 3600 * 24)
-		allowedBytes = 1024 * 1024 * int(config.crash.sizeloglimit.value)
+	def job_trash(self):
+		ctime_limit = time() - (config.crash.daysloglimit.value * 3600 * 24)
+		allowed_bytes = 1024 * 1024 * int(config.crash.sizeloglimit.value)
 
 		mounts = fileReadLines("/proc/mounts", source=MODULE_NAME)
 		matches = []
@@ -137,7 +150,7 @@ class LogManagerPoller:
 			for logsfolder in matches:
 				print("[LogManager] looking in: %s" % logsfolder)
 				logssize = get_size(logsfolder)
-				bytesToRemove = logssize - allowedBytes
+				bytes_to_remove = logssize - allowed_bytes
 				candidates = []
 				size = 0
 				for root, dirs, files in walk(logsfolder, topdown=False):
@@ -148,10 +161,10 @@ class LogManagerPoller:
 							# print "Logname: %s" % fn
 							# print "Last created: %s" % ctime(st.st_ctime)
 							# print "Last modified: %s" % ctime(st.st_mtime)
-							if st.st_mtime < ctimeLimit:
+							if st.st_mtime < ctime_limit:
 								print("[LogManager] %s: Too old: %s" % (str(fn), ctime(st.st_mtime)))
 								eBackgroundFileEraser.getInstance().erase(fn)
-								bytesToRemove -= st.st_size
+								bytes_to_remove -= st.st_size
 							else:
 								candidates.append((st.st_mtime, fn, st.st_size))
 								size += st.st_size
@@ -166,20 +179,20 @@ class LogManagerPoller:
 					candidates.sort()
 					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
 					for st_ctime, fn, st_size in candidates:
-						print("[LogManager] %s: bytesToRemove %s" % (str(logsfolder), bytesToRemove))
-						if bytesToRemove < 0:
+						print("[LogManager] %s: bytesToRemove %s" % (str(logsfolder), bytes_to_remove))
+						if bytes_to_remove < 0:
 							break
 						eBackgroundFileEraser.getInstance().erase(fn)
-						bytesToRemove -= st_size
+						bytes_to_remove -= st_size
 						size -= st_size
 		now = datetime.now()
 		seconds_since_0330am = (now - now.replace(hour=3, minute=30, second=0)).total_seconds()
 		if (seconds_since_0330am <= 0):
 			seconds_since_0330am += 86400
 		if (seconds_since_0330am > 43200):
-			self.TrashTimer.startLongTimer(int(86400 - seconds_since_0330am))  # at 03:30 AM
+			self.trash_timer.startLongTimer(int(86400 - seconds_since_0330am))  # at 03:30 AM
 		else:
-			self.TrashTimer.startLongTimer(43200)  # twice a day
+			self.trash_timer.startLongTimer(43200)  # twice a day
 
 
 class LogManager(Screen):
@@ -207,12 +220,12 @@ class LogManager(Screen):
 
 		self.onChangedEntry = []
 		self.sentsingle = ""
-		self.selectedFiles = config.logmanager.sentfiles.value
-		self.defaultDir = config.crash.debug_path.value
-		self.matchingPattern = CRASH_LOG_PATTERN
-		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories=False, matchingPattern=self.matchingPattern)
+		self.selected_files = config.logmanager.sentfiles.value
+		self.default_dir = config.crash.debug_path.value
+		self.matching_pattern = CRASH_LOG_PATTERN
+		self.filelist = MultiFileSelectList(self.selected_files, self.default_dir, showDirectories=False, matchingPattern=self.matching_pattern)
 		self["list"] = self.filelist
-		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
+		self["LogsSize"] = self.logsinfo = LogInfo(self.default_dir, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
 		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
@@ -231,7 +244,7 @@ class LogManager(Screen):
 		self["LogsSize"].update(config.crash.debug_path.value)
 		idx = 0
 		self["list"].moveToIndex(idx)
-		self.setTitle(self.defaultDir)
+		self.setTitle(self.default_dir)
 
 	def up(self):
 		self["list"].up()
@@ -246,8 +259,8 @@ class LogManager(Screen):
 		self["list"].pageDown()
 
 	def saveSelection(self):
-		self.selectedFiles = self["list"].getSelectedList()
-		config.logmanager.sentfiles.setValue(self.selectedFiles)
+		self.selected_files = self["list"].getSelectedList()
+		config.logmanager.sentfiles.setValue(self.selected_files)
 		config.logmanager.sentfiles.save()
 		configfile.save()
 
@@ -261,20 +274,20 @@ class LogManager(Screen):
 			self.sel = None
 		if self.sel:
 			self["list"].changeSelectionState()
-			self.selectedFiles = self["list"].getSelectedList()
+			self.selected_files = self["list"].getSelectedList()
 
 	def changelogtype(self):
 		self["LogsSize"].update(config.crash.debug_path.value)
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
 			self.logtype = 'debuglogs'
-			self.matchingPattern = DEBUG_LOG_PATTERN
+			self.matching_pattern = DEBUG_LOG_PATTERN
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
-			self.matchingPattern = CRASH_LOG_PATTERN
-		self["list"].matchingPattern = compile(self.matchingPattern)
-		self["list"].changeDir(self.defaultDir)
+			self.matching_pattern = CRASH_LOG_PATTERN
+		self["list"].matchingPattern = compile(self.matching_pattern)
+		self["list"].changeDir(self.default_dir)
 
 	def showLog(self):
 		try:
@@ -289,8 +302,8 @@ class LogManager(Screen):
 			self.sel = self["list"].getCurrent()[0]
 		except Exception:
 			self.sel = None
-		self.selectedFiles = self["list"].getSelectedList()
-		if self.selectedFiles:
+		self.selected_files = self["list"].getSelectedList()
+		if self.selected_files:
 			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
 			self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Delete Confirmation"))
 		elif self.sel:
@@ -300,12 +313,12 @@ class LogManager(Screen):
 			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout=10)
 
 	def doDelete1(self, answer):
-		self.selectedFiles = self["list"].getSelectedList()
-		self.selectedFiles = ",".join(self.selectedFiles).replace(",", " ")
+		self.selected_files = self["list"].getSelectedList()
+		self.selected_files = ",".join(self.selected_files).replace(",", " ")
 		self.sel = self["list"].getCurrent()[0]
 		if self.sel is not None:
 			if answer is True:
-				message = _("Are you sure you want to delete all selected logs:\n") + self.selectedFiles
+				message = _("Are you sure you want to delete all selected logs:\n") + self.selected_files
 				self.session.openWithCallback(self.doDelete2, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Delete Confirmation"))
 			else:
 				message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
@@ -313,21 +326,21 @@ class LogManager(Screen):
 
 	def doDelete2(self, answer):
 		if answer is True:
-			self.selectedFiles = self["list"].getSelectedList()
+			self.selected_files = self["list"].getSelectedList()
 			self["list"].instance.moveSelectionTo(0)
-			for f in self.selectedFiles:
+			for f in self.selected_files:
 				remove(f)
 			config.logmanager.sentfiles.setValue("")
 			config.logmanager.sentfiles.save()
 			configfile.save()
-			self["list"].changeDir(self.defaultDir)
+			self["list"].changeDir(self.default_dir)
 
 	def doDelete3(self, answer):
 		if answer is True:
 			path = self["list"].getPath()
 			if exists(path):
 				remove(path)
-			self["list"].changeDir(self.defaultDir)
+			self["list"].changeDir(self.default_dir)
 			self["LogsSize"].update(config.crash.debug_path.value)
 
 

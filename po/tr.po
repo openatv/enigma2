@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 11:34+0000\n"
-"PO-Revision-Date: 2026-03-17 11:09+0000\n"
+"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"PO-Revision-Date: 2026-03-31 21:50+0000\n"
 "Last-Translator: Mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -40,9 +40,6 @@ msgid ""
 msgstr ""
 "\n"
 "Kayıt devam ediyor."
-
-msgid " "
-msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menü tuşu: quad kanal seç"
@@ -5399,6 +5396,16 @@ msgstr "Dosya sistemi oluşturuluyor"
 
 msgid "Creating hard link to time shift file failed!"
 msgstr "Zaman kaydırma dosyasına sabit bağlantı oluşturma başarısız oldu!"
+
+#, python-format
+msgid ""
+"Creating or activating the swap file failed.\n"
+"\n"
+"%s"
+msgstr ""
+"Takas dosyasının oluşturulması veya etkinleştirilmesi başarısız oldu.\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "Bölüm oluştur"
@@ -16611,7 +16618,7 @@ msgid "Scaler sharpness"
 msgstr "Ölçek keskinliği"
 
 msgid "Scaler vertical anti-aliasing"
-msgstr "Ölçekleyici dikey kenar giderme"
+msgstr "Ölçekleyici dikey kenar yumuşatma"
 
 #
 msgid "Scaling mode"
@@ -21636,10 +21643,10 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Bu seçenek görüntünün dinamik kontrast düzeyini ayarlamanızı sağlar."
 
 msgid "Control the smoothing filter used for the dithering process."
-msgstr "Bu seçenek titreme işlemini kontrol etmek için yumuşatma filtresini etkinleştirmenizi sağlar."
+msgstr "Titreşim giderme işlemi için kullanılan yumuşatma filtresini kontrol edin."
 
 msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Bu seçenek dikey ölçekleyici kenar düzeltme özelliğini etkinleştirmenizi sağlar."
+msgstr "Dikey ölçekleyici kenar yumuşatma kullanımını kontrol edin."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Bu seçenek ekranı kapatmanıza olanak tanır."
@@ -25522,6 +25529,9 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid " "
+#~ msgstr " "
 
 #~ msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 #~ msgstr "Kod çözücüyü başlatmadan önce gelen verileri ve şifre çözme anahtarlarını (CW) beklemek için maksimum süre. Genellikle her ikisi de çok daha hızlı gelir ve bu sadece özel durumlar içindir."
