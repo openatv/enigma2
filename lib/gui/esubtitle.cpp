@@ -1,6 +1,8 @@
 #include <lib/gui/esubtitle.h>
 #include <lib/gdi/grc.h>
 #include <lib/gdi/font.h>
+#include <lib/gdi/epng.h>
+#include <lib/gdi/region.h>
 #include <lib/base/estring.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/base/esettings.h>
@@ -146,6 +148,22 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 		r.scale(size().width(), p.m_display_size.width(), size().height(), p.m_display_size.height());
 		m_visible_region |= r;
 	}
+
+	if (!m_dvb_page.m_regions.empty() && p.m_display_size.width() > 0 && p.m_display_size.height() > 0)
+	{
+		ePtr<gPixmap> subtitleFrame = new gPixmap(eSize(p.m_display_size.width(), p.m_display_size.height()), 32, 0);
+		if (subtitleFrame)
+		{
+			gRegion clip(eRect(0, 0, p.m_display_size.width(), p.m_display_size.height()));
+			for (std::list<eDVBSubtitleRegion>::const_iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
+			{
+				if (it->m_pixmap)
+					subtitleFrame->blit(*it->m_pixmap, eRect(it->m_position, it->m_pixmap->size()), clip, 0, 0, gPixmap::blitAlphaBlend);
+			}
+			savePNG("/tmp/current_sub.png", &*subtitleFrame);
+		}
+	}
+
 	m_dvb_page_ok = 1;
 	m_hide_subtitles_timer->start(7500, true);
 	invalidate(m_visible_region); // invalidate new regions
