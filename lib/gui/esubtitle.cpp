@@ -155,6 +155,7 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 		if (subtitleFrame)
 		{
 			gRegion clip(eRect(0, 0, p.m_display_size.width(), p.m_display_size.height()));
+			subtitleFrame->fill(clip, gRGB(0, 0, 0, 0));
 			for (std::list<eDVBSubtitleRegion>::const_iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 			{
 				if (it->m_pixmap)
