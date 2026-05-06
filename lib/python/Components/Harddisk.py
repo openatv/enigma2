@@ -614,6 +614,7 @@ class HarddiskManager:
 	def enumerateBlockDevices(self):
 		print("[Harddisk] Enumerating block devices.")
 		black = BoxInfo.getItem("mtdblack")
+		self._unmountStaleExternalMmcMounts(black)
 		for blockdev in listdir("/sys/block"):
 			if blockdev.startswith(("ram", "rom", "loop", "zram", "md0", black)):
 				continue
@@ -677,7 +678,8 @@ class HarddiskManager:
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
-			p = Partition(mountpoint=self.getMountpoint(device), description=description, force_mounted=True, device=device)
+			mountpoint = self._getCorrectMountpoint(device)
+			p = Partition(mountpoint=mountpoint, description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
 			if p.mountpoint:  # Plugins won't expect unmounted devices
 				self.triggerAddRemovePartion("add", p)
@@ -688,6 +690,107 @@ class HarddiskManager:
 					self.hdd.sort()
 				BoxInfo.setItem("Harddisk", True)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
+
+	def _getDeviceUuid(self, device):
+		"""Return the filesystem UUID for a device, or None if not found."""
+		uuidPath = "/dev/disk/by-uuid"
+		if not exists(uuidPath):
+			return None
+		try:
+			for uuid in listdir(uuidPath):
+				if realpath(f"{uuidPath}/{uuid}") == f"/dev/{device}":
+					return uuid
+		except Exception:
+			pass
+		return None
+
+	def _isDeviceInFstab(self, device):
+		"""Return True if the device or its UUID already has an entry in fstab."""
+		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
+		uuid = self._getDeviceUuid(device)
+		return any(f"/dev/{device}" in line or (uuid and uuid in line) for line in fstab)
+
+	def _getUsedMountpoints(self):
+		"""Return the set of mountpoints already assigned in this session."""
+		return {p.mountpoint.rstrip("/") for p in self.partitions if p.mountpoint}
+
+	def _remount(self, device, targetMount):
+		"""Unmount all stale /media/ mounts of device, then mount to targetMount."""
+		otherSdMounts = {m[1] for m in getProcMountsNew() if m[0].startswith("/dev/sd") and m[0] != f"/dev/{device}"}
+		for mount in getProcMountsNew():
+			if mount[0] == f"/dev/{device}" and mount[1].startswith("/media/") and mount[1] not in otherSdMounts:
+				self.console.ePopen(["/bin/umount", "/bin/umount", "-lf", mount[1]])
+		if not exists(targetMount):
+			mkdir(targetMount, 0o755)
+		self.console.ePopen(["/bin/mount", "/bin/mount", f"/dev/{device}", targetMount])
+
+	def _getMmcMountpoint(self, device):
+		"""Return the correct mountpoint for an external MMC/SD card device."""
+		currentMount = self.getMountpoint(device)
+		if self._isDeviceInFstab(device):
+			print(f"[Harddisk] MMC '{device}' already in fstab, leaving at '{currentMount}'.")
+			return currentMount
+		usedMounts = self._getUsedMountpoints()
+		hasSdDevice = any(search(r"^sd\w\d+$", p.device) for p in self.partitions if p.device)
+		candidates = ("mmc3", "mmc2", "mmc1", "mmc") if hasSdDevice else ("mmc3", "mmc2", "mmc1", "mmc", "hdd")
+		possibleMountPoints = [f"/media/{x}" for x in candidates if f"/media/{x}" not in usedMounts]
+		targetMount = possibleMountPoints.pop() if possibleMountPoints else currentMount
+		print(f"[Harddisk] MMC '{device}' currentMount='{currentMount}' -> targetMount='{targetMount}'.")
+		if targetMount and currentMount != targetMount + "/":
+			self._remount(device, targetMount)
+		return (targetMount + "/") if targetMount else currentMount
+
+	def _getUsbMountpoint(self, device):
+		"""Return the correct mountpoint for a USB/SATA device."""
+		currentMount = self.getMountpoint(device)
+		if self._isDeviceInFstab(device):
+			print(f"[Harddisk] USB '{device}' already in fstab, leaving at '{currentMount}'.")
+			return currentMount
+		usedMounts = self._getUsedMountpoints()
+		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
+		fstabReservesMediaHDD = checkFstabReservesMediaHDD(fstab)
+		possibleMountPoints = [f"/media/{x}" for x in ("usb8", "usb7", "usb6", "usb5", "usb4", "usb3", "usb2", "usb", "hdd") if f"/media/{x}" not in usedMounts and not (x == "hdd" and fstabReservesMediaHDD)]
+		targetMount = possibleMountPoints.pop() if possibleMountPoints else currentMount
+		print(f"[Harddisk] USB '{device}' currentMount='{currentMount}' -> targetMount='{targetMount}'.")
+		if targetMount and currentMount != targetMount + "/":
+			self._remount(device, targetMount)
+		return (targetMount + "/") if targetMount else currentMount
+
+	def _getCorrectMountpoint(self, device):
+		"""Return the correct mountpoint for a device, remounting if necessary.
+		Never writes fstab. Respects any existing fstab entries."""
+		black = BoxInfo.getItem("mtdblack")
+		if search(r"^mmcblk\d+p\d+$", device):
+			dev = self.splitDeviceName(device)[0]
+			if BoxInfo.getItem("model") in ("dm900", "dm920") and device == f"{black}p3":
+				# Internal data partition on dm900/dm920 - mount as /media/data.
+				currentMount = self.getMountpoint(device)
+				if currentMount is None or currentMount == "/":
+					fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
+					if not any(f"/dev/{device}" in line for line in fstab):
+						fstab.append(f"/dev/{device} /media/data ext4 rw,relatime,data=ordered 0 0")
+						fileWriteLines("/etc/fstab", fstab, source=MODULE_NAME)
+					if not exists("/media/data/"):
+						mkdir("/media/data/", 0o755)
+					self.console.ePopen(["/bin/mount", "/bin/mount", "-a"])
+					return "/media/data/"
+				return currentMount
+			if dev.startswith(black):
+				return self.getMountpoint(device)  # Internal eMMC - leave alone.
+			return self._getMmcMountpoint(device)  # External SD card.
+		if search(r"^sd\w\d+$", device):
+			return self._getUsbMountpoint(device)  # USB/SATA device.
+		return self.getMountpoint(device)  # All other devices.
+
+	def _unmountStaleExternalMmcMounts(self, black):
+		"""Synchronously unmount stale /media/ mounts of external mmcblk devices
+		left over from a previous boot before enigma2 started."""
+		from subprocess import call as subCall
+		for mount in getProcMountsNew():
+			dev = mount[0].replace("/dev/", "")
+			if search(r"^mmcblk\d+p\d+$", dev) and not dev.startswith(black) and mount[1].startswith("/media/"):
+				print(f"[Harddisk] Cleaning up stale mmcblk mount: {mount[0]} at {mount[1]}")
+				subCall(["/bin/umount", "-lf", mount[1]])
 
 	def addHotplugAudiocd(self, device, physdev=None):
 		# device -> the device name, without /dev.
