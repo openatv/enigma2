@@ -25,6 +25,7 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/metaparser.cpp \
 	dvb/opentv.cpp \
 	dvb/pesparse.cpp \
+	dvb/pgssubtitle.cpp \
 	dvb/pmt.cpp \
 	dvb/pvrparse.cpp \
 	dvb/radiotext.cpp \
@@ -74,6 +75,7 @@ dvbinclude_HEADERS = \
 	dvb/metaparser.h \
 	dvb/opentv.h \
 	dvb/pesparse.h \
+	dvb/pgssubtitle.h \
 	dvb/pmt.h \
 	dvb/pvrparse.h \
 	dvb/radiotext.h \
