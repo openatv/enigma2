@@ -6,6 +6,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/subtitle.h>
+#include <lib/dvb/pgssubtitle.h>
 #include <lib/dvb/teletext.h>
 #include <lib/service/iservice.h>
 /* for subtitles */
@@ -426,6 +427,8 @@ private:
 #endif
 	ePtr<eDVBSubtitleParser> m_dvb_subtitle_parser;
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
+	ePtr<ePGSSubtitleParser> m_pgs_subtitle_parser;
+	ePtr<eConnection> m_new_pgs_subtitle_page_connection;
 	void newDVBSubtitlePage(const eDVBSubtitlePage& p);
 
 	pts_t m_prev_decoder_time = -1;
