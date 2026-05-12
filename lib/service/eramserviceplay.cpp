@@ -23,6 +23,14 @@ eRamServicePlay::~eRamServicePlay() {
 	stopTimeshift(false);
 }
 
+RESULT eRamServicePlay::timeshift(ePtr<iTimeshiftService>& ptr)
+{
+	// RAM timeshift does not need a disk path or free space check.
+	// It works entirely in RAM, so it's always available for live TV.
+	ptr = this;
+	return 0;
+}
+
 RESULT eRamServicePlay::startTimeshift() {
 	if (m_timeshift_enabled)
 		return -1;
