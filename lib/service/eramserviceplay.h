@@ -32,6 +32,7 @@ public:
 	RESULT seekRelative(int direction, pts_t to)   override;
 
 	// Timeshift management
+	RESULT timeshift(ePtr<iTimeshiftService>& ptr) override;
 	RESULT activateTimeshift()              override;
 	RESULT saveTimeshiftFile()              override; // no-op: nothing on disk
 	void   serviceEventTimeshift(int event) override;
