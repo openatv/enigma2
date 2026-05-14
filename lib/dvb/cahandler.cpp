@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdint.h>
+#include <fcntl.h>
 
 #include <dvbsi++/ca_descriptor.h>
 #include <dvbsi++/ca_program_map_section.h>
@@ -352,13 +353,30 @@ static bool isProtocol3CapableClient(int socket_fd)
 	}
 
 	char exe_path[256];
-	char proc_path[64];
-	snprintf(proc_path, sizeof(proc_path), "/proc/%d/exe", cred.pid);
-	ssize_t n = readlink(proc_path, exe_path, sizeof(exe_path) - 1);
+	std::string proc_path = "/proc/" + std::to_string(cred.pid) + "/exe";
+	ssize_t n = readlink(proc_path.c_str(), exe_path, sizeof(exe_path) - 1);
 	if (n <= 0)
 	{
-		eDebug("[eDVBCAHandler] readlink(%s) failed: %m, treating as legacy client", proc_path);
-		return false;
+		// Some kernels (observed on dm520) do not implement readlink on
+		// /proc/PID/exe. Fall back to /proc/PID/comm which exposes the
+		// process name (truncated to TASK_COMM_LEN, sufficient for the
+		// blacklist prefix match below).
+		proc_path = "/proc/" + std::to_string(cred.pid) + "/comm";
+		int fd = ::open(proc_path.c_str(), O_RDONLY | O_CLOEXEC);
+		if (fd < 0)
+		{
+			eDebug("[eDVBCAHandler] open(%s) failed: %m, treating as legacy client", proc_path.c_str());
+			return false;
+		}
+		n = ::read(fd, exe_path, sizeof(exe_path) - 1);
+		::close(fd);
+		if (n <= 0)
+		{
+			eDebug("[eDVBCAHandler] read(%s) failed: %m, treating as legacy client", proc_path.c_str());
+			return false;
+		}
+		while (n > 0 && (exe_path[n - 1] == '\n' || exe_path[n - 1] == '\r'))
+			--n;
 	}
 	exe_path[n] = '\0';
 
