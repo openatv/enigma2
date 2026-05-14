@@ -356,7 +356,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	surface.stride = fb->Stride();
 	surface.data = base_addr;
 
-	for (int y=0; y<yres; y++)    // make whole screen transparent
+	for (int y=0; y<yres; y++) // make whole screen transparent
 		memset(fb->lfb+ y * xres * 4, 0x00, xres * 4);
 
 	surface.data_phys = base_phys;
@@ -411,8 +411,8 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		surface_back.data_phys = 0;
 	}
 
-        surface_third.data = 0;
-        surface_third.data_phys = 0;
+	surface_third.data = 0;
+	surface_third.data_phys = 0;
 #endif
 
 	eDebug("[gFBDC] resolution: %d x %d x %d (stride: %d) pages: %d", surface.x, surface.y, surface.bpp, fb->Stride(), fb->getNumPages());
