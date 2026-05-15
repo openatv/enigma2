@@ -37,6 +37,11 @@
 
 #include <sys/vfs.h>
 #include <sys/stat.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <chrono>
+#include <thread>
+#include <lib/dvb_ci/descrambler.h>
 
 #include <byteswap.h>
 #include <netinet/in.h>
@@ -4464,15 +4469,13 @@ void eDVBServicePlay::onSessionActivated(bool active)
 		// Step 1: Release HW decoder resources
 		if (m_decoder)
 		{
-			// decoder_release is configurable via GUI:
-			// 0 - "Quick" (default): immediate release, fast channel switching
-			// 1 - "Normal": pause() before release, may be more stable on some boxes
+			// 0 = Quick (no pause), 1 = Normal (pause), 2 = Aggressive (pause + slot reset)
 			int decoder_release = eSimpleConfig::getInt("config.softcsa.decoderRelease", 0);
-			bool needsPause = (decoder_release == 1); // 1 = Normal
+			bool needsPause = (decoder_release >= 1);
 
 			if (needsPause)
 			{
-				eDebug("[eDVBServicePlay] Normal decoder release - calling pause() for clean release");
+				eDebug("[eDVBServicePlay] Pausing HW decoder for clean release");
 				m_decoder->pause();
 			}
 			else
@@ -4547,19 +4550,26 @@ void eDVBServicePlay::onSoftDecoderAudioPidSelected(int pid)
 
 void eDVBServicePlay::cleanupSoftwareDescrambling()
 {
+	// Aggressive mode: reset HW-descrambler slot when leaving any encrypted
+	// service.
+	if (eDVBServicePMTHandler::program prog;
+		m_service_handler.getProgramInfo(prog) == 0
+		&& prog.isCrypted()
+		&& m_csa_session
+		&& eSimpleConfig::getInt("config.softcsa.decoderRelease", 0) == 2)
+		resetHwDescramblerSlot();
+
 	if (m_decoder)
 	{
 		eDebug("[eDVBServicePlay] Cleaning up HW decoder for clean handover");
 
-		// decoder_release is configurable via GUI:
-		// 0 - "Quick" (default): immediate release, fast channel switching
-		// 1 - "Normal": pause() before release, may be more stable on some boxes
+		// 0 = Quick (no pause), 1 = Normal (pause), 2 = Aggressive (pause + slot reset)
 		int decoder_release = eSimpleConfig::getInt("config.softcsa.decoderRelease", 0);
-		bool needsPause = (decoder_release == 1); // 1 = Normal
+		bool needsPause = (decoder_release >= 1);
 
 		if (needsPause)
 		{
-			eDebug("[eDVBServicePlay] Normal decoder release - calling pause() for clean handover");
+			eDebug("[eDVBServicePlay] Pausing HW decoder for clean handover");
 			m_decoder->pause();
 		}
 		else
@@ -4596,6 +4606,74 @@ void eDVBServicePlay::cleanupSoftwareDescrambling()
 
 	m_csa_activated_conn = nullptr;
 	m_soft_decoder_video_info_valid = false;
+}
+
+void eDVBServicePlay::resetHwDescramblerSlot()
+{
+	// Works around drivers (dm900) where CA_SET_PID(pid, -1) returns ok but
+	// the slot keeps descrambling with old CWs. Must run BEFORE the next
+	// service tunes - after CSA-ALT detection the slot ignores all ioctls.
+
+	// Collect this service's stream PIDs from the cached PMT
+	std::set<int> pids;
+	if (eDVBServicePMTHandler::program program; !m_service_handler.getProgramInfo(program))
+	{
+		for (const auto& v : program.videoStreams)
+			if (v.pid > 0 && v.pid < 0x1fff) pids.insert(v.pid);
+		for (const auto& a : program.audioStreams)
+			if (a.pid > 0 && a.pid < 0x1fff) pids.insert(a.pid);
+		for (const auto& s : program.subtitleStreams)
+			if (s.pid > 0 && s.pid < 0x1fff) pids.insert(s.pid);
+		if (program.pcrPid > 0 && program.pcrPid < 0x1fff) pids.insert(program.pcrPid);
+		if (program.textPid > 0 && program.textPid < 0x1fff) pids.insert(program.textPid);
+	}
+
+	if (pids.empty())
+	{
+		eDebug("[eDVBServicePlay] HW-descr reset: no PIDs in program info, skipping");
+		return;
+	}
+
+	// ca<N> matches demux<N>; fall back to ca0.
+	int ca_id = 0;
+	{
+		ePtr<iDVBDemux> demux;
+		if (!m_service_handler.getDataDemux(demux) && demux)
+		{
+			uint8_t did = 0;
+			demux->getCADemuxID(did);
+			ca_id = did;
+		}
+	}
+	const std::string ca_path = "/dev/dvb/adapter0/ca" + std::to_string(ca_id);
+
+	int disabled = 0;
+	int reset = 0;
+
+	if (int fd = ::open(ca_path.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC); fd >= 0)
+	{
+		for (int pid : pids)
+		{
+			struct ca_pid p = {(unsigned int)pid, -1};
+			if (::ioctl(fd, CA_SET_PID, &p) == 0)
+				disabled++;
+		}
+
+		if (::ioctl(fd, CA_RESET, 0) == 0)
+			reset++;
+
+		::close(fd);
+	}
+	else
+	{
+		eDebug("[eDVBServicePlay] HW-descr reset: %s open failed (%m)", ca_path.c_str());
+		return;
+	}
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+	eDebug("[eDVBServicePlay] HW-descr reset: %s %zu PIDs, disabled=%d reset=%d, sleep=200ms",
+		ca_path.c_str(), pids.size(), disabled, reset);
 }
 
 // ==================== End Software Descrambling ====================
