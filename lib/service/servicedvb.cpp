@@ -4409,6 +4409,16 @@ void eDVBServicePlay::onSessionActivated(bool active)
 			eDebug("[eDVBServicePlay] HW decoder released (fast path)");
 		}
 
+		// Connect SoftDecoder signals BEFORE start() - m_decoder_ready and the
+		// first video size event can fire synchronously inside start() when CW
+		// is already available, so connecting afterwards would miss them.
+		m_soft_decoder->connectVideoEvent(
+			sigc::mem_fun(*this, &eDVBServicePlay::video_event),
+			m_video_event_connection);
+		m_soft_decoder->m_decoder_ready.connect(
+			sigc::mem_fun(*this, &eDVBServicePlay::onSoftDecoderReady));
+		m_soft_decoder_video_info_valid = false;
+
 		// Step 2: Start the soft decoder (now has access to video0/audio0)
 		eDebug("[eDVBServicePlay] Starting SoftDecoder");
 		if (m_soft_decoder->start() != 0)
@@ -4419,30 +4429,7 @@ void eDVBServicePlay::onSessionActivated(bool active)
 			return;
 		}
 
-		// Step 3: Connect to SoftDecoder signals
-		// NOTE: We keep the existing m_teletext_parser and m_subtitle_parser!
-		// They were created in updateDecoder() on m_decode_demux which reads from FRONTEND.
-		// Teletext/subtitle data is NOT encrypted, so we can read it directly from the tuner.
-		// Only video/audio needs to go through the DVR loopback for descrambling.
-		if (m_soft_decoder)
-		{
-			// Connect video events from SoftDecoder's decoder
-			m_soft_decoder->connectVideoEvent(
-				sigc::mem_fun(*this, &eDVBServicePlay::video_event),
-				m_video_event_connection);
-			eDebug("[eDVBServicePlay] Connected video events from SoftDecoder");
-		}
-
 		eDebug("[eDVBServicePlay] SoftDecoder takeover complete");
-
-		// Connect decoder-ready signal: SoftDecoder fires this after decoder PLAY,
-		// when video info is actually queryable. We defer evUpdatedInfo until then
-		// to avoid the skin querying -1 values before the decoder exists.
-		m_soft_decoder->m_decoder_ready.connect(
-			sigc::mem_fun(*this, &eDVBServicePlay::onSoftDecoderReady));
-
-		// Reset video info flag - will be set on first video size event from decoder
-		m_soft_decoder_video_info_valid = false;
 	}
 	else if (!active && m_soft_decoder)
 	{
