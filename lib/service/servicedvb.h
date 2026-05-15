@@ -359,6 +359,10 @@ protected:
 	void onSoftDecoderAudioPidSelected(int pid);
 	void cleanupSoftwareDescrambling();
 
+	// Aggressive mode: force release of the HW-descrambler slot at service
+	// stop. Workaround for drivers (dm900) that ignore CA_SET_PID(pid, -1).
+	void resetHwDescramblerSlot();
+
 	// Audio cache helper
 	void updateAudioCache(int apid, int apidtype);
 
