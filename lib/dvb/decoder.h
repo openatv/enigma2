@@ -218,6 +218,8 @@ public:
 		fcc_state_decoding
 	};
 
+	void freeDecoder() override;
+
 	RESULT prepareFCC(int fe_id, int vpid, int vtype, int pcrpid);
 	RESULT fccStart();
 	RESULT fccStop();
