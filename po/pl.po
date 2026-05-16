@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-04-14 13:03+0000\n"
+"PO-Revision-Date: 2026-05-08 09:11+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.5-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3656,7 +3656,7 @@ msgid "Can't play the previous time shift file! You can try again."
 msgstr "Nie można odtworzyć poprzedniego pliku timeshift! Możesz spróbować ponownie."
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
-msgstr "Nie można odmontować partycji. Upewnij się, że nie jest ona używana do pliku swap lub ścieżek przesunięcia rekordu/czasu"
+msgstr "Nie można odmontować partycji. Upewnij się, że nie jest ona używana do pliku swap lub ścieżek nagrań/timeshiftu"
 
 msgid "Canada"
 msgstr "Kanada"
@@ -5817,7 +5817,7 @@ msgid "Default CPU priority (nice) for executed scripts. This can reduce the sys
 msgstr "Domyślny priorytet CPU (nice) dla wykonywanych skryptów. Może zredukować obciążenie systemu, tak aby skrypty nie wpływały na ogólną wydajność systemu. (wyższa wartość = niższy priorytet)"
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
-msgstr "Domyślne przesunięcie Dolby Digital / Dolby AC-3"
+msgstr "Domyślne przesunięcie Dolby Digital / Dolby AC3"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Domyślny priorytet I/O (ionice) dla wykonywanych skryptów. Może zredukować obciążenie systemu, tak aby skrypty nie wpływały na ogólną wydajność systemu. (wyższa wartość = niższy priorytet)"
@@ -7458,10 +7458,10 @@ msgid "Enhanced Movie Center"
 msgstr "Ulepszone Centrum Filmu"
 
 msgid "Enigma2 (re)starts"
-msgstr "Ilość restartów E2"
+msgstr "Restary Enigma2"
 
 msgid "Enigma2 debug level"
-msgstr "Poziom debugowania E2"
+msgstr "Debugowanie Enigma2"
 
 msgid "Enigma2 information"
 msgstr "Informacje o Enigma2"
@@ -8236,7 +8236,7 @@ msgid "FTP"
 msgstr "FTP"
 
 msgid "Factory Reset"
-msgstr "Przywracanie ustawień fabrycznych"
+msgstr "Ustawienia fabryczne"
 
 msgid "Factory release"
 msgstr "Wydanie fabryczne"
@@ -8821,7 +8821,7 @@ msgid "Full Stretch"
 msgstr "Pełne rozciągnięcie"
 
 msgid "Full factory reset"
-msgstr "Pełne przywracanie ustawień fabrycznych"
+msgstr "Pełny reset fabryczny"
 
 msgid "Full screen"
 msgstr "Pełny ekran"
@@ -9305,7 +9305,7 @@ msgid "Here you can select which files should be excluded from the backup."
 msgstr "Tutaj możesz wybrać, które pliki powinny zostać wykluczone z kopii zapasowej."
 
 msgid "Here you can select which files should be updated with a online update"
-msgstr "Tutaj można ustawić,które pliki powinny być aktualizowane z aktualizacji on-line"
+msgstr "Tutaj możesz wybrać, które pliki mają zostać zaktualizowane za pomocą aktualizacji online"
 
 msgid "Here you can set what is called when pressing the 'Info' key."
 msgstr "Tutaj możesz ustawić, co będzie wywoływane po naciśnięciu przycisku 'Info'."
@@ -15109,7 +15109,7 @@ msgid "Remove Satellite Services"
 msgstr "Usuń wybranego satelitę"
 
 msgid "Remove Service"
-msgstr "Usuń kanał"
+msgstr "Usuń usługę"
 
 msgid "Remove Terrestrial Services"
 msgstr "Usuń kanały naziemne"
@@ -15178,7 +15178,7 @@ msgid "Remove the selected plugin / list of plugins"
 msgstr "Usuń wybraną wtyczkę / listę wtyczek"
 
 msgid "Remove the selected service"
-msgstr "Usuń wybrany kanał"
+msgstr "Usuń wybraną usługę"
 
 msgid "Remove timer"
 msgstr "Usuń timer"
@@ -15888,13 +15888,13 @@ msgid "Save the right column directory location on exit."
 msgstr "Zapisz lokalizację katalogu w prawej kolumnie przy wyjściu."
 
 msgid "Save time shift as movie and continue recording"
-msgstr "Zapisz jako time shift i wznów nagrywania filmu"
+msgstr "Zapisz timeshift jako film i kontynuuj nagrywanie"
 
 msgid "Save time shift as movie and stop recording"
-msgstr "Zapisz time shift jako film i zatrzymaj nagrywanie"
+msgstr "Zapisz timeshift jako film i zatrzymaj nagrywanie"
 
 msgid "Save time shift buffer now and continue recording"
-msgstr "Zapisz timeshift i kontynuuj nagrywanie"
+msgstr "Zaoszczędź teraz bufor timeshiftu i kontynuuj nagrywanie"
 
 msgid "Saved lines in script messages"
 msgstr "Zapisane linie w wiadomościach skryptu"
@@ -15903,10 +15903,10 @@ msgid "Saving EPG Cache..."
 msgstr "Zapisywanie pamięci podręcznej EPG..."
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "Zapisywanie buforu time shift, to może chwilę potrwać."
+msgstr "Zapisywanie buforu timeshift, to może chwilę potrwać."
 
 msgid "Saving time shift files"
-msgstr "Zapisywanie plików time shift"
+msgstr "Zapisywanie plików timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Skalowanie ostrości"
@@ -16148,7 +16148,7 @@ msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB spec
 msgstr "Wybierz \"pasmo\", jeśli używasz \"uniwersalnego\" konwertera, w przeciwnym razie zapoznaj się z arkuszem specyfikacji konwertera."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr "Wybierz „Wyłączone”, aby wyłączyć wszystkie automatyczne regulacje głośności. Wybierz „Zdefiniowane przesunięcia głośności”, aby przypisać określone przesunięcie do poziomu głośności kanału. Wybierz „Ostatnio używane/ustawione głośność”, aby zapamiętać poziom głośności ostatnio używany dla każdego kanału."
+msgstr "Wybierz 'Wyłączony' aby wyłączyć wszystkie automatyczne regulacje głośności. Wybierz 'Zdefiniowane przesunięcie głośności', aby przypisać określone przesunięcie do poziomu głośności kanału. Wybierz 'Ostatnio używana/ustawiona głośność', aby zapamiętać poziom głośności ostatnio używany dla każdego kanału."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Wybierz „Włącz”, aby uruchomić CI+ helper."
@@ -16493,7 +16493,7 @@ msgid "Select Software Update"
 msgstr "Wybierz aktualizację systemu"
 
 msgid "Select Time Shift Location"
-msgstr "Wybierz lokalizację przesunięcia w czasie"
+msgstr "Wybierz lokalizację timeshift"
 
 msgid "Select Upgrade Source"
 msgstr "Wybierz źródło aktualizacji"
@@ -16711,7 +16711,7 @@ msgid "Select if this timer is to be repeated."
 msgstr "Wybierz, czy ten timer ma być powtarzany."
 
 msgid "Select if time shift must continue when set to record."
-msgstr "Wybierz, czy time shift ma być kontynuowany po ustawieniu nagrywania."
+msgstr "Wybierz, czy timeshift ma być kontynuowany po ustawieniu nagrywania."
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Wybierz, czy tryb subserwisów ma być aktywowany."
@@ -17624,7 +17624,7 @@ msgid "Set the default location to save your time shift recording files. Press '
 msgstr "Ustaw domyślną lokalizację, aby zapisać pliki nagrań z timeshift. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij LEWO/PRAWO, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Ustaw domyślną lokalizację dla nagrań-timeshiftu. Naciśnij przycisk 'OK', aby dodać nową lokalizację użyj strzałek 'lewo/prawo'."
+msgstr "Ustaw domyślną lokalizację przechowywania plików bufora timeshiftu. Naciśnij 'OK', aby dodać nowe lokalizacje, naciśnij 'LEWO'/'PRAWO', aby wybrać jedną z wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację wyboru filmu dla swoich plików multimedialnych. Naciśnij 'OK', aby dodać nowe lokalizacje, naciśnij 'LEWO'/'PRAWO', aby wybrać z wcześniej zdefiniowanych lokalizacji."
@@ -18671,7 +18671,7 @@ msgid "Show warning before restart"
 msgstr "Pokaż ostrzeżenie przed ponownym uruchomieniem"
 
 msgid "Show warning when time shift is stopped"
-msgstr "Pokaż ostrzeżenie gdy time shift jest zatrzymywany"
+msgstr "Pokaż ostrzeżenie gdy timeshift zostanie zatrzymany"
 
 msgid "Show watch status"
 msgstr "Pokaż ikony statusu na liście filmów"
@@ -18740,7 +18740,7 @@ msgid "Sigma Designs"
 msgstr "Projekty Sigma"
 
 msgid "Signal Finder"
-msgstr "Siła sygnału"
+msgstr "Wyszukiwarka sygnału"
 
 msgid "Signal quality"
 msgstr "Jakość sygnału"
@@ -19130,7 +19130,7 @@ msgid "Softcam Actions"
 msgstr "Akcje softcam"
 
 msgid "Softcam Packages"
-msgstr "Pakiety Softcam"
+msgstr "Pakiety softcam"
 
 msgid "Softcam Settings"
 msgstr "Ustawienia Softcam"
@@ -19526,7 +19526,7 @@ msgid "Status of the display in Deep Standby"
 msgstr "Stan wyświetlacza w trybie wyłączenia"
 
 msgid "Status of the display in Standby"
-msgstr "Status wyświetlacza w trybie czuwania"
+msgstr "Stan wyświetlacza w trybie czuwania"
 
 msgid "Status unavailable!"
 msgstr "Status niedostępny!"
@@ -21147,31 +21147,31 @@ msgid "Time shift buffer delete after zap"
 msgstr "Usuń bufor timeshiftu po przełączeniu kanału"
 
 msgid "Time shift buffer limit"
-msgstr "Limit bufora w godzinach"
+msgstr "Limit bufora timeshift"
 
 msgid "Time shift buffer location"
-msgstr "Lokalizacja timeshiftu"
+msgstr "Lokalizacja bufora timeshiftu"
 
 msgid "Time shift checking for free space"
 msgstr "Timeshift sprawdzanie wolnego miejsca"
 
 msgid "Time shift checking for older files"
-msgstr "Sprawdzanie starszych plików [w min.]"
+msgstr "Sprawdzanie timeshift w przypadku starszych plików"
 
 msgid "Time shift event based file splitting"
-msgstr "Podział plików na podstawie zdarzeń time shift"
+msgstr "Podział plików na podstawie zdarzeń timeshift"
 
 msgid "Time shift event limit"
-msgstr "Limit ostatnio zarejestrowanych wydarzeń [ilość]"
+msgstr "Limit zdarzeń timeshiftu"
 
 msgid "Time shift may not work correctly without an acceptable directory."
-msgstr "Time shift może nie działać poprawnie bez akceptowalnego katalogu."
+msgstr "Timeshift może nie działać poprawnie bez akceptowalnego katalogu."
 
 msgid "Time shift not possible!"
 msgstr "Timeshift niemożliwy!"
 
 msgid "Time shift save action on zap"
-msgstr "Akcja zapisywania time shift w zap"
+msgstr "Akcja zapisywania timeshift w zap"
 
 msgid "Time shift save failed!"
 msgstr "Timeshift błąd zapisu!"
@@ -22779,7 +22779,7 @@ msgid "W"
 msgstr "W"
 
 msgid "WAN Geolocation"
-msgstr "Geolokalizacja sieci WAN"
+msgstr "Geolokalizacja WAN"
 
 msgid "WAN connection information"
 msgstr "Informacje o połączeniu WAN"
@@ -23128,7 +23128,7 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Po włączeniu tej opcji odbiornik wybierze ścieżkę AC3 (jeśli jest dostępna)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Po włączeniu tej opcji odbiornik wybierze utwór AC3+ (jeśli jest dostępny)."
+msgstr "Po włączeniu tej opcji odbiornik wybierze ścieżkę AC3+ (jeśli jest dostępna)."
 
 msgid "When enabled, the timer from the fallback tuner is imported."
 msgstr "Po włączeniu importowany jest timer zdalnego odbiornika."
@@ -23143,7 +23143,7 @@ msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Po włączeniu to ustawienie ma większą wagę niż „Preferowany tuner”."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Po włączeniu tej opcji time shift rozpocznie się automatycznie w tle po upływie określonego czasu."
+msgstr "Po włączeniu tej opcji timeshift rozpocznie się automatycznie w tle po upływie określonego czasu."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Po włączeniu użyj DHCP do konfiguracji IP."
@@ -23200,10 +23200,10 @@ msgid "Where do you want to backup your settings?"
 msgstr "Gdzie chcesz utworzyć kopię zapasową ustawień?"
 
 msgid "Where do you want to save temporary time shift recordings?"
-msgstr "Gdzie zapisywać tymczasowe nagrania timeshiftu?"
+msgstr "Gdzie chcesz zapisać tymczasowe nagrania z timeshitu?"
 
 msgid "Which time shift buffer event do you want to save?"
-msgstr "Które wydarzenie chcesz zapisać na stałe?"
+msgstr "Które wydarzenie timeshiftu chcesz zapisać na stałe?"
 
 msgid "While available"
 msgstr "Kiedy dostępne"
@@ -23399,10 +23399,10 @@ msgid "Yes, but don't save time shift as movie"
 msgstr "Tak, ale nie zapisywać timeshift jako filmu"
 
 msgid "Yes, but save time shift as movie and continue recording"
-msgstr "Tak, zapisz timeshift i kontynuuj nagrywanie"
+msgstr "Tak, ale zapisz timeshift jako film i kontynuuj nagrywanie"
 
 msgid "Yes, but save time shift as movie and stop recording"
-msgstr "Tak, zapisz timeshift i zatrzymaj nagrywanie"
+msgstr "Tak, ale zapisz timeshift jako film i zatrzymaj nagrywanie"
 
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Tak, usuń ten film i powróć do listy filmów"
@@ -23475,7 +23475,7 @@ msgid "You have chosen to restore the settings. Enigma2 will restart after resto
 msgstr "Wybrano przywrócenie ustawień. Enigma2 uruchomi się ponownie po przywróceniu. Naciśnij OK, aby rozpocząć przywracanie."
 
 msgid "You have chosen to save the current time shift buffer"
-msgstr "Wybrałeś zapisanie aktualnego timeshifta"
+msgstr "Wybrałeś zapisanie aktualnego timeshiftu"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
