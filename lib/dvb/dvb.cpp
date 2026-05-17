@@ -1710,11 +1710,10 @@ error:
 
 bool eDVBResourceManager::canMeasureFrontendInputPower()
 {
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
-	{
-		return i->m_frontend->readInputpower() >= 0;
-	}
-	return false;
+	if (m_frontend.empty())
+		return false;
+
+	return m_frontend.begin()->m_frontend->readInputpower() >= 0;
 }
 
 class eDVBChannelFilePush: public eFilePushThread
