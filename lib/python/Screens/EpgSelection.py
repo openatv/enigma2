@@ -16,7 +16,7 @@ from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
-from Screens.EventView import showEventView, getEventViewInstance
+from Screens.EventView import showEventViewCallback, getEventViewInstance
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
@@ -932,7 +932,7 @@ class EPGSelection(Screen):
 					self.eventviewDialog = getEventViewInstance(self.session, event, service, skinName="InfoBarEventView")
 					self.eventviewDialog.show()
 				else:
-					showEventView(self.session, False, event, service, callback=self.eventViewCallback, similarEPGCB=self.openSimilarList)
+					showEventViewCallback(None, self.session, False, event, service, callback=self.eventViewCallback, similarEPGCB=self.openSimilarList)
 		elif self.eventviewDialog and not eventviewopen:
 			self.eventviewDialog.hide()
 			del self.eventviewDialog
