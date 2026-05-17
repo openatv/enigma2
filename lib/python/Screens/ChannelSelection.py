@@ -34,7 +34,7 @@ except ImportError:
 from Screens.ButtonSetup import ButtonSetupActionMap, InfoBarButtonSetup, getButtonSetupFunctions
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EpgSelection import EPGSelection
-from Screens.EventView import EventViewEPGSelect
+from Screens.EventView import showEventView
 import Screens.InfoBar
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -2249,7 +2249,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 					epglist.append(ptr)
 				if epglist:
 					self.epglist = epglist
-					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, similarEPGCB=self.eventViewSimilarCallback)
+					showEventView(self.session, False, epglist[0], ServiceReference(ref), callback=self.eventViewCallback, similarEPGCB=self.eventViewSimilarCallback)
 
 	def eventViewCallback(self, setEvent, setService, val):
 		epglist = self.epglist
