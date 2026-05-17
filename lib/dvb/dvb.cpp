@@ -2295,11 +2295,13 @@ void eDVBChannel::SDTready(int result)
 	int tsid = -1, onid = -1;
 	if (!result)
 	{
-		for (std::vector<ServiceDescriptionSection*>::const_iterator i = m_SDT->getSections().begin(); i != m_SDT->getSections().end(); ++i)
+		const std::vector<ServiceDescriptionSection*> &sections = m_SDT->getSections();
+		if (!sections.empty())
 		{
-			tsid = (*i)->getTransportStreamId();
-			onid = (*i)->getOriginalNetworkId();
-			break;
+			std::vector<ServiceDescriptionSection*>::const_iterator it = sections.begin();
+
+			tsid = (*it)->getTransportStreamId();
+			onid = (*it)->getOriginalNetworkId();
 		}
 	}
 	/* emit */ receivedTsidOnid(tsid, onid);
