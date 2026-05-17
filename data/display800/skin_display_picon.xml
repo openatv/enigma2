@@ -14,12 +14,12 @@
 		<color color="#ffffff" name="WindowTitleForeground"/>
 		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
-	
-	<fonts>   
+
+	<fonts>
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 		<font filename="verdana.ttf" name="FdLcDLight" scale="100"/>
 	</fonts>
-	
+
 	<colors>
 		<color name="transparent" value="#ffffffff" />
 		<color name="red" value="#00f50808" />
@@ -30,11 +30,11 @@
 		<color name="black" value="#00000000" />
 		<color name="grey" value="#00b3b3b3" />
 	</colors>
-	
+
 	<!-- MAIN -->
-	
+
 	<!-- CHANNEL SELECTION-->
-	<screen name="ChannelSelectionSummary" position="0,0" size="800,480"> 
+	<screen name="ChannelSelectionSummary" position="0,0" size="800,480">
 		<panel name="LCDPiconChannelSelectionProgramName" />
 		<panel name="LCDPiconChannelSelectionProgress" />
 		<panel name="LCDPiconChannelSelectionRemainingTime" />
@@ -50,7 +50,7 @@
 			<convert type="RdsInfo">RtpText</convert>
 		</widget>
 	</screen>
-	
+
 	<!-- EPG -->
 	<screen name="GraphicalEPGPIGSummary" position="0,0" size="800,480">
 		<panel name="LCDPiconEPGProgramName" />
@@ -72,9 +72,9 @@
 	<screen name="EPGSelectionMultiSummary" position="0,0" size="800,480">
 		<panel name="GraphicalEPGPIGSummary" />
 	</screen>
-	
+
 	<!-- INFOBAR -->
-	<screen name="InfoBarSummary" position="0,0" size="800,480"> 
+	<screen name="InfoBarSummary" position="0,0" size="800,480">
 		<panel name="LCDPiconInfoBarProgramName" />
 		<panel name="LCDPiconInfoBarProgress" />
         <panel name="LCDPiconInfoBarRemainingTime" />
@@ -85,9 +85,9 @@
 		<eLabel text="-" position="520,390" size="70,70" foregroundColor="white" font="FdLcD;60" halign="center" valign="center" />
         <panel name="LCDPiconInfoBarEndTime" />
 	</screen>
-	
+
 	<!-- STANDBY -->
-	<screen name="StandbySummary" position="0,0" size="800,480"> 
+	<screen name="StandbySummary" position="0,0" size="800,480">
 		<panel name="AnalogueClock" />
 		<widget source="global.CurrentTime" render="Label" position="470,24" foregroundColor="white" size="300,50" font="FdLcD;45" halign="right">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
@@ -102,7 +102,7 @@
 		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="40,20"  size="70,70" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-        <!--        
+        <!--
 		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,180" foregroundColor="white" font="FdLcD;100" halign="center" valign="center" zPosition="10">
 			<convert type="ClockToText">Mixed</convert>
 		</widget>
@@ -111,6 +111,6 @@
 		</widget>
         -->
 	</screen>
-		
+
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>

@@ -183,7 +183,7 @@
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
-	</screen>	
+	</screen>
 
 <!-- channelselection-->
 	<screen name="ChannelSelectionSummary" position="0,0" size="128,32">
@@ -373,7 +373,7 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 	<screen name="UpdatePluginSummary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
 		<widget source="parent.package" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
@@ -455,7 +455,7 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
 	</screen>
-	
+
 	<!-- AudioSelection -->
 	<screen name="AudioSelectionSummary" position="0,0" size="132,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
@@ -471,7 +471,7 @@
 	<screen name="MSScreenSummary" position="0,0" size="132,32">
 		<eLabel text="Media Stream" position="0,0" size="132,32" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
 	</screen>
-	
+
 	<screen name="MSSummary" position="0,0" size="132,32">
 		<eLabel text="Media Stream" position="0,0" size="132,32" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
 	</screen>

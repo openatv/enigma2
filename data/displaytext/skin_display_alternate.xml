@@ -21,13 +21,13 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- EPG Panel -->	
+<!-- EPG Panel -->
 	<screen name="MyEPGPanel" position="0,0" size="132,64">
 		<widget source="parent.Event" render="Label" position="0,0" size="132,64" >
 			<convert type="EventName">Name</convert>
 		</widget>
 	</screen>
-	
+
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="132,64">
 		<widget source="session.Event_Now" render="Label" position="0,0" size="132,64" zPosition="0" transparent="1">
@@ -164,7 +164,7 @@
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
-	
+
 <!-- EMC  -->
 	<screen name="EMCSelectionSummary" position="0,0" size="132,64">
 		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >
@@ -174,7 +174,7 @@
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="132,64">
 			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
-		</widget>		
+		</widget>
 	</screen>
 	<screen name="MovieMenuSummary" position="0,0" size="132,64">
 		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
@@ -196,15 +196,15 @@
 	</screen>
 <!-- Timer-Log -->
 	<screen name="TimerEntrySummary" position="0,0" size="132,64">
-		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- Timer -->
 	<screen name="TimerOverviewSummary" position="0,0" size="132,64">
-		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- AutoTimer -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="132,64">
-		<widget source="entry" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="entry" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- AudioSelection -->
 	<screen name="AudioSelectionSummary" position="0,0" size="132,64">

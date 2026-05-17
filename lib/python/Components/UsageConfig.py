@@ -1756,7 +1756,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setSubtitleBacktrans(configElement.value)
 
 	choiceList = [
-        (-1, _("Original")),
+		(-1, _("Original")),
 		(0, _("No transparency")),
 		(12, "5%"),
 		(25, "10%"),
