@@ -74,16 +74,11 @@ def getPiconName(serviceName):
 	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
 	if not fields or len(fields) < 10:
 		return ""
-	pngname = findPicon("_".join(fields))
-	if not pngname and not fields[6].endswith("0000"):
-		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
-		pngname = findPicon("_".join(fields))
-	if not pngname and fields[0] != "1":
-		fields[0] = "1"  # Fallback to 1 for other reftypes
-		pngname = findPicon("_".join(fields))
-	if not pngname and fields[2] != "1":
-		fields[2] = "1"  # Fallback to 1 for services with different service types
-		pngname = findPicon("_".join(fields))
+	pngname = ""
+	basenames = ["_".join(fields), (p := "1_0_1_%s_0_0_0") % (x := ("_".join(fields[3:7]))), p % (x[:-4] + "0000")]
+	for basename in dict.fromkeys(basenames).keys():  # skip duplicates, maintain order
+		if pngname := findPicon(basename):
+			break
 	if not pngname:
 		if (sName := ServiceReference(serviceName).getServiceName().replace('\x80', '').replace('\x86', '').replace('\x87', '')) and "SID 0x" not in sName and (utf8Name := sanitizeFilename(sName).lower()) and utf8Name != "__":  # avoid lookups on zero length service names
 			legacyName = sub("[^a-z0-9]", "", utf8Name.replace("&", "and").replace("+", "plus").replace("*", "star"))  # legacy ascii service name picons
