@@ -75,9 +75,9 @@ def getPiconName(serviceName):
 	if not fields or len(fields) < 10:
 		return ""
 	full_ref = "_".join(fields)  # 1. Full service reference
-	partial_ref = "1_0_1_%s_0_0_0" % "_".join(fields[3:7])  # 2. SID, TSID, ONID and NAMESPACE with padding
-	partial_ignore_subnet = "1_0_1_%s_0_0_0" % ("_".join(fields[3:7])[:-4] + "0000")  # 3. SID, TSID, ONID and NAMESPACE with padding, ignoring namespace subnet differences
-	basenames = [full_ref, partial_ref, partial_ignore_subnet]
+	partial_ignore_subnet = "1_0_1_%s_0_0_0" % ("_".join(fields[3:7])[:-4] + "0000")  # 2. SID, TSID, ONID and NAMESPACE with padding, ignoring namespace subnet differences
+	partial_ref = "1_0_1_%s_0_0_0" % "_".join(fields[3:7])  # 3. SID, TSID, ONID and NAMESPACE with padding
+	basenames = [full_ref, partial_ignore_subnet, partial_ref]
 
 	pngname = ""
 	for basename in dict.fromkeys(basenames):  # skip duplicates, maintain order
