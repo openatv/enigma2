@@ -1,5 +1,6 @@
 #include <lib/service/servicedvbstream.h>
 #include <lib/dvb/csasession.h>
+#include <lib/dvb/csaengine.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/epgcache.h>
@@ -611,6 +612,10 @@ void eDVBServiceStream::setupSpeculativeDescrambler()
 		eDebug("[eDVBServiceStream] FTA channel, no descrambler needed");
 		return;
 	}
+
+	// libdvbcsa missing -> software descrambling not possible, skip all setup
+	if (!eDVBCSAEngine::isAvailable())
+		return;
 
 	eDebug("[eDVBServiceStream] Encrypted channel, creating CSA session");
 
