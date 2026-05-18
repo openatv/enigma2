@@ -59,9 +59,9 @@ AC_CHECK_LIB([webp], [WebPDecodeRGB],[LIBWEBP_LIBS="-lwebp"], [AC_MSG_ERROR([Cou
 AC_SUBST(LIBWEBP_LIBS)
 
 PKG_CHECK_MODULES([SWSCALE], [libswscale], [
-    AC_DEFINE([HAVE_SWSCALE], [1], [Define if libswscale is available])
+	AC_DEFINE([HAVE_SWSCALE], [1], [Define if libswscale is available])
 ], [
-    AC_MSG_WARN([Could not find libswscale, scaling support will be disabled.])
+	AC_MSG_WARN([Could not find libswscale, scaling support will be disabled.])
 ])
 
 AC_ARG_WITH(e2rev,

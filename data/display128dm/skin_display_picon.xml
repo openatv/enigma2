@@ -51,11 +51,11 @@
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
-		
+
 	</screen>
 -->
-    
-  
+
+
 <!-- channelselection-->
 	<screen name="ChannelSelectionSummary" position="2,0" size="128,64">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="100,21" font="FdLcD;20"  noWrap="1" >
@@ -69,7 +69,7 @@
 		</widget>
 		<panel position="bottom" size="198,24" name="SummaryClockPanel" />
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="2,0" size="128,64">
 		<widget source="Title" render="Label" position="top" size="100,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
@@ -90,7 +90,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="2,0" size="128,64">
 		<widget source="parent.Title" render="Label" position="top" size="100,14" font="FdLcD;12"  valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="100,32" font="FdLcD;16" />
@@ -183,7 +183,7 @@
 
 	<screen name="ChoiceBoxSummary" position="2,0" size="128,64">
 		<widget source="parent.summary_list" render="Label" position="2,0" size="128,64" font="FdLcD;11" />
-	</screen>	
+	</screen>
 
 	<screen name="MessageBoxSummary" position="2,0" size="128,64">
 		<widget source="text" render="Label" position="top" size="100,52" font="FdLcD;11" halign="center" valign="center" />

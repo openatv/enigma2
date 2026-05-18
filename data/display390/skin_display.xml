@@ -123,7 +123,7 @@
 		<widget source="global.CurrentTime" render="Label" position="0,194" size="390,46" font="FdLcD;46" halign="left" transparent="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-	</screen>	
+	</screen>
 <!-- channelselection-->
 	<screen name="ChannelSelectionSummary" position="0,0" size="390,240">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;50" halign="center" foregroundColor="#FFFF00" >
@@ -307,10 +307,10 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="390,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>
-	
+
 	<!-- LCD screen EMC -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="390,240" >
-		<!-- Movie name -->		
+		<!-- Movie name -->
 		<widget source="session.CurrentService" render="Label" position="0,10" size="390,148" font="FdLcD;40" halign="center" valign="center" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -340,7 +340,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-	</screen>	
+	</screen>
 	<screen name="CrossEPG_DownloaderSummary" position="0,0" size="390,240">
 		<widget source="parent.Title" render="Label" position="0,38" size="390,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="390,20" font="FdLcD;19" halign="left" noWrap="1" />

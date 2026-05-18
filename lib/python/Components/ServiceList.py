@@ -1,12 +1,13 @@
-# Copyright (c) 2024-2025 jbleyel
+# Copyright (c) 2024-2026 jbleyel
 
 # This code may be used commercially. Attribution must be given to the original author.
 # Licensed under GPLv2.
 
 # This file also contains the previous code of ServiceList ( ServiceListLegacy ) based on multiple authors.
 
+from datetime import datetime
 from os.path import exists
-from time import time, localtime
+from time import time, localtime, mktime
 from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eServiceCenter, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eEPGCache, getDesktop, eTimer, loadPNG
 
 from Components.GUIComponent import GUIComponent
@@ -20,6 +21,40 @@ from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
+
+
+_serviceListEventPixmapProvider = None
+
+
+def registerServiceListEventPixmapProvider(provider):
+	"""Register an optional service list event pixmap provider.
+
+	This is a neutral extension point.  The core ServiceList never imports an
+	optional plugin.  If no provider is registered, Image and ImageOrPicon
+	entries simply do not render an extra event pixmap.
+	"""
+	global _serviceListEventPixmapProvider
+	_serviceListEventPixmapProvider = provider
+	return True
+
+
+def unregisterServiceListEventPixmapProvider(provider=None):
+	"""Unregister the optional service list event pixmap provider."""
+	global _serviceListEventPixmapProvider
+	if provider is None or _serviceListEventPixmapProvider is provider:
+		_serviceListEventPixmapProvider = None
+		return True
+	return False
+
+
+def getServiceListEventPixmapProvider():
+	"""Return the currently registered optional service list event pixmap provider."""
+	return _serviceListEventPixmapProvider
+
+
+def getServiceListEventPixmapSupport():
+	"""Return whether an optional service list event pixmap provider is active."""
+	return _serviceListEventPixmapProvider is not None
 
 
 class ServiceListTemplateParser(TemplateParser):
@@ -82,7 +117,9 @@ class ServiceListTemplateParser(TemplateParser):
 			"Duration": 7,
 			"StartTimeDuration": 8,
 			"StartTimeEndTimeDuration": 9,
-			"CoverImage": 10
+			"Description": 10,
+			"Image": 11,
+			"ImageOrPicon": 12
 		}
 
 		def parseTemplateModes(template):
@@ -167,7 +204,10 @@ class ServiceListTemplateParser(TemplateParser):
 								continue
 							if name in ("index", "autoFit"):
 								eventIndexValue = value[-1:]
-								if eventIndexValue.isdigit():
+								if eventIndexValue == "P":  # Primetime
+									eventIndex = 1000
+									value = value[:-1]
+								elif eventIndexValue.isdigit():
 									eventIndex = int(eventIndexValue) * 100
 									if eventIndex > maxEvents:
 										maxEvents = eventIndex
@@ -907,6 +947,31 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		except Exception:
 			pass
 
+	def buildServiceListEventPixmap(self, service, begin_time=0, title="", short_description="", size=None, next_event=False, fallback_to_picon=False):
+		"""Build an optional event pixmap via a registered provider.
+
+		The default core implementation has no image provider. Optional
+		plugins may register a provider with registerServiceListEventPixmapProvider().
+		For ImageOrPicon the core falls back to an existing service picon when no
+		provider pixmap is available. No placeholder/default image is used.
+		"""
+		pixmap = None
+		provider = getServiceListEventPixmapProvider()
+		if provider is not None:
+			try:
+				buildPixmap = getattr(provider, "buildServiceListEventPixmap", provider)
+				pixmap = buildPixmap(service=service, begin_time=begin_time, title=title, size=size, next_event=next_event, fallback_to_picon=False)
+			except TypeError:
+				try:
+					pixmap = buildPixmap(service=service, begin_time=begin_time, title=title, size=size, next_event=next_event)
+				except Exception:
+					pixmap = None
+			except Exception:
+				pixmap = None
+		if pixmap is None and fallback_to_picon:
+			pixmap = self.buildOptionEntryServicePicon(service)
+		return pixmap
+
 	def buildOptionEntryDisplay(self, event, isPlayable, mode):
 		# Current
 		# 50 # Progress
@@ -927,14 +992,10 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		# 107 = Duration
 		# 108 = StartTime+duration
 		# 109 = StartTime+endTime+duration
-		# 110 = CoverImage # TODO
+		# 110 = Description
 
-		# 20X -> second event
-		# 30X -> 3rd event
-		# 40X -> 4rd event
-		# 50X -> 5th event
-		# 90X -> 9th event
-		# XXX -> primetime event # TODO
+		# Y0X -> Y = 2..9
+		# 100X -> primetime
 
 		if not (event and isPlayable):
 			return "", 0
@@ -958,7 +1019,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 			case 2:  # ShortDescription
 				addtimedisplay = event[3].replace("\n", " ")
 			case 3:  # ExtendedDescription
-				addtimedisplay = event[4]
+				addtimedisplay = event[4].replace("\n", " ")
 			case 4:  # StartTime
 				beginTime = localtime(event[0])
 				addtimedisplay = "%02d:%02d" % (beginTime[3], beginTime[4])
@@ -981,6 +1042,8 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 				endTime = localtime(event[0] + event[1])
 				duration = int(event[1] // 60)
 				addtimedisplay = "%02d:%02d - %02d:%02d / %d min" % (beginTime[3], beginTime[4], endTime[3], endTime[4], duration)
+			case 10:  # Description
+				addtimedisplay = event[3].replace("\n", " ") + " " + event[4].replace("\n", " ")
 			case 51:  # Percent text
 				now = int(time())
 				percent = 100 * (now - event[0]) // event[1]
@@ -1268,13 +1331,19 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 				templateItems = self.templateDataBouquets
 			defaults = self.templateDefaultsBouquets
 			maxEvents = defaults.get("maxevents")
-			if not isMarker and maxEvents:
-				events = eEPGCache.getInstance().lookupEvent(["BDTS%d" % maxEvents, (service.toString(), 0, -1, 360)])
+			if not isMarker and not isFolder and maxEvents:
+				pattern = f"BDTSE{int(maxEvents)}"
+				events = eEPGCache.getInstance().lookupEvent([pattern, (service.toString(), 0, -1, 360)])
 				serviceNumber = service.getChannelNum()
 		elif self.mode == self.MODE_SERVICES:
-			events = eEPGCache.getInstance().lookupEvent(["BDTS1", (service.toString(), 0, -1, 360)])
 			defaults = self.templateDefaultsServices
 			templateItems = self.templateDataServices
+			maxEvents = defaults.get("maxevents") or 1
+			try:
+				maxEvents = max(1, int(maxEvents))
+			except Exception:
+				maxEvents = 1
+			events = eEPGCache.getInstance().lookupEvent(["BDTSE%d" % maxEvents, (service.toString(), 0, -1, 360)])
 			serviceNumber = service.getChannelNum()
 		else:
 			defaults = self.templateDefaultsOther
@@ -1291,6 +1360,8 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 			for item in templateItems:
 				itemType = item.get("type", "")
 				itemIndex = item.get("index", -1)
+				currentEvent = None
+				eventIndex = 0
 				if itemIndex == 11 and not status & 256:  # IsInBouquetImage
 					continue
 				if itemIndex == 5 and not status & 112:  # RecordingIndicator
@@ -1299,9 +1370,21 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 					continue
 				if itemIndex > 0:
 					eventIndex = itemIndex // 100
-					if eventIndex > 0:
-						eventIndex -= 1
-					currentEvent = events[eventIndex] if eventIndex < len(events) else None
+					if eventIndex == 10:  # Primetime
+						eventIndex = 1000
+						now = localtime(time())
+						try:
+							hour, minute = config.epgselection.graph_primetimehour.value, config.epgselection.graph_primetimemins.value
+						except Exception:
+							hour, minute = 20, 15
+						dt = datetime(now.tm_year, now.tm_mon, now.tm_mday, hour, minute)
+						primetime = int(mktime(dt.timetuple()))
+						currentEvent = eEPGCache.getInstance().lookupEvent(['BDTSEZ', (service.toString(), 0, primetime, 0)])
+						currentEvent = currentEvent[0] if currentEvent else None
+					else:
+						if eventIndex > 0:
+							eventIndex -= 1
+						currentEvent = events[eventIndex] if eventIndex < len(events) else None
 				else:
 					currentEvent = None
 				font = item.get("font", 0)
@@ -1311,7 +1394,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 				foregroundColor, backgroundColor, foregroundColorSelected, backgroundColorSelected = getColor(defaults, item, serviceAvail, marked)
 				cornerRadius, cornerEdges = item.get("_radius", (0, 0))
 
-				if itemType == "rect":
+				if itemType == "rectangle":
 					gradientDirection, gradientAlpha, gradientStart, gradientEnd, gradientMid, gradientStartSelected, gradientEndSelected, gradientMidSelected = item.get("_gradient", (0, 0, None, None, None, None, None, None))
 					if gradientDirection:
 						if gradientAlpha:
@@ -1353,7 +1436,10 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 						res.append((MultiContentEntryText(pos=pos, size=size, font=font, flags=flags, text=addtimedisplay, color=foregroundColor, color_sel=foregroundColorSelected, backcolor=backgroundColor, backcolor_sel=backgroundColorSelected)))
 
 					if item.get("text", ""):  # Any other text
-						res.append((MultiContentEntryText(pos=pos, size=size, font=font, flags=flags, text=item.get("text", ""), color=foregroundColor, color_sel=foregroundColorSelected, backcolor=backgroundColor, backcolor_sel=backgroundColorSelected)))
+						text = item.get("text", "")
+						if item.get("translate", False):
+							text = _(text)
+						res.append((MultiContentEntryText(pos=pos, size=size, font=font, flags=flags, text=text, color=foregroundColor, color_sel=foregroundColorSelected, backcolor=backgroundColor, backcolor_sel=backgroundColorSelected)))
 
 				elif itemType == "pixmap":
 
@@ -1375,6 +1461,27 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 							res.append((pixmapType, pos[0], pos[1], size[0], size[1], pixmap, backgroundColor, backgroundColorSelected, pixmapFlags, cornerRadius, cornerEdges))
 					elif itemIndex == 10:  # ServiceResolutionImage
 						pixmap = self.buildOptionEntryServiceResolutionPixmap(service)
+						if pixmap:
+							res.append((pixmapType, pos[0], pos[1], size[0], size[1], pixmap, backgroundColor, backgroundColorSelected, pixmapFlags, cornerRadius, cornerEdges))
+					elif itemIndex > 100 and (itemIndex % 100) in (11, 12):  # EPG Image / optional event pixmap provider
+						begin_time = 0
+						title = ""
+						pixmap = None
+						short_description = ""
+						if currentEvent:
+							try:
+								begin_time = int(currentEvent[0] or 0)
+							except Exception:
+								begin_time = 0
+							try:
+								title = currentEvent[2] or ""
+							except Exception:
+								title = ""
+							# ImageOrPicon must still be able to fall back to a real picon even
+							# when no current EPG event is available.  The optional provider owns
+							# that fallback; the core ServiceList only passes the request through.
+							short_description = currentEvent[3] if len(currentEvent) > 3 else ""
+						pixmap = self.buildServiceListEventPixmap(service, begin_time=begin_time, title=title, short_description=short_description, size=size, next_event=eventIndex > 0, fallback_to_picon=itemIndex % 100 == 12)
 						if pixmap:
 							res.append((pixmapType, pos[0], pos[1], size[0], size[1], pixmap, backgroundColor, backgroundColorSelected, pixmapFlags, cornerRadius, cornerEdges))
 					else:

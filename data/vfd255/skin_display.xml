@@ -202,7 +202,7 @@
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="255,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;22" halign="left"  noWrap="1">
@@ -424,7 +424,7 @@
 	</screen>
 	<!-- LCD screen EMC -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="255,64" >
-		<!-- Movie name -->		
+		<!-- Movie name -->
 		<widget source="session.CurrentService" render="Label" position="1,1" size="130,37" font="Regular;16" halign="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -453,7 +453,7 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 	<!-- VMC -->
 	<screen name="VMCBaseSummary" position="0,0" size="256,64">
 		<eLabel text="VMC" render="Label" position="0,0" size="256,21" font="FdLcD;20" halign="center" valign="top" />
@@ -467,8 +467,8 @@
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
-	</screen>	
-	
+	</screen>
+
 	<!-- ATV -->
 	<!-- Quickmenü -->
 	<screen name="QuickMenuSummary" position="0,0" size="256,64">

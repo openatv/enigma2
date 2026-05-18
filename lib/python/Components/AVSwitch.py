@@ -1033,7 +1033,8 @@ class AVSwitchBase:
 				return modes if len(modes) > 1 else []
 
 			print(f"[AVSwitch] getPreferredModes: '{modes}'.")
-			self.modes_preferred = modes.split()
+			seen = set()
+			self.modes_preferred = [m for m in modes.split() if 'x' not in m and not (m in seen or seen.add(m))]  # Remove duplicates and modes with 'x' in the name, which are not real modes.
 		if len(modes) < 2:
 			self.modes_preferred = self.readAvailableModes()
 			print(f"[AVSwitch] Used default modes: {self.modes_preferred}.")

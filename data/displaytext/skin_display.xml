@@ -146,7 +146,7 @@
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
-	
+
 <!-- EMC  -->
 	<screen name="EMCSelectionSummary" position="0,0" size="132,64">
 		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >
@@ -177,14 +177,14 @@
 	</screen>
 <!-- Timer -->
 	<screen name="TimerEntrySummary" position="0,0" size="132,64">
-		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 	<screen name="TimerOverviewSummary" position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- AutoTimer -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- AudioSelection -->
 	<screen name="AudioSelectionSummary" position="0,0" size="132,64">

@@ -38,7 +38,7 @@
 		<widget source="session.Event_Now" render="Label" position="0,145" size="110,25" font="Regular; 25" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
-		</widget>		
+		</widget>
 		<widget source="session.Event_Now" render="Progress" position="115,150" size="105,24" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
@@ -53,7 +53,7 @@
 	</screen>
 
 <!-- movieplayer-->
-	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="220,176"> 
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="220,176">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="220,75" foregroundColor="#FFFF00" font="FdLcD;24" valign="center" halign="center" zPosition="14">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -63,13 +63,13 @@
 		<widget source="session.CurrentService" render="Label" position="0,100" size="220,25" font="FdLcD;24" halign="center" foregroundColor="#02c6ff" >
 			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
-		<panel name="SummaryClockPanel" />	
+		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,75" font="FdLcD;24" halign="center" valign="center" />
 		<widget source="selected" render="Label" position="0,80" size="220,66" font="FdLcD;21" halign="center" valign="top" foregroundColor="#02c6ff" />
 	</screen>
-	<screen name="MovieSelectionSummary" position="0,0" size="220,176"> 
+	<screen name="MovieSelectionSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" size="220,75" foregroundColor="#FFFF00" font="FdLcD;24" halign="center" zPosition="14" />
 		<widget source="name" render="Label" position="0,80" foregroundColor="#02c6ff" size="220,50" font="FdLcD;24" halign="center" valign="center" />
 		<widget source="Service" render="Label" position="0,126" size="105,50" font="FdLcD;24" halign="center" transparent="1" foregroundColor="#02c6ff" >
@@ -102,12 +102,12 @@
 	</screen>
 
 <!-- setup-->
-	<screen name="SetupSummary" position="0,0" size="220,176"> 
+	<screen name="SetupSummary" position="0,0" size="220,176">
 		<widget source="Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,25" font="FdLcD;24" halign="center" valign="center" />
 		<widget source="entry" render="Label" position="0,26" size="220,50" font="FdLcD;24" halign="center" valign="center" />
 		<widget source="value" render="Label" position="0,78" size="220,50" font="FdLcD;22" halign="center" valign="top" />
 	</screen>
-	
+
 <!-- misc-->
 	<screen name="ScreenSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,100" font="FdLcD;28" halign="center" valign="center" />
@@ -169,19 +169,19 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="220,140" font="FdLcD;17" />
 	</screen>
-	
+
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="220,176">
 		<widget source="Title" render="Label" position="0,0" size="220,55" font="FdLcD;26" halign="center" valign="center" foregroundColor="#FFFF00" />
 		<widget name="scan_progress" position="0,60" size="220,12" foregroundColor="#02c6ff" borderWidth="2" />
 		<panel name="SummaryClockPanel" />
-	</screen> 
+	</screen>
 
 <!-- EPG -->
 	<screen name="EPGExtensionsListSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" size="220,140" font="FdLcD;26" halign="center" valign="center" foregroundColor="#FFFF00" />
 		<panel name="SummaryClockPanel" />
-	</screen> 
+	</screen>
 	<screen name="GraphicalEPGPIGSummary" position="0,0" size="220,176">
 		<eLabel text="Graphical EPG" position="0,0" foregroundColor="#FFFF00" size="220,24" font="FdLcD;22" halign="center" valign="center" noWrap="1" />
 		<widget source="parent.Service" render="Label" position="0,25" size="220,52" font="FdLcD;25" halign="center" valign="center" zPosition="14">
@@ -262,9 +262,9 @@
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
 		</panel>
 	</screen>
-	
+
 <!-- EMC-->
-	<screen name="EMCSelectionSummary" position="0,0" size="220,176"> 
+	<screen name="EMCSelectionSummary" position="0,0" size="220,176">
 		<widget source="parent.Service" render="Label" position="0,0" size="220,120" foregroundColor="#FFFF00" font="FdLcD;24" halign="center" valign="center" >
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
@@ -276,7 +276,7 @@
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
-	<screen name="EMCMoviePlayerSummary" position="0,0" size="220,176"> 
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="220,176">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="220,90" foregroundColor="#FFFF00" font="FdLcD;26" valign="top" halign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -288,7 +288,7 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 <!-- Mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="220,176">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="220,90" foregroundColor="#FFFF00" font="FdLcD;26" halign="center" valign="top" >
@@ -303,24 +303,24 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-<!-- Numberzap -->    
+<!-- Numberzap -->
  	<screen name="NumberZapSummary" position="0,0" size="220,176">
 		<widget source="parent.service_summary" render="Label" position="0,0" size="220,65" foregroundColor="#FFFF00" font="FdLcD;30" halign="center" valign="top" />
 		<widget source="parent.number_summary" render="Label" position="0,75" size="220,45" font="FdLcD;40" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
-	</screen>	
+	</screen>
 
 <!-- RDS info -->
 	<screen name="RdsInfoDisplaySummary" position="fill">
 		<widget source="message" render="Label" position="0,0" size="220,176" font="FdLcD;30" halign="center" valign="center" />
 	</screen>
-	
+
 <!-- Quickmenü -->
 	<screen name="QuickMenuSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,80" font="FdLcD;35" halign="center" valign="top" />
 		<widget source="parent.summary_description" render="Label" position="0,82" size="220,80" font="FdLcD;30" halign="center" valign="center"  />
 	</screen>
-	
+
 <!-- softwaremanagment -->
 	<screen name="BackupSelectionSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" size="220,55" font="FdLcD;26" halign="center" valign="center" foregroundColor="#FFFF00" />

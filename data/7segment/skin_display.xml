@@ -14,13 +14,13 @@ and the display skin will not be displayed
 
 <!-- ####################################################################################################### -->
 
-<!-- MyClockPanel -->	
+<!-- MyClockPanel -->
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">config.usage.show_in_operation</convert>
 		</widget>
 	</screen>
-	
+
 <!-- MyRecPanel -->
 	<screen name="MyRecPanel">
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
@@ -71,12 +71,12 @@ and the display skin will not be displayed
 		<panel name="MyRecPanel" />
 	</screen>
 
-<!-- Numberzap -->    
+<!-- Numberzap -->
 	<screen name="NumberZapSummary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
 		</widget>
-	</screen> 
+	</screen>
 	<screen name="NumberZapPiconSummary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
