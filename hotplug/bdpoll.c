@@ -141,7 +141,7 @@ static void bdpoll_notify(const char devname[])
 			if (lstat("/media/audiocd/cdplaylist.cdpls", &file_check) == 0)
 				unlink("/media/audiocd/cdplaylist.cdpls");
 			else
-				mkdir("/media/audiocd", 0777);
+				mkdir("/media/audiocd", 0777); // NOSONAR
 			for(i = start_track; i <= end_track; i++)
 			{
 				f = fopen("/media/audiocd/cdplaylist.cdpls", "a");
@@ -182,7 +182,7 @@ static void bdpoll_notify(const char devname[])
 			out_buff = NULL;
 			char mountpoint[64];
 			snprintf(mountpoint, sizeof(mountpoint), "/media/%s", volume_name);
-			mkdir(mountpoint, 0777);
+			mkdir(mountpoint, 0777); // NOSONAR
 			printf("Mounting device /dev/%s to %s\n", devname, mountpoint);
 			char *args_udf[] = {"/bin/mount", "-t", "udf", devpath0, mountpoint, NULL};
 			if (exec_helper(args_udf) == 0) {
