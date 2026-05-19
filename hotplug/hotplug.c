@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 	{
 		memset(&serv_addr_un, 0, sizeof(serv_addr_un));
 		serv_addr_un.sun_family = AF_LOCAL;
-		strcpy(serv_addr_un.sun_path, "/tmp/hotplug.socket");
+		strlcpy(serv_addr_un.sun_path, "/tmp/hotplug.socket", sizeof(serv_addr_un.sun_path));
 		sd = socket(AF_LOCAL, SOCK_STREAM, 0);
 	}
 	if (mode == 2 || sd >= 0)
@@ -149,48 +149,43 @@ int main(int argc, char *argv[])
 					{
 						if (getenv("DEVNAME") && getenv("ID_FS_UUID"))
 						{
-							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_UUID"));
-							data[sizeof(data) - 1] = 0;
+							int len = snprintf(data, sizeof(data), "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_UUID"));
 							if (debug)
 								printf("%s\n", data);
 							if (mode == 1)
-								send(sd, data, strlen(data) + 1, 0);
+								send(sd, data, (size_t)len + 1U, 0);
 						}
 					}
 					else if (strcmp(action, "ifup") == 0)
 					{
-						snprintf(data, sizeof(data) - 1, "ACTION=%s\nINTERFACE=%s", action, devpath);
-						data[sizeof(data) - 1] = 0;
+						int len = snprintf(data, sizeof(data), "ACTION=%s\nINTERFACE=%s", action, devpath);
 						if (debug)
 							printf("%s\n", data);
 						if (mode == 1)
-							send(sd, data, strlen(data) + 1, 0);
+							send(sd, data, (size_t)len + 1U, 0);
 					}
 					else if (strcmp(action, "ifdown") == 0)
 					{
-						snprintf(data, sizeof(data) - 1, "ACTION=%s\nINTERFACE=%s", action, devpath);
-						data[sizeof(data) - 1] = 0;
+						int len = snprintf(data, sizeof(data), "ACTION=%s\nINTERFACE=%s", action, devpath);
 						if (debug)
 							printf("%s\n", data);
 						if (mode == 1)
-							send(sd, data, strlen(data) + 1, 0);
+							send(sd, data, (size_t)len + 1U, 0);
 					}
 					else if (strcmp(action, "online") == 0)
 					{
-						snprintf(data, sizeof(data) - 1, "ACTION=%s\nSTATE=%s", action, devpath);
-						data[sizeof(data) - 1] = 0;
+						int len = snprintf(data, sizeof(data), "ACTION=%s\nSTATE=%s", action, devpath);
 						if (debug)
 							printf("%s\n", data);
 						if (mode == 1)
-							send(sd, data, strlen(data) + 1, 0);
+							send(sd, data, (size_t)len + 1U, 0);
 					}
 				}
 			}
 			else
 			{
-				snprintf(data, sizeof(data) - 1, "MODE=CD\nACTION=%s\nDEVPATH=%s\nPHYSDEVPATH=%s", action, devpath, physdevpath);
-				data[sizeof(data) - 1] = 0;
-				send(sd, data, strlen(data) + 1, 0);
+				int len = snprintf(data, sizeof(data), "MODE=CD\nACTION=%s\nDEVPATH=%s\nPHYSDEVPATH=%s", action, devpath, physdevpath);
+				send(sd, data, (size_t)len + 1U, 0);
 			}
 		}
 		if (mode != 2)
