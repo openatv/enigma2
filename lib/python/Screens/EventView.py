@@ -352,9 +352,9 @@ def showEventViewCallback(closeCallback, session, simple, event, serviceRef, cal
 		def closeCallback(*args, **kwargs):
 			pass  # Dummy
 	if simple:
-		return session.openWithCallback(closeCallback, EventViewSimple, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB, skin=skinName or "EventViewSimple")
+		return session.openWithCallback(closeCallback, EventViewSimple, event, serviceRef, callback, similarEPGCB=similarEPGCB, skin=skinName or "EventViewSimple")
 	else:
-		return session.openWithCallback(closeCallback, EventViewEPGSelect, event, serviceRef, callback=callback, singleEPGCB=singleEPGCB, multiEPGCB=multiEPGCB, similarEPGCB=similarEPGCB, skinName=skinName)
+		return session.openWithCallback(closeCallback, EventViewEPGSelect, event, serviceRef, callback, singleEPGCB=singleEPGCB, multiEPGCB=multiEPGCB, similarEPGCB=similarEPGCB, skinName=skinName)
 
 
 def getEventViewInstance(session, event, serviceRef, skinName=None):
