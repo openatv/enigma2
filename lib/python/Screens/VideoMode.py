@@ -650,14 +650,14 @@ class AutoVideoMode(Screen):
 					if new_pol == "i" and min_pol == "p":
 						new_pol = min_pol
 					if min_rate not in ("auto", "multi") and new_rate < int(min_rate):
-						new_rate = min_rate
+						new_rate = int(min_rate)
 					new_res = min_res
 				if video_height >= int(config_res) or int(new_res) >= int(config_res):
 					new_res = config_res
 					if video_pol == "p" and config_pol == "i":
 						new_pol = config_pol
-					if config_rate not in ("auto", "multi") and int(config_rate) < new_rate:
-						new_rate = config_rate
+					if config_rate not in ("auto", "multi") and int(config_rate) < int(new_rate):
+						new_rate = int(config_rate)
 				new_rate = str(int(new_rate))
 				if new_pol == "p":
 					new_rate = setProgressiveRate((video_rate + 500) // 1000 * (int(video_pol == "i") + 1), new_rate, new_res, config_res, config_rate)
