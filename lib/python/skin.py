@@ -1915,7 +1915,7 @@ class SkinContextHorizontal(SkinContext):
 		return (SizeTuple(pos), SizeTuple(size))
 
 
-class TemplateParser():
+class TemplateParser:
 	def __init__(self, debug=False):
 		self.debug = debug
 		self.processors = {
@@ -2015,9 +2015,12 @@ class TemplateParser():
 		size = None
 		skinAttributes = []
 		itemIndex = ""
+		conditional = None
 		for attrib, value in node.items():  # Walk all attributes.
 			if attrib not in ignore:
 				match attrib:
+					case "conditional":
+						conditional = value
 					case "position":
 						pos = value
 					case "size":
@@ -2027,6 +2030,15 @@ class TemplateParser():
 						skinAttributes.append((attrib, value))
 					case _:
 						skinAttributes.append((attrib, value))
+
+		if conditional is not None:
+			try:
+				if not eval(conditional):
+					return []
+			except Exception as err:
+				skinError(f"collectAttributes 'conditional' '{conditional}' resulted in error '{err}'")
+				return []
+
 		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
 		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
@@ -2414,6 +2426,14 @@ def readSkin(screen, skin, names, desktop):
 		for layout in widgets.findall('layout'):
 			processLayouts(layout, context)
 		for widget in widgets:
+			condition = widget.attrib.get("condition", "")
+			if "config." in condition or "BoxInfo" in condition:
+				try:
+					if not bool(eval(condition)):
+						continue
+				except Exception as err:
+					print(f"[Skin] Error: Screen condition '{myName}' widget '{widget.tag}' {str(err)}!")
+					continue
 			conditional = widget.attrib.get("conditional")
 			if conditional and not [x for x in conditional.split(",") if x in screen.keys()]:
 				continue

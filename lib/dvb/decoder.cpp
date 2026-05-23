@@ -1457,6 +1457,21 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 		eTuxtxtApp::getInstance()->initCache(eTSMPEGDecoder::m_debugTXT == 1);
 }
 
+void eTSMPEGDecoder::freeDecoder()
+{
+	// Release demux filter objects by closing their fds (via destructors).
+	// Unlike stop() which uses ioctl(DMX_STOP), close() lets the kernel
+	// clean up filters without going through the Broadcom playpump path.
+	// This prevents deadlocks/crashes on mipsel PVR-sourced demuxes.
+	m_video = nullptr;
+	m_audio = nullptr;
+	m_pcr = nullptr;
+	m_text = nullptr;
+	m_video_event_conn = nullptr;
+	m_demux_event_conn = nullptr;
+	m_changed = 0;
+}
+
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
 	finishShowSinglePic();

@@ -1756,7 +1756,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setSubtitleBacktrans(configElement.value)
 
 	choiceList = [
-        (-1, _("Original")),
+		(-1, _("Original")),
 		(0, _("No transparency")),
 		(12, "5%"),
 		(25, "10%"),
@@ -2355,7 +2355,8 @@ def InitUsageConfig():
 	config.softcsa = ConfigSubsection()
 	config.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
 			(0, _("Quick")),
-			(1, _("Normal"))
+			(1, _("Normal")),
+			(2, _("Aggressive"))
 	])
 	config.softcsa.syncMode = ConfigSelection(default=0, choices=[
 			(0, _("Automatic")),

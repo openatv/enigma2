@@ -54,8 +54,8 @@
 			</widget>
 		</panel>
 	</screen>
-    
-  
+
+
 <!-- channelselection-->
 	<screen name="ChannelSelectionSummary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,21" font="FdLcD;20" noWrap="1">
@@ -69,7 +69,7 @@
 		</widget>
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
@@ -90,7 +90,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />
@@ -165,7 +165,7 @@
 		</widget>
 	</screen>
 
-<!-- Numberzap -->    
+<!-- Numberzap -->
  	<screen name="NumberZapSummary" position="fill">
 		<widget source="parent.number_summary" render="Label" position="top" size="*,25" font="FdLcD;20" halign="center" valign="center" />
 		<widget source="parent.service_summary" render="Label" position="top" size="*,16" foregroundColor="#FFFF00" font="FdLcD;16" halign="center" valign="top" />
@@ -191,7 +191,7 @@
 
 	<screen name="ChoiceBoxSummary" position="fill">
 		<widget source="parent.summary_list" render="Label" position="fill" font="FdLcD;11" />
-	</screen>	
+	</screen>
 
 	<screen name="MessageBoxSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,52" font="FdLcD;11" halign="center" valign="center" />
@@ -201,7 +201,7 @@
 	<screen name="MessageBoxSimpleSummary" position="fill">
 		<panel name="MessageBoxSummary" />
 	</screen>
-	
+
 <!-- EMC -->
 	<screen name="EMCSelectionSummary" position="fill">
 		<!-- Channel name -->
@@ -232,7 +232,7 @@
 		<!-- Movie progress -->
 		<widget source="Service" render="Progress" position="0,36" size="126,8" borderWidth="1" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress.png:94,0" transparent="1">
 			<convert type="EMCServicePosition">Position</convert>
-		</widget> 
+		</widget>
 		<!-- Movie recording progress (For OLED display only -->
 		<!--widget source="Service" render="Progress" position="0,36" size="126,8" borderWidth="1" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress_rec.png:94,0" transparent="1" >
 			<convert type="EMCRecordPosition">Position</convert>

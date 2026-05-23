@@ -345,3 +345,17 @@ class EventViewMovieEvent(Screen):
 
 	def pageDown(self):
 		self["epg_description"].pageDown()
+
+
+def showEventViewCallback(closeCallback, session, simple, event, serviceRef, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skinName=None):
+	if not closeCallback:
+		def closeCallback(*args, **kwargs):
+			pass  # Dummy
+	if simple:
+		return session.openWithCallback(closeCallback, EventViewSimple, event, serviceRef, callback, similarEPGCB=similarEPGCB, skin=skinName or "EventViewSimple")
+	else:
+		return session.openWithCallback(closeCallback, EventViewEPGSelect, event, serviceRef, callback, singleEPGCB=singleEPGCB, multiEPGCB=multiEPGCB, similarEPGCB=similarEPGCB, skinName=skinName)
+
+
+def getEventViewInstance(session, event, serviceRef, skinName=None):
+	return session.instantiateDialog(EventViewSimple, event, serviceRef, skin=skinName or "EventViewSimple")

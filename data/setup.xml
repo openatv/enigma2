@@ -529,12 +529,13 @@
 		<item level="2" text="Include opkg output data" description="Enable this option to add opkg output data to the debug log file.">config.crash.debugOpkg</item>
 		<item level="2" text="Include timer data" description="Enable this option to add timer debugging data to the debug log file.">config.crash.debugTimers</item>
 		<item level="2" text="Include EPG data" description="Enable this option to add extra EPG data to the debug log file.">config.crash.debugEPG</item>
-		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file.">config.crash.debugDVBScan</item>
-		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file.">config.crash.debugDVBTime</item>
-		<item level="2" text="Include DVB details" description="Enable this option to add extra DVB details to the debug log file.">config.crash.debugDVB</item>
-		<item level="2" text="Include teletext details" description="Enable this option to add extra teletext details to the debug log file.">config.crash.debugTeletext</item>
+		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file." restart="gui">config.crash.debugDVBScan</item>
+		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file." restart="gui">config.crash.debugDVBTime</item>
+		<item level="2" text="Include DVB details" description="Enable this option to add extra DVB details to the debug log file." restart="gui">config.crash.debugDVB</item>
+		<item level="2" text="Include teletext details" description="Enable this option to add extra teletext details to the debug log file." restart="gui">config.crash.debugTeletext</item>
 		<item level="2" text="Include storage device data" description="Enable this option to add storage device information detected during system boot and hot plug events to the debug log file.">config.crash.debugStorage</item>
-		<item level="2" text="Include bouquet DB data" description="Enable this option to add bouquet database information to the debug log file.">config.crash.debugDVBDB</item>
+		<item level="2" text="Include bouquet DB data" description="Enable this option to add bouquet database information to the debug log file." restart="gui">config.crash.debugDVBDB</item>
+		<item level="2" text="Include text encoding data" description="Enable this option to add text encoding information to the debug log file." restart="gui">config.crash.debugTextEncoding</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in Extension Menu" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
@@ -713,7 +714,7 @@
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
-		<item level="2" text="Disable ServiceHiSilicon" description="Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code." requires="servicehisilicon" restart="gui">config.misc.disableServiceHiSilicon</item> 
+		<item level="2" text="Disable ServiceHiSilicon" description="Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code." requires="servicehisilicon" restart="gui">config.misc.disableServiceHiSilicon</item>
 	</setup>
 	<setup key="PluginBrowser" title="Plugin Browser Settings" showOpenWebif="1">
 		<item level="0" text="Plugin Browser layout" description="Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!">config.usage.pluginListLayout</item>
@@ -969,7 +970,7 @@
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
 	<setup key="SoftCSA" title="SoftCSA Settings">
-		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)." restart="gui">config.softcsa.decoderRelease</item>
+		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels." restart="gui">config.softcsa.decoderRelease</item>
 		<item level="0" text="Sync mode" description="Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)." restart="gui">config.softcsa.syncMode</item>
 		<item level="2" text="Decoder start timeout" description="Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting." restart="gui">config.softcsa.waitForDataTimeout</item>
 		<item level="2" text="Decoder start delay" description="Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time." restart="gui">config.softcsa.bufferTime</item>
@@ -1114,7 +1115,7 @@
 		<item level="0" text="Show animation while busy" description="Show a spinning logo when the system is busy.">config.usage.show_spinner</item>
 		<item level="2" text="Show screen saver" description="Select the duration of inactivity before the screen saver will be displayed.">config.usage.screenSaverStartTimer</item>
 		<if conditional="config.usage.screenSaverStartTimer.value">
-			<item level="2" text="Screen saver mode" description="Choose what appears when the screen saver is active.">config.usage.screenSaverMode</item>		
+			<item level="2" text="Screen saver mode" description="Choose what appears when the screen saver is active.">config.usage.screenSaverMode</item>
 			<item level="2" text="Screen saver movement" description="Select how long the screen saver image will stay in the same location on the screen before it will be moved.">config.usage.screenSaverMoveTimer</item>
 		</if>
 		<item level="2" text="Show all Information screens" description="Enable this option to show all the available Information screens in the Information menu item list.">config.usage.informationShowAllMenuScreens</item>

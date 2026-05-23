@@ -6,9 +6,9 @@ from Components.SystemInfo import BoxInfo
 
 
 def calculateTime(hours, minutes, day_offset=0):
-    cur_time = localtime()
-    unix_time = mktime((cur_time.tm_year, cur_time.tm_mon, cur_time.tm_mday, hours, minutes, 0, cur_time.tm_wday, cur_time.tm_yday, cur_time.tm_isdst)) + day_offset
-    return unix_time
+	cur_time = localtime()
+	unix_time = mktime((cur_time.tm_year, cur_time.tm_mon, cur_time.tm_mday, hours, minutes, 0, cur_time.tm_wday, cur_time.tm_yday, cur_time.tm_isdst)) + day_offset
+	return unix_time
 
 
 def InitRecordingConfig():

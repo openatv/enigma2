@@ -1565,6 +1565,9 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 			case 'X':
 				++argcount;
 				continue;
+			case 'Z': // primetime tolerance mode flag - no tuple entry
+				++argcount;
+				continue;
 			case 'M': // GN return 10 items only
 				continue;
 			default: // ignore unknown
@@ -1631,6 +1634,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 //   X = Return a minimum of one tuple per service in the result list... even when no event was found.
 //       The returned tuple is filled with all available infos... non avail is filled as None
 //       The position and existence of 'X' in the format string has no influence on the result tuple... its completely ignored..
+//   Z = Primetime tolerance mode flag - if the event at the queried time ends within 1200 seconds (20 min) after that time, return the following event instead.
 //   M = see X just 10 items are returned
 //   1-9 = see X just 1-9 items are returned ( this must be the last item )
 // then for each service follows a tuple
@@ -1680,6 +1684,12 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 
 	bool forceReturnOne = strchr(argstring, 'X') ? true : false;
 	if (forceReturnOne)
+		--argcount;
+
+	/* Z: primetime tolerance mode - if the event at the queried time ends within
+	 *    1200 seconds (20 min) after that time, return the following event instead. */
+	bool toleranceMode = strchr(argstring, 'Z') ? true : false;
+	if (toleranceMode)
 		--argcount;
 
 	bool forceReturnTen = strchr(argstring, 'M') ? true : false;
@@ -1847,7 +1857,20 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					if (type == 2)
 						lookupEventId(ref, event_id, ev_data);
 					else
+					{
 						lookupEventTime(ref, stime, ev_data, type);
+						if (ev_data && toleranceMode)
+						{
+							time_t end = (time_t)ev_data->getStartTime() + ev_data->getDuration();
+							if (end <= stime + 1200)
+							{
+								const eventData *next_ev_data = 0;
+								lookupEventTime(ref, stime, next_ev_data, 1);
+								if (next_ev_data)
+									ev_data = next_ev_data;
+							}
+						}
+					}
 					if (ev_data)
 					{
 						const eServiceReferenceDVB &dref = (const eServiceReferenceDVB &)ref;

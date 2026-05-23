@@ -16,7 +16,7 @@ from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
+from Screens.EventView import showEventViewCallback, getEventViewInstance
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
@@ -929,10 +929,10 @@ class EPGSelection(Screen):
 		if event is not None and not self.eventviewDialog and not eventviewopen:
 			if self.type != EPG_TYPE_SIMILAR:
 				if self.type == EPG_TYPE_INFOBARGRAPH:
-					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin="InfoBarEventView")
+					self.eventviewDialog = getEventViewInstance(self.session, event, service, skinName="InfoBarEventView")
 					self.eventviewDialog.show()
 				else:
-					self.session.open(EventViewEPGSelect, event, service, callback=self.eventViewCallback, similarEPGCB=self.openSimilarList)
+					showEventViewCallback(None, self.session, False, event, service, callback=self.eventViewCallback, similarEPGCB=self.openSimilarList)
 		elif self.eventviewDialog and not eventviewopen:
 			self.eventviewDialog.hide()
 			del self.eventviewDialog
@@ -941,7 +941,7 @@ class EPGSelection(Screen):
 			if self.type != EPG_TYPE_SIMILAR:
 				if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH:
 					self.eventviewDialog.hide()
-					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin="InfoBarEventView")
+					self.eventviewDialog = getEventViewInstance(self.session, event, service, skinName="InfoBarEventView")
 					self.eventviewDialog.show()
 
 	def redButtonPressed(self):

@@ -1,11 +1,12 @@
 from glob import glob
 from os import chdir, makedirs, remove
 from os.path import exists, dirname, isfile, join
-from re import findall, S
+from re import compile, S
 from shutil import rmtree, copy2
 from sys import modules
 from tarfile import open as taropen
 from time import time, localtime, strftime
+from twisted.internet.reactor import callInThread
 from urllib.request import urlopen, Request
 from zipfile import ZipFile
 
@@ -44,7 +45,8 @@ def downloadPUPage(url):
 		response = urlopen(req, timeout=10)
 		link = response.read().decode()
 		response.close()
-		for link, name, date in findall(r'<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', link, flags=S):
+		pattern = compile(r'<td><a\s+href="([^"]+)">([^<]+)</a></td>\s*<td>([^<]+)</td>', S)
+		for link, name, date in pattern.findall(link):
 			prelink = url.replace("asd.php", "") if not link.startswith("http://") else ""
 			liste.append((date, name, f"{prelink}{link}"))
 	except Exception as err:
@@ -52,24 +54,8 @@ def downloadPUPage(url):
 	return liste
 
 
-def ConverDate(data):
+def converDate(data):
 	return f"{data[-2:]}-{data[-4:][:2]}-20{data[:2]}"
-
-
-def ConverDateBack(data):
-	return f"{data[-2:]}{data[-7:][:2]}{data[:2]}"
-
-
-def DownloadInfo(url):
-	text = ""
-	try:
-		req = Request(url)
-		response = urlopen(req, timeout=10)
-		text = response.read().decode("windows-1252")
-		response.close()
-	except Exception as err:
-		print(f"ERROR Download History {url}: {err}")
-	return text
 
 
 def installPUSettings(name, link, date):
@@ -182,19 +168,23 @@ class PUCheckTimer:
 	def CBupdate(self, req):
 		if req:
 			config.pud.update_question.value = True
-			self.startDownload(self.name, self.link, ConverDate(self.date))
+			self.startDownload(self.name, self.link, converDate(self.date))
 		else:
 			config.pud.update_question.value = False
 		config.pud.save()
 
 	def startTimerSetting(self):
+
+		def converDateBack(data):
+			return f"{data[-2:]}{data[-7:][:2]}{data[:2]}"
+
 		if checkInternetAccess("www.google.de", 5) == 0:
 			print("[Programmlisten-Updater]: CHECK FOR UPDATE")
 			sList = downloadPUPage(self.url)
 			for date, name, link in sList:
 				if name == config.pud.satname.value:
 					lastdate = config.pud.lastdate.value
-					if date > ConverDateBack(lastdate):
+					if date > converDateBack(lastdate):
 						self.date = date
 						self.name = name
 						self.link = link
@@ -202,10 +192,10 @@ class PUCheckTimer:
 						print("[Programmlisten-Updater]: NEW SETTINGS DXANDY")
 						if config.pud.just_update.value:
 							# Update without information
-							self.startDownload(self.name, self.link, ConverDate(self.date))
+							self.startDownload(self.name, self.link, converDate(self.date))
 						else:
 							# Auto update with confrimation
-							self.session.openWithCallback(self.CBupdate, MessageBox, _("New Setting DXAndy ") + name + _(" of ") + ConverDate(date) + _(" available !!" + "\n\n" + "Do you want to install the new settings list?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
+							self.session.openWithCallback(self.CBupdate, MessageBox, _("New Setting DXAndy ") + name + _(" of ") + converDate(date) + _(" available !!" + "\n\n" + "Do you want to install the new settings list?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
 					else:
 						print("[Programmlisten-Updater]: NO NEW UPDATE AVAILBLE")
 					break
@@ -220,6 +210,23 @@ class PUHistoryScreen(Screen):
 			<widget name="History" position="25,70" size="560,350" scrollbarMode="showOnDemand" />
 		</screen>
 		"""
+
+	@staticmethod
+	def fetchHistory(url, callback):
+		"""Non-blocking Download mit Callback"""
+		def _fetch():
+			text = ""
+			try:
+				req = Request(url)
+				response = urlopen(req, timeout=10)
+				text = response.read().decode("windows-1252")
+				response.close()
+			except Exception as err:
+				print(f"ERROR Download History {url}: {err}")
+			if callback:
+				callback(text)
+
+		callInThread(_fetch)
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -239,7 +246,11 @@ class PUHistoryScreen(Screen):
 				"right": self["History"].pageDown,
 			},
 		)
-		self["History"].setText(DownloadInfo(HISTORY))
+		self.fetchHistory(HISTORY, callback=self.onHistoryLoaded)
+
+	def onHistoryLoaded(self, text):
+		if text:
+			self["History"].setText(text)
 
 
 class PURestoreScreen(Screen):
@@ -311,7 +322,7 @@ class PURestoreScreen(Screen):
 
 	def doRestore(self):
 		# Set Backup date
-		date = ConverDate(self.filename[:6])
+		date = converDate(self.filename[:6])
 		config.pud.lastdate.value = date
 		config.pud.save()
 		configfile.save()
@@ -447,7 +458,7 @@ class PUMainScreen(Screen):
 	def settingsMenu(self):
 		self.listB = []
 		for date, name, link in self.List:
-			self.listB.append(self.ListEntryMenuSettings(str(name.title()), str(date), str(link), str(name), ConverDate(str(date))))
+			self.listB.append(self.ListEntryMenuSettings(str(name.title()), str(date), str(link), str(name), converDate(str(date))))
 		if not self.listB:
 			self.listB.append(self.ListEntryMenuSettings(_("Server down"), "", "", "", ""))
 		self["MenuListSetting"].setList(self.listB)

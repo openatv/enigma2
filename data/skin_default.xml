@@ -611,14 +611,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<widget source="streams" render="Listbox" scrollbarMode="showOnDemand" position="10,120" size="465,200" zPosition="3" transparent="1" >
 			<convert type="TemplatedMultiContent">
 				{"templates":
-					{"default": (25, [ 
+					{"default": (25, [
 						MultiContentEntryText(pos = (0, 0),   size = (35, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 1), # key,
 						MultiContentEntryText(pos = (40, 0),  size = (60, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
 						MultiContentEntryText(pos = (110, 0), size = (120, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
 						MultiContentEntryText(pos = (240, 0), size = (200, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
 						MultiContentEntryText(pos = (450, 4), size = (15, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
 					], True, "showNever"),
-					"notselected": (25, [ 
+					"notselected": (25, [
 						MultiContentEntryText(pos = (0, 0),   size = (35, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 1), # key,
 						MultiContentEntryText(pos = (40, 0),  size = (60, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
 						MultiContentEntryText(pos = (110, 0), size = (120, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
@@ -884,10 +884,10 @@ self.autoResize()
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		<widget name="timeline_text" position="0,41" size="560,20" />
 		<widget name="list" position="0,65" size="560,270" EntryBorderColor="#071930" EntryBackgroundColor="#2f4964" EntryBackgroundColorSelected="#25688caf" scrollbarMode="showOnDemand" />
-		<eLabel position="0,41" size="560,1" backgroundColor="#2f4964" zPosition="1" />                                                                                                   
-		<eLabel position="0,65" size="560,2" backgroundColor="#2f4964" zPosition="1" />                                                                                                   
-		<eLabel position="0,335" size="560,2" backgroundColor="#2f4964" zPosition="1" />                                                                                                  
-		<eLabel position="530,65" size="1,270" backgroundColor="#2f4964" zPosition="1" />                                                                                                 
+		<eLabel position="0,41" size="560,1" backgroundColor="#2f4964" zPosition="1" />
+		<eLabel position="0,65" size="560,2" backgroundColor="#2f4964" zPosition="1" />
+		<eLabel position="0,335" size="560,2" backgroundColor="#2f4964" zPosition="1" />
+		<eLabel position="530,65" size="1,270" backgroundColor="#2f4964" zPosition="1" />
 		<widget name="timeline0" position="0,65" zPosition="1" size="1,270" pixmap="skin_default/timeline.png" />
 		<widget name="timeline1" position="0,65" zPosition="1" size="1,270" pixmap="skin_default/timeline.png" />
 		<widget name="timeline2" position="0,65" zPosition="1" size="1,270" pixmap="skin_default/timeline.png" />

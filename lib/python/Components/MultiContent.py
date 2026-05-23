@@ -58,8 +58,8 @@ def MultiContentEntryProgressPixmap(pos=(0, 0), size=(0, 0), percent=None, pixma
 
 
 def MultiContentEntryLinearGradient(pos=(0, 0), size=(0, 0), direction=GRADIENT_VERTICAL, startColor=None, midColor=None, endColor=None, startColorSelected=None, midColorSelected=None, endColorSelected=None, fullSize=0, cornerRadius=0, cornerEdges=15):
-    return eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), direction, __resolveColor(startColor), __resolveColor(midColor), __resolveColor(endColor), __resolveColor(startColorSelected), __resolveColor(midColorSelected), __resolveColor(endColorSelected), fullSize, cornerRadius, cornerEdges
+	return eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), direction, __resolveColor(startColor), __resolveColor(midColor), __resolveColor(endColor), __resolveColor(startColorSelected), __resolveColor(midColorSelected), __resolveColor(endColorSelected), fullSize, cornerRadius, cornerEdges
 
 
 def MultiContentEntryLinearGradientAlphaBlend(pos=(0, 0), size=(0, 0), direction=GRADIENT_VERTICAL, startColor=None, midColor=None, endColor=None, startColorSelected=None, midColorSelected=None, endColorSelected=None, fullSize=0, cornerRadius=0, cornerEdges=15):
-    return eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT_ALPHABLEND, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), direction, __resolveColor(startColor), __resolveColor(midColor), __resolveColor(endColor), __resolveColor(startColorSelected), __resolveColor(midColorSelected), __resolveColor(endColorSelected), fullSize, cornerRadius, cornerEdges
+	return eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT_ALPHABLEND, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), direction, __resolveColor(startColor), __resolveColor(midColor), __resolveColor(endColor), __resolveColor(startColorSelected), __resolveColor(midColorSelected), __resolveColor(endColorSelected), fullSize, cornerRadius, cornerEdges

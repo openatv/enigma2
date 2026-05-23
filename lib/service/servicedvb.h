@@ -9,6 +9,7 @@
 #include <lib/dvb/radiotext.h>
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
+#include <atomic> // FIXED: Added for thread-safe stream corruption flag
 
 class eStaticServiceDVBInformation;
 class eStaticServiceDVBBouquetInformation;
@@ -123,7 +124,7 @@ public:
 	RESULT audioTracks(ePtr<iAudioTrackSelection>& ptr);
 	RESULT frontendInfo(ePtr<iFrontendInformation>& ptr);
 	RESULT subServices(ePtr<iSubserviceList>& ptr);
-	RESULT timeshift(ePtr<iTimeshiftService>& ptr);
+	virtual RESULT timeshift(ePtr<iTimeshiftService>& ptr);
 	RESULT tap(ePtr<iTapService>& ptr);
 	RESULT cueSheet(ePtr<iCueSheet>& ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput>& ptr);
@@ -359,24 +360,26 @@ protected:
 	void onSoftDecoderAudioPidSelected(int pid);
 	void cleanupSoftwareDescrambling();
 
+	// Aggressive mode: force release of the HW-descrambler slot at service
+	// stop. Workaround for drivers (dm900) that ignore CA_SET_PID(pid, -1).
+	void resetHwDescramblerSlot();
+
 	// Audio cache helper
 	void updateAudioCache(int apid, int apidtype);
 
-	void resetRecoveryState(); // Resets all recovery state variables.
-
-private:
 	// -- START: Precise Recovery System --
 	// This system handles stream corruption during timeshift, with support for a custom recovery delay.
 	ePtr<eTimer> m_precise_recovery_timer;
+	
+	std::atomic<bool> m_stream_corruption_detected; // FIXED: Changed to std::atomic<bool> to prevent Race Conditions
+	
 	pts_t m_original_timeshift_delay; // Stores the target timeshift delay.
 	bool m_delay_calculated = false; // Flag to ensure delay is calculated only once.
 
-	void handleEofRecovery();
-	void startPreciseRecoveryCheck();
+	virtual void handleEofRecovery();
+	virtual void startPreciseRecoveryCheck();
+	void resetRecoveryState(); // Resets all recovery state variables.
 	// -- END: Precise Recovery System --
-
-protected:
-	bool m_stream_corruption_detected;
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {
