@@ -2426,6 +2426,14 @@ def readSkin(screen, skin, names, desktop):
 		for layout in widgets.findall('layout'):
 			processLayouts(layout, context)
 		for widget in widgets:
+			condition = widget.attrib.get("condition", "")
+			if "config." in condition or "BoxInfo" in condition:
+				try:
+					if not bool(eval(condition)):
+						continue
+				except Exception as err:
+					print(f"[Skin] Error: Screen condition '{myName}' widget '{widget.tag}' {str(err)}!")
+					continue
 			conditional = widget.attrib.get("conditional")
 			if conditional and not [x for x in conditional.split(",") if x in screen.keys()]:
 				continue
