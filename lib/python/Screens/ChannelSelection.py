@@ -61,6 +61,29 @@ FLAG_HIDE_VBI = 512
 FLAG_CENTER_DVB_SUBS = 2048  # Defined in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128.
 FLAG_NO_AI_TRANSLATION = 8192
 
+# Generic extension point for optional service-list info-key handlers.
+# Plugins may register a handler for values added to config.usage.servicelist_infokey.
+# Missing plugins simply mean no handler is present and the normal Event View remains the fallback.
+SERVICELIST_INFOKEY_HANDLERS = {}
+
+
+def registerServicelistInfoKeyHandler(key, callback):
+	if key and callback:
+		SERVICELIST_INFOKEY_HANDLERS[key] = callback
+		return True
+	return False
+
+
+def unregisterServicelistInfoKeyHandler(key):
+	try:
+		del SERVICELIST_INFOKEY_HANDLERS[key]
+	except KeyError:
+		pass
+
+
+def getServicelistInfoKeyHandler(key):
+	return SERVICELIST_INFOKEY_HANDLERS.get(key)
+
 # Values for csel.bouquet_mark_edit:
 OFF = 0
 EDIT_OFF = 0
@@ -2230,13 +2253,34 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 	def showEPGList(self):
 		ref = self.getCurrentSelection()
 		if ref:
+			infoKey = getattr(getattr(config, "usage", None), "servicelist_infokey", None)
+			infoKeyValue = getattr(infoKey, "value", "event")
+			handler = getServicelistInfoKeyHandler(infoKeyValue)
+			if handler is not None:
+				try:
+					if handler(self):
+						return
+				except Exception as err:
+					print("[ChannelSelection] Servicelist EPG handler '%s' failed: %s" % (infoKeyValue, err))
 			self.savedService = ref
 			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB, EPGtype="single")
 
 	def showEventInfo(self):
-		if config.usage.servicelist_infokey.value == "epg":
+		infoKey = getattr(getattr(config, "usage", None), "servicelist_infokey", None)
+		infoKeyValue = getattr(infoKey, "value", "event")
+		if infoKeyValue == "epg":
 			self.showEPGList()
 			return
+		handler = getServicelistInfoKeyHandler(infoKeyValue)
+		if handler is not None:
+			try:
+				if handler(self):
+					return
+			except Exception as err:
+				print("[ChannelSelection] Servicelist info-key handler '%s' failed: %s" % (infoKeyValue, err))
+		self.showDefaultEventInfo()
+
+	def showDefaultEventInfo(self):
 		ref = self.getCurrentSelection()
 		if ref:
 			epglist = []
