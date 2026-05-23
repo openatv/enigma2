@@ -336,9 +336,13 @@ class AudioSelection(ConfigListScreen, Screen):
 						languagetype = x[5].split()
 						if languagetype and len(languagetype) == 2:
 							language = "%s (%s)" % (language, languagetype[1])
+						else:
+							language = "%s (%s)" % (language, x[5])
 
 					if x[0] == 0:
 						description = "DVB"
+						if x[2] == 6:
+							description = "PGS"
 						number = "%x" % (x[1])
 
 					elif x[0] == 1:

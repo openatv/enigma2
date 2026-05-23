@@ -2610,10 +2610,8 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
-#ifdef PASSTHROUGH_FIX
 	if ((!m_initial_start || !m_clear_buffers) && !force)
 		return;
-#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
@@ -3919,8 +3917,12 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
  * @param[in] p The eDVBSubtitlePage to add.
  */
 void eServiceMP3::newDVBSubtitlePage(const eDVBSubtitlePage& p) {
-	eDebug("[eServiceMP3::newDVBSubtitlePage] called: stream=%d, regions=%zd, widget=%p, paused=%d", 
-		m_currentSubtitleStream, p.m_regions.size(), m_subtitle_widget, m_paused);
+
+	if (m_subtitles_paused) {
+		return;
+	}
+
+	// eDebug("[eServiceMP3::newDVBSubtitlePage] called: stream=%d, regions=%zd, widget=%p, paused=%d", m_currentSubtitleStream, p.m_regions.size(), m_subtitle_widget, m_subtitles_paused);
 	
 	/* For PGS subtitles: display immediately (they already have correct timing in the eDVBSubtitlePage)
 	 * For DVB subtitles: queue and sync with decoder time */
@@ -4249,11 +4251,13 @@ exit:
  * @return RESULT indicating success or failure.
  */
 RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& track) {
-	bool starting_subtitle = false;
+	//bool starting_subtitle = false;
 	if (m_currentSubtitleStream != track.pid || eSubtitleSettings::pango_autoturnon) {
 		// if (m_currentSubtitleStream == -1)
 		//	starting_subtitle = true;
-		g_object_set(m_gst_playbin, "current-text", -1, NULL);
+		m_subtitles_paused = true;
+		m_subtitle_widget = 0;
+		// g_object_set(m_gst_playbin, "current-text", -1, NULL);
 		// m_cachedSubtitleStream = -1;
 		m_subtitle_sync_timer->stop();
 		m_dvb_subtitle_sync_timer->stop();
@@ -4273,51 +4277,28 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 
 		if (track.page_number == 6 && track.type == 0) { // PGS
 			eDebug("[eServiceMP3] enableSubtitles: PGS");
-
-			GstState state, pending;
-			gst_element_get_state(m_gst_playbin, &state, &pending, 0);
-			bool wasPlaying = (state == GST_STATE_PLAYING);
-			if (wasPlaying)
-				gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-
-			gst_element_get_state(m_gst_playbin, NULL, NULL, GST_CLOCK_TIME_NONE);
-			gst_element_send_event(m_gst_playbin, gst_event_new_flush_start());
-			gst_element_send_event(m_gst_playbin, gst_event_new_flush_stop(TRUE));
 			g_object_set(m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
-
-			gint64 pos = GST_CLOCK_TIME_NONE;
-			if (gst_element_query_position(m_gst_playbin, GST_FORMAT_TIME, &pos)) {
-				gint64 back = 2 * GST_SECOND;
-
-				if (pos > back) {
-					gst_element_seek_simple(
-						m_gst_playbin,
-						GST_FORMAT_TIME,
-						(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
-						pos - back
-					);
-				}
-			}
-
-			if (wasPlaying)
-				gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
-
-			m_subtitle_widget = user;
-			return 0;
 		}
 		else
 		{
 			g_object_set(m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
+
+			/*
 			if (track.type != 0) {  // NON DVB
 				m_clear_buffers = true;
 				eDebug("[eServiceMP3] enableSubtitles: set current-text to %d with clear buffers", m_currentSubtitleStream);
 				clearBuffers();
 			}
+			*/
 		}
 
 		m_subtitle_widget = user;
 
+		m_subtitles_paused = false;
+
 		eDebug("[eServiceMP3] switched to subtitle stream %i", m_currentSubtitleStream);
+
+		return 0;
 
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 		/*
@@ -4328,11 +4309,13 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 #endif
 
 		// Seek to last position for non-initial subtitle changes
-		if (m_last_seek_pos > 0 && !starting_subtitle) {
+		/*
+		if (track.type == 0 && m_last_seek_pos > 0 && !starting_subtitle) {
 			seekTo(m_last_seek_pos);
 			eDebug("[eServiceMP3] seek to last position %lld after subtitle change", m_last_seek_pos);
 			gst_sleepms(50);
 		}
+		*/
 	}
 
 	eDebug("[eServiceMP3] enableSubtitles END");
