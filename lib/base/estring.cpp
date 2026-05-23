@@ -8,10 +8,13 @@
 #include <lib/base/eerror.h>
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
+#include <lib/base/esimpleconfig.h>
 #include "freesatv2.h"
 #include "big5.h"
 #include "gb18030.h"
 #include <Python.h>
+
+static int m_debugEncoding = eSimpleConfig::getBool("config.crash.debugTextEncoding", false) ? 1 : 0;
 
 std::string buildShortName( const std::string &str )
 {
@@ -602,18 +605,21 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			if (table != 11)
 				table = data[i] + 4;
 			++i;
-			eTrace("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
+			if (m_debugEncoding)
+				eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
 			break;
 		case ISO8859_xx:
 		{
 			int n = data[++i] << 8;
 			n |= (data[++i]);
-			eTrace("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
+			if (m_debugEncoding)
+				eDebug("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
 			++i;
 			switch(n)
 			{
 				case ISO8859_12:
-					eDebug("[convertDVBUTF8] ISO8859-12 encoding unsupported");
+					if (m_debugEncoding)
+						eDebug("[convertDVBUTF8] ISO8859-12 encoding unsupported");
 					break;
 				default:
 					table = n;
@@ -628,7 +634,8 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 		case KSX1001_ENCODING:
 			++i;
-			eDebug("[convertDVBUTF8] KSC 5601 encing unsupported.");
+			if (m_debugEncoding)
+				eDebug("[convertDVBUTF8] KSC 5601 encing unsupported.");
 			break;
 		case GB18030_ENCODING: // GB-2312-1980 enc.
 			++i;
@@ -665,12 +672,14 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				}
 			}
 			++i;
-			eDebug("[convertDVBUTF8] failed to decode bbc freesat huffman");
+			if (m_debugEncoding)
+				eDebug("[convertDVBUTF8] failed to decode bbc freesat huffman");
 			break;
 		case 0x0:
 		case 0xC ... 0xF:
 		case 0x18 ... 0x1D:
-			eDebug("[convertDVBUTF8] reserved %d", data[0]);
+			if (m_debugEncoding)
+				eDebug("[convertDVBUTF8] reserved %d", data[0]);
 			++i;
 			break;
 	}
@@ -682,7 +691,8 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	bool useTwoCharMapping = !table || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
 
 	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
-		eTrace("[convertDVBUTF8] Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
+		if (m_debugEncoding)
+			eTrace("[convertDVBUTF8] Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
 		table = 0;
 	}
 	else if ( table == -1 )
