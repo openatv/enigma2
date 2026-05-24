@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2132,6 +2132,9 @@ msgid "After zap"
 msgstr ""
 
 msgid "Aggregate data only"
+msgstr ""
+
+msgid "Aggressive"
 msgstr ""
 
 msgid "Akan"
@@ -5059,6 +5062,14 @@ msgstr "Määra aegunud taimerite asukoht taimerite nimekirjas."
 msgid "Control the InfoBar fading speed."
 msgstr "Määra inforiba hajumise kiirus"
 
+# VideoEnhancement
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "See valik võtab kasutusse pehmendusfiltri värvitoonide segamisel."
+
+# VideoEnhancement
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "See valik võtab kasutusse skaleerija püstloodse sakiservade eemaldamise."
+
 msgid "Control your Softcams"
 msgstr "Juhi EMU"
 
@@ -7316,6 +7327,12 @@ msgstr "Silumislogid lubatud *"
 msgid "Enable digital downmix"
 msgstr "DD / DTS > stereo sees"
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr "Kaugvastuvõtja kasutamine asendustuunerina"
 
@@ -9223,6 +9240,9 @@ msgstr "Guajaana"
 msgid "H"
 msgstr "CH"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = 1x tunnis / D: = 1x päevas / W: = 1x nädalas / M: = 1x kuus"
 
@@ -9616,7 +9636,7 @@ msgstr "Tundi minutit"
 msgid "Hours Minutes Seconds"
 msgstr "Tundi minutit sekundit"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9642,9 +9662,6 @@ msgid "I"
 msgstr "IP"
 
 msgid "I/O priority for scripts"
-msgstr ""
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 msgid "IMDb Details"
@@ -21160,14 +21177,6 @@ msgstr "See valik võimaldab vähendada pildi plokkmüra (block-noise). Seda teh
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Siin saab muuta pildi dünaamilise kontrasti taset."
-
-# VideoEnhancement
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "See valik võtab kasutusse pehmendusfiltri värvitoonide segamisel."
-
-# VideoEnhancement
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "See valik võtab kasutusse skaleerija püstloodse sakiservade eemaldamise."
 
 # Box Display
 msgid "This option allows you to Power Off the display."

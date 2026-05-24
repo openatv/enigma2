@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2121,6 +2121,9 @@ msgid "After zap"
 msgstr "Na het zappen"
 
 msgid "Aggregate data only"
+msgstr ""
+
+msgid "Aggressive"
 msgstr ""
 
 msgid "Akan"
@@ -5112,6 +5115,16 @@ msgstr "Stel in waar voltooide timers in de timerlijst moeten staan."
 msgid "Control the InfoBar fading speed."
 msgstr "Stel de snelheid in voor het vervagen van de informatiebalk"
 
+msgid "Control the smoothing filter used for the dithering process."
+msgstr ""
+"Met deze optie kunt u een Dithering-filter activeren. Dithering is het gebruiken van tussenkleuren om het beeld meer vloeiender, dus minder blokkerig te maken.\n"
+"(Default: Gedeactiveerd)"
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr ""
+"Met deze optie kunt dat u de verticale scaler dejagging inschakelen.\n"
+"(Default: Gedeactiveerd)"
+
 msgid "Control your Softcams"
 msgstr "Softcams beheren"
 
@@ -7340,6 +7353,12 @@ msgstr "Activeer debug log *"
 msgid "Enable digital downmix"
 msgstr "DD/DTS Downmix activeren"
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr "De Fallback tuner activeren"
 
@@ -9227,6 +9246,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "U: = Uurlijks / D: = Dagelijks / W: = Wekelijks / M: = Maandelijks"
 
@@ -9611,7 +9633,7 @@ msgstr "Uren minuten"
 msgid "Hours Minutes Seconds"
 msgstr "Uren minuten seconden"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9637,9 +9659,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O prioriteit voor scripts"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
 msgid "IMDb Details"
 msgstr "IMDb details"
@@ -20924,16 +20943,6 @@ msgstr ""
 "Hiermee bepaalt u de mate van dynamisch contrast in het beeld.\n"
 "(Default: 0)"
 
-msgid "Control the smoothing filter used for the dithering process."
-msgstr ""
-"Met deze optie kunt u een Dithering-filter activeren. Dithering is het gebruiken van tussenkleuren om het beeld meer vloeiender, dus minder blokkerig te maken.\n"
-"(Default: Gedeactiveerd)"
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr ""
-"Met deze optie kunt dat u de verticale scaler dejagging inschakelen.\n"
-"(Default: Gedeactiveerd)"
-
 msgid "This option allows you to Power Off the display."
 msgstr "Met deze optie kunt u het display uitschakelen."
 
@@ -24644,6 +24653,9 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
 #~ msgid " "
 #~ msgstr " "

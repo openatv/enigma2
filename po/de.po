@@ -19,16 +19,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-04-28 05:06+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"PO-Revision-Date: 2026-05-17 07:15+0000\n"
+"Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2242,6 +2242,9 @@ msgstr "Nach dem Umschalten"
 
 msgid "Aggregate data only"
 msgstr "Nur Daten sammeln"
+
+msgid "Aggressive"
+msgstr "Aggressiv"
 
 msgid "Akan"
 msgstr "Akan"
@@ -5267,6 +5270,14 @@ msgstr "Die Anzeigeposition von abgeschlossenen Timern in der Timerliste einstel
 msgid "Control the InfoBar fading speed."
 msgstr "Die Ausblendegeschwindigkeit der Infoleiste einstellen."
 
+# VideoEnhancement
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Den Glättungsfilter für das Dithering-Verfahren einstellen."
+
+# VideoEnhancement
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Die vertikale Kantenglättung einstellen."
+
 msgid "Control your Softcams"
 msgstr "Kontrolle der Softcams"
 
@@ -7572,13 +7583,13 @@ msgid "Enable core dumps *"
 msgstr "Core-Dumps aktivieren *"
 
 msgid "Enable cut file support for audio files"
-msgstr "Schnittdateisupport für Audiodateien aktivieren"
+msgstr "Schnittdateiunterstützung für Audiodateien aktivieren"
 
 msgid "Enable cut file support for audio files, e.g. mp3."
 msgstr "Bei 'Ja' wird die Unterstützung von Schnittdateien für Audiodateien (z. B. MP3) aktiviert."
 
 msgid "Enable cut file support for non *.ts files"
-msgstr "Schnittdateisupport für nicht '.ts'-Dateien aktivieren"
+msgstr "Schnittdateiunterstützung für nicht '.ts'-Dateien aktivieren"
 
 msgid "Enable cut file support for non *.ts files, e.g. mp4."
 msgstr "Bei 'Ja' wird die Unterstützung von Schnittdateien für nicht '.ts'-Dateien (z. B. MP4) aktiviert."
@@ -7591,6 +7602,12 @@ msgstr "Debug-Log aktivieren *"
 
 msgid "Enable digital downmix"
 msgstr "Dolby-Digital-Downmix aktivieren"
+
+msgid "Enable extended cut file support"
+msgstr "Erweiterte Schnittdateiunterstützung aktivieren"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Bei 'Ja' wird die erweiterte Unterstützung von Schnittdateien aktiviert. Dadurch wird der Schnitt mit weiteren Informationen und nicht nur mit einem Marker versehen."
 
 msgid "Enable fallback remote receiver"
 msgstr "Reservereceiver aktivieren"
@@ -9553,6 +9570,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 neues Model"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Stündlich / D: = Täglich / W: = Wöchentlich / M: = Monatlich"
 
@@ -9943,8 +9963,8 @@ msgstr "Stunden Minuten"
 msgid "Hours Minutes Seconds"
 msgstr "Stunden Minuten Sekunden"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Den Hardware-Decoder freigeben, wenn zur Software-Entschlüsselung gewechselt wird. 'Schnell' gibt ihn sofort frei (schnelleres Umschalten). 'Normal' führt zuerst ein sauberes Herunterfahren durch (bei einigen Receivern stabiler)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Den Hardware-Decoder freigeben, wenn zur Software-Entschlüsselung gewechselt wird. 'Schnell' gibt ihn sofort frei (schnelleres Umschalten). 'Normal' führt zuerst ein sauberes Herunterfahren durch (bei einigen Receivern stabiler). 'Aggressiv' führt zwischen verschlüsselten Kanälen einen vollständigen Entschlüsseler-Reset durch."
 
 msgid "Http(s) stream start delay"
 msgstr "Startverzögerung für http(s)-Streams"
@@ -9970,9 +9990,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O-Priorität für Skripte"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 neues Modell"
 
 msgid "IMDb Details"
 msgstr "IMDb-Details"
@@ -21912,14 +21929,6 @@ msgstr "Das Blockrauschen im Bild kann reduziert werden – dies geht jedoch zul
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Den dynamischen Kontrast des Bildes einstellen."
 
-# VideoEnhancement
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Den Glättungsfilter für das Dithering-Verfahren aktivieren."
-
-# VideoEnhancement
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Die vertikale Kantenglättung aktivieren."
-
 # Box Display
 msgid "This option allows you to Power Off the display."
 msgstr "Das Display komplett ausschalten."
@@ -22385,7 +22394,7 @@ msgid "Timeline font size"
 msgstr "Schriftgröße für die Zeitskala"
 
 msgid "Timeline marker"
-msgstr "Zeithistorie"
+msgstr "Zeitleistenmarkierung"
 
 msgid "Timeline scale"
 msgstr "Zeitskala"
@@ -25871,6 +25880,12 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Den Hardware-Decoder freigeben, wenn zur Software-Entschlüsselung gewechselt wird. 'Schnell' gibt ihn sofort frei (schnelleres Umschalten). 'Normal' führt zuerst ein sauberes Herunterfahren durch (bei einigen Receivern stabiler)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 neues Modell"
 
 #~ msgid " "
 #~ msgstr " "

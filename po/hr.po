@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-03-31 05:09+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"PO-Revision-Date: 2026-05-17 07:15+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 msgid ""
 "\n"
@@ -2148,6 +2148,9 @@ msgstr "Nakon zap"
 
 msgid "Aggregate data only"
 msgstr "Samo zbirni podaci"
+
+msgid "Aggressive"
+msgstr "Agresivan"
 
 msgid "Akan"
 msgstr "Akan"
@@ -5031,6 +5034,12 @@ msgstr "Kontrola položaja kako se dovršeni mjerač vremena prikazuje na popisu
 msgid "Control the InfoBar fading speed."
 msgstr "Upravljajte brzinom blijeđenja informacijske trake."
 
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Ova opcija omogućuje vam da omogućite filtar za izglađivanje za kontrolu procesa ditheringa."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Ova opcija omogućuje vam da omogućite uklanjanje okomitog skalera."
+
 msgid "Control your Softcams"
 msgstr "Upravljajte svojim Softcam"
 
@@ -7249,6 +7258,12 @@ msgstr "Omogući dnevnik otklanjanja pogrešaka *"
 msgid "Enable digital downmix"
 msgstr "Omogući digital downmix"
 
+msgid "Enable extended cut file support"
+msgstr "Omogući podršku za proširene datoteke rezanja"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Omogućite podršku za proširene datoteke rezanja. Ovo će zapisivati rezanje s više informacija, a ne samo oznaku."
+
 msgid "Enable fallback remote receiver"
 msgstr "Omogućite rezervni udaljeni tuner"
 
@@ -9125,6 +9140,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 novi Model"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Sati / D: = Svakodnevno / W: = Nedjeljno / M: = Mjesečno"
 
@@ -9506,8 +9524,8 @@ msgstr "Sat Minute"
 msgid "Hours Minutes Seconds"
 msgstr "Sat Minute Sekunde"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dešifriranje. 'Brzo' oslobađa odmah (brže uključivanje kanala). 'Normalno' prvo obavlja uredno gašenje (stabilnije na nekim uređajima)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dešifriranje. 'Brzo' oslobađa odmah (brže prebacivanje kanala). 'Normalno' prvo izvodi uredno gašenje (stabilnije na nekim uređajima). 'Agresivno' izvršava potpuno resetiranje dešifratora između šifriranih kanala."
 
 msgid "Http(s) stream start delay"
 msgstr "Kašnjenje početka http strima"
@@ -9532,9 +9550,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O prioritet za skripte"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 novi Model"
 
 msgid "IMDb Details"
 msgstr "IMDb Detalji"
@@ -20765,12 +20780,6 @@ msgstr "Ova opcija omogućuje smanjenje šuma bloka na slici. Očito je to po ci
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ova opcija omogućuje postavljanje razine dinamičkog kontrasta slike."
 
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Ova opcija omogućuje vam da omogućite filtar za izglađivanje za kontrolu procesa ditheringa."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Ova opcija omogućuje vam da omogućite uklanjanje okomitog skalera."
-
 msgid "This option allows you to Power Off the display."
 msgstr "Ova opcija omogućuje isključivanje zaslona."
 
@@ -24431,6 +24440,12 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dešifriranje. 'Brzo' oslobađa odmah (brže uključivanje kanala). 'Normalno' prvo obavlja uredno gašenje (stabilnije na nekim uređajima)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 novi Model"
 
 #~ msgid " "
 #~ msgstr " . "

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-03-31 05:09+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"PO-Revision-Date: 2026-05-18 09:13+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 msgid ""
 "\n"
@@ -2151,6 +2151,9 @@ msgstr "Po prepnutí"
 
 msgid "Aggregate data only"
 msgstr "Len zoskupiť údaje"
+
+msgid "Aggressive"
+msgstr "Agresívne"
 
 msgid "Akan"
 msgstr "akančina"
@@ -5034,6 +5037,12 @@ msgstr "Nastavenie pozície zobrazovania dokončených časovačov v zozname ča
 msgid "Control the InfoBar fading speed."
 msgstr "Nastavenie rýchlosti postupného strácania infolišty."
 
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Ovládanie použitia vyhladzovacieho filtra pre proces rozptylu (ditheringu)."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Ovládanie použitia vertikálneho škálovania pre vyhladzovanie hrán."
+
 msgid "Control your Softcams"
 msgstr "Ovládanie softcamov"
 
@@ -7252,6 +7261,12 @@ msgstr "Povoliť denník pre ladenie *"
 msgid "Enable digital downmix"
 msgstr "Povoliť digitálny downmix"
 
+msgid "Enable extended cut file support"
+msgstr "Povoliť rozšírenú podporu strihania súborov"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Povoliť rozšírenú podporu strihania súborov. Pri aktivovaní sa strih zapisuje s podrobnejšími informáciami, nielen pomocou značky."
+
 msgid "Enable fallback remote receiver"
 msgstr "Povoliť záložný vzdialený prijímač"
 
@@ -9128,6 +9143,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 - nový model"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = každú hodinu / D: = denne / W: = týždenne / M: = mesačne"
 
@@ -9509,8 +9527,8 @@ msgstr "Hodiny Minúty"
 msgid "Hours Minutes Seconds"
 msgstr "Hodiny Minúty Sekundy"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Spôsob uvoľnenia HW dekodéra pri prepnutí na SW dekódovanie. Voľba 'Rýchlo' uvoľňuje okamžite (rýchle prepnutie). Voľba 'Normal' vykoná najskôr čisté vypnutie (pri niektorých prijímačoch stabilnejšie)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Spôsob uvoľnenia HW dekodéra pri prepnutí na SW dekódovanie. Voľbou 'Rýchlo' dôjde k okamžitému uvoľneniu (rýchlejšie prepínanie). Voľba 'Normálne' vykoná najskôr čisté vypnutie (stabilnejšie pri niektorých prijímačoch). Voľba 'Agresívne' vykoná úplný reset súčasti na dekódovanie medzi kódovanými kanálmi."
 
 msgid "Http(s) stream start delay"
 msgstr "Oneskorenie spustenia http(s) streamu"
@@ -9535,9 +9553,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O priorita pre skripty"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
 msgid "IMDb Details"
 msgstr "Detaily IMDb"
@@ -14441,7 +14456,7 @@ msgid "Properties of current title"
 msgstr "Vlastnosti aktuálneho titulu"
 
 msgid "Protect Quickmenu"
-msgstr "Ochrana Rýchleho menu"
+msgstr "Ochrana rýchleho menu"
 
 msgid "Protect Screens"
 msgstr "Ochrana obrazoviek"
@@ -14579,7 +14594,7 @@ msgid "Quick Menu Actions"
 msgstr "Akcie pre rýchle menu"
 
 msgid "QuickEPG mode"
-msgstr "RýchlyEPG režim"
+msgstr "Režim rýchleho EPG"
 
 msgid "QuickMenu"
 msgstr "Rýchle menu"
@@ -18485,7 +18500,7 @@ msgid "Show picon background color"
 msgstr "Zobraziť farbu pozadia pikon"
 
 msgid "Show picons in quickzap"
-msgstr "zobraziť pikony pri rýchlom prepínaní"
+msgstr "Zobraziť pikony pri rýchlom prepínaní"
 
 msgid "Show picons in service list"
 msgstr "zobraziť pikony v zozname staníc"
@@ -19870,7 +19885,7 @@ msgid "Swimming"
 msgstr "Plávanie"
 
 msgid "Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)."
-msgstr "Zameniť krátke stlačenie modrého tlačidla (Rýchle menu) s dlhým stlačením (Menu rozšírení)."
+msgstr "Zameniť krátke stlačenie MODRÉHO tlačidla (rýchle menu) s dlhým stlačením (menu rozšírení)."
 
 msgid "Switch EPG Page Down"
 msgstr "Prepnúť EPG o stránku nadol"
@@ -20767,12 +20782,6 @@ msgstr "Redukcia blokového šumu v obraze. Zhorší sa tým však jeho ostrosť
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Nastavenie úrovne dynamického kontrastu obrazu."
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Ovládanie použitia vyhladzovacieho filtra pre proces rozptylu (ditheringu)."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Ovládanie použitia vertikálneho škálovania pre vyhladzovanie hrán."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Nastavenie úplného vypnutia displeja."
@@ -24434,6 +24443,12 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Spôsob uvoľnenia HW dekodéra pri prepnutí na SW dekódovanie. Voľba 'Rýchlo' uvoľňuje okamžite (rýchle prepnutie). Voľba 'Normal' vykoná najskôr čisté vypnutie (pri niektorých prijímačoch stabilnejšie)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
 #~ msgid " "
 #~ msgstr " "

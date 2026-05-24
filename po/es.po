@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2217,6 +2217,9 @@ msgid "After zap"
 msgstr "Tras el zapping"
 
 msgid "Aggregate data only"
+msgstr ""
+
+msgid "Aggressive"
 msgstr ""
 
 msgid "Akan"
@@ -5218,6 +5221,12 @@ msgstr "Controla en qué posición se mostrará un temporizador finalizado en la
 msgid "Control the InfoBar fading speed."
 msgstr "Controlar la velocidad de atenuación de la barra de información"
 
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Esta opción le permite activar el filtro de suavizado para controlar el proceso de tramado."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Esta opción le permite activar la depuración en escala vertical."
+
 msgid "Control your Softcams"
 msgstr "Controla tus Softcams"
 
@@ -7537,6 +7546,12 @@ msgstr "Habilitar historial de depuración *"
 msgid "Enable digital downmix"
 msgstr "Habilitar downmix digital"
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr "Activar receptor remoto de reserva"
 
@@ -9509,6 +9524,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = horario / D: = diario / W: = semanal / M: = mensual"
 
@@ -9910,7 +9928,7 @@ msgstr "Horas Minutos"
 msgid "Hours Minutes Seconds"
 msgstr "Horas Minutos Segundos"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9940,9 +9958,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr ""
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nuevo modelo"
 
 msgid "IMDb Details"
 msgstr "Detalles IMDb"
@@ -21868,12 +21883,6 @@ msgstr "Esta opción te permite reducir el bloqueo de ruido en la imagen. Obviam
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Esta opción te permite ajustar el nivel de contraste dinámico de la imagen."
 
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Esta opción le permite activar el filtro de suavizado para controlar el proceso de tramado."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Esta opción le permite activar la depuración en escala vertical."
-
 # Box Display
 msgid "This option allows you to Power Off the display."
 msgstr "Esta opción te permite apagar el LCD."
@@ -25867,6 +25876,9 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nuevo modelo"
 
 #~ msgid " "
 #~ msgstr " "

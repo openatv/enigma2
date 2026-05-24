@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-05-08 09:11+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"PO-Revision-Date: 2026-05-19 11:11+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.5-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2158,6 +2158,9 @@ msgstr "Po przełączeniu"
 
 msgid "Aggregate data only"
 msgstr "Tylko dane zbiorcze"
+
+msgid "Aggressive"
+msgstr "Agresywny"
 
 msgid "Akan"
 msgstr "Akan"
@@ -5042,6 +5045,12 @@ msgstr "Kontrola, jaki czas pozycji zakończenia przedstawiono w liście timera.
 msgid "Control the InfoBar fading speed."
 msgstr "Kontroluj prędkość wygaszania paska informacyjnego."
 
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Kontroluj filtr wygładzający używany w procesie ditheringu."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Kontroluj użycie pionowego skalowania wygładzania krawędzi."
+
 msgid "Control your Softcams"
 msgstr "Ustawienia i kontrola softcam"
 
@@ -7260,6 +7269,12 @@ msgstr "Włącz dziennik debugowania *"
 msgid "Enable digital downmix"
 msgstr "Włącz cyfrowy downmix"
 
+msgid "Enable extended cut file support"
+msgstr "Włącz rozszerzoną obsługę cięcia plików"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Włącz obsługę rozszerzonego cięcia plików. Dzięki temu plik cięcia będzie zawierał więcej informacji, a nie tylko znacznik."
+
 msgid "Enable fallback remote receiver"
 msgstr "Włącz zastępczy odbiornik zdalny"
 
@@ -9136,6 +9151,9 @@ msgstr "Gujana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nowy model"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H:=Co Godzinę/D:=Codziennie/W:=Co Tydzień/M:=Co Miesiąc"
 
@@ -9517,8 +9535,8 @@ msgstr "Godziny Minuty"
 msgid "Hours Minutes Seconds"
 msgstr "Godziny Minuty Sekundy"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Jak zwolnić dekoder sprzętowy podczas przełączania na odszyfrowanie programowe. 'Szybki' zwalnia natychmiast (szybsze przeskakiwanie). 'Normalny' najpierw wykonuje czyste wyłączenie (bardziej stabilne na niektórych urządzeniach)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Jak zwolnić dekodowanie sprzętowe podczas przełączania na dekodowanie programowe. 'Szybki' zwalnia natychmiast (szybsze przełączanie). 'Normalny' najpierw wykonuje czyste wyłączenie (bardziej stabilne na niektórych dekoderach). 'Agresywny' wykonuje pełny reset dekodera między zaszyfrowanymi kanałami."
 
 msgid "Http(s) stream start delay"
 msgstr "Opóźnienie startu strumieniowania Http(s)"
@@ -9543,9 +9561,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "Priorytet I/O dla skryptów"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nowy Model"
 
 msgid "IMDb Details"
 msgstr "Szczegóły IMDb"
@@ -20778,12 +20793,6 @@ msgstr "Ta opcja pozwala na zmniejszenie bloku szumu w obrazie. Jest to kosztem 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ta opcja pozwala na ustawienie poziomu kontrastu dynamicznego obrazu."
 
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Kontroluj filtr wygładzający używany w procesie ditheringu."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Kontroluj użycie pionowego skalowania wygładzania krawędzi."
-
 msgid "This option allows you to Power Off the display."
 msgstr "Ta opcja pozwala wyłączyć wyświetlacz."
 
@@ -24444,6 +24453,12 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Jak zwolnić dekoder sprzętowy podczas przełączania na odszyfrowanie programowe. 'Szybki' zwalnia natychmiast (szybsze przeskakiwanie). 'Normalny' najpierw wykonuje czyste wyłączenie (bardziej stabilne na niektórych urządzeniach)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nowy Model"
 
 # DO NOT TRANSLATE!
 #~ msgid " "

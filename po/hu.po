@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"POT-Creation-Date: 2026-05-16 05:50+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2154,6 +2154,9 @@ msgid "After zap"
 msgstr ""
 
 msgid "Aggregate data only"
+msgstr ""
+
+msgid "Aggressive"
 msgstr ""
 
 msgid "Akan"
@@ -5036,6 +5039,12 @@ msgstr "A pozíció vezérlése, hogy a befejezett időzítő hogyan jelenik meg
 msgid "Control the InfoBar fading speed."
 msgstr "Információs sáv lassú eltűnésének vezérlése"
 
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Ezzel az opcióval engedélyezheti a simítási szűrőt a dithering folyamat vezérlésére."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Ez a beállítás engedélyezi a skálázó függőleges élsimítást."
+
 msgid "Control your Softcams"
 msgstr "Softcam vezérlése"
 
@@ -7252,6 +7261,12 @@ msgstr "Hibakeresési mód engedélyezése*"
 msgid "Enable digital downmix"
 msgstr "Digitális lekeverés engedélyezése"
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr "Engedélyezi a tartalék háttér vevőegységet"
 
@@ -9134,6 +9149,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "CH"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Óránkénti / D: = Napi / W: = Heti / M: = Havi"
 
@@ -9518,7 +9536,7 @@ msgstr "Óra Perc"
 msgid "Hours Minutes Seconds"
 msgstr "Óra Perc Másodperc"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9544,9 +9562,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr ""
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 új modell"
 
 msgid "IMDb Details"
 msgstr "IMDb részletek"
@@ -20835,12 +20850,6 @@ msgstr "Ez az opció lehetővé teszi a zaj csökkentését a képen. Nyilvánva
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ez az opció lehetővé teszi a kép dinamikus kontrasztjának beállítását."
 
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Ezzel az opcióval engedélyezheti a simítási szűrőt a dithering folyamat vezérlésére."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Ez a beállítás engedélyezi a skálázó függőleges élsimítást."
-
 msgid "This option allows you to Power Off the display."
 msgstr "Ez az opció lehetővé teszi az LCD kijelző kikapcsolását, bekapcsolását."
 
@@ -24481,6 +24490,9 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 új modell"
 
 #~ msgid " "
 #~ msgstr " "
