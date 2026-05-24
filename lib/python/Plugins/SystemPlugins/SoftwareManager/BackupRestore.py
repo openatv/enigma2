@@ -560,15 +560,18 @@ class RestoreScreen(ConfigListScreen, Screen):
 			self.restartGUI()
 
 	def restoreMetrixSkin(self, ret=None):
-		configfile.load()
-		configfile.save()
-		try:
-			s = ""
-			with open("/etc/enigma2/settings") as fd:
-				s = fd.read()
-			restore = "config.skin.primary_skin=MetrixHD/skin.MySkin.xml" in s
-		except Exception:
+		if exists("/etc/.restore_skins"):
 			restore = False
+		else:
+			configfile.load()
+			configfile.save()
+			try:
+				s = ""
+				with open("/etc/enigma2/settings") as fd:
+					s = fd.read()
+				restore = "config.skin.primary_skin=MetrixHD/skin.MySkin.xml" in s
+			except Exception:
+				restore = False
 		if restore:
 			self.session.openWithCallback(self.rebootSYS, RestoreMyMetrixHD)
 		else:
