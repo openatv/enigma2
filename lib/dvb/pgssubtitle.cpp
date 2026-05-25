@@ -189,37 +189,33 @@ void ePGSSubtitleParser::processODS(const uint8_t* data, int len) {
 		return;
 
 	int object_id = (data[0] << 8) | data[1];
-	/* data[2] = version number */
 	uint8_t seq_flag = data[3];
 
-	PGSObject& obj = m_objects[object_id];
-
-	if (seq_flag & 0x80) /* first segment */
-	{
+	if (seq_flag & 0x80) { /* first segment */
 		if (len < 11)
 			return;
-		/* data[4..6] = object data length (3 bytes) */
+		PGSObject& obj = m_objects[object_id];
 		obj.width = (data[7] << 8) | data[8];
 		obj.height = (data[9] << 8) | data[10];
 		obj.rle_data.clear();
-		obj.complete = false;
+		obj.complete = (seq_flag & 0x40) != 0;
 		obj.rle_data.insert(obj.rle_data.end(), data + 11, data + len);
-	} else /* continuation segment */
-	{
+		if (obj.complete)
+			eTrace("[ePGSSubtitleParser] ODS: object %d complete %dx%d rle=%zd bytes", object_id, obj.width, obj.height, obj.rle_data.size());
+	} else { /* continuation segment */
 		auto it = m_objects.find(object_id);
-		if (it == m_objects.end()) {
-			eTrace("[ePGSSubtitleParser] ODS: continuation segment for unknown object %d", object_id);
+		if (it == m_objects.end() || it->second.width == 0) {
+			eTrace("[ePGSSubtitleParser] ODS: continuation for object %d without valid first segment", object_id);
 			return;
 		}
 		it->second.rle_data.insert(it->second.rle_data.end(), data + 4, data + len);
-	}
-
-	if (seq_flag & 0x40) /* last segment */
-	{
-		obj.complete = true;
-		eTrace("[ePGSSubtitleParser] ODS: object %d complete %dx%d rle=%zd bytes", object_id, obj.width, obj.height, obj.rle_data.size());
+		if (seq_flag & 0x40) {
+			it->second.complete = true;
+			eTrace("[ePGSSubtitleParser] ODS: object %d complete %dx%d rle=%zd bytes", object_id, it->second.width, it->second.height, it->second.rle_data.size());
+		}
 	}
 }
+
 
 void ePGSSubtitleParser::processEND() {
 	if (m_composition_objects.empty()) {
@@ -308,18 +304,15 @@ bool ePGSSubtitleParser::decodeRLE(const PGSObject& obj, ePtr<gPixmap>& pixmap) 
 			int run_length;
 			uint8_t color;
 
-			if (flags & 0x40) /* long run length */
-			{
+			if (flags & 0x40) { /* long run length */
 				if (pos >= rle_size)
 					break;
 				run_length = ((flags & 0x3F) << 8) | rle[pos++];
-			} else /* short run length */
-			{
+			} else { /* short run length */
 				run_length = flags & 0x3F;
 			}
 
-			if (flags & 0x80) /* non-zero color */
-			{
+			if (flags & 0x80) { /* non-zero color */
 				if (pos >= rle_size)
 					break;
 				color = rle[pos++];
