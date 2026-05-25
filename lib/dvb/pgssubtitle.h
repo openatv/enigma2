@@ -13,9 +13,9 @@ class ePGSSubtitleParser : public iObject, public sigc::trackable
 	DECLARE_REF(ePGSSubtitleParser);
 public:
 	ePGSSubtitleParser();
-	virtual ~ePGSSubtitleParser();
+	virtual ~ePGSSubtitleParser() = default;
 
-	void processBuffer(uint8_t *data, size_t len, pts_t pts);
+	void processBuffer(const uint8_t *data, size_t len, pts_t pts);
 	void reset();
 	void connectNewPage(const sigc::slot<void(const eDVBSubtitlePage&)> &slot, ePtr<eConnection> &connection);
 
@@ -40,19 +40,19 @@ private:
 
 	struct PGSObject
 	{
-		int width, height;
+		int width = 0;
+		int height = 0;
 		std::vector<uint8_t> rle_data;
-		bool complete;
-		PGSObject() : width(0), height(0), complete(false) {}
+		bool complete = false;
 	};
 
-	eSize m_display_size;
+	eSize m_display_size{1920, 1080};
 	gRGB m_palette[256];
-	int m_palette_id;
+	int m_palette_id = 0;
 	std::map<int, PGSObject> m_objects;
 	std::vector<PGSCompositionObject> m_composition_objects;
-	int m_composition_state;
-	pts_t m_pts;
+	int m_composition_state = 0;
+	pts_t m_pts = 0;
 
 	sigc::signal<void(const eDVBSubtitlePage&)> m_new_subtitle_page;
 
@@ -62,7 +62,7 @@ private:
 	void processODS(const uint8_t *data, int len);
 	void processEND();
 
-	bool decodeRLE(const PGSObject &obj, ePtr<gPixmap> &pixmap);
+	bool decodeRLE(const PGSObject &obj, ePtr<gPixmap> &pixmap) const;
 };
 
 #endif

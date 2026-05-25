@@ -5,11 +5,9 @@
 
 DEFINE_REF(ePGSSubtitleParser);
 
-ePGSSubtitleParser::ePGSSubtitleParser() : m_display_size(1920, 1080), m_palette_id(0), m_composition_state(0), m_pts(0) {
+ePGSSubtitleParser::ePGSSubtitleParser() {
 	memset(static_cast<void*>(m_palette), 0, sizeof(m_palette));
 }
-
-ePGSSubtitleParser::~ePGSSubtitleParser() {}
 
 void ePGSSubtitleParser::reset() {
 	m_objects.clear();
@@ -22,7 +20,7 @@ void ePGSSubtitleParser::connectNewPage(const sigc::slot<void(const eDVBSubtitle
 	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }
 
-void ePGSSubtitleParser::processBuffer(uint8_t* data, size_t len, pts_t pts) {
+void ePGSSubtitleParser::processBuffer(const uint8_t* data, size_t len, pts_t pts) {
 	if (len < 3)
 		return;
 
@@ -147,8 +145,7 @@ void ePGSSubtitleParser::processPDS(const uint8_t* data, int len) {
 	if (len < 2)
 		return;
 
-	uint8_t palette_id = data[0];
-	if (palette_id != m_palette_id) {
+	if (uint8_t palette_id = data[0]; palette_id != m_palette_id) {
 		eTrace("[ePGSSubtitleParser] PDS: palette ID %d does not match current palette ID %d", palette_id, m_palette_id);
 		return;
 	}
@@ -260,7 +257,7 @@ void ePGSSubtitleParser::processEND() {
 	}
 }
 
-bool ePGSSubtitleParser::decodeRLE(const PGSObject& obj, ePtr<gPixmap>& pixmap) {
+bool ePGSSubtitleParser::decodeRLE(const PGSObject& obj, ePtr<gPixmap>& pixmap) const {
 	if (obj.width <= 0 || obj.height <= 0 || obj.width > 3840 || obj.height > 2160)
 		return false;
 
@@ -269,7 +266,7 @@ bool ePGSSubtitleParser::decodeRLE(const PGSObject& obj, ePtr<gPixmap>& pixmap) 
 
 	/* Set up the 256-entry palette on the pixmap */
 	pixmap->surface->clut.colors = 256;
-	pixmap->surface->clut.data = new gRGB[256];
+	pixmap->surface->clut.data = new gRGB[256]; //NOSONAR
 	memcpy(static_cast<void*>(pixmap->surface->clut.data), m_palette, 256 * sizeof(gRGB));
 
 	const uint8_t* rle = obj.rle_data.data();

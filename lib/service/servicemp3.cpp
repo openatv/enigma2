@@ -935,7 +935,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
 	m_cachedSubtitleStream = -2; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
-	m_subtitle_widget = 0;
+	m_subtitle_widget = nullptr;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 5LL * 1024LL * 1024LL;
 	m_ignore_buffering_messages = 0;
@@ -4253,7 +4253,7 @@ exit:
 RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& track) {
 	if (m_currentSubtitleStream != track.pid || eSubtitleSettings::pango_autoturnon) {
 		m_subtitles_paused = true;
-		m_subtitle_widget = 0;
+		m_subtitle_widget = nullptr;
 		m_subtitle_sync_timer->stop();
 		m_dvb_subtitle_sync_timer->stop();
 		m_dvb_subtitle_pages.clear();
@@ -4302,7 +4302,7 @@ RESULT eServiceMP3::disableSubtitles() {
 	m_decoder_time_valid_state = 0;
 	if (m_subtitle_widget)
 		m_subtitle_widget->destroy();
-	m_subtitle_widget = 0;
+	m_subtitle_widget = nullptr;
 	return 0;
 }
 
