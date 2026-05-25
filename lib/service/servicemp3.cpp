@@ -4267,6 +4267,8 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 		m_cachedSubtitleStream = m_currentSubtitleStream;
 		setCacheEntry(false, track.pid);
 		eTrace("[eServiceMP3] enableSubtitles: set current-text to %d", m_currentSubtitleStream);
+		if(m_pgs_subtitle_parser)
+			m_pgs_subtitle_parser->reset(); // Reset PGS parser state when switching streams
 		g_object_set(m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
 		m_subtitle_widget = user;
 		m_subtitles_paused = false;

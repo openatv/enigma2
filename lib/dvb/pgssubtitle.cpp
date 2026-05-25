@@ -147,6 +147,12 @@ void ePGSSubtitleParser::processPDS(const uint8_t* data, int len) {
 	if (len < 2)
 		return;
 
+	uint8_t palette_id = data[0];
+	if (palette_id != m_palette_id) {
+		eTrace("[ePGSSubtitleParser] PDS: palette ID %d does not match current palette ID %d", palette_id, m_palette_id);
+		return;
+	}
+
 	/* data[0] = palette ID, data[1] = palette version */
 	int pos = 2;
 	while (pos + 5 <= len) {
@@ -200,7 +206,12 @@ void ePGSSubtitleParser::processODS(const uint8_t* data, int len) {
 		obj.rle_data.insert(obj.rle_data.end(), data + 11, data + len);
 	} else /* continuation segment */
 	{
-		obj.rle_data.insert(obj.rle_data.end(), data + 4, data + len);
+		auto it = m_objects.find(object_id);
+		if (it == m_objects.end()) {
+			eTrace("[ePGSSubtitleParser] ODS: continuation segment for unknown object %d", object_id);
+			return;
+		}
+		it->second.rle_data.insert(it->second.rle_data.end(), data + 4, data + len);
 	}
 
 	if (seq_flag & 0x40) /* last segment */
