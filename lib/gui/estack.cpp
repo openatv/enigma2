@@ -2,6 +2,7 @@
 
 eStack::eStack(eWidget* parent, LayoutDirection dir) : eWidget(parent), m_direction(dir) {
 	m_spacing = 0;
+	setTransparent(1);
 }
 
 void eStack::setLayoutDirection(LayoutDirection dir) {
