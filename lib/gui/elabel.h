@@ -86,20 +86,37 @@ protected:
 private:
 	int buildFlags() const {
 		int flags = 0;
-		if (m_valign == alignTop)
+
+		int valign = m_valign;
+		int halign = m_halign;
+
+		if (m_scroll_text) {
+
+			if (m_scroll_config.direction == eScrollConfig::scrollTop)
+				valign = alignTop;
+			else if (m_scroll_config.direction == eScrollConfig::scrollBottom)
+				valign = alignBottom;
+			else if (m_scroll_config.direction == eScrollConfig::scrollLeft)
+				halign = alignLeft;
+			else if (m_scroll_config.direction == eScrollConfig::scrollRight)
+				halign = alignRight;
+
+		} 
+
+		if (valign == alignTop)
 			flags |= gPainter::RT_VALIGN_TOP;
-		else if (m_valign == alignCenter)
+		else if (valign == alignCenter)
 			flags |= gPainter::RT_VALIGN_CENTER;
-		else if (m_valign == alignBottom)
+		else if (valign == alignBottom)
 			flags |= gPainter::RT_VALIGN_BOTTOM;
 
-		if (m_halign == alignLeft)
+		if (halign == alignLeft || halign == alignBidi)
 			flags |= gPainter::RT_HALIGN_LEFT;
-		else if (m_halign == alignCenter)
+		else if (halign == alignCenter)
 			flags |= gPainter::RT_HALIGN_CENTER;
-		else if (m_halign == alignRight)
+		else if (halign == alignRight)
 			flags |= gPainter::RT_HALIGN_RIGHT;
-		else if (m_halign == alignBlock)
+		else if (halign == alignBlock)
 			flags |= gPainter::RT_HALIGN_BLOCK;
 
 		if (m_wrap == 1)

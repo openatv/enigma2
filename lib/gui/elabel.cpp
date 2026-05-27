@@ -31,7 +31,7 @@ int eLabel::event(int event, void* data, void* data2) {
 			// get style and allow base class to paint background etc.
 			gPainter& painter = *(gPainter*)data2;
 
-			if (m_scroll_text && m_textPixmap && m_paint_pixmap) {
+			if (m_scroll_text && m_textPixmap && m_paint_pixmap && m_scroll_config.cached) {
 				// ensure timer is started with initial delay if not active
 				if (!scrollTimer->isActive()) {
 					scrollTimer->start(m_scroll_config.startDelay);
