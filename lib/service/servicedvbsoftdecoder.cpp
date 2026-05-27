@@ -794,6 +794,59 @@ int eDVBSoftDecoder::setTrickmode()
 // Audio Control - Delegate to decoder
 // ============================================================================
 
+void eDVBSoftDecoder::setNoAudio(bool noaudio, int preferred_pid)
+{
+	if (!m_decoder || !m_decoder_started)
+	{
+		m_noaudio = noaudio;
+		return;
+	}
+
+	if (m_noaudio == noaudio)
+		return;
+
+	m_noaudio = noaudio;
+
+	if (noaudio)
+	{
+		m_decoder->setAudioPID(-1, -1);
+		m_decoder->set();
+		return;
+	}
+
+	eDVBServicePMTHandler::program program;
+	if (m_source_handler.getProgramInfo(program) || program.audioStreams.empty())
+		return;
+
+	int apid = -1, atype = -1;
+
+	if (preferred_pid > 0)
+	{
+		for (const auto& a : program.audioStreams)
+		{
+			if (a.pid == preferred_pid)
+			{
+				apid = a.pid;
+				atype = a.type;
+				break;
+			}
+		}
+	}
+
+	if (apid == -1)
+	{
+		unsigned int audio_index = program.defaultAudioStream;
+		if (audio_index >= program.audioStreams.size())
+			audio_index = 0;
+		apid = program.audioStreams[audio_index].pid;
+		atype = program.audioStreams[audio_index].type;
+	}
+
+	m_decoder->setAudioPID(apid, atype);
+	m_decoder->set();
+	m_audio_pid_selected(apid);
+}
+
 int eDVBSoftDecoder::setAudioPID(int pid, int type)
 {
 	if (m_noaudio)
