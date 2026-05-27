@@ -24,7 +24,6 @@ from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
-
 # from Components.Storage import storageManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Screens.MessageBox import MessageBox
@@ -194,11 +193,12 @@ def formatLine(style, left, right=None):
 	return f"{leftIndent}{leftStartColor}{left}:{leftEndColor}|{rightIndent}{rightStartColor}{right}{rightEndColor}"
 
 
-class BenchmarkInformation(InformationBase):  # This code can't be used until we find open source test code!
+class BenchmarkInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Benchmark Information"))
 		self.skinName.insert(0, "BenchmarkInformation")
+		self.skinName.insert(0, "InformationBenchmark")
 		self.cpuTypes = []
 		self.cpuBenchmark = None
 		self.cpuRating = None
@@ -270,6 +270,7 @@ class BuildInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Build Information"))
 		self.skinName.insert(0, "BuildInformation")
+		self.skinName.insert(0, "InformationBuild")
 
 	def displayInformation(self):
 		info = []
@@ -297,6 +298,7 @@ class CommitInformation(InformationBase):
 		self.setTitle(_("Commit Log Information"))
 		self.baseTitle = _("Commit Log")
 		self.skinName.insert(0, "CommitInformation")
+		self.skinName.insert(0, "InformationCommit")
 		self["key_menu"] = StaticText(_("MENU"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
@@ -396,6 +398,7 @@ class DebugInformation(InformationBase):
 		self.setTitle(_("Debug Log Information"))
 		self.baseTitle = _("Log")
 		self.skinName.insert(0, "DebugInformation")
+		self.skinName.insert(0, "InformationDebug")
 		self["key_menu"] = StaticText()
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText()
@@ -577,6 +580,7 @@ class DistributionInformation(InformationBase):
 		self.displayDistro = BoxInfo.getItem("displaydistro", "Enigma2")
 		self.setTitle(_("%s Information") % self.displayDistro)
 		self.skinName.insert(0, "DistributionInformation")
+		self.skinName.insert(0, "InformationDistribution")
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText(_("Commit Logs"))
 		self["key_blue"] = StaticText(_("Translation"))
@@ -752,6 +756,7 @@ class GeolocationInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Geolocation Information"))
 		self.skinName.insert(0, "GeolocationInformation")
+		self.skinName.insert(0, "InformationGeolocation")
 
 	def displayInformation(self):
 		info = []
@@ -824,6 +829,7 @@ class MemoryInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Memory Information"))
 		self.skinName.insert(0, "MemoryInformation")
+		self.skinName.insert(0, "InformationMemory")
 		self["clearActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.clearMemoryInformation, _("Clear the virtual memory caches"))
 		}, prio=0, description=_("Memory Information Actions"))
@@ -909,6 +915,7 @@ class MultiBootInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("MultiBoot Information"))
 		self.skinName.insert(0, "MultiBootInformation")
+		self.skinName.insert(0, "InformationMultiBoot")
 		self.slotImages = None
 
 	def fetchInformation(self):
@@ -974,6 +981,7 @@ class NetworkInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Network Information"))
 		self.skinName.insert(0, "NetworkInformation")
+		self.skinName.insert(0, "InformationNetwork")
 		self["key_yellow"] = StaticText(_("WAN Geolocation"))
 		self["geolocationActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.useGeolocation, _("Use geolocation to get WAN information")),
@@ -1260,7 +1268,7 @@ class NetworkInformation(InformationBase):
 
 class PictureInformation(Screen):
 	skin = """
-	<screen name="PictureInformation" title="Picture Information" position="center,center" size="950,560" resolution="1280,720">
+	<screen name="InformationPicture" title="Picture Information" position="center,center" size="950,560" resolution="1280,720">
 		<widget name="Image" position="0,0" size="0,0" conditional="Image" />
 		<widget name="name" position="0,0" size="e,25" font="Regular;20" halign="center" transparent="1" valign="center" />
 		<widget name="picture" position="0,35" size="e,e-85" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
@@ -1281,6 +1289,8 @@ class PictureInformation(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Picture Information"))
+		self.skinName = ["PictureInformation"]
+		self.skinName.insert(0, "InformationPicture")
 		self["name"] = Label()
 		self["picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Close"))
@@ -1327,10 +1337,10 @@ class PictureInformation(Screen):
 		self.close(True)
 
 	def layoutFinished(self):
-		self["name"].setText(f"{DISPLAY_BRAND} {DISPLAY_MODEL}  -  {self.pictures[self.pictureIndex][0]} View")
+		self["name"].setText(f"{DISPLAY_BRAND} {DISPLAY_MODEL}  -  {_("%s View") % self.pictures[self.pictureIndex][0]}")
 		if self.pictureMax > 1:
-			self["key_yellow"].setText(_("%s View") % self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
-			self["key_blue"].setText(_("%s View") % self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
+			self["key_yellow"].setText(self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
+			self["key_blue"].setText(self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
 			self["pictureActions"].setEnabled(True)
 		else:
 			self["key_yellow"].setText("")
@@ -1354,6 +1364,7 @@ class ReceiverInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Receiver Information"))
 		self.skinName.insert(0, "ReceiverInformation")
+		self.skinName.insert(0, "InformationReceiver")
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText(_("System Information"))
 		self["key_blue"] = StaticText(_("Debug Information"))
@@ -1563,6 +1574,7 @@ class ServiceInformation(InformationBase):
 		self.baseTitle = _("Service Information")
 		self.setTitle(self.baseTitle)
 		self.skinName.insert(0, "ServiceInformation")
+		self.skinName.insert(0, "InformationService")
 		self.serviceRef = serviceRef
 		self["key_menu"] = StaticText()
 		self["key_yellow"] = StaticText()
@@ -1936,6 +1948,7 @@ class StorageInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Storage / Disk Information"))
 		self.skinName.insert(0, "StorageDiskInformation")
+		self.skinName.insert(0, "InformationStorageDisk")
 		self["information"].setText(_("Retrieving network server information, please wait..."))
 		self.mountInfo = []
 
@@ -2044,6 +2057,7 @@ class StreamingInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Streaming Tuner Information"))
 		self.skinName.insert(0, "StreamingInformation")
+		self.skinName.insert(0, "InformationStreaming")
 		self["key_yellow"] = StaticText(_("Stop Auto Refresh"))
 		self["key_blue"] = StaticText()
 		self["refreshActions"] = HelpableActionMap(self, ["ColorActions"], {
@@ -2100,6 +2114,7 @@ class SystemInformation(InformationBase):
 		self.baseTitle = _("System Information")
 		self.setTitle(self.baseTitle)
 		self.skinName.insert(0, "SystemInformation")
+		self.skinName.insert(0, "InformationSystem")
 		self["key_menu"] = StaticText(_("MENU"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
@@ -2116,7 +2131,7 @@ class SystemInformation(InformationBase):
 			("Current Processes", ("/bin/ps", "/bin/ps", "-l"), None),
 			("Kernel Modules", None, "/proc/modules"),
 			("Kernel Messages", ("/bin/dmesg", "/bin/dmesg"), None),
-			("System Messages", None, "/var/volatile/log/messages"),
+			("System Messages", None, "/home/root/logs/messages"),
 			("Network Interfaces", ("/sbin/ifconfig", "/sbin/ifconfig"), None),
 			("Disk Usage", ("/bin/df", "/bin/df", "-h"), None),
 			("Mounted Volumes", ("/bin/mount", "/bin/mount"), None),
@@ -2166,6 +2181,15 @@ class SystemInformation(InformationBase):
 			try:
 				with open(path) as fd:
 					self.info = [x.strip() for x in fd.readlines()]
+				if self.systemCommandsIndex == 0:  # CPU option needs to be parsed.
+					info = []
+					for line in self.info:
+						if line:
+							data = [x.strip() for x in line.split(":")]
+							info.append(f"{data[0]}:|{data[1]}")
+						else:
+							info.append("")
+					self.info = info
 			except OSError as err:
 				self.info = [_("Error %d: System information file '%s' can't be read!  (%s)") % (err.errno, path, err.strerror)]
 			for callback in self.onInformationUpdated:
@@ -2191,6 +2215,7 @@ class TranslationInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Translation Information"))
 		self.skinName.insert(0, "TranslationInformation")
+		self.skinName.insert(0, "InformationTranslation")
 
 	def displayInformation(self):
 		info = []
@@ -2223,6 +2248,7 @@ class TunerInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Tuner Information"))
 		self.skinName.insert(0, "TunerInformation")
+		self.skinName.insert(0, "InformationTuner")
 		self.frontEndFields = {
 			"DVB API version": "api",
 			"Name": "name",
@@ -2359,7 +2385,7 @@ class TestingInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Testing Information"))
-		self.skinName.insert(0, "TestingInformation")
+		self.skinName.insert(0, "InformationTesting")
 		self.slotImages = None
 
 	def displayInformation(self):
