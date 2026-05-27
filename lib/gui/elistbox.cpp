@@ -22,13 +22,14 @@ int eListbox::defaultScrollBarWidth = eListbox::DefaultScrollBarWidth;
 int eListbox::defaultScrollBarOffset = eListbox::DefaultScrollBarOffset;
 int eListbox::defaultScrollBarBorderWidth = eListbox::DefaultScrollBarBorderWidth;
 int eListbox::defaultScrollbarRadius = 0;
-int eListbox::defaultPageSize = eListbox::DefaultPageSize;
 int eListbox::defaultItemRadius[4] = {0, 0, 0, 0};
 uint8_t eListbox::defaultItemRadiusEdges[4] = {0, 0, 0, 0};
 uint8_t eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
 uint8_t eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 uint8_t eListbox::defaultScrollbarRadiusEdges = 0;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
+int eListbox::defaultHorizontalAlignment = -1;
+int eListbox::defaultVerticalAlignment = -1;
 
 eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_prev_scrollbar_page(-1), m_scrollbar_mode(showNever), m_scrollbar_scroll(byPage),
 									  m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
@@ -43,7 +44,6 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_
 	m_scrollbar_scroll = eListbox::defaultScrollBarScroll;
 	m_enabled_wrap_around = eListbox::defaultWrapAround;
 	m_scrollbar_mode = eListbox::defaultScrollBarMode;
-	m_page_size = eListbox::defaultPageSize;
 
 	memset(static_cast<void *>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_padding = eListbox::defaultPadding;
@@ -53,6 +53,12 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_
 	m_style.m_scrollbar_radius = eListbox::defaultScrollbarRadius;
 	m_style.m_scrollbar_edges = eListbox::defaultScrollbarRadiusEdges;
 	m_style.m_separator_size = eRect(1, -1, -1, 1);
+
+	if (eListbox::defaultHorizontalAlignment != -1)
+		m_style.m_halign = eListbox::defaultHorizontalAlignment;
+
+	if (eListbox::defaultVerticalAlignment != -1)
+		m_style.m_valign = eListbox::defaultVerticalAlignment;
 
 	for (uint8_t x = 0; x < 4; x++)
 	{

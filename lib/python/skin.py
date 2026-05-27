@@ -1585,10 +1585,17 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for label in tag.findall("label"):
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
-			pageSize = parseInteger(listBox.attrib.get("pageSize", eListbox.DefaultPageSize), eListbox.DefaultPageSize)
 			enableWrapAround = parseBoolean("enablewraparound", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
 			style.setListboxFont(parseFont(listBox.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			scrollbarBorderWidth = parseInteger(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
+			horizontalAlignment = listBox.attrib.get("horizontalAlignment")
+			if horizontalAlignment:
+				horizontalAlignment = parseHorizontalAlignment(horizontalAlignment)
+				eListbox.setDefaultHorizontalAlignment(horizontalAlignment)
+			verticalAlignment = listBox.attrib.get("verticalAlignment")
+			if verticalAlignment:
+				verticalAlignment = parseVerticalAlignment(verticalAlignment)
+				eListbox.setDefaultVerticalAlignment(verticalAlignment)
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
 			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", scrollbarModes[eListbox.DefaultScrollBarMode]))
@@ -1606,7 +1613,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			scrollbarRadius = parseRadius(listBox.attrib.get("scrollbarRadius", "0"))
 			if "scrollbarRadius" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarRadius"] = scrollbarRadius
-			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround, pageSize)
+			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
 			eListbox.setDefaultScrollbarRadius(*scrollbarRadius)
 		for scrollLabel in tag.findall("scrolllabel"):
 			scrollLabelStyle["scrollbarBorderWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
