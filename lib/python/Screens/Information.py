@@ -1312,10 +1312,10 @@ class PictureInformation(Screen):
 		}, prio=0, description=_("Picture Information Actions"))
 		self["pictureActions"].setEnabled(False)
 		self.definedPictures = (
-			(_("RC View"), f"hardware/{BoxInfo.getItem('rcname')}.png"),
-			(_("Front View"), f"hardware/{MACHINE_BUILD}_front.png"),
-			(_("Rear View"), f"hardware/{MACHINE_BUILD}_rear.png"),
-			(_("Internal View"), f"hardware/{MACHINE_BUILD}_internal.png")
+			(_("Remote Control"), f"hardware/{BoxInfo.getItem('rcname')}.png"),
+			(_("Front"), f"hardware/{MACHINE_BUILD}_front.png"),
+			(_("Rear"), f"hardware/{MACHINE_BUILD}_rear.png"),
+			(_("Internal"), f"hardware/{MACHINE_BUILD}_internal.png")
 		)
 		self.pictures = []
 		for item in self.definedPictures:
@@ -1337,7 +1337,7 @@ class PictureInformation(Screen):
 		self.close(True)
 
 	def layoutFinished(self):
-		self["name"].setText(f"{DISPLAY_BRAND} {DISPLAY_MODEL}  -  {self.pictures[self.pictureIndex][0]}")
+		self["name"].setText(f"{DISPLAY_BRAND} {DISPLAY_MODEL}  -  {_("%s View") % self.pictures[self.pictureIndex][0]}")
 		if self.pictureMax > 1:
 			self["key_yellow"].setText(self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
 			self["key_blue"].setText(self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
