@@ -44,8 +44,7 @@ public:
 	int start();
 	void stop();
 
-	// Suppress audio output (PIP mode)
-	void setNoAudio(bool noaudio) { m_noaudio = noaudio; }
+	void setNoAudio(bool noaudio, int preferred_pid = -1);
 
 	// Status
 	bool isRunning() const { return m_running; }
