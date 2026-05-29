@@ -36,6 +36,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot
 from Tools.StbHardware import getBoxProc, getBoxProcType, getBoxRCType, getFPVersion, getHWSerial
 from Tools.Transponder import ConvertToHumanReadable
+import re
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -1417,6 +1418,12 @@ class ReceiverInformation(InformationBase):
 		hwRelease = fileReadLine("/proc/stb/info/release", source=MODULE_NAME)
 		if hwRelease:
 			info.append(formatLine("P1", _("Factory release"), hwRelease))
+		hwVersion = fileReadLine("/proc/stb/info/version", source=MODULE_NAME)
+		if hwVersion:
+			match = re.search(r"\brev[0-9]+\b", hwVersion)
+			if match:
+				hwVersion = match.group(0)
+			info.append(formatLine("P1", _("Hardware revision"), hwVersion))
 		displayType = BoxInfo.getItem("displaytype")
 		if displayType and not displayType.startswith(" "):
 			info.append(formatLine("P1", _("Display type"), displayType))
