@@ -105,10 +105,13 @@ def setResumePoint(session):
 				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
-						filepath = realpath(candidate.split(":")[-1])
-						mountpoint = findMountPoint(filepath)
-						if ismount(mountpoint) and not exists(filepath):
-							del resumePointCache[candidate]
+						try:
+							filepath = realpath(candidate.split(":")[-1])
+							mountpoint = findMountPoint(filepath)
+							if ismount(mountpoint) and not exists(filepath):
+								del resumePointCache[candidate]
+						except (UnicodeEncodeError, OSError):
+							pass
 				saveResumePoints()
 
 
