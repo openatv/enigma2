@@ -30,8 +30,8 @@ class ScreenSaver(Screen):
 	def layoutFinished(self):
 		self.screenW = self.instance.size().width()
 		self.screenH = self.instance.size().height()
-		self.logoPath = [x[1] for x in self["picture"].skinAttributes if x[0] == "pixmap"]
-		self.logoPath = self.logoPath[0] if self.logoPath and isfile(self.logoPath[0]) else None
+		logoPaths = [x[1] for x in self["picture"].skinAttributes if x[0] == "pixmap"]
+		self.logoPath = logoPaths[0] if logoPaths and isfile(logoPaths[0]) else None
 		self.picturePath = self.logoPath
 		self.logoW = self["picture"].instance.size().width()
 		self.logoH = self["picture"].instance.size().height()
@@ -55,10 +55,10 @@ class ScreenSaver(Screen):
 				move = False
 			return move
 
+		move = False
 		match config.usage.screenSaverMode.value:
 			case 0:  # Show blank screen saver.
 				self["picture"].instance.resize(eSize(0, 0))
-				move = False
 			case 1:  # Show logo screen saver.
 				move = showLogo()
 			case 2:  # Show picon screen saver.
