@@ -13,8 +13,15 @@
 
 namespace eSimpleConfig
 {
-	static std::map<std::string, std::string> configValues; // NOSONAR
-	static int lastModified = 0; // NOSONAR
+	static std::map<std::string, std::string>* configValues = nullptr; // NOSONAR
+	static time_t lastModified = 0; // NOSONAR
+
+	static std::map<std::string, std::string>& getConfigValues()
+	{
+		if (!configValues)
+			configValues = new std::map<std::string, std::string>();
+		return *configValues;
+	}
 
 	static void load()
 	{
@@ -28,7 +35,7 @@ namespace eSimpleConfig
 		if (!in.good())
 			return;
 
-		configValues.clear();
+		getConfigValues().clear();
 		do
 		{
 			std::string line;
@@ -39,7 +46,7 @@ namespace eSimpleConfig
 
 			auto equals = line.find_first_of('=');
 			if (equals != std::string::npos)
-				configValues.insert(std::pair<std::string, std::string>(line.substr(0, equals), line.substr(equals + 1)));
+				getConfigValues().insert(std::pair<std::string, std::string>(line.substr(0, equals), line.substr(equals + 1)));
 		}
 		while (in.good());
 		in.close();
@@ -50,22 +57,22 @@ namespace eSimpleConfig
 	std::string getString(const char *key, const char* defaultvalue)
 	{
 		load();
-		auto it = configValues.find(key);
-		return it == configValues.end() ? std::string(defaultvalue) : it->second;
+		auto it = getConfigValues().find(key);
+		return it == getConfigValues().end() ? std::string(defaultvalue) : it->second;
 	}
 
 	int getInt(const char *key, int defaultvalue)
 	{
 		load();
-		auto it = configValues.find(key);
-		return it == configValues.end() ? defaultvalue : atoi(it->second.c_str());
+		auto it = getConfigValues().find(key);
+		return it == getConfigValues().end() ? defaultvalue : atoi(it->second.c_str());
 	}
 
 	bool getBool(const char *key, bool defaultvalue)
 	{
 		load();
-		auto it = configValues.find(key);
-		if (it == configValues.end())
+		auto it = getConfigValues().find(key);
+		if (it == getConfigValues().end())
 			return defaultvalue;
 
 		if (strcasecmp(it->second.c_str(), "true") == 0)
