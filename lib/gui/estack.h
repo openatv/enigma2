@@ -35,6 +35,8 @@ public:
 		return oss.str();
 	}
 
+	void show() override;
+
 protected:
 	int event(int event, void* data = 0, void* data2 = 0) override;
 	void recalcLayout();

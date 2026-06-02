@@ -2529,6 +2529,7 @@ def readSkin(screen, skin, names, desktop):
 			item.skinAttributes.append(("size", (contextScreen.w, contextScreen.h)))
 			item.skinAttributes.append(("position", (contextScreen.x, contextScreen.y)))
 			item.skinAttributes.append(("spacing", contextScreen.spacing))
+			item.skinAttributes.append(("tag", widget.attrib.get("tag", "0")))
 			item = proccesStackAddition(widget, stack, item)
 			screen.stacks.append(item)
 		except Exception as err:

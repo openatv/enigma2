@@ -1,6 +1,6 @@
 from os.path import isfile
 
-from enigma import eRCInput, eTimer, eWindow, getDesktop
+from enigma import eRCInput, eTimer, eWindow, getDesktop, eStack
 
 from skin import GUI_SKIN_ID, applyAllAttributes, menus, screens, setups
 from Components.ActionMap import HelpableActionMap
@@ -131,6 +131,9 @@ class Screen(dict):
 			for value in list(self.values()) + self.renderer:
 				if isinstance(value, GUIComponent) or isinstance(value, Source):
 					value.onShow()
+			for stack in self.stacks:
+				if isinstance(stack.instance, eStack):
+					stack.instance.show()
 
 	def hide(self):
 		if self.shown and self.instance:
@@ -141,6 +144,9 @@ class Screen(dict):
 			for value in list(self.values()) + self.renderer:
 				if isinstance(value, GUIComponent) or isinstance(value, Source):
 					value.onHide()
+			for stack in self.stacks:
+				if isinstance(stack.instance, eStack):
+					stack.instance.hide()
 
 	def isAlreadyShown(self):  # Already shown is false until the screen is really shown (after creation).
 		return self.alreadyShown

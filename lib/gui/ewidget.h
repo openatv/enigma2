@@ -36,7 +36,7 @@ public:
 
 	eWidget* getParent() { return m_parent; }
 
-	void show();
+	virtual void show();
 	void hide();
 
 	void raise();
