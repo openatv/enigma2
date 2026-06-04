@@ -661,6 +661,8 @@ def InitAVSwitch():
 		config.av.downmix_ac3 = ConfigNothing()
 	AC3plusTranscode = fileReadLine("/proc/stb/audio/ac3plus_choices", default=None, source=MODULE_NAME)
 	AC3plusTranscode = AC3plusTranscode.split() if AC3plusTranscode else False
+	if not AC3plusTranscode and MACHINEBUILD in ("dreamone", "dreamtwo"):
+		AC3plusTranscode = ["downmix", "passthrough", "hdmi_best", "force_ac3"]
 	BoxInfo.setItem("CanAC3plusTranscode", AC3plusTranscode)
 	if AC3plusTranscode:
 		def setAC3plusTranscode(configElement):
@@ -682,15 +684,25 @@ def InitAVSwitch():
 					("multichannel", _("Convert to multi-channel PCM")),
 					("force_dts", _("Convert to DTS"))
 				]
+		elif MACHINEBUILD in ("dreamone", "dreamtwo"):
+			choiceList = [
+					("hdmi_best", _("Use best / Controlled by HDMI")),
+					("passthrough", _("Pass-through")),
+					("downmix", _("Downmix")),
+					("force_ac3", _("Convert to AC3"))
+				]
 		else:
 			choiceList = [
 					("use_hdmi_caps", _("Controlled by HDMI")),
 					("force_ac3", _("Convert to AC3"))
 				]
 		config.av.transcodeac3plus = ConfigSelection(default="force_ac3", choices=choiceList)
-		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
+		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
+			config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
 	dtsHD = fileReadLine("/proc/stb/audio/dtshd_choices", default=None, source=MODULE_NAME)
 	dtsHD = dtsHD.split() if dtsHD else False
+	if not dtsHD and MACHINEBUILD in ("dreamone", "dreamtwo"):
+		dtsHD = ["downmix", "passthrough", "hdmi_best"]
 	BoxInfo.setItem("CanDTSHD", dtsHD)
 	if dtsHD:
 		def setDTSHD(configElement):
@@ -702,6 +714,13 @@ def InitAVSwitch():
 				("use_hdmi_caps", _("Controlled by HDMI")),
 				("force_dts", _("Convert to DTS"))
 			]
+		elif MACHINEBUILD in ("dreamone", "dreamtwo"):
+			default = "downmix"
+			choiceList = [
+				("hdmi_best", _("Use best / Controlled by HDMI")),
+				("passthrough", _("Pass-through")),
+				("downmix", _("Downmix"))
+			]
 		else:
 			default = "downmix"
 			choiceList = [
@@ -712,7 +731,17 @@ def InitAVSwitch():
 				("hdmi_best", _("Use best / Controlled by HDMI"))
 			]
 		config.av.dtshd = ConfigSelection(default=default, choices=choiceList)
-		config.av.dtshd.addNotifier(setDTSHD)
+		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
+			config.av.dtshd.addNotifier(setDTSHD)
+	if MACHINEBUILD in ("dreamone", "dreamtwo"):
+		BoxInfo.setItem("CanTrueHD", ["downmix", "passthrough", "hdmi_best"])
+		config.av.truehd = ConfigSelection(default="downmix", choices=[
+			("hdmi_best", _("Use best / Controlled by HDMI")),
+			("passthrough", _("Pass-through")),
+			("downmix", _("Downmix"))
+		])
+	else:
+		BoxInfo.setItem("CanTrueHD", False)
 	wmaPro = fileReadLine("/proc/stb/audio/wmapro_choices", default=None, source=MODULE_NAME)
 	wmaPro = wmaPro.split() if wmaPro else False
 	BoxInfo.setItem("CanWMAPRO", wmaPro)
@@ -792,13 +821,17 @@ def InitAVSwitch():
 		print(f"[AVSwitch] aactranscodeChoices choices={aactranscodeChoices}, default={default}.")
 	else:
 		aacTranscode = False
+	if not aacTranscode and MACHINEBUILD in ("dreamone", "dreamtwo"):
+		aacTranscode = [("off", _("off")), ("force_ac3", _("Convert to AC3"))]
+		default = "off"
 	BoxInfo.setItem("CanAACTranscode", aacTranscode)
 	if aacTranscode:
 		def setAACTranscode(configElement):
 			fileWriteLine("/proc/stb/audio/aac_transcode", configElement.value, source=MODULE_NAME)
 
 		config.av.transcodeaac = ConfigSelection(default=default, choices=aacTranscode)
-		config.av.transcodeaac.addNotifier(setAACTranscode)
+		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
+			config.av.transcodeaac.addNotifier(setAACTranscode)
 	else:
 		config.av.transcodeaac = ConfigNothing()
 	btAudio = fileReadLine("/proc/stb/audio/btaudio", default=None, source=MODULE_NAME)
