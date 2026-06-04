@@ -5,6 +5,7 @@ from re import compile
 from enigma import BT_SCALE, BT_VALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eServiceCenter, eServiceReference, eServiceReferenceFS, gFont
 
 from skin import fonts, parameters
+from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.MenuList import MenuList
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
@@ -244,6 +245,7 @@ class FileListBase(MenuList):
 			directory = normpath(directory)
 		if directory is None and self.showMountPoints:  # Present available mount points.
 			seenMountPoints = []  # TO DO: Fix Hardisk.py to remove duplicated mount points!
+			mountPoints = []
 			for partition in harddiskmanager.getMountedPartitions():
 				path = normpath(partition.mountpoint)
 				if path in seenMountPoints:  # TO DO: Fix Hardisk.py to remove duplicated mount points!
@@ -251,7 +253,10 @@ class FileListBase(MenuList):
 				seenMountPoints.append(path)
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					selected = False if self.multiSelect else None
-					self.fileList.append(self.fileListComponent(name=partition.description, path=join(path, ""), isDir=True, isLink=False, selected=selected, dirIcon=None))
+					mountPoints.append((partition.description, path, selected))
+			mountPoints.sort(key=lambda x: x[0])
+			for description, path, selected in mountPoints:
+				self.fileList.append(self.fileListComponent(name=description, path=join(path, ""), isDir=True, isLink=False, selected=selected, dirIcon=None))
 		elif self.useServiceRef and directory:
 			# Don't use "eServiceReference(string)" constructor as it doesn't allow ":" in the directory name.
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
@@ -489,7 +494,16 @@ class FileListBase(MenuList):
 		return f"{self.sortDirectories},{self.sortFiles}"
 
 	def sortList(self, items, sortBy):
+		transTable = str.maketrans({"\u00E4": "ae", "\u00F6": "oe", "\u00FC": "ue", "\u00DF": "ss"})  # ä ö ü ß.
 		sort, reverse = (int(x) for x in sortBy.split("."))
+		if config.usage.fileSortCaseMode.value == 0 and sort == 0:
+			def textSort(text):
+				return text.casefold().translate(transTable)
+
+		else:
+			def textSort(text):
+				return text.translate(transTable)
+
 		itemList = []
 		for name, path, isDir, isLink in items:
 			if access(path, R_OK):
@@ -499,10 +513,10 @@ class FileListBase(MenuList):
 			else:
 				date = 0
 				size = 0
-			itemList.append((name, date, size, path, isDir, isLink))
+			itemList.append((textSort(name), date, size, path, isDir, isLink, name))
 		itemList = sorted(itemList, key=lambda x: x[sort], reverse=reverse)
 		items = []
-		for name, date, size, path, isDir, isLink in itemList:
+		for _, date, size, path, isDir, isLink, name in itemList:  # The "_" here is the text used for sorting but not needed in the final list.
 			items.append((name, path, isDir, isLink))
 		return items
 
