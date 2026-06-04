@@ -67,12 +67,12 @@ class VideoEnhancementSetup(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.list = []
 		addToConfigList = self.addToConfigList
-		self.brightness1Entry = addToConfigList(_("Brightness Video"), config.amvecm.brightness1, _("This option sets the video picture brightness."))
-		self.brightness2Entry = addToConfigList(_("Brightness Video & OSD"), config.amvecm.brightness2, _("This option sets the video & osd picture brightness."))
-		self.color_bottomEntry = addToConfigList(_("Color Bottom"), config.amvecm.color_bottom, _("This option allows you to boost the blue tones in the picture."))
-		self.color_topEntry = addToConfigList(_("Color Top"), config.amvecm.color_top, _("This option allows you to boost the green tones in the picture."))
-		self.contrast1Entry = addToConfigList(_("Contrast Video"), config.amvecm.contrast1, _("This option sets the video picture contrast."))
-		self.contrast2Entry = addToConfigList(_("Contrast Video & OSD"), config.amvecm.contrast2, _("This option sets the video & osd picture contrast."))
+		self.brightness1Entry = addToConfigList(_("Brightness Video"), config.amvecm.brightness1, _("Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."))
+		self.brightness2Entry = addToConfigList(_("Brightness Video & OSD"), config.amvecm.brightness2, _("Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."))
+		self.color_bottomEntry = addToConfigList(_("RGB clamp (lower)"), config.amvecm.color_bottom, _("Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."))
+		self.color_topEntry = addToConfigList(_("RGB clamp (upper)"), config.amvecm.color_top, _("Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."))
+		self.contrast1Entry = addToConfigList(_("Contrast Video"), config.amvecm.contrast1, _("Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."))
+		self.contrast2Entry = addToConfigList(_("Contrast Video & OSD"), config.amvecm.contrast2, _("Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."))
 		self.hueEntry = addToConfigList(_("Hue"), config.amvecm.hue, _("This option sets the picture hue."))
 		self.saturationEntry = addToConfigList(_("Saturation"), config.amvecm.saturation, _("This option sets the picture saturation."))
 		self["config"].list = self.list
@@ -160,21 +160,21 @@ class VideoEnhancementSetup(ConfigListScreen, Screen):
 			print("not confirmed")
 		else:
 			if self.contrast1Entry is not None:
-				config.amvecm.contrast1.setValue(0)
+				config.amvecm.contrast1.setValue(128)
 			if self.contrast2Entry is not None:
-				config.amvecm.contrast2.setValue(0)
+				config.amvecm.contrast2.setValue(128)
 			if self.saturationEntry is not None:
-				config.amvecm.saturation.setValue(0)
+				config.amvecm.saturation.setValue(128)
 			if self.hueEntry is not None:
-				config.amvecm.hue.setValue(256)
+				config.amvecm.hue.setValue(128)
 			if self.brightness1Entry is not None:
-				config.amvecm.brightness1.setValue(0)
+				config.amvecm.brightness1.setValue(128)
 			if self.brightness2Entry is not None:
-				config.amvecm.brightness2.setValue(0)
+				config.amvecm.brightness2.setValue(128)
 			if self.color_bottomEntry is not None:
-				config.amvecm.color_bottom.setValue(0)
+				config.amvecm.color_bottom.setValue("full")
 			if self.color_topEntry is not None:
-				config.amvecm.color_top.setValue(1073741823)
+				config.amvecm.color_top.setValue("full")
 			self.keySave()
 
 	def keyBlue(self):
