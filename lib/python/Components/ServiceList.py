@@ -947,7 +947,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		except Exception:
 			pass
 
-	def buildServiceListEventPixmap(self, service, begin_time=0, title="", short_description="", size=None, next_event=False, fallback_to_picon=False):
+	def buildServiceListEventPixmap(self, service, begin_time=0, duration=0, title="", short_description="", extended_description="", size=None, next_event=False, fallback_to_picon=False):
 		"""Build an optional event pixmap via a registered provider.
 
 		The default core implementation has no image provider. Optional
@@ -960,7 +960,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		if provider is not None:
 			try:
 				buildPixmap = getattr(provider, "buildServiceListEventPixmap", provider)
-				pixmap = buildPixmap(service=service, begin_time=begin_time, title=title, size=size, next_event=next_event, fallback_to_picon=False)
+				pixmap = buildPixmap(service=service, begin_time=begin_time, duration=duration, title=title, short_description=short_description, extended_description=extended_description, size=size, next_event=next_event, fallback_to_picon=False)
 			except TypeError:
 				try:
 					pixmap = buildPixmap(service=service, begin_time=begin_time, title=title, size=size, next_event=next_event)
@@ -1467,7 +1467,9 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 						begin_time = 0
 						title = ""
 						pixmap = None
+						duration = 0
 						short_description = ""
+						extended_description = ""
 						if currentEvent:
 							try:
 								begin_time = int(currentEvent[0] or 0)
@@ -1477,11 +1479,16 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 								title = currentEvent[2] or ""
 							except Exception:
 								title = ""
+							try:
+								duration = int(currentEvent[1] or 0)
+							except Exception:
+								duration = 0
 							# ImageOrPicon must still be able to fall back to a real picon even
 							# when no current EPG event is available.  The optional provider owns
 							# that fallback; the core ServiceList only passes the request through.
 							short_description = currentEvent[3] if len(currentEvent) > 3 else ""
-						pixmap = self.buildServiceListEventPixmap(service, begin_time=begin_time, title=title, short_description=short_description, size=size, next_event=eventIndex > 0, fallback_to_picon=itemIndex % 100 == 12)
+							extended_description = currentEvent[4] if len(currentEvent) > 4 else ""
+						pixmap = self.buildServiceListEventPixmap(service, begin_time=begin_time, duration=duration, title=title, short_description=short_description, extended_description=extended_description, size=size, next_event=eventIndex > 0, fallback_to_picon=itemIndex % 100 == 12)
 						if pixmap:
 							res.append((pixmapType, pos[0], pos[1], size[0], size[1], pixmap, backgroundColor, backgroundColorSelected, pixmapFlags, cornerRadius, cornerEdges))
 					else:
