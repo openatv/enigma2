@@ -217,7 +217,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				choice_list = [("hdmi_best", _("Use best / Controlled by HDMI")), ("passthrough", _("Pass-through")), ("downmix", _("Downmix"))]
 				self.settings.truehd = ConfigSelection(choices=choice_list, default=config.av.truehd.value)
 				self.settings.truehd.addNotifier(self.setTrueHD, initial_call=False)
-				conflist.append(getConfigListEntry(_("Dolby TrueHD"), self.settings.truehd, None))
+				conflist.append(getConfigListEntry("Dolby TrueHD", self.settings.truehd, None))
 
 			if BoxInfo.getItem("CanWMAPRO"):
 				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]

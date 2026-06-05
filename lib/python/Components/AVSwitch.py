@@ -822,7 +822,7 @@ def InitAVSwitch():
 	else:
 		aacTranscode = False
 	if not aacTranscode and MACHINEBUILD in ("dreamone", "dreamtwo"):
-		aacTranscode = [("off", _("off")), ("force_ac3", _("Convert to AC3"))]
+		aacTranscode = [("off", _("Off")), ("force_ac3", _("Convert to AC3"))]
 		default = "off"
 	BoxInfo.setItem("CanAACTranscode", aacTranscode)
 	if aacTranscode:
