@@ -1,10 +1,10 @@
-# OpenATV 7.6
+# OpenATV 8.0
 
 ## Build status
 
 [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/build.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/build.yml)
 
-[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_modern_76.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_modern_arm80.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -22,7 +22,7 @@
 
 ## Current OS
 
-> Ubuntu 24.04.1 (GNU/Linux 6.8.0-51-generic x86_64)
+> Ubuntu 24.04.4 (GNU/Linux 6.8.0-111-generic x86_64)
 
 ## Hardware requirements
 
@@ -40,9 +40,7 @@
 * [OpenATV 7.6](https://github.com/openatv/enigma2.git "OpenATV 7.6") - OpenATV core
 * [MetrixHD](https://github.com/openatv/MetrixHD.git "OpenATV Skin") - Default OpenATV skin
 * [OpenWebif](https://github.com/oe-alliance/OpenWebif.git "OpenWebif") - OpenWebif
-* [OE Alliance Plugins](https://github.com/oe-alliance/oe-alliance-plugins "OE Alliance Plugins") - OE Alliance Plugins
-* [Enigma2 Plugins](https://github.com/oe-alliance/enigma2-plugins "Enigma2 Plugins") - Enigma2 Plugins
-* [E2OpenPlugins](https://github.com/E2OpenPlugins "E2OpenPlugins") - E2OpenPlugins
+* [OE Alliance Plugins](https://github.com/oe-alliance-plugins "OE Alliance Plugins") - OE Alliance Plugins
 * ...
 
 ## DOXYGEN Documentation
@@ -111,22 +109,22 @@
     git config --global user.name "Your Name"
     ```
 
-1. Create folder openatv7.6
+1. Create folder openatv8.0
 
     ```sh
     mkdir -p openatv7.6
     ```
 
-1. Switch to folder openatv7.6
+1. Switch to folder openatv8.0
 
     ```sh
-    cd openatv7.6
+    cd openatv8.0
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.6
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 6.0
     ```
 
 1. Switch to folder build-enviroment
