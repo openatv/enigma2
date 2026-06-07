@@ -513,7 +513,10 @@ class FileListBase(MenuList):
 			else:
 				date = 0
 				size = 0
-			itemList.append((textSort(name), date, size, path, isDir, isLink, name))
+			if isinstance(name, eServiceReference):
+				itemList.append((name, date, size, path, isDir, isLink, name))
+			else:
+				itemList.append((textSort(name), date, size, path, isDir, isLink, name))
 		itemList = sorted(itemList, key=lambda x: x[sort], reverse=reverse)
 		items = []
 		for _, date, size, path, isDir, isLink, name in itemList:  # The "_" here is the text used for sorting but not needed in the final list.
