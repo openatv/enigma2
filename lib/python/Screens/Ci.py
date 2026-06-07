@@ -131,6 +131,25 @@ class MMIDialog(Screen):
 		elif action == 3:  # mmi already there (called from infobar)
 			self.showScreen()
 
+	def isAuthStatusScreen(self, screen):
+		if not screen or screen[0][0] not in ("MENU", "LIST"):
+			return False
+		if any(entry[0] == "PIN" for entry in screen):
+			return False
+
+		visible_text = []
+		for entry in screen[1:]:
+			if entry[0] in ("TITLE", "SUBTITLE", "BOTTOM", "TEXT") and len(entry) > 1:
+				text = entry[1].strip()
+				if text:
+					visible_text.append(text)
+
+		if not visible_text:
+			return False
+
+		status_text = "\n".join(visible_text).lower()
+		return "authentifiz" in status_text or "authenticat" in status_text
+
 	def addEntry(self, list, entry):
 		if entry[0] == "TEXT":  # handle every item (text / pin only?)
 			list.append((entry[1], ConfigNothing(), entry[2]))
@@ -302,6 +321,12 @@ class MMIDialog(Screen):
 					elif entry[0] == "TEXT":
 						self.addEntry(list, entry)
 			self.updateList(list)
+			if self.isAuthStatusScreen(screen):
+				# This is only an informational CI+ authentication screen.
+				# Close it shortly after display so it cannot keep the RC focus.
+				self.tag = None
+				self.mmiclosed = True
+				self.timer.start(1500, True)
 
 	def ciStateChanged(self):
 		do_close = False
@@ -349,9 +374,14 @@ class CiMessageHandler:
 				if config.ci[slot].show_ci_messages.value:
 					show_ui = True
 				screen_data = handler.getMMIScreen(slot)
-				if config.ci[slot].use_static_pin.value:
-					if screen_data is not None and len(screen_data):
-						ci_tag = screen_data[0][0]
+				if screen_data is None or not len(screen_data):
+					show_ui = False
+				else:
+					ci_tag = screen_data[0][0]
+					if ci_tag == "CLOSE":
+						show_ui = False
+						self.auto_close = False
+					elif config.ci[slot].use_static_pin.value:
 						if ci_tag == "ENQ" and len(screen_data) >= 2 and screen_data[1][0] == "PIN":
 							if str(config.ci[slot].static_pin.value) == "0":
 								show_ui = True
@@ -364,9 +394,6 @@ class CiMessageHandler:
 								handler.answerEnq(slot, answer)
 								show_ui = False
 								self.auto_close = True
-						elif ci_tag == "CLOSE" and self.auto_close:
-							show_ui = False
-							self.auto_close = False
 				if show_ui and not forceNotShowCiMessages and not Screens.Standby.inStandby and not config.misc.firstrun.value:
 					try:
 						self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, screen_data=screen_data)
