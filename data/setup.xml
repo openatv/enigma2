@@ -123,7 +123,7 @@
 			<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.channelSelection.recordIndicatorMode</item>
 		</if>
 		<item level="1" text="Zap mode" description="Setup how to control the channel changing." requires="ZapMode">config.misc.zapmode</item>
-		<item level="2" text="Number of digits in service number" description="This allows you to set the maximum number of digits in a service number, up to 5.">config.usage.numberZapDigits</item>
+		<item level="2" text="Number of digits in service number" description="This allows you to set the maximum number of digits in a service number, up to 6.">config.usage.numberZapDigits</item>
 		<item level="2" text="Service zap screen contents" description="Select the preferred service information to display, in addition to the service number, for the service selection pop up screen.">config.usage.numberZapDisplay</item>
 		<item level="2" text="Service zap delay mode" description="Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second.">config.usage.numberZapTimeouts</item>
 		<if conditional="config.usage.numberZapTimeouts.value == 'user'">
