@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -3278,6 +3278,12 @@ msgstr ""
 msgid "Brightness Video & OSD"
 msgstr ""
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr "Briti India ookeani territoorium"
 
@@ -3807,6 +3813,12 @@ msgstr "joonis/nukufilm"
 
 msgid "Cascade PiP"
 msgstr "PiP-kaskaad"
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr ""
@@ -4392,12 +4404,6 @@ msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Värv"
-
-msgid "Color Bottom"
-msgstr ""
-
-msgid "Color Top"
-msgstr ""
 
 msgid "Color format"
 msgstr "Värvi vorming"
@@ -5049,11 +5055,20 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 #, fuzzy
 msgid "Control LED can be turned on or off here."
 msgstr "Toite näidiku saab siin sisse/välja lülitada."
 
 msgid "Control files:"
+msgstr ""
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
 msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
@@ -5237,9 +5252,6 @@ msgid "Create application loader dump."
 msgstr ""
 
 msgid "Create backup image zip file."
-msgstr ""
-
-msgid "Create boot dump."
 msgstr ""
 
 msgid "Create boot image dump."
@@ -7415,6 +7427,9 @@ msgstr ""
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
@@ -8565,6 +8580,9 @@ msgstr "Fail on hõivatud.\n"
 msgid "File compression"
 msgstr ""
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr ""
 
@@ -8913,6 +8931,9 @@ msgid "Full Stretch"
 msgstr ""
 
 msgid "Full factory reset"
+msgstr ""
+
+msgid "Full range (no clipping)"
 msgstr ""
 
 #
@@ -9360,6 +9381,9 @@ msgid "Hardware information"
 msgstr ""
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -10065,6 +10089,9 @@ msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
+msgstr ""
+
+msgid "Include text encoding data"
 msgstr ""
 
 msgid "Include timer data"
@@ -10921,6 +10948,9 @@ msgstr "Lääne piir"
 msgid "Limited memory size, swap file required"
 msgstr ""
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr "Piirid tühistatud"
 
@@ -11187,6 +11217,9 @@ msgstr "Läbiviik kuni"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Madalam kaadrisagedus säästab protsessoriaega"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "Alumine USB pesa"
@@ -14977,6 +15010,12 @@ msgstr "Punane - pikk"
 msgid "RF Output Settings"
 msgstr "RF-väljund"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr ""
 
@@ -17590,6 +17629,9 @@ msgstr "Määra, kas DTS heli taandada stereoks või transkodeerida."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Määra, kas DTS heli taandada stereoks."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
@@ -21132,8 +21174,8 @@ msgstr "Siin saab muuta tähesuurust kujunduse suhtes. 1 suurendab ja -1 vähend
 msgid "This allows you to change the number of rows shown."
 msgstr "Siin saab muuta kuvatavate ridade arvu."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Võimalik on määrata kuni 5 numbrikohta, kui kanaleid on rohkem kui 9999."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Võimalik on määrata kuni 6 numbrikohta, kui kanaleid on rohkem kui 9999."
 
 #
 msgid "This bouquet is protected by a parental control PIN!"
@@ -21369,18 +21411,6 @@ msgstr "See valik määrab skaleerija teravuse 4:3 > 16:9 pildi venitamisel."
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "See valik summutab digitaalsed võltskontuurid, mis on vähese diskreetsete väärtuste tagajärjeks."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr ""
-
-msgid "This option sets the video & osd picture contrast."
-msgstr ""
-
-msgid "This option sets the video picture brightness."
-msgstr ""
-
-msgid "This option sets the video picture contrast."
-msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "See valik määrab pildi teravuse ülesskaleerimisel."
@@ -22482,6 +22512,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "Ülemine USB pesa"

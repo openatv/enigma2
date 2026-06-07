@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -3279,6 +3279,12 @@ msgstr ""
 msgid "Brightness Video & OSD"
 msgstr ""
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr "Indijos Vandenyno Britų Sritis"
 
@@ -3806,6 +3812,12 @@ msgstr "animacija/lėlės"
 
 msgid "Cascade PiP"
 msgstr "PiP pakopomis"
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr "Katalonų / Valensijos"
@@ -4385,12 +4397,6 @@ msgstr "Kolumbija"
 
 msgid "Color"
 msgstr "Spalva"
-
-msgid "Color Bottom"
-msgstr ""
-
-msgid "Color Top"
-msgstr ""
 
 msgid "Color format"
 msgstr "Spalvų formatas"
@@ -5035,11 +5041,20 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr "LED valdymas gali būti įjungtas arba išjungtas čia."
 
 msgid "Control files:"
 msgstr "Valdymo failai:"
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Nustatykite pozicijas, kaip baigti laikmačiai bus rodomi laikmačių sąraše."
@@ -5214,9 +5229,6 @@ msgid "Create application loader dump."
 msgstr ""
 
 msgid "Create backup image zip file."
-msgstr ""
-
-msgid "Create boot dump."
 msgstr ""
 
 msgid "Create boot image dump."
@@ -7347,6 +7359,9 @@ msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtrau
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Įjunkite šią parinktį, kad pridėtumėte laikmačio derinimo duomenis prie derinimo žurnalo failo."
 
@@ -8491,6 +8506,9 @@ msgstr "Failas tikriausiai užimtas.\n"
 msgid "File compression"
 msgstr ""
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr ""
 
@@ -8830,6 +8848,9 @@ msgstr ""
 
 msgid "Full factory reset"
 msgstr "Pilnas gamyklinis atstatymas"
+
+msgid "Full range (no clipping)"
+msgstr ""
 
 msgid "Full screen"
 msgstr "Visas ekranas"
@@ -9262,6 +9283,9 @@ msgid "Hardware information"
 msgstr "Aparatūros informacija"
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -9947,6 +9971,9 @@ msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
+msgstr ""
+
+msgid "Include text encoding data"
 msgstr ""
 
 msgid "Include timer data"
@@ -10782,6 +10809,9 @@ msgstr "Vakarų riba"
 msgid "Limited memory size, swap file required"
 msgstr ""
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr "Ribos pašalintos"
 
@@ -11036,6 +11066,9 @@ msgstr "Kilpa iki"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Žemesnis kadrų dažnis atlaisvins CPU"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "Apatinis USB lizdas"
@@ -14666,6 +14699,12 @@ msgstr "RAUDONAS ilgas mygtukas"
 msgid "RF Output Settings"
 msgstr "RF išvesties parametrai"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr ""
 
@@ -17226,6 +17265,9 @@ msgstr "Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perk
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti į stereo garsą."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
@@ -20703,8 +20745,8 @@ msgstr "Ši parinktis leidžia nustatyti šrifto dydį lyginant su temos dydžiu
 msgid "This allows you to change the number of rows shown."
 msgstr "Ši parinktis leidžia nustatyti rodomų eilučių skaičių."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Ši parinktis leidžia nustatyti 5 skaitmenų skaičių, jei turite daugiau nei 9999 kanalus."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Ši parinktis leidžia nustatyti 6 skaitmenų skaičių, jei turite daugiau nei 99999 kanalus."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "šis paketas apsaugotas tėvų kontrolės PIN kodu"
@@ -20933,18 +20975,6 @@ msgstr "Ši parinktis nustato skalerio ryškumą, naudojamas, kai tempiame pavei
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Ši parinktis nustato klaidingų skaitmeninių kontūrų, kurie yra iš riboto skaičiaus atskirų verčių slopinimo rezultatas."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr ""
-
-msgid "This option sets the video & osd picture contrast."
-msgstr ""
-
-msgid "This option sets the video picture brightness."
-msgstr ""
-
-msgid "This option sets the video picture contrast."
-msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nustato paveikslėlių vaizdo ryškumą keičiantis masteliui."
@@ -22005,6 +22035,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "Viršutinis USB lizdas"

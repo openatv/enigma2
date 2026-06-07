@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -3284,6 +3284,12 @@ msgstr ""
 msgid "Brightness Video & OSD"
 msgstr ""
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr "Brit Indiai-óceáni Terület"
 
@@ -3801,6 +3807,12 @@ msgstr "rajzfilm/báb"
 
 msgid "Cascade PiP"
 msgstr "Kaszkád Kép-a-Képben"
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr ""
@@ -4382,12 +4394,6 @@ msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Szín"
-
-msgid "Color Bottom"
-msgstr ""
-
-msgid "Color Top"
-msgstr ""
 
 msgid "Color format"
 msgstr "Színformátum"
@@ -5026,11 +5032,20 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 #, fuzzy
 msgid "Control LED can be turned on or off here."
 msgstr "A Power LED itt be- és kikapcsolható."
 
 msgid "Control files:"
+msgstr ""
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
 msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
@@ -5208,9 +5223,6 @@ msgid "Create application loader dump."
 msgstr ""
 
 msgid "Create backup image zip file."
-msgstr ""
-
-msgid "Create boot dump."
 msgstr ""
 
 msgid "Create boot image dump."
@@ -7348,6 +7360,9 @@ msgstr ""
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
@@ -8488,6 +8503,9 @@ msgstr "A fájl használatban van.\n"
 msgid "File compression"
 msgstr ""
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr ""
 
@@ -8830,6 +8848,9 @@ msgid "Full Stretch"
 msgstr ""
 
 msgid "Full factory reset"
+msgstr ""
+
+msgid "Full range (no clipping)"
 msgstr ""
 
 msgid "Full screen"
@@ -9268,6 +9289,9 @@ msgid "Hardware information"
 msgstr ""
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -9960,6 +9984,9 @@ msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
+msgstr ""
+
+msgid "Include text encoding data"
 msgstr ""
 
 msgid "Include timer data"
@@ -10806,6 +10833,9 @@ msgstr "Nyugati limit"
 msgid "Limited memory size, swap file required"
 msgstr ""
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr "Limitek felfüggesztve"
 
@@ -11063,6 +11093,9 @@ msgstr "Loop through to"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Lower Framerate saves CPU Time."
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "Alsó USB"
@@ -14753,6 +14786,12 @@ msgstr "Piros hosszan"
 msgid "RF Output Settings"
 msgstr "RF kimenet"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr ""
 
@@ -17320,6 +17359,9 @@ msgstr "Válassza ki, hogy a DTS csatorna hangsávjait le kell-e keverni vagy á
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Ha kiválasztja, akkor az DTS csatorna hangsávjait lekeveri sztereóra."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
@@ -20805,8 +20847,8 @@ msgstr "Ez lehetővé teszi a betűméret megváltoztatását a kinézeti méret
 msgid "This allows you to change the number of rows shown."
 msgstr "Ezzel megváltoztathatja a megjelenített sorok számát."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Ez lehetővé teszi, hogy a számjegyek számát 5-re állítsa be, ha több mint 9999 csatorna van."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Ez lehetővé teszi, hogy a számjegyek számát 6-re állítsa be, ha több mint 99999 csatorna van."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "ez a csatornacsomag gyermekzár PIN-kóddal védett"
@@ -21035,18 +21077,6 @@ msgstr "Ezzel beállítja a skálázó élességét., amelyet a képernyő 4:3-r
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Ezzel beállítja a hibás digitális körvonalak elfojtását."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr ""
-
-msgid "This option sets the video & osd picture contrast."
-msgstr ""
-
-msgid "This option sets the video picture brightness."
-msgstr ""
-
-msgid "This option sets the video picture contrast."
-msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ezzel beállítja a kép élességét, amelyet a kép felskálázásnál használ."
@@ -22117,6 +22147,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "Felső USB"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-16 05:50+0000\n"
-"PO-Revision-Date: 2026-05-17 07:15+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"PO-Revision-Date: 2026-06-06 11:58+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.6\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -3232,6 +3232,12 @@ msgstr "亮度视频"
 msgid "Brightness Video & OSD"
 msgstr "亮度视频和 OSD"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "应用于组合视频+OSD输出的亮度。会影响屏幕上的所有内容，包括此菜单。"
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "仅应用于视频层的亮度。不会影响 enigma2 菜单或 OSD。"
+
 msgid "British Indian Ocean Territory"
 msgstr "英属印度洋领地"
 
@@ -3759,6 +3765,12 @@ msgstr "卡通/木偶"
 
 msgid "Cascade PiP"
 msgstr "层叠画中画"
+
+msgid "Case insensitive"
+msgstr "不区分大小写"
+
+msgid "Case sensitive"
+msgstr "区分大小写"
 
 msgid "Catalan / Valencian"
 msgstr "加泰罗尼亚语/瓦伦西亚语"
@@ -4337,12 +4349,6 @@ msgstr "哥伦比亚"
 
 msgid "Color"
 msgstr "色彩"
-
-msgid "Color Bottom"
-msgstr "底部颜色"
-
-msgid "Color Top"
-msgstr "顶部颜色"
 
 msgid "Color format"
 msgstr "色彩格式"
@@ -4985,11 +4991,20 @@ msgstr "对比度视频"
 msgid "Contrast Video & OSD"
 msgstr "对比度视频和 OSD"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "应用于组合视频+OSD输出的对比度。会影响屏幕上的所有内容，包括此菜单。"
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "仅应用于视频层的对比度。不会影响 enigma2 菜单或 OSD。"
+
 msgid "Control LED can be turned on or off here."
 msgstr "可以在这里控制 LED 打开或关闭。"
 
 msgid "Control files:"
 msgstr "控制文件："
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "控制文件列表界面中文件的排序方式。区分大小写：大写字母开头的文件会排在前，小写字母开头的文件排在后。不区分大小写：按字母顺序排序，忽略大小写差异。"
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "定位控制，已结束的定时器在定时器列表中如何显示。"
@@ -5165,9 +5180,6 @@ msgstr "创建应用程序加载器转储。"
 
 msgid "Create backup image zip file."
 msgstr "创建备份镜像 zip 文件。"
-
-msgid "Create boot dump."
-msgstr "创建启动转储。"
 
 msgid "Create boot image dump."
 msgstr "创建启动镜像转储。"
@@ -7307,6 +7319,9 @@ msgstr "启用此选项可将屏幕名称和分辨率数据添加到调试日志
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "启用此选项，可将系统启动期间检测到的存储设备信息以及热插拔事件添加到调试日志文件中。"
 
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr "启用此选项可将文本编码信息添加到调试日志文件中。"
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "启用此选项可将定时器调试数据添加到调试日志文件。"
 
@@ -8447,6 +8462,9 @@ msgstr "文件似乎忙。\n"
 msgid "File compression"
 msgstr "文件压缩"
 
+msgid "File sorting mode"
+msgstr "文件排序模式"
+
 msgid "File system"
 msgstr "文件系统"
 
@@ -8786,6 +8804,9 @@ msgstr "全屏拉伸"
 
 msgid "Full factory reset"
 msgstr "完全恢复出厂设置"
+
+msgid "Full range (no clipping)"
+msgstr "全范围（无裁剪）"
 
 msgid "Full screen"
 msgstr "全屏"
@@ -9219,6 +9240,9 @@ msgstr "硬件信息"
 
 msgid "Hardware latency correction"
 msgstr "硬件延迟校正"
+
+msgid "Hardware revision"
+msgstr "硬件版本"
 
 msgid "Hardware serial"
 msgstr "硬件序列号"
@@ -9908,6 +9932,9 @@ msgstr "包括存储设备数据"
 
 msgid "Include teletext details"
 msgstr "包括图文电视详细信息"
+
+msgid "Include text encoding data"
+msgstr "包含文本编码数据"
 
 msgid "Include timer data"
 msgstr "包含定时器数据"
@@ -10741,6 +10768,9 @@ msgstr "西极限位置"
 msgid "Limited memory size, swap file required"
 msgstr "内存大小有限，需要交换文件"
 
+msgid "Limited range (64..940)"
+msgstr "有限范围（64..940）"
+
 msgid "Limits cancelled"
 msgstr "限制 已取消"
 
@@ -10994,6 +11024,9 @@ msgstr "循环通过"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "较低的帧速率可节省 CPU 时间。"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr "RGB 输出下限裁剪。‘全范围’= 无下限裁剪，‘有限范围’将 RGB 输出裁剪至 64（广播安全级）。"
 
 msgid "Lower USB"
 msgstr "低速 USB"
@@ -14625,6 +14658,12 @@ msgstr "长按红键"
 msgid "RF Output Settings"
 msgstr "射频输出设置"
 
+msgid "RGB clamp (lower)"
+msgstr "RGB钳位（下限）"
+
+msgid "RGB clamp (upper)"
+msgstr "RGB钳位（上限）"
+
 msgid "Racing"
 msgstr "赛车"
 
@@ -17188,6 +17227,9 @@ msgstr "选择 DTS 音轨是应缩混还是转码。"
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "选择 DTS 音轨是否缩混为立体声。"
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr "选择是否直通或解码杜比TrueHD音频轨道。"
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "选择DNS的模式。"
@@ -20687,8 +20729,8 @@ msgstr "这允许您更改相对于皮肤大小的字体大小，即 1 增加 1 
 msgid "This allows you to change the number of rows shown."
 msgstr "这允许您更改显示的行数。"
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "如果您有超过9999个频道，这允许您将数字位数设置为5。"
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "如果您有超过9999个频道，这允许您将数字位数设置为6。"
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "此频道分组由家长控制密码保护！"
@@ -20917,18 +20959,6 @@ msgstr "此选项设置缩放锐度，在画面从4:3拉伸到16:9时使用。"
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "此选项设置抑制虚假数字轮廓，这是有限数量的离散值的结果。"
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "此选项设置视频/OSD 图片亮度。"
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "此选项设置视频/OSD 图片对比度。"
-
-msgid "This option sets the video picture brightness."
-msgstr "此选项设置视频图片亮度。"
-
-msgid "This option sets the video picture contrast."
-msgstr "此选项设置视频图片对比度。"
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "此选项设置图片清晰度，当图片放大时使用。"
@@ -21991,6 +22021,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops： "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr "RGB 输出上限裁剪。‘全范围’= 无上限裁剪，‘有限范围’将 RGB 输出裁剪至 940（广播安全级）。"
 
 msgid "Upper USB"
 msgstr "上方 USB"
@@ -24391,6 +24424,27 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "底部颜色"
+
+#~ msgid "Color Top"
+#~ msgstr "顶部颜色"
+
+#~ msgid "Create boot dump."
+#~ msgstr "创建启动转储。"
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "此选项设置视频/OSD 图片亮度。"
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "此选项设置视频/OSD 图片对比度。"
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "此选项设置视频图片亮度。"
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "此选项设置视频图片对比度。"
 
 #~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
 #~ msgstr "当切换到软件解扰时如何释放硬件解码器。'快速'模式立即释放（换台更快）。'常规'模式先执行完整关闭流程（在某些机顶盒上更稳定）。"

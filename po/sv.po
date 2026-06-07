@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-16 05:50+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
 "PO-Revision-Date: 2026-04-20 04:59+0000\n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -3386,6 +3386,12 @@ msgstr "Ljusstyrka Video"
 msgid "Brightness Video & OSD"
 msgstr "Ljusstyrka Video & OSD"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr "British Indian Oceanterritoriet"
 
@@ -3927,6 +3933,12 @@ msgstr "tecknad film/marionetter"
 
 msgid "Cascade PiP"
 msgstr "Cascade PiP"
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr "Katalanska / Valencianska"
@@ -4538,12 +4550,6 @@ msgstr "Colombia"
 #
 msgid "Color"
 msgstr "Färg"
-
-msgid "Color Bottom"
-msgstr "Färg botten"
-
-msgid "Color Top"
-msgstr "Färg topp"
 
 msgid "Color format"
 msgstr "Färgformat"
@@ -5211,11 +5217,20 @@ msgstr "Kontrast Video"
 msgid "Contrast Video & OSD"
 msgstr "Kontrast Video & OSD"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr "Kontroll-LED kan sättas på eller stängas av här."
 
 msgid "Control files:"
 msgstr "Kontrollera filer:"
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Kontroll av positionen hur färdig timern är visas i Timer List."
@@ -5396,9 +5411,6 @@ msgstr "Skapa dumpning av applikationsladdare."
 
 msgid "Create backup image zip file."
 msgstr "Skapa zip-fil med säkerhetskopia."
-
-msgid "Create boot dump."
-msgstr "Skapa startdump."
 
 msgid "Create boot image dump."
 msgstr "Skapa boot image dump."
@@ -7660,6 +7672,9 @@ msgstr "Aktivera det här alternativet för att lägga till skärmnamn och uppl�
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Aktivera det här alternativet för att lägga till information om lagringsenheter som upptäcks under systemstart och hot plug-händelser i debug-loggfilen."
 
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivera det här alternativet för att lägga till felsökningsdata för timern i felsökningsloggfilen."
 
@@ -8855,6 +8870,9 @@ msgstr "File ser ut att vara upptagen!\n"
 msgid "File compression"
 msgstr "Komprimering av filer"
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr "Filsystem"
 
@@ -9217,6 +9235,9 @@ msgstr "Full stretch"
 
 msgid "Full factory reset"
 msgstr "Fullständig fabriksåterställning"
+
+msgid "Full range (no clipping)"
+msgstr ""
 
 msgid "Full screen"
 msgstr "Fullskärm"
@@ -9671,6 +9692,9 @@ msgid "Hardware information"
 msgstr "Information om hårdvara"
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -10380,6 +10404,9 @@ msgstr "Inkludera data för lagringsenhet"
 
 msgid "Include teletext details"
 msgstr "Inkludera text-tv-detaljer"
+
+msgid "Include text encoding data"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Inkludera timerdata"
@@ -11275,6 +11302,9 @@ msgstr "Begränsa västerut"
 msgid "Limited memory size, swap file required"
 msgstr "Begränsad minnesstorlek, swap-fil krävs"
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 #
 msgid "Limits cancelled"
 msgstr "Gränser avbrutna"
@@ -11550,6 +11580,9 @@ msgstr "Loopa vidare till"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Lägre framerate sparar CPU-tid."
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "Lägre USB"
@@ -15429,6 +15462,12 @@ msgstr "RED lång"
 msgid "RF Output Settings"
 msgstr "Inställningar för RF-utgång"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr ""
 
@@ -18130,6 +18169,9 @@ msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas eller omkodas."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas till stereo."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Välj läge för DNS."
@@ -21810,8 +21852,8 @@ msgstr "Detta gör att du kan ändra teckenstorleken i förhållande till hudsto
 msgid "This allows you to change the number of rows shown."
 msgstr "Detta gör att du kan ändra antalet rader som visas."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Detta gör att du kan ställa in det maximala antalet siffror i ett servicenummer, upp till 5."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Detta gör att du kan ställa in det maximala antalet siffror i ett servicenummer, upp till 6."
 
 #
 msgid "This bouquet is protected by a parental control PIN!"
@@ -22041,18 +22083,6 @@ msgstr "Detta alternativ ställer in skärpan för skalaren, som används när b
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Det här alternativet anger hur falska digitala konturer, som är resultatet av ett begränsat antal diskreta värden, ska undertryckas."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "Detta alternativ ställer in ljusstyrkan för video & osd-bilden."
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "Detta alternativ ställer in kontrasten för video- och osd-bilder."
-
-msgid "This option sets the video picture brightness."
-msgstr "Detta alternativ ställer in ljusstyrkan för videobilden."
-
-msgid "This option sets the video picture contrast."
-msgstr "Detta alternativ ställer in kontrasten för videobilden."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Detta alternativ ställer in bildskärpan, som används när bilden skalas upp."
@@ -23192,6 +23222,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "Övre USB"
@@ -25762,6 +25795,27 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "Färg botten"
+
+#~ msgid "Color Top"
+#~ msgstr "Färg topp"
+
+#~ msgid "Create boot dump."
+#~ msgstr "Skapa startdump."
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "Detta alternativ ställer in ljusstyrkan för video & osd-bilden."
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "Detta alternativ ställer in kontrasten för video- och osd-bilder."
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "Detta alternativ ställer in ljusstyrkan för videobilden."
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "Detta alternativ ställer in kontrasten för videobilden."
 
 #~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 #~ msgstr "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 ny modell"
