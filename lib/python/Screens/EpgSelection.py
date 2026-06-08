@@ -395,15 +395,17 @@ class EPGSelection(Screen):
 			self.session.openWithCallback(createSetupCallback, Setup, key)
 
 	def setupKeyPlayButtonDisplay(self, stime, service):
-		ena = self["list"].detectCatchupAvailable(stime, service)
-		self["epgcatchupactions"].setEnabled(ena)
+		if hasattr(self["list"], "detectCatchupAvailable"):
+			ena = self["list"].detectCatchupAvailable(stime, service)
+			self["epgcatchupactions"].setEnabled(ena)
 
 	def playCatchup(self):
 		event, service = self["list"].getCurrent()[:2]
 		stime = event and event.getBeginTime()
 		service = service and service.ref
-		if self["list"].detectCatchupAvailable(stime, service):
-			self.catchupPlayerFunc(event, service)
+		if hasattr(self["list"], "detectCatchupAvailable"):
+			if self["list"].detectCatchupAvailable(stime, service):
+				self.catchupPlayerFunc(event, service)
 
 	def togglePIG(self):
 		if self.type == EPG_TYPE_VERTICAL:

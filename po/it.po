@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-16 05:50+0000\n"
-"PO-Revision-Date: 2026-05-17 03:00+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"PO-Revision-Date: 2026-06-06 11:58+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.6\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -3233,6 +3233,12 @@ msgstr "Luminosità video"
 msgid "Brightness Video & OSD"
 msgstr "Luminosità video e OSD"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Luminosità applicata all'uscita combinata video + OSD. Influisce su tutto ciò che è visualizzato sullo schermo, incluso questo menu."
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Luminosità applicata solo al livello video. Non influisce sui menu di enigma2 o sull'OSD."
+
 msgid "British Indian Ocean Territory"
 msgstr "Territorio britannico dell'Oceano Indiano"
 
@@ -3760,6 +3766,12 @@ msgstr "cartoni/pupazzi"
 
 msgid "Cascade PiP"
 msgstr "PiP a cascata"
+
+msgid "Case insensitive"
+msgstr "Ignora maiuscole"
+
+msgid "Case sensitive"
+msgstr "Distingui maiuscole"
 
 msgid "Catalan / Valencian"
 msgstr "Catalano / Valenciano"
@@ -4338,12 +4350,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Colore"
-
-msgid "Color Bottom"
-msgstr "Colore in basso"
-
-msgid "Color Top"
-msgstr "Colore in alto"
 
 msgid "Color format"
 msgstr "Formato colore"
@@ -4986,11 +4992,20 @@ msgstr "Contrasto video"
 msgid "Contrast Video & OSD"
 msgstr "Contrasto video & OSD"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Contrasto applicato all'output combinato video + OSD. Influisce su tutto ciò che è visualizzato sullo schermo, incluso questo menu."
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Contrasto applicato solo al livello video. Non influisce sui menu di enigma2 o sull'OSD."
+
 msgid "Control LED can be turned on or off here."
 msgstr "Il LED di controllo può essere attivato o disattivato qui."
 
 msgid "Control files:"
 msgstr "File di controllo:"
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "Consente di controllare l'ordinamento dei file nelle schermate che mostrano un elenco di file. L'opzione \"Distingue maiuscole\" raggrupperà prima i file con lettere maiuscole e poi quelli con lettere minuscole. L'opzione \"Ignora maiuscole\" ordinerà i file alfabeticamente, ignorando la distinzione tra maiuscole e minuscole."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Posizione nella quale i timer conclusi vengono visualizzati nell'elenco timer."
@@ -5166,9 +5181,6 @@ msgstr "Crea dump del caricatore dell'applicazione."
 
 msgid "Create backup image zip file."
 msgstr "Crea file zip con l'immagine di backup."
-
-msgid "Create boot dump."
-msgstr "Crea dump di avvio."
 
 msgid "Create boot image dump."
 msgstr "Crea dump dell'immagine di avvio."
@@ -7308,6 +7320,9 @@ msgstr "Abilita questa opzione per aggiungere nomi di schermate e dati di risolu
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Abilita questa opzione per aggiungere al file di registro di debug le informazioni sul dispositivo di archiviazione rilevato durante l'avvio del sistema e gli eventi di hot plug."
 
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr "Abilita questa opzione per aggiungere informazioni sulla codifica del testo al file di registro di debug."
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di debug del timer al file di registro di debug."
 
@@ -8448,6 +8463,9 @@ msgstr "Il file sembra occupato.\n"
 msgid "File compression"
 msgstr "Compressione dei file"
 
+msgid "File sorting mode"
+msgstr "Modalità ordinamento file"
+
 msgid "File system"
 msgstr "File system"
 
@@ -8787,6 +8805,9 @@ msgstr "Ridimensionamento pieno"
 
 msgid "Full factory reset"
 msgstr "Ripristino completo impostazioni di fabbrica"
+
+msgid "Full range (no clipping)"
+msgstr "Gamma completa (senza clipping)"
 
 msgid "Full screen"
 msgstr "Schermo intero"
@@ -9220,6 +9241,9 @@ msgstr "Informazioni sull'hardware"
 
 msgid "Hardware latency correction"
 msgstr "Correzione latenza hardware"
+
+msgid "Hardware revision"
+msgstr "Revisione hardware"
 
 msgid "Hardware serial"
 msgstr "Seriale hardware"
@@ -9905,6 +9929,9 @@ msgstr "Includi dati del dispositivo di archiviazione"
 
 msgid "Include teletext details"
 msgstr "Includi dettagli del televideo"
+
+msgid "Include text encoding data"
+msgstr "Includi dati di codifica del testo"
 
 msgid "Include timer data"
 msgstr "Includi dati timer"
@@ -10738,6 +10765,9 @@ msgstr "Limite ovest"
 msgid "Limited memory size, swap file required"
 msgstr "Dimensioni di memoria limitate, è richiesto un file di swap"
 
+msgid "Limited range (64..940)"
+msgstr "Gamma limitata (64..940)"
+
 msgid "Limits cancelled"
 msgstr "Limiti rimossi"
 
@@ -10991,6 +11021,9 @@ msgstr "In cascata da"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Frequenza fotogrammi più bassa risparmia tempo CPU"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr "Limite inferiore di clipping dell'uscita RGB. \"Gamma completa\" = nessun clipping inferiore, \"Gamma limitata\" limita le uscite RGB a 64 (adatto alla trasmissione)."
 
 msgid "Lower USB"
 msgstr "USB inferiore"
@@ -14622,6 +14655,12 @@ msgstr "Rosso lungo"
 msgid "RF Output Settings"
 msgstr "Output RF"
 
+msgid "RGB clamp (lower)"
+msgstr "Limite clipping RGB (inferiore)"
+
+msgid "RGB clamp (upper)"
+msgstr "Limite clipping RGB (superiore)"
+
 msgid "Racing"
 msgstr "Corsa"
 
@@ -17172,37 +17211,40 @@ msgid "Select where the recording should be saved."
 msgstr "Seleziona dove salvare la registrazione."
 
 msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Scegli se le tracce audio AAC devono essere transcodificate."
+msgstr "Seleziona se le tracce audio AAC devono essere transcodificate."
 
 msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Scegli se le tracce audio AC3 Plus devono essere transcodificate in AC3."
+msgstr "Seleziona se le tracce audio AC3 Plus devono essere transcodificate in AC3."
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Scegli se le tracce audio AC3 devono essere ridotte a stereo."
+msgstr "Seleziona se le tracce audio AC3 devono essere ridotte a stereo."
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Scegli se le tracce audio del canale DTS devono essere ridotte o transcodificate."
+msgstr "Seleziona se le tracce audio del canale DTS devono essere ridotte o transcodificate."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Scegli se le tracce audio del canale DTS devono essere ridotte a stereo."
+msgstr "Seleziona se le tracce audio del canale DTS devono essere ridotte a stereo."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr "Seleziona se le tracce audio Dolby TrueHD devono essere trasmesse senza modifiche o decodificate."
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Seleziona modalità del DNS."
+msgstr "Seleziona se utilizzare IPv4, IPv6 o entrambi i protocolli. Se entrambi sono abilitati, specifica quale preferire."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Scegli se le tracce audio del canale WMA Pro devono essere rimixate o transcodificate."
+msgstr "Seleziona se le tracce audio del canale WMA Pro devono essere rimixate o transcodificate."
 
 msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Scegli se le tracce audio multicanale devono essere convertite in PCM o SPDIF."
+msgstr "Seleziona se le tracce audio multicanale devono essere convertite in PCM o SPDIF."
 
 msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Scegli se le tracce audio multicanale devono essere ridotte a due (stereo)."
+msgstr "Seleziona se le tracce audio multicanale devono essere ridotte a due (stereo)."
 
 msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Scegli se le tracce audio multicanale debbano uscire come PCM."
+msgstr "Seleziona se le tracce audio multicanale debbano uscire come PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Scegli se mostrare o meno un'icona quando una parabola motorizzata è in movimento."
+msgstr "Seleziona se mostrare o meno un'icona quando una parabola motorizzata è in movimento."
 
 msgid "Select wireless network"
 msgstr "Seleziona rete wireless"
@@ -20684,8 +20726,8 @@ msgstr "Consente di modificare la dimensione del carattere in relazione alla dim
 msgid "This allows you to change the number of rows shown."
 msgstr "Consente di modificare il numero di righe da visualizzare nell'elenco canali."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Consente di impostare il numero di cifre su 5, se si dispone di più di 9999 canali."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Consente di impostare il numero di cifre su 6, se si dispone di più di 99999 canali."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Questo bouquet è protetto dal PIN del controllo genitori!"
@@ -20914,18 +20956,6 @@ msgstr "Questa opzione imposta la nitidezza dello scaler, usata quando si allung
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Questa opzione imposta la soppressione di contorni digitali falsi, che sono il risultato di un numero limitato di valori discreti."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "Questa opzione imposta la luminosità dell'immagine del video e dell'OSD."
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "Questa opzione imposta il contrasto dell'immagine del video e dell'OSD."
-
-msgid "This option sets the video picture brightness."
-msgstr "Questa opzione imposta la luminosità dell'immagine del video."
-
-msgid "This option sets the video picture contrast."
-msgstr "Questa opzione imposta il contrasto dell'immagine del video."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Questa opzione imposta la nitidezza dell'immagine, usato quando l'immagine è in fase upscaling."
@@ -21988,6 +22018,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr "Limite superiore di clipping dell'uscita RGB. \"Gamma completa\" = nessun clipping superiore, \"Gamma limitata\" limita le uscite RGB a 940 (adatto alla trasmissione)."
 
 msgid "Upper USB"
 msgstr "USB superiore"
@@ -24388,6 +24421,27 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "Colore in basso"
+
+#~ msgid "Color Top"
+#~ msgstr "Colore in alto"
+
+#~ msgid "Create boot dump."
+#~ msgstr "Crea dump di avvio."
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "Questa opzione imposta la luminosità dell'immagine del video e dell'OSD."
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "Questa opzione imposta il contrasto dell'immagine del video e dell'OSD."
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "Questa opzione imposta la luminosità dell'immagine del video."
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "Questa opzione imposta il contrasto dell'immagine del video."
 
 #~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
 #~ msgstr "Come sbloccare il decoder hardware quando si passa alla decriptazione software. L'opzione 'Veloce' sblocca immediatamente (zapping più rapido). L'opzione 'Normale' esegue prima uno spegnimento pulito (più stabile su alcuni box)."
