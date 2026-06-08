@@ -206,7 +206,8 @@ int eAVControl::getResolutionX(int defaultVal, int flags) const
 {
 	int value;
 #ifdef DREAMNEXTGEN
-	int ret = CFile::parseInt(&value, "/sys/class/video/frame_width", __MODULE__, flags);
+	int ret = CFile::parseInt(&value, "/sys/class/video/frame_width",
+				  __MODULE__, flags | FLAGS_SUPPRESS_READWRITE_ERROR);
 #else
 	int ret = CFile::parseIntHex(&value, "/proc/stb/vmpeg/0/xres", __MODULE__, flags);
 #endif
@@ -230,7 +231,8 @@ int eAVControl::getResolutionY(int defaultVal, int flags) const
 
 	int value;
 #ifdef DREAMNEXTGEN
-	int ret = CFile::parseInt(&value, "/sys/class/video/frame_height", __MODULE__, flags);
+	int ret = CFile::parseInt(&value, "/sys/class/video/frame_height",
+				  __MODULE__, flags | FLAGS_SUPPRESS_READWRITE_ERROR);
 #else
 	int ret = CFile::parseIntHex(&value, "/proc/stb/vmpeg/0/yres", __MODULE__, flags);
 #endif
