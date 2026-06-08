@@ -531,6 +531,14 @@ void eDBoxLCD::update()
 					}
 				}
 				ret = write(lcdfd, gb_buffer, _stride * res.height());
+#elif defined(LCD_COLOR_BYTESWAP_16)
+				unsigned char gb_buffer[_stride * res.height()];
+				for (int offset = 0; offset < _stride * res.height(); offset += 2)
+				{
+					gb_buffer[offset] = _buffer[offset + 1];
+					gb_buffer[offset + 1] = _buffer[offset];
+				}
+				ret = write(lcdfd, gb_buffer, _stride * res.height());
 #else
 				ret = write(lcdfd, _buffer, _stride * res.height());
 #endif
