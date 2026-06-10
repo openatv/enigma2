@@ -950,6 +950,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
 	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
+	m_last_trickseek_ms = 0;
 	m_to_paused = false;
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
@@ -1733,6 +1734,16 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		}
 	}
 
+	/* 200ms gate against seek-spam: stacked FLUSH seeks deadlock the
+	 * main thread. UI position is updated before the gate. */
+	struct timespec tsk; clock_gettime(CLOCK_MONOTONIC, &tsk);
+	int64_t now_ms_k = (int64_t)tsk.tv_sec * 1000 + tsk.tv_nsec / 1000000;
+	if (now_ms_k - m_last_trickseek_ms < 200) {
+		eDebug("[eServiceMP3] seekToImpl throttled (%dms since last gst seek)",
+		       (int)(now_ms_k - m_last_trickseek_ms));
+		return 0;
+	}
+	m_last_trickseek_ms = now_ms_k;
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -1790,6 +1801,21 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 	if (!m_gst_playbin)
 		return -1;
 	// eDebug("[eServiceMP3] trickSeek %.1f", ratio);
+
+	/* 500ms gate against FF/SlowMotion ratio spam. ratio 0.0 (pause)
+	 * and 1.0 (resume) always pass — they are state transitions. */
+	bool is_trick_ratio = !(ratio > -0.01 && ratio < 0.01)
+	                     && (ratio < 0.99 || ratio > 1.01);
+	if (is_trick_ratio) {
+		struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+		int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+		if (now_ms - m_last_trickseek_ms < 500) {
+			eDebug("[eServiceMP3] trickSeek throttled (%dms since last, ratio=%.1f)",
+			       (int)(now_ms - m_last_trickseek_ms), ratio);
+			return 0;
+		}
+		m_last_trickseek_ms = now_ms;
+	}
 	GstState state, pending;
 	GstStateChangeReturn ret;
 	int pos_ret = -1;
