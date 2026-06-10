@@ -56,6 +56,12 @@ KEY_9 = ACTIONKEY_9
 
 READONLY_COLOR = r"\c007f7f7f"
 
+setupOnSave = {}  # This is used to trigger setup callbacks on save, it is populated by setup modules which want to use it. It's used in openwebif to trigger setup callbacks when saving settings via the web interface. It is a dictionary with section names as keys and callback functions as values.
+
+
+def setOnSaveCallback(setup, callback):
+	setupOnSave[setup] = callback
+
 
 def getKeyNumber(key):
 	if key not in ACTIONKEY_NUMBERS:
