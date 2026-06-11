@@ -63,7 +63,6 @@ class Session:
 		from Components.FrontPanelLed import frontPanelLed
 		frontPanelLed.setSession(self)
 		self.allDialogs = []
-		self.toats = []
 		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			try:
 				plugin.__call__(reason=0, session=self)
@@ -233,10 +232,7 @@ class Session:
 				dialog.applySkin()
 
 	def showToast(self, text, timeout=5, id=None):
-		self.toats.append((text, timeout, id))
-		if not Toast.instance.shown and self.toats:
-			toast = self.toats.pop(0)
-			Toast.instance.showToast(text=toast[0], timeout=toast[1])
+		Toast.instance.showToast(text=text, timeout=timeout)
 
 
 class PowerKey:

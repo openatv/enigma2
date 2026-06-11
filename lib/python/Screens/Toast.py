@@ -65,8 +65,22 @@ class Toast:
 			Toast.instance = self
 			self.dialog = session.instantiateDialog(ToastScreen)
 			self.dialog.hide()
+			self.queue = []
+			self.nextTimer = eTimer()
+			self.nextTimer.callback.append(self._showNext)
+			self.dialog.onHide.append(self._scheduleNext)
 
 	def showToast(self, text, timeout):
-		self.dialog.showToast(text, timeout)
+		self.queue.append((text, timeout))
+		if not self.dialog.shown and not self.nextTimer.isActive():
+			self._showNext()
 
-	shown = property(lambda self: self.dialog.shown)
+	def _scheduleNext(self):
+		if self.queue:
+			self.nextTimer.start(1000, True)  # 1000 ms Pause
+
+	def _showNext(self):
+		self.nextTimer.stop()
+		if not self.dialog.shown and self.queue:
+			text, timeout = self.queue.pop(0)
+			self.dialog.showToast(text, timeout)
