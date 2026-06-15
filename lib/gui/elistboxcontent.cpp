@@ -985,11 +985,16 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 				/* CallObject will call __call__ which should return the value tuple */
 				value = PyObject_CallObject(value, args);
+				Py_DECREF(args);
 
 				if (PyErr_Occurred())
+				{
 					PyErr_Print();
+					// Abort rendering this item; value may be null or invalid
+					painter.clippop();
+					return;
+				}
 
-				Py_DECREF(args);
 				/* the PyInt was stolen. */
 				painter.setFont(fnt);
 			}
