@@ -174,6 +174,7 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 	if (!fnt)
 		fnt = new gFont("Regular", 20);
 
+    int max_width = 0;
 	for (int i = 0; i < size(); i++) {
 		ePyObject item = PyList_GET_ITEM(m_list, i);
 		if (PyTuple_Check(item)) {
@@ -188,7 +189,7 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 			para->renderString(string);
 			int textWidth = para->getBoundBox().width();
 			if (textWidth > m_max_text_width) {
-				m_max_text_width = textWidth;
+				max_width = textWidth;
 			}
 		}
 	}
@@ -1497,6 +1498,7 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 	if (!fnt) fnt = new gFont("Regular", 20);
 
 	ePyObject items, buildfunc_ret;
+    int max_width = 0;
 	if (m_list) {
 		for (int k = 0; k < size(); k++)
 		{
@@ -1580,7 +1582,7 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 						para->renderString(string);
 						int textWidth = para->getBoundBox().width() + PyLong_AsLong(px);
 						if (textWidth > m_max_text_width) {
-							m_max_text_width = textWidth;
+							max_width = textWidth;
 						}
 						break;
 					}
