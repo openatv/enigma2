@@ -23,7 +23,7 @@ public:
 	void invalidateEntry(int index);
 	void invalidate();
 	eSize getItemSize() { return m_itemsize; }
-	int getMaxItemTextWidth();
+	virtual int getMaxItemTextWidth();
 	uint8_t getOrientation() { return m_orientation; }
 	
 #ifndef SWIG
@@ -89,12 +89,12 @@ protected:
 class eListboxPythonConfigContent : public eListboxPythonStringContent
 {
 public:
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected) override;
 	void setSeperation(int sep) { m_seperation = sep; }
 	int getEntryLeftOffset();
 	int getHeaderLeftOffset();
 	int getIndentSize();
-	int currentCursorSelectable();
+	int currentCursorSelectable() override;
 	void setSlider(int height, int space)
 	{
 		m_slider_height = height;
@@ -132,8 +132,8 @@ public:
 		TYPE_PIXMAP_ALPHABLEND,
 		TYPE_PROGRESS_PIXMAP
 	};
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	int currentCursorSelectable();
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected) override;
+	int currentCursorSelectable() override;
 	void setList(SWIG_PYOBJECT(ePyObject) list);
 	void setFont(int fnt, gFont *font);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
@@ -143,10 +143,10 @@ public:
 	void resetClip();
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
-	int getMaxItemTextWidth();
+	int getMaxItemTextWidth() override;
 protected:
-	virtual void setBuildArgs(int selected) {}
-	virtual bool getIsMarked(int selected) { return false; }
+	virtual void setBuildArgs(int selected) {} // intended extension point for subclasses
+	virtual bool getIsMarked(int selected) { return false; } // intended extension point
 	bool m_servicelist = false;
 	ePyObject m_pArgs;
 
