@@ -20,6 +20,15 @@ Licensed under GPLv2.
 #include <lib/gui/ewindowstyleskinned.h>
 #include <sstream>
 
+// Width used for unbounded text measurement (wider than any real screen)
+static constexpr int TEXT_MEASURE_MAX_WIDTH = 8000;
+
+// Maximum pixmap size in pixels for scroll cache (protects low-memory devices)
+static constexpr int MAX_SCROLL_PIXMAP_PIXELS = 1'000'000;
+
+// Extra buffer factor added to roll-mode pixmap width/height
+static constexpr float SCROLL_ROLL_EXTRA_FACTOR = 1.5f;
+
 using namespace std;
 
 /*
@@ -170,7 +179,7 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 		}
 		if (item != Py_None) {
 			const char* string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
-			eRect textRect = eRect(0, 0, 8000, 100);
+			eRect textRect = eRect(0, 0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 			ePtr<eTextPara> para = new eTextPara(textRect);
 			para->setFont(fnt);
@@ -543,9 +552,6 @@ static eSize calculateTextSize(gFont* font, const std::string& string, eSize tar
 	return para.getBoundBox().size();
 }
 
-// Maximum allowed pixmap area in pixels to protect low-memory STB devices
-static constexpr int MAX_SCROLL_PIXMAP_PIXELS = 1'000'000;
-
 void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size) {
 	if (m_scroll_text)
 		stopScroll();
@@ -562,7 +568,7 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 				m_scroll_text = true;
 
 				if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
-					m_text_size.setWidth(m_text_size.width() + m_scroll_size.width() * 1.5);
+					m_text_size.setWidth(m_text_size.width() + static_cast<int>(m_scroll_size.width() * SCROLL_ROLL_EXTRA_FACTOR));
 
 				/*
 				if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll && scroll_text_direction == eScrollConfig::scrollLeft)
@@ -581,7 +587,7 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 				m_text_size.setHeight(m_text_size.height() + font->pointSize / 10); // avoid issues with rounding
 				m_scroll_text = true;
 				if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
-					m_text_size.setHeight(m_text_size.height() + m_scroll_size.height() * 1.5);
+					m_text_size.setHeight(m_text_size.height() + static_cast<int>(m_scroll_size.height() * SCROLL_ROLL_EXTRA_FACTOR));
 			}
 		}
 		if (m_scroll_text) {
@@ -1569,7 +1575,7 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 							continue;
 
 						const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
-						eRect textRect = eRect(0,0, 9999, 100);
+						eRect textRect = eRect(0,0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 						ePtr<eTextPara> para = new eTextPara(textRect);
 						para->setFont(fnt);
