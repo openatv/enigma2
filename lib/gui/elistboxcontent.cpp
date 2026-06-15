@@ -188,7 +188,7 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 			para->setFont(fnt);
 			para->renderString(string);
 			int textWidth = para->getBoundBox().width();
-			if (textWidth > m_max_text_width) {
+			if (textWidth > max_width) {
 				max_width = textWidth;
 			}
 		}
@@ -1581,7 +1581,7 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 						para->setFont(fnt);
 						para->renderString(string);
 						int textWidth = para->getBoundBox().width() + PyLong_AsLong(px);
-						if (textWidth > m_max_text_width) {
+						if (textWidth > max_width) {
 							max_width = textWidth;
 						}
 						break;
