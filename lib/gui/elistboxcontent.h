@@ -23,7 +23,7 @@ public:
 	void invalidateEntry(int index);
 	void invalidate();
 	eSize getItemSize() { return m_itemsize; }
-	virtual int getMaxItemTextWidth();
+	int getMaxItemTextWidth() override;
 	uint8_t getOrientation() { return m_orientation; }
 	
 #ifndef SWIG
@@ -52,7 +52,7 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
-	int getScrollPos() { return m_scroll_pos; } // Returns the current scroll position in pixels.
+	int getScrollPos() override { return m_scroll_pos; } // Returns the current scroll position in pixels.
 
 private:
 	int m_saved_cursor_line = 0;
