@@ -65,7 +65,7 @@ int iListboxContent::currentCursorSelectable() {
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	: m_saved_cursor_line(0), scrollTimer(eTimer::create(eApp)), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_max_text_width(0), m_orientation(1) {
+	: m_saved_cursor_line(0), scrollTimer(eTimer::create(eApp)), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_orientation(1) {
 	CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
 }
 
@@ -147,14 +147,18 @@ void eListboxPythonStringContent::setSize(const eSize& size) {
 }
 
 int eListboxPythonStringContent::getMaxItemTextWidth() {
+	// Return cached result if already calculated
+	if (m_max_text_width >= 0)
+		return m_max_text_width;
+
 	ePtr<gFont> fnt;
-	eListboxStyle* local_style = 0;
-	int m_text_offset = 1;
+	eListboxStyle* local_style = nullptr;
+	int text_offset = 1;
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
 	if (local_style) {
 		fnt = local_style->m_font;
-		m_text_offset = local_style->m_text_padding.x();
+		text_offset = local_style->m_text_padding.x();
 	}
 	if (!fnt)
 		fnt = new gFont("Regular", 20);
@@ -177,8 +181,9 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 			}
 		}
 	}
-
-	return m_max_text_width + (m_text_offset * 2);
+    // Store result; cache is invalidated by setList()
+    m_max_text_width = max_width + (text_offset * 2);
+	return m_max_text_width;
 }
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -465,6 +470,9 @@ void eListboxPythonStringContent::setList(ePyObject list) {
 		m_list = list;
 		Py_INCREF(m_list);
 	}
+
+	// Invalidate cached text width so it is recalculated for the new list
+	m_max_text_width = -1;
 
 	if (m_listbox)
 		m_listbox->entryReset(false);
@@ -1449,14 +1457,18 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 
 int eListboxPythonMultiContent::getMaxItemTextWidth()
 {
+	// Return cached result if already calculated
+	if (m_max_text_width >= 0)
+		return m_max_text_width;
+
 	ePtr<gFont> fnt;
-	eListboxStyle *local_style = 0;
-	int m_text_offset = 1;
+	eListboxStyle *local_style = nullptr;
+	int text_offset = 1;
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
 	if (local_style) {
 		fnt = local_style->m_font;
-		m_text_offset = local_style->m_text_padding.x();
+		text_offset = local_style->m_text_padding.x();
 	}
 	if (!fnt) fnt = new gFont("Regular", 20);
 
@@ -1555,7 +1567,9 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 
 	}
 
-	return m_max_text_width + (m_text_offset*2);
+	// Store result; cache is invalidated by setList()
+	m_max_text_width = max_width + (text_offset * 2);
+	return m_max_text_width;
 }
 
 

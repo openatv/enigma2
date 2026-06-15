@@ -80,7 +80,7 @@ protected:
 	eSize m_itemsize;
 	int m_itemheight;
 	int m_itemwidth;
-	int m_max_text_width;
+	int m_max_text_width = -1; // -1 means not yet calculated
 	uint8_t m_orientation;
 #endif
 };
