@@ -543,6 +543,9 @@ static eSize calculateTextSize(gFont* font, const std::string& string, eSize tar
 	return para.getBoundBox().size();
 }
 
+// Maximum allowed pixmap area in pixels to protect low-memory STB devices
+static constexpr int MAX_SCROLL_PIXMAP_PIXELS = 1'000'000;
+
 void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size) {
 	if (m_scroll_text)
 		stopScroll();
@@ -593,7 +596,7 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 
 			if (m_listbox->m_scroll_config.cached) {
 				// limit 1MB pixmap size
-				if ((m_text_size.width() * m_text_size.height()) > 1000000) {
+				if ((m_text_size.width() * m_text_size.height()) > MAX_SCROLL_PIXMAP_PIXELS) {
 					m_listbox->m_scroll_config.cached = false;
 					if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 						m_listbox->m_scroll_config.mode = eScrollConfig::scrollModeNormal;
@@ -610,6 +613,18 @@ void eListboxPythonStringContent::createScrollPixmap(std::string& text, gFont* f
 
 	int w = std::max(m_text_size.width(), m_scroll_size.width());
 	int h = std::max(m_text_size.height(), m_scroll_size.height());
+
+	// Guard against excessively large pixmap allocations
+	if (w * h > MAX_SCROLL_PIXMAP_PIXELS)
+	{
+		eWarning("[eListboxPythonStringContent] createScrollPixmap: "
+					"pixmap size %dx%d exceeds limit (%d px), skipping cache",
+					w, h, MAX_SCROLL_PIXMAP_PIXELS);
+		m_listbox->m_scroll_config.cached = false;
+		if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
+			m_listbox->m_scroll_config.mode = eScrollConfig::scrollModeNormal;
+		return;
+	}
 
 	eSize s = eSize(w, h);
 
