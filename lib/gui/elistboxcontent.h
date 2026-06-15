@@ -3,6 +3,7 @@
 
 #include <lib/python/python.h>
 #include <lib/gui/elistbox.h>
+#include <unordered_map>
 
 class eListboxPythonStringContent : public virtual iListboxContent
 {
@@ -150,8 +151,8 @@ protected:
 	ePyObject m_pArgs;
 
 private:
-	std::map<int, ePtr<gFont>> m_fonts;
-	std::map<int, ePtr<gFont>> m_fonts_zoomed;
+	std::unordered_map<int, ePtr<gFont>> m_fonts;
+	std::unordered_map<int, ePtr<gFont>> m_fonts_zoomed;
 };
 
 #ifdef SWIG
