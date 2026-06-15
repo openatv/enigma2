@@ -55,7 +55,7 @@ protected:
 	int getScrollPos() { return m_scroll_pos; } // Returns the current scroll position in pixels.
 
 private:
-	int m_saved_cursor_line;
+	int m_saved_cursor_line = 0;
 	ePtr<gFont> m_font_zoomed;
 	// scroll
 	int m_scroll_pos = 0;
@@ -75,14 +75,14 @@ private:
 	ePtr<eTimer> scrollTimer;
 
 protected:
-	int m_cursor;
-	int m_saved_cursor;
+	int m_cursor = 0;
+	int m_saved_cursor = 0;
 	ePyObject m_list;
 	eSize m_itemsize;
-	int m_itemheight;
-	int m_itemwidth;
+	int m_itemheight = 25;
+	int m_itemwidth = 25;
 	int m_max_text_width = -1; // -1 means not yet calculated
-	uint8_t m_orientation;
+	uint8_t m_orientation = 1;
 #endif
 };
 
@@ -145,8 +145,8 @@ public:
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 	int getMaxItemTextWidth() override;
 protected:
-	virtual void setBuildArgs(int selected) {} // intended extension point for subclasses
-	virtual bool getIsMarked(int selected) { return false; } // intended extension point
+	virtual void setBuildArgs(int selected) = 0; // intended extension point for subclasses
+	virtual bool getIsMarked(int selected) { return false; } // intended extension point for subclasses
 	bool m_servicelist = false;
 	ePyObject m_pArgs;
 

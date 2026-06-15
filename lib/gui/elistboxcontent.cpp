@@ -76,7 +76,7 @@ int iListboxContent::currentCursorSelectable() {
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	: m_saved_cursor_line(0), scrollTimer(eTimer::create(eApp)), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_orientation(1) {
+	: scrollTimer(eTimer::create(eApp)) {
 	CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
 }
 
