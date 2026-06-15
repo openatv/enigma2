@@ -52,7 +52,12 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
-	int getScollPos() { return m_scroll_pos; }
+	int getScrollPos() { return m_scroll_pos; } // Returns the current scroll position in pixels.
+
+	// Deprecated: use getScrollPos() instead (typo in original name)
+	[[deprecated("Use getScrollPos() instead")]]
+	int getScollPos() { return getScrollPos(); }
+
 
 private:
 	int m_saved_cursor_line;
