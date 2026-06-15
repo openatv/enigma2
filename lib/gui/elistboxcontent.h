@@ -102,7 +102,9 @@ public:
 	eSize calculateEntryTextSize(const std::string &string, bool headerFont = true);
 
 private:
-	int m_seperation, m_slider_height, m_slider_space;
+	int m_seperation = 0;   // pixel separation between label and value
+	int m_slider_height = 10; // height of the filled slider bar in pixels
+	int m_slider_space = 2;   // spacing between slider bar and its frame in pixels
 	std::map<int, int> m_text_offset;
 };
 
