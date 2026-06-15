@@ -559,7 +559,7 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 		stopScroll();
 
 	if (m_listbox) {
-		int scroll_text_direction = m_listbox->m_scroll_config.direction;
+		const int scroll_text_direction = m_listbox->m_scroll_config.direction;
 
 		if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight) {
 			m_text_size = calculateTextSize(font, text, m_scroll_size, true); // nowrap
@@ -695,26 +695,27 @@ void eListboxPythonStringContent::stopScroll() {
 	m_scroll_swap = false;
 }
 
+// Returns the maximum scroll position for the current direction.
+static int computeMaxScroll(int direction, const eSize& textSize, const eSize& visibleSize)
+{
+	if (direction == eScrollConfig::scrollLeft || direction == eScrollConfig::scrollRight)
+		return std::max(0, textSize.width() - visibleSize.width());
+	if (direction == eScrollConfig::scrollTop || direction == eScrollConfig::scrollBottom)
+		return std::max(0, textSize.height() - visibleSize.height());
+	return 0;
+}
+
 void eListboxPythonStringContent::updateScrollPosition() {
 	if (m_listbox) {
-		int scroll_text_direction = m_listbox->m_scroll_config.direction;
-		int repeat = m_listbox->m_scroll_config.repeat;
-		int end_delay = m_listbox->m_scroll_config.endDelay;
-		int scroll_mode = m_listbox->m_scroll_config.mode;
+		const int scroll_text_direction = m_listbox->m_scroll_config.direction;
+		const int repeat = m_listbox->m_scroll_config.repeat;
+		const int end_delay = m_listbox->m_scroll_config.endDelay;
+		const int scroll_mode = m_listbox->m_scroll_config.mode;
 
 		if (!m_scroll_text)
 			return;
 
-		// calculate visible area
-		int visibleW = m_scroll_size.width();
-		int visibleH = m_scroll_size.height();
-
-		// compute max_scroll depending on direction
-		int max_scroll = 0;
-		if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight)
-			max_scroll = std::max(0, m_text_size.width() - visibleW);
-		else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
-			max_scroll = std::max(0, m_text_size.height() - visibleH);
+		const int max_scroll = computeMaxScroll(scroll_text_direction, m_text_size, m_scroll_size);
 
 		// determine step sign
 		int step = m_listbox->m_scroll_config.stepSize;
