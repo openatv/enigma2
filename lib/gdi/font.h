@@ -143,6 +143,8 @@ class eTextPara : public iObject
 	int m_offset;
 	bool m_blend;
 
+	int cachedLineHeight;
+
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last,
 					bool activate_newcolor, unsigned long newcolor);
 	void newLine(int flags);
@@ -154,7 +156,8 @@ public:
 		: current_font(0), replacement_font(0), fallback_font(0),
 		  current_face(0), replacement_face(0), fallback_face(0),
 		  area(area), cursor(start), maximum(0, 0), left(start.x()), charCount(0), totalheight(0),
-		  bboxValid(0), doTopBottomReordering(false), m_offset(0), m_blend(false)
+		  bboxValid(0), doTopBottomReordering(false), m_offset(0), m_blend(false),
+		  cachedLineHeight(0)
 	{
 	}
 	virtual ~eTextPara();
@@ -225,7 +228,7 @@ public:
 	{
 		ASSERT(g >= 0);
 		ASSERT(g < (int)glyphs.size());
-		glyphs[g].flags |= f;
+		glyphs[g].flags &= ~f;
 	}
 };
 

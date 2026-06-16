@@ -172,20 +172,16 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	return n->face;
 }
 
-fontRenderClass::fontListEntry::~fontListEntry()
-{
-}
+fontRenderClass::fontListEntry::~fontListEntry() {}
 
 fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
 {
 	instance=this;
 	eDebug("[Font] Initializing lib.");
+	if (FT_Init_FreeType(&library))
 	{
-		if (FT_Init_FreeType(&library))
-		{
-			eDebug("[Font] Initializing failed!");
-			return;
-		}
+		eDebug("[Font] Initializing failed!");
+		return;
 	}
 	eDebug("[Font] Loading fonts.");
 	fflush(stdout);
@@ -552,20 +548,24 @@ void eTextPara::newLine(int flags)
 	if (maximum.width()<cursor.x())
 		maximum.setWidth(cursor.x());
 	cursor.setX(left);
-	int height = current_face->size->metrics.height;
+
+	/* Use the cached line height computed once in setFont().
+	 * Fall back to reading FT metrics if cachedLineHeight was never set. */
+	int height = cachedLineHeight;
 	if (!height)
 	{
-		/* some fonts don't have height filled in. Estimate it based on the bbox dimensions. */
-		/* Usually, 'height' is less than the complete boundingbox height, so we use only yMax, to avoid getting a much too large line spacing */
-		height = FT_MulFix(current_face->bbox.yMax, current_face->size->metrics.y_scale);
+		height = current_face->size->metrics.height;
+		if (!height)
+			height = FT_MulFix(current_face->bbox.yMax,
+			                   current_face->size->metrics.y_scale);
+		height >>= 6;
 	}
-	height >>= 6;
 
 	lineOffsets.push_back(cursor.y());
 	lineChars.push_back(charCount);
 	charCount=0;
 
-	cursor+=ePoint(0, height);
+	cursor += ePoint(0, height);
 	if (maximum.height()<cursor.y())
 		maximum.setHeight(cursor.y());
 	previous=0;
@@ -587,6 +587,21 @@ void eTextPara::setFont(const gFont *font, int tabwidth)
 	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize, tabwidth);
 	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize, tabwidth);
 	setFont(fnt, replacement, fallback);
+
+	/* Cache line height for newLine() ─────────────────
+	 * Compute once here, inside the lock that setFont(Font*,...) already
+	 * holds via FTC_Manager_LookupSize, so current_face and its size
+	 * metrics are guaranteed to be valid when we read them.              */
+	cachedLineHeight = 0;
+	if (current_face)
+	{
+		int h = current_face->size->metrics.height;
+		if (!h)
+			h = FT_MulFix(current_face->bbox.yMax,
+			               current_face->size->metrics.y_scale);
+		cachedLineHeight = h >> 6;
+	}
+	/* ─────────────────────────────────────────────────────────────────── */
 }
 
 std::string eTextPara::replacement_facename;
