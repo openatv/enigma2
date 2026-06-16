@@ -19,7 +19,6 @@ typedef FTC_SBitCache FTC_SBit_Cache;
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
 #include <string>
-#include <list>
 #include <lib/base/object.h>
 
 #include <set>
@@ -137,8 +136,8 @@ class eTextPara : public iObject
 	eSize maximum;
 	int left;
 	glyphString glyphs;
-	std::list<int> lineOffsets;
-	std::list<int> lineChars;
+	std::vector<int> lineOffsets;
+	std::vector<int> lineChars;
 	int charCount;
 	int lineCount;
 	int totalheight;

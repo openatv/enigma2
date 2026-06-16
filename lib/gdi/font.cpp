@@ -1042,8 +1042,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	int buffer_stride=surface->stride;
 
 	bool setcolor = true;
-	std::list<int>::reverse_iterator line_offs_it(lineOffsets.rbegin());
-	std::list<int>::iterator line_chars_it(lineChars.begin());
+	std::vector<int>::reverse_iterator line_offs_it(lineOffsets.rbegin());
+	std::vector<int>::iterator line_chars_it(lineChars.begin());
 	int line_offs=0;
 	int line_chars=0;
 	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i, --line_chars)
