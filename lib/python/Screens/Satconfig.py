@@ -119,7 +119,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if cur in (self.advancedSelectSatsEntry, self.selectSatsEntry) and cur:
 					self.keyOk()
 				else:
-					if cur == self.multiType and cur:
+					if cur in (self.hybridTunerMode, self.multiType) and cur:
+						self.applyHybridTunerMode()
 						self.saveAll()
 					self.newConfig()
 
@@ -133,7 +134,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if cur in (self.advancedSelectSatsEntry, self.selectSatsEntry) and cur:
 			self.keyOk()
 		else:
-			if cur == self.multiType and cur:
+			if cur in (self.hybridTunerMode, self.multiType) and cur:
+				self.applyHybridTunerMode()
 				self.saveAll()
 			self.newConfig()
 
@@ -152,7 +154,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if cur in (self.advancedSelectSatsEntry, self.selectSatsEntry) and cur:
 			self.keyOk()
 		else:
-			if cur == self.multiType and cur:
+			if cur in (self.hybridTunerMode, self.multiType) and cur:
+				self.applyHybridTunerMode()
 				self.saveAll()
 			self.newConfig()
 
@@ -167,6 +170,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.restoreService(_("Zap back to service before tuner setup?"))
 
 	def saveAll(self):
+		if self.isCableTerrestrialHybrid():
+			self.applyHybridTunerMode()
+			self.nimConfig.hybridTunerMode.save()
+			self.nimConfig.dvbc.configMode.save()
+			self.nimConfig.dvbt.configMode.save()
+			try:
+				self.nimConfig.multiType.save()
+			except Exception:
+				pass
 		if self.nim.isCompatible("DVB-S"):
 			# Reset connectedTo to all choices to properly store the default value.
 			choices = []
@@ -297,11 +309,42 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			else:
 				self.nimConfig.dvbs.configMode.setChoices(choices, default="simple")
 
+	def isCableTerrestrialHybrid(self):
+		return self.nim.isMultiType() and self.nim.canBeCompatible("DVB-C") and self.nim.canBeCompatible("DVB-T") and hasattr(self.nimConfig, "hybridTunerMode")
+
+	def setHybridMultiType(self, deliverySystem):
+		try:
+			multiType = self.nimConfig.multiType
+		except Exception:
+			return
+		for value, description in multiType.choices.choices:
+			if description.startswith(deliverySystem):
+				multiType.setValue(value)
+				return
+
+	def applyHybridTunerMode(self):
+		if not self.isCableTerrestrialHybrid():
+			return
+		mode = self.nimConfig.hybridTunerMode.value
+		if mode == "cable":
+			self.nimConfig.dvbc.configMode.value = "enabled"
+			self.nimConfig.dvbt.configMode.value = "nothing"
+			self.setHybridMultiType("DVB-C")
+		elif mode == "terrestrial":
+			self.nimConfig.dvbc.configMode.value = "nothing"
+			self.nimConfig.dvbt.configMode.value = "enabled"
+			self.setHybridMultiType("DVB-T")
+		elif mode == "switch":
+			self.nimConfig.dvbc.configMode.value = "enabled"
+			self.nimConfig.dvbt.configMode.value = "enabled"
+			self.nimConfig.dvbt.terrestrial_5V.value = True
+
 	def createSetup(self):
 		self.adaptConfigModeChoices()
 		print("[SatConfig] Creating setup.")
 		self.list = []
 		self.multiType = None
+		self.hybridTunerMode = None
 		self.diseqcModeEntry = None
 		self.advancedSatsEntry = None
 		self.advancedLnbsEntry = None
@@ -335,6 +378,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.terrestrialCountriesEntry = None
 		if not hasattr(self, "cableCountriesEntry"):
 			self.cableCountriesEntry = None
+		if self.isCableTerrestrialHybrid():
+			self.applyHybridTunerMode()
+			self.hybridTunerMode = getConfigListEntry(_("Hybrid tuner mode"), self.nimConfig.hybridTunerMode, _("Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."))
+			self.list.append(self.hybridTunerMode)
 		if self.nim.isMultiType():
 			try:
 				multiType = self.nimConfig.multiType
@@ -344,8 +391,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						multiType.setValue(x[0])
 					choices.append(x[1])
 				choices = f"({', '.join(choices)})"
-				self.multiType = getConfigListEntry(_("Tuner type %s") % choices, multiType, _("You can switch with left and right this tuner types %s") % choices)
-				self.list.append(self.multiType)
+				if not self.isCableTerrestrialHybrid() or self.nimConfig.hybridTunerMode.value == "switch":
+					self.multiType = getConfigListEntry(_("Tuner type %s") % choices, multiType, _("You can switch with left and right this tuner types %s") % choices)
+					self.list.append(self.multiType)
 			except Exception:
 				self.multiType = None
 		if self.nim.isCompatible("DVB-S"):
@@ -526,9 +574,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 			self.advancedType, self.advancedSCR, self.advancedDiction, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, self.advancedUnicableTuningAlgo,
 			self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
-			self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.terrestrialCountriesEntry, self.cableCountriesEntry, self.multiType
+			self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.terrestrialCountriesEntry, self.cableCountriesEntry, self.hybridTunerMode, self.multiType
 		)
-		if self["config"].getCurrent() == self.multiType and self.multiType:
+		if self["config"].getCurrent() in (self.hybridTunerMode, self.multiType) and (self.hybridTunerMode or self.multiType):
+			if self["config"].getCurrent() == self.hybridTunerMode:
+				self.applyHybridTunerMode()
 			update_slots = [self.slotid]
 			InitNimManager(nimmanager, update_slots)
 			self.nim = nimmanager.nim_slots[self.slotid]
@@ -539,6 +589,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				break
 
 	def run(self):
+		self.applyHybridTunerMode()
 		if self.nim.canBeCompatible("DVB-S"):
 			if self.nimConfig.dvbs.configMode.value == "simple":
 				autodiseqc_ports = 0

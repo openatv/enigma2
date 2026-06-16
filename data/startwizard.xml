@@ -248,7 +248,7 @@ self.condition = len(nimmanager.nim_slots) > 17 and not nimmanager.nim_slots[17]
 	<step id="channels">
 		<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and nimmanager.hasNimType("DVB-S")
+self.condition = nimmanager.somethingConnected() and any(slot.isCompatible("DVB-S") and slot.config.dvbs.configMode.value != "nothing" for slot in nimmanager.nim_slots)
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
 		<text value="Do you want to install a channel list?" />
