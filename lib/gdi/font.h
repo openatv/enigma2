@@ -59,6 +59,9 @@ class fontRenderClass
 	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 	static fontRenderClass *instance;
 	std::unordered_map<std::string, fontListEntry*> fontMap;
+	std::vector<std::string> fontFacesCache;
+	bool fontFacesCacheValid;
+
 #else
 	fontRenderClass();
 	~fontRenderClass();

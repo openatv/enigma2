@@ -167,6 +167,7 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	font=n;
 
 	fontMap[name] = n;
+	fontFacesCacheValid = false;
 	eDebugNoNewLine(" -> '%s'.\n", n->face.c_str());
 
 	return n->face;
@@ -177,6 +178,7 @@ fontRenderClass::fontListEntry::~fontListEntry() {}
 fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
 {
 	instance=this;
+	fontFacesCacheValid = false;
 	eDebug("[Font] Initializing lib.");
 	if (FT_Init_FreeType(&library))
 	{
@@ -275,12 +277,14 @@ int fontRenderClass::getFont(ePtr<Font> &font, const std::string &face, int size
 // get all font faces (names) available in enigma2
 std::vector<std::string> fontRenderClass::getFontFaces()
 {
-	std::vector<std::string> v;
-	for (fontListEntry *f=font; f; f=f->next)
+	if (!fontFacesCacheValid)
 	{
-		v.push_back(f->face);
+		fontFacesCache.clear();
+		for (fontListEntry *f = font; f; f = f->next)
+			fontFacesCache.push_back(f->face);
+		fontFacesCacheValid = true;
 	}
-	return v;
+	return fontFacesCache;
 }
 
 void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags)
