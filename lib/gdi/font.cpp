@@ -104,16 +104,12 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 
 int fontRenderClass::getFaceProperties(const std::string &face, FTC_FaceID &id, int &renderflags)
 {
-	for (fontListEntry *f=font; f; f=f->next)
-	{
-		if (f->face == face)
-		{
-			id = (FTC_FaceID)f;
-			renderflags = f->renderflags;
-			return 0;
-		}
-	}
-	return -1;
+	auto it = fontMap.find(face);
+	if (it == fontMap.end())
+		return -1;
+	id          = (FTC_FaceID)it->second;
+	renderflags = it->second->renderflags;
+	return 0;
 }
 
 inline FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit)
@@ -170,6 +166,7 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	n->next=font;
 	font=n;
 
+	fontMap[name] = n;
 	eDebugNoNewLine(" -> '%s'.\n", n->face.c_str());
 
 	return n->face;
@@ -195,35 +192,33 @@ fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
 	font=0;
 
 	int maxbytes=4*1024*1024;
-	eDebug("[Font] Intializing font cache, using max. %dMB.", maxbytes/1024/1024);
+	eDebug("[Font] Initializing font cache, using max. %dMB.", maxbytes/1024/1024);
 	fflush(stdout);
+	if (FTC_Manager_New(library, 8, 8, maxbytes, myFTC_Face_Requester, this, &cacheManager))
 	{
-		if (FTC_Manager_New(library, 8, 8, maxbytes, myFTC_Face_Requester, this, &cacheManager))
-		{
-			eDebug("[Font] Initializing font cache failed!");
-			return;
-		}
-		if (!cacheManager)
-		{
-			eDebug("[Font] Initializing font cache manager error!");
-			return;
-		}
-		if (FTC_SBit_Cache_New(cacheManager, &sbitsCache))
-		{
-			eDebug("[Font] Initializing font cache sbit failed!");
-			return;
-		}
-		if (FTC_Image_Cache_New(cacheManager, &imageCache))
-		{
-			eDebug("[Font] Initializing font cache imagecache failed!");
-		}
-		if (FT_Stroker_New(library, &stroker))
-		{
-			eDebug("[Font] Initializing font stroker failed!");
-		}
+		eDebug("[Font] Initializing font cache failed!");
+		return;
 	}
+	if (!cacheManager)
+	{
+		eDebug("[Font] Initializing font cache manager error!");
+		return;
+	}
+	if (FTC_SBit_Cache_New(cacheManager, &sbitsCache))
+	{
+		eDebug("[Font] Initializing font cache sbit failed!");
+		return;
+	}
+	if (FTC_Image_Cache_New(cacheManager, &imageCache))
+	{
+		eDebug("[Font] Initializing font cache imagecache failed!");
+	}
+	if (FT_Stroker_New(library, &stroker))
+	{
+		eDebug("[Font] Initializing font stroker failed!");
+	}
+	
 	strokerRadius = -1;
-	return;
 }
 
 float fontRenderClass::getLineHeight(const gFont& font)
@@ -261,6 +256,8 @@ fontRenderClass::~fontRenderClass()
 		font=font->next;
 		delete f;
 	}
+	fontMap.clear();
+
 //	auskommentiert weil freetype und enigma die kritische masse des suckens ueberschreiten.
 //	FTC_Manager_Done(cacheManager);
 //	FT_Done_FreeType(library);
@@ -416,9 +413,8 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		height = glyph->height;
 	}
 
-	int nx=cursor.x();
+	int nx=cursor.x() + xadvance;
 
-	nx+=xadvance;
 
 	if ((rflags & RS_WRAP) && (nx > area.right()))
 	{
@@ -523,7 +519,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 
 void eTextPara::calc_bbox()
 {
-	if (!glyphs.size())
+	if (glyphs.empty())
 	{
 		bboxValid = 0;
 		boundBox = eRect();
@@ -650,8 +646,7 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	use_kerning=FT_HAS_KERNING(current_face);
 }
 
-void
-shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
+void shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
 
 int eTextPara::renderString(const char *string, int rflags, int border, int markedpos)
 {
@@ -761,7 +756,10 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 	}
 	uc_visual.assign(target, target+size);
 
-	glyphs.reserve(size);
+	/* Reserve glyph vector capacity upfront, accounting for
+	 * glyphs already present (e.g. when renderString is called multiple
+	 * times on the same eTextPara). */
+	glyphs.reserve(glyphs.size() + (size_t)size);
 
 	unsigned long newcolor = 0;
 	bool activate_newcolor = false;

@@ -23,6 +23,7 @@ typedef FTC_SBitCache FTC_SBit_Cache;
 #include <lib/base/object.h>
 
 #include <set>
+#include <unordered_map>
 
 class FontRenderClass;
 class Font;
@@ -57,6 +58,7 @@ class fontRenderClass
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit);
 	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 	static fontRenderClass *instance;
+	std::unordered_map<std::string, fontListEntry*> fontMap;
 #else
 	fontRenderClass();
 	~fontRenderClass();
