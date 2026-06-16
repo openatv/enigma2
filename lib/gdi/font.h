@@ -62,6 +62,8 @@ class fontRenderClass
 	std::vector<std::string> fontFacesCache;
 	bool fontFacesCacheValid;
 
+	FTC_CMapCache cmapCache;
+	inline FT_UInt getCharIndex(Font *font, unsigned long chr, int rflags);
 #else
 	fontRenderClass();
 	~fontRenderClass();

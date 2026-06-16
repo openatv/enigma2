@@ -211,6 +211,10 @@ fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
 	{
 		eDebug("[Font] Initializing font cache imagecache failed!");
 	}
+	if (FTC_CMapCache_New(cacheManager, &cmapCache))
+	{
+		eDebug("[Font] Initializing font cache cmap failed!");
+	}
 	if (FT_Stroker_New(library, &stroker))
 	{
 		eDebug("[Font] Initializing font stroker failed!");
@@ -285,6 +289,13 @@ std::vector<std::string> fontRenderClass::getFontFaces()
 		fontFacesCacheValid = true;
 	}
 	return fontFacesCache;
+}
+
+inline FT_UInt fontRenderClass::getCharIndex(Font *fnt, unsigned long chr, int rflags)
+{
+	if (rflags & RS_DIRECT)
+		return (FT_UInt)chr;
+	return FTC_CMapCache_Lookup(cmapCache, fnt->scaler.face_id, -1, (FT_UInt32)chr);
 }
 
 void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags)
@@ -898,17 +909,17 @@ nprint:				isprintable=0;
 				chr = '-';
 
 			if (forced_replaces.find(chr) == forced_replaces.end())
-				index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(current_face, chr);
+				index = fontRenderClass::instance->getCharIndex(current_font, chr, rflags);
 
 			if (!index)
 			{
 				if (replacement_face)
-					index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(replacement_face, chr);
+					index = fontRenderClass::instance->getCharIndex(replacement_font, chr, rflags);
 
 				if (!index)
 				{
 					if (fallback_face)
-						index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(fallback_face, chr);
+						index = fontRenderClass::instance->getCharIndex(fallback_font, chr, rflags);
 					if (!index)
 						eDebug("[eTextPara] Unicode U+%4lx not present", chr);
 					else
