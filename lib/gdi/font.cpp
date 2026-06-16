@@ -727,12 +727,22 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 
 	const char *p = string ? string : "";
 
+	/* Scan while decoding: if every byte is plain ASCII (< 0x80) and no
+	 * character falls in the Arabic (0x0600-0x06FF), Hebrew (0x0590-0x05FF),
+	 * or other RTL ranges, we can skip shape(), the two heap allocations for
+	 * FriBidi arrays, and fribidi_log2vis() entirely.
+	 * The flag is cleared the moment any non-ASCII or RTL codepoint is seen,
+	 * so the full path is taken whenever needed. RTL and Unicode correctness
+	 * are fully preserved. */
+	bool is_ltr_ascii = true;
+
 	while (*p)
 	{
 		unsigned int unicode=(unsigned char)*p++;
 
 		if (unicode & 0x80) // we have (hopefully) UTF8 here, and we assume that the encoding is VALID
 		{
+			is_ltr_ascii = false; /* non-ASCII: use full path */
 			if ((unicode & 0xE0)==0xC0) // two bytes
 			{
 				unicode&=0x1F;
@@ -762,29 +772,56 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 					unicode|=(*p++)&0x3F;
 			}
 		}
+		else if (unicode >= 0x20 && is_ltr_ascii)
+		{
+			/* printable ASCII — still safe, keep flag */
+		}
+		else if (unicode == '\n' || unicode == '\r' || unicode == '\t' ||
+		         unicode == 0x00)
+		{
+			/* control chars that renderString already handles — still LTR safe */
+		}
+		else
+		{
+			is_ltr_ascii = false;
+		}
 		uc_string.push_back(unicode);
 	}
 
 	std::vector<unsigned long> uc_shape;
+	int size;
+	FriBidiCharType dir = FRIBIDI_TYPE_LTR;
+	FriBidiChar *array = nullptr;
+	FriBidiChar *target = nullptr;
 
+	if (is_ltr_ascii)
+	{
+		/* fastpath — skip shape(), FriBidi allocs and log2vis() */
+		uc_visual = uc_string;
+		size = uc_visual.size();
+	}
+	else
+	{
 		// character -> glyph conversion
-	shape(uc_shape, uc_string);
+		shape(uc_shape, uc_string);
 
 		// now do the usual logical->visual reordering
-	int size=uc_shape.size();
-	FriBidiCharType dir=FRIBIDI_TYPE_ON;
-	uc_visual.resize(size);
+		size = uc_shape.size();
+		dir = FRIBIDI_TYPE_ON;
+		uc_visual.resize(size);
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-	FriBidiChar *array = new FriBidiChar[size];
-	FriBidiChar *target = new FriBidiChar[size];
-	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
-	{
-		delete [] target;
-		delete [] array;
-		return -1;
+		array = new FriBidiChar[size];
+		target = new FriBidiChar[size];
+		std::copy(uc_shape.begin(), uc_shape.end(), array);
+		if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
+		{
+			delete [] target;
+			delete [] array;
+			return -1;
+		}
+		uc_visual.assign(target, target+size);
 	}
-	uc_visual.assign(target, target+size);
+	/* ─────────────────────────────────────────────────────────────────────── */
 
 	/* Reserve glyph vector capacity upfront, accounting for
 	 * glyphs already present (e.g. when renderString is called multiple
