@@ -6,13 +6,18 @@ on:
   pull_request_target:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+
 jobs:
   build-and-analyze:
     name: Build and Analyze
     runs-on: ubuntu-24.04
+
     container:
       image: ghcr.io/openatv/enigma2-buildenv/enigma2-buildenv:latest
       options: --user root
+
     env:
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
 
@@ -26,31 +31,45 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
 
       - name: Run Build Wrapper
         env:
-          CC: "gcc-14"
-          CXX: "g++-14"
+          CC: gcc-14
+          CXX: g++-14
         run: |
           sed -i 's/include lib main data po tools/include lib main tools/g' Makefile.am
           autoreconf -i
+
           export LIBS="-L/usr/lib/x86_64-linux-gnu -lpython3.13"
           export CPPFLAGS="-I/usr/include/python3.13"
-          ./configure PYTHON=python3.13 --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
 
-          build-wrapper-linux-x86-64 --out-dir "${BUILD_WRAPPER_OUT_DIR}" make
+          ./configure \
+            PYTHON=python3.13 \
+            --with-libsdl=no \
+            --with-boxtype=nobox \
+            --enable-dependency-tracking \
+            ac_cv_prog_c_openmp=-fopenmp \
+            --with-gstversion=1.0 \
+            --with-textlcd
+
+          build-wrapper-linux-x86-64 \
+            --out-dir "${BUILD_WRAPPER_OUT_DIR}" \
+            make
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: >
-            --define "sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
+            --define sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
             -Dsonar.verbose=true
-            ${{ github.event_name == 'pull_request_target' && format('-Dsonar.pullrequest.key={0} -Dsonar.pullrequest.branch={1} -Dsonar.pullrequest.base={2}', github.event.pull_request.number, github.event.pull_request.head.ref, github.event.pull_request.base.ref) || '' }}
+            ${{ github.event_name == 'pull_request_target' &&
+                format('-Dsonar.pullrequest.key={0} -Dsonar.pullrequest.branch={1} -Dsonar.pullrequest.base={2}',
+                github.event.pull_request.number,
+                github.event.pull_request.head.ref,
+                github.event.pull_request.base.ref) || '' }}
