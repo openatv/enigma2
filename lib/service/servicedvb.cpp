@@ -3198,6 +3198,7 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		eDebug("[eDVBServicePlay] remove time shift files");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
+		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".ap");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".cuts");
 	}
 	else

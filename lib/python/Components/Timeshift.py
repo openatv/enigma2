@@ -227,7 +227,7 @@ class InfoBarTimeshift:
 		if self.timeshiftEnabled():
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			if info and info.getInfo(iServiceInformation.sIsRecoveringStream):
+			if info and info.getInfo(iServiceInformation.sIsRecoveringStream) == 1:
 				print("[Timeshift.py] SOF event ignored: C++ is handling stream recovery.")
 				return  # Exit immediately, letting C++ take full control.
 
@@ -272,7 +272,7 @@ class InfoBarTimeshift:
 		if self.timeshiftEnabled():
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			if info and info.getInfo(iServiceInformation.sIsRecoveringStream):
+			if info and info.getInfo(iServiceInformation.sIsRecoveringStream) == 1:
 				print("[Timeshift.py] EOF event ignored: C++ is handling stream recovery.")
 				return  # Exit immediately, letting C++ take full control.
 

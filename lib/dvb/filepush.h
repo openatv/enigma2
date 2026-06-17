@@ -9,6 +9,9 @@
 #include <lib/base/rawfile.h>
 #include <atomic>
 
+#define FLAGBIT_TIMESHIFT  (1 << 0)
+#define FLAGBIT_RAM_MODE   (1 << 1)
+
 class iFilePushScatterGather
 {
 public:

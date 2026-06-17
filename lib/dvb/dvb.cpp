@@ -2446,7 +2446,12 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	if (streaminfo_file && strstr(streaminfo_file, "timeshift"))
 	{
 		eDebug("[eDVBChannel] playsource timeshift mode");
-		flags = 1;
+		flags = FLAGBIT_TIMESHIFT;
+		if (strstr(streaminfo_file, "ram_timeshift"))
+		{
+			eDebug("[eDVBChannel] playsource RAM timeshift mode");
+			flags |= FLAGBIT_RAM_MODE;
+		}
 	}
 
 	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize(), flags);
