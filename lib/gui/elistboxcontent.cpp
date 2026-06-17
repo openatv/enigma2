@@ -75,10 +75,7 @@ int iListboxContent::currentCursorSelectable() {
 
 DEFINE_REF(eListboxPythonStringContent);
 
-eListboxPythonStringContent::eListboxPythonStringContent()
-	: scrollTimer(eTimer::create(eApp)) {
-	CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
-}
+eListboxPythonStringContent::eListboxPythonStringContent() {}
 
 eListboxPythonStringContent::~eListboxPythonStringContent() {
 	Py_XDECREF(m_list);
@@ -594,6 +591,11 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 			}
 		}
 		if (m_scroll_text) {
+
+			if (!scrollTimer) {
+				scrollTimer = eTimer::create(eApp);
+				CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
+			}
 
 			int visibleW = m_scroll_size.width();
 			int visibleH = m_scroll_size.height();
