@@ -361,6 +361,8 @@ private:
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	bool m_audiosink_not_running;
+	/* DASH path: bypass playbin, build explicit pipeline via gst_parse_launch */
+	bool m_is_dash_pipeline;
 	/* servicemMP3 chapter TOC support CVR */
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
