@@ -372,6 +372,7 @@ private:
 	bool m_seeking_or_paused;
 	bool m_to_paused;
 	gint64 m_pending_seek_pos;
+	int64_t m_last_trickseek_ms;   /* CLOCK_MONOTONIC, throttle 500ms */
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
