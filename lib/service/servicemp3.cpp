@@ -31,6 +31,7 @@ Licensed under GPLv2.
 
 #include <lib/base/cfile.h>
 
+#include <chrono>
 #include <cstdint>
 #include <cstdlib>
 #include <fstream>
@@ -728,7 +729,7 @@ RESULT eStaticServiceMP3Info::getName(const eServiceReference& ref, std::string&
 int eStaticServiceMP3Info::getLength(const eServiceReference& ref) {
 	constexpr int MPEG_TIMEBASE = 90000;
 
-	eDebug("[eStaticServiceMP3Info] getLength called for ref: %s", ref.path.c_str());
+	eTrace("[eStaticServiceMP3Info] getLength called for ref: %s", ref.path.c_str());
 	if (m_parser.parseMeta(ref.path) == 0)
 		return static_cast<int>(m_parser.m_length / MPEG_TIMEBASE);
 
@@ -924,6 +925,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_dvb_subtitle_parser = new eDVBSubtitleParser();
 	m_dvb_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
 										  m_new_dvb_subtitle_page_connection);
+	m_pgs_subtitle_parser = new ePGSSubtitleParser();
+	m_pgs_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
+										  m_new_pgs_subtitle_page_connection);
 #ifdef PASSTHROUGH_FIX
 	m_passthrough_fix_timer = eTimer::create(eApp);
 #endif
@@ -931,7 +935,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
 	m_cachedSubtitleStream = -2; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
-	m_subtitle_widget = 0;
+	m_subtitle_widget = nullptr;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 5LL * 1024LL * 1024LL;
 	m_ignore_buffering_messages = 0;
@@ -2632,10 +2636,8 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
-#ifdef PASSTHROUGH_FIX
 	if ((!m_initial_start || !m_clear_buffers) && !force)
 		return;
-#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
@@ -3905,6 +3907,14 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 				if (!parsed_subs.empty())
 					m_subtitle_sync_timer->start(250, true);
 			}
+		} else if (subType == stPGS) {
+			uint8_t* data = map.data;
+			int64_t buf_pos = GST_BUFFER_PTS(buffer);
+			eTrace("[ePGS] processBuffer called with size=%zu, buf_pos=%lld", map.size, buf_pos);
+			auto start = std::chrono::high_resolution_clock::now();
+			m_pgs_subtitle_parser->processBuffer(data, map.size, buf_pos / 1000000ULL);
+			auto duration = std::chrono::high_resolution_clock::now() - start;
+			eTrace("[ePGS] processBuffer DONE - took %lld ms", std::chrono::duration_cast<std::chrono::milliseconds>(duration).count());
 		} else if (subType == stDVB) {
 			uint8_t* data = map.data;
 			int64_t buf_pos = GST_BUFFER_PTS(buffer);
@@ -3933,6 +3943,36 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
  * @param[in] p The eDVBSubtitlePage to add.
  */
 void eServiceMP3::newDVBSubtitlePage(const eDVBSubtitlePage& p) {
+
+	if (m_subtitles_paused) {
+		return;
+	}
+
+	// eDebug("[eServiceMP3::newDVBSubtitlePage] called: stream=%d, regions=%zd, widget=%p, paused=%d", m_currentSubtitleStream, p.m_regions.size(), m_subtitle_widget, m_subtitles_paused);
+	
+	/* For PGS subtitles: display immediately (they already have correct timing in the eDVBSubtitlePage)
+	 * For DVB subtitles: queue and sync with decoder time */
+	if (m_currentSubtitleStream >= 0 && 
+		m_currentSubtitleStream < (int)m_subtitleStreams.size()) {
+		int subType = m_subtitleStreams[m_currentSubtitleStream].type;
+		eTrace("[eServiceMP3::newDVBSubtitlePage] subType=%d, stPGS=%d, stDVB=%d", subType, stPGS, stDVB);
+		
+		if (subType == stPGS) {
+			/* PGS: show immediately - already correctly timed by the parser */
+			eTrace("[eServiceMP3] PGS Page received: %zd regions, show_time=%lld", 
+				p.m_regions.size(), (long long)p.m_show_time);
+			if (m_subtitle_widget) {
+				eTrace("[eServiceMP3] Setting PGS page directly on widget");
+				m_subtitle_widget->setPage(p);
+			} else {
+				eTrace("[eServiceMP3] ERROR: m_subtitle_widget is NULL!");
+			}
+			return;
+		}
+	}
+	
+	/* DVB or other: queue and sync with decoder time */
+	eTrace("[eServiceMP3::newDVBSubtitlePage] Queuing as DVB (not PGS)");
 	m_dvb_subtitle_pages.push_back(p);
 	pushDVBSubtitles();
 }
@@ -4237,12 +4277,9 @@ exit:
  * @return RESULT indicating success or failure.
  */
 RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& track) {
-	bool starting_subtitle = false;
 	if (m_currentSubtitleStream != track.pid || eSubtitleSettings::pango_autoturnon) {
-		// if (m_currentSubtitleStream == -1)
-		//	starting_subtitle = true;
-		g_object_set(m_gst_playbin, "current-text", -1, NULL);
-		// m_cachedSubtitleStream = -1;
+		m_subtitles_paused = true;
+		m_subtitle_widget = nullptr;
 		m_subtitle_sync_timer->stop();
 		m_dvb_subtitle_sync_timer->stop();
 		m_dvb_subtitle_pages.clear();
@@ -4255,31 +4292,14 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 		m_currentSubtitleStream = track.pid;
 		m_cachedSubtitleStream = m_currentSubtitleStream;
 		setCacheEntry(false, track.pid);
+		eTrace("[eServiceMP3] enableSubtitles: set current-text to %d", m_currentSubtitleStream);
+		if(m_pgs_subtitle_parser)
+			m_pgs_subtitle_parser->reset(); // Reset PGS parser state when switching streams
 		g_object_set(m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
-
-		if (track.type != stDVB) {
-			m_clear_buffers = true;
-			clearBuffers();
-		}
 		m_subtitle_widget = user;
-
-		eDebug("[eServiceMP3] switched to subtitle stream %i", m_currentSubtitleStream);
-
-#ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
-		/*
-		 * when we're running the subsink in sync=false mode,
-		 * we have to force a seek, before the new subtitle stream will start
-		 */
-		seekRelative(-1, 90000);
-#endif
-
-		// Seek to last position for non-initial subtitle changes
-		if (m_last_seek_pos > 0 && !starting_subtitle) {
-			seekTo(m_last_seek_pos);
-			gst_sleepms(50);
-		}
+		m_subtitles_paused = false;
+		eTrace("[eServiceMP3] switched to subtitle stream %i", m_currentSubtitleStream);
 	}
-
 	return 0;
 }
 
@@ -4308,7 +4328,7 @@ RESULT eServiceMP3::disableSubtitles() {
 	m_decoder_time_valid_state = 0;
 	if (m_subtitle_widget)
 		m_subtitle_widget->destroy();
-	m_subtitle_widget = 0;
+	m_subtitle_widget = nullptr;
 	return 0;
 }
 
@@ -4366,9 +4386,10 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack& track) {
 	}
 
 	if (m_cachedSubtitleStream >= 0 && m_cachedSubtitleStream < (int)m_subtitleStreams.size()) {
-		track.type = m_subtitleStreams[m_cachedSubtitleStream].type == stDVB ? 0 : 2;
+		subtype_t type = m_subtitleStreams[m_cachedSubtitleStream].type;
+		track.type = (type == stDVB || type == stPGS) ? 0 : 2;
 		track.pid = m_cachedSubtitleStream;
-		track.page_number = int(m_subtitleStreams[m_cachedSubtitleStream].type);
+		track.page_number = int(type);
 		track.magazine_number = 0;
 		track.language_code = m_subtitleStreams[m_cachedSubtitleStream].language_code;
 		track.title = m_subtitleStreams[m_cachedSubtitleStream].title;
@@ -4394,12 +4415,12 @@ RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack>& subtitlel
 		const subtitleStream& stream = m_subtitleStreams[i];
 
 		// Skip unsupported types
-		if (stream.type == stUnknown || stream.type == stVOB || stream.type == stPGS) {
+		if (stream.type == stUnknown || stream.type == stVOB) {
 			continue;
 		}
 
 		struct SubtitleTrack track;
-		track.type = (stream.type == stDVB) ? 0 : 2;
+		track.type = (stream.type == stDVB || stream.type == stPGS) ? 0 : 2;
 		track.pid = i;
 		track.page_number = int(stream.type);
 		track.magazine_number = 0;
