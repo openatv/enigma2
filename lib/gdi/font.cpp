@@ -175,8 +175,9 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 
 fontRenderClass::fontListEntry::~fontListEntry() = default;
 
-fontRenderClass::fontRenderClass(): fb(fbClass::getInstance()), fontFacesCacheValid(false)
+fontRenderClass::fontRenderClass()
 {
+	fb = fbClass::getInstance();
 	instance=this;
 	eDebug("[Font] Initializing lib.");
 	if (FT_Init_FreeType(&library))
@@ -806,7 +807,7 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
 		std::vector<FriBidiChar> array(uc_shape.begin(), uc_shape.end());
 		std::vector<FriBidiChar> target(size);
-		if(!fribidi_log2vis(array.data(), size, &dir, target.data(), 0, 0, 0))
+		if(!fribidi_log2vis(array.data(), size, &dir, target.data(), nullptr, nullptr, nullptr))
 			return -1;
 		uc_visual.assign(target.begin(), target.end());
 	}
