@@ -195,7 +195,7 @@ class VideoSetup(ConfigListScreen, Screen):
 		elif config.av.aspect.value == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 		if config.av.videoport.value == "HDMI":
-			if not BoxInfo.getItem("AmlogicFamily"):
+			if not eAVControl.getInstance().hasVideoAxis():
 				self.list.append(getConfigListEntry(_("Aspect switch"), config.av.aspectswitch.enabled, _("This option allows you to set offset values for different Letterbox resolutions.")))
 				if config.av.aspectswitch.enabled.value:
 					for aspect in range(5):
@@ -754,17 +754,20 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			else:
 				autorestyp = "no match"
-				if exists("/sys/class/display/mode") and config_rate in ("auto", "multi"):
-					f = open("/sys/class/display/mode")
-				elif exists(f"/proc/stb/video/videomode_{new_rate}hz") and config_rate in ("auto", "multi"):
-					f = open(f"/proc/stb/video/videomode_{new_rate}hz")
+				multi_videomode = ""
+				f = None
+				if config_rate in ("auto", "multi"):
+					if eAVControl.getInstance().hasVideoAxis():
+						multi_videomode = avControl.getVideoMode("")
+					elif exists(f"/proc/stb/video/videomode_{new_rate}hz"):
+						f = open(f"/proc/stb/video/videomode_{new_rate}hz")
 				if f:
 					multi_videomode = f.read().replace("\n", "")
 					f.close()
-					if multi_videomode and (current_mode != multi_videomode):
-						write_mode = multi_videomode
-					else:
-						write_mode = config_mode + new_rate
+				if multi_videomode and (current_mode != multi_videomode):
+					write_mode = multi_videomode
+				else:
+					write_mode = config_mode + new_rate
 			# Workaround for bug, see https://www.opena.tv/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
 			# Always use a fixed resolution and frame rate.   (e.g. 1080p50 if supported) for TV or .ts files.
 			# Always use a fixed resolution and correct rate. (e.g. 1080p24/p50/p60) for all other videos.
@@ -822,11 +825,6 @@ class AutoVideoMode(Screen):
 						write_mode = "1080p"
 					elif write_mode in ("2160p24", "2160p30", "2160p60"):
 						write_mode = "2160p"
-				if BoxInfo.getItem("AmlogicFamily"):
-					if write_mode[-1] == "p" or write_mode[-1] == "i":
-						write_mode += "60hz"
-					else:
-						write_mode += "hz"
 				if write_mode in values:
 					avSwitch.setVideoModeDirect(write_mode)
 					print(f"[VideoMode] setMode - port: {config_port}, mode: {write_mode} (autoresTyp: '{autorestyp}')")

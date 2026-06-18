@@ -5,12 +5,12 @@ This code may be used commercially. Attribution must be given to the original au
 Licensed under GPLv2.
 */
 
-
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <string.h>
 #include <algorithm>
+#include <cstdlib>
 #include <regex>
 
 #include <lib/base/cfile.h>
@@ -47,6 +47,104 @@ const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
 const char *proc_wss = "/proc/stb/denc/0/wss"; // NOSONAR
 
 eAVControl *eAVControl::m_instance = nullptr;
+
+/// @brief Normalize a driver video mode to the Enigma2 config value
+/// @param mode Driver or config video mode
+/// @return normalized video mode
+std::string eAVControl::normalizeVideoMode(const std::string &mode) const
+{
+	std::string result = mode;
+	result.erase(std::remove(result.begin(), result.end(), '\n'), result.end());
+	result.erase(std::remove(result.begin(), result.end(), '\r'), result.end());
+
+#ifdef DREAMNEXTGEN
+	if (result.length() > 2 && result.compare(result.length() - 2, 2, "hz") == 0)
+		result.erase(result.length() - 2);
+
+	if (result == "480i60")
+		result = "480i";
+	else if (result == "576i50")
+		result = "576i";
+	else if (result == "480p60")
+		result = "480p";
+	else if (result == "576p50")
+		result = "576p";
+	else if (result == "720p60")
+		result = "720p";
+	else if (result == "1080i60")
+		result = "1080i";
+	else if (result == "1080p60")
+		result = "1080p";
+	else if (result == "2160p60")
+		result = "2160p";
+#endif
+
+	return result;
+}
+
+/// @brief Convert an Enigma2 config video mode to the driver video mode
+/// @param mode normalized video mode
+/// @return driver video mode
+std::string eAVControl::getDriverVideoMode(const std::string &mode) const
+{
+#ifdef DREAMNEXTGEN
+	if (mode.empty() || mode == "PAL" || mode == "NTSC" || mode == "pal" || mode == "pal60" || mode == "ntsc" || mode.find("hz") != std::string::npos)
+		return mode;
+	if (mode == "480i")
+		return "480i60hz";
+	if (mode == "576i")
+		return "576i50hz";
+	if (mode == "480p")
+		return "480p60hz";
+	if (mode == "576p")
+		return "576p50hz";
+	if (mode == "720p")
+		return "720p60hz";
+	if (mode == "1080i")
+		return "1080i60hz";
+	if (mode == "1080p")
+		return "1080p60hz";
+	if (mode == "2160p")
+		return "2160p60hz";
+	return mode + "hz";
+#else
+	return mode;
+#endif
+}
+
+/// @brief Get video axis for the current video mode
+/// @param mode normalized video mode
+/// @return video axis
+std::string eAVControl::getVideoAxis(const std::string &mode) const
+{
+#ifdef DREAMNEXTGEN
+	std::string value = normalizeVideoMode(mode);
+	if (value.find("480") == 0)
+		return "0 0 719 479";
+	if (value.find("576") == 0)
+		return "0 0 719 575";
+	if (value.find("720") == 0)
+		return "0 0 1279 719";
+	if (value.find("1080") == 0)
+		return "0 0 1919 1079";
+	if (value.find("2160") == 0)
+		return "0 0 3839 2159";
+	if (value.find("smpte") == 0)
+		return "0 0 4095 2159";
+#endif
+	return "0 0 719 575";
+}
+
+/// @brief Check if video axis handling is available
+/// @return true if video axis handling is available
+bool eAVControl::hasVideoAxis() const
+{
+#ifdef DREAMNEXTGEN
+	return true;
+#else
+	return false;
+#endif
+}
 
 eAVControl::eAVControl()
 {
@@ -86,6 +184,7 @@ eAVControl::eAVControl()
 	eDebug("[%s] Init: ScartSwitch:%d / VideoMode 24:%d 50:%d 60:%d / HDMIRxMonitor:%d", __MODULE__, m_b_has_scartswitch, m_b_has_proc_videomode_24, m_b_has_proc_videomode_50, m_b_has_proc_videomode_60, m_b_has_proc_hdmi_rx_monitor);
 	eDebug("[%s] Init: VideoMode Choices:%s", __MODULE__, m_videomode_choices.c_str());
 	m_instance = this;
+	m_fp_fd = -1;
 
 	if (modelinformation.getValue("scart") == "True")
 	{
@@ -191,11 +290,21 @@ int eAVControl::getAspect(int defaultVal, int flags) const
 /// @return
 bool eAVControl::getProgressive(int flags) const
 {
+#ifdef DREAMNEXTGEN
+	std::string value = CFile::read("/sys/devices/platform/deinterlace/deinterlace/di0/frame_format", __MODULE__, flags);
+	value.erase(std::remove(value.begin(), value.end(), '\n'), value.end());
+	value.erase(std::remove(value.begin(), value.end(), '\r'), value.end());
+	bool progressive = value != "interlace" && value != "interlaced";
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d (%s)", __MODULE__, "getProgressive", progressive, value.c_str());
+	return progressive;
+#else
 	int value = 0;
 	CFile::parseIntHex(&value, "/proc/stb/vmpeg/0/progressive", __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %d", __MODULE__, "getProgressive", value);
 	return value == 1;
+#endif
 }
 
 /// @brief Get screen resolution X
@@ -254,8 +363,20 @@ int eAVControl::getFrameRate(int defaultVal, int flags) const
 {
 
 #ifdef DREAMNEXTGEN
-	const char *fileName = "/proc/stb/vmpeg/0/frame_rate";
-#elif DREAMBOX
+	std::string fpsInfo = CFile::read("/sys/class/video/fps_info", __MODULE__, flags);
+	std::smatch match;
+	int value = defaultVal;
+	if (std::regex_search(fpsInfo, match, std::regex("input_fps:0x([0-9a-fA-F]+)")))
+	{
+		int fps = std::stoi(match[1].str(), nullptr, 16);
+		if (fps > 0)
+			value = fps * 1000;
+	}
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %d (%s)", __MODULE__, "getFrameRate", value, fpsInfo.c_str());
+	return value;
+#else
+#ifdef DREAMBOX
 	const char *fileName = "/proc/stb/vmpeg/0/fallback_framerate";
 #else
 	const char *fileName = "/proc/stb/vmpeg/0/framerate";
@@ -271,6 +392,7 @@ int eAVControl::getFrameRate(int defaultVal, int flags) const
 		eDebug("[%s] %s: %d", __MODULE__, "getFrameRate", value);
 
 	return value;
+#endif
 }
 
 /// @brief Get VideoMode
@@ -284,10 +406,9 @@ std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) c
 #else
 	std::string result = CFile::read(proc_videomode, __MODULE__, flags);
 #endif
-	if (!result.empty() && result[result.length() - 1] == '\n')
-	{
-		result.erase(result.length() - 1);
-	}
+	result = normalizeVideoMode(result);
+	if (result.empty())
+		result = defaultVal;
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "getVideoMode", result.c_str());
 
@@ -299,16 +420,54 @@ std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) c
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 {
+	std::string driverMode = getDriverVideoMode(newMode);
 #ifdef VIDEO_MODE_50
 	// gigablue driver bug
-	CFile::writeStr(proc_videomode_50, newMode, __MODULE__, flags);
-	CFile::writeStr(proc_videomode_60, newMode, __MODULE__, flags);
+	CFile::writeStr(proc_videomode_50, driverMode, __MODULE__, flags);
+	CFile::writeStr(proc_videomode_60, driverMode, __MODULE__, flags);
 #else
-	CFile::writeStr(proc_videomode, newMode, __MODULE__, flags);
+	CFile::writeStr(proc_videomode, driverMode, __MODULE__, flags);
+#endif
+#ifdef DREAMNEXTGEN
+	CFile::writeStr("/etc/u-boot.scr.d/000_hdmimode.scr", "setenv hdmimode " + driverMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+	CFile::writeStr("/etc/u-boot.scr.d/000_outputmode.scr", "setenv outputmode " + driverMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+	(void)std::system("update-autoexec");
+	CFile::writeStr("/sys/class/ppmgr/ppscaler", "1", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+	CFile::writeStr("/sys/class/ppmgr/ppscaler", "0", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+	CFile::writeStr("/sys/class/video/axis", getVideoAxis(newMode), __MODULE__, flags);
 #endif
 
 	if (flags & FLAGS_DEBUG)
-		eDebug("[%s] %s: %s", __MODULE__, "setVideoMode", newMode.c_str());
+		eDebug("[%s] %s: %s (%s)", __MODULE__, "setVideoMode", newMode.c_str(), driverMode.c_str());
+}
+
+/// @brief Set video modes for 50Hz, 60Hz and 24Hz
+/// @param mode50
+/// @param mode60
+/// @param mode24
+/// @param flags
+void eAVControl::setVideoModeMulti(const std::string &mode50, const std::string &mode60, const std::string &mode24, int flags) const
+{
+#ifdef DREAMNEXTGEN
+	setVideoMode(!mode50.empty() ? mode50 : (!mode60.empty() ? mode60 : mode24), flags);
+#else
+	std::string effectiveMode50 = !mode50.empty() ? mode50 : (!mode60.empty() ? mode60 : mode24);
+	std::string driverMode50 = getDriverVideoMode(effectiveMode50);
+	std::string driverMode60 = getDriverVideoMode(mode60.empty() ? effectiveMode50 : mode60);
+	std::string driverMode24 = getDriverVideoMode(mode24.empty() ? (mode60.empty() ? effectiveMode50 : mode60) : mode24);
+	if (m_b_has_proc_videomode_50)
+		CFile::writeStr(proc_videomode_50, driverMode50, __MODULE__, flags);
+	if (m_b_has_proc_videomode_60)
+		CFile::writeStr(proc_videomode_60, driverMode60, __MODULE__, flags);
+	if (m_b_has_proc_videomode_24)
+		CFile::writeStr(proc_videomode_24, driverMode24, __MODULE__, flags);
+	// Fallback if no possibility to setup 50/60 hz mode.
+	CFile::writeStr(proc_videomode, driverMode50, __MODULE__, flags);
+	if (eModelInformation::getInstance().getValue("brand") == "gigablue") // Use 50Hz mode (if available) for booting.
+		CFile::writeStr("/etc/videomode", driverMode50, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: 50:%s 60:%s 24:%s", __MODULE__, "setVideoModeMulti", driverMode50.c_str(), driverMode60.c_str(), driverMode24.c_str());
+#endif
 }
 
 /// @brief startStopHDMIIn
@@ -333,11 +492,11 @@ void eAVControl::startStopHDMIIn(bool on, bool audio, int flags)
 
 		std::string mode = m_b_hdmiin_fhd ? "1080p" : "720p";
 
-		CFile::writeStr(proc_videomode, mode, __MODULE__, flags);
+		CFile::writeStr(proc_videomode, getDriverVideoMode(mode), __MODULE__, flags);
 		if (m_b_has_proc_videomode_50)
-			CFile::writeStr(proc_videomode_50, mode, __MODULE__, flags);
+			CFile::writeStr(proc_videomode_50, getDriverVideoMode(mode), __MODULE__, flags);
 		if (m_b_has_proc_videomode_60)
-			CFile::writeStr(proc_videomode_60, mode, __MODULE__, flags);
+			CFile::writeStr(proc_videomode_60, getDriverVideoMode(mode), __MODULE__, flags);
 
 		if (m_b_has_proc_hdmi_rx_monitor)
 		{
@@ -399,6 +558,15 @@ std::string eAVControl::getPreferredModes(int flags) const
 #ifdef DREAMNEXTGEN
 	result = std::regex_replace(result, std::regex("\\*"), "");
 	result = std::regex_replace(result, std::regex("\n+"), " ");
+	result = std::regex_replace(result, std::regex("hz"), "");
+	result = std::regex_replace(result, std::regex("480i60"), "480i");
+	result = std::regex_replace(result, std::regex("576i50"), "576i");
+	result = std::regex_replace(result, std::regex("480p60"), "480p");
+	result = std::regex_replace(result, std::regex("576p50"), "576p");
+	result = std::regex_replace(result, std::regex("720p60"), "720p");
+	result = std::regex_replace(result, std::regex("1080i60"), "1080i");
+	result = std::regex_replace(result, std::regex("1080p60"), "1080p");
+	result = std::regex_replace(result, std::regex("2160p60"), "2160p");
 #else
 
 	if (result.empty() && access(fileName2, R_OK) == 0)
@@ -422,7 +590,7 @@ std::string eAVControl::readAvailableModes(int flags) const
 {
 
 #ifdef DREAMNEXTGEN
-	return std::string("480i60hz 576i50hz 480p60hz 576p50hz 720p60hz 1080i60hz 1080p60hz 720p50hz 1080i50hz 1080p30hz 1080p50hz 1080p25hz 1080p24hz 2160p30hz 2160p25hz 2160p24hz smpte24hz smpte25hz smpte30hz smpte50hz smpte60hz 2160p50hz 2160p60hz");
+	return std::string("480i 576i 480p 576p 720p 720p50 1080i 1080i50 1080p 1080p24 1080p25 1080p30 1080p50 2160p24 2160p25 2160p30 2160p50 2160p smpte24 smpte25 smpte30 smpte50 smpte60");
 #elif USE_VIDEO_MODE_HD
 	return std::string("pal ntsc 720p 720p25 720p30 720p50 1080i 1080i50 1080p25 1080p30 1080p50 1080p 576i 576p 480i 480p");
 #else
@@ -463,8 +631,6 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 		eDebug("[%s] %s: invalid value %d", __MODULE__, "setAspectRatio", ratio);
 		return;
 	}
-
-	eDebug("[%s] %s: not supported", __MODULE__, "setAspectRatio");
 
 	CFile::writeInt(proc_videoaspect_w, ratio, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
@@ -554,6 +720,11 @@ void eAVControl::setAspect(const std::string &newFormat, int flags) const
 void eAVControl::setInput(const std::string &newMode, int flags)
 {
 
+#ifdef DREAMNEXTGEN
+	m_encoder_active = newMode == "encoder";
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s", __MODULE__, "setInput", newMode.c_str());
+#else
 	std::string newval = newMode;
 	if (newMode == "off") // off = aux or scart based on scartswitch used for standby
 	{
@@ -569,6 +740,7 @@ void eAVControl::setInput(const std::string &newMode, int flags)
 	CFile::writeStr("/proc/stb/avs/0/input", newval, __MODULE__, flags);
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setInput", newval.c_str());
+#endif
 }
 
 /// @brief get video output active state

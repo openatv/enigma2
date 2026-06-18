@@ -40,6 +40,10 @@ public:
 	std::string getVideoMode(const std::string &defaultVal = "", int flags = 0) const;
 	std::string getPreferredModes(int flags = 0) const;
 	std::string getAvailableModes() const;
+	std::string normalizeVideoMode(const std::string &mode) const;
+	std::string getDriverVideoMode(const std::string &mode) const;
+	std::string getVideoAxis(const std::string &mode) const;
+	bool hasVideoAxis() const;
 	bool isEncoderActive() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
@@ -47,6 +51,7 @@ public:
 	void setColorFormat(const std::string &newFormat, int flags = 0) const;
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
+	void setVideoModeMulti(const std::string &mode50, const std::string &mode60, const std::string &mode24, int flags = 0) const;
 	void setInput(const std::string &newMode, int flags = 0);
 	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
