@@ -104,16 +104,12 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 
 int fontRenderClass::getFaceProperties(const std::string &face, FTC_FaceID &id, int &renderflags)
 {
-	for (fontListEntry *f=font; f; f=f->next)
-	{
-		if (f->face == face)
-		{
-			id = (FTC_FaceID)f;
-			renderflags = f->renderflags;
-			return 0;
-		}
-	}
-	return -1;
+	auto it = fontMap.find(face);
+	if (it == fontMap.end())
+		return -1;
+	id          = (FTC_FaceID)it->second;
+	renderflags = it->second->renderflags;
+	return 0;
 }
 
 inline FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit)
@@ -170,60 +166,61 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	n->next=font;
 	font=n;
 
+	fontMap[name] = n;
+	fontFacesCacheValid = false;
 	eDebugNoNewLine(" -> '%s'.\n", n->face.c_str());
 
 	return n->face;
 }
 
-fontRenderClass::fontListEntry::~fontListEntry()
-{
-}
+fontRenderClass::fontListEntry::~fontListEntry() = default;
 
-fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
+fontRenderClass::fontRenderClass()
 {
+	fb = fbClass::getInstance();
 	instance=this;
 	eDebug("[Font] Initializing lib.");
+	if (FT_Init_FreeType(&library))
 	{
-		if (FT_Init_FreeType(&library))
-		{
-			eDebug("[Font] Initializing failed!");
-			return;
-		}
+		eDebug("[Font] Initializing failed!");
+		return;
 	}
 	eDebug("[Font] Loading fonts.");
 	fflush(stdout);
 	font=0;
 
 	int maxbytes=4*1024*1024;
-	eDebug("[Font] Intializing font cache, using max. %dMB.", maxbytes/1024/1024);
+	eDebug("[Font] Initializing font cache, using max. %dMB.", maxbytes/1024/1024);
 	fflush(stdout);
+	if (FTC_Manager_New(library, 8, 8, maxbytes, myFTC_Face_Requester, this, &cacheManager))
 	{
-		if (FTC_Manager_New(library, 8, 8, maxbytes, myFTC_Face_Requester, this, &cacheManager))
-		{
-			eDebug("[Font] Initializing font cache failed!");
-			return;
-		}
-		if (!cacheManager)
-		{
-			eDebug("[Font] Initializing font cache manager error!");
-			return;
-		}
-		if (FTC_SBit_Cache_New(cacheManager, &sbitsCache))
-		{
-			eDebug("[Font] Initializing font cache sbit failed!");
-			return;
-		}
-		if (FTC_Image_Cache_New(cacheManager, &imageCache))
-		{
-			eDebug("[Font] Initializing font cache imagecache failed!");
-		}
-		if (FT_Stroker_New(library, &stroker))
-		{
-			eDebug("[Font] Initializing font stroker failed!");
-		}
+		eDebug("[Font] Initializing font cache failed!");
+		return;
 	}
+	if (!cacheManager)
+	{
+		eDebug("[Font] Initializing font cache manager error!");
+		return;
+	}
+	if (FTC_SBit_Cache_New(cacheManager, &sbitsCache))
+	{
+		eDebug("[Font] Initializing font cache sbit failed!");
+		return;
+	}
+	if (FTC_Image_Cache_New(cacheManager, &imageCache))
+	{
+		eDebug("[Font] Initializing font cache imagecache failed!");
+	}
+	if (FTC_CMapCache_New(cacheManager, &cmapCache))
+	{
+		eDebug("[Font] Initializing font cache cmap failed!");
+	}
+	if (FT_Stroker_New(library, &stroker))
+	{
+		eDebug("[Font] Initializing font stroker failed!");
+	}
+	
 	strokerRadius = -1;
-	return;
 }
 
 float fontRenderClass::getLineHeight(const gFont& font)
@@ -261,6 +258,8 @@ fontRenderClass::~fontRenderClass()
 		font=font->next;
 		delete f;
 	}
+	fontMap.clear();
+
 //	auskommentiert weil freetype und enigma die kritische masse des suckens ueberschreiten.
 //	FTC_Manager_Done(cacheManager);
 //	FT_Done_FreeType(library);
@@ -282,12 +281,21 @@ int fontRenderClass::getFont(ePtr<Font> &font, const std::string &face, int size
 // get all font faces (names) available in enigma2
 std::vector<std::string> fontRenderClass::getFontFaces()
 {
-	std::vector<std::string> v;
-	for (fontListEntry *f=font; f; f=f->next)
+	if (!fontFacesCacheValid)
 	{
-		v.push_back(f->face);
+		fontFacesCache.clear();
+		for (fontListEntry *f = font; f; f = f->next)
+			fontFacesCache.push_back(f->face);
+		fontFacesCacheValid = true;
 	}
-	return v;
+	return fontFacesCache;
+}
+
+inline FT_UInt fontRenderClass::getCharIndex(Font *fnt, unsigned long chr, int rflags)
+{
+	if (rflags & RS_DIRECT)
+		return (FT_UInt)chr;
+	return FTC_CMapCache_Lookup(cmapCache, fnt->scaler.face_id, -1, (FT_UInt32)chr);
 }
 
 void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags)
@@ -416,11 +424,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		height = glyph->height;
 	}
 
-	int nx=cursor.x();
-
-	nx+=xadvance;
-
-	if ((rflags & RS_WRAP) && (nx > area.right()))
+	if (int nx = cursor.x() + xadvance; (rflags & RS_WRAP) && (nx > area.right()))
 	{
 		int cnt = 0, maycnt = -1;
 		glyphString::reverse_iterator i(glyphs.rbegin()), mayi(glyphs.rend());
@@ -523,7 +527,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 
 void eTextPara::calc_bbox()
 {
-	if (!glyphs.size())
+	if (glyphs.empty())
 	{
 		bboxValid = 0;
 		boundBox = eRect();
@@ -556,20 +560,24 @@ void eTextPara::newLine(int flags)
 	if (maximum.width()<cursor.x())
 		maximum.setWidth(cursor.x());
 	cursor.setX(left);
-	int height = current_face->size->metrics.height;
+
+	/* Use the cached line height computed once in setFont().
+	 * Fall back to reading FT metrics if cachedLineHeight was never set. */
+	int height = cachedLineHeight;
 	if (!height)
 	{
-		/* some fonts don't have height filled in. Estimate it based on the bbox dimensions. */
-		/* Usually, 'height' is less than the complete boundingbox height, so we use only yMax, to avoid getting a much too large line spacing */
-		height = FT_MulFix(current_face->bbox.yMax, current_face->size->metrics.y_scale);
+		height = current_face->size->metrics.height;
+		if (!height)
+			height = FT_MulFix(current_face->bbox.yMax,
+			                   current_face->size->metrics.y_scale);
+		height >>= 6;
 	}
-	height >>= 6;
 
 	lineOffsets.push_back(cursor.y());
 	lineChars.push_back(charCount);
 	charCount=0;
 
-	cursor+=ePoint(0, height);
+	cursor += ePoint(0, height);
 	if (maximum.height()<cursor.y())
 		maximum.setHeight(cursor.y());
 	previous=0;
@@ -591,6 +599,21 @@ void eTextPara::setFont(const gFont *font, int tabwidth)
 	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize, tabwidth);
 	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize, tabwidth);
 	setFont(fnt, replacement, fallback);
+
+	/* Cache line height for newLine() ─────────────────
+	 * Compute once here, inside the lock that setFont(Font*,...) already
+	 * holds via FTC_Manager_LookupSize, so current_face and its size
+	 * metrics are guaranteed to be valid when we read them.              */
+	cachedLineHeight = 0;
+	if (current_face)
+	{
+		int h = current_face->size->metrics.height;
+		if (!h)
+			h = FT_MulFix(current_face->bbox.yMax,
+			               current_face->size->metrics.y_scale);
+		cachedLineHeight = h >> 6;
+	}
+	/* ─────────────────────────────────────────────────────────────────── */
 }
 
 std::string eTextPara::replacement_facename;
@@ -650,8 +673,7 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	use_kerning=FT_HAS_KERNING(current_face);
 }
 
-void
-shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
+void shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
 
 int eTextPara::renderString(const char *string, int rflags, int border, int markedpos)
 {
@@ -702,12 +724,22 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 
 	const char *p = string ? string : "";
 
+	/* Scan while decoding: if every byte is plain ASCII (< 0x80) and no
+	 * character falls in the Arabic (0x0600-0x06FF), Hebrew (0x0590-0x05FF),
+	 * or other RTL ranges, we can skip shape(), the two heap allocations for
+	 * FriBidi arrays, and fribidi_log2vis() entirely.
+	 * The flag is cleared the moment any non-ASCII or RTL codepoint is seen,
+	 * so the full path is taken whenever needed. RTL and Unicode correctness
+	 * are fully preserved. */
+	bool is_ltr_ascii = true;
+
 	while (*p)
 	{
 		unsigned int unicode=(unsigned char)*p++;
 
 		if (unicode & 0x80) // we have (hopefully) UTF8 here, and we assume that the encoding is VALID
 		{
+			is_ltr_ascii = false; /* non-ASCII: use full path */
 			if ((unicode & 0xE0)==0xC0) // two bytes
 			{
 				unicode&=0x1F;
@@ -737,31 +769,54 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 					unicode|=(*p++)&0x3F;
 			}
 		}
+		else if (unicode >= 0x20 && is_ltr_ascii)
+		{
+			/* printable ASCII — still safe, keep flag */
+		}
+		else if (unicode == '\n' || unicode == '\r' || unicode == '\t' ||
+		         unicode == 0x00)
+		{
+			/* control chars that renderString already handles — still LTR safe */
+		}
+		else
+		{
+			is_ltr_ascii = false;
+		}
 		uc_string.push_back(unicode);
 	}
 
 	std::vector<unsigned long> uc_shape;
+	int size;
+	FriBidiCharType dir = FRIBIDI_TYPE_LTR;
 
+	if (is_ltr_ascii)
+	{
+		/* fastpath — skip shape(), FriBidi allocs and log2vis() */
+		uc_visual = uc_string;
+		size = uc_visual.size();
+	}
+	else
+	{
 		// character -> glyph conversion
-	shape(uc_shape, uc_string);
+		shape(uc_shape, uc_string);
 
 		// now do the usual logical->visual reordering
-	int size=uc_shape.size();
-	FriBidiCharType dir=FRIBIDI_TYPE_ON;
-	uc_visual.resize(size);
+		size = uc_shape.size();
+		dir = FRIBIDI_TYPE_ON;
+		uc_visual.resize(size);
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-	FriBidiChar *array = new FriBidiChar[size];
-	FriBidiChar *target = new FriBidiChar[size];
-	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
-	{
-		delete [] target;
-		delete [] array;
-		return -1;
+		std::vector<FriBidiChar> array(uc_shape.begin(), uc_shape.end());
+		std::vector<FriBidiChar> target(size);
+		if(!fribidi_log2vis(array.data(), size, &dir, target.data(), nullptr, nullptr, nullptr))
+			return -1;
+		uc_visual.assign(target.begin(), target.end());
 	}
-	uc_visual.assign(target, target+size);
+	/* ─────────────────────────────────────────────────────────────────────── */
 
-	glyphs.reserve(size);
+	/* Reserve glyph vector capacity upfront, accounting for
+	 * glyphs already present (e.g. when renderString is called multiple
+	 * times on the same eTextPara). */
+	glyphs.reserve(glyphs.size() + (size_t)size);
 
 	unsigned long newcolor = 0;
 	bool activate_newcolor = false;
@@ -881,17 +936,17 @@ nprint:				isprintable=0;
 				chr = '-';
 
 			if (forced_replaces.find(chr) == forced_replaces.end())
-				index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(current_face, chr);
+				index = fontRenderClass::instance->getCharIndex(current_font, chr, rflags);
 
 			if (!index)
 			{
 				if (replacement_face)
-					index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(replacement_face, chr);
+					index = fontRenderClass::instance->getCharIndex(replacement_font, chr, rflags);
 
 				if (!index)
 				{
 					if (fallback_face)
-						index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(fallback_face, chr);
+						index = fontRenderClass::instance->getCharIndex(fallback_font, chr, rflags);
 					if (!index)
 						eDebug("[eTextPara] Unicode U+%4lx not present", chr);
 					else
@@ -925,8 +980,6 @@ nprint:				isprintable=0;
 		lineChars.push_back(charCount);
 		charCount=0;
 	}
-	delete [] target;
-	delete [] array;
 	return 0;
 }
 
@@ -977,8 +1030,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	int buffer_stride=surface->stride;
 
 	bool setcolor = true;
-	std::list<int>::reverse_iterator line_offs_it(lineOffsets.rbegin());
-	std::list<int>::iterator line_chars_it(lineChars.begin());
+	auto line_offs_it = lineOffsets.rbegin();
+	auto line_chars_it = lineChars.begin();
 	int line_offs=0;
 	int line_chars=0;
 	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i, --line_chars)

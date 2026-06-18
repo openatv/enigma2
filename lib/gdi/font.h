@@ -19,10 +19,11 @@ typedef FTC_SBitCache FTC_SBit_Cache;
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
 #include <string>
-#include <list>
+#include <string_view>
 #include <lib/base/object.h>
 
 #include <set>
+#include <unordered_map>
 
 class FontRenderClass;
 class Font;
@@ -36,7 +37,7 @@ class fontRenderClass
 #ifndef SWIG
 	friend class Font;
 	friend class eTextPara;
-	fbClass *fb;
+	fbClass *fb = nullptr;
 	struct fontListEntry
 	{
 		std::string filename, face;
@@ -57,6 +58,20 @@ class fontRenderClass
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit);
 	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 	static fontRenderClass *instance;
+	/* Transparent hasher + equality allow lookup by std::string_view
+	 * without constructing a temporary std::string (C++17). */
+	struct StringHash
+	{
+		using is_transparent = void;
+		size_t operator()(std::string_view sv) const noexcept
+		{ return std::hash<std::string_view>{}(sv); }
+	};
+	std::unordered_map<std::string, fontListEntry*, StringHash, std::equal_to<>> fontMap;
+	std::vector<std::string> fontFacesCache;
+	bool fontFacesCacheValid  = false;
+
+	FTC_CMapCache cmapCache;
+	inline FT_UInt getCharIndex(Font *font, unsigned long chr, int rflags);
 #else
 	fontRenderClass();
 	~fontRenderClass();
@@ -119,27 +134,28 @@ class eTextPara : public iObject
 	DECLARE_REF(eTextPara);
 	ePtr<Font> current_font, replacement_font, fallback_font;
 	FT_Face current_face, replacement_face, fallback_face;
-	int use_kerning;
-	int previous;
 	static std::string replacement_facename;
 	static std::string fallback_facename;
 	static std::set<int> forced_replaces;
 
 	eRect area;
 	ePoint cursor;
-	eSize maximum;
+	eSize maximum             = eSize(0, 0);
 	int left;
 	glyphString glyphs;
-	std::list<int> lineOffsets;
-	std::list<int> lineChars;
-	int charCount;
-	int lineCount;
-	int totalheight;
-	int bboxValid;
+	std::vector<int> lineOffsets;
+	std::vector<int> lineChars;
+	int charCount             = 0;
+	int lineCount             = 0;
+	int totalheight           = 0;
+	int bboxValid             = 0;
 	eRect boundBox;
-	bool doTopBottomReordering;
-	int m_offset;
-	bool m_blend;
+	bool doTopBottomReordering = false;
+	int m_offset              = 0;
+	bool m_blend              = false;
+	int cachedLineHeight      = 0;
+	int use_kerning           = 0;
+	int previous              = 0;
 
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last,
 					bool activate_newcolor, unsigned long newcolor);
@@ -151,8 +167,7 @@ public:
 	eTextPara(eRect area, ePoint start = ePoint(-1, -1))
 		: current_font(0), replacement_font(0), fallback_font(0),
 		  current_face(0), replacement_face(0), fallback_face(0),
-		  area(area), cursor(start), maximum(0, 0), left(start.x()), charCount(0), totalheight(0),
-		  bboxValid(0), doTopBottomReordering(false), m_offset(0), m_blend(false)
+		  area(area), cursor(start), left(start.x())
 	{
 	}
 	virtual ~eTextPara();
@@ -223,7 +238,7 @@ public:
 	{
 		ASSERT(g >= 0);
 		ASSERT(g < (int)glyphs.size());
-		glyphs[g].flags |= f;
+		glyphs[g].flags &= ~f;
 	}
 };
 
