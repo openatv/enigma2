@@ -529,9 +529,9 @@ int eListbox::event(int event, void *data, void *data2)
 
 			// determine source offset based on scroll direction
 			if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)
-				scrollX = m_content->getScollPos();
+				scrollX = m_content->getScrollPos();
 			else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom)
-				scrollY = m_content->getScollPos();
+				scrollY = m_content->getScrollPos();
 
 			// perform blit of the text pixmap
 			eSize s(m_scroll_rect.width(), m_scroll_rect.height());
