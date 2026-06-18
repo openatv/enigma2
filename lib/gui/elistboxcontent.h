@@ -145,7 +145,7 @@ public:
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 	int getMaxItemTextWidth() override;
 protected:
-	virtual void setBuildArgs(int selected) = 0; // intended extension point for subclasses
+	virtual void setBuildArgs(int selected) {} // intended extension point for subclasses
 	virtual bool getIsMarked(int selected) { return false; } // intended extension point for subclasses
 	bool m_servicelist = false;
 	ePyObject m_pArgs;
