@@ -1,5 +1,5 @@
 from datetime import datetime
-from os import remove, statvfs, uname
+from os import remove, statvfs
 from os.path import exists, isfile, join as pathjoin
 from struct import pack
 from sys import maxsize
@@ -130,6 +130,7 @@ def getCecOsdName():
 	while len(name.encode(encoding='utf-8', errors='ignore')) > 14:
 		name = name[:-1].strip()
 	return name or CEC_OSD_NAME
+
 
 CEC_VENDOR = {
 	CEC_VENDOR_TOSHIBA: "Toshiba Regza Link",
