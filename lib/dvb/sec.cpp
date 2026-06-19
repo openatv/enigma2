@@ -2179,7 +2179,7 @@ PyObject *eDVBSatelliteEquipmentControl::getBandCutOffFrequency(int slot_no, int
 PyObject *eDVBSatelliteEquipmentControl::getFrequencyRangeList(int slot_no, int orbital_position)
 {
 	PyObject *pyList = PyList_New(0);
-	dvb_frontend_info fe_info;
+	dvb_frontend_info fe_info{};
 
 	eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin());
 	for (; it != m_avail_frontends.end(); ++it)
