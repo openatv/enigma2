@@ -17,6 +17,8 @@ public:
 	virtual int getAddress() = 0;
 	virtual int getCommand() = 0;
 	virtual int getData(char *data, int length) = 0;
+	virtual int getDataLength() = 0;
+	virtual int getDataByte(int index) = 0;
 	virtual int getControl0() = 0;
 	virtual int getControl1() = 0;
 	virtual int getControl2() = 0;
@@ -95,6 +97,8 @@ public:
 		int getAddress();
 		int getCommand();
 		int getData(char *data, int length);
+		int getDataLength() { return dataLength; }
+		int getDataByte(int index) { return index >= 0 && index < dataLength ? messageData[index] : 0; }
 		int getControl0() { return control0; }
 		int getControl1() { return control1; }
 		int getControl2() { return control2; }
@@ -105,6 +109,7 @@ public:
 protected:
 	static eHdmiCEC *instance;
 	bool linuxCEC;
+	bool amlogicCEC;
 	unsigned char physicalAddress[2];
 	bool fixedAddress;
 	unsigned char deviceType, logicalAddress;
@@ -129,6 +134,7 @@ public:
 	PSignal1<void, ePtr<iCECMessage> &> messageReceived;
 	PSignal1<void, int> addressChanged;
 	void sendMessage(unsigned char address, unsigned char cmd, char *data, int length);
+	void sendMessageBytes(unsigned char address, unsigned char cmd, char *hexdata);
 	int getLogicalAddress();
 	int getPhysicalAddress();
 	void setFixedPhysicalAddress(int address);
@@ -144,5 +150,4 @@ public:
 	const char *getDescription() const;
 };
 #endif
-
 #endif
