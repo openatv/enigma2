@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-05 05:46+0000\n"
-"PO-Revision-Date: 2026-05-17 03:00+0000\n"
+"PO-Revision-Date: 2026-06-17 09:16+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 msgid ""
 "\n"
@@ -3241,10 +3241,10 @@ msgid "Brightness Video & OSD"
 msgstr "Kuvan Kirkkaus & kuvaruutu"
 
 msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
-msgstr ""
+msgstr "Kirkkaus kohdistetaan video- ja käyttöliittymän yhteiseen näyttöön. Vaikuttaa kaikkeen näytöllä näkyvään, myös tähän valikkoon."
 
 msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
-msgstr ""
+msgstr "Kirkkaus kohdistetaan vain videoon. Tämä ei vaikuta valikoihin eikä käyttöliittymään."
 
 msgid "British Indian Ocean Territory"
 msgstr "Brittiläinen Intian valtameren alue"
@@ -3776,10 +3776,10 @@ msgid "Cascade PiP"
 msgstr "Aktivoi PiP"
 
 msgid "Case insensitive"
-msgstr ""
+msgstr "Haun tarkkuus"
 
 msgid "Case sensitive"
-msgstr ""
+msgstr "Haun tarkkuus"
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
@@ -5001,10 +5001,10 @@ msgid "Contrast Video & OSD"
 msgstr "Kontrasti Video & kuvaruutu"
 
 msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
-msgstr ""
+msgstr "Kontrasti kohdistetaan video ja käyttöliittymän yhteiseen näyttöön. Vaikuttaa kaikkeen näytöllä näkyvään, myös tähän valikkoon."
 
 msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
-msgstr ""
+msgstr "Kontrasti vaikuttaa vain videoon. Ei vaikuta valikoihin eikä käyttöliittymään."
 
 msgid "Control LED can be turned on or off here."
 msgstr "LED voidaan kytkeä päälle tai pois täältä."
@@ -5013,7 +5013,7 @@ msgid "Control files:"
 msgstr "Hallitse tiedostoja:"
 
 msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
-msgstr ""
+msgstr "Määrittää tiedostoluetteloiden lajittelutavan. Kirjainkoolla erotteleva lajittelu näyttää isot kirjaimet ensin. Kirjainkoosta riippumaton lajittelu ohittaa kirjainkoon."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Hallitse sijaintia, kuinka valmiit ajastukset näytetään ajastinluettelossa."
@@ -7245,7 +7245,7 @@ msgid "Enable extended cut file support"
 msgstr "Ota käyttöön Laajennettu leikkaus tuki"
 
 msgid "Enable extended cut file support. This will write cut with more information and not only marker."
-msgstr ""
+msgstr "Ota käyttöön laajennettu leikkaustiedostotuki. Tallentaa leikkaustiedot tarkemmin, ei vain merkkejä."
 
 msgid "Enable fallback remote receiver"
 msgstr "Ota käyttöön etävastaanotin"
@@ -7329,7 +7329,7 @@ msgid "Enable this option to add storage device information detected during syst
 msgstr "Ota tämä asetus käyttöön lisätäksesi järjestelmän käynnistyksen ja hot plug tapahtumat debug lokitiedostoon."
 
 msgid "Enable this option to add text encoding information to the debug log file."
-msgstr ""
+msgstr "Ota käyttöön tämä asetus lisätäksesi tekstikoodaus­tiedot debug-lokitiedostoon."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ajastin tiedot vianmääritys lokitiedostoon."
@@ -8472,7 +8472,7 @@ msgid "File compression"
 msgstr "Tiedostopakkaus"
 
 msgid "File sorting mode"
-msgstr ""
+msgstr "Tiedoston lajittelutila"
 
 msgid "File system"
 msgstr "Tiedostojärjestelmä"
@@ -8815,7 +8815,7 @@ msgid "Full factory reset"
 msgstr "Täydellinen tehdasasetusten palautus"
 
 msgid "Full range (no clipping)"
-msgstr ""
+msgstr "Täydellinen (ei leikata)"
 
 msgid "Full screen"
 msgstr "Kokoruutu"
@@ -9251,7 +9251,7 @@ msgid "Hardware latency correction"
 msgstr "Laitteistoviiveen korjaus"
 
 msgid "Hardware revision"
-msgstr ""
+msgstr "Laitteiston tarkistus"
 
 msgid "Hardware serial"
 msgstr "Laitteen sarjanumero"
@@ -9518,7 +9518,7 @@ msgid "Hours Minutes Seconds"
 msgstr "Tunnit Minuutit Sekunnit"
 
 msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
-msgstr ""
+msgstr "Määrittää, miten laitteiston dekooderi vapautetaan siirryttäessä ohjelmalliseen salauksen purkuun. 'Nopea' vapauttaa sen heti (nopeampi kanavanvaihto). 'Normaali' tekee ensin hallitun sulkemisen (vakavampi ja vakaampi joillakin laitteilla). 'Aggressiivinen' suorittaa täyden salauksenpurkuyksikön nollauksen salattujen kanavien välillä."
 
 msgid "Http(s) stream start delay"
 msgstr "Http/https streamin käynnistysviive"
@@ -9944,7 +9944,7 @@ msgid "Include teletext details"
 msgstr "Teksitv teksityksen yksityiskohdat"
 
 msgid "Include text encoding data"
-msgstr ""
+msgstr "Sisältää tekstin koodaustiedot"
 
 msgid "Include timer data"
 msgstr "Sisällytä ajastimen tiedot"
