@@ -269,12 +269,12 @@ public:
 			appNameChanged,
 			slotDecodingStateChanged
 		};
-		int m_type;
-		int m_slotid;
-		int m_state;
-		unsigned char m_tag[3];
-		unsigned char m_data[4096];
-		int m_len;
+		int m_type = 0;
+		int m_slotid = 0;
+		int m_state = 0;
+		unsigned char m_tag[3] = {};
+		unsigned char m_data[4096] = {};
+		int m_len = 0;
 		std::string m_appName;
 		Message(int type, int slotid) : m_type(type), m_slotid(slotid) {};
 		Message(int type, int slotid, int state) : m_type(type), m_slotid(slotid), m_state(state) {};
