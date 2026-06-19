@@ -123,7 +123,7 @@ class ServiceInfo(Converter):
 			"TsId": (self.TSID, (iPlayableService.evUpdatedInfo,)),
 			"TxtPid": (self.TXTPID, (iPlayableService.evUpdatedInfo,)),
 			"VideoHeight": (self.YRES, (iPlayableService.evVideoSizeChanged,)),
-			"VideoInfo": (self.VIDEO_INFORMATION, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo)),
+			"VideoInfo": (self.VIDEO_INFORMATION, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
 			"VideoPid": (self.VPID, (iPlayableService.evUpdatedInfo,)),
 			# "VideoSize": (self.VIDEO_SIZE, (iPlayableService.evVideoSizeChanged,)),
 			"VideoWidth": (self.XRES, (iPlayableService.evVideoSizeChanged,)),

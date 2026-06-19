@@ -9,6 +9,7 @@
 #endif
 
 class eSocketNotifier;
+class eHEVCHDRDetector;
 
 class eDVBAudio: public iObject
 {
@@ -49,6 +50,14 @@ private:
 	sigc::signal<void(struct iTSMPEGDecoder::videoEvent)> m_event;
 	int m_width, m_height, m_framerate, m_aspect, m_progressive, m_gamma, m_streamtype;
 	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
+
+	// HEVC HDR fallback for drivers which do not expose a usable sGamma.
+	eHEVCHDRDetector *m_hdr_detector;
+	int m_hdr_gamma, m_driver_gamma;
+	bool m_hdr_gamma_authoritative, m_gamma_from_driver_event;
+	void hdr_gamma_detected(int gamma);
+	void publish_gamma(int gamma);
+	int read_driver_gamma();
 #ifdef DREAMNEXTGEN
 	ePtr<eTimer> m_sysfs_poll_timer;
 	void sysfs_poll_timeout();
