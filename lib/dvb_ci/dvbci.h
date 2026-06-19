@@ -282,7 +282,9 @@ public:
 		Message(int type, int slotid, const unsigned char *tag, unsigned char *data, int len) : m_type(type), m_slotid(slotid), m_len(len)
 		{
 			memcpy(m_tag, tag, 3);
-			memcpy(m_data, data, len);
+			if (m_len < 0) m_len = 0;
+			else if (m_len > (int)sizeof(m_data)) m_len = (int)sizeof(m_data);
+			memcpy(m_data, data, m_len);
 		};
 	};
 #endif
