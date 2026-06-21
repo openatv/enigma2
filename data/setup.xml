@@ -12,6 +12,7 @@
 			</if>
 		</if>
 		<item level="1" text="AC3 plus transcoding" description="Select whether AC3 Plus audio tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
+		<item level="1" text="AC4" description="Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability." requires="CanAC4">config.av.ac4</item>
 		<item level="1" text="DTS downmix" description="Select whether DTS channel audio tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
 		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Select whether DTS channel audio tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
 		<item level="1" text="Dolby TrueHD" description="Select whether Dolby TrueHD audio tracks should be passed through or decoded." requires="CanTrueHD">config.av.truehd</item>
