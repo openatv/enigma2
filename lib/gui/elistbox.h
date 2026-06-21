@@ -435,6 +435,8 @@ public:
 	}
 
 	void setTopIndex(int idx);
+	void setStartIndex(int index);
+	int getStartIndex() { return (m_orientation == orHorizontal) ? m_left : m_top; }
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
 	uint8_t getScrollbarScroll() { return m_scrollbar_scroll; }

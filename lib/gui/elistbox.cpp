@@ -228,6 +228,31 @@ void eListbox::setTopIndex(int index)
 	}
 }
 
+void eListbox::setStartIndex(int offset)
+{
+	if (!m_content)
+		return;
+	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+	int max = std::max(0, (int)m_content->size() - maxItems);
+	offset = std::max(0, std::min(offset, max));
+	if (m_orientation == orHorizontal)
+	{
+		if (m_left == offset)
+			return;
+		m_left = offset;
+		m_content->resetClip();
+	}
+	else
+	{
+		if (m_top == offset)
+			return;
+		m_top = offset;
+		m_content->resetClip();
+	}
+	updateScrollBar();
+	invalidate();
+}
+
 int eListbox::getCurrentIndex()
 {
 	if (m_content && m_content->cursorValid())
