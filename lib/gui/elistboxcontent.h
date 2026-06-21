@@ -3,6 +3,7 @@
 
 #include <lib/python/python.h>
 #include <lib/gui/elistbox.h>
+#include <unordered_map>
 
 class eListboxPythonStringContent : public virtual iListboxContent
 {
@@ -22,7 +23,7 @@ public:
 	void invalidateEntry(int index);
 	void invalidate();
 	eSize getItemSize() { return m_itemsize; }
-	int getMaxItemTextWidth();
+	int getMaxItemTextWidth() override;
 	uint8_t getOrientation() { return m_orientation; }
 	
 #ifndef SWIG
@@ -51,10 +52,10 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
-	int getScollPos() { return m_scroll_pos; }
+	int getScrollPos() override { return m_scroll_pos; } // Returns the current scroll position in pixels.
 
 private:
-	int m_saved_cursor_line;
+	int m_saved_cursor_line = 0;
 	ePtr<gFont> m_font_zoomed;
 	// scroll
 	int m_scroll_pos = 0;
@@ -74,26 +75,26 @@ private:
 	ePtr<eTimer> scrollTimer;
 
 protected:
-	int m_cursor;
-	int m_saved_cursor;
+	int m_cursor = 0;
+	int m_saved_cursor = 0;
 	ePyObject m_list;
 	eSize m_itemsize;
-	int m_itemheight;
-	int m_itemwidth;
-	int m_max_text_width;
-	uint8_t m_orientation;
+	int m_itemheight = 25;
+	int m_itemwidth = 25;
+	int m_max_text_width = -1; // -1 means not yet calculated
+	uint8_t m_orientation = 1;
 #endif
 };
 
 class eListboxPythonConfigContent : public eListboxPythonStringContent
 {
 public:
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected) override;
 	void setSeperation(int sep) { m_seperation = sep; }
 	int getEntryLeftOffset();
 	int getHeaderLeftOffset();
 	int getIndentSize();
-	int currentCursorSelectable();
+	int currentCursorSelectable() override;
 	void setSlider(int height, int space)
 	{
 		m_slider_height = height;
@@ -102,7 +103,9 @@ public:
 	eSize calculateEntryTextSize(const std::string &string, bool headerFont = true);
 
 private:
-	int m_seperation, m_slider_height, m_slider_space;
+	int m_seperation = 0;   // pixel separation between label and value
+	int m_slider_height = 10; // height of the filled slider bar in pixels
+	int m_slider_space = 2;   // spacing between slider bar and its frame in pixels
 	std::map<int, int> m_text_offset;
 };
 
@@ -129,8 +132,8 @@ public:
 		TYPE_PIXMAP_ALPHABLEND,
 		TYPE_PROGRESS_PIXMAP
 	};
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	int currentCursorSelectable();
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected) override;
+	int currentCursorSelectable() override;
 	void setList(SWIG_PYOBJECT(ePyObject) list);
 	void setFont(int fnt, gFont *font);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
@@ -140,16 +143,16 @@ public:
 	void resetClip();
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
-	int getMaxItemTextWidth();
+	int getMaxItemTextWidth() override;
 protected:
-	virtual void setBuildArgs(int selected) {}
-	virtual bool getIsMarked(int selected) { return false; }
+	virtual void setBuildArgs(int selected) {} // intended extension point for subclasses // NOSONAR
+	virtual bool getIsMarked(int selected) { return false; } // intended extension point for subclasses
 	bool m_servicelist = false;
 	ePyObject m_pArgs;
 
 private:
-	std::map<int, ePtr<gFont>> m_fonts;
-	std::map<int, ePtr<gFont>> m_fonts_zoomed;
+	std::unordered_map<int, ePtr<gFont>> m_fonts;
+	std::unordered_map<int, ePtr<gFont>> m_fonts_zoomed;
 };
 
 #ifdef SWIG
