@@ -584,10 +584,13 @@ class MultiBootClass():
 			infoFile = join(imageDir, "usr/lib/enigma.info")
 			versionFile = join(imageDir, "etc/image-version")
 			if isfile(infoFile):
-				name = self._formatSlotName(self.readSlotInfo(infoFile))
+				info = self.readSlotInfo(infoFile)
+				name = self._formatSlotName(info)
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = name
 				self.imageList[self.slotCode]["imagelogname"] = name
+				self.imageList[self.slotCode]["displaydistro"] = info.get("displaydistro") or info.get("distro") or ""
+				self.imageList[self.slotCode]["imgversion"] = info.get("imgversion") or ""
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(versionFile):
 				info = self.readSlotInfo(versionFile)
