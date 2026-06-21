@@ -154,6 +154,48 @@ class MultiBootClass():
 		if current != sectionIdx:
 			self._writeDreamBoot(defaultIdx=sectionIdx)
 
+	def getDreamBootSectionName(self, slotCode):
+		# Build the "<displaydistro> <imgversion> (<compiledate>)" string for the bootmanager menu.
+		slot = self.bootSlots.get(slotCode) if slotCode else None
+		if not slot:
+			return None
+		device = slot.get("device")
+		if not device or slotCode in ("R", "A", "L", "F"):
+			return None
+		rootSubdir = slot.get("rootsubdir") or ""
+		tempDir = mkdtemp(prefix=PREFIX)
+		name = None
+		opts = ["-t", "ubifs"] if slot.get("ubi") else []
+		self.console.ePopen([MOUNT, MOUNT] + opts + [device, tempDir])
+		try:
+			imageDir = join(tempDir, rootSubdir) if rootSubdir else tempDir
+			for fname in ("usr/lib/enigma.info", "usr/lib/enigma.conf"):
+				path = join(imageDir, fname)
+				if isfile(path):
+					name = self._formatSlotName(self.readSlotInfo(path))
+					if name:
+						break
+		finally:
+			self.console.ePopen([UMOUNT, UMOUNT, tempDir])
+			rmdir(tempDir)
+		return name
+
+	def updateDreamBootSection(self, slotCode, setDefault=False):
+		# Refresh the [Section] header for slotCode in DREAM_BOOT_FILE, optionally also flipping default= to it.
+		sectionIdx = self.getDreamBootSectionIndex(slotCode)
+		if sectionIdx is None and setDefault:
+			if slotCode.isdecimal():
+				sectionIdx = int(slotCode) - 1
+			elif slotCode == "R":
+				cmd_count = sum(1 for _ in self._iterDreamBootSections())
+				if cmd_count:
+					sectionIdx = cmd_count - 1
+		if sectionIdx is None:
+			return
+		sectionName = self.getDreamBootSectionName(slotCode)
+		sectionUpdates = {sectionIdx: sectionName} if sectionName else None
+		self._writeDreamBoot(defaultIdx=sectionIdx if setDefault else None, sectionUpdates=sectionUpdates)
+
 	def getDreamBootSectionIndex(self, slotCode):
 		# Match by root partition (or 'recovery' for slotCode R) — section order is not fixed.
 		isRecovery = slotCode == "R"
@@ -542,15 +584,10 @@ class MultiBootClass():
 			infoFile = join(imageDir, "usr/lib/enigma.info")
 			versionFile = join(imageDir, "etc/image-version")
 			if isfile(infoFile):
-				info = self.readSlotInfo(infoFile)
-				compileDate = str(info.get("compiledate"))
-				revision = info.get("imgrevision")
-				revision = f".{revision:03d}" if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
-				revision = "" if revision.strip() == compileDate else revision
-				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
+				name = self._formatSlotName(self.readSlotInfo(infoFile))
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
-				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
-				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
+				self.imageList[self.slotCode]["imagename"] = name
+				self.imageList[self.slotCode]["imagelogname"] = name
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(versionFile):
 				info = self.readSlotInfo(versionFile)
@@ -591,6 +628,26 @@ class MultiBootClass():
 			print(f"[MultiBoot] finishSlot Error {retVal}: Unable to unmount slot '{self.slotCode}' (self.device)!")
 		else:
 			self.findSlot()
+
+	def _formatSlotName(self, info):
+		# Format the slot name "<displaydistro> <imgversion>[<revision>] (<compiledate>)" — single source for the UI and the bootmanager menu header.
+		distro = info.get("displaydistro") or info.get("distro")
+		if not distro:
+			return None
+		compileDate = str(info.get("compiledate", ""))
+		revision = info.get("imgrevision")
+		if revision is not None:
+			revision = f".{revision:03d}" if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
+			revision = "" if revision.strip() == compileDate else revision
+		else:
+			revision = ""
+		if len(compileDate) == 8 and compileDate.isdigit():
+			compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
+		else:
+			compileDate = ""
+		version = info.get("imgversion") or ""
+		base = f"{distro} {version}{revision}".rstrip()
+		return f"{base} ({compileDate})" if compileDate else base
 
 	def readSlotInfo(self, path):  # Part of analyzeSlot() within getSlotImageList().
 		info = {}
@@ -748,15 +805,7 @@ class MultiBootClass():
 				with open(DUAL_BOOT_FILE, "wb") as fd:
 					fd.write(pack("B", int(slot)))
 			if exists(DREAM_BOOT_FILE):
-				slot = self.getDreamBootSectionIndex(self.slotCode)
-				if slot is None and self.slotCode.isdecimal():
-					slot = int(self.slotCode) - 1
-				if slot is None and self.slotCode == "R":
-					cmd_count = sum(1 for _ in self._iterDreamBootSections())
-					if cmd_count:
-						slot = cmd_count - 1
-				if slot is not None:
-					self._writeDreamBoot(defaultIdx=slot)
+				self.updateDreamBootSection(self.slotCode, setDefault=True)
 			if self.debugMode:
 				print(f"[MultiBoot] Installing '{startup}' as '{target}'.")
 			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.bootDeviceUnmounted)

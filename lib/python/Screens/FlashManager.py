@@ -700,6 +700,9 @@ class FlashImage(Screen):
 		fbClass.getInstance().unlock()
 		self.containerOFGWrite = None
 		if retVal == 0:
+			slotCode = getattr(self, "slotCode", None)
+			if slotCode and BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):
+				MultiBoot.updateDreamBootSection(slotCode)
 			self["header"].setText(_("Flashing image successful"))
 			self["summary_header"].setText(self["header"].getText())
 			self["info"].setText("%s\n\n%s\n%s" % (self.imageName, _("Press OK for MultiBoot selection."), _("Press EXIT to close.")))
