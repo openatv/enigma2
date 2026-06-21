@@ -32,6 +32,8 @@ class eConsoleAppContainer: public sigc::trackable, public iObject
 	std::vector<char> buffer;
 	int m_nice = -1;
 	int m_ionice = -1;
+	bool m_line_mode = false;
+	int startProcess(const char *cmdline, const char * const argv[]);
 	void readyRead(int what);
 	void readyErrRead(int what);
 	void readyWrite(int what);
@@ -43,6 +45,7 @@ public:
 	void setBufferSize(int size);
 	void setNice(int nice) { m_nice = nice;}
 	void setIONice(int ionice) { m_ionice = ionice;}
+	void setLineMode(bool enable) { m_line_mode = enable; }
 	int execute( const char *str );
 	int execute( const char *cmdline, const char *const argv[] );
 	int getPID() { return pid; }

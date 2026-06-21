@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <vector>
 
 int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char *cwd)
 {
@@ -95,17 +96,31 @@ void eConsoleAppContainer::setBufferSize(int size)
 
 int eConsoleAppContainer::execute( const char *cmd )
 {
-	int argc = 3;
-	const char *argv[argc + 1];
-	argv[0] = "/bin/sh";
-	argv[1] = "-c";
-	argv[2] = cmd;
-	argv[argc] = NULL;
-
-	return execute(argv[0], argv);
+	// setLineMode is intentionally not applied to the shell form: stdbuf
+	// wrapping /bin/sh only affects the shell's own buffering, not the
+	// child process it spawns via -c.
+	const char *argv[] = { "/bin/sh", "-c", cmd, nullptr };
+	return startProcess(argv[0], argv);
 }
 
 int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[])
+{
+	if (m_line_mode && access("/usr/bin/stdbuf", X_OK) == 0)
+	{
+		std::vector<const char *> wrapped;
+		wrapped.push_back("/usr/bin/stdbuf");
+		wrapped.push_back("-oL");
+		wrapped.push_back("-eL");
+		wrapped.push_back(cmdline);
+		for (int i = 0; argv[i]; ++i)
+			wrapped.push_back(argv[i]);
+		wrapped.push_back(nullptr);
+		return startProcess("/usr/bin/stdbuf", (const char * const *)wrapped.data());
+	}
+	return startProcess(cmdline, argv);
+}
+
+int eConsoleAppContainer::startProcess(const char *cmdline, const char * const argv[])
 {
 	if (running())
 		return -1;
