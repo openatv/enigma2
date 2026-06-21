@@ -6,7 +6,7 @@ from shlex import split
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
-from Components.config import config, ConfigInteger, ConfigSelection
+from Components.config import ConfigInteger, ConfigSelection
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
