@@ -3,6 +3,7 @@ from glob import glob
 from hashlib import md5
 from os import listdir, mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join, islink, realpath
+from re import search
 from struct import calcsize, pack, unpack, error
 from tempfile import mkdtemp
 
@@ -97,11 +98,113 @@ class MultiBootClass():
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
 		if exists(DREAM_BOOT_FILE):
-			with open(DREAM_BOOT_FILE, "r") as fd:
-				lines = fd.readlines()
-				for line in lines:
-					if line.startswith("default="):
-						self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
+			runningRoot = None
+			for token in fileReadLine("/proc/cmdline", default="", source=MODULE_NAME).split():
+				if token.startswith("root="):
+					runningRoot = token[5:]
+					break
+			if runningRoot:
+				for slotCode, slot in self.bootSlots.items():
+					if slot.get("device") == runningRoot:
+						self.bootSlot = slotCode
+						break
+			self.syncStartupFileFromBootSlot()
+			self._syncDreamBootDefault()
+
+	def syncStartupFileFromBootSlot(self):
+		# Embedded bootmanager picks the slot without updating /data/STARTUP, so copy STARTUP_<N> over /data/STARTUP here.
+		if not self.bootDevice or not self.bootSlot:
+			return
+		bootSlot = self.bootSlots.get(self.bootSlot)
+		if not bootSlot:
+			return
+		cmdLine = bootSlot.get("cmdline", {}).get(self.bootCode)
+		startupName = bootSlot.get("startupfile", {}).get(self.bootCode)
+		if not cmdLine or not startupName or cmdLine == self.startupCmdLine:
+			return
+		tempDir = mkdtemp(prefix=PREFIX)
+		self.console.ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
+		try:
+			src = join(tempDir, startupName)
+			dst = join(tempDir, STARTUP_FILE)
+			if isfile(src):
+				copyfile(src, dst)
+				self.startupCmdLine = cmdLine
+				print(f"[MultiBoot] Synced '{STARTUP_FILE}' to '{startupName}' to match '/proc/cmdline'.")
+		finally:
+			self.console.ePopen([UMOUNT, UMOUNT, tempDir])
+			rmdir(tempDir)
+
+	def _syncDreamBootDefault(self):
+		# Align /data/bootconfig.txt's default= with the running slot so a plain reboot (no embedded menu) stays in the same slot.
+		if not self.bootSlot:
+			return
+		sectionIdx = self.getDreamBootSectionIndex(self.bootSlot)
+		if sectionIdx is None:
+			return
+		current = None
+		with open(DREAM_BOOT_FILE, "r") as fd:
+			for line in fd:
+				if line.startswith("default="):
+					try:
+						current = int(line.strip().split("=")[1])
+					except (ValueError, IndexError):
+						pass
+					break
+		if current != sectionIdx:
+			self._writeDreamBoot(defaultIdx=sectionIdx)
+
+	def getDreamBootSectionIndex(self, slotCode):
+		# Match by root partition (or 'recovery' for slotCode R) — section order is not fixed.
+		isRecovery = slotCode == "R"
+		targetPart = None
+		if not isRecovery:
+			match = search(r"p(\d+)$", self.bootSlots.get(slotCode, {}).get("device", ""))
+			if not match:
+				return None
+			targetPart = match.group(1)
+		for cur, cmd in self._iterDreamBootSections():
+			if isRecovery:
+				if "recovery" in cmd.lower():
+					return cur
+			else:
+				match = search(r"\b\d+:(\d+)\b", cmd)
+				if match and match.group(1) == targetPart:
+					return cur
+		return None
+
+	def _iterDreamBootSections(self):
+		# Yield (sectionIdx, cmdLine) for each [Section] / cmd= pair in DREAM_BOOT_FILE.
+		if not exists(DREAM_BOOT_FILE):
+			return
+		cur = -1
+		with open(DREAM_BOOT_FILE, "r") as fd:
+			for line in fd:
+				stripped = line.strip()
+				if stripped.startswith("[") and stripped.endswith("]"):
+					cur += 1
+				elif stripped.startswith("cmd=") and cur >= 0:
+					yield cur, stripped
+
+	def _writeDreamBoot(self, defaultIdx=None, sectionUpdates=None):
+		# Rewrite DREAM_BOOT_FILE; optionally set default= and rename [Section] headers via {idx: name}.
+		if not exists(DREAM_BOOT_FILE):
+			return
+		sectionUpdates = sectionUpdates or {}
+		with open(DREAM_BOOT_FILE, "r+") as fd:
+			lines = fd.readlines()
+			fd.seek(0)
+			cur = -1
+			for line in lines:
+				stripped = line.strip()
+				if defaultIdx is not None and line.startswith("default="):
+					line = f"default={defaultIdx}\n"
+				elif stripped.startswith("[") and stripped.endswith("]"):
+					cur += 1
+					if cur in sectionUpdates:
+						line = f"[{sectionUpdates[cur]}]\n"
+				fd.write(line)
+			fd.truncate()
 
 	def loadBootDevice(self):
 		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
@@ -645,23 +748,15 @@ class MultiBootClass():
 				with open(DUAL_BOOT_FILE, "wb") as fd:
 					fd.write(pack("B", int(slot)))
 			if exists(DREAM_BOOT_FILE):
-				if self.slotCode == "R":
-					cmd_count = 0
-					with open(DREAM_BOOT_FILE, "r") as fd:
-						lines = fd.readlines()
-						for line in lines:
-							if line.startswith("cmd="):
-								cmd_count += 1
-					self.slotCode = str(cmd_count)
-				slot = int(self.slotCode) - 1
-				with open(DREAM_BOOT_FILE, "r+") as fd:
-					lines = fd.readlines()
-					fd.seek(0)
-					for line in lines:
-						if line.startswith("default="):
-							line = f"default={slot}\n"
-						fd.write(line)
-					fd.truncate()
+				slot = self.getDreamBootSectionIndex(self.slotCode)
+				if slot is None and self.slotCode.isdecimal():
+					slot = int(self.slotCode) - 1
+				if slot is None and self.slotCode == "R":
+					cmd_count = sum(1 for _ in self._iterDreamBootSections())
+					if cmd_count:
+						slot = cmd_count - 1
+				if slot is not None:
+					self._writeDreamBoot(defaultIdx=slot)
 			if self.debugMode:
 				print(f"[MultiBoot] Installing '{startup}' as '{target}'.")
 			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.bootDeviceUnmounted)
