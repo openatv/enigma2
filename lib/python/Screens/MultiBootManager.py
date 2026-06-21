@@ -6,7 +6,7 @@ from shlex import split
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
-from Components.config import ConfigInteger, ConfigSelection
+from Components.config import config, ConfigInteger, ConfigSelection
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
@@ -18,6 +18,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileReadLines, fileReadLine, fileWriteLine, fileWriteLines
 from Tools.MultiBoot import MultiBoot
 
@@ -54,6 +55,9 @@ class MultiBootManager(Screen):
 		<widget source="key_blue" render="Label" position="460,e-50" size="140,40" backgroundColor="key_blue" font="Regular;20" conditional="key_blue" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
+		<widget source="key_text" render="Label" position="610,e-50" size="140,40" backgroundColor="key_back" font="Regular;20" conditional="key_text" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -68,6 +72,12 @@ class MultiBootManager(Screen):
 		self["key_green"] = StaticText(_("Reboot"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
+		self["key_text"] = StaticText()
+		self.editSlotCode = None
+		self["editActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
+			"showVirtualKeyboard": (self.keyEdit, _("Rename the selected slot"))
+		}, prio=0, description=_("MultiBoot Manager Actions"))
+		self["editActions"].setEnabled(False)
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.cancel, _("Cancel the slot selection and exit")),
 			"close": (self.closeRecursive, _("Cancel the slot selection and exit all menus")),
@@ -104,6 +114,32 @@ class MultiBootManager(Screen):
 
 	def layoutFinished(self):
 		self["slotlist"].enableAutoNavigation(False)
+
+	def keyEdit(self):
+		currentSelected = self["slotlist"].l.getCurrentSelection()
+		if not currentSelected or not currentSelected[0][1]:
+			return
+		slotCode, _bootCode, status, _ubi, _current = currentSelected[0][1]
+		if status not in ("active",) or not slotCode.isdecimal():
+			return
+		editable = currentSelected[0][0].split(": ", 1)[-1].rsplit(" (", 1)[0]
+		idx = editable.rfind("  -  ")
+		if idx >= 0:
+			editable = editable[:idx]
+		self.editSlotCode = slotCode
+		self.session.openWithCallback(self.renameSlotCallback, VirtualKeyBoard, title=_("Rename slot '%s' (leave empty to reset):") % slotCode, text=editable)
+
+	def renameSlotCallback(self, newName):
+		slotCode = self.editSlotCode
+		self.editSlotCode = None
+		if newName is None or slotCode is None:
+			return
+		MultiBoot.renameSlot(slotCode, newName.strip(), self.renameCallback)
+
+	def renameCallback(self, result):
+		if result:
+			print(f"[MultiBootManager] Rename of slot failed, status {result}!")
+		self.getImagesList()
 
 	def getImagesList(self):
 		MultiBoot.getSlotImageList(self.getSlotImageListCallback)
@@ -271,6 +307,12 @@ class MultiBootManager(Screen):
 			self["restoreActions"].setEnabled(False)
 			self["moreSlotActions"].setEnabled(True)
 			self["key_blue"].setText(_("Add more slots"))
+		if status == "active" and slot.isdecimal():
+			self["editActions"].setEnabled(True)
+			self["key_text"].setText(_("Rename"))
+		else:
+			self["editActions"].setEnabled(False)
+			self["key_text"].setText("")
 
 	def keyTop(self):
 		self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveTop)

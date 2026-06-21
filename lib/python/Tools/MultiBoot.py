@@ -11,7 +11,7 @@ from tempfile import mkdtemp
 # used to populate BoxInfo / SystemInfo and will create a boot loop!
 #
 from Components.Console import Console
-from Tools.Directories import SCOPE_CONFIG, copyfile, fileHas, fileReadLine, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, copyfile, fileHas, fileReadLine, fileReadLines, fileWriteLines, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -817,6 +817,49 @@ class MultiBootClass():
 		else:
 			rmdir(self.tempDir)
 			self.callback(0)
+
+	def renameSlot(self, slotCode, newName, callback):
+		# Override the slot's displaydistro/imgversion via <slot>/usr/lib/enigma.conf.
+        # Empty newName drops those keys so the image's own enigma.info takes over again.
+		if not self.bootSlots or slotCode not in self.bootSlots:
+			callback(1)
+			return
+		device = self.bootSlots[slotCode].get("device")
+		if not device:
+			callback(1)
+			return
+		self.slotCode = slotCode
+		self.newName = (newName or "").strip()
+		self.callback = callback
+		self.tempDir = mkdtemp(prefix=PREFIX)
+		opts = ["-t", "ubifs"] if self.bootSlots[slotCode].get("ubi") else []
+		self.console.ePopen([MOUNT, MOUNT] + opts + [device, self.tempDir], self._renameSlotMounted)
+
+	def _renameSlotMounted(self, data, retVal, extraArgs):
+		if retVal:
+			rmdir(self.tempDir)
+			self.callback(2)
+			return
+		rootSubdir = self.bootSlots[self.slotCode].get("rootsubdir") or ""
+		imageDir = join(self.tempDir, rootSubdir) if rootSubdir else self.tempDir
+		confPath = join(imageDir, "usr/lib/enigma.conf")
+		lines = fileReadLines(confPath, default=[], source=MODULE_NAME) or []
+		stripped = [line.rstrip("\n") for line in lines]
+		out = [line for line in stripped if not line.startswith(("displaydistro=", "imgversion="))]
+		if self.newName:
+			parts = self.newName.rsplit(" ", 1)
+			distro, version = (parts[0], parts[1]) if len(parts) > 1 else (parts[0], "")
+			out.append(f"displaydistro='{distro}'")
+			out.append(f"imgversion='{version}'")
+		if out != stripped:
+			fileWriteLines(confPath, out, source=MODULE_NAME)
+		self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self._renameSlotUnmounted)
+
+	def _renameSlotUnmounted(self, data, retVal, extraArgs):
+		rmdir(self.tempDir)
+		if exists(DREAM_BOOT_FILE):
+			self.updateDreamBootSection(self.slotCode)
+		self.callback(0 if not retVal else 3)
 
 	def emptySlot(self, slotCode, callback):
 		self.manageSlot(slotCode, callback, self.hideSlot)
