@@ -2317,7 +2317,11 @@ def readSkin(screen, skin, names, desktop):
 					raise SkinError(f"For source '{widgetSource}' a renderer must be defined with a 'render=' attribute")
 				elif widgetConnection:
 					raise SkinError(f"For connection '{widgetConnection}' a renderer must be defined with a 'render=' attribute")
-			for widgetTemplates in widget.findall("templates"):
+			# Support both <templates><template .../></templates> and bare <template .../>.
+			widgetTemplates = widget.find("templates")
+			if widgetTemplates is None and widget.find("template") is not None:
+				widgetTemplates = widget  # Shorthand, widget itself contains <template> children directly.
+			if widgetTemplates is not None:
 				try:
 					converterClass = my_import(".".join(("Components", "Converter", "XmlMultiContent"))).__dict__.get("XmlMultiContent")
 				except ImportError:
@@ -2336,7 +2340,6 @@ def readSkin(screen, skin, names, desktop):
 					connection = converterClass(args)
 					connection.connect(source)
 				source = connection
-				break  # There can be only one XmlMultiContent converter.
 			for converter in widget.findall("convert"):
 				converterType = converter.get("type")
 				assert converterType, "[Skin] The 'convert' tag needs a 'type' attribute!"
