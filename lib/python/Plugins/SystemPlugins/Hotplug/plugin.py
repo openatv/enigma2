@@ -14,7 +14,7 @@ from Screens.MessageBox import ModalMessageBox
 from Tools.Directories import fileReadLines, fileWriteLines
 from Tools.Conversions import scaleNumber
 
-HOTPLUG_SOCKET = "/tmp/hotplug.socket"
+HOTPLUG_SOCKET = "/var/run/hotplug.socket"
 
 # globals
 hotplugNotifier = []

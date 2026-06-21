@@ -135,7 +135,7 @@ int main(int argc, char* argv[]) {
 	if (mode != 2) {
 		memset(&serv_addr_un, 0, sizeof(serv_addr_un));
 		serv_addr_un.sun_family = AF_LOCAL;
-		strlcpy(serv_addr_un.sun_path, "/tmp/hotplug.socket", sizeof(serv_addr_un.sun_path));
+		strlcpy(serv_addr_un.sun_path, "/var/run/hotplug.socket", sizeof(serv_addr_un.sun_path));
 		sd = socket(AF_LOCAL, SOCK_STREAM, 0);
 	}
 	if (mode == 2 || sd >= 0) {
