@@ -3,6 +3,7 @@ from glob import glob
 from hashlib import md5
 from os import listdir, mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join, islink, realpath
+from re import search
 from struct import calcsize, pack, unpack, error
 from tempfile import mkdtemp
 
@@ -97,11 +98,155 @@ class MultiBootClass():
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
 		if exists(DREAM_BOOT_FILE):
-			with open(DREAM_BOOT_FILE, "r") as fd:
-				lines = fd.readlines()
-				for line in lines:
-					if line.startswith("default="):
-						self.bootSlot = str(int(line.strip().split("=")[1]) + 1)
+			runningRoot = None
+			for token in fileReadLine("/proc/cmdline", default="", source=MODULE_NAME).split():
+				if token.startswith("root="):
+					runningRoot = token[5:]
+					break
+			if runningRoot:
+				for slotCode, slot in self.bootSlots.items():
+					if slot.get("device") == runningRoot:
+						self.bootSlot = slotCode
+						break
+			self.syncStartupFileFromBootSlot()
+			self._syncDreamBootDefault()
+
+	def syncStartupFileFromBootSlot(self):
+		# Embedded bootmanager picks the slot without updating /data/STARTUP, so copy STARTUP_<N> over /data/STARTUP here.
+		if not self.bootDevice or not self.bootSlot:
+			return
+		bootSlot = self.bootSlots.get(self.bootSlot)
+		if not bootSlot:
+			return
+		cmdLine = bootSlot.get("cmdline", {}).get(self.bootCode)
+		startupName = bootSlot.get("startupfile", {}).get(self.bootCode)
+		if not cmdLine or not startupName or cmdLine == self.startupCmdLine:
+			return
+		tempDir = mkdtemp(prefix=PREFIX)
+		self.console.ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
+		try:
+			src = join(tempDir, startupName)
+			dst = join(tempDir, STARTUP_FILE)
+			if isfile(src):
+				copyfile(src, dst)
+				self.startupCmdLine = cmdLine
+				print(f"[MultiBoot] Synced '{STARTUP_FILE}' to '{startupName}' to match '/proc/cmdline'.")
+		finally:
+			self.console.ePopen([UMOUNT, UMOUNT, tempDir])
+			rmdir(tempDir)
+
+	def _syncDreamBootDefault(self):
+		# Align /data/bootconfig.txt's default= with the running slot so a plain reboot (no embedded menu) stays in the same slot.
+		if not self.bootSlot:
+			return
+		sectionIdx = self.getDreamBootSectionIndex(self.bootSlot)
+		if sectionIdx is None:
+			return
+		current = None
+		with open(DREAM_BOOT_FILE, "r") as fd:
+			for line in fd:
+				if line.startswith("default="):
+					try:
+						current = int(line.strip().split("=")[1])
+					except (ValueError, IndexError):
+						pass
+					break
+		if current != sectionIdx:
+			self._writeDreamBoot(defaultIdx=sectionIdx)
+
+	def getDreamBootSectionName(self, slotCode):
+		# Build the "<displaydistro> <imgversion> (<compiledate>)" string for the bootmanager menu.
+		slot = self.bootSlots.get(slotCode) if slotCode else None
+		if not slot:
+			return None
+		device = slot.get("device")
+		if not device or slotCode in ("R", "A", "L", "F"):
+			return None
+		rootSubdir = slot.get("rootsubdir") or ""
+		tempDir = mkdtemp(prefix=PREFIX)
+		name = None
+		opts = ["-t", "ubifs"] if slot.get("ubi") else []
+		self.console.ePopen([MOUNT, MOUNT] + opts + [device, tempDir])
+		try:
+			imageDir = join(tempDir, rootSubdir) if rootSubdir else tempDir
+			for fname in ("usr/lib/enigma.info", "usr/lib/enigma.conf"):
+				path = join(imageDir, fname)
+				if isfile(path):
+					name = self._formatSlotName(self.readSlotInfo(path))
+					if name:
+						break
+		finally:
+			self.console.ePopen([UMOUNT, UMOUNT, tempDir])
+			rmdir(tempDir)
+		return name
+
+	def updateDreamBootSection(self, slotCode, setDefault=False):
+		# Refresh the [Section] header for slotCode in DREAM_BOOT_FILE, optionally also flipping default= to it.
+		sectionIdx = self.getDreamBootSectionIndex(slotCode)
+		if sectionIdx is None and setDefault:
+			if slotCode.isdecimal():
+				sectionIdx = int(slotCode) - 1
+			elif slotCode == "R":
+				cmd_count = sum(1 for _ in self._iterDreamBootSections())
+				if cmd_count:
+					sectionIdx = cmd_count - 1
+		if sectionIdx is None:
+			return
+		sectionName = self.getDreamBootSectionName(slotCode)
+		sectionUpdates = {sectionIdx: sectionName} if sectionName else None
+		self._writeDreamBoot(defaultIdx=sectionIdx if setDefault else None, sectionUpdates=sectionUpdates)
+
+	def getDreamBootSectionIndex(self, slotCode):
+		# Match by root partition (or 'recovery' for slotCode R) — section order is not fixed.
+		isRecovery = slotCode == "R"
+		targetPart = None
+		if not isRecovery:
+			match = search(r"p(\d+)$", self.bootSlots.get(slotCode, {}).get("device", ""))
+			if not match:
+				return None
+			targetPart = match.group(1)
+		for cur, cmd in self._iterDreamBootSections():
+			if isRecovery:
+				if "recovery" in cmd.lower():
+					return cur
+			else:
+				match = search(r"\b\d+:(\d+)\b", cmd)
+				if match and match.group(1) == targetPart:
+					return cur
+		return None
+
+	def _iterDreamBootSections(self):
+		# Yield (sectionIdx, cmdLine) for each [Section] / cmd= pair in DREAM_BOOT_FILE.
+		if not exists(DREAM_BOOT_FILE):
+			return
+		cur = -1
+		with open(DREAM_BOOT_FILE, "r") as fd:
+			for line in fd:
+				stripped = line.strip()
+				if stripped.startswith("[") and stripped.endswith("]"):
+					cur += 1
+				elif stripped.startswith("cmd=") and cur >= 0:
+					yield cur, stripped
+
+	def _writeDreamBoot(self, defaultIdx=None, sectionUpdates=None):
+		# Rewrite DREAM_BOOT_FILE; optionally set default= and rename [Section] headers via {idx: name}.
+		if not exists(DREAM_BOOT_FILE):
+			return
+		sectionUpdates = sectionUpdates or {}
+		with open(DREAM_BOOT_FILE, "r+") as fd:
+			lines = fd.readlines()
+			fd.seek(0)
+			cur = -1
+			for line in lines:
+				stripped = line.strip()
+				if defaultIdx is not None and line.startswith("default="):
+					line = f"default={defaultIdx}\n"
+				elif stripped.startswith("[") and stripped.endswith("]"):
+					cur += 1
+					if cur in sectionUpdates:
+						line = f"[{sectionUpdates[cur]}]\n"
+				fd.write(line)
+			fd.truncate()
 
 	def loadBootDevice(self):
 		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
@@ -439,15 +584,10 @@ class MultiBootClass():
 			infoFile = join(imageDir, "usr/lib/enigma.info")
 			versionFile = join(imageDir, "etc/image-version")
 			if isfile(infoFile):
-				info = self.readSlotInfo(infoFile)
-				compileDate = str(info.get("compiledate"))
-				revision = info.get("imgrevision")
-				revision = f".{revision:03d}" if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
-				revision = "" if revision.strip() == compileDate else revision
-				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
+				name = self._formatSlotName(self.readSlotInfo(infoFile))
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
-				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
-				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
+				self.imageList[self.slotCode]["imagename"] = name
+				self.imageList[self.slotCode]["imagelogname"] = name
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(versionFile):
 				info = self.readSlotInfo(versionFile)
@@ -488,6 +628,26 @@ class MultiBootClass():
 			print(f"[MultiBoot] finishSlot Error {retVal}: Unable to unmount slot '{self.slotCode}' (self.device)!")
 		else:
 			self.findSlot()
+
+	def _formatSlotName(self, info):
+		# Format the slot name "<displaydistro> <imgversion>[<revision>] (<compiledate>)" — single source for the UI and the bootmanager menu header.
+		distro = info.get("displaydistro") or info.get("distro")
+		if not distro:
+			return None
+		compileDate = str(info.get("compiledate", ""))
+		revision = info.get("imgrevision")
+		if revision is not None:
+			revision = f".{revision:03d}" if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
+			revision = "" if revision.strip() == compileDate else revision
+		else:
+			revision = ""
+		if len(compileDate) == 8 and compileDate.isdigit():
+			compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
+		else:
+			compileDate = ""
+		version = info.get("imgversion") or ""
+		base = f"{distro} {version}{revision}".rstrip()
+		return f"{base} ({compileDate})" if compileDate else base
 
 	def readSlotInfo(self, path):  # Part of analyzeSlot() within getSlotImageList().
 		info = {}
@@ -645,23 +805,7 @@ class MultiBootClass():
 				with open(DUAL_BOOT_FILE, "wb") as fd:
 					fd.write(pack("B", int(slot)))
 			if exists(DREAM_BOOT_FILE):
-				if self.slotCode == "R":
-					cmd_count = 0
-					with open(DREAM_BOOT_FILE, "r") as fd:
-						lines = fd.readlines()
-						for line in lines:
-							if line.startswith("cmd="):
-								cmd_count += 1
-					self.slotCode = str(cmd_count)
-				slot = int(self.slotCode) - 1
-				with open(DREAM_BOOT_FILE, "r+") as fd:
-					lines = fd.readlines()
-					fd.seek(0)
-					for line in lines:
-						if line.startswith("default="):
-							line = f"default={slot}\n"
-						fd.write(line)
-					fd.truncate()
+				self.updateDreamBootSection(self.slotCode, setDefault=True)
 			if self.debugMode:
 				print(f"[MultiBoot] Installing '{startup}' as '{target}'.")
 			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.bootDeviceUnmounted)
