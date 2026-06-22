@@ -284,7 +284,7 @@ public:
 		subtype_t type;
 		std::string language_code; /* iso-639, if available. */
 		std::string title;
-		subtitleStream() : pad(0), type(atUnknown) {}
+		subtitleStream() : pad(0), type(stUnknown) {}
 
 
 		bool operator==(const subtitleStream& rhs) const { return type == rhs.type && language_code == rhs.language_code && title == rhs.title; }
