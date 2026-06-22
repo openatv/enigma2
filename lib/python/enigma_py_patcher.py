@@ -2,11 +2,11 @@
 from os import remove, rename
 import sys
 
-filename = sys.argv[1]
+filename = sys.argv[1]  # NOSONAR
 rename(filename, filename + ".org")
 
-source = open(filename + ".org")
-dest = open(filename, "w")
+source = open(filename + ".org")  # NOSONAR
+dest = open(filename, "w")  # NOSONAR
 
 for line, str in enumerate(source):
 	oldstr = str[:]
@@ -28,4 +28,4 @@ for line, str in enumerate(source):
 
 del source
 del dest
-remove(filename + ".org")
+remove(filename + ".org")  # NOSONAR

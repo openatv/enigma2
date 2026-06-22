@@ -182,7 +182,7 @@ bool ePMTClient::processServerInfoPacket()
 	int read;
 
 	if (receivedData == nullptr)
-		receivedData = new unsigned char[260]; // max 256 byte info + 2 bytes protocol version + 1 byte info len + 1 NULL byte
+		receivedData = new unsigned char[260]{}; // max 256 byte info + 2 bytes protocol version + 1 byte info len + 1 NULL byte
 
 	if (readDataLength < fixDataLength)
 	{

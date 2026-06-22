@@ -1420,6 +1420,8 @@ void nsvgRasterizeFull(NSVGrasterizer* r,
 		if (r->scanline == nullptr) return;
 	}
 
+	if (stride <= 0) return;
+
 	for (i = 0; i < h; i++)
 		memset(&dst[i*stride], 0, w*4);
 
