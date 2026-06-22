@@ -609,6 +609,17 @@ class GPTSlotManager(Setup):
 		except Exception:
 			return 0
 
+	def emmcSlotCount(self):
+		count = 0
+		try:
+			for entry in listdir("/dev/disk/by-partlabel"):
+				if entry == "dreambox-rootfs" or (entry.startswith("dreambox-rootfs") and entry[len("dreambox-rootfs"):].isdigit()):
+					if realpath(join("/dev/disk/by-partlabel", entry)).startswith("/dev/mmcblk0p"):
+						count += 1
+		except OSError:
+			pass
+		return count if count > 0 else 4
+
 	def layoutFinished(self):
 		Setup.layoutFinished(self)
 		self.readDevices()
@@ -647,17 +658,19 @@ class GPTSlotManager(Setup):
 
 		def createStartupFiles():
 			numSlots = self.GPTSlotManagerSlots.value
+			offset = self.emmcSlotCount() + 1
 			for i in range(numSlots):
 				content = f"root=/dev/mmcblk1p{i + 2} rootfstype=ext4 kernel=/kernel{i + 2}.img\n"
-				path = join("/data", f"STARTUP_{i + 5}")
+				path = join("/data", f"STARTUP_{i + offset}")
 				if not exists(path):
 					fileWriteLine(path, content, source=MODULE_NAME)
 
 		def update_bootconfig():
 			numSlots = self.GPTSlotManagerSlots.value
+			offset = self.emmcSlotCount() + 1
 			bootInfo = []
 			for i in range(numSlots):
-				bootInfo.append(f"[SDcard Slot {i + 5}]")
+				bootInfo.append(f"[SDcard Slot {i + offset}]")
 				bootInfo.append(f"cmd=fatload mmc 0:1 1080000 /kernel{i + 2}.img;bootm;")
 				bootInfo.append("arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4")
 
