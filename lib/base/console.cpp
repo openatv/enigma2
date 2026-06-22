@@ -112,7 +112,7 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 		wrapped.push_back("-oL");
 		wrapped.push_back("-eL");
 		wrapped.push_back(cmdline);
-		for (int i = 0; argv[i]; ++i)
+		for (int i = 1; argv[i]; ++i)
 			wrapped.push_back(argv[i]);
 		wrapped.push_back(nullptr);
 		return startProcess("/usr/bin/stdbuf", (const char * const *)wrapped.data());
