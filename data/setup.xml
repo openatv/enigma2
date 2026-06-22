@@ -461,8 +461,7 @@
 				<item level="0" text="Even if a 'Wakeup' scheduled task starting?" description="Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="TV input and receiver wakeup"></item>
-			<item level="0" text="Switch TV to correct input" description="When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver.">config.hdmicec.report_active_source</item>
-			<item level="0" text="Force TV input to this receiver" description="When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver." conditional="config.hdmicec.report_active_source.value">config.hdmicec.force_tv_input</item>
+			<item level="0" text="Switch TV to correct input" description="When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver.">config.hdmicec.report_active_source</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wake up from TV" description="When enabled, the receiver will automatically wake from Standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle Standby from TV" description="When enabled, the receiver will automatically return to Standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>

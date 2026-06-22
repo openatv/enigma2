@@ -17,7 +17,7 @@ config.hdmicec.enabled = ConfigYesNo(default=False)  # Query from this value in 
 config.hdmicec.control_tv_standby = ConfigYesNo(default=True)
 config.hdmicec.control_tv_wakeup = ConfigYesNo(default=True)
 config.hdmicec.report_active_source = ConfigYesNo(default=True)
-config.hdmicec.force_tv_input = ConfigYesNo(default=False)
+config.hdmicec.force_tv_input = ConfigYesNo(default=True)
 config.hdmicec.report_active_menu = ConfigYesNo(default=True)  # Query from this value in hdmi_cec.cpp
 choicelist = [
 	("disabled", _("Disabled")),
@@ -37,9 +37,9 @@ config.hdmicec.handle_tv_wakeup = ConfigSelection(default="streamrequest", choic
 	"activity": _("Any activity"),
 })
 config.hdmicec.fixed_physical_address = ConfigText(default="0.0.0.0")
-config.hdmicec.volume_forwarding = ConfigYesNo(default=False)
-config.hdmicec.control_receiver_wakeup = ConfigYesNo(default=False)
-config.hdmicec.control_receiver_standby = ConfigYesNo(default=False)
+config.hdmicec.volume_forwarding = ConfigYesNo(default=True)
+config.hdmicec.control_receiver_wakeup = ConfigYesNo(default=True)
+config.hdmicec.control_receiver_standby = ConfigYesNo(default=True)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default=True)
 config.hdmicec.preemphasis = ConfigYesNo(default=False)
 choicelist = []
@@ -73,7 +73,7 @@ choicelist = []
 for i in (5, 10, 15, 30, 45, 60):
 	choicelist.append((i, _("%d sec") % i))
 config.hdmicec.workaround_turnbackon = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + choicelist)
-config.hdmicec.advanced_settings = ConfigYesNo(default=False)
+config.hdmicec.advanced_settings = ConfigYesNo(default=True)
 config.hdmicec.default_settings = NoSave(ConfigYesNo(default=False))
 config.hdmicec.debug = ConfigYesNo(default=False)
 config.hdmicec.commandline = ConfigYesNo(default=False)
@@ -1200,11 +1200,9 @@ class HdmiCec:
 				if config.hdmicec.control_tv_wakeup.value:
 					self.messages.append((0, "wakeup"))
 				if config.hdmicec.report_active_source.value:
-					if config.hdmicec.force_tv_input.value:
-						self.messages.append((0, "setstreampath"))
+					self.messages.append((0, "setstreampath"))
 					self.messages.append((0, "sourceactive"))
-					if config.hdmicec.force_tv_input.value:
-						self.messages.append((0, "routinginfo"))
+					self.messages.append((0, "routinginfo"))
 				if config.hdmicec.report_active_menu.value:
 					if not config.hdmicec.report_active_source.value and self.activesource:
 						self.messages.append((0, "sourceactive"))
@@ -1285,11 +1283,9 @@ class HdmiCec:
 		if "source" in state:
 			self.tv_powerstate = "on"
 			if state == "activesource" and self.what == "on" and config.hdmicec.report_active_source.value and not self.activesource and not self.firstrun:  # last try for switch to correct input
-				if config.hdmicec.force_tv_input.value:
-					self.sendMessage(0, "setstreampath")
+				self.sendMessage(0, "setstreampath")
 				self.sendMessage(0, "sourceactive")
-				if need_routinginfo or config.hdmicec.check_tv_state.value or config.hdmicec.force_tv_input.value:
-					self.sendMessage(0, "routinginfo")
+				self.sendMessage(0, "routinginfo")
 			if self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
 				self.firstrun = False
 		elif state == "tvstandby":
