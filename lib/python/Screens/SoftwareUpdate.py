@@ -454,7 +454,7 @@ class RunSoftwareUpdate(Screen):
 			if self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
 				self.packageTotal = len(self.opkg.getFetchedList())
 				if self.packageTotal:
-					self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"testMode": False})
+					self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"testMode": False, "lineMode": True})
 				else:
 					self.activity = -1
 					self["update"].appendText(f"{_("No updates available.")}\n\n{_("Press OK on your remote control to continue.")}")
