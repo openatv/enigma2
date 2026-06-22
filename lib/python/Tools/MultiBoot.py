@@ -110,6 +110,8 @@ class MultiBootClass():
 						break
 			self.syncStartupFileFromBootSlot()
 			self._syncDreamBootDefault()
+			if self.bootSlot:
+				self.updateDreamBootSection(self.bootSlot)
 
 	def syncStartupFileFromBootSlot(self):
 		# Embedded bootmanager picks the slot without updating /data/STARTUP, so copy STARTUP_<N> over /data/STARTUP here.
@@ -233,20 +235,21 @@ class MultiBootClass():
 		if not exists(DREAM_BOOT_FILE):
 			return
 		sectionUpdates = sectionUpdates or {}
-		with open(DREAM_BOOT_FILE, "r+") as fd:
+		with open(DREAM_BOOT_FILE, "r") as fd:
 			lines = fd.readlines()
-			fd.seek(0)
-			cur = -1
-			for line in lines:
-				stripped = line.strip()
-				if defaultIdx is not None and line.startswith("default="):
-					line = f"default={defaultIdx}\n"
-				elif stripped.startswith("[") and stripped.endswith("]"):
-					cur += 1
-					if cur in sectionUpdates:
-						line = f"[{sectionUpdates[cur]}]\n"
-				fd.write(line)
-			fd.truncate()
+		out, cur = [], -1
+		for line in lines:
+			stripped = line.strip()
+			if defaultIdx is not None and line.startswith("default="):
+				line = f"default={defaultIdx}\n"
+			elif stripped.startswith("[") and stripped.endswith("]"):
+				cur += 1
+				if cur in sectionUpdates:
+					line = f"[{sectionUpdates[cur]}]\n"
+			out.append(line)
+		if out != lines:
+			with open(DREAM_BOOT_FILE, "w") as fd:
+				fd.writelines(out)
 
 	def loadBootDevice(self):
 		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
