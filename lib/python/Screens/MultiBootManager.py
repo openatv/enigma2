@@ -73,273 +73,282 @@ class MultiBootManager(Screen):
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["key_text"] = StaticText()
-		self.editSlotCode = None
-		self["editActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
-			"showVirtualKeyboard": (self.keyEdit, _("Rename the highlighted slot"))
-		}, prio=0, description=_("MultiBoot Manager Actions"))
-		self["editActions"].setEnabled(False)
+		actionDescription = _("MultiBoot Manager Actions")
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
-			"cancel": (self.cancel, _("Cancel the slot selection and exit")),
-			"close": (self.closeRecursive, _("Cancel the slot selection and exit all menus")),
+			"cancel": (self.keyCancel, _("Cancel the slot selection and exit")),
+			"close": (self.keyCloseRecursive, _("Cancel the slot selection and exit all menus")),
 			"top": (self.keyTop, _("Move to first line / screen")),
-			# "pageUp": (self.keyTop, _("Move up a screen")),
+			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			# "left": (self.keyUp, _("Move up a line")),
 			# "right": (self.keyDown, _("Move down a line")),
 			"down": (self.keyDown, _("Move down a line")),
-			# "pageDown": (self.keyBottom, _("Move down a screen")),
+			"pageDown": (self.keyPageDown, _("Move down a screen")),
 			"bottom": (self.keyBottom, _("Move to last line / screen"))
-		}, prio=0, description=_("MultiBoot Manager Actions"))
+		}, prio=0, description=actionDescription)
 		self["restartActions"] = HelpableActionMap(self, ["OkSaveActions"], {
-			"save": (self.reboot, _("Select the highlighted slot and reboot")),
-			"ok": (self.reboot, _("Select the highlighted slot and reboot")),
-		}, prio=0, description=_("MultiBoot Manager Actions"))
+			"save": (self.keyReboot, _("Select the highlighted slot and reboot")),
+			"ok": (self.keyReboot, _("Select the highlighted slot and reboot")),
+		}, prio=0, description=actionDescription)
 		self["restartActions"].setEnabled(False)
-		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.deleteImage, _("Empty or Wipe the highlighted slot"))
-		}, prio=0, description=_("MultiBoot Manager Actions"))
-		self["deleteActions"].setEnabled(False)
+		self["emptyActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.keyEmptySlot, _("Empty or Wipe the highlighted slot"))
+		}, prio=0, description=actionDescription)
+		self["emptyActions"].setEnabled(False)
 		self["restoreActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.restoreImage, _("Restore the highlighted slot"))
-		}, prio=0, description=_("MultiBoot Manager Actions"))
+			"blue": (self.keyRestoreSlot, _("Restore the highlighted slot"))
+		}, prio=0, description=actionDescription)
 		self["restoreActions"].setEnabled(False)
+		self["renameActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
+			"showVirtualKeyboard": (self.keyRenameSlot, _("Rename the highlighted slot"))
+		}, prio=0, description=actionDescription)
+		self["renameActions"].setEnabled(False)
 		if (BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot")) and not BoxInfo.getItem("hasUBIMB"):
-			self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
-				"blue": (self.moreSlots, _("Add slots"))
-			}, prio=0, description=_("MultiBoot Manager Actions"))
-			self["moreSlotActions"].setEnabled(False)
+			self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
+				"blue": (self.keyAddSlots, _("Add more slots"))
+			}, prio=0, description=actionDescription)
+			self["addActions"].setEnabled(False)
+		self.editSlotCode = None
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
-		self.callLater(self.getImagesList)
+		self.callLater(self.getSlotList)
 
 	def layoutFinished(self):
 		self["slotlist"].enableAutoNavigation(False)
 
-	def keyEdit(self):
-		currentSelected = self["slotlist"].l.getCurrentSelection()
-		if not currentSelected or not currentSelected[0][1]:
-			return
-		slotCode, _bootCode, status, _ubi, _current = currentSelected[0][1]
-		if status not in ("active",) or not slotCode.isdecimal():
-			return
-		editable = currentSelected[0][0].split(": ", 1)[-1].rsplit(" (", 1)[0]
-		idx = editable.rfind("  -  ")
-		if idx >= 0:
-			editable = editable[:idx]
-		self.editSlotCode = slotCode
-		self.session.openWithCallback(self.renameSlotCallback, VirtualKeyBoard, title=_("Rename slot '%s' (leave empty to reset):") % slotCode, text=editable)
-
-	def renameSlotCallback(self, newName):
-		slotCode = self.editSlotCode
-		self.editSlotCode = None
-		if newName is None or slotCode is None:
-			return
-		MultiBoot.renameSlot(slotCode, newName.strip(), self.renameCallback)
-
-	def renameCallback(self, result):
-		if result:
-			print(f"[MultiBootManager] Rename of slot failed, status {result}!")
-		self.getImagesList()
-
-	def getImagesList(self):
-		MultiBoot.getSlotImageList(self.getSlotImageListCallback)
-
-	def getSlotImageListCallback(self, slotImages):
-		imageList = []
-		if slotImages:
-			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
-			slotImageList = sorted(slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))  # noqa E731
-			currentMsg = "  -  %s" % _("Current")
-			slotMsg = _("Slot '%s' %s: %s%s")
-			imageLists = {}
-			for slot in slotImageList:
-				for boot in slotImages[slot]["bootCodes"]:
-					if imageLists.get(boot) is None:
-						imageLists[boot] = []
-					current = currentMsg if boot == bootCode and slot == slotCode else ""
-					device = slotImages[slot]["device"]
-					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
-					imageLists[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotImages[slot]["imagename"], current), (slot, boot, slotImages[slot]["status"], slotImages[slot]["ubi"], current != ""))))
-			for bootCode in sorted(imageLists.keys()):
-				if bootCode == "":
-					continue
-				imageList.append(ChoiceEntryComponent("", (MultiBoot.getBootCodeDescription(bootCode), None)))
-				imageList.extend(imageLists[bootCode])
-			if "" in imageLists:
-				imageList.extend(imageLists[""])
-			if self.initialize:
-				self.initialize = False
-				for index, item in enumerate(imageList):
-					if item[0][1] and item[0][1][4]:
-						break
+	def getSlotList(self):
+		def getSlotListCallback(slotList):
+			slots = []
+			if slotList:
+				slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
+				activeMsg = "  -  %s" % _("Active")
+				slotMsg = _("Slot '%s' %s: %s%s")
+				slotData = {}
+				for slot in sorted(slotList.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x)):
+					for boot in slotList[slot]["bootCodes"]:
+						if slotData.get(boot) is None:
+							slotData[boot] = []
+						active = activeMsg if boot == bootCode and slot == slotCode else ""
+						device = slotList[slot]["device"]
+						slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
+						slotData[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotList[slot]["imagename"], active), (slot, boot, slotList[slot]["status"], slotList[slot]["ubi"], active != ""))))
+				for bootCode in sorted(slotData.keys()):
+					if bootCode == "":
+						continue
+					slots.append(ChoiceEntryComponent("", (MultiBoot.getBootCodeDescription(bootCode), None)))
+					slots.extend(slotData[bootCode])
+				if "" in slotData:
+					slots.extend(slotData[""])
+				if self.initialize:
+					self.initialize = False
+					for index, item in enumerate(slots):
+						if item[0][1] and item[0][1][4]:
+							break
+				else:
+					index = self["slotlist"].getSelectedIndex()
 			else:
-				index = self["slotlist"].getSelectedIndex()
-		else:
-			imageList.append(ChoiceEntryComponent("", (_("No slot images found"), "Void")))
-			index = 0
-		self["slotlist"].setList(imageList)
-		self["slotlist"].moveToIndex(index)
-		self.selectionChanged()
+				slots.append(ChoiceEntryComponent("", (_("No slot images found"), "Void")))
+				index = 0
+			self["slotlist"].setList(slots)
+			self["slotlist"].moveToIndex(index)
+			self.selectionChanged()
 
-	def cancel(self):
-		self.close()
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def deleteImage(self):
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		slot = currentSelected[1][0]
-		current = currentSelected[1][4]
-		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
-			self.session.openWithCallback(self.disableChkrootAnswer, MessageBox, _("Disable Chkroot Multiboot?"), simple=True, windowTitle=self.getTitle())
-		else:
-			self.session.openWithCallback(self.deleteImageAnswer, MessageBox, "%s\n\n%s" % (self["slotlist"].l.getCurrentSelection()[0][0], _("Are you sure you want to delete this image?")), simple=True, windowTitle=self.getTitle())
-
-	def deleteImageAnswer(self, answer):
-		if answer:
-			currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-			MultiBoot.emptySlot(currentSelected[1][0], self.deleteImageCallback)
-
-	def deleteImageCallback(self, result):
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		if result:
-			print(f"[MultiBootManager] {currentSelected[0]} deletion was not completely successful, status {result}!")
-		else:
-			print(f"[MultiBootManager] {currentSelected[0]} marked as deleted.")
-		self.getImagesList()
-
-	def disableChkrootAnswer(self, answer):
-		if answer:
-			MultiBoot.wipeChkroot(self.disableChkrootCallback)
-
-	def disableChkrootCallback(self, result):
-		if result not in (0, 1):
-			print("[MultiBootManager] disable was not completely successful, status %d!" % result)
-			self.session.open(MessageBox, _("Disabling Chkroot failed!"), MessageBox.TYPE_ERROR, timeout=5)
-		else:
-			self.session.open(TryQuitMainloop, QUIT_REBOOT)
-
-	def moreSlots(self):
-		if BoxInfo.getItem("HasGPT"):
-			self.session.open(GPTSlotManager)
-		elif BoxInfo.getItem("HasChkrootMultiboot") and not BoxInfo.getItem("hasUBIMB"):
-			self.session.open(ChkrootSlotManager)
-		else:
-			self.session.open(KexecSlotManager)
-
-	def restoreImage(self):
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		MultiBoot.restoreSlot(currentSelected[1][0], self.restoreImageCallback)
-
-	def restoreImageCallback(self, result):
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		if result:
-			print(f"[MultiBootManager] {currentSelected[0]} restoration was not completely successful, status {result}!")
-		else:
-			print(f"[MultiBootManager] {currentSelected[0]} restored.")
-		self.getImagesList()
-
-	def reboot(self):
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		MultiBoot.activateSlot(currentSelected[1][0], currentSelected[1][1], self.rebootCallback)
-
-	def rebootCallback(self, result):
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		if result:
-			print(f"[MultiBootManager] {currentSelected[0]} activation was not completely successful, status {result}!")
-		else:
-			print(f"[MultiBootManager] {currentSelected[0]} activated.")
-			self.session.open(TryQuitMainloop, QUIT_REBOOT)
+		MultiBoot.getSlotImageList(getSlotListCallback)
 
 	def selectionChanged(self):
 		slotCode = MultiBoot.getCurrentSlotCode()
-		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
-		slot = currentSelected[1][0]
-		status = currentSelected[1][2]
-		ubi = currentSelected[1][3]
-		current = currentSelected[1][4]
-		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
+		current = self["slotlist"].getCurrent()[0]
+		slot = current[1][0]
+		status = current[1][2]
+		ubi = current[1][3]
+		active = current[1][4]
+		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and active and not BoxInfo.getItem("hasUBIMB"):
 			self["description"].setText(_("Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."))
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText(_("Disable"))
 			self["key_blue"].setText(_("Add slots"))
 			self["restartActions"].setEnabled(True)
-			self["deleteActions"].setEnabled(True)
+			self["emptyActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
-			self["moreSlotActions"].setEnabled(True)
+			self["addActions"].setEnabled(True)
 		elif slot == slotCode or status in ("android", "androidlinuxse", "recovery"):
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText("")
 			self["key_blue"].setText("")
 			self["restartActions"].setEnabled(True)
-			self["deleteActions"].setEnabled(False)
+			self["emptyActions"].setEnabled(False)
 			self["restoreActions"].setEnabled(False)
-		elif status == "unknown":
-			self["key_green"].setText("")
-			self["key_yellow"].setText("")
-			self["key_blue"].setText("")
-			self["restartActions"].setEnabled(False)
-			self["deleteActions"].setEnabled(False)
-			self["restoreActions"].setEnabled(False)
-		elif status == "empty":
+		elif status == "hidden":
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
 			self["key_blue"].setText(_("Restore"))
 			self["restartActions"].setEnabled(False)
-			self["deleteActions"].setEnabled(False)
+			self["emptyActions"].setEnabled(False)
 			self["restoreActions"].setEnabled(True)
+		elif status in ("empty", "unknown"):
+			self["key_green"].setText("")
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self["restartActions"].setEnabled(False)
+			self["emptyActions"].setEnabled(False)
+			self["restoreActions"].setEnabled(False)
 		elif ubi:
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText(_("Wipe"))
 			self["key_blue"].setText("")
 			self["restartActions"].setEnabled(True)
-			self["deleteActions"].setEnabled(True)
+			self["emptyActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
 		else:
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText(_("Delete"))
 			self["key_blue"].setText("")
 			self["restartActions"].setEnabled(True)
-			self["deleteActions"].setEnabled(True)
+			self["emptyActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
 		if (BoxInfo.getItem("HasKexecMultiboot") and slotCode == "R") or BoxInfo.getItem("HasGPT"):
-			if status == "empty":
-				self["moreSlotActions"].setEnabled(False)
+			if status == "hidden":
+				self["addActions"].setEnabled(False)
 			else:
 				self["restoreActions"].setEnabled(False)
-				self["moreSlotActions"].setEnabled(True)
+				self["addActions"].setEnabled(True)
 				self["key_blue"].setText(_("Add slots"))
 		if status == "active" and slot.isdecimal():
-			self["editActions"].setEnabled(True)
+			self["renameActions"].setEnabled(True)
 			self["key_text"].setText("TEXT")
 		else:
-			self["editActions"].setEnabled(False)
+			self["renameActions"].setEnabled(False)
 			self["key_text"].setText("")
+
+	def keyCancel(self):
+		self.close()
+
+	def keyCloseRecursive(self):
+		self.close(True)
 
 	def keyTop(self):
 		self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveTop)
-		while self["slotlist"].l.getCurrentSelection()[0][1] is None:
+		while self["slotlist"].getCurrent()[0][1] is None:
+			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveDown)
+		self.selectionChanged()
+
+	def keyPageUp(self):
+		self["slotlist"].instance.moveSelection(self["slotlist"].instance.movePageUp)
+		while self["slotlist"].getCurrent()[0][1] is None:
 			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveDown)
 		self.selectionChanged()
 
 	def keyUp(self):
 		self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveUp)
-		while self["slotlist"].l.getCurrentSelection()[0][1] is None:
+		while self["slotlist"].getCurrent()[0][1] is None:
 			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveUp)
 		self.selectionChanged()
 
 	def keyDown(self):
 		self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveDown)
-		while self["slotlist"].l.getCurrentSelection()[0][1] is None:
+		while self["slotlist"].getCurrent()[0][1] is None:
+			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveDown)
+		self.selectionChanged()
+
+	def keyPageDown(self):
+		self["slotlist"].instance.moveSelection(self["slotlist"].instance.movePageDown)
+		while self["slotlist"].getCurrent()[0][1] is None:
 			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveDown)
 		self.selectionChanged()
 
 	def keyBottom(self):
 		self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveEnd)
-		while self["slotlist"].l.getCurrentSelection()[0][1] is None:
-			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveUp)
+		while self["slotlist"].getCurrent()[0][1] is None:
+			self["slotlist"].instance.moveSelection(self["slotlist"].instance.moveDown)
 		self.selectionChanged()
+
+	def keyReboot(self):
+		def rebootCallback(result):
+			current = self["slotlist"].getCurrent()[0]
+			if result:
+				print(f"[MultiBootManager] {current[0]} activation was not completely successful, status {result}!")
+			else:
+				print(f"[MultiBootManager] {current[0]} activated.")
+				self.session.open(TryQuitMainloop, QUIT_REBOOT)
+
+		current = self["slotlist"].getCurrent()[0]
+		MultiBoot.activateSlot(current[1][0], current[1][1], rebootCallback)
+
+	def keyEmptySlot(self):
+		def keyDisableChkrootCallback(answer):
+			def disableChkrootCallback(result):
+				if result not in (0, 1):
+					print(f"[MultiBootManager] Disable was not completely successful, status {result}!")
+					self.session.open(MessageBox, _("Disabling Chkroot failed!"), MessageBox.TYPE_ERROR, timeout=5)
+				else:
+					self.session.open(TryQuitMainloop, QUIT_REBOOT)
+
+			if answer:
+				MultiBoot.wipeChkroot(disableChkrootCallback)
+
+		def keyEmptySlotCallback(answer):
+			def emptySlotCallback(result):
+				current = self["slotlist"].getCurrent()[0]
+				if result:
+					print(f"[MultiBootManager] {current[0]} deletion was not completely successful, status {result}!")
+				else:
+					print(f"[MultiBootManager] {current[0]} marked as deleted.")
+				self.getSlotList()
+
+			if answer:
+				current = self["slotlist"].getCurrent()[0]
+				MultiBoot.emptySlot(current[1][0], emptySlotCallback)
+
+		current = self["slotlist"].getCurrent()[0]
+		slot = current[1][0]
+		# currentTemp = current[1][4]  # This does not appear to be used!
+		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
+			self.session.openWithCallback(keyDisableChkrootCallback, MessageBox, _("Disable Chkroot Multiboot?"), windowTitle=self.getTitle())
+		else:
+			self.session.openWithCallback(keyEmptySlotCallback, MessageBox, f"{self["slotlist"].getCurrent()[0][0]}\n\n{_("Delete this slot?")}", windowTitle=self.getTitle())
+
+	def keyRestoreSlot(self):
+		def keyRestoreSlotCallback(result):
+			current = self["slotlist"].getCurrent()[0]
+			if result:
+				print(f"[MultiBootManager] {current[0]} restoration was not completely successful, status {result}!")
+			else:
+				print(f"[MultiBootManager] {current[0]} restored.")
+			self.getSlotList()
+
+		current = self["slotlist"].getCurrent()[0]
+		MultiBoot.restoreSlot(current[1][0], keyRestoreSlotCallback)
+
+	def keyRenameSlot(self):
+		def renameSlotCallback(newName):
+			def renameCallback(result):
+				if result:
+					print(f"[MultiBootManager] Rename of slot failed, status {result}!")
+				self.getSlotList()
+
+			slotCode = self.editSlotCode
+			self.editSlotCode = None
+			if newName is not None and slotCode is not None:
+				MultiBoot.renameSlot(slotCode, newName.strip(), renameCallback)
+
+		current = self["slotlist"].getCurrent()
+		if current and current[0][1]:
+			slotCode, _bootCode, status, _ubi, _current = current[0][1]
+			if status in ("active",) and slotCode.isdecimal():
+				editable = current[0][0].split(": ", 1)[-1].rsplit(" (", 1)[0]
+				index = editable.rfind("  -  ")
+				if index >= 0:
+					editable = editable[:index]
+				self.editSlotCode = slotCode
+				self.session.openWithCallback(renameSlotCallback, VirtualKeyBoard, title=_("Rename slot '%s' (leave empty to reset):") % slotCode, text=editable)
+
+	def keyAddSlots(self):
+		if BoxInfo.getItem("HasGPT"):
+			self.session.open(GPTSlotManager)
+		elif BoxInfo.getItem("HasChkrootMultiboot") and not BoxInfo.getItem("hasUBIMB"):
+			self.session.open(ChkrootSlotManager)
+		else:
+			self.session.open(KexecSlotManager)
 
 
 class KexecInit(Screen):
@@ -539,7 +548,7 @@ class KexecSlotManager(Setup):
 					self.kexecSlotManagerLocation.value = path
 					maxSlots = int(self.freespace / 2)
 					maxSlots = 50 if maxSlots > 50 else maxSlots
-					self.kexecSlotManagerSlots.limits = [(1, maxSlots)]
+					self.kexecSlotManagerSlots.updateLimits([(1, maxSlots)])
 					self.createSetup()
 				self.kexecSlotManagerDevice = deviceId
 			self.updateStatus(footnote)
@@ -780,10 +789,10 @@ class GPTSlotManager(Setup):
 			if diskSize > 16:
 				maxSlots = int(diskSize // 4)
 				print(f"[GPTSlotManager] Setting maxSlots={maxSlots} for {diskSize}GB disk")
-				self.GPTSlotManagerSlots.limits = [(4, maxSlots)]
+				self.GPTSlotManagerSlots.updateLimits([(4, maxSlots)])
 			else:
 				print(f"[GPTSlotManager] Disk size {diskSize}GB <= 16GB, limiting to 4 slots")
-				self.GPTSlotManagerSlots.limits = [(4, 4)]
+				self.GPTSlotManagerSlots.updateLimits([(4, 4)])
 				self.GPTSlotManagerSlots.value = 4
 			self.createSetup()
 

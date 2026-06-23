@@ -1166,6 +1166,13 @@ class ConfigSequence(ConfigElement):
 			self.endNotifier = []
 		self.endNotifier.append(notifier)
 
+	def updateLimits(self, limits):
+		if not isinstance(limits, list) and len(limits[0]) != 2:
+			raise TypeError("[Config] Error: Limits must be [(min, max), ...] tuple-list!")
+		self.limits = limits
+		self.blockLen = [len(str(x[1])) for x in limits]
+		self.totalLen = sum(self.blockLen) - 1
+
 
 class ConfigCECAddress(ConfigSequence):
 	def __init__(self, default, auto_jump=False):
