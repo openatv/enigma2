@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1726,6 +1726,9 @@ msgstr "Nhà cung cấp ATSC"
 msgid "AV Setup"
 msgstr "Thiết lập AV"
 
+msgid "AV receiver, soundbar and remote"
+msgstr ""
+
 msgid "Abkhazian"
 msgstr ""
 
@@ -1964,7 +1967,7 @@ msgstr "Thêm thư mục đã chọn vào bookmark"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr ""
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -2492,7 +2495,7 @@ msgstr "Bạn có chắc chắn muốn xóa nhật ký này:\n"
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr ""
 
 msgid "Are you sure you want to exit this wizard?"
@@ -5544,11 +5547,17 @@ msgstr ""
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr ""
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C PHỤ LỤC B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C PHỤ LỤC C"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr ""
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5558,6 +5567,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6088,7 +6100,7 @@ msgstr ""
 msgid "Delete only highlighted file"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete play list entry"
@@ -6736,6 +6748,9 @@ msgstr "phim tài liệu"
 
 msgid "Dolby Digital downmix is now"
 msgstr "Cộng với kỹ thuật số downmix hiện tại"
+
+msgid "Dolby TrueHD"
+msgstr ""
 
 msgid "Domain"
 msgstr ""
@@ -9600,6 +9615,9 @@ msgid "Hungary"
 msgstr "Hungary"
 
 msgid "Hybrid Tuner"
+msgstr ""
+
+msgid "Hybrid tuner mode"
 msgstr ""
 
 msgid "Hz"
@@ -14463,10 +14481,10 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -14712,8 +14730,8 @@ msgstr ""
 msgid "Put TV in Standby"
 msgstr "Đặt TV ở chế độ chờ"
 
-msgid "Put your AV Receiver in Standby"
-msgstr "Đặt Bộ thu AV của bạn ở chế độ chờ"
+msgid "Put your AV Receiver or Soundbar in Standby"
+msgstr ""
 
 msgid "Python"
 msgstr ""
@@ -15411,10 +15429,17 @@ msgstr "Đổi tên và mô tả cho các sự kiện mới"
 msgid "Rename only highlighted file"
 msgstr ""
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr ""
 
 msgid "Rename the selected service"
+msgstr ""
+
+msgid "Rename the highlighted slot"
 msgstr ""
 
 msgid "Rename this tag"
@@ -16855,6 +16880,9 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Chọn cách thiết lập đĩa vệ tinh. tức là đĩa cố định, LNB đơn, công tắc DiSEqC, bộ định vị, v.v."
 
 msgid "Select how the schedule is handled with respect to Standby."
+msgstr ""
+
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -20279,8 +20307,14 @@ msgstr "TRUYỀN HÌNH"
 msgid "TV button mode"
 msgstr "Chế độ nút TV"
 
+msgid "TV input and receiver wakeup"
+msgstr ""
+
 msgid "TV physical address report"
 msgstr "Báo cáo địa chỉ vật lý TV"
+
+msgid "TV power"
+msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21459,6 +21493,9 @@ msgid "Timeshift"
 msgstr "Timeshift"
 
 msgid "Timezone"
+msgstr ""
+
+msgid "Timing and diagnostics"
 msgstr ""
 
 #, fuzzy
@@ -22923,7 +22960,7 @@ msgstr ""
 msgid "Volume down"
 msgstr "Giảm âm lượng"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
 msgid "Volume steps"
@@ -23007,8 +23044,8 @@ msgstr "Thời gian thức dậy trước khi hẹn giờ bắt đầu [phút]"
 msgid "Wake up to standby"
 msgstr "Thức dậy để chờ"
 
-msgid "Wake up your AV Receiver from Standby"
-msgstr "Đánh thức bộ thu AV của bạn từ chế độ chờ"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr ""
 
 msgid "Wallis and Futuna"
 msgstr "Wallis và Futuna"
@@ -23267,14 +23304,14 @@ msgstr "Khi được bật, PiP có thể được đóng bằng nút thoát."
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Khi được bật, tùy chọn scart VCR sẽ được hiển thị trên menu chính"
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr ""
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr ""
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Khi được bật, độ dài của mỗi bản ghi sẽ được hiển thị trong danh sách phim (điều này có thể gây ra một số thời gian tải bổ sung)."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr ""
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr ""
@@ -23351,7 +23388,7 @@ msgstr ""
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr ""
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -24610,6 +24647,12 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Put your AV Receiver in Standby"
+#~ msgstr "Đặt Bộ thu AV của bạn ở chế độ chờ"
+
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "Đánh thức bộ thu AV của bạn từ chế độ chờ"
 
 #~ msgid " "
 #~ msgstr " "

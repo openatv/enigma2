@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
-"PO-Revision-Date: 2026-06-06 11:58+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"PO-Revision-Date: 2026-06-22 23:42+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 msgid ""
 "\n"
@@ -1753,6 +1753,9 @@ msgstr "ATSC provajder"
 msgid "AV Setup"
 msgstr "AV Postavke"
 
+msgid "AV receiver, soundbar and remote"
+msgstr "AV risiver, zvučna traka i daljinski"
+
 msgid "Abkhazian"
 msgstr "Abhazijski"
 
@@ -1990,7 +1993,7 @@ msgstr "Dodaj izabranu fasciklu u označivač"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Dodavanje zastarelih radnji LEVO/DESNO"
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr "Dodaj još slotova"
 
 msgid "Add new CCcam line"
@@ -2512,7 +2515,7 @@ msgstr "Sigurno hoćete izbrisati ovaj log:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Želite li izbrisati to?"
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr "Da li ste sigurni da želite da onemogućite Chkroot Multiboot?"
 
 msgid "Are you sure you want to exit this wizard?"
@@ -5548,11 +5551,17 @@ msgstr "DVB subtitl boja"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr "DVB-C / Cable samo"
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr "DVB-C i DVB-T/T2 preko spoljnog koaksijalnog prekidača kontrolisanog na 5V"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5562,6 +5571,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr "DVB-T/T2 / Samo zemaljski"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6085,7 +6097,7 @@ msgstr "Izbriši log"
 msgid "Delete only highlighted file"
 msgstr "Izbriši samo istaknuti fajl"
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr "Izbriši ili ukloni istaknuti slot"
 
 msgid "Delete play list entry"
@@ -6736,6 +6748,9 @@ msgstr "Dokumentarac"
 
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital downmix je sada"
+
+msgid "Dolby TrueHD"
+msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Domena"
@@ -9565,6 +9580,9 @@ msgstr "Hungary"
 
 msgid "Hybrid Tuner"
 msgstr "Hibridni Tjuner"
+
+msgid "Hybrid tuner mode"
+msgstr "Hibridni režim tjunera"
 
 msgid "Hz"
 msgstr "Hz"
@@ -14334,10 +14352,10 @@ msgstr "Pritisni ОК da bi koristili ovaj jezik.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Pritisni OK da bi koristili ovaj lokalni standard.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr "Pritisni GORE/DOLE da bi izabrali slot i pritisni OK ili ZELENA da bi ponovo pokrenuli resiver sa tim imidžom. ŽUTA briše izabrani imidž. Izbrisani imidž se može vratiti pomoću PLAVOG tastera. Obrisani imidž je potpuno uklonjen i nemože se vratiti u predhodno stanje!"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr "Pritisnite dugmad GORE/DOLE da izaberete slot, zatim pritisnite OK ili ZELENO da restartujete u tu sliku. Ako je dostupno, ŽUTO će onemogućiti Multiboot, izbrisati ili obrisati izabranu sliku. Pritisnite PLAVO da dodate više slotova."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -14575,8 +14593,8 @@ msgstr "Pushto / Pashto"
 msgid "Put TV in Standby"
 msgstr "Stavi TV na čekanje"
 
-msgid "Put your AV Receiver in Standby"
-msgstr "Stavite svoj AV prijemnik u režim čekanja"
+msgid "Put your AV Receiver or Soundbar in Standby"
+msgstr "Stavi svoj AV risiver ili zvučnu tablu na čekanje"
 
 msgid "Python"
 msgstr "Python"
@@ -15261,11 +15279,18 @@ msgstr "Preimenovanje imena i opisa za nove događaje"
 msgid "Rename only highlighted file"
 msgstr "Preimenuj samo istaknuti fajl"
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr "Preimenuj slot '%s' (ostavi prazno da resetuješ):"
+
 msgid "Rename the proposed file to be created"
 msgstr "Preimenuj predloženi fajl za kreiranje"
 
 msgid "Rename the selected service"
 msgstr "Preimenujte izabrani servis"
+
+msgid "Rename the highlighted slot"
+msgstr "Preimenuj izabrani slot"
 
 msgid "Rename this tag"
 msgstr "Preimenuj ovu oznaku"
@@ -16703,6 +16728,9 @@ msgstr "Izaberi kako je satelitska antena podešena. npr. fiksna antena, jedan L
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Izaberite kako se raspored upravlja u vezi sa režimom čekanja."
+
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr "Izaberi kako je ovaj DVB-C/T tjuner povezan. Opcija za spoljni kabel prekidač koristi samo 5V kontrolisanim kabel prekidačem."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Izaberi kako da aktivirate brzi EPG režim."
@@ -20112,8 +20140,14 @@ msgstr "TV"
 msgid "TV button mode"
 msgstr "TV dugme režim"
 
+msgid "TV input and receiver wakeup"
+msgstr "Ulaz na TV-u i buđenje prijemnika"
+
 msgid "TV physical address report"
 msgstr "TV izveštaj fizičke adrese"
+
+msgid "TV power"
+msgstr "Struja za TV"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21315,6 +21349,9 @@ msgstr "Tajmšift"
 
 msgid "Timezone"
 msgstr "Vremenska zona"
+
+msgid "Timing and diagnostics"
+msgstr "Vreme i dijagnostika"
 
 msgid "Timor-Leste / East Timor"
 msgstr "Timor-Leste / East Timor"
@@ -22789,8 +22826,8 @@ msgstr "Režim podešavanja zvuka"
 msgid "Volume down"
 msgstr "Smanji jačinu zvuka"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
-msgstr "Tasteri jačine zvuka na DU resivera će kontrolisati TV jačinu zvuka. Ako ova funkcija nije podržana tasteri za zvuk nemaju funkciju!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
+msgstr "Tasteri za jačinu zvuka na daljinskom upravljaču prijemnika će kontrolisati jačinu zvuka na TV-u, AV prijemniku ili zvučnoj traci preko HDMI-CEC. Ako ova funkcija nije podržana, tasteri za jačinu zvuka neće imati funkciju!"
 
 msgid "Volume steps"
 msgstr "Korak zvuka"
@@ -22873,8 +22910,8 @@ msgstr "Vreme buđenja pre početka tajmera[min]"
 msgid "Wake up to standby"
 msgstr "Buđenje iz pripravnosti"
 
-msgid "Wake up your AV Receiver from Standby"
-msgstr "Probudi svoj AV prijemnik iz režima čekanja"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr "Probudite svoj AV resiver ili zvučnu traku iz režima čekanja"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis and Futuna"
@@ -23132,14 +23169,14 @@ msgstr "Kada je omogućeno, PiP se može zatvoriti pritiskom na dugme EXIT."
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Kada je omogućeno, opcija VCR SCART biće prikazana u glavnom meniju."
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr "Kada je omogućeno, povezani AV prijemnik ili zvučna traka će se automatski isključiti."
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr "Kada je omogućeno, povezani AV prijemnik ili zvučna traka će se automatski uključiti."
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Kada je omogućeno, dužina svakog snimanja će biti prikazana na listi filmova (to može dovesti do nekog dodatnog vremena učitavanja)."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Kada je omogućeno, prijemnik će se automatski isključiti."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Kada je omogućeno, prijemnik će se automatski uključiti."
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Kada je omogućeno, prijemnik će se automatski vratiti u režim čekanja kada se TV isključi."
@@ -23216,8 +23253,8 @@ msgstr "Kada kursor unosa dostigne ovu tačku (procenat širine, sa obe strane) 
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Kada prijemnik izađe iz režima čekanja ili dubokog čekanja, poslaće komandu televizoru da ga izvuče iz režima čekanja."
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Kada prijemnik izađe iz režima čekanja, preći će TV na HDMI ulaz koji je povezan sa prijemnikom."
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgstr "Kada se risiver probudi iz Pripravnog režima, pošalji aktivan izvor, putanju strima i komande za usmeravanje kako bi TV prešao na HDMI ulaz povezan sa risiverom."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kada je crven box pravilno vidljiv, pritisnite ZELENU dugmad da sačuvate podešavanja i izađete."
@@ -24473,6 +24510,30 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Force TV input to this receiver"
+#~ msgstr "Primoraj ovaj prijemnik da koristi TV ulaz"
+
+#~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+#~ msgstr "Kada prijemnik izađe iz režima čekanja, preći će TV na HDMI ulaz koji je povezan sa prijemnikom."
+
+#~ msgid "When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver."
+#~ msgstr "Kada risiver izađe iz režima čekanja, pošalji putanju strima i komande za rutiranje da TV prebaci sa drugog HDMI ulaza nazad na ovaj risiver."
+
+#~ msgid "Put your AV Receiver in Standby"
+#~ msgstr "Stavite svoj AV prijemnik u režim čekanja"
+
+#~ msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+#~ msgstr "Tasteri jačine zvuka na DU resivera će kontrolisati TV jačinu zvuka. Ako ova funkcija nije podržana tasteri za zvuk nemaju funkciju!"
+
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "Probudi svoj AV prijemnik iz režima čekanja"
+
+#~ msgid "When enabled, the receiver will automatically be switched off."
+#~ msgstr "Kada je omogućeno, prijemnik će se automatski isključiti."
+
+#~ msgid "When enabled, the receiver will automatically be switched on."
+#~ msgstr "Kada je omogućeno, prijemnik će se automatski uključiti."
 
 #~ msgid "Color Bottom"
 #~ msgstr "Boja Dole"

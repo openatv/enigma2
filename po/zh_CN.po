@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
-"PO-Revision-Date: 2026-06-06 11:58+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"PO-Revision-Date: 2026-06-20 21:30+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -1718,6 +1718,9 @@ msgstr "ATSC 供应商"
 msgid "AV Setup"
 msgstr "音频/视频设置"
 
+msgid "AV receiver, soundbar and remote"
+msgstr "AV 接收机、回音壁和遥控器"
+
 msgid "Abkhazian"
 msgstr "阿布哈兹语"
 
@@ -1955,7 +1958,7 @@ msgstr "将突出显示的目录添加到书签"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "添加传统 左/右键操作"
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr "添加更多插槽"
 
 msgid "Add new CCcam line"
@@ -2477,7 +2480,7 @@ msgstr "是否确定删除这个日志：\n"
 msgid "Are you sure you want to delete this?"
 msgstr "是否确定删除这个？"
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr "确定要禁用 Chkroot 多系统启动吗？"
 
 msgid "Are you sure you want to exit this wizard?"
@@ -5511,11 +5514,17 @@ msgstr "DVB 字幕颜色"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr "仅 DVB-C / 有线电视"
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr "DVB-C和DVB-T/T2通过外置5V控制同轴开关"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5525,6 +5534,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr "仅 DVB-T/T2 /地面波"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6048,7 +6060,7 @@ msgstr "删除日志"
 msgid "Delete only highlighted file"
 msgstr "仅删除突出显示的文件"
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr "删除或擦除突出显示的槽位"
 
 msgid "Delete play list entry"
@@ -6699,6 +6711,9 @@ msgstr "纪录片"
 
 msgid "Dolby Digital downmix is now"
 msgstr "当前为杜比数码缩混"
+
+msgid "Dolby TrueHD"
+msgstr "杜比 TrueHD"
 
 msgid "Domain"
 msgstr "域"
@@ -9529,6 +9544,9 @@ msgstr "匈牙利"
 
 msgid "Hybrid Tuner"
 msgstr "混合调谐器"
+
+msgid "Hybrid tuner mode"
+msgstr "混合调谐器模式"
 
 msgid "Hz"
 msgstr "Hz"
@@ -14294,10 +14312,10 @@ msgstr "按“确定”使用此语言。[%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "按“确定”使用此区域设置。[%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr "按向上/向下按钮选择一个槽位，然后按 OK 或 绿键 重新启动到该镜像。 如果可用，黄键将删除或擦除镜像。 可以使用蓝键恢复已删除的镜像。 擦除的镜像被完全删除，无法恢复！"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr "使用 上/下 键选择槽位，按 OK 或绿键重启进入对应系统镜像。若可用，黄键可禁用多系统启动、删除或清除所选镜像。按蓝键可添加更多槽位。"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -14535,8 +14553,8 @@ msgstr "普什图语"
 msgid "Put TV in Standby"
 msgstr "将电视转为待机"
 
-msgid "Put your AV Receiver in Standby"
-msgstr "将 AV 接收机置入待机状态"
+msgid "Put your AV Receiver or Soundbar in Standby"
+msgstr "将 AV 接收机或回音壁置于待机状态"
 
 msgid "Python"
 msgstr "Python"
@@ -15221,11 +15239,18 @@ msgstr "重命名新事件的名称和描述"
 msgid "Rename only highlighted file"
 msgstr "仅重命名高亮显示的文件"
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr "重命名要创建的建议文件"
 
 msgid "Rename the selected service"
 msgstr "重命名所选频道"
+
+msgid "Rename the highlighted slot"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr "重命名此标签"
@@ -16660,6 +16685,9 @@ msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、Di
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "选择如何在待机模式下处理计划任务。"
+
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr "选择此 DVB-C/T 调谐器的连接方式。仅当使用5V控制同轴开关时，才选用“外置同轴开关”选项。"
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "选择如何激活快速 EPG 模式。"
@@ -20065,8 +20093,14 @@ msgstr "电视"
 msgid "TV button mode"
 msgstr "TV 键模式"
 
+msgid "TV input and receiver wakeup"
+msgstr "电视输入与接收机唤醒"
+
 msgid "TV physical address report"
 msgstr "电视物理地址报告"
+
+msgid "TV power"
+msgstr "电视电源"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21267,6 +21301,9 @@ msgstr "时移"
 
 msgid "Timezone"
 msgstr "时区"
+
+msgid "Timing and diagnostics"
+msgstr "时序与诊断"
 
 msgid "Timor-Leste / East Timor"
 msgstr "东帝汶"
@@ -22741,8 +22778,8 @@ msgstr "音量调节模式"
 msgid "Volume down"
 msgstr "音量减小"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
-msgstr "接收机遥控器上的音量键将控制电视音量。如果不支持此功能，音量键将不起作用！"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
+msgstr "接收机遥控器上的音量键可通过HDMI-CEC控制电视、AV接收机或回音壁的音量。若设备不支持此功能，则音量键无效！"
 
 msgid "Volume steps"
 msgstr "音量步长"
@@ -22825,8 +22862,8 @@ msgstr "定时器开始前的唤醒时间 [分钟]"
 msgid "Wake up to standby"
 msgstr "唤醒到待机"
 
-msgid "Wake up your AV Receiver from Standby"
-msgstr "从待机状态唤醒 AV 接收机"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr "将 AV 接收机或回音壁从待机状态唤醒"
 
 msgid "Wallis and Futuna"
 msgstr "瓦利斯群岛和富图纳群岛"
@@ -23084,14 +23121,14 @@ msgstr "启用后，可通过按 EXIT 键关闭画中画。"
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "启用后，VCR SCART 选项将显示在主菜单上。"
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr "启用后，所连接的 AV 接收机或回音壁将自动关闭。"
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr "启用后，所连接的 AV 接收机或回音壁将自动开启。"
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "启用后，每个录制的长度将显示在影片列表中（这可能会导致一些额外的加载时间）。"
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "启用后，接收机将自动关闭。"
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "启用后，接收机将自动打开。"
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "启用后，接收机将在电视关闭时自动返回待机状态。"
@@ -23168,8 +23205,8 @@ msgstr "当输入光标到达该点（宽度的百分比，从任意一侧）时
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "当接收机从待机或深度待机中唤醒时，它将向电视发送命令以使其脱离待机状态。"
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "当接收机从待机状态唤醒时，它将命令电视切换到接收机所连接的 HDMI 输入。"
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
@@ -24424,6 +24461,30 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Force TV input to this receiver"
+#~ msgstr "强制电视信号输入本接收机"
+
+#~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+#~ msgstr "当接收机从待机状态唤醒时，它将命令电视切换到接收机所连接的 HDMI 输入。"
+
+#~ msgid "When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver."
+#~ msgstr "当接收机从待机状态唤醒时，发送流路径和路由指令，使电视从其他 HDMI 输入源切换回本接收机。"
+
+#~ msgid "Put your AV Receiver in Standby"
+#~ msgstr "将 AV 接收机置入待机状态"
+
+#~ msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+#~ msgstr "接收机遥控器上的音量键将控制电视音量。如果不支持此功能，音量键将不起作用！"
+
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "从待机状态唤醒 AV 接收机"
+
+#~ msgid "When enabled, the receiver will automatically be switched off."
+#~ msgstr "启用后，接收机将自动关闭。"
+
+#~ msgid "When enabled, the receiver will automatically be switched on."
+#~ msgstr "启用后，接收机将自动打开。"
 
 #~ msgid "Color Bottom"
 #~ msgstr "底部颜色"

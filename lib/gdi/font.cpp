@@ -415,13 +415,28 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	else
 	{
 		FTC_SBit glyph;
-		if (current_font->getGlyphBitmap(glyphIndex, &glyph))
-			return 1;
-
-		xadvance = glyph->xadvance;
-		top = glyph->top;
-		left = glyph->left;
-		height = glyph->height;
+		if (current_font->getGlyphBitmap(glyphIndex, &glyph) || !glyph->buffer)
+		{
+			/* SBit failed or returned corrupt data (FT_Char/FT_Byte field overflow
+			 * for large glyphs: buffer=null, h=0, xadvance wraps around).
+			 * Fall back to direct rendering via current_face. */
+			if (FT_Load_Glyph(current_face, glyphIndex, FT_LOAD_DEFAULT) ||
+			    FT_Render_Glyph(current_face->glyph, FT_RENDER_MODE_NORMAL) ||
+			    FT_Get_Glyph(current_face->glyph, &ng.image))
+				return 1;
+			FT_BitmapGlyph bglyph = (FT_BitmapGlyph)ng.image;
+			xadvance = current_face->glyph->advance.x >> 6;
+			top = bglyph->top;
+			left = bglyph->left;
+			height = bglyph->bitmap.rows;
+		}
+		else
+		{
+			xadvance = glyph->xadvance;
+			top = glyph->top;
+			left = glyph->left;
+			height = glyph->height;
+		}
 	}
 
 	if (int nx = cursor.x() + xadvance; (rflags & RS_WRAP) && (nx > area.right()))
@@ -1147,7 +1162,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 		if (i->image)
 		{
 			FT_BitmapGlyph glyph = border ? (FT_BitmapGlyph)i->borderimage : (FT_BitmapGlyph)i->image;
-			if (!glyph->bitmap.buffer) continue;
+			if (!glyph || !glyph->bitmap.buffer) continue;
 			rxbase = i->x + glyph->left + offset.x();
 			rybase = i->y - glyph->top + offset.y();
 			rybase=(doTopBottomReordering ? line_offs : i->y) - glyph->top + offset.y();

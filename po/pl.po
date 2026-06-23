@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
-"PO-Revision-Date: 2026-06-17 09:16+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"PO-Revision-Date: 2026-06-22 23:42+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1303,7 +1303,7 @@ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shi
 msgstr "'Limit bufora w godzinach' lub 'Liczba ostatnio zarejestrowanych wydarzeń' spowoduje usunięcie najstarszego pliku timeshiftu, w zależności od tego, który warunek wystąpił jako pierwszy."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
-msgstr "Opcja „Obsługa trybu czuwania z telewizora” ma wyższy priorytet niż opcja „Obsługa sygnału wejściowego z telewizora”."
+msgstr "Opcja 'Obsługa trybu czuwania z telewizora' ma wyższy priorytet niż opcja 'Obsługa sygnału wejściowego z telewizora'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Dekodowanie i nagrywanie ECM' daje możliwość późniejszego deszyfrowania, jeśli deszyfrowanie przy nagrywaniu zakończyło się niepowodzeniem. 'Nie dekoduj, nagrywaj ECM', zapisz nagranie, które można odszyfrować podczas odtwarzania. \"Normalny\" oznacza deszyfrowanie nagrania i nie rejestruje ECM."
@@ -1763,6 +1763,9 @@ msgstr "ATSC dostawca"
 msgid "AV Setup"
 msgstr "Audio/Wideo"
 
+msgid "AV receiver, soundbar and remote"
+msgstr "Amplituner AV, soundbar i pilot"
+
 msgid "Abkhazian"
 msgstr "Abchaski"
 
@@ -2000,7 +2003,7 @@ msgstr "Dodaj wybrany folder do zakładek"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Dodaj starsze akcje LEWO/PRAWO"
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr "Dodaj więcej slotów"
 
 msgid "Add new CCcam line"
@@ -2522,7 +2525,7 @@ msgstr "Czy chcesz usunąć ten crash log:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Czy na pewno chcesz to usunąć?"
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr "Czy na pewno chcesz wyłączyć Chkroot Multiboot?"
 
 msgid "Are you sure you want to exit this wizard?"
@@ -3929,7 +3932,7 @@ msgid "Channel Info"
 msgstr "Info kanału"
 
 msgid "Channel List"
-msgstr "Lista Kanałów"
+msgstr "Lista kanałów"
 
 msgid "Channel Selection"
 msgstr "Ustawienia listy kanałów"
@@ -4259,7 +4262,7 @@ msgid "Clear before scan"
 msgstr "Wyczyścić przed skanowaniem"
 
 msgid "Clear fixed"
-msgstr "Stałe czyszczenie"
+msgstr "Wyczyść stały"
 
 msgid "Clear play list"
 msgstr "Wyczyść listę odtwarzania"
@@ -5559,11 +5562,17 @@ msgstr "Kolor napisów DVB"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr "DVB-C / Tylko kablówka"
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr "DVB-C i DVB-T/T2 za pomocą zewnętrznego przełącznika koncentrycznego sterowanego napięciem 5 V"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5573,6 +5582,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr "DVB-T/T2 / Tylko naziemna"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6096,7 +6108,7 @@ msgstr "Usuń log"
 msgid "Delete only highlighted file"
 msgstr "Usuń tylko wybrany plik"
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr "Usuń lub wyczyść zaznaczony slot"
 
 msgid "Delete play list entry"
@@ -6747,6 +6759,9 @@ msgstr "Dokumentalny"
 
 msgid "Dolby Digital downmix is now"
 msgstr "Teraz dostępny jest downmix Dolby Digital"
+
+msgid "Dolby TrueHD"
+msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Domena"
@@ -9576,6 +9591,9 @@ msgstr "Węgry"
 
 msgid "Hybrid Tuner"
 msgstr "Tuner hybrydowy"
+
+msgid "Hybrid tuner mode"
+msgstr "Tryb tunera hybrydowego"
 
 msgid "Hz"
 msgstr "Hz"
@@ -14346,10 +14364,10 @@ msgstr "Naciśnij OK aby użyć tego języka. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Naciśnij OK aby użyć tego regionu. [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "Użyj GÓRA/DÓŁ, aby wybrać slot, a następnie naciśnij OK lub ZIELONY aby uruchomić wybrany system. ŻÓŁTY spowoduje 'Usunięcie' lub 'Wymazanie' systemu. Usunięty system można przywrócić za pomocą NIEBIESKIEGO przycisku. Wymazany system jest całkowicie usunięty co znaczy, że nie może zostać przywrócony!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+msgstr "Użyj GÓRA/DÓŁ, aby wybrać slot, a następnie OK lub ZIELONY aby uruchomić wybrany system. Przycisk ŻÓŁTY, usuwa system. Usunięty system można przywrócić za pomocą NIEBIESKIEGO przycisku. Przyciskiem TEXT zmieniasz nazwę slotu!"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr "Naciskaj przyciski GÓRA/DÓŁ, aby wybrać slot, a następnie naciśnij OK lub ZIELONY, aby ponownie uruchomić ten system. Jeśli dostępny, ŻÓŁTY wyłączy funkcję Multiboot, usunie lub wyczyści wybrany system. Naciśnij NIEBIESKI, aby dodać więcej slotów."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -14585,10 +14603,10 @@ msgid "Pushto / Pashto"
 msgstr "Pushto / Paszto"
 
 msgid "Put TV in Standby"
-msgstr "Przełącz telewizor w tryb czuwania"
+msgstr "Przełącz TV w tryb czuwania"
 
-msgid "Put your AV Receiver in Standby"
-msgstr "Przełącz amplituner AV w tryb czuwania"
+msgid "Put your AV Receiver or Soundbar in Standby"
+msgstr "Przełącz amplituner AV lub soundbar w tryb czuwania"
 
 msgid "Python"
 msgstr "Python"
@@ -15273,11 +15291,18 @@ msgstr "Zmień nazwę i opis nowych zdarzeń"
 msgid "Rename only highlighted file"
 msgstr "Zmień nazwę tylko wybranego pliku"
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr "Zmień nazwę slotu '%s' (pozostaw puste, aby zresetować):"
+
 msgid "Rename the proposed file to be created"
 msgstr "Zmień nazwę proponowanego pliku, który ma zostać utworzony"
 
 msgid "Rename the selected service"
 msgstr "Zmień nazwę wybranej usługi"
+
+msgid "Rename the highlighted slot"
+msgstr "Zmień nazwę wybranego slotu"
 
 msgid "Rename this tag"
 msgstr "Zmień nazwę tego znacznika"
@@ -16716,6 +16741,9 @@ msgstr "Wybierz sposób konfiguracji anteny satelitarnej. tj. stała antena, poj
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Wybierz sposób obsługi harmonogramu w odniesieniu do trybu czuwania."
 
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr "Wybierz sposób podłączenia tunera DVB-C/T. Opcji zewnętrznego przełącznika koncentrycznego należy używać tylko z przełącznikiem koncentrycznym sterowanym napięciem 5 V."
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Wybierz sposób aktywacji trybu szybkiego EPG."
 
@@ -18023,7 +18051,7 @@ msgid "Shellscript"
 msgstr "Skrypt shell"
 
 msgid "Shift"
-msgstr "Przesunięcie"
+msgstr "Zmiana"
 
 #, python-format
 msgid "Shift: %s"
@@ -20125,8 +20153,14 @@ msgstr "TV"
 msgid "TV button mode"
 msgstr "Tryb przycisku TV"
 
+msgid "TV input and receiver wakeup"
+msgstr "Przełączanie wejścia TV i wybudzanie odbiornika"
+
 msgid "TV physical address report"
 msgstr "Raportuj fizyczny adres TV"
+
+msgid "TV power"
+msgstr "Sterowanie telewizora"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21329,6 +21363,9 @@ msgstr "Timeshift"
 msgid "Timezone"
 msgstr "Strefa czasowa"
 
+msgid "Timing and diagnostics"
+msgstr "Czas i diagnostyka"
+
 msgid "Timor-Leste / East Timor"
 msgstr "Timor-Leste / East Timor"
 
@@ -22421,10 +22458,10 @@ msgid "Username (httpuser)"
 msgstr "Nazwa użytkownika (http.user)"
 
 msgid "Using automatic address"
-msgstr "Używanie automatycznego adresu"
+msgstr "Użyto automatycznego adresu"
 
 msgid "Using fixed address"
-msgstr "Użyj stały adres"
+msgstr "Użyto stałego adresu"
 
 msgid "Using old profile: "
 msgstr "Użyj starego profilu: "
@@ -22802,8 +22839,8 @@ msgstr "Tryb regulacji głośności"
 msgid "Volume down"
 msgstr "Ciszej"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
-msgstr "Przyciski głośności na pilocie dekodera służą do regulacji głośności telewizora. Jeśli ta funkcja nie jest obsługiwana, przyciski głośności nie działają!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
+msgstr "Przyciski głośności na pilocie amplitunera umożliwiają sterowanie głośnością telewizora, amplitunera AV lub soundbara przez HDMI-CEC. Jeśli ta funkcja nie jest obsługiwana, przyciski głośności nie działają!"
 
 msgid "Volume steps"
 msgstr "Skoki głośności"
@@ -22886,8 +22923,8 @@ msgstr "Czas wybudzenia przed rozpoczęciem timera [min]"
 msgid "Wake up to standby"
 msgstr "Wybudzaj ze stanu czuwania"
 
-msgid "Wake up your AV Receiver from Standby"
-msgstr "Wybudź swój amplituner AV ze stanu czuwania"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr "Wybudź swój amplituner AV lub soundbar z trybu czuwania"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis i Futuna"
@@ -23145,14 +23182,14 @@ msgstr "Po włączeniu funkcję PiP można zamknąć, naciskając przycisk EXIT.
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Po włączeniu opcja VCR SCART zostanie wyświetlona w menu głównym."
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr "Po włączeniu tej opcji podłączony amplituner AV lub soundbar zostanie automatycznie wyłączony."
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr "Po włączeniu tej opcji podłączony amplituner AV lub soundbar zostanie automatycznie włączony."
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Po włączeniu tej opcji długość każdego nagrania będzie wyświetlana na liście filmów (może to wydłużyć czas ładowania)."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Po włączeniu odbiornik automatycznie się wyłączy."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Po włączeniu tej opcji odbiornik włączy się automatycznie."
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Po włączeniu tej opcji odbiornik automatycznie powróci do trybu czuwania po wyłączeniu telewizora."
@@ -23229,8 +23266,8 @@ msgstr "Gdy kursor wejściowy osiągnie ten punkt (procent szerokości, z obu st
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Gdy odbiornik wybudza się ze stanu czuwania lub trybu wyłączenia, wysyła do telewizora polecenie wyprowadzenia go ze stanu czuwania."
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Gdy odbiornik wybudzi się ze stanu czuwania, telewizor nakaże mu przełączenie się na wejście HDMI, do którego podłączony jest odbiornik."
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgstr "Gdy odbiornik wybudzi się z trybu czuwania, telewizor automatycznie przełączy się na wejście HDMI, do którego podłączony jest odbiornik."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Gdy czerwone pole będzie już prawidłowo widoczne, naciśnij ZIELONY przycisk, aby zapisać ustawienia i wyjść."
@@ -24486,6 +24523,30 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Force TV input to this receiver"
+#~ msgstr "Wymuś przełączenie TV na wejście tego odbiornika"
+
+#~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+#~ msgstr "Gdy odbiornik wybudzi się ze stanu czuwania, telewizor nakaże mu przełączenie się na wejście HDMI, do którego podłączony jest odbiornik."
+
+#~ msgid "When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver."
+#~ msgstr "Gdy odbiornik wybudzi się z trybu czuwania, wyśle polecenia dotyczące ścieżki sygnału i trasowania, aby telewizor automatycznie przełączył się z innego wejścia HDMI z powrotem na ten odbiornik."
+
+#~ msgid "Put your AV Receiver in Standby"
+#~ msgstr "Przełącz amplituner AV w tryb czuwania"
+
+#~ msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+#~ msgstr "Przyciski głośności na pilocie dekodera służą do regulacji głośności telewizora. Jeśli ta funkcja nie jest obsługiwana, przyciski głośności nie działają!"
+
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "Wybudź swój amplituner AV ze stanu czuwania"
+
+#~ msgid "When enabled, the receiver will automatically be switched off."
+#~ msgstr "Po włączeniu odbiornik automatycznie się wyłączy."
+
+#~ msgid "When enabled, the receiver will automatically be switched on."
+#~ msgstr "Po włączeniu tej opcji odbiornik włączy się automatycznie."
 
 #~ msgid "Color Bottom"
 #~ msgstr "Kolor spodu"

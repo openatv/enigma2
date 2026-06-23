@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
-"PO-Revision-Date: 2026-06-09 03:01+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"PO-Revision-Date: 2026-06-23 09:04+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1719,6 +1719,9 @@ msgstr "Provider ATSC"
 msgid "AV Setup"
 msgstr "Configurazione AV"
 
+msgid "AV receiver, soundbar and remote"
+msgstr "Ricevitore AV, soundbar e telecomando"
+
 msgid "Abkhazian"
 msgstr "Abcaso"
 
@@ -1956,7 +1959,7 @@ msgstr "Aggiungi cartella selezionata ai segnalibri"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Aggiungi azioni SIN/DES compatibili"
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr "Aggiungi più slot"
 
 msgid "Add new CCcam line"
@@ -2478,7 +2481,7 @@ msgstr "Sei sicuro di voler eliminare questo registro:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Sei sicuro di voler eliminare questo?"
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr "Sei sicuro di voler disabilitare Chkroot Multiboot?"
 
 msgid "Are you sure you want to exit this wizard?"
@@ -5512,11 +5515,17 @@ msgstr "Colore sottotitoli DVB"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr "DVB-C / Solo cavo"
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr "DVB-C e DVB-T/T2 tramite switch coassiale esterno controllato a 5V"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5526,6 +5535,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr "DVB-T/T2 / Solo terrestre"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6049,7 +6061,7 @@ msgstr "Elimina registro"
 msgid "Delete only highlighted file"
 msgstr "Elimina solo file evidenziati"
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr "Elimina o cancella lo slot evidenziato"
 
 msgid "Delete play list entry"
@@ -6700,6 +6712,9 @@ msgstr "Documentario"
 
 msgid "Dolby Digital downmix is now"
 msgstr "Il downmix Dolby Digital è ora"
+
+msgid "Dolby TrueHD"
+msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Dominio"
@@ -9527,6 +9542,9 @@ msgstr "Ungheria"
 msgid "Hybrid Tuner"
 msgstr "Tuner ibrido"
 
+msgid "Hybrid tuner mode"
+msgstr "Modalità tuner ibrido"
+
 msgid "Hz"
 msgstr "Hz"
 
@@ -9776,7 +9794,7 @@ msgid "Ignore Standby"
 msgstr "Ignora Standby"
 
 msgid "Ignore unexpectedly wake up and stay in Standby"
-msgstr "Ignora risveglio non programmato e rimani in standby"
+msgstr "Ignora riattivazione non programmata e rimani in standby"
 
 msgid "Image Backup"
 msgstr "Backup immagine"
@@ -14291,10 +14309,10 @@ msgstr "Premi OK per usare questa lingua. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Premi OK per usare queste impostazioni locali.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr "Premi i tasti SU/GIÙ per selezionare uno slot e premere OK o VERDE per riavviare l'immagine. Se disponibile, GIALLO eliminerà o cancellerà definitivamente l'immagine. Un'immagine eliminata può essere ripristinata con il tasto BLU. Un'immagine cancellata definitivamente viene completamente rimossa e non può essere ripristinata!"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr "Premi i pulsanti SU/GIÙ per selezionare uno slot, quindi premi OK o VERDE per riavviare in quell'immagine. Se disponibile, il GIALLO disabiliterà il Multiboot, eliminerà o cancellerà l'immagine selezionata. Premi BLU per aggiungere altri slot."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -14532,8 +14550,8 @@ msgstr "Pushto / Pashto"
 msgid "Put TV in Standby"
 msgstr "Metti la TV in Standby"
 
-msgid "Put your AV Receiver in Standby"
-msgstr "Metti il ricevitore AV in standby"
+msgid "Put your AV Receiver or Soundbar in Standby"
+msgstr "Metti il ricevitore AV o la soundbar in standby"
 
 msgid "Python"
 msgstr "Python"
@@ -14722,7 +14740,7 @@ msgid "Real recordings or streaming"
 msgstr "registrazioni reali o streaming"
 
 msgid "Really WOL now?"
-msgstr "Davvero vuoi attivare Wake-On-Lan?"
+msgstr "Vuoi attivare Wake-On-Lan?"
 
 msgid "Really close without saving settings?"
 msgstr "Uscire senza salvare le modifiche?"
@@ -15218,11 +15236,18 @@ msgstr "Rinomina nome e descrizione per i nuovi eventi"
 msgid "Rename only highlighted file"
 msgstr "Rinomina solo il file evidenziato"
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr "Rinomina slot '%s' (lascia vuoto per reimpostare):"
+
 msgid "Rename the proposed file to be created"
 msgstr "Rinomina il file in fase di creazione"
 
 msgid "Rename the selected service"
 msgstr "Rinomina servizio selezionato"
+
+msgid "Rename the highlighted slot"
+msgstr "Rinomina slot selezionato"
 
 msgid "Rename this tag"
 msgstr "Rinomina questo tag"
@@ -15247,7 +15272,7 @@ msgid "Repeat play list"
 msgstr "ripetere playlist"
 
 msgid "Repeat the sent standby and wake up commands"
-msgstr "Ripeto i comandi “Standby” e “Riattiva”"
+msgstr "Ripeti comandi di standby e di riattivazione inviati"
 
 msgid "Repeat the standby commands"
 msgstr "Ripetere i comandi di standby"
@@ -16657,6 +16682,9 @@ msgstr "Seleziona come è impostata la parabola satellitare: parabola fissa, LNB
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Seleziona la modalità di gestione della pianificazione in relazione alla modalità Standby."
+
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr "Seleziona modalità di connessione del tuner DVB-C/T. Usa l'opzione con switch coassiale esterno solo in presenza di uno switch coassiale controllato a 5V."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleziona come attivare la modalità EPG rapido."
@@ -20062,8 +20090,14 @@ msgstr "TV"
 msgid "TV button mode"
 msgstr "Modalità tasto TV"
 
+msgid "TV input and receiver wakeup"
+msgstr "Ingresso TV e riattivazione del ricevitore"
+
 msgid "TV physical address report"
 msgstr "Rapporto indirizzo fisico TV"
+
+msgid "TV power"
+msgstr "Accensione TV"
 
 msgid "TXT PID"
 msgstr "PID TXT"
@@ -21179,7 +21213,7 @@ msgid "Time update in minutes"
 msgstr "Tempo di aggiornamento in minuti"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
-msgstr "Finestra per riconoscimento risveglio da parte di un timer [min]"
+msgstr "Finestra per riconoscimento riattivazione da parte di un timer [min]"
 
 msgid "Time zone"
 msgstr "Fuso orario"
@@ -21264,6 +21298,9 @@ msgstr "Timeshift"
 
 msgid "Timezone"
 msgstr "Fuso orario"
+
+msgid "Timing and diagnostics"
+msgstr "Tempi e diagnostica"
 
 msgid "Timor-Leste / East Timor"
 msgstr "Timor-Leste / Timor Est"
@@ -21540,7 +21577,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Cerca di prevenire i riavvii per errori software e di mantenere la disponibilità per il ricevitore."
 
 msgid "Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input)."
-msgstr "Prova a inviare comandi ripetuti se tutti i comandi non sono stati eseguiti (ad esempio, la TV si è svegliata, ma non è stata impostata sull'ingresso corretto)."
+msgstr "Prova a inviare comandi ripetuti se tutti i comandi non sono stati eseguiti (ad esempio, la TV si è riattivata, ma non è stata impostata sull'ingresso corretto)."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -22738,8 +22775,8 @@ msgstr "Modalità di regolazione del volume"
 msgid "Volume down"
 msgstr "Volume giù"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
-msgstr "I tasti del volume sul telecomando del ricevitore controlleranno il volume della TV. Se questa funzione non è supportata, i tasti del volume non hanno alcuna funzione!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
+msgstr "I tasti del volume sul telecomando del ricevitore controllano il volume della TV, del ricevitore AV o della soundbar tramite HDMI-CEC. Se questa funzione non è supportata, i tasti del volume non hanno alcuna funzione!"
 
 msgid "Volume steps"
 msgstr "Passi volume"
@@ -22808,22 +22845,22 @@ msgid "Waiting for partition"
 msgstr "Attendi il partizionamento"
 
 msgid "Wake from Shutdown allowed"
-msgstr "Abilita risveglio se spento"
+msgstr "Abilita riattivazione se spento"
 
 msgid "Wake up"
-msgstr "Riattivare "
+msgstr "Riattivazione"
 
 msgid "Wake up TV from Standby"
-msgstr "Riattivare la TV dallo Standby"
+msgstr "Riattiva TV dallo standby"
 
 msgid "Wake up time before a timer begins"
-msgstr "Risveglio prima dell'inizio di un timer [min]"
+msgstr "Riattiva prima dell'inizio di un timer"
 
 msgid "Wake up to standby"
-msgstr "Riattivare in standby"
+msgstr "Riattiva in standby"
 
-msgid "Wake up your AV Receiver from Standby"
-msgstr "Riattiva il ricevitore AV dallo standby"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr "Riattiva ricevitore AV o soundbar dallo standby"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis e Futuna"
@@ -23081,14 +23118,14 @@ msgstr "Se abilitato, la funzione PiP può essere chiusa con il tasto ESCI."
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Se abilitato, l'opzione VCR SCART verrà mostrata nel menu principale."
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr "Se abilitato, il ricevitore AV o la soundbar collegati si spegneranno automaticamente."
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr "Se abilitato, il ricevitore AV o la soundbar collegati si accenderanno automaticamente."
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Se abilitato, la lunghezza di ogni registrazione verrà mostrata nell'elenco registrazioni (questo potrebbe causare maggior tempo di ricarica)."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Se abilitato, il ricevitore si spegnerà automaticamente."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Se abilitato, il ricevitore si accenderà automaticamente."
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Se abilitato, il ricevitore tornerà automaticamente in standby quando la TV sarà spenta."
@@ -23165,8 +23202,8 @@ msgstr "Se il cursore di input raggiunge questo punto (percentuale della larghez
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Se il ricevitore si riattiva dallo standby o dallo spegnimento, invierà un comando alla TV per portarla fuori dallo standby."
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Se il ricevitore si riattiva dalla modalità standby, ordinerà alla TV di passare all'ingresso HDMI a cui è collegato il ricevitore."
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgstr "Quando il ricevitore si riattiva dalla modalità Standby, invia i comandi di sorgente attiva, percorso di streaming e routing per sintonizzare la TV sull'ingresso HDMI collegato al ricevitore."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Quando il riquadro rosso è visibile correttamente premi il tasto VERDE per salvare le impostazioni ed uscire."
@@ -24421,6 +24458,30 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Force TV input to this receiver"
+#~ msgstr "Forza ingresso TV su questo ricevitore"
+
+#~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+#~ msgstr "Se il ricevitore si riattiva dalla modalità standby, ordinerà alla TV di passare all'ingresso HDMI a cui è collegato il ricevitore."
+
+#~ msgid "When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver."
+#~ msgstr "Se il ricevitore si riattiva dallo standby, invia i comandi HDMI per far commutare automaticamente la TV su questo ricevitore."
+
+#~ msgid "Put your AV Receiver in Standby"
+#~ msgstr "Metti il ricevitore AV in standby"
+
+#~ msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+#~ msgstr "I tasti del volume sul telecomando del ricevitore controlleranno il volume della TV. Se questa funzione non è supportata, i tasti del volume non hanno alcuna funzione!"
+
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "Riattiva il ricevitore AV dallo standby"
+
+#~ msgid "When enabled, the receiver will automatically be switched off."
+#~ msgstr "Se abilitato, il ricevitore si spegnerà automaticamente."
+
+#~ msgid "When enabled, the receiver will automatically be switched on."
+#~ msgstr "Se abilitato, il ricevitore si accenderà automaticamente."
 
 #~ msgid "Color Bottom"
 #~ msgstr "Colore in basso"

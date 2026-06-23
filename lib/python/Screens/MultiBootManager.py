@@ -67,7 +67,7 @@ class MultiBootManager(Screen):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("MultiBoot Manager"))
 		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
-		self["description"] = Label(_("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"))
+		self["description"] = Label(_("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Reboot"))
 		self["key_yellow"] = StaticText()
@@ -75,7 +75,7 @@ class MultiBootManager(Screen):
 		self["key_text"] = StaticText()
 		self.editSlotCode = None
 		self["editActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
-			"showVirtualKeyboard": (self.keyEdit, _("Rename the selected slot"))
+			"showVirtualKeyboard": (self.keyEdit, _("Rename the highlighted slot"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["editActions"].setEnabled(False)
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
@@ -96,7 +96,7 @@ class MultiBootManager(Screen):
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restartActions"].setEnabled(False)
 		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.deleteImage, _("Delete or Wipe the highlighted slot"))
+			"yellow": (self.deleteImage, _("Empty or Wipe the highlighted slot"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["deleteActions"].setEnabled(False)
 		self["restoreActions"] = HelpableActionMap(self, ["ColorActions"], {
@@ -105,7 +105,7 @@ class MultiBootManager(Screen):
 		self["restoreActions"].setEnabled(False)
 		if (BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot")) and not BoxInfo.getItem("hasUBIMB"):
 			self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
-				"blue": (self.moreSlots, _("Add more slots"))
+				"blue": (self.moreSlots, _("Add slots"))
 			}, prio=0, description=_("MultiBoot Manager Actions"))
 			self["moreSlotActions"].setEnabled(False)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -192,7 +192,7 @@ class MultiBootManager(Screen):
 		slot = currentSelected[1][0]
 		current = currentSelected[1][4]
 		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
-			self.session.openWithCallback(self.disableChkrootAnswer, MessageBox, _("Are you sure you want to disable Chkroot Multiboot?"), simple=True, windowTitle=self.getTitle())
+			self.session.openWithCallback(self.disableChkrootAnswer, MessageBox, _("Disable Chkroot Multiboot?"), simple=True, windowTitle=self.getTitle())
 		else:
 			self.session.openWithCallback(self.deleteImageAnswer, MessageBox, "%s\n\n%s" % (self["slotlist"].l.getCurrentSelection()[0][0], _("Are you sure you want to delete this image?")), simple=True, windowTitle=self.getTitle())
 
@@ -260,10 +260,10 @@ class MultiBootManager(Screen):
 		ubi = currentSelected[1][3]
 		current = currentSelected[1][4]
 		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
-			self["description"].setText(_("Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."))
+			self["description"].setText(_("Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."))
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText(_("Disable"))
-			self["key_blue"].setText(_("Add more slots"))
+			self["key_blue"].setText(_("Add slots"))
 			self["restartActions"].setEnabled(True)
 			self["deleteActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
@@ -309,7 +309,7 @@ class MultiBootManager(Screen):
 			else:
 				self["restoreActions"].setEnabled(False)
 				self["moreSlotActions"].setEnabled(True)
-				self["key_blue"].setText(_("Add more slots"))
+				self["key_blue"].setText(_("Add slots"))
 		if status == "active" and slot.isdecimal():
 			self["editActions"].setEnabled(True)
 			self["key_text"].setText("TEXT")

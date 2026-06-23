@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -1866,6 +1866,9 @@ msgstr "Leveransier"
 msgid "AV Setup"
 msgstr ""
 
+msgid "AV receiver, soundbar and remote"
+msgstr ""
+
 msgid "Abkhazian"
 msgstr ""
 
@@ -2143,7 +2146,7 @@ msgstr ""
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr ""
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -2710,7 +2713,7 @@ msgstr ""
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr ""
 
 #
@@ -5932,10 +5935,16 @@ msgstr ""
 msgid "DVB-C"
 msgstr ""
 
+msgid "DVB-C / Cable only"
+msgstr ""
+
 msgid "DVB-C ANNEX B"
 msgstr ""
 
 msgid "DVB-C ANNEX C"
+msgstr ""
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
 msgstr ""
 
 #
@@ -5947,6 +5956,9 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T/T2 / Terrestrial only"
 msgstr ""
 
 msgid "DVB-T2"
@@ -6509,7 +6521,7 @@ msgstr ""
 msgid "Delete only highlighted file"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr ""
 
 #
@@ -7196,6 +7208,9 @@ msgid "Documentary"
 msgstr ""
 
 msgid "Dolby Digital downmix is now"
+msgstr ""
+
+msgid "Dolby TrueHD"
 msgstr ""
 
 msgid "Domain"
@@ -10217,6 +10232,9 @@ msgid "Hungary"
 msgstr "Hongaarsk"
 
 msgid "Hybrid Tuner"
+msgstr ""
+
+msgid "Hybrid tuner mode"
 msgstr ""
 
 msgid "Hz"
@@ -15474,10 +15492,10 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15731,7 +15749,7 @@ msgstr ""
 msgid "Put TV in Standby"
 msgstr ""
 
-msgid "Put your AV Receiver in Standby"
+msgid "Put your AV Receiver or Soundbar in Standby"
 msgstr ""
 
 msgid "Python"
@@ -16494,10 +16512,17 @@ msgstr ""
 msgid "Rename only highlighted file"
 msgstr ""
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr ""
 
 msgid "Rename the selected service"
+msgstr ""
+
+msgid "Rename the highlighted slot"
 msgstr ""
 
 msgid "Rename this tag"
@@ -18044,6 +18069,9 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr ""
 
 msgid "Select how the schedule is handled with respect to Standby."
+msgstr ""
+
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -21669,7 +21697,13 @@ msgstr ""
 msgid "TV button mode"
 msgstr ""
 
+msgid "TV input and receiver wakeup"
+msgstr ""
+
 msgid "TV physical address report"
+msgstr ""
+
+msgid "TV power"
 msgstr ""
 
 msgid "TXT PID"
@@ -22865,6 +22899,9 @@ msgid "Timeshift"
 msgstr "Tiidsskowen"
 
 msgid "Timezone"
+msgstr ""
+
+msgid "Timing and diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -24422,7 +24459,7 @@ msgstr ""
 msgid "Volume down"
 msgstr ""
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
 msgid "Volume steps"
@@ -24515,10 +24552,8 @@ msgstr ""
 msgid "Wake up to standby"
 msgstr "Sliip stand"
 
-#
-#, fuzzy
-msgid "Wake up your AV Receiver from Standby"
-msgstr "gean nei paraatstand"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr ""
 
 msgid "Wallis and Futuna"
 msgstr ""
@@ -24780,13 +24815,13 @@ msgstr ""
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr ""
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr ""
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr ""
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically be switched on."
 msgstr ""
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
@@ -24864,7 +24899,7 @@ msgstr ""
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr ""
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -26231,6 +26266,11 @@ msgstr "ja (feeds hâlde)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "gean nei paraatstand"
 
 #
 #~ msgid "* Only available if more than one interface is active."
