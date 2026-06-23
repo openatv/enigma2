@@ -941,7 +941,7 @@ class MultiBootInformation(InformationBase):
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(self.slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
-			currentMsg = f"  -  {_('Current')}"
+			currentMsg = f"  -  {_('Active')}"
 			imageLists = {}
 			for slot in slotImageList:
 				for boot in self.slotImages[slot]["bootCodes"]:

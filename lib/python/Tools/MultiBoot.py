@@ -621,6 +621,11 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
 				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
+			elif isfile(join(imageDir, "usr/bin/enigma2x.bin")):
+				self.imageList[self.slotCode]["detection"] = "Found a disabled enigma2 binary file"
+				self.imageList[self.slotCode]["imagename"] = _("Disabled")
+				self.imageList[self.slotCode]["imagelogname"] = "Disabled"
+				self.imageList[self.slotCode]["status"] = "hidden"
 			else:
 				self.imageList[self.slotCode]["detection"] = "Found no enigma files"
 				self.imageList[self.slotCode]["imagename"] = _("Empty")
