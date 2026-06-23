@@ -653,7 +653,7 @@ class FlashImage(Screen):
 		imageFiles = findImageFiles(self.unzippedImage)
 		if imageFiles:
 			rootSubDir = None
-			bootSlots = MultiBoot.getBootSlots()
+			bootSlots = MultiBoot.canMultiBoot() and MultiBoot.getBootSlots()
 			if bootSlots:
 				mtdKernel = bootSlots[self.slotCode]["kernel"] if BoxInfo.getItem("HasKexecMultiboot") else bootSlots[self.slotCode]["kernel"].split(sep)[2]
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
@@ -663,6 +663,15 @@ class FlashImage(Screen):
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
+				if BoxInfo.getItem("model") in ("dreamone", "dreamtwo"):
+					try:
+						with open("/proc/cmdline") as fd:
+							for arg in fd.read().split():
+								if arg.startswith("root=/dev/mmcblk1p"):
+									mtdRootFS = arg[len("root=/dev/"):]
+									break
+					except OSError:
+						pass
 			if BoxInfo.getItem("HasKexecMultiboot"):
 				if self.slotCode == "R":
 					cmdArgs = ["-r", "-k", "-f"]
