@@ -37,7 +37,7 @@ config.hdmicec.handle_tv_wakeup = ConfigSelection(default="streamrequest", choic
 	"activity": _("Any activity"),
 })
 config.hdmicec.fixed_physical_address = ConfigText(default="0.0.0.0")
-config.hdmicec.volume_forwarding = ConfigYesNo(default=True)
+config.hdmicec.volume_forwarding = ConfigYesNo(default=False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default=True)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default=True)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default=True)
@@ -73,7 +73,7 @@ choicelist = []
 for i in (5, 10, 15, 30, 45, 60):
 	choicelist.append((i, _("%d sec") % i))
 config.hdmicec.workaround_turnbackon = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + choicelist)
-config.hdmicec.advanced_settings = ConfigYesNo(default=True)
+config.hdmicec.advanced_settings = ConfigYesNo(default=False)
 config.hdmicec.default_settings = NoSave(ConfigYesNo(default=False))
 config.hdmicec.debug = ConfigYesNo(default=False)
 config.hdmicec.commandline = ConfigYesNo(default=False)
