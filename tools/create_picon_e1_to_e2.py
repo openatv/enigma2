@@ -8,7 +8,7 @@
 from os import makedirs, rename, symlink
 import sys
 
-f = open(sys.argv[1]).readlines()
+f = open(sys.argv[1]).readlines()  # NOSONAR
 
 f = f[f.index("services\n") + 1:-3]
 

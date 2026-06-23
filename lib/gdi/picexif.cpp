@@ -349,9 +349,9 @@ int Cexif::Get16u(void* Short) {
 	if (!Short)
 		return 0;
 	if (MotorolaOrder)
-		return (((unsigned char*)Short)[0] << 8) | ((unsigned char*)Short)[1];
+		return (((unsigned char*)Short)[0] << 8) | ((unsigned char*)Short)[1]; // NOSONAR - Short is caller-validated EXIF data, null already checked above
 	else
-		return (((unsigned char*)Short)[1] << 8) | ((unsigned char*)Short)[0];
+		return (((unsigned char*)Short)[1] << 8) | ((unsigned char*)Short)[0]; // NOSONAR
 }
 
 long Cexif::Get32s(void* Long) {

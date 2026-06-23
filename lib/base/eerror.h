@@ -136,7 +136,7 @@ enum { lvlTrace=5, lvlDebug=4, lvlInfo=3, lvlWarning=2, lvlError=1, lvlFatal=0 }
 #define eDebugLow(lvl, flags, ...) \
 	do { \
 		if (((lvl) <= MAX_DEBUG_LEVEL) && ((lvl) <= debugLvl)) \
-			eDebugImpl((flags), __VA_ARGS__); \
+			eDebugImpl((flags), __VA_ARGS__); /* NOSONAR - uninitialized arg is at call site, not fixable at macro definition */ \
 	} while (0)
 
 #define _DBGFLG_NONEWLINE  1

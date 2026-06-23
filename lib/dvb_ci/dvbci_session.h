@@ -17,11 +17,11 @@ class eDVBCISession
 	void recvCreateSessionResponse(const unsigned char *data);
 	void recvCloseSessionRequest(const unsigned char *data);
 protected:
-	int state;
-	int status;
-	int action;
-	eDVBCISlot *slot;		//base only
-	unsigned short session_nb;
+	int state = 0;
+	int status = 0;
+	int action = 0;
+	eDVBCISlot *slot = nullptr;		//base only
+	unsigned short session_nb = 0;
 	virtual int receivedAPDU(const unsigned char *tag, const void *data, int len) = 0;
 	void sendAPDU(const unsigned char *tag, const void *data=0,int len=0);
 	void sendSPDU(unsigned char tag, const void *data, int len,const void *apdu=0, int alen=0);

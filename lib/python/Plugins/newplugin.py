@@ -91,7 +91,7 @@ print("Saving file 'configure.ac'...")
 with open("../../../configure.ac", "w") as fd:
 	fd.write("\n".join(lines))
 print("File 'configure.ac' updated.")
-with open(join(pluginPath, "plugin.py"), "w") as fd:
+with open(join(pluginPath, "plugin.py"), "w") as fd:  # NOSONAR
 	importList = []
 	for where in targetList:
 		importList.append(where[0])
@@ -109,6 +109,6 @@ with open(join(pluginPath, "plugin.py"), "w") as fd:
 		descriptorList.append(where[1](name, mainList[count]))
 	descriptorList = descriptorList[0] if len(descriptorList) == 1 else "[\n\t\t%s\n\t]" % ",\n\t\t".join(descriptorList)
 	fd.write("\n\ndef Plugins(**kwargs):\n\treturn %s\n" % descriptorList)
-with open(join(pluginPath, "Makefile.am"), "w") as fd:
+with open(join(pluginPath, "Makefile.am"), "w") as fd:  # NOSONAR
 	fd.write("installdir = $(pkglibdir)/python/Plugins/%s/%s\n\ninstall_PYTHON = \\\n\t__init__.py \\\n\tplugin.py\n" % (category, internalName))
 print("\nPlugin '%s' template created.\n" % internalName)

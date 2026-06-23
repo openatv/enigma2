@@ -20,8 +20,8 @@
 #endif
 
 #define ioctlMeasureStart \
-	struct timeval start, end; \
-	int duration; \
+	struct timeval start = {}, end = {}; \
+	int duration = 0; \
 	if (m_debuglevel==5) { gettimeofday(&start, NULL); }
 
 #define ioctlMeasureEval(x) \
@@ -3816,7 +3816,7 @@ bool eDVBFrontend::changeType(int type)
 		{
 			eDebug("[eDVBFrontend] m_need_delivery_system_workaround active");
 			FILE *f = fopen("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "rw");
-			int old;
+			int old = 0;
 			if (f)
 			{
 				if (fscanf(f, "%d", &old) != 1)

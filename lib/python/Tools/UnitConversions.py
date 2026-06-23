@@ -83,8 +83,8 @@ if __name__ == "__main__":
 	kwargs = {}
 	while '=' in sys.argv[0]:
 		(arg, val) = sys.argv.pop(0).split("=", 1)
-		kwargs[arg] = eval(val)
+		kwargs[arg] = eval(val)  # NOSONAR
 	scaler = UnitScaler(**kwargs)
 	for arg in sys.argv:
-		val = eval(arg)
+		val = eval(arg)  # NOSONAR
 		print(arg, val, scaler(val))

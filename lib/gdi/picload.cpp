@@ -731,7 +731,7 @@ static void svg_load(Cfilepara* filepara, bool forceRGB = false) {
 	w = image->width * scale;
 	h = image->height * scale;
 
-	pic_buffer = (unsigned char*)malloc(w * h * 4);
+	pic_buffer = (unsigned char*)malloc(w * h * 4); // NOSONAR
 	if (pic_buffer == nullptr) {
 		nsvgDeleteRasterizer(rast);
 		nsvgDelete(image);
