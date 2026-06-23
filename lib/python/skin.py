@@ -26,6 +26,21 @@ SUBTITLE_SKIN = "skin_subtitles.xml"
 GUI_SKIN_ID = 0  # Main frame-buffer.
 DISPLAY_SKIN_ID = 2 if BoxInfo.getItem("model").startswith("dm") else 1  # Front panel / display / LCD.
 
+# MANDATORY_WIDGETS AUTOGENERATION
+# START
+MANDATORY_WIDGETS = {
+	"DeviceManager": ["devicelist"],
+	"FileCommanderImageViewer": ["infolabels"],
+	"FileCommanderPictureViewer": ["infolabels"],
+	"LocationBox": ["fileheading", "quickselect"],
+	"MessageBox": ["icon", "list", "text"],
+	"QuickMenu": ["mainlist"],
+	"SeekBar": ["length"],
+	"Setup": ["config", "footnote", "description"],
+	"TimerLog": ["log"],
+}
+# END
+
 domScreens = {}  # Dictionary of skin based screens.
 colors = {  # Dictionary of skin color names.
 	"key_back": gRGB(0x00313131),
