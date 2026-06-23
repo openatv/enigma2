@@ -55,7 +55,7 @@ class MultiBootManager(Screen):
 		<widget source="key_blue" render="Label" position="460,e-50" size="140,40" backgroundColor="key_blue" font="Regular;20" conditional="key_blue" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_text" render="Label" position="610,e-50" size="140,40" backgroundColor="key_back" font="Regular;20" conditional="key_text" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+		<widget source="key_text" render="Label" position="e-200,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_text" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
@@ -309,7 +309,7 @@ class MultiBootManager(Screen):
 			self["key_blue"].setText(_("Add more slots"))
 		if status == "active" and slot.isdecimal():
 			self["editActions"].setEnabled(True)
-			self["key_text"].setText(_("Rename"))
+			self["key_text"].setText("TEXT")
 		else:
 			self["editActions"].setEnabled(False)
 			self["key_text"].setText("")
