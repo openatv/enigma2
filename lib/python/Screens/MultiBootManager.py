@@ -304,9 +304,12 @@ class MultiBootManager(Screen):
 			self["deleteActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
 		if (BoxInfo.getItem("HasKexecMultiboot") and slotCode == "R") or BoxInfo.getItem("HasGPT"):
-			self["restoreActions"].setEnabled(False)
-			self["moreSlotActions"].setEnabled(True)
-			self["key_blue"].setText(_("Add more slots"))
+			if status == "empty":
+				self["moreSlotActions"].setEnabled(False)
+			else:
+				self["restoreActions"].setEnabled(False)
+				self["moreSlotActions"].setEnabled(True)
+				self["key_blue"].setText(_("Add more slots"))
 		if status == "active" and slot.isdecimal():
 			self["editActions"].setEnabled(True)
 			self["key_text"].setText("TEXT")
