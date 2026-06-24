@@ -1448,7 +1448,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			name = font.attrib.get("name", "Regular")
 			scale = font.attrib.get("scale")
 			scale = int(scale) if scale and scale.isdigit() else 100
-			isReplacement = font.attrib.get("replacement") and True or False
+			isReplacement = parseBoolean("replacement", font.attrib.get("replacement", "false"))
 			render = font.attrib.get("render")
 			render = int(render) if render and render.isdigit() else 0
 			resolved = resolveFilename(SCOPE_FONTS, filename, path_prefix=pathSkin)
