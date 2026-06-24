@@ -357,20 +357,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaStream plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
-		from Screens.Menu import Menu, findMenu
-		menu = findMenu("setup")
-		if menu:
-			self.session.infobar = self
-			self.session.open(Menu, menu)
-			return
+		self._showMenu("setup")
 
 	def showInformation(self):
-		from Screens.Menu import Menu, findMenu
-		menu = findMenu("information")
-		if menu:
-			self.session.infobar = self
-			self.session.open(Menu, menu)
-			return
+		self._showMenu("information")
 
 	def showFormat(self):
 		try:

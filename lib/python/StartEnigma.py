@@ -277,7 +277,7 @@ class PowerKey:
 			menu = findMenu("shutdown")
 			if menu:
 				self.session.infobar = self
-				self.session.openWithCallback(self.MenuClosed, Menu, menu)
+				self.session.openWithCallback(self.MenuClosed, Menu, menu)  # Here we only use the vertial menu
 				return
 		elif action == "standby":
 			Screens.Standby.TVinStandby.skipHdmiCecNow(False)
