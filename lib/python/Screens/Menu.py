@@ -197,18 +197,14 @@ class Menu(Screen, ProtectedScreen):
 		# For the skin: first try a menu_<menuID>, then Menu.
 		self.skinName = []
 		if self.menuID is not None:
-			if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
-				self.skinName.append("Animmain")
-			elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
+			if config.usage.menuType.value == 1 and findSkinScreen("Iconmain"):
 				self.skinName.append("Iconmain")
 			else:
 				self.skinName.append(f"Menu{self.menuID}")
 				self.skinName.append(f"menu_{self.menuID}")
 		self.skinName.append("Menu")
-		if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
-			self.onShown.append(self.openTestA)
-		elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
-			self.onShown.append(self.openTestB)
+		if config.usage.menuType.value == 1 and findSkinScreen("Iconmain"):
+			self.onShown.append(self.openMenuIconMain)
 		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "MenuActions", "ColorActions", "NumberActions", "TextActions"], {
 			"ok": (self.okbuttonClick, _("Select the current menu item")),
 			"cancel": (self.closeNonRecursive, _("Exit menu")),
@@ -486,19 +482,13 @@ class Menu(Screen, ProtectedScreen):
 	def openSetup(self, dialog):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
-	def openTestA(self):
-		self.session.open(AnimMain, self.menuList, self.getTitle())
-		self.close()
-
-	def openTestB(self):
+	def openMenuIconMain(self):
 		self.session.open(IconMain, self.menuList, self.getTitle())
 		self.close()
 
 	def singleItemMenu(self):
 		self.onExecBegin.remove(self.singleItemMenu)
-		if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
-			return
-		elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
+		if config.usage.menuType.value == 1 and findSkinScreen("Iconmain"):
 			return
 		else:
 			self.okbuttonClick()
@@ -508,7 +498,7 @@ class Menu(Screen, ProtectedScreen):
 		self.close(True)
 
 	def createSummary(self):
-		if config.usage.menuType.value == "standard":
+		if config.usage.menuType.value == 0:
 			return MenuSummary
 
 	def isProtected(self):
@@ -692,136 +682,7 @@ class Menu(Screen, ProtectedScreen):
 		self.close(True)
 
 
-class AnimMain(Screen):
-	def __init__(self, session, tlist, menuTitle):
-		Screen.__init__(self, session)
-		self.tlist = tlist
-		self.setTitle(menuTitle)
-		self.skinName = "Animmain"
-		self.ipage = 1
-		# nopic = len(tlist)
-		self.pos = []
-		self.index = 0
-		tlist = []
-		self["label1"] = StaticText()
-		self["label2"] = StaticText()
-		self["label3"] = StaticText()
-		self["label4"] = StaticText()
-		self["label5"] = StaticText()
-		self["key_red"] = StaticText(_("Exit"))
-		self["key_green"] = StaticText(_("Select"))
-		self["actions"] = HelpableNumberActionMap(self, ["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
-			"ok": self.okbuttonClick,
-			"cancel": self.closeNonRecursive,
-			"left": self.key_left,
-			"right": self.key_right,
-			"up": self.key_up,
-			"down": self.key_down,
-			"red": self.cancel,
-			"green": self.okbuttonClick,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal
-		}, prio=0)
-		nop = len(self.tlist)
-		self.nop = nop
-		nh = 1
-		if nop == 1:
-			nh = 1
-		elif nop == 2:
-			nh = 2
-		elif nop == 3:
-			nh = 2
-		elif nop == 4:
-			nh = 3
-		elif nop == 5:
-			nh = 3
-		else:
-			nh = int(float(nop) / 2)
-		self.index = nh
-		i = 0  # noqa F841
-		self.onShown.append(self.openTest)
-
-	def key_menu(self):
-		pass
-
-	def cancel(self):
-		self.close()
-
-	def openTest(self):
-		i = self.index
-		if i - 3 > -1:
-			name1 = menuEntryName(self.tlist[i - 3][0])
-		else:
-			name1 = " "
-		if i - 2 > -1:
-			name2 = menuEntryName(self.tlist[i - 2][0])
-		else:
-			name2 = " "
-		name3 = menuEntryName(self.tlist[i - 1][0])
-		if i < self.nop:
-			name4 = menuEntryName(self.tlist[i][0])
-		else:
-			name4 = " "
-		if i + 1 < self.nop:
-			name5 = menuEntryName(self.tlist[i + 1][0])
-		else:
-			name5 = " "
-		self["label1"].setText(name1)
-		self["label2"].setText(name2)
-		self["label3"].setText(name3)
-		self["label4"].setText(name4)
-		self["label5"].setText(name5)
-
-	def key_left(self):
-		self.index -= 1
-		if self.index < 1:
-			self.index = self.nop
-		self.openTest()
-
-	def key_right(self):
-		self.index += 1
-		if self.index > self.nop:
-			self.index = 1
-		self.openTest()
-
-	def key_up(self):
-		self.index = 1 if self.index > 1 else self.nop
-		self.openTest()
-
-	def key_down(self):
-		self.index = self.nop if self.index < self.nop else 1
-		self.openTest()
-
-	def keyNumberGlobal(self, number):
-		if number <= self.nop:
-			self.index = number
-			self.openTest()
-			self.okbuttonClick()
-
-	def closeNonRecursive(self):
-		self.close(False)
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def createSummary(self):
-		pass
-
-	def okbuttonClick(self):
-		idx = self.index - 1
-		selection = self.tlist[idx]
-		if selection is not None:
-			selection[1]()
-
-
-class IconMain(Screen):
+class MenuHorizontal(Screen):
 	def __init__(self, session, tlist, menuTitle):
 		Screen.__init__(self, session)
 		self.tlist = tlist
