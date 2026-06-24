@@ -74,7 +74,7 @@ def getBoxProcTypeName():
 	procType = getBoxProcType()
 	if procType == "unknown":
 		return _("Unknown")
-	return f"{procType}  -  {boxProcTypes.get(procType, _('Unknown'))}"
+	return f"{procType}  -  {boxProcTypes.get(procType, _("Unknown"))}"
 
 
 welcome = [
@@ -511,7 +511,7 @@ class DebugInformation(InformationBase):
 			self["debugActions"].setEnabled(False)
 			name = "Unavailable"
 			self.debugLogs = [(name, name, name)]
-			self.cachedDebugInfo[name] = f"0,{_('No log files found so debug logs are unavailable!')}"
+			self.cachedDebugInfo[name] = f"0,{_("No log files found so debug logs are unavailable!")}"
 		for callback in self.onInformationUpdated:
 			if callable(callback):
 				callback()
@@ -659,7 +659,7 @@ class DistributionInformation(InformationBase):
 		info.append(formatLine("P1", _("Flash type"), about.getFlashType()))
 		xResolution = getDesktop(0).size().width()
 		yResolution = getDesktop(0).size().height()
-		info.append(formatLine("P1", _("Skin & Resolution"), f"{config.skin.primary_skin.value.split('/')[0]}  ({self.resolutions.get(yResolution, 'Unknown')}  -  {xResolution} x {yResolution})"))
+		info.append(formatLine("P1", _("Skin & Resolution"), f"{config.skin.primary_skin.value.split("/")[0]}  ({self.resolutions.get(yResolution, "Unknown")}  -  {xResolution} x {yResolution})"))
 		info.append("")
 		info.append(formatLine("S", _("Enigma2 information")))
 		if self.extraSpacing:
@@ -877,9 +877,9 @@ class MemoryInformation(InformationBase):
 		diskSize = stat.f_blocks * stat.f_frsize
 		diskFree = stat.f_bfree * stat.f_frsize
 		diskUsed = diskSize - diskFree
-		info.append(formatLine("P1", _("Total flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
-		info.append(formatLine("P1", _("Used flash"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
-		info.append(formatLine("P1", _("Free flash"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
+		info.append(formatLine("P1", _("Total flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, "Iec")})"))
+		info.append(formatLine("P1", _("Used flash"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, "Iec")})"))
+		info.append(formatLine("P1", _("Free flash"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, "Iec")})"))
 		for line in fileReadLines("/proc/mtd", [], source=MODULE_NAME):
 			if "\"kernel" in line:
 				data = line.split()
@@ -941,19 +941,19 @@ class MultiBootInformation(InformationBase):
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(self.slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
-			currentMsg = f"  -  {_('Active')}"
+			currentMsg = f"  -  {_("Active")}"
 			imageLists = {}
 			for slot in slotImageList:
 				for boot in self.slotImages[slot]["bootCodes"]:
 					if imageLists.get(boot) is None:
 						imageLists[boot] = []
-					current = currentMsg if boot == bootCode and slot == slotCode else ""
+					active = currentMsg if boot == bootCode and slot == slotCode else ""
 					indent = "P0V" if boot == "" else "P1V"
-					if current:
+					if active:
 						indent = indent.replace("P", "F").replace("V", "F")
 					device = self.slotImages[slot]["device"]
 					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
-					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]['imagename']}{current}"))
+					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]["imagename"]}{active}"))
 			count = 0
 			for bootCode in sorted(imageLists.keys()):
 				if bootCode == "":
@@ -1234,7 +1234,7 @@ class NetworkInformation(InformationBase):
 					if "mac" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("MAC address"), self.interfaceData[interface]["mac"]))
 					if "speed" in self.interfaceData[interface]:
-						info.append(formatLine("P1", _("Speed"), f"{self.interfaceData[interface]['speed']} Mbps"))
+						info.append(formatLine("P1", _("Speed"), f"{self.interfaceData[interface]["speed"]} Mbps"))
 					if "duplex" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("Duplex"), self.interfaceData[interface]["duplex"]))
 					if "mtu" in self.interfaceData[interface]:
@@ -1313,7 +1313,7 @@ class PictureInformation(Screen):
 		}, prio=0, description=_("Picture Information Actions"))
 		self["pictureActions"].setEnabled(False)
 		self.definedPictures = (
-			(_("Remote Control"), f"hardware/{BoxInfo.getItem('rcname')}.png"),
+			(_("Remote Control"), f"hardware/{BoxInfo.getItem("rcname")}.png"),
 			(_("Front"), f"hardware/{MACHINE_BUILD}_front.png"),
 			(_("Rear"), f"hardware/{MACHINE_BUILD}_rear.png"),
 			(_("Internal"), f"hardware/{MACHINE_BUILD}_internal.png")
@@ -1551,14 +1551,14 @@ class ReceiverInformation(InformationBase):
 			info.append("")
 		stat = statvfs("/")
 		diskSize = stat.f_blocks * stat.f_frsize
-		info.append(formatLine("P1", _("Internal flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+		info.append(formatLine("P1", _("Internal flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, "Iec")})"))
 		# hddList = storageManager.HDDList()
 		hddList = harddiskmanager.HDDList()
 		if hddList:
 			for hdd in hddList:
 				hdd = hdd[1]
 				diskSize = hdd.diskSize() * 1000000
-				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, "Iec")})"))
 		else:
 			info.append(formatLine("H", _("No hard disks detected.")))
 		info.append("")
@@ -1709,7 +1709,7 @@ class ServiceInformation(InformationBase):
 
 		def getNamespace(value):
 			if isinstance(value, str):
-				namespace = f"{_('N/A')}  -  {_('N/A')}"
+				namespace = f"{_("N/A")}  -  {_("N/A")}"
 			else:
 				namespace = f"{value & 0xFFFFFFFF:08X}"
 				if namespace.startswith("EEEE"):
@@ -1750,7 +1750,7 @@ class ServiceInformation(InformationBase):
 				elif subtitle[0] == 1:  # Teletext.
 					info.append(formatLine(indent, _("TXT Subtitles page & Language"), f"0x0{subtitle[3] or 8:X}{subtitle[2]:02X}  -  {subtitleLang}"))
 				elif subtitle[0] == 2:  # File.
-					subtitleDesc = subtitleTypes.get(subtitle[2], f"{_('Unknown')}: {subtitle[2]}")
+					subtitleDesc = subtitleTypes.get(subtitle[2], f"{_("Unknown")}: {subtitle[2]}")
 					info.append(formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  {subtitleDesc}  -  {subtitleLang}"))
 
 		info = []
@@ -1764,8 +1764,8 @@ class ServiceInformation(InformationBase):
 			height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
 			if width > 0 and height > 0:
 				videoData.append(f"{width}x{height}")
-				videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{('i', 'p', '')[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
-				videoData.append(f"[{'4:3' if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else '16:9'}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
+				videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{("i", "p", "")[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
+				videoData.append(f"[{"4:3" if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else "16:9"}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
 			gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.serviceInfo.getInfo(iServiceInformation.sGamma)]  # This should be in SystemInfo maybe as a BoxInfo variable.
 			if gamma:
 				videoData.append(gamma)
@@ -1827,7 +1827,7 @@ class ServiceInformation(InformationBase):
 		def getSymbolRateValue():
 			valueLive = frontendLive.get("symbol_rate", 0) // 1000
 			valueConfig = frontendConfig.get("symbol_rate", 0) // 1000
-			return f"{valueLive} {_('KSymb/s')}" if valueLive == valueConfig else f"{valueLive} {_('KSymb/s')}  ({valueConfig} {_('KSymb/s')})"
+			return f"{valueLive} {_("KSymb/s")}" if valueLive == valueConfig else f"{valueLive} {_("KSymb/s")}  ({valueConfig} {_("KSymb/s")})"
 
 		def getDVBSFrequencyValue():
 			valueLive = frontendLive.get("frequency", 0) // 1000
@@ -1864,8 +1864,8 @@ class ServiceInformation(InformationBase):
 			na = _("N/A")
 			mhz = _("MHz")
 			if not self.transponderInfo:
-				info.append(formatLine("P1", _("NIM"), f"{chr(ord('A') + frontendLive.get('tuner_number', 0))}"))
-			info.append(formatLine("P1", _("Type"), f"{frontendLive.get('tuner_type', na)}  [{tunerType}]"))
+				info.append(formatLine("P1", _("NIM"), f"{chr(ord("A") + frontendLive.get("tuner_number", 0))}"))
+			info.append(formatLine("P1", _("Type"), f"{frontendLive.get("tuner_type", na)}  [{tunerType}]"))
 			if tunerType == "DVB-C":
 				info.append(formatLine("P1", _("Modulation"), getValue("modulation", na)))
 				info.append(formatLine("P1", _("Frequency"), getDVBCFrequencyValue()))
@@ -1893,7 +1893,7 @@ class ServiceInformation(InformationBase):
 				valueLive = None if frontendLive.get("t2mi_plp_id", -1) == -1 else frontendLive.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
 				valueConfig = None if frontendConfig.get("t2mi_plp_id", -1) == -1 else frontendConfig.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
 				if valueLive or valueConfig:
-					info.append(formatLine("P1", _("T2MI PID"), f"{valueLive or 'None'}" if valueLive == valueConfig else f"{valueLive or 'None'}  ({valueConfig or 'None'})"))
+					info.append(formatLine("P1", _("T2MI PID"), f"{valueLive or "None"}" if valueLive == valueConfig else f"{valueLive or "None"}  ({valueConfig or "None"})"))
 			elif tunerType == "DVB-T":
 				info.append(formatLine("P1", _("Frequency"), getFrequencyValue()))
 				info.append(formatLine("P1", _("Channel"), getValue("channel", na)))
@@ -1940,7 +1940,7 @@ class ServiceInformation(InformationBase):
 						extraInfo = f" provid={provid}"
 					else:
 						extraInfo = f" extra={caID[2]}"
-				active = f" ({_('Active')})" if caID[0] == int(ecmData[1], 16) and (caID[1] == int(ecmData[3], 16) or str(int(ecmData[2], 16)) in provid) else ""
+				active = f" ({_("Active")})" if caID[0] == int(ecmData[1], 16) and (caID[1] == int(ecmData[3], 16) or str(int(ecmData[2], 16)) in provid) else ""
 				info.append(formatLine("P1", f"ECMPid {caID[1]:04X} ({caID[1]})", f"{caID[0]:04X}-{description}{extraInfo}{active}"))
 			if len(info) == 2:
 				info.append(formatLine("P1", _("No ECM PIDs available"), _("Free to Air (FTA) Service")))
@@ -2008,9 +2008,9 @@ class StorageInformation(InformationBase):
 				diskFree = stat.f_bfree * stat.f_frsize
 				diskUsed = diskSize - diskFree
 				info.append(formatLine("P2", _("Mount point"), partition.mountpoint))
-				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
-				info.append(formatLine("P2", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
-				info.append(formatLine("P2", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
+				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, "Iec")})"))
+				info.append(formatLine("P2", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, "Iec")})"))
+				info.append(formatLine("P2", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, "Iec")})"))
 				break
 		# hddList = storageManager.HDDList()
 		hddList = harddiskmanager.HDDList()
@@ -2021,7 +2021,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("S1", hdd.getDeviceName(), hdd.bus()))
 				info.append(formatLine("P2", _("Model"), hdd.model()))
 				diskSize = hdd.diskSize() * 1000000
-				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, "Iec")})"))
 				info.append(formatLine("P2", _("Sleeping"), (_("Yes") if hdd.isSleeping() else _("No"))))
 				for partition in partitions:
 					if partition.device and join("/dev", partition.device).startswith(hdd.getDeviceName()):
@@ -2031,14 +2031,14 @@ class StorageInformation(InformationBase):
 						diskFree = stat.f_bfree * stat.f_frsize
 						diskUsed = diskSize - diskFree
 						info.append(formatLine("P3", _("Mount point"), partition.mountpoint))
-						info.append(formatLine("P3", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
-						info.append(formatLine("P3", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
-						info.append(formatLine("P3", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
+						info.append(formatLine("P3", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, "Iec")})"))
+						info.append(formatLine("P3", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, "Iec")})"))
+						info.append(formatLine("P3", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, "Iec")})"))
 		else:
 			info.append("")
 			info.append(formatLine("S1", _("No storage or hard disks detected.")))
 		info.append("")
-		info.append(formatLine("H", f"{_('Network storage on')} {DISPLAY_BRAND} {DISPLAY_MODEL}"))
+		info.append(formatLine("H", f"{_("Network storage on")} {DISPLAY_BRAND} {DISPLAY_MODEL}"))
 		info.append("")
 		if self.mountInfo:
 			count = 0
@@ -2098,7 +2098,7 @@ class StreamingInformation(InformationBase):
 				# print("[Information] DEBUG: Client data '%s'." % str(client))
 				if count:
 					info.append("")
-				info.append(formatLine("S", f"{_('Client')}  -  {count + 1}"))
+				info.append(formatLine("S", f"{_("Client")}  -  {count + 1}"))
 				info.append(formatLine("P1", _("Service reference"), client[1]))
 				info.append(formatLine("P1", _("Service name"), ServiceReference(client[1]).getServiceName() or _("Unknown service!")))
 				info.append(formatLine("P1", _("IP address"), client[0][7:] if client[0].startswith("::ffff:") else client[0]))
@@ -2345,7 +2345,7 @@ class TunerInformation(InformationBase):
 		for count, tunerData in enumerate(self.tunerList):
 			if count:
 				info.append("")
-			tuner = tunerData["start"] if tunerData["start"] == tunerData["end"] else f"{tunerData['start']} - {tunerData['end']}"
+			tuner = tunerData["start"] if tunerData["start"] == tunerData["end"] else f"{tunerData["start"]} - {tunerData["end"]}"
 			info.append(formatLine("S", f"Tuner {tuner}"))
 			if self.extraSpacing:
 				info.append("")
@@ -2364,11 +2364,11 @@ class TunerInformation(InformationBase):
 			frequency = tunerData.get("frequency")
 			if frequency:
 				data = parseValues(frequency)
-				info.append(formatLine("P1", _("Frequency range"), f"{data['min']}  -  {data['max']}  (Step {data['stepsize']})"))
+				info.append(formatLine("P1", _("Frequency range"), f"{data["min"]}  -  {data["max"]}  (Step {data["stepsize"]})"))
 			symbolrate = tunerData.get("symbolrate")
 			if symbolrate:
 				data = parseValues(symbolrate)
-				info.append(formatLine("P1", _("Symbol rate"), f"{data['min']}  -  {data['max']}"))
+				info.append(formatLine("P1", _("Symbol rate"), f"{data["min"]}  -  {data["max"]}"))
 			FEC = extractModes(capabilities, "FEC")
 			if FEC:
 				info.append(formatLine("P1", _("FEC modes"), ", ".join(FEC)))
