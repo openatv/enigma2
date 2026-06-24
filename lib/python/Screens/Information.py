@@ -941,19 +941,19 @@ class MultiBootInformation(InformationBase):
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(self.slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
-			currentMsg = f"  -  {_('Active')}"
+			currentMsg = f"  -  {_("Active")}"
 			imageLists = {}
 			for slot in slotImageList:
 				for boot in self.slotImages[slot]["bootCodes"]:
 					if imageLists.get(boot) is None:
 						imageLists[boot] = []
-					current = currentMsg if boot == bootCode and slot == slotCode else ""
+					active = currentMsg if boot == bootCode and slot == slotCode else ""
 					indent = "P0V" if boot == "" else "P1V"
-					if current:
+					if active:
 						indent = indent.replace("P", "F").replace("V", "F")
 					device = self.slotImages[slot]["device"]
 					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
-					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]['imagename']}{current}"))
+					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]['imagename']}{active}"))
 			count = 0
 			for bootCode in sorted(imageLists.keys()):
 				if bootCode == "":
