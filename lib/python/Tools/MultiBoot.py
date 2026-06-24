@@ -1,7 +1,7 @@
 from datetime import datetime
 from glob import glob
 from hashlib import md5
-from os import listdir, mkdir, rename, rmdir, stat
+from os import listdir, mkdir, rename, rmdir, stat, unlink
 from os.path import basename, exists, isdir, isfile, ismount, join, islink, realpath
 from re import search
 from struct import calcsize, pack, unpack, error
@@ -166,26 +166,27 @@ class MultiBootClass():
 			return None
 		rootSubdir = slot.get("rootsubdir") or ""
 		tempDir = mkdtemp(prefix=PREFIX)
-		name = None
 		opts = ["-t", "ubifs"] if slot.get("ubi") else []
 		self.console.ePopen([MOUNT, MOUNT] + opts + [device, tempDir])
 		try:
 			imageDir = join(tempDir, rootSubdir) if rootSubdir else tempDir
-			for fname in ("usr/lib/enigma.info", "usr/lib/enigma.conf"):
-				path = join(imageDir, fname)
-				if isfile(path):
-					name = self._formatSlotName(self.readSlotInfo(path))
-					if name:
-						break
+			name = self._readSectionNameFromImageDir(imageDir, slotCode)
 		finally:
 			self.console.ePopen([UMOUNT, UMOUNT, tempDir])
 			rmdir(tempDir)
-		if not name and slotCode.isdecimal():
-			name = f"BuildIn Slot {slotCode}"
 		return name
 
-	def updateDreamBootSection(self, slotCode, setDefault=False):
-		# Refresh the [Section] header for slotCode in DREAM_BOOT_FILE, optionally also flipping default= to it.
+	def _readSectionNameFromImageDir(self, imageDir, slotCode):
+		if slotCode in ("R", "A", "L", "F"):
+			return None
+		name = self._formatSlotName(self.readSlotInfo(join(imageDir, "usr/lib/enigma.info")))
+		if name:
+			return name
+		if slotCode and slotCode.isdecimal():
+			return f"BuildIn Slot {slotCode}"
+		return None
+
+	def updateDreamBootSection(self, slotCode, setDefault=False, sectionName=None):
 		sectionIdx = self.getDreamBootSectionIndex(slotCode)
 		if sectionIdx is None and setDefault:
 			if slotCode.isdecimal():
@@ -196,7 +197,8 @@ class MultiBootClass():
 					sectionIdx = cmd_count - 1
 		if sectionIdx is None:
 			return
-		sectionName = self.getDreamBootSectionName(slotCode)
+		if sectionName is None:
+			sectionName = self.getDreamBootSectionName(slotCode)
 		sectionUpdates = {sectionIdx: sectionName} if sectionName else None
 		self._writeDreamBoot(defaultIdx=sectionIdx if setDefault else None, sectionUpdates=sectionUpdates)
 
@@ -596,10 +598,12 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = name
 				self.imageList[self.slotCode]["displaydistro"] = info.get("displaydistro") or info.get("distro") or ""
 				self.imageList[self.slotCode]["imgversion"] = info.get("imgversion") or ""
+				self.imageList[self.slotCode]["compiledate"] = str(info.get("compiledate", ""))
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(versionFile):
 				info = self.readSlotInfo(versionFile)
 				compileDate = self.getCompileDate(imageDir)
+				self.imageList[self.slotCode]["compiledate"] = compileDate
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				version = str(info.get("version"))
 				if "." not in version and "-" not in version and version.isdigit():
@@ -616,6 +620,7 @@ class MultiBootClass():
 			elif isfile(join(imageDir, "usr/bin/enigma2")):
 				info = self.deriveSlotInfo(imageDir)
 				compileDate = str(info.get("compiledate"))
+				self.imageList[self.slotCode]["compiledate"] = compileDate
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				self.imageList[self.slotCode]["detection"] = "Found an enigma2 binary file"
 				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
@@ -855,6 +860,7 @@ class MultiBootClass():
 			return
 		rootSubdir = self.bootSlots[self.slotCode].get("rootsubdir") or ""
 		imageDir = join(self.tempDir, rootSubdir) if rootSubdir else self.tempDir
+		infoPath = join(imageDir, "usr/lib/enigma.info")
 		confPath = join(imageDir, "usr/lib/enigma.conf")
 		lines = fileReadLines(confPath, default=[], source=MODULE_NAME) or []
 		stripped = [line.rstrip("\n") for line in lines]
@@ -864,14 +870,27 @@ class MultiBootClass():
 			distro, version = (parts[0], parts[1]) if len(parts) > 1 else (parts[0], "")
 			out.append(f"displaydistro='{distro}'")
 			out.append(f"imgversion='{version}'")
+			if not isfile(infoPath):
+				open(infoPath, "w").close()
+				compiledate = (self.imageList.get(self.slotCode) or {}).get("compiledate") or ""
+				if compiledate:
+					out.append(f"compiledate='{compiledate}'")
+		elif isfile(infoPath) and stat(infoPath).st_size == 0:
+			out = [line for line in out if not line.startswith("compiledate=")]
+			try:
+				unlink(infoPath)
+			except OSError:
+				pass
 		if out != stripped:
 			fileWriteLines(confPath, out, source=MODULE_NAME)
+		self._pendingSectionName = self._readSectionNameFromImageDir(imageDir, self.slotCode) if exists(DREAM_BOOT_FILE) else None
 		self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self._renameSlotUnmounted)
 
 	def _renameSlotUnmounted(self, data, retVal, extraArgs):
 		rmdir(self.tempDir)
 		if exists(DREAM_BOOT_FILE):
-			self.updateDreamBootSection(self.slotCode)
+			self.updateDreamBootSection(self.slotCode, sectionName=self._pendingSectionName)
+		self._pendingSectionName = None
 		self.callback(0 if not retVal else 3)
 
 	def emptySlot(self, slotCode, callback):
