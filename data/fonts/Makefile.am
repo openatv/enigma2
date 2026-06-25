@@ -13,7 +13,8 @@ dist_install_DATA = \
 	LiberationSans-Italic.ttf \
 	LiberationSans-Regular.ttf \
 	wqy-microhei.ttc \
-	AbyssinicaSIL-Regular.ttf
+	AbyssinicaSIL-Regular.ttf \
+	enigma2icons.ttf
 
 install-data-hook:
 	cd $(DESTDIR)$(datadir)/fonts && \

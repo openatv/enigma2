@@ -76,3 +76,24 @@ def AddPopupWithCallback(fnc, text, type, timeout, id=None):
 		RemovePopup(id)
 	print("[Notifications] AddPopupWithCallback id = %s" % id)
 	AddNotificationWithIDCallback(fnc, id, MessageBox, text=text, type=type, timeout=timeout, close_on_any_key=False)
+
+
+def showError(text, timeout=5):
+	notificationCenter.session.showError(text, timeout)
+
+
+def showInfo(text, timeout=5):
+	notificationCenter.session.showInfo(text, timeout)
+
+
+def showWarning(text, timeout=5):
+	notificationCenter.session.showWarning(text, timeout)
+
+
+class NotificationCenter:
+
+	def __init__(self):
+		self.session = None
+
+
+notificationCenter = NotificationCenter()
