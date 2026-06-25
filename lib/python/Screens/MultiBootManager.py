@@ -18,7 +18,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
-from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileReadLines, fileReadLine, fileWriteLine, fileWriteLines
 from Tools.MultiBoot import MultiBoot
 
@@ -55,9 +54,6 @@ class MultiBootManager(Screen):
 		<widget source="key_blue" render="Label" position="460,e-50" size="140,40" backgroundColor="key_blue" font="Regular;20" conditional="key_blue" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_text" render="Label" position="e-200,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_text" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
 		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -72,7 +68,6 @@ class MultiBootManager(Screen):
 		self["key_green"] = StaticText(_("Reboot"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["key_text"] = StaticText()
 		actionDescription = _("MultiBoot Manager Actions")
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Cancel the slot selection and exit")),
@@ -99,16 +94,11 @@ class MultiBootManager(Screen):
 			"blue": (self.keyRestoreSlot, _("Restore the highlighted slot"))
 		}, prio=0, description=actionDescription)
 		self["restoreActions"].setEnabled(False)
-		self["renameActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
-			"showVirtualKeyboard": (self.keyRenameSlot, _("Rename the highlighted slot"))
-		}, prio=0, description=actionDescription)
-		self["renameActions"].setEnabled(False)
 		if (BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot")) and not BoxInfo.getItem("hasUBIMB"):
 			self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
 				"blue": (self.keyAddSlots, _("Add more slots"))
 			}, prio=0, description=actionDescription)
 			self["addActions"].setEnabled(False)
-		self.editSlotCode = None
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
 		self.callLater(self.getSlotList)
@@ -213,12 +203,6 @@ class MultiBootManager(Screen):
 				self["restoreActions"].setEnabled(False)
 				self["addActions"].setEnabled(True)
 				self["key_blue"].setText(_("Add slots"))
-		if status == "active" and slot.isdecimal():
-			self["renameActions"].setEnabled(True)
-			self["key_text"].setText("TEXT")
-		else:
-			self["renameActions"].setEnabled(False)
-			self["key_text"].setText("")
 
 	def keyCancel(self):
 		self.close()
@@ -318,29 +302,6 @@ class MultiBootManager(Screen):
 
 		current = self["slotlist"].getCurrent()[0]
 		MultiBoot.restoreSlot(current[1][0], keyRestoreSlotCallback)
-
-	def keyRenameSlot(self):
-		def renameSlotCallback(newName):
-			def renameCallback(result):
-				if result:
-					print(f"[MultiBootManager] Rename of slot failed, status {result}!")
-				self.getSlotList()
-
-			slotCode = self.editSlotCode
-			self.editSlotCode = None
-			if newName is not None and slotCode is not None:
-				MultiBoot.renameSlot(slotCode, newName.strip(), renameCallback)
-
-		current = self["slotlist"].getCurrent()
-		if current and current[0][1]:
-			slotCode, _bootCode, status, _ubi, _current = current[0][1]
-			if status in ("active",) and slotCode.isdecimal():
-				editable = current[0][0].split(": ", 1)[-1].rsplit(" (", 1)[0]
-				index = editable.rfind("  -  ")
-				if index >= 0:
-					editable = editable[:index]
-				self.editSlotCode = slotCode
-				self.session.openWithCallback(renameSlotCallback, VirtualKeyBoard, title=_("Rename slot '%s' (leave empty to reset):") % slotCode, text=editable)
 
 	def keyAddSlots(self):
 		if BoxInfo.getItem("HasGPT"):
