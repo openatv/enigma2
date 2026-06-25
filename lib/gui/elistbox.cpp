@@ -798,7 +798,7 @@ void eListbox::recalcSize()
 		if (m_content)
 			m_content->setSize(eSize(m_itemwidth, m_itemheight));
 		int w = size().width();
-		m_max_columns = w / (m_itemwidth + m_spacing.x());
+		m_max_columns = (w + m_spacing.x()) / (m_itemwidth + m_spacing.x());
 		if (m_style.m_selection_zoom > 1.0)
 		{
 			int item_w_zoom = (m_style.m_selection_width) - m_spacing.x();
@@ -817,8 +817,8 @@ void eListbox::recalcSize()
 		int w = size().width() - xscrollBar;
 		int h = size().height();
 
-		m_max_columns = w / (m_itemwidth + m_spacing.x());
-		m_max_rows = h / (m_itemheight + m_spacing.y());
+		m_max_columns = (w + m_spacing.x()) / (m_itemwidth + m_spacing.x());
+		m_max_rows = (h + m_spacing.y()) / (m_itemheight + m_spacing.y());
 
 		if (m_style.m_selection_zoom > 1.0)
 		{
