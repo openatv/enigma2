@@ -45,7 +45,7 @@ config.hdmicec.preemphasis = ConfigYesNo(default=False)
 choicelist = []
 for i in (10, 50, 100, 150, 250, 500, 750, 1000):
 	choicelist.append((i, _("%d ms") % i))
-config.hdmicec.minimum_send_interval = ConfigSelection(default=250, choices=[(0, _("Disabled"))] + choicelist)
+config.hdmicec.minimum_send_interval = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + choicelist)
 choicelist = []
 for i in list(range(1, 6)):
 	choicelist.append((i, _("%d times") % i))
@@ -799,7 +799,7 @@ class HdmiCec:
 
 	def sendRawMessage(self, address, cmd, payload):
 		data = bytes(payload)
-		if config.misc.DeepStandby.value:
+		if config.misc.DeepStandby.value or not config.hdmicec.minimum_send_interval.value:
 			if config.hdmicec.debug.value:
 				self.debugTx(address, cmd, data)
 			self.sendCecMessage(address, cmd, data)
@@ -1127,7 +1127,7 @@ class HdmiCec:
 				case "powerstate":
 					cmd = 0x8f
 			if cmd:
-				if config.misc.DeepStandby.value:  # no delay for messages before go in to deep-standby
+				if config.misc.DeepStandby.value or not config.hdmicec.minimum_send_interval.value:  # no delay for messages before go in to deep-standby
 					if config.hdmicec.debug.value:
 						self.debugTx(address, cmd, data)
 					self.sendCecMessage(address, cmd, data)

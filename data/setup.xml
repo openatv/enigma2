@@ -475,7 +475,7 @@
 			<item level="0" text="Put your AV Receiver or Soundbar in Standby" description="When enabled, the connected AV receiver or soundbar will automatically be switched off.">config.hdmicec.control_receiver_standby</item>
 			<item level="0" text="Wake up your AV Receiver or Soundbar from Standby" description="When enabled, the connected AV receiver or soundbar will automatically be switched on.">config.hdmicec.control_receiver_wakeup</item>
 			<item level="0" text="Timing and diagnostics"></item>
-			<item level="0" text="Minimum send interval" description="Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms.">config.hdmicec.minimum_send_interval</item>
+			<item level="0" text="Minimum send interval" description="Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission.">config.hdmicec.minimum_send_interval</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
 				<item level="0" text="Repeat the sent standby and wake up commands" description="Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input).">config.hdmicec.messages_repeat</item>
 				<if conditional="int(config.hdmicec.messages_repeat.value)">
