@@ -55,7 +55,7 @@ class VideoWizard(Wizard, ShowRemoteControl):
 
 		# preferred = avSwitch.readPreferredModes(saveMode=True)
 		preferred = []  # Don't resort because some TV sends wrong edid info
-		if preferred:
+		if preferred:  # FIXME: Improve EDID handling # NOSONAR
 			if "2160p" in preferred:
 				sortKeys["2160p"] = 1
 				sortKeys["2160p30"] = 2
