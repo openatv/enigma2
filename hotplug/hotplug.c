@@ -40,8 +40,9 @@ int replacechar(char* str, char orig, char rep) {
 /// @param devpath Device path for sysfs lookup
 /// @param devsize Output buffer for size string (must be at least 50 bytes)
 static void get_device_size(const char* devpath, char* devsize) {
-	if (getenv("ID_PART_ENTRY_SIZE")) {
-		snprintf(devsize, 50 - 1, "%s", getenv("ID_PART_ENTRY_SIZE"));
+	const char* part_entry_size = getenv("ID_PART_ENTRY_SIZE");
+	if (part_entry_size) {
+		snprintf(devsize, 50 - 1, "%s", part_entry_size);
 	} else {
 		long ldevsize = 0;
 		FILE* f;
@@ -144,22 +145,30 @@ int main(int argc, char* argv[]) {
 			size_t datalen = sizeof(data);
 
 			if (mode > 0) {
-				if (strcmp(action, "add") == 0 && getenv("DEVNAME") && getenv("ID_FS_UUID")) {
+				const char* env_devname = getenv("DEVNAME");
+				const char* env_uuid = getenv("ID_FS_UUID");
+				const char* env_id_type = getenv("ID_TYPE");
+				const char* env_devtype = getenv("DEVTYPE");
+				const char* env_fs_type = getenv("ID_FS_TYPE");
+				const char* env_bus = getenv("ID_BUS");
+				const char* env_model = getenv("ID_MODEL");
+				const char* env_name = getenv("ID_NAME");
+				if (strcmp(action, "add") == 0 && env_devname && env_uuid) {
 					char devsize[50];
 					get_device_size(devpath, devsize);
 					int len = snprintf(data, datalen, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_TYPE=%s\nID_BUS=%s\nID_FS_UUID=%s\nID_MODEL=%s\nID_PART_ENTRY_SIZE=%s", action,
-									   devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_TYPE"), getenv("ID_BUS"), getenv("ID_FS_UUID"),
-									   getenv("ID_MODEL") ? getenv("ID_MODEL") : getenv("ID_NAME"), devsize);
+									   devpath, env_id_type ? env_id_type : "disk", env_devtype ? env_devtype : "", env_devname, env_fs_type ? env_fs_type : "", env_bus ? env_bus : "", env_uuid,
+									   env_model ? env_model : (env_name ? env_name : ""), devsize);
 
 					if (mode == 1) {
 						send_to_socket(sd, mode, debug, data, len, datalen);
 					} else {
-						write_data_to_file(getenv("DEVNAME"), data, debug);
+						write_data_to_file(env_devname, data, debug);
 					}
 				} else if (strcmp(action, "remove") == 0) {
-					if (getenv("DEVNAME") && getenv("ID_FS_UUID")) {
-						int len = snprintf(data, datalen, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk",
-										   getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_UUID"));
+					if (env_devname && env_uuid) {
+						int len = snprintf(data, datalen, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, env_id_type ? env_id_type : "disk",
+										   env_devtype ? env_devtype : "", env_devname, env_uuid);
 						send_to_socket(sd, mode, debug, data, len, datalen);
 					}
 				} else if (strcmp(action, "ifup") == 0) {
