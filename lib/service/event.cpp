@@ -454,13 +454,14 @@ PyObject *eServiceEvent::getCridData(int mask) const
 		int cridMatchType = it->getType();
 		if (cridMatchType >= eCridData::EPISODE_AU && cridMatchType <= eCridData::RECOMMENDATION_AU)
 			cridMatchType -= eCridData::OFFSET_AU;
-		if ((1 << cridMatchType) & mask)
+		if (cridMatchType >= 1 && cridMatchType <= 30 && ((1 << cridMatchType) & mask))
 		{
 			ePyObject tuple = PyTuple_New(3);
 			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(it->getType()));
 			PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(it->getLocation()));
 			PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString(it->getCrid().c_str()));
 			PyList_Append(ret, tuple);
+			Py_DECREF(tuple);
 		}
 	}
 	return ret;
