@@ -1094,10 +1094,10 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 					int sa = i * 16;
 					if (sa < 256)
 					{
-						da = BLEND(background.a, currentforeground.a, sa) & 0xFF;
-						dr = BLEND(background.r, currentforeground.r, sa) & 0xFF;
-						dg = BLEND(background.g, currentforeground.g, sa) & 0xFF;
-						db = BLEND(background.b, currentforeground.b, sa) & 0xFF;
+						da = BLEND(background.a, currentforeground.a, sa) & 0xFF; // NOSONAR
+						dr = BLEND(background.r, currentforeground.r, sa) & 0xFF; // NOSONAR
+						dg = BLEND(background.g, currentforeground.g, sa) & 0xFF; // NOSONAR
+						db = BLEND(background.b, currentforeground.b, sa) & 0xFF; // NOSONAR
 					}
 #undef BLEND
 					da ^= 0xFF;
