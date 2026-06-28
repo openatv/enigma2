@@ -1437,7 +1437,6 @@ class SchedulerEdit(Setup):
 class RecordTimerEdit(Setup):
 	def __init__(self, session, timer):
 		self.timer = timer
-		self.newEntry = False  # TODO.
 		self.timer.service_ref_prev = self.timer.service_ref
 		self.timer.begin_prev = self.timer.begin
 		self.timer.end_prev = self.timer.end
@@ -1446,6 +1445,8 @@ class RecordTimerEdit(Setup):
 		self.fallbackInfo = None
 		self.initEndTime = True
 		self.session = session  # We need session before createConfig.
+		if not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
+			self.timer.external_prev = self.timer not in session.nav.RecordTimer.timer_list and self.timer not in session.nav.RecordTimer.processed_timers
 		self.createConfig()
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
@@ -1546,7 +1547,7 @@ class RecordTimerEdit(Setup):
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.DEEPSTANDBY), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.DEEPSTANDBY)),
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.AUTO), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.AUTO))
 		])
-		self.timerFallback = ConfigYesNo(default=self.timer.external_prev or self.newEntry and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value)
+		self.timerFallback = ConfigYesNo(default=self.timer.external_prev)
 		for callback in onRecordTimerCreate:
 			callback(self)
 
