@@ -9,7 +9,7 @@ FADESTEPS = 10
 
 class ToastScreen(Screen):
 	skin = """
-	<screen name="ToastScreen" position="0,520" size="1280,200" resolution="1280,720" backgroundColor="#FE000000" flags="wfNoBorder" zPosition="101">
+	<screen name="ToastScreen" position="0,0" size="1280,720" resolution="1280,720" backgroundColor="#FE000000" flags="wfNoBorder" zPosition="101">
 		<widget name="border" position="0,0" size="40,40" backgroundColor="#00000000" widgetBorderColor="#FFFFFF" widgetBorderWidth="2" />
 		<widget name="icon" position="0,0" size="40,40" font="enigma2icons;34" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#00000000" />
 		<widget name="text" position="0,0" size="e,e" font="Regular;25" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#00000000" />
@@ -30,6 +30,8 @@ class ToastScreen(Screen):
 		self._timer.callback.append(self._dohide)
 		self._fadeTimer = eTimer()
 		self._fadeTimer.callback.append(self._doFade)
+		self._displayW = None
+		self._displayH = None
 
 	def showToast(self, text, toasttype, timeout):
 		self._foregroundColor = {
@@ -52,13 +54,18 @@ class ToastScreen(Screen):
 		GAP = 14
 		SCREEN_MARGIN = 60
 
+		if self._displayW is None:
+			self._displayW = self.instance.size().width()
+			self._displayH = self.instance.size().height()
+		displayW = self._displayW
+		displayH = self._displayH
+
 		self._iconSize = self["icon"].instance.calculateSize()
 		iconW = self._iconSize.width()
 		iconH = self._iconSize.height()
 
-		screenW = self.instance.size().width()
-		maxTextW = screenW - SCREEN_MARGIN * 2 - BORDER_PAD * 2 - iconW - GAP
-		self["text"].instance.resize(eSize(maxTextW, self.instance.size().height()))
+		maxTextW = displayW - SCREEN_MARGIN * 2 - BORDER_PAD * 2 - iconW - GAP
+		self["text"].instance.resize(eSize(maxTextW, displayH))
 		self._textSize = self["text"].instance.calculateSize()
 
 		textW = self._textSize.width()
@@ -67,15 +74,17 @@ class ToastScreen(Screen):
 		borderW = BORDER_PAD * 2 + iconW + GAP + textW
 		borderH = contentH + BORDER_PAD * 2
 
-		startX = (screenW - borderW) // 2
-		posY = self.instance.size().height() - borderH - 20
+		screenX = (displayW - borderW) // 2
+		screenY = displayH - borderH - 20
+		self.instance.resize(eSize(borderW, borderH))
+		self.instance.move(ePoint(screenX, screenY))
 
 		self["border"].instance.resize(eSize(borderW, borderH))
-		self["border"].instance.move(ePoint(startX, posY))
+		self["border"].instance.move(ePoint(0, 0))
 		self["icon"].instance.resize(eSize(iconW, contentH))
-		self["icon"].instance.move(ePoint(startX + BORDER_PAD, posY + BORDER_PAD))
+		self["icon"].instance.move(ePoint(BORDER_PAD, BORDER_PAD))
 		self["text"].instance.resize(eSize(textW, textH))
-		self["text"].instance.move(ePoint(startX + BORDER_PAD + iconW + GAP, posY + BORDER_PAD + (contentH - textH) // 2))
+		self["text"].instance.move(ePoint(BORDER_PAD + iconW + GAP, BORDER_PAD + (contentH - textH) // 2))
 
 		self._fadeIn = True
 		self._alpha = 255
