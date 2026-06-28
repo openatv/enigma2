@@ -318,7 +318,8 @@ public:
 		RT_WRAP = 64,
 		RT_ELLIPSIS = 128,
 		RT_BLEND = 256,
-		RT_UNDERLINE = 512
+		RT_UNDERLINE = 512,
+		RT_SCROLL = 1024
 	};
 	void renderText(const eRect &position, const std::string &string, int flags = 0, gRGB bordercolor = gRGB(), int border = 0, int markedpos = -1, int *offset = 0, int tabwidth = -1);
 

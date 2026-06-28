@@ -89,6 +89,7 @@ struct eListboxStyleSetted
 	bool background_color_rows : 1;
 	bool separator_color : 1;
 	bool header_color : 1;
+	bool wrap : 1;
 };
 
 struct eListboxStyle
@@ -124,7 +125,10 @@ struct eListboxStyle
 		alignBlock
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
+	int m_wrap = 0;
 	ePtr<gFont> m_font, m_font_zoomed, m_valuefont, m_headerfont;
+	int m_fontScaleType = 0;
+	int m_fontScaleSize = 0;
 	eRect m_text_padding;
 	eRect m_separator_size;
 
@@ -320,11 +324,14 @@ public:
 	void setScrollbarLength(int size) { m_scrollbar_length = size; }
 
 	void setFont(gFont *font);
-	void setEntryFont(gFont *font) {m_style.m_font = font;}
+	void setEntryFont(gFont *font) { m_style.m_font = font; }
 	void setValueFont(gFont *font) { m_style.m_valuefont = font; }
 	void setHeaderFont(gFont *font) { m_style.m_headerfont = font; }
+	void setFontScale(int scaleType, int size) { m_style.m_fontScaleType = scaleType; m_style.m_fontScaleSize = size; }
+
 	void setVAlign(int align) { m_style.m_valign = align; }
 	void setHAlign(int align) { m_style.m_halign = align; }
+	void setWrap(int wrap) { m_style.m_wrap = wrap; m_style.is_set.wrap = true; }
 	void setUseVTIWorkaround(void) { m_style.is_set.use_vti_workaround = 1; }
 
 	void setPadding(const eRect &padding) override { m_style.m_text_padding = padding; }
