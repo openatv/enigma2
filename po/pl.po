@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-22 11:12+0000\n"
-"PO-Revision-Date: 2026-06-22 23:42+0000\n"
+"PO-Revision-Date: 2026-06-28 09:01+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1690,7 +1690,7 @@ msgid ""
 "Abort streaming and try again?\n"
 msgstr ""
 "Nagrywanie z timera nie powiodło się!\n"
-"Wyłączyć strumieniowanie i spróbować ponownie?\n"
+"Wyłączyć streaming i spróbować ponownie?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -1785,7 +1785,7 @@ msgid "Aborted a pseudo recording.\n"
 msgstr "Pseudo nagrywanie anulowane.\n"
 
 msgid "Aborted a streaming service.\n"
-msgstr "Anulowano strumieniowanie.\n"
+msgstr "Przerwano usługę przesyłania strumieniowego\n"
 
 msgid "About"
 msgstr "System"
@@ -2004,7 +2004,7 @@ msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Dodaj starsze akcje LEWO/PRAWO"
 
 msgid "Add slots"
-msgstr "Dodaj więcej slotów"
+msgstr "Dodaj sloty"
 
 msgid "Add new CCcam line"
 msgstr "Dodaj nową linię CCcam"
@@ -2526,7 +2526,7 @@ msgid "Are you sure you want to delete this?"
 msgstr "Czy na pewno chcesz to usunąć?"
 
 msgid "Disable Chkroot Multiboot?"
-msgstr "Czy na pewno chcesz wyłączyć Chkroot Multiboot?"
+msgstr "Wyłączyć Chkroot MultiBoot?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Czy chcesz zamknąć kreatora?"
@@ -2742,7 +2742,7 @@ msgid "Auto Timers"
 msgstr "Auto timery"
 
 msgid "Auto Volume Level"
-msgstr "Automatyczne dopasowanie głośności"
+msgstr "Automatyczny poziom głośności"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatyczny podział rozdziałów co 'x' minut (0=nigdy)"
@@ -4280,7 +4280,7 @@ msgstr[1] "Wyczyść ostrzeżenia"
 msgstr[2] "Wyczyść ostrzeżenia"
 
 msgid "Click the button on your remote you want to change."
-msgstr "Kliknij na pilocie przycisk, który chcesz zmienić."
+msgstr "Kliknij przycisk na pilocie, który chcesz zmienić."
 
 msgid "Client"
 msgstr "Klient"
@@ -5990,7 +5990,7 @@ msgid "Delay before sequence repeat"
 msgstr "Opóźnienie przed powtórzeniem sekwencji"
 
 msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Opóźnienie między poleceniami CEC podczas wysyłania serii poleceń. Niektóre urządzenia wymagają tego opóźnienia do prawidłowego funkcjonowania, zwykle między 50-150ms."
+msgstr "Opcjonalne opóźnienie między poleceniami CEC podczas wysyłania serii poleceń. Pozostaw wyłączone, chyba że urządzenie wymaga wolniejszej transmisji."
 
 msgid "Delay between DiSEqC commands"
 msgstr "Opóźnienie między poleceniami DiSEqC"
@@ -6109,7 +6109,7 @@ msgid "Delete only highlighted file"
 msgstr "Usuń tylko wybrany plik"
 
 msgid "Empty or Wipe the highlighted slot"
-msgstr "Usuń lub wyczyść zaznaczony slot"
+msgstr "Opróżnij lub wyczyść zaznaczony slot"
 
 msgid "Delete play list entry"
 msgstr "Usuń pozycję z listy"
@@ -8307,8 +8307,8 @@ msgstr "Falklandy"
 msgid "Fallback API did not return a valid result."
 msgstr "Zastępczy interfejs API nie zwrócił prawidłowego wyniku."
 
-msgid "Fallback Font *"
-msgstr "Czcionka zastępcza *"
+msgid "Fallback Font"
+msgstr "Czcionka zastępcza"
 
 msgid "Fallback Remote Receiver Settings"
 msgstr "Konfiguracja zdalnego odbiornika"
@@ -8904,8 +8904,8 @@ msgstr "Kategoria dziennika debugowania GStreamer *"
 msgid "GStreamer debug log level *"
 msgstr "Poziom logów debugowania GStreamer *"
 
-msgid "GUI Skin *"
-msgstr "Skórka GUI *"
+msgid "GUI Skin"
+msgstr "Skórka GUI"
 
 msgid "Gabon"
 msgstr "Gabon"
@@ -10581,8 +10581,8 @@ msgstr "Połączenie LAN"
 msgid "LCD scroll speed"
 msgstr "Prędkość przewijania LCD"
 
-msgid "LCD/Front panel *"
-msgstr "LCD/Panel przedni *"
+msgid "LCD/Front panel"
+msgstr "LCD/Panel przedni"
 
 msgid "LCN Scanner"
 msgstr "Skaner LCN"
@@ -14365,10 +14365,10 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Naciśnij OK aby użyć tego regionu. [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "Użyj GÓRA/DÓŁ, aby wybrać slot, a następnie OK lub ZIELONY aby uruchomić wybrany system. Przycisk ŻÓŁTY, usuwa system. Usunięty system można przywrócić za pomocą NIEBIESKIEGO przycisku. Przyciskiem TEXT zmieniasz nazwę slotu!"
+msgstr "Użyj GÓRA/DÓŁ, aby wybrać slot, a następnie naciśnij OK lub ZIELONY przycisk, aby uruchomić wybrany slot. ŻÓŁTY przycisk usuwa zawartość slotu. Usunięty slot można przywrócić za pomocą NIEBIESKIEGO przycisku. Przyciskiem TEXT możesz zmienić nazwę slotu!"
 
 msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
-msgstr "Naciskaj przyciski GÓRA/DÓŁ, aby wybrać slot, a następnie naciśnij OK lub ZIELONY, aby ponownie uruchomić ten system. Jeśli dostępny, ŻÓŁTY wyłączy funkcję Multiboot, usunie lub wyczyści wybrany system. Naciśnij NIEBIESKI, aby dodać więcej slotów."
+msgstr "Użyj GÓRA/DÓŁ, aby wybrać slot, a następnie naciśnij OK lub ZIELONY, aby uruchomić ten slot. Jeśli dostępny, ŻÓŁTY wyłączy funkcję MultiBoot, usunie lub wyczyści wybrany slot. Naciśnij NIEBIESKI, aby dodać więcej slotów."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Naciśnij ten przycisk, aby emulować długie naciśnięcie przycisku (to zastąpi wszelkie inne czynności przypisane do tego przycisku)."
@@ -14975,7 +14975,7 @@ msgid "Recordings abort pseudo recordings"
 msgstr "Przerwanie pseudo nagrania podczas nagrywania"
 
 msgid "Recordings abort streaming"
-msgstr "Nagrania przerywają strumieniowanie"
+msgstr "Nagrania przerywają streaming"
 
 msgid "Recordings always have priority"
 msgstr "Nagrywanie zawsze ma priorytet"
@@ -19774,7 +19774,7 @@ msgid "Stream-tv"
 msgstr "Stream-tv"
 
 msgid "Streaming"
-msgstr "Strumieniowanie"
+msgstr "Streaming"
 
 msgid "Streaming Information Actions"
 msgstr "Działania dotyczące przesyłania strumieniowego"
@@ -22208,7 +22208,7 @@ msgid "Use QuickSelect"
 msgstr "Użyj szybkiego wyboru"
 
 msgid "Use TV remote control"
-msgstr "Użyj pilota do telewizora"
+msgstr "Używaj pilota telewizora"
 
 msgid "Use UP/DOWN buttons to select option then press OK"
 msgstr "Użyj przycisków GÓRA/DÓŁ, aby wybrać opcję, a następnie naciśnij OK"
@@ -22256,7 +22256,7 @@ msgid "Use circular LNB"
 msgstr "Użyj kołowego LNB"
 
 msgid "Use defaults"
-msgstr "Ust. domyślne"
+msgstr "Domyślne"
 
 msgid "Use description lines"
 msgstr "Użyj linii opisu"
@@ -22840,7 +22840,7 @@ msgid "Volume down"
 msgstr "Ciszej"
 
 msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
-msgstr "Przyciski głośności na pilocie amplitunera umożliwiają sterowanie głośnością telewizora, amplitunera AV lub soundbara przez HDMI-CEC. Jeśli ta funkcja nie jest obsługiwana, przyciski głośności nie działają!"
+msgstr "Przyciski głośności na pilocie odbiornika umożliwiają sterowanie głośnością telewizora, amplitunera AV lub soundbara przez HDMI-CEC. Jeśli ta funkcja nie jest obsługiwana, przyciski głośności nie działają!"
 
 msgid "Volume steps"
 msgstr "Skoki głośności"

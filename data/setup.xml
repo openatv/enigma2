@@ -938,9 +938,9 @@
 		</if>
 	</setup>
 	<setup key="Skin" title="Skin Settings">
-		<item text="GUI Skin *" description="Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin.">config.skin.guiSkin</item>
-		<item text="LCD/Front panel *" description="Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin." requires="LCDSKINSetup">config.skin.lcdSkin</item>
-		<item text="Fallback Font *" description="Choose the fallback font.">config.skin.FallbackFont</item>
+		<item text="GUI Skin" description="Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin." restart="gui">config.skin.guiSkin</item>
+		<item text="LCD/Front panel" description="Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin." requires="LCDSKINSetup" restart="gui">config.skin.lcdSkin</item>
+		<item text="Fallback Font" description="Choose the fallback font." restart="gui">config.skin.FallbackFont</item>
 		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
 		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
 		<item text="AutoRefresh" description="Enable autorefresh templates." requires="CanRefreshTemplates">config.skin.autorefresh</item>
