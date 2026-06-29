@@ -1,8 +1,9 @@
 /*
 
 Scroll Text Feature of eListBox
+Font Scale Feature of eLabel
 
-Copyright (c) 2025 jbleyel
+Copyright (c) 2025-2026 jbleyel
 
 This code may be used commercially. Attribution must be given to the original author.
 Licensed under GPLv2.

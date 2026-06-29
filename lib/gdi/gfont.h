@@ -17,6 +17,7 @@ public:
 
 	std::string family;
 	int pointSize;
+	int pointWidth = 0; // 0 = same as pointSize (no horizontal compression)
 
 	/**
 	 * \brief Constructs a font with the given name and size.

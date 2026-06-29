@@ -1,8 +1,9 @@
 /*
 
 Scroll Text Feature of eListBox
+Font Scale Feature of eListBox
 
-Copyright (c) 2025 jbleyel
+Copyright (c) 2025-2026 jbleyel
 
 This code may be used commercially. Attribution must be given to the original author.
 Licensed under GPLv2.
@@ -96,6 +97,7 @@ int eListboxPythonStringContent::cursorMove(int count) {
 		cursorHome();
 	else if (m_cursor > size())
 		cursorEnd();
+
 	return 0;
 }
 
@@ -193,6 +195,39 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
     // Store result; cache is invalidated by setList()
     m_max_text_width = max_width + (text_offset * 2);
 	return m_max_text_width;
+}
+
+static eSize calculateTextSize(gFont* font, const std::string& string, eSize targetSize, bool nowrap) {
+	// Calculate text size for a piece of text without creating an eLabel instance
+	// this avoids the side effect of "invalidate" being called on the parent container
+	// during the setup of the font and text on the eLabel
+	eTextPara para(eRect(0, 0, targetSize.width(), targetSize.height()));
+	para.setFont(font);
+	para.renderString(string.empty() ? 0 : string.c_str(), nowrap ? 0 : RS_WRAP);
+	return para.getBoundBox().size();
+}
+
+/* Returns a new scaled gFont if scaling is needed, null otherwise.
+   Caller must call painter.setFont(result) before and painter.setFont(fnt) after renderText. */
+static ePtr<gFont> makeFontScale(gFont* fnt, const char* text, int visibleW, const eListboxStyle* style)
+{
+	if (!fnt || !style || !style->m_fontScaleType || visibleW <= 0)
+		return nullptr;
+	eSize ts = calculateTextSize(fnt, text ? text : "", eSize(visibleW, 0x7fff), true);
+	if (ts.width() <= visibleW)
+		return nullptr;
+	int origSize = fnt->pointSize;
+	int newSize = origSize, newWidth = 0;
+	int sW = origSize * visibleW / ts.width();
+	if (style->m_fontScaleType == 1)
+		newSize = std::max(sW, style->m_fontScaleSize);
+	else if (style->m_fontScaleType == 2)
+		newWidth = std::max(sW, style->m_fontScaleSize);
+	else
+		return nullptr;
+	ePtr<gFont> scaled = new gFont(fnt->family, newSize);
+	scaled->pointWidth = newWidth;
+	return scaled;
 }
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -428,6 +463,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				else if (local_style->m_halign == eListboxStyle::alignBlock)
 					flags |= gPainter::RT_HALIGN_BLOCK;
 
+				if (local_style->is_set.wrap && local_style->m_wrap == 2)
+					flags |= gPainter::RT_ELLIPSIS;
+
 				int paddingx = local_style->m_text_padding.x();
 				int paddingy = local_style->m_text_padding.y();
 				int paddingw = local_style->m_text_padding.width();
@@ -444,7 +482,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 					m_scroll_index = m_cursor;
 					m_scroll_size = eSize(position.width(), position.height());
 					m_scroll_text_str = string;
-					updateTextSize(m_scroll_text_str, fnt, flags, border_color, border_size);
+					updateTextSize(m_scroll_text_str, fnt, flags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
 				}
 				if(m_scroll_text)
 				{
@@ -458,12 +496,19 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 						position.setX(position.x() - m_scroll_pos);
 					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
 						position.setY(position.y() - m_scroll_pos);
-					painter.renderText(position, m_scroll_text_str.empty() ? string : m_scroll_text_str.c_str(), flags, border_color, border_size);
+					painter.renderText(position, m_scroll_text_str.empty() ? string : m_scroll_text_str, flags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
 					painter.clippop();
 					return;
 				}
 			}
-			painter.renderText(position, string, flags, border_color, border_size);
+			{
+				ePtr<gFont> scaledFnt = makeFontScale(fnt, string, position.width(), local_style);
+				if (scaledFnt)
+					painter.setFont(scaledFnt);
+				painter.renderText(position, string, flags, border_color, border_size);
+				if (scaledFnt)
+					painter.setFont(fnt);
+			}
 
 		}
 	}
@@ -542,16 +587,6 @@ void eListboxPythonStringContent::invalidate() {
 	}
 }
 
-static eSize calculateTextSize(gFont* font, const std::string& string, eSize targetSize, bool nowrap) {
-	// Calculate text size for a piece of text without creating an eLabel instance
-	// this avoids the side effect of "invalidate" being called on the parent container
-	// during the setup of the font and text on the eLabel
-	eTextPara para(eRect(0, 0, targetSize.width(), targetSize.height()));
-	para.setFont(font);
-	para.renderString(string.empty() ? 0 : string.c_str(), nowrap ? 0 : RS_WRAP);
-	return para.getBoundBox().size();
-}
-
 void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size) {
 	if (m_scroll_text)
 		stopScroll();
@@ -560,6 +595,8 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 		const int scroll_text_direction = m_listbox->m_scroll_config.direction;
 
 		if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight) {
+			if (m_scroll_size.width() <= 0)
+				return;
 			m_text_size = calculateTextSize(font, text, m_scroll_size, true); // nowrap
 
 
@@ -582,6 +619,8 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 				*/
 			}
 		} else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom) {
+			if (m_scroll_size.height() <= 0)
+				return;
 			m_text_size = calculateTextSize(font, text, m_scroll_size, false); // allow wrap
 			if (m_text_size.height() > m_scroll_size.height()) {
 				m_text_size.setHeight(m_text_size.height() + font->pointSize / 10); // avoid issues with rounding
@@ -624,6 +663,9 @@ void eListboxPythonStringContent::createScrollPixmap(std::string& text, gFont* f
 
 	int w = std::max(m_text_size.width(), m_scroll_size.width());
 	int h = std::max(m_text_size.height(), m_scroll_size.height());
+
+	if (w <= 0 || h <= 0)
+		return;
 
 	// Guard against excessively large pixmap allocations
 	if (w * h > MAX_SCROLL_PIXMAP_PIXELS)
@@ -1055,15 +1097,82 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			}
 
 
-			eRect labelrect(ePoint(offset.x() + leftOffset + indent, offset.y()), m_itemsize);
-			painter.renderText(labelrect, string, alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
+			/* Pre-measure value text width for dynamic label/value split.
+			   Value is measured first so the label knows how much space it has. */
+			int scroll_text_direction = (m_listbox) ? m_listbox->m_scroll_config.direction : 0;
+			int valueAreaWidth = 0;
+			if (!value_alignment_left && value && PyTuple_Check(value))
+			{
+				ePyObject preType = PyTuple_GET_ITEM(value, 0);
+				const char *preAtype = (preType && PyUnicode_Check(preType)) ? PyUnicode_AsUTF8(preType) : nullptr;
+				if (preAtype && (!strcmp(preAtype, "text") || !strcmp(preAtype, "mtext")))
+				{
+					ePyObject preVal = PyTuple_GET_ITEM(value, 1);
+					const char *valStr = (preVal && PyUnicode_Check(preVal)) ? PyUnicode_AsUTF8(preVal) : "";
+					if (*valStr)
+					{
+						ePtr<eTextPara> para = new eTextPara(eRect(0, 0, m_itemsize.width(), m_itemsize.height()));
+						para->setFont(fnt2);
+						para->renderString(valStr, 0);
+						valueAreaWidth = para->getBoundBox().width() + leftOffset;
+					}
+				}
+			}
+
+			/* Label area: left side of item, capped to leave room for value. */
+			int labelMaxWidth = m_itemsize.width() - leftOffset - indent - valueAreaWidth;
+			if (labelMaxWidth < 0) labelMaxWidth = 0;
+			eRect labelrect(ePoint(offset.x() + leftOffset + indent, offset.y()),
+			                eSize(labelMaxWidth > 0 ? labelMaxWidth : m_itemsize.width(), m_itemsize.height()));
+
+			/* Render label — scroll it when selected and it doesn't fit. */
+			int labelflags = alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER;
+			if (local_style && local_style->is_set.wrap && local_style->m_wrap == 2)
+				labelflags |= gPainter::RT_ELLIPSIS;
+
+			if (selected && scroll_text_direction && labelMaxWidth > 0)
+			{
+				if (m_scroll_index != m_cursor)
+				{
+					m_listbox->m_scroll_rect = labelrect;
+					m_scroll_index = m_cursor;
+					m_scroll_size = eSize(labelrect.width(), labelrect.height());
+					m_scroll_text_str = string;
+					updateTextSize(m_scroll_text_str, fnt ? fnt : fnt3, labelflags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
+				}
+				if (m_scroll_text)
+				{
+					if (!scrollTimer->isActive())
+						scrollTimer->start(m_listbox->m_scroll_config.startDelay);
+					eRect scrolledLabel = labelrect;
+					if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight)
+						scrolledLabel.setX(scrolledLabel.x() - m_scroll_pos);
+					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
+						scrolledLabel.setY(scrolledLabel.y() - m_scroll_pos);
+					painter.renderText(scrolledLabel, m_scroll_text_str, labelflags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
+				}
+				else
+				{
+					ePtr<gFont> scaledFnt = makeFontScale(fnt, string, labelrect.width(), local_style);
+					if (scaledFnt) painter.setFont(scaledFnt);
+					painter.renderText(labelrect, string, labelflags, border_color, border_size);
+					if (scaledFnt) painter.setFont(fnt);
+				}
+			}
+			else
+			{
+				ePtr<gFont> scaledFnt = makeFontScale(fnt, string, labelrect.width(), local_style);
+				if (scaledFnt) painter.setFont(scaledFnt);
+				painter.renderText(labelrect, string, labelflags, border_color, border_size);
+				if (scaledFnt) painter.setFont(fnt);
+			}
 
 			/*  check if this is really a tuple */
 			if (value && PyTuple_Check(value))
 			{
 				/* convert type to string */
 				ePyObject type = PyTuple_GET_ITEM(value, 0);
-				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : 0;
+				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : nullptr;
 
 				if (atype)
 				{
@@ -1101,20 +1210,12 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 								/* plist is 0 or borrowed */
 							}
 						}
-						/* find the width of the label, to prevent the value overwriting it. */
-						ePoint valueoffset = offset;
-						eSize valuesize = m_itemsize;
-						int labelwidth = 0;
-						if (*string)
-						{
-							ePtr<eTextPara> para = new eTextPara(labelrect);
-							para->setFont(fnt);
-							para->renderString(string, 0);
-							labelwidth = para->getBoundBox().width() + leftOffset;
-						}
-						valueoffset.setX(valueoffset.x() + leftOffset + labelwidth);
-						valuesize.setWidth(valuesize.width() - leftOffset - labelwidth - leftOffset);
-						painter.renderText(eRect(valueoffset, valuesize), text, alphablendflag | flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos, &m_text_offset[cursor]);
+
+						/* Value: render in full item width; flags (RT_HALIGN_LEFT/RIGHT) control alignment.
+						   Label is already clipped to labelMaxWidth so there is no overlap. */
+						eRect valueRect(ePoint(offset.x() + leftOffset, offset.y()),
+						                eSize(m_itemsize.width() - 2 * leftOffset, m_itemsize.height()));
+						painter.renderText(valueRect, text, alphablendflag | flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos, &m_text_offset[cursor]);
 						/* pvalue is borrowed */
 					}
 					else if (!strcmp(atype, "slider"))
@@ -2140,7 +2241,43 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				eRect textRect = eRect(rect.x() + paddingLeft, rect.y() + paddingTop, rect.width() - paddingLeft - paddingRight, rect.height() - paddingTop - paddingBottom);
 
-				if (pTextBorderColor && btwidth)
+				/* scrollText: if RT_SCROLL is set and this is the selected item,
+				   scroll this text element. Only the first RT_SCROLL element per
+				   row scrolls; subsequent ones are rendered normally. */
+				int scroll_text_direction = (m_listbox) ? m_listbox->m_scroll_config.direction : 0;
+				bool do_scroll = selected && scroll_text_direction && (flags & gPainter::RT_SCROLL);
+				flags &= ~gPainter::RT_SCROLL; // strip flag before passing to renderText
+
+				if (do_scroll && m_scroll_index != m_cursor)
+				{
+					// first time we see this cursor position — set up scroll
+					m_listbox->m_scroll_rect = textRect;
+					m_scroll_index = m_cursor;
+					m_scroll_size = eSize(textRect.width(), textRect.height());
+					m_scroll_text_str = string;
+					gRGB bcolor = (pTextBorderColor && btwidth) ? gRGB(PyLong_AsUnsignedLongMask(pTextBorderColor)) : border_color;
+					int bsize = (pTextBorderColor && btwidth) ? btwidth : border_size;
+					updateTextSize(m_scroll_text_str, m_fonts[fnt], flags & ~gPainter::RT_ELLIPSIS, bcolor, bsize);
+					/* Discard any cached pixmap: createScrollPixmap uses listbox-style colors,
+					   not the per-item pbackColorSelected, so blitting it would show the wrong
+					   background. Force a full-item repaint on each scroll tick instead. */
+					m_listbox->m_textPixmap = nullptr;
+				}
+
+				if (do_scroll && m_scroll_text)
+				{
+					if (!scrollTimer->isActive())
+						scrollTimer->start(m_listbox->m_scroll_config.startDelay);
+					eRect scrollRect = textRect;
+					if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight)
+						scrollRect.setX(scrollRect.x() - m_scroll_pos);
+					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
+						scrollRect.setY(scrollRect.y() - m_scroll_pos);
+					gRGB bcolor = (pTextBorderColor && btwidth) ? gRGB(PyLong_AsUnsignedLongMask(pTextBorderColor)) : border_color;
+					int bsize = (pTextBorderColor && btwidth) ? btwidth : border_size;
+					painter.renderText(scrollRect, m_scroll_text_str, flags & ~gPainter::RT_ELLIPSIS, bcolor, bsize);
+				}
+				else if (pTextBorderColor && btwidth)
 				{
 					uint32_t textBColor = PyLong_AsUnsignedLongMask(pTextBorderColor);
 					painter.renderText(textRect, string, flags, gRGB(textBColor), btwidth);

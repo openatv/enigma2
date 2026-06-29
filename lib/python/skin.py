@@ -481,6 +481,31 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 	return gFont(name, int(size * scale[1][0] / scale[1][1]))
 
 
+def parseFontScale(value, scale=((1, 1), (1, 1))):
+	if ";" in value:
+		scaleType, size = value.split(";")
+		try:
+			size = int(size)
+		except ValueError:
+			val = size.replace("f", f"{getSkinFactor()}")
+			try:
+				size = int(eval(val))
+			except Exception as err:
+				print(f"[Skin] Error ({type(err).__name__} - {err}): Font scale size in '{value}', evaluated to '{val}', can't be processed!")
+				size = None
+		if scaleType not in ("size", "width"):
+			print(f"[Skin] Error: Font scale size must be in 'size/width', value:'{value}', can't be processed!")
+			size = None
+			scaleType = 0
+		if size:
+			size = int(size * scale[1][0] / scale[1][1])
+			scaleType = 1 if scaleType == "size" else 2
+	else:
+		scaleType = 0
+		size = None
+	return scaleType, size
+
+
 def parseGradient(value):
 	def validColor(value):
 		if value[0] == "#" and len(value) in (9, 7):
@@ -1059,6 +1084,11 @@ class AttributeParser:
 	def font(self, value):
 		self.guiObject.setFont(parseFont(value, self.scaleTuple))
 
+	def fontScale(self, value):
+		scaleType, size = parseFontScale(value, self.scaleTuple)
+		if size and scaleType:
+			self.guiObject.setFontScale(scaleType, size)
+
 	def foregroundColor(self, value):
 		if "," in value:
 			self.guiObject.setForegroundGradient(*parseGradient(value))  # Only for eSlider.
@@ -1597,6 +1627,12 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				style.setValueFont(parseFont(configList.attrib.get("valueFont", "Regular;18"), ((1, 1), (1, 1))))
 			if "headerFont" in configList.attrib:
 				style.setHeaderFont(parseFont(configList.attrib.get("headerFont", "Regular;20"), ((1, 1), (1, 1))))
+			if "entryFontScale" in configList.attrib:
+				value = configList.attrib.get("entryFontScale")
+				if value:
+					scaleType, size = parseFontScale(value, ((1, 1), (1, 1)))
+					if size and scaleType:
+						style.guiObject.setFontScale(scaleType, size)
 			style.setValue(eWindowStyleSkinned.valueEntryLeftOffset, parseInteger(configList.attrib.get("entryLeftOffset", "15")))
 			style.setValue(eWindowStyleSkinned.valueHeaderLeftOffset, parseInteger(configList.attrib.get("headerLeftOffset", "15")))
 			style.setValue(eWindowStyleSkinned.valueIndentSize, parseInteger(configList.attrib.get("indentSize", "20")))

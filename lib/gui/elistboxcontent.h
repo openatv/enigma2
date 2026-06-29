@@ -58,21 +58,6 @@ private:
 	int m_saved_cursor_line = 0;
 	ePtr<gFont> m_font_zoomed;
 	// scroll
-	int m_scroll_pos = 0;
-	bool m_scroll_text = false;
-	bool m_scroll_started = false;
-	int m_repeat_count = 0;
-	bool m_scroll_swap = false;
-	bool m_end_delay_active = false;
-	eSize m_text_size;
-	eSize m_scroll_size;
-	void updateScrollPosition();
-	void stopScroll();
-	void updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size);
-	std::string m_scroll_text_str;
-	int m_scroll_index = -1;
-	void createScrollPixmap(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size);
-	ePtr<eTimer> scrollTimer;
 
 protected:
 	int m_cursor = 0;
@@ -83,6 +68,25 @@ protected:
 	int m_itemwidth = 25;
 	int m_max_text_width = -1; // -1 means not yet calculated
 	uint8_t m_orientation = 1;
+
+	// scroll
+	std::string m_scroll_text_str;
+	int m_scroll_index = -1;
+	ePtr<eTimer> scrollTimer;
+	eSize m_text_size;
+	eSize m_scroll_size;
+
+	int m_scroll_pos = 0;
+	bool m_scroll_text = false;
+	bool m_scroll_started = false;
+	int m_repeat_count = 0;
+	bool m_scroll_swap = false;
+	bool m_end_delay_active = false;
+	void updateScrollPosition();
+	void stopScroll();
+	void updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size);
+	void createScrollPixmap(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size);
+
 #endif
 };
 
@@ -168,6 +172,7 @@ private:
 #define RT_ELLIPSIS 128
 #define RT_BLEND 256
 #define RT_UNDERLINE 512
+#define RT_SCROLL 1024
 #define BT_ALPHATEST 1
 #define BT_ALPHABLEND 2
 #define BT_SCALE 4
