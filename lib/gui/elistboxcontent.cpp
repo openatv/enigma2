@@ -496,7 +496,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 						position.setX(position.x() - m_scroll_pos);
 					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
 						position.setY(position.y() - m_scroll_pos);
-					painter.renderText(position, m_scroll_text_str.empty() ? string : m_scroll_text_str.c_str(), flags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
+					painter.renderText(position, m_scroll_text_str.empty() ? string : m_scroll_text_str, flags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
 					painter.clippop();
 					return;
 				}
@@ -1104,7 +1104,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (!value_alignment_left && value && PyTuple_Check(value))
 			{
 				ePyObject preType = PyTuple_GET_ITEM(value, 0);
-				const char *preAtype = (preType && PyUnicode_Check(preType)) ? PyUnicode_AsUTF8(preType) : 0;
+				const char *preAtype = (preType && PyUnicode_Check(preType)) ? PyUnicode_AsUTF8(preType) : nullptr;
 				if (preAtype && (!strcmp(preAtype, "text") || !strcmp(preAtype, "mtext")))
 				{
 					ePyObject preVal = PyTuple_GET_ITEM(value, 1);
@@ -1149,7 +1149,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						scrolledLabel.setX(scrolledLabel.x() - m_scroll_pos);
 					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
 						scrolledLabel.setY(scrolledLabel.y() - m_scroll_pos);
-					painter.renderText(scrolledLabel, m_scroll_text_str.c_str(), labelflags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
+					painter.renderText(scrolledLabel, m_scroll_text_str, labelflags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
 				}
 				else
 				{
@@ -1172,7 +1172,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			{
 				/* convert type to string */
 				ePyObject type = PyTuple_GET_ITEM(value, 0);
-				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : 0;
+				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : nullptr;
 
 				if (atype)
 				{
@@ -2275,7 +2275,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						scrollRect.setY(scrollRect.y() - m_scroll_pos);
 					gRGB bcolor = (pTextBorderColor && btwidth) ? gRGB(PyLong_AsUnsignedLongMask(pTextBorderColor)) : border_color;
 					int bsize = (pTextBorderColor && btwidth) ? btwidth : border_size;
-					painter.renderText(scrollRect, m_scroll_text_str.c_str(), flags & ~gPainter::RT_ELLIPSIS, bcolor, bsize);
+					painter.renderText(scrollRect, m_scroll_text_str, flags & ~gPainter::RT_ELLIPSIS, bcolor, bsize);
 				}
 				else if (pTextBorderColor && btwidth)
 				{
