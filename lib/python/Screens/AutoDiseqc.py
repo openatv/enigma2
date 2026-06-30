@@ -5,7 +5,7 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile, getConfigListEntry
 from Components.NimManager import nimmanager, InitNimManager
 from Components.TuneTest import Tuner
-from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
+from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend
 
 
 class AutoDiseqc(ConfigListScreen, Screen):
@@ -280,8 +280,52 @@ class AutoDiseqc(ConfigListScreen, Screen):
 					return True
 		return False
 
+	def setMultiTypeValue(self, deliverySystem):
+		try:
+			multiType = config.Nims[self.feid].multiType
+		except Exception:
+			return
+		for value, description in multiType.choices.choices:
+			if description.startswith(deliverySystem):
+				multiType.setValue(value)
+				return
+
+	def prepareSatelliteFrontend(self):
+		slot = nimmanager.nim_slots[self.feid]
+		if not slot.canBeCompatible("DVB-S"):
+			return False
+		if not slot.isMultiType():
+			return True
+		if slot.canBeCompatible("DVB-C"):
+			config.Nims[self.feid].dvbc.configMode.value = "nothing"
+		if slot.canBeCompatible("DVB-T"):
+			config.Nims[self.feid].dvbt.configMode.value = "nothing"
+		try:
+			if "satellite" in config.Nims[self.feid].hybridTunerMode.choices:
+				config.Nims[self.feid].hybridTunerMode.value = "satellite"
+		except Exception:
+			pass
+		self.setMultiTypeValue("DVB-S")
+		res_mgr = eDVBResourceManager.getInstance()
+		if res_mgr:
+			res_mgr.setFrontendType(slot.frontend_id, "dummy", False)
+			for FeType in slot.getMultiTypeList().values():
+				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X"):
+					res_mgr.setFrontendType(slot.frontend_id, "DVB-S2" if FeType == "DVB-S2X" else FeType, True)
+					break
+		if not self.frontend:
+			print("[AutoDiseqc] no frontend for tuner type change")
+			return False
+		if not self.frontend.changeType(iDVBFrontend.feSatellite):
+			print("[AutoDiseqc] tunerTypeChange to 'DVB-S' failed")
+			return False
+		return True
+
 	def statusCallback(self):
 		if self.state == 0:
+			if not self.prepareSatelliteFrontend():
+				self.close(False)
+				return
 			if self.port_index == 0:
 				self.clearNimEntries()
 				config.Nims[self.feid].dvbs.diseqcA.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
@@ -306,8 +350,8 @@ class AutoDiseqc(ConfigListScreen, Screen):
 					self.circular_setup = True
 
 			config.Nims[self.feid].dvbs.configMode.value = "simple"
-			config.Nims[self.feid].dvbs.simpleDiSEqCSetVoltageTone = self.simple_tone
-			config.Nims[self.feid].dvbs.simpleDiSEqCOnlyOnSatChange = self.simple_sat_change
+			config.Nims[self.feid].dvbs.simpleDiSEqCSetVoltageTone.value = self.simple_tone.value
+			config.Nims[self.feid].dvbs.simpleDiSEqCOnlyOnSatChange.value = self.simple_sat_change.value
 
 			self.saveAndReloadNimConfig()
 			self.state += 1
@@ -324,6 +368,9 @@ class AutoDiseqc(ConfigListScreen, Screen):
 				if self.raw_channel:
 					self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
 			InitNimManager(nimmanager)
+			if not self.prepareSatelliteFrontend():
+				self.close(False)
+				return
 
 			self.tuner = Tuner(self.frontend)
 			if self.raw_channel:

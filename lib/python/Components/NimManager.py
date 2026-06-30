@@ -1594,11 +1594,11 @@ class NimManager:
 		return result
 
 	def getNimListForSat(self, orb_pos):
-		return [nim.slot for nim in self.nim_slots if nim.isCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
+		return [nim.slot for nim in self.nim_slots if nim.canBeCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
 
 	def getRotorSatListForNim(self, slotid):
 		result = []
-		if self.nim_slots[slotid].isCompatible("DVB-S"):
+		if self.nim_slots[slotid].canBeCompatible("DVB-S"):
 			nim = config.Nims[slotid].dvbs
 			configMode = nim.configMode.value
 			if configMode == "simple":
@@ -2435,15 +2435,21 @@ def InitNimManager(nimmgr, update_slots=None):
 
 		if slot.canBeCompatible("DVB-C") and slot.canBeCompatible("DVB-T"):
 			nim = config.Nims[slot_id]
+			default = "terrestrial" if slot.getType() and slot.getType().startswith("DVB-T") else "cable"
+			choices = [
+				("cable", _("DVB-C / Cable only")),
+				("terrestrial", _("DVB-T/T2 / Terrestrial only"))
+			]
+			if slot.canBeCompatible("DVB-S"):
+				if slot.getType() and slot.getType().startswith("DVB-S"):
+					default = "satellite"
+				choices.append(("satellite", "DVB-S/S2 / %s" % _("Satellite")))
+			else:
+				choices.append(("switch", _("DVB-C and DVB-T/T2 via external 5V controlled coax switch")))
 			try:
-				nim.hybridTunerMode
+				nim.hybridTunerMode.setChoices(choices, default=default)
 			except Exception:
-				default = "terrestrial" if slot.getType() and slot.getType().startswith("DVB-T") else "cable"
-				nim.hybridTunerMode = ConfigSelection(default=default, choices=[
-					("cable", _("DVB-C / Cable only")),
-					("terrestrial", _("DVB-T/T2 / Terrestrial only")),
-					("switch", _("DVB-C and DVB-T/T2 via external 5V controlled coax switch"))
-				])
+				nim.hybridTunerMode = ConfigSelection(default=default, choices=choices)
 
 		print(f"[NimManager] Slot name is '{slot.input_name}', description is '{slot.description}', multitype is {slot.isMultiType()}, NIM type is {slot.getType()}.")
 	empty_slots = 0
