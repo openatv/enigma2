@@ -457,7 +457,12 @@ class MultiBootClass():
 		return None, ""
 
 	def canMultiBoot(self):
-		return self.bootSlots != {}
+		if not self.bootSlots:
+			return False
+		if exists(DREAM_BOOT_FILE):
+			if fileHas("/proc/cmdline", "root=/dev/mmcblk1p") and not exists("/dev/disk/by-label/DREAMCARD"):
+				return False
+		return True
 
 	def getBootDevice(self):
 		return self.bootDevice
