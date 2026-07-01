@@ -87,6 +87,10 @@ VOLUME_FORWARDING_STATE_FILE = "/var/run/cec_volume_forwarding_dest"
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
+ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
+ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS = 1000
+ACTIVE_SOURCE_SWITCH_RETRIES = 1
+PANASONIC_SOURCE_SWITCH_DELAY_MS = 3000
 
 CEC_VENDOR_UNKNOWN = 0x000000
 CEC_VENDOR_ENIGMA2_STB = 0x000934
@@ -583,6 +587,11 @@ class HdmiCec:
 			self.wait.timeout.get().append(self.sendCmd)
 			self.queue = []
 			self.messages = []
+			self.activeSourceTimer = eTimer()
+			self.activeSourceTimer.callback.append(self.sendActiveSourceCommand)
+			self.activeSourceMessages = []
+			self.activeSourceRetryPending = False
+			self.activeSourceRetryCounter = 0
 
 			self.handleTimer = eTimer()
 			self.stateTimer = eTimer()
@@ -708,6 +717,67 @@ class HdmiCec:
 	def sendCecMessage(self, address, cmd, data):
 		payload = self.payloadBytes(data)
 		eHdmiCEC.getInstance().sendMessageBytes(address, cmd, payload.hex().upper())
+
+	def activeSourceInterval(self):
+		return max(config.hdmicec.minimum_send_interval.value or 0, ACTIVE_SOURCE_SWITCH_INTERVAL_MS)
+
+	def activeSourceInitialDelay(self):
+		if self.tv_vendor == CEC_VENDOR_PANASONIC and "on" not in self.tv_powerstate:
+			return PANASONIC_SOURCE_SWITCH_DELAY_MS
+		return self.activeSourceInterval()
+
+	def stopActiveSourceSequence(self):
+		active = False
+		if self.activeSourceTimer.isActive():
+			self.activeSourceTimer.stop()
+			active = True
+		if self.activeSourceMessages or self.activeSourceRetryPending:
+			active = True
+		self.activeSourceMessages = []
+		self.activeSourceRetryPending = False
+		return active
+
+	def startActiveSourceSequence(self, retry=False):
+		if not config.hdmicec.enabled.value or not config.hdmicec.report_active_source.value or Screens.Standby.inStandby:
+			return
+		if retry and self.activesource:
+			self.activeSourceRetryPending = False
+			return
+		if not retry:
+			self.activeSourceRetryCounter = 0
+		if self.activeSourceTimer.isActive():
+			self.activeSourceTimer.stop()
+		self.activeSourceRetryPending = False
+		self.activeSourceMessages = [(0, "setstreampath"), (0, "sourceactive"), (0, "routinginfo")]
+		if config.hdmicec.report_active_menu.value:
+			self.activeSourceMessages.append((0, "menuactive"))
+		delay = self.activeSourceInterval() if retry else self.activeSourceInitialDelay()
+		self.CECwritedebug(f"[HdmiCec] schedule active source sequence in {delay} ms" + (" (retry)" if retry else ""), True)
+		if delay:
+			self.activeSourceTimer.start(delay, True)
+		else:
+			self.sendActiveSourceCommand()
+
+	def sendActiveSourceCommand(self):
+		if self.activeSourceRetryPending:
+			self.activeSourceRetryPending = False
+			self.startActiveSourceSequence(retry=True)
+			return
+		if Screens.Standby.inStandby or self.what == "standby":
+			self.stopActiveSourceSequence()
+			return
+		if self.activeSourceMessages:
+			address, message = self.activeSourceMessages.pop(0)
+			self.sendMessage(address, message, immediate=True)
+			if self.activeSourceMessages:
+				self.activeSourceTimer.start(self.activeSourceInterval(), True)
+				return
+		if (self.what == "on" and config.hdmicec.report_active_source.value and not self.activesource and
+			self.activeSourceRetryCounter < ACTIVE_SOURCE_SWITCH_RETRIES and not Screens.Standby.inStandby):
+			self.activeSourceRetryCounter += 1
+			self.activeSourceRetryPending = True
+			self.CECwritedebug(f"[HdmiCec] active source not confirmed, retry in {ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS} ms", True)
+			self.activeSourceTimer.start(ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS, True)
 
 	def updateVolumeForwardingState(self, announce=False, persist=True):
 		if not config.hdmicec.enabled.value or not config.hdmicec.volume_forwarding.value:
@@ -1030,11 +1100,14 @@ class HdmiCec:
 			if wakeup:
 				self.wakeup()
 
-	def sendMessage(self, address, message):
+	def sendMessage(self, address, message, immediate=False):
 		if config.hdmicec.enabled.value:
 			cmd = 0
 			data = b""
 			match message:
+				case "activesourcesequence":
+					self.startActiveSourceSequence()
+					return
 				case "volumeup":
 					self.sendVolumeKey(0x41)
 					return
@@ -1129,7 +1202,7 @@ class HdmiCec:
 				case "powerstate":
 					cmd = 0x8f
 			if cmd:
-				if config.misc.DeepStandby.value or not config.hdmicec.minimum_send_interval.value:  # no delay for messages before go in to deep-standby
+				if immediate or config.misc.DeepStandby.value or not config.hdmicec.minimum_send_interval.value:  # no delay for messages before go in to deep-standby
 					if config.hdmicec.debug.value:
 						self.debugTx(address, cmd, data)
 					self.sendCecMessage(address, cmd, data)
@@ -1154,7 +1227,14 @@ class HdmiCec:
 		for send in messages:
 			address = send[0]
 			message = send[1]
-			if self.what == "on" and ((self.repeatCounter > 0 or self.activesource) and (message == "standby" or (message == "wakeup" and not config.hdmicec.control_tv_wakeup.value))):  # skip active source workaround messages
+			skipActiveSourceWorkaround = (
+				self.what == "on" and
+				(self.repeatCounter > 0 or self.activesource) and
+				(message == "standby" or
+					(message == "wakeup" and not config.hdmicec.control_tv_wakeup.value) or
+					(message == "activesourcesequence" and self.activesource))
+			)
+			if skipActiveSourceWorkaround:
 				continue
 			self.sendMessage(address, message)
 			sendCnt += 1
@@ -1162,7 +1242,7 @@ class HdmiCec:
 			self.repeatTimer.start((config.hdmicec.minimum_send_interval.value * (len(messages) + 1) + self.sendSlower()), True)
 
 	def repeatMessages(self):
-		if len(self.queue):
+		if len(self.queue) or self.activeSourceTimer.isActive():
 			self.repeatTimer.start(1000, True)
 		elif self.firstrun:
 			if self.stateTimer.isActive():
@@ -1202,11 +1282,9 @@ class HdmiCec:
 				if config.hdmicec.control_tv_wakeup.value:
 					self.messages.append((0, "wakeup"))
 				if config.hdmicec.report_active_source.value:
-					self.messages.append((0, "setstreampath"))
-					self.messages.append((0, "sourceactive"))
-					self.messages.append((0, "routinginfo"))
-				if config.hdmicec.report_active_menu.value:
-					if not config.hdmicec.report_active_source.value and self.activesource:
+					self.messages.append((0, "activesourcesequence"))
+				elif config.hdmicec.report_active_menu.value:
+					if self.activesource:
 						self.messages.append((0, "sourceactive"))
 					self.messages.append((0, "menuactive"))
 
@@ -1263,9 +1341,11 @@ class HdmiCec:
 			if self.stateTimer.isActive():
 				self.stateTimer.stop()
 				active = True
+			if self.stopActiveSourceSequence():
+				active = True
 			return active
 		else:
-			return self.repeatTimer.isActive() or self.stateTimer.isActive()
+			return self.repeatTimer.isActive() or self.stateTimer.isActive() or self.activeSourceTimer.isActive()
 
 	def stateTimeout(self):
 		self.CECwritedebug("[HdmiCec] timeout for check TV state!", True)
@@ -1285,9 +1365,7 @@ class HdmiCec:
 		if "source" in state:
 			self.tv_powerstate = "on"
 			if state == "activesource" and self.what == "on" and config.hdmicec.report_active_source.value and not self.activesource and not self.firstrun:  # last try for switch to correct input
-				self.sendMessage(0, "setstreampath")
-				self.sendMessage(0, "sourceactive")
-				self.sendMessage(0, "routinginfo")
+				self.startActiveSourceSequence()
 			if self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
 				self.firstrun = False
 		elif state == "tvstandby":
