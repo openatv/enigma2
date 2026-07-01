@@ -2190,7 +2190,7 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Efter evenemanget"
 
-msgid "After PowerLost"
+msgid "After Power Lost"
 msgstr "Efter strömavbrott"
 
 #
@@ -6428,7 +6428,7 @@ msgstr "Avkodning i Standby"
 msgid "Descramble in Standby finished"
 msgstr "Avlägsna i Standby-läge"
 
-msgid "Descramble recordings before Shutdown"
+msgid "Descramble recordings before Deep Standby"
 msgstr "Avkodning av inspelningar före avstängning"
 
 msgid "Descramble start time"
@@ -9983,7 +9983,7 @@ msgstr "Timmar Minuter"
 msgid "Hours Minutes Seconds"
 msgstr "Timmar Minuter Sekunder"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs a clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -11072,19 +11072,19 @@ msgstr "LCN:s regler"
 msgid "LCN style QuickSelect entry selection"
 msgstr "LCN-stil QuickSelect val av inmatning"
 
-msgid "LED Brightness"
+msgid "LED Running brightness"
 msgstr "LED-ljusstyrka"
 
-msgid "LED Color"
+msgid "LED Running color"
 msgstr "LED-färg"
 
 msgid "LED Deep Standby"
 msgstr "LED Deep Standby"
 
-msgid "LED Idle Brightness"
+msgid "LED Standby brightness"
 msgstr "LED-ljusstyrka vid tomgång"
 
-msgid "LED Idle Color"
+msgid "LED Standby color"
 msgstr "LED-färg i viloläge"
 
 msgid "LED Normal"
@@ -11093,7 +11093,7 @@ msgstr "LED Normal"
 msgid "LED Settings"
 msgstr "LED-inställningar"
 
-msgid "LED Shutdown Color"
+msgid "LED Deep Standby color"
 msgstr "LED avstängningsfärg"
 
 msgid "LED Standby"
@@ -11108,7 +11108,7 @@ msgstr "LED-ljusstyrka under standby."
 msgid "LED brightness during normal operations."
 msgstr "LED-ljusstyrka under normal drift."
 
-msgid "LED color during Deep Standby."
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
 msgstr ""
 
 msgid "LIRC remote"
@@ -17873,7 +17873,7 @@ msgstr "Välj katalogens sorteringsordning för den högra kolumnen:"
 msgid "Select the display design for menus."
 msgstr "Välj displaydesign för menyerna."
 
-msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
+msgid "Select the display options for each menu entry item. If menu numbers are available, then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Välj visningsalternativ för varje menypost. Om menyn är numrerad kan sifferknapparna användas för att välja de numrerade menyalternativen direkt."
 
 msgid "Select the display sequence of previously visited services."
@@ -18116,10 +18116,10 @@ msgstr "Välj vilken typ av mottagningsenhet med enkel kabel du använder."
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "Välj vilken typ av tangentbord som är anslutet till %s %s."
 
-msgid "Select the type of shutdown desired when the EnergySaver timer activates."
+msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Välj vilken typ av avstängning som önskas när EnergySaver-timern aktiveras."
 
-msgid "Select the type of shutdown desired when the SleepTimer activates."
+msgid "Select the action to take when the SleepTimer activates."
 msgstr "Välj vilken typ av avstängning som önskas när SleepTimer aktiveras."
 
 msgid "Select the type of this timer."
@@ -18159,7 +18159,7 @@ msgstr "Välj vad du ska göra efter att timern har zappat."
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Välj vad som ska göras när %s %s startas upp, spelas upp normalt eller går i standby."
 
-msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
+msgid "Select what should be done when the %s %s was shut down incorrectly, or after power was lost."
 msgstr "Välj vad som ska göras när %s %s stängdes av på fel sätt eller efter strömavbrott."
 
 msgid "Select what you want the Channel +/- button to activate."
@@ -18690,7 +18690,7 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr "Ställ in tiden för att dölja infobaren."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
+msgid "Set the time to wait before executing the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Ställ in tiden för att vänta på att utföra standardåtgärden i meddelanden om avstängning, standby eller omstart, t.ex. används i RecordTimer, Scheduler, SleepTimer etc."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -18734,7 +18734,7 @@ msgstr "Ställ in tidsalternativ"
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Ställ in till \"Inaktiverad\" för att ersätta understreck, \"_\", i fil- och katalognamn med mellanslag."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before Deep Standby."
 msgstr "Ställ in på 'Aktiverad' för att avkoda köade krypterade inspelningar i standbyläge innan den stängs av."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."

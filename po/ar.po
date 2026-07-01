@@ -2320,7 +2320,7 @@ msgstr "أفريقيا"
 msgid "After Event"
 msgstr "بعد الحدث"
 
-msgid "After PowerLost"
+msgid "After Power Lost"
 msgstr "بعد انقطاع الكهرباء"
 
 #
@@ -6536,7 +6536,7 @@ msgstr ""
 msgid "Descramble in Standby finished"
 msgstr ""
 
-msgid "Descramble recordings before Shutdown"
+msgid "Descramble recordings before Deep Standby"
 msgstr ""
 
 msgid "Descramble start time"
@@ -10001,7 +10001,7 @@ msgstr ""
 msgid "Hours Minutes Seconds"
 msgstr ""
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs a clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -11081,19 +11081,19 @@ msgstr ""
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
 
-msgid "LED Brightness"
+msgid "LED Running brightness"
 msgstr ""
 
-msgid "LED Color"
+msgid "LED Running color"
 msgstr ""
 
 msgid "LED Deep Standby"
 msgstr "إضاءة وضع الاستعداد"
 
-msgid "LED Idle Brightness"
+msgid "LED Standby brightness"
 msgstr ""
 
-msgid "LED Idle Color"
+msgid "LED Standby color"
 msgstr ""
 
 msgid "LED Normal"
@@ -11102,7 +11102,7 @@ msgstr "الإضاءة الطبيعية"
 msgid "LED Settings"
 msgstr ""
 
-msgid "LED Shutdown Color"
+msgid "LED Deep Standby color"
 msgstr ""
 
 msgid "LED Standby"
@@ -11117,7 +11117,7 @@ msgstr ""
 msgid "LED brightness during normal operations."
 msgstr "سطوع الـ LED أثناء التشغيل العادي."
 
-msgid "LED color during Deep Standby."
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
 msgstr ""
 
 msgid "LIRC remote"
@@ -17779,7 +17779,7 @@ msgstr ""
 msgid "Select the display design for menus."
 msgstr ""
 
-msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
+msgid "Select the display options for each menu entry item. If menu numbers are available, then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
@@ -18018,10 +18018,10 @@ msgstr ""
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "اختيار نوع لوحة المفاتيح المرتبطة بـ %s %s."
 
-msgid "Select the type of shutdown desired when the EnergySaver timer activates."
+msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "اختر نوع إيقاف التشغيل المرغوب عند تفعيل مؤقت حفظ الطاقة."
 
-msgid "Select the type of shutdown desired when the SleepTimer activates."
+msgid "Select the action to take when the SleepTimer activates."
 msgstr "اختيار نوع إيقاف التشغيل المرغوب عند تفعيل مؤقت النوم."
 
 msgid "Select the type of this timer."
@@ -18058,7 +18058,7 @@ msgstr "حدد ما يجب فعله بعد انتهاء انطلق المؤقت.
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "حدد ما يجب فعله عند تشغيل %s %s أو تشغيله بشكل عادي أو الانتقال إلى وضع الاستعداد."
 
-msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
+msgid "Select what should be done when the %s %s was shut down incorrectly, or after power was lost."
 msgstr "حدد ما يجب فعله عند إيقاف تشغيل %s %s بشكل غير صحيح، أو بعد انقطاع الطاقة."
 
 #, fuzzy
@@ -18588,7 +18588,7 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr ""
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
+msgid "Set the time to wait before executing the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -18632,7 +18632,7 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before Deep Standby."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."

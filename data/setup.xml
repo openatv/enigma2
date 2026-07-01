@@ -1,5 +1,5 @@
 <setupxml>
-	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="1">
+	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="yes">
 		<item level="1" text="Volume steps" description="Select the size of the volume step when the VOLUME buttons are pressed.">config.volumeControl.pressStep</item>
 		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
 		<item level="1" text="Volume/Mute display timer" description="Select how long, in seconds, that the volume and mute displays are shown before they automatically hide.">config.volumeControl.hideTimer</item>
@@ -35,7 +35,7 @@
 		<item level="0" text="Use AutoCam" description="When set to 'Yes' a specific Softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
 		<item level="0" text="Select AutoCam default Softcam" description="Select a Softcam from the available list as the default for AutoCam." conditional="config.misc.autocamEnabled.value">self.autocamDefault</item>
 	</setup>
-	<setup key="AutoLanguage" title="Auto Language Settings" level="1" showOpenWebif="1">
+	<setup key="AutoLanguage" title="Auto Language Settings" level="1" showOpenWebif="yes">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
 		<item level="1" text="Audio language selection 2" description="Configure the second audio language.">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" description="Configure the third audio language.">config.autolanguage.audio_autoselect3</item>
@@ -55,7 +55,7 @@
 		<item level="1" text="EPG language selection 1" description="Configure the primary EPG language.">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" description="Configure the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
-	<setup key="Cardserver" title="Cardserver Settings" showOpenWebif="1">
+	<setup key="Cardserver" title="Cardserver Settings" showOpenWebif="yes">
 		<item level="0" text="Select cardserver" description="Select the cardserver to be used from the list of available cardservers.">config.misc.cardservers</item>
 	</setup>
 	<setup key="CCcamLineEdit" title="CCcam Line Editor">
@@ -73,7 +73,7 @@
 		<item level="0" text="Password" description="Edit the password.">config.cccaminfo.password</item>
 		<item level="0" text="Port" description="Edit the remote CCCam port.">config.cccaminfo.port</item>
 	</setup>
-	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
+	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="yes">
 		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
 		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
@@ -142,7 +142,7 @@
 		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
 		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
-	<setup key="Display" title="Display Settings" showOpenWebif="1">
+	<setup key="Display" title="Display Settings" showOpenWebif="yes">
 		<item level="0" text="Clone TV screen to LCD" description="Shows live TV or informations on LCD." requires="FBLCDDisplay">config.lcd.fblcddisplay</item>
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
 		<item level="0" text="Brightness (Dimmed)" description="Configure the brightness level of the front panel display for dimmed operation.">config.lcd.dimbright</item>
@@ -219,7 +219,7 @@
 			</if>
 		</if>
 	</setup>
-	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several receivers.">config.misc.epgcachefilename</item>
 		<item level="2" text="Scheduled load of 'epg.dat'" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
@@ -244,7 +244,7 @@
 		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.epggenrecountry</item>
 		<item level="2" text="Correct invalid EPG data" description="Choose the option to correct invalid EPG data.">config.usage.correct_invalid_epgdata</item>
 	</setup>
-	<setup key="EPGEnhanced" title="SingleEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGEnhanced" title="SingleEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.enhanced_preview_mode</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
@@ -253,7 +253,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="EPGGraphical" title="GraphicalEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGGraphical" title="GraphicalEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics).">config.epgselection.graph_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Unless set to 'disabled' you get a preview of channels inside the EPG list.">config.epgselection.graph_preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG.">config.epgselection.graph_showbouquet</item>
@@ -287,7 +287,7 @@
 		<item level="2" text="Timeline marker" description="Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events.">config.epgselection.graph_histminutes</item>
 		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
-	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
@@ -297,7 +297,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="EPGInfobarGraphical" title="Graphical InfoBar EPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGInfobarGraphical" title="Graphical InfoBar EPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Service Title mode" description="Configure to show channel names, numbers, picons or all three inside EPG.">config.epgselection.infobar_servicetitle_mode</item>
@@ -321,7 +321,7 @@
 		<item level="2" text="Timeline marker" description="Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events.">config.epgselection.infobar_histminutes</item>
 		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
-	<setup key="EPGMulti" title="MultiEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGMulti" title="MultiEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.multi_preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG.">config.epgselection.multi_showbouquet</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
@@ -330,12 +330,12 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.multi_eventfs</item>
 	</setup>
-	<setup key="EPGSingle" title="ChannelEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGSingle" title="ChannelEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="EPGVertical" title="VerticalEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGVertical" title="VerticalEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used.">config.epgselection.vertical_startmode</item>
 		<item level="2" text="Picture in EPG" description="Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen.">config.epgselection.vertical_pig</item>
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.vertical_preview_mode</item>
@@ -439,7 +439,7 @@
 	<setup key="GPTSlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.GPTSlotManagerLocation</item>
 	</setup>
-	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="1">
+	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="yes">
 		<item level="0" text="Hard disk Standby after" description="Configure the hard disk drive to go to Standby after the specified idle time.">config.usage.hdd_standby</item>
 		<item level="0" text="Hard disk Standby in receiver Standby after" description="Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby.">config.usage.hdd_standby_in_standby</item>
 		<item level="0" text="Use Harddisk Hardware Standby Timer" description="Option to enable the hardware Standby timer.">config.usage.hdd_timer</item>
@@ -490,7 +490,7 @@
 			<item level="0" text="Enable debug log" description="If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'.">config.hdmicec.debug</item>
 		</if>
 	</setup>
-	<setup key="HDMIRecord" title="HDMI Recording Settings" showOpenWebif="1">
+	<setup key="HDMIRecord" title="HDMI Recording Settings" showOpenWebif="yes">
 		<item level="0" text="Bitrate" description="Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size.">config.hdmirecord.bitrate</item>
 		<item level="0" text="Width" description="The width of the picture. The input will be scaled to match this value.">config.hdmirecord.width</item>
 		<item level="0" text="Height" description="The height of the picture. The input will be scaled to match this value.">config.hdmirecord.height</item>
@@ -505,21 +505,21 @@
 		<item level="0" text="Target location" description="Choose the target location for the slots.">self.kexecSlotManagerLocation</item>
 		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.kexecSlotManagerLocation.value">self.kexecSlotManagerSlots</item>
 	</setup>
-	<setup key="Keyboard" title="Keyboard Settings" showOpenWebif="1">
+	<setup key="Keyboard" title="Keyboard Settings" showOpenWebif="yes">
 		<item level="0" text="Keyboard" description="Select the type of keyboard connected to the %s %s.">config.inputDevices.keyboardsIndex</item>
 	</setup>
-	<setup key="LEDs" title="LED Settings" showOpenWebif="1">
-		<item level="1" text="LED Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.default_color</item>
-		<item level="1" text="LED Brightness" description="LED brightness during normal operations.">config.fp.led.default_brightness</item>
-		<item level="1" text="LED Idle Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.standby_color</item>
-		<item level="1" text="LED Idle Brightness" description="LED brightness during Deep Standby.">config.fp.led.standby_brightness</item>
-		<item level="1" text="LED Shutdown Color" description="LED color during Deep Standby.">config.fp.led.shutdown_color</item>
+	<setup key="LEDs" title="LED Settings" showOpenWebif="yes">
+		<item level="1" text="LED Running color" description="Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off.">config.fp.led.default_color</item>
+		<item level="1" text="LED Running brightness" description="Select the brightness of the front panel LED when the receiver is Running.">config.fp.led.default_brightness</item>
+		<item level="1" text="LED Standby color" description="Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off.">config.fp.led.standby_color</item>
+		<item level="1" text="LED Standby brightness" description="Select the brightness of the front panel LED when the receiver is in Standby.">config.fp.led.standby_brightness</item>
+		<item level="1" text="LED Deep Standby color" description="Select the color of the front panel power LED when the receiver is in Deep Standby.">config.fp.led.shutdown_color</item>
 	</setup>
 	<setup key="Locale" title="Locale Selection Settings" menuTitle="Locale">
 		<item level="0" text="Locales to be displayed" description="Display the base locales or all locales for a language.">config.locales.packageLocales</item>
 		<item level="0" text="Locale list sort order" description="Sort order for the language list.">config.locales.localesSortBy</item>
 	</setup>
-	<setup key="Logs" title="Logs Settings" level="2" showOpenWebif="1">
+	<setup key="Logs" title="Logs Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="Logs location" description="Choose the location for crash and debug logs.">config.crash.debug_path</item>
 		<item level="2" text="Handle Python crashes" description="Try to prevent reboots for software errors and maintain of the availability for the receiver.">config.crash.bsodpython</item>
 		<item level="2" text="Show crash info on screen and write crash log for x times" description="If 'never', will write crash log despite that for the first crash." requires="config.crash.bsodpython">config.crash.bsodhide</item>
@@ -556,7 +556,7 @@
 		<item level="2" text="Enable GStreamer pipeline graphs *" description="Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link.">config.crash.gstdot</item>
 		<item level="2" text="Enable core dumps *" description="Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location.">config.crash.coredump</item>
 	</setup>
-	<setup key="MovieSelection" title="Movie Selection Settings" showOpenWebif="1">
+	<setup key="MovieSelection" title="Movie Selection Settings" showOpenWebif="yes">
 		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="0" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
@@ -603,7 +603,7 @@
 		<item text="Nameserver" description="Configure the name server (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
-	<setup key="NetworkSamba" title="Samba Settings" allowDefault="1">
+	<setup key="NetworkSamba" title="Samba Settings" allowDefault="yes">
 		<item text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
 		<item text="Automatic shares access" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
 	</setup>
@@ -623,12 +623,12 @@
 		<item level="0" text="Automatically update Client/Server View" description="Automatically update Client/Server View">config.oscaminfo.autoUpdate</item>
 		<item level="0" text="Automatically update Log-Fullscreen View" description="Automatically update Log-Fullscreen View">config.oscaminfo.autoUpdateLog</item>
 	</setup>
-	<setup key="OSD3DCalibration" title="OSD 3D Settings" allowDefault="1" showOpenWebif="1">
+	<setup key="OSD3DCalibration" title="OSD 3D Settings" allowDefault="yes" showOpenWebif="yes">
 		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode of the OSD.">config.osd.threeDmode</item>
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth of the OSD.">config.osd.threeDznorm</item>
 		<item level="0" text="Show in Extension Menu" description="This option lets you show the 3D OSD menu option in the Extension Menu screen.">config.osd.show3dextensions</item>
 	</setup>
-	<setup key="OSDCalibration" title="OSD Calibration Settings" allowDefault="1" showOpenWebif="1">
+	<setup key="OSDCalibration" title="OSD Calibration Settings" allowDefault="yes" showOpenWebif="yes">
 		<if requires="CanChangeOsdPositionAML">
 			<item level="0" text="Left" description="Use the LEFT/RIGHT buttons on your remote to move the OSD left.">config.osd.dst_left</item>
 			<item level="0" text="Top" description="Use the LEFT/RIGHT buttons on your remote to move the OSD top.">config.osd.dst_top</item>
@@ -721,7 +721,7 @@
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="2" text="Disable ServiceHiSilicon" description="Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code." requires="servicehisilicon" restart="gui">config.misc.disableServiceHiSilicon</item>
 	</setup>
-	<setup key="PluginBrowser" title="Plugin Browser Settings" showOpenWebif="1">
+	<setup key="PluginBrowser" title="Plugin Browser Settings" showOpenWebif="yes">
 		<item level="0" text="Plugin Browser layout" description="Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!">config.usage.pluginListLayout</item>
 		<item level="0" text="Sort Plugin Browser entries" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden.">config.usage.plugins_sort_mode</item>
 		<item level="0" text="Picon install location" description="Select the location where the picon files will be installed.">config.usage.piconInstallLocation</item>
@@ -747,7 +747,7 @@
 		<item level="0" text="User Feed URL" description="Enter your personal feed URL to allow you to select packages from your personal feed.">config.pluginfilter.userfeed</item>
 		<item level="0" text="Use alternate GitHub DNS" description="Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names.">config.usage.alternateGitHubDNS</item>
 	</setup>
-	<setup key="Recording" title="Recording Settings" showOpenWebif="1">
+	<setup key="Recording" title="Recording Settings" showOpenWebif="yes">
 		<item level="2" text="Timer recording location" description="Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.timer_path</item>
 		<item level="2" text="Instant recording location" description="Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.instantrec_path</item>
 		<item level="2" text="Time shift save location" description="Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations.">config.timeshift.recordingPath</item>
@@ -786,7 +786,7 @@
 		<if requires="CanDescrambleInStandby">
 			<item level="2" text="Descramble in Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby.">config.recording.standbyDescramble</item>
 			<if conditional="config.recording.standbyDescramble.value" indent="1">
-				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down.">config.recording.standbyDescrambleShutdown</item>
+				<item level="2" text="Descramble recordings before Deep Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby before Deep Standby.">config.recording.standbyDescrambleShutdown</item>
 				<item level="2" text="Descramble start time" description="Select a time, when in Standby, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
 				<item level="2" text="Descramble end time" description="Select a time, when in Standby, before which descramble can proceed.">config.recording.standbyDescrambleEnd</item>
 			</if>
@@ -838,7 +838,7 @@
 			<item level="0" text="After recording" description="Select what do do after the timer recording has completed.">self.timerAfterEvent</item>
 		</if>
 	</setup>
-	<setup key="RemoteButton" title="Remote Control Button Settings" showOpenWebif="1">
+	<setup key="RemoteButton" title="Remote Control Button Settings" showOpenWebif="yes">
 		<item level="2" text="Use key map *" description="Configure the current key map file.">config.usage.keymap</item>
 		<item level="1" text="Action on short POWER button press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item>
 		<item level="1" text="Action on long POWER button press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
@@ -945,19 +945,19 @@
 		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
 		<item text="AutoRefresh" description="Enable autorefresh templates." requires="CanRefreshTemplates">config.skin.autorefresh</item>
 	</setup>
-	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
+	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="yes">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
-		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates.">config.usage.sleepTimerAction</item>
+		<item text="SleepTimer action" description="Select the action to take when the SleepTimer activates.">config.usage.sleepTimerAction</item>
 		<if conditional="self.setupMode">
 			<item text="EnergySaver activation delay" description="Configure the duration, in minutes, before the EnergySaver timer activates.">config.usage.energyTimer</item>
-			<item text="EnergySaver action" description="Select the type of shutdown desired when the EnergySaver timer activates.">config.usage.energyTimerAction</item>
+			<item text="EnergySaver action" description="Select the action to take when the EnergySaver timer activates.">config.usage.energyTimerAction</item>
 		</if>
 	</setup>
-	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
+	<setup key="Softcam" title="Softcam Settings" showOpenWebif="yes">
 		<item level="0" text="Select Softcam" description="Select a Softcam from the available list.">config.misc.softcams</item>
 		<item level="2" text="Show OScam/CCcam in Extension Menu" description="Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button).">config.softcam.showInExtensions</item>
 	</setup>
-	<setup key="SoftwareManager" title="Software Manager Settings" showOpenWebif="1">
+	<setup key="SoftwareManager" title="Software Manager Settings" showOpenWebif="yes">
 		<if conditional="BoxInfo.getItem('model').startswith('et')">
 			<item level="2" text="Select Software Update" description="Select how your receiver will upgrade.">config.plugins.softwaremanager.updatetype</item>
 		</if>
@@ -975,7 +975,7 @@
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
 	<setup key="SoftCSA" title="SoftCSA Settings">
-		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels." restart="gui">config.softcsa.decoderRelease</item>
+		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs a clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels." restart="gui">config.softcsa.decoderRelease</item>
 		<item level="0" text="Sync mode" description="Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)." restart="gui">config.softcsa.syncMode</item>
 		<item level="2" text="Decoder start timeout" description="Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting." restart="gui">config.softcsa.waitForDataTimeout</item>
 		<item level="2" text="Decoder start delay" description="Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time." restart="gui">config.softcsa.bufferTime</item>
@@ -985,7 +985,7 @@
 		<item level="2" text="Stream Relay port" description="Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_port</item>
 		<item level="2" text="Stream Relay switch delay" description="Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners.">config.misc.softcam_streamrelay_delay</item>
 	</setup>
-	<setup key="Subtitle" title="Subtitle Settings" level="2" showOpenWebif="1">
+	<setup key="Subtitle" title="Subtitle Settings" level="2" showOpenWebif="yes">
 		<if requires="AISubs">
 			<item level="2" text="AI Translation enabled" description="Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
 			<item level="2" text="AI Translation language" description="Select the AI-Powered Translation target language.">config.subtitles.ai_translate_to</item>
@@ -1015,7 +1015,7 @@
 		<item level="2" text="HI-cleanup for external subtitles" description="Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard).">config.subtitles.pango_subtitle_removehi</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will be always turned on for playback movie.">config.subtitles.pango_autoturnon</item>
 	</setup>
-	<setup key="Time" title="Time Settings" showOpenWebif="1">
+	<setup key="Time" title="Time Settings" showOpenWebif="yes">
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize system time using transponder or Internet.">config.misc.SyncTimeUsing</item>
@@ -1026,7 +1026,7 @@
 		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
 		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
-	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
+	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="yes">
 		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
 		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
 		<item level="2" text="Enable Autorecord" description="Set to 'Yes', to enable automatic recording of the background time shift buffer.">config.timeshift.autorecord</item>
@@ -1063,7 +1063,7 @@
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
 		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.UBISlotManagerLocation.value">self.UBISlotManagerSlots</item>
 	</setup>
-	<setup key="Usage" title="Customize System Settings" showOpenWebif="1">
+	<setup key="Usage" title="Customize System Settings" showOpenWebif="yes">
 		<item level="0" text="Settings mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
 		<item level="0" text="Input scroll position" description="When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor.">config.usage.cursorscroll</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
@@ -1089,7 +1089,7 @@
 		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 		<item level="2" text="Http(s) stream start delay" description="Define additional delay in milliseconds before start of http(s) streams.">config.usage.http_startdelay</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
-		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
+		<item level="1" text="After Power Lost" description="Select what should be done when the %s %s was shut down incorrectly, or after power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto Standby.">config.usage.boot_action</item>
 		<item level="2" text="Wake up time before a timer begins" description="Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives.">config.workaround.wakeuptime</item>
 		<item level="1" text="Use workaround for wake up from deep-standby" description="If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail.">config.workaround.deeprecord</item>
@@ -1101,9 +1101,9 @@
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files.">config.usage.useChapterInfo</item>
 		<!--item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
 	</setup>
-	<setup key="UserInterface" title="OSD Settings" showOpenWebif="1">
+	<setup key="UserInterface" title="OSD Settings" showOpenWebif="yes">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>
-		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
+		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available, then the number buttons can be used to select the numbered menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
 		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries. User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
 		<item level="1" text="Sort Extension Menu" description="Select the sort order of the Extension Menu entries.">config.usage.sortExtensionslist</item>
@@ -1136,7 +1136,7 @@
 			<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." conditional="config.usage.show_infobar_do_dimming.value">config.usage.show_infobar_dimming_speed</item>
 		</if>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
-		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc.">config.usage.shutdown_msgbox_timeout</item>
+		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait before executing the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc.">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Select whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
