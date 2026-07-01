@@ -193,6 +193,12 @@ class AudioSelection(ConfigListScreen, Screen):
 				self.settings.transcodeac3plus.addNotifier(self.setAC3plusTranscode, initial_call=False)
 				conflist.append(getConfigListEntry(_("AC3plus transcoding"), self.settings.transcodeac3plus, None))
 
+			if BoxInfo.getItem("CanAC4"):
+				choice_list = [("hdmi_best", _("Use best / Controlled by HDMI")), ("passthrough", _("Pass-through")), ("downmix", _("Downmix"))]
+				self.settings.ac4 = ConfigSelection(choices=choice_list, default=config.av.ac4.value)
+				self.settings.ac4.addNotifier(self.setAC4, initial_call=False)
+				conflist.append(getConfigListEntry("AC4", self.settings.ac4, None))
+
 			if BoxInfo.getItem("CanPcmMultichannel"):
 				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
@@ -491,6 +497,10 @@ class AudioSelection(ConfigListScreen, Screen):
 	def setTrueHD(self, downmix):
 		config.av.truehd.setValue(downmix.value)
 		config.av.truehd.save()
+
+	def setAC4(self, downmix):
+		config.av.ac4.setValue(downmix.value)
+		config.av.ac4.save()
 
 	def changeDTSDownmix(self, downmix):
 		if downmix.value:

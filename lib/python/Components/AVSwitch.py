@@ -652,6 +652,16 @@ def InitAVSwitch():
 		config.av.transcodeac3plus = ConfigSelection(default="force_ac3", choices=choiceList)
 		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
 			config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
+	AC4 = MACHINEBUILD in ("dreamone", "dreamtwo")
+	BoxInfo.setItem("CanAC4", AC4)
+	if AC4:
+		config.av.ac4 = ConfigSelection(default="hdmi_best", choices=[
+			("hdmi_best", _("Use best / Controlled by HDMI")),
+			("passthrough", _("Pass-through")),
+			("downmix", _("Downmix"))
+		])
+	else:
+		config.av.ac4 = ConfigNothing()
 	dtsHD = fileReadLine("/proc/stb/audio/dtshd_choices", default=None, source=MODULE_NAME)
 	dtsHD = dtsHD.split() if dtsHD else False
 	if not dtsHD and MACHINEBUILD in ("dreamone", "dreamtwo"):
