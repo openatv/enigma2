@@ -942,33 +942,36 @@ class MultiBootInformation(InformationBase):
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(self.slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
 			currentMsg = f"  -  {_("Active")}"
-			imageLists = {}
+			modeLists = {}
+			plainLines = []
 			for slot in slotImageList:
-				for boot in self.slotImages[slot]["bootCodes"]:
-					if imageLists.get(boot) is None:
-						imageLists[boot] = []
+				entry = self.slotImages[slot]
+				configs = entry.get("bootCodes") or {}
+				hasBoxMode = len(configs) > 1
+				for boot in configs.keys():
 					active = currentMsg if boot == bootCode and slot == slotCode else ""
-					indent = "P0V" if boot == "" else "P1V"
+					indent = "P1V" if hasBoxMode else "P0V"
 					if active:
 						indent = indent.replace("P", "F").replace("V", "F")
-					device = self.slotImages[slot]["device"]
+					device = entry["device"]
 					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
-					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]["imagename"]}{active}"))
+					line = formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{MultiBoot.getSlotDisplayName(slot, boot)}{active}")
+					if hasBoxMode:
+						modeLists.setdefault(boot, []).append(line)
+					else:
+						plainLines.append(line)
 			count = 0
-			for bootCode in sorted(imageLists.keys()):
-				if bootCode == "":
-					continue
+			for boot in sorted(modeLists.keys()):
 				if count:
 					info.append("")
-				info.append(formatLine("S", MultiBoot.getBootCodeDescription(bootCode), None))
+				info.append(formatLine("S", MultiBoot.getBootCodeDescription(boot), None))
 				if self.extraSpacing:
 					info.append("")
-				info.extend(imageLists[bootCode])
+				info.extend(modeLists[boot])
 				count += 1
 			if count:
 				info.append("")
-			if "" in imageLists:
-				info.extend(imageLists[""])
+			info.extend(plainLines)
 		else:
 			info.append(formatLine("P1", _("Retrieving boot slot information...")))
 		self["information"].setText("\n".join(info))
