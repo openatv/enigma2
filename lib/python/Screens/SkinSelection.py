@@ -3,7 +3,7 @@ from os.path import exists, isdir, isfile, join, split
 
 from enigma import addFont, ePicLoad
 
-from Components.config import ConfigSelection, NoSave, config, configfile
+from Components.config import ConfigSelection, NoSave, config
 from Components.PluginComponent import plugins
 from Components.Pixmap import Pixmap
 from Plugins.Plugin import PluginDescriptor
