@@ -23,6 +23,7 @@ to generate HTML."""
 		self.listTemplate = templateName or "Default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 		self.listStyle = "default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 		self.listIndexNames = indexNames or {}
+		self.additionalTemplateAttributes = {}
 		self.onSelectionChanged = []
 		self.onListUpdated = []
 		self.disableCallbacks = False

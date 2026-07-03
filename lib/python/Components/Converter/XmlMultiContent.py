@@ -5,10 +5,13 @@ from Components.Converter.StringList import StringList
 
 
 class MultiContentTemplateParser(TemplateParser):
+	_KNOWN_TEMPLATE_ATTRS = {"name", "fonts", "itemWidth", "itemHeight"}
+
 	def __init__(self, debug=False):
 		TemplateParser.__init__(self, debug=debug)
 		self.template = {}
 		self.indexNames = {}
+		self.additionalTemplateAttributes = {}
 
 	def scaleWithHeight(self, itemWidth, itemHeight):
 		scaleFactorVertical = self.scale[1][0] / self.scale[1][1]
@@ -72,6 +75,7 @@ class MultiContentTemplateParser(TemplateParser):
 				self.itemWidth = int(template.get("itemWidth", self.itemWidth))
 				self.itemHeight = int(template.get("itemHeight", self.itemHeight))
 				if templateStyleName == templateName:
+					self.additionalTemplateAttributes = {k: v for k, v in template.items() if k not in self._KNOWN_TEMPLATE_ATTRS}
 					templateModes, modesItems = parseTemplateModes(template)
 					for index, font in enumerate([x.strip() for x in template.get("fonts", "").split(",")]):
 						self.template["fonts"].append(parseFont(font, self.scale))
@@ -205,6 +209,7 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 			if self.dom is not None:
 				self.indexNames = self.source.indexNames
 				self.readTemplate(self.source.template)
+				self.source.additionalTemplateAttributes = self.additionalTemplateAttributes
 				if "fonts" not in self.template:
 					print("[XmlMultiContent] Error: All templates must include a 'fonts' entry!")
 				if "modes" not in self.template:
