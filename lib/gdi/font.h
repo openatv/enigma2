@@ -43,9 +43,8 @@ class fontRenderClass
 		std::string filename, face;
 		int scale; // 100 is 1:1
 		int renderflags;
-		fontListEntry *next;
 		~fontListEntry();
-	} *font;
+	};
 
 	FT_Library library;
 	FTC_Manager cacheManager;	// the cache manager
