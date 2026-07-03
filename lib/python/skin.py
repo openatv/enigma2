@@ -9,7 +9,7 @@ from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
+from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML, clearResolveLists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -96,7 +96,7 @@ runCallbacks = False
 # E.g. "MySkin/skin_display.xml"
 #
 def InitSkins():
-	global currentPrimarySkin, currentDisplaySkin, resolutions
+	global currentPrimarySkin, currentDisplaySkin
 	# #################################################################################################
 	if isfile("/etc/.restore_skins"):
 		unlink("/etc/.restore_skins")
@@ -220,26 +220,33 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 
 
 def reloadSkins():
-	global colors, domScreens, fonts, menus, parameters, setups, switchPixmap
 	domScreens.clear()
 	colors.clear()
-	colors = {
+	colors.update({
 		"key_back": gRGB(0x00313131),
 		"key_blue": gRGB(0x0018188B),
 		"key_green": gRGB(0x001F771F),
 		"key_red": gRGB(0x009F1313),
 		"key_text": gRGB(0x00FFFFFF),
 		"key_yellow": gRGB(0x00A08500)
-	}
+	})
 	fonts.clear()
-	fonts = {
+	fonts.update({
 		"Body": ("Regular", 18, 22, 16),
 		"ChoiceList": ("Regular", 20, 24, 18)
-	}
+	})
 	menus.clear()
+	screens.clear()
 	parameters.clear()
 	setups.clear()
 	switchPixmap.clear()
+	windowStyles.clear()
+	scrollLabelStyle.clear()
+	subtitleFonts.clear()
+	constantWidgets.clear()
+	layouts.clear()
+	variables.clear()
+	clearResolveLists()
 	InitSkins()
 
 
@@ -1425,7 +1432,6 @@ def applyAllAttributes(guiObject, desktop, attributes, scale=((1, 1), (1, 1))):
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN):
 	"""Loads skin data like colors, windowstyle etc."""
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
-	global colors, fonts, menus, parameters, setups, switchPixmap, resolutions, scrollLabelStyle, subtitleFonts
 	for tag in domSkin.findall("output"):
 		scrnID = parseInteger(tag.attrib.get("id", GUI_SKIN_ID), GUI_SKIN_ID)
 		if scrnID == GUI_SKIN_ID:

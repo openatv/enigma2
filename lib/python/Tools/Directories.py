@@ -99,6 +99,12 @@ class ResolveLists:
 	fonts = []
 
 
+def clearResolveLists():
+	ResolveLists.skin.clear()
+	ResolveLists.lcdSkin.clear()
+	ResolveLists.fonts.clear()
+
+
 def resolveFilename(scope, base="", path_prefix=None):
 	def addIfExists(paths):
 		return [path for path in paths if isdir(path)]
