@@ -219,10 +219,12 @@ static ePtr<gFont> makeFontScale(gFont* fnt, const char* text, int visibleW, con
 	int origSize = fnt->pointSize;
 	int newSize = origSize, newWidth = 0;
 	int sW = origSize * visibleW / ts.width();
+	// A negative m_fontScaleSize is relative to the original font size (i.e. the minimum floor is origSize + m_fontScaleSize)
+	int scaleFloor = style->m_fontScaleSize < 0 ? origSize + style->m_fontScaleSize : style->m_fontScaleSize;
 	if (style->m_fontScaleType == 1)
-		newSize = std::max(sW, style->m_fontScaleSize);
+		newSize = std::max(sW, scaleFloor);
 	else if (style->m_fontScaleType == 2)
-		newWidth = std::max(sW, style->m_fontScaleSize);
+		newWidth = std::max(sW, scaleFloor);
 	else
 		return nullptr;
 	ePtr<gFont> scaled = new gFont(fnt->family, newSize);

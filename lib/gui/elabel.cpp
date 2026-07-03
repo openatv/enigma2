@@ -179,13 +179,15 @@ void eLabel::updateTextSize() {
 			m_font->pointSize = m_originalFontSize;
 			m_font->pointWidth = 0;
 			eSize text_size = calculateTextSize(m_font, m_text, s, true); // nowrap at original size
+			// A negative m_fontScaleSize is relative to the original font size (i.e. the minimum floor is m_originalFontSize + m_fontScaleSize)
+			int scaleFloor = m_fontScaleSize < 0 ? m_originalFontSize + m_fontScaleSize : m_fontScaleSize;
 
 			if (m_fontScaleType == 1) {
 				int newFontSize = m_originalFontSize;
 				if (text_size.width() > visibleW || text_size.height() > visibleH) {
 					int scaleW = text_size.width() > 0 ? m_originalFontSize * visibleW / text_size.width() : m_originalFontSize;
 					int scaleH = text_size.height() > 0 ? m_originalFontSize * visibleH / text_size.height() : m_originalFontSize;
-					newFontSize = std::max(std::min(scaleW, scaleH), m_fontScaleSize);
+					newFontSize = std::max(std::min(scaleW, scaleH), scaleFloor);
 				}
 				if (m_font->pointSize != newFontSize)
 					m_font->pointSize = newFontSize;
@@ -193,7 +195,7 @@ void eLabel::updateTextSize() {
 				int newFontWidth = 0;
 				if (text_size.width() > visibleW && text_size.height() <= visibleH) {
 					int scaleW = m_originalFontSize * visibleW / text_size.width();
-					newFontWidth = std::max(scaleW, m_fontScaleSize);
+					newFontWidth = std::max(scaleW, scaleFloor);
 				}
 				if (m_font->pointWidth != newFontWidth)
 					m_font->pointWidth = newFontWidth;
