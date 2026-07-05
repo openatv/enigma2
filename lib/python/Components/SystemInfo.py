@@ -485,6 +485,7 @@ for ciSlot in range(BoxInfo.getItem("CommonInterface")):
 BoxInfo.setItem("inadyn", exists("/etc/init.d/inadyn-mt"))
 BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
 BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
+BoxInfo.setItem("nfsserver", exists("/etc/init.d/nfsserver"))
 BoxInfo.setItem("samba", exists("/etc/init.d/samba"))
 BoxInfo.setItem("zerotier", exists("/etc/init.d/zerotier"))
 
