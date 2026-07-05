@@ -2132,7 +2132,19 @@ class TemplateParser:
 		attributes = {"type": node.tag}
 		for attrib, value in skinAttributes:
 			attributes[attrib] = value
-		attributes["_flags"] = horizontalAlignments.get(attributes.get("horizontalAlignment"), 1) + verticalAlignments.get(attributes.get("verticalAlignment"), 0) + wraps.get(attributes.get("wrap"), 0)
+
+		flags = 0
+		if attributes["type"] == "text":
+			attributesFlags = attributes.get("flags", "")
+			for attributesflag in attributesFlags.split(","):
+				if attributesflag == "blend":
+					flags += 256  # RT_BLEND
+				elif attributesflag == "underline":
+					flags += 512  # RT_UNDERLINE
+				elif attributesflag == "scroll":
+					flags += 1024  # RT_SCROLL
+
+		attributes["_flags"] = horizontalAlignments.get(attributes.get("horizontalAlignment"), 1) + verticalAlignments.get(attributes.get("verticalAlignment"), 0) + wraps.get(attributes.get("wrap"), 0) + flags
 		if attributes["type"] == "pixmap":
 			attributes["pixmapType"] = pixmapTypes.get(attributes.get("alpha", ""), eListboxPythonMultiContent.TYPE_PIXMAP)
 			attributes["pixmapFlags"] = parseScale(attributes.get("scale", "off"))
@@ -2397,11 +2409,21 @@ def readSkin(screen, skin, names, desktop):
 					if isinstance(element, converterClass):  # and element.converter_arguments == "widgetTemplates":
 						connection = element
 				if connection is None:
+					itemHeight = int(widget.attrib.get("itemHeight", 0))
+					itemWidth = int(widget.attrib.get("itemWidth", 0))
+					if not itemWidth or not itemHeight:
+						savedState = (context.x, context.y, context.w, context.h)
+						try:
+							_, widgetSize = context.parse(widget.attrib.get("position"), widget.attrib.get("size"), None)
+						finally:
+							context.x, context.y, context.w, context.h = savedState
+						itemWidth = itemWidth or widgetSize[0]
+						itemHeight = itemHeight or widgetSize[1]
 					args = {
 						"scale": context.scale,
 						"dom": widgetTemplates,
-						"itemHeight": int(widget.attrib.get("itemHeight", 0)),
-						"itemWidth": int(widget.attrib.get("itemWidth", 0))
+						"itemHeight": itemHeight,
+						"itemWidth": itemWidth
 					}
 					connection = converterClass(args)
 					connection.connect(source)
