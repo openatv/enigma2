@@ -201,11 +201,34 @@ class BenchmarkInformation(InformationBase):
 		self.skinName.insert(0, "BenchmarkInformation")
 		self.skinName.insert(0, "InformationBenchmark")
 		self.cpuTypes = []
+		self.cpuMemoryClock = None
 		self.cpuBenchmark = None
 		self.cpuRating = None
 		self.ramBenchmark = None
 
 	def fetchInformation(self):
+		def cpuBenchmarkCallback(result, retVal, extraArgs):
+			def ramBenchmarkCallback(result, retVal, extraArgs):
+				for line in result.split("\n"):
+					if line.startswith("Copy rate:"):
+						self.ramBenchmark = float([x.strip() for x in line.split(":")][1])
+				for callback in self.onInformationUpdated:
+					if callable(callback):
+						callback()
+
+			for line in result.split("\n"):
+				if line.startswith("Memory clock speed (HZ):"):
+					self.cpuMemoryClock = int([x.strip() for x in line.split(":")][1])
+				if line.startswith("DMIPS:"):
+					self.cpuBenchmark = int([x.strip() for x in line.split(":")][1])
+				if line.startswith("CPU status:"):
+					self.cpuRating = [x.strip() for x in line.split(":")][1]
+			# Serialize the tests for better accuracy.
+			self.console.ePopen(("/usr/bin/streambench", "/usr/bin/streambench"), ramBenchmarkCallback)
+			for callback in self.onInformationUpdated:
+				if callable(callback):
+					callback()
+
 		self.informationTimer.stop()
 		self.cpuTypes = []
 		lines = []
@@ -213,29 +236,8 @@ class BenchmarkInformation(InformationBase):
 		for line in lines:
 			if line.startswith("model name") or line.startswith("Processor"):  # HiSilicon use the label "Processor"!
 				self.cpuTypes.append([x.strip() for x in line.split(":")][1])
-		self.console.ePopen(("/usr/bin/dhry", "/usr/bin/dhry"), self.cpuBenchmarkFinished)
 		# Serialize the tests for better accuracy.
-		# self.console.ePopen(("/usr/bin/streambench", "/usr/bin/streambench"), self.ramBenchmarkFinished)
-		for callback in self.onInformationUpdated:
-			if callable(callback):
-				callback()
-
-	def cpuBenchmarkFinished(self, result, retVal, extraArgs):
-		for line in result.split("\n"):
-			if line.startswith("DMIPS"):
-				self.cpuBenchmark = int([x.strip() for x in line.split(":")][1])
-			if line.startswith("CPU status"):
-				self.cpuRating = [x.strip() for x in line.split(":")][1]
-		# Serialize the tests for better accuracy.
-		self.console.ePopen(("/usr/bin/streambench", "/usr/bin/streambench"), self.ramBenchmarkFinished)
-		for callback in self.onInformationUpdated:
-			if callable(callback):
-				callback()
-
-	def ramBenchmarkFinished(self, result, retVal, extraArgs):
-		for line in result.split("\n"):
-			if line.startswith("Copy rate"):
-				self.ramBenchmark = float([x.strip() for x in line.split(":")][1])
+		self.console.ePopen(("/usr/bin/dhry", "/usr/bin/dhry"), callback=cpuBenchmarkCallback)
 		for callback in self.onInformationUpdated:
 			if callable(callback):
 				callback()
@@ -253,7 +255,8 @@ class BenchmarkInformation(InformationBase):
 		for index, cpu in enumerate(self.cpuTypes):
 			info.append(formatLine("P1", _("CPU / Core %d type") % index, cpu))
 		info.append("")
-		info.append(formatLine("P1", _("CPU benchmark"), _("%d DMIPS per core") % (self.cpuBenchmark if self.cpuBenchmark else _("Calculating benchmark..."))))
+		info.append(formatLine("P1", _("CPU memory clock"), _("%d Hz") % self.cpuMemoryClock if self.cpuMemoryClock else _("Calculating clock...")))
+		info.append(formatLine("P1", _("CPU benchmark"), _("%s DMIPS per core") % self.cpuBenchmark if self.cpuBenchmark else _("Calculating benchmark...")))
 		count = len(self.cpuTypes)
 		if count > 1:
 			info.append(formatLine("P1", _("Total CPU benchmark"), _("%d DMIPS with %d cores") % (self.cpuBenchmark * count, count) if self.cpuBenchmark else _("Calculating benchmark...")))
