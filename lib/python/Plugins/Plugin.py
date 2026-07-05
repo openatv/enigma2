@@ -66,6 +66,8 @@ class PluginDescriptor:
 	WHERE_INFOBARLOADED = 24
 	# Argument: session
 	WHERE_BUTTONSETUP = 25
+	# Called after a GUI skin change and reload. Argument: session.
+	WHERE_SKINCHANGE = 26
 
 	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
 		self.name = name
