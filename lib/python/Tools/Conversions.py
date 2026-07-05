@@ -57,6 +57,12 @@ def scaleNumber(number, style="Si", suffix="B", format="%.3f"):
 	# return format_string("%d", result, grouping=True) if isinstance(
 
 
+def formatNetworkSpeed(speedMbit: int) -> str:
+	if speedMbit >= 1000:
+		return f"{speedMbit // 1000} Gbit/s"
+	return f"{speedMbit} Mbit/s"
+
+
 class UnitMultipliers:
 	Si = (
 		("", 10 ** 0),
