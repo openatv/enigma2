@@ -357,20 +357,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaStream plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
-		from Screens.Menu import Menu, findMenu
-		menu = findMenu("setup")
-		if menu:
-			self.session.infobar = self
-			self.session.open(Menu, menu)
-			return
+		self._showMenu("setup")
 
 	def showInformation(self):
-		from Screens.Menu import Menu, findMenu
-		menu = findMenu("information")
-		if menu:
-			self.session.infobar = self
-			self.session.open(Menu, menu)
-			return
+		self._showMenu("information")
 
 	def showFormat(self):
 		try:
@@ -498,8 +488,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self["statusicon"] = MultiPixmap()
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions", {
-			"leavePlayer": (self.leavePlayer, _("Leave movie player")),
-			"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player"))
+			"leavePlayer": (self.leavePlayer, _("Leave movie player")),  # STOP, TV, BACK.
+			"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player"))  # EXIT, ESC.
 		}, prio=0, description=_("Movie Player Actions"))
 
 		self.allowPiP = True

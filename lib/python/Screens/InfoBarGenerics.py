@@ -47,7 +47,7 @@ from Screens.Dish import Dish
 from Screens.EpgSelection import EPGSelection
 from Screens.EventView import showEventViewCallback
 from Screens.InputBox import InputBox
-from Screens.Menu import Menu, findMenu
+from Screens.Menu import Menu, MenuHorizontal, findMenu
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
 from Screens.PictureInPicture import PictureInPicture
@@ -59,7 +59,7 @@ from Screens.Screen import Screen
 from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
-from Screens.Standby import Standby, TryQuitMainloop
+from Screens.Standby import Standby, TryQuitMainloop  # noqa F401
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
@@ -279,28 +279,25 @@ class InfoBarMenu:
 		self.session.infobar = None
 
 	def showMainMenu(self):
-		menu = findMenu("mainmenu")
+		self._showMenu("mainmenu")
+
+	def _showMenu(self, menu):
+		menu = findMenu(menu)
 		if menu is not None:
 			# This is so we can access the currently active InfoBar from screens opened
 			# from within the menu at the moment. Used from the SubserviceSelection
 			# class latter in this module.
 			self.session.infobar = self
-			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+			self.session.openWithCallback(self.showMenuCallback, Menu if config.usage.menuType.value == 0 else MenuHorizontal, menu)
 
 	def showSetupMenu(self):
-		menu = findMenu("setup")
-		if menu is not None:
-			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+		self._showMenu("setup")
 
 	def showNetworkMenu(self):
-		menu = findMenu("network")
-		if menu is not None:
-			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+		self._showMenu("network")
 
 	def showSystemMenu(self):
-		menu = findMenu("system")
-		if menu is not None:
-			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+		self._showMenu("system")
 
 	def showHDMIRecordSetup(self):
 		if BoxInfo.getItem("HDMIin"):
@@ -4144,7 +4141,7 @@ class InfoBarSubserviceSelection:
 				self.session.open(PluginBrowser)
 
 
-from Components.Sources.HbbtvApplication import HbbtvApplication
+from Components.Sources.HbbtvApplication import HbbtvApplication  # noqa F402
 gHbbtvApplication = HbbtvApplication()
 
 

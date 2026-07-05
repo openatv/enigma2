@@ -66,10 +66,9 @@ def InitUsageConfig():
 
 	# "UserInterface" settings.
 	#
-	config.usage.menuType = ConfigSelection(default="standard", choices=[
-		("horzanim", _("Horizontal menu")),
-		("horzicon", _("Horizontal icons")),
-		("standard", _("Vertical menu"))
+	config.usage.menuType = ConfigSelection(default=0, choices=[
+		(0, _("Vertical menu")),
+		(1, _("Horizontal menu"))
 	])
 	config.usage.menuEntryStyle = ConfigSelection(default="text", choices=[
 		("text", _("Entry text only")),
