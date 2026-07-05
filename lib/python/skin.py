@@ -50,6 +50,7 @@ colors = {  # Dictionary of skin color names.
 	"key_text": gRGB(0x00FFFFFF),
 	"key_yellow": gRGB(0x00A08500)
 }
+gradients = {}  # Dictionary of skin color names whose value is a gradient spec.
 fonts = {  # Dictionary of predefined and skin defined font aliases.
 	"Body": ("Regular", 18, 22, 16),
 	"ChoiceList": ("Regular", 20, 24, 18)
@@ -230,6 +231,7 @@ def reloadSkins():
 		"key_text": gRGB(0x00FFFFFF),
 		"key_yellow": gRGB(0x00A08500)
 	})
+	gradients.clear()
 	fonts.clear()
 	fonts.update({
 		"Body": ("Regular", 18, 22, 16),
@@ -514,6 +516,7 @@ def parseGradient(value):
 			isColor = False
 		return isColor
 
+	value = gradients.get(value, value)
 	data = [x.strip() for x in value.split(",")]
 	gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]  # Start color, center color, end color.
 	for index, color in enumerate(data):
@@ -1003,7 +1006,7 @@ class AttributeParser:
 		pass
 
 	def backgroundColor(self, value):
-		if "," in value:
+		if "," in value or value in gradients:
 			self.guiObject.setBackgroundGradient(*parseGradient(value))
 		else:
 			self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
@@ -1019,7 +1022,7 @@ class AttributeParser:
 		attribDeprecationWarning("backgroundColorRows", "backgroundColorEven")
 
 	def backgroundColorSelected(self, value):
-		if "," in value:
+		if "," in value or value in gradients:
 			self.guiObject.setBackgroundGradientSelected(*parseGradient(value))
 		else:
 			self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
@@ -1469,7 +1472,10 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			name = color.attrib.get("name")
 			color = color.attrib.get("value")
 			if name and color:
-				colors[name] = parseColor(color, 0x00FFFFFF)
+				if "," in color:
+					gradients[name] = color
+				else:
+					colors[name] = parseColor(color, 0x00FFFFFF)
 			else:
 				skinError(f"Tag 'color' needs a name and color, got name='{name}' and color='{color}'")
 	for tag in domSkin.findall("fonts"):
