@@ -3,7 +3,6 @@ from glob import glob
 from hashlib import md5
 from os import listdir, readlink
 from os.path import basename, exists, isfile, islink, join
-from subprocess import PIPE, Popen
 
 from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename
@@ -204,19 +203,6 @@ def getChipsetString():
 	return chipset
 
 
-def getModuleLayout():
-	module = None
-	modulePath = BoxInfo.getItem("enigmamodule")
-	if modulePath:
-		process = Popen(("/sbin/modprobe", "--dump-modversions", modulePath), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-		stdout, stderr = process.communicate()
-		if process.returncode == 0:
-			for detail in stdout.split("\n"):
-				if "module_layout" in detail:
-					module = detail.split("\t")[0]
-	return module
-
-
 def hasInitCam():
 	result = False
 	for cam in listdir("/etc/init.d"):
@@ -329,7 +315,6 @@ def getWakeOnLANType(fileName):
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
-BoxInfo.setItem("ModuleLayout", getModuleLayout())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
