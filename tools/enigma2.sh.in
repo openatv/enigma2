@@ -209,6 +209,8 @@ if [ "$(grep -i config.crash.coredump=true /etc/enigma2/settings)" != "" ]; then
 fi
 
 ulimit -n 16384 2>/dev/null || ulimit -n 8192
+# Clear page cache and dentries/inodes
+echo 3 > /proc/sys/vm/drop_caches
 # Start enigma2 with or without debug
 if [ -n "$ENIGMA_DEBUG" ]; then
 	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log) &
