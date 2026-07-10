@@ -37,7 +37,7 @@ config.hdmicec.handle_tv_wakeup = ConfigSelection(default="streamrequest", choic
 	"activity": _("Any activity"),
 })
 config.hdmicec.fixed_physical_address = ConfigText(default="0.0.0.0")
-config.hdmicec.volume_forwarding = ConfigYesNo(default=True)
+config.hdmicec.volume_forwarding = ConfigYesNo(default=False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default=True)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default=True)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default=True)
@@ -616,6 +616,8 @@ class HdmiCec:
 			self.cmdPollTimer.callback.append(self.CECcmdline)
 			self.cmdWaitTimer = eTimer()
 			self.repeatCounter = 0
+			self.firstStandbySettling = False
+			self.allowBroadcastStandby = False
 			self.what = ""
 			self.tv_lastrequest = ""
 			self.tv_powerstate = "unknown"
@@ -1390,8 +1392,13 @@ class HdmiCec:
 		elif self.firstrun:
 			if self.stateTimer.isActive():
 				self.repeatTimer.start(1000, True)
-			elif self.shouldBroadcastFirstStandby():
-				self.sendMessages(self.firstStandbyMessages(self.messages))
+			elif self.what == "standby" and not self.firstStandbySettling:
+				self.firstStandbySettling = True
+				self.CECwritedebug("[HdmiCec] initial CEC startup settled, debounce first standby", True)
+				self.repeatTimer.start(1000, True)
+			elif self.shouldBroadcastStandby():
+				self.messages = self.messagesWithBroadcastStandby(self.messages)
+				self.sendMessages(self.messages)
 			else:
 				self.sendMessages(self.messages)
 		elif self.repeatCounter < config.hdmicec.messages_repeat.value and (self.what == "on" or (config.hdmicec.messages_repeat_standby.value and self.what == "standby")):
@@ -1406,22 +1413,25 @@ class HdmiCec:
 			return config.hdmicec.messages_repeat_slowdown.value * (self.repeatCounter or 1)
 		return 0
 
-	def shouldBroadcastFirstStandby(self):
+	def shouldBroadcastStandby(self):
 		return (
+			self.allowBroadcastStandby and
 			self.what == "standby" and
 			config.hdmicec.control_tv_standby.value and
+			config.hdmicec.tv_standby_notinputactive.value and
 			not self.activesource
 		)
 
-	def firstStandbyMessages(self, messages):
+	def messagesWithBroadcastStandby(self, messages):
 		messages = list(messages)
 		if (0x0f, "standby") not in messages:
-			self.CECwritedebug("[HdmiCec] add broadcast standby for first startup standby", True)
+			self.CECwritedebug("[HdmiCec] add broadcast standby because receiver is not the active source", True)
 			messages.append((0x0f, "standby"))
 		return messages
 
 	def wakeupMessages(self):
 		self.handleTimerStop()
+		self.firstStandbySettling = False
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
 			self.CECwritedebug("[HdmiCec] Skip turning on TV", True)
@@ -1460,8 +1470,9 @@ class HdmiCec:
 			if isfile("/usr/script/TvOn.sh"):
 				Console().ePopen("/usr/script/TvOn.sh &")
 
-	def standbyMessages(self):
+	def standbyMessages(self, allowBroadcast=True):
 		self.handleTimerStop()
+		self.allowBroadcastStandby = allowBroadcast
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
 			self.CECwritedebug("[HdmiCec] Skip turning off TV", True)
@@ -1486,9 +1497,12 @@ class HdmiCec:
 					self.messages.append((5, "standby"))
 
 				if self.firstrun:  # Wait for TV state and startup messages on first start.
+					self.firstStandbySettling = False
 					self.CECwritedebug("[HdmiCec] delay standby messages until initial CEC startup has settled", True)
 					self.repeatTimer.start(1000, True)
 				else:
+					if self.shouldBroadcastStandby():
+						self.messages = self.messagesWithBroadcastStandby(self.messages)
 					self.sendMessages(self.messages)
 
 			if isfile("/usr/script/TvOff.sh"):
@@ -1685,7 +1699,7 @@ class HdmiCec:
 
 	def onEnterDeepStandby(self, configElement):
 		if config.hdmicec.handle_deepstandby_events.value:
-			self.standbyMessages()
+			self.standbyMessages(allowBroadcast=False)
 			if config.hdmicec.control_tv_standby.value:
 				self.sendMessage(0x0f, "standby")
 				sleep(max(config.hdmicec.minimum_send_interval.value, 250) / 1000.0)
