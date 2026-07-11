@@ -3,7 +3,7 @@ from os import remove, statvfs
 from os.path import exists, isfile, join as pathjoin
 from struct import pack
 from sys import maxsize
-from time import sleep, time
+from time import monotonic, sleep, time
 
 from enigma import eActionMap, eHdmiCEC, eTimer
 
@@ -88,12 +88,14 @@ VOLUME_FORWARDING_STATE_FILES = (VOLUME_FORWARDING_STATE_FILE, "/var/run/cec_vol
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
+HDMI_CEC_CODE_MARKER = "ATV-CEC-20260711-01"
 ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
 ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS = 1000
 ACTIVE_SOURCE_SWITCH_RETRIES = 1
 PANASONIC_SOURCE_SWITCH_DELAY_MS = 3000
 TV_WAKEUP_SEQUENCE_INTERVAL_MS = 300
 TV_WAKEUP_ACTIVE_SOURCE_DELAY_MS = 1200
+TV_STANDBY_WAKE_GUARD_MS = 3000
 SYSTEM_AUDIO_MODE_REQUEST_DELAY_MS = 1500
 SYSTEM_AUDIO_MODE_REQUEST_INTERVAL_MS = 300
 SYSTEM_AUDIO_MODE_REQUEST_RETRY_MS = 2500
@@ -602,6 +604,7 @@ class HdmiCec:
 			self.tvWakeupTimer = eTimer()
 			self.tvWakeupTimer.callback.append(self.sendTvWakeupCommand)
 			self.tvWakeupMessages = []
+			self.tvStandbyWakeGuardUntil = 0.0
 			self.systemAudioModeTimer = eTimer()
 			self.systemAudioModeTimer.callback.append(self.requestSystemAudioMode)
 			self.systemAudioModeMessages = []
@@ -616,7 +619,6 @@ class HdmiCec:
 			self.cmdPollTimer.callback.append(self.CECcmdline)
 			self.cmdWaitTimer = eTimer()
 			self.repeatCounter = 0
-			self.firstStandbySettling = False
 			self.allowBroadcastStandby = False
 			self.what = ""
 			self.tv_lastrequest = ""
@@ -662,6 +664,7 @@ class HdmiCec:
 			config.hdmicec.commandline.addNotifier(self.CECcmdstart)
 
 			self.updateDevice(eHdmiCEC.getInstance().getLogicalAddress(), vendor=self.local_vendor_id, name=getCecOsdName())
+			self.CECwritedebug(f"[HdmiCec] code marker: {HDMI_CEC_CODE_MARKER}", True)
 			self.checkTVstate("firstrun")
 			self.sendMessage(0, "vendorrequest")
 			self.sendMessage(5, "vendorrequest")
@@ -767,6 +770,13 @@ class HdmiCec:
 
 	def useExtendedTvWakeup(self):
 		return self.tv_vendor in (CEC_VENDOR_UNKNOWN, CEC_VENDOR_MEDIATEK)
+
+	def startTvStandbyWakeGuard(self):
+		self.tvStandbyWakeGuardUntil = monotonic() + (TV_STANDBY_WAKE_GUARD_MS / 1000.0)
+		self.CECwritedebug(f"[HdmiCec] guard TV standby for {TV_STANDBY_WAKE_GUARD_MS} ms during receiver wakeup", True)
+
+	def tvStandbyWakeGuardActive(self):
+		return monotonic() < self.tvStandbyWakeGuardUntil
 
 	def stopTvWakeupSequence(self):
 		active = False
@@ -1144,6 +1154,7 @@ class HdmiCec:
 							self.sendMessage(address, "menuactive")
 				case 0x90:  # report power state from the tv
 					if ctrl0 == 0:
+						self.tvStandbyWakeGuardUntil = 0.0
 						self.tv_powerstate = "on"
 					elif ctrl0 == 1:
 						self.tv_powerstate = "standby"
@@ -1160,9 +1171,12 @@ class HdmiCec:
 					else:
 						self.checkTVstate()
 				case 0x36 if address == 0:  # handle standby request from the tv
-					if config.hdmicec.handle_tv_standby.value != "disabled":
-						self.handleTVRequest("tvstandby")
-					self.checkTVstate("tvstandby")
+					if self.tvStandbyWakeGuardActive():
+						self.CECwritedebug("[HdmiCec] ignore TV standby during receiver wakeup transition", True)
+					else:
+						if config.hdmicec.handle_tv_standby.value != "disabled":
+							self.handleTVRequest("tvstandby")
+						self.checkTVstate("tvstandby")
 				case 0x80:  # routing changed
 					ctrl3 = message.getControl3()
 					oldaddress = ctrl0 * 256 + ctrl1
@@ -1392,10 +1406,6 @@ class HdmiCec:
 		elif self.firstrun:
 			if self.stateTimer.isActive():
 				self.repeatTimer.start(1000, True)
-			elif self.what == "standby" and not self.firstStandbySettling:
-				self.firstStandbySettling = True
-				self.CECwritedebug("[HdmiCec] initial CEC startup settled, debounce first standby", True)
-				self.repeatTimer.start(1000, True)
 			elif self.shouldBroadcastStandby():
 				self.messages = self.messagesWithBroadcastStandby(self.messages)
 				self.sendMessages(self.messages)
@@ -1431,7 +1441,6 @@ class HdmiCec:
 
 	def wakeupMessages(self):
 		self.handleTimerStop()
-		self.firstStandbySettling = False
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
 			self.CECwritedebug("[HdmiCec] Skip turning on TV", True)
@@ -1439,10 +1448,11 @@ class HdmiCec:
 			self.CECwritedebug("[HdmiCec] Skip waking TV, found 'True' in '/tmp/powerup_without_waking_tv.txt' (usually written by openWebif)", True)
 		else:
 			if config.hdmicec.enabled.value:
+				self.startTvStandbyWakeGuard()
 				self.messages = []
 				self.what = "on"
 				self.repeatCounter = 0
-				if config.hdmicec.workaround_activesource.value and config.hdmicec.report_active_source.value and not self.activesource and "standby" not in self.tv_powerstate:
+				if config.hdmicec.workaround_activesource.value and config.hdmicec.report_active_source.value and not self.activesource and self.tv_powerstate == "on":
 					# Some tv devices don't switch to the correct hdmi port if a another hdmi port active.  The workaround is to switch the tv off and on.
 					self.messages.append((0, "standby"))
 					if not config.hdmicec.control_tv_wakeup.value:
@@ -1472,6 +1482,7 @@ class HdmiCec:
 
 	def standbyMessages(self, allowBroadcast=True):
 		self.handleTimerStop()
+		self.tvStandbyWakeGuardUntil = 0.0
 		self.allowBroadcastStandby = allowBroadcast
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
@@ -1497,8 +1508,9 @@ class HdmiCec:
 					self.messages.append((5, "standby"))
 
 				if self.firstrun:  # Wait for TV state and startup messages on first start.
-					self.firstStandbySettling = False
-					self.CECwritedebug("[HdmiCec] delay standby messages until initial CEC startup has settled", True)
+					self.CECwritedebug("[HdmiCec] send first standby immediately and confirm after initial CEC startup has settled", True)
+					for address, message in self.messages:
+						self.sendMessage(address, message)
 					self.repeatTimer.start(1000, True)
 				else:
 					if self.shouldBroadcastStandby():
