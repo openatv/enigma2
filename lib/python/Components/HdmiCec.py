@@ -88,7 +88,7 @@ VOLUME_FORWARDING_STATE_FILES = (VOLUME_FORWARDING_STATE_FILE, "/var/run/cec_vol
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
-HDMI_CEC_CODE_MARKER = "ATV-CEC-20260711-01"
+HDMI_CEC_CODE_MARKER = "ATV-CEC-20260711-02"
 ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
 ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS = 1000
 ACTIVE_SOURCE_SWITCH_RETRIES = 1
@@ -793,11 +793,12 @@ class HdmiCec:
 			return
 		self.setTvStatePending(True)
 		self.stopTvWakeupSequence()
-		self.tvWakeupMessages = [(0, "wakeup")]
+		self.sendMessage(0, "wakeup", immediate=True)
 		if self.useExtendedTvWakeup():
 			self.CECwritedebug(f"[HdmiCec] use extended TV wakeup sequence for {self.vendorName(self.tv_vendor)}", True)
-			self.tvWakeupMessages.extend([(0, "textviewon"), (0, "keypoweron"), (0, "keyrelease")])
-		self.sendTvWakeupCommand()
+			self.sendMessage(0, "textviewon", immediate=True)
+			self.tvWakeupMessages = [(0, "keypoweron"), (0, "keyrelease")]
+			self.tvWakeupTimer.start(TV_WAKEUP_SEQUENCE_INTERVAL_MS, True)
 
 	def sendTvWakeupCommand(self):
 		if Screens.Standby.inStandby or self.what == "standby":
