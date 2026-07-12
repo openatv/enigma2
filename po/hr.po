@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
-"PO-Revision-Date: 2026-06-22 23:42+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"PO-Revision-Date: 2026-07-03 02:01+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 
 msgid ""
 "\n"
@@ -1993,7 +1993,7 @@ msgstr "Dodavanje odabrane mape u oznaku"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Dodavanje akcija zaostatka LIJEVO/DESNO"
 
-msgid "Add slots"
+msgid "Add more slots"
 msgstr "Dodaj još utora"
 
 msgid "Add new CCcam line"
@@ -2034,6 +2034,9 @@ msgstr "Dodaj kanal u AutoCam"
 
 msgid "Add services to this bouquet?"
 msgstr "Dodaj kanal ovome buketu?"
+
+msgid "Add slots"
+msgstr "Dodaj još utora"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Dodavanje trenutnog direktorija kao oznake"
@@ -2506,17 +2509,11 @@ msgstr "Sigurno hoćete izbrisati sav izabran log:\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Sigurno hoćete izbrisati EPG podatke iz:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Želite li izbrisati ovaj imidž?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Sigurno hoćete izbrisati ovaj log:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Želite li izbrisati to?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr "Da li ste sigurni da želite da onemogućite Chkroot Multiboot?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Da li želite izaći iz ovog čarobnjaka?"
@@ -4158,11 +4155,11 @@ msgstr "Odaberite naziv datoteke koja sadrži EPG podatke kada se %s %s isključ
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Odaberite opciju za ispravljanje nevažećih EPG podataka."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
-msgstr "Odaberite skin koji će se koristiti za GUI interfejs. Pritisnite 'ZELENU' za aktiviranje skina."
-
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "Odaberite skin koji će se koristiti za interfejs LCD/prednje ploče. Pritisnite 'ZELENU' za aktiviranje skina."
+
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgstr "Odaberite skin koji će se koristiti za GUI interfejs. Pritisnite 'ZELENU' za aktiviranje skina."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Odaberite stil/redoslijed kojim se stavke prikazuju u prozorima pomoći."
@@ -5978,9 +5975,6 @@ msgstr "Odgoda prije početka ponavljanja tipki:"
 msgid "Delay before sequence repeat"
 msgstr "Odgoda prije ponavljanja sekvence"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Odgoda između CEC naredbi prilikom slanja niza naredbi. Neki uređaji zahtijevaju ovo kašnjenje za ispravno funkcioniranje, obično između 50-150 ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "Odgoda između DiSEqC naredbi"
 
@@ -6097,9 +6091,6 @@ msgstr "Izbriši log"
 msgid "Delete only highlighted file"
 msgstr "Brisanje samo istaknute datoteke"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Brisanje istaknutog utora"
-
 msgid "Delete play list entry"
 msgstr "Brisanje unosa popisa za reprodukciju"
 
@@ -6140,6 +6131,9 @@ msgstr "Brisanje odabrane lokalno pohranjenog imidža"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Izbrisati ove %d direktorije/datoteke?"
+
+msgid "Delete this slot?"
+msgstr "Obrisati ovaj utor?"
 
 msgid "Delete this tag"
 msgstr "Izbriši ovu oznaku"
@@ -6375,6 +6369,9 @@ msgstr "Zatvori Animaciju"
 
 msgid "Disable Chkroot"
 msgstr "Zatvori Chkroot"
+
+msgid "Disable Chkroot Multiboot?"
+msgstr "Da li ste sigurni da želite da onemogućite Chkroot Multiboot?"
 
 msgid "Disable FCC during recordings"
 msgstr "Onemogućite FCC tijekom snimanja"
@@ -7132,6 +7129,9 @@ msgstr "Prazan"
 
 msgid "Empty file"
 msgstr "Prazna datoteka"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Brisanje istaknutog utora"
 
 msgid "Emulator"
 msgstr "Emu"
@@ -10594,32 +10594,32 @@ msgstr "LCN pravila"
 msgid "LCN style QuickSelect entry selection"
 msgstr "Odabir unosa u stilu LCN"
 
+msgid "LED Deep Standby"
+msgstr "LED Duboka Pripravnost"
+
+msgid "LED Deep Standby color"
+msgstr "LED Boja Isključivanja"
+
+msgid "LED Normal"
+msgstr "LED Normalno"
+
 msgid "LED Running brightness"
 msgstr "LED Osvjetljenje"
 
 msgid "LED Running color"
 msgstr "LED Boja"
 
-msgid "LED Deep Standby"
-msgstr "LED Duboka Pripravnost"
+msgid "LED Settings"
+msgstr "LED Postavke"
+
+msgid "LED Standby"
+msgstr "LED Stanje Pripravnosti"
 
 msgid "LED Standby brightness"
 msgstr "LED Svjetlina Neaktivna"
 
 msgid "LED Standby color"
 msgstr "LED Boja Neaktivnosti"
-
-msgid "LED Normal"
-msgstr "LED Normalno"
-
-msgid "LED Settings"
-msgstr "LED Postavke"
-
-msgid "LED Deep Standby color"
-msgstr "LED Boja Isključivanja"
-
-msgid "LED Standby"
-msgstr "LED Stanje Pripravnosti"
 
 msgid "LED brightness during Deep Standby."
 msgstr "LED svjetlina tokom duboke pripravnosti."
@@ -10629,9 +10629,6 @@ msgstr "LED svjetlina tokom pripravnosti."
 
 msgid "LED brightness during normal operations."
 msgstr "LED svjetlina tokom normalnih operacija."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr "LED boja tokom dubokog čekanja."
 
 msgid "LIRC remote"
 msgstr "LIRC DU"
@@ -13220,6 +13217,9 @@ msgstr "Opcija za onemogućavanje pikona na Info Traci."
 msgid "Option to enable the hardware Standby timer."
 msgstr "Opcija za omogućavanje hardverskog tajmera čekanja."
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr "Opcionalno kašnjenje između CEC naredbi pri slanju serije naredbi. Ostavite isključeno osim ako uređaj ne zahtijeva sporiji prijenos."
+
 msgid "Optional parameter"
 msgstr "Opcionalni parametar"
 
@@ -15283,14 +15283,14 @@ msgstr "Preimenuj samo istaknutu datoteku"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr "Preimenuj slot '%s' (ostavi prazno za resetiranje):"
 
+msgid "Rename the highlighted slot"
+msgstr "Preimenuj odabrani slot"
+
 msgid "Rename the proposed file to be created"
 msgstr "Preimenuj predloženu datoteku za kreiranje"
 
 msgid "Rename the selected service"
 msgstr "Preimenujte izabrani servis"
-
-msgid "Rename the highlighted slot"
-msgstr "Preimenuj odabrani slot"
 
 msgid "Rename this tag"
 msgstr "Preimenuj ovu oznaku"
@@ -16265,9 +16265,6 @@ msgstr "Izaberite \"Da\" ako želite da probudite televizor kada počinje zakaza
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Odaberi 'Da' zadržite prikazanu info traku bez vremenskog razmaka, dok je reprodukcija medija pauzirana."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Izaberite 'Da' da biste omogućili da se svaki otkriveni uređaj za skladištenje automatski izvozi kao samba share."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Odaberite 'Da' kako biste omogućili VPS-u da prilagodi tajmere snimanja na temelju podataka o Program Delivery Control (PDC) emitiranja. Za rad ove funkcije, usluga mora pružiti pouzdane PDC podatke o događajima."
 
@@ -16875,9 +16872,6 @@ msgstr "Odaberi kanal korisničkog banda koji će biti dodijeljen ovom tuneru. O
 msgid "Select the Yes / True response"
 msgstr "Odaberi Da / Istinit odgovor"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "Odaberi režim pristupa za automatski izvezene samba akcije."
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Odaberi akciju za '%s'"
@@ -16885,11 +16879,23 @@ msgstr "Odaberi akciju za '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Odaberi radnju koju želite izvršiti kada se tajmer završi."
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Odaberi željenu vrstu isključivanja kada se aktivira tajmer Ušteda Energije."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Odaberi željenu vrstu isključivanja kada se aktivira Tajmer Spavanja."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Odaberite vrijeme čekanja nakon pogreške zadatka prije nego što pokušate ponovno pokrenuti zadatak."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Odaberi brzinu animacije indikatora dugmeta na zaslonu pomoći. 'Onemogućeno' isključuje animaciju tako da indikatori skaču između dugmadi."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr "Odaberi svjetlinu LED-a na prednjoj ploči dok je prijemnik uključen."
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr "Odaberi koliko će LED na prednjoj ploči svijetliti kada je prijemnik u stanju mirovanja."
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Odaberi cardserver koji će se koristiti sa spiska dostupnih cardservera."
@@ -16902,6 +16908,15 @@ msgstr "Odaberi kanal ili servis koji će se koristiti za ovaj tajmer."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Odaberi znak ili radnju ispod kursora tipkovnice"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr "Odaberi boju LED za napajanje na prednjoj ploči kad je prijemnik u radu. Ova opcija također omogućuje isključivanje LED."
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr "LED boja tokom dubokog čekanja."
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr "Odaberite boju LED diode za napajanje na prednjoj ploči kada je prijemnik u stanju pripravnosti. Ova opcija također omogućuje isključivanje LED diode."
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Odaberi boju koja će se koristiti za tekst prijevoda AI-Pokretanja."
@@ -17048,6 +17063,9 @@ msgstr "Odaberi SCR uređaj. Ako proizvođač nije naveden, postavite 'SCR' na '
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Odaberi metod vraćanja rezolucije zaslona i buffera frejma prilikom napuštanja teleteksta."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "Odaberi režim pristupa za automatski izvezene samba akcije."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Odaberi broj modela vašeg uređaja Unicable . Ako broj modela nije naveden, postavite 'SCR' na 'Korisnički definisano' i unesite parametre uređaja ručno u skladu sa njegovim specifikacijama."
@@ -17217,12 +17235,6 @@ msgstr "Odaberi vrstu uređaja za prijem jednog kabla kojeg koristite."
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "Odaberi vrstu tipkovnice povezane sa %s %s."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Odaberi željenu vrstu isključivanja kada se aktivira tajmer Ušteda Energije."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Odaberi željenu vrstu isključivanja kada se aktivira Tajmer Spavanja."
 
 msgid "Select the type of this timer."
 msgstr "Odaberi vrstu ovog tajmera."
@@ -23106,6 +23118,9 @@ msgstr "Kada je omogućeno, snimanje može prekinuti TV uživo, kada nema slobod
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kada je omogućeno, prikazat će se upozorenje i korisnik će dobiti opciju zaustavljanja ili nastavka vremenskog pomaka."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Izaberite 'Da' da biste omogućili da se svaki otkriveni uređaj za skladištenje automatski izvozi kao samba share."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kada je omogućeno, provjera autentičnosti potrebna je za gledanje http streams."
 
@@ -24510,6 +24525,12 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Želite li izbrisati ovaj imidž?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Odgoda između CEC naredbi prilikom slanja niza naredbi. Neki uređaji zahtijevaju ovo kašnjenje za ispravno funkcioniranje, obično između 50-150 ms."
 
 #~ msgid "Force TV input to this receiver"
 #~ msgstr "Primoraj TV ulaz na ovom prijemniku"

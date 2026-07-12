@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
 "PO-Revision-Date: 2026-04-20 04:59+0000\n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -2036,8 +2036,8 @@ msgstr "Lägg till markerad katalog i bokmärken"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Lägg till äldre vänster/höger-åtgärder"
 
-msgid "Add slots"
-msgstr "Lägg till fler slots"
+msgid "Add more slots"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Lägg till ny CCcam-linje"
@@ -2079,6 +2079,9 @@ msgstr "Lägg till tjänst till AutoCam"
 
 msgid "Add services to this bouquet?"
 msgstr "Lägg till tjänster till den här buketten?"
+
+msgid "Add slots"
+msgstr "Lägg till fler slots"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Lägg till den aktuella katalogen som bokmärke"
@@ -2580,17 +2583,11 @@ msgstr "Är du säker på att du vill radera alla valda loggar?\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Är du säker på att du vill radera EPG-data från:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Är du säker på att du vill radera den här bilden?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Är du säker på att du vill radera den här loggen?\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Är du säker på att du vill ta bort detta?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr "Är du säker på att du vill inaktivera Chkroot Multiboot?"
 
 #
 msgid "Are you sure you want to exit this wizard?"
@@ -4309,11 +4306,11 @@ msgstr "Välj namnet på den fil som innehåller EPG-data när %s %s stängs av.
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Välj alternativet för att korrigera ogiltiga EPG-data."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
-msgstr "Välj den skin som ska användas för GUI-gränssnittet. Tryck på \"GREEN\" för att aktivera skinnet."
-
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "Välj den skin som ska användas för LCD/frontpanelens gränssnitt. Tryck på \"GREEN\" för att aktivera skinnet."
+
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgstr "Välj den skin som ska användas för GUI-gränssnittet. Tryck på \"GREEN\" för att aktivera skinnet."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Välj stil/ordning för hur objekten ska visas i hjälpfönstren."
@@ -6203,9 +6200,6 @@ msgstr "Fördröjning innan tangentupprepning startar:"
 msgid "Delay before sequence repeat"
 msgstr "Fördröjning före sekvensrepetition"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Fördröjning mellan CEC-kommandon vid sändning av en serie kommandon. Vissa enheter kräver denna fördröjning för att fungera korrekt, vanligtvis mellan 50-150 ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "Fördröjning mellan DiSEqC-kommandon"
 
@@ -6330,9 +6324,6 @@ msgstr "Ta bort logg"
 msgid "Delete only highlighted file"
 msgstr "Radera endast markerad fil"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Ta bort eller radera den markerade platsen"
-
 #
 msgid "Delete play list entry"
 msgstr "Radera post i spellistan"
@@ -6375,6 +6366,9 @@ msgstr "Ta bort den valda lokalt lagrade bilden"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Ta bort dessa %d kataloger/filer?"
+
+msgid "Delete this slot?"
+msgstr ""
 
 msgid "Delete this tag"
 msgstr "Ta bort denna tagg"
@@ -6627,6 +6621,9 @@ msgstr "Avaktivera animationer"
 
 msgid "Disable Chkroot"
 msgstr "Inaktivera Chkroot"
+
+msgid "Disable Chkroot Multiboot?"
+msgstr "Är du säker på att du vill inaktivera Chkroot Multiboot?"
 
 msgid "Disable FCC during recordings"
 msgstr "Avaktivera FCC under inspelningar"
@@ -7437,6 +7434,9 @@ msgstr "Tomt"
 
 msgid "Empty file"
 msgstr "Tom fil"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Ta bort eller radera den markerade platsen"
 
 msgid "Emulator"
 msgstr "Emulator"
@@ -11072,32 +11072,32 @@ msgstr "LCN:s regler"
 msgid "LCN style QuickSelect entry selection"
 msgstr "LCN-stil QuickSelect val av inmatning"
 
+msgid "LED Deep Standby"
+msgstr "LED Deep Standby"
+
+msgid "LED Deep Standby color"
+msgstr "LED avstängningsfärg"
+
+msgid "LED Normal"
+msgstr "LED Normal"
+
 msgid "LED Running brightness"
 msgstr "LED-ljusstyrka"
 
 msgid "LED Running color"
 msgstr "LED-färg"
 
-msgid "LED Deep Standby"
-msgstr "LED Deep Standby"
+msgid "LED Settings"
+msgstr "LED-inställningar"
+
+msgid "LED Standby"
+msgstr "LED Standby"
 
 msgid "LED Standby brightness"
 msgstr "LED-ljusstyrka vid tomgång"
 
 msgid "LED Standby color"
 msgstr "LED-färg i viloläge"
-
-msgid "LED Normal"
-msgstr "LED Normal"
-
-msgid "LED Settings"
-msgstr "LED-inställningar"
-
-msgid "LED Deep Standby color"
-msgstr "LED avstängningsfärg"
-
-msgid "LED Standby"
-msgstr "LED Standby"
 
 msgid "LED brightness during Deep Standby."
 msgstr "LED-ljusstyrka under djup standby."
@@ -11107,9 +11107,6 @@ msgstr "LED-ljusstyrka under standby."
 
 msgid "LED brightness during normal operations."
 msgstr "LED-ljusstyrka under normal drift."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr ""
 
 msgid "LIRC remote"
 msgstr "LIRC fjärrkontroll"
@@ -13879,6 +13876,9 @@ msgstr "Möjlighet att inaktivera picons på Infobar."
 msgid "Option to enable the hardware Standby timer."
 msgstr "Alternativ för att aktivera standby-timern för maskinvara."
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr "Valfri parameter"
 
@@ -16090,14 +16090,14 @@ msgstr "Byt namn på endast markerad fil"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr "Byt namn på den föreslagna filen som ska skapas"
 
 msgid "Rename the selected service"
 msgstr "Byt namn på den valda tjänsten"
-
-msgid "Rename the highlighted slot"
-msgstr ""
 
 msgid "Rename this tag"
 msgstr "Byt namn på denna tagg"
@@ -17144,9 +17144,6 @@ msgstr "Välj \"Yes\" om du vill väcka TV:n när en schemalagd \"Wakeup\"-uppgi
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Välj \"Ja\" om InfoBar ska fortsätta att visas, utan tidsgräns, när mediauppspelningen är pausad."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Välj \"Yes\" om du vill att varje identifierad lagringsenhet automatiskt ska exporteras som samba-delning."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Denna plugin kan avgöra om ett program börjar tidigare eller varar längre. Kanalen måste tillhandahålla tillförlitliga data."
 
@@ -17770,9 +17767,6 @@ msgstr "Välj den User Band-frekvens som ska tilldelas den här tunern. Detta ä
 msgid "Select the Yes / True response"
 msgstr "Välj svarsalternativet Ja / Sant"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "Välj åtkomstläge för de automatiskt exporterade samba-aktierna."
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Välj åtgärd för '%s'"
@@ -17780,11 +17774,23 @@ msgstr "Välj åtgärd för '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Välj den åtgärd som ska utföras när timern går ut."
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Välj vilken typ av avstängning som önskas när EnergySaver-timern aktiveras."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Välj vilken typ av avstängning som önskas när SleepTimer aktiveras."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Välj animeringshastighet för knappindikatorerna i hjälpskärmarna. \"Disabled\" stänger av animeringen så att indikatorerna hoppar mellan knapparna."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Välj den cardserver som ska användas i listan över tillgängliga cardservers."
@@ -17797,6 +17803,15 @@ msgstr "Välj den kanal eller tjänst som ska användas för denna timer."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Välj tecken eller handling under tangentbordsmarkören"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Välj den färg som ska användas för texten AI-Powered Translation."
@@ -17944,6 +17959,9 @@ msgstr "Välj tillverkare av din SCR-enhet. Om tillverkaren inte finns med i lis
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Välj metoden för att återställa skärmupplösningen och bildbuffer när du lämnar text-tv."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "Välj åtkomstläge för de automatiskt exporterade samba-aktierna."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Välj modellnummer för din Unicable-enhet. Om modellnumret inte finns med i listan, ställ in \"SCR\" på \"User defined\" och ange enhetens parametrar manuellt enligt specifikationerna."
@@ -18115,12 +18133,6 @@ msgstr "Välj vilken typ av mottagningsenhet med enkel kabel du använder."
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "Välj vilken typ av tangentbord som är anslutet till %s %s."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Välj vilken typ av avstängning som önskas när EnergySaver-timern aktiveras."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Välj vilken typ av avstängning som önskas när SleepTimer aktiveras."
 
 msgid "Select the type of this timer."
 msgstr "Välj typ av timer."
@@ -24304,6 +24316,9 @@ msgstr "När den är aktiverad tillåts en inspelning att avbryta direktsänd TV
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "När den är aktiverad visas en varning och användaren får möjlighet att stoppa eller fortsätta tidsomställningen."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Välj \"Yes\" om du vill att varje identifierad lagringsenhet automatiskt ska exporteras som samba-delning."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "När den är aktiverad krävs autentisering för att titta på http-strömmar."
 
@@ -25832,6 +25847,12 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Är du säker på att du vill radera den här bilden?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Fördröjning mellan CEC-kommandon vid sändning av en serie kommandon. Vissa enheter kräver denna fördröjning för att fungera korrekt, vanligtvis mellan 50-150 ms."
 
 #~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 #~ msgstr "När mottagaren vaknar från standby kommer den att beordra TV:n att växla till den HDMI-ingång som mottagaren är ansluten till."

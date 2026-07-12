@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
 "PO-Revision-Date: 2025-06-16 09:06+0000\n"
 "Last-Translator: ikvat <ikvat@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1963,8 +1963,8 @@ msgstr "Ajouter le dossier sélectionné aux signets"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Ajouter les actions LEFT/RIGHT"
 
-msgid "Add slots"
-msgstr "Ajouter plus de carte d'extension"
+msgid "Add more slots"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Ajouter une nouvelle ligne CCcam"
@@ -2004,6 +2004,9 @@ msgstr "Ajouter le service à AutoCam"
 
 msgid "Add services to this bouquet?"
 msgstr "Ajouter des services à ce bouquet?"
+
+msgid "Add slots"
+msgstr "Ajouter plus de carte d'extension"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Ajouter le répertoire courant comme signmark"
@@ -2479,17 +2482,11 @@ msgstr "Êtes-vous sûr de vouloir effacer tous les logs sélectionnés :\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Êtes-vous sûr de vouloir effacer les données EPG de :\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Êtes-vous sûr de vouloir supprimer cette image ?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Êtes-vous sûr de vouloir effacer ce log :\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Vous êtes sûr de vouloir supprimer ça ?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr ""
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Êtes-vous sûr de vouloir quitter cet assistant ?"
@@ -4133,10 +4130,10 @@ msgstr "Choisir le nom du fichier qui contient les données EPG lorsque le %s %s
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr ""
 
-msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
@@ -5941,9 +5938,6 @@ msgstr "Délai avant que la répétition de la touche démarre :"
 msgid "Delay before sequence repeat"
 msgstr "Délai entre la répétition d'une séquence"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Délai entre les commandes CEC lors de l'envoi d'une série de commandes. Certains appareils ont besoin de ce délai pour fonctionner correctement, généralement entre 50 et 150 ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "Délai entre les commandes diseqc"
 
@@ -6060,9 +6054,6 @@ msgstr ""
 msgid "Delete only highlighted file"
 msgstr ""
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr ""
-
 msgid "Delete play list entry"
 msgstr "Supprimer l’entrée de la liste de lecture"
 
@@ -6102,6 +6093,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete these %d directories/files?"
+msgstr ""
+
+msgid "Delete this slot?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -6338,6 +6332,9 @@ msgid "Disable Animations"
 msgstr "Désactiver animations"
 
 msgid "Disable Chkroot"
+msgstr ""
+
+msgid "Disable Chkroot Multiboot?"
 msgstr ""
 
 msgid "Disable FCC during recordings"
@@ -7088,6 +7085,9 @@ msgid "Empty"
 msgstr ""
 
 msgid "Empty file"
+msgstr ""
+
+msgid "Empty or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Emulator"
@@ -10548,32 +10548,32 @@ msgstr ""
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
 
+msgid "LED Deep Standby"
+msgstr "LED en veille profonde"
+
+msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Normal"
+msgstr "LED mode normal"
+
 msgid "LED Running brightness"
 msgstr ""
 
 msgid "LED Running color"
 msgstr ""
 
-msgid "LED Deep Standby"
-msgstr "LED en veille profonde"
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Standby"
+msgstr "LED en veille"
 
 msgid "LED Standby brightness"
 msgstr ""
 
 msgid "LED Standby color"
 msgstr ""
-
-msgid "LED Normal"
-msgstr "LED mode normal"
-
-msgid "LED Settings"
-msgstr ""
-
-msgid "LED Deep Standby color"
-msgstr ""
-
-msgid "LED Standby"
-msgstr "LED en veille"
 
 msgid "LED brightness during Deep Standby."
 msgstr "Luminosité LED en mode veille profonde."
@@ -10583,9 +10583,6 @@ msgstr "Luminosité LED en mode veille."
 
 msgid "LED brightness during normal operations."
 msgstr "Luminosité LED en mode normal."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr ""
 
 msgid "LIRC remote"
 msgstr ""
@@ -13175,6 +13172,9 @@ msgstr "Option pour désactiver les picons dans l'infobarre"
 msgid "Option to enable the hardware Standby timer."
 msgstr "Option pour activer les programmations de mise en veille matérielles"
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr ""
 
@@ -15235,13 +15235,13 @@ msgstr ""
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr ""
 
 msgid "Rename the selected service"
-msgstr ""
-
-msgid "Rename the highlighted slot"
 msgstr ""
 
 msgid "Rename this tag"
@@ -16215,9 +16215,6 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Si défini sur 'oui' : l'infobarre reste affichée en permanence 'en pause' (aucun délai d'attente)."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr ""
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
 
@@ -16825,9 +16822,6 @@ msgstr "Sélectionnez la fréquence de la bande utilisateur à attribuer à ce t
 msgid "Select the Yes / True response"
 msgstr "Sélectionnez la réponse Oui / Vrai"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr ""
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
@@ -16835,11 +16829,23 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr ""
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Contrôlez la vitesse d'animation des indicateurs de bouton dans l'écran d'aide. « Désactivé » désactive l'animation afin que les indicateurs sautent entre les boutons."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
@@ -16852,6 +16858,15 @@ msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Sélectionnez le caractère ou l'action sous le curseur du clavier"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr ""
@@ -16998,6 +17013,9 @@ msgstr "Sélectionnez le fabricant de votre appareil SCR. Si le fabricant n’es
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Choisir la méthode de restauration de la résolution d'écran et du framebuffer lorsque vous on quitte le télétexte."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Sélectionnez le numéro de modèle de votre appareil Unicable. Si le numéro de modèle n'est pas répertorié, définissez « SCR » sur « défini par l'utilisateur » et entrez les paramètres de l'appareil manuellement en fonction de sa fiche technique."
@@ -17163,12 +17181,6 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Sélectionnez le type de SCR (Single Cable Réception) que vous utilisez."
 
 msgid "Select the type of keyboard connected to the %s %s."
-msgstr ""
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr ""
-
-msgid "Select the action to take when the SleepTimer activates."
 msgstr ""
 
 msgid "Select the type of this timer."
@@ -22986,6 +22998,9 @@ msgstr "Lorsqu'elle est activée, un enregistrement est autorisé à interrompre
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Lorsqu'elle est activée, un avertissement sera affiché et l'utilisateur aura l'option d'arrêter ou de continuer la PauseDirect."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Lorsqu'elle est activée, l'authentification est requise pour regarder les flux http."
 
@@ -24390,6 +24405,12 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Êtes-vous sûr de vouloir supprimer cette image ?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Délai entre les commandes CEC lors de l'envoi d'une série de commandes. Certains appareils ont besoin de ce délai pour fonctionner correctement, généralement entre 50 et 150 ms."
 
 #~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 #~ msgstr "Lorsque le récepteur sort de la veille, il commande au téléviseur de passer à l'entrée HDMI à laquelle le récepteur est connecté."

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
 "PO-Revision-Date: 2026-03-18 21:46+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -2170,8 +2170,8 @@ msgstr "أختار ملفات/مجلدات النسخه الاحتياطيه"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "إضافة إجراءات اليسار/اليمين القديمة"
 
-msgid "Add slots"
-msgstr "إضافة المزيد من الخانات"
+msgid "Add more slots"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "إضافة سطر CCcam جديد"
@@ -2212,6 +2212,9 @@ msgstr "إضافة خدمة إلى AutoCam"
 
 msgid "Add services to this bouquet?"
 msgstr "إضافة خدمات إلى هذه الباقة؟"
+
+msgid "Add slots"
+msgstr "إضافة المزيد من الخانات"
 
 msgid "Add the current directory as a bookmark"
 msgstr ""
@@ -2703,17 +2706,11 @@ msgstr "هل أنت متأكد أنك تريد حذف كل السجلات الم
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "هل أنت متأكد من أنك تريد حذف بيانات دليل البرامج EPG من:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "هل أنت متأكد أنك تريد حذف هذه الصورة؟"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "هل أنت متأكد من أنك تريد حذف هذا السجل:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "هل أنت متأكد أنك تريد حذف هذا؟"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr "هل أنت متأكد من أنك تريد تعطيل الاقلاع المتعدد من تشكروت (Chkroot Multiboot)؟"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "هل أنت متأكد أنك تريد الخروج من نافذه التطبيق المساعد هذه؟"
@@ -4478,10 +4475,10 @@ msgstr ""
 msgid "Choose the option to correct invalid EPG data."
 msgstr "اختر الخيار لتصحيح بيانات دليل البرامج EPG غير الصحيحة."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr ""
 
-msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
@@ -6319,9 +6316,6 @@ msgstr "التاخير قبل بدء تكرار المفتاح:"
 msgid "Delay before sequence repeat"
 msgstr "تأخير قبل تكرار التسلسل"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr ""
-
 msgid "Delay between DiSEqC commands"
 msgstr "التأخير بين أوامر الدايزك"
 
@@ -6441,9 +6435,6 @@ msgstr ""
 msgid "Delete only highlighted file"
 msgstr ""
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr ""
-
 msgid "Delete play list entry"
 msgstr "حذف قائمة التشغيل المدخلة"
 
@@ -6484,6 +6475,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete these %d directories/files?"
+msgstr ""
+
+msgid "Delete this slot?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -6728,6 +6722,9 @@ msgstr "تعطيل القوائم المتحركة"
 
 msgid "Disable Chkroot"
 msgstr ""
+
+msgid "Disable Chkroot Multiboot?"
+msgstr "هل أنت متأكد من أنك تريد تعطيل الاقلاع المتعدد من تشكروت (Chkroot Multiboot)؟"
 
 msgid "Disable FCC during recordings"
 msgstr ""
@@ -7498,6 +7495,9 @@ msgstr "فارغ"
 
 msgid "Empty file"
 msgstr "ملف فارغ"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr ""
 
 msgid "Emulator"
 msgstr "محاكى"
@@ -11081,32 +11081,32 @@ msgstr ""
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
 
+msgid "LED Deep Standby"
+msgstr "إضاءة وضع الاستعداد"
+
+msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Normal"
+msgstr "الإضاءة الطبيعية"
+
 msgid "LED Running brightness"
 msgstr ""
 
 msgid "LED Running color"
 msgstr ""
 
-msgid "LED Deep Standby"
-msgstr "إضاءة وضع الاستعداد"
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Standby"
+msgstr "إضاءة الاستعداد"
 
 msgid "LED Standby brightness"
 msgstr ""
 
 msgid "LED Standby color"
 msgstr ""
-
-msgid "LED Normal"
-msgstr "الإضاءة الطبيعية"
-
-msgid "LED Settings"
-msgstr ""
-
-msgid "LED Deep Standby color"
-msgstr ""
-
-msgid "LED Standby"
-msgstr "إضاءة الاستعداد"
 
 msgid "LED brightness during Deep Standby."
 msgstr ""
@@ -11116,9 +11116,6 @@ msgstr ""
 
 msgid "LED brightness during normal operations."
 msgstr "سطوع الـ LED أثناء التشغيل العادي."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr ""
 
 msgid "LIRC remote"
 msgstr ""
@@ -13864,6 +13861,9 @@ msgstr ""
 msgid "Option to enable the hardware Standby timer."
 msgstr ""
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr ""
 
@@ -16032,13 +16032,13 @@ msgstr ""
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr ""
 
 msgid "Rename the selected service"
-msgstr ""
-
-msgid "Rename the highlighted slot"
 msgstr ""
 
 msgid "Rename this tag"
@@ -17063,9 +17063,6 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr ""
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr ""
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
 
@@ -17676,9 +17673,6 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr ""
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
@@ -17686,10 +17680,22 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "اختر نوع إيقاف التشغيل المرغوب عند تفعيل مؤقت حفظ الطاقة."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "اختيار نوع إيقاف التشغيل المرغوب عند تفعيل مؤقت النوم."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
 msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
@@ -17703,6 +17709,15 @@ msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "حدد الحرف أو الإجراء أسفل مؤشر لوحة المفاتيح"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr ""
@@ -17849,6 +17864,9 @@ msgid "Select the manufacturer of your SCR device. If the manufacturer is not li
 msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18017,12 +18035,6 @@ msgstr ""
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "اختيار نوع لوحة المفاتيح المرتبطة بـ %s %s."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "اختر نوع إيقاف التشغيل المرغوب عند تفعيل مؤقت حفظ الطاقة."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "اختيار نوع إيقاف التشغيل المرغوب عند تفعيل مؤقت النوم."
 
 msgid "Select the type of this timer."
 msgstr ""
@@ -24105,6 +24117,9 @@ msgstr ""
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "عند التمكين، سيتم عرض تحذير وسيحصل المستخدم على خيار للتوقف أو لمتابعة التحكم الزمني في وقت البث المباشر."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "عند التمكين، يلزم المصادقة لمشاهدة روابط قنوات التدفق."
 
@@ -25564,6 +25579,9 @@ msgstr "نعم (احتفظ بالفيدز)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "هل أنت متأكد أنك تريد حذف هذه الصورة؟"
 
 #, fuzzy
 #~ msgid "Wake up your AV Receiver from Standby"

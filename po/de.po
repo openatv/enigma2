@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
-"PO-Revision-Date: 2026-06-30 07:33+0000\n"
-"Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"PO-Revision-Date: 2026-07-01 15:16+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2075,8 +2075,8 @@ msgstr "Ausgewählten Ordner zu Lesezeichen hinzufügen"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Ursprüngliche Links/Rechts-Aktionen"
 
-msgid "Add slots"
-msgstr "Slots hinzufügen"
+msgid "Add more slots"
+msgstr "Weitere Slots hinzufügen"
 
 msgid "Add new CCcam line"
 msgstr "Neue CCcam-Line hinzufügen"
@@ -2122,6 +2122,9 @@ msgstr "Sender zu AutoCam hinzufügen"
 
 msgid "Add services to this bouquet?"
 msgstr "Sender zu diesem Bouquet?"
+
+msgid "Add slots"
+msgstr "Slots hinzufügen"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Das aktuelle Verzeichnis als Lesezeichen hinzufügen"
@@ -2610,17 +2613,11 @@ msgstr "Alle ausgewählten Logdateien löschen:\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Die EPG-Daten wirklich löschen:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Dieses Image wirklich löschen?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Dieses Log löschen:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Wirklich dies löschen?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr "Chkroot Multiboot wirklich deaktivieren?"
 
 #
 msgid "Are you sure you want to exit this wizard?"
@@ -4350,11 +4347,11 @@ msgstr "Dateinamen für die EPG-Daten auswählen, wenn %s %s ausgeschaltet wird.
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Option zur Korrektur ungültiger EPG-Daten auswählen."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
-msgstr "Skin für die Bedienoberfläche auswählen und mit GRÜN aktivieren."
-
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "Displayskin auswählen und mit GRÜN aktivieren."
+
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgstr "Skin für die Bedienoberfläche auswählen und mit GRÜN aktivieren."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Auswählen, wie die Beschreibung der Fernbedienungstasten-Hilfe angezeigt werden soll."
@@ -6241,9 +6238,6 @@ msgstr "Verzögerung vor Tastenwiederholung:"
 msgid "Delay before sequence repeat"
 msgstr "Verzögerung bevor Sequenz wiederholt wird"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Verzögerung zwischen CEC-Befehlen, wenn mehrere Befehle hintereinander gesendet werden. Einige Geräte benötigen diese Verzögerung für eine korrekte Funktion, normalerweise zwischen 50 und 150 ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "Pause zwischen DiSEqC-Befehle"
 
@@ -6367,9 +6361,6 @@ msgstr "Log löschen"
 msgid "Delete only highlighted file"
 msgstr "Nur markierte Datei löschen"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Markierten Slot löschen oder schreddern"
-
 #
 msgid "Delete play list entry"
 msgstr "Playlist-Eintrag löschen"
@@ -6414,6 +6405,9 @@ msgstr "Das ausgewählte lokal gespeicherte Image löschen"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Diese %d Verzeichnisse/Dateien löschen?"
+
+msgid "Delete this slot?"
+msgstr "Diesen Slot löschen?"
 
 msgid "Delete this tag"
 msgstr "Diesen Tag löschen"
@@ -6662,6 +6656,9 @@ msgstr "Animation deaktivieren"
 
 msgid "Disable Chkroot"
 msgstr "Chkroot deaktivieren"
+
+msgid "Disable Chkroot Multiboot?"
+msgstr "Chkroot Multiboot wirklich deaktivieren?"
 
 msgid "Disable FCC during recordings"
 msgstr "FCC während Aufnahmen deaktivieren"
@@ -7469,6 +7466,9 @@ msgstr "Leer"
 
 msgid "Empty file"
 msgstr "Leere Datei"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Markierten Slot löschen oder schreddern"
 
 msgid "Emulator"
 msgstr "Emulator"
@@ -11080,32 +11080,32 @@ msgstr "LCN-Regeln"
 msgid "LCN style QuickSelect entry selection"
 msgstr "Schnellauswahl via Sendernummer"
 
+msgid "LED Deep Standby"
+msgstr "LED Deep-Standby"
+
+msgid "LED Deep Standby color"
+msgstr "LED-Deep-Standby-Farbe"
+
+msgid "LED Normal"
+msgstr "LED Normal"
+
 msgid "LED Running brightness"
 msgstr "LED-Helligkeit"
 
 msgid "LED Running color"
 msgstr "LED-Farbe"
 
-msgid "LED Deep Standby"
-msgstr "LED Deep-Standby"
+msgid "LED Settings"
+msgstr "LED-Einstellungen"
+
+msgid "LED Standby"
+msgstr "LED Standby"
 
 msgid "LED Standby brightness"
 msgstr "LED-Helligkeit im Standby"
 
 msgid "LED Standby color"
 msgstr "LED-Standby-Farbe"
-
-msgid "LED Normal"
-msgstr "LED Normal"
-
-msgid "LED Settings"
-msgstr "LED-Einstellungen"
-
-msgid "LED Deep Standby color"
-msgstr "LED-Deep-Standby-Farbe"
-
-msgid "LED Standby"
-msgstr "LED Standby"
 
 msgid "LED brightness during Deep Standby."
 msgstr "Die LED-Helligkeit im Deep-Standby."
@@ -11115,9 +11115,6 @@ msgstr "Die LED-Helligkeit im Standby."
 
 msgid "LED brightness during normal operations."
 msgstr "Die LED-Helligkeit im Betrieb."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr "Die LED-Farbe im Deep-Standby."
 
 msgid "LIRC remote"
 msgstr "LIRC-Fernbedienung"
@@ -13914,6 +13911,9 @@ msgstr "Bei 'Ja' werden Picons in der Infoleiste angezeigt."
 msgid "Option to enable the hardware Standby timer."
 msgstr "Bei 'Ja' wird der interne Standbytimer der Festplatte verwendet."
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr "Verzögerung zwischen CEC-Befehlen, wenn mehrere Befehle hintereinander gesendet werden. Deaktiviert lassen, es sei denn, ein Gerät erfordert eine langsamere Übertragung."
+
 msgid "Optional parameter"
 msgstr "Optionaler Parameter"
 
@@ -16132,14 +16132,14 @@ msgstr "Nur die markierte Datei umbenennen"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr "Slot '%s' umbenennen (leer lassen, um zurückzusetzen):"
 
+msgid "Rename the highlighted slot"
+msgstr "Ausgewählten Slot umbenennen"
+
 msgid "Rename the proposed file to be created"
 msgstr "Die vorgeschlagene zu erstellende Datei umbenennen"
 
 msgid "Rename the selected service"
 msgstr "Ausgewählten Sender umbenennen"
-
-msgid "Rename the highlighted slot"
-msgstr "Ausgewählten Slot umbenennen"
 
 msgid "Rename this tag"
 msgstr "Tag umbenennen"
@@ -17194,9 +17194,6 @@ msgstr "'Ja', wenn der TV beim Start einer Zeitplaneraufgabe aufgeweckt werden s
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, sondern dauerhaft angezeigt."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Bei 'Ja' wird jeder Datenträger automatisch als Samba-Freigabe erstellt."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "'Ja' lässt das VPS-Plugin feststellen, ob eine Sendung früher beginnt oder länger dauert als im Timer programmiert wurde. Der Sender muss allerdings verlässliche Daten liefern!"
 
@@ -17826,15 +17823,18 @@ msgstr "Die User-Band-Frequenz auswählen, die diesem Tuner zugewiesen werden so
 msgid "Select the Yes / True response"
 msgstr "Ja / positive Antwort auswählen"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "Den Zugriffsmodus für die automatisch exportierten Samba-Freigaben auswählen."
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Aktion für '%s' auswählen"
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Aktion auswählen, die nach Ablauf des Timers ausgeführt werden soll."
+
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Die Art der Abschaltung beim Aktivieren der Energiesparfunktion auswählen."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Die Art der Abschaltung beim Aktivieren des Ausschalttimers auswählen."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Die Wartezeit nach einem Aufgabenfehler auswählen, bevor die Aufgabe erneut ausgeführt wird."
@@ -17843,6 +17843,12 @@ msgid "Select the animation speed of the button indicators in the help screens. 
 msgstr ""
 "Animationsgeschwindigkeit der Fernbedienungstasten-Hilfe einstellen.\n"
 "Bei 'Standard' gibt es keine Animation."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr "Die Helligkeit der LED in der Frontblende auswählen, wenn der Receiver in Betrieb ist."
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr "Die Helligkeit der LED in der Frontblende auswählen, wenn der Receiver im Standby ist."
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Cardserver aus der Liste der verfügbaren Cardserver auswählen."
@@ -17856,6 +17862,15 @@ msgstr "Den Sender auswählen, der für diesen Timer verwendet werden soll."
 #
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Das Zeichen oder die Aktion beim Cursor der Tastatur auswählen"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr "Die Farbe der Betriebs-LED in der Frontblende auswählen, wenn der Receiver in Betrieb ist. Mit dieser Option kann die LED auch deaktiviert bzw. ausgeschaltet werden."
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr "Die Farbe der Betriebs-LED in der Frontblende auswählen, wenn der Receiver im Deep-Standby ist."
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr "Die Farbe der Betriebs-LED in der Frontblende auswählen, wenn der Receiver im Standby ist. Mit dieser Option kann die LED auch deaktiviert bzw. ausgeschaltet werden."
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Textfarbe der KI-gestützten Übersetzung auswählen."
@@ -18007,6 +18022,9 @@ msgstr "Den Hersteller des Unicable/SCR-Gerätes auswählen. Wenn der Hersteller
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Bestimmt die Methode, wie die Bildschirmauflösung und der Bildspeicher beim Verlassen des Videotexts zurückgesetzt werden."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "Den Zugriffsmodus für die automatisch exportierten Samba-Freigaben auswählen."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Das Modell des Unicable/SCR-Gerätes auswählen. Wenn der Hersteller nicht aufgeführt ist, 'SCR' auf 'Benutzerdefiniert' setzen und die Geräteparameter gemäß dem zugehörigen Datenblatt manuell eingeben."
@@ -18179,12 +18197,6 @@ msgstr "Den Typ des verwendeten Unicable/SCR-Gerätes auswählen."
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "Den Typ der an %s %s angeschlossenen Tastatur auswählen."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Die Art der Abschaltung beim Aktivieren der Energiesparfunktion auswählen."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Die Art der Abschaltung beim Aktivieren des Ausschalttimers auswählen."
 
 msgid "Select the type of this timer."
 msgstr "Den Typ dieses Timers auswählen."
@@ -24412,6 +24424,9 @@ msgstr "Bei 'Ja' darf eine Aufnahme das Live-TV unterbrechen, falls kein freier 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Bei 'Ja' wird eine Warnung angezeigt und Timeshift kann gestoppt oder fortgeführt werden."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Bei 'Ja' wird jeder Datenträger automatisch als Samba-Freigabe erstellt."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bei 'Ja' ist eine Authentifizierung erforderlich, um HTTP-Streams anzusehen."
 
@@ -25948,6 +25963,12 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Dieses Image wirklich löschen?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Verzögerung zwischen CEC-Befehlen, wenn mehrere Befehle hintereinander gesendet werden. Einige Geräte benötigen diese Verzögerung für eine korrekte Funktion, normalerweise zwischen 50 und 150 ms."
 
 #~ msgid "Force TV input to this receiver"
 #~ msgstr "TV-Eingang für diesen Receiver erzwingen"

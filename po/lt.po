@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2003,7 +2003,7 @@ msgstr "Pridėti pasirinktą aplanką į žymes"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Senstelėjusių LEFT/RIGHT veiksmų įtraukimas"
 
-msgid "Add slots"
+msgid "Add more slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -2043,6 +2043,9 @@ msgid "Add service to AutoCam"
 msgstr ""
 
 msgid "Add services to this bouquet?"
+msgstr ""
+
+msgid "Add slots"
 msgstr ""
 
 msgid "Add the current directory as a bookmark"
@@ -2518,17 +2521,11 @@ msgstr "Ar tikrai norite pašalinti visus pasirinktus žurnalus:\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Ar tikrai norite pašalinti EPG duomenis iš:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Ar tikrai norite panaikinti šį atvaizdą?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Ar tikrai norite pašalinti šį žurnalą:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Ar tikrai norite tai ištrinti?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr ""
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Ar tikrai norite išjungti šį vedlį?"
@@ -4170,10 +4167,10 @@ msgstr "Pasirinkite failo, kuriame bus EPG duomenys, pavadinimą, kai %s %s išj
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Pasirinkite parinktį kad ištaisyti neteisingus EPG duomenis."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr ""
 
-msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
@@ -5988,9 +5985,6 @@ msgstr "Delsa iki pakartotino mygtuko paspaudimo:"
 msgid "Delay before sequence repeat"
 msgstr "Delsa prieš komandų sekos kartojimą"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Delsa tarp CEC komandų siunčiant komandų seką. Kai kuriems įrenginiams reikia šios delsos, kad tinkamai veiktų, paprastai tarp 50-150ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "Delsa tarp DiSEqC komandų"
 
@@ -6107,9 +6101,6 @@ msgstr "Trinti žurnalą"
 msgid "Delete only highlighted file"
 msgstr "Naikinti tik paryškintą failą"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Naikinti arba išvalyti paryškintą lizdą"
-
 msgid "Delete play list entry"
 msgstr "Trinti įrašą iš grojaraščio"
 
@@ -6150,6 +6141,9 @@ msgstr "Naikinti pasirinktą vietoje saugomą atvaizdą"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Ištrinti šiuos %d katalogus / failus?"
+
+msgid "Delete this slot?"
+msgstr ""
 
 msgid "Delete this tag"
 msgstr "Šalinti šią žymę"
@@ -6384,6 +6378,9 @@ msgid "Disable Animations"
 msgstr "Išjungti animacijas"
 
 msgid "Disable Chkroot"
+msgstr ""
+
+msgid "Disable Chkroot Multiboot?"
 msgstr ""
 
 msgid "Disable FCC during recordings"
@@ -7134,6 +7131,9 @@ msgstr "Tuščia"
 
 msgid "Empty file"
 msgstr "Tuščias failas"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Naikinti arba išvalyti paryškintą lizdą"
 
 msgid "Emulator"
 msgstr ""
@@ -10598,13 +10598,25 @@ msgstr ""
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
 
+msgid "LED Deep Standby"
+msgstr "LED giliame budėjime"
+
+msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Normal"
+msgstr "LED normalus"
+
 msgid "LED Running brightness"
 msgstr ""
 
 msgid "LED Running color"
 msgstr ""
 
-msgid "LED Deep Standby"
+msgid "LED Settings"
+msgstr ""
+
+msgid "LED Standby"
 msgstr "LED giliame budėjime"
 
 msgid "LED Standby brightness"
@@ -10612,18 +10624,6 @@ msgstr ""
 
 msgid "LED Standby color"
 msgstr ""
-
-msgid "LED Normal"
-msgstr "LED normalus"
-
-msgid "LED Settings"
-msgstr ""
-
-msgid "LED Deep Standby color"
-msgstr ""
-
-msgid "LED Standby"
-msgstr "LED giliame budėjime"
 
 msgid "LED brightness during Deep Standby."
 msgstr "LED šviesumas giliame budėjime."
@@ -10633,9 +10633,6 @@ msgstr "LED šviesumas budėjimo režimo metu."
 
 msgid "LED brightness during normal operations."
 msgstr "LED šviesumas įprastoms operacijoms."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr ""
 
 msgid "LIRC remote"
 msgstr "LIRC nuotolinis"
@@ -13221,6 +13218,9 @@ msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
 msgid "Option to enable the hardware Standby timer."
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr "Neprivalomas parametras"
 
@@ -15284,13 +15284,13 @@ msgstr "Pervardyti tik paryškintą failą"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr "Pervardykite siūlomą sukurti failą"
 
 msgid "Rename the selected service"
-msgstr ""
-
-msgid "Rename the highlighted slot"
 msgstr ""
 
 msgid "Rename this tag"
@@ -16266,9 +16266,6 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" būsenoje (be pertraukos)."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr ""
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
 
@@ -16876,9 +16873,6 @@ msgstr "Pasirinkite naudotojo juostos dažnį, kuris bus priskirtas šiam imtuvu
 msgid "Select the Yes / True response"
 msgstr "Pasirinkite taip / Teisingą atsakymą"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr ""
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
@@ -16886,11 +16880,23 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr "Pasirinkite veiksmą, kurį atliksite pasibaigus laikmačiui."
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmatis."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Žinyno ekranuose pasirinkite mygtukų indikatorių animacijos greitį. \"Išjungta\" išjungia animaciją, kad indikatoriai šokinėtų tarp mygtukų."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr ""
@@ -16903,6 +16909,15 @@ msgstr "Pasirinkite kanalą arba paslaugą, kurią norite naudoti šiam laikmač
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr ""
@@ -17049,6 +17064,9 @@ msgstr "Pasirinkite SCR įrenginio gamintoją. Jei gamintojas nėra įtrauktas �
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Pasirinkite ekrano rezoliucijos atkūrimo metodą ir kadrų buferizaciją išeinant iš teleteksto."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Pasirinkite Unicable įrenginio modelio numerį. Jei modelio numeris nenurodytas, nustatykite 'SCR' į 'naudotojo nustatytas' ir rankiniu būdu įveskite jo parametrus pagal jo specifikacijų lapą."
@@ -17215,12 +17233,6 @@ msgstr "Pasirinkite vieno kabelio priėmimo įrenginio tipą, kurį jūs naudoja
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmatis."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
 
 msgid "Select the type of this timer."
 msgstr ""
@@ -23061,6 +23073,9 @@ msgstr "Įjungus įrašą leidžiama nutraukti tiesioginę televiziją, kai nėr
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirinkti - sustabdyti, ar tęsti laiko poslinkį."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo autentifikacijos duomenis."
 
@@ -24460,6 +24475,12 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Ar tikrai norite panaikinti šį atvaizdą?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Delsa tarp CEC komandų siunčiant komandų seką. Kai kuriems įrenginiams reikia šios delsos, kad tinkamai veiktų, paprastai tarp 50-150ms."
 
 #~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 #~ msgstr "Kai imtuvas pažadinamas iš budėjimo režimo, jis duos komandą televizoriui perjungti HDMI įvestį, prie kurios prijungtas imtuvas."

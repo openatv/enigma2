@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
-"PO-Revision-Date: 2026-06-17 09:16+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"PO-Revision-Date: 2026-07-10 15:01+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 
 msgid ""
 "\n"
@@ -1723,7 +1723,7 @@ msgid "AV Setup"
 msgstr "Kuva/Ääni Asetukset"
 
 msgid "AV receiver, soundbar and remote"
-msgstr ""
+msgstr "Kotiteatteri, soundbar ja kaukosäädin"
 
 msgid "Abkhazian"
 msgstr "Abkhazian"
@@ -1962,7 +1962,7 @@ msgstr "Lisää valittu kansio kirjanmerkkeihin"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Lisää vanhat VASEN/OIKEA toiminnot"
 
-msgid "Add slots"
+msgid "Add more slots"
 msgstr "Lisää paikkoja"
 
 msgid "Add new CCcam line"
@@ -2003,6 +2003,9 @@ msgstr "Lisää kanava CI+"
 
 msgid "Add services to this bouquet?"
 msgstr "Lisää kanava tähän kanavalistaan?"
+
+msgid "Add slots"
+msgstr "Lisää paikkoja"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Lisää nykyinen hakemisto kirjanmerkiksi"
@@ -2479,17 +2482,11 @@ msgstr "Haluatko varmasti poistaa kaikki valitut lokit:\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Haluatko varmasti poistaa EPG-tiedot täältä:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Oletko varma, että haluat poistaa tämän ohjelmiston?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Haluatko varmasti poistaa tämän lokin:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Haluatko varmasti poistaa tämän?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr "Haluatko poistaa Chkroot Multibootin käytöstä?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Haluatko lopettaa avustustoiminnon?"
@@ -4132,11 +4129,11 @@ msgstr "Valitse tiedostonimi, jonne EPG-tiedot tallennetaan kun %s %s sammutetaa
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Valitse vaihtoehto virheellisten EPG tietojen korjaamiseksi."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
-msgstr "Valitse käyttöliittymän teema. Paina 'VIHREÄÄ' aktivoidaksesi teema."
-
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "Valitse näyttöpaneelin teema. Paina 'VIHREÄÄ' aktivoidaksesi teeman."
+
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgstr "Valitse käyttöliittymän teema. Paina 'VIHREÄÄ' aktivoidaksesi teema."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
@@ -5524,7 +5521,7 @@ msgid "DVB-C"
 msgstr "DVB-C"
 
 msgid "DVB-C / Cable only"
-msgstr ""
+msgstr "DVB-C / Kaapeli"
 
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
@@ -5533,7 +5530,7 @@ msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
 msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr ""
+msgstr "DVB-C ja DVB-T/T2 ulkoisen 5V ohjatun coax kytkimen kautta"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5545,7 +5542,7 @@ msgid "DVB-T"
 msgstr "DVB-T"
 
 msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
+msgstr "DVB-T2 / Antenni"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5950,9 +5947,6 @@ msgstr "Viive ennen näppäimen toistoa:"
 msgid "Delay before sequence repeat"
 msgstr "Viive ennen komennon toistoa"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Viive CEC komentojen välillä komentosarjan lähettämisessä. Jotkut laitteet vaativat tämän viiveen oikean toiminnan varmistamiseksi, yleensä välillä 50-150ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "Viive diseqc-komentojen välillä"
 
@@ -6069,9 +6063,6 @@ msgstr "Poista loki"
 msgid "Delete only highlighted file"
 msgstr "Poista vain korostettu tiedosto"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Poista tai pyyhi nykyinen ohjelmisto paikka"
-
 msgid "Delete play list entry"
 msgstr "Poista soittolistan valittu kohde"
 
@@ -6112,6 +6103,9 @@ msgstr "Poista paikallisesti tallennettu ohjelmisto"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Poista nämä %d hakemistot/tiedostot?"
+
+msgid "Delete this slot?"
+msgstr "Poista tämä paikka?"
 
 msgid "Delete this tag"
 msgstr "Poista tämä tunniste"
@@ -6347,6 +6341,9 @@ msgstr "Estä animaatiot"
 
 msgid "Disable Chkroot"
 msgstr "Poista käytöstä Chkroot"
+
+msgid "Disable Chkroot Multiboot?"
+msgstr "Haluatko poistaa Chkroot Multibootin käytöstä?"
 
 msgid "Disable FCC during recordings"
 msgstr "Poista FCC käytöstä tallennuksen aikana"
@@ -6722,7 +6719,7 @@ msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital stereoksi on nyt käytössä"
 
 msgid "Dolby TrueHD"
-msgstr ""
+msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Verkkotunnus"
@@ -7103,6 +7100,9 @@ msgstr "Tyhjä"
 
 msgid "Empty file"
 msgstr "Tyhjä tiedosto"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Poista tai pyyhi nykyinen ohjelmisto paikka"
 
 msgid "Emulator"
 msgstr "Emulaattori"
@@ -9551,7 +9551,7 @@ msgid "Hybrid Tuner"
 msgstr "Hybridi viritin"
 
 msgid "Hybrid tuner mode"
-msgstr ""
+msgstr "Hybrid Viritin tila"
 
 msgid "Hz"
 msgstr "Hz"
@@ -10567,32 +10567,32 @@ msgstr "LCN säännöt:"
 msgid "LCN style QuickSelect entry selection"
 msgstr "LCN tyyli Pikavalinta merkintä"
 
+msgid "LED Deep Standby"
+msgstr "LED virransäästötila"
+
+msgid "LED Deep Standby color"
+msgstr "LED Sammutuksen Väri"
+
+msgid "LED Normal"
+msgstr "LED normaali"
+
 msgid "LED Running brightness"
 msgstr "LED Kirkkaus"
 
 msgid "LED Running color"
 msgstr "LED Väri"
 
-msgid "LED Deep Standby"
-msgstr "LED virransäästötila"
+msgid "LED Settings"
+msgstr "LED Asetukset"
+
+msgid "LED Standby"
+msgstr "LED valmiustila"
 
 msgid "LED Standby brightness"
 msgstr "LED tyhjäkäynnin kirkkaus"
 
 msgid "LED Standby color"
 msgstr "LED tyhjäkäynnin Väri"
-
-msgid "LED Normal"
-msgstr "LED normaali"
-
-msgid "LED Settings"
-msgstr "LED Asetukset"
-
-msgid "LED Deep Standby color"
-msgstr "LED Sammutuksen Väri"
-
-msgid "LED Standby"
-msgstr "LED valmiustila"
 
 msgid "LED brightness during Deep Standby."
 msgstr "LED:in kirkkaus virransäästötilassa."
@@ -10602,9 +10602,6 @@ msgstr "LED:in kirkkaus valmiustilassa."
 
 msgid "LED brightness during normal operations."
 msgstr "LED:in kirkkaus normaalitilassa."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr "LEDin väri Virransäästötilassa."
 
 msgid "LIRC remote"
 msgstr "LIRC kaukosäädin"
@@ -10797,7 +10794,7 @@ msgid "Limited memory size, swap file required"
 msgstr "Rajoitettu muistin koko, swap tiedosto tarvitaan"
 
 msgid "Limited range (64..940)"
-msgstr ""
+msgstr "Rajoitettu alue (64.940)"
 
 msgid "Limits cancelled"
 msgstr "Rajat pois"
@@ -13200,6 +13197,9 @@ msgstr "'Kyllä' valinnalla kanavalogot näytetään tietopalkissa."
 msgid "Option to enable the hardware Standby timer."
 msgstr "Käytä kiintolevyn sisäistä virransäästötoimintoa."
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr "Valinnainen parametri"
 
@@ -15261,14 +15261,14 @@ msgstr "Nimeä vain korostettu tiedosto uudelleen"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr "Nimeä ehdotettu tiedosto uudelleen"
 
 msgid "Rename the selected service"
 msgstr "Nimeä uudelleen valittu kanava"
-
-msgid "Rename the highlighted slot"
-msgstr ""
 
 msgid "Rename this tag"
 msgstr "Nimeä tämä tunniste uudelleen"
@@ -16248,9 +16248,6 @@ msgstr "Valitse \"Kyllä\", jos haluat herätää television kun Virta ajastus k
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa (ei aikakatkaisua)."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Valitse 'Kyllä' salliaksesi, että jokainen tunnistettu tallennuslaite viedään automaattisesti Samba jaoksi."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Tämä lisäosa voi määrittää, alkaako ohjelma aikaisemmin vai kestääkö se pidempään. Kanavan on toimitettava luotettavat tiedot."
 
@@ -16862,9 +16859,6 @@ msgstr "Valitse tähän virittimeen asetettu käyttäjän taajuusalueen taajuus.
 msgid "Select the Yes / True response"
 msgstr "Valitse Kyllä / Tosi vastaus"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "Valitse pääsy automaattisesti viedyille Samba jaoille."
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Valitse toiminto '%s'"
@@ -16872,11 +16866,23 @@ msgstr "Valitse toiminto '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Valitse toiminto, joka suoritetaan ajastuksen päättyessä."
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Valitse haluamasi sammutus tyyppi, kun virransäästö ajastin aktivoituu."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Valitse määräaika odottamiseen tehtävävirheen jälkeen, ennen kuin yrität suorittaa tehtävän uudelleen."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Ohjaa Ohje näytön painikkeiden animaatioiden nopeutta. 'Pois käytöstä' poistaa animaation käytöstä niin, että ilmaisimet hyppäävät painikkeiden välillä."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Valitse korttipalvelin saatavilla olevasta kortinpalvelin listasta."
@@ -16889,6 +16895,15 @@ msgstr "Valitse tälle ajastimelle käytettävä kanava."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Valitse kursorin alla oleva merkki tai toiminta"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr "LEDin väri Virransäästötilassa."
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Valitse tekstin väri tekoälyavusteiselle käännökselle."
@@ -17035,6 +17050,9 @@ msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, as
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Valitse tapa, jolla näytön tarkkuus ja kehyspuskuri palautetaan, kun poistut teksti-tv:stä."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "Valitse pääsy automaattisesti viedyille Samba jaoille."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR:n mallinumero. Jos mallinumeroa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -17204,12 +17222,6 @@ msgstr "Valitse käyttämäsi laitteen tyyppi."
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "Valitse näppäimistön tyyppi mikä on liitetty %s %s laitteeseen."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Valitse haluamasi sammutus tyyppi, kun virransäästö ajastin aktivoituu."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
 
 msgid "Select the type of this timer."
 msgstr "Valitse ajastimen tyyppi."
@@ -23097,6 +23109,9 @@ msgstr "Kun päällä, tallennus saa keskeyttää suoran katselun, jos vapaita v
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus pysäyttää tai jatkaa ajansiirtoa."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Valitse 'Kyllä' salliaksesi, että jokainen tunnistettu tallennuslaite viedään automaattisesti Samba jaoksi."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kun päällä, hyväksyntä vaaditaan katsottaessa http palveluita."
 
@@ -24506,6 +24521,12 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Oletko varma, että haluat poistaa tämän ohjelmiston?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Viive CEC komentojen välillä komentosarjan lähettämisessä. Jotkut laitteet vaativat tämän viiveen oikean toiminnan varmistamiseksi, yleensä välillä 50-150ms."
 
 #~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 #~ msgstr "Kun vastaanotin herää valmiustilasta, se käskee televisiota vaihtamaan HDMI tuloon, johon vastaanotin on liitetty."

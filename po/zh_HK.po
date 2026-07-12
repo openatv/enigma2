@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -2012,7 +2012,7 @@ msgstr "選擇要備份的檔/目錄"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr ""
 
-msgid "Add slots"
+msgid "Add more slots"
 msgstr ""
 
 msgid "Add new CCcam line"
@@ -2052,6 +2052,9 @@ msgid "Add service to AutoCam"
 msgstr ""
 
 msgid "Add services to this bouquet?"
+msgstr ""
+
+msgid "Add slots"
 msgstr ""
 
 msgid "Add the current directory as a bookmark"
@@ -2554,16 +2557,10 @@ msgstr ""
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "確定要刪除這裏的EPG數據：\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr ""
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "確定要刪除此日誌：\n"
 
 msgid "Are you sure you want to delete this?"
-msgstr ""
-
-msgid "Disable Chkroot Multiboot?"
 msgstr ""
 
 msgid "Are you sure you want to exit this wizard?"
@@ -4290,10 +4287,10 @@ msgstr ""
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr ""
 
-msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
@@ -6156,9 +6153,6 @@ msgstr ""
 msgid "Delay before sequence repeat"
 msgstr "重複序列"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr ""
-
 msgid "Delay between DiSEqC commands"
 msgstr ""
 
@@ -6281,9 +6275,6 @@ msgstr ""
 msgid "Delete only highlighted file"
 msgstr ""
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr ""
-
 msgid "Delete play list entry"
 msgstr ""
 
@@ -6323,6 +6314,9 @@ msgstr ""
 
 #, python-format
 msgid "Delete these %d directories/files?"
+msgstr ""
+
+msgid "Delete this slot?"
 msgstr ""
 
 msgid "Delete this tag"
@@ -6566,6 +6560,9 @@ msgid "Disable Animations"
 msgstr "禁用動畫效果"
 
 msgid "Disable Chkroot"
+msgstr ""
+
+msgid "Disable Chkroot Multiboot?"
 msgstr ""
 
 msgid "Disable FCC during recordings"
@@ -7325,6 +7322,9 @@ msgid "Empty"
 msgstr ""
 
 msgid "Empty file"
+msgstr ""
+
+msgid "Empty or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Emulator"
@@ -10942,14 +10942,27 @@ msgstr ""
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
 
+#, fuzzy
+msgid "LED Deep Standby"
+msgstr "深度休眠"
+
+msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Normal"
+msgstr ""
+
 msgid "LED Running brightness"
 msgstr ""
 
 msgid "LED Running color"
 msgstr ""
 
+msgid "LED Settings"
+msgstr ""
+
 #, fuzzy
-msgid "LED Deep Standby"
+msgid "LED Standby"
 msgstr "深度休眠"
 
 msgid "LED Standby brightness"
@@ -10958,19 +10971,6 @@ msgstr ""
 msgid "LED Standby color"
 msgstr ""
 
-msgid "LED Normal"
-msgstr ""
-
-msgid "LED Settings"
-msgstr ""
-
-msgid "LED Deep Standby color"
-msgstr ""
-
-#, fuzzy
-msgid "LED Standby"
-msgstr "深度休眠"
-
 msgid "LED brightness during Deep Standby."
 msgstr ""
 
@@ -10978,9 +10978,6 @@ msgid "LED brightness during Standby."
 msgstr ""
 
 msgid "LED brightness during normal operations."
-msgstr ""
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
 msgstr ""
 
 msgid "LIRC remote"
@@ -13728,6 +13725,9 @@ msgstr ""
 msgid "Option to enable the hardware Standby timer."
 msgstr ""
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr ""
 
@@ -15924,13 +15924,13 @@ msgstr ""
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr ""
 
 msgid "Rename the selected service"
-msgstr ""
-
-msgid "Rename the highlighted slot"
 msgstr ""
 
 msgid "Rename this tag"
@@ -16954,9 +16954,6 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr ""
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr ""
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
 
@@ -17582,9 +17579,6 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr ""
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
@@ -17592,10 +17586,22 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr ""
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
 msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
@@ -17608,6 +17614,15 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
@@ -17755,6 +17770,9 @@ msgid "Select the manufacturer of your SCR device. If the manufacturer is not li
 msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17923,12 +17941,6 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr ""
 
 msgid "Select the type of keyboard connected to the %s %s."
-msgstr ""
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr ""
-
-msgid "Select the action to take when the SleepTimer activates."
 msgstr ""
 
 msgid "Select the type of this timer."
@@ -23997,6 +24009,9 @@ msgid "When enabled, a recording is allowed to interrupt live TV, when there are
 msgstr ""
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+msgstr ""
+
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."

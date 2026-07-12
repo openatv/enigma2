@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1967,8 +1967,8 @@ msgstr "Geselecteerde map aan bookmarks toevoegen"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Oorspronkelijke LINKS/RECHTS acties"
 
-msgid "Add slots"
-msgstr "Meer slots toevoegen"
+msgid "Add more slots"
+msgstr ""
 
 msgid "Add new CCcam line"
 msgstr "Een nieuwe CCcam line toevoegen"
@@ -2008,6 +2008,9 @@ msgstr "Zender aan AutoCam toevoegen"
 
 msgid "Add services to this bouquet?"
 msgstr "Zender aan deze favorietenlijst toevoegen?"
+
+msgid "Add slots"
+msgstr "Meer slots toevoegen"
 
 msgid "Add the current directory as a bookmark"
 msgstr "De huidige map als bladwijzer toevoegen"
@@ -2480,17 +2483,11 @@ msgstr "Weet u zeker dat u alle geselecteerde logs wilt verwijderen:\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Weet u zeker dat u alle EPG-gegevens wilt verwijderen van:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Weet u zeker dat u deze image wilt verwijderen?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Weet u zeker dat u dit log wilt verwijderen:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Weet u zeker dat u dit wil verwijderen?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr ""
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Weet u zeker dat u de wizard wilt afsluiten?"
@@ -4136,11 +4133,11 @@ msgstr "Kies de naam van het bestand waarin de EPG-data moet worden opgeslagen w
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Kies de optie om ongeldige EPG-gegevens te corrigeren."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
-msgstr "Kies de skin voor de gebruikersinterface (GUI) en druk op de GROENE knop om die te activeren."
-
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "Kies een Display skin en druk op de GROENE knop om die te activeren."
+
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgstr "Kies de skin voor de gebruikersinterface (GUI) en druk op de GROENE knop om die te activeren."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Kies de stijl en volgorde van de items in de help schermen."
@@ -6066,9 +6063,6 @@ msgstr "De vertraging voor knopherhaling begint:"
 msgid "Delay before sequence repeat"
 msgstr "De vertraging voordat de herhaling begint"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "Vertraging tussen CEC commando's bij het sturen van een serie commando's. Sommige apparaten hebben deze vertraging nodig om goed te kunnen functioneren, normaal tussen 50-150ms."
-
 msgid "Delay between DiSEqC commands"
 msgstr "De vertraging tussen DiSEqC-opdrachten"
 
@@ -6187,9 +6181,6 @@ msgstr "Verwijder log-bestand"
 msgid "Delete only highlighted file"
 msgstr "Alleen gemarkeerde bestanden verwijderen"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Verwijder of wis het actuele slot"
-
 msgid "Delete play list entry"
 msgstr "Verwijder een item uit de afspeellijst"
 
@@ -6230,6 +6221,9 @@ msgstr "Verwijder het geselecteerde lokaal opgeslagen image"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Deze %d mappen/bestanden verwijderen?"
+
+msgid "Delete this slot?"
+msgstr ""
 
 msgid "Delete this tag"
 msgstr "Verwijder deze tag"
@@ -6465,6 +6459,9 @@ msgstr "Animaties uitschakelen"
 
 msgid "Disable Chkroot"
 msgstr "Chkroot deactiveren"
+
+msgid "Disable Chkroot Multiboot?"
+msgstr ""
 
 msgid "Disable FCC during recordings"
 msgstr "FCC uitschakelen tijdens opnames"
@@ -7227,6 +7224,9 @@ msgstr "Leeg"
 
 msgid "Empty file"
 msgstr "Leeg bestand"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Verwijder of wis het actuele slot"
 
 msgid "Emulator"
 msgstr ""
@@ -10706,32 +10706,32 @@ msgstr "LCN regels"
 msgid "LCN style QuickSelect entry selection"
 msgstr "Quickselect via zendernummer"
 
+msgid "LED Deep Standby"
+msgstr "LED voor uitgeschakeld"
+
+msgid "LED Deep Standby color"
+msgstr "LED-kleur bij uitgeschakelde ontvanger"
+
+msgid "LED Normal"
+msgstr "LED normaal"
+
 msgid "LED Running brightness"
 msgstr "LED-helderheid"
 
 msgid "LED Running color"
 msgstr "LED-kleur"
 
-msgid "LED Deep Standby"
-msgstr "LED voor uitgeschakeld"
+msgid "LED Settings"
+msgstr "LED-instellingen"
+
+msgid "LED Standby"
+msgstr "LED stand-by"
 
 msgid "LED Standby brightness"
 msgstr "LED-helderheid in Stand-by"
 
 msgid "LED Standby color"
 msgstr "LED-kleur in Stand-by"
-
-msgid "LED Normal"
-msgstr "LED normaal"
-
-msgid "LED Settings"
-msgstr "LED-instellingen"
-
-msgid "LED Deep Standby color"
-msgstr "LED-kleur bij uitgeschakelde ontvanger"
-
-msgid "LED Standby"
-msgstr "LED stand-by"
 
 msgid "LED brightness during Deep Standby."
 msgstr "LED helderheid wanneer uitgeschakeld."
@@ -10741,9 +10741,6 @@ msgstr "LED helderheid tijdens stand-by."
 
 msgid "LED brightness during normal operations."
 msgstr "LED helderheid tijdens gebruik van uw %s %s."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr ""
 
 msgid "LIRC remote"
 msgstr "LIRC afstandsbediening"
@@ -13334,6 +13331,9 @@ msgstr "Optie om picons uit te schakelen op de informatiebalk"
 msgid "Option to enable the hardware Standby timer."
 msgstr "Optie voor inschakelen Hardware stand-by Timer"
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr ""
+
 msgid "Optional parameter"
 msgstr "Optionele parameter"
 
@@ -15400,14 +15400,14 @@ msgstr "Alleen het gemarkeerde bestand hernoemen"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr ""
 
+msgid "Rename the highlighted slot"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr "Wijzig de naam van het voorgestelde bestand dat wordt gemaakt"
 
 msgid "Rename the selected service"
 msgstr "De geselecteerde zender hernoemen"
-
-msgid "Rename the highlighted slot"
-msgstr ""
 
 msgid "Rename this tag"
 msgstr "Hernoem deze tag"
@@ -16383,9 +16383,6 @@ msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Selecteer 'Ja' om alle opslagmedia die wordt gevonden automatisch als Samba share in te stellen."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "De VPS plugin kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
 
@@ -16999,9 +16996,6 @@ msgstr "Selecteer het User Band frequentie dat aan deze tuner wordt toegewezen. 
 msgid "Select the Yes / True response"
 msgstr "Selecteer het juiste antwoord"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "De toegangsmodus voor de automatisch geëxporteerde Samba shares selecteren."
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Actie voor '%s' selecteren"
@@ -17009,11 +17003,23 @@ msgstr "Actie voor '%s' selecteren"
 msgid "Select the action to perform when the timer ends."
 msgstr "Opgeven wat er moet gebeuren wanneer de Timer is uitgevoerd."
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie SpaarTimer actief wordt."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Hoe wilt u de ontvanger afsluiten wanneer de SlaapTimer actief wordt."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. 'Uitgeschakeld' voorkomt een animatie."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr ""
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr ""
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Een Cardserver kiezen uit de lijst met beschikbare Cardservers."
@@ -17026,6 +17032,15 @@ msgstr "Kies de zender die voor deze timer gebruikt moet worden."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Selecteer het karakter of de actie onder de cursor van het virtuele toetsenbord"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr ""
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Kleur van de door AI vertaalde ondertiteling kiezen."
@@ -17178,6 +17193,9 @@ msgstr "Selecteer de fabrikant van uw SCR-apparaat. Wanneer deze niet in de lijs
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Selecteer de methode voor het herstellen van de schermresolutie en framebuffer bij het verlaten van Teletekst."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "De toegangsmodus voor de automatisch geëxporteerde Samba shares selecteren."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Selecteer het modelnummer van uw Unicable-apparaat. Wanneer deze niet in de lijst voorkomt, stelt u 'SCR' in op 'door gebruiker gedefinieerd' en geeft u vervolgens de parameters handmatig in volgens de specs van het apparaat."
@@ -17347,12 +17365,6 @@ msgstr "Selecteer het type enkele kabel ontvangst apparaat dat u gebruikt."
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "Selecteer het type toetsenbord dat is aangesloten op de %s %s."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie SpaarTimer actief wordt."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Hoe wilt u de ontvanger afsluiten wanneer de SlaapTimer actief wordt."
 
 msgid "Select the type of this timer."
 msgstr "Selecteer het type Timer."
@@ -23302,6 +23314,9 @@ msgstr "Indien geactiveerd, dan kan een opname live TV onderbreken indien er gee
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Bij het stoppen van Timeshift wordt gevraagd of u Timeshift echt wilt stoppen of dat de opname door moet lopen."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Selecteer 'Ja' om alle opslagmedia die wordt gevonden automatisch als Samba share in te stellen."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bij 'Ja', moet een wachtwoord worden opgegeven om http-streams te kunnen zien."
 
@@ -24723,6 +24738,12 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Weet u zeker dat u deze image wilt verwijderen?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "Vertraging tussen CEC commando's bij het sturen van een serie commando's. Sommige apparaten hebben deze vertraging nodig om goed te kunnen functioneren, normaal tussen 50-150ms."
 
 #~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 #~ msgstr "Wanneer de ontvanger ontwaakt uit Stand-by zal die naar de HDMI poort in de TV schakelen waar de ontvanger op aangesloten is."

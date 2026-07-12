@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 11:12+0000\n"
-"PO-Revision-Date: 2026-06-25 15:01+0000\n"
+"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"PO-Revision-Date: 2026-07-10 15:01+0000\n"
 "Last-Translator: Mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -2007,8 +2007,8 @@ msgstr "Seçilen dizini yer imlerine ekle"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Eski SOL/SAĞ işlemlerini ekleyin"
 
-msgid "Add slots"
-msgstr "Daha fazla yuva ekleyin"
+msgid "Add more slots"
+msgstr "Daha fazla yuva ekle"
 
 msgid "Add new CCcam line"
 msgstr "Yeni CCcam satırı ekle"
@@ -2050,6 +2050,9 @@ msgstr "AutoCam'e kanal ekle"
 
 msgid "Add services to this bouquet?"
 msgstr "Bu bukete kanallar eklemek ister misiniz?"
+
+msgid "Add slots"
+msgstr "Daha fazla yuva ekleyin"
 
 msgid "Add the current directory as a bookmark"
 msgstr "Geçerli dizini yer imi olarak ekle"
@@ -2545,17 +2548,11 @@ msgstr "Seçilen tüm günlükleri silmek istediğinizden emin misiniz:\n"
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "EPG verilerini silmek istediğinize emin misiniz:\n"
 
-msgid "Are you sure you want to delete this image?"
-msgstr "Bu yazılımı silmek istediğinizden emin misiniz?"
-
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Bu günlüğü silmek istediğinizden emin misiniz:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Bunu silmek istediğinizden emin misiniz?"
-
-msgid "Disable Chkroot Multiboot?"
-msgstr "Chkroot Multiboot'u devre dışı bırakmak istediğinizden emin misiniz?"
 
 #
 msgid "Are you sure you want to exit this wizard?"
@@ -4265,11 +4262,11 @@ msgstr "%s %s alıcınız kapatıldığında EPG verilerini içeren dosyanın is
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Geçersiz EPG verilerini düzeltme seçeneğini seçin."
 
-msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
-msgstr "Kullanıcı arayüzü için kullanılacak arayüzü seçin. Arayüzü etkinleştirmek için 'YEŞİL' tuşa basın."
-
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "LCD/Ön Panel arayüzü için kullanılacak arayüzü seçin. Arayüzü etkinleştirmek için 'YEŞİL' tuşa basın."
+
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
+msgstr "Kullanıcı arayüzü için kullanılacak arayüzü seçin. Arayüzü etkinleştirmek için 'YEŞİL' tuşa basın."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Yardım pencerelerinde öğelerin görüntüleneceği stili/sırayı seçin."
@@ -4490,7 +4487,7 @@ msgid "Code rate LP"
 msgstr "LP kod oranı"
 
 msgid "Collapse"
-msgstr "Çöküş"
+msgstr "Daralt"
 
 #
 msgid "Collection name"
@@ -6152,9 +6149,6 @@ msgstr "Tuş tekrarı başlamadan önceki gecikme süresi:"
 msgid "Delay before sequence repeat"
 msgstr "Yineleme öncesi gecikme"
 
-msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
-msgstr "CEC komutları serisi gönderilirken komutlar arasındaki gecikme. Bazı cihazlar doğru çalışma için bu gecikmeye ihtiyaç duyar, genellikle 50-150 ms arasındadır."
-
 msgid "Delay between DiSEqC commands"
 msgstr "DiSEqC komutları arasındaki gecikme"
 
@@ -6210,7 +6204,7 @@ msgid "Delete Plugins"
 msgstr "Eklentileri Sil"
 
 msgid "Delete Timer"
-msgstr "Zamanlayıcı Sil"
+msgstr "Zamanlayıcıyı Sil"
 
 msgid "Delete all duplicated lines"
 msgstr "Yinelenen tüm satırları sil"
@@ -6276,9 +6270,6 @@ msgstr "Günlüğü sil"
 msgid "Delete only highlighted file"
 msgstr "Yalnızca vurgulanan dosyayı sil"
 
-msgid "Empty or Wipe the highlighted slot"
-msgstr "Vurgulanan yuvayı silin veya temizleyin"
-
 #
 msgid "Delete play list entry"
 msgstr "Çalma listesi girişini sil"
@@ -6321,6 +6312,9 @@ msgstr "Seçilen yerel olarak depolanmış yazılımı sil"
 #, python-format
 msgid "Delete these %d directories/files?"
 msgstr "Bu %d dizinlerini/dosyalarını silmek ister misiniz?"
+
+msgid "Delete this slot?"
+msgstr "Bu yuvayı silmek ister misiniz?"
 
 msgid "Delete this tag"
 msgstr "Bu etiketi sil"
@@ -6570,6 +6564,9 @@ msgstr "Animasyonları devre dışı bırak"
 
 msgid "Disable Chkroot"
 msgstr "Chkroot'u devre dışı bırak"
+
+msgid "Disable Chkroot Multiboot?"
+msgstr "Chkroot Multiboot'u devre dışı bırakmak istediğinizden emin misiniz?"
 
 msgid "Disable FCC during recordings"
 msgstr "Kayıtlar sırasında FCC'yi devre dışı bırakın"
@@ -7363,6 +7360,9 @@ msgstr "Boş"
 
 msgid "Empty file"
 msgstr "Boş dosya"
+
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Vurgulanan yuvayı silin veya temizleyin"
 
 msgid "Emulator"
 msgstr "Emülatör"
@@ -8390,7 +8390,7 @@ msgid "Exit without performing a backup"
 msgstr "Yedekleme yapmadan çık"
 
 msgid "Expand"
-msgstr "Genişletmek"
+msgstr "Genişlet"
 
 msgid "Experimental film/video"
 msgstr "Deneysel film/video"
@@ -10503,7 +10503,7 @@ msgid "Install Local Extension"
 msgstr "Yerel Eklentileri Yükle"
 
 msgid "Install Plugin"
-msgstr "Eklenti Yükle"
+msgstr "Eklentiyi Yükle"
 
 msgid "Install Plugins"
 msgstr "Eklentileri Yükle"
@@ -10979,32 +10979,32 @@ msgstr "LCN kuralları"
 msgid "LCN style QuickSelect entry selection"
 msgstr "LCN stili Hızlı Seçim giriş seçimi"
 
+msgid "LED Deep Standby"
+msgstr "Derin Bekleme modunda LED"
+
+msgid "LED Deep Standby color"
+msgstr "LED Kapatma Rengi"
+
+msgid "LED Normal"
+msgstr "LED Normal"
+
 msgid "LED Running brightness"
 msgstr "LED Parlaklığı"
 
 msgid "LED Running color"
 msgstr "LED Renk"
 
-msgid "LED Deep Standby"
-msgstr "Derin Bekleme modunda LED"
+msgid "LED Settings"
+msgstr "LED Ayarları"
+
+msgid "LED Standby"
+msgstr "Bekleme modunda LED"
 
 msgid "LED Standby brightness"
 msgstr "LED Bekleme Parlaklığı"
 
 msgid "LED Standby color"
 msgstr "LED Bekleme Rengi"
-
-msgid "LED Normal"
-msgstr "LED Normal"
-
-msgid "LED Settings"
-msgstr "LED Ayarları"
-
-msgid "LED Deep Standby color"
-msgstr "LED Kapatma Rengi"
-
-msgid "LED Standby"
-msgstr "Bekleme modunda LED"
 
 msgid "LED brightness during Deep Standby."
 msgstr "Derin bekleme sırasında LED parlaklığı."
@@ -11014,9 +11014,6 @@ msgstr "Bekleme sırasında LED parlaklığı."
 
 msgid "LED brightness during normal operations."
 msgstr "Normal işlemler sırasında LED parlaklığı."
-
-msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr "Derin Bekleme modunda LED rengi."
 
 msgid "LIRC remote"
 msgstr "LIRC uzaktan kumanda"
@@ -13766,6 +13763,9 @@ msgstr "Bilgi çubuğunda pikonları devre dışı bırakma seçeneği."
 msgid "Option to enable the hardware Standby timer."
 msgstr "Donanım bekleme zamanlayıcısını etkinleştirme seçeneği."
 
+msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
+msgstr "Bir dizi komut gönderilirken CEC komutları arasında isteğe bağlı gecikme süresi. Cihaz daha yavaş iletim gerektirmediği sürece bu seçeneği devre dışı bırakın."
+
 msgid "Optional parameter"
 msgstr "İsteğe bağlı parametre"
 
@@ -15952,14 +15952,14 @@ msgstr "Yalnızca vurgulanan dosyayı yeniden isimlendir"
 msgid "Rename slot '%s' (leave empty to reset):"
 msgstr "'%s' yuvasını yeniden adlandırın (sıfırlamak için boş bırakın):"
 
+msgid "Rename the highlighted slot"
+msgstr "Seçilen yuvayı yeniden adlandırın"
+
 msgid "Rename the proposed file to be created"
 msgstr "Oluşturulması önerilen dosyayı yeniden isimlendir"
 
 msgid "Rename the selected service"
 msgstr "Seçili kanalı yeniden isimlendir"
-
-msgid "Rename the highlighted slot"
-msgstr "Seçilen yuvayı yeniden adlandırın"
 
 msgid "Rename this tag"
 msgstr "Bu etiketi yeniden isimlendir"
@@ -16994,9 +16994,6 @@ msgstr "'Uyandırma' zamanlanmış görevi başladığında TV açılsın istiyo
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Medya oynatımı duraklatıldığında Bilgi Çubuğunun zaman aşımı olmaksızın görüntülenmeye devam etmesi için 'Evet'i seçin."
 
-msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Algılanan her depolama aygıtının otomatik olarak Samba paylaşımı olarak dışa aktarılmasına izin vermek için 'Evet'i seçin."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "VPS'nin yayın Program Teslim Kontrolü (PDC) verilerine göre kayıt zamanlayıcılarını ayarlamasına izin vermek için 'Evet'i seçin. Bunun çalışması için kanalın güvenilir etkinlik PDC verileri sağlaması gerekir."
 
@@ -17616,9 +17613,6 @@ msgstr "Bu tunere atanacak User Band frekansını seçin. Bu, SCR anahtarının 
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "Otomatik olarak dışa aktarılan Samba paylaşımları için erişim modunu seçin."
-
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "'%s' için işlemi seçin"
@@ -17626,11 +17620,23 @@ msgstr "'%s' için işlemi seçin"
 msgid "Select the action to perform when the timer ends."
 msgstr "Zamanlayıcı sona erdiğinde gerçekleştirilecek işlemi seçin."
 
+msgid "Select the action to take when the EnergySaver timer activates."
+msgstr "Enerji zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
+
+msgid "Select the action to take when the SleepTimer activates."
+msgstr "Uyku zamanlayıcısı etkinleştiğinde istenen kapatma türünü seçin."
+
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Bir görev hatası oluştuğunda, görevi tekrar çalıştırmayı denemeden önce beklenecek süreyi seçin."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Yardım ekranlarında tuş göstergelerinin animasyon hızını seçin. 'Devre dışı' seçeneği animasyonu kapatır, böylece göstergeler tuşlar arasında atlayarak hareket eder."
+
+msgid "Select the brightness of the front panel LED when the receiver is Running."
+msgstr "Alıcı çalışırken ön panel LED'inin parlaklığını seçin."
+
+msgid "Select the brightness of the front panel LED when the receiver is in Standby."
+msgstr "Alıcı bekleme modundayken ön panel LED'inin parlaklığını seçin."
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Kullanılabilir kart sunucuları listesinden kullanılacak kart sunucusunu seçin."
@@ -17643,6 +17649,15 @@ msgstr "Bu zamanlayıcı için kullanılacak kanalı veya hizmeti seçin."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Klavye imlecinin altındaki karakteri veya işlemi seçin"
+
+msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
+msgstr "Alıcı çalışırken ön paneldeki güç LED'inin rengini seçin. Bu seçenek ayrıca LED'in devre dışı bırakılmasına/kapatılmasına da olanak tanır."
+
+msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
+msgstr "Derin Bekleme modunda LED rengi."
+
+msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
+msgstr "Alıcı bekleme modundayken ön paneldeki güç LED'inin rengini seçin. Bu seçenek ayrıca LED'in devre dışı bırakılmasına/kapatılmasına da olanak tanır."
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Yapay zeka destekli çeviri metni için kullanılacak rengi seçin."
@@ -17789,6 +17804,9 @@ msgstr "SCR cihazınızın üreticisini seçin. Üretici listede yoksa, 'SCR' se
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Teletext uygulamasından çıkarken ekran çözünürlüğünü ve çerçeve arabelleğini geri yükleme yöntemini seçin."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "Otomatik olarak dışa aktarılan Samba paylaşımları için erişim modunu seçin."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Unicable cihazınızın model numarasını seçin. Model numarası listede yoksa, 'SCR' ayarını 'Kullanıcı tanımlı' olarak belirleyin ve cihaz parametrelerini özelliklerine göre manuel olarak girin."
@@ -17959,12 +17977,6 @@ msgstr "Kullanmakta olduğunuz Tek Kablo Alma cihazının türünü seçin."
 
 msgid "Select the type of keyboard connected to the %s %s."
 msgstr "%s %s alıcınız için bağlı klavyenin türünü seçin."
-
-msgid "Select the action to take when the EnergySaver timer activates."
-msgstr "Enerji zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
-
-msgid "Select the action to take when the SleepTimer activates."
-msgstr "Uyku zamanlayıcısı etkinleştiğinde istenen kapatma türünü seçin."
 
 msgid "Select the type of this timer."
 msgstr "Bu zamanlayıcının türünü seçin."
@@ -22393,7 +22405,7 @@ msgid "Top and Bottom"
 msgstr "Üst ve Alt"
 
 msgid "Total CPU benchmark"
-msgstr "Toplam CPU performans testi"
+msgstr "Toplam CPU kalite testi"
 
 msgid "Total cards:"
 msgstr "Toplam kartlar:"
@@ -24091,6 +24103,9 @@ msgstr "Etkinleştirildiğinde, boş tuner bulunmadığında canlı TV yayının
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Etkinleştirildiğinde bir uyarı görüntülenecek ve kullanıcıya zaman kaydırmayı durdurma veya devam ettirme seçeneği sunulacaktır."
 
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Algılanan her depolama aygıtının otomatik olarak Samba paylaşımı olarak dışa aktarılmasına izin vermek için 'Evet'i seçin."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
 
@@ -25608,6 +25623,12 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Are you sure you want to delete this image?"
+#~ msgstr "Bu yazılımı silmek istediğinizden emin misiniz?"
+
+#~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+#~ msgstr "CEC komutları serisi gönderilirken komutlar arasındaki gecikme. Bazı cihazlar doğru çalışma için bu gecikmeye ihtiyaç duyar, genellikle 50-150 ms arasındadır."
 
 #~ msgid "Force TV input to this receiver"
 #~ msgstr "TV girişini bu alıcıya etkinleştir"
