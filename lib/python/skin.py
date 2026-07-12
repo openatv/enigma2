@@ -189,27 +189,28 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 		resolution = resolutions.get(screenID, (0, 0, 0))
 		print(f"[Skin] Skin resolution is {resolution[0]}x{resolution[1]} and color depth is {resolution[2]} bits.")
 		for element in domSkin:
-			if element.tag == "screen":  # Process all screen elements.
-				name = element.attrib.get("name")
-				if name:  # Without a name, it's useless!
+			match element.tag:
+				case "screen":  # Process all screen elements.
+					name = element.attrib.get("name")
+					if name:  # Without a name, it's useless!
+						scrnID = element.attrib.get("id")
+						if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
+							res = element.attrib.get("resolution", f"{resolution[0]},{resolution[1]}")
+							if res != "0,0":
+								element.attrib["resolution"] = res
+							if config.crash.debugScreens.value:
+								res = [parseInteger(x.strip()) for x in res.split(",")]
+								print(f"[Skin] Loading screen '{name}'{f", resolution {res[0]}x{res[1]}," if len(res) == 2 and res[0] and res[1] else ""} from '{filename}'.  (scope={scope})")
+							domScreens[name] = (element, f"{dirname(filename)}/")
+				case "windowstyle":  # Process the windowstyle element.
 					scrnID = element.attrib.get("id")
-					if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
-						res = element.attrib.get("resolution", f"{resolution[0]},{resolution[1]}")
-						if res != "0,0":
-							element.attrib["resolution"] = res
+					if scrnID is not None:  # Without an scrnID, it is useless!
+						scrnID = parseInteger(scrnID)
+						domStyle = ElementTree(Element("skin"))
+						domStyle.getroot().append(element)
+						windowStyles[scrnID] = (desktop, screenID, domStyle.getroot(), filename, scope)
 						if config.crash.debugScreens.value:
-							res = [parseInteger(x.strip()) for x in res.split(",")]
-							print(f"[Skin] Loading screen '{name}'{f", resolution {res[0]}x{res[1]}," if len(res) == 2 and res[0] and res[1] else ""} from '{filename}'.  (scope={scope})")
-						domScreens[name] = (element, f"{dirname(filename)}/")
-			elif element.tag == "windowstyle":  # Process the windowstyle element.
-				scrnID = element.attrib.get("id")
-				if scrnID is not None:  # Without an scrnID, it is useless!
-					scrnID = parseInteger(scrnID)
-					domStyle = ElementTree(Element("skin"))
-					domStyle.getroot().append(element)
-					windowStyles[scrnID] = (desktop, screenID, domStyle.getroot(), filename, scope)
-					if config.crash.debugScreens.value:
-						print(f"[Skin] This skin has a windowstyle for screen ID='{scrnID}'.")
+							print(f"[Skin] This skin has a windowstyle for screen ID='{scrnID}'.")
 			# Element is not a screen or windowstyle element so no need for it any longer.
 		print(f"[Skin] Loading skin file '{filename}' complete.")
 		if runCallbacks:
@@ -690,11 +691,13 @@ def parseSize(value, scale, object=None, desktop=None):
 
 def parseTabWidth(value, default):
 	if value and value.isdigit():
-		return int(value)
-	options = {
-		"auto": -1
-	}
-	return options.get(value, default)
+		value = int(value)
+	else:
+		options = {
+			"auto": -1
+		}
+		value = options.get(value, default)
+	return value
 
 
 def parseValuePair(value, scale, object=None, desktop=None, size=None):
@@ -1824,30 +1827,31 @@ class SkinContext:
 			(width, height) = size.split(",")
 			width = parseCoordinate(width, self.w, 0, font, self.scale[0])
 			height = parseCoordinate(height, self.h, 0, font, self.scale[1])
-			if pos == "bottom":
-				pos = (self.x, self.y + self.h - height)
-				size = (self.w, height)
-				self.h -= height
-			elif pos == "top":
-				pos = (self.x, self.y)
-				size = (self.w, height)
-				self.h -= height
-				self.y += height
-			elif pos == "left":
-				pos = (self.x, self.y)
-				size = (width, self.h)
-				self.x += width
-				self.w -= width
-			elif pos == "right":
-				pos = (self.x + self.w - width, self.y)
-				size = (width, self.h)
-				self.w -= width
-			else:
-				if pos in variables:
-					pos = variables[pos]
-				size = (width, height)
-				pos = pos.split(",")
-				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
+			match pos:
+				case "bottom":
+					pos = (self.x, self.y + self.h - height)
+					size = (self.w, height)
+					self.h -= height
+				case "top":
+					pos = (self.x, self.y)
+					size = (self.w, height)
+					self.h -= height
+					self.y += height
+				case "left":
+					pos = (self.x, self.y)
+					size = (width, self.h)
+					self.x += width
+					self.w -= width
+				case "right":
+					pos = (self.x + self.w - width, self.y)
+					size = (width, self.h)
+					self.w -= width
+				case _:
+					if pos in variables:
+						pos = variables[pos]
+					size = (width, height)
+					pos = pos.split(",")
+					pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
 		# print(f"[Skin] SkinContext DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
 		return (SizeTuple(pos), SizeTuple(size))
 
@@ -1865,24 +1869,25 @@ class SkinContextStack(SkinContext):
 			(width, height) = size.split(",")
 			width = parseCoordinate(width, self.w, 0, font, self.scale[0])
 			height = parseCoordinate(height, self.h, 0, font, self.scale[1])
-			if pos == "bottom":
-				pos = (self.x, self.y + self.h - height)
-				size = (self.w, height)
-			elif pos == "top":
-				pos = (self.x, self.y)
-				size = (self.w, height)
-			elif pos == "left":
-				pos = (self.x, self.y)
-				size = (width, self.h)
-			elif pos == "right":
-				pos = (self.x + self.w - width, self.y)
-				size = (width, self.h)
-			else:
-				if pos in variables:
-					pos = variables[pos]
-				size = (width, height)
-				pos = pos.split(",")
-				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
+			match pos:
+				case "bottom":
+					pos = (self.x, self.y + self.h - height)
+					size = (self.w, height)
+				case "top":
+					pos = (self.x, self.y)
+					size = (self.w, height)
+				case "left":
+					pos = (self.x, self.y)
+					size = (width, self.h)
+				case "right":
+					pos = (self.x + self.w - width, self.y)
+					size = (width, self.h)
+				case _:
+					if pos in variables:
+						pos = variables[pos]
+					size = (width, height)
+					pos = pos.split(",")
+					pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
 		# print(f"[Skin] SkinContextStack DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
 		return (SizeTuple(pos), SizeTuple(size))
 
@@ -1911,31 +1916,32 @@ class SkinContextVertical(SkinContext):
 			if len(positions) == 2 and positions[1] in ("top", "bottom") and positions[0].isdigit():
 				left += int(int(positions[0]) * self.scale[0][0] / self.scale[0][1])
 				pos = positions[1]
-			if pos == "bottom":
-				if self.bottomCount:
-					self.by -= self.spacing
-				self.bottomCount += 1
-				self.by = self.by - height
-				pos = (left, self.by)
-				size = (width, height)
-				self.h -= (height + self.spacing)
-			elif pos == "top":
-				pos = (left, self.y)
-				size = (width, height)
-				self.h -= (height + self.spacing)
-				self.y += (height + self.spacing)
-			elif pos == "center":
-				originY = self.by - self.bh
-				pos = (left, originY + (self.bh - height) / 2)
-				size = (width, height)
-			else:
-				if pos in variables:
-					pos = variables[pos]
-				size = (width, height)
-				pos = pos.split(",")
-				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
-				self.h -= (height + self.spacing)
-				self.y += (height + self.spacing)
+			match pos:
+				case "bottom":
+					if self.bottomCount:
+						self.by -= self.spacing
+					self.bottomCount += 1
+					self.by = self.by - height
+					pos = (left, self.by)
+					size = (width, height)
+					self.h -= (height + self.spacing)
+				case "top":
+					pos = (left, self.y)
+					size = (width, height)
+					self.h -= (height + self.spacing)
+					self.y += (height + self.spacing)
+				case "center":
+					originY = self.by - self.bh
+					pos = (left, originY + (self.bh - height) / 2)
+					size = (width, height)
+				case _:
+					if pos in variables:
+						pos = variables[pos]
+					size = (width, height)
+					pos = pos.split(",")
+					pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
+					self.h -= (height + self.spacing)
+					self.y += (height + self.spacing)
 		# print(f"[Skin] SkinContextVertical DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
 		return (SizeTuple(pos), SizeTuple(size))
 
@@ -1964,31 +1970,32 @@ class SkinContextHorizontal(SkinContext):
 			if len(positions) == 2 and positions[0] in ("left", "right") and positions[1].isdigit():
 				top += int(int(positions[1]) * self.scale[0][0] / self.scale[0][1])
 				pos = positions[0]
-			if pos == "left":
-				pos = (self.x, top)
-				size = (width, height)
-				self.x += (width + self.spacing)
-				self.w -= (width + self.spacing)
-			elif pos == "right":
-				if self.rightCount:
-					self.rx -= self.spacing
-				self.rightCount += 1
-				self.rx -= width
-				pos = (self.rx, top)
-				size = (width, height)
-				self.w -= (width + self.spacing)
-			elif pos == "center":
-				originX = self.rx - self.rw
-				pos = (originX + (self.rw - width) / 2, top)
-				size = (width, height)
-			else:
-				if pos in variables:
-					pos = variables[pos]
-				size = (width, height)
-				pos = pos.split(",")
-				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
-				self.w -= (width + self.spacing)
-				self.x += (width + self.spacing)
+			match pos:
+				case "left":
+					pos = (self.x, top)
+					size = (width, height)
+					self.x += (width + self.spacing)
+					self.w -= (width + self.spacing)
+				case "right":
+					if self.rightCount:
+						self.rx -= self.spacing
+					self.rightCount += 1
+					self.rx -= width
+					pos = (self.rx, top)
+					size = (width, height)
+					self.w -= (width + self.spacing)
+				case "center":
+					originX = self.rx - self.rw
+					pos = (originX + (self.rw - width) / 2, top)
+					size = (width, height)
+				case _:
+					if pos in variables:
+						pos = variables[pos]
+					size = (width, height)
+					pos = pos.split(",")
+					pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font, self.scale[0]), self.y + parseCoordinate(pos[1], self.h, size[1], font, self.scale[1]))
+					self.w -= (width + self.spacing)
+					self.x += (width + self.spacing)
 		# print(f"[Skin] SkinContextHorizontal DEBUG: Scale={self.scale}, Pos={SizeTuple(pos)}, Size={SizeTuple(size)}.")
 		return (SizeTuple(pos), SizeTuple(size))
 
@@ -2108,7 +2115,6 @@ class TemplateParser:
 						skinAttributes.append((attrib, value))
 					case _:
 						skinAttributes.append((attrib, value))
-
 		if conditional is not None:
 			try:
 				if not eval(conditional):
@@ -2116,7 +2122,6 @@ class TemplateParser:
 			except Exception as err:
 				skinError(f"collectAttributes 'conditional' '{conditional}' resulted in error '{err}'")
 				return []
-
 		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
 		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
@@ -2132,18 +2137,17 @@ class TemplateParser:
 		attributes = {"type": node.tag}
 		for attrib, value in skinAttributes:
 			attributes[attrib] = value
-
 		flags = 0
 		if attributes["type"] == "text":
 			attributesFlags = attributes.get("flags", "")
 			for attributesflag in attributesFlags.split(","):
-				if attributesflag == "blend":
-					flags += 256  # RT_BLEND
-				elif attributesflag == "underline":
-					flags += 512  # RT_UNDERLINE
-				elif attributesflag == "scroll":
-					flags += 1024  # RT_SCROLL
-
+				match attributesflag:
+					case "blend":
+						flags += 256  # RT_BLEND
+					case "underline":
+						flags += 512  # RT_UNDERLINE
+					case "scroll":
+						flags += 1024  # RT_SCROLL
 		attributes["_flags"] = horizontalAlignments.get(attributes.get("horizontalAlignment"), 1) + verticalAlignments.get(attributes.get("verticalAlignment"), 0) + wraps.get(attributes.get("wrap"), 0) + flags
 		if attributes["type"] == "pixmap":
 			attributes["pixmapType"] = pixmapTypes.get(attributes.get("alpha", ""), eListboxPythonMultiContent.TYPE_PIXMAP)
@@ -2485,12 +2489,13 @@ def readSkin(screen, skin, names, desktop):
 			code = compile(codeText, "skin applet", "exec")
 		except Exception as err:
 			raise SkinError(f"Applet failed to compile: '{str(err)}'")
-		if widgetType == "onLayoutFinish":
-			screen.onLayoutFinish.append(code)
-		elif widgetType == "onContentChanged":
-			screen.onContentChanged.append(code)
-		else:
-			raise SkinError(f"Applet type '{widgetType}' is unknown")
+		match widgetType:
+			case "onLayoutFinish":
+				screen.onLayoutFinish.append(code)
+			case "onContentChanged":
+				screen.onContentChanged.append(code)
+			case _:
+				raise SkinError(f"Applet type '{widgetType}' is unknown")
 
 	def processLabel(widget, context, stack=None):
 		item = additionalWidget()
