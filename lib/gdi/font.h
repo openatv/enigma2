@@ -105,6 +105,7 @@ public:
 #define GS_LF 128
 #define GS_FIXED 256
 #define GS_MAYBREAK 512
+#define GS_COLORRESET 1024
 #define GS_CANBREAK (GS_ISSPACE | GS_SOFTHYPHEN | GS_HYPHEN)
 
 struct pGlyph
