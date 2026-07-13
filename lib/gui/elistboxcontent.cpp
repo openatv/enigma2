@@ -1718,6 +1718,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	bool marked = false;
 	gRGB defaultForeColor;
 	gRGB defaultBackColor;
+	int rightShrink = 0;
 
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
@@ -1731,6 +1732,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		orientation = m_listbox->getOrientation();
 		itemZoomed = local_style->m_selection_zoom > 1.0;
 		itemZoomContent = itemZoomed && local_style->is_set.zoom_content;
+		if (local_style->is_set.shrink)
+			rightShrink = m_listbox->getScrollbarListOffset();
 	}
 
 	ePoint offs = offset;
@@ -1965,6 +1968,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int cornerRadius = pCornerRadius ? PyLong_AsLong(pCornerRadius) : 0;
 				int cornerEdges = pCornerEdges ? PyLong_AsLong(pCornerEdges) : 15;
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2141,6 +2147,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					if (orientation & 1) // vertical
 						width -= m_listbox->getScrollbarListOffset();
 				}
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				int flags = PyLong_AsLong(pflags);
 				int fnt = PyLong_AsLong(pfnt);
@@ -2446,6 +2455,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2687,6 +2699,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int direction = PyLong_AsLong(pdirection);
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2824,6 +2839,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					ePyObject pPadding = PyTuple_GET_ITEM(item, 14);
 					paddingBottom = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
 				}
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				if (selected && itemZoomContent)
 				{
