@@ -11,7 +11,7 @@ global_session = None
 
 
 def execute(option):
-	if option is None:
+	if not option:
 		if parentScreen:
 			parentScreen.close()
 		return
@@ -23,7 +23,7 @@ def execute(option):
 
 
 def mountpoint_choosen(option):
-	if option is None:
+	if not option:
 		if parentScreen:
 			parentScreen.close()
 		return
