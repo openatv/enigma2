@@ -417,6 +417,8 @@ def runScreenTest():
 	CiHandler.setSession(session)
 	from Screens.SwapManager import SwapAutostart
 	SwapAutostart()
+	enigma.eProfileWrite("Processing Screen")
+	processing = Processing(session)  # noqa F841
 	enigma.eProfileWrite("Wizards")
 	screensToRun = []
 	RestoreSettings = None
@@ -449,8 +451,6 @@ def runScreenTest():
 	vol = VolumeControl(session)  # noqa F841
 	enigma.eProfileWrite("VolumeAdjust")
 	vol = VolumeAdjust(session)  # noqa F841
-	enigma.eProfileWrite("Processing Screen")
-	processing = Processing(session)  # noqa F841
 	enigma.eProfileWrite("Global MessageBox Screen")
 	modalMessagebox = ModalMessageBox(session)  # noqa F841
 	toast = Toast(session)  # noqa F841
