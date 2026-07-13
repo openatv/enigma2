@@ -128,7 +128,7 @@ public:
 private:
 	unsigned char m_pkt[192];
 	int m_pktptr;
-	off_t m_pkt_offset;
+	off_t m_pkt_offset = 0;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *pkt) const;
 	void addAccessPoint(off_t offset, pts_t pts, bool streamtime = false);
@@ -137,29 +137,29 @@ private:
 	void resetHEVCTail();
 	void scanHEVCNalUnits(const unsigned char *data, const unsigned char *end, off_t data_offset, off_t packet_offset, pts_t pts, int ptsvalid);
 	int m_pid;
-	int m_streamtype;
-	int m_need_next_packet;
-	int m_skip;
-	int m_last_pts_valid; /* m_last_pts contains a valid value */
-	pts_t m_last_pts; /* last pts value, either from mpeg stream, or measured in streamtime */
+	int m_streamtype = -1;
+	int m_need_next_packet = 0;
+	int m_skip = 0;
+	int m_last_pts_valid = 0; /* m_last_pts contains a valid value */
+	pts_t m_last_pts = 0; /* last pts value, either from mpeg stream, or measured in streamtime */
 	pts_t m_first_pts;
 	int m_packetsize;
 	int m_header_offset;
 	timespec m_last_access_point; /* timespec at which the previous access point was reported */
-	bool m_enable_accesspoints; /* set to false to prevent saving .ap files (e.g. timeshift) */
-	bool m_pts_found; /* 'real' mpeg pts has been found, no longer measuring streamtime */
-	bool m_has_accesspoints;
-	bool m_hevc_current_pts_valid;
-	pts_t m_hevc_current_pts;
-	bool m_hevc_last_ap_pts_valid;
-	pts_t m_hevc_last_ap_pts;
+	bool m_enable_accesspoints = true; /* set to false to prevent saving .ap files (e.g. timeshift) */
+	bool m_pts_found = false; /* 'real' mpeg pts has been found, no longer measuring streamtime */
+	bool m_has_accesspoints = false;
+	bool m_hevc_current_pts_valid = false;
+	pts_t m_hevc_current_pts = 0;
+	bool m_hevc_last_ap_pts_valid = false;
+	pts_t m_hevc_last_ap_pts = 0;
 	unsigned char m_hevc_tail[7];
 	off_t m_hevc_tail_offsets[7];
 	off_t m_hevc_tail_packet_offsets[7];
-	int m_hevc_tail_size;
-	int m_last_cc;
-	bool m_last_cc_valid;
-	unsigned int m_cc_errors;
+	int m_hevc_tail_size = 0;
+	int m_last_cc = 0;
+	bool m_last_cc_valid = false;
+	unsigned int m_cc_errors = 0;
 };
 
 #endif

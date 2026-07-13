@@ -24,7 +24,7 @@ eMPEGStreamInformation::eMPEGStreamInformation():
 	m_current_entry(-1),
 	m_structure_cache_entries(0),
 	m_structure_file_entries(0),
-	m_structure_cache(NULL),
+	m_structure_cache(nullptr),
 	m_streamtime_accesspoints(false)
 {
 }
@@ -38,12 +38,12 @@ void eMPEGStreamInformation::close()
 {
 	if (m_structure_read_fd >= 0)
 	{
-		if (m_structure_cache != NULL && m_structure_cache != MAP_FAILED)
+		if (m_structure_cache != nullptr && m_structure_cache != MAP_FAILED)
 		{
 			//eDebug("[eMPEGStreamInformation] {%d} close - unmap %p size %d", gettid(), m_structure_cache, m_structure_cache_entries * 16);
 			::munmap(m_structure_cache, m_structure_cache_entries * 16);
 		}
-		m_structure_cache = NULL;
+		m_structure_cache = nullptr;
 		::close(m_structure_read_fd);
 		m_structure_cache_entries = 0;
 		m_cache_index = -1;
@@ -397,12 +397,12 @@ int eMPEGStreamInformation::moveCache(int index)
 int eMPEGStreamInformation::loadCache(int index)
 {
 	//eDebug("[eMPEGStreamInformation::loadCache] index=%d", index);
-	if (m_structure_cache != NULL && m_structure_cache != MAP_FAILED)
+	if (m_structure_cache != nullptr && m_structure_cache != MAP_FAILED)
 	{
 		//eDebug("[eMPEGStreamInformation] munmap %p size %d index %d", m_structure_cache, m_structure_cache_entries * entry_size, m_cache_index);
 		::munmap(m_structure_cache, m_structure_cache_entries * entry_size);
 	}
-	m_structure_cache = NULL;
+	m_structure_cache = nullptr;
 	m_structure_cache_entries = 0;
 	m_cache_index = -1;
 
@@ -428,11 +428,11 @@ int eMPEGStreamInformation::loadCache(int index)
 		}
 	}
 	//eDebug("[eMPEGStreamInformation] mmap offset=%lld size %d", where, bytes);
-	m_structure_cache = (unsigned long long*) ::mmap(NULL, bytes, PROT_READ, MAP_SHARED, m_structure_read_fd, where);
+	m_structure_cache = (unsigned long long*) ::mmap(nullptr, bytes, PROT_READ, MAP_SHARED, m_structure_read_fd, where);
 	if (m_structure_cache == MAP_FAILED)
 	{
 		eDebug("[eMPEGStreamInformation] failed to mmap cache: %m");
-		m_structure_cache = NULL;
+		m_structure_cache = nullptr;
 		m_cache_index = -1;
 		m_structure_cache_entries = 0;
 		return -1;
@@ -971,26 +971,9 @@ static inline off_t hevcPacketOffsetAt(int idx, int prepended_tail,
 
 eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_pktptr(0),
-	m_pkt_offset(0),
 	m_pid(-1),
-	m_streamtype(-1),
-	m_need_next_packet(0),
-	m_skip(0),
-	m_last_pts_valid(0),
-	m_last_pts(0),
 	m_packetsize(packetsize),
-	m_header_offset(packetsize - 188),
-	m_enable_accesspoints(true),
-	m_pts_found(false),
-	m_has_accesspoints(false),
-	m_last_cc(0),
-	m_last_cc_valid(false),
-	m_cc_errors(0),
-	m_hevc_current_pts_valid(false),
-	m_hevc_current_pts(0),
-	m_hevc_last_ap_pts_valid(false),
-	m_hevc_last_ap_pts(0),
-	m_hevc_tail_size(0)
+	m_header_offset(packetsize - 188)
 {
 }
 

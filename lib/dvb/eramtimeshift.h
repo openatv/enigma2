@@ -103,11 +103,11 @@ private:
 	std::shared_ptr<eRamRingBuffer> m_buf;
 
 	mutable pthread_mutex_t m_offset_mutex;
-	bool m_lapped;
-	off_t m_lapped_offset;
-	off_t m_start_offset; // -1 = live edge
-	off_t m_read_offset;
-	bool m_has_read_offset;
+	bool m_lapped = false;
+	off_t m_lapped_offset = 0;
+	off_t m_start_offset = -1; // -1 = live edge
+	off_t m_read_offset = 0;
+	bool m_has_read_offset = false;
 };
 
 // eRamRecorder

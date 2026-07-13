@@ -142,7 +142,7 @@ off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const {
 // ------------------------------------------------------------------
 DEFINE_REF(eRamTsSource);
 
-eRamTsSource::eRamTsSource(std::shared_ptr<eRamRingBuffer> buf) : m_buf(buf), m_lapped(false), m_lapped_offset(0), m_start_offset(-1), m_read_offset(0), m_has_read_offset(false) {
+eRamTsSource::eRamTsSource(std::shared_ptr<eRamRingBuffer> buf) : m_buf(buf) {
 	pthread_mutex_init(&m_offset_mutex, nullptr);
 }
 

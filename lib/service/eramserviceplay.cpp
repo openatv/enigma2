@@ -155,9 +155,8 @@ void eRamServicePlay::onRecoveryPaused() {
 		return;
 
 	pts_t decoder_pts = 0;
-	if (m_decoder->getPTS(0, decoder_pts) != 0)
-		if (m_decoder->getPTS(1, decoder_pts) != 0)
-			return;
+	if ((m_decoder->getPTS(0, decoder_pts) != 0) && (m_decoder->getPTS(1, decoder_pts) != 0))
+		return;
 
 	decoder_pts &= 0x1FFFFFFFF;
 	m_frozen_play_position = pts_delta(decoder_pts, first_pts);
