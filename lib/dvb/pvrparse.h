@@ -128,10 +128,14 @@ public:
 private:
 	unsigned char m_pkt[192];
 	int m_pktptr;
+	off_t m_pkt_offset;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *pkt) const;
 	void addAccessPoint(off_t offset, pts_t pts, bool streamtime = false);
 	void addAccessPoint(off_t offset, pts_t pts, timespec &now, bool streamtime = false);
+	void resetHEVCParserState();
+	void resetHEVCTail();
+	void scanHEVCNalUnits(const unsigned char *data, const unsigned char *end, off_t data_offset, off_t packet_offset, pts_t pts, int ptsvalid);
 	int m_pid;
 	int m_streamtype;
 	int m_need_next_packet;
@@ -145,6 +149,17 @@ private:
 	bool m_enable_accesspoints; /* set to false to prevent saving .ap files (e.g. timeshift) */
 	bool m_pts_found; /* 'real' mpeg pts has been found, no longer measuring streamtime */
 	bool m_has_accesspoints;
+	bool m_hevc_current_pts_valid;
+	pts_t m_hevc_current_pts;
+	bool m_hevc_last_ap_pts_valid;
+	pts_t m_hevc_last_ap_pts;
+	unsigned char m_hevc_tail[7];
+	off_t m_hevc_tail_offsets[7];
+	off_t m_hevc_tail_packet_offsets[7];
+	int m_hevc_tail_size;
+	int m_last_cc;
+	bool m_last_cc_valid;
+	unsigned int m_cc_errors;
 };
 
 #endif

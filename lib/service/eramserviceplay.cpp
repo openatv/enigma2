@@ -13,8 +13,8 @@ eRamServicePlay::eRamServicePlay(const eServiceReference& ref, eDVBService* serv
 	m_ram_recorder = nullptr;
 	m_frozen_play_position = 0;
 
-	// At least 32 MB or delay_seconds * 2.5 MB (~20 Mbit/s average bitrate).
-	int cap_mb = std::max(32, (int)(delay_seconds * 2.5));
+	// At least 32 MB or delay_seconds * 3.5 MB (~20 Mbit/s average bitrate).
+	int cap_mb = std::max(32, (int)(delay_seconds * 3.5));
 	m_capacity_bytes = (size_t)cap_mb * 1024 * 1024;
 	eDebug("[eRamServicePlay] cap=%dMB", cap_mb);
 }
@@ -53,9 +53,8 @@ RESULT eRamServicePlay::startTimeshift() {
 	recorder->replaceThread(ram_rec);
 	m_record->setTargetFD(-1);
 
-	// Access points remain enabled so eRamRecorder can tag ring-buffer blocks
-	// with I-frame flags, allowing findNearestAccessPoint() to snap seeks to
-	// clean boundaries. No .ap file is written (m_structure_write_fd stays -1).
+	// Keep parser metadata enabled so RAM timeshift exposes the same live .sc
+	// timing hints that disk timeshift provides to eDVBTSTools.
 
 	m_record->connectEvent(sigc::mem_fun(*this, &eRamServicePlay::recordEvent), m_con_record_event);
 
@@ -69,9 +68,10 @@ RESULT eRamServicePlay::startTimeshift() {
 		}
 	}
 
-	// Use /tmp/ram_timeshift as the base path; write an empty .ap sentinel
-	// so tstools doesn't log ENOENT warnings.
+	// Use /tmp/ram_timeshift as the base path; the empty .ap sentinel keeps
+	// streaminfo loading alive while .sc is updated by the recorder.
 	m_timeshift_file = "/tmp/ram_timeshift";
+	m_record->setTargetFilename(m_timeshift_file);
 	CFile::writeStr("/tmp/ram_timeshift.ap", "");
 	m_timeshift_enabled = 1;
 	updateTimeshiftPids();
@@ -87,6 +87,7 @@ RESULT eRamServicePlay::startTimeshift() {
 		m_record = 0;
 		m_ram_ring.reset();
 		::unlink("/tmp/ram_timeshift.ap");
+		::unlink("/tmp/ram_timeshift.sc");
 		m_timeshift_file.clear();
 		m_timeshift_enabled = 0;
 		return sret;
@@ -142,6 +143,26 @@ void eRamServicePlay::checkLapAndSeek() {
 		pvr_channel->forceSourcePosition(safe);
 }
 
+void eRamServicePlay::onRecoveryPaused() {
+	if (!m_timeshift_active || !m_ram_recorder || !m_decoder || !m_record)
+		return;
+
+	if (eDVBServicePlay::getPlayPosition(m_frozen_play_position) == 0)
+		return;
+
+	pts_t first_pts = 0;
+	if (m_record->getFirstPTS(first_pts) != 0)
+		return;
+
+	pts_t decoder_pts = 0;
+	if (m_decoder->getPTS(0, decoder_pts) != 0)
+		if (m_decoder->getPTS(1, decoder_pts) != 0)
+			return;
+
+	decoder_pts &= 0x1FFFFFFFF;
+	m_frozen_play_position = pts_delta(decoder_pts, first_pts);
+}
+
 void eRamServicePlay::recordEvent(int event) {
 	if (event == iDVBTSRecorder::eventStreamCorrupt) {
 		if (!m_stream_corruption_detected) {
@@ -195,6 +216,7 @@ RESULT eRamServicePlay::stopTimeshift(bool swToLive) {
 	CFile::writeStr("/proc/stb/lcd/symbol_record", "0");
 
 	::unlink("/tmp/ram_timeshift.ap");
+	::unlink("/tmp/ram_timeshift.sc");
 	m_timeshift_file.clear();
 
 	if (swToLive)
@@ -268,6 +290,9 @@ RESULT eRamServicePlay::getPlayPosition(pts_t& pos) {
 		pos = m_frozen_play_position;
 		return 0;
 	}
+
+	if (eDVBServicePlay::getPlayPosition(pos) == 0)
+		return 0;
 
 	pts_t first_pts = 0;
 	if (m_record->getFirstPTS(first_pts) != 0)

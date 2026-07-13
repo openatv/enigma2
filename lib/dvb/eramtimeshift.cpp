@@ -142,7 +142,7 @@ off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const {
 // ------------------------------------------------------------------
 DEFINE_REF(eRamTsSource);
 
-eRamTsSource::eRamTsSource(std::shared_ptr<eRamRingBuffer> buf) : m_buf(buf), m_lapped(false), m_lapped_offset(0), m_start_offset(-1) {
+eRamTsSource::eRamTsSource(std::shared_ptr<eRamRingBuffer> buf) : m_buf(buf), m_lapped(false), m_lapped_offset(0), m_start_offset(-1), m_read_offset(0), m_has_read_offset(false) {
 	pthread_mutex_init(&m_offset_mutex, nullptr);
 }
 
@@ -185,6 +185,12 @@ ssize_t eRamTsSource::read(off_t offset, void* buf, size_t count) {
 		}
 		return 0; // at write edge — no new data yet, retry
 	}
+	if (rc > 0) {
+		pthread_mutex_lock(&m_offset_mutex);
+		m_read_offset = offset + rc;
+		m_has_read_offset = true;
+		pthread_mutex_unlock(&m_offset_mutex);
+	}
 	return (ssize_t)rc;
 }
 
@@ -208,6 +214,8 @@ off_t eRamTsSource::offset() {
 	off_t o = m_start_offset;
 	if (o >= 0)
 		m_start_offset = -1;
+	else if (m_has_read_offset)
+		o = m_read_offset;
 	pthread_mutex_unlock(&m_offset_mutex);
 	if (o >= 0)
 		return o;
@@ -217,6 +225,11 @@ off_t eRamTsSource::offset() {
 void eRamTsSource::setStartOffset(off_t o) {
 	pthread_mutex_lock(&m_offset_mutex);
 	m_start_offset = o;
+	if (o >= 0)
+	{
+		m_read_offset = o;
+		m_has_read_offset = true;
+	}
 	pthread_mutex_unlock(&m_offset_mutex);
 }
 

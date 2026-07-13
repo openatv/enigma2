@@ -91,7 +91,7 @@ public:
 
 	// Set the position the push thread will start reading from.
 	// Called before the thread starts so offset() returns this value
-	// instead of the live write position. -1 means "start from live".
+	// instead of the last read position. -1 means "start from live".
 	void setStartOffset(off_t o);
 
 	// Returns true (once) when the ring has lapped the read position.
@@ -106,6 +106,8 @@ private:
 	bool m_lapped;
 	off_t m_lapped_offset;
 	off_t m_start_offset; // -1 = live edge
+	off_t m_read_offset;
+	bool m_has_read_offset;
 };
 
 // eRamRecorder

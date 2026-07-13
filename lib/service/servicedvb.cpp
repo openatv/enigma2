@@ -1290,15 +1290,34 @@ void eDVBServicePlay::serviceEvent(int event)
 		m_event((iPlayableService*)this, evTuneFailed);
 		break;
 	}
+	case eDVBServicePMTHandler::eventSignalLost:
+	{
+		// Signal loss is an early recovery trigger for timeshift only.
+		// Non-timeshift services keep the old tune-failed workflow.
+		if (m_stream_corruption_detected)
+			break;
+
+		if (m_timeshift_enabled)
+		{
+			eTrace("[PreciseRecovery] Signal lost during timeshift. Initiating recovery.");
+			m_stream_corruption_detected = true;
+			handleEofRecovery();
+		}
+		break;
+	}
 	case eDVBServicePMTHandler::eventTuneFailed:
 	case eDVBServicePMTHandler::eventNoPAT:
 	case eDVBServicePMTHandler::eventNoPMT:
 	{
+		// Do not re-trigger if a recovery is already in progress.
+		if (m_stream_corruption_detected)
+			break;
+
 		bool recovery_enabled = true;
 		// Check if timeshift is active and we are not already in a recovery state
 		if (recovery_enabled && m_timeshift_enabled && !m_stream_corruption_detected)
 		{
-			eTrace("[PreciseRecovery] Tune Failed/Signal Loss during timeshift. Initiating recovery.");
+			eTrace("[PreciseRecovery] Tune failed/PAT/PMT loss during timeshift. Initiating recovery.");
 			m_stream_corruption_detected = true;
 			handleEofRecovery();
 		}
@@ -1314,6 +1333,11 @@ void eDVBServicePlay::serviceEvent(int event)
 		eDebug("[eDVBServicePlay] eventNewProgramInfo timeshift_enabled=%d timeshift_active=%d", m_timeshift_enabled, m_timeshift_active);
 		if (m_timeshift_enabled)
 			updateTimeshiftPids();
+
+		// Re-tuned during an active recovery: let the recovery state machine keep control
+		// and resume playback at the preserved delay. Do not resync the decoder here.
+		if (m_stream_corruption_detected)
+			break;
 
 		if (m_csa_session && !m_csa_session->isEcmAnalyzed())
 		{
@@ -1414,6 +1438,7 @@ void eDVBServicePlay::handleEofRecovery() {
 	if (m_decoder) {
 		m_decoder->pause();
 		m_is_paused = 1;
+		onRecoveryPaused();
 	}
 
 	if (m_record) {
@@ -1849,7 +1874,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		if (m_cue)
 		{
 			long long _skipmode = skipmode;
-			if (!m_timeshift_active && (m_current_video_pid_type == eDVBServicePMTHandler::videoStream::vtH265_HEVC))
+			if ((m_current_video_pid_type == eDVBServicePMTHandler::videoStream::vtH265_HEVC))
 			{
 				if (ratio < 0)
 					_skipmode = skipmode * 3;

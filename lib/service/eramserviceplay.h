@@ -46,7 +46,8 @@ protected:
 
 private:
 	void checkLapAndSeek(); // watchdog: detect ring-buffer lap and recover
-	void recordEvent(int event) override; // freeze position on stream corruption
+	void recordEvent(int event) override; // keep stream-corrupt freeze timing unchanged
+	void onRecoveryPaused() override; // freeze position after playback pause becomes effective
 
 	// Safe PTS delta with 33-bit wrap-around (DVB/MPEG standard).
 	static inline pts_t pts_delta(pts_t newer, pts_t older) { return (newer - older) & ((1LL << 33) - 1); }
