@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 09:48+0000\n"
-"PO-Revision-Date: 2026-07-03 02:01+0000\n"
+"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"PO-Revision-Date: 2026-07-13 14:11+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -767,10 +767,6 @@ msgstr[1] "%d + %d + %d Minute"
 msgstr[2] "%d + %d + %d Minuta"
 
 #, python-format
-msgid "%d DMIPS per core"
-msgstr "%d DMIPS po jezgri"
-
-#, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS sa %d jezgrama"
 
@@ -805,6 +801,10 @@ msgid_plural "%d Hours"
 msgstr[0] "%d Sat"
 msgstr[1] "%d Sati"
 msgstr[2] "%d Sati"
+
+#, python-format
+msgid "%d Hz"
+msgstr "%d Hz"
 
 #, python-format
 msgid "%d MB"
@@ -1184,6 +1184,10 @@ msgstr "%s - Podešavanje"
 #, python-format
 msgid "%s Browser Manage Actions"
 msgstr "%s Radnje Upravljanja Pregledačem"
+
+#, python-format
+msgid "%s DMIPS per core"
+msgstr "%s DMIPS po jezgri"
 
 #, python-format
 msgid "%s GHz"
@@ -1713,6 +1717,9 @@ msgstr "AC3 Plus transkodiranje"
 
 msgid "AC3plus transcoding"
 msgstr "AC3plus transkodiranje"
+
+msgid "AC4"
+msgstr "AC4"
 
 msgid "AFL"
 msgstr "AFL"
@@ -3086,6 +3093,9 @@ msgstr "Oznaka Informacije"
 msgid "Benchmark information for %s %s"
 msgstr "Oznaka informacije za %s %s"
 
+msgid "Benchmarks"
+msgstr "Odrednica"
+
 msgid "Bengali"
 msgstr "Bengali"
 
@@ -3496,6 +3506,9 @@ msgstr "CPU oznaka"
 msgid "CPU brand"
 msgstr "CPU marka"
 
+msgid "CPU memory clock"
+msgstr "CPU memorija sata"
+
 msgid "CPU priority for scripts"
 msgstr "Prioritet CPU za skripte"
 
@@ -3531,6 +3544,9 @@ msgstr "Izračunajte hashe/kontrolne zbrojeve datoteka"
 
 msgid "Calculating benchmark..."
 msgstr "Izračun referentne vrednosti..."
+
+msgid "Calculating clock..."
+msgstr "Računanje sata..."
 
 msgid "Calculating rating..."
 msgstr "Izračunavanje ocjene..."
@@ -3947,6 +3963,9 @@ msgstr "Odabir Kanala Zaslona"
 
 msgid "Channel Selection Settings"
 msgstr "Postavke Odabira Kanala"
+
+msgid "Channel Selection picon set"
+msgstr "Postavke pikona za odabir kanala"
 
 msgid "Channel buttons"
 msgstr "Dugmad Kanala"
@@ -4485,9 +4504,6 @@ msgstr "Kompresuj tar datoteku korjenskog fajla sustava. (Ovo zahtjeva najviše 
 
 msgid "Compressed bits/pixel"
 msgstr "Komprimovani bitovi/pikseli"
-
-msgid "Config"
-msgstr "Konfiguracija"
 
 #, python-format
 msgid "Config file %s saved."
@@ -8369,6 +8385,9 @@ msgstr "Brzi DiSEqC"
 msgid "Fast Scan"
 msgstr "Brzo Skeniranje"
 
+msgid "Fast Skin Reload"
+msgstr "Brzo Učitavanje Skinova"
+
 msgid "Fast epoch"
 msgstr "Brza epoha"
 
@@ -8844,6 +8863,9 @@ msgstr "Prednji USB"
 
 msgid "Front USB 3.0"
 msgstr "Prednji USB 3.0"
+
+msgid "Front panel/Display picon set"
+msgstr "Postavke pikona za prednju ploču/zaslon"
 
 msgid "Front processor version"
 msgstr "Verzija prednjeg procesora"
@@ -9518,9 +9540,6 @@ msgstr "Hops:"
 msgid "Horizontal"
 msgstr "Vodoravno"
 
-msgid "Horizontal icons"
-msgstr "Vodoravne ikone"
-
 msgid "Horizontal menu"
 msgstr "Vodoravni menu"
 
@@ -10055,6 +10074,9 @@ msgstr "Brzina postepenog isčezavanja Info Trake"
 
 msgid "InfoBar front end data source"
 msgstr "Izvor podataka na naslovnoj Info Traki"
+
+msgid "InfoBar picon set"
+msgstr "Postavke pikona info trake"
 
 msgid "Information"
 msgstr "Informacije"
@@ -10756,6 +10778,9 @@ msgstr "Lijevi, prednji USB"
 msgid "Left, wrapped"
 msgstr "Lijevo, zamotano"
 
+msgid "Legacy"
+msgstr "Naslijeđeno"
+
 msgid "Legacy mode"
 msgstr "Nasleđeni režim"
 
@@ -10923,6 +10948,9 @@ msgstr "Učitaj nepovezane korisničke bukete"
 
 msgid "Loading information, please wait..."
 msgstr "Učitavanje informacija, molimo pričekajte..."
+
+msgid "Loading skin..."
+msgstr "Učitavanje skina..."
 
 msgid "Loading slot information, please wait..."
 msgstr "Učitavanje informacija o utoru, molimo pričekajte..."
@@ -11732,8 +11760,14 @@ msgstr "Posao premještanja nije uspio!"
 msgid "Move job queued."
 msgstr "Premještanje posla u redu čekanja."
 
+msgid "Move left a item"
+msgstr "Pomakni stavku lijevo"
+
 msgid "Move only highlighted file"
 msgstr "Premještanje samo istaknute datoteke"
+
+msgid "Move right a item"
+msgstr "Pomakni stavku desno"
 
 msgid "Move the current bookmark down"
 msgstr "Premještanje trenutne oznake prema dolje"
@@ -11784,6 +11818,9 @@ msgstr "Premještanje tekstnog pokazivača na zadnji znak"
 msgid "Move these directories/files?"
 msgstr "Premjestiti ove direktorije/datoteke?"
 
+msgid "Move to first item / screen"
+msgstr "Idi na prvu stavku / zaslon"
+
 msgid "Move to first line"
 msgstr "Premještanje na prvi redak"
 
@@ -11795,6 +11832,9 @@ msgstr "Premjestite se na prvi redak / zaslon na ploči"
 
 msgid "Move to home of list"
 msgstr "Premjesti na početnu stranicu popisa"
+
+msgid "Move to last item / screen"
+msgstr "Idi na posljednju stavku / zaslon"
 
 msgid "Move to last line"
 msgstr "Premještanje na zadnji redak / zaslon"
@@ -13190,6 +13230,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paket"
 
+msgid "OpenWebif picon set"
+msgstr "Postavljanje pikona u OpenWebif"
+
 msgid "Opera"
 msgstr "Opera"
 
@@ -13528,6 +13571,9 @@ msgstr "Putanja"
 msgid "Path '%s' missing!"
 msgstr "Putanja '%s' nedostaje!"
 
+msgid "Path to picon set %s."
+msgstr "Putanja za pikon postavke %s."
+
 msgid "Pause"
 msgstr "Pauza"
 
@@ -13628,11 +13674,23 @@ msgstr "Pikon"
 msgid "Picon Packages"
 msgstr "Pikon Paketi"
 
+msgid "Picon Settings"
+msgstr "Pikon Postavke"
+
 msgid "Picon and service name"
 msgstr "Pikon i ime servisa"
 
 msgid "Picon install location"
 msgstr "Lokacija instalacije pikona"
+
+msgid "Picon mode"
+msgstr "Pikon način"
+
+msgid "Picon path %s"
+msgstr "Pikon putanja %s"
+
+msgid "Picon set mode"
+msgstr "Način postavke pikona"
 
 msgid "Picon width"
 msgstr "Pikon širina"
@@ -15067,6 +15125,9 @@ msgstr "Ponovo učitaj sve servise sa diska"
 
 msgid "Reload blacklists"
 msgstr "Ponovno učitavanje crnih lista"
+
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr "Ponovo učitaj skin bez ponovnog pokretanja sučelja prilikom promjene skina."
 
 msgid "Reloading EPG Cache..."
 msgstr "Ponovno učitavanje EPG keša..."
@@ -16535,6 +16596,9 @@ msgstr "Odaberi Lokaciju"
 msgid "Select Media Location"
 msgstr "Odaberi Lokaciju Medija"
 
+msgid "Select Picon Directory"
+msgstr "Odaberi Pikon Direktorij"
+
 msgid "Select Playback Location"
 msgstr "Odaberi Lokaciju za Reprodukciju"
 
@@ -16841,6 +16905,18 @@ msgstr "Odaberite DNS poslužitelj(e) koji će se koristiti za pretraživanje im
 msgid "Select the No / False response"
 msgstr "Odaberi Ne / Lažni odgovor"
 
+msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgstr "Odaberite putanju Pikon-a, s gore navedenog, koja će se koristiti za pikone pri odabiru kanala."
+
+msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgstr "Odaberite Pikon putanju, od gore, koja će se koristiti za Pikon ikone na prednjoj ploči/Zaslonu."
+
+msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgstr "Odaberite putanju Pikon-a, s gore navedenog, koja će se koristiti za Info Traku pikona."
+
+msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgstr "Odaberi Pikon putanju, s gore navedenog, koja će se koristiti za OpenWebif pikona."
+
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr "Odaberi Softcam za '%s'"
@@ -17063,6 +17139,9 @@ msgstr "Odaberi SCR uređaj. Ako proizvođač nije naveden, postavite 'SCR' na '
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Odaberi metod vraćanja rezolucije zaslona i buffera frejma prilikom napuštanja teleteksta."
+
+msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+msgstr "Odaberi način za odabir pikon puta i rezoluciju. 'Naslijeđe' predstavlja prethodni način rada."
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Odaberi režim pristupa za automatski izvezene samba akcije."
@@ -17304,6 +17383,9 @@ msgstr "Odaberite hoće li se zvučni zapisi AC3 Plus transkodirati u AC3."
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Odaberite hoće li se AC3 zvučni zapisi smanjivati na stereo."
+
+msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
+msgstr "Odaberite hoće li se AC4 (Dolby Atmos) audio zapisi prosljeđivati AVR-u, miješati u stereo ili automatski usmjeravati ovisno o mogućnostima HDMI izlaza."
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Odaberite hoće li se zvučni zapisi DTS kanala miksati ili transkodirati."
@@ -17635,6 +17717,10 @@ msgstr "Postavi MIN CPU frekvenciju za jezgre 0 i 1"
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr "Postavi MIN CPU frekvenciju za jezgra 2, 3, 4 i 5"
+
+#, python-format
+msgid "Set Path %s"
+msgstr "Postavke Putanje %s"
 
 msgid "Set Scaling governor"
 msgstr "Podesi skaliranje regulatora"
@@ -23067,6 +23153,9 @@ msgstr "Šta želite da skenirate?"
 msgid "What do you want to set as the default movie location?"
 msgstr "Što želite postaviti kao zadanu lokaciju filma?"
 
+msgid "What do you want to set as the picon location?"
+msgstr "Što želiš postaviti kao lokaciju pikona?"
+
 msgid "What would you like to do with the archive file:"
 msgstr "Što biste željeli učiniti s arhivskom datotekom:"
 
@@ -24393,9 +24482,6 @@ msgstr "softcam"
 msgid "softcams"
 msgstr "softcams"
 
-msgid "standard"
-msgstr "standard"
-
 msgid "start cut here"
 msgstr "počni sječi ovdje"
 
@@ -24525,6 +24611,19 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d DMIPS per core"
+#~ msgstr "%d DMIPS po jezgri"
+
+#~ msgid "Config"
+#~ msgstr "Konfiguracija"
+
+#~ msgid "Horizontal icons"
+#~ msgstr "Vodoravne ikone"
+
+#~ msgid "standard"
+#~ msgstr "standard"
 
 #~ msgid "Are you sure you want to delete this image?"
 #~ msgstr "Želite li izbrisati ovaj imidž?"

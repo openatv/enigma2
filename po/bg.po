@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"POT-Creation-Date: 2026-07-12 13:00+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -760,10 +760,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d DMIPS per core"
-msgstr ""
-
-#, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
 
@@ -794,6 +790,10 @@ msgid "%d Hour"
 msgid_plural "%d Hours"
 msgstr[0] "%d час"
 msgstr[1] "%d часове"
+
+#, python-format
+msgid "%d Hz"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1144,6 +1144,10 @@ msgstr "%s - Настройка"
 
 #, python-format
 msgid "%s Browser Manage Actions"
+msgstr ""
+
+#, python-format
+msgid "%s DMIPS per core"
 msgstr ""
 
 #, python-format
@@ -1678,6 +1682,9 @@ msgid "AC3 plus transcoding"
 msgstr ""
 
 msgid "AC3plus transcoding"
+msgstr ""
+
+msgid "AC4"
 msgstr ""
 
 msgid "AFL"
@@ -3052,6 +3059,9 @@ msgstr ""
 msgid "Benchmark information for %s %s"
 msgstr ""
 
+msgid "Benchmarks"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3458,6 +3468,9 @@ msgstr ""
 msgid "CPU brand"
 msgstr ""
 
+msgid "CPU memory clock"
+msgstr ""
+
 msgid "CPU priority for scripts"
 msgstr ""
 
@@ -3492,6 +3505,9 @@ msgid "Calculate file hashes/checksums"
 msgstr ""
 
 msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating clock..."
 msgstr ""
 
 msgid "Calculating rating..."
@@ -3909,6 +3925,9 @@ msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Настройки за избор на канал"
+
+msgid "Channel Selection picon set"
+msgstr ""
 
 msgid "Channel buttons"
 msgstr "Бутони за канали"
@@ -4445,9 +4464,6 @@ msgstr ""
 
 msgid "Compressed bits/pixel"
 msgstr ""
-
-msgid "Config"
-msgstr "Конфиг"
 
 #, python-format
 msgid "Config file %s saved."
@@ -8307,6 +8323,9 @@ msgstr "Бърз DiSEqC"
 msgid "Fast Scan"
 msgstr "Бързо сканиране"
 
+msgid "Fast Skin Reload"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Бърза епоха"
 
@@ -8782,6 +8801,9 @@ msgstr "Предно USB"
 
 msgid "Front USB 3.0"
 msgstr "Предно USB 3.0"
+
+msgid "Front panel/Display picon set"
+msgstr ""
 
 msgid "Front processor version"
 msgstr "Предна версия на процесора"
@@ -9456,9 +9478,6 @@ msgstr ""
 msgid "Horizontal"
 msgstr "Хоризонтален"
 
-msgid "Horizontal icons"
-msgstr "Хоризонтални икони"
-
 msgid "Horizontal menu"
 msgstr "Хоризонтално меню"
 
@@ -9990,6 +10009,9 @@ msgstr "Скорост на избледняване на информацион
 
 msgid "InfoBar front end data source"
 msgstr "Източник на данни от интерфейса на информационната лента"
+
+msgid "InfoBar picon set"
+msgstr ""
 
 msgid "Information"
 msgstr "Информация"
@@ -10690,6 +10712,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr "наляво, увито"
 
+msgid "Legacy"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -10856,6 +10881,9 @@ msgstr "Зареждане на необвързани потребителск�
 
 msgid "Loading information, please wait..."
 msgstr "Информацията се зарежда, моля изчакайте..."
+
+msgid "Loading skin..."
+msgstr ""
 
 msgid "Loading slot information, please wait..."
 msgstr ""
@@ -11665,7 +11693,13 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
+msgid "Move left a item"
+msgstr ""
+
 msgid "Move only highlighted file"
+msgstr ""
+
+msgid "Move right a item"
 msgstr ""
 
 msgid "Move the current bookmark down"
@@ -11717,6 +11751,9 @@ msgstr "Премести текстовия курсор до последния
 msgid "Move these directories/files?"
 msgstr ""
 
+msgid "Move to first item / screen"
+msgstr ""
+
 msgid "Move to first line"
 msgstr "Премести към първия ред"
 
@@ -11728,6 +11765,9 @@ msgstr ""
 
 msgid "Move to home of list"
 msgstr "Премести към домашния списък"
+
+msgid "Move to last item / screen"
+msgstr ""
 
 msgid "Move to last line"
 msgstr "Премести към последния ред"
@@ -13120,6 +13160,9 @@ msgstr "Отворете VPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif picon set"
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13458,6 +13501,9 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
+msgid "Path to picon set %s."
+msgstr ""
+
 msgid "Pause"
 msgstr "Пауза"
 
@@ -13558,10 +13604,22 @@ msgstr "Пикон"
 msgid "Picon Packages"
 msgstr ""
 
+msgid "Picon Settings"
+msgstr ""
+
 msgid "Picon and service name"
 msgstr "Пикон и име на сервиза"
 
 msgid "Picon install location"
+msgstr ""
+
+msgid "Picon mode"
+msgstr ""
+
+msgid "Picon path %s"
+msgstr ""
+
+msgid "Picon set mode"
 msgstr ""
 
 msgid "Picon width"
@@ -14992,6 +15050,9 @@ msgstr ""
 
 msgid "Reload blacklists"
 msgstr "Презареждане на черните списъци"
+
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr ""
 
 msgid "Reloading EPG Cache..."
 msgstr "Презареждане на EPG кеша ..."
@@ -16458,6 +16519,9 @@ msgstr "Изберете местоположение"
 msgid "Select Media Location"
 msgstr ""
 
+msgid "Select Picon Directory"
+msgstr ""
+
 msgid "Select Playback Location"
 msgstr ""
 
@@ -16764,6 +16828,18 @@ msgstr "Изберете източника на DNS настройките по
 msgid "Select the No / False response"
 msgstr "Изберете отговора Не / Фалшива"
 
+msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgstr ""
+
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr ""
@@ -16986,6 +17062,9 @@ msgstr "Изберете производителя на вашето SCR уст
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Изберете метода за възстановяване на разделителната способност на екрана и буфера на рамката, когато напускате телетекста."
+
+msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
@@ -17221,6 +17300,9 @@ msgstr "Избиране дали AC3 Plus audio tracks трябва да се �
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Избиране дали AC3 audio tracks трябва да бъдат смесвани до стерео."
+
+msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
+msgstr ""
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Изберете дали звуковите записи на DTS канала трябва да се миксират или транскодират."
@@ -17551,6 +17633,10 @@ msgid "Set MIN CPU frequency for cores 0 and 1"
 msgstr ""
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+#, python-format
+msgid "Set Path %s"
 msgstr ""
 
 msgid "Set Scaling governor"
@@ -22901,6 +22987,9 @@ msgstr "Какво искате да сканирате?"
 msgid "What do you want to set as the default movie location?"
 msgstr ""
 
+msgid "What do you want to set as the picon location?"
+msgstr ""
+
 msgid "What would you like to do with the archive file:"
 msgstr ""
 
@@ -24222,9 +24311,6 @@ msgstr "софткам"
 msgid "softcams"
 msgstr ""
 
-msgid "standard"
-msgstr "стандартен"
-
 msgid "start cut here"
 msgstr "започнете да режете тук"
 
@@ -24353,6 +24439,15 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Config"
+#~ msgstr "Конфиг"
+
+#~ msgid "Horizontal icons"
+#~ msgstr "Хоризонтални икони"
+
+#~ msgid "standard"
+#~ msgstr "стандартен"
 
 #~ msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
 #~ msgstr "Закъснение между CEC командите при изпращане на поредица от команди. Някои устройства изискват това забавяне за правилно функциониране, обикновено между 50-150ms."

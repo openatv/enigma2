@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"POT-Creation-Date: 2026-07-12 13:00+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -790,10 +790,6 @@ msgid_plural "%d + %d + %d Minutes"
 msgstr[0] ""
 
 #, python-format
-msgid "%d DMIPS per core"
-msgstr ""
-
-#, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
 
@@ -820,6 +816,10 @@ msgstr "%d GB"
 msgid "%d Hour"
 msgid_plural "%d Hours"
 msgstr[0] "%d giờ"
+
+#, python-format
+msgid "%d Hz"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1148,6 +1148,10 @@ msgstr "%s - Cài đặt"
 
 #, python-format
 msgid "%s Browser Manage Actions"
+msgstr ""
+
+#, python-format
+msgid "%s DMIPS per core"
 msgstr ""
 
 #, python-format
@@ -1685,6 +1689,9 @@ msgstr "AC3 cộng với chuyển mã"
 
 msgid "AC3plus transcoding"
 msgstr "Chuyển mã AC3plus"
+
+msgid "AC4"
+msgstr ""
 
 #, fuzzy
 msgid "AFL"
@@ -3074,6 +3081,9 @@ msgstr ""
 msgid "Benchmark information for %s %s"
 msgstr ""
 
+msgid "Benchmarks"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3484,6 +3494,9 @@ msgstr ""
 msgid "CPU brand"
 msgstr ""
 
+msgid "CPU memory clock"
+msgstr ""
+
 msgid "CPU priority for scripts"
 msgstr ""
 
@@ -3518,6 +3531,9 @@ msgid "Calculate file hashes/checksums"
 msgstr ""
 
 msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating clock..."
 msgstr ""
 
 msgid "Calculating rating..."
@@ -3936,6 +3952,9 @@ msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Cài đặt chọn kênh"
+
+msgid "Channel Selection picon set"
+msgstr ""
 
 msgid "Channel buttons"
 msgstr "Nút kênh"
@@ -4476,10 +4495,6 @@ msgstr ""
 
 msgid "Compressed bits/pixel"
 msgstr ""
-
-#, fuzzy
-msgid "Config"
-msgstr "Cấu hình"
 
 #, python-format
 msgid "Config file %s saved."
@@ -8380,6 +8395,9 @@ msgstr "DiSEqC nhanh"
 msgid "Fast Scan"
 msgstr "Quét nhanh"
 
+msgid "Fast Skin Reload"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Kỷ nguyên nhanh"
 
@@ -8864,6 +8882,9 @@ msgstr "USB phía trước"
 
 msgid "Front USB 3.0"
 msgstr "USB trước 3.0"
+
+msgid "Front panel/Display picon set"
+msgstr ""
 
 msgid "Front processor version"
 msgstr ""
@@ -9552,10 +9573,6 @@ msgid "Horizontal"
 msgstr "Ngang"
 
 #, fuzzy
-msgid "Horizontal icons"
-msgstr "Ngang"
-
-#, fuzzy
 msgid "Horizontal menu"
 msgstr "Ngang"
 
@@ -10095,6 +10112,9 @@ msgstr "Tốc độ giảm dần của Infobar"
 
 msgid "InfoBar front end data source"
 msgstr "Nguồn dữ liệu lối vào Infobar"
+
+msgid "InfoBar picon set"
+msgstr ""
 
 msgid "Information"
 msgstr "Thông tin"
@@ -10807,6 +10827,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr "trái, bọc"
 
+msgid "Legacy"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -10973,6 +10996,9 @@ msgid "Load unlinked user bouquets"
 msgstr "Tải các tập tin người dùng không liên kết"
 
 msgid "Loading information, please wait..."
+msgstr ""
+
+msgid "Loading skin..."
 msgstr ""
 
 msgid "Loading slot information, please wait..."
@@ -11811,7 +11837,13 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
+msgid "Move left a item"
+msgstr ""
+
 msgid "Move only highlighted file"
+msgstr ""
+
+msgid "Move right a item"
 msgstr ""
 
 msgid "Move the current bookmark down"
@@ -11871,6 +11903,9 @@ msgstr "Di chuyển con trỏ bộ đệm văn bản đến ký tự cuối cùn
 msgid "Move these directories/files?"
 msgstr ""
 
+msgid "Move to first item / screen"
+msgstr ""
+
 msgid "Move to first line"
 msgstr ""
 
@@ -11882,6 +11917,9 @@ msgstr ""
 
 msgid "Move to home of list"
 msgstr "Chuyển đến nhà của danh sách"
+
+msgid "Move to last item / screen"
+msgstr ""
 
 msgid "Move to last line"
 msgstr ""
@@ -13317,6 +13355,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif picon set"
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13660,6 +13701,9 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
+msgid "Path to picon set %s."
+msgstr ""
+
 msgid "Pause"
 msgstr "Tạm ngừng"
 
@@ -13763,10 +13807,22 @@ msgstr "Picon"
 msgid "Picon Packages"
 msgstr ""
 
+msgid "Picon Settings"
+msgstr ""
+
 msgid "Picon and service name"
 msgstr "Tên dịch vụ và Picon"
 
 msgid "Picon install location"
+msgstr ""
+
+msgid "Picon mode"
+msgstr ""
+
+msgid "Picon path %s"
+msgstr ""
+
+msgid "Picon set mode"
 msgstr ""
 
 msgid "Picon width"
@@ -15214,6 +15270,9 @@ msgstr ""
 
 msgid "Reload blacklists"
 msgstr "Tải lại danh sách đen"
+
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr ""
 
 msgid "Reloading EPG Cache..."
 msgstr "Đang tải lại bộ đệm EPG ..."
@@ -16688,6 +16747,9 @@ msgstr "Chọn địa điểm"
 msgid "Select Media Location"
 msgstr ""
 
+msgid "Select Picon Directory"
+msgstr ""
+
 msgid "Select Playback Location"
 msgstr ""
 
@@ -16994,6 +17056,18 @@ msgstr ""
 msgid "Select the No / False response"
 msgstr ""
 
+msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgstr ""
+
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr ""
@@ -17218,6 +17292,9 @@ msgstr "Chọn nhà sản xuất thiết bị SCR của bạn. Nếu nhà sản 
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Chọn phương pháp khôi phục độ phân giải màn hình và bộ đệm khung khi rời teletext."
+
+msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
@@ -17456,6 +17533,9 @@ msgstr "Chọn xem các bản âm thanh AC3 Plus có nên được chuyển mã 
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Chọn xem các bản âm thanh AC3 có nên được trộn lẫn thành âm thanh nổi hay không."
+
+msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
+msgstr ""
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Chọn xem các bản âm thanh kênh DTS nên được trộn lẫn hoặc chuyển mã."
@@ -17788,6 +17868,10 @@ msgid "Set MIN CPU frequency for cores 0 and 1"
 msgstr ""
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+#, python-format
+msgid "Set Path %s"
 msgstr ""
 
 msgid "Set Scaling governor"
@@ -23202,6 +23286,9 @@ msgstr "Bạn muốn loại dịch vụ quét nào?"
 msgid "What do you want to set as the default movie location?"
 msgstr ""
 
+msgid "What do you want to set as the picon location?"
+msgstr ""
+
 msgid "What would you like to do with the archive file:"
 msgstr ""
 
@@ -24531,9 +24618,6 @@ msgstr ""
 msgid "softcams"
 msgstr ""
 
-msgid "standard"
-msgstr "tiêu chuẩn"
-
 msgid "start cut here"
 msgstr "bắt đầu cắt ở đây"
 
@@ -24662,6 +24746,17 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Config"
+#~ msgstr "Cấu hình"
+
+#, fuzzy
+#~ msgid "Horizontal icons"
+#~ msgstr "Ngang"
+
+#~ msgid "standard"
+#~ msgstr "tiêu chuẩn"
 
 #~ msgid "Put your AV Receiver in Standby"
 #~ msgstr "Đặt Bộ thu AV của bạn ở chế độ chờ"

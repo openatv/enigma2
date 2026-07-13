@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 09:48+0000\n"
-"PO-Revision-Date: 2026-07-04 10:02+0000\n"
+"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"PO-Revision-Date: 2026-07-13 14:11+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -768,10 +768,6 @@ msgstr[1] "%d + %d + %d Minuty"
 msgstr[2] "%d + %d + %d Minut"
 
 #, python-format
-msgid "%d DMIPS per core"
-msgstr "%d DMIPS na jádro"
-
-#, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS s(e) %d jádry"
 
@@ -806,6 +802,10 @@ msgid_plural "%d Hours"
 msgstr[0] "%d Hodina"
 msgstr[1] "%d Hodiny"
 msgstr[2] "%d Hodin"
+
+#, python-format
+msgid "%d Hz"
+msgstr "%d Hz"
 
 #, python-format
 msgid "%d MB"
@@ -1185,6 +1185,10 @@ msgstr "%s – Nastavení"
 #, python-format
 msgid "%s Browser Manage Actions"
 msgstr "%s Spravovat akce prohlížeče"
+
+#, python-format
+msgid "%s DMIPS per core"
+msgstr "%s DMIPS na jádro"
 
 #, python-format
 msgid "%s GHz"
@@ -1714,6 +1718,9 @@ msgstr "Překódování AC3 plus"
 
 msgid "AC3plus transcoding"
 msgstr "Překódování AC3 plus"
+
+msgid "AC4"
+msgstr "AC4"
 
 msgid "AFL"
 msgstr "AFL"
@@ -3087,6 +3094,9 @@ msgstr "Informace o benchmarku"
 msgid "Benchmark information for %s %s"
 msgstr "Informace o benchmarku pro %s %s"
 
+msgid "Benchmarks"
+msgstr "Benchmarky"
+
 msgid "Bengali"
 msgstr "Bengálský"
 
@@ -3497,6 +3507,9 @@ msgstr "CPU benchmark"
 msgid "CPU brand"
 msgstr "Značka CPU"
 
+msgid "CPU memory clock"
+msgstr "Takt paměti CPU"
+
 msgid "CPU priority for scripts"
 msgstr "Priorita CPU pro skripty"
 
@@ -3532,6 +3545,9 @@ msgstr "Vypočítat hashe/kontrolní součty souborů"
 
 msgid "Calculating benchmark..."
 msgstr "Výpočet benchmarku..."
+
+msgid "Calculating clock..."
+msgstr "Výpočet hodin..."
 
 msgid "Calculating rating..."
 msgstr "Výpočet hodnocení..."
@@ -3948,6 +3964,9 @@ msgstr "Obrazovka výběru kanálu"
 
 msgid "Channel Selection Settings"
 msgstr "Nastavení výběru kanálu"
+
+msgid "Channel Selection picon set"
+msgstr "Sada piconů pro výběr kanálu"
 
 msgid "Channel buttons"
 msgstr "Tlačítka kanálů"
@@ -4486,9 +4505,6 @@ msgstr "Komprimace souboru tar kořenového systému souborů. (To zabere nejví
 
 msgid "Compressed bits/pixel"
 msgstr "Komprimované bity/pixel"
-
-msgid "Config"
-msgstr "Konfigurace"
 
 #, python-format
 msgid "Config file %s saved."
@@ -8370,6 +8386,9 @@ msgstr "Rychlý DiSEqC"
 msgid "Fast Scan"
 msgstr "Rychlé ladění (Fast Scan)"
 
+msgid "Fast Skin Reload"
+msgstr "Rychlé znovunačtení skinu"
+
 msgid "Fast epoch"
 msgstr "Rychlé období"
 
@@ -8845,6 +8864,9 @@ msgstr "Přední USB"
 
 msgid "Front USB 3.0"
 msgstr "Přední USB 3.0"
+
+msgid "Front panel/Display picon set"
+msgstr "Sada picon na předním panelu/displeji"
 
 msgid "Front processor version"
 msgstr "Verze prvního procesoru"
@@ -9519,9 +9541,6 @@ msgstr "Hopy:"
 msgid "Horizontal"
 msgstr "Horizontální"
 
-msgid "Horizontal icons"
-msgstr "Vodorovné ikony"
-
 msgid "Horizontal menu"
 msgstr "Vodorovné menu"
 
@@ -10056,6 +10075,9 @@ msgstr "Rychlost zvolna mizíciho Infobaru"
 
 msgid "InfoBar front end data source"
 msgstr "Zdroj dat pro zobrazení v Infobaru"
+
+msgid "InfoBar picon set"
+msgstr "Sada pikonu infobaru"
 
 msgid "Information"
 msgstr "Informace"
@@ -10757,6 +10779,9 @@ msgstr "Levé, přední USB"
 msgid "Left, wrapped"
 msgstr "vlevo, zalomený"
 
+msgid "Legacy"
+msgstr "Zastaralý"
+
 msgid "Legacy mode"
 msgstr "Původní režim"
 
@@ -10924,6 +10949,9 @@ msgstr "Načíst nepropojené uživatelské přehledy"
 
 msgid "Loading information, please wait..."
 msgstr "Načítání informací, čekejte prosím..."
+
+msgid "Loading skin..."
+msgstr "Načítání vzhledu..."
 
 msgid "Loading slot information, please wait..."
 msgstr "Načítání informací o slotu, čekejte prosím..."
@@ -11733,8 +11761,14 @@ msgstr "Přesunutí se nezdařilo!"
 msgid "Move job queued."
 msgstr "Přesun byl zařazen do fronty."
 
+msgid "Move left a item"
+msgstr "Přesunout položku doleva"
+
 msgid "Move only highlighted file"
 msgstr "Přesunout pouze zvýrazněný soubor"
+
+msgid "Move right a item"
+msgstr "Přesunout položku doprava"
 
 msgid "Move the current bookmark down"
 msgstr "Přesunout aktuální záložku dolů"
@@ -11785,6 +11819,9 @@ msgstr "Přesunout textový kurzor na poslední znak"
 msgid "Move these directories/files?"
 msgstr "Přesunout tyto adresáře/soubory?"
 
+msgid "Move to first item / screen"
+msgstr "Přejít na první položku / obrazovku"
+
 msgid "Move to first line"
 msgstr "Přechod na první řádek"
 
@@ -11796,6 +11833,9 @@ msgstr "Přejít v panelu na první řádek / obrazovku"
 
 msgid "Move to home of list"
 msgstr "Přesun na začátek seznamu"
+
+msgid "Move to last item / screen"
+msgstr "Přejít na poslední položku / obrazovku"
 
 msgid "Move to last line"
 msgstr "Přechod na poslední řádek"
@@ -13191,6 +13231,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX balíčky"
 
+msgid "OpenWebif picon set"
+msgstr "Sada piconů OpenWebif"
+
 msgid "Opera"
 msgstr "Opera"
 
@@ -13529,6 +13572,9 @@ msgstr "Cesta"
 msgid "Path '%s' missing!"
 msgstr "Cesta '%s' chybí!"
 
+msgid "Path to picon set %s."
+msgstr "Cesta k sadě piconů %s."
+
 msgid "Pause"
 msgstr "Pauza"
 
@@ -13629,11 +13675,23 @@ msgstr "Picony"
 msgid "Picon Packages"
 msgstr "Balíčky Picon"
 
+msgid "Picon Settings"
+msgstr "Nastavení Piconu"
+
 msgid "Picon and service name"
 msgstr "Picony a názvy programů"
 
 msgid "Picon install location"
 msgstr "Cílové umístění balíčku picon"
+
+msgid "Picon mode"
+msgstr "Režim Picon"
+
+msgid "Picon path %s"
+msgstr "Cesta Piconu %s"
+
+msgid "Picon set mode"
+msgstr "Režim nastavení Piconu"
 
 msgid "Picon width"
 msgstr "Šířka piconů kanálů"
@@ -15068,6 +15126,9 @@ msgstr "Znovu načíst všechny služby z disku"
 
 msgid "Reload blacklists"
 msgstr "Znovu načíst 'black list'"
+
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr "Při přepínání skinů znovu načtěte skin bez restartu grafického rozhraní."
 
 msgid "Reloading EPG Cache..."
 msgstr "Obnova EPG Cache..."
@@ -16536,6 +16597,9 @@ msgstr "Vyberte umístění"
 msgid "Select Media Location"
 msgstr "Vyberte umístění médií"
 
+msgid "Select Picon Directory"
+msgstr "Vyberte adresář Picon"
+
 msgid "Select Playback Location"
 msgstr "Vyberte umístění přehrávání"
 
@@ -16842,6 +16906,18 @@ msgstr "Zvolte zdroj výchozích nastavení DNS."
 msgid "Select the No / False response"
 msgstr "Vyberte odpověď Ne/Nepravda"
 
+msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgstr "Vyberte cestu Picon z výše uvedeného seznamu, která se má použít pro picony výběru kanálu."
+
+msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgstr "Vyberte cestu Picon z výše uvedeného seznamu, která se má použít pro picony předního panelu/displeje."
+
+msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgstr "Vyberte cestu k Piconu z výše uvedeného seznamu, která se má použít pro picony informačního panelu."
+
+msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgstr "Vyberte cestu k souboru Picon z výše uvedeného seznamu, která se má použít pro soubory Picon OpenWebif."
+
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr "Vyberte Softcam pro '%s'"
@@ -17064,6 +17140,9 @@ msgstr "Vyberte výrobce vašeho zařízení SCR. Pokud výrobce není uveden, n
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vyberte metodu obnovení rozlišení obrazovky a vyrovnávací paměti snímků při opuštění teletextu."
+
+msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+msgstr "Vyberte režim pro výběr a rozlišení cesty piconu. „Legacy“ představuje předchozí režim provozu."
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Vyberte režim přístupu pro automaticky exportované sdílené položky samba."
@@ -17305,6 +17384,9 @@ msgstr "Zvolte, zda mají být zvukové stopy AC3 Plus překódovány do AC3."
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Vyberte, zda mají být zvukové stopy AC3 smíchány do sterea."
+
+msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
+msgstr "Vyberte, zda mají být zvukové stopy AC4 (Dolby Atmos) propuštěny do AVR, downmixovány do stereo režimu nebo automaticky směrovány na základě možností HDMI vstupu."
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Vyberte, zda mají být zvukové stopy kanálu DTS smíchány nebo překódovány."
@@ -17636,6 +17718,10 @@ msgstr "Nastavit MIN frekvenci CPU pro jádra 0 a 1"
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr "Nastavit MIN frekvenci CPU pro jádra 2, 3, 4 a 5"
+
+#, python-format
+msgid "Set Path %s"
+msgstr "Nastavit cestu %s"
 
 msgid "Set Scaling governor"
 msgstr "Nastavit regulátor škálování"
@@ -23068,6 +23154,9 @@ msgstr "Co chcete prohledat?"
 msgid "What do you want to set as the default movie location?"
 msgstr "Kde chcete nastavit výchozí umístění filmu?"
 
+msgid "What do you want to set as the picon location?"
+msgstr "Co chcete nastavit jako umístění piconu?"
+
 msgid "What would you like to do with the archive file:"
 msgstr "Co byste chtěli udělat s archivním souborem:"
 
@@ -24394,9 +24483,6 @@ msgstr "softcam"
 msgid "softcams"
 msgstr "softcamy"
 
-msgid "standard"
-msgstr "standardní"
-
 msgid "start cut here"
 msgstr "začátek střihu zde"
 
@@ -24526,6 +24612,19 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d DMIPS per core"
+#~ msgstr "%d DMIPS na jádro"
+
+#~ msgid "Config"
+#~ msgstr "Konfigurace"
+
+#~ msgid "Horizontal icons"
+#~ msgstr "Vodorovné ikony"
+
+#~ msgid "standard"
+#~ msgstr "standardní"
 
 #~ msgid "Are you sure you want to delete this image?"
 #~ msgstr "Opravdu chcete smazat tento obraz?"

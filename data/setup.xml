@@ -542,6 +542,7 @@
 		<item level="2" text="Include storage device data" description="Enable this option to add storage device information detected during system boot and hot plug events to the debug log file.">config.crash.debugStorage</item>
 		<item level="2" text="Include bouquet DB data" description="Enable this option to add bouquet database information to the debug log file." restart="gui">config.crash.debugDVBDB</item>
 		<item level="2" text="Include text encoding data" description="Enable this option to add text encoding information to the debug log file." restart="gui">config.crash.debugTextEncoding</item>
+		<item level="2" text="Include network data" description="Enable this option to add network information to the debug log file." restart="gui">config.crash.debugNetwork</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in Extension Menu" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
@@ -604,6 +605,14 @@
 		<item text="Nameserver" description="Configure the name server (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
+	<setup key="NetworkNFS" title="NFS Settings" allowDefault="yes">
+		<item text="NFS threads" description="Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory.">self.nfsThreads</item>
+		<item text="Enable NFSv3" description="When enabled, allow usage of the NFS version 3 protocols.">self.nfsVers3</item>
+		<item text="Enable NFSv4" description="When enabled, allow usage of the NFS version 4 protocols.">self.nfsVers4</item>
+		<item text="Access mode" description="Select the mode of access, Read/Write or Read Only, applied to all exported directories.">self.nfsAccessMode</item>
+		<item text="Allowed clients" description="Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access.">self.nfsClients</item>
+		<item text="Root squash" description="When enabled, map root to nobody (more secure). When disabled, full root access is available.">self.nfsRootSquash</item>
+	</setup>
 	<setup key="NetworkSamba" title="Samba Settings" allowDefault="yes">
 		<item text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
 		<item text="Automatic shares access" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
@@ -654,15 +663,15 @@
 	<setup key="Picon" title="Picon Settings">
 		<item level="0" text="Picon mode" description="Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation.">config.picon.mode</item>
 		<if conditional="config.picon.mode.value == 1">
-			<item level="0" text="Picon path %s" description="Path for picon set %s." data="1">config.picon.set0.path</item>
-			<item level="0" text="Picon path %s" description="Path for picon set %s." data="2" conditional="config.picon.set0.path.value">config.picon.set1.path</item>
-			<item level="0" text="Picon path %s" description="Path for picon set %s." data="3" conditional="config.picon.set1.path.value">config.picon.set2.path</item>
-			<item level="0" text="Picon path %s" description="Path for picon set %s." data="4" conditional="config.picon.set2.path.value">config.picon.set3.path</item>
-			<item level="0" text="Picon path %s" description="Path for picon set %s." data="5" conditional="config.picon.set3.path.value">config.picon.set4.path</item>
-			<item level="0" text="InfoBar picon set" description="Select the Picon path, from above, to be used for InfoBar picons.">config.picon.infobar</item>IS: The values should be "Picon path x" to match the labels used in the list above.
-			<item level="0" text="Channel Selection picon set" description="Select the Picon path, from above, to be used for Channel Selection picons.">config.picon.channelselection</item>
-			<item level="0" text="Front panel/Display picon set" description="Select the Picon path, from above, to be used for Front panel/Display picons.">config.picon.display</item>
-			<item level="0" text="OpenWebif picon set" description="Select the Picon path, from above, to be used for OpenWebif picons.">config.picon.openwebif</item>
+			<item level="0" text="Picon set %s" description="Path to picon set %s." data="1">config.picon.set0.path</item>
+			<item level="0" text="Picon set %s" description="Path to picon set %s." data="2" conditional="config.picon.set0.path.value">config.picon.set1.path</item>
+			<item level="0" text="Picon set %s" description="Path to picon set %s." data="3" conditional="config.picon.set1.path.value">config.picon.set2.path</item>
+			<item level="0" text="Picon set %s" description="Path to picon set %s." data="4" conditional="config.picon.set2.path.value">config.picon.set3.path</item>
+			<item level="0" text="Picon set %s" description="Path to picon set %s." data="5" conditional="config.picon.set3.path.value">config.picon.set4.path</item>
+			<item level="0" text="InfoBar picon set" description="Select the Picon set path, from the option(s) above, to be used for InfoBar picons.">config.picon.infobar</item>
+			<item level="0" text="Channel Selection picon set" description="Select the Picon set path, from the option(s) above, to be used for Channel Selection picons.">config.picon.channelselection</item>
+			<item level="0" text="Front panel/Display picon set" description="Select the Picon set path, from the option(s) above, to be used for Front panel/Display picons.">config.picon.display</item>
+			<item level="0" text="OpenWebif picon set" description="Select the Picon set path, from the option(s) above, to be used for OpenWebif picons.">config.picon.openwebif</item>
 		</if>
 	</setup>
 	<setup key="Playback" title="Playback Settings">

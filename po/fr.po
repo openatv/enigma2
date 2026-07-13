@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"POT-Creation-Date: 2026-07-12 13:00+0000\n"
 "PO-Revision-Date: 2025-06-16 09:06+0000\n"
 "Last-Translator: ikvat <ikvat@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -765,10 +765,6 @@ msgid_plural "%d + %d + %d Minutes"
 msgstr[0] "%d + %d + %d Minute"
 msgstr[1] "%d + %d + %d Minutes"
 
-#, python-format
-msgid "%d DMIPS per core"
-msgstr "%d DMIPS par noyau"
-
 #, fuzzy, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS avec noyaux %d"
@@ -800,6 +796,10 @@ msgid "%d Hour"
 msgid_plural "%d Hours"
 msgstr[0] "%d heure"
 msgstr[1] "%d heures"
+
+#, python-format
+msgid "%d Hz"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1151,6 +1151,10 @@ msgstr "%s - Configuration"
 #, python-format
 msgid "%s Browser Manage Actions"
 msgstr "%s Browser Manager Actions"
+
+#, python-format
+msgid "%s DMIPS per core"
+msgstr ""
 
 #, python-format
 msgid "%s GHz"
@@ -1680,6 +1684,9 @@ msgstr "Transcodage AC3 plus"
 
 msgid "AC3plus transcoding"
 msgstr "Transcodage AC3plus"
+
+msgid "AC4"
+msgstr ""
 
 msgid "AFL"
 msgstr "AFL"
@@ -3059,6 +3066,9 @@ msgstr ""
 msgid "Benchmark information for %s %s"
 msgstr ""
 
+msgid "Benchmarks"
+msgstr ""
+
 msgid "Bengali"
 msgstr "Bengali"
 
@@ -3469,6 +3479,9 @@ msgstr ""
 msgid "CPU brand"
 msgstr "Marque du CPU"
 
+msgid "CPU memory clock"
+msgstr ""
+
 msgid "CPU priority for scripts"
 msgstr ""
 
@@ -3503,6 +3516,9 @@ msgid "Calculate file hashes/checksums"
 msgstr ""
 
 msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating clock..."
 msgstr ""
 
 msgid "Calculating rating..."
@@ -3920,6 +3936,9 @@ msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Paramètres sélection des chaînes"
+
+msgid "Channel Selection picon set"
+msgstr ""
 
 msgid "Channel buttons"
 msgstr "Boutons de canal"
@@ -4459,9 +4478,6 @@ msgstr ""
 
 msgid "Compressed bits/pixel"
 msgstr ""
-
-msgid "Config"
-msgstr "Configuration"
 
 #, python-format
 msgid "Config file %s saved."
@@ -8323,6 +8339,9 @@ msgstr "DiSEqC rapide"
 msgid "Fast Scan"
 msgstr "Scan Rapide"
 
+msgid "Fast Skin Reload"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Époque rapide"
 
@@ -8798,6 +8817,9 @@ msgstr "USB frontal"
 
 msgid "Front USB 3.0"
 msgstr "USB frontal 3.0"
+
+msgid "Front panel/Display picon set"
+msgstr ""
 
 msgid "Front processor version"
 msgstr ""
@@ -9473,9 +9495,6 @@ msgstr "Hops :"
 msgid "Horizontal"
 msgstr "Horizontal"
 
-msgid "Horizontal icons"
-msgstr "Icônes horizontales"
-
 msgid "Horizontal menu"
 msgstr "Menu horizontal"
 
@@ -10010,6 +10029,9 @@ msgstr "Vitesse de l'effacement progressif de la barre d'info"
 
 msgid "InfoBar front end data source"
 msgstr "Source des données du frontend dans la barre d'information"
+
+msgid "InfoBar picon set"
+msgstr ""
 
 msgid "Information"
 msgstr "Informations"
@@ -10710,6 +10732,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr "Gauche, enveloppé"
 
+msgid "Legacy"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -10875,6 +10900,9 @@ msgid "Load unlinked user bouquets"
 msgstr "Charger les bouquets non liés"
 
 msgid "Loading information, please wait..."
+msgstr ""
+
+msgid "Loading skin..."
 msgstr ""
 
 msgid "Loading slot information, please wait..."
@@ -11686,7 +11714,13 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
+msgid "Move left a item"
+msgstr ""
+
 msgid "Move only highlighted file"
+msgstr ""
+
+msgid "Move right a item"
 msgstr ""
 
 msgid "Move the current bookmark down"
@@ -11738,6 +11772,9 @@ msgstr "Déplacez le curseur de texte vers le dernier caractère"
 msgid "Move these directories/files?"
 msgstr ""
 
+msgid "Move to first item / screen"
+msgstr ""
+
 msgid "Move to first line"
 msgstr "Déplacement vers la première ligne"
 
@@ -11749,6 +11786,9 @@ msgstr ""
 
 msgid "Move to home of list"
 msgstr "Déplacer vers l'accueil de la liste"
+
+msgid "Move to last item / screen"
+msgstr ""
 
 msgid "Move to last line"
 msgstr "Déplacer à la dernière ligne"
@@ -13145,6 +13185,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif picon set"
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13483,6 +13526,9 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
+msgid "Path to picon set %s."
+msgstr ""
+
 msgid "Pause"
 msgstr "Pause"
 
@@ -13583,10 +13629,22 @@ msgstr "Picon"
 msgid "Picon Packages"
 msgstr ""
 
+msgid "Picon Settings"
+msgstr ""
+
 msgid "Picon and service name"
 msgstr "Picon et nom de service"
 
 msgid "Picon install location"
+msgstr ""
+
+msgid "Picon mode"
+msgstr ""
+
+msgid "Picon path %s"
+msgstr ""
+
+msgid "Picon set mode"
 msgstr ""
 
 msgid "Picon width"
@@ -15018,6 +15076,9 @@ msgstr ""
 
 msgid "Reload blacklists"
 msgstr "Recharger la liste noire"
+
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr ""
 
 msgid "Reloading EPG Cache..."
 msgstr "Recharger le cache EPG…"
@@ -16485,6 +16546,9 @@ msgstr "Choisir l'emplacement"
 msgid "Select Media Location"
 msgstr ""
 
+msgid "Select Picon Directory"
+msgstr ""
+
 msgid "Select Playback Location"
 msgstr ""
 
@@ -16791,6 +16855,18 @@ msgstr ""
 msgid "Select the No / False response"
 msgstr "Sélectionnez la réponse Non / Faux"
 
+msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgstr ""
+
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr ""
@@ -17013,6 +17089,9 @@ msgstr "Sélectionnez le fabricant de votre appareil SCR. Si le fabricant n’es
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Choisir la méthode de restauration de la résolution d'écran et du framebuffer lorsque vous on quitte le télétexte."
+
+msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
@@ -17248,6 +17327,9 @@ msgstr "Choisir si les pistes sonores AC3 Plus doivent être transcodées en AC3
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Choisir si les pistes sonores AC3 doivent être converties en mode stéréo."
+
+msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
+msgstr ""
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Choisissez si les pistes audio des canaux DTS doivent être mixées ou transcodées."
@@ -17575,6 +17657,10 @@ msgid "Set MIN CPU frequency for cores 0 and 1"
 msgstr ""
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+#, python-format
+msgid "Set Path %s"
 msgstr ""
 
 msgid "Set Scaling governor"
@@ -22947,6 +23033,9 @@ msgstr "Que voulez-vous analyser ?"
 msgid "What do you want to set as the default movie location?"
 msgstr ""
 
+msgid "What do you want to set as the picon location?"
+msgstr ""
+
 msgid "What would you like to do with the archive file:"
 msgstr ""
 
@@ -24274,9 +24363,6 @@ msgstr "softcam"
 msgid "softcams"
 msgstr ""
 
-msgid "standard"
-msgstr "Standard"
-
 msgid "start cut here"
 msgstr "Départ de coupe ici"
 
@@ -24405,6 +24491,19 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d DMIPS per core"
+#~ msgstr "%d DMIPS par noyau"
+
+#~ msgid "Config"
+#~ msgstr "Configuration"
+
+#~ msgid "Horizontal icons"
+#~ msgstr "Icônes horizontales"
+
+#~ msgid "standard"
+#~ msgstr "Standard"
 
 #~ msgid "Are you sure you want to delete this image?"
 #~ msgstr "Êtes-vous sûr de vouloir supprimer cette image ?"

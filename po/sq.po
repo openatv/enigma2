@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-01 09:48+0000\n"
+"POT-Creation-Date: 2026-07-12 13:00+0000\n"
 "PO-Revision-Date: 2026-04-03 18:09+0000\n"
 "Last-Translator: Denis Çerri <deniscerri3@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -766,10 +766,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d DMIPS per core"
-msgstr "%d DMIPS për bërthamë"
-
-#, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS me bërthama %d"
 
@@ -800,6 +796,10 @@ msgid "%d Hour"
 msgid_plural "%d Hours"
 msgstr[0] "%d orë"
 msgstr[1] "%d orësh"
+
+#, python-format
+msgid "%d Hz"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1150,6 +1150,10 @@ msgstr "%s - Konfigurimi"
 
 #, python-format
 msgid "%s Browser Manage Actions"
+msgstr ""
+
+#, python-format
+msgid "%s DMIPS per core"
 msgstr ""
 
 #, python-format
@@ -1688,6 +1692,9 @@ msgstr "AC3 plus transkodimi"
 
 msgid "AC3plus transcoding"
 msgstr "Transkodimi AC3plus"
+
+msgid "AC4"
+msgstr ""
 
 msgid "AFL"
 msgstr "AFL"
@@ -3061,6 +3068,9 @@ msgstr "Informacione standarde"
 msgid "Benchmark information for %s %s"
 msgstr "Informacion standard për %s %s"
 
+msgid "Benchmarks"
+msgstr ""
+
 msgid "Bengali"
 msgstr "Bengalisht"
 
@@ -3471,6 +3481,9 @@ msgstr "Standardi i CPU-së"
 msgid "CPU brand"
 msgstr "Marka CPU"
 
+msgid "CPU memory clock"
+msgstr ""
+
 msgid "CPU priority for scripts"
 msgstr ""
 
@@ -3506,6 +3519,9 @@ msgstr ""
 
 msgid "Calculating benchmark..."
 msgstr "Po llogarit standardin..."
+
+msgid "Calculating clock..."
+msgstr ""
 
 msgid "Calculating rating..."
 msgstr "Po llogarit vlerësimin..."
@@ -3922,6 +3938,9 @@ msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Konfigurimi i përzgjedhjes së kanaleve"
+
+msgid "Channel Selection picon set"
+msgstr ""
 
 msgid "Channel buttons"
 msgstr "Butonat e kanalit"
@@ -4458,9 +4477,6 @@ msgstr ""
 
 msgid "Compressed bits/pixel"
 msgstr ""
-
-msgid "Config"
-msgstr "Konfigurimi"
 
 #, python-format
 msgid "Config file %s saved."
@@ -8318,6 +8334,9 @@ msgstr "DiSEqC i shpejtë"
 msgid "Fast Scan"
 msgstr "Skanim i shpejtë"
 
+msgid "Fast Skin Reload"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Epokë e shpejtë"
 
@@ -8793,6 +8812,9 @@ msgstr "USB e përparme"
 
 msgid "Front USB 3.0"
 msgstr "USB 3.0 e përparme"
+
+msgid "Front panel/Display picon set"
+msgstr ""
 
 msgid "Front processor version"
 msgstr "Versioni i procesorit të përparmë"
@@ -9467,9 +9489,6 @@ msgstr "Hops:"
 msgid "Horizontal"
 msgstr "Horizontale"
 
-msgid "Horizontal icons"
-msgstr "Ikonat horizontale"
-
 msgid "Horizontal menu"
 msgstr "Menuja horizontale"
 
@@ -10003,6 +10022,9 @@ msgid "InfoBar fade-out speed"
 msgstr ""
 
 msgid "InfoBar front end data source"
+msgstr ""
+
+msgid "InfoBar picon set"
 msgstr ""
 
 msgid "Information"
@@ -10704,6 +10726,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr ""
 
+msgid "Legacy"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -10869,6 +10894,9 @@ msgid "Load unlinked user bouquets"
 msgstr ""
 
 msgid "Loading information, please wait..."
+msgstr ""
+
+msgid "Loading skin..."
 msgstr ""
 
 msgid "Loading slot information, please wait..."
@@ -11677,7 +11705,13 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
+msgid "Move left a item"
+msgstr ""
+
 msgid "Move only highlighted file"
+msgstr ""
+
+msgid "Move right a item"
 msgstr ""
 
 msgid "Move the current bookmark down"
@@ -11729,6 +11763,9 @@ msgstr ""
 msgid "Move these directories/files?"
 msgstr ""
 
+msgid "Move to first item / screen"
+msgstr ""
+
 msgid "Move to first line"
 msgstr ""
 
@@ -11739,6 +11776,9 @@ msgid "Move to first line / screen in the panel"
 msgstr ""
 
 msgid "Move to home of list"
+msgstr ""
+
+msgid "Move to last item / screen"
 msgstr ""
 
 msgid "Move to last line"
@@ -13108,6 +13148,9 @@ msgstr ""
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif picon set"
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13446,6 +13489,9 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
+msgid "Path to picon set %s."
+msgstr ""
+
 msgid "Pause"
 msgstr "Pauso"
 
@@ -13546,10 +13592,22 @@ msgstr "Pikona"
 msgid "Picon Packages"
 msgstr ""
 
+msgid "Picon Settings"
+msgstr ""
+
 msgid "Picon and service name"
 msgstr ""
 
 msgid "Picon install location"
+msgstr ""
+
+msgid "Picon mode"
+msgstr ""
+
+msgid "Picon path %s"
+msgstr ""
+
+msgid "Picon set mode"
 msgstr ""
 
 msgid "Picon width"
@@ -14975,6 +15033,9 @@ msgstr ""
 
 msgid "Reload blacklists"
 msgstr "Rifresko listat e zeza"
+
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr ""
 
 msgid "Reloading EPG Cache..."
 msgstr "Rimbush EPG Cache..."
@@ -16438,6 +16499,9 @@ msgstr ""
 msgid "Select Media Location"
 msgstr ""
 
+msgid "Select Picon Directory"
+msgstr ""
+
 msgid "Select Playback Location"
 msgstr ""
 
@@ -16744,6 +16808,18 @@ msgstr ""
 msgid "Select the No / False response"
 msgstr ""
 
+msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgstr ""
+
+msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgstr ""
+
 #, python-format
 msgid "Select the Softcam for '%s'"
 msgstr ""
@@ -16965,6 +17041,9 @@ msgid "Select the manufacturer of your SCR device. If the manufacturer is not li
 msgstr ""
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
+msgstr ""
+
+msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
 msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
@@ -17201,6 +17280,9 @@ msgstr "Zgjidh nëse gjurmët e zërit AC3 Plus duhet të transkodohen në AC3."
 
 msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Zgjidhni nëse pjesët zanore AC3 duhet të përzihen në stereo."
+
+msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
+msgstr ""
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen ose të transkodohen."
@@ -17510,6 +17592,10 @@ msgid "Set MIN CPU frequency for cores 0 and 1"
 msgstr ""
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
+msgstr ""
+
+#, python-format
+msgid "Set Path %s"
 msgstr ""
 
 msgid "Set Scaling governor"
@@ -22835,6 +22921,9 @@ msgstr "Çfarë dëshironi të skanoni?"
 msgid "What do you want to set as the default movie location?"
 msgstr ""
 
+msgid "What do you want to set as the picon location?"
+msgstr ""
+
 msgid "What would you like to do with the archive file:"
 msgstr ""
 
@@ -24152,9 +24241,6 @@ msgstr ""
 msgid "softcams"
 msgstr ""
 
-msgid "standard"
-msgstr ""
-
 msgid "start cut here"
 msgstr ""
 
@@ -24283,6 +24369,16 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d DMIPS per core"
+#~ msgstr "%d DMIPS për bërthamë"
+
+#~ msgid "Config"
+#~ msgstr "Konfigurimi"
+
+#~ msgid "Horizontal icons"
+#~ msgstr "Ikonat horizontale"
 
 #~ msgid "Are you sure you want to delete this image?"
 #~ msgstr "Jeni i sigurt që dëshironi ta fshini këtë imazh?"
