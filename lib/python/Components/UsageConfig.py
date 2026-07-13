@@ -2633,95 +2633,91 @@ def defaultMoviePath():
 
 
 def patchTuxtxtConfFile(dummyConfigElement):
-	if config.usage.tuxtxt_font_and_res.value == "X11_SD":
-		tuxtxt2 = [
-			["UseTTF", 0],
-			["TTFBold", 1],
-			["TTFScreenResX", 720],
-			["StartX", 50],
-			["EndX", 670],
-			["StartY", 30],
-			["EndY", 555],
-			["TTFShiftY", 0],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 26],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "TTF_SD":
-		tuxtxt2 = [
-			["UseTTF", 1],
-			["TTFBold", 1],
-			["TTFScreenResX", 720],
-			["StartX", 50],
-			["EndX", 670],
-			["StartY", 30],
-			["EndY", 555],
-			["TTFShiftY", 2],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 29],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "TTF_HD":
-		tuxtxt2 = [
-			["UseTTF", 1],
-			["TTFBold", 0],
-			["TTFScreenResX", 1280],
-			["StartX", 80],
-			["EndX", 1200],
-			["StartY", 35],
-			["EndY", 685],
-			["TTFShiftY", -3],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 26],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "TTF_FHD":
-		tuxtxt2 = [
-			["UseTTF", 1],
-			["TTFBold", 0],
-			["TTFScreenResX", 1920],
-			["StartX", 140],
-			["EndX", 1780],
-			["StartY", 52],
-			["EndY", 1027],
-			["TTFShiftY", -6],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 26],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "expert_mode":
-		tuxtxt2 = [
-			["UseTTF", int(config.usage.tuxtxt_UseTTF.value)],
-			["TTFBold", int(config.usage.tuxtxt_TTFBold.value)],
-			["TTFScreenResX", int(config.usage.tuxtxt_TTFScreenResX.value)],
-			["StartX", config.usage.tuxtxt_StartX.value],
-			["EndX", config.usage.tuxtxt_EndX.value],
-			["StartY", config.usage.tuxtxt_StartY.value],
-			["EndY", config.usage.tuxtxt_EndY.value],
-			["TTFShiftY", int(config.usage.tuxtxt_TTFShiftY.value)],
-			["TTFShiftX", int(config.usage.tuxtxt_TTFShiftX.value)],
-			["TTFWidthFactor16", config.usage.tuxtxt_TTFWidthFactor16.value],
-			["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]
-		]
+	match config.usage.tuxtxt_font_and_res.value:
+		case "X11_SD":
+			tuxtxt2 = [
+				["UseTTF", 0],
+				["TTFBold", 1],
+				["TTFScreenResX", 720],
+				["StartX", 50],
+				["EndX", 670],
+				["StartY", 30],
+				["EndY", 555],
+				["TTFShiftY", 0],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 26],
+				["TTFHeightFactor16", 14]
+			]
+		case "TTF_SD":
+			tuxtxt2 = [
+				["UseTTF", 1],
+				["TTFBold", 1],
+				["TTFScreenResX", 720],
+				["StartX", 50],
+				["EndX", 670],
+				["StartY", 30],
+				["EndY", 555],
+				["TTFShiftY", 2],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 29],
+				["TTFHeightFactor16", 14]
+			]
+		case "TTF_HD":
+			tuxtxt2 = [
+				["UseTTF", 1],
+				["TTFBold", 0],
+				["TTFScreenResX", 1280],
+				["StartX", 80],
+				["EndX", 1200],
+				["StartY", 35],
+				["EndY", 685],
+				["TTFShiftY", -3],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 26],
+				["TTFHeightFactor16", 14]
+			]
+		case "TTF_FHD":
+			tuxtxt2 = [
+				["UseTTF", 1],
+				["TTFBold", 0],
+				["TTFScreenResX", 1920],
+				["StartX", 140],
+				["EndX", 1780],
+				["StartY", 52],
+				["EndY", 1027],
+				["TTFShiftY", -6],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 26],
+				["TTFHeightFactor16", 14]
+			]
+		case "expert_mode":
+			tuxtxt2 = [
+				["UseTTF", int(config.usage.tuxtxt_UseTTF.value)],
+				["TTFBold", int(config.usage.tuxtxt_TTFBold.value)],
+				["TTFScreenResX", int(config.usage.tuxtxt_TTFScreenResX.value)],
+				["StartX", config.usage.tuxtxt_StartX.value],
+				["EndX", config.usage.tuxtxt_EndX.value],
+				["StartY", config.usage.tuxtxt_StartY.value],
+				["EndY", config.usage.tuxtxt_EndY.value],
+				["TTFShiftY", int(config.usage.tuxtxt_TTFShiftY.value)],
+				["TTFShiftX", int(config.usage.tuxtxt_TTFShiftX.value)],
+				["TTFWidthFactor16", config.usage.tuxtxt_TTFWidthFactor16.value],
+				["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]
+			]
 	tuxtxt2.append(["CleanAlgo", config.usage.tuxtxt_CleanAlgo.value])
-
-	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
-	oldLines = fileReadLines(TUXTXT_CFG_FILE, [], source=MODULE_NAME)
+	tuxtxtConfigFile = "/etc/tuxtxt/tuxtxt2.conf"
+	oldLines = fileReadLines(tuxtxtConfigFile, [], source=MODULE_NAME)
 	oldLines.sort()
 	lines = [line.split() for line in oldLines if line]
-	keys = [f[0] for f in tuxtxt2]
-
+	keys = [x[0] for x in tuxtxt2]
 	newLines = []
 	for line in lines:
 		if line[0] not in keys:
 			newLines.append(f"{line[0]} {line[1]}")
-
 	for line in tuxtxt2:
 		newLines.append(f"{line[0]} {line[1]}")
-
 	newLines.sort()
 	if oldLines != newLines:  # Only write if there are changes.
-		fileWriteLines(TUXTXT_CFG_FILE, newLines, source=MODULE_NAME)
-		print(f"[UsageConfig] TuxTxt: Patched {TUXTXT_CFG_FILE}.")
-
+		fileWriteLines(tuxtxtConfigFile, newLines, source=MODULE_NAME)
+		print(f"[UsageConfig] TuxTxt: Patched {tuxtxtConfigFile}.")
 	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)  # If False then patchTuxtxtConfFile will be called from the tutxt plugin.
