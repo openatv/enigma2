@@ -69,7 +69,11 @@ class PluginDescriptor:
 	# Called after a GUI skin change and reload. Argument: session.
 	WHERE_SKINCHANGE = 26
 
-	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
+	DO_CLOSE = 1
+
+	DO_CLOSE_RECURSIVE = 2
+
+	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0, closeMode=0):
 		self.name = name
 		if not where:
 			where = []
@@ -88,6 +92,7 @@ class PluginDescriptor:
 		self.weight = weight
 		self.path = None
 		self.key = name
+		self.closeMode = closeMode
 
 	def __call__(self, *args, **kwargs):
 		if callable(self.function):
