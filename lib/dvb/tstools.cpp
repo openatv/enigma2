@@ -9,6 +9,21 @@
 
 static const int m_maxrange = 256*1024;
 
+static inline bool isHEVCIrapStructureEntry(unsigned int data)
+{
+	unsigned int nal_type = (data & 0x7E) >> 1;
+	return nal_type >= 16 && nal_type <= 21;
+}
+
+static inline bool isSameHEVCAccessUnitIrap(unsigned long long entry, bool start_is_hevc_frame, bool start_has_pts, unsigned long long start_pts)
+{
+	if (!start_is_hevc_frame || !isHEVCIrapStructureEntry((unsigned int)entry))
+		return false;
+	if (start_has_pts && (entry & 0x1000000ULL))
+		return (entry >> 31) == start_pts;
+	return true;
+}
+
 DEFINE_REF(eTSFileSectionReader);
 
 eTSFileSectionReader::eTSFileSectionReader(eMainloop *context)
@@ -805,6 +820,9 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		offset--;
 
 	unsigned long long longdata;
+	bool start_is_hevc_frame = false;
+	bool start_has_pts = false;
+	unsigned long long start_pts = 0;
 	if (m_streaminfo.getStructureEntryFirst(offset, longdata) != 0)
 	{
 		eDebug("[eDVBTSTools] findFrame getStructureEntryFirst failed");
@@ -824,15 +842,18 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
 			/* TODO: check frame_types */
 		// is_frame
-		if (((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00) || ((data & 0x7E) == 0x0046)) /* H.264 UAD or H.265 UAD or MPEG2 start code */
+		if (((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00) || ((data & 0x7E) == 0x0046) || isHEVCIrapStructureEntry(data)) /* H.264 UAD, H.265 AUD/IRAP or MPEG2 start code */
 		{
 			++nr_frames;
 			if ((data & 0xE0FF) == 0x0009)		/* H.264 NAL unit access delimiter with I-frame*/
 			{
 				break;
 			}
-			if ((data & 0xE07E) == 0x0046) 		/* H.265 NAL unit access delimiter with I-frame*/
+			if (((data & 0xE07E) == 0x0046) || isHEVCIrapStructureEntry(data)) 		/* H.265 AUD I-frame or IRAP */
 			{
+				start_is_hevc_frame = true;
+				start_has_pts = (longdata & 0x1000000ULL) != 0;
+				start_pts = longdata >> 31;
 				break;
 			}
 			if ((data & 0x3800FF) == 0x080000)	/* MPEG2 picture start code with I-frame */
@@ -859,7 +880,7 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		data = ((unsigned int)longdata);
 		count_passes++;
 	}
-	while (((data & 0xff) != 0x09) && ((data & 0xff) != 0x00) && ((data & 0x7E) != 0x46)); /* next frame */
+	while (((data & 0xff) != 0x09) && ((data & 0xff) != 0x00) && ((data & 0x7E) != 0x46) && (!isHEVCIrapStructureEntry(data) || isSameHEVCAccessUnitIrap(longdata, start_is_hevc_frame, start_has_pts, start_pts))); /* next frame */
 
 	if (is_mpeg2)
 	{

@@ -371,14 +371,15 @@ protected:
 	// This system handles stream corruption during timeshift, with support for a custom recovery delay.
 	ePtr<eTimer> m_precise_recovery_timer;
 	
-	std::atomic<bool> m_stream_corruption_detected; // FIXED: Changed to std::atomic<bool> to prevent Race Conditions
-	
 	pts_t m_original_timeshift_delay; // Stores the target timeshift delay.
+	std::atomic<bool> m_stream_corruption_detected; // FIXED: Changed to std::atomic<bool> to prevent Race Conditions
+
 	bool m_delay_calculated = false; // Flag to ensure delay is calculated only once.
 
 	virtual void handleEofRecovery();
 	virtual void startPreciseRecoveryCheck();
 	void resetRecoveryState(); // Resets all recovery state variables.
+	virtual void onRecoveryPaused() {} // Hook after playback is actually paused
 	// -- END: Precise Recovery System --
 };
 
