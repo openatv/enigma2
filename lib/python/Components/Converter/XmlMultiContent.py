@@ -63,7 +63,7 @@ class MultiContentTemplateParser(TemplateParser):
 				context.h = itemHeight
 				context.scale = self.scale  # Set scale from the widget.
 				context = SkinContext(context, "0,0", f"{itemWidth},{itemHeight}")
-				for element in list(mode):
+				for element in mode:
 					processor = self.processors.get(element.tag, self.processNone)
 					newItems = processor(element, context)
 					if newItems:
@@ -95,7 +95,7 @@ class MultiContentTemplateParser(TemplateParser):
 				context.h = self.itemHeight
 				context.scale = self.scale
 				context = SkinContext(context, "0,0", f"{self.itemWidth},{self.itemHeight}")
-				for element in list(rowtemplate):
+				for element in rowtemplate:
 					processor = self.processors.get(element.tag, self.processNone)
 					newItems = processor(element, context)
 					if newItems:

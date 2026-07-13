@@ -32,11 +32,7 @@ bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 int eListbox::defaultHorizontalAlignment = -1;
 int eListbox::defaultVerticalAlignment = -1;
 
-eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_prev_scrollbar_page(-1), m_scrollbar_mode(showNever), m_scrollbar_scroll(byPage),
-									  m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
-									  m_scrollbar_height(10), m_scrollbar_length(0), m_top(0), m_left(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
-									  m_orientation(orVertical), m_max_columns(0), m_max_rows(0), m_selection_enabled(1), m_page_size(0), m_item_alignment(0), xOffset(0), yOffset(0),
-									  m_native_keys_bound(false), m_first_selectable_item(-1), m_last_selectable_item(-1), m_lock_first_row(false), m_scrollbar(nullptr)
+eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_height = eListbox::defaultScrollBarWidth; // TODO
@@ -87,10 +83,10 @@ eListbox::~eListbox()
 void eListbox::setScrollbarMode(uint8_t mode)
 {
 	if (mode == eListbox::showOnDemandShrink) {
-		m_style.is_set.shrink = 1;
+		m_style.is_set.shrink = true;
 		mode = eListbox::showOnDemand;
 	} else
-		m_style.is_set.shrink = 0;
+		m_style.is_set.shrink = false;
 
 	m_scrollbar_mode = mode;
 	if (m_scrollbar)
@@ -175,14 +171,14 @@ void eListbox::allowNativeKeys(bool allow)
 	}
 }
 
-bool eListbox::atBegin()
+bool eListbox::atBegin() const
 {
 	if (m_content && !m_selected)
 		return true;
 	return false;
 }
 
-bool eListbox::atEnd()
+bool eListbox::atEnd() const
 {
 	if (m_content && m_content->size() == m_selected + 1)
 		return true;
@@ -275,7 +271,7 @@ void eListbox::setStartIndex(int offset)
 	invalidate();
 }
 
-int eListbox::getCurrentIndex()
+int eListbox::getCurrentIndex() const
 {
 	if (m_content && m_content->cursorValid())
 		return m_content->cursorGet();
@@ -526,7 +522,7 @@ void eListbox::updateScrollBar()
 		recalcSizeAlignment(scrollbarvisible);
 }
 
-int eListbox::getScrollbarListOffset()
+int eListbox::getScrollbarListOffset() const
 {
 	if (m_orientation == orHorizontal)
 		return (m_scrollbar && m_scrollbar->isVisible()) ? m_scrollbar_height + m_scrollbar_offset : 0;
@@ -534,7 +530,7 @@ int eListbox::getScrollbarListOffset()
 		return (m_scrollbar && m_scrollbar->isVisible()) ? m_scrollbar_width + m_scrollbar_offset : 0;
 }
 
-int eListbox::getEntryTop()
+int eListbox::getEntryTop() const
 {
 	/*
 		Please Note! This will currently only work for verticial list box.
@@ -1170,37 +1166,37 @@ void eListbox::setSpacingColor(const gRGB &col)
 {
 	eWidget::setBackgroundColor(col);
 	m_style.m_spacing_color = col;
-	m_style.is_set.spacing_color = 1;
+	m_style.is_set.spacing_color = true;
 }
 
 void eListbox::setBackgroundColor(const gRGB &col)
 {
 	m_style.m_background_color = col;
-	m_style.is_set.background_color = 1;
+	m_style.is_set.background_color = true;
 }
 
 void eListbox::setBackgroundColorSelected(const gRGB &col)
 {
 	m_style.m_background_color_selected = col;
-	m_style.is_set.background_color_selected = 1;
+	m_style.is_set.background_color_selected = true;
 }
 
 void eListbox::setBackgroundColorRows(const gRGB &col)
 {
 	m_style.m_background_color_rows = col;
-	m_style.is_set.background_color_rows = 1;
+	m_style.is_set.background_color_rows = true;
 }
 
 void eListbox::setForegroundColor(const gRGB &col)
 {
 	m_style.m_foreground_color = col;
-	m_style.is_set.foreground_color = 1;
+	m_style.is_set.foreground_color = true;
 }
 
 void eListbox::setForegroundColorSelected(const gRGB &col)
 {
 	m_style.m_foreground_color_selected = col;
-	m_style.is_set.foreground_color_selected = 1;
+	m_style.is_set.foreground_color_selected = true;
 }
 
 void eListbox::setBorderWidth(int width)
@@ -1213,7 +1209,7 @@ void eListbox::setBorderWidth(int width)
 void eListbox::setScrollbarBorderWidth(int width)
 {
 	m_style.m_scrollbarborder_width = width;
-	m_style.is_set.scrollbarborder_width = 1;
+	m_style.is_set.scrollbarborder_width = true;
 	if (m_scrollbar)
 		m_scrollbar->setBorderWidth(width);
 }
@@ -1228,7 +1224,7 @@ void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 void eListbox::setScrollbarBackgroundColor(gRGB &col)
 {
 	m_style.m_scrollbarbackground_color = col;
-	m_style.is_set.scrollbarbackground_color = 1;
+	m_style.is_set.scrollbarbackground_color = true;
 	if (m_scrollbar)
 		m_scrollbar->setBackgroundColor(col);
 }
@@ -1236,7 +1232,7 @@ void eListbox::setScrollbarBackgroundColor(gRGB &col)
 void eListbox::setScrollbarForegroundColor(gRGB &col)
 {
 	m_style.m_scrollbarforeground_color = col;
-	m_style.is_set.scrollbarforeground_color = 1;
+	m_style.is_set.scrollbarforeground_color = true;
 	if (m_scrollbar)
 		m_scrollbar->setForegroundColor(col);
 }
@@ -1244,7 +1240,7 @@ void eListbox::setScrollbarForegroundColor(gRGB &col)
 void eListbox::setScrollbarBorderColor(const gRGB &col)
 {
 	m_style.m_scollbarborder_color = col;
-	m_style.is_set.scollbarborder_color = 1;
+	m_style.is_set.scollbarborder_color = true;
 	if (m_scrollbar)
 		m_scrollbar->setBorderColor(col);
 }
@@ -1259,7 +1255,7 @@ void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 void eListbox::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
 	m_style.m_scrollbarforegroundgradient_colors = {startcolor, midcolor, endcolor};
-	m_style.is_set.scrollbarforegroundgradient = 1;
+	m_style.is_set.scrollbarforegroundgradient = true;
 	if (m_scrollbar)
 		m_scrollbar->setForegroundGradient(m_style.m_scrollbarforegroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false, true);
 }
@@ -1267,7 +1263,7 @@ void eListbox::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB
 void eListbox::setScrollbarBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
 	m_style.m_scrollbarbackgroundgradient_colors = {startcolor, midcolor, endcolor};
-	m_style.is_set.scrollbarbackgroundgradient = 1;
+	m_style.is_set.scrollbarbackgroundgradient = true;
 	if (m_scrollbar)
 		m_scrollbar->setBackgroundGradient(m_style.m_scrollbarbackgroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false);
 }

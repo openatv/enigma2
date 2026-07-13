@@ -1629,8 +1629,7 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 					we will later detect that "data" is present, and refer to that, instead
 					of the immediate value. */
 			int start = 1;
-			ePyObject tmplate = m_templates.empty() ? m_template : selectTemplate(items);
-			if (tmplate)
+			if (ePyObject tmplate = m_templates.empty() ? m_template : selectTemplate(items); tmplate)
 			{
 				data = items;
 				items = tmplate;
