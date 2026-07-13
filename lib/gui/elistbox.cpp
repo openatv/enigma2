@@ -36,7 +36,7 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_
 									  m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
 									  m_scrollbar_height(10), m_scrollbar_length(0), m_top(0), m_left(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
 									  m_orientation(orVertical), m_max_columns(0), m_max_rows(0), m_selection_enabled(1), m_page_size(0), m_item_alignment(0), xOffset(0), yOffset(0),
-									  m_native_keys_bound(false), m_first_selectable_item(-1), m_last_selectable_item(-1), m_scrollbar(nullptr)
+									  m_native_keys_bound(false), m_first_selectable_item(-1), m_last_selectable_item(-1), m_lock_first_row(false), m_scrollbar(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_height = eListbox::defaultScrollBarWidth; // TODO
@@ -139,6 +139,20 @@ void eListbox::setScrollbarScroll(uint8_t scroll)
 	m_scrollbar_scroll = scroll;
 }
 
+void eListbox::setLockFirstRow(bool lock)
+{
+	if (m_lock_first_row == lock)
+		return;
+	m_lock_first_row = lock;
+	if (m_content)
+	{
+		m_content->resetClip();
+		moveSelection(justCheck);
+		updateScrollBar();
+		invalidate();
+	}
+}
+
 void eListbox::setContent(iListboxContent *content)
 {
 	m_content = content;
@@ -239,9 +253,10 @@ void eListbox::setStartIndex(int offset)
 {
 	if (!m_content)
 		return;
-	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : effectiveMaxRows();
 	int max = std::max(0, (int)m_content->size() - maxItems);
-	offset = std::max(0, std::min(offset, max));
+	int minOffset = (m_lock_first_row && m_orientation == orVertical) ? 1 : 0;
+	offset = std::max(minOffset, std::min(offset, max));
 	if (m_orientation == orHorizontal)
 	{
 		if (m_left == offset)
@@ -374,7 +389,7 @@ void eListbox::updateScrollBar()
 		entries = (m_content->size() + m_max_columns - 1) / m_max_columns;
 	bool scrollbarvisible = m_scrollbar->isVisible();
 	bool scrollbarvisibleOld = m_scrollbar->isVisible();
-	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : effectiveMaxRows();
 
 	if (m_content_changed)
 	{
@@ -417,7 +432,7 @@ void eListbox::updateScrollBar()
 				scrollbarvisible = false;
 			}
 		}
-		else if (entries > maxItems || m_scrollbar_mode == showAlways)
+		else if (entries > ((m_orientation == orHorizontal) ? m_max_columns : m_max_rows) || m_scrollbar_mode == showAlways)
 		{
 			if (m_orientation == orHorizontal)
 			{
@@ -527,8 +542,8 @@ int eListbox::getEntryTop()
 	*/
 	if (m_orientation == orHorizontal)
 		return (m_selected - m_left) * m_itemwidth;
-	else if (m_orientation == orVertical)
-		return (m_selected - m_top) * m_itemheight;
+	else if (m_orientation == orVertical && m_lock_first_row && m_selected == 0)
+		return 0;
 	else
 		return (m_selected - m_top) * m_itemheight;
 }
@@ -614,6 +629,7 @@ int eListbox::event(int event, void *data, void *data2)
 		int line = 0;
 		int m_max_items = m_orientation == orGrid ? m_max_columns * m_max_rows : m_orientation == orHorizontal ? m_max_columns
 																											   : m_max_rows;
+		bool lockRow = m_lock_first_row && m_orientation == orVertical && m_content->size() > 0;
 
 		for (int posx = 0, posy = 0, i = 0; (m_orientation == orVertical) ? i <= m_max_items : i < m_max_items; posx += m_itemwidth + m_spacing.x(), ++i)
 		{
@@ -630,6 +646,26 @@ int eListbox::event(int event, void *data, void *data2)
 				posx = 0;
 				if (i > 0)
 					posy += m_itemheight + m_spacing.y();
+			}
+
+			if (lockRow && i == 0)
+			{
+				/* row 0 is pinned to this slot regardless of scroll position; the walking
+				   cursor (already positioned at m_top for slot i==1) must stay untouched. */
+				bool selFixed = (m_selected == 0 && m_selection_enabled);
+				if (selFixed)
+					line = 0;
+
+				entryRect = eRect(posx + xOffset, posy + yOffset, m_style.m_selection_width, m_style.m_selection_height);
+				gRegion entry_clip_rect = paint_region & entryRect;
+				if (!entry_clip_rect.empty())
+				{
+					int walkPos = m_content->cursorGet();
+					m_content->cursorSet(0);
+					m_content->paint(painter, *style, ePoint(posx + xOffset, posy + yOffset), selFixed);
+					m_content->cursorSet(walkPos);
+				}
+				continue;
 			}
 
 			bool sel = (m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
@@ -1357,6 +1393,11 @@ ePoint eListbox::getItemPostion(int index)
 		posx = (m_orientation == orGrid) ? (m_itemwidth + indexSpacing.x()) * ((index - (m_top * m_max_columns)) % m_max_columns) : (m_itemwidth + indexSpacing.x()) * (index - m_left);
 		posy = (m_orientation == orGrid) ? (m_itemheight + indexSpacing.y()) * ((index - (m_top * m_max_columns)) / m_max_columns) : 0;
 	}
+	else if (m_lock_first_row && index == 0)
+		posy = 0;
+	else if (m_lock_first_row)
+		/* slot 0 is reserved for the pinned row, so every scrolling entry sits one slot lower */
+		posy = (m_itemheight + indexSpacing.y()) * (index - m_top + 1);
 	else
 		posy = (m_itemheight + indexSpacing.y()) * (index - m_top);
 
@@ -1369,7 +1410,7 @@ void eListbox::moveSelection(int dir)
 	if (!m_content)
 		return;
 	/* if our list does not have one entry, don't do anything. */
-	int maxItems = (m_orientation == orVertical) ? m_max_rows : m_max_columns;
+	int maxItems = (m_orientation == orVertical) ? effectiveMaxRows() : m_max_columns;
 	if (m_orientation == orGrid)
 	{
 		maxItems = m_max_rows * m_max_columns;
@@ -1693,8 +1734,10 @@ void eListbox::moveSelection(int dir)
 	m_selected = m_content->cursorGet();
 	if (m_orientation == orHorizontal)
 		m_left = m_selected - (m_selected % maxItems);
-	else
+	else if (isGrid)
 		m_top = (m_scrollbar_scroll == byLine) ? m_selected / maxItems : (m_selected / maxItems) * m_max_rows;
+	else
+		m_top = (m_scrollbar_scroll == byLine) ? m_selected / maxItems : (m_selected / maxItems) * maxItems;
 
 	/*  new scollmode by line if not on the first page .. only for vertical */
 	if (m_scrollbar_scroll == byLine && m_content->size() > maxItems)
@@ -1713,6 +1756,10 @@ void eListbox::moveSelection(int dir)
 		}
 
 	}
+
+	/* row 0 is pinned to its own fixed slot; the scrolling area must never start at it too, or it would be painted twice */
+	if (m_lock_first_row && m_orientation == orVertical && !isGrid && m_top < 1)
+		m_top = 1;
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
 	if (m_orientation == orHorizontal)
