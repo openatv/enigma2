@@ -24,6 +24,7 @@ to generate HTML."""
 		self.listStyle = "default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 		self.listIndexNames = indexNames or {}
 		self.additionalTemplateAttributes = {}
+		self.templateDataFormats = {}
 		self.onSelectionChanged = []
 		self.onListUpdated = []
 		self.disableCallbacks = False
@@ -269,6 +270,13 @@ to generate HTML."""
 	def listUpdated(self):
 		for method in self.onListUpdated:
 			method()
+
+	def setLockFirstRow(self, enabled):
+		try:
+			instance = self.master.master.instance
+			instance.setLockFirstRow(enabled)
+		except AttributeError:
+			pass
 
 	# These hacks protect code that was modified to use the previous up/down hack!   These methods should be found and removed from all code.
 	#

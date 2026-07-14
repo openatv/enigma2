@@ -32,11 +32,7 @@ bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 int eListbox::defaultHorizontalAlignment = -1;
 int eListbox::defaultVerticalAlignment = -1;
 
-eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_prev_scrollbar_page(-1), m_scrollbar_mode(showNever), m_scrollbar_scroll(byPage),
-									  m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
-									  m_scrollbar_height(10), m_scrollbar_length(0), m_top(0), m_left(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
-									  m_orientation(orVertical), m_max_columns(0), m_max_rows(0), m_selection_enabled(1), m_page_size(0), m_item_alignment(0), xOffset(0), yOffset(0),
-									  m_native_keys_bound(false), m_first_selectable_item(-1), m_last_selectable_item(-1), m_scrollbar(nullptr)
+eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_height = eListbox::defaultScrollBarWidth; // TODO
@@ -86,6 +82,12 @@ eListbox::~eListbox()
 
 void eListbox::setScrollbarMode(uint8_t mode)
 {
+	if (mode == eListbox::showOnDemandShrink) {
+		m_style.is_set.shrink = true;
+		mode = eListbox::showOnDemand;
+	} else
+		m_style.is_set.shrink = false;
+
 	m_scrollbar_mode = mode;
 	if (m_scrollbar)
 	{
@@ -133,6 +135,20 @@ void eListbox::setScrollbarScroll(uint8_t scroll)
 	m_scrollbar_scroll = scroll;
 }
 
+void eListbox::setLockFirstRow(bool lock)
+{
+	if (m_lock_first_row == lock)
+		return;
+	m_lock_first_row = lock;
+	if (m_content)
+	{
+		m_content->resetClip();
+		moveSelection(justCheck);
+		updateScrollBar();
+		invalidate();
+	}
+}
+
 void eListbox::setContent(iListboxContent *content)
 {
 	m_content = content;
@@ -155,14 +171,14 @@ void eListbox::allowNativeKeys(bool allow)
 	}
 }
 
-bool eListbox::atBegin()
+bool eListbox::atBegin() const
 {
 	if (m_content && !m_selected)
 		return true;
 	return false;
 }
 
-bool eListbox::atEnd()
+bool eListbox::atEnd() const
 {
 	if (m_content && m_content->size() == m_selected + 1)
 		return true;
@@ -233,9 +249,10 @@ void eListbox::setStartIndex(int offset)
 {
 	if (!m_content)
 		return;
-	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : effectiveMaxRows();
 	int max = std::max(0, (int)m_content->size() - maxItems);
-	offset = std::max(0, std::min(offset, max));
+	int minOffset = (m_lock_first_row && m_orientation == orVertical) ? 1 : 0;
+	offset = std::max(minOffset, std::min(offset, max));
 	if (m_orientation == orHorizontal)
 	{
 		if (m_left == offset)
@@ -254,7 +271,7 @@ void eListbox::setStartIndex(int offset)
 	invalidate();
 }
 
-int eListbox::getCurrentIndex()
+int eListbox::getCurrentIndex() const
 {
 	if (m_content && m_content->cursorValid())
 		return m_content->cursorGet();
@@ -368,7 +385,7 @@ void eListbox::updateScrollBar()
 		entries = (m_content->size() + m_max_columns - 1) / m_max_columns;
 	bool scrollbarvisible = m_scrollbar->isVisible();
 	bool scrollbarvisibleOld = m_scrollbar->isVisible();
-	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : m_max_rows;
+	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : effectiveMaxRows();
 
 	if (m_content_changed)
 	{
@@ -411,7 +428,7 @@ void eListbox::updateScrollBar()
 				scrollbarvisible = false;
 			}
 		}
-		else if (entries > maxItems || m_scrollbar_mode == showAlways)
+		else if (entries > ((m_orientation == orHorizontal) ? m_max_columns : m_max_rows) || m_scrollbar_mode == showAlways)
 		{
 			if (m_orientation == orHorizontal)
 			{
@@ -505,7 +522,7 @@ void eListbox::updateScrollBar()
 		recalcSizeAlignment(scrollbarvisible);
 }
 
-int eListbox::getScrollbarListOffset()
+int eListbox::getScrollbarListOffset() const
 {
 	if (m_orientation == orHorizontal)
 		return (m_scrollbar && m_scrollbar->isVisible()) ? m_scrollbar_height + m_scrollbar_offset : 0;
@@ -513,7 +530,7 @@ int eListbox::getScrollbarListOffset()
 		return (m_scrollbar && m_scrollbar->isVisible()) ? m_scrollbar_width + m_scrollbar_offset : 0;
 }
 
-int eListbox::getEntryTop()
+int eListbox::getEntryTop() const
 {
 	/*
 		Please Note! This will currently only work for verticial list box.
@@ -521,8 +538,8 @@ int eListbox::getEntryTop()
 	*/
 	if (m_orientation == orHorizontal)
 		return (m_selected - m_left) * m_itemwidth;
-	else if (m_orientation == orVertical)
-		return (m_selected - m_top) * m_itemheight;
+	else if (m_orientation == orVertical && m_lock_first_row && m_selected == 0)
+		return 0;
 	else
 		return (m_selected - m_top) * m_itemheight;
 }
@@ -608,6 +625,7 @@ int eListbox::event(int event, void *data, void *data2)
 		int line = 0;
 		int m_max_items = m_orientation == orGrid ? m_max_columns * m_max_rows : m_orientation == orHorizontal ? m_max_columns
 																											   : m_max_rows;
+		bool lockRow = m_lock_first_row && m_orientation == orVertical && m_content->size() > 0;
 
 		for (int posx = 0, posy = 0, i = 0; (m_orientation == orVertical) ? i <= m_max_items : i < m_max_items; posx += m_itemwidth + m_spacing.x(), ++i)
 		{
@@ -624,6 +642,26 @@ int eListbox::event(int event, void *data, void *data2)
 				posx = 0;
 				if (i > 0)
 					posy += m_itemheight + m_spacing.y();
+			}
+
+			if (lockRow && i == 0)
+			{
+				/* row 0 is pinned to this slot regardless of scroll position; the walking
+				   cursor (already positioned at m_top for slot i==1) must stay untouched. */
+				bool selFixed = (m_selected == 0 && m_selection_enabled);
+				if (selFixed)
+					line = 0;
+
+				entryRect = eRect(posx + xOffset, posy + yOffset, m_style.m_selection_width, m_style.m_selection_height);
+				gRegion entry_clip_rect = paint_region & entryRect;
+				if (!entry_clip_rect.empty())
+				{
+					int walkPos = m_content->cursorGet();
+					m_content->cursorSet(0);
+					m_content->paint(painter, *style, ePoint(posx + xOffset, posy + yOffset), selFixed);
+					m_content->cursorSet(walkPos);
+				}
+				continue;
 			}
 
 			bool sel = (m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
@@ -1128,37 +1166,37 @@ void eListbox::setSpacingColor(const gRGB &col)
 {
 	eWidget::setBackgroundColor(col);
 	m_style.m_spacing_color = col;
-	m_style.is_set.spacing_color = 1;
+	m_style.is_set.spacing_color = true;
 }
 
 void eListbox::setBackgroundColor(const gRGB &col)
 {
 	m_style.m_background_color = col;
-	m_style.is_set.background_color = 1;
+	m_style.is_set.background_color = true;
 }
 
 void eListbox::setBackgroundColorSelected(const gRGB &col)
 {
 	m_style.m_background_color_selected = col;
-	m_style.is_set.background_color_selected = 1;
+	m_style.is_set.background_color_selected = true;
 }
 
 void eListbox::setBackgroundColorRows(const gRGB &col)
 {
 	m_style.m_background_color_rows = col;
-	m_style.is_set.background_color_rows = 1;
+	m_style.is_set.background_color_rows = true;
 }
 
 void eListbox::setForegroundColor(const gRGB &col)
 {
 	m_style.m_foreground_color = col;
-	m_style.is_set.foreground_color = 1;
+	m_style.is_set.foreground_color = true;
 }
 
 void eListbox::setForegroundColorSelected(const gRGB &col)
 {
 	m_style.m_foreground_color_selected = col;
-	m_style.is_set.foreground_color_selected = 1;
+	m_style.is_set.foreground_color_selected = true;
 }
 
 void eListbox::setBorderWidth(int width)
@@ -1171,7 +1209,7 @@ void eListbox::setBorderWidth(int width)
 void eListbox::setScrollbarBorderWidth(int width)
 {
 	m_style.m_scrollbarborder_width = width;
-	m_style.is_set.scrollbarborder_width = 1;
+	m_style.is_set.scrollbarborder_width = true;
 	if (m_scrollbar)
 		m_scrollbar->setBorderWidth(width);
 }
@@ -1186,7 +1224,7 @@ void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 void eListbox::setScrollbarBackgroundColor(gRGB &col)
 {
 	m_style.m_scrollbarbackground_color = col;
-	m_style.is_set.scrollbarbackground_color = 1;
+	m_style.is_set.scrollbarbackground_color = true;
 	if (m_scrollbar)
 		m_scrollbar->setBackgroundColor(col);
 }
@@ -1194,7 +1232,7 @@ void eListbox::setScrollbarBackgroundColor(gRGB &col)
 void eListbox::setScrollbarForegroundColor(gRGB &col)
 {
 	m_style.m_scrollbarforeground_color = col;
-	m_style.is_set.scrollbarforeground_color = 1;
+	m_style.is_set.scrollbarforeground_color = true;
 	if (m_scrollbar)
 		m_scrollbar->setForegroundColor(col);
 }
@@ -1202,7 +1240,7 @@ void eListbox::setScrollbarForegroundColor(gRGB &col)
 void eListbox::setScrollbarBorderColor(const gRGB &col)
 {
 	m_style.m_scollbarborder_color = col;
-	m_style.is_set.scollbarborder_color = 1;
+	m_style.is_set.scollbarborder_color = true;
 	if (m_scrollbar)
 		m_scrollbar->setBorderColor(col);
 }
@@ -1217,7 +1255,7 @@ void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 void eListbox::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
 	m_style.m_scrollbarforegroundgradient_colors = {startcolor, midcolor, endcolor};
-	m_style.is_set.scrollbarforegroundgradient = 1;
+	m_style.is_set.scrollbarforegroundgradient = true;
 	if (m_scrollbar)
 		m_scrollbar->setForegroundGradient(m_style.m_scrollbarforegroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false, true);
 }
@@ -1225,7 +1263,7 @@ void eListbox::setScrollbarForegroundGradient(const gRGB &startcolor, const gRGB
 void eListbox::setScrollbarBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
 	m_style.m_scrollbarbackgroundgradient_colors = {startcolor, midcolor, endcolor};
-	m_style.is_set.scrollbarbackgroundgradient = 1;
+	m_style.is_set.scrollbarbackgroundgradient = true;
 	if (m_scrollbar)
 		m_scrollbar->setBackgroundGradient(m_style.m_scrollbarbackgroundgradient_colors, (m_orientation == orHorizontal) ? 2 : 1, false);
 }
@@ -1351,6 +1389,11 @@ ePoint eListbox::getItemPostion(int index)
 		posx = (m_orientation == orGrid) ? (m_itemwidth + indexSpacing.x()) * ((index - (m_top * m_max_columns)) % m_max_columns) : (m_itemwidth + indexSpacing.x()) * (index - m_left);
 		posy = (m_orientation == orGrid) ? (m_itemheight + indexSpacing.y()) * ((index - (m_top * m_max_columns)) / m_max_columns) : 0;
 	}
+	else if (m_lock_first_row && index == 0)
+		posy = 0;
+	else if (m_lock_first_row)
+		/* slot 0 is reserved for the pinned row, so every scrolling entry sits one slot lower */
+		posy = (m_itemheight + indexSpacing.y()) * (index - m_top + 1);
 	else
 		posy = (m_itemheight + indexSpacing.y()) * (index - m_top);
 
@@ -1363,7 +1406,7 @@ void eListbox::moveSelection(int dir)
 	if (!m_content)
 		return;
 	/* if our list does not have one entry, don't do anything. */
-	int maxItems = (m_orientation == orVertical) ? m_max_rows : m_max_columns;
+	int maxItems = (m_orientation == orVertical) ? effectiveMaxRows() : m_max_columns;
 	if (m_orientation == orGrid)
 	{
 		maxItems = m_max_rows * m_max_columns;
@@ -1687,8 +1730,17 @@ void eListbox::moveSelection(int dir)
 	m_selected = m_content->cursorGet();
 	if (m_orientation == orHorizontal)
 		m_left = m_selected - (m_selected % maxItems);
-	else
+	else if (isGrid)
 		m_top = (m_scrollbar_scroll == byLine) ? m_selected / maxItems : (m_selected / maxItems) * m_max_rows;
+	else if (m_lock_first_row)
+	{
+		/* row 0 is pinned and excluded from paging, so page boundaries must be computed
+		   on the scrollable items (index 1..) rather than on the raw content index. */
+		int relSel = std::max(0, m_selected - 1);
+		m_top = 1 + ((m_scrollbar_scroll == byLine) ? relSel / maxItems : (relSel / maxItems) * maxItems);
+	}
+	else
+		m_top = (m_scrollbar_scroll == byLine) ? m_selected / maxItems : (m_selected / maxItems) * maxItems;
 
 	/*  new scollmode by line if not on the first page .. only for vertical */
 	if (m_scrollbar_scroll == byLine && m_content->size() > maxItems)
@@ -1707,6 +1759,10 @@ void eListbox::moveSelection(int dir)
 		}
 
 	}
+
+	/* row 0 is pinned to its own fixed slot; the scrolling area must never start at it too, or it would be painted twice */
+	if (m_lock_first_row && m_orientation == orVertical && !isGrid && m_top < 1)
+		m_top = 1;
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
 	if (m_orientation == orHorizontal)

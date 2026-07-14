@@ -1404,6 +1404,7 @@ eListboxPythonMultiContent::~eListboxPythonMultiContent()
 	Py_XDECREF(m_buildFunc);
 	Py_XDECREF(m_selectableFunc);
 	Py_XDECREF(m_template);
+	Py_XDECREF(m_templatesList);
 }
 
 void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
@@ -1628,10 +1629,10 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 					we will later detect that "data" is present, and refer to that, instead
 					of the immediate value. */
 			int start = 1;
-			if (m_template)
+			if (ePyObject tmplate = m_templates.empty() ? m_template : selectTemplate(items); tmplate)
 			{
 				data = items;
-				items = m_template;
+				items = tmplate;
 				start = 0;
 			}
 
@@ -1718,6 +1719,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	bool marked = false;
 	gRGB defaultForeColor;
 	gRGB defaultBackColor;
+	int rightShrink = 0;
 
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
@@ -1731,6 +1733,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		orientation = m_listbox->getOrientation();
 		itemZoomed = local_style->m_selection_zoom > 1.0;
 		itemZoomContent = itemZoomed && local_style->is_set.zoom_content;
+		if (local_style->is_set.shrink)
+			rightShrink = m_listbox->getScrollbarListOffset();
 	}
 
 	ePoint offs = offset;
@@ -1853,7 +1857,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			goto error_out;
 		}
 
-		if (!m_template || m_template == Py_None)
+		bool templated = (m_template && m_template != Py_None) || !m_templates.empty();
+		if (!templated)
 		{
 			if (!PyList_Check(items))
 			{
@@ -1876,10 +1881,16 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			we will later detect that "data" is present, and refer to that, instead
 			of the immediate value. */
 		int start = 1;
-		if (m_template && m_template != Py_None)
+		ePyObject tmplate = m_templates.empty() ? m_template : selectTemplate(items);
+		if (templated && !tmplate)
+		{
+			eDebug("[eListboxPythonMultiContent] could not select a template for list entry %d via data[0]", cursor);
+			goto error_out;
+		}
+		if (tmplate)
 		{
 			data = items;
-			items = m_template;
+			items = tmplate;
 			start = 0;
 		}
 
@@ -1964,6 +1975,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int cornerRadius = pCornerRadius ? PyLong_AsLong(pCornerRadius) : 0;
 				int cornerEdges = pCornerEdges ? PyLong_AsLong(pCornerEdges) : 15;
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				if (selected && itemZoomContent)
 				{
@@ -2141,6 +2155,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					if (orientation & 1) // vertical
 						width -= m_listbox->getScrollbarListOffset();
 				}
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				int flags = PyLong_AsLong(pflags);
 				int fnt = PyLong_AsLong(pfnt);
@@ -2446,6 +2463,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2687,6 +2707,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int direction = PyLong_AsLong(pdirection);
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2824,6 +2847,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					ePyObject pPadding = PyTuple_GET_ITEM(item, 14);
 					paddingBottom = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
 				}
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				if (selected && itemZoomContent)
 				{
@@ -2978,4 +3004,51 @@ void eListboxPythonMultiContent::setTemplate(ePyObject tmplate)
 	Py_XDECREF(m_template);
 	m_template = tmplate;
 	Py_XINCREF(m_template);
+}
+
+/* templates: a list of templates (each one a list of (TYPE, ...) tuples,
+   same format setTemplate() has always taken). When set, every list
+   entry's data[0] (an int) selects which of these templates renders it;
+   data[1], data[2], ... are then the entry's actual data fields. Does not
+   affect setTemplate()/m_template at all - the two are independent, and
+   m_templates (if non-empty) takes priority in paint()/getMaxItemTextWidth(). */
+void eListboxPythonMultiContent::setTemplates(ePyObject templates)
+{
+	Py_XDECREF(m_templatesList);
+	m_templatesList = templates;
+	Py_XINCREF(m_templatesList);
+
+	m_templates.clear();
+	if (m_templatesList && m_templatesList != Py_None)
+	{
+		Py_ssize_t size = PyList_Size(m_templatesList);
+		m_templates.reserve(size);
+		for (Py_ssize_t i = 0; i < size; ++i)
+			m_templates.push_back(PyList_GET_ITEM(m_templatesList, i)); // borrowed, kept alive via m_templatesList
+	}
+}
+
+ePyObject eListboxPythonMultiContent::selectTemplate(ePyObject items)
+{
+	if (!PyTuple_Check(items) || !PyTuple_Size(items))
+	{
+		eDebug("[eListboxPythonMultiContent] entry is not a (non-empty) tuple, can't select a template via data[0]");
+		return ePyObject();
+	}
+
+	ePyObject pIndex = PyTuple_GET_ITEM(items, 0);
+	if (!PyLong_Check(pIndex))
+	{
+		eDebug("[eListboxPythonMultiContent] data[0] is not an int, can't select a template");
+		return ePyObject();
+	}
+
+	long index = PyLong_AsLong(pIndex);
+	if (index < 0 || static_cast<size_t>(index) >= m_templates.size())
+	{
+		eDebug("[eListboxPythonMultiContent] template index %ld in data[0] is out of range", index);
+		return ePyObject();
+	}
+
+	return m_templates[index];
 }
