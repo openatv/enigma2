@@ -1732,6 +1732,13 @@ void eListbox::moveSelection(int dir)
 		m_left = m_selected - (m_selected % maxItems);
 	else if (isGrid)
 		m_top = (m_scrollbar_scroll == byLine) ? m_selected / maxItems : (m_selected / maxItems) * m_max_rows;
+	else if (m_lock_first_row)
+	{
+		/* row 0 is pinned and excluded from paging, so page boundaries must be computed
+		   on the scrollable items (index 1..) rather than on the raw content index. */
+		int relSel = std::max(0, m_selected - 1);
+		m_top = 1 + ((m_scrollbar_scroll == byLine) ? relSel / maxItems : (relSel / maxItems) * maxItems);
+	}
 	else
 		m_top = (m_scrollbar_scroll == byLine) ? m_selected / maxItems : (m_selected / maxItems) * maxItems;
 
