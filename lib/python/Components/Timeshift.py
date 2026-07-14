@@ -116,6 +116,7 @@ class InfoBarTimeshift:
 		self.save_timeshift_postaction = None
 		self.service_changed = 0
 		self.event_changed = False
+		self.pts_justzapped = False  # True only when files should be erased due to 'deleteAfterZap', not after a fresh GUI/box restart.
 		self.checkEvents_value = config.timeshift.checkEvents.value
 		self.pts_starttime = time()
 		self.ptsAskUser_wait = False
@@ -311,6 +312,7 @@ class InfoBarTimeshift:
 			if self.save_current_timeshift:  # We zapped away before saving the file, save it now!
 				self.SaveTimeshift(f"pts_livebuffer_{self.pts_eventcount}")
 			if config.timeshift.deleteAfterZap.value:  # Delete time shift recordings on zap.
+				self.pts_justzapped = True
 				self.ptsEventCleanTimerSTOP()
 			self.pts_firstplayable = self.pts_eventcount + 1
 			if self.pts_eventcount == 0 and not config.timeshift.startDelay.value:
@@ -536,8 +538,9 @@ class InfoBarTimeshift:
 
 	def activatePermanentTimeshift(self):
 		self.createTimeshiftFolder()
-		if self.pts_eventcount == 0:  # Only cleanup folder after switching channels, not when a new event starts, to allow saving old events from time shift buffer.
+		if self.pts_eventcount == 0 and self.pts_justzapped:  # Only cleanup folder after switching channels with 'deleteAfterZap', not after a fresh GUI/box restart.
 			self.ptsCleanTimeshiftFolder(justZapped=True)  # Remove all time shift files.
+			self.pts_justzapped = False
 		else:
 			self.ptsCleanTimeshiftFolder(justZapped=False)  # Only delete very old time shift files based on config.timeshift.maxHours.
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopWhileRecording.value and self.pts_record_running):
