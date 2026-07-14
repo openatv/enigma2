@@ -24,7 +24,7 @@ from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
 from Tools.CIHelper import cihelper
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
-from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
+from Tools.Notifications import AddModalNotification, AddNotification, AddNotificationWithCallback, AddPopup
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
 
@@ -943,8 +943,8 @@ class RecordTimerEntry(TimerEntry):
 			if self.failed:
 				return True
 			if self.justplay:
-				Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
 				if Screens.Standby.inStandby:
+					Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
 					self.wasInStandby = True
 					# eActionMap.getInstance().bindAction("", -maxsize - 1, self.keypress)
 					self.log(11, "Wake up and zap.")
@@ -953,8 +953,13 @@ class RecordTimerEntry(TimerEntry):
 					Screens.Standby.inStandby.paused_service = None
 					# Wakeup standby.
 					Screens.Standby.inStandby.Power()
+				elif config.recording.confirmZapDelay.value and InfoBar and InfoBar.instance:
+					self.log(11, "Asking user before zapping.")
+					message = _("A zap timer wants to switch the channel.\nDo you want to zap now?\n")
+					AddModalNotification(text=message, timeout=config.recording.confirmZapDelay.value, default=True, windowTitle=_("Zap"), callback=self.zapTimerCB)
 				else:
 					self.log(11, "Zapping.")
+					Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
 					NavigationInstance.instance.isMovieplayerActive()
 					if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
 						InfoBar.instance.servicelist.performZap(self.service_ref.ref)
@@ -1432,6 +1437,18 @@ class RecordTimerEntry(TimerEntry):
 		else:
 			self.log(14, "User didn't want to zap away, recording will probably fail!")
 		self.messageBoxAnswerPending = False
+
+	def zapTimerCB(self, answer):
+		if answer:
+			self.log(11, "User confirmed zap timer.")
+			Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
+			NavigationInstance.instance.isMovieplayerActive()
+			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+				InfoBar.instance.servicelist.performZap(self.service_ref.ref)
+			else:
+				NavigationInstance.instance.playService(self.service_ref.ref)
+		else:
+			self.log(11, "User cancelled zap timer.")
 
 	def check_justplay(self):
 		if self.justplay:
