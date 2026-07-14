@@ -35,11 +35,9 @@ void eWidgetDesktop::addRootWidget(eWidget *root)
 
 void eWidgetDesktop::removeRootWidget(eWidget *root)
 {
-	if (m_comp_mode == cmBuffered)
-	{
-		for (int i = 0; i < MAX_LAYER; ++i)
-			removeBufferForWidget(root, i);
-	}
+		/* modal roots own a comp buffer even in immediate mode. */
+	for (int i = 0; i < MAX_LAYER; ++i)
+		removeBufferForWidget(root, i);
 
 	m_root.remove(root);
 }
@@ -68,7 +66,7 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		widget->m_visible_region.moveBy(widget->position());
 		widget->m_visible_region &= parent_visible; // in parent space!
 
-		if (!widget->isTransparent() && (!widget->m_gradient_alphablend || parent) && (widget->m_cornerRadius == 0 || parent) && (!widget->m_alphaBlend || parent))
+		if (!widget->isTransparent() && !widget->isModal() && (!widget->m_gradient_alphablend || parent) && (widget->m_cornerRadius == 0 || parent) && (!widget->m_alphaBlend || parent))
 				/* remove everything this widget will contain from parent's visible list, unless widget is transparent. */
 			parent_visible -= widget->m_visible_region; // will remove child regions too!
 
@@ -109,7 +107,16 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 		{
 			if (!(i->m_vis & eWidget::wVisShow))
 			{
+					/* invalidate the area this window occupied. for
+					   modal windows this is required: they never
+					   subtracted from the background region, so the
+					   background diff below won't cover them. */
+				gRegion lost = i->m_visible_with_childs;
+				lost.moveBy(i->position());
+				invalidate(lost);
 				clearVisibility(i);
+				for (int l = 0; l < MAX_LAYER; ++l)
+					removeBufferForWidget(i, l);
 				continue;
 			}
 
@@ -311,9 +318,108 @@ void eWidgetDesktop::paintLayer(eWidget *widget, int layer)
 	painter.resetOffset();
 }
 
+void eWidgetDesktop::paintModalIm(eWidget *widget)
+{
+		/* immediate mode only: render a modal root window into its
+		   own composition buffer and alpha-blend it onto the screen,
+		   so (semi-)transparent modal windows blend with the window
+		   content painted below them instead of overwriting it. */
+	bool fullscreen = widget->isModal() == 2;
+	eRect bbox = fullscreen ? eRect(ePoint(0, 0), m_screen.m_screen_size) : eRect(widget->position(), widget->size());
+	gRegion abs_region = gRegion(bbox);
+	gRegion dirty = m_screen.m_dirty_region & abs_region;
+
+	eWidgetDesktopCompBuffer *comp = widget->m_comp_buffer[0];
+	if (!comp || (bbox.size() != comp->m_screen_size))
+	{
+		createBufferForWidget(widget, 0, fullscreen ? &bbox : 0);
+		comp = widget->m_comp_buffer[0];
+		dirty = abs_region; /* fresh buffer: render everything */
+	}
+	if (dirty.empty())
+		return;
+	comp->m_position = bbox.topLeft();
+
+	{
+		gPainter painter(comp->m_dc);
+		painter.moveOffset(-comp->m_position);
+		painter.resetClip(dirty);
+		if (fullscreen)
+		{
+			/* flood the whole screen with the modal's background
+			   (or gradient) first, the widget then paints over its own area. */
+			if (widget->isGradientSet())
+			{
+				painter.setGradient(widget->m_gradient_colors, widget->m_gradient_direction, widget->m_gradient_alphablend);
+				painter.drawRectangle(eRect(ePoint(0, 0), bbox.size()));
+			}
+			else
+			{
+				painter.setBackgroundColor(widget->m_background_color);
+				painter.clear();
+			}
+		}
+		else
+		{
+			/* clear to fully transparent, so the widget's own
+			   (possibly translucent) background keeps its alpha. */
+			painter.setBackgroundColor(gRGB(0, 0, 0, 0xFF));
+			painter.clear();
+		}
+		widget->doPaint(painter, dirty, 0);
+		painter.resetOffset();
+	}
+
+	ePtr<gPixmap> pm;
+	comp->m_dc->getPixmap(pm);
+	gPainter painter(m_screen.m_dc);
+	painter.resetClip(dirty);
+	painter.blit(pm, comp->m_position, eRect(), gPixmap::blitAlphaBlend);
+}
+
 void eWidgetDesktop::paint()
 {
 	m_require_redraw = 0;
+
+	if (m_comp_mode == cmImmediate)
+	{
+			/* paint the background first, then the root windows from
+			   back to front. this way, non-occluding (modal) windows
+			   composite over the windows below them. for regular
+			   (mutually disjoint) windows the order doesn't matter. */
+		gRegion dirty = m_screen.m_dirty_region;
+		paintBackground(&m_screen);
+		m_screen.m_dirty_region = dirty;
+
+		ePtrList<eWidget>::iterator i(m_root.end());
+		for (;;)
+		{
+			if (i != m_root.end())
+			{
+				if (i->m_vis & eWidget::wVisShow)
+				{
+						/* modal windows with a translucent background
+						   color (alpha != 0) are rendered buffered and
+						   alpha-blended over the windows below; opaque
+						   modal windows paint directly, they cover the
+						   content below anyway. */
+					if (i->isModal() && i->m_have_background_color && i->m_background_color.a)
+						paintModalIm(i);
+					else
+						paintLayer(i, 0);
+				}
+			}
+			if (i == m_root.begin())
+				break;
+			--i;
+		}
+
+		m_screen.m_dirty_region = gRegion();
+
+		gPainter painter(m_screen.m_dc);
+		painter.flush();
+		return;
+	}
 
 		/* walk all root windows. */
 	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
@@ -322,26 +428,16 @@ void eWidgetDesktop::paint()
 		if (!(i->m_vis & eWidget::wVisShow))
 			continue;
 
-		if (m_comp_mode == cmImmediate)
-			paintLayer(i, 0);
-		else
-			for (int l = 0; l < MAX_LAYER; ++l)
-			{
-				paintLayer(i, l);
-				paintBackground(i->m_comp_buffer[l]);
-			}
+		for (int l = 0; l < MAX_LAYER; ++l)
+		{
+			paintLayer(i, l);
+			paintBackground(i->m_comp_buffer[l]);
+		}
 	}
-
-	if (m_comp_mode == cmImmediate)
-		paintBackground(&m_screen);
 
 	if (m_comp_mode == cmBuffered)
 	{
 //		redrawComposition(0);
-	} else
-	{
-		gPainter painter(m_screen.m_dc);
-		painter.flush();
 	}
 }
 
@@ -439,15 +535,15 @@ eWidgetDesktop::~eWidgetDesktop()
 	setCompositionMode(-1);
 }
 
-void eWidgetDesktop::createBufferForWidget(eWidget *widget, int layer)
+void eWidgetDesktop::createBufferForWidget(eWidget *widget, int layer, const eRect *bboxOverride)
 {
 	removeBufferForWidget(widget, layer);
 
 	eWidgetDesktopCompBuffer *comp = widget->m_comp_buffer[layer] = new eWidgetDesktopCompBuffer;
 
-	eDebug("[eWidgetDesktop] create buffer for widget layer %d, %d x %d\n", layer, widget->size().width(), widget->size().height());
+	eRect bbox = bboxOverride ? *bboxOverride : eRect(widget->position(), widget->size());
 
-	eRect bbox = eRect(widget->position(), widget->size());
+	eDebug("[eWidgetDesktop] create buffer for widget layer %d, %d x %d\n", layer, bbox.width(), bbox.height());
 	comp->m_position = bbox.topLeft();
 	comp->m_dirty_region = gRegion(eRect(ePoint(0, 0), bbox.size()));
 	comp->m_screen_size = bbox.size();

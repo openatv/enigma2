@@ -206,11 +206,18 @@ void eWidget::hide()
 
 	if (root && root->m_desktop)
 	{
-		gRegion abs = m_visible_with_childs;
-		abs.moveBy(abspos);
-
 		root->m_desktop->recalcClipRegions(root);
-		root->m_desktop->invalidate(abs);
+
+		if (isModal() == 2)
+			/* a fullscreen modal dimmed the whole screen while shown,
+			   so the whole screen must be redrawn once it's gone. */
+			root->m_desktop->invalidate(gRegion(eRect(ePoint(0, 0), root->m_desktop->size())));
+		else
+		{
+			gRegion abs = m_visible_with_childs;
+			abs.moveBy(abspos);
+			root->m_desktop->invalidate(abs);
+		}
 	}
 	if (m_stack)
 		m_stack->invalidateChilds();

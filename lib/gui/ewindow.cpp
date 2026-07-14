@@ -80,11 +80,15 @@ void eWindow::setBackgroundColor(const gRGB &col)
 void eWindow::setFlag(int flags)
 {
 	m_flags |= flags;
+	if (flags & (wfModal | wfModalFull))
+		setModal(m_flags & wfModalFull ? 2 : 1);
 }
 
 void eWindow::clearFlag(int flags)
 {
 	m_flags &= ~flags;
+	if (flags & (wfModal | wfModalFull))
+		setModal(m_flags & wfModalFull ? 2 : (m_flags & wfModal ? 1 : 0));
 }
 
 int eWindow::event(int event, void *data, void *data2)

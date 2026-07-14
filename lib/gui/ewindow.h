@@ -19,7 +19,9 @@ public:
 	void hide();
 
 	enum {
-		wfNoBorder = 1
+		wfNoBorder = 1,
+		wfModal = 2,
+		wfModalFull = 4,
 	};
 
 	void setBackgroundColor(const gRGB &col) override;

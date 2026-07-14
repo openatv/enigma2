@@ -48,6 +48,7 @@ public:
 	void invalidateWidget(const gRegion &region, const eWidget *widget, int layer = -1);
 	void invalidate(const gRegion &region, const eWidget *widget = 0, int layer = -1);
 	void paintLayer(eWidget *widget, int layer);
+	void paintModalIm(eWidget *widget);
 	void paint();
 	void setDC(gDC *dc);
 
@@ -91,7 +92,7 @@ private:
 
 	eWidgetDesktopCompBuffer m_screen;
 
-	void createBufferForWidget(eWidget *widget, int layer);
+	void createBufferForWidget(eWidget *widget, int layer, const eRect *bboxOverride = 0);
 	void removeBufferForWidget(eWidget *widget, int layer);
 
 	void redrawComposition(int notifed);
