@@ -1060,7 +1060,7 @@ class RecordTimerEntry(TimerEntry):
 			if job_manager.getPendingJobs() and self.shutdownTimerMaxRetry > 0:
 				print(f"[RecordTimer] waitForJobsThenShutdown. MaxRetry:{self.shutdownTimerMaxRetry}")
 				self.shutdownTimerMaxRetry -= 1
-				self.shutdownTimer.start(1000, True)
+				self.shutdownTimer.start(5000, True)
 			else:
 				print("[RecordTimer] quitMainloop (jobs done).")
 				quitMainloop(1)
@@ -1071,7 +1071,7 @@ class RecordTimerEntry(TimerEntry):
 			self.shutdownTimerMaxRetry = 100
 			self.shutdownTimer = eTimer()
 			self.shutdownTimer.callback.append(waitForJobsThenShutdown)
-			self.shutdownTimer.start(1000, True)
+			self.shutdownTimer.start(5000, True)
 			return True
 
 	def getNextActivation(self, getNextStbPowerOn=False):
