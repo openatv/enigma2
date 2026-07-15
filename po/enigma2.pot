@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 09:29+0000\n"
+"POT-Creation-Date: 2026-07-15 19:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,9 @@ msgid "  REC  "
 msgstr ""
 
 msgid "  Red key : Show/Hide channel name"
+msgstr ""
+
+msgid " (+5 volt terrestrial)"
 msgstr ""
 
 #, python-format
@@ -1589,13 +1592,16 @@ msgid ""
 "What do you want to do?"
 msgstr ""
 
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr ""
-
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr ""
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
+msgstr ""
+
+msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
+msgstr ""
+
+msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
 msgstr ""
 
 #, python-format
@@ -2024,6 +2030,9 @@ msgstr ""
 msgid "Adding schedule..."
 msgstr ""
 
+msgid "Additional cable of motorized LNB"
+msgstr ""
+
 msgid "Additional files/folders to backup"
 msgstr ""
 
@@ -2031,6 +2040,10 @@ msgid "Additional motor options allow you to enter details from your motor's spe
 msgstr ""
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
+msgstr ""
+
+#, python-format
+msgid "Additional rotor cable from %s"
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2657,6 +2670,9 @@ msgid "Auto"
 msgstr ""
 
 msgid "Auto (not available)"
+msgstr ""
+
+msgid "Auto DiSEqC search order"
 msgstr ""
 
 msgid "Auto Language"
@@ -3767,6 +3783,9 @@ msgstr ""
 msgid "Central African Republic"
 msgstr ""
 
+msgid "Central Europe"
+msgstr ""
+
 msgid "Central Khmer"
 msgstr ""
 
@@ -3956,6 +3975,9 @@ msgstr ""
 msgid "Chechen"
 msgstr ""
 
+msgid "Check ONID/TSID"
+msgstr ""
+
 msgid "Check for PDC"
 msgstr ""
 
@@ -3975,6 +3997,9 @@ msgid "Checking Feeds"
 msgstr ""
 
 msgid "Checking Logs..."
+msgstr ""
+
+msgid "Checking ONID/TSID ..."
 msgstr ""
 
 msgid "Checking file system..."
@@ -4893,12 +4918,6 @@ msgstr ""
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr ""
 
-msgid "Consult your receiver's manual for more information on power management."
-msgstr ""
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr ""
-
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr ""
@@ -5300,7 +5319,16 @@ msgstr ""
 msgid "Current mode: %s \n"
 msgstr ""
 
+msgid "Current rotor position:"
+msgstr ""
+
+msgid "Current rotor position: unknown"
+msgstr ""
+
 msgid "Current settings:"
+msgstr ""
+
+msgid "Current supplied to the LNB and positioner."
 msgstr ""
 
 msgid "Current time"
@@ -6153,6 +6181,9 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
+msgid "Detect positioner movement by its current consumption."
+msgstr ""
+
 msgid "Detective"
 msgstr ""
 
@@ -6890,6 +6921,9 @@ msgstr ""
 msgid "East limit set"
 msgstr ""
 
+msgid "Eastern satellites"
+msgstr ""
+
 msgid "Easy listening"
 msgstr ""
 
@@ -7284,6 +7318,12 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power."
 msgstr ""
 
+msgid "Enable this when a power inserter or external supply powers the Unicable device."
+msgstr ""
+
+msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
+msgstr ""
+
 msgid "Enable timer"
 msgstr ""
 
@@ -7429,6 +7469,9 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
+msgid "Enter expected ONID/TSID"
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr ""
 
@@ -7451,6 +7494,9 @@ msgid "Enter text via an attached keyboard"
 msgstr ""
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
+msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
@@ -8069,6 +8115,9 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Externally powered"
+msgstr ""
+
 msgid "Extra High"
 msgstr ""
 
@@ -8109,6 +8158,13 @@ msgid "FBC SCR (Unicable/JESS)"
 msgstr ""
 
 msgid "FBC automatic"
+msgstr ""
+
+#, python-format
+msgid "FBC automatic: connected to %s"
+msgstr ""
+
+msgid "FBC automatic: inactive"
 msgstr ""
 
 msgid "FCC enabled"
@@ -9297,6 +9353,9 @@ msgstr ""
 msgid "Hide softcam servername"
 msgstr ""
 
+msgid "Hide sub-menu"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr ""
 
@@ -9938,6 +9997,9 @@ msgstr ""
 msgid "Infotainment"
 msgstr ""
 
+msgid "Inherited channel / frequency"
+msgstr ""
+
 msgid "Init"
 msgstr ""
 
@@ -10508,6 +10570,18 @@ msgstr ""
 msgid "LNB"
 msgstr ""
 
+msgid "LNB 1"
+msgstr ""
+
+msgid "LNB 1 and the target LNB use different Unicable protocols"
+msgstr ""
+
+msgid "LNB current:"
+msgstr ""
+
+msgid "LNB current: not available"
+msgstr ""
+
 msgid "LNB/Switch Bootup time [ms]"
 msgstr ""
 
@@ -10593,6 +10667,9 @@ msgid "Leave DVD player?"
 msgstr ""
 
 msgid "Leave movie player"
+msgstr ""
+
+msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
 msgstr ""
 
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
@@ -10684,6 +10761,9 @@ msgid "Limit east"
 msgstr ""
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
+msgstr ""
+
+msgid "Limit the search to the satellite group normally used by this installation."
 msgstr ""
 
 msgid "Limit west"
@@ -11239,6 +11319,9 @@ msgstr ""
 msgid "Mayotte"
 msgstr ""
 
+msgid "Measured current"
+msgstr ""
+
 msgid "Media"
 msgstr ""
 
@@ -11380,6 +11463,9 @@ msgstr ""
 
 #, python-format
 msgid "Minimum age %d years"
+msgstr ""
+
+msgid "Minimum difference between idle and moving current."
 msgstr ""
 
 msgid "Minimum send interval"
@@ -12588,7 +12674,13 @@ msgstr ""
 msgid "Not Shown"
 msgstr ""
 
+msgid "Not a valid tuner"
+msgstr ""
+
 msgid "Not associated"
+msgstr ""
+
+msgid "Not available"
 msgstr ""
 
 msgid "Not configured"
@@ -12703,7 +12795,22 @@ msgstr ""
 msgid "OK button mode"
 msgstr ""
 
+msgid "OK checks the currently tuned transponder."
+msgstr ""
+
 msgid "OK, guide me through the upgrade process"
+msgstr ""
+
+msgid "ONID"
+msgstr ""
+
+msgid "ONID/TSID check timed out"
+msgstr ""
+
+msgid "ONID/TSID does not match"
+msgstr ""
+
+msgid "ONID/TSID valid"
 msgstr ""
 
 msgid "OSCam Info"
@@ -13044,6 +13151,9 @@ msgstr ""
 msgid "Open the single service EPG view"
 msgstr ""
 
+msgid "Open tuner setup"
+msgstr ""
+
 msgid "Open with File Commander"
 msgstr ""
 
@@ -13223,6 +13333,9 @@ msgid "PG - Parental Guidance"
 msgstr ""
 
 msgid "PGS file"
+msgstr ""
+
+msgid "PIN"
 msgstr ""
 
 msgid "PIN code needed"
@@ -14023,6 +14136,9 @@ msgid "Positioner Setup"
 msgstr ""
 
 msgid "Positioner Setup Log"
+msgstr ""
+
+msgid "Positioner actions"
 msgstr ""
 
 msgid "Positioner setup"
@@ -15519,7 +15635,14 @@ msgstr ""
 msgid "Rose"
 msgstr ""
 
+msgid "Rotor is not configured"
+msgstr ""
+
 msgid "Rotor turning speed"
+msgstr ""
+
+#, python-format
+msgid "Rotor: %d satellites"
 msgstr ""
 
 msgid "Router / Gateway"
@@ -16363,6 +16486,9 @@ msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older AP
 msgstr ""
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
+msgstr ""
+
+msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
 msgstr ""
 
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
@@ -18543,6 +18669,9 @@ msgstr ""
 msgid "Show status messages on switch to live TV"
 msgstr ""
 
+msgid "Show sub-menu"
+msgstr ""
+
 msgid "Show subservice selection"
 msgstr ""
 
@@ -20004,6 +20133,9 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
+msgid "TSID"
+msgstr ""
+
 msgid "TUNER:"
 msgstr ""
 
@@ -20367,6 +20499,9 @@ msgstr ""
 msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
+msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
+msgstr ""
+
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
@@ -20467,6 +20602,9 @@ msgid ""
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
+msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
 #, python-format
@@ -21653,10 +21791,25 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: %s."
+msgstr ""
+
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgstr ""
+
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
+msgstr ""
+
+msgid "Unavailable"
 msgstr ""
 
 msgid "Undefined"
@@ -21694,6 +21847,13 @@ msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Matrix"
+msgstr ""
+
+msgid "Unicable position"
+msgstr ""
+
+#, python-format
+msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
 msgstr ""
 
 msgid "Uninstall"
@@ -21953,6 +22113,9 @@ msgstr ""
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr ""
 
+msgid "Use LNB 1 User Band"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr ""
 
@@ -21963,6 +22126,9 @@ msgid "Use ODoH servers"
 msgstr ""
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
+
+msgid "Use PIN"
 msgstr ""
 
 msgid "Use QuickSelect"
@@ -22678,11 +22844,17 @@ msgstr ""
 msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr ""
 
+msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr ""
+
+msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -22773,6 +22945,9 @@ msgid "Western Frisian"
 msgstr ""
 
 msgid "Western Sahara"
+msgstr ""
+
+msgid "Western satellites"
 msgstr ""
 
 msgid "What day of month?"
@@ -23827,6 +24002,18 @@ msgstr ""
 msgid "handled"
 msgstr ""
 
+msgid "has incomplete Unicable settings"
+msgstr ""
+
+msgid "has no supported Unicable device type"
+msgstr ""
+
+msgid "has no valid Unicable product"
+msgstr ""
+
+msgid "has no valid User Band channel"
+msgstr ""
+
 msgid "height"
 msgstr ""
 
@@ -23873,6 +24060,12 @@ msgid "instant record"
 msgstr ""
 
 msgid "internally loopthrough to"
+msgstr ""
+
+msgid "is not configured"
+msgstr ""
+
+msgid "is not configured for Unicable"
 msgstr ""
 
 msgid "jump back to the previous title"
@@ -24128,6 +24321,18 @@ msgstr ""
 msgid "text"
 msgstr ""
 
+msgid "the User Band channel from LNB 1 is not available"
+msgstr ""
+
+msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
+msgstr ""
+
+msgid "the target LNB"
+msgstr ""
+
+msgid "the target LNB is not configured"
+msgstr ""
+
 msgid "this recording"
 msgstr ""
 
@@ -24174,6 +24379,9 @@ msgid "untestable"
 msgstr ""
 
 msgid "update"
+msgstr ""
+
+msgid "uses an unavailable User Band frequency"
 msgstr ""
 
 msgid "using:"
