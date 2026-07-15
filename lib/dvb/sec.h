@@ -287,6 +287,7 @@ public:
 	int SatCR_positions;
 	int SatCR_idx;
 	int SatCR_format;
+	int SatCR_pin;
 	int SatCR_switch_reliable;
 	int SatCR_RetuneNoPatEntry;
 	int BootUpTime;
@@ -390,10 +391,12 @@ public:
 	RESULT setLNBSatCRformat(int SatCR_format);	//DiSEqc or JESS (or ...)
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);
+	RESULT setLNBSatCRpin(int SatCR_pin);
 	RESULT setLNBSatCRpositions(int SatCR_positions);
 	RESULT getLNBSatCRformat();	//DiSEqc or JESS (or ...)
 	RESULT getLNBSatCR();
 	RESULT getLNBSatCRvco();
+	RESULT getLNBSatCRpin();
 	RESULT getLNBSatCRpositions();
 /* Satellite Specific Parameters */
 	RESULT addSatellite(int orbital_position);
