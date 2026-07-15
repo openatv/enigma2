@@ -144,6 +144,86 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			706,
 			1536,
 			"Thor 5/6/7 0.8w"),
+		# Astra 4A 4.8E
+		(
+			11785,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_5_6,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			48,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			201,
+			85,
+			"Astra 4A 4.8e"),
+		# Eutelsat 9B 9.0E
+		(
+			11996,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			90,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			1,
+			1,
+			"Eutelsat 9B 9.0e"),
+		# Eutelsat 16A 16.0E
+		(
+			11595,
+			30000,
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			160,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			2,
+			64,
+			"Eutelsat 16A 16.0e"),
+		# Eutelsat 5 West B 5.0W
+		(
+			11054,
+			29950,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_2_3,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			3550,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			20500,
+			1375,
+			"Eutelsat 5 West B 5.0w"),
 	]
 
 	circular_sat_frequencies = [
@@ -167,6 +247,26 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			11,
 			112,
 			"Express AMU1 36.0e"),
+		# Express AT1 56.0E
+		(
+			12054,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			560,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			566,
+			112,
+			"Express AT1 56.0e"),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
@@ -188,7 +288,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 	SAT_TABLE_ONID = 16
 	SAT_TABLE_NAME = 17
 
-	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change):
+	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change, order="all"):
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(" ")
@@ -211,15 +311,20 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.simple_sat_change = simple_sat_change
 		self.found_sats = []
 		self.circular_setup = False
-		sat_found = False
-		for x in self.sat_frequencies:
-			if x[self.SAT_TABLE_ORBPOS] == 360:
-				sat_found = True
-		if self.nr_of_ports == 1:
-			if not sat_found:
-				self.sat_frequencies += self.circular_sat_frequencies
-		elif sat_found:
-			self.sat_frequencies.remove(x)
+		centralPositions = {130, 192, 235, 282}
+		eastPositions = centralPositions | {48, 90, 160}
+		westPositions = {3592, 3550, 3300}
+		allUniversal = list(self.sat_frequencies)
+		if order == "astra":
+			self.sat_frequencies = [sat for sat in allUniversal if sat[self.SAT_TABLE_ORBPOS] in centralPositions]
+		elif order == "east":
+			self.sat_frequencies = [sat for sat in allUniversal if sat[self.SAT_TABLE_ORBPOS] in eastPositions]
+		elif order == "west":
+			self.sat_frequencies = [sat for sat in allUniversal if sat[self.SAT_TABLE_ORBPOS] in westPositions]
+		elif order == "circular":
+			self.sat_frequencies = list(self.circular_sat_frequencies)
+		else:
+			self.sat_frequencies = allUniversal + (list(self.circular_sat_frequencies) if self.nr_of_ports == 1 else [])
 		if not self.openFrontend():
 			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
@@ -345,7 +450,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 				config.Nims[self.feid].dvbs.diseqcMode.value = "diseqc_a_b"
 			else:
 				config.Nims[self.feid].dvbs.diseqcMode.value = "single"
-				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 360 and not self.found_sats:
+				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] in (360, 560) and not self.found_sats:
 					config.Nims[self.feid].dvbs.simpleDiSEqCSetCircularLNB.value = True
 					self.circular_setup = True
 

@@ -1708,11 +1708,25 @@ error:
 	return ret;
 }
 
-bool eDVBResourceManager::canMeasureFrontendInputPower()
+int eDVBResourceManager::readFrontendInputPower(int slotid)
 {
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 	{
-		return i->m_frontend->readInputpower() >= 0;
+		if (i->m_frontend->getSlotID() == slotid)
+			return i->m_frontend->readInputpower();
+	}
+	return -1;
+}
+
+bool eDVBResourceManager::canMeasureFrontendInputPower(int slotid)
+{
+	if (slotid >= 0)
+		return readFrontendInputPower(slotid) >= 0;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->readInputpower() >= 0)
+			return true;
 	}
 	return false;
 }

@@ -939,12 +939,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 				eDebugNoSimulate("[eDVBSatelliteEquipmentControl] tune timeout %dms", tunetimeout);
 
-				if((oldSatcr != -1) && (oldSatcr != lnb_param.SatCR_idx))
+				if((oldSatcr != -1) && (oldSatcr != lnb_param.SatCR_idx || oldDiction != lnb_param.SatCR_format || oldPin != lnb_param.SatCR_pin))
 				{
 					switch (oldDiction)
 					{
 						case 1:
-							if(oldPin < 1)
+							if(oldPin < 0)
 							{
 								diseqc.len = 4;
 								diseqc.data[0] = 0x70;
@@ -961,7 +961,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 							break;
 						case 0:
 						default:
-							if(oldPin < 1)
+							if(oldPin < 0)
 							{
 								diseqc.len = 5;
 								diseqc.data[2] = 0x5A;
@@ -989,18 +989,15 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 
 
 				frontend.setData(eDVBFrontend::DICTION, lnb_param.SatCR_format);
-//TODO				frontend.setData(eDVBFrontend::PIN, lnb_param.SatCR_pin);
-
-//>>> HACK adenin20150421
-				long pin = 0;
-//<<<
+				frontend.setData(eDVBFrontend::PIN, lnb_param.SatCR_pin);
+				long pin = lnb_param.SatCR_pin;
 //>>> TODO optimize this
 				if(lnb_param.SatCR_switch_reliable && gfrq && gfrq_a)
 				{
 					switch(lnb_param.SatCR_format)
 					{
 						case 1: //JESS
-							if(pin < 1)
+							if(pin < 0)
 							{
 								diseqc.len = diseqc_a.len = 4;
 								diseqc.data[0] = diseqc_a.data[0] = 0x70;
@@ -1021,7 +1018,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 							break;
 						case 0: //DiSEqC
 						default:
-							if(pin < 1)
+							if(pin < 0)
 							{
 								diseqc.len = diseqc_a.len = 5;
 								diseqc.data[2] = diseqc_a.data[2] = 0x5A;
@@ -1058,7 +1055,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				switch(lnb_param.SatCR_format)
 				{
 					case 1: //JESS
-						if(pin < 1)
+						if(pin < 0)
 						{
 							diseqc.len = 4;
 							diseqc.data[0] = 0x70;
@@ -1078,7 +1075,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 						break;
 					case 0: //DiSEqC
 					default:
-						if(pin < 1)
+						if(pin < 0)
 						{
 							diseqc.len = 5;
 							diseqc.data[2] = 0x5A;
@@ -1404,7 +1401,7 @@ void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend)
 	switch (diction)
 	{
 		case 1:
-			if(pin < 1)
+			if(pin < 0)
 			{
 				diseqc.len = 4;
 				diseqc.data[0] = 0x70;
@@ -1421,7 +1418,7 @@ void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend)
 			break;
 		case 0:
 		default:
-			if(pin < 1)
+			if(pin < 0)
 			{
 				diseqc.len = 5;
 				diseqc.data[2] = 0x5A;
@@ -1491,6 +1488,7 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 		it->m_frontend->setData(eDVBFrontend::ROTOR_POS, -1);
 		it->m_frontend->setData(eDVBFrontend::ROTOR_CMD, -1);
 		it->m_frontend->setData(eDVBFrontend::SATCR, -1);
+		it->m_frontend->setData(eDVBFrontend::PIN, -1);
 
 		if (it->m_frontend->is_FBCTuner())
 		{
@@ -1508,6 +1506,7 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 		it->m_frontend->setData(eDVBFrontend::ROTOR_POS, -1);
 		it->m_frontend->setData(eDVBFrontend::ROTOR_CMD, -1);
 		it->m_frontend->setData(eDVBFrontend::SATCR, -1);
+		it->m_frontend->setData(eDVBFrontend::PIN, -1);
 	}
 
 	return 0;
@@ -1517,7 +1516,10 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 RESULT eDVBSatelliteEquipmentControl::addLNB()
 {
 	if ( (m_lnbidx+1) < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)))
+	{
 		m_curSat=m_lnbs[++m_lnbidx].m_satellites.end();
+		m_lnbs[m_lnbidx].SatCR_pin = -1;
+	}
 	else
 	{
 		eDebug("[eDVBSatelliteEquipmentControl] no more LNB free... cnt is %d", m_lnbidx);
@@ -1807,6 +1809,18 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCRvco(int SatCRvco)
 	return 0;
 }
 
+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRpin(int SatCR_pin)
+{
+	eSecDebug("[eDVBSatelliteEquipmentControl] eDVBSatelliteEquipmentControl::setLNBSatCRpin(%d)", SatCR_pin);
+	if (SatCR_pin < -1 || SatCR_pin > 255)
+		return -EPERM;
+	if (currentLNBValid())
+		m_lnbs[m_lnbidx].SatCR_pin = SatCR_pin;
+	else
+		return -ENOENT;
+	return 0;
+}
+
 RESULT eDVBSatelliteEquipmentControl::setLNBSatCRpositions(int SatCR_positions)
 {
 	eSecDebug("[eDVBSatelliteEquipmentControl] eDVBSatelliteEquipmentControl::setLNBSatCRpositions(%d)", SatCR_positions);
@@ -1844,6 +1858,13 @@ RESULT eDVBSatelliteEquipmentControl::getLNBSatCRvco()
 {
 	if ( currentLNBValid() )
 		return m_lnbs[m_lnbidx].SatCRvco;
+	return -ENOENT;
+}
+
+RESULT eDVBSatelliteEquipmentControl::getLNBSatCRpin()
+{
+	if (currentLNBValid())
+		return m_lnbs[m_lnbidx].SatCR_pin;
 	return -ENOENT;
 }
 

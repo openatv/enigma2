@@ -3205,7 +3205,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 		switch (diction)
 		{
 			case 1:
-				if(pin < 1)
+				if(pin < 0)
 				{
 					diseqc.len = 4;
 					diseqc.data[0] = 0x70;
@@ -3222,7 +3222,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 				break;
 			case 0:
 			default:
-				if(pin < 1)
+				if(pin < 0)
 				{
 					diseqc.len = 5;
 					diseqc.data[2] = 0x5A;
