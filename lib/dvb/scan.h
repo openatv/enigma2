@@ -59,6 +59,7 @@ class eDVBScan: public sigc::trackable, public iObject
 		/* scan state variables */
 	int m_channel_state;
 	int m_ready, m_ready_all;
+	bool m_ch_current_active = false;
 
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
 	std::map<eDVBChannelID, int> m_tuner_data; // frequency read from tuner for every new channel
