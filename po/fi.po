@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
-"PO-Revision-Date: 2026-07-10 15:01+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
+"PO-Revision-Date: 2026-07-14 13:39+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 msgid ""
 "\n"
@@ -793,7 +793,7 @@ msgstr[1] "%d tuntia"
 
 #, python-format
 msgid "%d Hz"
-msgstr ""
+msgstr "%d Hz"
 
 #, python-format
 msgid "%d MB"
@@ -1148,7 +1148,7 @@ msgstr "%s Selain hallinta toimet"
 
 #, python-format
 msgid "%s DMIPS per core"
-msgstr ""
+msgstr "%s DMIPS per ydin"
 
 #, python-format
 msgid "%s GHz"
@@ -1688,7 +1688,7 @@ msgid "AC3plus transcoding"
 msgstr "AC3+ uudelleenpakkaus"
 
 msgid "AC4"
-msgstr ""
+msgstr "AC4"
 
 msgid "AFL"
 msgstr "AFL"
@@ -1764,6 +1764,9 @@ msgstr "alkaa juuri"
 
 msgid "Above 200 Mbps"
 msgstr "Yli 200 Mbps"
+
+msgid "Access mode"
+msgstr "Access tila"
 
 msgid "Access point"
 msgstr "Tukiasema"
@@ -2120,7 +2123,7 @@ msgstr "Afrikka"
 msgid "After Event"
 msgstr "Ajastuksen jälkeen"
 
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Virtakatkon jälkeen"
 
 msgid "After event"
@@ -2236,6 +2239,9 @@ msgstr "Salli kuulovammaisten tekstitys"
 
 msgid "Allow unsupported modes"
 msgstr "Salli ei tuetut tilat"
+
+msgid "Allowed clients"
+msgstr "Sallitut asiakkaat"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Sallii %s %s:n lukea tallennettuja EPG-tietoja säännöllisesti."
@@ -3067,7 +3073,7 @@ msgid "Benchmark information for %s %s"
 msgstr "Vertailutiedot kohteelle %s %s"
 
 msgid "Benchmarks"
-msgstr ""
+msgstr "Benchmarks"
 
 msgid "Bengali"
 msgstr "Bengali"
@@ -3480,7 +3486,7 @@ msgid "CPU brand"
 msgstr "CPU Malli"
 
 msgid "CPU memory clock"
-msgstr ""
+msgstr "CPU muistin kello"
 
 msgid "CPU priority for scripts"
 msgstr "CPU prioriteetti komentosarjoille"
@@ -3519,7 +3525,7 @@ msgid "Calculating benchmark..."
 msgstr "Lasketaan suorituskyky..."
 
 msgid "Calculating clock..."
-msgstr ""
+msgstr "Kellotaajuus lasketaan..."
 
 msgid "Calculating rating..."
 msgstr "Lasketaan luokitusta..."
@@ -3938,8 +3944,8 @@ msgstr "Kanavan valinta ruutu"
 msgid "Channel Selection Settings"
 msgstr "Kanavalistan asetukset"
 
-msgid "Channel Selection picon set"
-msgstr ""
+msgid "Channel Selection picon path"
+msgstr "Kanavan valinta kuvake asetus"
 
 msgid "Channel buttons"
 msgstr "Kanava painikkeet"
@@ -7187,6 +7193,12 @@ msgstr "Aktivoi MiniTV"
 msgid "Enable Move Mode"
 msgstr "Suosikkien järjestely"
 
+msgid "Enable NFSv3"
+msgstr "Ota käyttöön NFSv3"
+
+msgid "Enable NFSv4"
+msgstr "Ota käyttöön NFSv4"
+
 msgid "Enable Netmed EPG"
 msgstr "Ota käyttöön Netmed EPG"
 
@@ -7346,6 +7358,9 @@ msgstr "Ota tämä asetus käyttöön, jos haluat lisätä järjestelmän käynn
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näppäimistön tietoja virheenkorjauksen lokitiedostoon."
+
+msgid "Enable this option to add network information to the debug log file."
+msgstr "Ota tämä asetus käyttöön lisätäksesi verkkotiedot vianmäärityksen lokitiedostoon."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Ota tämä käyttöön, jos haluat lisätä opkg tiedot vianmääritysloki tiedostoon."
@@ -7540,6 +7555,10 @@ msgstr "Syötä pin koodi"
 msgid "Enter text via an attached keyboard"
 msgstr "Kirjoita teksti liitetyn näppäimistön kautta"
 
+#, fuzzy
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr "Anna IP-osoite tai aliverkko (esim. 192.168.1.0/24), jolle myönnetään NFS oikeudet. Anna oletusarvoinen '*' salliaksesi pääsyn kaikilta isänniltä"
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Kirjoita ZeroTier Network ID. ID:n pitäisi olla 16 merkkiä pitkä."
 
@@ -7551,6 +7570,9 @@ msgstr "Syötä taajuus, jolla LNB vaihtaa matalan ja korkean taajuuden välill�
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Syötä taajuus askel koko, jota virittimen tulee käyttää kaapeli multiplien etsinnässä. Lisätietoja tietoa saat kaapelioperaattorin ohjeista."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Syötä tallennettu numero paikantajalle, joka vastaa tätä satelliittia."
@@ -8833,7 +8855,7 @@ msgstr "Etupaneelin USB"
 msgid "Front USB 3.0"
 msgstr "Etupaneelin USB 3.0"
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr ""
 
 msgid "Front processor version"
@@ -9965,6 +9987,9 @@ msgstr "Sisällytä kansainväliset tiedot *"
 msgid "Include keyboard data"
 msgstr "Sisällytä näppäimistö tiedot"
 
+msgid "Include network data"
+msgstr ""
+
 msgid "Include opkg output data"
 msgstr "Sisällytä opkg tiedot"
 
@@ -10049,7 +10074,7 @@ msgstr "Tietopalkin häivytysnopeus"
 msgid "InfoBar front end data source"
 msgstr "Tietopalkin viritintiedon lähde"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr ""
 
 msgid "Information"
@@ -12056,6 +12081,12 @@ msgstr "Seuraava"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Settings"
+msgstr "NFS asetukset"
+
+msgid "NFS threads"
+msgstr ""
+
 msgid "NIM"
 msgstr "NIM"
 
@@ -13210,8 +13241,8 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paketit"
 
-msgid "OpenWebif picon set"
-msgstr ""
+msgid "OpenWebif picon path"
+msgstr "OpenWebif kuvake"
 
 msgid "Opera"
 msgstr "Opera"
@@ -13666,7 +13697,8 @@ msgstr "Kanavalogo paketin kohde sijainti"
 msgid "Picon mode"
 msgstr ""
 
-msgid "Picon path %s"
+#, python-format
+msgid "Picon set %s"
 msgstr ""
 
 msgid "Picon set mode"
@@ -15680,6 +15712,9 @@ msgstr "Root hakemisto"
 msgid "Root file"
 msgstr "Root tiedosto"
 
+msgid "Root squash"
+msgstr ""
+
 msgid "Rose"
 msgstr "ruusun punainen"
 
@@ -16892,16 +16927,16 @@ msgstr "Valitse lähde oletus DNS asetuksille."
 msgid "Select the No / False response"
 msgstr "Valitse Ei / Väärä vastaus"
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr ""
 
 #, python-format
@@ -17132,6 +17167,9 @@ msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Valitse pääsy automaattisesti viedyille Samba jaoille."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR:n mallinumero. Jos mallinumeroa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -21439,7 +21477,7 @@ msgid "Timezone"
 msgstr "Aikavyöhyke"
 
 msgid "Timing and diagnostics"
-msgstr ""
+msgstr "Ajoitus ja diagnostiikka"
 
 msgid "Timor-Leste / East Timor"
 msgstr "Timor-Leste / Itä Timor"
@@ -22197,7 +22235,7 @@ msgid "Uphops: "
 msgstr "Ylöshypyt: "
 
 msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
-msgstr ""
+msgstr "RGB ulostulon ylärajan rajoitus. \"Täysi alue\" = ei ylärajan rajoitusta, \"Rajoitettu alue\" RGB-ulostulon yläraja rajoitetaan arvoon 940 (TV-lähetysten turvallinen taso)."
 
 msgid "Upper USB"
 msgstr "Ylempi USB"
@@ -22916,7 +22954,7 @@ msgid "Volume down"
 msgstr "Äänenvoimakkuus -"
 
 msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
-msgstr ""
+msgstr "Kaukosäätimen äänenvoimakkuus painikkeet ohjaavat television, AV-vastaanottimen tai soundbarin äänenvoimakkuutta HDMI-CEC:n kautta. Jos ominaisuutta ei tueta, äänenvoimakkuuspainikkeet eivät toimi!"
 
 msgid "Volume steps"
 msgstr "Äänenvoimakkuuden askelkoko"
@@ -23000,7 +23038,7 @@ msgid "Wake up to standby"
 msgstr "Käynnisty valmiustilaan"
 
 msgid "Wake up your AV Receiver or Soundbar from Standby"
-msgstr ""
+msgstr "Herätä Viritinvahvistin tai Soundbar Valmistilasta"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis and Futuna"
@@ -23145,7 +23183,7 @@ msgid "What do you want to set as the default movie location?"
 msgstr "Mihin haluat asettaa oletus tallennus sijainnin?"
 
 msgid "What do you want to set as the picon location?"
-msgstr ""
+msgstr "Mihin haluat tallentaa kanavalogot?"
 
 msgid "What would you like to do with the archive file:"
 msgstr "Mitä haluat tehdä arkistotiedostolla:"
@@ -23201,6 +23239,12 @@ msgstr "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus 
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Valitse 'Kyllä' salliaksesi, että jokainen tunnistettu tallennuslaite viedään automaattisesti Samba jaoksi."
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr "Kun käytössä, sallii NFS v3 -protokollan käytön."
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr "Kun tämä otetaan käyttöön, sallitaan NFS-version 4 protokollien käyttö."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kun päällä, hyväksyntä vaaditaan katsottaessa http palveluita."
 
@@ -23224,6 +23268,9 @@ msgstr "Kun päällä, DVB tekstitys näytetään alkuperäisellä paikallaan."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kun päällä, voit keskeyttää tallenteen katselun exit-näppäimellä."
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr "Kun tämä otetaan käyttöön, root-käyttäjä muunnetaan nobody-käyttäjäksi (turvallisempi). Kun tämä poistetaan käytöstä, täydet root-oikeudet ovat käytettävissä."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Kun päällä, mitataan virrankulutusta jotta voidaan havaita kun kääntömoottori pysähtyy (jos viritin tukee tätä)."
@@ -23265,10 +23312,10 @@ msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Kun päällä, VCR SCART -valinta näytetään päävalikossa."
 
 msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
-msgstr ""
+msgstr "Kun tämä otetaan käyttöön, liitetty AV vastaanotin tai soundbar sammutetaan automaattisesti."
 
 msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
-msgstr ""
+msgstr "Kun tämä otetaan käyttöön, liitetty AV vastaanotin tai soundbar kytkeytyy automaattisesti päälle."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Kun päällä, tallenteiden kestot näytetään tallenneluettelossa (saattaa hidastaa hieman näkymän latautumista)."
@@ -23349,7 +23396,7 @@ msgid "When the receiver wakes from Standby or Deep Standby it will send a comma
 msgstr "Kun vastaanotin herää valmiustilasta tai virransäästötilasta, se lähettää televisiolle komennon, jolla se herätetään valmiustilasta."
 
 msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr ""
+msgstr "Kun vastaanotin herää valmiustilasta, lähetetään aktiivisen lähteen, suoratoistopolun ja reitityksen komennot, jotta televisio vaihtaa vastaanottimeen liitettyyn HDMI-tuloon."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kun punainen laatikko on oikein näkyvissä, paina VIHREÄÄ painiketta tallentaaksesi asetukset ja poistuaksesi."
@@ -26034,9 +26081,6 @@ msgstr "®"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA Loki"
-
-#~ msgid "NFS Settings"
-#~ msgstr "NFS asetukset"
 
 #~ msgid "OpenVPN Actions"
 #~ msgstr "OpenVPN toiminnot"

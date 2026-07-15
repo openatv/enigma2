@@ -19,16 +19,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
-"PO-Revision-Date: 2026-07-13 14:11+0000\n"
-"Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
+"PO-Revision-Date: 2026-07-14 13:39+0000\n"
+"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1860,6 +1860,9 @@ msgstr "Startet gleich"
 msgid "Above 200 Mbps"
 msgstr "Über 200 Mbps"
 
+msgid "Access mode"
+msgstr "Zugriffsmodus"
+
 msgid "Access point"
 msgstr "Access Point"
 
@@ -2240,7 +2243,7 @@ msgid "After Event"
 msgstr "Nach dem Ereignis"
 
 # Powerlost setup.xml
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Nach Stromausfall"
 
 # PowerTimer
@@ -2360,6 +2363,9 @@ msgstr "Untertitel für Hörgeschädigte erlauben"
 
 msgid "Allow unsupported modes"
 msgstr "Nicht unterstützte Modi erlauben"
+
+msgid "Allowed clients"
+msgstr "Erlaubte Clients"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "'Ja' erlaubt regelmäßiges Lesen der EPG-Daten aus der unter 'EPG-Dateiname' eingestellten Datei."
@@ -4141,7 +4147,7 @@ msgstr "Senderliste / Bildschirm"
 msgid "Channel Selection Settings"
 msgstr "Senderliste"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr "Picons der Senderauswahl"
 
 msgid "Channel buttons"
@@ -7558,6 +7564,12 @@ msgstr "MiniTV im Display anzeigen"
 msgid "Enable Move Mode"
 msgstr "Verschiebemodus aktivieren"
 
+msgid "Enable NFSv3"
+msgstr "NFSv3 aktivieren"
+
+msgid "Enable NFSv4"
+msgstr "NFSv4 aktivieren"
+
 msgid "Enable Netmed EPG"
 msgstr "Netmed-EPG aktivieren"
 
@@ -7721,6 +7733,9 @@ msgstr "Aktivieren, um dem Debug-Log internationale Sprach- und Länderinformati
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Tastaturdaten hinzuzufügen."
+
+msgid "Enable this option to add network information to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log Netzwerkinformationen hinzuzufügen."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log 'opkg'-Ausgabedaten hinzuzufügen."
@@ -7924,6 +7939,9 @@ msgstr "PIN eingeben"
 msgid "Enter text via an attached keyboard"
 msgstr "Texteingabe über eine angeschlossene Tastatur"
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr "Die IP-Adresse oder das Subnetz (z. B. 192.168.1.0/24) eingeben, für das der Zugriff auf den NFS-Host gewährt werden soll. Mit '*' (Standardwert) wird der Zugriff für alle Hosts zugelassen."
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Die ZeroTier-Netzwerk-ID mit genau 16 Zeichen eingeben."
 
@@ -7935,6 +7953,9 @@ msgstr "Die Frequenz eingeben, mit welcher der LNB zwischen Low- und High-Band w
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Die Frequenzschrittgröße eingeben, die der Tuner bei der Suche nach Kabelmultiplexen verwenden soll. Weitere Informationen befinden sich in der Dokumentation des Kabelanbieters."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgstr "Die Anzahl der NFS-Server-Threads auswählen, die zugewiesen/verwendet werden sollen. Höhere Werte verbessern die Leistung bei mehreren Clients, verbrauchen jedoch mehr Arbeitsspeicher."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Die Nummer eingeben, die im Stellungsregler für diesen Satelliten gespeichert ist."
@@ -9280,8 +9301,8 @@ msgstr "USB vorne"
 msgid "Front USB 3.0"
 msgstr "USB 3.0 vorne"
 
-msgid "Front panel/Display picon set"
-msgstr "Picons für die Frontblende"
+msgid "Front panel/Display picon path"
+msgstr "Picons für das Display"
 
 msgid "Front processor version"
 msgstr "Frontprozessorversion"
@@ -10428,7 +10449,7 @@ msgid "Include MultiBoot data *"
 msgstr "Inklusive MultiBoot-Daten *"
 
 msgid "Include SDT and BAT in http streams"
-msgstr "SDT und BAT in HTTP-Stream integrieren"
+msgstr "SDT und BAT in HTTP-Streams integrieren"
 
 msgid "Include action map data"
 msgstr "Inklusive ActionMap-Daten"
@@ -10441,6 +10462,9 @@ msgstr "Inklusive internationaler Daten *"
 
 msgid "Include keyboard data"
 msgstr "Inklusive Tastaturdaten"
+
+msgid "Include network data"
+msgstr "Inklusive Netzwerkdaten"
 
 msgid "Include opkg output data"
 msgstr "Inklusive Opkg-Ausgabedaten"
@@ -10531,7 +10555,7 @@ msgstr "Infoleiste Ausblendegeschwindigkeit"
 msgid "InfoBar front end data source"
 msgstr "Infoleiste Datenquelle"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr "Picons für die Infoleiste"
 
 #
@@ -12672,6 +12696,12 @@ msgstr "NÄCHSTE"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Settings"
+msgstr "NFS-Dateiserver"
+
+msgid "NFS threads"
+msgstr "NFS-Threads"
+
 msgid "NIM"
 msgstr "NIM"
 
@@ -13922,7 +13952,7 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX"
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr "Picons für OpenWebif"
 
 msgid "Opera"
@@ -14285,7 +14315,7 @@ msgid "Path '%s' missing!"
 msgstr "Pfad '%s' nicht vorhanden!"
 
 msgid "Path to picon set %s."
-msgstr "Pfad für Picons %s."
+msgstr "Pfad für Piconsatz %s."
 
 msgid "Pause"
 msgstr "Pause"
@@ -14405,8 +14435,9 @@ msgstr "Zielordner für Picons"
 msgid "Picon mode"
 msgstr "Picons Modus"
 
-msgid "Picon path %s"
-msgstr "Picons Pfad %s"
+#, python-format
+msgid "Picon set %s"
+msgstr "Picon Satz %s"
 
 msgid "Picon set mode"
 msgstr "Picons Einstellungsmodus"
@@ -16590,6 +16621,9 @@ msgstr "Rootverzeichnis"
 msgid "Root file"
 msgstr "Rootdatei"
 
+msgid "Root squash"
+msgstr "Root Squash"
+
 msgid "Rose"
 msgstr "Rosé"
 
@@ -17855,17 +17889,17 @@ msgstr "DNS-Server zum Nachschlagen des Hostnamens auswählen, um die IP-Adresse
 msgid "Select the No / False response"
 msgstr "Nein / negative Antwort auswählen"
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
-msgstr "Den Pfad von oben für die Senderlisten Picons auswählen."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
+msgstr "Den Pfad für die Picons der Senderauswahl auswählen."
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
-msgstr "Den Picon Pfad von oben auswählen der im Display verwendet werden sollen."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
+msgstr "Den Pfad für die Picons im Display auswählen."
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
-msgstr "Den Pfad von oben für die Picons der Infoleiste auswählen."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
+msgstr "Den Pfad für die Picons der Infoleiste auswählen."
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
-msgstr "Den Pfad von oben für die OpenWebif Picons auswählen."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr "Den Pfad für die Picons von OpenWebif auswählen."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18104,6 +18138,9 @@ msgstr "Den Modus für den Pfad und die Auflösung der Picons auswählen. 'Legac
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Den Zugriffsmodus für die automatisch exportierten Samba-Freigaben auswählen."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgstr "Den Zugriffsmodus auswählen, der für alle exportierten Verzeichnisse gilt."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Das Modell des Unicable/SCR-Gerätes auswählen. Wenn der Hersteller nicht aufgeführt ist, 'SCR' auf 'Benutzerdefiniert' setzen und die Geräteparameter gemäß dem zugehörigen Datenblatt manuell eingeben."
@@ -18706,7 +18743,7 @@ msgstr "Minimale CPU-Frequenz für die Kerne 2, 3, 4 und 5"
 
 #, python-format
 msgid "Set Path %s"
-msgstr "Pfad Satz %s"
+msgstr "Satzpfad %s"
 
 msgid "Set Scaling governor"
 msgstr "Scaling Governor auswählen"
@@ -24516,6 +24553,12 @@ msgstr "Bei 'Ja' wird eine Warnung angezeigt und Timeshift kann gestoppt oder fo
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Bei 'Ja' wird jeder Datenträger automatisch als Samba-Freigabe erstellt."
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr "Mit 'Ja' wird die Verwendung der NFS Version 3 Protokolle zugelassen."
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr "Mit 'Ja' wird die Verwendung der NFS Version 4 Protokolle zugelassen."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bei 'Ja' ist eine Authentifizierung erforderlich, um HTTP-Streams anzusehen."
 
@@ -24540,6 +24583,9 @@ msgstr "Wenn aktiviert, werden die grafischen DVB-Untertitel an der ursprünglic
 #
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Wenn aktiviert, kann der Movieplayer mit EXIT beendet werden."
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr "Wenn aktiviert, wird 'root' auf 'nobody' abgebildet (sicherer). Wenn nicht, steht der volle Root-Zugriff zur Verfügung."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Wenn aktiviert, wird der Stromverbrauch gemessen, um festzustellen, wann der Rotor aufhört, sich zu drehen (wenn dies vom Tuner unterstützt wird)."
@@ -26048,6 +26094,21 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Picon path %s"
+#~ msgstr "Picons Pfad %s"
+
+#~ msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+#~ msgstr "Den Pfad von oben für die Senderlisten Picons auswählen."
+
+#~ msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+#~ msgstr "Den Picon Pfad von oben auswählen der im Display verwendet werden sollen."
+
+#~ msgid "Select the Picon path, from above, to be used for InfoBar picons."
+#~ msgstr "Den Pfad von oben für die Picons der Infoleiste auswählen."
+
+#~ msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+#~ msgstr "Den Pfad von oben für die OpenWebif Picons auswählen."
 
 #, python-format
 #~ msgid "%d DMIPS per core"
@@ -27707,9 +27768,6 @@ msgstr "®"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA-Log"
-
-#~ msgid "NFS Settings"
-#~ msgstr "NFS-Dateiserver"
 
 #~ msgid "OpenVPN Actions"
 #~ msgstr "OpenVPN-Aktionen"

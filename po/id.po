@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -1909,6 +1909,9 @@ msgstr "hampir mulai"
 msgid "Above 200 Mbps"
 msgstr ""
 
+msgid "Access mode"
+msgstr ""
+
 msgid "Access point"
 msgstr ""
 
@@ -2266,7 +2269,7 @@ msgstr ""
 msgid "After Event"
 msgstr ""
 
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Setelah Kehilangan Daya"
 
 msgid "After event"
@@ -2390,6 +2393,9 @@ msgstr "Izinkan teks film untuk tuna rungu"
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "not supported"
+
+msgid "Allowed clients"
+msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Izinkan %s %s untuk membaca data EPG yg tersimpan secara teratur."
@@ -4114,7 +4120,7 @@ msgstr ""
 msgid "Channel Selection Settings"
 msgstr "Channel Selection Settings"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr ""
 
 #, fuzzy
@@ -7394,6 +7400,12 @@ msgstr "Enable MiniTV"
 msgid "Enable Move Mode"
 msgstr "Enable Move Mode"
 
+msgid "Enable NFSv3"
+msgstr ""
+
+msgid "Enable NFSv4"
+msgstr ""
+
 msgid "Enable Netmed EPG"
 msgstr "Enable Netmed EPG"
 
@@ -7555,6 +7567,9 @@ msgid "Enable this option to add international language and country load informa
 msgstr ""
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add network information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add opkg output data to the debug log file."
@@ -7752,6 +7767,9 @@ msgstr "Enter pin code"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
@@ -7762,6 +7780,9 @@ msgid "Enter the frequency at which you LNB switches between low band and high b
 msgstr ""
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr ""
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
@@ -9069,7 +9090,7 @@ msgstr "Front USB"
 msgid "Front USB 3.0"
 msgstr "Front USB 3.0"
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr ""
 
 msgid "Front processor version"
@@ -10230,6 +10251,9 @@ msgstr ""
 msgid "Include keyboard data"
 msgstr "Keyboard Settings"
 
+msgid "Include network data"
+msgstr ""
+
 msgid "Include opkg output data"
 msgstr ""
 
@@ -10316,7 +10340,7 @@ msgstr "Laju palang info menghilang"
 msgid "InfoBar front end data source"
 msgstr "Sumberdata depan palang info"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr ""
 
 msgid "Information"
@@ -12383,6 +12407,12 @@ msgstr "NEXT"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Settings"
+msgstr "NFS Settings"
+
+msgid "NFS threads"
+msgstr ""
+
 msgid "NIM"
 msgstr ""
 
@@ -13575,7 +13605,7 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr ""
 
 msgid "Opera"
@@ -14045,7 +14075,8 @@ msgstr ""
 msgid "Picon mode"
 msgstr ""
 
-msgid "Picon path %s"
+#, python-format
+msgid "Picon set %s"
 msgstr ""
 
 msgid "Picon set mode"
@@ -16101,6 +16132,9 @@ msgstr "Root directory"
 msgid "Root file"
 msgstr ""
 
+msgid "Root squash"
+msgstr ""
+
 msgid "Rose"
 msgstr ""
 
@@ -17314,16 +17348,16 @@ msgstr ""
 msgid "Select the No / False response"
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr ""
 
 #, python-format
@@ -17554,6 +17588,9 @@ msgid "Select the mode for picon path selection and resolution. 'Legacy' represe
 msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -23660,6 +23697,12 @@ msgstr "When enabled, a warning will be displayed and the user will get an optio
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr ""
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr ""
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "When enabled, authentication is required to watch http streams."
 
@@ -23683,6 +23726,9 @@ msgstr "When enabled, graphical DVB subtitles will be displayed at their origina
 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "When enabled, it is possible to leave the movie player with exit."
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -26137,9 +26183,6 @@ msgstr ""
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA Log"
-
-#~ msgid "NFS Settings"
-#~ msgstr "NFS Settings"
 
 #~ msgid "OpenVPN Settings"
 #~ msgstr "OpenVPN Settings"

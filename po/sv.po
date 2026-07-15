@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
 "PO-Revision-Date: 2026-04-20 04:59+0000\n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1817,6 +1817,9 @@ msgstr "På väg att starta"
 msgid "Above 200 Mbps"
 msgstr "Över 200 Mbps"
 
+msgid "Access mode"
+msgstr ""
+
 msgid "Access point"
 msgstr "Åtkomstpunkt"
 
@@ -2200,7 +2203,7 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Efter evenemanget"
 
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Efter strömavbrott"
 
 #
@@ -2323,6 +2326,9 @@ msgstr "Tillåt undertexter för hörselskadade"
 
 msgid "Allow unsupported modes"
 msgstr "Tillåt lägen som inte stöds"
+
+msgid "Allowed clients"
+msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Gör det möjligt för %s %s att regelbundet läsa de lagrade EPG-data."
@@ -4107,7 +4113,7 @@ msgstr "Skärm för kanalval"
 msgid "Channel Selection Settings"
 msgstr "Inställningar för kanalval"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr ""
 
 msgid "Channel buttons"
@@ -7527,6 +7533,12 @@ msgstr "Aktivera MiniTV"
 msgid "Enable Move Mode"
 msgstr "Aktivera Move Mode"
 
+msgid "Enable NFSv3"
+msgstr ""
+
+msgid "Enable NFSv4"
+msgstr ""
+
 msgid "Enable Netmed EPG"
 msgstr "Aktivera Netmed EPG"
 
@@ -7689,6 +7701,9 @@ msgstr "Aktivera det här alternativet om du vill lägga till information om int
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Aktivera det här alternativet om du vill lägga till data om tangentbordets tangenter i debugloggfilen."
+
+msgid "Enable this option to add network information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Aktivera detta alternativ om du vill lägga till utdata från opkg i felsökningsloggfilen."
@@ -7895,6 +7910,9 @@ msgstr "Ange pinkod"
 msgid "Enter text via an attached keyboard"
 msgstr "Skriv in text via ett anslutet tangentbord"
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
@@ -7906,6 +7924,9 @@ msgstr "Ange den frekvens vid vilken LNB:n växlar mellan lågband och högband.
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Ange den frekvensstegstorlek som tunern ska använda när den söker efter kabelmultiplexer. Mer information finns i dokumentationen från din kabeloperatör."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Ange det nummer som är lagrat i positioneringsenheten och som motsvarar denna satellit."
@@ -9254,7 +9275,7 @@ msgstr "USB på framsidan"
 msgid "Front USB 3.0"
 msgstr "USB 3.0 på framsidan"
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr ""
 
 msgid "Front processor version"
@@ -10426,6 +10447,9 @@ msgstr "Inkludera internationella data *"
 msgid "Include keyboard data"
 msgstr "Inkludera tangentbordsdata"
 
+msgid "Include network data"
+msgstr ""
+
 msgid "Include opkg output data"
 msgstr "Inkludera opkg-utdata"
 
@@ -10515,7 +10539,7 @@ msgstr "Hastighet för uttoning av InfoBar"
 msgid "InfoBar front end data source"
 msgstr "InfoBar front-end datakälla"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr ""
 
 #
@@ -12660,6 +12684,12 @@ msgstr "NÄSTA"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Settings"
+msgstr "NFS-Konfiguration"
+
+msgid "NFS threads"
+msgstr ""
+
 msgid "NIM"
 msgstr "NIM"
 
@@ -13887,7 +13917,7 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX-paket"
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr ""
 
 msgid "Opera"
@@ -14358,7 +14388,8 @@ msgstr "Picon installationsplats"
 msgid "Picon mode"
 msgstr ""
 
-msgid "Picon path %s"
+#, python-format
+msgid "Picon set %s"
 msgstr ""
 
 msgid "Picon set mode"
@@ -16543,6 +16574,9 @@ msgstr "Rotkatalog"
 msgid "Root file"
 msgstr "Rotfil"
 
+msgid "Root squash"
+msgstr ""
+
 msgid "Rose"
 msgstr "ros"
 
@@ -17799,16 +17833,16 @@ msgstr "Välj källa för standardinställningarna för DNS."
 msgid "Select the No / False response"
 msgstr "Välj svarsalternativet Nej/Falskt"
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr ""
 
 #, python-format
@@ -18040,6 +18074,9 @@ msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Välj åtkomstläge för de automatiskt exporterade samba-aktierna."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Välj modellnummer för din Unicable-enhet. Om modellnumret inte finns med i listan, ställ in \"SCR\" på \"User defined\" och ange enhetens parametrar manuellt enligt specifikationerna."
@@ -24407,6 +24444,12 @@ msgstr "När den är aktiverad visas en varning och användaren får möjlighet 
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Välj \"Yes\" om du vill att varje identifierad lagringsenhet automatiskt ska exporteras som samba-delning."
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr ""
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "När den är aktiverad krävs autentisering för att titta på http-strömmar."
 
@@ -24430,6 +24473,9 @@ msgstr "När den är aktiverad visas grafiska DVB-undertexter i sin ursprungliga
 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "När den är aktiverad är det möjligt att lämna filmspelaren med exit."
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "När den är aktiverad mäts strömförbrukningen för att upptäcka när rotorn slutar snurra (när detta stöds av tunern)."
@@ -26945,9 +26991,6 @@ msgstr "®"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA Log"
-
-#~ msgid "NFS Settings"
-#~ msgstr "NFS-Konfiguration"
 
 #~ msgid "OpenVpn Log"
 #~ msgstr "OpenVpn Logg"

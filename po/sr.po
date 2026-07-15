@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
 "PO-Revision-Date: 2026-07-12 17:01+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -1796,6 +1796,9 @@ msgstr "Sledeće na redu"
 msgid "Above 200 Mbps"
 msgstr "Iznad 200 Mbps"
 
+msgid "Access mode"
+msgstr ""
+
 msgid "Access point"
 msgstr "Pristupna tačka"
 
@@ -2147,7 +2150,7 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Posle Događaja"
 
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Nakon nestanka Struje"
 
 msgid "After event"
@@ -2263,6 +2266,9 @@ msgstr "Dozvoli titlove za oštećen sluh"
 
 msgid "Allow unsupported modes"
 msgstr "Dozvoli nepodržane režime"
+
+msgid "Allowed clients"
+msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Dozvoli %s %s redovno čitanje uskladištenih ЕPG podataka."
@@ -3964,7 +3970,7 @@ msgstr "Ekran Izbora Kanala"
 msgid "Channel Selection Settings"
 msgstr "Postavke Izbora Kanala"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr "Postavke pikona za izbor kanala"
 
 msgid "Channel buttons"
@@ -7216,6 +7222,12 @@ msgstr "Omogući MiniTV"
 msgid "Enable Move Mode"
 msgstr "Omogući premeštanje režim"
 
+msgid "Enable NFSv3"
+msgstr ""
+
+msgid "Enable NFSv4"
+msgstr ""
+
 msgid "Enable Netmed EPG"
 msgstr "Omogući Netmed EPG"
 
@@ -7375,6 +7387,9 @@ msgstr "Omogući ovu opciju da doda info o međunarodnom jeziku i opterečenju z
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Omogući opciju dodavanja tastature keymap podataka u fajlu evidencije otklanjanja grešaka."
+
+msgid "Enable this option to add network information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Omogući opciju dodavanja opkg izlaznih podataka u fajl evidencije otklanjanja greške."
@@ -7571,6 +7586,9 @@ msgstr "Unesite pin kod"
 msgid "Enter text via an attached keyboard"
 msgstr "Unesite tekst preko priložene tastature"
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Unesite ZeroTier ID mreže. ID treba da bude tačno 16 karaktera."
 
@@ -7582,6 +7600,9 @@ msgstr "Unesite frekvenciju na kojoj se LNB prebacuje između niskog banda i vis
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Unesite veličinu koraka učestalosti koju tjuner koristi prilikom traženja multipleksa kabla. Za više info pogledajte list specifikacije kabel provajdera."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Unesite broj sačuvan u pozicioner koji odgovara danom satelitu."
@@ -8864,7 +8885,7 @@ msgstr "Prednji USB"
 msgid "Front USB 3.0"
 msgstr "Prednji USB 3.0"
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr "Postavke pikon-a za prednju ploču/ekran"
 
 msgid "Front processor version"
@@ -9991,6 +10012,9 @@ msgstr "Uključiti internacionalne podatke *"
 msgid "Include keyboard data"
 msgstr "Uključiti postavke tastature"
 
+msgid "Include network data"
+msgstr ""
+
 msgid "Include opkg output data"
 msgstr "Uključiti opkg izlazne podatke"
 
@@ -10075,7 +10099,7 @@ msgstr "Brzina postepenog isčezavanja Info Trake"
 msgid "InfoBar front end data source"
 msgstr "Izvor podataka na naslovnoj Info Traki"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr "Postavke info trake pikona"
 
 msgid "Information"
@@ -12082,6 +12106,12 @@ msgstr "SLEDEĆE"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Settings"
+msgstr ""
+
+msgid "NFS threads"
+msgstr ""
+
 msgid "NIM"
 msgstr "NIM"
 
@@ -13230,7 +13260,7 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paket"
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr "OpenWebif postavke pikona"
 
 msgid "Opera"
@@ -13686,8 +13716,9 @@ msgstr "Lokacija instalacije pikona"
 msgid "Picon mode"
 msgstr "Pikon režim"
 
-msgid "Picon path %s"
-msgstr "Pikon putanja %s"
+#, python-format
+msgid "Picon set %s"
+msgstr ""
 
 msgid "Picon set mode"
 msgstr "Pikon postavke način"
@@ -15702,6 +15733,9 @@ msgstr "Osnovni direktorijum"
 msgid "Root file"
 msgstr "Osnovni fajl"
 
+msgid "Root squash"
+msgstr ""
+
 msgid "Rose"
 msgstr "Ruža"
 
@@ -16905,17 +16939,17 @@ msgstr "Izaberite DNS server(e) koji će se koristiti za pronalaženje imena hos
 msgid "Select the No / False response"
 msgstr "Izaberi Ne / Lažni odgovor"
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
-msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za pikone pri izboru kanala."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
+msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
-msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za pikone na prednjoj ploči/ekranu."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
+msgstr ""
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
-msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za Info traku pikona."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
+msgstr ""
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
-msgstr "Izaberi putanju do Pikona, gore, koja će se koristiti za OpenWebif pikona."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17145,6 +17179,9 @@ msgstr "Izaberi režim za izbor putanje pikona i rezoluciju. 'Nasleđeno' predst
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Izaberite način pristupa za automatski eksportovane samba deljene foldere."
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Izaberite broj modela vašeg Unicable uređaja. Ako broj modela nije naveden, postavite 'SCR' na 'Korisnički definisano' i unesite parametre uređaja ručno prema njegovim specifikacijama."
@@ -23210,6 +23247,12 @@ msgstr "Kada je omogućeno, biće prikazano upozorenje i korisnik će dobiti opc
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Izaberite 'Da' da omogućite da svaki otkriveni uređaj za skladištenje bude automatski izvezen kao samba deljenje."
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr ""
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kada je omogućeno, potrebna je potvrda identiteta za gledanje http strima."
 
@@ -23233,6 +23276,9 @@ msgstr "Kada je omogućeno, grafički DVB titlovi će biti prikazani na original
 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kada je omogućeno, moguće je napustiti filmski plejer sa exit."
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Kada je omogućeno, izmerite potrošnju energije da bi otkrili kada rotor prestane da se okreće (kada ga tjuner podržava)."
@@ -24611,6 +24657,21 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Picon path %s"
+#~ msgstr "Pikon putanja %s"
+
+#~ msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+#~ msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za pikone pri izboru kanala."
+
+#~ msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+#~ msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za pikone na prednjoj ploči/ekranu."
+
+#~ msgid "Select the Picon path, from above, to be used for InfoBar picons."
+#~ msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za Info traku pikona."
+
+#~ msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+#~ msgstr "Izaberi putanju do Pikona, gore, koja će se koristiti za OpenWebif pikona."
 
 #, python-format
 #~ msgid "%d DMIPS per core"

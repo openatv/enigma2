@@ -2485,15 +2485,15 @@ def InitUsageConfig():
 			piconPaths.append(piconPath)
 	config.picon.allowedPaths = ConfigLocations(default=piconPaths)
 	config.picon.mode = ConfigSelection(default=0, choices=[
-		(0, _("Legacy")),
-		(1, _("Picon set mode"))
+		(0, _("Single-path mode")),
+		(1, _("Multi-path mode"))
 	])
-	choices = [(x, _("Picon set %s") % (x + 1)) for x in range(5)]
+	choices = [(x, _("Picon path %s") % (x + 1)) for x in range(4)]
 	config.picon.infobar = ConfigSelection(default=0, choices=choices)
 	config.picon.channelselection = ConfigSelection(default=0, choices=choices)
 	config.picon.display = ConfigSelection(default=0, choices=choices)
 	config.picon.openwebif = ConfigSelection(default=0, choices=choices)
-	for index in range(5):
+	for index in range(4):
 		section = ConfigSubsection()
 		section.path = ConfigText(default="/usr/share/enigma2/picon" if index == 0 else "", fixed_size=False)
 		setattr(config.picon, f"set{index}", section)

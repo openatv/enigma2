@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1800,6 +1800,9 @@ msgstr "立即開始"
 msgid "Above 200 Mbps"
 msgstr ""
 
+msgid "Access mode"
+msgstr ""
+
 msgid "Access point"
 msgstr ""
 
@@ -2171,7 +2174,7 @@ msgid "After Event"
 msgstr ""
 
 #, fuzzy
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "事件之後"
 
 msgid "After event"
@@ -2297,6 +2300,9 @@ msgid "Allow subtitles for hearing impaired"
 msgstr ""
 
 msgid "Allow unsupported modes"
+msgstr ""
+
+msgid "Allowed clients"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -4081,7 +4087,7 @@ msgstr ""
 msgid "Channel Selection Settings"
 msgstr "收藏設定"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr ""
 
 #, fuzzy
@@ -7414,6 +7420,12 @@ msgstr "啟用計時器"
 msgid "Enable Move Mode"
 msgstr "允許移動模式"
 
+msgid "Enable NFSv3"
+msgstr ""
+
+msgid "Enable NFSv4"
+msgstr ""
+
 msgid "Enable Netmed EPG"
 msgstr ""
 
@@ -7578,6 +7590,9 @@ msgid "Enable this option to add international language and country load informa
 msgstr ""
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add network information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add opkg output data to the debug log file."
@@ -7775,6 +7790,9 @@ msgstr ""
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
@@ -7785,6 +7803,9 @@ msgid "Enter the frequency at which you LNB switches between low band and high b
 msgstr ""
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr ""
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
@@ -9107,7 +9128,7 @@ msgstr ""
 msgid "Front USB 3.0"
 msgstr ""
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr ""
 
 msgid "Front processor version"
@@ -10299,6 +10320,9 @@ msgstr ""
 msgid "Include keyboard data"
 msgstr "鍵盤佈局"
 
+msgid "Include network data"
+msgstr ""
+
 msgid "Include opkg output data"
 msgstr ""
 
@@ -10391,7 +10415,7 @@ msgstr "資訊條超時"
 msgid "InfoBar front end data source"
 msgstr ""
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr ""
 
 msgid "Information"
@@ -12519,6 +12543,13 @@ msgstr "下一個"
 msgid "NFS"
 msgstr ""
 
+#, fuzzy
+msgid "NFS Settings"
+msgstr "設定"
+
+msgid "NFS threads"
+msgstr ""
+
 msgid "NIM"
 msgstr ""
 
@@ -13736,7 +13767,7 @@ msgstr ""
 msgid "OpenViX Packages"
 msgstr ""
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr ""
 
 msgid "Opera"
@@ -14218,7 +14249,8 @@ msgstr ""
 msgid "Picon mode"
 msgstr ""
 
-msgid "Picon path %s"
+#, python-format
+msgid "Picon set %s"
 msgstr ""
 
 msgid "Picon set mode"
@@ -16361,6 +16393,9 @@ msgstr ""
 msgid "Root file"
 msgstr ""
 
+msgid "Root squash"
+msgstr ""
+
 msgid "Rose"
 msgstr ""
 
@@ -17610,16 +17645,16 @@ msgstr ""
 msgid "Select the No / False response"
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr ""
 
 #, python-format
@@ -17851,6 +17886,9 @@ msgid "Select the mode for picon path selection and resolution. 'Legacy' represe
 msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -24102,6 +24140,12 @@ msgstr ""
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr ""
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr ""
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
@@ -24124,6 +24168,9 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr ""
 
 msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr ""
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -26246,10 +26293,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Inadyn Log"
 #~ msgstr "Inadyn"
-
-#, fuzzy
-#~ msgid "NFS Settings"
-#~ msgstr "設定"
 
 #, fuzzy
 #~ msgid "OpenVPN Settings"

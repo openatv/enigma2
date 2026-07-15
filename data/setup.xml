@@ -661,17 +661,16 @@
 		<item level="0" text="New password" description="Setting a password is strongly advised if your receiver is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
 	</setup>
 	<setup key="Picon" title="Picon Settings">
-		<item level="0" text="Picon mode" description="Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation.">config.picon.mode</item>
+		<item level="0" text="Picon search mode" description="Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases.">config.picon.mode</item>
 		<if conditional="config.picon.mode.value == 1">
-			<item level="0" text="Picon set %s" description="Path to picon set %s." data="1">config.picon.set0.path</item>
-			<item level="0" text="Picon set %s" description="Path to picon set %s." data="2" conditional="config.picon.set0.path.value">config.picon.set1.path</item>
-			<item level="0" text="Picon set %s" description="Path to picon set %s." data="3" conditional="config.picon.set1.path.value">config.picon.set2.path</item>
-			<item level="0" text="Picon set %s" description="Path to picon set %s." data="4" conditional="config.picon.set2.path.value">config.picon.set3.path</item>
-			<item level="0" text="Picon set %s" description="Path to picon set %s." data="5" conditional="config.picon.set3.path.value">config.picon.set4.path</item>
-			<item level="0" text="InfoBar picon set" description="Select the Picon set path, from the option(s) above, to be used for InfoBar picons.">config.picon.infobar</item>
-			<item level="0" text="Channel Selection picon set" description="Select the Picon set path, from the option(s) above, to be used for Channel Selection picons.">config.picon.channelselection</item>
-			<item level="0" text="Front panel/Display picon set" description="Select the Picon set path, from the option(s) above, to be used for Front panel/Display picons.">config.picon.display</item>
-			<item level="0" text="OpenWebif picon set" description="Select the Picon set path, from the option(s) above, to be used for OpenWebif picons.">config.picon.openwebif</item>
+			<item level="0" text="Picon path %s" description="Define path %s for picons." data="1">config.picon.set0.path</item>
+			<item level="0" text="Picon path %s" description="Define path %s for picons." data="2" conditional="config.picon.set1.path.value">config.picon.set1.path</item>
+			<item level="0" text="Picon path %s" description="Define path %s for picons." data="3" conditional="config.picon.set2.path.value">config.picon.set2.path</item>
+			<item level="0" text="Picon path %s" description="Define path %s for picons." data="4" conditional="config.picon.set3.path.value">config.picon.set3.path</item>
+			<item level="0" text="InfoBar picon path" description="Select the Picon path, from the option(s) above, to be used for InfoBar picons.">config.picon.infobar</item>
+			<item level="0" text="Channel Selection picon path" description="Select the Picon path, from the option(s) above, to be used for Channel Selection picons.">config.picon.channelselection</item>
+			<item level="0" text="Front panel/Display picon path" description="Select the Picon path, from the option(s) above, to be used for Front panel/Display picons.">config.picon.display</item>
+			<item level="0" text="OpenWebif picon path" description="Select the Picon path, from the option(s) above, to be used for OpenWebif picons.">config.picon.openwebif</item>
 		</if>
 	</setup>
 	<setup key="Playback" title="Playback Settings">
@@ -1119,7 +1118,7 @@
 		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 		<item level="2" text="Http(s) stream start delay" description="Define additional delay in milliseconds before start of http(s) streams.">config.usage.http_startdelay</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
-		<item level="1" text="After Power Lost" description="Select what should be done when the %s %s was shut down incorrectly, or after power was lost.">config.usage.shutdownNOK_action</item>
+		<item level="1" text="After power loss" description="Select what should be done when the %s %s was shut down incorrectly, or after power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto Standby.">config.usage.boot_action</item>
 		<item level="2" text="Wake up time before a timer begins" description="Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives.">config.workaround.wakeuptime</item>
 		<item level="1" text="Use workaround for wake up from deep-standby" description="If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail.">config.workaround.deeprecord</item>

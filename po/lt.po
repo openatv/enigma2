@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1806,6 +1806,9 @@ msgstr "Netrukus prasidės"
 msgid "Above 200 Mbps"
 msgstr ""
 
+msgid "Access mode"
+msgstr ""
+
 msgid "Access point"
 msgstr "Prieigos taškas"
 
@@ -2157,7 +2160,7 @@ msgstr "Afrikiečių"
 msgid "After Event"
 msgstr "Po įvykio"
 
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Po įtampos dingimo"
 
 msgid "After event"
@@ -2273,6 +2276,9 @@ msgstr "Leisti subtitrus turintiems klausos sutrikimų"
 
 msgid "Allow unsupported modes"
 msgstr "Leisti nepalaikomus režimus"
+
+msgid "Allowed clients"
+msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Leidžia %s %s pastoviai skaityti saugomus EPG duomenis."
@@ -3976,7 +3982,7 @@ msgstr ""
 msgid "Channel Selection Settings"
 msgstr "Kanalo pasirinkimo parametrai"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr ""
 
 msgid "Channel buttons"
@@ -7218,6 +7224,12 @@ msgstr "Įjungti MiniTV"
 msgid "Enable Move Mode"
 msgstr "įjungti perkėlimą"
 
+msgid "Enable NFSv3"
+msgstr ""
+
+msgid "Enable NFSv4"
+msgstr ""
+
 msgid "Enable Netmed EPG"
 msgstr "Įjungti Netmed EPG"
 
@@ -7377,6 +7389,9 @@ msgstr ""
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtraukti klaviatūros klavišų plano duomenis."
+
+msgid "Enable this option to add network information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Įgalinti šią parinktį įtraukti opkg išvesties duomenis į derinimo žurnalo failą."
@@ -7573,6 +7588,9 @@ msgstr "Įrašykite pin kodą"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
@@ -7584,6 +7602,9 @@ msgstr "Įrašykite dažnį, kuriuo jūs LNB perjungiate tarp žemos ir aukšči
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Įrašykite dažnio takelio dydį, kurį naudosite ieškant kabelių multipleksų. Daugiau informacijos rasite kabelinės televizijos paslaugų teikėjo dokumentuose."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Įrašykite numerį, išsaugotą pozicionieriuje, kuris atitinka šį palydovą."
@@ -8868,7 +8889,7 @@ msgstr "Priekinis USB lizdas"
 msgid "Front USB 3.0"
 msgstr "Priekinis USB 3.0 lizdas"
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr ""
 
 msgid "Front processor version"
@@ -9995,6 +10016,9 @@ msgstr ""
 msgid "Include keyboard data"
 msgstr "Įtraukti klaviatūros duomenis"
 
+msgid "Include network data"
+msgstr ""
+
 msgid "Include opkg output data"
 msgstr "Įtraukti opkg išvesties duomenis"
 
@@ -10079,7 +10103,7 @@ msgstr "Info juostos išnykimo greitis"
 msgid "InfoBar front end data source"
 msgstr "Info juostos išorinės sąsajos duomenų šaltinis"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr ""
 
 msgid "Information"
@@ -12086,6 +12110,12 @@ msgstr "KITAS"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Settings"
+msgstr "NFS parametrai"
+
+msgid "NFS threads"
+msgstr ""
+
 msgid "NIM"
 msgstr ""
 
@@ -13231,7 +13261,7 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr ""
 
 msgid "Opera"
@@ -13687,7 +13717,8 @@ msgstr ""
 msgid "Picon mode"
 msgstr ""
 
-msgid "Picon path %s"
+#, python-format
+msgid "Picon set %s"
 msgstr ""
 
 msgid "Picon set mode"
@@ -15703,6 +15734,9 @@ msgstr "Pagrindinis katalogas"
 msgid "Root file"
 msgstr "Šakninis failas"
 
+msgid "Root squash"
+msgstr ""
+
 msgid "Rose"
 msgstr "rožinė"
 
@@ -16906,16 +16940,16 @@ msgstr "Pasirinkite numatytųjų DNS parametrų šaltinį."
 msgid "Select the No / False response"
 msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
 msgstr ""
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr ""
 
 #, python-format
@@ -17145,6 +17179,9 @@ msgid "Select the mode for picon path selection and resolution. 'Legacy' represe
 msgstr ""
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -23165,6 +23202,12 @@ msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirin
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr ""
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr ""
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo autentifikacijos duomenis."
 
@@ -23188,6 +23231,9 @@ msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus rodomi jų numatytojoje v
 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kai čia įjungta, filmų grotuvą galima uždaryti 'EXIT' mygtuku."
+
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Kai čia įjungta, bus matuojama variklio suvartojama galia, kad nustatyti, kada pozicionierius nustojo suktis (jei imtuvas tai palaiko)."
@@ -25808,9 +25854,6 @@ msgstr "®"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA žurnalas"
-
-#~ msgid "NFS Settings"
-#~ msgstr "NFS parametrai"
 
 #~ msgid "OpenVPN Actions"
 #~ msgstr "OpenVPN veiksmai"

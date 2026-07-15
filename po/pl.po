@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 13:00+0000\n"
-"PO-Revision-Date: 2026-07-13 14:11+0000\n"
+"POT-Creation-Date: 2026-07-13 14:22+0000\n"
+"PO-Revision-Date: 2026-07-15 09:22+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1806,6 +1806,9 @@ msgstr "Zaraz się rozpocznie"
 msgid "Above 200 Mbps"
 msgstr "Powyżej 200Mbps"
 
+msgid "Access mode"
+msgstr "Tryb dostępu"
+
 msgid "Access point"
 msgstr "Punkt dostępu"
 
@@ -2157,7 +2160,7 @@ msgstr "Afrykański"
 msgid "After Event"
 msgstr "Po wydarzeniu"
 
-msgid "After Power Lost"
+msgid "After power loss"
 msgstr "Po utracie zasilania"
 
 msgid "After event"
@@ -2273,6 +2276,9 @@ msgstr "Pozwól na napisy dla niedosłyszących"
 
 msgid "Allow unsupported modes"
 msgstr "Zezwól na użycie niewspieranych trybów"
+
+msgid "Allowed clients"
+msgstr "Dozwoleni klienci"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Umożliwia %s %s regularnie czytać przechowywane dane EPG."
@@ -3553,7 +3559,7 @@ msgid "Calculate file hashes/checksums"
 msgstr "Oblicz pliki haszy/sum kontrolnych"
 
 msgid "Calculating benchmark..."
-msgstr "Obliczanie benchmarku..."
+msgstr "Obliczanie wydajności..."
 
 msgid "Calculating clock..."
 msgstr "Obliczanie taktowania..."
@@ -3974,7 +3980,7 @@ msgstr "Ekran wyboru kanału"
 msgid "Channel Selection Settings"
 msgstr "Ustawienia listy kanałów"
 
-msgid "Channel Selection picon set"
+msgid "Channel Selection picon path"
 msgstr "Zestaw pikon listy kanałów"
 
 msgid "Channel buttons"
@@ -4577,7 +4583,7 @@ msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Skonfiguruj, czy ikony kryptograficzne będą wyświetlane na liście wyboru kanałów."
 
 msgid "Configure if service picons will be shown in quickzap."
-msgstr "Skonfiguruj, czy pikony będą wyświetlane w szybkim przełączaniu kanałów."
+msgstr "Skonfiguruj, czy podczas szybkiego przełączania mają być wyświetlane pikony kanałów."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Skonfiguruj, czy pikony mają być wyświetlane na liście kanałów."
@@ -7227,6 +7233,12 @@ msgstr "Włącz MiniTV"
 msgid "Enable Move Mode"
 msgstr "Przenieś"
 
+msgid "Enable NFSv3"
+msgstr "Włącz NFSv3"
+
+msgid "Enable NFSv4"
+msgstr "Włącz NFSv4"
+
 msgid "Enable Netmed EPG"
 msgstr "Włącz Netmed EPG"
 
@@ -7343,7 +7355,7 @@ msgid "Enable or disable using HDMI-CEC."
 msgstr "Włącz lub wyłącz obsługę HDMI CEC."
 
 msgid "Enable panic button"
-msgstr "Włącz przycisk paniki"
+msgstr "Włącz przycisk alarmowy"
 
 msgid "Enable preview"
 msgstr "Włącz podgląd"
@@ -7386,6 +7398,9 @@ msgstr "Włącz tę opcję, aby dodać informacje o obciążeniu języka między
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane mapy klawiatury do pliku dziennika debugowania."
+
+msgid "Enable this option to add network information to the debug log file."
+msgstr "Włącz tę opcję, aby dodać informacje o sieci do pliku dziennika debugowania."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane wyjściowe opkg do pliku dziennika debugowania."
@@ -7582,6 +7597,9 @@ msgstr "Wprowadź kod pin"
 msgid "Enter text via an attached keyboard"
 msgstr "Wpisz tekst za pomocą dołączonej klawiatury"
 
+msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr "Wprowadź adres IP lub podsieć (np. 192.168.1.0/24), którym ma zostać przyznany dostęp do serwera NFS. Wprowadź '*', aby zezwolić na dostęp wszystkim hostom."
+
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Wprowadź ID sieci ZeroTier. Identyfikator powinien mieć dokładnie 16 znaków."
 
@@ -7593,6 +7611,9 @@ msgstr "Wprowadź częstotliwość, przy której LNB przełącza się między pa
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Wprowadź rozmiar kroku częstotliwości dla tunera, który ma być używany podczas wyszukiwania multipleksów kablowych. Więcej informacji można znaleźć w dokumentacji dostawcy telewizji kablowej."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgstr "Wprowadź liczbę wątków serwera NFS do przydzielenia. Większa liczba poprawia wydajność przy wielu klientach, ale zwiększa zużycie pamięci."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Wprowadź numer zapisany w pozycjonerze, który odpowiada temu satelicie."
@@ -7994,10 +8015,10 @@ msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Nawet jeśli rozpocznie się zaplanowane zadanie „Wybudzenia”?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "Nawet jeśli uruchomi się timer nagrywania „Przełącz i Nagraj”?"
+msgstr "Także po uruchomieniu timera przełączania i nagrywania?"
 
 msgid "Even if a 'Zap' recording timer starting?"
-msgstr "Nawet jeśli uruchomi się timer nagrywania „Przełącz”?"
+msgstr "Także po uruchomieniu timera przełączania?"
 
 msgid "Event Info"
 msgstr "Info o wydarzeniu"
@@ -8875,7 +8896,7 @@ msgstr "Przedni USB"
 msgid "Front USB 3.0"
 msgstr "Przedni USB 3.0"
 
-msgid "Front panel/Display picon set"
+msgid "Front panel/Display picon path"
 msgstr "Zestaw pikon panelu przedniego/wyświetlacza"
 
 msgid "Front processor version"
@@ -10002,6 +10023,9 @@ msgstr "Załącz dane międzynarodowe *"
 msgid "Include keyboard data"
 msgstr "Dołącz dane klawiatury"
 
+msgid "Include network data"
+msgstr "Dołącz dane sieciowe"
+
 msgid "Include opkg output data"
 msgstr "Dołącz dane wyjściowe opkg"
 
@@ -10086,7 +10110,7 @@ msgstr "Pasek informacyjny - prędkość wygaszania"
 msgid "InfoBar front end data source"
 msgstr "Informacje źródła danych paska informacyjnego"
 
-msgid "InfoBar picon set"
+msgid "InfoBar picon path"
 msgstr "Zestaw pikon paska informacyjnego"
 
 msgid "Information"
@@ -11327,13 +11351,13 @@ msgid "Margin after recording"
 msgstr "Margines po nagraniu (w min)"
 
 msgid "Margin after zap"
-msgstr "Margines po zap"
+msgstr "Margines po przełączeniu"
 
 msgid "Margin before recording"
 msgstr "Margines przed nagraniem (w min)"
 
 msgid "Margin before zap"
-msgstr "Margines przed zap"
+msgstr "Margines przed przełączeniem"
 
 msgid "Mark As Dedicated 3D Service"
 msgstr "Oznacz jako kanał 3D"
@@ -12093,6 +12117,12 @@ msgstr "NASTĘPNY"
 
 msgid "NFS"
 msgstr "NFS"
+
+msgid "NFS Settings"
+msgstr "Ustawienia NFS"
+
+msgid "NFS threads"
+msgstr "Wątki NFS"
 
 msgid "NIM"
 msgstr "NIM"
@@ -13242,7 +13272,7 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "Pakiety OpenViX"
 
-msgid "OpenWebif picon set"
+msgid "OpenWebif picon path"
 msgstr "Zestaw pikon OpenWebif"
 
 msgid "Opera"
@@ -13505,7 +13535,7 @@ msgid "Panama"
 msgstr "Panama"
 
 msgid "Panic channel"
-msgstr "Kanał przycisku paniki"
+msgstr "Kanał alarmowy"
 
 msgid "Panic to"
 msgstr "Panika do"
@@ -13584,7 +13614,7 @@ msgid "Path '%s' missing!"
 msgstr "Brak ścieżki '%s'!"
 
 msgid "Path to picon set %s."
-msgstr "Ścieżka dla zestawu pikon %s."
+msgstr "Ścieżka do zestawu pikon %s."
 
 msgid "Pause"
 msgstr "Pauza"
@@ -13698,8 +13728,9 @@ msgstr "Miejsce instalacji pikon"
 msgid "Picon mode"
 msgstr "Tryb pikon"
 
-msgid "Picon path %s"
-msgstr "Ścieżka pikon %s"
+#, python-format
+msgid "Picon set %s"
+msgstr "Zestaw pikon %s"
 
 msgid "Picon set mode"
 msgstr "Tryb zestawów pikon"
@@ -14432,7 +14463,7 @@ msgid "Press this button to emulate a long press on a button pressed afterwards 
 msgstr "Naciśnij ten przycisk, aby emulować długie naciśnięcie przycisku (to zastąpi wszelkie inne czynności przypisane do tego przycisku)."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "Naciśnięcie przycisku paniki przeniesie Cię do tego numeru kanału na pierwszej liście kanałów."
+msgstr "Naciśnięcie przycisku alarmowego przełączy na ten numer kanału z pierwszej listy kanałów."
 
 msgid "Prev quad PiP channel"
 msgstr "Poprzedni kanał quad PiP"
@@ -15714,6 +15745,9 @@ msgstr "Katalog root"
 msgid "Root file"
 msgstr "Plik root"
 
+msgid "Root squash"
+msgstr "Ograniczenie uprawnień roota"
+
 msgid "Rose"
 msgstr "Róża"
 
@@ -16327,10 +16361,10 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
-msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas rozpoczęcia timera nagrywania „Przełącz i Nagraj”."
+msgstr "Wybierz 'Tak', jeśli telewizor ma zostać włączony po uruchomieniu timera przełączania i nagrywania."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
-msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na rozpoczęcie nagrywania przez timer „Przełącz”."
+msgstr "Wybierz 'Tak', jeśli telewizor ma zostać włączony po uruchomieniu timera przełączania."
 
 msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr "Wybierz „Tak”, jeśli chcesz, aby telewizor wybudzał się po uruchomieniu zaplanowanego zadania „Wybudzanie”."
@@ -16384,7 +16418,7 @@ msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' 
 msgstr "Wybierz \"Tak\", aby włączyć edycję ustawień urządzenia. Wybierz \"Nie\" aby przywrócić domyślne ustawienia urządzenia."
 
 msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
-msgstr "Wybierz „Tak”, aby nowe timery Zap miały domyślnie włączoną i zdefiniowaną godzinę zakończenia."
+msgstr "Wybierz 'Tak', aby nowe timery przełączania domyślnie miały włączony i ustawiony czas zakończenia."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Wybierz 'Tak', aby włączyć podgląd kanałów na liście EPG."
@@ -16815,7 +16849,7 @@ msgid "Select if an end time is required."
 msgstr "Wybierz, czy wymagany jest czas zakończenia."
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
-msgstr "Wybierz, czy limity czasu wprowadzania danych mają być stosowane podczas wprowadzania cyfr do wyskakującego ekranu wyboru kanału. Po przekroczeniu limitu czasu aktualnie wpisana liczba zostanie użyta do wyboru kanału. Domyślne limity czasu to pierwsza cyfra 3 sekundy, pozostałe cyfry 1 sekunda."
+msgstr "Wybierz, czy podczas wprowadzania cyfr w oknie wyboru kanału mają być stosowane limity czasu. Po ich przekroczeniu do przełączenia zostanie użyty aktualnie wprowadzony numer kanału. Domyślnie limit czasu wynosi 3 sekundy dla pierwszej cyfry i 1 sekundę dla kolejnych."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Ta opcja pozwoli ci wybrać jeśli domyślna wartość ustawień elementu jest widoczna i jeśli jest wyświetlana w relacji do tego opisu."
@@ -16917,17 +16951,17 @@ msgstr "Wybierz serwer / serwery DNS, które będą używane do rozwiązywania w
 msgid "Select the No / False response"
 msgstr "Wybierz odpowiedź jako Nie/Fałsz"
 
-msgid "Select the Picon path, from above, to be used for Channel Selection picons."
-msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana na liście kanałów."
+msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
+msgstr "Wybierz ścieżkę do zestawu pikon z powyższych opcji, która będzie używana na liście kanałów."
 
-msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
-msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana na panelu przednim/wyświetlaczu."
+msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
+msgstr "Wybierz ścieżkę do zestawu pikon z powyższych opcji, która będzie używana na panelu przednim/wyświetlaczu."
 
-msgid "Select the Picon path, from above, to be used for InfoBar picons."
-msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana dla paska informacyjnego."
+msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
+msgstr "Wybierz ścieżkę do zestawu pikon z powyższych opcji, która będzie używana na pasku informacyjnym."
 
-msgid "Select the Picon path, from above, to be used for OpenWebif picons."
-msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana w OpenWebif."
+msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr "Wybierz ścieżkę do zestawu pikon z powyższych opcji, która będzie używana w OpenWebif."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17064,10 +17098,10 @@ msgid "Select the delay to use when closing a Stream Relay service before reallo
 msgstr "Wybierz opóźnienie, które będzie używane podczas zamykania usługi Stream Relay przed ponownym przydzieleniem tunera dla innej usługi. Używanie „0” jest zalecane tylko w przypadku odbiorników z wieloma tunerami satelitarnymi."
 
 msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr "Wybierz opóźnienie, jakie należy odczekać po naciśnięciu większej liczby przycisków numerycznych w celu wybrania nowej usługi."
+msgstr "Wybierz czas oczekiwania po naciśnięciu kolejnych cyfr przed przełączeniem na nowy kanał."
 
 msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr "Wybierz opóźnienie, jakie należy odczekać po naciśnięciu pierwszego przycisku cyfrowego w celu wybrania nowej usługi."
+msgstr "Wybierz czas oczekiwania po naciśnięciu pierwszej cyfry przed przełączeniem na nowy kanał."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ', aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
@@ -17158,6 +17192,9 @@ msgstr "Wybierz tryb wyboru ścieżek i wyszukiwania pikon. 'Starszy tryb' oznac
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Wybierz tryb dostępu (Odczyt/Zapis) lub (Tylko do odczytu) stosowany do wszystkich automatycznie eksportowanych udziałów Samba."
 
+msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgstr "Wybierz tryb dostępu (Odczyt/Zapis lub Tylko odczyt), który będzie stosowany do wszystkich udostępnionych katalogów."
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Wybierz numer modelu swojego urządzenia Unicable. Jeśli numeru modelu nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z arkuszem specyfikacji."
 
@@ -17196,7 +17233,7 @@ msgid "Select the number of times to retry a task if an error occurs when runnin
 msgstr "Wybierz liczbę ponownych prób wykonania zadania, jeśli podczas jego wykonywania wystąpi błąd."
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
-msgstr "Wybierz preferowane informacje o kanałach, które będą wyświetlane na ekranie wyboru kanałów, oprócz numeru kanału."
+msgstr "Wybierz informacje o kanale, które oprócz numeru kanału mają być wyświetlane w oknie wyboru kanału."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "Wybierz poprzednią pozycję na liście lub przesuń kursor w lewo"
@@ -17358,7 +17395,7 @@ msgid "Select what do do after the timer recording has completed."
 msgstr "Wybierz, co zrobić po zakończeniu nagrywania z timerem."
 
 msgid "Select what do do after the timer zap has completed."
-msgstr "Wybierz, co zrobić po zakończeniu odliczania czasu."
+msgstr "Wybierz działanie po zakończeniu timera przełączania."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Wybierz, co ma zostać wykonane, gdy %s %s zostanie uruchomiony, będzie odtwarzany normalnie lub przejdzie w tryb czuwania."
@@ -17671,16 +17708,16 @@ msgid "Service width"
 msgstr "Szerokość usługi"
 
 msgid "Service zap delay mode"
-msgstr "Tryb opóźnienia przełączania kanału"
+msgstr "Tryb opóźnienia przełączania kanałów"
 
 msgid "Service zap first button delay"
-msgstr "Tryb opóźnienia przełączania kanału (pierwszy przycisk)"
+msgstr "Opóźnienie pierwszej cyfry przełączania"
 
 msgid "Service zap other button delay"
-msgstr "Tryb opóźnienia przełączania kanału (inny przycisk)"
+msgstr "Opóźnienie kolejnych cyfr przełączania"
 
 msgid "Service zap screen contents"
-msgstr "Zawartość ekranu przełączania"
+msgstr "Zawartość ekranu przełączania kanałów"
 
 msgid "ServiceName"
 msgstr "Nazwa kanału"
@@ -18041,7 +18078,7 @@ msgid "Setup entry sort"
 msgstr "Sortuj wpisy ustawień"
 
 msgid "Setup how to control the channel changing."
-msgstr "Ustawienie sposobu kontrolowania zmiany kanału."
+msgstr "Skonfiguruj sposób przełączania kanałów."
 
 msgid "Setup interface"
 msgstr "Ustawienia interfejsu"
@@ -18677,7 +18714,7 @@ msgid "Show picon background color"
 msgstr "Pokaż kolor tła pikon"
 
 msgid "Show picons in quickzap"
-msgstr "Pokaż pikony przy przełączaniu kanałów"
+msgstr "Pokaż pikony podczas szybkiego przełączania"
 
 msgid "Show picons in service list"
 msgstr "Pokaż pikony na liście kanałów"
@@ -21315,7 +21352,7 @@ msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Czas skoku: używać normalnie dla prędkości do przodu"
 
 msgid "Time shift buffer delete after zap"
-msgstr "Usuń bufor timeshiftu po przełączeniu kanału"
+msgstr "Usuń bufor timeshift po przełączeniu"
 
 msgid "Time shift buffer limit"
 msgstr "Limit bufora timeshift"
@@ -21342,7 +21379,7 @@ msgid "Time shift not possible!"
 msgstr "Timeshift niemożliwy!"
 
 msgid "Time shift save action on zap"
-msgstr "Akcja zapisywania timeshift w zap"
+msgstr "Działanie przy zapisie timeshift po przełączeniu"
 
 msgid "Time shift save failed!"
 msgstr "Timeshift błąd zapisu!"
@@ -22321,7 +22358,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Użyj informacji Virgin EPG, gdy są one dostępne."
 
 msgid "Use Zap timer end times"
-msgstr "Użyj czasów zakończenia timera Zap"
+msgstr "Używaj czasu zakończenia timera przełączania"
 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Użyj pamięci podręcznej DNS do lokalnego przechowywania ostatnich wyszukiwań DNS, aby zwiększyć wydajność, zmniejszyć opóźnienia i ruch wychodzący."
@@ -23223,6 +23260,12 @@ msgstr "Po włączeniu, zostanie wyświetlone ostrzeżenie, a użytkownik otrzym
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Po włączeniu tej opcji każde wykryte urządzenie pamięci masowej będzie automatycznie eksportowane jako udział Samba."
 
+msgid "When enabled, allow usage of the NFS version 3 protocols."
+msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 3."
+
+msgid "When enabled, allow usage of the NFS version 4 protocols."
+msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 4."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Jeśli włączone, będzie wymagana autoryzacja do oglądania strumieni http."
 
@@ -23230,7 +23273,7 @@ msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fi
 msgstr "Po włączeniu tej opcji zawartość o proporcjach 4:3 zostanie rozciągnięta, aby dopasować się do ekranu."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr "Po włączeniu tej opcji nastąpi przejście do następnej listy kanałów po osiągnięciu ostatniego kanału bieżącej listy podczas zmiany kanału."
+msgstr "Po włączeniu tej opcji po osiągnięciu ostatniego kanału bieżącej listy nastąpi przejście do następnej listy kanałów."
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Po włączeniu tej opcji usunięte nagrania zostaną przeniesione do kosza, zamiast zostać natychmiast usunięte."
@@ -23247,6 +23290,9 @@ msgstr "Po włączeniu tej opcji graficzne napisy DVB będą wyświetlane w ich 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Po włączeniu tej opcji możliwe jest wyjście z odtwarzacza nagrań za pomocą przycisku exit."
 
+msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
+msgstr "Po włączeniu użytkownik root jest mapowany na użytkownika „nobody” (większe bezpieczeństwo). Po wyłączeniu dostęp roota pozostaje nieograniczony."
+
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Po włączeniu dokonuje pomiaru zużycia energii w celu wykrycia momentu zatrzymania się wirnika (jeśli jest to obsługiwane przez tuner)."
 
@@ -23257,7 +23303,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "Po włączeniu znaczniki liczb będą ukryte."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Po włączeniu tej opcji naciśnięcie '0' spowoduje przejście do pierwszego kanału w pierwszej liście kanałów i usunięcie historii przełączania kanałów."
+msgstr "Po włączeniu naciśnięcie przycisku '0' przełączy na pierwszy kanał z pierwszej listy kanałów i wyczyści historię przełączeń."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Po włączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
@@ -23344,10 +23390,10 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Gdy różne od '0', nagranie zakończy się później niż czas zakończenia określony w EPG."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr "Gdy wartość niezerowa, Zap timer rozpocznie nagrywanie z określonym wyprzedzeniem przed czasem rozpoczęcia wskazanym w EPG."
+msgstr "Jeśli wartość jest większa od zera, timer przełączania rozpocznie działanie o określony czas przed godziną rozpoczęcia podaną w EPG."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
-msgstr "Gdy wartość niezerowa, Zap timer zatrzyma nagrywanie po określonym okresie po czasie zakończenia wskazanym w EPG."
+msgstr "Jeśli wartość jest większa od zera, timer przełączania zakończy działanie o określony czas po godzinie zakończenia podanej w EPG."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Po ustawieniu każdy folder pokaże poprzedni stan używany, kiedy wyłączysz domyślne wartości."
@@ -24624,6 +24670,21 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Picon path %s"
+#~ msgstr "Ścieżka pikon %s"
+
+#~ msgid "Select the Picon path, from above, to be used for Channel Selection picons."
+#~ msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana na liście kanałów."
+
+#~ msgid "Select the Picon path, from above, to be used for Front panel/Display picons."
+#~ msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana na panelu przednim/wyświetlaczu."
+
+#~ msgid "Select the Picon path, from above, to be used for InfoBar picons."
+#~ msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana dla paska informacyjnego."
+
+#~ msgid "Select the Picon path, from above, to be used for OpenWebif picons."
+#~ msgstr "Wybierz jedną z powyższych ścieżek pikon, która będzie używana w OpenWebif."
 
 #, python-format
 #~ msgid "%d DMIPS per core"
@@ -26130,9 +26191,6 @@ msgstr "®"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA (długo)"
-
-#~ msgid "NFS Settings"
-#~ msgstr "Ustawienia NFS"
 
 #~ msgid "OpenVPN Actions"
 #~ msgstr "Akcje OpenVPN"
