@@ -622,7 +622,7 @@ void eTextPara::setFont(const gFont *font, int tabwidth)
 	 * holds via FTC_Manager_LookupSize, so current_face and its size
 	 * metrics are guaranteed to be valid when we read them.              */
 	cachedLineHeight = 0;
-	if (current_face)
+	if (current_face && current_face->size)
 	{
 		int h = current_face->size->metrics.height;
 		if (!h)
