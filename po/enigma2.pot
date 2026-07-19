@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
+"POT-Creation-Date: 2026-07-19 15:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1274,6 +1274,9 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
+msgid "(Deep) Standby only"
+msgstr ""
+
 msgid "(PiP)"
 msgstr ""
 
@@ -2209,6 +2212,9 @@ msgid "Allow 10bit"
 msgstr ""
 
 msgid "Allow 12bit"
+msgstr ""
+
+msgid "Allow guest access"
 msgstr ""
 
 msgid "Allow quit movie player with exit"
@@ -5448,6 +5454,9 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
+msgid "DNS override"
+msgstr ""
+
 msgid "DNS protocol mode"
 msgstr ""
 
@@ -5789,6 +5798,9 @@ msgid "Default Services Scanner"
 msgstr ""
 
 msgid "Default files/folders to backup"
+msgstr ""
+
+msgid "Default gateway"
 msgstr ""
 
 msgid "Default left column directory"
@@ -7496,6 +7508,9 @@ msgstr ""
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr ""
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr ""
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
@@ -7505,10 +7520,16 @@ msgstr ""
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr ""
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr ""
+
+msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 msgstr ""
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
@@ -7517,10 +7538,31 @@ msgstr ""
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr ""
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr ""
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr ""
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
 msgid "Enter the service pin"
 msgstr ""
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr ""
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8677,6 +8719,9 @@ msgstr ""
 msgid "Force ToneBurst"
 msgstr ""
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr ""
+
 msgid "Force de-interlace"
 msgstr ""
 
@@ -9579,6 +9624,9 @@ msgid "IP address is invalid!"
 msgstr ""
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
+msgid "IP protocol"
 msgstr ""
 
 msgid "IPK Installer"
@@ -10798,6 +10846,9 @@ msgid "Link detected"
 msgstr ""
 
 msgid "Link quality:"
+msgstr ""
+
+msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
@@ -12141,6 +12192,9 @@ msgstr ""
 msgid "Network Adapter Setting Actions"
 msgstr ""
 
+msgid "Network Adapter Settings"
+msgstr ""
+
 msgid "Network Adapter Text Actions"
 msgstr ""
 
@@ -12209,6 +12263,9 @@ msgid "Network information for %s %s"
 msgstr ""
 
 msgid "Network menu"
+msgstr ""
+
+msgid "Network metric"
 msgstr ""
 
 msgid "Network mounts"
@@ -13494,6 +13551,9 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr ""
 
+msgid "Password / Key"
+msgstr ""
+
 msgid "Password Actions"
 msgstr ""
 
@@ -14204,6 +14264,9 @@ msgstr ""
 msgid "Prefer subtitles stored by service"
 msgstr ""
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr ""
 
@@ -14384,6 +14447,12 @@ msgid "Prevsong"
 msgstr ""
 
 msgid "Primary DNS"
+msgstr ""
+
+msgid "Primary DNS (IPv4)"
+msgstr ""
+
+msgid "Primary DNS (IPv6)"
 msgstr ""
 
 msgid "Prime time"
@@ -15698,6 +15767,9 @@ msgstr ""
 msgid "Running command %d: '%s'."
 msgstr ""
 
+msgid "Running only"
+msgstr ""
+
 msgid "Russian"
 msgstr ""
 
@@ -16156,6 +16228,12 @@ msgid "Second cable of motorized LNB"
 msgstr ""
 
 msgid "Secondary DNS"
+msgstr ""
+
+msgid "Secondary DNS (IPv4)"
+msgstr ""
+
+msgid "Secondary DNS (IPv6)"
 msgstr ""
 
 msgid "Seconds"
@@ -16888,6 +16966,9 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr ""
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
@@ -17107,6 +17188,12 @@ msgid ""
 "Press OK to continue."
 msgstr ""
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr ""
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr ""
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr ""
@@ -17166,6 +17253,9 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr ""
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr ""
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17351,6 +17441,9 @@ msgstr ""
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr ""
 
+msgid "Select which IP protocols can be used with this adapter."
+msgstr ""
+
 msgid "Select wireless network"
 msgstr ""
 
@@ -17460,6 +17553,9 @@ msgid "Server must not log user queries (declarative). This can improve the priv
 msgstr ""
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
+msgstr ""
+
+msgid "Server name"
 msgstr ""
 
 msgid "Servers"
@@ -19801,6 +19897,9 @@ msgid "Stripes"
 msgstr ""
 
 msgid "Style:"
+msgstr ""
+
+msgid "Subnet mask"
 msgstr ""
 
 msgid "Subscription Packages"
@@ -22819,6 +22918,12 @@ msgstr ""
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr ""
 
+msgid "Wake-on-LAN"
+msgstr ""
+
+msgid "Wake-on-WiFi"
+msgstr ""
+
 msgid "Wallis and Futuna"
 msgstr ""
 
@@ -23016,7 +23121,16 @@ msgstr ""
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr ""
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr ""
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr ""
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr ""
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
@@ -23049,6 +23163,9 @@ msgstr ""
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr ""
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr ""
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr ""
 
@@ -23061,6 +23178,9 @@ msgstr ""
 msgid "When enabled, number markers will be hidden."
 msgstr ""
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr ""
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr ""
 
@@ -23071,6 +23191,9 @@ msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr ""
 
 msgid "When enabled, show status or error messages."
+msgstr ""
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23122,6 +23245,15 @@ msgid "When enabled, the timer from the fallback tuner is imported."
 msgstr ""
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr ""
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr ""
+
+msgid "When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)"
+msgstr ""
+
+msgid "When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)"
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
@@ -23197,6 +23329,9 @@ msgid "While available"
 msgstr ""
 
 msgid "White"
+msgstr ""
+
+msgid "Wi-Fi Connection Settings"
 msgstr ""
 
 msgid "Wide"
@@ -23286,10 +23421,16 @@ msgstr ""
 msgid "Wizard Actions"
 msgstr ""
 
+msgid "WoW only"
+msgstr ""
+
 msgid "Wolof"
 msgstr ""
 
 msgid "Workaround for old tuner driver."
+msgstr ""
+
+msgid "Workgroup name"
 msgstr ""
 
 msgid "World Affairs"
@@ -23674,6 +23815,9 @@ msgid "Zap back to service before positioner setup?"
 msgstr ""
 
 msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+msgid "Zap condition"
 msgstr ""
 
 msgid "Zap down"
