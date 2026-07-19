@@ -306,3 +306,13 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 			self.content.setList(contentList)
 		setTemplate()
 		self.downstream_elements.changed(what)
+
+	def entry_changed(self, index):
+		# StringList.entry_changed only calls content.invalidateEntry(), which
+		# repaints the row from the content's existing (unchanged) data. Push
+		# the updated row from the source into the content first, wrapped the
+		# same way changed() wraps contentList, or the repaint just redraws
+		# the stale entry.
+		if self.content and self.source and 0 <= index < len(self.source.list):
+			item = self.source.list[index]
+			self.content.updateEntry(index, (item,) if not isinstance(item, (list, tuple)) else item)
