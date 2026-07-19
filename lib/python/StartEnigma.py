@@ -505,7 +505,7 @@ def runScreenTest():
 		nextRecordTime = session.nav.RecordTimer.getNextRecordingTime()
 		nextRecordTimeInStandby = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
 	# Zap timer.
-	nextZapTime = session.nav.RecordTimer.getNextZapTime()
+	nextZapTime = session.nav.RecordTimer.getNextZapTime(forWakeup=True)
 	nextZapTimeInStandby = 0
 	# Scheduler timer.
 	tmp = session.nav.Scheduler.getNextPowerManagerTime(getNextStbPowerOn=True)

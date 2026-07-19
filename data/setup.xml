@@ -904,6 +904,7 @@
 			<item level="2" text="Recording location" description="Select where the recording should be saved.">self.timerLocation</item>
 		</if>
 		<if conditional="self.timerType.value == 'zap'">
+			<item level="0" text="Zap condition" description="Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected.">self.timerPrecondition</item>
 			<item level="0" text="After zap" description="Select what do do after the timer zap has completed." conditional="self.timerHasEndTime.value">self.timerAfterEvent</item>
 		<else />
 			<item level="0" text="Tags" description="Select the tags that should be used for this recording.">self.timerTags</item>
