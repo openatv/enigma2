@@ -605,6 +605,51 @@
 		<item text="Nameserver" description="Configure the name server (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
+	<setup key="NetworkAdapter" title="Network Adapter Settings">
+		<item level="0" text="Enabled" description="When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)">self.cfgEnabled</item>
+		<if conditional="self.adapter.isWlan">
+			<item level="1" text="WoW only" description="When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network." requires="wwol" conditional="not self.cfgEnabled.value">self.cfgWowOnly</item>
+		</if>
+		<if conditional="self.cfgEnabled.value or self.cfgWowOnly.value">
+			<item level="1" text="IP protocol" description="Select which IP protocols can be used with this adapter.">self.cfgIpMode</item>
+			<if conditional="self.cfgIpMode.value != 1">
+				<item level="0" text="Use DHCP" description="When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP.">self.cfgDhcp</item>
+				<if conditional="not self.cfgDhcp.value">
+					<item level="0" text="IP address" description="Enter the fixed/static IPv4 address to be used for this network adapter.">self.cfgIp</item>
+					<item level="0" text="Subnet mask" description="Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)">self.cfgNetmask</item>
+					<item level="0" text="Default gateway" description="Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router.">self.cfgGateway</item>
+				</if>
+			</if>
+			<item level="1" text="Network metric" description="Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic." conditional="self.hasMetric">self.cfgMetric</item> 
+			<item level="1" text="DNS override" description="When enabled, specify custom DNS settings for this adapter instead of the global DNS settings.">self.cfgDnsOverride</item>
+			<if conditional="self.cfgDnsOverride.value">
+				<if conditional="self.cfgIpMode.value != 1">
+					<item level="0" text="Primary DNS (IPv4)" description="Enter the primary IPv4 DNS setting for this adapter.">self.cfgDns1v4</item>
+					<item level="0" text="Secondary DNS (IPv4)" description="Enter the secondary IPv4 DNS setting for this adapter. (Optional)">self.cfgDns2v4</item>
+				</if>
+				<if conditional="self.cfgIpMode.value != 0">
+					<item level="0" text="Primary DNS (IPv6)" description="Enter the primary IPv6 DNS setting for this adapter. (Optional)">self.cfgDns1v6</item>
+					<item level="0" text="Secondary DNS (IPv6)" description="Enter the secondary IPv6 DNS setting for this adapter. (Optional)">self.cfgDns2v6</item>
+				</if>
+			</if>
+			<if conditional="not self.adapter.isWlan">
+				<item level="1" text="Wake-on-LAN" description="When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)." conditional="self.hasWakeOnLan">config.network.wol</item>
+				<item level="2" text="Link speed" description="Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity." conditional="self._hasLinkSpeedChoices">self.cfgLinkSpeed</item>
+			<else />
+				<item level="1" text="Wake-on-WiFi" description="When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)." requires="wwol" conditional="self.cfgEnabled.value">self.cfgWakeOnWiFi</item>
+			</if>
+		</if>
+	</setup>
+	<setup key="NetworkConnectionWiFi" title="Wi-Fi Connection Settings">
+		<item level="0" text="Network name (SSID)" description="Select the network name (SSID) of the wireless network to which the receiver should connect.">self.cfgSsid</item>
+		<item level="0" text="Enabled" description="When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)">self.cfgEnabled</item>
+		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self._hasMultiplePriorities">self.cfgPriority</item>
+		<item level="1" text="Hidden network" description="When enabled, allow connection to access points that don't broadcast their SSID.">self.cfgHidden</item>
+		<item level="0" text="Encryption" description="Select the security protocol that will be used to access the selected wireless network.">self.cfgEncryption</item>
+		<if conditional="self.cfgEncryption.value != 'none'">
+			<item level="0" text="Password / Key" description="Enter the password, pass-phrase or pre-shared key for the selected wireless network.">self.cfgKey</item>
+		</if>
+	</setup>
 	<setup key="NetworkNFS" title="NFS Settings" allowDefault="yes">
 		<item text="NFS threads" description="Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory.">self.nfsThreads</item>
 		<item text="Enable NFSv3" description="When enabled, allow usage of the NFS version 3 protocols.">self.nfsVers3</item>
