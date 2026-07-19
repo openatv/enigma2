@@ -160,7 +160,10 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 
 	auto it = fontMap.find(name);
 	if (it != fontMap.end())
+	{
+		FTC_Manager_RemoveFaceID(cacheManager, (FTC_FaceID)it->second);
 		delete it->second;
+	}
 
 	fontListEntry *n = new fontListEntry;
 	n->filename = filename;
@@ -173,6 +176,25 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	eDebugNoNewLine(" -> '%s'.\n", n->face.c_str());
 
 	return n->face;
+}
+
+void fontRenderClass::ClearFonts()
+{
+	singleLock s(ftlock);
+	for (auto &entry : fontMap)
+	{
+		FTC_Manager_RemoveFaceID(cacheManager, (FTC_FaceID)entry.second);
+		delete entry.second;
+	}
+	fontMap.clear();
+	fontFacesCacheValid = false;
+	eTextPara::setReplacementFont("");
+	eTextPara::setFallbackFont("");
+}
+
+void clearFonts()
+{
+	fontRenderClass::getInstance()->ClearFonts();
 }
 
 fontRenderClass::fontListEntry::~fontListEntry() = default;

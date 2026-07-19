@@ -561,6 +561,7 @@ extern void setPrevAsciiCode(int code);
 extern int getBsodCounter();
 extern void resetBsodCounter();
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
+extern void clearFonts();
 extern const char *getEnigmaVersionString();
 extern const char *getE2Rev();
 extern const char *getOARev();
@@ -581,6 +582,7 @@ extern bool checkLogin(const char *user, const char *pwd);
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
+extern void clearFonts();
 extern int getPrevAsciiCode();
 extern void setPrevAsciiCode(int code);
 extern int getBsodCounter();
