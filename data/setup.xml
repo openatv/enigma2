@@ -661,6 +661,9 @@
 	<setup key="NetworkSamba" title="Samba Settings" allowDefault="yes">
 		<item text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
 		<item text="Automatic shares access" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
+		<item text="Allow guest access" description="When enabled, allow Samba network access without a password.">self.guestAccess</item>
+		<item text="Server name" description="Enter the name to be used by this receiver when it appears in Samba network scans/lists.">self.netbiosName</item>
+		<item text="Workgroup name" description="Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)">self.workgroup</item>
 	</setup>
 	<setup key="NetworkZeroTier" title="ZeroTier Settings">
 		<item text="Network-ID" description="Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length.">config.network.ZeroTierNetworkId</item>

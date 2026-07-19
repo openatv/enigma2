@@ -2048,8 +2048,78 @@ class NetworkMiniDLNASetup(Setup):
 
 
 class NetworkSambaSetup(Setup):
+	SMBCONF = "/etc/samba/smb-user.conf"
+
 	def __init__(self, session):
+		self.workgroup = NoSave(ConfigText(default="WORKGROUP", fixed_size=False))
+		self.netbiosName = NoSave(ConfigText(default="", fixed_size=False))
+		self.guestAccess = NoSave(ConfigYesNo(default=True))
+		self._readConf()
 		Setup.__init__(self, session=session, setup="NetworkSamba")
+
+	def _readConf(self):
+		inGlobal = False
+		for line in (fileReadLines(self.SMBCONF, source=MODULE_NAME) or []):
+			ls = line.lstrip()
+			if ls.startswith("[") and ls.rstrip().endswith("]"):
+				inGlobal = ls.strip()[1:-1].strip().lower() == "global"
+				continue
+			if not inGlobal or ls.startswith("#") or "=" not in ls:
+				continue
+			key, _, val = ls.partition("=")
+			key = key.strip().lower()
+			val = val.strip()
+			if key == "workgroup":
+				self.workgroup.value = val
+			elif key == "netbios name":
+				self.netbiosName.value = val
+			elif key == "guest ok":
+				self.guestAccess.value = val.lower() in ("yes", "true", "1")
+
+	def keySave(self):
+		self._writeConf()
+		Setup.keySave(self)
+
+	def _writeConf(self):
+		updates = {
+			"workgroup": self.workgroup.value.strip(),
+			"netbios name": self.netbiosName.value.strip(),
+			"guest ok": "yes" if self.guestAccess.value else "no",
+		}
+		lines = fileReadLines(self.SMBCONF, source=MODULE_NAME) or []
+		inGlobal = False
+		found = set()
+		newLines = []
+		for line in lines:
+			ls = line.lstrip()
+			if ls.startswith("[") and ls.rstrip().endswith("]"):
+				if inGlobal:
+					for key, val in updates.items():
+						if key not in found:
+							newLines.append(f"\t{key} = {val}")
+				inGlobal = ls.strip()[1:-1].strip().lower() == "global"
+				newLines.append(line)
+				continue
+			if not inGlobal:
+				newLines.append(line)
+				continue
+			content = ls.lstrip("#").strip()
+			if "=" in content:
+				key, _, _ = content.partition("=")
+				key = key.strip().lower()
+				if key in updates and key not in found:
+					newLines.append(f"\t{key} = {updates[key]}")
+					found.add(key)
+					continue
+			newLines.append(line)
+		if inGlobal:
+			for key, val in updates.items():
+				if key not in found:
+					newLines.append(f"\t{key} = {val}")
+		tmpPath = f"{self.SMBCONF}.tmp"
+		fileWriteLines(tmpPath, newLines, source=MODULE_NAME)
+		if exists(tmpPath):
+			rename(tmpPath, self.SMBCONF)
 
 
 class NetworkPassword(Setup):
