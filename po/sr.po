@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 14:22+0000\n"
-"PO-Revision-Date: 2026-07-12 17:01+0000\n"
+"POT-Creation-Date: 2026-07-15 19:52+0000\n"
+"PO-Revision-Date: 2026-07-16 23:23+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 msgid ""
 "\n"
@@ -41,6 +41,9 @@ msgstr "  REC  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Crveni taster: Prikaži / Sakrij ime kanala"
+
+msgid " (+5 volt terrestrial)"
+msgstr " .(+5 volti zemaljski)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -1640,14 +1643,17 @@ msgstr ""
 "Snimak je trenutno u toku.\n"
 "Šta želite da uradite?"
 
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Snimak je trenutno u toku. Molimo Vas da zaustavite snimanje pre nego što pokušate da podesite pozicije."
-
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Snimak je trenutno u toku. Molimo Vas da zaustavite snimanje pre nego što pokušate da skenirate."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Snimak je trenutno u toku. Molimo Vas da zaustavite snimanje pre nego što pokušate da pokrenete satelitsku tražilicu."
+
+msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
+msgstr "Snimanje je u toku ili će početi za šest minuta. Promena podešavanja tunera može ga prekinuti. Svejedno sačuvati?"
+
+msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
+msgstr "Snimanje je u toku ili će početi za šest minuta. Molimo pokušajte da podesite pozicioner kasnije."
 
 #, python-format
 msgid ""
@@ -1699,6 +1705,13 @@ msgid ""
 msgstr ""
 "Tajmer nije uspeo da snimi!\n"
 "Isključite TV i pokušajte ponovo?\n"
+
+msgid ""
+"A zap timer wants to switch the channel.\n"
+"Do you want to zap now?\n"
+msgstr ""
+"Zap tajmer želi da promeni kanal.\n"
+"Da li želiš da zap sada?\n"
 
 msgid "AAC downmix"
 msgstr "AAC downmix"
@@ -1797,7 +1810,7 @@ msgid "Above 200 Mbps"
 msgstr "Iznad 200 Mbps"
 
 msgid "Access mode"
-msgstr ""
+msgstr "Način pristupa"
 
 msgid "Access point"
 msgstr "Pristupna tačka"
@@ -1915,6 +1928,9 @@ msgstr "Dodaj Oznaku u Buket"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Dodaj Novu Stavku za 4Х Kanal"
+
+msgid "Add Path"
+msgstr "Dodaj Putanju"
 
 msgid "Add RecordTimer"
 msgstr "Dodaj TajmerSnimanja"
@@ -2081,6 +2097,9 @@ msgstr "Dodaj/Ukloni trenutnu uslugu sa/na listu Pomeranja Glasnoće"
 msgid "Adding schedule..."
 msgstr "Dodavanje rasporeda..."
 
+msgid "Additional cable of motorized LNB"
+msgstr "Dodatni kabl za motorni LNB"
+
 msgid "Additional files/folders to backup"
 msgstr "Dodatne datoteke/fascikle za pravljenje rezervne kopije"
 
@@ -2089,6 +2108,10 @@ msgstr "Dodatne opcije motora vam omogućavaju da unesete detalje iz specifikaci
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Dodatne motorne opcije omogućavaju vam da unesete detalje iz specifikacija vašeg motora kako bi Enigma mogla izračunati koliko će trajati premeštanje na drugi satelit."
+
+#, python-format
+msgid "Additional rotor cable from %s"
+msgstr "Dodatni rotor kabl od %s"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Podesi postavke boje tako da su sve senke boja raspoznatljive, da izgledaju maksimalno zasićene. Ako ste zadovoljni rezultatom pritisnite ОК, da zatvorite video fino-podešen, ili koristite numeričke tastere da izaberete drugi test ekran."
@@ -2150,11 +2173,11 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Posle Događaja"
 
-msgid "After power loss"
-msgstr "Nakon nestanka Struje"
-
 msgid "After event"
 msgstr "Posle događaja"
+
+msgid "After power loss"
+msgstr "Nakon nestanka Struje"
 
 msgid "After recording"
 msgstr "Nakon snimanja"
@@ -2268,7 +2291,7 @@ msgid "Allow unsupported modes"
 msgstr "Dozvoli nepodržane režime"
 
 msgid "Allowed clients"
-msgstr ""
+msgstr "Dozvoljeni klijenti"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Dozvoli %s %s redovno čitanje uskladištenih ЕPG podataka."
@@ -2725,6 +2748,9 @@ msgstr "Auto"
 
 msgid "Auto (not available)"
 msgstr "Auto(nije dostupno)"
+
+msgid "Auto DiSEqC search order"
+msgstr "Auto DiSEqC redosled pretrage"
 
 msgid "Auto Language"
 msgstr "Auto Jezik"
@@ -3859,6 +3885,9 @@ msgstr "Centrirano, umotano"
 msgid "Central African Republic"
 msgstr "Central African Republic"
 
+msgid "Central Europe"
+msgstr "Centralna Evropa"
+
 msgid "Central Khmer"
 msgstr "Central Khmer"
 
@@ -4048,6 +4077,9 @@ msgstr "Ćaskanje uživo"
 msgid "Chechen"
 msgstr "Chechen"
 
+msgid "Check ONID/TSID"
+msgstr "Proveri ONID/TSID"
+
 msgid "Check for PDC"
 msgstr "Proveri za PDC"
 
@@ -4068,6 +4100,9 @@ msgstr "Provera Fida"
 
 msgid "Checking Logs..."
 msgstr "Provera Log..."
+
+msgid "Checking ONID/TSID ..."
+msgstr "Proveri ONID/TSID ..."
 
 msgid "Checking file system..."
 msgstr "Provera sistema fajla..."
@@ -4916,6 +4951,9 @@ msgstr "Podešavam"
 msgid "Configuring Service"
 msgstr "Podešavanje Servisa"
 
+msgid "Confirm Zap"
+msgstr "Potvrdi Zap"
+
 msgid "ConflictTimer Actions"
 msgstr "Radnje neusaglašenosti Tajmera"
 
@@ -4991,12 +5029,6 @@ msgstr "Za ovaj info pogledajte specifikaciju SCR uređaja."
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Za ovaj info pogledajte specifikaciju važeg rotora ili ostavite zadanu postavku."
-
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Više info o upravljanju napajanjem potražite u uputstvu prijemnika."
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Više info o pragu napajanja potražite u uputstvu prijemnika."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -5402,8 +5434,17 @@ msgstr "Trenutna lokacija je '%s'."
 msgid "Current mode: %s \n"
 msgstr "Trenutni režim %s \n"
 
+msgid "Current rotor position:"
+msgstr "Trenutna pozicija rotora:"
+
+msgid "Current rotor position: unknown"
+msgstr "Trenutna pozicija rotora: nepoznata"
+
 msgid "Current settings:"
 msgstr "Trenutne postavke:"
+
+msgid "Current supplied to the LNB and positioner."
+msgstr "Trenutna struja napaja LNB i pozicioner."
 
 msgid "Current time"
 msgstr "Trenutno vreme"
@@ -5922,6 +5963,9 @@ msgstr "Definiši Softcam za ovu uslugu"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Definiši dodatno odlaganje u ms pre početka http strima."
 
+msgid "Define path %s for picons."
+msgstr "Podesi putanju %s za pikone."
+
 msgid "Define the custom mountpoint for the device."
 msgstr "Definišite prilagođenu tačku montiranja za uređaj."
 
@@ -6255,6 +6299,9 @@ msgstr "Detalji GStreamer log."
 
 msgid "Details"
 msgstr "Detalji"
+
+msgid "Detect positioner movement by its current consumption."
+msgstr "Prati kretanje pozicionera prema potrošnji struje."
 
 msgid "Detective"
 msgstr "Detektivski"
@@ -7024,6 +7071,9 @@ msgstr "Istok"
 msgid "East limit set"
 msgstr "Uključi istočni limit"
 
+msgid "Eastern satellites"
+msgstr "Istočni sateliti"
+
 msgid "Easy listening"
 msgstr "Laka muzika"
 
@@ -7223,10 +7273,10 @@ msgid "Enable Move Mode"
 msgstr "Omogući premeštanje režim"
 
 msgid "Enable NFSv3"
-msgstr ""
+msgstr "Omogući NFSv3"
 
 msgid "Enable NFSv4"
-msgstr ""
+msgstr "Omogući NFSv4"
 
 msgid "Enable Netmed EPG"
 msgstr "Omogući Netmed EPG"
@@ -7389,7 +7439,7 @@ msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Omogući opciju dodavanja tastature keymap podataka u fajlu evidencije otklanjanja grešaka."
 
 msgid "Enable this option to add network information to the debug log file."
-msgstr ""
+msgstr "Uključi ovu opciju da dodaš informacije o mreži u datoteku za otklanjanje greške."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Omogući opciju dodavanja opkg izlaznih podataka u fajl evidencije otklanjanja greške."
@@ -7417,6 +7467,12 @@ msgstr "Omogućite ovu opciju da prikažete nepoznate uređaje za skladištenje 
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Omogući ovu postavku ako vaš antenski sistem treba napajanje."
+
+msgid "Enable this when a power inserter or external supply powers the Unicable device."
+msgstr "Uključi ovo kada uređaj Unicable dobija struju od dobavljača ili spoljnog izvora."
+
+msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
+msgstr "Omogući ovo kada je korisnička traka zaštićena PIN-om u više kućnoj Unicable instalaciji."
 
 msgid "Enable timer"
 msgstr "Omogući tajmer"
@@ -7565,6 +7621,9 @@ msgstr "Unesite ime za ovaj tajmer."
 msgid "Enter a new name for this device."
 msgstr "Unesite novo ime za ovaj uređaj."
 
+msgid "Enter expected ONID/TSID"
+msgstr "Unesi očekivani ONID/TSID"
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Unesite ako ste severno ili južno od ekvadora."
 
@@ -7587,7 +7646,10 @@ msgid "Enter text via an attached keyboard"
 msgstr "Unesite tekst preko priložene tastature"
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
-msgstr ""
+msgstr "Unesite IP adresu ili podmrežu (npr. 192.168.1.0/24) kome je dozvoljen pristup NFS domaćinu. Unesite '*', što je zadano, za pristup svim domaćinima."
+
+msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
+msgstr "Unesi PIN od 0 do 255 koji je ovom korisničkom opsegu dodelio instalater ili upravnik zgrade."
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Unesite ZeroTier ID mreže. ID treba da bude tačno 16 karaktera."
@@ -7602,7 +7664,7 @@ msgid "Enter the frequency step size for the tuner to use when searching for cab
 msgstr "Unesite veličinu koraka učestalosti koju tjuner koristi prilikom traženja multipleksa kabla. Za više info pogledajte list specifikacije kabel provajdera."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
-msgstr ""
+msgstr "Unesite broj NFS server niti koje će biti dodeljene/korištene. Veće vrednosti poboljšavaju performanse sa više klijenata, ali koriste više memorije."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Unesite broj sačuvan u pozicioner koji odgovara danom satelitu."
@@ -8228,6 +8290,9 @@ msgstr "Boja dijaloga spoljnog titla"
 msgid "External subtitle switch fonts"
 msgstr "Spoljni titl za menjanje fonta"
 
+msgid "Externally powered"
+msgstr "Eksterno napajano"
+
 msgid "Extra High"
 msgstr "Ekstra Visoko"
 
@@ -8269,6 +8334,13 @@ msgstr "FBC SCR (Unicable/JESS)"
 
 msgid "FBC automatic"
 msgstr "FBC ауто"
+
+#, python-format
+msgid "FBC automatic: connected to %s"
+msgstr "FBC automatski: povezan sa %s"
+
+msgid "FBC automatic: inactive"
+msgstr "FBC automatski: neaktivan"
 
 msgid "FCC enabled"
 msgstr "FCC omogućen"
@@ -9456,6 +9528,9 @@ msgstr "Sakrij plejer"
 msgid "Hide softcam servername"
 msgstr "Sakrij softcam ime servera"
 
+msgid "Hide sub-menu"
+msgstr "Sakrij podmeni"
+
 msgid "Hide the InfoBar"
 msgstr "Sakrij Info traku"
 
@@ -10013,7 +10088,7 @@ msgid "Include keyboard data"
 msgstr "Uključiti postavke tastature"
 
 msgid "Include network data"
-msgstr ""
+msgstr "Uključi podatke o mreži"
 
 msgid "Include opkg output data"
 msgstr "Uključiti opkg izlazne podatke"
@@ -10110,6 +10185,9 @@ msgstr "Informativni/Obrazovni/Školski programi"
 
 msgid "Infotainment"
 msgstr "Infotainment"
+
+msgid "Inherited channel / frequency"
+msgstr "Nasleđeni kanal / frekvencija"
 
 msgid "Init"
 msgstr "Inicijalizacija"
@@ -10682,6 +10760,18 @@ msgstr "LIRC DU"
 msgid "LNB"
 msgstr "LNB"
 
+msgid "LNB 1"
+msgstr "LNB 1"
+
+msgid "LNB 1 and the target LNB use different Unicable protocols"
+msgstr "LNB 1 i ciljani LNB koriste različite Unicable protokole"
+
+msgid "LNB current:"
+msgstr "Trenutni LNB:"
+
+msgid "LNB current: not available"
+msgstr "LNB trenutni: nije dostupno"
+
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB/ Prebaci vreme pokretanja sistema [ms]"
 
@@ -10769,6 +10859,9 @@ msgstr "Napuštate DVD plejer?"
 msgid "Leave movie player"
 msgstr "Napusti video plejer"
 
+msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
+msgstr "Ostavi ovo na 0 da bi se pozicija odredila na osnovu LNB broja i profila uređaja. Unesi 1 do 64 samo za reprogramirani Unicable uređaj."
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Ostavite podešavanja na 'da' ako u potpunosti ne razumete zašto ga prilagođavate."
 
@@ -10801,9 +10894,6 @@ msgstr "Levo, prednji USB"
 
 msgid "Left, wrapped"
 msgstr "Levo, umotano"
-
-msgid "Legacy"
-msgstr "Nasleđeno"
 
 msgid "Legacy mode"
 msgstr "Zastareli režim"
@@ -10862,6 +10952,9 @@ msgstr "Limit istok"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Ograničeno znakova koji se mogu koristiti za ime fajla snimanja, (7 bit) ASCII. Na taj se način obezbeđuje kontabilnost sa OS ili fajl sistem sa ograničenim skupovima znakova."
+
+msgid "Limit the search to the satellite group normally used by this installation."
+msgstr "Ograniči pretragu na satelitsku grupu koju ova instalacija obično koristi."
 
 msgid "Limit west"
 msgstr "Limit zapad"
@@ -11417,6 +11510,9 @@ msgstr "Maksimalno vreme čekanja za prvi ključ za dešifrovanje (CW) pre nego 
 msgid "Mayotte"
 msgstr "Mayotte"
 
+msgid "Measured current"
+msgstr "Mereno trenutni"
+
 msgid "Media"
 msgstr "Medija"
 
@@ -11559,6 +11655,9 @@ msgstr "MiniTV sa OSD"
 #, python-format
 msgid "Minimum age %d years"
 msgstr "Minimalna starost %d godina"
+
+msgid "Minimum difference between idle and moving current."
+msgstr "Minimalna razlika između praznog hoda i struje u pokretu."
 
 msgid "Minimum send interval"
 msgstr "Minimalni interval slanja"
@@ -12025,6 +12124,9 @@ msgstr "Više"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-path mode"
+msgstr "Višeputni režim"
+
 msgid "MultiBoot"
 msgstr "MultiBoot"
 
@@ -12107,10 +12209,10 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFS Settings"
-msgstr ""
+msgstr "NFS Podešavanja"
 
 msgid "NFS threads"
-msgstr ""
+msgstr "NFS niti"
 
 msgid "NIM"
 msgstr "NIM"
@@ -12785,8 +12887,14 @@ msgstr "Nije Instalirano"
 msgid "Not Shown"
 msgstr "Nije Prikazano"
 
+msgid "Not a valid tuner"
+msgstr "Nije važeći tjuner"
+
 msgid "Not associated"
 msgstr "Nije Povezano"
+
+msgid "Not available"
+msgstr "Nije dostupno"
 
 msgid "Not configured"
 msgstr "Nije konfigurisano"
@@ -12907,8 +13015,23 @@ msgstr "Taster OK (kratko)"
 msgid "OK button mode"
 msgstr "Režim tastera OK"
 
+msgid "OK checks the currently tuned transponder."
+msgstr "OK proverava trenutno podešeni transponder."
+
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, vodi me kroz ovaj proces nadogradnje"
+
+msgid "ONID"
+msgstr "ONID"
+
+msgid "ONID/TSID check timed out"
+msgstr "Provera ONID/TSID je istekla"
+
+msgid "ONID/TSID does not match"
+msgstr "ONID/TSID se ne poklapa"
+
+msgid "ONID/TSID valid"
+msgstr "ONID/TSID važeći"
 
 msgid "OSCam Info"
 msgstr "OScam Info"
@@ -13248,6 +13371,9 @@ msgstr "Otvori EPG prikaz za više kanala"
 msgid "Open the single service EPG view"
 msgstr "Otvori EPG prikaz za jedan kanal"
 
+msgid "Open tuner setup"
+msgstr "Otvori podešavanja tjunera"
+
 msgid "Open with File Commander"
 msgstr "Otvori pomoću Fajl Menadžera"
 
@@ -13429,6 +13555,9 @@ msgstr "PG - Roditeljski nadzor"
 msgid "PGS file"
 msgstr "PGS fajl"
 
+msgid "PIN"
+msgstr "PIN"
+
 msgid "PIN code needed"
 msgstr "Potreban PIN kod"
 
@@ -13601,9 +13730,6 @@ msgstr "Putanja"
 msgid "Path '%s' missing!"
 msgstr "Putanja '%s' nedostaje!"
 
-msgid "Path to picon set %s."
-msgstr "Putanja za pikon postavke %s."
-
 msgid "Pause"
 msgstr "Pauza"
 
@@ -13713,15 +13839,16 @@ msgstr "Pikon i ime servisa"
 msgid "Picon install location"
 msgstr "Lokacija instalacije pikona"
 
-msgid "Picon mode"
-msgstr "Pikon režim"
+#, python-format
+msgid "Picon path %s"
+msgstr "Pikon putanja %s"
 
 #, python-format
-msgid "Picon set %s"
-msgstr ""
+msgid "Picon path %s is in use and cannot be removed!"
+msgstr "Putanja za pikon %s je zauzeta i ne može biti uklonjena!"
 
-msgid "Picon set mode"
-msgstr "Pikon postavke način"
+msgid "Picon search mode"
+msgstr "Pikon režim pretrage"
 
 msgid "Picon width"
 msgstr "Pikon širina"
@@ -14240,6 +14367,9 @@ msgstr "Pozicioner Podešavanje"
 
 msgid "Positioner Setup Log"
 msgstr "Pozicioner Podešavanje Log"
+
+msgid "Positioner actions"
+msgstr "Radnja pozicionera"
 
 msgid "Positioner setup"
 msgstr "Pozicioner podešavanje"
@@ -15248,6 +15378,9 @@ msgstr "Uklanjanje iz roditeljske kontrole"
 msgid "Remove New Found Flag"
 msgstr "Uklanjanje nove pronađene zastavice"
 
+msgid "Remove Path"
+msgstr "Ukloni Putanju"
+
 msgid "Remove Plugin"
 msgstr "Uklanjanje Plugina"
 
@@ -15734,13 +15867,20 @@ msgid "Root file"
 msgstr "Osnovni fajl"
 
 msgid "Root squash"
-msgstr ""
+msgstr "Korijenski skvoš"
 
 msgid "Rose"
 msgstr "Ruža"
 
+msgid "Rotor is not configured"
+msgstr "Rotor nije podešen"
+
 msgid "Rotor turning speed"
 msgstr "Brzina okretanja rotora"
+
+#, python-format
+msgid "Rotor: %d satellites"
+msgstr "Rotor: %d satelita"
 
 msgid "Router / Gateway"
 msgstr "Mrežna skretnica / Mrežni prolaz"
@@ -16588,6 +16728,9 @@ msgstr "Izaberi 'Da' da bi koristili vrednosti signala (SNR, itd.) izračunate i
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Izaberi 'Da' da bi koristili tastere sa brojem za brzi izbor fajla / direktorijuma, izaberite 'Ne' da bi koristili tastere sa brojem za prečice opcije MENI."
 
+msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
+msgstr "Odaberi 'Da' da koristiš isti Korisnički Band kanal i frekvenciju kao LNB 1. Ovo je namenjeno za više satelitskih pozicija koje dolaze preko istog Unicable sistema."
+
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Izaberite 'Da' da probudite prijemnik iz isključenog stanja pre početka snimanja kako biste omogućili PDC podacima da izvrše poslednje izmene tajmera."
 
@@ -16717,6 +16860,9 @@ msgstr "Izaberi evidenciju obaveznog log za prikaz:"
 
 msgid "Select a script to run:"
 msgstr "Izaberi skriptu za pokretanje:"
+
+msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
+msgstr "Izaberi vremenski period da se prikaže potvrda pre nego što Zap tajmer promeni trenutnu uslugu. Ovo omogućava korisniku da otkaže Zap. Izaberi 'Onemogućeno' da bi Zap mogao da nastavi bez potvrde."
 
 msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "Odaberite vreme, kada je u režimu čekanja, nakon kojeg dešifrovanje može da nastavi."
@@ -16940,16 +17086,16 @@ msgid "Select the No / False response"
 msgstr "Izaberi Ne / Lažni odgovor"
 
 msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
-msgstr ""
+msgstr "Izaberi Pikon putanju, iz opcija iznad, koja će se koristiti za pikon ikonice kanala."
 
 msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
-msgstr ""
+msgstr "Izaberi Pikon putanju, iz opcije(a) iznad, koja će se koristiti za pikone na prednjem panelu/ekranu."
 
 msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
-msgstr ""
+msgstr "Izaberi Pikon putanju, iz opcija iznad, koja će se koristiti za Info Traku pikona."
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
-msgstr ""
+msgstr "Odaberi Pikon putanju, iz opcije(a) iznad, koja će se koristiti za OpenWebif pikone."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17174,14 +17320,11 @@ msgstr "Izaberite proizvođača vašeg SCR uređaja. Ako proizvođač nije naved
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Izaberi metod vraćanja rezolucije ekrana i bafera frejma prilikom napuštanja teleteksta."
 
-msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
-msgstr "Izaberi režim za izbor putanje pikona i rezoluciju. 'Nasleđeno' predstavlja prethodni način rada."
-
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Izaberite način pristupa za automatski eksportovane samba deljene foldere."
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
-msgstr ""
+msgstr "Izaberi način pristupa, Čitanje/Pisanje ili Samo Čitanje, koji će se primenjivati na svim izvezenim direktorijumima."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Izaberite broj modela vašeg Unicable uređaja. Ako broj modela nije naveden, postavite 'SCR' na 'Korisnički definisano' i unesite parametre uređaja ručno prema njegovim specifikacijama."
@@ -17264,6 +17407,9 @@ msgstr "Izaberite satelit koji želite da konfigurišete. Kada se konfiguriše, 
 
 msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
 msgstr "Izaberite raspored ekrana, iz opcija koje pruža skin, koji će se koristiti za ekran IzborKanala."
+
+msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr "Izaberi način pretrage da nađeš pikone. 'Način sa jednim putem' koristi jedan put za sve pikone. 'Način sa više puteva' omogućava korišćenje više putanja za pikone u različitim slučajevima."
 
 msgid "Select the shifted character set"
 msgstr "Izbor skupa preseljenih znakova"
@@ -17754,10 +17900,6 @@ msgstr "Postavi MIN CPU frekvenciju za jezgre 0 i 1"
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr "Postavi MIN CPU frekvenciju za jezgra 2, 3, 4 i 5"
-
-#, python-format
-msgid "Set Path %s"
-msgstr "Postavke Putanje %s"
 
 msgid "Set Scaling governor"
 msgstr "Podesi skaliranje regulatora"
@@ -18800,6 +18942,9 @@ msgstr "Pokaži jedan EPG kanal"
 msgid "Show status messages on switch to live TV"
 msgstr "Pokaži statusne poruke prebacivanjem na TV uživo"
 
+msgid "Show sub-menu"
+msgstr "Prikaži podmeni"
+
 msgid "Show subservice selection"
 msgstr "Pokaži izbor podservisa"
 
@@ -19006,6 +19151,9 @@ msgstr "Jedan Satelit"
 
 msgid "Single step (GOP)"
 msgstr "Jedan korak (GOP)"
+
+msgid "Single-path mode"
+msgstr "Režim jedne putanje"
 
 msgid "SingleEPG Settings"
 msgstr "Postavke Jednog EPG"
@@ -20266,6 +20414,9 @@ msgstr "Lično preveo Milan Koljanin milan58 15.01.2026"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS fajl je prevelik za ISO9660 nivo 1!"
 
+msgid "TSID"
+msgstr "TSID"
+
 msgid "TUNER:"
 msgstr "TJUNER:"
 
@@ -20661,6 +20812,9 @@ msgstr ""
 msgid "The TV was switched to the recording service!\n"
 msgstr "TV je prebačen na kanal za snimanje!\n"
 
+msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
+msgstr "Kanal korisničkog banda, frekvencija i opciona PIN šifra nasleđuju se iz LNB 1 i ovde se ne mogu menjati."
+
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
@@ -20779,6 +20933,9 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da nastavite?"
+
+msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
+msgstr "Taj pozicioner tjuner trenutno nije dostupan. Zaustavite snimanja ili druge usluge koje koriste ovaj tuner i pokušajte ponovo."
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
@@ -22007,11 +22164,26 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: %s."
+msgstr "Ne mogu da nasledim korisnički opseg za LNB %d: %s."
+
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgstr "Nije moguće naslediti korisnički bend za LNB %d: LNB 1 %s."
+
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nije moguće inicijalizovati Kexec MultiBoot!"
 
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgstr "Ne mogu da potvrdim Unicable poziciju za LNB %d: %s."
+
 msgid "Unattended upgrade without GUI"
 msgstr "Nenadzirana nadogradnja bez GUI"
+
+msgid "Unavailable"
+msgstr "Nedostupno"
 
 msgid "Undefined"
 msgstr "Nedefinisan"
@@ -22049,6 +22221,13 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Unicable position"
+msgstr "Unicable pozicija"
+
+#, python-format
+msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
+msgstr "Unicable pozicija %d nije podržana od strane izabranog uređaja za LNB %d. Važne pozicije su od %d do %d; koristi 'Korisnički definisano' za reprogramirani uređaj."
 
 msgid "Uninstall"
 msgstr "Deinstalacija"
@@ -22314,6 +22493,9 @@ msgstr "Koristi HTTPS protokol"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Koristi Tajmer Pripravnosti Hardvera Hard Diska"
 
+msgid "Use LNB 1 User Band"
+msgstr "Koristi LNB 1 korisnički opseg"
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Koristi MHW EPG info kada su dostupni."
 
@@ -22325,6 +22507,9 @@ msgstr "Koristi ODoH servere"
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Koristite OpenTV EPG. Zahteva podešavanje na specifični transponder kako bi se primio EPG."
+
+msgid "Use PIN"
+msgstr "Koristi PIN"
 
 msgid "Use QuickSelect"
 msgstr "Koristi Brzi Izbor"
@@ -23073,12 +23258,18 @@ msgstr "Upozorenje: Zamenjuje trenutno aktivni!"
 msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr "Upozorenje: Snimke netreba skladištiti na Fleš disk!"
 
+msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
+msgstr "Upozorenje: Drugi ulaz ovog dvojnog tjunera možda ne podržava Unicable uređaje. "
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Upozorenje: Postoji %d paketa ispravki!"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Upozorenje: Postoji samo mrežna disk jedinica za skladištenje rezervne kopije. To znači da auto vrećanje u predhodno stanje neće funkcionisati nakon fleša. Druga mogućnost je da postavite mrežnu disk jedinicu nakon fleša i izvršite početne vrednosti prroizvođača na auto vraćanje u predhodno stanje."
+
+msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
+msgstr "Upozorenje: Ovaj FBC-C V1 tjuner treba da se instalira u prvi slot. U drugom slotu može biti dostupan samo 2 od 8 demodulatora. "
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Upozorenje: Ovo je poslednji pad pre auto ponovnog pokretanja.\n"
@@ -23178,6 +23369,9 @@ msgstr "Western Frisian"
 msgid "Western Sahara"
 msgstr "Western Sahara"
 
+msgid "Western satellites"
+msgstr "Zapadni sateliti"
+
 msgid "What day of month?"
 msgstr "Koji dan u mesecu?"
 
@@ -23248,10 +23442,10 @@ msgid "When enabled, allow each storage device detected to be automatically expo
 msgstr "Izaberite 'Da' da omogućite da svaki otkriveni uređaj za skladištenje bude automatski izvezen kao samba deljenje."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
-msgstr ""
+msgstr "Kada je omogućeno, dozvoli korišćenje NFS verzije 3 protokola."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
-msgstr ""
+msgstr "Kada je omogućeno, dozvoli korišćenje NFS verzije 4 protokola."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kada je omogućeno, potrebna je potvrda identiteta za gledanje http strima."
@@ -23278,7 +23472,7 @@ msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kada je omogućeno, moguće je napustiti filmski plejer sa exit."
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
-msgstr ""
+msgstr "Kada je omogućeno, korisnički račun korijenski se dodeljuje nikome (bezbednije). Kada je onemogućeno, dostupan je pun korijenski pristup."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Kada je omogućeno, izmerite potrošnju energije da bi otkrili kada rotor prestane da se okreće (kada ga tjuner podržava)."
@@ -24262,6 +24456,18 @@ msgstr "h:mmam/pm"
 msgid "handled"
 msgstr "handled"
 
+msgid "has incomplete Unicable settings"
+msgstr "ima nepotpuna Unicable podešavanja"
+
+msgid "has no supported Unicable device type"
+msgstr "nema podržani Unicable tip uređaja"
+
+msgid "has no valid Unicable product"
+msgstr "nema važeći Unicable proizvod"
+
+msgid "has no valid User Band channel"
+msgstr "nema važeći Korisnički Band kanal"
+
 msgid "height"
 msgstr "visina"
 
@@ -24309,6 +24515,12 @@ msgstr "trenutno snimanje"
 
 msgid "internally loopthrough to"
 msgstr "interna petlja u"
+
+msgid "is not configured"
+msgstr "nije podešeno"
+
+msgid "is not configured for Unicable"
+msgstr "nije podešeno za Unicable"
 
 msgid "jump back to the previous title"
 msgstr "skok nazad na predhodni titl"
@@ -24567,6 +24779,18 @@ msgstr "šablon fajla"
 msgid "text"
 msgstr "tekst"
 
+msgid "the User Band channel from LNB 1 is not available"
+msgstr "Korisnički Band kanal sa LNB 1 nije dostupan"
+
+msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
+msgstr "izabrani uređaj ne koristi LNB 1 frekvenciju na ovom Korisničkom Bandu kanalu"
+
+msgid "the target LNB"
+msgstr "ciljni LNB"
+
+msgid "the target LNB is not configured"
+msgstr "ciljani LNB nije podešen"
+
 msgid "this recording"
 msgstr "ovaj snimak"
 
@@ -24615,6 +24839,9 @@ msgstr "ne podleži testiranju"
 msgid "update"
 msgstr "ažuriranje"
 
+msgid "uses an unavailable User Band frequency"
+msgstr "koristi nedostupnu frekvenciju korisničkog opsega"
+
 msgid "using:"
 msgstr "koristi:"
 
@@ -24658,8 +24885,33 @@ msgstr "da (zadrži fidove)"
 msgid "®"
 msgstr "®"
 
-#~ msgid "Picon path %s"
-#~ msgstr "Pikon putanja %s"
+#~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+#~ msgstr "Snimak je trenutno u toku. Molimo Vas da zaustavite snimanje pre nego što pokušate da podesite pozicije."
+
+#~ msgid "Consult your receiver's manual for more information on power management."
+#~ msgstr "Više info o upravljanju napajanjem potražite u uputstvu prijemnika."
+
+#~ msgid "Consult your receiver's manual for more information on power threshold."
+#~ msgstr "Više info o pragu napajanja potražite u uputstvu prijemnika."
+
+#~ msgid "Legacy"
+#~ msgstr "Nasleđeno"
+
+#~ msgid "Path to picon set %s."
+#~ msgstr "Putanja za pikon postavke %s."
+
+#~ msgid "Picon mode"
+#~ msgstr "Pikon režim"
+
+#~ msgid "Picon set mode"
+#~ msgstr "Pikon postavke način"
+
+#~ msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+#~ msgstr "Izaberi režim za izbor putanje pikona i rezoluciju. 'Nasleđeno' predstavlja prethodni način rada."
+
+#, python-format
+#~ msgid "Set Path %s"
+#~ msgstr "Postavke Putanje %s"
 
 #~ msgid "Select the Picon path, from above, to be used for Channel Selection picons."
 #~ msgstr "Izaberi Pikon putanju, iznad, koja će se koristiti za pikone pri izboru kanala."

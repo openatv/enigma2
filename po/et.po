@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 14:22+0000\n"
+"POT-Creation-Date: 2026-07-15 19:52+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -37,6 +37,9 @@ msgstr "  REC  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr " Punane: Kuva/peida kanali nimi"
+
+msgid " (+5 volt terrestrial)"
+msgstr ""
 
 #, python-format
 msgid " (Channel %s)"
@@ -1621,14 +1624,17 @@ msgstr ""
 "Toimub salvestamine.\n"
 "Mida tuleks teha?"
 
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
-
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Toimub salvestamine. Peata salvestamine enne signaalimõõdiku kasutamist."
+
+msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
+msgstr ""
+
+msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1679,6 +1685,11 @@ msgid ""
 msgstr ""
 "Taimeriga salvestus nurjus!\n"
 "Kas keelata TV ja proovida uuesti?\n"
+
+msgid ""
+"A zap timer wants to switch the channel.\n"
+"Do you want to zap now?\n"
+msgstr ""
 
 msgid "AAC downmix"
 msgstr "AAC > stereo"
@@ -1898,6 +1909,9 @@ msgstr "Lisa märgis"
 msgid "Add New Quad Channel Entry"
 msgstr "Lisa uus Quad PiP kanal"
 
+msgid "Add Path"
+msgstr ""
+
 msgid "Add RecordTimer"
 msgstr "Lisa salvestustaimer"
 
@@ -2065,6 +2079,9 @@ msgstr ""
 msgid "Adding schedule..."
 msgstr "Ajakava lisamine."
 
+msgid "Additional cable of motorized LNB"
+msgstr ""
+
 msgid "Additional files/folders to backup"
 msgstr "Varundamiseks lisatud failid/kaustad"
 
@@ -2073,6 +2090,10 @@ msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonileh
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ajami lisavalikud lubavad sisestada andmeid mootori spetsifikatsioonilehelt, et enigma saaks arvutada ühelt satelliidilt teisele liigutamise aja."
+
+#, python-format
+msgid "Additional rotor cable from %s"
+msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Seadista värve nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testpiltide valikuks."
@@ -2134,12 +2155,12 @@ msgstr ""
 msgid "After Event"
 msgstr ""
 
+msgid "After event"
+msgstr "Pärast sündmust"
+
 # Powerlost setup.xml
 msgid "After power loss"
 msgstr "Pärast voolukatkestust"
-
-msgid "After event"
-msgstr "Pärast sündmust"
 
 msgid "After recording"
 msgstr "Pärast salvestust"
@@ -2723,6 +2744,9 @@ msgstr "Auto"
 #
 msgid "Auto (not available)"
 msgstr "Autom. (pole saadaval)"
+
+msgid "Auto DiSEqC search order"
+msgstr ""
 
 #
 msgid "Auto Language"
@@ -3872,6 +3896,9 @@ msgstr "Keskel, reamurdmisega"
 msgid "Central African Republic"
 msgstr "Kesk Aafrika Vabariik"
 
+msgid "Central Europe"
+msgstr ""
+
 msgid "Central Khmer"
 msgstr ""
 
@@ -4064,6 +4091,9 @@ msgstr ""
 msgid "Chechen"
 msgstr "Kontroll"
 
+msgid "Check ONID/TSID"
+msgstr ""
+
 msgid "Check for PDC"
 msgstr ""
 
@@ -4084,6 +4114,9 @@ msgstr "Hoidlate kontroll"
 
 msgid "Checking Logs..."
 msgstr "Logide uurimine."
+
+msgid "Checking ONID/TSID ..."
+msgstr ""
 
 msgid "Checking file system..."
 msgstr "Failisüsteemi kontroll."
@@ -4940,6 +4973,9 @@ msgstr "Seadistamine"
 msgid "Configuring Service"
 msgstr ""
 
+msgid "Confirm Zap"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr ""
 
@@ -5016,12 +5052,6 @@ msgstr "Seda infot otsi SCR seadme spetsifikatsioonilehelt."
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Seda infot otsi ajami spetsifikatsioonilehelt või kasuta vaikeväärtust."
-
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Toitehaldus. Uuri lähemalt vastuvõtja käsiraamatust."
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Võimsuselävi. Uuri lähemalt vastuvõtja käsiraamatust."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -5436,8 +5466,17 @@ msgstr ""
 msgid "Current mode: %s \n"
 msgstr "Hetke olek: %s \n"
 
+msgid "Current rotor position:"
+msgstr ""
+
+msgid "Current rotor position: unknown"
+msgstr ""
+
 msgid "Current settings:"
 msgstr "Hetke seaded:"
+
+msgid "Current supplied to the LNB and positioner."
+msgstr ""
 
 msgid "Current time"
 msgstr "Praegune kellaaeg"
@@ -5968,6 +6007,9 @@ msgstr ""
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
+msgid "Define path %s for picons."
+msgstr ""
+
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
@@ -6305,6 +6347,9 @@ msgid "Detail of GStreamer log."
 msgstr ""
 
 msgid "Details"
+msgstr ""
+
+msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
 msgid "Detective"
@@ -7080,6 +7125,9 @@ msgstr "Ida"
 msgid "East limit set"
 msgstr "Ida piir on määratud"
 
+msgid "Eastern satellites"
+msgstr ""
+
 msgid "Easy listening"
 msgstr ""
 
@@ -7487,6 +7535,12 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Luba see, kui välisantenn vajab toidet"
 
+msgid "Enable this when a power inserter or external supply powers the Unicable device."
+msgstr ""
+
+msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
+msgstr ""
+
 msgid "Enable timer"
 msgstr ""
 
@@ -7633,6 +7687,9 @@ msgstr ""
 msgid "Enter a new name for this device."
 msgstr ""
 
+msgid "Enter expected ONID/TSID"
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Sisesta, kas asud põhja- või lõunapoolkeral."
 
@@ -7655,6 +7712,9 @@ msgid "Enter text via an attached keyboard"
 msgstr ""
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
+msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
@@ -8300,6 +8360,9 @@ msgstr "Värvide kasutamine välistel subtiitritel"
 msgid "External subtitle switch fonts"
 msgstr "Väliste subtiitrite kirjatüübi vahetamine"
 
+msgid "Externally powered"
+msgstr ""
+
 msgid "Extra High"
 msgstr ""
 
@@ -8342,6 +8405,13 @@ msgid "FBC SCR (Unicable/JESS)"
 msgstr ""
 
 msgid "FBC automatic"
+msgstr ""
+
+#, python-format
+msgid "FBC automatic: connected to %s"
+msgstr ""
+
+msgid "FBC automatic: inactive"
 msgstr ""
 
 msgid "FCC enabled"
@@ -9559,6 +9629,9 @@ msgstr "Peida mängija"
 msgid "Hide softcam servername"
 msgstr ""
 
+msgid "Hide sub-menu"
+msgstr ""
+
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Luba inforiba hajumine"
@@ -10234,6 +10307,9 @@ msgstr "teave/haridus/kooliprogramm"
 msgid "Infotainment"
 msgstr "CCcam info peamenüü"
 
+msgid "Inherited channel / frequency"
+msgstr ""
+
 msgid "Init"
 msgstr "Init"
 
@@ -10818,6 +10894,18 @@ msgstr ""
 msgid "LNB"
 msgstr "LNB"
 
+msgid "LNB 1"
+msgstr ""
+
+msgid "LNB 1 and the target LNB use different Unicable protocols"
+msgstr ""
+
+msgid "LNB current:"
+msgstr ""
+
+msgid "LNB current: not available"
+msgstr ""
+
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB/lüliti alglaadimise aeg [ms]"
 
@@ -10909,6 +10997,9 @@ msgstr "Kas väljuda DVD mängijast?"
 msgid "Leave movie player"
 msgstr "Lõpeta taasesitus"
 
+msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
+msgstr ""
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Vaikeväärtuseks on 'Jah'. Muuda ainult juhul, kui tead täpselt, mida seadistad."
 
@@ -10941,9 +11032,6 @@ msgstr ""
 
 msgid "Left, wrapped"
 msgstr "Vasakul, reamurdmisega"
-
-msgid "Legacy"
-msgstr ""
 
 msgid "Legacy mode"
 msgstr ""
@@ -11003,6 +11091,9 @@ msgstr "Ida piir"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Kasuta failinimedes ainult (7 bit) ascii tähemärke. See tagab failide ühilduvuse ka operatsioonisüsteemidega, mis ei toeta kõiki tähemärke."
+
+msgid "Limit the search to the satellite group normally used by this installation."
+msgstr ""
 
 msgid "Limit west"
 msgstr "Lääne piir"
@@ -11587,6 +11678,9 @@ msgstr ""
 msgid "Mayotte"
 msgstr "Mayotte"
 
+msgid "Measured current"
+msgstr ""
+
 msgid "Media"
 msgstr "Media"
 
@@ -11738,6 +11832,9 @@ msgstr "MiniTV ja OSD"
 #, python-format
 msgid "Minimum age %d years"
 msgstr "Väikseim vanus %d aastat"
+
+msgid "Minimum difference between idle and moving current."
+msgstr ""
 
 msgid "Minimum send interval"
 msgstr "Väikseim saatmise vahemik"
@@ -12228,6 +12325,9 @@ msgstr ""
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
+
+msgid "Multi-path mode"
+msgstr ""
 
 msgid "MultiBoot"
 msgstr ""
@@ -13025,8 +13125,14 @@ msgstr "Kodi paigaldatud:"
 msgid "Not Shown"
 msgstr "Ei näidata"
 
+msgid "Not a valid tuner"
+msgstr ""
+
 msgid "Not associated"
 msgstr "Sidumata"
+
+msgid "Not available"
+msgstr ""
 
 msgid "Not configured"
 msgstr "ei ole häälestatud"
@@ -13149,8 +13255,23 @@ msgstr "OK nupp (lühike)"
 msgid "OK button mode"
 msgstr "OK nupu vajutus"
 
+msgid "OK checks the currently tuned transponder."
+msgstr ""
+
 msgid "OK, guide me through the upgrade process"
 msgstr "Jah, õpeta uuendamisel"
+
+msgid "ONID"
+msgstr "ONID"
+
+msgid "ONID/TSID check timed out"
+msgstr ""
+
+msgid "ONID/TSID does not match"
+msgstr ""
+
+msgid "ONID/TSID valid"
+msgstr ""
 
 msgid "OSCam Info"
 msgstr "OScam info"
@@ -13512,6 +13633,9 @@ msgstr ""
 msgid "Open the single service EPG view"
 msgstr ""
 
+msgid "Open tuner setup"
+msgstr ""
+
 msgid "Open with File Commander"
 msgstr "Ava failihalduriga"
 
@@ -13712,6 +13836,9 @@ msgstr ""
 msgid "PGS file"
 msgstr "EPG faili nimi"
 
+msgid "PIN"
+msgstr ""
+
 msgid "PIN code needed"
 msgstr "Vajalik on PIN-kood"
 
@@ -13886,9 +14013,6 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to picon set %s."
-msgstr ""
-
 msgid "Pause"
 msgstr "Paus"
 
@@ -14002,14 +14126,15 @@ msgstr "Pikon ja kanali nimi"
 msgid "Picon install location"
 msgstr ""
 
-msgid "Picon mode"
+#, python-format
+msgid "Picon path %s"
 msgstr ""
 
 #, python-format
-msgid "Picon set %s"
+msgid "Picon path %s is in use and cannot be removed!"
 msgstr ""
 
-msgid "Picon set mode"
+msgid "Picon search mode"
 msgstr ""
 
 msgid "Picon width"
@@ -14535,6 +14660,9 @@ msgstr "Ajami seadistus"
 
 msgid "Positioner Setup Log"
 msgstr "Positsioneeri seadistuse logi"
+
+msgid "Positioner actions"
+msgstr ""
 
 msgid "Positioner setup"
 msgstr "Ajami seadistamine"
@@ -15575,6 +15703,9 @@ msgstr "Eemalda lapselukk"
 msgid "Remove New Found Flag"
 msgstr "Eemalda 'uus kanal' tunnus"
 
+msgid "Remove Path"
+msgstr ""
+
 msgid "Remove Plugin"
 msgstr ""
 
@@ -16074,8 +16205,15 @@ msgstr ""
 msgid "Rose"
 msgstr ""
 
+msgid "Rotor is not configured"
+msgstr ""
+
 msgid "Rotor turning speed"
 msgstr "Ajami pööramise kiirus"
+
+#, python-format
+msgid "Rotor: %d satellites"
+msgstr ""
 
 msgid "Router / Gateway"
 msgstr ""
@@ -16938,6 +17076,9 @@ msgstr "Määrates 'jah', arvutatakse signaali väärused (SNR, etc) API V3 põh
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr ""
 
+msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
+msgstr ""
+
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr ""
 
@@ -17072,6 +17213,9 @@ msgstr ""
 #
 msgid "Select a script to run:"
 msgstr "Vali käivitatav skript:"
+
+msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
+msgstr ""
 
 msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr ""
@@ -17533,9 +17677,6 @@ msgstr "Vali SCR seadme tootja. Kui tootjat nimekirjas ei ole, määra 'SCR' vä
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vali ekraanilahutuse ja ekraanipuhvri taastamise meetod teletekstist väljumisel."
 
-msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
-msgstr ""
-
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
 
@@ -17619,6 +17760,9 @@ msgid "Select the satellite you want to configure. Once configured you can selec
 msgstr "Vali seadistatav satelliit. Kui see satelliit on seadistatud, saab valida ja seadistada teised sama tuuneriga vastuvõetavad satelliidid."
 
 msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
+
+msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr ""
 
 #, fuzzy
@@ -18113,10 +18257,6 @@ msgid "Set MIN CPU frequency for cores 0 and 1"
 msgstr ""
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
-msgstr ""
-
-#, python-format
-msgid "Set Path %s"
 msgstr ""
 
 msgid "Set Scaling governor"
@@ -19180,6 +19320,9 @@ msgstr "Kanali EPG"
 msgid "Show status messages on switch to live TV"
 msgstr "Olekuteated otsesaatele lülitudes"
 
+msgid "Show sub-menu"
+msgstr ""
+
 msgid "Show subservice selection"
 msgstr "Kuva alamkanalite valik"
 
@@ -19388,6 +19531,9 @@ msgstr "Üksik satelliit"
 
 msgid "Single step (GOP)"
 msgstr "Pilt-pildilt (GOP)"
+
+msgid "Single-path mode"
+msgstr ""
 
 msgid "SingleEPG Settings"
 msgstr "Kanali EPG seaded"
@@ -20679,6 +20825,9 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS fail on liiga suur ISO9660/1 jaoks!"
 
+msgid "TSID"
+msgstr "TSID"
+
 msgid "TUNER:"
 msgstr ""
 
@@ -21067,6 +21216,9 @@ msgstr ""
 msgid "The TV was switched to the recording service!\n"
 msgstr "Vastuvõtja lülitati salvestavale kanalile!\n"
 
+msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
+msgstr ""
+
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
@@ -21177,6 +21329,9 @@ msgstr ""
 "Paigalda see."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
+msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
 #, python-format
@@ -22439,12 +22594,27 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: %s."
+msgstr ""
+
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgstr ""
+
 msgid "Unable to initialize Kexec MultiBoot!"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr ""
 
 #
 msgid "Unattended upgrade without GUI"
 msgstr "Automatiseeritud uuendamine ja taaskäivitus"
+
+msgid "Unavailable"
+msgstr ""
 
 #, fuzzy
 msgid "Undefined"
@@ -22484,6 +22654,13 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Unicable position"
+msgstr ""
+
+#, python-format
+msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
+msgstr ""
 
 msgid "Uninstall"
 msgstr ""
@@ -22756,6 +22933,9 @@ msgstr ""
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Kasuta kõvaketta raudvaralist ootetaimerit"
 
+msgid "Use LNB 1 User Band"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Kasuta saadavusel MHW EPG infot."
 
@@ -22766,6 +22946,9 @@ msgid "Use ODoH servers"
 msgstr ""
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
+
+msgid "Use PIN"
 msgstr ""
 
 msgid "Use QuickSelect"
@@ -23505,12 +23688,18 @@ msgstr ""
 msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr ""
 
+msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Varukoopiate salvestamiseks leiti ainult võrguketas. See tähendab, et püsivara paigaldusel automaatne taastamine ei tööta. Võimaluseks on haakida võrguketas pärast püsivara paigaldust, sooritada algseadete taastamine ja pärast seda automaatne taastamine"
+
+msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
+msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Hoiatus: See on viimane krahh enne automaatset taaskäivitust.\n"
@@ -23613,6 +23802,9 @@ msgstr "Lääne-Sahaara"
 
 msgid "Western Sahara"
 msgstr "Lääne-Sahaara"
+
+msgid "Western satellites"
+msgstr ""
 
 msgid "What day of month?"
 msgstr ""
@@ -24718,6 +24910,18 @@ msgstr "h:mmam/pm"
 msgid "handled"
 msgstr "töödeldud"
 
+msgid "has incomplete Unicable settings"
+msgstr ""
+
+msgid "has no supported Unicable device type"
+msgstr ""
+
+msgid "has no valid Unicable product"
+msgstr ""
+
+msgid "has no valid User Band channel"
+msgstr ""
+
 msgid "height"
 msgstr "Kõrgus"
 
@@ -24768,6 +24972,12 @@ msgstr "Kohese salvestuse valikud"
 # NimManager.py
 msgid "internally loopthrough to"
 msgstr "sisene läbiviik kuni"
+
+msgid "is not configured"
+msgstr ""
+
+msgid "is not configured for Unicable"
+msgstr ""
 
 msgid "jump back to the previous title"
 msgstr "Hüppa eelmisele failile"
@@ -25028,6 +25238,18 @@ msgstr "mall"
 msgid "text"
 msgstr ""
 
+msgid "the User Band channel from LNB 1 is not available"
+msgstr ""
+
+msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
+msgstr ""
+
+msgid "the target LNB"
+msgstr ""
+
+msgid "the target LNB is not configured"
+msgstr ""
+
 msgid "this recording"
 msgstr "see salvestus"
 
@@ -25076,6 +25298,9 @@ msgstr "testimatu"
 msgid "update"
 msgstr "Uuendus"
 
+msgid "uses an unavailable User Band frequency"
+msgstr ""
+
 msgid "using:"
 msgstr "kasutuses:"
 
@@ -25117,6 +25342,15 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+#~ msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
+
+#~ msgid "Consult your receiver's manual for more information on power management."
+#~ msgstr "Toitehaldus. Uuri lähemalt vastuvõtja käsiraamatust."
+
+#~ msgid "Consult your receiver's manual for more information on power threshold."
+#~ msgstr "Võimsuselävi. Uuri lähemalt vastuvõtja käsiraamatust."
 
 #, python-format
 #~ msgid "%d DMIPS per core"
@@ -26620,9 +26854,6 @@ msgstr ""
 #~ msgid "NIM & Type"
 #~ msgstr "HDMI HDR tüüp"
 
-#~ msgid "ONID"
-#~ msgstr "ONID"
-
 #, fuzzy
 #~ msgid "Service ID"
 #~ msgstr "Kanal"
@@ -26650,9 +26881,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "System & Modulation"
 #~ msgstr "Modulatsioon"
-
-#~ msgid "TSID"
-#~ msgstr "TSID"
 
 #, fuzzy
 #~ msgid "Tuner live values"

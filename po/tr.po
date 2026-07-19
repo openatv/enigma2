@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 14:22+0000\n"
-"PO-Revision-Date: 2026-07-15 09:22+0000\n"
+"POT-Creation-Date: 2026-07-15 19:52+0000\n"
+"PO-Revision-Date: 2026-07-16 23:23+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -49,6 +49,9 @@ msgstr "  REC "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Kırmızı tuş: Kanal ismini göster/gizle"
+
+msgid " (+5 volt terrestrial)"
+msgstr " (+5 volt karasal)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -1625,16 +1628,18 @@ msgstr ""
 "Şu anda kayıt işlemi devam ediyor.\n"
 "Ne yapmak istersiniz?"
 
-#
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Şu anda bir kayıt işlemi devam etmektedir. Lütfen konumlandırıcıyı yapılandırmaya çalışmadan önce kaydı durdurun."
-
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Şu anda bir kayıt işlemi devam etmektedir. Lütfen tarama işlemine başlamadan önce kaydı durdurun."
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Şu anda bir kayıt işlemi devam etmektedir. Uydu bulucu uygulamasını çalıştırmadan önce lütfen kaydı durdurun."
+
+msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
+msgstr "Bir kayıt devam ediyor veya altı dakika içinde başlayacak. Tuner ayarlarını değiştirmek kaydı kesintiye uğratabilir. Yine de kaydetmek istiyor musunuz?"
+
+msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
+msgstr "Bir kayıt devam ediyor veya altı dakika içinde başlayacak. Lütfen konumlandırıcı kurulumunu daha sonra deneyin."
 
 #, python-format
 msgid ""
@@ -1689,6 +1694,13 @@ msgid ""
 msgstr ""
 "Zamanlayıcı kaydı tamamlayamadı!\n"
 "Televizyonu kapatıp tekrar denemek ister misiniz?\n"
+
+msgid ""
+"A zap timer wants to switch the channel.\n"
+"Do you want to zap now?\n"
+msgstr ""
+"Bir kanal değiştirme zamanlayıcısı kanal değiştirmek istiyor.\n"
+"Şimdi kanal değiştirmek ister misiniz?\n"
 
 msgid "AAC downmix"
 msgstr "AAC downmix"
@@ -1794,7 +1806,7 @@ msgid "Above 200 Mbps"
 msgstr "200 Mbps'nin üzerinde"
 
 msgid "Access mode"
-msgstr ""
+msgstr "Erişim modu"
 
 msgid "Access point"
 msgstr "Erişim noktası"
@@ -1920,6 +1932,9 @@ msgstr "Bukete İşaretleyici Ekle"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Yeni Dört Kanallı Giriş Ekle"
+
+msgid "Add Path"
+msgstr "Yol Ekle"
 
 msgid "Add RecordTimer"
 msgstr "Kayıt Zamanlayıcı Ekle"
@@ -2099,6 +2114,9 @@ msgstr "Geçerli kanalı Ses Seviyesi Dengeleme listesi (-ne/-nden) Ekle/Kaldır
 msgid "Adding schedule..."
 msgstr "Planlama ekleniyor..."
 
+msgid "Additional cable of motorized LNB"
+msgstr "Motorlu LNB için ek kablo"
+
 msgid "Additional files/folders to backup"
 msgstr "Yedeklenecek ek dosyalar/klasörler"
 
@@ -2107,6 +2125,10 @@ msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntılar�
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntıları girmenize olanak tanır, böylece Enigma başka bir uyduya geçmenin ne kadar süreceğini hesaplayabilir."
+
+#, python-format
+msgid "Additional rotor cable from %s"
+msgstr "%s'den gelen ek rotor kablosu"
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2173,12 +2195,12 @@ msgstr "Afrikanca"
 msgid "After Event"
 msgstr "Etkinlikten sonra"
 
-msgid "After power loss"
-msgstr "Elektrik kesintisinden sonra"
-
 #
 msgid "After event"
 msgstr "Etkinlikten sonra"
+
+msgid "After power loss"
+msgstr "Elektrik kesintisinden sonra"
 
 #
 msgid "After recording"
@@ -2298,7 +2320,7 @@ msgid "Allow unsupported modes"
 msgstr "Desteklenmeyen modlara izin ver"
 
 msgid "Allowed clients"
-msgstr ""
+msgstr "İzin verilen istemciler"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "%s %s alıcınızın kayıtlı EPG verilerini düzenli olarak okumasına olanak tanır."
@@ -2773,6 +2795,9 @@ msgstr "Otomatik"
 
 msgid "Auto (not available)"
 msgstr "Otomatik (mevcut değil)"
+
+msgid "Auto DiSEqC search order"
+msgstr "Otomatik DiSEqC arama sırası"
 
 msgid "Auto Language"
 msgstr "Otomatik Dil"
@@ -3951,6 +3976,9 @@ msgstr "Ortalanmış, sarılmış"
 msgid "Central African Republic"
 msgstr "Orta Afrika Cumhuriyeti"
 
+msgid "Central Europe"
+msgstr "Orta Avrupa"
+
 msgid "Central Khmer"
 msgstr "Central Khmer"
 
@@ -4154,6 +4182,9 @@ msgstr "Sohbet programı"
 msgid "Chechen"
 msgstr "Çeçence"
 
+msgid "Check ONID/TSID"
+msgstr "ONID/TSID'yi kontrol edin"
+
 msgid "Check for PDC"
 msgstr "PDC için kontrol et"
 
@@ -4174,6 +4205,9 @@ msgstr "Kaynaklar Kontrol Ediliyor"
 
 msgid "Checking Logs..."
 msgstr "Günlükler Kontrol Ediliyor..."
+
+msgid "Checking ONID/TSID ..."
+msgstr "ONID/TSID kontrol ediliyor..."
 
 #
 msgid "Checking file system..."
@@ -5047,6 +5081,9 @@ msgstr "Yapılandırılıyor"
 msgid "Configuring Service"
 msgstr "Kanalı Yapılandır"
 
+msgid "Confirm Zap"
+msgstr "Kanal Değiştirmeyi Onayla"
+
 msgid "ConflictTimer Actions"
 msgstr "Zamanlayıcı Çakışması İşlemleri"
 
@@ -5127,12 +5164,6 @@ msgstr "Bu bilgi için SCR cihazınızın teknik özelliklerine bakın."
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Bu bilgi için motorunuzun teknik özelliklerine bakın veya varsayılan ayarda bırakın."
-
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Güç yönetimi hakkında daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Güç eşiği hakkında daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -5549,9 +5580,18 @@ msgstr "Geçerli konum '%s'."
 msgid "Current mode: %s \n"
 msgstr "Geçerli mod: %s \n"
 
+msgid "Current rotor position:"
+msgstr "Rotorun mevcut konumu:"
+
+msgid "Current rotor position: unknown"
+msgstr "Mevcut rotor konumu: bilinmiyor"
+
 #
 msgid "Current settings:"
 msgstr "Geçerli ayarlar:"
+
+msgid "Current supplied to the LNB and positioner."
+msgstr "LNB ve konumlandırıcıya verilen akım."
 
 msgid "Current time"
 msgstr "Geçerli zaman"
@@ -6095,6 +6135,9 @@ msgstr "Bu Kanal İçin Softcam Tanımlayın"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Http(s) akışlarının başlamasından önce milisaniye cinsinden ek bir gecikme tanımlayın."
 
+msgid "Define path %s for picons."
+msgstr "Pikonlar için %s yolunu tanımlayın."
+
 msgid "Define the custom mountpoint for the device."
 msgstr "Cihaz için özel bağlama noktasını tanımlayın."
 
@@ -6439,6 +6482,9 @@ msgstr "GStreamer günlüğünün detayı."
 
 msgid "Details"
 msgstr "Detaylar"
+
+msgid "Detect positioner movement by its current consumption."
+msgstr "Konumlayıcının hareketini akım tüketimine göre tespit edin."
 
 msgid "Detective"
 msgstr "Dedektif"
@@ -7247,6 +7293,9 @@ msgstr "Doğu"
 msgid "East limit set"
 msgstr "Doğu sınırı ayarlandı"
 
+msgid "Eastern satellites"
+msgstr "Doğu uyduları"
+
 msgid "Easy listening"
 msgstr "Kolay dinlenebilir"
 
@@ -7460,10 +7509,10 @@ msgid "Enable Move Mode"
 msgstr "Taşıma Modunu Etkinleştir"
 
 msgid "Enable NFSv3"
-msgstr ""
+msgstr "NFSv3'ü etkinleştir"
 
 msgid "Enable NFSv4"
-msgstr ""
+msgstr "NFSv4'ü etkinleştir"
 
 msgid "Enable Netmed EPG"
 msgstr "Netmed EPG etkinleştir"
@@ -7628,7 +7677,7 @@ msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına klavye tuş haritası verilerini eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to add network information to the debug log file."
-msgstr ""
+msgstr "Ağ bilgilerini hata ayıklama günlük dosyasına eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına opkg çıktı verileri eklemek için bu seçeneği etkinleştirin."
@@ -7656,6 +7705,12 @@ msgstr "Cihaz yöneticisinde bilinmeyen depolama cihazlarını göstermek için 
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Anten sisteminizin güç kaynağına ihtiyacı varsa bu ayarı etkinleştirin."
+
+msgid "Enable this when a power inserter or external supply powers the Unicable device."
+msgstr "Unicable cihazına bir güç besleme ünitesi veya harici bir güç kaynağı ile güç sağlandığında bu seçeneği etkinleştirin."
+
+msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
+msgstr "Çok konutlu Unicable kurulumunda Kullanıcı Bandı bir PIN ile korunduğunda bunu etkinleştirin."
 
 msgid "Enable timer"
 msgstr "Zamanlayıcıyı etkinleştir"
@@ -7811,6 +7866,9 @@ msgstr "Bu zamanlayıcı için bir isim girin."
 msgid "Enter a new name for this device."
 msgstr "Bu cihaz için yeni bir isim girin."
 
+msgid "Enter expected ONID/TSID"
+msgstr "Beklenen ONID/TSID değerini girin"
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Ekvatorun kuzeyi veya güneyinde iseniz girin."
 
@@ -7833,7 +7891,10 @@ msgid "Enter text via an attached keyboard"
 msgstr "Ekli klavye aracılığıyla metin girin"
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
-msgstr ""
+msgstr "NFS ana bilgisayarlarına erişim izni verilecek IP adresini veya alt ağı (örn. 192.168.1.0/24) girin. Tüm ana bilgisayarlara erişim izni vermek için varsayılan değer olan '*' işaretini girin."
+
+msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
+msgstr "Kurulumcu veya bina işletmecisi tarafından bu Kullanıcı Bandına atanan 0 ile 255 arasındaki PIN kodunu girin."
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "ZeroTier Ağ Kimliğini girin. Kimlik tam olarak 16 karakter uzunluğunda olmalıdır."
@@ -7848,7 +7909,7 @@ msgid "Enter the frequency step size for the tuner to use when searching for cab
 msgstr "Kablo çoklayıcılarını ararken tunerin kullanacağı frekans adım boyutunu girin. Daha fazla bilgi için kablo sağlayıcınızın belgelerine bakın."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
-msgstr ""
+msgstr "Tahsis edilecek/kullanılacak NFS sunucusu iş parçacıklarının sayısını girin. Daha yüksek değerler, birden çok istemciyle performansı artırır ancak daha fazla bellek kullanır."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Bu uyduya karşılık gelen konumlandırıcıda kayıtlı numarayı girin."
@@ -8507,6 +8568,9 @@ msgstr "Harici altyazı iletişim kutusu renklendirmesi"
 msgid "External subtitle switch fonts"
 msgstr "Harici altyazı yazı tipini değiştir"
 
+msgid "Externally powered"
+msgstr "Harici güç kaynağı"
+
 msgid "Extra High"
 msgstr "Ekstra Yüksek"
 
@@ -8548,6 +8612,13 @@ msgstr "FBC SCR (Unicable / JESS)"
 
 msgid "FBC automatic"
 msgstr "FBC otomatik"
+
+#, python-format
+msgid "FBC automatic: connected to %s"
+msgstr "FBC otomatik: %s'ye bağlı"
+
+msgid "FBC automatic: inactive"
+msgstr "FBC otomatik: devre dışı"
 
 msgid "FCC enabled"
 msgstr "FCC etkin"
@@ -9788,6 +9859,9 @@ msgstr "Oynatıcıyı gizle"
 msgid "Hide softcam servername"
 msgstr "Softcam sunucu adını gizle"
 
+msgid "Hide sub-menu"
+msgstr "Alt menüyü gizle"
+
 msgid "Hide the InfoBar"
 msgstr "Bilgi çubuğunu gizle"
 
@@ -10363,7 +10437,7 @@ msgid "Include keyboard data"
 msgstr "Klavye verilerini dahil et"
 
 msgid "Include network data"
-msgstr ""
+msgstr "Ağ verilerini dahil et"
 
 msgid "Include opkg output data"
 msgstr "Opkg çıktı verilerini dahil et"
@@ -10464,6 +10538,9 @@ msgstr "Bilgilendirme/Eğitim/Okul programları"
 
 msgid "Infotainment"
 msgstr "Bilgilendirme ve eğlence"
+
+msgid "Inherited channel / frequency"
+msgstr "Devralınan kanal / frekans"
 
 #
 msgid "Init"
@@ -11066,6 +11143,18 @@ msgstr "LIRC uzaktan kumanda"
 msgid "LNB"
 msgstr "LNB"
 
+msgid "LNB 1"
+msgstr "LNB 1"
+
+msgid "LNB 1 and the target LNB use different Unicable protocols"
+msgstr "LNB 1 ve hedef LNB, farklı Unicable protokollerini kullanıyor"
+
+msgid "LNB current:"
+msgstr "LNB akımı:"
+
+msgid "LNB current: not available"
+msgstr "LNB akımı: mevcut değil"
+
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB / Anahtar Başlatma zamanı [ms]"
 
@@ -11164,6 +11253,9 @@ msgstr "DVD Oynatıcıdan çıkmak istiyor musunuz?"
 msgid "Leave movie player"
 msgstr "Film oynatıcıdan çık"
 
+msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
+msgstr "Konumu LNB numarası ve cihaz profilinden belirlemek için bu değeri 0 olarak bırakın. Yalnızca yeniden programlanmış bir Unicable cihazı için 1 ile 64 arasında bir değer girin."
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Bu ayarı neden değiştirdiğinizi tam olarak anlamadığınız sürece 'Evet' olarak bırakın."
 
@@ -11197,9 +11289,6 @@ msgstr "Sol, öndeki USB"
 
 msgid "Left, wrapped"
 msgstr "Sol, sarılı"
-
-msgid "Legacy"
-msgstr "Eski"
 
 msgid "Legacy mode"
 msgstr "Eski mod"
@@ -11260,6 +11349,9 @@ msgstr "Doğu limiti"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Dosya isimlerinde kullanılabilecek karakterleri (7 bit) ASCII ile sınırlandırın. Bu, sınırlı karakter setine sahip işletim sistemleri veya dosya sistemleriyle uyumluluğu sağlar."
+
+msgid "Limit the search to the satellite group normally used by this installation."
+msgstr "Aramayı, bu kurulumda normalde kullanılan uydu grubuyla sınırlandırın."
 
 #
 msgid "Limit west"
@@ -11846,6 +11938,9 @@ msgstr "Kod çözücüyü başlatmadan önce ilk şifre çözme anahtarı (CW) i
 msgid "Mayotte"
 msgstr "Mayotte"
 
+msgid "Measured current"
+msgstr "Ölçülen akım"
+
 msgid "Media"
 msgstr "Medya"
 
@@ -11993,6 +12088,9 @@ msgstr "Ekranda Gösterim özellikli MiniTV"
 #, python-format
 msgid "Minimum age %d years"
 msgstr "Minimum yaş %d yıl"
+
+msgid "Minimum difference between idle and moving current."
+msgstr "Boşta ve hareketli akım arasındaki minimum fark."
 
 msgid "Minimum send interval"
 msgstr "Minimum gönderim aralığı"
@@ -12492,6 +12590,9 @@ msgstr "Çoklu"
 msgid "Multi EPG"
 msgstr "Çoklu EPG"
 
+msgid "Multi-path mode"
+msgstr "Çoklu yol modu"
+
 msgid "MultiBoot"
 msgstr "Çoklu Önyükleme"
 
@@ -12582,7 +12683,7 @@ msgid "NFS Settings"
 msgstr "NFS Yapılandırma"
 
 msgid "NFS threads"
-msgstr ""
+msgstr "NFS iş parçacıkları"
 
 msgid "NIM"
 msgstr "NIM"
@@ -13312,8 +13413,14 @@ msgstr "Yüklenmedi"
 msgid "Not Shown"
 msgstr "Gösterilmiyor"
 
+msgid "Not a valid tuner"
+msgstr "Geçerli bir tuner değil"
+
 msgid "Not associated"
 msgstr "İlişkilendirilmemiş"
+
+msgid "Not available"
+msgstr "Mevcut değil"
 
 msgid "Not configured"
 msgstr "Yapılandırılmamış"
@@ -13438,9 +13545,24 @@ msgstr "OK tuşu (kısa)"
 msgid "OK button mode"
 msgstr "OK tuşu modu"
 
+msgid "OK checks the currently tuned transponder."
+msgstr "OK, halihazırda ayarlı olan aktarıcıyı kontrol eder."
+
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "Tamam, yükseltme işlemi sürecinde bana yol göster"
+
+msgid "ONID"
+msgstr "ONID"
+
+msgid "ONID/TSID check timed out"
+msgstr "ONID/TSID kontrolü zaman aşımına uğradı"
+
+msgid "ONID/TSID does not match"
+msgstr "ONID/TSID eşleşmiyor"
+
+msgid "ONID/TSID valid"
+msgstr "ONID/TSID geçerli"
 
 msgid "OSCam Info"
 msgstr "OScam Bilgisi"
@@ -13791,6 +13913,9 @@ msgstr "Çoklu kanal EPG görünümünü aç"
 msgid "Open the single service EPG view"
 msgstr "Tekli kanal EPG görünümünü aç"
 
+msgid "Open tuner setup"
+msgstr "Tuner kurulumunu aç"
+
 msgid "Open with File Commander"
 msgstr "File Commander ile aç"
 
@@ -13976,6 +14101,9 @@ msgstr "EG - Ebeveyn Gözetimi"
 msgid "PGS file"
 msgstr "PGS dosyası"
 
+msgid "PIN"
+msgstr "PIN"
+
 msgid "PIN code needed"
 msgstr "PIN kodu gerekli"
 
@@ -14155,9 +14283,6 @@ msgstr "Yol"
 msgid "Path '%s' missing!"
 msgstr "'%s' yolu eksik!"
 
-msgid "Path to picon set %s."
-msgstr "%s pikon seti için yol."
-
 #
 msgid "Pause"
 msgstr "Duraklat"
@@ -14269,15 +14394,16 @@ msgstr "Pikon ve kanal ismi"
 msgid "Picon install location"
 msgstr "Pikon yükleme konumu"
 
-msgid "Picon mode"
-msgstr "Pikon modu"
+#, python-format
+msgid "Picon path %s"
+msgstr "Pikon yolu %s"
 
 #, python-format
-msgid "Picon set %s"
-msgstr ""
+msgid "Picon path %s is in use and cannot be removed!"
+msgstr "%s Pikon yolu kullanımda olduğundan kaldırılamaz!"
 
-msgid "Picon set mode"
-msgstr "Pikon ayar modu"
+msgid "Picon search mode"
+msgstr "Pikon arama modu"
 
 msgid "Picon width"
 msgstr "Pikon genişliği"
@@ -14840,6 +14966,9 @@ msgstr "Konumlandırıcı Kurulumu"
 
 msgid "Positioner Setup Log"
 msgstr "Konumlandırıcı Kurulum Günlüğü"
+
+msgid "Positioner actions"
+msgstr "Konumlayıcı işlemleri"
 
 #
 msgid "Positioner setup"
@@ -15905,6 +16034,9 @@ msgstr "Ebeveyn Korumasından Kaldır"
 msgid "Remove New Found Flag"
 msgstr "Yeni Bulunan Bayrağı Kaldır"
 
+msgid "Remove Path"
+msgstr "Yolu Kaldır"
+
 msgid "Remove Plugin"
 msgstr "Eklentiyi Kaldır"
 
@@ -16430,14 +16562,21 @@ msgid "Root file"
 msgstr "Kök dosya"
 
 msgid "Root squash"
-msgstr ""
+msgstr "Kök sıkıştırma"
 
 msgid "Rose"
 msgstr "Gül"
 
+msgid "Rotor is not configured"
+msgstr "Rotor yapılandırılmamış"
+
 #
 msgid "Rotor turning speed"
-msgstr "Motor dönüş hızı"
+msgstr "Rotor dönüş hızı"
+
+#, python-format
+msgid "Rotor: %d satellites"
+msgstr "Rotor: %d uyduları"
 
 msgid "Router / Gateway"
 msgstr "Yönlendirici / Ağ Geçidi"
@@ -17315,6 +17454,9 @@ msgstr "Eski API V3'ten hesaplanan sinyal değerlerini (SNR, vb.) kullanmak içi
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Dosya/klasör seçiminde hızlı erişim için sayı tuşlarını kullanmak istiyorsanız 'Evet'i, menü seçeneği kısayolları için sayı tuşlarını kullanmak istiyorsanız 'Hayır'ı seçin."
 
+msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
+msgstr "LNB 1 ile aynı Kullanıcı Bandı kanalını ve frekansını kullanmak için 'Evet' seçeneğini seçin. Bu seçenek, aynı Unicable sistemi tarafından sağlanan birden fazla uydu konumu için tasarlanmıştır."
+
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Kayıt başlangıç saatinden önce alıcıyı kapatma modundan çıkarmak ve PDC verilerinin son dakika zamanlayıcı ayarlamalarını yapmasına olanak sağlamak için 'Evet'i seçin."
 
@@ -17447,6 +17589,9 @@ msgstr "Görüntülemek istediğiniz depo taahhüt günlüğünü seçin:"
 
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
+
+msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
+msgstr "Kanal Değiştirme zamanlayıcısı mevcut kanalı değiştirmeden önce bir onay mesajının görüntülenmesi için bir süre aralığı seçin. Bu, kullanıcının Kanal Değiştirmeyi iptal etmesine olanak tanır. Kanal Değiştirmenin, onay alınmadan devam etmesini sağlamak için “Devre Dışı” seçeneğini seçin."
 
 msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "Bekleme modundayken, şifre çözme işleminin başlamasından sonra bir süre seçin."
@@ -17679,16 +17824,16 @@ msgid "Select the No / False response"
 msgstr "Hayır / Yanlış yanıtını seçin"
 
 msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
-msgstr ""
+msgstr "Yukarıdaki seçenek(ler)den Kanal Seçimi pikonları için kullanılacak Pikon yolunu seçin."
 
 msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
-msgstr ""
+msgstr "Yukarıdaki seçenek(ler)den Ön panel/Ekran pikonları için kullanılacak Pikon yolunu seçin."
 
 msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
-msgstr ""
+msgstr "Yukarıdaki seçenek(ler)den Bilgi Çubuğu pikonları için kullanılacak Pikon yolunu seçin."
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
-msgstr ""
+msgstr "Yukarıdaki seçenek(ler)den OpenWebif pikonları için kullanılacak Pikon yolunu seçin."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17704,19 +17849,19 @@ msgid "Select the Unicable channel to be assigned to this tuner. This is a uniqu
 msgstr "Bu tunere atanacak Unicable kanalını seçin. Bu benzersiz bir değerdir. Aynı Unicable sistemine bağlı başka hiçbir cihazın aynı Unicable kanalına atanmadığından emin olun."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Bu tunere atanacak User Band kanalını seçin. Bu, SCR LNB'nin istenen transponder sinyalini tunere iletmek için kullandığı frekans tablosundaki bir dizindir."
+msgstr "Bu tunere atanacak Kullanıcı Bandı kanalını seçin. Bu, SCR LNB'nin istenen transponder sinyalini tunere iletmek için kullandığı frekans tablosundaki bir dizindir."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
-msgstr "Bu tunere atanacak User Band kanalını seçin. Bu, SCR anahtarının istenen transponder sinyalini tunere iletmek için kullandığı frekans tablosundaki bir dizindir."
+msgstr "Bu tunere atanacak Kullanıcı Bandı kanalını seçin. Bu, SCR anahtarının istenen transponder sinyalini tunere iletmek için kullandığı frekans tablosundaki bir dizindir."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Bu tunere atanacak User Band frekansını seçin. Bu, SCR LNB'nin istenen transponder sinyalini tunere iletmek için kullandığı frekanstır."
+msgstr "Bu tunere atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR LNB'nin istenen transponder sinyalini tunere iletmek için kullandığı frekanstır."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Bu tunere atanacak User Band frekansını seçin. Bu, SCR anahtarının veya SCR LNB'nin istenen transponder sinyalini tunere iletmek için kullandığı frekanstır."
+msgstr "Bu tunere atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR anahtarının veya SCR LNB'nin istenen transponder sinyalini tunere iletmek için kullandığı frekanstır."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
-msgstr "Bu tunere atanacak User Band frekansını seçin. Bu, SCR anahtarının istenen transponder sinyalini tunere iletmek için kullandığı frekanstır."
+msgstr "Bu tunere atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR anahtarının istenen transponder sinyalini tunere iletmek için kullandığı frekanstır."
 
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
@@ -17913,14 +18058,11 @@ msgstr "SCR cihazınızın üreticisini seçin. Üretici listede yoksa, 'SCR' se
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Teletext uygulamasından çıkarken ekran çözünürlüğünü ve çerçeve arabelleğini geri yükleme yöntemini seçin."
 
-msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
-msgstr "Pikon yolu seçimi ve çözünürlüğü için modu seçin. 'Eski' modu önceki çalışma modunu temsil eder."
-
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Otomatik olarak dışa aktarılan Samba paylaşımları için erişim modunu seçin."
 
 msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
-msgstr ""
+msgstr "Dışa aktarılan tüm dizinlere uygulanacak erişim modunu (Okuma/Yazma veya Sadece Okuma) seçin."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Unicable cihazınızın model numarasını seçin. Model numarası listede yoksa, 'SCR' ayarını 'Kullanıcı tanımlı' olarak belirleyin ve cihaz parametrelerini özelliklerine göre manuel olarak girin."
@@ -18004,6 +18146,9 @@ msgstr "Yapılandırmak istediğiniz uyduyu seçin. Yapılandırma tamamlandıkt
 
 msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
 msgstr "Arayüz tarafından sağlanan seçenekler arasından, Kanal Seçimi ekranı için kullanılacak ekran düzenini seçin."
+
+msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr "Pikonları bulmak için arama modunu seçin. 'Tek yol modu' tüm pikonlar için tek yol kullanır. 'Çoklu yol modu' farklı kullanım durumları için birden fazla pikon yolunun kullanılmasına olanak tanır."
 
 msgid "Select the shifted character set"
 msgstr "Kaydırılmış karakter kümesini seçin"
@@ -18511,10 +18656,6 @@ msgstr "Çekirdek 0 ve 1 için MIN CPU frekansını ayarlayın"
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
 msgstr "Çekirdek 2, 3, 4 ve 5 için MIN CPU frekansını ayarlayın"
-
-#, python-format
-msgid "Set Path %s"
-msgstr "%s yolunu ayarla"
 
 msgid "Set Scaling governor"
 msgstr "Ölçeklendirme denetleyicisini ayarlayın"
@@ -19586,6 +19727,9 @@ msgstr "Kanal için tekli EPG göster"
 msgid "Show status messages on switch to live TV"
 msgstr "Canlı TV'ye geçerken durum mesajlarını göster"
 
+msgid "Show sub-menu"
+msgstr "Alt menüyü göster"
+
 msgid "Show subservice selection"
 msgstr "Alt kanal seçimini göster"
 
@@ -19810,6 +19954,9 @@ msgstr "Tek uydu"
 #
 msgid "Single step (GOP)"
 msgstr "Tek adım (GOP)"
+
+msgid "Single-path mode"
+msgstr "Tek yol modu"
 
 msgid "SingleEPG Settings"
 msgstr "Tekli EPG Ayarları"
@@ -21127,6 +21274,9 @@ msgstr "ÇEVİRMEN HAKKINDA"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS dosyası ISO9660 level 1 standartları için çok büyük!"
 
+msgid "TSID"
+msgstr "TSID"
+
 msgid "TUNER:"
 msgstr "TUNER:"
 
@@ -21531,6 +21681,9 @@ msgstr ""
 msgid "The TV was switched to the recording service!\n"
 msgstr "TV kanal kayıt moduna geçti!\n"
 
+msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
+msgstr "Kullanıcı Bandı kanalı, frekansı ve isteğe bağlı PIN kodu, LNB 1’den devralınır ve buradan değiştirilemez."
+
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
@@ -21650,6 +21803,9 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Pikon dizini zaten mevcut ve silinmesi gerekiyor. Devam etmek istiyor musunuz?"
+
+msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
+msgstr "Konumlandırıcı tuner şu anda kullanılamıyor. Bu tuneri kullanan kayıtları veya diğer hizmetleri durdurun ve tekrar deneyin."
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
@@ -22936,11 +23092,26 @@ msgstr "Ukrayna"
 msgid "Ukrainian"
 msgstr "Ukraynaca"
 
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: %s."
+msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: %s."
+
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: LNB 1 %s."
+
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec Çoklu Ön Yükleme başlatılamadı!"
 
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgstr "LNB %d için Unicable konumunu doğrulayamadı: %s."
+
 msgid "Unattended upgrade without GUI"
 msgstr "Kullanıcı Arayüzü olmadan gözetimsiz yükseltme"
+
+msgid "Unavailable"
+msgstr "Mevcut değil"
 
 #
 msgid "Undefined"
@@ -22981,6 +23152,13 @@ msgstr "Unicable LNB"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Unicable position"
+msgstr "Unicable pozisyonu"
+
+#, python-format
+msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
+msgstr "Seçilen cihaz, %d numaralı LNB için %d numaralı unicable konumunu desteklemiyor. Geçerli konumlar %d ile %d arasındadır; yeniden programlanmış bir cihaz için 'Kullanıcı tanımlı' seçeneğini kullanın."
 
 msgid "Uninstall"
 msgstr "Kaldır"
@@ -23258,6 +23436,9 @@ msgstr "HTTPS protokolünü kullanın"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Sabit Disk Donanım Bekleme Zamanlayıcısını kullanın"
 
+msgid "Use LNB 1 User Band"
+msgstr "LNB 1 Kullanıcı Bandı kullan"
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Varsa MHW EPG bilgisini kullan."
 
@@ -23269,6 +23450,9 @@ msgstr "ODoH sunucularını kullanın"
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "OpenTV EPG kullanın. EPG alabilmek için belirli bir aktarıcıya ayar yapmanız gerekmektedir."
+
+msgid "Use PIN"
+msgstr "PIN kullan"
 
 msgid "Use QuickSelect"
 msgstr "Hızlı Seçim kullanın"
@@ -24049,12 +24233,18 @@ msgstr "Uyarı: Geçersiz kılmalar şu anda etkin durumda!"
 msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr "Uyarı: Kayıtlar Flash disk üzerinde saklanmamalıdır!"
 
+msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
+msgstr "Uyarı: Bu çift tuner'ın ikinci girişi Unicable cihazlarını desteklemeyebilir"
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Uyarı: %d güncelleme paketi var!"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Uyarı: Yedeklemeyi depolamak için yalnızca bir ağ sürücüsü vardır. Bu, yazılım yüklemeden sonra otomatik geri yüklemenin çalışmayacağı anlamına gelir. Alternatif olarak, yazılım yüklemeden sonra ağ sürücüsünü bağlayın ve otomatik geri yükleme için üretici sıfırlaması gerçekleştirin."
+
+msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
+msgstr "Uyarı: Bu FBC-C V1 tuneri ilk yuvaya takılmalıdır. İkinci slotta 8 demodülatörden sadece 2 tanesi mevcut olabilir"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Uyarı: Bu, otomatik yeniden başlatma işleminden önceki son çökme olayıdır.\n"
@@ -24160,6 +24350,9 @@ msgstr "Batı Frizcesi"
 msgid "Western Sahara"
 msgstr "Batı Sahra"
 
+msgid "Western satellites"
+msgstr "Batı uyduları"
+
 msgid "What day of month?"
 msgstr "Ayın hangi günü?"
 
@@ -24231,10 +24424,10 @@ msgid "When enabled, allow each storage device detected to be automatically expo
 msgstr "Algılanan her depolama aygıtının otomatik olarak Samba paylaşımı olarak dışa aktarılmasına izin vermek için 'Evet'i seçin."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
-msgstr ""
+msgstr "Etkinleştirildiğinde, NFS sürüm 3 protokollerinin kullanımına izin verilir."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
-msgstr ""
+msgstr "Etkinleştirildiğinde, NFS sürüm 4 protokollerinin kullanımına izin verilir."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
@@ -24261,7 +24454,7 @@ msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Etkinleştirildiğinde, exit tuşu ile film oynatıcısından çıkmak mümkün olacaktır."
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
-msgstr ""
+msgstr "Etkinleştirildiğinde, kök yetkisini \"nobody\" kullanıcısına eşler (daha güvenli). Devre dışı bırakıldığında, tam kök erişimi sağlanır."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Etkinleştirildiğinde, rotorun dönmeyi durdurduğu anı tespit etmek için güç tüketimini ölçün (tuner tarafından destekleniyorsa)."
@@ -25303,6 +25496,18 @@ msgstr "s:ddam/pm"
 msgid "handled"
 msgstr "kullanıldı"
 
+msgid "has incomplete Unicable settings"
+msgstr "Unicable ayarları eksik"
+
+msgid "has no supported Unicable device type"
+msgstr "Desteklenen Unicable cihaz türü bulunmamaktadır"
+
+msgid "has no valid Unicable product"
+msgstr "Geçerli bir Unicable ürünü yok"
+
+msgid "has no valid User Band channel"
+msgstr "Geçerli bir Kullanıcı Bandı kanalı yok"
+
 msgid "height"
 msgstr "yükseklik"
 
@@ -25353,6 +25558,12 @@ msgstr "anlık kayıt"
 
 msgid "internally loopthrough to"
 msgstr "dahili döngüsel geçiş"
+
+msgid "is not configured"
+msgstr "yapılandırılmamış"
+
+msgid "is not configured for Unicable"
+msgstr "Unicable için yapılandırılmamış"
 
 #
 msgid "jump back to the previous title"
@@ -25652,6 +25863,18 @@ msgstr "taslak dosya"
 msgid "text"
 msgstr "yazı"
 
+msgid "the User Band channel from LNB 1 is not available"
+msgstr "LNB 1'deki Kullanıcı Bandı kanalı kullanılamıyor"
+
+msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
+msgstr "Seçilen cihaz, bu Kullanıcı Bandı kanalında LNB 1 frekansını kullanmıyor"
+
+msgid "the target LNB"
+msgstr "Hedef LNB"
+
+msgid "the target LNB is not configured"
+msgstr "Hedef LNB yapılandırılmamış"
+
 #
 msgid "this recording"
 msgstr "bu kaydın"
@@ -25707,6 +25930,9 @@ msgstr "test edilemeyen"
 msgid "update"
 msgstr "güncelleme"
 
+msgid "uses an unavailable User Band frequency"
+msgstr "Kullanılamayan bir Kullanıcı Bandı frekansı kullanıyor"
+
 msgid "using:"
 msgstr "kullanılan:"
 
@@ -25753,8 +25979,34 @@ msgstr "evet (kaynakları tut)"
 msgid "®"
 msgstr "®"
 
-#~ msgid "Picon path %s"
-#~ msgstr "Pikon yolu %s"
+#
+#~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+#~ msgstr "Şu anda bir kayıt işlemi devam etmektedir. Lütfen konumlandırıcıyı yapılandırmaya çalışmadan önce kaydı durdurun."
+
+#~ msgid "Consult your receiver's manual for more information on power management."
+#~ msgstr "Güç yönetimi hakkında daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
+
+#~ msgid "Consult your receiver's manual for more information on power threshold."
+#~ msgstr "Güç eşiği hakkında daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
+
+#~ msgid "Legacy"
+#~ msgstr "Eski"
+
+#~ msgid "Path to picon set %s."
+#~ msgstr "%s pikon seti için yol."
+
+#~ msgid "Picon mode"
+#~ msgstr "Pikon modu"
+
+#~ msgid "Picon set mode"
+#~ msgstr "Pikon ayar modu"
+
+#~ msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
+#~ msgstr "Pikon yolu seçimi ve çözünürlüğü için modu seçin. 'Eski' modu önceki çalışma modunu temsil eder."
+
+#, python-format
+#~ msgid "Set Path %s"
+#~ msgstr "%s yolunu ayarla"
 
 #~ msgid "Select the Picon path, from above, to be used for Channel Selection picons."
 #~ msgstr "Kanal Seçimi pikonları için kullanılacak Pikon yolunu yukarıdan seçin."
@@ -27711,9 +27963,6 @@ msgstr "®"
 #~ msgid "Next Picture"
 #~ msgstr "Sonraki resmi göster"
 
-#~ msgid "ONID"
-#~ msgstr "ONID"
-
 #~ msgid "Previous Log"
 #~ msgstr "Önceki Günlük"
 
@@ -27748,9 +27997,6 @@ msgstr "®"
 #
 #~ msgid "System & Modulation"
 #~ msgstr "Sistem & Modülasyon"
-
-#~ msgid "TSID"
-#~ msgstr "TSID"
 
 #
 #~ msgid "Tuner live values"

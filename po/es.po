@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 14:22+0000\n"
+"POT-Creation-Date: 2026-07-15 19:52+0000\n"
 "PO-Revision-Date: 2026-06-10 04:39+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -48,6 +48,9 @@ msgstr "  GRAB  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Tecla roja: Mostrar/Ocultar nombre de canal"
+
+msgid " (+5 volt terrestrial)"
+msgstr ""
 
 #, python-format
 msgid " (Channel %s)"
@@ -1670,16 +1673,18 @@ msgstr ""
 "Hay una grabación en curso.\n"
 "¿Qué quieres hacer?"
 
-#
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Hay una grabación en curso. Detén la grabación antes de configurar el motor."
-
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Hay una grabación en curso. Detén la grabación antes de iniciar la búsqueda."
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Hay una grabación en curso. Detén la grabación antes de iniciar el buscador de satélites."
+
+msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
+msgstr ""
+
+msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1734,6 +1739,11 @@ msgid ""
 msgstr ""
 "Un temporizador no ha conseguido grabar.\n"
 "¿Quieres desactivar la televisión e intentarlo otra vez?\n"
+
+msgid ""
+"A zap timer wants to switch the channel.\n"
+"Do you want to zap now?\n"
+msgstr ""
 
 msgid "AAC downmix"
 msgstr "Mezcla AAC"
@@ -1968,6 +1978,9 @@ msgstr "Añadir marcador"
 msgid "Add New Quad Channel Entry"
 msgstr "Añadir nueva entrada de canal cuádruple"
 
+msgid "Add Path"
+msgstr ""
+
 msgid "Add RecordTimer"
 msgstr "Añadir temporizador de grabación"
 
@@ -2147,6 +2160,9 @@ msgstr ""
 msgid "Adding schedule..."
 msgstr "Añadiendo calendario..."
 
+msgid "Additional cable of motorized LNB"
+msgstr ""
+
 msgid "Additional files/folders to backup"
 msgstr "Archivos/carpetas adicionales para respaldar"
 
@@ -2155,6 +2171,10 @@ msgstr "Las opciones adicionales del motor le permiten introducir detalles de la
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Las opciones adicionales del motor le permiten introducir los detalles de la hoja de especificaciones de su motor para que enigma pueda calcular el tiempo que tardará en cambiar a otro satélite."
+
+#, python-format
+msgid "Additional rotor cable from %s"
+msgstr ""
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2219,13 +2239,13 @@ msgstr "Afrikáans"
 msgid "After Event"
 msgstr "Después del evento"
 
-# Powerlost setup.xml
-msgid "After power loss"
-msgstr "Tras perder la alimentación"
-
 # PowerTimer
 msgid "After event"
 msgstr "Después del programa"
+
+# Powerlost setup.xml
+msgid "After power loss"
+msgstr "Tras perder la alimentación"
 
 msgid "After recording"
 msgstr "Después de grabar"
@@ -2824,6 +2844,9 @@ msgstr "Auto"
 #
 msgid "Auto (not available)"
 msgstr "Auto (no disponible)"
+
+msgid "Auto DiSEqC search order"
+msgstr ""
 
 #
 msgid "Auto Language"
@@ -3999,6 +4022,9 @@ msgstr "centrado, envuelto"
 msgid "Central African Republic"
 msgstr "República Centroafricana"
 
+msgid "Central Europe"
+msgstr ""
+
 msgid "Central Khmer"
 msgstr "Jemer central"
 
@@ -4204,6 +4230,9 @@ msgstr ""
 msgid "Chechen"
 msgstr "Checheno"
 
+msgid "Check ONID/TSID"
+msgstr ""
+
 msgid "Check for PDC"
 msgstr "Comprobar PDC"
 
@@ -4224,6 +4253,9 @@ msgstr "Comprobando suministros"
 
 msgid "Checking Logs..."
 msgstr "Comprobando registros…"
+
+msgid "Checking ONID/TSID ..."
+msgstr ""
 
 msgid "Checking file system..."
 msgstr "Comprobando el sistema de archivos..."
@@ -5097,6 +5129,9 @@ msgstr "Configurando"
 msgid "Configuring Service"
 msgstr ""
 
+msgid "Confirm Zap"
+msgstr ""
+
 msgid "ConflictTimer Actions"
 msgstr "Acciones de conflicto de temporizadores"
 
@@ -5175,12 +5210,6 @@ msgstr "Consultar la hoja de especificaciones de su dispositivo SCR para obtener
 
 msgid "Consult your motor's specifications for this information, or leave the default setting."
 msgstr "Consultar la hoja de especificaciones de su motor para obtener esta información, o deje la configuración por defecto."
-
-msgid "Consult your receiver's manual for more information on power management."
-msgstr "Gestión de la energía. Consulte el manual de su receptor para más información."
-
-msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Umbral de potencia. Consulte el manual de su receptor para más información."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -5593,9 +5622,18 @@ msgstr "La ubicación actual es «%s»."
 msgid "Current mode: %s \n"
 msgstr "Modo actual: %s \n"
 
+msgid "Current rotor position:"
+msgstr ""
+
+msgid "Current rotor position: unknown"
+msgstr ""
+
 #
 msgid "Current settings:"
 msgstr "Configuración actual:"
+
+msgid "Current supplied to the LNB and positioner."
+msgstr ""
 
 msgid "Current time"
 msgstr "Hora actual"
@@ -6136,6 +6174,9 @@ msgstr ""
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Define el retardo adicional en milisegundos antes del inicio de los flujos http(s)."
 
+msgid "Define path %s for picons."
+msgstr ""
+
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
@@ -6477,6 +6518,9 @@ msgstr "Detalle del registro GStreamer"
 
 msgid "Details"
 msgstr "Detalles"
+
+msgid "Detect positioner movement by its current consumption."
+msgstr ""
 
 msgid "Detective"
 msgstr ""
@@ -7295,6 +7339,9 @@ msgstr "Este"
 msgid "East limit set"
 msgstr "Límite este"
 
+msgid "Eastern satellites"
+msgstr ""
+
 msgid "Easy listening"
 msgstr ""
 
@@ -7710,6 +7757,12 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Habilitar esta opción si su sistema de antena necesita energía"
 
+msgid "Enable this when a power inserter or external supply powers the Unicable device."
+msgstr ""
+
+msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
+msgstr ""
+
 msgid "Enable timer"
 msgstr ""
 
@@ -7864,6 +7917,9 @@ msgstr "Introducir nombre de este temporizador."
 msgid "Enter a new name for this device."
 msgstr "Introducir un nuevo nombre para este dispositivo."
 
+msgid "Enter expected ONID/TSID"
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Introducir si está al norte o al sur del ecuador."
 
@@ -7887,6 +7943,9 @@ msgid "Enter text via an attached keyboard"
 msgstr ""
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
+msgstr ""
+
+msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
@@ -8558,6 +8617,9 @@ msgstr "Coloreado de subtítulo externo de diálogo"
 msgid "External subtitle switch fonts"
 msgstr "Cambiar fuentes de subtítulo externo"
 
+msgid "Externally powered"
+msgstr ""
+
 msgid "Extra High"
 msgstr ""
 
@@ -8598,6 +8660,13 @@ msgid "FBC SCR (Unicable/JESS)"
 msgstr ""
 
 msgid "FBC automatic"
+msgstr ""
+
+#, python-format
+msgid "FBC automatic: connected to %s"
+msgstr ""
+
+msgid "FBC automatic: inactive"
 msgstr ""
 
 msgid "FCC enabled"
@@ -9850,6 +9919,9 @@ msgstr "Ocultar reproductor"
 msgid "Hide softcam servername"
 msgstr ""
 
+msgid "Hide sub-menu"
+msgstr ""
+
 msgid "Hide the InfoBar"
 msgstr "Ocultar la barra de información"
 
@@ -10533,6 +10605,9 @@ msgstr "Información / educación / programa escolar"
 msgid "Infotainment"
 msgstr "Infotainment"
 
+msgid "Inherited channel / frequency"
+msgstr ""
+
 #
 msgid "Init"
 msgstr "Iniciar"
@@ -11136,6 +11211,18 @@ msgstr "LIRC remoto"
 msgid "LNB"
 msgstr "LNB"
 
+msgid "LNB 1"
+msgstr ""
+
+msgid "LNB 1 and the target LNB use different Unicable protocols"
+msgstr ""
+
+msgid "LNB current:"
+msgstr ""
+
+msgid "LNB current: not available"
+msgstr ""
+
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Tiempo de arranque del LNB/Switch [ms]"
 
@@ -11235,6 +11322,9 @@ msgstr "¿Abandonar el reproductor de DVD?"
 msgid "Leave movie player"
 msgstr "Salir del reproductor de películas"
 
+msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
+msgstr ""
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Deje esta opción en \"sí\" a menos que entienda bien por qué la está ajustando."
 
@@ -11269,9 +11359,6 @@ msgstr ""
 
 msgid "Left, wrapped"
 msgstr "izquierda, envuelto"
-
-msgid "Legacy"
-msgstr ""
 
 msgid "Legacy mode"
 msgstr "Modo heredado"
@@ -11332,6 +11419,9 @@ msgstr "Límite este"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Limitar los caracteres disponibles en los nombres de archivos a (7 bit) ascii para las grabaciones. Garantiza la compatibilidad con los sistemas operativos o de archivo con limitación de caracteres."
+
+msgid "Limit the search to the satellite group normally used by this installation."
+msgstr ""
 
 #
 msgid "Limit west"
@@ -11931,6 +12021,9 @@ msgstr ""
 msgid "Mayotte"
 msgstr "Mayotte"
 
+msgid "Measured current"
+msgstr ""
+
 msgid "Media"
 msgstr "Medio"
 
@@ -12082,6 +12175,9 @@ msgstr "MiniTV con OSD"
 #, python-format
 msgid "Minimum age %d years"
 msgstr "Edad mínima %d años"
+
+msgid "Minimum difference between idle and moving current."
+msgstr ""
 
 msgid "Minimum send interval"
 msgstr "Intervalo mínimo de envío"
@@ -12567,6 +12663,9 @@ msgstr ""
 
 msgid "Multi EPG"
 msgstr "EPG Múltiple"
+
+msgid "Multi-path mode"
+msgstr ""
 
 msgid "MultiBoot"
 msgstr "MultiBoot"
@@ -13396,8 +13495,14 @@ msgstr "No está instalado"
 msgid "Not Shown"
 msgstr "No mostrado"
 
+msgid "Not a valid tuner"
+msgstr ""
+
 msgid "Not associated"
 msgstr "No asociado"
+
+msgid "Not available"
+msgstr ""
 
 #
 msgid "Not configured"
@@ -13525,9 +13630,24 @@ msgstr "Tecla OK (corta)"
 msgid "OK button mode"
 msgstr "Modo de tecla OK"
 
+msgid "OK checks the currently tuned transponder."
+msgstr ""
+
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "Sí, guíame por el proceso de actualización"
+
+msgid "ONID"
+msgstr "ONID"
+
+msgid "ONID/TSID check timed out"
+msgstr ""
+
+msgid "ONID/TSID does not match"
+msgstr ""
+
+msgid "ONID/TSID valid"
+msgstr ""
 
 msgid "OSCam Info"
 msgstr "Información OScam"
@@ -13888,6 +14008,9 @@ msgstr "Abrir la vista EPG multiservicio"
 msgid "Open the single service EPG view"
 msgstr "Abrir la vista EPG de servicio único"
 
+msgid "Open tuner setup"
+msgstr ""
+
 msgid "Open with File Commander"
 msgstr "Abrir con el gestor de archivos"
 
@@ -14084,6 +14207,9 @@ msgstr ""
 msgid "PGS file"
 msgstr "Archivo PGS"
 
+msgid "PIN"
+msgstr ""
+
 msgid "PIN code needed"
 msgstr "Es necesario el código PIN"
 
@@ -14263,9 +14389,6 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to picon set %s."
-msgstr ""
-
 msgid "Pause"
 msgstr "Pausa"
 
@@ -14380,14 +14503,15 @@ msgstr "Picon y nombre de canal"
 msgid "Picon install location"
 msgstr ""
 
-msgid "Picon mode"
+#, python-format
+msgid "Picon path %s"
 msgstr ""
 
 #, python-format
-msgid "Picon set %s"
+msgid "Picon path %s is in use and cannot be removed!"
 msgstr ""
 
-msgid "Picon set mode"
+msgid "Picon search mode"
 msgstr ""
 
 #
@@ -14956,6 +15080,9 @@ msgstr "Configurar motor"
 
 msgid "Positioner Setup Log"
 msgstr "Registro de la configuración del posicionador"
+
+msgid "Positioner actions"
+msgstr ""
 
 #
 msgid "Positioner setup"
@@ -16030,6 +16157,9 @@ msgstr "Eliminar del control paterno"
 msgid "Remove New Found Flag"
 msgstr "Borrar la nueva marca encontrada"
 
+msgid "Remove Path"
+msgstr ""
+
 msgid "Remove Plugin"
 msgstr "Quitar complemento"
 
@@ -16568,9 +16698,16 @@ msgstr ""
 msgid "Rose"
 msgstr ""
 
+msgid "Rotor is not configured"
+msgstr ""
+
 #
 msgid "Rotor turning speed"
 msgstr "Velocidad del motor"
+
+#, python-format
+msgid "Rotor: %d satellites"
+msgstr ""
 
 msgid "Router / Gateway"
 msgstr "Router / Puerta de enlace"
@@ -17457,6 +17594,9 @@ msgstr "Seleccione \"Sí\" para utilizar los valores de la señal (SNR, etc.) ca
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr ""
 
+msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
+msgstr ""
+
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Si está habilitado y es necesario, el plugin despertará al receptor de la espera profunda para la hora de inicio definida para controlar si el programa comienza antes."
 
@@ -17592,6 +17732,9 @@ msgstr "Seleccione el registro de confirmación de un repositorio para verlo:"
 #
 msgid "Select a script to run:"
 msgstr "Seleccione el script a ejecutar:"
+
+msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
+msgstr ""
 
 msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr ""
@@ -18060,9 +18203,6 @@ msgstr "Seleccione el fabricante de su dispositivo SCR. Si el fabricante no apar
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Seleccione el método de restauración de la resolución de la pantalla y del framebuffer al salir del teletexto."
 
-msgid "Select the mode for picon path selection and resolution. 'Legacy' represents the previous mode of operation."
-msgstr ""
-
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr ""
 
@@ -18147,6 +18287,9 @@ msgid "Select the satellite you want to configure. Once configured you can selec
 msgstr ""
 
 msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
+
+msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -18662,10 +18805,6 @@ msgid "Set MIN CPU frequency for cores 0 and 1"
 msgstr ""
 
 msgid "Set MIN CPU frequency for cores 2, 3, 4 and 5"
-msgstr ""
-
-#, python-format
-msgid "Set Path %s"
 msgstr ""
 
 msgid "Set Scaling governor"
@@ -19762,6 +19901,9 @@ msgstr "Mostrar EPG única del canal"
 msgid "Show status messages on switch to live TV"
 msgstr "Mostrar mensajes de estado al cambiar a TV en directo"
 
+msgid "Show sub-menu"
+msgstr ""
+
 msgid "Show subservice selection"
 msgstr "Mostrar selección de subcanal"
 
@@ -19991,6 +20133,9 @@ msgstr "Satélite único"
 
 msgid "Single step (GOP)"
 msgstr "Un solo paso (GOP)"
+
+msgid "Single-path mode"
+msgstr ""
 
 msgid "SingleEPG Settings"
 msgstr "Ajustes de EPG única"
@@ -21339,6 +21484,9 @@ msgstr "Traducido por: Joan González, joan@gonzalezcrego.es"
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "¡El archivo TS es demasiado grande para el nivel 1 de ISO9660!"
 
+msgid "TSID"
+msgstr "TSID"
+
 msgid "TUNER:"
 msgstr "SINTONIZADOR:"
 
@@ -21733,6 +21881,9 @@ msgstr ""
 msgid "The TV was switched to the recording service!\n"
 msgstr "¡La TV fue cambiada al servicio de grabación!\n"
 
+msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
+msgstr ""
+
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
@@ -21844,6 +21995,9 @@ msgstr ""
 "Por favor, instálelo."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
+msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
 #, python-format
@@ -23162,12 +23316,27 @@ msgstr "Ucrania"
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: %s."
+msgstr ""
+
+#, python-format
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgstr ""
+
 msgid "Unable to initialize Kexec MultiBoot!"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr ""
 
 #
 msgid "Unattended upgrade without GUI"
 msgstr "Actualización desatendida sin interfaz"
+
+msgid "Unavailable"
+msgstr ""
 
 #
 msgid "Undefined"
@@ -23210,6 +23379,13 @@ msgstr "LNB Unicable"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
+
+msgid "Unicable position"
+msgstr ""
+
+#, python-format
+msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
+msgstr ""
 
 msgid "Uninstall"
 msgstr "Desinstalar"
@@ -23489,6 +23665,9 @@ msgstr ""
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Usar temporizador de apagado por hardware del disco duro"
 
+msgid "Use LNB 1 User Band"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Usar información EPG de MHW cuando esté disponible."
 
@@ -23499,6 +23678,9 @@ msgid "Use ODoH servers"
 msgstr ""
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
+
+msgid "Use PIN"
 msgstr ""
 
 msgid "Use QuickSelect"
@@ -24277,12 +24459,18 @@ msgstr ""
 msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr ""
 
+msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Advertencia: Sólo hay una unidad de red para almacenar la copia de seguridad. Esto significa que la restauración automática no funcionará después del flasheo. Como alternativa, monte la unidad de red después del flasheo y realice un restablecimiento de fábrica para la restauración automática."
+
+msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
+msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -24386,6 +24574,9 @@ msgid "Western Frisian"
 msgstr "Frisón occidental"
 
 msgid "Western Sahara"
+msgstr ""
+
+msgid "Western satellites"
 msgstr ""
 
 msgid "What day of month?"
@@ -25547,6 +25738,18 @@ msgstr ""
 msgid "handled"
 msgstr "Gestionado"
 
+msgid "has incomplete Unicable settings"
+msgstr ""
+
+msgid "has no supported Unicable device type"
+msgstr ""
+
+msgid "has no valid Unicable product"
+msgstr ""
+
+msgid "has no valid User Band channel"
+msgstr ""
+
 msgid "height"
 msgstr "Altura"
 
@@ -25600,6 +25803,12 @@ msgstr "Grabación instantánea"
 # NimManager.py
 msgid "internally loopthrough to"
 msgstr "Bucle interno a"
+
+msgid "is not configured"
+msgstr ""
+
+msgid "is not configured for Unicable"
+msgstr ""
 
 #
 msgid "jump back to the previous title"
@@ -25904,6 +26113,18 @@ msgstr "Archivo de plantilla"
 msgid "text"
 msgstr "texto"
 
+msgid "the User Band channel from LNB 1 is not available"
+msgstr ""
+
+msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
+msgstr ""
+
+msgid "the target LNB"
+msgstr ""
+
+msgid "the target LNB is not configured"
+msgstr ""
+
 #
 msgid "this recording"
 msgstr "Esta grabación"
@@ -25961,6 +26182,9 @@ msgstr "Activar"
 msgid "update"
 msgstr "actualización"
 
+msgid "uses an unavailable User Band frequency"
+msgstr ""
+
 msgid "using:"
 msgstr "Utilizando:"
 
@@ -26008,6 +26232,16 @@ msgstr "sí (conservar suministros)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+#~ msgstr "Hay una grabación en curso. Detén la grabación antes de configurar el motor."
+
+#~ msgid "Consult your receiver's manual for more information on power management."
+#~ msgstr "Gestión de la energía. Consulte el manual de su receptor para más información."
+
+#~ msgid "Consult your receiver's manual for more information on power threshold."
+#~ msgstr "Umbral de potencia. Consulte el manual de su receptor para más información."
 
 #, python-format
 #~ msgid "%d DMIPS per core"
@@ -27725,9 +27959,6 @@ msgstr "®"
 #~ msgid "Next Picture"
 #~ msgstr "Siguiente imagen"
 
-#~ msgid "ONID"
-#~ msgstr "ONID"
-
 #~ msgid "Previous Log"
 #~ msgstr "Registro previo"
 
@@ -27762,9 +27993,6 @@ msgstr "®"
 #, fuzzy
 #~ msgid "System & Modulation"
 #~ msgstr "Información del sistema"
-
-#~ msgid "TSID"
-#~ msgstr "TSID"
 
 #
 #, fuzzy
