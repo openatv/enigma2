@@ -316,7 +316,7 @@ int eListbox::setScrollbarPosition()
 				y += (m_style.m_selection_height - m_itemheight) / 2;
 			}
 
-			if (m_item_alignment & itemVertialAlignJustify)
+			if (m_item_alignment & itemVerticalAlignJustify)
 			{
 				height -= (y * 2);
 			}
@@ -949,11 +949,11 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		if (yfullSpace > m_y_itemSpace)
 		{
 			yOffset = scrollbarTopSpace;
-			if (m_item_alignment & itemVertialAlignMiddle)
+			if (m_item_alignment & itemVerticalAlignMiddle)
 				yOffset = ((yfullSpace - m_y_itemSpace) / 2) + scrollbarTopSpace;
-			if (m_item_alignment & itemVertialAlignBottom)
+			if (m_item_alignment & itemVerticalAlignBottom)
 				yOffset = (yfullSpace - m_y_itemSpace) + scrollbarTopSpace;
-			if (m_item_alignment & itemVertialAlignJustify)
+			if (m_item_alignment & itemVerticalAlignJustify)
 			{
 				m_y_itemSpace = m_style.m_selection_height + ((m_max_rows - 1) * m_itemheight);
 				int yspace = (yfullSpace - m_y_itemSpace) / (m_max_rows - 1);

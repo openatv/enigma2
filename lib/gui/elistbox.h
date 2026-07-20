@@ -198,10 +198,10 @@ public:
 
 	enum
 	{
-		itemVertialAlignTop = 1 << 0,
-		itemVertialAlignMiddle = 1 << 1,
-		itemVertialAlignBottom = 1 << 2,
-		itemVertialAlignJustify = 1 << 3,
+		itemVerticalAlignTop = 1 << 0,
+		itemVerticalAlignMiddle = 1 << 1,
+		itemVerticalAlignBottom = 1 << 2,
+		itemVerticalAlignJustify = 1 << 3,
 		itemHorizontalAlignLeft = 1 << 4,
 		itemHorizontalAlignCenter = 1 << 5,
 		itemHorizontalAlignRight = 1 << 6,
@@ -210,21 +210,21 @@ public:
 
 	enum
 	{
-		itemAlignLeftTop = itemVertialAlignTop + itemHorizontalAlignLeft,
-		itemAlignLeftMiddle = itemVertialAlignMiddle + itemHorizontalAlignLeft,
-		itemAlignLeftBottom = itemVertialAlignBottom + itemHorizontalAlignLeft,
-		itemAlignRightTop = itemVertialAlignTop + itemHorizontalAlignRight,
-		itemAlignRightMiddle = itemVertialAlignMiddle + itemHorizontalAlignRight,
-		itemAlignRightBottom = itemVertialAlignBottom + itemHorizontalAlignRight,
-		itemAlignCenterTop = itemVertialAlignTop + itemHorizontalAlignCenter,
-		itemAlignCenterMiddle = itemVertialAlignMiddle + itemHorizontalAlignCenter,
-		itemAlignCenterBottom = itemVertialAlignBottom + itemHorizontalAlignCenter,
-		itemAlignJustifyTop = itemVertialAlignTop + itemHorizontalAlignJustify,
-		itemAlignJustifyMiddle = itemVertialAlignMiddle + itemHorizontalAlignJustify,
-		itemAlignJustifyBottom = itemVertialAlignBottom + itemHorizontalAlignJustify,
-		itemAlignJustifyLeft = itemVertialAlignJustify + itemHorizontalAlignLeft,
-		itemAlignJustifyRight = itemVertialAlignJustify + itemHorizontalAlignRight,
-		itemAlignJustifyFull = itemVertialAlignJustify + itemHorizontalAlignJustify
+		itemAlignLeftTop = itemVerticalAlignTop + itemHorizontalAlignLeft,
+		itemAlignLeftMiddle = itemVerticalAlignMiddle + itemHorizontalAlignLeft,
+		itemAlignLeftBottom = itemVerticalAlignBottom + itemHorizontalAlignLeft,
+		itemAlignRightTop = itemVerticalAlignTop + itemHorizontalAlignRight,
+		itemAlignRightMiddle = itemVerticalAlignMiddle + itemHorizontalAlignRight,
+		itemAlignRightBottom = itemVerticalAlignBottom + itemHorizontalAlignRight,
+		itemAlignCenterTop = itemVerticalAlignTop + itemHorizontalAlignCenter,
+		itemAlignCenterMiddle = itemVerticalAlignMiddle + itemHorizontalAlignCenter,
+		itemAlignCenterBottom = itemVerticalAlignBottom + itemHorizontalAlignCenter,
+		itemAlignJustifyTop = itemVerticalAlignTop + itemHorizontalAlignJustify,
+		itemAlignJustifyMiddle = itemVerticalAlignMiddle + itemHorizontalAlignJustify,
+		itemAlignJustifyBottom = itemVerticalAlignBottom + itemHorizontalAlignJustify,
+		itemAlignJustifyLeft = itemVerticalAlignJustify + itemHorizontalAlignLeft,
+		itemAlignJustifyRight = itemVerticalAlignJustify + itemHorizontalAlignRight,
+		itemAlignJustifyFull = itemVerticalAlignJustify + itemHorizontalAlignJustify
 	};
 
 	enum
