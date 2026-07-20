@@ -103,8 +103,9 @@ class SkinSelection(Setup):
 			config.skin.display_skin.value = config.skin.lcdSkin.value
 			config.skin.display_skin.save()
 
+		from Screens.ChannelSelection import ChannelSelection, ChannelSelectionSetup
+
 		if not guiSkinChanged and (config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()):
-			from Screens.ChannelSelection import ChannelSelectionSetup
 			ChannelSelectionSetup.updateSettings(self.session)
 
 		if guiSkinChanged and config.usage.fastSkinReload.value:
@@ -114,9 +115,18 @@ class SkinSelection(Setup):
 			open("/etc/.restore_skins", "w").close()
 			from skin import reloadSkins
 			reloadSkins()
-			for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SKINCHANGE):
+			skinChangePlugins = plugins.getPlugins(PluginDescriptor.WHERE_SKINCHANGE)
+			for plugin in skinChangePlugins:
 				plugin(session=self.session)
-			self.session.reloadDialogs()
+			exclude = {id(x) for x in self.summaries}
+			for dialog, _shown in self.session.dialog_stack[1:]:
+				exclude.add(id(dialog))
+				exclude.update(id(x) for x in dialog.summaries)
+			for dialog in self.session.allDialogs:
+				if isinstance(dialog, ChannelSelection):
+					exclude.add(id(dialog))
+			self.session.reloadDialogs(exclude=exclude)
+			ChannelSelectionSetup.updateSettings(self.session)
 			Processing.instance.hideProgress()
 			self.close(True)
 			return
