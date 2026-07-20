@@ -606,7 +606,7 @@
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
 	<setup key="NetworkAdapter" title="Network Adapter Settings">
-		<item level="0" text="Enabled" description="When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)">self.cfgEnabled</item>
+		<item level="0" text="Enabled" description="When enabled, this adapter is initialized and activated at boot time.">self.cfgEnabled</item>
 		<if conditional="self.adapter.isWlan">
 			<item level="1" text="WoW only" description="When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network." requires="wwol" conditional="not self.cfgEnabled.value">self.cfgWowOnly</item>
 		</if>
@@ -642,7 +642,7 @@
 	</setup>
 	<setup key="NetworkConnectionWiFi" title="Wi-Fi Connection Settings">
 		<item level="0" text="Network name (SSID)" description="Select the network name (SSID) of the wireless network to which the receiver should connect.">self.cfgSsid</item>
-		<item level="0" text="Enabled" description="When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)">self.cfgEnabled</item>
+		<item level="0" text="Enabled" description="When enabled, connection via saved network is attempted when the Wi-Fi adapter connects.">self.cfgEnabled</item>
 		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self._hasMultiplePriorities">self.cfgPriority</item>
 		<item level="1" text="Hidden network" description="When enabled, allow connection to access points that don't broadcast their SSID.">self.cfgHidden</item>
 		<item level="0" text="Encryption" description="Select the security protocol that will be used to access the selected wireless network.">self.cfgEncryption</item>
@@ -661,8 +661,7 @@
 	<setup key="NetworkSamba" title="Samba Settings" allowDefault="yes">
 		<item text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
 		<item text="Automatic shares access" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
-		<item text="Allow guest access" description="When enabled, allow Samba network access without a password.">self.guestAccess</item>
-		<item text="Server name" description="Enter the name to be used by this receiver when it appears in Samba network scans/lists.">self.netbiosName</item>
+		<item text="Allow guest access" description="When enabled, allow Samba network access without a password.">self.guest</item>
 		<item text="Workgroup name" description="Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)">self.workgroup</item>
 	</setup>
 	<setup key="NetworkZeroTier" title="ZeroTier Settings">

@@ -2048,78 +2048,55 @@ class NetworkMiniDLNASetup(Setup):
 
 
 class NetworkSambaSetup(Setup):
-	SMBCONF = "/etc/samba/smb-user.conf"
+	SMBCONF = "/etc/samba/smb-local.conf"
 
 	def __init__(self, session):
 		self.workgroup = NoSave(ConfigText(default="WORKGROUP", fixed_size=False))
-		self.netbiosName = NoSave(ConfigText(default="", fixed_size=False))
-		self.guestAccess = NoSave(ConfigYesNo(default=True))
-		self._readConf()
+		self.guest = NoSave(ConfigYesNo(default=True))
+		self.globalLine = 0
+		self.workgroupLine = 0
+		self.guestLine = 0
+		self.smbConf = fileReadLines(self.SMBCONF, default=[], source=MODULE_NAME)
+		inGlobal = False
+		for index, line in enumerate(self.smbConf):
+			line = line.strip()
+			if line.startswith("[") and line.endswith("]"):
+				inGlobal = line[1:-1].lower() == "global"
+				continue
+			if inGlobal and "=" in line:
+				if self.globalLine == 0:
+					self.globalLine = index
+				key, value = [x.strip() for x in line.split("=", 1)]
+				comment = key.startswith(("#", ";"))
+				match key.lstrip("#;").lstrip().lower():
+					case "workgroup":
+						self.workgroupLine = index
+						if not comment:
+							self.workgroup.value = value
+							self.workgroup.savedValue = value
+					case "guest ok":
+						self.guestLine = index
+						if not comment:
+							self.guest.value = value.lower() in ("yes", "true", "1")
+							self.guest.savedValue = value
 		Setup.__init__(self, session=session, setup="NetworkSamba")
 
-	def _readConf(self):
-		inGlobal = False
-		for line in (fileReadLines(self.SMBCONF, source=MODULE_NAME) or []):
-			ls = line.lstrip()
-			if ls.startswith("[") and ls.rstrip().endswith("]"):
-				inGlobal = ls.strip()[1:-1].strip().lower() == "global"
-				continue
-			if not inGlobal or ls.startswith("#") or "=" not in ls:
-				continue
-			key, _, val = ls.partition("=")
-			key = key.strip().lower()
-			val = val.strip()
-			if key == "workgroup":
-				self.workgroup.value = val
-			elif key == "netbios name":
-				self.netbiosName.value = val
-			elif key == "guest ok":
-				self.guestAccess.value = val.lower() in ("yes", "true", "1")
-
 	def keySave(self):
-		self._writeConf()
+		if self.workgroupLine:
+			if self.workgroup.isChanged():
+				self.smbConf[self.workgroupLine] = f"\tworkgroup = {self.workgroup.value}"
+		elif self.globalLine and self.workgroup.value != self.workgroup.default:
+			self.smbConf.insert(self.globalLine, f"\tworkgroup = {self.workgroup.value}")
+			self.globalLine += 1
+		value = "yes" if self.guest.value else "no"
+		if self.guestLine:
+			if self.guest.isChanged():
+				self.smbConf[self.guestLine] = f"\tguest ok = {value}"
+		elif self.globalLine and self.guest.value != self.guest.default:
+			self.smbConf.insert(self.globalLine, f"\tguest ok = {value}")
+		if fileWriteLines(self.SMBCONF, self.smbConf, source=MODULE_NAME):
+			print("Error")
 		Setup.keySave(self)
-
-	def _writeConf(self):
-		updates = {
-			"workgroup": self.workgroup.value.strip(),
-			"netbios name": self.netbiosName.value.strip(),
-			"guest ok": "yes" if self.guestAccess.value else "no",
-		}
-		lines = fileReadLines(self.SMBCONF, source=MODULE_NAME) or []
-		inGlobal = False
-		found = set()
-		newLines = []
-		for line in lines:
-			ls = line.lstrip()
-			if ls.startswith("[") and ls.rstrip().endswith("]"):
-				if inGlobal:
-					for key, val in updates.items():
-						if key not in found:
-							newLines.append(f"\t{key} = {val}")
-				inGlobal = ls.strip()[1:-1].strip().lower() == "global"
-				newLines.append(line)
-				continue
-			if not inGlobal:
-				newLines.append(line)
-				continue
-			content = ls.lstrip("#").strip()
-			if "=" in content:
-				key, _, _ = content.partition("=")
-				key = key.strip().lower()
-				if key in updates and key not in found:
-					newLines.append(f"\t{key} = {updates[key]}")
-					found.add(key)
-					continue
-			newLines.append(line)
-		if inGlobal:
-			for key, val in updates.items():
-				if key not in found:
-					newLines.append(f"\t{key} = {val}")
-		tmpPath = f"{self.SMBCONF}.tmp"
-		fileWriteLines(tmpPath, newLines, source=MODULE_NAME)
-		if exists(tmpPath):
-			rename(tmpPath, self.SMBCONF)
 
 
 class NetworkPassword(Setup):
