@@ -2,6 +2,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/dvb/hevc_hdr_detector.h>
+#include <lib/dvb_ci/dvbci.h>
 
 /*
  * Keep completion outside eDVBPESReader::data().  Stopping the reader from a
@@ -31,6 +32,14 @@ bool eHEVCHDRDetector::start(int pid)
 	stop();
 	if (!m_demux || pid <= 0 || pid >= 0x2000)
 		return false;
+
+	eDVBCIInterfaces *ci = eDVBCIInterfaces::getInstance();
+	if (ci && ci->hasActiveCiRouting())
+	{
+		eDebug("[eHEVCHDRDetector] scan suppressed for PID %04x "
+			"(CI module handles descrambling)", pid);
+		return false;
+	}
 
 	if (!m_reader)
 	{
