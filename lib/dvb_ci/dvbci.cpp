@@ -908,6 +908,14 @@ bool eDVBCIInterfaces::isCiConnected(eDVBServicePMTHandler *pmthandler)
 	return ret;
 }
 
+bool eDVBCIInterfaces::hasActiveCiRouting()
+{
+	for (PMTHandlerList::iterator it = m_pmt_handlers.begin(); it != m_pmt_handlers.end(); ++it)
+		if (it->cislot)
+			return true;
+	return false;
+}
+
 int eDVBCIInterfaces::getMMIState(int slotid)
 {
 	eDVBCISlot *slot;
