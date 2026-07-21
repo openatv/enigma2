@@ -1,5 +1,7 @@
 name: PR Build
 on:
+  push:
+    branches: [master]
   pull_request:
     types: [opened, synchronize, reopened]
 permissions:
@@ -39,8 +41,9 @@ jobs:
         with:
           name: sonar-bundle
           path: sonar-bundle.tar.gz
-      - name: Save PR metadata
+      - name: Save event metadata
         run: |
+          echo "${{ github.event_name }}" > event_name.txt
           echo "${{ github.event.pull_request.number }}" > pr_number.txt
           echo "${{ github.event.pull_request.head.ref }}" > pr_branch.txt
           echo "${{ github.event.pull_request.base.ref }}" > pr_base.txt
@@ -48,6 +51,7 @@ jobs:
         with:
           name: pr-metadata
           path: |
+            event_name.txt
             pr_number.txt
             pr_branch.txt
             pr_base.txt

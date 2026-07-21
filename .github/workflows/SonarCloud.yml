@@ -17,12 +17,24 @@ jobs:
           name: sonar-bundle
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: tar -xzf sonar-bundle.tar.gz
-      - name: Download PR metadata
+
+      - name: Download event metadata
         uses: actions/download-artifact@v4
         with:
           run-id: ${{ github.event.workflow_run.id }}
           name: pr-metadata
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Sonar args
+        id: args
+        run: |
+          EVENT=$(cat event_name.txt)
+          if [ "$EVENT" = "pull_request" ]; then
+            echo "value=-Dsonar.pullrequest.key=$(cat pr_number.txt) -Dsonar.pullrequest.branch=$(cat pr_branch.txt) -Dsonar.pullrequest.base=$(cat pr_base.txt)" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=-Dsonar.branch.name=master" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
@@ -30,6 +42,4 @@ jobs:
         with:
           args: >
             --define sonar.cfamily.compile-commands=build_wrapper_output_directory/compile_commands.json
-            -Dsonar.pullrequest.key=$(cat pr_number.txt)
-            -Dsonar.pullrequest.branch=$(cat pr_branch.txt)
-            -Dsonar.pullrequest.base=$(cat pr_base.txt)
+            ${{ steps.args.outputs.value }}
