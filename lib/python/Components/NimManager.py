@@ -1499,13 +1499,20 @@ class NimManager:
 	def nimRemoveInternalLink(self, slotid):
 		self.nim_slots[slotid].removeInternalLink()
 
+	def isSameFBCTuner(self, slotid, testslotid):
+		nim = self.nim_slots[slotid]
+		testnim = self.nim_slots[testslotid]
+		if not nim.isFBCTuner() or not testnim.isFBCTuner():
+			return True
+		return nim.is_fbc[2] == testnim.is_fbc[2]
+
 	def canConnectTo(self, slotid):
 		slots = []
 		if self.nim_slots[slotid].internallyConnectableTo() is not None:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
 		for tunertype in self.nim_slots[slotid].connectableTo():
 			for slot in self.getNimListOfType(tunertype, exception=slotid):
-				if self.hasOutputs(slot) and slot not in slots:
+				if self.hasOutputs(slot) and slot not in slots and self.isSameFBCTuner(slotid, slot):
 					slots.append(slot)
 		# remove nims, that have a conntectedTo reference on
 		for testnim in slots[:]:
@@ -1528,6 +1535,7 @@ class NimManager:
 		tunertype = self.getNimType(slotid)
 		tunertype = tunertype[:5]  # DVB-S2X --> DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
 		nimList = self.getNimListOfType(tunertype, slotid)
+		nimList = [nim for nim in nimList if self.isSameFBCTuner(slotid, nim)]
 		for nim in nimList[:]:
 			if self.nim_slots[nim].canBeCompatible('DVB-S'):
 				mode = self.getNimConfig(nim).dvbs
