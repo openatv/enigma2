@@ -52,9 +52,16 @@ jobs:
 
       - name: Bundle sources + build output for scan
         run: |
-          tar -czf sonar-bundle.tar.gz \
-            --exclude=sonar-bundle.tar.gz \
-            .
+          set +e
+          tar -czf sonar-bundle.tar.gz --exclude=sonar-bundle.tar.gz --warning=no-file-changed .
+          rc=$?
+          set -e
+          # tar exit code 1 = harmless "files changed during read" warning, not fatal
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 1 ]; then
+            echo "tar failed with fatal exit code $rc"
+            exit "$rc"
+          fi
+          echo "tar finished (exit code $rc), archive created."
 
       - name: Upload sonar bundle
         uses: actions/upload-artifact@v4
