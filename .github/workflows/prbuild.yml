@@ -8,6 +8,7 @@ permissions:
   contents: read
 jobs:
   build:
+    name: Build and Analyze
     runs-on: ubuntu-24.04
     container:
       image: ghcr.io/openatv/enigma2-buildenv/enigma2-buildenv:latest
@@ -15,13 +16,19 @@ jobs:
     env:
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
+
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
+
       - name: Run Build Wrapper
         env:
           CC: gcc-14
@@ -31,27 +38,42 @@ jobs:
           autoreconf -i
           export LIBS="-L/usr/lib/x86_64-linux-gnu -lpython3.13"
           export CPPFLAGS="-I/usr/include/python3.13"
-          ./configure --with-libsdl=no --with-boxtype=nobox \
-            --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp \
-            --with-gstversion=1.0 --with-textlcd
-          build-wrapper-linux-x86-64 --out-dir "${BUILD_WRAPPER_OUT_DIR}" make
+          ./configure \
+            PYTHON=python3.13 \
+            --with-libsdl=no \
+            --with-boxtype=nobox \
+            --enable-dependency-tracking \
+            ac_cv_prog_c_openmp=-fopenmp \
+            --with-gstversion=1.0 \
+            --with-textlcd
+          build-wrapper-linux-x86-64 \
+            --out-dir "${BUILD_WRAPPER_OUT_DIR}" \
+            make
+
       - name: Bundle sources + build output for scan
-        run: tar -czf sonar-bundle.tar.gz build_wrapper_output_directory .git
-      - uses: actions/upload-artifact@v4
+        run: |
+          tar -czf sonar-bundle.tar.gz \
+            --exclude=sonar-bundle.tar.gz \
+            .
+
+      - name: Upload sonar bundle
+        uses: actions/upload-artifact@v4
         with:
           name: sonar-bundle
           path: sonar-bundle.tar.gz
+          retention-days: 1
+
       - name: Save event metadata
         run: |
-          echo "${{ github.event_name }}" > event_name.txt
-          echo "${{ github.event.pull_request.number }}" > pr_number.txt
-          echo "${{ github.event.pull_request.head.ref }}" > pr_branch.txt
-          echo "${{ github.event.pull_request.base.ref }}" > pr_base.txt
-      - uses: actions/upload-artifact@v4
+          mkdir -p pr-metadata
+          echo "${{ github.event_name }}" > pr-metadata/event_name.txt
+          echo "${{ github.event.pull_request.number }}" > pr-metadata/pr_number.txt
+          echo "${{ github.event.pull_request.head.ref }}" > pr-metadata/pr_branch.txt
+          echo "${{ github.event.pull_request.base.ref }}" > pr-metadata/pr_base.txt
+
+      - name: Upload event metadata
+        uses: actions/upload-artifact@v4
         with:
           name: pr-metadata
-          path: |
-            event_name.txt
-            pr_number.txt
-            pr_branch.txt
-            pr_base.txt
+          path: pr-metadata/
+          retention-days: 1

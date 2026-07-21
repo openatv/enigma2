@@ -7,6 +7,7 @@ permissions:
   contents: read
 jobs:
   analyze:
+    name: SonarCloud Scan
     if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     steps:
@@ -16,7 +17,9 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           name: sonar-bundle
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: tar -xzf sonar-bundle.tar.gz
+
+      - name: Extract bundle
+        run: tar -xzf sonar-bundle.tar.gz
 
       - name: Download event metadata
         uses: actions/download-artifact@v4
@@ -28,9 +31,12 @@ jobs:
       - name: Build Sonar args
         id: args
         run: |
-          EVENT=$(cat event_name.txt)
+          EVENT=$(cat pr_number.txt >/dev/null 2>&1; cat event_name.txt)
           if [ "$EVENT" = "pull_request" ]; then
-            echo "value=-Dsonar.pullrequest.key=$(cat pr_number.txt) -Dsonar.pullrequest.branch=$(cat pr_branch.txt) -Dsonar.pullrequest.base=$(cat pr_base.txt)" >> "$GITHUB_OUTPUT"
+            PR_NUMBER=$(cat pr_number.txt)
+            PR_BRANCH=$(cat pr_branch.txt)
+            PR_BASE=$(cat pr_base.txt)
+            echo "value=-Dsonar.pullrequest.key=${PR_NUMBER} -Dsonar.pullrequest.branch=${PR_BRANCH} -Dsonar.pullrequest.base=${PR_BASE}" >> "$GITHUB_OUTPUT"
           else
             echo "value=-Dsonar.branch.name=master" >> "$GITHUB_OUTPUT"
           fi
@@ -41,5 +47,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
+            --define sonar.projectKey=openatv_enigma2
+            --define sonar.organization=openatv
             --define sonar.cfamily.compile-commands=build_wrapper_output_directory/compile_commands.json
+            -Dsonar.verbose=true
             ${{ steps.args.outputs.value }}
