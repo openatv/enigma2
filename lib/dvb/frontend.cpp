@@ -1488,8 +1488,17 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				cab_max = 4200;
 				break;
 			case feTerrestrial:
-				ret = (int)(snr / 30);
-				ter_max = 4200;
+				if (!strcmp(m_description, "GIGA DVB-T2/C NIM (TT3L10)"))
+				{
+					// Adjust the lower legacy SNR scale reported by the GigaBlue TT3L10 driver.
+					ret = (int)(snr / 20);
+					ter_max = 1700;
+				}
+				else
+				{
+					ret = (int)(snr / 30);
+					ter_max = 4200;
+				}
 				break;
 		}
 	}
