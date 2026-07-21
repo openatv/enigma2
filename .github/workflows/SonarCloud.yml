@@ -1,75 +1,35 @@
-name: SonarCloud
-
+name: SonarCloud Analyze
 on:
-  push:
-    branches: [ master ]
-  pull_request_target:
-    types: [opened, synchronize, reopened]
-
+  workflow_run:
+    workflows: ["PR Build"]
+    types: [completed]
 permissions:
   contents: read
-
 jobs:
-  build-and-analyze:
-    name: Build and Analyze
+  analyze:
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
-
-    container:
-      image: ghcr.io/openatv/enigma2-buildenv/enigma2-buildenv:latest
-      options: --user root
-
-    env:
-      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha || github.ref }}
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+          run-id: ${{ github.event.workflow_run.id }}
+          name: sonar-bundle
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: tar -xzf sonar-bundle.tar.gz
+      - name: Download PR metadata
+        uses: actions/download-artifact@v4
         with:
-          python-version: "3.13"
-
-      - name: Install Build Wrapper
-        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
-
-      - name: Run Build Wrapper
-        env:
-          CC: gcc-14
-          CXX: g++-14
-        run: |
-          sed -i 's/include lib main data po tools/include lib main tools/g' Makefile.am
-          autoreconf -i
-
-          export LIBS="-L/usr/lib/x86_64-linux-gnu -lpython3.13"
-          export CPPFLAGS="-I/usr/include/python3.13"
-
-          ./configure \
-            PYTHON=python3.13 \
-            --with-libsdl=no \
-            --with-boxtype=nobox \
-            --enable-dependency-tracking \
-            ac_cv_prog_c_openmp=-fopenmp \
-            --with-gstversion=1.0 \
-            --with-textlcd
-
-          build-wrapper-linux-x86-64 \
-            --out-dir "${BUILD_WRAPPER_OUT_DIR}" \
-            make
-
+          run-id: ${{ github.event.workflow_run.id }}
+          name: pr-metadata
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            --define sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
-            -Dsonar.verbose=true
-            ${{ github.event_name == 'pull_request_target' &&
-                format('-Dsonar.pullrequest.key={0} -Dsonar.pullrequest.branch={1} -Dsonar.pullrequest.base={2}',
-                github.event.pull_request.number,
-                github.event.pull_request.head.ref,
-                github.event.pull_request.base.ref) || '' }}
+            --define sonar.cfamily.compile-commands=build_wrapper_output_directory/compile_commands.json
+            -Dsonar.pullrequest.key=$(cat pr_number.txt)
+            -Dsonar.pullrequest.branch=$(cat pr_branch.txt)
+            -Dsonar.pullrequest.base=$(cat pr_base.txt)
