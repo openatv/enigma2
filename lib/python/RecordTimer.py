@@ -847,6 +847,32 @@ class RecordTimerEntry(TimerEntry):
 			if eStreamServer.getInstance().getConnectedClients():
 				eStreamServer.getInstance().stopStream()
 				return False
+			# When two timers share the same begin time, processActivation() processes
+			# them sequentially in one pass. Timer A reserves Tuner 1, Timer B then
+			# finds no free tuner and immediately runs the full escalation (PiP ->
+			# PseudoRec -> Stream -> Live-Zap) in a single activate() call, because
+			# none of those resources are active and each step falls through without
+			# a return. After a GUI restart InfoBar.instance is None, so the live-zap
+			# at escalation step 3 fires as a hard NavigationInstance.playService()
+			# call with no dialog and no settling time -> "Tune failed!".
+			# Fix: if another timer with the same begin is already in StatePrepared
+			# (it won the tuner race in this same processActivation() pass), defer
+			# our escalation by 20 seconds without incrementing first_try_prepare.
+			# On the next activation InfoBar is ready and the escalation runs
+			# normally with a proper dialog that cleanly stops the live service.
+			if self.first_try_prepare == 0:
+				simultaneousPrepared = [
+					x for x in NavigationInstance.instance.RecordTimer.timer_list
+					if x is not self
+					and not x.disabled
+					and x.begin == self.begin
+					and x.state == self.StatePrepared
+				]
+				if simultaneousPrepared:
+					self.log(8, "Simultaneous timer '%s' already prepared; deferring tuner-release escalation by 20 seconds." % simultaneousPrepared[0].name)
+					self.backoff = 0  # Reset backoff
+					self.start_prepare = int(time()) + 20
+					return False
 			if self.first_try_prepare == 0:  # Try to make a tuner available by disabling PiP.
 				self.first_try_prepare += 1
 				if not InfoBar:
