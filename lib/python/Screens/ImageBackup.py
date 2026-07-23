@@ -110,12 +110,13 @@ class ImageBackup(Screen):
 						slotText = f'{slotCode} {"eMMC" if "mmcblk" in imageList[slotCode]["device"] else "MTD" if "mtd" in imageList[slotCode]["device"] else "UBI" if "ubi" in imageList[slotCode]["device"] else "USB"}'
 						slotDistro = imageList[slotCode].get("displaydistro") or None
 						slotVersion = imageList[slotCode].get("imgversion") or None
+						displayName = MultiBoot.getSlotDisplayName(slotCode, MultiBoot.getCurrentBootMode())
 						if slotCode == "1" and currentImageSlot == 1 and BoxInfo.getItem("canRecovery"):
-							images.append(ChoiceEntryComponent(None, (_("Slot %s: %s as USB Recovery") % (slotText, imageList[slotCode]["imagename"]), slotCode, True, slotDistro, slotVersion)))
+							images.append(ChoiceEntryComponent(None, (_("Slot %s: %s as USB Recovery") % (slotText, displayName), slotCode, True, slotDistro, slotVersion)))
 						if rootSlot:
-							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False, slotDistro, slotVersion)))
+							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s")) % (slotText, displayName), slotCode, False, slotDistro, slotVersion)))
 						else:
-							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False, slotDistro, slotVersion)))
+							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotText, displayName), slotCode, False, slotDistro, slotVersion)))
 				if rootSlot:
 					images.append(ChoiceEntryComponent(None, (_("Slot R: Root Slot Image Backup (Current image)"), "R", False, None, None)))
 				elif flashSlot:

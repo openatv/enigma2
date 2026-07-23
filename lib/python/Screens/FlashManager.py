@@ -386,7 +386,7 @@ class FlashImage(Screen):
 			if slotCode == currentSlotCode:
 				current = currentMsg
 				default = index
-			choices.append((slotMsg % (slotCode, slotType, imageDictionary[slotCode]["imagename"], current), (slotCode, True)))
+			choices.append((slotMsg % (slotCode, slotType, MultiBoot.getSlotDisplayName(slotCode, MultiBoot.getCurrentBootMode()), current), (slotCode, True)))
 		choices.append((_("No, don't flash this image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, _("Do you want to flash the image '%s'?") % self.imageName, list=choices, default=default, windowTitle=self.getTitle())
 
@@ -699,6 +699,9 @@ class FlashImage(Screen):
 				cmdArgs = ["-r"]
 			else:  # Normal non MultiBoot receiver.
 				cmdArgs = ["-r", "-k"]
+			slotCode = getattr(self, "slotCode", None)
+			if slotCode:
+				MultiBoot.clearSlotName(slotCode)
 			self.containerOFGWrite = Console()
 			self.containerOFGWrite.ePopen([OFGWRITE, OFGWRITE] + cmdArgs + ['%s' % imageFiles], callback=self.flashImageDone)
 			fbClass.getInstance().lock()
@@ -710,6 +713,8 @@ class FlashImage(Screen):
 		self.containerOFGWrite = None
 		if retVal == 0:
 			slotCode = getattr(self, "slotCode", None)
+			if slotCode:
+				MultiBoot._refreshJsonSlot(slotCode)
 			if slotCode and BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):
 				MultiBoot.updateDreamBootSection(slotCode)
 			self["header"].setText(_("Flashing image successful"))
