@@ -149,6 +149,7 @@ class ConfigElement:
 		self.saved_value = None if self.save_disabled or (self.value == self.default and not self.saveForced) else self.toString(self.value)
 		if self.value != self.loadValue:
 			self.changedFinal()  # Call non-immediate_feedback notifiers, immediate_feedback notifiers are called as the values chanage.
+		self.loadValue = self.value
 
 	def setReadOnly(self, value):
 		self.readOnly = value
