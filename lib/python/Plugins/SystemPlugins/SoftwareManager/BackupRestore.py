@@ -64,6 +64,7 @@ def InitConfig():
 		"/var/lib/bluetooth/",
 		"/etc/enigma2/AutoBouquetsMaker/custom/",
 		"/etc/enigma2/AutoBouquetsMaker/providers/",
+		"/home/root/.config/content_shell/",
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
