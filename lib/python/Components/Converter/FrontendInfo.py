@@ -39,7 +39,10 @@ class FrontendInfo(Converter):
 
 	def getAGC(self):
 		agc = self.source.agc
-		if agc:
+		# Si2166D/Si2169D frontends report a small bogus non-zero AGC
+		# value (seen: 89-124) instead of None, ignore it and fall
+		# through to the SNR-based estimate below
+		if agc and agc > 255:
 			return agc
 
 		# Some frontends do not expose signal strength through either
