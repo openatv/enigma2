@@ -886,12 +886,11 @@ void gPixmap::drawRectangle(const gRegion& region, const eRect& area, const gRGB
 						gRGB* dst = (gRGB*)dstptr;
 						while (width >= blendRatio) {
 							for (int i = 0; i < blendRatio; ++i) {
-								dst[i].b += (((src->b - dst[i].b) * src->a) >> 8);
-								dst[i].g += (((src->g - dst[i].g) * src->a) >> 8);
-								dst[i].r += (((src->r - dst[i].r) * src->a) >> 8);
-								dst[i].a += (((0xFF - dst[i].a) * src->a) >> 8);
+								dst[i].b += (((src[i].b - dst[i].b) * src[i].a) >> 8);
+								dst[i].g += (((src[i].g - dst[i].g) * src[i].a) >> 8);
+								dst[i].r += (((src[i].r - dst[i].r) * src[i].a) >> 8);
+								dst[i].a += (((0xFF - dst[i].a) * src[i].a) >> 8);
 							}
-
 							dst += blendRatio;
 							src += blendRatio;
 							width -= blendRatio;
