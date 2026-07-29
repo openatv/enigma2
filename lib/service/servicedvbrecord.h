@@ -84,6 +84,7 @@ private:
 
 	int doPrepare();
 	int doRecord();
+	void updatePvrDescrambleMeta(const eDVBServicePMTHandler::program &program);
 	void updateDecoder();
 
 			/* events */

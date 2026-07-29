@@ -2,6 +2,7 @@
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/dvb/cahandler.h>
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/epgcache.h>
@@ -15,6 +16,36 @@
 #include <netinet/in.h>
 
 DEFINE_REF(eDVBServiceRecord);
+
+static bool needsGigabluePvrDescrambleMetaUpdate()
+{
+	static int supported = -1;
+
+	if (supported == -1)
+	{
+		char boxtype[32] = {};
+		char version[64] = {};
+		CFile boxtypeFile("/proc/stb/info/boxtype", "r");
+		CFile versionFile("/proc/stb/info/version", "r");
+
+		supported = 0;
+		if (boxtypeFile && versionFile
+			&& fgets(boxtype, sizeof(boxtype), boxtypeFile)
+			&& fgets(version, sizeof(version), versionFile))
+		{
+			boxtype[strcspn(boxtype, "\r\n")] = '\0';
+			version[strcspn(version, "\r\n")] = '\0';
+			size_t versionLength = strlen(version);
+
+			if (!strcmp(boxtype, "gigablue")
+				&& versionLength >= 5
+				&& !strcmp(version + versionLength - 5, "-u171"))
+				supported = 1;
+		}
+	}
+
+	return supported == 1;
+}
 
 eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient): m_ref(ref)
 {
@@ -628,6 +659,9 @@ int eDVBServiceRecord::doRecord()
 			if (program.textPid != -1)
 				pids_to_record.insert(program.textPid); // Videotext
 
+			if (m_pvr_descramble)
+				updatePvrDescrambleMeta(program);
+
 			if (m_record_ecm)
 			{
 				for (std::list<eDVBServicePMTHandler::program::capid_pair>::const_iterator i(program.caids.begin());
@@ -686,6 +720,70 @@ int eDVBServiceRecord::doRecord()
 	m_error = 0;
 	m_event((iRecordableService*)this, evRecordRunning);
 	return 0;
+}
+
+void eDVBServiceRecord::updatePvrDescrambleMeta(const eDVBServicePMTHandler::program &program)
+{
+	eDVBMetaParser meta;
+
+	if (!needsGigabluePvrDescrambleMetaUpdate())
+		return;
+
+	if (m_filename.empty() || meta.parseMeta(m_filename))
+	{
+		eWarning("[eDVBServiceRecord] unable to update PVR descramble metadata for '%s'", m_filename.c_str());
+		return;
+	}
+
+	ePtr<eDVBService> service = new eDVBService;
+	eDVBDB::getInstance()->parseServiceData(service, meta.m_service_data);
+
+	/*
+	 * prepare() initially writes the service-list cache.  During an offline
+	 * descramble that cache can still contain PIDs from an older PMT.  Replace
+	 * it with the program actually parsed from the recording so playback does
+	 * not start a decoder on a stale audio or video PID.
+	 */
+	for (int x = 0; x < eDVBService::cacheMax; ++x)
+		service->setCacheEntry((eDVBService::cacheID)x, -1);
+
+	if (!program.videoStreams.empty())
+	{
+		service->setCacheEntry(eDVBService::cVPID, program.videoStreams[0].pid);
+		service->setCacheEntry(eDVBService::cVTYPE, program.videoStreams[0].type);
+	}
+
+	if (!program.audioStreams.empty())
+	{
+		int audio = program.defaultAudioStream;
+		if (audio < 0 || audio >= (int)program.audioStreams.size())
+			audio = 0;
+		service->updateAudioCache(program.audioStreams[audio].pid,
+			program.audioStreams[audio].type);
+	}
+
+	if (program.textPid >= 0 && program.textPid < 0x1fff)
+		service->setCacheEntry(eDVBService::cTPID, program.textPid);
+	if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
+		service->setCacheEntry(eDVBService::cPCRPID, program.pcrPid);
+	if (program.pmtPid >= 0 && program.pmtPid < 0x1fff)
+		service->setCacheEntry(eDVBService::cPMTPID, program.pmtPid);
+
+	char tmp[255];
+	sprintf(tmp, "f:%x", service->m_flags);
+	meta.m_service_data = tmp;
+	for (int x = 0; x < eDVBService::cacheMax; ++x)
+	{
+		int entry = service->getCacheEntry((eDVBService::cacheID)x);
+		if (entry != -1)
+		{
+			sprintf(tmp, ",c:%02d%04x", x, entry);
+			meta.m_service_data += tmp;
+		}
+	}
+
+	if (meta.updateMeta(m_filename))
+		eWarning("[eDVBServiceRecord] failed to write PVR descramble metadata for '%s'", m_filename.c_str());
 }
 
 void eDVBServiceRecord::updateDecoder()

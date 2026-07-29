@@ -15,7 +15,7 @@ from RecordTimer import RecordTimerEntry
 from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
 
-from Tools.Directories import fileExists, fileReadLines, fileWriteLines
+from Tools.Directories import fileExists, fileReadLine, fileReadLines, fileWriteLines
 from Tools.Notifications import AddNotification
 
 
@@ -525,7 +525,15 @@ class PVRDescrambleConvert():
 			print(f"[PVRDescramble] keepMetaData newMetaContent {newMetaContent}")
 
 		if len(origMetaContent) >= 10 and len(newMetaContent) >= 10:
-			origMetaContent[9] = newMetaContent[9]
+			if BoxInfo.getItem("brand") == "gigablue" and fileReadLine("/proc/stb/info/version", default="").endswith("-u171"):
+				# The GigaBlue u171 PVR-CI output must retain the PID cache
+				# rebuilt from its actual PMT.  The recording code initially
+				# writes a zero file size, so take the final size from the TS.
+				origMetaContent[6] = str(stat(originalFileName).st_size)
+				origMetaContent[7:10] = newMetaContent[7:10]
+			else:
+				# Preserve the established behavior on every other receiver.
+				origMetaContent[9] = newMetaContent[9]
 			fileWriteLines(newMetaFileName, origMetaContent)
 		else:
 			print("[PVRDescramble] keepMetaData NOT write")
