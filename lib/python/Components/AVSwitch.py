@@ -446,17 +446,36 @@ def InitAVSwitch():
 		def setHDRType(configElement):
 			fileWriteLine("/proc/stb/video/hdmi_hdrtype", configElement.value, source=MODULE_NAME)
 
-		config.av.hdmihdrtype = ConfigSelection(default="auto", choices=[
-			("auto", _("Auto")),
-			("dolby", "Dolby Vision"),
-			("none", "SDR"),
-			("hdr10", "HDR10"),
-			# ("hdr10+", "HDR10+"),
-			("hlg", "HLG")
+		hdrTypeLabels = {
+			"auto": _("Auto"),
+			"dolby": "Dolby Vision",
+			"none": "SDR",
+			"hdr10": "HDR10",
+			"hdr10+": "HDR10+",
+			"hlg": "HLG"
+		}
+		hdrTypeChoices = fileReadLine("/proc/stb/video/hdmi_hdrtype_choices", default=None, source=MODULE_NAME)
+		hdrTypeChoices = hdrTypeChoices.split() if hdrTypeChoices else ["auto", "dolby", "none", "hdr10", "hlg"]
+		config.av.hdmihdrtype = ConfigSelection(default="auto" if "auto" in hdrTypeChoices else hdrTypeChoices[0], choices=[
+			(value, hdrTypeLabels.get(value, value.upper())) for value in hdrTypeChoices
 		])
 		config.av.hdmihdrtype.addNotifier(setHDRType)
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
+	hdrOsd = fileReadLine("/proc/stb/video/hdmi_hdr_osd", default=None, source=MODULE_NAME)
+	BoxInfo.setItem("havehdmihdrosd", bool(hdrOsd))
+	if hdrOsd:
+		def setHDMIHdrOsd(configElement):
+			fileWriteLine("/proc/stb/video/hdmi_hdr_osd", configElement.value, source=MODULE_NAME)
+
+		hdrOsdChoices = [
+			("32767 0 -16384", _("GigaBlue optimized")),
+			("0 0 0", _("Broadcom default"))
+		]
+		config.av.hdmihdrosd = ConfigSelection(default=hdrOsd if hdrOsd in dict(hdrOsdChoices) else "32767 0 -16384", choices=hdrOsdChoices)
+		config.av.hdmihdrosd.addNotifier(setHDMIHdrOsd)
+	else:
+		config.av.hdmihdrosd = ConfigNothing()
 	hdrSupport = fileReadLine("/proc/stb/hdmi/hlg_support_choices", default=None, source=MODULE_NAME)
 	hdrSupport = hdrSupport.split() if hdrSupport else False
 	BoxInfo.setItem("HDRSupport", hdrSupport)
