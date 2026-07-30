@@ -11,7 +11,7 @@ config.plugins.VideoClippingSetup.clip_height = ConfigInteger(default=576)
 
 class VideoClippingCoordinates(ConfigListScreen, Screen):
 	skin = """
-	<screen position="0,0" size="e,e" title="Video clipping setup" backgroundColor="transparent">
+	<screen position="0,0" size="e,e" title="Video clipping setup" flags="wfNoBorder" backgroundColor="transparent">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="transparent" />
 		<ePixmap pixmap="buttons/green.png" position="c-145,e-100" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="buttons/red.png" position="c+5,e-100" zPosition="0" size="140,40" alphatest="on" />

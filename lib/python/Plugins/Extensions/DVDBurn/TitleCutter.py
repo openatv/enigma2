@@ -68,7 +68,7 @@ class TitleCutter(CutListEditor):
 
 class CutlistReader(TitleCutter):
 	skin = """
-		<screen position="0,0" size="720,576">
+		<screen position="0,0" size="720,576" flags="wfNoBorder" >
 		<eLabel position="0,0" size="720,576" zPosition="1" backgroundColor="#000000" />
 		<widget name="Video" position="0,0" size="100,75" />
 		<widget name="SeekState" position="0,0" />

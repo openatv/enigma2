@@ -122,7 +122,7 @@ class OSDCalibration(Setup):
 			spacing = 10
 			textHeight = 80
 	skin = f"""
-	<screen name="OSDCalibration" title="OSD Calibration Settings" position="fill" backgroundColor="#00000000" >
+	<screen name="OSDCalibration" title="OSD Calibration Settings" position="fill" flags="wfNoBorder" backgroundColor="#00000000" >
 		<eRectangle position="0,0" size="e,e" borderColor="#00FF0000" backgroundColor="#00000000" borderWidth="1" zPosition="+0" />
 		<eRectangle position="25,25" size="e-50,e-50" backgroundColor="#00000000" borderColor="#0000FF00" borderWidth="1" zPosition="+1" />
 		<eRectangle position="50,50" size="e-100,e-100" backgroundColor="#00000000" borderColor="#00FFFF00" borderWidth="1" zPosition="+2" />
