@@ -21,14 +21,17 @@ class Pixmap(Renderer):
 			else:
 				attributes.append((attrib, value))
 		self.skinAttributes = attributes
-		return Renderer.applySkin(self, desktop, parent)
+		result = Renderer.applySkin(self, desktop, parent)
+		if self.pixmaps:
+			self.changed((self.CHANGED_DEFAULT,))
+		return result
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_CLEAR:
-			if what[0] == self.CHANGED_SPECIFIC and self.source and hasattr(self.source, "text") and self.pixmaps:
+			if what[0] in (self.CHANGED_SPECIFIC, self.CHANGED_DEFAULT) and self.instance and self.source and hasattr(self.source, "text") and self.pixmaps:
 				text = self.source.text
 				index = int(text) if text and text.isnumeric() else 0
 				if 0 <= index < len(self.pixmaps):
