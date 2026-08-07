@@ -81,13 +81,8 @@ struct gOpcode
 		setCompositing,
 		sendShow,
 		sendHide,
-#ifdef USE_LIBVUGLES2
-		sendShowItem,
-		setFlush,
-		setView,
-#endif
+		sendListboxAnimation,
 	} opcode;
-
 	gDC *dc;
 	union para
 	{
@@ -202,24 +197,19 @@ struct gOpcode
 			ePoint point;
 			eSize size;
 		} *setShowHideInfo;
-#ifdef USE_LIBVUGLES2
-		struct psetShowItemInfo
-		{
-			long dir;
-			ePoint point;
-			eSize size;
-		} *setShowItemInfo;
 
-		struct psetFlush
+		struct plistboxAnimation
 		{
-			bool enable;
-		} *setFlush;
-
-		struct psetViewInfo
-		{
-			eSize size;
-		} *setViewInfo;
-#endif
+			eRect from;
+			eRect to;
+			gRGB backgroundColor;
+			std::vector<gRGB> gradientColors;
+			uint8_t gradientOrientation;
+			bool gradientAlphaBlend;
+			int radius;
+			uint8_t radiusEdges;
+			gPixmap *selectionPixmap;
+		} *listboxAnimation;
 	} parm;
 };
 
@@ -250,7 +240,10 @@ class gRC : public iObject, public sigc::trackable
 	int m_spinner_enabled;
 
 	int m_spinneronoff;
+	int m_spinner_suspended;
+	unsigned long long m_spinner_suspend_until;
 
+	bool spinnerSuspended() const;
 	void enableSpinner();
 	void disableSpinner();
 
@@ -274,6 +267,8 @@ public:
 	void setSpinnerDC(gDC *dc) { m_spinner_dc = dc; }
 	void setSpinnerOnOff(int onoff) { m_spinneronoff = onoff; }
 	void setSpinnerColor(unsigned int color);
+	void suspendSpinner();
+	void resumeSpinner(int hold_ms = 0);
 
 	static gRC *getInstance();
 };
@@ -381,11 +376,13 @@ public:
 	void flush();
 	void sendShow(ePoint point, eSize size);
 	void sendHide(ePoint point, eSize size);
-#ifdef USE_LIBVUGLES2
-	void sendShowItem(long dir, ePoint point, eSize size);
-	void setFlush(bool val);
-	void setView(eSize size);
-#endif
+	void sendListboxAnimation(const eRect &from, const eRect &to, const gRGB &backgroundColor,
+		const std::vector<gRGB> &gradientColors, uint8_t gradientOrientation, bool gradientAlphaBlend,
+		int radius, uint8_t radiusEdges, gPixmap *selectionPixmap);
+
+	/* Returns the underlying DC so widgets can query e.g. isHardwareAccelerated()
+	 * at paint time without reaching into private members. */
+	const gDC *getDC() const { return m_dc; }
 };
 
 class gDC : public iObject
@@ -430,6 +427,8 @@ protected:
 	void drawNativeSpinner();
 	void discardOpcode(const gOpcode *opcode);
 
+	virtual void fillTextBackground(const gRegion &clip);
+
 public:
 	virtual void exec(const gOpcode *opcode);
 	gDC(gPixmap *pixmap);
@@ -444,6 +443,11 @@ public:
 	gRGB getRGB(gColor col);
 	virtual eSize size() { return m_pixmap->size(); }
 	virtual int islocked() const { return 0; }
+	virtual bool isHardwareAccelerated() const { return false; }
+	virtual bool supportsShowHideAnimations() const { return false; }
+	virtual bool supportsListboxAnimations() const { return false; }
+
+	virtual void renderGlyph(const ePoint &pos, gPixmap *glyph_mask, const gRGB &color);
 
 	virtual void enableSpinner();
 	virtual void disableSpinner();

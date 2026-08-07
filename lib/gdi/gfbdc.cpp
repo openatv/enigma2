@@ -19,14 +19,6 @@
 #include <time.h>
 #include <sys/time.h>
 
-#ifdef USE_LIBVUGLES2
-#include <vuplus_gles.h>
-#endif
-
-#ifdef HAVE_OSDANIMATION
-#include <lib/base/cfile.h>
-#endif
-
 #if defined(CONFIG_ION) || defined(CONFIG_HISILICON_FB)
 #include <lib/gdi/grc.h>
 
@@ -73,8 +65,17 @@ gFBDC::gFBDC()
 
 gFBDC::~gFBDC()
 {
+	if (m_pixmap)
+		m_pixmap->surface = nullptr;
+	m_pixmap = nullptr;
+
 	delete fb;
+	fb = nullptr;
+
 	delete[] surface.clut.data;
+	surface.clut.data = nullptr;
+	surface_back.clut.data = nullptr;
+	surface_third.clut.data = nullptr;
 }
 
 void gFBDC::calcRamp()
@@ -137,6 +138,54 @@ int gFBDC::getSurfaceOffset(const gUnmanagedSurface &s) const
 		return 0;
 
 	return (s.data_phys - fb->getPhysAddr()) / s.stride;
+}
+
+std::string gFBDC::getGraphicsBuffering() const
+{
+	if (m_number_of_pages >= 3)
+		return "triple";
+	if (m_number_of_pages == 2)
+		return "double";
+	return "single";
+}
+
+std::string gFBDC::getGraphicsAccelerator() const
+{
+#if defined(DREAMNEXTGEN)
+	std::string info = dreamGE2DIsActive() ? "e2ge / Dream GE2D active" : "e2ge / Dream GE2D";
+	if (dreamGE2DPageCopyEnabled())
+		info += ", page-copy";
+	if (dreamGE2DSurfaceAccelerationEnabled())
+		info += ", surfaces";
+	if (dreamGE2DFillAccelerationEnabled())
+		info += ", fill";
+	if (dreamGE2DBlitAccelerationEnabled())
+		info += ", blit";
+	return info;
+#elif defined(DREAMBCM_ION_ACCEL)
+	return "Dream BCM ION";
+#elif defined(HAVE_HISILICON_ACCEL)
+	return "HiSilicon";
+#elif defined(CONFIG_ION)
+	return "BCM/ION";
+#else
+	gAccel *accel = gAccel::getInstance();
+	if (accel && accel->hasAlphaBlendingSupport())
+		return "BCM";
+	return "";
+#endif
+}
+
+bool gFBDC::getGraphicsHardwareAccelerated() const
+{
+#if defined(DREAMNEXTGEN)
+	return dreamGE2DIsActive();
+#elif defined(DREAMBCM_ION_ACCEL) || defined(HAVE_HISILICON_ACCEL) || defined(CONFIG_ION)
+	return true;
+#else
+	gAccel *accel = gAccel::getInstance();
+	return accel && accel->hasAlphaBlendingSupport();
+#endif
 }
 
 void gFBDC::rotateSurfaces()
@@ -226,15 +275,7 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	}
 	case gOpcode::flush:
-#ifdef USE_LIBVUGLES2
-		if (gles_is_animation())
-			gles_do_animation();
-		else
-			fb->blit();
-		gles_flush();
-#else
 		fb->blit();
-#endif
 #if defined(CONFIG_ION)
 		if (surface_back.data_phys)
 		{
@@ -336,49 +377,14 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::sendShow:
 	{
-#ifdef HAVE_OSDANIMATION
-		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x01);
-#endif
-#ifdef USE_LIBVUGLES2
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation(1, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
-#endif
 		delete o->parm.setShowHideInfo;
 		break;
 	}
 	case gOpcode::sendHide:
 	{
-#ifdef HAVE_OSDANIMATION
-		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x10);
-#endif
-#ifdef USE_LIBVUGLES2
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation(0, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
-#endif
 		delete o->parm.setShowHideInfo;
 		break;
 	}
-#ifdef USE_LIBVUGLES2
-	case gOpcode::sendShowItem:
-	{
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation_listbox(o->parm.setShowItemInfo->dir, o->parm.setShowItemInfo->point.x(), o->parm.setShowItemInfo->point.y(), o->parm.setShowItemInfo->size.width(), o->parm.setShowItemInfo->size.height());
-		delete o->parm.setShowItemInfo;
-		break;
-	}
-	case gOpcode::setFlush:	
-	{
-		gles_set_flush(o->parm.setFlush->enable);
-		delete o->parm.setFlush;
-		break;
-	}
-	case gOpcode::setView:
-	{
-		gles_viewport(o->parm.setViewInfo->size.width(), o->parm.setViewInfo->size.height(), fb->Stride());
-		delete o->parm.setViewInfo;
-		break;
-	}
-#endif
 	default:
 		gDC::exec(o);
 		break;
@@ -627,62 +633,37 @@ void gFBDC::reloadSettings()
 	setPalette();
 }
 
-eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
-
-#ifdef HAVE_OSDANIMATION
-void setAnimation_current(int a) {
-	switch (a) {
-		case 1:
-			CFile::writeStr("/proc/stb/fb/animation_current", "simplefade");
-			break;
-		case 2:
-			CFile::writeStr("/proc/stb/fb/animation_current", "simplezoom");
-			break;
-		case 3:
-			CFile::writeStr("/proc/stb/fb/animation_current", "growdrop");
-			break;
-		case 4:
-			CFile::writeStr("/proc/stb/fb/animation_current", "growfromleft");
-			break;
-		case 5:
-			CFile::writeStr("/proc/stb/fb/animation_current", "extrudefromleft");
-			break;
-		case 6:
-			CFile::writeStr("/proc/stb/fb/animation_current", "popup");
-			break;
-		case 7:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidedrop");
-			break;
-		case 8:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidefromleft");
-			break;
-		case 9:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidelefttoright");
-			break;
-		case 10:
-			CFile::writeStr("/proc/stb/fb/animation_current", "sliderighttoleft");
-			break;
-		case 11:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidetoptobottom");
-			break;
-		case 12:
-			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromleft");
-			break;
-		case 13:
-			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromright");
-			break;
-		case 14:
-			CFile::writeStr("/proc/stb/fb/animation_current", "stripes");
-			break;
-		default:
-			CFile::writeStr("/proc/stb/fb/animation_current", "disable");
-			break;
+class gFBDCAutoInit : protected eAutoInit
+{
+	ePtr<gFBDC> m_dc;
+	void initNow() override
+	{
+		ePtr<gMainDC> ptr;
+		if (gMainDC::getInstance(ptr) == 0)
+		{
+			eDebug("[gFBDC] gMainDC already initialized, skipping GFBDC");
+			return;
+		}
+		eDebug("[eInit] + (%d) GFBDC", rl);
+		m_dc = new gFBDC();
 	}
-}
 
-void setAnimation_speed(int speed) {
-	CFile::writeInt("/proc/stb/fb/animation_speed", speed);
-}
+	void closeNow() override
+	{
+		m_dc = nullptr;
+	}
 
-void setAnimation_current_listbox(int a) {}
-#endif
+public:
+	gFBDCAutoInit()
+		: eAutoInit(eAutoInitNumbers::graphic - 1, "GFBDC"), m_dc(nullptr)
+	{
+		eInit::add(rl, this);
+	}
+
+	~gFBDCAutoInit()
+	{
+		eInit::remove(rl, this);
+	}
+};
+
+static gFBDCAutoInit init_gFBDC_custom;

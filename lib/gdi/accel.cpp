@@ -426,6 +426,9 @@ void gAccel::releaseAccelMemorySpace()
 #ifdef DREAMBCM_ION_ACCEL
 	dreambcm_ion_release_all(true);
 #endif
+#ifdef DREAMNEXTGEN
+	dreamGE2DReleaseAccelMemory();
+#endif
 	for (MemoryBlockList::const_iterator it = m_accel_allocation.begin();
 		 it != m_accel_allocation.end();
 		 ++it)
@@ -721,6 +724,11 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 #endif
 
 #ifndef DREAMNEXTGEN
+#ifdef DREAMBCM_ION_ACCEL
+	if (!m_bcm_accel_state)
+		return dreambcm_ion_alloc_surface(surface, stride, size, m_accel_debug);
+#endif
+
 	size += ACCEL_ALIGNMENT_MASK;
 	size >>= ACCEL_ALIGNMENT_SHIFT;
 
@@ -750,7 +758,7 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 		}
 	}
 
-	eDebug("[gAccel] accel alloc failed\n");
+	eTrace("[gAccel] accel alloc failed\n");
 	return -3;
 #else
 	if (surface->bpp == 32 && dreamGE2DAllocSurface(surface, stride, size))
