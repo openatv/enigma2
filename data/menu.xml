@@ -72,6 +72,7 @@
 			<menu key="system" level="0" text="Usage &amp; GUI" weight="15">
 				<!-- Menu / Setup / GUI / Display-->
 				<item key="user_interface" level="0" text="OSD Settings" weight="0"><setup setupKey="UserInterface" /></item>
+				<item key="animation_setup" level="0" text="OSD Animation Settings" weight="1" requires="e2egl"><screen module="AnimationSetup" screen="AnimationSetup" /></item>
 				<item key="remote_setup" level="0" text="Remote Control Button Settings" weight="5"><setup setupKey="RemoteButton" /></item>
 				<item key="channelselection_setup" level="0" text="Channel Selection Settings" weight="10"><setup setupKey="ChannelSelection" /></item>
 				<item key="usage_setup" level="0" text="Customize System Settings" weight="15"><setup setupKey="Usage" /></item>

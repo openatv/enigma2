@@ -1435,6 +1435,19 @@
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files." indent="1">config.usage.useChapterInfo</item>
 		<!--item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
 	</setup>
+	<setup key="AnimationSetup" title="OSD Animation Settings" allowDefault="yes" showOpenWebif="yes">
+		<item level="0" text="Window animation" description="Select the default e2egl OSD window animation.">config.misc.animation.default</item>
+		<item level="0" text="Classic animation style" description="Select the classic e2egl OSD window animation style." conditional="str(config.misc.animation.default.value) == '100' or (config.misc.animation.profiles.value and (str(config.misc.animation.dialog.value) == '100' or str(config.misc.animation.popup.value) == '100' or str(config.misc.animation.toast.value) == '100'))">config.misc.animation.classic</item>
+		<item level="0" text="Animation speed" description="Select the speed of OSD window animations. Lower values are faster.">config.misc.animation.speed</item>
+		<item level="0" text="Smooth list selection" description="Move only the list focus bar smoothly to its new position using e2egl.">config.misc.animation.listbox</item>
+		<item level="1" text="Adaptive animation profiles" description="Use dedicated e2egl profiles for dialogs, popup panels and toast style notification windows.">config.misc.animation.profiles</item>
+		<if requires="config.misc.animation.profiles">
+			<item level="1" text="Dialog and message animation" description="Select the animation profile used for smaller dialog and message windows when adaptive profiles are enabled.">config.misc.animation.dialog</item>
+			<item level="1" text="Popup and panel animation" description="Select the animation profile used for popup and side panel windows when adaptive profiles are enabled.">config.misc.animation.popup</item>
+			<item level="1" text="Toast notification animation" description="Select the e2egl animation profile used for small top or bottom notification windows. On e2egl the legacy Toast alpha fade is disabled so GLES handles fade in and fade out.">config.misc.animation.toast</item>
+			<item level="1" text="Toast animation speed" description="Select the speed of e2egl toast fade in and fade out. Lower values are faster; the Toast timeout still controls how long the text stays readable." conditional="str(config.misc.animation.toast.value) != '0'">config.misc.animation.toast_speed</item>
+		</if>
+	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="yes">
 		<item level="0" text="Menus And Setup" />
 		<item level="0" text="Menu style" description="Select the display design for menus." indent="1">config.usage.menuType</item>

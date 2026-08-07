@@ -7,14 +7,6 @@ SUBDIRS = PositionerSetup Satfinder \
 	SatelliteEquipmentControl DiseqcTester FastScan LCNScanner IceTV \
 	FastChannelChange vps
 
-if HAVE_LIBVUGLES2
-SUBDIRS += AnimationSetup
-endif
-
-if HAVE_OSDANIMATION
-SUBDIRS += AnimationSetup
-endif
-
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade
 endif
