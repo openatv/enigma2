@@ -1,7 +1,7 @@
 from os import W_OK, access
 from os.path import exists
 
-from enigma import eAVControl, getDesktop
+from enigma import eAVControl, getDesktop, getGraphicsInfo
 
 from Components.config import config, configfile
 from Components.Label import Label
@@ -14,7 +14,9 @@ MODULE_NAME = __name__.split(".")[-1]
 
 def InitOSDCalibration():
 	def setPositionParameter(parameter, value):
-		if BoxInfo.getItem("CanChangeOsdPosition"):
+		if BoxInfo.getItem("CanChangeOsdPositionE2"):
+			eAVControl.getInstance().setOSDPosition(config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value, 1)
+		elif BoxInfo.getItem("CanChangeOsdPositionFB"):
 			fileWriteLine(f"/proc/stb/fb/dst_{parameter}", f"{value:08x}\n", source=MODULE_NAME)
 			fileName = "/proc/stb/fb/dst_apply"
 			if exists(fileName):
@@ -62,10 +64,14 @@ def InitOSDCalibration():
 		print(f"[OSDCalibration] Setting 3D depth to {value}.")
 		fileWriteLine("/proc/stb/fb/znorm", str(value), source=MODULE_NAME)
 
-	BoxInfo.setItem("CanChangeOsdPosition", access("/proc/stb/fb/dst_left", W_OK))
-	BoxInfo.setItem("CanChangeOsdPositionAML", access("/sys/class/graphics/fb0/free_scale", W_OK))  # Is this the same as BoxInfo.getItem("AmlogicFamily")?
+	graphicsInfo = getGraphicsInfo()
+	isE2EGL = graphicsInfo.get("backend", "") == "e2egl"
+	BoxInfo.setItem("CanChangeOsdPositionE2", isE2EGL and eAVControl.getInstance().hasOSDPosition())
+	BoxInfo.setItem("CanChangeOsdPositionFB", not isE2EGL and access("/proc/stb/fb/dst_left", W_OK))
+	BoxInfo.setItem("CanChangeOsdPositionAML", not isE2EGL and access("/sys/class/graphics/fb0/free_scale", W_OK))
+	BoxInfo.setItem("CanChangeOsdPosition", BoxInfo.getItem("CanChangeOsdPositionE2") or BoxInfo.getItem("CanChangeOsdPositionFB") or BoxInfo.getItem("CanChangeOsdPositionAML"))
 	BoxInfo.setItem("CanChangeOsdAlpha", eAVControl.getInstance().hasOSDAlpha())
-	BoxInfo.setItem("OSDCalibration", BoxInfo.getItem("CanChangeOsdPosition") or BoxInfo.getItem("CanChangeOsdPositionAML") or BoxInfo.getItem("CanChangeOsdAlpha"))
+	BoxInfo.setItem("OSDCalibration", BoxInfo.getItem("CanChangeOsdPosition") or BoxInfo.getItem("CanChangeOsdAlpha"))
 	BoxInfo.setItem("OSD3DCalibration", access("/proc/stb/fb/3dmode", W_OK))
 	print(f"[OSDCalibration] Setting OSD position to (X={config.osd.dst_left.value}, Y={config.osd.dst_top.value}) and size to (W={config.osd.dst_width.value}, H={config.osd.dst_height.value}).")
 	config.osd.dst_left.addNotifier(setLeft)
@@ -81,6 +87,16 @@ def InitOSDCalibration():
 
 class OSDCalibration(Setup):
 	match getDesktop(0).size().width():  # This skin shouldn't be scaled as we need pixel perfect accuracy at each resolution!
+		case 2560:  # 2560x1440 resolution.
+			buttonHeight = 80
+			colorButtonWidth = 360
+			fontSize = 40
+			iconButtonWidth = 160
+			itemHeight = 49
+			menuFontSize = 69
+			spacer = 51
+			spacing = 20
+			textHeight = 200
 		case 1920:  # 1920x1080 resolution.
 			buttonHeight = 60
 			colorButtonWidth = 270
@@ -175,15 +191,23 @@ class OSDCalibration(Setup):
 		top = config.osd.dst_top.value
 		width = config.osd.dst_width.value
 		height = config.osd.dst_height.value
-		while width + (left / self.screenWidthScale) >= 720.5 or width + left > 720:
-			width -= 1
-		while height + (top / self.screenHeightScale) >= 576.5 or height + top > 576:
-			height -= 1
+		if BoxInfo.getItem("CanChangeOsdPositionFB"):
+			while width > 1 and (width + (left / self.screenWidthScale) >= 720.5 or width + left > 720):
+				width -= 1
+			while height > 1 and (height + (top / self.screenHeightScale) >= 576.5 or height + top > 576):
+				height -= 1
+		else:
+			width = max(1, width)
+			height = max(1, height)
 		print(f"[OSDCalibration] Setting OSD position to (X={left}, Y={top}) and size to (W={width}, H={height}).")
-		config.osd.dst_left.setValue(left)
-		config.osd.dst_top.setValue(top)
-		config.osd.dst_width.setValue(width)
-		config.osd.dst_height.setValue(height)
+		if config.osd.dst_left.value != left:
+			config.osd.dst_left.setValue(left)
+		if config.osd.dst_top.value != top:
+			config.osd.dst_top.setValue(top)
+		if config.osd.dst_width.value != width:
+			config.osd.dst_width.setValue(width)
+		if config.osd.dst_height.value != height:
+			config.osd.dst_height.setValue(height)
 		for entry in self["config"].getList():
 			self["config"].invalidate(entry)
 

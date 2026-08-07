@@ -48,6 +48,8 @@ public:
 	std::string getDriverVideoMode(const std::string &mode) const;
 	std::string getVideoAxis(const std::string &mode) const;
 	bool hasVideoAxis() const;
+	std::string getOSDAxis(const std::string &mode = "") const;
+	bool hasOSDPosition() const;
 	bool isEncoderActive() const;
 
 	void setAspectRatio(int ratio, int flags = 0) const;
@@ -69,6 +71,7 @@ public:
 	void setOSDWindowVisible(const void *window, bool visible);
 	bool handleOSDKey(const std::string &device, int key, int flags);
 #endif
+	void setOSDPosition(int left, int top, int width, int height, int flags = 0) const;
 
 	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }
 	bool hasProcVideoMode50() const { return m_b_has_proc_videomode_50; }
