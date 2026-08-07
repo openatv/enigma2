@@ -22,6 +22,7 @@
 #include <lib/base/eerror.h>
 #include <lib/gdi/lcd.h>
 #include <lib/gdi/grc.h>
+#include <lib/gdi/gpixmap.h>
 #include <lib/base/elock.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -626,8 +627,21 @@ eTextPara::~eTextPara()
 
 void eTextPara::setFont(const gFont *font, int tabwidth)
 {
+	if (!font)
+	{
+		eWarning("[eTextPara] setFont called without a font!");
+		return;
+	}
+
+	fontRenderClass *fontRenderer = fontRenderClass::getInstance();
+	if (!fontRenderer || !fontRenderer->cacheManager)
+	{
+		eWarning("[eTextPara] font renderer is not available!");
+		return;
+	}
+
 	ePtr<Font> fnt, replacement, fallback;
-	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize, tabwidth);
+	fontRenderer->getFont(fnt, font->family.c_str(), font->pointSize, tabwidth);
 	if (!fnt)
 		eWarning("[eTextPara] Font '%s' is missing!", font->family.c_str());
 	else if (font->pointWidth > 0 && font->pointWidth < font->pointSize)
@@ -635,8 +649,8 @@ void eTextPara::setFont(const gFont *font, int tabwidth)
 		fnt->scaler.width = font->pointWidth;
 		fnt->font.width   = font->pointWidth;
 	}
-	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize, tabwidth);
-	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize, tabwidth);
+	fontRenderer->getFont(replacement, replacement_facename.c_str(), font->pointSize, tabwidth);
+	fontRenderer->getFont(fallback, fallback_facename.c_str(), font->pointSize, tabwidth);
 	setFont(fnt, replacement, fallback);
 
 	/* Cache line height for newLine() ─────────────────
@@ -663,6 +677,12 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 {
 	if (!fnt)
 		return;
+	fontRenderClass *fontRenderer = fontRenderClass::getInstance();
+	if (!fontRenderer || !fontRenderer->cacheManager)
+	{
+		eWarning("[eTextPara] setFont: font renderer is not available!");
+		return;
+	}
 	current_font=fnt;
 	replacement_font=replacement;
 	fallback_font=fallback;
@@ -671,10 +691,10 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 			// we ask for replacment_font first becauseof the cache
 	if (replacement_font)
 	{
-		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+		if ((FTC_Manager_LookupFace(fontRenderer->cacheManager,
 					    replacement_font->scaler.face_id,
 					    &replacement_face) < 0) ||
-		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+		    (FTC_Manager_LookupSize(fontRenderer->cacheManager,
 					    &replacement_font->scaler,
 					    &replacement_font->size) < 0))
 		{
@@ -684,10 +704,10 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	}
 	if (current_font)
 	{
-		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+		if ((FTC_Manager_LookupFace(fontRenderer->cacheManager,
 					    current_font->scaler.face_id,
 					    &current_face) < 0) ||
-		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+		    (FTC_Manager_LookupSize(fontRenderer->cacheManager,
 					    &current_font->scaler,
 					    &current_font->size) < 0))
 		{
@@ -697,10 +717,10 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	}
 	if (fallback_font)
 	{
-		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+		if ((FTC_Manager_LookupFace(fontRenderer->cacheManager,
 					    fallback_font->scaler.face_id,
 					    &fallback_face) < 0) ||
-		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+		    (FTC_Manager_LookupSize(fontRenderer->cacheManager,
 					    &fallback_font->scaler,
 					    &fallback_font->size) < 0))
 		{
@@ -721,10 +741,17 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 	if (!current_font)
 		return -1;
 
-	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+	fontRenderClass *fontRenderer = fontRenderClass::getInstance();
+	if (!fontRenderer || !fontRenderer->cacheManager)
+	{
+		eWarning("[eTextPara] renderString: font renderer is not available!");
+		return -1;
+	}
+
+	if ((FTC_Manager_LookupFace(fontRenderer->cacheManager,
 				current_font->scaler.face_id,
 				&current_face) < 0) ||
-	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+	    (FTC_Manager_LookupSize(fontRenderer->cacheManager,
 				&current_font->scaler,
 				&current_font->size) < 0))
 	{
@@ -1047,10 +1074,17 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	if (!current_font)
 		return;
 
-	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+	fontRenderClass *fontRenderer = fontRenderClass::getInstance();
+	if (!fontRenderer || !fontRenderer->cacheManager)
+	{
+		eWarning("[eTextPara] blit: font renderer is not available!");
+		return;
+	}
+
+	if ((FTC_Manager_LookupFace(fontRenderer->cacheManager,
  				    current_font->scaler.face_id,
  				    &current_face) < 0) ||
-	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+	    (FTC_Manager_LookupSize(fontRenderer->cacheManager,
 				    &current_font->scaler,
 				    &current_font->size) < 0))
 	{
@@ -1063,6 +1097,9 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
 	gUnmanagedSurface *surface = target->surface;
+	const bool hardware = dc.isHardwareAccelerated();
+	if (!hardware)
+		target->ensureCPUContent();
 	gRGB currentforeground = foreground;
 	const gRGB background = (m_blend && surface->bpp == 32 && !marked) ? gRGB(currentforeground.r, currentforeground.g, currentforeground.b, 200) : cbackground;
 
@@ -1113,7 +1150,11 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 		if (setcolor)
 		{
 			setcolor = false;
-			if (surface->bpp == 8)
+			if (hardware)
+			{
+				opcode = -1;
+			}
+			else if (surface->bpp == 8)
 			{
 				if (surface->clut.data)
 				{
@@ -1228,6 +1269,25 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 			sybase=glyph_bitmap->height;
 			pitch = glyph_bitmap->pitch;
 		}
+
+		if (hardware)
+		{
+			gUnmanagedSurface s;
+			s.x = sxbase;
+			s.y = sybase;
+			s.bpp = 8;
+			s.bypp = 1;
+			s.stride = pitch;
+			s.data = sbase;
+			s.clut.data = 0;
+			s.clut.colors = 0;
+
+			gPixmap pm(&s);
+			gRGB hardwareColor = (i->flags & GS_INVERT) ? background : currentforeground;
+			dc.renderGlyph(ePoint(rxbase, rybase), &pm, hardwareColor);
+			continue;
+		}
+
 		dbase = (__u8*)(surface->data)+buffer_stride*rybase+rxbase*surface->bypp;
 		for (unsigned int c = 0; c < clip.rects.size(); ++c)
 		{

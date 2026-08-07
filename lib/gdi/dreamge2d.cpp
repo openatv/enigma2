@@ -1529,6 +1529,35 @@ bool dreamGE2DIsManagedSurface(const gUnmanagedSurface *surface)
 	return findBuffer(surface) != s_buffers.end();
 }
 
+bool dreamGE2DGetDmabuf(const gUnmanagedSurface *surface, int *fd, int *width, int *height, int *stride, int *offset)
+{
+	std::map<const gUnmanagedSurface *, DreamGE2DBuffer>::iterator it = findBuffer(surface);
+	if (it == s_buffers.end())
+		return false;
+
+	DreamGE2DBuffer &buffer = it->second;
+	if (buffer.fd < 0)
+		return false;
+
+	int ge2d_fd = getGE2DFd();
+	if (ge2d_fd >= 0)
+	{
+		int sync_fd = buffer.fd;
+		ioctl(ge2d_fd, DREAM_GE2D_SYNC_DEVICE, &sync_fd);
+	}
+	if (fd)
+		*fd = buffer.fd;
+	if (width)
+		*width = buffer.width;
+	if (height)
+		*height = buffer.height;
+	if (stride)
+		*stride = buffer.stride;
+	if (offset)
+		*offset = 0;
+	return true;
+}
+
 void dreamGE2DReleaseAccelMemory()
 {
 	while (!s_buffers.empty())
@@ -1788,6 +1817,35 @@ bool dreamGE2DHasAlphaBlendingSupport()
 	return s_surface_accel_enabled && s_blend_accel_enabled;
 }
 
+bool dreamGE2DIsActive()
+{
+	return s_ge2d_fd >= 0 || !s_buffers.empty() || s_ge2d_logged_accel_active;
+}
+
+bool dreamGE2DPageCopyEnabled()
+{
+	initRuntimeOptions();
+	return s_flush_enabled;
+}
+
+bool dreamGE2DSurfaceAccelerationEnabled()
+{
+	initRuntimeOptions();
+	return s_surface_accel_enabled;
+}
+
+bool dreamGE2DFillAccelerationEnabled()
+{
+	initRuntimeOptions();
+	return s_fill_accel_enabled;
+}
+
+bool dreamGE2DBlitAccelerationEnabled()
+{
+	initRuntimeOptions();
+	return s_blit_accel_enabled;
+}
+
 void dreamGE2DReset()
 {
 	statsLog("reset", false);
@@ -1867,6 +1925,17 @@ bool dreamGE2DIsManagedSurface(const gUnmanagedSurface *surface)
 	return false;
 }
 
+bool dreamGE2DGetDmabuf(const gUnmanagedSurface *surface, int *fd, int *width, int *height, int *stride, int *offset)
+{
+	(void)surface;
+	(void)fd;
+	(void)width;
+	(void)height;
+	(void)stride;
+	(void)offset;
+	return false;
+}
+
 void dreamGE2DReleaseAccelMemory()
 {
 }
@@ -1890,6 +1959,31 @@ bool dreamGE2DBlit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &
 }
 
 bool dreamGE2DHasAlphaBlendingSupport()
+{
+	return false;
+}
+
+bool dreamGE2DIsActive()
+{
+	return false;
+}
+
+bool dreamGE2DPageCopyEnabled()
+{
+	return false;
+}
+
+bool dreamGE2DSurfaceAccelerationEnabled()
+{
+	return false;
+}
+
+bool dreamGE2DFillAccelerationEnabled()
+{
+	return false;
+}
+
+bool dreamGE2DBlitAccelerationEnabled()
 {
 	return false;
 }

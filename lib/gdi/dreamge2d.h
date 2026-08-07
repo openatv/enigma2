@@ -11,11 +11,18 @@ void dreamGE2DRegisterFramebuffer(void *base_data, unsigned long base_phys, int 
 bool dreamGE2DAllocSurface(gUnmanagedSurface *surface, int stride, int size);
 bool dreamGE2DFreeSurface(gUnmanagedSurface *surface);
 bool dreamGE2DIsManagedSurface(const gUnmanagedSurface *surface);
+bool dreamGE2DGetDmabuf(const gUnmanagedSurface *surface, int *fd, int *width, int *height, int *stride, int *offset);
 void dreamGE2DReleaseAccelMemory();
 
 bool dreamGE2DFill(gUnmanagedSurface *dst, const eRect &area, unsigned long col);
 bool dreamGE2DBlit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags);
 bool dreamGE2DHasAlphaBlendingSupport();
+
+bool dreamGE2DIsActive();
+bool dreamGE2DPageCopyEnabled();
+bool dreamGE2DSurfaceAccelerationEnabled();
+bool dreamGE2DFillAccelerationEnabled();
+bool dreamGE2DBlitAccelerationEnabled();
 
 void dreamGE2DReset();
 

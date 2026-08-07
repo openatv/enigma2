@@ -136,6 +136,11 @@ struct gUnmanagedSurface {
 	gPalette clut;
 	void* data;
 	int data_phys;
+	unsigned int gl_texture_id;
+	unsigned int gl_framebuffer_id;
+	unsigned int gl_context_generation;
+	bool gl_content_valid;
+	bool cpu_content_valid;
 	bool transparent = true;
 
 	gUnmanagedSurface();
@@ -199,6 +204,7 @@ public:
 #endif
 	virtual ~gPixmap();
 	eSize size() const { return eSize(surface->x, surface->y); }
+	void ensureCPUContent();
 
 private:
 	gPixmapDisposeCallback on_dispose;
