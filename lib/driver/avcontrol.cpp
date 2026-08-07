@@ -23,6 +23,8 @@ Licensed under GPLv2.
 #include <lib/base/modelinformation.h>
 #include <lib/driver/avcontrol.h>
 #include <lib/driver/rc.h>
+#include <lib/gdi/gmaindc.h>
+#include <lib/gdi/grc.h>
 
 const char *__MODULE__ = "eAVControl"; // NOSONAR
 
@@ -49,8 +51,51 @@ const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
 const char *proc_videomode_24 = "/proc/stb/video/videomode_24hz"; // NOSONAR
 
 const char *proc_wss = "/proc/stb/denc/0/wss"; // NOSONAR
+const char *proc_osd_dst_left = "/proc/stb/fb/dst_left"; // NOSONAR
+const char *proc_osd_dst_top = "/proc/stb/fb/dst_top"; // NOSONAR
+const char *proc_osd_dst_width = "/proc/stb/fb/dst_width"; // NOSONAR
+const char *proc_osd_dst_height = "/proc/stb/fb/dst_height"; // NOSONAR
+const char *proc_osd_dst_apply = "/proc/stb/fb/dst_apply"; // NOSONAR
+const char *sys_osd_free_scale = "/sys/class/graphics/fb0/free_scale"; // NOSONAR
+const char *sys_osd_window_axis = "/sys/class/graphics/fb0/window_axis"; // NOSONAR
 
 eAVControl *eAVControl::m_instance = nullptr;
+
+static bool procWritable(const char *path)
+{
+	return access(path, W_OK) == 0;
+}
+
+static std::string rectToString(int left, int top, int width, int height)
+{
+	return std::to_string(left) + " " + std::to_string(top) + " " + std::to_string(width) + " " + std::to_string(height);
+}
+
+static bool getMainDC(ePtr<gMainDC> &dc)
+{
+	dc = nullptr;
+	return gMainDC::getInstance(dc) == 0 && dc;
+}
+
+class eAVSpinnerSuspendGuard
+{
+	enum { MODE_CHANGE_SPINNER_HOLD_MS = 1000 };
+	gRC *m_rc;
+
+public:
+	eAVSpinnerSuspendGuard()
+		: m_rc(gRC::getInstance())
+	{
+		if (m_rc)
+			m_rc->suspendSpinner();
+	}
+
+	~eAVSpinnerSuspendGuard()
+	{
+		if (m_rc)
+			m_rc->resumeSpinner(MODE_CHANGE_SPINNER_HOLD_MS);
+	}
+};
 
 /// @brief Normalize a driver video mode to the Enigma2 config value
 /// @param mode Driver or config video mode
@@ -148,6 +193,45 @@ bool eAVControl::hasVideoAxis() const
 #else
 	return false;
 #endif
+}
+
+/// @brief Get the editable OSD destination rectangle.
+/// @param mode normalized video mode, only used by legacy fallbacks
+/// @return OSD axis as "left top width height"
+std::string eAVControl::getOSDAxis(const std::string &mode) const
+{
+	ePtr<gMainDC> dc;
+	if (getMainDC(dc) && dc->hasOSDPosition())
+		return dc->getOSDAxis();
+
+#ifdef DREAMNEXTGEN
+	std::string value = normalizeVideoMode(mode);
+	if (value.find("480") == 0)
+		return rectToString(0, 0, 720, 480);
+	if (value.find("576") == 0)
+		return rectToString(0, 0, 720, 576);
+	if (value.find("720") == 0)
+		return rectToString(0, 0, 1280, 720);
+	if (value.find("1080") == 0)
+		return rectToString(0, 0, 1920, 1080);
+	if (value.find("2160") == 0)
+		return rectToString(0, 0, 3840, 2160);
+	if (value.find("smpte") == 0)
+		return rectToString(0, 0, 4096, 2160);
+#endif
+	return rectToString(0, 0, 720, 576);
+}
+
+/// @brief Check if OSD position handling is available.
+/// @return true if the active graphics backend or kernel driver can reposition the OSD
+bool eAVControl::hasOSDPosition() const
+{
+	ePtr<gMainDC> dc;
+	if (getMainDC(dc) && dc->hasOSDPosition())
+		return true;
+	if (procWritable(proc_osd_dst_left) && procWritable(proc_osd_dst_top) && procWritable(proc_osd_dst_width) && procWritable(proc_osd_dst_height))
+		return true;
+	return procWritable(sys_osd_window_axis) && procWritable(sys_osd_free_scale);
 }
 
 eAVControl::eAVControl()
@@ -436,6 +520,7 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 		return;
 	}
 #endif
+	eAVSpinnerSuspendGuard spinner_guard;
 #ifdef DREAMNEXTGEN
 	writeHDMIColorFormat(driverMode, flags);
 #endif
@@ -518,6 +603,7 @@ void eAVControl::setHDMIColordepth(const std::string &colordepth, int flags)
 /// @param flags
 void eAVControl::setVideoModeMulti(const std::string &mode50, const std::string &mode60, const std::string &mode24, int flags) const
 {
+	eAVSpinnerSuspendGuard spinner_guard;
 #ifdef DREAMNEXTGEN
 	setVideoMode(!mode50.empty() ? mode50 : (!mode60.empty() ? mode60 : mode24), flags);
 #else
@@ -1090,6 +1176,40 @@ bool eAVControl::handleOSDKey(const std::string &device, int key, int flags)
 	}
 	restartOSDTimer();
 	return false;
+}
+
+void eAVControl::setOSDPosition(int left, int top, int width, int height, int flags) const
+{
+	if (width < 1 || height < 1) {
+		eDebug("[%s] %s: invalid rect L:%d T:%d W:%d H:%d", __MODULE__, "setOSDPosition", left, top, width, height);
+		return;
+	}
+
+	ePtr<gMainDC> dc;
+	if (getMainDC(dc) && dc->setOSDPosition(left, top, width, height)) {
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s/e2: L:%d T:%d W:%d H:%d", __MODULE__, "setOSDPosition", left, top, width, height);
+		return;
+	}
+
+	if (procWritable(proc_osd_dst_left) && procWritable(proc_osd_dst_top) && procWritable(proc_osd_dst_width) && procWritable(proc_osd_dst_height)) {
+		CFile::writeIntHex(proc_osd_dst_left, left, __MODULE__, flags);
+		CFile::writeIntHex(proc_osd_dst_top, top, __MODULE__, flags);
+		CFile::writeIntHex(proc_osd_dst_width, width, __MODULE__, flags);
+		CFile::writeIntHex(proc_osd_dst_height, height, __MODULE__, flags);
+		if (procWritable(proc_osd_dst_apply))
+			CFile::writeInt(proc_osd_dst_apply, 1, __MODULE__, flags);
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s/fb: L:%d T:%d W:%d H:%d", __MODULE__, "setOSDPosition", left, top, width, height);
+		return;
+	}
+
+	if (procWritable(sys_osd_window_axis) && procWritable(sys_osd_free_scale)) {
+		CFile::writeStr(sys_osd_window_axis, rectToString(left, top, width, height), __MODULE__, flags);
+		CFile::writeStr(sys_osd_free_scale, "0x10001", __MODULE__, flags);
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s/aml: L:%d T:%d W:%d H:%d", __MODULE__, "setOSDPosition", left, top, width, height);
+	}
 }
 
 /// @brief getEDIDPath
