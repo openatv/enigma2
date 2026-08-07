@@ -13,20 +13,13 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
 
-	// check animation_mode once
-	if(eWindow::m_has_animation_mode==-1) {
-		if (::access("/proc/stb/fb/animation_mode", R_OK) < 0)
-		{
-			eDebug("[eWindow] animation mode not supported");
-			m_animation_mode = 0;
-			eWindow::m_has_animation_mode=0;
-		}
-		else {
-			eDebug("[eWindow] animation mode supported");
-			m_animation_mode = 0x11;
-			eWindow::m_has_animation_mode=1;
-		}
+	const bool desktop_supports_animation = desktop && desktop->supportsShowHideAnimations();
+	if (eWindow::m_has_animation_mode == -1 || (desktop_supports_animation && eWindow::m_has_animation_mode == 0))
+	{
+		eDebug("[eWindow] animation mode %s", desktop_supports_animation ? "supported" : "not supported");
+		eWindow::m_has_animation_mode = desktop_supports_animation ? 1 : 0;
 	}
+	m_animation_mode = desktop_supports_animation ? 0x11 : 0;
 	
 	m_desktop = desktop;
 		/* ask style manager for current style */
@@ -172,7 +165,7 @@ void eWindow::setAnimationMode(int mode)
 	 * 0x10 = hide on
 	 * 0x11 = animation on
 	 */
-	m_animation_mode = (eWindow::m_has_animation_mode==1) ? mode : 0;
+	m_animation_mode = (m_desktop && m_desktop->supportsShowHideAnimations()) ? mode : 0;
 }
 
 void eWindow::setBackgroundGradient(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)

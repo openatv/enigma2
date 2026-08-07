@@ -1,4 +1,5 @@
 #include <lib/base/cfile.h>
+#include <lib/gdi/gmaindc.h>
 #include <lib/gui/evideo.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <unistd.h>
@@ -68,6 +69,12 @@ static inline bool aml_has_axis()
 static inline bool aml_axis_decoder(int decoder)
 {
 	return decoder < 2 && aml_has_axis();
+}
+
+static inline bool e2egl_has_nxpl_window_provider()
+{
+	ePtr<gMainDC> dc;
+	return !gMainDC::getInstance(dc) && dc && dc->getGraphicsBackend() == "e2egl" && dc->getGraphicsWindowProvider() == "NXPL";
 }
 
 // robust desktop size: device_resolution → display/mode → fb0 (fix triple height)
@@ -256,6 +263,21 @@ void eVideoWidget::restoreFullsize()
 {
 	if (aml_has_axis())
 		setFullsize(true);
+}
+
+void eVideoWidget::updateVideoPosition()
+{
+	if (!e2egl_has_nxpl_window_provider())
+		return;
+
+	/*
+	 * A PiG renderer can be shown again with the same widget geometry. In that
+	 * case eWidget::move/resize do not emit change events, but the hardware
+	 * video destination may still contain a fullscreen or previous-screen rect.
+	 */
+	m_state |= 2;
+	m_state &= ~(1 | 8);
+	updatePosition(!isVisible());
 }
 
 void eVideoWidget::updatePosition(int disable)

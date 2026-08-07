@@ -10,6 +10,7 @@ Licensed under GPLv2.
 */
 
 
+#include <lib/base/eerror.h>
 #include <lib/gdi/font.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/ewindowstyleskinned.h>
@@ -26,13 +27,70 @@ eLabel::eLabel(eWidget* parent, int markedPos) : eWidget(parent), m_textPixmap(n
 	m_halign = alignBidi;
 }
 
+eLabel::~eLabel()
+{
+	clearScrollPara();
+}
+
+static void realignScrollPara(eTextPara *para, int flags)
+{
+	if (flags & gPainter::RT_HALIGN_LEFT)
+		para->realign(eTextPara::dirLeft);
+	else if (flags & gPainter::RT_HALIGN_RIGHT)
+		para->realign(eTextPara::dirRight);
+	else if (flags & gPainter::RT_HALIGN_CENTER)
+		para->realign((flags & gPainter::RT_WRAP) ? eTextPara::dirCenter : eTextPara::dirCenterIfFits);
+	else if (flags & gPainter::RT_HALIGN_BLOCK)
+		para->realign(eTextPara::dirBlock);
+	else
+		para->realign(eTextPara::dirBidi);
+}
+
+static ePoint scrollParaOffset(eTextPara *para, const eRect &area, int flags)
+{
+	ePoint offset;
+	if (flags & gPainter::RT_VALIGN_CENTER)
+	{
+		eRect bbox = para->getBoundBox();
+		int vcentered_top = area.top() + ((area.height() - bbox.height()) / 2);
+		int correction = vcentered_top - bbox.top();
+		if ((correction > 0) || (para->getLineCount() == 1))
+			offset += ePoint(0, correction);
+	}
+	else if (flags & gPainter::RT_VALIGN_BOTTOM)
+	{
+		eRect bbox = para->getBoundBox();
+		offset += ePoint(0, area.height() - bbox.height() - 2);
+	}
+	return offset;
+}
+
+static gFont *safeLabelFont(gFont *font, ePtr<gFont> &fallback)
+{
+	if (font)
+		return font;
+	eWarning("[eLabel] missing font, using Regular;20 fallback!");
+	fallback = new gFont("Regular", 20);
+	return fallback;
+}
+
 int eLabel::event(int event, void* data, void* data2) {
 	switch (event) {
 		case evtPaint: {
 			// get style and allow base class to paint background etc.
 			gPainter& painter = *(gPainter*)data2;
 
-			if (m_scroll_text && m_textPixmap && m_paint_pixmap && m_scroll_config.cached) {
+			const gDC *dc = painter.getDC();
+			const bool useScrollPixmap = useCachedScrollPixmap(dc);
+
+			if (m_scroll_text && m_scroll_config.cached && !useScrollPixmap && m_textPixmap) {
+				m_textPixmap = nullptr;
+				m_paint_pixmap = false;
+			} else if (m_scroll_text && m_scroll_config.cached && useScrollPixmap && !m_textPixmap) {
+				createScrollPixmap();
+			}
+
+			if (m_scroll_text && m_textPixmap && m_paint_pixmap && m_scroll_config.cached && useScrollPixmap) {
 				// ensure timer is started with initial delay if not active
 				if (!scrollTimer->isActive()) {
 					scrollTimer->start(m_scroll_config.startDelay);
@@ -109,6 +167,7 @@ int eLabel::event(int event, void* data, void* data2) {
 			}
 
 			auto position = eRect(posX, posY, rectW, rectH);
+			auto basePosition = position;
 
 			// apply scrolling offset (only if scrolling is active)
 			if (m_scroll_config.direction && m_scroll_text) {
@@ -136,17 +195,59 @@ int eLabel::event(int event, void* data, void* data2) {
 				painter.resetClip(clipRect);
 			}
 
-			painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
+			ePoint paraOffset;
+			if (canUseScrollPara(dc, flags) && ensureScrollPara(basePosition, flags, paraOffset)) {
+				ePoint scrollOffset(position.x() - basePosition.x(), position.y() - basePosition.y());
+				painter.renderPara(m_scrollPara, paraOffset + scrollOffset);
 
-			// draw main text (foreground or shadowed)
-			if (m_have_shadow_color) {
-				if (!m_have_foreground_color)
-					style->setStyle(painter, eWindowStyle::styleLabel);
-				else
-					painter.setForegroundColor(m_foreground_color);
+				if (m_scroll_config.mode == eScrollConfig::scrollModeRoll) {
+					ePoint rollOffset = scrollOffset;
+					if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)
+						rollOffset += ePoint(m_text_size.width() - visibleW, 0);
+					else
+						rollOffset += ePoint(0, m_text_size.height() - visibleH);
+					painter.renderPara(m_scrollPara, paraOffset + rollOffset);
+				}
+			} else {
+				painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
 
-				painter.setBackgroundColor(m_shadow_color);
-				painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_text_shaddowoffset, m_tab_width);
+				// draw main text (foreground or shadowed)
+				if (m_have_shadow_color) {
+					if (!m_have_foreground_color)
+						style->setStyle(painter, eWindowStyle::styleLabel);
+					else
+						painter.setForegroundColor(m_foreground_color);
+
+					painter.setBackgroundColor(m_shadow_color);
+					painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_text_shaddowoffset, m_tab_width);
+				}
+
+				if (m_scroll_text && m_scroll_config.mode == eScrollConfig::scrollModeRoll) {
+					eRect rollPosition = position;
+					if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)
+						rollPosition.setX(position.x() + m_text_size.width() - visibleW);
+					else
+						rollPosition.setY(position.y() + m_text_size.height() - visibleH);
+
+					auto rollShadowPosition = eRect(rollPosition.x() - m_shadow_offset.x(), rollPosition.y() - m_shadow_offset.y(), rollPosition.width() - m_shadow_offset.x(), rollPosition.height() - m_shadow_offset.y());
+
+					if (m_have_shadow_color)
+						painter.setForegroundColor(m_shadow_color);
+					else if (m_have_foreground_color)
+						painter.setForegroundColor(m_foreground_color);
+
+					painter.renderText(rollShadowPosition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
+
+					if (m_have_shadow_color) {
+						if (!m_have_foreground_color)
+							style->setStyle(painter, eWindowStyle::styleLabel);
+						else
+							painter.setForegroundColor(m_foreground_color);
+
+						painter.setBackgroundColor(m_shadow_color);
+						painter.renderText(rollPosition, m_text, flags, gRGB(), 0, m_pos, &m_text_shaddowoffset, m_tab_width);
+					}
+				}
 			}
 
 			return 0;
@@ -155,6 +256,7 @@ int eLabel::event(int event, void* data, void* data2) {
 		case evtChangedText:
 		case evtChangedAlignment:
 		case evtChangedMarkedPos:
+			clearScrollPara();
 			invalidate();
 			return 0;
 		case evtParentVisibilityChanged:
@@ -173,54 +275,59 @@ int eLabel::event(int event, void* data, void* data2) {
 void eLabel::updateTextSize() {
 	if (m_scroll_config.direction == eScrollConfig::scrollNone) {
 		if (m_fontScaleType) {
+			ePtr<gFont> fallbackFont;
+			gFont *font = safeLabelFont(m_font, fallbackFont);
 			int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.width());
 			int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.height());
+			int originalFontSize = m_originalFontSize > 0 ? m_originalFontSize : font->pointSize;
 			eSize s = eSize(visibleW, visibleH);
-			m_font->pointSize = m_originalFontSize;
-			m_font->pointWidth = 0;
-			eSize text_size = calculateTextSize(m_font, m_text, s, true); // nowrap at original size
+			font->pointSize = originalFontSize;
+			font->pointWidth = 0;
+			eSize text_size = calculateTextSize(font, m_text, s, true); // nowrap at original size
 			// A negative m_fontScaleSize is relative to the original font size (i.e. the minimum floor is m_originalFontSize + m_fontScaleSize)
-			int scaleFloor = m_fontScaleSize < 0 ? m_originalFontSize + m_fontScaleSize : m_fontScaleSize;
+			int scaleFloor = m_fontScaleSize < 0 ? originalFontSize + m_fontScaleSize : m_fontScaleSize;
 
 			if (m_fontScaleType == 1) {
-				int newFontSize = m_originalFontSize;
+				int newFontSize = originalFontSize;
 				if (text_size.width() > visibleW || text_size.height() > visibleH) {
-					int scaleW = text_size.width() > 0 ? m_originalFontSize * visibleW / text_size.width() : m_originalFontSize;
-					int scaleH = text_size.height() > 0 ? m_originalFontSize * visibleH / text_size.height() : m_originalFontSize;
+					int scaleW = text_size.width() > 0 ? originalFontSize * visibleW / text_size.width() : originalFontSize;
+					int scaleH = text_size.height() > 0 ? originalFontSize * visibleH / text_size.height() : originalFontSize;
 					newFontSize = std::max(std::min(scaleW, scaleH), scaleFloor);
 				}
-				if (m_font->pointSize != newFontSize)
-					m_font->pointSize = newFontSize;
+				if (font->pointSize != newFontSize)
+					font->pointSize = newFontSize;
 			} else if (m_fontScaleType == 2) {
 				int newFontWidth = 0;
 				if (text_size.width() > visibleW && text_size.height() <= visibleH) {
-					int scaleW = m_originalFontSize * visibleW / text_size.width();
+					int scaleW = originalFontSize * visibleW / text_size.width();
 					newFontWidth = std::max(scaleW, scaleFloor);
 				}
-				if (m_font->pointWidth != newFontWidth)
-					m_font->pointWidth = newFontWidth;
+				if (font->pointWidth != newFontWidth)
+					font->pointWidth = newFontWidth;
 			}
 		}
 		return;
 	}
 
 	stopScroll();
+	ePtr<gFont> fallbackFont;
+	gFont *font = safeLabelFont(m_font, fallbackFont);
 
 	int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.width());
 	int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.height());
 	eSize s = eSize(visibleW, visibleH);
 	if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight) {
-		m_text_size = calculateTextSize(m_font, m_text, s, true); // nowrap
+		m_text_size = calculateTextSize(font, m_text, s, true); // nowrap
 		if (m_text_size.width() > s.width()) {
-			m_text_size.setWidth(m_text_size.width() + m_font->pointSize / 10); // avoid issues with rounding
+			m_text_size.setWidth(m_text_size.width() + font->pointSize / 10); // avoid issues with rounding
 			m_scroll_text = true;
 			if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 				m_text_size.setWidth(m_text_size.width() + s.width() * 1.5);
 		}
 	} else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom) {
-		m_text_size = calculateTextSize(m_font, m_text, s, false); // allow wrap
+		m_text_size = calculateTextSize(font, m_text, s, false); // allow wrap
 		if (m_text_size.height() > s.height()) {
-			m_text_size.setHeight(m_text_size.height() + m_font->pointSize / 10); // avoid issues with rounding
+			m_text_size.setHeight(m_text_size.height() + font->pointSize / 10); // avoid issues with rounding
 			if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 				m_text_size.setHeight(m_text_size.height() + s.height() * 1.5);
 			m_scroll_text = true;
@@ -238,10 +345,64 @@ void eLabel::updateTextSize() {
 				m_scroll_config.cached = false;
 				if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 					m_scroll_config.mode = eScrollConfig::scrollModeNormal;
-			} else
-				createScrollPixmap();
+			} else {
+				m_textPixmap = nullptr;
+				m_paint_pixmap = false;
+			}
 		}
 	}
+}
+
+bool eLabel::useCachedScrollPixmap(const gDC *dc) const
+{
+	return m_scroll_config.cached && !(dc && dc->isHardwareAccelerated());
+}
+
+bool eLabel::canUseScrollPara(const gDC *dc, int flags) const
+{
+	return dc && dc->isHardwareAccelerated() && m_scroll_text && m_text_border_width == 0 && m_pos < 0 && !m_have_shadow_color && m_shadow_offset == ePoint() && !(flags & (gPainter::RT_UNDERLINE | gPainter::RT_ELLIPSIS));
+}
+
+bool eLabel::ensureScrollPara(const eRect &area, int flags, ePoint &offset)
+{
+	offset = ePoint();
+	if (m_scrollPara && m_scrollParaArea == area && m_scrollParaFlags == flags && m_scrollParaText == m_text) {
+		offset = m_scrollParaOffset;
+		return true;
+	}
+
+	clearScrollPara();
+
+	eTextPara *para = new eTextPara(area);
+	para->AddRef();
+	para->setFont(m_font, m_tab_width);
+	if (para->renderString(m_text.empty() ? nullptr : m_text.c_str(), (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, 0, -1) < 0) {
+		para->Release();
+		return false;
+	}
+
+	realignScrollPara(para, flags);
+	para->setBlend(flags & gPainter::RT_BLEND);
+
+	m_scrollPara = para;
+	m_scrollParaArea = area;
+	m_scrollParaFlags = flags;
+	m_scrollParaText = m_text;
+	m_scrollParaOffset = scrollParaOffset(para, area, flags);
+	offset = m_scrollParaOffset;
+	return true;
+}
+
+void eLabel::clearScrollPara()
+{
+	if (m_scrollPara) {
+		m_scrollPara->Release();
+		m_scrollPara = nullptr;
+	}
+	m_scrollParaText.clear();
+	m_scrollParaFlags = 0;
+	m_scrollParaOffset = ePoint();
+	m_scrollParaArea = eRect();
 }
 
 void eLabel::createScrollPixmap() {
@@ -347,6 +508,10 @@ void eLabel::setMarkedPos(int markedPos) {
 }
 
 void eLabel::setFont(gFont* font) {
+	if (!font) {
+		eWarning("[eLabel] setFont called without a font!");
+		return;
+	}
 	m_font = font;
 	m_originalFontSize = font->pointSize;
 	event(evtChangedFont);
@@ -433,8 +598,10 @@ void eLabel::clearForegroundColor() {
 
 void eLabel::setTabWidth(int width) {
 	if (width == -1) {
+		ePtr<gFont> fallbackFont;
+		gFont *font = safeLabelFont(m_font, fallbackFont);
 		eTextPara para(eRect(0, 0, 1000, 1000));
-		para.setFont(m_font);
+		para.setFont(font);
 		para.renderString("W", 0);
 		m_tab_width = para.getBoundBox().size().width() * 8;
 	} else {
@@ -450,6 +617,8 @@ eSize eLabel::calculateTextSize(gFont* font, const std::string& string, eSize ta
 	// Calculate text size for a piece of text without creating an eLabel instance
 	// this avoids the side effect of "invalidate" being called on the parent container
 	// during the setup of the font and text on the eLabel
+	ePtr<gFont> fallbackFont;
+	font = safeLabelFont(font, fallbackFont);
 	eTextPara para(eRect(0, 0, targetSize.width(), targetSize.height()));
 	para.setFont(font);
 	para.renderString(string.empty() ? 0 : string.c_str(), nowrap ? 0 : RS_WRAP);
@@ -484,6 +653,7 @@ void eLabel::setScrollText(int direction, long delay, long startDelay, long endD
 void eLabel::stopScroll() {
 	if (scrollTimer)
 		scrollTimer->stop();
+	clearScrollPara();
 	m_end_delay_active = false;
 	m_scroll_text = false;
 	m_scroll_pos = 0;

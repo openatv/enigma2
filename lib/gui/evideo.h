@@ -26,6 +26,7 @@ public:
 	void setFullScreenPosition(eRect pos);
 	void restoreFullsize();
 	static void setFullsize(bool force = false, bool mainOnly = false);
+	void updateVideoPosition();
 protected:
 	int event(int event, void *data=0, void *data2=0);
 	void updatePosition(int disable = 0);

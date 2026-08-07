@@ -576,6 +576,7 @@ private:
 	uint8_t m_scrollbar_mode = showNever;
 	uint8_t m_scrollbar_scroll = byPage;
 	bool m_content_changed = false;
+	bool m_selection_animation_pending = false;
 	bool m_enabled_wrap_around = false;
 	bool m_itemwidth_set = false;
 	bool m_itemheight_set = false;
@@ -607,14 +608,13 @@ private:
 
 	ePoint m_spacing;
 	ePoint m_defined_spacing;
+	eRect m_selection_animation_from;
+	eRect m_selection_animation_to;
 	bool m_spacing_innerOnly;
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar = nullptr;
 	eListboxStyle m_style;
 	ePtr<gPixmap> m_scrollbarpixmap, m_scrollbarbackgroundpixmap;
-#ifdef USE_LIBVUGLES2
-	long m_dir;
-#endif
 #endif
 };
 

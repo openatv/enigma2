@@ -12,13 +12,11 @@ Licensed under GPLv2.
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gui/eslider.h>
+#include <lib/gui/ewindowstyleskinned.h>
 #include <lib/actions/action.h>
 #include <lib/base/nconfig.h>
 #ifdef DREAMNEXTGEN
 #include <lib/driver/inputdevicemanager.h>
-#endif
-#ifdef USE_LIBVUGLES2
-#include "vuplus_gles.h"
 #endif
 
 eRect eListbox::defaultPadding = eRect(1, 1, 1, 1);
@@ -34,6 +32,20 @@ uint8_t eListbox::defaultScrollbarRadiusEdges = 0;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 int eListbox::defaultHorizontalAlignment = -1;
 int eListbox::defaultVerticalAlignment = -1;
+
+static int listboxMaxItemsForSpace(int space, int item, int spacing, bool reserveOuterSpacing)
+{
+	if (space <= 0 || item <= 0)
+		return 0;
+	if (spacing <= 0)
+		return space / item;
+
+	int count = reserveOuterSpacing ? space / (item + spacing) : (space + spacing) / (item + spacing);
+	if (!count && space >= item)
+		count = 1;
+	return count;
+}
+
 
 eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr)
 {
@@ -159,7 +171,10 @@ void eListbox::setContent(iListboxContent *content)
 {
 	m_content = content;
 	if (content)
+	{
 		m_content->setListbox(this);
+		recalcSize();
+	}
 	entryReset();
 }
 
@@ -568,8 +583,33 @@ int eListbox::event(int event, void *data, void *data2)
 			return 0;
 
 		gPainter &painter = *(gPainter *)data2;
+		if (m_selection_animation_pending)
+		{
+			ePoint absolutePosition = getAbsolutePosition();
+			eRect from = m_selection_animation_from;
+			eRect to = m_selection_animation_to;
+			from.moveBy(absolutePosition);
+			to.moveBy(absolutePosition);
+			gRGB selectionColor = style->getColor(eWindowStyleSkinned::colListboxBackgroundSelected);
+			if (m_style.is_set.background_color_selected)
+				selectionColor = m_style.m_background_color_selected;
+			painter.sendListboxAnimation(from, to, selectionColor,
+				m_style.m_gradient_set[1] ? m_style.m_gradient_colors[1] : std::vector<gRGB>(),
+				m_style.m_gradient_set[1] ? m_style.m_gradient_direction[1] : 0,
+				m_style.m_gradient_set[1] ? m_style.m_gradient_alphablend[1] : false,
+				m_style.cornerRadius(1), m_style.cornerRadiusEdges(1), m_style.m_selection);
+			m_selection_animation_pending = false;
+		}
 
-		if (m_paint_pixmap && m_textPixmap) {
+		const gDC *dc = painter.getDC();
+		const bool useScrollPixmap = !(dc && dc->isHardwareAccelerated());
+
+		if (m_paint_pixmap && m_textPixmap && !useScrollPixmap) {
+			m_paint_pixmap = false;
+			m_textPixmap = nullptr;
+		}
+
+		if (m_paint_pixmap && m_textPixmap && useScrollPixmap) {
 			int srcX = m_scroll_rect.x();
 			int srcY = m_scroll_rect.y();
 
@@ -688,16 +728,6 @@ int eListbox::event(int event, void *data, void *data2)
 				}
 				else if (m_orientation == orVertical)
 					m_content->paint(painter, *style, ePoint(posx + xOffset, posy + yOffset), sel);
-
-#ifdef USE_LIBVUGLES2
-				if (sel && m_orientation == orVertical)
-				{
-					ePoint pos = getAbsolutePosition();
-					painter.sendShowItem(m_dir, ePoint(pos.x() + xOffset, pos.y() + posy + yOffset), eSize(m_scrollbar && m_scrollbar->isVisible() ? size().width() - m_scrollbar->size().width() : size().width(), m_itemheight));
-					gles_set_animation_listbox_current(pos.x() + xOffset, pos.y() + posy + yOffset, m_scrollbar && m_scrollbar->isVisible() ? size().width() - m_scrollbar->size().width() : size().width(), m_itemheight);
-					m_dir = justCheck;
-				}
-#endif
 			}
 
 			m_content->cursorMove(+1);
@@ -843,7 +873,8 @@ void eListbox::recalcSize()
 		if (m_content)
 			m_content->setSize(eSize(m_itemwidth, m_itemheight));
 		int w = size().width();
-		m_max_columns = (w + m_spacing.x()) / (m_itemwidth + m_spacing.x());
+		const bool reserveOuterSpacing = (m_item_alignment & (itemHorizontalAlignCenter | itemHorizontalAlignRight)) && !(m_item_alignment & itemHorizontalAlignJustify);
+		m_max_columns = listboxMaxItemsForSpace(w, m_itemwidth, m_spacing.x(), reserveOuterSpacing);
 		if (m_style.m_selection_zoom > 1.0)
 		{
 			int item_w_zoom = (m_style.m_selection_width) - m_spacing.x();
@@ -862,8 +893,10 @@ void eListbox::recalcSize()
 		int w = size().width() - xscrollBar;
 		int h = size().height();
 
-		m_max_columns = (w + m_spacing.x()) / (m_itemwidth + m_spacing.x());
-		m_max_rows = (h + m_spacing.y()) / (m_itemheight + m_spacing.y());
+		const bool reserveOuterXSpacing = (m_item_alignment & (itemHorizontalAlignCenter | itemHorizontalAlignRight)) && !(m_item_alignment & itemHorizontalAlignJustify);
+		const bool reserveOuterYSpacing = (m_item_alignment & (itemVerticalAlignMiddle | itemVerticalAlignBottom)) && !(m_item_alignment & itemVerticalAlignJustify);
+		m_max_columns = listboxMaxItemsForSpace(w, m_itemwidth, m_spacing.x(), reserveOuterXSpacing);
+		m_max_rows = listboxMaxItemsForSpace(h, m_itemheight, m_spacing.y(), reserveOuterYSpacing);
 
 		if (m_style.m_selection_zoom > 1.0)
 		{
@@ -900,7 +933,6 @@ void eListbox::recalcSize()
 
 void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 {
-
 	if (m_orientation != orVertical && m_item_alignment != itemAlignLeftTop)
 	{
 
@@ -908,10 +940,17 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 		int yscrollBar = (m_orientation == orHorizontal) ? ((scrollbarVisible) ? m_scrollbar->size().height() + m_scrollbar_offset : 0) : 0;
 		int xfullSpace = size().width() - xscrollBar;
 		int yfullSpace = size().height() - yscrollBar;
-		m_x_itemSpace = m_style.m_selection_width + m_defined_spacing.x();
-		if (m_max_columns > 1)
+		int alignment_columns = m_max_columns;
+		if (m_orientation == orHorizontal && m_content && m_max_columns > 0)
 		{
-			m_x_itemSpace += ((m_max_columns - 1) * (m_itemwidth + m_defined_spacing.x()));
+			int visible_items = m_content->size() - m_left;
+			if (visible_items > 0 && visible_items < alignment_columns)
+				alignment_columns = visible_items;
+		}
+		m_x_itemSpace = m_style.m_selection_width + m_defined_spacing.x();
+		if (alignment_columns > 1)
+		{
+			m_x_itemSpace += ((alignment_columns - 1) * (m_itemwidth + m_defined_spacing.x()));
 
 			if (m_style.m_selection_width == m_itemwidth) // no zoom : remove 1 space
 				m_x_itemSpace -= m_defined_spacing.x();
@@ -945,10 +984,10 @@ void eListbox::recalcSizeAlignment(bool scrollbarVisible)
 				xOffset = ((xfullSpace - m_x_itemSpace) / 2) + scrollbarLeftSpace;
 			if (m_item_alignment & itemHorizontalAlignRight)
 				xOffset = (xfullSpace - m_x_itemSpace) + scrollbarLeftSpace;
-			if (m_item_alignment & itemHorizontalAlignJustify)
+			if ((m_item_alignment & itemHorizontalAlignJustify) && alignment_columns > 1)
 			{
-				m_x_itemSpace = m_style.m_selection_width + ((m_max_columns - 1) * m_itemwidth);
-				int xspace = (xfullSpace - m_x_itemSpace) / (m_max_columns - 1);
+				m_x_itemSpace = m_style.m_selection_width + ((alignment_columns - 1) * m_itemwidth);
+				int xspace = (xfullSpace - m_x_itemSpace) / (alignment_columns - 1);
 				m_spacing.setX(xspace);
 			}
 		}
@@ -1287,6 +1326,8 @@ void eListbox::setItemAlignment(int align)
 	if (m_item_alignment != align)
 	{
 		m_item_alignment = align;
+		if (m_content)
+			recalcSize();
 		invalidate();
 	}
 }
@@ -1435,6 +1476,7 @@ void eListbox::moveSelection(int dir)
 
 	if (dir == refresh)
 	{
+		m_selection_animation_pending = false;
 		invalidate();
 		return;
 	}
@@ -1453,6 +1495,9 @@ void eListbox::moveSelection(int dir)
 	int oldTop = m_top;
 	int oldLeft = m_left;
 	int oldSel = m_selected;
+	const eRect oldSelectionRect = m_selection_animation_pending
+		? m_selection_animation_from
+		: eRect(getItemPostion(oldSel), eSize(m_style.m_selection_width, m_style.m_selection_height));
 	int prevSel = oldSel;
 	int newSel;
 	int pageOffset = (m_page_size > 0 && m_scrollbar_scroll == byLine) ? m_page_size : maxItems;
@@ -1462,10 +1507,10 @@ void eListbox::moveSelection(int dir)
 	bool indexChanged = dir > 100;
 	if (indexChanged)
 		dir -= 100;
+	const bool animateSelection = !indexChanged && (dir == moveUp || dir == moveDown || dir == moveLeft || dir == moveRight);
+	if (!animateSelection)
+		m_selection_animation_pending = false;
 
-#ifdef USE_LIBVUGLES2
-	m_dir = dir;
-#endif
 	switch (dir)
 	{
 	case moveFirst:
@@ -1792,6 +1837,24 @@ void eListbox::moveSelection(int dir)
 	{
 		if (m_top != oldTop && m_content)
 			m_content->resetClip();
+	}
+
+	if (oldSel != m_selected)
+	{
+		const eRect newSelectionRect(getItemPostion(m_selected), eSize(m_style.m_selection_width, m_style.m_selection_height));
+		const eRect listRect(ePoint(0, 0), size());
+		const bool oldVisible = oldSelectionRect == (oldSelectionRect & listRect);
+		const bool newVisible = newSelectionRect == (newSelectionRect & listRect);
+		const bool viewportStable = oldTop == m_top && oldLeft == m_left;
+		if (animateSelection && viewportStable && !oldSelectionRect.empty() && !newSelectionRect.empty() && oldVisible && newVisible &&
+			(oldSelectionRect.x() != newSelectionRect.x() || oldSelectionRect.y() != newSelectionRect.y()))
+		{
+			m_selection_animation_from = oldSelectionRect;
+			m_selection_animation_to = newSelectionRect;
+			m_selection_animation_pending = true;
+		}
+		else
+			m_selection_animation_pending = false;
 	}
 
 	if (oldSel != m_selected) /* emit */
