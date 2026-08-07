@@ -7,6 +7,8 @@ from Tools.Directories import SCOPE_SKINS, resolveFilename
 
 
 class WizardVideo(Wizard, ShowRemoteControl):
+	disableWindowAnimation = True
+
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_SKINS, "videowizard.xml")
 		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
@@ -156,6 +158,10 @@ class WizardVideo(Wizard, ShowRemoteControl):
 	def setVideoMode(self, port, mode, rate):
 		# Selection changes, OK and entry into the next step can request the same mode.
 		videoMode = (port, mode, rate)
+		if BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo"):
+			modes = avSwitch.rates[mode][rate]
+			selectedMode = next(iter(modes.values()), mode)
+			videoMode = (port, modes.get(50) or modes.get(60) or selectedMode)
 		if videoMode != self.lastVideoMode:
 			avSwitch.setMode(port=port, mode=mode, rate=rate)
 			self.lastVideoMode = videoMode

@@ -8,7 +8,7 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eInputDeviceManager, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eInputDeviceManager, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGraphicsInfo, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.About import about
@@ -579,6 +579,7 @@ class InformationDistribution(InformationBase):
 			576: "PAL",
 			720: "HD",
 			1080: "FHD",
+			1440: "WQHD",
 			2160: "4K",
 			4320: "8K",
 			8640: "16K"
@@ -1349,6 +1350,59 @@ class InformationReceiver(InformationBase):
 		givenId = fileReadLine("/proc/device-tree/le-dt-id", source=MODULE_NAME)
 		if givenId:
 			info.append(self.formatLine("P1", _("Given device id"), givenId))
+		graphicsInfo = getGraphicsInfo()
+		if graphicsInfo:
+			bufferingNames = {
+				"single": _("Single buffer"),
+				"double": _("Double buffer"),
+				"triple": _("Triple buffer")
+			}
+			backendNames = {
+				"framebuffer": _("Standard framebuffer"),
+				"e2egl": "e2egl / GLES"
+			}
+			info.append("")
+			info.append(self.formatLine("S", _("Graphics information")))
+			if self.extraSpacing:
+				info.append("")
+			backend = graphicsInfo.get("backend", "")
+			if backend:
+				info.append(self.formatLine("P1", _("Graphics backend"), backendNames.get(backend, backend)))
+			provider = graphicsInfo.get("window_provider", "")
+			if provider:
+				info.append(self.formatLine("P1", _("Graphics provider"), provider))
+			pages = graphicsInfo.get("buffer_pages", 0)
+			buffering = graphicsInfo.get("buffering", "")
+			bufferingText = bufferingNames.get(buffering, buffering)
+			if bufferingText:
+				if pages:
+					pageText = _("page") if pages == 1 else _("pages")
+					bufferingText = f"{bufferingText} ({pages} {pageText})"
+				info.append(self.formatLine("P1", _("Framebuffer buffering"), bufferingText))
+			logicalWidth = graphicsInfo.get("logical_width", 0)
+			logicalHeight = graphicsInfo.get("logical_height", 0)
+			surfaceWidth = graphicsInfo.get("surface_width", 0)
+			surfaceHeight = graphicsInfo.get("surface_height", 0)
+			if logicalWidth and logicalHeight:
+				resolutionText = f"{logicalWidth}x{logicalHeight}"
+				if surfaceWidth and surfaceHeight and (surfaceWidth != logicalWidth or surfaceHeight != logicalHeight):
+					resolutionText = f"{resolutionText} ({_('surface')}: {surfaceWidth}x{surfaceHeight})"
+				info.append(self.formatLine("P1", _("Graphics resolution"), resolutionText))
+			eglMajor = graphicsInfo.get("egl_major", 0)
+			eglMinor = graphicsInfo.get("egl_minor", 0)
+			if eglMajor:
+				info.append(self.formatLine("P1", _("EGL version"), f"{eglMajor}.{eglMinor}"))
+			glesVersion = graphicsInfo.get("gles_version", 0)
+			if glesVersion:
+				info.append(self.formatLine("P1", _("GLES version"), f"OpenGL ES {glesVersion}.0"))
+			if eglMajor:
+				swapText = _("Preserved") if graphicsInfo.get("preserved_swap", 0) else _("Destroyed")
+				info.append(self.formatLine("P1", _("EGL swap behavior"), swapText))
+			accelerator = graphicsInfo.get("accelerator", "")
+			if accelerator:
+				info.append(self.formatLine("P1", _("Graphics acceleration"), accelerator))
+			info.append(self.formatLine("P1", _("Hardware accelerated"), _("Yes") if graphicsInfo.get("hardware_accelerated", 0) else _("No")))
+			info.append(self.formatLine("P1", _("OSD animations"), _("Supported") if graphicsInfo.get("animations_supported", 0) else _("Not supported")))
 		if BoxInfo.getItem("HiSilicon"):
 			info.append("")
 			info.append(self.formatLine("S", _("HiSilicon specific information")))

@@ -20,6 +20,7 @@ from Tools.Directories import SCOPE_SKINS, resolveFilename
 
 class Wizard(Screen):
 	instance = None
+	disableWindowAnimation = False
 	buttonMap = {
 		"LEFT": "leftRightActions",
 		"RIGHT": "leftRightActions",
@@ -283,6 +284,9 @@ class Wizard(Screen):
 				self.wizard[self.step]["condition"] = "%s%s" % (self.wizard[self.step]["condition"], text)
 
 	def layoutFinished(self):
+		if self.disableWindowAnimation:
+			# Apply after the eWindow exists but before the wizard is shown.
+			self.setAnimationMode(0)
 		if self.showList:
 			for renderer in self.renderer:
 				rootRenderer = renderer

@@ -2,7 +2,7 @@ from os import W_OK, access
 from os.path import exists
 from time import sleep
 
-from enigma import eAVControl, getDesktop
+from enigma import eAVControl, getDesktop, getGraphicsInfo, gMainDC
 
 from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionInteger, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.SystemInfo import BoxInfo
@@ -15,6 +15,23 @@ MACHINEBUILD = BoxInfo.getItem("machinebuild")
 
 config.av = ConfigSubsection()
 config.av.edid_override = ConfigYesNo(default=False)
+
+
+def useOSDPositionAxis():
+	return getGraphicsInfo().get("backend", "") == "e2egl" or eAVControl.getInstance().hasVideoAxis()
+
+
+def resetDreamNextGenOSDPositionIfStale(limits):
+	if MACHINEBUILD not in ("dreamone", "dreamtwo") or getGraphicsInfo().get("backend", "") != "e2egl":
+		return
+	width = max(1, limits[2])
+	height = max(1, limits[3])
+	if config.osd.dst_width.value < int(width * 0.85) or config.osd.dst_height.value < int(height * 0.85):
+		config.osd.dst_left.setValue(limits[0])
+		config.osd.dst_top.setValue(limits[1])
+		config.osd.dst_width.setValue(limits[2])
+		config.osd.dst_height.setValue(limits[3])
+		print(f"[AVSwitch] Reset stale DreamNextGen OSD position to '{limits[0]} {limits[1]} {limits[2]} {limits[3]}'.")
 
 
 def InitAVSwitch():
@@ -259,8 +276,8 @@ def InitAVSwitch():
 	config.av.policy_169.addNotifier(avSwitch.setPolicy169)
 	config.osd = ConfigSubsection()
 	config.osd.language = ConfigText(default=config.misc.locale.value)
-	if eAVControl.getInstance().hasVideoAxis():
-		limits = [int(x) for x in avSwitch.getWindowsAxis().split()]
+	if useOSDPositionAxis():
+		limits = [int(x) for x in eAVControl.getInstance().getOSDAxis().split()]
 		config.osd.dst_left = ConfigSelectionInteger(default=limits[0], first=limits[0] - 255, last=limits[0] + 255, step=1, wrap=False)
 		config.osd.dst_top = ConfigSelectionInteger(default=limits[1], first=limits[1] - 255, last=limits[1] + 255, step=1, wrap=False)
 		config.osd.dst_width = ConfigSelectionInteger(default=limits[2], first=limits[2] - 255, last=limits[2] + 255, step=1, wrap=False)
@@ -1244,13 +1261,21 @@ class AVSwitchBase:
 			if force == 50:
 				mode24 = mode50
 		eAVControl.getInstance().setVideoModeMulti(mode50, mode60, mode24, 1)
-		if eAVControl.getInstance().hasVideoAxis():
-			limits = [int(x) for x in eAVControl.getInstance().getVideoAxis(mode).split()]
+		if useOSDPositionAxis():
+			limits = [int(x) for x in eAVControl.getInstance().getOSDAxis(mode).split()]
 			config.osd.dst_left.setChoices(default=limits[0], first=limits[0] - 255, last=limits[0] + 255)
 			config.osd.dst_top.setChoices(default=limits[1], first=limits[1] - 255, last=limits[1] + 255)
 			config.osd.dst_width.setChoices(default=limits[2], first=limits[2] - 255, last=limits[2] + 255)
 			config.osd.dst_height.setChoices(default=limits[3], first=limits[3] - 255, last=limits[3] + 255)
-			print(f"[AVSwitch] Framebuffer mode '{getDesktop(0).size().width()}', axis '{eAVControl.getInstance().getVideoAxis(mode)}'.")
+			resetDreamNextGenOSDPositionIfStale(limits)
+			print(f"[AVSwitch] Framebuffer mode '{getDesktop(0).size().width()}', OSD axis '{eAVControl.getInstance().getOSDAxis(mode)}'.")
+		mainDC = gMainDC.getInstance()
+		if mainDC:
+			mainDC.refresh()
+			desktop = getDesktop(0)
+			if desktop:
+				desktop.resize(desktop.size())
+				desktop.paint()
 		self.setColorFormat(config.av.colorformat.value)
 		self.current_mode = mode
 		self.current_port = port
