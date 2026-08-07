@@ -638,6 +638,36 @@ PyObject *getDeviceDB()
 }
 %}
 
+PyObject *getGraphicsInfo();
+%{
+PyObject *getGraphicsInfo()
+{
+	ePyObject result = PyDict_New();
+	ePtr<gMainDC> dc;
+
+	if (gMainDC::getInstance(dc) < 0 || !dc)
+		return result;
+
+	PutToDict(result, "backend", dc->getGraphicsBackend().c_str());
+	PutToDict(result, "window_provider", dc->getGraphicsWindowProvider().c_str());
+	PutToDict(result, "accelerator", dc->getGraphicsAccelerator().c_str());
+	PutToDict(result, "buffering", dc->getGraphicsBuffering().c_str());
+	PutToDict(result, "buffer_pages", dc->getGraphicsBufferPages());
+	PutToDict(result, "logical_width", dc->getGraphicsLogicalWidth());
+	PutToDict(result, "logical_height", dc->getGraphicsLogicalHeight());
+	PutToDict(result, "surface_width", dc->getGraphicsSurfaceWidth());
+	PutToDict(result, "surface_height", dc->getGraphicsSurfaceHeight());
+	PutToDict(result, "egl_major", dc->getGraphicsEGLMajor());
+	PutToDict(result, "egl_minor", dc->getGraphicsEGLMinor());
+	PutToDict(result, "gles_version", dc->getGraphicsGLESVersion());
+	PutToDict(result, "preserved_swap", dc->getGraphicsPreservedSwap() ? 1 : 0);
+	PutToDict(result, "suspended", dc->isGraphicsSuspended() ? 1 : 0);
+	PutToDict(result, "hardware_accelerated", dc->getGraphicsHardwareAccelerated() ? 1 : 0);
+	PutToDict(result, "animations_supported", dc->getGraphicsAnimationsSupported() ? 1 : 0);
+	return result;
+}
+%}
+
 void eProfileDone();
 %{
 void eProfileDone()
@@ -682,11 +712,12 @@ extern const char *getOARev();
 extern int getImageFingerprint();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
-#ifndef HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
+extern void setAnimation_toast_speed(int speed);
 extern void setAnimation_current_listbox(int a);
-#endif
+extern void setAnimation_profiles(int enabled, int dialog, int popup, int toast);
+extern bool supportsEGLAnimations(void);
 extern void pauseInit(void);
 extern void resumeInit(void);
 extern int checkInternetAccess(const char* host, int timeout = 3);
@@ -710,11 +741,12 @@ extern const char *getOARev();
 extern int getImageFingerprint();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
-#ifndef HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
+extern void setAnimation_toast_speed(int speed);
 extern void setAnimation_current_listbox(int a);
-#endif
+extern void setAnimation_profiles(int enabled, int dialog, int popup, int toast);
+extern bool supportsEGLAnimations(void);
 extern void pauseInit(void);
 extern void resumeInit(void);
 extern int checkInternetAccess(const char* host, int timeout = 3);

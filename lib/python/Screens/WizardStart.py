@@ -255,7 +255,23 @@ class WizardStart(Wizard, ShowRemoteControl):
 
 	def getFreeMemory(self):
 		memInfo = fileReadLines("/proc/meminfo", source=MODULE_NAME)
-		return int([line for line in memInfo if "MemFree" in line][0].split(":")[1].strip().split(maxsplit=1)[0]) // 1024
+		values = {}
+		for line in memInfo:
+			if ":" in line:
+				key, value = line.split(":", 1)
+				try:
+					values[key] = int(value.strip().split(maxsplit=1)[0])
+				except (IndexError, ValueError):
+					pass
+
+		# MemFree only counts completely unused pages and therefore treats
+		# reclaimable page cache as unavailable.  MemAvailable is the kernel's
+		# estimate of how much memory a new workload can use without swapping.
+		# Older kernels without MemAvailable get a conservative approximation.
+		available = values.get("MemAvailable")
+		if available is None:
+			available = values.get("MemFree", 0) + values.get("Buffers", 0) + values.get("Cached", 0) + values.get("SReclaimable", 0) - values.get("Shmem", 0)
+		return max(0, available) // 1024
 
 	def isFlashExpanderActive(self):
 		return isdir(join(f"/{EXPANDER_MOUNT}/{EXPANDER_MOUNT}", "bin"))
@@ -452,6 +468,8 @@ class WizardStart(Wizard, ShowRemoteControl):
 
 
 class WizardLanguage(Wizard, ShowRemoteControl):
+	disableWindowAnimation = True
+
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		self.xmlfile = ["wizardlanguage.xml"]
 		Wizard.__init__(self, session, showSteps=False)

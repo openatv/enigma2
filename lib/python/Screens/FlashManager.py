@@ -8,7 +8,7 @@ from time import monotonic, time
 from urllib.request import Request, urlopen
 from zipfile import ZipFile
 
-from enigma import eEPGCache, eTimer, fbClass
+from enigma import eEPGCache, eTimer, fbClass, gMainDC
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -497,6 +497,7 @@ class FlashImage(Screen, ProtectedScreen):
 		self.setTitle(_("Flash Image"))
 		self.containerBackup = None
 		self.containerOFGWrite = None
+		self.graphicsAccess = None
 		self.getImageList = None
 		self.downloader = None
 		self.downloadOnly = downloadOnly
@@ -526,7 +527,7 @@ class FlashImage(Screen, ProtectedScreen):
 		self.close(True)
 
 	def keyOK(self):
-		fbClass.getInstance().unlock()
+		self.unlockGraphics()
 		if self["header"].text == _("Flashing image successful"):
 			if MultiBoot.canMultiBoot():
 				self.session.openWithCallback(self.keyCancel, MultiBootManager)
@@ -818,10 +819,37 @@ class FlashImage(Screen, ProtectedScreen):
 			)
 			if target and exists(target):
 				remove(target)
-			self.flashImage()
 		except Exception as err:
 			print("[FlashManager] startUnzip Error: %s!" % str(err))
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error unzipping image '%s'!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+			return
+		self.flashImage()
+
+	def lockGraphics(self):
+		framebuffer = fbClass.getInstance()
+		if framebuffer is not None:
+			if framebuffer.lock() >= 0:
+				self.graphicsAccess = ("framebuffer", framebuffer)
+				return True
+		else:
+			mainDC = gMainDC.getInstance()
+			if mainDC is not None and mainDC.suspendGraphics():
+				self.graphicsAccess = ("mainDC", mainDC)
+				print("[FlashManager] Main graphics suspended for ofgwrite.")
+				return True
+		print("[FlashManager] Unable to lock graphics for ofgwrite!")
+		return False
+
+	def unlockGraphics(self):
+		graphicsAccess = self.graphicsAccess
+		self.graphicsAccess = None
+		if graphicsAccess is None:
+			return
+		mode, graphics = graphicsAccess
+		if mode == "framebuffer":
+			graphics.unlock()
+		elif not graphics.resumeGraphics():
+			print("[FlashManager] Unable to resume main graphics after ofgwrite!")
 
 	def flashImage(self):
 		if BoxInfo.getItem("model") == "dm7435" and not hasattr(self, "dreamKernelA"):
@@ -898,14 +926,21 @@ class FlashImage(Screen, ProtectedScreen):
 				cmdArgs = ["-r"]
 			else:  # Normal non MultiBoot receiver.
 				cmdArgs = ["-r", "-k"]
+			if not self.lockGraphics():
+				self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to lock the graphics system for flashing!"), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+				return
 			self.containerOFGWrite = Console()
-			self.containerOFGWrite.ePopen([OFGWRITE, OFGWRITE] + cmdArgs + ['%s' % imageFiles], callback=self.flashImageDone)
-			fbClass.getInstance().lock()
+			try:
+				self.containerOFGWrite.ePopen([OFGWRITE, OFGWRITE] + cmdArgs + ['%s' % imageFiles], callback=self.flashImageDone)
+			except Exception:
+				self.containerOFGWrite = None
+				self.unlockGraphics()
+				raise
 		else:
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Image '%s' to install is invalid!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def flashImageDone(self, data, retVal, extraArgs):
-		fbClass.getInstance().unlock()
+		self.unlockGraphics()
 		# The unlock resets the framebuffer, draw the whole screen again.
 		self.hide()
 		self.show()
