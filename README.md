@@ -1,5 +1,9 @@
 # OpenATV 8.0
 
+## Developer notes
+
+* [e2egl / GLES OSD backend](README.e2egl.md)
+
 ## Build status
 
 [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/build.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/build.yml)
