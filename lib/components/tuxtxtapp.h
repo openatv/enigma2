@@ -17,6 +17,13 @@ class eTuxtxtApp: private eThread, public sigc::trackable
 	int demux;
 	bool enableTtCaching, uiRunning;
 	const eTSMPEGDecoder *cacheOwner = nullptr;
+	enum GraphicsAccessMode
+	{
+		graphicsAccessNone,
+		graphicsAccessFramebuffer,
+		graphicsAccessMainDC
+	};
+	GraphicsAccessMode graphicsAccessMode;
 	static eTuxtxtApp *instance;
 	pthread_mutex_t cacheChangeLock;
 

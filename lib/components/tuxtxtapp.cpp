@@ -4,9 +4,18 @@
 #include <lib/driver/rc.h>
 #include <lib/gdi/lcd.h>
 #include <lib/gdi/fb.h>
+#include <lib/gdi/gmaindc.h>
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/python/python.h>
+
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+
+#ifndef FBIO_BLIT
+#define FBIO_BLIT 0x22
+#endif
 
 extern "C" int tuxtxt_run_ui(int pid, int demux);
 extern "C" int tuxtxt_init();
@@ -19,7 +28,22 @@ extern "C" void tuxtxt_enabledebug();
 eAutoInitP0<eTuxtxtApp> init_eTuxtxtApp(eAutoInitNumbers::lowlevel, "Tuxtxt");
 eTuxtxtApp *eTuxtxtApp::instance = NULL;
 
-eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false), messagePump(eApp, 0, "eTuxtxtApp")
+static void flushVuplusFramebuffer()
+{
+	int fd = open(FB_DEV, O_RDWR | O_CLOEXEC);
+	if (fd < 0)
+	{
+		eDebug("[eTuxtxtApp] failed to open %s for final Vuplus blit: %m", FB_DEV);
+		return;
+	}
+	if (ioctl(fd, FBIO_BLIT) < 0)
+		eDebug("[eTuxtxtApp] final Vuplus framebuffer blit failed: %m");
+	else
+		eDebug("[eTuxtxtApp] final Vuplus framebuffer blit completed");
+	close(fd);
+}
+
+eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false), graphicsAccessMode(graphicsAccessNone), messagePump(eApp, 0, "eTuxtxtApp")
 {
 	CONNECT(messagePump.recv_msg, eTuxtxtApp::recvEvent);
 	pthread_mutex_init( &cacheChangeLock, 0 );
@@ -40,13 +64,50 @@ void eTuxtxtApp::recvEvent(const int &evt)
 	uiRunning = false;
 	eDBoxLCD::getInstance()->unlock();
 	eDBoxLCD::getInstance()->update();
-	fbClass::getInstance()->unlock();
+	if (graphicsAccessMode == graphicsAccessFramebuffer)
+	{
+		if (fbClass *fb = fbClass::getInstance())
+			fb->unlock();
+		else
+			eDebug("[eTuxtxtApp] framebuffer disappeared while teletext was running");
+	}
+	else if (graphicsAccessMode == graphicsAccessMainDC)
+	{
+		ePtr<gMainDC> mainDC;
+		if (gMainDC::getInstance(mainDC) || !mainDC->resumeGraphics())
+			eDebug("[eTuxtxtApp] failed to resume main graphics after teletext");
+		else if (mainDC->getGraphicsWindowProvider() == "Vuplus")
+			flushVuplusFramebuffer();
+	}
+	graphicsAccessMode = graphicsAccessNone;
 	/* emit */appClosed();
 }
 
 int eTuxtxtApp::startUi()
 {
-	if (fbClass::getInstance()->lock() >= 0)
+	bool graphicsReady = false;
+	graphicsAccessMode = graphicsAccessNone;
+
+	if (fbClass *fb = fbClass::getInstance())
+	{
+		if (fb->lock() >= 0)
+		{
+			graphicsAccessMode = graphicsAccessFramebuffer;
+			graphicsReady = true;
+		}
+	}
+	else
+	{
+		ePtr<gMainDC> mainDC;
+		if (!gMainDC::getInstance(mainDC) && mainDC->suspendGraphics())
+		{
+			graphicsAccessMode = graphicsAccessMainDC;
+			graphicsReady = true;
+			eDebug("[eTuxtxtApp] main graphics suspended for teletext");
+		}
+	}
+
+	if (graphicsReady)
 	{
 		eDBoxLCD::getInstance()->lock();
 		pthread_mutex_lock( &cacheChangeLock );
