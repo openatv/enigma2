@@ -3,4 +3,5 @@ pkginclude_HEADERS = \
 	libsig_comp.h \
 	nanosvg.h \
 	nanosvgrast.h \
-	hardwaredb.h
+	hardwaredb.h \
+	stb_rect_pack.h
