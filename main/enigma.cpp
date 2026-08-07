@@ -22,6 +22,10 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/modelinformation.h>
+#ifdef HAVE_EGL
+#include <lib/gdi/egl/egl_config.h>
+#include <lib/gdi/egl/gegldc.h>
+#endif
 #include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
@@ -246,6 +250,14 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
+#ifdef HAVE_EGL
+	for (int i = 1; i < argc; ++i)
+	{
+		if (strcmp(argv[i], "--no-egl") == 0)
+			egl_config::disable_egl = true;
+	}
+#endif
+
 	gst_init(&argc, &argv);
 
 	// set pythonpath if unset
@@ -267,24 +279,33 @@ int main(int argc, char **argv)
 	eMain main;
 
 #if 1
+	eDebug("[Enigma] Graphics desktop setup start.");
 	ePtr<gMainDC> my_dc;
-	gMainDC::getInstance(my_dc);
+	if (gMainDC::getInstance(my_dc) < 0 || !my_dc)
+		eFatal("[Enigma] No main graphics DC available.");
+	eDebug("[Enigma] Main graphics DC size %dx%d.", my_dc->size().width(), my_dc->size().height());
 
 	// int double_buffer = my_dc->haveDoubleBuffering();
 
 	ePtr<gLCDDC> my_lcd_dc;
-	gLCDDC::getInstance(my_lcd_dc);
+	if (gLCDDC::getInstance(my_lcd_dc) < 0 || !my_lcd_dc)
+		eFatal("[Enigma] No LCD graphics DC available.");
+	eDebug("[Enigma] LCD graphics DC size %dx%d.", my_lcd_dc->size().width(), my_lcd_dc->size().height());
 
 	/* ok, this is currently hardcoded for arabic. */
 	/* some characters are wrong in the regular font, force them to use the replacement font */
+	eDebug("[Enigma] Installing forced replacement glyph ranges.");
 	for (int i = 0x60c; i <= 0x66d; ++i)
 		eTextPara::forceReplacementGlyph(i);
 	eTextPara::forceReplacementGlyph(0xfdf2);
 	for (int i = 0xfe80; i < 0xff00; ++i)
 		eTextPara::forceReplacementGlyph(i);
+	eDebug("[Enigma] Forced replacement glyph ranges installed.");
 
+	eDebug("[Enigma] Creating widget desktops.");
 	eWidgetDesktop dsk(my_dc->size());
 	eWidgetDesktop dsk_lcd(my_lcd_dc->size());
+	eDebug("[Enigma] Widget desktops created.");
 
 	dsk.setStyleID(0);
 	dsk_lcd.setStyleID(my_lcd_dc->size().width() == 96 ? 2 : 1);
@@ -300,15 +321,19 @@ int main(int argc, char **argv)
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
 
+	eDebug("[Enigma] Binding graphics DCs to widget desktops.");
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
+	eDebug("[Enigma] Graphics DCs bound to widget desktops.");
 
 	dsk.setBackgroundColor(gRGB(0, 0, 0, 0xFF));
 #endif
 
 	/* redrawing is done in an idle-timer, so we have to set the context */
+	eDebug("[Enigma] Setting redraw tasks.");
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
+	eDebug("[Enigma] Redraw tasks set.");
 
 	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "50,50");
 	int spinnerPostionX, spinnerPostionY;
@@ -506,26 +531,81 @@ void dump_malloc_stats(void)
 	eDebug("[Enigma] Malloc %zu total.", mi.uordblks);
 }
 
-#ifdef USE_LIBVUGLES2
-#include <vuplus_gles.h>
+bool supportsEGLAnimations(void)
+{
+#if defined(HAVE_EGL)
+	ePtr<gMainDC> dc;
+	if (gMainDC::getInstance(dc) < 0 || !dc)
+		return false;
+	return dc->getGraphicsBackend() == "e2egl" && dc->getGraphicsAnimationsSupported();
+#else
+	return false;
+#endif
+}
+
 void setAnimation_current(int a)
 {
-	gles_set_animation_func(a);
+#if defined(HAVE_EGL)
+	if (supportsEGLAnimations())
+		gEGLDCSetAnimationCurrent(a);
+	else
+		(void)a;
+#else
+	(void)a;
+#endif
 }
 
 void setAnimation_speed(int speed)
 {
-	gles_set_animation_speed(speed);
+#if defined(HAVE_EGL)
+	if (supportsEGLAnimations())
+		gEGLDCSetAnimationSpeed(speed);
+	else
+		(void)speed;
+#else
+	(void)speed;
+#endif
+}
+
+void setAnimation_toast_speed(int speed)
+{
+#if defined(HAVE_EGL)
+	if (supportsEGLAnimations())
+		gEGLDCSetToastAnimationSpeed(speed);
+	else
+		(void)speed;
+#else
+	(void)speed;
+#endif
 }
 
 void setAnimation_current_listbox(int a)
 {
-	gles_set_animation_listbox_func(a);
-}
+#if defined(HAVE_EGL)
+	if (supportsEGLAnimations())
+		gEGLDCSetAnimationListbox(a);
+	else
+		(void)a;
 #else
-#ifndef HAVE_OSDANIMATION
-void setAnimation_current(int a) {}
-void setAnimation_speed(int speed) {}
-void setAnimation_current_listbox(int a) {}
+	(void)a;
 #endif
+}
+
+void setAnimation_profiles(int enabled, int dialog, int popup, int toast)
+{
+#if defined(HAVE_EGL)
+	if (supportsEGLAnimations()) {
+		gEGLDCSetAnimationProfiles(enabled, dialog, popup, toast);
+	} else {
+		(void)enabled;
+		(void)dialog;
+		(void)popup;
+		(void)toast;
+	}
+#else
+	(void)enabled;
+	(void)dialog;
+	(void)popup;
+	(void)toast;
 #endif
+}

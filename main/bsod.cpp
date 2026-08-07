@@ -295,7 +295,7 @@ static void bsodFatalSignal(const char *component, int signum)
 		p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
 		p.setBackgroundColor(gRGB(0x27408B));
 		p.setForegroundColor(gRGB(0xFFFFFF));
-		int hd =  my_dc->size().width() == 1920;
+		int hd =  my_dc->size().width() >= 1920;
 		ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 		p.setFont(font);
 		p.clear();
