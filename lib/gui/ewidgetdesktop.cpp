@@ -2,6 +2,7 @@
 #include <lib/gui/ewidget.h>
 #include <lib/base/ebase.h>
 #include <lib/gdi/grc.h>
+#include <algorithm>
 
 extern void dumpRegion(const gRegion &region);
 
@@ -35,11 +36,28 @@ void eWidgetDesktop::addRootWidget(eWidget *root)
 
 void eWidgetDesktop::removeRootWidget(eWidget *root)
 {
+	const bool hardware_immediate = m_comp_mode == cmImmediate && m_screen.m_dc && m_screen.m_dc->isHardwareAccelerated();
+	gRegion exposed_region;
+
+	if (hardware_immediate)
+	{
+		exposed_region = root->m_visible_with_childs;
+		if (exposed_region.empty())
+			exposed_region = gRegion(eRect(ePoint(0, 0), root->size()));
+		exposed_region.moveBy(root->position());
+	}
+
 		/* modal roots own a comp buffer even in immediate mode. */
 	for (int i = 0; i < MAX_LAYER; ++i)
 		removeBufferForWidget(root, i);
 
 	m_root.remove(root);
+
+	if (hardware_immediate)
+	{
+		recalcClipRegions(0);
+		invalidate(exposed_region);
+	}
 }
 
 int eWidgetDesktop::movedWidget(eWidget *root)
@@ -59,6 +77,8 @@ int eWidgetDesktop::movedWidget(eWidget *root)
 
 void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible, bool parent)
 {
+	const bool propagate_child_occlusion = parent && widget->isTransparent() && m_comp_mode == cmImmediate && m_screen.m_dc && m_screen.m_dc->isHardwareAccelerated();
+
 		/* start with our clip region, clipped with the parent's */
 	if (widget->m_vis & eWidget::wVisShow)
 	{
@@ -85,7 +105,15 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		if (i != widget->m_childs.end())
 		{
 			if (i->m_vis & eWidget::wVisShow)
+			{
 				calcWidgetClipRegion(*i, widget->m_visible_region, false);
+				if (propagate_child_occlusion && !i->isTransparent() && !i->m_gradient_alphablend && i->m_cornerRadius == 0 && !i->m_alphaBlend)
+				{
+					gRegion child_opaque = i->m_visible_with_childs;
+					child_opaque.moveBy(widget->position() + i->position());
+					parent_visible -= child_opaque;
+				}
+			}
 			else
 				clearVisibility(*i);
 		}
@@ -421,6 +449,14 @@ void eWidgetDesktop::paint()
 		return;
 	}
 
+	if (m_comp_mode == cmImmediate && m_screen.m_dc && m_screen.m_dc->isHardwareAccelerated() && !m_screen.m_dirty_region.empty())
+	{
+		gPainter painter(m_screen.m_dc);
+		painter.resetClip(m_screen.m_dirty_region);
+		painter.setBackgroundColor(gRGB(0, 0, 0, 0xFF));
+		painter.clear();
+	}
+
 		/* walk all root windows. */
 	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 	{
@@ -549,15 +585,18 @@ void eWidgetDesktop::createBufferForWidget(eWidget *widget, int layer, const eRe
 	comp->m_screen_size = bbox.size();
 		/* TODO: configurable bit depth. */
 
-		/* clone palette. FIXME. */
+		/* Clone the screen palette when it has one. GLES screen pixmaps are
+		 * true-color surfaces and therefore do not carry a CLUT. */
 	ePtr<gPixmap> pm = new gPixmap(comp->m_screen_size, 32, 1), pm_screen;
-	pm->surface->clut.data = new gRGB[256];
-	pm->surface->clut.colors = 256;
-	pm->surface->clut.start = 0;
-
 	m_screen.m_dc->getPixmap(pm_screen);
-
-	memcpy(static_cast<void*>(pm->surface->clut.data), pm_screen->surface->clut.data, 256 * sizeof(gRGB));
+	if (pm_screen && pm_screen->surface && pm_screen->surface->clut.data && pm_screen->surface->clut.colors > 0)
+	{
+		const int colors = std::min(pm_screen->surface->clut.colors, 256);
+		pm->surface->clut.data = new gRGB[colors];
+		pm->surface->clut.colors = colors;
+		pm->surface->clut.start = pm_screen->surface->clut.start;
+		memcpy(static_cast<void*>(pm->surface->clut.data), pm_screen->surface->clut.data, colors * sizeof(gRGB));
+	}
 
 	comp->m_dc = new gDC(pm);
 }
@@ -625,11 +664,11 @@ void eWidgetDesktop::resize(eSize size)
 {
 	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
 	m_screen.m_screen_size = size;
+}
 
-#ifdef USE_LIBVUGLES2
-	gPainter painter(m_screen.m_dc);
-	painter.setView(size);
-#endif
+bool eWidgetDesktop::supportsShowHideAnimations() const
+{
+	return m_screen.m_dc && m_screen.m_dc->supportsShowHideAnimations();
 }
 
 void eWidgetDesktop::sendShow(ePoint point, eSize size)

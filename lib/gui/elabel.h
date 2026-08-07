@@ -34,6 +34,7 @@ struct eScrollConfig {
 class eLabel : public eWidget {
 public:
 	eLabel(eWidget* parent, int markedPos = -1);
+	~eLabel();
 	void setText(const std::string& string);
 	void setMarkedPos(int markedPos);
 	void setFont(gFont* font);
@@ -160,9 +161,18 @@ private:
 	ePtr<eTimer> scrollTimer;
 	void updateScrollPosition();
 	void updateTextSize();
+	bool useCachedScrollPixmap(const gDC *dc) const;
+	bool canUseScrollPara(const gDC *dc, int flags) const;
+	bool ensureScrollPara(const eRect &area, int flags, ePoint &offset);
+	void clearScrollPara();
 	void createScrollPixmap();
 	void stopScroll();
 	ePtr<gPixmap> m_textPixmap;
+	eTextPara *m_scrollPara = nullptr;
+	eRect m_scrollParaArea;
+	ePoint m_scrollParaOffset;
+	int m_scrollParaFlags = 0;
+	std::string m_scrollParaText;
 
 	enum eLabelEvent {
 		evtChangedText = evtUserWidget,
