@@ -172,6 +172,17 @@ class OSCamGlobals():
 			print(f"[{MODULE_NAME}] ERROR in module 'callApi': Unexpected error accessing WebIF: {errmsg}")
 			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
 
+	def parseTimestamp(self, value):
+		if not value:
+			return None
+		try:
+			return datetime.fromisoformat(value)
+		except ValueError:
+			try:
+				return datetime.strptime(value, "%d.%m.%YT%H:%M:%S%z")
+			except ValueError:
+				return None
+
 	def getCapabilities(self):
 		if hasattr(self.confPath.__func__, "_content") and self.confPath.__func__._content:
 			content = self.confPath.__func__._content
@@ -352,7 +363,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 			sysinfo = jsonData.get("sysinfo", {})
 			# GENERAL INFOS (timing, memory usage)
 			stime_iso = jsonData.get("starttime", None)
-			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (na, na)
+			stime_dt = self.parseTimestamp(stime_iso)
+			starttime = "Start Time: %s - %s" % (stime_dt.strftime("%x"), stime_dt.strftime("%X")) if stime_dt else (na, na)
 			runtime = "%s Run Time: %s" % (camname, jsonData.get("runtime", na))
 			version = "%s: %s" % (camname, jsonData.get("version", na))
 			srvidfile = "srvidfile: %s" % jsonData.get("srvidfile", na)
@@ -381,7 +393,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 				ecmtime = request.get("ecmtime", na)
 				lbvaluereader = "%s (%s ms)" % (answered, ecmtime) if answered and ecmtime else request.get("lbvalue", na)
 				login_iso = times.get("login")
-				loginfmt = datetime.fromisoformat(login_iso).strftime("%X").replace(" days", "d").replace(" day", "d") if login_iso else na
+				login_dt = self.parseTimestamp(login_iso)
+				loginfmt = login_dt.strftime("%X").replace(" days", "d").replace(" day", "d") if login_dt else na
 				idle_iso = times.get("idle")
 				loginfmt += "\n%s" % self.strf_delta(timedelta(seconds=float(idle_iso)) if idle_iso else na)
 				status = connection.get("status", na)
