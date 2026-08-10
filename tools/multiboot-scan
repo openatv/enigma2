@@ -1,0 +1,36 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          multiboot-scan
+# Required-Start:    $local_fs udev
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Scan MultiBoot slots and dump /var/run/multiboot.json.
+# Description:       Runs before enigma2 to populate the MultiBoot state file
+#                    that MultiBootClass reads at startup.
+### END INIT INFO
+
+MULTIBOOT_DIR=/usr/lib/enigma2/python/Tools
+
+do_scan() {
+	script="$MULTIBOOT_DIR/MultiBoot.py"
+	[ -f "$script" ] || script="$MULTIBOOT_DIR/MultiBoot.pyc"
+	[ -f "$script" ] && python3 "$script" --source boot >/dev/null 2>&1
+}
+
+case "$1" in
+	start|"")
+		do_scan
+		;;
+	stop)
+		;;
+	restart|force-reload)
+		do_scan
+		;;
+	*)
+		echo "usage: $0 {start|stop|restart}" >&2
+		exit 1
+		;;
+esac
+
+exit 0

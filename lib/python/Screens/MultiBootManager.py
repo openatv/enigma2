@@ -109,6 +109,7 @@ class MultiBootManager(Screen):
 			}, prio=0, description=actionDescription)
 			self["addActions"].setEnabled(False)
 		self.editSlotCode = None
+		self.editBootCode = None
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
 		self.callLater(self.getSlotList)
@@ -123,26 +124,32 @@ class MultiBootManager(Screen):
 				slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 				activeMsg = "  -  %s" % _("Active")
 				slotMsg = _("Slot '%s' %s: %s%s")
-				slotData = {}
+				modeSlots = {}
+				plainSlots = []
 				for slot in sorted(slotList.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x)):
-					for boot in slotList[slot]["bootCodes"]:
-						if slotData.get(boot) is None:
-							slotData[boot] = []
+					entry = slotList[slot]
+					configs = entry.get("bootCodes") or {}
+					hasBoxMode = len(configs) > 1
+					for boot in configs.keys():
 						active = activeMsg if boot == bootCode and slot == slotCode else ""
-						device = slotList[slot]["device"]
+						device = entry["device"]
 						slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
-						slotData[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotList[slot]["imagename"], active), (slot, boot, slotList[slot]["status"], slotList[slot]["ubi"], active != ""))))
-				for bootCode in sorted(slotData.keys()):
-					if bootCode == "":
-						continue
-					slots.append(ChoiceEntryComponent("", (MultiBoot.getBootCodeDescription(bootCode), None)))
-					slots.extend(slotData[bootCode])
-				if "" in slotData:
-					slots.extend(slotData[""])
+						displayName = MultiBoot.getSlotDisplayName(slot, boot)
+						item = ChoiceEntryComponent("none" if hasBoxMode else "", (slotMsg % (slot, slotType, displayName, active), (slot, boot, entry["status"], entry["ubi"], active != "")))
+						if hasBoxMode:
+							modeSlots.setdefault(boot, []).append(item)
+						else:
+							plainSlots.append(item)
+				for boot in sorted(modeSlots.keys()):
+					slots.append(ChoiceEntryComponent("", (MultiBoot.getBootCodeDescription(boot), None)))
+					slots.extend(modeSlots[boot])
+				slots.extend(plainSlots)
 				if self.initialize:
 					self.initialize = False
-					for index, item in enumerate(slots):
+					index = 0
+					for i, item in enumerate(slots):
 						if item[0][1] and item[0][1][4]:
+							index = i
 							break
 				else:
 					index = self["slotlist"].getSelectedIndex()
@@ -327,19 +334,24 @@ class MultiBootManager(Screen):
 				self.getSlotList()
 
 			slotCode = self.editSlotCode
+			bootCode = self.editBootCode
 			self.editSlotCode = None
+			self.editBootCode = None
 			if newName is not None and slotCode is not None:
-				MultiBoot.renameSlot(slotCode, newName.strip(), renameCallback)
+				MultiBoot.setSlotName(slotCode, bootCode, newName.strip(), renameCallback)
 
 		current = self["slotlist"].getCurrent()
 		if current and current[0][1]:
-			slotCode, _bootCode, status, _ubi, _current = current[0][1]
+			slotCode, bootCode, status, _ubi, _current = current[0][1]
 			if status in ("active",) and slotCode.isdecimal():
-				editable = current[0][0].split(": ", 1)[-1].rsplit(" (", 1)[0]
-				index = editable.rfind("  -  ")
-				if index >= 0:
-					editable = editable[:index]
+				editable = MultiBoot.getSlotName(slotCode, bootCode)
+				if not editable:
+					editable = current[0][0].split(": ", 1)[-1].rsplit(" (", 1)[0]
+					index = editable.rfind("  -  ")
+					if index >= 0:
+						editable = editable[:index]
 				self.editSlotCode = slotCode
+				self.editBootCode = bootCode
 				self.session.openWithCallback(renameSlotCallback, VirtualKeyBoard, title=_("Rename slot '%s' (leave empty to reset):") % slotCode, text=editable)
 
 	def keyAddSlots(self):
