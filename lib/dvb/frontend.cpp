@@ -995,6 +995,14 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 
 	if (m_fd >= 0)
 	{
+		long advancedSatposLink = m_data[ADVANCED_SATPOSDEPENDS_LINK];
+		if (advancedSatposLink != -1)
+		{
+			m_data[ADVANCED_SATPOSDEPENDS_LINK] = -1;
+			if (m_sec && !m_simulate)
+				m_sec->resetAdvancedsatposdependsRoot(advancedSatposLink);
+		}
+
 		if(m_type == feSatellite)
 			setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
