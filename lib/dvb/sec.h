@@ -279,7 +279,7 @@ public:
 
 #define MAX_EN50607_POSITIONS 		64
 #define MAX_FIXED_LNB_POSITIONS		64
-#define MAX_MOVABLE_LNBS 		6
+#define MAX_MOVABLE_LNBS 		7
 
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
@@ -366,6 +366,7 @@ public:
 	RESULT setLNBThreshold(int threshold);
 	RESULT setLNBIncreasedVoltage(bool onoff);
 	RESULT setLNBPrio(int prio);
+	RESULT setLNBsatposdepends(int advanced_satposdepends);
 /* DiSEqC Specific Parameters */
 	RESULT setDiSEqCMode(int diseqcmode);
 	RESULT setToneburst(int toneburst);

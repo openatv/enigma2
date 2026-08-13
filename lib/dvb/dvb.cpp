@@ -962,7 +962,25 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 		}
 		else
 		{
-			c = i->m_frontend->isCompatibleWith(feparm);
+			if (i->m_inuse)
+			{
+				i->m_frontend->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, link);
+				if (link != -1)
+					is_configured_sat = true;
+				else
+				{
+					i->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_ROOT, link);
+					if (link != -1)
+						is_configured_sat = true;
+					else
+					{
+						i->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_LINK, link);
+						if (link != -1)
+							is_configured_sat = true;
+					}
+				}
+			}
+			c = i->m_frontend->isCompatibleWith(feparm, is_configured_sat);
 		}
 
 		if (c)	/* if we have at least one frontend which is compatible with the source, flag this. */
@@ -1014,6 +1032,15 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 		if (!i->m_inuse && i->m_frontend->getSlotID() == slot_index)
 		{
+			// The rotor root must not be allocated explicitly while an advanced dependent tuner uses it.
+			long link;
+			i->m_frontend->getData(eDVBFrontend::ADVANCED_SATPOSDEPENDS_ROOT, link);
+			if (link != -1)
+			{
+				eDebug("[eDVBResourceManager] another advanced satpos depending frontend is in use.. so allocateFrontendByIndex not possible!");
+				err = errAllSourcesBusy;
+				goto alloc_fe_by_id_not_possible;
+			}
 			// check if another slot linked to this is in use
 			long tmp;
 			i->m_frontend->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, tmp);
