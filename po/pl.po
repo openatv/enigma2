@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
-"PO-Revision-Date: 2026-07-18 03:21+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"PO-Revision-Date: 2026-07-30 08:01+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1326,6 +1326,9 @@ msgstr "(Dostęp do '%s' commit log wymaga połączenia z Internetem.)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Uwaga: po %d awariach nastąpi automatyczne zrestartowanie.)"
 
+msgid "(Deep) Standby only"
+msgstr "Tylko w trybie wyłączenia"
+
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -2287,6 +2290,9 @@ msgstr "Pozwól 10bit"
 
 msgid "Allow 12bit"
 msgstr "Pozwól 12bit"
+
+msgid "Allow guest access"
+msgstr "Zezwalaj na dostęp gościnny"
 
 msgid "Allow quit movie player with exit"
 msgstr "Zezwalaj na zamknięcie odtwarzacza nagrań przyciskiem exit"
@@ -5576,6 +5582,9 @@ msgstr "Ustawienia DNS"
 msgid "DNS data source"
 msgstr "Źródło danych DNS"
 
+msgid "DNS override"
+msgstr "Nadpisanie DNS"
+
 msgid "DNS protocol mode"
 msgstr "Tryb protokołu DNS"
 
@@ -5920,6 +5929,9 @@ msgstr "Domyślna Wyszukiwarka Kanałów"
 
 msgid "Default files/folders to backup"
 msgstr "Domyślne pliki kopii zapasowej"
+
+msgid "Default gateway"
+msgstr "Brama domyślna"
 
 msgid "Default left column directory"
 msgstr "Domyślny katalog w lewej kolumnie"
@@ -6809,7 +6821,7 @@ msgid "Do you want to resume this playback?"
 msgstr "Chcesz wznowić odtwarzanie?"
 
 msgid "Do you want to select another service?"
-msgstr "Czy chcesz wybrać inną usługę?"
+msgstr "Czy chcesz wybrać inny kanał?"
 
 msgid "Do you want to start a backup now?"
 msgstr "Czy chcesz rozpocząć tworzenie kopii teraz?"
@@ -7659,6 +7671,9 @@ msgstr "Wpisz tekst za pomocą dołączonej klawiatury"
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr "Wprowadź adres IP lub podsieć (np. 192.168.1.0/24), którym ma zostać przyznany dostęp do serwera NFS. Wprowadź '*', aby zezwolić na dostęp wszystkim hostom."
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr "Wprowadź adres IP bramy używanej do komunikacji z innymi sieciami. Zwykle jest to adres IP routera."
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr "Wprowadź kod PIN (od 0 do 255) przypisany do tego kanału użytkownika (User Band) przez instalatora lub administratora budynku."
 
@@ -7668,23 +7683,47 @@ msgstr "Wprowadź ID sieci ZeroTier. Identyfikator powinien mieć dokładnie 16 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Wprowadź czas, jaki ma zostać dodany do bufora strumieniowego po wystąpieniu błędu strumieniowania. Ten dodatkowy bufor może pomóc uniknąć dalszych problemów ze strumieniowaniem spowodowanych brakiem miejsca w buforze."
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr "Wprowadź statyczny adres IPv4 dla tej karty sieciowej."
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Wprowadź częstotliwość, przy której LNB przełącza się między pasmem niskim i górnym. Aby uzyskać więcej informacji, zapoznaj się z arkuszem specyfikacji swojego LNB."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Wprowadź rozmiar kroku częstotliwości dla tunera, który ma być używany podczas wyszukiwania multipleksów kablowych. Więcej informacji można znaleźć w dokumentacji dostawcy telewizji kablowej."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Wprowadź liczbę wątków serwera NFS do przydzielenia. Większa liczba poprawia wydajność przy wielu klientach, ale zwiększa zużycie pamięci."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Wprowadź numer zapisany w pozycjonerze, który odpowiada temu satelicie."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr "Wprowadź hasło, frazę uwierzytelniającą lub klucz współdzielony dla wybranej sieci bezprzewodowej."
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr "Wprowadź podstawowy serwer DNS IPv4 dla tej karty."
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Wprowadź podstawowy serwer DNS IPv6 dla tej karty. (Opcjonalnie)"
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr "Wprowadź pomocniczy serwer DNS IPv4 dla tej karty. (Opcjonalnie)"
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Wprowadź pomocniczy serwer DNS IPv6 dla tej karty. (Opcjonalnie)"
+
 msgid "Enter the service pin"
 msgstr "Wprowadź kod pin kanału"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr "Wprowadź maskę podsieci dla tej karty sieciowej. (np. 255.255.255.0)"
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Wprowadź kod subskrypcji, aby w pełni włączyć wtyczkę AI Translation. Ujednolicony kod dla wersji próbnej to 15."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Wprowadź nazwę grupy roboczej używanej przez odbiornik dla połączeń Samba. (Domyślnie: WORKGROUP)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Wprowadź aktualną szerokość geograficzną. Jest to liczba stopni z równika jako dziesiętna."
@@ -8020,7 +8059,7 @@ msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Błąd: Nie można zmienić nazwy głównego systemu plików i katalogów systemowych!"
 
 msgid "Error: The selected service can't be recorded!"
-msgstr "Błąd: Wybrana usługa nie może zostać nagrana!"
+msgstr "Błąd: Nie można nagrać wybranego kanału!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
@@ -8862,6 +8901,9 @@ msgstr "Wymuś statystyki starszych sygnałów"
 
 msgid "Force ToneBurst"
 msgstr "Wymuś ToneBurst"
+
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr "Wymuś określoną prędkość połączenia i tryb dupleksu zamiast automatycznej negocjacji. Zmieniaj to ustawienie tylko wtedy, gdy jest to konieczne, ponieważ nieprawidłowa konfiguracja może spowodować utratę połączenia z siecią."
 
 msgid "Force de-interlace"
 msgstr "Siła przeplotu"
@@ -9766,6 +9808,9 @@ msgstr "Adres IP jest nieprawidłowy!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Adres IP serwera Stream Relay używany do deszyfrowania kanałów, które można odszyfrować wyłącznie za pośrednictwem Stream Relay."
+
+msgid "IP protocol"
+msgstr "Protokół IP"
 
 msgid "IPK Installer"
 msgstr "Instalator IPK"
@@ -11001,6 +11046,9 @@ msgstr "Wykryto łącze"
 
 msgid "Link quality:"
 msgstr "Jakość sygnału:"
+
+msgid "Link speed"
+msgstr "Prędkość połączenia"
 
 msgid "Link target"
 msgstr "Link docelowy"
@@ -12346,6 +12394,9 @@ msgstr "Wybór karty sieciowej"
 msgid "Network Adapter Setting Actions"
 msgstr "Akcje ustawienia karty sieciowej"
 
+msgid "Network Adapter Settings"
+msgstr "Ustawienia karty sieciowej"
+
 msgid "Network Adapter Text Actions"
 msgstr "Akcje tekstu karty sieciowej"
 
@@ -12415,6 +12466,9 @@ msgstr "Informacje o sieci dla %s %s"
 
 msgid "Network menu"
 msgstr "Menu sieciowe"
+
+msgid "Network metric"
+msgstr "Metryka sieciowa"
 
 msgid "Network mounts"
 msgstr "Montowanie Sieci"
@@ -13508,10 +13562,10 @@ msgid "Overwrite Emu Files?"
 msgstr "Nadpisać pliki emu?"
 
 msgid "Overwrite Picon Files?"
-msgstr "Nadpisać pliki z pikonami?"
+msgstr "Nadpisać pliki pikon?"
 
 msgid "Overwrite Setting Files?"
-msgstr "Nadpisać pliki ustawień?"
+msgstr "Nadpisać pliki ustawień (listy kanałów)?"
 
 msgid "Overwrite Spinner Files?"
 msgstr "Nadpisać pliki spinnera?"
@@ -13520,7 +13574,7 @@ msgid "Overwrite bootlogo files during software upgrade?"
 msgstr "Nadpisać logo startowe podczas aktualizacji systemu?"
 
 msgid "Overwrite configuration files during software upgrade?"
-msgstr "Nadpisać pliki konfiguracyjne podczas aktualizacji?"
+msgstr "Nadpisać pliki konfiguracyjne podczas aktualizacji systemu?"
 
 msgid "Overwrite configuration files?"
 msgstr "Nadpisać pliki konfiguracyjne?"
@@ -13532,7 +13586,7 @@ msgid "Overwrite picon files during software upgrade?"
 msgstr "Nadpisać pikony podczas aktualizacji systemu?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
-msgstr "Nadpisać pliki list kanałów podczas aktualizacji systemu?"
+msgstr "Nadpisać pliki ustawień (listę kanałów) podczas aktualizacji systemu?"
 
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Nadpisać pliki softcam podczas aktualizacji systemu?"
@@ -13725,6 +13779,9 @@ msgstr "Hasło"
 
 msgid "Password (httpwd)"
 msgstr "Hasło (httpwd)"
+
+msgid "Password / Key"
+msgstr "Hasło / Klucz"
 
 msgid "Password Actions"
 msgstr "Działania dotyczące hasła"
@@ -14417,10 +14474,10 @@ msgid "Pre-school children's programs"
 msgstr "Dla przedszkolaków"
 
 msgid "Predefined"
-msgstr "Zdefiniowany"
+msgstr "Predefiniowane"
 
 msgid "Predefined transponder"
-msgstr "Zdefiniowany transponder"
+msgstr "Predefiniowany transponder"
 
 msgid "Prefer AC3 track"
 msgstr "Preferuj ścieżkę AC3"
@@ -14445,6 +14502,9 @@ msgstr "Preferuj napisy dla niesłyszących"
 
 msgid "Prefer subtitles stored by service"
 msgstr "Preferuj napisy zapamiętane dla kanału"
+
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr "Priorytet połączenia, gdy skonfigurowano wiele profili Wi-Fi. Niższa wartość oznacza wyższy priorytet."
 
 msgid "Preferred tuner"
 msgstr "Preferowany tuner"
@@ -14627,6 +14687,12 @@ msgstr "Poprzedni utwór"
 
 msgid "Primary DNS"
 msgstr "Pierwszy DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr "Podstawowy DNS (IPv4)"
+
+msgid "Primary DNS (IPv6)"
+msgstr "Podstawowy DNS (IPv6)"
 
 msgid "Prime time"
 msgstr "Primetime"
@@ -15947,6 +16013,9 @@ msgstr "Uruchamianie skryptu Myrestore. Proszę czekać..."
 msgid "Running command %d: '%s'."
 msgstr "Uruchamianie polecenia %d: '%s'."
 
+msgid "Running only"
+msgstr "Tylko podczas pracy"
+
 msgid "Russian"
 msgstr "Rosyjski"
 
@@ -16410,6 +16479,12 @@ msgstr "Drugi kabel zmotoryzowany LNB"
 msgid "Secondary DNS"
 msgstr "Drugi DNS"
 
+msgid "Secondary DNS (IPv4)"
+msgstr "Pomocniczy DNS (IPv4)"
+
+msgid "Secondary DNS (IPv6)"
+msgstr "Pomocniczy DNS (IPv6)"
+
 msgid "Seconds"
 msgstr "Sekundy"
 
@@ -16483,7 +16558,7 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr "Wybierz opcję \"polaryzacja\", jeśli używasz \"uniwersalnego\" konwertera LNB, w przeciwnym razie zapoznaj się z arkuszem danych technicznych konwertera LNB."
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Wybierz opcję „Dostawca”, aby skanować z predefiniowanej listy multipleksów kablowych. Wybierz „Pasma”, aby skanować tylko określone części widma. Wybierz „Kroki”, aby skanować krokowo dla określonego pasma częstotliwości."
+msgstr "Wybierz 'Dostawca', aby skanować z predefiniowanej listy multipleksów kablowych. Wybierz 'Pasma', aby skanować tylko wybrane części pasma częstotliwości. Wybierz 'Kroki', aby skanować z określonym krokiem częstotliwości."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Wybierz opcję „Unikalna numeracja”, aby przypisać unikalne numery do każdego kanału w każdej liście kanałów. Użyj opcji „Listy kanałów zaczynają się od 1”, aby rozpocząć numerację każdej listy od 1. Użyj opcji „Numerowanie LCN”, aby używać spójnych numerów LCN usług wszędzie tam, gdzie używana jest ta usługa."
@@ -16678,7 +16753,7 @@ msgid "Select 'Yes' to show security packages in the Download Plugins screen."
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety bezpieczeństwa na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety ustawień na ekranie pobierania wtyczek."
+msgstr "Wybierz \"Tak\", aby wyświetlić pakiety ustawień (listy kanałów) na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety komponentów skórki na ekranie pobierania wtyczek."
@@ -17140,6 +17215,9 @@ msgstr "Wybierz częstotliwość pasma użytkownika, która ma zostać przypisan
 msgid "Select the Yes / True response"
 msgstr "Wybierz odpowiedź jako Tak/Prawda"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr "Wybierz warunki działania timera przełączania. Timer przełączania zostanie uruchomiony tylko w wybranym stanie."
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Wybierz akcję dla '%s'"
@@ -17327,7 +17405,7 @@ msgid "Select the location where the picon files will be installed."
 msgstr "Wybierz lokalizację, w której zostaną zainstalowane pliki pikon."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
-msgstr "Wybierz producenta swojego urządzenia SCR. Jeśli producenta nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z jego specyfikacją."
+msgstr "Wybierz producenta urządzenia SCR. Jeśli producent nie znajduje się na liście, ustaw opcję 'SCR' na 'Własne' i wprowadź parametry urządzenia ręcznie zgodnie z jego specyfikacją."
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Wybierz metodę przywracania rozdzielczości ekranu i bufora ramki po opuszczeniu telegazety."
@@ -17339,7 +17417,7 @@ msgid "Select the mode of access, Read/Write or Read Only, applied to all export
 msgstr "Wybierz tryb dostępu (Odczyt/Zapis lub Tylko odczyt), który będzie stosowany do wszystkich udostępnionych katalogów."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
-msgstr "Wybierz numer modelu swojego urządzenia Unicable. Jeśli numeru modelu nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z arkuszem specyfikacji."
+msgstr "Wybierz numer modelu urządzenia Unicable. Jeśli model nie znajduje się na liście, ustaw opcję 'SCR' na 'Własne' i wprowadź parametry urządzenia ręcznie zgodnie z jego specyfikacją."
 
 msgid "Select the mount points"
 msgstr "Wybierz punkty montowania"
@@ -17361,6 +17439,12 @@ msgstr ""
 "Wybierz interfejs sieciowy, który będzie używany do połączenia z internetem.\n"
 "\n"
 "Naciśnij OK, aby kontynuować."
+
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr "Wybierz metrykę sieciową dla tej karty. Gdy aktywnych jest kilka kart sieciowych, jako domyślna trasa zostanie użyta karta z najniższą metryką."
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr "Wybierz nazwę (SSID) sieci bezprzewodowej, z którą ma się łączyć odbiornik."
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
@@ -17423,6 +17507,9 @@ msgstr "Wybierz układ ekranu z opcji udostępnionych przez skórkę, który bę
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr "Wybierz tryb wyszukiwania pikon. 'Tryb jednej ścieżki' używa jednej ścieżki dla wszystkich pikon. 'Tryb wielu ścieżek' umożliwia używanie różnych ścieżek pikon dla różnych zastosowań."
 
+msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr "Wybierz protokół zabezpieczeń używany do połączenia z wybraną siecią bezprzewodową."
+
 msgid "Select the shifted character set"
 msgstr "Wybierz przesunięty zestaw znaków"
 
@@ -17442,13 +17529,13 @@ msgid "Select the sort order of the Extension Menu entries."
 msgstr "Wybierz porządek sortowania wpisów w menu rozszerzeń."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Wybierz kolejność sortowania wpisów menu Przeglądarka wtyczek. Zdefiniowane przez użytkownika pozwala również na ukrycie pozycji menu."
+msgstr "Wybierz kolejność sortowania wpisów w przeglądarce wtyczek. Opcja 'Własne' umożliwia także ukrywanie wpisów menu."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
-msgstr "Wybierz kolejność sortowania pozycji menu przeglądarki wtyczek. Zdefiniowane przez użytkownika umożliwia również ukrywanie wpisów wtyczek."
+msgstr "Wybierz kolejność sortowania wpisów w przeglądarce wtyczek. Opcja 'Własne' umożliwia także ukrywanie wpisów wtyczek."
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Wybierz kolejność sortowania pozycji menu. Zdefiniowane przez użytkownika pozwala również na ukrycie pozycji menu."
+msgstr "Wybierz kolejność sortowania wpisów menu. Opcja 'Własne' umożliwia także ukrywanie wpisów menu."
 
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Wybierz lokalizację źródłową, z której chcesz pobrać pliki aktualizacji."
@@ -17502,7 +17589,7 @@ msgid "Select the tuner upon which this loop through depends."
 msgstr "Wybierz tuner, od którego zależy ta pętla."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'User defined'."
-msgstr "Wybierz typ używanego LNB / urządzenia (zwykle „Uniwersalny”). Jeśli typ LNB nie jest dostępny, wybierz „zdefiniowane przez użytkownika”."
+msgstr "Wybierz typ używanego konwertera LNB lub urządzenia (zwykle 'Uniwersalny'). Jeśli odpowiedni typ LNB nie jest dostępny, wybierz opcję 'Własne'."
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wybierz typ urządzenia odbiorczego pojedynczego kabla, którego używasz."
@@ -17608,6 +17695,9 @@ msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają być odtwarzane 
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Wybierz, czy ikona ma być wyświetlana, gdy antena satelitarna jest w ruchu."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr "Wybierz protokoły IP, które mają być używane przez tę kartę sieciową."
 
 msgid "Select wireless network"
 msgstr "Wybierz sieć bezprzewodową"
@@ -17983,7 +18073,7 @@ msgid "Set the default location for your instant recordings. Press 'OK' to add n
 msgstr "Ustaw domyślną lokalizację dla swoich natychmiastowych nagrań. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij „LEWO”/„PRAWO”, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
-msgstr "Ustaw domyślną lokalizację, aby zapisać pliki nagrań z timeshift. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij LEWO/PRAWO, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
+msgstr "Ustaw domyślną lokalizację, aby zapisać pliki nagrań z timeshift. Naciśnij 'OK', aby dodać nowe lokalizacje, naciśnij LEWO/PRAWO, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację przechowywania plików bufora timeshiftu. Naciśnij 'OK', aby dodać nowe lokalizacje, naciśnij 'LEWO'/'PRAWO', aby wybrać jedną z wcześniej zdefiniowanych lokalizacji."
@@ -17992,7 +18082,7 @@ msgid "Set the default movie selection location for your media files. Press 'OK'
 msgstr "Ustaw domyślną lokalizację wyboru nagrań. Naciśnij 'OK', aby dodać nowe lokalizacje, lub 'LEWO'/'PRAWO', aby wybrać jedną z wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Ustaw domyślną lokalizację dla swoich timerów. Naciśnij przycisk 'OK', aby dodać nowa lokalizację użyj strzałek 'lewo/prawo'."
+msgstr "Ustaw domyślną lokalizację nagrywania dla swoich timerów. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij 'LEWO'/'PRAWO', aby wybrać jedną z wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default sorting method."
 msgstr "Ustaw domyślną metodę sortowania."
@@ -18554,7 +18644,7 @@ msgid "Show Service Information"
 msgstr "Pokaż informacje kanału"
 
 msgid "Show Setting packages"
-msgstr "Pokaż pakiety ustawień"
+msgstr "Pokaż pakiety ustawień (listy kanałów)"
 
 msgid "Show Single EPG"
 msgstr "Pokaż EPG kanału"
@@ -19718,7 +19808,7 @@ msgstr "Wydarzenia specjalne (Igrzyska olimpijskie, mistrzostwa świata itp.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Określ katalog, który ma być używany podczas uruchamiania Media Playera."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Określ suffix sieciowy DNS, który ma zostać zastosowany, gdy podana zostanie tylko nazwa hosta. Ułatwi to programowi rozpoznawania nazw DNS znalezienie żądanego hosta."
 
 msgid "Speed"
@@ -20096,6 +20186,9 @@ msgstr "Paski"
 
 msgid "Style:"
 msgstr "Styl:"
+
+msgid "Subnet mask"
+msgstr "Maska podsieci"
 
 msgid "Subscription Packages"
 msgstr "Pakiety subskrypcyjne"
@@ -21348,7 +21441,7 @@ msgid "This option sets the suppression of false digital contours, that are the 
 msgstr "Ta opcja ustawia tłumienia fałszywych konturów cyfrowych, które są wynikiem ograniczonej liczby wartości dyskretnych."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr "Ta opcja ustawia ostrość obrazu, używana gdy obraz jest powiększony."
+msgstr "Ta opcja ustawia ostrość obrazu stosowaną podczas skalowania obrazu do wyższej rozdzielczości."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Ten kanał jest chroniony kodem PIN!"
@@ -22240,7 +22333,7 @@ msgstr "Pozycja Unicable"
 
 #, python-format
 msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
-msgstr "Pozycja Unicable %d nie jest obsługiwana przez wybrane urządzenie dla LNB %d. Prawidłowe pozycje to od %d do %d. W przypadku przeprogramowanego urządzenia wybierz opcję 'Zdefiniowane przez użytkownika'."
+msgstr "Pozycja Unicable %d nie jest obsługiwana przez wybrane urządzenie dla LNB %d. Prawidłowe pozycje to od %d do %d. W przypadku przeprogramowanego urządzenia wybierz opcję 'Własne'."
 
 msgid "Uninstall"
 msgstr "Odinstaluj"
@@ -22756,14 +22849,14 @@ msgid "User comments"
 msgstr "Komentarze użytkownika"
 
 msgid "User defined"
-msgstr "Zdefiniowany przez użytkownika"
+msgstr "Własne"
 
 #, python-format
 msgid "User defined 0x%02x"
-msgstr "Zdefiniowany przez użytkownika 0x%02x"
+msgstr "Własne 0x%02x"
 
 msgid "User defined transponder"
-msgstr "Transponder zdefiniowany przez użytkownika"
+msgstr "Własny transponder"
 
 msgid "User interface settings"
 msgstr "Ustawienia interfejsu użytkownika"
@@ -23246,6 +23339,12 @@ msgstr "Wybudzaj ze stanu czuwania"
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr "Wybudź swój amplituner AV lub soundbar z trybu czuwania"
 
+msgid "Wake-on-LAN"
+msgstr "Wake-on-LAN"
+
+msgid "Wake-on-WiFi"
+msgstr "Wake-on-WiFi"
+
 msgid "Wallis and Futuna"
 msgstr "Wallis i Futuna"
 
@@ -23451,8 +23550,17 @@ msgstr "Po włączeniu tej opcji nagrywanie może przerywać transmisję telewiz
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Po włączeniu, zostanie wyświetlone ostrzeżenie, a użytkownik otrzyma możliwość zatrzymania lub kontynuowania timeshiftu."
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr "Po włączeniu dostęp do zasobów Samba będzie możliwy bez podawania hasła."
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr "Po włączeniu umożliwia łączenie z punktami dostępowymi, które nie rozgłaszają swojej nazwy SSID."
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Po włączeniu tej opcji każde wykryte urządzenie pamięci masowej będzie automatycznie eksportowane jako udział Samba."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr "Po włączeniu odbiornik będzie można włączyć zdalnie za pomocą sygnału Wake-on-LAN (Magic Packet)."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 3."
@@ -23462,6 +23570,9 @@ msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 4."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Jeśli włączone, będzie wymagana autoryzacja do oglądania strumieni http."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr "Po włączeniu podczas nawiązywania połączenia przez kartę Wi-Fi będzie podejmowana próba połączenia z zapisaną siecią."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Po włączeniu tej opcji zawartość o proporcjach 4:3 zostanie rozciągnięta, aby dopasować się do ekranu."
@@ -23484,6 +23595,9 @@ msgstr "Po włączeniu tej opcji graficzne napisy DVB będą wyświetlane w ich 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Po włączeniu tej opcji możliwe jest wyjście z odtwarzacza nagrań za pomocą przycisku exit."
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr "Po włączeniu karta Wi-Fi pozostanie w trybie niskiego poboru mocy podczas czuwania, umożliwiając zdalne włączenie odbiornika sygnałem sieciowym (Magic Packet)."
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr "Po włączeniu użytkownik root jest mapowany na użytkownika „nobody” (większe bezpieczeństwo). Po wyłączeniu dostęp roota pozostaje nieograniczony."
 
@@ -23496,6 +23610,9 @@ msgstr "Po włączeniu tej opcji, kosze na śmieci w sieci są sprawdzane pod k�
 msgid "When enabled, number markers will be hidden."
 msgstr "Po włączeniu znaczniki liczb będą ukryte."
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr "Po włączeniu adres IP, maska podsieci, brama oraz serwery DNS będą pobierane automatycznie przez DHCP."
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Po włączeniu naciśnięcie przycisku '0' przełączy na pierwszy kanał z pierwszej listy kanałów i wyczyści historię przełączeń."
 
@@ -23507,6 +23624,9 @@ msgstr "Po włączeniu wyświetla numery kanałów na ekranie wyboru kanałów."
 
 msgid "When enabled, show status or error messages."
 msgstr "Po włączeniu pokaż komunikaty o stanie lub komunikaty o błędach."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr "Po włączeniu można określić własne serwery DNS dla tej karty zamiast używać globalnych ustawień DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Po włączeniu tej opcji możliwe będzie korzystanie z napisów dla osób niedosłyszących."
@@ -23558,6 +23678,12 @@ msgstr "Po włączeniu importowany jest timer zdalnego odbiornika."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Po włączeniu timer zdalnego odbiornika staje się domyślnym timerem."
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr "Po włączeniu karta Wi-Fi pozostaje wyłącznie w trybie Wake-on-WiFi i nie będzie używana do łączenia z żadną siecią."
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr "Po włączeniu karta sieciowa jest inicjalizowana i aktywowana podczas uruchamiania odbiornika."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Po włączeniu to ustawienie ma większe znaczenie niż „Preferowany tuner do nagrań”."
@@ -23633,6 +23759,9 @@ msgstr "Kiedy dostępne"
 
 msgid "White"
 msgstr "Biały"
+
+msgid "Wi-Fi Connection Settings"
+msgstr "Ustawienia połączenia Wi-Fi"
 
 msgid "Wide"
 msgstr "Szeroki"
@@ -23724,11 +23853,17 @@ msgstr "Bez pytania"
 msgid "Wizard Actions"
 msgstr "Akcje kreatora"
 
+msgid "WoW only"
+msgstr "Tylko WoW"
+
 msgid "Wolof"
 msgstr "Wolof"
 
 msgid "Workaround for old tuner driver."
 msgstr "Rozwiązanie dla starego sterownika tunera."
+
+msgid "Workgroup name"
+msgstr "Nazwa grupy roboczej"
 
 msgid "World Affairs"
 msgstr "Sprawy światowe"
@@ -24142,6 +24277,9 @@ msgstr "Przełączyć na kanał sprzed ustawiania pozycjonera?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Przełączyć na kanał sprzed konfiguracji tunera?"
+
+msgid "Zap condition"
+msgstr "Warunek przełączania"
 
 msgid "Zap down"
 msgstr "Przełącz w dół"
@@ -24897,6 +25035,18 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
+#~ msgstr "Wprowadź nazwę, pod którą odbiornik będzie widoczny podczas skanowania sieci lub na listach urządzeń Samba."
+
+#~ msgid "Server name"
+#~ msgstr "Nazwa serwera"
+
+#~ msgid "When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)"
+#~ msgstr "Po włączeniu karta sieciowa jest inicjalizowana i aktywowana podczas uruchamiania odbiornika"
+
+#~ msgid "When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)"
+#~ msgstr "Po włączeniu podczas nawiązywania połączenia przez kartę Wi-Fi będzie podejmowana próba połączenia z zapisaną siecią"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "Trwa nagrywanie. Zatrzymaj nagrywanie przed próbą skonfigurowania pozycjonera."

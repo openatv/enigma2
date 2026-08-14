@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
 "PO-Revision-Date: 2026-06-15 03:01+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1283,6 +1283,9 @@ msgstr "(Η πρόσβαση στο αρχείο καταγραφής υποβο
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Προσοχή: Θα γίνει επανεκκίνηση μετά από %d κρασαρίσματα.)"
 
+msgid "(Deep) Standby only"
+msgstr ""
+
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -2241,6 +2244,9 @@ msgstr "Να επιτρέπονται τα 10bit"
 
 msgid "Allow 12bit"
 msgstr "Να επιτρέπονται τα 12bit"
+
+msgid "Allow guest access"
+msgstr ""
 
 msgid "Allow quit movie player with exit"
 msgstr "Να επιτρέπεται η έξοδος από την αναπαραγωγή με το exit"
@@ -5527,6 +5533,9 @@ msgstr "Ρυθμίσεις DNS"
 msgid "DNS data source"
 msgstr "Πηγή δεδομένων DNS"
 
+msgid "DNS override"
+msgstr ""
+
 msgid "DNS protocol mode"
 msgstr "Λειτουργία DNS"
 
@@ -5871,6 +5880,9 @@ msgstr "Ανίχνευση προεπιλεγμένων υπηρεσιών"
 
 msgid "Default files/folders to backup"
 msgstr "Προεπιλεγμένα αρχεία/φάκελοι προς εφεδρεία"
+
+msgid "Default gateway"
+msgstr ""
 
 msgid "Default left column directory"
 msgstr "Προεπιλεγμένος φάκελος αριστερής στήλης"
@@ -7607,6 +7619,9 @@ msgstr "Εισάγετε κείμενο μέσω ενός συνδεδεμένο
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr ""
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr ""
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
@@ -7616,23 +7631,47 @@ msgstr "Εισάγετε το αναγνωριστικό δικτύου ZeroTier
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Εισάγετε τη διάρκεια που θα προστεθεί στην προσωρινή αποθήκευση της ροής μετά από σφάλμα της. Αυτή η πρόσθετη αποθήκευση μπορεί να βοηθήσει στην αποφυγή περαιτέρω λαθών ροής λόγω έλλειψης αποθηκευτικού χώρου."
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Εισάγετε τη συχνότητα αλλαγής μεταξύ της χαμηλής και της υψηλής μπάντας του LNB. Για περισσότερες πληροφορίες ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Εισάγετε το μέγεθος βήματος της συχνότητας που θα χρησιμοποιεί το tuner κατά την αναζήτηση καλωδιακών πολυπλεξιών. Για περισσότερες πληροφορίες ανατρέξτε στο εγχειρίδιο του καλωδιακού σας παρόχου."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Εισάγετε τον αποθηκευμένο αριθμό του μοτέρ που αντιστοιχεί σε αυτόν τον δορυφόρο."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr ""
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr ""
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
 msgid "Enter the service pin"
 msgstr "Εισάγετε το pin υπηρεσίας"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr ""
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Εισάγετε τον κωδικό συνδρομής σας, ο ενοποιημένος κώδικας για δοκιμή είναι 15."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Εισάγετε το γεωγραφικό σας πλάτος. Αυτός είναι ο δεκαδικός αριθμός σε μοίρες που δείχνει πόσο απέχετε από τον ισημερινό."
@@ -8811,6 +8850,9 @@ msgstr "Εξαναγκασμός στατιστικών σήματος παλα�
 msgid "Force ToneBurst"
 msgstr "Εξαναγκασμένη ριπή τόνου"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr ""
+
 msgid "Force de-interlace"
 msgstr "Αναγκαστική αποπολυπλεξία"
 
@@ -9714,6 +9756,9 @@ msgstr "Η διεύθυνση IP δεν είναι έγκυρη!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Διεύθυνση IP του διακομιστή αναμετάδοσης ροής που χρησιμοποιείται για την αποκρυπτογράφηση των υπηρεσιών που μπορούν να αποκρυπτογραφηθούν μόνο μέσω της ροής."
+
+msgid "IP protocol"
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "Εγκατάσταση IPK"
@@ -10947,6 +10992,9 @@ msgstr "Σύνδεση που εντοπίστηκε"
 
 msgid "Link quality:"
 msgstr "Ποιότητα σύνδεσης:"
+
+msgid "Link speed"
+msgstr ""
 
 msgid "Link target"
 msgstr "Προορισμός συνδέσμου"
@@ -12291,6 +12339,9 @@ msgstr "Επιλογή προσαρμογέα δικτύου"
 msgid "Network Adapter Setting Actions"
 msgstr "Ενέργειες ρύθμισης προσαρμογέα δικτύου"
 
+msgid "Network Adapter Settings"
+msgstr ""
+
 msgid "Network Adapter Text Actions"
 msgstr "Ενέργειες κειμένου προσαρμογέα δικτύου"
 
@@ -12360,6 +12411,9 @@ msgstr "Πληροφορίες δικτύου για τον %s %s"
 
 msgid "Network menu"
 msgstr "Μενού δικτύου"
+
+msgid "Network metric"
+msgstr ""
 
 msgid "Network mounts"
 msgstr "Προσαρτήσεις δικτύου"
@@ -13671,6 +13725,9 @@ msgstr "Κωδικός"
 msgid "Password (httpwd)"
 msgstr "Κωδικός (httpwd)"
 
+msgid "Password / Key"
+msgstr ""
+
 msgid "Password Actions"
 msgstr "Ενέργειες κωδικού πρόσβασης"
 
@@ -14389,6 +14446,9 @@ msgstr "Να προτιμώνται υπότιτλοι για άτομα με π
 msgid "Prefer subtitles stored by service"
 msgstr "Να προτιμώνται υπότιτλοι αποθηκευμένοι από την υπηρεσία"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr "Προτιμώμενο tuner"
 
@@ -14570,6 +14630,12 @@ msgstr "Προηγούμενο τραγούδι"
 
 msgid "Primary DNS"
 msgstr "Πρωτεύον DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr ""
+
+msgid "Primary DNS (IPv6)"
+msgstr ""
 
 msgid "Prime time"
 msgstr "Ζώνη αιχμής"
@@ -15890,6 +15956,9 @@ msgstr "Εκτέλεση του σεναρίου Myrestore, περιμένετε
 msgid "Running command %d: '%s'."
 msgstr "Εκτέλεση εντολής %d: '%s'."
 
+msgid "Running only"
+msgstr ""
+
 msgid "Russian"
 msgstr "Ρωσικά"
 
@@ -16349,6 +16418,12 @@ msgstr "Δεύτερο καλώδιο από LNB σε μοτέρ"
 
 msgid "Secondary DNS"
 msgstr "Δευτερεύων DNS"
+
+msgid "Secondary DNS (IPv4)"
+msgstr ""
+
+msgid "Secondary DNS (IPv6)"
+msgstr ""
 
 msgid "Seconds"
 msgstr "Δευτερόλεπτα"
@@ -17080,6 +17155,9 @@ msgstr "Επιλέξτε τη συχνότητα της μπάντας χρήσ�
 msgid "Select the Yes / True response"
 msgstr "Επιλέξτε την απάντηση Ναι / Αληθές"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr ""
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Επιλογή ενέργειας για το '%s'"
@@ -17302,6 +17380,12 @@ msgstr ""
 "\n"
 "Πιέστε OK για να συνεχίσετε."
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr ""
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr ""
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "Επιλογή νέου σημείου προσάρτησης για το: '%s'"
@@ -17361,6 +17445,9 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr "Επιλέξτε τη διάταξη της οθόνης από τις επιλογές που παρέχονται από το θέμα και που χρησιμοποιούνται στην οθόνη επιλογής καναλιών."
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr ""
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17548,6 +17635,9 @@ msgstr "Επιλέξτε αν θα γίνεται έξοδος των πολυκ
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Επιλέξτε αν ή όχι θα εμφανίζεται ένα εικονίδιο κατά την κίνηση του μοτέρ."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr ""
 
 msgid "Select wireless network"
 msgstr "Επιλογή ασύρματου δικτύου"
@@ -19653,7 +19743,7 @@ msgstr "ειδικά προγράμματα"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Ορισμός του φακέλου χρήσης όταν ξεκινά ο αναπαραγωγός ταινιών."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Ορισμός επιθήματος DNS."
 
 msgid "Speed"
@@ -20031,6 +20121,9 @@ msgstr "Ρίγες"
 
 msgid "Style:"
 msgstr "Στυλ:"
+
+msgid "Subnet mask"
+msgstr ""
 
 msgid "Subscription Packages"
 msgstr "Πακέτα συνδρομής"
@@ -23180,6 +23273,12 @@ msgstr "Αφύπνιση σε αναμονή"
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr ""
 
+msgid "Wake-on-LAN"
+msgstr ""
+
+msgid "Wake-on-WiFi"
+msgstr ""
+
 msgid "Wallis and Futuna"
 msgstr "Ουαλίς και Φουτουνά"
 
@@ -23385,8 +23484,17 @@ msgstr "Όταν είναι ενεργό, μία εγγραφή θα επιτρ�
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Όταν είναι ενεργό, θα εμφανίζεται μία προειδοποίηση και ο χρήστης θα έχει την επιλογή να σταματήσει ή να συνεχίσει τη χρονομετατόπιση."
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr ""
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr ""
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Επιλέξτε 'ναι' για να επιτρέψετε την αυτόματη εξαγωγή κάθε εντοπισμένης συσκευής αποθήκευσης ως κοινόχρηστο στοιχείο samba."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
@@ -23396,6 +23504,9 @@ msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Όταν είναι ενεργό, απαιτείται πιστοποίηση για την παρακολούθηση ροών http."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr ""
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Όταν είναι ενεργό, περιεχόμενο με λόγο πλευρών 4:3 θα επεκταθεί ώστε να ταιριάξει στην οθόνη."
@@ -23418,6 +23529,9 @@ msgstr "Όταν είναι ενεργό, οι γραφικοί υπότιτλο
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Όταν είναι ενεργό, είναι δυνατή η έξοδος από την αναπαραγωγή ταινιών με το πλήκτρο εξόδου."
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr ""
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr ""
 
@@ -23430,6 +23544,9 @@ msgstr "Όταν είναι ενεργό, οι κάδοι αχρήστων δι�
 msgid "When enabled, number markers will be hidden."
 msgstr "Όταν είναι ενεργό, δεν θα εμφανίζονται οι σημειωτές των αριθμών."
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr ""
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Όταν είναι ενεργό, πιέζοντας το '0' θα γίνει μετάβαση στο πρώτο κανάλι του πρώτου μπουκέτου σας και διαγραφή του ιστορικού του ζάπινγκ."
 
@@ -23441,6 +23558,9 @@ msgstr "Όταν είναι ενεργό, οι αριθμοί των καναλ�
 
 msgid "When enabled, show status or error messages."
 msgstr "Όταν είναι ενεργό, γίνεται εμφάνιση της κατάστασης ή των μηνυμάτων σφάλματος."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Όταν είναι ενεργό, μπορεί να χρησιμοποιηθούν υπότιτλοι για άτομα με προβλήματα ακοής."
@@ -23492,6 +23612,12 @@ msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του χρονοδιακόπτη από το εφεδρικό tuner."
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr ""
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει προτεραιότητα αντί του 'Προτιμώμενο tuner για εγγραφές'."
@@ -23567,6 +23693,9 @@ msgstr "Όταν είναι διαθέσιμο"
 
 msgid "White"
 msgstr "Λευκό"
+
+msgid "Wi-Fi Connection Settings"
+msgstr ""
 
 msgid "Wide"
 msgstr "Πλατιά"
@@ -23658,11 +23787,17 @@ msgstr "Χωρίς ερώτημα"
 msgid "Wizard Actions"
 msgstr "Ενέργειες οδηγού"
 
+msgid "WoW only"
+msgstr ""
+
 msgid "Wolof"
 msgstr "Γουόλοφ"
 
 msgid "Workaround for old tuner driver."
 msgstr "Εναλλακτική λύση για παλαιό οδηγό tuner."
+
+msgid "Workgroup name"
+msgstr ""
 
 msgid "World Affairs"
 msgstr "Παγκόσμια επικαιρότητα"
@@ -24076,6 +24211,9 @@ msgstr "Επιστροφή στην υπηρεσία πριν τη ρύθμισ�
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Eπιστροφή στην υπηρεσία πριν τη ρύθμιση του tuner;"
+
+msgid "Zap condition"
+msgstr ""
 
 msgid "Zap down"
 msgstr "Ζάπινγκ προς τα κάτω"

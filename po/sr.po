@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
-"PO-Revision-Date: 2026-07-16 23:23+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"PO-Revision-Date: 2026-07-22 04:03+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -1317,6 +1317,9 @@ msgstr "(Pristup '%s' evidenciji zahteva Internet vezu.)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Pažnja: Doći će do ponovnog pokretanja nakon %d pada.)"
 
+msgid "(Deep) Standby only"
+msgstr "(Duboko) Samo u stanju pripravnosti"
+
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -2277,6 +2280,9 @@ msgstr "Omogući 10bit"
 
 msgid "Allow 12bit"
 msgstr "Omogući 12bit"
+
+msgid "Allow guest access"
+msgstr "Dozvoli pristup gostima"
 
 msgid "Allow quit movie player with exit"
 msgstr "Dozvoli izlazak iz plejera za filmove sa izlazom"
@@ -5565,6 +5571,9 @@ msgstr "DNS Postavke"
 msgid "DNS data source"
 msgstr "DNS izvor podataka"
 
+msgid "DNS override"
+msgstr "DNS prepisivanje"
+
 msgid "DNS protocol mode"
 msgstr "DNS režim protokola"
 
@@ -5909,6 +5918,9 @@ msgstr "Skeniranje Kanala po Zadanom"
 
 msgid "Default files/folders to backup"
 msgstr "Podrazumevane datoteke/fascikle za pravljenje rezervne kopije"
+
+msgid "Default gateway"
+msgstr "Podrazumevani prolaz"
 
 msgid "Default left column directory"
 msgstr "Podrazumevani direktorijum leve kolone"
@@ -7648,6 +7660,9 @@ msgstr "Unesite tekst preko priložene tastature"
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr "Unesite IP adresu ili podmrežu (npr. 192.168.1.0/24) kome je dozvoljen pristup NFS domaćinu. Unesite '*', što je zadano, za pristup svim domaćinima."
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr "Unesi IP adresu koja će se koristiti kao pristupnik ka drugim mrežama za ovaj adapter. Obično je to IP adresa tvog rutera."
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr "Unesi PIN od 0 do 255 koji je ovom korisničkom opsegu dodelio instalater ili upravnik zgrade."
 
@@ -7657,23 +7672,47 @@ msgstr "Unesite ZeroTier ID mreže. ID treba da bude tačno 16 karaktera."
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Unesite trajanje koje treba dodati u bafer za strimovanje nakon greške u strimovanju. Ovaj dodatni bafer može pomoći da se izbegnu dalji problemi sa strimovanjem zbog nedostatka prostora u baferu."
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr "Unesi fiksnu/statičku IPv4 adresu koja će se koristiti za ovaj mrežni adapter."
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Unesite frekvenciju na kojoj se LNB prebacuje između niskog banda i visokog banda. Za više info pogledajte specifikaciju vašeg LNB."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Unesite veličinu koraka učestalosti koju tjuner koristi prilikom traženja multipleksa kabla. Za više info pogledajte list specifikacije kabel provajdera."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Unesite broj NFS server niti koje će biti dodeljene/korištene. Veće vrednosti poboljšavaju performanse sa više klijenata, ali koriste više memorije."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Unesite broj sačuvan u pozicioner koji odgovara danom satelitu."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr "Unesi lozinku, frazu ili unapred podeljeni ključ za izabranu bežičnu mrežu."
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr "Unesi primarnu IPv4 DNS postavku za ovaj adapter."
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Unesi primarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr "Unesi sekundarnu IPv4 DNS postavku za ovaj adapter. (Opcionalno)"
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Unesi sekundarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
+
 msgid "Enter the service pin"
 msgstr "Unesite pin za kanal"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr "Unesi podmrežu masku koja će se koristiti za ovaj mrežni adapter. (npr. 255.255.255.0)"
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Unesite pretplatnički kod da biste u potpunosti omogućili dodatak AI-Povered Translation, jedinstveni kod za suđenje je 15."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Unesi naziv radne grupe koju će ovaj prijemnik koristiti za Samba konekcije. (Podrazumevano je 'RADNAGRUPA'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Unesite vašu geografsku širinu. Ovo je broj stepeni iz ekvadora kao decimalni broj."
@@ -8852,6 +8891,9 @@ msgstr "Forsiraj statistiku Zaostalog Signala"
 msgid "Force ToneBurst"
 msgstr "Forsiraj ToneBurst"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr "Primoraj određenu brzinu veze/režim obostrano umesto automatskog pregovaranja. Menjaj ovo samo ako imaš neki specifičan razlog, jer pogrešno podešavanje može prekinuti mrežnu konekciju."
+
 msgid "Force de-interlace"
 msgstr "Uvek koristi de-interlace"
 
@@ -9755,6 +9797,9 @@ msgstr "IP adresa nevažeća!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP adresa servera za prenos strima koji se koristi za dešifrovanje usluga koje se mogu dešifrovati samo putem Stream Relay."
+
+msgid "IP protocol"
+msgstr "IP protokol"
 
 msgid "IPK Installer"
 msgstr "IPK Instaler"
@@ -10989,6 +11034,9 @@ msgstr "Veza je otkrivena"
 
 msgid "Link quality:"
 msgstr "Kvalitet veze:"
+
+msgid "Link speed"
+msgstr "Brzina linka"
 
 msgid "Link target"
 msgstr "Cilj veze"
@@ -12334,6 +12382,9 @@ msgstr "Izbor Mrežnog Adaptera"
 msgid "Network Adapter Setting Actions"
 msgstr "Radnje Podešavanja Mrežnog Adaptera"
 
+msgid "Network Adapter Settings"
+msgstr "Podešavanja mrežnog adaptera"
+
 msgid "Network Adapter Text Actions"
 msgstr "Radnje Teksta Mrežnog Adaptera"
 
@@ -12403,6 +12454,9 @@ msgstr "Info o mreži za %s %s"
 
 msgid "Network menu"
 msgstr "Meni mreže"
+
+msgid "Network metric"
+msgstr "Mrežna metrika"
 
 msgid "Network mounts"
 msgstr "Montaža mreže"
@@ -13714,6 +13768,9 @@ msgstr "Lozinka"
 msgid "Password (httpwd)"
 msgstr "Lozinka (httpwd)"
 
+msgid "Password / Key"
+msgstr "Lozinka / Ključ"
+
 msgid "Password Actions"
 msgstr "Radnja sa Lozinkom"
 
@@ -14434,6 +14491,9 @@ msgstr "Preferiraj titlove za oštećen sluh"
 msgid "Prefer subtitles stored by service"
 msgstr "Preferiraj titlove sačuvanog u kanalu"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr "Preferirani redosled povezivanja kada je podešeno više Wi-Fi profila. Niži brojevi imaju viši prioritet."
+
 msgid "Preferred tuner"
 msgstr "Preferiraj tjuner"
 
@@ -14615,6 +14675,12 @@ msgstr "Predhodna pesma"
 
 msgid "Primary DNS"
 msgstr "Primarni DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr "Primarni DNS (IPv4)"
+
+msgid "Primary DNS (IPv6)"
+msgstr "Primarni DNS (IPv6)"
 
 msgid "Prime time"
 msgstr "Udarno vreme"
@@ -15935,6 +16001,9 @@ msgstr "Pokretanje Myrestore skripte, sačekajte..."
 msgid "Running command %d: '%s'."
 msgstr "Pokretanje komande %d: '%s'."
 
+msgid "Running only"
+msgstr "Samo pokretanje"
+
 msgid "Russian"
 msgstr "Ruski"
 
@@ -16397,6 +16466,12 @@ msgstr "Drugi kabl od pozicionera LNB"
 
 msgid "Secondary DNS"
 msgstr "Sekundarni DNS"
+
+msgid "Secondary DNS (IPv4)"
+msgstr "Sekundarni DNS (IPv4)"
+
+msgid "Secondary DNS (IPv6)"
+msgstr "Sekundarni DNS (IPv6)"
 
 msgid "Seconds"
 msgstr "Sekunde"
@@ -17128,6 +17203,9 @@ msgstr "Izaberi kanal korisničkog banda koji će biti dodeljen ovom tjuneru. Ov
 msgid "Select the Yes / True response"
 msgstr "Izaberi Da / Istinit odgovor"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr "Odaberi prethodne uslove za Zap tajmer. Zap tajmer će se aktivirati samo u odabranom stanju."
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Izaberite akciju za '%s'"
@@ -17350,6 +17428,12 @@ msgstr ""
 "\n"
 "Pritisnite OK za nastavak."
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr "Izaberi mrežnu metriku za ovaj adapter. Kada je više adaptera aktivno, onaj sa najnižom mrežnom metrikom se koristi kao podrazumevana ruta za mrežni saobraćaj."
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr "Izaberi ime mreže (SSID) bežične mreže na koju bi prijemnik trebalo da se poveže."
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "Izaberite novu tačku montiranja za: '%s'"
@@ -17410,6 +17494,9 @@ msgstr "Izaberite raspored ekrana, iz opcija koje pruža skin, koji će se koris
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr "Izaberi način pretrage da nađeš pikone. 'Način sa jednim putem' koristi jedan put za sve pikone. 'Način sa više puteva' omogućava korišćenje više putanja za pikone u različitim slučajevima."
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr "Izaberi sigurnosni protokol koji će se koristiti za pristup odabranoj bežičnoj mreži."
 
 msgid "Select the shifted character set"
 msgstr "Izbor skupa preseljenih znakova"
@@ -17596,6 +17683,9 @@ msgstr "Izaberi da li zvuk sa više kanala treba da bude izlazni PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Izaberi ikonu za pokazivanje kretanja rotora."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr "Izaberi koje IP protokole možeš koristiti sa ovim adapterom."
 
 msgid "Select wireless network"
 msgstr "Izaberi bežičnu mrežu"
@@ -19705,7 +19795,7 @@ msgstr "Specijalni događaji (Olimpijske igre, Svetsko prvenstvo, itd.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Navedite direktorijum koji će se koristiti prilikom pokretanja Medija Plejer."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Odredite DNS sufiks mreže koji će se primeniti kada je naveden samo naziv računara. Ovo pomaže DNS rezolveru da pronađe traženi host."
 
 msgid "Speed"
@@ -20083,6 +20173,9 @@ msgstr "Pruge"
 
 msgid "Style:"
 msgstr "Stil:"
+
+msgid "Subnet mask"
+msgstr "Maska podmreže"
 
 msgid "Subscription Packages"
 msgstr "Paketi Pretplate"
@@ -23233,6 +23326,12 @@ msgstr "Buđenje iz pripravnosti"
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr "Probudite svoj AV resiver ili zvučnu traku iz režima čekanja"
 
+msgid "Wake-on-LAN"
+msgstr "Buđenje preko LAN-a"
+
+msgid "Wake-on-WiFi"
+msgstr "Buđenje preko WiFi"
+
 msgid "Wallis and Futuna"
 msgstr "Wallis and Futuna"
 
@@ -23438,8 +23537,17 @@ msgstr "Kada bude omogućeno, dozvoljeno je prekidanje snimanja TV, kada nema sl
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kada je omogućeno, biće prikazano upozorenje i korisnik će dobiti opciju zaustavljanja ili nastavka tajmšift."
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr "Kada je omogućeno, dozvoli pristup Samba mreži bez lozinke."
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr "Kada je uključeno, dozvoli povezivanje na pristupne tačke koje ne emituju svoj SSID."
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Izaberite 'Da' da omogućite da svaki otkriveni uređaj za skladištenje bude automatski izvezen kao samba deljenje."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr "Kada je uključeno, dozvoli da uređaj bude uključen pomoću daljinskog Buđenje-preko-LAN mrežnog signala (Magic Paketa)."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Kada je omogućeno, dozvoli korišćenje NFS verzije 3 protokola."
@@ -23449,6 +23557,9 @@ msgstr "Kada je omogućeno, dozvoli korišćenje NFS verzije 4 protokola."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kada je omogućeno, potrebna je potvrda identiteta za gledanje http strima."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr "Kada je omogućeno, pokušava se povezivanje preko sačuvane mreže kada Wi-Fi adapter uspostavi vezu."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Kada je omogućeno, sadržaj sa odnosom širina/visina 4:3 biće razvučen tako da odgovara ekranu."
@@ -23471,6 +23582,9 @@ msgstr "Kada je omogućeno, grafički DVB titlovi će biti prikazani na original
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kada je omogućeno, moguće je napustiti filmski plejer sa exit."
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr "Kada je uključeno, Wi-Fi adapter ostaje u režimu niske potrošnje tokom čekanja, tako da se prijemnik može uključiti signalom sa mreže (Magic Paketa)."
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr "Kada je omogućeno, korisnički račun korijenski se dodeljuje nikome (bezbednije). Kada je onemogućeno, dostupan je pun korijenski pristup."
 
@@ -23483,6 +23597,9 @@ msgstr "Kada su omogućeni, mrežne kante za smeće se ispituju za čišćenje."
 msgid "When enabled, number markers will be hidden."
 msgstr "Kada je omogućeno, označivači brojeva će biti sakriveni."
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr "Kada je uključeno, automatski dobija IP adresu, masku mreže, pristupnik i DNS podešavanja preko DHCP-a."
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Kada je omogućeno, pritiskanjem tastera '0' će vas odvesti do prvog kanala u vašem prvom buketu i izbrisati vašu zap-istoriju."
 
@@ -23494,6 +23611,9 @@ msgstr "Kada je omogućeno, prikažite brojeve kanala na ekranu za izbor kanala.
 
 msgid "When enabled, show status or error messages."
 msgstr "Kada je omogućeno, prikažite status ili poruke o greškama."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr "Kada je omogućeno, navedite prilagođene DNS postavke za ovaj adapter umesto globalnih DNS postavki."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Kada je omogućeno, mogu se koristiti titlovi za oštećen sluh."
@@ -23545,6 +23665,12 @@ msgstr "Kada je omogućeno, tajmer sa rezervnog tjunera se uvozi."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Kada je omogućeno, tajmer sa rezervnog tunera je podrazumevani tajmer."
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr "Kada je omogućeno, ovaj Wi-Fi adapter se održava samo u Buđenje-preko-WiFi režima i neće se koristiti za povezivanje na bilo koju mrežu."
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr "Kada je uključen, ovaj adapter se pokreće i aktivira pri pokretanju sistema."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Kada je omogućeno, ova postavka ima veću težinu od 'Preferirani tjuner za snimanje'."
@@ -23620,6 +23746,9 @@ msgstr "Dok je dostupno"
 
 msgid "White"
 msgstr "Bela"
+
+msgid "Wi-Fi Connection Settings"
+msgstr "Podešavanja Wi-Fi Veze"
 
 msgid "Wide"
 msgstr "Široko"
@@ -23711,11 +23840,17 @@ msgstr "Bez pitanja"
 msgid "Wizard Actions"
 msgstr "Čarobnjak Radnja"
 
+msgid "WoW only"
+msgstr "WoW samo"
+
 msgid "Wolof"
 msgstr "Wolof"
 
 msgid "Workaround for old tuner driver."
 msgstr "Zaobilazno rešenje za stari upravljački program tjunera."
+
+msgid "Workgroup name"
+msgstr "Ime radne grupe"
 
 msgid "World Affairs"
 msgstr "Svetski poslovi"
@@ -24129,6 +24264,9 @@ msgstr "Vrati na kanal pre podešavanja pozicionera?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Vrati nazad na kanal pre podešavanja tjunera?"
+
+msgid "Zap condition"
+msgstr "Zap stanje"
 
 msgid "Zap down"
 msgstr "Vrati nadole"
@@ -24884,6 +25022,18 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
+#~ msgstr "Unesi ime koje će koristiti ovaj uređaj kada se pojavljuje u Samba mrežnim skeniranjima/listama."
+
+#~ msgid "Server name"
+#~ msgstr "Ime servera"
+
+#~ msgid "When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)"
+#~ msgstr "Kada je omogućeno, ovaj adapter je aktivan i inicijalizovan pri pokretanju računara. (Dodaje 'auto' u /etc/network/interfaces, poziva ifup/ifdown.)"
+
+#~ msgid "When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)"
+#~ msgstr "Kada je omogućeno, ovaj profil se pokušava kada se adapter poveže. (isključeno = u wpa_supplicant.conf.)"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "Snimak je trenutno u toku. Molimo Vas da zaustavite snimanje pre nego što pokušate da podesite pozicije."
