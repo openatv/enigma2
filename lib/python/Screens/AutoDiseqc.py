@@ -401,23 +401,20 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			return False
 		if not slot.isMultiType():
 			return True
-		if slot.canBeCompatible("DVB-C"):
-			config.Nims[self.feid].dvbc.configMode.value = "nothing"
-		if slot.canBeCompatible("DVB-T"):
-			config.Nims[self.feid].dvbt.configMode.value = "nothing"
-		try:
-			if "satellite" in config.Nims[self.feid].hybridTunerMode.choices:
-				config.Nims[self.feid].hybridTunerMode.value = "satellite"
-		except Exception:
-			pass
 		self.setMultiTypeValue("DVB-S")
 		res_mgr = eDVBResourceManager.getInstance()
-		if res_mgr:
+		if res_mgr and slot.frontend_id is not None:
 			res_mgr.setFrontendType(slot.frontend_id, "dummy", False)
 			for FeType in slot.getMultiTypeList().values():
-				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X"):
-					res_mgr.setFrontendType(slot.frontend_id, "DVB-S2" if FeType == "DVB-S2X" else FeType, True)
-					break
+				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[self.feid].dvbs.configMode.value == "nothing":
+					continue
+				if FeType in ("DVB-C", "DVB-C2") and config.Nims[self.feid].dvbc.configMode.value == "nothing":
+					continue
+				if FeType in ("DVB-T", "DVB-T2") and config.Nims[self.feid].dvbt.configMode.value == "nothing":
+					continue
+				if FeType == "ATSC" and config.Nims[self.feid].atsc.configMode.value == "nothing":
+					continue
+				res_mgr.setFrontendType(slot.frontend_id, FeType, True)
 		if not self.frontend:
 			print("[AutoDiseqc] no frontend for tuner type change")
 			return False

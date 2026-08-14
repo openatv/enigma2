@@ -2501,6 +2501,8 @@ def InitNimManager(nimmgr, update_slots=None):
 				default = "nothing"
 			nim.advanced = ConfigNothing()
 			tmp = ConfigSelection(choices=config_mode_choices, default=default)
+			# Persist every MultiType mode explicitly across driver reinitialization.
+			tmp.save_forced = slot.isMultiType()
 			tmp.slot_id = slot_id
 			tmp.addNotifier(configModeChanged, initial_call=False)
 			nim.configMode = tmp
@@ -2512,16 +2514,20 @@ def InitNimManager(nimmgr, update_slots=None):
 		]
 		if slot.canBeCompatible("DVB-C"):
 			nim = config.Nims[slot_id].dvbc
-			default = BoxInfo.getItem("displaybrand") == "Beyonwiz" and "nothing" or "enabled"
+			default = "nothing" if slot.isMultiType() or BoxInfo.getItem("displaybrand") == "Beyonwiz" else "enabled"
 			nim.configMode = ConfigSelection(default=default, choices=configChoices)
+			nim.configMode.save_forced = slot.isMultiType()
 			createCableConfig(nim, slot_id)
 		if slot.canBeCompatible("DVB-T"):
 			nim = config.Nims[slot_id].dvbt
-			nim.configMode = ConfigSelection(default="enabled", choices=configChoices)
+			default = "nothing" if slot.isMultiType() else "enabled"
+			nim.configMode = ConfigSelection(default=default, choices=configChoices)
+			nim.configMode.save_forced = slot.isMultiType()
 			createTerrestrialConfig(nim, slot_id)
 		if slot.canBeCompatible("ATSC"):
 			nim = config.Nims[slot_id].atsc
-			nim.configMode = ConfigSelection(default="enabled", choices=configChoices)
+			nim.configMode = ConfigSelection(default="nothing" if slot.isMultiType() else "enabled", choices=configChoices)
+			nim.configMode.save_forced = slot.isMultiType()
 			createATSCConfig(nim, slot_id)
 		if not (slot.canBeCompatible("DVB-S") or slot.canBeCompatible("DVB-T") or slot.canBeCompatible("DVB-C") or slot.canBeCompatible("ATSC")):
 			empty_slots += 1
@@ -2611,24 +2617,6 @@ def InitNimManager(nimmgr, update_slots=None):
 			nim.multiType = ConfigSelection(typeList, default)
 			nim.multiType.fe_id = slot_id - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
-
-		if slot.canBeCompatible("DVB-C") and slot.canBeCompatible("DVB-T"):
-			nim = config.Nims[slot_id]
-			default = "terrestrial" if slot.getType() and slot.getType().startswith("DVB-T") else "cable"
-			choices = [
-				("cable", _("DVB-C / Cable only")),
-				("terrestrial", _("DVB-T/T2 / Terrestrial only"))
-			]
-			if slot.canBeCompatible("DVB-S"):
-				if slot.getType() and slot.getType().startswith("DVB-S"):
-					default = "satellite"
-				choices.append(("satellite", "DVB-S/S2 / %s" % _("Satellite")))
-			else:
-				choices.append(("switch", _("DVB-C and DVB-T/T2 via external 5V controlled coax switch")))
-			try:
-				nim.hybridTunerMode.setChoices(choices, default=default)
-			except Exception:
-				nim.hybridTunerMode = ConfigSelection(default=default, choices=choices)
 
 		print(f"[NimManager] Slot name is '{slot.input_name}', description is '{slot.description}', multitype is {slot.isMultiType()}, NIM type is {slot.getType()}.")
 	empty_slots = 0
