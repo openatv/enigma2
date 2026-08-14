@@ -4,7 +4,7 @@ from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
@@ -222,6 +222,8 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 
 
 def reloadSkins():
+	for styleID in windowStyles:  # Reset window styles so a new skin without its own <windowstyle> doesn't inherit the previous skin's fonts/colors.
+		eWindowStyleManager.getInstance().setStyle(styleID, eWindowStyleSkinned())
 	domScreens.clear()
 	colors.clear()
 	colors.update({
@@ -250,6 +252,7 @@ def reloadSkins():
 	layouts.clear()
 	variables.clear()
 	clearResolveLists()
+	clearFonts()
 	InitSkins()
 
 
@@ -385,25 +388,26 @@ def parseColor(value, default=0x00FFFFFF):
 
 # Convert a coordinate string into a number.  Used to convert object position and
 # size attributes into a number.
-#    s is the input string.
-#    e is the parent object size to do relative calculations on parent
-#    size is the size of the object size (e.g. width or height)
-#    font is a font object to calculate relative to font sizes
+# 	s is the input string.
+# 	e is the parent object size to do relative calculations on parent
+# 	size is the size of the object size (e.g. width or height)
+# 	font is a font object to calculate relative to font sizes
 # Note some constructs for speeding up simple cases that are very common.
 #
 # Can do things like:  10+center-10w+4%
 # To center the widget on the parent widget,
-#    but move forward 10 pixels and 4% of parent width
-#    and 10 character widths backward
+# 	but move forward 10 pixels and 4% of parent width
+# 	and 10 character widths backward
 # Multiplication, division and subexpressions are also allowed: 3*(e-c/2)
 #
-# Usage:  center : Center the object on parent based on parent size and object size.
-#         e      : Take the parent size/width.
-#         c      : Take the center point of parent size/width.
-#         %      : Take given percentage of parent size/width.
-#         w      : Multiply by current font width. (Only to be used in elements where the font attribute is available, i.e. not "None")
-#         h      : Multiply by current font height. (Only to be used in elements where the font attribute is available, i.e. not "None")
-#         f      : Replace with getSkinFactor().
+# Usage:
+# 	center	Center the object on parent based on parent size and object size.
+# 	e	Take the parent size/width.
+# 	c	Take the center point of parent size/width.
+# 	%	Take given percentage of parent size/width.
+# 	w	Multiply by current font width. (Only to be used in elements where the font attribute is available, i.e. not "None")
+# 	h	Multiply by current font height. (Only to be used in elements where the font attribute is available, i.e. not "None")
+# 	f	Replace with getSkinFactor().
 #
 def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 	def scaleNumbers(coordinate, scale):
@@ -492,19 +496,19 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 
 
 def parseFontScale(value, scale=((1, 1), (1, 1))):
-    scaleType, *size = value.split(";")
-    try:
-        size = int(int(size[0] if size else -4) * scale[1][0] / scale[1][1])
-    except ValueError as err:
-        print(f"[Skin] Error ({type(err).__name__} - {err}): Font scale size in '{value}' is '{size}' and is invalid!")
-        size = 0
-    if scaleType in ("size", "width"):
-        scaleType = 1 if scaleType == "size" else 2
-    else:
-        print(f"[Skin] Error: Font scale must be 'size' or 'width' not '{scaleType}'!")
-        size = 0
-        scaleType = 0
-    return scaleType, size
+	scaleType, *size = value.split(";")
+	try:
+		size = int(int(size[0] if size else -4) * scale[1][0] / scale[1][1])
+	except ValueError as err:
+		print(f"[Skin] Error ({type(err).__name__} - {err}): Font scale size in '{value}' is '{size}' and is invalid!")
+		size = 0
+	if scaleType in ("size", "width"):
+		scaleType = 1 if scaleType == "size" else 2
+	else:
+		print(f"[Skin] Error: Font scale must be 'size' or 'width' not '{scaleType}'!")
+		size = 0
+		scaleType = 0
+	return scaleType, size
 
 
 def parseGradient(value):
@@ -543,10 +547,10 @@ def parseGradient(value):
 
 def parseHorizontalAlignment(value):
 	options = {
-		"left": 0,  # RT_HALIGN_LEFT,
-		"center": 1,  # RT_HALIGN_CENTER,
-		"right": 2,  # RT_HALIGN_RIGHT,
-		"block": 3  # RT_HALIGN_BLOCK
+		"left": 0,  # RT_HALIGN_LEFT.
+		"center": 1,  # RT_HALIGN_CENTER.
+		"right": 2,  # RT_HALIGN_RIGHT.
+		"block": 3  # RT_HALIGN_BLOCK.
 	}
 	return parseOptions(options, "horizontalAlignment", value, 0)
 
@@ -612,19 +616,20 @@ def parseOrientation(value):
 		"orBottomToTop": 0x11
 	}
 	value = parseOptions(options, "orientation", value, 0x00)
-	return (value & 0x10, value & 0x01)  # (orHorizontal / orVertical, not swapped / swapped)
+	return (value & 0x10, value & 0x01)  # (orHorizontal / orVertical, not swapped / swapped).
 
 
 # Convert a parameter string into a value based on string triggers.  The type
 # and value returned is based on the trigger.
 #
-# Usage:  *string   : The paramater is a string with the "*" is removed (Type: String).
-#         #aarrggbb : The parameter is a HEX color string (Type: Integer).
-#         0xABCD    : The parameter is a HEX integer (Type: Integer).
-#         5.3       : The parameter is a floating point number (Type: Float).
-#         red       : The parameter is a named color (Type: Integer).
-#         font;zize : The parameter is a font name with a font size (Type: List[Font, Size]).
-#         123       : The parameter is an integer (Type: Integer).
+# Usage:
+# 	*string		The paramater is a string with the "*" is removed (Type: String).
+# 	#aarrggbb	The parameter is a HEX color string (Type: Integer).
+# 	0xABCD		The parameter is a HEX integer (Type: Integer).
+# 	5.3		The parameter is a floating point number (Type: Float).
+# 	red		The parameter is a named color (Type: Integer).
+# 	font;zize	The parameter is a font name with a font size (Type: List[Font, Size]).
+# 	123		The parameter is an integer (Type: Integer).
 #
 def parseParameter(value):
 	"""This function is responsible for parsing parameters in the skin, it can parse integers, floats, hex colors, hex integers, named colors, fonts and strings."""
@@ -888,10 +893,10 @@ def parsePadding(attribute, value):
 
 def parseVerticalAlignment(value):
 	options = {
-		"top": 0,  # RT_VALIGN_TOP,
-		"center": 1,  # RT_VALIGN_CENTER,
-		"middle": 1,  # RT_VALIGN_CENTER,
-		"bottom": 2  # RT_VALIGN_BOTTOM
+		"top": 0,  # RT_VALIGN_TOP.
+		"center": 1,  # RT_VALIGN_CENTER.
+		"middle": 1,  # RT_VALIGN_CENTER.
+		"bottom": 2  # RT_VALIGN_BOTTOM.
 	}
 	return parseOptions(options, "verticalAlignment", value, 1)
 
