@@ -172,11 +172,25 @@ bool eRCInputEventDriver::isKeyboard()
 	return hasCap(keyCaps, KEY_A);
 }
 
+bool eRCInputEventDriver::isGamepad()
+{
+	if (m_remote_control || !hasCap(evCaps, EV_KEY))
+		return false;
+	return hasCap(keyCaps, BTN_GAMEPAD) || hasCap(keyCaps, BTN_JOYSTICK) ||
+		hasCap(keyCaps, BTN_DPAD_UP) || hasCap(keyCaps, BTN_DPAD_DOWN) ||
+		hasCap(keyCaps, BTN_DPAD_LEFT) || hasCap(keyCaps, BTN_DPAD_RIGHT);
+}
+
 bool eRCInputEventDriver::isPointerDevice()
 {
-	if (m_remote_control)
+	if (m_remote_control || isGamepad())
 		return false;
 	return hasCap(evCaps, EV_REL) || hasCap(evCaps, EV_ABS);
+}
+
+bool eRCInputEventDriver::getAbsInfo(unsigned int axis, struct input_absinfo &info)
+{
+	return handle >= 0 && ::ioctl(handle, EVIOCGABS(axis), &info) >= 0;
 }
 
 eRCInputEventDriver::~eRCInputEventDriver()

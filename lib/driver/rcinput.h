@@ -5,10 +5,13 @@
 
 class eRCDeviceInputDev: public eRCDevice
 {
-	int iskeyboard, ismouse;
+	int iskeyboard, isgamepad, ismouse;
 	int consoleFd;
 	bool shiftState, capsState;
 	std::unordered_map<unsigned int, unsigned int> remaps;
+	std::unordered_map<unsigned int, int> gamepadAxisStates;
+	int getGamepadButtonKey(unsigned int code) const;
+	void handleGamepadAxis(const struct input_event &event);
 public:
 	void handleCode(long code);
 	eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd);
