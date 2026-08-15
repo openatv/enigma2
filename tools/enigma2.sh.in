@@ -252,7 +252,10 @@ function check_busybox_update {
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ $stbcheck == "u5" ] || [ $stbcheck == "u4" ]; then
+		# Dinobot u5/u4 receivers keep the HDMI output alive through the
+		# showiframe process. Preserve it while standalone Kodi is active;
+		# stopping it here can remove the HDMI signal completely.
+		if [ "$ret" -ne "15" ] && { [ "$stbcheck" = "u5" ] || [ "$stbcheck" = "u4" ]; }; then
 			killall -9 showiframe; sleep 5
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`

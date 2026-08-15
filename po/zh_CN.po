@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
-"PO-Revision-Date: 2026-07-19 15:26+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"PO-Revision-Date: 2026-08-02 06:01+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1282,6 +1282,9 @@ msgstr "（访问“%s”提交日志需要互联网连接。）"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "（注意：崩溃 %d 次后将会重新启动。）"
 
+msgid "(Deep) Standby only"
+msgstr "仅（深度）待机"
+
 msgid "(PiP)"
 msgstr "（画中画）"
 
@@ -1675,6 +1678,8 @@ msgid ""
 "A zap timer wants to switch the channel.\n"
 "Do you want to zap now?\n"
 msgstr ""
+"换台定时器要切换频道。\n"
+"是否立即切换？\n"
 
 msgid "AAC downmix"
 msgstr "AAC 缩混"
@@ -1773,7 +1778,7 @@ msgid "Above 200 Mbps"
 msgstr "200Mbps以上"
 
 msgid "Access mode"
-msgstr ""
+msgstr "访问模式"
 
 msgid "Access point"
 msgstr "接入点"
@@ -1893,7 +1898,7 @@ msgid "Add New Quad Channel Entry"
 msgstr "添加新的四画面频道条目"
 
 msgid "Add Path"
-msgstr ""
+msgstr "添加路径"
 
 msgid "Add RecordTimer"
 msgstr "添加录制定时器"
@@ -2061,7 +2066,7 @@ msgid "Adding schedule..."
 msgstr "正在添加任务计划..."
 
 msgid "Additional cable of motorized LNB"
-msgstr ""
+msgstr "电动高频头附加电缆"
 
 msgid "Additional files/folders to backup"
 msgstr "要备份的附加文件/文件夹"
@@ -2074,7 +2079,7 @@ msgstr "其他电机选项允许您输入电机规格的详细信息，以便 En
 
 #, python-format
 msgid "Additional rotor cable from %s"
-msgstr ""
+msgstr "%s 附加极轴电机线缆"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "调整颜色设置以使所有的颜色深浅可以辨识出来，使之看起来尽可能饱和。如果满意当前设置，按 OK 键关闭视频微调，或者用数字键选择画面上的其他测试。"
@@ -2241,6 +2246,9 @@ msgstr "允许10bit"
 msgid "Allow 12bit"
 msgstr "允许12bit"
 
+msgid "Allow guest access"
+msgstr "允许访客访问"
+
 msgid "Allow quit movie player with exit"
 msgstr "允许按 EXIT 键退出电影播放器"
 
@@ -2254,7 +2262,7 @@ msgid "Allow unsupported modes"
 msgstr "允许不支持的模式"
 
 msgid "Allowed clients"
-msgstr ""
+msgstr "允许的客户端"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "允许 %s %s 定期读取存储的 EPG 数据。"
@@ -2713,7 +2721,7 @@ msgid "Auto (not available)"
 msgstr "自动 （不可用）"
 
 msgid "Auto DiSEqC search order"
-msgstr ""
+msgstr "DiSEqC 自动搜索顺序"
 
 msgid "Auto Language"
 msgstr "自动语言"
@@ -3849,7 +3857,7 @@ msgid "Central African Republic"
 msgstr "中非共和国"
 
 msgid "Central Europe"
-msgstr ""
+msgstr "中欧"
 
 msgid "Central Khmer"
 msgstr "高棉语"
@@ -4041,7 +4049,7 @@ msgid "Chechen"
 msgstr "车臣语"
 
 msgid "Check ONID/TSID"
-msgstr ""
+msgstr "检查 ONID/TSID"
 
 msgid "Check for PDC"
 msgstr "检查 PDC"
@@ -4065,7 +4073,7 @@ msgid "Checking Logs..."
 msgstr "正在检查日志..."
 
 msgid "Checking ONID/TSID ..."
-msgstr ""
+msgstr "正在检查 ONID/TSID..."
 
 msgid "Checking file system..."
 msgstr "正在检查文件系统..."
@@ -4913,7 +4921,7 @@ msgid "Configuring Service"
 msgstr "配置频道"
 
 msgid "Confirm Zap"
-msgstr ""
+msgstr "确认切换"
 
 msgid "ConflictTimer Actions"
 msgstr "冲突定时器操作"
@@ -5396,16 +5404,16 @@ msgid "Current mode: %s \n"
 msgstr "当前模式： %s \n"
 
 msgid "Current rotor position:"
-msgstr ""
+msgstr "当前极轴位置："
 
 msgid "Current rotor position: unknown"
-msgstr ""
+msgstr "当前极轴位置：未知"
 
 msgid "Current settings:"
 msgstr "当前设置："
 
 msgid "Current supplied to the LNB and positioner."
-msgstr ""
+msgstr "当前供给高频头和位置器的电流。"
 
 msgid "Current time"
 msgstr "当前时间"
@@ -5525,6 +5533,9 @@ msgstr "DNS 设置"
 
 msgid "DNS data source"
 msgstr "DNS 数据源"
+
+msgid "DNS override"
+msgstr "DNS 覆盖"
 
 msgid "DNS protocol mode"
 msgstr "DNS 模式"
@@ -5871,6 +5882,9 @@ msgstr "默认频道扫描器"
 msgid "Default files/folders to backup"
 msgstr "默认要备份的文件/文件夹"
 
+msgid "Default gateway"
+msgstr "默认网关"
+
 msgid "Default left column directory"
 msgstr "默认左列目录"
 
@@ -5925,7 +5939,7 @@ msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "定义http(s)串流启动前的附加延迟（以毫秒为单位）。"
 
 msgid "Define path %s for picons."
-msgstr ""
+msgstr "为频道图标指定路径 %s。"
 
 msgid "Define the custom mountpoint for the device."
 msgstr "定义设备的自定义挂载点。"
@@ -6262,7 +6276,7 @@ msgid "Details"
 msgstr "详情"
 
 msgid "Detect positioner movement by its current consumption."
-msgstr ""
+msgstr "通过定位器的电流消耗检测其运转状态。"
 
 msgid "Detective"
 msgstr "侦探"
@@ -7032,7 +7046,7 @@ msgid "East limit set"
 msgstr "东限制"
 
 msgid "Eastern satellites"
-msgstr ""
+msgstr "东经卫星"
 
 msgid "Easy listening"
 msgstr "轻音乐"
@@ -7233,10 +7247,10 @@ msgid "Enable Move Mode"
 msgstr "打开移动模式"
 
 msgid "Enable NFSv3"
-msgstr ""
+msgstr "启用 NFSv3"
 
 msgid "Enable NFSv4"
-msgstr ""
+msgstr "启用 NFSv4"
 
 msgid "Enable Netmed EPG"
 msgstr "启用 Netmed EPG"
@@ -7399,7 +7413,7 @@ msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "启用此选项可将键盘键映射数据添加到调试日志文件中。"
 
 msgid "Enable this option to add network information to the debug log file."
-msgstr ""
+msgstr "启用此选项可将网络信息添加到调试日志文件中。"
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "启用此选项可将 opkg 输出数据添加到调试日志文件。"
@@ -7429,7 +7443,7 @@ msgid "Enable this setting if your aerial system needs power."
 msgstr "如果您的天线系统需要电源，请启用此设置。"
 
 msgid "Enable this when a power inserter or external supply powers the Unicable device."
-msgstr ""
+msgstr "若 Unicable 设备由供电器或外置电源供电，请开启此项。"
 
 msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
 msgstr ""
@@ -7606,6 +7620,9 @@ msgstr "通过连接的键盘输入文本"
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr ""
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr ""
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
@@ -7615,23 +7632,47 @@ msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入高频头在低频段和高频段之间切换的频率。有关更多信息，请参阅高频头的规格。"
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "输入搜索有线电视多路复用时调谐器要使用的频率步长。有关更多信息，请咨询有线电视供应商的文档。"
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "输入与此卫星对应的定位器中存储的编号。"
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr ""
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr ""
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
 msgid "Enter the service pin"
 msgstr "输入频道 PIN"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr ""
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "输入订阅码即可全面启用人工智能翻译插件，试用统一码为15。"
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "输入您当前的纬度。 这是您距离赤道的度数，以十进制表示。"
@@ -8810,6 +8851,9 @@ msgstr "强制使用传统信号统计"
 msgid "Force ToneBurst"
 msgstr "强制 22K 开关"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr ""
+
 msgid "Force de-interlace"
 msgstr "强制隔行扫描"
 
@@ -9717,6 +9761,9 @@ msgstr "IP地址无效！"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "串流中继服务器的 IP 地址，用于对只能通过串流中继解密的频道进行解扰。"
+
+msgid "IP protocol"
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK 安装器"
@@ -10950,6 +10997,9 @@ msgstr "检测到链接"
 
 msgid "Link quality:"
 msgstr "链接质量："
+
+msgid "Link speed"
+msgstr ""
 
 msgid "Link target"
 msgstr "链接目标"
@@ -12294,6 +12344,9 @@ msgstr "网络适配器选择"
 msgid "Network Adapter Setting Actions"
 msgstr "网络适配器设置操作"
 
+msgid "Network Adapter Settings"
+msgstr ""
+
 msgid "Network Adapter Text Actions"
 msgstr "网络适配器文本操作"
 
@@ -12363,6 +12416,9 @@ msgstr "%s %s 网络信息"
 
 msgid "Network menu"
 msgstr "网络菜单"
+
+msgid "Network metric"
+msgstr ""
 
 msgid "Network mounts"
 msgstr "网络挂载"
@@ -13674,6 +13730,9 @@ msgstr "密码"
 msgid "Password (httpwd)"
 msgstr "密码（httpwd）"
 
+msgid "Password / Key"
+msgstr ""
+
 msgid "Password Actions"
 msgstr "密码操作"
 
@@ -14392,6 +14451,9 @@ msgstr "优先使用听障字幕"
 msgid "Prefer subtitles stored by service"
 msgstr "优先使用节目存储的字幕"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr "首选调谐器"
 
@@ -14573,6 +14635,12 @@ msgstr "上一首"
 
 msgid "Primary DNS"
 msgstr "主 DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr ""
+
+msgid "Primary DNS (IPv6)"
+msgstr ""
 
 msgid "Prime time"
 msgstr "黄金时段"
@@ -15893,6 +15961,9 @@ msgstr "正在运行 Myrestore 脚本，请稍候..."
 msgid "Running command %d: '%s'."
 msgstr "正在运行命令 %d：“%s”。"
 
+msgid "Running only"
+msgstr ""
+
 msgid "Russian"
 msgstr "俄语"
 
@@ -16352,6 +16423,12 @@ msgstr "电动高频头的第二根电缆"
 
 msgid "Secondary DNS"
 msgstr "副 DNS"
+
+msgid "Secondary DNS (IPv4)"
+msgstr ""
+
+msgid "Secondary DNS (IPv6)"
+msgstr ""
 
 msgid "Seconds"
 msgstr "秒"
@@ -17083,6 +17160,9 @@ msgstr "选择要分配给此调谐器的用户频带频率。这是 SCR 开关�
 msgid "Select the Yes / True response"
 msgstr "选择 是/真 响应"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr ""
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "选择“%s”的操作"
@@ -17305,6 +17385,12 @@ msgstr ""
 "\n"
 "按“确定”继续。"
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr ""
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr ""
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "为“%s”选择新的挂载点"
@@ -17364,6 +17450,9 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr "从外观提供的选项中选择要用于频道选择屏幕的屏幕布局。"
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr ""
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17551,6 +17640,9 @@ msgstr "选择是否应将多声道音轨作为 PCM 输出。"
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "极轴移动时选择是否显示图标。"
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr ""
 
 msgid "Select wireless network"
 msgstr "选择无线网络"
@@ -19656,7 +19748,7 @@ msgstr "特殊事件"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "定义 DNS 后缀。"
 
 msgid "Speed"
@@ -20034,6 +20126,9 @@ msgstr "线条"
 
 msgid "Style:"
 msgstr "样式："
+
+msgid "Subnet mask"
+msgstr ""
 
 msgid "Subscription Packages"
 msgstr "订阅包"
@@ -23183,6 +23278,12 @@ msgstr "唤醒到待机"
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr "将 AV 接收机或回音壁从待机状态唤醒"
 
+msgid "Wake-on-LAN"
+msgstr ""
+
+msgid "Wake-on-WiFi"
+msgstr ""
+
 msgid "Wallis and Futuna"
 msgstr "瓦利斯群岛和富图纳群岛"
 
@@ -23388,8 +23489,17 @@ msgstr "启用时，当没有空闲的调谐器，允许录制中断直播电视
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "启用后，将显示警告，用户将获得停止或继续时移的选项。"
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr ""
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr ""
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "选择“是”以允许检测到的每个存储设备自动导出为 samba 共享。"
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
@@ -23399,6 +23509,9 @@ msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用时，需要进行身份验证才能观看http流。"
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr ""
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "启用时，画面比例为 4:3 的内容将被拉伸以适合屏幕。"
@@ -23421,6 +23534,9 @@ msgstr "启用时，图形化 DVB 字幕将显示在其原始位置。"
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "启用后，可按 “EXIT” 键退出电影播放器。"
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr ""
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr ""
 
@@ -23433,6 +23549,9 @@ msgstr "启用时，将探测网络回收站以进行清洁。"
 msgid "When enabled, number markers will be hidden."
 msgstr "启用时，数字标记将会被隐藏。"
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr ""
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "启用后，按“0”将会切换到第一个频道分组中的第一个频道，并删除您的换台历史记录。"
 
@@ -23444,6 +23563,9 @@ msgstr "启用时，在频道选择屏幕中显示频道号。"
 
 msgid "When enabled, show status or error messages."
 msgstr "启用时，显示状态或错误消息。"
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "启用时，可以使用听力受损者的字幕。"
@@ -23495,6 +23617,12 @@ msgstr "启用时，将导入备用调谐器的定时器。"
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "启用时，默认使用备用调谐器的定时器。"
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr ""
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
@@ -23570,6 +23698,9 @@ msgstr "可用时"
 
 msgid "White"
 msgstr "白色"
+
+msgid "Wi-Fi Connection Settings"
+msgstr ""
 
 msgid "Wide"
 msgstr "宽"
@@ -23661,11 +23792,17 @@ msgstr "无查询"
 msgid "Wizard Actions"
 msgstr "向导操作"
 
+msgid "WoW only"
+msgstr ""
+
 msgid "Wolof"
 msgstr "沃洛夫"
 
 msgid "Workaround for old tuner driver."
 msgstr "旧调谐器驱动的临时解决方案。"
+
+msgid "Workgroup name"
+msgstr ""
 
 msgid "World Affairs"
 msgstr "国际实事"
@@ -24079,6 +24216,9 @@ msgstr "切换回极轴设置之前的频道？"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "切换回调谐器配置之前的频道？"
+
+msgid "Zap condition"
+msgstr ""
 
 msgid "Zap down"
 msgstr "向下切换"
@@ -24739,7 +24879,7 @@ msgid "the target LNB"
 msgstr ""
 
 msgid "the target LNB is not configured"
-msgstr ""
+msgstr "目标高频头尚未设置"
 
 msgid "this recording"
 msgstr "这段录像"
@@ -24790,7 +24930,7 @@ msgid "update"
 msgstr "更新"
 
 msgid "uses an unavailable User Band frequency"
-msgstr ""
+msgstr "使用的用户频段频率不可用"
 
 msgid "using:"
 msgstr "使用："

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
 "PO-Revision-Date: 2026-03-01 05:04+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -1282,6 +1282,9 @@ msgstr "('%s' கமிட் பதிவுக்கான அணுகல் 
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(கவனம்: %d செயலிழப்புகளுக்குப் பிறகு மறுதொடக்கம் இருக்கும்.)"
 
+msgid "(Deep) Standby only"
+msgstr ""
+
 msgid "(PiP)"
 msgstr "(பிப்)"
 
@@ -2240,6 +2243,9 @@ msgstr "10 பிட் அனுமதிக்கவும்"
 
 msgid "Allow 12bit"
 msgstr "12 பிட் அனுமதிக்கவும்"
+
+msgid "Allow guest access"
+msgstr ""
 
 msgid "Allow quit movie player with exit"
 msgstr "வெளியேறும் மூவி பிளேயரை விட்டு வெளியேற அனுமதிக்கவும்"
@@ -5523,6 +5529,9 @@ msgstr "டி.என்.எச் அமைப்புகள்"
 msgid "DNS data source"
 msgstr "டிஎன்எச் தரவு மூல"
 
+msgid "DNS override"
+msgstr ""
+
 msgid "DNS protocol mode"
 msgstr "டிஎன்எச் பயன்முறை"
 
@@ -5867,6 +5876,9 @@ msgstr "இயல்புநிலை சேவைகள் ச்கேனர�
 
 msgid "Default files/folders to backup"
 msgstr "காப்புப்பிரதிக்கு இயல்புநிலை கோப்புகள்/கோப்புறைகள்"
+
+msgid "Default gateway"
+msgstr ""
 
 msgid "Default left column directory"
 msgstr "இயல்புநிலை இடது நெடுவரிசை அடைவு"
@@ -7603,6 +7615,9 @@ msgstr "இணைக்கப்பட்ட விசைப்பலகை வ�
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr ""
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr ""
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
@@ -7612,23 +7627,47 @@ msgstr "ZeroTier பிணையம் ஐடியை உள்ளிடவு�
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "ச்ட்ரீமிங் பிழைக்குப் பிறகு ச்ட்ரீமிங் பஃபரில் சேர்க்க வேண்டிய கால அளவை உள்ளிடவும். இந்த கூடுதல் இடையகமானது இடையக இடம் இல்லாததால் மேலும் ச்ட்ரீமிங் சிக்கல்களைத் தவிர்க்க உதவும்."
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "குறைந்த இசைக்குழு மற்றும் உயர் இசைக்குழுவுக்கு இடையில் நீங்கள் எல்.என்.பி மாறும் அதிர்வெண்ணை உள்ளிடவும். மேலும் தகவலுக்கு உங்கள் LNB இன் விவரக்குறிப்புகளைப் பார்க்கவும்."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "கேபிள் மல்டிபிளெக்சைத் தேடும்போது ட்யூனரைப் பயன்படுத்த அதிர்வெண் படி அளவை உள்ளிடவும். மேலும் தகவலுக்கு உங்கள் கேபிள் வழங்குநரின் ஆவணங்களைப் பார்க்கவும்."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "இந்த செயற்கைக்கோளுக்கு ஒத்த நிலைப்பாட்டில் சேமிக்கப்பட்ட எண்ணை உள்ளிடவும்."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr ""
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr ""
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
 msgid "Enter the service pin"
 msgstr "பணி முள் உள்ளிடவும்"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr ""
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "AI- இயங்கும் மொழிபெயர்ப்பு சொருகி முழுமையாக இயக்க சந்தா குறியீட்டை உள்ளிடவும், சோதனைக்கான ஒருங்கிணைந்த குறியீடு 15 ஆகும்."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "உங்கள் தற்போதைய அட்சரேகையை உள்ளிடவும். இது ஒரு தசமமாக பூமத்திய ரேகையிலிருந்து நீங்கள் இருக்கும் டிகிரிகளின் எண்ணிக்கை."
@@ -8807,6 +8846,9 @@ msgstr "படை மரபு சமிக்ஞை புள்ளிவிவ
 msgid "Force ToneBurst"
 msgstr "ஃபோர்ச் டோன் பர்ச்ட்"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr ""
+
 msgid "Force de-interlace"
 msgstr "வேலையில்லா நேரம்"
 
@@ -9710,6 +9752,9 @@ msgstr "ஐபி முகவரி தவறானது!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "ச்ட்ரீம் ரிலே சேவையகத்தின் ஐபி முகவரி ச்ட்ரீம் ரிலே வழியாக மட்டுமே மறைகுறியாக்கக்கூடிய சேவைகளை டெச்கிராம்பிள் செய்யப் பயன்படுகிறது."
+
+msgid "IP protocol"
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "ஐபிகே நிறுவி"
@@ -10943,6 +10988,9 @@ msgstr "இணைப்பு கண்டறியப்பட்டது"
 
 msgid "Link quality:"
 msgstr "இணைப்பு தரம்:"
+
+msgid "Link speed"
+msgstr ""
 
 msgid "Link target"
 msgstr "இணைப்பு இலக்கு"
@@ -12287,6 +12335,9 @@ msgstr "பிணையம் அடாப்டர் தேர்வு"
 msgid "Network Adapter Setting Actions"
 msgstr "பிணையம் அடாப்டர் அமைக்கும் செயல்கள்"
 
+msgid "Network Adapter Settings"
+msgstr ""
+
 msgid "Network Adapter Text Actions"
 msgstr "பிணையம் அடாப்டர் உரை செயல்கள்"
 
@@ -12356,6 +12407,9 @@ msgstr "%s %s க்கான பிணைய செய்தி"
 
 msgid "Network menu"
 msgstr "பிணையம் பட்டியல்"
+
+msgid "Network metric"
+msgstr ""
 
 msgid "Network mounts"
 msgstr "பிணையம் ஏற்றுகிறது"
@@ -13667,6 +13721,9 @@ msgstr "கடவுச்சொல்"
 msgid "Password (httpwd)"
 msgstr "கடவுச்சொல் (httpwd)"
 
+msgid "Password / Key"
+msgstr ""
+
 msgid "Password Actions"
 msgstr "கடவுச்சொல் செயல்கள்"
 
@@ -14385,6 +14442,9 @@ msgstr "செவித்திறன் குறைபாட்டிற்�
 msgid "Prefer subtitles stored by service"
 msgstr "சேவையால் சேமிக்கப்பட்ட வசனங்களை விரும்புங்கள்"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr "விருப்பமான ட்யூனர்"
 
@@ -14566,6 +14626,12 @@ msgstr "முந்தைய"
 
 msgid "Primary DNS"
 msgstr "முதன்மை டி.என்.எச்"
+
+msgid "Primary DNS (IPv4)"
+msgstr ""
+
+msgid "Primary DNS (IPv6)"
+msgstr ""
 
 msgid "Prime time"
 msgstr "முதன்மையான நேரம்"
@@ -15886,6 +15952,9 @@ msgstr "மைரெச்டோர் ச்கிரிப்டை இயக�
 msgid "Running command %d: '%s'."
 msgstr "கட்டளை %d: ' %s'."
 
+msgid "Running only"
+msgstr ""
+
 msgid "Russian"
 msgstr "ரச்ய"
 
@@ -16345,6 +16414,12 @@ msgstr "மின்னோடி பொருத்தப்பட்ட எல�
 
 msgid "Secondary DNS"
 msgstr "இரண்டாம் நிலை டி.என்.எச்"
+
+msgid "Secondary DNS (IPv4)"
+msgstr ""
+
+msgid "Secondary DNS (IPv6)"
+msgstr ""
 
 msgid "Seconds"
 msgstr "நொடிகள்"
@@ -17076,6 +17151,9 @@ msgstr "இந்த ட்யூனருக்கு ஒதுக்கப்�
 msgid "Select the Yes / True response"
 msgstr "ஆம் / உண்மையான பதிலைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr ""
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "'%s' க்கான செயலைத் தேர்ந்தெடுக்கவும்"
@@ -17298,6 +17376,12 @@ msgstr ""
 "\n"
 " தொடர சரி என்பதை அழுத்தவும்."
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr ""
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr ""
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "இதற்கான புதிய மவுண்ட் பாயிண்டைத் தேர்ந்தெடுக்கவும்: '%s'"
@@ -17357,6 +17441,9 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr "சேனல்செலெக்சன் திரைக்குப் பயன்படுத்த, தோல் வழங்கிய விருப்பங்களிலிருந்து திரை தளவமைப்பைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr ""
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17544,6 +17631,9 @@ msgstr "மல்டி சேனல் ஒலி தடங்கள் பி�
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "மின்னோடி பொருத்தப்பட்ட டிச் நகரும் போது ஐகானைக் காட்டலாமா வேண்டாமா என்பதைத் தேர்வுசெய்க."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr ""
 
 msgid "Select wireless network"
 msgstr "வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்"
@@ -19649,7 +19739,7 @@ msgstr "சிறப்பு நிகழ்வுகள்"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "மீடியா பிளேயரைத் தொடங்கும்போது பயன்படுத்த வேண்டிய கோப்பகத்தைக் குறிப்பிடவும்."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "டிஎன்எச் பின்னொட்டை வரையறுக்கவும்."
 
 msgid "Speed"
@@ -20027,6 +20117,9 @@ msgstr "கோடுகள்"
 
 msgid "Style:"
 msgstr "ச்டைல்:"
+
+msgid "Subnet mask"
+msgstr ""
 
 msgid "Subscription Packages"
 msgstr "சந்தா தொகுப்புகள்"
@@ -23176,6 +23269,12 @@ msgstr "காத்திருப்பு வரை எழுந்திர�
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr ""
 
+msgid "Wake-on-LAN"
+msgstr ""
+
+msgid "Wake-on-WiFi"
+msgstr ""
+
 msgid "Wallis and Futuna"
 msgstr "வாலிச் மற்றும் ப்யூடுனா"
 
@@ -23381,8 +23480,17 @@ msgstr "இயக்கப்பட்டால், இலவச ட்யூன
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "இயக்கப்பட்டால், ஒரு எச்சரிக்கை காண்பிக்கப்படும் மற்றும் பயனருக்கு நிறுத்த அல்லது நேர மாற்றத்தைத் தொடர ஒரு விருப்பம் கிடைக்கும்."
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr ""
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr ""
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "கண்டறியப்பட்ட ஒவ்வொரு சேமிப்பக சாதனத்தையும் தானாகவே சம்பா பங்காக ஏற்றுமதி செய்ய அனுமதிக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
@@ -23392,6 +23500,9 @@ msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "இயக்கப்பட்டால், HTTP ச்ட்ரீம்களைப் பார்க்க ஏற்பு தேவை."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr ""
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "இயக்கப்பட்டால், 4: 3 என்ற விகித விகிதத்துடன் உள்ளடக்கம் திரைக்கு ஏற்றவாறு நீட்டப்படும்."
@@ -23414,6 +23525,9 @@ msgstr "இயக்கப்பட்டால், வரைகலை டி.�
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "இயக்கப்பட்டால், மூவி பிளேயரை வெளியேறு நிலையில் விட்டுவிட முடியும்."
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr ""
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr ""
 
@@ -23426,6 +23540,9 @@ msgstr "இயக்கப்பட்டால், பிணையம் கு
 msgid "When enabled, number markers will be hidden."
 msgstr "இயக்கப்பட்டால், எண் குறிப்பான்கள் மறைக்கப்படும்."
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr ""
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "இயக்கப்பட்டால், '0' ஐ அழுத்தினால் உங்கள் முதல் பூச்செடியில் முதல் சேனலுக்கு உங்களைச் சேர்த்து, உங்கள் சாப்-வரலாற்றை நீக்கிவிடும்."
 
@@ -23437,6 +23554,9 @@ msgstr "இயக்கப்பட்டால், சேனல் தேர்
 
 msgid "When enabled, show status or error messages."
 msgstr "இயக்கப்பட்டால், நிலை அல்லது பிழை செய்திகளைக் காட்டுங்கள்."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "இயக்கப்பட்டால், செவித்திறன் குறைபாட்டிற்கான வசன வரிகள் பயன்படுத்தப்படலாம்."
@@ -23488,6 +23608,12 @@ msgstr "ஃபிள்பேக் ட்யூனரிலிருந்த�
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "ஃபிள்பேக் ட்யூனரிலிருந்து டைமரை இயக்கும்போது இயல்புநிலை நேரமாகும்"
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr ""
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "இயக்கப்பட்டால், இந்த அமைப்பு 'பதிவுகளுக்கு விருப்பமான ட்யூனரை' விட அதிக எடையைக் கொண்டுள்ளது."
@@ -23563,6 +23689,9 @@ msgstr "கிடைக்கும்போது"
 
 msgid "White"
 msgstr "வெள்ளை"
+
+msgid "Wi-Fi Connection Settings"
+msgstr ""
 
 msgid "Wide"
 msgstr "அகலமான"
@@ -23654,11 +23783,17 @@ msgstr "வினவல் இல்லாமல்"
 msgid "Wizard Actions"
 msgstr "வழிகாட்டி நடவடிக்கைகள்"
 
+msgid "WoW only"
+msgstr ""
+
 msgid "Wolof"
 msgstr "ஓலோஃப்"
 
 msgid "Workaround for old tuner driver."
 msgstr "பழைய ட்யூனர் டிரைவருக்கான பணித்தொகுப்பு."
+
+msgid "Workgroup name"
+msgstr ""
 
 msgid "World Affairs"
 msgstr "உலக விவகாரங்கள்"
@@ -24072,6 +24207,9 @@ msgstr "ச்டீச்டர் அமைப்புக்கு முன�
 
 msgid "Zap back to service before tuner setup?"
 msgstr "ட்யூனர் அமைப்பிற்கு முன் சேவைக்குத் திரும்புகிறீர்களா?"
+
+msgid "Zap condition"
+msgstr ""
 
 msgid "Zap down"
 msgstr "கீழே"

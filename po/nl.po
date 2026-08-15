@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1283,6 +1283,9 @@ msgstr "Voor toegang tot de '%s' commit logs is een internetverbinding noodzakel
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Opgelet: Na %d crashes vind een herstart plaats.)"
 
+msgid "(Deep) Standby only"
+msgstr ""
+
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -2249,6 +2252,9 @@ msgstr "10bit toestaan"
 
 msgid "Allow 12bit"
 msgstr "12bit toestaan"
+
+msgid "Allow guest access"
+msgstr ""
 
 msgid "Allow quit movie player with exit"
 msgstr "Verlaat de Mediaspeler met de EXIT-knop"
@@ -5645,6 +5651,9 @@ msgstr "DNS instellingen"
 msgid "DNS data source"
 msgstr "DNS gegevensbron"
 
+msgid "DNS override"
+msgstr ""
+
 msgid "DNS protocol mode"
 msgstr "DNS Modus"
 
@@ -5989,6 +5998,9 @@ msgstr "Standaard zender zoeker"
 
 msgid "Default files/folders to backup"
 msgstr "Standaard back-up bestanden"
+
+msgid "Default gateway"
+msgstr ""
 
 msgid "Default left column directory"
 msgstr "Standaard map in de linkerkolom"
@@ -7749,6 +7761,9 @@ msgstr "Tekst invoeren via een aangesloten toetsenbord"
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr ""
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr ""
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr ""
 
@@ -7758,23 +7773,47 @@ msgstr ""
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Geef de frequentie op waarbij uw LNB schakelt tussen de hoge en de lage band. Voor meer informatie zie de specificaties van uw LNB."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Geef de frequentie stapgrootte op waarmee de tuner kabel-multiplexen moet scannen. Voor meer informatie raadpleegt de documentatie of uw provider."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Voor het in de positioner opgeslagen nummer in dat overeen komt met deze satelliet."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr ""
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr ""
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr ""
+
 msgid "Enter the service pin"
 msgstr "Voer de zender pincode in"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr ""
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Abonnement-code voor AI vertaling invoeren, de code voor de testperiode is 15."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Voor de huidige latitude in. Dit is het aantal (decimale) graden dat u verwijderd bent van de evenaar."
@@ -8956,6 +8995,9 @@ msgstr "Forceer Legacy Signal Stats"
 msgid "Force ToneBurst"
 msgstr "Forceer Toneburst"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr ""
+
 msgid "Force de-interlace"
 msgstr "Forceer de-interlace"
 
@@ -9862,6 +9904,9 @@ msgstr "IP-adres niet geldig!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP-adres van de Stream Relay server wordt gebruikt om zenders te decoderen die alleen via Stream Relay gedecodeerd kunnen worden."
+
+msgid "IP protocol"
+msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK installeren"
@@ -11099,6 +11144,9 @@ msgstr "Link gedetecteerd"
 
 msgid "Link quality:"
 msgstr "Kwaliteit van de verbinding:"
+
+msgid "Link speed"
+msgstr ""
 
 msgid "Link target"
 msgstr "Link doel"
@@ -12443,6 +12491,9 @@ msgstr "Netwerk adapter"
 msgid "Network Adapter Setting Actions"
 msgstr "Acties voor Netwerk Adapter instellingen"
 
+msgid "Network Adapter Settings"
+msgstr ""
+
 msgid "Network Adapter Text Actions"
 msgstr "Netwerk adapter tekst Acties"
 
@@ -12512,6 +12563,9 @@ msgstr "Netwerkinformatie voor uw %s %s"
 
 msgid "Network menu"
 msgstr "Netwerkmenu"
+
+msgid "Network metric"
+msgstr ""
 
 msgid "Network mounts"
 msgstr "Netwerkmounts"
@@ -13826,6 +13880,9 @@ msgstr "Wachtwoord"
 msgid "Password (httpwd)"
 msgstr "Wachtwoord (httpwd)"
 
+msgid "Password / Key"
+msgstr ""
+
 msgid "Password Actions"
 msgstr "Wachtwoord acties"
 
@@ -14545,6 +14602,9 @@ msgstr "Voorkeur voor ondertitels t.b.v. slechthorenden"
 msgid "Prefer subtitles stored by service"
 msgstr "Voorkeur voor eerder opgeslagen ondertitels per zender"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr ""
+
 msgid "Preferred tuner"
 msgstr "Voorkeurstuner"
 
@@ -14730,6 +14790,12 @@ msgstr "Vorige nummer"
 
 msgid "Primary DNS"
 msgstr "Primaire DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr ""
+
+msgid "Primary DNS (IPv6)"
+msgstr ""
 
 msgid "Prime time"
 msgstr "Primetime"
@@ -16050,6 +16116,9 @@ msgstr "Myrestore script wordt uitgevoerd, een ogenblik geduld..."
 msgid "Running command %d: '%s'."
 msgstr "Commando %d: '%s' wordt uitgevoerd."
 
+msgid "Running only"
+msgstr ""
+
 msgid "Russian"
 msgstr "Russisch"
 
@@ -16513,6 +16582,12 @@ msgstr "Tweede kabel van een draaibare LNB"
 
 msgid "Secondary DNS"
 msgstr "Secondaire DNS"
+
+msgid "Secondary DNS (IPv4)"
+msgstr ""
+
+msgid "Secondary DNS (IPv6)"
+msgstr ""
 
 msgid "Seconds"
 msgstr "seconden"
@@ -17250,6 +17325,9 @@ msgstr "Selecteer het User Band frequentie dat aan deze tuner wordt toegewezen. 
 msgid "Select the Yes / True response"
 msgstr "Selecteer het juiste antwoord"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr ""
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Actie voor '%s' selecteren"
@@ -17478,6 +17556,12 @@ msgstr ""
 "\n"
 "Druk op OK om verder te gaan."
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr ""
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr ""
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "Het nieuwe mountpunt voor '%s' selecteren"
@@ -17537,6 +17621,9 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr "Kies de layout, die afhankelijk van de skin opties wordt gebruikt in de Zenderlijst."
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
+msgstr ""
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17726,6 +17813,9 @@ msgstr "Selecteer of meerkanaals geluid moet worden weergegeven als PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Kies hier of u een icon wilt zien wanneer uw gemotoriseerde schotel draait."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr ""
 
 msgid "Select wireless network"
 msgstr "Secteer draadloos netwerk"
@@ -19854,7 +19944,7 @@ msgstr "Speciale gebeurtenissen"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Selecteer de map die bij het starten van de Mediaspeler geopend moet worden."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Het DNS-achtervoegsel invullen."
 
 msgid "Speed"
@@ -20232,6 +20322,9 @@ msgstr "Strepen"
 
 msgid "Style:"
 msgstr "Stijl:"
+
+msgid "Subnet mask"
+msgstr ""
 
 msgid "Subscription Packages"
 msgstr "Abonnementen"
@@ -23425,6 +23518,12 @@ msgstr "Inschakelen naar stand-by"
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr ""
 
+msgid "Wake-on-LAN"
+msgstr ""
+
+msgid "Wake-on-WiFi"
+msgstr ""
+
 msgid "Wallis and Futuna"
 msgstr "Wallis en Futuna"
 
@@ -23632,8 +23731,17 @@ msgstr "Indien geactiveerd, dan kan een opname live TV onderbreken indien er gee
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Bij het stoppen van Timeshift wordt gevraagd of u Timeshift echt wilt stoppen of dat de opname door moet lopen."
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr ""
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr ""
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Selecteer 'Ja' om alle opslagmedia die wordt gevonden automatisch als Samba share in te stellen."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
@@ -23643,6 +23751,9 @@ msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bij 'Ja', moet een wachtwoord worden opgegeven om http-streams te kunnen zien."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr ""
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Indien geactiveerd, dan zal een 4:3 beeldverhouding omgezet worden tot een passend beeld op het scherm."
@@ -23668,6 +23779,9 @@ msgstr ""
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Indien geactiveerd, kan de Mediaspeler (ook) verlaten worden door op de EXIT-knop te drukken."
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr ""
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr ""
 
@@ -23680,6 +23794,9 @@ msgstr "Indien geactiveerd, worden netwerk prullenbakken ook opgeschoond."
 msgid "When enabled, number markers will be hidden."
 msgstr "Wanneer geactiveerd, zijn de numerieke markeringen niet zichtbaar."
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr ""
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Indien geactiveerd, zapt '0' naar de eerste zender van de eerste favorietenlijst en wordt de zap-historie verwijderd."
 
@@ -23691,6 +23808,9 @@ msgstr "Bij 'Ja' wordt een zendernummer bij elke zender in de lijst weergegeven.
 
 msgid "When enabled, show status or error messages."
 msgstr "Bij 'Ja' worden status- of foutmeldingen getoond."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Indien geactiveerd, dan kunnen de ondertitels t.b.v. slechthorenden gebruikt worden."
@@ -23742,6 +23862,12 @@ msgstr "Timers van de Fallback tuner importeren."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Nieuwe timers altijd naar de Fallback tuner sturen (default)."
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr ""
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner voor opname's'."
@@ -23829,6 +23955,9 @@ msgstr "Wanneer beschikbaar"
 
 msgid "White"
 msgstr "Wit"
+
+msgid "Wi-Fi Connection Settings"
+msgstr ""
 
 msgid "Wide"
 msgstr "breed"
@@ -23920,6 +24049,9 @@ msgstr "zonder Query"
 msgid "Wizard Actions"
 msgstr "Wizard Acties"
 
+msgid "WoW only"
+msgstr ""
+
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -23927,6 +24059,9 @@ msgid "Workaround for old tuner driver."
 msgstr ""
 "Noodoplossing voor oude tuner driver.\n"
 "Alleen activeren wanneer u problemen heeft met een Multi-tuner."
+
+msgid "Workgroup name"
+msgstr ""
 
 msgid "World Affairs"
 msgstr ""
@@ -24343,6 +24478,9 @@ msgstr "Wilt u terug naar de vorige zender?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Wilt u terug naar de vorige zender?"
+
+msgid "Zap condition"
+msgstr ""
 
 msgid "Zap down"
 msgstr "Zap naar beneden"

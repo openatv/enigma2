@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
-"PO-Revision-Date: 2026-07-16 23:23+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"PO-Revision-Date: 2026-07-23 09:01+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -1274,6 +1274,9 @@ msgstr "(‘%s’ taahhüt günlüğüne erişim için internet bağlantısı ge
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Dikkat: %d çökmeden sonra yeniden başlatma gerçekleşecektir.)"
 
+msgid "(Deep) Standby only"
+msgstr "(Derin) Yalnızca bekleme modu"
+
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -2306,6 +2309,9 @@ msgstr "10 bit'e izin ver"
 
 msgid "Allow 12bit"
 msgstr "12 bit'e izin ver"
+
+msgid "Allow guest access"
+msgstr "Konuk erişimine izin ver"
 
 msgid "Allow quit movie player with exit"
 msgstr "Film oynatıcısının exit tuşuyla kapatılmasına izin ver"
@@ -5722,6 +5728,9 @@ msgstr "DNS Ayarları"
 msgid "DNS data source"
 msgstr "DNS veri kaynağı"
 
+msgid "DNS override"
+msgstr "DNS geçersiz kılma"
+
 msgid "DNS protocol mode"
 msgstr "DNS protokol modu"
 
@@ -6080,6 +6089,9 @@ msgstr "Varsayılan Servisler Tarayıcısı"
 
 msgid "Default files/folders to backup"
 msgstr "Yedeklenecek varsayılan dosyalar / klasörler"
+
+msgid "Default gateway"
+msgstr "Varsayılan ağ geçidi"
 
 msgid "Default left column directory"
 msgstr "Varsayılan sol sütun dizini"
@@ -7543,7 +7555,7 @@ msgid "Enable Virgin EPG"
 msgstr "Virgin EPG etkinleştir"
 
 msgid "Enable Wake On LAN"
-msgstr "Ağdan Uyandırmayı Etkinleştir"
+msgstr "Kablolu Ağ İle Aç (WoL) Etkinleştir"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Ek bilgiler içerebilecek ikinci Bilgi Çubuğunu etkinleştirin ve süresini ayarlayın ('OK' tuşuna iki kez basın)."
@@ -7893,6 +7905,9 @@ msgstr "Ekli klavye aracılığıyla metin girin"
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr "NFS ana bilgisayarlarına erişim izni verilecek IP adresini veya alt ağı (örn. 192.168.1.0/24) girin. Tüm ana bilgisayarlara erişim izni vermek için varsayılan değer olan '*' işaretini girin."
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr "Bu bağdaştırıcı için diğer ağlara erişimde ağ geçidi olarak kullanılacak IP adresini girin. Genellikle bu, yönlendiricinizin IP adresidir."
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr "Kurulumcu veya bina işletmecisi tarafından bu Kullanıcı Bandına atanan 0 ile 255 arasındaki PIN kodunu girin."
 
@@ -7902,24 +7917,48 @@ msgstr "ZeroTier Ağ Kimliğini girin. Kimlik tam olarak 16 karakter uzunluğund
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Akış hatasından sonra akış arabelleğine eklenecek süreyi girin. Bu ek arabellek, arabellek alanı yetersizliğinden kaynaklanan diğer akış sorunlarının önlenmesine yardımcı olabilir."
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr "Bu ağ bağdaştırıcısı için kullanılacak sabit/statik IPv4 adresini girin."
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "LNB'nin düşük bant ve yüksek bant arasında geçiş yaptığı frekansı girin. Daha fazla bilgi için LNB'nizin teknik özelliklerine bakın."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Kablo çoklayıcılarını ararken tunerin kullanacağı frekans adım boyutunu girin. Daha fazla bilgi için kablo sağlayıcınızın belgelerine bakın."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Tahsis edilecek/kullanılacak NFS sunucusu iş parçacıklarının sayısını girin. Daha yüksek değerler, birden çok istemciyle performansı artırır ancak daha fazla bellek kullanır."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Bu uyduya karşılık gelen konumlandırıcıda kayıtlı numarayı girin."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr "Seçilen kablosuz ağın şifresini, parola ifadesini veya önceden paylaşılmış anahtarını girin."
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr "Bu ağ bağdaştırıcısı için birincil IPv4 DNS ayarını girin."
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Bu ağ bağdaştırıcısı için birincil IPv6 DNS ayarını girin. (İsteğe bağlı)"
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr "Bu ağ bağdaştırıcı için ikincil IPv4 DNS ayarını girin. (İsteğe bağlı)"
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Bu ağ bağdaştırıcısı ikincil IPv6 DNS ayarını girin. (İsteğe bağlı)"
+
 #
 msgid "Enter the service pin"
 msgstr "Kanal Pin kodunu girin"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr "Bu ağ bağdaştırıcısı için kullanılacak alt ağ maskesini girin. (örn. 255.255.255.0)"
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Yapay Zeka Destekli Çeviri eklentisini tam olarak etkinleştirmek için abonelik kodunu girin; deneme sürümü için birleşik kod 15'tir."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Bu alıcı tarafından Samba tabanlı bağlantılarda kullanılacak çalışma grubu adını girin. (Varsayılan değer 'WORKGROUP'tur.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Bulunduğunuz enlem derecesini girin. Bu ekvatordan uzaklığınızın ondalık sayı olarak derece cinsinden karşılığıdır."
@@ -9147,6 +9186,9 @@ msgstr "Legacy Signal istatistiklerini zorla"
 msgid "Force ToneBurst"
 msgstr "ToneBurst Zorla"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr "Otomatik bağlantı hızı yerine belirli bir ağ bağlantı hızı/çift yönlü modunu zorlayın. Yanlış bir ayar ağ bağlantısını bozabileceğinden bunu yalnızca belirli bir nedeniniz varsa değiştirin."
+
 #
 msgid "Force de-interlace"
 msgstr "Görüntüyü netleştirmeye zorla"
@@ -10096,6 +10138,9 @@ msgstr "IP adresi geçersiz!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Yalnızca Stream Relay aracılığıyla şifresi çözülebilen kanalların şifresini çözmek için kullanılan Stream Relay sunucusunun IP adresi."
+
+msgid "IP protocol"
+msgstr "IP protokolü"
 
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
@@ -11392,6 +11437,9 @@ msgstr "Bağlantı algılandı"
 #
 msgid "Link quality:"
 msgstr "Bağlantı kalitesi:"
+
+msgid "Link speed"
+msgstr "Bağlantı hızı"
 
 msgid "Link target"
 msgstr "Bağlantı hedefi"
@@ -12811,6 +12859,9 @@ msgstr "Ağ Bağdaştırıcısı Seçimi"
 msgid "Network Adapter Setting Actions"
 msgstr "Ağ Bağdaştırıcısı Ayarları İşlemleri"
 
+msgid "Network Adapter Settings"
+msgstr "Ağ Bağdaştırıcısı Ayarları"
+
 msgid "Network Adapter Text Actions"
 msgstr "Ağ Bağdaştırıcısı Metin İşlemleri"
 
@@ -12881,6 +12932,9 @@ msgstr "%s %s cihazınız için ağ bilgileri"
 
 msgid "Network menu"
 msgstr "Ağ menüsü"
+
+msgid "Network metric"
+msgstr "Ağ ölçütü"
 
 msgid "Network mounts"
 msgstr "Ağ bağlantıları"
@@ -14266,6 +14320,9 @@ msgstr "Şifre"
 msgid "Password (httpwd)"
 msgstr "Şifre (httpwd)"
 
+msgid "Password / Key"
+msgstr "Şifre / Anahtar"
+
 msgid "Password Actions"
 msgstr "Şifre İşlemleri"
 
@@ -15037,6 +15094,9 @@ msgstr "İşitme engelliler için altyazıları tercih et"
 msgid "Prefer subtitles stored by service"
 msgstr "Seçilen altyazı dillerini tercih et"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr "Birden fazla Wi-Fi profili yapılandırıldığında tercih edilen bağlantı önceliği. Sayı ne kadar düşükse öncelik o kadar yüksektir."
+
 msgid "Preferred tuner"
 msgstr "Tercih edilen tuner"
 
@@ -15233,6 +15293,12 @@ msgstr "Önceki şarkı"
 #
 msgid "Primary DNS"
 msgstr "Birincil DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr "Birincil DNS (IPv4)"
+
+msgid "Primary DNS (IPv6)"
+msgstr "Birincil DNS (IPv6)"
 
 msgid "Prime time"
 msgstr "Prime time"
@@ -15633,7 +15699,7 @@ msgid "Real recordings or streaming"
 msgstr "Gerçek kayıtlar veya akışlar"
 
 msgid "Really WOL now?"
-msgstr "Yerel Ağ Üzerinden ( WOL ) şimdi açılsın mı?"
+msgstr "Kablolu Ağ İle Aç (WoL) şimdi açılsın mı?"
 
 #
 msgid "Really close without saving settings?"
@@ -16631,6 +16697,9 @@ msgstr "Myrestore komut dosyası çalıştırılıyor, Lütfen bekleyin..."
 msgid "Running command %d: '%s'."
 msgstr "Komut %d çalıştırılıyor: ‘%s’."
 
+msgid "Running only"
+msgstr "Sadece çalışıyor"
+
 #
 msgid "Russian"
 msgstr "Rusça"
@@ -17119,6 +17188,12 @@ msgstr "Motorlu LNB'nin ikinci kablosu"
 #
 msgid "Secondary DNS"
 msgstr "İkincil DNS"
+
+msgid "Secondary DNS (IPv4)"
+msgstr "İkincil DNS (IPv4)"
+
+msgid "Secondary DNS (IPv6)"
+msgstr "İkincil DNS (IPv6)"
 
 #
 msgid "Seconds"
@@ -17866,6 +17941,9 @@ msgstr "Bu tunere atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR anaht
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr "Kanal Değiştirme zamanlayıcısının ön koşullarını seçin. Kanal Değiştirme zamanlayıcısı yalnızca seçilen durumda etkinleşecektir."
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "'%s' için işlemi seçin"
@@ -18089,6 +18167,12 @@ msgstr ""
 "\n"
 "Devam etmek için OK tuşuna basın."
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr "Bu ağ bağdaştırıcısı için ağ ölçütünü seçin. Birden fazla ağ bağdaştırıcısı etkin olduğunda, en düşük ağ ölçütüne sahip olan ağ bağdaştırıcısı ağ trafiği için varsayılan yönlendirme olarak kullanılır."
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr "Alıcının bağlanacağı kablosuz ağın ağ adını (SSID) seçin."
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "'%s' için yeni bağlantı noktasını seçin"
@@ -18149,6 +18233,9 @@ msgstr "Arayüz tarafından sağlanan seçenekler arasından, Kanal Seçimi ekra
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr "Pikonları bulmak için arama modunu seçin. 'Tek yol modu' tüm pikonlar için tek yol kullanır. 'Çoklu yol modu' farklı kullanım durumları için birden fazla pikon yolunun kullanılmasına olanak tanır."
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr "Seçilen kablosuz ağa erişmek için kullanılacak güvenlik protokolünü seçin."
 
 msgid "Select the shifted character set"
 msgstr "Kaydırılmış karakter kümesini seçin"
@@ -18336,6 +18423,9 @@ msgstr "Çok kanallı ses parçalarının PCM olarak mı çıkış verileceğini
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Motorlu anten hareket halindeyken bir simge gösterilip gösterilmeyeceğini seçin."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr "Bu ağ bağdaştırıcısı ile hangi IP protokollerinin kullanılabileceğini seçin."
 
 #
 msgid "Select wireless network"
@@ -18622,7 +18712,7 @@ msgid "Services"
 msgstr "Kanallar"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr "Kanallar, buketler halinde gruplandırılabilir. Etkinleştirildiğinde, birden fazla buket kullanabilirsiniz."
+msgstr "Kanallar, buketler halinde gruplandırılabilir. Bu özellik etkinleştirildiğinde, birden fazla buket kullanabilirsiniz."
 
 msgid "Set As Startup Service"
 msgstr "Başlangıç Kanalı Olarak Ayarla"
@@ -20520,7 +20610,7 @@ msgstr "Özel etkinlikler (Olimpiyat Oyunları, Dünya Kupası, vb.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Medya Oynatıcı başlatılırken kullanılacak dizini belirtin."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Yalnızca ana bilgisayar adı sağlandığında uygulanacak ağ DNS sonekini belirtin. Bu, DNS çözümleyicisinin istenen ana bilgisayarı bulmasına yardımcı olur."
 
 msgid "Speed"
@@ -20924,6 +21014,9 @@ msgstr "Çizgiler"
 
 msgid "Style:"
 msgstr "Stil:"
+
+msgid "Subnet mask"
+msgstr "Alt ağ maskesi"
 
 msgid "Subscription Packages"
 msgstr "Abonelik Paketleri"
@@ -23553,7 +23646,7 @@ msgid "Use only DNSSEC servers"
 msgstr "Yalnızca DNSSEC sunucularını kullanın"
 
 msgid "Use only for Wake on WLan (WoW)"
-msgstr "Yalnızca Kablosuz Ağda Uyandırma (WoW) için kullanın"
+msgstr "Yalnızca Kablosuz Ağ İle Aç (WoW) için kullanın"
 
 msgid "Use only no-filter servers"
 msgstr "Yalnızca filtre uygulanmayan sunucuları kullanın"
@@ -24156,7 +24249,7 @@ msgid "WMA Pro downmix"
 msgstr "WMA Pro downmix"
 
 msgid "WOL Standby"
-msgstr "WOL Bekleme"
+msgstr "Kablolu Ağ İle Aç (WoL) Bekleme"
 
 #
 msgid "WPA"
@@ -24207,6 +24300,12 @@ msgstr "Bekleme moduna geçmek için uyandır"
 
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr "AV alıcınızı veya Soundbarı bekleme modundan çıkarın"
+
+msgid "Wake-on-LAN"
+msgstr "Kablolu Ağ İle Aç (WoL)"
+
+msgid "Wake-on-WiFi"
+msgstr "Kablosuz Ağ İle Aç (WoW)"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis ve Futuna"
@@ -24391,160 +24490,187 @@ msgid "When 'Enabled', the timer view will show the free space on the target dev
 msgstr "'Etkinleştirildiğinde', zamanlayıcı görünümü hedef cihazdaki boş alanı gösterecektir. Bu, cihazı uyku modundan çıkaracaktır."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr "Etkinleştirildiğinde, AIT verileri HTTP akışlarına dahil edilecektir. Bu, istemci alıcısının HbbTV kullanmasına olanak tanır."
+msgstr "Bu özellik etkinleştirildiğinde, AIT verileri HTTP akışlarına dahil edilecektir. Bu, istemci alıcısının HbbTV kullanmasına olanak tanır."
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
-msgstr "Etkinleştirildiğinde, EIT verileri HTTP akışlarına dahil edilecektir. Bu, istemci alıcısının EPG görüntülemesine olanak tanır."
+msgstr "Bu özellik etkinleştirildiğinde, EIT verileri HTTP akışlarına dahil edilecektir. Bu, istemci alıcısının EPG görüntülemesine olanak tanır."
 
 msgid "When enabled, SDT and BAT data will be included in http streams."
-msgstr "Etkinleştirildiğinde, SDT ve BAT verileri HTTP akışlarına dahil edilecektir."
+msgstr "Bu özellik etkinleştirildiğinde, SDT ve BAT verileri HTTP akışlarına dahil edilecektir."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
-msgstr "Etkinleştirildiğinde, bir film bittiğinde ve bir sonraki film başladığında bir açılır pencere mesajı gösterilecektir."
+msgstr "Bu özellik etkinleştirildiğinde, bir film bittiğinde ve bir sonraki film başladığında bir açılır pencere mesajı gösterilecektir."
 
 msgid "When enabled, a pop up message will be shown when a recording starts."
-msgstr "Etkinleştirildiğinde, kayıt başladığında bir açılır pencere mesajı gösterilecektir."
+msgstr "Bu özellik etkinleştirildiğinde, kayıt başladığında bir açılır pencere mesajı gösterilecektir."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "Etkinleştirildiğinde, boş tuner bulunmadığında kayıt işleminin Görüntü içinde Görüntü modunu sonlandırmasına izin verilir."
+msgstr "Bu özellik etkinleştirildiğinde, boş tuner bulunmadığında kayıt işleminin Görüntü içinde Görüntü modunu sonlandırmasına izin verilir."
 
 msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
-msgstr "Etkinleştirildiğinde, boş tuner bulunmadığında kayıt işleminin sahte kayıtları iptal etmesine izin verilir."
+msgstr "Bu özellik etkinleştirildiğinde, boş tuner bulunmadığında kayıt işleminin sahte kayıtları iptal etmesine izin verilir."
 
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
-msgstr "Etkinleştirildiğinde, boş tuner bulunmadığında kaydın yayın akışını durdurmasına izin verilir."
+msgstr "Bu özellik etkinleştirildiğinde, boş tuner bulunmadığında kaydın yayın akışını durdurmasına izin verilir."
 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
-msgstr "Etkinleştirildiğinde, boş tuner bulunmadığında canlı TV yayınını kesintiye uğratacak şekilde kayıt yapılmasına izin verilir."
+msgstr "Bu özellik etkinleştirildiğinde, boş tuner bulunmadığında canlı TV yayınını kesintiye uğratacak şekilde kayıt yapılmasına izin verilir."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Etkinleştirildiğinde bir uyarı görüntülenecek ve kullanıcıya zaman kaydırmayı durdurma veya devam ettirme seçeneği sunulacaktır."
+msgstr "Bu özellik etkinleştirildiğinde,bir uyarı görüntülenecek ve kullanıcıya zaman kaydırmayı durdurma veya devam ettirme seçeneği sunulacaktır."
+
+msgid "When enabled, allow Samba network access without a password."
+msgstr "Bu özellik etkinleştirildiğinde, Samba ağ erişimine parola olmadan izin verin."
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr "Bu özellik etkinleştirildiğinde, SSID'lerini yayınlamayan erişim noktalarına bağlantıya izin verir."
 
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Algılanan her depolama aygıtının otomatik olarak Samba paylaşımı olarak dışa aktarılmasına izin vermek için 'Evet'i seçin."
+msgstr "Bu seçenek etkinleştirildiğinde, algılanan her depolama aygıtının otomatik olarak bir Samba paylaşımı olarak dışa aktarılmasına izin verilir."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr "Bu özellik etkinleştirildiğinde, alıcının uzaktan bir Kablolu Ağ Üzerinden ağ sinyali (Magic Packet) ile açılmasına izin verilir."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
-msgstr "Etkinleştirildiğinde, NFS sürüm 3 protokollerinin kullanımına izin verilir."
+msgstr "Bu özellik etkinleştirildiğinde, NFS sürüm 3 protokollerinin kullanımına izin verilir."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
-msgstr "Etkinleştirildiğinde, NFS sürüm 4 protokollerinin kullanımına izin verilir."
+msgstr "Bu özellik etkinleştirildiğinde, NFS sürüm 4 protokollerinin kullanımına izin verilir."
 
 msgid "When enabled, authentication is required to watch http streams."
-msgstr "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
+msgstr "Bu özellik etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr "Bu özellik etkinleştirildiğinde, Wi-Fi ağ bağdaştırıcısı bağlandığında kaydedilmiş ağ üzerinden bağlantı kurulmaya çalışılır."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
-msgstr "Etkinleştirildiğinde, 4:3 en boy oranına sahip içerik ekrana sığacak şekilde genişletilecektir."
+msgstr "Bu özellik etkinleştirildiğinde, 4:3 en boy oranına sahip içerik ekrana sığacak şekilde genişletilecektir."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr "Etkinleştirildiğinde, kanal değiştirirken mevcut buketin son kanalına ulaşıldığında bir sonraki bukete geçilir."
+msgstr "Bu özellik etkinleştirildiğinde, kanal değiştirirken mevcut buketin son kanalına ulaşıldığında bir sonraki bukete geçilir."
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
-msgstr "Etkinleştirildiğinde, silinen kayıtlar hemen silinmek yerine çöp kutusuna taşınır."
+msgstr "Bu özellik etkinleştirildiğinde, silinen kayıtlar hemen silinmek yerine çöp kutusuna taşınır."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
-msgstr "Etkinleştirildiğinde, harici altyazılar film oynatımı boyunca her zaman açık olacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, harici altyazılar film oynatımı boyunca her zaman açık olacaktır."
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
-msgstr "Etkinleştirildiğinde, her iki altyazı türü de mevcut olduğunda, grafiksel DVB altyazıları teletext altyazılarına tercih edilir."
+msgstr "Bu özellik etkinleştirildiğinde, her iki altyazı türü de mevcut olduğunda, grafiksel DVB altyazıları teletext altyazılarına tercih edilir."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr "Etkinleştirildiğinde, grafiksel DVB altyazıları orijinal konumlarında görüntülenecektir."
+msgstr "Bu özellik etkinleştirildiğinde, grafiksel DVB altyazıları orijinal konumlarında görüntülenecektir."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
-msgstr "Etkinleştirildiğinde, exit tuşu ile film oynatıcısından çıkmak mümkün olacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, exit tuşu ile film oynatıcısından çıkmak mümkün olacaktır."
+
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr "Bu özellik etkinleştirildiğinde, bekleme modundayken Wi-Fi adaptörünü düşük güç tüketimli tarama modunda tutarak alıcının uzaktan ağ sinyali (Magic Packet) ile açılmasını sağlayın."
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
-msgstr "Etkinleştirildiğinde, kök yetkisini \"nobody\" kullanıcısına eşler (daha güvenli). Devre dışı bırakıldığında, tam kök erişimi sağlanır."
+msgstr "Bu özellik etkinleştirildiğinde, kök yetkisini \"nobody\" kullanıcısına eşler (daha güvenli). Devre dışı bırakıldığında, tam kök erişimi sağlanır."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr "Etkinleştirildiğinde, rotorun dönmeyi durdurduğu anı tespit etmek için güç tüketimini ölçün (tuner tarafından destekleniyorsa)."
+msgstr "Bu özellik etkinleştirildiğinde, rotorun dönmeyi durdurduğu anı tespit etmek için güç tüketimini ölçün (tuner tarafından destekleniyorsa)."
 
 msgid "When enabled, network trashcans are probed for cleaning."
-msgstr "Etkinleştirildiğinde, ağdaki çöp kutularının temizlenmesi için kontrol yapılır."
+msgstr "Bu özellik etkinleştirildiğinde, ağdaki çöp kutularının temizlenmesi için kontrol yapılır."
 
 msgid "When enabled, number markers will be hidden."
-msgstr "Etkinleştirildiğinde, sayı işaretleri gizlenecektir."
+msgstr "Bu özellik etkinleştirildiğinde, sayı işaretleri gizlenecektir."
+
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr "Bu özellik etkinleştirildiğinde, IP adresi, alt ağ maskesi, ağ geçidi ve DNS ayarları DHCP aracılığıyla otomatik olarak alınır."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Etkinleştirildiğinde, '0' tuşuna basmak sizi ilk kanal listenizdeki ilk kanala geçirecek ve Kanal Değiştirme geçmişinizi silecektir."
+msgstr "Bu özellik etkinleştirildiğinde, '0' tuşuna basmak sizi ilk kanal listenizdeki ilk kanala geçirecek ve Kanal Değiştirme geçmişinizi silecektir."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
-msgstr "Etkinleştirildiğinde, altyazılar ekran genişliğine uyacak şekilde yeniden biçimlendirilir."
+msgstr "Bu özellik etkinleştirildiğinde, altyazılar ekran genişliğine uyacak şekilde yeniden biçimlendirilir."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr "Etkinleştirildiğinde, kanal seçim ekranında kanal numaralarını gösterilir."
+msgstr "Bu özellik etkinleştirildiğinde, kanal seçim ekranında kanal numaralarını gösterilir."
 
 msgid "When enabled, show status or error messages."
-msgstr "Etkinleştirildiğinde, durum veya hata mesajlarını gösterilir."
+msgstr "Bu özellik etkinleştirildiğinde, durum veya hata mesajlarını gösterilir."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr "Bu özellik etkinleştirildiğinde, genel DNS ayarları yerine bu ağ bağdaştırıcısı için özel DNS ayarları belirtin."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
-msgstr "Etkinleştirildiğinde, işitme engelliler için altyazılar kullanılabilir."
+msgstr "Bu özellik etkinleştirildiğinde, işitme engelliler için altyazılar kullanılabilir."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
-msgstr "Etkinleştirildiğinde, her iki altyazı türü de mevcut olduğunda, işitme engelliler için altyazılar normal altyazılara tercih edilecektir."
+msgstr "Bu özellik etkinleştirildiğinde, her iki altyazı türü de mevcut olduğunda, işitme engelliler için altyazılar normal altyazılara tercih edilecektir."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
-msgstr "Etkinleştirildiğinde, teletext sayfaları önbelleğe alınacak ve daha hızlı erişim sağlanacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, teletext sayfaları önbelleğe alınacak ve daha hızlı erişim sağlanacaktır."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
-msgstr "Etkinleştirildiğinde, teletext altyazıları orijinal konumlarında görüntülenecektir."
+msgstr "Bu özellik etkinleştirildiğinde, teletext altyazıları orijinal konumlarında görüntülenecektir."
 
 msgid "When enabled, the PiP can be closed by pressing the EXIT button."
-msgstr "Etkinleştirildiğinde, PiP (Görüntü içinde Görüntü) özelliği EXIT tuşuna basılarak kapatılabilir."
+msgstr "Bu özellik etkinleştirildiğinde, PiP (Görüntü içinde Görüntü) özelliği EXIT tuşuna basılarak kapatılabilir."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
-msgstr "Etkinleştirildiğinde, VCR SCART seçeneği ana menüde gösterilecektir."
+msgstr "Bu özellik etkinleştirildiğinde, VCR SCART seçeneği ana menüde gösterilecektir."
 
 msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
-msgstr "Etkinleştirildiğinde, bağlı AV alıcısı veya soundbar otomatik olarak kapatılacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, bağlı AV alıcısı veya soundbar otomatik olarak kapatılacaktır."
 
 msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
-msgstr "Etkinleştirildiğinde, bağlı AV alıcısı veya soundbar otomatik olarak açılacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, bağlı AV alıcısı veya soundbar otomatik olarak açılacaktır."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
-msgstr "Etkinleştirildiğinde, her kaydın uzunluğu film listesinde gösterilecektir (bu, ek yükleme süresine neden olabilir)."
+msgstr "Bu özellik etkinleştirildiğinde, her kaydın uzunluğu film listesinde gösterilecektir (bu, ek yükleme süresine neden olabilir)."
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
-msgstr "Etkinleştirildiğinde, alıcı TV kapatıldığında otomatik olarak bekleme moduna dönecektir."
+msgstr "Bu özellik etkinleştirildiğinde, alıcı TV kapatıldığında otomatik olarak bekleme moduna dönecektir."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr "Etkinleştirildiğinde, alıcı otomatik olarak daha önce seçtiğiniz ses dilini kullanacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, alıcı otomatik olarak daha önce seçtiğiniz ses dilini kullanacaktır."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
-msgstr "Etkinleştirildiğinde, alıcı daha önce seçtiğiniz altyazıları otomatik olarak kullanacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, alıcı daha önce seçtiğiniz altyazıları otomatik olarak kullanacaktır."
 
 msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
-msgstr "Etkinleştirildiğinde, alıcı TV açıldığında otomatik olarak bekleme modundan çıkacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, alıcı TV açıldığında otomatik olarak bekleme modundan çıkacaktır."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Etkinleştirildiğinde, alıcı mevcut olduğunda bir AC3 ses izi seçecektir."
+msgstr "Bu özellik etkinleştirildiğinde, alıcı mevcut olduğunda bir AC3 ses izi seçecektir."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Etkinleştirildiğinde, alıcı mevcut olduğunda bir AC3+ ses izi seçecektir."
+msgstr "Bu özellik etkinleştirildiğinde, alıcı mevcut olduğunda bir AC3+ ses izi seçecektir."
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Etkinleştirildiğinde, yedek uzak alıcıdan gelen zamanlayıcı içe aktarılır."
+msgstr "Bu özellik etkinleştirildiğinde, yedek uzak alıcıdan gelen zamanlayıcı içe aktarılır."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Etkinleştirildiğinde, yedek uzak alıcıdan gelen zamanlayıcı varsayılan zamanlayıcı olur."
+msgstr "Bu özellik etkinleştirildiğinde, yedek uzak alıcıdan gelen zamanlayıcı varsayılan zamanlayıcı olur."
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr "Bu özellik etkinleştirildiğinde, bu Wi-Fi ağ bağdaştırıcısı yalnızca Kablosuz Ağ İle Aç (WoW) modunda kalır ve herhangi bir ağa bağlanmak için kullanılmaz."
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr "Bu özellik etkinleştirildiğinde, bu ağ bağdaştırıcısı önyükleme sırasında başlatılır ve etkinleştirilir."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Etkinleştirildiğinde, bu ayar 'Kayıtlar için tercih edilen tuner' ayarından daha önceliklidir."
+msgstr "Bu özellik etkinleştirildiğinde, bu ayar 'Kayıtlar için tercih edilen tuner' ayarından daha önceliklidir."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Etkinleştirildiğinde, bu ayar 'Tercih edilen tuner' ayarından daha önceliklidir."
+msgstr "Bu özellik etkinleştirildiğinde, bu ayar 'Tercih edilen tuner' ayarından daha önceliklidir."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Etkinleştirildiğinde, zaman kaydırma belirtilen süre sonra otomatik olarak arka planda başlar."
+msgstr "Bu özellik etkinleştirildiğinde, zaman kaydırma belirtilen süre sonra otomatik olarak arka planda başlar."
 
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Etkinleştirildiğinde, IP yapılandırması için DHCP kullanılır."
+msgstr "Bu özellik etkinleştirildiğinde, IP yapılandırması için DHCP kullanılır."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "Etkinleştirildiğinde, yedek uzak alıcı için OpenWebIf ayarlarını özelleştirebilirsiniz."
+msgstr "Bu özellik etkinleştirildiğinde, yedek uzak alıcı için OpenWebIf ayarlarını özelleştirebilirsiniz."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Etkinleştirildiğinde, alıcınız VCR SCART girişindeki etkinliği algılayacaktır."
+msgstr "Bu özellik etkinleştirildiğinde, alıcınız VCR SCART girişindeki etkinliği algılayacaktır."
 
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Sıfırdan farklı bir değer alındığında, kayıt EPG'de belirtilen başlangıç zamanından önce, seçilen süre boyunca başlayacaktır."
@@ -24604,6 +24730,9 @@ msgstr "Mevcut olduğu sürece"
 
 msgid "White"
 msgstr "Beyaz"
+
+msgid "Wi-Fi Connection Settings"
+msgstr "Kablosuz Ağ Bağlantı Ayarları"
 
 msgid "Wide"
 msgstr "Geniş"
@@ -24697,11 +24826,17 @@ msgstr "Sorgu olmadan"
 msgid "Wizard Actions"
 msgstr "Sihirbaz İşlemleri"
 
+msgid "WoW only"
+msgstr "Yalnızca Kablosuz Ağ İle Aç (WoW)"
+
 msgid "Wolof"
 msgstr "Wolof Dili"
 
 msgid "Workaround for old tuner driver."
 msgstr "Eski tarayıcı sürücüsü için geçici çözüm"
+
+msgid "Workgroup name"
+msgstr "Çalışma grubu adı"
 
 msgid "World Affairs"
 msgstr "Dünya Gündemi"
@@ -24793,7 +24928,7 @@ msgid "Yes, and delete this movie"
 msgstr "Evet, ve bu filmi sil"
 
 msgid "Yes, and don't ask again for this session"
-msgstr "Evet, ve bu oturum için bir daha sorma"
+msgstr "Evet, ve bir daha bunu sorma"
 
 #
 msgid "Yes, backup my settings!"
@@ -24943,7 +25078,7 @@ msgstr "%s %s alıcınız PiP HD'yi desteklemiyor"
 
 #, python-format
 msgid "Your %s %s goes to WOL"
-msgstr "%s %s alıcınız WOL moduna geçiyor"
+msgstr "%s %s alıcınız Kablolu Ağ İle Aç (WoL) moduna geçiyor"
 
 #, python-format
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
@@ -25139,6 +25274,9 @@ msgstr "Konumlandırıcı kurulumundan önceki kanala geri dönülsün mü?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Tuner kurulumundan önceki kanala geri dönülsün mü?"
+
+msgid "Zap condition"
+msgstr "Kanal Değiştirme durumu"
 
 msgid "Zap down"
 msgstr "Aşağıya doğru kanal değiştir"
@@ -25978,6 +26116,18 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
+#~ msgstr "Bu alıcının Samba ağ taramalarında/listelerinde göründüğünde kullanacağı adı girin."
+
+#~ msgid "Server name"
+#~ msgstr "Sunucu adı"
+
+#~ msgid "When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)"
+#~ msgstr "Etkinleştirildiğinde, bu ağ bağdaştırıcısı önyükleme sırasında etkinleşir ve başlatılır. ('/etc/network/interfaces' dosyasına 'auto' ekler, ifup/ifdown fonksiyonlarını çağırır.)"
+
+#~ msgid "When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)"
+#~ msgstr "Etkinleştirildiğinde, ağ bağdaştırıcısı bağlandığında bu profil denenir. (wpa_supplicant.conf dosyasında devre dışı bırakılmıştır.)"
 
 #
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."

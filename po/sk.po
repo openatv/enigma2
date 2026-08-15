@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 19:52+0000\n"
-"PO-Revision-Date: 2026-07-16 23:23+0000\n"
+"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"PO-Revision-Date: 2026-07-22 04:03+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -1320,6 +1320,9 @@ msgstr "(Prístup k denníku '%s' si vyžaduje pripojenie na internet.)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Pozor: po %d pádoch bude nasledovať reštart.)"
 
+msgid "(Deep) Standby only"
+msgstr "Len vypnutie"
+
 msgid "(PiP)"
 msgstr "(PiP)"
 
@@ -2280,6 +2283,9 @@ msgstr "Povoliť 10 bitov"
 
 msgid "Allow 12bit"
 msgstr "Povoliť 12 bitov"
+
+msgid "Allow guest access"
+msgstr "Povoliť hosťovský prístup"
 
 msgid "Allow quit movie player with exit"
 msgstr "Vypnúť prehrávač filmov stlačením EXIT"
@@ -5568,6 +5574,9 @@ msgstr "Nastavenia DNS"
 msgid "DNS data source"
 msgstr "Zdroj údajov DNS"
 
+msgid "DNS override"
+msgstr "Prepísanie DNS"
+
 msgid "DNS protocol mode"
 msgstr "Režim DNS protokolu"
 
@@ -5912,6 +5921,9 @@ msgstr "Predvolený vyhľadávač staníc"
 
 msgid "Default files/folders to backup"
 msgstr "Predvolené zálohované súbory/priečinky"
+
+msgid "Default gateway"
+msgstr "Predvolená brána"
 
 msgid "Default left column directory"
 msgstr "Predvolený priečinok v ľavom stĺpci"
@@ -7651,6 +7663,9 @@ msgstr "Zadajte text pomocou pripojenej klávesnice"
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
 msgstr "Zadajte IP adresu alebo podsieť (napr. 192.168.1.0/24), pre ktorú má byť udelená možnosť prístupu na NFS hostiteľa. Pre prístup všetkých hostiteľov zadajte '*' (štandardná hodnota)."
 
+msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
+msgstr "Zadajte IP adresu, ktorá sa má použiť ako brána do iných sietí pre tento adaptér. Typicky to býva IP adresa vášho routera."
+
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
 msgstr "Zadajte PIN od 0 do 255 pridelené tomuto používateľskému pásmu inštalačným technikom alebo prevádzkovateľom budovy."
 
@@ -7660,23 +7675,47 @@ msgstr "Zadajte ID siete ZeroTier. ID by malo mať dĺžku presne 16 znakov."
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
 
+msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
+msgstr "Zadajte fixnú/statickú adresu IPv4, ktorá sa má použiť pre tento sieťový adaptér."
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Zadajte frekvenciu, pri ktorej sa LNB prepína medzi nízkym a vysokým pásmom. Viac informácií získate v špecifikáciách vášho LNB."
 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Zadajte frekvenčný krok tunera pre vyhľadávanie v káblových multiplexoch. Viac informácií získate v dokumentácii od operátora káblovej televízie."
 
-msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory."
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Zadajte počet vlákien NFS servera, ktoré sa majú alokovať/použiť. Vyššie hodnoty zlepšujú výkon s viacerými klientmi, ale vyžadujú viac pamäte."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Zadajte číslo uložené v pozicionéri, ktoré prináleží tomuto satelitu."
 
+msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
+msgstr "Zadajte heslo, frázu alebo predzdieľaný kľúč pre vybranú bezdrôtovú sieť."
+
+msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgstr "Zadajte primárne DNS nastavenie IPv4 pre tento adaptér."
+
+msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Zadajte primárne DNS nastavenie IPv6 pre tento adaptér. (Voliteľne)"
+
+msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgstr "Zadajte sekundárne DNS nastavenie IPv4 pre tento adaptér. (Voliteľne)"
+
+msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgstr "Zadajte sekundárne DNS nastavenie IPv6 pre tento adaptér. (Voliteľne)"
+
 msgid "Enter the service pin"
 msgstr "Zadajte PIN kód stanice"
 
+msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
+msgstr "Zadajte masku podsiete, ktorá sa má použiť pre sieťový adaptér (napr. 255.255.255.0)"
+
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Na zapnutie prekladania pomocou umelej inteligencie, zadajte kód predplatného. Jednotný kód pre skúšobnú verziu je 15."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Zadajte názov pracovnej skupiny, ktorý má používať tento prijímač pre pripojenia založené na Sambe. (Predvolená je 'WORKGROUP'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Zadajte aktuálnu zemepisnú šírku v stupňoch od rovníka (vo forme desatinného čísla)."
@@ -8855,6 +8894,9 @@ msgstr "Vynútiť pôvodné stavy signálu"
 msgid "Force ToneBurst"
 msgstr "Vynútiť tónový impulz"
 
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgstr "Vynútiť špecifickú rýchlosť sieťovej linky/duplexný režim namiesto automatického vyjednávania. Túto voľbu meňte len v prípade, že máte špecifický dôvod. Nesprávne nastavenie môže narušiť sieťové pripojenie."
+
 msgid "Force de-interlace"
 msgstr "Vynútiť de-interlace"
 
@@ -9758,6 +9800,9 @@ msgstr "IP adresa nie je platná!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP adresa servera pre prenos streamu, používaná na dekódovanie služieb, ktoré je možné dekódovať cez prenos streamu."
+
+msgid "IP protocol"
+msgstr "IP protokol"
 
 msgid "IPK Installer"
 msgstr "Inštalátor balíčkov IPK"
@@ -10992,6 +11037,9 @@ msgstr "Nájdený odkaz"
 
 msgid "Link quality:"
 msgstr "Kvalita linky:"
+
+msgid "Link speed"
+msgstr "Rýchlosť linky"
 
 msgid "Link target"
 msgstr "Cieľ odkazu"
@@ -12337,6 +12385,9 @@ msgstr "Výber sieťového adaptéra"
 msgid "Network Adapter Setting Actions"
 msgstr "Akcie nastavenia sieťového adaptéra"
 
+msgid "Network Adapter Settings"
+msgstr "Nastavenia sieťového adaptéra"
+
 msgid "Network Adapter Text Actions"
 msgstr "Textové akcie sieťového adaptéra"
 
@@ -12406,6 +12457,9 @@ msgstr "Sieťové informácie pre %s %s"
 
 msgid "Network menu"
 msgstr "Menu siete"
+
+msgid "Network metric"
+msgstr "Metrika siete"
 
 msgid "Network mounts"
 msgstr "Sieťové pripojenia"
@@ -13717,6 +13771,9 @@ msgstr "Heslo"
 msgid "Password (httpwd)"
 msgstr "Heslo (httpwd)"
 
+msgid "Password / Key"
+msgstr "Heslo/kľúč"
+
 msgid "Password Actions"
 msgstr "Akcie pre heslo"
 
@@ -14437,6 +14494,9 @@ msgstr "Uprednostňovať titulky pre sluchovo postihnutých"
 msgid "Prefer subtitles stored by service"
 msgstr "Uprednostňovať titulky uložené pri stanici"
 
+msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
+msgstr "Preferovaná priorita pripojenia, keď sú nakonfigurované viaceré profily Wi-Fi. Menšie čísla majú vyššiu prioritu."
+
 msgid "Preferred tuner"
 msgstr "Preferovaný tuner"
 
@@ -14618,6 +14678,12 @@ msgstr "Predchádzajúca skladba"
 
 msgid "Primary DNS"
 msgstr "Primárne DNS"
+
+msgid "Primary DNS (IPv4)"
+msgstr "Primárne DNS (IPv4)"
+
+msgid "Primary DNS (IPv6)"
+msgstr "Primárne DNS (IPv6)"
 
 msgid "Prime time"
 msgstr "Hlavný vysielací čas"
@@ -15938,6 +16004,9 @@ msgstr "Spúšťanie skriptu Myrestore. Čakajte, prosím…"
 msgid "Running command %d: '%s'."
 msgstr "Spustený príkaz %d: '%s'."
 
+msgid "Running only"
+msgstr "Len bežiace"
+
 msgid "Russian"
 msgstr "ruština"
 
@@ -16400,6 +16469,12 @@ msgstr "Druhý kábel motorizovaného LNB"
 
 msgid "Secondary DNS"
 msgstr "Sekundárny DNS"
+
+msgid "Secondary DNS (IPv4)"
+msgstr "Sekundárne DNS (IPv4)"
+
+msgid "Secondary DNS (IPv6)"
+msgstr "Sekundárne DNS (IPv6)"
 
 msgid "Seconds"
 msgstr "sekúnd"
@@ -17131,6 +17206,9 @@ msgstr "Vyberte frekvenciu používateľského pásma, ktorá sa pridelí tomuto
 msgid "Select the Yes / True response"
 msgstr "Vyberte odozvu Áno/Pravda"
 
+msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
+msgstr "Vyberte vyžadované podmienky pre časovač prepnutia. Časovač prepnutia sa aktivuje len pri vybranom stave."
+
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Vyberte akciu pre '%s'"
@@ -17353,6 +17431,12 @@ msgstr ""
 "\n"
 "Pokračujte stlačením OK."
 
+msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
+msgstr "Vyberte metriku siete pre tento adaptér. Ak sú aktívne viaceré adaptéry, ten s najnižšou metrikou siete sa použije ako predvolená cesta pre sieťovú prevádzku."
+
+msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
+msgstr "Vyberte názov bezdrôtovej siete (SSID), na ktorú by sa prijímač mal pripájať."
+
 #, python-format
 msgid "Select the new mount point for: '%s'"
 msgstr "Vyberte nový bod pripojenia pre: '%s'"
@@ -17413,6 +17497,9 @@ msgstr "Vyberte si rozloženie obrazovky, z možností daných vzhľadom, ktorý
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr "Vyberte režim vyhľadávania pre nájdenie pikon. 'Režim jednej cesty' používa jednu cestu pre všetky pikony. 'Režim viacerých ciest' umožňuje použitie viacerých ciest k pikone, ktoré sa dá využiť v rôznych iných prípadoch."
+
+msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr "Vyberte protokol zabezpečenia, ktorá sa použije pri prístupe k vybranej bezdrôtovej sieti."
 
 msgid "Select the shifted character set"
 msgstr "Vyberte znakovú sadu pre veľké písmená"
@@ -17599,6 +17686,9 @@ msgstr "Vyberte, či majú byť viackanálové zvukové stopy na výstupe ako PC
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Vyberte, či sa má pri pohybe motora zobrazovať ikona."
+
+msgid "Select which IP protocols can be used with this adapter."
+msgstr "Vyberte, ktoré IP protokoly sa môžu použiť s týmto adaptérom."
 
 msgid "Select wireless network"
 msgstr "Vyberte bezdrôtovú sieť"
@@ -19708,7 +19798,7 @@ msgstr "Osobitné udalosti"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Zadajte priečinok, ktorý sa použije pri spustení prehrávača médií."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Definujte príponu DNS, ktorá sa použije vtedy, keď bol poskytnutý iba názov hostiteľa. Pomôžete tak rozlišovaču DNS nájsť požadovaného hostiteľa."
 
 msgid "Speed"
@@ -20086,6 +20176,9 @@ msgstr "Pruhy"
 
 msgid "Style:"
 msgstr "Štýl:"
+
+msgid "Subnet mask"
+msgstr "Maska podsiete"
 
 msgid "Subscription Packages"
 msgstr "Predplatné balíčky"
@@ -23236,6 +23329,12 @@ msgstr "Prebudiť do pohotovostného režimu"
 msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr "Prebudiť AV prijímač alebo soundbar z pohotovostného režimu"
 
+msgid "Wake-on-LAN"
+msgstr "Prebudenie cez LAN"
+
+msgid "Wake-on-WiFi"
+msgstr "Prebudenie cez Wi-Fi"
+
 msgid "Wallis and Futuna"
 msgstr "Wallis a Futuna"
 
@@ -23441,8 +23540,17 @@ msgstr "Ak je povolené, nahrávanie môže prerušiť živé vysielanie, ak nie
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Ak je povolené, zobrazí sa výstraha a používateľ bude mať možnosť zastaviť alebo pokračovať v timeshifte."
 
+msgid "When enabled, allow Samba network access without a password."
+msgstr "Ak je povolené, povoliť sieťový prístup Samba aj bez hesla."
+
+msgid "When enabled, allow connection to access points that don't broadcast their SSID."
+msgstr "Ak je povolené, povoliť pripojenie k prístupovým bodom, ktoré nešíria svoje SSID."
+
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
-msgstr "Ak je zapnuté, povoliť automatické exportovanie každého zisteného úložného zariadenia ako zdieľania Samba."
+msgstr "Ak je povolené, povoliť automatické exportovanie každého zisteného úložného zariadenia ako zdieľania Samba."
+
+msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
+msgstr "Ak je povolené, umožniť zapnutie prijímača pri vzdialenom signále Wake-on-LAN (pomocou Magic Packet)."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Ak je povolené, povoliť používanie protokolov NFS verzie 3."
@@ -23452,6 +23560,9 @@ msgstr "Ak je povolené, povoliť používanie protokolov NFS verzie 4."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Ak je povolené, na sledovanie http streamov sa vyžaduje prihlásenie."
+
+msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
+msgstr "Ak je povolené, tak pri pripájaní Wi-Fi adaptéra prebehne pokus o pripojenie cez uloženú sieť."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Ak je povolené, tak obsah s pomerom strán 4:3 sa roztiahne na celú obrazovku."
@@ -23474,6 +23585,9 @@ msgstr "Ak je povolené, grafické DVB titulky sa zobrazia na ich pôvodnej poz�
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Ak je povolené, prehrávač médií sa dá ukončiť tlačidlom EXIT."
 
+msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
+msgstr "Ak je povolené, ponechať Wi-Fi adaptér počas pohotovostného režimu v režime s nízkou spotrebou. Umožní zapnutie prijímača pri prijatí vzdialeného sieťového signálu (Magic Packet)."
+
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr "Ak je povolené, mapovať správcu (root) na používateľa nobody (bezpečnejšie). Ak je zakázané, je možný úplný prístup správcu."
 
@@ -23486,6 +23600,9 @@ msgstr "Ak je povolené, vyprázdnia sa tiež sieťové kôše."
 msgid "When enabled, number markers will be hidden."
 msgstr "Ak je povolené, číselné indikátory budú skryté."
 
+msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
+msgstr "Ak je povolené, získať IP adresu, masku podsiete, bránu a nastavenia DNS automaticky cez DHCP."
+
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Ak je povolené, stlačením tlačidla '0 'sa prepne prvý kanál vo vašom prvom prehľade. Zároveň sa vymaže história prepínania."
 
@@ -23497,6 +23614,9 @@ msgstr "Ak je povolené, na obrazovke pre výber kanála sa zobrazia čísla kan
 
 msgid "When enabled, show status or error messages."
 msgstr "Ak je povolené, budú sa zobrazovať stavové alebo chybové správy."
+
+msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgstr "Ak je povolené, určiť používateľské nastavenia DNS pre tento adaptér, namiesto globálnych nastavení DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Ak je povolené, použijú sa titulky pre sluchovo postihnutých."
@@ -23548,6 +23668,12 @@ msgstr "Ak je povolené, bude importovaný časovač zo záložného tunera."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Ak je povolené, časovač zo záložného tunera je predvoleným časovačom."
+
+msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr "Ak je povolené, tento Wi-Fi adaptér sa bude udržiavať v režime len Wake-on-WiFi a nebude sa používať na pripájanie k sieti."
+
+msgid "When enabled, this adapter is initialized and activated at boot time."
+msgstr "Ak je povolené, tento adaptér sa inicializuje a aktivuje počas spúšťania prijímača."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner pre nahrávky'."
@@ -23623,6 +23749,9 @@ msgstr "Pokiaľ je dostupné"
 
 msgid "White"
 msgstr "Biela"
+
+msgid "Wi-Fi Connection Settings"
+msgstr "Nastavenia pripojenia Wi-Fi"
 
 msgid "Wide"
 msgstr "Na šírku"
@@ -23714,11 +23843,17 @@ msgstr "Bez opýtania"
 msgid "Wizard Actions"
 msgstr "Akcie sprievodcu"
 
+msgid "WoW only"
+msgstr "Len WoW"
+
 msgid "Wolof"
 msgstr "wolof"
 
 msgid "Workaround for old tuner driver."
 msgstr "Riešenie pre starý ovládač tunera."
+
+msgid "Workgroup name"
+msgstr "Názov pracovnej skupiny"
 
 msgid "World Affairs"
 msgstr "Dianie vo svete"
@@ -24132,6 +24267,9 @@ msgstr "Prepnúť späť na stanicu pred nastavovaním pozicionéra?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Prepnúť späť na stanicu pred nastavovaním tunera?"
+
+msgid "Zap condition"
+msgstr "Podmienka prepnutia"
 
 msgid "Zap down"
 msgstr "Prepnúť dolu"
@@ -24887,6 +25025,18 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
+#~ msgstr "Zadajte názov, ktorý sa má používať pre tento prijímač, keď sa objaví v skenoch/zoznamoch siete Samba."
+
+#~ msgid "Server name"
+#~ msgstr "Názov servera"
+
+#~ msgid "When enabled, this adapter is active and initialized at boot time. (Adds 'auto' to /etc/network/interfaces, calls ifup/ifdown.)"
+#~ msgstr "Ak je povolené, tento adaptér bude aktívny a inicializovaný pri spúšťaní softvéru. (pridá sa voľba 'auto' k /etc/network/interfaces, zavolá funkciu ifup/ifdown.)"
+
+#~ msgid "When enabled, this profile is tried when the adapter connects. (disabled= in wpa_supplicant.conf.)"
+#~ msgstr "Ak je povolené, tak sa pri pripájaní adaptéra skúsi použiť tento profil. (vypnuté = v súbore wpa_supplicant.conf.)"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "Práve prebieha nahrávanie. Pred nastavovaním pozicionéra nahrávanie zastavte."

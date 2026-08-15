@@ -199,8 +199,8 @@
 		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
+		<item level="0" text="Domain name" description="Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
 		<item level="0" text="DNS protocol mode" description="Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred.">config.usage.dnsMode</item>
-		<item level="0" text="DNS suffix" description="Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
 		<item level="0" text="Use DNS rotation" description="Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
 		<item level="0" text="DNS data source" description="Select the DNS server(s) that will be used to lookup the host name to resolve the IP address.">config.usage.dns</item>
 		<if conditional="config.usage.dns.value == 'dnscrypt'">
@@ -640,7 +640,21 @@
 			</if>
 		</if>
 	</setup>
-	<setup key="NetworkConnectionWiFi" title="Wi-Fi Connection Settings">
+	<setup key="NetworkNFS" title="NFS Settings" allowDefault="yes">
+		<item level="0" text="NFS threads" description="Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory.">self.nfsThreads</item>
+		<item level="0" text="Enable NFSv3" description="When enabled, allow usage of the NFS version 3 protocols.">self.nfsVers3</item>
+		<item level="0" text="Enable NFSv4" description="When enabled, allow usage of the NFS version 4 protocols.">self.nfsVers4</item>
+		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read Only, applied to all exported directories.">self.nfsAccessMode</item>
+		<item level="0" text="Allowed clients" description="Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access.">self.nfsClients</item>
+		<item level="0" text="Root squash" description="When enabled, map root to nobody (more secure). When disabled, full root access is available.">self.nfsRootSquash</item>
+	</setup>
+	<setup key="NetworkSamba" title="Samba Settings" allowDefault="yes">
+		<item level="0" text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
+		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
+		<item level="0" text="Allow guest access" description="When enabled, allow Samba network access without a password.">self.guest</item>
+		<item level="0" text="Workgroup name" description="Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)">self.workgroup</item>
+	</setup>
+	<setup key="NetworkWiFi" title="Network Wi-Fi Settings">
 		<item level="0" text="Network name (SSID)" description="Select the network name (SSID) of the wireless network to which the receiver should connect.">self.cfgSsid</item>
 		<item level="0" text="Enabled" description="When enabled, connection via saved network is attempted when the Wi-Fi adapter connects.">self.cfgEnabled</item>
 		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self._hasMultiplePriorities">self.cfgPriority</item>
@@ -650,22 +664,8 @@
 			<item level="0" text="Password / Key" description="Enter the password, pass-phrase or pre-shared key for the selected wireless network.">self.cfgKey</item>
 		</if>
 	</setup>
-	<setup key="NetworkNFS" title="NFS Settings" allowDefault="yes">
-		<item text="NFS threads" description="Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but use more memory.">self.nfsThreads</item>
-		<item text="Enable NFSv3" description="When enabled, allow usage of the NFS version 3 protocols.">self.nfsVers3</item>
-		<item text="Enable NFSv4" description="When enabled, allow usage of the NFS version 4 protocols.">self.nfsVers4</item>
-		<item text="Access mode" description="Select the mode of access, Read/Write or Read Only, applied to all exported directories.">self.nfsAccessMode</item>
-		<item text="Allowed clients" description="Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access.">self.nfsClients</item>
-		<item text="Root squash" description="When enabled, map root to nobody (more secure). When disabled, full root access is available.">self.nfsRootSquash</item>
-	</setup>
-	<setup key="NetworkSamba" title="Samba Settings" allowDefault="yes">
-		<item text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
-		<item text="Automatic shares access" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
-		<item text="Allow guest access" description="When enabled, allow Samba network access without a password.">self.guest</item>
-		<item text="Workgroup name" description="Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)">self.workgroup</item>
-	</setup>
 	<setup key="NetworkZeroTier" title="ZeroTier Settings">
-		<item text="Network-ID" description="Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length.">config.network.ZeroTierNetworkId</item>
+		<item level="0" text="Network-ID" description="Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length.">config.network.ZeroTierNetworkId</item>
 	</setup>
 	<setup key="OSCamInfoSetup" title="OSCam Information Settings">
 		<item level="0" text="Read Userdata from 'oscam.conf'" description="Read Userdata from 'oscam.conf'">config.oscaminfo.userDataFromConf</item>

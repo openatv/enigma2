@@ -224,6 +224,16 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %immutable eHdmiCEC::messageReceived;
 %immutable eHdmiCEC::addressChanged;
 %immutable ePythonMessagePump::recv_msg;
+%immutable eStreamServer::availabilityChanged;
+%immutable eStreamServer::sourceStateChanged;
+%immutable eStreamServer::upstreamStateChanged;
+%immutable eStreamServer::upstreamBitrateChanged;
+%immutable eStreamServer::rtspClientCountChanged;
+%immutable eStreamServer::rtspStateChanged;
+%immutable eStreamServer::hlsStateChanged;
+%immutable eStreamServer::uriParametersChanged;
+%immutable eStreamServer::dbusError;
+%immutable eStreamServer::ping;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %immutable eFCCServiceManager::m_fcc_event;
 %immutable eTuxtxtApp::appClosed;
@@ -358,6 +368,12 @@ public:
 %template(PSignal2VII) PSignal2<void,int,int>;
 
 %typemap(out) PSignal2VII {
+	$1 = $input->get();
+}
+
+%template(PSignal2VIS) PSignal2<void,int,const char *c>;
+
+%typemap(out) PSignal2VIS {
 	$1 = $input->get();
 }
 
