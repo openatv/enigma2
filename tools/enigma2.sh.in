@@ -309,6 +309,33 @@ case $ret in
 		ret=$?
 		echo "kodi exit code: $ret" >>/tmp/kodi-standalone.log
 		;;
+	17)
+		rm -fR /home/root/.cache/gstreamer-1.0
+		rm -f /tmp/.listen.camd.socket.ignore
+		dd if=/dev/zero of=/dev/fb0 bs=1M count=16 2>/dev/null
+		sync
+		ulimit -n 16384 2>/dev/null || ulimit -n 8192
+		echo 3 > /proc/sys/vm/drop_caches
+		if [ -x /usr/bin/openatv-retrogaming-standalone ]; then
+			env -i \
+				HOME=/home/root \
+				USER=root \
+				PATH=/usr/sbin:/usr/bin:/sbin:/bin \
+				LANG=C.UTF-8 \
+				LC_ALL=C.UTF-8 \
+				SDL_AUDIODRIVER=alsa \
+				MESA_EXTENSION_OVERRIDE='-GL_EXT_discard_framebuffer' \
+				/usr/bin/openatv-retrogaming-standalone \
+				>/tmp/retrogaming-standalone.log 2>&1
+			ret=$?
+		else
+			ret=127
+			echo "RetroGaming standalone wrapper is not installed" \
+				>/tmp/retrogaming-standalone.log
+		fi
+		echo "RetroGaming standalone exit code: $ret" \
+			>>/tmp/retrogaming-standalone.log
+		;;
 	16)
 		if [ -e /proc/stb/info/model ]; then
 			stbcheck=`cat /proc/stb/info/model`
