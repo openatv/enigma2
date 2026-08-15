@@ -131,8 +131,10 @@ public:
 	~eRCInputEventDriver();
 	void setExclusive(bool b); // in exclusive mode data is not carried to console device
 	bool isKeyboard();
+	bool isGamepad();
 	bool isPointerDevice();
 	bool hasCap(unsigned char *caps, int bit);
+	bool getAbsInfo(unsigned int axis, struct input_absinfo &info);
 };
 
 class eRCKey
