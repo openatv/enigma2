@@ -30,10 +30,13 @@ class ToastScreen(Screen):
 		self._timer.callback.append(self._dohide)
 		self._fadeTimer = eTimer()
 		self._fadeTimer.callback.append(self._doFade)
+
+	def applySkin(self):
+		Screen.applySkin(self)
 		self._displayW = None
 		self._displayH = None
 
-	def showToast(self, text, toasttype, timeout):
+	def showToast(self, text, toasttype, timeout, customIcon):
 		self._foregroundColor = {
 			Toast.TYPE_INFO: (255, 255, 255),  # white
 			Toast.TYPE_WARNING: (0, 0, 0),  # black
@@ -46,7 +49,7 @@ class ToastScreen(Screen):
 			Toast.TYPE_ERROR: (255, 0, 0)  # red
 		}.get(toasttype, (0, 0, 0))
 
-		self["icon"].setText(self.ICON_CHARS.get(toasttype, ""))
+		self["icon"].setText(customIcon or self.ICON_CHARS.get(toasttype, ""))
 		self["text"].setText(text)
 		self._timer.start(timeout * 1000)
 
@@ -146,9 +149,9 @@ class Toast:
 			self._nextTimer.callback.append(self._showNext)
 			self._dialog.onHide.append(self._scheduleNext)
 
-	def showToast(self, text, toasttype, timeout):
+	def showToast(self, text, toasttype, timeout, customIcon=None):
 		timeout = max(3, min(timeout, 10))  # Minimum 3 maximum 10
-		self._queue.append((text, toasttype, timeout))
+		self._queue.append((text, toasttype, timeout, customIcon))
 		if not self._dialog.shown and not self._nextTimer.isActive():
 			self._showNext()
 
@@ -159,8 +162,8 @@ class Toast:
 	def _showNext(self):
 		self._nextTimer.stop()
 		if not self._dialog.shown and self._queue:
-			text, toasttype, timeout = self._queue.pop(0)
-			self._dialog.showToast(text, toasttype, timeout)
+			text, toasttype, timeout, customIcon = self._queue.pop(0)
+			self._dialog.showToast(text, toasttype, timeout, customIcon)
 
 	def doShutdown(self):
 		self._nextTimer.stop()
