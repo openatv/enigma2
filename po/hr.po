@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-22 04:03+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
+"PO-Revision-Date: 2026-08-15 21:38+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -2854,9 +2854,6 @@ msgstr "Oznaka automatske rezolucije"
 msgid "Automatic scan for services"
 msgstr "Automatsko skeniranje kanala"
 
-msgid "Automatic shares access"
-msgstr "Automatski pristup akcijama"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatski stavite TV u stanje pripravnosti, kada tuner uđe u stanje pripravnosti ili duboku pripravnost."
 
@@ -2886,6 +2883,9 @@ msgstr "Dostupni lokalni standardi su:"
 
 msgid "Available shares:"
 msgstr "Dostupan share:"
+
+msgid "Available tuner types"
+msgstr "Dostupne vrste tunera"
 
 msgid "Avaric"
 msgstr "Avaric"
@@ -3336,6 +3336,9 @@ msgstr "Emitiranje/tisak"
 msgid "Broadcom"
 msgstr "Emitovanje"
 
+msgid "Broadcom default"
+msgstr "Broadcom zadano"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Pregledaj, instaliraj ili ukloni dodatak jedan po jedan."
 
@@ -3424,6 +3427,15 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-Band"
+
+msgid "C/T input"
+msgstr "C/T ulaz"
+
+msgid "C/T input switching"
+msgstr "Prebacivanje C/T ulaza"
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr "Prebacivanje C/T ulaza: vanjski 5V koaksijalni prekidač"
 
 msgid "CCD-Width"
 msgstr "CCD-Širina"
@@ -3567,6 +3579,9 @@ msgstr "Kabel"
 
 msgid "Cable Scan"
 msgstr "Skeniranje kabela"
+
+msgid "Cable input"
+msgstr "Kabelski ulaz"
 
 msgid "Cache thumbnails"
 msgstr "Sličice predmemorije"
@@ -4579,6 +4594,9 @@ msgstr "Konfigurirajte dodatnu odgodu za poboljšanje vanjske sinkronizacije tit
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Konfigurirajte dodatnu odgodu za poboljšanje sinkronizacije titlova."
 
+msgid "Configure cable reception on this input."
+msgstr "Postavi prijem kabela na ovom ulazu."
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Konfigurirajte zadanu postavku za nove mjerače vremena. Potrebno je ponovno pokretanje nakon promjene."
 
@@ -4641,6 +4659,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Konfigurirajte vrstu daljinskog kontrolora"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Konfiguriraj prijem satelita na zasebnom SAT ulazu."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Postavi zemaljski prijem na ovom ulazu."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigurirajte DiSEqC način rada za ovaj LNB."
@@ -5577,9 +5601,6 @@ msgstr "DNS zamjena"
 msgid "DNS protocol mode"
 msgstr "Način rada DNS protokola"
 
-msgid "DNS suffix"
-msgstr "DNS suffix"
-
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
 
@@ -5620,17 +5641,14 @@ msgstr "DVB subtitl boja"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "DVB-C / Cable samo"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C i DVB-T/T2 preko vanjskog 5V kontroliranog koaksijalnog prekidača"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Kada su oba omogućena, Enigma2 koristi 5V za upravljanje vanjskim koaksijalnim prekidačem."
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5640,9 +5658,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "VB-T/T2 / Zemaljski samo"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6832,6 +6847,9 @@ msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Domena"
+
+msgid "Domain name"
+msgstr "Naziv domene"
 
 msgid "Dominica"
 msgstr "Dominica"
@@ -9147,6 +9165,9 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
+msgid "GigaBlue optimized"
+msgstr "GigaBlue optimizirano"
+
 msgid "Given device id"
 msgstr "Zadani id uređaja"
 
@@ -9386,6 +9407,9 @@ msgstr "HDMI-IN Postavke Snimanja"
 
 msgid "HDMIin"
 msgstr "HDMI ulaz"
+
+msgid "HDR OSD adjustment"
+msgstr "Podešavanje HDR OSD-a"
 
 msgid "HDR10 Support"
 msgstr "HDR10 Podrška"
@@ -9737,9 +9761,6 @@ msgstr "Mađarska"
 
 msgid "Hybrid Tuner"
 msgstr "Hibridni Tuner"
-
-msgid "Hybrid tuner mode"
-msgstr "Hibridni način tunera"
 
 msgid "Hz"
 msgstr "Hz"
@@ -10693,6 +10714,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Kodi Dodaci Paketa"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -12256,7 +12280,7 @@ msgstr "SLJEDEĆE"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS Postavke"
 
 msgid "NFS threads"
@@ -12432,6 +12456,9 @@ msgstr "Mrežni Test"
 
 msgid "Network Test:"
 msgstr "Mrežni Test:"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Postavke Wi-Fi Mreže"
 
 msgid "Network Wizard"
 msgstr "Čarobnjak za Mrežu"
@@ -16025,6 +16052,9 @@ msgstr "SABnzbd Postavke"
 msgid "SAT"
 msgstr "SAT"
 
+msgid "SAT input"
+msgstr "SAT ulaz"
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16116,7 +16146,7 @@ msgstr "Samba Klijent"
 msgid "Samba Server"
 msgstr "Samba Server"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba Postavke"
 
 msgid "Same as in active"
@@ -16704,6 +16734,9 @@ msgstr "Odaberi 'Da' da bi postavili poziciju kursora na kraj reda prilikom ure�
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Odaberi 'Da' da bi 'dev', 'staticdev', 'dbg' i 'doc' na zaslonu Preuzmi Dodatak prikazane pakete."
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Odaberite 'Da' kako biste prikazali Kodi dodatke na zaslonu Preuzimanje dodataka."
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Odaberi 'Da' da bi na zaslonu Preuzmi Dodatak prikazali pakete LCD skina."
 
@@ -17044,9 +17077,6 @@ msgstr "Odaberi kako je satelitska antena podešena. npr. fiksna antena, jedan L
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Odaberite kako se raspored rukuje u vezi s pripravnošću."
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Odaberite kako je ovaj DVB-C/T tuner povezan. Opciju vanjskog coax prekidača koristite samo s 5V kontroliranim coax prekidačem."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Odaberi kako da aktivirate brzi EPG način."
@@ -18209,11 +18239,11 @@ msgstr "Podešavanje tunera [TUNER]"
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Podešavanje tunera [TUNER].\n"
+"Postavi tuner [TUNER].\n"
 "\n"
-"Za hibridne tunere prebacite vrstu tunera pomoću dugmadi LIJEVO i DESNO."
+"Za tunere koji podržavaju više vrsta prijema, konfigurirajte svaku dostupnu vrstu zasebno."
 
 msgid "Set voltage and 22KHz"
 msgstr "Postavi napon i 22КХз"
@@ -18552,6 +18582,9 @@ msgstr "Pokaži pikone Info Trake"
 
 msgid "Show Kernel packages"
 msgstr "Pokaži Jezgra pakete"
+
+msgid "Show Kodi Add-on packages"
+msgstr "Prikaži Kodi Pakete dodataka"
 
 msgid "Show Live in MiniTV"
 msgstr "Pokaži Uživo u MiniTV"
@@ -20411,9 +20444,6 @@ msgstr "Pređi na drugu kolonu"
 msgid "Switch to the right column"
 msgstr "Prebaci na desnu kolonu"
 
-msgid "Switchable tuner types:"
-msgstr "Tipovi tunera koji se mogu zamijeniti:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Prelazak na TV uživo - timeshift je i dalje aktivan!"
 
@@ -20691,6 +20721,9 @@ msgstr "Tenis/Squash"
 
 msgid "Terrestrial"
 msgstr "Zemaljski"
+
+msgid "Terrestrial input"
+msgstr "Zemaljski ulaz"
 
 msgid "Test"
 msgstr "Test"
@@ -21212,6 +21245,9 @@ msgstr "Ova funkcija nije dostupna jer obrada velikih datoteka može potrajati p
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Ovo je zaobilazno rješenje za uređaje koji se odmah bude nakon ulaska u stanje pripravnosti. Naredbe za buđenje s drugih uređaja se zanemaruju nekoliko sekundi."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Ovo je jedan tip prijema za jedan tuner. Omogućeni tipovi prijema automatski se prebacuju i skeniraju zasebno."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Ovo je trenutno odabrani jezik.  [%s]"
@@ -21234,6 +21270,9 @@ msgstr "Ovaj menu nudi opcije vezane uz upravljanje softverom na %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Ovaj pomak će se koristiti samo ako kanal nema vlastiti pomak glasnoće."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Ova opcija podešava SDR grafiku i boje OSD-a dok je HDMI izlaz u HDR načinu."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Ova opcija omogućuje smanjenje šuma bloka na slici. Očito je to po cijenu oštrine slike."
@@ -21990,6 +22029,9 @@ msgstr "Trim datotečnog sustava..."
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad and Tobago"
+
+msgid "Triple Tuner"
+msgstr "Trojni Tuner"
 
 msgid "True"
 msgstr "Istina"
@@ -23747,9 +23789,6 @@ msgstr "Dok je dostupno"
 msgid "White"
 msgstr "Bijela"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Postavke Wi-Fi Veze"
-
 msgid "Wide"
 msgstr "Široko"
 
@@ -24005,10 +24044,6 @@ msgstr "Možete snimiti samo snimke iz Dreambox!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Možete preskočiti ovu funkciju i isključiti TV kada probudite prijemnik iz načina mirovanja i odmah se vratiti u način mirovanja."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Možete se prebacivati lijevom i desnom stranom ovog tunera tipa %s"
 
 msgid "You cannot delete this!"
 msgstr "Ovo ne možete izbrisati!"
@@ -25022,6 +25057,46 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Automatski pristup akcijama"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS suffix"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "DVB-C / Cable samo"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C i DVB-T/T2 preko vanjskog 5V kontroliranog koaksijalnog prekidača"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "VB-T/T2 / Zemaljski samo"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Hibridni način tunera"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Odaberite kako je ovaj DVB-C/T tuner povezan. Opciju vanjskog coax prekidača koristite samo s 5V kontroliranim coax prekidačem."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Podešavanje tunera [TUNER].\n"
+#~ "\n"
+#~ "Za hibridne tunere prebacite vrstu tunera pomoću dugmadi LIJEVO i DESNO."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Tipovi tunera koji se mogu zamijeniti:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Postavke Wi-Fi Veze"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Možete se prebacivati lijevom i desnom stranom ovog tunera tipa %s"
 
 #~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 #~ msgstr "Unesite naziv koji će ovaj primatelj koristiti kada se pojavi u Samba mrežnim pretragama/listama."

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
 "PO-Revision-Date: 2026-06-10 04:39+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2957,9 +2957,6 @@ msgstr "Etiqueta de resolución automática"
 msgid "Automatic scan for services"
 msgstr "Búsqueda automática de canales"
 
-msgid "Automatic shares access"
-msgstr ""
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Poner automáticamente la TV en modo de espera cada vez que el receptor entre en modo de espera o espera profundo."
 
@@ -2990,6 +2987,9 @@ msgstr "Las regiones disponibles son:"
 
 msgid "Available shares:"
 msgstr "Intercambios disponibles:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr "Avarico"
@@ -3464,6 +3464,9 @@ msgstr "prensa/redifusión"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Explore, instale o desinstale complementos uno por uno."
 
@@ -3557,6 +3560,15 @@ msgstr "C"
 #
 msgid "C-Band"
 msgstr "Banda-C"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr ""
@@ -3703,6 +3715,9 @@ msgstr "Cable"
 
 msgid "Cable Scan"
 msgstr "Búsqueda de cable"
+
+msgid "Cable input"
+msgstr ""
 
 msgid "Cache thumbnails"
 msgstr "Almacenar miniaturas"
@@ -4747,6 +4762,9 @@ msgstr "Configurar retraso adicional para mejorar la sincronización de subtítu
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Configuar retraso adicional para mejorar la sincronización de subtítulos."
 
+msgid "Configure cable reception on this input."
+msgstr ""
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Configurar el ajuste por defecto para los nuevos temporizadores. Necesita un reinicio después de cambiarlo."
 
@@ -4806,6 +4824,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Configurar el tipo de mando a distancia"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configurar el modo DiSEqC para este LNB."
@@ -5773,9 +5797,6 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
-msgid "DNS suffix"
-msgstr ""
-
 msgid "DNSCrypt"
 msgstr ""
 
@@ -5816,16 +5837,13 @@ msgstr ""
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANEXO B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANEXO C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 msgstr ""
 
 #
@@ -5838,9 +5856,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -7086,6 +7101,9 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Dominio"
+
+msgid "Domain name"
+msgstr ""
 
 msgid "Dominica"
 msgstr "Dominica"
@@ -9520,6 +9538,9 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
+msgid "GigaBlue optimized"
+msgstr ""
+
 msgid "Given device id"
 msgstr "Identificación del dispositivo"
 
@@ -9768,6 +9789,9 @@ msgstr "Configuración de la grabación HDMI-IN"
 
 msgid "HDMIin"
 msgstr "Entrada HDMI"
+
+msgid "HDR OSD adjustment"
+msgstr ""
 
 msgid "HDR10 Support"
 msgstr "Compatibilidad con HDR10"
@@ -10139,9 +10163,6 @@ msgstr "Hungría"
 
 msgid "Hybrid Tuner"
 msgstr "Sintonizador híbrido"
-
-msgid "Hybrid tuner mode"
-msgstr ""
 
 msgid "Hz"
 msgstr "Hz"
@@ -11141,6 +11162,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr ""
 
 msgid "Kodi MediaCenter"
 msgstr "Centro multimedia Kodi"
@@ -12802,7 +12826,7 @@ msgstr "SIGUIENTE"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "Configurar NFS"
 
 msgid "NFS threads"
@@ -12992,6 +13016,9 @@ msgstr "Test de red"
 
 msgid "Network Test:"
 msgstr "Prueba de red:"
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
 
 #
 msgid "Network Wizard"
@@ -16856,6 +16883,9 @@ msgstr "Configurar SABnzbd"
 msgid "SAT"
 msgstr "SAT"
 
+msgid "SAT input"
+msgstr ""
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16951,7 +16981,7 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr ""
 
 msgid "Same as in active"
@@ -17570,6 +17600,9 @@ msgstr ""
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr ""
 
@@ -17919,9 +17952,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Seleccione cómo está configurada la antena parabólica, es decir, antena fija, LNB único, interruptor DiSEqC, posicionador, etc."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -19115,7 +19145,7 @@ msgstr ""
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -19479,6 +19509,9 @@ msgid "Show InfoBar picons"
 msgstr "Mostrar picon en la barra de información"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show Kodi Add-on packages"
 msgstr ""
 
 #, fuzzy
@@ -21471,10 +21504,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-#
-msgid "Switchable tuner types:"
-msgstr "Tipos de sintonizador conmutables:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Cambiar a TV en vivo - el cambio de tiempo sigue activo!"
 
@@ -21771,6 +21800,9 @@ msgstr "tenis/squash"
 #
 msgid "Terrestrial"
 msgstr "Terrestre"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -22270,6 +22302,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr ""
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -22291,6 +22326,9 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -23101,6 +23139,9 @@ msgid "Trim File System..."
 msgstr ""
 
 msgid "Trinidad and Tobago"
+msgstr ""
+
+msgid "Triple Tuner"
 msgstr ""
 
 msgid "True"
@@ -24961,9 +25002,6 @@ msgstr "Mientras esté disponible"
 msgid "White"
 msgstr "Blanco"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "Ancho"
 
@@ -25234,10 +25272,6 @@ msgid "You can only burn Dreambox recordings!"
 msgstr "¡Sólo puedes grabar grabaciones de Dreambox!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
-msgstr ""
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
 msgstr ""
 
 #
@@ -26370,6 +26404,10 @@ msgstr "sí (conservar suministros)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Tipos de sintonizador conmutables:"
 
 #
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."

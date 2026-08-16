@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-08-02 06:01+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
+"PO-Revision-Date: 2026-08-15 21:38+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -2819,9 +2819,6 @@ msgstr "自动分辨率标签"
 msgid "Automatic scan for services"
 msgstr "频道自动扫描"
 
-msgid "Automatic shares access"
-msgstr "自动共享访问"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "每当接收机进入待机或深度待机时，自动将电视置于待机状态。"
 
@@ -2851,6 +2848,9 @@ msgstr "可用地点："
 
 msgid "Available shares:"
 msgstr "可用共享："
+
+msgid "Available tuner types"
+msgstr "可用调谐器类型"
 
 msgid "Avaric"
 msgstr "阿瓦里克"
@@ -3301,6 +3301,9 @@ msgstr "广播/新闻"
 msgid "Broadcom"
 msgstr "博通"
 
+msgid "Broadcom default"
+msgstr "博通默认"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "逐一浏览、安装或删除插件。"
 
@@ -3389,6 +3392,15 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C 波段"
+
+msgid "C/T input"
+msgstr "有线/地面输入"
+
+msgid "C/T input switching"
+msgstr "有线 / 地面输入切换"
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr "有线 / 地面输入切换：外接 5V 同轴开关"
 
 msgid "CCD-Width"
 msgstr "CCD宽度"
@@ -3532,6 +3544,9 @@ msgstr "有线电视"
 
 msgid "Cable Scan"
 msgstr "有线电视扫描"
+
+msgid "Cable input"
+msgstr "有线输入"
 
 msgid "Cache thumbnails"
 msgstr "缓存缩略图"
@@ -4542,6 +4557,9 @@ msgstr "配置额外的延迟，以改善外挂字幕的同步性。"
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "配置额外的延迟，以改善字幕同步性。"
 
+msgid "Configure cable reception on this input."
+msgstr "在此输入口配置有线接收。"
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "配置新定时器的默认设置。修改后需要重新启动。"
 
@@ -4604,6 +4622,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "配置遥控器类型"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "在独立的 SAT 输入口配置卫星接收。"
+
+msgid "Configure terrestrial reception on this input."
+msgstr "在此输入口配置地面波接收。"
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "配置此高频头 的 DiSEqC 模式。"
@@ -5540,9 +5564,6 @@ msgstr "DNS 覆盖"
 msgid "DNS protocol mode"
 msgstr "DNS 模式"
 
-msgid "DNS suffix"
-msgstr "DNS 后缀"
-
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
 
@@ -5583,17 +5604,14 @@ msgstr "DVB 字幕颜色"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "仅 DVB-C / 有线电视"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C和DVB-T/T2通过外置5V控制同轴开关"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgstr "DVB‑C 有线与 DVB‑T/T2 地面波共用此输入口。两项同时启用时，Enigma2 将输出 5V 控制外接同轴开关。"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5603,9 +5621,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "仅 DVB-T/T2 /地面波"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6796,6 +6811,9 @@ msgstr "杜比 TrueHD"
 msgid "Domain"
 msgstr "域"
 
+msgid "Domain name"
+msgstr "域名"
+
 msgid "Dominica"
 msgstr "多米尼加"
 
@@ -7446,7 +7464,7 @@ msgid "Enable this when a power inserter or external supply powers the Unicable 
 msgstr "若 Unicable 设备由供电器或外置电源供电，请开启此项。"
 
 msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
-msgstr ""
+msgstr "在住宅楼宇 Unicable 系统中，若用户频段受 PIN 码保护，请启用此项。"
 
 msgid "Enable timer"
 msgstr "启用定时器"
@@ -7594,7 +7612,7 @@ msgid "Enter a new name for this device."
 msgstr "输入此设备的新名称。"
 
 msgid "Enter expected ONID/TSID"
-msgstr ""
+msgstr "输入预期的 ONID/TSID"
 
 msgid "Enter if you are North or South of the equator."
 msgstr "如果您在赤道以北或以南，请输入。"
@@ -7618,13 +7636,13 @@ msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
-msgstr ""
+msgstr "输入允许访问 NFS 主机的 IP 地址或子网（例如 192.168.1.0/24）。默认填 `*`，代表允许全部主机访问。"
 
 msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
-msgstr ""
+msgstr "输入此网卡用于访问其他网络的网关 IP 地址，通常填写路由器的 IP 地址。"
 
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
-msgstr ""
+msgstr "输入安装人员或楼宇运营商分配给该用户频段的 PIN 码，取值范围 0‑255。"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字符。"
@@ -7633,7 +7651,7 @@ msgid "Enter the duration to be added to the streaming buffer after a streaming 
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
-msgstr ""
+msgstr "为此网卡输入固定 / 静态 IPv4 地址。"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入高频头在低频段和高频段之间切换的频率。有关更多信息，请参阅高频头的规格。"
@@ -7642,37 +7660,37 @@ msgid "Enter the frequency step size for the tuner to use when searching for cab
 msgstr "输入搜索有线电视多路复用时调谐器要使用的频率步长。有关更多信息，请咨询有线电视供应商的文档。"
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
-msgstr ""
+msgstr "输入要分配 / 使用的 NFS 服务器线程数量。数值越高，多客户端并发时性能越好，但会占用更多内存。"
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "输入与此卫星对应的定位器中存储的编号。"
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
-msgstr ""
+msgstr "输入所选无线网络的密码、密钥短语或预共享密钥。"
 
 msgid "Enter the primary IPv4 DNS setting for this adapter."
-msgstr ""
+msgstr "输入此网卡的主 IPv4 DNS 服务器地址。"
 
 msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
-msgstr ""
+msgstr "输入此网卡的主 IPv6 DNS 服务器地址。（选填）"
 
 msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
-msgstr ""
+msgstr "输入此网卡的备用 IPv4 DNS 服务器地址。（选填）"
 
 msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
-msgstr ""
+msgstr "输入此网卡的备用 IPv6 DNS 服务器地址。（选填）"
 
 msgid "Enter the service pin"
 msgstr "输入频道 PIN"
 
 msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
-msgstr ""
+msgstr "输入此网卡使用的子网掩码（例如 255.255.255.0）"
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "输入订阅码即可全面启用人工智能翻译插件，试用统一码为15。"
 
 msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
-msgstr ""
+msgstr "输入本机接收机 Samba 连接所用的工作组名称。(默认值为 `WORKGROUP`)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "输入您当前的纬度。 这是您距离赤道的度数，以十进制表示。"
@@ -8290,7 +8308,7 @@ msgid "External subtitle switch fonts"
 msgstr "外挂字幕切换字体"
 
 msgid "Externally powered"
-msgstr ""
+msgstr "外接供电"
 
 msgid "Extra High"
 msgstr "超高"
@@ -8336,10 +8354,10 @@ msgstr "自动 FBC"
 
 #, python-format
 msgid "FBC automatic: connected to %s"
-msgstr ""
+msgstr "FBC 自动模式：已连接至 %s"
 
 msgid "FBC automatic: inactive"
-msgstr ""
+msgstr "FBC 自动模式：未激活"
 
 msgid "FCC enabled"
 msgstr "FCC 已启用"
@@ -8852,7 +8870,7 @@ msgid "Force ToneBurst"
 msgstr "强制 22K 开关"
 
 msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
-msgstr ""
+msgstr "强制指定网卡速率 / 双工模式，关闭自动协商。仅在有明确需求时修改，设置错误会直接造成网络断开。"
 
 msgid "Force de-interlace"
 msgstr "强制隔行扫描"
@@ -9107,6 +9125,9 @@ msgstr "加纳"
 msgid "Gibraltar"
 msgstr "直布罗陀"
 
+msgid "GigaBlue optimized"
+msgstr "GigaBlue 专用优化"
+
 msgid "Given device id"
 msgstr "给定设备 ID"
 
@@ -9347,6 +9368,9 @@ msgstr "HDMI-IN 录制设置"
 msgid "HDMIin"
 msgstr "HDMIin"
 
+msgid "HDR OSD adjustment"
+msgstr "HDR OSD 亮度调节"
+
 msgid "HDR10 Support"
 msgstr "HDR10 支持"
 
@@ -9531,7 +9555,7 @@ msgid "Hide softcam servername"
 msgstr "隐藏 softcam 服务器名称"
 
 msgid "Hide sub-menu"
-msgstr ""
+msgstr "隐藏子菜单"
 
 msgid "Hide the InfoBar"
 msgstr "隐藏信息栏"
@@ -9702,9 +9726,6 @@ msgstr "匈牙利"
 msgid "Hybrid Tuner"
 msgstr "混合调谐器"
 
-msgid "Hybrid tuner mode"
-msgstr "混合调谐器模式"
-
 msgid "Hz"
 msgstr "Hz"
 
@@ -9763,7 +9784,7 @@ msgid "IP address of the Stream Relay server used to descramble services that ca
 msgstr "串流中继服务器的 IP 地址，用于对只能通过串流中继解密的频道进行解扰。"
 
 msgid "IP protocol"
-msgstr ""
+msgstr "IP 协议"
 
 msgid "IPK Installer"
 msgstr "IPK 安装器"
@@ -10097,7 +10118,7 @@ msgid "Include keyboard data"
 msgstr "包含键盘数据"
 
 msgid "Include network data"
-msgstr ""
+msgstr "包含网络数据"
 
 msgid "Include opkg output data"
 msgstr "包含 opkg 输出数据"
@@ -10196,7 +10217,7 @@ msgid "Infotainment"
 msgstr "资讯娱乐"
 
 msgid "Inherited channel / frequency"
-msgstr ""
+msgstr "沿用已有频道/频率"
 
 msgid "Init"
 msgstr "初始化"
@@ -10657,6 +10678,9 @@ msgstr "基里巴斯"
 msgid "Kodi"
 msgstr "Kodi"
 
+msgid "Kodi Add-on Packages"
+msgstr "Kodi 插件包"
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi 媒体中心"
 
@@ -10769,16 +10793,16 @@ msgid "LNB"
 msgstr "高频头"
 
 msgid "LNB 1"
-msgstr ""
+msgstr "高频头 1"
 
 msgid "LNB 1 and the target LNB use different Unicable protocols"
-msgstr ""
+msgstr "高频头 1 与目标高频头使用的 Unicable 协议不一致"
 
 msgid "LNB current:"
-msgstr ""
+msgstr "高频头电流："
 
 msgid "LNB current: not available"
-msgstr ""
+msgstr "高频头电流：无法获取"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "高频头/切换 启动时间 [毫秒]"
@@ -10868,7 +10892,7 @@ msgid "Leave movie player"
 msgstr "退出电影播放器"
 
 msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
-msgstr ""
+msgstr "设为 0 ，系统将根据高频头编号与设备配置文件自动生成位置参数。仅当 Unicable 设备已重新编程时，才输入 1‑64 之间的数值。"
 
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "将此设置保留为“是”，除非您完全理解为什么要调整它。"
@@ -10962,7 +10986,7 @@ msgid "Limit the characters that can be used in recording filenames to (7 bit) A
 msgstr "将可用于录像文件名的字符限制为（7位）ascii。 这确保与具有有限字符集的操作系统或文件系统的兼容性。"
 
 msgid "Limit the search to the satellite group normally used by this installation."
-msgstr ""
+msgstr "将搜索范围限制为本套接收系统通常使用的卫星组。"
 
 msgid "Limit west"
 msgstr "西极限位置"
@@ -10999,7 +11023,7 @@ msgid "Link quality:"
 msgstr "链接质量："
 
 msgid "Link speed"
-msgstr ""
+msgstr "链路速率"
 
 msgid "Link target"
 msgstr "链接目标"
@@ -11521,7 +11545,7 @@ msgid "Mayotte"
 msgstr "马约特岛"
 
 msgid "Measured current"
-msgstr ""
+msgstr "实测电流"
 
 msgid "Media"
 msgstr "媒体"
@@ -11667,7 +11691,7 @@ msgid "Minimum age %d years"
 msgstr "最低年龄 %d 岁"
 
 msgid "Minimum difference between idle and moving current."
-msgstr ""
+msgstr "静止与转动状态电流的最小差值。"
 
 msgid "Minimum send interval"
 msgstr "最小发送间隔"
@@ -12135,7 +12159,7 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 msgid "Multi-path mode"
-msgstr ""
+msgstr "多路径模式"
 
 msgid "MultiBoot"
 msgstr "多系统启动"
@@ -12218,11 +12242,11 @@ msgstr "下一个"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS设置"
 
 msgid "NFS threads"
-msgstr ""
+msgstr "NFS 线程数"
 
 msgid "NIM"
 msgstr "网络接口模块"
@@ -12345,7 +12369,7 @@ msgid "Network Adapter Setting Actions"
 msgstr "网络适配器设置操作"
 
 msgid "Network Adapter Settings"
-msgstr ""
+msgstr "网络适配器设置"
 
 msgid "Network Adapter Text Actions"
 msgstr "网络适配器文本操作"
@@ -12395,6 +12419,9 @@ msgstr "网络测试"
 msgid "Network Test:"
 msgstr "网络测试："
 
+msgid "Network Wi-Fi Settings"
+msgstr "Wi-Fi 网络设置"
+
 msgid "Network Wizard"
 msgstr "网络向导"
 
@@ -12418,7 +12445,7 @@ msgid "Network menu"
 msgstr "网络菜单"
 
 msgid "Network metric"
-msgstr ""
+msgstr "网络跃点数"
 
 msgid "Network mounts"
 msgstr "网络挂载"
@@ -12904,13 +12931,13 @@ msgid "Not Shown"
 msgstr "不显示"
 
 msgid "Not a valid tuner"
-msgstr ""
+msgstr "无效调谐器"
 
 msgid "Not associated"
 msgstr "未关联"
 
 msgid "Not available"
-msgstr ""
+msgstr "不可用"
 
 msgid "Not configured"
 msgstr "未配置"
@@ -13041,13 +13068,13 @@ msgid "ONID"
 msgstr "客户端(ONID)"
 
 msgid "ONID/TSID check timed out"
-msgstr ""
+msgstr "ONID/TSID 检查超时"
 
 msgid "ONID/TSID does not match"
-msgstr ""
+msgstr "ONID/TSID 不匹配"
 
 msgid "ONID/TSID valid"
-msgstr ""
+msgstr "ONID/TSID 值"
 
 msgid "OSCam Info"
 msgstr "OSCam 信息"
@@ -13388,7 +13415,7 @@ msgid "Open the single service EPG view"
 msgstr "打开单频道 EPG 视图"
 
 msgid "Open tuner setup"
-msgstr ""
+msgstr "打开调谐器设置"
 
 msgid "Open with File Commander"
 msgstr "用 File Commander 打开"
@@ -13572,7 +13599,7 @@ msgid "PGS file"
 msgstr "PGS 文件"
 
 msgid "PIN"
-msgstr ""
+msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "需要 PIN 码"
@@ -13731,7 +13758,7 @@ msgid "Password (httpwd)"
 msgstr "密码（httpwd）"
 
 msgid "Password / Key"
-msgstr ""
+msgstr "密码 / Key"
 
 msgid "Password Actions"
 msgstr "密码操作"
@@ -13860,14 +13887,14 @@ msgstr "频道图标安装位置"
 
 #, python-format
 msgid "Picon path %s"
-msgstr ""
+msgstr "频道图标路径 %s"
 
 #, python-format
 msgid "Picon path %s is in use and cannot be removed!"
-msgstr ""
+msgstr "频道图标路径 %s 正在使用中，无法删除！"
 
 msgid "Picon search mode"
-msgstr ""
+msgstr "频道图标搜索模式"
 
 msgid "Picon width"
 msgstr "频道图标宽度"
@@ -14386,7 +14413,7 @@ msgid "Positioner Setup Log"
 msgstr "极轴设置日志"
 
 msgid "Positioner actions"
-msgstr ""
+msgstr "极轴天线马达操作"
 
 msgid "Positioner setup"
 msgstr "极轴设置"
@@ -14637,10 +14664,10 @@ msgid "Primary DNS"
 msgstr "主 DNS"
 
 msgid "Primary DNS (IPv4)"
-msgstr ""
+msgstr "首选 DNS（IPv4）"
 
 msgid "Primary DNS (IPv6)"
-msgstr ""
+msgstr "首选 DNS（IPv6）"
 
 msgid "Prime time"
 msgstr "黄金时段"
@@ -15405,7 +15432,7 @@ msgid "Remove New Found Flag"
 msgstr "删除 新发现 标志"
 
 msgid "Remove Path"
-msgstr ""
+msgstr "移除路径"
 
 msgid "Remove Plugin"
 msgstr "删除插件"
@@ -15893,20 +15920,20 @@ msgid "Root file"
 msgstr "根文件"
 
 msgid "Root squash"
-msgstr ""
+msgstr "Root 权限压缩"
 
 msgid "Rose"
 msgstr "粉红色"
 
 msgid "Rotor is not configured"
-msgstr ""
+msgstr "极轴天线尚未配置"
 
 msgid "Rotor turning speed"
 msgstr "极轴转速"
 
 #, python-format
 msgid "Rotor: %d satellites"
-msgstr ""
+msgstr "极轴天线：%d 颗卫星"
 
 msgid "Router / Gateway"
 msgstr "路由 / 网关"
@@ -15962,7 +15989,7 @@ msgid "Running command %d: '%s'."
 msgstr "正在运行命令 %d：“%s”。"
 
 msgid "Running only"
-msgstr ""
+msgstr "仅正在运行"
 
 msgid "Russian"
 msgstr "俄语"
@@ -15984,6 +16011,9 @@ msgstr "SABnzbd 设置"
 
 msgid "SAT"
 msgstr "卫星"
+
+msgid "SAT input"
+msgstr "卫星信号输入"
 
 msgid "SATA"
 msgstr "SATA"
@@ -16076,7 +16106,7 @@ msgstr "Samba 客户端"
 msgid "Samba Server"
 msgstr "Samba 服务器"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba 设置"
 
 msgid "Same as in active"
@@ -16425,10 +16455,10 @@ msgid "Secondary DNS"
 msgstr "副 DNS"
 
 msgid "Secondary DNS (IPv4)"
-msgstr ""
+msgstr "备用 DNS（IPv4）"
 
 msgid "Secondary DNS (IPv6)"
-msgstr ""
+msgstr "备用 DNS（IPv6）"
 
 msgid "Seconds"
 msgstr "秒"
@@ -16660,6 +16690,9 @@ msgstr "选择“是”可在编辑文本文件时将光标位置设置为行尾
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "选择“是”以在下载插件屏幕中显示“dev”、“staticdev”，“dbg”和“doc”包。"
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "选择‘是’，可在‘下载插件’界面中显示 Kodi 插件包。"
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "选择“是”在下载插件屏幕中显示 LCD 皮肤包。"
@@ -17001,9 +17034,6 @@ msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、Di
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "选择如何在待机模式下处理计划任务。"
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "选择此 DVB-C/T 调谐器的连接方式。仅当使用5V控制同轴开关时，才选用“外置同轴开关”选项。"
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "选择如何激活快速 EPG 模式。"
@@ -18166,11 +18196,8 @@ msgstr "设置调谐器 [调谐器]"
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"设置调谐器 [调谐器]。\n"
-"\n"
-"对于混合调谐器型号，使用向左、向右按钮切换调谐器类型。"
 
 msgid "Set voltage and 22KHz"
 msgstr "设置电压和 22KHz"
@@ -18509,6 +18536,9 @@ msgstr "显示信息栏频道图标"
 
 msgid "Show Kernel packages"
 msgstr "显示内核包"
+
+msgid "Show Kodi Add-on packages"
+msgstr ""
 
 msgid "Show Live in MiniTV"
 msgstr "在 MiniTV 中显示直播"
@@ -20364,9 +20394,6 @@ msgstr "切换到另一列"
 msgid "Switch to the right column"
 msgstr "切换到右列"
 
-msgid "Switchable tuner types:"
-msgstr "可切换的调谐器类型："
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "切换到直播电视 - 时移仍然有效！"
 
@@ -20644,6 +20671,9 @@ msgstr "网球/壁球"
 
 msgid "Terrestrial"
 msgstr "地面波"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr "测试"
@@ -21164,6 +21194,9 @@ msgstr "此功能不可用，因为处理大文件可能需要很长时间才能
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "这是某些设备在切换到待机状态后再次唤醒的解决方法。 来自其他设备的唤醒命令将被忽略几秒钟。"
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "这是当前选定的语言。[%s]"
@@ -21186,6 +21219,9 @@ msgstr "此菜单提供与管理 %s %s 上的软件相关的选项。"
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "仅当频道没有自己的音量偏移时，才会使用此偏移。"
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "此选项允许减少图像中的块噪声。 显然，这是以图片的清晰度为代价。"
@@ -21942,6 +21978,9 @@ msgstr "修剪文件系统..."
 
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
+
+msgid "Triple Tuner"
+msgstr ""
 
 msgid "True"
 msgstr "正确"
@@ -23699,9 +23738,6 @@ msgstr "可用时"
 msgid "White"
 msgstr "白色"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "宽"
 
@@ -23957,10 +23993,6 @@ msgstr "只能烧制 Dreambox 录制！"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "将接收机从待机状态唤醒并立即切换回待机状态时，可以跳过此功能并关闭电视。"
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "你可用左/右键切换此调谐器的类型 %s"
 
 msgid "You cannot delete this!"
 msgstr "不能删除这个！"
@@ -24607,10 +24639,10 @@ msgid "internally loopthrough to"
 msgstr "内部环通到"
 
 msgid "is not configured"
-msgstr ""
+msgstr "未配置"
 
 msgid "is not configured for Unicable"
-msgstr ""
+msgstr "未配置为 Unicable 模式"
 
 msgid "jump back to the previous title"
 msgstr "跳转到上一个标题"
@@ -24870,13 +24902,13 @@ msgid "text"
 msgstr "文本"
 
 msgid "the User Band channel from LNB 1 is not available"
-msgstr ""
+msgstr "高频头 1 的用户频段通道无法使用"
 
 msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
-msgstr ""
+msgstr "所选设备在此用户频段上未使用高频头 1 的频率"
 
 msgid "the target LNB"
-msgstr ""
+msgstr "目标高频头"
 
 msgid "the target LNB is not configured"
 msgstr "目标高频头尚未设置"
@@ -24973,6 +25005,43 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "自动共享访问"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS 后缀"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "仅 DVB-C / 有线电视"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C和DVB-T/T2通过外置5V控制同轴开关"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "仅 DVB-T/T2 /地面波"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "混合调谐器模式"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "选择此 DVB-C/T 调谐器的连接方式。仅当使用5V控制同轴开关时，才选用“外置同轴开关”选项。"
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "设置调谐器 [调谐器]。\n"
+#~ "\n"
+#~ "对于混合调谐器型号，使用向左、向右按钮切换调谐器类型。"
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "可切换的调谐器类型："
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "你可用左/右键切换此调谐器的类型 %s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "正在进行录制。配置极轴前请先停止录制。"

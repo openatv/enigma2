@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
 "PO-Revision-Date: 2026-04-20 04:59+0000\n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -2945,9 +2945,6 @@ msgstr "Etikett med automatisk upplösning"
 msgid "Automatic scan for services"
 msgstr "Automatisk sökning efter tjänster"
 
-msgid "Automatic shares access"
-msgstr "Automatisk tillgång till aktier"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Sätt automatiskt TV:n i standby när mottagaren går in i standby eller djup standby."
 
@@ -2978,6 +2975,9 @@ msgstr "Tillgängliga platser är:"
 
 msgid "Available shares:"
 msgstr "Tillgängliga aktier:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr "Avariska"
@@ -3452,6 +3452,9 @@ msgstr "sändning/press"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Bläddra, installera eller ta bort plugins på en och samma basis."
 
@@ -3541,6 +3544,15 @@ msgstr "C"
 #
 msgid "C-Band"
 msgstr "C-band"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr "CCD-bredd"
@@ -3688,6 +3700,9 @@ msgstr "Kabel"
 
 msgid "Cable Scan"
 msgstr "Kabelskanning"
+
+msgid "Cable input"
+msgstr ""
 
 #
 msgid "Cache thumbnails"
@@ -4750,6 +4765,9 @@ msgstr "Konfigurera en extra fördröjning för att förbättra synkroniseringen
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Konfigurera en extra fördröjning för att förbättra synkroniseringen av undertexter."
 
+msgid "Configure cable reception on this input."
+msgstr ""
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Konfigurera standardinställning för nya timers. Behöver en omstart efter ändring."
 
@@ -4813,6 +4831,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Konfigurera typ av fjärrkontroll"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigurera DiSEqC-läget för den här LNB:n."
@@ -5780,9 +5804,6 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr "DNS-läge"
 
-msgid "DNS suffix"
-msgstr "DNS-suffix"
-
 msgid "DNSCrypt"
 msgstr ""
 
@@ -5824,16 +5845,13 @@ msgstr "DVB-undertexter färg"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C BILAGA B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C BILAGA C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 msgstr ""
 
 #
@@ -5846,9 +5864,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -7107,6 +7122,9 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Domän"
+
+msgid "Domain name"
+msgstr ""
 
 msgid "Dominica"
 msgstr "Dominica"
@@ -9541,6 +9559,9 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
+msgid "GigaBlue optimized"
+msgstr ""
+
 msgid "Given device id"
 msgstr "Angivet enhets-ID"
 
@@ -9791,6 +9812,9 @@ msgstr "Inställningar för inspelning med HDMI-ingång"
 
 msgid "HDMIin"
 msgstr "HDMIin"
+
+msgid "HDR OSD adjustment"
+msgstr ""
 
 msgid "HDR10 Support"
 msgstr "Stöd för HDR10"
@@ -10156,9 +10180,6 @@ msgstr "Ungern"
 
 msgid "Hybrid Tuner"
 msgstr "Hybrid Tuner"
-
-msgid "Hybrid tuner mode"
-msgstr ""
 
 msgid "Hz"
 msgstr "Hz"
@@ -11164,6 +11185,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr ""
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -12831,7 +12855,7 @@ msgstr "NÄSTA"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS-Konfiguration"
 
 msgid "NFS threads"
@@ -13015,6 +13039,9 @@ msgstr "Nätverkstest"
 
 msgid "Network Test:"
 msgstr "Nätverkstest:"
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
 
 msgid "Network Wizard"
 msgstr "Nätverksguide"
@@ -16866,6 +16893,9 @@ msgstr "SABnzbd Inställningar"
 msgid "SAT"
 msgstr "SAT"
 
+msgid "SAT input"
+msgstr ""
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16960,7 +16990,7 @@ msgstr "Samba-klient"
 msgid "Samba Server"
 msgstr "Samba-server"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba-inställningar"
 
 msgid "Same as in active"
@@ -17579,6 +17609,9 @@ msgstr "Välj \"Ja\" för att ställa in markörens position till slutet av rade
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Välj \"Yes\" för att visa paketen \"dev\", \"staticdev\", \"dbg\" och \"doc\" på skärmen Download Plugins."
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Välj \"Yes\" för att visa LCD-skinnpaket på skärmen Download Plugins."
 
@@ -17928,9 +17961,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Välj hur parabolantennen ska installeras, t.ex. fast parabol, enkel LNB, DiSEqC-omkopplare, positionerare osv."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -19127,11 +19157,8 @@ msgstr "Ställa in tuner [TUNER]"
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Ställa in tuner [TUNER].\n"
-"\n"
-"För hybrida tunermodeller byter du Tuner Type med knapparna LEFT och RIGHT."
 
 msgid "Set voltage and 22KHz"
 msgstr "Ställ in spänning och 22KHz"
@@ -19483,6 +19510,9 @@ msgstr "Visa InfoBar picons"
 
 msgid "Show Kernel packages"
 msgstr "Visa Kernel-paket"
+
+msgid "Show Kodi Add-on packages"
+msgstr ""
 
 #
 msgid "Show Live in MiniTV"
@@ -21459,10 +21489,6 @@ msgstr "Byt till den andra kolumnen"
 msgid "Switch to the right column"
 msgstr "Växla till höger kolumn"
 
-#
-msgid "Switchable tuner types:"
-msgstr "Omkopplingsbara tunertyper:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Byte till direktsänd TV - tidsomställningen är fortfarande aktiv!"
 
@@ -21749,6 +21775,9 @@ msgstr "Tennis/Squash"
 #
 msgid "Terrestrial"
 msgstr "Terrestrisk"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr "Test"
@@ -22284,6 +22313,9 @@ msgstr "Denna funktion är inte tillgänglig eftersom bearbetning av stora filer
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Det här är en lösning för vissa enheter som vaknar igen efter att ha växlat till standby. Väckningskommandon från andra enheter ignoreras under några sekunder."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Detta är det språk som för närvarande är valt.  [%s]"
@@ -22306,6 +22338,9 @@ msgstr "Den här menyn innehåller alternativ för hantering av programvaran på
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Denna offset används endast om kanalen inte har någon egen volymoffset."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Detta alternativ gör det möjligt att minska blockbruset i bilden. Självklart sker detta på bekostnad av bildens skärpa."
@@ -23100,6 +23135,9 @@ msgstr ""
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad och Tobago"
+
+msgid "Triple Tuner"
+msgstr ""
 
 msgid "True"
 msgstr "Sant"
@@ -24943,9 +24981,6 @@ msgstr "Medan tillgängliga"
 msgid "White"
 msgstr "Vit"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "Bred"
 
@@ -25219,10 +25254,6 @@ msgstr "Du kan bara bränna Dreambox-inspelningar!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Du kan hoppa över denna funktion och stänga av TV:n när du väcker receivern från standby och omedelbart återgå till standby."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Du kan växla mellan vänster och höger för dessa tunertyper %s"
 
 #
 msgid "You cannot delete this!"
@@ -26339,6 +26370,29 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Automatisk tillgång till aktier"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS-suffix"
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Ställa in tuner [TUNER].\n"
+#~ "\n"
+#~ "För hybrida tunermodeller byter du Tuner Type med knapparna LEFT och RIGHT."
+
+#
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Omkopplingsbara tunertyper:"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Du kan växla mellan vänster och höger för dessa tunertyper %s"
 
 #
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-30 08:01+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
+"PO-Revision-Date: 2026-08-15 21:38+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2857,9 +2857,6 @@ msgstr "Мітка автороздільності екрану"
 msgid "Automatic scan for services"
 msgstr "Автосканування каналів"
 
-msgid "Automatic shares access"
-msgstr "Автоматичний доступ до спільних ресурсів"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Автоматично переводьте телевізор у режим очікування, коли приймач переходить у режим очікування, або глибокого очікування."
 
@@ -2889,6 +2886,9 @@ msgstr "Доступні регіони:"
 
 msgid "Available shares:"
 msgstr "Доступні мережеві диски:"
+
+msgid "Available tuner types"
+msgstr "Доступні типи тюнерів"
 
 msgid "Avaric"
 msgstr "Аварська"
@@ -3339,6 +3339,9 @@ msgstr "мовлення/преса"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr "Broadcom за замовчуванням"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Переглядайте, встановлюйте або видаляйте плагіни по одному."
 
@@ -3427,6 +3430,15 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "С-Діапазон"
+
+msgid "C/T input"
+msgstr "Вхід C/T"
+
+msgid "C/T input switching"
+msgstr "Перемикання входу C/T"
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr "Перемикання входу C/T: зовнішній коаксіальний перемикач 5V"
 
 msgid "CCD-Width"
 msgstr "CCD-Ширина"
@@ -3570,6 +3582,9 @@ msgstr "Кабельне"
 
 msgid "Cable Scan"
 msgstr "Сканування кабельного"
+
+msgid "Cable input"
+msgstr "Кабельний вхід"
 
 msgid "Cache thumbnails"
 msgstr "Кешування ескізів"
@@ -4582,6 +4597,9 @@ msgstr "Налаштування додаткової затримки для п
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Налаштування додаткової затримки для поліпшення синхронізації субтитрів."
 
+msgid "Configure cable reception on this input."
+msgstr "Налаштуйте кабельний прийом на цьому вході."
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Налаштувати параметри за замовчуванням для нових таймерів. Потрібно перезавантажити після зміни."
 
@@ -4644,6 +4662,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Налаштування типу пульта керування"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Налаштуйте прийом супутникового сигналу на окремому вході SAT."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Налаштуйте ефірний прийом на цьому вході."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Налаштування DiSEqC режиму для цього конвертора."
@@ -5580,9 +5604,6 @@ msgstr "Перевизначення DNS"
 msgid "DNS protocol mode"
 msgstr "Режим DNS"
 
-msgid "DNS suffix"
-msgstr "DNS суфікс"
-
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
 
@@ -5623,17 +5644,14 @@ msgstr "Колір субтитрів DVB"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "Тільки DVB-C / кабельне телебачення"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C та DVB-T/T2 через зовнішній керований коаксіальний комутатор 5V"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgstr "DVB-C та DVB-T/T2 використовують цей вхід. Коли обидва ввімкнені, Enigma2 використовує 5 В для керування зовнішнім коаксіальним перемикачем."
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5643,9 +5661,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "Тільки DVB-T/T2 / ефірне телебачення"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6835,6 +6850,9 @@ msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Домен"
+
+msgid "Domain name"
+msgstr "Доменне ім'я"
 
 msgid "Dominica"
 msgstr "Домініка"
@@ -9150,6 +9168,9 @@ msgstr "Гана"
 msgid "Gibraltar"
 msgstr "Гібралтар"
 
+msgid "GigaBlue optimized"
+msgstr "Оптимізовано для GigaBlue"
+
 msgid "Given device id"
 msgstr "Вказати ідентифікатор пристрою"
 
@@ -9389,6 +9410,9 @@ msgstr "HDMI-Вх. Налаштування запису"
 
 msgid "HDMIin"
 msgstr "HDMI вхід"
+
+msgid "HDR OSD adjustment"
+msgstr "Налаштування екранного меню HDR"
 
 msgid "HDR10 Support"
 msgstr "Підтримка HDR10"
@@ -9740,9 +9764,6 @@ msgstr "Венгрія"
 
 msgid "Hybrid Tuner"
 msgstr "Гібридний тюнер"
-
-msgid "Hybrid tuner mode"
-msgstr "Гібридний режим тюнера"
 
 msgid "Hz"
 msgstr "Гц"
@@ -10696,6 +10717,9 @@ msgstr "Кірибаті"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Додаткові пакети Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi Медіа центр"
@@ -12259,7 +12283,7 @@ msgstr "НАСТУПНА"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "Налаштування NFS"
 
 msgid "NFS threads"
@@ -12435,6 +12459,9 @@ msgstr "Тест Мережі"
 
 msgid "Network Test:"
 msgstr "Тест мережі: "
+
+msgid "Network Wi-Fi Settings"
+msgstr "Налаштування мережі Wi-Fi"
 
 msgid "Network Wizard"
 msgstr "Майстер налашт. мережі"
@@ -16028,6 +16055,9 @@ msgstr "Налаштування SABnzbd"
 msgid "SAT"
 msgstr "САТ"
 
+msgid "SAT input"
+msgstr "Вхід для супутникового телебачення"
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16119,7 +16149,7 @@ msgstr "Клієнт Samba"
 msgid "Samba Server"
 msgstr "Samba Сервер"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Налаштування Samba"
 
 msgid "Same as in active"
@@ -16707,6 +16737,9 @@ msgstr "Виберіть 'Так', щоб установити позицію к
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети 'dev', 'staticdev', 'dbg' і 'doc' на екрані завантаження плагінів."
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Виберіть 'Так', щоб відобразити додаткові пакети Kodi на екрані завантаження плагінів."
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети скінів РК-дисплея на екрані завантаження плагінів."
 
@@ -17047,9 +17080,6 @@ msgstr "Виберіть спосіб налаштування супутник�
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Виберіть, як розклад оброблятиметься стосовно режиму очікування."
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Виберіть спосіб підключення цього тюнера DVB-C/T. Використовуйте зовнішній коаксіальний перемикач лише з коаксіальним перемикачем з керуванням 5 В."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Вибір активації режиму швидкого ЕПГ."
@@ -18212,11 +18242,11 @@ msgstr "Налаштувати тюнер [TUNER]"
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Налаштуйте тюнер [TUNER].\n"
+"Налаштування тюнера [TUNER].\n"
 "\n"
-"Для моделей з гібридним тюнером перемикайте тип тюнера кнопками ВЛІВО та ВПРАВО."
+"Для тюнерів, що підтримують кілька типів прийому, налаштуйте кожен доступний тип окремо."
 
 msgid "Set voltage and 22KHz"
 msgstr "Встановити напругу і 22KГц"
@@ -18555,6 +18585,9 @@ msgstr "Показати пікони в інфобарі"
 
 msgid "Show Kernel packages"
 msgstr "Показати пакети ядра"
+
+msgid "Show Kodi Add-on packages"
+msgstr "Показати пакети доповнень Kodi"
 
 msgid "Show Live in MiniTV"
 msgstr "Показати передачу в PіG-вікні"
@@ -20414,9 +20447,6 @@ msgstr "Перейти до іншої колонки"
 msgid "Switch to the right column"
 msgstr "Перейти до правої колонки"
 
-msgid "Switchable tuner types:"
-msgstr "Типи тюнерів що перемикаються:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Перехід на телевізійні програми - таймшифт все ще активна!"
 
@@ -20505,7 +20535,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - Monja 29.07.2026"
+msgstr "Переклад: kvinto - Monja 15.08.2026"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20694,6 +20724,9 @@ msgstr "теніс/сквош"
 
 msgid "Terrestrial"
 msgstr "Наземний"
+
+msgid "Terrestrial input"
+msgstr "Наземний вхід"
 
 msgid "Test"
 msgstr "Тест"
@@ -21215,6 +21248,9 @@ msgstr "Ця функція недоступна, оскільки обробк�
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Це обхідний шлях для деяких пристроїв, які знову прокидаються після переходу в режим очікування. Команда пробудження з інших пристроїв буде ігнорована протягом кількох секунд."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Це один тип прийому одного тюнера. Увімкнені типи прийому перемикаються автоматично та скануються окремо."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Це поточна вибрана мова. [%s]"
@@ -21237,6 +21273,9 @@ msgstr "Це меню пропонує параметри, пов’язані �
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Це зміщення буде використовуватися, лише якщо канал не має власного зміщення гучності."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Ця опція налаштовує графіку SDR та кольори екранного меню, коли вихід HDMI перебуває в режимі HDR."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Опція служить для зниження шумів на зображенні. Це відбувається за рахунок різкості зображення."
@@ -21993,6 +22032,9 @@ msgstr "Обрізати файлову систему..."
 
 msgid "Trinidad and Tobago"
 msgstr "Тринідад і Тобаго"
+
+msgid "Triple Tuner"
+msgstr "Потрійний тюнер"
 
 msgid "True"
 msgstr "Вірно"
@@ -23750,9 +23792,6 @@ msgstr "Поки доступно"
 msgid "White"
 msgstr "Білий"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Налаштування підключення Wi-Fi"
-
 msgid "Wide"
 msgstr "широкий"
 
@@ -24008,10 +24047,6 @@ msgstr "Ви можете записувати тільки записи Dreambo
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Ви можете пропустити цю функцію та вимкнути ТВ, коли Ви вмикаєте тюнер і зразу ж вимикаєте його в режим очікування."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Ви можете перемикатися з лівого і правого типу тюнера %s"
 
 msgid "You cannot delete this!"
 msgstr "Ви не можете це видалити!"
@@ -25025,6 +25060,46 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Автоматичний доступ до спільних ресурсів"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS суфікс"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "Тільки DVB-C / кабельне телебачення"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C та DVB-T/T2 через зовнішній керований коаксіальний комутатор 5V"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "Тільки DVB-T/T2 / ефірне телебачення"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Гібридний режим тюнера"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Виберіть спосіб підключення цього тюнера DVB-C/T. Використовуйте зовнішній коаксіальний перемикач лише з коаксіальним перемикачем з керуванням 5 В."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Налаштуйте тюнер [TUNER].\n"
+#~ "\n"
+#~ "Для моделей з гібридним тюнером перемикайте тип тюнера кнопками ВЛІВО та ВПРАВО."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Типи тюнерів що перемикаються:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Налаштування підключення Wi-Fi"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Ви можете перемикатися з лівого і правого типу тюнера %s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "В даний час триває запис. Зупиніть запис перед налаштуванням позиціонера."

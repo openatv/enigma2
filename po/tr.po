@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-23 09:01+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
+"PO-Revision-Date: 2026-08-15 21:38+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -2910,9 +2910,6 @@ msgstr "Otomatik çözünürlük etiketi"
 msgid "Automatic scan for services"
 msgstr "Kanallar için otomatik tarama"
 
-msgid "Automatic shares access"
-msgstr "Otomatik paylaşım erişimi"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
 
@@ -2943,6 +2940,9 @@ msgstr "Geçerli yerel ayar konumları:"
 
 msgid "Available shares:"
 msgstr "Geçerli paylaşımlar:"
+
+msgid "Available tuner types"
+msgstr "Mevcut tuner türleri"
 
 msgid "Avaric"
 msgstr "Avarca"
@@ -3415,6 +3415,9 @@ msgstr "Yayıncılık/Basın"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr "Broadcom varsayılan"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Eklentilere tek tek göz atın, yükleyin veya kaldırın."
 
@@ -3505,6 +3508,15 @@ msgstr "C"
 #
 msgid "C-Band"
 msgstr "C-Band"
+
+msgid "C/T input"
+msgstr "C/T girişi"
+
+msgid "C/T input switching"
+msgstr "C/T girişi değişimi"
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr "C/T girişi değişimi: harici 5V koaksiyel geçiş"
 
 msgid "CCD-Width"
 msgstr "CCD-Genişlik"
@@ -3651,6 +3663,9 @@ msgstr "Kablo"
 
 msgid "Cable Scan"
 msgstr "Kablolu Yayın Tarama"
+
+msgid "Cable input"
+msgstr "Kablo girişi"
 
 msgid "Cache thumbnails"
 msgstr "Küçük resimler ön belleği"
@@ -4703,6 +4718,9 @@ msgstr "Harici altyazı senkronizasyonunu iyileştirmek için ek bir gecikme yap
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Altyazı senkronizasyonunu iyileştirmek için ek bir gecikme yapılandırın."
 
+msgid "Configure cable reception on this input."
+msgstr "Bu girişte kablo bağlantısını yapılandırın."
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Yeni zamanlayıcılar için varsayılan ayarları yapılandırın. Değiştirdikten sonra yeniden başlatmanız gerekir."
 
@@ -4766,6 +4784,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Uzaktan kumanda tipini yapılandır"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Ayrı SAT girişinde uydu bağlantısını yapılandırın."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Bu girişte karasal yayın bağlantısını yapılandırın."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Bu LNB için DiSEqC modunu yapılandırın."
@@ -5734,9 +5758,6 @@ msgstr "DNS geçersiz kılma"
 msgid "DNS protocol mode"
 msgstr "DNS protokol modu"
 
-msgid "DNS suffix"
-msgstr "DNS soneki"
-
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
 
@@ -5777,17 +5798,14 @@ msgstr "DVB altyazıları rengi"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "DVB-C / Sadece Kablo"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "Harici 5V kontrollü koaksiyel anahtar aracılığıyla DVB-C ve DVB-T/T2"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgstr "DVB-C ve DVB-T/T2 bu girişi paylaşır. Her ikisi de etkinleştirildiğinde, Enigma2 harici koaksiyel geçişi kontrol etmek için 5V kullanır."
 
 #
 msgid "DVB-S"
@@ -5799,9 +5817,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "DVB-T/T2 / Yalnızca karasal"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -7047,6 +7062,9 @@ msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Alan Adı"
+
+msgid "Domain name"
+msgstr "Alan adı"
 
 msgid "Dominica"
 msgstr "Dominika"
@@ -9462,6 +9480,9 @@ msgstr "Gana"
 msgid "Gibraltar"
 msgstr "Cebelitarık"
 
+msgid "GigaBlue optimized"
+msgstr "GigaBlue için optimize edilmiş"
+
 msgid "Given device id"
 msgstr "Verilen cihaz kimliği"
 
@@ -9711,6 +9732,9 @@ msgstr "HDMI-IN Kayıt Ayarları"
 
 msgid "HDMIin"
 msgstr "HDMI-IN"
+
+msgid "HDR OSD adjustment"
+msgstr "HDR OSD ayarı"
 
 msgid "HDR10 Support"
 msgstr "HDR10 Desteği"
@@ -10077,9 +10101,6 @@ msgstr "Macaristan"
 
 msgid "Hybrid Tuner"
 msgstr "Hibrit Tuner"
-
-msgid "Hybrid tuner mode"
-msgstr "Hibrit tuner modu"
 
 msgid "Hz"
 msgstr "Hz"
@@ -11072,6 +11093,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Kodi Eklenti Paketleri"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -12727,7 +12751,7 @@ msgstr "SONRA"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS Yapılandırma"
 
 msgid "NFS threads"
@@ -12910,6 +12934,9 @@ msgstr "Ağ Testi"
 
 msgid "Network Test:"
 msgstr "Ağ Testi:"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Ağ Wi-Fi Ayarları"
 
 msgid "Network Wizard"
 msgstr "Ağ Sihirbazı"
@@ -16722,6 +16749,9 @@ msgstr "SABnzbd Ayarları"
 msgid "SAT"
 msgstr "SAT"
 
+msgid "SAT input"
+msgstr "SAT girişi"
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16815,7 +16845,7 @@ msgstr "Samba İstemcisi"
 msgid "Samba Server"
 msgstr "Samba Sunucusu"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba Ayarları"
 
 msgid "Same as in active"
@@ -17430,6 +17460,9 @@ msgstr "Bir metin dosyasını düzenlerken imleç konumunu satırın sonuna ayar
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında 'dev', 'staticdev', 'dbg' ve 'doc' paketlerini göstermek için 'Evet'i seçin."
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Eklentileri Yükle ekranında Kodi eklenti paketlerini göstermek için 'Evet'i seçin."
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında LCD arayüz paketlerini göstermek için 'Evet'i seçin."
 
@@ -17777,9 +17810,6 @@ msgstr "Uydu anteninin nasıl kurulacağını seçin. Örneğin, sabit anten, te
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Bekleme durumuna ilişkin planlamanın nasıl ele alınacağını seçin."
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Bu DVB-C/T tunerin nasıl bağlanacağını seçin. Harici koaksiyel anahtar seçeneğini yalnızca 5V kontrollü koaksiyel anahtarla kullanın."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Hızlı EPG modunu nasıl etkinleştireceğinizi seçin."
@@ -18966,11 +18996,11 @@ msgstr "Tuneri ayarlayın [TUNER]"
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Tuneri ayarlayın [TUNER].\n"
+"Tuneri [TUNER] ayarlayın.\n"
 "\n"
-"Hibrid tuner modelleri için SOL ve SAĞ tuşları ile Tuner Tipini değiştirin."
+"Birden fazla alım türünü destekleyen tunerlerde, mevcut her bir türü ayrı olarak yapılandırın."
 
 msgid "Set voltage and 22KHz"
 msgstr "Voltaj ayarı ve 22KHz"
@@ -19319,6 +19349,9 @@ msgstr "Bilgi Çubuğunda pikonları göster"
 
 msgid "Show Kernel packages"
 msgstr "Çekirdek paketlerini göster"
+
+msgid "Show Kodi Add-on packages"
+msgstr "Kodi Eklenti paketlerini göster"
 
 #
 msgid "Show Live in MiniTV"
@@ -21268,9 +21301,6 @@ msgstr "Diğer sütuna geçin"
 msgid "Switch to the right column"
 msgstr "Sağ sütuna geçin"
 
-msgid "Switchable tuner types:"
-msgstr "Değiştirilebilir tuner tipleri:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Canlı yayına geçiliyor - zaman kaydırma özelliği hala aktif!"
 
@@ -21555,6 +21585,9 @@ msgstr "Tenis/Squash"
 #
 msgid "Terrestrial"
 msgstr "Karasal"
+
+msgid "Terrestrial input"
+msgstr "Karasal yayın girişi"
 
 msgid "Test"
 msgstr "Test"
@@ -22086,6 +22119,9 @@ msgstr "Büyük dosyaların işlenmesi bu donanımda çok uzun sürebileceğinde
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Bu, bekleme moduna geçtikten sonra tekrar uyanan bazı cihazlar için bir geçici çözümdür. Diğer cihazlardan gelen uyandırma komutu birkaç saniyeliğine yok sayılacaktır."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Bu, tek tunerin alım türlerinden biridir. Etkinleştirilen alım türleri otomatik olarak değiştirilir ve ayrı olarak taranır."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Bu, şu anda seçili olan dildir. [%s]"
@@ -22108,6 +22144,9 @@ msgstr "Bu menü %s %s üzerindeki yazılımın yönetilmesiyle ilgili seçenekl
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Bu ayar yalnızca kanalın kendi ses seviyesi ayarı yoksa kullanılacaktır."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Bu seçenek, HDMI çıkışı HDR modundayken SDR grafiklerini ve OSD renklerini ayarlar."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Bu seçenek görüntüdeki blok gürültüsünü azaltmaya olanak tanır. Elbette bu, görüntünün keskinliğinden ödün vermek anlamına gelir."
@@ -22894,6 +22933,9 @@ msgstr "Dosya Sistemini Düzelt..."
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad ve Tobago"
+
+msgid "Triple Tuner"
+msgstr "Üçlü Tuner"
 
 msgid "True"
 msgstr "Doğru"
@@ -24731,9 +24773,6 @@ msgstr "Mevcut olduğu sürece"
 msgid "White"
 msgstr "Beyaz"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Kablosuz Ağ Bağlantı Ayarları"
-
 msgid "Wide"
 msgstr "Geniş"
 
@@ -25005,10 +25044,6 @@ msgstr "Sadece Dreambox kayıtlarını yazdırabilirsiniz!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Bu işlevi atlayabilir ve alıcıyı bekleme modundan uyandırdığınızda TV'yi kapatabilir ve hemen tekrar bekleme moduna geçebilirsiniz."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Bu tuner (%s) türlerinde sol ve sağ arasında geçiş yapabilirsiniz "
 
 #
 msgid "You cannot delete this!"
@@ -26116,6 +26151,46 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Otomatik paylaşım erişimi"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS soneki"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "DVB-C / Sadece Kablo"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "Harici 5V kontrollü koaksiyel anahtar aracılığıyla DVB-C ve DVB-T/T2"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "DVB-T/T2 / Yalnızca karasal"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Hibrit tuner modu"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Bu DVB-C/T tunerin nasıl bağlanacağını seçin. Harici koaksiyel anahtar seçeneğini yalnızca 5V kontrollü koaksiyel anahtarla kullanın."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Tuneri ayarlayın [TUNER].\n"
+#~ "\n"
+#~ "Hibrid tuner modelleri için SOL ve SAĞ tuşları ile Tuner Tipini değiştirin."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Değiştirilebilir tuner tipleri:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Kablosuz Ağ Bağlantı Ayarları"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Bu tuner (%s) türlerinde sol ve sağ arasında geçiş yapabilirsiniz "
 
 #~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 #~ msgstr "Bu alıcının Samba ağ taramalarında/listelerinde göründüğünde kullanacağı adı girin."

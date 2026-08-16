@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2837,9 +2837,6 @@ msgstr "Độ phân giải tự động"
 msgid "Automatic scan for services"
 msgstr "Tự động quét dịch vụ"
 
-msgid "Automatic shares access"
-msgstr ""
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
 
@@ -2869,6 +2866,9 @@ msgstr "Các địa phương có sẵn là:"
 
 msgid "Available shares:"
 msgstr "Cập nhật có sẵn:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr ""
@@ -3324,6 +3324,9 @@ msgstr "phát thanh / báo chí"
 msgid "Broadcom"
 msgstr ""
 
+msgid "Broadcom default"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3413,6 +3416,15 @@ msgstr "CH"
 
 msgid "C-Band"
 msgstr "Băng tần C"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr ""
@@ -3553,6 +3565,9 @@ msgstr "Cáp"
 
 msgid "Cable Scan"
 msgstr "Quét cáp"
+
+msgid "Cable input"
+msgstr ""
 
 msgid "Cache thumbnails"
 msgstr "Hình thu nhỏ bộ nhớ cache"
@@ -4571,6 +4586,9 @@ msgstr "Định cấu hình độ trễ bổ sung để cải thiện đồng b�
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Định cấu hình độ trễ bổ sung để cải thiện đồng bộ hóa phụ đề."
 
+msgid "Configure cable reception on this input."
+msgstr ""
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Định cấu hình cài đặt mặc định cho bộ hẹn giờ mới. Cần khởi động lại sau khi thay đổi."
 
@@ -4630,6 +4648,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Cấu hình loại điều khiển từ xa"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Định cấu hình chế độ DiSEqC cho LNB này."
@@ -5569,9 +5593,6 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
-msgid "DNS suffix"
-msgstr ""
-
 msgid "DNSCrypt"
 msgstr ""
 
@@ -5613,16 +5634,13 @@ msgstr ""
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C PHỤ LỤC B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C PHỤ LỤC C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 msgstr ""
 
 msgid "DVB-S"
@@ -5633,9 +5651,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6828,6 +6843,9 @@ msgid "Dolby TrueHD"
 msgstr ""
 
 msgid "Domain"
+msgstr ""
+
+msgid "Domain name"
 msgstr ""
 
 msgid "Dominica"
@@ -9170,6 +9188,9 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
+msgid "GigaBlue optimized"
+msgstr ""
+
 msgid "Given device id"
 msgstr ""
 
@@ -9411,6 +9432,9 @@ msgstr "Cài đặt ghi HDMI-IN"
 
 msgid "HDMIin"
 msgstr "HDMI trong"
+
+msgid "HDR OSD adjustment"
+msgstr ""
 
 msgid "HDR10 Support"
 msgstr "Hỗ trợ HDR10"
@@ -9768,9 +9792,6 @@ msgid "Hungary"
 msgstr "Hungary"
 
 msgid "Hybrid Tuner"
-msgstr ""
-
-msgid "Hybrid tuner mode"
 msgstr ""
 
 msgid "Hz"
@@ -10732,6 +10753,9 @@ msgid "Kiribati"
 msgstr "Kiribati"
 
 msgid "Kodi"
+msgstr ""
+
+msgid "Kodi Add-on Packages"
 msgstr ""
 
 msgid "Kodi MediaCenter"
@@ -12348,7 +12372,7 @@ msgstr "KẾ TIẾP"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "Thiết lập NFS"
 
 msgid "NFS threads"
@@ -12528,6 +12552,9 @@ msgstr "Kiểm tra mạng"
 
 msgid "Network Test:"
 msgstr "Kiểm tra mạng lưới: "
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
 
 msgid "Network Wizard"
 msgstr "Số dách mạng"
@@ -16174,6 +16201,9 @@ msgstr "Thiết lập SABnzbd"
 msgid "SAT"
 msgstr "SAT"
 
+msgid "SAT input"
+msgstr ""
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16267,7 +16297,7 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr ""
 
 msgid "Same as in active"
@@ -16853,6 +16883,9 @@ msgstr ""
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr ""
 
@@ -17192,9 +17225,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Chọn cách thiết lập đĩa vệ tinh. tức là đĩa cố định, LNB đơn, công tắc DiSEqC, bộ định vị, v.v."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -18356,7 +18386,7 @@ msgstr ""
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -18698,6 +18728,9 @@ msgid "Show InfoBar picons"
 msgstr "Hiển thị picons infobar"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show Kodi Add-on packages"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -20574,9 +20607,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-msgid "Switchable tuner types:"
-msgstr "Các loại tuner có thể chuyển đổi:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Chuyển sang truyền hình trực tiếp - timeshift vẫn hoạt động!"
 
@@ -20861,6 +20891,9 @@ msgstr "quần vợt / bóng quần"
 
 msgid "Terrestrial"
 msgstr "TH mặt đất"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -21348,6 +21381,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr ""
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -21369,6 +21405,9 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -22134,6 +22173,9 @@ msgstr ""
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad và Tobago"
+
+msgid "Triple Tuner"
+msgstr ""
 
 msgid "True"
 msgstr "Đúng"
@@ -23878,9 +23920,6 @@ msgstr "Trong khi có sẵn"
 msgid "White"
 msgstr "Trắng"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "rộng"
 
@@ -24135,10 +24174,6 @@ msgstr "Bạn chỉ có thể ghi các bản ghi Dreambox!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Bạn có thể bỏ qua chức năng này và tắt TV khi bạn đánh thức máy thu từ chế độ chờ và ngay lập tức chuyển về chế độ chờ."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Bạn có thể chuyển đổi sang trái và phải bộ chỉnh này loại % s"
 
 msgid "You cannot delete this!"
 msgstr "Bạn không thể xóa cái này!"
@@ -25155,6 +25190,13 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Các loại tuner có thể chuyển đổi:"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Bạn có thể chuyển đổi sang trái và phải bộ chỉnh này loại % s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "Một bản ghi hiện đang chạy. Vui lòng dừng ghi âm trước khi thử cấu hình bộ định vị."

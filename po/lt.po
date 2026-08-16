@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2864,9 +2864,6 @@ msgstr "Automatinės raiškos etiketė"
 msgid "Automatic scan for services"
 msgstr "Automatinė kanalų paieška"
 
-msgid "Automatic shares access"
-msgstr ""
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatiškai nustatykite televizorių į budėjimo režimą, kai imtuvas pereina į budėjimo režimą arba gilų budėjimo režimą."
 
@@ -2896,6 +2893,9 @@ msgstr "Galimos vietos:"
 
 msgid "Available shares:"
 msgstr "Galimi bendrinimai:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr "Avaric"
@@ -3346,6 +3346,9 @@ msgstr "transliacijos/spauda"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3434,6 +3437,15 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-juosta"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr "CCD plotis"
@@ -3577,6 +3589,9 @@ msgstr "Kabelinė"
 
 msgid "Cable Scan"
 msgstr "Kabelinės TV kanalų paieška"
+
+msgid "Cable input"
+msgstr ""
 
 msgid "Cache thumbnails"
 msgstr "Miniatiūras kaupti talpykloje"
@@ -4589,6 +4604,9 @@ msgstr "Konfigūruokite papildomą delsą, kad pagerintumėte išorinių subtitr
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Sukonfigūruokite papildomą delsą, kad pagerintumėte subtitrų sinchronizavimą."
 
+msgid "Configure cable reception on this input."
+msgstr ""
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Konfigūruoti numatytus nustatymus naujiems laikmačiams. Reikia paleisti iš naujo po keitimo."
 
@@ -4655,6 +4673,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Konfigūruokite nuotolinio valdymo tipą"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigūruokite šio LNB DiSEqC režimą."
@@ -5585,9 +5609,6 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
-msgid "DNS suffix"
-msgstr ""
-
 msgid "DNSCrypt"
 msgstr ""
 
@@ -5628,16 +5649,13 @@ msgstr ""
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 msgstr ""
 
 msgid "DVB-S"
@@ -5648,9 +5666,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6832,6 +6847,9 @@ msgstr ""
 
 msgid "Domain"
 msgstr "Domenas"
+
+msgid "Domain name"
+msgstr ""
 
 msgid "Dominica"
 msgstr "Dominika"
@@ -9149,6 +9167,9 @@ msgstr "Gana"
 msgid "Gibraltar"
 msgstr "Gibraltaras"
 
+msgid "GigaBlue optimized"
+msgstr ""
+
 msgid "Given device id"
 msgstr "Pateiktas įrenginio ID"
 
@@ -9388,6 +9409,9 @@ msgstr "HDMI įrašymo parametrai"
 
 msgid "HDMIin"
 msgstr "HDMI įvestis"
+
+msgid "HDR OSD adjustment"
+msgstr ""
 
 msgid "HDR10 Support"
 msgstr "HDR10 palaikymas"
@@ -9739,9 +9763,6 @@ msgstr "Vengrija"
 
 msgid "Hybrid Tuner"
 msgstr "Hibridinis imtuvas"
-
-msgid "Hybrid tuner mode"
-msgstr ""
 
 msgid "Hz"
 msgstr ""
@@ -10695,6 +10716,9 @@ msgstr "Kiribatis"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr ""
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi medija centras"
@@ -12258,7 +12282,7 @@ msgstr "KITAS"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS parametrai"
 
 msgid "NFS threads"
@@ -12434,6 +12458,9 @@ msgstr "Tinklo testavimas"
 
 msgid "Network Test:"
 msgstr "Tinklo testas:"
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
 
 msgid "Network Wizard"
 msgstr "Tinklo vedlys"
@@ -16024,6 +16051,9 @@ msgstr "SABnzbd parametrai"
 msgid "SAT"
 msgstr "ŠEŠ"
 
+msgid "SAT input"
+msgstr ""
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16115,7 +16145,7 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr ""
 
 msgid "Same as in active"
@@ -16703,6 +16733,9 @@ msgstr "Pasirinkite \"Taip\", kad redaguodami tekstinį failą nustatytumėte ž
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr ""
 
@@ -17042,9 +17075,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Pasirinkite, kaip nustatyti palydovinę anteną. t.y. fiksuota antena, viena LNB, DiSEqC jungiklis, pozicionierius ir t.t."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -18199,7 +18229,7 @@ msgstr ""
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -18538,6 +18568,9 @@ msgid "Show InfoBar picons"
 msgstr "Rodyti info juostos logotipus"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show Kodi Add-on packages"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -20398,9 +20431,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-msgid "Switchable tuner types:"
-msgstr "Perjungiamų imtuvų tipai:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Perjungiama į tiesioginę TV transliaciją - laiko poslinkis vis dar veikia!"
 
@@ -20678,6 +20708,9 @@ msgstr "tenisas/skvošas"
 
 msgid "Terrestrial"
 msgstr "Antžeminė TV"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -21178,6 +21211,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Tai yra kai kurių įrenginių, kurie vėl pažadina perjungę į budėjimo režimą, sprendimas. Pažadinimo komandos iš kitų įrenginių bus nepaisoma kelias sekundes."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Tai šiuo metu pasirinkta kalba.  [%s]"
@@ -21200,6 +21236,9 @@ msgstr "Šiame meniu siūlomos parinktys, susijusios su programinės įrangos va
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Šis poslinkis bus naudojamas tik tuo atveju, jei kanalas neturi savo garsumo poslinkio."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Ši parinktis leidžia sumažinti matomo vaizdo \"kvadratavimosi\" triukšmus. Žinoma, tai pasiekiama bendro vaizdo ryškumo sumažėjimo kaina."
@@ -21954,6 +21993,9 @@ msgstr ""
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidadas and Tobagas"
+
+msgid "Triple Tuner"
+msgstr ""
 
 msgid "True"
 msgstr "Teisingas"
@@ -23700,9 +23742,6 @@ msgstr "Kol galima"
 msgid "White"
 msgstr "Balta"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "platus"
 
@@ -23955,10 +23994,6 @@ msgstr "Galite įrašyti tik Dreambox įrašus!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Galite praleisti šią funkciją ir išjungti televizorių, kai budėsite iš imtuvo ir iš karto persijungsite į budėjimo režimą."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Galite perjungti su 'kairėn' ir 'dešinėn' šio imtuvo tipus %s"
 
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
@@ -24970,6 +25005,13 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Perjungiamų imtuvų tipai:"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Galite perjungti su 'kairėn' ir 'dešinėn' šio imtuvo tipus %s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "Dabar vyksta įrašymas. Prieš konfigūruodami pozicionierių išjunkite įrašymą."

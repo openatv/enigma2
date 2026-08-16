@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-21 02:15+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
+"PO-Revision-Date: 2026-08-15 21:38+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -2820,9 +2820,6 @@ msgstr "Etichetta risoluzione automatica"
 msgid "Automatic scan for services"
 msgstr "Scansione automatica dei servizi"
 
-msgid "Automatic shares access"
-msgstr "Accesso automatico alle condivisioni"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Metti automaticamente la TV in standby ogni volta che il ricevitore va in standby o spegnimento."
 
@@ -2852,6 +2849,9 @@ msgstr "Le localizzazioni disponibili sono:"
 
 msgid "Available shares:"
 msgstr "Condivisioni disponibili:"
+
+msgid "Available tuner types"
+msgstr "Tipi di tuner disponibili"
 
 msgid "Avaric"
 msgstr "Avarico"
@@ -3302,6 +3302,9 @@ msgstr "radiodiffusione/stampa"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr "Predefinito Broadcom"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Sfoglia, installa o rimuovi i plugin uno per uno."
 
@@ -3390,6 +3393,15 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "Banda C"
+
+msgid "C/T input"
+msgstr "Ingresso C/T"
+
+msgid "C/T input switching"
+msgstr "Commutazione ingresso C/T"
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr "Commutazione ingresso C/T: interruttore coassiale esterno da 5 V"
 
 msgid "CCD-Width"
 msgstr "Larghezza CCD"
@@ -3533,6 +3545,9 @@ msgstr "Cavo"
 
 msgid "Cable Scan"
 msgstr "Scansione via cavo"
+
+msgid "Cable input"
+msgstr "Ingresso cavo"
 
 msgid "Cache thumbnails"
 msgstr "Miniature cache"
@@ -4543,6 +4558,9 @@ msgstr "Configura un ritardo aggiuntivo per migliorare la sincronizzazione dei s
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Configura un ritardo aggiuntivo per migliorare la sincronizzazione dei sottotitoli."
 
+msgid "Configure cable reception on this input."
+msgstr "Configura ricezione via cavo su questo ingresso."
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Configura impostazione predefinita per i nuovi timer. Necessita di un riavvio dopo la modifica."
 
@@ -4605,6 +4623,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Configura tipo di telecomando"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Configura ricezione satellitare sull'ingresso SAT separato."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Configura ricezione terrestre su questo ingresso."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configura modalità DiSEqC per questo LNB."
@@ -5541,9 +5565,6 @@ msgstr "Sovrascrittura DNS"
 msgid "DNS protocol mode"
 msgstr "Modalità DNS"
 
-msgid "DNS suffix"
-msgstr "Suffisso DNS"
-
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
 
@@ -5584,17 +5605,14 @@ msgstr "Colore sottotitoli DVB"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "DVB-C / Solo cavo"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C e DVB-T/T2 tramite switch coassiale esterno controllato a 5V"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgstr "DVB-C e DVB-T/T2 condividono questo ingresso. Quando entrambi sono abilitati, Enigma2 utilizza 5V per controllare lo switch coassiale esterno."
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5604,9 +5622,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "DVB-T/T2 / Solo terrestre"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6796,6 +6811,9 @@ msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Dominio"
+
+msgid "Domain name"
+msgstr "Nome di dominio"
 
 msgid "Dominica"
 msgstr "Dominica"
@@ -9108,6 +9126,9 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibilterra"
 
+msgid "GigaBlue optimized"
+msgstr "Ottimizzato GigaBlue"
+
 msgid "Given device id"
 msgstr "ID dispositivo fornito"
 
@@ -9347,6 +9368,9 @@ msgstr "Impostazioni registrazione HDMI-In"
 
 msgid "HDMIin"
 msgstr "HDMI in"
+
+msgid "HDR OSD adjustment"
+msgstr "Regolazione OSD HDR"
 
 msgid "HDR10 Support"
 msgstr "Supporto HDR10"
@@ -9698,9 +9722,6 @@ msgstr "Ungheria"
 
 msgid "Hybrid Tuner"
 msgstr "Tuner ibrido"
-
-msgid "Hybrid tuner mode"
-msgstr "Modalità tuner ibrido"
 
 msgid "Hz"
 msgstr "Hz"
@@ -10653,6 +10674,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Pacchetti add-on di Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "Media Center Kodi"
@@ -12215,7 +12239,7 @@ msgstr "PROSSIMO"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "Impostazioni NFS"
 
 msgid "NFS threads"
@@ -12391,6 +12415,9 @@ msgstr "Test di rete"
 
 msgid "Network Test:"
 msgstr "Test di rete:"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Impostazioni di rete Wi-Fi"
 
 msgid "Network Wizard"
 msgstr "Procedura guidata rete"
@@ -15982,6 +16009,9 @@ msgstr "Impostazioni SABnzbd"
 msgid "SAT"
 msgstr "SAT"
 
+msgid "SAT input"
+msgstr "Ingresso SAT"
+
 msgid "SATA"
 msgstr "SATA"
 
@@ -16073,7 +16103,7 @@ msgstr "Client Samba"
 msgid "Samba Server"
 msgstr "Server Samba"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Impostazioni Samba"
 
 msgid "Same as in active"
@@ -16658,6 +16688,9 @@ msgstr "Seleziona 'Sì' per impostare la posizione del cursore alla fine della r
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Seleziona 'Sì' per mostrare i pacchetti 'dev', 'staticdev', 'dbg' e 'doc' nella schermata Scarica plugin."
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Seleziona 'Sì' per visualizzare i pacchetti di add-on di Kodi nella schermata di download dei plugin."
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Seleziona 'Sì' per mostrare i pacchetti dello skin LCD nella schermata Scarica plugin."
 
@@ -16998,9 +17031,6 @@ msgstr "Seleziona come è impostata la parabola satellitare: parabola fissa, LNB
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Seleziona la modalità di gestione della pianificazione in relazione alla modalità Standby."
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Seleziona modalità di connessione del tuner DVB-C/T. Usa l'opzione con switch coassiale esterno solo in presenza di uno switch coassiale controllato a 5V."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleziona come attivare la modalità EPG rapido."
@@ -18003,7 +18033,7 @@ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Imposta percentuale di salto del tasto SU/GIÙ per la Barra di ricerca."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
-msgstr "Imposta ID utente di OpenWebif dal tuo sintonizzatore di fallback."
+msgstr "Imposta ID utente di OpenWebif dal tuo tuner di fallback."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Imposta proporzioni dei picon del servizio."
@@ -18045,7 +18075,7 @@ msgid "Set the password for the monitoring UI web interface."
 msgstr "Imposta password per l'interfaccia web dell'interfaccia utente di monitoraggio."
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
-msgstr "Imposta password di OpenWebif dal tuo sintonizzatore di fallback."
+msgstr "Imposta password di OpenWebif dal tuo tuner di fallback."
 
 msgid "Set the port address (8080-9999) for the monitoring UI web interface."
 msgstr "Imposta indirizzo della porta (8080-9999) per l'interfaccia web dell'interfaccia utente di monitoraggio."
@@ -18163,11 +18193,11 @@ msgstr "Imposta tuner [TUNER]"
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Imposta tuner [TUNER]\n"
+"Imposta tuner[TUNER].\n"
 "\n"
-"Per i modelli con tuner ibrido, cambia il tipo di tuner con i tasti SINISTRA e DESTRA."
+"Per i tuner che supportano più tipi di ricezione, configura ciascun tipo disponibile separatamente."
 
 msgid "Set voltage and 22KHz"
 msgstr "Imposta tensione e 22KHz"
@@ -18506,6 +18536,9 @@ msgstr "Mostra picon su barra informazioni"
 
 msgid "Show Kernel packages"
 msgstr "Mostra pacchetti del kernel"
+
+msgid "Show Kodi Add-on packages"
+msgstr "Mostra pacchetti add-on di Kodi"
 
 msgid "Show Live in MiniTV"
 msgstr "Mostra la diretta nella MiniTV"
@@ -20361,9 +20394,6 @@ msgstr "Passa all'altra colonna"
 msgid "Switch to the right column"
 msgstr "Passa alla colonna di destra"
 
-msgid "Switchable tuner types:"
-msgstr "Tipi di tuner commutabile:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Passaggio alla TV in diretta: il timeshift è ancora attivo!"
 
@@ -20641,6 +20671,9 @@ msgstr "Tennis/Squash"
 
 msgid "Terrestrial"
 msgstr "Terrestre"
+
+msgid "Terrestrial input"
+msgstr "Ingresso terrestre"
 
 msgid "Test"
 msgstr "Test"
@@ -20978,7 +21011,7 @@ msgid "The picon directory already exists and must be removed. Do you want to pr
 msgstr "La cartella dei picon esiste già e deve essere rimossa. Vuoi procedere?"
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
-msgstr "Il sintonizzatore del posizionatore non è attualmente disponibile. Interrompi le registrazioni o altri servizi che utilizzano questo sintonizzatore e riprova."
+msgstr "Il sintonizzatore del posizionatore non è attualmente disponibile. Interrompi le registrazioni o altri servizi che utilizzano questo tuner e riprova."
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
@@ -21161,6 +21194,9 @@ msgstr "Questa funzione non è disponibile poiché l'elaborazione di file di gra
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Questa è una soluzione alternativa per alcuni dispositivi che si riattivano dopo essere passati alla modalità standby. I comandi di riattivazione da altri dispositivi verranno ignorati per alcuni secondi."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Questo è un tipo di ricezione di un singolo tuner. I tipi di ricezione abilitati vengono commutati automaticamente e scansionati separatamente."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Questa è la lingua attualmente selezionata.  [%s]"
@@ -21183,6 +21219,9 @@ msgstr "Questo menu offre opzioni relative alla gestione del software del %s %s.
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Questo offset verrà usato solo se il canale non dispone di un proprio offset di volume."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Questa opzione regola la grafica SDR e i colori OSD quando l'uscita HDMI è in modalità HDR."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Questa opzione consente di ridurre il rumore dell'immagine. Ovviamente questo va a scapito della nitidezza dell'immagine."
@@ -21939,6 +21978,9 @@ msgstr "Ottimizzazione file system in corso..."
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad e Tobago"
+
+msgid "Triple Tuner"
+msgstr "Triplo tuner"
 
 msgid "True"
 msgstr "Vero"
@@ -23613,7 +23655,7 @@ msgid "When enabled, the timer from the fallback tuner is imported."
 msgstr "Se abilitato viene importato il timer dal tuner di fallback."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Se abilitato, il timer del sintonizzatore di fallback è il timer predefinito."
+msgstr "Se abilitato, il timer del tuner di fallback è il timer predefinito."
 
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Se abilitato, questo adattatore Wi-Fi è mantenuto esclusivamente in modalità Wake-on-Wi-Fi e non verrà usato per connettersi ad alcuna rete."
@@ -23695,9 +23737,6 @@ msgstr "Quando disponibile"
 
 msgid "White"
 msgstr "Bianco"
-
-msgid "Wi-Fi Connection Settings"
-msgstr "Impostazioni connessione Wi-Fi"
 
 msgid "Wide"
 msgstr "Largo"
@@ -23954,10 +23993,6 @@ msgstr "Puoi masterizzare solo le registrazioni dreambox!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "È possibile saltare questa funzione e spegnere la TV quando si riattiva il ricevitore dalla modalità standby e tornare immediatamente alla modalità standby."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "È possibile alternare con sinistra e destra questo tipo di tuner %s"
 
 msgid "You cannot delete this!"
 msgstr "Non puoi eliminarlo!"
@@ -24970,6 +25005,46 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Accesso automatico alle condivisioni"
+
+#~ msgid "DNS suffix"
+#~ msgstr "Suffisso DNS"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "DVB-C / Solo cavo"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C e DVB-T/T2 tramite switch coassiale esterno controllato a 5V"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "DVB-T/T2 / Solo terrestre"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Modalità tuner ibrido"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Seleziona modalità di connessione del tuner DVB-C/T. Usa l'opzione con switch coassiale esterno solo in presenza di uno switch coassiale controllato a 5V."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Imposta tuner [TUNER]\n"
+#~ "\n"
+#~ "Per i modelli con tuner ibrido, cambia il tipo di tuner con i tasti SINISTRA e DESTRA."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Tipi di tuner commutabile:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Impostazioni connessione Wi-Fi"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "È possibile alternare con sinistra e destra questo tipo di tuner %s"
 
 #~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 #~ msgstr "Inserisci nome che questo ricevitore userà quando apparirà nelle scansioni/liste della rete Samba."

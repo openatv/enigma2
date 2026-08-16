@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
 "PO-Revision-Date: 2026-03-18 21:46+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -3072,10 +3072,6 @@ msgstr "علامة الدقة التلقائية"
 msgid "Automatic scan for services"
 msgstr ""
 
-#, fuzzy
-msgid "Automatic shares access"
-msgstr "حفظ تلقائي"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
 
@@ -3108,6 +3104,9 @@ msgstr "متغيرات النسق المتاحه"
 
 msgid "Available shares:"
 msgstr "المشاركات المتوفرة:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr ""
@@ -3597,6 +3596,9 @@ msgstr "البث/الصحافة"
 msgid "Broadcom"
 msgstr ""
 
+msgid "Broadcom default"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3694,6 +3696,15 @@ msgstr ""
 
 msgid "C-Band"
 msgstr "سي باند"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr ""
 
 #, fuzzy
 msgid "CCD-Width"
@@ -3850,6 +3861,9 @@ msgstr "كيبل"
 
 msgid "Cable Scan"
 msgstr "بحث عن قنوات الكيبل"
+
+msgid "Cable input"
+msgstr ""
 
 #, fuzzy
 msgid "Cache thumbnails"
@@ -4908,6 +4922,9 @@ msgstr "إعدادات التأخير الإضافي لتحسين تزامن ا�
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "إعدادات التأخير الإضافي لتحسين تزامن الترجمة المرفقة."
 
+msgid "Configure cable reception on this input."
+msgstr ""
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
 
@@ -4967,6 +4984,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "إعدادات نوع جهاز التحكم عن بعد"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
 
 #, fuzzy
 msgid "Configure the DiSEqC mode for this LNB."
@@ -5907,9 +5930,6 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
-msgid "DNS suffix"
-msgstr ""
-
 msgid "DNSCrypt"
 msgstr ""
 
@@ -5948,16 +5968,13 @@ msgstr "لون تراجم الـ DVB"
 msgid "DVB-C"
 msgstr "نظام البث الرقمي عبر الكيبل (DVB-C)"
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr "نظام البث الرقمي عبر الكيبل المرفق ب (DVB-C ANNEX B)"
 
 msgid "DVB-C ANNEX C"
 msgstr "نظام البث الرقمي عبر الكيبل المرفق سي (DVB-C ANNEX C)"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 msgstr ""
 
 msgid "DVB-S"
@@ -5968,9 +5985,6 @@ msgstr "بث الفديو الرقمي الثاني من الأقمار"
 
 msgid "DVB-T"
 msgstr "نظام البث الرقمي الأرضي (DVB-T)"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
 
 msgid "DVB-T2"
 msgstr "نظام البث الرقمي الأرضي الثاني (DVB-T2)"
@@ -7176,6 +7190,9 @@ msgstr ""
 
 msgid "Domain"
 msgstr "نطاق"
+
+msgid "Domain name"
+msgstr ""
 
 msgid "Dominica"
 msgstr "دومينيكا"
@@ -9573,6 +9590,9 @@ msgstr "غانا"
 msgid "Gibraltar"
 msgstr "جبل طارق"
 
+msgid "GigaBlue optimized"
+msgstr ""
+
 msgid "Given device id"
 msgstr ""
 
@@ -9818,6 +9838,9 @@ msgstr "إعدادات تسجيل HDMI-In"
 
 msgid "HDMIin"
 msgstr "عالي الوضوح الاساسي"
+
+msgid "HDR OSD adjustment"
+msgstr ""
 
 msgid "HDR10 Support"
 msgstr "دعم نمط HDR10"
@@ -10174,9 +10197,6 @@ msgid "Hungary"
 msgstr "هنغاريا"
 
 msgid "Hybrid Tuner"
-msgstr ""
-
-msgid "Hybrid tuner mode"
 msgstr ""
 
 msgid "Hz"
@@ -11176,6 +11196,9 @@ msgid "Kiribati"
 msgstr "كيريباس"
 
 msgid "Kodi"
+msgstr ""
+
+msgid "Kodi Add-on Packages"
 msgstr ""
 
 msgid "Kodi MediaCenter"
@@ -12824,7 +12847,7 @@ msgstr "التالي"
 msgid "NFS"
 msgstr "نظام ملف الشبكة"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr ""
 
 msgid "NFS threads"
@@ -13004,6 +13027,9 @@ msgstr "أختبار الشبكة"
 
 msgid "Network Test:"
 msgstr "إختبار الشبكة: "
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
 
 msgid "Network Wizard"
 msgstr "مساعد إعداد الشبكة"
@@ -16790,6 +16816,9 @@ msgstr ""
 msgid "SAT"
 msgstr ""
 
+msgid "SAT input"
+msgstr ""
+
 msgid "SATA"
 msgstr ""
 
@@ -16883,7 +16912,7 @@ msgstr "عميل خدمة سامبا (Samba)"
 msgid "Samba Server"
 msgstr "خادم سامبا (Samba)"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "إعدادات سامبا (Samba)"
 
 msgid "Same as in active"
@@ -17500,6 +17529,9 @@ msgstr ""
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr ""
 
@@ -17841,9 +17873,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "حدد كيفية إعداد طبق القمر الصناعي. على سبيل المثال ، طبق ثابت ، لاقط منفرد ، التحكم بالدايزك، نظام الطبق المتحرك ، إلخ."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -19027,7 +19056,7 @@ msgstr ""
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -19375,6 +19404,9 @@ msgid "Show InfoBar picons"
 msgstr "عرض بيكونات معلومات الشريط"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show Kodi Add-on packages"
 msgstr ""
 
 #, fuzzy
@@ -21359,10 +21391,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-#
-msgid "Switchable tuner types:"
-msgstr ""
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr ""
 
@@ -21650,6 +21678,9 @@ msgstr "التنس/الاسكواش"
 #
 msgid "Terrestrial"
 msgstr "أرضي"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -22128,6 +22159,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr ""
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -22150,6 +22184,9 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -22952,6 +22989,9 @@ msgstr ""
 
 msgid "Trinidad and Tobago"
 msgstr "ترينداد وتوباغو"
+
+msgid "Triple Tuner"
+msgstr ""
 
 msgid "True"
 msgstr "صحيح"
@@ -24749,9 +24789,6 @@ msgstr "لا يوجد وصف"
 msgid "White"
 msgstr "أبيض"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "عريض"
 
@@ -25007,10 +25044,6 @@ msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
-msgstr ""
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
 msgstr ""
 
 #
@@ -26074,6 +26107,10 @@ msgstr "نعم (احتفظ بالفيدز)"
 
 msgid "®"
 msgstr "®"
+
+#, fuzzy
+#~ msgid "Automatic shares access"
+#~ msgstr "حفظ تلقائي"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "هناك تسجيل جارى حاليا . من فضلك أوقف التسجيل قبل محاولة ضبط الموتور."

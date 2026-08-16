@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
+"POT-Creation-Date: 2026-08-14 19:37+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -2818,9 +2818,6 @@ msgstr "Автоматична резолюция етикет"
 msgid "Automatic scan for services"
 msgstr "Автоматично сканиране за сервизи"
 
-msgid "Automatic shares access"
-msgstr ""
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Автоматично се поставя телевизора в режим на готовност, когато приемникът премине в режим на готовност или дълбока готовност."
 
@@ -2850,6 +2847,9 @@ msgstr "Наличните локали са:"
 
 msgid "Available shares:"
 msgstr "Достъпни дялове:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr ""
@@ -3300,6 +3300,9 @@ msgstr "излъчване/преса"
 msgid "Broadcom"
 msgstr ""
 
+msgid "Broadcom default"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3388,6 +3391,15 @@ msgstr ""
 
 msgid "C-Band"
 msgstr "C-Диапазон"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
+
+msgid "C/T input switching: external 5V coax switch"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr ""
@@ -3527,6 +3539,9 @@ msgstr "Кабелен"
 
 msgid "Cable Scan"
 msgstr "Сканиране кабелен"
+
+msgid "Cable input"
+msgstr ""
 
 msgid "Cache thumbnails"
 msgstr "Кеш миниатюри"
@@ -4539,6 +4554,9 @@ msgstr "Конфигурирайте допълнително забавяне, 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Конфигурирайте допълнително забавяне, за да подобрите синхронизирането на субтитрите."
 
+msgid "Configure cable reception on this input."
+msgstr ""
+
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Конфигурирайте настройката по подразбиране за нови таймери. Нуждаете се от рестартиране след смяна."
 
@@ -4598,6 +4616,12 @@ msgstr ""
 
 msgid "Configure remote control type"
 msgstr "Конфигуриране на типа на дистанционно управление"
+
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Конфигуриране на DiSEqC режима за този LNB."
@@ -5526,9 +5550,6 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
-msgid "DNS suffix"
-msgstr ""
-
 msgid "DNSCrypt"
 msgstr ""
 
@@ -5569,16 +5590,13 @@ msgstr ""
 msgid "DVB-C"
 msgstr ""
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr ""
 
 msgid "DVB-C ANNEX C"
 msgstr ""
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 msgstr ""
 
 msgid "DVB-S"
@@ -5588,9 +5606,6 @@ msgid "DVB-S2"
 msgstr ""
 
 msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T/T2 / Terrestrial only"
 msgstr ""
 
 msgid "DVB-T2"
@@ -6772,6 +6787,9 @@ msgid "Dolby TrueHD"
 msgstr ""
 
 msgid "Domain"
+msgstr ""
+
+msgid "Domain name"
 msgstr ""
 
 msgid "Dominica"
@@ -9083,6 +9101,9 @@ msgstr ""
 msgid "Gibraltar"
 msgstr ""
 
+msgid "GigaBlue optimized"
+msgstr ""
+
 msgid "Given device id"
 msgstr ""
 
@@ -9321,6 +9342,9 @@ msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN Настройки за запис"
 
 msgid "HDMIin"
+msgstr ""
+
+msgid "HDR OSD adjustment"
 msgstr ""
 
 msgid "HDR10 Support"
@@ -9673,9 +9697,6 @@ msgstr ""
 
 msgid "Hybrid Tuner"
 msgstr "Хибриден тунер"
-
-msgid "Hybrid tuner mode"
-msgstr ""
 
 msgid "Hz"
 msgstr ""
@@ -10624,6 +10645,9 @@ msgid "Kiribati"
 msgstr ""
 
 msgid "Kodi"
+msgstr ""
+
+msgid "Kodi Add-on Packages"
 msgstr ""
 
 msgid "Kodi MediaCenter"
@@ -12187,7 +12211,7 @@ msgstr "СЛЕДВАЩ"
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS настройка"
 
 msgid "NFS threads"
@@ -12363,6 +12387,9 @@ msgstr "Тест мрежа"
 
 msgid "Network Test:"
 msgstr "Тест мрежа: "
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
 
 msgid "Network Wizard"
 msgstr "Мрежов помощник"
@@ -15948,6 +15975,9 @@ msgstr "SABnzbd настройки"
 msgid "SAT"
 msgstr ""
 
+msgid "SAT input"
+msgstr ""
+
 msgid "SATA"
 msgstr ""
 
@@ -16039,7 +16069,7 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr ""
 
 msgid "Same as in active"
@@ -16625,6 +16655,9 @@ msgstr ""
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr ""
 
@@ -16964,9 +16997,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Изберете как е настроена сателитната антена. т.е. фиксирана чиния, единичен конвертор, превключвател DiSEqC, позиционер и др."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
-
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -18121,7 +18151,7 @@ msgstr ""
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -18460,6 +18490,9 @@ msgid "Show InfoBar picons"
 msgstr "Показване на пикони в инфобара"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show Kodi Add-on packages"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -20316,9 +20349,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-msgid "Switchable tuner types:"
-msgstr "Превключваеми типове тунери:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Превключете към live TV - TimeShift все още е активен!"
 
@@ -20596,6 +20626,9 @@ msgstr "тенис/скуош"
 
 msgid "Terrestrial"
 msgstr "Наземен"
+
+msgid "Terrestrial input"
+msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -21083,6 +21116,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Това е решение за някои устройства, които се събуждат отново след преминаване в режим на готовност. Командите за събуждане от други устройства ще бъдат игнорирани за няколко секунди."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Това е избраният в момента език.  [%s]"
@@ -21104,6 +21140,9 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -21858,6 +21897,9 @@ msgid "Trim File System..."
 msgstr ""
 
 msgid "Trinidad and Tobago"
+msgstr ""
+
+msgid "Triple Tuner"
 msgstr ""
 
 msgid "True"
@@ -23579,9 +23621,6 @@ msgstr "Докато е на разположение"
 msgid "White"
 msgstr "Бял"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
-
 msgid "Wide"
 msgstr "широк"
 
@@ -23834,10 +23873,6 @@ msgstr "Вие можете да запишете само записи!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Можете да пропуснете тази функция и да изключите телевизора, когато събудите приемника от режим на готовност и незабавно да се върнете обратно в режим на готовност."
-
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Можете да превключвате с ляво и дясно, този тунер въвежда %s"
 
 msgid "You cannot delete this!"
 msgstr "Вие не може да изтриете това!"
@@ -24848,6 +24883,13 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Превключваеми типове тунери:"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Можете да превключвате с ляво и дясно, този тунер въвежда %s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "Записът в момента върви. Моля спрете записа преди да опитате да конфигурирате позиционера."
