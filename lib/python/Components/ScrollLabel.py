@@ -1,6 +1,6 @@
 from enigma import eLabel, eListbox, ePoint, eSize, eSlider, eWidget
 
-from skin import applyAllAttributes, parseBoolean, parseGradient, parseInteger, parseRadius, parseScrollbarMode, parseScrollbarScroll, scrollLabelStyle
+from skin import applyAllAttributes, parseBoolean, parseColor, parseGradient, parseInteger, parseRadius, parseScrollbarMode, parseScrollbarScroll, scrollLabelStyle
 from Components.GUIComponent import GUIComponent
 
 
@@ -23,6 +23,7 @@ class ScrollLabel(GUIComponent):
 		self.currentPosition = 0
 		self.leftColX = 0
 		self.rightColX = 0
+		self.colors = []
 
 	def GUIcreate(self, parent):
 		self.instance = eWidget(parent)
@@ -110,6 +111,8 @@ class ScrollLabel(GUIComponent):
 						scrollbarRadius = parseRadius(value)
 					elif attribute == "scrollbarGradient":
 						scrollbarGradient = parseGradient(value)
+					elif attribute == "colors":
+						self.colors = [parseColor(x.strip()) if x else None for x in value.split(",")]
 					else:
 						leftLabelAttributes.append((attribute, value))
 						rightLabelAttributes.append((attribute, value))
@@ -254,6 +257,9 @@ class ScrollLabel(GUIComponent):
 			self.slider.setStartEnd(start, start + visible)
 		self.leftText.move(ePoint(self.leftColX, -self.currentPosition))
 		self.rightText.move(ePoint(self.rightColX, -self.currentPosition))
+
+	def getColors(self):
+		return self.colors
 
 	def goTop(self):
 		if self.totalTextHeight > self.pageHeight:
