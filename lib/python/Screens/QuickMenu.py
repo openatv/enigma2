@@ -147,10 +147,10 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.keyRight()
 
 	def keyDistributionInformation(self):
-		self.openScreen("Information", screenName="DistributionInformation")
+		self.openScreen("Information", screenName="InformationDistribution")
 
 	def keyStorageInformation(self):
-		self.openScreen("Information", screenName="StorageInformation")
+		self.openScreen("Information", screenName="InformationStorage")
 
 	def keyTop(self):
 		self.selectedList.goTop()
