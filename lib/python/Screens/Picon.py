@@ -53,8 +53,8 @@ class PiconSettings(Setup):
 		Setup.keySave(self)
 
 	def updateButtons(self):
-		yellowText = "" if config.picon.set3.path.value else _("Add Path")
-		blueText = _("Remove Path") if config.picon.set1.path.value else ""
+		yellowText = "" if config.picon.mode.value == 0 or config.picon.set3.path.value else _("Add Path")
+		blueText = _("Remove Path") if config.picon.mode.value == 1 and config.picon.set1.path.value else ""
 		self["key_yellow"].setText(yellowText)
 		self["key_blue"].setText(blueText)
 		self["actions"].setEnabledAction("yellow", yellowText != "")
