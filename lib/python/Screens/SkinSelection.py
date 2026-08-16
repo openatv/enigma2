@@ -90,13 +90,6 @@ class SkinSelection(Setup):
 	def keySave(self):
 		guiSkinChanged = config.skin.guiSkin.value != config.skin.primary_skin.value
 		if guiSkinChanged:
-			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
-				try:
-					if config.plugins.MyMetrixLiteOther.EHDenabled.value != "0":
-						from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
-						ActivateSkinSettings().RefreshIcons(True)  # Restore default icons if old skin is Metrix.
-				except Exception:
-					pass
 			config.skin.primary_skin.value = config.skin.guiSkin.value
 			config.skin.primary_skin.save()
 		if config.skin.lcdSkin.value != config.skin.display_skin.value:
