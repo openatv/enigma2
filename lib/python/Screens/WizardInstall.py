@@ -5,7 +5,8 @@ from enigma import eDVBDB
 from Components.ActionMap import HelpableActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import ConfigBoolean, ConfigIP, ConfigSelection, ConfigSubsection, ConfigYesNo, config
-from Components.Network import iNetwork
+from Components.NetworkManager import networkManager
+from Tools.ServiceAction import ServiceAction
 from Components.Opkg import OpkgComponent
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
@@ -16,25 +17,23 @@ config.misc.installwizard.ipkgloaded = ConfigBoolean(default=False)
 config.misc.installwizard.channellistdownloaded = ConfigBoolean(default=False)
 
 
-class InstallWizard(ConfigListScreen, Screen):
+class WizardInstall(ConfigListScreen, Screen):
 	STATE_UPDATE = 0
 	STATE_CHANNELLIST = 1
 	STATE_SOFTCAM = 2
 
 	def __init__(self, session, args=None):
-		def checkNetworkCallback(data):
-			if data < 3:
+		def checkNetworkCallback():
+			if any(adapter.hasInternet for adapter in networkManager.adapters.values()):
 				config.misc.installwizard.hasnetwork.value = True
 			self.createMenu()
 
-		def checkNetworkLinkCallback(retVal):
-			if retVal:
-				iNetwork.checkNetworkState(checkNetworkCallback)
-			else:
-				self.createMenu()
+		def checkNetworkLinkCallback(exitCode=None):
+			networkManager.checkConnectionInternet(checkNetworkCallback)
 
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, [])
+		self.skinName.insert(0, "InstallWizard")
 		self.mode = args
 		match args:
 			case self.STATE_UPDATE:
@@ -43,14 +42,15 @@ class InstallWizard(ConfigListScreen, Screen):
 				self.enabled = ConfigSelection(default=0, choices={0: " "})
 				self.configUpdate = ConfigSelection(default=0, choices={0: "Press OK to install"})
 				isFound = False
-				for adapter in [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]:
-					if adapter[1] in ("eth0", "eth1"):
-						if iNetwork.getAdapterAttribute(adapter[1], "up"):
-							self.ipConfigEntry = ConfigIP(default=iNetwork.getAdapterAttribute(adapter[1], "ip"))
-							iNetwork.checkNetworkState(checkNetworkCallback)
+				for name, adapter in (networkManager.adapters.items() if networkManager is not None else {}.items()):
+					if not adapter.isWiFi:
+						net = adapter.netInfo
+						if net.up:
+							self.ipConfigEntry = ConfigIP(default=list(net.ip))
+							networkManager.checkConnectionInternet(checkNetworkCallback)
 							isFound = True
 						else:
-							iNetwork.restartNetwork(checkNetworkLinkCallback)
+							ServiceAction.netrestart(checkNetworkLinkCallback, timeout=10000)
 						break
 				if isFound is False:
 					self.createMenu()
@@ -101,7 +101,7 @@ class InstallWizard(ConfigListScreen, Screen):
 
 	def run(self):
 		if self.mode == self.STATE_UPDATE and config.misc.installwizard.hasnetwork.value:
-			self.session.open(InstallWizardSmallBox)
+			self.session.open(WizardInstallSmallBox)
 		if self.mode == self.STATE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
 			config.misc.installwizard.channellistdownloaded.value = True
 			try:
@@ -113,9 +113,9 @@ class InstallWizard(ConfigListScreen, Screen):
 			eDVBDB.getInstance().reloadBouquets()
 
 
-class InstallWizardSmallBox(Screen):
+class WizardInstallSmallBox(Screen):
 	skin = """
-	<screen name="InstallWizardSmallBox" position="center,center" size="520,185" resolution="1280,720">
+	<screen name="WizardInstallSmallBox" position="center,center" size="520,185" resolution="1280,720">
 		<widget source="Title" render="Label" position="65,8" size="520,0" font="Regular;22" transparent="1"/>
 		<widget source="status" render="Label" position="75,10" size="435,55" font="Regular;22" transparent="1"/>
 	</screen>"""
@@ -123,6 +123,7 @@ class InstallWizardSmallBox(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Small Box Preparation"))
+		self.skinName.insert(0, "InstallWizardSmallBox")
 		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
 			"cancel": (self.close, _("Close the screen")),
 			"select": (self.close, _("Close the screen"))
@@ -134,10 +135,10 @@ class InstallWizardSmallBox(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": ["packagegroup-openatv-small"]})
+		self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": ["packagegroup-openatv-small"], "lineMode": True})
 
 	def opkgCallback(self, event, parameter):
-		# print(f"[InstallWizard] opkgCallback DEBUG: event='{self.opkgComponent.getEventText(event)}', parameter='{parameter}'.")
+		# print(f"[WizardInstall] opkgCallback DEBUG: event='{self.opkgComponent.getEventText(event)}', parameter='{parameter}'.")
 		match event:
 			case self.opkgComponent.EVENT_REFRESH_DONE:
 				self["status"].setText(_("Installing package."))

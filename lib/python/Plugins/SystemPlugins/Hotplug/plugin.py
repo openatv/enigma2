@@ -1,9 +1,7 @@
 from os import mkdir, remove
 from os.path import exists, isfile
-from twisted.internet import reactor
-from twisted.internet.protocol import Factory, Protocol
 
-from enigma import getDeviceDB, eTimer
+from enigma import eHotplugSocket, getDeviceDB, eTimer
 
 from Components.config import config
 from Components.Console import Console
@@ -14,41 +12,9 @@ from Screens.MessageBox import ModalMessageBox
 from Tools.Directories import fileReadLines, fileWriteLines
 from Tools.Conversions import scaleNumber
 
-HOTPLUG_SOCKET = "/var/run/hotplug.socket"
-
 # globals
 hotplugNotifier = []
 audiocd = False
-
-
-class Hotplug(Protocol):
-	def __init__(self):
-		self.received = ""
-
-	def connectionMade(self):
-		# print("[Hotplug] Connection made.")
-		self.received = ""
-
-	def dataReceived(self, data):
-		if isinstance(data, bytes):
-			data = data.decode()
-		self.received += data
-		print(f"[Hotplug] Data received: '{", ".join(self.received.split("\0")[:-1])}'.")
-
-	def connectionLost(self, reason):
-		# print(f"[Hotplug] Connection lost reason '{reason}'.")
-		eventData = {}
-		if "\n" in self.received:
-			data = self.received[:-1].split("\n")
-			eventData["mode"] = 1
-		else:
-			data = self.received.split("\0")[:-1]
-			eventData["mode"] = 0
-		for values in data:
-			variable, value = values.split("=", 1)
-			eventData[variable] = value
-		if data and eventData:
-			hotPlugManager.processHotplugData(eventData)
 
 
 def AudiocdAdded():
@@ -59,15 +25,8 @@ def AudiocdAdded():
 def autostart(reason, **kwargs):
 	if reason == 0:
 		print("[Hotplug] Starting hotplug handler.")
-		try:
-			if exists(HOTPLUG_SOCKET):
-				remove(HOTPLUG_SOCKET)
-		except OSError:
-			pass
 		cleanMediaDirs()  # Initial cleanup
-		factory = Factory()
-		factory.protocol = Hotplug
-		reactor.listenUNIX(HOTPLUG_SOCKET, factory)
+		eHotplugSocket.getInstance().dataReceived.get().append(hotPlugManager.processRawData)
 
 
 class HotPlugManager:
@@ -85,6 +44,21 @@ class HotPlugManager:
 		def debugStorageChanged(configElement):
 			self.debug = configElement.value
 		config.crash.debugStorage.addNotifier(debugStorageChanged)
+
+	def processRawData(self, raw):
+		eventData = {}
+		if "\n" in raw:
+			data = raw[:-1].split("\n")
+			eventData["mode"] = 1
+		else:
+			data = raw.split("\0")[:-1]
+			eventData["mode"] = 0
+		for values in data:
+			if "=" in values:
+				variable, value = values.split("=", 1)
+				eventData[variable] = value
+		if data and eventData:
+			self.processHotplugData(eventData)
 
 	def processAddDevice(self):
 		self.addTimer.stop()
@@ -161,7 +135,7 @@ class HotPlugManager:
 					if DEVPATH.startswith(physdevprefix):
 						description = f"\n{_(pdescription)}"
 
-				text = f"{_("A new storage device has been connected:")}\n{ID_MODEL} - ({scaleNumber(ID_PART_ENTRY_SIZE * 512, format="%.1f")})\n{description}"
+				text = f"{_('A new storage device has been connected:')}\n{ID_MODEL} - ({scaleNumber(ID_PART_ENTRY_SIZE * 512, format='%.1f')})\n{description}"
 
 				def newDeviceCallback(answer):
 					if answer:

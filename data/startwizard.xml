@@ -4,9 +4,56 @@
 		<text value="Welcome to OpenATV.\n\nUse the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen." />
 		<displaytext value="Use UP/DOWN buttons to select option then press OK" />
 		<list>
-			<listentry caption="Use the wizard to set up basic features" step="flashexpander" />
+			<listentry caption="Use the wizard to set up basic features" step="nwifaceselect" />
 			<listentry caption="Exit the wizard" step="end" />
 		</list>
+	</step>
+
+	<step id="nwifaceselect">
+		<displaytext value="Set up network" />
+		<text value="Select a network interface to configure, or skip to configure the network later in system settings." />
+		<list type="dynamic" source="nwListInterfaces" evaluation="nwIfaceSelected" onselect="nwIfaceMoved" />
+		<code>
+self.nwSelectedIface = None
+self.nwIpFound = ""
+self.nwSubFlowActive = False
+		</code>
+		<code pos="after" async="yes">
+self.nwAdvanceFromSelect()
+		</code>
+	</step>
+
+	<step id="nwconfig">
+		<displaytext value="Configure network adapter" />
+		<text value="Opening network adapter configuration..." />
+		<code>
+self.clearSelectedKeys()
+		</code>
+		<code async="yes">
+self.nwOpenSetup()
+		</code>
+	</step>
+
+	<step id="nwstatus">
+		<displaytext value="Network adapter status" />
+		<text value="Network adapter setup result:" />
+		<code>
+self.nwShowStatus()
+		</code>
+		<list>
+			<listentry caption="Continue" step="nwdns" />
+			<listentry caption="Configure another network adapter" step="nwifaceselect" />
+		</list>
+	</step>
+
+	<step id="nwdns">
+		<text value="Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n\nWhen the settings are correct press OK to continue." />
+		<displaytext value="Configure DNS (Dynamic Name Server)" />
+		<config screen="DnsSettings" module="NetworkSetup" type="ConfigList" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
 	</step>
 
 	<step id="flashexpander" nextstep="swap">
@@ -78,7 +125,7 @@ self.condition = self.smallFlashSize or self.isFlashExpanderActive()
 from Components.SystemInfo import BoxInfo
 self.condition = BoxInfo.getItem("SmallFlash")
 		</condition>
-		<config screen="InstallWizardSmallBox" module="InstallWizard" type="standalone" />
+		<config screen="WizardInstallSmallBox" module="WizardInstall" type="standalone" />
 	</step>
 
 	<step id="networkfailed" >

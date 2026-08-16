@@ -1,8 +1,6 @@
 from enigma import eTimer
 from os import listdir, readlink
 from os.path import exists, isfile, islink, join, split as pathsplit
-from socket import socket, AF_UNIX, SOCK_STREAM
-from twisted.internet.reactor import callInThread
 
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigNothing, ConfigSelection, NoSave, config
@@ -16,6 +14,7 @@ from Screens.Setup import Setup
 from ServiceReference import ServiceReference
 from Tools.Directories import isPluginInstalled
 from Tools.GetEcmInfo import GetEcmInfo
+from Tools.ServiceAction import ServiceAction
 
 
 class CamControl:
@@ -23,7 +22,6 @@ class CamControl:
 	to the start/stop script.'''
 
 	def __init__(self, name):
-		self.callbackTimer = eTimer()
 		self.name = name
 		self.notFound = None
 		self.link = join("/etc/init.d", name)
@@ -55,36 +53,13 @@ class CamControl:
 		return None
 
 	def switch(self, newcam, callback):
-		self.callback = callback
-		self.deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-		self.deamonSocket.connect("/tmp/deamon.socket")
-		self.deamonSocket.send(f"SWITCH_{self.name.upper()},{newcam}".encode())
-		self.waitSocket()
+		if self.name == "softcam":
+			ServiceAction.switchSoftcam(newcam, callback)
+		else:
+			ServiceAction.switchCardserver(newcam, callback)
 
 	def restart(self, callback):
-		self.callback = callback
-		self.deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-		self.deamonSocket.connect("/tmp/deamon.socket")
-		self.deamonSocket.send(f"RESTART,{self.name}".encode())
-		self.waitSocket()
-
-	def waitSocket(self):
-		self.callbackTimer.timeout.get().append(self.closeSocket)
-		self.callbackTimer.start(5000, False)
-		callInThread(self.listenSocket)
-
-	def listenSocket(self):
-		data = None
-		while not data:
-			data = self.deamonSocket.recv(256)
-		self.closeSocket()
-
-	def closeSocket(self):
-		self.callbackTimer.stop()
-		if self.deamonSocket:
-			self.deamonSocket.close()
-		if self.callback:
-			self.callback()
+		ServiceAction(self.name).restart(callback)
 
 
 class CamSetupCommon(Setup):

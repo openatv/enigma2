@@ -6,11 +6,12 @@ from Screens.Wizard import WizardSummary, Wizard
 from Tools.Directories import SCOPE_SKINS, resolveFilename
 
 
-class VideoWizard(Wizard, ShowRemoteControl):
+class WizardVideo(Wizard, ShowRemoteControl):
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_SKINS, "videowizard.xml")
 		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
+		self.skinName.insert(0, "VideoWizard")
 		self.setTitle(_("Video Wizard"))
 		self.hasDVI = BoxInfo.getItem("dvi", False)
 		self.hasJack = BoxInfo.getItem("avjack", False)

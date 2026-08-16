@@ -8,7 +8,7 @@ from os import listdir
 from os.path import exists, isfile, ismount, realpath, splitext
 from pickle import dump, load
 from re import match
-from socket import AF_UNIX, SOCK_STREAM, socket
+from Tools.ServiceAction import ServiceAction
 from sys import maxsize
 from time import localtime, strftime, time
 
@@ -1885,10 +1885,7 @@ class InfoBarAutoCam:
 					BoxInfo.setMutableItem("CurrentSoftcam", cam)
 
 	def switchCam(self, new):
-		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-		deamonSocket.connect("/tmp/deamon.socket")
-		deamonSocket.send(f"SWITCH_SOFTCAM,{new}".encode())
-		deamonSocket.close()
+		ServiceAction.switchSoftcam(new, None)
 
 
 autocam = InfoBarAutoCam()

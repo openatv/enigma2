@@ -1774,8 +1774,8 @@ class ChannelContextMenu(Screen):
 		self.session.openWithCallback(self.close, MessageBox, _("The service list is reloaded."), MessageBox.TYPE_INFO, timeout=5)
 
 	def showServiceInformations(self, current):
-		from Screens.Information import ServiceInformation  # The import needs to be here to prevent a cyclic import.
-		self.session.open(ServiceInformation, current)
+		from Screens.Information import InformationService  # The import needs to be here to prevent a cyclic import.
+		self.session.open(InformationService, current)
 
 	def showSubservices(self):
 		self.csel.enterSubservices(self.csel.getCurrentSelection(), self.subservices)

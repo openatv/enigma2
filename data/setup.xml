@@ -199,6 +199,7 @@
 		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
+		<item level="0" text="Hostname" description="Enter the network hostname to be used to identify this receiver.">self.hostname</item>
 		<item level="0" text="Domain name" description="Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network.">config.usage.dnsSuffix</item>
 		<item level="0" text="DNS protocol mode" description="Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred.">config.usage.dnsMode</item>
 		<item level="0" text="Use DNS rotation" description="Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
@@ -596,14 +597,6 @@
 		<item level="0" text="F1" description="Select the function to be assigned to this button.">config.movielist.btn_F1</item>
 		<item level="0" text="F2" description="Select the function to be assigned to this button.">config.movielist.btn_F2</item>
 		<item level="0" text="F3" description="Select the function to be assigned to this button.">config.movielist.btn_F3</item>
-	</setup>
-	<setup key="Network" title="Network Settings">
-		<item text="Use DHCP" description="When enabled, use DHCP for the IP configuration.">config.network.dhcp</item>
-		<item text="IP address" description="Configure the IP address.">config.network.ip</item>
-		<item text="Netmask" description="Configure the netmask.">config.network.netmask</item>
-		<item text="Gateway" description="Configure the gateway.">config.network.gateway</item>
-		<item text="Nameserver" description="Configure the name server (DNS).">config.network.dns</item>
-		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
 	<setup key="NetworkAdapter" title="Network Adapter Settings">
 		<item level="0" text="Enabled" description="When enabled, this adapter will be initialized and activated at boot time.">self.cfgEnabled</item>

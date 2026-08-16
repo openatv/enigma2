@@ -6,7 +6,7 @@ import NavigationInstance
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
 from Components.Label import Label
-from Components.Network import iNetwork
+from Components.NetworkManager import networkManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -73,13 +73,25 @@ class QuickMenu(Screen, ProtectedScreen):
 		Screen.__init__(self, session, enableHelp=True, mandatoryWidgets=["mainlist"])
 		ProtectedScreen.__init__(self)
 		self.setTitle(_("Quick Launch Menu"))
-		self["key_red"] = StaticText(_("Exit"))
+		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("System Info"))
 		self["key_yellow"] = StaticText(_("Devices"))
 		self["description"] = Label()
 		self["summary_description"] = StaticText("")
-		self["mainlist"] = List()
-		self["sublist"] = List()
+		indexNames = {
+			"Name": 0,
+			"Summary": 1,
+			"Image": 2,
+			"Index": 3,
+			"Description": 4
+		}
+		self["mainlist"] = List([], indexNames=indexNames)
+		indexNames = {
+			"Name": 0,
+			"Summary": 1,
+			"Description": 2
+		}
+		self["sublist"] = List([], indexNames=indexNames)
 		self["mainlist"].onSelectionChanged.append(self.selectionMainChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions", "ColorActions"], {
@@ -147,10 +159,10 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.keyRight()
 
 	def keyDistributionInformation(self):
-		self.openScreen("Information", screenName="DistributionInformation")
+		self.openScreen("Information", screenName="InformationDistribution")
 
 	def keyStorageInformation(self):
-		self.openScreen("Information", screenName="StorageInformation")
+		self.openScreen("Information", screenName="InformationStorage")
 
 	def keyTop(self):
 		self.selectedList.goTop()
@@ -197,7 +209,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			icon = LoadPixmap(resolveFilename(SCOPE_SKIN, f"icons/{pngname}.png"))
 			if icon is None:
 				icon = LoadPixmap(resolveFilename(SCOPE_SKIN, "icons/default.png"))
-			return (name, description, icon, itemIndex, longDescription)
+			return (name, description, icon, str(itemIndex), longDescription)
 
 		self.menu = 0
 		self.mainList = []
@@ -214,7 +226,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["mainlist"].setList([(x[0], x[1], x[2]) for x in self.mainList])
 
 	def selectMainItem(self):
-		match self.mainList[self["mainlist"].getCurrentIndex()][3]:
+		match int(self.mainList[self["mainlist"].getCurrentIndex()][3]):
 			case 0:
 				self.subMenuSoftware()
 			case 1:
@@ -333,38 +345,37 @@ class QuickMenu(Screen, ProtectedScreen):
 
 	def subMenuNetwork(self):  # Network Menu.
 		def getNetworkInterfaces():
-			adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
-			if not adapters:
-				adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
-			if not adapters:
-				adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
-			activeInterface = None
-			for adapter in adapters:
-				if iNetwork.getAdapterAttribute(adapter[1], "up") is True:
-					activeInterface = adapter[1]
-					break
+			adapters = [
+				(f"{'Wi-Fi' if a.isWiFi else 'LAN'} ({name})", name)
+				for name, a in networkManager.adapters.items()
+			]
+			activeInterface = next(
+				(name for name, a in networkManager.adapters.items() if a.netInfo.up),
+				None
+			)
 			return adapters, activeInterface
 
 		def networkInterface():
-			self.openScreen("NetworkSetup", screenName="AdapterSetup", networkinfo=activeInterface)
+			from Screens.NetworkSetup import NetworkAdapterSetup
+			adapter = networkManager.adapters.get(activeInterface)
+			if adapter:
+				self.session.open(NetworkAdapterSetup, adapter)
 
-		def networkWizard():
-			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
-			self.session.open(NetworkWizard)
+		def networkAdapterSelection():
+			from Screens.NetworkSetup import NetworkOverview
+			self.session.open(NetworkOverview)
 
 		adapters, activeInterface = getNetworkInterfaces()
 		self.subList = []
-		if isPluginInstalled("NetworkWizard"):
-			self.subList.append(self.quickSubMenuEntryComponent(_("Network Wizard"), _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network"), callback=networkWizard))
 		if len(adapters) > 1:  # Show only adapter selection if more as 1 adapter is installed.
-			self.subList.append(self.quickSubMenuEntryComponent(_("Network Adapter Selection"), _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan"), screen="NetworkSetup", screenName="NetworkAdapterSelection"))
+			self.subList.append(self.quickSubMenuEntryComponent(_("Network Adapter Selection"), _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan"), callback=networkAdapterSelection))
 		if activeInterface is not None:  # Show only if there is already a adapter up.
 			self.subList.append(self.quickSubMenuEntryComponent(_("Network Interface"), _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS"), callback=networkInterface))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Network Restart"), _("Restart network to with current setup"), _("Restart network and remount connections"), screen="RestartNetwork"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Network Services"), _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)"), screen="NetworkSetup", screenName="NetworkServicesSetup"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("MiniDLNA"), _("Setup MiniDLNA"), _("Setup MiniDLNA"), screen="NetworkSetup", screenName="NetworkMiniDLNASetup"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Inadyn"), _("Setup Inadyn"), _("Setup Inadyn"), screen="NetworkSetup", screenName="NetworkInadynSetup"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("uShare"), _("Setup uShare"), _("Setup uShare"), screen="NetworkSetup", screenName="NetworkuShareSetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Services"), _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)"), screen="NetworkServices", screenName="NetworkServicesSetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("MiniDLNA"), _("Setup MiniDLNA"), _("Setup MiniDLNA"), screen="NetworkServices", screenName="NetworkMiniDLNASetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Inadyn"), _("Setup Inadyn"), _("Setup Inadyn"), screen="NetworkServices", screenName="NetworkInadynSetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("uShare"), _("Setup uShare"), _("Setup uShare"), screen="NetworkServices", screenName="NetworkuShareSetup"))
 		self.setSubList()
 
 	def subMenuAVSetup(self):  # A/V Settings Menu.
