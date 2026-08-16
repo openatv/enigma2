@@ -110,6 +110,7 @@ flush_global_addrs() {
 stop_service() {
   svc="$1"
   if [ -x "$svc" ]; then
+    log "stop $svc"
     "$svc" stop 2>/dev/null || true
   fi
 }
@@ -117,11 +118,13 @@ stop_service() {
 start_service() {
   svc="$1"
   if [ -x "$svc" ]; then
+    log "start $svc"
     "$svc" start 2>/dev/null || true
   fi
 }
 
 kill_udhcpc() {
+  log "kill_udhcpc: killing udhcpc for all interfaces"
   if command -v killall >/dev/null 2>&1; then
     killall -9 udhcpc 2>/dev/null || true
   elif command -v pkill >/dev/null 2>&1; then
@@ -139,6 +142,32 @@ kill_udhcpc() {
       esac
     done
   fi
+}
+
+# Only kill/remove the udhcpc instance for one interface, so restarting a
+# single adapter doesn't disturb DHCP on every other one.
+kill_udhcpc_for() {
+  iface="$1"
+  log "kill_udhcpc_for: killing udhcpc for $iface only"
+  if command -v pkill >/dev/null 2>&1; then
+    pkill -9 -f "udhcpc.*-i[ ]*$iface\b" 2>/dev/null || true
+  elif command -v ps >/dev/null 2>&1; then
+    for pid in $(ps w 2>/dev/null | grep udhcpc | grep -- "-i[ ]*$iface\b" | awk '{print $1}'); do
+      kill -9 "$pid" 2>/dev/null || true
+    done
+  fi
+  for f in "/var/run/udhcpc.$iface.pid" "/var/run/udhcpc-$iface.pid" "/var/run/udhcpc.$iface.pidfile"; do
+    [ -r "$f" ] || continue
+    pid="$(cat "$f" 2>/dev/null || true)"
+    case "$pid" in
+      ''|*[!0-9]*)
+        ;;
+      *)
+        kill -9 "$pid" 2>/dev/null || true
+        ;;
+    esac
+    rm -f "$f" 2>/dev/null || true
+  done
 }
 
 restart_dnscrypt_if_present() {
@@ -200,6 +229,12 @@ do_restart() {
 
   ACTIVE_IFACES="$(select_ifaces "$TARGET_IFACE")"
 
+  SINGLE_IFACE=0
+  case "$TARGET_IFACE" in
+    ""|all) ;;
+    *) SINGLE_IFACE=1 ;;
+  esac
+
   if [ -z "$ACTIVE_IFACES" ]; then
     log "No active target interfaces selected. Proceeding with service restart only."
   else
@@ -221,18 +256,21 @@ do_restart() {
     flush_global_addrs "$iface"
   done
 
-  stop_service /etc/init.d/networking
-
-  log "Killing udhcpc and removing pidfiles"
-  kill_udhcpc
-  rm -f /var/run/udhcpc* 2>/dev/null || true
-
-  start_service /etc/init.d/networking
+  if [ "$SINGLE_IFACE" -eq 1 ]; then
+    log "Single-interface restart ($TARGET_IFACE): leaving the networking service and other interfaces alone."
+    kill_udhcpc_for "$TARGET_IFACE"
+  else
+    stop_service /etc/init.d/networking
+    kill_udhcpc
+    rm -f /var/run/udhcpc* 2>/dev/null || true
+    start_service /etc/init.d/networking
+  fi
 
   for iface in $ACTIVE_IFACES; do
     if [ "$iface" = "eth0" ] && [ "$REMOTE_ROOT" -eq 1 ]; then
       continue
     fi
+    log "ifup $iface"
     do_ifup "$iface"
   done
 

@@ -266,7 +266,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", textScanning))
 	for plugin in plugins.getPluginsForMenu("scan"):
 		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], textScanning))
-	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", textSetup))
+	# ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", textSetup))
 	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMenu", textSetup))
 	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", textSetup))
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.Information/ServiceInformation", textSetup))
