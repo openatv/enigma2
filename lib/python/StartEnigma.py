@@ -884,7 +884,6 @@ InitSkins()
 enigma.eProfileWrite("InitInputDevices")
 from Components.InputDevice import InitInputDevices
 InitInputDevices()
-import Components.InputHotplug
 
 enigma.eProfileWrite("InitAVSwitch")
 from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug

@@ -6,6 +6,8 @@ driver_libenigma_driver_a_SOURCES = \
 	driver/avswitch.cpp \
 	driver/avcontrol.cpp \
 	driver/etimezone.cpp \
+	driver/ehotplug_socket.cpp \
+	driver/inputhotplug.cpp \
 	driver/misc_options.cpp \
 	driver/rc.cpp \
 	driver/rcinput.cpp \
@@ -18,6 +20,8 @@ driverinclude_HEADERS = \
 	driver/avcontrol.h \
 	driver/etimezone.h \
 	driver/input_fake.h \
+	driver/ehotplug_socket.h \
+	driver/inputhotplug.h \
 	driver/misc_options.h \
 	driver/rc.h \
 	driver/rcconsole.h \
