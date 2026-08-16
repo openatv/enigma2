@@ -1470,7 +1470,7 @@ def InitUsageConfig():
 	config.samba = ConfigSubsection()
 	config.samba.enableAutoShare = ConfigYesNo(default=True)
 	config.samba.autoShareAccess = ConfigSelection(default=1, choices=[
-		(0, _("Read Only")),
+		(0, _("Read-Only")),
 		(1, _("Read/Write"))
 	])
 

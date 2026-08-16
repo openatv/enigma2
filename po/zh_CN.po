@@ -7668,16 +7668,16 @@ msgstr "输入与此卫星对应的定位器中存储的编号。"
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "输入所选无线网络的密码、密钥短语或预共享密钥。"
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "输入此网卡的主 IPv4 DNS 服务器地址。"
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "输入此网卡的主 IPv6 DNS 服务器地址。（选填）"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "输入此网卡的备用 IPv4 DNS 服务器地址。（选填）"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "输入此网卡的备用 IPv6 DNS 服务器地址。（选填）"
 
 msgid "Enter the service pin"
@@ -7689,7 +7689,7 @@ msgstr "输入此网卡使用的子网掩码（例如 255.255.255.0）"
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "输入订阅码即可全面启用人工智能翻译插件，试用统一码为15。"
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "输入本机接收机 Samba 连接所用的工作组名称。(默认值为 `WORKGROUP`)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8869,7 +8869,7 @@ msgstr "强制使用传统信号统计"
 msgid "Force ToneBurst"
 msgstr "强制 22K 开关"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "强制指定网卡速率 / 双工模式，关闭自动协商。仅在有明确需求时修改，设置错误会直接造成网络断开。"
 
 msgid "Force de-interlace"
@@ -15022,7 +15022,7 @@ msgstr "评级未定义"
 msgid "Re-enter new PIN"
 msgstr "重新输入新 PIN"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "只读"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -17141,7 +17141,7 @@ msgstr "选择 %s 条目"
 msgid "Select the AI-Powered Translation target language."
 msgstr "选择人工智能翻译目标语言。"
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "选择默认 DNS 设置的来源。"
 
 msgid "Select the No / False response"
@@ -17385,10 +17385,10 @@ msgstr "选择 SCR 设备的制造商。 如果制造商未列出，请将“SCR
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择退出图文电视时恢复屏幕分辨率和帧缓冲的处理方法。"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "为自动导出的 samba 共享选择访问模式。"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17653,7 +17653,7 @@ msgstr "选择 DTS 音轨是否缩混为立体声。"
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "选择是否直通或解码杜比TrueHD音频轨道。"
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "选择DNS的模式。"
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17791,7 +17791,7 @@ msgstr "严肃/经典/宗教/历史影片/戏剧"
 msgid "Server down"
 msgstr "频道 向下"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "服务器不得强制执行其自身的阻止列表。某些服务器可能会实现自己的黑名单，以出于家长控制、广告拦截等原因阻止访问某些网站。"
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -19778,7 +19778,7 @@ msgstr "特殊事件"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "定义 DNS 后缀。"
 
 msgid "Speed"
@@ -23603,7 +23603,7 @@ msgstr "启用时，在频道选择屏幕中显示频道号。"
 msgid "When enabled, show status or error messages."
 msgstr "启用时，显示状态或错误消息。"
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23660,7 +23660,7 @@ msgstr "启用时，默认使用备用调谐器的定时器。"
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr ""
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

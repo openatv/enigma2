@@ -7667,16 +7667,16 @@ msgstr "Εισάγετε τον αποθηκευμένο αριθμό του μ�
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr ""
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the service pin"
@@ -7688,7 +7688,7 @@ msgstr ""
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Εισάγετε τον κωδικό συνδρομής σας, ο ενοποιημένος κώδικας για δοκιμή είναι 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8868,7 +8868,7 @@ msgstr "Εξαναγκασμός στατιστικών σήματος παλα�
 msgid "Force ToneBurst"
 msgstr "Εξαναγκασμένη ριπή τόνου"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr ""
 
 msgid "Force de-interlace"
@@ -15017,7 +15017,7 @@ msgstr "Μη καθορισμένη βαθμολογία"
 msgid "Re-enter new PIN"
 msgstr "Επανεισαγωγή του νέου PIN"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Μόνο για ανάγνωση"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -17136,7 +17136,7 @@ msgstr "Επιλογή του στοιχείου %s"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Ρύθμιση της γλώσσας μετάφρασης μέσω AI."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Επιλογή της πηγής ρυθμίσεων του προεπιλεγμένου DNS."
 
 msgid "Select the No / False response"
@@ -17380,10 +17380,10 @@ msgstr "Επιλέξτε τον κατασκευαστή της SCR συσκευ
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Επιλογή της μεθόδου επαναφοράς της ανάλυσης της οθόνης και της μνήμης καρέ κατά την έξοδο από το τηλεκείμενο."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Επιλογή λειτουργίας πρόσβασης για τα κοινόχρηστα στοιχεία samba που εξάγονται αυτόματα."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17648,7 +17648,7 @@ msgstr "Επιλέξτε αν τα DTS κανάλια ήχου θα υποβιβ
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Επιλέξτε εάν οι φέρουσες ήχου Dolby TrueHD θα περνούν ως έχουν ή θα αποκωδικοποιούνται."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Επιλογή λειτουργίας DNS."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17786,7 +17786,7 @@ msgstr "σοβαρή/κλασική/θρησκευτική/ιστορική τα
 msgid "Server down"
 msgstr "Διακομιστής εκτός"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Ο διακομιστής δεν πρέπει να εφαρμόζει τη δική του λίστα απόρριψης. Μερικοί διακομιστές μπορεί να ενσωματώνουν τις δικές τους λίστες για να μπλοκάρουν ιστοσελίδες μέσω γονικού ελέγχου, παράκαμψης διαφημίσεων κ.λ.π."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -19773,7 +19773,7 @@ msgstr "ειδικά προγράμματα"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Ορισμός του φακέλου χρήσης όταν ξεκινά ο αναπαραγωγός ταινιών."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Ορισμός επιθήματος DNS."
 
 msgid "Speed"
@@ -23598,7 +23598,7 @@ msgstr "Όταν είναι ενεργό, οι αριθμοί των καναλ�
 msgid "When enabled, show status or error messages."
 msgstr "Όταν είναι ενεργό, γίνεται εμφάνιση της κατάστασης ή των μηνυμάτων σφάλματος."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23655,7 +23655,7 @@ msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr ""
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

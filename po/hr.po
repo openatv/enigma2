@@ -7708,16 +7708,16 @@ msgstr "Unesite broj pohranjen u pozicioneru koji odgovara ovom satelitu."
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Unesi lozinku, frazu ili unaprijed podijeljeni ključ za odabranu bežičnu mrežu."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Unesite primarnu IPv4 DNS postavku za ovaj adapter."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Unesi primarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Unesite sekundarnu IPv4 DNS postavku za ovaj adapter. (Opcionalno)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Unesite sekundarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
 
 msgid "Enter the service pin"
@@ -7729,7 +7729,7 @@ msgstr "Unesite masku podmreže koja će se koristiti za ovaj mrežni adapter. (
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Unesite kod za predplatu da bi u potpunosti omogućili dadatak za prevod zasnovan na AI , objedinjeni kod za probnu verziju je 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Unesi naziv radne grupe koju će ovaj primatelj koristiti za veze temeljene na Sambi. (Zadano je 'RADNAGRUPA'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8909,7 +8909,7 @@ msgstr "Prisiliti naslijeđeni signal"
 msgid "Force ToneBurst"
 msgstr "Prisiliti ToneBurst"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Forsiraj određenu brzinu mrežne veze/dvostruki način umjesto automatskog pregovaranja. Promijeni ovo samo ako imaš neki specifičan razlog jer pogrešna postavka može prekinuti mrežnu povezanost."
 
 msgid "Force de-interlace"
@@ -15062,7 +15062,7 @@ msgstr "Ocjena nedefinisana"
 msgid "Re-enter new PIN"
 msgstr "Ponovo unesite novi PIN"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Samo za čitanje"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -17184,7 +17184,7 @@ msgstr "Odaberi %s stavku"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Odaberi AI-Pokretanje Prijevoda za ciljni jezik."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Odaberite DNS poslužitelj(e) koji će se koristiti za pretraživanje imena domaćina kako bi se razriješila IP adresa."
 
 msgid "Select the No / False response"
@@ -17428,10 +17428,10 @@ msgstr "Odaberi SCR uređaj. Ako proizvođač nije naveden, postavite 'SCR' na '
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Odaberi metod vraćanja rezolucije zaslona i buffera frejma prilikom napuštanja teleteksta."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Odaberi režim pristupa za automatski izvezene samba akcije."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Odaberi način pristupa, Čitanje/Pisanje ili Samo Čitanje, koji se primjenjuje na sve izvezene direktorije."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17696,7 +17696,7 @@ msgstr "Odaberite hoće li se zvučni zapisi DTS kanala smanjivati na stereo."
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Odaberite hoće li se Dolby TrueHD audio zapisi prenijeti nepromijenjeni ili dekodirati."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Odaberite hoće li se koristiti IPv4, IPv6 ili oba protokola. Ako su oba omogućena, odaberite koji bi trebao imati prednost."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17834,7 +17834,7 @@ msgstr "Ozbiljni/klasični/religiozni/povijesni film/drama"
 msgid "Server down"
 msgstr "Server je pao"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Poslužitelj ne smije nametati vlastitu listu blokiranih. Neki poslužitelji mogu implementirati vlastite crne liste za blokiranje stranica iz razloga roditeljskog nadzora, blokiranja oglasa itd."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -19828,7 +19828,7 @@ msgstr "Specijalni događaji (Olimpijske igre, Svetsko prvenstvo, itd.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Navedite direktorijum koji će se koristiti prilikom pokretanja Medija Plejer."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Odredite DNS sufiks mreže koji će se primijeniti kada se navede samo ime računala. To pomaže DNS rješavaču da pronađe traženo računalo."
 
 msgid "Speed"
@@ -23654,7 +23654,7 @@ msgstr "Kada je omogućeno, prikažite brojeve kanala na zaslonu za odabir kanal
 msgid "When enabled, show status or error messages."
 msgstr "Kada je omogućeno, prikažite poruke o statusu ili pogrešci."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Kad je omogućeno, postavite prilagođene DNS postavke za ovaj adapter umjesto globalnih DNS postavki."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23711,7 +23711,7 @@ msgstr "Kada je omogućeno, mjerač vremena iz rezervnog tunera je zadani mjera�
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Kad je omogućen, ovaj Wi-Fi adapter se koristi samo u načinu Buđenje-preko-WiFi i neće se koristiti za povezivanje na bilo koju mrežu."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Kada je omogućeno, ovaj adapter se inicijalizira i aktivira prilikom pokretanja."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

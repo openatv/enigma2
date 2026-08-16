@@ -8029,16 +8029,16 @@ msgstr "Ange det nummer som är lagrat i positioneringsenheten och som motsvarar
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr ""
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the service pin"
@@ -8050,7 +8050,7 @@ msgstr ""
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Ange prenumerationskoden för att fullt ut aktivera plugin-programmet AI-Powered Translation, den enhetliga koden för test är 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -9281,7 +9281,7 @@ msgstr "Force Legacy Signal statistik"
 msgid "Force ToneBurst"
 msgstr "Force ToneBurst"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr ""
 
 #
@@ -15824,7 +15824,7 @@ msgstr "Betyg odefinierat"
 msgid "Re-enter new PIN"
 msgstr "Ange ny PIN-kod igen"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Skrivskyddad"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -18075,7 +18075,7 @@ msgstr "Välj %s-inmatning"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Välj målspråket för AI-driven översättning."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Välj källa för standardinställningarna för DNS."
 
 msgid "Select the No / False response"
@@ -18320,10 +18320,10 @@ msgstr "Välj tillverkare av din SCR-enhet. Om tillverkaren inte finns med i lis
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Välj metoden för att återställa skärmupplösningen och bildbuffer när du lämnar text-tv."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Välj åtkomstläge för de automatiskt exporterade samba-aktierna."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18591,7 +18591,7 @@ msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas till stereo."
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr ""
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Välj läge för DNS."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -18740,7 +18740,7 @@ msgstr "seriös/klassisk/religiös/historisk film/drama"
 msgid "Server down"
 msgstr "Server nere"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr ""
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -20823,7 +20823,7 @@ msgstr "särskilda evenemang"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Ange den katalog som ska användas när Media Player startas."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Definiera DNS-suffixet."
 
 msgid "Speed"
@@ -24844,7 +24844,7 @@ msgstr "När den är aktiverad visas kanalnummer på skärmen för kanalval."
 msgid "When enabled, show status or error messages."
 msgstr "När den är aktiverad visas status- eller felmeddelanden."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -24901,7 +24901,7 @@ msgstr "När den är aktiverad är timern från reservtunern standardtimern"
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr ""
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

@@ -7711,16 +7711,16 @@ msgstr "Введіть номер позиції в позиціонері, що
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Введіть пароль, парольну фразу або попередньо створений ключ для вибраної бездротової мережі."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Введіть основний параметр DNS IPv4 для цього адаптера."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Введіть основний параметр DNS IPv6 для цього адаптера. (Необов’язково)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Введіть вторинне налаштування DNS IPv4 для цього адаптера. (Необов’язково)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Введіть вторинне налаштування DNS IPv6 для цього адаптера. (Необов’язково)"
 
 msgid "Enter the service pin"
@@ -7732,7 +7732,7 @@ msgstr "Введіть маску підмережі, яка використо�
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Введіть свій код підписки, уніфікований код для трейлу 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Введіть назву робочої групи, яку цей приймач використовуватиме для з’єднань на основі Samba. (За замовчуванням — 'РОБОЧА ГРУПА'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8912,7 +8912,7 @@ msgstr "Старий метод розрахунку сили сигналу"
 msgid "Force ToneBurst"
 msgstr "Потужність Тонового сигналу"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Примусово встановіть певну швидкість мережевого з’єднання/дуплексний режим замість автоматичного узгодження. Змінюйте це лише за наявності конкретної причини, оскільки неправильне налаштування може перервати мережеве з’єднання."
 
 msgid "Force de-interlace"
@@ -15065,7 +15065,7 @@ msgstr "Рейтинг не визначений"
 msgid "Re-enter new PIN"
 msgstr "Повторно введіть новий ПІН"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Тільки для читання"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -17187,7 +17187,7 @@ msgstr "Вибрати запис %s"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Налаштуйте мову перекладу за допомогою AI."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
 msgid "Select the No / False response"
@@ -17431,10 +17431,10 @@ msgstr "Виберіть виробника свого пристрою SCR. Я�
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Виберіть метод відновлення роздільної здатності екрана та буфера обміну при виході з телетексту."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Виберіть режим доступу для автоматично експортованих спільних ресурсів samba."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Виберіть режим доступу, Читання/Запис або Тільки читання, який застосовується до всіх експортованих каталогів."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17699,7 +17699,7 @@ msgstr "Виберіть, чи будуть відтворюватися зву�
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Виберіть, чи слід пропускати аудіодоріжки Dolby TrueHD, чи декодувати їх."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Вибрати режим роботи DNS."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17837,7 +17837,7 @@ msgstr "серйозний/класичний/релігійний/істори�
 msgid "Server down"
 msgstr "Сервер вимкнений"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Сервер не повинен застосовувати власний чорний список. Деякі сервери можуть впроваджувати власні чорні списки для блокування сайтів з метою батьківського контролю, блокування реклами тощо."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -19831,7 +19831,7 @@ msgstr "особливі події"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Вкажіть каталог, який використовуватиметься під час запуску Media Player."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Визначити DNS-суфікс."
 
 msgid "Speed"
@@ -23657,7 +23657,7 @@ msgstr "Якщо включено, показується номер канал�
 msgid "When enabled, show status or error messages."
 msgstr "Якщо включено, будуть показуватися повідомлення про статус таймшифта."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Якщо ввімкнено, вкажіть власні налаштування DNS для цього адаптера замість глобальних налаштувань DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23714,7 +23714,7 @@ msgstr "Якщо ввімкнено, таймер із резервного тю
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Коли цей режим увімкнено, цей адаптер Wi-Fi перебуває лише в режимі Wake-on-Wi-Fi і не використовуватиметься для підключення до жодної мережі."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Коли цей адаптер увімкнено, він ініціалізується та активується під час завантаження."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

@@ -7953,16 +7953,16 @@ msgstr "Bu uyduya karşılık gelen konumlandırıcıda kayıtlı numarayı giri
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Seçilen kablosuz ağın şifresini, parola ifadesini veya önceden paylaşılmış anahtarını girin."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Bu ağ bağdaştırıcısı için birincil IPv4 DNS ayarını girin."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcısı için birincil IPv6 DNS ayarını girin. (İsteğe bağlı)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcı için ikincil IPv4 DNS ayarını girin. (İsteğe bağlı)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcısı ikincil IPv6 DNS ayarını girin. (İsteğe bağlı)"
 
 #
@@ -7975,7 +7975,7 @@ msgstr "Bu ağ bağdaştırıcısı için kullanılacak alt ağ maskesini girin.
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Yapay Zeka Destekli Çeviri eklentisini tam olarak etkinleştirmek için abonelik kodunu girin; deneme sürümü için birleşik kod 15'tir."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Bu alıcı tarafından Samba tabanlı bağlantılarda kullanılacak çalışma grubu adını girin. (Varsayılan değer 'WORKGROUP'tur.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -9204,7 +9204,7 @@ msgstr "Legacy Signal istatistiklerini zorla"
 msgid "Force ToneBurst"
 msgstr "ToneBurst Zorla"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Otomatik bağlantı hızı yerine belirli bir ağ bağlantı hızı/çift yönlü modunu zorlayın. Yanlış bir ayar ağ bağlantısını bozabileceğinden bunu yalnızca belirli bir nedeniniz varsa değiştirin."
 
 #
@@ -15693,7 +15693,7 @@ msgstr "Reyting belirtilmemiş"
 msgid "Re-enter new PIN"
 msgstr "Yeni PIN kodunu tekrar girin"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Salt Okunur"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -17922,7 +17922,7 @@ msgstr "%s girişini seçin"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Yapay zeka destekli çeviri için hedef dili seçin."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "IP adresini çözümlemek için kullanılacak DNS sunucularını seçin."
 
 msgid "Select the No / False response"
@@ -18166,10 +18166,10 @@ msgstr "SCR cihazınızın üreticisini seçin. Üretici listede yoksa, 'SCR' se
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Teletext uygulamasından çıkarken ekran çözünürlüğünü ve çerçeve arabelleğini geri yükleme yöntemini seçin."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Otomatik olarak dışa aktarılan Samba paylaşımları için erişim modunu seçin."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Dışa aktarılan tüm dizinlere uygulanacak erişim modunu (Okuma/Yazma veya Sadece Okuma) seçin."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18436,7 +18436,7 @@ msgstr "DTS kanal ses parçalarının stereoya indirgenip karıştırılmayacağ
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Dolby TrueHD ses parçalarının olduğu gibi mi yoksa çözümlenerek mi iletileceğini seçin."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "IPv4, IPv6 veya her iki protokolün de kullanılacağını seçin. Her ikisi de etkinleştirilmişse, hangisinin tercih edileceğini belirtin."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -18583,7 +18583,7 @@ msgstr "Ciddi/Klasik/Dini/Tarihsel/Dram"
 msgid "Server down"
 msgstr "Sunucu çökmesi"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Sunucu kendi engelleme listesini zorunlu kılmamalıdır. Bazı sunucular, ebeveyn kontrolü, reklam engelleme vb. nedenlerle siteleri engellemek için kendi kara listelerini uygulayabilir."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -20643,7 +20643,7 @@ msgstr "Özel etkinlikler (Olimpiyat Oyunları, Dünya Kupası, vb.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Medya Oynatıcı başlatılırken kullanılacak dizini belirtin."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Yalnızca ana bilgisayar adı sağlandığında uygulanacak ağ DNS sonekini belirtin. Bu, DNS çözümleyicisinin istenen ana bilgisayarı bulmasına yardımcı olur."
 
 msgid "Speed"
@@ -24636,7 +24636,7 @@ msgstr "Bu özellik etkinleştirildiğinde, kanal seçim ekranında kanal numara
 msgid "When enabled, show status or error messages."
 msgstr "Bu özellik etkinleştirildiğinde, durum veya hata mesajlarını gösterilir."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Bu özellik etkinleştirildiğinde, genel DNS ayarları yerine bu ağ bağdaştırıcısı için özel DNS ayarları belirtin."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -24693,7 +24693,7 @@ msgstr "Bu özellik etkinleştirildiğinde, yedek uzak alıcıdan gelen zamanlay
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Bu özellik etkinleştirildiğinde, bu Wi-Fi ağ bağdaştırıcısı yalnızca Kablosuz Ağ İle Aç (WoW) modunda kalır ve herhangi bir ağa bağlanmak için kullanılmaz."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Bu özellik etkinleştirildiğinde, bu ağ bağdaştırıcısı önyükleme sırasında başlatılır ve etkinleştirilir."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

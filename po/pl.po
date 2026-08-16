@@ -7719,16 +7719,16 @@ msgstr "Wprowadź numer zapisany w pozycjonerze, który odpowiada temu satelicie
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Wprowadź hasło, frazę uwierzytelniającą lub klucz współdzielony dla wybranej sieci bezprzewodowej."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Wprowadź podstawowy serwer DNS IPv4 dla tej karty."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Wprowadź podstawowy serwer DNS IPv6 dla tej karty. (Opcjonalnie)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Wprowadź pomocniczy serwer DNS IPv4 dla tej karty. (Opcjonalnie)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Wprowadź pomocniczy serwer DNS IPv6 dla tej karty. (Opcjonalnie)"
 
 msgid "Enter the service pin"
@@ -7740,7 +7740,7 @@ msgstr "Wprowadź maskę podsieci dla tej karty sieciowej. (np. 255.255.255.0)"
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Wprowadź kod subskrypcji, aby w pełni włączyć wtyczkę AI Translation. Ujednolicony kod dla wersji próbnej to 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Wprowadź nazwę grupy roboczej używanej przez odbiornik dla połączeń Samba. (Domyślnie: WORKGROUP)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8920,7 +8920,7 @@ msgstr "Wymuś statystyki starszych sygnałów"
 msgid "Force ToneBurst"
 msgstr "Wymuś ToneBurst"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Wymuś określoną prędkość połączenia i tryb dupleksu zamiast automatycznej negocjacji. Zmieniaj to ustawienie tylko wtedy, gdy jest to konieczne, ponieważ nieprawidłowa konfiguracja może spowodować utratę połączenia z siecią."
 
 msgid "Force de-interlace"
@@ -15074,7 +15074,7 @@ msgstr "Ocena nieokreślona"
 msgid "Re-enter new PIN"
 msgstr "Wprowadź ponownie nowy kod PIN"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Tylko do odczytu"
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -17196,7 +17196,7 @@ msgstr "Wybierz wpis %s"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Wybierz język docelowy tłumaczenia AI."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Wybierz serwer / serwery DNS, które będą używane do rozwiązywania wyszukiwań hostów."
 
 msgid "Select the No / False response"
@@ -17440,10 +17440,10 @@ msgstr "Wybierz producenta urządzenia SCR. Jeśli producent nie znajduje się n
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Wybierz metodę przywracania rozdzielczości ekranu i bufora ramki po opuszczeniu telegazety."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Wybierz tryb dostępu (Odczyt/Zapis) lub (Tylko do odczytu) stosowany do wszystkich automatycznie eksportowanych udziałów Samba."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Wybierz tryb dostępu (Odczyt/Zapis lub Tylko odczyt), który będzie stosowany do wszystkich udostępnionych katalogów."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17708,7 +17708,7 @@ msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane do w
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Wybierz, czy ścieżki dźwiękowe Dolby TrueHD mają być przesyłane czy dekodowane."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Wybierz, czy chcesz używać protokołu IPv4, IPv6, czy obu. Jeśli oba są włączone, wybierz, który protokół ma być preferowany."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17846,7 +17846,7 @@ msgstr "Poważny/Klasyczny/Religijny/Historyczny/Dramat"
 msgid "Server down"
 msgstr "Serwer nie działa"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Serwer nie może wymuszać własnej listy blokowanych. Niektóre serwery mogą implementować własne czarne listy, aby blokować witryny z powodu kontroli rodzicielskiej, blokowania reklam itp."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -19838,7 +19838,7 @@ msgstr "Wydarzenia specjalne (Igrzyska olimpijskie, mistrzostwa świata itp.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Określ katalog, który ma być używany podczas uruchamiania Media Playera."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Określ suffix sieciowy DNS, który ma zostać zastosowany, gdy podana zostanie tylko nazwa hosta. Ułatwi to programowi rozpoznawania nazw DNS znalezienie żądanego hosta."
 
 msgid "Speed"
@@ -23664,7 +23664,7 @@ msgstr "Po włączeniu wyświetla numery kanałów na ekranie wyboru kanałów."
 msgid "When enabled, show status or error messages."
 msgstr "Po włączeniu pokaż komunikaty o stanie lub komunikaty o błędach."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Po włączeniu można określić własne serwery DNS dla tej karty zamiast używać globalnych ustawień DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23721,7 +23721,7 @@ msgstr "Po włączeniu timer zdalnego odbiornika staje się domyślnym timerem."
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Po włączeniu karta Wi-Fi pozostaje wyłącznie w trybie Wake-on-WiFi i nie będzie używana do łączenia z żadną siecią."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Po włączeniu karta sieciowa jest inicjalizowana i aktywowana podczas uruchamiania odbiornika."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."

@@ -199,17 +199,17 @@
 		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
-		<item level="0" text="Domain name" description="Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
-		<item level="0" text="DNS protocol mode" description="Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred.">config.usage.dnsMode</item>
+		<item level="0" text="Domain name" description="Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network.">config.usage.dnsSuffix</item>
+		<item level="0" text="DNS protocol mode" description="Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred.">config.usage.dnsMode</item>
 		<item level="0" text="Use DNS rotation" description="Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
-		<item level="0" text="DNS data source" description="Select the DNS server(s) that will be used to lookup the host name to resolve the IP address.">config.usage.dns</item>
+		<item level="0" text="DNS data source" description="Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses.">config.usage.dns</item>
 		<if conditional="config.usage.dns.value == 'dnscrypt'">
 			<item level="0" text="Use DNSCrypt servers" description="Only use DNS servers implementing the DNSCrypt protocol.">config.usage.DNSCryptProtocol</item>
 			<item level="0" text="Use DoH servers" description="Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol.">config.usage.DNSCryptDoH</item>
 			<item level="0" text="Use ODoH servers" description="Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request.">config.usage.DNSCryptODoH</item>
 			<item level="0" text="Use only DNSSEC servers" description="Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning.">config.usage.DNSCryptDNSSEC</item>
 			<item level="0" text="Use only no-log servers" description="Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data.">config.usage.DNSCryptNoLog</item>
-			<item level="0" text="Use only no-filter servers" description="Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons.">config.usage.DNSCryptNoFilter</item>
+			<item level="0" text="Use only no-filter servers" description="Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons.">config.usage.DNSCryptNoFilter</item>
 			<item level="0" text="Use DNS cache" description="Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic.">config.usage.DNSCryptCache</item>
 			<item level="0" text="Enable monitoring UI" description="Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem.">config.usage.DNSCryptUI</item>
 			<if conditional="config.usage.DNSCryptUI.value" indent="1">
@@ -606,7 +606,7 @@
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
 	<setup key="NetworkAdapter" title="Network Adapter Settings">
-		<item level="0" text="Enabled" description="When enabled, this adapter is initialized and activated at boot time.">self.cfgEnabled</item>
+		<item level="0" text="Enabled" description="When enabled, this adapter will be initialized and activated at boot time.">self.cfgEnabled</item>
 		<if conditional="self.adapter.isWlan">
 			<item level="1" text="WoW only" description="When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network." requires="wwol" conditional="not self.cfgEnabled.value">self.cfgWowOnly</item>
 		</if>
@@ -621,38 +621,69 @@
 				</if>
 			</if>
 			<item level="1" text="Network metric" description="Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic." conditional="self.hasMetric">self.cfgMetric</item> 
-			<item level="1" text="DNS override" description="When enabled, specify custom DNS settings for this adapter instead of the global DNS settings.">self.cfgDnsOverride</item>
+			<item level="1" text="DNS override" description="When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings.">self.cfgDnsOverride</item>
 			<if conditional="self.cfgDnsOverride.value">
 				<if conditional="self.cfgIpMode.value != 1">
-					<item level="0" text="Primary DNS (IPv4)" description="Enter the primary IPv4 DNS setting for this adapter.">self.cfgDns1v4</item>
-					<item level="0" text="Secondary DNS (IPv4)" description="Enter the secondary IPv4 DNS setting for this adapter. (Optional)">self.cfgDns2v4</item>
+					<item level="0" text="Primary DNS (IPv4)" description="Enter the primary IPv4 DNS server for this adapter.">self.cfgDns1v4</item>
+					<item level="0" text="Secondary DNS (IPv4)" description="Enter the secondary IPv4 DNS server for this adapter. (Optional)">self.cfgDns2v4</item>
 				</if>
 				<if conditional="self.cfgIpMode.value != 0">
-					<item level="0" text="Primary DNS (IPv6)" description="Enter the primary IPv6 DNS setting for this adapter. (Optional)">self.cfgDns1v6</item>
-					<item level="0" text="Secondary DNS (IPv6)" description="Enter the secondary IPv6 DNS setting for this adapter. (Optional)">self.cfgDns2v6</item>
+					<item level="0" text="Primary DNS (IPv6)" description="Enter the primary IPv6 DNS server for this adapter. (Optional)">self.cfgDns1v6</item>
+					<item level="0" text="Secondary DNS (IPv6)" description="Enter the secondary IPv6 DNS server for this adapter. (Optional)">self.cfgDns2v6</item>
 				</if>
 			</if>
 			<if conditional="not self.adapter.isWlan">
 				<item level="1" text="Wake-on-LAN" description="When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)." conditional="self.hasWakeOnLan">config.network.wol</item>
-				<item level="2" text="Link speed" description="Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity." conditional="self._hasLinkSpeedChoices">self.cfgLinkSpeed</item>
+				<item level="2" text="Link speed" description="Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity." conditional="self._hasLinkSpeedChoices">self.cfgLinkSpeed</item>
 			<else />
 				<item level="1" text="Wake-on-WiFi" description="When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)." requires="wwol" conditional="self.cfgEnabled.value">self.cfgWakeOnWiFi</item>
 			</if>
 		</if>
 	</setup>
+	<setup key="NetworkCredentials" title="Network Credentials">
+		<item level="0" text="Use guest login" description="When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below.">self.useGuest</item>
+		<if conditional="not self.useGuest.value">
+			<item level="0" text="Username" description="Enter the username to be used to access this host's shares.">self.username</item>
+			<item level="0" text="Password" description="Enter the password to be used to access this host's shares.">self.password</item>
+		</if>
+	</setup>
+	<setup key="NetworkMounts" title="Network Mount Settings">
+		<item level="0" text="Enabled" description="Enable or disable this network mount. Disabling the mount will not delete its definition.">self.enabled</item>
+		<item level="0" text="Protocol" description="Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares).">self.protocol</item>
+		<item level="0" text="Server" description="Enter the hostname or IP address of the network share's server.">self.server</item>
+		<item level="0" text="Remote path" description="Enter the remote share name (SMB) or exported path (NFS) on the server.">self.remotePath</item>
+		<item level="0" text="Local share" description="Enter the local directory name to be used as the local mount for the remote share.">self.shareName</item>
+		<item level="0" text="Mount mode" description="Select when, and how, the remote share will be mounted. For most purposes autofs is recommended.">self.mode</item>
+		<item level="0" text="Use as HDD replacement" description="When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available.">self.hddReplacement</item>
+		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read-Only, for this share mount.">self.accessMode</item>
+		<if conditional="self.protocol.value == 'nfs'">
+			<item level="0" text="NFS version" description="Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation.">self.nfsVersion</item>
+			<item level="0" text="Use NFS file locking" description="Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers.">self.nfsLocking</item>
+			<item level="0" text="Read block size" description="Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size.">self.nfsRsize</item>
+			<item level="0" text="Write block size" description="Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size.">self.nfsWsize</item>
+			<item level="0" text="Timeout" description="Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value.">self.nfsTimeo</item>
+			<item level="0" text="Soft mount" description="Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable.">self.nfsSoft</item>
+		<else />
+			<item level="0" text="Username" description="Enter the username to be used to access this host's shares if they require authentication credentials.">self.username</item>
+			<item level="0" text="Password" description="Enter the password to be used to access this host's shares if they require authentication credentials.">self.password</item>
+			<item level="0" text="SMB version" description="Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols.">self.smbVersion</item>
+			<item level="0" text="Character set" description="Select the character set (iocharset) to be used to match/translate remote filenames.">self.smbCharset</item>
+		</if>
+		<item level="0" text="Optional arguments" description="Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!">self.options</item>
+	</setup>
 	<setup key="NetworkNFS" title="NFS Server Settings" allowDefault="yes">
 		<item level="0" text="NFS threads" description="Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory.">self.nfsThreads</item>
 		<item level="0" text="Enable NFSv3" description="When enabled, allow usage of the NFS version 3 protocols.">self.nfsVers3</item>
 		<item level="0" text="Enable NFSv4" description="When enabled, allow usage of the NFS version 4 protocols.">self.nfsVers4</item>
-		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read Only, applied to all exported directories.">self.nfsAccessMode</item>
+		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read-Only, applied to all exported directories.">self.nfsAccessMode</item>
 		<item level="0" text="Allowed clients" description="Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access.">self.nfsClients</item>
 		<item level="0" text="Root squash" description="When enabled, map root to nobody (more secure). When disabled, full root access is available.">self.nfsRootSquash</item>
 	</setup>
 	<setup key="NetworkSamba" title="Samba Server Settings" allowDefault="yes">
 		<item level="0" text="Enable automatic shares" description="When enabled, allow each storage device detected to be automatically exported as a Samba share.">config.samba.enableAutoShare</item>
-		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
+		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
 		<item level="0" text="Allow guest access" description="When enabled, allow Samba network access without a password.">self.guest</item>
-		<item level="0" text="Workgroup name" description="Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)">self.workgroup</item>
+		<item level="0" text="Workgroup name" description="Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)">self.workgroup</item>
 	</setup>
 	<setup key="NetworkWiFi" title="Network Wi-Fi Settings">
 		<item level="0" text="Network name (SSID)" description="Select the network name (SSID) of the wireless network to which the receiver should connect.">self.cfgSsid</item>
