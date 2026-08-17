@@ -894,18 +894,6 @@ class NetworkWiFi(Setup):
 		(Encryption.WPA, "WPA"),
 		(Encryption.WPA2, "WPA2"),
 	]
-	RANK_LABELS = (
-		_("1st (Highest)"),
-		_("2nd"),
-		_("3rd"),
-		_("4th"),
-		_("5th"),
-		_("6th"),
-		_("7th"),
-		_("8th"),
-		_("9th"),
-		_("10th (Lowest)"),
-	)
 
 	def __init__(self, session, conn: Connection, adapter: Adapter):
 		self.conn = conn
@@ -922,6 +910,12 @@ class NetworkWiFi(Setup):
 		self.session.open(NetworkInformation, self.adapter, self.conn)
 
 	def buildConfigObjects(self):
+		def rankLabel(rank, total):
+			if rank == 1 and total > 1:
+				return _("1. (Highest)")
+			if rank == total and total > 1:
+				return _("%s. (Lowest)") % rank
+			return f"{rank}."
 		conn = self.conn
 		adapter = self.adapter
 		self.cfgEnabled = NoSave(ConfigYesNo(default=conn.enabled))
@@ -932,7 +926,7 @@ class NetworkWiFi(Setup):
 		if self.hasMultiplePriorities:
 			self.wifiConnsSorted = sorted(wifiConnections, key=lambda wifiConn: wifiConn.priority, reverse=True)
 			currentRank = next((idx + 1 for idx, x in enumerate(self.wifiConnsSorted) if x is conn), 1)
-			rankChoices = [(x + 1, self.RANK_LABELS[x] if x < len(self.RANK_LABELS) else f"{x + 1}.") for x in range(len(wifiConnections))]
+			rankChoices = [(x + 1, rankLabel(x + 1, len(wifiConnections))) for x in range(len(wifiConnections))]
 			self.cfgPriority = NoSave(ConfigSelection(choices=rankChoices, default=currentRank))
 		else:
 			self.wifiConnsSorted = []
@@ -1315,7 +1309,7 @@ class NetworkWiFiActivator(Screen):
 		self["key_red"].setText(_("Close"))
 
 	def setStatus(self, text: str):
-		self["status"].setText(_("%s  (%s)\n\n%s") % (self.ssid, self.adapter.name, text))
+		self["status"].setText(f"{self.ssid}  ({self.adapter.name})\n\n{text}")
 
 	def start(self):
 		def connectedCb(retval: int):

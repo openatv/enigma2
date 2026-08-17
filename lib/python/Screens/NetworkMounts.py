@@ -330,8 +330,8 @@ class NetworkMountSetup(Setup):
 		self.password = NoSave(ConfigPassword(default=default("password")))
 		self.smbVersion = NoSave(ConfigSelection(default=default("smbVersion", "auto") or "auto", choices=[
 			("auto", _("Automatic")),
-			("3.0", _("SMB3")),
-			("2.0", _("SMB2")),
+			("3.0", "SMB3"),
+			("2.0", "SMB2"),
 			("1.0", _("Legacy (SMB1)"))
 		]))
 		self.smbCharset = NoSave(ConfigSelection(default=default("smbCharset", "utf8") or "utf8", choices=[

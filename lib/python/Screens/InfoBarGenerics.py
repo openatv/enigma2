@@ -4266,7 +4266,7 @@ class InfoBarAspectSelection:
 			] + aspectSwitchList + [
 				(_("4:3 Letterbox"), "0"),
 				(_("4:3 PanScan"), "1"),
-				(_("16:9"), "2"),
+				("16:9", "2"),
 				(_("16:9 Always"), "3"),
 				(_("16:10 Letterbox"), "4"),
 				(_("16:10 PanScan"), "5"),

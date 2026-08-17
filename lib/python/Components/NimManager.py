@@ -1982,12 +1982,12 @@ def InitNimManager(nimmgr, update_slots=None):
 		(3606, _("Selecting satellites 2 (USALS)"), 1)
 	]
 	advanced_lnb_choices = [("0", _("Not configured"))] + [(str(y), "LNB " + str(y)) for y in range(1, (maxFixedLnbPositions + 1))]
-	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
+	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", "13 V"), ("18V", "18 V")]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
-	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))]
-	advanced_lnb_allsat_diseqcmode_choices = [("1_2", _("1.2"))]
-	advanced_lnb_satposdepends_diseqcmode_choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1"))]
-	advanced_lnb_diseqcmode_choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))]
+	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", "A"), ("B", "B")]
+	advanced_lnb_allsat_diseqcmode_choices = [("1_2", "1.2")]
+	advanced_lnb_satposdepends_diseqcmode_choices = [("none", _("None")), ("1_0", "1.0"), ("1_1", "1.1")]
+	advanced_lnb_diseqcmode_choices = [("none", _("None")), ("1_0", "1.0"), ("1_1", "1.1"), ("1_2", "1.2")]
 	advanced_lnb_commandOrder1_0_choices = [("ct", "DiSEqC 1.0, toneburst"), ("tc", "toneburst, DiSEqC 1.0")]
 	advanced_lnb_commandOrder_choices = [
 		("ct", "DiSEqC 1.0, toneburst"),
@@ -1999,9 +1999,9 @@ def InitNimManager(nimmgr, update_slots=None):
 	]
 	advanced_lnb_diseqc_repeat_choices = [
 		("none", _("None")),
-		("one", _("One")),
-		("two", _("Two")),
-		("three", _("Three"))
+		("one", "1"),
+		("two", "2"),
+		("three", "3")
 	]
 	advanced_lnb_fast_turning_btime = mktime(datetime(1970, 1, 1, 7, 0).timetuple())
 	advanced_lnb_fast_turning_etime = mktime(datetime(1970, 1, 1, 19, 0).timetuple())
