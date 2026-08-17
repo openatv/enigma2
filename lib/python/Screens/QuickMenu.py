@@ -22,7 +22,6 @@ from Tools.LoadPixmap import LoadPixmap
 MODULE_NAME = __name__.split(".")[-1]
 
 AUDIOSYNC = isPluginInstalled("AudioSync")
-NETWORKBROWSER = isPluginInstalled("NetworkBrowser")
 POSSETUP = isPluginInstalled("PositionerSetup")
 SATFINDER = isPluginInstalled("Satfinder")
 VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/pep_apply")
@@ -329,18 +328,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.setSubList()
 
 	def subMenuMount(self):  # Mount Settings Menu.
-		def mountManager():
-			from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
-			self.session.open(AutoMountManager, None, resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser"))
-
-		def networkBrowser():
-			from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
-			self.session.open(NetworkBrowser, None, resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser"))
-
 		self.subList = []
-		if NETWORKBROWSER:
-			self.subList.append(self.quickSubMenuEntryComponent(_("Mount Manager"), _("Manage network mounts"), _("Setup your network mounts"), callback=mountManager))
-			self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=networkBrowser))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Mounts Overview"), _("Manage network mounts"), _("Setup your network mounts"), screen="NetworkMounts", screenName="NetworkMountsOverview"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), screen="NetworkMounts", screenName="NetworkShares"))
 		self.setSubList()
 
 	def subMenuNetwork(self):  # Network Menu.

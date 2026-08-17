@@ -75,6 +75,8 @@ apiZydas = "zydas"
 # Central access point for all network configuration.
 class NetworkManager:
 	ADAPTER_BLACKLIST = frozenset((
+		"atml0",
+		"bnep0",
 		"ip6_vti0",
 		"ip6tnl0",
 		"ip_vti0",
@@ -85,6 +87,7 @@ class NetworkManager:
 		"tap0",
 		"tun0",
 		"tunl0",
+		"usb0",
 		"wg0",
 		"wifi0",
 		"wmaster0"
