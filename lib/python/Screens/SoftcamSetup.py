@@ -123,14 +123,14 @@ class CardserverSetup(CamSetupCommon):
 		self.showProcess(False)
 		self.camctrl.restart(self.restartDone)
 
-	def restartDone(self):
+	def restartDone(self, exitCode=None):
 		if self.oldServiceRef:
 			self.session.nav.playService(self.oldServiceRef, adjust=False)
 		self.saveAll()
 		updateSysSoftCam()
 		Processing.instance.hideProgress()
 
-	def saveDone(self):
+	def saveDone(self, exitCode=None):
 		self.restartDone()
 		self.close()
 
@@ -174,11 +174,11 @@ class SoftcamSetup(CamSetupCommon):
 		self.showProcess(True)
 		self.camctrl.restart(self.restartDone)
 
-	def saveDone(self):
+	def saveDone(self, exitCode=None):
 		self.restartDone()
 		self.close()
 
-	def restartDone(self):
+	def restartDone(self, exitCode=None):
 		if self.oldServiceRef:
 			self.session.nav.playService(self.oldServiceRef, adjust=False)
 		self.saveAll()
