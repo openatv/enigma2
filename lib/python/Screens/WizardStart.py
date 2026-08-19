@@ -35,7 +35,7 @@ class WizardStart(Wizard, ShowRemoteControl):
 		self.xmlfile = ["startwizard.xml"]
 		Wizard.__init__(self, session, showSteps=False)
 		ShowRemoteControl.__init__(self)
-		self.skinName.insert(0, "StartWizard")
+		self.skinName = ["WizardStart", "StartWizard"]
 		self.deviceData = {}
 		self.mountData = None
 		self.swapDevice = None

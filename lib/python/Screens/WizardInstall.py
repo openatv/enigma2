@@ -33,7 +33,7 @@ class WizardInstall(ConfigListScreen, Screen):
 
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, [])
-		self.skinName.insert(0, "InstallWizard")
+		self.skinName = ["WizardInstall", "InstallWizard"]
 		self.mode = args
 		match args:
 			case self.STATE_UPDATE:
@@ -123,7 +123,7 @@ class WizardInstallSmallBox(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Small Box Preparation"))
-		self.skinName.insert(0, "InstallWizardSmallBox")
+		self.skinName = ["WizardInstallSmallBox", "InstallWizardSmallBox"]
 		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
 			"cancel": (self.close, _("Close the screen")),
 			"select": (self.close, _("Close the screen"))

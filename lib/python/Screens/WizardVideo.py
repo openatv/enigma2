@@ -11,7 +11,7 @@ class WizardVideo(Wizard, ShowRemoteControl):
 		self.xmlfile = resolveFilename(SCOPE_SKINS, "videowizard.xml")
 		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
-		self.skinName.insert(0, "VideoWizard")
+		self.skinName = ["WizardVideo", "VideoWizard"]
 		self.setTitle(_("Video Wizard"))
 		self.hasDVI = BoxInfo.getItem("dvi", False)
 		self.hasJack = BoxInfo.getItem("avjack", False)
