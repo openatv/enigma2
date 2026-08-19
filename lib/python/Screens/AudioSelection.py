@@ -158,7 +158,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
-				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
+				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k", "vuduo4klite"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("force_ac3", _("Convert to AC3")), ("force_dts", _("Convert to DTS")), ("use_hdmi_caps", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
 				else:
@@ -182,7 +182,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 					choice_list = [("use_hdmi_caps", _("Controlled by HDMI")), ("force_ac3", _("Convert to AC3")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI")), ("force_ddp", _("Force AC3plus"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
-				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
+				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k", "vuduo4klite"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("force_ac3", _("Convert to AC3")), ("multichannel", _("Convert to multi-channel PCM")), ("force_dts", _("Convert to DTS"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
 				elif BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo"):
@@ -465,7 +465,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm820", "dm520", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
+		if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm820", "dm520", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k", "vuduo4klite"):
 			config.av.downmix_aac.setValue(downmix.value)
 		else:
 			if downmix.value:
