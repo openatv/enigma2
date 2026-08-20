@@ -2404,6 +2404,7 @@ def InitUsageConfig():
 	config.streaming.stream_ait = ConfigYesNo(default=True)
 	config.streaming.stream_sdtbat = ConfigYesNo(default=False)
 	config.streaming.authentication = ConfigYesNo(default=False)
+	config.streaming.satip_add_extra_pids = ConfigYesNo(default=True)
 
 	config.pluginbrowser = ConfigSubsection()
 	config.pluginbrowser.po = ConfigYesNo(default=False)
