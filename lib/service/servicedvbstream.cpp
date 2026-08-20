@@ -393,13 +393,21 @@ int eDVBServiceStream::doRecord()
 		if (program.textPid != -1)
 			pids_to_record.insert(program.textPid); // Videotext
 
-		if (m_stream_ecm)
+		if (m_stream_ecm || !program.caids.empty())
 		{
 			for (std::list<eDVBServicePMTHandler::program::capid_pair>::const_iterator i(program.caids.begin());
 						i != program.caids.end(); ++i)
 			{
-				if (i->capid >= 0) pids_to_record.insert(i->capid);
+				if (i->capid >= 0)
+				{
+					pids_to_record.insert(i->capid);
+					eDebug("[eDVBServiceStream] ECM PID added for stream: %04x (CAID %04x)", i->capid, i->caid);
+				}
 			}
+			/* Also include CAT PID (0x0001) and EMM PID 5677 (0x162d) */
+			pids_to_record.insert(0x0001);
+			pids_to_record.insert(5677);
+			eDebug("[eDVBServiceStream] CAT PID (0x0001) and EMM PID 5677 (0x162d) added for stream");
 		}
 
 		if (m_stream_ait)

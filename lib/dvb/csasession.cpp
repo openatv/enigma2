@@ -167,8 +167,6 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 					setActive(true);
 				}
 			}
-
-			return;
 		}
 	}
 

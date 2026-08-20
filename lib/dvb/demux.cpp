@@ -288,6 +288,12 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
 	setBufferSize(8192*8);
 
+	uint16_t add_pid = mask.pid;
+	if (::ioctl(fd, DMX_ADD_PID, &add_pid) >= 0)
+	{
+		eDebug("[eDVBSectionReader] DMX_ADD_PID pid=%d (0x%04x)", mask.pid, mask.pid);
+	}
+
 	res = ::ioctl(fd, DMX_SET_FILTER, &sct);
 	if (!res)
 	{

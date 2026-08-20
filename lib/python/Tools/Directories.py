@@ -285,7 +285,7 @@ def fileUpdateLine(filename, conditionValue, replacementValue, create=False, sou
 def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
 	lines = None
 	try:
-		with open(filename) as fd:
+		with open(filename, encoding="utf-8", errors="replace") as fd:
 			lines = fd.read().splitlines()
 		msg = "Read"
 	except OSError as err:

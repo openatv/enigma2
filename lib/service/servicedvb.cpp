@@ -1334,6 +1334,80 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_timeshift_enabled)
 			updateTimeshiftPids();
 
+		/* Register CAT (0x0001), EMM PID 5677 (0x162d), and ECM section readers for SAT>IP / vtuner unconditionally */
+		ePtr<iDVBDemux> live_demux;
+		if (m_service_handler.getDataDemux(live_demux) == 0 && live_demux)
+		{
+			if (!m_cat_reader && live_demux->createSectionReader(eApp, m_cat_reader) == 0 && m_cat_reader)
+			{
+				eDVBSectionFilterMask mask = {};
+				mask.pid = 0x0001;
+				mask.data[0] = 0x01;
+				mask.mask[0] = 0xFF;
+				m_cat_reader->start(mask);
+				eDebug("[eDVBServicePlay] Persistent CAT section reader started on PID 0x0001");
+			}
+			if (!m_emm_reader && live_demux->createSectionReader(eApp, m_emm_reader) == 0 && m_emm_reader)
+			{
+				eDVBSectionFilterMask mask = {};
+				mask.pid = 5677;
+				mask.data[0] = 0x80;
+				mask.mask[0] = 0x80;
+				m_emm_reader->start(mask);
+				eDebug("[eDVBServicePlay] Persistent EMM section reader started on PID 5677 (0x162d)");
+			}
+			if (!m_pid17_reader && live_demux->createSectionReader(eApp, m_pid17_reader) == 0 && m_pid17_reader)
+			{
+				eDVBSectionFilterMask mask = {};
+				mask.pid = 17;
+				mask.data[0] = 0x00;
+				mask.mask[0] = 0x00;
+				m_pid17_reader->start(mask);
+				eDebug("[eDVBServicePlay] Persistent section reader started on PID 17 (0x0011)");
+			}
+			if (!m_pid20_reader && live_demux->createSectionReader(eApp, m_pid20_reader) == 0 && m_pid20_reader)
+			{
+				eDVBSectionFilterMask mask = {};
+				mask.pid = 20;
+				mask.data[0] = 0x00;
+				mask.mask[0] = 0x00;
+				m_pid20_reader->start(mask);
+				eDebug("[eDVBServicePlay] Persistent section reader started on PID 20 (0x0014)");
+			}
+
+			eDVBServicePMTHandler::program program;
+			if (m_service_handler.getProgramInfo(program) == 0)
+			{
+				for (const auto& ca : program.caids)
+				{
+					int ecm_pid = ca.capid;
+					if (ecm_pid > 0 && ecm_pid < 0x1FFF)
+					{
+						bool exists = false;
+						for (int existing_pid : m_ecm_pids)
+						{
+							if (existing_pid == ecm_pid) { exists = true; break; }
+						}
+						if (!exists)
+						{
+							ePtr<iDVBSectionReader> ecm_reader;
+							if (live_demux->createSectionReader(eApp, ecm_reader) == 0 && ecm_reader)
+							{
+								eDVBSectionFilterMask mask = {};
+								mask.pid = ecm_pid;
+								mask.data[0] = 0x80;
+								mask.mask[0] = 0xFE;
+								ecm_reader->start(mask);
+								m_ecm_readers.push_back(ecm_reader);
+								m_ecm_pids.push_back(ecm_pid);
+								eDebug("[eDVBServicePlay] Persistent ECM section reader started on PID %d (0x%04x)", ecm_pid, ecm_pid);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		// Re-tuned during an active recovery: let the recovery state machine keep control
 		// and resume playback at the preserved delay. Do not resync the decoder here.
 		if (m_stream_corruption_detected)
@@ -1342,16 +1416,20 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_csa_session && !m_csa_session->isEcmAnalyzed())
 		{
 			eDVBServicePMTHandler::program program;
-			if (m_service_handler.getProgramInfo(program) == 0 && !program.caids.empty())
+			if (m_service_handler.getProgramInfo(program) == 0)
 			{
-				uint16_t ecm_pid = program.caids.front().capid;
-				uint16_t caid = program.caids.front().caid;
-				ePtr<iDVBDemux> demux;
-				if (m_service_handler.getDataDemux(demux) == 0 && demux)
+				for (const auto& ca : program.caids)
 				{
-					eDebug("[eDVBServicePlay] Requesting ECM monitor: PID=%d, CAID=0x%04X", ecm_pid, caid);
-					m_csa_session->startECMMonitor(demux, ecm_pid, caid);
-					// Note: If CSA-ALT was cached, session is now active and onSessionActivated() has already been called!
+					if (ca.capid > 0 && ca.capid < 0x1FFF)
+					{
+						ePtr<iDVBDemux> demux;
+						if (m_service_handler.getDataDemux(demux) == 0 && demux)
+						{
+							eDebug("[eDVBServicePlay] Requesting ECM monitor: PID=%d, CAID=0x%04X", ca.capid, ca.caid);
+							m_csa_session->startECMMonitor(demux, ca.capid, ca.caid);
+						}
+						break;
+					}
 				}
 			}
 		}
