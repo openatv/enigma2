@@ -300,7 +300,7 @@ self.condition = nimmanager.somethingConnected() and any(slot.canBeCompatible("D
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
 		<text value="Do you want to install a channel list?" />
 		<displaytext value="Do you want to install a channel list?" />
-		<config screen="WizardInstall" module="WizardInstal" args="1" type="ConfigList" />
+		<config screen="WizardInstall" module="WizardInstall" args="1" type="ConfigList" />
 	</step>
 
 	<step id="scanquestion">
