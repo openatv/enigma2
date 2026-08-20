@@ -11,6 +11,7 @@
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/pmtparse.h>
 #include <lib/python/python.h>
+#include <dvbsi++/ca_section.h>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -75,6 +76,7 @@ class eDVBServicePMTHandler: public eDVBPMTParser
 	ePtr<eDVBScan> m_dvb_scan; // for sdt scan
 
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
+	eAUTable<eTable<ConditionalAccessSection> > m_CAT;
 	eAUTable<eTable<ApplicationInformationSection> > m_AIT;
 	eAUTable<eTable<OCSection> > m_OC;
 
@@ -94,6 +96,7 @@ class eDVBServicePMTHandler: public eDVBPMTParser
 
 	void PMTready(int error);
 	void PATready(int error);
+	void CATready(int error);
 	void AITready(int error);
 	void OCready(int error);
 

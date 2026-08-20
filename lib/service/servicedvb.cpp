@@ -1334,37 +1334,10 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_timeshift_enabled)
 			updateTimeshiftPids();
 
-		/* Register CAT (0x0001), EMM PID 5677 (0x162d), and ECM section readers for SAT>IP / vtuner unconditionally */
+		/* Register EMM PIDs (parsed dynamically from CAT table) and ECM PIDs (parsed dynamically from PMT table) for SAT>IP / vtuner demux filtering */
 		ePtr<iDVBDemux> live_demux;
 		if (m_service_handler.getDataDemux(live_demux) == 0 && live_demux)
 		{
-			if (!m_cat_reader && live_demux->createSectionReader(eApp, m_cat_reader) == 0 && m_cat_reader)
-			{
-				eDVBSectionFilterMask mask = {};
-				mask.pid = 0x0001;
-				mask.data[0] = 0x01;
-				mask.mask[0] = 0xFF;
-				m_cat_reader->start(mask);
-				eDebug("[eDVBServicePlay] Persistent CAT section reader started on PID 0x0001");
-			}
-			if (!m_emm_reader && live_demux->createSectionReader(eApp, m_emm_reader) == 0 && m_emm_reader)
-			{
-				eDVBSectionFilterMask mask = {};
-				mask.pid = 5677;
-				mask.data[0] = 0x80;
-				mask.mask[0] = 0x80;
-				m_emm_reader->start(mask);
-				eDebug("[eDVBServicePlay] Persistent EMM section reader started on PID 5677 (0x162d)");
-			}
-			if (!m_pid17_reader && live_demux->createSectionReader(eApp, m_pid17_reader) == 0 && m_pid17_reader)
-			{
-				eDVBSectionFilterMask mask = {};
-				mask.pid = 17;
-				mask.data[0] = 0x00;
-				mask.mask[0] = 0x00;
-				m_pid17_reader->start(mask);
-				eDebug("[eDVBServicePlay] Persistent section reader started on PID 17 (0x0011)");
-			}
 			if (!m_pid20_reader && live_demux->createSectionReader(eApp, m_pid20_reader) == 0 && m_pid20_reader)
 			{
 				eDVBSectionFilterMask mask = {};
@@ -1378,6 +1351,35 @@ void eDVBServicePlay::serviceEvent(int event)
 			eDVBServicePMTHandler::program program;
 			if (m_service_handler.getProgramInfo(program) == 0)
 			{
+				// Dynamically register EMM PIDs parsed from CAT table (e.g. 5677 / 0x162D)
+				for (int emm_pid : program.emmPids)
+				{
+					if (emm_pid > 0 && emm_pid < 0x1FFF)
+					{
+						bool exists = false;
+						for (int existing_pid : m_emm_pids)
+						{
+							if (existing_pid == emm_pid) { exists = true; break; }
+						}
+						if (!exists)
+						{
+							ePtr<iDVBSectionReader> emm_reader;
+							if (live_demux->createSectionReader(eApp, emm_reader) == 0 && emm_reader)
+							{
+								eDVBSectionFilterMask mask = {};
+								mask.pid = emm_pid;
+								mask.data[0] = 0x80;
+								mask.mask[0] = 0x80;
+								emm_reader->start(mask);
+								m_emm_readers.push_back(emm_reader);
+								m_emm_pids.push_back(emm_pid);
+								eDebug("[eDVBServicePlay] Dynamic EMM section reader started from CAT on PID %d (0x%04x)", emm_pid, emm_pid);
+							}
+						}
+					}
+				}
+
+				// Dynamically register ECM PIDs parsed from PMT table (e.g. 1030 / 1042)
 				for (const auto& ca : program.caids)
 				{
 					int ecm_pid = ca.capid;
@@ -1400,7 +1402,7 @@ void eDVBServicePlay::serviceEvent(int event)
 								ecm_reader->start(mask);
 								m_ecm_readers.push_back(ecm_reader);
 								m_ecm_pids.push_back(ecm_pid);
-								eDebug("[eDVBServicePlay] Persistent ECM section reader started on PID %d (0x%04x)", ecm_pid, ecm_pid);
+								eDebug("[eDVBServicePlay] Dynamic ECM section reader started from PMT on PID %d (0x%04x)", ecm_pid, ecm_pid);
 							}
 						}
 					}

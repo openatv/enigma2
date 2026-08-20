@@ -404,10 +404,14 @@ int eDVBServiceStream::doRecord()
 					eDebug("[eDVBServiceStream] ECM PID added for stream: %04x (CAID %04x)", i->capid, i->caid);
 				}
 			}
-			/* Also include CAT PID (0x0001) and EMM PID 5677 (0x162d) */
-			pids_to_record.insert(0x0001);
-			pids_to_record.insert(5677);
-			eDebug("[eDVBServiceStream] CAT PID (0x0001) and EMM PID 5677 (0x162d) added for stream");
+			for (std::vector<int>::const_iterator i(program.emmPids.begin()); i != program.emmPids.end(); ++i)
+			{
+				if (*i >= 0)
+				{
+					pids_to_record.insert(*i);
+					eDebug("[eDVBServiceStream] Dynamic EMM PID from CAT added for stream: %04x", *i);
+				}
+			}
 		}
 
 		if (m_stream_ait)

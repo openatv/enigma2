@@ -52,6 +52,7 @@ eDVBServicePMTHandler::eDVBServicePMTHandler()
 
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+	CONNECT(m_CAT.tableReady, eDVBServicePMTHandler::CATready);
 	CONNECT(m_AIT.tableReady, eDVBServicePMTHandler::AITready);
 	CONNECT(m_OC.tableReady, eDVBServicePMTHandler::OCready);
 	CONNECT(m_no_pat_entry_delay->timeout, eDVBServicePMTHandler::sendEventNoPatEntry);
@@ -118,6 +119,8 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 					m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
 				else
 					m_PMT.begin(eApp, eDVBPMTSpec(m_pmt_pid, m_reference.getServiceID().get()), m_demux);
+
+				m_CAT.begin(eApp, eDVBCATSpec(), m_demux);
 			}
 
 			serviceEvent(eventTuned);
@@ -287,6 +290,50 @@ void eDVBServicePMTHandler::PATready(int)
 		}
 	} else
 		serviceEvent(eventNoPAT);
+}
+
+void eDVBServicePMTHandler::CATready(int error)
+{
+	if (error)
+	{
+		if (eDVBServicePMTHandler::m_debug)
+			eDebug("[eDVBServicePMTHandler] CATready error %d", error);
+		return;
+	}
+
+	ePtr<eTable<ConditionalAccessSection> > ptr;
+	if (!m_CAT.getCurrent(ptr))
+	{
+		if (eDVBServicePMTHandler::m_debug)
+			eDebug("[eDVBServicePMTHandler] CATready parsed CAT table!");
+		for (std::vector<ConditionalAccessSection*>::const_iterator i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
+		{
+			const ConditionalAccessSection &cat = **i;
+			for (DescriptorConstIterator desc = cat.getDescriptors()->begin(); desc != cat.getDescriptors()->end(); ++desc)
+			{
+				if ((*desc)->getTag() == CA_DESCRIPTOR)
+				{
+					CaDescriptor *ca = (CaDescriptor*)(*desc);
+					uint16_t caid = ca->getCaSystemId();
+					uint16_t emm_pid = ca->getCaPid();
+					eDebug("[eDVBServicePMTHandler] CAT CaDescriptor: CAID 0x%04X, EMM PID %d (0x%04X)", caid, emm_pid, emm_pid);
+					bool exists = false;
+					for (int p : m_cached_program.emmPids)
+					{
+						if (p == emm_pid) { exists = true; break; }
+					}
+					if (!exists && emm_pid > 0 && emm_pid < 0x1FFF)
+					{
+						m_cached_program.emmPids.push_back(emm_pid);
+					}
+				}
+			}
+		}
+		if (!m_cached_program.emmPids.empty())
+		{
+			serviceEvent(eventNewProgramInfo);
+		}
+	}
 }
 
 static void eraseHbbTVApplications(HbbTVApplicationInfoList  *applications)
@@ -1327,6 +1374,7 @@ void eDVBServicePMTHandler::free()
 	m_OC.stop();
 	m_AIT.stop();
 	m_PMT.stop();
+	m_CAT.stop();
 	m_PAT.stop();
 	m_service = 0;
 	m_channel = 0;
