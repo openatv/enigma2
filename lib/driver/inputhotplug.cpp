@@ -1,5 +1,8 @@
 #include <sys/socket.h>
+#include <sys/ioctl.h>
 #include <linux/netlink.h>
+#include <linux/input.h>
+#include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
@@ -14,6 +17,28 @@
 #ifndef NETLINK_KOBJECT_UEVENT
 #define NETLINK_KOBJECT_UEVENT 15
 #endif
+
+namespace
+{
+void configureVuplusBleRcuRepeat(const char *devpath)
+{
+	int fd = open(devpath, O_RDWR | O_NONBLOCK);
+	if (fd < 0)
+		return;
+
+	char name[256] = {};
+	if (ioctl(fd, EVIOCGNAME(sizeof(name)), name) >= 0 && !strcmp(name, "VUPLUS-BLE-RCU"))
+	{
+		unsigned int repeat[2] = { 700, 100 };
+		if (ioctl(fd, EVIOCSREP, repeat) < 0)
+			eDebug("[eInputHotplug] Failed to configure repeat for '%s': %s", name, strerror(errno));
+		else
+			eDebug("[eInputHotplug] Configured '%s' repeat: delay=%u ms, period=%u ms", name, repeat[0], repeat[1]);
+	}
+
+	close(fd);
+}
+}
 
 eInputHotplug *eInputHotplug::instance;
 
@@ -120,7 +145,10 @@ void eInputHotplug::parseUevent(const char *buf, ssize_t len)
 	eDebug("[eInputHotplug] %s %s", action, devpath);
 
 	if (!strcmp(action, "add"))
+	{
 		addInputDevice(devpath);
+		configureVuplusBleRcuRepeat(devpath);
+	}
 	else if (!strcmp(action, "remove"))
 		removeInputDevice(devpath);
 
