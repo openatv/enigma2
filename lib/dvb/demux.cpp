@@ -12,6 +12,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/base/cfile.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/esection.h>
@@ -287,6 +288,15 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	memcpy(sct.filter.mask, mask.mask, DMX_FILTER_SIZE);
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
 	setBufferSize(8192*8);
+
+	if (eSimpleConfig::getBool("config.streaming.satip_add_extra_pids", true))
+	{
+		uint16_t add_pid = mask.pid;
+		if (::ioctl(fd, DMX_ADD_PID, &add_pid) >= 0)
+		{
+			eDebug("[eDVBSectionReader] DMX_ADD_PID pid=%d (0x%04x)", mask.pid, mask.pid);
+		}
+	}
 
 	res = ::ioctl(fd, DMX_SET_FILTER, &sct);
 	if (!res)
