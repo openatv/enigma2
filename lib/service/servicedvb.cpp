@@ -1833,6 +1833,27 @@ RESULT eDVBServicePlay::stop()
 
 	cleanupSoftwareDescrambling();
 
+	if (m_pid20_reader)
+	{
+		m_pid20_reader->stop();
+		m_pid20_reader = nullptr;
+	}
+	for (auto& reader : m_ecm_readers)
+	{
+		if (reader)
+			reader->stop();
+	}
+	m_ecm_readers.clear();
+	m_ecm_pids.clear();
+
+	for (auto& reader : m_emm_readers)
+	{
+		if (reader)
+			reader->stop();
+	}
+	m_emm_readers.clear();
+	m_emm_pids.clear();
+
 	m_service_handler_timeshift.free();
 	m_service_handler.free();
 
