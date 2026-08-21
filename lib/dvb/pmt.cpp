@@ -1209,6 +1209,9 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 	RESULT res=0;
 	m_reference = ref;
 	m_reference.name = ""; // clear name, we don't need it
+	m_pmt_ready = false;
+	m_have_cached_program = false;
+	m_last_channel_state = -1;
 
 	/*
 		* We need to m_use decode demux only when we are descrambling (demuxers > ca demuxers)
