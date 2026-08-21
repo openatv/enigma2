@@ -126,7 +126,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			int ret = 0;
 			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 
-			eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] lnb %d found", idx);
+			eDebug("[eDVBSatelliteEquipmentControl] lnb %d found for slot_id %d (slot_mask %d)", idx, slot_id, lnb_param.m_slot_mask);
 
 			old_satcount = satcount;
 			satcount += lnb_param.m_satellites.size();
@@ -135,9 +135,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			ii = lnb_param.m_satellites.equal_range(sat.orbital_position);
 
 			std::multimap<int, eDVBSatelliteSwitchParameters>::iterator sit;
-//				lnb_param.m_satellites.find(sat.orbital_position);
 
-			eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] %zu option(s) at position %d", lnb_param.m_satellites.count(sat.orbital_position), sat.orbital_position);
+			eDebug("[eDVBSatelliteEquipmentControl] %zu option(s) at position %d (total lnb sats %zu)", lnb_param.m_satellites.count(sat.orbital_position), sat.orbital_position, lnb_param.m_satellites.size());
 
 			if (lnb_param.m_satellites.count(sat.orbital_position))
 			{
