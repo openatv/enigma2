@@ -275,7 +275,10 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 			eDebug("[eDVBCSASession] ECM analyzed: Not CSA-ALT, hardware descrambling will be used");
 		}
 
-		stopECMMonitor();
+		if (!eSimpleConfig::getBool("config.streaming.satip_add_extra_pids", true))
+		{
+			stopECMMonitor();
+		}
 	}
 }
 
