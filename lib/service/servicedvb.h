@@ -236,6 +236,14 @@ protected:
 	ePtr<eDVBSoftDecoder> m_soft_decoder;
 	bool m_soft_decoder_video_info_valid = false;  // Track if video info is available from SoftDecoder
 
+	// Persistent section readers for Extra PIDs (e.g. PID 20), EMM (from CAT), and ECM (from PMT)
+	std::vector<ePtr<iDVBSectionReader>> m_extra_pids_readers;
+	std::vector<int> m_extra_pids;
+	std::vector<ePtr<iDVBSectionReader>> m_emm_readers;
+	std::vector<int> m_emm_pids;
+	std::vector<ePtr<iDVBSectionReader>> m_ecm_readers;
+	std::vector<int> m_ecm_pids;
+
 	int m_is_primary;
 	int m_decoder_index;
 	int m_have_video_pid;

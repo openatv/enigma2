@@ -82,6 +82,7 @@ public:
 		std::vector<subtitleStream> subtitleStreams;
 		int defaultSubtitleStream;
 		std::list<capid_pair> caids;
+		std::vector<int> emmPids;
 		int pcrPid;
 		int pmtPid;
 		int textPid;

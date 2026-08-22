@@ -1148,6 +1148,39 @@ PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
 	return 0;
 }
 
+bool eDVBCIInterfaces::isCAIDSupported(uint16_t caid)
+{
+	singleLock s(m_slot_lock);
+	bool has_ci_module = false;
+	for (eSmartPtrList<eDVBCISlot>::iterator i(m_slots.begin()); i != m_slots.end(); ++i)
+	{
+		eDVBCICAManagerSession *ca_manager = i->getCAManager();
+		if (ca_manager)
+		{
+			const std::vector<uint16_t> &ci_caids = ca_manager->getCAIDs();
+			if (!ci_caids.empty())
+			{
+				has_ci_module = true;
+				for (uint16_t c : ci_caids)
+				{
+					if (c == caid)
+						return true;
+				}
+			}
+		}
+		if (!i->possible_caids.empty())
+		{
+			has_ci_module = true;
+			if (i->possible_caids.find(caid) != i->possible_caids.end())
+				return true;
+		}
+	}
+	// Fallback: If no CI module is plugged in or reporting CAIDs, allow all CAIDs
+	if (!has_ci_module)
+		return true;
+	return false;
+}
+
 int eDVBCIInterfaces::setCIEnabled(int slotid, bool enabled)
 {
 	eDVBCISlot *slot = getSlot(slotid);

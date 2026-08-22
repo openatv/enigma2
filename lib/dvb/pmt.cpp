@@ -52,6 +52,7 @@ eDVBServicePMTHandler::eDVBServicePMTHandler()
 
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+	CONNECT(m_CAT.tableReady, eDVBServicePMTHandler::CATready);
 	CONNECT(m_AIT.tableReady, eDVBServicePMTHandler::AITready);
 	CONNECT(m_OC.tableReady, eDVBServicePMTHandler::OCready);
 	CONNECT(m_no_pat_entry_delay->timeout, eDVBServicePMTHandler::sendEventNoPatEntry);
@@ -118,6 +119,8 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 					m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
 				else
 					m_PMT.begin(eApp, eDVBPMTSpec(m_pmt_pid, m_reference.getServiceID().get()), m_demux);
+
+				m_CAT.begin(eApp, eDVBCATSpec(), m_demux);
 			}
 
 			serviceEvent(eventTuned);
@@ -241,6 +244,7 @@ void eDVBServicePMTHandler::PATready(int)
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
+		m_cached_program.emmPids.clear();
 		int service_id_single = -1;
 		int pmtpid_single = -1;
 		int pmtpid = -1;
@@ -287,6 +291,56 @@ void eDVBServicePMTHandler::PATready(int)
 		}
 	} else
 		serviceEvent(eventNoPAT);
+}
+
+void eDVBServicePMTHandler::CATready(int error)
+{
+	eDebug("[eDVBServicePMTHandler] CATready error %d", error);
+	if (error)
+	{
+		return;
+	}
+
+	ePtr<eTable<ConditionalAccessSection> > ptr;
+	if (!m_CAT.getCurrent(ptr))
+	{
+		eDebug("[eDVBServicePMTHandler] CATready parsed CAT table with %zu sections!", ptr->getSections().size());
+		for (std::vector<ConditionalAccessSection*>::const_iterator i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
+		{
+			const ConditionalAccessSection &cat = **i;
+			for (DescriptorConstIterator desc = cat.getDescriptors()->begin(); desc != cat.getDescriptors()->end(); ++desc)
+			{
+				if ((*desc)->getTag() == CA_DESCRIPTOR)
+				{
+					CaDescriptor *ca = (CaDescriptor*)(*desc);
+					uint16_t caid = ca->getCaSystemId();
+					uint16_t emm_pid = ca->getCaPid();
+					eDebug("[eDVBServicePMTHandler] CAT CaDescriptor: CAID 0x%04X, EMM PID %d (0x%04X)", caid, emm_pid, emm_pid);
+
+					eDVBCIInterfaces *ci = eDVBCIInterfaces::getInstance();
+					if (ci && !ci->isCAIDSupported(caid))
+					{
+						eDebug("[eDVBServicePMTHandler] Skipping EMM PID %d (0x%04X) with CAID 0x%04X: not supported by connected CI modules", emm_pid, emm_pid, caid);
+						continue;
+					}
+
+					bool exists = false;
+					for (int p : m_cached_program.emmPids)
+					{
+						if (p == emm_pid) { exists = true; break; }
+					}
+					if (!exists && emm_pid > 0 && emm_pid < 0x1FFF)
+					{
+						m_cached_program.emmPids.push_back(emm_pid);
+					}
+				}
+			}
+		}
+		if (!m_cached_program.emmPids.empty())
+		{
+			serviceEvent(eventNewProgramInfo);
+		}
+	}
 }
 
 static void eraseHbbTVApplications(HbbTVApplicationInfoList  *applications)
@@ -609,6 +663,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		return 0;
 	}
 
+	std::vector<int> prevEmmPids = m_cached_program.emmPids;
 	eDVBPMTParser::clearProgramInfo(program);
 
 	for (int m = 0; m < eDVBService::cacheMax; m++)
@@ -1005,6 +1060,11 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		program.demuxId = demux;
 	}
 
+	if (program.emmPids.empty() && !prevEmmPids.empty())
+	{
+		program.emmPids = prevEmmPids;
+	}
+
 	m_cached_program = program;
 	m_have_cached_program = true;
 	return ret;
@@ -1162,6 +1222,12 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 	RESULT res=0;
 	m_reference = ref;
 	m_reference.name = ""; // clear name, we don't need it
+	// Reset PMT and table state for new service; reset m_last_channel_state so channelStateChanged
+	// properly initializes table readers (PAT/CAT/PMT) even on same-transponder channel switches.
+	m_pmt_ready = false;
+	m_have_cached_program = false;
+	m_cached_program.emmPids.clear();
+	m_last_channel_state = -1;
 
 	/*
 		* We need to m_use decode demux only when we are descrambling (demuxers > ca demuxers)
@@ -1327,6 +1393,7 @@ void eDVBServicePMTHandler::free()
 	m_OC.stop();
 	m_AIT.stop();
 	m_PMT.stop();
+	m_CAT.stop();
 	m_PAT.stop();
 	m_service = 0;
 	m_channel = 0;

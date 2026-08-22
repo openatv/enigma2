@@ -12,6 +12,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/base/cfile.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/esection.h>
@@ -287,6 +288,7 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	memcpy(sct.filter.mask, mask.mask, DMX_FILTER_SIZE);
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
 	setBufferSize(8192*8);
+
 
 	res = ::ioctl(fd, DMX_SET_FILTER, &sct);
 	if (!res)

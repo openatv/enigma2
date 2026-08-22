@@ -260,6 +260,7 @@ public:
 	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject));
 	PyObject *readCICaIds(int slotid);
 #ifndef SWIG
+	bool isCAIDSupported(uint16_t caid);
 	struct Message
 	{
 		enum

@@ -7,9 +7,29 @@
 #include <dvbsi++/service_description_section.h>
 #include <dvbsi++/network_information_section.h>
 #include <dvbsi++/bouquet_association_section.h>
+#include <dvbsi++/ca_section.h>
 #include <dvbsi++/program_association_section.h>
 #include <dvbsi++/event_information_section.h>
 #include <dvbsi++/application_information_section.h>
+
+struct eDVBCATSpec
+{
+	eDVBTableSpec m_spec;
+public:
+	eDVBCATSpec(int timeout=20000)
+	{
+		m_spec.pid     = ConditionalAccessSection::PID;
+		m_spec.tid     = ConditionalAccessSection::TID;
+		m_spec.timeout = timeout;
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
+			eDVBTableSpec::tfHaveTimeout;
+	}
+	operator eDVBTableSpec &()
+	{
+		return m_spec;
+	}
+};
 
 struct eDVBPMTSpec
 {

@@ -43,6 +43,7 @@
 #include <chrono>
 #include <thread>
 #include <lib/dvb_ci/descrambler.h>
+#include <lib/dvb_ci/dvbci.h>
 
 #include <byteswap.h>
 #include <netinet/in.h>
@@ -1334,6 +1335,113 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_timeshift_enabled)
 			updateTimeshiftPids();
 
+		/* Register EMM PIDs (parsed dynamically from CAT table) and ECM PIDs (parsed dynamically from PMT table) for SAT>IP / vtuner demux filtering when enabled */
+		if (eSimpleConfig::getBool("config.usage.add_ecm_emm_filters", false))
+		{
+			static const std::vector<int> EXTRA_STATIC_PIDS = {
+				0x0014 // PID 20: TDT / TOT / EIT time synchronization
+			};
+
+			ePtr<iDVBDemux> live_demux;
+			if (m_service_handler.getDataDemux(live_demux) == 0 && live_demux)
+			{
+				for (int extra_pid : EXTRA_STATIC_PIDS)
+				{
+					if (extra_pid > 0 && extra_pid < 0x1FFF)
+					{
+						bool exists = false;
+						for (int existing_pid : m_extra_pids)
+						{
+							if (existing_pid == extra_pid) { exists = true; break; }
+						}
+						if (!exists)
+						{
+							ePtr<iDVBSectionReader> extra_reader;
+							if (live_demux->createSectionReader(eApp, extra_reader) == 0 && extra_reader)
+							{
+								eDVBSectionFilterMask mask = {};
+								mask.pid = extra_pid;
+								mask.data[0] = 0x00;
+								mask.mask[0] = 0x00;
+								extra_reader->start(mask);
+								m_extra_pids_readers.push_back(extra_reader);
+								m_extra_pids.push_back(extra_pid);
+								eDebug("[eDVBServicePlay] Persistent section reader started on extra PID %d (0x%04x)", extra_pid, extra_pid);
+							}
+						}
+					}
+				}
+
+				eDVBServicePMTHandler::program program;
+				if (m_service_handler.getProgramInfo(program) == 0)
+				{
+					// Dynamically register EMM PIDs parsed from CAT table (e.g. 5677 / 0x162D)
+					for (int emm_pid : program.emmPids)
+					{
+						if (emm_pid > 0 && emm_pid < 0x1FFF)
+						{
+							bool exists = false;
+							for (int existing_pid : m_emm_pids)
+							{
+								if (existing_pid == emm_pid) { exists = true; break; }
+							}
+							if (!exists)
+							{
+								ePtr<iDVBSectionReader> emm_reader;
+								if (live_demux->createSectionReader(eApp, emm_reader) == 0 && emm_reader)
+								{
+									eDVBSectionFilterMask mask = {};
+									mask.pid = emm_pid;
+									mask.data[0] = 0x00;
+									mask.mask[0] = 0x00;
+									emm_reader->start(mask);
+									m_emm_readers.push_back(emm_reader);
+									m_emm_pids.push_back(emm_pid);
+									eDebug("[eDVBServicePlay] Dynamic EMM section reader started from CAT on PID %d (0x%04x)", emm_pid, emm_pid);
+								}
+							}
+						}
+					}
+
+					// Dynamically register ECM PIDs parsed from PMT table (e.g. 1030 / 1042)
+					eDVBCIInterfaces *ci = eDVBCIInterfaces::getInstance();
+					for (const auto& ca : program.caids)
+					{
+						int ecm_pid = ca.capid;
+						uint16_t caid = (uint16_t)ca.caid;
+						if (ecm_pid > 0 && ecm_pid < 0x1FFF)
+						{
+							if (ci && !ci->isCAIDSupported(caid))
+							{
+								eDebug("[eDVBServicePlay] Skipping ECM PID %d (0x%04x) with CAID 0x%04x: not supported by connected CI modules", ecm_pid, ecm_pid, caid);
+								continue;
+							}
+							bool exists = false;
+							for (int existing_pid : m_ecm_pids)
+							{
+								if (existing_pid == ecm_pid) { exists = true; break; }
+							}
+							if (!exists)
+							{
+								ePtr<iDVBSectionReader> ecm_reader;
+								if (live_demux->createSectionReader(eApp, ecm_reader) == 0 && ecm_reader)
+								{
+									eDVBSectionFilterMask mask = {};
+									mask.pid = ecm_pid;
+									mask.data[0] = 0x80;
+									mask.mask[0] = 0xFE;
+									ecm_reader->start(mask);
+									m_ecm_readers.push_back(ecm_reader);
+									m_ecm_pids.push_back(ecm_pid);
+									eDebug("[eDVBServicePlay] Dynamic ECM section reader started from PMT on PID %d (0x%04x)", ecm_pid, ecm_pid);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 		// Re-tuned during an active recovery: let the recovery state machine keep control
 		// and resume playback at the preserved delay. Do not resync the decoder here.
 		if (m_stream_corruption_detected)
@@ -1342,16 +1450,20 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_csa_session && !m_csa_session->isEcmAnalyzed())
 		{
 			eDVBServicePMTHandler::program program;
-			if (m_service_handler.getProgramInfo(program) == 0 && !program.caids.empty())
+			if (m_service_handler.getProgramInfo(program) == 0)
 			{
-				uint16_t ecm_pid = program.caids.front().capid;
-				uint16_t caid = program.caids.front().caid;
-				ePtr<iDVBDemux> demux;
-				if (m_service_handler.getDataDemux(demux) == 0 && demux)
+				for (const auto& ca : program.caids)
 				{
-					eDebug("[eDVBServicePlay] Requesting ECM monitor: PID=%d, CAID=0x%04X", ecm_pid, caid);
-					m_csa_session->startECMMonitor(demux, ecm_pid, caid);
-					// Note: If CSA-ALT was cached, session is now active and onSessionActivated() has already been called!
+					if (ca.capid > 0 && ca.capid < 0x1FFF)
+					{
+						ePtr<iDVBDemux> demux;
+						if (m_service_handler.getDataDemux(demux) == 0 && demux)
+						{
+							eDebug("[eDVBServicePlay] Requesting ECM monitor: PID=%d, CAID=0x%04X", ca.capid, ca.caid);
+							m_csa_session->startECMMonitor(demux, ca.capid, ca.caid);
+						}
+						break;
+					}
 				}
 			}
 		}
@@ -1749,6 +1861,29 @@ RESULT eDVBServicePlay::stop()
 	stopTimeshift(); /* in case time shift was enabled, remove buffer etc. */
 
 	cleanupSoftwareDescrambling();
+
+	for (auto& reader : m_extra_pids_readers)
+	{
+		if (reader)
+			reader->stop();
+	}
+	m_extra_pids_readers.clear();
+	m_extra_pids.clear();
+	for (auto& reader : m_ecm_readers)
+	{
+		if (reader)
+			reader->stop();
+	}
+	m_ecm_readers.clear();
+	m_ecm_pids.clear();
+
+	for (auto& reader : m_emm_readers)
+	{
+		if (reader)
+			reader->stop();
+	}
+	m_emm_readers.clear();
+	m_emm_pids.clear();
 
 	m_service_handler_timeshift.free();
 	m_service_handler.free();
@@ -3603,6 +3738,11 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 	eDVBServicePMTHandler::program program;
 	if (h.getProgramInfo(program))
 		eDebug("[eDVBServicePlay] getting program info failed.");
+	else if (program.videoStreams.empty() && program.audioStreams.empty())
+	{
+		eDebug("[eDVBServicePlay] updateDecoder: no streams available yet, skipping decoder reconfig");
+		return;
+	}
 	else
 	{
 		eDebugNoNewLineStart("[eDVBServicePlay] have %zd video stream(s)", program.videoStreams.size());

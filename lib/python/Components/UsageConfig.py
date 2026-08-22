@@ -966,6 +966,7 @@ def InitUsageConfig():
 		("(1920, 1080)", "1920x1080")
 	])
 	config.usage.enable_delivery_system_workaround = ConfigYesNo(default=False)
+	config.usage.add_ecm_emm_filters = ConfigYesNo(default=False)
 
 	config.usage.date = ConfigSubsection()
 	config.usage.date.enabled = NoSave(ConfigBoolean(default=False))

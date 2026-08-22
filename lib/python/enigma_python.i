@@ -39,6 +39,9 @@ is usually caused by not marking PSignals as immutable.
 %{
 
 #define SWIG_COMPILE
+#ifndef t_output_helper
+#define t_output_helper(res, obj) SWIG_Python_AppendOutput(res, obj, 0)
+#endif
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eenv.h>
