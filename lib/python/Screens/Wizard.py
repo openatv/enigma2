@@ -759,6 +759,12 @@ class Wizard(Screen):
 				# 	self.configWidgetInstance.hide()
 				# self.listWidgetInstance.show()
 			if self.showConfig:
+				current = self["config"].getCurrent(full=False)
+				if current and len(current) >= 2:
+					# Deselecting closes any open help_window (e.g. NumericalTextInputHelpDialog for a
+					# ConfigText field) via ConfigElement.onDeselect() - setList() below does not do this
+					# itself, so skipping it here leaks that popup for the rest of the wizard's lifetime.
+					current[1].onDeselect(self.session)
 				if self.wizard[self.currStep]["config"]["type"] == "dynamic":
 					print("[Wizard] Generating dynamic config by calling %s." % self.wizard[self.currStep]["config"]["source"])
 					self.configWidgetInstance.setZPosition(2)
@@ -779,6 +785,16 @@ class Wizard(Screen):
 						else:
 							self.screenInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
 						self.screenInstance.setAnimationMode(0)
+						sourceCurrent = self.screenInstance["config"].getCurrent(full=False)
+						if sourceCurrent and len(sourceCurrent) >= 2:
+							# The external screen's own config list already auto-selected its first entry
+							# on instantiation, which for a ConfigText opens a help_window popup positioned
+							# at that screen's own "HelpWindow" marker. Deselect now, before self["config"]
+							# below re-selects the same (shared) item and overwrites its help_window
+							# reference - otherwise this first popup is orphaned and never closed. destroy()
+							# further down is GUIComponent.destroy() (just clears __dict__), which skips
+							# preWidgetRemove(), the only other place that would call onDeselect().
+							sourceCurrent[1].onDeselect(self.session)
 						self["config"].setList(self.screenInstance["config"].getList())
 						callbacks = self.screenInstance["config"].onSelectionChanged[:]
 						self.screenInstance["config"].destroy()
