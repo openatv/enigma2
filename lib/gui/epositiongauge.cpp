@@ -89,7 +89,24 @@ void ePositionGauge::setInOutList(ePyObject list)
 			continue;
 
 		pts_t pts = PyLong_AsLongLong(ppts);
-		int type = PyLong_AsLong(ptype);
+		if (PyErr_Occurred())
+		{
+			eWarning("[ePositionGauge] ignoring cutlist entry %d with an invalid position", i);
+			PyErr_Clear();
+			continue;
+		}
+
+		long typeValue = PyLong_AsLong(ptype);
+		if (PyErr_Occurred())
+		{
+			eWarning("[ePositionGauge] ignoring cutlist entry %d with an invalid type", i);
+			PyErr_Clear();
+			continue;
+		}
+		if (typeValue < CUT_TYPE_IN || typeValue > CUT_TYPE_LAST)
+			continue;
+
+		int type = static_cast<int>(typeValue);
 		m_cue_entries.insert(cueEntry(pts, type));
 	}
 	invalidate();
