@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2019-07-27 12:19+0700\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-16 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: vi_VN\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -908,6 +908,11 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -926,6 +931,11 @@ msgstr "%d phút"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
 
 #, python-format
 msgid "%d package found."
@@ -1023,11 +1033,6 @@ msgstr ""
 #, python-format
 msgid "%d times"
 msgstr "%d thời gian"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "Tìm thấy%d mạng không dây!"
 
 msgid "%d+%b_"
 msgstr "%+d-%b_"
@@ -1219,6 +1224,10 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr ""
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
@@ -1261,6 +1270,22 @@ msgstr "%s hiển thị 1080i với 1080p"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'% s' chứa%d tập tin và%d thư mục con.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
@@ -1347,14 +1372,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr "10bit"
@@ -1377,17 +1396,11 @@ msgstr "12bit"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bit 4:2:0/4:2:2 no PiP"
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "Hộp thư 16:10"
 
 msgid "16:10 PanScan"
 msgstr "16:10 Pan Quét"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "16: 9 luôn"
@@ -1406,9 +1419,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "hết giờ Infobar"
@@ -1645,15 +1655,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Không tìm thấy công cụ cần thiết (%s)."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Một giao diện được cấu hình thứ hai đã được tìm thấy.\n"
-"\n"
-"Bạn có muốn tắt giao diện mạng thứ hai không?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1789,6 +1790,11 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -1829,14 +1835,8 @@ msgstr "Kích hoạt nút Lên / Xuống cho chức năng 'tất cả lên / xu�
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate network adapter configuration"
-msgstr "kích hoạt cấu hình bộ điều hợp mạng"
-
-msgid "Activate network settings"
-msgstr "Kích hoạt cài đặt mạng"
-
-msgid "Activate the configured network settings."
-msgstr "Kích hoạt cài đặt mạng được cấu hình."
+msgid "Activate network adapter"
+msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
@@ -1857,6 +1857,13 @@ msgid "Active clients"
 msgstr "Khách hàng tích cực"
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 msgid "Adapter Settings"
@@ -1901,6 +1908,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "thêm điểm đánh dấu"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr "Thêm mục nhập kênh Quad mới"
 
@@ -1924,6 +1934,12 @@ msgstr "Thêm thời gian"
 
 msgid "Add To Parental Protection"
 msgstr "thêm vào sự bảo vệ của cha mẹ"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 msgid "Add Zap+RecordTimer"
 msgstr "Thêm bộ đếm thời gian"
@@ -1951,6 +1967,9 @@ msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện 
 
 msgid "Add a mark"
 msgstr "Thêm một dấu"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr ""
@@ -2513,9 +2532,6 @@ msgstr "Bạn có chắc chắn loại bỏ tất cả các dịch vụ trên m�
 msgid "Are you sure to remove this entry?"
 msgstr "Bạn có chắc chắn để loại bỏ mục này?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Bạn có chắc chắn muốn kích hoạt cấu hình mạng này?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2540,9 +2556,6 @@ msgstr "Bạn có chắc chắn muốn thoát khỏi thuật sĩ này?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Bạn có chắc chắn muốn tải lại dữ liệu EPG từ:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Bạn có chắc chắn muốn khởi động lại giao diện mạng của mình không?"
 
 #, python-format
 msgid ""
@@ -2654,6 +2667,9 @@ msgstr "CAIds được chỉ định:"
 
 msgid "Assigned services/provider:"
 msgstr "Dịch vụ / nhà cung cấp được chỉ định:"
+
+msgid "Associated"
+msgstr ""
 
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
@@ -2920,8 +2936,8 @@ msgstr "Xanh dài"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "BlueSwitch: Blue-Short / Blue-Long"
 
-msgid "Back"
-msgstr "Trở lại"
+msgid "BSSID"
+msgstr ""
 
 msgid "Back USB"
 msgstr "Quay lại USB"
@@ -3327,6 +3343,9 @@ msgstr ""
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3385,6 +3404,9 @@ msgstr "Ghi vào trung bình"
 
 msgid "Burundi"
 msgstr "Burundi"
+
+msgid "Bus"
+msgstr ""
 
 msgid "Business"
 msgstr ""
@@ -3565,6 +3587,9 @@ msgstr "Cáp"
 
 msgid "Cable Scan"
 msgstr "Quét cáp"
+
+msgid "Cable Unplugged"
+msgstr ""
 
 msgid "Cable input"
 msgstr ""
@@ -4079,6 +4104,9 @@ msgstr "Chương"
 msgid "Character device"
 msgstr "Thiêt bị hiện tại"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr ""
 
@@ -4317,6 +4345,9 @@ msgstr "Xóa"
 msgid "Clear Log"
 msgstr "Xóa nhật ký"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Xóa trước khi quét"
 
@@ -4380,6 +4411,9 @@ msgstr "Đóng danh sách gói kênh."
 
 msgid "Close dialog"
 msgstr "Đóng hộp thoại"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr ""
@@ -4577,7 +4611,7 @@ msgstr "Chế độ cấu hình"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
@@ -4585,6 +4619,9 @@ msgstr "Định cấu hình độ trễ bổ sung để cải thiện đồng b�
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Định cấu hình độ trễ bổ sung để cải thiện đồng bộ hóa phụ đề."
+
+msgid "Configure another network adapter"
+msgstr ""
 
 msgid "Configure cable reception on this input."
 msgstr ""
@@ -4634,14 +4671,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Định cấu hình nếu phụ đề nên chuyển đổi giữa bình thường, in nghiêng, in đậm và đậm"
 
-msgid "Configure interface"
-msgstr "Cấu hình giao diện"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Cấu hình trên thiết bị nào nên sử dụng tùy chọn xóa nền."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -4658,17 +4695,8 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Định cấu hình chế độ DiSEqC cho LNB này."
 
-msgid "Configure the IP address."
-msgstr "Cấu hình địa chỉ IP."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "IP của máy thu từ xa dự phòng"
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Cổng thu dự phòng từ xa"
@@ -4772,9 +4800,6 @@ msgstr "Cấu hình chức năng nhấn nhanh vào nút nguồn."
 msgid "Configure the function of the < and > buttons."
 msgstr ""
 
-msgid "Configure the gateway."
-msgstr "Cấu hình cổng."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Định cấu hình ổ đĩa cứng để chuyển sang chế độ chờ sau thời gian rảnh được chỉ định khi hộp ở chế độ chờ."
 
@@ -4804,15 +4829,6 @@ msgstr "Định cấu hình dung lượng đĩa tối thiểu có sẵn để gh
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Định cấu hình chiều rộng tối thiểu trước khi hiển thị biểu tượng 'i', '0' hoàn toàn không hiển thị biểu tượng."
-
-msgid "Configure the name server (DNS)."
-msgstr "Cấu hình máy chủ tên (DNS)."
-
-msgid "Configure the netmask."
-msgstr "Cấu hình netmask."
-
-msgid "Configure the network again"
-msgstr "Định cấu hình lại mạng của bạn"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Định cấu hình số ngày sau đó các mục được tự động xóa khỏi thùng rác."
@@ -4846,6 +4862,9 @@ msgstr "Cấu hình ngôn ngữ phụ đề thứ hai."
 
 msgid "Configure the secondary EPG language."
 msgstr "Cấu hình ngôn ngữ EPG thứ cấp."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Định cấu hình khoảng thời gian bỏ qua cho các nút '1' / '3'."
@@ -4946,17 +4965,8 @@ msgstr "Định cấu hình bộ chỉnh nào sẽ được ưu tiên, khi có n
 msgid "Configure your NTP server."
 msgstr "Cấu hình máy chủ NTP của bạn."
 
-msgid "Configure your Network"
-msgstr "Cấu hình mạng của bạn"
-
-msgid "Configure your internal LAN"
-msgstr "Định cấu hình mạng LAN nội bộ của bạn"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Định cấu hình cài đặt mạng của bạn và nhấn OK để quét"
-
-msgid "Configure your wireless LAN again"
-msgstr "Định cấu hình lại mạng LAN không dây của bạn"
 
 msgid "Configures which video output connector will be used."
 msgstr "Định cấu hình trình kết nối đầu ra video nào sẽ được sử dụng."
@@ -4968,6 +4978,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -4990,10 +5004,13 @@ msgstr "Kết nối"
 msgid "Connect to IceTV server every"
 msgstr "Không thể kết nối đến máy chủ"
 
-msgid "Connect to a wireless network"
-msgstr "Kết nối với mạng không dây"
-
 msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 msgid "Connected clients"
@@ -5011,8 +5028,26 @@ msgstr "Kết nối với"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "Đã kết nối: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr ""
@@ -5061,6 +5096,9 @@ msgid "Context"
 msgstr "Bối cảnh"
 
 msgid "Continent"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5213,8 +5251,22 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Bờ biển ngà"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 msgid "Could not connect to server"
 msgstr "Không thể kết nối đến máy chủ"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Không thể tải! Không có đĩa được đưa vào?"
@@ -5237,6 +5289,12 @@ msgstr "Không thể ghi do dịch vụ không hợp lệ%s"
 #, python-format
 msgid "Could not save configuration file %s!"
 msgstr "Không thể lưu cấu hình%s!"
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
 
 msgid "Country"
 msgstr "Quốc gia"
@@ -5360,6 +5418,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Tạo phân vùng"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr ""
 
@@ -5461,9 +5526,6 @@ msgstr ""
 
 msgid "Current rotor position: unknown"
 msgstr ""
-
-msgid "Current settings:"
-msgstr "Cài đặt hiện tại:"
 
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
@@ -5569,9 +5631,6 @@ msgstr "SD"
 msgid "DAC"
 msgstr "Bộ giải mã"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "Hỗ trợ DLNA"
 
@@ -5582,6 +5641,9 @@ msgid "DMM normal"
 msgstr "DMM bình thường"
 
 msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS Settings Actions"
 msgstr ""
 
 msgid "DNS data source"
@@ -5864,7 +5926,13 @@ msgstr "Vô hiệu hóa"
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -6118,6 +6186,12 @@ msgstr "Xóa hình ảnh"
 msgid "Delete Line"
 msgstr ""
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Xóa plugin"
 
@@ -6351,9 +6425,6 @@ msgstr "Quản lý thiết bị"
 msgid "Device Manager Actions"
 msgstr ""
 
-msgid "Device Settings"
-msgstr "Thiết lập thiết bị"
-
 msgid "Device id"
 msgstr ""
 
@@ -6464,6 +6535,9 @@ msgstr ""
 msgid "Disable"
 msgstr "Vô hiệu hóa"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "Vô hiệu hóa màn hình"
 
@@ -6489,6 +6563,9 @@ msgstr "Vô hiệu hóa MiniTV"
 msgid "Disable Move Mode"
 msgstr "tắt chế độ di chuyển"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "Vô hiệu hóa hình ảnh trong hình ảnh"
 
@@ -6507,6 +6584,9 @@ msgstr "Vô hiệu hóa màn hình giới thiệu"
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr "Vô hiệu hóa tiến trình ổ cứng trên VFD"
 
@@ -6522,10 +6602,10 @@ msgstr "Cho phép/không cho phép"
 msgid "Disabled PiP.\n"
 msgstr "PIP bị vô hiệu hóa.\n"
 
-msgid "Disabled or WPA/WPA2"
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
-msgid "Disabling Chkroot failed!"
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -6955,6 +7035,9 @@ msgstr "DVD định dạng dữ liệu Dreambox (tương thích với HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "DVD dữ liệu định dạng Dreambox (sẽ không hoạt động trong các đầu DVD khác)"
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr ""
 
@@ -7120,6 +7203,9 @@ msgstr "Chỉnh sửa"
 msgid "Edit Alternatives"
 msgstr "chỉnh sửa thay thế"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr "Chỉnh sửa chế độ tắt"
 
@@ -7141,6 +7227,9 @@ msgstr "Chỉnh sửa tiêu đề"
 msgid "Edit Upgrade Source URL"
 msgstr ""
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
 
@@ -7150,29 +7239,20 @@ msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
 msgid "Edit settings"
 msgstr "Chỉnh sửa cài đặt"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr ""
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr ""
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr ""
-"Chỉnh sửa cấu hình máy chủ tên của máy thu của bạn\n"
-"%s %s."
-
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 msgid "Edit the currently selected timer"
 msgstr ""
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr ""
-"Chỉnh sửa cấu hình mạng của máy thu của bạn\n"
-"%s %s."
 
 msgid "Edit the password."
 msgstr ""
@@ -7184,6 +7264,9 @@ msgid "Edit the remote CCCam port."
 msgstr ""
 
 msgid "Edit the remote IP address."
+msgstr ""
+
+msgid "Edit the selected network mount"
 msgstr ""
 
 msgid "Edit the upgrade source address."
@@ -7286,9 +7369,6 @@ msgstr ""
 msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
-msgid "Enable IPv6"
-msgstr ""
-
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "Kích hoạt MiniTV"
@@ -7342,8 +7422,8 @@ msgstr "Kích hoạt ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr "Kích hoạt Virgin EPG"
 
-msgid "Enable Wake On LAN"
-msgstr "Kích hoạt Wake On LAN"
+msgid "Enable adapter"
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Bật và đặt thời lượng của infobar thứ hai (nhấn OK hai lần) có thể bao gồm nhiều thông tin hơn về dịch vụ hiện tại."
@@ -7422,10 +7502,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Cho phép nhiều gói kênh"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr "Cho phép kiểm tra lưu lượng mạng"
 
 msgid "Enable new GStreamer playback"
+msgstr ""
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -7439,6 +7525,9 @@ msgstr "Cho phép xem trước"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Cho phép máy thu enigma2 từ xa cố gắng điều chỉnh các dịch vụ không thể điều chỉnh cục bộ (ví dụ: bộ điều chỉnh bị chiếm dụng hoặc loại dịch vụ không khả dụng trên bộ điều chỉnh cục bộ. Chỉ định URL hoàn chỉnh bao gồm http: // và số cổng (thông thường ...: 8001 ), ví dụ http: // second_box: 8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Kích hoạt bộ đệm ẩn teletext"
@@ -7539,21 +7628,8 @@ msgstr "Đã bật"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bật một tính năng để người nhận có thể giải mã các luồng (nếu dữ liệu ECM được bao gồm trong luồng và có thẻ hợp lệ)."
 
-msgid "Encrypted: "
-msgstr "Được mã hóa: "
-
 msgid "Encryption"
 msgstr "Mã hóa"
-
-#, fuzzy
-msgid "Encryption Type:"
-msgstr "Mã hóa:"
-
-msgid "Encryption key"
-msgstr "Khóa mã hóa"
-
-msgid "Encryption key type"
-msgstr "Loại khóa mã hóa"
 
 msgid "End"
 msgstr "Cuối cùng"
@@ -7659,6 +7735,9 @@ msgstr ""
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Nhập nếu bạn ở phía bắc hoặc phía nam của đường xích đạo."
 
@@ -7670,6 +7749,9 @@ msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "nhập số để nhảy đến kênh."
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr "Nhập mã PIN liên tục"
@@ -7704,11 +7786,29 @@ msgstr "Nhập tần số mà LNB của bạn chuyển đổi giữa băng tần
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Nhập kích thước bước tần số cho bộ chỉnh tần số để sử dụng khi tìm kiếm ghép kênh cáp. Để biết thêm thông tin tham khảo tài liệu của nhà cung cấp cáp của bạn."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Nhập số được lưu trong bộ định vị tương ứng với vệ tinh này."
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
@@ -7717,6 +7817,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -7732,6 +7835,12 @@ msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.
 msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
@@ -7886,48 +7995,6 @@ msgstr ""
 msgid "Error code"
 msgstr "Mã lỗi"
 
-#, fuzzy
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Lỗi khi tạo FullHD-Skin.\n"
-"Sử dụng HD-Skin!"
-
-#, fuzzy
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Lỗi khi tạo FullHD-Skin. Tải xuống gói biểu tượng không có sẵn.\n"
-"Sử dụng HD-Skin!"
-
-#, fuzzy
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Lỗi khi tạo FullHD-Skin. Không đủ bộ nhớ flash miễn phí.\n"
-"Sử dụng HD-Skin!"
-
-#, fuzzy
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Lỗi khi tạo FullHD-Skin.\n"
-"Sử dụng HD-Skin!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Lỗi khi tạo HD-Skin. Không đủ bộ nhớ flash miễn phí."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Lỗi khi tạo MetrixHD-Skin.\n"
-"Vui lòng kiểm tra sau khi khởi động lại MyMetrixLite-Plugin và áp dụng cài đặt của bạn."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
@@ -7975,9 +8042,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr "Lỗi, chưa biết kết quả!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7988,6 +8052,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Một tên tệp trống là bất hợp pháp."
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8041,12 +8108,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr ""
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8097,6 +8171,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Lỗi ghi tệp: '%s'"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8119,6 +8197,9 @@ msgstr "Tiếng Estonia"
 #, fuzzy
 msgid "EtPortal"
 msgstr "Bồ Đào Nha"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Giao diện mạng Ethernet"
@@ -8247,18 +8328,6 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr "Thoát khỏi trình phát phim?"
 
-msgid "Exit network adapter configuration"
-msgstr "thoát cấu hình bộ điều hợp mạng"
-
-msgid "Exit network adapter setup menu"
-msgstr ""
-
-msgid "Exit network interface list"
-msgstr "Thoát khỏi danh sách giao diện mạng"
-
-msgid "Exit network wizard"
-msgstr "Thoát khỏi thuật sĩ mạng"
-
 msgid "Exit picture viewer"
 msgstr ""
 
@@ -8277,6 +8346,9 @@ msgstr ""
 msgid "Expand"
 msgstr "Mở rộng"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr "phim / video thử nghiệm"
 
@@ -8291,6 +8363,9 @@ msgstr "Chuyên gia"
 
 msgid "Expert mode"
 msgstr "Chế độ chuyên gia"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr ""
@@ -8310,12 +8385,6 @@ msgstr "Mở rộng"
 
 msgid "Extended"
 msgstr "Mở rộng"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Plugin Networksetup mở rộng ..."
-
-msgid "Extended Setup..."
-msgstr "Thiết lập mở rộng ..."
 
 msgid "Extended Shares"
 msgstr "Mở rộng"
@@ -8773,9 +8842,6 @@ msgstr "Tinh chỉnh"
 msgid "Finished"
 msgstr "Đã kết thúc"
 
-msgid "Finished configuring your network"
-msgstr "Hoàn tất cấu hình mạng của bạn"
-
 msgid "Finland"
 msgstr "Phần Lan"
 
@@ -8878,14 +8944,14 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Vị trí cuối cùng tại"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
 msgstr "nhạc dân gian / truyền thống"
-
-msgid "Follow instructions on TV"
-msgstr ""
 
 msgid "Font size"
 msgstr "Cỡ chữ"
@@ -8994,10 +9060,6 @@ msgid "French Southern Territories"
 msgstr "Lãnh thổ phía Nam của Pháp"
 
 msgid "Frequency"
-msgstr "Tần số"
-
-#, fuzzy
-msgid "Frequency Norm:"
 msgstr "Tần số"
 
 msgid "Frequency bands"
@@ -9825,6 +9887,9 @@ msgstr "Trong"
 msgid "IP"
 msgstr "IP"
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr ""
 
@@ -9857,6 +9922,9 @@ msgstr ""
 
 msgid "IPK Installer"
 msgstr "Trình cài đặt IPK"
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr ""
@@ -10431,9 +10499,6 @@ msgstr "Giao diện"
 msgid "Interface '%s'"
 msgstr ""
 
-msgid "Interface: "
-msgstr "Giao diện: "
-
 msgid "Interlaced"
 msgstr "Xen kẽ"
 
@@ -10797,11 +10862,11 @@ msgstr "Kít-sinh-gơ"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "Bộ điều hợp mạng LAN"
-
 msgid "LAN connection"
 msgstr "Kết nối mạng nội bộ"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr "Tốc độ cuộn LCD"
@@ -11011,6 +11076,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr "trái, bọc"
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -11104,17 +11172,11 @@ msgstr ""
 msgid "Link detected"
 msgstr ""
 
-msgid "Link quality:"
-msgstr "Chất lượng liên kết:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr ""
-
-msgid "Link:"
-msgstr "Liên kết:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Tiêu đề được liên kết với menu DVD"
@@ -11127,9 +11189,6 @@ msgstr ""
 
 msgid "List available EPG functions"
 msgstr "Liệt kê các chức năng EPG ..."
-
-msgid "List available networks"
-msgstr "Liệt kê các mạng khả dụng"
 
 msgid "List of Storage Devices"
 msgstr ""
@@ -11197,14 +11256,14 @@ msgstr ""
 msgid "Local information"
 msgstr ""
 
-msgid "Local network"
-msgstr "Mạng nội bộ"
-
 msgid "Local or Regional"
 msgstr ""
 
 msgid "Local receiver"
 msgstr "Hộp nội bộ"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr ""
@@ -11380,11 +11439,11 @@ msgstr "Tiếng Luxembourg"
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr ""
 
-msgid "MAC-address"
-msgstr "Địa chỉ MAC"
+msgid "MAC address"
+msgstr ""
 
 msgid "MENU"
 msgstr ""
@@ -11535,9 +11594,6 @@ msgstr "Quét thủ công"
 msgid "Manual Service Searching"
 msgstr "Tìm kiếm dịch vụ thủ công"
 
-msgid "Manual configuration"
-msgstr "Cấu hình thủ công"
-
 msgid "Manual scan for services"
 msgstr "Quét thủ công các dịch vụ"
 
@@ -11612,9 +11668,6 @@ msgstr ""
 
 msgid "Max memory positions"
 msgstr "Vị trí bộ nhớ tối đa"
-
-msgid "Max. bitrate: "
-msgstr "Tối đa: "
 
 msgid "Maxdown +"
 msgstr "Tối đa +"
@@ -11923,6 +11976,9 @@ msgstr ""
 msgid "Mount"
 msgstr "Núi"
 
+msgid "Mount Context Menu"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Quản lý"
 
@@ -11932,8 +11988,20 @@ msgstr ""
 msgid "Mount Setup"
 msgstr "Cài đặt"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "Núi thất bại"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr ""
@@ -11941,11 +12009,17 @@ msgstr ""
 msgid "Mount root file system."
 msgstr ""
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr "Núi"
 
 msgid "Move"
 msgstr "Di chuyển"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "Di chuyển sang trái / phải"
@@ -11964,6 +12038,9 @@ msgstr "Di chuyển PIP"
 
 msgid "Move PiP to main picture"
 msgstr "Di chuyển PiP sang hình ảnh chính"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "Di chuyển lên / xuống"
@@ -12020,6 +12097,12 @@ msgstr "di chuyển xuống mục cuối cùng"
 
 msgid "Move east"
 msgstr "Di chuyển về phía đông"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr ""
@@ -12133,6 +12216,12 @@ msgid "Move to previous bouquet"
 msgstr ""
 
 msgid "Move to previous marker"
+msgstr ""
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12375,7 +12464,13 @@ msgstr "NFS"
 msgid "NFS Server Settings"
 msgstr "Thiết lập NFS"
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12419,12 +12514,6 @@ msgstr ""
 #, python-format
 msgid "Name server %d"
 msgstr ""
-
-msgid "Nameserver"
-msgstr "Tên máy chủ"
-
-msgid "Nameserver settings"
-msgstr "Cài đặt máy chủ tên"
 
 msgid "Nameserver setup"
 msgstr "Thiết lập máy chủ tên"
@@ -12493,23 +12582,21 @@ msgstr "Netmask"
 msgid "Network"
 msgstr "Mạng"
 
-msgid "Network Adapter Actions"
+#, python-format
+msgid "Network Adapter '%s' Settings"
 msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr "Lựa chọn bộ điều hợp mạng"
 
-msgid "Network Adapter Setting Actions"
-msgstr ""
-
 msgid "Network Adapter Settings"
-msgstr ""
-
-msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
 msgstr "Trình duyệt mạng"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr "ID mạng"
@@ -12529,8 +12616,23 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
 msgstr "Mạng lưới khu phố"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr ""
@@ -12547,26 +12649,64 @@ msgstr "Thiết lập mạng"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "Kiểm tra mạng"
 
-msgid "Network Test:"
-msgstr "Kiểm tra mạng lưới: "
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
-msgstr "Số dách mạng"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
+msgstr ""
+
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
 msgstr ""
 
 msgid "Network address"
 msgstr ""
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
 msgstr "Cấu hình mạng..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
 
 msgid "Network information"
 msgstr ""
@@ -12593,26 +12733,11 @@ msgstr "Quét mạng"
 msgid "Network storage on"
 msgstr ""
 
-msgid "Network test"
-msgstr "Kiểm tra mạng"
-
 msgid "Network test..."
 msgstr "Kiểm tra mạng...."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
 msgstr ""
-
-msgid "Network:"
-msgstr "Mạng:"
-
-msgid "NetworkWizard"
-msgstr "Thuật sĩ mạng"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
@@ -12645,6 +12770,9 @@ msgid "New Setting DXAndy "
 msgstr "Cài đặt mới DXAndy "
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -12750,15 +12878,21 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "Không tìm thấy (hỗ trợ) DVDROM!"
 
-msgid "No Connection"
-msgstr "Không có kết nối"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Không có chỉ số miễn phí có sẵn"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Không tìm thấy ổ cứng hoặc ổ cứng không được khởi tạo!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -12836,7 +12970,13 @@ msgstr "Không có chỉ số miễn phí có sẵn"
 msgid "No free tuner!"
 msgstr "Không có bộ chỉnh miễn phí!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
+msgstr ""
+
+msgid "No hosts found yet - still scanning..."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -12851,8 +12991,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr ""
 
-msgid "No networks found"
-msgstr "Không tìm thấy kết nối mạng"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Không có mục chuyển đổi (tăng hoặc giảm)"
@@ -12877,6 +13017,9 @@ msgstr "Không dịch vụ"
 
 msgid "No services/providers selected"
 msgstr "Không có dịch vụ / nhà cung cấp nào được chọn"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr ""
@@ -12952,30 +13095,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
-
-msgid "No wireless networks found! Searching..."
-msgstr "Không tìm thấy mạng không dây! Đang tìm kiếm..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Không tìm thấy bộ điều hợp mạng cục bộ.\n"
-"Vui lòng xác minh rằng bạn đã gắn cáp mạng và mạng của bạn được cấu hình đúng."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Không tìm thấy bộ điều hợp mạng không dây làm việc.\n"
-"Vui lòng xác minh rằng bạn đã gắn thiết bị WLAN tương thích và mạng của bạn được cấu hình đúng."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Không tìm thấy giao diện mạng không dây.\n"
-"  Vui lòng xác minh rằng bạn đã gắn thiết bị WLAN tương thích hoặc bật giao diện mạng cục bộ của bạn."
 
 msgid "No, but restart from begin"
 msgstr "Không, nhưng khởi động lại từ đầu"
@@ -13065,6 +13184,9 @@ msgstr "Na Uy"
 msgid "Not Classified"
 msgstr "Không liên quan"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr "Không xác định"
 
@@ -13110,7 +13232,13 @@ msgstr ""
 "Tự do:%sMB\n"
 "Đường dẫn:%s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -13337,9 +13465,6 @@ msgstr "Trên các ONID hợp lệ, bỏ qua phần mạng phụ tần số"
 msgid "Once"
 msgstr "một lần"
 
-msgid "One"
-msgstr "Một"
-
 msgid "One line"
 msgstr "Một dòng"
 
@@ -13551,7 +13676,22 @@ msgstr "Mở danh sách dịch vụ và chọn kênh trước cho PiP"
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 msgid "Open the Plugin Browser"
@@ -13593,6 +13733,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13619,6 +13762,9 @@ msgstr "Tùy chọn tắt picons trên Infobar"
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Tùy chọn để bật Hẹn giờ chờ phần cứng"
+
+msgid "Optional arguments"
+msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr ""
@@ -14100,6 +14246,9 @@ msgstr "Trụ cột"
 msgid "Pilot"
 msgstr "Phi công"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr ""
 
@@ -14282,17 +14431,11 @@ msgid ""
 "Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
 msgstr ""
 
-msgid "Please follow the instructions on the TV"
-msgstr "Vui lòng làm theo hướng dẫn trên TV"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Xin lưu ý rằng phương tiện được chọn trước đó không thể được truy cập và do đó thư mục mặc định đang được sử dụng thay thế."
 
 msgid "Please open Picture in Picture first"
 msgstr "Vui lòng mở Ảnh trong Ảnh trước"
-
-msgid "Please press OK to continue."
-msgstr "Vui lòng nhấn OK để tiếp tục."
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -14369,9 +14512,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Xin vui lòng chờ"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Vui lòng đợi kích hoạt cấu hình mạng của bạn ..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -14423,17 +14563,8 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Vui lòng đợi trong khi chúng tôi kiểm tra các plugin đã cài đặt của bạn ..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Xin vui lòng chờ trong khi chúng tôi chuẩn bị giao diện mạng của bạn ..."
-
-msgid "Please wait while we test your network..."
-msgstr "Vui lòng đợi trong khi chúng tôi kiểm tra mạng của bạn ..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "Vui lòng đợi trong khi mạng của bạn đang khởi động lại ..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Xin vui lòng chờ trong khi thiết lập làn da của bạn đang khôi phục ..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Xin vui lòng chờ trong khi trạng thái thức ăn được kiểm tra."
@@ -14706,9 +14837,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Nhấn OK trên điều khiển từ xa của bạn để tiếp tục."
 
-msgid "Press OK to activate the settings."
-msgstr "Nhấn OK để kích hoạt cài đặt."
-
 msgid "Press OK to continue."
 msgstr ""
 
@@ -14827,9 +14955,6 @@ msgstr "trang trước / trang tiếp theo"
 
 msgid "Prevsong"
 msgstr "Trước"
-
-msgid "Primary DNS"
-msgstr "DNS chính"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -15197,11 +15322,20 @@ msgstr "Xếp hạng không xác định"
 msgid "Re-enter new PIN"
 msgstr "Nhập lại mã PIN mới"
 
-msgid "Read-Only"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Đọc Userdata từ oscam.conf"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr ""
 
 msgid "Read/Write"
 msgstr ""
@@ -15255,6 +15389,9 @@ msgid "Really shutdown now?"
 msgstr "Thực sự tắt máy bây giờ?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -15577,6 +15714,9 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Loại điều khiển từ xa"
 
+msgid "Remote path"
+msgstr ""
+
 msgid "Remote receiver"
 msgstr "Hộp từ xa"
 
@@ -15604,6 +15744,9 @@ msgstr "loại bỏ dịch vụ cáp"
 
 msgid "Remove Confirmation"
 msgstr "Xóa xác nhận"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "xoá mục nhập"
@@ -15818,6 +15961,15 @@ msgstr "Loại trung bình bắt buộc:"
 msgid "Rereading partition table"
 msgstr "Bảng phân vùng đọc lại"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "Kín đáo"
 
@@ -15881,8 +16033,14 @@ msgstr "Nghị quyết"
 msgid "Resolution unit"
 msgstr ""
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "Khởi động lại"
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "Khởi động lại GUI"
@@ -15898,9 +16056,6 @@ msgstr "Khởi động lại GUI bây giờ?"
 
 msgid "Restart Network"
 msgstr "Khởi động lại mạng"
-
-msgid "Restart Network Adapter"
-msgstr "Khởi động lại bộ điều hợp mạng"
 
 msgid "Restart OSCam"
 msgstr ""
@@ -15923,8 +16078,11 @@ msgstr "Khởi động lại mạng với thiết lập hiện tại"
 msgid "Restart test"
 msgstr "Khởi động lại bài kiểm tra"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Khởi động lại kết nối và giao diện mạng của bạn."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -15934,9 +16092,6 @@ msgstr "Khôi phục"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "khôi phục lại những người dùng đã xóa"
-
-msgid "Restore MetrixHD Settings"
-msgstr "Khôi phục cài đặt MetrixHD"
 
 msgid "Restore Plugins"
 msgstr "Khôi phục plugin"
@@ -15992,6 +16147,9 @@ msgstr "Tiếp tục vị trí ở%s"
 
 msgid "Resuming playback"
 msgstr "Tiếp tục phát lại"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16195,9 +16353,6 @@ msgstr "Sum họp"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "Thiết lập SABnzbd"
-
 msgid "SAT"
 msgstr "SAT"
 
@@ -16240,6 +16395,9 @@ msgstr "Chuyển đổi thẻ SD LRI! - đã có trên mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "Đĩa đơn"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr ""
@@ -16451,6 +16609,26 @@ msgstr "Lưu timeshift dưới dạng phim và dừng ghi"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Bây giờ hãy lưu timeshift dưới dạng phim và tiếp tục ghi"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -16487,6 +16665,9 @@ msgstr "Quét%s"
 msgid "Scan %s band"
 msgstr "Quét%s băng tần"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Quét thêm SR"
 
@@ -16501,12 +16682,6 @@ msgstr "Quét các tiện ích mở rộng cục bộ và cài đặt chúng."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
-
-msgid "Scan wireless networks"
-msgstr "Quét mạng không dây"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Quét mạng của bạn để biết các điểm truy cập không dây và kết nối với chúng bằng thiết bị không dây đã chọn của bạn."
 
 msgid "Scanning"
 msgstr ""
@@ -16530,6 +16705,12 @@ msgstr[0] ""
 
 msgid "Scanning failed!"
 msgstr "Quét thất bại!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "Đang quét ..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16642,9 +16823,6 @@ msgstr "Tìm kiếm về phía tây ..."
 msgid "Second cable of motorized LNB"
 msgstr "Cáp thứ hai của LNB cơ giới"
 
-msgid "Secondary DNS"
-msgstr "DNS phụ"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -16726,6 +16904,9 @@ msgstr "Chọn 'phân cực' nếu sử dụng LNB 'phổ quát', nếu không h
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Chọn 'nhà cung cấp' để quét từ danh sách ghép kênh cáp được xác định trước. Chọn 'dải' để chỉ quét một số phần nhất định của phổ. Chọn 'bước' để quét theo các bước của băng thông tần số cụ thể."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr ""
@@ -17063,6 +17244,9 @@ msgstr "Chọn nguồn nâng cấp"
 msgid "Select Upgrade Source To Edit"
 msgstr "Chọn nguồn nâng cấp để chỉnh sửa."
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -17106,6 +17290,9 @@ msgstr "Chọn một bộ phim"
 msgid "Select a network adapter"
 msgstr "Chọn bộ điều hợp mạng"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -17118,6 +17305,12 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Chọn một tập lệnh để chạy:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -17129,9 +17322,6 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Chọn bộ chỉnh"
-
-msgid "Select a wireless network"
-msgstr "Chọn mạng không dây"
 
 msgid "Select action"
 msgstr "Chọn hành động"
@@ -17181,6 +17371,9 @@ msgstr ""
 
 msgid "Select destination for:"
 msgstr "Chọn điểm đến cho:"
+
+msgid "Select exported directories"
+msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
@@ -17239,6 +17432,9 @@ msgstr ""
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Cài đặt chế độ trễ để zap cho các kênh."
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
@@ -17286,12 +17482,6 @@ msgstr "Chọn thiết bị đầu vào"
 
 msgid "Select input device."
 msgstr "Chọn thiết bị đầu vào."
-
-msgid "Select interface"
-msgstr "Chọn giao diện skin"
-
-msgid "Select menu entry"
-msgstr ""
 
 msgid "Select movie"
 msgstr "Chọn phim"
@@ -17422,6 +17612,9 @@ msgstr ""
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Chọn nhân vật hoặc hành động dưới con trỏ bàn phím ảo"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
@@ -17585,6 +17778,9 @@ msgstr ""
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Chọn số kiểu máy của thiết bị Unicable của bạn. Nếu số kiểu máy không được liệt kê, hãy đặt 'SCR' thành 'người dùng xác định' và nhập thủ công các thông số thiết bị theo bảng thông số kỹ thuật của nó."
 
@@ -17598,12 +17794,6 @@ msgid "Select the movie path"
 msgstr "Chọn đường dẫn phim"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -17643,6 +17833,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Chọn giao thức được sử dụng bởi thiết bị SCR của bạn. Các lựa chọn là 'SCR Unicable' (Unicable) hoặc 'SCR JESS' (JESS, còn được gọi là Unicable II)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -17674,6 +17867,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 #, fuzzy
@@ -17772,10 +17968,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -17819,6 +18012,9 @@ msgstr "Chọn những gì bạn muốn nút TV để kích hoạt:"
 
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Chọn những gì bạn muốn nút Lên / Xuống để kích hoạt:"
+
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
 
 msgid "Select where the recording should be saved."
 msgstr ""
@@ -17864,9 +18060,6 @@ msgstr "Chọn có hay không hiển thị biểu tượng khi một đĩa cơ g
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "Chọn mạng không dây"
 
 msgid "Select your ATSC provider."
 msgstr "Chọn nhà cung cấp ATSC của bạn."
@@ -17977,6 +18170,9 @@ msgstr "nhạc nghiêm túc / nhạc cổ điển"
 
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "nghiêm túc / cổ điển / tôn giáo / lịch sử phim / kịch"
+
+msgid "Server"
+msgstr ""
 
 msgid "Server down"
 msgstr "Máy chủ ngừng hoạt động"
@@ -18379,6 +18575,9 @@ msgstr "Đặt thành những gì bạn muốn nút để làm."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Đặt thành có để gỡ lỗi nguyên nhân gốc của spinner."
+
+msgid "Set up network"
+msgstr ""
 
 msgid "Set up tuner [TUNER]"
 msgstr ""
@@ -18856,9 +19055,6 @@ msgstr "Hiển thị scart VCR trên menu chính"
 msgid "Show Vertical EPG"
 msgstr "Hiển thị EPG dọc"
 
-msgid "Show WLAN status"
-msgstr "Hiển thị trạng thái mạng WLAN"
-
 msgid "Show Web Link packages"
 msgstr ""
 
@@ -19023,9 +19219,6 @@ msgstr ""
 msgid "Show in Standby"
 msgstr "Hiển thị trong chế độ chờ"
 
-msgid "Show info"
-msgstr "Hiển thị thông tin"
-
 msgid "Show info line"
 msgstr "Hiển thị dòng thông tin"
 
@@ -19067,6 +19260,9 @@ msgstr "Xem phim"
 
 msgid "Show multi channel EPG"
 msgstr "Hiển thị EPG đa kênh"
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr ""
@@ -19252,6 +19448,9 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -19335,9 +19534,6 @@ msgstr "Hiển thị truyền hình trực tiếp hoặc thông tin trên LCD."
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Hiển thị các biểu tượng khi mới / chưa thấy, người khác sẽ không hiển thị biểu tượng."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Hiển thị trạng thái kết nối mạng LAN không dây của bạn."
-
 msgid "Shows the watched status of the media."
 msgstr "Hiển thị trạng thái đã xem của bộ phim."
 
@@ -19371,14 +19567,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "Công cụ tìm tín hiệu"
 
-msgid "Signal quality"
-msgstr "Chất lượng tín hiệu"
-
 msgid "Signal strength"
 msgstr ""
-
-msgid "Signal: "
-msgstr "Tín hiệu: "
 
 msgid "Signed by"
 msgstr ""
@@ -19512,6 +19702,9 @@ msgid "Skip forward (enter time)"
 msgstr "bỏ qua phía trước (nhập thời gian)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -19745,6 +19938,9 @@ msgstr ""
 msgid "Socket"
 msgstr "Ổ cắm"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -19883,6 +20079,18 @@ msgstr ""
 msgid "Sort by"
 msgstr "Sắp xếp theo"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "Sắp xếp theo mặc định"
 
@@ -19976,9 +20184,6 @@ msgid "Special events (Olympic games, World cup, etc.)"
 msgstr "sự kiện đặc biệt"
 
 msgid "Specify the directory to use when starting Media Player."
-msgstr ""
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr ""
 
 msgid "Speed"
@@ -20085,9 +20290,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr "Bắt đầu teletext"
 
-msgid "Start test"
-msgstr "Bắt đầu kiểm tra"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -20139,6 +20341,9 @@ msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
+msgstr ""
+
+msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
@@ -20225,9 +20430,6 @@ msgstr "Dừng dịch vụ khi quay lại danh sách phim"
 msgid "Stop streams"
 msgstr ""
 
-msgid "Stop test"
-msgstr "Dừng kiểm tra"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Dừng máy bay thử nghiệm sau khi # bộ tiếp sóng không thành công"
 
@@ -20292,6 +20494,12 @@ msgstr "không thể ghi được!"
 
 msgid "Store position"
 msgstr "Vị trí cửa hàng"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "Vị trí lưu trữ"
@@ -20910,10 +21118,6 @@ msgstr ""
 msgid "Test mode"
 msgstr "Chế độ kiểm tra"
 
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Kiểm tra cấu hình mạng của % s% s của bạn."
-
 msgid "Test type"
 msgstr "Loại thử nghiệm"
 
@@ -21023,18 +21227,6 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
 msgstr ""
 
 msgid ""
@@ -21195,13 +21387,6 @@ msgstr "Chiều cao của hình ảnh. Đầu vào sẽ được thu nhỏ để
 msgid "The loopthrough setting is wrong."
 msgstr "Cài đặt vòng lặp là sai."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
-"Vui lòng cài đặt nó."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21274,28 +21459,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Chiều rộng của hình ảnh. Đầu vào sẽ được thu nhỏ để phù hợp với giá trị này."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin LAN không dây chưa được cài đặt!\n"
-"Vui lòng cài đặt nó."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -21626,57 +21795,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Cài đặt này chỉ dành cho các thiết lập đặc biệt. Nó mang lại cho LNB mức độ ưu tiên cao hơn các LNB khác có giá trị thấp hơn. LNB miễn phí với mức ưu tiên cao nhất sẽ là LNB đầu tiên được chọn cho các dịch vụ điều chỉnh."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Kiểm tra này kiểm tra các máy chủ tên được cấu hình.\n"
-"Nếu bạn nhận được thông báo \"chưa được xác nhận\":\n"
-"- vui lòng kiểm tra thiết lập DHCP, cáp và bộ điều hợp của bạn\n"
-"- nếu bạn định cấu hình máy chủ tên theo cách thủ công, vui lòng xác minh các mục nhập của bạn trong cấu hình \"Máy chủ tên\""
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Kiểm tra này kiểm tra xem cáp mạng có được kết nối với bộ điều hợp mạng LAN của bạn không.\n"
-"Nếu bạn nhận được thông báo \"ngắt kết nối\":\n"
-"- xác minh rằng cáp mạng được đính kèm\n"
-"- xác minh rằng cáp không bị hỏng"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Kiểm tra này kiểm tra xem có tìm thấy địa chỉ IP hợp lệ cho bộ điều hợp mạng LAN của bạn không.\n"
-"Nếu bạn nhận được thông báo \"chưa được xác nhận\":\n"
-"- không tìm thấy địa chỉ IP hợp lệ\n"
-"- vui lòng kiểm tra thiết lập DHCP, cáp và bộ điều hợp của bạn"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Kiểm tra này kiểm tra xem bộ điều hợp mạng LAN của bạn có được thiết lập cho cấu hình địa chỉ IP tự động với DHCP không.\n"
-"Nếu bạn nhận được thông báo \"bị vô hiệu hóa\":\n"
-"  - sau đó bộ điều hợp mạng LAN của bạn được định cấu hình để thiết lập IP thủ công\n"
-"- xác minh thay bạn đã nhập thông tin IP chính xác trong hộp thoại thiết lập bộ điều hợp.\n"
-"Nếu bạn nhận được thông báo \"đã bật\":\n"
-"-Xác minh rằng bạn có một máy chủ DHCP được cấu hình và hoạt động trong mạng của bạn."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Kiểm tra này phát hiện bộ điều hợp mạng LAN được cấu hình của bạn."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21695,9 +21813,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-msgid "Three"
-msgstr "Số ba"
 
 msgid "Threshold"
 msgstr "Ngưỡng"
@@ -21848,6 +21963,9 @@ msgstr "Lịch sử thời gian"
 
 msgid "Timeline scale"
 msgstr "Quy mô thời gian"
+
+msgid "Timeout"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -22016,6 +22134,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Chuyển đổi chèn văn bản mới trước hoặc ghi đè văn bản hiện có"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr ""
 
@@ -22099,6 +22220,9 @@ msgstr ""
 
 msgid "Traditional Chinese"
 msgstr "Truyền thống Trung Hoa"
+
+msgid "Transceiver"
+msgstr ""
 
 msgid "Transcode"
 msgstr "Chuyển mã"
@@ -22361,9 +22485,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
-msgid "Two"
-msgstr "Hai"
-
 msgid "Two lines"
 msgstr "Hai dòng"
 
@@ -22480,9 +22601,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr "Không xác định"
 
-msgid "Unencrypted"
-msgstr "Không được mã hóa"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -22542,13 +22660,6 @@ msgstr "Không xác định"
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Lỗi không xác định khi tạo Skin.\n"
-"Vui lòng kiểm tra sau khi khởi động lại MyMetrixLite-Plugin và áp dụng cài đặt của bạn."
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -22592,6 +22703,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr "chưa được công bố"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "giải mã và ghi lại ecm"
 
@@ -22603,9 +22717,6 @@ msgstr "Độ cao tính toán bằng mili"
 
 msgid "Unset As Startup Service"
 msgstr "ngừng sử dụng làm dịch vụ khởi động"
-
-msgid "Unsupported"
-msgstr "Không được hỗ trợ"
 
 msgid "Until standby/restart"
 msgstr "cho đến khi chờ / khởi động lại"
@@ -22788,6 +22899,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr "Sử dụng thông tin MHW EPG khi có sẵn."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Sử dụng thông tin EPG Netmed khi có sẵn."
 
@@ -22824,14 +22938,14 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-msgid "Use a gateway"
-msgstr "Sử dụng cổng"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Sử dụng màn hình thay thế"
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -22875,11 +22989,11 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "sử dụng điện áp tăng '14 / 18V 'nếu có vấn đề khi chuyển đổi lnb"
-
-msgid "Use interface"
-msgstr "Sử dụng giao diện"
 
 msgid "Use key map *"
 msgstr "Sử dụng Keymap *"
@@ -22892,9 +23006,6 @@ msgstr "Sử dụng đánh số kênh chính thức"
 
 msgid "Use only DNSSEC servers"
 msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Chỉ sử dụng cho Wake on WLan (WoW)"
 
 msgid "Use only no-filter servers"
 msgstr ""
@@ -22947,9 +23058,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Sử dụng các nút Trái / Phải trên điều khiển từ xa để di chuyển lên / xuống giao diện người dùng"
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Sử dụng Networkwizard để cấu hình Mạng của bạn. Trình hướng dẫn sẽ giúp bạn thiết lập mạng của bạn"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Sử dụng Bảng điều khiển Softcam để điều khiển Cam của bạn. Điều này cho phép bạn bắt đầu / dừng / chọn một cam"
 
@@ -22967,12 +23075,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Sử dụng Danh sách mở rộng"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Sử dụng trình hướng dẫn để thiết lập các tính năng cơ bản"
@@ -23050,6 +23152,12 @@ msgstr "Tên đăng nhập"
 msgid "Username (httpuser)"
 msgstr "Tên người dùng (httpuser)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr ""
 
@@ -23075,9 +23183,6 @@ msgstr "Uzbekistan"
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
 
-msgid "VLAN connection"
-msgstr "Kết nối Vlan"
-
 #, fuzzy
 msgid "VMC"
 msgstr "MAC"
@@ -23090,6 +23195,9 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -23438,12 +23546,6 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "Kết nối mạng WLAN"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23452,15 +23554,6 @@ msgstr "WMA Pro downmix"
 
 msgid "WOL Standby"
 msgstr "Chế độ chờ"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA hoặc WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
@@ -23476,6 +23569,9 @@ msgstr "Vui lòng đợi trong khi quét ..."
 
 msgid "Waiting"
 msgstr "Đang chờ đợi"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "Chờ phân vùng"
@@ -23522,6 +23618,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -23845,17 +23944,20 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên cho bản ghi'."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên'."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr ""
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Khi được bật, timeshift bắt đầu tự động trong nền sau thời gian được chỉ định."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Khi được bật, sử dụng DHCP cho cấu hình IP."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Khi được bật, bạn có thể tùy chỉnh cài đặt OpenWeb If cho bộ điều chỉnh dự phòng"
@@ -23920,6 +24022,28 @@ msgstr "Trong khi có sẵn"
 msgid "White"
 msgstr "Trắng"
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr "rộng"
 
@@ -23943,27 +24067,6 @@ msgstr ""
 
 msgid "Wiping storage device..."
 msgstr ""
-
-msgid "Wireless LAN"
-msgstr "Mạng địa phương không dây"
-
-msgid "Wireless network"
-msgstr "Mạng không dây"
-
-msgid "Wireless network configuration..."
-msgstr "Cấu hình mạng không dây ..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
-msgstr "Trạng thái mạng không dây"
 
 msgid "With EXIT button"
 msgstr "với nút thoát"
@@ -24032,6 +24135,9 @@ msgstr "Bạn có lưu mã PIN%s đã nhập không?"
 #, fuzzy
 msgid "Wrestling"
 msgstr "Đang Cài đặt"
+
+msgid "Write block size"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -24246,17 +24352,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "Của bạn % s% s không được kết nối với internet, vui lòng kiểm tra cài đặt mạng của bạn và thử lại."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"Của bạn % s% s hiện đã sẵn sàng để được sử dụng.\n"
-"\n"
-"Kết nối internet của bạn đang hoạt động.\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Của bạn % s% s đang khởi động lại"
 
@@ -24287,38 +24382,12 @@ msgid "Your %s %s will Restart..."
 msgstr "Của bạn % s% s sẽ khởi động lại ..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Của bạn % s% s sẽ được khởi động lại sau khi cài đặt dịch vụ.\n"
-"\n"
-"Bạn có muốn cài đặt ngay bây giờ?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr "Của % s% s bạn sẽ được khởi động lại sau khi xóa dịch vụ?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Kết nối internet của bạn không hoạt động!\n"
-"Vui lòng chọn những gì bạn muốn làm tiếp theo."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, fuzzy, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Đầu thu của bạn có vấn đề về Phần mềm được phát hiện. Kể từ lần khởi động lại cuối cùng, nó đã xảy ra % d lần.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "STB của bạn sẽ khởi động lại sau khi nhấn OK trên điều khiển từ xa."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Bộ sưu tập của bạn vượt quá kích thước của một phương tiện một lớp, bạn sẽ cần một đĩa DVD hai lớp trống!"
@@ -24363,9 +24432,6 @@ msgid ""
 msgstr ""
 "Bảng điều khiển phía trước của bạn sẽ được nâng cấp\n"
 "Có thể sẽ mất vài phút"
-
-msgid "Your network configuration has been activated."
-msgstr "Cấu hình mạng của bạn đã được kích hoạt."
 
 msgid "Your password must have at least 5 characters."
 msgstr ""
@@ -24625,12 +24691,6 @@ msgstr "đóng chia sẻ"
 msgid "config menu"
 msgstr "menu cấu hình"
 
-msgid "confirmed"
-msgstr "xác nhận"
-
-msgid "connected"
-msgstr "đã kết nối"
-
 msgid "copy"
 msgstr "bản sao"
 
@@ -24654,9 +24714,6 @@ msgstr "xóa cắt"
 
 msgid "disabled"
 msgstr "cho phép/không cho phép"
-
-msgid "disconnected"
-msgstr "ngắt kết nối"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24919,9 +24976,6 @@ msgstr "của một môi trường lớp DUAL được sử dụng."
 msgid "of a SINGLE layer medium used."
 msgstr "của một phương tiện lớp SINGLE được sử dụng."
 
-msgid "off or wpa2 on"
-msgstr "tắt hoặc wpa2 trên"
-
 msgid "offset is"
 msgstr "bù là"
 
@@ -25132,9 +25186,6 @@ msgstr "cài đặt uShare"
 msgid "unavailable"
 msgstr "không có sẵn"
 
-msgid "unconfirmed"
-msgstr "chưa được xác nhận"
-
 msgid "unknown"
 msgstr "không xác định"
 
@@ -25190,6 +25241,537 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "One"
+#~ msgstr "Một"
+
+#~ msgid "Three"
+#~ msgstr "Số ba"
+
+#~ msgid "Two"
+#~ msgstr "Hai"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "Tìm thấy%d mạng không dây!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Một giao diện được cấu hình thứ hai đã được tìm thấy.\n"
+#~ "\n"
+#~ "Bạn có muốn tắt giao diện mạng thứ hai không?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "kích hoạt cấu hình bộ điều hợp mạng"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Kích hoạt cài đặt mạng"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Kích hoạt cài đặt mạng được cấu hình."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Bạn có chắc chắn muốn kích hoạt cấu hình mạng này?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Bạn có chắc chắn muốn khởi động lại giao diện mạng của mình không?"
+
+#~ msgid "Back"
+#~ msgstr "Trở lại"
+
+#~ msgid "Configure interface"
+#~ msgstr "Cấu hình giao diện"
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Cấu hình địa chỉ IP."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Cấu hình cổng."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Cấu hình máy chủ tên (DNS)."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Cấu hình netmask."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Định cấu hình lại mạng của bạn"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Cấu hình mạng của bạn"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Định cấu hình mạng LAN nội bộ của bạn"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Định cấu hình lại mạng LAN không dây của bạn"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Kết nối với mạng không dây"
+
+#~ msgid "Current settings:"
+#~ msgstr "Cài đặt hiện tại:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Thiết lập thiết bị"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr ""
+#~ "Chỉnh sửa cấu hình máy chủ tên của máy thu của bạn\n"
+#~ "%s %s."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr ""
+#~ "Chỉnh sửa cấu hình mạng của máy thu của bạn\n"
+#~ "%s %s."
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Kích hoạt Wake On LAN"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Được mã hóa: "
+
+#, fuzzy
+#~ msgid "Encryption Type:"
+#~ msgstr "Mã hóa:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Khóa mã hóa"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Loại khóa mã hóa"
+
+#, fuzzy
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Lỗi khi tạo FullHD-Skin.\n"
+#~ "Sử dụng HD-Skin!"
+
+#, fuzzy
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Lỗi khi tạo FullHD-Skin. Tải xuống gói biểu tượng không có sẵn.\n"
+#~ "Sử dụng HD-Skin!"
+
+#, fuzzy
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Lỗi khi tạo FullHD-Skin. Không đủ bộ nhớ flash miễn phí.\n"
+#~ "Sử dụng HD-Skin!"
+
+#, fuzzy
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Lỗi khi tạo FullHD-Skin.\n"
+#~ "Sử dụng HD-Skin!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Lỗi khi tạo HD-Skin. Không đủ bộ nhớ flash miễn phí."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Lỗi khi tạo MetrixHD-Skin.\n"
+#~ "Vui lòng kiểm tra sau khi khởi động lại MyMetrixLite-Plugin và áp dụng cài đặt của bạn."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Lỗi, chưa biết kết quả!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "thoát cấu hình bộ điều hợp mạng"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Thoát khỏi danh sách giao diện mạng"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Thoát khỏi thuật sĩ mạng"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Plugin Networksetup mở rộng ..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Thiết lập mở rộng ..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "Hoàn tất cấu hình mạng của bạn"
+
+#, fuzzy
+#~ msgid "Frequency Norm:"
+#~ msgstr "Tần số"
+
+#~ msgid "Interface: "
+#~ msgstr "Giao diện: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "Bộ điều hợp mạng LAN"
+
+#~ msgid "Link quality:"
+#~ msgstr "Chất lượng liên kết:"
+
+#~ msgid "Link:"
+#~ msgstr "Liên kết:"
+
+#~ msgid "List available networks"
+#~ msgstr "Liệt kê các mạng khả dụng"
+
+#~ msgid "Local network"
+#~ msgstr "Mạng nội bộ"
+
+#~ msgid "MAC-address"
+#~ msgstr "Địa chỉ MAC"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Cấu hình thủ công"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Tối đa: "
+
+#~ msgid "Nameserver"
+#~ msgstr "Tên máy chủ"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "Cài đặt máy chủ tên"
+
+#~ msgid "Network Test:"
+#~ msgstr "Kiểm tra mạng lưới: "
+
+#~ msgid "Network Wizard"
+#~ msgstr "Số dách mạng"
+
+#~ msgid "Network test"
+#~ msgstr "Kiểm tra mạng"
+
+#~ msgid "Network:"
+#~ msgstr "Mạng:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Thuật sĩ mạng"
+
+#~ msgid "No Connection"
+#~ msgstr "Không có kết nối"
+
+#~ msgid "No networks found"
+#~ msgstr "Không tìm thấy kết nối mạng"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Không tìm thấy mạng không dây! Đang tìm kiếm..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Không tìm thấy bộ điều hợp mạng cục bộ.\n"
+#~ "Vui lòng xác minh rằng bạn đã gắn cáp mạng và mạng của bạn được cấu hình đúng."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Không tìm thấy bộ điều hợp mạng không dây làm việc.\n"
+#~ "Vui lòng xác minh rằng bạn đã gắn thiết bị WLAN tương thích và mạng của bạn được cấu hình đúng."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Không tìm thấy giao diện mạng không dây.\n"
+#~ "  Vui lòng xác minh rằng bạn đã gắn thiết bị WLAN tương thích hoặc bật giao diện mạng cục bộ của bạn."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Vui lòng làm theo hướng dẫn trên TV"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "Vui lòng nhấn OK để tiếp tục."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Vui lòng đợi kích hoạt cấu hình mạng của bạn ..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Xin vui lòng chờ trong khi chúng tôi chuẩn bị giao diện mạng của bạn ..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Vui lòng đợi trong khi chúng tôi kiểm tra mạng của bạn ..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Xin vui lòng chờ trong khi thiết lập làn da của bạn đang khôi phục ..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Nhấn OK để kích hoạt cài đặt."
+
+#~ msgid "Primary DNS"
+#~ msgstr "DNS chính"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Khởi động lại bộ điều hợp mạng"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Khởi động lại kết nối và giao diện mạng của bạn."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "Khôi phục cài đặt MetrixHD"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "Thiết lập SABnzbd"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Quét mạng không dây"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Quét mạng của bạn để biết các điểm truy cập không dây và kết nối với chúng bằng thiết bị không dây đã chọn của bạn."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "DNS phụ"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Chọn mạng không dây"
+
+#~ msgid "Select interface"
+#~ msgstr "Chọn giao diện skin"
+
+#~ msgid "Select wireless network"
+#~ msgstr "Chọn mạng không dây"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "Hiển thị trạng thái mạng WLAN"
+
+#~ msgid "Show info"
+#~ msgstr "Hiển thị thông tin"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Hiển thị trạng thái kết nối mạng LAN không dây của bạn."
+
+#~ msgid "Signal quality"
+#~ msgstr "Chất lượng tín hiệu"
+
+#~ msgid "Signal: "
+#~ msgstr "Tín hiệu: "
+
+#~ msgid "Start test"
+#~ msgstr "Bắt đầu kiểm tra"
+
+#~ msgid "Stop test"
+#~ msgstr "Dừng kiểm tra"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Kiểm tra cấu hình mạng của % s% s của bạn."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
+#~ "Vui lòng cài đặt nó."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Plugin LAN không dây chưa được cài đặt!\n"
+#~ "Vui lòng cài đặt nó."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Kiểm tra này kiểm tra các máy chủ tên được cấu hình.\n"
+#~ "Nếu bạn nhận được thông báo \"chưa được xác nhận\":\n"
+#~ "- vui lòng kiểm tra thiết lập DHCP, cáp và bộ điều hợp của bạn\n"
+#~ "- nếu bạn định cấu hình máy chủ tên theo cách thủ công, vui lòng xác minh các mục nhập của bạn trong cấu hình \"Máy chủ tên\""
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Kiểm tra này kiểm tra xem cáp mạng có được kết nối với bộ điều hợp mạng LAN của bạn không.\n"
+#~ "Nếu bạn nhận được thông báo \"ngắt kết nối\":\n"
+#~ "- xác minh rằng cáp mạng được đính kèm\n"
+#~ "- xác minh rằng cáp không bị hỏng"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Kiểm tra này kiểm tra xem có tìm thấy địa chỉ IP hợp lệ cho bộ điều hợp mạng LAN của bạn không.\n"
+#~ "Nếu bạn nhận được thông báo \"chưa được xác nhận\":\n"
+#~ "- không tìm thấy địa chỉ IP hợp lệ\n"
+#~ "- vui lòng kiểm tra thiết lập DHCP, cáp và bộ điều hợp của bạn"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Kiểm tra này kiểm tra xem bộ điều hợp mạng LAN của bạn có được thiết lập cho cấu hình địa chỉ IP tự động với DHCP không.\n"
+#~ "Nếu bạn nhận được thông báo \"bị vô hiệu hóa\":\n"
+#~ "  - sau đó bộ điều hợp mạng LAN của bạn được định cấu hình để thiết lập IP thủ công\n"
+#~ "- xác minh thay bạn đã nhập thông tin IP chính xác trong hộp thoại thiết lập bộ điều hợp.\n"
+#~ "Nếu bạn nhận được thông báo \"đã bật\":\n"
+#~ "-Xác minh rằng bạn có một máy chủ DHCP được cấu hình và hoạt động trong mạng của bạn."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Kiểm tra này phát hiện bộ điều hợp mạng LAN được cấu hình của bạn."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Không được mã hóa"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Lỗi không xác định khi tạo Skin.\n"
+#~ "Vui lòng kiểm tra sau khi khởi động lại MyMetrixLite-Plugin và áp dụng cài đặt của bạn."
+
+#~ msgid "Unsupported"
+#~ msgstr "Không được hỗ trợ"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Sử dụng cổng"
+
+#~ msgid "Use interface"
+#~ msgstr "Sử dụng giao diện"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Chỉ sử dụng cho Wake on WLan (WoW)"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Sử dụng Networkwizard để cấu hình Mạng của bạn. Trình hướng dẫn sẽ giúp bạn thiết lập mạng của bạn"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
+
+#~ msgid "VLAN connection"
+#~ msgstr "Kết nối Vlan"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "Kết nối mạng WLAN"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA hoặc WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Khi được bật, sử dụng DHCP cho cấu hình IP."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "Mạng địa phương không dây"
+
+#~ msgid "Wireless network"
+#~ msgstr "Mạng không dây"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Cấu hình mạng không dây ..."
+
+#~ msgid "Wireless network state"
+#~ msgstr "Trạng thái mạng không dây"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Của bạn % s% s hiện đã sẵn sàng để được sử dụng.\n"
+#~ "\n"
+#~ "Kết nối internet của bạn đang hoạt động.\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Của bạn % s% s sẽ được khởi động lại sau khi cài đặt dịch vụ.\n"
+#~ "\n"
+#~ "Bạn có muốn cài đặt ngay bây giờ?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr "Của % s% s bạn sẽ được khởi động lại sau khi xóa dịch vụ?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Kết nối internet của bạn không hoạt động!\n"
+#~ "Vui lòng chọn những gì bạn muốn làm tiếp theo."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "STB của bạn sẽ khởi động lại sau khi nhấn OK trên điều khiển từ xa."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Cấu hình mạng của bạn đã được kích hoạt."
+
+#~ msgid "confirmed"
+#~ msgstr "xác nhận"
+
+#~ msgid "connected"
+#~ msgstr "đã kết nối"
+
+#~ msgid "disconnected"
+#~ msgstr "ngắt kết nối"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "tắt hoặc wpa2 trên"
+
+#~ msgid "unconfirmed"
+#~ msgstr "chưa được xác nhận"
 
 #~ msgid "Switchable tuner types:"
 #~ msgstr "Các loại tuner có thể chuyển đổi:"
@@ -25587,9 +26169,6 @@ msgstr ""
 
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "Đang quét ..."
 
 #~ msgid "Servers:"
 #~ msgstr "Máy chủ:"
@@ -26348,9 +26927,6 @@ msgstr ""
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Cập nhật thời gian trong vài phút:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

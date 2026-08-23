@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2021-08-15 18:50+0000\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-16 18:02+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
 "Language: is\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 msgid ""
@@ -977,6 +977,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -997,6 +1003,12 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d min"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d package found."
@@ -1112,13 +1124,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d times"
 msgstr "Loka tími"
-
-#
-#, fuzzy, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "fann 1 þráðlaust net!"
-msgstr[1] "fann 1 þráðlaust net!"
 
 msgid "%d+%b_"
 msgstr ""
@@ -1320,6 +1325,10 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr ""
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr ""
 
@@ -1365,6 +1374,22 @@ msgstr ""
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
+msgstr ""
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1454,17 +1479,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-#
-msgid "1.0"
-msgstr "1.0"
-
-#
-msgid "1.1"
-msgstr "1.1"
-
-#
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr ""
@@ -1492,20 +1508,12 @@ msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr ""
 
 #
-msgid "13 V"
-msgstr "13 V"
-
-#
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 #
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-#
-msgid "16:9"
-msgstr "16:9"
 
 #
 msgid "16:9 Always"
@@ -1526,10 +1534,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-#
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr ""
@@ -1783,15 +1787,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Nauðsynlegt tól (%s) fannst ekki."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Annað uppsett netkort fannst.\n"
-"\n"
-"Viltu hætta að nota það?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1928,6 +1923,11 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -1970,14 +1970,7 @@ msgstr ""
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate network adapter configuration"
-msgstr "virkja stillingar netkorts"
-
-#
-msgid "Activate network settings"
-msgstr "Virkja netkerfis stillingar"
-
-msgid "Activate the configured network settings."
+msgid "Activate network adapter"
 msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
@@ -1999,6 +1992,13 @@ msgid "Active clients"
 msgstr ""
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 #
@@ -2050,6 +2050,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "bæta við merki"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -2076,6 +2079,12 @@ msgstr ""
 #
 msgid "Add To Parental Protection"
 msgstr "bæta við foreldra lás"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 #, fuzzy
 msgid "Add Zap+RecordTimer"
@@ -2109,6 +2118,9 @@ msgstr "fara niður í næsta atriði"
 #
 msgid "Add a mark"
 msgstr "Bæta við merki"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr ""
@@ -2710,9 +2722,6 @@ msgstr ""
 msgid "Are you sure to remove this entry?"
 msgstr "Ertu viss um að þú viljir hætta í ráðgjafanum?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Ertu viss um að þú viljir virkja þessa net stillingu?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2735,9 +2744,6 @@ msgstr "Ertu viss um að þú viljir hætta í ráðgjafanum?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr ""
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Ertu viss um að þú viljir endurræsa netkortið?"
 
 #, python-format
 msgid ""
@@ -2847,6 +2853,9 @@ msgstr "úthlutað CAIds:"
 #, fuzzy
 msgid "Assigned services/provider:"
 msgstr "úthlutaðar rásir/sendendur:"
+
+msgid "Associated"
+msgstr ""
 
 msgid "Astra 1 19.2e"
 msgstr ""
@@ -3127,8 +3136,8 @@ msgstr ""
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
-msgid "Back"
-msgstr "Til baka"
+msgid "BSSID"
+msgstr ""
 
 #, fuzzy
 msgid "Back USB"
@@ -3543,6 +3552,9 @@ msgstr ""
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3602,6 +3614,9 @@ msgid "Burn to medium"
 msgstr ""
 
 msgid "Burundi"
+msgstr ""
+
+msgid "Bus"
 msgstr ""
 
 msgid "Business"
@@ -3781,6 +3796,9 @@ msgid "Cable"
 msgstr "Kapalkerfi"
 
 msgid "Cable Scan"
+msgstr ""
+
+msgid "Cable Unplugged"
 msgstr ""
 
 msgid "Cable input"
@@ -4308,6 +4326,9 @@ msgstr "Kafli"
 msgid "Character device"
 msgstr "Listi geymslu tækja"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr ""
 
@@ -4544,6 +4565,9 @@ msgstr "Tæma lista"
 msgid "Clear Log"
 msgstr "Tæma lista"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Eyða fyrir leit"
 
@@ -4614,6 +4638,9 @@ msgid "Close bouquet list."
 msgstr "Breyta rásavanda lista"
 
 msgid "Close dialog"
+msgstr ""
+
+msgid "Close network test"
 msgstr ""
 
 msgid "Close screen"
@@ -4816,13 +4843,16 @@ msgstr ""
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr ""
 
 msgid "Configure an additional delay to improve subtitle synchronization."
+msgstr ""
+
+msgid "Configure another network adapter"
 msgstr ""
 
 msgid "Configure cable reception on this input."
@@ -4873,14 +4903,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr ""
 
-msgid "Configure interface"
-msgstr "Stilla netkort"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -4897,16 +4927,7 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
-msgid "Configure the IP address."
-msgstr ""
-
 msgid "Configure the IP of the fallback remote receiver."
-msgstr ""
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
@@ -5013,9 +5034,6 @@ msgstr ""
 msgid "Configure the function of the < and > buttons."
 msgstr ""
 
-msgid "Configure the gateway."
-msgstr ""
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr ""
 
@@ -5045,15 +5063,6 @@ msgstr ""
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr ""
-
-msgid "Configure the name server (DNS)."
-msgstr ""
-
-msgid "Configure the netmask."
-msgstr ""
-
-msgid "Configure the network again"
-msgstr "Stilla netkortið þitt aftur"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
@@ -5086,6 +5095,9 @@ msgid "Configure the second subtitle language."
 msgstr ""
 
 msgid "Configure the secondary EPG language."
+msgstr ""
+
+msgid "Configure the selected Wi-Fi network"
 msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
@@ -5188,17 +5200,8 @@ msgstr ""
 msgid "Configure your NTP server."
 msgstr "Stilla nafnaþjón"
 
-msgid "Configure your Network"
-msgstr ""
-
-msgid "Configure your internal LAN"
-msgstr "Stilla innbyggt netkort"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr "Stilla þráðlausa netkortið þitt aftur"
 
 msgid "Configures which video output connector will be used."
 msgstr ""
@@ -5210,6 +5213,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -5232,11 +5239,13 @@ msgstr "Tengi"
 msgid "Connect to IceTV server every"
 msgstr "Gat ekki tengt við %s %s .NFI stýrikerfis vefþjón:"
 
-#, fuzzy
-msgid "Connect to a wireless network"
-msgstr "Tengist við þráðlaust net"
-
 msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 msgid "Connected clients"
@@ -5254,7 +5263,25 @@ msgstr "Tengd við"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
+msgstr ""
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
 msgstr ""
 
 msgid "Connection information"
@@ -5304,6 +5331,9 @@ msgid "Context"
 msgstr ""
 
 msgid "Continent"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5458,9 +5488,23 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "Gat ekki tengt við %s %s .NFI stýrikerfis vefþjón:"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr ""
@@ -5482,6 +5526,12 @@ msgstr ""
 
 #, python-format
 msgid "Could not save configuration file %s!"
+msgstr ""
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
 msgstr ""
 
 msgid "Country"
@@ -5606,6 +5656,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr ""
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr ""
 
@@ -5710,9 +5767,6 @@ msgstr ""
 
 msgid "Current rotor position: unknown"
 msgstr ""
-
-msgid "Current settings:"
-msgstr "Núverandi stilling:"
 
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
@@ -5821,9 +5875,6 @@ msgstr "D"
 msgid "DAC"
 msgstr ""
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr ""
 
@@ -5834,6 +5885,9 @@ msgid "DMM normal"
 msgstr ""
 
 msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS Settings Actions"
 msgstr ""
 
 msgid "DNS data source"
@@ -6122,7 +6176,13 @@ msgstr ""
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -6388,6 +6448,12 @@ msgstr ""
 msgid "Delete Line"
 msgstr ""
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr ""
 
@@ -6635,9 +6701,6 @@ msgstr ""
 msgid "Device Manager Actions"
 msgstr ""
 
-msgid "Device Settings"
-msgstr ""
-
 msgid "Device id"
 msgstr ""
 
@@ -6758,6 +6821,9 @@ msgstr ""
 msgid "Disable"
 msgstr "Gera óvirkt"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr ""
 
@@ -6785,6 +6851,9 @@ msgstr ""
 msgid "Disable Move Mode"
 msgstr "hætta í færslu stöðu"
 
+msgid "Disable Network"
+msgstr ""
+
 #
 msgid "Disable Picture in Picture"
 msgstr "Gera Mynd í Mynd óvirka"
@@ -6802,6 +6871,9 @@ msgid "Disable intro screen"
 msgstr ""
 
 msgid "Disable operator profiles"
+msgstr ""
+
+msgid "Disable saved Wi-Fi network"
 msgstr ""
 
 msgid "Disable the HDD Process on VFD."
@@ -6822,10 +6894,10 @@ msgstr "Óvirkt"
 msgid "Disabled PiP.\n"
 msgstr ""
 
-msgid "Disabled or WPA/WPA2"
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
-msgid "Disabling Chkroot failed!"
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -7273,6 +7345,9 @@ msgstr ""
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr ""
 
@@ -7436,6 +7511,9 @@ msgstr "Breyta"
 msgid "Edit Alternatives"
 msgstr "breyta valkosti"
 
+msgid "Edit Credentials"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Edit Mode Off"
@@ -7463,6 +7541,9 @@ msgstr ""
 msgid "Edit Upgrade Source URL"
 msgstr ""
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Breyta köflum núverandi titils"
 
@@ -7474,27 +7555,20 @@ msgstr "Breyta köflum núverandi titils"
 msgid "Edit settings"
 msgstr "Breyta stillingum"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr ""
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Breyta nafnaþjóns stillingum %s %sins."
-
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 msgid "Edit the currently selected timer"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Breyta stillingum netkorts í %s %sinu."
 
 msgid "Edit the password."
 msgstr ""
@@ -7506,6 +7580,9 @@ msgid "Edit the remote CCCam port."
 msgstr ""
 
 msgid "Edit the remote IP address."
+msgstr ""
+
+msgid "Edit the selected network mount"
 msgstr ""
 
 msgid "Edit the upgrade source address."
@@ -7616,9 +7693,6 @@ msgstr ""
 msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
-msgid "Enable IPv6"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Enable IceTV"
@@ -7675,7 +7749,7 @@ msgstr ""
 msgid "Enable Virgin EPG"
 msgstr ""
 
-msgid "Enable Wake On LAN"
+msgid "Enable adapter"
 msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
@@ -7755,10 +7829,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Virkja marga rásavendi"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr ""
 
 msgid "Enable new GStreamer playback"
+msgstr ""
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -7773,6 +7853,9 @@ msgid "Enable preview"
 msgstr "Virkja"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
+msgid "Enable saved Wi-Fi network"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -7875,26 +7958,9 @@ msgstr "Virkt"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Encrypted: "
-msgstr "Kóðun:"
-
 #
 msgid "Encryption"
 msgstr "Kóðun"
-
-#, fuzzy
-msgid "Encryption Type:"
-msgstr "Kóðun:"
-
-#
-#, fuzzy
-msgid "Encryption key"
-msgstr "Kóðunar lykill"
-
-#
-#, fuzzy
-msgid "Encryption key type"
-msgstr "Kóðunar lykilgerð"
 
 msgid "End"
 msgstr ""
@@ -8008,6 +8074,9 @@ msgstr ""
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr ""
 
@@ -8018,6 +8087,9 @@ msgid "Enter new directory name:"
 msgstr ""
 
 msgid "Enter number to jump to channel"
+msgstr ""
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
 msgstr ""
 
 msgid "Enter persistent PIN code"
@@ -8053,10 +8125,28 @@ msgstr ""
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr ""
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
@@ -8066,6 +8156,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -8081,6 +8174,12 @@ msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.
 msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
@@ -8238,34 +8337,6 @@ msgstr ""
 msgid "Error code"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr ""
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
@@ -8310,9 +8381,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr ""
-
 #
 #, python-format
 msgid ""
@@ -8324,6 +8392,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Það þarf að vera skráarnafn."
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8379,6 +8450,10 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr ""
 
@@ -8386,6 +8461,9 @@ msgstr ""
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Tókst ekki að taka út möppuna %s. (kannski ekki tóm.)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8437,6 +8515,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8463,6 +8545,9 @@ msgstr "Eistneska"
 #, fuzzy
 msgid "EtPortal"
 msgstr "Portúgalska"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Ethernet netkort"
@@ -8603,21 +8688,6 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr "hætta í spilara"
 
-#
-msgid "Exit network adapter configuration"
-msgstr "fara úr netkorts stillingum"
-
-msgid "Exit network adapter setup menu"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Exit network interface list"
-msgstr "fara út úr netkorta lista"
-
-msgid "Exit network wizard"
-msgstr "Hætta í netkerfis ráðgjafa"
-
 msgid "Exit picture viewer"
 msgstr ""
 
@@ -8634,6 +8704,9 @@ msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
+msgstr ""
+
+msgid "Expand/collapse the selected host, or use the selected share"
 msgstr ""
 
 msgid "Experimental film/video"
@@ -8655,6 +8728,9 @@ msgstr "Sérfræði"
 msgid "Expert mode"
 msgstr "Sérfræði"
 
+msgid "Exports"
+msgstr ""
+
 msgid "Exposure bias"
 msgstr ""
 
@@ -8672,12 +8748,6 @@ msgstr ""
 
 msgid "Extended"
 msgstr ""
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Íforrit fyrir nánari stillingar netkerfis..."
-
-msgid "Extended Setup..."
-msgstr "Viðbótar stillingar..."
 
 msgid "Extended Shares"
 msgstr ""
@@ -9149,10 +9219,6 @@ msgstr "Fínstilla"
 msgid "Finished"
 msgstr "Búið"
 
-#
-msgid "Finished configuring your network"
-msgstr "Búið að stilla netkerfið"
-
 msgid "Finland"
 msgstr ""
 
@@ -9260,13 +9326,13 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Staðsetning hnattar"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
-msgstr ""
-
-msgid "Follow instructions on TV"
 msgstr ""
 
 #, fuzzy
@@ -9391,11 +9457,6 @@ msgstr ""
 
 #
 msgid "Frequency"
-msgstr "Tíðni"
-
-#
-#, fuzzy
-msgid "Frequency Norm:"
 msgstr "Tíðni"
 
 #
@@ -10265,6 +10326,9 @@ msgstr ""
 msgid "IP"
 msgstr ""
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr ""
 
@@ -10298,6 +10362,9 @@ msgid "IP protocol"
 msgstr ""
 
 msgid "IPK Installer"
+msgstr ""
+
+msgid "IPv4 and IPv6"
 msgstr ""
 
 msgid "IPv4 only"
@@ -10907,9 +10974,6 @@ msgstr ""
 msgid "Interface '%s'"
 msgstr ""
 
-msgid "Interface: "
-msgstr "Netkort:"
-
 #, fuzzy
 msgid "Interlaced"
 msgstr "Netkort:"
@@ -11303,13 +11367,11 @@ msgstr ""
 msgid "LAN"
 msgstr "LNB"
 
-#
-#, fuzzy
-msgid "LAN adapter"
-msgstr "Netkort"
-
 msgid "LAN connection"
 msgstr "LAN tenging"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr ""
@@ -11535,6 +11597,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr ""
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -11640,19 +11705,11 @@ msgstr ""
 msgid "Link detected"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Link quality:"
-msgstr "Gæði tengingar:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr ""
-
-msgid "Link:"
-msgstr "Tenging:"
 
 #
 msgid "Linked titles with a DVD menu"
@@ -11666,9 +11723,6 @@ msgstr ""
 
 msgid "List available EPG functions"
 msgstr ""
-
-msgid "List available networks"
-msgstr "Sýna netkerfi í boði"
 
 msgid "List of Storage Devices"
 msgstr ""
@@ -11743,15 +11797,13 @@ msgstr ""
 msgid "Local information"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Local network"
-msgstr "Nærnet"
-
 msgid "Local or Regional"
 msgstr ""
 
 msgid "Local receiver"
+msgstr ""
+
+msgid "Local share"
 msgstr ""
 
 msgid "Local time"
@@ -11939,13 +11991,11 @@ msgstr ""
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP Netfang"
+msgid "MAC address"
+msgstr ""
 
 msgid "MENU"
 msgstr ""
@@ -12097,9 +12147,6 @@ msgstr "Handvirk leitun"
 msgid "Manual Service Searching"
 msgstr "Handvirk leitun"
 
-msgid "Manual configuration"
-msgstr "Handvirk stilling"
-
 msgid "Manual scan for services"
 msgstr ""
 
@@ -12182,10 +12229,6 @@ msgstr ""
 
 msgid "Max memory positions"
 msgstr ""
-
-#, fuzzy
-msgid "Max. bitrate: "
-msgstr "Mesti bitahraði:"
 
 msgid "Maxdown +"
 msgstr ""
@@ -12513,6 +12556,9 @@ msgstr ""
 msgid "Mount"
 msgstr ""
 
+msgid "Mount Context Menu"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr ""
 
@@ -12522,7 +12568,19 @@ msgstr ""
 msgid "Mount Setup"
 msgstr ""
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
+msgstr ""
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
@@ -12531,10 +12589,16 @@ msgstr ""
 msgid "Mount root file system."
 msgstr ""
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr ""
 
 msgid "Move"
+msgstr ""
+
+msgid "Move Down"
 msgstr ""
 
 msgid "Move Left/Right"
@@ -12561,6 +12625,9 @@ msgstr ""
 #, fuzzy
 msgid "Move PiP to main picture"
 msgstr "nota mynd glugga sem aðal mynd"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr ""
@@ -12623,6 +12690,12 @@ msgstr "fara niður í síðasta atriði"
 #
 msgid "Move east"
 msgstr "Færa austur"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr ""
@@ -12728,6 +12801,12 @@ msgid "Move to previous bouquet"
 msgstr ""
 
 msgid "Move to previous marker"
+msgstr ""
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -13003,7 +13082,13 @@ msgstr ""
 msgid "NFS Server Settings"
 msgstr ""
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -13051,14 +13136,6 @@ msgstr ""
 #, python-format
 msgid "Name server %d"
 msgstr ""
-
-#
-msgid "Nameserver"
-msgstr "Nafnaþjónn"
-
-#
-msgid "Nameserver settings"
-msgstr "Uppsetning nafnaþjóns"
 
 msgid "Nameserver setup"
 msgstr ""
@@ -13125,22 +13202,20 @@ msgstr "Netmaski"
 msgid "Network"
 msgstr "Netkerfi"
 
-msgid "Network Adapter Actions"
+#, python-format
+msgid "Network Adapter '%s' Settings"
 msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr ""
 
-msgid "Network Adapter Setting Actions"
-msgstr ""
-
 msgid "Network Adapter Settings"
 msgstr ""
 
-msgid "Network Adapter Text Actions"
+msgid "Network Browser"
 msgstr ""
 
-msgid "Network Browser"
+msgid "Network Credentials"
 msgstr ""
 
 msgid "Network ID"
@@ -13161,7 +13236,22 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
+msgstr ""
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
 msgstr ""
 
 msgid "Network Packages"
@@ -13180,25 +13270,63 @@ msgstr "Stillingar netkerfis"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr ""
 
-msgid "Network Test:"
-msgstr "Prufa nettengingu:"
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
 msgstr ""
 
 msgid "Network adapter not connected to a network!"
 msgstr ""
 
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
+msgstr ""
+
 msgid "Network address"
 msgstr ""
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
 msgstr ""
 
 msgid "Network information"
@@ -13230,27 +13358,10 @@ msgstr "Leita netkerfið allt"
 msgid "Network storage on"
 msgstr ""
 
-#
-msgid "Network test"
-msgstr "Prufa nettengingu"
-
 msgid "Network test..."
 msgstr "Prufa nettengingu..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
-msgstr ""
-
-#
-msgid "Network:"
-msgstr "Nettenging:"
-
-msgid "NetworkWizard"
 msgstr ""
 
 msgid "Neutrino  (keymap.ntr)"
@@ -13287,6 +13398,9 @@ msgid "New Setting DXAndy "
 msgstr ""
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -13403,10 +13517,6 @@ msgid "No (supported) DVDROM found!"
 msgstr "Enginn (studdur) DVDROM fannst!"
 
 #
-msgid "No Connection"
-msgstr "Engin tenging"
-
-#
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Engin lýsing tiltæk."
@@ -13414,6 +13524,15 @@ msgstr "Engin lýsing tiltæk."
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "Fann ekki harðan disk eða hann ekki formaður!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -13499,7 +13618,13 @@ msgstr "Engin lýsing tiltæk."
 msgid "No free tuner!"
 msgstr "Enginn laus móttakari!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
+msgstr ""
+
+msgid "No hosts found yet - still scanning..."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13516,9 +13641,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr ""
 
-#
-msgid "No networks found"
-msgstr "Ekkert netkerfi fannst"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr ""
@@ -13548,6 +13672,9 @@ msgstr "bæta við rás"
 #, fuzzy
 msgid "No services/providers selected"
 msgstr "engar rásir/sendar valdir"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr ""
@@ -13627,33 +13754,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
-
-msgid "No wireless networks found! Searching..."
-msgstr "Ekkert þráðlaust net fannst! Leita..."
-
-#
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Ekkert virkt netkort fannst.\n"
-"Athugaðu hvort að það sé tengdur netkapallinn og netið sé rétt stillt."
-
-#
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Ekkert virkt þráðlaust netkort fannst.\n"
-"Athugaðu hvort að það sé tengt samhæft þráðlaust netkort og að það sé rétt stillt."
-
-#
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Ekkert virkt þráðlaust netkort fannst.\n"
-" Athugaðu hvort að það sé tengt samhæft þráðlaust netkort eða athugaðu með stillingar á því."
 
 #
 msgid "No, but restart from begin"
@@ -13755,6 +13855,9 @@ msgstr "Norska"
 msgid "Not Classified"
 msgstr "Ekki tengt"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr ""
 
@@ -13798,7 +13901,13 @@ msgid ""
 "Path: %s"
 msgstr ""
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -14039,10 +14148,6 @@ msgstr ""
 msgid "Once"
 msgstr "einu sinni"
 
-#
-msgid "One"
-msgstr "Einn"
-
 msgid "One line"
 msgstr ""
 
@@ -14266,7 +14371,22 @@ msgstr ""
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 msgid "Open the Plugin Browser"
@@ -14308,6 +14428,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -14335,6 +14458,9 @@ msgid "Option to disable picons on the InfoBar."
 msgstr ""
 
 msgid "Option to enable the hardware Standby timer."
+msgstr ""
+
+msgid "Optional arguments"
 msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
@@ -14845,6 +14971,9 @@ msgstr "Pillarbox"
 msgid "Pilot"
 msgstr "Stjóri"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr ""
 
@@ -15049,19 +15178,12 @@ msgid ""
 "Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
 msgstr ""
 
-msgid "Please follow the instructions on the TV"
-msgstr "Fylgdu leiðbeiningum á skjá"
-
 #
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Vinsamlega athugið að áður valinn diskur er ekki tiltækur núna og þá verður notuð sjálfgefin mappa í staðinn."
 
 msgid "Please open Picture in Picture first"
 msgstr ""
-
-#
-msgid "Please press OK to continue."
-msgstr "Ýttu á OK til að halda áfram."
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -15148,10 +15270,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Vinsamlega bíðið..."
 
-#
-msgid "Please wait for activation of your network configuration..."
-msgstr "Vinsamlega bíðið eftir virkjun á netkerfis stillingum..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -15210,19 +15328,8 @@ msgid "Please wait while we check your installed plugins..."
 msgstr ""
 
 #
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Vinsamlegast bíðið á meðan við stillum netkort..."
-
-#
-msgid "Please wait while we test your network..."
-msgstr "Vinsamlega bíðið á meðan við prufum net tengingu..."
-
-#
 msgid "Please wait while your network is restarting..."
 msgstr "Vinsamlega bíðið á meðan netkerfið er endurræst..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr ""
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
@@ -15521,10 +15628,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Ýttu á OK á fjarstýringunni til að halda áfram."
 
-#
-msgid "Press OK to activate the settings."
-msgstr "Ýtið á OK til að virkja stillingar."
-
 msgid "Press OK to continue."
 msgstr ""
 
@@ -15652,10 +15755,6 @@ msgstr ""
 
 msgid "Prevsong"
 msgstr ""
-
-#
-msgid "Primary DNS"
-msgstr "Aðal DNS"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -16038,10 +16137,19 @@ msgstr ""
 msgid "Re-enter new PIN"
 msgstr ""
 
-msgid "Read-Only"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
+msgstr ""
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
 msgstr ""
 
 msgid "Read/Write"
@@ -16105,6 +16213,9 @@ msgid "Really shutdown now?"
 msgstr "Viltu örugglega slökkva núna?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -16446,6 +16557,9 @@ msgstr ""
 msgid "Remote control type"
 msgstr ""
 
+msgid "Remote path"
+msgstr ""
+
 msgid "Remote receiver"
 msgstr ""
 
@@ -16480,6 +16594,9 @@ msgstr ""
 #, fuzzy
 msgid "Remove Confirmation"
 msgstr "Stilling móttakara"
+
+msgid "Remove Credentials"
+msgstr ""
 
 #
 msgid "Remove Entry"
@@ -16721,6 +16838,15 @@ msgstr "Þarf gerð disks:"
 msgid "Rereading partition table"
 msgstr ""
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr ""
 
@@ -16789,9 +16915,15 @@ msgstr "Upplausn"
 msgid "Resolution unit"
 msgstr ""
 
+msgid "Resolving..."
+msgstr ""
+
 #
 msgid "Restart"
 msgstr "Endurræsa"
+
+msgid "Restart Adapter"
+msgstr ""
 
 #
 #, fuzzy
@@ -16809,9 +16941,6 @@ msgid "Restart GUI now?"
 msgstr "Endurræsa gluggakerfi núna?"
 
 msgid "Restart Network"
-msgstr ""
-
-msgid "Restart Network Adapter"
 msgstr ""
 
 msgid "Restart OSCam"
@@ -16838,9 +16967,11 @@ msgstr ""
 msgid "Restart test"
 msgstr "Prufa aftur"
 
-#
-msgid "Restart your network connection and interfaces."
-msgstr "Endurræsa nettengingu og netkort."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -16850,9 +16981,6 @@ msgid "Restore"
 msgstr "Setja inn"
 
 msgid "Restore Deleted User Bouquets"
-msgstr ""
-
-msgid "Restore MetrixHD Settings"
 msgstr ""
 
 msgid "Restore Plugins"
@@ -16916,6 +17044,9 @@ msgstr "Byrja aftur eftir %s"
 #
 msgid "Resuming playback"
 msgstr "Held áfram spilun"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -17127,9 +17258,6 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Settings"
-msgstr ""
-
 msgid "SAT"
 msgstr ""
 
@@ -17172,6 +17300,9 @@ msgstr ""
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr ""
@@ -17402,6 +17533,26 @@ msgstr ""
 msgid "Save time shift buffer now and continue recording"
 msgstr ""
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -17442,6 +17593,9 @@ msgstr ""
 msgid "Scan %s band"
 msgstr ""
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 #
 msgid "Scan additional SR"
 msgstr "Leita á fleiri SR"
@@ -17459,14 +17613,6 @@ msgstr "Leita að viðbótum á móttakara og setja þær upp."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Scan wireless networks"
-msgstr "Leita að þráðlausu neti"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Leita að þráðlausu neti og tengjast þeim með völdu netkorti."
 
 msgid "Scanning"
 msgstr ""
@@ -17491,6 +17637,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Scanning failed!"
+msgstr ""
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
 msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
@@ -17613,10 +17765,6 @@ msgstr "Leita vestur"
 msgid "Second cable of motorized LNB"
 msgstr ""
 
-#
-msgid "Secondary DNS"
-msgstr "Vara DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -17703,6 +17851,9 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr ""
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
@@ -18046,6 +18197,9 @@ msgstr "Veldu upphafs slóð til að breyta."
 msgid "Select Upgrade Source To Edit"
 msgstr "Veldu upphafs slóð til að breyta."
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -18089,6 +18243,9 @@ msgstr "Veldu mynd"
 msgid "Select a network adapter"
 msgstr ""
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -18099,6 +18256,12 @@ msgid "Select a repository commit log to view:"
 msgstr ""
 
 msgid "Select a script to run:"
+msgstr ""
+
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
@@ -18112,11 +18275,6 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select a wireless network"
-msgstr "Veldu þráðlaust net"
 
 #
 #, fuzzy
@@ -18170,6 +18328,9 @@ msgid "Select default File Commander directory:"
 msgstr ""
 
 msgid "Select destination for:"
+msgstr ""
+
+msgid "Select exported directories"
 msgstr ""
 
 msgid "Select files to exclude from backup"
@@ -18230,6 +18391,9 @@ msgstr ""
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
@@ -18277,13 +18441,6 @@ msgstr "Veldu inntaks tæki"
 
 msgid "Select input device."
 msgstr "Veldu inntaks tæki."
-
-#
-msgid "Select interface"
-msgstr "Veldu netkort"
-
-msgid "Select menu entry"
-msgstr ""
 
 #
 #, fuzzy
@@ -18416,6 +18573,9 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18581,6 +18741,9 @@ msgstr ""
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
 
@@ -18596,12 +18759,6 @@ msgid "Select the movie path"
 msgstr "velja slóð að mynd"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -18641,6 +18798,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -18672,6 +18832,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 #
@@ -18770,10 +18933,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -18817,6 +18977,9 @@ msgid "Select what you want the TV button to activate."
 msgstr ""
 
 msgid "Select what you want the UP/DOWN button to activate."
+msgstr ""
+
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
 msgstr ""
 
 msgid "Select where the recording should be saved."
@@ -18863,10 +19026,6 @@ msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-#
-msgid "Select wireless network"
-msgstr "Veldu þráðlaust net"
 
 #
 #, fuzzy
@@ -18973,6 +19132,9 @@ msgid "Serious music/Classic music"
 msgstr ""
 
 msgid "Serious/Classical/Religious/Historical/Drama"
+msgstr ""
+
+msgid "Server"
 msgstr ""
 
 #
@@ -19391,6 +19553,9 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
+msgstr ""
+
+msgid "Set up network"
 msgstr ""
 
 msgid "Set up tuner [TUNER]"
@@ -19897,11 +20062,6 @@ msgstr "sýna aðalvalmynd DVD "
 msgid "Show Vertical EPG"
 msgstr "Lóðrétt"
 
-#
-#, fuzzy
-msgid "Show WLAN status"
-msgstr "Sýna WLAN stöðu"
-
 msgid "Show Web Link packages"
 msgstr ""
 
@@ -20079,11 +20239,6 @@ msgstr "Biðstaða"
 
 #
 #, fuzzy
-msgid "Show info"
-msgstr "Sýna upplýsingar"
-
-#
-#, fuzzy
 msgid "Show info line"
 msgstr "sýna upplýsingalínu"
 
@@ -20128,6 +20283,9 @@ msgid "Show movies"
 msgstr ""
 
 msgid "Show multi channel EPG"
+msgstr ""
+
+msgid "Show network adapter connection information"
 msgstr ""
 
 msgid "Show next commit log"
@@ -20332,6 +20490,9 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -20416,10 +20577,6 @@ msgstr ""
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr ""
 
-#
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Sýnir stöðu þráðlausrar nettenginar."
-
 msgid "Shows the watched status of the media."
 msgstr ""
 
@@ -20455,17 +20612,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Signal quality"
-msgstr "Gæði tengingar:"
-
 msgid "Signal strength"
 msgstr ""
-
-#
-msgid "Signal: "
-msgstr "Merki:"
 
 msgid "Signed by"
 msgstr ""
@@ -20619,6 +20767,9 @@ msgid "Skip forward (enter time)"
 msgstr "stökkva áfram (slá inn tíma)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -20870,6 +21021,9 @@ msgstr ""
 msgid "Socket"
 msgstr "læst"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -21007,6 +21161,18 @@ msgstr ""
 msgid "Sort by"
 msgstr ""
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr ""
 
@@ -21106,9 +21272,6 @@ msgid "Special events (Olympic games, World cup, etc.)"
 msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
-msgstr ""
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr ""
 
 msgid "Speed"
@@ -21221,10 +21384,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr ""
 
-#
-msgid "Start test"
-msgstr "Byrja prófun"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -21278,6 +21437,9 @@ msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
+msgstr ""
+
+msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
@@ -21383,10 +21545,6 @@ msgid "Stop streams"
 msgstr ""
 
 #
-msgid "Stop test"
-msgstr "Stoppa prófun"
-
-#
 msgid "Stop testing plane after # failed transponders"
 msgstr "Hætta að prufa eftir # senda sem fundust ekki"
 
@@ -21456,6 +21614,12 @@ msgstr "Diskur er ekki skrifanlegur DVD diskur!"
 #
 msgid "Store position"
 msgstr "Vista staðsetningu"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 #
 msgid "Stored position"
@@ -22112,11 +22276,6 @@ msgid "Test mode"
 msgstr "Prufu hamur"
 
 #
-#, fuzzy, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Prófa stillingar netkorts í %s %sinu."
-
-#
 #, fuzzy
 msgid "Test type"
 msgstr "Prufa gerð"
@@ -22223,18 +22382,6 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
 msgstr ""
 
 msgid ""
@@ -22386,14 +22533,6 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Netkerfis ráðgjafinn er ekki innsettur!\n"
-"Vinsamlega settu hann inn."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -22467,29 +22606,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-#
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Þráðlausa netkortið er ekki tengt!\n"
-"Vinsamlega tengið það."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -22819,59 +22941,6 @@ msgstr ""
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr ""
 
-#
-#, fuzzy
-msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Þessi prufun athugar stillingar nafnaþjóns.\n"
-"Ef þú færð \"óstaðfest\" skilaboð:\n"
-"- athugaðu DHCP þjónustu, tengingar og uppsetningu\n"
-"- ef að þú hefur sett upp nafnaþjón handvirkt athugaðu þá þínar nafnaþjóns stillingar."
-
-#
-#, fuzzy
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Þessi prufun athugar hvort að netkapallinn sé tengdur við netkortið þitt.\n"
-"Ef þú færð skilaboðin \"ótengt\":\n"
-"- athugaðu hvort að kapallinn sé tengur\n"
-"- athugaðu hvort að kapallinn sé skemmdur"
-
-#
-#, fuzzy
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Þessi prufun athugar hvort að gild IP tala fannst fyrir þitt netkort.\n"
-"Ef þú færð skilaboðin \"óstaðfest\":\n"
-"- það fannst ekki gild IP tala\n"
-"- athugaðu DHCP uppsetningu, tengingar eða uppsetningu nets"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-
-#
-#, fuzzy
-msgid "This test detects your configured LAN adapter."
-msgstr "Þessi prufun skynjar innstillt netkort."
-
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
@@ -22889,10 +22958,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-#
-msgid "Three"
-msgstr "Þrír"
 
 #
 msgid "Threshold"
@@ -23056,6 +23121,9 @@ msgstr "Innsláttur tímastilltra atriða"
 #, fuzzy
 msgid "Timeline scale"
 msgstr "Tímastillinga val"
+
+msgid "Timeout"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -23237,6 +23305,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr ""
 
@@ -23323,6 +23394,9 @@ msgid "Traditional"
 msgstr ""
 
 msgid "Traditional Chinese"
+msgstr ""
+
+msgid "Transceiver"
 msgstr ""
 
 #
@@ -23626,10 +23700,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
-#
-msgid "Two"
-msgstr "Tveir"
-
 msgid "Two lines"
 msgstr ""
 
@@ -23749,9 +23819,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr ""
 
-msgid "Unencrypted"
-msgstr "Opin rás"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -23815,11 +23882,6 @@ msgstr "Óþekkt"
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -23867,6 +23929,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr ""
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr ""
 
@@ -23878,10 +23943,6 @@ msgstr ""
 
 msgid "Unset As Startup Service"
 msgstr ""
-
-#
-msgid "Unsupported"
-msgstr "Ekki stutt"
 
 msgid "Until standby/restart"
 msgstr "bíða til biðstöðu/endurræsingu"
@@ -24067,6 +24128,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr ""
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
@@ -24103,14 +24167,13 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-#
-msgid "Use a gateway"
-msgstr "Nota beini"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
+msgstr ""
+
+msgid "Use as HDD replacement"
 msgstr ""
 
 msgid "Use automatic mode detection"
@@ -24155,13 +24218,11 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgid "Use guest login"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Use interface"
-msgstr "Nota netkort"
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr ""
 
 msgid "Use key map *"
 msgstr ""
@@ -24173,9 +24234,6 @@ msgid "Use official channel numbering"
 msgstr ""
 
 msgid "Use only DNSSEC servers"
-msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
 msgstr ""
 
 msgid "Use only no-filter servers"
@@ -24230,9 +24288,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr ""
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr ""
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr ""
 
@@ -24249,13 +24304,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-#, fuzzy
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Nota ráðgjafa til að stilla valið netkort"
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -24341,6 +24389,12 @@ msgstr "Notandanafn"
 msgid "Username (httpuser)"
 msgstr ""
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr ""
 
@@ -24366,9 +24420,6 @@ msgstr ""
 msgid "VCR Scart Settings"
 msgstr "Vídeó scart"
 
-msgid "VLAN connection"
-msgstr ""
-
 msgid "VMC"
 msgstr ""
 
@@ -24380,6 +24431,9 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
+msgstr ""
+
+msgid "VPN"
 msgstr ""
 
 msgid "VPS Settings"
@@ -24749,13 +24803,6 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
-#
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "WLAN nettenging"
-
 msgid "WMA Pro"
 msgstr ""
 
@@ -24764,18 +24811,6 @@ msgstr ""
 
 msgid "WOL Standby"
 msgstr ""
-
-#
-msgid "WPA"
-msgstr "WPA"
-
-#
-msgid "WPA or WPA2"
-msgstr "WPA eða WPA2"
-
-#
-msgid "WPA2"
-msgstr "WPA2"
 
 #
 msgid "WSS on 4:3"
@@ -24793,6 +24828,9 @@ msgstr ""
 #
 msgid "Waiting"
 msgstr "Bíð"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr ""
@@ -24840,6 +24878,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -25166,16 +25207,19 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
 msgstr ""
 
-msgid "When enabled, use DHCP for the IP configuration."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
@@ -25245,6 +25289,28 @@ msgstr "Engin lýsing tiltæk."
 msgid "White"
 msgstr ""
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr ""
 
@@ -25268,31 +25334,6 @@ msgstr ""
 
 msgid "Wiping storage device..."
 msgstr ""
-
-#
-msgid "Wireless LAN"
-msgstr "­Þráðlaust net"
-
-#
-#, fuzzy
-msgid "Wireless network"
-msgstr "Þráðlaust netkerfi"
-
-#, fuzzy
-msgid "Wireless network configuration..."
-msgstr "Uppsetning á þráðlausu neti."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
-msgstr "Staða þráðlausa nets"
 
 msgid "With EXIT button"
 msgstr ""
@@ -25362,6 +25403,9 @@ msgstr ""
 #, fuzzy
 msgid "Wrestling"
 msgstr "Set inn"
+
+msgid "Write block size"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -25589,18 +25633,6 @@ msgstr ""
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-#, fuzzy, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"%s %sið þitt er nú tilbúið til notkunar.\n"
-"\n"
-"Veraldarvefs tengingin er virk núna.\n"
-"\n"
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -25629,35 +25661,11 @@ msgid "Your %s %s will Restart..."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Veraldarvefs tenging virkar ekki!\n"
-"Vinsamlega veldu hvað þú vilt gera næst."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
-msgstr ""
-
-msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 #
@@ -25698,10 +25706,6 @@ msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
-
-#
-msgid "Your network configuration has been activated."
-msgstr "Stillingar netkerfis hafa verið gerðar virkar."
 
 msgid "Your password must have at least 5 characters."
 msgstr ""
@@ -25973,14 +25977,6 @@ msgstr ""
 msgid "config menu"
 msgstr "stillinga valmynd"
 
-#
-msgid "confirmed"
-msgstr "staðfest"
-
-#
-msgid "connected"
-msgstr "tengt"
-
 msgid "copy"
 msgstr ""
 
@@ -26007,10 +26003,6 @@ msgstr "eyða klippingu"
 #
 msgid "disabled"
 msgstr "óvirkt"
-
-#
-msgid "disconnected"
-msgstr "ótengt"
 
 msgid "eMMC"
 msgstr ""
@@ -26314,9 +26306,6 @@ msgstr "af tveggja laga DVD."
 msgid "of a SINGLE layer medium used."
 msgstr "af eins lags DVD disk."
 
-msgid "off or wpa2 on"
-msgstr ""
-
 msgid "offset is"
 msgstr ""
 
@@ -26548,10 +26537,6 @@ msgid "unavailable"
 msgstr "ekki tiltækt"
 
 #
-msgid "unconfirmed"
-msgstr "óstaðfest"
-
-#
 msgid "unknown"
 msgstr "óþekktur"
 
@@ -26620,6 +26605,487 @@ msgstr "já (halda fæðirásum)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#
+#~ msgid "One"
+#~ msgstr "Einn"
+
+#
+#~ msgid "Three"
+#~ msgstr "Þrír"
+
+#
+#~ msgid "Two"
+#~ msgstr "Tveir"
+
+#
+#, fuzzy, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "fann 1 þráðlaust net!"
+#~ msgstr[1] "fann 1 þráðlaust net!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Annað uppsett netkort fannst.\n"
+#~ "\n"
+#~ "Viltu hætta að nota það?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "virkja stillingar netkorts"
+
+#
+#~ msgid "Activate network settings"
+#~ msgstr "Virkja netkerfis stillingar"
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Ertu viss um að þú viljir virkja þessa net stillingu?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Ertu viss um að þú viljir endurræsa netkortið?"
+
+#~ msgid "Back"
+#~ msgstr "Til baka"
+
+#~ msgid "Configure interface"
+#~ msgstr "Stilla netkort"
+
+#~ msgid "Configure the network again"
+#~ msgstr "Stilla netkortið þitt aftur"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Stilla innbyggt netkort"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Stilla þráðlausa netkortið þitt aftur"
+
+#, fuzzy
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Tengist við þráðlaust net"
+
+#~ msgid "Current settings:"
+#~ msgstr "Núverandi stilling:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#
+#, fuzzy, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Breyta nafnaþjóns stillingum %s %sins."
+
+#
+#, fuzzy, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Breyta stillingum netkorts í %s %sinu."
+
+#~ msgid "Encrypted: "
+#~ msgstr "Kóðun:"
+
+#, fuzzy
+#~ msgid "Encryption Type:"
+#~ msgstr "Kóðun:"
+
+#
+#, fuzzy
+#~ msgid "Encryption key"
+#~ msgstr "Kóðunar lykill"
+
+#
+#, fuzzy
+#~ msgid "Encryption key type"
+#~ msgstr "Kóðunar lykilgerð"
+
+#
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "fara úr netkorts stillingum"
+
+#
+#, fuzzy
+#~ msgid "Exit network interface list"
+#~ msgstr "fara út úr netkorta lista"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Hætta í netkerfis ráðgjafa"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Íforrit fyrir nánari stillingar netkerfis..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Viðbótar stillingar..."
+
+#
+#~ msgid "Finished configuring your network"
+#~ msgstr "Búið að stilla netkerfið"
+
+#
+#, fuzzy
+#~ msgid "Frequency Norm:"
+#~ msgstr "Tíðni"
+
+#~ msgid "Interface: "
+#~ msgstr "Netkort:"
+
+#
+#, fuzzy
+#~ msgid "LAN adapter"
+#~ msgstr "Netkort"
+
+#
+#, fuzzy
+#~ msgid "Link quality:"
+#~ msgstr "Gæði tengingar:"
+
+#~ msgid "Link:"
+#~ msgstr "Tenging:"
+
+#~ msgid "List available networks"
+#~ msgstr "Sýna netkerfi í boði"
+
+#
+#, fuzzy
+#~ msgid "Local network"
+#~ msgstr "Nærnet"
+
+#
+#, fuzzy
+#~ msgid "MAC-address"
+#~ msgstr "IP Netfang"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Handvirk stilling"
+
+#, fuzzy
+#~ msgid "Max. bitrate: "
+#~ msgstr "Mesti bitahraði:"
+
+#
+#~ msgid "Nameserver"
+#~ msgstr "Nafnaþjónn"
+
+#
+#~ msgid "Nameserver settings"
+#~ msgstr "Uppsetning nafnaþjóns"
+
+#~ msgid "Network Test:"
+#~ msgstr "Prufa nettengingu:"
+
+#
+#~ msgid "Network test"
+#~ msgstr "Prufa nettengingu"
+
+#
+#~ msgid "Network:"
+#~ msgstr "Nettenging:"
+
+#
+#~ msgid "No Connection"
+#~ msgstr "Engin tenging"
+
+#
+#~ msgid "No networks found"
+#~ msgstr "Ekkert netkerfi fannst"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Ekkert þráðlaust net fannst! Leita..."
+
+#
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Ekkert virkt netkort fannst.\n"
+#~ "Athugaðu hvort að það sé tengdur netkapallinn og netið sé rétt stillt."
+
+#
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Ekkert virkt þráðlaust netkort fannst.\n"
+#~ "Athugaðu hvort að það sé tengt samhæft þráðlaust netkort og að það sé rétt stillt."
+
+#
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Ekkert virkt þráðlaust netkort fannst.\n"
+#~ " Athugaðu hvort að það sé tengt samhæft þráðlaust netkort eða athugaðu með stillingar á því."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Fylgdu leiðbeiningum á skjá"
+
+#
+#~ msgid "Please press OK to continue."
+#~ msgstr "Ýttu á OK til að halda áfram."
+
+#
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Vinsamlega bíðið eftir virkjun á netkerfis stillingum..."
+
+#
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Vinsamlegast bíðið á meðan við stillum netkort..."
+
+#
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Vinsamlega bíðið á meðan við prufum net tengingu..."
+
+#
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Ýtið á OK til að virkja stillingar."
+
+#
+#~ msgid "Primary DNS"
+#~ msgstr "Aðal DNS"
+
+#
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Endurræsa nettengingu og netkort."
+
+#
+#, fuzzy
+#~ msgid "Scan wireless networks"
+#~ msgstr "Leita að þráðlausu neti"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Leita að þráðlausu neti og tengjast þeim með völdu netkorti."
+
+#
+#~ msgid "Secondary DNS"
+#~ msgstr "Vara DNS"
+
+#
+#, fuzzy
+#~ msgid "Select a wireless network"
+#~ msgstr "Veldu þráðlaust net"
+
+#
+#~ msgid "Select interface"
+#~ msgstr "Veldu netkort"
+
+#
+#~ msgid "Select wireless network"
+#~ msgstr "Veldu þráðlaust net"
+
+#
+#, fuzzy
+#~ msgid "Show WLAN status"
+#~ msgstr "Sýna WLAN stöðu"
+
+#
+#, fuzzy
+#~ msgid "Show info"
+#~ msgstr "Sýna upplýsingar"
+
+#
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Sýnir stöðu þráðlausrar nettenginar."
+
+#
+#, fuzzy
+#~ msgid "Signal quality"
+#~ msgstr "Gæði tengingar:"
+
+#
+#~ msgid "Signal: "
+#~ msgstr "Merki:"
+
+#
+#~ msgid "Start test"
+#~ msgstr "Byrja prófun"
+
+#
+#~ msgid "Stop test"
+#~ msgstr "Stoppa prófun"
+
+#
+#, fuzzy, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Prófa stillingar netkorts í %s %sinu."
+
+#, fuzzy
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Netkerfis ráðgjafinn er ekki innsettur!\n"
+#~ "Vinsamlega settu hann inn."
+
+#
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Þráðlausa netkortið er ekki tengt!\n"
+#~ "Vinsamlega tengið það."
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Þessi prufun athugar stillingar nafnaþjóns.\n"
+#~ "Ef þú færð \"óstaðfest\" skilaboð:\n"
+#~ "- athugaðu DHCP þjónustu, tengingar og uppsetningu\n"
+#~ "- ef að þú hefur sett upp nafnaþjón handvirkt athugaðu þá þínar nafnaþjóns stillingar."
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Þessi prufun athugar hvort að netkapallinn sé tengdur við netkortið þitt.\n"
+#~ "Ef þú færð skilaboðin \"ótengt\":\n"
+#~ "- athugaðu hvort að kapallinn sé tengur\n"
+#~ "- athugaðu hvort að kapallinn sé skemmdur"
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Þessi prufun athugar hvort að gild IP tala fannst fyrir þitt netkort.\n"
+#~ "Ef þú færð skilaboðin \"óstaðfest\":\n"
+#~ "- það fannst ekki gild IP tala\n"
+#~ "- athugaðu DHCP uppsetningu, tengingar eða uppsetningu nets"
+
+#
+#, fuzzy
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Þessi prufun skynjar innstillt netkort."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Opin rás"
+
+#
+#~ msgid "Unsupported"
+#~ msgstr "Ekki stutt"
+
+#
+#~ msgid "Use a gateway"
+#~ msgstr "Nota beini"
+
+#
+#, fuzzy
+#~ msgid "Use interface"
+#~ msgstr "Nota netkort"
+
+#, fuzzy
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Nota ráðgjafa til að stilla valið netkort"
+
+#
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN nettenging"
+
+#
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA eða WPA2"
+
+#
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#
+#~ msgid "Wireless LAN"
+#~ msgstr "­Þráðlaust net"
+
+#
+#, fuzzy
+#~ msgid "Wireless network"
+#~ msgstr "Þráðlaust netkerfi"
+
+#, fuzzy
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Uppsetning á þráðlausu neti."
+
+#~ msgid "Wireless network state"
+#~ msgstr "Staða þráðlausa nets"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s %sið þitt er nú tilbúið til notkunar.\n"
+#~ "\n"
+#~ "Veraldarvefs tengingin er virk núna.\n"
+#~ "\n"
+
+#
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Veraldarvefs tenging virkar ekki!\n"
+#~ "Vinsamlega veldu hvað þú vilt gera næst."
+
+#
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Stillingar netkerfis hafa verið gerðar virkar."
+
+#
+#~ msgid "confirmed"
+#~ msgstr "staðfest"
+
+#
+#~ msgid "connected"
+#~ msgstr "tengt"
+
+#
+#~ msgid "disconnected"
+#~ msgstr "ótengt"
+
+#
+#~ msgid "unconfirmed"
+#~ msgstr "óstaðfest"
 
 #~ msgid "Switchable tuner types:"
 #~ msgstr "Gerðir umskiptanlegra móttakara:"

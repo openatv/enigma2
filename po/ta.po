@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2026-03-01 05:04+0000\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
 "Language: ta\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.1-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -896,6 +896,12 @@ msgstr[0] "%d ஊட்ட அட்டவணை தொகுப்பு பு
 msgstr[1] "%d ஊட்ட அட்டவணை தொகுப்புகள் புதுப்பிக்கப்பட்டன."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d வேலைகள் பின்னணியில் இயங்குகின்றன!"
 
@@ -914,6 +920,12 @@ msgstr "%d நிமிடங்கள்"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d package found."
@@ -1028,12 +1040,6 @@ msgstr "சாதனத்தில் %d ச்லாட்டுகள் உ�
 #, python-format
 msgid "%d times"
 msgstr "%d முறை"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d வயர்லெச் பிணையம் கிடைத்தது!"
-msgstr[1] "%d வயர்லெச் நெட்வொர்க்குகள் காணப்பட்டன!"
 
 msgid "%d+%b_"
 msgstr "%d+%b"
@@ -1219,6 +1225,10 @@ msgid "%s%s(Default: %s)"
 msgstr "%s %s (இயல்புநிலை: %s)"
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr ""
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr "%s/ %s: %s"
 
@@ -1261,6 +1271,22 @@ msgstr "%s 1080i அல்லது 1080p ஐக் காட்டு"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "' %s' %d கோப்பு (கள்) மற்றும் %d துணை இயக்குநர்கள் உள்ளன.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'மணிநேரத்தில் இடையக' அல்லது 'கடைசி நிகழ்வுகளின் எண்ணிக்கை'. பழைய நேர சிப்ட் கோப்புகளை நீக்குவதற்கு, முதலில் நிகழ்ந்த நிலைக்கு முன்னுரிமை உள்ளது."
@@ -1346,14 +1372,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr "10 பிட்"
@@ -1376,17 +1396,11 @@ msgstr "12 பிட்"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12 பிட் 4: 2: 0/4: 2: 2 பிப் இல்லை"
 
-msgid "13 V"
-msgstr "13 வி"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 லெட்டர்பாக்ச்"
 
 msgid "16:10 PanScan"
 msgstr "16:10 பான்ச்கான்"
-
-msgid "16:9"
-msgstr "16: 9"
 
 msgid "16:9 Always"
 msgstr "16: 9 எப்போதும்"
@@ -1405,9 +1419,6 @@ msgstr "16: 9 பான்ச்கான்"
 
 msgid "16:9 reset to normal"
 msgstr "16: 9 இயல்பு நிலைக்கு மீட்டமைக்கவும்"
-
-msgid "18 V"
-msgstr "18 வி"
 
 msgid "1st InfoBar timeout"
 msgstr "1 வது செய்தி கிராஃப்டர்"
@@ -1638,15 +1649,6 @@ msgid "A required tool (%s) was not found."
 msgstr "தேவையான கருவி (%s) காணப்படவில்லை."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"இரண்டாவது கட்டமைக்கப்பட்ட இடைமுகம் கண்டறியப்பட்டுள்ளது.\n"
-"\n"
-" இரண்டாவது பிணைய இடைமுகத்தை முடக்க விரும்புகிறீர்களா?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1781,6 +1783,11 @@ msgstr ""
 msgid "Access point"
 msgstr "அணுகல் புள்ளி"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "புவிஇருப்பிட தகவலுக்கான அணுகலுக்கு இணைய இணைப்பு தேவை."
 
@@ -1820,14 +1827,8 @@ msgstr "'ஆல் அப்/டவுன்' செயல்பாடுகள�
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "கட்டளை வரியிலிருந்து தனிப்பட்ட அல்லது குறிப்பிட்ட உள் HDMI-CEC கட்டளைகளை அனுப்ப ஒரு வழியை செயல்படுத்தவும்."
 
-msgid "Activate network adapter configuration"
-msgstr "பிணைய அடாப்டர் உள்ளமைவை செயல்படுத்தவும்"
-
-msgid "Activate network settings"
-msgstr "பிணைய அமைப்புகளை செயல்படுத்தவும்"
-
-msgid "Activate the configured network settings."
-msgstr "கட்டமைக்கப்பட்ட பிணைய அமைப்புகளை செயல்படுத்தவும்."
+msgid "Activate network adapter"
+msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "ஃபிளாச் விரிவாக்கத்தை செயல்படுத்தவும், மாற்றப்பட்ட அனைத்து அமைப்புகளையும் சேமித்து வெளியேறவும்"
@@ -1849,6 +1850,13 @@ msgstr "செயலில் உள்ள வாடிக்கையாளர�
 
 msgid "Active only"
 msgstr "செயலில் மட்டும்"
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "தழுவல் அமைப்புகள்"
@@ -1892,6 +1900,9 @@ msgstr "பூச்செட்டில் HDMI-IN ஐச் சேர்க�
 msgid "Add Marker To Bouquet"
 msgstr "பூச்செட்டில் மார்க்கரைச் சேர்க்கவும்"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr "புதிய குவாட் சேனல் நுழைவு சேர்க்கவும்"
 
@@ -1915,6 +1926,12 @@ msgstr "டைமரைச் சேர்க்கவும்"
 
 msgid "Add To Parental Protection"
 msgstr "பெற்றோரின் பாதுகாப்பில் சேர்க்கவும்"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 msgid "Add Zap+RecordTimer"
 msgstr "Zap+RecordTimer ஐச் சேர்"
@@ -1942,6 +1959,9 @@ msgstr "அடுத்த நிகழ்வுக்கு ஒரு சாப
 
 msgid "Add a mark"
 msgstr "ஒரு குறி சேர்க்கவும்"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr "புதிய பூச்செண்டு சேர்க்கவும்"
@@ -2498,9 +2518,6 @@ msgstr "அனைத்து நிலப்பரப்பு சேவைக�
 msgid "Are you sure to remove this entry?"
 msgstr "இந்த உள்ளீட்டை அகற்றுவது உறுதி?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "இந்த பிணைய உள்ளமைவை செயல்படுத்த விரும்புகிறீர்களா?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2525,9 +2542,6 @@ msgstr "இந்த மந்திரவாதியிலிருந்த�
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "இதிலிருந்து ஈபிசி தரவை மீண்டும் ஏற்ற விரும்புகிறீர்களா?\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "உங்கள் பிணைய இடைமுகங்களை மறுதொடக்கம் செய்ய விரும்புகிறீர்களா?"
 
 #, python-format
 msgid ""
@@ -2637,6 +2651,9 @@ msgstr "ஒதுக்கப்பட்ட CAIDS:"
 
 msgid "Assigned services/provider:"
 msgstr "ஒதுக்கப்பட்ட சேவைகள்/வழங்குநர்:"
+
+msgid "Associated"
+msgstr ""
 
 msgid "Astra 1 19.2e"
 msgstr "அச்ட்ரா 1 19 அ"
@@ -2899,8 +2916,8 @@ msgstr "நீல நிற நீண்ட"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "நீல சுவிட்ச்: நீலம்/நீல நீளம்"
 
-msgid "Back"
-msgstr "பின்"
+msgid "BSSID"
+msgstr ""
 
 msgid "Back USB"
 msgstr "மீண்டும் யூஎச்பி"
@@ -3302,6 +3319,9 @@ msgstr "பிராட்காம்"
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "செருகுநிரல்களை உலாவவும், நிறுவவும் அல்லது அகற்றவும்."
 
@@ -3360,6 +3380,9 @@ msgstr "நடுத்தரத்திற்கு எரிக்கவு�
 
 msgid "Burundi"
 msgstr "புருண்டி"
+
+msgid "Bus"
+msgstr ""
 
 msgid "Business"
 msgstr "வணிகம்"
@@ -3542,6 +3565,9 @@ msgstr "வடம்"
 
 msgid "Cable Scan"
 msgstr "கேபிள் ச்கேன்"
+
+msgid "Cable Unplugged"
+msgstr ""
 
 msgid "Cable input"
 msgstr ""
@@ -4055,6 +4081,9 @@ msgstr "பாடங்கள்"
 msgid "Character device"
 msgstr "எழுத்து சாதனம்"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr "அரட்டை நிகழ்ச்சி"
 
@@ -4289,6 +4318,9 @@ msgstr "தெளிவான"
 msgid "Clear Log"
 msgstr "பதிவை அழிக்கவும்"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "ச்கேன் முன் அழிக்கவும்"
 
@@ -4353,6 +4385,9 @@ msgstr "பூச்செண்டு பட்டியல் மூடு."
 
 msgid "Close dialog"
 msgstr "உரையாடலை மூடு"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr "திரை மூடு"
@@ -4546,14 +4581,17 @@ msgstr "உள்ளமைவு பயன்முறை"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "உதவித் திரைக்கான உள்ளமைவு விருப்பங்களை 'மெனு> அமைவு> பயன்பாடு மற்றும் பயனர் இடைமுகம்> அமைப்புகள்' இல் காணலாம்."
 
-msgid "Configure DNS (name servers)"
-msgstr "DNS ஐ உள்ளமைக்கவும் (பெயர் சேவையகங்கள்)"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "வெளிப்புற வசன ஒத்திசைவை மேம்படுத்த கூடுதல் தாமதத்தை உள்ளமைக்கவும்."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "வசன ஒத்திசைவை மேம்படுத்த கூடுதல் தாமதத்தை உள்ளமைக்கவும்."
+
+msgid "Configure another network adapter"
+msgstr ""
 
 msgid "Configure cable reception on this input."
 msgstr ""
@@ -4603,20 +4641,17 @@ msgstr "பணி வகை ஐகான்கள் காண்பிக்க
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "வசன வரிகள் இயல்பான, சாய்வு, தைரியமான மற்றும் தைரியமான சாய்வுக்கு இடையில் மாற வேண்டுமா என்று உள்ளமைக்கவும்."
 
-msgid "Configure interface"
-msgstr "இடைமுகத்தை உள்ளமைக்கவும்"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "எந்த சாதனங்களில் பின்னணி நீக்குதல் விருப்பத்தைப் பயன்படுத்த வேண்டும் என்பதை உள்ளமைக்கவும்."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"காட்டப்பட்ட மதிப்புகளை சரிசெய்வதன் மூலம் உங்கள் டி.என்.எச் (பெயர் சேவையகங்கள்) உள்ளமைக்கவும் அல்லது சரிபார்க்கவும்.\n"
-"\n"
-" அமைப்புகள் சரியாக இருக்கும்போது தொடர சரி என்பதை அழுத்தவும்."
 
 msgid "Configure remote control type"
 msgstr "ரிமோட் கண்ட்ரோல் வகையை உள்ளமைக்கவும்"
@@ -4630,20 +4665,8 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "இந்த LNB க்கான DIEQC பயன்முறையை உள்ளமைக்கவும்."
 
-msgid "Configure the IP address."
-msgstr "ஐபி முகவரியை உள்ளமைக்கவும்."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "குறைவடையும் ரிமோட் ரிசீவரின் ஐபி"
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"காட்டப்பட்ட மதிப்புகளை சரிசெய்வதன் மூலம் இணைய இணைப்பை உள்ளமைக்கவும்.\n"
-"\n"
-" அமைப்புகள் சரியாக இருக்கும்போது தொடர சரி என்பதை அழுத்தவும்."
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "குறைவடையும் தொலைநிலை ரிசீவர் துறை"
@@ -4747,9 +4770,6 @@ msgstr "ஆற்றல் பொத்தானில் ஒரு குறு
 msgid "Configure the function of the < and > buttons."
 msgstr "<மற்றும்> பொத்தான்களின் செயல்பாட்டை உள்ளமைக்கவும்."
 
-msgid "Configure the gateway."
-msgstr "நுழைவாயிலை உள்ளமைக்கவும்."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "பெட்டி காத்திருப்புடன் இருக்கும்போது குறிப்பிட்ட செயலற்ற நேரத்திற்குப் பிறகு காத்திருப்புக்குச் செல்ல ஆர்ட் டிச்க் டிரைவை உள்ளமைக்கவும்."
 
@@ -4779,15 +4799,6 @@ msgstr "பதிவுகளுக்கு கிடைக்க வேண்�
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "'நான்' ஐகானைக் காண்பிப்பதற்கு முன் குறைந்தபட்ச அகலத்தை உள்ளமைக்கவும், '0' ஐகானைக் காட்டாததற்கு சமம்."
-
-msgid "Configure the name server (DNS)."
-msgstr "பெயர் சேவையகத்தை (டி.என்.எச்) உள்ளமைக்கவும்."
-
-msgid "Configure the netmask."
-msgstr "நெட்மாச்கை உள்ளமைக்கவும்."
-
-msgid "Configure the network again"
-msgstr "பிணையத்தை மீண்டும் உள்ளமைக்கவும்"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "குப்பைத்தொட்டியில் இருந்து தானாக அகற்றப்படும் நாட்களின் எண்ணிக்கையை உள்ளமைக்கவும்."
@@ -4821,6 +4832,9 @@ msgstr "இரண்டாவது வசன மொழியை உள்ளம
 
 msgid "Configure the secondary EPG language."
 msgstr "இரண்டாம் நிலை ஈபிசி மொழியை உள்ளமைக்கவும்."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "'1'/'3' பொத்தான்களுக்கான ச்கிப் நேர இடைவெளியை உள்ளமைக்கவும்."
@@ -4921,17 +4935,8 @@ msgstr "ஒன்றுக்கு மேற்பட்ட ட்யூனர�
 msgid "Configure your NTP server."
 msgstr "உங்கள் NTP சேவையகத்தை உள்ளமைக்கவும்."
 
-msgid "Configure your Network"
-msgstr "உங்கள் பிணையத்தை உள்ளமைக்கவும்"
-
-msgid "Configure your internal LAN"
-msgstr "உங்கள் உள் LAN ஐ உள்ளமைக்கவும்"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "உங்கள் பிணைய அமைப்புகளை உள்ளமைத்து, ச்கேன் தொடங்க சரி என்பதை அழுத்தவும்"
-
-msgid "Configure your wireless LAN again"
-msgstr "உங்கள் வயர்லெச் லானை மீண்டும் உள்ளமைக்கவும்"
 
 msgid "Configures which video output connector will be used."
 msgstr "எந்த வீடியோ வெளியீட்டு இணைப்பு பயன்படுத்தப்படும் என்பதை உள்ளமைக்கிறது."
@@ -4943,6 +4948,10 @@ msgid "Configuring Service"
 msgstr "சேவையை உள்ளமைத்தல்"
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -4964,11 +4973,14 @@ msgstr "இணை"
 msgid "Connect to IceTV server every"
 msgstr "ஒவ்வொரு ICETV சேவையகத்துடன் இணைக்கவும்"
 
-msgid "Connect to a wireless network"
-msgstr "வயர்லெச் நெட்வொர்க்குடன் இணைக்கவும்"
-
 msgid "Connect to the Internet"
 msgstr "இணையத்துடன் இணைக்கவும்"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
 
 msgid "Connected clients"
 msgstr "இணைக்கப்பட்ட வாடிக்கையாளர்கள்"
@@ -4985,8 +4997,26 @@ msgstr "இணைக்கப்பட்டுள்ளது"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "இணைக்கப்பட்ட டிரான்ச்கோடிங், வரம்பு - குழாய் இல்லை!"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "இணைக்கப்பட்டுள்ளது:"
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr "இணைப்பு செய்தி"
@@ -5036,6 +5066,9 @@ msgstr "சூழல்"
 
 msgid "Continent"
 msgstr "கண்டம்"
+
+msgid "Continue"
+msgstr ""
 
 msgid "Continue in background"
 msgstr "பின்னணியில் தொடரவும்"
@@ -5183,8 +5216,22 @@ msgstr "கோச்டாரிகா"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "கோட் டி ஐவோயர் / ஐவரி கோச்ட்"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 msgid "Could not connect to server"
 msgstr "சேவையகத்துடன் இணைக்க முடியவில்லை"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "நடுத்தரத்தை ஏற்ற முடியவில்லை! வட்டு செருகப்படவில்லை?"
@@ -5207,6 +5254,12 @@ msgstr "தவறான பணி காரணமாக பதிவு செ�
 #, python-format
 msgid "Could not save configuration file %s!"
 msgstr "உள்ளமைவு கோப்பு %s ஐ சேமிக்க முடியவில்லை!"
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
 
 msgid "Country"
 msgstr "நாடு"
@@ -5328,6 +5381,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "பகிர்வை உருவாக்குதல்"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr "க்ரீ"
 
@@ -5427,9 +5487,6 @@ msgstr ""
 
 msgid "Current rotor position: unknown"
 msgstr ""
-
-msgid "Current settings:"
-msgstr "தற்போதைய அமைப்புகள்:"
 
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
@@ -5535,9 +5592,6 @@ msgstr "டி"
 msgid "DAC"
 msgstr "டிஏசி"
 
-msgid "DHCP"
-msgstr "டி.எச்.சி.பி."
-
 msgid "DLNA support"
 msgstr "டி.எல்.என்.ஏ உதவி"
 
@@ -5549,6 +5603,9 @@ msgstr "டி.எம்.எம் இயல்பானது"
 
 msgid "DNS Settings"
 msgstr "டி.என்.எச் அமைப்புகள்"
+
+msgid "DNS Settings Actions"
+msgstr ""
 
 msgid "DNS data source"
 msgstr "டிஎன்எச் தரவு மூல"
@@ -5822,8 +5879,14 @@ msgstr "செயலிழக்கச் செய்யுங்கள்"
 msgid "Deactivate Expander"
 msgstr "விரிவாக்கத்தை செயலிழக்கச் செய்யுங்கள்"
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "தேர்ந்தெடுக்கப்பட்ட சாதனத்தில் ஃபிளாச் விரிவாக்கியை செயலிழக்கச் செய்யுங்கள்"
+
+msgid "Deactivated"
+msgstr ""
 
 msgid "Debug"
 msgstr "பிழைத்திருத்தம்"
@@ -6076,6 +6139,12 @@ msgstr "படத்தை நீக்கு"
 msgid "Delete Line"
 msgstr "வரியை நீக்கு"
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "செருகுநிரல்களை நீக்கு"
 
@@ -6306,9 +6375,6 @@ msgstr "சாதன மேலாளர்"
 msgid "Device Manager Actions"
 msgstr "சாதன மேலாளர் செயல்கள்"
 
-msgid "Device Settings"
-msgstr "சாதன அமைப்புகள்"
-
 msgid "Device id"
 msgstr "சாதன ஐடி"
 
@@ -6418,6 +6484,9 @@ msgstr "அடைவு/கோப்பு நிலை செய்தி"
 msgid "Disable"
 msgstr "முடக்கு"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "அனிமேசன்களை முடக்கு"
 
@@ -6442,6 +6511,9 @@ msgstr "MinITV ஐ முடக்கு"
 msgid "Disable Move Mode"
 msgstr "நகர்வு பயன்முறையை முடக்கு"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "படத்தில் படத்தை முடக்கு"
 
@@ -6460,6 +6532,9 @@ msgstr "அறிமுக திரையை முடக்கு"
 msgid "Disable operator profiles"
 msgstr "ஆபரேட்டர் சுயவிவரங்களை முடக்கு"
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr "VFD இல் HDD செயல்முறையை முடக்கு."
 
@@ -6475,11 +6550,11 @@ msgstr "முடக்கப்பட்டது"
 msgid "Disabled PiP.\n"
 msgstr "முடக்கப்பட்ட பிப்.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "முடக்கப்பட்ட அல்லது WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Chkroot ஐ முடக்குவது தோல்வியடைந்தது!"
+
+msgid "Disconnected"
+msgstr ""
 
 msgid "Discussion"
 msgstr "விவாதம்"
@@ -6915,6 +6990,9 @@ msgstr "ட்ரீம் பாக்ச் வடிவமைப்பு த
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "ட்ரீம் பாக்ச் வடிவமைப்பு தரவு டிவிடி (பிற டிவிடி பிளேயர்களில் வேலை செய்யாது)"
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr "இயக்கி தொகுப்புகள்"
 
@@ -7079,6 +7157,9 @@ msgstr "தொகு"
 msgid "Edit Alternatives"
 msgstr "மாற்றுகளைத் திருத்தவும்"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr "பயன்முறையைத் திருத்து"
 
@@ -7100,6 +7181,9 @@ msgstr "தலைப்பைத் திருத்து"
 msgid "Edit Upgrade Source URL"
 msgstr "மூல முகவரி ஐ மேம்படுத்தவும்"
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "தற்போதைய தலைப்பின் அத்தியாயங்களைத் திருத்தவும்"
 
@@ -7109,25 +7193,20 @@ msgstr "தற்போதைய வரியைத் திருத்தவ�
 msgid "Edit settings"
 msgstr "அமைப்புகளைத் திருத்தவும்"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "CCCAM/NEWCAMD சேவையக ஓச்ட்பெயரைத் திருத்தவும்."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "CCCAM/NEWCAMD சேவையக போர்ட்டைத் திருத்தவும்."
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "உங்கள் %s %s இன் DNS உள்ளமைவைத் திருத்தவும்."
-
 msgid "Edit the NewCamd DES Key."
 msgstr "NewCamd Des Key ஐத் திருத்தவும்."
 
 msgid "Edit the currently selected timer"
 msgstr "தற்போது தேர்ந்தெடுக்கப்பட்ட டைமரைத் திருத்தவும்"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "உங்கள் %s %s இன் பிணைய உள்ளமைவைத் திருத்தவும்."
 
 msgid "Edit the password."
 msgstr "கடவுச்சொல்லைத் திருத்தவும்."
@@ -7140,6 +7219,9 @@ msgstr "தொலை சி.சி.சி.ஏ.எம் போர்ட்டை
 
 msgid "Edit the remote IP address."
 msgstr "தொலை ஐபி முகவரியைத் திருத்தவும்."
+
+msgid "Edit the selected network mount"
+msgstr ""
 
 msgid "Edit the upgrade source address."
 msgstr "மேம்படுத்தல் மூல முகவரியைத் திருத்தவும்."
@@ -7238,9 +7320,6 @@ msgstr "சிச்ட்ரீமர் பிழைத்திருத்�
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "சிச்ட்ரீமர் பைப்லைன் வரைபடங்களை இயக்கவும் *"
 
-msgid "Enable IPv6"
-msgstr "IPv6 ஐ இயக்கவும்"
-
 msgid "Enable IceTV"
 msgstr "ICETV ஐ இயக்கவும்"
 
@@ -7292,8 +7371,8 @@ msgstr "வயாசாட் ஈபிசியை இயக்கவும்"
 msgid "Enable Virgin EPG"
 msgstr "விர்சின் ஈ.பி.சி."
 
-msgid "Enable Wake On LAN"
-msgstr "லானில் விழித்தெடுக்கவும்"
+msgid "Enable adapter"
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "கூடுதல் தகவல்களை உள்ளடக்கிய இரண்டாவது இன்போபரின் காலத்தை ('சரி' ஐ இரண்டு முறை அழுத்தவும்) இயக்கவும் அமைக்கவும்."
@@ -7371,11 +7450,17 @@ msgstr "கண்காணிப்பு UIஐ இயக்கவும்"
 msgid "Enable multiple bouquets"
 msgstr "பல பூங்கொத்துகளை இயக்கவும்"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr "பிணைய போக்குவரத்து சோதனையை இயக்கவும்"
 
 msgid "Enable new GStreamer playback"
 msgstr "புதிய சிச்ட்ரீமர் பிளேபேக்கை இயக்கவும்"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "HDMI-CEC ஐப் பயன்படுத்தி இயக்கவும் அல்லது முடக்கவும்."
@@ -7388,6 +7473,9 @@ msgstr "முன்னோட்டத்தை இயக்கவும்"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "தொலைநிலை எனிக்மா 2 ரிசீவரை உள்நாட்டில் இணைக்க முடியாத சேவைகளை மாற்ற முயற்சிக்கவும் (எ.கா. ட்யூனர் ஆக்கிரமிக்கப்பட்டுள்ளது அல்லது உள்ளக ட்யூனரில் பணி வகை கிடைக்கவில்லை. HTTP: // மற்றும் துறைமுகம் எண் உள்ளிட்ட முழுமையான முகவரி ஐ குறிப்பிடவும் (பொதுவாக ...: 8001 ), எ.கா."
+
+msgid "Enable saved Wi-Fi network"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "டெலிடெக்ச்ட் கேச்சிங்கை இயக்கவும்"
@@ -7488,20 +7576,8 @@ msgstr "இயக்கப்பட்டது"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "ஒரு அம்சத்தை இயக்குகிறது, இதனால் ரிசீவர் ச்ட்ரீம்களை மறைகுறியாக்க முடியும் (ஈ.சி.எம் தரவு ச்ட்ரீமில் சேர்க்கப்பட்டு செல்லுபடியாகும் அட்டை கிடைத்தால்)."
 
-msgid "Encrypted: "
-msgstr "மறைகுறியாக்கப்பட்டது:"
-
 msgid "Encryption"
 msgstr "குறியாக்கம்"
-
-msgid "Encryption Type:"
-msgstr "குறியாக்க வகை:"
-
-msgid "Encryption key"
-msgstr "குறியாக்க விசை"
-
-msgid "Encryption key type"
-msgstr "குறியாக்க விசை வகை"
 
 msgid "End"
 msgstr "முடிவு"
@@ -7609,6 +7685,9 @@ msgstr "இந்த சாதனத்திற்கு புதிய பெ
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "நீங்கள் பூமத்திய ரேகைக்கு வடக்கு அல்லது தெற்கே இருந்தால் உள்ளிடவும்."
 
@@ -7620,6 +7699,9 @@ msgstr "புதிய அடைவு பெயரை உள்ளிடவு
 
 msgid "Enter number to jump to channel"
 msgstr "சேனலுக்கு செல்ல எண்ணை உள்ளிடவும்"
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr "தொடர்ச்சியான முள் குறியீட்டை உள்ளிடவும்"
@@ -7654,11 +7736,29 @@ msgstr "குறைந்த இசைக்குழு மற்றும் 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "கேபிள் மல்டிபிளெக்சைத் தேடும்போது ட்யூனரைப் பயன்படுத்த அதிர்வெண் படி அளவை உள்ளிடவும். மேலும் தகவலுக்கு உங்கள் கேபிள் வழங்குநரின் ஆவணங்களைப் பார்க்கவும்."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "டிஎன்எச் பின்னொட்டை வரையறுக்கவும்."
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "இந்த செயற்கைக்கோளுக்கு ஒத்த நிலைப்பாட்டில் சேமிக்கப்பட்ட எண்ணை உள்ளிடவும்."
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
@@ -7667,6 +7767,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -7683,6 +7786,12 @@ msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "AI- இயங்கும் மொழிபெயர்ப்பு சொருகி முழுமையாக இயக்க சந்தா குறியீட்டை உள்ளிடவும், சோதனைக்கான ஒருங்கிணைந்த குறியீடு 15 ஆகும்."
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
@@ -7835,44 +7944,6 @@ msgstr "பிழை மீண்டும் முயல நேரந்தவ
 msgid "Error code"
 msgstr "பிழைக் குறியீடு"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"EHD-SKIN ஐ உருவாக்கும் பிழை.\n"
-" எச்டி-தோல் பயன்படுத்துதல்!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"EHD-SKIN ஐ உருவாக்கும் பிழை. படவுரு தொகுப்பு பதிவிறக்கம் கிடைக்கவில்லை.\n"
-" HD-SKIN ஐப் பயன்படுத்துதல்!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"EHD-SKIN ஐ உருவாக்கும் பிழை. போதுமான ஃபிளாச் நினைவகம் இலவசம் அல்ல.\n"
-" HD-SKIN ஐப் பயன்படுத்துதல்!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"EHD-SKIN ஐ உருவாக்கும் பிழை. சில ஈ.எச்.டி-ஐகான்கள் காணவில்லை.\n"
-" HD-SKIN ஐப் பயன்படுத்துதல்!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "எச்டி-தோலை உருவாக்கும் பிழை. போதுமான ஃபிளாச் நினைவகம் இலவசம் அல்ல."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"மெட்ரிக்ட்-தோலை உருவாக்கும் பிழை.\n"
-" MyMetrixlite-Plugin ஐ மறுதொடக்கம் செய்து உங்கள் அமைப்புகளைப் பயன்படுத்துங்கள்."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "படத்தைப் பதிவிறக்குவதில் பிழை '%s'!"
@@ -7921,9 +7992,6 @@ msgstr "தொலைநிலை ரிசீவரில் '/etc/enigma2/epg.d
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "தொலைநிலை ரிசீவரில் 'epg.dat' எழுதுவது பிழை!"
 
-msgid "Error, unknown Result!"
-msgstr "பிழை, தெரியாத முடிவு!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7934,6 +8002,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "பிழை: வெற்று கோப்பு பெயர் சட்டவிரோதமானது!"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr "பிழை: எந்த படங்களையும் கண்டுபிடிக்க முடியவில்லை!"
@@ -7987,12 +8058,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "பிழை: '%s' இல் '%s' ஐ இயக்க முடியாது!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "பிழை: நிரல் '%s' நிறுவப்படவில்லை மற்றும் இந்த நிரலைக் கொண்ட தொகுப்பு தெரியவில்லை!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "பிழை: கோப்பகத்தை அகற்றுவது '%s' தோல்வியுற்றது! (ஒருவேளை அடைவு காலியாக இல்லை.)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8043,6 +8121,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "பிழை: பதிவு கோப்பை '%s' எழுத முடியவில்லை!"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "பிழை: '%s' இல் '%s' ஐ இயக்க முடியாது!"
 
@@ -8064,6 +8146,9 @@ msgstr "எச்டோனிய"
 
 msgid "EtPortal"
 msgstr "Etportal"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "ஈத்தர்நெட் பிணையம் இடைமுகம்"
@@ -8199,18 +8284,6 @@ msgstr "வெளியேறும் பட்டியல்"
 msgid "Exit movie player?"
 msgstr "திரைப்பட வீரர் வெளியேறவா?"
 
-msgid "Exit network adapter configuration"
-msgstr "பிணைய அடாப்டர் உள்ளமைவிலிருந்து வெளியேறவும்"
-
-msgid "Exit network adapter setup menu"
-msgstr "பிணையம் அடாப்டர் அமைவு மெனுவிலிருந்து வெளியேறவும்"
-
-msgid "Exit network interface list"
-msgstr "பிணைய இடைமுக பட்டியலிலிருந்து வெளியேறவும்"
-
-msgid "Exit network wizard"
-msgstr "பிணையம் வழிகாட்டி வெளியேறவும்"
-
 msgid "Exit picture viewer"
 msgstr "பட பார்வையாளரை விட்டு வெளியேறவும்"
 
@@ -8229,6 +8302,9 @@ msgstr "காப்புப்பிரதி செய்யாமல் வ�
 msgid "Expand"
 msgstr "விரிவாக்கு"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr "சோதனை படம்/வீடியோ"
 
@@ -8243,6 +8319,9 @@ msgstr "வல்லுநர்"
 
 msgid "Expert mode"
 msgstr "வல்லுநர் பயன்முறை"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr "வெளிப்பாடு சார்பு"
@@ -8261,12 +8340,6 @@ msgstr "நீட்டிக்க"
 
 msgid "Extended"
 msgstr "நீட்டிக்கப்பட்ட"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "விரிவாக்கப்பட்ட நெட்வொர்க்கிங் டப் சொருகி ..."
-
-msgid "Extended Setup..."
-msgstr "நீட்டிக்கப்பட்ட அமைப்பு ..."
 
 msgid "Extended Shares"
 msgstr "நீட்டிக்கப்பட்ட பங்குகள்"
@@ -8717,9 +8790,6 @@ msgstr "நன்றாக-டியூன்"
 msgid "Finished"
 msgstr "முடிந்தது"
 
-msgid "Finished configuring your network"
-msgstr "உங்கள் பிணையத்தை உள்ளமைத்தல் முடிந்தது"
-
 msgid "Finland"
 msgstr "பின்லாந்து"
 
@@ -8819,14 +8889,14 @@ msgstr "தொலைதூரத்தில் முக்கிய குழ�
 msgid "Flat by position on remote"
 msgstr "தொலைதூரத்தில் தட்டையானது"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr "நாட்டுப்புற மற்றும் நாடு"
 
 msgid "Folk/Traditional music"
 msgstr "நாட்டுப்புற/பாரம்பரிய இசை"
-
-msgid "Follow instructions on TV"
-msgstr "டிவியில் வழிமுறைகளைப் பின்பற்றவும்"
 
 msgid "Font size"
 msgstr "எழுத்துரு அளவு"
@@ -8935,9 +9005,6 @@ msgstr "ஃப்ரெஞ்ச் தெற்கு பிரதேசம்"
 
 msgid "Frequency"
 msgstr "மீடிறன், மீள்திறன், நிகழ்வெண், நிகழ்வு"
-
-msgid "Frequency Norm:"
-msgstr "அதிர்வெண் விதிமுறை:"
 
 msgid "Frequency bands"
 msgstr "அதிர்வெண் பட்டைகள்"
@@ -9747,6 +9814,9 @@ msgstr "சொரு"
 msgid "IP"
 msgstr "ஐபி"
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr "ஐபி முகவரி 1"
 
@@ -9779,6 +9849,9 @@ msgstr ""
 
 msgid "IPK Installer"
 msgstr "ஐபிகே நிறுவி"
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr "IPv4 மட்டும்"
@@ -10349,9 +10422,6 @@ msgstr "இடைமுகம்"
 msgid "Interface '%s'"
 msgstr "'%s'"
 
-msgid "Interface: "
-msgstr "இடைமுகம்:"
-
 msgid "Interlaced"
 msgstr "ஒன்றோடொன்று"
 
@@ -10708,11 +10778,11 @@ msgstr "கிரைகிசுத்தான்"
 msgid "LAN"
 msgstr "லேன்"
 
-msgid "LAN adapter"
-msgstr "லேன் தாட்டர்"
-
 msgid "LAN connection"
 msgstr "லேன் இணைப்பு"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr "எல்சிடி உருள் விரைவு"
@@ -10918,6 +10988,9 @@ msgstr "இடது, முன் யூ.எச்.பி"
 msgid "Left, wrapped"
 msgstr "இடது, போர்த்தப்பட்டது"
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr "மரபு பயன்முறை"
 
@@ -11010,17 +11083,11 @@ msgstr "லிங்காலா"
 msgid "Link detected"
 msgstr "இணைப்பு கண்டறியப்பட்டது"
 
-msgid "Link quality:"
-msgstr "இணைப்பு தரம்:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr "இணைப்பு இலக்கு"
-
-msgid "Link:"
-msgstr "இணைப்பு:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "டிவிடி மெனுவுடன் இணைக்கப்பட்ட தலைப்புகள்"
@@ -11033,9 +11100,6 @@ msgstr "வழிசெலுத்தல் நடவடிக்கைகள�
 
 msgid "List available EPG functions"
 msgstr "EPG செயல்பாடுகளை பட்டியலிடுங்கள் ..."
-
-msgid "List available networks"
-msgstr "கிடைக்கக்கூடிய நெட்வொர்க்குகள் பட்டியல்"
 
 msgid "List of Storage Devices"
 msgstr "சேமிப்பக சாதனங்களின் பட்டியல்"
@@ -11103,14 +11167,14 @@ msgstr "உள்ளக தேதி/நேரம்"
 msgid "Local information"
 msgstr "உள்ளக செய்தி"
 
-msgid "Local network"
-msgstr "உள்ளக பிணையம்"
-
 msgid "Local or Regional"
 msgstr "உள்ளக அல்லது பிராந்தியம்"
 
 msgid "Local receiver"
 msgstr "உள்ளக பெட்டி"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr "உள்ளக நேரம்"
@@ -11281,11 +11345,11 @@ msgstr "லக்சம்பர்கிச்ட் காச்தோர்"
 msgid "M2k Packages"
 msgstr "M2K தொகுப்புகள்"
 
+msgid "MAC Address"
+msgstr ""
+
 msgid "MAC address"
 msgstr "மேக் முகவரி"
-
-msgid "MAC-address"
-msgstr "மேக்-முகவரி"
 
 msgid "MENU"
 msgstr "பட்டியல்"
@@ -11429,9 +11493,6 @@ msgstr "கையேடு ச்கேன்"
 msgid "Manual Service Searching"
 msgstr "கையேடு பணி தேடல்"
 
-msgid "Manual configuration"
-msgstr "கையேடு உள்ளமைவு"
-
 msgid "Manual scan for services"
 msgstr "சேவைகளுக்கான கையேடு ச்கேன்"
 
@@ -11503,9 +11564,6 @@ msgstr "அதிகபட்ச சேனல்கள்"
 
 msgid "Max memory positions"
 msgstr "அதிகபட்ச நினைவக நிலைகள்"
-
-msgid "Max. bitrate: "
-msgstr "அதிகபட்சம். பிட்ரேட்:"
 
 msgid "Maxdown +"
 msgstr "அதிகபட்சம் +"
@@ -11806,6 +11864,9 @@ msgstr "மோட்டார்கள்"
 msgid "Mount"
 msgstr "மவுண்ட்"
 
+msgid "Mount Context Menu"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "மவுண்ட் மேலாளர்"
 
@@ -11815,8 +11876,20 @@ msgstr "மவுண்ட் புள்ளி"
 msgid "Mount Setup"
 msgstr "மவுண்ட் செட்"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "மவுண்ட் தோல்வியுற்றது"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr "மவுண்ட் புள்ளி"
@@ -11824,11 +11897,17 @@ msgstr "மவுண்ட் புள்ளி"
 msgid "Mount root file system."
 msgstr "ரூட் கோப்பு முறைமை மவுண்ட்."
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr "ஏற்றங்கள்"
 
 msgid "Move"
 msgstr "நகர்த்தவும்"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "இடது/வலதுபுறம் நகர்த்தவும்"
@@ -11847,6 +11926,9 @@ msgstr "பிப் நகர்த்தவும்"
 
 msgid "Move PiP to main picture"
 msgstr "PIP ஐ முக்கிய படத்திற்கு நகர்த்தவும்"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "மேலே/கீழ்நோக்கி நகர்த்தவும்"
@@ -11898,6 +11980,12 @@ msgstr "பட்டியலில் கடைசி வரிக்கு க
 
 msgid "Move east"
 msgstr "கிழக்கு நோக்கி நகர்த்தவும்"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr "வேலை முடிந்தது."
@@ -12004,6 +12092,12 @@ msgstr "முந்தைய பூச்செண்டுக்கு செ�
 
 msgid "Move to previous marker"
 msgstr "முந்தைய மார்க்கருக்கு நகர்த்தவும்"
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr ""
 
 msgid "Move to the first item on the current line"
 msgstr "தற்போதைய வரியில் முதல் உருப்படிக்கு நகர்த்தவும்"
@@ -12236,7 +12330,13 @@ msgstr "NFS"
 msgid "NFS Server Settings"
 msgstr ""
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12280,12 +12380,6 @@ msgstr "பெயர் இறங்கு"
 #, python-format
 msgid "Name server %d"
 msgstr "பெயர் சேவையகம் %d"
-
-msgid "Nameserver"
-msgstr "பெயர்செர்வர்"
-
-msgid "Nameserver settings"
-msgstr "பெயர்சர்வர் அமைப்புகள்"
 
 msgid "Nameserver setup"
 msgstr "பெயர்சர்வர் அமைப்பு"
@@ -12350,23 +12444,21 @@ msgstr "நெட்மாச்க்"
 msgid "Network"
 msgstr "பிணையம்"
 
-msgid "Network Adapter Actions"
-msgstr "பிணையம் அடாப்டர் செயல்கள்"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr "பிணையம் அடாப்டர் தேர்வு"
 
-msgid "Network Adapter Setting Actions"
-msgstr "பிணையம் அடாப்டர் அமைக்கும் செயல்கள்"
-
 msgid "Network Adapter Settings"
 msgstr ""
 
-msgid "Network Adapter Text Actions"
-msgstr "பிணையம் அடாப்டர் உரை செயல்கள்"
-
 msgid "Network Browser"
 msgstr "பிணையம் உலாவி"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr "பிணையம் ஐடி"
@@ -12386,8 +12478,23 @@ msgstr "பிணைய பதிவு"
 msgid "Network Log Actions"
 msgstr "பிணையம் பதிவு செயல்கள்"
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
 msgstr "பிணையம் அக்கம்"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr "பிணைய தொகுப்புகள்"
@@ -12404,26 +12511,64 @@ msgstr "பிணைய அமைப்புகள்"
 msgid "Network Setup Actions"
 msgstr "பிணைய அமைவு செயல்கள்"
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "பிணைய சோதனை"
 
-msgid "Network Test:"
-msgstr "பிணைய சோதனை:"
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
-msgstr "பிணையம் வழிகாட்டி"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
 msgstr "பிணைய அடாப்டர் பிணையத்துடன் இணைக்கப்படவில்லை!"
 
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
+msgstr ""
+
 msgid "Network address"
 msgstr "பிணைய முகவரி"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
 msgstr "பிணைய உள்ளமைவு ..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
 
 msgid "Network information"
 msgstr "பிணைய செய்தி"
@@ -12450,29 +12595,11 @@ msgstr "பிணையம் ச்கேன்"
 msgid "Network storage on"
 msgstr "பிணையம் சேமிப்பு"
 
-msgid "Network test"
-msgstr "பிணைய சோதனை"
-
 msgid "Network test..."
 msgstr "பிணைய சோதனை ..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"பிணையம் வழிகாட்டி முடிந்தது.\n"
-"\n"
-" தொடர சரி என்பதை அழுத்தவும்."
-
 msgid "Network-ID"
 msgstr "நெட்வொர்க்-ஐடி"
-
-msgid "Network:"
-msgstr "நெட்வொர்க்:"
-
-msgid "NetworkWizard"
-msgstr "பிணையம் ட்விசார்ட்"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "நியூட்ரினோ (Keymap.ntr)"
@@ -12506,6 +12633,9 @@ msgstr "புதிய அமைப்பு dxandy"
 
 msgid "New Storage Device"
 msgstr "புதிய சேமிப்பக சாதனம்"
+
+msgid "New Wi-Fi"
+msgstr ""
 
 msgid "New Zealand"
 msgstr "நியூசிலாந்து"
@@ -12604,14 +12734,20 @@ msgstr "ரிமோட் ரிசீவரில் 'epg.dat' கோப்ப
 msgid "No (supported) DVDROM found!"
 msgstr "இல்லை (ஆதரவு) டிவிடிஆர்எம் கிடைத்தது!"
 
-msgid "No Connection"
-msgstr "இணைப்பு இல்லை"
-
 msgid "No ECM PIDs available"
 msgstr "ஈ.சி.எம் பிஐடிகள் எதுவும் கிடைக்கவில்லை"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "எச்டிடி எதுவும் கிடைக்கவில்லை அல்லது எச்டிடி துவக்கப்படவில்லை!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr "இணைய இணைப்பு இல்லை"
@@ -12686,8 +12822,14 @@ msgstr "இலவச குறியீடு எதுவும் கிடை
 msgid "No free tuner!"
 msgstr "இலவச ட்யூனர் இல்லை!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
 msgstr "கடினமான வட்டுகள் கண்டறியப்படவில்லை."
+
+msgid "No hosts found yet - still scanning..."
+msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "பதிவு கோப்புகள் எதுவும் காணப்படவில்லை, எனவே பிழைத்திருத்த பதிவுகள் கிடைக்கவில்லை!"
@@ -12701,8 +12843,8 @@ msgstr "பிணையம் அடாப்டர்கள் எதுவு�
 msgid "No network storage detected."
 msgstr "பிணையம் சேமிப்பு எதுவும் கண்டறியப்படவில்லை."
 
-msgid "No networks found"
-msgstr "நெட்வொர்க்குகள் எதுவும் கிடைக்கவில்லை"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "உருப்படிகள் சுவிட்ச் இல்லை (அதிகரிப்பு அல்லது குறைக்கப்பட்ட)"
@@ -12727,6 +12869,9 @@ msgstr "பணி இல்லை"
 
 msgid "No services/providers selected"
 msgstr "சேவைகள்/வழங்குநர்கள் தேர்ந்தெடுக்கப்படவில்லை"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr "ச்லாட் படங்கள் எதுவும் கிடைக்கவில்லை"
@@ -12803,30 +12948,6 @@ msgstr "'%s' க்கு செல்லுபடியாகும் மவ�
 
 msgid "No valid region details were found"
 msgstr "செல்லுபடியாகும் பிராந்திய விவரங்கள் எதுவும் காணப்படவில்லை"
-
-msgid "No wireless networks found! Searching..."
-msgstr "வயர்லெச் நெட்வொர்க்குகள் எதுவும் கிடைக்கவில்லை! தேடுகிறது ..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"வேலை செய்யும் உள்ளக பிணையம் அடாப்டர் எதுவும் கிடைக்கவில்லை.\n"
-" நீங்கள் ஒரு பிணைய கேபிளை இணைத்துள்ளீர்கள் என்பதை சரிபார்க்கவும், உங்கள் பிணையம் சரியாக கட்டமைக்கப்பட்டுள்ளது."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"வேலை செய்யும் வயர்லெச் பிணையம் அடாப்டர் எதுவும் கிடைக்கவில்லை.\n"
-" நீங்கள் ஒரு இணக்கமான WLAN சாதனத்தை இணைத்துள்ளீர்கள் என்பதை சரிபார்க்கவும், உங்கள் பிணையம் சரியாக உள்ளமைக்கப்பட்டுள்ளது."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"வேலை செய்யும் வயர்லெச் பிணையம் இடைமுகம் எதுவும் கிடைக்கவில்லை.\n"
-" நீங்கள் ஒரு இணக்கமான WLAN சாதனத்தை இணைத்துள்ளீர்களா என்பதை சரிபார்க்கவும் அல்லது உங்கள் உள்ளக பிணைய இடைமுகத்தை இயக்கவும்."
 
 msgid "No, but restart from begin"
 msgstr "இல்லை, ஆனால் தொடக்கத்திலிருந்து மறுதொடக்கம் செய்யுங்கள்"
@@ -12912,6 +13033,9 @@ msgstr "நார்வேசியன் நியூநார்ச்க்"
 msgid "Not Classified"
 msgstr "வகைப்படுத்தப்படவில்லை"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr "வரையறுக்கப்படவில்லை"
 
@@ -12957,8 +13081,14 @@ msgstr ""
 "இலவச இடம்: %sMB\n"
 "பாதை: %s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
 msgstr "சேரவில்லை. சேர மஞ்சள் அழுத்தவும்."
+
+msgid "Not mounted"
+msgstr ""
 
 msgid "Not required"
 msgstr "தேவையில்லை"
@@ -13183,9 +13313,6 @@ msgstr "செல்லுபடியாகும் ஓனிட்களி�
 msgid "Once"
 msgstr "ஒருமுறை"
 
-msgid "One"
-msgstr "ஒன்று"
-
 msgid "One line"
 msgstr "ஒரு வரி"
 
@@ -13381,8 +13508,23 @@ msgstr "பணி பட்டியலைத் திறந்து PIP க�
 msgid "Open the Channel Selection Settings screen"
 msgstr "சேனல் தேர்வு அமைப்புகள் திரையைத் திறக்கவும்"
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
 msgstr "படத் தகவலைத் திறக்கவும்"
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
+msgstr ""
 
 msgid "Open the Plugin Browser"
 msgstr "சொருகி உலாவியைத் திறக்கவும்"
@@ -13423,6 +13565,9 @@ msgstr "OpenVix தொகுப்புகள்"
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr "ஓபரா"
 
@@ -13449,6 +13594,9 @@ msgstr "இன்போபாரில் பிகான்களை முட�
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "வன்பொருள் காத்திருப்பு டைமரை இயக்க விருப்பம்."
+
+msgid "Optional arguments"
+msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr ""
@@ -13921,6 +14069,9 @@ msgstr "தூண் பெட்டி"
 msgid "Pilot"
 msgstr "பைலட்"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr "இளஞ்சிவப்பு"
 
@@ -14105,17 +14256,11 @@ msgstr ""
 "தயவுசெய்து உங்கள் மின்னஞ்சல் முகவரியை உள்ளிடவும், இது உங்கள் உள்நுழைவாக இருக்கும்.\n"
 " ICETV இணையதளத்தில் உங்கள் கணக்கு வழியாக நீங்கள் பணி அறிவிப்புகள், கணக்கு நினைவூட்டல்கள் மற்றும் விளம்பர சலுகைகளைப் பெற தேர்வு செய்யலாம்."
 
-msgid "Please follow the instructions on the TV"
-msgstr "டிவியில் உள்ள வழிமுறைகளைப் பின்பற்றவும்"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "முன்னர் தேர்ந்தெடுக்கப்பட்ட ஊடகத்தை அணுக முடியாது என்பதை நினைவில் கொள்க, எனவே இயல்புநிலை அடைவு பயன்படுத்தப்படுகிறது."
 
 msgid "Please open Picture in Picture first"
 msgstr "முதலில் படத்தில் படத்தைத் திறக்கவும்"
-
-msgid "Please press OK to continue."
-msgstr "தொடர சரி என்பதை அழுத்தவும்."
 
 msgid "Please press OK when ready"
 msgstr "தயாராக இருக்கும்போது சரி என்பதை அழுத்தவும்"
@@ -14195,9 +14340,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "தயவுசெய்து காத்திருங்கள்"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "உங்கள் பிணைய உள்ளமைவை செயல்படுத்த காத்திருங்கள் ..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "எல்.சி.என் பூங்கொத்துகள் உருவாக்கப்படும்போது/புதுப்பிக்கப்படும்போது காத்திருங்கள் ..."
 
@@ -14250,17 +14392,8 @@ msgstr "சொருகி புதுப்பிக்கப்படும�
 msgid "Please wait while we check your installed plugins..."
 msgstr "உங்கள் நிறுவப்பட்ட செருகுநிரல்களை நாங்கள் சரிபார்க்கும்போது காத்திருங்கள் ..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "உங்கள் பிணைய இடைமுகங்களை நாங்கள் தயாரிக்கும்போது காத்திருங்கள் ..."
-
-msgid "Please wait while we test your network..."
-msgstr "உங்கள் பிணையத்தை நாங்கள் சோதிக்கும்போது காத்திருங்கள் ..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "உங்கள் பிணையம் மறுதொடக்கம் செய்யும்போது காத்திருங்கள் ..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "உங்கள் தோல் அமைப்பு மீட்டமைக்கும்போது காத்திருங்கள் ..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "ஃபீட்ச் ச்டேட் சரிபார்க்கப்படும் போது தயவுசெய்து காத்திருங்கள்."
@@ -14532,9 +14665,6 @@ msgstr "மல்டிபூட் தேர்வுக்கு சரி எ
 msgid "Press OK on your remote control to continue."
 msgstr "தொடர உங்கள் ரிமோட் கண்ட்ரோலில் சரி என்பதை அழுத்தவும்."
 
-msgid "Press OK to activate the settings."
-msgstr "அமைப்புகளை செயல்படுத்த சரி என்பதை அழுத்தவும்."
-
 msgid "Press OK to continue."
 msgstr "தொடர சரி என்பதை அழுத்தவும்."
 
@@ -14650,9 +14780,6 @@ msgstr "முந்தைய/அடுத்த பக்கம்"
 
 msgid "Prevsong"
 msgstr "முந்தைய"
-
-msgid "Primary DNS"
-msgstr "முதன்மை டி.என்.எச்"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -15013,11 +15140,20 @@ msgstr "மதிப்பீடு வரையறுக்கப்படவ�
 msgid "Re-enter new PIN"
 msgstr "புதிய முள் மீண்டும் உள்ளிடவும்"
 
-msgid "Read-Only"
-msgstr "படிக்கவும்"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
+msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Oscam.conf இலிருந்து USERDATA ஐப் படியுங்கள்"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr "படிக்கவும்"
 
 msgid "Read/Write"
 msgstr "படிக்க/எழுத"
@@ -15072,6 +15208,9 @@ msgstr "உண்மையில் இப்போது பணிநிறு�
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "உண்மையில் கோடியைத் தொடங்கி இப்போது பயனர் இடைமுகத்தை நிறுத்தவா?"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "உண்மையில் முன் பேனலை மேம்படுத்தி இப்போது மறுதொடக்கம் செய்யவா?"
@@ -15382,6 +15521,9 @@ msgstr "தொலை கட்டுப்பாட்டு செய்தி"
 msgid "Remote control type"
 msgstr "தொலை கட்டுப்பாட்டு வகை"
 
+msgid "Remote path"
+msgstr ""
+
 msgid "Remote receiver"
 msgstr "தொலைநிலை பெட்டி"
 
@@ -15409,6 +15551,9 @@ msgstr "கேபிள் சேவைகளை அகற்று"
 
 msgid "Remove Confirmation"
 msgstr "உறுதிப்படுத்தலை அகற்று"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "உள்ளீட்டை அகற்று"
@@ -15624,6 +15769,15 @@ msgstr "தேவையான நடுத்தர வகை:"
 msgid "Rereading partition table"
 msgstr "பகிர்வு அட்டவணையை மீண்டும் படிக்கவும்"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "ஒதுக்கப்பட்டுள்ளது"
 
@@ -15687,8 +15841,14 @@ msgstr "பகுத்தல்"
 msgid "Resolution unit"
 msgstr "தெளிவுத்திறன் அலகு"
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "மறுதொடக்கம்"
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "GUI ஐ மறுதொடக்கம் செய்யுங்கள்"
@@ -15704,9 +15864,6 @@ msgstr "இப்போது GUI ஐ மறுதொடக்கம் செ�
 
 msgid "Restart Network"
 msgstr "பிணையத்தை மறுதொடக்கம் செய்யுங்கள்"
-
-msgid "Restart Network Adapter"
-msgstr "பிணைய அடாப்டரை மறுதொடக்கம் செய்யுங்கள்"
 
 msgid "Restart OSCam"
 msgstr "ஆச்காம் மறுதொடக்கம்"
@@ -15729,8 +15886,11 @@ msgstr "தற்போதைய அமைப்போடு பிணையத�
 msgid "Restart test"
 msgstr "சோதனை மறுதொடக்கம்"
 
-msgid "Restart your network connection and interfaces."
-msgstr "உங்கள் பிணைய இணைப்பு மற்றும் இடைமுகங்களை மறுதொடக்கம் செய்யுங்கள்."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "மறுதொடக்கம் ..."
@@ -15740,9 +15900,6 @@ msgstr "மீட்டமை"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "நீக்கப்பட்ட பயனர் பூங்கொத்துகளை மீட்டெடுங்கள்"
-
-msgid "Restore MetrixHD Settings"
-msgstr "மெட்ரிக்சிடி அமைப்புகளை மீட்டெடுங்கள்"
 
 msgid "Restore Plugins"
 msgstr "செருகுநிரல்களை மீட்டமை"
@@ -15798,6 +15955,9 @@ msgstr "%s இல் நிலையை மீண்டும் தொடங்
 
 msgid "Resuming playback"
 msgstr "பிளேபேக்கை மீண்டும் தொடங்குகிறது"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -15997,9 +16157,6 @@ msgstr "ரீயூனியன்"
 msgid "SABnzbd"
 msgstr "Sabnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "Sabnzbd அமைப்புகள்"
-
 msgid "SAT"
 msgstr "காரி"
 
@@ -16042,6 +16199,9 @@ msgstr "SDCARD சுவிட்ச் பிழை! - ஏற்கனவே �
 
 msgid "SINGLE LAYER DVD"
 msgstr "ஒற்றை அடுக்கு டிவிடி"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "எச்எம்எச் பாணி குயிக்செலெக்ட் நுழைவு தேர்வு"
@@ -16248,6 +16408,26 @@ msgstr "நேர மாற்றத்தை திரைப்படமாக 
 msgid "Save time shift buffer now and continue recording"
 msgstr "இப்போது நேர மாற்றத்தை திரைப்படமாக சேமித்து பதிவுசெய்கிறது"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr "ச்கிரிப்ட் செய்திகளில் சேமிக்கப்பட்ட கோடுகள்"
 
@@ -16284,6 +16464,9 @@ msgstr "ச்கேன் %s"
 msgid "Scan %s band"
 msgstr "%s இசைக்குழு ச்கேன்"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "கூடுதல் எச்.ஆர்"
 
@@ -16298,12 +16481,6 @@ msgstr "உள்ளக நீட்டிப்புகளுக்கு ச�
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "நிலப்பரப்பு எல்.சி.என் -க்கு ச்கேன் செய்து எல்.சி.என் பூங்கொத்துகளை உருவாக்கவும்"
-
-msgid "Scan wireless networks"
-msgstr "வயர்லெச் நெட்வொர்க்குகளை ச்கேன் செய்யுங்கள்"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "வயர்லெச் அணுகல் புள்ளிகளுக்காக உங்கள் பிணையத்தை ச்கேன் செய்து, நீங்கள் தேர்ந்தெடுக்கப்பட்ட வயர்லெச் சாதனத்தைப் பயன்படுத்தி அவற்றை இணைக்கவும்."
 
 msgid "Scanning"
 msgstr "ச்கேனிங்"
@@ -16329,6 +16506,12 @@ msgstr[1] "ச்கேனிங் முடிந்தது, %d சேவை
 
 msgid "Scanning failed!"
 msgstr "ச்கேனிங் தோல்வியுற்றது!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "ச்கேனிங் ..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16442,9 +16625,6 @@ msgstr "மேற்கு தேடுகிறது ..."
 msgid "Second cable of motorized LNB"
 msgstr "மின்னோடி பொருத்தப்பட்ட எல்.என்.பியின் இரண்டாவது கேபிள்"
 
-msgid "Secondary DNS"
-msgstr "இரண்டாம் நிலை டி.என்.எச்"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -16525,6 +16705,9 @@ msgstr "'யுனிவர்சல்' எல்.என்.பி.யைப்
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "கேபிள் மல்டிபிளெக்சின் முன் வரையறுக்கப்பட்ட பட்டியலிலிருந்து ச்கேன் செய்ய 'வழங்குநர்' என்பதைத் தேர்ந்தெடுக்கவும். ச்பெக்ட்ரமின் சில பகுதிகளை ச்கேன் செய்ய 'பட்டைகள்' என்பதைத் தேர்ந்தெடுக்கவும். ஒரு குறிப்பிட்ட அதிர்வெண் அலைவரிசையின் படிகளில் ச்கேன் செய்ய 'படிகள்' தேர்ந்தெடுக்கவும்."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "ஒவ்வொரு பூச்செட்டிலும் ஒவ்வொரு சேவைக்கும் தனித்துவமான எண்களை ஒதுக்க 'தனித்துவமான எண்' என்பதைத் தேர்ந்தெடுக்கவும். ஒவ்வொரு பூச்செண்டையும் 1 இலிருந்து எண்ணத் தொடங்க 'பூங்கொத்துகள் 1' ஐப் பயன்படுத்தவும். அந்த பணி பயன்படுத்தப்பட்ட இடங்களில் நிலையான பணி எல்.சி.என் -களைப் பயன்படுத்த 'எல்.சி.என் எண்' ஐப் பயன்படுத்தவும்."
@@ -16862,6 +17045,9 @@ msgstr "மூலத்தை மேம்படுத்தவும் என�
 msgid "Select Upgrade Source To Edit"
 msgstr "திருத்த மூலத்தை மேம்படுத்தவும்"
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "ஆட்டோகாமிற்கான இயல்புநிலையாக கிடைக்கக்கூடிய பட்டியலிலிருந்து ஒரு சாஃப்ட்கேமைத் தேர்ந்தெடுக்கவும்."
 
@@ -16905,6 +17091,9 @@ msgstr "ஒரு திரைப்படத்தைத் தேர்ந்�
 msgid "Select a network adapter"
 msgstr "பிணைய அடாப்டரைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr "எல்லா சாதனங்களுக்கும் நிரந்தர மவுண்ட் பாயிண்டைத் தேர்ந்தெடுக்கவும்"
 
@@ -16917,6 +17106,12 @@ msgstr "பார்வைக்கு ஒரு களஞ்சியத்த�
 msgid "Select a script to run:"
 msgstr "இயக்க ஒரு ச்கிரிப்டைத் தேர்ந்தெடுக்கவும்:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -16928,9 +17123,6 @@ msgstr "ஒரு நேரத்தை தேர்ந்தெடுக்க�
 
 msgid "Select a tuner"
 msgstr "ஒரு ட்யூனரைத் தேர்ந்தெடுக்கவும்"
-
-msgid "Select a wireless network"
-msgstr "வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்"
 
 msgid "Select action"
 msgstr "செயலைத் தேர்ந்தெடுக்கவும்"
@@ -16980,6 +17172,9 @@ msgstr "இயல்புநிலை கோப்பு தளபதி கோ
 
 msgid "Select destination for:"
 msgstr "இதற்கான இலக்கைத் தேர்ந்தெடுக்கவும்:"
+
+msgid "Select exported directories"
+msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr "காப்புப்பிரதியிலிருந்து விலக்க கோப்புகளைத் தேர்ந்தெடுக்கவும்"
@@ -17038,6 +17233,9 @@ msgstr "இறுதி நேரம் தேவைப்பட்டால் 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "சேனல்களுக்கு சாப் செய்ய தாமத பயன்முறையை அமைக்கவும்."
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "அமைவு உள்ளீட்டிற்கான இயல்புநிலை மதிப்பு காட்டப்பட்டுள்ளதா என்பதைத் தேர்ந்தெடுக்கவும், அப்படியானால், அது விளக்கம் தொடர்பாக காண்பிக்கப்படும்."
 
@@ -17085,12 +17283,6 @@ msgstr "உள்ளீட்டு சாதனத்தைத் தேர்�
 
 msgid "Select input device."
 msgstr "உள்ளீட்டு சாதனத்தைத் தேர்ந்தெடுக்கவும்."
-
-msgid "Select interface"
-msgstr "இடைமுகத்தைத் தேர்ந்தெடுக்கவும்"
-
-msgid "Select menu entry"
-msgstr "பட்டியல் உள்ளீட்டைத் தேர்ந்தெடுக்கவும்"
 
 msgid "Select movie"
 msgstr "திரைப்படத்தைத் தேர்ந்தெடுக்கவும்"
@@ -17220,6 +17412,9 @@ msgstr "இந்த டைமருக்கு பயன்படுத்த 
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "விசைப்பலகை கர்சரின் கீழ் எழுத்து அல்லது செயலைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
@@ -17382,6 +17577,9 @@ msgstr "தானாக ஏற்றுமதி செய்யப்பட்�
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "உங்கள் பயன்படுத்த முடியாத சாதனத்தின் மாதிரி எண்ணைத் தேர்ந்தெடுக்கவும். மாதிரி எண் பட்டியலிடப்படவில்லை எனில், 'பயனர் வரையறுக்கப்பட்ட' 'SCR' ஐ அமைத்து, அதன் விவரக்குறிப்புகளின்படி சாதன அளவுருக்களை கைமுறையாக உள்ளிடவும்."
 
@@ -17396,15 +17594,6 @@ msgstr "மூவி பாதையைத் தேர்ந்தெடுக�
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "குறிப்பிட்டபடி நேரங்குறிகருவி செயல்படுத்த வேண்டிய கீழே உள்ள பிணைய தரவு வீதத்தைத் தேர்ந்தெடுக்கவும். இந்த விகிதத்திற்கு மேலே போக்குவரத்து டைமரை செயலிழக்கச் செய்யுங்கள்."
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"இணைய இணைப்புக்கு பயன்படுத்த வேண்டிய பிணைய இடைமுகத்தைத் தேர்ந்தெடுக்கவும்.\n"
-"\n"
-" தொடர சரி என்பதை அழுத்தவும்."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
 msgstr ""
@@ -17443,6 +17632,9 @@ msgstr "முந்தைய சேவையைத் தேர்ந்தெ�
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "உங்கள் எச்.சி.ஆர் சாதனம் பயன்படுத்தும் நெறிமுறையைத் தேர்ந்தெடுக்கவும். தேர்வுகள் 'scr uncicable' (unicable), அல்லது 'scr jess' (செச், uncicable ii என்றும் அழைக்கப்படுகின்றன)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "ரிசீவர் உள்ளீட்டிலிருந்து டிவி மாறும்போது ரிசீவர் செயலைத் தேர்ந்தெடுக்கவும்."
 
@@ -17474,6 +17666,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17569,14 +17764,8 @@ msgstr "இந்த டைமரின் வகையைத் தேர்ந
 msgid "Select the video mode to be used on the TV."
 msgstr "டிவியில் பயன்படுத்த வேண்டிய வீடியோ பயன்முறையைத் தேர்ந்தெடுக்கவும்."
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
-"நீங்கள் இணைக்க விரும்பும் வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்.\n"
-"\n"
-" தொடர சரி என்பதை அழுத்தவும்."
 
 msgid "Select update source location"
 msgstr "புதுப்பிப்பு மூல இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
@@ -17619,6 +17808,9 @@ msgstr "டிவி பொத்தானை செயல்படுத்த 
 
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "UP/கீழ் பொத்தானை செயல்படுத்த விரும்புவதைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
 
 msgid "Select where the recording should be saved."
 msgstr "பதிவு எங்கு சேமிக்கப்பட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -17664,9 +17856,6 @@ msgstr "மின்னோடி பொருத்தப்பட்ட டி�
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்"
 
 msgid "Select your ATSC provider."
 msgstr "உங்கள் ATSC வழங்குநரைத் தேர்ந்தெடுக்கவும்."
@@ -17778,6 +17967,9 @@ msgstr "தீவிர இசை/கிளாசிக் இசை"
 
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "தீவிர/கிளாசிக்கல்/மத/வரலாற்று திரைப்படம்/நாடகம்"
+
+msgid "Server"
+msgstr ""
 
 msgid "Server down"
 msgstr "சேவையகம் கீழே"
@@ -18180,6 +18372,9 @@ msgstr "பொத்தானை நீங்கள் என்ன செய்
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "ஒரு ச்பின்னரின் மூல காரணத்தை பிழைத்திருத்துவதற்கு ஆம் என அமைக்கவும்."
+
+msgid "Set up network"
+msgstr ""
 
 msgid "Set up tuner [TUNER]"
 msgstr "ட்யூனரை அமைக்கவும் [ட்யூனர்]"
@@ -18654,9 +18849,6 @@ msgstr "முதன்மையான பட்டியலில் வி.ச
 msgid "Show Vertical EPG"
 msgstr "செங்குத்து ஈ.பி.சி."
 
-msgid "Show WLAN status"
-msgstr "WLAN நிலையை காட்டு"
-
 msgid "Show Web Link packages"
 msgstr "வலை இணைப்பு தொகுப்புகளைக் காட்டு"
 
@@ -18818,9 +19010,6 @@ msgstr "சொருகி உலாவியில் காண்பி"
 msgid "Show in Standby"
 msgstr "காத்திருப்புடன் காட்டு"
 
-msgid "Show info"
-msgstr "தகவலைக் காட்டு"
-
 msgid "Show info line"
 msgstr "செய்தி வரியைக் காட்டு"
 
@@ -18862,6 +19051,9 @@ msgstr "திரைப்படங்களைக் காட்டு"
 
 msgid "Show multi channel EPG"
 msgstr "மல்டி சேனல் ஈ.பி.சி."
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr "அடுத்த கமிட் பதிவைக் காட்டு"
@@ -19046,6 +19238,9 @@ msgstr "CCCAM செய்தி திரையைக் காட்டு"
 msgid "Show the Logs Settings screen"
 msgstr "பதிவுகள் அமைப்புகள் திரையைக் காட்டு"
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr "OSCAM செய்தி திரையைக் காட்டு"
 
@@ -19127,9 +19322,6 @@ msgstr "எல்சிடியில் நேரடி டிவி அல்
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "புதிய/காணப்படாத போது ஐகான்களைக் காட்டுகிறது, இல்லையெனில் ஒரு ஐகானைக் காட்டாது."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "உங்கள் வயர்லெச் லேன் இணைப்பின் நிலையைக் காட்டுகிறது."
-
 msgid "Shows the watched status of the media."
 msgstr "ஊடகங்களின் பார்த்த நிலையை காட்டுகிறது."
 
@@ -19163,14 +19355,8 @@ msgstr "சிக்மா வடிவமைப்புகள்"
 msgid "Signal Finder"
 msgstr "சிக்னல் கண்டுபிடிப்பாளர்"
 
-msgid "Signal quality"
-msgstr "சிக்னல் தகுதி"
-
 msgid "Signal strength"
 msgstr "சிக்னல் வலிமை"
-
-msgid "Signal: "
-msgstr "சிக்னல்:"
 
 msgid "Signed by"
 msgstr "கையொப்பமிட்டது"
@@ -19306,6 +19492,9 @@ msgstr "முன்னோக்கி தவிர்க்கவும் (ந
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "செருகுநிரல்களுடன் டைம் சிஃப்டிங் போது வாழ சம்பிங் தவிர்க்கவும்"
+
+msgid "Skip network setup"
+msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "தொகுப்பு நிறுவலைத் தவிர்க்கவும், முக்கிய தொகுப்புகள் மட்டுமே கிடைக்கும்"
@@ -19539,6 +19728,9 @@ msgstr "சமூகம் & பண்பாடு"
 msgid "Socket"
 msgstr "மாட்டி"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr "SoftCSA அமைப்புகள்"
 
@@ -19677,6 +19869,18 @@ msgstr "சொருகி உலாவி உள்ளீடுகளை வர
 msgid "Sort by"
 msgstr "வரிசைப்படுத்தவும்"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "இயல்பாக வரிசைப்படுத்தவும்"
 
@@ -19768,9 +19972,6 @@ msgstr "சிறப்பு நிகழ்வுகள்"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "மீடியா பிளேயரைத் தொடங்கும்போது பயன்படுத்த வேண்டிய கோப்பகத்தைக் குறிப்பிடவும்."
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
-msgstr "டிஎன்எச் பின்னொட்டை வரையறுக்கவும்."
 
 msgid "Speed"
 msgstr "வேகம்"
@@ -19874,9 +20075,6 @@ msgstr "மீண்டும் முயற்சிக்கத் தொட�
 msgid "Start teletext"
 msgstr "டெலிடெக்ச்ட் தொடங்கவும்"
 
-msgid "Start test"
-msgstr "சோதனை தொடக்க"
-
 msgid "Start the Chkroot initialization"
 msgstr "Chkroot துவக்கத்தைத் தொடங்கவும்"
 
@@ -19928,6 +20126,9 @@ msgstr "தொடக்க சாதனம் கிடைக்கவில்�
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "மாநிலம்"
+
+msgid "Static"
+msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "நிலையான ஐபி / தனிப்பயன்"
@@ -20013,9 +20214,6 @@ msgstr "திரைப்பட பட்டியலுக்குத் த�
 msgid "Stop streams"
 msgstr "நீரோடைகளை நிறுத்துங்கள்"
 
-msgid "Stop test"
-msgstr "சோதனை நிறுத்த"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "# தோல்வியுற்ற டிரான்ச்பாண்டர்களுக்குப் பிறகு விமானத்தை சோதனை செய்வதை நிறுத்துங்கள்"
 
@@ -20076,6 +20274,12 @@ msgstr "சேமிப்பக சாதனம் எழுத முடிய
 
 msgid "Store position"
 msgstr "கடை நிலை"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "சேமிக்கப்பட்ட நிலை"
@@ -20681,10 +20885,6 @@ msgstr "சோதனை வேலை தோல்வியடைந்தது!
 msgid "Test mode"
 msgstr "சோதனை முறை"
 
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "உங்கள் %s %s இன் பிணைய உள்ளமைவை சோதிக்கவும்."
-
 msgid "Test type"
 msgstr "சோதனை வகை"
 
@@ -20803,24 +21003,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "ICETV சேவையகம் %s க்கு கடவுச்சொல்லைக் கோரியுள்ளது."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"இணைய இணைப்பு செயல்படுவதாகத் தெரிகிறது.\n"
-"\n"
-" தொடர சரி என்பதை அழுத்தவும்."
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"இணைய இணைப்பு வேலை செய்யவில்லை என்று தோன்றுகிறது!\n"
-"\n"
-" அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -20991,13 +21173,6 @@ msgstr "படத்தின் உயரம். இந்த மதிப்�
 msgid "The loopthrough setting is wrong."
 msgstr "லூப் த்ரோ அமைப்பு தவறு."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"பிணைய வழிகாட்டி நீட்டிப்பு நிறுவப்படவில்லை!\n"
-" அதை நிறுவவும்."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "பிகான் அடைவு ஏற்கனவே உள்ளது மற்றும் அகற்றப்பட வேண்டும். நீங்கள் தொடர விரும்புகிறீர்களா?"
 
@@ -21075,35 +21250,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "உங்கள் %s %s இன் பயனர் இடைமுகம் கோடியை இயக்க நிறுத்தப்படும்"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "படத்தின் அகலம். இந்த மதிப்புடன் பொருந்தக்கூடிய உள்ளீடு அளவிடப்படும்."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"வயர்லெச் லேன் இணைய இணைப்பைத் தொடங்க முடியவில்லை!\n"
-" வயர்லெச் லேன் சாதனம் இணைக்கப்பட்டுள்ளதா?\n"
-"\n"
-" அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"வயர்லெச் லேன் சொருகி குறியீடு நிறுவப்படவில்லை!\n"
-"\n"
-" அதை நிறுவி அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"வயர்லெச் லேன் சொருகி நிறுவப்படவில்லை!\n"
-" அதை நிறுவவும்."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "உங்கள் தற்போதைய அமைப்புகளை மந்திரவாதி காப்புப் பிரதி எடுக்க முடியும். நீங்கள் இப்போது காப்புப்பிரதியைத் தொடங்க விரும்புகிறீர்களா?"
@@ -21428,57 +21580,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "இந்த அமைப்பு சிறப்பு அமைப்புகளுக்கு மட்டுமே. இது குறைந்த மதிப்புகளைக் கொண்ட பிற எல்.என்.பி -களை விட இந்த எல்.என்.பி. அதிக முன்னுரிமை கொண்ட இலவச எல்.என்.பி ட்யூனிங் சேவைகளுக்கு தேர்ந்தெடுக்கப்பட்ட முதல் எல்.என்.பி."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"இந்த சோதனை கட்டமைக்கப்பட்ட டி.என்.எச்.\n"
-" நீங்கள் ஒரு \"உறுதிப்படுத்தப்படாத\" செய்தியைப் பெற்றால்:\n"
-" - உங்கள் DHCP, கேபிளிங் மற்றும் அடாப்டர் அமைப்பை சரிபார்க்கவும்\n"
-" - உங்கள் பெயர்செர்வர்களை கைமுறையாக உள்ளமைத்தால், \"பெயர்செர்வர்\" உள்ளமைவில் உங்கள் உள்ளீடுகளை சரிபார்க்கவும்"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"உங்கள் லேன் அடாப்டருடன் பிணைய கேபிள் இணைக்கப்பட்டுள்ளதா என்பதை இந்த சோதனை சரிபார்க்கிறது.\n"
-" நீங்கள் \"துண்டிக்கப்பட்ட\" செய்தியைப் பெற்றால்:\n"
-" - பிணைய கேபிள் இணைக்கப்பட்டுள்ளதா என்பதை சரிபார்க்கவும்\n"
-" - கேபிள் உடைக்கப்படவில்லை என்பதை சரிபார்க்கவும்"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"உங்கள் லேன் அடாப்டருக்கு செல்லுபடியாகும் ஐபி முகவரி கிடைக்குமா என்பதை இந்த சோதனை சரிபார்க்கிறது.\n"
-" நீங்கள் \"உறுதிப்படுத்தப்படாத\" செய்தியைப் பெற்றால்:\n"
-" - சரியான ஐபி முகவரி எதுவும் கிடைக்கவில்லை\n"
-" - உங்கள் DHCP, கேபிளிங் மற்றும் அடாப்டர் அமைப்பை சரிபார்க்கவும்"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"DHCP உடன் தானியங்கி ஐபி முகவரி உள்ளமைவுக்காக உங்கள் லேன் அடாப்டர் அமைக்கப்பட்டுள்ளதா என்பதை இந்த சோதனை சரிபார்க்கிறது.\n"
-" நீங்கள் ஒரு \"முடக்கப்பட்ட\" செய்தியைப் பெற்றால்:\n"
-" - பின்னர் உங்கள் லேன் அடாப்டர் கையேடு ஐபி அமைப்புக்காக கட்டமைக்கப்பட்டுள்ளது\n"
-" - அடாப்டர் அமைவு உரையாடலில் சரியான ஐபி தகவல்களை உள்ளிட்டுள்ளீர்களா என்பதை சரிபார்க்கவும்.\n"
-" நீங்கள் ஒரு \"இயக்கப்பட்ட\" செய்தியைப் பெற்றால்:\n"
-" உங்கள் நெட்வொர்க்கில் கட்டமைக்கப்பட்ட மற்றும் வேலை செய்யும் DHCP சேவையகத்தை நீங்கள் வைத்திருக்கிறீர்கள்."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "இந்த சோதனை உங்கள் உள்ளமைக்கப்பட்ட லேன் அடாப்டரைக் கண்டறிகிறது."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21497,9 +21598,6 @@ msgstr "இந்த வழிகாட்டி முடிந்தது"
 
 msgid "This wizard has finished."
 msgstr "இந்த வழிகாட்டி முடிந்தது."
-
-msgid "Three"
-msgstr "மூன்று"
 
 msgid "Threshold"
 msgstr "வாசல்"
@@ -21647,6 +21745,9 @@ msgstr "காலவரிசை மார்க்கர்"
 
 msgid "Timeline scale"
 msgstr "காலவரிசை அளவு"
+
+msgid "Timeout"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr "நேரங்குறிகருவி பதிவு செயல்கள்"
@@ -21814,6 +21915,9 @@ msgstr "பல தேர்வு பயன்முறையை மாற்ற
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "புதிய உரை செருகல்களை மாற்றுவதற்கு முன் அல்லது ஏற்கனவே உள்ள உரையை மேலெழுதும்"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr "தற்போதைய குறிச்சொல்லின் தேர்வை மாற்றவும்"
 
@@ -21895,6 +21999,9 @@ msgstr "பாரம்பரிய"
 
 msgid "Traditional Chinese"
 msgstr "பாரம்பரிய சீன"
+
+msgid "Transceiver"
+msgstr ""
 
 msgid "Transcode"
 msgstr "டிரான்ச்கோட்"
@@ -22152,9 +22259,6 @@ msgstr "இரட்டை கலப்பின"
 msgid "Twin Tuner"
 msgstr "இரட்டை ட்யூனர்"
 
-msgid "Two"
-msgstr "இரண்டு"
-
 msgid "Two lines"
 msgstr "இரண்டு கோடுகள்"
 
@@ -22269,9 +22373,6 @@ msgstr "5க்கு கீழ்"
 msgid "Undetermined"
 msgstr "வரையறுக்கப்பட்டாத"
 
-msgid "Unencrypted"
-msgstr "மறைகுறியாக்கப்படாதது"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Webif ஐ அணுகும் எதிர்பாராத பிழை: %s"
@@ -22331,13 +22432,6 @@ msgstr "தெரியவில்லை"
 msgid "Unknown Devices"
 msgstr "அறியப்படாத சாதனங்கள்"
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"தோலை உருவாக்கும் தெரியாத பிழை.\n"
-" MyMetrixlite-Plugin ஐ மறுதொடக்கம் செய்து உங்கள் அமைப்புகளைப் பயன்படுத்துங்கள்."
-
 msgid "Unknown Packages"
 msgstr "அறியப்படாத தொகுப்புகள்"
 
@@ -22379,6 +22473,9 @@ msgstr "கோப்பைத் திறக்கவும்"
 msgid "Unpublished"
 msgstr "வெளியிடப்படாதது"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "அன்ச்கிராம்பிள் மற்றும் பதிவு ஈ.சி.எம்"
 
@@ -22390,9 +22487,6 @@ msgstr "HTTP ச்ட்ரீம்களைப் பெறுதல்"
 
 msgid "Unset As Startup Service"
 msgstr "தொடக்க சேவையாக அமைக்கப்படவில்லை"
-
-msgid "Unsupported"
-msgstr "ஆதரிக்கப்படாதது"
 
 msgid "Until standby/restart"
 msgstr "காத்திருப்பு/மறுதொடக்கம் வரை"
@@ -22574,6 +22668,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG செய்தி கிடைக்கும்போது அதைப் பயன்படுத்தவும்."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "நெட் ஈபிசி செய்தி கிடைக்கும்போது அதைப் பயன்படுத்தவும்."
 
@@ -22610,14 +22707,14 @@ msgstr "சாப் நேரங்குறிகருவி எண்ட் 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "செயல்திறனை மேம்படுத்த, நேரந்தவறுகை மற்றும் வெளிச்செல்லும் ட்ராஃபிக்கைக் குறைக்க அண்மைக் கால டிஎன்எச் தேடல்களை உள்நாட்டில் சேமிக்க DNS தற்காலிக சேமிப்பைப் பயன்படுத்தவும்."
 
-msgid "Use a gateway"
-msgstr "ஒரு நுழைவாயில் பயன்படுத்தவும்"
-
 msgid "Use alternate GitHub DNS"
 msgstr "மாற்று அறிவிலிமையம் டி.என்.எச்"
 
 msgid "Use an alternative smaller screen."
 msgstr "மாற்று சிறிய திரையைப் பயன்படுத்தவும்."
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr "தானியங்கி பயன்முறை கண்டறிதலைப் பயன்படுத்தவும்"
@@ -22664,11 +22761,11 @@ msgstr "வான் தகவல்களைப் பெற புவிஇர
 msgid "Use geolocation to set the current time zone location"
 msgstr "தற்போதைய நேர மண்டல இருப்பிடத்தை அமைக்க புவிஇருப்பிடத்தைப் பயன்படுத்தவும்"
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "LNB ஐ மாற்றும்போது சிக்கல்கள் இருந்தால் அதிகரித்த மின்னழுத்தம் '14/18V 'ஐப் பயன்படுத்தவும்."
-
-msgid "Use interface"
-msgstr "இடைமுகத்தைப் பயன்படுத்தவும்"
 
 msgid "Use key map *"
 msgstr "முக்கிய வரைபடத்தைப் பயன்படுத்தவும் *"
@@ -22681,9 +22778,6 @@ msgstr "அதிகாரப்பூர்வ சேனல் எண்ணை�
 
 msgid "Use only DNSSEC servers"
 msgstr "DNSSEC சேவையகங்களை மட்டும் பயன்படுத்தவும்"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "WLAN (வாவ்) இல் விழிப்புக்கு மட்டுமே பயன்படுத்தவும்"
 
 msgid "Use only no-filter servers"
 msgstr "வடிகட்டி இல்லாத சர்வர்களை மட்டும் பயன்படுத்தவும்"
@@ -22736,9 +22830,6 @@ msgstr "OSD மேற்புறத்தை நகர்த்த உங்க
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "OSD ஐ மேலே/கீழ்நோக்கி நகர்த்த உங்கள் ரிமோட்டில் இடது/வலது பொத்தான்களைப் பயன்படுத்தவும்."
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "உங்கள் பிணையத்தை உள்ளமைக்க நெட்வொர்க்கைப் பயன்படுத்தவும். உங்கள் பிணையத்தை அமைக்க வழிகாட்டி உங்களுக்கு உதவும்"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "உங்கள் கேமைக் கட்டுப்படுத்த சாப்ட்கேம் பேனலைப் பயன்படுத்தவும். இது ஒரு கேம் தொடங்க/நிறுத்த/தேர்ந்தெடுக்க அனுமதிக்கிறது"
 
@@ -22756,12 +22847,6 @@ msgstr "தற்போதைய தேர்வு மற்றும் வெ
 
 msgid "Use the extended List"
 msgstr "நீட்டிக்கப்பட்ட பட்டியலைப் பயன்படுத்தவும்"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "தேர்ந்தெடுக்கப்பட்ட பிணைய அடாப்டரை உள்ளமைக்க பிணைய வழிகாட்டியைப் பயன்படுத்தவும்"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "உங்கள் பிணையத்தை உள்ளமைக்க பிணைய வழிகாட்டியைப் பயன்படுத்தவும்."
 
 msgid "Use the wizard to set up basic features"
 msgstr "அடிப்படை அம்சங்களை அமைக்க வழிகாட்டி பயன்படுத்தவும்"
@@ -22839,6 +22924,12 @@ msgstr "பயனர்பெயர்"
 msgid "Username (httpuser)"
 msgstr "பயனர்பெயர் (httpuser)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr "தானியங்கி முகவரியைப் பயன்படுத்துதல்"
 
@@ -22863,9 +22954,6 @@ msgstr "உச்பெகிச்தான்"
 msgid "VCR Scart Settings"
 msgstr "வி.சி.ஆர் ச்கார்ட் அமைப்புகள்"
 
-msgid "VLAN connection"
-msgstr "VLAN இணைப்பு"
-
 msgid "VMC"
 msgstr "வி.எம்.சி."
 
@@ -22877,6 +22965,9 @@ msgstr "VOB கோப்பு"
 
 msgid "VOD"
 msgstr "சச்சரவு"
+
+msgid "VPN"
+msgstr ""
 
 msgid "VPS Settings"
 msgstr "வி.பி.எச் அமைப்புகள்"
@@ -23248,12 +23339,6 @@ msgstr "வான் இணைப்பு செய்தி"
 msgid "WARNING:"
 msgstr "எச்சரிக்கை:"
 
-msgid "WEP"
-msgstr "வெப்"
-
-msgid "WLAN connection"
-msgstr "WLAN இணைப்பு"
-
 msgid "WMA Pro"
 msgstr "WMA புரோ"
 
@@ -23262,15 +23347,6 @@ msgstr "WMA Pro Downmix"
 
 msgid "WOL Standby"
 msgstr "வோல் காத்திருப்பு"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA அல்லது WPA2"
-
-msgid "WPA2"
-msgstr "பெருவாரியாகப் பரவும் தொற்று நோய்"
 
 msgid "WSS on 4:3"
 msgstr "4: 3 இல் WSS"
@@ -23286,6 +23362,9 @@ msgstr "ச்கேன் செய்யும் போது தயவுச
 
 msgid "Waiting"
 msgstr "காத்திருக்கிறது"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "பகிர்வுக்காக காத்திருக்கிறது"
@@ -23332,6 +23411,9 @@ msgstr "எச்சரிக்கை: %d ஊட்டங்களை மீண
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "எச்சரிக்கை: இந்த செயல்முறையை ரத்து செய்வது ஊட்டங்களை முழுமையற்ற மற்றும் பயன்படுத்த முடியாத நிலையில் விட்டுவிடும்!"
+
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr ""
 
 msgid "Warning: Overrides are currently active!"
 msgstr "எச்சரிக்கை: மேலெழுதல்கள் தற்போது செயலில் உள்ளன!"
@@ -23654,17 +23736,20 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "இயக்கப்பட்டால், இந்த அமைப்பு 'பதிவுகளுக்கு விருப்பமான ட்யூனரை' விட அதிக எடையைக் கொண்டுள்ளது."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "இயக்கப்பட்டால், இந்த அமைப்பு 'விருப்பமான ட்யூனரை' விட அதிக எடையைக் கொண்டுள்ளது."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr ""
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "இயக்கப்பட்டால், குறிப்பிட்ட நேரத்திற்குப் பிறகு நேர மாற்றம் தானாக பின்னணியில் தொடங்குகிறது."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "இயக்கப்பட்டால், ஐபி உள்ளமைவுக்கு DHCP ஐப் பயன்படுத்தவும்."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "இயக்கப்பட்டால், குறைவடைக்கும் ட்யூனருக்கான OpenWebif அமைப்புகளைத் தனிப்பயனாக்கலாம்"
@@ -23729,6 +23814,28 @@ msgstr "கிடைக்கும்போது"
 msgid "White"
 msgstr "வெள்ளை"
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr "அகலமான"
 
@@ -23752,30 +23859,6 @@ msgstr "சேமிப்பக சாதனத்தை துடைக்க�
 
 msgid "Wiping storage device..."
 msgstr "சேமிப்பக சாதனத்தைத் துடைத்தல் ..."
-
-msgid "Wireless LAN"
-msgstr "வயர்லெச் லேன்"
-
-msgid "Wireless network"
-msgstr "வயர்லெச் பிணையம்"
-
-msgid "Wireless network configuration..."
-msgstr "வயர்லெச் பிணையம் உள்ளமைவு ..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"வயர்லெச் பிணையம் இணைப்பு அமைப்பு.\n"
-"\n"
-" அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
-
-msgid "Wireless network setup"
-msgstr "வயர்லெச் பிணையம் அமைப்பு"
-
-msgid "Wireless network state"
-msgstr "வயர்லெச் பிணையம் நிலை"
 
 msgid "With EXIT button"
 msgstr "வெளியேறும் பொத்தானுடன்"
@@ -23843,6 +23926,9 @@ msgstr "உள்ளிட்ட முள் %s விடாமுயற்ச�
 
 msgid "Wrestling"
 msgstr "மற்போர்"
+
+msgid "Write block size"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -24058,18 +24144,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "உங்கள் %s %s இணையத்துடன் இணைக்கப்படவில்லை, தயவுசெய்து உங்கள் பிணைய அமைப்புகளை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"உங்கள் %s %s இப்போது பயன்படுத்தத் தயாராக உள்ளது.\n"
-"\n"
-"உங்கள் இணைய இணைப்பு இப்போது செயல்படுகிறது.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "உங்கள் %s %s மறுதொடக்கம் செய்யப்படுகிறது"
 
@@ -24100,40 +24174,12 @@ msgid "Your %s %s will Restart..."
 msgstr "உங்கள் %s %s மறுதொடக்கம் செய்யும் ..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"சேவையை நிறுவிய பின் உங்கள் %s %s மறுதொடக்கம் செய்யப்படும்.\n"
-"\n"
-" இப்போது நிறுவ விரும்புகிறீர்களா?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"சேவையை அகற்றிய பின்னர் உங்கள் %s %s மறுதொடக்கம் செய்யப்படும்\n"
-" நீங்கள் இப்போது அகற்ற விரும்புகிறீர்களா?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"உங்கள் இணைய இணைப்பு செயல்படவில்லை!\n"
-" அடுத்து நீங்கள் என்ன செய்ய விரும்புகிறீர்கள் என்பதைத் தேர்வுசெய்க."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "உங்கள் இணைய இணைப்பு செயல்படுகிறது (ஐபி: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "உங்கள் பெறுநருக்கு மென்பொருள் சிக்கல் கண்டறியப்பட்டுள்ளது. கடைசியாக மறுதொடக்கம் செய்யப்பட்டதிலிருந்து இது %d முறை நிகழ்ந்தது.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "உங்கள் ரிமோட் கண்ட்ரோலில் சரி என்பதை அழுத்திய பின் உங்கள் எச்.டி.பி மறுதொடக்கம் செய்யும்."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "உங்கள் சேகரிப்பு ஒரு ஒற்றை அடுக்கு ஊடகத்தின் அளவை மீறுகிறது, உங்களுக்கு வெற்று இரட்டை அடுக்கு டிவிடி தேவைப்படும்!"
@@ -24178,9 +24224,6 @@ msgid ""
 msgstr ""
 "உங்கள் முன் குழு மேம்படுத்தப்படும்\n"
 " இதற்கு சில நிமிடங்கள் ஆகலாம்"
-
-msgid "Your network configuration has been activated."
-msgstr "உங்கள் பிணைய உள்ளமைவு செயல்படுத்தப்பட்டுள்ளது."
 
 msgid "Your password must have at least 5 characters."
 msgstr "உங்கள் கடவுச்சொல்லில் குறைந்தது 5 எழுத்துக்கள் இருக்க வேண்டும்."
@@ -24433,12 +24476,6 @@ msgstr "பங்கு காட்சியை மூடு"
 msgid "config menu"
 msgstr "கட்டமைப்பு பட்டியல்"
 
-msgid "confirmed"
-msgstr "உறுதிப்படுத்தப்பட்டது"
-
-msgid "connected"
-msgstr "இணைக்கப்பட்டுள்ளது"
-
 msgid "copy"
 msgstr "நகலெடு"
 
@@ -24462,9 +24499,6 @@ msgstr "வெட்டு நீக்கு"
 
 msgid "disabled"
 msgstr "முடக்கப்பட்டது"
-
-msgid "disconnected"
-msgstr "துண்டிக்கப்பட்டது"
 
 msgid "eMMC"
 msgstr "EMMC"
@@ -24725,9 +24759,6 @@ msgstr "பயன்படுத்தப்படும் இரட்டை �
 msgid "of a SINGLE layer medium used."
 msgstr "பயன்படுத்தப்படும் ஒற்றை அடுக்கு ஊடகம்."
 
-msgid "off or wpa2 on"
-msgstr "அணை அல்லது WPA2 ஆன்"
-
 msgid "offset is"
 msgstr "ஆஃப்செட்"
 
@@ -24937,9 +24968,6 @@ msgstr "அமைப்புகள்"
 msgid "unavailable"
 msgstr "கிடைக்கவில்லை"
 
-msgid "unconfirmed"
-msgstr "உறுதிப்படுத்தப்படாதது"
-
 msgid "unknown"
 msgstr "தெரியவில்லை"
 
@@ -24996,6 +25024,656 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 வி"
+
+#~ msgid "16:9"
+#~ msgstr "16: 9"
+
+#~ msgid "18 V"
+#~ msgstr "18 வி"
+
+#~ msgid "One"
+#~ msgstr "ஒன்று"
+
+#~ msgid "Three"
+#~ msgstr "மூன்று"
+
+#~ msgid "Two"
+#~ msgstr "இரண்டு"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d வயர்லெச் பிணையம் கிடைத்தது!"
+#~ msgstr[1] "%d வயர்லெச் நெட்வொர்க்குகள் காணப்பட்டன!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "இரண்டாவது கட்டமைக்கப்பட்ட இடைமுகம் கண்டறியப்பட்டுள்ளது.\n"
+#~ "\n"
+#~ " இரண்டாவது பிணைய இடைமுகத்தை முடக்க விரும்புகிறீர்களா?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "பிணைய அடாப்டர் உள்ளமைவை செயல்படுத்தவும்"
+
+#~ msgid "Activate network settings"
+#~ msgstr "பிணைய அமைப்புகளை செயல்படுத்தவும்"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "கட்டமைக்கப்பட்ட பிணைய அமைப்புகளை செயல்படுத்தவும்."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "இந்த பிணைய உள்ளமைவை செயல்படுத்த விரும்புகிறீர்களா?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "உங்கள் பிணைய இடைமுகங்களை மறுதொடக்கம் செய்ய விரும்புகிறீர்களா?"
+
+#~ msgid "Back"
+#~ msgstr "பின்"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "DNS ஐ உள்ளமைக்கவும் (பெயர் சேவையகங்கள்)"
+
+#~ msgid "Configure interface"
+#~ msgstr "இடைமுகத்தை உள்ளமைக்கவும்"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "காட்டப்பட்ட மதிப்புகளை சரிசெய்வதன் மூலம் உங்கள் டி.என்.எச் (பெயர் சேவையகங்கள்) உள்ளமைக்கவும் அல்லது சரிபார்க்கவும்.\n"
+#~ "\n"
+#~ " அமைப்புகள் சரியாக இருக்கும்போது தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid "Configure the IP address."
+#~ msgstr "ஐபி முகவரியை உள்ளமைக்கவும்."
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "காட்டப்பட்ட மதிப்புகளை சரிசெய்வதன் மூலம் இணைய இணைப்பை உள்ளமைக்கவும்.\n"
+#~ "\n"
+#~ " அமைப்புகள் சரியாக இருக்கும்போது தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "நுழைவாயிலை உள்ளமைக்கவும்."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "பெயர் சேவையகத்தை (டி.என்.எச்) உள்ளமைக்கவும்."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "நெட்மாச்கை உள்ளமைக்கவும்."
+
+#~ msgid "Configure the network again"
+#~ msgstr "பிணையத்தை மீண்டும் உள்ளமைக்கவும்"
+
+#~ msgid "Configure your Network"
+#~ msgstr "உங்கள் பிணையத்தை உள்ளமைக்கவும்"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "உங்கள் உள் LAN ஐ உள்ளமைக்கவும்"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "உங்கள் வயர்லெச் லானை மீண்டும் உள்ளமைக்கவும்"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "வயர்லெச் நெட்வொர்க்குடன் இணைக்கவும்"
+
+#~ msgid "Current settings:"
+#~ msgstr "தற்போதைய அமைப்புகள்:"
+
+#~ msgid "DHCP"
+#~ msgstr "டி.எச்.சி.பி."
+
+#~ msgid "Device Settings"
+#~ msgstr "சாதன அமைப்புகள்"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "முடக்கப்பட்ட அல்லது WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "உங்கள் %s %s இன் DNS உள்ளமைவைத் திருத்தவும்."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "உங்கள் %s %s இன் பிணைய உள்ளமைவைத் திருத்தவும்."
+
+#~ msgid "Enable IPv6"
+#~ msgstr "IPv6 ஐ இயக்கவும்"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "லானில் விழித்தெடுக்கவும்"
+
+#~ msgid "Encrypted: "
+#~ msgstr "மறைகுறியாக்கப்பட்டது:"
+
+#~ msgid "Encryption Type:"
+#~ msgstr "குறியாக்க வகை:"
+
+#~ msgid "Encryption key"
+#~ msgstr "குறியாக்க விசை"
+
+#~ msgid "Encryption key type"
+#~ msgstr "குறியாக்க விசை வகை"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "EHD-SKIN ஐ உருவாக்கும் பிழை.\n"
+#~ " எச்டி-தோல் பயன்படுத்துதல்!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "EHD-SKIN ஐ உருவாக்கும் பிழை. படவுரு தொகுப்பு பதிவிறக்கம் கிடைக்கவில்லை.\n"
+#~ " HD-SKIN ஐப் பயன்படுத்துதல்!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "EHD-SKIN ஐ உருவாக்கும் பிழை. போதுமான ஃபிளாச் நினைவகம் இலவசம் அல்ல.\n"
+#~ " HD-SKIN ஐப் பயன்படுத்துதல்!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "EHD-SKIN ஐ உருவாக்கும் பிழை. சில ஈ.எச்.டி-ஐகான்கள் காணவில்லை.\n"
+#~ " HD-SKIN ஐப் பயன்படுத்துதல்!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "எச்டி-தோலை உருவாக்கும் பிழை. போதுமான ஃபிளாச் நினைவகம் இலவசம் அல்ல."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "மெட்ரிக்ட்-தோலை உருவாக்கும் பிழை.\n"
+#~ " MyMetrixlite-Plugin ஐ மறுதொடக்கம் செய்து உங்கள் அமைப்புகளைப் பயன்படுத்துங்கள்."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "பிழை, தெரியாத முடிவு!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "பிணைய அடாப்டர் உள்ளமைவிலிருந்து வெளியேறவும்"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "பிணையம் அடாப்டர் அமைவு மெனுவிலிருந்து வெளியேறவும்"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "பிணைய இடைமுக பட்டியலிலிருந்து வெளியேறவும்"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "பிணையம் வழிகாட்டி வெளியேறவும்"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "விரிவாக்கப்பட்ட நெட்வொர்க்கிங் டப் சொருகி ..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "நீட்டிக்கப்பட்ட அமைப்பு ..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "உங்கள் பிணையத்தை உள்ளமைத்தல் முடிந்தது"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "டிவியில் வழிமுறைகளைப் பின்பற்றவும்"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "அதிர்வெண் விதிமுறை:"
+
+#~ msgid "Interface: "
+#~ msgstr "இடைமுகம்:"
+
+#~ msgid "LAN adapter"
+#~ msgstr "லேன் தாட்டர்"
+
+#~ msgid "Link quality:"
+#~ msgstr "இணைப்பு தரம்:"
+
+#~ msgid "Link:"
+#~ msgstr "இணைப்பு:"
+
+#~ msgid "List available networks"
+#~ msgstr "கிடைக்கக்கூடிய நெட்வொர்க்குகள் பட்டியல்"
+
+#~ msgid "Local network"
+#~ msgstr "உள்ளக பிணையம்"
+
+#~ msgid "MAC-address"
+#~ msgstr "மேக்-முகவரி"
+
+#~ msgid "Manual configuration"
+#~ msgstr "கையேடு உள்ளமைவு"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "அதிகபட்சம். பிட்ரேட்:"
+
+#~ msgid "Nameserver"
+#~ msgstr "பெயர்செர்வர்"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "பெயர்சர்வர் அமைப்புகள்"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "பிணையம் அடாப்டர் செயல்கள்"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "பிணையம் அடாப்டர் அமைக்கும் செயல்கள்"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "பிணையம் அடாப்டர் உரை செயல்கள்"
+
+#~ msgid "Network Test:"
+#~ msgstr "பிணைய சோதனை:"
+
+#~ msgid "Network Wizard"
+#~ msgstr "பிணையம் வழிகாட்டி"
+
+#~ msgid "Network test"
+#~ msgstr "பிணைய சோதனை"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "பிணையம் வழிகாட்டி முடிந்தது.\n"
+#~ "\n"
+#~ " தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid "Network:"
+#~ msgstr "நெட்வொர்க்:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "பிணையம் ட்விசார்ட்"
+
+#~ msgid "No Connection"
+#~ msgstr "இணைப்பு இல்லை"
+
+#~ msgid "No networks found"
+#~ msgstr "நெட்வொர்க்குகள் எதுவும் கிடைக்கவில்லை"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "வயர்லெச் நெட்வொர்க்குகள் எதுவும் கிடைக்கவில்லை! தேடுகிறது ..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "வேலை செய்யும் உள்ளக பிணையம் அடாப்டர் எதுவும் கிடைக்கவில்லை.\n"
+#~ " நீங்கள் ஒரு பிணைய கேபிளை இணைத்துள்ளீர்கள் என்பதை சரிபார்க்கவும், உங்கள் பிணையம் சரியாக கட்டமைக்கப்பட்டுள்ளது."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "வேலை செய்யும் வயர்லெச் பிணையம் அடாப்டர் எதுவும் கிடைக்கவில்லை.\n"
+#~ " நீங்கள் ஒரு இணக்கமான WLAN சாதனத்தை இணைத்துள்ளீர்கள் என்பதை சரிபார்க்கவும், உங்கள் பிணையம் சரியாக உள்ளமைக்கப்பட்டுள்ளது."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "வேலை செய்யும் வயர்லெச் பிணையம் இடைமுகம் எதுவும் கிடைக்கவில்லை.\n"
+#~ " நீங்கள் ஒரு இணக்கமான WLAN சாதனத்தை இணைத்துள்ளீர்களா என்பதை சரிபார்க்கவும் அல்லது உங்கள் உள்ளக பிணைய இடைமுகத்தை இயக்கவும்."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "டிவியில் உள்ள வழிமுறைகளைப் பின்பற்றவும்"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "உங்கள் பிணைய உள்ளமைவை செயல்படுத்த காத்திருங்கள் ..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "உங்கள் பிணைய இடைமுகங்களை நாங்கள் தயாரிக்கும்போது காத்திருங்கள் ..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "உங்கள் பிணையத்தை நாங்கள் சோதிக்கும்போது காத்திருங்கள் ..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "உங்கள் தோல் அமைப்பு மீட்டமைக்கும்போது காத்திருங்கள் ..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "அமைப்புகளை செயல்படுத்த சரி என்பதை அழுத்தவும்."
+
+#~ msgid "Primary DNS"
+#~ msgstr "முதன்மை டி.என்.எச்"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "பிணைய அடாப்டரை மறுதொடக்கம் செய்யுங்கள்"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "உங்கள் பிணைய இணைப்பு மற்றும் இடைமுகங்களை மறுதொடக்கம் செய்யுங்கள்."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "மெட்ரிக்சிடி அமைப்புகளை மீட்டெடுங்கள்"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "Sabnzbd அமைப்புகள்"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "வயர்லெச் நெட்வொர்க்குகளை ச்கேன் செய்யுங்கள்"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "வயர்லெச் அணுகல் புள்ளிகளுக்காக உங்கள் பிணையத்தை ச்கேன் செய்து, நீங்கள் தேர்ந்தெடுக்கப்பட்ட வயர்லெச் சாதனத்தைப் பயன்படுத்தி அவற்றை இணைக்கவும்."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "இரண்டாம் நிலை டி.என்.எச்"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்"
+
+#~ msgid "Select interface"
+#~ msgstr "இடைமுகத்தைத் தேர்ந்தெடுக்கவும்"
+
+#~ msgid "Select menu entry"
+#~ msgstr "பட்டியல் உள்ளீட்டைத் தேர்ந்தெடுக்கவும்"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "இணைய இணைப்புக்கு பயன்படுத்த வேண்டிய பிணைய இடைமுகத்தைத் தேர்ந்தெடுக்கவும்.\n"
+#~ "\n"
+#~ " தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "நீங்கள் இணைக்க விரும்பும் வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்.\n"
+#~ "\n"
+#~ " தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid "Select wireless network"
+#~ msgstr "வயர்லெச் நெட்வொர்க்கைத் தேர்ந்தெடுக்கவும்"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "WLAN நிலையை காட்டு"
+
+#~ msgid "Show info"
+#~ msgstr "தகவலைக் காட்டு"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "உங்கள் வயர்லெச் லேன் இணைப்பின் நிலையைக் காட்டுகிறது."
+
+#~ msgid "Signal quality"
+#~ msgstr "சிக்னல் தகுதி"
+
+#~ msgid "Signal: "
+#~ msgstr "சிக்னல்:"
+
+#~ msgid "Start test"
+#~ msgstr "சோதனை தொடக்க"
+
+#~ msgid "Stop test"
+#~ msgstr "சோதனை நிறுத்த"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "உங்கள் %s %s இன் பிணைய உள்ளமைவை சோதிக்கவும்."
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "இணைய இணைப்பு செயல்படுவதாகத் தெரிகிறது.\n"
+#~ "\n"
+#~ " தொடர சரி என்பதை அழுத்தவும்."
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "இணைய இணைப்பு வேலை செய்யவில்லை என்று தோன்றுகிறது!\n"
+#~ "\n"
+#~ " அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "பிணைய வழிகாட்டி நீட்டிப்பு நிறுவப்படவில்லை!\n"
+#~ " அதை நிறுவவும்."
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "வயர்லெச் லேன் இணைய இணைப்பைத் தொடங்க முடியவில்லை!\n"
+#~ " வயர்லெச் லேன் சாதனம் இணைக்கப்பட்டுள்ளதா?\n"
+#~ "\n"
+#~ " அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "வயர்லெச் லேன் சொருகி குறியீடு நிறுவப்படவில்லை!\n"
+#~ "\n"
+#~ " அதை நிறுவி அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "வயர்லெச் லேன் சொருகி நிறுவப்படவில்லை!\n"
+#~ " அதை நிறுவவும்."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "இந்த சோதனை கட்டமைக்கப்பட்ட டி.என்.எச்.\n"
+#~ " நீங்கள் ஒரு \"உறுதிப்படுத்தப்படாத\" செய்தியைப் பெற்றால்:\n"
+#~ " - உங்கள் DHCP, கேபிளிங் மற்றும் அடாப்டர் அமைப்பை சரிபார்க்கவும்\n"
+#~ " - உங்கள் பெயர்செர்வர்களை கைமுறையாக உள்ளமைத்தால், \"பெயர்செர்வர்\" உள்ளமைவில் உங்கள் உள்ளீடுகளை சரிபார்க்கவும்"
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "உங்கள் லேன் அடாப்டருடன் பிணைய கேபிள் இணைக்கப்பட்டுள்ளதா என்பதை இந்த சோதனை சரிபார்க்கிறது.\n"
+#~ " நீங்கள் \"துண்டிக்கப்பட்ட\" செய்தியைப் பெற்றால்:\n"
+#~ " - பிணைய கேபிள் இணைக்கப்பட்டுள்ளதா என்பதை சரிபார்க்கவும்\n"
+#~ " - கேபிள் உடைக்கப்படவில்லை என்பதை சரிபார்க்கவும்"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "உங்கள் லேன் அடாப்டருக்கு செல்லுபடியாகும் ஐபி முகவரி கிடைக்குமா என்பதை இந்த சோதனை சரிபார்க்கிறது.\n"
+#~ " நீங்கள் \"உறுதிப்படுத்தப்படாத\" செய்தியைப் பெற்றால்:\n"
+#~ " - சரியான ஐபி முகவரி எதுவும் கிடைக்கவில்லை\n"
+#~ " - உங்கள் DHCP, கேபிளிங் மற்றும் அடாப்டர் அமைப்பை சரிபார்க்கவும்"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "DHCP உடன் தானியங்கி ஐபி முகவரி உள்ளமைவுக்காக உங்கள் லேன் அடாப்டர் அமைக்கப்பட்டுள்ளதா என்பதை இந்த சோதனை சரிபார்க்கிறது.\n"
+#~ " நீங்கள் ஒரு \"முடக்கப்பட்ட\" செய்தியைப் பெற்றால்:\n"
+#~ " - பின்னர் உங்கள் லேன் அடாப்டர் கையேடு ஐபி அமைப்புக்காக கட்டமைக்கப்பட்டுள்ளது\n"
+#~ " - அடாப்டர் அமைவு உரையாடலில் சரியான ஐபி தகவல்களை உள்ளிட்டுள்ளீர்களா என்பதை சரிபார்க்கவும்.\n"
+#~ " நீங்கள் ஒரு \"இயக்கப்பட்ட\" செய்தியைப் பெற்றால்:\n"
+#~ " உங்கள் நெட்வொர்க்கில் கட்டமைக்கப்பட்ட மற்றும் வேலை செய்யும் DHCP சேவையகத்தை நீங்கள் வைத்திருக்கிறீர்கள்."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "இந்த சோதனை உங்கள் உள்ளமைக்கப்பட்ட லேன் அடாப்டரைக் கண்டறிகிறது."
+
+#~ msgid "Unencrypted"
+#~ msgstr "மறைகுறியாக்கப்படாதது"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "தோலை உருவாக்கும் தெரியாத பிழை.\n"
+#~ " MyMetrixlite-Plugin ஐ மறுதொடக்கம் செய்து உங்கள் அமைப்புகளைப் பயன்படுத்துங்கள்."
+
+#~ msgid "Unsupported"
+#~ msgstr "ஆதரிக்கப்படாதது"
+
+#~ msgid "Use a gateway"
+#~ msgstr "ஒரு நுழைவாயில் பயன்படுத்தவும்"
+
+#~ msgid "Use interface"
+#~ msgstr "இடைமுகத்தைப் பயன்படுத்தவும்"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "WLAN (வாவ்) இல் விழிப்புக்கு மட்டுமே பயன்படுத்தவும்"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "உங்கள் பிணையத்தை உள்ளமைக்க நெட்வொர்க்கைப் பயன்படுத்தவும். உங்கள் பிணையத்தை அமைக்க வழிகாட்டி உங்களுக்கு உதவும்"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "தேர்ந்தெடுக்கப்பட்ட பிணைய அடாப்டரை உள்ளமைக்க பிணைய வழிகாட்டியைப் பயன்படுத்தவும்"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "உங்கள் பிணையத்தை உள்ளமைக்க பிணைய வழிகாட்டியைப் பயன்படுத்தவும்."
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN இணைப்பு"
+
+#~ msgid "WEP"
+#~ msgstr "வெப்"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN இணைப்பு"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA அல்லது WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "பெருவாரியாகப் பரவும் தொற்று நோய்"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "இயக்கப்பட்டால், ஐபி உள்ளமைவுக்கு DHCP ஐப் பயன்படுத்தவும்."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "வயர்லெச் லேன்"
+
+#~ msgid "Wireless network"
+#~ msgstr "வயர்லெச் பிணையம்"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "வயர்லெச் பிணையம் உள்ளமைவு ..."
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "வயர்லெச் பிணையம் இணைப்பு அமைப்பு.\n"
+#~ "\n"
+#~ " அடுத்து என்ன செய்ய வேண்டும் என்பதைத் தேர்வுசெய்க."
+
+#~ msgid "Wireless network setup"
+#~ msgstr "வயர்லெச் பிணையம் அமைப்பு"
+
+#~ msgid "Wireless network state"
+#~ msgstr "வயர்லெச் பிணையம் நிலை"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "உங்கள் %s %s இப்போது பயன்படுத்தத் தயாராக உள்ளது.\n"
+#~ "\n"
+#~ "உங்கள் இணைய இணைப்பு இப்போது செயல்படுகிறது.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "சேவையை நிறுவிய பின் உங்கள் %s %s மறுதொடக்கம் செய்யப்படும்.\n"
+#~ "\n"
+#~ " இப்போது நிறுவ விரும்புகிறீர்களா?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "சேவையை அகற்றிய பின்னர் உங்கள் %s %s மறுதொடக்கம் செய்யப்படும்\n"
+#~ " நீங்கள் இப்போது அகற்ற விரும்புகிறீர்களா?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "உங்கள் இணைய இணைப்பு செயல்படவில்லை!\n"
+#~ " அடுத்து நீங்கள் என்ன செய்ய விரும்புகிறீர்கள் என்பதைத் தேர்வுசெய்க."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "உங்கள் ரிமோட் கண்ட்ரோலில் சரி என்பதை அழுத்திய பின் உங்கள் எச்.டி.பி மறுதொடக்கம் செய்யும்."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "உங்கள் பிணைய உள்ளமைவு செயல்படுத்தப்பட்டுள்ளது."
+
+#~ msgid "confirmed"
+#~ msgstr "உறுதிப்படுத்தப்பட்டது"
+
+#~ msgid "connected"
+#~ msgstr "இணைக்கப்பட்டுள்ளது"
+
+#~ msgid "disconnected"
+#~ msgstr "துண்டிக்கப்பட்டது"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "அணை அல்லது WPA2 ஆன்"
+
+#~ msgid "unconfirmed"
+#~ msgstr "உறுதிப்படுத்தப்படாதது"
 
 #~ msgid "Automatic shares access"
 #~ msgstr "தானியங்கி பங்குகள் அணுகல்"
@@ -25562,9 +26240,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "Ssid:"
-
-#~ msgid "Scanning..."
-#~ msgstr "ச்கேனிங் ..."
 
 #~ msgid "Servers:"
 #~ msgstr "சேவையகங்கள்:"

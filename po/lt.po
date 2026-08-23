@@ -1,14 +1,14 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-# Adga56 <adga45@gmail.com>, 2021, 2022, 2023, 2025.
+# Adga56 <adga45@gmail.com>, 2021, 2022, 2023, 2025, 2026.
 # Gediminas Murauskas <muziejusinfo@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2025-06-11 19:04+0000\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-16 18:13+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -913,6 +913,13 @@ msgstr[1] "%d informacijos santraukos katalogo paketai buvo atnaujinti."
 msgstr[2] "%d informacijos santraukos katalogo paketų buvo atnaujinta."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -931,6 +938,13 @@ msgstr "%d min."
 #, python-format
 msgid "%d ms"
 msgstr "%d msek."
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d package found."
@@ -1062,13 +1076,6 @@ msgstr ""
 #, python-format
 msgid "%d times"
 msgstr "%d kartų"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "rastas %d belaidis tinklas!"
-msgstr[1] "rasti %d belaidžiai tinklai!"
-msgstr[2] "rasta %d belaidžių tinklų!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1254,6 +1261,10 @@ msgid "%s%s(Default: %s)"
 msgstr "%s%s(Default: %s)"
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr ""
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
@@ -1298,6 +1309,22 @@ msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr ""
 "'%s' turi %d failą(ų) ir %d sub-katalogų.\n"
 "\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "\"Kaupimas valandomis\" arba \"paskutinių įvykių skaičius\". Ištrinant senesnius laiko poslinkio failus, sąlygos, esančios pirmoje eilėje, turi pirmenybę."
@@ -1383,14 +1410,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr "10 bitų"
@@ -1413,17 +1434,11 @@ msgstr "12 bitų"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bitų 4:2:0/4:2:2 be PIP"
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 įterpiant juodas juostas"
 
 msgid "16:10 PanScan"
 msgstr "16:10 nukerpant šonus"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "Visada 16:9"
@@ -1442,9 +1457,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "Pirma infojuosta išsijungs po"
@@ -1683,15 +1695,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Reikalingo įrankio (%s) nėra."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Rasta antra sukonfigūruotas sąsaja.\n"
-"\n"
-"Jūs norite išjungti antrą tinklo sąsają?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1826,6 +1829,11 @@ msgstr ""
 msgid "Access point"
 msgstr "Prieigos taškas"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Prieigai prie geografinės vietos informacijos reikalingas interneto ryšys."
 
@@ -1865,14 +1873,8 @@ msgstr "Įjungti aukštyn / žemyn mygtukus 'visoms aukštyn / žemyn' funkcijom
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Suaktyvinkite būdą, kaip siųsti individualias arba specifines vidines HDMI-CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo help > %s' ir tada trumpai perskaitykite failą '%s'."
 
-msgid "Activate network adapter configuration"
-msgstr "Aktyvinti tinklo plokštės konfigūraciją"
-
-msgid "Activate network settings"
-msgstr "Aktyvuoti tinklo nustatymus"
-
-msgid "Activate the configured network settings."
-msgstr "Aktyvuoti tinklo nustatymų konfigūraciją."
+msgid "Activate network adapter"
+msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
@@ -1893,6 +1895,13 @@ msgid "Active clients"
 msgstr "Aktyvūs klientai"
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 msgid "Adapter Settings"
@@ -1937,6 +1946,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "pridėti žymeklį"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr "Pridėti naują Quad kanalo įrašą"
 
@@ -1960,6 +1972,12 @@ msgstr "Pridėti laikmatį"
 
 msgid "Add To Parental Protection"
 msgstr "pridėti į tėvų kontrolę"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 msgid "Add Zap+RecordTimer"
 msgstr "Pridėti jungimo ir įrašymo laikmatį"
@@ -1987,6 +2005,9 @@ msgstr "Pridėti perjungimo laikmatį sekančiam įvykiui"
 
 msgid "Add a mark"
 msgstr "Pridėti žymą"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr "Pridėti į paketą"
@@ -2545,9 +2566,6 @@ msgstr "Ar tikrai norite pašalinti visus antžeminius kanalus?"
 msgid "Are you sure to remove this entry?"
 msgstr "Ar tikrai norite pašalinti šį įrašą?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Ar tikrai norite suaktyvinti šią tinklo konfigūraciją?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2572,9 +2590,6 @@ msgstr "Ar tikrai norite išjungti šį vedlį?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Ar tikrai norite iš naujo įkelti EPG duomenis iš:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Ar tikrai norite iš naujo paleisti tinklo sąsajas?"
 
 #, python-format
 msgid ""
@@ -2684,6 +2699,9 @@ msgstr "Priskirti CAIds:"
 
 msgid "Assigned services/provider:"
 msgstr "Priskirti kanalai/teikėjai:"
+
+msgid "Associated"
+msgstr ""
 
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
@@ -2946,8 +2964,8 @@ msgstr "MĖLYNA ilgai"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "MĖLYNAS mygtukas: MĖLYNAS/MĖLYNAS ilgas"
 
-msgid "Back"
-msgstr "Atgal"
+msgid "BSSID"
+msgstr ""
 
 msgid "Back USB"
 msgstr "Galinis USB"
@@ -3349,6 +3367,9 @@ msgstr "Broadcom"
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3407,6 +3428,9 @@ msgstr "Įrašyti į laikmeną"
 
 msgid "Burundi"
 msgstr "Burundis"
+
+msgid "Bus"
+msgstr ""
 
 msgid "Business"
 msgstr ""
@@ -3589,6 +3613,9 @@ msgstr "Kabelinė"
 
 msgid "Cable Scan"
 msgstr "Kabelinės TV kanalų paieška"
+
+msgid "Cable Unplugged"
+msgstr ""
 
 msgid "Cable input"
 msgstr ""
@@ -4102,6 +4129,9 @@ msgstr "Skyrius"
 msgid "Character device"
 msgstr "Simbolių įrenginys"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr ""
 
@@ -4336,6 +4366,9 @@ msgstr "Švarus"
 msgid "Clear Log"
 msgstr "Išvalyti žurnalą"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Išvalyti prieš paiešką"
 
@@ -4401,6 +4434,9 @@ msgstr "Užverti paketų sąrašą."
 
 msgid "Close dialog"
 msgstr "Baigti dialogą"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr "Uždaryti ekraną"
@@ -4595,7 +4631,7 @@ msgstr "Konfigūracijos režimas"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Ekrano konfigūravimo pagalbos parinktis galima rasti \"MENIU > Sąranka > Naudojimas ir vartotojo sąsajos > Nustatymai\"."
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
@@ -4603,6 +4639,9 @@ msgstr "Konfigūruokite papildomą delsą, kad pagerintumėte išorinių subtitr
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Sukonfigūruokite papildomą delsą, kad pagerintumėte subtitrų sinchronizavimą."
+
+msgid "Configure another network adapter"
+msgstr ""
 
 msgid "Configure cable reception on this input."
 msgstr ""
@@ -4659,14 +4698,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Konfigūruokite jei subtitrai turėtų persijungti tarp normalaus, pasvirusių raidžių, arba paryškintų ir paryškintų pasvirusių raidžių"
 
-msgid "Configure interface"
-msgstr "Konfigūruokite sąsają"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Konfigūruokite kuriuose įrenginiuose bus galimas šalinimas fone."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -4683,17 +4722,8 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigūruokite šio LNB DiSEqC režimą."
 
-msgid "Configure the IP address."
-msgstr "Konfigūruokite IP adresą."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "Atsarginio nuotolinio imtuvo IP"
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Atsarginio nuotolinio imtuvo jungtis"
@@ -4797,9 +4827,6 @@ msgstr "Konfigūruokite, kas vyks trumpai paspaudus 'įjungimo' mygtuką."
 msgid "Configure the function of the < and > buttons."
 msgstr "Konfigūruoti mygtukų < ir > funkciją."
 
-msgid "Configure the gateway."
-msgstr "Konfigūruokite tinklo šliuzą."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Konfigūruokite, kiek laiko lauks kietas diskas, kad pereiti į budėjimo režimą, kai imtuvas budėjimo režime."
 
@@ -4829,15 +4856,6 @@ msgstr "Konfigūruokite kokį minimalų kiekį diske bus galima įrašyti. Kai l
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Konfigūruokite mažiausią plotį informaciniam logotipui eilutėje, '0' = nerodyti logotipo visai."
-
-msgid "Configure the name server (DNS)."
-msgstr "Konfigūruokite serverio vardą (DNS)."
-
-msgid "Configure the netmask."
-msgstr "Konfigūruokite potinklio kaukę."
-
-msgid "Configure the network again"
-msgstr "Konfigūruokite savo tinklą dar kartą"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Konfigūruokite dienų skaičių, po kurių elementai bus automatiškai pašalinti iš šiukšlinės."
@@ -4871,6 +4889,9 @@ msgstr "Konfigūruokite antrąją subtitrų kalbą."
 
 msgid "Configure the secondary EPG language."
 msgstr "Konfigūruokite antros EPG kalbos pasirinkimą."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Konfigūruokite laiko praleidimo intervalą '1'/'3' mygtukams."
@@ -4971,17 +4992,8 @@ msgstr "Konfigūruokite, kuris imtuvas bus naudojamas, kai yra daugiau, nei vien
 msgid "Configure your NTP server."
 msgstr "Konfigūruokite savo NTP serverį."
 
-msgid "Configure your Network"
-msgstr "Konfigūruokite savo tinklą"
-
-msgid "Configure your internal LAN"
-msgstr "Konfigūruokite vidinį tinklą"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Konfigūruokite tinklo nustatymus ir spauskite OK skenavimui pradėti"
-
-msgid "Configure your wireless LAN again"
-msgstr "Konfigūruokite savo belaidį tinklą dar kartą"
 
 msgid "Configures which video output connector will be used."
 msgstr "Konfigūruoja kuri vaizdo išvesties jungtis bus naudojama."
@@ -4993,6 +5005,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -5014,10 +5030,13 @@ msgstr "Jungtis"
 msgid "Connect to IceTV server every"
 msgstr "Prisijunkite prie IceTV serverio kas"
 
-msgid "Connect to a wireless network"
-msgstr "Jungtis prie belaidžio tinklo"
-
 msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 msgid "Connected clients"
@@ -5035,8 +5054,26 @@ msgstr "Prisijungta prie"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "Prisijungta: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr "Ryšio informacija"
@@ -5086,6 +5123,9 @@ msgstr "Kontekstas"
 
 msgid "Continent"
 msgstr "Žemynas"
+
+msgid "Continue"
+msgstr ""
 
 msgid "Continue in background"
 msgstr "Tęsti fone"
@@ -5233,8 +5273,22 @@ msgstr "Kosta Rika"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Dramblio Kaulo Krantas"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 msgid "Could not connect to server"
 msgstr "Prie serverio prisijungti nepavyko"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nepavyko atverti laikmenos! Neįdėtas diskas?"
@@ -5257,6 +5311,12 @@ msgstr "Nepavyko įrašyti dėl neveikiančių kanalų %s"
 #, python-format
 msgid "Could not save configuration file %s!"
 msgstr "Konfigūracijos failo %s išsaugoti nepavyko!"
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
 
 msgid "Country"
 msgstr "Šalis"
@@ -5378,6 +5438,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Kuriamas skaidinys"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr "Kry"
 
@@ -5477,9 +5544,6 @@ msgstr ""
 
 msgid "Current rotor position: unknown"
 msgstr ""
-
-msgid "Current settings:"
-msgstr "Dabartiniai nustatymai:"
 
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
@@ -5585,9 +5649,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA palaikymas"
 
@@ -5599,6 +5660,9 @@ msgstr "DMM veikiantis"
 
 msgid "DNS Settings"
 msgstr "DNS parametrai"
+
+msgid "DNS Settings Actions"
+msgstr ""
 
 msgid "DNS data source"
 msgstr "DNS duomenų šaltinis"
@@ -5872,7 +5936,13 @@ msgstr "Išjungti"
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -6126,6 +6196,12 @@ msgstr "Ištrinti atvaizdą"
 msgid "Delete Line"
 msgstr "Pašalinti eilutę"
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
 
@@ -6356,9 +6432,6 @@ msgstr "Įrenginių valdymas"
 msgid "Device Manager Actions"
 msgstr ""
 
-msgid "Device Settings"
-msgstr "Įrenginio parametrai"
-
 msgid "Device id"
 msgstr "Įrenginio ID"
 
@@ -6468,6 +6541,9 @@ msgstr "Katalogo / failo būsenos informacija"
 msgid "Disable"
 msgstr "Išjungti"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "Išjungti animacijas"
 
@@ -6492,6 +6568,9 @@ msgstr "Išjungti MiniTV"
 msgid "Disable Move Mode"
 msgstr "išjungti perkėlimą"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "Išjungti vaizdą vaizde"
 
@@ -6510,6 +6589,9 @@ msgstr "Išjungti įvadinį vaizdą"
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr "Išjungti HDD atvaizdavimą VFD ekrane"
 
@@ -6525,10 +6607,10 @@ msgstr "Išjungta"
 msgid "Disabled PiP.\n"
 msgstr "PiP išjungtas.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "Išjungta arba WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
+msgstr ""
+
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -6958,6 +7040,9 @@ msgstr "Dreambox formato duomenų DVD (suderinama su HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox formato duomenų DVD (neveiks kituose DVD grotuvuose)"
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr ""
 
@@ -7122,6 +7207,9 @@ msgstr "Redaguoti"
 msgid "Edit Alternatives"
 msgstr "redaguoti alternatyvas"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr "Redagavimas išjungtas"
 
@@ -7143,6 +7231,9 @@ msgstr "Redaguoti pavadinimą"
 msgid "Edit Upgrade Source URL"
 msgstr "Redaguoti atnaujinimo šaltinio adresą."
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Redaguoti šio pavadinimo skyrius"
 
@@ -7152,25 +7243,20 @@ msgstr "Redaguoti dabartinę eilutę"
 msgid "Edit settings"
 msgstr "Redaguoti nustatymus"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "Redaguokite CCcam/NewCamd serverio pagrindinio kompiuterio pavadinimą."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "Redaguokite CCcam / NewCamd serverio prievadą."
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Redaguokite %s %s DNS konfigūraciją."
-
 msgid "Edit the NewCamd DES Key."
 msgstr "Redaguokite NewCamd DES raktą."
 
 msgid "Edit the currently selected timer"
 msgstr "Redaguoti šiuo metu pasirinktą laikmatį"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Redaguokite %s %s tinklo konfigūraciją."
 
 msgid "Edit the password."
 msgstr "Redaguokite slaptažodį."
@@ -7183,6 +7269,9 @@ msgstr "Redaguokite nuotolinį CCCam prievadą."
 
 msgid "Edit the remote IP address."
 msgstr "Redaguokite nuotolinį IP adresą."
+
+msgid "Edit the selected network mount"
+msgstr ""
 
 msgid "Edit the upgrade source address."
 msgstr "Redaguoti naujinimo šaltinio adresą."
@@ -7281,9 +7370,6 @@ msgstr "Įgalinti GStreamer derinimo žurnalą *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Įgalinti GStreamer vamzdynų grafikus *"
 
-msgid "Enable IPv6"
-msgstr ""
-
 msgid "Enable IceTV"
 msgstr "Įjungti IceTV"
 
@@ -7335,8 +7421,8 @@ msgstr "Įjungti ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr "Įjungti Virgin EPG"
 
-msgid "Enable Wake On LAN"
-msgstr "Įjungti Wake On LAN"
+msgid "Enable adapter"
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Įjunkite ir nustatykite antrosios info juostos rodymo trukmę (paspaudus du kartus 'OK'). Ji suteiks papildomos, platesnės informacijos apie žiūrimą kanalą."
@@ -7414,11 +7500,17 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Įjungti kanalų dubliavimą keliuose paketuose"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr "Įjungti tinklo srauto patikrinimą"
 
 msgid "Enable new GStreamer playback"
 msgstr "Įgalinkite naują \"GStreamer\" atkūrimą"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Įjungti arba išjungti HDMI-CEC."
@@ -7431,6 +7523,9 @@ msgstr "Įjungti peržiūrą"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Įjungti nuotolinį enigma2 imtuvą, kad žiūrėti kanalus, kurie negali būti priimti lokaliai (pvz., imtuvas užimtas, arba vietiniam imtuvui kanalas nepasiekiamas). Nurodykite pilną internetinį adresą, įskaitant http:// ir prievado numerį (paprastai ...:8001), pvz., http://antrasis_imuvas:8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Įjungti teleteksto kaupimą"
@@ -7531,20 +7626,8 @@ msgstr "Įjungta"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Įjungia funkciją, kad imtuvas gali iškoduoti srautus (jei ECM duomenys įtraukti į srautą ir yra galiojanti kortelė)."
 
-msgid "Encrypted: "
-msgstr "Koduota: "
-
 msgid "Encryption"
 msgstr "Kodavimas"
-
-msgid "Encryption Type:"
-msgstr "Šifravimo tipas:"
-
-msgid "Encryption key"
-msgstr "Kodavimo raktas"
-
-msgid "Encryption key type"
-msgstr "Kodavimo rakto tipas"
 
 msgid "End"
 msgstr "Pabaiga"
@@ -7654,6 +7737,9 @@ msgstr "Įveskite naują šio įrenginio pavadinimą."
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Įrašykite, jei esate į šiaurę arba į pietus nuo pusiaujo."
 
@@ -7665,6 +7751,9 @@ msgstr "Įveskite naują katalogo pavadinimą:"
 
 msgid "Enter number to jump to channel"
 msgstr "įrašykite skaičių, kad įjungti kanalą."
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr "Įrašykite pastovų PIN kodą"
@@ -7699,11 +7788,29 @@ msgstr "Įrašykite dažnį, kuriuo jūs LNB perjungiate tarp žemos ir aukšči
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Įrašykite dažnio takelio dydį, kurį naudosite ieškant kabelių multipleksų. Daugiau informacijos rasite kabelinės televizijos paslaugų teikėjo dokumentuose."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Įrašykite numerį, išsaugotą pozicionieriuje, kuris atitinka šį palydovą."
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
@@ -7712,6 +7819,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -7727,6 +7837,12 @@ msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.
 msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
@@ -7880,44 +7996,6 @@ msgstr ""
 msgid "Error code"
 msgstr "Klaidos kodas"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Kuriant EHD temą, įvyko klaida.\n"
-"Naudojama HD tema!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Kuriant EHD temą, įvyko klaida. Nepavyko parsiųsti piktogramų paketo.\n"
-"Naudojama HD tema!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Kuriant EHD temą, įvyko klaida. Maža laisvos atminties.\n"
-"Naudojama HD tema!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Kuriant EHD temą, įvyko klaida. Trūksta kai kurių EHD piktogramų.\n"
-"Naudojama HD tema!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Kuriant HD temą, įvyko klaida. Maža laisvos atminties."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Kuriant MetrixHD temą, įvyko klaida.\n"
-"Paleidę sistemą iš naujo, tikrinkite MyMetrixLite priedą ir patvirtinkite savo nustatymus."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Atsisiunčiant vaizdą \"%s\" įvyko klaida!"
@@ -7966,9 +8044,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr "Klaida, nežinomas rezultatas!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7979,6 +8054,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Tuščias failo pavadinimas negalimas."
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr "Klaida: nepavyksta rasti jokių atvaizdų!"
@@ -8034,12 +8112,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "Klaida: \"%s\" negalima paleisti \"%s\"!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "Klaida: programa \"%s\" neįdiegta ir paketas, kuriame yra ši programa, nežinomas!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Katalogo pašalinimas %s klaidingas. (Galbūt ne tuščia.)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8090,6 +8175,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Failo rašymo klaida: '%s'"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Klaida: negalite paleisti \"%s\" naudodami \"%s\"!"
 
@@ -8111,6 +8200,9 @@ msgstr "Estų"
 
 msgid "EtPortal"
 msgstr "EtPortalas"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Vietinio laidinio tinklo sąsaja"
@@ -8246,18 +8338,6 @@ msgstr "Išeiti iš meniu"
 msgid "Exit movie player?"
 msgstr "Užverti filmų grotuvą?"
 
-msgid "Exit network adapter configuration"
-msgstr "Užverti tinklo adapterio konfigūravimą"
-
-msgid "Exit network adapter setup menu"
-msgstr "Užverti tinklo adapterio konfigūravimo meniu"
-
-msgid "Exit network interface list"
-msgstr "Užverti tinklo sąsajų sąrašą"
-
-msgid "Exit network wizard"
-msgstr "Užverti tinklo vedlį"
-
 msgid "Exit picture viewer"
 msgstr "Išeikite iš vaizdų peržiūros priemonės"
 
@@ -8276,6 +8356,9 @@ msgstr ""
 msgid "Expand"
 msgstr "Išskleisti"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr "eksperimentinis filmas/vaidzas"
 
@@ -8290,6 +8373,9 @@ msgstr "Ekspertinis"
 
 msgid "Expert mode"
 msgstr "Ekspertinis režimas"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr "Poveikio šališkumas"
@@ -8308,12 +8394,6 @@ msgstr "Praplėsti"
 
 msgid "Extended"
 msgstr "Išplėstinis"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Išplėstinis tinklo valdymo priedas..."
-
-msgid "Extended Setup..."
-msgstr "Išplėstinis valdymas..."
 
 msgid "Extended Shares"
 msgstr "Išplėstiniai bendrinimai"
@@ -8764,9 +8844,6 @@ msgstr "Tikslus nustatymas"
 msgid "Finished"
 msgstr "Baigta"
 
-msgid "Finished configuring your network"
-msgstr "Jūsų tinklo konfigūravimas baigtas"
-
 msgid "Finland"
 msgstr "Suomija"
 
@@ -8866,14 +8943,14 @@ msgstr "Plokščia pagal raktų grupę nuotoliniu būdu"
 msgid "Flat by position on remote"
 msgstr "Plokščia pagal padėtį nuotolinio valdymo pulte"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
 msgstr "folk/tradicinė muzika"
-
-msgid "Follow instructions on TV"
-msgstr ""
 
 msgid "Font size"
 msgstr "Šrifto dydis"
@@ -8982,9 +9059,6 @@ msgstr "Prancūzijos pietinės teritorijos"
 
 msgid "Frequency"
 msgstr "Dažnis"
-
-msgid "Frequency Norm:"
-msgstr "Dažnio norma:"
 
 msgid "Frequency bands"
 msgstr "Dažnio juostos"
@@ -9794,6 +9868,9 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP adresas"
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr "IP adresas 1"
 
@@ -9826,6 +9903,9 @@ msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK įdiegėjas"
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr ""
@@ -10396,9 +10476,6 @@ msgstr "Sąsaja"
 msgid "Interface '%s'"
 msgstr "Sąsaja '%s'"
 
-msgid "Interface: "
-msgstr "Sąsaja: "
-
 msgid "Interlaced"
 msgstr "Dvieilio pynimo"
 
@@ -10756,11 +10833,11 @@ msgstr "Kirgistanas"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "LAN adapteris"
-
 msgid "LAN connection"
 msgstr "Laidinis tinklas"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr "LCD užrašų slinkties greitis"
@@ -10966,6 +11043,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr "kairėje, suvyniota"
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -11058,17 +11138,11 @@ msgstr "Lingala"
 msgid "Link detected"
 msgstr "Aptikta nuoroda"
 
-msgid "Link quality:"
-msgstr "Nuorodos kokybė:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr "Nuorodos tikslas"
-
-msgid "Link:"
-msgstr "Nuoroda:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Pavadinimai, susieti su DVD meniu"
@@ -11081,9 +11155,6 @@ msgstr "Sąrašo naršymo veiksmai"
 
 msgid "List available EPG functions"
 msgstr "EPG funkcijų sąrašas..."
-
-msgid "List available networks"
-msgstr "Galimų tinklų sąrašas"
 
 msgid "List of Storage Devices"
 msgstr "Išsaugotų įrenginių sąrašas"
@@ -11152,14 +11223,14 @@ msgstr "Vietinė data / laikas"
 msgid "Local information"
 msgstr "Vietinė informacija"
 
-msgid "Local network"
-msgstr "Vietinis tinklas"
-
 msgid "Local or Regional"
 msgstr ""
 
 msgid "Local receiver"
 msgstr "Vietinis imtuvas"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr "Vietinis laikas"
@@ -11330,10 +11401,10 @@ msgstr "Liuksemburgiečių"
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
-msgstr "MAC adresas"
+msgid "MAC Address"
+msgstr ""
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC adresas"
 
 msgid "MENU"
@@ -11478,9 +11549,6 @@ msgstr "Rankinė paieška"
 msgid "Manual Service Searching"
 msgstr "Rankinė kanalų paieška"
 
-msgid "Manual configuration"
-msgstr "Rankinė konfigūracija"
-
 msgid "Manual scan for services"
 msgstr "Rankinė kanalų paieška"
 
@@ -11552,9 +11620,6 @@ msgstr "Maksimalūs kanalai"
 
 msgid "Max memory positions"
 msgstr "Maksimalios atminties pozicijos"
-
-msgid "Max. bitrate: "
-msgstr "Maksimali kokybė bitais: "
 
 msgid "Maxdown +"
 msgstr "Maksimaliai žemyn +"
@@ -11855,6 +11920,9 @@ msgstr ""
 msgid "Mount"
 msgstr "Pajungti"
 
+msgid "Mount Context Menu"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Pajungimo tvarkyklė"
 
@@ -11864,8 +11932,20 @@ msgstr ""
 msgid "Mount Setup"
 msgstr "Pajungimo valdymas"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "Pajungimo klaida"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr "Prijungimo vieta"
@@ -11873,11 +11953,17 @@ msgstr "Prijungimo vieta"
 msgid "Mount root file system."
 msgstr ""
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr "Pajungimai"
 
 msgid "Move"
 msgstr "Perkelti"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "Perkelti kairėn/dešinėn"
@@ -11896,6 +11982,9 @@ msgstr "Perkelti PiP"
 
 msgid "Move PiP to main picture"
 msgstr "Perkelti PiP į pagrindinį vaizdą"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "Perkelti aukštyn/žemyn"
@@ -11947,6 +12036,12 @@ msgstr "Pereiti žemyn iki paskutinės sąrašo eilutės."
 
 msgid "Move east"
 msgstr "Sukti į rytus"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr "Perkėlimas atliktas."
@@ -12052,6 +12147,12 @@ msgid "Move to previous bouquet"
 msgstr ""
 
 msgid "Move to previous marker"
+msgstr ""
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12285,7 +12386,13 @@ msgstr "NFS"
 msgid "NFS Server Settings"
 msgstr "NFS parametrai"
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12329,12 +12436,6 @@ msgstr "Pavadinimas mažėjančia tvarka"
 #, python-format
 msgid "Name server %d"
 msgstr "Vardų serverio %d"
-
-msgid "Nameserver"
-msgstr "DNS serveris"
-
-msgid "Nameserver settings"
-msgstr "DNS serverio nustatymai"
 
 msgid "Nameserver setup"
 msgstr "DNS serverio valdymas"
@@ -12399,23 +12500,21 @@ msgstr "Potinklio kaukė"
 msgid "Network"
 msgstr "Tinklas"
 
-msgid "Network Adapter Actions"
-msgstr "Tinklo plokštės veiksmai"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr "Tinklo adapterio pasirinkimas"
 
-msgid "Network Adapter Setting Actions"
-msgstr "Tinklo plokštės nustatymo veiksmai"
-
 msgid "Network Adapter Settings"
 msgstr ""
 
-msgid "Network Adapter Text Actions"
-msgstr "Tinklo plokštės teksto veiksmai"
-
 msgid "Network Browser"
 msgstr "Tinklo naršyklė"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr "Tinklo ID"
@@ -12435,8 +12534,23 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr "Tinklo žurnalo veiksmai"
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
 msgstr "Tinklo apsuptis"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr ""
@@ -12453,26 +12567,64 @@ msgstr "Tinklo parametrai"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "Tinklo testavimas"
 
-msgid "Network Test:"
-msgstr "Tinklo testas:"
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
-msgstr "Tinklo vedlys"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
+msgstr ""
+
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
 msgstr ""
 
 msgid "Network address"
 msgstr "Tinklo adresas"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
 msgstr "Tinklo konfigūracija..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
 
 msgid "Network information"
 msgstr "Tinklo informacija"
@@ -12499,26 +12651,11 @@ msgstr "Tinklo paieška"
 msgid "Network storage on"
 msgstr "Tinklo saugykla įjungta"
 
-msgid "Network test"
-msgstr "Tinklo testavimas"
-
 msgid "Network test..."
 msgstr "Tinklo testas..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
 msgstr ""
-
-msgid "Network:"
-msgstr "Tinklas:"
-
-msgid "NetworkWizard"
-msgstr "Tinklo vedlys"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -12551,6 +12688,9 @@ msgid "New Setting DXAndy "
 msgstr "Naujas nustatymas DXAndy "
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -12650,14 +12790,20 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "Palaikomo DVD ROM nerasta!"
 
-msgid "No Connection"
-msgstr "Nėra prisijungimo"
-
 msgid "No ECM PIDs available"
 msgstr "ECMPids nėra"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -12732,8 +12878,14 @@ msgstr "Nėra laisvo pasiekiamo indekso"
 msgid "No free tuner!"
 msgstr "Nėra laisvo imtuvo!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
 msgstr "Kietųjų diskų neaptikta."
+
+msgid "No hosts found yet - still scanning..."
+msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Žurnalo failų nerasta, todėl derinimo žurnalai nepasiekiami!"
@@ -12747,8 +12899,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr "Tinklo saugykla neaptikta."
 
-msgid "No networks found"
-msgstr "Jokių tinklų nerasta"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nėra perjungimo elementų (padidinti arba sumažinti)"
@@ -12773,6 +12925,9 @@ msgstr "Nėra kanalų"
 
 msgid "No services/providers selected"
 msgstr "Nepasirinkti kanalai/teikėjai"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr "Lizdų atvaizdų nerasta"
@@ -12849,30 +13004,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Nerasta tinkamos informacijos apie regioną"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Belaidžių tinklų nerasta! Ieškoma..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Veikiančių vietinio tinklo įrenginių nerasta.\n"
-"Patikrinkite, ar prijungėte tinklo kabelį ir ar jūsų tinklas teisingai sukonfigūruotas."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Veikiančių belaidžio tinklo įrenginių nerasta.\n"
-"Patikrinkite, ar prijungėte suderinamą WLAN įrenginį ir ar belaidis tinklas teisingai sukonfigūruotas."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Veikiančių belaidžio tinklo sąsajų nerasta.\n"
-"Patikrinkite, ar jūs prijungėte suderinamą WLAN įrenginį ir ar įjungėte belaidžio tinklo sąsajos aptikimą."
 
 msgid "No, but restart from begin"
 msgstr "Ne, bet vėl pradėti nuo pradžių"
@@ -12958,6 +13089,9 @@ msgstr "Norvegų Nynorsk"
 msgid "Not Classified"
 msgstr "Neklasifikuotas"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr "Neapibrėžta"
 
@@ -13003,7 +13137,13 @@ msgstr ""
 "Laisvos vietos: %sMB\n"
 "Kelias: %s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -13229,9 +13369,6 @@ msgstr "Esant galiojantiems ONID, ignoruokite dažnio potinklio dalį"
 msgid "Once"
 msgstr "vieną kartą"
 
-msgid "One"
-msgstr "Vienas"
-
 msgid "One line"
 msgstr "Viena eilutė"
 
@@ -13427,7 +13564,22 @@ msgstr "Atverti kanalų sąrašą ir pasirinkti ankstesnį PiP kanalą"
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 msgid "Open the Plugin Browser"
@@ -13469,6 +13621,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13495,6 +13650,9 @@ msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
+
+msgid "Optional arguments"
+msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr ""
@@ -13967,6 +14125,9 @@ msgstr "Juostos šonuose"
 msgid "Pilot"
 msgstr "Pilotinis"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr "rožinė"
 
@@ -14151,17 +14312,11 @@ msgstr ""
 "Įrašykite savo elektroninio pašto adresą, kuris bus jūsų prisijungimo vardas.\n"
 "Per savo paskyrą IceTV svetainėje, galite pasirinkti gauti paslaugų pranešimus, paskyros priminimus ir reklaminius pasiūlymus."
 
-msgid "Please follow the instructions on the TV"
-msgstr "Vadovaukitės instrukcijomis TV ekrane"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Atkreipkite dėmesį, kad anksčiau pasirinkta laikmena neprieinama, todėl vietoje jos naudojamas numatytasis katalogas."
 
 msgid "Please open Picture in Picture first"
 msgstr "Pirmiausiai atsidarykite vaizdą vaizde"
-
-msgid "Please press OK to continue."
-msgstr "Spauskite 'OK', kad tęsti."
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -14241,9 +14396,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Palaukite"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Palaukite, kol aktyvuosis jūsų tinklo konfigūracija..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -14298,17 +14450,8 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Palaukite, kol tikrinami jūsų įdiegti priedai..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Palaukite, kol ruošiamos jūsų tinklo sąsajos..."
-
-msgid "Please wait while we test your network..."
-msgstr "Palaukite, kol tikrinamas jūsų tinklas..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "Palaukite, kol tinklas paleidžiamas iš naujo..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Palaukite, kol atkuriami jūsų temos nustatymai..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Palaukite, kol tikrinama šaltinių būklė."
@@ -14580,9 +14723,6 @@ msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
 msgid "Press OK on your remote control to continue."
 msgstr "Paspauskite OK savo valdymo pulte ir tęskite."
 
-msgid "Press OK to activate the settings."
-msgstr "Nustatymams aktyvuoti, spauskite 'OK'."
-
 msgid "Press OK to continue."
 msgstr "Spauskite OK, kad tęsti."
 
@@ -14698,9 +14838,6 @@ msgstr "ankstesnis/kitas puslapis"
 
 msgid "Prevsong"
 msgstr "Ankstesnė daina"
-
-msgid "Primary DNS"
-msgstr "Pirminis DNS"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -15061,11 +15198,20 @@ msgstr "Vertinimas nenurodytas"
 msgid "Re-enter new PIN"
 msgstr "Pakartokite naują PIN"
 
-msgid "Read-Only"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Vartotojo duomenis imti iš oscam.conf"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr ""
 
 msgid "Read/Write"
 msgstr ""
@@ -15119,6 +15265,9 @@ msgid "Really shutdown now?"
 msgstr "Tikrai išjungti dabar?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -15430,6 +15579,9 @@ msgstr "Nuotolinio valdymo informacija"
 msgid "Remote control type"
 msgstr "Nuotolinio valdymo tipas"
 
+msgid "Remote path"
+msgstr ""
+
 msgid "Remote receiver"
 msgstr "Nuotolinis aparatas"
 
@@ -15457,6 +15609,9 @@ msgstr "pašalinti kabelinius kanalus"
 
 msgid "Remove Confirmation"
 msgstr "Pašalinimo patvirtinimas"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "pašalinti"
@@ -15672,6 +15827,15 @@ msgstr "Privalomas laikmenos tipas:"
 msgid "Rereading partition table"
 msgstr "Skaidinių lentelė nuskaitoma iš naujo"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "Rezervuota"
 
@@ -15735,8 +15899,14 @@ msgstr "Rezoliucija"
 msgid "Resolution unit"
 msgstr "Skiriamoji geba"
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "Paleisti iš naujo"
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "Paleisti iš naujo grafinę aplinką"
@@ -15752,9 +15922,6 @@ msgstr "Paleisti iš naujo grafinę aplinką dabar?"
 
 msgid "Restart Network"
 msgstr "Paleisti tinklą iš naujo"
-
-msgid "Restart Network Adapter"
-msgstr "Paleisti tinklo adapterį iš naujo"
 
 msgid "Restart OSCam"
 msgstr ""
@@ -15777,8 +15944,11 @@ msgstr "Paleisti tinklą iš naujo su dabartiniais nustatymais"
 msgid "Restart test"
 msgstr "Kartoti testą"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -15788,9 +15958,6 @@ msgstr "Atkurti"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "atkurti ištrintus mėgiamų kanalų paketus"
-
-msgid "Restore MetrixHD Settings"
-msgstr "Atkurti MetrixHD nustatymus"
 
 msgid "Restore Plugins"
 msgstr "Atkurti priedus"
@@ -15846,6 +16013,9 @@ msgstr "Tęsti poziciją %s"
 
 msgid "Resuming playback"
 msgstr "Tęsti žiūrėjimą"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16045,9 +16215,6 @@ msgstr "Reunionas"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd parametrai"
-
 msgid "SAT"
 msgstr "ŠEŠ"
 
@@ -16090,6 +16257,9 @@ msgstr "SDcard jungimo KLAIDA! - jau mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "VIENSLUOKSNIS DVD"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "SMS stilius QuickSelect įrašo pasirinkimas"
@@ -16296,6 +16466,26 @@ msgstr "Išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Dabar išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr "Išsaugotos eilutės scenarijaus pranešimuose"
 
@@ -16332,6 +16522,9 @@ msgstr "Paieška %s"
 msgid "Scan %s band"
 msgstr "Ieškoti %s diapazone"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Ieškoti papildomų SR"
 
@@ -16346,12 +16539,6 @@ msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
-
-msgid "Scan wireless networks"
-msgstr "Ieškoti belaidžių tinklų"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Nuskaitykite tinkle belaidžio ryšio prieigos taškus ir prisijunkite prie jų naudodami pasirinktą belaidį įrenginį."
 
 msgid "Scanning"
 msgstr ""
@@ -16379,6 +16566,12 @@ msgstr[2] ""
 
 msgid "Scanning failed!"
 msgstr "Skenavimas nepavyko!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "Skenuojama..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16493,9 +16686,6 @@ msgstr "Ieškoma vakarų ..."
 msgid "Second cable of motorized LNB"
 msgstr "Antras kabelis nuo motorizuotos LNB"
 
-msgid "Secondary DNS"
-msgstr "Antrinis DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -16576,6 +16766,9 @@ msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'polarizacija', kitaip kre
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Pasirinkite 'teikėjas', kad skenuoti iš anksto nustatyto kabelių multipleksų sąrašo. Pasirinkite 'juostos', kad tik skenuoti tam tikras spektro dalis. Pasirinkite 'žingsniai', kad skenuotumėte tam tikros dažnių juostos plotyje."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr ""
@@ -16913,6 +17106,9 @@ msgstr "Pasirinkite atnaujinimo šaltinį"
 msgid "Select Upgrade Source To Edit"
 msgstr "Pasirinkite versijos naujinimo šaltinį, kurį norite redaguoti"
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -16956,6 +17152,9 @@ msgstr "Pasirinkite filmą"
 msgid "Select a network adapter"
 msgstr "Pasirinkite tinklo adapterį"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -16968,6 +17167,12 @@ msgstr "Pasirinkite saugyklos įsipareigojimų žurnalą, kad peržiūrėtumėte
 msgid "Select a script to run:"
 msgstr "Pasirinkite scenarijų, kad paleisti:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -16979,9 +17184,6 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Pasirinkite imtuvą"
-
-msgid "Select a wireless network"
-msgstr "Pasirinkite belaidį tinklą"
 
 msgid "Select action"
 msgstr "Pasirinkite veiksmą"
@@ -17031,6 +17233,9 @@ msgstr "Pasirinkite numatytąjį failų valdytojo katalogą:"
 
 msgid "Select destination for:"
 msgstr "Pasirinkite vietą:"
+
+msgid "Select exported directories"
+msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr "Pasirinkite failus, kurių neįtraukti į atsarginę kopiją"
@@ -17089,6 +17294,9 @@ msgstr "Pasirinkite, ar reikalingas pabaigos laikas."
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Delsos nustatymas, perjungiant kanalus."
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Pasirinkite, ar rodoma numatytoji nustatymo įrašo vertė ir, jei taip, kur ji rodoma atsižvelgiant į aprašą."
 
@@ -17136,12 +17344,6 @@ msgstr "Pasirinkite įvesties įrenginį"
 
 msgid "Select input device."
 msgstr "Pasirinkite įvesties įrenginį."
-
-msgid "Select interface"
-msgstr "Pasrinkite sąsają"
-
-msgid "Select menu entry"
-msgstr "Pasirinkite meniu įrašą"
 
 msgid "Select movie"
 msgstr "Pasirinkti filmą"
@@ -17271,6 +17473,9 @@ msgstr "Pasirinkite kanalą arba paslaugą, kurią norite naudoti šiam laikmač
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
@@ -17433,6 +17638,9 @@ msgstr ""
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Pasirinkite Unicable įrenginio modelio numerį. Jei modelio numeris nenurodytas, nustatykite 'SCR' į 'naudotojo nustatytas' ir rankiniu būdu įveskite jo parametrus pagal jo specifikacijų lapą."
 
@@ -17446,12 +17654,6 @@ msgid "Select the movie path"
 msgstr "Pasirinkite filmo kelią"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -17491,6 +17693,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Pasirinkite protokolą, kurį naudoja jūsų SCR įrenginys. Pasirinkimai yra 'SCR Unicable' (Unicable) arba 'SCR JESS' (JESS, taip pat žinomas kaip Unicable II)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -17522,6 +17727,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17617,10 +17825,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -17664,6 +17869,9 @@ msgstr "Pasirinkite, ką norite, aktyvuoti TV mygtuko paspaudimu."
 
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Pasirinkite, ką norite, aktyvuoti UP/DOWN mygtukų paspaudimu"
+
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
 
 msgid "Select where the recording should be saved."
 msgstr ""
@@ -17709,9 +17917,6 @@ msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "Pasirinkite belaidį tinklą"
 
 msgid "Select your ATSC provider."
 msgstr "Pasirinkite savo ATSC paslaugų teikėją."
@@ -17823,6 +18028,9 @@ msgstr "rimta muzika/klasikinė muzika"
 
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "rimtas/klasikinis/religinis/istorinis filmas/drama"
+
+msgid "Server"
+msgstr ""
 
 msgid "Server down"
 msgstr "Serveris žemyn"
@@ -18222,6 +18430,9 @@ msgstr "Nustatykite, ką norite daryti su mygtuku."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Nustatykite taip, kad būtų pašalinta pagrindinė sukimosi priežastis."
+
+msgid "Set up network"
+msgstr ""
 
 msgid "Set up tuner [TUNER]"
 msgstr ""
@@ -18696,9 +18907,6 @@ msgstr "Rodyti VCR skartą pagrindiniame meniu"
 msgid "Show Vertical EPG"
 msgstr "Rodyti vertikalų EPG"
 
-msgid "Show WLAN status"
-msgstr "Rodyti belaidžio tinklo būseną"
-
 msgid "Show Web Link packages"
 msgstr ""
 
@@ -18860,9 +19068,6 @@ msgstr ""
 msgid "Show in Standby"
 msgstr "Rodyti budėjimo režime"
 
-msgid "Show info"
-msgstr "Rodyti informaciją"
-
 msgid "Show info line"
 msgstr "Rodyti info liniją"
 
@@ -18904,6 +19109,9 @@ msgstr "Rodyti filmus"
 
 msgid "Show multi channel EPG"
 msgstr "Rodyti daugiakanalį EPG"
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr ""
@@ -19088,6 +19296,9 @@ msgstr "Rodyti CCcam informacijos ekraną"
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -19169,9 +19380,6 @@ msgstr "Rodyti tiesioginę tv arba informacijas LCD."
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Rodo piktogramą kai įvykis naujas/nežiūrėtas, jei nenaujas, nerodo."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Rodo belaidžio LAN ryšio būseną."
-
 msgid "Shows the watched status of the media."
 msgstr "Rodo stebimą laikmenos būseną."
 
@@ -19205,14 +19413,8 @@ msgstr "Sigma dizainas"
 msgid "Signal Finder"
 msgstr "Signalų ieškiklis"
 
-msgid "Signal quality"
-msgstr "Signalo kokybė"
-
 msgid "Signal strength"
 msgstr "Signalo stiprumas"
-
-msgid "Signal: "
-msgstr "Signalas: "
 
 msgid "Signed by"
 msgstr ""
@@ -19349,6 +19551,9 @@ msgid "Skip forward (enter time)"
 msgstr "praleisti į priekį (įrašykite laiką)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -19585,6 +19790,9 @@ msgstr "Visuomenė ir kultūra"
 msgid "Socket"
 msgstr "Lizdas"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -19723,6 +19931,18 @@ msgstr ""
 msgid "Sort by"
 msgstr "Rūšiuoti pagal"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "Rūšiuoti pagal numatytus nustatymus"
 
@@ -19814,9 +20034,6 @@ msgstr "specialūs renginiai"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Nurodykite katalogą, kuris bus naudojamas paleidžiant Medija leistuvą."
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
-msgstr ""
 
 msgid "Speed"
 msgstr "Greitis"
@@ -19920,9 +20137,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr "Įjungti teletekstą"
 
-msgid "Start test"
-msgstr "Pradėti testą"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -19974,6 +20188,9 @@ msgstr ""
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Būklė"
+
+msgid "Static"
+msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Statinis IP / Pasirinktinis"
@@ -20059,9 +20276,6 @@ msgstr "Stabdyti kanalą ir grįžti į filmų sąrašą"
 msgid "Stop streams"
 msgstr ""
 
-msgid "Stop test"
-msgstr "Stabdyti testavimą"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Stabdyti testą po # klaidingų transponderių"
 
@@ -20122,6 +20336,12 @@ msgstr "Disko negalima rašyti!"
 
 msgid "Store position"
 msgstr "Išsaugoti padėtį"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "Išsaugota padėtis"
@@ -20727,10 +20947,6 @@ msgstr ""
 msgid "Test mode"
 msgstr "Testuoti"
 
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Patikrinkite savo %s %s tinklo konfigūraciją."
-
 msgid "Test type"
 msgstr "Testo tipas"
 
@@ -20843,18 +21059,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "IceTV serveris paprašė slaptažodžio %s."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21021,13 +21225,6 @@ msgstr "Vaizdo aukštis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 msgid "The loopthrough setting is wrong."
 msgstr "Ciklo parametras neteisingas."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Tinklo vedlio plėtinys neįdiegtas!\n"
-"Prašome įdiegti."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21105,28 +21302,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Vaizdo plotis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Belaidžio tinklo priedas neįdiegtas!\n"
-"Prašome įdiegti tai."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -21454,57 +21635,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Šis nustatymas skirtas tik specialiems nustatymams. Tai suteikia LNB aukštesnį prioritetą nei kiti LNB su mažesnėmis reikšmėmis. Laisvas LNB, turintis aukščiausią prioritetą, bus pirmasis pasirinktas LNB kanalų paieškoje."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Šis testas tikrina sukonfigūruotą DNS.\n"
-"Jei gaunate \"nepatvirtintą\" pranešimą:\n"
-"- patikrinkite savo DHCP, kabelių ir adapterio sąranką\n"
-"- jei sukonfigūravote savo vardų serverius rankiniu būdu, patikrinkite savo įrašus konfigūracijoje \"Nameserver\""
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Šis testas tikrina, ar tinklo kabelis prijungtas prie jūsų vietinio tinklo adapterio.\n"
-"Jei gaunate žinutę 'atjungta':\n"
-"- tikrinkite, ar prijungtas tinklo kabelis\n"
-"- tikrinkite, ar kabelis nepažeistas"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Šis testas tikrina, ar jūsų tinklo adapteriui suteiktas galiojantis IP adresas. \n"
-"Jei gaunate žinutę 'nepatvirtinta':\n"
-"- nerastas joks galiojantis IP adresas\n"
-"- tikrinkite savo DHCP, kabelį ir tinklo adapterio nustatymą"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Šis testas tikrina, ar jūsų vietinio tinklo adapteris yra nustatytas DHCP automatinei IP adreso konfigūracijai.\n"
-"Jei gaunate pranešimą 'išjungta':\n"
-"- jūsų tinklo adapteris yra sukonfigūruotas rankiniam IP nustatymui\n"
-"- įsitikinkite, kad įvedėte teisingą IP informaciją tinklo adapterio nustatymų dialoge.\n"
-"Jei gaunate pranešimą 'įjungta':\n"
-"- patikrinkite, ar turite savo tinkle sukonfigūruotą ir veikiantį DHCP serverį."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Šis testas aptinka jūsų sukonfigūruotą tinklo adapterį."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21523,9 +21653,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-msgid "Three"
-msgstr "Trys"
 
 msgid "Threshold"
 msgstr "Heterodinas"
@@ -21673,6 +21800,9 @@ msgstr "Laiko istorija"
 
 msgid "Timeline scale"
 msgstr "Laiko skalė"
+
+msgid "Timeout"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -21838,6 +21968,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Įjunkite naujus teksto įterpimus prieš esamą tekstą arba perrašykite jį"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr "Perjungti dabartinės žymės pasirinkimą"
 
@@ -21919,6 +22052,9 @@ msgstr ""
 
 msgid "Traditional Chinese"
 msgstr "Tradicinė kinų"
+
+msgid "Transceiver"
+msgstr ""
 
 msgid "Transcode"
 msgstr "Perkoduoti"
@@ -22176,9 +22312,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr "Dvigubas imtuvas"
 
-msgid "Two"
-msgstr "Du"
-
 msgid "Two lines"
 msgstr "Dvi eilutės"
 
@@ -22293,9 +22426,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr "Nenustatyta"
 
-msgid "Unencrypted"
-msgstr "Nekoduotas"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -22355,13 +22485,6 @@ msgstr "Nežinoma"
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Kuriant temą, įvyko klaida.\n"
-"Paleidę sistemą iš naujo, tikrinkite MyMetrixLite priedą ir patvirtinkite savo nustatymus."
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -22403,6 +22526,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr "nepublikuotos"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "Dekoduoti ir įrašyti ECM"
 
@@ -22414,9 +22540,6 @@ msgstr "Iškoduoti http srautus"
 
 msgid "Unset As Startup Service"
 msgstr "nustoti naudoti, kaip pradinį kanalą"
-
-msgid "Unsupported"
-msgstr "Nepalaikomas"
 
 msgid "Until standby/restart"
 msgstr "iki budėjimo/paleisti iš naujo"
@@ -22598,6 +22721,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr "Naudokite MHW EPG informaciją, jei ji yra prieinama."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Naudokite Netmed EPG informaciją, jei ji yra prieinama."
 
@@ -22634,14 +22760,14 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-msgid "Use a gateway"
-msgstr "Naudoti šliuzą"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Naudokite alternatyvų mažesnį ekraną."
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -22685,11 +22811,11 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr "Naudoti geografinę vietą norint nustatyti dabartinę laiko juostos vietą"
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "naudokite padidintą įtampą 14/18V, jei kyla problemų perjungiant lnb"
-
-msgid "Use interface"
-msgstr "Naudoti sąsają"
 
 msgid "Use key map *"
 msgstr "Naudoti mygtukų išdėstymą *"
@@ -22702,9 +22828,6 @@ msgstr "Naudokite oficialų kanalų numeravimą"
 
 msgid "Use only DNSSEC servers"
 msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Naudokite tik dėl paleidimo WLan tinkle (WoW)"
 
 msgid "Use only no-filter servers"
 msgstr ""
@@ -22757,9 +22880,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Naudokite kairėn/dešinėn mygtukus ant nuotolinio valdymo pulto, kad perkeltumėte vartotojo sąsają aukštyn/žemyn"
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Naudokite tinklo vedlio sukonfigūruotą tinklą. Vedlys padės jums valdyti jūsų tinklą"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Naudoti emuliatoriaus skydelį, kad kontroliuoti savo emuliatorius. Tai leidžia jums pradėti/stabdyti/pasirinkti emuliatorius"
 
@@ -22777,12 +22897,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Naudoti išplėstinį sąrašą"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Naudoti vedlį pagrindiniams nustatymams"
@@ -22860,6 +22974,12 @@ msgstr "Vartotojas"
 msgid "Username (httpuser)"
 msgstr "Vartotojo vardas (httpuser)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr "Automatinio adreso naudojimas"
 
@@ -22884,9 +23004,6 @@ msgstr "Uzbekistanas"
 msgid "VCR Scart Settings"
 msgstr "VCR scart parametrai"
 
-msgid "VLAN connection"
-msgstr "VLAN prisijungimas"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -22898,6 +23015,9 @@ msgstr "VOB failas"
 
 msgid "VOD"
 msgstr "VOD parametrai"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS nuostatos"
@@ -23264,12 +23384,6 @@ msgstr "WAN ryšio informacija"
 msgid "WARNING:"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP raktas"
-
-msgid "WLAN connection"
-msgstr "Ryšys su WLAN tinklu"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23278,15 +23392,6 @@ msgstr "WMA Pro suliejimas"
 
 msgid "WOL Standby"
 msgstr "WOL budėjimas"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA arba WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS į 4:3"
@@ -23302,6 +23407,9 @@ msgstr "Palaukite, kol skenuojama..."
 
 msgid "Waiting"
 msgstr "Laukiama"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "Laukiama skaidinio"
@@ -23347,6 +23455,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -23667,17 +23778,20 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas įrašams'."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas'."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr ""
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automatiškai."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Kai čia įjungta, IP adresą priskirs tinklo DHCP serveris."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Kai įjungta, galite pritaikyti OpenWebIf nustatymus atsarginiam imtuvui"
@@ -23742,6 +23856,28 @@ msgstr "Kol galima"
 msgid "White"
 msgstr "Balta"
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr "platus"
 
@@ -23765,27 +23901,6 @@ msgstr ""
 
 msgid "Wiping storage device..."
 msgstr ""
-
-msgid "Wireless LAN"
-msgstr "Belaidis LAN"
-
-msgid "Wireless network"
-msgstr "Belaidis tinklas"
-
-msgid "Wireless network configuration..."
-msgstr "Belaidžio tinklo konfigūravimas..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
-msgstr "Belaidžio tinklo būklė"
 
 msgid "With EXIT button"
 msgstr "su exit mygtuku"
@@ -23853,6 +23968,9 @@ msgstr "Išsaugoti įvestą PIN %s pastoviai?"
 
 msgid "Wrestling"
 msgstr "Imtynių"
+
+msgid "Write block size"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -24066,17 +24184,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "Jūsų %s %s neprijungtas prie interneto. Patikrinkite nustatymus ir bandykite dar kartą."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"Jūsų %s %s dabar paruoštas naudoti.\n"
-"\n"
-"Jūsų interneto ryšys dabar veikia.\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Jūsų %s %s yra paleidžiamas iš naujo"
 
@@ -24107,41 +24214,12 @@ msgid "Your %s %s will Restart..."
 msgstr "Jūsų %s %s pasileis iš naujo..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Po paslaugos įdiegimo, jūsų %s %s bus paleistas iš naujo.\n"
-"\n"
-"Ar norite įdiegti dabar?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Po kanalų pašalinimo, jūsų %s %s bus paleistas iš naujo.\n"
-"\n"
-"Ar norite pašalinti dabar?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Jūsų interneto ryšys neveikia!\n"
-"Pasirinkite, ką norite daryti toliau."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Jūsų imtuve aptikta programinės įrangos problema. Nuo paskutinio perkrovimo tai įvyko %d kartus.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Paspaudus 'OK', jūsų imtuvas bus paleistas iš naujo."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Jūsų rinkinys viršija vieno sluoksnio DVD disko dydį, jums reikės tuščio dvisluoksnio DVD!"
@@ -24186,9 +24264,6 @@ msgid ""
 msgstr ""
 "Jūsų priekinis skydelis bus atnaujintas\n"
 "Tai užtruks keletą minučių"
-
-msgid "Your network configuration has been activated."
-msgstr "Jūsų tinklo konfigūracija įjungta."
 
 msgid "Your password must have at least 5 characters."
 msgstr "Jūsų slaptažodį turi sudaryti bent 5 simboliai."
@@ -24441,12 +24516,6 @@ msgstr "užverti bendrinimo rodinį"
 msgid "config menu"
 msgstr "konfigūravimo meniu"
 
-msgid "confirmed"
-msgstr "patvirtinta"
-
-msgid "connected"
-msgstr "prisijungta"
-
 msgid "copy"
 msgstr "kopijuoti"
 
@@ -24470,9 +24539,6 @@ msgstr "ištrinti iškirptą"
 
 msgid "disabled"
 msgstr "išjungta"
-
-msgid "disconnected"
-msgstr "atjungtas"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24733,9 +24799,6 @@ msgstr "naudojama DVISLUOKSNĖ laikmena."
 msgid "of a SINGLE layer medium used."
 msgstr "naudojama VIENASLUOKSNĖ laikmena."
 
-msgid "off or wpa2 on"
-msgstr "išjungti arba wpa2 ant"
-
 msgid "offset is"
 msgstr "kompensuoti, yra"
 
@@ -24945,9 +25008,6 @@ msgstr "uShare parametrai"
 msgid "unavailable"
 msgstr "nepasiekiamas"
 
-msgid "unconfirmed"
-msgstr "nepatvirtinta"
-
 msgid "unknown"
 msgstr "nežinoma"
 
@@ -25005,6 +25065,553 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "One"
+#~ msgstr "Vienas"
+
+#~ msgid "Three"
+#~ msgstr "Trys"
+
+#~ msgid "Two"
+#~ msgstr "Du"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "rastas %d belaidis tinklas!"
+#~ msgstr[1] "rasti %d belaidžiai tinklai!"
+#~ msgstr[2] "rasta %d belaidžių tinklų!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Rasta antra sukonfigūruotas sąsaja.\n"
+#~ "\n"
+#~ "Jūs norite išjungti antrą tinklo sąsają?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "Aktyvinti tinklo plokštės konfigūraciją"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Aktyvuoti tinklo nustatymus"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Aktyvuoti tinklo nustatymų konfigūraciją."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Ar tikrai norite suaktyvinti šią tinklo konfigūraciją?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Ar tikrai norite iš naujo paleisti tinklo sąsajas?"
+
+#~ msgid "Back"
+#~ msgstr "Atgal"
+
+#~ msgid "Configure interface"
+#~ msgstr "Konfigūruokite sąsają"
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Konfigūruokite IP adresą."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Konfigūruokite tinklo šliuzą."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Konfigūruokite serverio vardą (DNS)."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Konfigūruokite potinklio kaukę."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Konfigūruokite savo tinklą dar kartą"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Konfigūruokite savo tinklą"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Konfigūruokite vidinį tinklą"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Konfigūruokite savo belaidį tinklą dar kartą"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Jungtis prie belaidžio tinklo"
+
+#~ msgid "Current settings:"
+#~ msgstr "Dabartiniai nustatymai:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Įrenginio parametrai"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "Išjungta arba WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Redaguokite %s %s DNS konfigūraciją."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Redaguokite %s %s tinklo konfigūraciją."
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Įjungti Wake On LAN"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Koduota: "
+
+#~ msgid "Encryption Type:"
+#~ msgstr "Šifravimo tipas:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Kodavimo raktas"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Kodavimo rakto tipas"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Kuriant EHD temą, įvyko klaida.\n"
+#~ "Naudojama HD tema!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Kuriant EHD temą, įvyko klaida. Nepavyko parsiųsti piktogramų paketo.\n"
+#~ "Naudojama HD tema!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Kuriant EHD temą, įvyko klaida. Maža laisvos atminties.\n"
+#~ "Naudojama HD tema!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Kuriant EHD temą, įvyko klaida. Trūksta kai kurių EHD piktogramų.\n"
+#~ "Naudojama HD tema!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Kuriant HD temą, įvyko klaida. Maža laisvos atminties."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Kuriant MetrixHD temą, įvyko klaida.\n"
+#~ "Paleidę sistemą iš naujo, tikrinkite MyMetrixLite priedą ir patvirtinkite savo nustatymus."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Klaida, nežinomas rezultatas!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "Užverti tinklo adapterio konfigūravimą"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "Užverti tinklo adapterio konfigūravimo meniu"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Užverti tinklo sąsajų sąrašą"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Užverti tinklo vedlį"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Išplėstinis tinklo valdymo priedas..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Išplėstinis valdymas..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "Jūsų tinklo konfigūravimas baigtas"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "Dažnio norma:"
+
+#~ msgid "Interface: "
+#~ msgstr "Sąsaja: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "LAN adapteris"
+
+#~ msgid "Link quality:"
+#~ msgstr "Nuorodos kokybė:"
+
+#~ msgid "Link:"
+#~ msgstr "Nuoroda:"
+
+#~ msgid "List available networks"
+#~ msgstr "Galimų tinklų sąrašas"
+
+#~ msgid "Local network"
+#~ msgstr "Vietinis tinklas"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC adresas"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Rankinė konfigūracija"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Maksimali kokybė bitais: "
+
+#~ msgid "Nameserver"
+#~ msgstr "DNS serveris"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "DNS serverio nustatymai"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "Tinklo plokštės veiksmai"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "Tinklo plokštės nustatymo veiksmai"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "Tinklo plokštės teksto veiksmai"
+
+#~ msgid "Network Test:"
+#~ msgstr "Tinklo testas:"
+
+#~ msgid "Network Wizard"
+#~ msgstr "Tinklo vedlys"
+
+#~ msgid "Network test"
+#~ msgstr "Tinklo testavimas"
+
+#~ msgid "Network:"
+#~ msgstr "Tinklas:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Tinklo vedlys"
+
+#~ msgid "No Connection"
+#~ msgstr "Nėra prisijungimo"
+
+#~ msgid "No networks found"
+#~ msgstr "Jokių tinklų nerasta"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Belaidžių tinklų nerasta! Ieškoma..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Veikiančių vietinio tinklo įrenginių nerasta.\n"
+#~ "Patikrinkite, ar prijungėte tinklo kabelį ir ar jūsų tinklas teisingai sukonfigūruotas."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Veikiančių belaidžio tinklo įrenginių nerasta.\n"
+#~ "Patikrinkite, ar prijungėte suderinamą WLAN įrenginį ir ar belaidis tinklas teisingai sukonfigūruotas."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Veikiančių belaidžio tinklo sąsajų nerasta.\n"
+#~ "Patikrinkite, ar jūs prijungėte suderinamą WLAN įrenginį ir ar įjungėte belaidžio tinklo sąsajos aptikimą."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Vadovaukitės instrukcijomis TV ekrane"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "Spauskite 'OK', kad tęsti."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Palaukite, kol aktyvuosis jūsų tinklo konfigūracija..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Palaukite, kol ruošiamos jūsų tinklo sąsajos..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Palaukite, kol tikrinamas jūsų tinklas..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Palaukite, kol atkuriami jūsų temos nustatymai..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Nustatymams aktyvuoti, spauskite 'OK'."
+
+#~ msgid "Primary DNS"
+#~ msgstr "Pirminis DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Paleisti tinklo adapterį iš naujo"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "Atkurti MetrixHD nustatymus"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd parametrai"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Ieškoti belaidžių tinklų"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Nuskaitykite tinkle belaidžio ryšio prieigos taškus ir prisijunkite prie jų naudodami pasirinktą belaidį įrenginį."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Antrinis DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Pasirinkite belaidį tinklą"
+
+#~ msgid "Select interface"
+#~ msgstr "Pasrinkite sąsają"
+
+#~ msgid "Select menu entry"
+#~ msgstr "Pasirinkite meniu įrašą"
+
+#~ msgid "Select wireless network"
+#~ msgstr "Pasirinkite belaidį tinklą"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "Rodyti belaidžio tinklo būseną"
+
+#~ msgid "Show info"
+#~ msgstr "Rodyti informaciją"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Rodo belaidžio LAN ryšio būseną."
+
+#~ msgid "Signal quality"
+#~ msgstr "Signalo kokybė"
+
+#~ msgid "Signal: "
+#~ msgstr "Signalas: "
+
+#~ msgid "Start test"
+#~ msgstr "Pradėti testą"
+
+#~ msgid "Stop test"
+#~ msgstr "Stabdyti testavimą"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Patikrinkite savo %s %s tinklo konfigūraciją."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Tinklo vedlio plėtinys neįdiegtas!\n"
+#~ "Prašome įdiegti."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Belaidžio tinklo priedas neįdiegtas!\n"
+#~ "Prašome įdiegti tai."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Šis testas tikrina sukonfigūruotą DNS.\n"
+#~ "Jei gaunate \"nepatvirtintą\" pranešimą:\n"
+#~ "- patikrinkite savo DHCP, kabelių ir adapterio sąranką\n"
+#~ "- jei sukonfigūravote savo vardų serverius rankiniu būdu, patikrinkite savo įrašus konfigūracijoje \"Nameserver\""
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Šis testas tikrina, ar tinklo kabelis prijungtas prie jūsų vietinio tinklo adapterio.\n"
+#~ "Jei gaunate žinutę 'atjungta':\n"
+#~ "- tikrinkite, ar prijungtas tinklo kabelis\n"
+#~ "- tikrinkite, ar kabelis nepažeistas"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Šis testas tikrina, ar jūsų tinklo adapteriui suteiktas galiojantis IP adresas. \n"
+#~ "Jei gaunate žinutę 'nepatvirtinta':\n"
+#~ "- nerastas joks galiojantis IP adresas\n"
+#~ "- tikrinkite savo DHCP, kabelį ir tinklo adapterio nustatymą"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Šis testas tikrina, ar jūsų vietinio tinklo adapteris yra nustatytas DHCP automatinei IP adreso konfigūracijai.\n"
+#~ "Jei gaunate pranešimą 'išjungta':\n"
+#~ "- jūsų tinklo adapteris yra sukonfigūruotas rankiniam IP nustatymui\n"
+#~ "- įsitikinkite, kad įvedėte teisingą IP informaciją tinklo adapterio nustatymų dialoge.\n"
+#~ "Jei gaunate pranešimą 'įjungta':\n"
+#~ "- patikrinkite, ar turite savo tinkle sukonfigūruotą ir veikiantį DHCP serverį."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Šis testas aptinka jūsų sukonfigūruotą tinklo adapterį."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Nekoduotas"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Kuriant temą, įvyko klaida.\n"
+#~ "Paleidę sistemą iš naujo, tikrinkite MyMetrixLite priedą ir patvirtinkite savo nustatymus."
+
+#~ msgid "Unsupported"
+#~ msgstr "Nepalaikomas"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Naudoti šliuzą"
+
+#~ msgid "Use interface"
+#~ msgstr "Naudoti sąsają"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Naudokite tik dėl paleidimo WLan tinkle (WoW)"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Naudokite tinklo vedlio sukonfigūruotą tinklą. Vedlys padės jums valdyti jūsų tinklą"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN prisijungimas"
+
+#~ msgid "WEP"
+#~ msgstr "WEP raktas"
+
+#~ msgid "WLAN connection"
+#~ msgstr "Ryšys su WLAN tinklu"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA arba WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Kai čia įjungta, IP adresą priskirs tinklo DHCP serveris."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "Belaidis LAN"
+
+#~ msgid "Wireless network"
+#~ msgstr "Belaidis tinklas"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Belaidžio tinklo konfigūravimas..."
+
+#~ msgid "Wireless network state"
+#~ msgstr "Belaidžio tinklo būklė"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Jūsų %s %s dabar paruoštas naudoti.\n"
+#~ "\n"
+#~ "Jūsų interneto ryšys dabar veikia.\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Po paslaugos įdiegimo, jūsų %s %s bus paleistas iš naujo.\n"
+#~ "\n"
+#~ "Ar norite įdiegti dabar?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Po kanalų pašalinimo, jūsų %s %s bus paleistas iš naujo.\n"
+#~ "\n"
+#~ "Ar norite pašalinti dabar?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Jūsų interneto ryšys neveikia!\n"
+#~ "Pasirinkite, ką norite daryti toliau."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Paspaudus 'OK', jūsų imtuvas bus paleistas iš naujo."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Jūsų tinklo konfigūracija įjungta."
+
+#~ msgid "confirmed"
+#~ msgstr "patvirtinta"
+
+#~ msgid "connected"
+#~ msgstr "prisijungta"
+
+#~ msgid "disconnected"
+#~ msgstr "atjungtas"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "išjungti arba wpa2 ant"
+
+#~ msgid "unconfirmed"
+#~ msgstr "nepatvirtinta"
 
 #~ msgid "Switchable tuner types:"
 #~ msgstr "Perjungiamų imtuvų tipai:"
@@ -25487,9 +26094,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "Tinklo pavadinimas (SSID):"
-
-#~ msgid "Scanning..."
-#~ msgstr "Skenuojama..."
 
 #~ msgid "Servers:"
 #~ msgstr "Serveriai:"
@@ -26329,9 +26933,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Laiko atnaujinimas minutėmis:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

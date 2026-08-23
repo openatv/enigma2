@@ -1,19 +1,20 @@
-# Abel Cheung <abelcheung@gmail.com>, 2023.
-# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
+# Abel Cheung <abelcheung@gmail.com>, 2023, 2026.
+# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024, 2026.
+# openATV <openatv@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2024-07-23 13:09+0000\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-17 05:18+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
-"Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
+"Language-Team: Chinese (Traditional Han script, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -782,7 +783,6 @@ msgstr ""
 msgid "%d"
 msgid_plural "%d"
 msgstr[0] ""
-msgstr[1] ""
 
 #, fuzzy
 msgid "%d %B %Y"
@@ -864,13 +864,11 @@ msgstr ""
 msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] ""
-msgstr[1] ""
 
 #, python-format
 msgid "%d Minute"
 msgid_plural "%d Minutes"
 msgstr[0] ""
-msgstr[1] ""
 
 #, python-format
 msgid "%d Month"
@@ -886,7 +884,6 @@ msgstr[0] ""
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] ""
-msgstr[1] ""
 
 #, python-format
 msgid "%d Pixels"
@@ -918,6 +915,11 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -936,6 +938,11 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d 分鐘"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
 
 #, python-format
 msgid "%d package found."
@@ -1033,11 +1040,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d times"
 msgstr "結束時間"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d jaringan nirkabel ditemukan!"
 
 msgid "%d+%b_"
 msgstr ""
@@ -1227,6 +1229,10 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr ""
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr ""
 
@@ -1268,6 +1274,22 @@ msgstr ""
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
+msgstr ""
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1355,14 +1377,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr ""
@@ -1387,17 +1403,11 @@ msgstr ""
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr ""
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "總是 16:9"
@@ -1416,9 +1426,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 #, fuzzy
 msgid "1st InfoBar timeout"
@@ -1667,15 +1674,6 @@ msgstr ""
 msgid "A required tool (%s) was not found."
 msgstr "一個必須的工具 (%s) 未找到."
 
-msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"發現第二個網路介面配置.\n"
-"\n"
-"您想禁用第二個網路介面?"
-
 #, fuzzy
 msgid ""
 "A timer failed to record!\n"
@@ -1820,6 +1818,11 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -1861,13 +1864,7 @@ msgstr ""
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate network adapter configuration"
-msgstr "啟動網卡配置"
-
-msgid "Activate network settings"
-msgstr "啟用網路設定"
-
-msgid "Activate the configured network settings."
+msgid "Activate network adapter"
 msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
@@ -1891,6 +1888,13 @@ msgid "Active clients"
 msgstr "活動的用戶端(s)"
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 msgid "Adapter Settings"
@@ -1938,6 +1942,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "添加標記"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -1963,6 +1970,12 @@ msgstr "添加到計時器"
 
 msgid "Add To Parental Protection"
 msgstr "添加到家長控制"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 msgid "Add Zap+RecordTimer"
 msgstr ""
@@ -1994,6 +2007,9 @@ msgstr ""
 
 msgid "Add a mark"
 msgstr "增加標記"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr ""
@@ -2580,9 +2596,6 @@ msgstr "確定刪除所有專案?"
 msgid "Are you sure to remove this entry?"
 msgstr "確定刪除所有專案?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "確定要啟動此網路配置？"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2609,9 +2622,6 @@ msgstr "確定要退出此嚮導?"
 #, fuzzy
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "確定要下載和安裝?\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "您確定要重新啟動網路介面?"
 
 #, python-format
 msgid ""
@@ -2720,6 +2730,9 @@ msgid "Assigned CAIds:"
 msgstr ""
 
 msgid "Assigned services/provider:"
+msgstr ""
+
+msgid "Associated"
 msgstr ""
 
 msgid "Astra 1 19.2e"
@@ -3007,8 +3020,8 @@ msgstr "藍色增強"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
-msgid "Back"
-msgstr "返回"
+msgid "BSSID"
+msgstr ""
 
 #, fuzzy
 msgid "Back USB"
@@ -3429,6 +3442,9 @@ msgstr ""
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3489,6 +3505,9 @@ msgid "Burn to medium"
 msgstr "燒錄到DVD"
 
 msgid "Burundi"
+msgstr ""
+
+msgid "Bus"
 msgstr ""
 
 msgid "Business"
@@ -3682,6 +3701,9 @@ msgid "Cable"
 msgstr "有線"
 
 msgid "Cable Scan"
+msgstr ""
+
+msgid "Cable Unplugged"
 msgstr ""
 
 msgid "Cable input"
@@ -4221,6 +4243,9 @@ msgstr "章節"
 msgid "Character device"
 msgstr "無法創建裝置"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr ""
 
@@ -4458,6 +4483,9 @@ msgstr "清除"
 msgid "Clear Log"
 msgstr "清除日誌"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "掃描前清理頻道"
 
@@ -4524,6 +4552,9 @@ msgid "Close bouquet list."
 msgstr "選擇自定義組"
 
 msgid "Close dialog"
+msgstr ""
+
+msgid "Close network test"
 msgstr ""
 
 msgid "Close screen"
@@ -4725,13 +4756,16 @@ msgstr ""
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr ""
 
 msgid "Configure an additional delay to improve subtitle synchronization."
+msgstr ""
+
+msgid "Configure another network adapter"
 msgstr ""
 
 msgid "Configure cable reception on this input."
@@ -4782,14 +4816,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr ""
 
-msgid "Configure interface"
-msgstr "配置網卡"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -4806,16 +4840,7 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
-msgid "Configure the IP address."
-msgstr ""
-
 msgid "Configure the IP of the fallback remote receiver."
-msgstr ""
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
@@ -4922,9 +4947,6 @@ msgstr ""
 msgid "Configure the function of the < and > buttons."
 msgstr ""
 
-msgid "Configure the gateway."
-msgstr ""
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr ""
 
@@ -4954,15 +4976,6 @@ msgstr ""
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr ""
-
-msgid "Configure the name server (DNS)."
-msgstr ""
-
-msgid "Configure the netmask."
-msgstr ""
-
-msgid "Configure the network again"
-msgstr "重新配置網路"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
@@ -4995,6 +5008,9 @@ msgid "Configure the second subtitle language."
 msgstr ""
 
 msgid "Configure the secondary EPG language."
+msgstr ""
+
+msgid "Configure the selected Wi-Fi network"
 msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
@@ -5097,18 +5113,8 @@ msgstr ""
 msgid "Configure your NTP server."
 msgstr "配置功能變數名稱伺服器"
 
-#, fuzzy
-msgid "Configure your Network"
-msgstr "重新配置網路"
-
-msgid "Configure your internal LAN"
-msgstr "配置無線網路"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr "重新配置無線網路"
 
 msgid "Configures which video output connector will be used."
 msgstr ""
@@ -5120,6 +5126,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -5142,10 +5152,13 @@ msgstr "連接"
 msgid "Connect to IceTV server every"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
 
-msgid "Connect to a wireless network"
+msgid "Connect to the Internet"
 msgstr ""
 
-msgid "Connect to the Internet"
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 #, fuzzy
@@ -5165,9 +5178,27 @@ msgstr "連接到"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 #, fuzzy
 msgid "Connected: "
 msgstr "連接到"
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr ""
@@ -5218,6 +5249,9 @@ msgid "Context"
 msgstr "對比度"
 
 msgid "Continent"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5369,9 +5403,23 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "不能裝載DVD,沒有放入DVD光碟?"
@@ -5393,6 +5441,12 @@ msgstr ""
 
 #, python-format
 msgid "Could not save configuration file %s!"
+msgstr ""
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
 msgstr ""
 
 #, fuzzy
@@ -5519,6 +5573,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr ""
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr ""
 
@@ -5627,9 +5688,6 @@ msgstr ""
 msgid "Current rotor position: unknown"
 msgstr ""
 
-msgid "Current settings:"
-msgstr "當前設定:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
 
@@ -5737,9 +5795,6 @@ msgstr "D"
 msgid "DAC"
 msgstr ""
 
-msgid "DHCP"
-msgstr "DHCP"
-
 #, fuzzy
 msgid "DLNA support"
 msgstr "不支援的"
@@ -5751,6 +5806,9 @@ msgid "DMM normal"
 msgstr ""
 
 msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS Settings Actions"
 msgstr ""
 
 msgid "DNS data source"
@@ -6033,7 +6091,13 @@ msgstr "啟動交換檔"
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -6297,6 +6361,12 @@ msgstr ""
 msgid "Delete Line"
 msgstr ""
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 #, fuzzy
 msgid "Delete Plugins"
 msgstr "移除插件"
@@ -6533,10 +6603,6 @@ msgstr "裝置管理..."
 msgid "Device Manager Actions"
 msgstr ""
 
-#, fuzzy
-msgid "Device Settings"
-msgstr "裝置設定"
-
 msgid "Device id"
 msgstr ""
 
@@ -6650,6 +6716,9 @@ msgstr ""
 msgid "Disable"
 msgstr "禁用"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "禁用動畫效果"
 
@@ -6676,6 +6745,9 @@ msgstr "禁用計時器"
 msgid "Disable Move Mode"
 msgstr "禁用移動模式"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "禁用畫中畫"
 
@@ -6695,6 +6767,9 @@ msgstr "禁用畫中畫"
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr ""
 
@@ -6710,10 +6785,10 @@ msgstr "禁用"
 msgid "Disabled PiP.\n"
 msgstr "已禁用畫中畫。\n"
 
-msgid "Disabled or WPA/WPA2"
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
-msgid "Disabling Chkroot failed!"
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -7077,7 +7152,6 @@ msgstr ""
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "完成 - 安裝, 升級或移除 %d 套裝軟體出現 %d 錯誤"
-msgstr[1] "完成 - 安裝, 升級或移除 %d 套裝軟體出現 %d 錯誤"
 
 #, fuzzy
 msgid "Down"
@@ -7146,6 +7220,9 @@ msgstr "Dreambox資料格式的DVD （HDTV相容）"
 #, fuzzy
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox資料格式的DVD （HDTV相容）"
+
+msgid "Driver"
+msgstr ""
 
 msgid "Driver Packages"
 msgstr ""
@@ -7309,6 +7386,9 @@ msgstr "修改"
 msgid "Edit Alternatives"
 msgstr "編輯選項"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr ""
 
@@ -7333,6 +7413,9 @@ msgstr "編輯標題"
 msgid "Edit Upgrade Source URL"
 msgstr ""
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "編輯章節當前標題"
 
@@ -7343,25 +7426,20 @@ msgstr "編輯章節當前標題"
 msgid "Edit settings"
 msgstr "編輯設定"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr ""
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "修改Dreambox的DNS配置."
-
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 msgid "Edit the currently selected timer"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "修改Dreambox的網路配置."
 
 msgid "Edit the password."
 msgstr ""
@@ -7373,6 +7451,9 @@ msgid "Edit the remote CCCam port."
 msgstr ""
 
 msgid "Edit the remote IP address."
+msgstr ""
+
+msgid "Edit the selected network mount"
 msgstr ""
 
 msgid "Edit the upgrade source address."
@@ -7475,9 +7556,6 @@ msgstr ""
 msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
-msgid "Enable IPv6"
-msgstr ""
-
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "啟用計時器"
@@ -7533,7 +7611,7 @@ msgstr ""
 msgid "Enable Virgin EPG"
 msgstr ""
 
-msgid "Enable Wake On LAN"
+msgid "Enable adapter"
 msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
@@ -7614,10 +7692,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "啟用自定義組"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr ""
 
 msgid "Enable new GStreamer playback"
+msgstr ""
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -7632,6 +7716,9 @@ msgid "Enable preview"
 msgstr "啟用計時器"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
+msgid "Enable saved Wi-Fi network"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -7733,21 +7820,8 @@ msgstr "啟用的"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Encrypted: "
-msgstr "加密系統: "
-
 msgid "Encryption"
 msgstr "加密系統"
-
-#, fuzzy
-msgid "Encryption Type:"
-msgstr "加密類型"
-
-msgid "Encryption key"
-msgstr ""
-
-msgid "Encryption key type"
-msgstr ""
 
 #, fuzzy
 msgid "End"
@@ -7856,6 +7930,9 @@ msgstr ""
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr ""
 
@@ -7866,6 +7943,9 @@ msgid "Enter new directory name:"
 msgstr ""
 
 msgid "Enter number to jump to channel"
+msgstr ""
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
 msgstr ""
 
 msgid "Enter persistent PIN code"
@@ -7901,10 +7981,28 @@ msgstr ""
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr ""
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
@@ -7914,6 +8012,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -7929,6 +8030,12 @@ msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.
 msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
@@ -8085,34 +8192,6 @@ msgstr ""
 msgid "Error code"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr ""
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
@@ -8158,9 +8237,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr ""
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -8171,6 +8247,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "錯誤：不能用空白檔案名！"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8224,12 +8303,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr ""
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "刪除 %s 目錄失敗. (很可能不是空目錄.)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8280,6 +8366,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8303,6 +8393,9 @@ msgstr "愛沙尼亞語"
 #, fuzzy
 msgid "EtPortal"
 msgstr "葡萄牙語"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr ""
@@ -8438,18 +8531,6 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr ""
 
-msgid "Exit network adapter configuration"
-msgstr "退出網卡配置"
-
-msgid "Exit network adapter setup menu"
-msgstr ""
-
-msgid "Exit network interface list"
-msgstr ""
-
-msgid "Exit network wizard"
-msgstr "退出網路設定嚮導"
-
 msgid "Exit picture viewer"
 msgstr ""
 
@@ -8468,6 +8549,9 @@ msgstr ""
 msgid "Expand"
 msgstr ""
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr ""
 
@@ -8484,6 +8568,9 @@ msgstr "高級"
 #, fuzzy
 msgid "Expert mode"
 msgstr "高級"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr ""
@@ -8505,12 +8592,6 @@ msgstr "擴展"
 #, fuzzy
 msgid "Extended"
 msgstr "擴展軟體"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "擴展網路設定插件..."
-
-msgid "Extended Setup..."
-msgstr "擴展設定..."
 
 #, fuzzy
 msgid "Extended Shares"
@@ -8984,9 +9065,6 @@ msgstr "調整"
 msgid "Finished"
 msgstr "完成"
 
-msgid "Finished configuring your network"
-msgstr "網路設定完成"
-
 #, fuzzy
 msgid "Finland"
 msgstr "波蘭"
@@ -9096,13 +9174,13 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr ""
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
-msgstr ""
-
-msgid "Follow instructions on TV"
 msgstr ""
 
 #, fuzzy
@@ -9219,10 +9297,6 @@ msgstr ""
 
 msgid "Frequency"
 msgstr "頻率"
-
-#, fuzzy
-msgid "Frequency Norm:"
-msgstr "頻率:"
 
 msgid "Frequency bands"
 msgstr "頻帶"
@@ -10094,6 +10168,9 @@ msgstr ""
 msgid "IP"
 msgstr "IP:"
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr ""
 
@@ -10127,6 +10204,9 @@ msgstr ""
 #, fuzzy
 msgid "IPK Installer"
 msgstr "IPKG安裝..."
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr ""
@@ -10718,9 +10798,6 @@ msgstr "啟用網卡"
 msgid "Interface '%s'"
 msgstr ""
 
-msgid "Interface: "
-msgstr ""
-
 #, fuzzy
 msgid "Interlaced"
 msgstr "HD 隔行模式"
@@ -11098,10 +11175,10 @@ msgstr ""
 msgid "LAN"
 msgstr "LNB"
 
-msgid "LAN adapter"
+msgid "LAN connection"
 msgstr ""
 
-msgid "LAN connection"
+msgid "LAN link"
 msgstr ""
 
 #, fuzzy
@@ -11318,6 +11395,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr ""
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -11413,17 +11493,11 @@ msgstr ""
 msgid "Link detected"
 msgstr ""
 
-msgid "Link quality:"
-msgstr ""
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr ""
-
-msgid "Link:"
-msgstr "連接:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "與DVD功能表的連接的標題"
@@ -11437,9 +11511,6 @@ msgstr ""
 msgid "List available EPG functions"
 msgstr ""
 
-msgid "List available networks"
-msgstr ""
-
 msgid "List of Storage Devices"
 msgstr ""
 
@@ -11450,7 +11521,6 @@ msgstr ""
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "List/Fav"
 msgstr ""
@@ -11508,15 +11578,15 @@ msgstr ""
 msgid "Local information"
 msgstr ""
 
-msgid "Local network"
-msgstr ""
-
 msgid "Local or Regional"
 msgstr ""
 
 #, fuzzy
 msgid "Local receiver"
 msgstr "位置框"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr ""
@@ -11702,12 +11772,11 @@ msgstr ""
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr ""
 
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP地址"
+msgid "MAC address"
+msgstr ""
 
 msgid "MENU"
 msgstr ""
@@ -11855,9 +11924,6 @@ msgstr "手動掃描"
 msgid "Manual Service Searching"
 msgstr "頻道掃描"
 
-msgid "Manual configuration"
-msgstr ""
-
 #, fuzzy
 msgid "Manual scan for services"
 msgstr "在所有頻道"
@@ -11934,9 +12000,6 @@ msgstr ""
 #, fuzzy
 msgid "Max memory positions"
 msgstr "存貯位置"
-
-msgid "Max. bitrate: "
-msgstr ""
 
 msgid "Maxdown +"
 msgstr ""
@@ -12253,6 +12316,9 @@ msgstr ""
 msgid "Mount"
 msgstr "安裝(Mount)"
 
+msgid "Mount Context Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Mount Manager"
 msgstr "安裝(Mount)管理"
@@ -12264,13 +12330,28 @@ msgstr ""
 msgid "Mount Setup"
 msgstr "安裝類型"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "安裝失敗"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr ""
 
 msgid "Mount root file system."
+msgstr ""
+
+msgid "Mounted"
 msgstr ""
 
 #, fuzzy
@@ -12279,6 +12360,9 @@ msgstr "安裝(Mount)"
 
 msgid "Move"
 msgstr "移動"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr ""
@@ -12299,6 +12383,9 @@ msgid "Move PiP"
 msgstr "移動"
 
 msgid "Move PiP to main picture"
+msgstr ""
+
+msgid "Move Up"
 msgstr ""
 
 msgid "Move Up/Down"
@@ -12357,6 +12444,12 @@ msgstr "向下移動到最後項目"
 
 msgid "Move east"
 msgstr "東移"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr ""
@@ -12469,6 +12562,12 @@ msgid "Move to previous bouquet"
 msgstr ""
 
 msgid "Move to previous marker"
+msgstr ""
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12719,7 +12818,13 @@ msgstr ""
 msgid "NFS Server Settings"
 msgstr "設定"
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12764,12 +12869,6 @@ msgstr ""
 #, python-format
 msgid "Name server %d"
 msgstr ""
-
-msgid "Nameserver"
-msgstr "DNS伺服器"
-
-msgid "Nameserver settings"
-msgstr "DNS設定"
 
 msgid "Nameserver setup"
 msgstr ""
@@ -12836,25 +12935,23 @@ msgstr "子網路遮罩"
 msgid "Network"
 msgstr "網路設定"
 
-msgid "Network Adapter Actions"
+#, python-format
+msgid "Network Adapter '%s' Settings"
 msgstr ""
 
 #, fuzzy
 msgid "Network Adapter Selection"
 msgstr "網路適配器"
 
-msgid "Network Adapter Setting Actions"
-msgstr ""
-
 msgid "Network Adapter Settings"
-msgstr ""
-
-msgid "Network Adapter Text Actions"
 msgstr ""
 
 #, fuzzy
 msgid "Network Browser"
 msgstr "網路流覽器"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr ""
@@ -12876,9 +12973,24 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 #, fuzzy
 msgid "Network Neighbourhood"
 msgstr "流覽網上鄰居"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr ""
@@ -12897,26 +13009,64 @@ msgstr "網路設定"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Network Test"
 msgstr "網路測驗"
 
-msgid "Network Test:"
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
 msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
-msgstr "網路安裝嚮導"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
+msgstr ""
+
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
 msgstr ""
 
 msgid "Network address"
 msgstr ""
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
 msgstr ""
 
 msgid "Network information"
@@ -12946,26 +13096,11 @@ msgstr "網路掃描"
 msgid "Network storage on"
 msgstr ""
 
-msgid "Network test"
-msgstr "網路測驗"
-
 msgid "Network test..."
 msgstr "網路測驗..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
 msgstr ""
-
-msgid "Network:"
-msgstr "網路:"
-
-msgid "NetworkWizard"
-msgstr "設定嚮導"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr ""
@@ -12999,6 +13134,9 @@ msgid "New Setting DXAndy "
 msgstr ""
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -13110,15 +13248,21 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "未找到(支援的)DVDROM!"
 
-msgid "No Connection"
-msgstr "未連接"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "無可用資訊"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "未找到硬碟或硬碟未初始化！"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -13196,7 +13340,13 @@ msgstr ""
 msgid "No free tuner!"
 msgstr "沒有空閒的調諧器！"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
+msgstr ""
+
+msgid "No hosts found yet - still scanning..."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13211,8 +13361,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr ""
 
-msgid "No networks found"
-msgstr "找不到網路"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr ""
@@ -13238,6 +13388,9 @@ msgid "No service"
 msgstr "頻道"
 
 msgid "No services/providers selected"
+msgstr ""
+
+msgid "No shares found."
 msgstr ""
 
 msgid "No slot images found"
@@ -13312,30 +13465,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
-
-msgid "No wireless networks found! Searching..."
-msgstr ""
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"未找到可用的本地網路.\n"
-"請檢視網路連接並檢視網卡配置是否正確."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"未找到可用的無線網路連接.\n"
-"請檢視無線網路裝置並檢視無線網卡配置是否正確."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"未找到可用的無線網卡.\n"
-"請確認您已連接相容的無線網卡或使用本地網卡."
 
 msgid "No, but restart from begin"
 msgstr "否, 重新開始播放這個視頻"
@@ -13429,6 +13558,9 @@ msgstr "挪威語"
 msgid "Not Classified"
 msgstr "未啟用"
 
+msgid "Not Connected"
+msgstr ""
+
 #, fuzzy
 msgid "Not Defined"
 msgstr "未啟用"
@@ -13472,7 +13604,13 @@ msgid ""
 "Path: %s"
 msgstr ""
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -13711,9 +13849,6 @@ msgstr ""
 msgid "Once"
 msgstr "一次"
 
-msgid "One"
-msgstr "1"
-
 msgid "One line"
 msgstr ""
 
@@ -13932,7 +14067,22 @@ msgstr ""
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 #, fuzzy
@@ -13975,6 +14125,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -14001,6 +14154,9 @@ msgid "Option to disable picons on the InfoBar."
 msgstr ""
 
 msgid "Option to enable the hardware Standby timer."
+msgstr ""
+
+msgid "Optional arguments"
 msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
@@ -14504,6 +14660,9 @@ msgstr "原始大小"
 msgid "Pilot"
 msgstr "Pilot"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr ""
 
@@ -14691,18 +14850,12 @@ msgid ""
 "Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
 msgstr ""
 
-msgid "Please follow the instructions on the TV"
-msgstr "請依照電視螢幕指導操作."
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "請注意的是之前選擇的媒體不能訪問,預設的目錄已被替換."
 
 #, fuzzy
 msgid "Please open Picture in Picture first"
 msgstr "不能打開畫中畫."
-
-msgid "Please press OK to continue."
-msgstr "請按OK鍵確認."
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -14783,9 +14936,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "請稍候..."
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "請等待網路配置啟動..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -14839,17 +14989,7 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "請稍候,我們正在測驗您的網路..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "請稍候,我們正在準備您的網路介面..."
-
-msgid "Please wait while we test your network..."
-msgstr "請稍候,我們正在測驗您的網路..."
-
 msgid "Please wait while your network is restarting..."
-msgstr "正在重啟網路...請稍候..."
-
-#, fuzzy
-msgid "Please wait while your skin setting is restoring..."
 msgstr "正在重啟網路...請稍候..."
 
 #, fuzzy
@@ -15137,9 +15277,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "按OK鍵確認."
 
-msgid "Press OK to activate the settings."
-msgstr "按OK鍵啟動設定."
-
 msgid "Press OK to continue."
 msgstr ""
 
@@ -15266,9 +15403,6 @@ msgstr "上一個頻道"
 #, fuzzy
 msgid "Prevsong"
 msgstr "前一個"
-
-msgid "Primary DNS"
-msgstr "主 DNS"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -15658,10 +15792,19 @@ msgstr ""
 msgid "Re-enter new PIN"
 msgstr "重新輸入新的密碼"
 
-msgid "Read-Only"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
+msgstr ""
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
 msgstr ""
 
 msgid "Read/Write"
@@ -15723,6 +15866,9 @@ msgid "Really shutdown now?"
 msgstr "立即關機?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -16058,6 +16204,9 @@ msgstr ""
 msgid "Remote control type"
 msgstr ""
 
+msgid "Remote path"
+msgstr ""
+
 #, fuzzy
 msgid "Remote receiver"
 msgstr "遠程控制"
@@ -16089,6 +16238,9 @@ msgstr "保護服務"
 #, fuzzy
 msgid "Remove Confirmation"
 msgstr "Gemini 配置"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "移除項目"
@@ -16314,6 +16466,15 @@ msgstr "需要介質類型:"
 msgid "Rereading partition table"
 msgstr ""
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr ""
 
@@ -16378,8 +16539,14 @@ msgstr "解析度"
 msgid "Resolution unit"
 msgstr ""
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "重新啟動"
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "重啟GUI"
@@ -16396,10 +16563,6 @@ msgstr "立即重啟GUI?"
 #, fuzzy
 msgid "Restart Network"
 msgstr "重啟網路"
-
-#, fuzzy
-msgid "Restart Network Adapter"
-msgstr "選擇網卡"
 
 msgid "Restart OSCam"
 msgstr ""
@@ -16423,8 +16586,11 @@ msgstr ""
 msgid "Restart test"
 msgstr "重新測驗"
 
-msgid "Restart your network connection and interfaces."
-msgstr "重啟 Dreambox網路連接."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -16434,10 +16600,6 @@ msgstr "恢復"
 
 msgid "Restore Deleted User Bouquets"
 msgstr ""
-
-#, fuzzy
-msgid "Restore MetrixHD Settings"
-msgstr "恢復系統設定"
 
 #, fuzzy
 msgid "Restore Plugins"
@@ -16499,6 +16661,9 @@ msgstr "恢復位置到 %s"
 
 msgid "Resuming playback"
 msgstr "恢復播放"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16709,9 +16874,6 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Settings"
-msgstr ""
-
 msgid "SAT"
 msgstr ""
 
@@ -16754,6 +16916,9 @@ msgid "SDcard switch ERROR! - already on mmc"
 msgstr ""
 
 msgid "SINGLE LAYER DVD"
+msgstr ""
+
+msgid "SMB version"
 msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
@@ -16975,6 +17140,26 @@ msgstr "追加錄影時間."
 msgid "Save time shift buffer now and continue recording"
 msgstr ""
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -17011,6 +17196,9 @@ msgstr ""
 msgid "Scan %s band"
 msgstr ""
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "掃描更多 SR"
 
@@ -17024,12 +17212,6 @@ msgid "Scan for local extensions and install them."
 msgstr "掃描本地套裝軟體並安裝它們。"
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
-msgstr ""
-
-msgid "Scan wireless networks"
-msgstr ""
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
 msgid "Scanning"
@@ -17046,7 +17228,6 @@ msgstr ""
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
-msgstr[1] ""
 
 #, python-format
 msgid "Scanning completed, %d service found."
@@ -17054,6 +17235,12 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 
 msgid "Scanning failed!"
+msgstr ""
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
 msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
@@ -17177,9 +17364,6 @@ msgstr ""
 msgid "Second cable of motorized LNB"
 msgstr "第二條線纜連接Rotor"
 
-msgid "Secondary DNS"
-msgstr "副 DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -17263,6 +17447,9 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr ""
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
@@ -17609,6 +17796,9 @@ msgstr ""
 msgid "Select Upgrade Source To Edit"
 msgstr "選擇並編輯升級來源"
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -17652,6 +17842,9 @@ msgstr "選擇一部電影"
 msgid "Select a network adapter"
 msgstr ""
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -17665,6 +17858,12 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "選擇一個計時器導入"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -17675,9 +17874,6 @@ msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
-msgstr ""
-
-msgid "Select a wireless network"
 msgstr ""
 
 #, fuzzy
@@ -17731,6 +17927,9 @@ msgid "Select default File Commander directory:"
 msgstr ""
 
 msgid "Select destination for:"
+msgstr ""
+
+msgid "Select exported directories"
 msgstr ""
 
 #, fuzzy
@@ -17792,6 +17991,9 @@ msgstr ""
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
@@ -17840,12 +18042,6 @@ msgstr ""
 #, fuzzy
 msgid "Select input device."
 msgstr "選擇介面"
-
-msgid "Select interface"
-msgstr "選擇介面"
-
-msgid "Select menu entry"
-msgstr ""
 
 msgid "Select movie"
 msgstr ""
@@ -17976,6 +18172,9 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18140,6 +18339,9 @@ msgstr ""
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
 
@@ -18153,12 +18355,6 @@ msgid "Select the movie path"
 msgstr ""
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -18198,6 +18394,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -18229,6 +18428,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 #, fuzzy
@@ -18326,10 +18528,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -18376,6 +18575,9 @@ msgstr "設定 %i ms"
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr ""
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
+
 msgid "Select where the recording should be saved."
 msgstr ""
 
@@ -18420,9 +18622,6 @@ msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "選擇無線網路"
 
 #, fuzzy
 msgid "Select your ATSC provider."
@@ -18527,6 +18726,9 @@ msgid "Serious music/Classic music"
 msgstr ""
 
 msgid "Serious/Classical/Religious/Historical/Drama"
+msgstr ""
+
+msgid "Server"
 msgstr ""
 
 #, fuzzy
@@ -18950,6 +19152,9 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
+msgstr ""
+
+msgid "Set up network"
 msgstr ""
 
 msgid "Set up tuner [TUNER]"
@@ -19476,9 +19681,6 @@ msgstr ""
 msgid "Show Vertical EPG"
 msgstr "垂直"
 
-msgid "Show WLAN status"
-msgstr ""
-
 msgid "Show Web Link packages"
 msgstr ""
 
@@ -19653,9 +19855,6 @@ msgstr ""
 msgid "Show in Standby"
 msgstr "待機"
 
-msgid "Show info"
-msgstr ""
-
 msgid "Show info line"
 msgstr ""
 
@@ -19700,6 +19899,9 @@ msgid "Show movies"
 msgstr "短片"
 
 msgid "Show multi channel EPG"
+msgstr ""
+
+msgid "Show network adapter connection information"
 msgstr ""
 
 msgid "Show next commit log"
@@ -19904,6 +20106,9 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -19990,9 +20195,6 @@ msgstr ""
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr ""
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "顯示WLAN連接資訊."
-
 msgid "Shows the watched status of the media."
 msgstr ""
 
@@ -20028,14 +20230,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "信號: "
 
-msgid "Signal quality"
-msgstr ""
-
 msgid "Signal strength"
 msgstr ""
-
-msgid "Signal: "
-msgstr "信號: "
 
 msgid "Signed by"
 msgstr ""
@@ -20177,6 +20373,9 @@ msgid "Skip forward (enter time)"
 msgstr "快進 (輸入時間)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -20415,6 +20614,9 @@ msgstr ""
 msgid "Socket"
 msgstr "鎖定"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -20556,6 +20758,18 @@ msgstr ""
 msgid "Sort by"
 msgstr "按日期排序"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 #, fuzzy
 msgid "Sort by default"
 msgstr "按日期排序"
@@ -20657,9 +20871,6 @@ msgid "Special events (Olympic games, World cup, etc.)"
 msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
-msgstr ""
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr ""
 
 msgid "Speed"
@@ -20770,9 +20981,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr "開始測驗"
 
-msgid "Start test"
-msgstr "開始測驗"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -20826,6 +21034,9 @@ msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
+msgstr ""
+
+msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
@@ -20916,9 +21127,6 @@ msgstr "是，返回電影列表"
 msgid "Stop streams"
 msgstr ""
 
-msgid "Stop test"
-msgstr "停止測驗"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Stop testing plane after # failed transponders"
 
@@ -20983,6 +21191,12 @@ msgstr "磁碟不可寫！"
 
 msgid "Store position"
 msgstr "存貯位置"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "存貯位置"
@@ -21623,10 +21837,6 @@ msgstr ""
 msgid "Test mode"
 msgstr "測驗模式"
 
-#, fuzzy, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "測驗Dreambox網路配置."
-
 msgid "Test type"
 msgstr ""
 
@@ -21740,18 +21950,6 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
 msgstr ""
 
 #, fuzzy
@@ -21914,11 +22112,6 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21985,28 +22178,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN插件未安裝!\n"
-"請先安裝."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -22337,46 +22514,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr ""
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-
-#, fuzzy
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"該測驗檢視您的網卡能否從DHCP伺服器上自動獲取IP位址.\n"
-"如果顯示 \"不可用\" 資訊:\n"
-" - 那麼證明您的網卡配置為手動的IP設定\n"
-"- 請證實網卡正確配置並能通過網路會話.\n"
-"如果顯示 \"不可用\" 資訊:\n"
-" - 證明您的DHCP伺服器配置正確,並能連接到網路."
-
-msgid "This test detects your configured LAN adapter."
-msgstr ""
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -22393,9 +22530,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-msgid "Three"
-msgstr "3"
 
 msgid "Threshold"
 msgstr "轉折頻率"
@@ -22554,6 +22688,9 @@ msgid "Timeline marker"
 msgstr "計時器編輯"
 
 msgid "Timeline scale"
+msgstr ""
+
+msgid "Timeout"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -22724,6 +22861,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr ""
 
@@ -22805,6 +22945,9 @@ msgstr ""
 
 msgid "Traditional Chinese"
 msgstr "繁體中文"
+
+msgid "Transceiver"
+msgstr ""
 
 #, fuzzy
 msgid "Transcode"
@@ -23085,9 +23228,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
-msgid "Two"
-msgstr "2"
-
 #, fuzzy
 msgid "Two lines"
 msgstr "連接最多"
@@ -23205,9 +23345,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr ""
 
-msgid "Unencrypted"
-msgstr ""
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -23273,11 +23410,6 @@ msgstr "未知"
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -23321,6 +23453,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr ""
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr ""
 
@@ -23332,9 +23467,6 @@ msgstr ""
 
 msgid "Unset As Startup Service"
 msgstr ""
-
-msgid "Unsupported"
-msgstr "不支援的"
 
 msgid "Until standby/restart"
 msgstr ""
@@ -23517,6 +23649,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr ""
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
@@ -23553,15 +23688,15 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-msgid "Use a gateway"
-msgstr "使用閘道"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 #, fuzzy
 msgid "Use an alternative smaller screen."
 msgstr "編輯選項"
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -23607,10 +23742,10 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgid "Use guest login"
 msgstr ""
 
-msgid "Use interface"
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr ""
 
 #, fuzzy
@@ -23624,9 +23759,6 @@ msgid "Use official channel numbering"
 msgstr ""
 
 msgid "Use only DNSSEC servers"
-msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
 msgstr ""
 
 msgid "Use only no-filter servers"
@@ -23681,10 +23813,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr ""
 
-#, fuzzy
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "使用網路嚮導配置網路"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr ""
 
@@ -23703,12 +23831,6 @@ msgstr ""
 #, fuzzy
 msgid "Use the extended List"
 msgstr "隱藏說明"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr ""
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr ""
@@ -23790,6 +23912,12 @@ msgstr "用戶名"
 msgid "Username (httpuser)"
 msgstr ""
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr ""
 
@@ -23814,10 +23942,6 @@ msgstr ""
 msgid "VCR Scart Settings"
 msgstr "錄影機"
 
-#, fuzzy
-msgid "VLAN connection"
-msgstr "未連接"
-
 msgid "VMC"
 msgstr ""
 
@@ -23830,6 +23954,9 @@ msgstr ""
 #, fuzzy
 msgid "VOD"
 msgstr "OSD"
+
+msgid "VPN"
+msgstr ""
 
 msgid "VPS Settings"
 msgstr ""
@@ -24196,12 +24323,6 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr ""
-
 msgid "WMA Pro"
 msgstr ""
 
@@ -24212,15 +24333,6 @@ msgstr "AC3 縮減混音"
 #, fuzzy
 msgid "WOL Standby"
 msgstr "待機"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA 或r WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
@@ -24238,6 +24350,9 @@ msgstr "正在掃描...請稍候..."
 
 msgid "Waiting"
 msgstr "等待"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr ""
@@ -24285,6 +24400,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -24605,16 +24723,19 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
 msgstr ""
 
-msgid "When enabled, use DHCP for the IP configuration."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
@@ -24682,6 +24803,28 @@ msgstr "可用"
 msgid "White"
 msgstr ""
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr ""
 
@@ -24704,27 +24847,6 @@ msgid "Wipe Storage Device"
 msgstr ""
 
 msgid "Wiping storage device..."
-msgstr ""
-
-msgid "Wireless LAN"
-msgstr "無線網WLAN"
-
-msgid "Wireless network"
-msgstr ""
-
-msgid "Wireless network configuration..."
-msgstr ""
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
 msgstr ""
 
 msgid "With EXIT button"
@@ -24796,6 +24918,9 @@ msgstr ""
 #, fuzzy
 msgid "Wrestling"
 msgstr "正在安裝"
+
+msgid "Write block size"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -25012,18 +25137,6 @@ msgstr ""
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "您的Dreambox沒有正確連接到互聯網. 請檢視設定然後再試一次."
 
-#, fuzzy, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"現在,Dreambox已經可以正常使用了.\n"
-"\n"
-"網路配置完成,已連接到Internet.\n"
-"\n"
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -25052,36 +25165,12 @@ msgid "Your %s %s will Restart..."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Internet連接不正常！\n"
-"請選擇下一步做什麼"
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
-
-#, fuzzy
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "按下OK鍵重新啟動Dreambox."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "您的收藏超過單層DVD大小,您將需要一個空白雙層DVD！！！"
@@ -25121,9 +25210,6 @@ msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
-
-msgid "Your network configuration has been activated."
-msgstr "您的網路配置已被啟動."
 
 msgid "Your password must have at least 5 characters."
 msgstr ""
@@ -25389,12 +25475,6 @@ msgstr "本地共用名稱"
 msgid "config menu"
 msgstr "配置功能表"
 
-msgid "confirmed"
-msgstr "測驗通過"
-
-msgid "connected"
-msgstr "已連接"
-
 msgid "copy"
 msgstr "複製"
 
@@ -25418,9 +25498,6 @@ msgstr "刪除剪輯"
 
 msgid "disabled"
 msgstr "不可用"
-
-msgid "disconnected"
-msgstr "斷開"
 
 msgid "eMMC"
 msgstr ""
@@ -25689,9 +25766,6 @@ msgstr "使用雙層介質"
 msgid "of a SINGLE layer medium used."
 msgstr "使用單層介質."
 
-msgid "off or wpa2 on"
-msgstr ""
-
 msgid "offset is"
 msgstr ""
 
@@ -25911,9 +25985,6 @@ msgstr "DNS設定"
 msgid "unavailable"
 msgstr "不可用"
 
-msgid "unconfirmed"
-msgstr "測驗未通過"
-
 msgid "unknown"
 msgstr "未知"
 
@@ -25972,6 +26043,325 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "One"
+#~ msgstr "1"
+
+#~ msgid "Three"
+#~ msgstr "3"
+
+#~ msgid "Two"
+#~ msgstr "2"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d jaringan nirkabel ditemukan!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "發現第二個網路介面配置.\n"
+#~ "\n"
+#~ "您想禁用第二個網路介面?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "啟動網卡配置"
+
+#~ msgid "Activate network settings"
+#~ msgstr "啟用網路設定"
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "確定要啟動此網路配置？"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "您確定要重新啟動網路介面?"
+
+#~ msgid "Back"
+#~ msgstr "返回"
+
+#~ msgid "Configure interface"
+#~ msgstr "配置網卡"
+
+#~ msgid "Configure the network again"
+#~ msgstr "重新配置網路"
+
+#, fuzzy
+#~ msgid "Configure your Network"
+#~ msgstr "重新配置網路"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "配置無線網路"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "重新配置無線網路"
+
+#~ msgid "Current settings:"
+#~ msgstr "當前設定:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#, fuzzy
+#~ msgid "Device Settings"
+#~ msgstr "裝置設定"
+
+#, fuzzy, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "修改Dreambox的DNS配置."
+
+#, fuzzy, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "修改Dreambox的網路配置."
+
+#~ msgid "Encrypted: "
+#~ msgstr "加密系統: "
+
+#, fuzzy
+#~ msgid "Encryption Type:"
+#~ msgstr "加密類型"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "退出網卡配置"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "退出網路設定嚮導"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "擴展網路設定插件..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "擴展設定..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "網路設定完成"
+
+#, fuzzy
+#~ msgid "Frequency Norm:"
+#~ msgstr "頻率:"
+
+#~ msgid "Link:"
+#~ msgstr "連接:"
+
+#, fuzzy
+#~ msgid "MAC-address"
+#~ msgstr "IP地址"
+
+#~ msgid "Nameserver"
+#~ msgstr "DNS伺服器"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "DNS設定"
+
+#~ msgid "Network Wizard"
+#~ msgstr "網路安裝嚮導"
+
+#~ msgid "Network test"
+#~ msgstr "網路測驗"
+
+#~ msgid "Network:"
+#~ msgstr "網路:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "設定嚮導"
+
+#~ msgid "No Connection"
+#~ msgstr "未連接"
+
+#~ msgid "No networks found"
+#~ msgstr "找不到網路"
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "未找到可用的本地網路.\n"
+#~ "請檢視網路連接並檢視網卡配置是否正確."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "未找到可用的無線網路連接.\n"
+#~ "請檢視無線網路裝置並檢視無線網卡配置是否正確."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "未找到可用的無線網卡.\n"
+#~ "請確認您已連接相容的無線網卡或使用本地網卡."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "請依照電視螢幕指導操作."
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "請按OK鍵確認."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "請等待網路配置啟動..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "請稍候,我們正在準備您的網路介面..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "請稍候,我們正在測驗您的網路..."
+
+#, fuzzy
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "正在重啟網路...請稍候..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "按OK鍵啟動設定."
+
+#~ msgid "Primary DNS"
+#~ msgstr "主 DNS"
+
+#, fuzzy
+#~ msgid "Restart Network Adapter"
+#~ msgstr "選擇網卡"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "重啟 Dreambox網路連接."
+
+#, fuzzy
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "恢復系統設定"
+
+#~ msgid "Secondary DNS"
+#~ msgstr "副 DNS"
+
+#~ msgid "Select interface"
+#~ msgstr "選擇介面"
+
+#~ msgid "Select wireless network"
+#~ msgstr "選擇無線網路"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "顯示WLAN連接資訊."
+
+#~ msgid "Signal: "
+#~ msgstr "信號: "
+
+#~ msgid "Start test"
+#~ msgstr "開始測驗"
+
+#~ msgid "Stop test"
+#~ msgstr "停止測驗"
+
+#, fuzzy, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "測驗Dreambox網路配置."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "WLAN插件未安裝!\n"
+#~ "請先安裝."
+
+#, fuzzy
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "該測驗檢視您的網卡能否從DHCP伺服器上自動獲取IP位址.\n"
+#~ "如果顯示 \"不可用\" 資訊:\n"
+#~ " - 那麼證明您的網卡配置為手動的IP設定\n"
+#~ "- 請證實網卡正確配置並能通過網路會話.\n"
+#~ "如果顯示 \"不可用\" 資訊:\n"
+#~ " - 證明您的DHCP伺服器配置正確,並能連接到網路."
+
+#~ msgid "Unsupported"
+#~ msgstr "不支援的"
+
+#~ msgid "Use a gateway"
+#~ msgstr "使用閘道"
+
+#, fuzzy
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "使用網路嚮導配置網路"
+
+#, fuzzy
+#~ msgid "VLAN connection"
+#~ msgstr "未連接"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA 或r WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "Wireless LAN"
+#~ msgstr "無線網WLAN"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "現在,Dreambox已經可以正常使用了.\n"
+#~ "\n"
+#~ "網路配置完成,已連接到Internet.\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Internet連接不正常！\n"
+#~ "請選擇下一步做什麼"
+
+#, fuzzy
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "按下OK鍵重新啟動Dreambox."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "您的網路配置已被啟動."
+
+#~ msgid "confirmed"
+#~ msgstr "測驗通過"
+
+#~ msgid "connected"
+#~ msgstr "已連接"
+
+#~ msgid "disconnected"
+#~ msgstr "斷開"
+
+#~ msgid "unconfirmed"
+#~ msgstr "測驗未通過"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "錄製正在進行中. 請在配置極軸之前停止錄製."

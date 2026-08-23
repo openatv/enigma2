@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2026-08-04 13:56+0000\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-21 20:25+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.1.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -892,6 +892,12 @@ msgstr[0] "%d Ohjelmisto jakelu lista päivitetty."
 msgstr[1] "%d Ohjelmisto valmistaja listat on päivitetty."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] "%d Isäntä löytyi."
+msgstr[1] "%d Isännät löytyivät."
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d Tehtävää on käynnissä taustalla!"
 
@@ -910,6 +916,12 @@ msgstr "%d minuuttia"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] "%d verkko löytyi."
+msgstr[1] "%d verkkoa löytyi."
 
 #, python-format
 msgid "%d package found."
@@ -1024,12 +1036,6 @@ msgstr "%d Paikkoja on luotu laitteelle.\n"
 #, python-format
 msgid "%d times"
 msgstr "%d ajat"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d Langaton verkko löytyi!"
-msgstr[1] "%d Langattomia verkkoja löytyi!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1215,6 +1221,10 @@ msgid "%s%s(Default: %s)"
 msgstr "%s%s(Oletus: %s)"
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr "%s. (Vähiten)"
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
@@ -1257,6 +1267,22 @@ msgstr "%sNäytä 1080i muodossa 1080p"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' sisältää %d tiedosto(a) ja %d alikansiota.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr "'%s' on jo määritetty erillisessä yllä olevassa asetuksessa, poista se ”Liitosasetukset” kentästä."
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr "'%s' on määritetty useammin kuin kerran ”Liitosasetukset”kentässä."
+
+#, python-format
+msgid "'%s' mounted."
+msgstr "'%s' liitetty."
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr "'%s' irrotettu."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Puskuri tunteina tai viimeaikaisten tapahtumien määrä. Etusijalla poistaa vanhemmat aikasiirtotiedostot."
@@ -1342,14 +1368,9 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy
+msgid "1. (Highest)"
+msgstr "1. (korkein)"
 
 msgid "10bit"
 msgstr "10bit"
@@ -1372,17 +1393,11 @@ msgstr "12bit"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bit 4:2:0/4:2:2 ei PiP"
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "16:9 pakotettu"
@@ -1401,9 +1416,6 @@ msgstr "16:9 PanScan"
 
 msgid "16:9 reset to normal"
 msgstr "16/9 palautus normaaliksi"
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "1. tietopalkin näyttöaika"
@@ -1640,15 +1652,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Tarvittavaa osaa (%s) ei löytynyt."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Toinen määritetty verkkosovitin löytyi.\n"
-"\n"
-"Kytketäänkö se pois päältä?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1787,6 +1790,13 @@ msgstr "Access tila"
 msgid "Access point"
 msgstr "Tukiasema"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+"Tukiasemaa ei löytynyt.\n"
+"Tarkista, että se on kantaman sisällä ja SSID-tunnus on oikein."
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Paikannustietojen käyttö edellyttää internet yhteyttä."
 
@@ -1826,14 +1836,8 @@ msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikille ylös / alas toim
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-komentoja komentoriviltä."
 
-msgid "Activate network adapter configuration"
-msgstr "aktivoi verkkosovittimen asetukset"
-
-msgid "Activate network settings"
-msgstr "Ota verkkoasetukset käyttöön"
-
-msgid "Activate the configured network settings."
-msgstr "Ota tekemäsi verkkoasetukset käyttöön."
+msgid "Activate network adapter"
+msgstr "Aktivoi verkkoadapteri"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivoi muistin laajennus, tallenna kaikki muutetut asetukset ja poistu"
@@ -1855,6 +1859,13 @@ msgstr "Aktiiviset asiakkaat"
 
 msgid "Active only"
 msgstr "Vain aktiivinen"
+
+msgid "Adapter"
+msgstr "Sovitin"
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr "Sovittimen ”%s” Konteksti Valikko"
 
 msgid "Adapter Settings"
 msgstr "Sovittimen asetukset"
@@ -1898,6 +1909,9 @@ msgstr "Lisää HDMI IN Kanavalistalle"
 msgid "Add Marker To Bouquet"
 msgstr "Lisää väliotsikko"
 
+msgid "Add Mount Manually"
+msgstr "Lisää liitos manuaalisesti"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Lisää uusi lähetin ryhmä"
 
@@ -1921,6 +1935,12 @@ msgstr "Lisää ajastus"
 
 msgid "Add To Parental Protection"
 msgstr "Suojaa kanava lapsilukolla"
+
+msgid "Add Wi-Fi"
+msgstr "Lisää Wi-Fi"
+
+msgid "Add Wi-Fi Manually"
+msgstr "Lisää Wi-Fi manuaalisesti"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Lisää vaihda ja tallenna ajastus"
@@ -1948,6 +1968,9 @@ msgstr "Lisää kanavanvaihtoajastus seuraavaan ohjelmaan"
 
 msgid "Add a mark"
 msgstr "Lisää merkki"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr "Lisää uusi Wi-Fi-verkko"
 
 msgid "Add a new bouquet"
 msgstr "Lisää uusi suosikkilista"
@@ -2508,9 +2531,6 @@ msgstr "Haluatko poistaa kaikki antenni palvelut?"
 msgid "Are you sure to remove this entry?"
 msgstr "Haluatko poistaa tämän kohteen?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Haluatko aktivoida nämä verkkoasetukset?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2535,9 +2555,6 @@ msgstr "Haluatko lopettaa avustustoiminnon?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Haluatko varmasti tuoda EPG-tiedot täältä:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Haluatko käynnistää verkkosovittimet uudelleen?"
 
 #, python-format
 msgid ""
@@ -2647,6 +2664,9 @@ msgstr "Määritetyt CAId:t:"
 
 msgid "Assigned services/provider:"
 msgstr "Määritetyt kanavat/palveluntarjoajat:"
+
+msgid "Associated"
+msgstr ""
 
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
@@ -2909,8 +2929,8 @@ msgstr "Sininen (pitkä)"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Näppäimen Sininen Lyhyt/Pitkä"
 
-msgid "Back"
-msgstr "Takaisin"
+msgid "BSSID"
+msgstr ""
 
 msgid "Back USB"
 msgstr "Taka usb"
@@ -3312,6 +3332,9 @@ msgstr "Broadcom"
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Selaa, asenna tai poista laajennuksia yksitellen."
 
@@ -3370,6 +3393,9 @@ msgstr "Polttaa"
 
 msgid "Burundi"
 msgstr "Burundi"
+
+msgid "Bus"
+msgstr ""
 
 msgid "Business"
 msgstr "Liiketoiminta"
@@ -3552,6 +3578,9 @@ msgstr "Kaapeli (DVB-C)"
 
 msgid "Cable Scan"
 msgstr "Kaapeliverkon haku"
+
+msgid "Cable Unplugged"
+msgstr ""
 
 msgid "Cable input"
 msgstr ""
@@ -4066,6 +4095,9 @@ msgstr "Kappale"
 msgid "Character device"
 msgstr "Tallennusvälineet"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr "Keskusteluohjelma"
 
@@ -4300,6 +4332,9 @@ msgstr "Tyhjennä"
 msgid "Clear Log"
 msgstr "Tyhjennä loki"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Tyhjennä kanavalista"
 
@@ -4364,6 +4399,9 @@ msgstr "Sulje suosikkilista."
 
 msgid "Close dialog"
 msgstr "Sulje valinta"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr "Sulje näyttö"
@@ -4557,14 +4595,17 @@ msgstr "Asetustila"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Ohje näytön määritysvaihtoehdot löytyvät VALIKKO> Asetukset > Käyttöliittymä > kuvaruudun asetukset."
 
-msgid "Configure DNS (name servers)"
-msgstr "Määritä DNS (nimipalvelimet)"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Määritä ylimääräinen viive parantaaksesi ulkoisten tekstitysten ajoitusta."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Määritä ylimääräinen viive parantaaksesi tekstitysten ajoitusta."
+
+msgid "Configure another network adapter"
+msgstr ""
 
 msgid "Configure cable reception on this input."
 msgstr ""
@@ -4614,20 +4655,17 @@ msgstr "Määrittää näytetäänkö tyypin kuvakkeet kanavalistassa."
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Muokkaa ulkoisen tekstityksen fonttia, vaihtoehtoina: normal, italic, bold ja bolditalic."
 
-msgid "Configure interface"
-msgstr "Määritä verkkosovitin"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Määrittää, millä laitteilla tallenteiden taustalla poistoa käytetään."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"Määritä tai tarkista DNS (nimipalvelimet) säätämällä arvoja.\n"
-"\n"
-"Kun asetukset ovat oikein, jatka painamalla OK."
 
 msgid "Configure remote control type"
 msgstr "Määritä kaukosäätimen tyyppi"
@@ -4641,20 +4679,8 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Määritä tämän LNB:n DiSEqC-tila."
 
-msgid "Configure the IP address."
-msgstr "Määritä IP-osoite."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "IP osoite etävastaanottimelle."
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"Määritä Internet yhteys säätämällä näytettyjä arvoja.\n"
-"\n"
-"Kun asetukset ovat oikein, jatka painamalla OK."
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Etävastaanottimen portti."
@@ -4758,9 +4784,6 @@ msgstr "Määrittää, mitä virtanäppäimen lyhyt painallus tekee."
 msgid "Configure the function of the < and > buttons."
 msgstr "Määritä toiminto < ja > näppäimille."
 
-msgid "Configure the gateway."
-msgstr "Määritä verkon yhdyskäytävä."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Määrittää, sammutetaanko myös kiintolevy tietyn ajan jälkeen, kun itse laite on mennyt valmiustilaan."
 
@@ -4790,15 +4813,6 @@ msgstr "Määrittää vapaan levytilan vähimmäismäärän tallennuksia varten.
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Määritä vähimmäis leveys ennen näyttämistä '1' ikoni '0' on sama kuin ei näytetä ollenkaan."
-
-msgid "Configure the name server (DNS)."
-msgstr "Määritä nimipalvelin (DNS)."
-
-msgid "Configure the netmask."
-msgstr "Määritä verkkomaski."
-
-msgid "Configure the network again"
-msgstr "Määritä verkko uudelleen"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Määrittää, kuinka monen päivän jälkeen tiedostot poistetaan automaattisesti roskakorista."
@@ -4832,6 +4846,9 @@ msgstr "Määrittää toissijaisen tekstityskielen."
 
 msgid "Configure the secondary EPG language."
 msgstr "Määrittää toissijaisen ohjelmaoppaan kielen."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Määrittää, kuinka pitkä hyppy (sekuntia) tehdään '1'/'3 -näppäimillä."
@@ -4932,17 +4949,8 @@ msgstr "Määrittää ensisijaisen virittimen, jos useampia virittimiä käytett
 msgid "Configure your NTP server."
 msgstr "Määritä NTP-palvelimet."
 
-msgid "Configure your Network"
-msgstr "Määritä verkkoasetukset"
-
-msgid "Configure your internal LAN"
-msgstr "Määritä LAN asetukset"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Määritä verkkoasetukset ja aloita haku painamalla OK"
-
-msgid "Configure your wireless LAN again"
-msgstr "Määritä WLAN asetukset uudelleen"
 
 msgid "Configures which video output connector will be used."
 msgstr "Määrittää mitä video ulostuloa käytetään."
@@ -4955,6 +4963,10 @@ msgstr "Määritä palvelu"
 
 msgid "Confirm Zap"
 msgstr "Vahvista Kanavanvaihto"
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
+msgstr ""
 
 msgid "ConflictTimer Actions"
 msgstr "Ristiriita-Ajastukset Toiminnot"
@@ -4975,11 +4987,14 @@ msgstr "Yhdistä"
 msgid "Connect to IceTV server every"
 msgstr "Muodosta yhteys IceTV palvelimeen joka kerta"
 
-msgid "Connect to a wireless network"
-msgstr "Yhdistä langattomaan verkkoon"
-
 msgid "Connect to the Internet"
 msgstr "Yhdistä internettiin"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
 
 msgid "Connected clients"
 msgstr "Kytkeytyneet asiakkaat"
@@ -4996,8 +5011,26 @@ msgstr "Kytketty virittimestä"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "Yhdistetty transkoodaus rajattu - ei PiP!"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "Yhdistetty: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr "Yhdistää..."
 
 msgid "Connection information"
 msgstr "Yhteyden tiedot"
@@ -5047,6 +5080,9 @@ msgstr "Sisältö"
 
 msgid "Continent"
 msgstr "Maanosa"
+
+msgid "Continue"
+msgstr "Jatka"
 
 msgid "Continue in background"
 msgstr "Jatka taustalla"
@@ -5194,8 +5230,24 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Norsunluurannikko"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 msgid "Could not connect to server"
 msgstr "Palvelimeen ei saatu yhteyttä"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
+"Ei voinut yhdistää.\n"
+"Väärä Wi-Fi salasana?"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Ei voitu ladata! Ei levyä asetettu?"
@@ -5218,6 +5270,15 @@ msgstr "Ei voitu tallentaa virheellisen kanavan takia %s"
 #, python-format
 msgid "Could not save configuration file %s!"
 msgstr "Asetustiedostoa %s ei voitu tallentaa!"
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+"Et voi tarkistaa tallennettua Wi-Fi-verkkoa.\n"
+"\n"
+"Haluatko muuttaa asetuksia uudelleen?"
 
 msgid "Country"
 msgstr "Maa"
@@ -5342,6 +5403,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Luodaan osiota"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr "Cree"
 
@@ -5441,9 +5509,6 @@ msgstr "Moottorin suuntaus:"
 
 msgid "Current rotor position: unknown"
 msgstr "Moottorin suuntaus: Tuntematon"
-
-msgid "Current settings:"
-msgstr "Käytetyt asetukset:"
 
 msgid "Current supplied to the LNB and positioner."
 msgstr "Nykyisen asento LNB:lle ja kääntömoottori."
@@ -5549,9 +5614,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DCHP"
-
 msgid "DLNA support"
 msgstr "DLNA tuki"
 
@@ -5563,6 +5625,9 @@ msgstr "DMM normaali"
 
 msgid "DNS Settings"
 msgstr "DNS Asetukset"
+
+msgid "DNS Settings Actions"
+msgstr ""
 
 msgid "DNS data source"
 msgstr "DNS data lähde"
@@ -5836,8 +5901,14 @@ msgstr "Poista käytöstä"
 msgid "Deactivate Expander"
 msgstr "Poista laajennus käytöstä"
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Poista muistin laajennus käytöstä valitusta laitteesta"
+
+msgid "Deactivated"
+msgstr ""
 
 msgid "Debug"
 msgstr "Oletus"
@@ -6090,6 +6161,12 @@ msgstr "Poista"
 msgid "Delete Line"
 msgstr "Poista rivi"
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Poista lisäosia"
 
@@ -6320,9 +6397,6 @@ msgstr "Laitehallinta"
 msgid "Device Manager Actions"
 msgstr "Laite asetukset"
 
-msgid "Device Settings"
-msgstr "Verkkoasetukset"
-
 msgid "Device id"
 msgstr "Laite id"
 
@@ -6432,6 +6506,9 @@ msgstr "Hakemiston/tiedoston tila tiedot"
 msgid "Disable"
 msgstr "Poista käytöstä"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "Estä animaatiot"
 
@@ -6456,6 +6533,9 @@ msgstr "Poista käytöstä MiniTV"
 msgid "Disable Move Mode"
 msgstr "Poistu siirtotilasta"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "Sulje PiP-kuva"
 
@@ -6474,6 +6554,9 @@ msgstr "Poista Esittelyn käytöstä"
 msgid "Disable operator profiles"
 msgstr "Poista operaattori profiilit käytöstä"
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr "Kiintolevyn etenemispalkki päälle/pois"
 
@@ -6489,11 +6572,11 @@ msgstr "Ei käytössä"
 msgid "Disabled PiP.\n"
 msgstr "Poista PiP Käytöstä.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "Poistettu tai WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Pysäyttäminen Chkroot epäonnistu!"
+
+msgid "Disconnected"
+msgstr ""
 
 msgid "Discussion"
 msgstr "Keskustelua"
@@ -6929,6 +7012,9 @@ msgstr "Dreambox muotoinen data DVD (HDTV-yhteensopiva)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox muotoinen data DVD (ei toimi muissa DVD soittimissa)"
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr "Ajurit"
 
@@ -7093,6 +7179,9 @@ msgstr "Muokkaa"
 msgid "Edit Alternatives"
 msgstr "Vaihtoehtojen lisäys ja poisto"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr "Muokkaustila ei"
 
@@ -7114,6 +7203,9 @@ msgstr "Muokkaa otsikkoa"
 msgid "Edit Upgrade Source URL"
 msgstr "Muuta päivitys osoite"
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Muokkaa kappaleita"
 
@@ -7123,25 +7215,20 @@ msgstr "Muokkaa nykyistä riviä"
 msgid "Edit settings"
 msgstr "Muokkaa asetuksia"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "Muokkaa CCcam/NewCamd palvelimen isäntänimeä."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "Muokkaa CCcam/NewCamd palvelimen porttia."
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Muokkaan %s %s:n nimipalvelimen asetuksia."
-
 msgid "Edit the NewCamd DES Key."
 msgstr "Muokkaa NewCamd DES Avainta."
 
 msgid "Edit the currently selected timer"
 msgstr "Muokkaa valittuna olevaa ajastusta"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Muokkaa %s %s:n lähiverkon asetuksia."
 
 msgid "Edit the password."
 msgstr "Muokkaa salasanaa."
@@ -7154,6 +7241,9 @@ msgstr "Muokkaa CCCam porttia."
 
 msgid "Edit the remote IP address."
 msgstr "Muokkaa etä IP osoitetta."
+
+msgid "Edit the selected network mount"
+msgstr ""
 
 msgid "Edit the upgrade source address."
 msgstr "Muokkaa päivityksen lähdeosoitetta."
@@ -7252,9 +7342,6 @@ msgstr "Ota GStreamer debug loki käyttöön *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Ota käyttöön GStreamerin kaavio graafinen *"
 
-msgid "Enable IPv6"
-msgstr "Ota käyttöön IPv6"
-
 msgid "Enable IceTV"
 msgstr "Aktivoi IceTV"
 
@@ -7306,8 +7393,8 @@ msgstr "Ota käyttöön ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr "Ota käyttöön Virgin EPG"
 
-msgid "Enable Wake On LAN"
-msgstr "Ota käyttöön Wake On LAN"
+msgid "Enable adapter"
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Ota käyttöön ja aseta toisen tietopalkin kesto (paina OK kahdesti), joka voi sisältää lisätietoja nykyisestä palvelusta."
@@ -7385,11 +7472,17 @@ msgstr "Ota käyttöliittymä valvonta käyttöön"
 msgid "Enable multiple bouquets"
 msgstr "Salli useiden suosikkilistojen luonti ja käyttö"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr "Ota käyttöön verkkoliikenteen tarkistus"
 
 msgid "Enable new GStreamer playback"
 msgstr "Ota käyttöön uusi GStreamer toisto"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Ota HDMI CEC käyttöön tai poista se käytöstä."
@@ -7402,6 +7495,9 @@ msgstr "Aktivoi esikatselu"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Salli vastaanottimen virittyä ulkopuolisiin vastaanottimiin (esim. jos viritin on varattu ja lähiverkon palvelu on saatavilla. Määrittele URL-osoite mukaan luettuna http:// ja portin numero (normaalisti :8001), esim. http://second_box:8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Ota käyttöön teksti-tv:n välimuisti"
@@ -7502,20 +7598,8 @@ msgstr "Käytössä"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa striimejä (jos ECM-tiedot on mukana striimissä ja sopiva katselukortti on saatavilla)."
 
-msgid "Encrypted: "
-msgstr "Salattu: "
-
 msgid "Encryption"
 msgstr "Suojaus"
-
-msgid "Encryption Type:"
-msgstr "Salauksen tyyppi:"
-
-msgid "Encryption key"
-msgstr "Suojausavain"
-
-msgid "Encryption key type"
-msgstr "Salausavaimen tyyppi"
 
 msgid "End"
 msgstr "Loppu"
@@ -7623,6 +7707,9 @@ msgstr "Anna tälle laitteelle uusi nimi."
 msgid "Enter expected ONID/TSID"
 msgstr "Anna oletettu ONID/TSID"
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Syötä, jos olet päiväntasaajan etelä,- tai pohjoispuolella."
 
@@ -7634,6 +7721,9 @@ msgstr "Kirjoita uuden hakemiston nimi:"
 
 msgid "Enter number to jump to channel"
 msgstr "Syötä numero hypätäksesi kanavalle"
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr "Syötä katselun PIN koodi"
@@ -7668,11 +7758,29 @@ msgstr "Syötä taajuus, jolla LNB vaihtaa matalan ja korkean taajuuden välill�
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Syötä taajuus askel koko, jota virittimen tulee käyttää kaapeli multiplien etsinnässä. Lisätietoja tietoa saat kaapelioperaattorin ohjeista."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "Aseta DNS osoite."
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Syötä NFS palvelin määrä jaettavaksi/käytettäväksi. Korkeammat arvot parantavat suorituskykyä useilla asiakkailla, mutta lisää muistia."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Syötä tallennettu numero paikantajalle, joka vastaa tätä satelliittia."
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
@@ -7681,6 +7789,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -7697,6 +7808,12 @@ msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Syötä tilauskoodisi, kokeiluaika on 15 päivää."
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
@@ -7849,44 +7966,6 @@ msgstr "Viive ennen virheen uudelleenyritystä"
 msgid "Error code"
 msgstr "Virhekoodi"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Virhe luodessa EHD Teemaa\n"
-"HD ulkoasua käytetään!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Virhe EHD teeman luomisessa. Kuvake paketin lataus ei ole käytettävissä.\n"
-"HD ulkoasua käytetään!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Virhe luotaessa UltraHD teemaa. Sisäistä muistia ei ole riittävästi vapaana.\n"
-"HD ulkoasua käytetään!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Virhe luotaessa UltraHD teemaa.\\ Usea Ultrahd- kuvake puuttuu.\n"
-"HD ulkoasua käytetään!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Virhe luotaessa HD-teemaa. sisäistä muistia ei ole riittävästi vapaana."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Virhe luodessa MetrixHD teema.\n"
-"Tarkista uudelleen käynnistyksen jälkeen MyMetrixLite lisäosa ja ota asetukset käyttöön."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Virhe ladattaessa ohjelmisto image'%s'!"
@@ -7935,9 +8014,6 @@ msgstr "Virheiden kirjoittaessa \"/etc/enigma2/epg.dat\" etävastaanottimella!"
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Virheitä kirjoittaessa epg.dat etävastaanottimessa!"
 
-msgid "Error, unknown Result!"
-msgstr "Virhe, tuntematon tulos!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7948,6 +8024,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Virhe: Tyhjä nimi ei ole sallittu!"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr "Virhe: Yhtään ohjelmistoa ei löydy!"
@@ -8001,12 +8080,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "Virhe: '%s ei ole mahdollista suorittaa '%s'!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "Virhe Ohjelmaa '%s' ei ole asennettu. Tätä ohjelmaa sisältävä paketti ei ole tiedossa!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Hakemiston %s poisto epäonnistui. (Ei ehkä ole tyhjä.)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8057,6 +8143,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Virhe: Lokitiedoston kirjoittaminen epäonnistui '%s'!"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Virhe: Et voi suorittaa '%s'-komentoa '%s':ssä!"
 
@@ -8078,6 +8168,9 @@ msgstr "Viro"
 
 msgid "EtPortal"
 msgstr "EtPortaali"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Verkkokortti"
@@ -8213,18 +8306,6 @@ msgstr "Poistu valikosta"
 msgid "Exit movie player?"
 msgstr "Lopeta tallenteen katselu?"
 
-msgid "Exit network adapter configuration"
-msgstr "poistu verkkosovittimen asetuksista"
-
-msgid "Exit network adapter setup menu"
-msgstr "Poistu verkkosovittimen asetus valikosta"
-
-msgid "Exit network interface list"
-msgstr "Poistu verkkosovitinluettelosta"
-
-msgid "Exit network wizard"
-msgstr "Poistu verkkoasennuksesta"
-
 msgid "Exit picture viewer"
 msgstr "Poistu kuvankatseluohjelmasta"
 
@@ -8243,6 +8324,9 @@ msgstr "Poistu ilman varmuuskopiointia"
 msgid "Expand"
 msgstr "Laajentaa"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr "kokeellinen elokuva/video"
 
@@ -8257,6 +8341,9 @@ msgstr "Laaja"
 
 msgid "Expert mode"
 msgstr "Laaja tila"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr "Valotuksen korjaus"
@@ -8275,12 +8362,6 @@ msgstr "Laajenna"
 
 msgid "Extended"
 msgstr "Laajennettu"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Laajennetut Verkkoasetukset."
-
-msgid "Extended Setup..."
-msgstr "Laajat Asetukset."
 
 msgid "Extended Shares"
 msgstr "Laajennetut jaot"
@@ -8731,9 +8812,6 @@ msgstr "Hienosäätö"
 msgid "Finished"
 msgstr "Valmis"
 
-msgid "Finished configuring your network"
-msgstr "Verkon määritys suoritettu"
-
 msgid "Finland"
 msgstr "Suomi"
 
@@ -8833,14 +8911,14 @@ msgstr "Tasainen näppäin näkymä kaukosäätimessä"
 msgid "Flat by position on remote"
 msgstr "Tasainen näkymä kaukosäätimessä"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr "Kansanmusiikki ja Country"
 
 msgid "Folk/Traditional music"
 msgstr "kansan-/perinteinen musiikki"
-
-msgid "Follow instructions on TV"
-msgstr "Seuraa ohjeita televisiosta"
 
 msgid "Font size"
 msgstr "Tekstikoko"
@@ -8949,9 +9027,6 @@ msgstr "Ranskan eteläiset alueet"
 
 msgid "Frequency"
 msgstr "Taajuus"
-
-msgid "Frequency Norm:"
-msgstr "Taajuus:"
 
 msgid "Frequency bands"
 msgstr "Taajuusalueet"
@@ -9761,6 +9836,9 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP"
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr "IP Osoite 1"
 
@@ -9793,6 +9871,9 @@ msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK Asennus"
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr "IPv4 Ainoastaan"
@@ -10368,9 +10449,6 @@ msgstr "Liitäntä"
 msgid "Interface '%s'"
 msgstr "Liitäntä '%s'"
 
-msgid "Interface: "
-msgstr "Liittymä: "
-
 msgid "Interlaced"
 msgstr "Lomitettu"
 
@@ -10727,11 +10805,11 @@ msgstr "Kyrgyzstan"
 msgid "LAN"
 msgstr "Lähiverkko"
 
-msgid "LAN adapter"
-msgstr "Verkkosovitin"
-
 msgid "LAN connection"
 msgstr "LAN yhteys"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr "LCD selausnopeus"
@@ -10937,6 +11015,9 @@ msgstr "Vasen, etu USB"
 msgid "Left, wrapped"
 msgstr "vasemmalla, rivitä teksti"
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr "Legacy tila"
 
@@ -11029,17 +11110,11 @@ msgstr "Lingala"
 msgid "Link detected"
 msgstr "Linkki havaittu"
 
-msgid "Link quality:"
-msgstr "Yhteyden laatu:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr "Linkki kohde"
-
-msgid "Link:"
-msgstr "Yhteys:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Linkitetyt otsikot ja DVD-valikko"
@@ -11052,9 +11127,6 @@ msgstr "Listaa Navigointi Toiminnot"
 
 msgid "List available EPG functions"
 msgstr "Listaa EPG toiminnot"
-
-msgid "List available networks"
-msgstr "Näytä verkot"
 
 msgid "List of Storage Devices"
 msgstr "Tallennuslaitteet"
@@ -11122,14 +11194,14 @@ msgstr "Paikallinen päivämäärä/aika"
 msgid "Local information"
 msgstr "Paikalliset tiedot"
 
-msgid "Local network"
-msgstr "Lähiverkko"
-
 msgid "Local or Regional"
 msgstr "Paikallinen tai alueellinen"
 
 msgid "Local receiver"
 msgstr "Paikallinen laite"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr "Paikallinen aika"
@@ -11300,11 +11372,11 @@ msgstr "Luxemburg"
 msgid "M2k Packages"
 msgstr "M2K Paketit"
 
+msgid "MAC Address"
+msgstr ""
+
 msgid "MAC address"
 msgstr "Mac osoite"
-
-msgid "MAC-address"
-msgstr "MAC-osoite"
 
 msgid "MENU"
 msgstr "VALIKKO"
@@ -11448,9 +11520,6 @@ msgstr "Manuaalinen haku"
 msgid "Manual Service Searching"
 msgstr "Manuaalinen kanavahaku"
 
-msgid "Manual configuration"
-msgstr "Manuaalinen määritys"
-
 msgid "Manual scan for services"
 msgstr "Manuaalinen kanavahaku"
 
@@ -11522,9 +11591,6 @@ msgstr "Kanavien enimmäismäärä"
 
 msgid "Max memory positions"
 msgstr "Maks. muistipaikat"
-
-msgid "Max. bitrate: "
-msgstr "Maks. bittimäärä: "
 
 msgid "Maxdown +"
 msgstr "Maxdown +"
@@ -11825,6 +11891,9 @@ msgstr "Moottorit"
 msgid "Mount"
 msgstr "Liitä"
 
+msgid "Mount Context Menu"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Liitosten hallinta"
 
@@ -11834,8 +11903,20 @@ msgstr "Liitäntä"
 msgid "Mount Setup"
 msgstr "Määritä verkko ja laiteliitokset"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "Liitos epäonnistui"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr "Liitäntä"
@@ -11843,11 +11924,17 @@ msgstr "Liitäntä"
 msgid "Mount root file system."
 msgstr "Liitä järjestelmätiedosto."
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr "Liitokset"
 
 msgid "Move"
 msgstr "Siirrä"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "Siirrä vasemmalle/oikealle"
@@ -11866,6 +11953,9 @@ msgstr "Siirrä PiP"
 
 msgid "Move PiP to main picture"
 msgstr "Siirrä PiP pääkuvaan"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "Siirrä ylös/alas"
@@ -11919,6 +12009,12 @@ msgstr "Siirry viimeiseen kohtaan."
 
 msgid "Move east"
 msgstr "Liikuta itään"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr "Siirto työ suoritettu."
@@ -12025,6 +12121,12 @@ msgstr "Siirry edelliseen suosikkilistaan"
 
 msgid "Move to previous marker"
 msgstr "Siirry edelliseen merkkiin"
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr ""
 
 msgid "Move to the first item on the current line"
 msgstr "Siirrä nykyisen rivin ensimmäiselle riville"
@@ -12257,7 +12359,13 @@ msgstr "NFS"
 msgid "NFS Server Settings"
 msgstr "NFS asetukset"
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12301,12 +12409,6 @@ msgstr "Nimi laskeva"
 #, python-format
 msgid "Name server %d"
 msgstr "Nimipalvelin %d"
-
-msgid "Nameserver"
-msgstr "Nimipalvelin"
-
-msgid "Nameserver settings"
-msgstr "Nimipalvelimen asetukset"
 
 msgid "Nameserver setup"
 msgstr "Nimipalvelimen asetukset"
@@ -12371,23 +12473,21 @@ msgstr "Aliverkon peite"
 msgid "Network"
 msgstr "Verkko"
 
-msgid "Network Adapter Actions"
-msgstr "Verkkosovittimen toiminnot"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr "Verkkosovittimen valinta"
 
-msgid "Network Adapter Setting Actions"
-msgstr "Verkkosovittimen asetukset"
-
 msgid "Network Adapter Settings"
 msgstr ""
 
-msgid "Network Adapter Text Actions"
-msgstr "Verkkosovittimen teksti toiminnot"
-
 msgid "Network Browser"
 msgstr "Verkko Valinta"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr "Verkon ID"
@@ -12407,8 +12507,23 @@ msgstr "Verkko loki"
 msgid "Network Log Actions"
 msgstr "Verkko loki toiminnot"
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
 msgstr "Verkkoympäristö"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr "Verkko paketit"
@@ -12425,26 +12540,64 @@ msgstr "Lähiverkon asetukset"
 msgid "Network Setup Actions"
 msgstr "Verkkoasetukset"
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "Verkkoyhteyksien testaus"
 
-msgid "Network Test:"
-msgstr "Lähiverkon testi: "
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
-msgstr "Ohjattu verkkoasennus"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
 msgstr "Verkkosovitinta ei ole kytketty verkkoon!"
 
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
+msgstr ""
+
 msgid "Network address"
 msgstr "Verkon osoite"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
 msgstr "Verkkoasetukset."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
 
 msgid "Network information"
 msgstr "Verkon tiedot"
@@ -12471,29 +12624,11 @@ msgstr "Verkkohaku"
 msgid "Network storage on"
 msgstr "Verkkotallennus päällä"
 
-msgid "Network test"
-msgstr "Lähiverkon testi"
-
 msgid "Network test..."
 msgstr "Lähiverkon testi."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Ohjattu verkkoasennus valmis.\n"
-"\n"
-"Jatka painamalla OK."
-
 msgid "Network-ID"
 msgstr "Verkko ID"
-
-msgid "Network:"
-msgstr "Sovitin:"
-
-msgid "NetworkWizard"
-msgstr "Ohjattu verkkoasennus"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.usr)"
@@ -12527,6 +12662,9 @@ msgstr "Uudet Asetukset DXAndy "
 
 msgid "New Storage Device"
 msgstr "Uusi tallennuslaite"
+
+msgid "New Wi-Fi"
+msgstr ""
 
 msgid "New Zealand"
 msgstr "Uusi Seelanti"
@@ -12625,14 +12763,20 @@ msgstr "Epg.dat tiedostoa ei löytynyt etävastaanottimelta!"
 msgid "No (supported) DVDROM found!"
 msgstr "DVDROM-asemaa ei löytynyt!"
 
-msgid "No Connection"
-msgstr "Ei yhteyttä"
-
 msgid "No ECM PIDs available"
 msgstr "Ei ECMPids saatavilla"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kiintolevyä ei löydy tai sitä ei ole alustettu!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr "Ei Internet yhteyttä"
@@ -12709,8 +12853,14 @@ msgstr "Ei vapaata indeksiä"
 msgid "No free tuner!"
 msgstr "Kaikki virittimet ovat jo käytössä!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
 msgstr "Kiintolevyjä ei havaittu."
+
+msgid "No hosts found yet - still scanning..."
+msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
@@ -12724,8 +12874,8 @@ msgstr "Verkkosovittimia ei ole käytössä/saatavilla!"
 msgid "No network storage detected."
 msgstr "Verkkotallennusta ei havaittu."
 
-msgid "No networks found"
-msgstr "Verkkoja ei löytynyt"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Vaihtojen määrä (lisää tai vähennä)"
@@ -12752,6 +12902,9 @@ msgstr "Ei kanavaa"
 
 msgid "No services/providers selected"
 msgstr "Palveluja/palveluntarjoajia ei valittu"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr "Image paikkoja ei löytynyt"
@@ -12830,30 +12983,6 @@ msgstr "Ei kelvollista liintäntää '%s' löytynyt!"
 
 msgid "No valid region details were found"
 msgstr "Kelvollisia aluetietoja ei löytynyt"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Langattomia verkkoja ei löytynyt! Etsitään..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Toimivaa verkkokorttia ei löydy.\n"
-"Tarkista, että olet kytkennyt verkkokaapelin ja lähiverkon asetukset ovat oikein."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Toimivaa langatonta yhteyttä ei löydy.\n"
-"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen ja verkko on määritelty oikein."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Toimivaa langatonta yhteyttä ei löydy.\n"
-"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen tai kytke lähiverkko päälle."
 
 msgid "No, but restart from begin"
 msgstr "Ei, aloita alusta"
@@ -12939,6 +13068,9 @@ msgstr "Norjalainen Nynorsk"
 msgid "Not Classified"
 msgstr "Ei luokiteltu"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr "Ei määritetty"
 
@@ -12984,8 +13116,14 @@ msgstr ""
 "Vapaa levytila: %sMB\n"
 "Hakemisto: %s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
 msgstr "Ei yhdistetty. Paina Keltasta näppäintä liittyäksesi."
+
+msgid "Not mounted"
+msgstr ""
 
 msgid "Not required"
 msgstr "Ei tarvita"
@@ -13210,9 +13348,6 @@ msgstr "Käytössä oleva ONIDs, taajuuden ohita aliverkko-osa"
 msgid "Once"
 msgstr "kerran"
 
-msgid "One"
-msgstr "Yksi"
-
 msgid "One line"
 msgstr "Yksi rivi"
 
@@ -13408,8 +13543,23 @@ msgstr "Avaa kanavalista ja valitse edellinen kanava PiP-kuvalle"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Avaa Kanavanvalinta asetukset näyttö"
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
 msgstr "Avaa ohjelmiston tiedot"
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
+msgstr ""
 
 msgid "Open the Plugin Browser"
 msgstr "Avaa lisäosien selaus"
@@ -13450,6 +13600,9 @@ msgstr "OpenViX Paketit"
 msgid "OpenWebif picon path"
 msgstr "OpenWebif kuvake"
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr "Opera"
 
@@ -13476,6 +13629,9 @@ msgstr "'Kyllä' valinnalla kanavalogot näytetään tietopalkissa."
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Käytä kiintolevyn sisäistä virransäästötoimintoa."
+
+msgid "Optional arguments"
+msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr ""
@@ -13948,6 +14104,9 @@ msgstr "Pillarbox"
 msgid "Pilot"
 msgstr "Pilot"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr "vaaleanpunainen"
 
@@ -14132,17 +14291,11 @@ msgstr ""
 "Anna sähköpostiosoitteesi, joka on kirjautumistunnuksesi.\n"
 "IceTV verkkosivustosi tilin kautta voit vastaanottaa palveluilmoituksia, tilimuistutuksia ja kampanjatarjouksia."
 
-msgid "Please follow the instructions on the TV"
-msgstr "Seuraa ruudulla näkyviä ohjeita"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Huomaa, että oletushakemisto on käytössä, koska aikaisemmin valittua levyä ei voitu ladata."
 
 msgid "Please open Picture in Picture first"
 msgstr "Avaa ensin PiP kuva"
-
-msgid "Please press OK to continue."
-msgstr "Jatka painamalla OK."
 
 msgid "Please press OK when ready"
 msgstr "Paina OK kun olet valmis"
@@ -14222,9 +14375,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Odota"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Odota, verkkoasetuksia aktivoidaan..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "Ole hyvä ja odota, että LCN lisäosa asennetaan/päivitetään..."
 
@@ -14277,17 +14427,8 @@ msgstr "Odota, kunnes lisäosa on päivitetty."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Odota hetki, kun tarkistamme asennetut lisäosia..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Odota, verkkosovittimia määritetään..."
-
-msgid "Please wait while we test your network..."
-msgstr "Odota, verkkoyhteyttä testataan..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "Odota, verkkoyhteydet käynnistetään uudelleen..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Odota, teeman asetuksia palautetaan..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Odota, syötteiden tilaa tarkistetaan..."
@@ -14559,9 +14700,6 @@ msgstr "Valitse MultiBoot painamalla OK."
 msgid "Press OK on your remote control to continue."
 msgstr "Jatka painamalla OK näppäintä."
 
-msgid "Press OK to activate the settings."
-msgstr "Ota käyttöön painamalla OK."
-
 msgid "Press OK to continue."
 msgstr "Paina ok jatkaaksesi."
 
@@ -14677,9 +14815,6 @@ msgstr "edellinen/seuraava Sivu"
 
 msgid "Prevsong"
 msgstr "Vihreä"
-
-msgid "Primary DNS"
-msgstr "Ensisijainen DNS"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -15040,11 +15175,20 @@ msgstr "Ikärajaa ei määritelty"
 msgid "Re-enter new PIN"
 msgstr "Toista uusi PIN kooditun"
 
-msgid "Read-Only"
-msgstr "Vain luku tila"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
+msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Lue Käyttäjäntiedot oscam.conf:ista"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr "Vain luku tila"
 
 msgid "Read/Write"
 msgstr "Lue/kirjoita"
@@ -15099,6 +15243,9 @@ msgstr "Haluatko silti sammuttaa?"
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "Aloita Kodi ja lopeta käyttöliittymä nyt?"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Päivitetäänkö etupaneeli nyt ja käynnistetään uudelleen?"
@@ -15409,6 +15556,9 @@ msgstr "Kaukosäätimen tiedot"
 msgid "Remote control type"
 msgstr "Kaukosäätimen tyyppi"
 
+msgid "Remote path"
+msgstr ""
+
 msgid "Remote receiver"
 msgstr "Etälaite"
 
@@ -15436,6 +15586,9 @@ msgstr "poista kaapelikanavat"
 
 msgid "Remove Confirmation"
 msgstr "Poista vahvistuskysely"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "Poista"
@@ -15651,6 +15804,15 @@ msgstr "Tarvittava tallennusmedia:"
 msgid "Rereading partition table"
 msgstr "Levyosioita luetaan uudelleen"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "Varattu"
 
@@ -15714,8 +15876,14 @@ msgstr "Resoluutio"
 msgid "Resolution unit"
 msgstr "Resoluutio yksikkö"
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "Käynnistä uudelleen"
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "Käynnistä järjestelmä uudelleen"
@@ -15731,9 +15899,6 @@ msgstr "Käynnistetäänkö järjestelmä uudelleen?"
 
 msgid "Restart Network"
 msgstr "Käynnistä verkkoyhteydet uudelleen"
-
-msgid "Restart Network Adapter"
-msgstr "Verkkosovittimen uudelleenkäynnistys"
 
 msgid "Restart OSCam"
 msgstr "Uudelleenkäynnistä OSCam"
@@ -15756,8 +15921,11 @@ msgstr "Käynnistä verkkoyhteydet uudelleen"
 msgid "Restart test"
 msgstr "Testaa uudelleen"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Käynnistä verkkoyhteydet uudelleen."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "Uudelleenkäynnistys..."
@@ -15767,9 +15935,6 @@ msgstr "Palauta"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "palauta poistetut suosikkilistat"
-
-msgid "Restore MetrixHD Settings"
-msgstr "Palautetaan MetrixHD Asetukset"
 
 msgid "Restore Plugins"
 msgstr "Palauta Lisäosat"
@@ -15825,6 +15990,9 @@ msgstr "Jatka kohdasta %s"
 
 msgid "Resuming playback"
 msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16024,9 +16192,6 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd asetukset"
-
 msgid "SAT"
 msgstr "SAT"
 
@@ -16069,6 +16234,9 @@ msgstr "SD kortin kytkin VIRHE! - on jo mmc:llä"
 
 msgid "SINGLE LAYER DVD"
 msgstr "Yksi kerros DVD"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "SMS tyylin Pikavalinta sijainnin valinta"
@@ -16275,6 +16443,26 @@ msgstr "Muunna ajansiirto tallenteeksi ja lopeta tallentaminen"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Muunna ajansiirto tallenteeksi ja jatka tallentamista"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr "Tallennetut rivit komentosarjaviesteissä"
 
@@ -16311,6 +16499,9 @@ msgstr "Hae %s"
 msgid "Scan %s band"
 msgstr "Hae alue %s"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Hae muita SR:iä"
 
@@ -16325,12 +16516,6 @@ msgstr "Etsi paikallisia lisäosia ja asenna ne."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skannaa antenni kanavat ja luo LCN kanavalista"
-
-msgid "Scan wireless networks"
-msgstr "Hae langattomia verkkoja"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin valittua WLAN-laitetta käyttäen."
 
 msgid "Scanning"
 msgstr "Skannaus"
@@ -16356,6 +16541,12 @@ msgstr[1] "Haku valmis, löytyi %d kanavaa."
 
 msgid "Scanning failed!"
 msgstr "Haku epäonnistui!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "Haetaan..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16469,9 +16660,6 @@ msgstr "Etsitään länteen..."
 msgid "Second cable of motorized LNB"
 msgstr "Kääntyvän antennin LNB:n toinen kaapeli"
 
-msgid "Secondary DNS"
-msgstr "Toissijainen DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -16556,6 +16744,9 @@ msgstr ""
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Valitse skannataksesi ennalta määritetystä kaapelin tarjoaja luettelosta. Valitse taajuudet, jos haluat skannata vain tiettyjä taajuuksia. Valitse skannataksesi tietyn taajuuskaistanleveyden välein."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Valitse 'Yksilöllinen numerointi' antaaksesi jokaiselle kanavalle yksilöllinen numero jokaisessa kanavalistassa. Käytä 'Kanavalistat alkavat numerosta 1 jokaisessa kanavalistassa' Käytä operaattorin tarjoavaa LCN \"Loogiset kanavanumerot\"esim Yle tv1 on kanavanumero 1 jne."
@@ -16899,6 +17090,9 @@ msgstr "Valitse päivityksen lähdeosoite"
 msgid "Select Upgrade Source To Edit"
 msgstr "Valitse päivityksen lähde muokattavaksi"
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Valitse Softcam käytettävissä olevasta listassa oletusarvona CI+."
 
@@ -16942,6 +17136,9 @@ msgstr "Elokuvan valinta"
 msgid "Select a network adapter"
 msgstr "Valitse verkkoadapteri"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr "Valitse pysyvä liitospiste kaikille laitteille"
 
@@ -16954,6 +17151,12 @@ msgstr "Valitse arkiston loki tarkasteltavaksi:"
 msgid "Select a script to run:"
 msgstr "Valitse suoritettava scripti:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -16965,9 +17168,6 @@ msgstr "Valitse aika, jonka jälkeen valmiustilassa salauksen purku voi jatkua."
 
 msgid "Select a tuner"
 msgstr "Valitse viritin"
-
-msgid "Select a wireless network"
-msgstr "Valitse langaton verkko"
 
 msgid "Select action"
 msgstr "Valitse toiminto"
@@ -17017,6 +17217,9 @@ msgstr "Valitse File Commander oletushakemisto:"
 
 msgid "Select destination for:"
 msgstr "Valitse kohde:"
+
+msgid "Select exported directories"
+msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr "Valitse varmuuskopiosta suljettavat tiedostot"
@@ -17077,6 +17280,9 @@ msgstr "Valitse, tarvitaanko lopetusaika."
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Määritä vaihto viive kanaviin."
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Tämän vaihtoehdon avulla voit valita, näytetäänkö asetuskohteen oletusarvo, ja jos näytetään, missä se näytetään suhteessa kuvaukseen."
 
@@ -17124,12 +17330,6 @@ msgstr "Valitse kaukosäädin"
 
 msgid "Select input device."
 msgstr "Valitse syöttölaite."
-
-msgid "Select interface"
-msgstr "Valitse verkkosovitin"
-
-msgid "Select menu entry"
-msgstr "Valitse valikko kohta"
 
 msgid "Select movie"
 msgstr "Valitse tallenne"
@@ -17259,6 +17459,9 @@ msgstr "Valitse tälle ajastimelle käytettävä kanava."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Valitse kursorin alla oleva merkki tai toiminta"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
@@ -17421,6 +17624,9 @@ msgstr "Valitse pääsy automaattisesti viedyille Samba jaoille."
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR:n mallinumero. Jos mallinumeroa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
 
@@ -17435,15 +17641,6 @@ msgstr "Valitse tallennus hakemisto"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Valitse verkon tiedonsiirtonopeus, milloin ajastus tulee aktivoida määritetyllä tavalla. Tämän nopeuden ylittävä liikenne poistaa ajastuksen käytöstä."
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Valitse verkkosovitin jota käytetään internet yhteyteen.\n"
-"\n"
-"Jatka painamalla OK näppäintä."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
 msgstr ""
@@ -17482,6 +17679,9 @@ msgstr "Valitse aiempi kanava ja sulje kanavahaku ja poistu valikoista"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Valitse SCR:n käyttämä protokolla. Vaihtoehdot ovat 'SCR Unicable' (Unicable) tai 'SCR JESS' (JESS, tunnetaan myös Unicable II:na)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "Valitse vastaanotin toiminto, kun televisio siirtyy pois digiboksin sisään tulosta."
 
@@ -17513,6 +17713,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17608,14 +17811,8 @@ msgstr "Valitse ajastimen tyyppi."
 msgid "Select the video mode to be used on the TV."
 msgstr "Valitse videotila, jota käytetään televisiossa."
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
-"Valitse langaton verkko, johon haluat muodostaa yhteyden.\n"
-"\n"
-"Jatka painamalla OK."
 
 msgid "Select update source location"
 msgstr "Valitse päivityksen lähde"
@@ -17658,6 +17855,9 @@ msgstr "Määrittää, mitä TV-näppäimen painallus tekee."
 
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Määrittää, mitä ylös/alas -näppäimien painallus tekee."
+
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
 
 msgid "Select where the recording should be saved."
 msgstr "Valitse, mihin tallennus tallennetaan."
@@ -17703,9 +17903,6 @@ msgstr "Valitse, näytetäänkö kuvake, kun moottoroitu lautanen liikkuu."
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "Valitse Langaton verkko"
 
 msgid "Select your ATSC provider."
 msgstr "Valitse ATSC-palveluntarjoajasi."
@@ -17817,6 +18014,9 @@ msgstr "vakava musiikki/klassinen musiikki"
 
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "vakava/klassinen/uskonnollinen/historiallinen elokuva/draama"
+
+msgid "Server"
+msgstr ""
 
 msgid "Server down"
 msgstr "Palvelin kaatunut"
@@ -18221,6 +18421,9 @@ msgstr "Valitse mitä haluat näppäimen tekevän."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Aseta Kyllä asetukseksi debugging root perus syyn virheen selvittämiseksi."
+
+msgid "Set up network"
+msgstr ""
 
 msgid "Set up tuner [TUNER]"
 msgstr "Määritä viritin"
@@ -18695,9 +18898,6 @@ msgstr "Näytä VCR-Scart päävalikossa"
 msgid "Show Vertical EPG"
 msgstr "Näytä Pystysuora EPG"
 
-msgid "Show WLAN status"
-msgstr "Näytä WLAN:in tila"
-
 msgid "Show Web Link packages"
 msgstr "Näytä Netti sivut"
 
@@ -18859,9 +19059,6 @@ msgstr "Näytä lisäosa luottelossa"
 msgid "Show in Standby"
 msgstr "Näytä valmiustilassa"
 
-msgid "Show info"
-msgstr "Näytä tiedot"
-
 msgid "Show info line"
 msgstr "Näytä tietopalkki"
 
@@ -18903,6 +19100,9 @@ msgstr "Näytä tallennukset"
 
 msgid "Show multi channel EPG"
 msgstr "Näytä monikanava-EPG"
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr "Näytä seuraava loki"
@@ -19087,6 +19287,9 @@ msgstr "Näytä CCcam tiedot näytön näyttäminen"
 msgid "Show the Logs Settings screen"
 msgstr "Näytä Lokit asetukset näytössä"
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr "Näytä OSCam tietonäytössä"
 
@@ -19168,9 +19371,6 @@ msgstr "Näytä suoraa televisiota tai tietoja vastaanottimen näytössä."
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Näyttää kuvakkeen kun uusi/katsomaton, muuten kuvaketta ei näytetä."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Näyttää WLAN-yhteyden tilan."
-
 msgid "Shows the watched status of the media."
 msgstr "Näyttää kanavien katselu-statistiikkaa."
 
@@ -19204,14 +19404,8 @@ msgstr "Sigma Mallit"
 msgid "Signal Finder"
 msgstr "Signaalin hakutyökalu"
 
-msgid "Signal quality"
-msgstr "Yhteyden laatu"
-
 msgid "Signal strength"
 msgstr "Signaalin voimakkuus"
-
-msgid "Signal: "
-msgstr "Signaali: "
 
 msgid "Signed by"
 msgstr "Allekirjoittanut"
@@ -19347,6 +19541,9 @@ msgstr "siirry eteenpäin (syötä aika)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Ohita suora, kun käytät ajansiirtoa laajennuksilla"
+
+msgid "Skip network setup"
+msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Ohita paketin asennus, vain ydin paketit ovat käytettävissä"
@@ -19580,6 +19777,9 @@ msgstr "Taide/Kulttuuri"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr "SoftCSA Asetukset"
 
@@ -19718,6 +19918,18 @@ msgstr "Näytä lisäosavalikko aakkosjärjestyksessä"
 msgid "Sort by"
 msgstr "Listan järjestystapa"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "Oletusjärjestys"
 
@@ -19809,9 +20021,6 @@ msgstr "erikoistapahtuma"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Määritä hakemisto, jota käytetään käynnistettäessä Media Soitinta."
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
-msgstr "Aseta DNS osoite."
 
 msgid "Speed"
 msgstr "Nopeus"
@@ -19915,9 +20124,6 @@ msgstr "Uudelleen yritys"
 msgid "Start teletext"
 msgstr "Teksti-TV"
 
-msgid "Start test"
-msgstr "Aloita testi"
-
 msgid "Start the Chkroot initialization"
 msgstr "Aloita Chkroot alustaminen"
 
@@ -19969,6 +20175,9 @@ msgstr "Käynnistettävää laitetta ei löytynyt!"
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Lääni"
+
+msgid "Static"
+msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Staattinen IP / Mukautettu"
@@ -20054,9 +20263,6 @@ msgstr "Pysäytä palvelu ja palaa tallenneluetteloon"
 msgid "Stop streams"
 msgstr "Pysäytä streamit"
 
-msgid "Stop test"
-msgstr "Lopeta testi"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Monenko toimimattoman lähettimen jälkeen testaus lopetetaan"
 
@@ -20117,6 +20323,12 @@ msgstr "Levyä ei voi kirjoittaa!"
 
 msgid "Store position"
 msgstr "Tallenna sijainti"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "Sijainnin muistipaikka"
@@ -20724,10 +20936,6 @@ msgstr "Testitehtävä epäonnistui!"
 msgid "Test mode"
 msgstr "Virityskuvan lähetys"
 
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Testaa %s %s:n lähiverkon toiminta."
-
 msgid "Test type"
 msgstr "Testin tyyppi"
 
@@ -20846,24 +21054,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "IceTV-palvelin on pyytänyt salasana %s."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Internet yhteys näyttää toimivan.\n"
-"\n"
-"Paina ok jatkaaksesi."
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Internet yhteystesi ei näytä toimivan!\n"
-"\n"
-"Valitse, mitä tehdään seuraavaksi."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21034,13 +21224,6 @@ msgstr "Kuvan korkeus. Tulo skaalataan vastaamaan tätä arvoa."
 msgid "The loopthrough setting is wrong."
 msgstr "Läpisyötön asetus on väärä."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Verkkoavustajaa ei ole asennettu!\n"
-"Asenna se."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Kanavalogo hakemisto on jos olemassa ja pitää poistaa ensin. Haluatko jatkaa?"
 
@@ -21118,35 +21301,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "Käyttöliittymä %s %ss pysäytetään Kodin käynnistämiseksi"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Kuvan leveys. Tulo skaalataan vastaamaan tätä arvoa."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Langatonta Internet yhteyttä ei voitu käynnistää!\n"
-"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen ja verkko on määritelty oikein.\n"
-"\n"
-"Valitse, mitä tehdään seuraavaksi."
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"WLAN-lisäosaa ei ole asennettu!\n"
-"\n"
-"Asenna se ja valitse mitä haluat tehdä seuraavaksi."
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN lisäosaa ei ole asennettu!\n"
-"Asenna se."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset?"
@@ -21475,57 +21635,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Tämä asetus on vain erikoisasetuksille. Se antaa tälle LNB:lle korkeamman prioriteetin kuin alhaisemman arvon LNB:lle. Korkeampi prioriteettinen vapaa LNB valitaan ensiksi virityspalveluihin."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Tämä testi tarkistaa nimipalvelimet.\n"
-"Jos näet \"vahvistamaton\" ilmoituksen:\n"
-"- tarkista DHCP, kaapelointi ja sovittimen asetukset\n"
-"- jos määrittelit nimipalvelimet käsin, tarkista arvot \"Nimipalvelimen asetukset\" kohdassa"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Tämä testi tarkistaa, onko verkkokaapeli kytketty verkkokorttiin.\n"
-"Jos näet \"ei kytketty\" ilmoituksen:\n"
-"- tarkista, että kaapeli on kytketty\n"
-"- tarkista, ettei kaapeli ole vaurioitunut"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Tämä testi tarkistaa, onko verkkosovittimella toimiva IP-osoite.\n"
-"Jos näet \"vahvistamaton\" ilmoituksen:\n"
-"- toimivaa IP-osoitetta ei löytynyt\n"
-"- tarkista DHCP, kaapeli ja verkkosovittimen asetukset"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Tämä testi tarkistaa, onko verkkosovittimelle määritetty automaattinen IP-osoite DHCP:n kautta.\n"
-"Jos näet \"ei käytössä\" ilmoituksen:\n"
-"- verkkosovitin on määritelty käyttämään kiinteää IP-osoitetta\n"
-"- tarkista, että olet syöttänyt oikeat IP-tiedot Sovittimen asetukset -kohdassa.\n"
-"Jos näet \"käytössä\" ilmoituksen:\n"
-"- tarkista, että sinulla on lähiverkossasi toimiva ja oikein määritelty DHCP-palvelin."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Tämä testi tunnistaa määrittelemäsi verkkosovittimen."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21544,9 +21653,6 @@ msgstr "Asennus on nyt valmis"
 
 msgid "This wizard has finished."
 msgstr "Asennus on nyt valmis."
-
-msgid "Three"
-msgstr "Kolme"
 
 msgid "Threshold"
 msgstr "Kynnys"
@@ -21694,6 +21800,9 @@ msgstr "Aikahistoria"
 
 msgid "Timeline scale"
 msgstr "Näytettävä aikaväli"
+
+msgid "Timeout"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr "Ajastimen loki toiminnot"
@@ -21861,6 +21970,9 @@ msgstr "Monivalintatilan vaihtaminen"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Vaihda uuden tekstin asennusosat ensiksi tai ylikirjoita nykyinen teksti"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr "Nykyisen tagin valinnan vaihtaminen"
 
@@ -21942,6 +22054,9 @@ msgstr "Perinteinen"
 
 msgid "Traditional Chinese"
 msgstr "Kiina"
+
+msgid "Transceiver"
+msgstr ""
 
 msgid "Transcode"
 msgstr "Transkoodaus"
@@ -22200,9 +22315,6 @@ msgstr "Kaksoishybridi"
 msgid "Twin Tuner"
 msgstr "Tupla Viritin"
 
-msgid "Two"
-msgstr "Kaksi"
-
 msgid "Two lines"
 msgstr "Kaksi riviä"
 
@@ -22317,9 +22429,6 @@ msgstr "Alle 5"
 msgid "Undetermined"
 msgstr "Määrittämätön"
 
-msgid "Unencrypted"
-msgstr "Salaamaton"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Odottamaton virhe Internetissä WebIF: %s"
@@ -22379,13 +22488,6 @@ msgstr "Tuntematon"
 msgid "Unknown Devices"
 msgstr "Tuntemattomat laitteet"
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Tuntematon virhe teema luodessa\n"
-"Tarkista uudelleen käynnistyksen jälkeen asetukset MyMetrixLite lisäosan ja ota käyttöön."
-
 msgid "Unknown Packages"
 msgstr "Tuntemattomat paketit"
 
@@ -22427,6 +22529,9 @@ msgstr "Pura tiedosto"
 msgid "Unpublished"
 msgstr "julkaisematon"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "Pura ja tallenna ECM"
 
@@ -22438,9 +22543,6 @@ msgstr "Pura http striimit"
 
 msgid "Unset As Startup Service"
 msgstr "Poista käynnistyskanava määritys"
-
-msgid "Unsupported"
-msgstr "Ei tuettu"
 
 msgid "Until standby/restart"
 msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
@@ -22622,6 +22724,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr "Käytä MHW-ohjelmaoppaan tietoja, jos saatavilla."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Käytä Netmed-ohjelmaoppaan tietoja, jos saatavilla."
 
@@ -22658,14 +22763,14 @@ msgstr "Käytä kanavan vaihto ajastimen lopetusaikoja"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Käytä DNS välimuistia tallentaaksesi paikallisesti viimeisimmät DNS kyselyt suorituskyvyn parantamiseksi, viiveen vähentämiseksi ja lähtevän liikenteen vähentämiseksi."
 
-msgid "Use a gateway"
-msgstr "Käytä yhdyskäytävää"
-
 msgid "Use alternate GitHub DNS"
 msgstr "Käytä vaihtoehtoista GitHub DNS"
 
 msgid "Use an alternative smaller screen."
 msgstr "Käytä vaihtoehtoista näyttöä."
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr "Käytä automaattista tilan tunnistusta"
@@ -22712,11 +22817,11 @@ msgstr "Käytä maantieteellistä sijaintia saadaksesi ulkoverkon tiedot"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Nykyisen aikavyöhykkeen sijainnin asettaminen geopaikannuksen avulla"
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "jos sinulla on vaikeuksia vaihtaa LNB:tä (pysty / vaaka), erittäin pitkiä antennikaapeleita tai kaapeleita, joissa on erittäin ohut sisäjohdin, lisää jännitettä 14 / 18V."
-
-msgid "Use interface"
-msgstr "Käytä sovitinta"
 
 msgid "Use key map *"
 msgstr "Käytä näppäimistökarttaa *"
@@ -22729,9 +22834,6 @@ msgstr "Käytä virallista kanavanumerointia"
 
 msgid "Use only DNSSEC servers"
 msgstr "Käytä vain DNSSEC palvelimia"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Aktivoi vain Wake on WLAN"
 
 msgid "Use only no-filter servers"
 msgstr "Käytä vain suodattamattomia palvelimia"
@@ -22784,9 +22886,6 @@ msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöl
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Säädä käyttöliittymän pystysijaintia kaukosäätimen vasen/oikea näppäimillä."
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Määritä verkkoasetukset ohjatun verkkoasennuksen avulla. Avustaja auttaa määritysten tekemisessä"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Hallitse softcamin asetuksia täältä"
 
@@ -22804,12 +22903,6 @@ msgstr "Käytä nykyistä valintaa ja poistu"
 
 msgid "Use the extended List"
 msgstr "Käytä laajennettua listaa"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Käytä avustajaa perusasetusten määrittämiseen"
@@ -22887,6 +22980,12 @@ msgstr "Käyttäjänimi"
 msgid "Username (httpuser)"
 msgstr "Käyttäjänimi (httpkäyttäjä)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr "Käyttää automaattista osoitetta"
 
@@ -22911,9 +23010,6 @@ msgstr "Uzbekistan"
 msgid "VCR Scart Settings"
 msgstr "SCART läpivienti"
 
-msgid "VLAN connection"
-msgstr "VLAN yhteys"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -22925,6 +23021,9 @@ msgstr "VOB tiedosto"
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS Asetukset"
@@ -23296,12 +23395,6 @@ msgstr "WAN yhteystiedot"
 msgid "WARNING:"
 msgstr "VAROITUS:"
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "WLAN yhteys"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23310,15 +23403,6 @@ msgstr "WMA Pro stereoksi"
 
 msgid "WOL Standby"
 msgstr "WOL Valmiustila"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA tai WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS-kuvasuhdesignaali"
@@ -23334,6 +23418,9 @@ msgstr "Odota, kun skannaat..."
 
 msgid "Waiting"
 msgstr "Odottaa"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "Odotetaan osiointia"
@@ -23380,6 +23467,9 @@ msgstr "VAROITUS: %d ei voi ladata!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "Varoitus: Tämän prosessin peruuttaminen jättää syötteet käyttökelvottomaan tilaan!"
+
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr ""
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Varoitus: Ohitukset ovat tällä hetkellä aktiivisia!"
@@ -23702,17 +23792,20 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Kun päällä, tämä ohittaa tallennusten ensisijainen viritin valinnan"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Kun päällä, tämä ohittaa ensisijainen viritin valinnan"
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr ""
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kun päällä, ajansiirto alkaa automaattisesti määritetyn ajan kuluttua valittuna olevalla kanavalla."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Kun päällä, käytetään DHCP:tä IP-määritykseen."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Käy käytössä, voit määritellä etävastaanottimen OpenWebIf asetuksia"
@@ -23777,6 +23870,28 @@ msgstr "Niin kauan kuin käytettävissä"
 msgid "White"
 msgstr "Valkoinen"
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr "leveä"
 
@@ -23800,30 +23915,6 @@ msgstr "Pyyhi tallennus laite"
 
 msgid "Wiping storage device..."
 msgstr "Tyhjennetään tallennuslaitetta..."
-
-msgid "Wireless LAN"
-msgstr "WLAN-verkko"
-
-msgid "Wireless network"
-msgstr "Langaton verkko"
-
-msgid "Wireless network configuration..."
-msgstr "Langattoman verkon asetukset."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Langattoman verkon asetukset.\n"
-"\n"
-"Valitse, mitä tehdä seuraavaksi."
-
-msgid "Wireless network setup"
-msgstr "Langattoman verkon asetukset"
-
-msgid "Wireless network state"
-msgstr "WLAN-verkon tila"
 
 msgid "With EXIT button"
 msgstr "exit-näppäimellä"
@@ -23891,6 +23982,9 @@ msgstr "Tallennatko syötetyn PIN koodin %s ?"
 
 msgid "Wrestling"
 msgstr "Paini"
+
+msgid "Write block size"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -24106,18 +24200,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "%s %s ei ole yhteyttä Internettiin. Tarkista verkkoasetukset ja yritä uudelleen."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"%s %s on nyt valmis käyttöön.\n"
-"\n"
-"Verkkoyhteys toimii.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "%s %s käynnistyy uudelleen"
 
@@ -24148,40 +24230,12 @@ msgid "Your %s %s will Restart..."
 msgstr "Laite %s %s käynnistyy uudelleen..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"%s %s käynnistyy uudelleen palvelun asentamisen jälkeen.\n"
-"\n"
-"Asennetaanko palvelu nyt?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
-"Poistetaanko palvelu nyt?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Lähiverkkoyhteys ei toimi!\n"
-"Valitse mitä haluat tehdä seuraavaksi."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "Verkkoyhteytesi toimii (ip: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Vastaanottimessasi on havaittu ohjelmisto virhe. Viimeisen uudelleen käynnistyksen jälkeen se on tapahtunut %d kertaa.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Laite käynnistyy uudelleen kun painat kaukosäätimen OK näppäintä."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Tallenteet eivät mahdu yksipuoliselle DVD:lle, tarvitset tyhjän dual layer DVD-levyn!"
@@ -24226,9 +24280,6 @@ msgid ""
 msgstr ""
 "Etupaneeli näytön ohjelmisto päivitetään\n"
 "Tämä saattaa kestää muutaman minuutin"
-
-msgid "Your network configuration has been activated."
-msgstr "Verkkoasetukset on aktivoitu."
 
 msgid "Your password must have at least 5 characters."
 msgstr "Salasanassasi on oltava vähintään 5 merkkiä."
@@ -24485,12 +24536,6 @@ msgstr "sulje jakonäkymä"
 msgid "config menu"
 msgstr "Valikon määritys"
 
-msgid "confirmed"
-msgstr "vahvistettu"
-
-msgid "connected"
-msgstr "kytketty"
-
 msgid "copy"
 msgstr "kopioi"
 
@@ -24514,9 +24559,6 @@ msgstr "Poista leikkausmääritys"
 
 msgid "disabled"
 msgstr "pois päältä"
-
-msgid "disconnected"
-msgstr "ei kytketty"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24777,9 +24819,6 @@ msgstr "Dl dvd levystä käytetty."
 msgid "of a SINGLE layer medium used."
 msgstr "dvd levystä käytetty."
 
-msgid "off or wpa2 on"
-msgstr "Pois tai WPA2 päällä"
-
 msgid "offset is"
 msgstr "offsetin määrä"
 
@@ -24989,9 +25028,6 @@ msgstr "uShare asetukset"
 msgid "unavailable"
 msgstr "ei saatavilla"
 
-msgid "unconfirmed"
-msgstr "vahvistamaton"
-
 msgid "unknown"
 msgstr "tuntematon"
 
@@ -25048,6 +25084,686 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "10th (Lowest)"
+#~ msgstr "10th (Alin)"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "1st (Highest)"
+#~ msgstr "1st (korkein)"
+
+#~ msgid "2nd"
+#~ msgstr "2nd"
+
+#~ msgid "3rd"
+#~ msgstr "3rd"
+
+#~ msgid "4th"
+#~ msgstr "4th"
+
+#~ msgid "5th"
+#~ msgstr "5th"
+
+#~ msgid "6th"
+#~ msgstr "6th"
+
+#~ msgid "7th"
+#~ msgstr "7th"
+
+#~ msgid "8th"
+#~ msgstr "8th"
+
+#~ msgid "9th"
+#~ msgstr "9th"
+
+#~ msgid "One"
+#~ msgstr "Yksi"
+
+#~ msgid "Three"
+#~ msgstr "Kolme"
+
+#~ msgid "Two"
+#~ msgstr "Kaksi"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d Langaton verkko löytyi!"
+#~ msgstr[1] "%d Langattomia verkkoja löytyi!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Toinen määritetty verkkosovitin löytyi.\n"
+#~ "\n"
+#~ "Kytketäänkö se pois päältä?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "aktivoi verkkosovittimen asetukset"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Ota verkkoasetukset käyttöön"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Ota tekemäsi verkkoasetukset käyttöön."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Haluatko aktivoida nämä verkkoasetukset?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Haluatko käynnistää verkkosovittimet uudelleen?"
+
+#~ msgid "Back"
+#~ msgstr "Takaisin"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "Määritä DNS (nimipalvelimet)"
+
+#~ msgid "Configure interface"
+#~ msgstr "Määritä verkkosovitin"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Määritä tai tarkista DNS (nimipalvelimet) säätämällä arvoja.\n"
+#~ "\n"
+#~ "Kun asetukset ovat oikein, jatka painamalla OK."
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Määritä IP-osoite."
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Määritä Internet yhteys säätämällä näytettyjä arvoja.\n"
+#~ "\n"
+#~ "Kun asetukset ovat oikein, jatka painamalla OK."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Määritä verkon yhdyskäytävä."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Määritä nimipalvelin (DNS)."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Määritä verkkomaski."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Määritä verkko uudelleen"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Määritä verkkoasetukset"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Määritä LAN asetukset"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Määritä WLAN asetukset uudelleen"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Yhdistä langattomaan verkkoon"
+
+#~ msgid "Current settings:"
+#~ msgstr "Käytetyt asetukset:"
+
+#~ msgid "DHCP"
+#~ msgstr "DCHP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Verkkoasetukset"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "Poistettu tai WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Muokkaan %s %s:n nimipalvelimen asetuksia."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Muokkaa %s %s:n lähiverkon asetuksia."
+
+#~ msgid "Enable IPv6"
+#~ msgstr "Ota käyttöön IPv6"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Ota käyttöön Wake On LAN"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Salattu: "
+
+#~ msgid "Encryption Type:"
+#~ msgstr "Salauksen tyyppi:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Suojausavain"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Salausavaimen tyyppi"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Virhe luodessa EHD Teemaa\n"
+#~ "HD ulkoasua käytetään!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Virhe EHD teeman luomisessa. Kuvake paketin lataus ei ole käytettävissä.\n"
+#~ "HD ulkoasua käytetään!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Virhe luotaessa UltraHD teemaa. Sisäistä muistia ei ole riittävästi vapaana.\n"
+#~ "HD ulkoasua käytetään!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Virhe luotaessa UltraHD teemaa.\\ Usea Ultrahd- kuvake puuttuu.\n"
+#~ "HD ulkoasua käytetään!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Virhe luotaessa HD-teemaa. sisäistä muistia ei ole riittävästi vapaana."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Virhe luodessa MetrixHD teema.\n"
+#~ "Tarkista uudelleen käynnistyksen jälkeen MyMetrixLite lisäosa ja ota asetukset käyttöön."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Virhe, tuntematon tulos!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "poistu verkkosovittimen asetuksista"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "Poistu verkkosovittimen asetus valikosta"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Poistu verkkosovitinluettelosta"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Poistu verkkoasennuksesta"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Laajennetut Verkkoasetukset."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Laajat Asetukset."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "Verkon määritys suoritettu"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "Seuraa ohjeita televisiosta"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "Taajuus:"
+
+#~ msgid "Interface: "
+#~ msgstr "Liittymä: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "Verkkosovitin"
+
+#~ msgid "Link quality:"
+#~ msgstr "Yhteyden laatu:"
+
+#~ msgid "Link:"
+#~ msgstr "Yhteys:"
+
+#~ msgid "List available networks"
+#~ msgstr "Näytä verkot"
+
+#~ msgid "Local network"
+#~ msgstr "Lähiverkko"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-osoite"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Manuaalinen määritys"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Maks. bittimäärä: "
+
+#~ msgid "Nameserver"
+#~ msgstr "Nimipalvelin"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "Nimipalvelimen asetukset"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "Verkkosovittimen toiminnot"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "Verkkosovittimen asetukset"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "Verkkosovittimen teksti toiminnot"
+
+#~ msgid "Network Test:"
+#~ msgstr "Lähiverkon testi: "
+
+#~ msgid "Network Wizard"
+#~ msgstr "Ohjattu verkkoasennus"
+
+#~ msgid "Network test"
+#~ msgstr "Lähiverkon testi"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Ohjattu verkkoasennus valmis.\n"
+#~ "\n"
+#~ "Jatka painamalla OK."
+
+#~ msgid "Network:"
+#~ msgstr "Sovitin:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Ohjattu verkkoasennus"
+
+#~ msgid "No Connection"
+#~ msgstr "Ei yhteyttä"
+
+#~ msgid "No networks found"
+#~ msgstr "Verkkoja ei löytynyt"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Langattomia verkkoja ei löytynyt! Etsitään..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Toimivaa verkkokorttia ei löydy.\n"
+#~ "Tarkista, että olet kytkennyt verkkokaapelin ja lähiverkon asetukset ovat oikein."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Toimivaa langatonta yhteyttä ei löydy.\n"
+#~ "Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen ja verkko on määritelty oikein."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Toimivaa langatonta yhteyttä ei löydy.\n"
+#~ "Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen tai kytke lähiverkko päälle."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Seuraa ruudulla näkyviä ohjeita"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "Jatka painamalla OK."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Odota, verkkoasetuksia aktivoidaan..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Odota, verkkosovittimia määritetään..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Odota, verkkoyhteyttä testataan..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Odota, teeman asetuksia palautetaan..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Ota käyttöön painamalla OK."
+
+#~ msgid "Primary DNS"
+#~ msgstr "Ensisijainen DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Verkkosovittimen uudelleenkäynnistys"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Käynnistä verkkoyhteydet uudelleen."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "Palautetaan MetrixHD Asetukset"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd asetukset"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Hae langattomia verkkoja"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin valittua WLAN-laitetta käyttäen."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Toissijainen DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Valitse langaton verkko"
+
+#~ msgid "Select interface"
+#~ msgstr "Valitse verkkosovitin"
+
+#~ msgid "Select menu entry"
+#~ msgstr "Valitse valikko kohta"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Valitse verkkosovitin jota käytetään internet yhteyteen.\n"
+#~ "\n"
+#~ "Jatka painamalla OK näppäintä."
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Valitse langaton verkko, johon haluat muodostaa yhteyden.\n"
+#~ "\n"
+#~ "Jatka painamalla OK."
+
+#~ msgid "Select wireless network"
+#~ msgstr "Valitse Langaton verkko"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "Näytä WLAN:in tila"
+
+#~ msgid "Show info"
+#~ msgstr "Näytä tiedot"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Näyttää WLAN-yhteyden tilan."
+
+#~ msgid "Signal quality"
+#~ msgstr "Yhteyden laatu"
+
+#~ msgid "Signal: "
+#~ msgstr "Signaali: "
+
+#~ msgid "Start test"
+#~ msgstr "Aloita testi"
+
+#~ msgid "Stop test"
+#~ msgstr "Lopeta testi"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Testaa %s %s:n lähiverkon toiminta."
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Internet yhteys näyttää toimivan.\n"
+#~ "\n"
+#~ "Paina ok jatkaaksesi."
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Internet yhteystesi ei näytä toimivan!\n"
+#~ "\n"
+#~ "Valitse, mitä tehdään seuraavaksi."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Verkkoavustajaa ei ole asennettu!\n"
+#~ "Asenna se."
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Langatonta Internet yhteyttä ei voitu käynnistää!\n"
+#~ "Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen ja verkko on määritelty oikein.\n"
+#~ "\n"
+#~ "Valitse, mitä tehdään seuraavaksi."
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "WLAN-lisäosaa ei ole asennettu!\n"
+#~ "\n"
+#~ "Asenna se ja valitse mitä haluat tehdä seuraavaksi."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "WLAN lisäosaa ei ole asennettu!\n"
+#~ "Asenna se."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Tämä testi tarkistaa nimipalvelimet.\n"
+#~ "Jos näet \"vahvistamaton\" ilmoituksen:\n"
+#~ "- tarkista DHCP, kaapelointi ja sovittimen asetukset\n"
+#~ "- jos määrittelit nimipalvelimet käsin, tarkista arvot \"Nimipalvelimen asetukset\" kohdassa"
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Tämä testi tarkistaa, onko verkkokaapeli kytketty verkkokorttiin.\n"
+#~ "Jos näet \"ei kytketty\" ilmoituksen:\n"
+#~ "- tarkista, että kaapeli on kytketty\n"
+#~ "- tarkista, ettei kaapeli ole vaurioitunut"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Tämä testi tarkistaa, onko verkkosovittimella toimiva IP-osoite.\n"
+#~ "Jos näet \"vahvistamaton\" ilmoituksen:\n"
+#~ "- toimivaa IP-osoitetta ei löytynyt\n"
+#~ "- tarkista DHCP, kaapeli ja verkkosovittimen asetukset"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Tämä testi tarkistaa, onko verkkosovittimelle määritetty automaattinen IP-osoite DHCP:n kautta.\n"
+#~ "Jos näet \"ei käytössä\" ilmoituksen:\n"
+#~ "- verkkosovitin on määritelty käyttämään kiinteää IP-osoitetta\n"
+#~ "- tarkista, että olet syöttänyt oikeat IP-tiedot Sovittimen asetukset -kohdassa.\n"
+#~ "Jos näet \"käytössä\" ilmoituksen:\n"
+#~ "- tarkista, että sinulla on lähiverkossasi toimiva ja oikein määritelty DHCP-palvelin."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Tämä testi tunnistaa määrittelemäsi verkkosovittimen."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Salaamaton"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Tuntematon virhe teema luodessa\n"
+#~ "Tarkista uudelleen käynnistyksen jälkeen asetukset MyMetrixLite lisäosan ja ota käyttöön."
+
+#~ msgid "Unsupported"
+#~ msgstr "Ei tuettu"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Käytä yhdyskäytävää"
+
+#~ msgid "Use interface"
+#~ msgstr "Käytä sovitinta"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Aktivoi vain Wake on WLAN"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Määritä verkkoasetukset ohjatun verkkoasennuksen avulla. Avustaja auttaa määritysten tekemisessä"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN yhteys"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN yhteys"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA tai WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Kun päällä, käytetään DHCP:tä IP-määritykseen."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "WLAN-verkko"
+
+#~ msgid "Wireless network"
+#~ msgstr "Langaton verkko"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Langattoman verkon asetukset."
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Langattoman verkon asetukset.\n"
+#~ "\n"
+#~ "Valitse, mitä tehdä seuraavaksi."
+
+#~ msgid "Wireless network setup"
+#~ msgstr "Langattoman verkon asetukset"
+
+#~ msgid "Wireless network state"
+#~ msgstr "WLAN-verkon tila"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s %s on nyt valmis käyttöön.\n"
+#~ "\n"
+#~ "Verkkoyhteys toimii.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "%s %s käynnistyy uudelleen palvelun asentamisen jälkeen.\n"
+#~ "\n"
+#~ "Asennetaanko palvelu nyt?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
+#~ "Poistetaanko palvelu nyt?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Lähiverkkoyhteys ei toimi!\n"
+#~ "Valitse mitä haluat tehdä seuraavaksi."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Laite käynnistyy uudelleen kun painat kaukosäätimen OK näppäintä."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Verkkoasetukset on aktivoitu."
+
+#~ msgid "confirmed"
+#~ msgstr "vahvistettu"
+
+#~ msgid "connected"
+#~ msgstr "kytketty"
+
+#~ msgid "disconnected"
+#~ msgstr "ei kytketty"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "Pois tai WPA2 päällä"
+
+#~ msgid "unconfirmed"
+#~ msgstr "vahvistamaton"
 
 #~ msgid "Automatic shares access"
 #~ msgstr "Automaattinen jakaminen määritys"
@@ -25637,9 +26353,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "Haetaan..."
 
 #~ msgid "Servers:"
 #~ msgstr "Palvelimet:"
@@ -26597,9 +27310,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Ajanpäivitys minuutteina:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

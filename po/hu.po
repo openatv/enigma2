@@ -4,28 +4,29 @@
 # Automatically generated, 2005.
 # f3rr31 <5920873@disroot.org>, 2021.
 # H. Árkosi Róbert <robreg@zsurob.hu>, 2022.
-# Balázs Sólyom <balazs@solyom.online>, 2025.
+# Balázs Sólyom <balazs@solyom.online>, 2025, 2026.
+# jbleyel <jbleyel@gmx.net>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 19:37+0000\n"
-"PO-Revision-Date: 2025-05-05 05:50+0000\n"
-"Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
+"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"PO-Revision-Date: 2026-08-17 22:31+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
 "\n"
-"<Ez a tuner automatikusan konfigurálva van>"
+"<A tuner automatikusan konfigurálva van>"
 
 msgid ""
 "\n"
@@ -923,6 +924,12 @@ msgstr[0] "%d feed katalógus frissítve."
 msgstr[1] "%d feed katalógus frissítve."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -941,6 +948,12 @@ msgstr "%d perc"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d package found."
@@ -1055,12 +1068,6 @@ msgstr ""
 #, python-format
 msgid "%d times"
 msgstr "%d alkalommal"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d elérhető vezeték nélküli hálózat!"
-msgstr[1] "%d elérhető vezeték nélküli hálózat!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1251,6 +1258,10 @@ msgid "%s%s(Default: %s)"
 msgstr "%s%s(Alapértelmezett: %s)"
 
 #, python-format
+msgid "%s. (Lowest)"
+msgstr ""
+
+#, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
@@ -1293,6 +1304,22 @@ msgstr "%s 1080i mutatása 1080p-ként"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "A(z) '%s' tartalmaz %d fájlt és %d alkönyvtárat.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a rendszer Timeshift fájlt törölni."
@@ -1380,14 +1407,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr "10 bit"
@@ -1410,17 +1431,11 @@ msgstr "12 bit"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bit 4:2:0/4:2:2 nincs Kép-a-Képben"
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "mindig 16:9"
@@ -1439,9 +1454,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "Első információs sáv eltünési ideje"
@@ -1678,15 +1690,6 @@ msgid "A required tool (%s) was not found."
 msgstr "A keresett eszköz (%s) nem található."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Egy második bekonfigurált interfész is van a rendszerben.\n"
-"\n"
-"Le szeretné tiltani a második hálózati interfészt?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1823,6 +1826,11 @@ msgstr ""
 msgid "Access point"
 msgstr "Hozzáférési pont"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "A földrajzi helyadatok eléréséhez internetkapcsolat szükséges."
 
@@ -1862,14 +1870,8 @@ msgstr "Engedélyezze a Fel / Le gombokat az \"összes fel / le\" funkcióhoz? (
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktiválja az egyéni vagy meghatározott belső HDMI-CEC parancsok parancssorból történő küldésének módját."
 
-msgid "Activate network adapter configuration"
-msgstr "hálózati adapter konfiguráció aktiválása"
-
-msgid "Activate network settings"
-msgstr "Hálózati beállítások aktiválása"
-
-msgid "Activate the configured network settings."
-msgstr "A megadott hálózati beállítások aktiválása."
+msgid "Activate network adapter"
+msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
@@ -1890,6 +1892,13 @@ msgid "Active clients"
 msgstr "Aktív kliensek"
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 msgid "Adapter Settings"
@@ -1934,6 +1943,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "jelölő hozzáadása"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr "Új négy csatornás bejegyzés hozzáadása"
 
@@ -1957,6 +1969,12 @@ msgstr "Időzítés"
 
 msgid "Add To Parental Protection"
 msgstr "hozzáadás a gyermekzár védelemhez"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 msgid "Add Zap+RecordTimer"
 msgstr "Zap + Felvétel időzítő hozzáadása"
@@ -1984,6 +2002,9 @@ msgstr "Elkapcsolás időzítő hozzáadása a következő eseményhez"
 
 msgid "Add a mark"
 msgstr "Jelző hozzáadása"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr ""
@@ -2542,9 +2563,6 @@ msgstr "Biztos benne, hogy eltávolítja az összes földfelszíni csatornát?"
 msgid "Are you sure to remove this entry?"
 msgstr "Biztos benne, hogy eltávolítja ezt a bejegyzést?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Biztos benne, hogy aktiválni kívánja ezt a hálózati konfigurációt?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2569,9 +2587,6 @@ msgstr "Biztos benne, hogy kilép a Varázslóból?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Biztosan újra szeretné tölteni az EPG adatokat innen:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Biztos hogy újra akarja indítani a hálózati interfészt?"
 
 #, python-format
 msgid ""
@@ -2683,6 +2698,9 @@ msgstr "Hozzárendelt CAId:"
 
 msgid "Assigned services/provider:"
 msgstr "Hozzárendelt csatornák/szolgáltató:"
+
+msgid "Associated"
+msgstr ""
 
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
@@ -2947,8 +2965,8 @@ msgstr "Kék hosszan"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Kék gomb: Kék röviden/Kék hosszan"
 
-msgid "Back"
-msgstr "Vissza"
+msgid "BSSID"
+msgstr ""
 
 msgid "Back USB"
 msgstr "Vissza USB"
@@ -3354,6 +3372,9 @@ msgstr ""
 msgid "Broadcom default"
 msgstr ""
 
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3412,6 +3433,9 @@ msgstr "Kiírás adathordozóra"
 
 msgid "Burundi"
 msgstr "Burundi"
+
+msgid "Bus"
+msgstr ""
 
 msgid "Business"
 msgstr ""
@@ -3591,6 +3615,9 @@ msgstr "Kábel"
 
 msgid "Cable Scan"
 msgstr "Kábel keresés"
+
+msgid "Cable Unplugged"
+msgstr ""
 
 msgid "Cable input"
 msgstr ""
@@ -4098,6 +4125,9 @@ msgstr "Fejezet"
 msgid "Character device"
 msgstr "Karaktereszköz"
 
+msgid "Character set"
+msgstr ""
+
 msgid "Chat show"
 msgstr ""
 
@@ -4334,6 +4364,9 @@ msgstr "Törlés"
 msgid "Clear Log"
 msgstr "Napló törlése"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Keresés előtt törlés"
 
@@ -4398,6 +4431,9 @@ msgstr "Csatornacsomag lista bezárása."
 
 msgid "Close dialog"
 msgstr "Párbeszédpanel bezárása"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr ""
@@ -4593,7 +4629,7 @@ msgstr "Konfigurációs mód"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
@@ -4601,6 +4637,9 @@ msgstr "Extra késleltetés beállítása külső feliratfájl esetén, szinkron
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Extra késleltetés beállítása felirathoz, szinkronizáció hibák korrigálásához."
+
+msgid "Configure another network adapter"
+msgstr ""
 
 msgid "Configure cable reception on this input."
 msgstr ""
@@ -4650,14 +4689,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "A felirat váltson-e normál, dőlt, félkövér és félkövér dőlt között"
 
-msgid "Configure interface"
-msgstr "Interfész konfigurálása"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Milyen eszközökre legyen érvényes a háttérben történő törölgetés."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -4674,17 +4713,8 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "A DiSEqC mód beállítása ehhez a fejhez."
 
-msgid "Configure the IP address."
-msgstr "IP cím konfigurálása."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "Tartalék távoli vevő IP címe"
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Tartalék távoli vevő portja"
@@ -4788,9 +4818,6 @@ msgstr "A Be/Ki kapcsoló gomb működése rövid (normális) lenyomásnál."
 msgid "Configure the function of the < and > buttons."
 msgstr ""
 
-msgid "Configure the gateway."
-msgstr "Átjáró beállítása."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Beállíthatja, hogy a merevlemez leálljon készenléti állapotába a beállításnak megfelelően miután a készülék készenléti állapotba kerül."
 
@@ -4820,15 +4847,6 @@ msgstr "A felvételekhez szükséges minimális szabad tárhely. Ha az elérhet�
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Állítsa be a minimális szélességet az \"i\" ikon megjelenése előtt, a \"0\" megegyezik azzal, hogy egyáltalán nem jelenik meg az ikon."
-
-msgid "Configure the name server (DNS)."
-msgstr "Névszerverek (DNS) konfigurálása."
-
-msgid "Configure the netmask."
-msgstr "Alhálózati maszk beállítása."
-
-msgid "Configure the network again"
-msgstr "Állítsa be újra hálózatát"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Állítsa be azon napok számát, amelyek után az elemek automatikusan eltávolításra kerülnek a kukákból."
@@ -4862,6 +4880,9 @@ msgstr "Többnyelvű csatornáknál ezt a feliratot választja automatikusan, m�
 
 msgid "Configure the secondary EPG language."
 msgstr "Többnyelvű EPG-t sugárzó csatornáknál ezt a nyelvet választja automatikusan, második prioritással."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Ennyi időt ugrik az '1' (vissza) és a '3' (előre) gombok megnyomásakor."
@@ -4962,17 +4983,8 @@ msgstr "Melyik tuner legyen választva, ha ugyanaz a csatorna egyszerre több tu
 msgid "Configure your NTP server."
 msgstr "Állítsa be az NTP szervert."
 
-msgid "Configure your Network"
-msgstr "Állítsa be hálózatát"
-
-msgid "Configure your internal LAN"
-msgstr "Állítsa be a helyi hálózatot"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Állítsa be a hálózati beállításokat, és nyomja meg az OK gombot a keresés indításához"
-
-msgid "Configure your wireless LAN again"
-msgstr "Állítsa be újra vezeték nélküli hálózatát"
 
 msgid "Configures which video output connector will be used."
 msgstr "Állítsa be, hogy melyik videó kimeneti csatlakozó van bekötve, használva."
@@ -4984,6 +4996,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -5005,10 +5021,13 @@ msgstr "Csatlakozás"
 msgid "Connect to IceTV server every"
 msgstr "Csatlakozzon mindig az IceTV szerverhez"
 
-msgid "Connect to a wireless network"
-msgstr "Csatlakozás vezeték nélküli hálózathoz"
-
 msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 msgid "Connected clients"
@@ -5026,8 +5045,26 @@ msgstr "Csatlakoztatva ehhez"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "Csatlakoztatva: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr ""
@@ -5076,6 +5113,9 @@ msgid "Context"
 msgstr "Szövegkörnyezet"
 
 msgid "Continent"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5227,8 +5267,22 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Elefántcsontpart"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 msgid "Could not connect to server"
 msgstr "Nem lehet kapcsolódni a kiszolgálóhoz"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nem lehet betölteni a hordozót! Van benne lemez?"
@@ -5251,6 +5305,12 @@ msgstr "Az %s érvénytelen csatorna miatt a felvétel nem lehetséges"
 #, python-format
 msgid "Could not save configuration file %s!"
 msgstr "A konfigurációs fájl %s mentése nem sikerült!"
+
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
 
 msgid "Country"
 msgstr "Ország"
@@ -5372,6 +5432,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Partíció létrehozása"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr ""
 
@@ -5471,9 +5538,6 @@ msgstr ""
 
 msgid "Current rotor position: unknown"
 msgstr ""
-
-msgid "Current settings:"
-msgstr "Aktuális beállítások:"
 
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
@@ -5579,9 +5643,6 @@ msgstr "SD"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA támogatás"
 
@@ -5592,6 +5653,9 @@ msgid "DMM normal"
 msgstr "DMM hagyományos"
 
 msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS Settings Actions"
 msgstr ""
 
 msgid "DNS data source"
@@ -5873,7 +5937,13 @@ msgstr "Hatástalanít"
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -6127,6 +6197,12 @@ msgstr "Kép törlése"
 msgid "Delete Line"
 msgstr ""
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Bővítmények törlése"
 
@@ -6360,9 +6436,6 @@ msgstr "Eszközkezelő"
 msgid "Device Manager Actions"
 msgstr ""
 
-msgid "Device Settings"
-msgstr "Hálózati eszközök beállítása"
-
 msgid "Device id"
 msgstr ""
 
@@ -6473,6 +6546,9 @@ msgstr ""
 msgid "Disable"
 msgstr "Letiltás"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "Animációk letiltása"
 
@@ -6497,6 +6573,9 @@ msgstr "MiniTV letiltása"
 msgid "Disable Move Mode"
 msgstr "mozgatási mód letiltása"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "Kép-a-Képben kikapcsolása"
 
@@ -6515,6 +6594,9 @@ msgstr "Letiltja az intro képernyőt"
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr "A folyamatjelző sáv megjelenítése/letiltása"
 
@@ -6530,10 +6612,10 @@ msgstr "Letiltva"
 msgid "Disabled PiP.\n"
 msgstr "Kép-a-Képben letiltva\n"
 
-msgid "Disabled or WPA/WPA2"
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
-msgid "Disabling Chkroot failed!"
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -6958,6 +7040,9 @@ msgstr "Dreambox formátumú adat DVD (HDTV kompatibilis)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox formátumú adat DVD (nem működik más DVD lejátszóknál)"
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr ""
 
@@ -7123,6 +7208,9 @@ msgstr "Szerkesztés"
 msgid "Edit Alternatives"
 msgstr "alternatívák módosítása"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr "Szerkesztési mód ki"
 
@@ -7144,6 +7232,9 @@ msgstr "Cím szerkesztése"
 msgid "Edit Upgrade Source URL"
 msgstr ""
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Aktuális cím jeleneteinek módosítása"
 
@@ -7153,25 +7244,20 @@ msgstr "Aktuális sor szerkesztése"
 msgid "Edit settings"
 msgstr "Beállítások módosítása"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr ""
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr ""
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Szerkessze a(z) %s %s névszerver konfigurációját."
-
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 msgid "Edit the currently selected timer"
 msgstr ""
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Szerkessze a(z) %s %s hálózati konfigurációját."
 
 msgid "Edit the password."
 msgstr ""
@@ -7183,6 +7269,9 @@ msgid "Edit the remote CCCam port."
 msgstr ""
 
 msgid "Edit the remote IP address."
+msgstr ""
+
+msgid "Edit the selected network mount"
 msgstr ""
 
 msgid "Edit the upgrade source address."
@@ -7282,9 +7371,6 @@ msgstr ""
 msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
-msgid "Enable IPv6"
-msgstr ""
-
 msgid "Enable IceTV"
 msgstr "Az IceTV engedélyezése"
 
@@ -7336,8 +7422,8 @@ msgstr "ViaSat EPG engedélyezése"
 msgid "Enable Virgin EPG"
 msgstr "Virgin EPG engedélyezése"
 
-msgid "Enable Wake On LAN"
-msgstr "Engedélyezze a Wake On LAN engedélyezését"
+msgid "Enable adapter"
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Engedélyezze és állítsa be a második Információs sávot (kétszer nyomja meg az OK gombot), amely több információt tartalmazhat az aktuális csatornákról."
@@ -7415,10 +7501,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Többszörös csatornacsomagok engedélyezése"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr "Engedélyezze a hálózati forgalom ellenőrzését"
 
 msgid "Enable new GStreamer playback"
+msgstr ""
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -7432,6 +7524,9 @@ msgstr "Előnézet engedélyezése"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Lehetővé teszi, hogy egy távoli enigma2 készülékről próbálja meg a csatorna megjelenítését, ha a helyi tuner erre nem képes (pl. a tuner foglalt, mert egy másik csatornát vesz). Adja meg a tljes URL-t, beleértve a 'http://' részt és a port számát is. Pl: http://second_box:8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Teletext gyorsítótárazása"
@@ -7532,21 +7627,8 @@ msgstr "Engedélyezve"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ha engedélyezi ezt a funkciót, akkor a vevőegység dekódolni tudja az adatfolyamot (Ha az adatfolyam tartalmazza az ECM-t és ha érvényes kártya is elérhető)."
 
-msgid "Encrypted: "
-msgstr "Kódolva: "
-
 msgid "Encryption"
 msgstr "Kódolás"
-
-#, fuzzy
-msgid "Encryption Type:"
-msgstr "Kódolás:"
-
-msgid "Encryption key"
-msgstr "Kódolási kulcs"
-
-msgid "Encryption key type"
-msgstr "Kódolási kulcstípus"
 
 msgid "End"
 msgstr "Vége"
@@ -7654,6 +7736,9 @@ msgstr ""
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Adja meg, ha az Egyenlítőtől északra vagy délre van."
 
@@ -7665,6 +7750,9 @@ msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "írja be a számot a csatorna ugrásához."
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr "Adja meg a tartós PIN-kódot"
@@ -7699,11 +7787,29 @@ msgstr "Adja meg azt a frekvenciát, amellyel az LNB az alacsony és a magas sá
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Adja meg a tuner használni való frekvencialépés méretét a kábelmultiplexek keresésekor. További információkért olvassa el a kábelszolgáltató dokumentációját."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Adja meg a pozícionálóban tárolt számot, amely megfelel ennek a műholdnak."
+
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
@@ -7712,6 +7818,9 @@ msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -7727,6 +7836,12 @@ msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.
 msgstr ""
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
 msgstr ""
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
@@ -7880,44 +7995,6 @@ msgstr ""
 msgid "Error code"
 msgstr "Hibakód"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Hiba az EHD-Skin létrehozásakor.\n"
-"Hd-Skin használata!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Hiba az EHD-Skin létrehozásakor. Az ikoncsomag letöltése nem érhető el.\n"
-"Hd-Skin használata!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Hiba az EHD-Skin létrehozásakor. Nincs elég szabad flash memória.\n"
-"Hd-Skin használata!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Hiba az EHD-Skin létrehozásakor. Néhány EHD-ikonok hiányozik.\n"
-"Hd-Skin használata!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Hiba történt a HD-Skin létrehozásában. Nincs elég szabad flash memória."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Hiba történt a MetrixHD-Skin létrehozásában.\n"
-"Kérjük, ellenőrizze a MyMetrixLite-Plugin újra indítását és alkalmazza a beállításait."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
@@ -7964,9 +8041,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr "Hiba, ismeretlen végeredmény!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7977,6 +8051,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Egy üres fájlnév érvénytelen."
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8030,12 +8107,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr ""
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "%s mappák eltávolítása sikertelen. (Lehet nem üres)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8086,6 +8170,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Fájlírási hiba: '%s'"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8108,6 +8196,9 @@ msgstr "Észt"
 #, fuzzy
 msgid "EtPortal"
 msgstr "Portugália"
+
+msgid "Ethernet Adapter"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Ethernet hálózati interfész"
@@ -8237,18 +8328,6 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr "Kilépés a filmlejátszóból?"
 
-msgid "Exit network adapter configuration"
-msgstr "kliépés a hálózati adapter beállításaiból"
-
-msgid "Exit network adapter setup menu"
-msgstr ""
-
-msgid "Exit network interface list"
-msgstr "Kilépés a hálózati interfészek listájából"
-
-msgid "Exit network wizard"
-msgstr "Kilépés a Hálózati Varázslóból"
-
 msgid "Exit picture viewer"
 msgstr ""
 
@@ -8267,6 +8346,9 @@ msgstr ""
 msgid "Expand"
 msgstr "Kibontás"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr "kísérleti filmezés"
 
@@ -8281,6 +8363,9 @@ msgstr "Haladó"
 
 msgid "Expert mode"
 msgstr "Szakértő mód"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr ""
@@ -8300,12 +8385,6 @@ msgstr "Kiterjeszt"
 
 msgid "Extended"
 msgstr "Kiterjesztett"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Bővített hálózati beállítások bővítmény..."
-
-msgid "Extended Setup..."
-msgstr "Bővített beállítások..."
 
 msgid "Extended Shares"
 msgstr "Bővített megosztások"
@@ -8762,9 +8841,6 @@ msgstr "Finomhangolás"
 msgid "Finished"
 msgstr "Kész"
 
-msgid "Finished configuring your network"
-msgstr "A hálózati beállítás befejeződött"
-
 msgid "Finland"
 msgstr "Finnország"
 
@@ -8866,14 +8942,14 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Végleges pozíció"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
 msgstr "folklór/népzene"
-
-msgid "Follow instructions on TV"
-msgstr ""
 
 msgid "Font size"
 msgstr "Betűméret"
@@ -8982,10 +9058,6 @@ msgstr "Francia déli és antarktiszi területek"
 
 msgid "Frequency"
 msgstr "Frekvencia"
-
-#, fuzzy
-msgid "Frequency Norm:"
-msgstr "Frekvencia: "
 
 msgid "Frequency bands"
 msgstr "Frekvencia sávok"
@@ -9802,6 +9874,9 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP"
 
+msgid "IP Address"
+msgstr ""
+
 msgid "IP Address 1"
 msgstr ""
 
@@ -9834,6 +9909,9 @@ msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK Telepítő"
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr ""
@@ -10409,9 +10487,6 @@ msgstr "Interfész"
 msgid "Interface '%s'"
 msgstr ""
 
-msgid "Interface: "
-msgstr "Interfész: "
-
 msgid "Interlaced"
 msgstr "Sorváltással"
 
@@ -10776,11 +10851,11 @@ msgstr "Kirgizisztán"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "Hálózati adapter"
-
 msgid "LAN connection"
 msgstr "Helyi privát"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr "LCD görgetési sebesség"
@@ -10990,6 +11065,9 @@ msgstr ""
 msgid "Left, wrapped"
 msgstr "bal oldalon sortöréssel"
 
+msgid "Legacy (SMB1)"
+msgstr ""
+
 msgid "Legacy mode"
 msgstr ""
 
@@ -11082,17 +11160,11 @@ msgstr ""
 msgid "Link detected"
 msgstr ""
 
-msgid "Link quality:"
-msgstr "Kapcsolat minősége:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr ""
-
-msgid "Link:"
-msgstr "Kapcsolat:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "DVD menüvel linkelt címek"
@@ -11105,9 +11177,6 @@ msgstr ""
 
 msgid "List available EPG functions"
 msgstr "EPG funkciók listája..."
-
-msgid "List available networks"
-msgstr "Elérhető hálózatok listázása"
 
 msgid "List of Storage Devices"
 msgstr ""
@@ -11176,14 +11245,14 @@ msgstr ""
 msgid "Local information"
 msgstr ""
 
-msgid "Local network"
-msgstr "Helyi hálózat"
-
 msgid "Local or Regional"
 msgstr ""
 
 msgid "Local receiver"
 msgstr "Helyi box"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr ""
@@ -11358,11 +11427,11 @@ msgstr "Luxemburgi"
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr ""
 
-msgid "MAC-address"
-msgstr "MAC-cím"
+msgid "MAC address"
+msgstr ""
 
 msgid "MENU"
 msgstr ""
@@ -11512,9 +11581,6 @@ msgstr "Kézi keresés"
 msgid "Manual Service Searching"
 msgstr "Kézi csatornakeresés"
 
-msgid "Manual configuration"
-msgstr "Kézi konfiguráció"
-
 msgid "Manual scan for services"
 msgstr "Kézi keresése a csatornáknak"
 
@@ -11589,9 +11655,6 @@ msgstr ""
 
 msgid "Max memory positions"
 msgstr "Maximális memóriahely"
-
-msgid "Max. bitrate: "
-msgstr "Max. bitráta: "
 
 msgid "Maxdown +"
 msgstr "Maxdown +"
@@ -11897,6 +11960,9 @@ msgstr ""
 msgid "Mount"
 msgstr "Csatlakozás"
 
+msgid "Mount Context Menu"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Csatlakozás kezelő"
 
@@ -11906,8 +11972,20 @@ msgstr ""
 msgid "Mount Setup"
 msgstr "Csatlakozás beállítás"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "Csatolás nem sikerült"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr ""
@@ -11915,11 +11993,17 @@ msgstr ""
 msgid "Mount root file system."
 msgstr ""
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr "Csatlakozások"
 
 msgid "Move"
 msgstr "Áthelyezés"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "Mozgat Bal/Jobb"
@@ -11938,6 +12022,9 @@ msgstr "Kép-A-Képben mozgatása"
 
 msgid "Move PiP to main picture"
 msgstr "Kép-a-Képben váltása a főképre"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "Mozgat Fel/Le"
@@ -11993,6 +12080,12 @@ msgstr "ugrás a legutolsó tételhez"
 
 msgid "Move east"
 msgstr "Kelet felé"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr ""
@@ -12106,6 +12199,12 @@ msgid "Move to previous bouquet"
 msgstr ""
 
 msgid "Move to previous marker"
+msgstr ""
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -12345,7 +12444,13 @@ msgstr "NFS"
 msgid "NFS Server Settings"
 msgstr "NFS beállítása"
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12389,12 +12494,6 @@ msgstr ""
 #, python-format
 msgid "Name server %d"
 msgstr ""
-
-msgid "Nameserver"
-msgstr "Névszerver"
-
-msgid "Nameserver settings"
-msgstr "Névszerver beállítások"
 
 msgid "Nameserver setup"
 msgstr "Névszerver beállítások"
@@ -12461,23 +12560,21 @@ msgstr "Alhálózati maszk"
 msgid "Network"
 msgstr "Hálózat"
 
-msgid "Network Adapter Actions"
+#, python-format
+msgid "Network Adapter '%s' Settings"
 msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr "Válasszon hálózati adaptert"
 
-msgid "Network Adapter Setting Actions"
-msgstr ""
-
 msgid "Network Adapter Settings"
-msgstr ""
-
-msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
 msgstr "Hálózat kezelő"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr "Hálózat ID"
@@ -12497,8 +12594,23 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
 msgstr "Hálózat"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr ""
@@ -12515,26 +12627,64 @@ msgstr "Hálózati beállítások"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "Hálózat ellenőrzése"
 
-msgid "Network Test:"
-msgstr "Hálózat tesztelése: "
+msgid "Network Test Actions"
+msgstr ""
+
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
 
 msgid "Network Wi-Fi Settings"
 msgstr ""
 
-msgid "Network Wizard"
-msgstr "Hálózati Varázsló"
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
+msgstr ""
+
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
 msgstr ""
 
 msgid "Network address"
 msgstr ""
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
 msgstr "Hálózati beállítások..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
 
 msgid "Network information"
 msgstr ""
@@ -12561,26 +12711,11 @@ msgstr "Hálózat keresése"
 msgid "Network storage on"
 msgstr ""
 
-msgid "Network test"
-msgstr "Hálózat ellenőrzése"
-
 msgid "Network test..."
 msgstr "Hálózat ellenőrzése..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
 msgstr ""
-
-msgid "Network:"
-msgstr "Hálózat:"
-
-msgid "NetworkWizard"
-msgstr "Hálózati Varázsló"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -12613,6 +12748,9 @@ msgid "New Setting DXAndy "
 msgstr "DXAndy új Beállítás "
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -12713,15 +12851,21 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "Nincs (támogatott) DVD ROM!"
 
-msgid "No Connection"
-msgstr "Nincs kapcsolat"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Nem áll rendelkezésre demux"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nem észlelhető háttértár, vagy az nem lett inicializálva!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -12796,7 +12940,13 @@ msgstr "Nincs szabad index"
 msgid "No free tuner!"
 msgstr "Nincs szabad tuner!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
+msgstr ""
+
+msgid "No hosts found yet - still scanning..."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -12811,8 +12961,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr ""
 
-msgid "No networks found"
-msgstr "Nem észlelhető hálózat"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nincs kapcsoló (növelés vagy csökkentés)"
@@ -12837,6 +12987,9 @@ msgstr "Nincs csatorna"
 
 msgid "No services/providers selected"
 msgstr "Nincs szolgáltató kiválasztva"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr ""
@@ -12912,30 +13065,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Nem található érvényes régiórészlet"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Nem észlelhető vezeték nélküli hálózat! Keresés..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Nem található egyetlen működőképes helyi hálózati illesztő sem.\n"
-"Kérem, ellenőrizze, hogy a hálózati kábel csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
-"Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
-"Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
 
 msgid "No, but restart from begin"
 msgstr "Nem, de indítsa elölröl"
@@ -13024,6 +13153,9 @@ msgstr "Norvég"
 msgid "Not Classified"
 msgstr "Nem minősített"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr "Nincs megadva"
 
@@ -13070,7 +13202,13 @@ msgstr ""
 "Szabad terület: %s MB\n"
 "Útvonal: %s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -13296,9 +13434,6 @@ msgstr "Érvényes ONID-k esetén a frekvencia alhálózat-rész figyelmen kív�
 msgid "Once"
 msgstr "egyszeri"
 
-msgid "One"
-msgstr "Egy"
-
 msgid "One line"
 msgstr "Egy sor"
 
@@ -13510,7 +13645,22 @@ msgstr "Nyissa meg a csatornalistát, és válassza ki az előző csatornát a K
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 msgid "Open the Plugin Browser"
@@ -13552,6 +13702,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening network adapter configuration..."
+msgstr ""
+
 msgid "Opera"
 msgstr ""
 
@@ -13578,6 +13731,9 @@ msgstr "Az információs sávon a piconok megjelenjenek vagy nem"
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Ezzel az opcióval tudja beállítani, hogy a Merevlemez használja a készülék készenléti időzítőjét"
+
+msgid "Optional arguments"
+msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr ""
@@ -14055,6 +14211,9 @@ msgstr "Pillarbox (fekete csíkok oldalakon)"
 msgid "Pilot"
 msgstr "Pilot"
 
+msgid "Pinging..."
+msgstr ""
+
 msgid "Pink"
 msgstr ""
 
@@ -14239,17 +14398,11 @@ msgstr ""
 "Kérjük, adja meg e-mail címét.\n"
 "Erre azért van szükség, hogy szolgáltatási bejelentéseket, fiókemlékeztetőket, promóciós ajánlatokat és üdvözlő e-mailt küldjünk Önnek."
 
-msgid "Please follow the instructions on the TV"
-msgstr "Kérem, kövesse a képernyőn megjelenő instrukciókat"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Az előbb kiválaszott média nem elérhető és ezért inkább az alapmappa lesz használva."
 
 msgid "Please open Picture in Picture first"
 msgstr "Kérem, először a Kép-a-Képben funkciót válassza"
-
-msgid "Please press OK to continue."
-msgstr "A folytatáshoz nyomja le az OK-t."
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -14326,9 +14479,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Kérlek várj"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Kérem várjon, ameddig a hálózati konfiguráció élesedik..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -14381,17 +14531,8 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Kérjük, várjon, amíg ellenőrizzük a telepített bővítményeket..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Kérem várjon, ameddig a hálózati interfészek elkészülnek..."
-
-msgid "Please wait while we test your network..."
-msgstr "Kérem várjon, ameddig a hálózati teszt lezajlik..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "Kérem várjon, ameddig a hálózati konfiguráció újraindul..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Kérem várjon, ameddig a kinézet beállítása helyreáll..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Várjon, amíg az állapotellenőrzés zajlik."
@@ -14665,9 +14806,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Nyomja le az OK gombot a távirányítón a folytatáshoz."
 
-msgid "Press OK to activate the settings."
-msgstr "Az OK gombbal aktiválhatja a beállításokat."
-
 msgid "Press OK to continue."
 msgstr ""
 
@@ -14783,9 +14921,6 @@ msgstr "előző/következő oldal"
 
 msgid "Prevsong"
 msgstr "Prevsong"
-
-msgid "Primary DNS"
-msgstr "Elsődleges DNS"
 
 msgid "Primary DNS (IPv4)"
 msgstr ""
@@ -15148,11 +15283,20 @@ msgstr "Nincs besorolás"
 msgid "Re-enter new PIN"
 msgstr "Írja be újra az új PIN-kód"
 
-msgid "Read-Only"
+msgid "Reachable"
+msgstr ""
+
+msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Az Oscam.conf felhasználói adatainak olvasása"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr ""
 
 msgid "Read/Write"
 msgstr ""
@@ -15206,6 +15350,9 @@ msgid "Really shutdown now?"
 msgstr "Biztos lekapcsoljam most?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -15517,6 +15664,9 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Távirányító típusa"
 
+msgid "Remote path"
+msgstr ""
+
 msgid "Remote receiver"
 msgstr "Távoli készülék"
 
@@ -15544,6 +15694,9 @@ msgstr "kábeles szolgáltatás eltávolítása"
 
 msgid "Remove Confirmation"
 msgstr "Törlés megerősítése"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "bejegyzés törlése"
@@ -15757,6 +15910,15 @@ msgstr "Szükséges hordozó típusa:"
 msgid "Rereading partition table"
 msgstr "Partíciótábla újraolvasása"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "Fenntartva"
 
@@ -15820,8 +15982,14 @@ msgstr "Felbontás"
 msgid "Resolution unit"
 msgstr ""
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "Újraindítás"
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "Kezelőfelület (GUI) újraindítása"
@@ -15837,9 +16005,6 @@ msgstr "Újra indítja most a kezelőfelületet?"
 
 msgid "Restart Network"
 msgstr "Hálózat újraindítása"
-
-msgid "Restart Network Adapter"
-msgstr "Hálózati adapter újraindítása"
 
 msgid "Restart OSCam"
 msgstr ""
@@ -15862,8 +16027,11 @@ msgstr "Hálózat újraindítása az aktuális beállításokkal"
 msgid "Restart test"
 msgstr "Teszt újraindítása"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Hálózati kapcsolatok és interfészek újraindítása."
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -15873,9 +16041,6 @@ msgstr "Visszaállítás"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "törölt felhasználói csatornacsomagok visszaállítása"
-
-msgid "Restore MetrixHD Settings"
-msgstr "MetrixHD beállításainak visszaállítása"
 
 msgid "Restore Plugins"
 msgstr "Bővítmények visszaállítása"
@@ -15931,6 +16096,9 @@ msgstr "Lejátszás folytatása innen: %s"
 
 msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16133,9 +16301,6 @@ msgstr "Újraegyesítés"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd Beállítás"
-
 msgid "SAT"
 msgstr "SAT"
 
@@ -16178,6 +16343,9 @@ msgstr "SD kártya kapcsoló HIBA! - már a mmc-én van"
 
 msgid "SINGLE LAYER DVD"
 msgstr "Egyrétegű DVD"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr ""
@@ -16388,6 +16556,26 @@ msgstr "Timeshift mentése és a felvétel megállítása"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Timeshift mentése most és a felvétel folytatása"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -16424,6 +16612,9 @@ msgstr "%s keresés"
 msgid "Scan %s band"
 msgstr "%s sáv szkennelése"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Egyéb SR-ek szkennelése"
 
@@ -16438,12 +16629,6 @@ msgstr "Helyileg bemásolt bővítmények keresése, telepítése."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
-
-msgid "Scan wireless networks"
-msgstr "Vezeték nélküli hálózat keresése"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Vezeték nélküli hálózatok keresése, és csatlakoztatása a kiválasztott vezeték nélküli adapter segítségével."
 
 msgid "Scanning"
 msgstr ""
@@ -16469,6 +16654,12 @@ msgstr[1] ""
 
 msgid "Scanning failed!"
 msgstr "A keresés sikertelen!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "Keresés..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16582,9 +16773,6 @@ msgstr "Keresés nyugatra..."
 msgid "Second cable of motorized LNB"
 msgstr "Forgatómotoros fej második kábele"
 
-msgid "Secondary DNS"
-msgstr "Másodlagos DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -16666,6 +16854,9 @@ msgstr "Ha 'univerzális' LNB-t használ, válassza a 'polarizáció' lehetősé
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Válassza ki a 'szolgáltatót' a beolvasáshoz a kábel multiplexek előre meghatározott listájából. Válasszon 'sávokat', hogy csak a spektrum bizonyos részeit szkennelje be. Válassza a 'lépéseket', hogy egy adott frekvenciasávszélességben lépjen be."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr ""
@@ -17003,6 +17194,9 @@ msgstr "Válasszon szerkesztendő frissítési forrást"
 msgid "Select Upgrade Source To Edit"
 msgstr "Válasszon szerkesztendő frissítési forrást."
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -17046,6 +17240,9 @@ msgstr "Felvétel kiválasztása"
 msgid "Select a network adapter"
 msgstr "Válasszon hálózati adaptert"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -17058,6 +17255,12 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Válasszon egy scriptet a futtatáshoz:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -17069,9 +17272,6 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Tuner kiválasztása"
-
-msgid "Select a wireless network"
-msgstr "Vezeték nélküli hálózat kiválasztása"
 
 msgid "Select action"
 msgstr "Művelet kiválasztása"
@@ -17121,6 +17321,9 @@ msgstr ""
 
 msgid "Select destination for:"
 msgstr "Cél kiválasztása ehhez:"
+
+msgid "Select exported directories"
+msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr "Válassza ki a kizárandó fájlokat a mentésből"
@@ -17179,6 +17382,9 @@ msgstr ""
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "A csatornára ugrás késleltetési módját lehet itt beállítani."
 
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
@@ -17226,12 +17432,6 @@ msgstr "Válasszon beviteli eszközt"
 
 msgid "Select input device."
 msgstr "Válasszon beviteli eszközt."
-
-msgid "Select interface"
-msgstr "Interfész kiválasztása"
-
-msgid "Select menu entry"
-msgstr ""
 
 msgid "Select movie"
 msgstr "Felvétel kiválasztása"
@@ -17362,6 +17562,9 @@ msgstr ""
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
 msgstr "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
@@ -17525,6 +17728,9 @@ msgstr ""
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr ""
 
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
+
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Válassza ki az Unicable eszköz modellszámát. Ha a modellszám nem szerepel a listában, állítsa az \"SCR\" értéket \"felhasználó által definiált\" beállításra, és adja meg manuálisan az eszköz paramétereit a specifikációs lapjának megfelelően."
 
@@ -17538,12 +17744,6 @@ msgid "Select the movie path"
 msgstr "Válassza ki a felvételek útvonalát"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -17583,6 +17783,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Válassza ki az SCR eszköz által használt protokollt. A választható lehetőségek: 'SCR Unicable' (Unicable), vagy 'SCR JESS' (JESS, más néven Unicable II)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -17614,6 +17817,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 #, fuzzy
@@ -17711,10 +17917,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -17758,6 +17961,9 @@ msgstr "Válassza ki, hogy a távirányító TV gombjával mit szeretne csináln
 
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Válassza ki, hogy a távirányító Fel/Le gombjával mit szeretne csinálni:"
+
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
 
 msgid "Select where the recording should be saved."
 msgstr ""
@@ -17803,9 +18009,6 @@ msgstr "Válassza ki, hogy megjelenjen-e egy ikon, miközben az antenna forgató
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "Válasszon vezeték nélküli hálózatot"
 
 msgid "Select your ATSC provider."
 msgstr "Válassza ki az ATSC szolgáltatót."
@@ -17915,6 +18118,9 @@ msgstr "komolyzene"
 
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "komolyzene/klasszikus/vallási/történelmi/dráma"
+
+msgid "Server"
+msgstr ""
 
 msgid "Server down"
 msgstr "Kiszolgáló le"
@@ -18316,6 +18522,9 @@ msgstr "Adja meg, hogy a gomb megnyomásával mit szeretne csinálni."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Állítsa 'yes'-re a foglaltság (spinner) fő okainak hibakeresésére."
+
+msgid "Set up network"
+msgstr ""
 
 msgid "Set up tuner [TUNER]"
 msgstr ""
@@ -18790,9 +18999,6 @@ msgstr "VCR Scart opció megjelenítése a főmenüben"
 msgid "Show Vertical EPG"
 msgstr "Függőleges EPG megjelenítése"
 
-msgid "Show WLAN status"
-msgstr "A vezeték nélküli hálózat állapotának megjelenítése"
-
 msgid "Show Web Link packages"
 msgstr ""
 
@@ -18956,9 +19162,6 @@ msgstr ""
 msgid "Show in Standby"
 msgstr "Készenléti állapotban"
 
-msgid "Show info"
-msgstr "Információ mutatása"
-
 msgid "Show info line"
 msgstr "Az információs sor megjelenítése"
 
@@ -19000,6 +19203,9 @@ msgstr "Filmek megjelenítése"
 
 msgid "Show multi channel EPG"
 msgstr "Több csatornás EPG megjelenítése"
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr ""
@@ -19185,6 +19391,9 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -19266,9 +19475,6 @@ msgstr "Élő TV-adást vagy egyéb információkat jelenít meg az LCD kijelző
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Megjeleníti az ikonokat, amikor Új/Láthatatlan, egyébként nem jelenik meg ikon."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Megjeleníti a vezeték nélküli kapcsolat aktuális állapotát."
-
 msgid "Shows the watched status of the media."
 msgstr "Megjeleníti a Film megnézettségi állapotát (meg volt nézve, vagy nem)."
 
@@ -19302,14 +19508,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "Jelkereső"
 
-msgid "Signal quality"
-msgstr "Jelminőség"
-
 msgid "Signal strength"
 msgstr ""
-
-msgid "Signal: "
-msgstr "Jel: "
 
 msgid "Signed by"
 msgstr ""
@@ -19445,6 +19645,9 @@ msgid "Skip forward (enter time)"
 msgstr "előre kihagyása (adja meg az időt)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -19680,6 +19883,9 @@ msgstr "Társadalom és Kultúra"
 msgid "Socket"
 msgstr "Aljzat"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -19818,6 +20024,18 @@ msgstr ""
 msgid "Sort by"
 msgstr "Rendezés"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "Rendezés alapértelmezettek szerint"
 
@@ -19910,9 +20128,6 @@ msgid "Special events (Olympic games, World cup, etc.)"
 msgstr "különleges események"
 
 msgid "Specify the directory to use when starting Media Player."
-msgstr ""
-
-msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr ""
 
 msgid "Speed"
@@ -20018,9 +20233,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr "Teletext indítása"
 
-msgid "Start test"
-msgstr "Teszt indítása"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -20071,6 +20283,9 @@ msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
+msgstr ""
+
+msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
@@ -20157,9 +20372,6 @@ msgstr "Csatorna megállítása a filmlistára váltáskor"
 msgid "Stop streams"
 msgstr ""
 
-msgid "Stop test"
-msgstr "Teszt megállítása"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Próbálkozások befejezése ennyi sikertelen transzponder után"
 
@@ -20220,6 +20432,12 @@ msgstr "A lemez nem írható!"
 
 msgid "Store position"
 msgstr "Pozíció tárolása"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "Tárolt pozíció"
@@ -20842,10 +21060,6 @@ msgstr ""
 msgid "Test mode"
 msgstr "Teszt mód"
 
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "A hálózati konfiguráció tesztelése a(z) %s %s készüléken."
-
 msgid "Test type"
 msgstr "Teszt típusa"
 
@@ -20958,18 +21172,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "Az IceTV kiszolgáló jelszót kért a következőhöz: %s."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21129,13 +21331,6 @@ msgstr "A kép magassága. A bemenetet a fenti értékhez igazítva skálázzák
 msgid "The loopthrough setting is wrong."
 msgstr "Az átfűzés beállítása hibás."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"A NetworkWizard bővítmémy nincs feltelepítve!\n"
-"Kérem, telepítse fel."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21208,28 +21403,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "A kép szélessége. A bemenetet a fenti értékhez igazítva skálázzák."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"A vezeték nélküli bővítmény nincs telepítve!\n"
-"Kérem, telepítse."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -21556,57 +21735,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Ez a beállítás csak speciális beállításokra szolgál. Ez magasabb prioritást ad ennek az LNB-nek más alacsonyabb értékekkel rendelkező LNB-kel szemben. Az ingyenes LNB a legmagasabb prioritású lesz az első LNB kiválasztott tuning szolgáltatások."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Ez a teszt ellenőrzi a beállított névszervereket.\n"
-"Ha eredményként \"nem igazolt\", akkor:\n"
-"- ellenőrizze a DHCP beállítást, a kábelezért és az adapter beállításait\n"
-"- ha a névszervert kézzel állította be, akkor ellenőrizze a bejegyzéseket a \"Névszerver\" beállításokban"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Ez a teszt leellenőrzi hogy a LAN-Adapterhez van-e hálózati kábel csatlakoztatva.\n"
-"Ha válaszként a \"nincs csatlakoztatva\" üzenetet kapja, akkor:\n"
-"- van-e kábel csatlakoztatva\n"
-"- ellenőrizze hogy a csatlakoztatott kábel szakadt-e"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Ez a teszt ellenőrzi hogy van-e érvényes IP cím a LAN Adapterben.\n"
-"Ha válaszként a \"nem igazolt\" választ kapja, akkor:\n"
-"- nem található érvényes IP cím\n"
-"- ellenőrizze a DHCP beállításokat, a kábelezést és az interfész beállításait"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Ez a teszt ellenőrzi, hogy a hálózati interfész be lett-e állítva az automatikus IP cím lekéréséhez DHCP-vel.\n"
-"Ha válaszként a \"kikapcsolva\" üzenetet kapja, akkor:\n"
-"- a LAN Adapter csak manuális IP cím megadására lett beállítva\n"
-"- ellenőrizze, hogy helyes IP adatokat adott meg az Adapter beállításaiban\n"
-"Ha válaszként a \"engedélyezve\" üzenetet kapja, akkor:\n"
-"- ellenőrizze hogy a hálózatában létezik-e jól beállított és működő DHCP szerver."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Ez a teszt leellenőrzi a beállított hálótzati adaptert."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21625,9 +21753,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-msgid "Three"
-msgstr "Három"
 
 msgid "Threshold"
 msgstr "Threshold"
@@ -21775,6 +21900,9 @@ msgstr "Időelőzmények"
 
 msgid "Timeline scale"
 msgstr "Időskála"
+
+msgid "Timeout"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -21943,6 +22071,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Váltás az új szöveg beszúrásra a meglévő szöveg felülírása elött"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr ""
 
@@ -22026,6 +22157,9 @@ msgstr ""
 
 msgid "Traditional Chinese"
 msgstr "Tradicionális kínai"
+
+msgid "Transceiver"
+msgstr ""
 
 msgid "Transcode"
 msgstr "Transcode"
@@ -22287,9 +22421,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
-msgid "Two"
-msgstr "Kettő"
-
 msgid "Two lines"
 msgstr "Kettő sor"
 
@@ -22405,9 +22536,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr "Meghatározatlan"
 
-msgid "Unencrypted"
-msgstr "Kódolatlan"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -22467,13 +22595,6 @@ msgstr "Ismeretlen"
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Ismeretlen hiba a kinézet (Skin) létrehozásakor.\n"
-"Kérjük, ellenőrizze a MyMetrixLite-Plugin bővítményt újraindítás után és alkalmazza a beállításokat."
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -22515,6 +22636,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr "kiadatlan"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "ecm felvétel és dekódolás"
 
@@ -22526,9 +22650,6 @@ msgstr "Fogadott HTTP stream dekódolása"
 
 msgid "Unset As Startup Service"
 msgstr "beállítás indítási csatornának"
-
-msgid "Unsupported"
-msgstr "Nem támogatott"
 
 msgid "Until standby/restart"
 msgstr "kikapcsolásig/újra indításig"
@@ -22710,6 +22831,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG információk beolvasása a jelforrásból."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG információk beolvasása a jelforrásból."
 
@@ -22746,14 +22870,14 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-msgid "Use a gateway"
-msgstr "Átjáró használata"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Használja az alternatív képernyőt"
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -22797,11 +22921,11 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "használja a megnövelt '14/18V 'feszültséget, ha problémák merülnének fel az lnb váltásakor"
-
-msgid "Use interface"
-msgstr "Interfész használata"
 
 msgid "Use key map *"
 msgstr "Melyik Keymapot választja *"
@@ -22814,9 +22938,6 @@ msgstr "Hivatalos csatornaszámozás használata"
 
 msgid "Use only DNSSEC servers"
 msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Csak Wake on WLan (WoW)"
 
 msgid "Use only no-filter servers"
 msgstr ""
@@ -22869,9 +22990,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Használja a távirányító Bal/Jobb gombjait a felhasználói felület Fel/Le mozgatásához"
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "A hálózat beállításához használja a hálózati Varázslót. A varázsló segít a hálózat beállításában"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Használja a Softcam Panelt a Cam vezérléséhez. Ezzel Elindíthatja/Leállíthatja/Kiválaszthatja a Cam-ot"
 
@@ -22889,12 +23007,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Használja a kiterjesztett listát"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Használja a varázslót az alapbeállításokhoz"
@@ -22972,6 +23084,12 @@ msgstr "Felhasználónév"
 msgid "Username (httpuser)"
 msgstr "Felhasználónév (httpuser)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr ""
 
@@ -22997,9 +23115,6 @@ msgstr "Üzbegisztán"
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
 
-msgid "VLAN connection"
-msgstr "VLAN kapcsolat"
-
 #, fuzzy
 msgid "VMC"
 msgstr "MAC"
@@ -23012,6 +23127,9 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr ""
@@ -23358,12 +23476,6 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "Vezeték nélküli kapcsolat"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23372,15 +23484,6 @@ msgstr "WMA Pro lekeverése"
 
 msgid "WOL Standby"
 msgstr "WOL Készenlét"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA vagy WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3-on"
@@ -23396,6 +23499,9 @@ msgstr "Kérem várjon, mialatt a keresés folyik..."
 
 msgid "Waiting"
 msgstr "Várakozás"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "Várakozás a partícióra"
@@ -23441,6 +23547,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -23762,17 +23871,20 @@ msgstr ""
 msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner a felvételekhez'-t."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner'-t."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr ""
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Ha engedélyezi, a DHCP lesz használva az IP beállításánál."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Ha engedélyezi, testreszabhatja az OpenWebIf beállításait a tartalék tunerhez."
@@ -23837,6 +23949,28 @@ msgstr "Míg rendelkezésre áll"
 msgid "White"
 msgstr "Fehér"
 
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
+
 msgid "Wide"
 msgstr "széles"
 
@@ -23860,27 +23994,6 @@ msgstr ""
 
 msgid "Wiping storage device..."
 msgstr ""
-
-msgid "Wireless LAN"
-msgstr "Vezeték nélküli hálózat"
-
-msgid "Wireless network"
-msgstr "Vezeték nélküli hálózat"
-
-msgid "Wireless network configuration..."
-msgstr "Vezeték nélküli hálózat beállítása..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
-msgstr "Vezeték nélküli hálózat állapota"
 
 msgid "With EXIT button"
 msgstr "exit gombbal"
@@ -23948,6 +24061,9 @@ msgstr "Szeretné tartósan elmenteni a megadott %s PIN-kódot?"
 
 msgid "Wrestling"
 msgstr "Birkózás"
+
+msgid "Write block size"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -24162,18 +24278,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "A(z) %s %s nem kapcsolódik az internethez, ellenőrizze a hálózati beállításokat, és próbálja újra."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"A(z) %s %s készülék most már használható állapotban van.\n"
-"\n"
-"Az internetkapcsolata működőképes.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "A(z) %s %s készülék most újraindul"
 
@@ -24204,40 +24308,12 @@ msgid "Your %s %s will Restart..."
 msgstr "A(z) %s %s újra fog indulni..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"A(z) %s %s készülék újraindítása kerül a szolgáltatás telepítése után.\n"
-"\n"
-"Szeretné telepíteni most?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"A(z) %s %s készülék újraindítása kerül a szolgáltatás törlése után.\n"
-"Szeretné törölni most?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Az internetkapcsolata nem működik!\n"
-"Kérem, válassza ki, mi legyen a teendő."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "A vevőberendezés szoftverproblémát észlelt. Az utolsó újraindítás óta %d alkalommal történt.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Az OK gomb megnyomása után a készülék újra fog indulni."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "A gyüjteményének mérete meghaladja egy sima rétegű DVD kapacitását, egy dupla-rétegű üres DVD lemezre lesz szüksége!"
@@ -24282,9 +24358,6 @@ msgid ""
 msgstr ""
 "A előlapi kijelző frissülni fog.\n"
 "Ez eltarthat néhány percig"
-
-msgid "Your network configuration has been activated."
-msgstr "A hálózati konfiguráció aktiválva lett."
 
 msgid "Your password must have at least 5 characters."
 msgstr "A jelszónak legalább 5 karakterből kell állnia."
@@ -24540,12 +24613,6 @@ msgstr "megosztás nézet bezárása"
 msgid "config menu"
 msgstr "menü beállítás"
 
-msgid "confirmed"
-msgstr "visszaigazolt"
-
-msgid "connected"
-msgstr "csatlakoztatva"
-
 msgid "copy"
 msgstr "másolás"
 
@@ -24569,9 +24636,6 @@ msgstr "vágópont törlése"
 
 msgid "disabled"
 msgstr "kikapcsolva"
-
-msgid "disconnected"
-msgstr "nincs csatlakoztatva"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24833,9 +24897,6 @@ msgstr "a kétréteges lemezből felhasználva."
 msgid "of a SINGLE layer medium used."
 msgstr "egyoldalas (single layer) medium felhasználva."
 
-msgid "off or wpa2 on"
-msgstr "ki vagy wpa2 be"
-
 msgid "offset is"
 msgstr "offszet"
 
@@ -25046,9 +25107,6 @@ msgstr "uShare beállítás"
 msgid "unavailable"
 msgstr "nem elérhető"
 
-msgid "unconfirmed"
-msgstr "nem igazolt"
-
 msgid "unknown"
 msgstr "ismeretlen"
 
@@ -25105,6 +25163,533 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "One"
+#~ msgstr "Egy"
+
+#~ msgid "Three"
+#~ msgstr "Három"
+
+#~ msgid "Two"
+#~ msgstr "Kettő"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d elérhető vezeték nélküli hálózat!"
+#~ msgstr[1] "%d elérhető vezeték nélküli hálózat!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Egy második bekonfigurált interfész is van a rendszerben.\n"
+#~ "\n"
+#~ "Le szeretné tiltani a második hálózati interfészt?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "hálózati adapter konfiguráció aktiválása"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Hálózati beállítások aktiválása"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "A megadott hálózati beállítások aktiválása."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Biztos benne, hogy aktiválni kívánja ezt a hálózati konfigurációt?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Biztos hogy újra akarja indítani a hálózati interfészt?"
+
+#~ msgid "Back"
+#~ msgstr "Vissza"
+
+#~ msgid "Configure interface"
+#~ msgstr "Interfész konfigurálása"
+
+#~ msgid "Configure the IP address."
+#~ msgstr "IP cím konfigurálása."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Átjáró beállítása."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Névszerverek (DNS) konfigurálása."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Alhálózati maszk beállítása."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Állítsa be újra hálózatát"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Állítsa be hálózatát"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Állítsa be a helyi hálózatot"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Állítsa be újra vezeték nélküli hálózatát"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Csatlakozás vezeték nélküli hálózathoz"
+
+#~ msgid "Current settings:"
+#~ msgstr "Aktuális beállítások:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Hálózati eszközök beállítása"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Szerkessze a(z) %s %s névszerver konfigurációját."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Szerkessze a(z) %s %s hálózati konfigurációját."
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Engedélyezze a Wake On LAN engedélyezését"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Kódolva: "
+
+#, fuzzy
+#~ msgid "Encryption Type:"
+#~ msgstr "Kódolás:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Kódolási kulcs"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Kódolási kulcstípus"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Hiba az EHD-Skin létrehozásakor.\n"
+#~ "Hd-Skin használata!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Hiba az EHD-Skin létrehozásakor. Az ikoncsomag letöltése nem érhető el.\n"
+#~ "Hd-Skin használata!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Hiba az EHD-Skin létrehozásakor. Nincs elég szabad flash memória.\n"
+#~ "Hd-Skin használata!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Hiba az EHD-Skin létrehozásakor. Néhány EHD-ikonok hiányozik.\n"
+#~ "Hd-Skin használata!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Hiba történt a HD-Skin létrehozásában. Nincs elég szabad flash memória."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Hiba történt a MetrixHD-Skin létrehozásában.\n"
+#~ "Kérjük, ellenőrizze a MyMetrixLite-Plugin újra indítását és alkalmazza a beállításait."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Hiba, ismeretlen végeredmény!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "kliépés a hálózati adapter beállításaiból"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Kilépés a hálózati interfészek listájából"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Kilépés a Hálózati Varázslóból"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Bővített hálózati beállítások bővítmény..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Bővített beállítások..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "A hálózati beállítás befejeződött"
+
+#, fuzzy
+#~ msgid "Frequency Norm:"
+#~ msgstr "Frekvencia: "
+
+#~ msgid "Interface: "
+#~ msgstr "Interfész: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "Hálózati adapter"
+
+#~ msgid "Link quality:"
+#~ msgstr "Kapcsolat minősége:"
+
+#~ msgid "Link:"
+#~ msgstr "Kapcsolat:"
+
+#~ msgid "List available networks"
+#~ msgstr "Elérhető hálózatok listázása"
+
+#~ msgid "Local network"
+#~ msgstr "Helyi hálózat"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-cím"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Kézi konfiguráció"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Max. bitráta: "
+
+#~ msgid "Nameserver"
+#~ msgstr "Névszerver"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "Névszerver beállítások"
+
+#~ msgid "Network Test:"
+#~ msgstr "Hálózat tesztelése: "
+
+#~ msgid "Network Wizard"
+#~ msgstr "Hálózati Varázsló"
+
+#~ msgid "Network test"
+#~ msgstr "Hálózat ellenőrzése"
+
+#~ msgid "Network:"
+#~ msgstr "Hálózat:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Hálózati Varázsló"
+
+#~ msgid "No Connection"
+#~ msgstr "Nincs kapcsolat"
+
+#~ msgid "No networks found"
+#~ msgstr "Nem észlelhető hálózat"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Nem észlelhető vezeték nélküli hálózat! Keresés..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Nem található egyetlen működőképes helyi hálózati illesztő sem.\n"
+#~ "Kérem, ellenőrizze, hogy a hálózati kábel csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
+#~ "Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Nem található egyetlen működőképes vezeték nélküli hálózati illesztő sem.\n"
+#~ "Kérem, ellenőrizze, hogy egy kompatibilis vezeték nélküli hálózati illesztő csatlakoztatva van, és a hálózati paraméterek megfelelően be vannak állítva."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Kérem, kövesse a képernyőn megjelenő instrukciókat"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "A folytatáshoz nyomja le az OK-t."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Kérem várjon, ameddig a hálózati konfiguráció élesedik..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Kérem várjon, ameddig a hálózati interfészek elkészülnek..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Kérem várjon, ameddig a hálózati teszt lezajlik..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Kérem várjon, ameddig a kinézet beállítása helyreáll..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Az OK gombbal aktiválhatja a beállításokat."
+
+#~ msgid "Primary DNS"
+#~ msgstr "Elsődleges DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Hálózati adapter újraindítása"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Hálózati kapcsolatok és interfészek újraindítása."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "MetrixHD beállításainak visszaállítása"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd Beállítás"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Vezeték nélküli hálózat keresése"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Vezeték nélküli hálózatok keresése, és csatlakoztatása a kiválasztott vezeték nélküli adapter segítségével."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Másodlagos DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Vezeték nélküli hálózat kiválasztása"
+
+#~ msgid "Select interface"
+#~ msgstr "Interfész kiválasztása"
+
+#~ msgid "Select wireless network"
+#~ msgstr "Válasszon vezeték nélküli hálózatot"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "A vezeték nélküli hálózat állapotának megjelenítése"
+
+#~ msgid "Show info"
+#~ msgstr "Információ mutatása"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Megjeleníti a vezeték nélküli kapcsolat aktuális állapotát."
+
+#~ msgid "Signal quality"
+#~ msgstr "Jelminőség"
+
+#~ msgid "Signal: "
+#~ msgstr "Jel: "
+
+#~ msgid "Start test"
+#~ msgstr "Teszt indítása"
+
+#~ msgid "Stop test"
+#~ msgstr "Teszt megállítása"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "A hálózati konfiguráció tesztelése a(z) %s %s készüléken."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "A NetworkWizard bővítmémy nincs feltelepítve!\n"
+#~ "Kérem, telepítse fel."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "A vezeték nélküli bővítmény nincs telepítve!\n"
+#~ "Kérem, telepítse."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Ez a teszt ellenőrzi a beállított névszervereket.\n"
+#~ "Ha eredményként \"nem igazolt\", akkor:\n"
+#~ "- ellenőrizze a DHCP beállítást, a kábelezért és az adapter beállításait\n"
+#~ "- ha a névszervert kézzel állította be, akkor ellenőrizze a bejegyzéseket a \"Névszerver\" beállításokban"
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Ez a teszt leellenőrzi hogy a LAN-Adapterhez van-e hálózati kábel csatlakoztatva.\n"
+#~ "Ha válaszként a \"nincs csatlakoztatva\" üzenetet kapja, akkor:\n"
+#~ "- van-e kábel csatlakoztatva\n"
+#~ "- ellenőrizze hogy a csatlakoztatott kábel szakadt-e"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Ez a teszt ellenőrzi hogy van-e érvényes IP cím a LAN Adapterben.\n"
+#~ "Ha válaszként a \"nem igazolt\" választ kapja, akkor:\n"
+#~ "- nem található érvényes IP cím\n"
+#~ "- ellenőrizze a DHCP beállításokat, a kábelezést és az interfész beállításait"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Ez a teszt ellenőrzi, hogy a hálózati interfész be lett-e állítva az automatikus IP cím lekéréséhez DHCP-vel.\n"
+#~ "Ha válaszként a \"kikapcsolva\" üzenetet kapja, akkor:\n"
+#~ "- a LAN Adapter csak manuális IP cím megadására lett beállítva\n"
+#~ "- ellenőrizze, hogy helyes IP adatokat adott meg az Adapter beállításaiban\n"
+#~ "Ha válaszként a \"engedélyezve\" üzenetet kapja, akkor:\n"
+#~ "- ellenőrizze hogy a hálózatában létezik-e jól beállított és működő DHCP szerver."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Ez a teszt leellenőrzi a beállított hálótzati adaptert."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Kódolatlan"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Ismeretlen hiba a kinézet (Skin) létrehozásakor.\n"
+#~ "Kérjük, ellenőrizze a MyMetrixLite-Plugin bővítményt újraindítás után és alkalmazza a beállításokat."
+
+#~ msgid "Unsupported"
+#~ msgstr "Nem támogatott"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Átjáró használata"
+
+#~ msgid "Use interface"
+#~ msgstr "Interfész használata"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Csak Wake on WLan (WoW)"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "A hálózat beállításához használja a hálózati Varázslót. A varázsló segít a hálózat beállításában"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN kapcsolat"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "Vezeték nélküli kapcsolat"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA vagy WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Ha engedélyezi, a DHCP lesz használva az IP beállításánál."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "Vezeték nélküli hálózat"
+
+#~ msgid "Wireless network"
+#~ msgstr "Vezeték nélküli hálózat"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Vezeték nélküli hálózat beállítása..."
+
+#~ msgid "Wireless network state"
+#~ msgstr "Vezeték nélküli hálózat állapota"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "A(z) %s %s készülék most már használható állapotban van.\n"
+#~ "\n"
+#~ "Az internetkapcsolata működőképes.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "A(z) %s %s készülék újraindítása kerül a szolgáltatás telepítése után.\n"
+#~ "\n"
+#~ "Szeretné telepíteni most?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "A(z) %s %s készülék újraindítása kerül a szolgáltatás törlése után.\n"
+#~ "Szeretné törölni most?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Az internetkapcsolata nem működik!\n"
+#~ "Kérem, válassza ki, mi legyen a teendő."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Az OK gomb megnyomása után a készülék újra fog indulni."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "A hálózati konfiguráció aktiválva lett."
+
+#~ msgid "confirmed"
+#~ msgstr "visszaigazolt"
+
+#~ msgid "connected"
+#~ msgstr "csatlakoztatva"
+
+#~ msgid "disconnected"
+#~ msgstr "nincs csatlakoztatva"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "ki vagy wpa2 be"
+
+#~ msgid "unconfirmed"
+#~ msgstr "nem igazolt"
 
 #~ msgid "Switchable tuner types:"
 #~ msgstr "Cserélhető tuner típusok:"
@@ -25492,9 +26077,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "Keresés..."
 
 #~ msgid "Servers:"
 #~ msgstr "Kiszolgálók:"
@@ -26277,9 +26859,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Az idő frissítése percekben:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""
