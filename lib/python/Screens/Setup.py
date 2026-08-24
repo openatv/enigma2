@@ -88,6 +88,7 @@ class Setup(ConfigListScreen, Screen):
 		self.showDefaultChanged = False
 		self.graphicSwitchChanged = False
 		self.list = prependItems or []
+		self.pendingHeading = None
 		title = None
 		xmlData = setupDom(self.setup, self.plugin)
 		for setup in xmlData.findall("setup"):
@@ -122,6 +123,8 @@ class Setup(ConfigListScreen, Screen):
 				break  # End of succesful if/elif branch - short-circuit rest of children.
 			include = self.includeElement(element)
 			if element.tag == "item":
+				if including and not element.text:
+					self.pendingHeading = None  # A heading also ends the preceding group when it is filtered out.
 				if including and include:
 					self.addItem(element, indent=indent)
 			elif element.tag == "if":
@@ -150,8 +153,14 @@ class Setup(ConfigListScreen, Screen):
 			itemText = f"{itemText} #"
 		item = eval(element.text) if element.text else ""
 		if item == "":
-			self.list.append((self.formatItemText(itemText, data),))  # Add the comment line to the config list.
+			# Defer headings until a visible option follows. This prevents empty
+			# groups when setup level, hardware or conditional filters hide all
+			# of the group's options.
+			self.pendingHeading = (self.formatItemText(itemText, data),)
 		elif not isinstance(item, ConfigNothing):
+			if self.pendingHeading:
+				self.list.append(self.pendingHeading)
+				self.pendingHeading = None
 			label = (self.formatItemText(itemText, data), indent) if indent else self.formatItemText(itemText, data)
 			self.list.append((label, item, self.formatItemDescription(item, itemDescription, data)))  # Add the item to the config list.
 		if item is config.usage.setupShowDefault:
