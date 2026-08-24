@@ -48,6 +48,7 @@ PKG_CHECK_MODULES(AVAHI, avahi-client)
 
 AC_CHECK_LIB([atomic], [__atomic_exchange_8], [LIBATOMIC_LIBS="-latomic"], [LIBATOMIC_LIBS=""])
 AC_SUBST(LIBATOMIC_LIBS)
+AC_CHECK_LIB([bluray], [bd_open])
 AC_CHECK_LIB([udfread], [udfread_init])
 AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"], [AC_MSG_ERROR([Could not find libdl])])
 AC_SUBST(LIBDL_LIBS)

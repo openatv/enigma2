@@ -25,9 +25,18 @@ class eServiceM2TS: public eDVBServicePlay
 protected:
 	eServiceM2TS(const eServiceReference &ref);
 	ePtr<iTsSource> createTsSource(eServiceReferenceDVB &ref, int packetsize);
+	pts_t m_bluray_duration;
+
+	// iPlayableService
+	RESULT seek(ePtr<iSeekableService> &ptr);
+	RESULT pause(ePtr<iPauseableService> &ptr);
 
 	// iSeekableService
+	RESULT getLength(pts_t &len);
 	RESULT isCurrentlySeekable();
+
+	// iServiceInformation
+	RESULT getName(std::string &name);
 };
 
 #endif
