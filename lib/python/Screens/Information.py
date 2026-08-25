@@ -1561,6 +1561,8 @@ class InformationService(InformationBase):
 				subtitleLang = subtitle[4]
 				if subtitle[0] == 0:  # DVB PID.
 					info.append(self.formatLine(indent, _("DVB Subtitles PID & Language"), f"{formatHex(subtitle[1])}  -  {subtitleLang}"))
+				elif subtitle[0] == 3:  # PGS.
+					info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  PGS  -  {subtitleLang}"))
 				elif subtitle[0] == 1:  # Teletext.
 					info.append(self.formatLine(indent, _("TXT Subtitles page & Language"), f"0x0{subtitle[3] or 8:X}{subtitle[2]:02X}  -  {subtitleLang}"))
 				elif subtitle[0] == 2:  # File.
