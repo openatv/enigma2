@@ -489,14 +489,17 @@ class Wizard(Screen):
 
 	def handleInputHelpers(self):
 		enabled = False
-		if self["config"].getCurrent():
-			if isinstance(self["config"].getCurrent()[1], (ConfigText, ConfigPassword)):
+		current = self["config"].getCurrent(full=False)
+		if current and len(current) >= 2:
+			configElement = current[1]
+			if isinstance(configElement, (ConfigText, ConfigPassword)):
 				if self.__class__.__name__ != "NetworkWizard":  # This is a temporary hack to fix a problem with VirtualKeyBoard input.
 					enabled = True
-				if "HelpWindow" in self:
-					if self["config"].getCurrent()[1].help_window.instance:
-						helpWindowPosition = self["HelpWindow"].getPosition()
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
+				helpWindow = getattr(configElement, "help_window", None)
+				helpWindowInstance = getattr(helpWindow, "instance", None)
+				if "HelpWindow" in self and helpWindowInstance is not None:
+					helpWindowPosition = self["HelpWindow"].getPosition()
+					helpWindowInstance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
 		if "VKeyIcon" in self:
 			self["key_text"].setText(_("TEXT") if enabled else "")
 			self["VirtualKB"].setEnabled(enabled)
@@ -511,10 +514,14 @@ class Wizard(Screen):
 	def keyText(self):
 		def keyTextCallback(text):
 			if text:
-				current = self["config"].getCurrent()
-				if isinstance(current[1], (ConfigText, ConfigPassword)) and "HelpWindow" in self and current[1].help_window.instance:
-					helpWindowPosition = self["HelpWindow"].getPosition()
-					current[1].help_window.instance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
+				current = self["config"].getCurrent(full=False)
+				if current and len(current) >= 2:
+					configElement = current[1]
+					helpWindow = getattr(configElement, "help_window", None)
+					helpWindowInstance = getattr(helpWindow, "instance", None)
+					if isinstance(configElement, (ConfigText, ConfigPassword)) and "HelpWindow" in self and helpWindowInstance is not None:
+						helpWindowPosition = self["HelpWindow"].getPosition()
+						helpWindowInstance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
 				self.configWidgetInstance.moveSelectionTo(configIndex)
 				self["config"].setCurrentIndex(configIndex)
 				self["config"].getCurrent()[1].setValue(text)
