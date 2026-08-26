@@ -731,7 +731,9 @@ bool eServiceDABRecord::startTap()
 	const int pid = m_reference.getUnsignedData(5) & 0x1fff;
 	m_worker.reset(new eDABWorker(m_socket[0], pid, transport, destinationIp, destinationPort,
 		m_reference.getUnsignedData(6), m_reference.getUnsignedData(7) & 0xffff,
-		[this](const uint8_t *data, size_t length) { writeAudio(data, length); },
+		[this](const uint8_t *, size_t, const uint8_t *data, size_t length, uint64_t, uint8_t) {
+			writeAudio(data, length);
+		},
 		eDABWorker::ImageCallback(), m_worker_pump));
 	if (!m_worker->start())
 	{
@@ -877,7 +879,10 @@ DEFINE_REF(eServiceDAB);
 eServiceDAB::eServiceDAB(const eServiceReference &ref)
 	: m_reference(ref), m_worker_pump(eApp, 1, "eServiceDAB"), m_running(false),
 	  m_tap_running(false), m_input_seen(false), m_audio_seen(false), m_parent_state(-1), m_last_bytes(0),
-	  m_transfer_bps(0), m_audio_pipeline(nullptr), m_audio_source(nullptr), m_audio_capture(nullptr)
+	  m_transfer_bps(0), m_audio_pipeline(nullptr), m_audio_source(nullptr), m_audio_queue(nullptr),
+	  m_audio_capture(nullptr), m_audio_next_pts(0), m_audio_format(0), m_audio_caps_set(false),
+	  m_audio_queue_overruns(0),
+	  m_reported_audio_queue_overruns(0)
 {
 	m_socket[0] = -1;
 	m_socket[1] = -1;
@@ -1023,7 +1028,12 @@ bool eServiceDAB::startTap()
 	startAudioPipeline();
 	m_worker.reset(new eDABWorker(m_socket[0], pid, transport, destinationIp, destinationPort,
 		m_reference.getUnsignedData(6), m_reference.getUnsignedData(7) & 0xffff,
-		[this](const uint8_t *data, size_t length) { pushAudio(data, length); },
+		[this](const uint8_t *data, size_t length, const uint8_t *framed, size_t framedLength,
+			uint64_t durationNs, uint8_t config) {
+			if (m_audio_capture)
+				fwrite(framed, 1, framedLength, m_audio_capture);
+			pushAudio(data, length, durationNs, config);
+		},
 		[this](const uint8_t *data, size_t length, int format) { storeSlide(data, length, format); },
 		m_worker_pump));
 	if (!m_worker->start())
@@ -1101,6 +1111,20 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 	m_last_bytes = stats.bytes;
 	m_stats = stats;
 	pollAudioBus();
+	const uint64_t queueOverruns = m_audio_queue_overruns.load();
+	if (queueOverruns != m_reported_audio_queue_overruns)
+	{
+		guint levelBuffers = 0;
+		guint levelBytes = 0;
+		guint64 levelTime = 0;
+		if (m_audio_queue)
+			g_object_get(m_audio_queue, "current-level-buffers", &levelBuffers,
+				"current-level-bytes", &levelBytes, "current-level-time", &levelTime, nullptr);
+		eWarning("[eServiceDAB] audio queue overrun: total=%llu level=%u buffers/%u bytes/%llu ms",
+			static_cast<unsigned long long>(queueOverruns), levelBuffers, levelBytes,
+			static_cast<unsigned long long>(levelTime / GST_MSECOND));
+		m_reported_audio_queue_overruns = queueOverruns;
+	}
 	if (!m_input_seen && stats.etiFrames)
 	{
 		m_input_seen = true;
@@ -1158,9 +1182,9 @@ bool eServiceDAB::startAudioPipeline()
 	const char *sink = "dvbaudiosink";
 #endif
 	std::string description =
-		"appsrc name=dabsource is-live=true format=time do-timestamp=true block=false "
-		"! queue max-size-buffers=64 max-size-bytes=524288 max-size-time=2000000000 leaky=downstream "
-		"! aacparse ! audio/mpeg,mpegversion=4,framed=true,stream-format=raw ! ";
+		"appsrc name=dabsource is-live=true format=time do-timestamp=false block=false "
+		"! queue name=dabqueue max-size-buffers=64 max-size-bytes=524288 max-size-time=2000000000 leaky=downstream "
+		"! faad ! audioconvert ! audioresample ! ";
 	description += sink;
 	description += " name=dabaudiosink";
 	GError *error = nullptr;
@@ -1178,17 +1202,13 @@ bool eServiceDAB::startAudioPipeline()
 		g_error_free(error);
 	}
 	m_audio_source = gst_bin_get_by_name(GST_BIN(m_audio_pipeline), "dabsource");
-	if (!m_audio_source)
+	m_audio_queue = gst_bin_get_by_name(GST_BIN(m_audio_pipeline), "dabqueue");
+	if (!m_audio_source || !m_audio_queue)
 	{
 		stopAudioPipeline();
 		return false;
 	}
-	GstCaps *caps = gst_caps_new_simple("audio/mpeg",
-		"mpegversion", G_TYPE_INT, 4,
-		"stream-format", G_TYPE_STRING, "adts",
-		"framed", G_TYPE_BOOLEAN, TRUE, nullptr);
-	g_object_set(m_audio_source, "caps", caps, nullptr);
-	gst_caps_unref(caps);
+	g_signal_connect(m_audio_queue, "overrun", G_CALLBACK(eServiceDAB::audioQueueOverrun), this);
 	GstElement *audioSink = gst_bin_get_by_name(GST_BIN(m_audio_pipeline), "dabaudiosink");
 	if (audioSink)
 	{
@@ -1204,6 +1224,11 @@ bool eServiceDAB::startAudioPipeline()
 		stopAudioPipeline();
 		return false;
 	}
+	m_audio_next_pts = 0;
+	m_audio_format = 0;
+	m_audio_caps_set = false;
+	m_audio_queue_overruns = 0;
+	m_reported_audio_queue_overruns = 0;
 	if (!access("/tmp/dab-capture", F_OK))
 	{
 		m_audio_capture = fopen("/tmp/dab-audio.aac", "wb");
@@ -1227,29 +1252,101 @@ void eServiceDAB::stopAudioPipeline()
 		gst_object_unref(m_audio_source);
 		m_audio_source = nullptr;
 	}
+	if (m_audio_queue)
+	{
+		gst_object_unref(m_audio_queue);
+		m_audio_queue = nullptr;
+	}
 	if (m_audio_pipeline)
 	{
 		gst_element_set_state(m_audio_pipeline, GST_STATE_NULL);
 		gst_object_unref(m_audio_pipeline);
 		m_audio_pipeline = nullptr;
 	}
+	m_audio_next_pts = 0;
+	m_audio_format = 0;
+	m_audio_caps_set = false;
 }
 
-void eServiceDAB::pushAudio(const uint8_t *data, size_t length)
+void eServiceDAB::setAudioCaps(uint8_t config)
 {
-	if (!data || !length)
+	if (!m_audio_source || (m_audio_caps_set && m_audio_format == config))
 		return;
-	if (m_audio_capture)
-		fwrite(data, 1, length, m_audio_capture);
+	const bool dacRate = config & 0x40;
+	const bool sbr = config & 0x20;
+	const bool stereo = config & 0x10;
+	const bool ps = config & 0x08;
+	const unsigned coreSampleIndexTable[4] = {5, 8, 3, 6}; // 32, 16, 48, 24 kHz
+	const unsigned coreSampleRateTable[4] = {32000, 16000, 48000, 24000};
+	const unsigned formatIndex = (dacRate ? 2 : 0) | (sbr ? 1 : 0);
+	const unsigned coreSampleIndex = coreSampleIndexTable[formatIndex];
+	const unsigned coreChannels = stereo ? 2 : 1;
+	uint8_t asc[7] = {
+		static_cast<uint8_t>((2 << 3) | (coreSampleIndex >> 1)),
+		static_cast<uint8_t>(((coreSampleIndex & 1) << 7) | (coreChannels << 3) | 0b100)
+	};
+	size_t ascLength = 2;
+	if (sbr)
+	{
+		asc[ascLength++] = 0x56;
+		asc[ascLength++] = 0xe5;
+		asc[ascLength++] = static_cast<uint8_t>(0x80 | ((dacRate ? 3 : 5) << 3));
+		if (ps)
+		{
+			asc[ascLength - 1] |= 0x05;
+			asc[ascLength++] = 0x48;
+			asc[ascLength++] = 0x80;
+		}
+	}
+	GstBuffer *codecData = gst_buffer_new_allocate(nullptr, ascLength, nullptr);
+	if (!codecData)
+		return;
+	gst_buffer_fill(codecData, 0, asc, ascLength);
+	GstCaps *caps = gst_caps_new_simple("audio/mpeg",
+		"mpegversion", G_TYPE_INT, 4,
+		"rate", G_TYPE_INT, static_cast<int>(coreSampleRateTable[formatIndex]),
+		"channels", G_TYPE_INT, static_cast<int>(coreChannels),
+		"stream-format", G_TYPE_STRING, "raw",
+		"framed", G_TYPE_BOOLEAN, TRUE,
+		"codec_data", GST_TYPE_BUFFER, codecData, nullptr);
+	gst_buffer_unref(codecData);
+	if (!caps)
+		return;
+	g_object_set(m_audio_source, "caps", caps, nullptr);
+	gst_caps_unref(caps);
+	m_audio_format = config;
+	m_audio_caps_set = true;
+	eDebug("[eServiceDAB] AAC software decode configured: core=%u Hz channels=%u sbr=%d ps=%d",
+		coreSampleRateTable[formatIndex], coreChannels, sbr, ps);
+}
+
+void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config)
+{
+	if (!data || !length || !durationNs)
+		return;
+	setAudioCaps(config);
+	if (!m_audio_caps_set)
+		return;
 	if (!m_audio_source)
 		return;
 	GstBuffer *buffer = gst_buffer_new_allocate(nullptr, length, nullptr);
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
+	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DURATION(buffer) = durationNs;
+	m_audio_next_pts += durationNs;
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
+	if (flow != GST_FLOW_OK)
+		eWarning("[eServiceDAB] unable to push audio buffer: %s", gst_flow_get_name(flow));
+}
+
+void eServiceDAB::audioQueueOverrun(GstElement *, void *userData)
+{
+	static_cast<eServiceDAB *>(userData)->m_audio_queue_overruns.fetch_add(1);
 }
 
 void eServiceDAB::storeSlide(const uint8_t *data, size_t length, int format)

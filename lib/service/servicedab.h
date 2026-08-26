@@ -86,7 +86,7 @@ struct eDABWorkerStats
 class eDABWorker : private eThread
 {
 public:
-	typedef std::function<void(const uint8_t *, size_t)> AudioCallback;
+	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 
 	eDABWorker(int fd, int pid, eDABTransport transport, uint32_t destinationIp, uint16_t destinationPort,
@@ -210,7 +210,9 @@ private:
 	void workerMessage(const eDABWorkerStats &stats);
 	bool startAudioPipeline();
 	void stopAudioPipeline();
-	void pushAudio(const uint8_t *data, size_t length);
+	void pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config);
+	void setAudioCaps(uint8_t config);
+	static void audioQueueOverrun(GstElement *queue, void *userData);
 	void storeSlide(const uint8_t *data, size_t length, int format);
 	std::string slidePath() const;
 	void pollAudioBus();
@@ -233,7 +235,13 @@ private:
 	eDABWorkerStats m_stats;
 	GstElement *m_audio_pipeline;
 	GstElement *m_audio_source;
+	GstElement *m_audio_queue;
 	FILE *m_audio_capture;
+	uint64_t m_audio_next_pts;
+	uint8_t m_audio_format;
+	bool m_audio_caps_set;
+	std::atomic<uint64_t> m_audio_queue_overruns;
+	uint64_t m_reported_audio_queue_overruns;
 	std::string m_slide_jpeg_path;
 	std::string m_slide_png_path;
 };

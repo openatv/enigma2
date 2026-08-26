@@ -13,7 +13,7 @@
 class eDABDecoder : private DABlinPAD::PADDecoderObserver
 {
 public:
-	typedef std::function<void(const uint8_t *, size_t)> AudioCallback;
+	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 	struct ServiceInfo
 	{
@@ -102,8 +102,7 @@ private:
 	void feedDABPlus(const uint8_t *data, size_t length);
 	void processSuperframe();
 	void inspectPAD(const uint8_t *data, size_t length);
-	void emitADTS(const uint8_t *data, size_t length, bool dacRate, bool sbr,
-		bool stereo, bool ps, int surround);
+	void emitLOAS(const uint8_t *data, size_t length, uint8_t config, uint64_t durationNs);
 	void PADChangeDynamicLabel(const DABlinPAD::DL_STATE &label) override;
 	void PADChangeSlide(const DABlinPAD::MOT_FILE &slide) override;
 	bool reconstructPF(uint16_t sequence, PFCollection &collector, std::vector<uint8_t> &af);

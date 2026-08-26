@@ -35,6 +35,46 @@ struct EEPProfile
 const EEPProfile eepProfiles[8] = {
 	{12,8},{8,8},{6,8},{4,8},{27,32},{21,32},{18,32},{15,32}
 };
+
+class LATMBitWriter
+{
+public:
+	LATMBitWriter() : m_byte_bits(0) { }
+
+	void addBits(uint32_t value, size_t count)
+	{
+		while (count)
+		{
+			if (!m_byte_bits)
+				m_data.push_back(0);
+			const size_t copyBits = std::min(count, static_cast<size_t>(8 - m_byte_bits));
+			const uint8_t copyData = static_cast<uint8_t>((value >> (count - copyBits)) & (0xff >> (8 - copyBits)));
+			m_data.back() |= static_cast<uint8_t>(copyData << (8 - m_byte_bits - copyBits));
+			m_byte_bits = (m_byte_bits + copyBits) % 8;
+			count -= copyBits;
+		}
+	}
+
+	void addBytes(const uint8_t *data, size_t length)
+	{
+		for (size_t i = 0; i < length; ++i)
+			addBits(data[i], 8);
+	}
+
+	std::vector<uint8_t> finishAudioSyncStream()
+	{
+		if (m_data.size() < 3 || m_data.size() - 3 > 0x1fff)
+			return std::vector<uint8_t>();
+		const size_t payloadLength = m_data.size() - 3;
+		m_data[1] |= static_cast<uint8_t>((payloadLength >> 8) & 0x1f);
+		m_data[2] = static_cast<uint8_t>(payloadLength & 0xff);
+		return m_data;
+	}
+
+private:
+	std::vector<uint8_t> m_data;
+	size_t m_byte_bits;
+};
 }
 
 eDABDecoder::PFCollection::PFCollection()
@@ -635,11 +675,9 @@ void eDABDecoder::processSuperframe()
 	const uint8_t config = m_superframe[2];
 	const bool dacRate = config & 0x40;
 	const bool sbr = config & 0x20;
-	const bool stereo = config & 0x10;
-	const bool ps = config & 0x08;
-	const int surround = config & 7;
 	const int auCountTable[4] = {4, 2, 6, 3};
 	const int auCount = auCountTable[(dacRate ? 2 : 0) | (sbr ? 1 : 0)];
+	const uint64_t auDurationNs = 120000000ULL / static_cast<uint64_t>(auCount);
 	uint16_t starts[7] = {};
 	if (auCount == 2)
 	{
@@ -686,7 +724,7 @@ void eDABDecoder::processSuperframe()
 			continue;
 		}
 		inspectPAD(payload, size - 2);
-		emitADTS(payload, size - 2, dacRate, sbr, stereo, ps, surround);
+		emitLOAS(payload, size - 2, config, auDurationNs);
 	}
 }
 
@@ -739,32 +777,57 @@ void eDABDecoder::PADChangeSlide(const DABlinPAD::MOT_FILE &slide)
 		m_image_callback(&slide.data[0], slide.data.size(), format);
 }
 
-void eDABDecoder::emitADTS(const uint8_t *data, size_t length, bool dacRate, bool sbr,
-	bool stereo, bool ps, int surround)
+void eDABDecoder::emitLOAS(const uint8_t *data, size_t length, uint8_t config, uint64_t durationNs)
 {
-	if (!m_audio_callback || !length || length + 7 > 0x1fff)
+	if (!m_audio_callback || !length)
 		return;
-	const unsigned sampleIndexTable[4] = {5, 8, 3, 6}; // 32, 16, 48, 24 kHz
-	const unsigned sampleIndex = sampleIndexTable[(dacRate ? 2 : 0) | (sbr ? 1 : 0)];
-	unsigned channels;
-	if (surround == 1)
-		channels = 6;
-	else if (sbr && !stereo && ps)
-		channels = 2;
+	const bool dacRate = config & 0x40;
+	const bool sbr = config & 0x20;
+	const bool stereo = config & 0x10;
+	const unsigned coreSampleIndexTable[4] = {5, 8, 3, 6}; // 32, 16, 48, 24 kHz
+	const unsigned extensionSampleIndex = dacRate ? 3 : 5; // 48 or 32 kHz
+	const unsigned coreSampleIndex = coreSampleIndexTable[(dacRate ? 2 : 0) | (sbr ? 1 : 0)];
+	const unsigned channels = stereo ? 2 : 1;
+
+	/* DAB+ access units use the 960-sample AAC transform. ADTS cannot signal
+	 * that transform, so wrap each AU in LOAS/LATM with an AudioSpecificConfig
+	 * carrying GASpecificConfig.frameLengthFlag = 1. This follows the untouched
+	 * DAB+ output used by DABlin. */
+	LATMBitWriter writer;
+	writer.addBits(0x2b7, 11); // AudioSyncStream syncword
+	writer.addBits(0, 13); // audioMuxLengthBytes, filled by finishAudioSyncStream()
+	writer.addBits(0, 1); // useSameStreamMux
+	writer.addBits(0, 1); // audioMuxVersion
+	writer.addBits(1, 1); // allStreamsSameTimeFraming
+	writer.addBits(0, 6); // numSubFrames
+	writer.addBits(0, 4); // numProgram
+	writer.addBits(0, 3); // numLayer
+	if (sbr)
+	{
+		writer.addBits(5, 5); // SBR
+		writer.addBits(coreSampleIndex, 4);
+		writer.addBits(channels, 4);
+		writer.addBits(extensionSampleIndex, 4);
+		writer.addBits(2, 5); // AAC-LC core
+	}
 	else
-		channels = stereo ? 2 : 1;
-	const size_t frameLength = length + 7;
-	std::vector<uint8_t> frame(frameLength);
-	frame[0] = 0xff;
-	frame[1] = 0xf1;
-	/* DAB+ uses MPEG-4 HE-AAC based on the AAC-LC core. In ADTS the two-bit
-	 * profile value is Audio Object Type minus one, hence LC is value 1. */
-	frame[2] = static_cast<uint8_t>((1 << 6) | (sampleIndex << 2) | ((channels >> 2) & 1));
-	frame[3] = static_cast<uint8_t>(((channels & 3) << 6) | ((frameLength >> 11) & 3));
-	frame[4] = static_cast<uint8_t>((frameLength >> 3) & 0xff);
-	frame[5] = static_cast<uint8_t>(((frameLength & 7) << 5) | (1999 >> 6));
-	frame[6] = static_cast<uint8_t>((1999 & 0x3f) << 2);
-	memcpy(frame.data() + 7, data, length);
+	{
+		writer.addBits(2, 5); // AAC-LC
+		writer.addBits(coreSampleIndex, 4);
+		writer.addBits(channels, 4);
+	}
+	writer.addBits(0b100, 3); // 960 transform, no core dependency/extension
+	writer.addBits(0, 3); // frameLengthType
+	writer.addBits(0xff, 8); // latmBufferFullness
+	writer.addBits(0, 1); // otherDataPresent
+	writer.addBits(0, 1); // crcCheckPresent
+	for (size_t remaining = length; remaining >= 255; remaining -= 255)
+		writer.addBits(0xff, 8);
+	writer.addBits(length % 255, 8);
+	writer.addBytes(data, length);
+	std::vector<uint8_t> frame = writer.finishAudioSyncStream();
+	if (frame.empty())
+		return;
 	++m_audio_frames;
-	m_audio_callback(frame.data(), frame.size());
+	m_audio_callback(data, length, frame.data(), frame.size(), durationNs, config);
 }
