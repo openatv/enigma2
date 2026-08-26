@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
-"PO-Revision-Date: 2026-08-20 10:13+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-26 05:55+0000\n"
+"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1204,6 +1204,10 @@ msgid "%s View"
 msgstr "%s-Ansicht"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "%s-Aktion fehlgeschlagen (Exitcode %s)"
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s zusätzliche Bildschirme"
 
@@ -1218,6 +1222,20 @@ msgstr "%s wurde deaktiviert."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s vom Reservereceiver importiert."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+"%s wird derzeit nicht ausgeführt.\n"
+"\n"
+"Soll es gestartet werden?"
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s ist derzeit angehalten oder nicht erreichbar. GRÜN drücken, um es zu starten."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1235,6 +1253,10 @@ msgstr "%s nicht verfügbar."
 #, python-format
 msgid "%s version"
 msgstr "%s-Version"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr "%s Webif deaktiviert"
 
 #, python-format
 msgid "%s%d min"
@@ -1788,6 +1810,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "KI-Untertitel"
+
 msgid "AI Translation color"
 msgstr "Textfarbe der KI-Übersetzung"
 
@@ -1821,11 +1846,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC-Anbieter"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV-Receiver, Soundbar und Fernbedienung"
+
 msgid "AV Setup"
 msgstr "Audio/Video"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV-Receiver, Soundbar und Fernbedienung"
 
 msgid "Abkhazian"
 msgstr "Abchasisch"
@@ -2240,6 +2265,9 @@ msgstr "Erwachsenenfilm/Drama"
 msgid "Advanced"
 msgstr "Erweitert"
 
+msgid "Advanced Diagnostics"
+msgstr "Erweiterte Diagnose"
+
 #
 msgid "Advanced Options"
 msgstr "Erweiterte Optionen"
@@ -2480,6 +2508,9 @@ msgstr "Alternative 2"
 
 msgid "Alternative Edit"
 msgstr "Alternativenbearbeitung"
+
+msgid "Alternative Tuner Sources"
+msgstr "Alternative Tunerquellen"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternative URLs für DVB-T / C oder ATSC"
@@ -2832,6 +2863,12 @@ msgstr "Automatische Lautstärkeanpassung"
 msgid "Audio Channel"
 msgstr "Tonspur"
 
+msgid "Audio Formats And Output"
+msgstr "Audioformate und Ausgabe"
+
+msgid "Audio Language And Track Selection"
+msgstr "Audiosprache und Tonspur auswählen"
+
 msgid "Audio PID"
 msgstr "Audio-PID"
 
@@ -2848,6 +2885,9 @@ msgstr "Tonquelle"
 
 msgid "Audio Sync"
 msgstr "Audio-Sync"
+
+msgid "Audio Synchronization"
+msgstr "Audiosynchronisation"
 
 msgid "Audio language selection 1"
 msgstr "Tonsprachauswahl 1"
@@ -3461,6 +3501,9 @@ msgstr "Helligkeit (Normal)"
 msgid "Brightness (Standby)"
 msgstr "Helligkeit (Standby)"
 
+msgid "Brightness And Contrast"
+msgstr "Helligkeit und Kontrast"
+
 msgid "Brightness Video"
 msgstr "Bildhelligkeit"
 
@@ -3499,6 +3542,9 @@ msgstr "Erweiterungen durchsuchen, installieren oder entfernen."
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
+
+msgid "Buffer Management"
+msgstr "Pufferverwaltung"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3563,6 +3609,9 @@ msgstr "Unternehmen"
 msgid "Business & Finance"
 msgstr "Wirtschaft und Finanzen"
 
+msgid "Button Assignments"
+msgstr "Tastenbelegungen"
+
 # Quick Menue
 msgid "Button Setup"
 msgstr "Tastenbelegung"
@@ -3594,9 +3643,6 @@ msgstr "C/T-Eingang"
 
 msgid "C/T input switching"
 msgstr "C/T-Eingang umschalten"
-
-msgid "C/T input switching: external 5V coax switch"
-msgstr "C/T-Eingangsumschaltung: externer 5-Volt-Koaxialschalter"
 
 msgid "CCD-Width"
 msgstr "CCD-Breite"
@@ -4175,6 +4221,12 @@ msgstr "Sender 1"
 msgid "Channel 1 with prime time"
 msgstr "Sender 1 mit Primetime"
 
+msgid "Channel And EPG Import"
+msgstr "Sender und EPG-Import"
+
+msgid "Channel History And Messages"
+msgstr "Senderverlauf und Meldungen"
+
 msgid "Channel Info"
 msgstr "Senderinformationen"
 
@@ -4211,6 +4263,9 @@ msgstr "Senderliste"
 
 msgid "Channel Selection picon path"
 msgstr "Picons der Senderauswahl"
+
+msgid "Channel Zapping And Keys"
+msgstr "Senderwechsel und Tasten"
 
 msgid "Channel buttons"
 msgstr "Tasten P+/CH+ und P-/CH-"
@@ -4688,6 +4743,9 @@ msgstr "Kolumbien"
 msgid "Color"
 msgstr "Farbe"
 
+msgid "Color Button Assignments"
+msgstr "Farbtasten-Zuweisungen"
+
 msgid "Color format"
 msgstr "Farbformat"
 
@@ -4761,15 +4819,15 @@ msgstr "Common-Interface-Zuweisung"
 msgid "Common Interface Settings"
 msgstr "CI-Einstellungen"
 
-msgid "Common Settings"
-msgstr "Allgemeine Einstellungen"
-
 # boot-up action
 msgid "Common Setup Actions"
 msgstr "Allgemeine Einstellungsaktionen"
 
 msgid "Comoros"
 msgstr "Komoren"
+
+msgid "Compatibility And Emulation"
+msgstr "Kompatibilität und Emulation"
 
 msgid "Compiled by"
 msgstr "Kompiliert von"
@@ -5549,6 +5607,9 @@ msgstr "Land für EPG-Ereignisbewertungsinformationen"
 msgid "Crash %d/%d"
 msgstr "Absturz %d/%d"
 
+msgid "Crash Handling"
+msgstr "Absturzverhalten"
+
 msgid "Crash Logs"
 msgstr "Crash-Logs"
 
@@ -5807,6 +5868,9 @@ msgstr "Aktuell gespeicherte Lautstärkepegel:"
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
+msgid "Custom Skip Times"
+msgstr "Benutzerdefinierte Sprungzeiten"
+
 msgid "Custom mountpoint"
 msgstr "Benutzerdefinierter Einhängepunkt"
 
@@ -5839,6 +5903,9 @@ msgstr "Anpassen von Enigma2 an die eigenen Bedürfnisse."
 #
 msgid "Cut"
 msgstr "Schneiden"
+
+msgid "CutList Skipping"
+msgstr "Schnittliste überspringen"
 
 msgid "CutList skip time for '%s' button"
 msgstr "CutList-Sprungzeit für die Taste '%s'"
@@ -5937,6 +6004,9 @@ msgstr "Dual-Layer-DVD"
 msgid "DVB CI Delay"
 msgstr "DVB-CI-Verzögerung"
 
+msgid "DVB Subtitles"
+msgstr "DVB-Untertitel"
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB-Untertitel-PID – Sprache"
 
@@ -5955,8 +6025,8 @@ msgstr "DVB-C Annex B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C Annex-C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
-msgstr "DVB-C und DVB-T/T2 teilen sich diesen Eingang. Sind beide aktiviert, steuert Enigma2 den externen Koaxialschalter mittels 5 Volt."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "DVB-C und DVB-T/T2 nutzen diesen Eingang gemeinsam. Die 5V-Versorgung nur einschalten, wenn das Antennensystem oder ein externer Koaxialschalter mit Strom versorgt werden muss."
 
 #
 msgid "DVB-S"
@@ -6009,6 +6079,9 @@ msgstr "Datum"
 
 msgid "Date / Time"
 msgstr "Datum / Uhrzeit"
+
+msgid "Date And Time"
+msgstr "Datum und Uhrzeit"
 
 msgid "Date Time Input Actions"
 msgstr "Datum/Zeit-Eingabeaktionen"
@@ -6194,6 +6267,9 @@ msgstr "Debug %d/%d"
 
 msgid "Debug Information"
 msgstr "Debuginformationen"
+
+msgid "Debug Log Content"
+msgstr "Debug-Log-Inhalt"
 
 msgid "Debug Log Information"
 msgstr "Debug-Log-Informationen"
@@ -6910,6 +6986,12 @@ msgstr "4:3-Inhalt anzeigen als"
 msgid "Display >16:9 content as"
 msgstr "Inhalt >16:9 anzeigen als"
 
+msgid "Display Power And Content"
+msgstr "Leistung und Inhalt anzeigen"
+
+msgid "Display Scrolling"
+msgstr "Display-Scrollen"
+
 # Quick Menue
 msgid "Display Settings"
 msgstr "Displayeinstellungen"
@@ -7092,23 +7174,23 @@ msgstr "Das Lesezeichen für '%s' wirklich löschen?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Den Timer für '%s' wirklich entfernen?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"OSCam wirklich neu starten?\n"
-"\n"
-"Das dauert etwa 5 Sekunden!"
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "%s wirklich neu starten?"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"OSCam wirklich deaktivieren?\n"
+"%s wirklich deaktivieren?\n"
 "\n"
-"ACHTUNG: Um OSCam wieder zu reaktivieren, muss ein kompletter Neustart des Receivers durchgeführt werden!"
+"ACHTUNG: Um %s zu reaktivieren, ist ein kompletter Neustart nötig!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "%s wirklich stoppen?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7417,17 +7499,26 @@ msgstr "EPG-Cache prüfen"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG-Senderauswahl"
 
+msgid "EPG Data In Streams"
+msgstr "EPG-Daten in Streams"
+
 msgid "EPG Display Actions"
 msgstr "EPG-Anzeigeaktionen"
 
 msgid "EPG Jump"
 msgstr "EPG-Sprung"
 
+msgid "EPG Language"
+msgstr "EPG-Sprache"
+
 msgid "EPG Navigation Actions"
 msgstr "EPG-Navigationsaktionen"
 
 msgid "EPG Other Actions"
 msgstr "Weitere EPG-Aktionen"
+
+msgid "EPG Range And History"
+msgstr "EPG-Bereich und -Verlauf"
 
 msgid "EPG Search"
 msgstr "EPG-Suche"
@@ -7442,6 +7533,12 @@ msgstr "EPG"
 
 msgid "EPG Setup"
 msgstr "EPG einstellen"
+
+msgid "EPG Sources"
+msgstr "EPG-Quellen"
+
+msgid "EPG Storage And Refresh"
+msgstr "EPG-Speicherung und Aktualisierung"
 
 msgid "EPG button mode"
 msgstr "Taste EPG"
@@ -7961,6 +8058,9 @@ msgstr "Bei 'Ja' wird das Entschlüsseln eines Streams aktiviert (wenn ECM-Daten
 #
 msgid "Encryption"
 msgstr "Verschlüsselung"
+
+msgid "Encryption And Descrambling"
+msgstr "Verschlüsselung und Entschlüsselung"
 
 msgid "End"
 msgstr "Ende"
@@ -8579,6 +8679,9 @@ msgstr "Auch wenn ein 'Umschalten'-Aufnahmetimer startet?"
 msgid "Event Info"
 msgstr "Sendungsinformationen"
 
+msgid "Event Metadata And Correction"
+msgstr "Sendungs-Metadaten und -Korrektur"
+
 msgid "Event View"
 msgstr "Sendungsinformationen"
 
@@ -8782,6 +8885,9 @@ msgstr "Externes Bild-im-Bild"
 msgid "External Storage %s"
 msgstr "Externer Speicher %s"
 
+msgid "External Subtitles"
+msgstr "Externe Untertitel"
+
 msgid "External subtitle color"
 msgstr "Farbe für externe Untertitel"
 
@@ -8983,6 +9089,9 @@ msgstr "Schnellen Senderwechsel einstellen"
 msgid "Fast DiSEqC"
 msgstr "Schnelles DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr "Vor- und Rücklauf"
+
 msgid "Fast Scan"
 msgstr "Schnellsuchlauf"
 
@@ -9029,6 +9138,9 @@ msgstr "Feed stabil"
 
 msgid "Feed unstable!"
 msgstr "Feed instabil"
+
+msgid "Feeds And Networking"
+msgstr "Feeds und Netzwerke"
 
 msgid "Fetch EPG and update timers now"
 msgstr "EPG abrufen und Timer aktualisieren"
@@ -9155,6 +9267,9 @@ msgstr "Dateiübertragung durch den Benutzer abgebrochen"
 #
 msgid "Filename"
 msgstr "Dateiname"
+
+msgid "Files And Directories"
+msgstr "Dateien und Verzeichnisse"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
@@ -9581,12 +9696,30 @@ msgstr "Allgemein"
 msgid "General AC3 delay"
 msgstr "Allgemeine AC3-Verzögerung"
 
+msgid "General Appearance"
+msgstr "Allgemeines Aussehen"
+
 msgid "General BT audio delay"
 msgstr "Allgemeine Bluetooth-Audioverzögerung"
+
+msgid "General Channel Selection"
+msgstr "Allgemeine Senderauswahl"
+
+msgid "General OSD Behavior"
+msgstr "Allgemeines OSD-Verhalten"
 
 #
 msgid "General PCM delay"
 msgstr "Allgemeine PCM-Verzögerung"
+
+msgid "General Setup Behavior"
+msgstr "Allgemeines Konfigurationsverhalten"
+
+msgid "General Subtitle Appearance And Timing"
+msgstr "Untertitel-Erscheinungsbild und -Timing"
+
+msgid "General Time Shift Behavior"
+msgstr "Allgemeines Timeshift-Verhalten"
 
 #
 msgid "Generic"
@@ -9990,6 +10123,9 @@ msgstr "Hilfe"
 
 msgid "Help Action"
 msgstr "Hilfeaktionen"
+
+msgid "Help And Visual Feedback"
+msgstr "Hilfe und visuelles Feedback"
 
 msgid "Help Screen Information"
 msgstr "Informationen zum Hilfebildschirm"
@@ -10740,6 +10876,12 @@ msgstr "Infosymbolbreite"
 msgid "InfoBar"
 msgstr "Infoleiste"
 
+msgid "InfoBar And Pause"
+msgstr "Infoleiste und Pause"
+
+msgid "InfoBar Content And Time Display"
+msgstr "Inhalt der Infoleiste und Zeitanzeige"
+
 msgid "InfoBar EPG"
 msgstr "Infoleisten-EPG"
 
@@ -10748,6 +10890,12 @@ msgstr "Infoleisten-EPG"
 
 msgid "InfoBar EPG mode"
 msgstr "Infoleisten-EPG-Modus"
+
+msgid "InfoBar Timing And Appearance"
+msgstr "Zeitpunkt und Darstellung der Infoleiste"
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "Sichtbarkeit und Verhalten der Infoleiste"
 
 msgid "InfoBar fade-out speed"
 msgstr "Infoleiste Ausblendegeschwindigkeit"
@@ -11229,6 +11377,9 @@ msgstr "Keine Kexec-MultiBoot-Dateien vorhanden!"
 msgid "Key"
 msgstr "Taste"
 
+msgid "Key Map And Power Buttons"
+msgstr "Tastaturbelegung und Ein-/Aus-Tasten"
+
 #
 msgid "Keyboard"
 msgstr "Externe Tastatur"
@@ -11333,6 +11484,9 @@ msgstr "LED Deep-Standby"
 
 msgid "LED Deep Standby color"
 msgstr "LED-Deep-Standby-Farbe"
+
+msgid "LED Indicators"
+msgstr "LED-Anzeigen"
 
 msgid "LED Normal"
 msgstr "LED Normal"
@@ -11468,6 +11622,9 @@ msgstr "Lettland"
 
 msgid "Latvian"
 msgstr "Lettisch"
+
+msgid "Layout And Fonts"
+msgstr "Layout und Schriftarten"
 
 msgid "Leave"
 msgstr "Trennen"
@@ -11630,6 +11787,9 @@ msgstr "Verknüpfte Titel mit einem DVD-Menü"
 msgid "Links"
 msgstr "Links"
 
+msgid "List Appearance And Sorting"
+msgstr "Aussehen und Sortierung der Liste"
+
 msgid "List Navigation Actions"
 msgstr "Navigationsaktionen"
 
@@ -11791,6 +11951,9 @@ msgstr "Log %d/%d"
 
 msgid "Log Manager"
 msgstr "Logverwaltung"
+
+msgid "Log Retention And Access"
+msgstr "Protokoll-Speicherung und -Zugriff"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -12169,6 +12332,9 @@ msgstr "Medien"
 msgid "Media Center"
 msgstr "Mediacenter"
 
+msgid "Media Files And Navigation"
+msgstr "Mediendateien und Navigation"
+
 msgid "Media Player"
 msgstr "Mediaplayer"
 
@@ -12257,6 +12423,9 @@ msgstr "Menüanzeige"
 msgid "Menu style"
 msgstr "Menüdarstellung"
 
+msgid "Menus And Setup"
+msgstr "Menüs und Einstellungen"
+
 #
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Standard-EPG mit IceTV-EPG zusammenführen"
@@ -12308,6 +12477,9 @@ msgstr "MiniDLNA-Medienserver"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr "MiniTV und Bild-im-Bild"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV mit OSD"
@@ -12453,10 +12625,6 @@ msgstr "Einhängen"
 
 msgid "Mount Context Menu"
 msgstr "Kontextmenü"
-
-#
-msgid "Mount Manager"
-msgstr "Mountverwaltung"
 
 msgid "Mount Point"
 msgstr "Einhängepunkt"
@@ -12806,6 +12974,9 @@ msgstr "Filminformationen-Aktionen"
 msgid "Movie List"
 msgstr "Filmauswahl"
 
+msgid "Movie List And Playback Behavior"
+msgstr "Filmauswahl und Wiedergabeverhalten"
+
 msgid "Movie Player Actions"
 msgstr "Movieplayeraktionen"
 
@@ -13046,6 +13217,12 @@ msgstr "Zum ausgewählten Verzeichnis navigieren"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Mit den Tasten Hoch/Runter nach oben/unten und mit Links/Rechts seitenweise navigieren. OK drücken, um die in der aktuell markierten Hilfe beschriebene Aktion auszuführen."
+
+msgid "Navigation And Button Assignments"
+msgstr "Navigation und Tastenbelegungen"
+
+msgid "Navigation And Time Range"
+msgstr "Navigation und Zeitbereich"
 
 msgid "Ndonga"
 msgstr "Ndonga"
@@ -13802,6 +13979,9 @@ msgstr "Keine Aktualisierungen vorhanden"
 msgid "Nothing, just leave this menu"
 msgstr "Nichts tun, nur das Menü verlassen"
 
+msgid "Notifications And Display"
+msgstr "Benachrichtigungen und Anzeige"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Jetzt"
@@ -13898,9 +14078,6 @@ msgstr "OSCam Informationen"
 
 msgid "OSCam Information Settings"
 msgstr "OSCam Informationseinstellungen"
-
-msgid "OSCam webif disabled"
-msgstr "OSCam-Weboberfläche deaktiviert"
 
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo-Aktionen"
@@ -14279,6 +14456,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX"
 
+msgid "OpenWebif Connection"
+msgstr "OpenWebif-Verbindung"
+
 msgid "OpenWebif picon path"
 msgstr "Picons für OpenWebif"
 
@@ -14364,6 +14544,9 @@ msgstr "Andere"
 
 msgid "Other Actions"
 msgstr "Sonstige Aktionen"
+
+msgid "Other OSD Elements"
+msgstr "Andere OSD-Elemente"
 
 msgid "Other Packages"
 msgstr "Andere Pakete"
@@ -14501,6 +14684,9 @@ msgstr "PVR/Video"
 
 msgid "Package"
 msgstr "Paket"
+
+msgid "Package Categories"
+msgstr "Paketkategorien"
 
 #
 msgid "Package Manager"
@@ -14783,6 +14969,9 @@ msgstr "Picon-Suchmodus"
 msgid "Picon width"
 msgstr "Piconbreite"
 
+msgid "Picture In Picture"
+msgstr "Bild-im-Bild"
+
 msgid "Picture Information"
 msgstr "Bildinformationen"
 
@@ -14931,6 +15120,12 @@ msgstr "Die Audiodatei abspielen"
 
 msgid "Play the selected service"
 msgstr "Ausgewählten Sender abspielen"
+
+msgid "Playback And Saving"
+msgstr "Wiedergabe und Speichern"
+
+msgid "Playback And Status"
+msgstr "Wiedergabe und Status"
 
 msgid "Playback Settings"
 msgstr "Wiedergabe"
@@ -15605,6 +15800,9 @@ msgstr "Primärer DNS (IPv4)"
 msgid "Primary DNS (IPv6)"
 msgstr "Primärer DNS (IPv6)"
 
+msgid "Prime Time"
+msgstr "Primetime"
+
 msgid "Prime time"
 msgstr "Primetime"
 
@@ -16144,6 +16342,18 @@ msgstr "Toolbox für beschreibbare Medien"
 msgid "Recording"
 msgstr "Aufnahme"
 
+msgid "Recording And Status Indicators"
+msgstr "Aufnahme- und Statusanzeigen"
+
+msgid "Recording Filenames And Data"
+msgstr "Dateinamen und Daten von Aufnahmen"
+
+msgid "Recording Locations"
+msgstr "Aufnahmeverzeichnisse"
+
+msgid "Recording Preparation And Margins"
+msgstr "Aufnahme und Vor-/Nachlauf einstellen"
+
 msgid "Recording Settings"
 msgstr "Aufnahmen"
 
@@ -16163,7 +16373,7 @@ msgid "Recording in progress!"
 msgstr "Es wird aufgenommen!"
 
 msgid "Recording location"
-msgstr "Aufnahmeort"
+msgstr "Aufnahmeverzeichnis"
 
 msgid "Recording running"
 msgstr "Aufnahme läuft"
@@ -16223,6 +16433,9 @@ msgstr "Ohne ein zulässiges Verzeichnis funktionieren die Aufnahmen möglicherw
 
 msgid "Recovery"
 msgstr "Wiederherstellung"
+
+msgid "Recovery And Hardware"
+msgstr "Wiederherstellung und Hardware"
 
 msgid "Recovery Mode"
 msgstr "Wartungsmodus"
@@ -16366,6 +16579,12 @@ msgstr "Fernbedienungseinstellungen"
 
 msgid "Remote Control Code Settings"
 msgstr "Fernbedienungscode"
+
+msgid "Remote Receiver Connection"
+msgstr "Reservereceiver-Verbindung"
+
+msgid "Remote Timers"
+msgstr "Remote-Timer"
 
 msgid "Remote control information"
 msgstr "Informationen zur Fernbedienung"
@@ -16731,6 +16950,10 @@ msgstr "Wird aufgelöst …"
 msgid "Restart"
 msgstr "Neu starten"
 
+#, python-format
+msgid "Restart %s"
+msgstr "%s neu starten"
+
 msgid "Restart Adapter"
 msgstr "Adapter neu starten"
 
@@ -16750,9 +16973,6 @@ msgstr "Bedienoberfläche jetzt neu starten?"
 #
 msgid "Restart Network"
 msgstr "Netzwerk neu starten"
-
-msgid "Restart OSCam"
-msgstr "OSCam neu starten"
 
 msgid "Restart enigma"
 msgstr "Enigma2 neu starten"
@@ -16774,6 +16994,10 @@ msgstr "Netzwerk neu starten"
 #
 msgid "Restart test"
 msgstr "Test wiederholen"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr "Neustart von %s fehlgeschlagen (Exitcode %s)"
 
 msgid "Restarting adapter..."
 msgstr "Adapter wird neu gestartet …"
@@ -19004,6 +19228,9 @@ msgstr "Senderinformationen"
 msgid "Service Information Actions"
 msgstr "Senderinformationen-Aktionen"
 
+msgid "Service List Appearance"
+msgstr "Senderlistendarstellung"
+
 msgid "Service Scan"
 msgstr "Sendersuche"
 
@@ -20412,8 +20639,9 @@ msgstr "Herunterfahren"
 msgid "Shutdown"
 msgstr "Herunterfahren"
 
-msgid "Shutdown OSCam"
-msgstr "OSCam beenden"
+#, python-format
+msgid "Shutdown %s"
+msgstr "%s herunterfahren"
 
 msgid "Shutting down. Please wait..."
 msgstr "Herunterfahren. Bitte warten …"
@@ -20533,6 +20761,9 @@ msgstr "Skineinstellungen"
 
 msgid "SkinSelection"
 msgstr "Skinauswahl"
+
+msgid "Skip Modes"
+msgstr "Sprungmodi"
 
 msgid "Skip back"
 msgstr "Zurückspulen"
@@ -20847,6 +21078,9 @@ msgstr "Softcam-Einrichtung"
 msgid "Softcams"
 msgstr "Softcams"
 
+msgid "Software Display Scrolling"
+msgstr "Scrollgeschwindigkeit für Text im Display"
+
 #
 msgid "Software Management"
 msgstr "Softwareverwaltung"
@@ -21012,6 +21246,9 @@ msgstr "Soul/Rhythm and Blues"
 msgid "Sound"
 msgstr "Ton"
 
+msgid "Sound Enhancements"
+msgstr "Tonverbesserungen"
+
 msgid "Sound carrier"
 msgstr "Tonträger"
 
@@ -21133,6 +21370,10 @@ msgstr "Standby ohne TV auszuschalten"
 msgid "Start"
 msgstr "Start"
 
+#, python-format
+msgid "Start %s"
+msgstr "%s starten"
+
 msgid "Start Auto Refresh"
 msgstr "Auto-Refresh starten"
 
@@ -21213,6 +21454,10 @@ msgstr "Starten/Stoppen/Auswahl der Cams"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Starten/Stoppen/Auswahl der Cams. Installation eines Cams ist erforderlich!"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr "Start von %s fehlgeschlagen (Exitcode %s)"
+
 msgid "Starting Softcam"
 msgstr "Starte Softcam"
 
@@ -21231,6 +21476,9 @@ msgstr "Kontrollvorlaufzeit in Minuten"
 
 msgid "Starts in a few seconds"
 msgstr "Startet in wenigen Sekunden"
+
+msgid "Startup And Wakeup"
+msgstr "Hochfahren und Aufwecken"
 
 msgid "Startup device not found!"
 msgstr "Startgerät nicht gefunden!"
@@ -21359,6 +21607,10 @@ msgstr "Timeraufnahme beenden"
 msgid "Stopped"
 msgstr "Beendet"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr "Beenden von %s fehlgeschlagen (Exitcode %s)"
+
 msgid "Stopping Softcam"
 msgstr "Softcam wird gestoppt"
 
@@ -21377,6 +21629,9 @@ msgstr "Laufwerke"
 
 msgid "Storage / Drive information"
 msgstr "Laufwerksinformationen"
+
+msgid "Storage And Deletion"
+msgstr "Speicherung und Löschung"
 
 #
 msgid "Storage Devices"
@@ -21494,6 +21749,9 @@ msgstr "Untertitel"
 
 msgid "Subtitle Actions"
 msgstr "Untertitelaktionen"
+
+msgid "Subtitle Language And Selection"
+msgstr "Untertitel-Sprache und -Auswahl"
 
 # Subtitle QuickMenu
 msgid "Subtitle Quickmenu"
@@ -21834,17 +22092,17 @@ msgstr "TUNER:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "TV-Eingang und Receiver-Wakeup"
+
+msgid "TV Power"
+msgstr "TV-Netzschalter"
+
 msgid "TV button mode"
 msgstr "Taste TV"
 
-msgid "TV input and receiver wakeup"
-msgstr "TV-Eingang und Receiver-Wakeup"
-
 msgid "TV physical address report"
 msgstr "TV-Adressbericht"
-
-msgid "TV power"
-msgstr "TV-Netzschalter"
 
 msgid "TXT PID"
 msgstr "TXT-PID"
@@ -21950,6 +22208,9 @@ msgstr "Videotext-StartX (linker Rand)"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Videotext-StartY (unterer Rand)"
+
+msgid "Teletext Subtitles"
+msgstr "Videotext-Untertitel"
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Videotext-TTFBold (0=normal, 1=fett)"
@@ -22926,6 +23187,9 @@ msgstr "Zeitzone"
 msgid "Time zone area"
 msgstr "Zeitzonengebiet"
 
+msgid "Timeline"
+msgstr "Zeitleiste"
+
 # EPG
 msgid "Timeline 24 Hour"
 msgstr "Zeitskala im 24-Stunden-Format"
@@ -22942,6 +23206,9 @@ msgstr "Zeitskala"
 
 msgid "Timeout"
 msgstr "Timeout"
+
+msgid "Timer Defaults And Retention"
+msgstr "Standardwerte und Speicherdauer des Timers"
 
 msgid "Timer Log Actions"
 msgstr "Timer-Log-Aktionen"
@@ -23016,7 +23283,7 @@ msgstr "Timeshift"
 msgid "Timezone"
 msgstr "Zeitzone"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "Timing und Diagnose"
 
 msgid "Timor-Leste / East Timor"
@@ -23270,6 +23537,9 @@ msgstr "Transportstream-ID (TSID)"
 msgid "Transport Stream Type"
 msgstr "Transportstreamtyp"
 
+msgid "Trash And Deletion"
+msgstr "Papierkorb und Löschen"
+
 msgid "Trashcan"
 msgstr "Papierkorb"
 
@@ -23362,6 +23632,12 @@ msgstr "Tuner "
 
 msgid "Tuner :"
 msgstr "Tuner:"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr "Tuner-Zuweisung und -Konflikte"
+
+msgid "Tuner And Streaming"
+msgstr "Tuner und Streaming"
 
 #
 msgid "Tuner Configuration"
@@ -23618,7 +23894,7 @@ msgstr "Unbestimmt"
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
-msgstr "Unerwarteter Fehler beim Zugriff auf WebIF: %s"
+msgstr "Unerwarteter Fehler beim Zugriff auf Webif: %s"
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Unerwarteter Fehler beim Abrufen der Timerinformationen des Reservetuners!"
@@ -24351,7 +24627,7 @@ msgid "Verbose"
 msgstr "Ausführlich"
 
 msgid "Verify WebIf SSL certificate"
-msgstr "WebIf-SSL-Zertifikat überprüfen"
+msgstr "Webif-SSL-Zertifikat überprüfen"
 
 msgid "Version"
 msgstr "Version"
@@ -24595,6 +24871,9 @@ msgstr "Lautstärkeanpassung-Senderauswahlaktionen"
 
 msgid "Volume Adjust Settings"
 msgstr "Lautstärkeanpassung"
+
+msgid "Volume Control"
+msgstr "Lautstärkeregelung"
 
 msgid "Volume adjustment mode"
 msgstr "Lautstärkeanpassung-Modus"
@@ -25623,6 +25902,9 @@ msgstr "Umschalten"
 msgid "Zap + Exit"
 msgstr "Umschalten und verlassen"
 
+msgid "Zap Timer Settings"
+msgstr "Umschalttimer-Einstellungen"
+
 msgid "Zap Up/Down"
 msgstr "Hoch/Runter umschalten"
 
@@ -26464,6 +26746,55 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bluetooth audio"
+#~ msgstr "Bluetooth-Audio"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Plugin-Manager"
+
+#~ msgid "Timer defaults and margins"
+#~ msgstr "Timer-Standardwerte und -Nachlauf"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "C/T-Eingangsumschaltung: externer 5-Volt-Koaxialschalter"
+
+#~ msgid "Common Settings"
+#~ msgstr "Allgemeine Einstellungen"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "DVB-C und DVB-T/T2 teilen sich diesen Eingang. Sind beide aktiviert, steuert Enigma2 den externen Koaxialschalter mittels 5 Volt."
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "OSCam wirklich neu starten?\n"
+#~ "\n"
+#~ "Das dauert etwa 5 Sekunden!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "OSCam wirklich deaktivieren?\n"
+#~ "\n"
+#~ "ACHTUNG: Um OSCam wieder zu reaktivieren, muss ein kompletter Neustart des Receivers durchgeführt werden!"
+
+#
+#~ msgid "Mount Manager"
+#~ msgstr "Mountverwaltung"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "OSCam-Weboberfläche deaktiviert"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "OSCam neu starten"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "OSCam beenden"
 
 #
 #~ msgid "1.0"

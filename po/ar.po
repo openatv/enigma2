@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-17 04:54+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1343,6 +1343,10 @@ msgstr "الضبط - %s"
 msgid "%s View"
 msgstr "عرض %s"
 
+#, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
 #
 #, python-format
 msgid "%s additional screens"
@@ -1359,6 +1363,17 @@ msgstr "%s تم الغاء التفعيل."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s تم الجلب من جهاز الريسيفر البعيد."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1377,6 +1392,10 @@ msgstr "%s غير متاح."
 #, python-format
 msgid "%s version"
 msgstr "%s إصدار"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr ""
 
 #
 #, python-format
@@ -1880,6 +1899,9 @@ msgstr ""
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 #, fuzzy
 msgid "AI Translation color"
 msgstr "الترجمة"
@@ -1918,11 +1940,11 @@ msgstr "نظام ATSC"
 msgid "ATSC provider"
 msgstr "مزود خدمات لـ ATSC"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr ""
+
 msgid "AV Setup"
 msgstr "إعدادات الصوت و الصورة"
-
-msgid "AV receiver, soundbar and remote"
-msgstr ""
 
 msgid "Abkhazian"
 msgstr ""
@@ -2336,6 +2358,9 @@ msgstr "فيلم للكبار/دراما"
 msgid "Advanced"
 msgstr "متقدم"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 #
 msgid "Advanced Options"
 msgstr "خيارات متقدمة"
@@ -2585,6 +2610,9 @@ msgstr "البديل ٢"
 
 msgid "Alternative Edit"
 msgstr "تحرير البديل"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
@@ -2932,6 +2960,12 @@ msgstr "مستوي الصوت التلقائي"
 msgid "Audio Channel"
 msgstr "قناة الصوت"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "معرف الصوت PID"
 
@@ -2949,6 +2983,9 @@ msgstr "إعداد الصوت"
 #, fuzzy
 msgid "Audio Sync"
 msgstr "إعدادات الصوت"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "اختيار لغة الصوت الأولى"
@@ -3582,6 +3619,9 @@ msgstr "سطوع (طبيعي)"
 msgid "Brightness (Standby)"
 msgstr "سطوع (الاستعداد)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 #, fuzzy
 msgid "Brightness Video"
 msgstr "الإضاءه"
@@ -3624,6 +3664,9 @@ msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "بروناي دار السلام"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Buffering %d%%"
@@ -3694,6 +3737,9 @@ msgstr "الإضاءه"
 msgid "Business & Finance"
 msgstr ""
 
+msgid "Button Assignments"
+msgstr ""
+
 msgid "Button Setup"
 msgstr "إعداد الأزرار"
 
@@ -3724,9 +3770,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 #, fuzzy
@@ -4323,6 +4366,12 @@ msgstr "القناة 1"
 msgid "Channel 1 with prime time"
 msgstr ""
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "معلومات القناة"
 
@@ -4358,6 +4407,9 @@ msgid "Channel Selection Settings"
 msgstr "إعدادات اختيار القناة"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 #
@@ -4825,6 +4877,9 @@ msgstr "كولومبيا"
 msgid "Color"
 msgstr "اللون"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "تهئية الألوان"
 
@@ -4899,15 +4954,15 @@ msgstr "تحديد وحدة النفاذ المشروط"
 msgid "Common Interface Settings"
 msgstr ""
 
-msgid "Common Settings"
-msgstr ""
-
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "اتصال"
 
 msgid "Comoros"
 msgstr "جزر القمر"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr "تم تجميعها و بناؤها من طرف"
@@ -5648,6 +5703,9 @@ msgstr ""
 msgid "Crash %d/%d"
 msgstr ""
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr ""
 
@@ -5900,6 +5958,9 @@ msgstr ""
 msgid "Custom"
 msgstr "تخصيص"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr ""
 
@@ -5926,6 +5987,9 @@ msgstr ""
 
 msgid "Cut"
 msgstr "قطع"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr ""
@@ -6019,6 +6083,9 @@ msgstr "ديفيدي ثنائي الشاشة"
 msgid "DVB CI Delay"
 msgstr ""
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr "معرف PID لتراجم الـ DVB و اللغة"
 
@@ -6037,7 +6104,7 @@ msgstr "نظام البث الرقمي عبر الكيبل المرفق ب (DVB-
 msgid "DVB-C ANNEX C"
 msgstr "نظام البث الرقمي عبر الكيبل المرفق سي (DVB-C ANNEX C)"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -6090,6 +6157,9 @@ msgid "Date"
 msgstr "تاريخ"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date And Time"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -6276,6 +6346,9 @@ msgid "Debug %d/%d"
 msgstr ""
 
 msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log Content"
 msgstr ""
 
 msgid "Debug Log Information"
@@ -6978,6 +7051,12 @@ msgstr "اعرض المحتوى بقياس 4:3 كـ"
 msgid "Display >16:9 content as"
 msgstr "اعرض المحتوى بقياس اكبر من 16:9 كـ"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 msgid "Display Settings"
 msgstr ""
 
@@ -7143,16 +7222,19 @@ msgstr "هل تريد فعلا حذف المرجعية %s?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "هل تريد فعلا مسح البلج إن \"%s\" ؟"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to stop %s?"
 msgstr ""
 
 #, python-format
@@ -7457,6 +7539,9 @@ msgstr "فحص ذاكرة التخزين المؤقته لـ EPG"
 msgid "EPG Channel/Service Selection"
 msgstr "تحديث دليل القنوات"
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 #, fuzzy
 msgid "EPG Display Actions"
 msgstr "خيارات عرض الدليل"
@@ -7465,11 +7550,17 @@ msgstr "خيارات عرض الدليل"
 msgid "EPG Jump"
 msgstr "التنقل السريع"
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr "إجراءات التنقل في EPG"
 
 msgid "EPG Other Actions"
 msgstr "الاجراءات الأخرى للدليل"
+
+msgid "EPG Range And History"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "بحث في الدليل"
@@ -7482,6 +7573,12 @@ msgstr "اعدادات دليل البرامج (EPG)"
 
 msgid "EPG Setup"
 msgstr "اعدادات الدليل الالكترونى"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 #, fuzzy
 msgid "EPG button mode"
@@ -8003,6 +8100,9 @@ msgstr ""
 
 msgid "Encryption"
 msgstr "التشفير"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "النهاية"
@@ -8611,6 +8711,9 @@ msgstr ""
 msgid "Event Info"
 msgstr "معلومات عن الحدث"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "عرض الحدث"
 
@@ -8803,6 +8906,9 @@ msgstr "خارجي خاصية قناة داخل قناة"
 #, python-format
 msgid "External Storage %s"
 msgstr "التخزين الخارجي %s"
+
+msgid "External Subtitles"
+msgstr ""
 
 msgid "External subtitle color"
 msgstr "لون ترجمة مواد الوسائط الخارجية"
@@ -9010,6 +9116,9 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "دايزك سريع"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr ""
 
@@ -9054,6 +9163,9 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
+msgstr ""
+
+msgid "Feeds And Networking"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -9180,6 +9292,9 @@ msgstr ""
 
 msgid "Filename"
 msgstr "اسم الملف"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr ""
@@ -9604,11 +9719,29 @@ msgstr "عام"
 msgid "General AC3 delay"
 msgstr "تأخير ترميز الصوت الثلاثي العام"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
+msgstr ""
+
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
 msgstr ""
 
 msgid "General PCM delay"
 msgstr "تأخير تعديل ترميز الذبذبة العام"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "توقيت عام"
@@ -10015,6 +10148,9 @@ msgid "Help"
 msgstr "مساعدة"
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 #
@@ -10763,6 +10899,12 @@ msgstr "عرض أيقونة المعلومات"
 msgid "InfoBar"
 msgstr "شريط المعلومات"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "شريط المعلومات للقناة مع دليل البرامج الإلكترونية"
 
@@ -10775,6 +10917,12 @@ msgstr "إعدادات المحول"
 #, fuzzy
 msgid "InfoBar EPG mode"
 msgstr "شريط المعلومات"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr ""
@@ -11253,6 +11401,9 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "لوحة المفاتيح"
 
@@ -11355,6 +11506,9 @@ msgid "LED Deep Standby"
 msgstr "إضاءة وضع الاستعداد"
 
 msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Indicators"
 msgstr ""
 
 msgid "LED Normal"
@@ -11491,6 +11645,9 @@ msgstr "لاتفيا"
 #
 msgid "Latvian"
 msgstr "لاتفية"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr ""
@@ -11655,6 +11812,9 @@ msgstr "العناوين المرتبطة مع قائمة الدي"
 msgid "Links"
 msgstr ""
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr ""
 
@@ -11817,6 +11977,9 @@ msgstr ""
 
 msgid "Log Manager"
 msgstr "مدير السجل"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -12190,6 +12353,9 @@ msgstr ""
 msgid "Media Center"
 msgstr ""
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 #
 msgid "Media Player"
 msgstr "مشغل الوسائط"
@@ -12278,6 +12444,9 @@ msgstr "نمط إدخال القائمة"
 msgid "Menu style"
 msgstr "نمط القائمة"
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -12326,6 +12495,9 @@ msgstr ""
 
 msgid "MiniTV"
 msgstr "الشاشة الصغيرة"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "الشاشة الصغيرة مع شاشة العرض"
@@ -12469,9 +12641,6 @@ msgstr "إرتباط"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "مدير نقاط الربط"
 
 msgid "Mount Point"
 msgstr "نقطة التوصيل"
@@ -12812,6 +12981,9 @@ msgstr ""
 msgid "Movie List"
 msgstr "قائمة الافلام"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 msgid "Movie Player Actions"
 msgstr "اجراءات مشغل الوسائط"
 
@@ -13047,6 +13219,12 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
+msgstr ""
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
 msgstr ""
 
 msgid "Ndonga"
@@ -13776,6 +13954,9 @@ msgstr "لا شيء يحتاج لترقية"
 msgid "Nothing, just leave this menu"
 msgstr "لا شيء ، فقط غادر هذه القائمة"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "الان"
@@ -13867,9 +14048,6 @@ msgstr "معلومات OSCam"
 
 msgid "OSCam Information Settings"
 msgstr "اعدادات معلومات OSCam"
-
-msgid "OSCam webif disabled"
-msgstr ""
 
 msgid "OSCamInfo Actions"
 msgstr ""
@@ -14255,6 +14433,9 @@ msgstr "الشبكة الإفتراضية OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr ""
 
@@ -14340,6 +14521,9 @@ msgstr "أخرى"
 #, fuzzy
 msgid "Other Actions"
 msgstr "مكان"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr ""
@@ -14469,6 +14653,9 @@ msgid "PVR"
 msgstr "مسجل فيديو رقمي (PVR)"
 
 msgid "Package"
+msgstr ""
+
+msgid "Package Categories"
 msgstr ""
 
 msgid "Package Manager"
@@ -14746,6 +14933,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "عرض الأيقونة"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr "معلومات الصورة"
 
@@ -14893,6 +15083,12 @@ msgid "Play the audio file"
 msgstr ""
 
 msgid "Play the selected service"
+msgstr ""
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
 msgstr ""
 
 msgid "Playback Settings"
@@ -15547,6 +15743,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "ساعة وقت الذروة"
 
@@ -16084,6 +16283,18 @@ msgstr ""
 msgid "Recording"
 msgstr "تسجيل"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "إعدادات التسجيل"
 
@@ -16166,6 +16377,9 @@ msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
 msgid "Recovery"
+msgstr ""
+
+msgid "Recovery And Hardware"
 msgstr ""
 
 #
@@ -16307,6 +16521,12 @@ msgid "Remote Control Button Settings"
 msgstr "إعدادات أزرار جهاز التحكم"
 
 msgid "Remote Control Code Settings"
+msgstr ""
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
 msgstr ""
 
 msgid "Remote control information"
@@ -16653,6 +16873,10 @@ msgstr ""
 msgid "Restart"
 msgstr "إعادة التشغيل"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -16671,9 +16895,6 @@ msgstr "هل تريد إعادة تشغيل واجهة المستخدم الرس
 msgid "Restart Network"
 msgstr "إعادة تشغيل الشبكة"
 
-msgid "Restart OSCam"
-msgstr ""
-
 msgid "Restart enigma"
 msgstr "إعادة تشغيل الانجما 2"
 
@@ -16691,6 +16912,10 @@ msgstr "أعد تشغيل الشبكة باستخدام الإعداد الحا�
 
 msgid "Restart test"
 msgstr "إعادة الاختبار"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18884,6 +19109,9 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr ""
 
@@ -20258,7 +20486,8 @@ msgstr "إيقاف التشغيل"
 msgid "Shutdown"
 msgstr "إغلاق"
 
-msgid "Shutdown OSCam"
+#, python-format
+msgid "Shutdown %s"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
@@ -20381,6 +20610,9 @@ msgid "Skin setting"
 msgstr ""
 
 msgid "SkinSelection"
+msgstr ""
+
+msgid "Skip Modes"
 msgstr ""
 
 msgid "Skip back"
@@ -20710,6 +20942,9 @@ msgstr "ضبط سامبا"
 msgid "Softcams"
 msgstr "الكام"
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "التحكم فى البرنامج التشغيلي"
 
@@ -20873,6 +21108,9 @@ msgstr ""
 msgid "Sound"
 msgstr "الصوت"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Sound carrier"
@@ -20995,6 +21233,10 @@ msgstr ""
 msgid "Start"
 msgstr "أبـدأ"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr ""
 
@@ -21077,6 +21319,10 @@ msgstr "تشغيل/إيقاف/اختيار الكام"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "بدء/إيقاف/تحديد الكاميرا، تحتاج أولاً إلى تثبيت برنامج Softcam"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr ""
 
@@ -21094,6 +21340,9 @@ msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "يبدا في بضع ثوان"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr ""
@@ -21228,6 +21477,10 @@ msgstr "أيقاف تسجيل المؤقت"
 msgid "Stopped"
 msgstr "توقفت"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr ""
 
@@ -21245,6 +21498,9 @@ msgid "Storage / Disks"
 msgstr "وحدات التخزين / الاقراص"
 
 msgid "Storage / Drive information"
+msgstr ""
+
+msgid "Storage And Deletion"
 msgstr ""
 
 #
@@ -21367,6 +21623,9 @@ msgstr "عنوان فرعي"
 #, fuzzy
 msgid "Subtitle Actions"
 msgstr "إختيار العناوين الفرعيه"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 #
 #, fuzzy
@@ -21705,17 +21964,17 @@ msgstr ":موالف"
 msgid "TV"
 msgstr "تلفزيون"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "وضع زر التلفاز"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "تقرير عناوين التلفزيون التفاعلية"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "معرف النص TXT PID"
@@ -21820,6 +22079,9 @@ msgid "Teletext StartX (left border)"
 msgstr ""
 
 msgid "Teletext StartY (lower border)"
+msgstr ""
+
+msgid "Teletext Subtitles"
 msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
@@ -22740,6 +23002,9 @@ msgstr "منطقه الوقت"
 msgid "Time zone area"
 msgstr "منطقه الوقت"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr ""
 
@@ -22756,6 +23021,9 @@ msgid "Timeline scale"
 msgstr "النطاق الزمني"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -22833,7 +23101,7 @@ msgstr "التحكم الزمني في البث المباشر"
 msgid "Timezone"
 msgstr "منطقة الوقت"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -23089,6 +23357,9 @@ msgstr "معرّف تيار النقل (TSID)"
 msgid "Transport Stream Type"
 msgstr "نوع تردد نقل التدفق"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr ""
 
@@ -23179,6 +23450,12 @@ msgstr ""
 #, fuzzy
 msgid "Tuner :"
 msgstr "الموالف"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "تهيئة الموالف"
@@ -24362,6 +24639,9 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr "إعدادات ضبط الصوت"
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr "نمط تعديل حجم الصوت"
 
@@ -25343,6 +25623,9 @@ msgstr "التنقل"
 msgid "Zap + Exit"
 msgstr "تنقل + خروج"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr ""
 
@@ -26154,6 +26437,9 @@ msgstr "نعم (احتفظ بالفيدز)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mount Manager"
+#~ msgstr "مدير نقاط الربط"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-17 05:14+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1222,6 +1222,10 @@ msgid "%s View"
 msgstr "Просмотр %s"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s дополнительные экраны"
 
@@ -1236,6 +1240,17 @@ msgstr "%s отключён."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s импортирован из резервного тюнера."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1253,6 +1268,10 @@ msgstr "%s недоступно."
 #, python-format
 msgid "%s version"
 msgstr "%s версия"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr ""
 
 #, python-format
 msgid "%s%d min"
@@ -1743,6 +1762,9 @@ msgstr ""
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr "Цвет текста переведённого ИИ"
 
@@ -1776,11 +1798,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "Оператор телесети ATSC"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr ""
+
 msgid "AV Setup"
 msgstr "Настройки аудио/видео"
-
-msgid "AV receiver, soundbar and remote"
-msgstr ""
 
 msgid "Abkhazian"
 msgstr "Абхазский"
@@ -2161,6 +2183,9 @@ msgstr "Фильм для взрослых/Драма"
 msgid "Advanced"
 msgstr "Расширенный"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 msgid "Advanced Options"
 msgstr "Дополнительные параметры"
 
@@ -2394,6 +2419,9 @@ msgstr "Альтернатива 2"
 
 msgid "Alternative Edit"
 msgstr "[Альтернативное редактирование]"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Альтернативные URL для DVB-T/C или ATSC"
@@ -2730,6 +2758,12 @@ msgstr "Автоматическая регулировка громкости"
 msgid "Audio Channel"
 msgstr "Аудио канал"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Аудио PID"
 
@@ -2745,6 +2779,9 @@ msgstr "Источник аудио"
 
 msgid "Audio Sync"
 msgstr "Аудио синхронизация"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Выбор языка аудио 1"
@@ -3327,6 +3364,9 @@ msgstr "Яркость (В обычном режиме)"
 msgid "Brightness (Standby)"
 msgstr "Яркость (В режиме ожидания)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr "Яркость видео"
 
@@ -3365,6 +3405,9 @@ msgstr "Просматривайте, устанавливайте или уда
 
 msgid "Brunei Darussalam"
 msgstr "Бруней-Даруссалам"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3428,6 +3471,9 @@ msgstr ""
 msgid "Business & Finance"
 msgstr "Бизнес и финансы"
 
+msgid "Button Assignments"
+msgstr ""
+
 msgid "Button Setup"
 msgstr "Кнопки"
 
@@ -3456,9 +3502,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 msgid "CCD-Width"
@@ -4014,6 +4057,12 @@ msgstr "Канал 1"
 msgid "Channel 1 with prime time"
 msgstr "Канал 1 с прайм-тайм"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Информация канала"
 
@@ -4048,6 +4097,9 @@ msgid "Channel Selection Settings"
 msgstr "Настройки списка каналов"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 msgid "Channel buttons"
@@ -4503,6 +4555,9 @@ msgstr "Колумбия"
 msgid "Color"
 msgstr "Цвет"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Формат цвета"
 
@@ -4573,14 +4628,14 @@ msgstr "Права доступа CI модулей"
 msgid "Common Interface Settings"
 msgstr "Общие настройки интерфейса"
 
-msgid "Common Settings"
-msgstr "Общие настройки"
-
 msgid "Common Setup Actions"
 msgstr "Общие действия по установке"
 
 msgid "Comoros"
 msgstr "Коморские острова"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr "Сборка от"
@@ -5314,6 +5369,9 @@ msgstr "Информация о стране для рейтинга событ�
 msgid "Crash %d/%d"
 msgstr "Сбой %d/%d"
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Файлы аварии"
 
@@ -5563,6 +5621,9 @@ msgstr "Текущие сохраненные уровни громкости:"
 msgid "Custom"
 msgstr "Пользовательские"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr "Пользовательская точка монтирования"
 
@@ -5589,6 +5650,9 @@ msgstr "Пользовательские настройки Enigma2"
 
 msgid "Cut"
 msgstr "Нарезка"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr "CutList пропускает время для кнопки '%s'"
@@ -5684,6 +5748,9 @@ msgstr "Двухслойный DVD"
 msgid "DVB CI Delay"
 msgstr "Задержка CI"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB Субтитры PID и язык"
 
@@ -5702,7 +5769,7 @@ msgstr "DVB-C Annex B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C Annex-C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5752,6 +5819,9 @@ msgstr "Дата"
 
 msgid "Date / Time"
 msgstr "Дата/время"
+
+msgid "Date And Time"
+msgstr ""
 
 msgid "Date Time Input Actions"
 msgstr "Действия по вводу даты и времени"
@@ -5937,6 +6007,9 @@ msgstr "Отладка %d/%d"
 
 msgid "Debug Information"
 msgstr "Отладочные данные"
+
+msgid "Debug Log Content"
+msgstr ""
 
 msgid "Debug Log Information"
 msgstr "Информация лога отладки"
@@ -6617,6 +6690,12 @@ msgstr "Режим вывода 4:3 видео"
 msgid "Display >16:9 content as"
 msgstr "Режим вывода >16:9 видео"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 msgid "Display Settings"
 msgstr "Настройки дисплея ресивера"
 
@@ -6789,23 +6868,20 @@ msgstr "Действительно удалить вашу закладку %s?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Действительно удалить таймер для %s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
-"Вы действительно хотите перезапустить OSCam?\n"
-"\n"
-"ПОДСКАЗКА: Это займёт около 5 секунд!"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Вы действительно хотите закрыть OSCam?\n"
-"\n"
-"ВНИМАНИЕ: Для повторной активации OSCam необходимо провести полную перезагрузку ресивера!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7098,17 +7174,26 @@ msgstr "Проверить кэш ТВ-гида"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG канала / Выбор канала"
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr "Действия отображения EPG"
 
 msgid "EPG Jump"
 msgstr "EPG перейти"
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr "Действия навигации по EPG"
 
 msgid "EPG Other Actions"
 msgstr "Другие действия EPG"
+
+msgid "EPG Range And History"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Поиск по ТВ-гиду"
@@ -7121,6 +7206,12 @@ msgstr "Настройки ТВ-гида"
 
 msgid "EPG Setup"
 msgstr "Настройки ТВ-гида"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "Кнопка EPG"
@@ -7619,6 +7710,9 @@ msgstr "Включает декодирование потока (Если да�
 
 msgid "Encryption"
 msgstr "Кодировка"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "End"
@@ -8214,6 +8308,9 @@ msgstr "Даже если сработает таймер записи?"
 msgid "Event Info"
 msgstr "Информация о событии"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "Просмотр событий"
 
@@ -8409,6 +8506,9 @@ msgstr "Внешний PiP"
 msgid "External Storage %s"
 msgstr "Внешний накопитель %s"
 
+msgid "External Subtitles"
+msgstr ""
+
 msgid "External subtitle color"
 msgstr "Цвет внешних субтитров"
 
@@ -8603,6 +8703,9 @@ msgstr "Настройка быстрой смены канала"
 msgid "Fast DiSEqC"
 msgstr "Быстрый DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Быстрый поиск по оператору"
 
@@ -8647,6 +8750,9 @@ msgstr "Cтабильный фид"
 
 msgid "Feed unstable!"
 msgstr "Сырой фид!"
+
+msgid "Feeds And Networking"
+msgstr ""
 
 msgid "Fetch EPG and update timers now"
 msgstr "Получить EPG и обновить таймеры сейчас"
@@ -8771,6 +8877,9 @@ msgstr "Передача файла была отменена пользоват
 
 msgid "Filename"
 msgstr "Название файла"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr "Исключить из резервной копии"
@@ -9172,11 +9281,29 @@ msgstr "Общий"
 msgid "General AC3 delay"
 msgstr "Общая задержка AC3"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Общая задержка аудио BT"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Общая задержка PCM"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "Общий"
@@ -9570,6 +9697,9 @@ msgid "Help"
 msgstr "Help"
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 msgid "Help Screen Information"
@@ -10296,6 +10426,12 @@ msgstr "Ширина значков Info"
 msgid "InfoBar"
 msgstr "Инфопанель"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "ТВ-гид в инфопанели"
 
@@ -10304,6 +10440,12 @@ msgstr "Настройки ТВ-гида в инфопанели"
 
 msgid "InfoBar EPG mode"
 msgstr "Режим ТВ-гида в инфопанели"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Скорость затухания инфопанели"
@@ -10759,6 +10901,9 @@ msgstr "Файлы Kexec MultiBoot отсутствуют."
 msgid "Key"
 msgstr "Ключ"
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Клавиатура"
 
@@ -10860,6 +11005,9 @@ msgstr "Выключить LED"
 
 msgid "LED Deep Standby color"
 msgstr "Цвет светодиода выключения"
+
+msgid "LED Indicators"
+msgstr ""
 
 msgid "LED Normal"
 msgstr "LED в нормальном режиме"
@@ -10986,6 +11134,9 @@ msgstr "Латвия"
 
 msgid "Latvian"
 msgstr "Латышский"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr ""
@@ -11139,6 +11290,9 @@ msgstr "Заголовки связанные с DVD меню"
 msgid "Links"
 msgstr "Ссылки"
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr "Список действий навигации"
 
@@ -11290,6 +11444,9 @@ msgstr "Лог %d/%d"
 
 msgid "Log Manager"
 msgstr "Управление логами"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11647,6 +11804,9 @@ msgstr "Медиа"
 msgid "Media Center"
 msgstr "Медиа центр"
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 msgid "Media Player"
 msgstr "Медиапроигрыватель"
 
@@ -11729,6 +11889,9 @@ msgstr "Вид пунктов меню"
 msgid "Menu style"
 msgstr "Стиль меню"
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Объединить трансляцию EPG с IceTV"
 
@@ -11776,6 +11939,9 @@ msgstr "Настройки MiniDLNA"
 
 msgid "MiniTV"
 msgstr "МиниТВ"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "МиниТВ с OSD"
@@ -11911,9 +12077,6 @@ msgstr "Подключить"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "Диспетчер подключений"
 
 msgid "Mount Point"
 msgstr "Точка монтирования"
@@ -12240,6 +12403,9 @@ msgstr "Действия при просмотре событий фильма"
 msgid "Movie List"
 msgstr "Список записей"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 msgid "Movie Player Actions"
 msgstr "Действия проигрывателя фильмов"
 
@@ -12467,6 +12633,12 @@ msgstr "Перейти к выбранному каталогу"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Перемещайтесь вверх / вниз с помощью кнопок ВВЕРХ/ВНИЗ и листайте вверх/вниз с помощью ВЛЕВО/ВПРАВО. ОК, чтобы выполнить действие, описанное в выделенной в данный момент справке."
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
 
 msgid "Ndonga"
 msgstr "Ндонга"
@@ -13163,6 +13335,9 @@ msgstr "Обновлений нет"
 msgid "Nothing, just leave this menu"
 msgstr "Ничего не делать, выйти из этого меню"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Сейчас"
@@ -13250,9 +13425,6 @@ msgstr "Информация OScam"
 
 msgid "OSCam Information Settings"
 msgstr "Настройки информации OSCam"
-
-msgid "OSCam webif disabled"
-msgstr "Веб-интерфейс OSCAM отключен"
 
 msgid "OSCamInfo Actions"
 msgstr "Действия OSCamInfo"
@@ -13607,6 +13779,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "Пакеты OpenViX"
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr ""
 
@@ -13690,6 +13865,9 @@ msgstr "Другая"
 
 msgid "Other Actions"
 msgstr "Другие действия"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr "Другие пакеты"
@@ -13815,6 +13993,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Пакет"
+
+msgid "Package Categories"
+msgstr ""
 
 msgid "Package Manager"
 msgstr "Управление пакетами"
@@ -14083,6 +14264,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Ширина пикона"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr "Информация об изображении"
 
@@ -14218,6 +14402,12 @@ msgstr "Воспроизвести аудиофайл"
 
 msgid "Play the selected service"
 msgstr "Воспроизвести выбранный канал"
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Настройки воспроизведения"
@@ -14834,6 +15024,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "Прайм-тайм"
 
@@ -15349,6 +15542,18 @@ msgstr "Записываемый медиа-носитель"
 msgid "Recording"
 msgstr "Запись"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Настройки записи"
 
@@ -15422,6 +15627,9 @@ msgstr "Записи могут работать неправильно без �
 
 msgid "Recovery"
 msgstr "Восстановление"
+
+msgid "Recovery And Hardware"
+msgstr ""
 
 msgid "Recovery Mode"
 msgstr "Режим восстановления"
@@ -15561,6 +15769,12 @@ msgstr "Настройки кнопок пульта ДУ"
 
 msgid "Remote Control Code Settings"
 msgstr "Код дистанционного управления"
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
 
 msgid "Remote control information"
 msgstr "Пульт"
@@ -15894,6 +16108,10 @@ msgstr ""
 msgid "Restart"
 msgstr "Перезагрузить"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -15912,9 +16130,6 @@ msgstr "Перезагрузить графический интерфейс с�
 msgid "Restart Network"
 msgstr "Перезапуск сети"
 
-msgid "Restart OSCam"
-msgstr "Перезапустите OSCam"
-
 msgid "Restart enigma"
 msgstr "Перезагрузить Enigma"
 
@@ -15932,6 +16147,10 @@ msgstr "Перезапуск сети с текущими настройками
 
 msgid "Restart test"
 msgstr "Перезапустить тест"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18063,6 +18282,9 @@ msgstr "Информация об услуге"
 msgid "Service Information Actions"
 msgstr "Действия с информацией о канале"
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr "Сканирование каналов"
 
@@ -19384,8 +19606,9 @@ msgstr "Выключить"
 msgid "Shutdown"
 msgstr "Выключить"
 
-msgid "Shutdown OSCam"
-msgstr "Выключение OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr "Выключение. Пожалуйста, подождите..."
@@ -19497,6 +19720,9 @@ msgstr "Настройки скина"
 
 msgid "SkinSelection"
 msgstr "Выбор скина"
+
+msgid "Skip Modes"
+msgstr ""
 
 msgid "Skip back"
 msgstr "Перейти назад"
@@ -19806,6 +20032,9 @@ msgstr "Настройка Softcam"
 msgid "Softcams"
 msgstr "Softcams"
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "Управление ПО"
 
@@ -19963,6 +20192,9 @@ msgstr ""
 msgid "Sound"
 msgstr "Звук"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 msgid "Sound carrier"
 msgstr "Несущая"
 
@@ -20078,6 +20310,10 @@ msgstr "Режим ожидания без выключения ТВ"
 msgid "Start"
 msgstr "Начать"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr "Автообновление"
 
@@ -20156,6 +20392,10 @@ msgstr "Запуск/Остановка/Выбор эмулятора"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Запуск/остановка/выбор ЭМУ, сначала нужно установить эмулятор"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Запускается эмулятор"
 
@@ -20173,6 +20413,9 @@ msgstr "Время начала"
 
 msgid "Starts in a few seconds"
 msgstr "Запускается через несколько секунд"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr "Устройство запуска не найдено!"
@@ -20295,6 +20538,10 @@ msgstr "Остановить запись таймера"
 msgid "Stopped"
 msgstr "Остановлено"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "Остановка эмулятора"
 
@@ -20313,6 +20560,9 @@ msgstr "Хранилище/Диски"
 
 msgid "Storage / Drive information"
 msgstr "Хранилища/диски"
+
+msgid "Storage And Deletion"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Устройства хранения"
@@ -20426,6 +20676,9 @@ msgstr "Subtitle"
 
 msgid "Subtitle Actions"
 msgstr "Выбор субтитров"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Быстрое меню субтитров"
@@ -20745,17 +20998,17 @@ msgstr "ТЮНЕР:"
 msgid "TV"
 msgstr "ТВ"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "Режим кнопки TV"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "Оповещение физического адреса ТВ"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20858,6 +21111,9 @@ msgstr "Телетекст: левая граница"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Телетекст: нижняя граница"
+
+msgid "Teletext Subtitles"
+msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Телетекст: жирный шрифт (0=обычный, 1=жирный)"
@@ -21789,6 +22045,9 @@ msgstr "Часовой пояс"
 msgid "Time zone area"
 msgstr "Область часового пояса"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "Линия времени 24 часа"
 
@@ -21802,6 +22061,9 @@ msgid "Timeline scale"
 msgstr "Шкала времени"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -21870,7 +22132,7 @@ msgstr "Таймшифт"
 msgid "Timezone"
 msgstr "Часовой пояс"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -22108,6 +22370,9 @@ msgstr "Идент. трансп. потока (TSID)"
 msgid "Transport Stream Type"
 msgstr "Тип транспортного потока"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Корзина"
 
@@ -22191,6 +22456,12 @@ msgstr "Тюнер "
 
 msgid "Tuner :"
 msgstr "Тюнер "
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Тюнеры"
@@ -23361,6 +23632,9 @@ msgstr "Действия по выбору сервиса регулировки
 msgid "Volume Adjust Settings"
 msgstr "Настройки регулировки громкости"
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr "Режим регулировки громкости"
 
@@ -24323,6 +24597,9 @@ msgstr "Перейти"
 msgid "Zap + Exit"
 msgstr "Переключить + Выход"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr "Переключение Вверх/Вниз"
 
@@ -25080,6 +25357,39 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Common Settings"
+#~ msgstr "Общие настройки"
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Вы действительно хотите перезапустить OSCam?\n"
+#~ "\n"
+#~ "ПОДСКАЗКА: Это займёт около 5 секунд!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Вы действительно хотите закрыть OSCam?\n"
+#~ "\n"
+#~ "ВНИМАНИЕ: Для повторной активации OSCam необходимо провести полную перезагрузку ресивера!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Диспетчер подключений"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "Веб-интерфейс OSCAM отключен"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Перезапустите OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Выключение OSCam"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"

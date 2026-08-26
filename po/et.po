@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-16 15:55+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1180,6 +1180,10 @@ msgid "%s View"
 msgstr ""
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s täiendavad ekraanimenüüd"
 
@@ -1193,6 +1197,17 @@ msgstr ""
 
 #, python-format
 msgid "%s imported from remote receiver."
+msgstr ""
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1210,6 +1225,10 @@ msgstr "%s pole saadaval."
 
 #, python-format
 msgid "%s version"
+msgstr ""
+
+#, python-format
+msgid "%s webif disabled"
 msgstr ""
 
 #, python-format
@@ -1720,6 +1739,9 @@ msgstr ""
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr ""
 
@@ -1753,11 +1775,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC levitaja"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr ""
+
 msgid "AV Setup"
 msgstr "Heli ja pildi seaded"
-
-msgid "AV receiver, soundbar and remote"
-msgstr ""
 
 msgid "Abkhazian"
 msgstr "Abhaasia"
@@ -2142,6 +2164,9 @@ msgstr "täiskasvanute film/draama"
 msgid "Advanced"
 msgstr "Lisavalikud"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 msgid "Advanced Options"
 msgstr "Lisavalikud"
 
@@ -2380,6 +2405,9 @@ msgstr "Alternatiivne 2"
 
 msgid "Alternative Edit"
 msgstr "[asenduskanalite muutmine]"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
@@ -2723,6 +2751,12 @@ msgstr "Automaatse helitugevuse tase"
 msgid "Audio Channel"
 msgstr "Helikanal"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Heli PID"
 
@@ -2739,6 +2773,9 @@ msgstr "Heli allikas"
 
 msgid "Audio Sync"
 msgstr "Heli sünkroonimine"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Heli keelevalik 1"
@@ -3335,6 +3372,9 @@ msgstr "Heledus (tavakasutus)"
 msgid "Brightness (Standby)"
 msgstr "Heledus (ooteseisund)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr ""
 
@@ -3373,6 +3413,9 @@ msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3436,6 +3479,9 @@ msgstr ""
 msgid "Business & Finance"
 msgstr ""
 
+msgid "Button Assignments"
+msgstr ""
+
 # Quick Menue
 msgid "Button Setup"
 msgstr "Nuppude seaded"
@@ -3466,9 +3512,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 msgid "CCD-Width"
@@ -4025,6 +4068,12 @@ msgstr "Kanal 1"
 msgid "Channel 1 with prime time"
 msgstr "Kanal 1 koos tippajaga"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Kanaliinfo"
 
@@ -4059,6 +4108,9 @@ msgid "Channel Selection Settings"
 msgstr "Kanalivaliku seaded"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 msgid "Channel buttons"
@@ -4519,6 +4571,9 @@ msgstr "Kolumbia"
 msgid "Color"
 msgstr "Värv"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Värvi vorming"
 
@@ -4589,9 +4644,6 @@ msgstr "CI määrangud"
 msgid "Common Interface Settings"
 msgstr ""
 
-msgid "Common Settings"
-msgstr ""
-
 # boot-up action
 #, fuzzy
 msgid "Common Setup Actions"
@@ -4599,6 +4651,9 @@ msgstr "Tegevus alglaadimisel"
 
 msgid "Comoros"
 msgstr "Komoori saared"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr ""
@@ -5351,6 +5406,9 @@ msgstr "Seda infot otsi SCR seadme spetsifikatsioonilehelt."
 msgid "Crash %d/%d"
 msgstr ""
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Vealogid"
 
@@ -5601,6 +5659,9 @@ msgstr ""
 msgid "Custom"
 msgstr "Kohandatud"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr ""
 
@@ -5629,6 +5690,9 @@ msgstr "Kohanda enigma2 isiklikke sätteid"
 
 msgid "Cut"
 msgstr "Lõika"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr ""
@@ -5726,6 +5790,9 @@ msgstr "Kahekihiline DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI viiteaeg"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 #, fuzzy
 msgid "DVB Subtitles PID & Language"
 msgstr "Subtiitrid - pikk"
@@ -5745,7 +5812,7 @@ msgstr "DVB-C ANNEX B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5796,6 +5863,9 @@ msgid "Date"
 msgstr "Kuupäev"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date And Time"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -5987,6 +6057,9 @@ msgid "Debug %d/%d"
 msgstr ""
 
 msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log Content"
 msgstr ""
 
 msgid "Debug Log Information"
@@ -6683,6 +6756,12 @@ msgstr "4:3 sisu kuvamine"
 msgid "Display >16:9 content as"
 msgstr "16:9 sisu kuvamine"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 # Quick Menue
 msgid "Display Settings"
 msgstr "Esipaneeli seaded"
@@ -6850,16 +6929,19 @@ msgstr "Kas kustutada %s järjehoidja?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Kas eemaldada \"%s\" taimer?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to stop %s?"
 msgstr ""
 
 #, python-format
@@ -7159,16 +7241,25 @@ msgstr "EPG vahemälu kontroll"
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr ""
 
 msgid "EPG Jump"
 msgstr ""
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr ""
 
 msgid "EPG Other Actions"
+msgstr ""
+
+msgid "EPG Range And History"
 msgstr ""
 
 msgid "EPG Search"
@@ -7183,6 +7274,12 @@ msgstr "EPG seaded"
 
 msgid "EPG Setup"
 msgstr "EPG seadistamine"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG nupu vajutus"
@@ -7694,6 +7791,9 @@ msgstr "Nii saab vastuvõtja voo dekodeerida (kui ECM andmed on kaasatud ja olem
 
 msgid "Encryption"
 msgstr "Kodeering"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "Lõpp"
@@ -8288,6 +8388,9 @@ msgstr "Ka juhul, kui kanalivahetus taimer on algamas?"
 msgid "Event Info"
 msgstr "Saateinfo"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "Saateinfo"
 
@@ -8478,6 +8581,9 @@ msgstr "Väline PiP"
 #, python-format
 msgid "External Storage %s"
 msgstr "Väline andmekandja %s"
+
+msgid "External Subtitles"
+msgstr ""
 
 msgid "External subtitle color"
 msgstr "Väliste subtiitrite värv"
@@ -8679,6 +8785,9 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "Kiire DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Kiirotsing"
 
@@ -8722,6 +8831,9 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
+msgstr ""
+
+msgid "Feeds And Networking"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -8849,6 +8961,9 @@ msgstr "Kasutaja katkestas faili ülekande"
 #, fuzzy
 msgid "Filename"
 msgstr "faili nimi"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr "Varukoopiast välja jäetavad failid/kataloogid"
@@ -9264,11 +9379,29 @@ msgstr "Üldine"
 msgid "General AC3 delay"
 msgstr "Üldine AC3 viiteaeg"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Üldine BT heli viiteaeg"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Üldine PCM viiteaeg"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 #, fuzzy
 msgid "Generic"
@@ -9670,6 +9803,9 @@ msgid "Help"
 msgstr "Help"
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 #, fuzzy
@@ -10417,6 +10553,12 @@ msgstr "Infoikooni laius"
 msgid "InfoBar"
 msgstr "Inforiba"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "Inforiba EPG"
 
@@ -10425,6 +10567,12 @@ msgstr "Inforiba EPG seaded"
 
 msgid "InfoBar EPG mode"
 msgstr "Inforiba EPG kuvamine"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Inforiba hajumise kiirus"
@@ -10891,6 +11039,9 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Klaviatuur"
 
@@ -10994,6 +11145,9 @@ msgid "LED Deep Standby"
 msgstr "LED puhkeseisundis"
 
 msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Indicators"
 msgstr ""
 
 msgid "LED Normal"
@@ -11124,6 +11278,9 @@ msgstr "Läti"
 
 msgid "Latvian"
 msgstr "Läti"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr ""
@@ -11277,6 +11434,9 @@ msgid "Linked titles with a DVD menu"
 msgstr "DVD menüüga seotud pealkirjad"
 
 msgid "Links"
+msgstr ""
+
+msgid "List Appearance And Sorting"
 msgstr ""
 
 msgid "List Navigation Actions"
@@ -11438,6 +11598,9 @@ msgstr ""
 
 msgid "Log Manager"
 msgstr "Logihaldur"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11815,6 +11978,9 @@ msgstr "Media"
 msgid "Media Center"
 msgstr "Meediakeskus"
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 msgid "Media Player"
 msgstr "Meediamängija"
 
@@ -11902,6 +12068,9 @@ msgstr ""
 msgid "Menu style"
 msgstr ""
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -11953,6 +12122,9 @@ msgstr "MiniDLNA seaded"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV ja OSD"
@@ -12092,9 +12264,6 @@ msgstr "Haagi"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "Haakepunktid"
 
 msgid "Mount Point"
 msgstr ""
@@ -12440,6 +12609,9 @@ msgstr ""
 msgid "Movie List"
 msgstr "Filmilist"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Salvestised"
@@ -12675,6 +12847,12 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
+msgstr ""
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
 msgstr ""
 
 #, fuzzy
@@ -13403,6 +13581,9 @@ msgstr "Uuendusi ei ole"
 msgid "Nothing, just leave this menu"
 msgstr "Mitte midagi, välju sellest menüüst"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Hetkel"
@@ -13491,9 +13672,6 @@ msgstr "Oscam info"
 
 msgid "OSCam Information Settings"
 msgstr ""
-
-msgid "OSCam webif disabled"
-msgstr "oscam veebiliides keelatud"
 
 msgid "OSCamInfo Actions"
 msgstr ""
@@ -13870,6 +14048,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr ""
 
@@ -13958,6 +14139,9 @@ msgstr "Miski muu"
 #, fuzzy
 msgid "Other Actions"
 msgstr "täiendõpe"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr ""
@@ -14096,6 +14280,9 @@ msgid "PVR"
 msgstr "PVR"
 
 msgid "Package"
+msgstr ""
+
+msgid "Package Categories"
 msgstr ""
 
 msgid "Package Manager"
@@ -14371,6 +14558,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Pikoni laius"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr ""
 
@@ -14511,6 +14701,12 @@ msgid "Play the audio file"
 msgstr ""
 
 msgid "Play the selected service"
+msgstr ""
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
 msgstr ""
 
 msgid "Playback Settings"
@@ -15134,6 +15330,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "Tippaeg"
 
@@ -15661,6 +15860,18 @@ msgstr "Salvestatava meedia tööriistad"
 msgid "Recording"
 msgstr "Salvestus"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Salvestamise seaded"
 
@@ -15741,6 +15952,9 @@ msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
 msgid "Recovery"
+msgstr ""
+
+msgid "Recovery And Hardware"
 msgstr ""
 
 msgid "Recovery Mode"
@@ -15887,6 +16101,12 @@ msgstr ""
 
 msgid "Remote Control Code Settings"
 msgstr "Puldi kood"
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
 
 msgid "Remote control information"
 msgstr ""
@@ -16221,6 +16441,10 @@ msgstr ""
 msgid "Restart"
 msgstr "Taaskäivitus"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -16240,9 +16464,6 @@ msgstr "Kas taaskäivitada kasutajaliides?"
 msgid "Restart Network"
 msgstr "Võrgu taaskäivitus"
 
-msgid "Restart OSCam"
-msgstr ""
-
 msgid "Restart enigma"
 msgstr "Enigma2 taaskäivitus"
 
@@ -16260,6 +16481,10 @@ msgstr "Taaskäivita võrk kasutades aktiivseid seadeid"
 
 msgid "Restart test"
 msgstr "Taaskäivita test"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18425,6 +18650,9 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr ""
 
@@ -19774,7 +20002,8 @@ msgstr "Lülita välja"
 msgid "Shutdown"
 msgstr "Lülita välja"
 
-msgid "Shutdown OSCam"
+#, python-format
+msgid "Shutdown %s"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
@@ -19887,6 +20116,9 @@ msgid "Skin setting"
 msgstr "Kujunduse seaded"
 
 msgid "SkinSelection"
+msgstr ""
+
+msgid "Skip Modes"
 msgstr ""
 
 msgid "Skip back"
@@ -20199,6 +20431,9 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "Tarkvara haldamine"
 
@@ -20362,6 +20597,9 @@ msgstr ""
 msgid "Sound"
 msgstr "Heli"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 msgid "Sound carrier"
 msgstr "Heli kandevsagedus"
 
@@ -20479,6 +20717,10 @@ msgstr "Ooteseisundisse telerit sulgemata"
 msgid "Start"
 msgstr "Käivita"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr ""
 
@@ -20558,6 +20800,10 @@ msgstr "Vali, käivita või peata emulaator"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Käivita, peata ja vali emulaator. Esmalt tuleb see paigaldada"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "EMU käivitamine"
 
@@ -20576,6 +20822,9 @@ msgstr ""
 #, fuzzy
 msgid "Starts in a few seconds"
 msgstr "Käivita võrguta dekodeerimine"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr ""
@@ -20699,6 +20948,10 @@ msgstr "Peata taimeriga salvestamine"
 msgid "Stopped"
 msgstr "Peatatud"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "EMU peatamine"
 
@@ -20716,6 +20969,9 @@ msgid "Storage / Disks"
 msgstr ""
 
 msgid "Storage / Drive information"
+msgstr ""
+
+msgid "Storage And Deletion"
 msgstr ""
 
 msgid "Storage Devices"
@@ -20834,6 +21090,9 @@ msgstr "Subtiitrid"
 #, fuzzy
 msgid "Subtitle Actions"
 msgstr "Subtiitrite valik"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Subtiitrite kiirmenüü"
@@ -21166,17 +21425,17 @@ msgstr ""
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "TV nupu vajutus"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "TV füüsilise aadressi raport"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21286,6 +21545,9 @@ msgstr "Teletekst: X-algus (vasak serv)"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Teletekst: Y-algus (alumine serv)"
+
+msgid "Teletext Subtitles"
+msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletekst: TTF rasvane (0=tavaline, 1=rasvane)"
@@ -22220,6 +22482,9 @@ msgstr "Ajavöönd"
 msgid "Time zone area"
 msgstr "Ajavöönd"
 
+msgid "Timeline"
+msgstr ""
+
 # EPG
 msgid "Timeline 24 Hour"
 msgstr "Ajaskaala 24 tundi"
@@ -22234,6 +22499,9 @@ msgid "Timeline scale"
 msgstr "Ajavahemik"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -22303,7 +22571,7 @@ msgstr "Ajanihe"
 msgid "Timezone"
 msgstr ""
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 #, fuzzy
@@ -22546,6 +22814,9 @@ msgstr ""
 msgid "Transport Stream Type"
 msgstr "Transpordivoo tüüp"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Prügikast"
 
@@ -22634,6 +22905,12 @@ msgstr "Tuuner "
 
 msgid "Tuner :"
 msgstr "Tuuner :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Tuuneri seaded"
@@ -23806,6 +24083,9 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr ""
 
@@ -24786,6 +25066,9 @@ msgstr "Kanalivahetus"
 msgid "Zap + Exit"
 msgstr "Kanalivahetus ja väljumine"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr ""
 
@@ -25556,6 +25839,12 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Mount Manager"
+#~ msgstr "Haakepunktid"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "oscam veebiliides keelatud"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"
