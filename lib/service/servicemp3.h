@@ -100,13 +100,9 @@ class GstMessageContainer : public iObject {
 	int messageGeneration;
 
 public:
-	GstMessageContainer(int type, GstMessage* msg, GstPad* pad, GstBuffer* buffer, int generation = 0) {
-		messagePointer = msg;
-		messagePad = pad;
-		messageBuffer = buffer;
-		messageType = type;
-		messageGeneration = generation;
-	}
+	GstMessageContainer(int type, GstMessage* msg, GstPad* pad, GstBuffer* buffer, int generation = 0)
+		: messagePointer(msg), messagePad(pad), messageBuffer(buffer), messageType(type),
+		  messageGeneration(generation) {}
 	~GstMessageContainer() {
 		if (messagePointer)
 			gst_message_unref(messagePointer);
@@ -118,7 +114,7 @@ public:
 	int getType() {
 		return messageType;
 	}
-	int getGeneration() {
+	int getGeneration() const {
 		return messageGeneration;
 	}
 	operator GstMessage*() {
@@ -349,7 +345,7 @@ private:
 	/* bumped on every subtitle stream switch and on every seek; buffers stamped
 	   with an older generation are still in the pump queue and must not reach a
 	   parser. Written on the main thread, read on the gstreamer thread. */
-	std::atomic<int> m_subtitle_generation;
+	std::atomic<int> m_subtitle_generation{0};
 	int selectAudioStream(int i, bool skipAudioFix = false);
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;

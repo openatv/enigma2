@@ -5,8 +5,9 @@
 #include <lib/dvb/subtitle.h>
 #include <lib/gdi/gpixmap.h>
 #include <sigc++/sigc++.h>
-#include <vector>
+#include <array>
 #include <map>
+#include <vector>
 
 class ePGSSubtitleParser : public iObject, public sigc::trackable
 {
@@ -37,11 +38,11 @@ private:
 
 	struct PGSCompositionObject
 	{
-		int object_id;
-		int window_id;
-		int x, y;
-		bool cropped;
-		int crop_x, crop_y, crop_w, crop_h;
+		int object_id = 0;
+		int window_id = 0;
+		int x = 0, y = 0;
+		bool cropped = false;
+		int crop_x = 0, crop_y = 0, crop_w = 0, crop_h = 0;
 	};
 
 	struct PGSObject
@@ -54,7 +55,7 @@ private:
 	};
 
 	eSize m_display_size{1920, 1080};
-	gRGB m_palette[256];
+	std::array<gRGB, 256> m_palette;
 	int m_palette_id = 0;
 	std::map<int, PGSObject> m_objects;
 	std::vector<PGSCompositionObject> m_composition_objects;
@@ -70,9 +71,10 @@ private:
 	void processEND();
 
 	void clearPalette();
-	void emitPage(std::list<eDVBSubtitleRegion> &&regions);
+	void emitPage(std::list<eDVBSubtitleRegion> &&regions) const;
 	bool decodeRLE(const PGSObject &obj, ePtr<gPixmap> &pixmap) const;
 	static bool isSegmentType(uint8_t type);
+	static bool readRun(const uint8_t *rle, size_t rle_size, size_t &pos, int &run_length, uint8_t &color, bool &end_of_line);
 };
 
 #endif

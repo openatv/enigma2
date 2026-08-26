@@ -12,7 +12,7 @@ ePGSSubtitleParser::ePGSSubtitleParser() {
 /* enigma2 gRGB stores transparency in .a: 0x00 opaque, 0xFF invisible.
    Zeroed entries would render as opaque black boxes, so start fully clear. */
 void ePGSSubtitleParser::clearPalette() {
-	std::fill(m_palette, m_palette + 256, gRGB(0, 0, 0, 0xFF));
+	m_palette.fill(gRGB(0, 0, 0, 0xFF));
 }
 
 void ePGSSubtitleParser::reset() {
@@ -46,39 +46,26 @@ void ePGSSubtitleParser::processBuffer(const uint8_t* data, size_t len, pts_t pt
 	   mistaken for it. */
 	bool sup_format = len >= 13 && data[0] == 0x50 && data[1] == 0x47 && isSegmentType(data[10]);
 
-	if (sup_format) {
-		while (pos + 13 <= len) {
-			if (data[pos] != 0x50 || data[pos + 1] != 0x47) {
-				eTrace("[ePGSSubtitleParser] SUP sync lost at pos %zd", pos);
-				break;
-			}
+	const size_t header = sup_format ? 13 : 3;
 
-			uint8_t segment_type = data[pos + 10];
-			uint16_t segment_size = (data[pos + 11] << 8) | data[pos + 12];
-			pos += 13;
-
-			if (pos + segment_size > len) {
-				eWarning("[ePGSSubtitleParser] SUP segment truncated, %zu of %d bytes dropped (type=0x%02x)", len - pos, segment_size, segment_type);
-				break;
-			}
-
-			processSegment(segment_type, data + pos, segment_size);
-			pos += segment_size;
+	while (pos + header <= len) {
+		if (sup_format && (data[pos] != 0x50 || data[pos + 1] != 0x47)) {
+			eWarning("[ePGSSubtitleParser] SUP sync lost at pos %zu", pos);
+			return;
 		}
-	} else {
-		while (pos + 3 <= len) {
-			uint8_t segment_type = data[pos];
-			uint16_t segment_size = (data[pos + 1] << 8) | data[pos + 2];
-			pos += 3;
 
-			if (pos + segment_size > len) {
-				eWarning("[ePGSSubtitleParser] segment truncated, %zu of %d bytes dropped (type=0x%02x)", len - pos, segment_size, segment_type);
-				break;
-			}
+		uint8_t segment_type = data[pos + header - 3];
+		uint16_t segment_size = (data[pos + header - 2] << 8) | data[pos + header - 1];
+		pos += header;
 
-			processSegment(segment_type, data + pos, segment_size);
-			pos += segment_size;
+		if (pos + segment_size > len) {
+			eWarning("[ePGSSubtitleParser] %ssegment truncated, %zu of %d bytes dropped (type=0x%02x)",
+					 sup_format ? "SUP " : "", len - pos, segment_size, segment_type);
+			return;
 		}
+
+		processSegment(segment_type, data + pos, segment_size);
+		pos += segment_size;
 	}
 }
 
@@ -133,7 +120,9 @@ void ePGSSubtitleParser::processPCS(const uint8_t* data, int len) {
 	m_composition_objects.clear();
 
 	int pos = 11;
-	for (int i = 0; i < num_objects && pos + 8 <= len; i++) {
+	int parsed = 0;
+	while (parsed < num_objects && pos + 8 <= len) {
+		parsed++;
 		PGSCompositionObject comp;
 		comp.object_id = (data[pos] << 8) | data[pos + 1];
 		comp.window_id = data[pos + 2];
@@ -141,7 +130,6 @@ void ePGSSubtitleParser::processPCS(const uint8_t* data, int len) {
 		comp.x = (data[pos + 4] << 8) | data[pos + 5];
 		comp.y = (data[pos + 6] << 8) | data[pos + 7];
 		comp.cropped = (flags & 0x80) != 0;
-		comp.crop_x = comp.crop_y = comp.crop_w = comp.crop_h = 0;
 		pos += 8;
 
 		if (comp.cropped && pos + 8 <= len) {
@@ -176,10 +164,8 @@ void ePGSSubtitleParser::processPDS(const uint8_t* data, int len) {
 		pos += 5;
 
 		/* Convert YCbCr to RGB using the same formula as DVB subtitles */
-		int r, g, b;
-		if (Y == 0) {
-			r = g = b = 0;
-		} else {
+		int r = 0, g = 0, b = 0;
+		if (Y != 0) {
 			int y = Y - 16;
 			int cr = Cr - 128;
 			int cb = Cb - 128;
@@ -203,7 +189,7 @@ void ePGSSubtitleParser::processODS(const uint8_t* data, int len) {
 	if (seq_flag & 0x80) { /* first segment */
 		if (len < 11)
 			return;
-		if (m_objects.size() >= MAX_OBJECTS && m_objects.find(object_id) == m_objects.end()) {
+		if (m_objects.size() >= MAX_OBJECTS && !m_objects.contains(object_id)) {
 			eTrace("[ePGSSubtitleParser] ODS: too many objects, ignoring %d", object_id);
 			return;
 		}
@@ -240,7 +226,7 @@ void ePGSSubtitleParser::processODS(const uint8_t* data, int len) {
 	}
 }
 
-void ePGSSubtitleParser::emitPage(std::list<eDVBSubtitleRegion>&& regions) {
+void ePGSSubtitleParser::emitPage(std::list<eDVBSubtitleRegion>&& regions) const {
 	eDVBSubtitlePage page;
 	page.m_show_time = m_pts;
 	page.m_display_size = m_display_size;
@@ -296,7 +282,7 @@ bool ePGSSubtitleParser::decodeRLE(const PGSObject& obj, ePtr<gPixmap>& pixmap) 
 	/* Set up the 256-entry palette on the pixmap */
 	pixmap->surface->clut.colors = 256;
 	pixmap->surface->clut.data = new gRGB[256]; //NOSONAR
-	memcpy(static_cast<void*>(pixmap->surface->clut.data), m_palette, 256 * sizeof(gRGB));
+	memcpy(static_cast<void*>(pixmap->surface->clut.data), m_palette.data(), m_palette.size() * sizeof(gRGB));
 
 	const uint8_t* rle = obj.rle_data.data();
 	size_t rle_size = obj.rle_data.size();
@@ -313,44 +299,54 @@ bool ePGSSubtitleParser::decodeRLE(const PGSObject& obj, ePtr<gPixmap>& pixmap) 
 			if (x < obj.width)
 				line[x] = byte;
 			x++;
-		} else {
-			/* Control byte follows */
-			if (pos >= rle_size)
-				break;
-
-			uint8_t flags = rle[pos++];
-
-			if (flags == 0) {
-				/* End of line */
-				x = 0;
-				y++;
-				continue;
-			}
-
-			int run_length;
-			uint8_t color;
-
-			if (flags & 0x40) { /* long run length */
-				if (pos >= rle_size)
-					break;
-				run_length = ((flags & 0x3F) << 8) | rle[pos++];
-			} else { /* short run length */
-				run_length = flags & 0x3F;
-			}
-
-			if (flags & 0x80) { /* non-zero color */
-				if (pos >= rle_size)
-					break;
-				color = rle[pos++];
-			} else {
-				color = 0;
-			}
-
-			/* Fill run */
-			int end = std::min(x + run_length, obj.width);
-			while (x < end)
-				line[x++] = color;
+			continue;
 		}
+
+		int run_length = 0;
+		uint8_t color = 0;
+		bool end_of_line = false;
+
+		if (!readRun(rle, rle_size, pos, run_length, color, end_of_line))
+			break;
+
+		if (end_of_line) {
+			x = 0;
+			y++;
+			continue;
+		}
+
+		/* Fill run */
+		int end = std::min(x + run_length, obj.width);
+		while (x < end)
+			line[x++] = color;
+	}
+
+	return true;
+}
+
+bool ePGSSubtitleParser::readRun(const uint8_t* rle, size_t rle_size, size_t& pos, int& run_length, uint8_t& color, bool& end_of_line) {
+	if (pos >= rle_size)
+		return false;
+
+	uint8_t flags = rle[pos++];
+
+	if (flags == 0) {
+		end_of_line = true;
+		return true;
+	}
+
+	if (flags & 0x40) { /* long run length */
+		if (pos >= rle_size)
+			return false;
+		run_length = ((flags & 0x3F) << 8) | rle[pos++];
+	} else { /* short run length */
+		run_length = flags & 0x3F;
+	}
+
+	if (flags & 0x80) { /* non-zero color */
+		if (pos >= rle_size)
+			return false;
+		color = rle[pos++];
 	}
 
 	return true;

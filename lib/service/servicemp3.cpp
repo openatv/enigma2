@@ -1031,7 +1031,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
 	m_cachedSubtitleStream = -2; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
-	m_subtitle_generation = 0;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 1.0;
 	m_buffer_size = 5LL * 1024LL * 1024LL;
@@ -1479,7 +1478,7 @@ eServiceMP3::~eServiceMP3() {
 	}
 
 	m_new_dvb_subtitle_page_connection = 0;
-	m_new_pgs_subtitle_page_connection = 0;
+	m_new_pgs_subtitle_page_connection = nullptr;
 }
 
 #ifdef PASSTHROUGH_FIX
@@ -3945,7 +3944,7 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement* subsink, GstBuffer* buffer, gpo
 	 * the GStreamer thread and m_subtitleStreams can be modified by the main
 	 * thread during stream re-enumeration. The bounds check is done in
 	 * pullSubtitle() which runs on the main thread via the pump. */	
-	_this->m_pump.send(new GstMessageContainer(2, NULL, NULL, buffer, _this->m_subtitle_generation.load()));
+	_this->m_pump.send(new GstMessageContainer(2, nullptr, nullptr, buffer, _this->m_subtitle_generation.load()));
 }
 
 /**
