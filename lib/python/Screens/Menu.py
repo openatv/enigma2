@@ -8,6 +8,7 @@ from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Label import Label
+from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.Sources.List import List

@@ -5,7 +5,7 @@ from time import localtime, strftime, time
 from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
-from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
+from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from skin import getSkinFactor
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -3000,9 +3000,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if Screens.InfoBar.InfoBar.instance:
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
-				refStr = sref.toString()
-				sType = refStr.split(":", maxsplit=3)
-				if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
+				isDAB = sref.type == eServiceReference.idServiceDAB
+				if isDAB or (isRadioServiceReference(sref) and config.usage.e1like_radio_mode.value):
 					typestr = "radio"
 					if servicelist.mode != 1:
 						servicelist.setModeRadio()
@@ -3029,10 +3028,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def performZap(self, sref):
 		def getBqRoot(reference):
-			reference = reference.toString()
 			isTV = True
-			sType = reference.split(":", maxsplit=3)
-			if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
+			isDAB = reference.type == eServiceReference.idServiceDAB
+			if isDAB or (isRadioServiceReference(reference) and config.usage.e1like_radio_mode.value):
 				isTV = False
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
@@ -3228,6 +3226,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.onClose.append(self.__onClose)
 		self.onExecBegin.append(self.__onExecBegin)
 		self.onExecEnd.append(self.__onExecEnd)
+		self.onShown.append(self.info.show)
 
 	def __onClose(self):
 		del self.info["RdsDecoder"]
@@ -3309,7 +3308,13 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def onCreate(self):
 		self.setRadioMode()
 		self.restoreRoot()
-		lastservice = eServiceReference(config.radio.lastservice.value)
+		currentservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isRadioServiceReference(currentservice):
+			lastservice = currentservice
+			config.radio.lastservice.value = lastservice.toString()
+			config.radio.lastservice.save()
+		else:
+			lastservice = eServiceReference(config.radio.lastservice.value)
 		if lastservice.valid():
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)

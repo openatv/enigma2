@@ -15,7 +15,7 @@ from Components.config import config
 from Components.MultiContent import MultiContentEntryProgress, MultiContentEntryText, MultiContentEntryRectangle, MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend
 from Components.Renderer.Picon import getPiconName
 import NavigationInstance
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, isRadioServiceReference
 from skin import componentTemplates, getcomponentTemplate, parseColor, parseFont, parseListOrientation, reloadSkinTemplates, SizeTuple, SkinContext, SkinContextStack, TemplateParser
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
@@ -328,6 +328,7 @@ class ServiceListBase(GUIComponent):
 		self.picCrypto = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/icon_crypt.png"))
 		self.picRecord = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/record.png"))
 		self.picStream = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/ico_stream.png"))
+		self.picDAB = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/ico_dab-plus.png"))
 		self.picCatchup = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/ico_catchup.png"))
 		self.picFavorites = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/epgclock_primetime.png"))  # TODO
 
@@ -485,7 +486,7 @@ class ServiceListBase(GUIComponent):
 		from Components.ServiceEventTracker import InfoBarCount
 		if adjust and config.usage.multibouquet.value and InfoBarCount == 1 and ref and ref.type != 8192:
 			print("[servicelist] search for service in userbouquets")
-			isRadio = ref.toString().startswith("1:0:2:") or ref.toString().startswith("1:0:A:")
+			isRadio = isRadioServiceReference(ref)
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
@@ -604,6 +605,9 @@ class ServiceListLegacy(ServiceListBase):
 
 		if self.picStream:
 			self.l.setPixmap(self.l.picStream, self.picStream)
+
+		if self.picDAB:
+			self.l.setPixmap(self.l.picDAB, self.picDAB)
 
 		self.listHeight = 0
 		self.listWidth = 0
@@ -1097,7 +1101,9 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		elif service.flags & eServiceReference.isDirectory:
 			pixmap = self.picFolder
 		else:
-			if "catchupdays=" in service.toString():
+			if service.type == eServiceReference.idServiceDAB:
+				pixmap = self.picDAB
+			elif "catchupdays=" in service.toString():
 				pixmap = self.picCatchup
 			elif "%3a//" in service.toString():
 				pixmap = self.picStream

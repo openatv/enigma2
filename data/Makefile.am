@@ -2,6 +2,7 @@ SUBDIRS = fonts keymaps icons
 
 dist_pkgdata_DATA = \
 	encoding.conf \
+	dab.xml \
 	keymap.xml \
 	keymap.ntr \
 	keymap.u80 \
@@ -94,4 +95,3 @@ endif
 if HAVE_GRAUTEC70X0
 SUBDIRS += grautec70x0
 endif
-

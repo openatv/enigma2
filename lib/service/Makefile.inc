@@ -21,6 +21,12 @@ service_libenigma_service_a_SOURCES = \
 	service/servicets.cpp \
 	service/servicewebts.cpp \
 	service/servicedvbsoftdecoder.cpp \
+	service/dabtsadapter.cpp \
+	service/dabdecoder.cpp \
+	service/dabpadtools.cpp \
+	service/dabmotmanager.cpp \
+	service/dabpaddecoder.cpp \
+	service/servicedab.cpp \
 	service/eramserviceplay.cpp
 
 serviceincludedir = $(pkgincludedir)/lib/service
@@ -44,6 +50,12 @@ serviceinclude_HEADERS = \
 	service/servicets.h \
 	service/servicewebts.h \
 	service/servicedvbsoftdecoder.h \
+	service/dabtsadapter.h \
+	service/dabdecoder.h \
+	service/dabpadtools.h \
+	service/dabmotmanager.h \
+	service/dabpaddecoder.h \
+	service/servicedab.h \
 	service/eramserviceplay.h
 
 if HAVE_LIBXINE
