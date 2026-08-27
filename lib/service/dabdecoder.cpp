@@ -39,18 +39,20 @@ const EEPProfile eepProfiles[8] = {
 class LATMBitWriter
 {
 public:
-	LATMBitWriter() : m_byte_bits(0) { }
+	LATMBitWriter() = default;
 
 	void addBits(uint32_t value, size_t count)
 	{
 		while (count)
 		{
-			if (!m_byte_bits)
+			const size_t usedBits = m_byte_bits & 7;  // Keeps the range provable, m_byte_bits is unsigned.
+			if (!usedBits)
 				m_data.push_back(0);
-			const size_t copyBits = std::min(count, static_cast<size_t>(8 - m_byte_bits));
+			const size_t freeBits = 8 - usedBits;
+			const size_t copyBits = std::min(count, freeBits);
 			const uint8_t copyData = static_cast<uint8_t>((value >> (count - copyBits)) & (0xff >> (8 - copyBits)));
-			m_data.back() |= static_cast<uint8_t>(copyData << (8 - m_byte_bits - copyBits));
-			m_byte_bits = (m_byte_bits + copyBits) % 8;
+			m_data.back() |= static_cast<uint8_t>(copyData << (freeBits - copyBits));
+			m_byte_bits = (usedBits + copyBits) % 8;
 			count -= copyBits;
 		}
 	}
@@ -73,7 +75,7 @@ public:
 
 private:
 	std::vector<uint8_t> m_data;
-	size_t m_byte_bits;
+	size_t m_byte_bits = 0;
 };
 }
 
