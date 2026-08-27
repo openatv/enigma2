@@ -633,7 +633,7 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 		return;
 	for (size_t i = 0; i < streams.size(); ++i)
 	{
-		if (streams[i].subchannel != m_selected_subchannel && streams[i].startAddress != m_selected_start_address)
+		if (streams[i].subchannel != m_selected_subchannel)
 			continue;
 		++m_msc_frames;
 		if (m_selected_dabplus)
