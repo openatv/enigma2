@@ -276,6 +276,8 @@ class NetworkMountsOverview(Screen):
 					mount["remotePath"] = picked["remotePath"]
 				if picked.get("shareName"):
 					mount["shareName"] = picked["shareName"]
+				if picked.get("smbVersion"):
+					mount["smbVersion"] = picked["smbVersion"]
 				dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=mount)
 
 		self.session.openWithCallback(keyGreenCallback, NetworkShares)
@@ -328,8 +330,7 @@ class NetworkMountSetup(Setup):
 		]))
 		self.username = NoSave(ConfigText(default=default("username"), fixed_size=False))
 		self.password = NoSave(ConfigPassword(default=default("password")))
-		self.smbVersion = NoSave(ConfigSelection(default=default("smbVersion", "auto") or "auto", choices=[
-			("auto", _("Automatic")),
+		self.smbVersion = NoSave(ConfigSelection(default=default("smbVersion", "3.0") or "3.0", choices=[
 			("3.0", "SMB3"),
 			("2.0", "SMB2"),
 			("1.0", _("Legacy (SMB1)"))
@@ -456,6 +457,8 @@ class NetworkShares(Screen):
 	REFRESH_DEBOUNCE_MS = 300  # Coalesce bursts of discovery updates into one list rebuild instead of redrawing on every single one.
 	NFS_SHOWMOUNT_BIN = "/usr/sbin/showmount"
 	SMB_SMBCLIENT_BIN = "/usr/bin/smbclient"
+	SMB_DIALECTS = (("SMB3", "3.0"), ("SMB2", "2.0"), ("NT1", "1.0"))
+	SMB_FALLBACK_VERSION = "3.0"
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
@@ -495,6 +498,7 @@ class NetworkShares(Screen):
 		self.shares = {}         # address -> [share dict, ...]
 		self.shareState = {}     # address -> "loading" | "done" | "empty"
 		self.pendingProtocols = {}  # address -> {"nfs", "smb"} remaining
+		self.smbVersions = {}    # address -> negotiated dialect as a mount "vers=" value
 		self.smbGuestCallback = {}  # address -> one-shot callback run once the guest SMB probe below finishes
 		self.configuredShares = {}  # (server, remotePath) -> local mount path, for already-configured shares
 		self.repository = NetworkMountRepository()
@@ -528,6 +532,7 @@ class NetworkShares(Screen):
 		self.expanded = set()
 		self.shares = {}
 		self.shareState = {}
+		self.smbVersions = {}
 		self.pendingProtocols = {}
 		self["list"].setList([])
 		self["description"].setText(_("Scanning..."))
@@ -656,7 +661,7 @@ class NetworkShares(Screen):
 		hostname = host.get("hostname") or ""
 		address = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
 
-		self.close({
+		picked = {
 			"address": address,
 			"hostname": hostname,
 			"protocol": {
@@ -665,7 +670,10 @@ class NetworkShares(Screen):
 			}.get(share["protocol"], share["protocol"]),
 			"remotePath": share["path"].lstrip("/"),
 			"shareName": share["name"],
-		})
+		}
+		if share["protocol"] == "smb":
+			picked["smbVersion"] = self.smbVersions.get(share["address"], self.SMB_FALLBACK_VERSION)
+		self.close(picked)
 
 	def startShareEnumeration(self, address):
 		if self.shareState.get(address) == "loading":
@@ -715,10 +723,11 @@ class NetworkShares(Screen):
 					self.mergeShare(address, "nfs", name, path, "")
 			self.finishProtocol(address, "nfs")
 
-	def enumerateSmb(self, address):
-		if not exists(self.SMB_SMBCLIENT_BIN):
+	def enumerateSmb(self, address, step=0):
+		if not exists(self.SMB_SMBCLIENT_BIN) or step >= len(self.SMB_DIALECTS):
 			self.finishProtocol(address, "smb")
 			return
+		dialect = self.SMB_DIALECTS[step][0]
 		credentials = self.repository.credentialsGet(self.hostnameFor(address))
 		credentialFile = None
 		if credentials.get("username") and credentials["username"] != NetworkCredentials.GUEST_USERNAME:
@@ -729,22 +738,33 @@ class NetworkShares(Screen):
 			authArgs = ("-A", credentialFile.name)
 		else:
 			authArgs = ("-N",)
-		cmd = (self.SMB_SMBCLIENT_BIN, self.SMB_SMBCLIENT_BIN, "-m", "SMB3", "-g", *authArgs, "-L", address)
+		cmd = (self.SMB_SMBCLIENT_BIN, self.SMB_SMBCLIENT_BIN, f"--option=clientminprotocol={dialect}", "-m", dialect, "-g", *authArgs, "-L", address)
 		credentialPath = credentialFile.name if credentialFile else None
-		self.console.ePopen(cmd, callback=lambda data, retVal, extra=None: self.onSmbResult(address, data, retVal, credentialPath))
+		self.console.ePopen(cmd, callback=lambda data, retVal, extra=None: self.onSmbResult(address, step, data, retVal, credentialPath))
 
-	def onSmbResult(self, address, data, retVal, credentialPath=None):
+	@staticmethod
+	def smbNegotiateRejected(data):
+		return "Protocol negotiation" in data and "failed" in data
+
+	def onSmbResult(self, address, step, data, retVal, credentialPath=None):
 		if credentialPath:
 			try:
 				remove(credentialPath)
 			except OSError:
 				pass
 		if "list" in self:
-			if data:
-				for line in data.splitlines():
-					parts = line.split("|")
-					if len(parts) == 3 and parts[0] == "Disk" and not parts[1].endswith("$"):
-						self.mergeShare(address, "smb", parts[1], parts[1], parts[2])
+			data = data or ""
+			if retVal and not data.strip():
+				self.finishProtocol(address, "smb")
+				return
+			if self.smbNegotiateRejected(data):
+				self.enumerateSmb(address, step + 1)
+				return
+			self.smbVersions[address] = self.SMB_DIALECTS[step][1]
+			for line in data.splitlines():
+				parts = line.split("|")
+				if len(parts) == 3 and parts[0] == "Disk" and not parts[1].endswith("$"):
+					self.mergeShare(address, "smb", parts[1], parts[1], parts[2])
 			self.finishProtocol(address, "smb")
 
 	def finishProtocol(self, address, protocol):
@@ -782,6 +802,9 @@ class NetworkShares(Screen):
 			for host in sorted(discoveryManager.hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
 				address = host["address"]
 				name = host["hostname"] or address
+				version = self.smbVersions.get(address)
+				if version:
+					name = f"{name} (SMB{version.split('.')[0]})"
 				entries.append((self.TEMPLATE_HOST, self.GLYPH_HOST, 0, address, "", name, "", "", {"kind": "host", "address": address}))
 				if address not in self.expanded:
 					continue
