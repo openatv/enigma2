@@ -33,7 +33,7 @@ private:
 	void finishTSNI();
 	void feedTSNA(const uint8_t *payload, size_t length);
 	void processTSNA();
-	bool findE1Sync(size_t &bitPosition, bool &inverted) const;
+	bool findE1Sync(size_t startBit, size_t &bitPosition, bool &inverted) const;
 	uint8_t getAlignedByte(size_t bitPosition) const;
 	bool extractE1Frames(size_t bitPosition, size_t count, std::vector<uint8_t> &frames) const;
 	int findBlockPhase(const std::vector<uint8_t> &frames) const;
