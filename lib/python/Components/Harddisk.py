@@ -677,17 +677,16 @@ class HarddiskManager:
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
 			mountpoint = self.getMountpoint(device)
-			# Optical media changes can be reported by both udev and bdpoll.  Do
-			# not register the same mounted drive twice or show duplicate scans.
-			if is_cdrom:
-				for existing in self.partitions[:]:
-					if existing.device == device:
-						if existing.mountpoint == mountpoint:
-							self.debugPrint(f"Optical device {device} already registered at {mountpoint}")
-							return error, blacklisted, removable, is_cdrom, partitions, medium_found
-						self.partitions.remove(existing)
-						if existing.mountpoint:
-							self.triggerAddRemovePartion("remove", existing)
+			# A device can be reported more than once (udev re-add after a bus
+			# glitch, bdpoll, optical media change).  Do not register it twice.
+			for existing in self.partitions[:]:
+				if existing.device == device:
+					if existing.mountpoint == mountpoint:
+						self.debugPrint(f"Device {device} already registered at {mountpoint}")
+						return error, blacklisted, removable, is_cdrom, partitions, medium_found
+					self.partitions.remove(existing)
+					if existing.mountpoint:
+						self.triggerAddRemovePartion("remove", existing)
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint=mountpoint, description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
