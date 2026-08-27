@@ -2770,14 +2770,35 @@ PyObject *eEPGCache::search(ePyObject arg)
 						for (DescriptorMap::iterator it(eventData::descriptors.begin());
 							it != eventData::descriptors.end(); ++it)
 						{
-							uint8_t *data = it->second.data;
-							
-							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
-							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
+							const uint8_t *data = it->second.data;
+							uint8_t descriptor_tag = data[0];
+
+							// the description can live in an extended event descriptor, or in the text
+							// field of a short event descriptor when no extended one is broadcast
+							if ( descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR || descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR )
 							{
-								int content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
-								const char *contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
-								if (data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2] < 0x20) //Codepage
+								int content_len;
+								const char *contentptr;
+								if ( descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR )
+								{
+									content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
+									contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
+								}
+								else
+								{
+									const eit_short_event_descriptor_struct *short_event_descriptor = (const eit_short_event_descriptor_struct *) ((const u_char *) data);
+									// text_length sits behind event_name, text follows it
+									int text_pos = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + short_event_descriptor->event_name_length;
+									if (text_pos > data[1] + 1)
+										/* no text field */
+										continue;
+									content_len = data[text_pos];
+									contentptr = (const char*)&data[text_pos+1];
+									if (text_pos + content_len > data[1] + 1)
+										/* truncated */
+										continue;
+								}
+								if (content_len && (unsigned char)contentptr[0] < 0x20) //Codepage
 								{
 									/* custom encoding */
 									content = convertDVBUTF8((unsigned char*)contentptr, content_len, 0x40, 0);
