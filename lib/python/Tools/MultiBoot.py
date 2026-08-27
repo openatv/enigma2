@@ -603,6 +603,10 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = name
 				self.imageList[self.slotCode]["displaydistro"] = info.get("displaydistro") or info.get("distro") or ""
 				self.imageList[self.slotCode]["imgversion"] = info.get("imgversion") or ""
+				self.imageList[self.slotCode]["imagefs"] = info.get("imagefs") or ""
+				self.imageList[self.slotCode]["rootfile"] = info.get("rootfile") or ""
+				self.imageList[self.slotCode]["smallflash"] = bool(info.get("smallflash", False))
+				self.imageList[self.slotCode]["smallboxmultiboot"] = bool(info.get("smallboxmultiboot", False))
 				self.imageList[self.slotCode]["compiledate"] = str(info.get("compiledate", ""))
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(versionFile):

@@ -9,58 +9,126 @@ bool eServerSocket::ok()
 
 void eServerSocket::notifier(int)
 {
-	int clientfd, clientlen;
-	struct sockaddr_in6 client_addr;
+	int clientfd;
+	socklen_t clientlen;
+	struct sockaddr_storage client_addr;
 	char straddr[INET6_ADDRSTRLEN];
+	const void *address = 0;
 
 #ifdef DEBUG_SERVERSOCKET
 	eDebug("[eServerSocket] incoming connection!");
 #endif
 
+	memset(&client_addr, 0, sizeof(client_addr));
 	clientlen=sizeof(client_addr);
 	clientfd=accept(getDescriptor(),
 			(struct sockaddr *) &client_addr,
-			(socklen_t*)&clientlen);
+			&clientlen);
 	if(clientfd<0)
-		eDebug("[eServerSocket] error on accept()");
+	{
+		eDebug("[eServerSocket] error on accept() (%m)");
+		return;
+	}
 
+	if (client_addr.ss_family == AF_INET6)
+		address = &((struct sockaddr_in6 *)&client_addr)->sin6_addr;
+	else if (client_addr.ss_family == AF_INET)
+		address = &((struct sockaddr_in *)&client_addr)->sin_addr;
 
-	inet_ntop(AF_INET6, &client_addr.sin6_addr, straddr, sizeof(straddr));
-	strRemoteHost=straddr;
+	if (address && inet_ntop(client_addr.ss_family, address, straddr, sizeof(straddr)))
+		strRemoteHost=straddr;
+	else
+		strRemoteHost.clear();
 	newConnection(clientfd);
 }
 
 eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6), m_port(port)
 {
-	struct sockaddr_in6 serv_addr;
+	struct sockaddr_in6 serv_addr6;
+	struct sockaddr_in serv_addr4;
+	int family = AF_INET6;
+	int bind_result = -1;
+	int listen_result;
 	strRemoteHost = "";
-
-	bzero(&serv_addr, sizeof(serv_addr));
-	serv_addr.sin6_family=AF_INET6;
-	serv_addr.sin6_addr=in6addr_any;
-	serv_addr.sin6_port=htons(port);
-
-	okflag=1;
+	okflag=0;
 	int val=1;
 	int v6only=0;
 
-	setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
-	setsockopt(getDescriptor(), IPPROTO_IPV6, IPV6_V6ONLY, &v6only, sizeof(v6only));
-
-	if(bind(getDescriptor(),
-		(struct sockaddr *) &serv_addr,
-		sizeof(serv_addr))<0)
+	/* Some legacy receivers ship kernels without IPv6.  Creating an AF_INET6
+	 * socket then returns EAFNOSUPPORT/ENOSYS.  Keep the dual-stack listener
+	 * where it is available, but fall back to IPv4 instead of operating on an
+	 * invalid descriptor. */
+	if (getDescriptor() < 0)
 	{
-		eDebug("[eServerSocket] ERROR on bind() (%m)");
-		okflag=0;
+		family = AF_INET;
+		if (setSocket(::socket(AF_INET, SOCK_STREAM, 0), 1, ml) < 0)
+		{
+			eDebug("[eServerSocket] ERROR creating IPv4 socket for port %d (%m)", port);
+			return;
+		}
+	}
+
+	setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
+	if (family == AF_INET6)
+	{
+		setsockopt(getDescriptor(), IPPROTO_IPV6, IPV6_V6ONLY, &v6only, sizeof(v6only));
+		bzero(&serv_addr6, sizeof(serv_addr6));
+		serv_addr6.sin6_family=AF_INET6;
+		serv_addr6.sin6_addr=in6addr_any;
+		serv_addr6.sin6_port=htons(port);
+		bind_result=bind(getDescriptor(),
+			(struct sockaddr *) &serv_addr6, sizeof(serv_addr6));
+	}
+	else
+	{
+		bzero(&serv_addr4, sizeof(serv_addr4));
+		serv_addr4.sin_family=AF_INET;
+		serv_addr4.sin_addr.s_addr=htonl(INADDR_ANY);
+		serv_addr4.sin_port=htons(port);
+		bind_result=bind(getDescriptor(),
+			(struct sockaddr *) &serv_addr4, sizeof(serv_addr4));
+	}
+
+	/* An IPv6 socket may exist while IPv6 bind is unavailable.  Retry the
+	 * listener as IPv4 before giving up. */
+	if (bind_result < 0 && family == AF_INET6)
+	{
+		eDebug("[eServerSocket] IPv6 bind on port %d failed (%m), trying IPv4", port);
+		close();
+		family = AF_INET;
+		if (setSocket(::socket(AF_INET, SOCK_STREAM, 0), 1, ml) == 0)
+		{
+			setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
+			bzero(&serv_addr4, sizeof(serv_addr4));
+			serv_addr4.sin_family=AF_INET;
+			serv_addr4.sin_addr.s_addr=htonl(INADDR_ANY);
+			serv_addr4.sin_port=htons(port);
+			bind_result=bind(getDescriptor(),
+				(struct sockaddr *) &serv_addr4, sizeof(serv_addr4));
+		}
+	}
+
+	if (bind_result < 0)
+	{
+		eDebug("[eServerSocket] ERROR binding port %d (%m)", port);
+		close();
+		return;
 	}
 #if HAVE_HISILICON
-	listen(getDescriptor(), 10);
+	listen_result=listen(getDescriptor(), 10);
 #else
-	listen(getDescriptor(), 0);
+	listen_result=listen(getDescriptor(), 0);
 #endif
+	if (listen_result < 0)
+	{
+		eDebug("[eServerSocket] ERROR listening on port %d (%m)", port);
+		close();
+		return;
+	}
 
-	rsn->setRequested(eSocketNotifier::Read);
+	okflag=1;
+	if (rsn)
+		rsn->setRequested(eSocketNotifier::Read);
 }
 
 eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_LOCAL)
@@ -73,8 +141,13 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 	serv_addr.sun_family = AF_LOCAL;
 	strcpy(serv_addr.sun_path, path.c_str());
 
-	okflag=1;
+	okflag=0;
 	m_port = 0;
+	if (getDescriptor() < 0)
+	{
+		eDebug("[eServerSocket] ERROR creating local socket %s (%m)", path.c_str());
+		return;
+	}
 
 	unlink(path.c_str());
 #if HAVE_LINUXSOCKADDR
@@ -88,15 +161,23 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 #endif
 	{
 		eDebug("[eServerSocket] ERROR on bind() (%m)");
-		okflag=0;
+		close();
+		return;
 	}
 #if HAVE_HISILICON
-	listen(getDescriptor(), 10);
+	if (listen(getDescriptor(), 10) < 0)
 #else
-	listen(getDescriptor(), 0);
+	if (listen(getDescriptor(), 0) < 0)
 #endif
+	{
+		eDebug("[eServerSocket] ERROR on listen() (%m)");
+		close();
+		return;
+	}
 
-	rsn->setRequested(eSocketNotifier::Read);
+	okflag=1;
+	if (rsn)
+		rsn->setRequested(eSocketNotifier::Read);
 }
 
 eServerSocket::~eServerSocket()

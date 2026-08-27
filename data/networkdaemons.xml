@@ -14,12 +14,14 @@
 -->
 
 <daemonsxml>
-	<daemon key="autofs" title="AutoFS" autostart="/etc/rc2.d/S17autofs" autostartservice="autofs" autostartprio="17" running="automount" startservice="autofs" />
+	<daemon key="autofs" title="AutoFS" installcheck="/etc/init.d/autofs" package="autofs" autostart="/etc/rc2.d/S17autofs" autostartservice="autofs" autostartprio="17" running="automount" startservice="autofs" />
+	<daemon key="avahi" title="Avahi" installcheck="/etc/init.d/avahi-daemon" package="avahi-daemon" autostart="/etc/rc2.d/S21avahi-daemon" autostartservice="avahi-daemon" autostartprio="21" running="avahi-daemon" startservice="avahi-daemon" />
 	<daemon key="chrony" title="Chrony" autostart="/etc/rc2.d/S12chronyd" autostartservice="chronyd" autostartprio="12" running="chronyd" startservice="chronyd" />
 	<daemon key="cron" title="Cron" autostart="/etc/rc2.d/S90crond" autostartservice="crond" autostartprio="90" running="crond" startservice="crond" />
 	<daemon key="dnscrypt" title="DNSCrypt" installcheck="/etc/init.d/dnscrypt-proxy" package="dnscrypt-proxy" autostart="/etc/rc2.d/S20dnscrypt-proxy" autostartservice="dnscrypt-proxy" running="dnscrypt-proxy" startservice="dnscrypt-proxy" />
-	<daemon key="ftp" title="FTP" autostart="/etc/rc2.d/S*0vsftpd" autostartservice="vsftpd" running="vsftpd" startservice="vsftpd" />
+	<daemon key="ftp" title="FTP" installcheck="/etc/init.d/vsftpd" package="vsftpd" autostart="/etc/rc2.d/S*0vsftpd" autostartservice="vsftpd" running="vsftpd" startservice="vsftpd" />
 	<daemon key="inadyn" title="Inadyn" installcheck="/etc/init.d/inadyn-mt" package="inadyn-mt" autostart="/etc/rc2.d/S20inadyn-mt" autostartservice="inadyn-mt" running="inadyn-mt" startservice="inadyn-mt" logpath="/var/log/inadyn.log" />
+	<daemon key="llmnrd" title="LLMNR" installcheck="/etc/init.d/llmnrd" package="llmnrd" autostart="/etc/rc2.d/S20llmnrd" autostartservice="llmnrd" autostartprio="20" running="llmnrd" startservice="llmnrd" />
 	<daemon key="minidlna" title="MiniDLNA" installcheck="/etc/init.d/minidlna" package="minidlna" autostart="/etc/rc2.d/S20minidlna" autostartservice="minidlna" running="minidlnad" startservice="minidlna" logpath="/var/volatile/log/minidlna.log" />
 	<daemon key="nfs" title="NFS" installcheck="/etc/init.d/nfsserver" package="packagegroup-base-nfs" autostart="/etc/rc2.d/S*nfsserver" autostartservice="nfsserver" autostartprio="13" running="nfsd" startservice="nfsserver" />
 	<daemon key="openvpn" title="OpenVPN" installcheck="/etc/init.d/openvpn" package="openvpn" autostart="/etc/rc2.d/S10openvpn" autostartservice="openvpn" running="openvpn" startservice="openvpn" logpath="/etc/openvpn/openvpn.log" />
@@ -28,8 +30,10 @@
 	<daemon key="sambas" title="Samba Server" installcheck="/etc/init.d/samba" package="packagegroup-base-smbfs-server" autostart="/etc/rc2.d/S20samba" autostartservice="samba" running="smbd" startservice="samba" logpath="/var/log/samba/log.smbd" />
 	<daemon key="satpi" title="SATPI" installcheck="/etc/init.d/satpi" package="satpi" autostart="/etc/rc2.d/S80satpi" autostartservice="satpi" autostartprio="80" running="satpi" startservice="satpi" />
 	<daemon key="shellinabox" title="ShellInABox" installcheck="/etc/init.d/shellinabox" package="shellinabox" autostart="/etc/rc2.d/S20shellinabox" autostartservice="shellinabox" running="shellinaboxd" startservice="shellinabox" />
+	<daemon key="smartd" title="SMART monitoring" installcheck="/etc/init.d/smartd" package="smartmontools" autostart="/etc/rc2.d/S60smartd" autostartservice="smartd" autostartprio="60" running="smartd" startservice="smartd" />
 	<daemon key="ssh" title="SSH" autostart="/etc/rc2.d/S10dropbear" autostartservice="dropbear" autostartprio="10" running="dropbear" startservice="dropbear" />
 	<daemon key="telnet" title="Telnet" autostart="/etc/rc2.d/S20telnetd.busybox" autostartservice="telnetd.busybox" running="telnetd" startservice="telnetd" />
 	<daemon key="ushare" title="uShare" installcheck="/etc/init.d/ushare" package="ushare" autostart="/etc/rc2.d/S20ushare" autostartservice="ushare" running="ushare" startservice="ushare" />
+	<daemon key="wsdd" title="Windows network discovery" installcheck="/etc/init.d/wsdd2" package="wsdd2" autostart="/etc/rc2.d/S99wsdd2" autostartservice="wsdd2" autostartprio="99" running="wsdd2" startservice="wsdd2" />
 	<daemon key="zerotier" title="ZeroTier-One" installcheck="/etc/init.d/zerotier" package="zerotier" autostart="/etc/rc2.d/S20zerotier" autostartservice="zerotier" running="zerotier-one" startservice="zerotier" />
 </daemonsxml>
