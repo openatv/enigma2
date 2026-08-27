@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-21 20:25+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1180,6 +1180,10 @@ msgid "%s View"
 msgstr "%s Näkymä"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s lisä näyttöjä"
 
@@ -1194,6 +1198,17 @@ msgstr "%s on poistettu käytöstä."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s tuotu etävastaanottimelta."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1211,6 +1226,10 @@ msgstr "%s ei saatavilla."
 #, python-format
 msgid "%s version"
 msgstr "%s versio"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr ""
 
 #, python-format
 msgid "%s%d min"
@@ -1712,6 +1731,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr "Tekstityksen väri tekoäly avusteisessa käännöksessä"
 
@@ -1745,11 +1767,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "Lisää p.tarjoaja"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "Kotiteatteri, soundbar ja kaukosäädin"
+
 msgid "AV Setup"
 msgstr "Kuva/Ääni Asetukset"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "Kotiteatteri, soundbar ja kaukosäädin"
 
 msgid "Abkhazian"
 msgstr "Abkhazian"
@@ -2136,6 +2158,9 @@ msgstr "aikuisviihde"
 msgid "Advanced"
 msgstr "Laaja"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 msgid "Advanced Options"
 msgstr "Laajennetut valinnat"
 
@@ -2369,6 +2394,9 @@ msgstr "Vaihtoehtoinen"
 
 msgid "Alternative Edit"
 msgstr "[Vaihtoehtojen lisäys ja poisto]"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Vaihtoehtoiset URL osoitteet DVB-T/C tai ATSC"
@@ -2705,6 +2733,12 @@ msgstr "Automaattisen äänenvoimakkuuden taso"
 msgid "Audio Channel"
 msgstr "Äänikanava"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Ääni PID"
 
@@ -2720,6 +2754,9 @@ msgstr "Äänilähde"
 
 msgid "Audio Sync"
 msgstr "Äänen synkronointi"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Äänen kielivalinta 1"
@@ -3302,6 +3339,9 @@ msgstr "Kirkkaus (normaali)"
 msgid "Brightness (Standby)"
 msgstr "Kirkkaus (valmiustila)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr "Kuvan kirkkaus"
 
@@ -3340,6 +3380,9 @@ msgstr "Selaa, asenna tai poista laajennuksia yksitellen."
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3403,6 +3446,9 @@ msgstr "Liiketoiminta"
 msgid "Business & Finance"
 msgstr "Liiketoiminta ja rahoitus"
 
+msgid "Button Assignments"
+msgstr ""
+
 msgid "Button Setup"
 msgstr "Näppäinmääritykset"
 
@@ -3431,9 +3477,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 msgid "CCD-Width"
@@ -3990,6 +4033,12 @@ msgstr "Kanava 1"
 msgid "Channel 1 with prime time"
 msgstr "Kanava 1 ja Paras katseluaika"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Kanavatiedot"
 
@@ -4025,6 +4074,9 @@ msgstr "Kanavalistan asetukset"
 
 msgid "Channel Selection picon path"
 msgstr "Kanavan valinta kuvake asetus"
+
+msgid "Channel Zapping And Keys"
+msgstr ""
 
 msgid "Channel buttons"
 msgstr "Kanava painikkeet"
@@ -4478,6 +4530,9 @@ msgstr "Colombia"
 msgid "Color"
 msgstr "Väri"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Väriformaatti"
 
@@ -4547,14 +4602,14 @@ msgstr "CI-määritykset"
 msgid "Common Interface Settings"
 msgstr "CI Asetukset"
 
-msgid "Common Settings"
-msgstr "Yleiset Asetukset"
-
 msgid "Common Setup Actions"
 msgstr "Yleiset asetukset"
 
 msgid "Comoros"
 msgstr "Comoros"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr "Tehnyt"
@@ -5293,6 +5348,9 @@ msgstr "Ohjelmaoppaan arvostelutietojen maa asetus"
 msgid "Crash %d/%d"
 msgstr "Kaatuminen %d/%d"
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Kaatumislokit"
 
@@ -5545,6 +5603,9 @@ msgstr "Nykyinen muistissa oleva äänenvoimakkuus tasot:"
 msgid "Custom"
 msgstr "Muokattu"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr "Mukautettu liitos"
 
@@ -5571,6 +5632,9 @@ msgstr "Mukauta käyttöliittymän asetuksia"
 
 msgid "Cut"
 msgstr "Leikkaa"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr "Leikkauskohtien ohitusaika '%s'näppäin"
@@ -5666,6 +5730,9 @@ msgstr "DUAL LAYER DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI Viive"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB teksitykset PID & kieli"
 
@@ -5684,7 +5751,7 @@ msgstr "DVB-C ANNEX B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5711,7 +5778,7 @@ msgstr "DVD Valikko"
 msgid "DVD Title list"
 msgstr "DVD Otsikko lista"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD soitin"
 
 msgid "DVDPlayer"
@@ -5734,6 +5801,9 @@ msgstr "Päivämäärä"
 
 msgid "Date / Time"
 msgstr "Päivämäärä / Kellonaika"
+
+msgid "Date And Time"
+msgstr ""
 
 msgid "Date Time Input Actions"
 msgstr "Päivämäärä Asetukset"
@@ -5919,6 +5989,9 @@ msgstr "Virheenjäljitys %d/%d"
 
 msgid "Debug Information"
 msgstr "Vianmääritys tiedot"
+
+msgid "Debug Log Content"
+msgstr ""
 
 msgid "Debug Log Information"
 msgstr "Vianmäärityslokin tiedot"
@@ -6599,6 +6672,12 @@ msgstr "Näytä 4:3 sisältö näin"
 msgid "Display >16:9 content as"
 msgstr "Näytä >16:9 sisältö näin"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 msgid "Display Settings"
 msgstr "Näyttö asetukset"
 
@@ -6771,23 +6850,20 @@ msgstr "Haluatko poistaa kirjanmerkin %s?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Haluatko poistaa ajastuksen %s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
-"Haluatko uudelleen käynnistää OSCam?\n"
-"\n"
-"VIHJE: Tämä kestää noin 5 sekuntia!"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Haluatko todella sulkea OSCam?\n"
-"\n"
-"HUOMIO: Oscamin uudelleen käynnistämiseksi on vastaanottimen uudelleen käynnistettävä!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7079,17 +7155,26 @@ msgstr "Ohjelmaoppaan välimuistin tarkistus"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG Kanavan/Palvelun valinta"
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr "EPG Näyttö toiminnot"
 
 msgid "EPG Jump"
 msgstr "EPG Hyppy"
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigointi Toiminnot"
 
 msgid "EPG Other Actions"
 msgstr "EPG Muut Toiminnot"
+
+msgid "EPG Range And History"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Ohjelmaopashaku"
@@ -7102,6 +7187,12 @@ msgstr "Ohjelmaoppaan asetukset"
 
 msgid "EPG Setup"
 msgstr "Määritä ohjelmaoppaan asetukset"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG näppäimen toiminto"
@@ -7600,6 +7691,9 @@ msgstr "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa striimejä (jo
 
 msgid "Encryption"
 msgstr "Suojaus"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "Loppu"
@@ -8193,6 +8287,9 @@ msgstr "Vaikka 'vaihtaa' tallennus ajastus käynnistyy?"
 msgid "Event Info"
 msgstr "Ohjelmatiedot"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "Lähetystiedot"
 
@@ -8388,6 +8485,9 @@ msgstr "Ulkoinen PiP"
 msgid "External Storage %s"
 msgstr "Ulkoinen tallennusväline %s"
 
+msgid "External Subtitles"
+msgstr ""
+
 msgid "External subtitle color"
 msgstr "Ulkoisen tekstityksen väri"
 
@@ -8582,6 +8682,9 @@ msgstr "Nopean kanavanvaihdon asetukset"
 msgid "Fast DiSEqC"
 msgstr "Nopea DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Nopea haku"
 
@@ -8626,6 +8729,9 @@ msgstr "Vakaa."
 
 msgid "Feed unstable!"
 msgstr "Epävakaa!"
+
+msgid "Feeds And Networking"
+msgstr ""
 
 msgid "Fetch EPG and update timers now"
 msgstr "Hae EPG ja päivitä ajastukset nyt"
@@ -8750,6 +8856,9 @@ msgstr "Käyttäjä peruutti tiedostonsiirron"
 
 msgid "Filename"
 msgstr "Tiedostonimi"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr "Poistot varmuuskopioinnista"
@@ -9151,11 +9260,29 @@ msgstr "Yleinen"
 msgid "General AC3 delay"
 msgstr "Yleinen AC3 viive"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Yleinen Bluetooth ääni viive"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Yleinen PCM viive"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "Yleinen"
@@ -9550,6 +9677,9 @@ msgstr "Apua"
 
 msgid "Help Action"
 msgstr "Apua toiminnot"
+
+msgid "Help And Visual Feedback"
+msgstr ""
 
 msgid "Help Screen Information"
 msgstr "Ohje näytön tiedot"
@@ -10280,6 +10410,12 @@ msgstr "Info kuvakkeen leveys"
 msgid "InfoBar"
 msgstr "Tietopalkki"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "Tietopalkin EPG"
 
@@ -10288,6 +10424,12 @@ msgstr "Tietopalkki EPG"
 
 msgid "InfoBar EPG mode"
 msgstr "Tietopalkki EPG:n tila"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Tietopalkin häivytysnopeus"
@@ -10742,6 +10884,9 @@ msgstr "Kexec MultiBoot tiedostot puuttuvat."
 msgid "Key"
 msgstr "Avain"
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Näppäimistö"
 
@@ -10843,6 +10988,9 @@ msgstr "LED virransäästötila"
 
 msgid "LED Deep Standby color"
 msgstr "LED Sammutuksen Väri"
+
+msgid "LED Indicators"
+msgstr ""
 
 msgid "LED Normal"
 msgstr "LED normaali"
@@ -10969,6 +11117,9 @@ msgstr "Latvia"
 
 msgid "Latvian"
 msgstr "Latvia"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr "Poistu"
@@ -11122,6 +11273,9 @@ msgstr "Linkitetyt otsikot ja DVD-valikko"
 msgid "Links"
 msgstr "Linkit"
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr "Listaa Navigointi Toiminnot"
 
@@ -11272,6 +11426,9 @@ msgstr "Loki %d/%d"
 
 msgid "Log Manager"
 msgstr "Lokien hallinta"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11629,6 +11786,9 @@ msgstr "Media"
 msgid "Media Center"
 msgstr "Mediakeskus"
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 msgid "Media Player"
 msgstr "Mediasoitin"
 
@@ -11711,6 +11871,9 @@ msgstr "Valikon näyttö"
 msgid "Menu style"
 msgstr "Valikko tyyli"
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Yhdistä tavallinen EPG IceTV EPG: hen"
 
@@ -11758,6 +11921,9 @@ msgstr "MiniDLNA asetukset"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV ja kuvaruutu"
@@ -11893,9 +12059,6 @@ msgstr "Liitä"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "Liitosten hallinta"
 
 msgid "Mount Point"
 msgstr "Liitäntä"
@@ -12224,6 +12387,9 @@ msgstr "Tallennukset tapahtumat näkymät"
 msgid "Movie List"
 msgstr "Tallennuslista"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 msgid "Movie Player Actions"
 msgstr "Tallennukset toiminnot"
 
@@ -12451,6 +12617,12 @@ msgstr "Siirry valittuun hakemistoon"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Käytä YLÖS / ALAS -painikkeita siirtyäksesi ylös / alas ja VASEN / OIKEA sivulle sivulta. OK suorittaa toiminnon, joka on kuvattu parhaillaan korostetussa ohjeessa."
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
 
 msgid "Ndonga"
 msgstr "Tonga"
@@ -13153,6 +13325,9 @@ msgstr "Ei mitään päivitettävää"
 msgid "Nothing, just leave this menu"
 msgstr "Ei mitään, sulje valikko"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nyt"
@@ -13240,9 +13415,6 @@ msgstr "OScam tiedot"
 
 msgid "OSCam Information Settings"
 msgstr "Oscam Tiedot"
-
-msgid "OSCam webif disabled"
-msgstr "Oscam webif pois käytöstä"
 
 msgid "OSCamInfo Actions"
 msgstr "OSCam toiminnot"
@@ -13597,6 +13769,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paketit"
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr "OpenWebif kuvake"
 
@@ -13680,6 +13855,9 @@ msgstr "Muu"
 
 msgid "Other Actions"
 msgstr "Muut toiminnot"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr "Muut paketit"
@@ -13805,6 +13983,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Paketti"
+
+msgid "Package Categories"
+msgstr ""
 
 msgid "Package Manager"
 msgstr "Ohjelmistopaketin hallinnointi"
@@ -14073,6 +14254,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Kanavalogon leveys"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr "Kuvan tiedot"
 
@@ -14208,6 +14392,12 @@ msgstr "Toista äänitiedosto"
 
 msgid "Play the selected service"
 msgstr "Toista valittu kanava"
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Toisto Asetukset"
@@ -14822,6 +15012,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "Paras katseluaika"
 
@@ -15337,6 +15530,18 @@ msgstr "Tallennettavan median työkalupakki"
 msgid "Recording"
 msgstr "Tallentaa"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Tallennus Asetukset"
 
@@ -15410,6 +15615,9 @@ msgstr "Tallenteet eivät välttämättä toimi oikein ilman hyväksyttävää h
 
 msgid "Recovery"
 msgstr "Palautus"
+
+msgid "Recovery And Hardware"
+msgstr ""
 
 msgid "Recovery Mode"
 msgstr "Palautus tila"
@@ -15549,6 +15757,12 @@ msgstr "Kaukosäädin näppäinten asetukset"
 
 msgid "Remote Control Code Settings"
 msgstr "Kaukosäätimen koodi"
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
 
 msgid "Remote control information"
 msgstr "Kaukosäätimen tiedot"
@@ -15882,6 +16096,10 @@ msgstr ""
 msgid "Restart"
 msgstr "Käynnistä uudelleen"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -15900,9 +16118,6 @@ msgstr "Käynnistetäänkö järjestelmä uudelleen?"
 msgid "Restart Network"
 msgstr "Käynnistä verkkoyhteydet uudelleen"
 
-msgid "Restart OSCam"
-msgstr "Uudelleenkäynnistä OSCam"
-
 msgid "Restart enigma"
 msgstr "Käynnistä Käyttöliittymä uudelleen"
 
@@ -15920,6 +16135,10 @@ msgstr "Käynnistä verkkoyhteydet uudelleen"
 
 msgid "Restart test"
 msgstr "Testaa uudelleen"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18060,6 +18279,9 @@ msgstr "Kanava tiedot"
 msgid "Service Information Actions"
 msgstr "Kanavan Tiedot Toiminnot"
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr "Kanavahaku"
 
@@ -19383,8 +19605,9 @@ msgstr "sammuta"
 msgid "Shutdown"
 msgstr "Sammuta"
 
-msgid "Shutdown OSCam"
-msgstr "Sammuta OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr "Sammutetaan. Odota..."
@@ -19496,6 +19719,9 @@ msgstr "Teeman asetus"
 
 msgid "SkinSelection"
 msgstr "Teeman Valinta"
+
+msgid "Skip Modes"
+msgstr ""
 
 msgid "Skip back"
 msgstr "Siirry taaksepäin"
@@ -19801,6 +20027,9 @@ msgstr "Softcam Asetukset"
 msgid "Softcams"
 msgstr "softcammit"
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "Ohjelmiston hallinta"
 
@@ -19958,6 +20187,9 @@ msgstr "Soul / Rytmi ja blues"
 msgid "Sound"
 msgstr "Ääni"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 msgid "Sound carrier"
 msgstr "Äänikantoaallon taajuus"
 
@@ -20073,6 +20305,10 @@ msgstr "Valmiustila ilman tv sammutusta"
 msgid "Start"
 msgstr "Käynnistä"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr "Käynnistä automaattinen virkistäminen"
 
@@ -20151,6 +20387,10 @@ msgstr "Käynnistä/pysäytä/valitse cam"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Käynnistä/pysäytä/valitse cam, Sinun on ensin asennettava softcam"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Käynnistetään Softcam"
 
@@ -20168,6 +20408,9 @@ msgstr "Aloitusaika"
 
 msgid "Starts in a few seconds"
 msgstr "Alkaa 5 sekunnissa"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr "Käynnistettävää laitetta ei löytynyt!"
@@ -20290,6 +20533,10 @@ msgstr "Pysäytä ajastettu tallennus"
 msgid "Stopped"
 msgstr "Pysäytetty"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "Pysäytä Softcam"
 
@@ -20308,6 +20555,9 @@ msgstr "Tallennustila / Asemat"
 
 msgid "Storage / Drive information"
 msgstr "Tallennustilan / Aseman tiedot"
+
+msgid "Storage And Deletion"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Tallennusvälineet"
@@ -20421,6 +20671,9 @@ msgstr "Tekstitys"
 
 msgid "Subtitle Actions"
 msgstr "Valitse tekstitys"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Tekstityksen pikavalikko"
@@ -20742,17 +20995,17 @@ msgstr "VIRITIN:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "TV näppäimen toiminto"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "TV:n fyysisen osoitteen raportti"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20855,6 +21108,9 @@ msgstr "Teksti-tv vasen raja"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Teksti-tv alaraja"
+
+msgid "Teletext Subtitles"
+msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teksti-tv 0 = normaali, 1 = lihavoitu"
@@ -21789,6 +22045,9 @@ msgstr "Aikavyöhyke"
 msgid "Time zone area"
 msgstr "Aikavyöhykkeen alue"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "Kellonaika 24 tunnin muodossa"
 
@@ -21802,6 +22061,9 @@ msgid "Timeline scale"
 msgstr "Näytettävä aikaväli"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -21870,7 +22132,7 @@ msgstr "Ajansiirto"
 msgid "Timezone"
 msgstr "Aikavyöhyke"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "Ajoitus ja diagnostiikka"
 
 msgid "Timor-Leste / East Timor"
@@ -22108,6 +22370,9 @@ msgstr "Lähetyksen toisto tiedot (TSID)"
 msgid "Transport Stream Type"
 msgstr "Syötteen tyyppi"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Roskakori"
 
@@ -22191,6 +22456,12 @@ msgstr "Viritin "
 
 msgid "Tuner :"
 msgstr "Viritin:"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Viritin Asetukset"
@@ -23362,6 +23633,9 @@ msgstr "Äänenvoimakkuuden säätö valinta toiminnot"
 msgid "Volume Adjust Settings"
 msgstr "Äänenvoimakkuuden säätö asetukset"
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr "Äänenvoimakkuuden säätö tila"
 
@@ -24324,6 +24598,9 @@ msgstr "Kanavanvaihto"
 msgid "Zap + Exit"
 msgstr "Kanavanvaihto ja sulje"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr "Paina ylös/alas"
 
@@ -25084,6 +25361,39 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Common Settings"
+#~ msgstr "Yleiset Asetukset"
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Haluatko uudelleen käynnistää OSCam?\n"
+#~ "\n"
+#~ "VIHJE: Tämä kestää noin 5 sekuntia!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Haluatko todella sulkea OSCam?\n"
+#~ "\n"
+#~ "HUOMIO: Oscamin uudelleen käynnistämiseksi on vastaanottimen uudelleen käynnistettävä!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Liitosten hallinta"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "Oscam webif pois käytöstä"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Uudelleenkäynnistä OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Sammuta OSCam"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"

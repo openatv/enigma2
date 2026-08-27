@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1217,6 +1217,10 @@ msgid "%s View"
 msgstr ""
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s további képernyők"
 
@@ -1230,6 +1234,17 @@ msgstr ""
 
 #, python-format
 msgid "%s imported from remote receiver."
+msgstr ""
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1247,6 +1262,10 @@ msgstr "%s nem elérhető."
 
 #, python-format
 msgid "%s version"
+msgstr ""
+
+#, python-format
+msgid "%s webif disabled"
 msgstr ""
 
 #, python-format
@@ -1746,6 +1765,9 @@ msgstr ""
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr ""
 
@@ -1781,11 +1803,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC szolgáltató"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr ""
+
 msgid "AV Setup"
 msgstr "AV beállítás"
-
-msgid "AV receiver, soundbar and remote"
-msgstr ""
 
 msgid "Abkhazian"
 msgstr "Abkhazian"
@@ -2166,6 +2188,9 @@ msgstr "felnőtt/dráma"
 msgid "Advanced"
 msgstr "Haladó"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 msgid "Advanced Options"
 msgstr "Haladó beállítások"
 
@@ -2401,6 +2426,9 @@ msgstr "2. alternatíva"
 
 msgid "Alternative Edit"
 msgstr "[alternatív módosítás]"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternatív URL DVB-T/C vagy ATSC vételhez"
@@ -2740,6 +2768,12 @@ msgstr "Hang automatikus hangerőszint"
 msgid "Audio Channel"
 msgstr "Hangcsatorna"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Audió PID"
 
@@ -2755,6 +2789,9 @@ msgstr "Hangforrás"
 
 msgid "Audio Sync"
 msgstr "Audió Sync"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Elsődleges előnyben részesített hangsáv"
@@ -3342,6 +3379,9 @@ msgstr "Fényerő (Normál)"
 msgid "Brightness (Standby)"
 msgstr "Fényerő (Készenlét)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr ""
 
@@ -3380,6 +3420,9 @@ msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunei"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3443,6 +3486,9 @@ msgstr ""
 msgid "Business & Finance"
 msgstr "Üzlet és Pénzügy"
 
+msgid "Button Assignments"
+msgstr ""
+
 msgid "Button Setup"
 msgstr "Távirányító gomb beállítása"
 
@@ -3472,9 +3518,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 msgid "CCD-Width"
@@ -4020,6 +4063,12 @@ msgstr "Első csatorna"
 msgid "Channel 1 with prime time"
 msgstr "Első csatorna fő műsoridővel"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Csatorna információ"
 
@@ -4054,6 +4103,9 @@ msgid "Channel Selection Settings"
 msgstr "Csatorna kiválasztás beállítása"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 msgid "Channel buttons"
@@ -4510,6 +4562,9 @@ msgstr "Kolumbia"
 msgid "Color"
 msgstr "Szín"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Színformátum"
 
@@ -4579,15 +4634,15 @@ msgstr "CI hozzárendelés"
 msgid "Common Interface Settings"
 msgstr ""
 
-msgid "Common Settings"
-msgstr ""
-
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Indításkori művelet"
 
 msgid "Comoros"
 msgstr "Comore-szigetek"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr ""
@@ -5325,6 +5380,9 @@ msgstr "Ország az EPG esemény minősítési adatainak informáciájáért"
 msgid "Crash %d/%d"
 msgstr ""
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Hibanaplók"
 
@@ -5572,6 +5630,9 @@ msgstr ""
 msgid "Custom"
 msgstr "Egyedi"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr ""
 
@@ -5598,6 +5659,9 @@ msgstr "A személyre szabott enigma2 beállítások testre szabása, konfigurác
 
 msgid "Cut"
 msgstr "Vágás"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr ""
@@ -5695,6 +5759,9 @@ msgstr "Kétréteges DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI késleltetés"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 #, fuzzy
 msgid "DVB Subtitles PID & Language"
 msgstr "Felirat hosszan"
@@ -5714,7 +5781,7 @@ msgstr "DVB-C ANNEX B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C Annex C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5741,7 +5808,7 @@ msgstr "DVD Menü"
 msgid "DVD Title list"
 msgstr "DVD Címlista"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD lejátszó"
 
 msgid "DVDPlayer"
@@ -5763,6 +5830,9 @@ msgid "Date"
 msgstr "Dátum"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date And Time"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -5954,6 +6024,9 @@ msgid "Debug %d/%d"
 msgstr ""
 
 msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log Content"
 msgstr ""
 
 msgid "Debug Log Information"
@@ -6639,6 +6712,12 @@ msgstr "4:3 tartalom megjelenítése"
 msgid "Display >16:9 content as"
 msgstr "16:9-nél szélesebb tartalom megjelenítése"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 msgid "Display Settings"
 msgstr "Kijelző beállítások"
 
@@ -6805,16 +6884,19 @@ msgstr "Biztos benne, hogy el szeretné távolítani a(z) %s könyvjelzőt?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to stop %s?"
 msgstr ""
 
 #, python-format
@@ -7107,16 +7189,25 @@ msgstr "EPG gyorsítótár ellenőrzése"
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr ""
 
 msgid "EPG Jump"
 msgstr ""
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr ""
 
 msgid "EPG Other Actions"
+msgstr ""
+
+msgid "EPG Range And History"
 msgstr ""
 
 msgid "EPG Search"
@@ -7130,6 +7221,12 @@ msgstr "EPG beállítások"
 
 msgid "EPG Setup"
 msgstr "EPG beállításai"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG gomb mód"
@@ -7629,6 +7726,9 @@ msgstr "Ha engedélyezi ezt a funkciót, akkor a vevőegység dekódolni tudja a
 
 msgid "Encryption"
 msgstr "Kódolás"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "Vége"
@@ -8221,6 +8321,9 @@ msgstr "Még akkor is, ha elindul egy 'zap' felvételi időzítő?"
 msgid "Event Info"
 msgstr "Esemény információ"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "Eseménynézet"
 
@@ -8411,6 +8514,9 @@ msgstr "Külső Kép-a-Képben"
 #, python-format
 msgid "External Storage %s"
 msgstr "Külső tároló %s"
+
+msgid "External Subtitles"
+msgstr ""
 
 msgid "External subtitle color"
 msgstr "Külső feliratok szine"
@@ -8609,6 +8715,9 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "Gyors DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Szolgáltatói keresés"
 
@@ -8652,6 +8761,9 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
+msgstr ""
+
+msgid "Feeds And Networking"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -8779,6 +8891,9 @@ msgstr "A felhasználó megszakította a fájlátvitelt"
 #, fuzzy
 msgid "Filename"
 msgstr "fájlnév"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr "Fájlok/mappák kizárása a mentésből"
@@ -9184,11 +9299,29 @@ msgstr "Általános"
 msgid "General AC3 delay"
 msgstr "Általános AC3 késleltetés"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Általános BT Audio késleltetés"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Általános PCM késleltetés"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "Általános"
@@ -9585,6 +9718,9 @@ msgid "Help"
 msgstr "Súgó"
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 #, fuzzy
@@ -10318,6 +10454,12 @@ msgstr "Info ikon szélesség"
 msgid "InfoBar"
 msgstr "Információs sáv"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "Információs sáv EPG"
 
@@ -10326,6 +10468,12 @@ msgstr "Információs sáv EPG beállítása"
 
 msgid "InfoBar EPG mode"
 msgstr "Információs sáv EPG mód"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Információs sáv elhalványodásának sebessége"
@@ -10785,6 +10933,9 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Billentyűzet"
 
@@ -10888,6 +11039,9 @@ msgid "LED Deep Standby"
 msgstr "LED kikapcsolva"
 
 msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Indicators"
 msgstr ""
 
 msgid "LED Normal"
@@ -11018,6 +11172,9 @@ msgstr "Lettország"
 
 msgid "Latvian"
 msgstr "Lett"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr ""
@@ -11170,6 +11327,9 @@ msgid "Linked titles with a DVD menu"
 msgstr "DVD menüvel linkelt címek"
 
 msgid "Links"
+msgstr ""
+
+msgid "List Appearance And Sorting"
 msgstr ""
 
 msgid "List Navigation Actions"
@@ -11326,6 +11486,9 @@ msgstr ""
 
 msgid "Log Manager"
 msgstr "Napló Kezelő"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11693,6 +11856,9 @@ msgstr "Média"
 msgid "Media Center"
 msgstr "Média Center"
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 msgid "Media Player"
 msgstr "Médialejátszó"
 
@@ -11776,6 +11942,9 @@ msgstr ""
 msgid "Menu style"
 msgstr ""
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -11824,6 +11993,9 @@ msgstr "MiniDLNA beállítása"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV OSD-vel"
@@ -11962,9 +12134,6 @@ msgstr "Csatlakozás"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "Csatlakozás kezelő"
 
 msgid "Mount Point"
 msgstr ""
@@ -12307,6 +12476,9 @@ msgstr ""
 msgid "Movie List"
 msgstr "Film Lista"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Filmválasztás"
@@ -12535,6 +12707,12 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
+msgstr ""
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
 msgstr ""
 
 #, fuzzy
@@ -13239,6 +13417,9 @@ msgstr "Nem kell frissíteni, naprakész a rendszer"
 msgid "Nothing, just leave this menu"
 msgstr "Semmi, hagyja el ezt a menüt"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Most"
@@ -13326,9 +13507,6 @@ msgstr "OScamInfo"
 
 msgid "OSCam Information Settings"
 msgstr ""
-
-msgid "OSCam webif disabled"
-msgstr "oscam webif letiltva"
 
 msgid "OSCamInfo Actions"
 msgstr ""
@@ -13699,6 +13877,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr ""
 
@@ -13783,6 +13964,9 @@ msgstr "Egyéb"
 #, fuzzy
 msgid "Other Actions"
 msgstr "továbboktatás"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr ""
@@ -13909,6 +14093,9 @@ msgid "PVR"
 msgstr "PVR"
 
 msgid "Package"
+msgstr ""
+
+msgid "Package Categories"
 msgstr ""
 
 msgid "Package Manager"
@@ -14179,6 +14366,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Picon szélessége"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr ""
 
@@ -14314,6 +14504,12 @@ msgid "Play the audio file"
 msgstr ""
 
 msgid "Play the selected service"
+msgstr ""
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
 msgstr ""
 
 msgid "Playback Settings"
@@ -14928,6 +15124,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "Főműsoridő"
 
@@ -15445,6 +15644,18 @@ msgstr "Rögzíthető média eszköztár"
 msgid "Recording"
 msgstr "Felvétel"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Felvétel beállítása"
 
@@ -15517,6 +15728,9 @@ msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
 msgid "Recovery"
+msgstr ""
+
+msgid "Recovery And Hardware"
 msgstr ""
 
 msgid "Recovery Mode"
@@ -15657,6 +15871,12 @@ msgstr ""
 
 msgid "Remote Control Code Settings"
 msgstr "Távirányító kód"
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
 
 msgid "Remote control information"
 msgstr ""
@@ -15988,6 +16208,10 @@ msgstr ""
 msgid "Restart"
 msgstr "Újraindítás"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -16006,9 +16230,6 @@ msgstr "Újra indítja most a kezelőfelületet?"
 msgid "Restart Network"
 msgstr "Hálózat újraindítása"
 
-msgid "Restart OSCam"
-msgstr ""
-
 msgid "Restart enigma"
 msgstr "Enigma újraindítása"
 
@@ -16026,6 +16247,10 @@ msgstr "Hálózat újraindítása az aktuális beállításokkal"
 
 msgid "Restart test"
 msgstr "Teszt újraindítása"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18165,6 +18390,9 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr ""
 
@@ -19487,7 +19715,8 @@ msgstr "kikapcsolás"
 msgid "Shutdown"
 msgstr "Kikapcsolás"
 
-msgid "Shutdown OSCam"
+#, python-format
+msgid "Shutdown %s"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
@@ -19600,6 +19829,9 @@ msgid "Skin setting"
 msgstr "Kinézet beállítása"
 
 msgid "SkinSelection"
+msgstr ""
+
+msgid "Skip Modes"
 msgstr ""
 
 msgid "Skip back"
@@ -19907,6 +20139,9 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "Szoftverkezelés"
 
@@ -20066,6 +20301,9 @@ msgstr ""
 msgid "Sound"
 msgstr "Hang"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 msgid "Sound carrier"
 msgstr "Hangvivő"
 
@@ -20181,6 +20419,10 @@ msgstr "Készenlét a TV leállítása nélkül"
 msgid "Start"
 msgstr "Kezdés"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr ""
 
@@ -20260,6 +20502,10 @@ msgstr "Cam Indítása/Megállítása/Kiválasztása"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Cam Indítása/Megállítása/Kiválasztása, Először a Softcam-ot telepítenie kell"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Softcam elindítása"
 
@@ -20277,6 +20523,9 @@ msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "Néhány másodperc múlva kezdődik"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr ""
@@ -20399,6 +20648,10 @@ msgstr "Az időzített felvétel megállítása"
 msgid "Stopped"
 msgstr "Leállítva"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "Softcam leállítása"
 
@@ -20416,6 +20669,9 @@ msgid "Storage / Disks"
 msgstr ""
 
 msgid "Storage / Drive information"
+msgstr ""
+
+msgid "Storage And Deletion"
 msgstr ""
 
 msgid "Storage Devices"
@@ -20531,6 +20787,9 @@ msgstr "Felirat"
 #, fuzzy
 msgid "Subtitle Actions"
 msgstr "Felirat kiválasztása"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Gyors Menü felirat"
@@ -20860,17 +21119,17 @@ msgstr ""
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "TV gomb mód"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "TV fizikai port-cím"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "Teletext PID"
@@ -20979,6 +21238,9 @@ msgstr "Teletext StartX (bal oldali szegély)"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Teletext StartY (alsó határ)"
+
+msgid "Teletext Subtitles"
+msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletext TTFBold (0 = normál, 1 = félkövér)"
@@ -21889,6 +22151,9 @@ msgstr "Időzóna"
 msgid "Time zone area"
 msgstr "Időzóna területe"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "24 órás idővonal"
 
@@ -21902,6 +22167,9 @@ msgid "Timeline scale"
 msgstr "Időskála"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -21970,7 +22238,7 @@ msgstr "Timeshift"
 msgid "Timezone"
 msgstr ""
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 #, fuzzy
@@ -22211,6 +22479,9 @@ msgstr ""
 msgid "Transport Stream Type"
 msgstr "Átviteli adatfolyam típusa"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Kuka"
 
@@ -22296,6 +22567,12 @@ msgstr "Tuner "
 
 msgid "Tuner :"
 msgstr "Tuner:"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Tuner beállítása"
@@ -23443,6 +23720,9 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr ""
 
@@ -24402,6 +24682,9 @@ msgstr "Csatornára ugrás"
 msgid "Zap + Exit"
 msgstr "Csatornára ugrás + Kilépés"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr ""
 
@@ -25163,6 +25446,12 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Csatlakozás kezelő"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "oscam webif letiltva"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"

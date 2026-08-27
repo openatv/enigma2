@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-16 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1183,6 +1183,10 @@ msgid "%s View"
 msgstr ""
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s màn hình bổ sung"
 
@@ -1196,6 +1200,17 @@ msgstr ""
 
 #, python-format
 msgid "%s imported from remote receiver."
+msgstr ""
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1213,6 +1228,10 @@ msgstr "%s không có sẵn."
 
 #, python-format
 msgid "%s version"
+msgstr ""
+
+#, python-format
+msgid "%s webif disabled"
 msgstr ""
 
 #, python-format
@@ -1712,6 +1731,9 @@ msgstr ""
 msgid "AFL"
 msgstr "AFP"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr ""
 
@@ -1745,11 +1767,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "Nhà cung cấp ATSC"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr ""
+
 msgid "AV Setup"
 msgstr "Thiết lập AV"
-
-msgid "AV receiver, soundbar and remote"
-msgstr ""
 
 msgid "Abkhazian"
 msgstr ""
@@ -2131,6 +2153,9 @@ msgstr "phim / phim người lớn"
 msgid "Advanced"
 msgstr "Nâng cao"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 msgid "Advanced Options"
 msgstr "Tùy chọn nâng cao"
 
@@ -2368,6 +2393,9 @@ msgstr "Phương án 2"
 
 msgid "Alternative Edit"
 msgstr "[chỉnh sửa thay thế]"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "URL thay thế cho DVB-T / C hoặc ATSC"
@@ -2710,6 +2738,12 @@ msgstr "Mức âm lượng tự động"
 msgid "Audio Channel"
 msgstr "Kênh âm thanh"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Âm thanh PID"
 
@@ -2725,6 +2759,9 @@ msgstr "Nguồn âm thanh"
 
 msgid "Audio Sync"
 msgstr "Đồng bộ hóa âm thanh"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Lựa chọn ngôn ngữ âm thanh 1"
@@ -3313,6 +3350,9 @@ msgstr "Độ sáng (Bình thường)"
 msgid "Brightness (Standby)"
 msgstr "Độ sáng (Chế độ chờ)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr ""
 
@@ -3351,6 +3391,9 @@ msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Vương quốc Bru-nây"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3414,6 +3457,9 @@ msgstr ""
 msgid "Business & Finance"
 msgstr ""
 
+msgid "Button Assignments"
+msgstr ""
+
 msgid "Button Setup"
 msgstr "Cài đặt nút"
 
@@ -3443,9 +3489,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 msgid "CCD-Width"
@@ -3999,6 +4042,12 @@ msgstr "Kênh 1"
 msgid "Channel 1 with prime time"
 msgstr "Kênh 1 với Primetime"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Thông tin kênh"
 
@@ -4033,6 +4082,9 @@ msgid "Channel Selection Settings"
 msgstr "Cài đặt chọn kênh"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 msgid "Channel buttons"
@@ -4490,6 +4542,9 @@ msgstr "Colombia"
 msgid "Color"
 msgstr "Màu"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Định dạng màu"
 
@@ -4559,15 +4614,15 @@ msgstr "Giao diện chung"
 msgid "Common Interface Settings"
 msgstr ""
 
-msgid "Common Settings"
-msgstr ""
-
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Hành động khởi động"
 
 msgid "Comoros"
 msgstr "Comoros"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr ""
@@ -5311,6 +5366,9 @@ msgstr "Tham khảo bảng thông số thiết bị SCR của bạn để biết
 msgid "Crash %d/%d"
 msgstr ""
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Nhật ký sự cố"
 
@@ -5560,6 +5618,9 @@ msgstr ""
 msgid "Custom"
 msgstr "Tập quán"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr ""
 
@@ -5586,6 +5647,9 @@ msgstr "Tùy chỉnh cài đặt cá nhân enigma2"
 
 msgid "Cut"
 msgstr "Cắt"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr ""
@@ -5683,6 +5747,9 @@ msgstr "DVD DUAL LAYER"
 msgid "DVB CI Delay"
 msgstr "Sự chậm trễ của DVB CI"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 #, fuzzy
 msgid "DVB Subtitles PID & Language"
 msgstr "Phụ đề dài"
@@ -5702,7 +5769,7 @@ msgstr "DVB-C PHỤ LỤC B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C PHỤ LỤC C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5729,7 +5796,7 @@ msgstr "Menu DVD"
 msgid "DVD Title list"
 msgstr "Tiêu đề DVD"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "Đâu đia DVD"
 
 msgid "DVDPlayer"
@@ -5752,6 +5819,9 @@ msgid "Date"
 msgstr "Ngày"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date And Time"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -5943,6 +6013,9 @@ msgid "Debug %d/%d"
 msgstr ""
 
 msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log Content"
 msgstr ""
 
 msgid "Debug Log Information"
@@ -6630,6 +6703,12 @@ msgstr "Hiển thị hình ảnh chuẩn 4: 3"
 msgid "Display >16:9 content as"
 msgstr "Hiển thị hình ảnh chuẩn> 16: 9"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 msgid "Display Settings"
 msgstr "Thiết lập hiển thị"
 
@@ -6798,16 +6877,19 @@ msgstr ""
 "Bạn có thực sự muốn loại bỏ\n"
 "plugin % s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to stop %s?"
 msgstr ""
 
 #, python-format
@@ -7102,16 +7184,25 @@ msgstr "Kiểm tra bộ nhớ cache EPG"
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr ""
 
 msgid "EPG Jump"
 msgstr ""
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr ""
 
 msgid "EPG Other Actions"
+msgstr ""
+
+msgid "EPG Range And History"
 msgstr ""
 
 msgid "EPG Search"
@@ -7125,6 +7216,12 @@ msgstr "Cài đặt EPG"
 
 msgid "EPG Setup"
 msgstr "Thiết lập EPG"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "Chế độ nút EPG"
@@ -7630,6 +7727,9 @@ msgstr "Bật một tính năng để người nhận có thể giải mã các 
 
 msgid "Encryption"
 msgstr "Mã hóa"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "Cuối cùng"
@@ -8222,6 +8322,9 @@ msgstr "Ngay cả khi hẹn giờ ghi âm 'zap' bắt đầu?"
 msgid "Event Info"
 msgstr "Thông tin sự kiện"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "Sự kiện"
 
@@ -8411,6 +8514,9 @@ msgstr "PiP ngoài"
 #, python-format
 msgid "External Storage %s"
 msgstr "Bộ nhớ ngoài%s"
+
+msgid "External Subtitles"
+msgstr ""
 
 msgid "External subtitle color"
 msgstr "Màu phụ đề bên ngoài"
@@ -8609,6 +8715,9 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "DiSEqC nhanh"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Quét nhanh"
 
@@ -8652,6 +8761,9 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
+msgstr ""
+
+msgid "Feeds And Networking"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -8779,6 +8891,9 @@ msgstr "Chuyển tập tin đã bị hủy bởi người dùng"
 #, fuzzy
 msgid "Filename"
 msgstr "tên tệp"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr "Tập tin / thư mục để loại trừ khỏi bản sao lưu"
@@ -9190,11 +9305,29 @@ msgstr "Chung"
 msgid "General AC3 delay"
 msgstr "Độ trễ AC3 chung"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Độ trễ âm thanh BT chung"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Độ trễ PCM chung"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 #, fuzzy
 msgid "Generic"
@@ -9592,6 +9725,9 @@ msgid "Help"
 msgstr "Cứu giúp"
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 #, fuzzy
@@ -10329,6 +10465,12 @@ msgstr "Chiều rộng biểu tượng thông tin"
 msgid "InfoBar"
 msgstr "Thông tin Bar"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "InfoBar EPG"
 
@@ -10337,6 +10479,12 @@ msgstr "Cài đặt InfobarEPG"
 
 msgid "InfoBar EPG mode"
 msgstr "Chế độ EPG của InfoBar"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Tốc độ giảm dần của Infobar"
@@ -10796,6 +10944,9 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Bàn phím"
 
@@ -10899,6 +11050,9 @@ msgid "LED Deep Standby"
 msgstr "Đèn LED sâu"
 
 msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Indicators"
 msgstr ""
 
 msgid "LED Normal"
@@ -11029,6 +11183,9 @@ msgstr "Latvia"
 
 msgid "Latvian"
 msgstr "Tiếng Latvia"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr ""
@@ -11184,6 +11341,9 @@ msgstr "Tiêu đề được liên kết với menu DVD"
 msgid "Links"
 msgstr ""
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr ""
 
@@ -11337,6 +11497,9 @@ msgstr ""
 
 msgid "Log Manager"
 msgstr "Trình quản lý nhật ký"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11706,6 +11869,9 @@ msgstr "Phương tiện truyền thông"
 msgid "Media Center"
 msgstr "Trung tâm Truyền thông"
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 msgid "Media Player"
 msgstr "Phương tiện truyền thông"
 
@@ -11790,6 +11956,9 @@ msgstr ""
 msgid "Menu style"
 msgstr ""
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -11840,6 +12009,9 @@ msgstr "Thiết lập MiniDLNA"
 
 msgid "MiniTV"
 msgstr "TV nhỏ"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV với OSD"
@@ -11978,9 +12150,6 @@ msgstr "Núi"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "Quản lý"
 
 msgid "Mount Point"
 msgstr ""
@@ -12325,6 +12494,9 @@ msgstr ""
 msgid "Movie List"
 msgstr "Danh sách phim"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Lựa chọn phim"
@@ -12556,6 +12728,12 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
+msgstr ""
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
 msgstr ""
 
 #, fuzzy
@@ -13270,6 +13448,9 @@ msgstr "Không có gì để nâng cấp"
 msgid "Nothing, just leave this menu"
 msgstr "Không có gì, chỉ cần rời khỏi menu này"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Hiện nay"
@@ -13357,9 +13538,6 @@ msgstr "Thông tin OScam"
 
 msgid "OSCam Information Settings"
 msgstr ""
-
-msgid "OSCam webif disabled"
-msgstr "oscam webif bị vô hiệu hóa"
 
 msgid "OSCamInfo Actions"
 msgstr ""
@@ -13730,6 +13908,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr ""
 
@@ -13814,6 +13995,9 @@ msgstr "Khác"
 #, fuzzy
 msgid "Other Actions"
 msgstr "giáo dục nâng cao"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr ""
@@ -13941,6 +14125,9 @@ msgid "PVR"
 msgstr "PVR"
 
 msgid "Package"
+msgstr ""
+
+msgid "Package Categories"
 msgstr ""
 
 msgid "Package Manager"
@@ -14214,6 +14401,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Chiều rộng Picon"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr ""
 
@@ -14349,6 +14539,12 @@ msgid "Play the audio file"
 msgstr ""
 
 msgid "Play the selected service"
+msgstr ""
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
 msgstr ""
 
 msgid "Playback Settings"
@@ -14962,6 +15158,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "Thời nguyên thủy"
 
@@ -15484,6 +15683,18 @@ msgstr "Hộp công cụ ghi có thể ghi"
 msgid "Recording"
 msgstr "Ghi âm"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Cài đặt ghi âm"
 
@@ -15563,6 +15774,9 @@ msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
 msgid "Recovery"
+msgstr ""
+
+msgid "Recovery And Hardware"
 msgstr ""
 
 msgid "Recovery Mode"
@@ -15707,6 +15921,12 @@ msgstr ""
 
 msgid "Remote Control Code Settings"
 msgstr "Mã điều khiển từ xa"
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
 
 msgid "Remote control information"
 msgstr ""
@@ -16039,6 +16259,10 @@ msgstr ""
 msgid "Restart"
 msgstr "Khởi động lại"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -16057,9 +16281,6 @@ msgstr "Khởi động lại GUI bây giờ?"
 msgid "Restart Network"
 msgstr "Khởi động lại mạng"
 
-msgid "Restart OSCam"
-msgstr ""
-
 msgid "Restart enigma"
 msgstr "Khởi động lại E2"
 
@@ -16077,6 +16298,10 @@ msgstr "Khởi động lại mạng với thiết lập hiện tại"
 
 msgid "Restart test"
 msgstr "Khởi động lại bài kiểm tra"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18217,6 +18442,9 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr ""
 
@@ -19546,7 +19774,8 @@ msgstr "tắt"
 msgid "Shutdown"
 msgstr "Tắt"
 
-msgid "Shutdown OSCam"
+#, python-format
+msgid "Shutdown %s"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
@@ -19659,6 +19888,9 @@ msgid "Skin setting"
 msgstr "Thiết lập da"
 
 msgid "SkinSelection"
+msgstr ""
+
+msgid "Skip Modes"
 msgstr ""
 
 msgid "Skip back"
@@ -19962,6 +20194,9 @@ msgstr ""
 msgid "Softcams"
 msgstr ""
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "Quản lý phần mềm"
 
@@ -20121,6 +20356,9 @@ msgstr ""
 msgid "Sound"
 msgstr "Âm thanh"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 msgid "Sound carrier"
 msgstr "Tốc độ chuyền âm thanh"
 
@@ -20238,6 +20476,10 @@ msgstr "Chờ mà không tắt TV"
 msgid "Start"
 msgstr "Khởi động"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr ""
 
@@ -20317,6 +20559,10 @@ msgstr "Bắt đầu / dừng / chọn cam"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Bắt đầu / dừng / chọn cam của bạn, Trước tiên bạn cần cài đặt một máy ảnh mềm"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Khởi động Softcam"
 
@@ -20335,6 +20581,9 @@ msgstr ""
 #, fuzzy
 msgid "Starts in a few seconds"
 msgstr "Bắt đầu giải mã ngoại tuyến"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr ""
@@ -20457,6 +20706,10 @@ msgstr "Dừng ghi âm hẹn giờ"
 msgid "Stopped"
 msgstr "Ngừng"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "Dừng Softcam"
 
@@ -20475,6 +20728,9 @@ msgid "Storage / Disks"
 msgstr ""
 
 msgid "Storage / Drive information"
+msgstr ""
+
+msgid "Storage And Deletion"
 msgstr ""
 
 msgid "Storage Devices"
@@ -20594,6 +20850,9 @@ msgstr "Phụ đề"
 #, fuzzy
 msgid "Subtitle Actions"
 msgstr "Lựa chọn phụ đề"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Phụ đề Quickmenu"
@@ -20917,17 +21176,17 @@ msgstr ""
 msgid "TV"
 msgstr "TRUYỀN HÌNH"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "Chế độ nút TV"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "Báo cáo địa chỉ vật lý TV"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21036,6 +21295,9 @@ msgstr "Teletext StartX (viền trái)"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Teletext StartY (viền dưới)"
+
+msgid "Teletext Subtitles"
+msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletext TTFBold (0 = bình thường, 1 = đậm)"
@@ -21952,6 +22214,9 @@ msgstr "Múi giờ"
 msgid "Time zone area"
 msgstr "Múi giờ"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "Mốc thời gian 24 giờ"
 
@@ -21965,6 +22230,9 @@ msgid "Timeline scale"
 msgstr "Quy mô thời gian"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -22033,7 +22301,7 @@ msgstr "Timeshift"
 msgid "Timezone"
 msgstr ""
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 #, fuzzy
@@ -22274,6 +22542,9 @@ msgstr ""
 msgid "Transport Stream Type"
 msgstr "Loại luồng vận chuyển"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Thùng rác"
 
@@ -22360,6 +22631,12 @@ msgstr "Bộ chỉnh "
 
 msgid "Tuner :"
 msgstr "Bộ chỉnh:"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Cấu hình bộ chỉnh"
@@ -23513,6 +23790,9 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr ""
 
@@ -24479,6 +24759,9 @@ msgstr "Zap"
 msgid "Zap + Exit"
 msgstr "Zap + Thoát"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr ""
 
@@ -25241,6 +25524,12 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Mount Manager"
+#~ msgstr "Quản lý"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "oscam webif bị vô hiệu hóa"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
 "PO-Revision-Date: 2026-08-16 16:00+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1185,6 +1185,10 @@ msgid "%s View"
 msgstr "%s προβολή"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s πρόσθετες οθόνες"
 
@@ -1199,6 +1203,17 @@ msgstr "Το %s απενεργοποιήθηκε."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "Έγινε εισαγωγή του %s από το εφεδρικό tuner."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1216,6 +1231,10 @@ msgstr "Το %s δεν είναι διαθέσιμο."
 #, python-format
 msgid "%s version"
 msgstr "%s έκδοση"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr ""
 
 #, python-format
 msgid "%s%d min"
@@ -1706,6 +1725,9 @@ msgstr ""
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr "Χρώμα μετάφρασης μέσω AI"
 
@@ -1739,11 +1761,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "Πάροχος ATSC"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr ""
+
 msgid "AV Setup"
 msgstr "Ρυθμίσεις εικόνας/ήχου"
-
-msgid "AV receiver, soundbar and remote"
-msgstr ""
 
 msgid "Abkhazian"
 msgstr "Αμπχαζιακά"
@@ -2124,6 +2146,9 @@ msgstr "ταινία ενηλίκων/δράμα"
 msgid "Advanced"
 msgstr "Προχωρημένο"
 
+msgid "Advanced Diagnostics"
+msgstr ""
+
 msgid "Advanced Options"
 msgstr "Προχωρημένες επιλογές"
 
@@ -2357,6 +2382,9 @@ msgstr "Εναλλακτικό 2"
 
 msgid "Alternative Edit"
 msgstr "Επεξεργασία εναλλακτικών"
+
+msgid "Alternative Tuner Sources"
+msgstr ""
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Εναλλακτικές διευθύνσεις URL για DVB-T/C ή ATSC"
@@ -2693,6 +2721,12 @@ msgstr "Αυτόματη ένταση ήχου"
 msgid "Audio Channel"
 msgstr "Κανάλι ήχου"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "PID ήχου"
 
@@ -2708,6 +2742,9 @@ msgstr "Πηγή ήχου"
 
 msgid "Audio Sync"
 msgstr "Συγχρονισμός ήχου"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Επιλογή γλώσσας ήχου 1"
@@ -3290,6 +3327,9 @@ msgstr "Φωτεινότητα (Κανονική)"
 msgid "Brightness (Standby)"
 msgstr "Φωτεινότητα (Αναμονή)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr "Φωτεινότητα βίντεο"
 
@@ -3328,6 +3368,9 @@ msgstr "Περιήγηση, εγκατάσταση ή αφαίρεση προσ�
 
 msgid "Brunei Darussalam"
 msgstr "Μπρουνέι Νταρουσαλάμ"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3391,6 +3434,9 @@ msgstr "Επιχειρήσεις"
 msgid "Business & Finance"
 msgstr "Επιχειρήσεις & Οικονομία"
 
+msgid "Button Assignments"
+msgstr ""
+
 msgid "Button Setup"
 msgstr "Ρυθμίσεις πλήκτρων"
 
@@ -3419,9 +3465,6 @@ msgid "C/T input"
 msgstr ""
 
 msgid "C/T input switching"
-msgstr ""
-
-msgid "C/T input switching: external 5V coax switch"
 msgstr ""
 
 msgid "CCD-Width"
@@ -3977,6 +4020,12 @@ msgstr "Κανάλι 1"
 msgid "Channel 1 with prime time"
 msgstr "Κανάλι 1 με ζώνη αιχμής"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Πληροφορίες καναλιού"
 
@@ -4011,6 +4060,9 @@ msgid "Channel Selection Settings"
 msgstr "Ρυθμίσεις επιλογής καναλιών"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 msgid "Channel buttons"
@@ -4465,6 +4517,9 @@ msgstr "Κολομβία"
 msgid "Color"
 msgstr "Χρώμα"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Φορμά χρώματος"
 
@@ -4534,14 +4589,14 @@ msgstr "Ανάθεση Κοινής διεπαφής"
 msgid "Common Interface Settings"
 msgstr "Ρυθμίσεις κοινής διεπαφής"
 
-msgid "Common Settings"
-msgstr "Κοινές ρυθμίσεις"
-
 msgid "Common Setup Actions"
 msgstr "Ενέργειες κοινών ρυθμίσεων"
 
 msgid "Comoros"
 msgstr "Κομόρες"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr "Συντέθηκε από"
@@ -5275,6 +5330,9 @@ msgstr "Χώρα για πληροφορίες σήμανσης προγραμμ
 msgid "Crash %d/%d"
 msgstr "Κρασάρισμα %d/%d"
 
+msgid "Crash Handling"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Καταγραφές Crash"
 
@@ -5527,6 +5585,9 @@ msgstr "Τρέχοντα αποθηκευμένα επίπεδα έντασης 
 msgid "Custom"
 msgstr "Προσαρμογή"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr "Προσαρμοσμένο σημείο πρόσβασης"
 
@@ -5553,6 +5614,9 @@ msgstr "Παραμετροποίηση των προσωπικών ρυθμίσ�
 
 msgid "Cut"
 msgstr "Αποκοπή"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr "Χρόνος παράλειψης λίστας αποκοπών για το πλήκτρο '%s'"
@@ -5648,6 +5712,9 @@ msgstr "DVD ΔΙΠΛΗΣ ΣΤΡΩΣΗΣ"
 msgid "DVB CI Delay"
 msgstr "Καθυστέρηση DVB CI"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr "Υπότιτλοι DVB PID & γλώσσα"
 
@@ -5666,7 +5733,7 @@ msgstr "DVB-C ANNEX B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5693,7 +5760,7 @@ msgstr "Μενού DVD"
 msgid "DVD Title list"
 msgstr "Λίστα τίτλων DVD"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "Αναπαραγωγή DVD"
 
 msgid "DVDPlayer"
@@ -5716,6 +5783,9 @@ msgstr "Ημερομηνία"
 
 msgid "Date / Time"
 msgstr "Ημερομηνία/ώρα"
+
+msgid "Date And Time"
+msgstr ""
 
 msgid "Date Time Input Actions"
 msgstr "Ενέργειες εισαγωγής ώρας ημερομηνίας"
@@ -5901,6 +5971,9 @@ msgstr "Αποσφαλμάτωση %d/%d"
 
 msgid "Debug Information"
 msgstr "Πληροφορίες αποσφαλμάτωσης"
+
+msgid "Debug Log Content"
+msgstr ""
 
 msgid "Debug Log Information"
 msgstr "Πληροφορίες καταγραφής αποσφαλμάτωσης"
@@ -6581,6 +6654,12 @@ msgstr "Εμφάνιση περιεχομένου 4:3 ως"
 msgid "Display >16:9 content as"
 msgstr "Εμφάνιση περιεχομένου >16:9 ως"
 
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
+
 msgid "Display Settings"
 msgstr "Ρυθμίσεις οθόνης ενδείξεων"
 
@@ -6753,23 +6832,20 @@ msgstr "Θέλετε σίγουρα να διαγράψετε τον σελιδ�
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Θέλετε σίγουρα να διαγραφεί ο χρονοδιακόπτης για το %s;"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
-"Θέλετε σίγουρα να γίνει επανεκκίνηση του OSCam;\n"
-"\n"
-"ΣΥΜΒΟΥΛΗ: Αυτό θα διαρκέσει περίπου 5 δευτερόλεπτα!"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Θέλετε σίγουρα να τερματιστεί το OSCam;\n"
-"\n"
-"ΠΡΟΣΟΧΗ: Για να ενεργοποιήσετε ξανά το OSCam, απαιτείται η πλήρης επανεκκίνηση του δέκτη!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7061,17 +7137,26 @@ msgstr "Έλεγχος προσωρινής αποθήκευσης EPG"
 msgid "EPG Channel/Service Selection"
 msgstr "Κανάλι EPG/Επιλογή υπηρεσίας"
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr "Ενέργειες εμφάνισης EPG"
 
 msgid "EPG Jump"
 msgstr "Υπερπήδηση EPG"
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr "Ενέργειες πλοήγησης EPG"
 
 msgid "EPG Other Actions"
 msgstr "Άλλες ενέργειες EPG"
+
+msgid "EPG Range And History"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Αναζήτηση στο EPG"
@@ -7084,6 +7169,12 @@ msgstr "Ρυθμίσεις EPG"
 
 msgid "EPG Setup"
 msgstr "Ρυθμίσεις EPG"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "Λειτουργία πλήκτρου EPG"
@@ -7582,6 +7673,9 @@ msgstr "Ενεργοποιεί μια λειτουργία ώστε ο δέκτ�
 
 msgid "Encryption"
 msgstr "Κωδικοποίηση"
+
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "Τέλος"
@@ -8175,6 +8269,9 @@ msgstr "Ακόμα και αν ξεκινά ένας χρονοδιακόπτη�
 msgid "Event Info"
 msgstr "Πληροφορίες προγράμματος"
 
+msgid "Event Metadata And Correction"
+msgstr ""
+
 msgid "Event View"
 msgstr "Επισκόπηση προγραμμάτων"
 
@@ -8370,6 +8467,9 @@ msgstr "Εξωτερικό PiP"
 msgid "External Storage %s"
 msgstr "Εξωτερικός χώρος αποθήκευσης %s"
 
+msgid "External Subtitles"
+msgstr ""
+
 msgid "External subtitle color"
 msgstr "Χρώμα εξωτερικών υποτίτλων"
 
@@ -8564,6 +8664,9 @@ msgstr "Ρυθμίσεις γρήγορης αλλαγής καναλιών"
 msgid "Fast DiSEqC"
 msgstr "Γρήγορο DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Γρήγορη ανίχνευση"
 
@@ -8608,6 +8711,9 @@ msgstr "Η πηγή βρίσκεται σε σταθερή κατάσταση."
 
 msgid "Feed unstable!"
 msgstr "Η πηγή είναι ασταθής!"
+
+msgid "Feeds And Networking"
+msgstr ""
 
 msgid "Fetch EPG and update timers now"
 msgstr "Λήψη EPG και ενημέρωση των χρονοδιακοπτών τώρα"
@@ -8732,6 +8838,9 @@ msgstr "Η μεταφορά του αρχείου ακυρώθηκε από το
 
 msgid "Filename"
 msgstr "Όνομα αρχείου"
+
+msgid "Files And Directories"
+msgstr ""
 
 msgid "Files/folders to exclude from backup"
 msgstr "Αρχεία/φάκελοι προς εξαίρεση από την εφεδρεία"
@@ -9133,11 +9242,29 @@ msgstr "Γενικά"
 msgid "General AC3 delay"
 msgstr "Γενική καθυστέρηση AC3"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Γενική καθυστέρηση ήχου BT"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Γενική καθυστέρηση PCM"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "Γενικά"
@@ -9532,6 +9659,9 @@ msgstr "Help"
 
 msgid "Help Action"
 msgstr "Ενέργεια βοήθειας"
+
+msgid "Help And Visual Feedback"
+msgstr ""
 
 msgid "Help Screen Information"
 msgstr "Πληροφορίες οθόνης βοήθειας"
@@ -10257,6 +10387,12 @@ msgstr "Πλάτος εικονιδίου πληροφοριών"
 msgid "InfoBar"
 msgstr "Μπάρα πληροφοριών"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "EPG μπάρας πληροφοριών"
 
@@ -10265,6 +10401,12 @@ msgstr "Ρυθμίσεις μπάρας γραφικού EPG"
 
 msgid "InfoBar EPG mode"
 msgstr "Λειτουργία EPG της μπάρας πληροφοριών"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Ταχύτητα ξεθωριάσματος της μπάρας πληροφοριών"
@@ -10719,6 +10861,9 @@ msgstr "Τα αρχεία πολλαπλής εκκίνησης Kexec απουσ
 msgid "Key"
 msgstr "Κλειδί"
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Πληκτρολόγιο"
 
@@ -10820,6 +10965,9 @@ msgstr "LED Βαθιάς αναμονής"
 
 msgid "LED Deep Standby color"
 msgstr "Χρώμα LED τερματισμού λειτουργίας"
+
+msgid "LED Indicators"
+msgstr ""
 
 msgid "LED Normal"
 msgstr "LED Κανονικό"
@@ -10946,6 +11094,9 @@ msgstr "Λεττονία"
 
 msgid "Latvian"
 msgstr "Λεττονικά"
+
+msgid "Layout And Fonts"
+msgstr ""
 
 msgid "Leave"
 msgstr "Έξοδος"
@@ -11099,6 +11250,9 @@ msgstr "Τίτλοι συνδεδεμένοι με μενού DVD"
 msgid "Links"
 msgstr "Σύνδεσμοι"
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr "Ενέργειες πλοήγησης λίστας"
 
@@ -11249,6 +11403,9 @@ msgstr "Αρχείο καταγραφής %d/%d"
 
 msgid "Log Manager"
 msgstr "Διαχείριση καταγραφών"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11606,6 +11763,9 @@ msgstr "Πολυμέσα"
 msgid "Media Center"
 msgstr "Κέντρο πολυμέσων"
 
+msgid "Media Files And Navigation"
+msgstr ""
+
 msgid "Media Player"
 msgstr "Αναπαραγωγή πολυμέσων"
 
@@ -11688,6 +11848,9 @@ msgstr "Στυλ στοιχείων μενού"
 msgid "Menu style"
 msgstr "Στυλ μενού"
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Συγχώνευση του εκπεμπόμενου EPG με το IceTV"
 
@@ -11735,6 +11898,9 @@ msgstr "Ρυθμίσεις MiniDLNA"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV με OSD"
@@ -11870,9 +12036,6 @@ msgstr "Προσάρτηση"
 
 msgid "Mount Context Menu"
 msgstr ""
-
-msgid "Mount Manager"
-msgstr "Διαχείριση προσαρτήσεων"
 
 msgid "Mount Point"
 msgstr "Σημείο προσάρτησης"
@@ -12199,6 +12362,9 @@ msgstr "Ενέργειες επισκόπησης ταινιών"
 msgid "Movie List"
 msgstr "Λίστα ταινιών"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 msgid "Movie Player Actions"
 msgstr "Ενέργειες αναπαραγωγού ταινιών"
 
@@ -12426,6 +12592,12 @@ msgstr "Πλοήγηση στον επιλεγμένο φάκελο"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Πλοήγηση επάνω/κάτω με τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ και σελίδα επάνω/κάτω με τα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ. ΟΚ για να εκτελεστεί η ενέργεια που περιγράφεται στην τρέχουσα επιλεγμένη βοήθεια."
+
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
 
 msgid "Ndonga"
 msgstr "Ντόνγκα"
@@ -13122,6 +13294,9 @@ msgstr "Τίποτα προς αναβάθμιση"
 msgid "Nothing, just leave this menu"
 msgstr "Τίποτα, απλά έξοδος από αυτό το μενού"
 
+msgid "Notifications And Display"
+msgstr ""
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Τώρα"
@@ -13209,9 +13384,6 @@ msgstr "Πληροφορίες OScam"
 
 msgid "OSCam Information Settings"
 msgstr "Ρυθμίσεις πληροφοριών OSCam"
-
-msgid "OSCam webif disabled"
-msgstr "Διεπαφή OScam ανενεργή"
 
 msgid "OSCamInfo Actions"
 msgstr "Ενέργειες πληροφοριών OSCam"
@@ -13566,6 +13738,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "Πακέτα OpenViX"
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr ""
 
@@ -13649,6 +13824,9 @@ msgstr "Άλλο"
 
 msgid "Other Actions"
 msgstr "Άλλες ενέργειες"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr "Άλλα πακέτα"
@@ -13774,6 +13952,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Πακέτο"
+
+msgid "Package Categories"
+msgstr ""
 
 msgid "Package Manager"
 msgstr "Διαχείριση πακέτων"
@@ -14042,6 +14223,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Πλάτος λογότυπου (picon)"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr "Πληροφορίες εικόνας"
 
@@ -14177,6 +14361,12 @@ msgstr "Αναπαραγωγή αρχείου ήχου"
 
 msgid "Play the selected service"
 msgstr "Αναπαραγωγή επιλεγμένης υπηρεσίας"
+
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Ρυθμίσεις αναπαραγωγής"
@@ -14791,6 +14981,9 @@ msgstr ""
 msgid "Primary DNS (IPv6)"
 msgstr ""
 
+msgid "Prime Time"
+msgstr ""
+
 msgid "Prime time"
 msgstr "Ζώνη αιχμής"
 
@@ -15306,6 +15499,18 @@ msgstr "Εργαλειοθήκη εγγράψιμων μέσων"
 msgid "Recording"
 msgstr "Εγγραφή"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Ρυθμίσεις εγγραφών"
 
@@ -15379,6 +15584,9 @@ msgstr "Οι εγγραφές μπορεί να μην λειτουργήσου�
 
 msgid "Recovery"
 msgstr "Αποκατάσταση"
+
+msgid "Recovery And Hardware"
+msgstr ""
 
 msgid "Recovery Mode"
 msgstr "Λειτουργία αποκατάστασης"
@@ -15518,6 +15726,12 @@ msgstr "Ρυθμίσεις πλήκτρων τηλεχειριστηρίου"
 
 msgid "Remote Control Code Settings"
 msgstr "Ρυθμίσεις κωδικού τηλεχειριστηρίου"
+
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
 
 msgid "Remote control information"
 msgstr "Πληροφορίες τηλεχειριστηρίου"
@@ -15851,6 +16065,10 @@ msgstr ""
 msgid "Restart"
 msgstr "Επανεκκίνηση"
 
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
 msgid "Restart Adapter"
 msgstr ""
 
@@ -15869,9 +16087,6 @@ msgstr "Επανεκκίνηση της διεπαφής χρήστη τώρα;"
 msgid "Restart Network"
 msgstr "Επανεκκίνηση δικτύου"
 
-msgid "Restart OSCam"
-msgstr "Επανεκκίνηση OSCam"
-
 msgid "Restart enigma"
 msgstr "Επανεκκίνηση enigma"
 
@@ -15889,6 +16104,10 @@ msgstr "Επανεκκίνηση δικτύου με τις τρέχουσες �
 
 msgid "Restart test"
 msgstr "Eπανεκκίνηση ελέγχου"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
 
 msgid "Restarting adapter..."
 msgstr ""
@@ -18017,6 +18236,9 @@ msgstr "Πληροφορίες υπηρεσίας"
 msgid "Service Information Actions"
 msgstr "Ενέργειες πληροφοριών υπηρεσίας"
 
+msgid "Service List Appearance"
+msgstr ""
+
 msgid "Service Scan"
 msgstr "Ανίχνευση υπηρεσιών"
 
@@ -19338,8 +19560,9 @@ msgstr "Τερματισμός"
 msgid "Shutdown"
 msgstr "Τερματισμός"
 
-msgid "Shutdown OSCam"
-msgstr "Τερματισμός OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr "Τερματισμός. Παρακαλώ περιμένετε..."
@@ -19451,6 +19674,9 @@ msgstr "Ρύθμιση θέματος"
 
 msgid "SkinSelection"
 msgstr "Επιλογή θέματος"
+
+msgid "Skip Modes"
+msgstr ""
 
 msgid "Skip back"
 msgstr "Υπερπήδηση προς τα πίσω"
@@ -19756,6 +19982,9 @@ msgstr "Ρυθμίσεις Softcam"
 msgid "Softcams"
 msgstr "Softcams"
 
+msgid "Software Display Scrolling"
+msgstr ""
+
 msgid "Software Management"
 msgstr "Διαχείριση λογισμικού"
 
@@ -19913,6 +20142,9 @@ msgstr "Σόουλ/Ρυθμός και μπλουζ"
 msgid "Sound"
 msgstr "Ήχος"
 
+msgid "Sound Enhancements"
+msgstr ""
+
 msgid "Sound carrier"
 msgstr "Φέρουσα ήχου"
 
@@ -20028,6 +20260,10 @@ msgstr "Αναμονή χωρίς σβήσιμο της TV"
 msgid "Start"
 msgstr "Εκκίνηση"
 
+#, python-format
+msgid "Start %s"
+msgstr ""
+
 msgid "Start Auto Refresh"
 msgstr "Εκκίνηση αυτόματης ανανέωσης"
 
@@ -20106,6 +20342,10 @@ msgstr "Εκκίνηση/σταμάτημα/επιλογή cam"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Εκκίνηση/σταμάτημα/επιλογή του cam σας, απαιτείται πρώτα η εγκατάσταση ενός softcam"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Εκκίνηση softcam"
 
@@ -20123,6 +20363,9 @@ msgstr "Ώρα έναρξης"
 
 msgid "Starts in a few seconds"
 msgstr "Ξεκινά σε λίγα δευτερόλεπτα"
+
+msgid "Startup And Wakeup"
+msgstr ""
 
 msgid "Startup device not found!"
 msgstr "Δεν βρέθηκε η συσκευή εκκίνησης!"
@@ -20245,6 +20488,10 @@ msgstr "Διακοπή εγγραφής χρονοδιακόπτη"
 msgid "Stopped"
 msgstr "Σταματημένο"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "Σταμάτημα softcam"
 
@@ -20263,6 +20510,9 @@ msgstr "Χώρος αποθήκευσης / δίσκοι"
 
 msgid "Storage / Drive information"
 msgstr "Χώρος αποθήκευσης / πληροφορίες οδηγού"
+
+msgid "Storage And Deletion"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Συσκευές αποθήκευσης"
@@ -20376,6 +20626,9 @@ msgstr "Υπότιτλος"
 
 msgid "Subtitle Actions"
 msgstr "Ενέργειες υποτίτλων"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Γρήγορο μενού υποτίτλων"
@@ -20695,17 +20948,17 @@ msgstr "TUNER:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "Λειτουργία πλήκτρου TV"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "Φυσική διεύθυνση τηλεόρασης"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20808,6 +21061,9 @@ msgstr "ΑρχήΧ τηλεκειμένου (αριστερό περιθώριο
 
 msgid "Teletext StartY (lower border)"
 msgstr "ΆκρηΥ τηλεκειμένου (κάτω περιθώριο)"
+
+msgid "Teletext Subtitles"
+msgstr ""
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "TTF Έντονη τηλεκειμένου (0=κανονική, 1=έντονη)"
@@ -21738,6 +21994,9 @@ msgstr "Χρονική ζώνη"
 msgid "Time zone area"
 msgstr "Περιοχή χρονικής ζώνης"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "24ωρη γραμμή χρόνου"
 
@@ -21751,6 +22010,9 @@ msgid "Timeline scale"
 msgstr "Κλίμακα γραμμής χρόνου"
 
 msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
@@ -21819,7 +22081,7 @@ msgstr "Χρονομετατόπιση"
 msgid "Timezone"
 msgstr "Χρονική ζώνη"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -22057,6 +22319,9 @@ msgstr "ID ροής μεταφοράς (TSID)"
 msgid "Transport Stream Type"
 msgstr "Τύπος ροής αναμεταδότη"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Κάδος αχρήστων"
 
@@ -22140,6 +22405,12 @@ msgstr "Tuner "
 
 msgid "Tuner :"
 msgstr "Tuner :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Ρυθμίσεις tuner"
@@ -23310,6 +23581,9 @@ msgstr "Ενέργειες επιλογής υπηρεσίας ρύθμισης 
 msgid "Volume Adjust Settings"
 msgstr "Ρυθμίσεις προσαρμογής έντασης ήχου"
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr "Λειτουργία ρύθμισης έντασης ήχου"
 
@@ -24272,6 +24546,9 @@ msgstr "Μετάβαση"
 msgid "Zap + Exit"
 msgstr "Ζάπινγκ + Έξοδος"
 
+msgid "Zap Timer Settings"
+msgstr ""
+
 msgid "Zap Up/Down"
 msgstr "Ζάπινγκ επάνω/κάτω"
 
@@ -25028,6 +25305,39 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Common Settings"
+#~ msgstr "Κοινές ρυθμίσεις"
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Θέλετε σίγουρα να γίνει επανεκκίνηση του OSCam;\n"
+#~ "\n"
+#~ "ΣΥΜΒΟΥΛΗ: Αυτό θα διαρκέσει περίπου 5 δευτερόλεπτα!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Θέλετε σίγουρα να τερματιστεί το OSCam;\n"
+#~ "\n"
+#~ "ΠΡΟΣΟΧΗ: Για να ενεργοποιήσετε ξανά το OSCam, απαιτείται η πλήρης επανεκκίνηση του δέκτη!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Διαχείριση προσαρτήσεων"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "Διεπαφή OScam ανενεργή"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Επανεκκίνηση OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Τερματισμός OSCam"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"

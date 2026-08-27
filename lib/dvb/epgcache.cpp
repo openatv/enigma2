@@ -574,6 +574,21 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 				}
 			}
 
+			// fix duration for events if an already cached later event is overlapping
+			if (new_evt->getDuration() > SUSPICIOUS_DURATION_THRESHOLD && !timemap.empty())
+			{
+				timeMap::iterator next_it = timemap.upper_bound(new_start);
+				if (next_it != timemap.end() && next_it->second->getStartTime() < new_end)
+				{
+					time_t cached_start = next_it->second->getStartTime();
+					int fixed_duration = cached_start - new_start;
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X: suspicious duration %d s corrected to %d s using cached event %04X (starts at %lld).", event_id, new_evt->getDuration(), fixed_duration, next_it->second->getEventID(), (long long)cached_start);
+					new_evt->setDuration(fixed_duration);
+					new_end = cached_start;
+				}
+			}
+
 			// Ignore zero-length events
 			if (new_start == new_end)
 			{

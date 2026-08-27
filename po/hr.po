@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:15+0000\n"
-"PO-Revision-Date: 2026-08-18 05:03+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-25 09:29+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -1220,6 +1220,10 @@ msgid "%s View"
 msgstr "%s Prikaz"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "akcija %s nije uspjela (izlazni kod %s)"
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s dodatnih zaslona"
 
@@ -1234,6 +1238,20 @@ msgstr "%s je deaktiviran."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s uvezeno s daljinskog prijemnika."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+"%s trenutno ne radi.\n"
+"\n"
+"Hoćeš li to pokrenuti?"
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s je trenutno zaustavljen ili nedostupan. Pritisnite ZELENO za pokretanje."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1251,6 +1269,10 @@ msgstr "%s nije dostupno."
 #, python-format
 msgid "%s version"
 msgstr "%s verzija"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr "%s webif onemogućen"
 
 #, python-format
 msgid "%s%d min"
@@ -1743,6 +1765,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "AI titlovi"
+
 msgid "AI Translation color"
 msgstr "Boja Prevoda AI"
 
@@ -1776,11 +1801,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC davatelj usluga"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV prijamnik, zvučna traka i daljinski"
+
 msgid "AV Setup"
 msgstr "AV Postavke"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV prijamnik, zvučna traka i daljinski"
 
 msgid "Abkhazian"
 msgstr "Abhazijski"
@@ -2163,6 +2188,9 @@ msgstr "Film za odrasle/Drama"
 msgid "Advanced"
 msgstr "Napredno"
 
+msgid "Advanced Diagnostics"
+msgstr "Napredna dijagnostika"
+
 msgid "Advanced Options"
 msgstr "Napredne Opcije"
 
@@ -2396,6 +2424,9 @@ msgstr "Alternativno 2"
 
 msgid "Alternative Edit"
 msgstr "Alternativno Uređivanje"
+
+msgid "Alternative Tuner Sources"
+msgstr "Alternativni izvori tunera"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternativni URL za DVB-T/C ili ATSC"
@@ -2732,6 +2763,12 @@ msgstr "Nivo Auto Jačine Zvuka"
 msgid "Audio Channel"
 msgstr "Audio Kanal"
 
+msgid "Audio Formats And Output"
+msgstr "Audio formati i izlaz"
+
+msgid "Audio Language And Track Selection"
+msgstr "Odabir jezika i zvučnog zapisa"
+
 msgid "Audio PID"
 msgstr "Audio PID"
 
@@ -2747,6 +2784,9 @@ msgstr "Audio Izvor"
 
 msgid "Audio Sync"
 msgstr "Audio Sinhronizacija"
+
+msgid "Audio Synchronization"
+msgstr "Sinkronizacija zvuka"
 
 msgid "Audio language selection 1"
 msgstr "Odabir audio jezika 1"
@@ -3329,6 +3369,9 @@ msgstr "Osvijetljenje (Normalno)"
 msgid "Brightness (Standby)"
 msgstr "Osvijetljenje (Stanje pripravnosti)"
 
+msgid "Brightness And Contrast"
+msgstr "Svjetlina i kontrast"
+
 msgid "Brightness Video"
 msgstr "Osvijetljenje Videa"
 
@@ -3367,6 +3410,9 @@ msgstr "Pregledaj, instaliraj ili ukloni dodatak jedan po jedan."
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
+
+msgid "Buffer Management"
+msgstr "Upravljanje međuspremnikom"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3430,6 +3476,9 @@ msgstr "Poslovanje"
 msgid "Business & Finance"
 msgstr "Poslovanje & Financije"
 
+msgid "Button Assignments"
+msgstr "Dodjela tipki"
+
 msgid "Button Setup"
 msgstr "Podešavanje Dugmeta"
 
@@ -3459,9 +3508,6 @@ msgstr "C/T ulaz"
 
 msgid "C/T input switching"
 msgstr "Prebacivanje C/T ulaza"
-
-msgid "C/T input switching: external 5V coax switch"
-msgstr "Prebacivanje C/T ulaza: vanjski 5V koaksijalni prekidač"
 
 msgid "CCD-Width"
 msgstr "CCD-Širina"
@@ -4016,6 +4062,12 @@ msgstr "Kanal 1"
 msgid "Channel 1 with prime time"
 msgstr "Kanal 1 u udarnom vremenu"
 
+msgid "Channel And EPG Import"
+msgstr "Uvoz kanala i EPG"
+
+msgid "Channel History And Messages"
+msgstr "Povijest kanala i poruke"
+
 msgid "Channel Info"
 msgstr "Kanal info"
 
@@ -4051,6 +4103,9 @@ msgstr "Postavke Odabira Kanala"
 
 msgid "Channel Selection picon path"
 msgstr "Postavke pikona za odabir kanala"
+
+msgid "Channel Zapping And Keys"
+msgstr "Prebacivanje kanala i tipke"
 
 msgid "Channel buttons"
 msgstr "Dugmad Kanala"
@@ -4505,6 +4560,9 @@ msgstr "Colombia"
 msgid "Color"
 msgstr "Boja"
 
+msgid "Color Button Assignments"
+msgstr "Dodjele boja tipki"
+
 msgid "Color format"
 msgstr "Format Boje"
 
@@ -4575,14 +4633,14 @@ msgstr "Dodjela Zajedničkog Sučelja"
 msgid "Common Interface Settings"
 msgstr "Zajedničke Postavke Sučelja"
 
-msgid "Common Settings"
-msgstr "Modul Podešavanja"
-
 msgid "Common Setup Actions"
 msgstr "Opće Radnje Podešavanja"
 
 msgid "Comoros"
 msgstr "Comoros"
+
+msgid "Compatibility And Emulation"
+msgstr "Kompatibilnost i emulacija"
 
 msgid "Compiled by"
 msgstr "Sastavio"
@@ -5330,6 +5388,9 @@ msgstr "Zemlja za informacije o ocjeni EPG događaja"
 msgid "Crash %d/%d"
 msgstr "Pad %d/%d"
 
+msgid "Crash Handling"
+msgstr "Rješavanje padova"
+
 msgid "Crash Logs"
 msgstr "Log pada"
 
@@ -5582,6 +5643,9 @@ msgstr "Trenutno Zapamćeni Nivoi Zvuka:"
 msgid "Custom"
 msgstr "Prilagođeno"
 
+msgid "Custom Skip Times"
+msgstr "Prilagođeno preskakanje vremena"
+
 msgid "Custom mountpoint"
 msgstr "Prilagođeno mjesto montiranja"
 
@@ -5608,6 +5672,9 @@ msgstr "Prilagodite osobne postavke enigma2"
 
 msgid "Cut"
 msgstr "Isjeci"
+
+msgid "CutList Skipping"
+msgstr "Preskakanje popisa rezanja"
 
 msgid "CutList skip time for '%s' button"
 msgstr "Vreme preskakanja liste za sječenje za dugme '%s' '"
@@ -5703,6 +5770,9 @@ msgstr "Dvoslojni DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI Odlaganje"
 
+msgid "DVB Subtitles"
+msgstr "DVB titlovi"
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB Subtitl PID & Jezik"
 
@@ -5721,8 +5791,8 @@ msgstr "DVB-C ANNEX B"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
-msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Kada su oba omogućena, Enigma2 koristi 5V za upravljanje vanjskim koaksijalnim prekidačem."
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Uključi 5V samo ako antenski sustav ili vanjski koaksijalni prekidač trebaju napajanje."
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5748,7 +5818,7 @@ msgstr "DVD menu"
 msgid "DVD Title list"
 msgstr "Popis DVD naslova"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD plejer"
 
 msgid "DVDPlayer"
@@ -5771,6 +5841,9 @@ msgstr "Datum"
 
 msgid "Date / Time"
 msgstr "Datum / Vrijeme"
+
+msgid "Date And Time"
+msgstr "Datum i vrijeme"
 
 msgid "Date Time Input Actions"
 msgstr "Radnje unosa Vremena Datuma"
@@ -5956,6 +6029,9 @@ msgstr "Otklanjanje grešaka %d/%d"
 
 msgid "Debug Information"
 msgstr "Info o otklanjanju grešaka"
+
+msgid "Debug Log Content"
+msgstr "Sadržaj dnevnika pogrešaka"
 
 msgid "Debug Log Information"
 msgstr "Info o evidenciji otklanjanja grešaka"
@@ -6636,6 +6712,12 @@ msgstr "Prikaz zaslona 4:3 kao"
 msgid "Display >16:9 content as"
 msgstr "Prikaz zaslona >16:9 kao"
 
+msgid "Display Power And Content"
+msgstr "Prikaži snagu i sadržaj"
+
+msgid "Display Scrolling"
+msgstr "Pomicanje prikaza"
+
 msgid "Display Settings"
 msgstr "Postavke zaslona"
 
@@ -6808,23 +6890,23 @@ msgstr "Želite li doista ukloniti oznaku za '%s'?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Želite li doista ukloniti mjerač vremena za %s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"Želite li stvarno ponovno pokrenuti OSCam?\n"
-"\n"
-"SAVJET: Ovo će trajati oko 5 sekundi!"
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "Stvarno želiš ponovno pokrenuti %s?"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Želite li stvarno zatvoriti OSCam?\n"
+"Stvarno želiš isključiti %s?\n"
 "\n"
-"PAŽNJA: Za ponovno aktiviranje OSCam potrebno je izvršiti potpuno ponovno pokretanje tunera!"
+"PAŽNJA: Za ponovno aktiviranje %s, potrebno je potpuno ponovno pokretanje prijemnika!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "Stvarno želiš prekinuti %s?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7117,17 +7199,26 @@ msgstr "EPG Provjera predmemorije"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG Odabir kanala/usluge"
 
+msgid "EPG Data In Streams"
+msgstr "EPG podaci u streamovima"
+
 msgid "EPG Display Actions"
 msgstr "EPG Radnje prikaza"
 
 msgid "EPG Jump"
 msgstr "EPG Preskoči"
 
+msgid "EPG Language"
+msgstr "Jezik EPG"
+
 msgid "EPG Navigation Actions"
 msgstr "EPG Radnja Navigacije"
 
 msgid "EPG Other Actions"
 msgstr "EPG Ostale Radnje"
+
+msgid "EPG Range And History"
+msgstr "Opseg i povijest EPG"
 
 msgid "EPG Search"
 msgstr "EPG Pretraga"
@@ -7140,6 +7231,12 @@ msgstr "EPG Postavke"
 
 msgid "EPG Setup"
 msgstr "EPG Podešavanje"
+
+msgid "EPG Sources"
+msgstr "EPG izvori"
+
+msgid "EPG Storage And Refresh"
+msgstr "Spremanje i osvježavanje EPG"
 
 msgid "EPG button mode"
 msgstr "EPG dugme način"
@@ -7638,6 +7735,9 @@ msgstr "Omogućuje značajku tako da tuner može dešifrirati streams (ako su po
 
 msgid "Encryption"
 msgstr "Šifriranje"
+
+msgid "Encryption And Descrambling"
+msgstr "Šifriranje i dešifriranje"
 
 msgid "End"
 msgstr "Završi"
@@ -8233,6 +8333,9 @@ msgstr "Čak i ako se pokrene mjerač vremena za snimanje 'Zap'?"
 msgid "Event Info"
 msgstr "Info o Događaju"
 
+msgid "Event Metadata And Correction"
+msgstr "Metapodaci i ispravak događaja"
+
 msgid "Event View"
 msgstr "Prikaz Događaja"
 
@@ -8428,6 +8531,9 @@ msgstr "Vanjski PiP"
 msgid "External Storage %s"
 msgstr "Vanjska pohrana %s"
 
+msgid "External Subtitles"
+msgstr "Vanjski titlovi"
+
 msgid "External subtitle color"
 msgstr "Boja vanjskih titlova"
 
@@ -8622,6 +8728,9 @@ msgstr "Postavljanje brze promjene kanala"
 msgid "Fast DiSEqC"
 msgstr "Brzi DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr "Brzo premotaj naprijed i unatrag"
+
 msgid "Fast Scan"
 msgstr "Brzo Skeniranje"
 
@@ -8666,6 +8775,9 @@ msgstr "Feed stabilan."
 
 msgid "Feed unstable!"
 msgstr "Feed nestabilan!"
+
+msgid "Feeds And Networking"
+msgstr "Feedovi i umrežavanje"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Dohvatite EPG i ažurirajte mjerače vremena sada"
@@ -8790,6 +8902,9 @@ msgstr "Korisnik je otkazao prijenos datoteka"
 
 msgid "Filename"
 msgstr "Naziv datoteke"
+
+msgid "Files And Directories"
+msgstr "Datoteke i direktoriji"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Datoteke/mape koje treba izuzeti iz sigurnosne kopije"
@@ -9191,11 +9306,29 @@ msgstr "Opće"
 msgid "General AC3 delay"
 msgstr "Opće kašnjenje AC3"
 
+msgid "General Appearance"
+msgstr "Opći izgled"
+
 msgid "General BT audio delay"
 msgstr "Opće kašnjenje BT zvuka"
 
+msgid "General Channel Selection"
+msgstr "Opći odabir kanala"
+
+msgid "General OSD Behavior"
+msgstr "Opće ponašanje OSD"
+
 msgid "General PCM delay"
 msgstr "Opće kašnjenje PCM"
+
+msgid "General Setup Behavior"
+msgstr "Opće ponašanje postavki"
+
+msgid "General Subtitle Appearance And Timing"
+msgstr "Opći izgled i vremensko usklađivanje titlova"
+
+msgid "General Time Shift Behavior"
+msgstr "Opće ponašanje pomaka vremena"
 
 msgid "Generic"
 msgstr "Generički"
@@ -9590,6 +9723,9 @@ msgstr "Pomoć"
 
 msgid "Help Action"
 msgstr "Pomoćna akcija"
+
+msgid "Help And Visual Feedback"
+msgstr "Pomoć i vizualna povratna informacija"
 
 msgid "Help Screen Information"
 msgstr "Informacije o zaslonu pomoći"
@@ -10315,6 +10451,12 @@ msgstr "Info širina ikone"
 msgid "InfoBar"
 msgstr "Info Traka"
 
+msgid "InfoBar And Pause"
+msgstr "InfoBar i Pauza"
+
+msgid "InfoBar Content And Time Display"
+msgstr "Sadržaj InfoBar-a i prikaz vremena"
+
 msgid "InfoBar EPG"
 msgstr "Info traka EPG"
 
@@ -10323,6 +10465,12 @@ msgstr "Postavke EPG Info Trake"
 
 msgid "InfoBar EPG mode"
 msgstr "Način EPG Info Trake"
+
+msgid "InfoBar Timing And Appearance"
+msgstr "Vrijeme i izgled InfoBara"
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "Vidljivost i ponašanje InfoBara"
 
 msgid "InfoBar fade-out speed"
 msgstr "Brzina postepenog isčezavanja Info Trake"
@@ -10778,6 +10926,9 @@ msgstr "Kexec MultiBoot datoteka nedostaje."
 msgid "Key"
 msgstr "Tipka"
 
+msgid "Key Map And Power Buttons"
+msgstr "Tipkovnica i tipke za napajanje"
+
 msgid "Keyboard"
 msgstr "Tipkovnica"
 
@@ -10879,6 +11030,9 @@ msgstr "LED Duboka Pripravnost"
 
 msgid "LED Deep Standby color"
 msgstr "LED Boja Isključivanja"
+
+msgid "LED Indicators"
+msgstr "LED indikatori"
 
 msgid "LED Normal"
 msgstr "LED Normalno"
@@ -11005,6 +11159,9 @@ msgstr "Latvia"
 
 msgid "Latvian"
 msgstr "Latvian"
+
+msgid "Layout And Fonts"
+msgstr "Raspored i fontovi"
 
 msgid "Leave"
 msgstr "Napuštate"
@@ -11158,6 +11315,9 @@ msgstr "Povezani naslovi s DVD menu"
 msgid "Links"
 msgstr "Veze"
 
+msgid "List Appearance And Sorting"
+msgstr "Izgled i sortiranje liste"
+
 msgid "List Navigation Actions"
 msgstr "Radnje Navigacione Liste"
 
@@ -11309,6 +11469,9 @@ msgstr "Log %d/%d"
 
 msgid "Log Manager"
 msgstr "Log Upravitelja"
+
+msgid "Log Retention And Access"
+msgstr "Čuvanje i pristup zapisima"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11666,6 +11829,9 @@ msgstr "Medija"
 msgid "Media Center"
 msgstr "Medija Centar"
 
+msgid "Media Files And Navigation"
+msgstr "Medijske datoteke i navigacija"
+
 msgid "Media Player"
 msgstr "Medija Plejer"
 
@@ -11748,6 +11914,9 @@ msgstr "Stil unosa menu"
 msgid "Menu style"
 msgstr "Stil menu"
 
+msgid "Menus And Setup"
+msgstr "Izbornici i postavke"
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Spajanje emitiranja EPG-a s IceTV-om"
 
@@ -11795,6 +11964,9 @@ msgstr "MiniDLNA Postavke"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr "MiniTV i PiP"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV sa OSD"
@@ -11930,9 +12102,6 @@ msgstr "Montaža"
 
 msgid "Mount Context Menu"
 msgstr "Kontekstni Izbornik za Montiranje"
-
-msgid "Mount Manager"
-msgstr "Montažni Upravitelj"
 
 msgid "Mount Point"
 msgstr "Točka montiranja"
@@ -12259,6 +12428,9 @@ msgstr "Radnje Prikaza Filmskog Događaja"
 msgid "Movie List"
 msgstr "Popis filmova"
 
+msgid "Movie List And Playback Behavior"
+msgstr "Popis filmova i ponašanje pri reproduciranju"
+
 msgid "Movie Player Actions"
 msgstr "Radnje Filmski Plejer"
 
@@ -12486,6 +12658,12 @@ msgstr "Idite do odabranog direktorija"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Krećite se gore/dolje pomoću dugmeta GORE/DOLJE i stranica gore/dolje pomoću LIJEVO/DESNO. U redu za izvođenje radnje opisane u trenutno istaknutoj pomoći."
+
+msgid "Navigation And Button Assignments"
+msgstr "Navigacija i dodjela tipki"
+
+msgid "Navigation And Time Range"
+msgstr "Navigacija i vremenski raspon"
 
 msgid "Ndonga"
 msgstr "Ndonga"
@@ -13189,6 +13367,9 @@ msgstr "Nema se što nadograditi"
 msgid "Nothing, just leave this menu"
 msgstr "Ništa, samo napustite ovaj menu"
 
+msgid "Notifications And Display"
+msgstr "Obavijesti i zaslon"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Sada"
@@ -13276,9 +13457,6 @@ msgstr "OScam Informacija"
 
 msgid "OSCam Information Settings"
 msgstr "OScam Informacija Postavke"
-
-msgid "OSCam webif disabled"
-msgstr "OScam webif je onemogućen"
 
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Radnja"
@@ -13633,6 +13811,9 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paket"
 
+msgid "OpenWebif Connection"
+msgstr "Veza s OpenWebif"
+
 msgid "OpenWebif picon path"
 msgstr "Postavljanje pikona u OpenWebif"
 
@@ -13716,6 +13897,9 @@ msgstr "Ostalo"
 
 msgid "Other Actions"
 msgstr "Ostale Radnje"
+
+msgid "Other OSD Elements"
+msgstr "Ostali OSD elementi"
 
 msgid "Other Packages"
 msgstr "Ostali Paketi"
@@ -13841,6 +14025,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Paket"
+
+msgid "Package Categories"
+msgstr "Kategorije paketa"
 
 msgid "Package Manager"
 msgstr "Upravitelj paketa"
@@ -14109,6 +14296,9 @@ msgstr "Način pretraživanja pikona"
 msgid "Picon width"
 msgstr "Pikon širina"
 
+msgid "Picture In Picture"
+msgstr "Slika u slici"
+
 msgid "Picture Information"
 msgstr "Info Slike"
 
@@ -14244,6 +14434,12 @@ msgstr "Reprodukuj audio datoteku"
 
 msgid "Play the selected service"
 msgstr "Reprodukuj odabrani kanal"
+
+msgid "Playback And Saving"
+msgstr "Reprodukcija i spremanje"
+
+msgid "Playback And Status"
+msgstr "Reprodukcija i status"
 
 msgid "Playback Settings"
 msgstr "Reprodukcija Postavke"
@@ -14860,6 +15056,9 @@ msgstr "Primarni DNS (IPv4)"
 msgid "Primary DNS (IPv6)"
 msgstr "Primarni DNS (IPv6)"
 
+msgid "Prime Time"
+msgstr "Vremena najveće gledanosti"
+
 msgid "Prime time"
 msgstr "Udarno vrijeme"
 
@@ -15375,6 +15574,18 @@ msgstr "Zapisivi medij za snimanje"
 msgid "Recording"
 msgstr "Snimanje"
 
+msgid "Recording And Status Indicators"
+msgstr "Indikatori snimanja i statusa"
+
+msgid "Recording Filenames And Data"
+msgstr "Snimanje ime datoteka i podataka"
+
+msgid "Recording Locations"
+msgstr "Lokacije snimanja"
+
+msgid "Recording Preparation And Margins"
+msgstr "Priprema zapisa i margine"
+
 msgid "Recording Settings"
 msgstr "Postavke Snimanja"
 
@@ -15448,6 +15659,9 @@ msgstr "Snimci možda neće ispravno raditi bez prihvatljivog direktorijuma."
 
 msgid "Recovery"
 msgstr "Oporavak"
+
+msgid "Recovery And Hardware"
+msgstr "Oporavak i hardver"
 
 msgid "Recovery Mode"
 msgstr "Režim Oporavaka"
@@ -15587,6 +15801,12 @@ msgstr "Postavke dugmeta Daljinskog kontrolora"
 
 msgid "Remote Control Code Settings"
 msgstr "Postavke Koda Daljinskog kontrolora"
+
+msgid "Remote Receiver Connection"
+msgstr "Povezivanje daljinskog prijemnika"
+
+msgid "Remote Timers"
+msgstr "Udaljeni tajmeri"
 
 msgid "Remote control information"
 msgstr "Daljinski kontrolor info"
@@ -15920,6 +16140,10 @@ msgstr "Rješavanje..."
 msgid "Restart"
 msgstr "Ponovo pokrenuti"
 
+#, python-format
+msgid "Restart %s"
+msgstr "Ponovo pokreni %s"
+
 msgid "Restart Adapter"
 msgstr "Ponovno pokreni Adapter"
 
@@ -15938,9 +16162,6 @@ msgstr "Ponovo pokreni GUI sada?"
 msgid "Restart Network"
 msgstr "Ponovo pokreni Mrežu"
 
-msgid "Restart OSCam"
-msgstr "Ponovo pokreni OSCam"
-
 msgid "Restart enigma"
 msgstr "Ponovo pokreni Enigma"
 
@@ -15958,6 +16179,10 @@ msgstr "Ponovo pokreni mrežu sa trenutnim podešavanjem"
 
 msgid "Restart test"
 msgstr "Ponovo pokreni test"
+
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr "Ponovni pokušaj pokretanja %s nije uspio (kod izlaza %s)"
 
 msgid "Restarting adapter..."
 msgstr "Ponovno pokrećem adapter..."
@@ -18089,6 +18314,9 @@ msgstr "Servis Info"
 msgid "Service Information Actions"
 msgstr "Servis Info Radnja"
 
+msgid "Service List Appearance"
+msgstr "Izgled popisa usluga"
+
 msgid "Service Scan"
 msgstr "Skeniranje usluge"
 
@@ -19413,8 +19641,9 @@ msgstr "Isključi"
 msgid "Shutdown"
 msgstr "Isključivanje"
 
-msgid "Shutdown OSCam"
-msgstr "Isključi OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr "Isključi %s"
 
 msgid "Shutting down. Please wait..."
 msgstr "Isključivanje. Molimo sačekajte..."
@@ -19526,6 +19755,9 @@ msgstr "Skin postavke"
 
 msgid "SkinSelection"
 msgstr "Odabir Skina"
+
+msgid "Skip Modes"
+msgstr "Načini preskakanja"
 
 msgid "Skip back"
 msgstr "Preskoči nazad"
@@ -19835,6 +20067,9 @@ msgstr "Podešavanje Softcam"
 msgid "Softcams"
 msgstr "Softcam"
 
+msgid "Software Display Scrolling"
+msgstr "Pomicanje prikaza softvera"
+
 msgid "Software Management"
 msgstr "Upravljanje Softverom"
 
@@ -19992,6 +20227,9 @@ msgstr "Soul/Ritm i Bluz"
 msgid "Sound"
 msgstr "Zvuk"
 
+msgid "Sound Enhancements"
+msgstr "Poboljšanja zvuka"
+
 msgid "Sound carrier"
 msgstr "Nosač zvuka"
 
@@ -20107,6 +20345,10 @@ msgstr "Stanje pripravnosti bez ugašenog TV"
 msgid "Start"
 msgstr "Start"
 
+#, python-format
+msgid "Start %s"
+msgstr "Pokreni %s"
+
 msgid "Start Auto Refresh"
 msgstr "Započni Auto Osvježavanje"
 
@@ -20185,6 +20427,10 @@ msgstr "Pokreni/Zaustavi/Odabir Cam"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Pokreni/Zaustavi/Odabir Cam, prvo treba instalirati softcam"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr "Pokretanje %s nije uspjelo (kod izlaza %s)"
+
 msgid "Starting Softcam"
 msgstr "Pokreni Softcam"
 
@@ -20202,6 +20448,9 @@ msgstr "Vrijeme početka"
 
 msgid "Starts in a few seconds"
 msgstr "Počinje za nekoliko sekundi"
+
+msgid "Startup And Wakeup"
+msgstr "Pokretanje i buđenje"
 
 msgid "Startup device not found!"
 msgstr "Uređaj za pokretanje nije pronađen!"
@@ -20324,6 +20573,10 @@ msgstr "Zaustavi snimanje tajmerom"
 msgid "Stopped"
 msgstr "Zaustavljeno"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr "Zaustavljanje %s nije uspjelo (kod izlaza %s)"
+
 msgid "Stopping Softcam"
 msgstr "Zaustavi Softcam"
 
@@ -20342,6 +20595,9 @@ msgstr "Skladište / Disk"
 
 msgid "Storage / Drive information"
 msgstr "Skladište / Disk info"
+
+msgid "Storage And Deletion"
+msgstr "Pohrana i brisanje"
 
 msgid "Storage Devices"
 msgstr "Uređaj za Skladištenje"
@@ -20455,6 +20711,9 @@ msgstr "Titl"
 
 msgid "Subtitle Actions"
 msgstr "Izbor Titla"
+
+msgid "Subtitle Language And Selection"
+msgstr "Jezik i odabir titlova"
 
 msgid "Subtitle Quickmenu"
 msgstr "Brzi Meni Titla"
@@ -20774,17 +21033,17 @@ msgstr "TUNER:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "Ulaz na TV-u i buđenje prijemnika"
+
+msgid "TV Power"
+msgstr "Struja za TV"
+
 msgid "TV button mode"
 msgstr "TV dugme način"
 
-msgid "TV input and receiver wakeup"
-msgstr "Ulaz na TV-u i buđenje prijemnika"
-
 msgid "TV physical address report"
 msgstr "TV izvještaj fizičke adrese"
-
-msgid "TV power"
-msgstr "Struja za TV"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20887,6 +21146,9 @@ msgstr "Teletekst StartX (leva ivica)"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Teletekst StartY (donja ivica)"
+
+msgid "Teletext Subtitles"
+msgstr "Teletext titlovi"
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletekst TTFBold (0=normalno, 1=podebljano)"
@@ -21818,6 +22080,9 @@ msgstr "Vremenska zona"
 msgid "Time zone area"
 msgstr "Područje vremenske zone"
 
+msgid "Timeline"
+msgstr "Vremenska crta"
+
 msgid "Timeline 24 Hour"
 msgstr "Vremenska crta 24 sata"
 
@@ -21832,6 +22097,9 @@ msgstr "Ljestvica vremenske trake"
 
 msgid "Timeout"
 msgstr "Pauza"
+
+msgid "Timer Defaults And Retention"
+msgstr "Zadane postavke vremenskog tajmera i čuvanje"
 
 msgid "Timer Log Actions"
 msgstr "Radnje zapisnika tajmera"
@@ -21899,7 +22167,7 @@ msgstr "Tajmšift"
 msgid "Timezone"
 msgstr "Vremenska zona"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "Vrijeme i dijagnostika"
 
 msgid "Timor-Leste / East Timor"
@@ -22137,6 +22405,9 @@ msgstr "Transport Stream ID (TSID)"
 msgid "Transport Stream Type"
 msgstr "Vrsta Transponder Streama"
 
+msgid "Trash And Deletion"
+msgstr "Smeće i brisanje"
+
 msgid "Trashcan"
 msgstr "Kanta za smeće"
 
@@ -22220,6 +22491,12 @@ msgstr "Tuner "
 
 msgid "Tuner :"
 msgstr "Tuner :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr "Raspodjela i sukobi tunera"
+
+msgid "Tuner And Streaming"
+msgstr "Tuner i streaming"
 
 msgid "Tuner Configuration"
 msgstr "Konfiguracija Tunera"
@@ -23390,6 +23667,9 @@ msgstr "Akcije za izbor usluge podešavanja nivoa zvuka"
 msgid "Volume Adjust Settings"
 msgstr "Postavke Regulacije Jačine Zvuka"
 
+msgid "Volume Control"
+msgstr "Kontrola glasnoće"
+
 msgid "Volume adjustment mode"
 msgstr "Režim podešavanja zvuka"
 
@@ -24352,6 +24632,9 @@ msgstr "Vrati"
 msgid "Zap + Exit"
 msgstr "Vrati + Izlaz"
 
+msgid "Zap Timer Settings"
+msgstr "Postavke Zap Timera"
+
 msgid "Zap Up/Down"
 msgstr "Zap gore/dolje"
 
@@ -25109,6 +25392,45 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "Prebacivanje C/T ulaza: vanjski 5V koaksijalni prekidač"
+
+#~ msgid "Common Settings"
+#~ msgstr "Modul Podešavanja"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Kada su oba omogućena, Enigma2 koristi 5V za upravljanje vanjskim koaksijalnim prekidačem."
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Želite li stvarno ponovno pokrenuti OSCam?\n"
+#~ "\n"
+#~ "SAVJET: Ovo će trajati oko 5 sekundi!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Želite li stvarno zatvoriti OSCam?\n"
+#~ "\n"
+#~ "PAŽNJA: Za ponovno aktiviranje OSCam potrebno je izvršiti potpuno ponovno pokretanje tunera!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Montažni Upravitelj"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "OScam webif je onemogućen"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Ponovo pokreni OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Isključi OSCam"
 
 #~ msgid "1.0"
 #~ msgstr "1.0"
