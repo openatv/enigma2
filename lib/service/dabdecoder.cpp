@@ -264,10 +264,11 @@ void eDABDecoder::processAF(const uint8_t *data, size_t length)
 	const bool hasCRC = data[8] & 0x80;
 	if (((data[8] >> 4) & 7) != 1 || (data[8] & 0x0f) != 0 || data[9] != 'T')
 		return;
-	const size_t packetLength = 10 + tagLength + (hasCRC ? 2 : 0);
-	if (packetLength > length)
+	// LEN is 32 bit, adding to it wraps a 32-bit size_t.
+	const size_t overhead = hasCRC ? 12 : 10;
+	if (tagLength > length - overhead)
 		return;
-	if (hasCRC && !checkInvertedCRC(data, packetLength))
+	if (hasCRC && !checkInvertedCRC(data, overhead + tagLength))
 	{
 		++m_crc_errors;
 		return;
