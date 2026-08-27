@@ -49,7 +49,7 @@ class DABScan(ServiceScan):
 
 	def runScan(self):
 		if not self.loadFeeds():
-			message = _("No supported DAB+ feeds are available for the satellite positions configured on this box.") if self.knownFeeds else _("No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml.")
+			message = _("No supported DAB+ feeds are available for the satellite positions configured on this box.") if self.knownFeeds and not self.feedErrors else _("No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml.")
 			self.finishWithError(message)
 			return
 		if self.session.nav.RecordTimer.isRecording():
@@ -71,7 +71,7 @@ class DABScan(ServiceScan):
 		try:
 			root = parse(xmlPath).getroot()
 			if root.tag != "dabFeeds":
-				raise ValueError(_("Invalid DAB feed file root element"))
+				raise ValueError("invalid root element")
 			definitions = [(node, None, None) for node in root.findall("feed")]
 			for satellite in root.findall("satellite"):
 				for transponder in satellite.findall("transponder"):
@@ -91,14 +91,14 @@ class DABScan(ServiceScan):
 						continue
 					self.feeds.append(feed)
 				except (TypeError, ValueError) as err:
-					feedName = node.get("name") or node.get("id") or _("Unknown feed")
+					feedName = node.get("name") or node.get("id") or "unknown feed"
 					self.feedErrors.append(f"{feedName}: {err}")
 		except (OSError, ParseError, ValueError) as err:
 			self.feedErrors.append(f"{xmlPath}: {err}")
 		if self.knownFeeds:
 			print("[DABScan] Feed definitions: %d known, %d selected, %d unavailable, %d unsupported, %d disabled." % (self.knownFeeds, len(self.feeds), self.skippedUnavailableFeeds, self.skippedUnsupportedFeeds, self.skippedDisabledFeeds))
-		if not self.feeds and not self.feedErrors:
-			self.feedErrors.append(_("%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled") % (self.skippedUnavailableFeeds, self.skippedUnsupportedFeeds, self.skippedDisabledFeeds))
+		for error in self.feedErrors:
+			print(f"[DABScan] {error}")
 		return bool(self.feeds)
 
 	def feedAttribute(self, node, transponder, satellite, attribute, default=None):
@@ -113,18 +113,18 @@ class DABScan(ServiceScan):
 		feedId = attribute("id", "feed")
 		orbitalPosition = int(attribute("orbitalPosition", "-1"), 10)
 		if orbitalPosition < 0 or orbitalPosition > 3599:
-			raise ValueError(_("Invalid orbital position"))
+			raise ValueError("invalid orbital position")
 		decoder = attribute("decoder", "fedi2eti").lower()
 		generatedName = "userbouquet.dab_%s.radio" % sub("[^a-z0-9_]+", "_", feedId.lower()).strip("_")
 		bouquetFile = attribute("bouquetFile", generatedName)
 		if basename(bouquetFile) != bouquetFile or not fullmatch(r"userbouquet\.[A-Za-z0-9_.-]+\.radio", bouquetFile):
-			raise ValueError(_("Invalid bouquet file name '%s'") % bouquetFile)
+			raise ValueError(f"invalid bouquet file name '{bouquetFile}'")
 		address = attribute("multicastAddress", "")
 		if decoder == "fedi2eti" and not address:
-			raise ValueError(_("Missing multicast address"))
+			raise ValueError("missing multicast address")
 		port = int(attribute("multicastPort", "0"), 10)
 		if decoder == "fedi2eti" and (port < 1 or port > 65535):
-			raise ValueError(_("Invalid multicast port"))
+			raise ValueError("invalid multicast port")
 		return {
 			"id": feedId,
 			"name": attribute("name", feedId),
@@ -148,7 +148,7 @@ class DABScan(ServiceScan):
 	def parseHex(self, node, transponder, satellite, attribute):
 		value = self.feedAttribute(node, transponder, satellite, attribute)
 		if value is None:
-			raise ValueError(_("Missing attribute '%s'") % attribute)
+			raise ValueError(f"missing attribute '{attribute}'")
 		return int(value, 16)
 
 	def startFeed(self):
@@ -343,7 +343,7 @@ class DABScan(ServiceScan):
 		self.restoreService()
 		self["pass"].setText("")
 		self["network"].setText(_("DAB+ Scan"))
-		self["transponder"].setText("; ".join(self.feedErrors))
+		self["transponder"].setText("")
 		self.setScanState(message)
 		self["key_red"].setText(_("Close"))
 
