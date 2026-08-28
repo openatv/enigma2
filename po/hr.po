@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-22 04:03+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-25 09:29+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -913,6 +913,13 @@ msgstr[1] "%d paketa kataloga feeda su ažurirani."
 msgstr[2] "%d paketa kataloga feeda su ažurirani."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] "Pronađen je %d domaćin."
+msgstr[1] "Pronađeno je %d domaćina."
+msgstr[2] "Pronađeno je %d domaćina."
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d poslova se izvršava u pozadini!"
 
@@ -931,6 +938,13 @@ msgstr "%d minute"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] "Pronađena %d mreža."
+msgstr[1] "Pronađeno %d mreža."
+msgstr[2] "Pronađeno %d mreža."
 
 #, python-format
 msgid "%d package found."
@@ -1062,13 +1076,6 @@ msgstr "Na uređaju je stvoreno %d utora.\n"
 #, python-format
 msgid "%d times"
 msgstr "%d vrijeme"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d bežična mreža pronađena!"
-msgstr[1] "%d bežične mreže pronađene!"
-msgstr[2] "%d bežične mreže pronađene!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1213,6 +1220,10 @@ msgid "%s View"
 msgstr "%s Prikaz"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "akcija %s nije uspjela (izlazni kod %s)"
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s dodatnih zaslona"
 
@@ -1227,6 +1238,20 @@ msgstr "%s je deaktiviran."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s uvezeno s daljinskog prijemnika."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+"%s trenutno ne radi.\n"
+"\n"
+"Hoćeš li to pokrenuti?"
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s je trenutno zaustavljen ili nedostupan. Pritisnite ZELENO za pokretanje."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1246,12 +1271,20 @@ msgid "%s version"
 msgstr "%s verzija"
 
 #, python-format
+msgid "%s webif disabled"
+msgstr "%s webif onemogućen"
+
+#, python-format
 msgid "%s%d min"
 msgstr "%s%d min"
 
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Zadano: %s)"
+
+#, python-format
+msgid "%s. (Lowest)"
+msgstr "%s. (Najniže)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1296,6 +1329,22 @@ msgstr "%sPokaži 1080i kao 1080p"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' sadrži %d datoteke(e) i %d poddirektorije\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr "'%s' je već postavljen posebnim podešavanjem gore, ukloni ga iz 'Opcija montiranja'."
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr "'%s' je naveden više puta u 'Opcijama montiranja'."
+
+#, python-format
+msgid "'%s' mounted."
+msgstr "'%s' montirano."
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr "'%s' je odspojen."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Međuspremnik u satima\" ili \"broj posljednjih događaja\". Za brisanje starijih datoteka s vremenskim pomakom, stanje koje se prvo dogodilo ima prioritet."
@@ -1381,14 +1430,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr "1. (Najviši)"
 
 msgid "10bit"
 msgstr "10bita"
@@ -1411,17 +1454,11 @@ msgstr "12bita"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bita 4:2:0/4:2:2 bez PiP"
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "16:9 Uvijek"
@@ -1440,9 +1477,6 @@ msgstr "16:9 PanScan"
 
 msgid "16:9 reset to normal"
 msgstr "16:9 resetovanje u normalu"
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "Odlaganje prve Info Trake"
@@ -1673,15 +1707,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Traženi alat (%s) nije pronađen."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Pronađeno je drugo sučelje.\n"
-"\n"
-"Želite li onemogućiti drugo sučelje?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1740,6 +1765,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "AI titlovi"
+
 msgid "AI Translation color"
 msgstr "Boja Prevoda AI"
 
@@ -1773,11 +1801,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC davatelj usluga"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV prijamnik, zvučna traka i daljinski"
+
 msgid "AV Setup"
 msgstr "AV Postavke"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV prijamnik, zvučna traka i daljinski"
 
 msgid "Abkhazian"
 msgstr "Abhazijski"
@@ -1804,7 +1832,7 @@ msgid "About"
 msgstr "O programu"
 
 msgid "About OpenATV"
-msgstr "O OpenATV 7.6.0"
+msgstr "O OpenATV"
 
 msgid "About to start"
 msgstr "Za početak"
@@ -1817,6 +1845,13 @@ msgstr "Način pristupa"
 
 msgid "Access point"
 msgstr "Pristupna točka"
+
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+"Pristupna točka nije pronađena.\n"
+"Provjeri je li u rasponu i je li SSID ispravan."
 
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Pristup informacijama o geolokaciji zahtijeva internetsku vezu."
@@ -1857,14 +1892,8 @@ msgstr "Omogućiti tipke GORE/DOLJE za funkcije 'sve gore/dolje' na početku/kra
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivirajte način slanja pojedinačnih ili specifičnih internih HDMI-CEC naredbi iz naredbenog retka."
 
-msgid "Activate network adapter configuration"
-msgstr "Aktivirajte konfiguraciju mrežnog adaptera"
-
-msgid "Activate network settings"
-msgstr "Aktivirajte mrežne postavke"
-
-msgid "Activate the configured network settings."
-msgstr "Aktivirajte konfigurirane mrežne postavke."
+msgid "Activate network adapter"
+msgstr "Aktiviraj mrežni adapter"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivirajte flash proširenje, spremite sve promijenjene postavke i izađite"
@@ -1886,6 +1915,13 @@ msgstr "Aktivni klijent"
 
 msgid "Active only"
 msgstr "Samo aktivni"
+
+msgid "Adapter"
+msgstr "Adapter"
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr "Kontekstni Izbornik Adaptera '%s'"
 
 msgid "Adapter Settings"
 msgstr "Postavke adaptera"
@@ -1929,6 +1965,9 @@ msgstr "Dodaj HDMI-IN u Buket"
 msgid "Add Marker To Bouquet"
 msgstr "Dodaj Oznaku u Buket"
 
+msgid "Add Mount Manually"
+msgstr "Dodaj Montažu Ručno"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Dodaj Novu Stavku za 4Х Kanal"
 
@@ -1952,6 +1991,12 @@ msgstr "Dodaj Tajmer"
 
 msgid "Add To Parental Protection"
 msgstr "Dodaj Roditeljsku Kontrolu"
+
+msgid "Add Wi-Fi"
+msgstr "Dodaj Wi-Fi"
+
+msgid "Add Wi-Fi Manually"
+msgstr "Dodaj Wi-Fi Ručno"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Dodaj Zap+TajmerSnimanja"
@@ -1979,6 +2024,9 @@ msgstr "Dodavanje u ZapTajmer za sljedeći događaj"
 
 msgid "Add a mark"
 msgstr "Dodaj oznaku"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr "Dodaj novu Spremljenu Wi-Fi Mrežu"
 
 msgid "Add a new bouquet"
 msgstr "Dodaj novi buket"
@@ -2139,6 +2187,9 @@ msgstr "Film za odrasle/Drama"
 
 msgid "Advanced"
 msgstr "Napredno"
+
+msgid "Advanced Diagnostics"
+msgstr "Napredna dijagnostika"
 
 msgid "Advanced Options"
 msgstr "Napredne Opcije"
@@ -2374,6 +2425,9 @@ msgstr "Alternativno 2"
 msgid "Alternative Edit"
 msgstr "Alternativno Uređivanje"
 
+msgid "Alternative Tuner Sources"
+msgstr "Alternativni izvori tunera"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternativni URL za DVB-T/C ili ATSC"
 
@@ -2535,9 +2589,6 @@ msgstr "Sigurno hoćete izbrisati sve zemaljske kanale?"
 msgid "Are you sure to remove this entry?"
 msgstr "Jeste li sigurni da ćete ukloniti ovaj unos?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Jeste li sigurni da želite aktivirati ovu mrežnu konfiguraciju?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2562,9 +2613,6 @@ msgstr "Da li želite izaći iz ovog čarobnjaka?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Da li želite ponovo učitati EPG podatke iz:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Da li želite restartati mrežni interfejs?"
 
 #, python-format
 msgid ""
@@ -2675,6 +2723,9 @@ msgstr "Dodijeljeni CAID:"
 msgid "Assigned services/provider:"
 msgstr "Dodijeljene usluge/pružatelj usluga:"
 
+msgid "Associated"
+msgstr "Povezano"
+
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
 
@@ -2712,6 +2763,12 @@ msgstr "Nivo Auto Jačine Zvuka"
 msgid "Audio Channel"
 msgstr "Audio Kanal"
 
+msgid "Audio Formats And Output"
+msgstr "Audio formati i izlaz"
+
+msgid "Audio Language And Track Selection"
+msgstr "Odabir jezika i zvučnog zapisa"
+
 msgid "Audio PID"
 msgstr "Audio PID"
 
@@ -2727,6 +2784,9 @@ msgstr "Audio Izvor"
 
 msgid "Audio Sync"
 msgstr "Audio Sinhronizacija"
+
+msgid "Audio Synchronization"
+msgstr "Sinkronizacija zvuka"
 
 msgid "Audio language selection 1"
 msgstr "Odabir audio jezika 1"
@@ -2854,9 +2914,6 @@ msgstr "Oznaka automatske rezolucije"
 msgid "Automatic scan for services"
 msgstr "Automatsko skeniranje kanala"
 
-msgid "Automatic shares access"
-msgstr "Automatski pristup akcijama"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatski stavite TV u stanje pripravnosti, kada tuner uđe u stanje pripravnosti ili duboku pripravnost."
 
@@ -2886,6 +2943,9 @@ msgstr "Dostupni lokalni standardi su:"
 
 msgid "Available shares:"
 msgstr "Dostupan share:"
+
+msgid "Available tuner types"
+msgstr "Dostupne vrste tunera"
 
 msgid "Avaric"
 msgstr "Avaric"
@@ -2936,8 +2996,8 @@ msgstr "PLAVO dugo"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "PLAVI prekidač: PLAVI/PLAVI(dugo)"
 
-msgid "Back"
-msgstr "Nazad"
+msgid "BSSID"
+msgstr "BSSID"
 
 msgid "Back USB"
 msgstr "Zadnji USB"
@@ -3309,6 +3369,9 @@ msgstr "Osvijetljenje (Normalno)"
 msgid "Brightness (Standby)"
 msgstr "Osvijetljenje (Stanje pripravnosti)"
 
+msgid "Brightness And Contrast"
+msgstr "Svjetlina i kontrast"
+
 msgid "Brightness Video"
 msgstr "Osvijetljenje Videa"
 
@@ -3336,11 +3399,20 @@ msgstr "Emitiranje/tisak"
 msgid "Broadcom"
 msgstr "Emitovanje"
 
+msgid "Broadcom default"
+msgstr "Broadcom zadano"
+
+msgid "Browse"
+msgstr "Pregledaj"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Pregledaj, instaliraj ili ukloni dodatak jedan po jedan."
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
+
+msgid "Buffer Management"
+msgstr "Upravljanje međuspremnikom"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3395,11 +3467,17 @@ msgstr "Narezivanje na disk"
 msgid "Burundi"
 msgstr "Burundi"
 
+msgid "Bus"
+msgstr "Bus"
+
 msgid "Business"
 msgstr "Poslovanje"
 
 msgid "Business & Finance"
 msgstr "Poslovanje & Financije"
+
+msgid "Button Assignments"
+msgstr "Dodjela tipki"
 
 msgid "Button Setup"
 msgstr "Podešavanje Dugmeta"
@@ -3424,6 +3502,12 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-Band"
+
+msgid "C/T input"
+msgstr "C/T ulaz"
+
+msgid "C/T input switching"
+msgstr "Prebacivanje C/T ulaza"
 
 msgid "CCD-Width"
 msgstr "CCD-Širina"
@@ -3567,6 +3651,12 @@ msgstr "Kabel"
 
 msgid "Cable Scan"
 msgstr "Skeniranje kabela"
+
+msgid "Cable Unplugged"
+msgstr "Kabel Isključen"
+
+msgid "Cable input"
+msgstr "Kabelski ulaz"
 
 msgid "Cache thumbnails"
 msgstr "Sličice predmemorije"
@@ -3972,6 +4062,12 @@ msgstr "Kanal 1"
 msgid "Channel 1 with prime time"
 msgstr "Kanal 1 u udarnom vremenu"
 
+msgid "Channel And EPG Import"
+msgstr "Uvoz kanala i EPG"
+
+msgid "Channel History And Messages"
+msgstr "Povijest kanala i poruke"
+
 msgid "Channel Info"
 msgstr "Kanal info"
 
@@ -4007,6 +4103,9 @@ msgstr "Postavke Odabira Kanala"
 
 msgid "Channel Selection picon path"
 msgstr "Postavke pikona za odabir kanala"
+
+msgid "Channel Zapping And Keys"
+msgstr "Prebacivanje kanala i tipke"
 
 msgid "Channel buttons"
 msgstr "Dugmad Kanala"
@@ -4076,6 +4175,9 @@ msgstr "Poglavlje"
 
 msgid "Character device"
 msgstr "Karakter uređaja"
+
+msgid "Character set"
+msgstr "Skup znakova"
 
 msgid "Chat show"
 msgstr "Ćaskanje uživo"
@@ -4311,6 +4413,9 @@ msgstr "Obriši"
 msgid "Clear Log"
 msgstr "Obriši Log"
 
+msgid "Clear Stored Credentials"
+msgstr "Očisti Spremljene Vjerodajnice"
+
 msgid "Clear before scan"
 msgstr "Brisanje prije skeniranja"
 
@@ -4376,6 +4481,9 @@ msgstr "Zatvori spisak buketa."
 
 msgid "Close dialog"
 msgstr "Zatvori prozor"
+
+msgid "Close network test"
+msgstr "Test zatvorene mreže"
 
 msgid "Close screen"
 msgstr "Zatvori zaslon"
@@ -4452,6 +4560,9 @@ msgstr "Colombia"
 msgid "Color"
 msgstr "Boja"
 
+msgid "Color Button Assignments"
+msgstr "Dodjele boja tipki"
+
 msgid "Color format"
 msgstr "Format Boje"
 
@@ -4522,14 +4633,14 @@ msgstr "Dodjela Zajedničkog Sučelja"
 msgid "Common Interface Settings"
 msgstr "Zajedničke Postavke Sučelja"
 
-msgid "Common Settings"
-msgstr "Modul Podešavanja"
-
 msgid "Common Setup Actions"
 msgstr "Opće Radnje Podešavanja"
 
 msgid "Comoros"
 msgstr "Comoros"
+
+msgid "Compatibility And Emulation"
+msgstr "Kompatibilnost i emulacija"
 
 msgid "Compiled by"
 msgstr "Sastavio"
@@ -4570,14 +4681,20 @@ msgstr "Način konfiguracije"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Opcije konfiguracije za zaslon POMOĆ mogu se pronaći u odjeljku 'IZBORNIK > Podešavanje > Korisnik& Korisničko sučelje > Postavke'."
 
-msgid "Configure DNS (name servers)"
-msgstr "Podesi DNS (ime servera)"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr "Konfiguriraj DNS (Dynamic Name Server)"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Konfigurirajte dodatnu odgodu za poboljšanje vanjske sinkronizacije titlova."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Konfigurirajte dodatnu odgodu za poboljšanje sinkronizacije titlova."
+
+msgid "Configure another network adapter"
+msgstr "Postavi još jedan mrežni adapter"
+
+msgid "Configure cable reception on this input."
+msgstr "Postavi prijem kabela na ovom ulazu."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Konfigurirajte zadanu postavku za nove mjerače vremena. Potrebno je ponovno pokretanje nakon promjene."
@@ -4624,41 +4741,35 @@ msgstr "Konfigurirajte hoće li se prikazivati ikone vrste usluge."
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Podešavanje subtitla između fonta normalnog, kurzivnog, podebljanog i podebljanog kurziva."
 
-msgid "Configure interface"
-msgstr "Konfigurirajte sučelje"
+msgid "Configure network adapter"
+msgstr "Konfiguriraj mrežni adapter"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Konfigurirajte na kojim uređajima treba koristiti opciju brisanja pozadine."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"Konfigurirajte ili potvrdite DNS (poslužitelje naziva) podešavanjem prikazanih vrijednosti.\n"
+"Konfiguriraj ili provjeri svoje DNS (Dynamic Name Serverj) postavke prilagođavajući prikazane vrijednosti.\n"
 "\n"
-"Kada su postavke ispravne, pritisnite OK za nastavak."
+"Kad su postavke ispravne, pritisni OK za nastavak."
 
 msgid "Configure remote control type"
 msgstr "Konfigurirajte vrstu daljinskog kontrolora"
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Konfiguriraj prijem satelita na zasebnom SAT ulazu."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Postavi zemaljski prijem na ovom ulazu."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigurirajte DiSEqC način rada za ovaj LNB."
 
-msgid "Configure the IP address."
-msgstr "Podesite IP adresu."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "IP rezervnog daljinskog prijemnika."
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"Konfigurirajte internetsku vezu podešavanjem prikazanih vrijednosti.\n"
-"\n"
-"Kada su postavke ispravne, pritisnite OK za nastavak."
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Port za povratni udaljeni tuner."
@@ -4762,9 +4873,6 @@ msgstr "Konfigurirajte funkciju kratkog pritiska na tipku za uključivanje."
 msgid "Configure the function of the < and > buttons."
 msgstr "Konfigurirajte funkciju tipki < i >."
 
-msgid "Configure the gateway."
-msgstr "Podesite mrežni prolaz."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Konfigurirajte pogon tvrdog diska da prijeđe u stanje mirovanja nakon navedenog vremena mirovanja."
 
@@ -4794,15 +4902,6 @@ msgstr "Konfiguriši minimalnu količinu prostora na disku koja će biti dostupn
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Konfigurirajte minimalnu širinu prije nego što prikažete ikonu 'i', '0' je jednako neprikazivanju ikone uopće."
-
-msgid "Configure the name server (DNS)."
-msgstr "Konfigurirajte poslužitelj naziva (DNS)."
-
-msgid "Configure the netmask."
-msgstr "Konfigurirajte mrežnu masku."
-
-msgid "Configure the network again"
-msgstr "Podesite ponovo svoju mrežu"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Konfiguriši broj dana nakon kojih se stavke automatski uklanjaju iz smeća."
@@ -4836,6 +4935,9 @@ msgstr "Konfigurirajte drugi jezik titlova."
 
 msgid "Configure the secondary EPG language."
 msgstr "Konfigurirajte sekundarni EPG jezik."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr "Konfiguriraj odabranu Wi-Fi mrežu"
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Konfigurirajte vremenski interval preskakanja za tipke '1'/'3'."
@@ -4936,17 +5038,8 @@ msgstr "Konfigurirajte koji će tuner biti preferiran, kada je dostupno više od
 msgid "Configure your NTP server."
 msgstr "Konfigurirajte svoj NTP poslužitelj."
 
-msgid "Configure your Network"
-msgstr "Konfigurirajte svoju mrežu"
-
-msgid "Configure your internal LAN"
-msgstr "Konfigurirajte svoj interni LAN"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Konfigurirajte mrežne postavke i pritisnite OK za početak skeniranja"
-
-msgid "Configure your wireless LAN again"
-msgstr "Ponovno konfigurirajte svoj bežični LAN"
 
 msgid "Configures which video output connector will be used."
 msgstr "Konfigurira koji će se video izlazni konektor koristiti."
@@ -4959,6 +5052,10 @@ msgstr "Podešavanje Servisa"
 
 msgid "Confirm Zap"
 msgstr "Potvrdi Zap"
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
+msgstr "Potvrdi brisanje '%s'?"
 
 msgid "ConflictTimer Actions"
 msgstr "Radnje neusaglašenosti Tajmera"
@@ -4979,11 +5076,14 @@ msgstr "Povezivanje"
 msgid "Connect to IceTV server every"
 msgstr "Povežite se s IceTV poslužiteljem svaki"
 
-msgid "Connect to a wireless network"
-msgstr "Povezivanje sa bežičnom mrežom"
-
 msgid "Connect to the Internet"
 msgstr "Povezivanje sa Internetom"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr "Spoji se na odabranu Spremljenu Wi-Fi Mrežu"
+
+msgid "Connected"
+msgstr "Povezano"
 
 msgid "Connected clients"
 msgstr "Povezani klijenti"
@@ -5000,8 +5100,30 @@ msgstr "Povezano sa"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "Povezano transkodiranje, ograničenje - ne PiP!"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+"Spojeno, ali nije primljena IP adresa.\n"
+"Provjeri DHCP postavke rutera."
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+"Povezano.\n"
+"IP adresa je '%s'."
+
 msgid "Connected: "
 msgstr "Povezano: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr "Povezivanje s '%s'"
+
+msgid "Connecting..."
+msgstr "Povezivanje..."
 
 msgid "Connection information"
 msgstr "Info o vezi"
@@ -5051,6 +5173,9 @@ msgstr "Kontekst"
 
 msgid "Continent"
 msgstr "Kontinent"
+
+msgid "Continue"
+msgstr "Nastavi"
 
 msgid "Continue in background"
 msgstr "Nastavi u pozadini"
@@ -5198,8 +5323,26 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Cote d'Ivoire / Ivory Coast"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr "Nije se moglo povezati (status '%s')."
+
 msgid "Could not connect to server"
 msgstr "Nije moguće povezati se s poslužiteljem"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+"Nije moguće povezati se.\n"
+"Wi-Fi upravljački program (wpa_supplicant) nije pokrenut, provjeri Wi-Fi postavke."
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
+"Nije bilo moguće povezati se.\n"
+"Pogrešna Wi-Fi lozinka?"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nije moguće učitati Medium! Nije umetnut disk?"
@@ -5223,6 +5366,15 @@ msgstr "Nije moguće snimiti zbog nevažeće usluge:%s"
 msgid "Could not save configuration file %s!"
 msgstr "Nije moguće spremiti konfiguracijsku datoteku %s!"
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+"Nije se moglo provjeriti spremljenu Wi-Fi mrežu.\n"
+"\n"
+"Hoćeš li opet mijenjati postavke?"
+
 msgid "Country"
 msgstr "Zemlja"
 
@@ -5235,6 +5387,9 @@ msgstr "Zemlja za informacije o ocjeni EPG događaja"
 #, python-format
 msgid "Crash %d/%d"
 msgstr "Pad %d/%d"
+
+msgid "Crash Handling"
+msgstr "Rješavanje padova"
 
 msgid "Crash Logs"
 msgstr "Log pada"
@@ -5346,6 +5501,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Stvaranje particije"
 
+msgid "Credentials"
+msgstr "Vjerodajnice"
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr "Vjerodajnice za '%s'"
+
 msgid "Cree"
 msgstr "Cree"
 
@@ -5446,9 +5608,6 @@ msgstr "Trenutni položaj rotora:"
 msgid "Current rotor position: unknown"
 msgstr "Trenutna pozicija rotora: nepoznata"
 
-msgid "Current settings:"
-msgstr "Trenutne postavke:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr "Trenutna struja koja se dovodi LNB-u i pozicioneru."
 
@@ -5484,6 +5643,9 @@ msgstr "Trenutno Zapamćeni Nivoi Zvuka:"
 msgid "Custom"
 msgstr "Prilagođeno"
 
+msgid "Custom Skip Times"
+msgstr "Prilagođeno preskakanje vremena"
+
 msgid "Custom mountpoint"
 msgstr "Prilagođeno mjesto montiranja"
 
@@ -5510,6 +5672,9 @@ msgstr "Prilagodite osobne postavke enigma2"
 
 msgid "Cut"
 msgstr "Isjeci"
+
+msgid "CutList Skipping"
+msgstr "Preskakanje popisa rezanja"
 
 msgid "CutList skip time for '%s' button"
 msgstr "Vreme preskakanja liste za sječenje za dugme '%s' '"
@@ -5553,9 +5718,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA podrška"
 
@@ -5568,6 +5730,9 @@ msgstr "DMM standardno"
 msgid "DNS Settings"
 msgstr "DNS Postavke"
 
+msgid "DNS Settings Actions"
+msgstr "Radnje Postavki DNS-a"
+
 msgid "DNS data source"
 msgstr "DNS izvor podataka"
 
@@ -5576,9 +5741,6 @@ msgstr "DNS zamjena"
 
 msgid "DNS protocol mode"
 msgstr "Način rada DNS protokola"
-
-msgid "DNS suffix"
-msgstr "DNS suffix"
 
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
@@ -5608,6 +5770,9 @@ msgstr "Dvoslojni DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI Odlaganje"
 
+msgid "DVB Subtitles"
+msgstr "DVB titlovi"
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB Subtitl PID & Jezik"
 
@@ -5620,17 +5785,14 @@ msgstr "DVB subtitl boja"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "DVB-C / Cable samo"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C i DVB-T/T2 preko vanjskog 5V kontroliranog koaksijalnog prekidača"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Uključi 5V samo ako antenski sustav ili vanjski koaksijalni prekidač trebaju napajanje."
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5640,9 +5802,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "VB-T/T2 / Zemaljski samo"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5659,7 +5818,7 @@ msgstr "DVD menu"
 msgid "DVD Title list"
 msgstr "Popis DVD naslova"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD plejer"
 
 msgid "DVDPlayer"
@@ -5682,6 +5841,9 @@ msgstr "Datum"
 
 msgid "Date / Time"
 msgstr "Datum / Vrijeme"
+
+msgid "Date And Time"
+msgstr "Datum i vrijeme"
 
 msgid "Date Time Input Actions"
 msgstr "Radnje unosa Vremena Datuma"
@@ -5849,8 +6011,14 @@ msgstr "Deaktivirano"
 msgid "Deactivate Expander"
 msgstr "Deaktivirano Proširenje"
 
+msgid "Deactivate network adapter"
+msgstr "Isključi mrežni adapter"
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Deaktiviraj flash proširenje za izabrani uređaj"
+
+msgid "Deactivated"
+msgstr "Deaktivirano"
 
 msgid "Debug"
 msgstr "Otklanjanje grešaka"
@@ -5861,6 +6029,9 @@ msgstr "Otklanjanje grešaka %d/%d"
 
 msgid "Debug Information"
 msgstr "Info o otklanjanju grešaka"
+
+msgid "Debug Log Content"
+msgstr "Sadržaj dnevnika pogrešaka"
 
 msgid "Debug Log Information"
 msgstr "Info o evidenciji otklanjanja grešaka"
@@ -6103,6 +6274,12 @@ msgstr "Izbriši Imidž"
 msgid "Delete Line"
 msgstr "Izbriši Red"
 
+msgid "Delete Mount"
+msgstr "Izbriši Montažu"
+
+msgid "Delete Network"
+msgstr "Izbriši Mrežu"
+
 msgid "Delete Plugins"
 msgstr "Izbrišite dodatke"
 
@@ -6333,9 +6510,6 @@ msgstr "Upravitelj Uređaja"
 msgid "Device Manager Actions"
 msgstr "Upravitelj Uređaja Radnja"
 
-msgid "Device Settings"
-msgstr "Postavke Uređaja"
-
 msgid "Device id"
 msgstr "Uređaj id"
 
@@ -6445,6 +6619,9 @@ msgstr "Podaci o statusu direktorija/datoteke"
 msgid "Disable"
 msgstr "Zatvori"
 
+msgid "Disable Adapter"
+msgstr "Onemogući Adapter"
+
 msgid "Disable Animations"
 msgstr "Zatvori Animaciju"
 
@@ -6469,6 +6646,9 @@ msgstr "Isključi MiniTV"
 msgid "Disable Move Mode"
 msgstr "Isključi način premještanja"
 
+msgid "Disable Network"
+msgstr "Isključi Mrežu"
+
 msgid "Disable Picture in Picture"
 msgstr "Isključi Slika u Slici"
 
@@ -6487,6 +6667,9 @@ msgstr "Onemogući uvodni zaslon"
 msgid "Disable operator profiles"
 msgstr "Onemogućavanje profila operatora"
 
+msgid "Disable saved Wi-Fi network"
+msgstr "Onemogući spremljenu Wi-Fi mrežu"
+
 msgid "Disable the HDD Process on VFD."
 msgstr "Onemogućite HDD proces na VFD."
 
@@ -6502,11 +6685,11 @@ msgstr "Onemogućeno"
 msgid "Disabled PiP.\n"
 msgstr "Isključi PiP.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "Isključi ili WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Onemogućavanje Chkroota nije uspjelo!"
+
+msgid "Disconnected"
+msgstr "Isključeno"
 
 msgid "Discussion"
 msgstr "Diskusija"
@@ -6528,6 +6711,12 @@ msgstr "Prikaz zaslona 4:3 kao"
 
 msgid "Display >16:9 content as"
 msgstr "Prikaz zaslona >16:9 kao"
+
+msgid "Display Power And Content"
+msgstr "Prikaži snagu i sadržaj"
+
+msgid "Display Scrolling"
+msgstr "Pomicanje prikaza"
 
 msgid "Display Settings"
 msgstr "Postavke zaslona"
@@ -6701,23 +6890,23 @@ msgstr "Želite li doista ukloniti oznaku za '%s'?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Želite li doista ukloniti mjerač vremena za %s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"Želite li stvarno ponovno pokrenuti OSCam?\n"
-"\n"
-"SAVJET: Ovo će trajati oko 5 sekundi!"
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "Stvarno želiš ponovno pokrenuti %s?"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Želite li stvarno zatvoriti OSCam?\n"
+"Stvarno želiš isključiti %s?\n"
 "\n"
-"PAŽNJA: Za ponovno aktiviranje OSCam potrebno je izvršiti potpuno ponovno pokretanje tunera!"
+"PAŽNJA: Za ponovno aktiviranje %s, potrebno je potpuno ponovno pokretanje prijemnika!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "Stvarno želiš prekinuti %s?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6833,6 +7022,9 @@ msgstr "Dolby TrueHD"
 msgid "Domain"
 msgstr "Domena"
 
+msgid "Domain name"
+msgstr "Naziv domene"
+
 msgid "Dominica"
 msgstr "Dominica"
 
@@ -6940,6 +7132,9 @@ msgstr "Dreambox s podacima u formatu DVD (kompatibilan s HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox s podacima formata DVD (neće raditi u drugim DVD playerima)"
 
+msgid "Driver"
+msgstr "Upravljački program"
+
 msgid "Driver Packages"
 msgstr "Paketi upravljačkog programa"
 
@@ -7004,17 +7199,26 @@ msgstr "EPG Provjera predmemorije"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG Odabir kanala/usluge"
 
+msgid "EPG Data In Streams"
+msgstr "EPG podaci u streamovima"
+
 msgid "EPG Display Actions"
 msgstr "EPG Radnje prikaza"
 
 msgid "EPG Jump"
 msgstr "EPG Preskoči"
 
+msgid "EPG Language"
+msgstr "Jezik EPG"
+
 msgid "EPG Navigation Actions"
 msgstr "EPG Radnja Navigacije"
 
 msgid "EPG Other Actions"
 msgstr "EPG Ostale Radnje"
+
+msgid "EPG Range And History"
+msgstr "Opseg i povijest EPG"
 
 msgid "EPG Search"
 msgstr "EPG Pretraga"
@@ -7027,6 +7231,12 @@ msgstr "EPG Postavke"
 
 msgid "EPG Setup"
 msgstr "EPG Podešavanje"
+
+msgid "EPG Sources"
+msgstr "EPG izvori"
+
+msgid "EPG Storage And Refresh"
+msgstr "Spremanje i osvježavanje EPG"
 
 msgid "EPG button mode"
 msgstr "EPG dugme način"
@@ -7104,6 +7314,9 @@ msgstr "Uredi"
 msgid "Edit Alternatives"
 msgstr "Uređivanje Alternativno"
 
+msgid "Edit Credentials"
+msgstr "Uredi Vjerodajnice"
+
 msgid "Edit Mode Off"
 msgstr "Način uređivanja isključen"
 
@@ -7125,6 +7338,9 @@ msgstr "Uredi Naslov"
 msgid "Edit Upgrade Source URL"
 msgstr "Uređivanje izvornog URL nadogradnje"
 
+msgid "Edit Username/Password Credentials"
+msgstr "Uredi Korisničko ime/Lozinku Vjerodajnica"
+
 msgid "Edit chapters of current title"
 msgstr "Uređivanje poglavlja trenutnog naslova"
 
@@ -7134,25 +7350,20 @@ msgstr "Uredi trenutni red"
 msgid "Edit settings"
 msgstr "Uređivanje postavki"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr "Uredi pohranjene korisničke podatke/šifru za odabrani uređaj"
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "Uredite naziv hosta CCcam/NewCamd poslužitelja."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "Uredite CCcam/NewCamd poslužiteljski port."
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Uredite DNS konfiguraciju svog %s %s."
-
 msgid "Edit the NewCamd DES Key."
 msgstr "Uredite NewCamd DES ključ."
 
 msgid "Edit the currently selected timer"
 msgstr "Uredite trenutno odabrani tajmer"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Uredite mrežnu konfiguraciju %s %s."
 
 msgid "Edit the password."
 msgstr "Uredite lozinku."
@@ -7165,6 +7376,9 @@ msgstr "Uredite udaljeni port CCCam."
 
 msgid "Edit the remote IP address."
 msgstr "Uredite udaljenu IP adresu."
+
+msgid "Edit the selected network mount"
+msgstr "Uredi odabranu mrežnu montažu"
 
 msgid "Edit the upgrade source address."
 msgstr "Uredite izvornu adresu nadogradnje."
@@ -7263,9 +7477,6 @@ msgstr "Omogući GStreamer debug log *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Omogući GStreamer grafikone cjevovoda *"
 
-msgid "Enable IPv6"
-msgstr "Omogući IPv6"
-
 msgid "Enable IceTV"
 msgstr "Omogući IceTV"
 
@@ -7317,8 +7528,8 @@ msgstr "Omogući ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr "Omogući Virgin EPG"
 
-msgid "Enable Wake On LAN"
-msgstr "Omogući Buđenje za LAN"
+msgid "Enable adapter"
+msgstr "Omogući adapter"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Omogući drugu info traku sa drugim info (pritisni 'OK' dvaput) za dodatnu drugu info traku)."
@@ -7396,11 +7607,17 @@ msgstr "Otvori nadgledanje UI"
 msgid "Enable multiple bouquets"
 msgstr "Omogućite više buketa"
 
+msgid "Enable network"
+msgstr "Omogući mrežu"
+
 msgid "Enable network traffic check"
 msgstr "Omogućivanje provjere mrežnog prometa"
 
 msgid "Enable new GStreamer playback"
 msgstr "Omogućite novu GStreamer reprodukciju"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr "Omogući ili onemogući ovu mrežnu montažu. Onemogućavanje montaže neće izbrisati njezinu definiciju."
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Omogućite ili onemogućite pomoću HDMI-CEC."
@@ -7413,6 +7630,9 @@ msgstr "Omogući pretpregled"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Omogući da se udaljeni prijemnik pokuša ugađati na servise koji se ne mogu lokalno uključiti (npr. tjuner je zauzet ili tip servisa nije dostupan na lokalnom tjuneru). Navedite kompletnu URL adresu uključujući http:// i broj porta (obično ...:8001), npr. http://second_receiver:8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr "Omogući spremljenu Wi-Fi mrežu"
 
 msgid "Enable teletext caching"
 msgstr "Omogućivanje predmemoriranja teleteksta"
@@ -7513,20 +7733,11 @@ msgstr "Omogućeno"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Omogućuje značajku tako da tuner može dešifrirati streams (ako su podaci ECM uključeni u stream i ako je dostupna valjana kartica)."
 
-msgid "Encrypted: "
-msgstr "Šifrovano: "
-
 msgid "Encryption"
 msgstr "Šifriranje"
 
-msgid "Encryption Type:"
-msgstr "Vrsta Šifriranja:"
-
-msgid "Encryption key"
-msgstr "Ključ Šifriranja"
-
-msgid "Encryption key type"
-msgstr "Vrsta ključa za šifriranje"
+msgid "Encryption And Descrambling"
+msgstr "Šifriranje i dešifriranje"
 
 msgid "End"
 msgstr "Završi"
@@ -7636,6 +7847,9 @@ msgstr "Unesite novi naziv za ovaj uređaj."
 msgid "Enter expected ONID/TSID"
 msgstr "Unesi očekivani ONID/TSID"
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr "Unesite koliko dugo čekati na odgovor prije ponovnog pokušaja (ili odustajanja, s opcijom 'Odustani ako nije dostupno' u nastavku). Unesite '0' za korištenje unutarnje zadane vrijednosti kernela umjesto fiksne vrijednosti."
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Unesite ako ste sjeverno ili južno od ekvatora."
 
@@ -7647,6 +7861,9 @@ msgstr "Unesite novi naziv direktorija:"
 
 msgid "Enter number to jump to channel"
 msgstr "Unesite broj za skok na kanal"
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr "Unesite opcionalne argumente za montiranje koji nisu uključeni u gore navedene postavke konfiguracije. Više argumenata treba odvojiti zarezom. Nevažeći/neprikladni unosi mogu uzrokovati neuspjeh montiranja!"
 
 msgid "Enter persistent PIN code"
 msgstr "Unesite trajni PIN kod"
@@ -7681,25 +7898,46 @@ msgstr "Unesite frekvenciju na kojoj se LNB prebacuje između niskog i visokog p
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Unesite veličinu koraka frekvencije za tuner koji će se koristiti prilikom traženja kabelskih multipleksa. Za više informacija pogledajte dokumentaciju vašeg davatelja kabelskih usluga."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr "Unesi ime hosta ili IP adresu servera mrežnog dijeljenja."
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr "Unesite naziv lokalnog direktorija koji će se koristiti kao lokalno montiranje udaljenog dijeljenja."
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "Odredite DNS sufiks mreže koji će se primijeniti kada se navede samo ime računala. To pomaže DNS rješavaču da pronađe traženo računalo."
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr "Unesite naziv mrežnog računala koji će se koristiti za identifikaciju ovog prijamnika."
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Unesite broj NFS server niti koje će se dodijeliti/koristiti. Veće vrijednosti poboljšavaju performanse s više klijenata, ali koristi više memorije."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Unesite broj pohranjen u pozicioneru koji odgovara ovom satelitu."
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr "Unesi lozinku koja će se koristiti za pristup dijeljenim mapama ovog računala ako zahtijevaju vjerodajnice."
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr "Unesi lozinku koja će se koristiti za pristup dijeljenim datotekama ovog računala."
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Unesi lozinku, frazu ili unaprijed podijeljeni ključ za odabranu bežičnu mrežu."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Unesite primarnu IPv4 DNS postavku za ovaj adapter."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Unesi primarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr "Unesite naziv udaljenog dijeljenja (SMB) ili izvezeni put (NFS) na poslužitelju."
+
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Unesite sekundarnu IPv4 DNS postavku za ovaj adapter. (Opcionalno)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Unesite sekundarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
 
 msgid "Enter the service pin"
@@ -7711,7 +7949,13 @@ msgstr "Unesite masku podmreže koja će se koristiti za ovaj mrežni adapter. (
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Unesite kod za predplatu da bi u potpunosti omogućili dadatak za prevod zasnovan na AI , objedinjeni kod za probnu verziju je 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr "Unesi korisničko ime koje će se koristiti za pristup dijeljenim resursima ovog računala ako zahtijevaju vjerodajnice."
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr "Unesi korisničko ime koje će se koristiti za pristup dijeljenim mapama ovog računala."
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Unesi naziv radne grupe koju će ovaj primatelj koristiti za veze temeljene na Sambi. (Zadano je 'RADNAGRUPA'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -7862,44 +8106,6 @@ msgstr "Pogreška, pokušajte ponovno nakon odgode"
 msgid "Error code"
 msgstr "Kôd pogreške"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Pogreška pri stvaranju EHD-Skina.\n"
-"Korištenje HD-Skina!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Pogreška pri stvaranju EHD-Skina. Preuzimanje paketa ikona nije dostupno.\n"
-"Korištenje HD-Skina!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Pogreška pri stvaranju EHD-Skina. Nema dovoljno flash memorije.\n"
-"Korištenje HD-Skina!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Pogreška pri stvaranju EHD-Skina. Nedostaju neke EHD-ikone.\n"
-"Korištenje HD-Skina!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Pogreška pri stvaranju HD-Skina. Nema dovoljno flash memorije."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Pogreška pri stvaranju MetrixHD-Skina.\n"
-"Nakon ponovnog pokretanja MyMetrixLite-Plugin provjerite i primijenite svoje postavke."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Pogreška pri preuzimanju imidža '%s'!"
@@ -7948,9 +8154,6 @@ msgstr "Pogreška pri pisanju '/etc/enigma2/epg.dat' na udaljenom tuneru!"
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Pogreška pri pisanju 'epg.dat' na udaljenom tuneru!"
 
-msgid "Error, unknown Result!"
-msgstr "Pogreška, nepoznat rezultat!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7961,6 +8164,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Pogreška: Prazan naziv datoteke je nedopustiv!"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr "Greška: Potrebni su i 'server' i 'udaljena putanja'!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Pogreška: Nije moguće pronaći nijedan imidž!"
@@ -8014,12 +8220,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "Pogreška: Nije moguće pokrenuti '%s' na '%s'!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr "Greška: Montiranje '%s' nije uspjelo!"
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "Pogreška: Program '%s' nije instaliran i paket koji sadrži ovaj program je nepoznat!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Pogreška: Uklanjanje direktorija '%s' nije uspjelo! (Možda direktorij nije prazan.)"
+
+msgid "Error: Rescan failed!"
+msgstr "Greška: Ponovno skeniranje nije uspjelo!"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8070,6 +8283,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Pogreška: Nije moguće napisati datoteku dnevnika '%s'!"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr "Greška: Odvajanje '%s' nije uspjelo!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Pogreška: Ne možete pokrenuti '%s' na '%s'!"
 
@@ -8092,6 +8309,9 @@ msgstr "Estonski"
 msgid "EtPortal"
 msgstr "EtPortal"
 
+msgid "Ethernet Adapter"
+msgstr "Ethernet Adapter"
+
 msgid "Ethernet network interface"
 msgstr "Ethernet mrežno sučelje"
 
@@ -8112,6 +8332,9 @@ msgstr "Čak i ako se pokrene mjerač vremena za snimanje 'Zap'?"
 
 msgid "Event Info"
 msgstr "Info o Događaju"
+
+msgid "Event Metadata And Correction"
+msgstr "Metapodaci i ispravak događaja"
 
 msgid "Event View"
 msgstr "Prikaz Događaja"
@@ -8226,18 +8449,6 @@ msgstr "Izlazak iz menu"
 msgid "Exit movie player?"
 msgstr "Izlaz iz filmskog plejera?"
 
-msgid "Exit network adapter configuration"
-msgstr "Izlaz iz konfiguracije mrežnog adaptera"
-
-msgid "Exit network adapter setup menu"
-msgstr "Izađite iz menu za postavljanje mrežnog adaptera"
-
-msgid "Exit network interface list"
-msgstr "Izlaz iz popisa mrežnog sučelja"
-
-msgid "Exit network wizard"
-msgstr "Izlaz iz mrežnog čarobnjaka"
-
 msgid "Exit picture viewer"
 msgstr "Izađite iz preglednika slika"
 
@@ -8256,6 +8467,9 @@ msgstr "Izlaz bez izvođenja sigurnosne kopije"
 msgid "Expand"
 msgstr "Proširi"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr "Proširi/sakrij odabrani host, ili koristi odabrani dijeljeni resurs"
+
 msgid "Experimental film/video"
 msgstr "Eksperimentalni film/video"
 
@@ -8270,6 +8484,9 @@ msgstr "Stručnjak"
 
 msgid "Expert mode"
 msgstr "Stručni način rada"
+
+msgid "Exports"
+msgstr "Izvoz"
 
 msgid "Exposure bias"
 msgstr "Pristrasnost izlaganja"
@@ -8288,12 +8505,6 @@ msgstr "Proširi"
 
 msgid "Extended"
 msgstr "Prošireno"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Prošireni dodatak za postavljanje mreže..."
-
-msgid "Extended Setup..."
-msgstr "Prošireno postavljanje..."
 
 msgid "Extended Shares"
 msgstr "Prošireni Shares"
@@ -8319,6 +8530,9 @@ msgstr "Vanjski PiP"
 #, python-format
 msgid "External Storage %s"
 msgstr "Vanjska pohrana %s"
+
+msgid "External Subtitles"
+msgstr "Vanjski titlovi"
 
 msgid "External subtitle color"
 msgstr "Boja vanjskih titlova"
@@ -8514,6 +8728,9 @@ msgstr "Postavljanje brze promjene kanala"
 msgid "Fast DiSEqC"
 msgstr "Brzi DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr "Brzo premotaj naprijed i unatrag"
+
 msgid "Fast Scan"
 msgstr "Brzo Skeniranje"
 
@@ -8558,6 +8775,9 @@ msgstr "Feed stabilan."
 
 msgid "Feed unstable!"
 msgstr "Feed nestabilan!"
+
+msgid "Feeds And Networking"
+msgstr "Feedovi i umrežavanje"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Dohvatite EPG i ažurirajte mjerače vremena sada"
@@ -8683,6 +8903,9 @@ msgstr "Korisnik je otkazao prijenos datoteka"
 msgid "Filename"
 msgstr "Naziv datoteke"
 
+msgid "Files And Directories"
+msgstr "Datoteke i direktoriji"
+
 msgid "Files/folders to exclude from backup"
 msgstr "Datoteke/mape koje treba izuzeti iz sigurnosne kopije"
 
@@ -8743,9 +8966,6 @@ msgstr "Fino podešavanje"
 
 msgid "Finished"
 msgstr "Završeno"
-
-msgid "Finished configuring your network"
-msgstr "Završeno je podešavanje mreže"
 
 msgid "Finland"
 msgstr "Finland"
@@ -8846,14 +9066,14 @@ msgstr "Ravno po grupi tipki na daljinskom kontroloru"
 msgid "Flat by position on remote"
 msgstr "Ravno prema položaju na daljinskom kontroloru"
 
+msgid "Flush Cache and Rescan"
+msgstr "Isprazni Predmemoriju i Ponovno skeniraj"
+
 msgid "Folk and Country"
 msgstr "Folk i Kantri"
 
 msgid "Folk/Traditional music"
 msgstr "Narodna/tradicionalna glazba"
-
-msgid "Follow instructions on TV"
-msgstr "Slijedite upute na TV-u"
 
 msgid "Font size"
 msgstr "Veličina slova"
@@ -8891,7 +9111,7 @@ msgstr "Prisiliti naslijeđeni signal"
 msgid "Force ToneBurst"
 msgstr "Prisiliti ToneBurst"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Forsiraj određenu brzinu mrežne veze/dvostruki način umjesto automatskog pregovaranja. Promijeni ovo samo ako imaš neki specifičan razlog jer pogrešna postavka može prekinuti mrežnu povezanost."
 
 msgid "Force de-interlace"
@@ -8962,9 +9182,6 @@ msgstr "French Southern Territories"
 
 msgid "Frequency"
 msgstr "Frekvencija"
-
-msgid "Frequency Norm:"
-msgstr "Norma Frekvencije:"
 
 msgid "Frequency bands"
 msgstr "Band Frekvencije"
@@ -9089,11 +9306,29 @@ msgstr "Opće"
 msgid "General AC3 delay"
 msgstr "Opće kašnjenje AC3"
 
+msgid "General Appearance"
+msgstr "Opći izgled"
+
 msgid "General BT audio delay"
 msgstr "Opće kašnjenje BT zvuka"
 
+msgid "General Channel Selection"
+msgstr "Opći odabir kanala"
+
+msgid "General OSD Behavior"
+msgstr "Opće ponašanje OSD"
+
 msgid "General PCM delay"
 msgstr "Opće kašnjenje PCM"
+
+msgid "General Setup Behavior"
+msgstr "Opće ponašanje postavki"
+
+msgid "General Subtitle Appearance And Timing"
+msgstr "Opći izgled i vremensko usklađivanje titlova"
+
+msgid "General Time Shift Behavior"
+msgstr "Opće ponašanje pomaka vremena"
 
 msgid "Generic"
 msgstr "Generički"
@@ -9146,6 +9381,9 @@ msgstr "Ghana"
 
 msgid "Gibraltar"
 msgstr "Gibraltar"
+
+msgid "GigaBlue optimized"
+msgstr "GigaBlue optimizirano"
 
 msgid "Given device id"
 msgstr "Zadani id uređaja"
@@ -9387,6 +9625,9 @@ msgstr "HDMI-IN Postavke Snimanja"
 msgid "HDMIin"
 msgstr "HDMI ulaz"
 
+msgid "HDR OSD adjustment"
+msgstr "Podešavanje HDR OSD-a"
+
 msgid "HDR10 Support"
 msgstr "HDR10 Podrška"
 
@@ -9482,6 +9723,9 @@ msgstr "Pomoć"
 
 msgid "Help Action"
 msgstr "Pomoćna akcija"
+
+msgid "Help And Visual Feedback"
+msgstr "Pomoć i vizualna povratna informacija"
 
 msgid "Help Screen Information"
 msgstr "Informacije o zaslonu pomoći"
@@ -9738,9 +9982,6 @@ msgstr "Mađarska"
 msgid "Hybrid Tuner"
 msgstr "Hibridni Tuner"
 
-msgid "Hybrid tuner mode"
-msgstr "Hibridni način tunera"
-
 msgid "Hz"
 msgstr "Hz"
 
@@ -9770,6 +10011,9 @@ msgstr "INS"
 
 msgid "IP"
 msgstr "IP"
+
+msgid "IP Address"
+msgstr "IP Adresa"
 
 msgid "IP Address 1"
 msgstr "IP Adresa 1"
@@ -9803,6 +10047,9 @@ msgstr "IP protokol"
 
 msgid "IPK Installer"
 msgstr "IPK Instaler"
+
+msgid "IPv4 and IPv6"
+msgstr "IPv4 i IPv6"
 
 msgid "IPv4 only"
 msgstr "IPv4 samo"
@@ -10204,6 +10451,12 @@ msgstr "Info širina ikone"
 msgid "InfoBar"
 msgstr "Info Traka"
 
+msgid "InfoBar And Pause"
+msgstr "InfoBar i Pauza"
+
+msgid "InfoBar Content And Time Display"
+msgstr "Sadržaj InfoBar-a i prikaz vremena"
+
 msgid "InfoBar EPG"
 msgstr "Info traka EPG"
 
@@ -10212,6 +10465,12 @@ msgstr "Postavke EPG Info Trake"
 
 msgid "InfoBar EPG mode"
 msgstr "Način EPG Info Trake"
+
+msgid "InfoBar Timing And Appearance"
+msgstr "Vrijeme i izgled InfoBara"
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "Vidljivost i ponašanje InfoBara"
 
 msgid "InfoBar fade-out speed"
 msgstr "Brzina postepenog isčezavanja Info Trake"
@@ -10372,9 +10631,6 @@ msgstr "Sučelje"
 #, python-format
 msgid "Interface '%s'"
 msgstr "Sučelje '%s'"
-
-msgid "Interface: "
-msgstr "Sučelje: "
 
 msgid "Interlaced"
 msgstr "Isprepleteno"
@@ -10670,6 +10926,9 @@ msgstr "Kexec MultiBoot datoteka nedostaje."
 msgid "Key"
 msgstr "Tipka"
 
+msgid "Key Map And Power Buttons"
+msgstr "Tipkovnica i tipke za napajanje"
+
 msgid "Keyboard"
 msgstr "Tipkovnica"
 
@@ -10693,6 +10952,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Kodi Dodaci Paketa"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -10730,10 +10992,10 @@ msgstr "Kyrgyzstan"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "LAN adapter"
-
 msgid "LAN connection"
+msgstr "LAN veza"
+
+msgid "LAN link"
 msgstr "LAN veza"
 
 msgid "LCD scroll speed"
@@ -10768,6 +11030,9 @@ msgstr "LED Duboka Pripravnost"
 
 msgid "LED Deep Standby color"
 msgstr "LED Boja Isključivanja"
+
+msgid "LED Indicators"
+msgstr "LED indikatori"
 
 msgid "LED Normal"
 msgstr "LED Normalno"
@@ -10895,6 +11160,9 @@ msgstr "Latvia"
 msgid "Latvian"
 msgstr "Latvian"
 
+msgid "Layout And Fonts"
+msgstr "Raspored i fontovi"
+
 msgid "Leave"
 msgstr "Napuštate"
 
@@ -10939,6 +11207,9 @@ msgstr "Lijevi, prednji USB"
 
 msgid "Left, wrapped"
 msgstr "Lijevo, zamotano"
+
+msgid "Legacy (SMB1)"
+msgstr "Naslijeđeni (SMB1)"
 
 msgid "Legacy mode"
 msgstr "Nasleđeni režim"
@@ -11032,17 +11303,11 @@ msgstr "Lingala"
 msgid "Link detected"
 msgstr "Veza je otkrivena"
 
-msgid "Link quality:"
-msgstr "Kvalitet veze:"
-
 msgid "Link speed"
 msgstr "Brzina linka"
 
 msgid "Link target"
 msgstr "Cilj veze"
-
-msgid "Link:"
-msgstr "Veza:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Povezani naslovi s DVD menu"
@@ -11050,14 +11315,14 @@ msgstr "Povezani naslovi s DVD menu"
 msgid "Links"
 msgstr "Veze"
 
+msgid "List Appearance And Sorting"
+msgstr "Izgled i sortiranje liste"
+
 msgid "List Navigation Actions"
 msgstr "Radnje Navigacione Liste"
 
 msgid "List available EPG functions"
 msgstr "Lista dostupnih EPG funkcija"
-
-msgid "List available networks"
-msgstr "Popis dostupne mreže"
 
 msgid "List of Storage Devices"
 msgstr "Popis Uređaja za Pohranu"
@@ -11126,14 +11391,14 @@ msgstr "Lokalni datum/vrijeme"
 msgid "Local information"
 msgstr "Lokalna informacija"
 
-msgid "Local network"
-msgstr "Lokalna mreža"
-
 msgid "Local or Regional"
 msgstr "Lokalno ili Regionalno"
 
 msgid "Local receiver"
 msgstr "Lokalni prijemnik"
+
+msgid "Local share"
+msgstr "Lokalna razmjena"
 
 msgid "Local time"
 msgstr "Lokalno vrijeme"
@@ -11204,6 +11469,9 @@ msgstr "Log %d/%d"
 
 msgid "Log Manager"
 msgstr "Log Upravitelja"
+
+msgid "Log Retention And Access"
+msgstr "Čuvanje i pristup zapisima"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11304,11 +11572,11 @@ msgstr "Luxembourgish / Letzeburgesch"
 msgid "M2k Packages"
 msgstr "M2k Paket"
 
+msgid "MAC Address"
+msgstr "MAC Adresa"
+
 msgid "MAC address"
 msgstr "MAC adresa"
-
-msgid "MAC-address"
-msgstr "MAC-adresa"
 
 msgid "MENU"
 msgstr "MENI"
@@ -11452,9 +11720,6 @@ msgstr "Ručno Skeniranje"
 msgid "Manual Service Searching"
 msgstr "Ručno Pretraživanje Kanala"
 
-msgid "Manual configuration"
-msgstr "Ručna konfiguracija"
-
 msgid "Manual scan for services"
 msgstr "Ručno skeniranje kanala"
 
@@ -11527,9 +11792,6 @@ msgstr "Maks. kanala"
 msgid "Max memory positions"
 msgstr "Maks. broj pozicija memorije"
 
-msgid "Max. bitrate: "
-msgstr "Maks. bitrate: "
-
 msgid "Maxdown +"
 msgstr "Maks. dole +"
 
@@ -11566,6 +11828,9 @@ msgstr "Medija"
 
 msgid "Media Center"
 msgstr "Medija Centar"
+
+msgid "Media Files And Navigation"
+msgstr "Medijske datoteke i navigacija"
 
 msgid "Media Player"
 msgstr "Medija Plejer"
@@ -11649,6 +11914,9 @@ msgstr "Stil unosa menu"
 msgid "Menu style"
 msgstr "Stil menu"
 
+msgid "Menus And Setup"
+msgstr "Izbornici i postavke"
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Spajanje emitiranja EPG-a s IceTV-om"
 
@@ -11696,6 +11964,9 @@ msgstr "MiniDLNA Postavke"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr "MiniTV i PiP"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV sa OSD"
@@ -11829,8 +12100,8 @@ msgstr "Motori"
 msgid "Mount"
 msgstr "Montaža"
 
-msgid "Mount Manager"
-msgstr "Montažni Upravitelj"
+msgid "Mount Context Menu"
+msgstr "Kontekstni Izbornik za Montiranje"
 
 msgid "Mount Point"
 msgstr "Točka montiranja"
@@ -11838,8 +12109,20 @@ msgstr "Točka montiranja"
 msgid "Mount Setup"
 msgstr "Postavljanje montaže"
 
+msgid "Mount at boot time (fstab)"
+msgstr "Montiraj pri pokretanju (fstab)"
+
 msgid "Mount failed"
 msgstr "Montaža nije uspjela"
+
+msgid "Mount mode"
+msgstr "Način montaže"
+
+msgid "Mount on first access (autofs)"
+msgstr "Montiraj pri prvom pristupu (autofs)"
+
+msgid "Mount or unmount the selected share"
+msgstr "Montiraj ili demontiraj odabrani dijeljeni resurs"
 
 msgid "Mount point"
 msgstr "Točka montiranja"
@@ -11847,11 +12130,17 @@ msgstr "Točka montiranja"
 msgid "Mount root file system."
 msgstr "Montaža korjen sustava datoteka."
 
+msgid "Mounted"
+msgstr "Montirano"
+
 msgid "Mounts"
 msgstr "Montaže"
 
 msgid "Move"
 msgstr "Premjesti"
+
+msgid "Move Down"
+msgstr "Pomakni Dolje"
 
 msgid "Move Left/Right"
 msgstr "Premjesti Lijevo/Desno"
@@ -11870,6 +12159,9 @@ msgstr "Premjesti PiP"
 
 msgid "Move PiP to main picture"
 msgstr "Premještanje PiP na glavnu sliku"
+
+msgid "Move Up"
+msgstr "Pomakni Gore"
 
 msgid "Move Up/Down"
 msgstr "Premjesti Gore/Dolje"
@@ -11921,6 +12213,12 @@ msgstr "Pomaknite se prema dolje do posljednjeg retka na popisu."
 
 msgid "Move east"
 msgstr "Pomaknite na istok"
+
+msgid "Move item down"
+msgstr "Premjesti stavku dolje"
+
+msgid "Move item up"
+msgstr "Premjesti stavku gore"
 
 msgid "Move job completed."
 msgstr "Posao premještanja dovršen."
@@ -12028,6 +12326,12 @@ msgstr "Premjesti na prethodni buket"
 msgid "Move to previous marker"
 msgstr "Premještanje na prethodnu oznaku"
 
+msgid "Move to the Adapter list"
+msgstr "Idi na popis adaptera"
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr "Premjesti na popis Spremljenih Wi-Fi mreža"
+
 msgid "Move to the first item on the current line"
 msgstr "Premještanje na prvu stavku u trenutnom retku"
 
@@ -12123,6 +12427,9 @@ msgstr "Radnje Prikaza Filmskog Događaja"
 
 msgid "Movie List"
 msgstr "Popis filmova"
+
+msgid "Movie List And Playback Behavior"
+msgstr "Popis filmova i ponašanje pri reproduciranju"
 
 msgid "Movie Player Actions"
 msgstr "Radnje Filmski Plejer"
@@ -12256,11 +12563,17 @@ msgstr "SLJEDEĆE"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS Postavke"
+
+msgid "NFS Setup Actions"
+msgstr "Radnje za Postavljanje NFS"
 
 msgid "NFS threads"
 msgstr "NFS niti"
+
+msgid "NFS version"
+msgstr "NFS verzija"
 
 msgid "NIM"
 msgstr "NIM"
@@ -12304,12 +12617,6 @@ msgstr "Opadajući naziv"
 msgid "Name server %d"
 msgstr "Naziv servera %d"
 
-msgid "Nameserver"
-msgstr "Ime servera"
-
-msgid "Nameserver settings"
-msgstr "Postavke poslužitelja imena"
-
 msgid "Nameserver setup"
 msgstr "Postavljanje imenskog poslužitelja"
 
@@ -12352,6 +12659,12 @@ msgstr "Idite do odabranog direktorija"
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Krećite se gore/dolje pomoću dugmeta GORE/DOLJE i stranica gore/dolje pomoću LIJEVO/DESNO. U redu za izvođenje radnje opisane u trenutno istaknutoj pomoći."
 
+msgid "Navigation And Button Assignments"
+msgstr "Navigacija i dodjela tipki"
+
+msgid "Navigation And Time Range"
+msgstr "Navigacija i vremenski raspon"
+
 msgid "Ndonga"
 msgstr "Ndonga"
 
@@ -12373,23 +12686,21 @@ msgstr "Mrežna maska"
 msgid "Network"
 msgstr "Mreža"
 
-msgid "Network Adapter Actions"
-msgstr "Radnje Mrežnog Adaptera"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr "Postavke Mrežnog Adaptera '%s'"
 
 msgid "Network Adapter Selection"
 msgstr "Odabir Mrežnog Adaptera"
 
-msgid "Network Adapter Setting Actions"
-msgstr "Radnje Podešavanja Mrežnog Adaptera"
-
 msgid "Network Adapter Settings"
 msgstr "Postavke Mrežnog Adaptera"
 
-msgid "Network Adapter Text Actions"
-msgstr "Radnje Teksta Mrežnog Adaptera"
-
 msgid "Network Browser"
 msgstr "Mrežni Pregledač"
+
+msgid "Network Credentials"
+msgstr "Mrežne Vjerodajnice"
 
 msgid "Network ID"
 msgstr "Mreža ID"
@@ -12409,8 +12720,23 @@ msgstr "Log Mreže"
 msgid "Network Log Actions"
 msgstr "Radnja Log Mreže"
 
+msgid "Network Mount Manager Actions"
+msgstr "Radnje Upravitelja Mrežnih Montaža"
+
+msgid "Network Mount Settings"
+msgstr "Postavke Mrežnih Montaža"
+
+msgid "Network Mounts Overview"
+msgstr "Pregled Mrežnih Priključaka"
+
 msgid "Network Neighbourhood"
 msgstr "Mrežni Resursi"
+
+msgid "Network Overview"
+msgstr "Pregled Mreže"
+
+msgid "Network Overview Actions"
+msgstr "Radnje Pregleda Mreže"
 
 msgid "Network Packages"
 msgstr "Mrežni Paketi Konzole"
@@ -12427,23 +12753,68 @@ msgstr "Mrežne Postavke"
 msgid "Network Setup Actions"
 msgstr "Mrežne Postavke Radnja"
 
+msgid "Network Share Actions"
+msgstr "Radnje Dijeljenja Mreže"
+
+msgid "Network Shares Browser"
+msgstr "Preglednik Mrežnih Dijeljenja"
+
+msgid "Network Shares Context Menu"
+msgstr "Kontekstni Izbornik Mrežnih Dijeljenja"
+
 msgid "Network Test"
 msgstr "Mrežni Test"
 
-msgid "Network Test:"
-msgstr "Mrežni Test:"
+msgid "Network Test Actions"
+msgstr "Radnje Testiranja Mreže"
 
-msgid "Network Wizard"
-msgstr "Čarobnjak za Mrežu"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr "Test Mreže Za '%s'"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Postavke Wi-Fi Mreže"
+
+msgid "Network adapter disabled."
+msgstr "Mrežni adapter onemogućen."
+
+msgid "Network adapter enabled."
+msgstr "Mrežni adapter omogućen."
 
 msgid "Network adapter not connected to a network!"
 msgstr "Mrežni adapter nije spojen na mrežu!"
 
+msgid "Network adapter setup result:"
+msgstr "Rezultat postavljanja mrežnog adaptera:"
+
+msgid "Network adapter status"
+msgstr "Status mrežnog adaptera"
+
 msgid "Network address"
 msgstr "Mrežna adresa"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr "Mrežni kabel je priključen (%s)"
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr "Mrežni kabel je odspojen (%s)"
+
 msgid "Network configuration..."
 msgstr "Info o mreži..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
+"Mreža je uspješno povezana.\n"
+"\n"
+"Sučelje: %s\n"
+"IP adresa: %s"
 
 msgid "Network information"
 msgstr "Info o mreži"
@@ -12470,29 +12841,11 @@ msgstr "Skeniranje mreže"
 msgid "Network storage on"
 msgstr "Mrežno skladište uključeno"
 
-msgid "Network test"
-msgstr "Mrežni test"
-
 msgid "Network test..."
 msgstr "Mrežni test..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Mrežni čarobnjak je završio.\n"
-"\n"
-"Pritisni OK za nastavak."
-
 msgid "Network-ID"
 msgstr "Network-ID"
-
-msgid "Network:"
-msgstr "Mreža:"
-
-msgid "NetworkWizard"
-msgstr "ČarobnjakMreže"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -12526,6 +12879,9 @@ msgstr "Nova Postavka DXAndy "
 
 msgid "New Storage Device"
 msgstr "Novi skladišni uređaj"
+
+msgid "New Wi-Fi"
+msgstr "Novi Wi-Fi"
 
 msgid "New Zealand"
 msgstr "New Zealand"
@@ -12624,14 +12980,23 @@ msgstr "Na udaljenom tuneru nije pronađena datoteka 'epg.dat'!"
 msgid "No (supported) DVDROM found!"
 msgstr "Nije pronađen (podržani) DVDROM!"
 
-msgid "No Connection"
-msgstr "Nema Veze"
-
 msgid "No ECM PIDs available"
 msgstr "Nema dostupnog ECM PID"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nije pronađen HDD ili HDD nije formatiran!"
+
+msgid "No IP address"
+msgstr "Nema IP adrese"
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
+"Nije primljena IP adresa.\n"
+"\n"
+"Veza s mrežom nije uspjela."
 
 msgid "No Internet connection"
 msgstr "Nema Internet veze"
@@ -12706,8 +13071,14 @@ msgstr "Nema slobodnog broja"
 msgid "No free tuner!"
 msgstr "Nema slobodnog tunera!"
 
+msgid "No gateway"
+msgstr "Nema prolaza"
+
 msgid "No hard disks detected."
 msgstr "Nije otkriven hard disk."
+
+msgid "No hosts found yet - still scanning..."
+msgstr "Još nijedan domaćin nije pronađen - još uvijek se skenira..."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nisu pronađene datoteke dnevnika pa zapisnici za otklanjanje pogrešaka nisu dostupni!"
@@ -12721,8 +13092,8 @@ msgstr "Mrežna veza nije dostupna!"
 msgid "No network storage detected."
 msgstr "Nije otkriveno mrežno skladište."
 
-msgid "No networks found"
-msgstr "Mreže nisu pronađene"
+msgid "No networks found."
+msgstr "Nema dostupnih mreža."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nema prekidača stavki (povećaj ili smanji)"
@@ -12747,6 +13118,9 @@ msgstr "Nema kanala"
 
 msgid "No services/providers selected"
 msgstr "Nisu odabrane usluge/pružatelji usluga"
+
+msgid "No shares found."
+msgstr "Nema dostupnih dijeljenja."
 
 msgid "No slot images found"
 msgstr "Nisu pronađene slike utora"
@@ -12823,30 +13197,6 @@ msgstr "Nije pronađena valjana montaža za '%s'!"
 
 msgid "No valid region details were found"
 msgstr "Nisu pronađeni valjani podaci o regiji"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Nije pronađena bežična mreža! Pretraživanje..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Nije pronađen ispravan lokalni mrežni adapter.\n"
-"Provjerite jeste li priključili mrežni kabel i je li vaša mreža ispravno konfigurirana."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Nije pronađen ispravan bežični mrežni adapter.\n"
-"Provjerite jeste li priključili kompatibilan WLAN uređaj i je li vaša mreža ispravno konfigurirana."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Nije pronađeno radno bežično mrežno sučelje.\n"
-" Provjerite jeste li priključili kompatibilan WLAN uređaj ili omogućite lokalno mrežno sučelje."
 
 msgid "No, but restart from begin"
 msgstr "Ne, ali ponovno pokretanje od početka"
@@ -12932,6 +13282,9 @@ msgstr "Norwegian Nynorsk"
 msgid "Not Classified"
 msgstr "Nije Klasifikovano"
 
+msgid "Not Connected"
+msgstr "Nije Povezano"
+
 msgid "Not Defined"
 msgstr "Nije Definisano"
 
@@ -12977,8 +13330,14 @@ msgstr ""
 "Slobodni prostor: %sMB\n"
 "Putanja : %s"
 
+msgid "Not found"
+msgstr "Nije pronađeno"
+
 msgid "Not joined. Press Yellow to join."
 msgstr "Niste se pridružili. Pritisnite žuto za pridruživanje."
+
+msgid "Not mounted"
+msgstr "Nije montirano"
 
 msgid "Not required"
 msgstr "Nije obavezno"
@@ -13007,6 +13366,9 @@ msgstr "Nema se što nadograditi"
 
 msgid "Nothing, just leave this menu"
 msgstr "Ništa, samo napustite ovaj menu"
+
+msgid "Notifications And Display"
+msgstr "Obavijesti i zaslon"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13095,9 +13457,6 @@ msgstr "OScam Informacija"
 
 msgid "OSCam Information Settings"
 msgstr "OScam Informacija Postavke"
-
-msgid "OSCam webif disabled"
-msgstr "OScam webif je onemogućen"
 
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Radnja"
@@ -13202,9 +13561,6 @@ msgstr "Na važećim ONID zanemarite dio podmreže frekvencije."
 
 msgid "Once"
 msgstr "Jednom"
-
-msgid "One"
-msgstr "Jedan"
 
 msgid "One line"
 msgstr "Jedan red"
@@ -13401,8 +13757,23 @@ msgstr "Otvorite listu servisa i odaberite prethodni servis za PiP"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Otvorite ekran za podešavanje izbora kanala"
 
+msgid "Open the Context Menu for the selected item"
+msgstr "Otvori Kontekstni Izbornik za odabranu stavku"
+
 msgid "Open the Image information"
 msgstr "Otvorite informacije o imidžu"
+
+msgid "Open the Mount Context Menu"
+msgstr "Otvori Kontekstni Izbornik za Montažu"
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr "Otvori Postavke Mrežnog Adaptera za odabranu stavku"
+
+msgid "Open the Network Shares Browser"
+msgstr "Otvori Preglednik Mrežnih Dijeljenja"
+
+msgid "Open the Network Shares Context Menu"
+msgstr "Otvori Kontekstni Izbornik Mrežnih Dijeljenja"
 
 msgid "Open the Plugin Browser"
 msgstr "Otvorite preglednik dodataka"
@@ -13440,8 +13811,14 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paket"
 
+msgid "OpenWebif Connection"
+msgstr "Veza s OpenWebif"
+
 msgid "OpenWebif picon path"
 msgstr "Postavljanje pikona u OpenWebif"
+
+msgid "Opening network adapter configuration..."
+msgstr "Otvaranje konfiguracije mrežnog adaptera..."
 
 msgid "Opera"
 msgstr "Opera"
@@ -13469,6 +13846,9 @@ msgstr "Opcija za onemogućavanje pikona na Info Traci."
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Opcija za omogućavanje hardverskog tajmera čekanja."
+
+msgid "Optional arguments"
+msgstr "Opcionalni argumenti"
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr "Opcionalno kašnjenje između CEC naredbi pri slanju serije naredbi. Ostavite isključeno osim ako uređaj ne zahtijeva sporiji prijenos."
@@ -13517,6 +13897,9 @@ msgstr "Ostalo"
 
 msgid "Other Actions"
 msgstr "Ostale Radnje"
+
+msgid "Other OSD Elements"
+msgstr "Ostali OSD elementi"
 
 msgid "Other Packages"
 msgstr "Ostali Paketi"
@@ -13642,6 +14025,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Paket"
+
+msgid "Package Categories"
+msgstr "Kategorije paketa"
 
 msgid "Package Manager"
 msgstr "Upravitelj paketa"
@@ -13910,6 +14296,9 @@ msgstr "Način pretraživanja pikona"
 msgid "Picon width"
 msgstr "Pikon širina"
 
+msgid "Picture In Picture"
+msgstr "Slika u slici"
+
 msgid "Picture Information"
 msgstr "Info Slike"
 
@@ -13940,6 +14329,9 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pinging..."
+msgstr "Pinganje..."
 
 msgid "Pink"
 msgstr "Ružičasta"
@@ -14043,6 +14435,12 @@ msgstr "Reprodukuj audio datoteku"
 msgid "Play the selected service"
 msgstr "Reprodukuj odabrani kanal"
 
+msgid "Playback And Saving"
+msgstr "Reprodukcija i spremanje"
+
+msgid "Playback And Status"
+msgstr "Reprodukcija i status"
+
 msgid "Playback Settings"
 msgstr "Reprodukcija Postavke"
 
@@ -14125,17 +14523,11 @@ msgstr ""
 "Unesite vašu email adresu, koja će biti vaša prijava.\n"
 "Putem vašeg naloga na IceTV web lokaciji možete odabrati da primate objave servisa, podsjetnike za naloge i promotivne ponude."
 
-msgid "Please follow the instructions on the TV"
-msgstr "Pratite uputstvo na TV"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Imajte na umu da predhodno odabranom mediju nije moguće pristupiti i da se zato koristi zadani direktorijum."
 
 msgid "Please open Picture in Picture first"
 msgstr "Prvo otvorite Slika u Slici"
-
-msgid "Please press OK to continue."
-msgstr "Pritisni ОК za nastavak."
 
 msgid "Please press OK when ready"
 msgstr "Pritisni OK kada budete spremni"
@@ -14215,9 +14607,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Molim sačekajte"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Sačekajte aktiviranje vaše mreže..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "Molimo vas da sačekate dok se LCN buketi kreiraju/ažuriraju..."
 
@@ -14272,17 +14661,8 @@ msgstr "Molimo vas da sačekate dok se dodatak ažurira."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Sačekajte dok provjerimo vaše instalirane dodatke..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Sačekajte dok pripremimo vaše mrežno sučelje..."
-
-msgid "Please wait while we test your network..."
-msgstr "Sačekajte dok ne testiramo vašu vezu..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "Sačekajte da se mreža ponovo pokrene..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Sačekajte da se vaše postavke skina vrate u predhodno stanje..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Sačekajte dok se stanje feeds provjeri."
@@ -14554,9 +14934,6 @@ msgstr "Pritisni OK za odabir MultiBoot."
 msgid "Press OK on your remote control to continue."
 msgstr "Pritisni OK na daljinskom kontroloru da bi nastavili."
 
-msgid "Press OK to activate the settings."
-msgstr "Pritisni OK da bi aktivirali postavke."
-
 msgid "Press OK to continue."
 msgstr "Pritisni OK za nastavak."
 
@@ -14673,14 +15050,14 @@ msgstr "Predhodna/Sljedeća stranica"
 msgid "Prevsong"
 msgstr "Predhodna glazba"
 
-msgid "Primary DNS"
-msgstr "Primarni DNS"
-
 msgid "Primary DNS (IPv4)"
 msgstr "Primarni DNS (IPv4)"
 
 msgid "Primary DNS (IPv6)"
 msgstr "Primarni DNS (IPv6)"
+
+msgid "Prime Time"
+msgstr "Vremena najveće gledanosti"
 
 msgid "Prime time"
 msgstr "Udarno vrijeme"
@@ -15035,11 +15412,20 @@ msgstr "Ocjena nedefinisana"
 msgid "Re-enter new PIN"
 msgstr "Ponovo unesite novi PIN"
 
+msgid "Reachable"
+msgstr "Dostupno"
+
 msgid "Read Only"
-msgstr "Samo za čitanje"
+msgstr "Samo za Čitanje"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Čitanje korisničkih podataka iz 'oscam.conf'"
+
+msgid "Read block size"
+msgstr "Veličina čitanja bloka"
+
+msgid "Read-Only"
+msgstr "Samo za čitanje"
 
 msgid "Read/Write"
 msgstr "Čitanje/Pisanje"
@@ -15094,6 +15480,9 @@ msgstr "Stvarno gašenje sada?"
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "Stvarno da pokrenem Kodi i da sada zaustavim korisnički interfejs?"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr "Stvarno želiš pokrenuti RetroGaming i odmah zaustaviti korisničko sučelje?"
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Stvarno nadogradi prednju ploču i restartuj sada?"
@@ -15185,6 +15574,18 @@ msgstr "Zapisivi medij za snimanje"
 msgid "Recording"
 msgstr "Snimanje"
 
+msgid "Recording And Status Indicators"
+msgstr "Indikatori snimanja i statusa"
+
+msgid "Recording Filenames And Data"
+msgstr "Snimanje ime datoteka i podataka"
+
+msgid "Recording Locations"
+msgstr "Lokacije snimanja"
+
+msgid "Recording Preparation And Margins"
+msgstr "Priprema zapisa i margine"
+
 msgid "Recording Settings"
 msgstr "Postavke Snimanja"
 
@@ -15258,6 +15659,9 @@ msgstr "Snimci možda neće ispravno raditi bez prihvatljivog direktorijuma."
 
 msgid "Recovery"
 msgstr "Oporavak"
+
+msgid "Recovery And Hardware"
+msgstr "Oporavak i hardver"
 
 msgid "Recovery Mode"
 msgstr "Režim Oporavaka"
@@ -15398,11 +15802,20 @@ msgstr "Postavke dugmeta Daljinskog kontrolora"
 msgid "Remote Control Code Settings"
 msgstr "Postavke Koda Daljinskog kontrolora"
 
+msgid "Remote Receiver Connection"
+msgstr "Povezivanje daljinskog prijemnika"
+
+msgid "Remote Timers"
+msgstr "Udaljeni tajmeri"
+
 msgid "Remote control information"
 msgstr "Daljinski kontrolor info"
 
 msgid "Remote control type"
 msgstr "Vrsta Daljinskog kontrolora"
+
+msgid "Remote path"
+msgstr "Udaljena putanja"
 
 msgid "Remote receiver"
 msgstr "Daljinski prijemnik"
@@ -15431,6 +15844,9 @@ msgstr "Uklanjanje kablovskih servisa"
 
 msgid "Remove Confirmation"
 msgstr "Ukloniti Potvrdu"
+
+msgid "Remove Credentials"
+msgstr "Ukloni Vjerodajnice"
 
 msgid "Remove Entry"
 msgstr "Uklanjanje stavke"
@@ -15646,6 +16062,15 @@ msgstr "Potrebna vrsta medija:"
 msgid "Rereading partition table"
 msgstr "Ponovno čitanje tabele particija"
 
+msgid "Rescan"
+msgstr "Ponovno skeniraj"
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr "Ponovno pretraži dostupne Wi-Fi mreže"
+
+msgid "Rescan for available network shares"
+msgstr "Ponovo pretraži dostupne mrežne resurse"
+
 msgid "Reserved"
 msgstr "Reservisano"
 
@@ -15709,8 +16134,18 @@ msgstr "Rezolucija"
 msgid "Resolution unit"
 msgstr "Jedinica rezolucije"
 
+msgid "Resolving..."
+msgstr "Rješavanje..."
+
 msgid "Restart"
 msgstr "Ponovo pokrenuti"
+
+#, python-format
+msgid "Restart %s"
+msgstr "Ponovo pokreni %s"
+
+msgid "Restart Adapter"
+msgstr "Ponovno pokreni Adapter"
 
 msgid "Restart GUI"
 msgstr "Ponovo pokreni GUI"
@@ -15726,12 +16161,6 @@ msgstr "Ponovo pokreni GUI sada?"
 
 msgid "Restart Network"
 msgstr "Ponovo pokreni Mrežu"
-
-msgid "Restart Network Adapter"
-msgstr "Ponovo pokreni Mrežni Adapter"
-
-msgid "Restart OSCam"
-msgstr "Ponovo pokreni OSCam"
 
 msgid "Restart enigma"
 msgstr "Ponovo pokreni Enigma"
@@ -15751,8 +16180,15 @@ msgstr "Ponovo pokreni mrežu sa trenutnim podešavanjem"
 msgid "Restart test"
 msgstr "Ponovo pokreni test"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Ponovo pokreni mrežnu vezu i sučelje."
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr "Ponovni pokušaj pokretanja %s nije uspio (kod izlaza %s)"
+
+msgid "Restarting adapter..."
+msgstr "Ponovno pokrećem adapter..."
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr "Ponovno pokretanje spremljene Wi-Fi mreže..."
 
 msgid "Restarting..."
 msgstr "Ponovno pokretanje..."
@@ -15762,9 +16198,6 @@ msgstr "Vratiti"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "Vraćanje izbrisanih korisničkih buketa"
-
-msgid "Restore MetrixHD Settings"
-msgstr "Vrati MetrixHD Postavke"
 
 msgid "Restore Plugins"
 msgstr "Vrati Dodatak"
@@ -15820,6 +16253,9 @@ msgstr "Nastavi poziciju u %s"
 
 msgid "Resuming playback"
 msgstr "Nastavljanje reprodukcije"
+
+msgid "Retest"
+msgstr "Ponovno testiranje"
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16019,11 +16455,11 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd Postavke"
-
 msgid "SAT"
 msgstr "SAT"
+
+msgid "SAT input"
+msgstr "SAT ulaz"
 
 msgid "SATA"
 msgstr "SATA"
@@ -16061,6 +16497,9 @@ msgstr "GREŠKA SDcard prekidača! - već na mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "JEDNOSLOJNI DVD"
+
+msgid "SMB version"
+msgstr "SMB verzija"
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "Odabir stavke brzog SMS stila"
@@ -16116,7 +16555,7 @@ msgstr "Samba Klijent"
 msgid "Samba Server"
 msgstr "Samba Server"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba Postavke"
 
 msgid "Same as in active"
@@ -16267,6 +16706,26 @@ msgstr "Spremi timeshift kao film i zaustavi snimanje"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Spremi bafer timeshift sada i nastavi snimanje"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr "Kontekstni Izbornik Spremljene Wi-Fi Mreže '%s'"
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr "Postavke Spremljene Wi-Fi Mreže '%s'"
+
+msgid "Saved Wi-Fi Networks"
+msgstr "Spremljene Wi-Fi Mreže"
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr "Spajanje na spremljenu Wi-Fi mrežu onemogućeno."
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr "Omogućena je spremljena Wi-Fi mreža."
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr "Spremljena Wi-Fi mreža bit će automatski pokušana ponovno pri sljedećem pokretanju."
+
 msgid "Saved lines in script messages"
 msgstr "Spremi redove u porukama skripti"
 
@@ -16303,6 +16762,9 @@ msgstr "Skan %s"
 msgid "Scan %s band"
 msgstr "Skan %s band"
 
+msgid "Scan Wi-Fi Networks"
+msgstr "Skeniraj Wi-Fi Mreže"
+
 msgid "Scan additional SR"
 msgstr "Skan dodatni SR"
 
@@ -16317,12 +16779,6 @@ msgstr "Skan lokalnih proširenja i instalirajte ih."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skeniraj za zemaljske LCN i kreiraj LCN bukete"
-
-msgid "Scan wireless networks"
-msgstr "Skeniranje bežičnih mreža"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Skeniranje bežičnih mreža i povezivanje pomoću izabranog bežičnog uređaja."
 
 msgid "Scanning"
 msgstr "Skeniranje"
@@ -16350,6 +16806,12 @@ msgstr[2] "Skeniranje završeno, pronađeno je %d usluga."
 
 msgid "Scanning failed!"
 msgstr "Skeniranje nije uspjelo!"
+
+msgid "Scanning for shares..."
+msgstr "Pretražujem dijeljene datoteke..."
+
+msgid "Scanning..."
+msgstr "Skeniram..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16464,9 +16926,6 @@ msgstr "Pretraživanje zapada ..."
 msgid "Second cable of motorized LNB"
 msgstr "Drugi kabl od pozicionera LNB"
 
-msgid "Secondary DNS"
-msgstr "Sekundarni DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr "Sekundarni DNS (IPv4)"
 
@@ -16547,6 +17006,9 @@ msgstr "Odaberi 'Polarizacija' ako koristite 'Univerzalni' LNB, u suprotnom pogl
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Odaberi 'provajder' da bi skenirali sa unaprijed zadane spiske multipleks kablova. Odaberi 'band' da bi skenirali samo određene dijelove spektra. Odaberite 'korak' za skeniranje određenog frekventnog bandwidth."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr "Odaberi 'Meka montaža' da bi pristup datotekama vratio pogrešku kada poslužitelj prestane odgovarati, umjesto da stalno pokušava. Opcija 'Tvrda montaža', koja je zadana, štiti od tihog gubitka podataka, ali može zamrznuti programe koji pristupaju ovoj dijeljenoj mapi dok poslužitelj nije dostupan."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Odaberi 'Jedinstveno numerisanje' da dodijelite jedinstvene brojeve za svaku uslugu u svakom buketu. Koristite 'Buketi počinju od 1'da numerisanje počinje buketa od 1. Koristite 'LCN numerisanje' da bi koristili LCN usluge gdje god da se koristi ta usluga."
@@ -16703,6 +17165,9 @@ msgstr "Odaberi 'Da' da bi postavili poziciju kursora na kraj reda prilikom ure�
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Odaberi 'Da' da bi 'dev', 'staticdev', 'dbg' i 'doc' na zaslonu Preuzmi Dodatak prikazane pakete."
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Odaberite 'Da' kako biste prikazali Kodi dodatke na zaslonu Preuzimanje dodataka."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Odaberi 'Da' da bi na zaslonu Preuzmi Dodatak prikazali pakete LCD skina."
@@ -16881,6 +17346,9 @@ msgstr "Odaberi Izvor Nadogradnje"
 msgid "Select Upgrade Source To Edit"
 msgstr "Odaberi Izvor Nadogradnje za Uređivanje"
 
+msgid "Select Wi-Fi adapter"
+msgstr "Odaberi Wi-Fi adapter"
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Odaberi Softcam sa dostupnog spiska kao zadani za AutoCam."
 
@@ -16924,6 +17392,9 @@ msgstr "Odaberi film"
 msgid "Select a network adapter"
 msgstr "Odaberi mrežni adapter"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr "Odaberite mrežno sučelje za konfiguraciju ili preskočite da biste mrežu konfigurirali kasnije u postavkama sustava."
+
 msgid "Select a permanent mount point for all devices"
 msgstr "Odaberi stalnu točku montiranja za sve uređaje"
 
@@ -16936,6 +17407,12 @@ msgstr "Odaberi evidenciju obaveznog log za prikaz:"
 msgid "Select a script to run:"
 msgstr "Odaberi skriptu za pokretanje:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr "Odaberi određenu verziju NFS da prisiliš određenu verziju NFS protokola umjesto dopuštanja automatske pregovore."
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr "Odaberi određenu verziju SMB protokola koju želiš koristiti umjesto da dopuštaš automatsko pregovaranje. Koristi 'Naslijeđenu (SMB1)' samo za starije servere koji ne podržavaju novije i sigurnije SMB2/SMB3 protokole."
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "Odaberi vremensko razdoblje za prikaz upita za potvrdu prije nego što tajmer Zapa promijeni trenutačnu uslugu. Ovo omogućuje korisniku da otkaže Zap. Odaberi 'Onemogućeno' da bi Zap mogao nastaviti bez potvrde."
 
@@ -16947,9 +17424,6 @@ msgstr "Odaberi vrijeme, kada je u stanju pripravnosti, prije kojeg dešifrovanj
 
 msgid "Select a tuner"
 msgstr "Odaberi tuner"
-
-msgid "Select a wireless network"
-msgstr "Odaberi bežične mreže"
 
 msgid "Select action"
 msgstr "Odabir akcije"
@@ -17000,6 +17474,9 @@ msgstr "Odaberi zadani Zapovjednik Datoteka direktorijum:"
 msgid "Select destination for:"
 msgstr "Odaberi odredište za:"
 
+msgid "Select exported directories"
+msgstr "Odaberi izvezene direktorije"
+
 msgid "Select files to exclude from backup"
 msgstr "Odaberi datoteke koje želite isključiti iz rezervne kopije"
 
@@ -17045,9 +17522,6 @@ msgstr "Odaberi kako je satelitska antena podešena. npr. fiksna antena, jedan L
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Odaberite kako se raspored rukuje u vezi s pripravnošću."
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Odaberite kako je ovaj DVB-C/T tuner povezan. Opciju vanjskog coax prekidača koristite samo s 5V kontroliranim coax prekidačem."
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Odaberi kako da aktivirate brzi EPG način."
 
@@ -17059,6 +17533,9 @@ msgstr "Odaberi da li je potrebno vrijeme završetka."
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Odaberite da li se vremenska ograničenja za unos podataka primenjuju prilikom unošenja znamenki na zaslon za odabir usluga. Kada se prekorači vremensko ograničenje, trenutno uneseni broj će se koristiti za odabir usluge. Zadana vremenska ograničenja su: prvi broj 3 sekunde, ostali brojevi 1 sekunda."
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr "Odaberite je li zaključavanje datoteke dostupno. Odaberite 'Ne' kako biste u postavke dodali 'bez zaključavanja', što je najprikladnije za starije/jednostavne NFS poslužitelje."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Potvrdite odabir u ovom polju a zatim podesite zadanu vrijednost za stavku i ako jeste gdje je prikazana u odnosu na opis."
@@ -17108,12 +17585,6 @@ msgstr "Odaberi ulazni uređaj"
 msgid "Select input device."
 msgstr "Odaberi ulazni uređaj."
 
-msgid "Select interface"
-msgstr "Odaberi sučelje"
-
-msgid "Select menu entry"
-msgstr "Odaberi stavke menu"
-
 msgid "Select movie"
 msgstr "Odaberi film"
 
@@ -17154,7 +17625,7 @@ msgstr "Odaberi %s stavku"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Odaberi AI-Pokretanje Prijevoda za ciljni jezik."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Odaberite DNS poslužitelj(e) koji će se koristiti za pretraživanje imena domaćina kako bi se razriješila IP adresa."
 
 msgid "Select the No / False response"
@@ -17242,6 +17713,9 @@ msgstr "Odaberi kanal ili servis koji će se koristiti za ovaj tajmer."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Odaberi znak ili radnju ispod kursora tipkovnice"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr "Odaberite skup znakova (iocharset) koji će se koristiti za podudaranje/prijevod udaljenih naziva datoteka."
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Odaberi boju LED za napajanje na prednjoj ploči kad je prijemnik u radu. Ova opcija također omogućuje isključivanje LED."
@@ -17398,11 +17872,14 @@ msgstr "Odaberi SCR uređaj. Ako proizvođač nije naveden, postavite 'SCR' na '
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Odaberi metod vraćanja rezolucije zaslona i buffera frejma prilikom napuštanja teleteksta."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Odaberi režim pristupa za automatski izvezene samba akcije."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Odaberi način pristupa, Čitanje/Pisanje ili Samo Čitanje, koji se primjenjuje na sve izvezene direktorije."
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr "Odaberi način pristupa, Čitanje/Pisanje ili Samo čitanje, za ovu dijeljenu mapu."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Odaberi broj modela vašeg uređaja Unicable . Ako broj modela nije naveden, postavite 'SCR' na 'Korisnički definisano' i unesite parametre uređaja ručno u skladu sa njegovim specifikacijama."
@@ -17418,15 +17895,6 @@ msgstr "Odaberi putanju filma"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Odaberi brzinu mrežnih podataka ispod koje bi tajmer trebao da se aktivira kao što je navedeno. Saobraćaj iznad ove tarife se deaktivira tajmerom."
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Odaberite mrežni interfejs da bi koristili Internet vezu.\n"
-"\n"
-"Pritisni OK za nastavak."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
 msgstr "Odaberite mrežnu metriku za ovaj adapter. Kada je više adaptera aktivno, onaj s najnižom mrežnom metrikom koristi se kao zadana ruta za mrežni promet."
@@ -17465,6 +17933,9 @@ msgstr "Odaberi prethodnu uslugu, zatvorite skener i izađite iz svih menu"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Odaberi protokol koji koristi SCR uređaj. Odabrani su 'SCR Unicable' (Unicable) ili 'SCR JESS' (JESS, poznat i kao Unicable II)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr "Odaberi veličinu predmemorije za čitanje blokova (rsize) u opcijama montaže. Koristi 'Automatski' da dopuštaš kernelu i serveru da dogovore optimalnu veličinu."
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "Odaberite radnju prijamnika kada se TV prebaci s ulaza prijamnika."
 
@@ -17497,6 +17968,9 @@ msgstr "Odaberi način pretraživanja za pronalaženje pikona. 'Način s jednom 
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr "Odaberi sigurnosni protokol koji će se koristiti za pristup odabranoj bežičnoj mreži."
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
+msgstr "Odaberi protokol dijeljenja koji će se koristiti, SMB (dijeljenja u stilu Windowsa) ili NFS (dijeljenja za Mac i Linux)."
 
 msgid "Select the shifted character set"
 msgstr "Odaberi skupa preseljenih znakova"
@@ -17591,14 +18065,8 @@ msgstr "Odaberi vrstu ovog tajmera."
 msgid "Select the video mode to be used on the TV."
 msgstr "Odaberi video način koji će se koristiti na TV."
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Odaberi bežičnu mrežu sa kojom želite da se povežete.\n"
-"\n"
-"Pritisni OK za nastavak."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr "Odaberi veličinu predmemorije za zapisivanje (wsize) u opcijama montiranja. Koristi 'Automatski' da bi kernel i server dogovorili optimalnu veličinu."
 
 msgid "Select update source location"
 msgstr "Odaberi izvorne lokacije ažuriranja"
@@ -17642,6 +18110,9 @@ msgstr "Odaberi radnju za dugme TV."
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Odaberite što želite da gumb GORE/DOLJE aktivira."
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr "Odaberi kada i kako će se udaljeni dijeljeni prostor montirati. Za većinu slučajeva preporučuje se autofs."
+
 msgid "Select where the recording should be saved."
 msgstr "Odaberi gdje bi snimak trebalo da bude spremljen."
 
@@ -17666,7 +18137,7 @@ msgstr "Odaberite hoće li se zvučni zapisi DTS kanala smanjivati na stereo."
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Odaberite hoće li se Dolby TrueHD audio zapisi prenijeti nepromijenjeni ili dekodirati."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Odaberite hoće li se koristiti IPv4, IPv6 ili oba protokola. Ako su oba omogućena, odaberite koji bi trebao imati prednost."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17686,9 +18157,6 @@ msgstr "Odaberite hoće li se ikona prikazivati kada se motorizirana antena pomi
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Odaberi koje IP protokole ovaj adapter može koristiti."
-
-msgid "Select wireless network"
-msgstr "Odaberi bežičnu mrežu"
 
 msgid "Select your ATSC provider."
 msgstr "Odaberi poslužitelja ATSC."
@@ -17801,10 +18269,13 @@ msgstr "Ozbiljna glazba/klasična glazba"
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "Ozbiljni/klasični/religiozni/povijesni film/drama"
 
+msgid "Server"
+msgstr "Server"
+
 msgid "Server down"
 msgstr "Server je pao"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Poslužitelj ne smije nametati vlastitu listu blokiranih. Neki poslužitelji mogu implementirati vlastite crne liste za blokiranje stranica iz razloga roditeljskog nadzora, blokiranja oglasa itd."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -17842,6 +18313,9 @@ msgstr "Servis Info"
 
 msgid "Service Information Actions"
 msgstr "Servis Info Radnja"
+
+msgid "Service List Appearance"
+msgstr "Izgled popisa usluga"
 
 msgid "Service Scan"
 msgstr "Skeniranje usluge"
@@ -18203,17 +18677,20 @@ msgstr "Postavite na ono što želite da dugme uradi."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Postavite na da za otklanjanje grešaka osnovnog uzorka potenciometra."
 
+msgid "Set up network"
+msgstr "Postavi mrežu"
+
 msgid "Set up tuner [TUNER]"
 msgstr "Podešavanje tunera [TUNER]"
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Podešavanje tunera [TUNER].\n"
+"Postavi tuner [TUNER].\n"
 "\n"
-"Za hibridne tunere prebacite vrstu tunera pomoću dugmadi LIJEVO i DESNO."
+"Za tunere koji podržavaju više vrsta prijema, konfigurirajte svaku dostupnu vrstu zasebno."
 
 msgid "Set voltage and 22KHz"
 msgstr "Postavi napon i 22КХз"
@@ -18553,6 +19030,9 @@ msgstr "Pokaži pikone Info Trake"
 msgid "Show Kernel packages"
 msgstr "Pokaži Jezgra pakete"
 
+msgid "Show Kodi Add-on packages"
+msgstr "Prikaži Kodi Pakete dodataka"
+
 msgid "Show Live in MiniTV"
 msgstr "Pokaži Uživo u MiniTV"
 
@@ -18675,9 +19155,6 @@ msgstr "Pokaži VCR SCART u glavnom menu"
 
 msgid "Show Vertical EPG"
 msgstr "Pokaži Vertikalni EPG"
-
-msgid "Show WLAN status"
-msgstr "Pokaži WLAN status"
 
 msgid "Show Web Link packages"
 msgstr "Pokaži Web Link pakete"
@@ -18840,9 +19317,6 @@ msgstr "Pokaži u plugin pregledaču"
 msgid "Show in Standby"
 msgstr "Pokaži stanje pripravnosti"
 
-msgid "Show info"
-msgstr "Pokaži info"
-
 msgid "Show info line"
 msgstr "Pokaži info red"
 
@@ -18884,6 +19358,9 @@ msgstr "Pokaži film"
 
 msgid "Show multi channel EPG"
 msgstr "Pokaži multi kanal EPG"
+
+msgid "Show network adapter connection information"
+msgstr "Prikaži informacije o vezi mrežnog adaptera"
 
 msgid "Show next commit log"
 msgstr "Pokaži sljedeću evidenciju kao log"
@@ -19068,6 +19545,9 @@ msgstr "Pokaži CCcam Info Zaslona"
 msgid "Show the Logs Settings screen"
 msgstr "Pokaži postavke evidencije zaslona"
 
+msgid "Show the Network Information for the selected adapter"
+msgstr "Prikaži mrežne informacije za odabrani adapter"
+
 msgid "Show the OSCam information screen"
 msgstr "Prikaži zaslon sa info o OSCam"
 
@@ -19149,9 +19629,6 @@ msgstr "Prikazuje live TV ili informacije na LCD-u."
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Pokaži ikone kada su nove/nevidljive, u ostalom neće biti prikazana ikona."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Pokaži stanje bežične LAN veze."
-
 msgid "Shows the watched status of the media."
 msgstr "Pokaži status glavnog medija."
 
@@ -19164,8 +19641,9 @@ msgstr "Isključi"
 msgid "Shutdown"
 msgstr "Isključivanje"
 
-msgid "Shutdown OSCam"
-msgstr "Isključi OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr "Isključi %s"
 
 msgid "Shutting down. Please wait..."
 msgstr "Isključivanje. Molimo sačekajte..."
@@ -19185,14 +19663,8 @@ msgstr "Sigma Dizajn"
 msgid "Signal Finder"
 msgstr "Tražilica Signala"
 
-msgid "Signal quality"
-msgstr "Kvalitet Signala"
-
 msgid "Signal strength"
 msgstr "Jačina Signala"
-
-msgid "Signal: "
-msgstr "Signal: "
 
 msgid "Signed by"
 msgstr "Potpisao"
@@ -19284,6 +19756,9 @@ msgstr "Skin postavke"
 msgid "SkinSelection"
 msgstr "Odabir Skina"
 
+msgid "Skip Modes"
+msgstr "Načini preskakanja"
+
 msgid "Skip back"
 msgstr "Preskoči nazad"
 
@@ -19330,6 +19805,9 @@ msgstr "Preskoči naprijed (unesi vrijeme)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Preskoči preskakanje uživo tajmeršifta sa pluginom"
+
+msgid "Skip network setup"
+msgstr "Preskoči postavljanje mreže"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Preskoči instalaciju paketa, samo osnovni paketi će biti dostupni"
@@ -19565,6 +20043,9 @@ msgstr "Society & Culture"
 msgid "Socket"
 msgstr "Priključak"
 
+msgid "Soft mount"
+msgstr "Meka montaža"
+
 msgid "SoftCSA Settings"
 msgstr "Postavke SoftCSA"
 
@@ -19585,6 +20066,9 @@ msgstr "Podešavanje Softcam"
 
 msgid "Softcams"
 msgstr "Softcam"
+
+msgid "Software Display Scrolling"
+msgstr "Pomicanje prikaza softvera"
 
 msgid "Software Management"
 msgstr "Upravljanje Softverom"
@@ -19703,6 +20187,18 @@ msgstr "Sortiranje stavki Plugin Pregledača"
 msgid "Sort by"
 msgstr "Sortiraj po"
 
+msgid "Sort by Hostname/IP Address"
+msgstr "Sortiraj po nazivu hosta/IP adresi"
+
+msgid "Sort by IP Address"
+msgstr "Sortiraj po IP Adresi"
+
+msgid "Sort by Mount Name"
+msgstr "Sortiraj po Nazivu Montaže"
+
+msgid "Sort by Name"
+msgstr "Sortiraj po Nazivu"
+
 msgid "Sort by default"
 msgstr "Sortiraj po zadanom"
 
@@ -19730,6 +20226,9 @@ msgstr "Soul/Ritm i Bluz"
 
 msgid "Sound"
 msgstr "Zvuk"
+
+msgid "Sound Enhancements"
+msgstr "Poboljšanja zvuka"
 
 msgid "Sound carrier"
 msgstr "Nosač zvuka"
@@ -19795,9 +20294,6 @@ msgstr "Specijalni događaji (Olimpijske igre, Svetsko prvenstvo, itd.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Navedite direktorijum koji će se koristiti prilikom pokretanja Medija Plejer."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Odredite DNS sufiks mreže koji će se primijeniti kada se navede samo ime računala. To pomaže DNS rješavaču da pronađe traženo računalo."
-
 msgid "Speed"
 msgstr "Brzina"
 
@@ -19848,6 +20344,10 @@ msgstr "Stanje pripravnosti bez ugašenog TV"
 
 msgid "Start"
 msgstr "Start"
+
+#, python-format
+msgid "Start %s"
+msgstr "Pokreni %s"
 
 msgid "Start Auto Refresh"
 msgstr "Započni Auto Osvježavanje"
@@ -19900,9 +20400,6 @@ msgstr "Pokreni ponovni pokušaj"
 msgid "Start teletext"
 msgstr "Pokreni teletekst"
 
-msgid "Start test"
-msgstr "Pokreni test"
-
 msgid "Start the Chkroot initialization"
 msgstr "Započni Chkroot inicijalizaciju"
 
@@ -19930,6 +20427,10 @@ msgstr "Pokreni/Zaustavi/Odabir Cam"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Pokreni/Zaustavi/Odabir Cam, prvo treba instalirati softcam"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr "Pokretanje %s nije uspjelo (kod izlaza %s)"
+
 msgid "Starting Softcam"
 msgstr "Pokreni Softcam"
 
@@ -19948,12 +20449,18 @@ msgstr "Vrijeme početka"
 msgid "Starts in a few seconds"
 msgstr "Počinje za nekoliko sekundi"
 
+msgid "Startup And Wakeup"
+msgstr "Pokretanje i buđenje"
+
 msgid "Startup device not found!"
 msgstr "Uređaj za pokretanje nije pronađen!"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Država"
+
+msgid "Static"
+msgstr "Statik"
 
 msgid "Static IP / Custom"
 msgstr "Statički IP / Prilagođen"
@@ -20039,9 +20546,6 @@ msgstr "Zaustavi kanal po povratku na spisak filmova"
 msgid "Stop streams"
 msgstr "Zaustavi streams"
 
-msgid "Stop test"
-msgstr "Zaustavi test"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Prestani testiranje nakon # greška transpondera"
 
@@ -20069,6 +20573,10 @@ msgstr "Zaustavi snimanje tajmerom"
 msgid "Stopped"
 msgstr "Zaustavljeno"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr "Zaustavljanje %s nije uspjelo (kod izlaza %s)"
+
 msgid "Stopping Softcam"
 msgstr "Zaustavi Softcam"
 
@@ -20088,6 +20596,9 @@ msgstr "Skladište / Disk"
 msgid "Storage / Drive information"
 msgstr "Skladište / Disk info"
 
+msgid "Storage And Deletion"
+msgstr "Pohrana i brisanje"
+
 msgid "Storage Devices"
 msgstr "Uređaj za Skladištenje"
 
@@ -20102,6 +20613,12 @@ msgstr "Uređaj za skladištenje nije upisiv!"
 
 msgid "Store position"
 msgstr "Čuvanje pozicije"
+
+msgid "Stored credentials deleted for this server."
+msgstr "Spremljene vjerodajnice za ovaj poslužitelj su obrisane."
+
+msgid "Stored credentials for this server have been deleted."
+msgstr "Pohranjeni podaci za prijavu za ovaj poslužitelj su izbrisani."
 
 msgid "Stored position"
 msgstr "Uskladištena pozicija"
@@ -20194,6 +20711,9 @@ msgstr "Titl"
 
 msgid "Subtitle Actions"
 msgstr "Izbor Titla"
+
+msgid "Subtitle Language And Selection"
+msgstr "Jezik i odabir titlova"
 
 msgid "Subtitle Quickmenu"
 msgstr "Brzi Meni Titla"
@@ -20411,9 +20931,6 @@ msgstr "Pređi na drugu kolonu"
 msgid "Switch to the right column"
 msgstr "Prebaci na desnu kolonu"
 
-msgid "Switchable tuner types:"
-msgstr "Tipovi tunera koji se mogu zamijeniti:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Prelazak na TV uživo - timeshift je i dalje aktivan!"
 
@@ -20516,17 +21033,17 @@ msgstr "TUNER:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "Ulaz na TV-u i buđenje prijemnika"
+
+msgid "TV Power"
+msgstr "Struja za TV"
+
 msgid "TV button mode"
 msgstr "TV dugme način"
 
-msgid "TV input and receiver wakeup"
-msgstr "Ulaz na TV-u i buđenje prijemnika"
-
 msgid "TV physical address report"
 msgstr "TV izvještaj fizičke adrese"
-
-msgid "TV power"
-msgstr "Struja za TV"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20630,6 +21147,9 @@ msgstr "Teletekst StartX (leva ivica)"
 msgid "Teletext StartY (lower border)"
 msgstr "Teletekst StartY (donja ivica)"
 
+msgid "Teletext Subtitles"
+msgstr "Teletext titlovi"
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletekst TTFBold (0=normalno, 1=podebljano)"
 
@@ -20692,6 +21212,9 @@ msgstr "Tenis/Squash"
 msgid "Terrestrial"
 msgstr "Zemaljski"
 
+msgid "Terrestrial input"
+msgstr "Zemaljski ulaz"
+
 msgid "Test"
 msgstr "Test"
 
@@ -20706,10 +21229,6 @@ msgstr "Test posao nije uspeo!"
 
 msgid "Test mode"
 msgstr "Test režim"
-
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Test mrežne konfiguracije %s %s."
 
 msgid "Test type"
 msgstr "Test vrsta"
@@ -20829,24 +21348,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "IceTV poslužitelj je zatražio lozinku za %s."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Čini se da internetska veza radi.\n"
-"\n"
-"Pritisnite OK za nastavak."
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Čini se da internetska veza ne radi!\n"
-"\n"
-"Odaberite što ćete učiniti sljedeće."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21017,13 +21518,6 @@ msgstr "Visina slike. Ulaz će se skalirati kako bi odgovarao ovoj vrijednosti."
 msgid "The loopthrough setting is wrong."
 msgstr "Postavka petlje je pogrešna."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Proširenje mrežnog čarobnjaka nije instalirano!\n"
-"Molimo instalirajte ga."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Direktorij picon već postoji i mora se ukloniti. Želite li nastaviti?"
 
@@ -21101,35 +21595,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "Korisničko sučelje vašeg %s %s će biti zaustavljeno za pokretanje Kodija"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr "Korisničko sučelje vašeg %s %s bit će zaustavljeno kako bi se pokrenuo RetroGaming"
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Širina slike. Ulaz će se skalirati kako bi odgovarao ovoj vrijednosti."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Bežična LAN internetska veza nije se mogla pokrenuti!\n"
-"Je li bežični LAN uređaj povezan?\n"
-"\n"
-"Odaberite što ćete učiniti sljedeće."
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"Kôd dodatka za bežični LAN nije instaliran!\n"
-"\n"
-"Instalirajte ga i odaberite što ćete učiniti sljedeće."
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Dodatak za bežični LAN nije instaliran!\n"
-"Molimo instalirajte ga."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "Čarobnjak može sigurnosno kopirati vaše trenutne postavke. Želite li sada pokrenuti sigurnosno kopiranje?"
@@ -21212,6 +21683,9 @@ msgstr "Ova funkcija nije dostupna jer obrada velikih datoteka može potrajati p
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Ovo je zaobilazno rješenje za uređaje koji se odmah bude nakon ulaska u stanje pripravnosti. Naredbe za buđenje s drugih uređaja se zanemaruju nekoliko sekundi."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Ovo je jedan tip prijema za jedan tuner. Omogućeni tipovi prijema automatski se prebacuju i skeniraju zasebno."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Ovo je trenutno odabrani jezik.  [%s]"
@@ -21234,6 +21708,9 @@ msgstr "Ovaj menu nudi opcije vezane uz upravljanje softverom na %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Ovaj pomak će se koristiti samo ako kanal nema vlastiti pomak glasnoće."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Ova opcija podešava SDR grafiku i boje OSD-a dok je HDMI izlaz u HDR načinu."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Ova opcija omogućuje smanjenje šuma bloka na slici. Očito je to po cijenu oštrine slike."
@@ -21449,57 +21926,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Ova postavka je samo za posebne postavke. Daje ovom LNB-u veći prioritet u odnosu na druge LNB-ove s nižim vrijednostima. Slobodni LNB s najvećim prioritetom bit će prvi LNB odabran za usluge podešavanja."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Ovaj test provjerava konfigurirani DNS.\n"
-"Ako dobijete poruku \"nepotvrđeno\":\n"
-"- provjerite svoje DHCP, kabliranje i podešavanje adaptera\n"
-"- ako ste ručno konfigurirali svoje poslužitelje imena, provjerite svoje unose u konfiguraciji \"Poslužitelj imena\""
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Ovaj test provjerava je li mrežni kabel spojen na vaš LAN adapter.\n"
-"Ako se prikaže poruka \"prekid veze\":\n"
-"- provjerite je li priključen mrežni kabel\n"
-"- provjerite da kabel nije slomljen"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Ovaj test provjerava je li pronađena valjana IP adresa za vaš LAN adapter.\n"
-"Ako dobijete poruku \"nepotvrđeno\":\n"
-"- nije pronađena valjana IP adresa\n"
-"- provjerite svoje DHCP, kabliranje i podešavanje adaptera"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Ovaj test provjerava je li vaš LAN adapter postavljen za automatsku konfiguraciju IP adrese s DHCP-om.\n"
-"Ako se prikaže poruka \"onemogućeno\":\n"
-" - tada je vaš LAN adapter konfiguriran za ručno postavljanje IP-a\n"
-"- provjerite jeste li unijeli točne IP podatke u dijaloškom okviru za postavljanje adaptera.\n"
-"Ako se prikaže poruka \"omogućeno\":\n"
-"-provjerite imate li konfiguriran i funkcionalan DHCP poslužitelj u svojoj mreži."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Ovaj test otkriva vaš konfigurirani LAN adapter."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21518,9 +21944,6 @@ msgstr "Ovaj čarobnjak je završio"
 
 msgid "This wizard has finished."
 msgstr "Ovaj čarobnjak je završio."
-
-msgid "Three"
-msgstr "Tri"
 
 msgid "Threshold"
 msgstr "Prag"
@@ -21657,6 +22080,9 @@ msgstr "Vremenska zona"
 msgid "Time zone area"
 msgstr "Područje vremenske zone"
 
+msgid "Timeline"
+msgstr "Vremenska crta"
+
 msgid "Timeline 24 Hour"
 msgstr "Vremenska crta 24 sata"
 
@@ -21668,6 +22094,12 @@ msgstr "Oznaka vremenske trake"
 
 msgid "Timeline scale"
 msgstr "Ljestvica vremenske trake"
+
+msgid "Timeout"
+msgstr "Pauza"
+
+msgid "Timer Defaults And Retention"
+msgstr "Zadane postavke vremenskog tajmera i čuvanje"
 
 msgid "Timer Log Actions"
 msgstr "Radnje zapisnika tajmera"
@@ -21735,7 +22167,7 @@ msgstr "Tajmšift"
 msgid "Timezone"
 msgstr "Vremenska zona"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "Vrijeme i dijagnostika"
 
 msgid "Timor-Leste / East Timor"
@@ -21835,6 +22267,9 @@ msgstr "Prebacivanje načina višestrukog odabira"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Uključivanje umetanja novog teksta prije ili prebrisavanja postojećeg teksta"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr "Uključi odabir dijeljenja prema IP adresi ili DNS imenu"
+
 msgid "Toggle selection of the current tag"
 msgstr "Prebacivanje odabira trenutne oznake"
 
@@ -21917,6 +22352,9 @@ msgstr "Tradicionalni"
 msgid "Traditional Chinese"
 msgstr "Traditional Chinese"
 
+msgid "Transceiver"
+msgstr "Predajnik-prijamnik"
+
 msgid "Transcode"
 msgstr "Transkodiranje"
 
@@ -21967,6 +22405,9 @@ msgstr "Transport Stream ID (TSID)"
 msgid "Transport Stream Type"
 msgstr "Vrsta Transponder Streama"
 
+msgid "Trash And Deletion"
+msgstr "Smeće i brisanje"
+
 msgid "Trashcan"
 msgstr "Kanta za smeće"
 
@@ -21990,6 +22431,9 @@ msgstr "Trim datotečnog sustava..."
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad and Tobago"
+
+msgid "Triple Tuner"
+msgstr "Trojni Tuner"
 
 msgid "True"
 msgstr "Istina"
@@ -22047,6 +22491,12 @@ msgstr "Tuner "
 
 msgid "Tuner :"
 msgstr "Tuner :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr "Raspodjela i sukobi tunera"
+
+msgid "Tuner And Streaming"
+msgstr "Tuner i streaming"
 
 msgid "Tuner Configuration"
 msgstr "Konfiguracija Tunera"
@@ -22170,9 +22620,6 @@ msgstr "Dupli Hybrid"
 msgid "Twin Tuner"
 msgstr "Dupli Tuner"
 
-msgid "Two"
-msgstr "Dva"
-
 msgid "Two lines"
 msgstr "Dvije linije"
 
@@ -22287,9 +22734,6 @@ msgstr "Ispod 5"
 msgid "Undetermined"
 msgstr "Neodređeno"
 
-msgid "Unencrypted"
-msgstr "Nešifrovan"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Neočekivana greška prilikom pristupa WebIF: %s"
@@ -22349,13 +22793,6 @@ msgstr "Nepoznat"
 msgid "Unknown Devices"
 msgstr "Nepoznati Uređaj"
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Nepoznata pogreška pri stvaranju skina.\n"
-"Nakon ponovnog pokretanja MyMetrixLite-Plugin provjerite i primijenite svoje postavke."
-
 msgid "Unknown Packages"
 msgstr "Nepoznati Paketi"
 
@@ -22397,6 +22834,9 @@ msgstr "Raspakirajte datoteku"
 msgid "Unpublished"
 msgstr "Neobjavljeno"
 
+msgid "Unreachable"
+msgstr "Nedostupno"
+
 msgid "Unscramble and record ECM"
 msgstr "Dešifrovanje i snimanje ECM"
 
@@ -22408,9 +22848,6 @@ msgstr "Dešifrovanje prijema http streams"
 
 msgid "Unset As Startup Service"
 msgstr "Poništi kao Servis Pokretanja"
-
-msgid "Unsupported"
-msgstr "Nepodržano"
 
 msgid "Until standby/restart"
 msgstr "Do pripravnosti/ponovnog pokretanja"
@@ -22592,6 +23029,9 @@ msgstr "Koristi LNB 1 Korisnički Pojas"
 msgid "Use MHW EPG information when it is available."
 msgstr "Koristi MHW EPG info kada su dostupni."
 
+msgid "Use NFS file locking"
+msgstr "Koristi NFS zaključavanje datoteka"
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Koristi Netmed EPG info kada su dostupni."
 
@@ -22628,14 +23068,14 @@ msgstr "Koristite Zap tajmer za završno vrijeme"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Koristite DNS predmemoriju za lokalno pohranjivanje nedavnih DNS pretraga kako biste poboljšali izvedbu, smanjili kašnjenje i odlazni promet."
 
-msgid "Use a gateway"
-msgstr "Korišćenje mrežnog prolaza"
-
 msgid "Use alternate GitHub DNS"
 msgstr "Koristite alternativni GitHub DNS"
 
 msgid "Use an alternative smaller screen."
 msgstr "Koristite alternativni manji zaslon."
+
+msgid "Use as HDD replacement"
+msgstr "Koristi kao zamjenu za HDD"
 
 msgid "Use automatic mode detection"
 msgstr "Koristite automatsko prepoznavanje načina"
@@ -22682,11 +23122,11 @@ msgstr "Korišćenje geolokacije za WAN info"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Korišćenje geolokacije za postavljanje trenutne lokacije vremenske zone"
 
+msgid "Use guest login"
+msgstr "Koristi prijavu gosta"
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "Koristi povećan napon '14/18V' ako postoje problemi prilikom zamjene LNB."
-
-msgid "Use interface"
-msgstr "Koristite sučelje"
 
 msgid "Use key map *"
 msgstr "Koristi key map *"
@@ -22699,9 +23139,6 @@ msgstr "Korišćenje zvaničnog numerisanja kanala"
 
 msgid "Use only DNSSEC servers"
 msgstr "Koristi samo DNSSEC servere"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Koristi samo za buđenje na WLan (WoW)"
 
 msgid "Use only no-filter servers"
 msgstr "Koristi samo servere bez filtera"
@@ -22754,9 +23191,6 @@ msgstr "Koristite tipke LIJEVO/DESNO na daljinskom upravljaču za pomicanje vrha
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Koristite tipke LIJEVO/DESNO na daljinskom upravljaču za pomicanje OSD-a gore/dolje."
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Koristi Čarobnjaka za mrežu da bi konfigurisali mrežu. Čarobnjak će vam pomoći da podesite mrežu"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Koristite Softcam ploču za upravljanje cam. To vam omogućuje pokretanje/zaustavljanje/odabir cam"
 
@@ -22774,12 +23208,6 @@ msgstr "Korištenje trenutnog odabira i izlaz"
 
 msgid "Use the extended List"
 msgstr "Korištenje proširenog popisa"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Korištenje mrežnog čarobnjaka za konfiguriranje odabranog mrežnog prilagodnika"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Pomoću mrežnog čarobnjaka konfigurirajte mrežu."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Korištenje čarobnjaka za postavljanje osnovnih značajki"
@@ -22857,6 +23285,12 @@ msgstr "Ime korisnika"
 msgid "Username (httpuser)"
 msgstr "Ime korisnika (httpuser)"
 
+msgid "Using DNS"
+msgstr "Korištenje DNS"
+
+msgid "Using IP"
+msgstr "Korištenje IP"
+
 msgid "Using automatic address"
 msgstr "Korišćenje auto adrese"
 
@@ -22881,9 +23315,6 @@ msgstr "Uzbekistan"
 msgid "VCR Scart Settings"
 msgstr "VCR Scart Podešavanje"
 
-msgid "VLAN connection"
-msgstr "VLAN veza"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -22895,6 +23326,9 @@ msgstr "VOB datoteka"
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS Podešavanje"
@@ -23233,6 +23667,9 @@ msgstr "Akcije za izbor usluge podešavanja nivoa zvuka"
 msgid "Volume Adjust Settings"
 msgstr "Postavke Regulacije Jačine Zvuka"
 
+msgid "Volume Control"
+msgstr "Kontrola glasnoće"
+
 msgid "Volume adjustment mode"
 msgstr "Režim podešavanja zvuka"
 
@@ -23266,12 +23703,6 @@ msgstr "WAN info veze"
 msgid "WARNING:"
 msgstr "UPOZORENJE:"
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "WLAN veza"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23280,15 +23711,6 @@ msgstr "WMA Pro downmix"
 
 msgid "WOL Standby"
 msgstr "WOL Stanje pripravnosti"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA ili WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS na 4:3"
@@ -23304,6 +23726,9 @@ msgstr "Pričekajte dok skenirate..."
 
 msgid "Waiting"
 msgstr "Čekanje"
+
+msgid "Waiting for IP address..."
+msgstr "Čekanje IP adrese..."
 
 msgid "Waiting for partition"
 msgstr "Čekanje na particiju"
@@ -23350,6 +23775,9 @@ msgstr "Upozorenje: %d feeds nije bilo moguće ponovno učitati!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "Upozorenje: Ako otkažete ovaj postupak, feedovi će ostati nepotpuni i neuporabljivi!"
+
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr "Upozorenje: Nije pronađen Wi-Fi adapter!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozorenje: Zamjenjuje trenutno aktivni!"
@@ -23612,7 +24040,7 @@ msgstr "Kada je omogućeno, prikažite brojeve kanala na zaslonu za odabir kanal
 msgid "When enabled, show status or error messages."
 msgstr "Kada je omogućeno, prikažite poruke o statusu ili pogrešci."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Kad je omogućeno, postavite prilagođene DNS postavke za ovaj adapter umjesto globalnih DNS postavki."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23669,8 +24097,11 @@ msgstr "Kada je omogućeno, mjerač vremena iz rezervnog tunera je zadani mjera�
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Kad je omogućen, ovaj Wi-Fi adapter se koristi samo u načinu Buđenje-preko-WiFi i neće se koristiti za povezivanje na bilo koju mrežu."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Kada je omogućeno, ovaj adapter se inicijalizira i aktivira prilikom pokretanja."
+
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr "Kad je omogućeno, dijeljenja ovog računala su navedena anonimno (gost), ignorirajući korisničko ime/lozinku ispod."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Kada je omogućena, ova postavka ima veću težinu od \"Preferirani tuner za snimke\"."
@@ -23678,11 +24109,11 @@ msgstr "Kada je omogućena, ova postavka ima veću težinu od \"Preferirani tune
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Kada je omogućena, ova postavka ima veću težinu od 'Preferirani tuner'."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr "Kad je omogućeno, ovaj dijeljeni resurs se montira na /media/hdd umjesto na svoj /media/net put. Koristi ovo samo ako je dijeljeni resurs pouzdano dostupan."
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kada je omogućeno, timeshift automatski počinje u pozadini nakon određenog vremena."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Kada je omogućeno, koristite DHCP za IP konfiguraciju."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Kada je omogućeno, možete prilagoditi postavke OpenWebIf za rezervni tuner."
@@ -23747,8 +24178,27 @@ msgstr "Dok je dostupno"
 msgid "White"
 msgstr "Bijela"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Postavke Wi-Fi Veze"
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+msgid "Wi-Fi Activation Actions"
+msgstr "Radnje za Aktivaciju Wi-Fi"
+
+msgid "Wi-Fi Adapter"
+msgstr "Wi-Fi Adapter"
+
+msgid "Wi-Fi Scan Actions"
+msgstr "Radnje skeniranja Wi-Fi mreže"
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr "Wi-Fi Pretraživanje Uključeno na '%s'"
+
+msgid "Wi-Fi connection"
+msgstr "Wi-Fi veza"
+
+msgid "Wi-Fi link"
+msgstr "Wi-Fi veza"
 
 msgid "Wide"
 msgstr "Široko"
@@ -23773,30 +24223,6 @@ msgstr "Obriši Skladišni Uređaj"
 
 msgid "Wiping storage device..."
 msgstr "Brisanje uređaja za skladištenje..."
-
-msgid "Wireless LAN"
-msgstr "Bežični LAN"
-
-msgid "Wireless network"
-msgstr "Bežična mreža"
-
-msgid "Wireless network configuration..."
-msgstr "Konfiguracija bežične mreže..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Postavljanje bežične mrežne veze.\n"
-"\n"
-"Odaberite što ćete učiniti sljedeće."
-
-msgid "Wireless network setup"
-msgstr "Podešavanje bežične mreže"
-
-msgid "Wireless network state"
-msgstr "Stanje bežične mreže"
 
 msgid "With EXIT button"
 msgstr "Sa EXIT dugmetom"
@@ -23864,6 +24290,9 @@ msgstr "Biste li uneseni PIN %s trajno spremili?"
 
 msgid "Wrestling"
 msgstr "Hrvanje"
+
+msgid "Write block size"
+msgstr "Napiši veličinu bloka"
 
 #, python-format
 msgid ""
@@ -24006,10 +24435,6 @@ msgstr "Možete snimiti samo snimke iz Dreambox!"
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Možete preskočiti ovu funkciju i isključiti TV kada probudite prijemnik iz načina mirovanja i odmah se vratiti u način mirovanja."
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Možete se prebacivati lijevom i desnom stranom ovog tunera tipa %s"
-
 msgid "You cannot delete this!"
 msgstr "Ovo ne možete izbrisati!"
 
@@ -24083,18 +24508,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "Vaš %s %s nije povezan s internetom, provjerite mrežne postavke i pokušajte ponovno."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"Vaš %s %s sada je spreman za korištenje.\n"
-"\n"
-"Vaša internetska veza sada radi.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Vaš %s %s se ponovno pokreće"
 
@@ -24125,40 +24538,12 @@ msgid "Your %s %s will Restart..."
 msgstr "Vaš %s %s će se ponovno pokrenuti..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Vaš %s %s ponovno će se pokrenuti nakon instalacije usluge.\n"
-"\n"
-"Želite li instalirati sada?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Vaš %s %s će biti ponovo pokrenut nakon uklanjanja kanala\n"
-"Želite li sada ukloniti?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Vaša internetska veza ne radi!\n"
-"Odaberite što želite učiniti sljedeće."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "Vaša internetska veza radi (IP: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Vaš tuner ima otkriven problem sa softverom. Od posljednjeg ponovnog pokretanja dogodilo se %d puta.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Vaš STB će se ponovno pokrenuti nakon što pritisnete OK na daljinskom kontroloru."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Vaša kolekcija premašuje veličinu jednoslojnog medija, trebat će vam prazan dvoslojni DVD!"
@@ -24204,9 +24589,6 @@ msgstr ""
 "Vaša prednja ploča bit će nadograđena\n"
 "To može potrajati nekoliko minuta"
 
-msgid "Your network configuration has been activated."
-msgstr "Vaša mrežna konfiguracija je aktivirana."
-
 msgid "Your password must have at least 5 characters."
 msgstr "Vaša lozinka mora imati najmanje 5 znakova."
 
@@ -24249,6 +24631,9 @@ msgstr "Vrati"
 
 msgid "Zap + Exit"
 msgstr "Vrati + Izlaz"
+
+msgid "Zap Timer Settings"
+msgstr "Postavke Zap Timera"
 
 msgid "Zap Up/Down"
 msgstr "Zap gore/dolje"
@@ -24458,12 +24843,6 @@ msgstr "zatvaranje prikaza share"
 msgid "config menu"
 msgstr "konfig menu"
 
-msgid "confirmed"
-msgstr "potvrđano"
-
-msgid "connected"
-msgstr "povezano"
-
 msgid "copy"
 msgstr "kopiraj"
 
@@ -24487,9 +24866,6 @@ msgstr "brisanje isječka"
 
 msgid "disabled"
 msgstr "onemogućeno"
-
-msgid "disconnected"
-msgstr "prekinuto"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24750,9 +25126,6 @@ msgstr "dvoslojni medij koji se koristi."
 msgid "of a SINGLE layer medium used."
 msgstr "jednoslojni medij koji se koristi."
 
-msgid "off or wpa2 on"
-msgstr "isklj. ili wpa2 uklj"
-
 msgid "offset is"
 msgstr "pomak je"
 
@@ -24962,9 +25335,6 @@ msgstr "podešavanje uShare"
 msgid "unavailable"
 msgstr "nedostupno"
 
-msgid "unconfirmed"
-msgstr "nije potvrđeno"
-
 msgid "unknown"
 msgstr "nepoznato"
 
@@ -25022,6 +25392,772 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "Prebacivanje C/T ulaza: vanjski 5V koaksijalni prekidač"
+
+#~ msgid "Common Settings"
+#~ msgstr "Modul Podešavanja"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Kada su oba omogućena, Enigma2 koristi 5V za upravljanje vanjskim koaksijalnim prekidačem."
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Želite li stvarno ponovno pokrenuti OSCam?\n"
+#~ "\n"
+#~ "SAVJET: Ovo će trajati oko 5 sekundi!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Želite li stvarno zatvoriti OSCam?\n"
+#~ "\n"
+#~ "PAŽNJA: Za ponovno aktiviranje OSCam potrebno je izvršiti potpuno ponovno pokretanje tunera!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Montažni Upravitelj"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "OScam webif je onemogućen"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Ponovo pokreni OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Isključi OSCam"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "10th (Lowest)"
+#~ msgstr "10. (Najniža)"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "1st (Highest)"
+#~ msgstr "1. (Najviši)"
+
+#~ msgid "2nd"
+#~ msgstr "Drugi"
+
+#~ msgid "3rd"
+#~ msgstr "Treći"
+
+#~ msgid "4th"
+#~ msgstr "Četvrti"
+
+#~ msgid "5th"
+#~ msgstr "Peti"
+
+#~ msgid "6th"
+#~ msgstr "Šesti"
+
+#~ msgid "7th"
+#~ msgstr "Sedmi"
+
+#~ msgid "8th"
+#~ msgstr "Osmi"
+
+#~ msgid "9th"
+#~ msgstr "Deveti"
+
+#~ msgid "One"
+#~ msgstr "Jedan"
+
+#~ msgid "SMB2"
+#~ msgstr "SMB2"
+
+#~ msgid "SMB3"
+#~ msgstr "SMB3"
+
+#~ msgid "Three"
+#~ msgstr "Tri"
+
+#~ msgid "Two"
+#~ msgstr "Dva"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d bežična mreža pronađena!"
+#~ msgstr[1] "%d bežične mreže pronađene!"
+#~ msgstr[2] "%d bežične mreže pronađene!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Pronađeno je drugo sučelje.\n"
+#~ "\n"
+#~ "Želite li onemogućiti drugo sučelje?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "Aktivirajte konfiguraciju mrežnog adaptera"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Aktivirajte mrežne postavke"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Aktivirajte konfigurirane mrežne postavke."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Jeste li sigurni da želite aktivirati ovu mrežnu konfiguraciju?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Da li želite restartati mrežni interfejs?"
+
+#~ msgid "Back"
+#~ msgstr "Nazad"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "Podesi DNS (ime servera)"
+
+#~ msgid "Configure interface"
+#~ msgstr "Konfigurirajte sučelje"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Konfigurirajte ili potvrdite DNS (poslužitelje naziva) podešavanjem prikazanih vrijednosti.\n"
+#~ "\n"
+#~ "Kada su postavke ispravne, pritisnite OK za nastavak."
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Podesite IP adresu."
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Konfigurirajte internetsku vezu podešavanjem prikazanih vrijednosti.\n"
+#~ "\n"
+#~ "Kada su postavke ispravne, pritisnite OK za nastavak."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Podesite mrežni prolaz."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Konfigurirajte poslužitelj naziva (DNS)."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Konfigurirajte mrežnu masku."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Podesite ponovo svoju mrežu"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Konfigurirajte svoju mrežu"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Konfigurirajte svoj interni LAN"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Ponovno konfigurirajte svoj bežični LAN"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Povezivanje sa bežičnom mrežom"
+
+#~ msgid "Current settings:"
+#~ msgstr "Trenutne postavke:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Postavke Uređaja"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "Isključi ili WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Uredite DNS konfiguraciju svog %s %s."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Uredite mrežnu konfiguraciju %s %s."
+
+#~ msgid "Enable IPv6"
+#~ msgstr "Omogući IPv6"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Omogući Buđenje za LAN"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Šifrovano: "
+
+#~ msgid "Encryption Type:"
+#~ msgstr "Vrsta Šifriranja:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Ključ Šifriranja"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Vrsta ključa za šifriranje"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Pogreška pri stvaranju EHD-Skina.\n"
+#~ "Korištenje HD-Skina!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Pogreška pri stvaranju EHD-Skina. Preuzimanje paketa ikona nije dostupno.\n"
+#~ "Korištenje HD-Skina!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Pogreška pri stvaranju EHD-Skina. Nema dovoljno flash memorije.\n"
+#~ "Korištenje HD-Skina!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Pogreška pri stvaranju EHD-Skina. Nedostaju neke EHD-ikone.\n"
+#~ "Korištenje HD-Skina!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Pogreška pri stvaranju HD-Skina. Nema dovoljno flash memorije."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Pogreška pri stvaranju MetrixHD-Skina.\n"
+#~ "Nakon ponovnog pokretanja MyMetrixLite-Plugin provjerite i primijenite svoje postavke."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Pogreška, nepoznat rezultat!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "Izlaz iz konfiguracije mrežnog adaptera"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "Izađite iz menu za postavljanje mrežnog adaptera"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Izlaz iz popisa mrežnog sučelja"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Izlaz iz mrežnog čarobnjaka"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Prošireni dodatak za postavljanje mreže..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Prošireno postavljanje..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "Završeno je podešavanje mreže"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "Slijedite upute na TV-u"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "Norma Frekvencije:"
+
+#~ msgid "Interface: "
+#~ msgstr "Sučelje: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "LAN adapter"
+
+#~ msgid "Link quality:"
+#~ msgstr "Kvalitet veze:"
+
+#~ msgid "Link:"
+#~ msgstr "Veza:"
+
+#~ msgid "List available networks"
+#~ msgstr "Popis dostupne mreže"
+
+#~ msgid "Local network"
+#~ msgstr "Lokalna mreža"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-adresa"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Ručna konfiguracija"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Maks. bitrate: "
+
+#~ msgid "Nameserver"
+#~ msgstr "Ime servera"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "Postavke poslužitelja imena"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "Radnje Mrežnog Adaptera"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "Radnje Podešavanja Mrežnog Adaptera"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "Radnje Teksta Mrežnog Adaptera"
+
+#~ msgid "Network Test:"
+#~ msgstr "Mrežni Test:"
+
+#~ msgid "Network Wizard"
+#~ msgstr "Čarobnjak za Mrežu"
+
+#~ msgid "Network test"
+#~ msgstr "Mrežni test"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Mrežni čarobnjak je završio.\n"
+#~ "\n"
+#~ "Pritisni OK za nastavak."
+
+#~ msgid "Network:"
+#~ msgstr "Mreža:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "ČarobnjakMreže"
+
+#~ msgid "No Connection"
+#~ msgstr "Nema Veze"
+
+#~ msgid "No networks found"
+#~ msgstr "Mreže nisu pronađene"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Nije pronađena bežična mreža! Pretraživanje..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Nije pronađen ispravan lokalni mrežni adapter.\n"
+#~ "Provjerite jeste li priključili mrežni kabel i je li vaša mreža ispravno konfigurirana."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Nije pronađen ispravan bežični mrežni adapter.\n"
+#~ "Provjerite jeste li priključili kompatibilan WLAN uređaj i je li vaša mreža ispravno konfigurirana."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Nije pronađeno radno bežično mrežno sučelje.\n"
+#~ " Provjerite jeste li priključili kompatibilan WLAN uređaj ili omogućite lokalno mrežno sučelje."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Pratite uputstvo na TV"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "Pritisni ОК za nastavak."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Sačekajte aktiviranje vaše mreže..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Sačekajte dok pripremimo vaše mrežno sučelje..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Sačekajte dok ne testiramo vašu vezu..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Sačekajte da se vaše postavke skina vrate u predhodno stanje..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Pritisni OK da bi aktivirali postavke."
+
+#~ msgid "Primary DNS"
+#~ msgstr "Primarni DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Ponovo pokreni Mrežni Adapter"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Ponovo pokreni mrežnu vezu i sučelje."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "Vrati MetrixHD Postavke"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd Postavke"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Skeniranje bežičnih mreža"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Skeniranje bežičnih mreža i povezivanje pomoću izabranog bežičnog uređaja."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Sekundarni DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Odaberi bežične mreže"
+
+#~ msgid "Select interface"
+#~ msgstr "Odaberi sučelje"
+
+#~ msgid "Select menu entry"
+#~ msgstr "Odaberi stavke menu"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Odaberite mrežni interfejs da bi koristili Internet vezu.\n"
+#~ "\n"
+#~ "Pritisni OK za nastavak."
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Odaberi bežičnu mrežu sa kojom želite da se povežete.\n"
+#~ "\n"
+#~ "Pritisni OK za nastavak."
+
+#~ msgid "Select wireless network"
+#~ msgstr "Odaberi bežičnu mrežu"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "Pokaži WLAN status"
+
+#~ msgid "Show info"
+#~ msgstr "Pokaži info"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Pokaži stanje bežične LAN veze."
+
+#~ msgid "Signal quality"
+#~ msgstr "Kvalitet Signala"
+
+#~ msgid "Signal: "
+#~ msgstr "Signal: "
+
+#~ msgid "Start test"
+#~ msgstr "Pokreni test"
+
+#~ msgid "Stop test"
+#~ msgstr "Zaustavi test"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Test mrežne konfiguracije %s %s."
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Čini se da internetska veza radi.\n"
+#~ "\n"
+#~ "Pritisnite OK za nastavak."
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Čini se da internetska veza ne radi!\n"
+#~ "\n"
+#~ "Odaberite što ćete učiniti sljedeće."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Proširenje mrežnog čarobnjaka nije instalirano!\n"
+#~ "Molimo instalirajte ga."
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Bežična LAN internetska veza nije se mogla pokrenuti!\n"
+#~ "Je li bežični LAN uređaj povezan?\n"
+#~ "\n"
+#~ "Odaberite što ćete učiniti sljedeće."
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "Kôd dodatka za bežični LAN nije instaliran!\n"
+#~ "\n"
+#~ "Instalirajte ga i odaberite što ćete učiniti sljedeće."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Dodatak za bežični LAN nije instaliran!\n"
+#~ "Molimo instalirajte ga."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Ovaj test provjerava konfigurirani DNS.\n"
+#~ "Ako dobijete poruku \"nepotvrđeno\":\n"
+#~ "- provjerite svoje DHCP, kabliranje i podešavanje adaptera\n"
+#~ "- ako ste ručno konfigurirali svoje poslužitelje imena, provjerite svoje unose u konfiguraciji \"Poslužitelj imena\""
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Ovaj test provjerava je li mrežni kabel spojen na vaš LAN adapter.\n"
+#~ "Ako se prikaže poruka \"prekid veze\":\n"
+#~ "- provjerite je li priključen mrežni kabel\n"
+#~ "- provjerite da kabel nije slomljen"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Ovaj test provjerava je li pronađena valjana IP adresa za vaš LAN adapter.\n"
+#~ "Ako dobijete poruku \"nepotvrđeno\":\n"
+#~ "- nije pronađena valjana IP adresa\n"
+#~ "- provjerite svoje DHCP, kabliranje i podešavanje adaptera"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Ovaj test provjerava je li vaš LAN adapter postavljen za automatsku konfiguraciju IP adrese s DHCP-om.\n"
+#~ "Ako se prikaže poruka \"onemogućeno\":\n"
+#~ " - tada je vaš LAN adapter konfiguriran za ručno postavljanje IP-a\n"
+#~ "- provjerite jeste li unijeli točne IP podatke u dijaloškom okviru za postavljanje adaptera.\n"
+#~ "Ako se prikaže poruka \"omogućeno\":\n"
+#~ "-provjerite imate li konfiguriran i funkcionalan DHCP poslužitelj u svojoj mreži."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Ovaj test otkriva vaš konfigurirani LAN adapter."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Nešifrovan"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Nepoznata pogreška pri stvaranju skina.\n"
+#~ "Nakon ponovnog pokretanja MyMetrixLite-Plugin provjerite i primijenite svoje postavke."
+
+#~ msgid "Unsupported"
+#~ msgstr "Nepodržano"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Korišćenje mrežnog prolaza"
+
+#~ msgid "Use interface"
+#~ msgstr "Koristite sučelje"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Koristi samo za buđenje na WLan (WoW)"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Koristi Čarobnjaka za mrežu da bi konfigurisali mrežu. Čarobnjak će vam pomoći da podesite mrežu"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Korištenje mrežnog čarobnjaka za konfiguriranje odabranog mrežnog prilagodnika"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Pomoću mrežnog čarobnjaka konfigurirajte mrežu."
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN veza"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN veza"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA ili WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Kada je omogućeno, koristite DHCP za IP konfiguraciju."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "Bežični LAN"
+
+#~ msgid "Wireless network"
+#~ msgstr "Bežična mreža"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Konfiguracija bežične mreže..."
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Postavljanje bežične mrežne veze.\n"
+#~ "\n"
+#~ "Odaberite što ćete učiniti sljedeće."
+
+#~ msgid "Wireless network setup"
+#~ msgstr "Podešavanje bežične mreže"
+
+#~ msgid "Wireless network state"
+#~ msgstr "Stanje bežične mreže"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Vaš %s %s sada je spreman za korištenje.\n"
+#~ "\n"
+#~ "Vaša internetska veza sada radi.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Vaš %s %s ponovno će se pokrenuti nakon instalacije usluge.\n"
+#~ "\n"
+#~ "Želite li instalirati sada?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Vaš %s %s će biti ponovo pokrenut nakon uklanjanja kanala\n"
+#~ "Želite li sada ukloniti?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Vaša internetska veza ne radi!\n"
+#~ "Odaberite što želite učiniti sljedeće."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Vaš STB će se ponovno pokrenuti nakon što pritisnete OK na daljinskom kontroloru."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Vaša mrežna konfiguracija je aktivirana."
+
+#~ msgid "confirmed"
+#~ msgstr "potvrđano"
+
+#~ msgid "connected"
+#~ msgstr "povezano"
+
+#~ msgid "disconnected"
+#~ msgstr "prekinuto"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "isklj. ili wpa2 uklj"
+
+#~ msgid "unconfirmed"
+#~ msgstr "nije potvrđeno"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Automatski pristup akcijama"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS suffix"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "DVB-C / Cable samo"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C i DVB-T/T2 preko vanjskog 5V kontroliranog koaksijalnog prekidača"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "VB-T/T2 / Zemaljski samo"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Hibridni način tunera"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Odaberite kako je ovaj DVB-C/T tuner povezan. Opciju vanjskog coax prekidača koristite samo s 5V kontroliranim coax prekidačem."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Podešavanje tunera [TUNER].\n"
+#~ "\n"
+#~ "Za hibridne tunere prebacite vrstu tunera pomoću dugmadi LIJEVO i DESNO."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Tipovi tunera koji se mogu zamijeniti:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Postavke Wi-Fi Veze"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Možete se prebacivati lijevom i desnom stranom ovog tunera tipa %s"
 
 #~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 #~ msgstr "Unesite naziv koji će ovaj primatelj koristiti kada se pojavi u Samba mrežnim pretragama/listama."

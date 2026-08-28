@@ -1,0 +1,116 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          wlanactivator
+# Required-Start:
+# Required-Stop:
+# Default-Start:
+# Default-Stop:
+# Short-Description: Bring a WLAN interface up or down
+### END INIT INFO
+
+set -eu
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+LOGFILE="/tmp/wlanactivator.log"
+
+log() {
+  echo "[wlanactivator] $*" >> "$LOGFILE"
+}
+
+IFACE="${2:-}"
+
+validate_iface() {
+  case "$IFACE" in
+    wlan[0-9]*) ;;
+    *)
+      echo "Invalid interface '$IFACE' (must be wlanX)" >&2
+      exit 2
+      ;;
+  esac
+}
+
+do_start() {
+  validate_iface
+  WPA_CONF="/etc/wpa_supplicant.${IFACE}.conf"
+  WPA_PID="/var/run/wpa_supplicant-${IFACE}.pid"
+  NETID="${3:-}"
+  case "$NETID" in
+    '') ;;
+    *[!0-9]*)
+      echo "Invalid network id '$NETID' (must be numeric)" >&2
+      exit 2
+      ;;
+  esac
+
+  # tear down any existing state
+  wpa_cli -i"${IFACE}" terminate 2>/dev/null || true
+  if [ -f "$WPA_PID" ]; then
+    pid="$(cat "$WPA_PID" 2>/dev/null || true)"
+    case "$pid" in ''|*[!0-9]*) ;; *) kill "$pid" 2>/dev/null || true ;; esac
+    rm -f "$WPA_PID"
+  fi
+  ifdown "${IFACE}" 2>/dev/null || true
+  ip addr flush dev "${IFACE}" scope global 2>/dev/null || true
+
+  # start wpa_supplicant only if a config file was written
+  if [ -f "$WPA_CONF" ]; then
+    wpa_supplicant -B -D nl80211,wext -i"${IFACE}" -c"${WPA_CONF}" -P"${WPA_PID}"
+    if [ -n "$NETID" ]; then
+      # Pin to exactly this saved network - select_network also disables
+      # every other enabled network for this run, so wpa_supplicant can't
+      # auto-pick/roam to a different saved SSID instead of the one the
+      # user actually chose. Wait for the control socket instead of a fixed
+      # sleep, and retry+verify the result: a missed or failed call here used
+      # to be swallowed silently, leaving every saved network enabled, so
+      # wpa_supplicant just auto-connected by priority to a different SSID
+      # than the one requested.
+      i=0
+      while [ $i -lt 5 ] && ! wpa_cli -i"${IFACE}" status >/dev/null 2>&1; do
+        sleep 1
+        i=$((i + 1))
+      done
+      i=0
+      selected=0
+      while [ $i -lt 5 ]; do
+        result="$(wpa_cli -i"${IFACE}" select_network "$NETID" 2>/dev/null || true)"
+        if [ "$result" = "OK" ]; then
+          selected=1
+          break
+        fi
+        sleep 1
+        i=$((i + 1))
+      done
+      if [ "$selected" -eq 1 ]; then
+        log "select_network $NETID on ${IFACE}: OK"
+      else
+        log "select_network $NETID on ${IFACE}: FAILED after $i retries, result='$result' - wpa_supplicant may connect to a different saved network instead"
+      fi
+    fi
+  fi
+
+  ifup "${IFACE}"
+}
+
+do_stop() {
+  validate_iface
+  wpa_cli -i"${IFACE}" terminate 2>/dev/null || true
+  WPA_PID="/var/run/wpa_supplicant-${IFACE}.pid"
+  if [ -f "$WPA_PID" ]; then
+    pid="$(cat "$WPA_PID" 2>/dev/null || true)"
+    case "$pid" in ''|*[!0-9]*) ;; *) kill "$pid" 2>/dev/null || true ;; esac
+    rm -f "$WPA_PID"
+  fi
+  ifdown "${IFACE}" 2>/dev/null || true
+  ip addr flush dev "${IFACE}" scope global 2>/dev/null || true
+}
+
+case "${1:-}" in
+  start) do_start ;;
+  stop)  do_stop  ;;
+  *)
+    echo "Usage: $0 start|stop wlanX" >&2
+    exit 2
+    ;;
+esac
+
+exit 0

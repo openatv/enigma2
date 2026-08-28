@@ -37,7 +37,7 @@ class ServiceReference(eServiceReference):
 
 	def isRecordable(self):
 		ref = self.ref
-		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100 or ref.type == 0x2000 or ref.type == 0x1001)
+		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100 or ref.type == eServiceReference.idServiceDAB or ref.type == 0x2000 or ref.type == 0x1001)
 
 	def toString(self):
 		return self.ref.toString()
@@ -85,6 +85,16 @@ def resolveAlternate(ref):
 
 def makeServiceQueryStr(serviceTypes):
 	return ' || '.join(['(type == %d)' % x for x in serviceTypes])
+
+
+def isRadioServiceReference(ref):
+	"""Return whether *ref* belongs in Enigma2's existing radio mode."""
+	if not isinstance(ref, eServiceReference):
+		ref = eServiceReference(ref or "")
+	return bool(ref.valid() and (ref.type == eServiceReference.idServiceDAB or ref.getUnsignedData(0) in (
+		eServiceReferenceDVB.dRadio,
+		eServiceReferenceDVB.dRadioAvc,
+	)))
 
 
 # type 1 = digital television service

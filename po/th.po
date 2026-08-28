@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
 #
+# openATV <openatv@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2021-08-15 18:50+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-17 05:16+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
 "Language: th\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -934,6 +935,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -952,6 +959,12 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d นาที"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d package found."
@@ -1066,12 +1079,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d times"
 msgstr "เวลาสิ้นสุด"
-
-#, fuzzy, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "พบ 1 เครือข่ายไร้สาย"
-msgstr[1] "พบ 1 เครือข่ายไร้สาย"
 
 msgid "%d+%b_"
 msgstr ""
@@ -1220,6 +1227,10 @@ msgstr "ตั้งค่า"
 msgid "%s View"
 msgstr ""
 
+#, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "ค้นหา additional SR"
@@ -1234,6 +1245,17 @@ msgstr ""
 
 #, python-format
 msgid "%s imported from remote receiver."
+msgstr ""
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1253,12 +1275,20 @@ msgstr "แสดงรายการที่ใช้ได้"
 msgid "%s version"
 msgstr ""
 
+#, python-format
+msgid "%s webif disabled"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s%d min"
 msgstr "%d นาที"
 
 #, python-format
 msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
+msgid "%s. (Lowest)"
 msgstr ""
 
 #, python-format
@@ -1303,6 +1333,22 @@ msgstr ""
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
+msgstr ""
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1390,14 +1436,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr ""
@@ -1421,17 +1461,11 @@ msgstr ""
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr ""
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "16:9 ตลอดเวลา"
@@ -1450,9 +1484,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr ""
@@ -1690,12 +1721,6 @@ msgid "A required tool (%s) was not found."
 msgstr "ไม่พบเครื่องมือที่ต้องใช้ (%s)"
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1747,6 +1772,9 @@ msgstr ""
 msgid "AFL"
 msgstr "PAL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr ""
 
@@ -1781,10 +1809,10 @@ msgstr ""
 msgid "ATSC provider"
 msgstr "เพิ่มผู้ให้บริการ"
 
-msgid "AV Setup"
+msgid "AV Receiver, Soundbar And Remote"
 msgstr ""
 
-msgid "AV receiver, soundbar and remote"
+msgid "AV Setup"
 msgstr ""
 
 msgid "Abkhazian"
@@ -1824,6 +1852,11 @@ msgid "Access mode"
 msgstr ""
 
 msgid "Access point"
+msgstr ""
+
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
 msgstr ""
 
 msgid "Access to geolocation information requires an Internet connection."
@@ -1866,13 +1899,7 @@ msgstr ""
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate network adapter configuration"
-msgstr ""
-
-msgid "Activate network settings"
-msgstr "ตั้งค่าเครือข่าย"
-
-msgid "Activate the configured network settings."
+msgid "Activate network adapter"
 msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
@@ -1894,6 +1921,13 @@ msgid "Active clients"
 msgstr ""
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 msgid "Adapter Settings"
@@ -1939,6 +1973,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "เพิ่มจุดทำเครื่องหมาย"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -1963,6 +2000,12 @@ msgstr ""
 
 msgid "Add To Parental Protection"
 msgstr "เพิ่มรายการเข้าสู่กลุ่มจำกัดอายุ"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 #, fuzzy
 msgid "Add Zap+RecordTimer"
@@ -1994,6 +2037,9 @@ msgstr "ย้ายลงไป"
 
 msgid "Add a mark"
 msgstr "เพิ่มจุด"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr ""
@@ -2160,6 +2206,9 @@ msgid "Adult movie/Drama"
 msgstr ""
 
 msgid "Advanced"
+msgstr ""
+
+msgid "Advanced Diagnostics"
 msgstr ""
 
 #, fuzzy
@@ -2410,6 +2459,9 @@ msgstr "เพิ่มทางเลือกอื่น"
 msgid "Alternative Edit"
 msgstr "[แก้ไขอื่น]"
 
+msgid "Alternative Tuner Sources"
+msgstr ""
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -2574,9 +2626,6 @@ msgstr ""
 msgid "Are you sure to remove this entry?"
 msgstr "ท่านต้องการที่ออกจากตัวช่วยหรือไม่?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "ท่านจะให้ค่าเครื่อข่ายที่ตั้งใหม่ทำงานหรือไม่"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2599,9 +2648,6 @@ msgstr "ท่านต้องการที่ออกจากตัวช
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr ""
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "ท่านจะให้ระบบเครือข่ายเริ่มทำงานใหม่หรือไม่?"
 
 #, python-format
 msgid ""
@@ -2708,6 +2754,9 @@ msgstr "ตั้งค่า CAIds:"
 msgid "Assigned services/provider:"
 msgstr "กำหนดบริการ/ผู้ให้บริการr:"
 
+msgid "Associated"
+msgstr ""
+
 msgid "Astra 1 19.2e"
 msgstr ""
 
@@ -2747,6 +2796,12 @@ msgstr ""
 msgid "Audio Channel"
 msgstr "ช่อง"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr ""
 
@@ -2761,6 +2816,9 @@ msgid "Audio Source"
 msgstr ""
 
 msgid "Audio Sync"
+msgstr ""
+
+msgid "Audio Synchronization"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2899,9 +2957,6 @@ msgstr "ค้นหาอัตโนมัติ"
 msgid "Automatic scan for services"
 msgstr ""
 
-msgid "Automatic shares access"
-msgstr ""
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
 
@@ -2931,6 +2986,9 @@ msgid "Available locales are:"
 msgstr "รูปแบบที่ใช้งานได้"
 
 msgid "Available shares:"
+msgstr ""
+
+msgid "Available tuner types"
 msgstr ""
 
 msgid "Avaric"
@@ -2982,8 +3040,8 @@ msgstr ""
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
-msgid "Back"
-msgstr "ย้อนกลับ"
+msgid "BSSID"
+msgstr ""
 
 #, fuzzy
 msgid "Back USB"
@@ -3362,6 +3420,9 @@ msgstr ""
 msgid "Brightness (Standby)"
 msgstr ""
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr ""
 
@@ -3389,10 +3450,19 @@ msgstr ""
 msgid "Broadcom"
 msgstr ""
 
+msgid "Broadcom default"
+msgstr ""
+
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
+msgstr ""
+
+msgid "Buffer Management"
 msgstr ""
 
 #, python-format
@@ -3449,10 +3519,16 @@ msgstr ""
 msgid "Burundi"
 msgstr ""
 
+msgid "Bus"
+msgstr ""
+
 msgid "Business"
 msgstr ""
 
 msgid "Business & Finance"
+msgstr ""
+
+msgid "Button Assignments"
 msgstr ""
 
 msgid "Button Setup"
@@ -3478,6 +3554,12 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-Band"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr ""
@@ -3617,6 +3699,12 @@ msgid "Cable"
 msgstr "เคเบิ้ล"
 
 msgid "Cable Scan"
+msgstr ""
+
+msgid "Cable Unplugged"
+msgstr ""
+
+msgid "Cable input"
 msgstr ""
 
 #, fuzzy
@@ -4025,6 +4113,12 @@ msgstr "ช่อง"
 msgid "Channel 1 with prime time"
 msgstr ""
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr ""
 
@@ -4061,6 +4155,9 @@ msgid "Channel Selection Settings"
 msgstr "ตั้งค่าคอลเลคชั่น"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 #, fuzzy
@@ -4136,6 +4233,9 @@ msgstr "ตอนที่"
 #, fuzzy
 msgid "Character device"
 msgstr "อุปกรณ์สำหรับบันทึก"
+
+msgid "Character set"
+msgstr ""
 
 msgid "Chat show"
 msgstr ""
@@ -4373,6 +4473,9 @@ msgstr "Clear Log"
 msgid "Clear Log"
 msgstr "Clear Log"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "ลบข้อมูลเดิมก่อนค้นหา"
 
@@ -4440,6 +4543,9 @@ msgid "Close bouquet list."
 msgstr "จบการแก้ไขกลุ่มรายการ"
 
 msgid "Close dialog"
+msgstr ""
+
+msgid "Close network test"
 msgstr ""
 
 msgid "Close screen"
@@ -4518,6 +4624,9 @@ msgstr ""
 msgid "Color"
 msgstr "ระบบสี"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr ""
 
@@ -4589,14 +4698,14 @@ msgstr "กำหนดอินเตอร์เฟซพื้นฐาน"
 msgid "Common Interface Settings"
 msgstr ""
 
-msgid "Common Settings"
-msgstr ""
-
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "ติดต่อสื่อสาร"
 
 msgid "Comoros"
+msgstr ""
+
+msgid "Compatibility And Emulation"
 msgstr ""
 
 msgid "Compiled by"
@@ -4641,13 +4750,19 @@ msgstr ""
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr ""
 
 msgid "Configure an additional delay to improve subtitle synchronization."
+msgstr ""
+
+msgid "Configure another network adapter"
+msgstr ""
+
+msgid "Configure cable reception on this input."
 msgstr ""
 
 msgid "Configure default setting for new timers. Need a restart after changing."
@@ -4695,14 +4810,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr ""
 
-msgid "Configure interface"
-msgstr "ตั้งค่าอินเตอร์เฟซ"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -4710,19 +4825,16 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
-msgid "Configure the IP address."
-msgstr ""
-
 msgid "Configure the IP of the fallback remote receiver."
-msgstr ""
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
@@ -4829,9 +4941,6 @@ msgstr ""
 msgid "Configure the function of the < and > buttons."
 msgstr ""
 
-msgid "Configure the gateway."
-msgstr ""
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr ""
 
@@ -4861,15 +4970,6 @@ msgstr ""
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr ""
-
-msgid "Configure the name server (DNS)."
-msgstr ""
-
-msgid "Configure the netmask."
-msgstr ""
-
-msgid "Configure the network again"
-msgstr "ตั้งเครือข่ายอีกครั้ง"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
@@ -4902,6 +5002,9 @@ msgid "Configure the second subtitle language."
 msgstr ""
 
 msgid "Configure the secondary EPG language."
+msgstr ""
+
+msgid "Configure the selected Wi-Fi network"
 msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
@@ -5004,17 +5107,8 @@ msgstr ""
 msgid "Configure your NTP server."
 msgstr "ตั้งค่า Nameservers"
 
-msgid "Configure your Network"
-msgstr ""
-
-msgid "Configure your internal LAN"
-msgstr "ตั้งค่าการ์แลนในเครื่อง"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr "ตั้งค่าเครือข่ายไร้สายอีกครั้ง"
 
 msgid "Configures which video output connector will be used."
 msgstr ""
@@ -5026,6 +5120,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -5048,11 +5146,13 @@ msgstr "เชื่อมต่อ"
 msgid "Connect to IceTV server every"
 msgstr "ติดต่อเซอร์พเวอร์ดรีมบอกซ์เพื่อโหลดอิมเมจ .NFI ไม่ได้"
 
-#, fuzzy
-msgid "Connect to a wireless network"
-msgstr "เชื่อมต่อกับเครือข่ายไร้สาย"
-
 msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 msgid "Connected clients"
@@ -5070,7 +5170,25 @@ msgstr "เชื่อมต่อแล้วกับ"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
+msgstr ""
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
 msgstr ""
 
 msgid "Connection information"
@@ -5120,6 +5238,9 @@ msgid "Context"
 msgstr ""
 
 msgid "Continent"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5271,9 +5392,23 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "ติดต่อเซอร์พเวอร์ดรีมบอกซ์เพื่อโหลดอิมเมจ .NFI ไม่ได้"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr ""
@@ -5297,6 +5432,12 @@ msgstr ""
 msgid "Could not save configuration file %s!"
 msgstr ""
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+
 msgid "Country"
 msgstr ""
 
@@ -5308,6 +5449,9 @@ msgstr ""
 
 #, python-format
 msgid "Crash %d/%d"
+msgstr ""
+
+msgid "Crash Handling"
 msgstr ""
 
 msgid "Crash Logs"
@@ -5418,6 +5562,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr ""
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr ""
 
@@ -5522,9 +5673,6 @@ msgstr ""
 msgid "Current rotor position: unknown"
 msgstr ""
 
-msgid "Current settings:"
-msgstr "ตั้งค่าปัจจุบัน:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
 
@@ -5560,6 +5708,9 @@ msgstr ""
 msgid "Custom"
 msgstr "ปรับแต่ง"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr ""
 
@@ -5588,6 +5739,9 @@ msgstr ""
 
 msgid "Cut"
 msgstr "ตัด"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr ""
@@ -5632,9 +5786,6 @@ msgstr "D"
 msgid "DAC"
 msgstr ""
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr ""
 
@@ -5647,6 +5798,9 @@ msgstr ""
 msgid "DNS Settings"
 msgstr ""
 
+msgid "DNS Settings Actions"
+msgstr ""
+
 msgid "DNS data source"
 msgstr ""
 
@@ -5654,9 +5808,6 @@ msgid "DNS override"
 msgstr ""
 
 msgid "DNS protocol mode"
-msgstr ""
-
-msgid "DNS suffix"
 msgstr ""
 
 msgid "DNSCrypt"
@@ -5685,6 +5836,9 @@ msgstr ""
 msgid "DVB CI Delay"
 msgstr ""
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr ""
 
@@ -5697,16 +5851,13 @@ msgstr ""
 msgid "DVB-C"
 msgstr ""
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 msgid "DVB-C ANNEX B"
 msgstr ""
 
 msgid "DVB-C ANNEX C"
 msgstr ""
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 msgid "DVB-S"
@@ -5716,9 +5867,6 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T/T2 / Terrestrial only"
 msgstr ""
 
 msgid "DVB-T2"
@@ -5739,7 +5887,7 @@ msgid "DVD Title list"
 msgstr ""
 
 #, fuzzy
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "ซ่อนตัวเล่น"
 
 #, fuzzy
@@ -5764,6 +5912,9 @@ msgid "Date"
 msgstr "วันที่"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date And Time"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -5933,7 +6084,13 @@ msgstr ""
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -5944,6 +6101,9 @@ msgid "Debug %d/%d"
 msgstr ""
 
 msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log Content"
 msgstr ""
 
 msgid "Debug Log Information"
@@ -6193,6 +6353,12 @@ msgstr ""
 msgid "Delete Line"
 msgstr ""
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr ""
 
@@ -6429,9 +6595,6 @@ msgstr ""
 msgid "Device Manager Actions"
 msgstr ""
 
-msgid "Device Settings"
-msgstr ""
-
 msgid "Device id"
 msgstr ""
 
@@ -6542,6 +6705,9 @@ msgstr ""
 msgid "Disable"
 msgstr "ไม่ใช้งาน"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr ""
 
@@ -6567,6 +6733,9 @@ msgstr ""
 msgid "Disable Move Mode"
 msgstr "เลิกโหมดเคลื่อนย้าย"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "ไม่ใช้งานภาพซ้อนภาพ"
 
@@ -6585,6 +6754,9 @@ msgstr ""
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr ""
 
@@ -6601,10 +6773,10 @@ msgstr "ไม่ใช้งาน"
 msgid "Disabled PiP.\n"
 msgstr ""
 
-msgid "Disabled or WPA/WPA2"
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
-msgid "Disabling Chkroot failed!"
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -6627,6 +6799,12 @@ msgstr "แสดงรายการ 4:3 แบบ"
 
 msgid "Display >16:9 content as"
 msgstr "แสดงรายการ >16:9 แบบ"
+
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
 
 msgid "Display Settings"
 msgstr ""
@@ -6796,16 +6974,19 @@ msgstr "ท่านต้องการที่ลบบุ๊คมาร์
 msgid "Do you really want to remove the timer for %s?"
 msgstr "ท่านแน่ใจหรือไม่ที่จะลบ Plugin \"%s\" ออกจากระบบ?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to stop %s?"
 msgstr ""
 
 #, python-format
@@ -6921,6 +7102,9 @@ msgstr ""
 msgid "Domain"
 msgstr ""
 
+msgid "Domain name"
+msgstr ""
+
 msgid "Dominica"
 msgstr ""
 
@@ -7027,6 +7211,9 @@ msgstr ""
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr ""
 
@@ -7091,16 +7278,25 @@ msgstr ""
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr ""
 
 msgid "EPG Jump"
 msgstr ""
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr ""
 
 msgid "EPG Other Actions"
+msgstr ""
+
+msgid "EPG Range And History"
 msgstr ""
 
 msgid "EPG Search"
@@ -7113,6 +7309,12 @@ msgid "EPG Settings"
 msgstr ""
 
 msgid "EPG Setup"
+msgstr ""
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7184,6 +7386,9 @@ msgstr "แก้ไข"
 msgid "Edit Alternatives"
 msgstr "แก้ไขแบบอื่น"
 
+msgid "Edit Credentials"
+msgstr ""
+
 #, fuzzy
 msgid "Edit Mode Off"
 msgstr "แก้ไขชื่อเรื่อง"
@@ -7208,6 +7413,9 @@ msgstr ""
 msgid "Edit Upgrade Source URL"
 msgstr ""
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "แก้ไขตอนที่ของเรื่องปัจจุบัน"
 
@@ -7218,25 +7426,20 @@ msgstr "แก้ไขตอนที่ของเรื่องปัจจ
 msgid "Edit settings"
 msgstr "แก้ไขการตั้งค่า"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr ""
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "แก้ไขการตั้งค่า Nameserver บนเครื่องดรีมบอกซ์ของท่าน"
-
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 msgid "Edit the currently selected timer"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "แก้ไขการตั้งค่าเครือข่ายเครื่อดรีมบอกซ์ของท่าน"
 
 msgid "Edit the password."
 msgstr ""
@@ -7248,6 +7451,9 @@ msgid "Edit the remote CCCam port."
 msgstr ""
 
 msgid "Edit the remote IP address."
+msgstr ""
+
+msgid "Edit the selected network mount"
 msgstr ""
 
 msgid "Edit the upgrade source address."
@@ -7350,9 +7556,6 @@ msgstr ""
 msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
-msgid "Enable IPv6"
-msgstr ""
-
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "เปิดใช้"
@@ -7406,7 +7609,7 @@ msgstr ""
 msgid "Enable Virgin EPG"
 msgstr ""
 
-msgid "Enable Wake On LAN"
+msgid "Enable adapter"
 msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
@@ -7485,10 +7688,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "เปิดใช้หลายกลุ่มรายการ"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr ""
 
 msgid "Enable new GStreamer playback"
+msgstr ""
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -7502,6 +7711,9 @@ msgid "Enable preview"
 msgstr "เปิดใช้"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
+msgid "Enable saved Wi-Fi network"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -7603,23 +7815,11 @@ msgstr "เปิดใช้งาน"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Encrypted: "
-msgstr ""
-
 msgid "Encryption"
 msgstr "การเข้ารหัส"
 
-#, fuzzy
-msgid "Encryption Type:"
-msgstr "การเข้ารหัส:"
-
-#, fuzzy
-msgid "Encryption key"
-msgstr "คีย์สำหรับเข้ารหัส"
-
-#, fuzzy
-msgid "Encryption key type"
-msgstr "ชนิดคีย์"
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr ""
@@ -7728,6 +7928,9 @@ msgstr ""
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr ""
 
@@ -7738,6 +7941,9 @@ msgid "Enter new directory name:"
 msgstr ""
 
 msgid "Enter number to jump to channel"
+msgstr ""
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
 msgstr ""
 
 msgid "Enter persistent PIN code"
@@ -7773,25 +7979,46 @@ msgstr ""
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr ""
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr ""
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the service pin"
@@ -7803,7 +8030,13 @@ msgstr ""
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr ""
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr ""
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -7956,34 +8189,6 @@ msgstr ""
 msgid "Error code"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr ""
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
@@ -8028,9 +8233,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr ""
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -8041,6 +8243,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "ชื่อไฟล์ห้ามเป็นช่องว่าง"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8094,12 +8299,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr ""
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "การลบโฟล์เดอร์ %s ล้มเหลว (อาจมีข้อมูลอยู่)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8150,6 +8362,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8174,6 +8390,9 @@ msgstr "ภาษาเอสโตเนี่ยน"
 msgid "EtPortal"
 msgstr "ภาษาโปตุเกส"
 
+msgid "Ethernet Adapter"
+msgstr ""
+
 msgid "Ethernet network interface"
 msgstr ""
 
@@ -8193,6 +8412,9 @@ msgid "Even if a 'Zap' recording timer starting?"
 msgstr ""
 
 msgid "Event Info"
+msgstr ""
+
+msgid "Event Metadata And Correction"
 msgstr ""
 
 msgid "Event View"
@@ -8306,19 +8528,6 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr "ออกจากส่วนเล่นไฟล์"
 
-msgid "Exit network adapter configuration"
-msgstr "ออกจากการตั้งค่าระบบเครือข่าย"
-
-msgid "Exit network adapter setup menu"
-msgstr ""
-
-#, fuzzy
-msgid "Exit network interface list"
-msgstr "ออกจากรายการเครือข่าย"
-
-msgid "Exit network wizard"
-msgstr "ออกจากตัวช่วยเครือข่าย"
-
 msgid "Exit picture viewer"
 msgstr ""
 
@@ -8337,6 +8546,9 @@ msgstr ""
 msgid "Expand"
 msgstr ""
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr ""
 
@@ -8352,6 +8564,9 @@ msgstr "ชำนาญ"
 #, fuzzy
 msgid "Expert mode"
 msgstr "ชำนาญ"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr ""
@@ -8370,12 +8585,6 @@ msgstr ""
 
 msgid "Extended"
 msgstr ""
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Plugin สำหรับตั้งค่าเครือข่าย..."
-
-msgid "Extended Setup..."
-msgstr "ตั้งค่าส่วนเพิ่มเติม..."
 
 msgid "Extended Shares"
 msgstr ""
@@ -8401,6 +8610,9 @@ msgstr ""
 
 #, python-format
 msgid "External Storage %s"
+msgstr ""
+
+msgid "External Subtitles"
 msgstr ""
 
 msgid "External subtitle color"
@@ -8598,6 +8810,9 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "Fast DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr ""
 
@@ -8641,6 +8856,9 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
+msgstr ""
+
+msgid "Feeds And Networking"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -8769,6 +8987,9 @@ msgstr ""
 msgid "Filename"
 msgstr "ชื่อไฟล์"
 
+msgid "Files And Directories"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr ""
 
@@ -8832,9 +9053,6 @@ msgstr "ปรับแบบละเอียด"
 
 msgid "Finished"
 msgstr "จบการทำงาน"
-
-msgid "Finished configuring your network"
-msgstr "จบการตั้งค่าเครือข่าย"
 
 msgid "Finland"
 msgstr ""
@@ -8939,13 +9157,13 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "ไปยังตำแหน่ง"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
-msgstr ""
-
-msgid "Follow instructions on TV"
 msgstr ""
 
 #, fuzzy
@@ -8986,7 +9204,7 @@ msgstr ""
 msgid "Force ToneBurst"
 msgstr "Tone burst"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr ""
 
 #, fuzzy
@@ -9061,10 +9279,6 @@ msgid "French Southern Territories"
 msgstr ""
 
 msgid "Frequency"
-msgstr "ความถี่"
-
-#, fuzzy
-msgid "Frequency Norm:"
 msgstr "ความถี่"
 
 msgid "Frequency bands"
@@ -9192,10 +9406,28 @@ msgstr ""
 msgid "General AC3 delay"
 msgstr ""
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr ""
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
+msgstr ""
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
 msgstr ""
 
 msgid "Generic"
@@ -9250,6 +9482,9 @@ msgid "Ghana"
 msgstr ""
 
 msgid "Gibraltar"
+msgstr ""
+
+msgid "GigaBlue optimized"
 msgstr ""
 
 msgid "Given device id"
@@ -9498,6 +9733,9 @@ msgstr ""
 msgid "HDMIin"
 msgstr ""
 
+msgid "HDR OSD adjustment"
+msgstr ""
+
 msgid "HDR10 Support"
 msgstr ""
 
@@ -9595,6 +9833,9 @@ msgid "Help"
 msgstr ""
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 #, fuzzy
@@ -9861,9 +10102,6 @@ msgstr "ภาษาฮังการี่"
 msgid "Hybrid Tuner"
 msgstr ""
 
-msgid "Hybrid tuner mode"
-msgstr ""
-
 msgid "Hz"
 msgstr ""
 
@@ -9892,6 +10130,9 @@ msgid "INS"
 msgstr ""
 
 msgid "IP"
+msgstr ""
+
+msgid "IP Address"
 msgstr ""
 
 msgid "IP Address 1"
@@ -9926,6 +10167,9 @@ msgid "IP protocol"
 msgstr ""
 
 msgid "IPK Installer"
+msgstr ""
+
+msgid "IPv4 and IPv6"
 msgstr ""
 
 msgid "IPv4 only"
@@ -10329,6 +10573,12 @@ msgstr ""
 msgid "InfoBar"
 msgstr ""
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr ""
 
@@ -10339,6 +10589,12 @@ msgstr "ตั้งค่าอะแด๊ปเตอร์"
 #, fuzzy
 msgid "InfoBar EPG mode"
 msgstr "แถบรายการ"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr ""
@@ -10503,9 +10759,6 @@ msgstr ""
 
 #, python-format
 msgid "Interface '%s'"
-msgstr ""
-
-msgid "Interface: "
 msgstr ""
 
 #, fuzzy
@@ -10814,6 +11067,9 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "แป้นพิมพ์"
 
@@ -10837,6 +11093,9 @@ msgid "Kiribati"
 msgstr ""
 
 msgid "Kodi"
+msgstr ""
+
+msgid "Kodi Add-on Packages"
 msgstr ""
 
 msgid "Kodi MediaCenter"
@@ -10877,11 +11136,10 @@ msgstr ""
 msgid "LAN"
 msgstr "LNB"
 
-#, fuzzy
-msgid "LAN adapter"
-msgstr "แลนอะแด๊ปเตอร์"
-
 msgid "LAN connection"
+msgstr ""
+
+msgid "LAN link"
 msgstr ""
 
 msgid "LCD scroll speed"
@@ -10915,6 +11173,9 @@ msgid "LED Deep Standby"
 msgstr ""
 
 msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Indicators"
 msgstr ""
 
 msgid "LED Normal"
@@ -11046,6 +11307,9 @@ msgstr "ภาษาลัทเวีย"
 msgid "Latvian"
 msgstr "ภาษาลัทเวีย"
 
+msgid "Layout And Fonts"
+msgstr ""
+
 msgid "Leave"
 msgstr ""
 
@@ -11092,6 +11356,9 @@ msgid "Left, front USB"
 msgstr ""
 
 msgid "Left, wrapped"
+msgstr ""
+
+msgid "Legacy (SMB1)"
 msgstr ""
 
 msgid "Legacy mode"
@@ -11190,18 +11457,11 @@ msgstr ""
 msgid "Link detected"
 msgstr ""
 
-#, fuzzy
-msgid "Link quality:"
-msgstr "คุณภาพการเชื่อมต่อ:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr ""
-
-msgid "Link:"
-msgstr "เชื่อมต่อ:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "เชื่อมโดยชื่อเรื่องกับเมนูดีวีดี"
@@ -11209,13 +11469,13 @@ msgstr "เชื่อมโดยชื่อเรื่องกับเม
 msgid "Links"
 msgstr ""
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr ""
 
 msgid "List available EPG functions"
-msgstr ""
-
-msgid "List available networks"
 msgstr ""
 
 msgid "List of Storage Devices"
@@ -11287,14 +11547,13 @@ msgstr ""
 msgid "Local information"
 msgstr ""
 
-#, fuzzy
-msgid "Local network"
-msgstr "Local Network"
-
 msgid "Local or Regional"
 msgstr ""
 
 msgid "Local receiver"
+msgstr ""
+
+msgid "Local share"
 msgstr ""
 
 msgid "Local time"
@@ -11370,6 +11629,9 @@ msgid "Log %d/%d"
 msgstr ""
 
 msgid "Log Manager"
+msgstr ""
+
+msgid "Log Retention And Access"
 msgstr ""
 
 #, python-format
@@ -11472,12 +11734,11 @@ msgstr ""
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr ""
 
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP Address"
+msgid "MAC address"
+msgstr ""
 
 msgid "MENU"
 msgstr ""
@@ -11623,9 +11884,6 @@ msgstr "ค้นหาเอง"
 msgid "Manual Service Searching"
 msgstr "ค้นหาเอง"
 
-msgid "Manual configuration"
-msgstr ""
-
 msgid "Manual scan for services"
 msgstr ""
 
@@ -11703,10 +11961,6 @@ msgstr ""
 msgid "Max memory positions"
 msgstr ""
 
-#, fuzzy
-msgid "Max. bitrate: "
-msgstr "บิทเรท:"
-
 msgid "Maxdown +"
 msgstr ""
 
@@ -11742,6 +11996,9 @@ msgid "Media"
 msgstr ""
 
 msgid "Media Center"
+msgstr ""
+
+msgid "Media Files And Navigation"
 msgstr ""
 
 #, fuzzy
@@ -11830,6 +12087,9 @@ msgstr ""
 msgid "Menu style"
 msgstr ""
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -11877,6 +12137,9 @@ msgid "MiniDLNA Settings"
 msgstr ""
 
 msgid "MiniTV"
+msgstr ""
+
+msgid "MiniTV And PiP"
 msgstr ""
 
 msgid "MiniTV with OSD"
@@ -12013,7 +12276,7 @@ msgstr ""
 msgid "Mount"
 msgstr ""
 
-msgid "Mount Manager"
+msgid "Mount Context Menu"
 msgstr ""
 
 msgid "Mount Point"
@@ -12022,7 +12285,19 @@ msgstr ""
 msgid "Mount Setup"
 msgstr ""
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
+msgstr ""
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
@@ -12031,10 +12306,16 @@ msgstr ""
 msgid "Mount root file system."
 msgstr ""
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr ""
 
 msgid "Move"
+msgstr ""
+
+msgid "Move Down"
 msgstr ""
 
 msgid "Move Left/Right"
@@ -12057,6 +12338,9 @@ msgstr ""
 #, fuzzy
 msgid "Move PiP to main picture"
 msgstr "สลับให้ PIP เต็มจอ"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr ""
@@ -12113,6 +12397,12 @@ msgstr "ย้ายลงไปท้ายสุด"
 
 msgid "Move east"
 msgstr "เคลื่อนไปทางทิศตะวันออก"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr ""
@@ -12220,6 +12510,12 @@ msgstr ""
 msgid "Move to previous marker"
 msgstr ""
 
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr ""
+
 msgid "Move to the first item on the current line"
 msgstr ""
 
@@ -12323,6 +12619,9 @@ msgid "Movie Event View Actions"
 msgstr ""
 
 msgid "Movie List"
+msgstr ""
+
+msgid "Movie List And Playback Behavior"
 msgstr ""
 
 #, fuzzy
@@ -12468,10 +12767,16 @@ msgstr "ต่อไป"
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
+msgstr ""
+
+msgid "NFS Setup Actions"
 msgstr ""
 
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -12517,12 +12822,6 @@ msgstr ""
 msgid "Name server %d"
 msgstr ""
 
-msgid "Nameserver"
-msgstr "Nameserver"
-
-msgid "Nameserver settings"
-msgstr "ตั้งค่า Nameserver"
-
 msgid "Nameserver setup"
 msgstr ""
 
@@ -12565,6 +12864,12 @@ msgstr ""
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr ""
 
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
+
 msgid "Ndonga"
 msgstr ""
 
@@ -12586,22 +12891,20 @@ msgstr "Netmask"
 msgid "Network"
 msgstr "เครือข่าย"
 
-msgid "Network Adapter Actions"
+#, python-format
+msgid "Network Adapter '%s' Settings"
 msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr ""
 
-msgid "Network Adapter Setting Actions"
-msgstr ""
-
 msgid "Network Adapter Settings"
 msgstr ""
 
-msgid "Network Adapter Text Actions"
+msgid "Network Browser"
 msgstr ""
 
-msgid "Network Browser"
+msgid "Network Credentials"
 msgstr ""
 
 msgid "Network ID"
@@ -12622,7 +12925,22 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
+msgstr ""
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
 msgstr ""
 
 msgid "Network Packages"
@@ -12640,22 +12958,63 @@ msgstr "ตั้งค่าเครือข่าย"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr ""
 
-msgid "Network Test:"
+msgid "Network Test Actions"
 msgstr ""
 
-msgid "Network Wizard"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
+
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
 msgstr ""
 
 msgid "Network adapter not connected to a network!"
 msgstr ""
 
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
+msgstr ""
+
 msgid "Network address"
 msgstr ""
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
 msgstr ""
 
 msgid "Network information"
@@ -12684,25 +13043,10 @@ msgstr "ค้นหาเครือข่าย"
 msgid "Network storage on"
 msgstr ""
 
-msgid "Network test"
-msgstr "ทดสอบเครือข่าย"
-
 msgid "Network test..."
 msgstr "ทดสอบเครือข่าย..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
-msgstr ""
-
-msgid "Network:"
-msgstr "เครือข่าย:"
-
-msgid "NetworkWizard"
 msgstr ""
 
 msgid "Neutrino  (keymap.ntr)"
@@ -12737,6 +13081,9 @@ msgid "New Setting DXAndy "
 msgstr ""
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -12843,15 +13190,21 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "ไม่พบดีวีดีรอมที่ใช้งานได้!"
 
-msgid "No Connection"
-msgstr "ไม่พบการเชื่อมต่อ"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "ไม่มีรายละเอียดเพิ่มเติม"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "ไม่พบฮาร์ดดิสก์ (HDD) หรือยังไม่ได้เตรียมเพื่อให้ใช้งานได้"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -12928,7 +13281,13 @@ msgstr "ไม่มีรายละเอียดเพิ่มเติม
 msgid "No free tuner!"
 msgstr "ไม่มี Tuner ว่างที่จะใช้งานได้"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
+msgstr ""
+
+msgid "No hosts found yet - still scanning..."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -12944,8 +13303,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr ""
 
-msgid "No networks found"
-msgstr "ไม่พบเครือข่าย"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr ""
@@ -12972,6 +13331,9 @@ msgstr "เพิ่มบริการ"
 #, fuzzy
 msgid "No services/providers selected"
 msgstr "ยังไม่ได้เลือกบริการหรือผู้ให้บริการ"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr ""
@@ -13046,30 +13408,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
-
-msgid "No wireless networks found! Searching..."
-msgstr ""
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"ไม่พบอุปกรณ์เครือข่าย\n"
-"กรุณตรวจสอบว่าท่านได้เชื่อมต่ออุปกรณ์และตั้งค่าที่ถูกต้อง"
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"ไม่พบอุปกรณ์ไร้สาย\n"
-"กรุณาตรวจสอบว่า ได้ต่ออุปกรณ์ไร้สายที่ใช้ WLAN และได้ตั้งค่าอุปกรณ์อย่างถูกต้อง"
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"ไม่พบอุปกรณ์ไร้สาย\n"
-" กรุณาตรวจสอบว่า ได้ต่ออุปกรณ์ไร้สายและทำให้ระบบ WLAN พร้อมใช้งานแล้ว"
 
 msgid "No, but restart from begin"
 msgstr "ไม่ - กลับไปเริ่มต้นใหม่"
@@ -13159,6 +13497,9 @@ msgstr "ภาษานอร์เว"
 msgid "Not Classified"
 msgstr ""
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr ""
 
@@ -13200,7 +13541,13 @@ msgid ""
 "Path: %s"
 msgstr ""
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -13232,6 +13579,9 @@ msgid "Nothing to upgrade"
 msgstr ""
 
 msgid "Nothing, just leave this menu"
+msgstr ""
+
+msgid "Notifications And Display"
 msgstr ""
 
 msgctxt "now/next: 'now' event label"
@@ -13321,9 +13671,6 @@ msgid "OSCam Information"
 msgstr "ข้อมูล"
 
 msgid "OSCam Information Settings"
-msgstr ""
-
-msgid "OSCam webif disabled"
 msgstr ""
 
 msgid "OSCamInfo Actions"
@@ -13430,9 +13777,6 @@ msgstr ""
 
 msgid "Once"
 msgstr "ครั้งเดียว"
-
-msgid "One"
-msgstr "หนึ่ง"
 
 msgid "One line"
 msgstr ""
@@ -13646,7 +13990,22 @@ msgstr ""
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 msgid "Open the Plugin Browser"
@@ -13685,7 +14044,13 @@ msgstr ""
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
+msgstr ""
+
+msgid "Opening network adapter configuration..."
 msgstr ""
 
 msgid "Opera"
@@ -13714,6 +14079,9 @@ msgid "Option to disable picons on the InfoBar."
 msgstr ""
 
 msgid "Option to enable the hardware Standby timer."
+msgstr ""
+
+msgid "Optional arguments"
 msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
@@ -13764,6 +14132,9 @@ msgstr ""
 #, fuzzy
 msgid "Other Actions"
 msgstr "สถานที่"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr ""
@@ -13891,6 +14262,9 @@ msgid "PVR"
 msgstr ""
 
 msgid "Package"
+msgstr ""
+
+msgid "Package Categories"
 msgstr ""
 
 msgid "Package Manager"
@@ -14166,6 +14540,9 @@ msgstr ""
 msgid "Picon width"
 msgstr ""
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr ""
 
@@ -14201,6 +14578,9 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pinging..."
+msgstr ""
 
 msgid "Pink"
 msgstr ""
@@ -14310,6 +14690,12 @@ msgstr ""
 msgid "Play the selected service"
 msgstr ""
 
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
+
 msgid "Playback Settings"
 msgstr ""
 
@@ -14391,17 +14777,11 @@ msgid ""
 "Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
 msgstr ""
 
-msgid "Please follow the instructions on the TV"
-msgstr "กรุณาทำตามขั้นตอนที่ปรากฏบนจอโทรทัศน์"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "เนื่องจากไม่สามารถเข้าถึงสื่อบันทึกข้อมูลที่ท่านเลือกได้ โฟล์เดอร์เริ่มต้นจะถูกเรียกใช้งาน"
 
 msgid "Please open Picture in Picture first"
 msgstr ""
-
-msgid "Please press OK to continue."
-msgstr "กรุณากดปุ่ม OK เพื่อทำงานต่อ"
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -14480,9 +14860,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "กรุณารอสักครู่..."
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "กำลังเริ่มใช้งานเครือข่ายที่ตั้ง... กรุณารอสักครู่"
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -14537,17 +14914,8 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr ""
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "กรุณารอสักครู่.. กำลังเตรียมระบบเครือข่าย"
-
-msgid "Please wait while we test your network..."
-msgstr "กรุณารอสักครู่... กำลังตรวจสอบเครือข่าย"
-
 msgid "Please wait while your network is restarting..."
 msgstr "กรุณารอสักครู่... กำลังเริ่มระบบเครือข่าย..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr ""
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
@@ -14826,9 +15194,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "กดปุ่ม OK ที่รีโมทเพื่อทำงานต่อ"
 
-msgid "Press OK to activate the settings."
-msgstr "กดปุ่ม OK เพื่อเริ่มใช้งาน"
-
 msgid "Press OK to continue."
 msgstr ""
 
@@ -14947,13 +15312,13 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-msgid "Primary DNS"
-msgstr "DNS หลัก"
-
 msgid "Primary DNS (IPv4)"
 msgstr ""
 
 msgid "Primary DNS (IPv6)"
+msgstr ""
+
+msgid "Prime Time"
 msgstr ""
 
 msgid "Prime time"
@@ -15318,10 +15683,19 @@ msgstr ""
 msgid "Re-enter new PIN"
 msgstr ""
 
+msgid "Reachable"
+msgstr ""
+
 msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
+msgstr ""
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
 msgstr ""
 
 msgid "Read/Write"
@@ -15378,6 +15752,9 @@ msgid "Really shutdown now?"
 msgstr "ต้องการปิดเครื่องตอนนี้หรือไม่ (Shutdown)?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -15472,6 +15849,18 @@ msgstr ""
 msgid "Recording"
 msgstr "กำลังบันทึกรายการ"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr ""
 
@@ -15549,6 +15938,9 @@ msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
 msgid "Recovery"
+msgstr ""
+
+msgid "Recovery And Hardware"
 msgstr ""
 
 #, fuzzy
@@ -15691,10 +16083,19 @@ msgstr ""
 msgid "Remote Control Code Settings"
 msgstr ""
 
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
+
 msgid "Remote control information"
 msgstr ""
 
 msgid "Remote control type"
+msgstr ""
+
+msgid "Remote path"
 msgstr ""
 
 msgid "Remote receiver"
@@ -15726,6 +16127,9 @@ msgstr ""
 #, fuzzy
 msgid "Remove Confirmation"
 msgstr "ตั้งค่า Tuner"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "ลบรายการนี้ออก"
@@ -15946,6 +16350,15 @@ msgstr ""
 msgid "Rereading partition table"
 msgstr ""
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr ""
 
@@ -16009,8 +16422,18 @@ msgstr "ความละเอียดจอ"
 msgid "Resolution unit"
 msgstr ""
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "เริ่มระบบใหม่"
+
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
+msgid "Restart Adapter"
+msgstr ""
 
 #, fuzzy
 msgid "Restart GUI"
@@ -16026,12 +16449,6 @@ msgid "Restart GUI now?"
 msgstr "เริ่มทำงานใหม่ (GUI) ตอนนี้หรือไม่?"
 
 msgid "Restart Network"
-msgstr ""
-
-msgid "Restart Network Adapter"
-msgstr ""
-
-msgid "Restart OSCam"
 msgstr ""
 
 msgid "Restart enigma"
@@ -16053,8 +16470,15 @@ msgstr ""
 msgid "Restart test"
 msgstr "เริ่มทดสอบใหม่"
 
-msgid "Restart your network connection and interfaces."
-msgstr "สั่งให้เชื่อมต่อเครื่องใหม่อีกครั้ง"
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
+
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -16063,9 +16487,6 @@ msgid "Restore"
 msgstr "นำกลับมาใช้"
 
 msgid "Restore Deleted User Bouquets"
-msgstr ""
-
-msgid "Restore MetrixHD Settings"
 msgstr ""
 
 msgid "Restore Plugins"
@@ -16123,6 +16544,9 @@ msgstr ""
 
 msgid "Resuming playback"
 msgstr "กำลังกลับมาเล่นที่เดิม"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16327,10 +16751,10 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Settings"
+msgid "SAT"
 msgstr ""
 
-msgid "SAT"
+msgid "SAT input"
 msgstr ""
 
 msgid "SATA"
@@ -16368,6 +16792,9 @@ msgid "SDcard switch ERROR! - already on mmc"
 msgstr ""
 
 msgid "SINGLE LAYER DVD"
+msgstr ""
+
+msgid "SMB version"
 msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
@@ -16426,7 +16853,7 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr ""
 
 msgid "Same as in active"
@@ -16583,6 +17010,26 @@ msgstr ""
 msgid "Save time shift buffer now and continue recording"
 msgstr ""
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -16620,6 +17067,9 @@ msgstr ""
 msgid "Scan %s band"
 msgstr ""
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "ค้นหา additional SR"
 
@@ -16634,13 +17084,6 @@ msgid "Scan for local extensions and install them."
 msgstr ""
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
-msgstr ""
-
-#, fuzzy
-msgid "Scan wireless networks"
-msgstr "ค้นหาเครือข่ายไร้สาย"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr ""
 
 msgid "Scanning"
@@ -16666,6 +17109,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Scanning failed!"
+msgstr ""
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
 msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
@@ -16784,9 +17233,6 @@ msgstr "ค้นหาทางทิศตะวันตก"
 msgid "Second cable of motorized LNB"
 msgstr ""
 
-msgid "Secondary DNS"
-msgstr "DNS สำรอง"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -16868,6 +17314,9 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr ""
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
@@ -17024,6 +17473,9 @@ msgid "Select 'Yes' to set the cursor position to the end of the line when editi
 msgstr ""
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
@@ -17205,6 +17657,9 @@ msgstr "เลือกที่มาเพื่อปรับปรุง"
 msgid "Select Upgrade Source To Edit"
 msgstr "เลือกที่มาเพื่อปรับปรุง"
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -17248,6 +17703,9 @@ msgstr "เลือกภาพยนต์"
 msgid "Select a network adapter"
 msgstr ""
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -17258,6 +17716,12 @@ msgid "Select a repository commit log to view:"
 msgstr ""
 
 msgid "Select a script to run:"
+msgstr ""
+
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
@@ -17271,10 +17735,6 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr ""
-
-#, fuzzy
-msgid "Select a wireless network"
-msgstr "เลือกเครือข่ายไร้สาย"
 
 #, fuzzy
 msgid "Select action"
@@ -17327,6 +17787,9 @@ msgstr ""
 msgid "Select destination for:"
 msgstr ""
 
+msgid "Select exported directories"
+msgstr ""
+
 msgid "Select files to exclude from backup"
 msgstr ""
 
@@ -17372,9 +17835,6 @@ msgstr ""
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr ""
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr ""
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr ""
 
@@ -17385,6 +17845,9 @@ msgid "Select if an end time is required."
 msgstr ""
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr ""
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
 msgstr ""
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
@@ -17435,12 +17898,6 @@ msgstr ""
 msgid "Select input device."
 msgstr ""
 
-msgid "Select interface"
-msgstr "เลือกอินเตอร์เฟซ"
-
-msgid "Select menu entry"
-msgstr ""
-
 #, fuzzy
 msgid "Select movie"
 msgstr "เลือกภาพยนต์"
@@ -17482,7 +17939,7 @@ msgstr ""
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -17569,6 +18026,9 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -17727,10 +18187,13 @@ msgstr ""
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr ""
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17747,12 +18210,6 @@ msgid "Select the movie path"
 msgstr "เลือกพาธของภาพยนต์"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -17792,6 +18249,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -17823,6 +18283,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 #, fuzzy
@@ -17919,10 +18382,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -17967,6 +18427,9 @@ msgstr ""
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr ""
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
+
 msgid "Select where the recording should be saved."
 msgstr ""
 
@@ -17991,7 +18454,7 @@ msgstr ""
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr ""
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr ""
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -18011,9 +18474,6 @@ msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-msgid "Select wireless network"
-msgstr "เลือกเครือข่ายไร้สาย"
 
 #, fuzzy
 msgid "Select your ATSC provider."
@@ -18114,11 +18574,14 @@ msgstr ""
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr ""
 
+msgid "Server"
+msgstr ""
+
 #, fuzzy
 msgid "Server down"
 msgstr "ค้นหาบริการ"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr ""
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -18156,6 +18619,9 @@ msgid "Service Information"
 msgstr ""
 
 msgid "Service Information Actions"
+msgstr ""
+
+msgid "Service List Appearance"
 msgstr ""
 
 msgid "Service Scan"
@@ -18521,13 +18987,16 @@ msgstr ""
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
 
+msgid "Set up network"
+msgstr ""
+
 msgid "Set up tuner [TUNER]"
 msgstr ""
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -18874,6 +19343,9 @@ msgstr ""
 msgid "Show Kernel packages"
 msgstr ""
 
+msgid "Show Kodi Add-on packages"
+msgstr ""
+
 #, fuzzy
 msgid "Show Live in MiniTV"
 msgstr "แสดง Infoline"
@@ -19002,10 +19474,6 @@ msgstr "แสดงเมนูหลักของดีวีดี"
 #, fuzzy
 msgid "Show Vertical EPG"
 msgstr "แนวตั้ง (V)"
-
-#, fuzzy
-msgid "Show WLAN status"
-msgstr "แสดงสถานะของ WLAN"
 
 msgid "Show Web Link packages"
 msgstr ""
@@ -19177,10 +19645,6 @@ msgid "Show in Standby"
 msgstr "Standby"
 
 #, fuzzy
-msgid "Show info"
-msgstr "แสดงข้อมูล"
-
-#, fuzzy
 msgid "Show info line"
 msgstr "แสดง Infoline"
 
@@ -19223,6 +19687,9 @@ msgid "Show movies"
 msgstr ""
 
 msgid "Show multi channel EPG"
+msgstr ""
+
+msgid "Show network adapter connection information"
 msgstr ""
 
 msgid "Show next commit log"
@@ -19418,6 +19885,9 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -19501,9 +19971,6 @@ msgstr ""
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr ""
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "แสดงสถานะการเชื่อมต่อเครือข่ายไร้สาย"
-
 msgid "Shows the watched status of the media."
 msgstr ""
 
@@ -19517,7 +19984,8 @@ msgstr ""
 msgid "Shutdown"
 msgstr ""
 
-msgid "Shutdown OSCam"
+#, python-format
+msgid "Shutdown %s"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
@@ -19538,15 +20006,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-#, fuzzy
-msgid "Signal quality"
-msgstr "คุณภาพการเชื่อมต่อ:"
-
 msgid "Signal strength"
 msgstr ""
-
-msgid "Signal: "
-msgstr "สัญญาณ:"
 
 msgid "Signed by"
 msgstr ""
@@ -19642,6 +20103,9 @@ msgstr ""
 msgid "SkinSelection"
 msgstr ""
 
+msgid "Skip Modes"
+msgstr ""
+
 msgid "Skip back"
 msgstr ""
 
@@ -19686,6 +20150,9 @@ msgid "Skip forward (enter time)"
 msgstr "ข้ามไปข้างหน้า (ป้อนเวลา)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -19927,6 +20394,9 @@ msgstr ""
 msgid "Socket"
 msgstr "ล๊อคแล้ว"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -19946,6 +20416,9 @@ msgid "Softcam Setup"
 msgstr ""
 
 msgid "Softcams"
+msgstr ""
+
+msgid "Software Display Scrolling"
 msgstr ""
 
 msgid "Software Management"
@@ -20062,6 +20535,18 @@ msgstr ""
 msgid "Sort by"
 msgstr ""
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr ""
 
@@ -20090,6 +20575,9 @@ msgstr ""
 
 msgid "Sound"
 msgstr "เสียง"
+
+msgid "Sound Enhancements"
+msgstr ""
 
 #, fuzzy
 msgid "Sound carrier"
@@ -20157,9 +20645,6 @@ msgstr ""
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr ""
-
 msgid "Speed"
 msgstr ""
 
@@ -20209,6 +20694,10 @@ msgid "Standby without TV shut down"
 msgstr ""
 
 msgid "Start"
+msgstr ""
+
+#, python-format
+msgid "Start %s"
 msgstr ""
 
 msgid "Start Auto Refresh"
@@ -20264,9 +20753,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr ""
 
-msgid "Start test"
-msgstr "เริ่มทดสอบ"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -20295,6 +20781,10 @@ msgstr ""
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr ""
 
@@ -20313,11 +20803,17 @@ msgstr ""
 msgid "Starts in a few seconds"
 msgstr ""
 
+msgid "Startup And Wakeup"
+msgstr ""
+
 msgid "Startup device not found!"
 msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
+msgstr ""
+
+msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
@@ -20410,9 +20906,6 @@ msgstr ""
 msgid "Stop streams"
 msgstr ""
 
-msgid "Stop test"
-msgstr "หยุดทดสอบ"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "หยุดทดสอบแนวเมื่อมี # ทรานสปอนเดอร์ ไม่ผ่านการทดสอบ"
 
@@ -20441,6 +20934,10 @@ msgstr "กำลังถูกบันทึก"
 msgid "Stopped"
 msgstr ""
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr ""
 
@@ -20460,6 +20957,9 @@ msgstr ""
 msgid "Storage / Drive information"
 msgstr ""
 
+msgid "Storage And Deletion"
+msgstr ""
+
 #, fuzzy
 msgid "Storage Devices"
 msgstr "อุปกรณ์สำหรับบันทึก"
@@ -20477,6 +20977,12 @@ msgstr "แผ่นดีวีดีนี้เขียนไม่ได้
 
 msgid "Store position"
 msgstr "บันทึกตำแหน่ง"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "บันทึกตำแหน่งแล้ว"
@@ -20571,6 +21077,9 @@ msgstr ""
 #, fuzzy
 msgid "Subtitle Actions"
 msgstr "เลือกซับไตเติ้ล"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 #, fuzzy
 msgid "Subtitle Quickmenu"
@@ -20798,9 +21307,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-msgid "Switchable tuner types:"
-msgstr ""
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr ""
 
@@ -20903,16 +21409,16 @@ msgstr ""
 msgid "TV"
 msgstr ""
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
-msgstr ""
-
-msgid "TV power"
 msgstr ""
 
 msgid "TXT PID"
@@ -21019,6 +21525,9 @@ msgstr ""
 msgid "Teletext StartY (lower border)"
 msgstr ""
 
+msgid "Teletext Subtitles"
+msgstr ""
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr ""
 
@@ -21082,6 +21591,9 @@ msgstr ""
 msgid "Terrestrial"
 msgstr "ภาคพื้นดิน"
 
+msgid "Terrestrial input"
+msgstr ""
+
 msgid "Test"
 msgstr ""
 
@@ -21096,10 +21608,6 @@ msgstr ""
 
 msgid "Test mode"
 msgstr "โหมดทดสอบ"
-
-#, fuzzy, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "ทดสอบการตั้งค่าเครือข่ายของเครื่องดรีมบอกซ์"
 
 #, fuzzy
 msgid "Test type"
@@ -21206,18 +21714,6 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
 msgstr ""
 
 msgid ""
@@ -21363,12 +21859,6 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr "ยังไม่ได้ติดตั้งปลั๊กอินสำหรับเครือข่ายไร้สาย กรุณาติดตั้งก่อน"
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21439,26 +21929,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr "ยังไม่ได้ติดตั้งปลั๊กอินสำหรับเครือข่ายไร้สาย กรุณาติดตั้งก่อน"
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -21542,6 +22018,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr ""
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -21563,6 +22042,9 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -21778,55 +22260,6 @@ msgstr ""
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr ""
 
-#, fuzzy
-msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"การทดสอบนี้จะเป็นการตรวจสอบการตั้งค่า Nameservers.\n"
-"หากผลลัพธ์เป็น \"ไม่ยืนยัน\":\n"
-"- ให้ทำการตรวจสอบ DHCP สายสัญญาณ และอะแด๊ปเตอร์\n"
-"- หากท่านป้อนข้อมูล Nameservers ด้วยตัวเองให้ทำการตรวจสอบความถูกต้องของ \"Nameserver\""
-
-#, fuzzy
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"รายการทดสอบนี้จะทำการตรวจสอบสายสัญญาณ\n"
-"หากผลลัพธ์เป็น \"ถูกตัดสัญญาณ\" :\n"
-"- ให้ตรวจสอบการเสียบสายสัญญาณ\n"
-"- สายสัญญาณอาจขาดให้ตรวจสอบ"
-
-#, fuzzy
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"การทดสอบนี้จะทำการตรวจสอบว่า IP Address ที่ได้สามารถใช้งานจริงได้หรือไม่\n"
-"หากพบผลลัพธ์เป็น \"ไม่ยืนยัน\":\n"
-"- ไม่พบ IP Address ที่สามารถใช้งานได้\n"
-"- แนะนำให้ตรวจสอบการตั้งค่า DHCP ตรวจสอบสายสัญญาญ"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-
-#, fuzzy
-msgid "This test detects your configured LAN adapter."
-msgstr "ทดสอบการตั้งเครือข่าย"
-
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
@@ -21844,9 +22277,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-msgid "Three"
-msgstr "สาม"
 
 msgid "Threshold"
 msgstr "ระดับ"
@@ -21986,6 +22416,9 @@ msgstr "เส้นแบ่งเวลา"
 msgid "Time zone area"
 msgstr "เส้นแบ่งเวลา"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr ""
 
@@ -21999,6 +22432,12 @@ msgstr "ตั้งเวลา"
 #, fuzzy
 msgid "Timeline scale"
 msgstr "เลือกการตั้งเวลา"
+
+msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -22068,7 +22507,7 @@ msgstr "ควบคุมรายการสด"
 msgid "Timezone"
 msgstr ""
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -22168,6 +22607,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr ""
 
@@ -22251,6 +22693,9 @@ msgstr ""
 msgid "Traditional Chinese"
 msgstr ""
 
+msgid "Transceiver"
+msgstr ""
+
 #, fuzzy
 msgid "Transcode"
 msgstr "ทรานสปอนเดอร์"
@@ -22305,6 +22750,9 @@ msgstr ""
 msgid "Transport Stream Type"
 msgstr "ประเภทของทรานสปอนเดอร์"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr ""
 
@@ -22327,6 +22775,9 @@ msgid "Trim File System..."
 msgstr ""
 
 msgid "Trinidad and Tobago"
+msgstr ""
+
+msgid "Triple Tuner"
 msgstr ""
 
 msgid "True"
@@ -22388,6 +22839,12 @@ msgstr ""
 #, fuzzy
 msgid "Tuner :"
 msgstr "Tuner"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "ตั้งค่า Tuner"
@@ -22521,9 +22978,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
-msgid "Two"
-msgstr "สอง"
-
 msgid "Two lines"
 msgstr ""
 
@@ -22639,9 +23093,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr ""
 
-msgid "Unencrypted"
-msgstr ""
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -22702,11 +23153,6 @@ msgstr ""
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -22750,6 +23196,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr ""
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr ""
 
@@ -22761,9 +23210,6 @@ msgstr ""
 
 msgid "Unset As Startup Service"
 msgstr ""
-
-msgid "Unsupported"
-msgstr "ไม่รองรับ"
 
 msgid "Until standby/restart"
 msgstr ""
@@ -22942,6 +23388,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr ""
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
@@ -22978,13 +23427,13 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-msgid "Use a gateway"
-msgstr "ใช้ Gateway"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
+msgstr ""
+
+msgid "Use as HDD replacement"
 msgstr ""
 
 msgid "Use automatic mode detection"
@@ -23029,12 +23478,11 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgid "Use guest login"
 msgstr ""
 
-#, fuzzy
-msgid "Use interface"
-msgstr "เลือกใช้อินเตอร์เฟซนี้"
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr ""
 
 msgid "Use key map *"
 msgstr ""
@@ -23046,9 +23494,6 @@ msgid "Use official channel numbering"
 msgstr ""
 
 msgid "Use only DNSSEC servers"
-msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
 msgstr ""
 
 msgid "Use only no-filter servers"
@@ -23102,9 +23547,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr ""
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr ""
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr ""
 
@@ -23121,13 +23563,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-#, fuzzy
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "ใช้ตัวช่วยสำหรับตั้งค่าเครือข่าวย\n"
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -23207,6 +23642,12 @@ msgstr "ชื่อผู้ใช้"
 msgid "Username (httpuser)"
 msgstr ""
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr ""
 
@@ -23231,9 +23672,6 @@ msgstr ""
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
 
-msgid "VLAN connection"
-msgstr ""
-
 msgid "VMC"
 msgstr ""
 
@@ -23244,6 +23682,9 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
+msgstr ""
+
+msgid "VPN"
 msgstr ""
 
 msgid "VPS Settings"
@@ -23562,6 +24003,9 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr ""
 
@@ -23595,12 +24039,6 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr ""
-
 msgid "WMA Pro"
 msgstr ""
 
@@ -23609,15 +24047,6 @@ msgstr ""
 
 msgid "WOL Standby"
 msgstr ""
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA หรือ WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS บน 4:3"
@@ -23633,6 +24062,9 @@ msgstr ""
 
 msgid "Waiting"
 msgstr "กำลังคอย..."
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr ""
@@ -23679,6 +24111,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -23938,7 +24373,7 @@ msgstr ""
 msgid "When enabled, show status or error messages."
 msgstr ""
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23995,7 +24430,10 @@ msgstr ""
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr ""
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
+msgstr ""
+
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
@@ -24004,10 +24442,10 @@ msgstr ""
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
 msgstr ""
 
-msgid "When enabled, use DHCP for the IP configuration."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
@@ -24074,7 +24512,26 @@ msgstr "ไม่มีรายละเอียดเพิ่มเติม
 msgid "White"
 msgstr ""
 
-msgid "Wi-Fi Connection Settings"
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
 msgstr ""
 
 msgid "Wide"
@@ -24099,29 +24556,6 @@ msgid "Wipe Storage Device"
 msgstr ""
 
 msgid "Wiping storage device..."
-msgstr ""
-
-msgid "Wireless LAN"
-msgstr "แลนแบบไร้สาย"
-
-#, fuzzy
-msgid "Wireless network"
-msgstr "เครือข่ายไร้สาย"
-
-#, fuzzy
-msgid "Wireless network configuration..."
-msgstr "ตั้งค่าเครือข่าย..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
 msgstr ""
 
 msgid "With EXIT button"
@@ -24191,6 +24625,9 @@ msgstr ""
 #, fuzzy
 msgid "Wrestling"
 msgstr "กำลังติดตั้ง"
+
+msgid "Write block size"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -24333,10 +24770,6 @@ msgstr ""
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr ""
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr ""
-
 msgid "You cannot delete this!"
 msgstr "ท่านไม่สามารถลบรายการนี้ได้!"
 
@@ -24405,19 +24838,6 @@ msgstr ""
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-#, fuzzy, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"เครื่องของท่านพร้อมใช้งานแล้ว\n"
-"\n"
-"การเชื่อมต่ออินเตอร์เน็ทพร้อมแล้ว\n"
-"\n"
-"กดปุ่ม OK เพื่อทำงานต่อ"
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr ""
@@ -24446,34 +24866,11 @@ msgid "Your %s %s will Restart..."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"ไม่สามรถเชื่อต่ออินเตอร์เน็ตได้!\n"
-"โปรดเลือกว่า จะทำอะไรต่อไป"
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
-msgstr ""
-
-msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
@@ -24512,9 +24909,6 @@ msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
-
-msgid "Your network configuration has been activated."
-msgstr "เครือข่ายของท่านสามารถใช้งานได้แล้ว"
 
 msgid "Your password must have at least 5 characters."
 msgstr ""
@@ -24558,6 +24952,9 @@ msgid "Zap"
 msgstr ""
 
 msgid "Zap + Exit"
+msgstr ""
+
+msgid "Zap Timer Settings"
 msgstr ""
 
 msgid "Zap Up/Down"
@@ -24771,12 +25168,6 @@ msgstr ""
 msgid "config menu"
 msgstr "เมนูตั้งค่า"
 
-msgid "confirmed"
-msgstr "ยืนยันแล้ว"
-
-msgid "connected"
-msgstr "เชื่อมต่อแล้ว"
-
 msgid "copy"
 msgstr ""
 
@@ -24800,9 +25191,6 @@ msgstr "ลบส่วนตัดต่อ"
 
 msgid "disabled"
 msgstr "ไม่ใช้แล้ว"
-
-msgid "disconnected"
-msgstr "เชื่อมต่อถูกตัดแล้ว"
 
 msgid "eMMC"
 msgstr ""
@@ -25069,9 +25457,6 @@ msgstr "ของสื่อบันทึกสองชั้น"
 msgid "of a SINGLE layer medium used."
 msgstr "ของสื่อบันทึกแบบชั้นเดียว"
 
-msgid "off or wpa2 on"
-msgstr ""
-
 msgid "offset is"
 msgstr ""
 
@@ -25279,9 +25664,6 @@ msgstr ""
 msgid "unavailable"
 msgstr ""
 
-msgid "unconfirmed"
-msgstr "ยังไม่ยืนยัน"
-
 msgid "unknown"
 msgstr "ไม่มีข้อมูล"
 
@@ -25342,6 +25724,370 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "One"
+#~ msgstr "หนึ่ง"
+
+#~ msgid "Three"
+#~ msgstr "สาม"
+
+#~ msgid "Two"
+#~ msgstr "สอง"
+
+#, fuzzy, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "พบ 1 เครือข่ายไร้สาย"
+#~ msgstr[1] "พบ 1 เครือข่ายไร้สาย"
+
+#~ msgid "Activate network settings"
+#~ msgstr "ตั้งค่าเครือข่าย"
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "ท่านจะให้ค่าเครื่อข่ายที่ตั้งใหม่ทำงานหรือไม่"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "ท่านจะให้ระบบเครือข่ายเริ่มทำงานใหม่หรือไม่?"
+
+#~ msgid "Back"
+#~ msgstr "ย้อนกลับ"
+
+#~ msgid "Configure interface"
+#~ msgstr "ตั้งค่าอินเตอร์เฟซ"
+
+#~ msgid "Configure the network again"
+#~ msgstr "ตั้งเครือข่ายอีกครั้ง"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "ตั้งค่าการ์แลนในเครื่อง"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "ตั้งค่าเครือข่ายไร้สายอีกครั้ง"
+
+#, fuzzy
+#~ msgid "Connect to a wireless network"
+#~ msgstr "เชื่อมต่อกับเครือข่ายไร้สาย"
+
+#~ msgid "Current settings:"
+#~ msgstr "ตั้งค่าปัจจุบัน:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#, fuzzy, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "แก้ไขการตั้งค่า Nameserver บนเครื่องดรีมบอกซ์ของท่าน"
+
+#, fuzzy, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "แก้ไขการตั้งค่าเครือข่ายเครื่อดรีมบอกซ์ของท่าน"
+
+#, fuzzy
+#~ msgid "Encryption Type:"
+#~ msgstr "การเข้ารหัส:"
+
+#, fuzzy
+#~ msgid "Encryption key"
+#~ msgstr "คีย์สำหรับเข้ารหัส"
+
+#, fuzzy
+#~ msgid "Encryption key type"
+#~ msgstr "ชนิดคีย์"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "ออกจากการตั้งค่าระบบเครือข่าย"
+
+#, fuzzy
+#~ msgid "Exit network interface list"
+#~ msgstr "ออกจากรายการเครือข่าย"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "ออกจากตัวช่วยเครือข่าย"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Plugin สำหรับตั้งค่าเครือข่าย..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "ตั้งค่าส่วนเพิ่มเติม..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "จบการตั้งค่าเครือข่าย"
+
+#, fuzzy
+#~ msgid "Frequency Norm:"
+#~ msgstr "ความถี่"
+
+#, fuzzy
+#~ msgid "LAN adapter"
+#~ msgstr "แลนอะแด๊ปเตอร์"
+
+#, fuzzy
+#~ msgid "Link quality:"
+#~ msgstr "คุณภาพการเชื่อมต่อ:"
+
+#~ msgid "Link:"
+#~ msgstr "เชื่อมต่อ:"
+
+#, fuzzy
+#~ msgid "Local network"
+#~ msgstr "Local Network"
+
+#, fuzzy
+#~ msgid "MAC-address"
+#~ msgstr "IP Address"
+
+#, fuzzy
+#~ msgid "Max. bitrate: "
+#~ msgstr "บิทเรท:"
+
+#~ msgid "Nameserver"
+#~ msgstr "Nameserver"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "ตั้งค่า Nameserver"
+
+#~ msgid "Network test"
+#~ msgstr "ทดสอบเครือข่าย"
+
+#~ msgid "Network:"
+#~ msgstr "เครือข่าย:"
+
+#~ msgid "No Connection"
+#~ msgstr "ไม่พบการเชื่อมต่อ"
+
+#~ msgid "No networks found"
+#~ msgstr "ไม่พบเครือข่าย"
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "ไม่พบอุปกรณ์เครือข่าย\n"
+#~ "กรุณตรวจสอบว่าท่านได้เชื่อมต่ออุปกรณ์และตั้งค่าที่ถูกต้อง"
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "ไม่พบอุปกรณ์ไร้สาย\n"
+#~ "กรุณาตรวจสอบว่า ได้ต่ออุปกรณ์ไร้สายที่ใช้ WLAN และได้ตั้งค่าอุปกรณ์อย่างถูกต้อง"
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "ไม่พบอุปกรณ์ไร้สาย\n"
+#~ " กรุณาตรวจสอบว่า ได้ต่ออุปกรณ์ไร้สายและทำให้ระบบ WLAN พร้อมใช้งานแล้ว"
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "กรุณาทำตามขั้นตอนที่ปรากฏบนจอโทรทัศน์"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "กรุณากดปุ่ม OK เพื่อทำงานต่อ"
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "กำลังเริ่มใช้งานเครือข่ายที่ตั้ง... กรุณารอสักครู่"
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "กรุณารอสักครู่.. กำลังเตรียมระบบเครือข่าย"
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "กรุณารอสักครู่... กำลังตรวจสอบเครือข่าย"
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "กดปุ่ม OK เพื่อเริ่มใช้งาน"
+
+#~ msgid "Primary DNS"
+#~ msgstr "DNS หลัก"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "สั่งให้เชื่อมต่อเครื่องใหม่อีกครั้ง"
+
+#, fuzzy
+#~ msgid "Scan wireless networks"
+#~ msgstr "ค้นหาเครือข่ายไร้สาย"
+
+#~ msgid "Secondary DNS"
+#~ msgstr "DNS สำรอง"
+
+#, fuzzy
+#~ msgid "Select a wireless network"
+#~ msgstr "เลือกเครือข่ายไร้สาย"
+
+#~ msgid "Select interface"
+#~ msgstr "เลือกอินเตอร์เฟซ"
+
+#~ msgid "Select wireless network"
+#~ msgstr "เลือกเครือข่ายไร้สาย"
+
+#, fuzzy
+#~ msgid "Show WLAN status"
+#~ msgstr "แสดงสถานะของ WLAN"
+
+#, fuzzy
+#~ msgid "Show info"
+#~ msgstr "แสดงข้อมูล"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "แสดงสถานะการเชื่อมต่อเครือข่ายไร้สาย"
+
+#, fuzzy
+#~ msgid "Signal quality"
+#~ msgstr "คุณภาพการเชื่อมต่อ:"
+
+#~ msgid "Signal: "
+#~ msgstr "สัญญาณ:"
+
+#~ msgid "Start test"
+#~ msgstr "เริ่มทดสอบ"
+
+#~ msgid "Stop test"
+#~ msgstr "หยุดทดสอบ"
+
+#, fuzzy, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "ทดสอบการตั้งค่าเครือข่ายของเครื่องดรีมบอกซ์"
+
+#, fuzzy
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr "ยังไม่ได้ติดตั้งปลั๊กอินสำหรับเครือข่ายไร้สาย กรุณาติดตั้งก่อน"
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr "ยังไม่ได้ติดตั้งปลั๊กอินสำหรับเครือข่ายไร้สาย กรุณาติดตั้งก่อน"
+
+#, fuzzy
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "การทดสอบนี้จะเป็นการตรวจสอบการตั้งค่า Nameservers.\n"
+#~ "หากผลลัพธ์เป็น \"ไม่ยืนยัน\":\n"
+#~ "- ให้ทำการตรวจสอบ DHCP สายสัญญาณ และอะแด๊ปเตอร์\n"
+#~ "- หากท่านป้อนข้อมูล Nameservers ด้วยตัวเองให้ทำการตรวจสอบความถูกต้องของ \"Nameserver\""
+
+#, fuzzy
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "รายการทดสอบนี้จะทำการตรวจสอบสายสัญญาณ\n"
+#~ "หากผลลัพธ์เป็น \"ถูกตัดสัญญาณ\" :\n"
+#~ "- ให้ตรวจสอบการเสียบสายสัญญาณ\n"
+#~ "- สายสัญญาณอาจขาดให้ตรวจสอบ"
+
+#, fuzzy
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "การทดสอบนี้จะทำการตรวจสอบว่า IP Address ที่ได้สามารถใช้งานจริงได้หรือไม่\n"
+#~ "หากพบผลลัพธ์เป็น \"ไม่ยืนยัน\":\n"
+#~ "- ไม่พบ IP Address ที่สามารถใช้งานได้\n"
+#~ "- แนะนำให้ตรวจสอบการตั้งค่า DHCP ตรวจสอบสายสัญญาญ"
+
+#, fuzzy
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "ทดสอบการตั้งเครือข่าย"
+
+#~ msgid "Unsupported"
+#~ msgstr "ไม่รองรับ"
+
+#~ msgid "Use a gateway"
+#~ msgstr "ใช้ Gateway"
+
+#, fuzzy
+#~ msgid "Use interface"
+#~ msgstr "เลือกใช้อินเตอร์เฟซนี้"
+
+#, fuzzy
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "ใช้ตัวช่วยสำหรับตั้งค่าเครือข่าวย\n"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA หรือ WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "Wireless LAN"
+#~ msgstr "แลนแบบไร้สาย"
+
+#, fuzzy
+#~ msgid "Wireless network"
+#~ msgstr "เครือข่ายไร้สาย"
+
+#, fuzzy
+#~ msgid "Wireless network configuration..."
+#~ msgstr "ตั้งค่าเครือข่าย..."
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "เครื่องของท่านพร้อมใช้งานแล้ว\n"
+#~ "\n"
+#~ "การเชื่อมต่ออินเตอร์เน็ทพร้อมแล้ว\n"
+#~ "\n"
+#~ "กดปุ่ม OK เพื่อทำงานต่อ"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "ไม่สามรถเชื่อต่ออินเตอร์เน็ตได้!\n"
+#~ "โปรดเลือกว่า จะทำอะไรต่อไป"
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "เครือข่ายของท่านสามารถใช้งานได้แล้ว"
+
+#~ msgid "confirmed"
+#~ msgstr "ยืนยันแล้ว"
+
+#~ msgid "connected"
+#~ msgstr "เชื่อมต่อแล้ว"
+
+#~ msgid "disconnected"
+#~ msgstr "เชื่อมต่อถูกตัดแล้ว"
+
+#~ msgid "unconfirmed"
+#~ msgstr "ยังไม่ยืนยัน"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "กำลังบันทึกรายการอยู่ ให้หยุดการบันทึกก่อนตั้งค่าตัวขับจาน"

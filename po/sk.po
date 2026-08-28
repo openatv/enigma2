@@ -1,18 +1,18 @@
-# NickerSK <nickersk@gmail.com>, 2021, 2022.
+# NickerSK <nickersk@gmail.com>, 2021, 2022, 2026.
 # Marian-SK <podnety@mojepreklady.net>, 2021.
 # Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024, 2025, 2026.
 # Atec <dr.atec@gmail.com>, 2023, 2024, 2025, 2026.
-# Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
-# HS <enosat@yahoo.com>, 2024.
-# Marian Turba <puki247@gmail.com>, 2024.
+# Milan Šalka <salka.milan@googlemail.com>, 2023, 2024, 2026.
+# HS <enosat@yahoo.com>, 2024, 2026.
+# Marian Turba <puki247@gmail.com>, 2024, 2026.
 # Marcel <inigo0@centrum.sk>, 2024.
 # Warder <ciksa@seznam.cz>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-22 04:03+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-24 12:20+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -916,6 +916,13 @@ msgstr[1] "Aktualizované boli %d balíčky so zdrojovým katalógom."
 msgstr[2] "Aktualizovaných bolo %d balíčkov so zdrojovým katalógom."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] "Našiel sa %d hostiteľ."
+msgstr[1] "Našli sa %d hostitelia."
+msgstr[2] "Našlo sa %d hostiteľov."
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "Na pozadí prebiehajú úlohy. Ich počet je: %d!"
 
@@ -934,6 +941,13 @@ msgstr "%d minút"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] "Našla sa %d sieť."
+msgstr[1] "Našli sa %d siete."
+msgstr[2] "Našlo sa %d sietí."
 
 #, python-format
 msgid "%d package found."
@@ -1065,13 +1079,6 @@ msgstr "Na zariadení bolo vytvorených %d slotov.\n"
 #, python-format
 msgid "%d times"
 msgstr "%d krát"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "Našla sa %d bezdrôtová sieť!"
-msgstr[1] "Našli sa %d bezdrôtové siete!"
-msgstr[2] "Našlo sa %d bezdrôtových sietí!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1216,6 +1223,10 @@ msgid "%s View"
 msgstr "%s Zobraziť"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "Akcia %s sa nepodarila (kód ukončenia: %s)"
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s ďalšie obrazovky"
 
@@ -1230,6 +1241,20 @@ msgstr "%s bolo deaktivované."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s importované zo vzdialeného prijímača."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+"%s momentálne nebeží.\n"
+"\n"
+"Má sa spustiť?"
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s je aktuálne zastavené alebo nedostupné. Spustenie vykonáte ZELENÝM tlačidlom."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1249,12 +1274,20 @@ msgid "%s version"
 msgstr "Verzia %s"
 
 #, python-format
+msgid "%s webif disabled"
+msgstr "%s webif deaktivované"
+
+#, python-format
 msgid "%s%d min"
 msgstr "%s%d min"
 
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Predvolené: %s)"
+
+#, python-format
+msgid "%s. (Lowest)"
+msgstr "%s. (najnižšie)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1299,6 +1332,22 @@ msgstr "%sZobraziť 1080i ako 1080p"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' obsahuje %d súb. a %d priečinkov.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr "'%s' je už nastavené samostatným nastavením hore, odstráňte ho z 'Možností pripojenia'."
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr "'%s' je v sekcii 'Možnosti pripojenia' uvedené viac ako raz."
+
+#, python-format
+msgid "'%s' mounted."
+msgstr "'%s' pripojené."
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr "'%s' odpojené."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starších súborov timeshiftu má prednosť podmienka, ktorá nastala skôr."
@@ -1384,14 +1433,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr "1. (najvyššie)"
 
 msgid "10bit"
 msgstr "10 bitov"
@@ -1414,17 +1457,11 @@ msgstr "12 bitov"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12 bitov 4:2:0/4:2:2 bez PiP"
 
-msgid "13 V"
-msgstr "13 V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 letterbox"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "vždy 16:9"
@@ -1443,9 +1480,6 @@ msgstr "16:9 PanScan"
 
 msgid "16:9 reset to normal"
 msgstr "16/9 reset na normál"
-
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "Časový limit pre 1. infolištu"
@@ -1676,15 +1710,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Požadovaný nástroj (%s) sa nenašiel."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Našlo sa druhé nakonfigurované rozhranie.\n"
-"\n"
-"Chcete druhé sieťové rozhranie vypnúť?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1743,6 +1768,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "Titulky pomocou AI"
+
 msgid "AI Translation color"
 msgstr "Farba prekladu vytvoreného umelou inteligenciou"
 
@@ -1776,11 +1804,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "Poskytovateľ ATSC"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV prijímač, soundbar a diaľkové"
+
 msgid "AV Setup"
 msgstr "Nastavenie A/V"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV prijímač, soundbar a diaľkové"
 
 msgid "Abkhazian"
 msgstr "abcházština"
@@ -1821,6 +1849,13 @@ msgstr "Režim prístupu"
 msgid "Access point"
 msgstr "Prístupový bod"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+"Prístupový bod sa nenašiel\n"
+"Skontrolujte, že je v danom rozsahu a SSID je správne."
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Prístup ku geolokačným informáciám si vyžaduje pripojenie na internet."
 
@@ -1860,14 +1895,8 @@ msgstr "Povoliť tlačidlá HORE/DOLU pre funkcie 'všetko nahor/nadol' na zači
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivovať možnosť zasielania individuálnych alebo špecifických interných príkazov HDMI-CEC z príkazového riadka."
 
-msgid "Activate network adapter configuration"
-msgstr "Aktivovať konfiguráciu sieťového adaptéra"
-
-msgid "Activate network settings"
-msgstr "Aktivovať nastavenia siete"
-
-msgid "Activate the configured network settings."
-msgstr "Aktivovať nakonfigurované nastavenia siete."
+msgid "Activate network adapter"
+msgstr "Aktivovať sieťový adaptér"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivovať flash expandér, uložiť všetky zmenené nastavenia a ukončiť"
@@ -1889,6 +1918,13 @@ msgstr "Aktívni klienti"
 
 msgid "Active only"
 msgstr "Len aktívne"
+
+msgid "Adapter"
+msgstr "Adaptér"
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr "Kontextové menu adaptéra '%s'"
 
 msgid "Adapter Settings"
 msgstr "Nastavenia adaptéra"
@@ -1932,6 +1968,9 @@ msgstr "Pridať HDMI vstup do prehľadu"
 msgid "Add Marker To Bouquet"
 msgstr "Pridať značku k prehľadu"
 
+msgid "Add Mount Manually"
+msgstr "Pridať pripojenie manuálne"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Pridať nový záznam pre Quad kanál"
 
@@ -1955,6 +1994,12 @@ msgstr "Pridať časovač"
 
 msgid "Add To Parental Protection"
 msgstr "Pridať do rodičovskej kontroly"
+
+msgid "Add Wi-Fi"
+msgstr "Pridať Wi-Fi"
+
+msgid "Add Wi-Fi Manually"
+msgstr "Pridať Wi-Fi manuálne"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Pridať časovač prepnutia + nahrávania"
@@ -1982,6 +2027,9 @@ msgstr "Pridať časovač prepnutia pre nasledujúcu udalosť"
 
 msgid "Add a mark"
 msgstr "Pridať značku"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr "Pridať novú uložené sieť Wi-Fi"
 
 msgid "Add a new bouquet"
 msgstr "Pridať nový prehľad"
@@ -2142,6 +2190,9 @@ msgstr "pre dospelých/dráma"
 
 msgid "Advanced"
 msgstr "Pokročilé"
+
+msgid "Advanced Diagnostics"
+msgstr "Pokročilá diagnostika"
 
 msgid "Advanced Options"
 msgstr "Pokročilé možnosti"
@@ -2377,6 +2428,9 @@ msgstr "Alternatíva 2"
 msgid "Alternative Edit"
 msgstr "[úprava alternatív]"
 
+msgid "Alternative Tuner Sources"
+msgstr "Alternatívne zdroje tunera"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternatívne URL pre DVB-T/C alebo ATSC"
 
@@ -2538,9 +2592,6 @@ msgstr "Naozaj chcete odstrániť všetky terestriálne stanice?"
 msgid "Are you sure to remove this entry?"
 msgstr "Naozaj chcete odstrániť túto položku?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Naozaj chcete aktivovať túto konfiguráciu siete?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2565,9 +2616,6 @@ msgstr "Naozaj chcete ukončiť tohto sprievodcu?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Naozaj chcete načítať EPG dáta z:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Naozaj chcete reštartovať sieťové rozhrania?"
 
 #, python-format
 msgid ""
@@ -2678,6 +2726,9 @@ msgstr "Pridelené CAIds:"
 msgid "Assigned services/provider:"
 msgstr "Pridelené stanice/poskytovateľ:"
 
+msgid "Associated"
+msgstr "Asociované"
+
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19,2 E"
 
@@ -2715,6 +2766,12 @@ msgstr "Automatické nastavenie hlasitosti"
 msgid "Audio Channel"
 msgstr "Zvukový kanál"
 
+msgid "Audio Formats And Output"
+msgstr "Zvukové formáty a výstup"
+
+msgid "Audio Language And Track Selection"
+msgstr "Jazyk zvuku a výber stopy"
+
 msgid "Audio PID"
 msgstr "Audio PID"
 
@@ -2729,6 +2786,9 @@ msgid "Audio Source"
 msgstr "Zdroj zvuku"
 
 msgid "Audio Sync"
+msgstr "Synchronizácia zvuku"
+
+msgid "Audio Synchronization"
 msgstr "Synchronizácia zvuku"
 
 msgid "Audio language selection 1"
@@ -2857,9 +2917,6 @@ msgstr "Štítok autom. rozlíšenia"
 msgid "Automatic scan for services"
 msgstr "Automatické vyhľadávanie staníc"
 
-msgid "Automatic shares access"
-msgstr "Automatický prístup k zdieľaniu"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy, keď sa prijímač vypne alebo prepne do pohotovostného režimu."
 
@@ -2889,6 +2946,9 @@ msgstr "Sú dostupné lokalizácie:"
 
 msgid "Available shares:"
 msgstr "Dostupné zdieľania:"
+
+msgid "Available tuner types"
+msgstr "Dostupné typy tunera"
 
 msgid "Avaric"
 msgstr "avarčina"
@@ -2939,8 +2999,8 @@ msgstr "Modré tlačidlo – dlho"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Modré tlačidlo: krátke/dlhé stlačenie"
 
-msgid "Back"
-msgstr "Späť"
+msgid "BSSID"
+msgstr "BSSID"
 
 msgid "Back USB"
 msgstr "USB vzadu"
@@ -3312,6 +3372,9 @@ msgstr "Jas (normálny)"
 msgid "Brightness (Standby)"
 msgstr "Jas (pohotovostný režim)"
 
+msgid "Brightness And Contrast"
+msgstr "Jas a kontrast"
+
 msgid "Brightness Video"
 msgstr "Jas videa"
 
@@ -3339,11 +3402,20 @@ msgstr "vysielanie/tlač"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr "Broadcom - predvolený"
+
+msgid "Browse"
+msgstr "Prehľadávať"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Prehliadajte, inštalujte alebo odstraňujte prídavné moduly po jednom."
 
 msgid "Brunei Darussalam"
 msgstr "Brunej (Brunejsko-darussalamský štát)"
+
+msgid "Buffer Management"
+msgstr "Spravovanie vyrovnávacej pamäte"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3398,11 +3470,17 @@ msgstr "Vypáliť na médium"
 msgid "Burundi"
 msgstr "Burundi"
 
+msgid "Bus"
+msgstr "Zbernica"
+
 msgid "Business"
 msgstr "Podnikanie, biznis"
 
 msgid "Business & Finance"
 msgstr "Biznis a financie"
+
+msgid "Button Assignments"
+msgstr "Pridelenia tlačidiel"
 
 msgid "Button Setup"
 msgstr "Nastavenie tlačidiel"
@@ -3427,6 +3505,12 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "Pásmo C"
+
+msgid "C/T input"
+msgstr "C/T vstup"
+
+msgid "C/T input switching"
+msgstr "Prepínanie vstupu C/T"
 
 msgid "CCD-Width"
 msgstr "Šírka CCD"
@@ -3570,6 +3654,12 @@ msgstr "Káblové"
 
 msgid "Cable Scan"
 msgstr "Prehľadávanie káblovky"
+
+msgid "Cable Unplugged"
+msgstr "Kábel odpojený"
+
+msgid "Cable input"
+msgstr "Káblový vstup"
 
 msgid "Cache thumbnails"
 msgstr "Vyrovnávacia pamäť pre náhľady"
@@ -3975,6 +4065,12 @@ msgstr "Kanál 1"
 msgid "Channel 1 with prime time"
 msgstr "Kanál 1 s časom primetime"
 
+msgid "Channel And EPG Import"
+msgstr "Import kanálov a EPG"
+
+msgid "Channel History And Messages"
+msgstr "História kanálov a správy"
+
 msgid "Channel Info"
 msgstr "Info o kanáli"
 
@@ -4010,6 +4106,9 @@ msgstr "Nastavenia výberu kanála"
 
 msgid "Channel Selection picon path"
 msgstr "Cesta k pikonám pre výber kanálov"
+
+msgid "Channel Zapping And Keys"
+msgstr "Prepínanie kanálov a tlačidlá"
 
 msgid "Channel buttons"
 msgstr "Tlačidlá kanála"
@@ -4079,6 +4178,9 @@ msgstr "Kapitola"
 
 msgid "Character device"
 msgstr "Znakové zariadenie"
+
+msgid "Character set"
+msgstr "Znaková sada"
 
 msgid "Chat show"
 msgstr "Talkshow"
@@ -4314,6 +4416,9 @@ msgstr "Vyčistiť"
 msgid "Clear Log"
 msgstr "Vyčistiť denník"
 
+msgid "Clear Stored Credentials"
+msgstr "Vyčistiť uložené prihlasovacie údaje"
+
 msgid "Clear before scan"
 msgstr "Vyčistiť pred vyhľadávaním"
 
@@ -4379,6 +4484,9 @@ msgstr "Zatvoriť zoznam prehľadov."
 
 msgid "Close dialog"
 msgstr "Zatvoriť dialóg"
+
+msgid "Close network test"
+msgstr "Zavrieť test siete"
 
 msgid "Close screen"
 msgstr "Zatvoriť obrazovku"
@@ -4455,6 +4563,9 @@ msgstr "Kolumbia"
 msgid "Color"
 msgstr "Farba"
 
+msgid "Color Button Assignments"
+msgstr "Pridelenia farebného tlačidla"
+
 msgid "Color format"
 msgstr "Formát farby"
 
@@ -4525,14 +4636,14 @@ msgstr "Priradenie Common Interface"
 msgid "Common Interface Settings"
 msgstr "Nastavenia CI"
 
-msgid "Common Settings"
-msgstr "Spoločné nastavenia"
-
 msgid "Common Setup Actions"
 msgstr "Akcie pre spoločné nastavenia"
 
 msgid "Comoros"
 msgstr "Komory"
+
+msgid "Compatibility And Emulation"
+msgstr "Kompatibilita a emulácia"
 
 msgid "Compiled by"
 msgstr "Skompiloval"
@@ -4573,14 +4684,20 @@ msgstr "Konfiguračný režim"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Možnosti konfigurácie obrazovky HELP nájdete v „MENU > Nastavenie > Používanie a GUI > Nastavenia“."
 
-msgid "Configure DNS (name servers)"
-msgstr "Konfigurovať DNS (názvové servery)"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr "Konfigurovať DNS (Dynamic Name Server)"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Nastavte dodatočné oneskorenie na zlepšenie synchronizácie externých titulkov."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Nastavte dodatočné oneskorenie na zlepšenie synchronizácie titulkov."
+
+msgid "Configure another network adapter"
+msgstr "Konfigurovať iný sieťový adaptér"
+
+msgid "Configure cable reception on this input."
+msgstr "Nakonfigurovanie káblového príjmu na tomto vstupe."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Nakonfigurujte predvolené nastavenie pre nové časovače. Po zmene je potrebný reštart."
@@ -4627,41 +4744,35 @@ msgstr "Nastavte, či sa majú zobrazovať ikony typu služby."
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Nastavte, či sa majú titulky prepnúť medzi normálnymi, tučnými a tučnými s kurzívou."
 
-msgid "Configure interface"
-msgstr "Nastavenie rozhrania"
+msgid "Configure network adapter"
+msgstr "Konfigurovať sieťový adaptér"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Nastavte, na ktorých zariadeniach sa má používať vymazanie na pozadí."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"Nastavte alebo overte svoje DNS upravením zobrazených hodnôt.\n"
+"Nakonfigurujte alebo overte svoje nastavenia pre DNS (Dynamic Name Server) úpravou zobrazených hodnôt.\n"
 "\n"
 "Ak sú nastavenia správne, pokračujte stlačením OK."
 
 msgid "Configure remote control type"
 msgstr "Nastavte typ diaľkového ovládania"
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Nakonfigurovanie satelitného príjmu na samostatnom SAT vstupe."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Nakonfigurovanie terestriálneho príjmu na tomto vstupe."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Nastavte režim DiSEqC pre tento LNB."
 
-msgid "Configure the IP address."
-msgstr "Nastavte IP adresu."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "IP adresa záložného vzdialeného prijímača."
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"Nastavte internetové pripojenie upravením zobrazených hodnôt.\n"
-"\n"
-"Ak sú nastavenia správne, pokračujte stlačením OK."
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Nakonfigurujte port záložného vzdialeného prijímača."
@@ -4765,9 +4876,6 @@ msgstr "Nastavte funkciu pre krátke stlačenie tlačidla napájania."
 msgid "Configure the function of the < and > buttons."
 msgstr "Konfigurovať funkciu tlačidiel < a >."
 
-msgid "Configure the gateway."
-msgstr "Nastavte bránu."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Nastavte prechod pevného disku do pohotovostného režimu po určitom čase nečinnosti, ak je prijímač v pohotovostnom režime."
 
@@ -4797,15 +4905,6 @@ msgstr "Nastavte minimálne voľné miesto na disku, ktoré má byť dostupné p
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Nastavte minimálnu šírku pred zobrazením ikony 'i', '0' znamená nezobrazenie ikony."
-
-msgid "Configure the name server (DNS)."
-msgstr "Nastavte server DNS."
-
-msgid "Configure the netmask."
-msgstr "Nastavte masku siete."
-
-msgid "Configure the network again"
-msgstr "Nastaviť sieť ešte raz"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Nastavte počet dní, po ktorých sa položky v koši automaticky odstránia."
@@ -4839,6 +4938,9 @@ msgstr "Nastavte druhý jazyk titulkov."
 
 msgid "Configure the secondary EPG language."
 msgstr "Nastavte sekundárny jazyk EPG."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr "Konfigurovanie vybranej siete Wi-Fi"
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Nastavte časový skok pre tlačidlá '1'/'3'."
@@ -4939,17 +5041,8 @@ msgstr "Nastavte, ktorý tuner sa uprednostní, ak je k dispozícii viac ako jed
 msgid "Configure your NTP server."
 msgstr "Nastavte server NTP."
 
-msgid "Configure your Network"
-msgstr "Nastavenie siete"
-
-msgid "Configure your internal LAN"
-msgstr "Nastavte internú sieť LAN"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Nastavte svoju sieť a stlačte OK na spustenie vyhľadávania"
-
-msgid "Configure your wireless LAN again"
-msgstr "Nastavte bezdrôtovú sieť LAN ešte raz"
 
 msgid "Configures which video output connector will be used."
 msgstr "Nastavte, ktorý konektor pre výstup videa sa použije."
@@ -4962,6 +5055,10 @@ msgstr "Konfigurácia služby"
 
 msgid "Confirm Zap"
 msgstr "Potvrdiť prepnutie"
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
+msgstr "Potvrdiť vymazanie '%s'?"
 
 msgid "ConflictTimer Actions"
 msgstr "Akcie pri konflikte časovačov"
@@ -4982,11 +5079,14 @@ msgstr "Pripojiť"
 msgid "Connect to IceTV server every"
 msgstr "Pripojiť na server IceTV každých"
 
-msgid "Connect to a wireless network"
-msgstr "Pripojiť k bezdrôtovej sieti"
-
 msgid "Connect to the Internet"
 msgstr "Pripojiť na internet"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr "Pripojiť na vybranú uložené sieť Wi-Fi"
+
+msgid "Connected"
+msgstr "Pripojené"
 
 msgid "Connected clients"
 msgstr "Pripojení klienti"
@@ -5003,8 +5103,30 @@ msgstr "Pripojené k"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "Pripojené prekódovanie, limit - bez PiP!"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+"Pripojené, alebo nebola získaná IP adresa.\n"
+"Skontrolujte nastavenia DHCP v routeri."
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+"Pripojené.\n"
+"IP adresa je '%s'."
+
 msgid "Connected: "
 msgstr "Pripojené: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr "Pripája sa k '%s'"
+
+msgid "Connecting..."
+msgstr "Pripája sa..."
 
 msgid "Connection information"
 msgstr "Informácie o pripojení"
@@ -5054,6 +5176,9 @@ msgstr "Kontext"
 
 msgid "Continent"
 msgstr "Kontinent"
+
+msgid "Continue"
+msgstr "Ďalej"
 
 msgid "Continue in background"
 msgstr "Pokračovať na pozadí"
@@ -5201,8 +5326,26 @@ msgstr "Kostarika"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Pobrežie Slonoviny"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr "Nemožno pripojiť (stav '%s')."
+
 msgid "Could not connect to server"
 msgstr "Nie je možné pripojiť sa na server"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+"Nemožno pripojiť.\n"
+"Nespustil sa ovládač Wi-Fi (wpa_supplicant), skontrolujte nastavenia Wi-Fi."
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
+"Nemožno pripojiť.\n"
+"Nesprávne heslo pre Wi-Fi?"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nie je možné prehrať médium! Nie je vložený disk?"
@@ -5226,6 +5369,15 @@ msgstr "Nie je možné nahrávať kvôli neplatnej stanici %s"
 msgid "Could not save configuration file %s!"
 msgstr "Nie je možné uložiť konfiguračný súbor %s!"
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+"Nemožno overiť uloženú sieť Wi-Fi.\n"
+"\n"
+"Chcete opäť zmeniť nastavenia?"
+
 msgid "Country"
 msgstr "Krajina"
 
@@ -5238,6 +5390,9 @@ msgstr "Krajina pre informáciu o hodnotení v EPG"
 #, python-format
 msgid "Crash %d/%d"
 msgstr "Pád %d/%d"
+
+msgid "Crash Handling"
+msgstr "Správanie po páde"
 
 msgid "Crash Logs"
 msgstr "Denníky o páde"
@@ -5349,6 +5504,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Vytvára sa partícia"
 
+msgid "Credentials"
+msgstr "Prihlasovacie údaje"
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr "Prihlasovacie údaje pre '%s'"
+
 msgid "Cree"
 msgstr "Krí"
 
@@ -5449,9 +5611,6 @@ msgstr "Aktuálna pozícia rotora:"
 msgid "Current rotor position: unknown"
 msgstr "Aktuálna pozícia rotora: neznáma"
 
-msgid "Current settings:"
-msgstr "Aktuálne nastavenia:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr "Prúd dodávaný do LNB a pozicionéra."
 
@@ -5487,6 +5646,9 @@ msgstr "Úrovne hlasitosti aktuálne uložené v pamäti:"
 msgid "Custom"
 msgstr "Používateľské"
 
+msgid "Custom Skip Times"
+msgstr "Používateľom určené časy preskočenia"
+
 msgid "Custom mountpoint"
 msgstr "Používateľský bod pripojenia"
 
@@ -5513,6 +5675,9 @@ msgstr "Prispôsobiť osobné nastavenia systému enigma2"
 
 msgid "Cut"
 msgstr "Strih"
+
+msgid "CutList Skipping"
+msgstr "Preskočenie zoznamu strihov"
 
 msgid "CutList skip time for '%s' button"
 msgstr "Zoznam strihov - čas preskočenia pre tlačidlo '%s'"
@@ -5556,9 +5721,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "Podpora DLNA"
 
@@ -5571,6 +5733,9 @@ msgstr "DMM normálne"
 msgid "DNS Settings"
 msgstr "Nastavenia DNS"
 
+msgid "DNS Settings Actions"
+msgstr "Akcie nastavení DNS"
+
 msgid "DNS data source"
 msgstr "Zdroj údajov DNS"
 
@@ -5579,9 +5744,6 @@ msgstr "Prepísanie DNS"
 
 msgid "DNS protocol mode"
 msgstr "Režim DNS protokolu"
-
-msgid "DNS suffix"
-msgstr "Prípona DNS"
 
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
@@ -5611,6 +5773,9 @@ msgstr "DVOJVRSTVOVÉ DVD"
 msgid "DVB CI Delay"
 msgstr "Oneskorenie DVB CI"
 
+msgid "DVB Subtitles"
+msgstr "DVB titulky"
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB titulky, PID a jazyk"
 
@@ -5623,17 +5788,14 @@ msgstr "Farba DVB titulkov"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "DVB-C/len káblové"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C a DVB-T/T2 cez koax. prepínač ovládaný napätím 5 V"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "DVB-C a DVB-T/T2 zdieľa tento vstup. Voľbu 5 V zapnite len v prípade, že anténny systém alebo externý koax. prepínač vyžaduje napájanie."
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5643,9 +5805,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "DVB-T/T2/Len terestriálne"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5662,7 +5821,7 @@ msgstr "DVD menu"
 msgid "DVD Title list"
 msgstr "Zoznam titulov DVD"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD prehrávač"
 
 msgid "DVDPlayer"
@@ -5685,6 +5844,9 @@ msgstr "Dátum"
 
 msgid "Date / Time"
 msgstr "Dátum/čas"
+
+msgid "Date And Time"
+msgstr "Dátum a čas"
 
 msgid "Date Time Input Actions"
 msgstr "Akcie pre zadanie času / dátumu"
@@ -5852,8 +6014,14 @@ msgstr "Deaktivovať"
 msgid "Deactivate Expander"
 msgstr "Deaktivovať expandér"
 
+msgid "Deactivate network adapter"
+msgstr "Deaktivovať sieťový adaptér"
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Deaktivovať falsh expandér na vybranej jednotke"
+
+msgid "Deactivated"
+msgstr "Deaktivované"
 
 msgid "Debug"
 msgstr "Ladenie (debug)"
@@ -5864,6 +6032,9 @@ msgstr "Ladenie %d/%d"
 
 msgid "Debug Information"
 msgstr "Informácie o ladení"
+
+msgid "Debug Log Content"
+msgstr "Obsah denníka ladenia"
 
 msgid "Debug Log Information"
 msgstr "Informácie z denníka ladenia"
@@ -6106,6 +6277,12 @@ msgstr "Vymazať image"
 msgid "Delete Line"
 msgstr "Vymazať riadok"
 
+msgid "Delete Mount"
+msgstr "Vymazať pripojenie"
+
+msgid "Delete Network"
+msgstr "Vymazať sieť"
+
 msgid "Delete Plugins"
 msgstr "Vymazanie pluginov"
 
@@ -6336,9 +6513,6 @@ msgstr "Správca zariadení"
 msgid "Device Manager Actions"
 msgstr "Akcie správcu zariadení"
 
-msgid "Device Settings"
-msgstr "Nastavenie zariadenia"
-
 msgid "Device id"
 msgstr "ID zariadenia"
 
@@ -6448,6 +6622,9 @@ msgstr "Informácie o stave súboru/priečinku"
 msgid "Disable"
 msgstr "Vypnúť"
 
+msgid "Disable Adapter"
+msgstr "Vypnúť adaptér"
+
 msgid "Disable Animations"
 msgstr "Vypnúť animácie"
 
@@ -6472,6 +6649,9 @@ msgstr "Vypnúť MiniTV"
 msgid "Disable Move Mode"
 msgstr "Vypnúť režim presunu"
 
+msgid "Disable Network"
+msgstr "Vypnúť sieť"
+
 msgid "Disable Picture in Picture"
 msgstr "Vypnúť obraz v obraze"
 
@@ -6490,6 +6670,9 @@ msgstr "Vypnúť úvodnú obrazovku"
 msgid "Disable operator profiles"
 msgstr "Vypnúť profily operátora"
 
+msgid "Disable saved Wi-Fi network"
+msgstr "Vypnúť uloženú sieť Wi-Fi"
+
 msgid "Disable the HDD Process on VFD."
 msgstr "Vypnúť ikonu HDD na VFD."
 
@@ -6505,11 +6688,11 @@ msgstr "Vypnuté"
 msgid "Disabled PiP.\n"
 msgstr "Vypnutý PiP.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "Deaktivované alebo WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Nepodarilo sa deaktivovať Chkroot!"
+
+msgid "Disconnected"
+msgstr "Odpojené"
 
 msgid "Discussion"
 msgstr "Diskusia"
@@ -6531,6 +6714,12 @@ msgstr "Obsah 4:3 zobraziť ako"
 
 msgid "Display >16:9 content as"
 msgstr "Obsah >16:9 zobraziť ako"
+
+msgid "Display Power And Content"
+msgstr "Zobraziť napájanie a obsah"
+
+msgid "Display Scrolling"
+msgstr "Rolovanie zobrazenia"
 
 msgid "Display Settings"
 msgstr "Nastavenie displeja"
@@ -6704,23 +6893,23 @@ msgstr "Naozaj chcete odstrániť záložku pre %s?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Naozaj chcete odstrániť časovač pre %s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"Naozaj chcete reštartovať OSCam?\n"
-"\n"
-"TIP: Bude to trvať asi 5 sekúnd!"
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "Naozaj chcete reštartovať %s?"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Naozaj chcete vypnúť OSCam?\n"
+"Naozaj chcete vypnúť %s?\n"
 "\n"
-"POZOR: Pre opätovnú aktiváciu OSCamu je potrebné vykonať kompletný reštart prijímača!"
+"POZOR: pre opätovné aktivovanie %s je potrebné vykonať kompletný reštart prijímača!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "Naozaj chcete zastaviť %s?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6836,6 +7025,9 @@ msgstr "Dolby TrueHD"
 msgid "Domain"
 msgstr "Doména"
 
+msgid "Domain name"
+msgstr "Názov domény"
+
 msgid "Dominica"
 msgstr "Dominika"
 
@@ -6943,6 +7135,9 @@ msgstr "Dreambox format data DVD (kompatibilné s HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox format data DVD (nebude fungovať v iných prehrávačoch DVD)"
 
+msgid "Driver"
+msgstr "Ovládač"
+
 msgid "Driver Packages"
 msgstr "Balíčky s ovládačmi"
 
@@ -7007,17 +7202,26 @@ msgstr "Kontrola vyrovnávacej pamäte EPG"
 msgid "EPG Channel/Service Selection"
 msgstr "Výber EPG kanálu/služby"
 
+msgid "EPG Data In Streams"
+msgstr "Údaje EPG v streamoch"
+
 msgid "EPG Display Actions"
 msgstr "Akcie zobrazenia EPG"
 
 msgid "EPG Jump"
 msgstr "EPG skok"
 
+msgid "EPG Language"
+msgstr "Jazyk EPG"
+
 msgid "EPG Navigation Actions"
 msgstr "Akcie navigácie v EPG"
 
 msgid "EPG Other Actions"
 msgstr "Iné akcie EPG"
+
+msgid "EPG Range And History"
+msgstr "Rozsah a história EPG"
 
 msgid "EPG Search"
 msgstr "Vyhľadať v EPG"
@@ -7030,6 +7234,12 @@ msgstr "Nastavenia EPG"
 
 msgid "EPG Setup"
 msgstr "Nastavenie EPG"
+
+msgid "EPG Sources"
+msgstr "Zdroje EPG"
+
+msgid "EPG Storage And Refresh"
+msgstr "Uloženie a obnova EPG"
 
 msgid "EPG button mode"
 msgstr "Režim tlačidla EPG"
@@ -7107,6 +7317,9 @@ msgstr "Upraviť"
 msgid "Edit Alternatives"
 msgstr "Upraviť alternatívy"
 
+msgid "Edit Credentials"
+msgstr "Upraviť prihlasovacie údaje"
+
 msgid "Edit Mode Off"
 msgstr "Vypnúť režim úprav"
 
@@ -7128,6 +7341,9 @@ msgstr "Upraviť názov"
 msgid "Edit Upgrade Source URL"
 msgstr "Upraviť URL zdroja aktualizácií"
 
+msgid "Edit Username/Password Credentials"
+msgstr "Upraviť meno používateľa/heslo v prihlasovacích údajoch"
+
 msgid "Edit chapters of current title"
 msgstr "Upraviť kapitoly aktuálneho titulu"
 
@@ -7137,25 +7353,20 @@ msgstr "Upraviť aktuálny riadok"
 msgid "Edit settings"
 msgstr "Upraviť nastavenia"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr "Upraviť meno používateľa/heslo v prihlasovacích údajoch pre vybraného hostiteľa"
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "Upraviť host. meno servera CCcam/NewCamd."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "Upraviť port servera CCcam/NewCamd."
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Upraviť konfiguráciu DNS vášho zariadenia %s %s."
-
 msgid "Edit the NewCamd DES Key."
 msgstr "Upraviť kľúč DES NewCamd."
 
 msgid "Edit the currently selected timer"
 msgstr "Upraviť aktuálne vybraný časovač"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Upraviť nastavenie siete %s %s."
 
 msgid "Edit the password."
 msgstr "Upravte heslo."
@@ -7168,6 +7379,9 @@ msgstr "Upravte vzdialený port CCCam."
 
 msgid "Edit the remote IP address."
 msgstr "Upravte vzdialenú adresu IP."
+
+msgid "Edit the selected network mount"
+msgstr "Upraviť vybrané sieťové napojenie"
 
 msgid "Edit the upgrade source address."
 msgstr "Upraviť adresu zdroja aktualizácií."
@@ -7266,9 +7480,6 @@ msgstr "Zapnúť denník pre ladenie GStreamera *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Zapnúť zreťazené grafy pre GStreamer *"
 
-msgid "Enable IPv6"
-msgstr "Zapnúť IPv6"
-
 msgid "Enable IceTV"
 msgstr "Zapnúť IceTV"
 
@@ -7320,8 +7531,8 @@ msgstr "Povoliť ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr "Povoliť Virgin EPG"
 
-msgid "Enable Wake On LAN"
-msgstr "Povoliť Wake On LAN"
+msgid "Enable adapter"
+msgstr "Zapnúť adaptér"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Povoliť a nastaviť čas zobrazenia druhej infolišty (stlačenie OK dvakrát), ktorá môže obsahovať ďalšie informácie."
@@ -7399,11 +7610,17 @@ msgstr "Povoliť monitorovacie použív. rozhranie"
 msgid "Enable multiple bouquets"
 msgstr "Povoliť viacnásobné prehľady"
 
+msgid "Enable network"
+msgstr "Zapnúť sieť"
+
 msgid "Enable network traffic check"
 msgstr "Povoliť kontrolu sieťového prenosu"
 
 msgid "Enable new GStreamer playback"
 msgstr "Povoliť nové prehrávanie GStreamer"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr "Zapnutie alebo vypnutie tohto sieťového napojenia. Vypnutím napojenia sa nevymaže jeho definícia."
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Povoliť alebo zakázať pomocou HDMI-CEC."
@@ -7416,6 +7633,9 @@ msgstr "Povoliť náhľad"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Povoliť vzdialený prijímač, aby sa pokúsil naladiť stanice, ktoré nie je možné naladiť lokálne (napríklad keď je tuner zaneprázdnený, alebo na lokálnom tuneri nie je dostupný typ stanice/služby). Zadajte celú adresu URL, vrátane prefixu http:// a čísla portu (normálne …:8001), napríklad http://second_receiver:8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr "Zapnúť uloženú sieť Wi-Fi"
 
 msgid "Enable teletext caching"
 msgstr "Povoliť vyrovnávaciu pamäť teletextu"
@@ -7516,20 +7736,11 @@ msgstr "Povolené"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Povolí prijímaču dekódovať streamy (ak sú v streame zahrnuté ECM dáta a je k dispozícii platná karta)."
 
-msgid "Encrypted: "
-msgstr "Zakódované: "
-
 msgid "Encryption"
 msgstr "Šifrovanie"
 
-msgid "Encryption Type:"
-msgstr "Šifrovanie:"
-
-msgid "Encryption key"
-msgstr "Šifrovací kľúč"
-
-msgid "Encryption key type"
-msgstr "Typ šifrovacieho kľúča"
+msgid "Encryption And Descrambling"
+msgstr "Kódovanie a dekódovanie"
 
 msgid "End"
 msgstr "Koniec"
@@ -7639,6 +7850,9 @@ msgstr "Zadajte nové meno pre toto zariadenie."
 msgid "Enter expected ONID/TSID"
 msgstr "Zadajte očakávané ONID/TSID"
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr "Zadajte dobu čakania na odpoveď pred opätovným pokusom (alebo zlyhaním, ak je aktívna voľba 'Nepokúšať sa, ak nie je v dosahu' dole. Zadajte '0' pre použitie internej predvolenej hodnoty z jadra, namiesto fixnej hodnoty."
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Zadajte, či ste severne alebo južne od rovníka."
 
@@ -7650,6 +7864,9 @@ msgstr "Zadajte nový názov priečinku:"
 
 msgid "Enter number to jump to channel"
 msgstr "Zadajte číslo kanála, na ktorý sa má preskočiť"
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr "Zadajte doplnkové voliteľné argumenty pri pripojenie, ktoré neboli poskytnuté v konfiguračných nastaveniach hore. Viaceré argumenty treba oddeliť čiarkou. Neplatné/nevhodné záznamy môžu spôsobiť zlyhanie pripojenia!"
 
 msgid "Enter persistent PIN code"
 msgstr "Zadajte trvalý kód PIN"
@@ -7684,26 +7901,47 @@ msgstr "Zadajte frekvenciu, pri ktorej sa LNB prepína medzi nízkym a vysokým 
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Zadajte frekvenčný krok tunera pre vyhľadávanie v káblových multiplexoch. Viac informácií získate v dokumentácii od operátora káblovej televízie."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr "Zadajte názov hostiteľa alebo IP adresu servera pre sieťové zdieľania."
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr "Zadajte názov lokálneho priečinka, ktorý sa použije a lokálne pripojenie pre vzdialené zdieľanie."
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "Zadajte príponu k názvu sieťovej domény ktorá sa pripojí k názvu hostiteľa. Pomôžete tak rozlišovaču DNS nájsť ostatné sieťové zariadenia."
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr "Zadajte názov sieť. hostiteľa, ktorý sa použije na identifikovanie tohto prijímača."
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Zadajte počet vlákien NFS servera, ktoré sa majú alokovať/použiť. Vyššie hodnoty zlepšujú výkon s viacerými klientmi, ale vyžadujú viac pamäte."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Zadajte číslo uložené v pozicionéri, ktoré prináleží tomuto satelitu."
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr "Zadajte heslo na prístup k zdieľaniam od tohto hostiteľa, ak vyžaduje overenie prihlasovacích údajov."
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr "Zadajte heslo na prístup k zdieľaniam tohto hostiteľa."
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Zadajte heslo, frázu alebo predzdieľaný kľúč pre vybranú bezdrôtovú sieť."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Zadajte primárne DNS nastavenie IPv4 pre tento adaptér."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
-msgstr "Zadajte primárne DNS nastavenie IPv6 pre tento adaptér. (Voliteľne)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr "Zadajte primárny IPv6 DNS server pre tento adaptér. (Voliteľne)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
-msgstr "Zadajte sekundárne DNS nastavenie IPv4 pre tento adaptér. (Voliteľne)"
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr "Zadajte názov vzdialeného zdieľania (SMB) alebo exportovanú cestu (NFS) na tomto serveri."
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
-msgstr "Zadajte sekundárne DNS nastavenie IPv6 pre tento adaptér. (Voliteľne)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
+msgstr "Zadajte sekundárny IPv4 DNS server pre tento adaptér. (Voliteľne)"
+
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
+msgstr "Zadajte sekundárny IPv6 DNS server pre tento adaptér. (Voliteľne)"
 
 msgid "Enter the service pin"
 msgstr "Zadajte PIN kód stanice"
@@ -7714,8 +7952,14 @@ msgstr "Zadajte masku podsiete, ktorá sa má použiť pre sieťový adaptér (n
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Na zapnutie prekladania pomocou umelej inteligencie, zadajte kód predplatného. Jednotný kód pre skúšobnú verziu je 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
-msgstr "Zadajte názov pracovnej skupiny, ktorý má používať tento prijímač pre pripojenia založené na Sambe. (Predvolená je 'WORKGROUP'.)"
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr "Zadajte meno používateľa, ktoré s použije na prístup k zdieľaniam tohto hostiteľa, ak vyžaduje overenie prihlasovacích údajov."
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr "Zadajte meno používateľa na prístup k zdieľaniam tohto hostiteľa."
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Zadajte názov pracovnej skupiny, ktorý má používať tento server pre pripojenia založené na Sambe. (Predvolený je 'WORKGROUP'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Zadajte aktuálnu zemepisnú šírku v stupňoch od rovníka (vo forme desatinného čísla)."
@@ -7865,44 +8109,6 @@ msgstr "Oneskorenie opakovaní po chybe"
 msgid "Error code"
 msgstr "Kód chyby"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Chyba pri vytváraní vzhľadu v EHD.\n"
-"Použije sa vzhľad v HD!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Chyba pri vytváraní vzhľadu v EHD. Stiahnutie balíčka ikon nie je dostupné.\n"
-"Použije sa vzhľad v HD!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Chyba pri vytváraní vzhľadu v EHD. Nie je dostatok voľnej pamäte flash.\n"
-"Použije sa vzhľad v rozlíšení HD!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Chyba pri vytváraní vzhľadu v EHD. Niektoré ikony v EHD nie sú dostupné.\n"
-"Použije sa vzhľad v rozlíšení HD!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Chyba pri vytváraní vzhľadu v HD. Nie je dostatok voľnej pamäte."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Chyba pri vytváraní vzhľadu MetrixHD.\n"
-"Po reštartovaní, prosím, skontrolujte plugin MyMetrixLite a použite svoje nastavenia."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Chyba pri sťahovaní image '%s'!"
@@ -7951,9 +8157,6 @@ msgstr "Chyba pri zápise '/etc/enigma2/epg.dat' na vzdialenom prijímači!"
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Chyba pri zápise 'epg.dat' na vzdialenom prijímači!"
 
-msgid "Error, unknown Result!"
-msgstr "Chyba, neznámy výsledok!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7964,6 +8167,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Chyba: prázdny názov súboru je neplatný!"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr "Chyba: vyžaduje sa parameter 'server' a 'vzdialená cesta'!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Chyba: nepodarilo sa nájsť žiadny image!"
@@ -8017,12 +8223,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "Chyba: nie je možné spustiť '%s' na '%s'!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr "Chyba: pripojenie '%s' bolo neúspešné!"
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "Chyba: program '%s' nie je nainštalovaný a balíček obsahujúci tento program je neznámy!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Odstraňovanie priečinka %s bolo neúspešné. (Možno nie je prázdny.)"
+
+msgid "Error: Rescan failed!"
+msgstr "Chyba: zlyhalo opätovné skenovanie!"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8073,6 +8286,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Chyba: Nie je možné zapísať súbor denníka '%s'!"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr "Chyba: zlyhalo odpájanie '%s'!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Chyba: Nie je možné spustiť '%s' na '%s'!"
 
@@ -8095,6 +8312,9 @@ msgstr "estónčina"
 msgid "EtPortal"
 msgstr "EtPortál"
 
+msgid "Ethernet Adapter"
+msgstr "Ethernetový adaptér"
+
 msgid "Ethernet network interface"
 msgstr "Rozhranie siete Ethernet"
 
@@ -8115,6 +8335,9 @@ msgstr "Aj v prípade, že sa spúšťa 'prepnutie' časovačom nahrávania?"
 
 msgid "Event Info"
 msgstr "Info o aktuálnej udalosti"
+
+msgid "Event Metadata And Correction"
+msgstr "Metadáta udalosti a oprava"
 
 msgid "Event View"
 msgstr "Zobrazenie udalosti"
@@ -8229,18 +8452,6 @@ msgstr "Zatvoriť menu"
 msgid "Exit movie player?"
 msgstr "Ukončiť prehrávač médií?"
 
-msgid "Exit network adapter configuration"
-msgstr "Zatvoriť nastavovanie sieťového adaptéra"
-
-msgid "Exit network adapter setup menu"
-msgstr "Zatvoriť menu pre nastavenie sieťového adaptéra"
-
-msgid "Exit network interface list"
-msgstr "Zatvoriť zoznam sieťových rozhraní"
-
-msgid "Exit network wizard"
-msgstr "Ukončiť sprievodcu sieťou"
-
 msgid "Exit picture viewer"
 msgstr "Ukončiť prehliadač obrázkov"
 
@@ -8259,6 +8470,9 @@ msgstr "Koniec bez vykonania zálohy"
 msgid "Expand"
 msgstr "Rozbaliť"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr "Rozbaliť/zbaliť vybraného hostiteľa, alebo použiť vybrané zdieľanie"
+
 msgid "Experimental film/video"
 msgstr "experimentálny film/video"
 
@@ -8273,6 +8487,9 @@ msgstr "Expert"
 
 msgid "Expert mode"
 msgstr "Režim pre expertov"
+
+msgid "Exports"
+msgstr "Exporty"
 
 msgid "Exposure bias"
 msgstr "Kompenzácia expozície"
@@ -8291,12 +8508,6 @@ msgstr "Rozšíriť"
 
 msgid "Extended"
 msgstr "Rozšírené"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Plugin rozšíreného nastavenia siete..."
-
-msgid "Extended Setup..."
-msgstr "Rozšírené nastavenie..."
 
 msgid "Extended Shares"
 msgstr "Rozšírené zdieľanie"
@@ -8322,6 +8533,9 @@ msgstr "Externé PiP"
 #, python-format
 msgid "External Storage %s"
 msgstr "Externé úložisko %s"
+
+msgid "External Subtitles"
+msgstr "Externé titulky"
 
 msgid "External subtitle color"
 msgstr "Farba externých titulkov"
@@ -8517,6 +8731,9 @@ msgstr "Nastavenie rýchleho prepínania kanálov"
 msgid "Fast DiSEqC"
 msgstr "Rýchly DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr "Prevíjanie rýchlo dopredu a dozadu"
+
 msgid "Fast Scan"
 msgstr "Fast Scan"
 
@@ -8561,6 +8778,9 @@ msgstr "Zdroj stabilný."
 
 msgid "Feed unstable!"
 msgstr "Zdroj nestabilný!"
+
+msgid "Feeds And Networking"
+msgstr "Zdroje a sieťové prepojenie"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Ihneď prevziať EPG a aktualizovať časovače"
@@ -8686,6 +8906,9 @@ msgstr "Prenos súboru bol zrušený používateľom"
 msgid "Filename"
 msgstr "Názov súboru"
 
+msgid "Files And Directories"
+msgstr "Súbory a priečinky"
+
 msgid "Files/folders to exclude from backup"
 msgstr "Súbory/priečinky vylúčené zo zálohy"
 
@@ -8746,9 +8969,6 @@ msgstr "Jemné doladenie"
 
 msgid "Finished"
 msgstr "Dokončené"
-
-msgid "Finished configuring your network"
-msgstr "Nastavenie siete je dokončené"
 
 msgid "Finland"
 msgstr "Fínsko"
@@ -8849,14 +9069,14 @@ msgstr "Priamo zoradenia tlačidiel na diaľkovom ovládači"
 msgid "Flat by position on remote"
 msgstr "Podľa pozície na diaľkovom ovládaní"
 
+msgid "Flush Cache and Rescan"
+msgstr "Vyprázdniť vyrovnávaciu pamäť a skenovať znovu"
+
 msgid "Folk and Country"
 msgstr "Folk a country"
 
 msgid "Folk/Traditional music"
 msgstr "folk/tradičná hudba"
-
-msgid "Follow instructions on TV"
-msgstr "Postupujte podľa pokynov na TV"
 
 msgid "Font size"
 msgstr "Veľkosť písma"
@@ -8894,7 +9114,7 @@ msgstr "Vynútiť pôvodné stavy signálu"
 msgid "Force ToneBurst"
 msgstr "Vynútiť tónový impulz"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Vynútiť špecifickú rýchlosť sieťovej linky/duplexný režim namiesto automatického vyjednávania. Túto voľbu meňte len v prípade, že máte špecifický dôvod. Nesprávne nastavenie môže narušiť sieťové pripojenie."
 
 msgid "Force de-interlace"
@@ -8965,9 +9185,6 @@ msgstr "Francúzske južné územia"
 
 msgid "Frequency"
 msgstr "Frekvencia"
-
-msgid "Frequency Norm:"
-msgstr "Frekvenčná norma:"
 
 msgid "Frequency bands"
 msgstr "Frekvenčné pásma"
@@ -9092,11 +9309,29 @@ msgstr "Hlavné"
 msgid "General AC3 delay"
 msgstr "Základné oneskorenie AC3"
 
+msgid "General Appearance"
+msgstr "Všeobecný vzhľad"
+
 msgid "General BT audio delay"
 msgstr "Všeobecné oneskorenie pre BT audio"
 
+msgid "General Channel Selection"
+msgstr "Všeobecný výber kanálov"
+
+msgid "General OSD Behavior"
+msgstr "Všeobecné správanie OSD"
+
 msgid "General PCM delay"
 msgstr "Základné oneskorenie PCM"
+
+msgid "General Setup Behavior"
+msgstr "Všeobecné správanie pri nastavovaní"
+
+msgid "General Subtitle Appearance And Timing"
+msgstr "Všeobecný vzhľad titulkov a časovanie"
+
+msgid "General Time Shift Behavior"
+msgstr "Všeobecné správanie časového posunu"
 
 msgid "Generic"
 msgstr "Všeobecné"
@@ -9149,6 +9384,9 @@ msgstr "Ghana"
 
 msgid "Gibraltar"
 msgstr "Gibraltár"
+
+msgid "GigaBlue optimized"
+msgstr "GigaBlue - optimalizované"
 
 msgid "Given device id"
 msgstr "Zadané ID zariadenia"
@@ -9390,6 +9628,9 @@ msgstr "Nastavenia nahrávania HDMI-In"
 msgid "HDMIin"
 msgstr "Vstup HDMI"
 
+msgid "HDR OSD adjustment"
+msgstr "nastavenie HDR OSD"
+
 msgid "HDR10 Support"
 msgstr "Podpora HDR10"
 
@@ -9485,6 +9726,9 @@ msgstr "Pomoc"
 
 msgid "Help Action"
 msgstr "Akcia pomocníka"
+
+msgid "Help And Visual Feedback"
+msgstr "Pomoc a vizuálna odozva"
 
 msgid "Help Screen Information"
 msgstr "Informácie o Pomocníkovi"
@@ -9741,9 +9985,6 @@ msgstr "Maďarsko"
 msgid "Hybrid Tuner"
 msgstr "Hybridný tuner"
 
-msgid "Hybrid tuner mode"
-msgstr "Režim hybridného tunera"
-
 msgid "Hz"
 msgstr "Hz"
 
@@ -9773,6 +10014,9 @@ msgstr "INS"
 
 msgid "IP"
 msgstr "IP"
+
+msgid "IP Address"
+msgstr "IP adresa"
 
 msgid "IP Address 1"
 msgstr "IP Adresa 1"
@@ -9806,6 +10050,9 @@ msgstr "IP protokol"
 
 msgid "IPK Installer"
 msgstr "Inštalátor balíčkov IPK"
+
+msgid "IPv4 and IPv6"
+msgstr "IPv4 a IPv6"
 
 msgid "IPv4 only"
 msgstr "Len IPv4"
@@ -10207,6 +10454,12 @@ msgstr "Šírka info ikony"
 msgid "InfoBar"
 msgstr "Infolišta"
 
+msgid "InfoBar And Pause"
+msgstr "Infolišta a pauza"
+
+msgid "InfoBar Content And Time Display"
+msgstr "Obsah infolišty a zobrazenie času"
+
 msgid "InfoBar EPG"
 msgstr "Infolišta EPG"
 
@@ -10215,6 +10468,12 @@ msgstr "Nastavenia EPG v infolište"
 
 msgid "InfoBar EPG mode"
 msgstr "Režim EPG v infolište"
+
+msgid "InfoBar Timing And Appearance"
+msgstr "Časovanie a vzhľad infolišty"
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "Viditeľnosť a správanie infolišty"
 
 msgid "InfoBar fade-out speed"
 msgstr "Rýchlosť strácania infolišty"
@@ -10375,9 +10634,6 @@ msgstr "Rozhranie"
 #, python-format
 msgid "Interface '%s'"
 msgstr "Rozhranie '%s'"
-
-msgid "Interface: "
-msgstr "Rozhranie: "
 
 msgid "Interlaced"
 msgstr "Prekladané"
@@ -10673,6 +10929,9 @@ msgstr "Súbory Kexec MultiBoot chýbajú."
 msgid "Key"
 msgstr "Kľúč"
 
+msgid "Key Map And Power Buttons"
+msgstr "Mapovanie tlačidiel a tlačidiel napájania"
+
 msgid "Keyboard"
 msgstr "Klávesnica"
 
@@ -10696,6 +10955,9 @@ msgstr "kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Prídavné balíčky Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -10733,11 +10995,11 @@ msgstr "Kirgizsko"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "LAN adaptér"
-
 msgid "LAN connection"
 msgstr "LAN pripojenie"
+
+msgid "LAN link"
+msgstr "Linka LAN"
 
 msgid "LCD scroll speed"
 msgstr "Rýchlosť rolovania LCD"
@@ -10771,6 +11033,9 @@ msgstr "LED pri vypnutí"
 
 msgid "LED Deep Standby color"
 msgstr "Farba LED pri vypnutí"
+
+msgid "LED Indicators"
+msgstr "LED indikátory"
 
 msgid "LED Normal"
 msgstr "LED normálne"
@@ -10898,6 +11163,9 @@ msgstr "Lotyšsko"
 msgid "Latvian"
 msgstr "lotyština"
 
+msgid "Layout And Fonts"
+msgstr "Rozloženie a písma"
+
 msgid "Leave"
 msgstr "Opustiť"
 
@@ -10942,6 +11210,9 @@ msgstr "USB vľavo, vpredu"
 
 msgid "Left, wrapped"
 msgstr "Doľava, zalomené"
+
+msgid "Legacy (SMB1)"
+msgstr "Staršie (SMB1)"
 
 msgid "Legacy mode"
 msgstr "Starší režim"
@@ -11035,17 +11306,11 @@ msgstr "lingalčina"
 msgid "Link detected"
 msgstr "Nájdený odkaz"
 
-msgid "Link quality:"
-msgstr "Kvalita linky:"
-
 msgid "Link speed"
 msgstr "Rýchlosť linky"
 
 msgid "Link target"
 msgstr "Cieľ odkazu"
-
-msgid "Link:"
-msgstr "Odkaz:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Tituly prepojené s menu DVD"
@@ -11053,14 +11318,14 @@ msgstr "Tituly prepojené s menu DVD"
 msgid "Links"
 msgstr "Odkazy"
 
+msgid "List Appearance And Sorting"
+msgstr "Vzhľad a zoraďovanie zoznamov"
+
 msgid "List Navigation Actions"
 msgstr "Zoznam akcií pre navigovanie"
 
 msgid "List available EPG functions"
 msgstr "Zoznam dostupných funkcií EPG"
-
-msgid "List available networks"
-msgstr "Zoznam dostupných sietí"
 
 msgid "List of Storage Devices"
 msgstr "Zoznam úložných zariadení"
@@ -11129,14 +11394,14 @@ msgstr "Miestny dátum/čas"
 msgid "Local information"
 msgstr "Miestne informácie"
 
-msgid "Local network"
-msgstr "Miestna sieť"
-
 msgid "Local or Regional"
 msgstr "Lokálne alebo regionálne"
 
 msgid "Local receiver"
 msgstr "Lokálny prijímač"
+
+msgid "Local share"
+msgstr "Lokálne zdieľanie"
 
 msgid "Local time"
 msgstr "Miestny čas"
@@ -11207,6 +11472,9 @@ msgstr "Denník %d/%d"
 
 msgid "Log Manager"
 msgstr "Správca denníkov"
+
+msgid "Log Retention And Access"
+msgstr "Uchovávanie denníka a prístup k nemu"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11307,10 +11575,10 @@ msgstr "luxemburčina"
 msgid "M2k Packages"
 msgstr "Balíčky M2k"
 
-msgid "MAC address"
-msgstr "MAC adresa"
+msgid "MAC Address"
+msgstr "Adresa MAC"
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC adresa"
 
 msgid "MENU"
@@ -11455,9 +11723,6 @@ msgstr "Manuálne vyhľadávanie"
 msgid "Manual Service Searching"
 msgstr "Ručné vyhľadávanie staníc"
 
-msgid "Manual configuration"
-msgstr "Ručná konfigurácia"
-
 msgid "Manual scan for services"
 msgstr "Ručné vyhľadávanie staníc"
 
@@ -11530,9 +11795,6 @@ msgstr "Max. kanály"
 msgid "Max memory positions"
 msgstr "Max. pamäťové pozície"
 
-msgid "Max. bitrate: "
-msgstr "Max. dátový tok: "
-
 msgid "Maxdown +"
 msgstr "Max. dolu +"
 
@@ -11569,6 +11831,9 @@ msgstr "Médium"
 
 msgid "Media Center"
 msgstr "Centrum médií"
+
+msgid "Media Files And Navigation"
+msgstr "Mediálne súbory a navigovanie"
 
 msgid "Media Player"
 msgstr "Prehrávač médií"
@@ -11652,6 +11917,9 @@ msgstr "Štýl položky menu"
 msgid "Menu style"
 msgstr "Štýl menu"
 
+msgid "Menus And Setup"
+msgstr "Menu a nastavenia"
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Zlúčiť vysielané EPG s IceTV"
 
@@ -11699,6 +11967,9 @@ msgstr "Nastavenie MiniDLNA"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr "MiniTV a PiP"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV s OSD"
@@ -11832,8 +12103,8 @@ msgstr "Motory"
 msgid "Mount"
 msgstr "Pripojiť"
 
-msgid "Mount Manager"
-msgstr "Správca pripojení"
+msgid "Mount Context Menu"
+msgstr "Kontextové menu pre pripojenie"
 
 msgid "Mount Point"
 msgstr "Bod pripojenia"
@@ -11841,8 +12112,20 @@ msgstr "Bod pripojenia"
 msgid "Mount Setup"
 msgstr "Nastavenie pripojení"
 
+msgid "Mount at boot time (fstab)"
+msgstr "Pripojiť pri spúšťaní (fstab)"
+
 msgid "Mount failed"
 msgstr "Pripojenie neúspešné"
+
+msgid "Mount mode"
+msgstr "Režim pripojenia"
+
+msgid "Mount on first access (autofs)"
+msgstr "Pripojiť pri prvom prístupe (autofs)"
+
+msgid "Mount or unmount the selected share"
+msgstr "Pripojiť alebo odpojiť vybrané zdieľanie"
 
 msgid "Mount point"
 msgstr "Bod pripojenia"
@@ -11850,11 +12133,17 @@ msgstr "Bod pripojenia"
 msgid "Mount root file system."
 msgstr "Pripojiť koreňový systém súborov."
 
+msgid "Mounted"
+msgstr "Pripojené"
+
 msgid "Mounts"
 msgstr "Pripojenia"
 
 msgid "Move"
 msgstr "Presunúť"
+
+msgid "Move Down"
+msgstr "Posun nadol"
 
 msgid "Move Left/Right"
 msgstr "Posun doľava/doprava"
@@ -11873,6 +12162,9 @@ msgstr "Presunúť PiP"
 
 msgid "Move PiP to main picture"
 msgstr "Presunúť PiP do hlavného obrazu"
+
+msgid "Move Up"
+msgstr "Posun nahor"
 
 msgid "Move Up/Down"
 msgstr "Posun hore/dolu"
@@ -11924,6 +12216,12 @@ msgstr "Presunúť nadol na posledný riadok v zozname."
 
 msgid "Move east"
 msgstr "Presunúť na východ"
+
+msgid "Move item down"
+msgstr "Presunúť položku dole"
+
+msgid "Move item up"
+msgstr "Presunúť položku hore"
 
 msgid "Move job completed."
 msgstr "Presúvanie bolo dokončené."
@@ -12031,6 +12329,12 @@ msgstr "Presunúť na predchádzajúci prehľad"
 msgid "Move to previous marker"
 msgstr "Presunúť na predchádzajúcu značku"
 
+msgid "Move to the Adapter list"
+msgstr "Presunúť do zoznamu adaptérov"
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr "Presunúť do zoznamu uložených sietí Wi-Fi"
+
 msgid "Move to the first item on the current line"
 msgstr "Presunúť na prvú položku na aktuálnom riadku"
 
@@ -12126,6 +12430,9 @@ msgstr "Akcie zobrazenia udalosti pri filme"
 
 msgid "Movie List"
 msgstr "Zoznam filmov"
+
+msgid "Movie List And Playback Behavior"
+msgstr "Zoznam filmov a správanie počas prehrávania"
 
 msgid "Movie Player Actions"
 msgstr "Akcie pre prehrávač médií"
@@ -12259,11 +12566,17 @@ msgstr "ĎALEJ"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "Nastavenie NFS"
+
+msgid "NFS Setup Actions"
+msgstr "Akcie pre nastavenie NFS"
 
 msgid "NFS threads"
 msgstr "Vlákna NFS"
+
+msgid "NFS version"
+msgstr "Verzia NFS"
 
 msgid "NIM"
 msgstr "NIM"
@@ -12307,12 +12620,6 @@ msgstr "Názov, zostupne"
 msgid "Name server %d"
 msgstr "DNS server %d"
 
-msgid "Nameserver"
-msgstr "DNS server"
-
-msgid "Nameserver settings"
-msgstr "Nastavenia DNS"
-
 msgid "Nameserver setup"
 msgstr "Nastavenie DNS"
 
@@ -12355,6 +12662,12 @@ msgstr "Navigovať do vybraného priečinka"
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Listujte hore/dolu pomocou tlačidiel HORE/DOLU a po celých stránkach nahor/nadol tlačidlami VĽAVO/VPRAVO. Stlačením OK sa vykoná akciu popísaná v aktuálne zvýraznenom pomocníkovi."
 
+msgid "Navigation And Button Assignments"
+msgstr "Navigovanie a pridelenia tlačidiel"
+
+msgid "Navigation And Time Range"
+msgstr "Navigovanie a časový rozsah"
+
 msgid "Ndonga"
 msgstr "ndonga"
 
@@ -12376,23 +12689,21 @@ msgstr "Maska siete"
 msgid "Network"
 msgstr "Sieť"
 
-msgid "Network Adapter Actions"
-msgstr "Akcie sieťového adaptéra"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr "Nastavenia sieťového adaptéra '%s'"
 
 msgid "Network Adapter Selection"
 msgstr "Výber sieťového adaptéra"
 
-msgid "Network Adapter Setting Actions"
-msgstr "Akcie nastavenia sieťového adaptéra"
-
 msgid "Network Adapter Settings"
 msgstr "Nastavenia sieťového adaptéra"
 
-msgid "Network Adapter Text Actions"
-msgstr "Textové akcie sieťového adaptéra"
-
 msgid "Network Browser"
 msgstr "Prehliadač siete"
+
+msgid "Network Credentials"
+msgstr "Prihlasovacie údaje pre sieť"
 
 msgid "Network ID"
 msgstr "ID siete"
@@ -12412,8 +12723,23 @@ msgstr "Denník pre sieť"
 msgid "Network Log Actions"
 msgstr "Akcie denníka siete"
 
+msgid "Network Mount Manager Actions"
+msgstr "Akcie správcu pripojenia do siete"
+
+msgid "Network Mount Settings"
+msgstr "Nastavenia pripojenia do siete"
+
+msgid "Network Mounts Overview"
+msgstr "Prehľad pripojení do siete"
+
 msgid "Network Neighbourhood"
 msgstr "Domáca skupina"
+
+msgid "Network Overview"
+msgstr "Prehľad o sieti"
+
+msgid "Network Overview Actions"
+msgstr "Akcie prehľadu o sieti"
 
 msgid "Network Packages"
 msgstr "Sieťové balíčky"
@@ -12430,23 +12756,68 @@ msgstr "Nastavenia siete"
 msgid "Network Setup Actions"
 msgstr "Nastavenia siete"
 
+msgid "Network Share Actions"
+msgstr "Akcie sieťového zdieľania"
+
+msgid "Network Shares Browser"
+msgstr "Prehliadač sieťových zdieľaní"
+
+msgid "Network Shares Context Menu"
+msgstr "Kontextové menu sieťových zdieľaní"
+
 msgid "Network Test"
 msgstr "Test siete"
 
-msgid "Network Test:"
-msgstr "Test siete:"
+msgid "Network Test Actions"
+msgstr "Akcie pre testovanie siete"
 
-msgid "Network Wizard"
-msgstr "Sprievodca sieťou"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr "Test siete pre '%s'"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Nastavenia siete Wi-Fi"
+
+msgid "Network adapter disabled."
+msgstr "Sieťový adaptér je vypnutý."
+
+msgid "Network adapter enabled."
+msgstr "Sieťový adaptér je zapnutý."
 
 msgid "Network adapter not connected to a network!"
 msgstr "Sieťový adaptér nie je pripojený k sieti!"
 
+msgid "Network adapter setup result:"
+msgstr "Výsledok nastavenia sieťového adaptéra:"
+
+msgid "Network adapter status"
+msgstr "Stav sieťového adaptéra"
+
 msgid "Network address"
 msgstr "Sieťová adresa"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr "Sieťový kábel je pripojený (%s)"
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr "Sieťový kábel je odpojený (%s)"
+
 msgid "Network configuration..."
 msgstr "Nastavenie siete…"
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
+"Sieť bola úspešne pripojená.\n"
+"\n"
+"Rozhranie: %s\n"
+"IP adresa: %s"
 
 msgid "Network information"
 msgstr "Informácie o sieti"
@@ -12473,29 +12844,11 @@ msgstr "Vyhľadanie sietí"
 msgid "Network storage on"
 msgstr "Sieťové úložisko na"
 
-msgid "Network test"
-msgstr "Test siete"
-
 msgid "Network test..."
 msgstr "Test siete…"
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Sprievodca sieťou bol úspešné dokončený.\n"
-"\n"
-"Pokračujte stlačením OK."
-
 msgid "Network-ID"
 msgstr "ID siete"
-
-msgid "Network:"
-msgstr "Sieť:"
-
-msgid "NetworkWizard"
-msgstr "Sprievodca sieťou"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -12529,6 +12882,9 @@ msgstr "Nový setting DXAndy "
 
 msgid "New Storage Device"
 msgstr "Nové úložné zariadenie"
+
+msgid "New Wi-Fi"
+msgstr "Nová Wi-Fi"
 
 msgid "New Zealand"
 msgstr "Nový Zéland"
@@ -12627,14 +12983,23 @@ msgstr "Na vzdialenom prijímači sa nenašiel žiadny súbor 'epg.dat'!"
 msgid "No (supported) DVDROM found!"
 msgstr "Žiadny (podporovaný) DVDROM!"
 
-msgid "No Connection"
-msgstr "Žiadne pripojenie"
-
 msgid "No ECM PIDs available"
 msgstr "Nie sú dostupné žiadne ECM PIDy"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Pevný disk sa nenašiel alebo nie je inicializovaný!"
+
+msgid "No IP address"
+msgstr "Žiadna IP adresa"
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
+"Nebola získaná žiadna IP adresa.\n"
+"\n"
+"Nepodarilo sa vytvoriť sieťové pripojenie."
 
 msgid "No Internet connection"
 msgstr "Žiadne pripojenie na internet"
@@ -12709,8 +13074,14 @@ msgstr "Nie je dostupný žiadny voľný index"
 msgid "No free tuner!"
 msgstr "Žiadny voľný tuner!"
 
+msgid "No gateway"
+msgstr "Žiadna brána"
+
 msgid "No hard disks detected."
 msgstr "Neboli zistené žiadne pevné disky."
+
+msgid "No hosts found yet - still scanning..."
+msgstr "Nenašli sa žiadni hostitelia - skenovanie stále prebieha..."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nenašli sa žiadne súbory denníkov, takže denníky ladenia nie sú k dispozícii!"
@@ -12724,8 +13095,8 @@ msgstr "Nie je dostupný alebo aktivovaný žiadny sieťový adaptér!"
 msgid "No network storage detected."
 msgstr "Nebolo zistené žiadne sieťové úložisko."
 
-msgid "No networks found"
-msgstr "Nenašli sa žiadne siete"
+msgid "No networks found."
+msgstr "Nenašli sa žiadne siete."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nie je čo prepnúť (zvýšiť alebo znížiť)"
@@ -12750,6 +13121,9 @@ msgstr "Žiadna stanica"
 
 msgid "No services/providers selected"
 msgstr "Nie sú vybrané žiadne stanice, služby alebo poskytovatelia"
+
+msgid "No shares found."
+msgstr "Nenašli sa žiadne zdieľania."
 
 msgid "No slot images found"
 msgstr "Nenašli sa žiadne image slotov"
@@ -12826,30 +13200,6 @@ msgstr "Nenašlo sa žiadne platné pripojenie pre '%s'!"
 
 msgid "No valid region details were found"
 msgstr "Nenašli sa žiadne platné podrobnosti o regióne"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Nenašli sa žiadne bezdrôtové siete! Vyhľadáva sa…"
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Nenašiel sa žiadny funkčný sieťový adaptér.\n"
-"Skontrolujte, prosím, či je pripojený sieťový kábel a vaša sieť je správne nastavená."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Nenašiel sa žiadny funkčný bezdrôtový sieťový adaptér.\n"
-"Skontrolujte, prosím, či je pripojené kompatibilné WLAN zariadenie a či je sieť správne nastavená."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Nenašlo sa žiadne funkčné rozhranie bezdrôtovej siete.\n"
-"Skontrolujte, prosím, či máte pripojené kompatibilné zariadenie WLAN alebo zapnite lokálne sieťové rozhranie."
 
 msgid "No, but restart from begin"
 msgstr "Nie, ale spustiť od začiatku"
@@ -12935,6 +13285,9 @@ msgstr "nórčina nynorsk"
 msgid "Not Classified"
 msgstr "Neklasifikované"
 
+msgid "Not Connected"
+msgstr "Nepripojené"
+
 msgid "Not Defined"
 msgstr "Nedefinované"
 
@@ -12980,8 +13333,14 @@ msgstr ""
 "Voľné: %sMB\n"
 "Cesta: %s"
 
+msgid "Not found"
+msgstr "Nenájdené"
+
 msgid "Not joined. Press Yellow to join."
 msgstr "Nezapojené. Pre zapojenie stlačte žlté tlačidlo."
+
+msgid "Not mounted"
+msgstr "Nenapojené"
 
 msgid "Not required"
 msgstr "Nevyžaduje sa"
@@ -13010,6 +13369,9 @@ msgstr "Nič na aktualizovanie"
 
 msgid "Nothing, just leave this menu"
 msgstr "Nič, len opustiť toto menu"
+
+msgid "Notifications And Display"
+msgstr "Notifikácie a zobrazenie"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13098,9 +13460,6 @@ msgstr "Informácie o OScame"
 
 msgid "OSCam Information Settings"
 msgstr "Nastavenia informácií o OSCame"
-
-msgid "OSCam webif disabled"
-msgstr "Oscam webif vypnutý"
 
 msgid "OSCamInfo Actions"
 msgstr "Akcie pre OSCamInfo"
@@ -13205,9 +13564,6 @@ msgstr "Pri platných ONID ignorovať časť frekvenčnej podsiete."
 
 msgid "Once"
 msgstr "Raz"
-
-msgid "One"
-msgstr "Jeden"
 
 msgid "One line"
 msgstr "Jeden riadok"
@@ -13404,8 +13760,23 @@ msgstr "Otvoriť zoznam staníc a vybrať predchádzajúci kanál pre PiP"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Otvoriť obrazovku s nastaveniami výberu kanála"
 
+msgid "Open the Context Menu for the selected item"
+msgstr "Otvoriť kontextové menu pre vybranú položku"
+
 msgid "Open the Image information"
 msgstr "Otvoriť informácie o image"
+
+msgid "Open the Mount Context Menu"
+msgstr "Otvoriť kontextové menu pre pripojenie"
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr "Otvoriť nastavenia sieťového adaptéra pre vybranú položku"
+
+msgid "Open the Network Shares Browser"
+msgstr "Otvoriť prehliadač sieťových zdieľaní"
+
+msgid "Open the Network Shares Context Menu"
+msgstr "Otvoriť kontextové menu pre sieťové zdieľania"
 
 msgid "Open the Plugin Browser"
 msgstr "Otvoriť prehliadač pluginov"
@@ -13443,8 +13814,14 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX balíčky"
 
+msgid "OpenWebif Connection"
+msgstr "Pripojenie OpenWebif"
+
 msgid "OpenWebif picon path"
 msgstr "Cesta k pikonám OpenWebif"
+
+msgid "Opening network adapter configuration..."
+msgstr "Otvára sa konfigurácia sieťového adaptéra..."
 
 msgid "Opera"
 msgstr "Opera"
@@ -13472,6 +13849,9 @@ msgstr "Povolenie/zakázanie zobrazenia pikon v infolište."
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Možnosť povoliť hardvérový časovač pre pohotovostný režim."
+
+msgid "Optional arguments"
+msgstr "Voliteľné argumenty"
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr "Voliteľné oneskorenie medzi príkazmi CEC pri odosielaní sérií príkazov. Ak zariadenie nevyžaduje pomalší prenos, ponechajte túto voľbu vypnutú."
@@ -13520,6 +13900,9 @@ msgstr "Ostatné"
 
 msgid "Other Actions"
 msgstr "Ostatné akcie"
+
+msgid "Other OSD Elements"
+msgstr "Iné prvky OSD"
 
 msgid "Other Packages"
 msgstr "Ostatné balíčky"
@@ -13645,6 +14028,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Balíček"
+
+msgid "Package Categories"
+msgstr "Kategórie balíčka"
 
 msgid "Package Manager"
 msgstr "Správa balíčkov"
@@ -13913,6 +14299,9 @@ msgstr "Režim vyhľadávania pikony"
 msgid "Picon width"
 msgstr "Pikony – šírka"
 
+msgid "Picture In Picture"
+msgstr "Obraz v obraze"
+
 msgid "Picture Information"
 msgstr "Informácie o obrázku"
 
@@ -13943,6 +14332,9 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pinging..."
+msgstr "Odosiela sa ping..."
 
 msgid "Pink"
 msgstr "ružová"
@@ -14046,6 +14438,12 @@ msgstr "Prehrať zvukový súbor"
 msgid "Play the selected service"
 msgstr "Prehrať vybranú službu"
 
+msgid "Playback And Saving"
+msgstr "Prehrávanie a ukladanie"
+
+msgid "Playback And Status"
+msgstr "Prehrávanie a stav"
+
 msgid "Playback Settings"
 msgstr "Nastavenia prehrávania"
 
@@ -14128,17 +14526,11 @@ msgstr ""
 "Prosím, zadajte svoju e-mailovú adresu, ktorá bude súčasne Vaším prihlasovacím menom.\n"
 "Prostredníctvom svojho konta na internetovej stránke IceTV si môžete zvoliť zasielanie informácií o službe, pripomienok pre konto a propagačných ponúk."
 
-msgid "Please follow the instructions on the TV"
-msgstr "Prosím, riaďte sa pokynmi na televíznej obrazovke"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Upozorňujeme, že k predtým vybranému médiu nebolo možné získať prístup, a preto sa namiesto neho použije predvolený priečinok."
 
 msgid "Please open Picture in Picture first"
 msgstr "Prosím, najprv otvorte PiP"
-
-msgid "Please press OK to continue."
-msgstr "Na pokračovanie stlačte OK, prosím."
 
 msgid "Please press OK when ready"
 msgstr "Prosím, stlačte OK, keď budete pripravení"
@@ -14218,9 +14610,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Čakajte, prosím"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Aktivuje sa konfiguácia siete. Čakajte, prosím…"
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "Prosím, čakajte na vytvorenie/aktualizovanie LCN prehľadov..."
 
@@ -14275,17 +14664,8 @@ msgstr "Prosím, počkajte na aktualizáciu pluginu."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Počkajte, prosím, kým sa skontrolujú nainštalované pluginy…"
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Pripravujú sa sieťové rozhrania. Čakajte, prosím…"
-
-msgid "Please wait while we test your network..."
-msgstr "Prebieha test siete. Čakajte, prosím…"
-
 msgid "Please wait while your network is restarting..."
 msgstr "Sieť sa reštartuje. Čakajte, prosím…"
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Obnovuje sa nastavenie vzhľadu. Čakajte, prosím…"
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Prosím čakajte, prebieha kontrola stavu zdrojov."
@@ -14557,9 +14937,6 @@ msgstr "Pre výber MultiBoot stlačte OK."
 msgid "Press OK on your remote control to continue."
 msgstr "Ak chcete pokračovať, stlačte OK na diaľkovom ovládači."
 
-msgid "Press OK to activate the settings."
-msgstr "Stlačením OK aktivujete nastavenia."
-
 msgid "Press OK to continue."
 msgstr "Stlačením OK môžete pokračovať."
 
@@ -14676,14 +15053,14 @@ msgstr "Predchádzajúca/ďalšia stránka"
 msgid "Prevsong"
 msgstr "Predchádzajúca skladba"
 
-msgid "Primary DNS"
-msgstr "Primárne DNS"
-
 msgid "Primary DNS (IPv4)"
 msgstr "Primárne DNS (IPv4)"
 
 msgid "Primary DNS (IPv6)"
 msgstr "Primárne DNS (IPv6)"
+
+msgid "Prime Time"
+msgstr "Prime Time"
 
 msgid "Prime time"
 msgstr "Hlavný vysielací čas"
@@ -15038,11 +15415,20 @@ msgstr "Hodnotenie neurčené"
 msgid "Re-enter new PIN"
 msgstr "Znovu zadajte nový kód PIN"
 
+msgid "Reachable"
+msgstr "V dosahu"
+
 msgid "Read Only"
-msgstr "Len na čítanie"
+msgstr "Len čítanie"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Načítať používateľské dáta z oscam.conf"
+
+msgid "Read block size"
+msgstr "Veľkosť bloku na čítanie"
+
+msgid "Read-Only"
+msgstr "Len na čítanie"
 
 msgid "Read/Write"
 msgstr "Čítanie/zápis"
@@ -15097,6 +15483,9 @@ msgstr "Naozaj vypnúť?"
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "Naozaj chcete spustiť Kodi a zastaviť použív. rozhranie?"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr "Naozaj chcete spustiť RetroGaming a zastaviť používateľské rozhranie?"
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Naozaj chcete aktualizovať predný panel a reštartovať?"
@@ -15188,6 +15577,18 @@ msgstr "Súprava nástrojov pre nahrávateľné médiá"
 msgid "Recording"
 msgstr "Nahrávanie"
 
+msgid "Recording And Status Indicators"
+msgstr "Indikátory nahrávania a stavu"
+
+msgid "Recording Filenames And Data"
+msgstr "Názov súborov nahrávok a dátumy"
+
+msgid "Recording Locations"
+msgstr "Umiestnenia nahrávok"
+
+msgid "Recording Preparation And Margins"
+msgstr "Príprava nahrávania a okraje"
+
 msgid "Recording Settings"
 msgstr "Nastavenia nahrávania"
 
@@ -15261,6 +15662,9 @@ msgstr "Nahrávky nemusia fungovať správne bez platného priečinku."
 
 msgid "Recovery"
 msgstr "Obnovenie"
+
+msgid "Recovery And Hardware"
+msgstr "Obnovovanie a hardvér"
 
 msgid "Recovery Mode"
 msgstr "Núdzový režim"
@@ -15401,11 +15805,20 @@ msgstr "Nastavenia tlačidiel diaľkového ovládania"
 msgid "Remote Control Code Settings"
 msgstr "Kód diaľkového ovládania"
 
+msgid "Remote Receiver Connection"
+msgstr "Pripojenie vzdialeného prijímača"
+
+msgid "Remote Timers"
+msgstr "Vzdialené časovače"
+
 msgid "Remote control information"
 msgstr "Informácie o diaľkovom ovládaní"
 
 msgid "Remote control type"
 msgstr "Typ diaľkového ovládania"
+
+msgid "Remote path"
+msgstr "Vzdialená cesta"
 
 msgid "Remote receiver"
 msgstr "Vzdialený prijímač"
@@ -15434,6 +15847,9 @@ msgstr "Odstrániť káblové stanice"
 
 msgid "Remove Confirmation"
 msgstr "Odstrániť potvrdenie"
+
+msgid "Remove Credentials"
+msgstr "Odstrániť prihlasovacie údaje"
 
 msgid "Remove Entry"
 msgstr "Odstrániť položku"
@@ -15649,6 +16065,15 @@ msgstr "Požadovaný druh média:"
 msgid "Rereading partition table"
 msgstr "Opakované načítanie tabuľky partícií"
 
+msgid "Rescan"
+msgstr "Skenovať znovu"
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr "Znovu skenovať dostupné siete Wi-Fi"
+
+msgid "Rescan for available network shares"
+msgstr "Znovu skenovať dostupné sieťové zdieľania"
+
 msgid "Reserved"
 msgstr "Rezervované"
 
@@ -15712,8 +16137,18 @@ msgstr "Rozlíšenie"
 msgid "Resolution unit"
 msgstr "Jednotka rozlíšenia"
 
+msgid "Resolving..."
+msgstr "Rozlišovanie..."
+
 msgid "Restart"
 msgstr "Reštartovať"
+
+#, python-format
+msgid "Restart %s"
+msgstr "Reštart %s"
+
+msgid "Restart Adapter"
+msgstr "Reštartovať adaptér"
 
 msgid "Restart GUI"
 msgstr "Reštartovať GUI"
@@ -15729,12 +16164,6 @@ msgstr "Reštartovať GUI ihneď?"
 
 msgid "Restart Network"
 msgstr "Reštartovať sieť"
-
-msgid "Restart Network Adapter"
-msgstr "Reštart sieťového adaptéra"
-
-msgid "Restart OSCam"
-msgstr "Reštart OSCam"
 
 msgid "Restart enigma"
 msgstr "Reštart systému Enigma"
@@ -15754,8 +16183,15 @@ msgstr "Reštartovať sieť s aktuálnym nastavením"
 msgid "Restart test"
 msgstr "Reštartovať test"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Reštartujte sieťové pripojenie a rozhrania."
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr "Reštartovanie %s bolo neúspešné (kód ukončenia %s)"
+
+msgid "Restarting adapter..."
+msgstr "Adaptér sa reštartuje..."
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr "Uložená sieť Wi-Fi sa reštartuje..."
 
 msgid "Restarting..."
 msgstr "Reštartuje sa…"
@@ -15765,9 +16201,6 @@ msgstr "Obnoviť"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "Obnoviť vymazané používateľské prehľady"
-
-msgid "Restore MetrixHD Settings"
-msgstr "Obnoviť nastavenia MetrixHD"
 
 msgid "Restore Plugins"
 msgstr "Obnoviť pluginy"
@@ -15823,6 +16256,9 @@ msgstr "Pokračovať od pozície %s"
 
 msgid "Resuming playback"
 msgstr "Pokračovanie prehrávania"
+
+msgid "Retest"
+msgstr "Otestovať znovu"
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16022,11 +16458,11 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "Nastavenie SABnzbd"
-
 msgid "SAT"
 msgstr "SAT"
+
+msgid "SAT input"
+msgstr "SAT vstup"
 
 msgid "SATA"
 msgstr "SATA"
@@ -16064,6 +16500,9 @@ msgstr "CHYBA pri prepnutí SD karty! Už je na MMC"
 
 msgid "SINGLE LAYER DVD"
 msgstr "JEDNOVRSTVOVÉ DVD"
+
+msgid "SMB version"
+msgstr "Verzia SMB"
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "Výber vstupu v SMS štýle QuickSelect"
@@ -16119,8 +16558,8 @@ msgstr "Klient Samba"
 msgid "Samba Server"
 msgstr "Server Samba"
 
-msgid "Samba Settings"
-msgstr "Nastavenia Samba"
+msgid "Samba Server Settings"
+msgstr "Nastavenia servera Samba"
 
 msgid "Same as in active"
 msgstr "Rovnako ako pri zapnutí"
@@ -16270,6 +16709,26 @@ msgstr "Uložiť timeshift ako film a zastaviť nahrávanie"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Uložiť timeshift ako film a pokračovať v nahrávaní"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr "Kontextové menu pre uloženú sieť Wi-Fi '%s'"
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr "Nastavenia uloženej siete Wi-Fi '%s'"
+
+msgid "Saved Wi-Fi Networks"
+msgstr "Uložené siete Wi-Fi"
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr "Pripájanie na uloženú sieť Wi-Fi je vypnuté."
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr "Pripájanie na uloženú sieť Wi-Fi je zapnuté."
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr "Uložená Wi-Fi sieť sa vyhľadá automaticky, pri ďalšom spúšťaní."
+
 msgid "Saved lines in script messages"
 msgstr "Uložené riadky v správach skriptov"
 
@@ -16306,6 +16765,9 @@ msgstr "Prehľadať %s"
 msgid "Scan %s band"
 msgstr "Prehľadať %s pásmo"
 
+msgid "Scan Wi-Fi Networks"
+msgstr "Sken sietí Wi-Fi"
+
 msgid "Scan additional SR"
 msgstr "Prehľadať ďalšie SR"
 
@@ -16320,12 +16782,6 @@ msgstr "Vyhľadať lokálne rozšírenia a nainštalovať ich."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Vyhľadanie pozemných LCN a vytvorenie prehľadov LCN"
-
-msgid "Scan wireless networks"
-msgstr "Vyhľadať bezdrôtové siete"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich zvoleným bezdrôtovým zariadením."
 
 msgid "Scanning"
 msgstr "Prehľadávanie"
@@ -16353,6 +16809,12 @@ msgstr[2] "Vyhľadávanie dokončené, našlo sa %d staníc alebo služieb."
 
 msgid "Scanning failed!"
 msgstr "Prehľadávanie neúspešné!"
+
+msgid "Scanning for shares..."
+msgstr "Prebieha skenovanie zdieľaní..."
+
+msgid "Scanning..."
+msgstr "Prehľadávanie…"
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16467,9 +16929,6 @@ msgstr "Hľadanie západne…"
 msgid "Second cable of motorized LNB"
 msgstr "Druhý kábel motorizovaného LNB"
 
-msgid "Secondary DNS"
-msgstr "Sekundárny DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr "Sekundárne DNS (IPv4)"
 
@@ -16550,6 +17009,9 @@ msgstr "Ak sa používa 'univerzálny' LNB, vyberte možnosť 'polarizácia', v 
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Možnosť 'poskytovateľ' (provider) umožní skenovať preddefinovaný zoznam káblových multiplexov. Možnosť 'pásma' umožní prehľadávať len určité časti spektra. Na prehľadávanie po jednotlivých krokoch určitej šírky frekvenčného pásma, vyberte možnosť 'kroky'."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr "Ak chcete zobraziť chybu pri prístupe k súboru, keď server neodpovedá (a zastaviť opätovné pokusy o odpoveď), vyberte možnosť 'Mäkké pripojenie'. Možnosť 'Tvrdé pripojenie' (štandardne nastavená) chráni pred nepozorovanou stratou údajov, môže však viesť k zamrznutiu programov pristupujúcich k tomuto zdieľaniu vtedy, keď nie je server dostupný."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Ak sa má každej stanici alebo službe vo všetkých prehľadoch priradiť jedinečné číslo, vyberte možnosť 'Jedinečné číslovanie'. Ak sa má číslovanie začínať v každom prehľade od 1, použite 'Prehľady začínajú od 1. 'LCN číslovanie použite vtedy, ak sa majú používať konzistentné LCN staníc alebo služieb bez ohľadu na výskyt."
@@ -16706,6 +17168,9 @@ msgstr "Ak sa má pri úprave textového súboru nastaviť pozícia kurzora na k
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Ak sa na obrazovke Stiahnuť pluginy majú zobraziť aj balíčky typu 'dev', 'staticdev', 'dbg' a 'doc', vyberte možnosť 'Áno'."
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Ak chcete na obrazovke pre sťahovanie pluginov zobrazovať balíčky Kodi, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky vzhľadu LCD, vyberte možnosť 'Áno'."
@@ -16884,6 +17349,9 @@ msgstr "Vyberte zdroj pre aktualizáciu"
 msgid "Select Upgrade Source To Edit"
 msgstr "Vyberte zdroj aktualizácií na úpravu"
 
+msgid "Select Wi-Fi adapter"
+msgstr "Vybrať adaptér Wi-Fi"
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Z dostupného zoznamu vyberte softcam, ktorý bude pre AutoCam východiskový."
 
@@ -16927,6 +17395,9 @@ msgstr "Vyberte film"
 msgid "Select a network adapter"
 msgstr "Vyberte sieťový adaptér"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr "Vyberte sieťové rozhranie, ktoré chcete konfigurovať, alebo ho preskočte, ak chcete konfigurovať sieť neskôr, v nastaveniach systému."
+
 msgid "Select a permanent mount point for all devices"
 msgstr "Vyberte trvalý bod pripojenia pre všetky zariadenia"
 
@@ -16939,6 +17410,12 @@ msgstr "Vyberte denník o odovzdaní do repozitára, ktorý sa má zobraziť:"
 msgid "Select a script to run:"
 msgstr "Vyberte skript na spustenie:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr "Vyberte špecifickú verziu NFS, pre vynútenie špecifickej verzie protokolu NFS, namiesto automatického vyjednávania."
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr "Vyberte špecifickú verziu protokolu SMB, ktorú chcete použiť namiesto automatického vyjednávania. Voľbu 'Staršie (SMB1)' používajte iba pre staré servery, ktoré nepodporujú novšie a bezpečnejšie protokoly SMB2/SMB3."
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "Vyberte časový limit pre zobrazenie potvrdenia predtým než časovač prepnutia zmení aktuálnu stanicu. Používateľ tak môže zrušiť činnosť časovača. Výberom možnosti 'Vypnuté' umožníte prepnutie bez potvrdzovania."
 
@@ -16950,9 +17427,6 @@ msgstr "Vyberte čas, v pohotovostnom režime, pred ktorým môže dekódovanie 
 
 msgid "Select a tuner"
 msgstr "Vyberte tuner"
-
-msgid "Select a wireless network"
-msgstr "Vyberte bezdrôtovú sieť"
 
 msgid "Select action"
 msgstr "Vyberte akciu"
@@ -17003,6 +17477,9 @@ msgstr "Vyberte predvolený priečinok Správcu súborov:"
 msgid "Select destination for:"
 msgstr "Vyberte umiestnenie pre:"
 
+msgid "Select exported directories"
+msgstr "Vyberte exportované priečinky"
+
 msgid "Select files to exclude from backup"
 msgstr "Výber súborov, ktoré sa nemajú zálohovať"
 
@@ -17048,9 +17525,6 @@ msgstr "Vyberte spôsob inštalácie satelitnej paraboly. Napríklad pevná para
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Vyberte, ako sa má spracovávať plán vzhľadom na pohotovostný režim."
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Vyberte, ako je tento DVB-C/T tuner pripojený. Možnosť externého koax. prepínania používajte iba s koax. prepínačom ovládaným napätím 5 V."
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vyberte spôsob aktivácie režimu Quick EPG."
 
@@ -17062,6 +17536,9 @@ msgstr "Vyberte, či je potrebný aj čas ukončenia."
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Nastaviť režim oneskorenia pre prepínanie kanálov."
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr "Vyberte, či je dostupné uzamykanie súboru. Ak chcete do nastavení pridať 'nolock', vyberte možnosť 'Nie'. Zaručí to najlepšiu kompatibilitu so staršími/jednoduchých servermi NFS."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Vyberte, či sa zobrazí predvolená hodnota položky nastavenia, a ak áno, kde sa zobrazí vo vzťahu k popisu."
@@ -17111,12 +17588,6 @@ msgstr "Výber vstupného zariadenia"
 msgid "Select input device."
 msgstr "Vyberte vstupné zariadenie."
 
-msgid "Select interface"
-msgstr "Výber rozhrania"
-
-msgid "Select menu entry"
-msgstr "Vyberte položku menu"
-
 msgid "Select movie"
 msgstr "Vyberte film"
 
@@ -17157,8 +17628,8 @@ msgstr "Vyberte záznam %s"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Vyberte cieľový jazyk prekladu pomocou umelej inteligencie."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
-msgstr "Vyberte zdroj predvolených nastavení DNS."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
+msgstr "Vyberte DNS server(y) na vyhľadanie názvov hostiteľa pre rozlišovanie IP adries."
 
 msgid "Select the No / False response"
 msgstr "Vyberte odozvu Nie/Nesprávne"
@@ -17245,6 +17716,9 @@ msgstr "Vyberte kanál alebo službu pre tento časovač."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Vyberte znak alebo akciu pod kurzorom klávesnice"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr "Vyberte znakovú sadu (iocharset), ktorá sa použije na porovnávanie/preklad názvov vzdialených súborov."
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Vyberte farbu LED pre napájanie na prednom paneli, keď je prijímač v činnosti. Touto voľbou môžete LED aj deaktivovať/vypnúť."
@@ -17401,11 +17875,14 @@ msgstr "Vyberte výrobcu vášho zariadenia SCR. Ak nie je výrobca uvedený v z
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vyberte metódu obnovenia rozlíšenia obrazovky a vyrovávacej pamäte pri vypnutí teletextu."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Vyberte režim prístupu, čítanie/zápis alebo len čítanie, ktorý sa použije pre všetky automaticky exportované zdieľania Samba."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Vyberte režim prístupu, čítanie/zápis alebo Len čítanie, ktorý sa použije pri všetkých exportovaných priečinkoch."
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr "Vyberte režim prístupu, čítanie/zápis, alebo Len čítanie, pre toto zdieľané pripojenie."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vyberte číslo modelu vášho zariadenia Unicable. Ak nie je číslo modelu uvedené v zozname, nastavte 'SCR' na voľbu 'definované používateľom' a zadajte parametre zariadenia manuálne podľa jeho špecifikácií."
@@ -17421,15 +17898,6 @@ msgstr "Vyberte cestu k filmu"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Vyberte hodnotu rýchlosti prenosu dát v sieti, pod ktorou sa má časovač aktivovať podľa zadania. Pri hodnote nad touto rýchlosťou sa časovač deaktivuje."
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Vyberte sieťové rozhranie, ktoré sa použije pre pripojenie na internet.\n"
-"\n"
-"Pokračujte stlačením OK."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
 msgstr "Vyberte metriku siete pre tento adaptér. Ak sú aktívne viaceré adaptéry, ten s najnižšou metrikou siete sa použije ako predvolená cesta pre sieťovú prevádzku."
@@ -17468,6 +17936,9 @@ msgstr "Vybrať predchádzajúcu stanicu alebo službu, zatvoriť skener a opust
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vyberte protokol používaný SCR zariadením. Možnosti sú 'SCR Unicable' (Unicable), alebo 'SCR JESS' (JESS, známe aj ako Unicable II)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr "Vyberte veľkosť bloku vyrov. pamäte na čítanie (rsize) pri pripojení. Pri použití voľby 'Automaticky' umožníte jadru a serveru vzájomné vyjednanie optimálnej veľkosti."
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "Vyberte akciu prijímača v prípade, že sa TV odpojí od vstupu prijímača."
 
@@ -17500,6 +17971,9 @@ msgstr "Vyberte režim vyhľadávania pre nájdenie pikon. 'Režim jednej cesty'
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr "Vyberte protokol zabezpečenia, ktorá sa použije pri prístupe k vybranej bezdrôtovej sieti."
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
+msgstr "Vyberte protokol zdieľania, ktorý sa použije, SMB (zdieľania v štýle Windows) alebo NFS (zdieľania systémov Mac a Linux)."
 
 msgid "Select the shifted character set"
 msgstr "Vyberte znakovú sadu pre veľké písmená"
@@ -17594,14 +18068,8 @@ msgstr "Vyberte typ tohto časovača."
 msgid "Select the video mode to be used on the TV."
 msgstr "Vyberte režim videa, ktorý sa použije na TV."
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Vyberte bezdrôtovú sieť, ku ktorej sa chcete pripojiť.\n"
-"\n"
-"Pokračujte stlačením OK."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr "Vyberte veľkosť bloku vyrov. pamäte na zápis (wsize) pri pripojení. Pri použití voľby 'Automaticky' umožníte jadru a serveru vzájomné vyjednanie optimálnej veľkosti."
 
 msgid "Select update source location"
 msgstr "Vyberte umiestnenie zdroja aktualizácie"
@@ -17645,6 +18113,9 @@ msgstr "Vyberte, čo sa má aktivovať tlačidlom TV."
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Vyberte, čo sa má aktivovať tlačidlami HORE/DOLU."
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr "Vyberte kedy a ako sa pripojí vzdialené zdieľanie. Vo väčšine prípadov sa odporúča autofs."
+
 msgid "Select where the recording should be saved."
 msgstr "Vyberte, kam sa má nahrávka uložiť."
 
@@ -17669,7 +18140,7 @@ msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť do režimu st
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Vyberte, či sa majú zvukové stopy Dolby TrueHD posielať ďalej alebo dekódovať."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Vyberte či sa použije IPv4, IPv6, alebo obidva protokoly. Ak sú aktivované obidva, tak vyberte, ktorý bude preferovaný."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17689,9 +18160,6 @@ msgstr "Vyberte, či sa má pri pohybe motora zobrazovať ikona."
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Vyberte, ktoré IP protokoly sa môžu použiť s týmto adaptérom."
-
-msgid "Select wireless network"
-msgstr "Vyberte bezdrôtovú sieť"
 
 msgid "Select your ATSC provider."
 msgstr "Vyberte vášho poskytovateľa ATSC."
@@ -17804,10 +18272,13 @@ msgstr "vážna hudba/klasická hudba"
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "závažný/klasický/náboženský/historický film/dráma"
 
+msgid "Server"
+msgstr "Server"
+
 msgid "Server down"
 msgstr "Server mimo prevádzky"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Server nesmie vynucovať svoju vlastnú čiernu listinu. Niektoré servery môžu používať vlastné čierne listiny na zablokovanie stránok pre rodičovskú kontrolu, blokovanie reklamy a podobné dôvody."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -17845,6 +18316,9 @@ msgstr "Servisná informácia"
 
 msgid "Service Information Actions"
 msgstr "Akcie pre servisnú informáciu"
+
+msgid "Service List Appearance"
+msgstr "Vzhľad zoznamu staníc"
 
 msgid "Service Scan"
 msgstr "Vyhľadávanie staníc alebo služieb"
@@ -18206,17 +18680,20 @@ msgstr "Nastavte, čo sa má vykonať po stlačení týchto tlačidiel."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Pre ladenie hlavnej príčiny zobrazenia prvku spinner, nastavte túto voľbu na Áno."
 
+msgid "Set up network"
+msgstr "Nastaviť sieť"
+
 msgid "Set up tuner [TUNER]"
 msgstr "Nastaviť tuner [TUNER]"
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Nastaviť [TUNER].\n"
+"Nastavenie tunera [TUNER]\n"
 "\n"
-"Pre modely s hybridným tunerom prepnite typ tunera pomocou tlačidiel DOĽAVA a DOPRAVA."
+"Pri prijímačoch, ktoré podporujú viaceré typy príjmu nakonfigurujte každý dostupný typ zvlášť."
 
 msgid "Set voltage and 22KHz"
 msgstr "Nastaviť napätie a 22 kHz"
@@ -18556,6 +19033,9 @@ msgstr "Zobraziť pikony v infolište"
 msgid "Show Kernel packages"
 msgstr "Zobraziť balíčky kernelu"
 
+msgid "Show Kodi Add-on packages"
+msgstr "Zobraziť prídavné balíčky Kodi"
+
 msgid "Show Live in MiniTV"
 msgstr "Zobraziť naživo v MiniTV"
 
@@ -18678,9 +19158,6 @@ msgstr "Zobraziť VCR SCART v hlavnom menu"
 
 msgid "Show Vertical EPG"
 msgstr "Zobraziť Vertikálny EPG"
-
-msgid "Show WLAN status"
-msgstr "Zobraziť stav WLAN"
 
 msgid "Show Web Link packages"
 msgstr "Zobraziť balíčky webových odkazov"
@@ -18843,9 +19320,6 @@ msgstr "Zobraziť v prehliadači pluginov"
 msgid "Show in Standby"
 msgstr "Zobraziť v pohotovostnom režime"
 
-msgid "Show info"
-msgstr "Zobraziť info"
-
 msgid "Show info line"
 msgstr "Zobraziť informačný riadok"
 
@@ -18887,6 +19361,9 @@ msgstr "Zobraziť filmy"
 
 msgid "Show multi channel EPG"
 msgstr "Zobraziť multikanálový EPG"
+
+msgid "Show network adapter connection information"
+msgstr "Zobraziť informáciu o pripojení sieťového adaptéra"
 
 msgid "Show next commit log"
 msgstr "Zobraziť ďalší denník o odovzdaní"
@@ -19071,6 +19548,9 @@ msgstr "Zobraziť informačnú obrazovku CCcam"
 msgid "Show the Logs Settings screen"
 msgstr "Zobraziť obrazovku s nastaveniami záznamov"
 
+msgid "Show the Network Information for the selected adapter"
+msgstr "Zobraziť sieťovú informáciu pre vybraný adaptér"
+
 msgid "Show the OSCam information screen"
 msgstr "Zobraziť obrazovku informácií OScamu"
 
@@ -19152,9 +19632,6 @@ msgstr "Zobrazenie Live TV alebo informácií na LCD."
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Zobrazuje ikony pri nových/nevidených, inak sa ikona nezobrazí."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Zobrazenie stavu pripojenia bezdrôtovej LAN."
-
 msgid "Shows the watched status of the media."
 msgstr "Zobrazenie stavu prehrávaného videa."
 
@@ -19167,8 +19644,9 @@ msgstr "Vypnúť"
 msgid "Shutdown"
 msgstr "Vypnúť"
 
-msgid "Shutdown OSCam"
-msgstr "Ukončiť OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr "Vypnutie %s"
 
 msgid "Shutting down. Please wait..."
 msgstr "Vypína sa. Čakajte, prosím…"
@@ -19188,14 +19666,8 @@ msgstr "Dizajny Sigma"
 msgid "Signal Finder"
 msgstr "Vyhľadávač signálu"
 
-msgid "Signal quality"
-msgstr "Kvalita signálu"
-
 msgid "Signal strength"
 msgstr "Intenzita signálu"
-
-msgid "Signal: "
-msgstr "Signál: "
 
 msgid "Signed by"
 msgstr "Podpísané"
@@ -19287,6 +19759,9 @@ msgstr "Nastavenie vzhľadu"
 msgid "SkinSelection"
 msgstr "Výber vzhľadu"
 
+msgid "Skip Modes"
+msgstr "Režimy preskočenia"
+
 msgid "Skip back"
 msgstr "Preskočiť dozadu"
 
@@ -19333,6 +19808,9 @@ msgstr "Preskočiť dopredu (zadajte čas)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Nepreskočiť na živé vysielanie pri timeshifte so zásuvnými modulmi"
+
+msgid "Skip network setup"
+msgstr "Preskočiť nastavenie siete"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Preskočiť inštaláciu balíčka, k dispozícii budú len základné balíčky"
@@ -19568,6 +20046,9 @@ msgstr "Spoločnosť a kultúra"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "Soft mount"
+msgstr "Mäkké pripojenie"
+
 msgid "SoftCSA Settings"
 msgstr "Nastavenia SoftCSA"
 
@@ -19588,6 +20069,9 @@ msgstr "Nastavenie softcamu"
 
 msgid "Softcams"
 msgstr "Softcamy"
+
+msgid "Software Display Scrolling"
+msgstr "Rolovanie zobrazenia softvéru"
 
 msgid "Software Management"
 msgstr "Správa softvéru"
@@ -19706,6 +20190,18 @@ msgstr "Zoradiť položky v prehliadači pluginov"
 msgid "Sort by"
 msgstr "Zoradiť podľa"
 
+msgid "Sort by Hostname/IP Address"
+msgstr "Zoradiť podľa názvu hostiteľa/IP adresy"
+
+msgid "Sort by IP Address"
+msgstr "Zoradiť podľa IP adresy"
+
+msgid "Sort by Mount Name"
+msgstr "Zoradiť podľa názvu pripojenia"
+
+msgid "Sort by Name"
+msgstr "Zoradiť podľa názvu"
+
 msgid "Sort by default"
 msgstr "Predvolené zoradenie"
 
@@ -19733,6 +20229,9 @@ msgstr "Soul/Rytmický blues"
 
 msgid "Sound"
 msgstr "Zvuk"
+
+msgid "Sound Enhancements"
+msgstr "Vylepšenia zvuku"
 
 msgid "Sound carrier"
 msgstr "Nosič zvuku"
@@ -19798,9 +20297,6 @@ msgstr "Osobitné udalosti"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Zadajte priečinok, ktorý sa použije pri spustení prehrávača médií."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Definujte príponu DNS, ktorá sa použije vtedy, keď bol poskytnutý iba názov hostiteľa. Pomôžete tak rozlišovaču DNS nájsť požadovaného hostiteľa."
-
 msgid "Speed"
 msgstr "Rýchlosť"
 
@@ -19851,6 +20347,10 @@ msgstr "Pohotovostný režim bez vypnutia TV"
 
 msgid "Start"
 msgstr "Štart"
+
+#, python-format
+msgid "Start %s"
+msgstr "Spustenie %s"
 
 msgid "Start Auto Refresh"
 msgstr "Spustiť automatické obnovenie"
@@ -19903,9 +20403,6 @@ msgstr "Spustiť opakovanie"
 msgid "Start teletext"
 msgstr "Spustiť teletext"
 
-msgid "Start test"
-msgstr "Spustiť test"
-
 msgid "Start the Chkroot initialization"
 msgstr "Spustiť inicializáciu Chkroot"
 
@@ -19933,6 +20430,10 @@ msgstr "Spustenie/zastavenie/výber softacmu"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Spustenie/zastavenie/výber softcamov. Softcam je najprv potrebné nainštalovať"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr "Spustenie %s bolo neúspešné (kód ukončenia %s)"
+
 msgid "Starting Softcam"
 msgstr "Spustenie softcamu"
 
@@ -19951,12 +20452,18 @@ msgstr "Čas začiatku"
 msgid "Starts in a few seconds"
 msgstr "Spustí sa o niekoľko sekúnd"
 
+msgid "Startup And Wakeup"
+msgstr "Spustenie a zobudenie"
+
 msgid "Startup device not found!"
 msgstr "Nenašlo sa spúšťacie zariadenie!"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Región"
+
+msgid "Static"
+msgstr "Statické"
 
 msgid "Static IP / Custom"
 msgstr "Statická IP/vlastná IP"
@@ -20042,9 +20549,6 @@ msgstr "Zastaviť stanicu po návrate do zoznamu filmov"
 msgid "Stop streams"
 msgstr "Zastaviť streamy"
 
-msgid "Stop test"
-msgstr "Zastaviť test"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Zastaviť testovanie po # zlyhaných transpondéroch"
 
@@ -20072,6 +20576,10 @@ msgstr "Zastaviť nahrávanie podľa časovača"
 msgid "Stopped"
 msgstr "Zastavené"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr "Zastavenie %s sa nepodarilo (kód ukončenia %s)"
+
 msgid "Stopping Softcam"
 msgstr "Zastavuje sa softcam"
 
@@ -20091,6 +20599,9 @@ msgstr "Úložisko/disky"
 msgid "Storage / Drive information"
 msgstr "Informácie o úložisku/jednotke"
 
+msgid "Storage And Deletion"
+msgstr "Ukladanie a vymazávanie"
+
 msgid "Storage Devices"
 msgstr "Úložné zariadenia"
 
@@ -20105,6 +20616,12 @@ msgstr "Úložné zariadenie nie je zapisovateľné!"
 
 msgid "Store position"
 msgstr "Uložiť pozíciu"
+
+msgid "Stored credentials deleted for this server."
+msgstr "Uložené prihlasovacie údaje boli pre tento server vymazané."
+
+msgid "Stored credentials for this server have been deleted."
+msgstr "Uložené prihlasovacie údaje pre tento server boli vymazané."
 
 msgid "Stored position"
 msgstr "Uložená pozícia"
@@ -20197,6 +20714,9 @@ msgstr "Titulky"
 
 msgid "Subtitle Actions"
 msgstr "Akcie pre titulky"
+
+msgid "Subtitle Language And Selection"
+msgstr "Jazyk a výber titulkov"
 
 msgid "Subtitle Quickmenu"
 msgstr "Rýchle menu titulkov"
@@ -20414,9 +20934,6 @@ msgstr "Prepnúť na iný stĺpec"
 msgid "Switch to the right column"
 msgstr "Prepnúť na pravý stĺpec"
 
-msgid "Switchable tuner types:"
-msgstr "Prepínateľné typy tunerov:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Prepnutie na živé vysielanie TV – timeshift zostáva aktívny!"
 
@@ -20519,17 +21036,17 @@ msgstr "TUNER:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "TV vstup a prebudenie prijímača"
+
+msgid "TV Power"
+msgstr "Napájanie TV"
+
 msgid "TV button mode"
 msgstr "Režim tlačidla TV"
 
-msgid "TV input and receiver wakeup"
-msgstr "TV vstup a prebudenie prijímača"
-
 msgid "TV physical address report"
 msgstr "Ohlásenie fyzickej adresy TV"
-
-msgid "TV power"
-msgstr "Napájanie TV"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20633,6 +21150,9 @@ msgstr "Teletext – začiatok X (ľavý okraj)"
 msgid "Teletext StartY (lower border)"
 msgstr "Tetelext – začiatok Y (dolný okraj)"
 
+msgid "Teletext Subtitles"
+msgstr "Teletextové titulky"
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletext TTFBold (0=normálne, 1=tučné)"
 
@@ -20695,6 +21215,9 @@ msgstr "tenis/squash"
 msgid "Terrestrial"
 msgstr "Pozemné"
 
+msgid "Terrestrial input"
+msgstr "Terestriálny vstup"
+
 msgid "Test"
 msgstr "Test"
 
@@ -20709,10 +21232,6 @@ msgstr "Testovacia úloha neúspešná!"
 
 msgid "Test mode"
 msgstr "Testovací režim"
-
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Test sieťových nastavení %s %s."
 
 msgid "Test type"
 msgstr "Typ testu"
@@ -20832,24 +21351,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "Server IceTV si vyžiadal heslo pre %s."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Zdá sa, že pripojenie na internet funguje.\n"
-"\n"
-"Pokračujte stlačením OK."
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Zdá sa, že pripojenie na internet nefunguje!\n"
-"\n"
-"Vyberte ďalšiu akciu."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21020,13 +21521,6 @@ msgstr "Výška obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hod
 msgid "The loopthrough setting is wrong."
 msgstr "Nastavenie slučky (loopthrough) je nesprávne."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Nie je nainštalované rozšírenie Sprievodca sieťou!\n"
-"Prosím, nainštalujte ho."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Priečiok pre picony už existuje a musí sa odstrániť. Má sa pokračovať?"
 
@@ -21104,35 +21598,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "Používateľské rozhranie zariadenia %s %s sa zastaví kvôli spusteniu Kodi"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr "Používateľské rozhranie vášho %s %s sa zastaví kvôli spusteniu RetroGaming"
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Šírka obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hodnote."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Bezdrôtové LAN pripojenie k internetu sa nepodarilo spustiť!\n"
-"Je pripojené zariadenie pre bezdrôtovú LAN?\n"
-"\n"
-"Vyberte ďalšiu akciu."
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"Nie je nainštalovaný kód pluginu pre bezdrôtovú LAN!\n"
-"\n"
-"Nainštalujte ho a vyberte ďalšiu akciu."
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Modul bezdrôtovej LAN nie je nainštalovaný!\n"
-"Prosím, nainštalujte ho."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "Sprievodca môže zálohovať vaše aktuálne nastavenia. Má sa v tejto chvíli spustiť zálohovanie?"
@@ -21215,6 +21686,9 @@ msgstr "Táto funkcia nie je dostupná, pretože spracovanie veľkých súborov 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Toto je dočasné riešenie pre zariadenia, ktoré sa po vstupe do pohotovostného režimu ihneď prebudia. Príkazy na prebudenie od iných zariadení sa budú niekoľko sekúnd ignorovať."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Toto je jeden typ príjmu jednotlivého tunera. Aktivované typy príjmu sa prepínajú automaticky a skenujú sa zvlášť."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Toto je aktuálne vybraný jazyk:  [%s]"
@@ -21237,6 +21711,9 @@ msgstr "Toto menu ponúka voľby na spravovanie softvéru zariadenia %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Tento posun sa použije len vtedy, ak kanál nemá nastavený vlastný posun hlasitosti."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Táto voľba umožňuje prispôsobenie SDR grafiky a farieb OSD, pokiaľ je HDMI výstup v režime HDR."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Redukcia blokového šumu v obraze. Zhorší sa tým však jeho ostrosť."
@@ -21452,57 +21929,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Toto nastavenie je určené len pre špeciálne inštalácie. Priraďuje tomuto LNB vyššiu prioritu oproti ostatným LNB s nižšími hodnotami. Voľné LNB s najvyššou prioritou bude prvým vybraným LNB pre služby ladenia."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Týmto testom sa overí konfigurácia DNS.\n"
-"Ak dostanete správu 'nepotvrdené':\n"
-"– overte nastavenie DHCP, kábla a sieťového adaptéra\n"
-"– ak ste DNS servery nastaveni ručne, prosím, overte nastavenie DNS servera"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Týmto testom sa overí, či je do sieťového adaptéra pripojený kábel.\n"
-"Ak dostanete správu 'odpojený':\n"
-"– overte, či je kábel pripojený\n"
-"– overte, či kábel nie je poškodený"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Týmto testom sa overí platnosť IP adresy sieťového adaptéra\n"
-"Ak dostanete správu 'nepotvrdené':\n"
-"– nenašla sa žiadna platná IP adresa\n"
-"– overte nastaveniia DHCP, pripojenie kábla a nastavenie adaptéra"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Týmto tesom sat overí nastavenie sieťového adaptéra na automatickú konfiguráciu IP adresy pomocou DHCP.\n"
-"Ak dostanete správu 'vypnuté':\n"
-"– potom je sieťový adaptér nastavený na ručnú konfiguráciu sieťovej IP adresy\n"
-"– overte, či ste nastaveniach adaptéra zadali správnu IP adresu\n"
-"Ak dostanete správu 'zapnuté':\n"
-"– overte, či je vo vašej sieti správne nastavený a fungujúci DHCP server."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Tento detekuje nakonfigurovaný sieťový adaptér (LAN)."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21521,9 +21947,6 @@ msgstr "Sprievodca bol dokončený"
 
 msgid "This wizard has finished."
 msgstr "Sprievodca bol dokončený."
-
-msgid "Three"
-msgstr "Tri"
 
 msgid "Threshold"
 msgstr "Prah"
@@ -21660,6 +22083,9 @@ msgstr "Časová zóna"
 msgid "Time zone area"
 msgstr "Oblasť časovej zóny"
 
+msgid "Timeline"
+msgstr "Časová os"
+
 msgid "Timeline 24 Hour"
 msgstr "Časová os 24 hodín"
 
@@ -21671,6 +22097,12 @@ msgstr "Časová história"
 
 msgid "Timeline scale"
 msgstr "Časová mierka"
+
+msgid "Timeout"
+msgstr "Časový limit"
+
+msgid "Timer Defaults And Retention"
+msgstr "Predvolené časovače a uchovávanie"
 
 msgid "Timer Log Actions"
 msgstr "Akcie denníka časovača"
@@ -21738,7 +22170,7 @@ msgstr "Timeshift"
 msgid "Timezone"
 msgstr "Časová zóna"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "Časovanie a diagnostika"
 
 msgid "Timor-Leste / East Timor"
@@ -21838,6 +22270,9 @@ msgstr "Prepnúť režim viacnásobného výberu"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Prepnúť vkladanie nového textu dopredu alebo prepisovanie existujúceho textu"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr "Prepnúť výber zdieľania podľa IP adresy alebo DNS názvu"
+
 msgid "Toggle selection of the current tag"
 msgstr "Prepnúť výber aktuálneho tagu"
 
@@ -21920,6 +22355,9 @@ msgstr "Tradičné"
 msgid "Traditional Chinese"
 msgstr "tradičná čínština"
 
+msgid "Transceiver"
+msgstr "Vysielač-prijímač (transceiver)"
+
 msgid "Transcode"
 msgstr "Transkódovať"
 
@@ -21970,6 +22408,9 @@ msgstr "ID transportného streamu (TSID)"
 msgid "Transport Stream Type"
 msgstr "Typ transportného streamu"
 
+msgid "Trash And Deletion"
+msgstr "Kôš a vymazávanie"
+
 msgid "Trashcan"
 msgstr "Kôš"
 
@@ -21993,6 +22434,9 @@ msgstr "TRIM systému súborov..."
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad a Tobago"
+
+msgid "Triple Tuner"
+msgstr "Trojitý tuner"
 
 msgid "True"
 msgstr "True (Pravda)"
@@ -22050,6 +22494,12 @@ msgstr "Tuner "
 
 msgid "Tuner :"
 msgstr "Tuner:"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr "Alokovanie tunera a konflikty"
+
+msgid "Tuner And Streaming"
+msgstr "Tuner a streamovanie"
 
 msgid "Tuner Configuration"
 msgstr "Konfigurácia tunerov"
@@ -22173,9 +22623,6 @@ msgstr "Twin Hybrid"
 msgid "Twin Tuner"
 msgstr "Twin tuner (dvojitý)"
 
-msgid "Two"
-msgstr "Dva"
-
 msgid "Two lines"
 msgstr "Dva riadky"
 
@@ -22290,9 +22737,6 @@ msgstr "Menej ako 5"
 msgid "Undetermined"
 msgstr "Neurčené"
 
-msgid "Unencrypted"
-msgstr "Nekódované"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Neočakávaná chyba pri prístupe na WebIF: %s"
@@ -22352,13 +22796,6 @@ msgstr "Neznáme"
 msgid "Unknown Devices"
 msgstr "Neznáme zariadenia"
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Pri zostavovaní vzhľadu nastala neznáma chyba.\n"
-"Prosím, po reštarte skontrolujte plugin MyMetrixLite a použite svoje nastavenia."
-
 msgid "Unknown Packages"
 msgstr "Neznáme balíčky"
 
@@ -22400,6 +22837,9 @@ msgstr "Rozbaliť súbor"
 msgid "Unpublished"
 msgstr "nepublikované"
 
+msgid "Unreachable"
+msgstr "Nie je v dosahu"
+
 msgid "Unscramble and record ECM"
 msgstr "Dekódovať a nahrávať ECM"
 
@@ -22411,9 +22851,6 @@ msgstr "Dekódovať prijímané http streamy"
 
 msgid "Unset As Startup Service"
 msgstr "Zrušenie nastavenia ako stanice po zapnutí"
-
-msgid "Unsupported"
-msgstr "Nepodporované"
 
 msgid "Until standby/restart"
 msgstr "Do pohotovostného režimu/reštartu"
@@ -22595,6 +23032,9 @@ msgstr "Použiť používateľské pásmo LNB 1"
 msgid "Use MHW EPG information when it is available."
 msgstr "Používať MHW EPG informácie, ak sú dostupné."
 
+msgid "Use NFS file locking"
+msgstr "Použiť uzamknutie súboru NFS"
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Používať Netmed EPG informácie, ak sú dostupné."
 
@@ -22631,14 +23071,14 @@ msgstr "Používať čas ukončenia časovača prepnutia"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Používať vyrovnávaciu pamäť DNS na lokálne uloženie posledných hľadaní cez DNS. Vylepší sa tým výkon, zníži sa latencia a klesne odchádzajúci prenos."
 
-msgid "Use a gateway"
-msgstr "Použiť bránu"
-
 msgid "Use alternate GitHub DNS"
 msgstr "Použiť alternatívne DNS GitHub"
 
 msgid "Use an alternative smaller screen."
 msgstr "Použiť alternatívne, menšie zobrazenie."
+
+msgid "Use as HDD replacement"
+msgstr "Použiť ako náhradu pevného disku (HDD)"
 
 msgid "Use automatic mode detection"
 msgstr "Použiť automatickú detekciu režimu"
@@ -22685,11 +23125,11 @@ msgstr "Na získanie informácií o WAN použiť geolokalizáciu"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Použiť geolokáciu na nastavenie aktuálnej časovej zóny"
 
+msgid "Use guest login"
+msgstr "Použiť prihlasovacie údaje pre hosťa"
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "Pri problémoch s prepínaním LNB použite zvýšené napätie '14/18 V'."
-
-msgid "Use interface"
-msgstr "Použiť rozhranie"
 
 msgid "Use key map *"
 msgstr "Použiť mapu tlačidiel *"
@@ -22702,9 +23142,6 @@ msgstr "Použiť oficiálne číslovanie kanálov"
 
 msgid "Use only DNSSEC servers"
 msgstr "Používať len servery DNSSEC"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Použiť len pre Wake on WLan (WoW)"
 
 msgid "Use only no-filter servers"
 msgstr "Používať len servery bez filtrov"
@@ -22757,9 +23194,6 @@ msgstr "Na posunutie používateľského rozhrania nahor použite tlačidlá do�
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Na posunutie používateľského rozhrania nahor/nadol použite tlačidlá doľava/doprava na diaľkovom ovládači."
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Sprievodca sieťou na pomoc s konfiguráciou sieťových nastavení"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Panel Softcam slúži na ovládanie CAMu. Umožňuje spustenie/zastavenie/výber CAMu"
 
@@ -22777,12 +23211,6 @@ msgstr "Použiť aktuálny výber a ukončiť"
 
 msgid "Use the extended List"
 msgstr "Použiť rozšírený zoznam"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Na konfiguráciu vašej siete použite sprievodcu sieťou."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Použite sprievodcu pre nastavenie základných funkcií"
@@ -22860,6 +23288,12 @@ msgstr "Meno používateľa"
 msgid "Username (httpuser)"
 msgstr "Meno používateľa (httpuser)"
 
+msgid "Using DNS"
+msgstr "Používanie DNS"
+
+msgid "Using IP"
+msgstr "Používanie IP"
+
 msgid "Using automatic address"
 msgstr "Použiť automatickú adresu"
 
@@ -22884,9 +23318,6 @@ msgstr "Uzbekistan"
 msgid "VCR Scart Settings"
 msgstr "Nastavenia VCR SCART"
 
-msgid "VLAN connection"
-msgstr "Pripojenie VLAN"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -22898,6 +23329,9 @@ msgstr "VOB súbor"
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "Nastavenia VPS"
@@ -23236,6 +23670,9 @@ msgstr "Akcie výberu stanice pre úpravu hlasitosti"
 msgid "Volume Adjust Settings"
 msgstr "Nastavenia úpravy hlasitosti"
 
+msgid "Volume Control"
+msgstr "Ovládanie hlasitosti"
+
 msgid "Volume adjustment mode"
 msgstr "Režim úpravy hlasitosti"
 
@@ -23269,12 +23706,6 @@ msgstr "Informácie o pripojení WAN"
 msgid "WARNING:"
 msgstr "UPOZORNENIE:"
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "WLAN pripojenie"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23283,15 +23714,6 @@ msgstr "WMA Pro downmix"
 
 msgid "WOL Standby"
 msgstr "Pohotovostný režim WakeOnLan"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA alebo WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS pri 4:3"
@@ -23307,6 +23729,9 @@ msgstr "Prebieha vyhľadávanie. Čakajte, prosím…"
 
 msgid "Waiting"
 msgstr "Čaká sa"
+
+msgid "Waiting for IP address..."
+msgstr "Čaká sa na IP adresu..."
 
 msgid "Waiting for partition"
 msgstr "Čaká sa na partíciu"
@@ -23353,6 +23778,9 @@ msgstr "Upozornenie: %d zdrojov nebolo možné opäť načítať!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "Upozornenie: zrušenie tohto procesu zanechá zdroje v nekompletnom a nepoužiteľnom stave!"
+
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr "Pozor: nenašiel sa žiadny adaptér Wi-Fi!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozornenie: momentálne je aktívne prepisovanie!"
@@ -23615,7 +24043,7 @@ msgstr "Ak je povolené, na obrazovke pre výber kanála sa zobrazia čísla kan
 msgid "When enabled, show status or error messages."
 msgstr "Ak je povolené, budú sa zobrazovať stavové alebo chybové správy."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Ak je povolené, určiť používateľské nastavenia DNS pre tento adaptér, namiesto globálnych nastavení DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23672,8 +24100,11 @@ msgstr "Ak je povolené, časovač zo záložného tunera je predvoleným časov
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Ak je povolené, tento Wi-Fi adaptér sa bude udržiavať v režime len Wake-on-WiFi a nebude sa používať na pripájanie k sieti."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Ak je povolené, tento adaptér sa inicializuje a aktivuje počas spúšťania prijímača."
+
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr "Ak je povolené, tieto host. zdieľania sú uvedené ako anonymné (hosť), s ignorovaním mena/hesla dole."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner pre nahrávky'."
@@ -23681,11 +24112,11 @@ msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tune
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner'."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr "Ak je povolené, toto zdieľanie sa napojí do /media/hdd, namiesto napojenia do cesty /media/net. Túto voľbu používajte iba vtedy, keď je zdieľanie určite dostupné."
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Ak je povolené, po uplynutí stanoveného čase sa na pozadí automaticky spustí timeshift."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Ak je povolené, na konfiguráciu IP sa použije DHCP."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Ak je povolené, môžete upravovať nastavenia OpenWebIf pre záložný tuner."
@@ -23750,8 +24181,27 @@ msgstr "Pokiaľ je dostupné"
 msgid "White"
 msgstr "Biela"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Nastavenia pripojenia Wi-Fi"
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+msgid "Wi-Fi Activation Actions"
+msgstr "Akcie pre aktivovanie Wi-Fi"
+
+msgid "Wi-Fi Adapter"
+msgstr "Wi-Fi adaptér"
+
+msgid "Wi-Fi Scan Actions"
+msgstr "Akcie pre skenovanie Wi-Fi"
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr "Skenovanie Wi-Fi na '%s'"
+
+msgid "Wi-Fi connection"
+msgstr "Pripojenie cez Wi-Fi"
+
+msgid "Wi-Fi link"
+msgstr "Linka Wi-Fi"
 
 msgid "Wide"
 msgstr "Na šírku"
@@ -23776,30 +24226,6 @@ msgstr "Vymazať úložné zariadenie"
 
 msgid "Wiping storage device..."
 msgstr "Úložné zariadenie sa vymazáva..."
-
-msgid "Wireless LAN"
-msgstr "Bezdrôtová LAN"
-
-msgid "Wireless network"
-msgstr "Bezdrôtová sieť"
-
-msgid "Wireless network configuration..."
-msgstr "Nastavenie bezdrôtovej siete…"
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Nastavenie bezdrôtového sieťového pripojenia.\n"
-"\n"
-"Vyberte ďalšiu akciu."
-
-msgid "Wireless network setup"
-msgstr "Nastavenie bezdrôtovej siete"
-
-msgid "Wireless network state"
-msgstr "Stav bezdrôtovej siete"
 
 msgid "With EXIT button"
 msgstr "Tlačidlom EXIT"
@@ -23867,6 +24293,9 @@ msgstr "Chcete uložiť zadaný PIN %s ako trvalý?"
 
 msgid "Wrestling"
 msgstr "Wrestling"
+
+msgid "Write block size"
+msgstr "Veľkosť bloku zápisu"
 
 #, python-format
 msgid ""
@@ -24009,10 +24438,6 @@ msgstr "Vypaľovať je možné len nahrávky prijímača Dreambox!"
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Túto funkciu môžete preskočiť a vypnúť TV, ak sa prijímač prebudí z pohotovostného režimu a ihneď sa prepne späť do pohotovostného režimu."
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Typy tunera %s sa môžu prepínať tlačidlami doľava a doprava"
-
 msgid "You cannot delete this!"
 msgstr "Nie je možné vymazať!"
 
@@ -24086,18 +24511,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "Váš %s %s nie je pripojený k internetu, prosím, skontrolujte nastavenia siete a skúste to znova."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"%s %s je teraz pripravený na používanie.\n"
-"\n"
-"Vaše pripojenie na internet funguje.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "%s %s sa reštartuje"
 
@@ -24128,40 +24541,12 @@ msgid "Your %s %s will Restart..."
 msgstr "%s %s sa reštartuje…"
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"%s %s sa po inštalácii služby reštartuje .\n"
-"\n"
-"Má sa inštalovať?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"%s %s sa po odstránení služby reštartuje\n"
-"Má sa odstrániť?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Pripojenie k internetu nefunguje!\n"
-"Vyberte, čo sa má vykonať."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "Pripojenie k internetu funguje (IP: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Váš prijímač zistil softvérový problém. Od posledného reštartovania sa objavil %d-krát.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Po stlačení OK na diaľkovom ovládači sa váš prijímač reštartuje."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Vaša kolekcia presahuje kapacitu jednovrstvového média. Budete potrebovať prázdny dvojvrstvový DVD disk!"
@@ -24207,9 +24592,6 @@ msgstr ""
 "Prebehne aktualizácia vášho predného panela.\n"
 "Môže to trvať niekoľko minút"
 
-msgid "Your network configuration has been activated."
-msgstr "Nastavenia siete boli aktivované."
-
 msgid "Your password must have at least 5 characters."
 msgstr "Vaše heslo musí mať aspoň 5 znakov."
 
@@ -24252,6 +24634,9 @@ msgstr "Prepnúť"
 
 msgid "Zap + Exit"
 msgstr "Prepnúť + ukončiť"
+
+msgid "Zap Timer Settings"
+msgstr "Nastavenia časovača prepnutia"
 
 msgid "Zap Up/Down"
 msgstr "Prepnúť hore/dolu"
@@ -24461,12 +24846,6 @@ msgstr "zatvoriť zobrazenie zdieľania"
 msgid "config menu"
 msgstr "konfiguračné menu"
 
-msgid "confirmed"
-msgstr "potvrdené"
-
-msgid "connected"
-msgstr "pripojené"
-
 msgid "copy"
 msgstr "kopírovať"
 
@@ -24490,9 +24869,6 @@ msgstr "vymazať strih"
 
 msgid "disabled"
 msgstr "zakázané"
-
-msgid "disconnected"
-msgstr "odpojené"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24753,9 +25129,6 @@ msgstr "dvojvrstvového média využitých."
 msgid "of a SINGLE layer medium used."
 msgstr "jednovrstvového média využitých."
 
-msgid "off or wpa2 on"
-msgstr "vypnuté alebo zapnuté WPA2"
-
 msgid "offset is"
 msgstr "posun je"
 
@@ -24965,9 +25338,6 @@ msgstr "Nastavenia uShare"
 msgid "unavailable"
 msgstr "nedostupné"
 
-msgid "unconfirmed"
-msgstr "nepotvrdené"
-
 msgid "unknown"
 msgstr "neznáme"
 
@@ -25025,6 +25395,772 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "Prepínanie C/T vstupu: externý 5 V koaxiálny prepínač"
+
+#~ msgid "Common Settings"
+#~ msgstr "Spoločné nastavenia"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "Tento vstup je zdieľaný medzi DVB-C a DVB-T/T2. Ak sú aktivované obidva, Enigma2 používa napätie 5 V na ovládanie externého koaxiálneho prepínača."
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Naozaj chcete reštartovať OSCam?\n"
+#~ "\n"
+#~ "TIP: Bude to trvať asi 5 sekúnd!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Naozaj chcete vypnúť OSCam?\n"
+#~ "\n"
+#~ "POZOR: Pre opätovnú aktiváciu OSCamu je potrebné vykonať kompletný reštart prijímača!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Správca pripojení"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "Oscam webif vypnutý"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Reštart OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Ukončiť OSCam"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "10th (Lowest)"
+#~ msgstr "10. (najnižšie)"
+
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "1st (Highest)"
+#~ msgstr "1. (najvyššie)"
+
+#~ msgid "2nd"
+#~ msgstr "2."
+
+#~ msgid "3rd"
+#~ msgstr "3."
+
+#~ msgid "4th"
+#~ msgstr "4."
+
+#~ msgid "5th"
+#~ msgstr "5."
+
+#~ msgid "6th"
+#~ msgstr "6."
+
+#~ msgid "7th"
+#~ msgstr "7."
+
+#~ msgid "8th"
+#~ msgstr "8."
+
+#~ msgid "9th"
+#~ msgstr "9."
+
+#~ msgid "One"
+#~ msgstr "Jeden"
+
+#~ msgid "SMB2"
+#~ msgstr "SMB2"
+
+#~ msgid "SMB3"
+#~ msgstr "SMB3"
+
+#~ msgid "Three"
+#~ msgstr "Tri"
+
+#~ msgid "Two"
+#~ msgstr "Dva"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "Našla sa %d bezdrôtová sieť!"
+#~ msgstr[1] "Našli sa %d bezdrôtové siete!"
+#~ msgstr[2] "Našlo sa %d bezdrôtových sietí!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Našlo sa druhé nakonfigurované rozhranie.\n"
+#~ "\n"
+#~ "Chcete druhé sieťové rozhranie vypnúť?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "Aktivovať konfiguráciu sieťového adaptéra"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Aktivovať nastavenia siete"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Aktivovať nakonfigurované nastavenia siete."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Naozaj chcete aktivovať túto konfiguráciu siete?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Naozaj chcete reštartovať sieťové rozhrania?"
+
+#~ msgid "Back"
+#~ msgstr "Späť"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "Konfigurovať DNS (názvové servery)"
+
+#~ msgid "Configure interface"
+#~ msgstr "Nastavenie rozhrania"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Nastavte alebo overte svoje DNS upravením zobrazených hodnôt.\n"
+#~ "\n"
+#~ "Ak sú nastavenia správne, pokračujte stlačením OK."
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Nastavte IP adresu."
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Nastavte internetové pripojenie upravením zobrazených hodnôt.\n"
+#~ "\n"
+#~ "Ak sú nastavenia správne, pokračujte stlačením OK."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Nastavte bránu."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Nastavte server DNS."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Nastavte masku siete."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Nastaviť sieť ešte raz"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Nastavenie siete"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Nastavte internú sieť LAN"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Nastavte bezdrôtovú sieť LAN ešte raz"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Pripojiť k bezdrôtovej sieti"
+
+#~ msgid "Current settings:"
+#~ msgstr "Aktuálne nastavenia:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Nastavenie zariadenia"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "Deaktivované alebo WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Upraviť konfiguráciu DNS vášho zariadenia %s %s."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Upraviť nastavenie siete %s %s."
+
+#~ msgid "Enable IPv6"
+#~ msgstr "Zapnúť IPv6"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Povoliť Wake On LAN"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Zakódované: "
+
+#~ msgid "Encryption Type:"
+#~ msgstr "Šifrovanie:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Šifrovací kľúč"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Typ šifrovacieho kľúča"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Chyba pri vytváraní vzhľadu v EHD.\n"
+#~ "Použije sa vzhľad v HD!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Chyba pri vytváraní vzhľadu v EHD. Stiahnutie balíčka ikon nie je dostupné.\n"
+#~ "Použije sa vzhľad v HD!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Chyba pri vytváraní vzhľadu v EHD. Nie je dostatok voľnej pamäte flash.\n"
+#~ "Použije sa vzhľad v rozlíšení HD!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Chyba pri vytváraní vzhľadu v EHD. Niektoré ikony v EHD nie sú dostupné.\n"
+#~ "Použije sa vzhľad v rozlíšení HD!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Chyba pri vytváraní vzhľadu v HD. Nie je dostatok voľnej pamäte."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Chyba pri vytváraní vzhľadu MetrixHD.\n"
+#~ "Po reštartovaní, prosím, skontrolujte plugin MyMetrixLite a použite svoje nastavenia."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Chyba, neznámy výsledok!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "Zatvoriť nastavovanie sieťového adaptéra"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "Zatvoriť menu pre nastavenie sieťového adaptéra"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Zatvoriť zoznam sieťových rozhraní"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Ukončiť sprievodcu sieťou"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Plugin rozšíreného nastavenia siete..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Rozšírené nastavenie..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "Nastavenie siete je dokončené"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "Postupujte podľa pokynov na TV"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "Frekvenčná norma:"
+
+#~ msgid "Interface: "
+#~ msgstr "Rozhranie: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "LAN adaptér"
+
+#~ msgid "Link quality:"
+#~ msgstr "Kvalita linky:"
+
+#~ msgid "Link:"
+#~ msgstr "Odkaz:"
+
+#~ msgid "List available networks"
+#~ msgstr "Zoznam dostupných sietí"
+
+#~ msgid "Local network"
+#~ msgstr "Miestna sieť"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC adresa"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Ručná konfigurácia"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Max. dátový tok: "
+
+#~ msgid "Nameserver"
+#~ msgstr "DNS server"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "Nastavenia DNS"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "Akcie sieťového adaptéra"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "Akcie nastavenia sieťového adaptéra"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "Textové akcie sieťového adaptéra"
+
+#~ msgid "Network Test:"
+#~ msgstr "Test siete:"
+
+#~ msgid "Network Wizard"
+#~ msgstr "Sprievodca sieťou"
+
+#~ msgid "Network test"
+#~ msgstr "Test siete"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Sprievodca sieťou bol úspešné dokončený.\n"
+#~ "\n"
+#~ "Pokračujte stlačením OK."
+
+#~ msgid "Network:"
+#~ msgstr "Sieť:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Sprievodca sieťou"
+
+#~ msgid "No Connection"
+#~ msgstr "Žiadne pripojenie"
+
+#~ msgid "No networks found"
+#~ msgstr "Nenašli sa žiadne siete"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Nenašli sa žiadne bezdrôtové siete! Vyhľadáva sa…"
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Nenašiel sa žiadny funkčný sieťový adaptér.\n"
+#~ "Skontrolujte, prosím, či je pripojený sieťový kábel a vaša sieť je správne nastavená."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Nenašiel sa žiadny funkčný bezdrôtový sieťový adaptér.\n"
+#~ "Skontrolujte, prosím, či je pripojené kompatibilné WLAN zariadenie a či je sieť správne nastavená."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Nenašlo sa žiadne funkčné rozhranie bezdrôtovej siete.\n"
+#~ "Skontrolujte, prosím, či máte pripojené kompatibilné zariadenie WLAN alebo zapnite lokálne sieťové rozhranie."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Prosím, riaďte sa pokynmi na televíznej obrazovke"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "Na pokračovanie stlačte OK, prosím."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Aktivuje sa konfiguácia siete. Čakajte, prosím…"
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Pripravujú sa sieťové rozhrania. Čakajte, prosím…"
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Prebieha test siete. Čakajte, prosím…"
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Obnovuje sa nastavenie vzhľadu. Čakajte, prosím…"
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Stlačením OK aktivujete nastavenia."
+
+#~ msgid "Primary DNS"
+#~ msgstr "Primárne DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Reštart sieťového adaptéra"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Reštartujte sieťové pripojenie a rozhrania."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "Obnoviť nastavenia MetrixHD"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "Nastavenie SABnzbd"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Vyhľadať bezdrôtové siete"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich zvoleným bezdrôtovým zariadením."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Sekundárny DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Vyberte bezdrôtovú sieť"
+
+#~ msgid "Select interface"
+#~ msgstr "Výber rozhrania"
+
+#~ msgid "Select menu entry"
+#~ msgstr "Vyberte položku menu"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Vyberte sieťové rozhranie, ktoré sa použije pre pripojenie na internet.\n"
+#~ "\n"
+#~ "Pokračujte stlačením OK."
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Vyberte bezdrôtovú sieť, ku ktorej sa chcete pripojiť.\n"
+#~ "\n"
+#~ "Pokračujte stlačením OK."
+
+#~ msgid "Select wireless network"
+#~ msgstr "Vyberte bezdrôtovú sieť"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "Zobraziť stav WLAN"
+
+#~ msgid "Show info"
+#~ msgstr "Zobraziť info"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Zobrazenie stavu pripojenia bezdrôtovej LAN."
+
+#~ msgid "Signal quality"
+#~ msgstr "Kvalita signálu"
+
+#~ msgid "Signal: "
+#~ msgstr "Signál: "
+
+#~ msgid "Start test"
+#~ msgstr "Spustiť test"
+
+#~ msgid "Stop test"
+#~ msgstr "Zastaviť test"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Test sieťových nastavení %s %s."
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Zdá sa, že pripojenie na internet funguje.\n"
+#~ "\n"
+#~ "Pokračujte stlačením OK."
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Zdá sa, že pripojenie na internet nefunguje!\n"
+#~ "\n"
+#~ "Vyberte ďalšiu akciu."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Nie je nainštalované rozšírenie Sprievodca sieťou!\n"
+#~ "Prosím, nainštalujte ho."
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Bezdrôtové LAN pripojenie k internetu sa nepodarilo spustiť!\n"
+#~ "Je pripojené zariadenie pre bezdrôtovú LAN?\n"
+#~ "\n"
+#~ "Vyberte ďalšiu akciu."
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "Nie je nainštalovaný kód pluginu pre bezdrôtovú LAN!\n"
+#~ "\n"
+#~ "Nainštalujte ho a vyberte ďalšiu akciu."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Modul bezdrôtovej LAN nie je nainštalovaný!\n"
+#~ "Prosím, nainštalujte ho."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Týmto testom sa overí konfigurácia DNS.\n"
+#~ "Ak dostanete správu 'nepotvrdené':\n"
+#~ "– overte nastavenie DHCP, kábla a sieťového adaptéra\n"
+#~ "– ak ste DNS servery nastaveni ručne, prosím, overte nastavenie DNS servera"
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Týmto testom sa overí, či je do sieťového adaptéra pripojený kábel.\n"
+#~ "Ak dostanete správu 'odpojený':\n"
+#~ "– overte, či je kábel pripojený\n"
+#~ "– overte, či kábel nie je poškodený"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Týmto testom sa overí platnosť IP adresy sieťového adaptéra\n"
+#~ "Ak dostanete správu 'nepotvrdené':\n"
+#~ "– nenašla sa žiadna platná IP adresa\n"
+#~ "– overte nastaveniia DHCP, pripojenie kábla a nastavenie adaptéra"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Týmto tesom sat overí nastavenie sieťového adaptéra na automatickú konfiguráciu IP adresy pomocou DHCP.\n"
+#~ "Ak dostanete správu 'vypnuté':\n"
+#~ "– potom je sieťový adaptér nastavený na ručnú konfiguráciu sieťovej IP adresy\n"
+#~ "– overte, či ste nastaveniach adaptéra zadali správnu IP adresu\n"
+#~ "Ak dostanete správu 'zapnuté':\n"
+#~ "– overte, či je vo vašej sieti správne nastavený a fungujúci DHCP server."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Tento detekuje nakonfigurovaný sieťový adaptér (LAN)."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Nekódované"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Pri zostavovaní vzhľadu nastala neznáma chyba.\n"
+#~ "Prosím, po reštarte skontrolujte plugin MyMetrixLite a použite svoje nastavenia."
+
+#~ msgid "Unsupported"
+#~ msgstr "Nepodporované"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Použiť bránu"
+
+#~ msgid "Use interface"
+#~ msgstr "Použiť rozhranie"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Použiť len pre Wake on WLan (WoW)"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Sprievodca sieťou na pomoc s konfiguráciou sieťových nastavení"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Na konfiguráciu vašej siete použite sprievodcu sieťou."
+
+#~ msgid "VLAN connection"
+#~ msgstr "Pripojenie VLAN"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN pripojenie"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA alebo WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Ak je povolené, na konfiguráciu IP sa použije DHCP."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "Bezdrôtová LAN"
+
+#~ msgid "Wireless network"
+#~ msgstr "Bezdrôtová sieť"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Nastavenie bezdrôtovej siete…"
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Nastavenie bezdrôtového sieťového pripojenia.\n"
+#~ "\n"
+#~ "Vyberte ďalšiu akciu."
+
+#~ msgid "Wireless network setup"
+#~ msgstr "Nastavenie bezdrôtovej siete"
+
+#~ msgid "Wireless network state"
+#~ msgstr "Stav bezdrôtovej siete"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s %s je teraz pripravený na používanie.\n"
+#~ "\n"
+#~ "Vaše pripojenie na internet funguje.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "%s %s sa po inštalácii služby reštartuje .\n"
+#~ "\n"
+#~ "Má sa inštalovať?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s sa po odstránení služby reštartuje\n"
+#~ "Má sa odstrániť?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Pripojenie k internetu nefunguje!\n"
+#~ "Vyberte, čo sa má vykonať."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Po stlačení OK na diaľkovom ovládači sa váš prijímač reštartuje."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Nastavenia siete boli aktivované."
+
+#~ msgid "confirmed"
+#~ msgstr "potvrdené"
+
+#~ msgid "connected"
+#~ msgstr "pripojené"
+
+#~ msgid "disconnected"
+#~ msgstr "odpojené"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "vypnuté alebo zapnuté WPA2"
+
+#~ msgid "unconfirmed"
+#~ msgstr "nepotvrdené"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Automatický prístup k zdieľaniu"
+
+#~ msgid "DNS suffix"
+#~ msgstr "Prípona DNS"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "DVB-C/len káblové"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C a DVB-T/T2 cez koax. prepínač ovládaný napätím 5 V"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "DVB-T/T2/Len terestriálne"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Režim hybridného tunera"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Vyberte, ako je tento DVB-C/T tuner pripojený. Možnosť externého koax. prepínania používajte iba s koax. prepínačom ovládaným napätím 5 V."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Nastaviť [TUNER].\n"
+#~ "\n"
+#~ "Pre modely s hybridným tunerom prepnite typ tunera pomocou tlačidiel DOĽAVA a DOPRAVA."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Prepínateľné typy tunerov:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Nastavenia pripojenia Wi-Fi"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Typy tunera %s sa môžu prepínať tlačidlami doľava a doprava"
 
 #~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 #~ msgstr "Zadajte názov, ktorý sa má používať pre tento prijímač, keď sa objaví v skenoch/zoznamoch siete Samba."
@@ -25730,9 +26866,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "Prehľadávanie…"
 
 #~ msgid "Servers:"
 #~ msgstr "Servery:"
@@ -26674,9 +27807,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Čas aktualizácie v minútach:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

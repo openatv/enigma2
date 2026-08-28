@@ -2,20 +2,23 @@
 #
 # openATV <openatv@gmail.com>, 2021.
 # Apachi70 <Apachi70000@gmail.com>, 2017, 2023.
-# Apachi70 <ahiles77@t-online.de>, 2023, 2024.
-# tanerkaderli <taner.kaderli@live.com>, 2023, 2025.
+# Apachi70 <ahiles77@t-online.de>, 2023, 2024, 2026.
+# tanerkaderli <taner.kaderli@live.com>, 2023, 2025, 2026.
 # jbleyel <jbleyel@gmx.net>, 2023, 2026.
-# DreamOSat Forum <info@dreamosat-forum.com>, 2024.
-# Tmp341 <tmp341@gmail.com>, 2024.
+# DreamOSat Forum <info@dreamosat-forum.com>, 2024, 2026.
+# Tmp341 <tmp341@gmail.com>, 2024, 2026.
 # Ali Canay <mcilo357104@gmail.com>, 2026.
 # Mcilo <mcilo357104@gmail.com>, 2026.
 # Sezgin Çevik <sezgincevik01@hotmail.com>, 2026.
+# Tahsin Kocaman <lordtrai@yahoo.com>, 2026.
+# Mustafa Alattin Özoktaş <byalattin@gmail.com>, 2026.
+# Oğuz Ersen <oguz@ersen.moe>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-23 09:01+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-26 20:02+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -23,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -895,6 +898,11 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d kaynak kataloğu paketi güncellendi."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] "%d sunucu (lar) bulundu."
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "Arka planda %d işlem çalışıyor!"
 
@@ -915,6 +923,11 @@ msgstr "%d dakika"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] "%d ağ (lar) bulundu."
 
 #, python-format
 msgid "%d package found."
@@ -1013,12 +1026,6 @@ msgstr "Cihazda %d adet yuva oluşturulmuştur.\n"
 #, python-format
 msgid "%d times"
 msgstr "%d kez"
-
-#
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d kablosuz ağ bulundu!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1166,6 +1173,10 @@ msgstr "%s Kurulum"
 msgid "%s View"
 msgstr "%s Görüntüle"
 
+#, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "%s işlemi başarısız oldu (çıkış kodu %s)"
+
 #
 #, python-format
 msgid "%s additional screens"
@@ -1182,6 +1193,20 @@ msgstr "%s devre dışı bırakıldı."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s uzak alıcıdan aktarıldı."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+"%s şu anda çalışmıyor.\n"
+"\n"
+"Başlatmak istiyor musunuz?"
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s şu anda durdurulmuş veya erişilemez durumda. Başlatmak için YEŞİL tuşa basın."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1200,6 +1225,10 @@ msgstr "%s mevcut değil."
 msgid "%s version"
 msgstr "%s versiyon"
 
+#, python-format
+msgid "%s webif disabled"
+msgstr "%s webif devre dışı bırakıldı"
+
 #
 #, python-format
 msgid "%s%d min"
@@ -1208,6 +1237,10 @@ msgstr "%s%d dak"
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Varsayılan: %s)"
+
+#, python-format
+msgid "%s. (Lowest)"
+msgstr "%s. (En düşük)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1252,6 +1285,22 @@ msgstr "%s1080i'yi 1080p olarak göster"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' %d dosya ve %d alt-klasör içeriyor.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr "'%s' yukarıda özel bir ayar tarafından zaten ayarlanmış, onu 'Bağlantı Seçenekleri' bölümünden kaldırın."
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr "'%s', 'Bağlantı Seçenekleri' bölümünde birden fazla kez listeleniyor."
+
+#, python-format
+msgid "'%s' mounted."
+msgstr "'%s' bağlandı."
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr "'%s' bağlantısı kaldırıldı."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Saat cinsinden arabellek süresi' veya 'son etkinlik sayısı'. Daha eski zaman kaydırma dosyalarını silmek için, ilk gerçekleşen koşul önceliklidir."
@@ -1340,17 +1389,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-#
-msgid "1.0"
-msgstr "1.0"
-
-#
-msgid "1.1"
-msgstr "1.1"
-
-#
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr "1. (En yüksek)"
 
 msgid "10bit"
 msgstr "10bit"
@@ -1376,20 +1416,12 @@ msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bit 4:2:0/4:2:2 PiP yok"
 
 #
-msgid "13 V"
-msgstr "13 V"
-
-#
 msgid "16:10 Letterbox"
 msgstr "16:10 Sinemaskop"
 
 #
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-#
-msgid "16:9"
-msgstr "16:9"
 
 #
 msgid "16:9 Always"
@@ -1410,10 +1442,6 @@ msgstr "16:9 PanScan"
 
 msgid "16:9 reset to normal"
 msgstr "16:9 normale sıfırla"
-
-#
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "1. Bilgi Çubuğu zaman aşımı"
@@ -1659,16 +1687,6 @@ msgstr ""
 msgid "A required tool (%s) was not found."
 msgstr "Gereken (%s) aracı bulunamadı."
 
-#
-msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Yapılandırılmış ikinci bir ağ arayüzü bulundu.\n"
-"\n"
-"İkinci ağ arayüzünü devre dışı bırakmak istiyor musunuz?"
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -1729,6 +1747,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "Yapay Zeka Altyazıları"
+
 msgid "AI Translation color"
 msgstr "Yapay Zeka Çevirisi rengi"
 
@@ -1763,11 +1784,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC sağlayıcısı"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV Alıcısı, Soundbar ve Uzaktan Kumanda"
+
 msgid "AV Setup"
 msgstr "Görüntü / Ses Kurulumu"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV Alıcısı, Soundbar ve Uzaktan Kumanda"
 
 msgid "Abkhazian"
 msgstr "Abhazca"
@@ -1814,6 +1835,13 @@ msgstr "Erişim modu"
 msgid "Access point"
 msgstr "Erişim noktası"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+"Erişim noktası bulunamadı.\n"
+"Lütfen erişim noktasının kapsama alanında olduğundan ve SSID'nin doğru olduğundan emin olun."
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Coğrafi konum bilgilerine erişim, internet bağlantısı gerektirir."
 
@@ -1855,15 +1883,8 @@ msgstr "Sütunun başında/sonunda bulunan 'tüm yukarı/aşağı' işlevleri i�
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Komut satırından bireysel veya belirli dahili HDMI-CEC komutları gönderme yöntemini etkinleştirin."
 
-msgid "Activate network adapter configuration"
-msgstr "Ağ bağdaştırıcısı yapılandırmasını etkinleştirin"
-
-#
-msgid "Activate network settings"
-msgstr "Ağ ayarlarını etkinleştir"
-
-msgid "Activate the configured network settings."
-msgstr "Yapılandırılmış ağ ayarlarını etkinleştirin."
+msgid "Activate network adapter"
+msgstr "Ağ bağdaştırıcısını etkinleştir"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Flaş genişleticiyi etkinleştirin, değiştirilen tüm ayarları kaydedin ve çıkın"
@@ -1885,6 +1906,13 @@ msgstr "Etkin istemciler"
 
 msgid "Active only"
 msgstr "Yalnızca etkin"
+
+msgid "Adapter"
+msgstr "Bağdaştırıcı"
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr "'%s' Bağdaştıcısı İçerik Menüsü"
 
 msgid "Adapter Settings"
 msgstr "Bağdaştırıcı Ayarları"
@@ -1933,6 +1961,9 @@ msgstr "Bukete HDMI-IN girişi ekleyin"
 msgid "Add Marker To Bouquet"
 msgstr "Bukete İşaretleyici Ekle"
 
+msgid "Add Mount Manually"
+msgstr "Bağlantıyı Manuel Olarak Ekle"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Yeni Dört Kanallı Giriş Ekle"
 
@@ -1959,6 +1990,12 @@ msgstr "Zamanlayıcı Ekle"
 #
 msgid "Add To Parental Protection"
 msgstr "Ebeveyn Korumasına Ekle"
+
+msgid "Add Wi-Fi"
+msgstr "Wi-Fi Ekle"
+
+msgid "Add Wi-Fi Manually"
+msgstr "Wi-Fi'yi Manuel Ekle"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Kanal Değiştir + Kayıt Zamanlayıcısı Ekle"
@@ -1987,6 +2024,9 @@ msgstr "Sonraki etkinliğe Kanal Değişim Zamanlayıcısı ekle"
 #
 msgid "Add a mark"
 msgstr "İşaret ekle"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr "Kaydedilmiş yeni Wi-Fi Ağı Ekle"
 
 msgid "Add a new bouquet"
 msgstr "Yeni bir buket ekle"
@@ -2157,6 +2197,9 @@ msgstr "Yetişkin filmi/Dram"
 
 msgid "Advanced"
 msgstr "Gelişmiş"
+
+msgid "Advanced Diagnostics"
+msgstr "Gelişmiş Teşhis Yöntemleri"
 
 #
 msgid "Advanced Options"
@@ -2408,6 +2451,9 @@ msgstr "Alternatif 2"
 msgid "Alternative Edit"
 msgstr "Alternatif Düzenleme"
 
+msgid "Alternative Tuner Sources"
+msgstr "Alternatif Tuner Kaynakları"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "DVB-T/C veya ATSC için alternatif URL'ler"
 
@@ -2573,9 +2619,6 @@ msgstr "Tüm karasal kanallarını kaldırmak istediğinize emin misiniz?"
 msgid "Are you sure to remove this entry?"
 msgstr "Kanal listesinden kaldırmak istediğinizden emin misiniz?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Bu ağ yapılandırmasını etkinleştirmek istediğinizden emin misiniz?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2601,9 +2644,6 @@ msgstr "Bu sihirbazdan çıkmak istediğinizden emin misiniz?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "EPG bilgisini buradan yeniden yüklemek istediğinizden emin misiniz:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Ağ arayüzlerinizi yeniden başlatmak istediğinizden emin misiniz?"
 
 #, python-format
 msgid ""
@@ -2718,6 +2758,9 @@ msgstr "Atanan CAIdler:"
 msgid "Assigned services/provider:"
 msgstr "Atanan Kanallar/Sağlayıcı:"
 
+msgid "Associated"
+msgstr "Birleşik"
+
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
 
@@ -2756,6 +2799,12 @@ msgstr "Otomatik Ses Seviyesi"
 msgid "Audio Channel"
 msgstr "Ses Kanalı"
 
+msgid "Audio Formats And Output"
+msgstr "Ses Formatları ve Çıkışı"
+
+msgid "Audio Language And Track Selection"
+msgstr "Ses Dili ve Kaynak Seçimi"
+
 msgid "Audio PID"
 msgstr "Ses PID"
 
@@ -2770,6 +2819,9 @@ msgid "Audio Source"
 msgstr "Ses Kaynağı"
 
 msgid "Audio Sync"
+msgstr "Ses Senkronizasyonu"
+
+msgid "Audio Synchronization"
 msgstr "Ses Senkronizasyonu"
 
 msgid "Audio language selection 1"
@@ -2910,9 +2962,6 @@ msgstr "Otomatik çözünürlük etiketi"
 msgid "Automatic scan for services"
 msgstr "Kanallar için otomatik tarama"
 
-msgid "Automatic shares access"
-msgstr "Otomatik paylaşım erişimi"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
 
@@ -2943,6 +2992,9 @@ msgstr "Geçerli yerel ayar konumları:"
 
 msgid "Available shares:"
 msgstr "Geçerli paylaşımlar:"
+
+msgid "Available tuner types"
+msgstr "Mevcut tuner türleri"
 
 msgid "Avaric"
 msgstr "Avarca"
@@ -2994,9 +3046,8 @@ msgstr "MAVİ uzun"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "MAVİ tuş: MAVİ/MAVİ uzun"
 
-#
-msgid "Back"
-msgstr "Geri"
+msgid "BSSID"
+msgstr "BSSID"
 
 msgid "Back USB"
 msgstr "Arka USB"
@@ -3388,6 +3439,9 @@ msgstr "Parlaklık (Çalışırken)"
 msgid "Brightness (Standby)"
 msgstr "Parlaklık (Bekleme modunda)"
 
+msgid "Brightness And Contrast"
+msgstr "Parlaklık ve Kontrast"
+
 msgid "Brightness Video"
 msgstr "Görüntü Parlaklığı"
 
@@ -3415,11 +3469,20 @@ msgstr "Yayıncılık/Basın"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr "Broadcom varsayılan"
+
+msgid "Browse"
+msgstr "Gözat"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Eklentilere tek tek göz atın, yükleyin veya kaldırın."
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Sultanlığı"
+
+msgid "Buffer Management"
+msgstr "Arabellek Yönetimi"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3475,11 +3538,17 @@ msgstr "Ortama yaz"
 msgid "Burundi"
 msgstr "Burundi"
 
+msgid "Bus"
+msgstr "Veri Yolu"
+
 msgid "Business"
 msgstr "İş"
 
 msgid "Business & Finance"
 msgstr "İş & Finans"
+
+msgid "Button Assignments"
+msgstr "Tuş Atamaları"
 
 msgid "Button Setup"
 msgstr "Tuş Kurulumu"
@@ -3505,6 +3574,12 @@ msgstr "C"
 #
 msgid "C-Band"
 msgstr "C-Band"
+
+msgid "C/T input"
+msgstr "C/T girişi"
+
+msgid "C/T input switching"
+msgstr "C/T girişi değişimi"
 
 msgid "CCD-Width"
 msgstr "CCD-Genişlik"
@@ -3651,6 +3726,12 @@ msgstr "Kablo"
 
 msgid "Cable Scan"
 msgstr "Kablolu Yayın Tarama"
+
+msgid "Cable Unplugged"
+msgstr "Kablo Çıkarılmış"
+
+msgid "Cable input"
+msgstr "Kablo girişi"
 
 msgid "Cache thumbnails"
 msgstr "Küçük resimler ön belleği"
@@ -4070,6 +4151,12 @@ msgstr "Kanal 1"
 msgid "Channel 1 with prime time"
 msgstr "Prime time ile Kanal 1"
 
+msgid "Channel And EPG Import"
+msgstr "Kanal ve EPG İçe Aktarımı"
+
+msgid "Channel History And Messages"
+msgstr "Kanal Geçmişi ve Mesajlar"
+
 msgid "Channel Info"
 msgstr "Kanal Bilgisi"
 
@@ -4107,6 +4194,9 @@ msgstr "Kanal Seçim Ayarları"
 
 msgid "Channel Selection picon path"
 msgstr "Kanal Seçimi pikon ayarı"
+
+msgid "Channel Zapping And Keys"
+msgstr "Kanal Değiştirme ve Tuşlar"
 
 msgid "Channel buttons"
 msgstr "Kanal tuşları"
@@ -4180,6 +4270,9 @@ msgstr "Bölüm"
 #
 msgid "Character device"
 msgstr "Depolama Aygıtları"
+
+msgid "Character set"
+msgstr "Karakter seti"
 
 msgid "Chat show"
 msgstr "Sohbet programı"
@@ -4422,6 +4515,9 @@ msgstr "Temizle"
 msgid "Clear Log"
 msgstr "Günlüğü Temizle"
 
+msgid "Clear Stored Credentials"
+msgstr "Kaydedilmiş Kimlik Bilgilerini Temizle"
+
 #
 msgid "Clear before scan"
 msgstr "Tarama öncesinde kanalları temizle"
@@ -4489,6 +4585,9 @@ msgstr "Buket listesini kapat."
 
 msgid "Close dialog"
 msgstr "Diyalogu kapat"
+
+msgid "Close network test"
+msgstr "Ağ testini kapat"
 
 msgid "Close screen"
 msgstr "Ekranı kapat"
@@ -4569,6 +4668,9 @@ msgstr "Kolombiya"
 msgid "Color"
 msgstr "Renk"
 
+msgid "Color Button Assignments"
+msgstr "Renk Tuşu Atamaları"
+
 msgid "Color format"
 msgstr "Renk biçimi"
 
@@ -4642,14 +4744,14 @@ msgstr "Ortak Arayüz Ataması"
 msgid "Common Interface Settings"
 msgstr "Ortak Arayüz Ayarları"
 
-msgid "Common Settings"
-msgstr "Ortak Ayarlar"
-
 msgid "Common Setup Actions"
 msgstr "Ortak Kurulum İşlemleri"
 
 msgid "Comoros"
 msgstr "Komorlar"
+
+msgid "Compatibility And Emulation"
+msgstr "Uyumluluk ve Emülasyon"
 
 msgid "Compiled by"
 msgstr "Derleyen"
@@ -4694,14 +4796,20 @@ msgstr "Yapılandırma modu"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "YARDIM ekranının yapılandırma seçenekleri 'MENÜ > Kurulum > Kullanım & Kullanıcı Arayüzü > Ayarlar' bölümünde bulunabilir."
 
-msgid "Configure DNS (name servers)"
-msgstr "DNS (ad sunucuları) yapılandır"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr "DNS (Dinamik Ad Sunucusu) Yapılandırma"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Harici altyazı senkronizasyonunu iyileştirmek için ek bir gecikme yapılandırın."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Altyazı senkronizasyonunu iyileştirmek için ek bir gecikme yapılandırın."
+
+msgid "Configure another network adapter"
+msgstr "Başka bir ağ bağdaştırıcısını yapılandırın"
+
+msgid "Configure cable reception on this input."
+msgstr "Bu girişte kablo bağlantısını yapılandırın."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Yeni zamanlayıcılar için varsayılan ayarları yapılandırın. Değiştirdikten sonra yeniden başlatmanız gerekir."
@@ -4748,42 +4856,35 @@ msgstr "Kanal türü simgelerinin gösterilip gösterilmeyeceğini yapılandır�
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Altyazının normal, italik, kalın ve kalın italik arasında geçiş yapıp yapmayacağını yapılandırın."
 
-#
-msgid "Configure interface"
-msgstr "Arayüz yapılandırması"
+msgid "Configure network adapter"
+msgstr "Ağ bağdaştırıcısını yapılandırın"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Arka planda silme seçeneğinin hangi cihazlarda kullanılacağını yapılandırın."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"Gösterilen değerleri ayarlayarak DNS (ad sunucuları) yapılandırın veya doğrulayın.\n"
+"Gösterilen değerler ile DNS (Dinamik Ad Sunucusu) ayarlarınızı yapılandırın veya doğrulayın.\n"
 "\n"
 "Ayarlar doğru olduğunda devam etmek için OK tuşuna basın."
 
 msgid "Configure remote control type"
 msgstr "Uzaktan kumanda tipini yapılandır"
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Ayrı SAT girişinde uydu bağlantısını yapılandırın."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Bu girişte karasal yayın bağlantısını yapılandırın."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Bu LNB için DiSEqC modunu yapılandırın."
 
-msgid "Configure the IP address."
-msgstr "IP adresini yapılandırın."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "Yedek uzak alıcının IP adresini yapılandırın."
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"Gösterilen değerleri ayarlayarak İnternet bağlantısını yapılandırın.\n"
-"\n"
-"Ayarlar doğru olduğunda devam etmek için OK tuşuna basın."
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Yedek uzak alıcının bağlantı noktasını (port) yapılandırın."
@@ -4887,9 +4988,6 @@ msgstr "Power tuşuna kısa basmanın işlevini yapılandırın."
 msgid "Configure the function of the < and > buttons."
 msgstr "< ve > tuşlarının işlevini yapılandırın."
 
-msgid "Configure the gateway."
-msgstr "Ağ geçidini yapılandırın."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Alıcı bekleme modundayken, belirtilen süre boyunca boşta kaldıktan sonra sabit disk sürücüsünün bekleme moduna geçmesini yapılandırın."
 
@@ -4919,16 +5017,6 @@ msgstr "Kayıtlar için kullanılabilir minimum disk alanı miktarını yapılan
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "'i' simgesini göstermeden önce minimum genişliği yapılandırın; '0' değeri, simgenin hiç gösterilmemesi anlamına gelir."
-
-msgid "Configure the name server (DNS)."
-msgstr "Ad sunucusunu (DNS) yapılandırın."
-
-msgid "Configure the netmask."
-msgstr "Ağ maskesini yapılandırın."
-
-#
-msgid "Configure the network again"
-msgstr "Ağı yeniden yapılandırın"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Çöp kutusundan öğelerin otomatik olarak kaldırılacağı gün sayısını yapılandırın."
@@ -4962,6 +5050,9 @@ msgstr "İkinci altyazı dilini yapılandırın."
 
 msgid "Configure the secondary EPG language."
 msgstr "İkinci EPG dilini yapılandırın."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr "Seçilen Wi-Fi ağını yapılandırın"
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "'1'/'3' tuşları için atlama zaman aralığını yapılandırın."
@@ -5063,19 +5154,8 @@ msgstr "Birden fazla tuner mevcut olduğunda hangi tunerin tercih edileceğini y
 msgid "Configure your NTP server."
 msgstr "NTP sunucunuzu yapılandırın."
 
-msgid "Configure your Network"
-msgstr "Ağınızı Yapılandırın"
-
-#
-msgid "Configure your internal LAN"
-msgstr "Kablolu ağınızı yapılandırın"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Ağ ayarlarınızı yapılandırın ve taramayı başlatmak için OK tuşuna basın"
-
-#
-msgid "Configure your wireless LAN again"
-msgstr "Kablosuz ağınızı yeniden yapılandırın"
 
 msgid "Configures which video output connector will be used."
 msgstr "Hangi görüntü çıkış konektörünün kullanılacağını yapılandırır."
@@ -5089,6 +5169,10 @@ msgstr "Kanalı Yapılandır"
 
 msgid "Confirm Zap"
 msgstr "Kanal Değiştirmeyi Onayla"
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
+msgstr "'%s' silinmesini onaylıyor musunuz?"
 
 msgid "ConflictTimer Actions"
 msgstr "Zamanlayıcı Çakışması İşlemleri"
@@ -5112,12 +5196,14 @@ msgstr "Bağlan"
 msgid "Connect to IceTV server every"
 msgstr "Her IceTV sunucusuna bağlanın"
 
-#
-msgid "Connect to a wireless network"
-msgstr "Kablosuz ağa bağlanın"
-
 msgid "Connect to the Internet"
 msgstr "İnternete Bağlanın"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr "Seçilen Kayıtlı Wi-Fi Ağına bağlanın"
+
+msgid "Connected"
+msgstr "Bağlı"
 
 msgid "Connected clients"
 msgstr "Bağlı istemciler"
@@ -5135,8 +5221,30 @@ msgstr "Bağlı"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "Bağlantılı kod dönüştürme, sınırlama - PiP yok!"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+"Bağlantı kuruldu, ancak IP adresi alınamadı.\n"
+"Yönlendiricinin DHCP ayarlarını kontrol edin."
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+"Bağlantı kuruldu.\n"
+"IP adresi '%s'."
+
 msgid "Connected: "
 msgstr "Bağlı: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr "'%s' ile bağlantı kuruluyor"
+
+msgid "Connecting..."
+msgstr "Bağlanıyor..."
 
 msgid "Connection information"
 msgstr "Bağlantı bilgileri"
@@ -5187,6 +5295,9 @@ msgstr "Bağlam"
 
 msgid "Continent"
 msgstr "Kıta"
+
+msgid "Continue"
+msgstr "Devam et"
 
 msgid "Continue in background"
 msgstr "Arka planda devam et"
@@ -5338,9 +5449,27 @@ msgstr "Kosta Rika"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Fildişi Sahili"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr "Bağlantı kurulamadı (durum '%s')."
+
 #
 msgid "Could not connect to server"
 msgstr "Sunucuya bağlanılamadı"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+"Bağlantı kurulamadı.\n"
+"Wi-Fi sürücüsü (wpa_supplicant) başlatılamadı, lütfen Wi-Fi ayarlarını kontrol edin."
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
+"Bağlantı kurulamadı.\n"
+"Wi-Fi şifresi yanlış mı?"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Dosya yüklenemedi! Disk takılı değil mi?"
@@ -5365,6 +5494,15 @@ msgstr "Geçersiz kanal: %s yüzünden kayıt yapılamadı"
 msgid "Could not save configuration file %s!"
 msgstr "Yapılandırma dosyası %s kaydedilemedi!"
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+"Kaydedilen Wi-Fi ağı doğrulanamadı.\n"
+"\n"
+"Ayarları tekrar değiştirmek ister misiniz?"
+
 msgid "Country"
 msgstr "Ülke"
 
@@ -5377,6 +5515,9 @@ msgstr "EPG etkinlik değerlendirme bilgilerinin alındığı ülke"
 #, python-format
 msgid "Crash %d/%d"
 msgstr "Çökme %d/%d"
+
+msgid "Crash Handling"
+msgstr "Çökme Yönetimi"
 
 msgid "Crash Logs"
 msgstr "Çökme Günlükleri"
@@ -5489,6 +5630,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Bölüm oluştur"
 
+msgid "Credentials"
+msgstr "Kimlik Bilgileri"
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr "'%s' için kimlik bilgileri"
+
 msgid "Cree"
 msgstr "Cree"
 
@@ -5592,10 +5740,6 @@ msgstr "Rotorun mevcut konumu:"
 msgid "Current rotor position: unknown"
 msgstr "Mevcut rotor konumu: bilinmiyor"
 
-#
-msgid "Current settings:"
-msgstr "Geçerli ayarlar:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr "LNB ve konumlandırıcıya verilen akım."
 
@@ -5635,6 +5779,9 @@ msgstr "Geçerli Hafızada Tutulan Ses Seviyeleri:"
 msgid "Custom"
 msgstr "Özelleştir"
 
+msgid "Custom Skip Times"
+msgstr "Özel Atlama Süreleri"
+
 msgid "Custom mountpoint"
 msgstr "Özel bağlantı noktası"
 
@@ -5665,6 +5812,9 @@ msgstr "Enigma2 kişisel ayarlarını özelleştir"
 #
 msgid "Cut"
 msgstr "Kes"
+
+msgid "CutList Skipping"
+msgstr "Kesim Listesi Atlama"
 
 msgid "CutList skip time for '%s' button"
 msgstr "'%s' tuşu için Kesim Listesi atlama süresi"
@@ -5709,10 +5859,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-#
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA desteği"
 
@@ -5725,6 +5871,9 @@ msgstr "DMM normal"
 msgid "DNS Settings"
 msgstr "DNS Ayarları"
 
+msgid "DNS Settings Actions"
+msgstr "DNS Ayarları İşlemleri"
+
 msgid "DNS data source"
 msgstr "DNS veri kaynağı"
 
@@ -5733,9 +5882,6 @@ msgstr "DNS geçersiz kılma"
 
 msgid "DNS protocol mode"
 msgstr "DNS protokol modu"
-
-msgid "DNS suffix"
-msgstr "DNS soneki"
 
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
@@ -5765,6 +5911,9 @@ msgstr "ÇİFT KATMAN DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI Gecikmesi"
 
+msgid "DVB Subtitles"
+msgstr "DVB Altyazıları"
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB Altyazıları PID & Dil"
 
@@ -5777,17 +5926,14 @@ msgstr "DVB altyazıları rengi"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "DVB-C / Sadece Kablo"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "Harici 5V kontrollü koaksiyel anahtar aracılığıyla DVB-C ve DVB-T/T2"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "DVB-C ve DVB-T/T2 bu girişi paylaşır. Yalnızca anten sistemi veya harici bir koaksiyel anahtar güç gerektiriyorsa 5V’yi etkinleştirin."
 
 #
 msgid "DVB-S"
@@ -5799,9 +5945,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "DVB-T/T2 / Yalnızca karasal"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5820,7 +5963,7 @@ msgstr "DVD Menüsü"
 msgid "DVD Title list"
 msgstr "DVD Başlık Listesi"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD oynatıcı"
 
 msgid "DVDPlayer"
@@ -5847,6 +5990,9 @@ msgstr "Tarih"
 
 msgid "Date / Time"
 msgstr "Tarih / Saat"
+
+msgid "Date And Time"
+msgstr "Tarih ve Saat"
 
 msgid "Date Time Input Actions"
 msgstr "Tarih Saat Giriş İşlemleri"
@@ -6015,8 +6161,14 @@ msgstr "Devre dışı bırak"
 msgid "Deactivate Expander"
 msgstr "Genişleticiyi Devre Dışı Bırak"
 
+msgid "Deactivate network adapter"
+msgstr "Ağ bağdaştırıcısını devre dışı bırak"
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Seçilen cihazdaki flaş genişleticiyi devre dışı bırak"
+
+msgid "Deactivated"
+msgstr "Devre dışı bırakıldı"
 
 msgid "Debug"
 msgstr "Hata Ayıklama"
@@ -6027,6 +6179,9 @@ msgstr "Hata Ayıklama %d/%d"
 
 msgid "Debug Information"
 msgstr "Hata Ayıklama Bilgisi"
+
+msgid "Debug Log Content"
+msgstr "Hata Ayıklama Günlüğü İçeriği"
 
 msgid "Debug Log Information"
 msgstr "Hata Ayıklama Günlüğü Bilgisi"
@@ -6276,6 +6431,12 @@ msgstr "Yazılımı Sil"
 msgid "Delete Line"
 msgstr "Satırı Sil"
 
+msgid "Delete Mount"
+msgstr "Bağlantıyı Sil"
+
+msgid "Delete Network"
+msgstr "Ağı Sil"
+
 msgid "Delete Plugins"
 msgstr "Eklentileri Sil"
 
@@ -6516,9 +6677,6 @@ msgstr "Cihaz Yöneticisi"
 msgid "Device Manager Actions"
 msgstr "Cihaz Yöneticisi İşlemleri"
 
-msgid "Device Settings"
-msgstr "Cihaz Ayarları"
-
 msgid "Device id"
 msgstr "Cihaz kimliği"
 
@@ -6638,6 +6796,9 @@ msgstr "Dizin/Dosya durum bilgisi"
 msgid "Disable"
 msgstr "Devre dışı bırak"
 
+msgid "Disable Adapter"
+msgstr "Bağdaştırıcıyı Devre Dışı Bırak"
+
 msgid "Disable Animations"
 msgstr "Animasyonları devre dışı bırak"
 
@@ -6663,6 +6824,9 @@ msgstr "MiniTV'yi devre dışı bırak"
 msgid "Disable Move Mode"
 msgstr "Taşıma Modunu Devre Dışı Bırak"
 
+msgid "Disable Network"
+msgstr "Ağı Devre Dışı Bırak"
+
 #
 msgid "Disable Picture in Picture"
 msgstr "Görüntü içinde Görüntü (PiP) özelliğini devre dışı bırak"
@@ -6682,6 +6846,9 @@ msgstr "Giriş ekranını devre dışı bırak"
 msgid "Disable operator profiles"
 msgstr "Operatör profillerini devre dışı bırak"
 
+msgid "Disable saved Wi-Fi network"
+msgstr "Kayıtlı Wi-Fi ağını devre dışı bırak"
+
 msgid "Disable the HDD Process on VFD."
 msgstr "VFD'de HDD İşlemini devre dışı bırak."
 
@@ -6698,11 +6865,11 @@ msgstr "Devre dışı"
 msgid "Disabled PiP.\n"
 msgstr "Görüntü İçinde Görüntü (PiP) devre dışı bırakıldı.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "Devre dışı veya WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Chkroot'u devre dışı bırakma başarısız oldu!"
+
+msgid "Disconnected"
+msgstr "Bağlantı kesildi"
 
 msgid "Discussion"
 msgstr "Tartışma"
@@ -6727,6 +6894,12 @@ msgstr "4:3 oranındaki içeriği şu şekilde görüntüle"
 #
 msgid "Display >16:9 content as"
 msgstr ">16:9 oranındaki içeriği şu şekilde görüntüle"
+
+msgid "Display Power And Content"
+msgstr "Ekran Gücü ve İçerik"
+
+msgid "Display Scrolling"
+msgstr "Ekran Kaydırma"
 
 msgid "Display Settings"
 msgstr "Ön Ekran Ayarları"
@@ -6908,23 +7081,23 @@ msgstr "'%s' için yer imini gerçekten kaldırmak istiyor musunuz?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "%s için zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"OSCam'i gerçekten yeniden başlatmak istiyor musunuz?\n"
-"\n"
-"İPUCU: Bu işlem yaklaşık 5 saniye sürecektir!"
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "%s'yi gerçekten yeniden başlatmak istiyor musunuz?"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"OSCam'i gerçekten kapatmak istiyor musunuz?\n"
+"%s'yi gerçekten kapatmak mı istiyorsunuz?\n"
 "\n"
-"DİKKAT: OSCam'i yeniden etkinleştirmek için alıcının tamamen yeniden başlatılması gerekmektedir!"
+"DİKKAT: %s'yi yeniden etkinleştirmek için alıcının tamamen yeniden başlatılması gerekmektedir!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "%s'yi gerçekten durdurmak istiyor musunuz?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7048,6 +7221,9 @@ msgstr "Dolby TrueHD"
 msgid "Domain"
 msgstr "Alan Adı"
 
+msgid "Domain name"
+msgstr "Alan adı"
+
 msgid "Dominica"
 msgstr "Dominika"
 
@@ -7158,6 +7334,9 @@ msgstr "Dreambox formatında veri DVD (HDTV uyumlu)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox formatında veri DVD (diğer DVD oynatıcılarla çalışmaz)"
 
+msgid "Driver"
+msgstr "Sürücü"
+
 msgid "Driver Packages"
 msgstr "Sürücü Paketleri"
 
@@ -7225,17 +7404,26 @@ msgstr "EPG Önbellek Kontrolü"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG Kanal/Servis Seçimi"
 
+msgid "EPG Data In Streams"
+msgstr "Akışlardaki EPG Verileri"
+
 msgid "EPG Display Actions"
 msgstr "EPG Ekran İşlemleri"
 
 msgid "EPG Jump"
 msgstr "EPG Atlaması"
 
+msgid "EPG Language"
+msgstr "EPG Dili"
+
 msgid "EPG Navigation Actions"
 msgstr "EPG Gezinme İşlemleri"
 
 msgid "EPG Other Actions"
 msgstr "EPG Diğer İşlemler"
+
+msgid "EPG Range And History"
+msgstr "EPG Aralığı ve Geçmişi"
 
 msgid "EPG Search"
 msgstr "EPG Ara"
@@ -7248,6 +7436,12 @@ msgstr "EPG Ayarları"
 
 msgid "EPG Setup"
 msgstr "EPG Ayarları Yapılandırması"
+
+msgid "EPG Sources"
+msgstr "EPG Kaynakları"
+
+msgid "EPG Storage And Refresh"
+msgstr "EPG Depolama ve Yenileme"
 
 msgid "EPG button mode"
 msgstr "EPG tuşu modu"
@@ -7328,6 +7522,9 @@ msgstr "Düzenle"
 msgid "Edit Alternatives"
 msgstr "Alternatifleri Düzenle"
 
+msgid "Edit Credentials"
+msgstr "Kimlik Bilgilerini Düzenle"
+
 msgid "Edit Mode Off"
 msgstr "Düzenleme Modunu Kapat"
 
@@ -7349,6 +7546,9 @@ msgstr "Başlığı Düzenle"
 msgid "Edit Upgrade Source URL"
 msgstr "Yükseltme Kaynağı URL Düzenle"
 
+msgid "Edit Username/Password Credentials"
+msgstr "Kullanıcı Adı/Şifre Bilgilerini Düzenle"
+
 #
 msgid "Edit chapters of current title"
 msgstr "Geçerli başlık için bölümleri düzenle"
@@ -7360,25 +7560,20 @@ msgstr "Geçerli satırı düzenle"
 msgid "Edit settings"
 msgstr "Ayarları düzenle"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr "Seçilen sunucu için kayıtlı kullanıcı adı/şifre bilgilerini düzenle"
+
 msgid "Edit the CCcam/NewCamd server hostname."
-msgstr "CCcam/NewCamd sunucu ana bilgisayar adını düzenleyin."
+msgstr "CCcam/NewCamd sunucu adını düzenleyin."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "CCcam/NewCamd sunucu bağlantı noktasını düzenleyin."
-
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "%s %s alıcınızın DNS yapılandırmasını düzenleyin."
 
 msgid "Edit the NewCamd DES Key."
 msgstr "NewCamd DES Anahtarını düzenleyin."
 
 msgid "Edit the currently selected timer"
 msgstr "Şu anda seçili olan zamanlayıcıyı düzenle"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "%s %s alıcınızın ağ yapılandırmasını düzenleyin."
 
 msgid "Edit the password."
 msgstr "Parolayı düzenleyin."
@@ -7391,6 +7586,9 @@ msgstr "Uzak CCCam bağlantı noktasını düzenleyin."
 
 msgid "Edit the remote IP address."
 msgstr "Uzak IP adresini düzenleyin."
+
+msgid "Edit the selected network mount"
+msgstr "Seçilen ağ bağlantısını düzenle"
 
 #
 msgid "Edit the upgrade source address."
@@ -7498,9 +7696,6 @@ msgstr "GStreamer hata ayıklama günlüğünü etkinleştir *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "GStreamer ardışık düzen grafiklerini etkinleştir *"
 
-msgid "Enable IPv6"
-msgstr "IPv6'yı etkinleştir"
-
 msgid "Enable IceTV"
 msgstr "IceTV'yi etkinleştir"
 
@@ -7554,8 +7749,8 @@ msgstr "ViaSat EPG etkinleştir"
 msgid "Enable Virgin EPG"
 msgstr "Virgin EPG etkinleştir"
 
-msgid "Enable Wake On LAN"
-msgstr "Kablolu Ağ İle Aç (WoL) Etkinleştir"
+msgid "Enable adapter"
+msgstr "Bağdaştırıcıyı etkinleştir"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Ek bilgiler içerebilecek ikinci Bilgi Çubuğunu etkinleştirin ve süresini ayarlayın ('OK' tuşuna iki kez basın)."
@@ -7634,11 +7829,17 @@ msgstr "Kullanıcı arayüzünü izlemeyi etkinleştirin"
 msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
 
+msgid "Enable network"
+msgstr "Ağı etkinleştir"
+
 msgid "Enable network traffic check"
 msgstr "Ağ trafiği kontrolünü etkinleştir"
 
 msgid "Enable new GStreamer playback"
 msgstr "Yeni GStreamer oynatmayı etkinleştirin"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr "Bu ağ bağlantısını etkinleştirin veya devre dışı bırakın. Bağlantıyı devre dışı bırakmak, tanımını silmez."
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "HDMI-CEC kullanarak etkinleştirin veya devre dışı bırakın."
@@ -7651,6 +7852,9 @@ msgstr "Ön izlemeyi etkinleştir"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Yerel olarak erişilemeyen kanallara (örneğin, tuner meşgul veya kanal türü yerel tunerde mevcut değil) uzak alıcı tarafından erişilmesini deneyin. http:// ve port numarasını (normalde ...:8001) içeren tam URL'yi belirtin, (örneğin: http://second_receiver:8001)."
+
+msgid "Enable saved Wi-Fi network"
+msgstr "Kayıtlı Wi-Fi ağını etkinleştir"
 
 msgid "Enable teletext caching"
 msgstr "Teletext önbelleğini etkinleştir"
@@ -7753,24 +7957,11 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr "Alıcının akışların şifresini çözebilmesini sağlayan bir özelliği etkinleştirir (eğer akışta ECM verileri varsa ve geçerli bir kart mevcutsa)."
 
 #
-msgid "Encrypted: "
-msgstr "Şifrelenmiş: "
-
-#
 msgid "Encryption"
 msgstr "Şifreleme"
 
-#
-msgid "Encryption Type:"
-msgstr "Şifreleme tipi:"
-
-#
-msgid "Encryption key"
-msgstr "Şifreleme anahtarı"
-
-#
-msgid "Encryption key type"
-msgstr "Şifreleme anahtar tipi"
+msgid "Encryption And Descrambling"
+msgstr "Şifreleme ve Şifre Çözme"
 
 msgid "End"
 msgstr "Son"
@@ -7881,6 +8072,9 @@ msgstr "Bu cihaz için yeni bir isim girin."
 msgid "Enter expected ONID/TSID"
 msgstr "Beklenen ONID/TSID değerini girin"
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr "Yeniden denemeden önce yanıt için ne kadar süre bekleneceğini girin (ya da aşağıdaki “Ulaşılamazsa vazgeç” seçeneğiyle denemeyi sonlandırın). Sabit bir değer yerine çekirdeğin dahili varsayılan ayarını kullanmak için “0” girin."
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Ekvatorun kuzeyi veya güneyinde iseniz girin."
 
@@ -7893,6 +8087,9 @@ msgstr "Yeni dizin adını girin:"
 msgid "Enter number to jump to channel"
 msgstr "Kanal değiştirmek için numara girin"
 
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr "Yukarıdaki yapılandırma ayarlarında belirtilmeyen isteğe bağlı bağlantı değişkenlerini girin. Birden fazla değişken varsa, bunlar virgülle ayrılmalıdır. Geçersiz veya uygun olmayan girdiler, bağlantı işleminin başarısız olmasına neden olabilir!"
+
 msgid "Enter persistent PIN code"
 msgstr "Kalıcı PIN kodunu girin"
 
@@ -7903,7 +8100,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "Ekli klavye aracılığıyla metin girin"
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
-msgstr "NFS ana bilgisayarlarına erişim izni verilecek IP adresini veya alt ağı (örn. 192.168.1.0/24) girin. Tüm ana bilgisayarlara erişim izni vermek için varsayılan değer olan '*' işaretini girin."
+msgstr "NFS sunucularına erişim izni verilecek IP adresini veya alt ağı (örn. 192.168.1.0/24) girin. Tüm sunuculara erişim izni vermek için varsayılan değer olan '*' işaretini girin."
 
 msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
 msgstr "Bu bağdaştırıcı için diğer ağlara erişimde ağ geçidi olarak kullanılacak IP adresini girin. Genellikle bu, yönlendiricinizin IP adresidir."
@@ -7926,25 +8123,46 @@ msgstr "LNB'nin düşük bant ve yüksek bant arasında geçiş yaptığı freka
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Kablo çoklayıcılarını ararken tunerin kullanacağı frekans adım boyutunu girin. Daha fazla bilgi için kablo sağlayıcınızın belgelerine bakın."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr "Ağ paylaşımı sunucusunun adını veya IP adresini girin."
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr "Uzak paylaşım için yerel bağlantı noktası olarak kullanılacak yerel dizin adını girin."
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "Yalnızca sunucu adı sağlandığında uygulanacak ağ DNS sonekini belirtin. Bu, DNS çözümleyicisinin ağdaki diğer ağ cihazlarını bulmasına yardımcı olur."
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr "Bu alıcıyı tanımlamak için kullanılacak ağ sunucusu adını girin."
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Tahsis edilecek/kullanılacak NFS sunucusu iş parçacıklarının sayısını girin. Daha yüksek değerler, birden çok istemciyle performansı artırır ancak daha fazla bellek kullanır."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Bu uyduya karşılık gelen konumlandırıcıda kayıtlı numarayı girin."
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr "Bu sunucunun paylaşımlarına erişmek için kimlik doğrulama bilgileri gerekiyorsa, kullanılacak şifreyi girin."
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr "Bu sunucunun paylaşımlarına erişmek için kullanılacak şifreyi girin."
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Seçilen kablosuz ağın şifresini, parola ifadesini veya önceden paylaşılmış anahtarını girin."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Bu ağ bağdaştırıcısı için birincil IPv4 DNS ayarını girin."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcısı için birincil IPv6 DNS ayarını girin. (İsteğe bağlı)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr "Sunucudaki uzak paylaşım adını (SMB) veya dışa aktarılan yolu (NFS) girin."
+
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcı için ikincil IPv4 DNS ayarını girin. (İsteğe bağlı)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcısı ikincil IPv6 DNS ayarını girin. (İsteğe bağlı)"
 
 #
@@ -7957,7 +8175,13 @@ msgstr "Bu ağ bağdaştırıcısı için kullanılacak alt ağ maskesini girin.
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Yapay Zeka Destekli Çeviri eklentisini tam olarak etkinleştirmek için abonelik kodunu girin; deneme sürümü için birleşik kod 15'tir."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr "Bu sunucunun paylaşımlarına erişmek için kimlik doğrulama bilgileri gerekiyorsa, kullanılacak kullanıcı adını girin."
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr "Bu sunucunun paylaşımlarına erişmek için kullanılacak kullanıcı adını girin."
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Bu alıcı tarafından Samba tabanlı bağlantılarda kullanılacak çalışma grubu adını girin. (Varsayılan değer 'WORKGROUP'tur.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8111,44 +8335,6 @@ msgstr "Hata Yeniden Deneme gecikmesi"
 msgid "Error code"
 msgstr "Hata kodu"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"FHD-Arayüz oluşturulurken hata oluştu.\n"
-"HD-Arayüz kullanılıyor!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"FHD-Arayüz oluşturulurken hata oluştu. Simge paketi indirme işlemi mevcut değil.\n"
-"HD-Skin kullanılıyor!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"FHD-Arayüz oluşturulurken hata oluştu. Yeterli boş flash bellek yok.\n"
-"HD-Arayüz kullanılıyor!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"FHD-Arayüz oluşturulurken hata oluştu. Bazı FHD Simgeleri eksik.\n"
-"HD-Skin kullanılıyor!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "HD-Arayüz oluşturulurken hata oluştu. Yeterli flash bellek yok."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"MetrixHD-Arayüz oluşturulurken hata oluştu.\n"
-"Lütfen MyMetrixLite-Plugin uygulamasını yeniden başlattıktan sonra kontrol edin ve ayarlarınızı uygulayın."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "'%s' yazılımını indirirken hata oluştu!"
@@ -8198,9 +8384,6 @@ msgstr "Yedek uzak alıcıda '/etc/enigma2/epg.dat' dosyasına yazma işleminde 
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Yedek uzak alıcıda 'epg.dat' dosyasına yazma işleminde hata oluştu!"
 
-msgid "Error, unknown Result!"
-msgstr "Hata, bilinmeyen Sonuç!"
-
 #
 #, python-format
 msgid ""
@@ -8213,6 +8396,9 @@ msgstr ""
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Hata: Boş dosya adı geçersizdir!"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr "Hata: Hem ‘sunucu’ hem de ‘uzak yol’ bilgileri zorunludur!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Hata: Herhangi bir yazılım bulunamıyor!"
@@ -8269,6 +8455,10 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "Hata: '%s'ı '%s' üzerinde çalıştırmak mümkün değil!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr "Hata: '%s' bağlantısı başarısız oldu!"
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "Hata: Program '%s' yüklü değil ve bu programı içeren paket bilinmiyor!"
 
@@ -8276,6 +8466,9 @@ msgstr "Hata: Program '%s' yüklü değil ve bu programı içeren paket bilinmiy
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Hata: '%s' dizini kaldırılamadı! (Belki dizin boş değildir.)"
+
+msgid "Error: Rescan failed!"
+msgstr "Hata: Yeniden tarama başarısız oldu!"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8327,6 +8520,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Hata: ‘%s’ günlük dosyası yazılamıyor!"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr "Hata: '%s' bağlantısının kaldırılması başarısız oldu!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Hata: '%s'ı '%s' üzerinde çalıştıramazsınız!"
 
@@ -8352,6 +8549,9 @@ msgstr "Estçe"
 msgid "EtPortal"
 msgstr "EtPortal"
 
+msgid "Ethernet Adapter"
+msgstr "Ethernet Bağdaştırıcı"
+
 msgid "Ethernet network interface"
 msgstr "Ethernet ağ arayüzü"
 
@@ -8372,6 +8572,9 @@ msgstr "'Kanal Değiştir' kayıt zamanlayıcısı başlatıldığında Tv açı
 
 msgid "Event Info"
 msgstr "Etkinlik Bilgileri"
+
+msgid "Event Metadata And Correction"
+msgstr "Etkinlik Meta Verileri ve Düzeltme"
 
 msgid "Event View"
 msgstr "Etkinlik Görünümü"
@@ -8495,20 +8698,6 @@ msgstr "Menüden çık"
 msgid "Exit movie player?"
 msgstr "Film oynatıcıdan çıkılsın mı?"
 
-msgid "Exit network adapter configuration"
-msgstr "Ağ bağdaştırıcısı yapılandırmasından çık"
-
-msgid "Exit network adapter setup menu"
-msgstr "Ağ bağdaştırıcısı kurulum menüsünden çık"
-
-#
-msgid "Exit network interface list"
-msgstr "Ağ arayüzü listesinden çık"
-
-#
-msgid "Exit network wizard"
-msgstr "Ağ sihirbazından çık"
-
 msgid "Exit picture viewer"
 msgstr "Resim görüntüleyiciden çık"
 
@@ -8528,6 +8717,9 @@ msgstr "Yedekleme yapmadan çık"
 msgid "Expand"
 msgstr "Genişlet"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr "Seçilen sunucuyu genişletin/daraltın veya seçilen paylaşımı kullanın"
+
 msgid "Experimental film/video"
 msgstr "Deneysel film/video"
 
@@ -8544,6 +8736,9 @@ msgstr "Uzman"
 #
 msgid "Expert mode"
 msgstr "Uzman Modu"
+
+msgid "Exports"
+msgstr "Dışa Aktarımlar"
 
 msgid "Exposure bias"
 msgstr "Görüntüleme yanlılığı"
@@ -8562,14 +8757,6 @@ msgstr "Genişlet"
 
 msgid "Extended"
 msgstr "Genişletilmiş"
-
-#
-msgid "Extended Networksetup Plugin..."
-msgstr "Genişletilmiş Ağ Kurulumu Eklentisi..."
-
-#
-msgid "Extended Setup..."
-msgstr "Genişletilmiş Kurulum..."
 
 msgid "Extended Shares"
 msgstr "Genişletilmiş Paylaşımlar"
@@ -8597,6 +8784,9 @@ msgstr "Harici PiP"
 #, python-format
 msgid "External Storage %s"
 msgstr "%s Harici Depolama"
+
+msgid "External Subtitles"
+msgstr "Harici Altyazılar"
 
 msgid "External subtitle color"
 msgstr "Harici altyazı rengi"
@@ -8798,6 +8988,9 @@ msgstr "Hızlı Kanal Değiştirme Kurulumu"
 msgid "Fast DiSEqC"
 msgstr "Hızlı DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr "İleri ve Geri Sarma"
+
 msgid "Fast Scan"
 msgstr "Hızlı Tarama"
 
@@ -8844,6 +9037,9 @@ msgstr "Kaynak kararlı."
 
 msgid "Feed unstable!"
 msgstr "Kaynak dengesiz!"
+
+msgid "Feeds And Networking"
+msgstr "Kaynaklar ve Ağ Bağlantısı"
 
 msgid "Fetch EPG and update timers now"
 msgstr "EPG getir ve zamanlayıcıları şimdi güncelle"
@@ -8971,6 +9167,9 @@ msgstr "Dosya transferi kullanıcı tarafından iptal edildi"
 msgid "Filename"
 msgstr "Dosya adı"
 
+msgid "Files And Directories"
+msgstr "Dosyalar ve Dizinler"
+
 msgid "Files/folders to exclude from backup"
 msgstr "Yedeklemeden çıkarılacak dosyalar / klasörler"
 
@@ -9033,10 +9232,6 @@ msgstr "İnce ayar"
 #
 msgid "Finished"
 msgstr "Bitti"
-
-#
-msgid "Finished configuring your network"
-msgstr "Ağ yapılandırmanız tamamlandı"
 
 msgid "Finland"
 msgstr "Finlandiya"
@@ -9139,14 +9334,14 @@ msgstr "Uzaktan kumandadaki tuş grubuna göre düzenle"
 msgid "Flat by position on remote"
 msgstr "Uzaktan kumandadaki pozisyona göre düzenle"
 
+msgid "Flush Cache and Rescan"
+msgstr "Önbelleği Temizle ve Yeniden Tara"
+
 msgid "Folk and Country"
 msgstr "Halk ve Country"
 
 msgid "Folk/Traditional music"
 msgstr "Halk/Geleneksel müzik"
-
-msgid "Follow instructions on TV"
-msgstr "TV'deki talimatları izleyin"
 
 msgid "Font size"
 msgstr "Yazı tipi boyutu"
@@ -9186,7 +9381,7 @@ msgstr "Legacy Signal istatistiklerini zorla"
 msgid "Force ToneBurst"
 msgstr "ToneBurst Zorla"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Otomatik bağlantı hızı yerine belirli bir ağ bağlantı hızı/çift yönlü modunu zorlayın. Yanlış bir ayar ağ bağlantısını bozabileceğinden bunu yalnızca belirli bir nedeniniz varsa değiştirin."
 
 #
@@ -9265,10 +9460,6 @@ msgstr "Fransız Güney Toprakları"
 #
 msgid "Frequency"
 msgstr "Frekans"
-
-#
-msgid "Frequency Norm:"
-msgstr "Frekans Normu:"
 
 #
 msgid "Frequency bands"
@@ -9400,11 +9591,29 @@ msgstr "Genel"
 msgid "General AC3 delay"
 msgstr "Genel AC3 gecikmesi"
 
+msgid "General Appearance"
+msgstr "Genel Görünüm"
+
 msgid "General BT audio delay"
 msgstr "Genel BT ses gecikmesi"
 
+msgid "General Channel Selection"
+msgstr "Genel Kanal Seçimi"
+
+msgid "General OSD Behavior"
+msgstr "Genel OSD Davranışı"
+
 msgid "General PCM delay"
 msgstr "Genel PCM gecikmesi"
+
+msgid "General Setup Behavior"
+msgstr "Genel Kurulum Davranışı"
+
+msgid "General Subtitle Appearance And Timing"
+msgstr "Genel Altyazı Görünümü ve Zamanlaması"
+
+msgid "General Time Shift Behavior"
+msgstr "Genel Zaman Kaydırma Davranışı"
 
 msgid "Generic"
 msgstr "Genel"
@@ -9461,6 +9670,9 @@ msgstr "Gana"
 
 msgid "Gibraltar"
 msgstr "Cebelitarık"
+
+msgid "GigaBlue optimized"
+msgstr "GigaBlue için optimize edilmiş"
 
 msgid "Given device id"
 msgstr "Verilen cihaz kimliği"
@@ -9712,6 +9924,9 @@ msgstr "HDMI-IN Kayıt Ayarları"
 msgid "HDMIin"
 msgstr "HDMI-IN"
 
+msgid "HDR OSD adjustment"
+msgstr "HDR OSD ayarı"
+
 msgid "HDR10 Support"
 msgstr "HDR10 Desteği"
 
@@ -9810,6 +10025,9 @@ msgstr "Yardım"
 
 msgid "Help Action"
 msgstr "Yardım İşlemi"
+
+msgid "Help And Visual Feedback"
+msgstr "Yardım ve Görsel Geri Bildirim"
 
 msgid "Help Screen Information"
 msgstr "Yardım Ekranı Bilgileri"
@@ -10078,9 +10296,6 @@ msgstr "Macaristan"
 msgid "Hybrid Tuner"
 msgstr "Hibrit Tuner"
 
-msgid "Hybrid tuner mode"
-msgstr "Hibrit tuner modu"
-
 msgid "Hz"
 msgstr "Hz"
 
@@ -10110,6 +10325,9 @@ msgstr "INS"
 
 msgid "IP"
 msgstr "IP"
+
+msgid "IP Address"
+msgstr "IP Adresi"
 
 msgid "IP Address 1"
 msgstr "IP Adresi 1"
@@ -10144,6 +10362,9 @@ msgstr "IP protokolü"
 
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
+
+msgid "IPv4 and IPv6"
+msgstr "IPv4 ve IPv6"
 
 msgid "IPv4 only"
 msgstr "Yalnızca IPv4"
@@ -10555,6 +10776,12 @@ msgstr "Bilgi simgesi genişliği"
 msgid "InfoBar"
 msgstr "Bilgi Çubuğu"
 
+msgid "InfoBar And Pause"
+msgstr "Bilgi Çubuğu ve Duraklatma"
+
+msgid "InfoBar Content And Time Display"
+msgstr "Bilgi Çubuğu İçeriği ve Zaman Gösterimi"
+
 msgid "InfoBar EPG"
 msgstr "Bilgi çubuğu EPG'si"
 
@@ -10564,6 +10791,12 @@ msgstr "Bilgi Çubuğu EPG Ayarları"
 #
 msgid "InfoBar EPG mode"
 msgstr "Bilgi Çubuğu EPG modu"
+
+msgid "InfoBar Timing And Appearance"
+msgstr "Bilgi Çubuğu Zamanlaması ve Görünümü"
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "Bilgi Çubuğu Görünürlüğü ve Davranışı"
 
 msgid "InfoBar fade-out speed"
 msgstr "Bilgi çubuğu soldurma hızı"
@@ -10737,10 +10970,6 @@ msgstr "Arayüz"
 #, python-format
 msgid "Interface '%s'"
 msgstr "Arayüz '%s'"
-
-#
-msgid "Interface: "
-msgstr "Arayüz: "
 
 msgid "Interlaced"
 msgstr "İç içe geçmiş"
@@ -11048,6 +11277,9 @@ msgstr "Kexec Çoklu Önyükleme dosyaları eksik."
 msgid "Key"
 msgstr "Anahtar"
 
+msgid "Key Map And Power Buttons"
+msgstr "Tuş Haritası ve Power Tuşları"
+
 #
 msgid "Keyboard"
 msgstr "Klavye"
@@ -11072,6 +11304,9 @@ msgstr "Kiribati"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Kodi Eklenti Paketleri"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -11111,12 +11346,11 @@ msgstr "Kırgızistan"
 msgid "LAN"
 msgstr "Kablolu Ağ"
 
-#
-msgid "LAN adapter"
-msgstr "Kablolu Ağ adaptörü"
-
 msgid "LAN connection"
 msgstr "Kablolu Ağ Bağlantısı"
+
+msgid "LAN link"
+msgstr "Kablolu Ağ bağlantısı"
 
 msgid "LCD scroll speed"
 msgstr "LCD kaydırma hızı"
@@ -11150,6 +11384,9 @@ msgstr "Derin Bekleme modunda LED"
 
 msgid "LED Deep Standby color"
 msgstr "LED Kapatma Rengi"
+
+msgid "LED Indicators"
+msgstr "LED Göstergeler"
 
 msgid "LED Normal"
 msgstr "LED Normal"
@@ -11287,6 +11524,9 @@ msgstr "Letonya"
 msgid "Latvian"
 msgstr "Letonca"
 
+msgid "Layout And Fonts"
+msgstr "Düzen ve Yazı Tipleri"
+
 msgid "Leave"
 msgstr "Ayrılmak"
 
@@ -11334,6 +11574,9 @@ msgstr "Sol, öndeki USB"
 
 msgid "Left, wrapped"
 msgstr "Sol, sarılı"
+
+msgid "Legacy (SMB1)"
+msgstr "Eski Sürüm (SMB1)"
 
 msgid "Legacy mode"
 msgstr "Eski mod"
@@ -11434,19 +11677,11 @@ msgstr "Lingala Dili"
 msgid "Link detected"
 msgstr "Bağlantı algılandı"
 
-#
-msgid "Link quality:"
-msgstr "Bağlantı kalitesi:"
-
 msgid "Link speed"
 msgstr "Bağlantı hızı"
 
 msgid "Link target"
 msgstr "Bağlantı hedefi"
-
-#
-msgid "Link:"
-msgstr "Bağlantı:"
 
 #
 msgid "Linked titles with a DVD menu"
@@ -11455,14 +11690,14 @@ msgstr "DVD Menüsü ile bağlı başlıklar"
 msgid "Links"
 msgstr "Bağlantılar"
 
+msgid "List Appearance And Sorting"
+msgstr "Liste Görünümü ve Sıralama"
+
 msgid "List Navigation Actions"
 msgstr "Liste Gezinme İşlemleri"
 
 msgid "List available EPG functions"
 msgstr "Geçerli EPG işlevlerini listele"
-
-msgid "List available networks"
-msgstr "Kullanılabilir ağ listesi"
 
 msgid "List of Storage Devices"
 msgstr "Depolama Cihazlarının Listesi"
@@ -11534,15 +11769,14 @@ msgstr "Yerel tarih/zaman"
 msgid "Local information"
 msgstr "Yerel Bilgi"
 
-#
-msgid "Local network"
-msgstr "Yerel Ağ"
-
 msgid "Local or Regional"
 msgstr "Yerel veya Bölgesel"
 
 msgid "Local receiver"
 msgstr "Yerel alıcı"
+
+msgid "Local share"
+msgstr "Yerel paylaşım"
 
 msgid "Local time"
 msgstr "Yerel zaman"
@@ -11615,6 +11849,9 @@ msgstr "Günlük %d/%d"
 
 msgid "Log Manager"
 msgstr "Günlük Yöneticisi"
+
+msgid "Log Retention And Access"
+msgstr "Günlük Kaydı Saklama ve Erişim"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11719,11 +11956,11 @@ msgstr "Lüksemburgca / Letzeburgesch"
 msgid "M2k Packages"
 msgstr "M2k Paketleri"
 
+msgid "MAC Address"
+msgstr "MAC Adresi"
+
 msgid "MAC address"
 msgstr "MAC adresi"
-
-msgid "MAC-address"
-msgstr "MAC-adresi"
 
 msgid "MENU"
 msgstr "MENÜ"
@@ -11873,9 +12110,6 @@ msgstr "Manuel Tarama"
 msgid "Manual Service Searching"
 msgstr "Manuel Kanal Arama"
 
-msgid "Manual configuration"
-msgstr "Manuel yapılandırma"
-
 msgid "Manual scan for services"
 msgstr "Kanallar için manuel tarama"
 
@@ -11954,10 +12188,6 @@ msgstr "Maksimum kanallar"
 msgid "Max memory positions"
 msgstr "Maksimum bellek kapasitesi"
 
-#
-msgid "Max. bitrate: "
-msgstr "Maks. Bit oranı: "
-
 msgid "Maxdown +"
 msgstr "Maxdown +"
 
@@ -11994,6 +12224,9 @@ msgstr "Medya"
 
 msgid "Media Center"
 msgstr "Medya Merkezi"
+
+msgid "Media Files And Navigation"
+msgstr "Medya Dosyaları ve Gezinme"
 
 msgid "Media Player"
 msgstr "Medya Oynatıcı"
@@ -12081,6 +12314,9 @@ msgstr "Menü giriş stili"
 msgid "Menu style"
 msgstr "Menü stili"
 
+msgid "Menus And Setup"
+msgstr "Menüler ve Kurulum"
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Yayın EPG'sini IceTV ile birleştirin"
 
@@ -12129,6 +12365,9 @@ msgstr "MiniDLNA Ayarları"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr "MiniTV ve PiP"
 
 msgid "MiniTV with OSD"
 msgstr "Ekranda Gösterim özellikli MiniTV"
@@ -12272,8 +12511,8 @@ msgstr "Motorlar"
 msgid "Mount"
 msgstr "Bağlantı"
 
-msgid "Mount Manager"
-msgstr "Bağlantı Yöneticisi"
+msgid "Mount Context Menu"
+msgstr "Bağlantı İçerik Menüsü"
 
 msgid "Mount Point"
 msgstr "Bağlantı Noktası"
@@ -12281,8 +12520,20 @@ msgstr "Bağlantı Noktası"
 msgid "Mount Setup"
 msgstr "Bağlantı Kurulumu"
 
+msgid "Mount at boot time (fstab)"
+msgstr "Önyükleme sırasında bağlan (fstab)"
+
 msgid "Mount failed"
 msgstr "Bağlantı başarısız oldu"
+
+msgid "Mount mode"
+msgstr "Bağlantı modu"
+
+msgid "Mount on first access (autofs)"
+msgstr "İlk erişimde bağlan (autofs)"
+
+msgid "Mount or unmount the selected share"
+msgstr "Seçilen paylaşımı bağlayın veya bağlantısını kesin"
 
 msgid "Mount point"
 msgstr "Bağlantı noktası"
@@ -12290,11 +12541,17 @@ msgstr "Bağlantı noktası"
 msgid "Mount root file system."
 msgstr "Kök dosya sistemine bağlanılıyor."
 
+msgid "Mounted"
+msgstr "Bağlı"
+
 msgid "Mounts"
 msgstr "Bağlantılar"
 
 msgid "Move"
 msgstr "Taşı"
+
+msgid "Move Down"
+msgstr "Aşağı Taşı"
 
 msgid "Move Left/Right"
 msgstr "Sola/Sağa Taşı"
@@ -12317,6 +12574,9 @@ msgstr "PiP Taşı"
 #
 msgid "Move PiP to main picture"
 msgstr "PiP'i ana ekrana taşı"
+
+msgid "Move Up"
+msgstr "Yukarı Taşı"
 
 msgid "Move Up/Down"
 msgstr "Yukarı/Aşağı Taşı"
@@ -12371,6 +12631,12 @@ msgstr "Listedeki son satıra gidin."
 #
 msgid "Move east"
 msgstr "Doğuya taşı"
+
+msgid "Move item down"
+msgstr "Öğeyi aşağı taşı"
+
+msgid "Move item up"
+msgstr "Öğeyi yukarı taşı"
 
 msgid "Move job completed."
 msgstr "Taşıma işlemi tamamlandı."
@@ -12478,6 +12744,12 @@ msgstr "Önceki bukete git"
 msgid "Move to previous marker"
 msgstr "Önceki işaretçiye git"
 
+msgid "Move to the Adapter list"
+msgstr "Bağdaştırıcı listesine git"
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr "Kayıtlı Wi-Fi Ağları listesine git"
+
 msgid "Move to the first item on the current line"
 msgstr "Geçerli satırdaki ilk öğeye git"
 
@@ -12580,6 +12852,9 @@ msgstr "Film Etkinliği Görüntüleme İşlemleri"
 
 msgid "Movie List"
 msgstr "Film Listesi"
+
+msgid "Movie List And Playback Behavior"
+msgstr "Film Listesi ve Oynatma Davranışı"
 
 #
 msgid "Movie Player Actions"
@@ -12727,11 +13002,17 @@ msgstr "SONRA"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS Yapılandırma"
+
+msgid "NFS Setup Actions"
+msgstr "NFS Kurulum İşlemleri"
 
 msgid "NFS threads"
 msgstr "NFS iş parçacıkları"
+
+msgid "NFS version"
+msgstr "NFS sürümü"
 
 msgid "NIM"
 msgstr "NIM"
@@ -12777,14 +13058,6 @@ msgstr "İsim azalan"
 msgid "Name server %d"
 msgstr "Ad Sunucusu %d"
 
-#
-msgid "Nameserver"
-msgstr "Ad Sunucusu"
-
-#
-msgid "Nameserver settings"
-msgstr "Ad Sunucusu Ayarları"
-
 msgid "Nameserver setup"
 msgstr "Ad Sunucusu Kurulumu"
 
@@ -12827,6 +13100,12 @@ msgstr "Seçilen dizine git"
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Yukarı/aşağı gezinmek için YUKARI/AŞAĞI tuşlarını, sayfa yukarı/aşağı gezinmek için SOL/SAĞ tuşlarını kullanın. Şu anda vurgulanan yardımda açıklanan işlemi gerçekleştirmek için OK tuşuna tıklayın."
 
+msgid "Navigation And Button Assignments"
+msgstr "Gezinme ve Tuş Atamaları"
+
+msgid "Navigation And Time Range"
+msgstr "Gezinme ve Zaman Aralığı"
+
 msgid "Ndonga"
 msgstr "Ndonga, Gürcistan Dili"
 
@@ -12850,23 +13129,21 @@ msgstr "Ağ maskesi"
 msgid "Network"
 msgstr "Ağ"
 
-msgid "Network Adapter Actions"
-msgstr "Ağ Bağdaştırıcısı İşlemleri"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr "'%s' Ağ Bağdaştırıcısı Ayarları"
 
 msgid "Network Adapter Selection"
 msgstr "Ağ Bağdaştırıcısı Seçimi"
 
-msgid "Network Adapter Setting Actions"
-msgstr "Ağ Bağdaştırıcısı Ayarları İşlemleri"
-
 msgid "Network Adapter Settings"
 msgstr "Ağ Bağdaştırıcısı Ayarları"
 
-msgid "Network Adapter Text Actions"
-msgstr "Ağ Bağdaştırıcısı Metin İşlemleri"
-
 msgid "Network Browser"
 msgstr "Ağ Gezgini"
+
+msgid "Network Credentials"
+msgstr "Ağ Kimlik Bilgileri"
 
 msgid "Network ID"
 msgstr "Ağ Kimliği"
@@ -12886,8 +13163,23 @@ msgstr "Ağ Günlüğü"
 msgid "Network Log Actions"
 msgstr "Ağ Günlüğü İşlemleri"
 
+msgid "Network Mount Manager Actions"
+msgstr "Ağ Bağlantı Yöneticisi İşlemleri"
+
+msgid "Network Mount Settings"
+msgstr "Ağ Bağlantı Ayarları"
+
+msgid "Network Mounts Overview"
+msgstr "Ağ Bağlantılarına Genel Bakış"
+
 msgid "Network Neighbourhood"
 msgstr "Ağ Komşuları"
+
+msgid "Network Overview"
+msgstr "Ağa Genel Bakış"
+
+msgid "Network Overview Actions"
+msgstr "Ağ Genel Bakış İşlemleri"
 
 msgid "Network Packages"
 msgstr "Ağ Paketleri"
@@ -12905,23 +13197,68 @@ msgstr "Ağ Ayarları"
 msgid "Network Setup Actions"
 msgstr "Ağ Kurulum İşlemleri"
 
+msgid "Network Share Actions"
+msgstr "Ağ Paylaşımı İşlemleri"
+
+msgid "Network Shares Browser"
+msgstr "Ağ Paylaşımları Tarayıcısı"
+
+msgid "Network Shares Context Menu"
+msgstr "Ağ Paylaşımları İçerik Menüsü"
+
 msgid "Network Test"
 msgstr "Ağ Testi"
 
-msgid "Network Test:"
-msgstr "Ağ Testi:"
+msgid "Network Test Actions"
+msgstr "Ağ Testi İşlemleri"
 
-msgid "Network Wizard"
-msgstr "Ağ Sihirbazı"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr "'%s' için Ağ Testi"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Ağ Wi-Fi Ayarları"
+
+msgid "Network adapter disabled."
+msgstr "Ağ bağdaştırıcısı devre dışı bırakıldı."
+
+msgid "Network adapter enabled."
+msgstr "Ağ bağdaştırıcısı etkinleştirildi."
 
 msgid "Network adapter not connected to a network!"
 msgstr "Ağ bağdaştırıcısı bir ağa bağlı değil!"
 
+msgid "Network adapter setup result:"
+msgstr "Ağ bağdaştırıcısı kurulum sonucu:"
+
+msgid "Network adapter status"
+msgstr "Ağ bağdaştırıcısı durumu"
+
 msgid "Network address"
 msgstr "Ağ adresi"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr "Ağ kablosu bağlı (%s)"
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr "Ağ kablosu bağlantısı kesildi (%s)"
+
 msgid "Network configuration..."
 msgstr "Ağ yapılandırması..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
+"Ağ bağlantısı başarıyla kuruldu.\n"
+"\n"
+"Arayüz: %s\n"
+"IP adresi: %s"
 
 msgid "Network information"
 msgstr "Ağ bilgisi"
@@ -12949,31 +13286,11 @@ msgstr "Ağ tarama"
 msgid "Network storage on"
 msgstr "Ağ depolama"
 
-#
-msgid "Network test"
-msgstr "Ağ testi"
-
 msgid "Network test..."
 msgstr "Ağ testi..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Ağ sihirbazı tamamlandı.\n"
-"\n"
-"Devam etmek için OK tuşuna basın."
-
 msgid "Network-ID"
 msgstr "Ağ Kimliği"
-
-#
-msgid "Network:"
-msgstr "Ağ:"
-
-msgid "NetworkWizard"
-msgstr "Ağ Sihirbazı"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -13009,6 +13326,9 @@ msgstr "DXAndy Yeni Ayarları "
 
 msgid "New Storage Device"
 msgstr "Yeni Depolama Cihazı"
+
+msgid "New Wi-Fi"
+msgstr "Yeni Wi-Fi"
 
 msgid "New Zealand"
 msgstr "Yeni Zelanda"
@@ -13113,16 +13433,24 @@ msgid "No (supported) DVDROM found!"
 msgstr "Desteklenen DVDROM bulunamadı!"
 
 #
-msgid "No Connection"
-msgstr "Bağlantı yok"
-
-#
 msgid "No ECM PIDs available"
 msgstr "Kullanılabilir ECM PID yok"
 
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "HDD bulunamadı veya HDD ilişkilendirilemedi!"
+
+msgid "No IP address"
+msgstr "IP adresi yok"
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
+"IP adresi alınmadı.\n"
+"\n"
+"Ağ bağlantısı kurulamadı."
 
 msgid "No Internet connection"
 msgstr "Internet bağlantısı yok"
@@ -13207,8 +13535,14 @@ msgstr "Boş dizin mevcut değil"
 msgid "No free tuner!"
 msgstr "Boş tuner yok!"
 
+msgid "No gateway"
+msgstr "Ağ geçidi yok"
+
 msgid "No hard disks detected."
 msgstr "Hiçbir sabit disk algılanmadı."
+
+msgid "No hosts found yet - still scanning..."
+msgstr "Henüz hiçbir sunucu bulunamadı - tarama devam ediyor..."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Hiçbir günlük dosyası bulunamadı, bu nedenle hata ayıklama günlükleri kullanılamıyor!"
@@ -13223,9 +13557,8 @@ msgstr "Hiçbir ağ bağdaştırıcısı etkin/kullanılabilir değil!"
 msgid "No network storage detected."
 msgstr "Ağ depolama alanı algılanmadı."
 
-#
-msgid "No networks found"
-msgstr "Hiçbir ağ bulunamadı"
+msgid "No networks found."
+msgstr "Hiçbir ağ bulunamadı."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Öğe sayısı değişimi (artış veya azalma)"
@@ -13253,6 +13586,9 @@ msgstr "Kanal yok"
 #
 msgid "No services/providers selected"
 msgstr "Hiçbir kanal/sağlayıcı seçilmedi"
+
+msgid "No shares found."
+msgstr "Hiçbir paylaşım bulunamadı."
 
 msgid "No slot images found"
 msgstr "Yuvada yazılım bulunamadı"
@@ -13335,33 +13671,6 @@ msgstr "'%s' için geçerli bir bağlantı noktası bulunamadı!"
 
 msgid "No valid region details were found"
 msgstr "Geçerli bölge bilgisi bulunamadı"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Kablosuz ağ bulunamadı! Aranıyor..."
-
-#
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Çalışan yerel ağ bağdaştırıcısı bulunamadı.\n"
-"Lütfen ağ kablosunun takılı olduğundan ve ağınızın doğru şekilde yapılandırıldığından emin olun."
-
-#
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Çalışır durumda bir kablosuz ağ adaptörü bulunamadı.\n"
-"Lütfen uyumlu bir Kablosuz Ağ cihazı bağladığınızdan ve ağınızın doğru yapılandırıldığından emin olun."
-
-#
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Çalışır durumda bir kablosuz ağ arayüzü bulunamadı.\n"
-" Lütfen uyumlu bir Kablosuz Ağ cihazı bağladığınızdan emin olun veya yerel ağ arayüzünü etkinleştirin."
 
 #
 msgid "No, but restart from begin"
@@ -13457,6 +13766,9 @@ msgstr "Norveç Nynorsk Dili"
 msgid "Not Classified"
 msgstr "Sınıflandırılmamış"
 
+msgid "Not Connected"
+msgstr "Bağlı Değil"
+
 msgid "Not Defined"
 msgstr "Tanımlanmamış"
 
@@ -13504,8 +13816,14 @@ msgstr ""
 "Boş alan: %sMB\n"
 "Konum: %s"
 
+msgid "Not found"
+msgstr "Bulunamadı"
+
 msgid "Not joined. Press Yellow to join."
 msgstr "Henüz katılmadınız. Katılmak için Sarı tuşa basın."
+
+msgid "Not mounted"
+msgstr "Bağlantısı yapılmamış"
 
 msgid "Not required"
 msgstr "Gerekli değil"
@@ -13535,6 +13853,9 @@ msgstr "Yükseltilecek bir şey yok"
 
 msgid "Nothing, just leave this menu"
 msgstr "Hiç bir şey, sadece bu menüden çıkın"
+
+msgid "Notifications And Display"
+msgstr "Bildirimler ve Görüntüleme"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13626,9 +13947,6 @@ msgstr "OScam Bilgisi"
 
 msgid "OSCam Information Settings"
 msgstr "OSCam Bilgisi Ayarları"
-
-msgid "OSCam webif disabled"
-msgstr "OSCam webif devre dışı bırakıldı"
 
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo İşlemleri"
@@ -13736,10 +14054,6 @@ msgstr "Geçerli ONID'lerde, frekans alt ağ bölümünü dikkate almayın."
 #
 msgid "Once"
 msgstr "Bir kere"
-
-#
-msgid "One"
-msgstr "Bir"
 
 msgid "One line"
 msgstr "Tek satır"
@@ -13943,8 +14257,23 @@ msgstr "Kanal listesini aç ve PiP için önceki kanalı seç"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Kanal Seçim Ayarları ekranını aç"
 
+msgid "Open the Context Menu for the selected item"
+msgstr "Seçilen öğe için İçerik Menüsünü açın"
+
 msgid "Open the Image information"
 msgstr "Yazılım bilgilerini aç"
+
+msgid "Open the Mount Context Menu"
+msgstr "Bağlantı İçerik Menüsünü Aç"
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr "Seçilen öğe için Ağ Bağdaştırıcısı Ayarlarını açın"
+
+msgid "Open the Network Shares Browser"
+msgstr "Ağ Paylaşımları Tarayıcısını aç"
+
+msgid "Open the Network Shares Context Menu"
+msgstr "Ağ Paylaşımları İçerik Menüsünü aç"
 
 msgid "Open the Plugin Browser"
 msgstr "Eklentiler Listesini aç"
@@ -13982,8 +14311,14 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX Paketleri"
 
+msgid "OpenWebif Connection"
+msgstr "OpenWebif Bağlantısı"
+
 msgid "OpenWebif picon path"
 msgstr "OpenWebif pikon ayarı"
+
+msgid "Opening network adapter configuration..."
+msgstr "Ağ bağdaştırıcısı yapılandırması açılıyor..."
 
 msgid "Opera"
 msgstr "Opera"
@@ -14012,6 +14347,9 @@ msgstr "Bilgi çubuğunda pikonları devre dışı bırakma seçeneği."
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Donanım bekleme zamanlayıcısını etkinleştirme seçeneği."
+
+msgid "Optional arguments"
+msgstr "İsteğe bağlı bağımsız değişkenler"
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr "Bir dizi komut gönderilirken CEC komutları arasında isteğe bağlı gecikme süresi. Cihaz daha yavaş iletim gerektirmediği sürece bu seçeneği devre dışı bırakın."
@@ -14060,6 +14398,9 @@ msgstr "Diğer"
 
 msgid "Other Actions"
 msgstr "Diğer İşlemler"
+
+msgid "Other OSD Elements"
+msgstr "Diğer OSD Öğeleri"
 
 msgid "Other Packages"
 msgstr "Diğer Paketler"
@@ -14188,6 +14529,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Paket"
+
+msgid "Package Categories"
+msgstr "Paket Kategorileri"
 
 #
 msgid "Package Manager"
@@ -14465,6 +14809,9 @@ msgstr "Pikon arama modu"
 msgid "Picon width"
 msgstr "Pikon genişliği"
 
+msgid "Picture In Picture"
+msgstr "Görüntü İçinde Görüntü"
+
 msgid "Picture Information"
 msgstr "Alıcı Resim Bilgileri"
 
@@ -14498,6 +14845,9 @@ msgstr "Pillarbox"
 #
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pinging..."
+msgstr "Ping atılıyor..."
 
 msgid "Pink"
 msgstr "Pembe"
@@ -14609,6 +14959,12 @@ msgstr "Ses dosyasını çal"
 msgid "Play the selected service"
 msgstr "Seçilen kanalı oynat"
 
+msgid "Playback And Saving"
+msgstr "Oynatma ve Kaydetme"
+
+msgid "Playback And Status"
+msgstr "Oynatma ve Durum"
+
 msgid "Playback Settings"
 msgstr "Oynatma Ayarları"
 
@@ -14701,19 +15057,11 @@ msgstr ""
 "IceTV web sitesindeki hesabınız aracılığıyla hizmet duyuruları, hesap hatırlatıcıları ve promosyon teklifleri almayı seçebilirsiniz."
 
 #
-msgid "Please follow the instructions on the TV"
-msgstr "Lütfen TV talimatlarını takip edin"
-
-#
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Lütfen daha önce seçilen medyaya erişilemediğini ve bu nedenle varsayılan dizinin kullanıldığını dikkate alın."
 
 msgid "Please open Picture in Picture first"
 msgstr "Lütfen önce Görüntü içinde Görüntüyü aç"
-
-#
-msgid "Please press OK to continue."
-msgstr "Lütfen devam etmek için OK tuşuna basın."
 
 msgid "Please press OK when ready"
 msgstr "Lütfen hazır olduğunuzda OK tuşuna basın"
@@ -14801,10 +15149,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Lütfen bekleyin"
 
-#
-msgid "Please wait for activation of your network configuration..."
-msgstr "Lütfen ağ yapılandırmanızın etkinleştirilmesi için bekleyin..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "LCN buketleri oluşturulurken/güncellenirken lütfen bekleyin..."
 
@@ -14857,19 +15201,8 @@ msgid "Please wait while we check your installed plugins..."
 msgstr "Yüklediğiniz eklentileri kontrol ederken lütfen bekleyin..."
 
 #
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Ağ arayüzleriniz hazırlanırken lütfen bekleyin..."
-
-#
-msgid "Please wait while we test your network..."
-msgstr "Ağ bağlantınız test edilirken lütfen bekleyin..."
-
-#
 msgid "Please wait while your network is restarting..."
 msgstr "Ağınız yeniden başlatılırken lütfen bekleyin..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Arayüz ayarlarınız geri yüklenirken lütfen bekleyin..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Kaynak durumu kontrol edilirken lütfen bekleyin."
@@ -15161,10 +15494,6 @@ msgstr "Çoklu Önyükleme seçimi için OK tuşuna basın."
 msgid "Press OK on your remote control to continue."
 msgstr "Devam etmek için kumandanızın OK tuşuna basın."
 
-#
-msgid "Press OK to activate the settings."
-msgstr "Ayarları etkinleştirmek için OK tuşuna basın."
-
 msgid "Press OK to continue."
 msgstr "Devam etmek için lütfen OK tuşuna basın."
 
@@ -15290,15 +15619,14 @@ msgstr "Önceki/Sonraki sayfa"
 msgid "Prevsong"
 msgstr "Önceki şarkı"
 
-#
-msgid "Primary DNS"
-msgstr "Birincil DNS"
-
 msgid "Primary DNS (IPv4)"
 msgstr "Birincil DNS (IPv4)"
 
 msgid "Primary DNS (IPv6)"
 msgstr "Birincil DNS (IPv6)"
+
+msgid "Prime Time"
+msgstr "Prime Time"
 
 msgid "Prime time"
 msgstr "Prime time"
@@ -15666,11 +15994,20 @@ msgstr "Reyting belirtilmemiş"
 msgid "Re-enter new PIN"
 msgstr "Yeni PIN kodunu tekrar girin"
 
+msgid "Reachable"
+msgstr "Erişilebilir"
+
 msgid "Read Only"
 msgstr "Salt Okunur"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Oscam.conf'dan kullanıcı bilgisi oku"
+
+msgid "Read block size"
+msgstr "Blok boyutunu oku"
+
+msgid "Read-Only"
+msgstr "Salt Okunur"
 
 msgid "Read/Write"
 msgstr "Okuma/Yazma"
@@ -15731,6 +16068,9 @@ msgstr "Şimdi kapatmak istiyor musunuz?"
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "Kodi'yi gerçekten başlatıp kullanıcı arayüzünü şimdi durdurmak mı istiyorsunuz?"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr "RetroGaming'i gerçekten başlatıp kullanıcı arayüzünü şimdi kapatmak mı istiyorsunuz?"
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Ön paneli gerçekten yükseltip şimdi yeniden başlatılsın mı?"
@@ -15827,6 +16167,18 @@ msgstr "Kaydedilebilir medya araç kutusu"
 msgid "Recording"
 msgstr "Kayıt"
 
+msgid "Recording And Status Indicators"
+msgstr "Kayıt ve Durum Göstergeleri"
+
+msgid "Recording Filenames And Data"
+msgstr "Kayıt Dosya Adları ve Veriler"
+
+msgid "Recording Locations"
+msgstr "Kayıt Konumları"
+
+msgid "Recording Preparation And Margins"
+msgstr "Kayıt Hazırlığı ve Aralıklar"
+
 msgid "Recording Settings"
 msgstr "Kayıt Ayarları"
 
@@ -15904,6 +16256,9 @@ msgstr "Uygun bir dizin olmadan kayıtlar doğru şekilde çalışmayabilir."
 
 msgid "Recovery"
 msgstr "Kurtarma"
+
+msgid "Recovery And Hardware"
+msgstr "Kurtarma ve Donanım"
 
 #
 msgid "Recovery Mode"
@@ -16047,11 +16402,20 @@ msgstr "Uzaktan Kumanda Tuş Ayarları"
 msgid "Remote Control Code Settings"
 msgstr "Uzaktan Kumanda Kodu Ayarları"
 
+msgid "Remote Receiver Connection"
+msgstr "Uzak Alıcı Bağlantısı"
+
+msgid "Remote Timers"
+msgstr "Uzak Zamanlayıcılar"
+
 msgid "Remote control information"
 msgstr "Uzaktan kumanda bilgileri"
 
 msgid "Remote control type"
 msgstr "Uzaktan kumanda tipi"
+
+msgid "Remote path"
+msgstr "Uzak konum"
 
 msgid "Remote receiver"
 msgstr "Yedek uzak alıcı"
@@ -16084,6 +16448,9 @@ msgstr "Kablolu Kanalları Kaldır"
 
 msgid "Remove Confirmation"
 msgstr "Kaldırma Onayı"
+
+msgid "Remove Credentials"
+msgstr "Kimlik Bilgilerini Kaldır"
 
 #
 msgid "Remove Entry"
@@ -16319,6 +16686,15 @@ msgstr "İstenen ortam tipi:"
 msgid "Rereading partition table"
 msgstr "Bölüntü tablosu tekrar okunuyor"
 
+msgid "Rescan"
+msgstr "Tekrar tara"
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr "Mevcut Wi-Fi ağlarını tekrar tara"
+
+msgid "Rescan for available network shares"
+msgstr "Mevcut ağ paylaşımlarını tekrar tara"
+
 msgid "Reserved"
 msgstr "Rezerve"
 
@@ -16387,9 +16763,19 @@ msgstr "Çözünürlük"
 msgid "Resolution unit"
 msgstr "Çözünürlük birimi"
 
+msgid "Resolving..."
+msgstr "Çözülüyor..."
+
 #
 msgid "Restart"
 msgstr "Yeniden başlat"
+
+#, python-format
+msgid "Restart %s"
+msgstr "%s'yi Yeniden Başlat"
+
+msgid "Restart Adapter"
+msgstr "Bağdaştırıcıyı Yeniden Başlat"
 
 #
 msgid "Restart GUI"
@@ -16407,12 +16793,6 @@ msgstr "Kullanıcı Arayüzü şimdi yeniden başlatılsın mı?"
 
 msgid "Restart Network"
 msgstr "Ağı Yeniden Başlat"
-
-msgid "Restart Network Adapter"
-msgstr "Ağ Bağdaştırıcısını Yeniden Başlat"
-
-msgid "Restart OSCam"
-msgstr "OSCam'i Yeniden Başlat"
 
 msgid "Restart enigma"
 msgstr "Enigmayı Yeniden Başlat"
@@ -16434,8 +16814,15 @@ msgstr "Geçerli kurulumla ağı yeniden başlat"
 msgid "Restart test"
 msgstr "Testi yeniden başlat"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın."
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr "%s yeniden başlatılamadı (çıkış kodu %s)"
+
+msgid "Restarting adapter..."
+msgstr "Bağdaştırıcı yeniden başlatılıyor..."
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr "Kayıtlı Wi-Fi ağı yeniden başlatılıyor..."
 
 msgid "Restarting..."
 msgstr "Yeniden başlatılıyor..."
@@ -16446,9 +16833,6 @@ msgstr "Geri yükle"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "Silinen Kullanıcı Buketlerini Geri Yükle"
-
-msgid "Restore MetrixHD Settings"
-msgstr "MetrixHD Ayarlarını Geri Yükle"
 
 msgid "Restore Plugins"
 msgstr "Eklentileri Geri Yükle"
@@ -16511,6 +16895,9 @@ msgstr "%s konumundan devam et"
 #
 msgid "Resuming playback"
 msgstr "Oynatmaya devam ediliyor"
+
+msgid "Retest"
+msgstr "Tekrar test"
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16716,11 +17103,11 @@ msgstr "Réunion"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd Ayarları"
-
 msgid "SAT"
 msgstr "SAT"
+
+msgid "SAT input"
+msgstr "SAT girişi"
 
 msgid "SATA"
 msgstr "SATA"
@@ -16758,6 +17145,9 @@ msgstr "SD kart anahtarı HATASI! - zaten mmc'de"
 
 msgid "SINGLE LAYER DVD"
 msgstr "TEK KATMAN DVD"
+
+msgid "SMB version"
+msgstr "SMB sürümü"
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "SMS tarzı Hızlı Seçim giriş seçimi"
@@ -16815,7 +17205,7 @@ msgstr "Samba İstemcisi"
 msgid "Samba Server"
 msgstr "Samba Sunucusu"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba Ayarları"
 
 msgid "Same as in active"
@@ -16981,6 +17371,26 @@ msgstr "Zaman-kaydırmayı film olarak sakla ve kaydı durdur"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Şimdi zaman kaydırma arabelleğinden tasarruf et ve kayda devam et"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr "Kayıtlı Wi-Fi Ağı '%s' İçerik Menüsü"
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr "Kayıtlı Wi-Fi Ağı '%s' Ayarları"
+
+msgid "Saved Wi-Fi Networks"
+msgstr "Kayıtlı Wi-Fi Ağları"
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr "Kayıtlı Wi-Fi ağı bağlantısı devre dışı bırakıldı."
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr "Kayıtlı Wi-Fi ağı bağlantısı etkinleştirildi."
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr "Kayıtlı Wi-Fi ağına, bir sonraki sistem başlatma işleminde otomatik olarak yeniden bağlanılacaktır."
+
 msgid "Saved lines in script messages"
 msgstr "Komut dosyası mesajlarında kaydedilen satırlar"
 
@@ -17020,6 +17430,9 @@ msgstr "%s tara"
 msgid "Scan %s band"
 msgstr "%s bandını tara"
 
+msgid "Scan Wi-Fi Networks"
+msgstr "Wi-Fi Ağlarını Tara"
+
 #
 msgid "Scan additional SR"
 msgstr "Ek SR taraması yap"
@@ -17037,13 +17450,6 @@ msgstr "Yerel eklentileri tarayın ve yükleyin."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Karasal LCN'leri tarayın ve LCN buketleri oluşturun"
-
-#
-msgid "Scan wireless networks"
-msgstr "Kablosuz Ağları Tara"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Ağınızdaki kablosuz erişim noktalarını tarayın ve seçtiğiniz kablosuz cihazı kullanarak bunlara bağlanın."
 
 msgid "Scanning"
 msgstr "Tarama"
@@ -17067,6 +17473,12 @@ msgstr[0] "Tarama tamamlandı, %d kanal bulundu."
 
 msgid "Scanning failed!"
 msgstr "Tarama başarısız oldu!"
+
+msgid "Scanning for shares..."
+msgstr "Paylaşımlar taranıyor..."
+
+msgid "Scanning..."
+msgstr "Tarıyor..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -17185,10 +17597,6 @@ msgstr "Batı aranıyor..."
 msgid "Second cable of motorized LNB"
 msgstr "Motorlu LNB'nin ikinci kablosu"
 
-#
-msgid "Secondary DNS"
-msgstr "İkincil DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr "İkincil DNS (IPv4)"
 
@@ -17273,6 +17681,9 @@ msgstr "'Universal' bir LNB kullanıyorsanız 'Polarizasyon' seçeneğini belirl
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Önceden tanımlanmış kablo çoklayıcıları listesinden tarama yapmak için 'Sağlayıcı' yı seçin. Spektrumun yalnızca belirli bölümlerini taramak için 'Bantlar'ı seçin. Belirli bir frekans bant genişliğinde adımlar halinde tarama yapmak için 'Adımlar'ı seçin."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr "Sunucu yanıt vermez hale geldiğinde, dosya erişiminde sonsuza kadar yeniden deneme yerine bir hata mesajı çıkmasını sağlamak için 'Esnek bağlantı' seçeneğini seçin. Varsayılan seçenek olan 'Sert bağlantı' seçeneği, fark edilmeyen veri kaybına karşı koruma sağlar; ancak sunucuya erişilemediği durumlarda bu paylaşıma erişen programların donmasına neden olabilir."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Her buketteki her kanal için benzersiz numaralar atamak üzere 'Özel numaralandırma' seçin. Her buketi 1'den başlayarak numaralandırmak için 'Buketler 1'den başlar' kullanın. Kanalın kullanıldığı her yerde tutarlı kanal LCN'leri kullanmak için 'LCN numaralandırması' kullanın."
@@ -17429,6 +17840,9 @@ msgstr "Bir metin dosyasını düzenlerken imleç konumunu satırın sonuna ayar
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında 'dev', 'staticdev', 'dbg' ve 'doc' paketlerini göstermek için 'Evet'i seçin."
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Eklentileri Yükle ekranında Kodi eklenti paketlerini göstermek için 'Evet'i seçin."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında LCD arayüz paketlerini göstermek için 'Evet'i seçin."
@@ -17610,6 +18024,9 @@ msgstr "Yükseltme Kaynağını Seç"
 msgid "Select Upgrade Source To Edit"
 msgstr "Düzenlemek İçin Yükseltme Kaynağını Seç"
 
+msgid "Select Wi-Fi adapter"
+msgstr "Wi-Fi bağdaştırıcısını seçin"
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "AutoCam için varsayılan olarak mevcut listeden bir Softcam seçin."
 
@@ -17653,6 +18070,9 @@ msgstr "Bir film seç"
 msgid "Select a network adapter"
 msgstr "Bir ağ bağdaştırıcısı seçin"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr "Yapılandırmak istediğiniz ağ arayüzünü seçin veya ağ yapılandırmasını daha sonra sistem ayarlarında yapmak üzere bu adımı atlayın."
+
 msgid "Select a permanent mount point for all devices"
 msgstr "Tüm cihazlar için kalıcı bir bağlama noktası seçin"
 
@@ -17665,6 +18085,12 @@ msgstr "Görüntülemek istediğiniz depo taahhüt günlüğünü seçin:"
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr "Otomatik iletişime izin vermek yerine belirli bir NFS protokol sürümünü zorlamak için belirli bir NFS sürümünü seçin."
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr "Otomatik iletişime izin vermek yerine, kullanılacak belirli bir SMB protokol sürümünü seçin. 'Eski sürüm (SMB1)' seçeneğini yalnızca, daha yeni ve daha güvenli olan SMB2/SMB3 protokollerini desteklemeyen eski sunucular için kullanın."
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "Kanal Değiştirme zamanlayıcısı mevcut kanalı değiştirmeden önce bir onay mesajının görüntülenmesi için bir süre aralığı seçin. Bu, kullanıcının Kanal Değiştirmeyi iptal etmesine olanak tanır. Kanal Değiştirmenin, onay alınmadan devam etmesini sağlamak için “Devre Dışı” seçeneğini seçin."
 
@@ -17676,10 +18102,6 @@ msgstr "Bekleme modundayken, şifre çözme işleminin başlamasından önce bir
 
 msgid "Select a tuner"
 msgstr "Bir tuner seçin"
-
-#
-msgid "Select a wireless network"
-msgstr "Kablosuz ağ seçin"
 
 msgid "Select action"
 msgstr "İşlemi seç"
@@ -17732,6 +18154,9 @@ msgstr "Varsayılan File Commander dizinini seçin:"
 msgid "Select destination for:"
 msgstr "Hedefi seçin:"
 
+msgid "Select exported directories"
+msgstr "Dışa aktarılan dizinleri seçin"
+
 msgid "Select files to exclude from backup"
 msgstr "Yedeklemeden çıkarılacak dosyaları seçin"
 
@@ -17778,9 +18203,6 @@ msgstr "Uydu anteninin nasıl kurulacağını seçin. Örneğin, sabit anten, te
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Bekleme durumuna ilişkin planlamanın nasıl ele alınacağını seçin."
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Bu DVB-C/T tunerin nasıl bağlanacağını seçin. Harici koaksiyel anahtar seçeneğini yalnızca 5V kontrollü koaksiyel anahtarla kullanın."
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Hızlı EPG modunu nasıl etkinleştireceğinizi seçin."
 
@@ -17792,6 +18214,9 @@ msgstr "Bir bitiş zamanı gerekip gerekmediğini seçin."
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Kanal seçimi açılır ekranına rakam girerken veri girişi zaman aşımı uygulanıp uygulanmayacağını seçin. Zaman aşımı aşıldığında, kanal seçimi için şu anda girilen sayı kullanılacaktır. Varsayılan zaman aşımı süreleri ilk rakam için 3 saniye, diğer rakamlar için 1 saniyedir."
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr "Dosya kilitleme özelliğinin kullanılabilir olup olmadığını seçin. Daha eski/basit NFS sunucularıyla en uyumlu olan 'nolock' seçeneğini ayarlara eklemek için 'Hayır'ı seçin."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Bir kurulum girdisi için varsayılan değerin gösterilip gösterilmeyeceğini ve gösteriliyorsa, açıklamaya göre nerede görüntüleneceğini seçin."
@@ -17842,13 +18267,6 @@ msgid "Select input device."
 msgstr "Giriş cihazı seçin."
 
 #
-msgid "Select interface"
-msgstr "Arayüz seçin"
-
-msgid "Select menu entry"
-msgstr "Menü girişini seçin"
-
-#
 msgid "Select movie"
 msgstr "Bir film seçin"
 
@@ -17892,7 +18310,7 @@ msgstr "%s girişini seçin"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Yapay zeka destekli çeviri için hedef dili seçin."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "IP adresini çözümlemek için kullanılacak DNS sunucularını seçin."
 
 msgid "Select the No / False response"
@@ -17980,6 +18398,9 @@ msgstr "Bu zamanlayıcı için kullanılacak kanalı veya hizmeti seçin."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Klavye imlecinin altındaki karakteri veya işlemi seçin"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr "Uzak dosya adlarını eşleştirmek/çevirmek için kullanılacak karakter setini (iocharset) seçin."
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Alıcı çalışırken ön paneldeki güç LED'inin rengini seçin. Bu seçenek ayrıca LED'in devre dışı bırakılmasına/kapatılmasına da olanak tanır."
@@ -18136,11 +18557,14 @@ msgstr "SCR cihazınızın üreticisini seçin. Üretici listede yoksa, 'SCR' se
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Teletext uygulamasından çıkarken ekran çözünürlüğünü ve çerçeve arabelleğini geri yükleme yöntemini seçin."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
-msgstr "Otomatik olarak dışa aktarılan Samba paylaşımları için erişim modunu seçin."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
+msgstr "Otomatik olarak dışa aktarılan tüm Samba paylaşımlarına uygulanan erişim modunu (Okuma/Yazma veya Salt Okunur) seçin."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
-msgstr "Dışa aktarılan tüm dizinlere uygulanacak erişim modunu (Okuma/Yazma veya Sadece Okuma) seçin."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
+msgstr "Dışa aktarılan tüm dizinlere uygulanacak erişim modunu (Okuma/Yazma veya Salt Okunur) seçin."
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr "Bu paylaşım bağlantısı için erişim modunu (Okuma/Yazma veya Salt Okunur) seçin."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Unicable cihazınızın model numarasını seçin. Model numarası listede yoksa, 'SCR' ayarını 'Kullanıcı tanımlı' olarak belirleyin ve cihaz parametrelerini özelliklerine göre manuel olarak girin."
@@ -18157,15 +18581,6 @@ msgstr "Film yolunu seçin"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Belirtilen zamanlayıcının etkinleşmesi için gerekli ağ veri hızını seçin. Bu hızın üzerindeki trafik zamanlayıcıyı devre dışı bırakacaktır."
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"İnternet bağlantısı için kullanılacak ağ arayüzünü seçin.\n"
-"\n"
-"Devam etmek için OK tuşuna basın."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
 msgstr "Bu ağ bağdaştırıcısı için ağ ölçütünü seçin. Birden fazla ağ bağdaştırıcısı etkin olduğunda, en düşük ağ ölçütüne sahip olan ağ bağdaştırıcısı ağ trafiği için varsayılan yönlendirme olarak kullanılır."
@@ -18204,6 +18619,9 @@ msgstr "Önceki kanalı seçin, tarayıcıyı kapatın ve bütün menülerden ç
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "SCR cihazınız tarafından kullanılan protokolü seçin. Seçenekler 'SCR Unicable' (Unicable) veya 'SCR JESS' (Unicable II olarak da bilinen JESS)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr "Okuma bloğu arabellek boyutu (rsize) bağlantı seçeneğini seçin. Çekirdek ve sunucunun en uygun boyutu belirlemesi için 'Otomatik' seçeneğini kullanın."
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "TV alıcı girişinden başka bir girişe geçtiğinde alıcının eylemini seçin."
 
@@ -18236,6 +18654,9 @@ msgstr "Pikonları bulmak için arama modunu seçin. 'Tek yol modu' tüm pikonla
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr "Seçilen kablosuz ağa erişmek için kullanılacak güvenlik protokolünü seçin."
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
+msgstr "Kullanılacak paylaşım protokolünü seçin: SMB (Windows tarzı paylaşımlar) veya NFS (Mac ve Linux paylaşımları)."
 
 msgid "Select the shifted character set"
 msgstr "Kaydırılmış karakter kümesini seçin"
@@ -18330,14 +18751,8 @@ msgstr "Bu zamanlayıcının türünü seçin."
 msgid "Select the video mode to be used on the TV."
 msgstr "TV'de kullanılacak görüntü modunu seçin."
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Bağlanmak istediğiniz kablosuz ağı seçin.\n"
-"\n"
-"Devam etmek için OK tuşuna basın."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr "Yazma bloğu arabellek boyutu (wsize) bağlantı seçeneğini seçin. Çekirdek ve sunucunun en uygun boyutu belirlemesi için 'Otomatik' seçeneğini kullanın."
 
 msgid "Select update source location"
 msgstr "Güncelleme kaynağı konumunu seçin"
@@ -18382,6 +18797,9 @@ msgstr "TV tuşunun hangi işlevi etkinleştirmesini istediğinizi seçin."
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "YUKARI/AŞAĞI tuşunun hangi işlevi etkinleştirmesini istediğinizi seçin."
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr "Uzak paylaşımın ne zaman ve nasıl bağlanacağını seçin. Çoğu durumda autofs kullanılması önerilir."
+
 msgid "Select where the recording should be saved."
 msgstr "Kaydın nereye kaydedileceğini seçin."
 
@@ -18406,7 +18824,7 @@ msgstr "DTS kanal ses parçalarının stereoya indirgenip karıştırılmayacağ
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Dolby TrueHD ses parçalarının olduğu gibi mi yoksa çözümlenerek mi iletileceğini seçin."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "IPv4, IPv6 veya her iki protokolün de kullanılacağını seçin. Her ikisi de etkinleştirilmişse, hangisinin tercih edileceğini belirtin."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -18426,10 +18844,6 @@ msgstr "Motorlu anten hareket halindeyken bir simge gösterilip gösterilmeyece�
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Bu ağ bağdaştırıcısı ile hangi IP protokollerinin kullanılabileceğini seçin."
-
-#
-msgid "Select wireless network"
-msgstr "Kablosuz ağı seçin"
 
 #
 msgid "Select your ATSC provider."
@@ -18550,10 +18964,13 @@ msgstr "Ciddi müzik/Klasik müzik"
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "Ciddi/Klasik/Dini/Tarihsel/Dram"
 
+msgid "Server"
+msgstr "Sunucu"
+
 msgid "Server down"
 msgstr "Sunucu çökmesi"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Sunucu kendi engelleme listesini zorunlu kılmamalıdır. Bazı sunucular, ebeveyn kontrolü, reklam engelleme vb. nedenlerle siteleri engellemek için kendi kara listelerini uygulayabilir."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -18593,6 +19010,9 @@ msgstr "Kanal Bilgileri"
 
 msgid "Service Information Actions"
 msgstr "Kanal Bilgisi İşlemleri"
+
+msgid "Service List Appearance"
+msgstr "Kanal Listesi Görünümü"
 
 msgid "Service Scan"
 msgstr "Kanal Taraması"
@@ -18836,7 +19256,7 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Tekrarlanan döngüler arasındaki gecikme süresini ayarlayın, bu bazı arayüzlerde yazılım tabanlı görüntüleyici tarafından kullanılır."
 
 msgid "Set the hostname or IP address."
-msgstr "Ana bilgisayar ismini veya IP adresini ayarlayın."
+msgstr "Sunucu adını veya IP adresini ayarlayın."
 
 msgid "Set the jump-size of the SeekBar."
 msgstr "Arama çubuğunun atlama boyunu belirleyin."
@@ -18960,17 +19380,20 @@ msgstr "Tuşun ne yapmasını istediğinizi ayarlayın."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Spinner simgesinin temel nedenini hata ayıklamak için \"evet\" olarak ayarlayın."
 
+msgid "Set up network"
+msgstr "Ağı kur"
+
 msgid "Set up tuner [TUNER]"
 msgstr "Tuneri ayarlayın [TUNER]"
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Tuneri ayarlayın [TUNER].\n"
+"Tuneri [TUNER] ayarlayın.\n"
 "\n"
-"Hibrid tuner modelleri için SOL ve SAĞ tuşları ile Tuner Tipini değiştirin."
+"Birden fazla alım türünü destekleyen tunerlerde, mevcut her bir türü ayrı olarak yapılandırın."
 
 msgid "Set voltage and 22KHz"
 msgstr "Voltaj ayarı ve 22KHz"
@@ -19320,6 +19743,9 @@ msgstr "Bilgi Çubuğunda pikonları göster"
 msgid "Show Kernel packages"
 msgstr "Çekirdek paketlerini göster"
 
+msgid "Show Kodi Add-on packages"
+msgstr "Kodi Eklenti paketlerini göster"
+
 #
 msgid "Show Live in MiniTV"
 msgstr "MiniTV'de Canlı Yayınları Göster"
@@ -19446,10 +19872,6 @@ msgstr "Ana menüde VCR SCART göster"
 
 msgid "Show Vertical EPG"
 msgstr "Dikey EPG Göster"
-
-#
-msgid "Show WLAN status"
-msgstr "Kablosuz Ağ bağlantı durumunu göster"
 
 msgid "Show Web Link packages"
 msgstr "Web Bağlantı paketlerini göster"
@@ -19617,10 +20039,6 @@ msgid "Show in Standby"
 msgstr "Bekleme Modunda göster"
 
 #
-msgid "Show info"
-msgstr "Bilgi Göster"
-
-#
 msgid "Show info line"
 msgstr "Bilgi satırını göster"
 
@@ -19663,6 +20081,9 @@ msgstr "Filmleri göster"
 
 msgid "Show multi channel EPG"
 msgstr "Çoklu kanal EPG göster"
+
+msgid "Show network adapter connection information"
+msgstr "Ağ bağdaştırıcısı bağlantı bilgilerini göster"
 
 msgid "Show next commit log"
 msgstr "Sonraki taahhüt günlüğünü göster"
@@ -19854,6 +20275,9 @@ msgstr "CCcam Bilgi Ekranını Göster"
 msgid "Show the Logs Settings screen"
 msgstr "Günlük Ayarları ekranını göster"
 
+msgid "Show the Network Information for the selected adapter"
+msgstr "Seçili bağdaştırıcı için Ağ Bilgilerini göster"
+
 msgid "Show the OSCam information screen"
 msgstr "OSCam bilgi ekranını göster"
 
@@ -19937,9 +20361,6 @@ msgstr "LCD'de canlı televizyon veya bilgileri gösterir."
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Yeni/Görülmemiş içerikler için simgeleri gösterir, aksi takdirde simge göstermez."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Kablosuz Ağ bağlantınızın durumunu gösterir."
-
 msgid "Shows the watched status of the media."
 msgstr "Medya içeriklerinin izlenme durumunu gösterir."
 
@@ -19955,8 +20376,9 @@ msgstr "Kapat"
 msgid "Shutdown"
 msgstr "Kapat"
 
-msgid "Shutdown OSCam"
-msgstr "OSCam'i Kapat"
+#, python-format
+msgid "Shutdown %s"
+msgstr "%s'yi Kapat"
 
 msgid "Shutting down. Please wait..."
 msgstr "Kapatılıyor. Lütfen bekleyin..."
@@ -19976,16 +20398,8 @@ msgstr "Sigma Tasarımları"
 msgid "Signal Finder"
 msgstr "Sinyal Bulucu"
 
-#
-msgid "Signal quality"
-msgstr "Sinyal kalitesi"
-
 msgid "Signal strength"
 msgstr "Sinyal gücü"
-
-#
-msgid "Signal: "
-msgstr "Sinyal: "
 
 msgid "Signed by"
 msgstr "İmzalayan"
@@ -20087,6 +20501,9 @@ msgstr "Arayüz ayarı"
 msgid "SkinSelection"
 msgstr "Arayüz Seçimi"
 
+msgid "Skip Modes"
+msgstr "Modları Atla"
+
 msgid "Skip back"
 msgstr "Geri dön"
 
@@ -20131,6 +20548,9 @@ msgstr "İleriye atla (zamanı girin)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Eklentilerle zaman kaydırma yaparken canlı yayına geçişi atlayın"
+
+msgid "Skip network setup"
+msgstr "Ağ kurulumunu atla"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Paket kurulumu atlanacak, yalnızca temel paketler kullanılabilir olacak"
@@ -20371,6 +20791,9 @@ msgstr "Toplum & Kültür"
 msgid "Socket"
 msgstr "Soket"
 
+msgid "Soft mount"
+msgstr "Esnek Bağlantı"
+
 msgid "SoftCSA Settings"
 msgstr "SoftCSA Ayarları"
 
@@ -20391,6 +20814,9 @@ msgstr "Softcam Kurulumu"
 
 msgid "Softcams"
 msgstr "Softcamlar"
+
+msgid "Software Display Scrolling"
+msgstr "Yazılım Ekranı Kaydırma"
 
 #
 msgid "Software Management"
@@ -20512,6 +20938,18 @@ msgstr "Eklentiler Listesi girişlerini sırala"
 msgid "Sort by"
 msgstr "Göre sırala"
 
+msgid "Sort by Hostname/IP Address"
+msgstr "Sunucu Adına/IP Adresine göre sırala"
+
+msgid "Sort by IP Address"
+msgstr "IP Adresine Göre Sırala"
+
+msgid "Sort by Mount Name"
+msgstr "Bağlantı Adına göre sırala"
+
+msgid "Sort by Name"
+msgstr "Ada Göre Sırala"
+
 msgid "Sort by default"
 msgstr "Varsayılan olarak sırala"
 
@@ -20541,6 +20979,9 @@ msgstr "Soul/Ritim ve Blues"
 #
 msgid "Sound"
 msgstr "Ses"
+
+msgid "Sound Enhancements"
+msgstr "Ses İyileştirmeleri"
 
 #
 msgid "Sound carrier"
@@ -20610,9 +21051,6 @@ msgstr "Özel etkinlikler (Olimpiyat Oyunları, Dünya Kupası, vb.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Medya Oynatıcı başlatılırken kullanılacak dizini belirtin."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Yalnızca ana bilgisayar adı sağlandığında uygulanacak ağ DNS sonekini belirtin. Bu, DNS çözümleyicisinin istenen ana bilgisayarı bulmasına yardımcı olur."
-
 msgid "Speed"
 msgstr "Hız"
 
@@ -20667,6 +21105,10 @@ msgstr "TV kapatılmadan bekleme modu"
 msgid "Start"
 msgstr "Başlat"
 
+#, python-format
+msgid "Start %s"
+msgstr "%s'yi Başlat"
+
 msgid "Start Auto Refresh"
 msgstr "Otomatik Yenilemeyi Başlat"
 
@@ -20719,10 +21161,6 @@ msgstr "Yeniden denemeyi başlat"
 msgid "Start teletext"
 msgstr "Teletext başlat"
 
-#
-msgid "Start test"
-msgstr "Testi başlat"
-
 msgid "Start the Chkroot initialization"
 msgstr "Chkroot başlatma işlemini başlatın"
 
@@ -20751,6 +21189,10 @@ msgstr "Cam'ı başlat / durdur / seç"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Cam'ı başlatın/durdurun/seçin, öncelikle bir softcam yüklemeniz gerekir"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr "%s başlatılamadı (çıkış kodu %s)"
+
 msgid "Starting Softcam"
 msgstr "Softcami Başlat"
 
@@ -20770,12 +21212,18 @@ msgstr "Başlangıç zamanı"
 msgid "Starts in a few seconds"
 msgstr "Birkaç saniye içinde başlayacak"
 
+msgid "Startup And Wakeup"
+msgstr "Başlatma ve Uyandırma"
+
 msgid "Startup device not found!"
 msgstr "Başlangıç cihazı bulunamadı!"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Şehir"
+
+msgid "Static"
+msgstr "Statik"
 
 msgid "Static IP / Custom"
 msgstr "Statik IP / Özel"
@@ -20873,10 +21321,6 @@ msgid "Stop streams"
 msgstr "Akışları durdur"
 
 #
-msgid "Stop test"
-msgstr "Testi durdur"
-
-#
 msgid "Stop testing plane after # failed transponders"
 msgstr "Hatalı aktarıcı sayısına ulaşıldığında testi durdur"
 
@@ -20905,6 +21349,10 @@ msgstr "Zamanlayıcı kaydını durdur"
 msgid "Stopped"
 msgstr "Durduruldu"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr "%s durdurulamadı (çıkış kodu %s)"
+
 msgid "Stopping Softcam"
 msgstr "Softcamı durdur"
 
@@ -20924,6 +21372,9 @@ msgstr "Depolama / Diskler"
 msgid "Storage / Drive information"
 msgstr "Depolama / Sürücü bilgileri"
 
+msgid "Storage And Deletion"
+msgstr "Depolama ve Silme"
+
 #
 msgid "Storage Devices"
 msgstr "Depolama Cihazları"
@@ -20942,6 +21393,12 @@ msgstr "Depolama cihazı yazılabilir değil!"
 #
 msgid "Store position"
 msgstr "Depo konumu"
+
+msgid "Stored credentials deleted for this server."
+msgstr "Bu sunucuya ait kayıtlı kimlik bilgileri silindi."
+
+msgid "Stored credentials for this server have been deleted."
+msgstr "Bu sunucuya ait kayıtlı kimlik bilgileri silinmiştir."
 
 #
 msgid "Stored position"
@@ -21037,6 +21494,9 @@ msgstr "Altyazı"
 #
 msgid "Subtitle Actions"
 msgstr "Altyazı İşlemleri"
+
+msgid "Subtitle Language And Selection"
+msgstr "Altyazı Dili ve Seçimi"
 
 #
 msgid "Subtitle Quickmenu"
@@ -21268,9 +21728,6 @@ msgstr "Diğer sütuna geçin"
 msgid "Switch to the right column"
 msgstr "Sağ sütuna geçin"
 
-msgid "Switchable tuner types:"
-msgstr "Değiştirilebilir tuner tipleri:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Canlı yayına geçiliyor - zaman kaydırma özelliği hala aktif!"
 
@@ -21376,17 +21833,17 @@ msgstr "TUNER:"
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "TV Girişi ve Alıcının Başlatılması"
+
+msgid "TV Power"
+msgstr "TV Gücü"
+
 msgid "TV button mode"
 msgstr "TV tuşu modu"
 
-msgid "TV input and receiver wakeup"
-msgstr "TV Girişi ve Alıcının Başlatılması"
-
 msgid "TV physical address report"
 msgstr "TV fiziksel adres raporu"
-
-msgid "TV power"
-msgstr "TV Gücü"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21492,6 +21949,9 @@ msgstr "Teletext StartX (sol kenarlık)"
 msgid "Teletext StartY (lower border)"
 msgstr "Teletext StartY (alt sınır)"
 
+msgid "Teletext Subtitles"
+msgstr "Teletext Altyazıları"
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletext TTFBold (0 = normal, 1 = kalın)"
 
@@ -21556,6 +22016,9 @@ msgstr "Tenis/Squash"
 msgid "Terrestrial"
 msgstr "Karasal"
 
+msgid "Terrestrial input"
+msgstr "Karasal yayın girişi"
+
 msgid "Test"
 msgstr "Test"
 
@@ -21572,10 +22035,6 @@ msgstr "Test işlemi başarısız oldu!"
 #
 msgid "Test mode"
 msgstr "Test modu"
-
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "%s %s cihazınızın ağ yapılandırmasını test edin."
 
 #
 msgid "Test type"
@@ -21697,24 +22156,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "IceTV sunucusu, %s için şifre istedi."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"İnternet bağlantısı çalışıyor gibi görünüyor.\n"
-"\n"
-"Devam etmek için OK tuşuna basın."
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"İnternet bağlantısı çalışmıyor gibi görünüyor!\n"
-"\n"
-"Sonra ne yapacağınızı seçin."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21887,13 +22328,6 @@ msgstr "Resmin yüksekliği. Girdi, bu değere uyacak şekilde ölçeklendirilec
 msgid "The loopthrough setting is wrong."
 msgstr "Döngüsel geçiş ayarı yanlış."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Ağ sihirbazı uzantısı yüklü değil!\n"
-"Lütfen yükleyin."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Pikon dizini zaten mevcut ve silinmesi gerekiyor. Devam etmek istiyor musunuz?"
 
@@ -21972,36 +22406,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "Kodi'nin çalışması için %s %s alıcınızın kullanıcı arayüzü durdurulacak"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr "%s %s cihazınızın kullanıcı arayüzü RetroGaming'i çalıştırmak için durdurulacak"
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Resmin genişliği. Girdi, bu değere uyacak şekilde ölçeklendirilecektir."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Kablosuz Ağ İnternet bağlantısı başlatılamadı!\n"
-"Kablosuz Ağ cihazı bağlı mı?\n"
-"\n"
-"Sonra ne yapacağınızı seçin."
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"Kablosuz Ağ eklenti kodu yüklü değil!\n"
-"\n"
-"Yükleyin ve sonra ne yapacağınızı seçin."
-
-#
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Kablosuz Ağ eklentisi yüklü değil!\n"
-"Lütfen yükleyin."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "Sihirbaz geçerli ayarlarınızın yedeğini alabilir. Yedeklemeyi şimdi başlatmak ister misiniz?"
@@ -22086,6 +22496,9 @@ msgstr "Büyük dosyaların işlenmesi bu donanımda çok uzun sürebileceğinde
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Bu, bekleme moduna geçtikten sonra tekrar uyanan bazı cihazlar için bir geçici çözümdür. Diğer cihazlardan gelen uyandırma komutu birkaç saniyeliğine yok sayılacaktır."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Bu, tek tunerin alım türlerinden biridir. Etkinleştirilen alım türleri otomatik olarak değiştirilir ve ayrı olarak taranır."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Bu, şu anda seçili olan dildir. [%s]"
@@ -22108,6 +22521,9 @@ msgstr "Bu menü %s %s üzerindeki yazılımın yönetilmesiyle ilgili seçenekl
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Bu ayar yalnızca kanalın kendi ses seviyesi ayarı yoksa kullanılacaktır."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Bu seçenek, HDMI çıkışı HDR modundayken SDR grafiklerini ve OSD renklerini ayarlar."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Bu seçenek görüntüdeki blok gürültüsünü azaltmaya olanak tanır. Elbette bu, görüntünün keskinliğinden ödün vermek anlamına gelir."
@@ -22324,60 +22740,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Bu ayar yalnızca özel kurulumlar içindir. Bu ayar, bu LNB'ye daha düşük değerlere sahip diğer LNB'lere göre daha yüksek öncelik verir. En yüksek önceliğe sahip boş LNB, ayarlama hizmetleri için ilk seçilecek LNB olacaktır."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Bu test yapılandırılmış DNS ayarlarını kontrol eder.\n"
-"Eğer \"onaylanmamış\" mesajı alırsanız:\n"
-"- Lütfen DHCP, kablolama ve adaptör ayarlarınızı kontrol edin.\n"
-"- Eğer ad sunucularınızı manuel olarak yapılandırdıysanız, lütfen \"Ad Sunucusu\" yapılandırmasındaki girişlerinizi doğrulayın"
-
-#
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Bu test, ağ kablosunun Kablolu Ağ adaptörünüze bağlı olup olmadığını kontrol eder.\n"
-"Eğer \"Bağlı değil\" mesajı alırsanız:\n"
-"- Ağ kablosunun takılı olduğundan emin olun\n"
-"- Kablonun hasarlı olmadığından emin olun"
-
-#
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Bu test Kablolu Ağ adaptörünüz için geçerli bir IP adresi bulunup bulunmadığını kontrol eder.\n"
-"Eğer \"Onaylanmamış\" mesajı alırsanız:\n"
-"- Geçerli bir IP adresi bulunamamıştır\n"
-"- Lütfen DHCP, kablolama ve adaptör kurulumunuzu kontrol edin"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Bu test, Kablolu Ağ adaptörünüzün DHCP ile otomatik IP adresi yapılandırması için ayarlanıp ayarlanmadığını kontrol eder.\n"
-"Eğer \"Devre dışı\" mesajı alırsanız:\n"
-" - Kablolu Ağ adaptörünüz manuel IP kurulumu için yapılandırılmıştır\n"
-"- Adaptör kurulum iletişim kutusunda doğru IP bilgilerini girdiğinizden emin olun.\n"
-"Eğer \"Etkin\" mesajı alırsanız:\n"
-"- Ağınızda yapılandırılmış ve çalışan bir DHCP sunucunuz olduğundan emin olun."
-
-#
-msgid "This test detects your configured LAN adapter."
-msgstr "Bu test yapılandırdığınız Kablolu Ağ adaptörünüzü algılar."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -22396,10 +22758,6 @@ msgstr "Bu sihirbaz tamamlandı"
 
 msgid "This wizard has finished."
 msgstr "Bu sihirbaz tamamlandı."
-
-#
-msgid "Three"
-msgstr "Üç"
 
 #
 msgid "Threshold"
@@ -22541,6 +22899,9 @@ msgstr "Saat dilimi"
 msgid "Time zone area"
 msgstr "Saat dilimi bölgesi"
 
+msgid "Timeline"
+msgstr "Zaman çizelgesi"
+
 msgid "Timeline 24 Hour"
 msgstr "Zaman Çizelgesi 24 Saat"
 
@@ -22552,6 +22913,12 @@ msgstr "Zaman çizelgesi işaretçisi"
 
 msgid "Timeline scale"
 msgstr "Zaman çizelgesi ölçeği"
+
+msgid "Timeout"
+msgstr "Zaman aşımı"
+
+msgid "Timer Defaults And Retention"
+msgstr "Zamanlayıcı Varsayılanları ve Saklama Süresi"
 
 msgid "Timer Log Actions"
 msgstr "Zamanlayıcı Günlüğü İşlemleri"
@@ -22625,8 +22992,8 @@ msgstr "Zaman kaydırma"
 msgid "Timezone"
 msgstr "Zaman dilimi"
 
-msgid "Timing and diagnostics"
-msgstr "Zamanlama ve Teşhis"
+msgid "Timing And Diagnostics"
+msgstr "Zamanlama ve Teşhis Yöntemleri"
 
 msgid "Timor-Leste / East Timor"
 msgstr "Doğu Timor / Doğu Timor"
@@ -22729,6 +23096,9 @@ msgstr "Çoklu seçim modunu aç/kapat"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Yeni metin eklemelerinin mevcut metnin önüne mi yoksa üzerine mi yazılacağını değiştirir"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr "Paylaşımı IP adresine veya DNS adına göre seçme arasında geçiş yapın"
+
 msgid "Toggle selection of the current tag"
 msgstr "Geçerli etiketin seçimini aç/kapat"
 
@@ -22815,6 +23185,9 @@ msgstr "Geleneksel"
 msgid "Traditional Chinese"
 msgstr "Geleneksel Çince"
 
+msgid "Transceiver"
+msgstr "Alıcı-verici"
+
 #
 msgid "Transcode"
 msgstr "Kod dönüştürme"
@@ -22870,6 +23243,9 @@ msgstr "Taşıma Akışı Kimliği (TSID)"
 msgid "Transport Stream Type"
 msgstr "Taşıma Akış Tipi"
 
+msgid "Trash And Deletion"
+msgstr "Çöp Kutusu ve Silme"
+
 msgid "Trashcan"
 msgstr "Çöp Sepeti"
 
@@ -22894,6 +23270,9 @@ msgstr "Dosya Sistemini Düzelt..."
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad ve Tobago"
+
+msgid "Triple Tuner"
+msgstr "Üçlü Tuner"
 
 msgid "True"
 msgstr "Doğru"
@@ -22959,6 +23338,12 @@ msgstr "Tuner "
 #
 msgid "Tuner :"
 msgstr "Tuner :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr "Tuner Atama ve Çakışmalar"
+
+msgid "Tuner And Streaming"
+msgstr "Tuner ve Akış"
 
 #
 msgid "Tuner Configuration"
@@ -23094,10 +23479,6 @@ msgstr "İkiz Hibrit"
 msgid "Twin Tuner"
 msgstr "Çift Tuner"
 
-#
-msgid "Two"
-msgstr "İki"
-
 msgid "Two lines"
 msgstr "İki satır"
 
@@ -23216,9 +23597,6 @@ msgstr "5 yaş altı"
 msgid "Undetermined"
 msgstr "Belirsiz"
 
-msgid "Unencrypted"
-msgstr "Şifrelenmemiş"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "WebIF'e erişimde beklenmeyen hata: %s"
@@ -23281,13 +23659,6 @@ msgstr "Bilinmeyen"
 msgid "Unknown Devices"
 msgstr "Bilinmeyen Cihazlar"
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Arayüz oluşturulurken bilinmeyen bir hata oluştu.\n"
-"Lütfen MyMetrixLite-Plugin uygulamasını yeniden başlattıktan sonra kontrol edin ve ayarlarınızı uygulayın."
-
 msgid "Unknown Packages"
 msgstr "Bilinmeyen Paketler"
 
@@ -23332,6 +23703,9 @@ msgstr "Dosyayı Aç"
 msgid "Unpublished"
 msgstr "Yayınlanmamış"
 
+msgid "Unreachable"
+msgstr "Erişilemez"
+
 msgid "Unscramble and record ECM"
 msgstr "ECM'yi çözün ve kaydedin"
 
@@ -23343,10 +23717,6 @@ msgstr "Alınan http akışlarını çöz"
 
 msgid "Unset As Startup Service"
 msgstr "Başlangıç Kanalı Olarak Ayarlamayı Kaldır"
-
-#
-msgid "Unsupported"
-msgstr "Desteklenmiyor"
 
 msgid "Until standby/restart"
 msgstr "Bekleme/yeniden başlatmaya kadar"
@@ -23535,6 +23905,9 @@ msgstr "LNB 1 Kullanıcı Bandı kullan"
 msgid "Use MHW EPG information when it is available."
 msgstr "Varsa MHW EPG bilgisini kullan."
 
+msgid "Use NFS file locking"
+msgstr "NFS dosya kilitleme özelliğini kullan"
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Varsa Netmed EPG bilgisini kullan."
 
@@ -23571,15 +23944,14 @@ msgstr "Kanal değiştirme zamanlayıcısının bitiş zamanlarını kullanın"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Performansı artırmak, gecikmeyi azaltmak ve giden trafiği düşürmek için son DNS sorgularını yerel olarak depolamak üzere bir DNS önbelleği kullanın."
 
-#
-msgid "Use a gateway"
-msgstr "Ağ geçidi kullan"
-
 msgid "Use alternate GitHub DNS"
 msgstr "Alternatif GitHub DNS kullan"
 
 msgid "Use an alternative smaller screen."
 msgstr "Alternatif daha küçük bir ekran kullanın."
+
+msgid "Use as HDD replacement"
+msgstr "HDD yerine kullan"
 
 msgid "Use automatic mode detection"
 msgstr "Otomatik mod algılamayı kullanın"
@@ -23626,12 +23998,11 @@ msgstr "WAN bilgilerini almak için coğrafi konum özelliğini kullanın"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Geçerli saat dilimi konumunu ayarlamak için coğrafi konumu kullanın"
 
+msgid "Use guest login"
+msgstr "Misafir girişi kullan"
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "LNB değiştirirken sorun yaşıyorsanız, ‘14/18V’ gibi daha yüksek voltaj kullanın."
-
-#
-msgid "Use interface"
-msgstr "Arayüzü Kullan"
 
 msgid "Use key map *"
 msgstr "Tuş haritasını kullanın *"
@@ -23644,9 +24015,6 @@ msgstr "Yetkili kanal numaralandırmasını kullanın"
 
 msgid "Use only DNSSEC servers"
 msgstr "Yalnızca DNSSEC sunucularını kullanın"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Yalnızca Kablosuz Ağ İle Aç (WoW) için kullanın"
 
 msgid "Use only no-filter servers"
 msgstr "Yalnızca filtre uygulanmayan sunucuları kullanın"
@@ -23700,9 +24068,6 @@ msgstr "Uzaktan kumandanızdaki SOL/SAĞ tuşlarını kullanarak ekranda göster
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Uzaktan kumandanızdaki SOL/SAĞ tuşlarını kullanarak ekranda gösterimi yukarı/aşağı hareket ettirebilirsiniz."
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Ağınızı yapılandırmak için Ağ Sihirbazını kullanın. Sihirbaz ağınızı kurmanıza yardımcı olacaktır"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Cam kontrolü için Softcam Panelini kullanın. Bu panel Cam ı başlatmanıza/durdurmanıza/seçmenize olanak tanır"
 
@@ -23720,12 +24085,6 @@ msgstr "Geçerli seçimi kullan ve çık"
 
 msgid "Use the extended List"
 msgstr "Genişletilmiş Listeyi kullanın"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Seçili ağ aygıtını yapılandırmak için ağ sihirbazını kullan"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Ağınızı yapılandırmak için ağ sihirbazını kullanın."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Temel özellikleri ayarlamak için sihirbazı kullanın"
@@ -23809,6 +24168,12 @@ msgstr "Kullanıcı ismi"
 msgid "Username (httpuser)"
 msgstr "Kullanıcı İsmi (httpuser)"
 
+msgid "Using DNS"
+msgstr "DNS kullanımı"
+
+msgid "Using IP"
+msgstr "IP kullanımı"
+
 msgid "Using automatic address"
 msgstr "Otomatik adres kullanımı"
 
@@ -23834,9 +24199,6 @@ msgstr "Özbekistan"
 msgid "VCR Scart Settings"
 msgstr "VCR Scart Ayarları"
 
-msgid "VLAN connection"
-msgstr "VLAN bağlantısı"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -23849,6 +24211,9 @@ msgstr "VOB dosyası"
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS Ayarları"
@@ -24201,6 +24566,9 @@ msgstr "Ses Seviyesi Düzenleme Kanal Seçimi İşlemleri"
 msgid "Volume Adjust Settings"
 msgstr "Ses Seviyesi Düzenleme Ayarları"
 
+msgid "Volume Control"
+msgstr "Ses Kontrolü"
+
 msgid "Volume adjustment mode"
 msgstr "Ses seviyesi düzenleme modu"
 
@@ -24235,13 +24603,6 @@ msgstr "WAN bağlantı bilgileri"
 msgid "WARNING:"
 msgstr "DİKKAT:"
 
-#
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "Kablosuz Ağ Bağlantısı"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -24250,18 +24611,6 @@ msgstr "WMA Pro downmix"
 
 msgid "WOL Standby"
 msgstr "Kablolu Ağ İle Aç (WoL) Bekleme"
-
-#
-msgid "WPA"
-msgstr "WPA"
-
-#
-msgid "WPA or WPA2"
-msgstr "WPA veya WPA2"
-
-#
-msgid "WPA2"
-msgstr "WPA2"
 
 #
 msgid "WSS on 4:3"
@@ -24279,6 +24628,9 @@ msgstr "Lütfen tarama işlemi devam ederken bekleyin..."
 #
 msgid "Waiting"
 msgstr "Bekliyor"
+
+msgid "Waiting for IP address..."
+msgstr "IP adresi bekleniyor..."
 
 msgid "Waiting for partition"
 msgstr "Bölümlendirme bekleniyor"
@@ -24325,6 +24677,9 @@ msgstr "Uyarı: %d kaynakları yeniden yüklenemedi!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "Uyarı: Bu işlemi iptal etmek, kaynakları eksik ve kullanılamaz durumda bırakacaktır!"
+
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr "Uyarı: Wi-Fi bağdaştırıcısı bulunamadı!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Uyarı: Geçersiz kılmalar şu anda etkin durumda!"
@@ -24541,7 +24896,7 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bu özellik etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
-msgstr "Bu özellik etkinleştirildiğinde, Wi-Fi ağ bağdaştırıcısı bağlandığında kaydedilmiş ağ üzerinden bağlantı kurulmaya çalışılır."
+msgstr "Bu özellik etkinleştirildiğinde, Wi-Fi bağdaştırıcısı bağlandığında kaydedilmiş ağ üzerinden bağlantı kurulmaya çalışılır."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Bu özellik etkinleştirildiğinde, 4:3 en boy oranına sahip içerik ekrana sığacak şekilde genişletilecektir."
@@ -24565,7 +24920,7 @@ msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Bu özellik etkinleştirildiğinde, exit tuşu ile film oynatıcısından çıkmak mümkün olacaktır."
 
 msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
-msgstr "Bu özellik etkinleştirildiğinde, bekleme modundayken Wi-Fi adaptörünü düşük güç tüketimli tarama modunda tutarak alıcının uzaktan ağ sinyali (Magic Packet) ile açılmasını sağlayın."
+msgstr "Bu özellik etkinleştirildiğinde, bekleme modundayken Wi-Fi bağdaştırıcısını düşük güç tüketimli tarama modunda tutarak alıcının uzaktan ağ sinyali (Magic Packet) ile açılmasını sağlayın."
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr "Bu özellik etkinleştirildiğinde, kök yetkisini \"nobody\" kullanıcısına eşler (daha güvenli). Devre dışı bırakıldığında, tam kök erişimi sağlanır."
@@ -24594,7 +24949,7 @@ msgstr "Bu özellik etkinleştirildiğinde, kanal seçim ekranında kanal numara
 msgid "When enabled, show status or error messages."
 msgstr "Bu özellik etkinleştirildiğinde, durum veya hata mesajlarını gösterilir."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Bu özellik etkinleştirildiğinde, genel DNS ayarları yerine bu ağ bağdaştırıcısı için özel DNS ayarları belirtin."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -24649,10 +25004,13 @@ msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Bu özellik etkinleştirildiğinde, yedek uzak alıcıdan gelen zamanlayıcı varsayılan zamanlayıcı olur."
 
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
-msgstr "Bu özellik etkinleştirildiğinde, bu Wi-Fi ağ bağdaştırıcısı yalnızca Kablosuz Ağ İle Aç (WoW) modunda kalır ve herhangi bir ağa bağlanmak için kullanılmaz."
+msgstr "Bu özellik etkinleştirildiğinde, bu Wi-Fi bağdaştırıcısı yalnızca Kablosuz Ağ İle Aç (WoW) modunda kalır ve herhangi bir ağa bağlanmak için kullanılmaz."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Bu özellik etkinleştirildiğinde, bu ağ bağdaştırıcısı önyükleme sırasında başlatılır ve etkinleştirilir."
+
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr "Etkinleştirildiğinde, bu sunucunun paylaşımları, aşağıdaki kullanıcı adı/şifre göz ardı edilerek anonim olarak (misafir) listelenir."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Bu özellik etkinleştirildiğinde, bu ayar 'Kayıtlar için tercih edilen tuner' ayarından daha önceliklidir."
@@ -24660,11 +25018,11 @@ msgstr "Bu özellik etkinleştirildiğinde, bu ayar 'Kayıtlar için tercih edil
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Bu özellik etkinleştirildiğinde, bu ayar 'Tercih edilen tuner' ayarından daha önceliklidir."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr "Etkinleştirildiğinde, bu paylaşım kendi /media/net yolu yerine /media/hdd dizinine bağlanır. Bu seçeneği yalnızca paylaşımın güvenilir bir şekilde erişilebilir olması durumunda kullanın."
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Bu özellik etkinleştirildiğinde, zaman kaydırma belirtilen süre sonra otomatik olarak arka planda başlar."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Bu özellik etkinleştirildiğinde, IP yapılandırması için DHCP kullanılır."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Bu özellik etkinleştirildiğinde, yedek uzak alıcı için OpenWebIf ayarlarını özelleştirebilirsiniz."
@@ -24731,8 +25089,27 @@ msgstr "Mevcut olduğu sürece"
 msgid "White"
 msgstr "Beyaz"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Kablosuz Ağ Bağlantı Ayarları"
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+msgid "Wi-Fi Activation Actions"
+msgstr "Wi-Fi Etkinleştirme İşlemleri"
+
+msgid "Wi-Fi Adapter"
+msgstr "Wi-Fi Bağdaştırıcı"
+
+msgid "Wi-Fi Scan Actions"
+msgstr "Wi-Fi Tarama İşlemleri"
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr "Wi-Fi Taraması '%s' üzerinde yapılıyor"
+
+msgid "Wi-Fi connection"
+msgstr "Wi-Fi bağlantısı"
+
+msgid "Wi-Fi link"
+msgstr "Wi-Fi bağlantısı"
 
 msgid "Wide"
 msgstr "Geniş"
@@ -24757,32 +25134,6 @@ msgstr "Depolama Cihazını Temizle"
 
 msgid "Wiping storage device..."
 msgstr "Depolama cihazı temizleniyor..."
-
-#
-msgid "Wireless LAN"
-msgstr "Kablosuz Ağ Bağlantısı"
-
-#
-msgid "Wireless network"
-msgstr "Kablosuz Ağ"
-
-msgid "Wireless network configuration..."
-msgstr "Kablosuz ağ yapılandırması..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Kablosuz ağ bağlantısı kurulumu.\n"
-"\n"
-"Sonra ne yapacağınızı seçin."
-
-msgid "Wireless network setup"
-msgstr "Kablosuz ağ kurulumu"
-
-msgid "Wireless network state"
-msgstr "Kablosuz ağ durumu"
 
 msgid "With EXIT button"
 msgstr "EXIT tuşu ile"
@@ -24851,6 +25202,9 @@ msgstr "Girilen PIN kodunu %s kalıcı olarak kaydetmek ister misiniz?"
 #
 msgid "Wrestling"
 msgstr "Güreş"
+
+msgid "Write block size"
+msgstr "Yazma bloğu boyutu"
 
 #, python-format
 msgid ""
@@ -25006,10 +25360,6 @@ msgstr "Sadece Dreambox kayıtlarını yazdırabilirsiniz!"
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Bu işlevi atlayabilir ve alıcıyı bekleme modundan uyandırdığınızda TV'yi kapatabilir ve hemen tekrar bekleme moduna geçebilirsiniz."
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Bu tuner (%s) türlerinde sol ve sağ arasında geçiş yapabilirsiniz "
-
 #
 msgid "You cannot delete this!"
 msgstr "Bunu silemezsiniz!"
@@ -25084,19 +25434,6 @@ msgstr "%s %s alıcınız Kablolu Ağ İle Aç (WoL) moduna geçiyor"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "%s %s alıcınız internete bağlı değil, lütfen ağ ayarlarınızı kontrol edin ve tekrar deneyin."
 
-#
-#, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"%s %s alıcınız artık kullanıma hazır.\n"
-"\n"
-"İnternet bağlantınız şu anda çalışıyor.\n"
-"\n"
-
 #, python-format
 msgid "Your %s %s is rebooting"
 msgstr "%s %s alıcınız yeniden başlatılıyor"
@@ -25128,41 +25465,12 @@ msgid "Your %s %s will Restart..."
 msgstr "%s %s alıcınız yeniden başlatılacak..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Hizmetin kurulumundan sonra %s %s alıcınız yeniden başlatılacaktır.\n"
-"\n"
-"Şimdi kurmak istiyor musunuz ?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Hizmet kaldırıldıktan sonra %s %s alıcınız yeniden başlatılacaktır\n"
-"Şimdi kaldırmak istiyor musunuz ?"
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"İnternet bağlantınız çalışmıyor!\n"
-"Lütfen sonraki aşamada yapmak istediğiniz işlemi seçin."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "İnternet bağlantınız çalışıyor (IP: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Alıcınızda bir yazılım sorunu tespit edildi. Son yeniden başlatmadan bu yana %d kez tekrarlandı.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Uzaktan kumandanızdaki OK tuşuna bastıktan sonra alıcınız yeniden başlatılacaktır."
 
 #
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
@@ -25211,10 +25519,6 @@ msgstr ""
 "Ön paneliniz yükseltilecek\n"
 "Bu işlem bir kaç dakika sürebilir"
 
-#
-msgid "Your network configuration has been activated."
-msgstr "Ağ yapılandırmanız etkinleştirildi."
-
 msgid "Your password must have at least 5 characters."
 msgstr "Şifreniz en az 5 karakterden oluşmalıdır."
 
@@ -25258,6 +25562,9 @@ msgstr "Kanal Değiştir"
 
 msgid "Zap + Exit"
 msgstr "Kanal değiştir ve Çık"
+
+msgid "Zap Timer Settings"
+msgstr "Kanal Değiştirme Zamanlayıcı Ayarları"
 
 msgid "Zap Up/Down"
 msgstr "Kanal değiştir Yukarı/Aşağı"
@@ -25479,14 +25786,6 @@ msgstr "paylaşım görünümünü kapat"
 msgid "config menu"
 msgstr "yapılandırma menüsü"
 
-#
-msgid "confirmed"
-msgstr "onaylandı"
-
-#
-msgid "connected"
-msgstr "bağlandı"
-
 msgid "copy"
 msgstr "kopya"
 
@@ -25513,10 +25812,6 @@ msgstr "kesimi sil"
 #
 msgid "disabled"
 msgstr "devre dışı"
-
-#
-msgid "disconnected"
-msgstr "bağlı değil"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -25813,9 +26108,6 @@ msgstr "çift katmanlı ortam kullanıldığında."
 msgid "of a SINGLE layer medium used."
 msgstr "tek katmanlı ortam kullanıldığında."
 
-msgid "off or wpa2 on"
-msgstr "kapalı veya wpa2 açık"
-
 msgid "offset is"
 msgstr "dengeleme"
 
@@ -26049,10 +26341,6 @@ msgid "unavailable"
 msgstr "yok"
 
 #
-msgid "unconfirmed"
-msgstr "doğrulanmamış"
-
-#
 msgid "unknown"
 msgstr "bilinmiyor"
 
@@ -26116,6 +26404,853 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "C/T girişi değişimi: harici 5V koaksiyel geçiş"
+
+#~ msgid "Common Settings"
+#~ msgstr "Ortak Ayarlar"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "DVB-C ve DVB-T/T2 bu girişi paylaşır. Her ikisi de etkinleştirildiğinde, Enigma2 harici koaksiyel geçişi kontrol etmek için 5V kullanır."
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "OSCam'i gerçekten yeniden başlatmak istiyor musunuz?\n"
+#~ "\n"
+#~ "İPUCU: Bu işlem yaklaşık 5 saniye sürecektir!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "OSCam'i gerçekten kapatmak istiyor musunuz?\n"
+#~ "\n"
+#~ "DİKKAT: OSCam'i yeniden etkinleştirmek için alıcının tamamen yeniden başlatılması gerekmektedir!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Bağlantı Yöneticisi"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "OSCam webif devre dışı bırakıldı"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "OSCam'i Yeniden Başlat"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "OSCam'i Kapat"
+
+#
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "10th (Lowest)"
+#~ msgstr "10. (En düşük)"
+
+#
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#~ msgid "1st (Highest)"
+#~ msgstr "1. (En Yüksek)"
+
+#~ msgid "2nd"
+#~ msgstr "2."
+
+#~ msgid "3rd"
+#~ msgstr "3."
+
+#~ msgid "4th"
+#~ msgstr "4."
+
+#~ msgid "5th"
+#~ msgstr "5."
+
+#~ msgid "6th"
+#~ msgstr "6."
+
+#~ msgid "7th"
+#~ msgstr "7."
+
+#~ msgid "8th"
+#~ msgstr "8."
+
+#~ msgid "9th"
+#~ msgstr "9."
+
+#
+#~ msgid "One"
+#~ msgstr "Bir"
+
+#~ msgid "SMB2"
+#~ msgstr "SMB2"
+
+#~ msgid "SMB3"
+#~ msgstr "SMB3"
+
+#
+#~ msgid "Three"
+#~ msgstr "Üç"
+
+#
+#~ msgid "Two"
+#~ msgstr "İki"
+
+#
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d kablosuz ağ bulundu!"
+
+#
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Yapılandırılmış ikinci bir ağ arayüzü bulundu.\n"
+#~ "\n"
+#~ "İkinci ağ arayüzünü devre dışı bırakmak istiyor musunuz?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "Ağ bağdaştırıcısı yapılandırmasını etkinleştirin"
+
+#
+#~ msgid "Activate network settings"
+#~ msgstr "Ağ ayarlarını etkinleştir"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Yapılandırılmış ağ ayarlarını etkinleştirin."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Bu ağ yapılandırmasını etkinleştirmek istediğinizden emin misiniz?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Ağ arayüzlerinizi yeniden başlatmak istediğinizden emin misiniz?"
+
+#
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "DNS (ad sunucuları) yapılandır"
+
+#
+#~ msgid "Configure interface"
+#~ msgstr "Arayüz yapılandırması"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Gösterilen değerleri ayarlayarak DNS (ad sunucuları) yapılandırın veya doğrulayın.\n"
+#~ "\n"
+#~ "Ayarlar doğru olduğunda devam etmek için OK tuşuna basın."
+
+#~ msgid "Configure the IP address."
+#~ msgstr "IP adresini yapılandırın."
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Gösterilen değerleri ayarlayarak İnternet bağlantısını yapılandırın.\n"
+#~ "\n"
+#~ "Ayarlar doğru olduğunda devam etmek için OK tuşuna basın."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Ağ geçidini yapılandırın."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Ad sunucusunu (DNS) yapılandırın."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Ağ maskesini yapılandırın."
+
+#
+#~ msgid "Configure the network again"
+#~ msgstr "Ağı yeniden yapılandırın"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Ağınızı Yapılandırın"
+
+#
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Kablolu ağınızı yapılandırın"
+
+#
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Kablosuz ağınızı yeniden yapılandırın"
+
+#
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Kablosuz ağa bağlanın"
+
+#
+#~ msgid "Current settings:"
+#~ msgstr "Geçerli ayarlar:"
+
+#
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Cihaz Ayarları"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "Devre dışı veya WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "%s %s alıcınızın DNS yapılandırmasını düzenleyin."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "%s %s alıcınızın ağ yapılandırmasını düzenleyin."
+
+#~ msgid "Enable IPv6"
+#~ msgstr "IPv6'yı etkinleştir"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Kablolu Ağ İle Aç (WoL) Etkinleştir"
+
+#
+#~ msgid "Encrypted: "
+#~ msgstr "Şifrelenmiş: "
+
+#
+#~ msgid "Encryption Type:"
+#~ msgstr "Şifreleme tipi:"
+
+#
+#~ msgid "Encryption key"
+#~ msgstr "Şifreleme anahtarı"
+
+#
+#~ msgid "Encryption key type"
+#~ msgstr "Şifreleme anahtar tipi"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "FHD-Arayüz oluşturulurken hata oluştu.\n"
+#~ "HD-Arayüz kullanılıyor!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "FHD-Arayüz oluşturulurken hata oluştu. Simge paketi indirme işlemi mevcut değil.\n"
+#~ "HD-Skin kullanılıyor!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "FHD-Arayüz oluşturulurken hata oluştu. Yeterli boş flash bellek yok.\n"
+#~ "HD-Arayüz kullanılıyor!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "FHD-Arayüz oluşturulurken hata oluştu. Bazı FHD Simgeleri eksik.\n"
+#~ "HD-Skin kullanılıyor!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "HD-Arayüz oluşturulurken hata oluştu. Yeterli flash bellek yok."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "MetrixHD-Arayüz oluşturulurken hata oluştu.\n"
+#~ "Lütfen MyMetrixLite-Plugin uygulamasını yeniden başlattıktan sonra kontrol edin ve ayarlarınızı uygulayın."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Hata, bilinmeyen Sonuç!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "Ağ bağdaştırıcısı yapılandırmasından çık"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "Ağ bağdaştırıcısı kurulum menüsünden çık"
+
+#
+#~ msgid "Exit network interface list"
+#~ msgstr "Ağ arayüzü listesinden çık"
+
+#
+#~ msgid "Exit network wizard"
+#~ msgstr "Ağ sihirbazından çık"
+
+#
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Genişletilmiş Ağ Kurulumu Eklentisi..."
+
+#
+#~ msgid "Extended Setup..."
+#~ msgstr "Genişletilmiş Kurulum..."
+
+#
+#~ msgid "Finished configuring your network"
+#~ msgstr "Ağ yapılandırmanız tamamlandı"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "TV'deki talimatları izleyin"
+
+#
+#~ msgid "Frequency Norm:"
+#~ msgstr "Frekans Normu:"
+
+#
+#~ msgid "Interface: "
+#~ msgstr "Arayüz: "
+
+#
+#~ msgid "LAN adapter"
+#~ msgstr "Kablolu Ağ adaptörü"
+
+#
+#~ msgid "Link quality:"
+#~ msgstr "Bağlantı kalitesi:"
+
+#
+#~ msgid "Link:"
+#~ msgstr "Bağlantı:"
+
+#~ msgid "List available networks"
+#~ msgstr "Kullanılabilir ağ listesi"
+
+#
+#~ msgid "Local network"
+#~ msgstr "Yerel Ağ"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-adresi"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Manuel yapılandırma"
+
+#
+#~ msgid "Max. bitrate: "
+#~ msgstr "Maks. Bit oranı: "
+
+#
+#~ msgid "Nameserver"
+#~ msgstr "Ad Sunucusu"
+
+#
+#~ msgid "Nameserver settings"
+#~ msgstr "Ad Sunucusu Ayarları"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "Ağ Bağdaştırıcısı İşlemleri"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "Ağ Bağdaştırıcısı Ayarları İşlemleri"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "Ağ Bağdaştırıcısı Metin İşlemleri"
+
+#~ msgid "Network Test:"
+#~ msgstr "Ağ Testi:"
+
+#~ msgid "Network Wizard"
+#~ msgstr "Ağ Sihirbazı"
+
+#
+#~ msgid "Network test"
+#~ msgstr "Ağ testi"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Ağ sihirbazı tamamlandı.\n"
+#~ "\n"
+#~ "Devam etmek için OK tuşuna basın."
+
+#
+#~ msgid "Network:"
+#~ msgstr "Ağ:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Ağ Sihirbazı"
+
+#
+#~ msgid "No Connection"
+#~ msgstr "Bağlantı yok"
+
+#
+#~ msgid "No networks found"
+#~ msgstr "Hiçbir ağ bulunamadı"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Kablosuz ağ bulunamadı! Aranıyor..."
+
+#
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Çalışan yerel ağ bağdaştırıcısı bulunamadı.\n"
+#~ "Lütfen ağ kablosunun takılı olduğundan ve ağınızın doğru şekilde yapılandırıldığından emin olun."
+
+#
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Çalışır durumda bir kablosuz ağ adaptörü bulunamadı.\n"
+#~ "Lütfen uyumlu bir Kablosuz Ağ cihazı bağladığınızdan ve ağınızın doğru yapılandırıldığından emin olun."
+
+#
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Çalışır durumda bir kablosuz ağ arayüzü bulunamadı.\n"
+#~ " Lütfen uyumlu bir Kablosuz Ağ cihazı bağladığınızdan emin olun veya yerel ağ arayüzünü etkinleştirin."
+
+#
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Lütfen TV talimatlarını takip edin"
+
+#
+#~ msgid "Please press OK to continue."
+#~ msgstr "Lütfen devam etmek için OK tuşuna basın."
+
+#
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Lütfen ağ yapılandırmanızın etkinleştirilmesi için bekleyin..."
+
+#
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Ağ arayüzleriniz hazırlanırken lütfen bekleyin..."
+
+#
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Ağ bağlantınız test edilirken lütfen bekleyin..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Arayüz ayarlarınız geri yüklenirken lütfen bekleyin..."
+
+#
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Ayarları etkinleştirmek için OK tuşuna basın."
+
+#
+#~ msgid "Primary DNS"
+#~ msgstr "Birincil DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Ağ Bağdaştırıcısını Yeniden Başlat"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "MetrixHD Ayarlarını Geri Yükle"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd Ayarları"
+
+#
+#~ msgid "Scan wireless networks"
+#~ msgstr "Kablosuz Ağları Tara"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Ağınızdaki kablosuz erişim noktalarını tarayın ve seçtiğiniz kablosuz cihazı kullanarak bunlara bağlanın."
+
+#
+#~ msgid "Secondary DNS"
+#~ msgstr "İkincil DNS"
+
+#
+#~ msgid "Select a wireless network"
+#~ msgstr "Kablosuz ağ seçin"
+
+#
+#~ msgid "Select interface"
+#~ msgstr "Arayüz seçin"
+
+#~ msgid "Select menu entry"
+#~ msgstr "Menü girişini seçin"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "İnternet bağlantısı için kullanılacak ağ arayüzünü seçin.\n"
+#~ "\n"
+#~ "Devam etmek için OK tuşuna basın."
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Bağlanmak istediğiniz kablosuz ağı seçin.\n"
+#~ "\n"
+#~ "Devam etmek için OK tuşuna basın."
+
+#
+#~ msgid "Select wireless network"
+#~ msgstr "Kablosuz ağı seçin"
+
+#
+#~ msgid "Show WLAN status"
+#~ msgstr "Kablosuz Ağ bağlantı durumunu göster"
+
+#
+#~ msgid "Show info"
+#~ msgstr "Bilgi Göster"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Kablosuz Ağ bağlantınızın durumunu gösterir."
+
+#
+#~ msgid "Signal quality"
+#~ msgstr "Sinyal kalitesi"
+
+#
+#~ msgid "Signal: "
+#~ msgstr "Sinyal: "
+
+#
+#~ msgid "Start test"
+#~ msgstr "Testi başlat"
+
+#
+#~ msgid "Stop test"
+#~ msgstr "Testi durdur"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "%s %s cihazınızın ağ yapılandırmasını test edin."
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "İnternet bağlantısı çalışıyor gibi görünüyor.\n"
+#~ "\n"
+#~ "Devam etmek için OK tuşuna basın."
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "İnternet bağlantısı çalışmıyor gibi görünüyor!\n"
+#~ "\n"
+#~ "Sonra ne yapacağınızı seçin."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Ağ sihirbazı uzantısı yüklü değil!\n"
+#~ "Lütfen yükleyin."
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Kablosuz Ağ İnternet bağlantısı başlatılamadı!\n"
+#~ "Kablosuz Ağ cihazı bağlı mı?\n"
+#~ "\n"
+#~ "Sonra ne yapacağınızı seçin."
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "Kablosuz Ağ eklenti kodu yüklü değil!\n"
+#~ "\n"
+#~ "Yükleyin ve sonra ne yapacağınızı seçin."
+
+#
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Kablosuz Ağ eklentisi yüklü değil!\n"
+#~ "Lütfen yükleyin."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Bu test yapılandırılmış DNS ayarlarını kontrol eder.\n"
+#~ "Eğer \"onaylanmamış\" mesajı alırsanız:\n"
+#~ "- Lütfen DHCP, kablolama ve adaptör ayarlarınızı kontrol edin.\n"
+#~ "- Eğer ad sunucularınızı manuel olarak yapılandırdıysanız, lütfen \"Ad Sunucusu\" yapılandırmasındaki girişlerinizi doğrulayın"
+
+#
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Bu test, ağ kablosunun Kablolu Ağ adaptörünüze bağlı olup olmadığını kontrol eder.\n"
+#~ "Eğer \"Bağlı değil\" mesajı alırsanız:\n"
+#~ "- Ağ kablosunun takılı olduğundan emin olun\n"
+#~ "- Kablonun hasarlı olmadığından emin olun"
+
+#
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Bu test Kablolu Ağ adaptörünüz için geçerli bir IP adresi bulunup bulunmadığını kontrol eder.\n"
+#~ "Eğer \"Onaylanmamış\" mesajı alırsanız:\n"
+#~ "- Geçerli bir IP adresi bulunamamıştır\n"
+#~ "- Lütfen DHCP, kablolama ve adaptör kurulumunuzu kontrol edin"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Bu test, Kablolu Ağ adaptörünüzün DHCP ile otomatik IP adresi yapılandırması için ayarlanıp ayarlanmadığını kontrol eder.\n"
+#~ "Eğer \"Devre dışı\" mesajı alırsanız:\n"
+#~ " - Kablolu Ağ adaptörünüz manuel IP kurulumu için yapılandırılmıştır\n"
+#~ "- Adaptör kurulum iletişim kutusunda doğru IP bilgilerini girdiğinizden emin olun.\n"
+#~ "Eğer \"Etkin\" mesajı alırsanız:\n"
+#~ "- Ağınızda yapılandırılmış ve çalışan bir DHCP sunucunuz olduğundan emin olun."
+
+#
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Bu test yapılandırdığınız Kablolu Ağ adaptörünüzü algılar."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Şifrelenmemiş"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Arayüz oluşturulurken bilinmeyen bir hata oluştu.\n"
+#~ "Lütfen MyMetrixLite-Plugin uygulamasını yeniden başlattıktan sonra kontrol edin ve ayarlarınızı uygulayın."
+
+#
+#~ msgid "Unsupported"
+#~ msgstr "Desteklenmiyor"
+
+#
+#~ msgid "Use a gateway"
+#~ msgstr "Ağ geçidi kullan"
+
+#
+#~ msgid "Use interface"
+#~ msgstr "Arayüzü Kullan"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Yalnızca Kablosuz Ağ İle Aç (WoW) için kullanın"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Ağınızı yapılandırmak için Ağ Sihirbazını kullanın. Sihirbaz ağınızı kurmanıza yardımcı olacaktır"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Seçili ağ aygıtını yapılandırmak için ağ sihirbazını kullan"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Ağınızı yapılandırmak için ağ sihirbazını kullanın."
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN bağlantısı"
+
+#
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "Kablosuz Ağ Bağlantısı"
+
+#
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA veya WPA2"
+
+#
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Bu özellik etkinleştirildiğinde, IP yapılandırması için DHCP kullanılır."
+
+#
+#~ msgid "Wireless LAN"
+#~ msgstr "Kablosuz Ağ Bağlantısı"
+
+#
+#~ msgid "Wireless network"
+#~ msgstr "Kablosuz Ağ"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Kablosuz ağ yapılandırması..."
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Kablosuz ağ bağlantısı kurulumu.\n"
+#~ "\n"
+#~ "Sonra ne yapacağınızı seçin."
+
+#~ msgid "Wireless network setup"
+#~ msgstr "Kablosuz ağ kurulumu"
+
+#~ msgid "Wireless network state"
+#~ msgstr "Kablosuz ağ durumu"
+
+#
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s %s alıcınız artık kullanıma hazır.\n"
+#~ "\n"
+#~ "İnternet bağlantınız şu anda çalışıyor.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Hizmetin kurulumundan sonra %s %s alıcınız yeniden başlatılacaktır.\n"
+#~ "\n"
+#~ "Şimdi kurmak istiyor musunuz ?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Hizmet kaldırıldıktan sonra %s %s alıcınız yeniden başlatılacaktır\n"
+#~ "Şimdi kaldırmak istiyor musunuz ?"
+
+#
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "İnternet bağlantınız çalışmıyor!\n"
+#~ "Lütfen sonraki aşamada yapmak istediğiniz işlemi seçin."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Uzaktan kumandanızdaki OK tuşuna bastıktan sonra alıcınız yeniden başlatılacaktır."
+
+#
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Ağ yapılandırmanız etkinleştirildi."
+
+#
+#~ msgid "confirmed"
+#~ msgstr "onaylandı"
+
+#
+#~ msgid "connected"
+#~ msgstr "bağlandı"
+
+#
+#~ msgid "disconnected"
+#~ msgstr "bağlı değil"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "kapalı veya wpa2 açık"
+
+#
+#~ msgid "unconfirmed"
+#~ msgstr "doğrulanmamış"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Otomatik paylaşım erişimi"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS soneki"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "DVB-C / Sadece Kablo"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "Harici 5V kontrollü koaksiyel anahtar aracılığıyla DVB-C ve DVB-T/T2"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "DVB-T/T2 / Yalnızca karasal"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Hibrit tuner modu"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Bu DVB-C/T tunerin nasıl bağlanacağını seçin. Harici koaksiyel anahtar seçeneğini yalnızca 5V kontrollü koaksiyel anahtarla kullanın."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Tuneri ayarlayın [TUNER].\n"
+#~ "\n"
+#~ "Hibrid tuner modelleri için SOL ve SAĞ tuşları ile Tuner Tipini değiştirin."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Değiştirilebilir tuner tipleri:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Kablosuz Ağ Bağlantı Ayarları"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Bu tuner (%s) türlerinde sol ve sağ arasında geçiş yapabilirsiniz "
 
 #~ msgid "Enter the name to be used by this receiver when it appears in Samba network scans/lists."
 #~ msgstr "Bu alıcının Samba ağ taramalarında/listelerinde göründüğünde kullanacağı adı girin."
@@ -26721,9 +27856,6 @@ msgstr "®"
 #
 #~ msgid "SSID:"
 #~ msgstr "Ağ adı (SSID):"
-
-#~ msgid "Scanning..."
-#~ msgstr "Tarıyor..."
 
 #~ msgid "Servers:"
 #~ msgstr "Sunucular:"
@@ -27644,9 +28776,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Zaman güncelle Dakika:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

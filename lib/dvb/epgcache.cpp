@@ -20,6 +20,11 @@
 #include <unordered_set>
 
 
+/* Events with a duration longer than this are considered suspect and,
+ * if they overlap with a legitimately received later event, get their
+ * duration truncated instead of being deleted outright. */
+#define SUSPICIOUS_DURATION_THRESHOLD (18 * 60 * 60)  // 18 hours
+
 /* Interval between "garbage collect" cycles */
 #define CLEAN_INTERVAL (60 * 1000)       //  1 minute
 
@@ -61,6 +66,12 @@ struct eventData
 	int getDuration() const
 	{
 		return fromBCD(rawEITdata[7])*3600+fromBCD(rawEITdata[8])*60+fromBCD(rawEITdata[9]);
+	}
+	void setDuration(int duration)
+	{
+		rawEITdata[7] = toBCD(duration / 3600);
+		rawEITdata[8] = toBCD((duration % 3600) / 60);
+		rawEITdata[9] = toBCD(duration % 60);
 	}
 };
 
@@ -547,6 +558,37 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			time_t new_start = new_evt->getStartTime();
 			time_t new_end = new_start + new_evt->getDuration();
 
+			// fix duration for events if the next event is overlapping
+			if (new_evt->getDuration() > SUSPICIOUS_DURATION_THRESHOLD && ptr + eit_event_size + EIT_LOOP_SIZE <= len)
+			{
+				eit_event_struct *next_eit_event = (eit_event_struct*)(((uint8_t*)eit_event) + eit_event_size);
+				time_t next_start = parseDVBtime((const uint8_t*)next_eit_event + 2);
+
+				if (next_start > new_start && new_end > next_start)
+				{
+					int fixed_duration = next_start - new_start;
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X: suspicious duration %d s corrected to %d s using next event in same section (starts at %lld).", event_id, new_evt->getDuration(), fixed_duration, (long long)next_start);
+					new_evt->setDuration(fixed_duration);
+					new_end = next_start;
+				}
+			}
+
+			// fix duration for events if an already cached later event is overlapping
+			if (new_evt->getDuration() > SUSPICIOUS_DURATION_THRESHOLD && !timemap.empty())
+			{
+				timeMap::iterator next_it = timemap.upper_bound(new_start);
+				if (next_it != timemap.end() && next_it->second->getStartTime() < new_end)
+				{
+					time_t cached_start = next_it->second->getStartTime();
+					int fixed_duration = cached_start - new_start;
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X: suspicious duration %d s corrected to %d s using cached event %04X (starts at %lld).", event_id, new_evt->getDuration(), fixed_duration, next_it->second->getEventID(), (long long)cached_start);
+					new_evt->setDuration(fixed_duration);
+					new_end = cached_start;
+				}
+			}
+
 			// Ignore zero-length events
 			if (new_start == new_end)
 			{
@@ -597,27 +639,42 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			while (it != timemap.end())
 			{
 				time_t old_start = it->second->getStartTime();
-				time_t old_end = old_start + it->second->getDuration();
-
+				int old_duration = it->second->getDuration();
+				time_t old_end = old_start + old_duration;
 //				if(m_debug)
 //					eDebug("[eEPGCache] Checking against event %04X at %ld.", it->second->getEventID(), it->second->getStartTime());
 
 				if ((old_start < new_end) && (old_end > new_start))
 				{
-
-					if(m_debug) {
-						eDebug("[eEPGCache] Removing old overlapping event %04X:\n"
-								"       old %lld ~ %lld\n"
-								"       new %lld ~ %lld",
-								it->second->getEventID(), (long long)old_start, (long long)old_end, (long long)new_start, (long long)new_end);
-					}
-
-					if (eventmap.erase(it->second->getEventID()) == 0)
+					if (old_start < new_start && old_duration > SUSPICIOUS_DURATION_THRESHOLD)
 					{
-						eDebug("[eEPGCache] Event %04X not found in event map at %lld.", it->second->getEventID(), (long long)it->second->getStartTime());
+						if (m_debug)
+							eDebug("[eEPGCache] Truncating suspiciously long event %04X: "
+								"duration %d s, end %lld -> %lld "
+								"(overlaps new event %04X at %lld).",
+								it->second->getEventID(), old_duration,
+								(long long)old_end, (long long)new_start,
+								event_id, (long long)new_start);
+
+						it->second->setDuration(new_start - old_start);
+						++it;
 					}
-					delete it->second;
-					timemap.erase(it++);
+					else
+					{
+						if(m_debug) {
+							eDebug("[eEPGCache] Removing old overlapping event %04X:\n"
+									"       old %lld ~ %lld\n"
+									"       new %lld ~ %lld",
+									it->second->getEventID(), (long long)old_start, (long long)old_end, (long long)new_start, (long long)new_end);
+						}
+
+						if (eventmap.erase(it->second->getEventID()) == 0)
+						{
+							eDebug("[eEPGCache] Event %04X not found in event map at %lld.", it->second->getEventID(), (long long)old_start);
+						}
+						delete it->second;
+						timemap.erase(it++);
+					}
 				}
 				else
 				{

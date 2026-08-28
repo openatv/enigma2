@@ -1,13 +1,14 @@
-# lexlong2007 <lexlong2007@163.com>, 2022.
-# tzyy1970 <haotzyy1970@yahoo.com>, 2022.
+# lexlong2007 <lexlong2007@163.com>, 2022, 2026.
+# tzyy1970 <haotzyy1970@yahoo.com>, 2022, 2026.
 # Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025, 2026.
 # Johnspp93 <Johnspp93@users.noreply.hosted.weblate.org>, 2024.
+# zhangtianqing <zhangtianqingzh@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-08-02 06:01+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-26 20:02+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -896,6 +897,12 @@ msgstr[0] "已更新 %d 个订阅源目录包。"
 msgstr[1] "已更新 %d 个订阅源目录包。"
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] "找到 %d 台主机。"
+msgstr[1] "找到 %d 台主机。"
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "有 %d 个任务正在后台运行！"
 
@@ -914,6 +921,12 @@ msgstr "%d 分钟"
 #, python-format
 msgid "%d ms"
 msgstr "%d 毫秒"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] "发现 %d 个网络。"
+msgstr[1] "发现 %d 个网络。"
 
 #, python-format
 msgid "%d package found."
@@ -1028,12 +1041,6 @@ msgstr "已在设备上创建 %d 个插槽。\n"
 #, python-format
 msgid "%d times"
 msgstr "%d 次"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "发现 %d 个无线网络！"
-msgstr[1] "发现 %d 个无线网络！"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1178,6 +1185,10 @@ msgid "%s View"
 msgstr "%s 视图"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "%s 操作失败（退出码 %s）"
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s 扩展屏幕"
 
@@ -1192,6 +1203,20 @@ msgstr "%s 已被禁用。"
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "已从远程接收机导入%s。"
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+"%s 当前未运行。\n"
+"\n"
+"是否要启动它？"
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s 当前已停止或无法访问。按绿色按键启动它。"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1211,12 +1236,20 @@ msgid "%s version"
 msgstr "%s 版本"
 
 #, python-format
+msgid "%s webif disabled"
+msgstr "%s Web界面已禁用"
+
+#, python-format
 msgid "%s%d min"
 msgstr "%s%d 分"
 
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(默认：%s)"
+
+#, python-format
+msgid "%s. (Lowest)"
+msgstr "%s。（最低）"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1261,6 +1294,22 @@ msgstr "%s 将1080i显示为1080p"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' 包含 %d 个文件和 %d 个子目录。\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr "“%s”已由上面的专用设置指定，请将其从“挂载选项”中移除。"
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr "“%s”在“挂载选项”中多次列出。"
+
+#, python-format
+msgid "'%s' mounted."
+msgstr "“%s”已挂载。"
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr "“%s”未挂载。"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "“缓冲时间（小时）”或“最后事件的数量”。对于删除较旧的时移文件，首先发生的条件具有优先级。"
@@ -1346,14 +1395,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr "1.（最高）"
 
 msgid "10bit"
 msgstr "10位"
@@ -1376,17 +1419,11 @@ msgstr "12位"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12位 4:2:0/4:2:2 无画中画"
 
-msgid "13 V"
-msgstr "13V"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 信箱模式"
 
 msgid "16:10 PanScan"
 msgstr "16:10 全景模式"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "总是 16:9"
@@ -1405,9 +1442,6 @@ msgstr "16:9 全景模式"
 
 msgid "16:9 reset to normal"
 msgstr "16:9 重置为正常"
-
-msgid "18 V"
-msgstr "18V"
 
 msgid "1st InfoBar timeout"
 msgstr "第一信息栏超时"
@@ -1638,15 +1672,6 @@ msgid "A required tool (%s) was not found."
 msgstr "所需的工具 （%s）没有找到。"
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"发现第二个已配置的接口。\n"
-"\n"
-"是否要禁用第二个网络接口？"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1705,6 +1730,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "AI 字幕"
+
 msgid "AI Translation color"
 msgstr "人工智能翻译颜色"
 
@@ -1738,11 +1766,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC 供应商"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV 接收机、回音壁和遥控器"
+
 msgid "AV Setup"
 msgstr "音频/视频设置"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV 接收机、回音壁和遥控器"
 
 msgid "Abkhazian"
 msgstr "阿布哈兹语"
@@ -1783,6 +1811,13 @@ msgstr "访问模式"
 msgid "Access point"
 msgstr "接入点"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+"访问点未找到。\n"
+"请检查其是否在范围内，以及SSID是否正确。"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "访问地理位置信息需要互联网连接。"
 
@@ -1822,14 +1857,8 @@ msgstr "在列的开头/结尾处激活“全部向上/向下”功能的UP/DOWN
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "激活从命令行发送单个或特定内部 HDMI-CEC 命令的方式。"
 
-msgid "Activate network adapter configuration"
-msgstr "激活网络适配器配置"
-
-msgid "Activate network settings"
-msgstr "激活网络设置"
-
-msgid "Activate the configured network settings."
-msgstr "启用已配置的网络设置。"
+msgid "Activate network adapter"
+msgstr "激活网络适配器"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "激活闪存扩展器，保存所有更改的设置并退出"
@@ -1851,6 +1880,13 @@ msgstr "活动客户端"
 
 msgid "Active only"
 msgstr "仅活动"
+
+msgid "Adapter"
+msgstr "适配器"
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr "适配器“%s”上下文菜单"
 
 msgid "Adapter Settings"
 msgstr "适配器设置"
@@ -1894,6 +1930,9 @@ msgstr "添加 HDMI-IN 到频道分组"
 msgid "Add Marker To Bouquet"
 msgstr "添加标记到频道分组"
 
+msgid "Add Mount Manually"
+msgstr "手动添加挂载"
+
 msgid "Add New Quad Channel Entry"
 msgstr "添加新的四画面频道条目"
 
@@ -1917,6 +1956,12 @@ msgstr "添加定时器"
 
 msgid "Add To Parental Protection"
 msgstr "添加到家长保护"
+
+msgid "Add Wi-Fi"
+msgstr "添加 WiFi"
+
+msgid "Add Wi-Fi Manually"
+msgstr "手动添加 WiFi"
 
 msgid "Add Zap+RecordTimer"
 msgstr "添加换台+录制定时器"
@@ -1944,6 +1989,9 @@ msgstr "为下一事件添加换台定时器"
 
 msgid "Add a mark"
 msgstr "添加标记"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr "添加新的已保存Wi‑Fi网络"
 
 msgid "Add a new bouquet"
 msgstr "添加新频道分组"
@@ -2104,6 +2152,9 @@ msgstr "成人电影／戏剧"
 
 msgid "Advanced"
 msgstr "高级"
+
+msgid "Advanced Diagnostics"
+msgstr "高级诊断"
 
 msgid "Advanced Options"
 msgstr "高级选项"
@@ -2339,6 +2390,9 @@ msgstr "备选 2"
 msgid "Alternative Edit"
 msgstr "编辑备选"
 
+msgid "Alternative Tuner Sources"
+msgstr "备用调谐器源"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "DVB-T/C 或 ATSC 备选 URL 地址"
 
@@ -2500,9 +2554,6 @@ msgstr "确定要删除所有地面波频道？"
 msgid "Are you sure to remove this entry?"
 msgstr "确定要移除该条目？"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "确定要激活这个网络配置?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2527,9 +2578,6 @@ msgstr "确定要退出该向导吗？"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "是否确定重新载入 EPG 数据，从：\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "确定要重新启动网络接口?"
 
 #, python-format
 msgid ""
@@ -2640,6 +2688,9 @@ msgstr "指定 CAId："
 msgid "Assigned services/provider:"
 msgstr "指定 频道/供应商："
 
+msgid "Associated"
+msgstr "已关联"
+
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
 
@@ -2677,6 +2728,12 @@ msgstr "音频自动音量级别"
 msgid "Audio Channel"
 msgstr "声道"
 
+msgid "Audio Formats And Output"
+msgstr "音频格式及输出"
+
+msgid "Audio Language And Track Selection"
+msgstr "音频语言与音轨选择"
+
 msgid "Audio PID"
 msgstr "音频 PID"
 
@@ -2691,6 +2748,9 @@ msgid "Audio Source"
 msgstr "音频源"
 
 msgid "Audio Sync"
+msgstr "音频同步"
+
+msgid "Audio Synchronization"
 msgstr "音频同步"
 
 msgid "Audio language selection 1"
@@ -2819,9 +2879,6 @@ msgstr "自动分辨率标签"
 msgid "Automatic scan for services"
 msgstr "频道自动扫描"
 
-msgid "Automatic shares access"
-msgstr "自动共享访问"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "每当接收机进入待机或深度待机时，自动将电视置于待机状态。"
 
@@ -2851,6 +2908,9 @@ msgstr "可用地点："
 
 msgid "Available shares:"
 msgstr "可用共享："
+
+msgid "Available tuner types"
+msgstr "可用调谐器类型"
 
 msgid "Avaric"
 msgstr "阿瓦里克"
@@ -2901,8 +2961,8 @@ msgstr "长按蓝键"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "蓝键切换：蓝键/长按蓝键"
 
-msgid "Back"
-msgstr "返回"
+msgid "BSSID"
+msgstr "BSSID"
 
 msgid "Back USB"
 msgstr "背面 USB"
@@ -3274,6 +3334,9 @@ msgstr "亮度（正常）"
 msgid "Brightness (Standby)"
 msgstr "亮度（待机）"
 
+msgid "Brightness And Contrast"
+msgstr "亮度和对比度"
+
 msgid "Brightness Video"
 msgstr "亮度视频"
 
@@ -3301,11 +3364,20 @@ msgstr "广播/新闻"
 msgid "Broadcom"
 msgstr "博通"
 
+msgid "Broadcom default"
+msgstr "博通默认"
+
+msgid "Browse"
+msgstr "浏览"
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "逐一浏览、安装或删除插件。"
 
 msgid "Brunei Darussalam"
 msgstr "文莱达鲁萨兰国"
+
+msgid "Buffer Management"
+msgstr "缓冲区管理"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3360,11 +3432,17 @@ msgstr "刻录到介质"
 msgid "Burundi"
 msgstr "布隆迪"
 
+msgid "Bus"
+msgstr "总线"
+
 msgid "Business"
 msgstr "商业"
 
 msgid "Business & Finance"
 msgstr "商业与金融"
+
+msgid "Button Assignments"
+msgstr "按键分配"
 
 msgid "Button Setup"
 msgstr "按键设置"
@@ -3389,6 +3467,12 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C 波段"
+
+msgid "C/T input"
+msgstr "有线/地面输入"
+
+msgid "C/T input switching"
+msgstr "有线 / 地面输入切换"
 
 msgid "CCD-Width"
 msgstr "CCD宽度"
@@ -3532,6 +3616,12 @@ msgstr "有线电视"
 
 msgid "Cable Scan"
 msgstr "有线电视扫描"
+
+msgid "Cable Unplugged"
+msgstr "线缆未连接"
+
+msgid "Cable input"
+msgstr "有线输入"
 
 msgid "Cache thumbnails"
 msgstr "缓存缩略图"
@@ -3937,6 +4027,12 @@ msgstr "频道 1"
 msgid "Channel 1 with prime time"
 msgstr "频道 1 的黄金时段"
 
+msgid "Channel And EPG Import"
+msgstr "频道及 EPG 导入"
+
+msgid "Channel History And Messages"
+msgstr "频道历史及消息"
+
 msgid "Channel Info"
 msgstr "频道信息"
 
@@ -3972,6 +4068,9 @@ msgstr "频道选择设置"
 
 msgid "Channel Selection picon path"
 msgstr "频道选择界面的频道图标集"
+
+msgid "Channel Zapping And Keys"
+msgstr "频道切换与按键"
 
 msgid "Channel buttons"
 msgstr "频道按键"
@@ -4041,6 +4140,9 @@ msgstr "章节"
 
 msgid "Character device"
 msgstr "字符装置"
+
+msgid "Character set"
+msgstr "字符集"
 
 msgid "Chat show"
 msgstr "谈话节目"
@@ -4276,6 +4378,9 @@ msgstr "清除"
 msgid "Clear Log"
 msgstr "清除日志"
 
+msgid "Clear Stored Credentials"
+msgstr "清除已保存的凭据"
+
 msgid "Clear before scan"
 msgstr "扫描前清理"
 
@@ -4340,6 +4445,9 @@ msgstr "关闭频道分组列表。"
 
 msgid "Close dialog"
 msgstr "关闭对话框"
+
+msgid "Close network test"
+msgstr "关闭网络测试"
 
 msgid "Close screen"
 msgstr "关闭屏幕"
@@ -4416,6 +4524,9 @@ msgstr "哥伦比亚"
 msgid "Color"
 msgstr "色彩"
 
+msgid "Color Button Assignments"
+msgstr "彩色按键分配"
+
 msgid "Color format"
 msgstr "色彩格式"
 
@@ -4485,14 +4596,14 @@ msgstr "通用接口（CI）分配"
 msgid "Common Interface Settings"
 msgstr "通用接口设置"
 
-msgid "Common Settings"
-msgstr "通用设置"
-
 msgid "Common Setup Actions"
 msgstr "通用设置操作"
 
 msgid "Comoros"
 msgstr "科摩罗"
+
+msgid "Compatibility And Emulation"
+msgstr "兼容性与模拟"
 
 msgid "Compiled by"
 msgstr "编译"
@@ -4533,14 +4644,20 @@ msgstr "配置模式"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "帮助屏幕的配置选项可在“菜单>设置>使用偏好/图形界面>设置”中找到。"
 
-msgid "Configure DNS (name servers)"
-msgstr "配置 DNS（名称服务器）"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr "配置DNS（动态名称服务器）"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "配置额外的延迟，以改善外挂字幕的同步性。"
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "配置额外的延迟，以改善字幕同步性。"
+
+msgid "Configure another network adapter"
+msgstr "配置其他网络适配器"
+
+msgid "Configure cable reception on this input."
+msgstr "在此输入口配置有线接收。"
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "配置新定时器的默认设置。修改后需要重新启动。"
@@ -4587,41 +4704,35 @@ msgstr "配置是否显示频道类型图标。"
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "配置字幕是否应在正常、斜体、粗体和粗斜体之间切换。"
 
-msgid "Configure interface"
-msgstr "配置接口"
+msgid "Configure network adapter"
+msgstr "配置网络适配器"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "配置应在哪些设备上使用后台删除选项。"
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"通过调整显示的值来配置或验证 DNS（名称服务器）。\n"
+"通过调整显示的值来配置或验证您的DNS（动态名称服务器）设置。\n"
 "\n"
-"设置正确后，按“确定”继续。"
+"设置无误后按 OK 键继续。"
 
 msgid "Configure remote control type"
 msgstr "配置遥控器类型"
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "在独立的 SAT 输入口配置卫星接收。"
+
+msgid "Configure terrestrial reception on this input."
+msgstr "在此输入口配置地面波接收。"
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "配置此高频头 的 DiSEqC 模式。"
 
-msgid "Configure the IP address."
-msgstr "配置 IP 地址。"
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "配置备用远程接收机 IP 地址。"
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"通过调整显示的值来配置 Internet 连接。\n"
-"\n"
-"设置正确后，按“确定”继续。"
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "配置备用远程接收机的端口。"
@@ -4725,9 +4836,6 @@ msgstr "配置短按电源键的功能。"
 msgid "Configure the function of the < and > buttons."
 msgstr "配置 < 和 > 按键的功能。"
 
-msgid "Configure the gateway."
-msgstr "配置网关。"
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "配置当机顶盒待机时硬盘驱动器在指定的空闲时间后进入待机状态。"
 
@@ -4757,15 +4865,6 @@ msgstr "配置可用于录制的最小磁盘空间量。 当空间量低于此�
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "在显示'i'图标之前配置最小宽度，'0'等于不显示图标。"
-
-msgid "Configure the name server (DNS)."
-msgstr "配置域名服务器 （DNS）。"
-
-msgid "Configure the netmask."
-msgstr "配置子网掩码。"
-
-msgid "Configure the network again"
-msgstr "重新配置网络"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "配置项目在多少天后自动从垃圾箱中删除。"
@@ -4799,6 +4898,9 @@ msgstr "配置第二字幕语言。"
 
 msgid "Configure the secondary EPG language."
 msgstr "配置第二 EPG 语言。"
+
+msgid "Configure the selected Wi-Fi network"
+msgstr "配置所选Wi‑Fi网络"
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "配置“1” “3”按键的跳跃时间间隔。"
@@ -4899,17 +5001,8 @@ msgstr "当有多个调谐器可用时，配置首选的调谐器。如果设置
 msgid "Configure your NTP server."
 msgstr "配置 NTP 服务器。"
 
-msgid "Configure your Network"
-msgstr "配置网络"
-
-msgid "Configure your internal LAN"
-msgstr "配置内部局域网"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "配置网络设置，然后按 OK 键开始扫描"
-
-msgid "Configure your wireless LAN again"
-msgstr "再次配置无线网络"
 
 msgid "Configures which video output connector will be used."
 msgstr "配置哪个视频输出连接器会被使用。"
@@ -4922,6 +5015,10 @@ msgstr "配置频道"
 
 msgid "Confirm Zap"
 msgstr "确认切换"
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
+msgstr "确认删除“%s”吗？"
 
 msgid "ConflictTimer Actions"
 msgstr "冲突定时器操作"
@@ -4942,11 +5039,14 @@ msgstr "连接"
 msgid "Connect to IceTV server every"
 msgstr "每 ？连接到 IceTV 服务器"
 
-msgid "Connect to a wireless network"
-msgstr "连接到无线网络"
-
 msgid "Connect to the Internet"
 msgstr "连接到互联网"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr "连接到所选的已保存Wi‑Fi网络"
+
+msgid "Connected"
+msgstr "已连接"
 
 msgid "Connected clients"
 msgstr "已连接的客户端"
@@ -4963,8 +5063,30 @@ msgstr "已连接到"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "连接转码，限制 - 无画中画功能！"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+"已连接，但未获取到IP地址。\n"
+"请检查路由器的DHCP设置。"
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+"已连接。\n"
+"IP 地址为 '%s'。"
+
 msgid "Connected: "
 msgstr "已连接："
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr "正在连接到 '%s'"
+
+msgid "Connecting..."
+msgstr "正在连接..."
 
 msgid "Connection information"
 msgstr "连接信息"
@@ -5014,6 +5136,9 @@ msgstr "上下文"
 
 msgid "Continent"
 msgstr "洲"
+
+msgid "Continue"
+msgstr "继续"
 
 msgid "Continue in background"
 msgstr "在后台继续"
@@ -5161,8 +5286,26 @@ msgstr "哥斯达黎加"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "科特迪瓦"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr "无法连接（状态：'%s'）。"
+
 msgid "Could not connect to server"
 msgstr "无法连接到服务器"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+"无法连接。\n"
+"Wi‑Fi驱动（wpa_supplicant）未能启动，请检查Wi‑Fi设置。"
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
+"无法连接。\n"
+"Wi‑Fi密码是否错误？"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "无法加载媒介！光盘没有插入？"
@@ -5186,6 +5329,15 @@ msgstr "由于频道无效而无法录制：%s"
 msgid "Could not save configuration file %s!"
 msgstr "无法保存配置文件 %s!"
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+"无法验证已保存的Wi‑Fi网络。\n"
+"\n"
+"是否要再次修改设置？"
+
 msgid "Country"
 msgstr "国家(地区)"
 
@@ -5198,6 +5350,9 @@ msgstr "EPG 事件分级信息的国家/地区"
 #, python-format
 msgid "Crash %d/%d"
 msgstr "崩溃 %d/%d"
+
+msgid "Crash Handling"
+msgstr "崩溃处理"
 
 msgid "Crash Logs"
 msgstr "出错日志"
@@ -5309,6 +5464,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "正在创建分区"
 
+msgid "Credentials"
+msgstr "凭据"
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr "“%s” 的凭据"
+
 msgid "Cree"
 msgstr "克里语"
 
@@ -5409,9 +5571,6 @@ msgstr "当前极轴位置："
 msgid "Current rotor position: unknown"
 msgstr "当前极轴位置：未知"
 
-msgid "Current settings:"
-msgstr "当前设置："
-
 msgid "Current supplied to the LNB and positioner."
 msgstr "当前供给高频头和位置器的电流。"
 
@@ -5447,6 +5606,9 @@ msgstr "当前记忆的音量级别："
 msgid "Custom"
 msgstr "自定义"
 
+msgid "Custom Skip Times"
+msgstr "自定义跳转时间"
+
 msgid "Custom mountpoint"
 msgstr "自定义挂载点"
 
@@ -5473,6 +5635,9 @@ msgstr "自定义 enigma2 个人设置"
 
 msgid "Cut"
 msgstr "剪切"
+
+msgid "CutList Skipping"
+msgstr "剪辑列表跳转"
 
 msgid "CutList skip time for '%s' button"
 msgstr "“%s”按钮的剪辑列表跳过时间"
@@ -5516,9 +5681,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA 支持"
 
@@ -5531,6 +5693,9 @@ msgstr "DMM 普通"
 msgid "DNS Settings"
 msgstr "DNS 设置"
 
+msgid "DNS Settings Actions"
+msgstr "DNS 设置操作"
+
 msgid "DNS data source"
 msgstr "DNS 数据源"
 
@@ -5539,9 +5704,6 @@ msgstr "DNS 覆盖"
 
 msgid "DNS protocol mode"
 msgstr "DNS 模式"
-
-msgid "DNS suffix"
-msgstr "DNS 后缀"
 
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
@@ -5571,6 +5733,9 @@ msgstr "双层 DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI 延迟"
 
+msgid "DVB Subtitles"
+msgstr "DVB字幕"
+
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB 字幕 PID 和语言"
 
@@ -5583,17 +5748,14 @@ msgstr "DVB 字幕颜色"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "仅 DVB-C / 有线电视"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C和DVB-T/T2通过外置5V控制同轴开关"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "DVB‑C与DVB‑T/T2共用该输入。仅当天线系统或外部同轴切换器需要供电时，才开启5V供电。"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5603,9 +5765,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "仅 DVB-T/T2 /地面波"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5622,7 +5781,7 @@ msgstr "DVD 菜单"
 msgid "DVD Title list"
 msgstr "DVD 标题列表"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD 播放器"
 
 msgid "DVDPlayer"
@@ -5645,6 +5804,9 @@ msgstr "日期"
 
 msgid "Date / Time"
 msgstr "日期 / 时间"
+
+msgid "Date And Time"
+msgstr "日期和时间"
 
 msgid "Date Time Input Actions"
 msgstr "日期时间输入操作"
@@ -5812,8 +5974,14 @@ msgstr "停用"
 msgid "Deactivate Expander"
 msgstr "停用扩展器"
 
+msgid "Deactivate network adapter"
+msgstr "停用网络适配器"
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "停用所选设备中的闪存扩展器"
+
+msgid "Deactivated"
+msgstr "已停用"
 
 msgid "Debug"
 msgstr "调试"
@@ -5824,6 +5992,9 @@ msgstr "调试 %d/%d"
 
 msgid "Debug Information"
 msgstr "调试信息"
+
+msgid "Debug Log Content"
+msgstr "调试日志内容"
 
 msgid "Debug Log Information"
 msgstr "调试日志信息"
@@ -6066,6 +6237,12 @@ msgstr "删除镜像"
 msgid "Delete Line"
 msgstr "删除行"
 
+msgid "Delete Mount"
+msgstr "删除挂载"
+
+msgid "Delete Network"
+msgstr "删除网络"
+
 msgid "Delete Plugins"
 msgstr "删除插件"
 
@@ -6296,9 +6473,6 @@ msgstr "设备管理器"
 msgid "Device Manager Actions"
 msgstr "设备管理器操作"
 
-msgid "Device Settings"
-msgstr "设备设置"
-
 msgid "Device id"
 msgstr "设备 ID"
 
@@ -6408,6 +6582,9 @@ msgstr "目录/文件状态信息"
 msgid "Disable"
 msgstr "禁用"
 
+msgid "Disable Adapter"
+msgstr "禁用适配器"
+
 msgid "Disable Animations"
 msgstr "禁用动画"
 
@@ -6432,6 +6609,9 @@ msgstr "禁用 MiniTV"
 msgid "Disable Move Mode"
 msgstr "禁用移动模式"
 
+msgid "Disable Network"
+msgstr "禁用网络"
+
 msgid "Disable Picture in Picture"
 msgstr "禁用画中画"
 
@@ -6450,6 +6630,9 @@ msgstr "禁用屏幕介绍"
 msgid "Disable operator profiles"
 msgstr "禁用操作员配置文件"
 
+msgid "Disable saved Wi-Fi network"
+msgstr "禁用已保存的 Wi‑Fi 网络"
+
 msgid "Disable the HDD Process on VFD."
 msgstr "禁用 VFD 上的 HDD 进程。"
 
@@ -6465,11 +6648,11 @@ msgstr "已禁用"
 msgid "Disabled PiP.\n"
 msgstr "已禁用画中画。\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "禁用或 WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "禁用 Chkroot 失败！"
+
+msgid "Disconnected"
+msgstr "已断开连接"
 
 msgid "Discussion"
 msgstr "讨论"
@@ -6491,6 +6674,12 @@ msgstr "显示 4:3 内容为"
 
 msgid "Display >16:9 content as"
 msgstr "显示 >16:9 内容为"
+
+msgid "Display Power And Content"
+msgstr "显示电源与内容"
+
+msgid "Display Scrolling"
+msgstr "滚动显示"
 
 msgid "Display Settings"
 msgstr "显示屏设置"
@@ -6664,23 +6853,23 @@ msgstr "真的要删除“%s”的书签吗？"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "真的要删除 %s 的定时器?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"您真的要重新启动 OSCam 吗？\n"
-"\n"
-"提示：这大约需要 5 秒钟！"
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "确认要重启 %s 吗？"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"您真的要关闭 OSCam 吗？\n"
+"确认要关闭 %s 吗？\n"
 "\n"
-"注意：要重新激活 OSCam，必须完全重启接收器！"
+"注意：要重新启用 %s，必须完整重启接收机！"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "确认要停止 %s 吗？"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6796,6 +6985,9 @@ msgstr "杜比 TrueHD"
 msgid "Domain"
 msgstr "域"
 
+msgid "Domain name"
+msgstr "域名"
+
 msgid "Dominica"
 msgstr "多米尼加"
 
@@ -6902,6 +7094,9 @@ msgstr "Dreambox 格式的数据 DVD（兼容HDTV）"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox 格式的数据 DVD （其他 DVD 播放器无法读取）"
 
+msgid "Driver"
+msgstr "驱动"
+
 msgid "Driver Packages"
 msgstr "驱动程序包"
 
@@ -6966,17 +7161,26 @@ msgstr "EPG 缓存检查"
 msgid "EPG Channel/Service Selection"
 msgstr "EPG 频道/服务选择"
 
+msgid "EPG Data In Streams"
+msgstr "流中的EPG数据"
+
 msgid "EPG Display Actions"
 msgstr "EPG 显示操作"
 
 msgid "EPG Jump"
 msgstr "电子节目表跳转"
 
+msgid "EPG Language"
+msgstr "EPG语言"
+
 msgid "EPG Navigation Actions"
 msgstr "EPG 导航操作"
 
 msgid "EPG Other Actions"
 msgstr "EPG 其他动作"
+
+msgid "EPG Range And History"
+msgstr "EPG范围与历史记录"
 
 msgid "EPG Search"
 msgstr "搜索 EPG"
@@ -6989,6 +7193,12 @@ msgstr "EPG 设置"
 
 msgid "EPG Setup"
 msgstr "EPG设置"
+
+msgid "EPG Sources"
+msgstr "EPG数据源"
+
+msgid "EPG Storage And Refresh"
+msgstr "EPG存储与刷新"
 
 msgid "EPG button mode"
 msgstr "EPG 键模式"
@@ -7066,6 +7276,9 @@ msgstr "编辑"
 msgid "Edit Alternatives"
 msgstr "编辑备选方案"
 
+msgid "Edit Credentials"
+msgstr "编辑凭据"
+
 msgid "Edit Mode Off"
 msgstr "关闭编辑模式"
 
@@ -7087,6 +7300,9 @@ msgstr "编辑标题"
 msgid "Edit Upgrade Source URL"
 msgstr "编辑升级源 URL"
 
+msgid "Edit Username/Password Credentials"
+msgstr "编辑用户名/密码凭据"
+
 msgid "Edit chapters of current title"
 msgstr "编辑当前标题的章节"
 
@@ -7096,25 +7312,20 @@ msgstr "编辑当前行"
 msgid "Edit settings"
 msgstr "编辑设置"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr "编辑所选主机已存储的用户名/密码凭据"
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "编辑 CCcam/NewCamd 服务器主机名。"
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "编辑 CCcam/NewCamd 服务器端口。"
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "编辑 %s %s 的 DNS 配置。"
-
 msgid "Edit the NewCamd DES Key."
 msgstr "编辑 NewCamd DES 密钥。"
 
 msgid "Edit the currently selected timer"
 msgstr "编辑当前选中的定时器"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "编辑 %s %s 的网络配置。"
 
 msgid "Edit the password."
 msgstr "编辑密码。"
@@ -7127,6 +7338,9 @@ msgstr "编辑远程 CCCam 端口。"
 
 msgid "Edit the remote IP address."
 msgstr "编辑远程 IP 地址。"
+
+msgid "Edit the selected network mount"
+msgstr "编辑所选网络挂载"
 
 msgid "Edit the upgrade source address."
 msgstr "编辑升级源地址。"
@@ -7225,9 +7439,6 @@ msgstr "启用 GStreamer 调试日志 *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "启用 GStreamer 管道图 *"
 
-msgid "Enable IPv6"
-msgstr "启用 IPv6"
-
 msgid "Enable IceTV"
 msgstr "启用 IceTV"
 
@@ -7279,8 +7490,8 @@ msgstr "启用 ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr "启用 Virgin EPG"
 
-msgid "Enable Wake On LAN"
-msgstr "启用网络唤醒"
+msgid "Enable adapter"
+msgstr "启用适配器"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "启用并设置第二个信息栏的持续时间（按“确定”两次），其中可能包含其他信息。"
@@ -7358,11 +7569,17 @@ msgstr "启用监控界面"
 msgid "Enable multiple bouquets"
 msgstr "启用多个频道分组"
 
+msgid "Enable network"
+msgstr "启用网络"
+
 msgid "Enable network traffic check"
 msgstr "启用网络流量检查"
 
 msgid "Enable new GStreamer playback"
 msgstr "启用新的 GStreamer 播放"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr "启用或禁用此网络挂载。禁用该挂载不会删除其配置定义。"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "使用或禁用 HDMI-CEC。"
@@ -7375,6 +7592,9 @@ msgstr "启用预览"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "启用远程 enigma2 接收机尝试调谐无法调谐到本地的频道（例如在本地调谐器上调谐器被占用或频道类型不可用。指定包括http://和端口号（通常为8001 ）的完整 URL，例如 http://第二接收机:8001。"
+
+msgid "Enable saved Wi-Fi network"
+msgstr "启用保存的 Wi-Fi 网络"
 
 msgid "Enable teletext caching"
 msgstr "启用图文电视缓存"
@@ -7446,7 +7666,7 @@ msgid "Enable this when a power inserter or external supply powers the Unicable 
 msgstr "若 Unicable 设备由供电器或外置电源供电，请开启此项。"
 
 msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
-msgstr ""
+msgstr "在住宅楼宇 Unicable 系统中，若用户频段受 PIN 码保护，请启用此项。"
 
 msgid "Enable timer"
 msgstr "启用定时器"
@@ -7475,20 +7695,11 @@ msgstr "已启用"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "启用功能，以便接收机可以解密流（如果 ECM（授权控制信息） 数据包含在流中，并且有效的卡可用）。"
 
-msgid "Encrypted: "
-msgstr "加密方式："
-
 msgid "Encryption"
 msgstr "加密"
 
-msgid "Encryption Type:"
-msgstr "加密类型："
-
-msgid "Encryption key"
-msgstr "加密密钥"
-
-msgid "Encryption key type"
-msgstr "加密密钥类型"
+msgid "Encryption And Descrambling"
+msgstr "加密与解扰"
 
 msgid "End"
 msgstr "结束"
@@ -7594,7 +7805,10 @@ msgid "Enter a new name for this device."
 msgstr "输入此设备的新名称。"
 
 msgid "Enter expected ONID/TSID"
-msgstr ""
+msgstr "输入预期的 ONID/TSID"
+
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr "输入重试前等待响应的时长（若勾选下方“无法到达则放弃”，则超时后直接失败）。输入“0”则使用内核内部默认值，而非固定数值。"
 
 msgid "Enter if you are North or South of the equator."
 msgstr "如果您在赤道以北或以南，请输入。"
@@ -7608,6 +7822,9 @@ msgstr "输入新目录名称："
 msgid "Enter number to jump to channel"
 msgstr "输入要跳转到频道的编号"
 
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr "输入上述配置设置中未提供的可选挂载参数。多个参数请用逗号分隔。无效/不当的条目可能导致挂载失败！"
+
 msgid "Enter persistent PIN code"
 msgstr "输入永久 PIN 码"
 
@@ -7618,13 +7835,13 @@ msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
-msgstr ""
+msgstr "输入允许访问 NFS 主机的 IP 地址或子网（例如 192.168.1.0/24）。默认填 `*`，代表允许全部主机访问。"
 
 msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
-msgstr ""
+msgstr "输入此网卡用于访问其他网络的网关 IP 地址，通常填写路由器的 IP 地址。"
 
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
-msgstr ""
+msgstr "输入安装人员或楼宇运营商分配给该用户频段的 PIN 码，取值范围 0‑255。"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字符。"
@@ -7633,7 +7850,7 @@ msgid "Enter the duration to be added to the streaming buffer after a streaming 
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
-msgstr ""
+msgstr "为此网卡输入固定 / 静态 IPv4 地址。"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入高频头在低频段和高频段之间切换的频率。有关更多信息，请参阅高频头的规格。"
@@ -7641,38 +7858,65 @@ msgstr "输入高频头在低频段和高频段之间切换的频率。有关更
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "输入搜索有线电视多路复用时调谐器要使用的频率步长。有关更多信息，请咨询有线电视供应商的文档。"
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr "输入网络共享服务器的主机名或IP地址。"
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr "输入用作远程共享本地挂载点的本地目录名称。"
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "定义 DNS 后缀。"
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr "输入用于标识此接收机的网络主机名。"
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
-msgstr ""
+msgstr "输入要分配 / 使用的 NFS 服务器线程数量。数值越高，多客户端并发时性能越好，但会占用更多内存。"
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "输入与此卫星对应的定位器中存储的编号。"
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr "输入访问该主机共享资源所需的密码（若共享需要身份验证凭据）。"
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr "输入用于访问该主机共享资源的密码。"
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
-msgstr ""
+msgstr "输入所选无线网络的密码、密钥短语或预共享密钥。"
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
-msgstr ""
+msgid "Enter the primary IPv4 DNS server for this adapter."
+msgstr "输入此网卡的主 IPv4 DNS 服务器地址。"
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
-msgstr ""
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr "输入此网卡的主 IPv6 DNS 服务器地址。（选填）"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
-msgstr ""
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr "输入服务器上的远程共享名称（SMB）或导出路径（NFS）。"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
-msgstr ""
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
+msgstr "输入此网卡的备用 IPv4 DNS 服务器地址。（选填）"
+
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
+msgstr "输入此网卡的备用 IPv6 DNS 服务器地址。（选填）"
 
 msgid "Enter the service pin"
 msgstr "输入频道 PIN"
 
 msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
-msgstr ""
+msgstr "输入此网卡使用的子网掩码（例如 255.255.255.0）"
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "输入订阅码即可全面启用人工智能翻译插件，试用统一码为15。"
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
-msgstr ""
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr "如果该主机的共享需要身份验证凭据，请输入用于访问其共享的用户名。"
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr "请输入用于访问该主机共享的用户名。"
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "输入本机接收机 Samba 连接所用的工作组名称。(默认值为 `WORKGROUP`)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "输入您当前的纬度。 这是您距离赤道的度数，以十进制表示。"
@@ -7822,44 +8066,6 @@ msgstr "错误重试延迟"
 msgid "Error code"
 msgstr "错误代码"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"创建 FullHD 皮肤时出错。\n"
-"使用 HD 皮肤！"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"创建 FullHD 皮肤时出错。台标包下载不可用。\n"
-"使用 HD 皮肤！"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"创建 FullHD-Skin 时出错。没有足够的闪存空间。\n"
-"使用 HD皮肤！"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"创建 FullHD 皮肤时出错。\n"
-"使用 HD 皮肤！"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "创建 HD 皮肤时出错。没有足够的闪存空间。"
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"创建MetrixHD皮肤时出错。\n"
-"请重启MyMetrixLite 插件并应用设置的检查。"
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "下载镜像“%s”时出错！"
@@ -7908,9 +8114,6 @@ msgstr "在远程接收机上写入“/etc/enigma2/epg.dat”时出错！"
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "在远程接收机上写入“epg.dat”时出错！"
 
-msgid "Error, unknown Result!"
-msgstr "错误，未知结果！"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7921,6 +8124,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "错误：空文件名是非法的！"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr "错误：“服务器”和“远程路径”均为必填项！"
 
 msgid "Error: Cannot find any images!"
 msgstr "错误：找不到任何镜像！"
@@ -7974,12 +8180,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "错误：%s”无法运行“于“%s”上！"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr "错误：挂载“%s”失败！"
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "错误：未安装程序“%s”，并且包含该程序的软件包未知！"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "错误：删除目录“%s”失败！（可能目录不是空的。）"
+
+msgid "Error: Rescan failed!"
+msgstr "错误：重新扫描失败！"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8030,6 +8243,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "错误：无法写入日志文件“%s”！"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr "错误：卸载“%s”失败！"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "错误：“%s”无法运行于“%s”！"
 
@@ -8052,6 +8269,9 @@ msgstr "爱沙尼亚语"
 msgid "EtPortal"
 msgstr "EtPortal"
 
+msgid "Ethernet Adapter"
+msgstr "以太网适配器"
+
 msgid "Ethernet network interface"
 msgstr "以太网网络接口"
 
@@ -8072,6 +8292,9 @@ msgstr "即使“换台”录制定时器启动？"
 
 msgid "Event Info"
 msgstr "事件信息"
+
+msgid "Event Metadata And Correction"
+msgstr "事件元数据及校正"
 
 msgid "Event View"
 msgstr "事件视图"
@@ -8186,18 +8409,6 @@ msgstr "退出菜单"
 msgid "Exit movie player?"
 msgstr "退出电影播放器？"
 
-msgid "Exit network adapter configuration"
-msgstr "退出网络适配器配置"
-
-msgid "Exit network adapter setup menu"
-msgstr "退出网络适配器设置菜单"
-
-msgid "Exit network interface list"
-msgstr "退出网络接口列表"
-
-msgid "Exit network wizard"
-msgstr "退出网络向导"
-
 msgid "Exit picture viewer"
 msgstr "退出镜像查看器"
 
@@ -8216,6 +8427,9 @@ msgstr "退出而不执行备份"
 msgid "Expand"
 msgstr "展开"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr "展开/折叠选中的主机，或使用选中的共享"
+
 msgid "Experimental film/video"
 msgstr "探索实验电影/视频"
 
@@ -8230,6 +8444,9 @@ msgstr "专家"
 
 msgid "Expert mode"
 msgstr "专家模式"
+
+msgid "Exports"
+msgstr "导出"
 
 msgid "Exposure bias"
 msgstr "曝光偏差"
@@ -8248,12 +8465,6 @@ msgstr "扩展"
 
 msgid "Extended"
 msgstr "扩展"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "扩展网络设置插件..."
-
-msgid "Extended Setup..."
-msgstr "扩展设置..."
 
 msgid "Extended Shares"
 msgstr "扩展共享"
@@ -8280,6 +8491,9 @@ msgstr "外部画中画"
 msgid "External Storage %s"
 msgstr "外部存储器 %s"
 
+msgid "External Subtitles"
+msgstr "外挂字幕"
+
 msgid "External subtitle color"
 msgstr "外挂字幕颜色"
 
@@ -8290,7 +8504,7 @@ msgid "External subtitle switch fonts"
 msgstr "外挂字幕切换字体"
 
 msgid "Externally powered"
-msgstr ""
+msgstr "外接供电"
 
 msgid "Extra High"
 msgstr "超高"
@@ -8336,10 +8550,10 @@ msgstr "自动 FBC"
 
 #, python-format
 msgid "FBC automatic: connected to %s"
-msgstr ""
+msgstr "FBC 自动模式：已连接至 %s"
 
 msgid "FBC automatic: inactive"
-msgstr ""
+msgstr "FBC 自动模式：未激活"
 
 msgid "FCC enabled"
 msgstr "FCC 已启用"
@@ -8474,6 +8688,9 @@ msgstr "快速频道切换设置"
 msgid "Fast DiSEqC"
 msgstr "快速 DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr "快进与快退"
+
 msgid "Fast Scan"
 msgstr "快速扫描"
 
@@ -8518,6 +8735,9 @@ msgstr "订阅源稳定。"
 
 msgid "Feed unstable!"
 msgstr "订阅源不稳定！"
+
+msgid "Feeds And Networking"
+msgstr "订阅源与网络"
 
 msgid "Fetch EPG and update timers now"
 msgstr "立即获取 EPG 并更新定时器"
@@ -8643,6 +8863,9 @@ msgstr "文件传输已被用户取消"
 msgid "Filename"
 msgstr "文件名"
 
+msgid "Files And Directories"
+msgstr "文件与目录"
+
 msgid "Files/folders to exclude from backup"
 msgstr "要从备份中排除的文件/文件夹"
 
@@ -8703,9 +8926,6 @@ msgstr "微调"
 
 msgid "Finished"
 msgstr "已完成"
-
-msgid "Finished configuring your network"
-msgstr "配置网络完成"
 
 msgid "Finland"
 msgstr "芬兰"
@@ -8806,14 +9026,14 @@ msgstr "按遥控器上的键组展开"
 msgid "Flat by position on remote"
 msgstr "按遥控器上的位置排列"
 
+msgid "Flush Cache and Rescan"
+msgstr "刷新缓存并重新扫描"
+
 msgid "Folk and Country"
 msgstr "民谣和乡村"
 
 msgid "Folk/Traditional music"
 msgstr "民歌/传统音乐"
-
-msgid "Follow instructions on TV"
-msgstr "按照电视上的说明进行操作"
 
 msgid "Font size"
 msgstr "字体大小"
@@ -8851,8 +9071,8 @@ msgstr "强制使用传统信号统计"
 msgid "Force ToneBurst"
 msgstr "强制 22K 开关"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
-msgstr ""
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
+msgstr "强制指定网卡速率 / 双工模式，关闭自动协商。仅在有明确需求时修改，设置错误会直接造成网络断开。"
 
 msgid "Force de-interlace"
 msgstr "强制隔行扫描"
@@ -8922,9 +9142,6 @@ msgstr "法属南领地"
 
 msgid "Frequency"
 msgstr "下行频率"
-
-msgid "Frequency Norm:"
-msgstr "频率规范："
 
 msgid "Frequency bands"
 msgstr "频段"
@@ -9049,11 +9266,29 @@ msgstr "一般"
 msgid "General AC3 delay"
 msgstr "常规 AC3 延迟"
 
+msgid "General Appearance"
+msgstr "通用外观"
+
 msgid "General BT audio delay"
 msgstr "常规 AC3 延迟"
 
+msgid "General Channel Selection"
+msgstr "通用频道选择"
+
+msgid "General OSD Behavior"
+msgstr "通用 OSD 行为"
+
 msgid "General PCM delay"
 msgstr "常规 PCM 延迟"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "通用"
@@ -9106,6 +9341,9 @@ msgstr "加纳"
 
 msgid "Gibraltar"
 msgstr "直布罗陀"
+
+msgid "GigaBlue optimized"
+msgstr "GigaBlue 专用优化"
 
 msgid "Given device id"
 msgstr "给定设备 ID"
@@ -9347,6 +9585,9 @@ msgstr "HDMI-IN 录制设置"
 msgid "HDMIin"
 msgstr "HDMIin"
 
+msgid "HDR OSD adjustment"
+msgstr "HDR OSD 亮度调节"
+
 msgid "HDR10 Support"
 msgstr "HDR10 支持"
 
@@ -9443,6 +9684,9 @@ msgstr "帮助"
 msgid "Help Action"
 msgstr "帮助操作"
 
+msgid "Help And Visual Feedback"
+msgstr "帮助与视觉反馈"
+
 msgid "Help Screen Information"
 msgstr "帮助屏信息"
 
@@ -9531,7 +9775,7 @@ msgid "Hide softcam servername"
 msgstr "隐藏 softcam 服务器名称"
 
 msgid "Hide sub-menu"
-msgstr ""
+msgstr "隐藏子菜单"
 
 msgid "Hide the InfoBar"
 msgstr "隐藏信息栏"
@@ -9702,9 +9946,6 @@ msgstr "匈牙利"
 msgid "Hybrid Tuner"
 msgstr "混合调谐器"
 
-msgid "Hybrid tuner mode"
-msgstr "混合调谐器模式"
-
 msgid "Hz"
 msgstr "Hz"
 
@@ -9735,6 +9976,9 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP 地址"
 
+msgid "IP Address"
+msgstr "IP 地址"
+
 msgid "IP Address 1"
 msgstr "IP 地址 1"
 
@@ -9763,10 +10007,13 @@ msgid "IP address of the Stream Relay server used to descramble services that ca
 msgstr "串流中继服务器的 IP 地址，用于对只能通过串流中继解密的频道进行解扰。"
 
 msgid "IP protocol"
-msgstr ""
+msgstr "IP 协议"
 
 msgid "IPK Installer"
 msgstr "IPK 安装器"
+
+msgid "IPv4 and IPv6"
+msgstr "IPv4 和 IPv6"
 
 msgid "IPv4 only"
 msgstr "仅 IPv4"
@@ -10097,7 +10344,7 @@ msgid "Include keyboard data"
 msgstr "包含键盘数据"
 
 msgid "Include network data"
-msgstr ""
+msgstr "包含网络数据"
 
 msgid "Include opkg output data"
 msgstr "包含 opkg 输出数据"
@@ -10168,6 +10415,12 @@ msgstr "信息图标宽度"
 msgid "InfoBar"
 msgstr "信息栏"
 
+msgid "InfoBar And Pause"
+msgstr "信息栏及暂停"
+
+msgid "InfoBar Content And Time Display"
+msgstr "信息栏内容与时间显示"
+
 msgid "InfoBar EPG"
 msgstr "信息栏 EPG"
 
@@ -10176,6 +10429,12 @@ msgstr "信息栏 EPG 设置"
 
 msgid "InfoBar EPG mode"
 msgstr "信息栏 EPG 模式"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "信息栏可见性及行为"
 
 msgid "InfoBar fade-out speed"
 msgstr "信息栏淡入淡出速度"
@@ -10196,7 +10455,7 @@ msgid "Infotainment"
 msgstr "资讯娱乐"
 
 msgid "Inherited channel / frequency"
-msgstr ""
+msgstr "沿用已有频道/频率"
 
 msgid "Init"
 msgstr "初始化"
@@ -10336,9 +10595,6 @@ msgstr "接口"
 #, python-format
 msgid "Interface '%s'"
 msgstr "接口 '%s'"
-
-msgid "Interface: "
-msgstr "接口："
 
 msgid "Interlaced"
 msgstr "交错"
@@ -10633,6 +10889,9 @@ msgstr "Kexec 多系统启动文件丢失。"
 msgid "Key"
 msgstr "键"
 
+msgid "Key Map And Power Buttons"
+msgstr "按键映射及电源键"
+
 msgid "Keyboard"
 msgstr "键盘"
 
@@ -10656,6 +10915,9 @@ msgstr "基里巴斯"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Kodi 插件包"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi 媒体中心"
@@ -10693,11 +10955,11 @@ msgstr "吉尔吉斯斯坦"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "网络适配器"
-
 msgid "LAN connection"
 msgstr "局域网连接"
+
+msgid "LAN link"
+msgstr "局域网链路"
 
 msgid "LCD scroll speed"
 msgstr "LCD 滚屏速度"
@@ -10731,6 +10993,9 @@ msgstr "LED 深度待机"
 
 msgid "LED Deep Standby color"
 msgstr "LED关机颜色"
+
+msgid "LED Indicators"
+msgstr "LED 指示灯"
 
 msgid "LED Normal"
 msgstr "LED 正常"
@@ -10769,16 +11034,16 @@ msgid "LNB"
 msgstr "高频头"
 
 msgid "LNB 1"
-msgstr ""
+msgstr "高频头 1"
 
 msgid "LNB 1 and the target LNB use different Unicable protocols"
-msgstr ""
+msgstr "高频头 1 与目标高频头使用的 Unicable 协议不一致"
 
 msgid "LNB current:"
-msgstr ""
+msgstr "高频头电流："
 
 msgid "LNB current: not available"
-msgstr ""
+msgstr "高频头电流：无法获取"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "高频头/切换 启动时间 [毫秒]"
@@ -10858,6 +11123,9 @@ msgstr "拉脱维亚"
 msgid "Latvian"
 msgstr "拉脱维亚语"
 
+msgid "Layout And Fonts"
+msgstr "布局与字体"
+
 msgid "Leave"
 msgstr "离开"
 
@@ -10868,7 +11136,7 @@ msgid "Leave movie player"
 msgstr "退出电影播放器"
 
 msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
-msgstr ""
+msgstr "设为 0 ，系统将根据高频头编号与设备配置文件自动生成位置参数。仅当 Unicable 设备已重新编程时，才输入 1‑64 之间的数值。"
 
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "将此设置保留为“是”，除非您完全理解为什么要调整它。"
@@ -10902,6 +11170,9 @@ msgstr "左侧，前置 USB"
 
 msgid "Left, wrapped"
 msgstr "左，覆盖"
+
+msgid "Legacy (SMB1)"
+msgstr "传统（SMB1）"
 
 msgid "Legacy mode"
 msgstr "传统模式"
@@ -10962,7 +11233,7 @@ msgid "Limit the characters that can be used in recording filenames to (7 bit) A
 msgstr "将可用于录像文件名的字符限制为（7位）ascii。 这确保与具有有限字符集的操作系统或文件系统的兼容性。"
 
 msgid "Limit the search to the satellite group normally used by this installation."
-msgstr ""
+msgstr "将搜索范围限制为本套接收系统通常使用的卫星组。"
 
 msgid "Limit west"
 msgstr "西极限位置"
@@ -10995,17 +11266,11 @@ msgstr "林加拉语"
 msgid "Link detected"
 msgstr "检测到链接"
 
-msgid "Link quality:"
-msgstr "链接质量："
-
 msgid "Link speed"
-msgstr ""
+msgstr "链路速率"
 
 msgid "Link target"
 msgstr "链接目标"
-
-msgid "Link:"
-msgstr "链接："
 
 msgid "Linked titles with a DVD menu"
 msgstr "带有 DVD 菜单的链接标题"
@@ -11013,14 +11278,14 @@ msgstr "带有 DVD 菜单的链接标题"
 msgid "Links"
 msgstr "链接"
 
+msgid "List Appearance And Sorting"
+msgstr "列表外观与排序"
+
 msgid "List Navigation Actions"
 msgstr "列出导航操作"
 
 msgid "List available EPG functions"
 msgstr "列出可用的 EPG 功能"
-
-msgid "List available networks"
-msgstr "可用网络列表"
 
 msgid "List of Storage Devices"
 msgstr "存贮设备列表"
@@ -11088,14 +11353,14 @@ msgstr "本地日期/时间"
 msgid "Local information"
 msgstr "本地信息"
 
-msgid "Local network"
-msgstr "本地网络"
-
 msgid "Local or Regional"
 msgstr "地方或区域"
 
 msgid "Local receiver"
 msgstr "本地机顶盒"
+
+msgid "Local share"
+msgstr "本地共享"
 
 msgid "Local time"
 msgstr "当地时间"
@@ -11166,6 +11431,9 @@ msgstr "日志 %d/%d"
 
 msgid "Log Manager"
 msgstr "日志管理器"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11266,10 +11534,10 @@ msgstr "卢森堡语/勒兹伯格语"
 msgid "M2k Packages"
 msgstr "M2k 软件包"
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr "MAC 地址"
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC 地址"
 
 msgid "MENU"
@@ -11414,9 +11682,6 @@ msgstr "手动扫描"
 msgid "Manual Service Searching"
 msgstr "手动搜索频道"
 
-msgid "Manual configuration"
-msgstr "手动配置"
-
 msgid "Manual scan for services"
 msgstr "手动扫描频道"
 
@@ -11489,9 +11754,6 @@ msgstr "最大频道"
 msgid "Max memory positions"
 msgstr "最大内存位置"
 
-msgid "Max. bitrate: "
-msgstr "最大码率："
-
 msgid "Maxdown +"
 msgstr "最多下来+"
 
@@ -11521,13 +11783,16 @@ msgid "Mayotte"
 msgstr "马约特岛"
 
 msgid "Measured current"
-msgstr ""
+msgstr "实测电流"
 
 msgid "Media"
 msgstr "媒体"
 
 msgid "Media Center"
 msgstr "媒体中心"
+
+msgid "Media Files And Navigation"
+msgstr ""
 
 msgid "Media Player"
 msgstr "媒体播放器"
@@ -11611,6 +11876,9 @@ msgstr "菜单项样式"
 msgid "Menu style"
 msgstr "菜单样式"
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "将广播 EPG 与 IceTV 合并"
 
@@ -11659,6 +11927,9 @@ msgstr "MiniDLNA 设置"
 msgid "MiniTV"
 msgstr "MiniTV"
 
+msgid "MiniTV And PiP"
+msgstr ""
+
 msgid "MiniTV with OSD"
 msgstr "带 OSD 的MiniTV"
 
@@ -11667,7 +11938,7 @@ msgid "Minimum age %d years"
 msgstr "最低年龄 %d 岁"
 
 msgid "Minimum difference between idle and moving current."
-msgstr ""
+msgstr "静止与转动状态电流的最小差值。"
 
 msgid "Minimum send interval"
 msgstr "最小发送间隔"
@@ -11791,8 +12062,8 @@ msgstr "汽车/机车"
 msgid "Mount"
 msgstr "挂载"
 
-msgid "Mount Manager"
-msgstr "挂载管理器"
+msgid "Mount Context Menu"
+msgstr "挂载上下文菜单"
 
 msgid "Mount Point"
 msgstr "挂载点"
@@ -11800,8 +12071,20 @@ msgstr "挂载点"
 msgid "Mount Setup"
 msgstr "挂载设置"
 
+msgid "Mount at boot time (fstab)"
+msgstr "开机时挂载（fstab）"
+
 msgid "Mount failed"
 msgstr "挂载失败"
+
+msgid "Mount mode"
+msgstr "挂载模式"
+
+msgid "Mount on first access (autofs)"
+msgstr "首次访问时挂载（autofs）"
+
+msgid "Mount or unmount the selected share"
+msgstr "挂载或制裁所选共享"
 
 msgid "Mount point"
 msgstr "挂载点"
@@ -11809,11 +12092,17 @@ msgstr "挂载点"
 msgid "Mount root file system."
 msgstr "挂载根文件系统。"
 
+msgid "Mounted"
+msgstr "已挂载"
+
 msgid "Mounts"
 msgstr "挂载"
 
 msgid "Move"
 msgstr "移动"
+
+msgid "Move Down"
+msgstr "下移"
 
 msgid "Move Left/Right"
 msgstr "左/右 移动"
@@ -11832,6 +12121,9 @@ msgstr "移动画中画"
 
 msgid "Move PiP to main picture"
 msgstr "移动画中画至主画面"
+
+msgid "Move Up"
+msgstr "上移"
 
 msgid "Move Up/Down"
 msgstr "上/下 移动"
@@ -11883,6 +12175,12 @@ msgstr "向下移动到列表中的最后一行。"
 
 msgid "Move east"
 msgstr "向东移动"
+
+msgid "Move item down"
+msgstr "下移项目"
+
+msgid "Move item up"
+msgstr "上移项目"
 
 msgid "Move job completed."
 msgstr "移动作业已完成。"
@@ -11990,6 +12288,12 @@ msgstr "移到上一个频道分组"
 msgid "Move to previous marker"
 msgstr "移到上一个标记"
 
+msgid "Move to the Adapter list"
+msgstr "移至适配器列表"
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr "移至已保存的 Wi-Fi 网络列表"
+
 msgid "Move to the first item on the current line"
 msgstr "移至当前行的第一项"
 
@@ -12086,6 +12390,9 @@ msgstr "电影事件视图操作"
 msgid "Movie List"
 msgstr "电影列表"
 
+msgid "Movie List And Playback Behavior"
+msgstr ""
+
 msgid "Movie Player Actions"
 msgstr "电影播放器操作"
 
@@ -12135,7 +12442,7 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 msgid "Multi-path mode"
-msgstr ""
+msgstr "多路径模式"
 
 msgid "MultiBoot"
 msgstr "多系统启动"
@@ -12218,11 +12525,17 @@ msgstr "下一个"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS设置"
 
+msgid "NFS Setup Actions"
+msgstr "NFS 设置操作"
+
 msgid "NFS threads"
-msgstr ""
+msgstr "NFS 线程数"
+
+msgid "NFS version"
+msgstr "NFS 版本"
 
 msgid "NIM"
 msgstr "网络接口模块"
@@ -12266,12 +12579,6 @@ msgstr "名称降序"
 msgid "Name server %d"
 msgstr "名称服务器%d"
 
-msgid "Nameserver"
-msgstr "DNS 服务器"
-
-msgid "Nameserver settings"
-msgstr "DNS 设置"
-
 msgid "Nameserver setup"
 msgstr "DNS 设置"
 
@@ -12314,6 +12621,12 @@ msgstr "导航到所选目录"
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "使用向上/向下按钮向上/向下导航，使用左/右向上/向下翻页。单击确定以执行当前突出显示的帮助中描述的操作。"
 
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
+
 msgid "Ndonga"
 msgstr "恩东加"
 
@@ -12335,23 +12648,21 @@ msgstr "子网掩码"
 msgid "Network"
 msgstr "网络"
 
-msgid "Network Adapter Actions"
-msgstr "网络适配器操作"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr "网络适配器“%s”设置"
 
 msgid "Network Adapter Selection"
 msgstr "网络适配器选择"
 
-msgid "Network Adapter Setting Actions"
-msgstr "网络适配器设置操作"
-
 msgid "Network Adapter Settings"
-msgstr ""
-
-msgid "Network Adapter Text Actions"
-msgstr "网络适配器文本操作"
+msgstr "网络适配器设置"
 
 msgid "Network Browser"
 msgstr "网络浏览器"
+
+msgid "Network Credentials"
+msgstr "网络凭据"
 
 msgid "Network ID"
 msgstr "网络 ID"
@@ -12371,8 +12682,23 @@ msgstr "网络日志"
 msgid "Network Log Actions"
 msgstr "网络日志操作"
 
+msgid "Network Mount Manager Actions"
+msgstr "网络挂载管理器操作"
+
+msgid "Network Mount Settings"
+msgstr "网络挂载设置"
+
+msgid "Network Mounts Overview"
+msgstr "网络挂载概览"
+
 msgid "Network Neighbourhood"
 msgstr "网络邻居"
+
+msgid "Network Overview"
+msgstr "网络概览"
+
+msgid "Network Overview Actions"
+msgstr "网络概览操作"
 
 msgid "Network Packages"
 msgstr "网络软件包"
@@ -12389,23 +12715,68 @@ msgstr "网络设置"
 msgid "Network Setup Actions"
 msgstr "网络设置操作"
 
+msgid "Network Share Actions"
+msgstr "网络共享操作"
+
+msgid "Network Shares Browser"
+msgstr "网络共享浏览器"
+
+msgid "Network Shares Context Menu"
+msgstr "网络共享上下文菜单"
+
 msgid "Network Test"
 msgstr "网络测试"
 
-msgid "Network Test:"
-msgstr "网络测试："
+msgid "Network Test Actions"
+msgstr "网络测试操作"
 
-msgid "Network Wizard"
-msgstr "网络向导"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr "“%s”的网络测试"
+
+msgid "Network Wi-Fi Settings"
+msgstr "Wi-Fi 网络设置"
+
+msgid "Network adapter disabled."
+msgstr "网络适配器已禁用。"
+
+msgid "Network adapter enabled."
+msgstr "网络适配器已启用。"
 
 msgid "Network adapter not connected to a network!"
 msgstr "网络适配器未连接到网络！"
 
+msgid "Network adapter setup result:"
+msgstr "网络适配器设置结果："
+
+msgid "Network adapter status"
+msgstr "网络适配器状态"
+
 msgid "Network address"
 msgstr "网络地址"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr "网线已连接（%s）"
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr "网线已断开（%s）"
+
 msgid "Network configuration..."
 msgstr "网络配置..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
+"网络连接成功。\n"
+"\n"
+"接口：%s\n"
+"IP地址：%s"
 
 msgid "Network information"
 msgstr "网络信息"
@@ -12418,7 +12789,7 @@ msgid "Network menu"
 msgstr "网络菜单"
 
 msgid "Network metric"
-msgstr ""
+msgstr "网络跃点数"
 
 msgid "Network mounts"
 msgstr "网络挂载"
@@ -12432,29 +12803,11 @@ msgstr "网络扫描"
 msgid "Network storage on"
 msgstr "网络存储 -"
 
-msgid "Network test"
-msgstr "网络测试"
-
 msgid "Network test..."
 msgstr "网络测试..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"网络向导完成。\n"
-"\n"
-"按“确定”继续。"
-
 msgid "Network-ID"
 msgstr "网络 ID"
-
-msgid "Network:"
-msgstr "网络："
-
-msgid "NetworkWizard"
-msgstr "网络向导"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -12488,6 +12841,9 @@ msgstr "新设置 DXAndy"
 
 msgid "New Storage Device"
 msgstr "新的存储设备"
+
+msgid "New Wi-Fi"
+msgstr "新 Wi Fi"
 
 msgid "New Zealand"
 msgstr "新西兰"
@@ -12586,14 +12942,23 @@ msgstr "在远程接收器上找不到“epg.dat”文件！"
 msgid "No (supported) DVDROM found!"
 msgstr "没有找到（支持的）DVDROM！"
 
-msgid "No Connection"
-msgstr "没有连接"
-
 msgid "No ECM PIDs available"
 msgstr "没有可用的 ECM PID"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "没有找到硬盘或硬盘未初始化！"
+
+msgid "No IP address"
+msgstr "没有 IP 地址"
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
+"没有收到 IP 地址。\n"
+"\n"
+"无法建立网络连接。"
 
 msgid "No Internet connection"
 msgstr "没有互联网连接"
@@ -12668,8 +13033,14 @@ msgstr "没有剩余索引可用"
 msgid "No free tuner!"
 msgstr "没有空闲的调谐器！"
 
+msgid "No gateway"
+msgstr "没有网关"
+
 msgid "No hard disks detected."
 msgstr "未检测到硬盘。"
+
+msgid "No hosts found yet - still scanning..."
+msgstr "尚未找到主机 - 仍在扫描中..."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "未找到日志文件，因此调试日志不可用！"
@@ -12683,8 +13054,8 @@ msgstr "没有启用/可用的网络适配器！"
 msgid "No network storage detected."
 msgstr "未检测到网络存储。"
 
-msgid "No networks found"
-msgstr "未发现网络"
+msgid "No networks found."
+msgstr "没有发现网络。"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "项目数量切换（增加或减少）"
@@ -12709,6 +13080,9 @@ msgstr "没有频道"
 
 msgid "No services/providers selected"
 msgstr "没有选择 频道/供应商"
+
+msgid "No shares found."
+msgstr "没有发现共享。"
 
 msgid "No slot images found"
 msgstr "未找到任何镜像插槽"
@@ -12785,30 +13159,6 @@ msgstr "找不到'%s'的有效挂载！"
 
 msgid "No valid region details were found"
 msgstr "找不到有效的区域详细信息"
-
-msgid "No wireless networks found! Searching..."
-msgstr "没有发现无线网络！正在搜索..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"没有找到可用的本地网络适配器。\n"
-"请验证已连接网线且网络配置正确。"
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"没有找到可用的无线网络适配器。\n"
-"请验证您是否已连接兼容的WLAN设备，并且网络配置正确。"
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"没有找到可用的无线网络接口。\n"
-"请验证您是否已连接兼容的WLAN设备或启用您的本地网络接口。"
 
 msgid "No, but restart from begin"
 msgstr "否，但从开始重新启动"
@@ -12894,6 +13244,9 @@ msgstr "挪威语尼诺斯克语"
 msgid "Not Classified"
 msgstr "未分类"
 
+msgid "Not Connected"
+msgstr "未连接"
+
 msgid "Not Defined"
 msgstr "未定义"
 
@@ -12904,13 +13257,13 @@ msgid "Not Shown"
 msgstr "不显示"
 
 msgid "Not a valid tuner"
-msgstr ""
+msgstr "无效调谐器"
 
 msgid "Not associated"
 msgstr "未关联"
 
 msgid "Not available"
-msgstr ""
+msgstr "不可用"
 
 msgid "Not configured"
 msgstr "未配置"
@@ -12939,8 +13292,14 @@ msgstr ""
 "剩余空间：%sMB\n"
 "路径： %s"
 
+msgid "Not found"
+msgstr "未发现"
+
 msgid "Not joined. Press Yellow to join."
 msgstr "未加入。按黄色键加入。"
+
+msgid "Not mounted"
+msgstr "未挂载"
 
 msgid "Not required"
 msgstr "不需要"
@@ -12969,6 +13328,9 @@ msgstr "没有更新"
 
 msgid "Nothing, just leave this menu"
 msgstr "没什么，只是离开这个菜单"
+
+msgid "Notifications And Display"
+msgstr ""
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13032,7 +13394,7 @@ msgid "OK button mode"
 msgstr "OK 键模式"
 
 msgid "OK checks the currently tuned transponder."
-msgstr ""
+msgstr "按 OK 键检查当前锁定的转发器。"
 
 msgid "OK, guide me through the upgrade process"
 msgstr "OK，引导我完成升级过程"
@@ -13041,13 +13403,13 @@ msgid "ONID"
 msgstr "客户端(ONID)"
 
 msgid "ONID/TSID check timed out"
-msgstr ""
+msgstr "ONID/TSID 检查超时"
 
 msgid "ONID/TSID does not match"
-msgstr ""
+msgstr "ONID/TSID 不匹配"
 
 msgid "ONID/TSID valid"
-msgstr ""
+msgstr "ONID/TSID 值"
 
 msgid "OSCam Info"
 msgstr "OSCam 信息"
@@ -13057,9 +13419,6 @@ msgstr "OSCam 信息"
 
 msgid "OSCam Information Settings"
 msgstr "OSCam 信息设置"
-
-msgid "OSCam webif disabled"
-msgstr "已禁用 OSCam 网页接口"
 
 msgid "OSCamInfo Actions"
 msgstr "OSCam信息操作"
@@ -13164,9 +13523,6 @@ msgstr "在有效的 ONID 上，忽略频率子网部分。"
 
 msgid "Once"
 msgstr "一次"
-
-msgid "One"
-msgstr "一"
 
 msgid "One line"
 msgstr "单行"
@@ -13363,8 +13719,23 @@ msgstr "打开画中画中的频道列表并选择上一频道"
 msgid "Open the Channel Selection Settings screen"
 msgstr "打开频道选择设置屏幕"
 
+msgid "Open the Context Menu for the selected item"
+msgstr "打开选中项目的上下文菜单"
+
 msgid "Open the Image information"
 msgstr "打开镜像信息"
+
+msgid "Open the Mount Context Menu"
+msgstr "打开挂载的上下文菜单"
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr "打开选中项目的网络适配器设置"
+
+msgid "Open the Network Shares Browser"
+msgstr "打开网络共享浏览器"
+
+msgid "Open the Network Shares Context Menu"
+msgstr "打开网络共享上下文菜单"
 
 msgid "Open the Plugin Browser"
 msgstr "打开插件浏览器"
@@ -13388,7 +13759,7 @@ msgid "Open the single service EPG view"
 msgstr "打开单频道 EPG 视图"
 
 msgid "Open tuner setup"
-msgstr ""
+msgstr "打开调谐器设置"
 
 msgid "Open with File Commander"
 msgstr "用 File Commander 打开"
@@ -13402,8 +13773,14 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "OpenViX 软件包"
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr "OpenWebif 频道图标集"
+
+msgid "Opening network adapter configuration..."
+msgstr "正在打开网络适配器配置..."
 
 msgid "Opera"
 msgstr "歌剧"
@@ -13431,6 +13808,9 @@ msgstr "禁用信息栏上频道图标的选项。"
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "启用硬件待机计时器的选项。"
+
+msgid "Optional arguments"
+msgstr "可选参数"
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr "在发送一系列 CEC 命令时，各命令之间的可选延迟时间。除非设备要求更慢的传输速度，否则请保持禁用状态。"
@@ -13479,6 +13859,9 @@ msgstr "其他"
 
 msgid "Other Actions"
 msgstr "其他动作"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr "其他软件包"
@@ -13572,7 +13955,7 @@ msgid "PGS file"
 msgstr "PGS 文件"
 
 msgid "PIN"
-msgstr ""
+msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "需要 PIN 码"
@@ -13604,6 +13987,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "软件包"
+
+msgid "Package Categories"
+msgstr ""
 
 msgid "Package Manager"
 msgstr "软件包管理器"
@@ -13731,7 +14117,7 @@ msgid "Password (httpwd)"
 msgstr "密码（httpwd）"
 
 msgid "Password / Key"
-msgstr ""
+msgstr "密码 / Key"
 
 msgid "Password Actions"
 msgstr "密码操作"
@@ -13860,17 +14246,20 @@ msgstr "频道图标安装位置"
 
 #, python-format
 msgid "Picon path %s"
-msgstr ""
+msgstr "频道图标路径 %s"
 
 #, python-format
 msgid "Picon path %s is in use and cannot be removed!"
-msgstr ""
+msgstr "频道图标路径 %s 正在使用中，无法删除！"
 
 msgid "Picon search mode"
-msgstr ""
+msgstr "频道图标搜索模式"
 
 msgid "Picon width"
 msgstr "频道图标宽度"
+
+msgid "Picture In Picture"
+msgstr ""
 
 msgid "Picture Information"
 msgstr "图片信息"
@@ -13902,6 +14291,9 @@ msgstr "邮筒/左右黑边"
 
 msgid "Pilot"
 msgstr "导频"
+
+msgid "Pinging..."
+msgstr "正在 Ping..."
 
 msgid "Pink"
 msgstr "粉色"
@@ -14005,6 +14397,12 @@ msgstr "播放音频文件"
 msgid "Play the selected service"
 msgstr "播放选择的频道"
 
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
+
 msgid "Playback Settings"
 msgstr "播放设置"
 
@@ -14087,17 +14485,11 @@ msgstr ""
 "请输入您的电子邮件地址，这将是您的登录名。\n"
 "通过您在 IceTV 网站上的帐户，您可以选择接收服务公告、帐户提醒和促销优惠。"
 
-msgid "Please follow the instructions on the TV"
-msgstr "请按照电视上的说明进行操作"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "请注意，先前所选媒介无法访问，因此使用默认目录代替。"
 
 msgid "Please open Picture in Picture first"
 msgstr "请先打开画中画"
-
-msgid "Please press OK to continue."
-msgstr "请按 OK 键继续。"
 
 msgid "Please press OK when ready"
 msgstr "准备好后请按“确定”"
@@ -14177,9 +14569,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "请等待"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "请等待激活您的网络配置..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "正在创建/更新 LCN 频道分组，请稍候..."
 
@@ -14232,17 +14621,8 @@ msgstr "正在更新插件，请稍候。"
 msgid "Please wait while we check your installed plugins..."
 msgstr "正在检测已安装的插件，请稍等..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "正在准备网络接口，请稍等..."
-
-msgid "Please wait while we test your network..."
-msgstr "正在测试网络，请稍等..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "正在重启网络，请稍等..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "请等待，皮肤设置正在恢复..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "正在检查订阅源状态，请稍候。"
@@ -14386,7 +14766,7 @@ msgid "Positioner Setup Log"
 msgstr "极轴设置日志"
 
 msgid "Positioner actions"
-msgstr ""
+msgstr "极轴天线马达操作"
 
 msgid "Positioner setup"
 msgstr "极轴设置"
@@ -14452,7 +14832,7 @@ msgid "Prefer subtitles stored by service"
 msgstr "优先使用节目存储的字幕"
 
 msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
-msgstr ""
+msgstr "当配置了多个Wi-Fi配置文件时，此选项用于设置连接优先级。数值越低，优先级越高。"
 
 msgid "Preferred tuner"
 msgstr "首选调谐器"
@@ -14513,9 +14893,6 @@ msgstr "请按 OK 键进行多系统启动选择。"
 
 msgid "Press OK on your remote control to continue."
 msgstr "按遥控器上的 OK 键继续。"
-
-msgid "Press OK to activate the settings."
-msgstr "请按 OK 键来激活设置。"
 
 msgid "Press OK to continue."
 msgstr "请按 OK 键继续。"
@@ -14633,13 +15010,13 @@ msgstr "上一/下一页"
 msgid "Prevsong"
 msgstr "上一首"
 
-msgid "Primary DNS"
-msgstr "主 DNS"
-
 msgid "Primary DNS (IPv4)"
-msgstr ""
+msgstr "首选 DNS（IPv4）"
 
 msgid "Primary DNS (IPv6)"
+msgstr "首选 DNS（IPv6）"
+
+msgid "Prime Time"
 msgstr ""
 
 msgid "Prime time"
@@ -14995,11 +15372,20 @@ msgstr "评级未定义"
 msgid "Re-enter new PIN"
 msgstr "重新输入新 PIN"
 
+msgid "Reachable"
+msgstr "可达"
+
 msgid "Read Only"
 msgstr "只读"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "从 oscam.conf 读取用户数据"
+
+msgid "Read block size"
+msgstr "读取块大小"
+
+msgid "Read-Only"
+msgstr "只读"
 
 msgid "Read/Write"
 msgstr "读/写"
@@ -15054,6 +15440,9 @@ msgstr "真的要立即关闭吗？"
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "真的要立即启动 Kodi 并停止用户界面吗？"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr "确定要立即启动复古游戏模拟器并退出当前用户界面吗？"
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "真的要马上升级前面板并重新启动？"
@@ -15145,6 +15534,18 @@ msgstr "可录制的媒体工具箱"
 msgid "Recording"
 msgstr "录制"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "录制设置"
 
@@ -15218,6 +15619,9 @@ msgstr "如果没有可接受的目录，录制可能无法正常工作。"
 
 msgid "Recovery"
 msgstr "恢复"
+
+msgid "Recovery And Hardware"
+msgstr ""
 
 msgid "Recovery Mode"
 msgstr "恢复模式"
@@ -15358,11 +15762,20 @@ msgstr "遥控器按键设置"
 msgid "Remote Control Code Settings"
 msgstr "遥控器代码设置"
 
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
+
 msgid "Remote control information"
 msgstr "遥控器信息"
 
 msgid "Remote control type"
 msgstr "遥控器类型"
+
+msgid "Remote path"
+msgstr "远程路径"
 
 msgid "Remote receiver"
 msgstr "远程机顶盒"
@@ -15392,6 +15805,9 @@ msgstr "删除有线电视频道"
 msgid "Remove Confirmation"
 msgstr "移除确认"
 
+msgid "Remove Credentials"
+msgstr "移除凭据"
+
 msgid "Remove Entry"
 msgstr "删除条目"
 
@@ -15405,7 +15821,7 @@ msgid "Remove New Found Flag"
 msgstr "删除 新发现 标志"
 
 msgid "Remove Path"
-msgstr ""
+msgstr "移除路径"
 
 msgid "Remove Plugin"
 msgstr "删除插件"
@@ -15606,6 +16022,15 @@ msgstr "所需介质类型："
 msgid "Rereading partition table"
 msgstr "正在重新读取分区表"
 
+msgid "Rescan"
+msgstr "重新扫描"
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr "重新扫描可用Wi‑Fi网络"
+
+msgid "Rescan for available network shares"
+msgstr "重新扫描可用网络共享"
+
 msgid "Reserved"
 msgstr "保留的"
 
@@ -15669,8 +16094,18 @@ msgstr "分辨率"
 msgid "Resolution unit"
 msgstr "分辨率单位"
 
+msgid "Resolving..."
+msgstr "正在解析..."
+
 msgid "Restart"
 msgstr "重启"
+
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
+msgid "Restart Adapter"
+msgstr "重启适配器"
 
 msgid "Restart GUI"
 msgstr "重启图形界面"
@@ -15686,12 +16121,6 @@ msgstr "马上重启图形界面？"
 
 msgid "Restart Network"
 msgstr "重启网络"
-
-msgid "Restart Network Adapter"
-msgstr "重启网络适配器"
-
-msgid "Restart OSCam"
-msgstr "重启 OSCam"
 
 msgid "Restart enigma"
 msgstr "重启 Enigma"
@@ -15711,8 +16140,15 @@ msgstr "用当前设置重启网络"
 msgid "Restart test"
 msgstr "重启测试"
 
-msgid "Restart your network connection and interfaces."
-msgstr "重新启动网络连接和接口。"
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
+
+msgid "Restarting adapter..."
+msgstr "正在重启适配器..."
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr "正在重启保存的 Wi-Fi 网络..."
 
 msgid "Restarting..."
 msgstr "正在重启..."
@@ -15722,9 +16158,6 @@ msgstr "还原"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "还原已删除的用户频道分组"
-
-msgid "Restore MetrixHD Settings"
-msgstr "还原 MetrixHD 设置"
 
 msgid "Restore Plugins"
 msgstr "恢复插件"
@@ -15780,6 +16213,9 @@ msgstr "恢复到位置 %s"
 
 msgid "Resuming playback"
 msgstr "恢复播放"
+
+msgid "Retest"
+msgstr "重新测试"
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -15893,20 +16329,20 @@ msgid "Root file"
 msgstr "根文件"
 
 msgid "Root squash"
-msgstr ""
+msgstr "Root 权限压缩"
 
 msgid "Rose"
 msgstr "粉红色"
 
 msgid "Rotor is not configured"
-msgstr ""
+msgstr "极轴天线尚未配置"
 
 msgid "Rotor turning speed"
 msgstr "极轴转速"
 
 #, python-format
 msgid "Rotor: %d satellites"
-msgstr ""
+msgstr "极轴天线：%d 颗卫星"
 
 msgid "Router / Gateway"
 msgstr "路由 / 网关"
@@ -15962,7 +16398,7 @@ msgid "Running command %d: '%s'."
 msgstr "正在运行命令 %d：“%s”。"
 
 msgid "Running only"
-msgstr ""
+msgstr "仅正在运行"
 
 msgid "Russian"
 msgstr "俄语"
@@ -15979,11 +16415,11 @@ msgstr "留尼旺岛"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd 设置"
-
 msgid "SAT"
 msgstr "卫星"
+
+msgid "SAT input"
+msgstr "卫星信号输入"
 
 msgid "SATA"
 msgstr "SATA"
@@ -16021,6 +16457,9 @@ msgstr "SD卡切换错误！ - 已经在 mmc 上"
 
 msgid "SINGLE LAYER DVD"
 msgstr "单层 DVD"
+
+msgid "SMB version"
+msgstr "SMB 版本"
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "短信风格的快速选择条目选择"
@@ -16076,7 +16515,7 @@ msgstr "Samba 客户端"
 msgid "Samba Server"
 msgstr "Samba 服务器"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Samba 设置"
 
 msgid "Same as in active"
@@ -16227,6 +16666,26 @@ msgstr "保存时移为影片并停止录制"
 msgid "Save time shift buffer now and continue recording"
 msgstr "现在将时移保存为电影并继续录制"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr "已保存 Wi-Fi 网络“%s”的上下文菜单"
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr "已保存的 Wi-Fi 网络"
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr "脚本消息中保存的行"
 
@@ -16263,6 +16722,9 @@ msgstr "扫描 %s"
 msgid "Scan %s band"
 msgstr "扫描 %s 波段"
 
+msgid "Scan Wi-Fi Networks"
+msgstr "扫描 Wi-Fi 网络"
+
 msgid "Scan additional SR"
 msgstr "扫描附加符号率"
 
@@ -16277,12 +16739,6 @@ msgstr "扫描本地扩展并安装。"
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "扫描地面波 LCN 并创建 LCN 频道分组"
-
-msgid "Scan wireless networks"
-msgstr "扫描无线网络"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "扫描网络中的无线接入点，并使用选定的无线设备连接到它们。"
 
 msgid "Scanning"
 msgstr "正在扫描"
@@ -16308,6 +16764,12 @@ msgstr[1] "扫描完成，找到 %d 个频道。"
 
 msgid "Scanning failed!"
 msgstr "扫描失败！"
+
+msgid "Scanning for shares..."
+msgstr "正在扫描共享..."
+
+msgid "Scanning..."
+msgstr "正在扫描..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16421,14 +16883,11 @@ msgstr "正在搜索西面..."
 msgid "Second cable of motorized LNB"
 msgstr "电动高频头的第二根电缆"
 
-msgid "Secondary DNS"
-msgstr "副 DNS"
-
 msgid "Secondary DNS (IPv4)"
-msgstr ""
+msgstr "备用 DNS（IPv4）"
 
 msgid "Secondary DNS (IPv6)"
-msgstr ""
+msgstr "备用 DNS（IPv6）"
 
 msgid "Seconds"
 msgstr "秒"
@@ -16504,6 +16963,9 @@ msgstr "如果使用“通用”高频头，请选择“极化”，否则请查
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "选择“提供商”以从预定义的有线电视多路复用列表中进行扫描。 选择“波段”仅扫描频谱的某些部分。 选择“步进”以按特定频率带宽的步进进行扫描。"
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr "选择“软挂载”，当服务器停止响应时，文件访问会立即返回错误，而不会无限重试。“硬挂载”选项（默认）可防止静默数据丢失，但在服务器不可达时，访问此共享的程序可能会卡住。"
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "选择“唯一编号”为每个频道分组中的每个频道分配唯一编号。使用“频道分组编号从 1 开始”可从 1 开始对每个频道分组进行编号。使用“LCN 编号”可在使用该频道时使用一致的频道 LCN。"
@@ -16661,6 +17123,9 @@ msgstr "选择“是”可在编辑文本文件时将光标位置设置为行尾
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "选择“是”以在下载插件屏幕中显示“dev”、“staticdev”，“dbg”和“doc”包。"
 
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "选择‘是’，可在‘下载插件’界面中显示 Kodi 插件包。"
+
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "选择“是”在下载插件屏幕中显示 LCD 皮肤包。"
 
@@ -16761,7 +17226,7 @@ msgid "Select 'Yes' to use the number keys for quick selection of files / direct
 msgstr "选择“是”以使用数字键快速选择文件/目录，选择“否”以使用数字键作为菜单选项快捷方式。"
 
 msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
-msgstr ""
+msgstr "选择‘是’则使用与 LNB 1 相同的用户频段通道和频率。此选项适用于同一 Unicable 系统下提供多个卫星位置的情况。"
 
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "如果启用且有必要，插件将在定义的启动时间内从深度待机中唤醒接收机，以控制程序是否更早开始。"
@@ -16838,6 +17303,9 @@ msgstr "选择升级源"
 msgid "Select Upgrade Source To Edit"
 msgstr "选择要编辑的升级源"
 
+msgid "Select Wi-Fi adapter"
+msgstr "选择 Wi-Fi 适配器"
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "从可用列表中选择一个 Softcam 作为默认的自动Cam。"
 
@@ -16881,6 +17349,9 @@ msgstr "选择一部影片"
 msgid "Select a network adapter"
 msgstr "选择网络适配器"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr "为所有设备选择一个永久挂载点"
 
@@ -16893,8 +17364,14 @@ msgstr "选择要查看的存储库提交日志："
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本："
 
-msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr "选择特定的 NFS 版本，以强制使用指定的 NFS 协议版本，而非允许自动协商。"
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
+
+msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
+msgstr "设置在换台定时器切换频道前弹出确认提示的时间。用户可在期间取消切换。选‘禁用’则不提示直接换台。"
 
 msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "选择待机模式下可开始解扰的延迟时间。"
@@ -16904,9 +17381,6 @@ msgstr "设定待机状态下解扰任务执行的截止时间。"
 
 msgid "Select a tuner"
 msgstr "选择调谐器"
-
-msgid "Select a wireless network"
-msgstr "选择一个无线网络"
 
 msgid "Select action"
 msgstr "选择动作"
@@ -16957,6 +17431,9 @@ msgstr "选择文件指挥官默认的目录："
 msgid "Select destination for:"
 msgstr "选择目的地为："
 
+msgid "Select exported directories"
+msgstr ""
+
 msgid "Select files to exclude from backup"
 msgstr "选择要从备份中排除的文件"
 
@@ -17002,9 +17479,6 @@ msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、Di
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "选择如何在待机模式下处理计划任务。"
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "选择此 DVB-C/T 调谐器的连接方式。仅当使用5V控制同轴开关时，才选用“外置同轴开关”选项。"
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr "选择如何激活快速 EPG 模式。"
 
@@ -17016,6 +17490,9 @@ msgstr "选择是否需要结束时间。"
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "设置换台延迟模式。"
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "选择是否显示设置条目的默认值，如果显示，则选择与描述相关的显示位置。"
@@ -17065,12 +17542,6 @@ msgstr "选择输入设备"
 msgid "Select input device."
 msgstr "选择输入设备。"
 
-msgid "Select interface"
-msgstr "选择接口"
-
-msgid "Select menu entry"
-msgstr "选择菜单条目"
-
 msgid "Select movie"
 msgstr "选择影片"
 
@@ -17111,23 +17582,23 @@ msgstr "选择 %s 条目"
 msgid "Select the AI-Powered Translation target language."
 msgstr "选择人工智能翻译目标语言。"
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "选择默认 DNS 设置的来源。"
 
 msgid "Select the No / False response"
 msgstr "选择 否/错误 响应"
 
 msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
-msgstr ""
+msgstr "从上方选项中，选择频道选台界面所使用的频道图标存储路径。"
 
 msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
-msgstr ""
+msgstr "从上方选项里，选择用于前面板显示屏的频道图标路径。"
 
 msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
-msgstr ""
+msgstr "从上方选项中，选择信息栏 所使用的频道图标路径。"
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
-msgstr ""
+msgstr "从上方选项中，选择 OpenWebif 网页界面使用的频道图标路径。"
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17161,7 +17632,7 @@ msgid "Select the Yes / True response"
 msgstr "选择 是/真 响应"
 
 msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
-msgstr ""
+msgstr "选择换台定时器的前置触发条件。换台定时器仅在所选状态下才会激活。"
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -17199,6 +17670,9 @@ msgstr "选择要用于此定时器的频道或服务。"
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "选择接收机在运行状态下前面板电源 LED 的颜色。此选项也可将 LED 禁用/关闭。"
@@ -17355,10 +17829,13 @@ msgstr "选择 SCR 设备的制造商。 如果制造商未列出，请将“SCR
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择退出图文电视时恢复屏幕分辨率和帧缓冲的处理方法。"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "为自动导出的 samba 共享选择访问模式。"
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -17376,20 +17853,11 @@ msgstr "选择影片路径"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "选择指定网络数据速率，低于该速率时，定时器激活。流量高于此速率，则停用定时器。"
 
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"选择用于互联网连接的网络接口。\n"
-"\n"
-"按“确定”继续。"
-
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
-msgstr ""
+msgstr "选择此适配器的网络跃点数。当多个适配器同时处于活动状态时，跃点数最低的适配器将用作网络流量的默认路由。"
 
 msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
-msgstr ""
+msgstr "选择接收机要连接的无线网络名称（SSID）。"
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
@@ -17422,6 +17890,9 @@ msgstr "选择上一个频道同时关闭扫描器并退出所有菜单"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "选择您的 SCR 设备使用的协议。 选项有'SCR Unicable'（Unicable）或'SCR JESS'（JESS，也称为Unicable II）。"
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "当电视切换离开接收机输入源时，请选择接收机执行的操作。"
 
@@ -17450,9 +17921,12 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr "从外观提供的选项中选择要用于频道选择屏幕的屏幕布局。"
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
-msgstr ""
+msgstr "选择频道图标的搜索模式。‘单路径模式’对所有频道图标使用同一路径。‘多路径模式’则允许针对不同使用场景使用多个频道图标路径。"
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr "选择用于访问所选无线网络的安全协议。"
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -17548,14 +18022,8 @@ msgstr "选择此定时器的类型。"
 msgid "Select the video mode to be used on the TV."
 msgstr "选择要在电视上使用的视频模式。"
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
-"选择要连接的无线网络。\n"
-"\n"
-"按“确定”继续。"
 
 msgid "Select update source location"
 msgstr "选择更新源位置"
@@ -17599,6 +18067,9 @@ msgstr "选择 TV 键要激活的内容。"
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "选择希望 上/下 按钮激活的功能。"
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
+
 msgid "Select where the recording should be saved."
 msgstr "选择录制保存的位置。"
 
@@ -17623,7 +18094,7 @@ msgstr "选择 DTS 音轨是否缩混为立体声。"
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "选择是否直通或解码杜比TrueHD音频轨道。"
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "选择DNS的模式。"
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17642,10 +18113,7 @@ msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "极轴移动时选择是否显示图标。"
 
 msgid "Select which IP protocols can be used with this adapter."
-msgstr ""
-
-msgid "Select wireless network"
-msgstr "选择无线网络"
+msgstr "选择此适配器可用的 IP 协议。"
 
 msgid "Select your ATSC provider."
 msgstr "选择 ATSC 供应商。"
@@ -17758,10 +18226,13 @@ msgstr "严肃音乐/经典音乐"
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "严肃/经典/宗教/历史影片/戏剧"
 
+msgid "Server"
+msgstr ""
+
 msgid "Server down"
 msgstr "频道 向下"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "服务器不得强制执行其自身的阻止列表。某些服务器可能会实现自己的黑名单，以出于家长控制、广告拦截等原因阻止访问某些网站。"
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -17799,6 +18270,9 @@ msgstr "频道信息"
 
 msgid "Service Information Actions"
 msgstr "频道信息操作"
+
+msgid "Service List Appearance"
+msgstr ""
 
 msgid "Service Scan"
 msgstr "频道扫描"
@@ -18160,17 +18634,20 @@ msgstr "设置按键功能。"
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "设置为“是”， 以调试出现旋转器的根本原因。"
 
+msgid "Set up network"
+msgstr ""
+
 msgid "Set up tuner [TUNER]"
 msgstr "设置调谐器 [调谐器]"
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"设置调谐器 [调谐器]。\n"
+"设置调谐器 [TUNER]。\n"
 "\n"
-"对于混合调谐器型号，使用向左、向右按钮切换调谐器类型。"
+"对于支持多种接收类型的调谐器，请分别配置每种可用的类型。"
 
 msgid "Set voltage and 22KHz"
 msgstr "设置电压和 22KHz"
@@ -18510,6 +18987,9 @@ msgstr "显示信息栏频道图标"
 msgid "Show Kernel packages"
 msgstr "显示内核包"
 
+msgid "Show Kodi Add-on packages"
+msgstr "显示 Kodi 插件包"
+
 msgid "Show Live in MiniTV"
 msgstr "在 MiniTV 中显示直播"
 
@@ -18632,9 +19112,6 @@ msgstr "在主菜单中显示 VCR SCART"
 
 msgid "Show Vertical EPG"
 msgstr "显示纵向 EPG"
-
-msgid "Show WLAN status"
-msgstr "显示WLAN状态"
 
 msgid "Show Web Link packages"
 msgstr "显示网页链接包"
@@ -18797,9 +19274,6 @@ msgstr "在插件浏览器中显示"
 msgid "Show in Standby"
 msgstr "在待机状态显示"
 
-msgid "Show info"
-msgstr "显示信息"
-
 msgid "Show info line"
 msgstr "显示信息行"
 
@@ -18841,6 +19315,9 @@ msgstr "显示影片"
 
 msgid "Show multi channel EPG"
 msgstr "显示多频道 EPG"
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr "显示下一个提交日志"
@@ -18990,7 +19467,7 @@ msgid "Show status messages on switch to live TV"
 msgstr "切换到直播电视时显示信息状态"
 
 msgid "Show sub-menu"
-msgstr ""
+msgstr "显示子菜单"
 
 msgid "Show subservice selection"
 msgstr "显示子频道选择"
@@ -19024,6 +19501,9 @@ msgstr "显示 CCcam 信息屏"
 
 msgid "Show the Logs Settings screen"
 msgstr "显示日志设备屏"
+
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
 
 msgid "Show the OSCam information screen"
 msgstr "显示 OSCam 信息屏幕"
@@ -19106,9 +19586,6 @@ msgstr "在 LCD 上显示直播电视或信息。"
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "新建/未见时显示图标，其他的不显示图标。"
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "显示无线局域网连接状态。"
-
 msgid "Shows the watched status of the media."
 msgstr "显示媒体的观看状态。"
 
@@ -19121,8 +19598,9 @@ msgstr "关闭"
 msgid "Shutdown"
 msgstr "关机"
 
-msgid "Shutdown OSCam"
-msgstr "关闭 OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr "正在关闭。 请稍等..."
@@ -19142,14 +19620,8 @@ msgstr "Sigma 设计"
 msgid "Signal Finder"
 msgstr "信号探测器"
 
-msgid "Signal quality"
-msgstr "信号质量"
-
 msgid "Signal strength"
 msgstr "信号强度"
-
-msgid "Signal: "
-msgstr "信号："
 
 msgid "Signed by"
 msgstr "签署人"
@@ -19200,7 +19672,7 @@ msgid "Single step (GOP)"
 msgstr "单步 （GOP）"
 
 msgid "Single-path mode"
-msgstr ""
+msgstr "单路径模式"
 
 msgid "SingleEPG Settings"
 msgstr "单个 EPG 设置"
@@ -19240,6 +19712,9 @@ msgstr "皮肤设置"
 
 msgid "SkinSelection"
 msgstr "皮肤选择"
+
+msgid "Skip Modes"
+msgstr ""
 
 msgid "Skip back"
 msgstr "往后跳"
@@ -19285,6 +19760,9 @@ msgstr "快进（输入时间）"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "使用插件进行时移时跳过跳转到直播"
+
+msgid "Skip network setup"
+msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "跳过软件包安装，只有核心软件包可用"
@@ -19518,6 +19996,9 @@ msgstr "社会与文化"
 msgid "Socket"
 msgstr "插口"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr "SoftCSA 设置"
 
@@ -19538,6 +20019,9 @@ msgstr "Softcam 设置"
 
 msgid "Softcams"
 msgstr "Softcam"
+
+msgid "Software Display Scrolling"
+msgstr ""
 
 msgid "Software Management"
 msgstr "软件管理"
@@ -19656,6 +20140,18 @@ msgstr "对插件浏览器条目进行排序"
 msgid "Sort by"
 msgstr "排序方式"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "按默认排序"
 
@@ -19683,6 +20179,9 @@ msgstr "灵魂乐/节奏布鲁斯"
 
 msgid "Sound"
 msgstr "声音"
+
+msgid "Sound Enhancements"
+msgstr ""
 
 msgid "Sound carrier"
 msgstr "伴音载波"
@@ -19748,9 +20247,6 @@ msgstr "特殊事件"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "定义 DNS 后缀。"
-
 msgid "Speed"
 msgstr "速度"
 
@@ -19801,6 +20297,10 @@ msgstr "待机而不关闭电视"
 
 msgid "Start"
 msgstr "开始"
+
+#, python-format
+msgid "Start %s"
+msgstr ""
 
 msgid "Start Auto Refresh"
 msgstr "启动自动刷新"
@@ -19853,9 +20353,6 @@ msgstr "开始重试"
 msgid "Start teletext"
 msgstr "启动图文电视"
 
-msgid "Start test"
-msgstr "开始测试"
-
 msgid "Start the Chkroot initialization"
 msgstr "启动 Chkroot 初始化"
 
@@ -19883,6 +20380,10 @@ msgstr "启动/停止/选择 cam"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "启动/停止/选择 cam，需要首选安装 softcam"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "正在启动 Softcam"
 
@@ -19901,12 +20402,18 @@ msgstr "开始时间"
 msgid "Starts in a few seconds"
 msgstr "几秒钟后开始"
 
+msgid "Startup And Wakeup"
+msgstr ""
+
 msgid "Startup device not found!"
 msgstr "未找到启动设备！"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "省区/州"
+
+msgid "Static"
+msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "静态 IP / 自定义"
@@ -19992,9 +20499,6 @@ msgstr "返回电影列表时停止频道"
 msgid "Stop streams"
 msgstr "停止串流"
 
-msgid "Stop test"
-msgstr "停止测试"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "之后停止测试平面 # 失败的转发器"
 
@@ -20022,6 +20526,10 @@ msgstr "停止定时录制"
 msgid "Stopped"
 msgstr "已停止"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "正在停止 Softcam"
 
@@ -20041,6 +20549,9 @@ msgstr "存储 / 磁盘"
 msgid "Storage / Drive information"
 msgstr "存储 / 驱动器信息"
 
+msgid "Storage And Deletion"
+msgstr ""
+
 msgid "Storage Devices"
 msgstr "存储设备"
 
@@ -20055,6 +20566,12 @@ msgstr "存储设备不可写！"
 
 msgid "Store position"
 msgstr "存储位置"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "已存储位置"
@@ -20128,7 +20645,7 @@ msgid "Style:"
 msgstr "样式："
 
 msgid "Subnet mask"
-msgstr ""
+msgstr "子网掩码"
 
 msgid "Subscription Packages"
 msgstr "订阅包"
@@ -20147,6 +20664,9 @@ msgstr "字幕"
 
 msgid "Subtitle Actions"
 msgstr "字幕操作"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "字幕快捷菜单"
@@ -20364,9 +20884,6 @@ msgstr "切换到另一列"
 msgid "Switch to the right column"
 msgstr "切换到右列"
 
-msgid "Switchable tuner types:"
-msgstr "可切换的调谐器类型："
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "切换到直播电视 - 时移仍然有效！"
 
@@ -20469,17 +20986,17 @@ msgstr "调谐器："
 msgid "TV"
 msgstr "电视"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "电视输入与接收机唤醒"
+
+msgid "TV Power"
+msgstr "电视电源"
+
 msgid "TV button mode"
 msgstr "TV 键模式"
 
-msgid "TV input and receiver wakeup"
-msgstr "电视输入与接收机唤醒"
-
 msgid "TV physical address report"
 msgstr "电视物理地址报告"
-
-msgid "TV power"
-msgstr "电视电源"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20583,6 +21100,9 @@ msgstr "图文电视 起始点X （左边框）"
 msgid "Teletext StartY (lower border)"
 msgstr "图文电视 起始点Y （下边框）"
 
+msgid "Teletext Subtitles"
+msgstr ""
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "图文电视 TTFBold（0=正常，1=粗体）"
 
@@ -20645,6 +21165,9 @@ msgstr "网球/壁球"
 msgid "Terrestrial"
 msgstr "地面波"
 
+msgid "Terrestrial input"
+msgstr "地面波输入"
+
 msgid "Test"
 msgstr "测试"
 
@@ -20659,10 +21182,6 @@ msgstr "测试作业失败！"
 
 msgid "Test mode"
 msgstr "测试模式"
-
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "测试 %s %s 的网络配置。"
 
 msgid "Test type"
 msgstr "测试类型"
@@ -20784,24 +21303,6 @@ msgid "The IceTV server has requested password for %s."
 msgstr "IceTV 服务器已请求 %s 的密码。"
 
 msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"互联网连接似乎正常。\n"
-"\n"
-"按“确定”继续。"
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"互联网连接似乎无法正常工作！\n"
-"\n"
-"选择下一步要做什么。"
-
-msgid ""
 "The MediaCenter plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20859,7 +21360,7 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "电视已切换到录制频道！\n"
 
 msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
-msgstr ""
+msgstr "用户频段通道、频率及可选 PIN 码均继承自高频头 1，在此处无法更改。"
 
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
@@ -20970,18 +21471,11 @@ msgstr "图片的高度。 输入将被缩放以匹配此值。"
 msgid "The loopthrough setting is wrong."
 msgstr "环通设置错误。"
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"网络向导扩展没有安装！\n"
-"请安装。"
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "频道图标目录已存在，必须删除。是否要继续？"
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
-msgstr ""
+msgstr "极轴马达调谐器当前不可用。请停止使用该调谐器的录制或其他服务后重试。"
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
@@ -21054,35 +21548,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "%s %s 的用户界面将停止运行 Kodi"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "图片的宽度。 输入将被缩放以匹配此值。"
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"无线局域网互联网连接无法启动！\n"
-"无线局域网设备是否已连接？\n"
-"\n"
-"选择下一步要做什么。"
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"无线局域网插件代码未安装！\n"
-"\n"
-"安装它并选择下一步操作。"
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"无线局域网插件未安装！\n"
-"请安装。"
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "向导可以备份您的当前设置。是否立即启动备份？"
@@ -21164,6 +21635,9 @@ msgstr "此功能不可用，因为处理大文件可能需要很长时间才能
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "这是某些设备在切换到待机状态后再次唤醒的解决方法。 来自其他设备的唤醒命令将被忽略几秒钟。"
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "这是单个调谐器的一种接收类型。已启用的接收类型将自动切换，并各自独立执行扫描。"
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "这是当前选定的语言。[%s]"
@@ -21186,6 +21660,9 @@ msgstr "此菜单提供与管理 %s %s 上的软件相关的选项。"
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "仅当频道没有自己的音量偏移时，才会使用此偏移。"
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "当 HDMI 输出处于 HDR 模式时，此选项用于调整 SDR 画面和 OSD 颜色。"
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "此选项允许减少图像中的块噪声。 显然，这是以图片的清晰度为代价。"
@@ -21401,57 +21878,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "此设置仅适用于特殊设置。 它赋予该高频头比其他具有较低值的高频头更高的优先级。 优先级最高的空闲高频头将是第一个被选中用于调谐服务的高频头。"
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"此测试检查配置的 DNS。\n"
-"如果您收到“未确认”消息：\n"
-"-请检查 DHCP、电缆和适配器设置\n"
-"-如果手动配置名称服务器，请验证“名称服务器”配置中的条目"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"该测试检查您的网线是否已连接到网卡。\n"
-"如果显示 \"断开\" 信息：\n"
-"- 检查您的网线连接\n"
-"- 确认线缆没有破损"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"此测试检查您的网卡是否找到有效的IP地址。\n"
-"如果你得到一个\"未确认\"消息：\n"
-"- 没有找到有效的IP地址\n"
-"- 请检查您的 DHCP，网线和网卡设置"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"此测试检查您的 LAN 适配器是否设置为使用 DHCP 进行自动 IP 地址配置。\n"
-"如果您收到“已禁用”消息：\n"
-"- 然后您的 LAN 适配器配置为手动 IP 设置\n"
-"- 确认您在适配器设置对话框中输入了正确的 IP 信息。\n"
-"如果您收到“启用”消息：\n"
-"- 验证您的网络中是否有已配置且正常工作的 DHCP 服务器。"
-
-msgid "This test detects your configured LAN adapter."
-msgstr "此测试检测已配置的 LAN 适配器。"
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21470,9 +21896,6 @@ msgstr "此向导已完成"
 
 msgid "This wizard has finished."
 msgstr "此向导已完成。"
-
-msgid "Three"
-msgstr "三"
 
 msgid "Threshold"
 msgstr "阈值"
@@ -21609,6 +22032,9 @@ msgstr "时区"
 msgid "Time zone area"
 msgstr "时区区域"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "24小时时间线"
 
@@ -21620,6 +22046,12 @@ msgstr "时间线标记"
 
 msgid "Timeline scale"
 msgstr "时间线尺度"
+
+msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr "定时器日志动作"
@@ -21687,7 +22119,7 @@ msgstr "时移"
 msgid "Timezone"
 msgstr "时区"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "时序与诊断"
 
 msgid "Timor-Leste / East Timor"
@@ -21787,6 +22219,9 @@ msgstr "切换多选模式"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "在插入之前切换新文本或覆盖现有文本"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr "切换当前标签的选择"
 
@@ -21869,6 +22304,9 @@ msgstr "传统"
 msgid "Traditional Chinese"
 msgstr "繁体中文"
 
+msgid "Transceiver"
+msgstr ""
+
 msgid "Transcode"
 msgstr "转码"
 
@@ -21919,6 +22357,9 @@ msgstr "传输流 ID (TSID)"
 msgid "Transport Stream Type"
 msgstr "传输流类型"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "回收站"
 
@@ -21942,6 +22383,9 @@ msgstr "修剪文件系统..."
 
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
+
+msgid "Triple Tuner"
+msgstr "三调谐器"
 
 msgid "True"
 msgstr "正确"
@@ -21999,6 +22443,12 @@ msgstr "调谐器"
 
 msgid "Tuner :"
 msgstr "调谐器："
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "调谐器配置"
@@ -22122,9 +22572,6 @@ msgstr "双混合"
 msgid "Twin Tuner"
 msgstr "双调谐器"
 
-msgid "Two"
-msgstr "二"
-
 msgid "Two lines"
 msgstr "2 行"
 
@@ -22211,24 +22658,24 @@ msgstr "乌克兰语"
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
-msgstr ""
+msgstr "无法继承高频头 %d 的用户频段：%s。"
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
-msgstr ""
+msgstr "无法继承高频头 %d的用户频段：高频头 1 %s。"
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "无法初始化 Kexec 多系统启动！"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
-msgstr ""
+msgstr "无法验证高频头 %d的 Unicable 位置：%s。"
 
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级，没有图形界面"
 
 msgid "Unavailable"
-msgstr ""
+msgstr "不可用"
 
 msgid "Undefined"
 msgstr "未定义"
@@ -22238,9 +22685,6 @@ msgstr "5 岁以下"
 
 msgid "Undetermined"
 msgstr "不确定"
-
-msgid "Unencrypted"
-msgstr "未加密"
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
@@ -22268,11 +22712,11 @@ msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
 msgid "Unicable position"
-msgstr ""
+msgstr "Unicable 位置"
 
 #, python-format
 msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
-msgstr ""
+msgstr "Unicable 位置 %d 不被高频头 %d 的所选设备支持。有效位置为 %d 至 %d；若为已重编程设备，请使用‘用户自定义’。"
 
 msgid "Uninstall"
 msgstr "卸载"
@@ -22300,13 +22744,6 @@ msgstr "未知"
 
 msgid "Unknown Devices"
 msgstr "未知设备"
-
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"创建皮肤时未知错误。\n"
-"请重启 MyMetrixLite 插件后检查并应用设置。"
 
 msgid "Unknown Packages"
 msgstr "未知软件包"
@@ -22349,6 +22786,9 @@ msgstr "解压文件"
 msgid "Unpublished"
 msgstr "未发布"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "解扰并记录 ECM（授权控制信息）"
 
@@ -22360,9 +22800,6 @@ msgstr "解扰接收的 Http 串流"
 
 msgid "Unset As Startup Service"
 msgstr "取消设置为启动频道"
-
-msgid "Unsupported"
-msgstr "不支持的"
 
 msgid "Until standby/restart"
 msgstr "直到待机/重新启动"
@@ -22539,10 +22976,13 @@ msgid "Use Harddisk Hardware Standby Timer"
 msgstr "使用硬盘硬件待机定时器"
 
 msgid "Use LNB 1 User Band"
-msgstr ""
+msgstr "使用高频头 1 用户频段"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG 信息可用时使用。"
+
+msgid "Use NFS file locking"
+msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG 信息可用时使用。"
@@ -22554,7 +22994,7 @@ msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "使用 OpenTV EPG。 需要调谐到特定的转发器才能接收 EPG。"
 
 msgid "Use PIN"
-msgstr ""
+msgstr "使用 PIN"
 
 msgid "Use QuickSelect"
 msgstr "使用快速选择"
@@ -22580,14 +23020,14 @@ msgstr "使用换台定时器结束时间"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "启用 DNS 缓存以本地存储最近的 DNS 查询，从而提升性能、降低延迟并减少外发流量。"
 
-msgid "Use a gateway"
-msgstr "使用网关"
-
 msgid "Use alternate GitHub DNS"
 msgstr "使用备用 GitHub DNS"
 
 msgid "Use an alternative smaller screen."
 msgstr "使用一个更小的备用屏幕。"
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr "使用自动模式检测"
@@ -22634,11 +23074,11 @@ msgstr "使用地理位置获取 WAN 信息"
 msgid "Use geolocation to set the current time zone location"
 msgstr "使用地理位置设置当前时区位置"
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "如果切换高频头时出现问题，请使用增加“14/18V”的电压。"
-
-msgid "Use interface"
-msgstr "使用接口"
 
 msgid "Use key map *"
 msgstr "使用按键映射 *"
@@ -22651,9 +23091,6 @@ msgstr "使用官方频道编号"
 
 msgid "Use only DNSSEC servers"
 msgstr "仅使用 DNSSEC 服务器"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "仅用于WLan唤醒（WoW）"
 
 msgid "Use only no-filter servers"
 msgstr "仅使用无过滤服务器"
@@ -22706,9 +23143,6 @@ msgstr "使用遥控器上的向左/向右按钮向上移动 OSD。"
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "使用遥控器上的向左/向右按钮向上/向下移动 OSD。"
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "使用网络向导配置网络。此向导将帮助您设置网络"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "使用 Softcam 面板控制 CAM。这个让您启动/停止/选择一个 CAM"
 
@@ -22726,12 +23160,6 @@ msgstr "使用当前选择并退出"
 
 msgid "Use the extended List"
 msgstr "使用扩展列表"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "使用网络向导配置选择的网络适配器"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "使用网络向导配置网络。"
 
 msgid "Use the wizard to set up basic features"
 msgstr "使用向导设置基本功能"
@@ -22809,6 +23237,12 @@ msgstr "用户名"
 msgid "Username (httpuser)"
 msgstr "用户名（http用户）"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr "使用自动地址"
 
@@ -22833,9 +23267,6 @@ msgstr "乌兹别克斯坦"
 msgid "VCR Scart Settings"
 msgstr "VCR Scart 设置"
 
-msgid "VLAN connection"
-msgstr "VLAN 连接"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -22847,6 +23278,9 @@ msgstr "VOB 文件"
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS 设置"
@@ -23185,6 +23619,9 @@ msgstr "音量调节频道选择操作"
 msgid "Volume Adjust Settings"
 msgstr "音量调节设置"
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr "音量调节模式"
 
@@ -23218,12 +23655,6 @@ msgstr "WLAN 连接信息"
 msgid "WARNING:"
 msgstr "警告："
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "WLAN 连接"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23232,15 +23663,6 @@ msgstr "WMA Pro 缩混"
 
 msgid "WOL Standby"
 msgstr "网络唤醒待机"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA 或 WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "4:3宽高比时显示宽屏幕信号"
@@ -23256,6 +23678,9 @@ msgstr "正在扫描，请等待..."
 
 msgid "Waiting"
 msgstr "正在等待"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "正在等待分区"
@@ -23279,10 +23704,10 @@ msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr "将 AV 接收机或回音壁从待机状态唤醒"
 
 msgid "Wake-on-LAN"
-msgstr ""
+msgstr "网络唤醒"
 
 msgid "Wake-on-WiFi"
-msgstr ""
+msgstr "WiFi 网络唤醒"
 
 msgid "Wallis and Futuna"
 msgstr "瓦利斯群岛和富图纳群岛"
@@ -23303,6 +23728,9 @@ msgstr "警告：无法重新加载 %d 订阅源！"
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "警告：取消此过程将使订阅源处于不完整且无法使用的状态！"
 
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr "警告：覆盖当前处于活动状态！"
 
@@ -23310,7 +23738,7 @@ msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr "警告：录制不应存储在闪存上！"
 
 msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
-msgstr ""
+msgstr "警告：此双调谐器的第二路输入口可能不支持 Unicable 设备。 "
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -23320,7 +23748,7 @@ msgid "Warning: There is only a network drive to store the backup. This means th
 msgstr "警告：只有一个网络驱动器用于存储备份。 这意味着刷机后自动恢复功能将不起作用。 作为替代方案，您可在刷机后挂载网络驱动器，并执行制造商重置来启用自动恢复功能。"
 
 msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
-msgstr ""
+msgstr "警告：FBC‑C V1 调谐器应当安装在第一个插槽。若安装在第二个插槽，8 路解调器中可能仅有 2 路可用。 "
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "警告：这是执行自动重启之前的最后一次崩溃。\n"
@@ -23421,7 +23849,7 @@ msgid "Western Sahara"
 msgstr "西撒哈拉"
 
 msgid "Western satellites"
-msgstr ""
+msgstr "西经卫星"
 
 msgid "What day of month?"
 msgstr "每月某日？"
@@ -23490,28 +23918,28 @@ msgid "When enabled, a warning will be displayed and the user will get an option
 msgstr "启用后，将显示警告，用户将获得停止或继续时移的选项。"
 
 msgid "When enabled, allow Samba network access without a password."
-msgstr ""
+msgstr "启用后，允许无需密码通过 Samba 访问网络。"
 
 msgid "When enabled, allow connection to access points that don't broadcast their SSID."
-msgstr ""
+msgstr "启用后，允许连接不广播 SSID 的无线接入点。"
 
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "选择“是”以允许检测到的每个存储设备自动导出为 samba 共享。"
 
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
-msgstr ""
+msgstr "启用后，允许接收机通过远程局域网网络唤醒信号（魔术包）开机。"
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
-msgstr ""
+msgstr "启用后，允许使用 NFS v3 协议。"
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
-msgstr ""
+msgstr "启用后，允许使用 NFS v4 协议。"
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用时，需要进行身份验证才能观看http流。"
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
-msgstr ""
+msgstr "启用后，WiFi 连接时将自动接入已保存的网络。"
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "启用时，画面比例为 4:3 的内容将被拉伸以适合屏幕。"
@@ -23535,10 +23963,10 @@ msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "启用后，可按 “EXIT” 键退出电影播放器。"
 
 msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
-msgstr ""
+msgstr "启用后，在待机状态下使 Wi-Fi 适配器保持低功耗扫描模式，以允许接收机通过远程网络信号（魔术包）被唤醒开机。"
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
-msgstr ""
+msgstr "启用后，将 root 映射为 nobody 用户（安全性更高）。禁用后，则可获得完整 root 访问权限。"
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "启用时，测量功率消耗以检测极轴何时停止转动（当调谐器支持时）。"
@@ -23550,7 +23978,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "启用时，数字标记将会被隐藏。"
 
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
-msgstr ""
+msgstr "启用后，通过 DHCP 自动获取 IP 地址、子网掩码、网关以及 DNS 服务器配置。"
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "启用后，按“0”将会切换到第一个频道分组中的第一个频道，并删除您的换台历史记录。"
@@ -23564,7 +23992,7 @@ msgstr "启用时，在频道选择屏幕中显示频道号。"
 msgid "When enabled, show status or error messages."
 msgstr "启用时，显示状态或错误消息。"
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23619,9 +24047,12 @@ msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "启用时，默认使用备用调谐器的定时器。"
 
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
+msgstr "启用后，此 WiFi 适配器仅维持 WiFi 网络唤醒模式，不会连接任何无线网络。"
+
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr ""
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
@@ -23630,11 +24061,11 @@ msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "启用时，此设置的权重大于“首选调谐器”。"
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr "启用后，此共享将挂载到 /media/hdd，而非其自身的 /media/net 路径。仅当该共享可靠可用时才使用此选项。"
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "启用后，时移会在指定时间后在后台自动启动。"
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "启用时，使用 DHCP 配置 IP。"
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "启用后，您可以自定义备用调谐器的 OpenWebIf 设置。"
@@ -23699,8 +24130,27 @@ msgstr "可用时"
 msgid "White"
 msgstr "白色"
 
-msgid "Wi-Fi Connection Settings"
-msgstr ""
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+msgid "Wi-Fi Activation Actions"
+msgstr "Wi‑Fi 启用操作"
+
+msgid "Wi-Fi Adapter"
+msgstr "Wi-Fi 适配器"
+
+msgid "Wi-Fi Scan Actions"
+msgstr "Wi Fi 扫描操作"
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr "在“%s”上扫描 Wi-Fi"
+
+msgid "Wi-Fi connection"
+msgstr "Wi‑Fi连接"
+
+msgid "Wi-Fi link"
+msgstr "Wi‑Fi链路"
 
 msgid "Wide"
 msgstr "宽"
@@ -23725,30 +24175,6 @@ msgstr "擦除存储设备"
 
 msgid "Wiping storage device..."
 msgstr "正在擦除存储设备..."
-
-msgid "Wireless LAN"
-msgstr "无线局域网"
-
-msgid "Wireless network"
-msgstr "无线网络"
-
-msgid "Wireless network configuration..."
-msgstr "无线网络配置..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"无线网络连接设置。\n"
-"\n"
-"选择下一步要做什么。"
-
-msgid "Wireless network setup"
-msgstr "无线网络设置"
-
-msgid "Wireless network state"
-msgstr "无线网络状态"
 
 msgid "With EXIT button"
 msgstr "用 EXIT 键"
@@ -23793,7 +24219,7 @@ msgid "Wizard Actions"
 msgstr "向导操作"
 
 msgid "WoW only"
-msgstr ""
+msgstr "仅 WiFi 唤醒模式"
 
 msgid "Wolof"
 msgstr "沃洛夫"
@@ -23802,7 +24228,7 @@ msgid "Workaround for old tuner driver."
 msgstr "旧调谐器驱动的临时解决方案。"
 
 msgid "Workgroup name"
-msgstr ""
+msgstr "工作组名称"
 
 msgid "World Affairs"
 msgstr "国际实事"
@@ -23816,6 +24242,9 @@ msgstr "是否要将输入的 PIN %s 永久保存？"
 
 msgid "Wrestling"
 msgstr "搏击"
+
+msgid "Write block size"
+msgstr "写入块大小"
 
 #, python-format
 msgid ""
@@ -23958,10 +24387,6 @@ msgstr "只能烧制 Dreambox 录制！"
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "将接收机从待机状态唤醒并立即切换回待机状态时，可以跳过此功能并关闭电视。"
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "你可用左/右键切换此调谐器的类型 %s"
-
 msgid "You cannot delete this!"
 msgstr "不能删除这个！"
 
@@ -24035,18 +24460,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "%s %s 没有连接到互联网，请检查网络设置，然后再试一次。"
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"%s %s 现在已准备好使用。\n"
-"\n"
-"互联网连接正常。\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "正在重新启动 %s %s"
 
@@ -24077,40 +24490,12 @@ msgid "Your %s %s will Restart..."
 msgstr "%s %s 将重新启动..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"%s %s 在安装服务后将会重启\n"
-"\n"
-"是否现在安装？"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"%s %s 在删除服务后将会重启\n"
-"是否立即删除？"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"互联网连接不正常！\n"
-"请选择下一步做什么。"
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "您的互联网连接正常（IP：%s）"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "接收机检测到软件问题。 自上次重启以来，它出现了 %d 次。\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "按下遥控器上的 OK 键后机顶盒将重新启动。"
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "您的专辑超过了单层介质的容量，您需要一张空白的双层 DVD！"
@@ -24156,9 +24541,6 @@ msgstr ""
 "你的前面板将会被升级\n"
 "这可能需要几分钟的时间"
 
-msgid "Your network configuration has been activated."
-msgstr "网络配置已激活。"
-
 msgid "Your password must have at least 5 characters."
 msgstr "您的密码必须至少包含5个字符。"
 
@@ -24202,6 +24584,9 @@ msgstr "换台"
 msgid "Zap + Exit"
 msgstr "换台 + 退出"
 
+msgid "Zap Timer Settings"
+msgstr "换台定时器设置"
+
 msgid "Zap Up/Down"
 msgstr "向上/向下切换"
 
@@ -24218,7 +24603,7 @@ msgid "Zap back to service before tuner setup?"
 msgstr "切换回调谐器配置之前的频道？"
 
 msgid "Zap condition"
-msgstr ""
+msgstr "换台条件"
 
 msgid "Zap down"
 msgstr "向下切换"
@@ -24410,12 +24795,6 @@ msgstr "关闭共享视图"
 msgid "config menu"
 msgstr "配置菜单"
 
-msgid "confirmed"
-msgstr "已确认"
-
-msgid "connected"
-msgstr "已连接"
-
 msgid "copy"
 msgstr "复制"
 
@@ -24439,9 +24818,6 @@ msgstr "删除剪辑"
 
 msgid "disabled"
 msgstr "已禁用"
-
-msgid "disconnected"
-msgstr "已断开"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24547,16 +24923,16 @@ msgid "handled"
 msgstr "已处理"
 
 msgid "has incomplete Unicable settings"
-msgstr ""
+msgstr "Unicable 设置不完整"
 
 msgid "has no supported Unicable device type"
-msgstr ""
+msgstr "没有支持的 Unicable 设备类型"
 
 msgid "has no valid Unicable product"
-msgstr ""
+msgstr "没有有效的 Unicable 产品"
 
 msgid "has no valid User Band channel"
-msgstr ""
+msgstr "没有有效的用户频段通道"
 
 msgid "height"
 msgstr "高度"
@@ -24607,10 +24983,10 @@ msgid "internally loopthrough to"
 msgstr "内部环通到"
 
 msgid "is not configured"
-msgstr ""
+msgstr "未配置"
 
 msgid "is not configured for Unicable"
-msgstr ""
+msgstr "未配置为 Unicable 模式"
 
 msgid "jump back to the previous title"
 msgstr "跳转到上一个标题"
@@ -24701,9 +25077,6 @@ msgstr "使用双层介质。"
 
 msgid "of a SINGLE layer medium used."
 msgstr "使用单层介质。"
-
-msgid "off or wpa2 on"
-msgstr "关闭或 WPA2 开"
 
 msgid "offset is"
 msgstr "偏移为"
@@ -24870,13 +25243,13 @@ msgid "text"
 msgstr "文本"
 
 msgid "the User Band channel from LNB 1 is not available"
-msgstr ""
+msgstr "高频头 1 的用户频段通道无法使用"
 
 msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
-msgstr ""
+msgstr "所选设备在此用户频段上未使用高频头 1 的频率"
 
 msgid "the target LNB"
-msgstr ""
+msgstr "目标高频头"
 
 msgid "the target LNB is not configured"
 msgstr "目标高频头尚未设置"
@@ -24913,9 +25286,6 @@ msgstr "uShare 设置"
 
 msgid "unavailable"
 msgstr "不可用"
-
-msgid "unconfirmed"
-msgstr "未确认"
 
 msgid "unknown"
 msgstr "未知"
@@ -24973,6 +25343,780 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "有线 / 地面输入切换：外接 5V 同轴开关"
+
+#~ msgid "Common Settings"
+#~ msgstr "通用设置"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "DVB‑C 有线与 DVB‑T/T2 地面波共用此输入口。两项同时启用时，Enigma2 将输出 5V 控制外接同轴开关。"
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "您真的要重新启动 OSCam 吗？\n"
+#~ "\n"
+#~ "提示：这大约需要 5 秒钟！"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "您真的要关闭 OSCam 吗？\n"
+#~ "\n"
+#~ "注意：要重新激活 OSCam，必须完全重启接收器！"
+
+#~ msgid "Mount Manager"
+#~ msgstr "挂载管理器"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "已禁用 OSCam 网页接口"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "重启 OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "关闭 OSCam"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13V"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18V"
+
+#~ msgid "One"
+#~ msgstr "一"
+
+#~ msgid "Three"
+#~ msgstr "三"
+
+#~ msgid "Two"
+#~ msgstr "二"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "发现 %d 个无线网络！"
+#~ msgstr[1] "发现 %d 个无线网络！"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "发现第二个已配置的接口。\n"
+#~ "\n"
+#~ "是否要禁用第二个网络接口？"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "激活网络适配器配置"
+
+#~ msgid "Activate network settings"
+#~ msgstr "激活网络设置"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "启用已配置的网络设置。"
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "确定要激活这个网络配置?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "确定要重新启动网络接口?"
+
+#~ msgid "Back"
+#~ msgstr "返回"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "配置 DNS（名称服务器）"
+
+#~ msgid "Configure interface"
+#~ msgstr "配置接口"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "通过调整显示的值来配置或验证 DNS（名称服务器）。\n"
+#~ "\n"
+#~ "设置正确后，按“确定”继续。"
+
+#~ msgid "Configure the IP address."
+#~ msgstr "配置 IP 地址。"
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "通过调整显示的值来配置 Internet 连接。\n"
+#~ "\n"
+#~ "设置正确后，按“确定”继续。"
+
+#~ msgid "Configure the gateway."
+#~ msgstr "配置网关。"
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "配置域名服务器 （DNS）。"
+
+#~ msgid "Configure the netmask."
+#~ msgstr "配置子网掩码。"
+
+#~ msgid "Configure the network again"
+#~ msgstr "重新配置网络"
+
+#~ msgid "Configure your Network"
+#~ msgstr "配置网络"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "配置内部局域网"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "再次配置无线网络"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "连接到无线网络"
+
+#~ msgid "Current settings:"
+#~ msgstr "当前设置："
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "设备设置"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "禁用或 WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "编辑 %s %s 的 DNS 配置。"
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "编辑 %s %s 的网络配置。"
+
+#~ msgid "Enable IPv6"
+#~ msgstr "启用 IPv6"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "启用网络唤醒"
+
+#~ msgid "Encrypted: "
+#~ msgstr "加密方式："
+
+#~ msgid "Encryption Type:"
+#~ msgstr "加密类型："
+
+#~ msgid "Encryption key"
+#~ msgstr "加密密钥"
+
+#~ msgid "Encryption key type"
+#~ msgstr "加密密钥类型"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "创建 FullHD 皮肤时出错。\n"
+#~ "使用 HD 皮肤！"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "创建 FullHD 皮肤时出错。台标包下载不可用。\n"
+#~ "使用 HD 皮肤！"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "创建 FullHD-Skin 时出错。没有足够的闪存空间。\n"
+#~ "使用 HD皮肤！"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "创建 FullHD 皮肤时出错。\n"
+#~ "使用 HD 皮肤！"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "创建 HD 皮肤时出错。没有足够的闪存空间。"
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "创建MetrixHD皮肤时出错。\n"
+#~ "请重启MyMetrixLite 插件并应用设置的检查。"
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "错误，未知结果！"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "退出网络适配器配置"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "退出网络适配器设置菜单"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "退出网络接口列表"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "退出网络向导"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "扩展网络设置插件..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "扩展设置..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "配置网络完成"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "按照电视上的说明进行操作"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "频率规范："
+
+#~ msgid "Interface: "
+#~ msgstr "接口："
+
+#~ msgid "LAN adapter"
+#~ msgstr "网络适配器"
+
+#~ msgid "Link quality:"
+#~ msgstr "链接质量："
+
+#~ msgid "Link:"
+#~ msgstr "链接："
+
+#~ msgid "List available networks"
+#~ msgstr "可用网络列表"
+
+#~ msgid "Local network"
+#~ msgstr "本地网络"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC 地址"
+
+#~ msgid "Manual configuration"
+#~ msgstr "手动配置"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "最大码率："
+
+#~ msgid "Nameserver"
+#~ msgstr "DNS 服务器"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "DNS 设置"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "网络适配器操作"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "网络适配器设置操作"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "网络适配器文本操作"
+
+#~ msgid "Network Test:"
+#~ msgstr "网络测试："
+
+#~ msgid "Network Wizard"
+#~ msgstr "网络向导"
+
+#~ msgid "Network test"
+#~ msgstr "网络测试"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "网络向导完成。\n"
+#~ "\n"
+#~ "按“确定”继续。"
+
+#~ msgid "Network:"
+#~ msgstr "网络："
+
+#~ msgid "NetworkWizard"
+#~ msgstr "网络向导"
+
+#~ msgid "No Connection"
+#~ msgstr "没有连接"
+
+#~ msgid "No networks found"
+#~ msgstr "未发现网络"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "没有发现无线网络！正在搜索..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "没有找到可用的本地网络适配器。\n"
+#~ "请验证已连接网线且网络配置正确。"
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "没有找到可用的无线网络适配器。\n"
+#~ "请验证您是否已连接兼容的WLAN设备，并且网络配置正确。"
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "没有找到可用的无线网络接口。\n"
+#~ "请验证您是否已连接兼容的WLAN设备或启用您的本地网络接口。"
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "请按照电视上的说明进行操作"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "请按 OK 键继续。"
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "请等待激活您的网络配置..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "正在准备网络接口，请稍等..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "正在测试网络，请稍等..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "请等待，皮肤设置正在恢复..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "请按 OK 键来激活设置。"
+
+#~ msgid "Primary DNS"
+#~ msgstr "主 DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "重启网络适配器"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "重新启动网络连接和接口。"
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "还原 MetrixHD 设置"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd 设置"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "扫描无线网络"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "扫描网络中的无线接入点，并使用选定的无线设备连接到它们。"
+
+#~ msgid "Secondary DNS"
+#~ msgstr "副 DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "选择一个无线网络"
+
+#~ msgid "Select interface"
+#~ msgstr "选择接口"
+
+#~ msgid "Select menu entry"
+#~ msgstr "选择菜单条目"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "选择用于互联网连接的网络接口。\n"
+#~ "\n"
+#~ "按“确定”继续。"
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "选择要连接的无线网络。\n"
+#~ "\n"
+#~ "按“确定”继续。"
+
+#~ msgid "Select wireless network"
+#~ msgstr "选择无线网络"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "显示WLAN状态"
+
+#~ msgid "Show info"
+#~ msgstr "显示信息"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "显示无线局域网连接状态。"
+
+#~ msgid "Signal quality"
+#~ msgstr "信号质量"
+
+#~ msgid "Signal: "
+#~ msgstr "信号："
+
+#~ msgid "Start test"
+#~ msgstr "开始测试"
+
+#~ msgid "Stop test"
+#~ msgstr "停止测试"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "测试 %s %s 的网络配置。"
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "互联网连接似乎正常。\n"
+#~ "\n"
+#~ "按“确定”继续。"
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "互联网连接似乎无法正常工作！\n"
+#~ "\n"
+#~ "选择下一步要做什么。"
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "网络向导扩展没有安装！\n"
+#~ "请安装。"
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "无线局域网互联网连接无法启动！\n"
+#~ "无线局域网设备是否已连接？\n"
+#~ "\n"
+#~ "选择下一步要做什么。"
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "无线局域网插件代码未安装！\n"
+#~ "\n"
+#~ "安装它并选择下一步操作。"
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "无线局域网插件未安装！\n"
+#~ "请安装。"
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "此测试检查配置的 DNS。\n"
+#~ "如果您收到“未确认”消息：\n"
+#~ "-请检查 DHCP、电缆和适配器设置\n"
+#~ "-如果手动配置名称服务器，请验证“名称服务器”配置中的条目"
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "该测试检查您的网线是否已连接到网卡。\n"
+#~ "如果显示 \"断开\" 信息：\n"
+#~ "- 检查您的网线连接\n"
+#~ "- 确认线缆没有破损"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "此测试检查您的网卡是否找到有效的IP地址。\n"
+#~ "如果你得到一个\"未确认\"消息：\n"
+#~ "- 没有找到有效的IP地址\n"
+#~ "- 请检查您的 DHCP，网线和网卡设置"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "此测试检查您的 LAN 适配器是否设置为使用 DHCP 进行自动 IP 地址配置。\n"
+#~ "如果您收到“已禁用”消息：\n"
+#~ "- 然后您的 LAN 适配器配置为手动 IP 设置\n"
+#~ "- 确认您在适配器设置对话框中输入了正确的 IP 信息。\n"
+#~ "如果您收到“启用”消息：\n"
+#~ "- 验证您的网络中是否有已配置且正常工作的 DHCP 服务器。"
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "此测试检测已配置的 LAN 适配器。"
+
+#~ msgid "Unencrypted"
+#~ msgstr "未加密"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "创建皮肤时未知错误。\n"
+#~ "请重启 MyMetrixLite 插件后检查并应用设置。"
+
+#~ msgid "Unsupported"
+#~ msgstr "不支持的"
+
+#~ msgid "Use a gateway"
+#~ msgstr "使用网关"
+
+#~ msgid "Use interface"
+#~ msgstr "使用接口"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "仅用于WLan唤醒（WoW）"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "使用网络向导配置网络。此向导将帮助您设置网络"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "使用网络向导配置选择的网络适配器"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "使用网络向导配置网络。"
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN 连接"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN 连接"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA 或 WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, this adapter is initialized and activated at boot time."
+#~ msgstr "启用后，此适配器将在系统启动时被初始化并激活。"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "启用时，使用 DHCP 配置 IP。"
+
+#~ msgid "Wireless LAN"
+#~ msgstr "无线局域网"
+
+#~ msgid "Wireless network"
+#~ msgstr "无线网络"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "无线网络配置..."
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "无线网络连接设置。\n"
+#~ "\n"
+#~ "选择下一步要做什么。"
+
+#~ msgid "Wireless network setup"
+#~ msgstr "无线网络设置"
+
+#~ msgid "Wireless network state"
+#~ msgstr "无线网络状态"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s %s 现在已准备好使用。\n"
+#~ "\n"
+#~ "互联网连接正常。\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "%s %s 在安装服务后将会重启\n"
+#~ "\n"
+#~ "是否现在安装？"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "%s %s 在删除服务后将会重启\n"
+#~ "是否立即删除？"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "互联网连接不正常！\n"
+#~ "请选择下一步做什么。"
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "按下遥控器上的 OK 键后机顶盒将重新启动。"
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "网络配置已激活。"
+
+#~ msgid "confirmed"
+#~ msgstr "已确认"
+
+#~ msgid "connected"
+#~ msgstr "已连接"
+
+#~ msgid "disconnected"
+#~ msgstr "已断开"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "关闭或 WPA2 开"
+
+#~ msgid "unconfirmed"
+#~ msgstr "未确认"
+
+#~ msgid "Enter the primary IPv4 DNS setting for this adapter."
+#~ msgstr "输入此网卡的主 IPv4 DNS 服务器地址。"
+
+#~ msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+#~ msgstr "输入此网卡的主 IPv6 DNS 服务器地址。（选填）"
+
+#~ msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+#~ msgstr "输入此网卡的备用 IPv4 DNS 服务器地址。（选填）"
+
+#~ msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+#~ msgstr "输入此网卡的备用 IPv6 DNS 服务器地址。（选填）"
+
+#~ msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+#~ msgstr "输入本机接收机 Samba 连接所用的工作组名称。(默认值为 `WORKGROUP`)"
+
+#~ msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+#~ msgstr "强制指定网卡速率 / 双工模式，关闭自动协商。仅在有明确需求时修改，设置错误会直接造成网络断开。"
+
+#~ msgid "NFS Settings"
+#~ msgstr "NFS设置"
+
+#~ msgid "Samba Settings"
+#~ msgstr "Samba 设置"
+
+#~ msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+#~ msgstr "选择默认 DNS 设置的来源。"
+
+#~ msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+#~ msgstr "为自动导出的 samba 共享选择访问模式。"
+
+#~ msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+#~ msgstr "选择应用于所有导出目录的访问模式：读/写或只读。"
+
+#~ msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+#~ msgstr "选择DNS的模式。"
+
+#~ msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+#~ msgstr "服务器不得强制执行其自身的阻止列表。某些服务器可能会实现自己的黑名单，以出于家长控制、广告拦截等原因阻止访问某些网站。"
+
+#~ msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+#~ msgstr "定义 DNS 后缀。"
+
+#~ msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+#~ msgstr "启用后，为此适配器指定自定义 DNS 设置，而非使用全局 DNS 设置。"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "自动共享访问"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS 后缀"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "仅 DVB-C / 有线电视"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C和DVB-T/T2通过外置5V控制同轴开关"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "仅 DVB-T/T2 /地面波"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "混合调谐器模式"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "选择此 DVB-C/T 调谐器的连接方式。仅当使用5V控制同轴开关时，才选用“外置同轴开关”选项。"
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "设置调谐器 [调谐器]。\n"
+#~ "\n"
+#~ "对于混合调谐器型号，使用向左、向右按钮切换调谐器类型。"
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "可切换的调谐器类型："
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "你可用左/右键切换此调谐器的类型 %s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "正在进行录制。配置极轴前请先停止录制。"
@@ -25542,9 +26686,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "正在扫描..."
 
 #~ msgid "Servers:"
 #~ msgstr "频道："
@@ -26382,9 +27523,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "以分钟为单位更新:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

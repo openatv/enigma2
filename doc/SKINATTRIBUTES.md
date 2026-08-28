@@ -91,6 +91,10 @@ Color when widget is selected
 **(Deprecated - use backgroundColor with gradient)**
 - Values: Same as backgroundColor gradient format
 
+#### backgroundGradientSelected=
+**(Deprecated - use backgroundColorSelected with gradient)**
+- Values: Same as backgroundColorSelected gradient format
+
 #### backgroundPixmap=
 Background image
 - Values: Path to image file
@@ -117,12 +121,17 @@ Condition for widget visibility
 Condition for widget visibility
 - Values: Comma-separated conditions
 
+#### connection=
+Dummy attribute used only by Addons, ignored by the skin engine.
+- Values: Any string
+
 #### cornerRadius=
 Radius for rounded corners
-- Values: 
+- Values:
   - Single number for all corners: `10`
   - Specific corners: `10;topLeft,bottomRight`
-  - Available corners: `topLeft`, `topRight`, `bottomLeft`, `bottomRight`
+  - Available corners: `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `top`, `bottom`, `left`, `right`
+- Example: `cornerRadius=8;top` — rounds only the top two corners
 
 ### E
 
@@ -149,6 +158,14 @@ Window flags
 Main font settings
 - Values: `fontname;size`
 - Example: `Regular;20`
+
+#### fontScale=
+Shrinks the font (starting from the `font` size) only as far as needed so the text fits the widget area, down to a floor size.
+- Format: `scaleType;size`
+  - `scaleType`: `size` (scale by point size) or `width` (scale by character width)
+  - `size`: floor to shrink down to, in pixels (scaled by the skin resolution factor). Positive = absolute floor; negative = relative to the `font` size (floor = font size − |size|); omitted = defaults to `-4`
+- Example: `fontScale=size;20` (absolute floor of 20)
+- Example: `fontScale=size;-4` (shrink by at most 4 below the `font` size)
 
 #### foregroundColor=
 Text/content color
@@ -213,7 +230,7 @@ Alignment of items in lists
   - `justifyLeft`, `justifyRight`
 
 #### itemCornerRadius=
-Corner radius for list items
+Corner radius for normal (unselected) list items
 - Values: Same as cornerRadius
 
 #### itemCornerRadiusMarked=
@@ -221,7 +238,7 @@ Corner radius for marked list items
 - Values: Same as cornerRadius
 
 #### itemCornerRadiusMarkedAndSelected=
-Corner radius for marked and selected list items
+Corner radius for marked-and-selected list items
 - Values: Same as cornerRadius
 
 #### itemCornerRadiusSelected=
@@ -298,6 +315,10 @@ Widget orientation
   - `orRightToLeft`
   - `orBottomToTop`
 
+#### OverScan=
+**(Deprecated - use overScan)**
+- Values: Same as overScan
+
 #### overScan=
 Screen overscan settings
 - Values: Various
@@ -338,26 +359,62 @@ Screen resolution settings
 #### scale=
 Image scaling mode
 - Values:
-  - `none`: No scaling
-  - `scale`: Scale to size
-  - `keepAspect`: Keep ratio
-  - `width`: Scale width
-  - `height`: Scale height
-  - `stretch`: Stretch to fit
+  - `none` / `off` / `0`: No scaling
+  - `scale` / `stretch` / `1`: Scale to size (may break aspect ratio)
+  - `keepAspect` / `on` / `aspect`: Scale keeping aspect ratio
+  - `width`: Scale to widget width, height may overflow/underflow
+  - `height`: Scale to widget height, width may overflow/underflow
+  - `fill`: Scale so the widget is completely filled (one side may be clipped)
   - `center`: Center without scaling
-  - Advanced combinations:
-    - `leftTop`, `leftCenter`, `leftBottom`
-    - `centerTop`, `centerScaled`, `centerBottom`
-    - `rightTop`, `rightCenter`, `rightBottom`
+  - Scale + position (keep aspect, align within widget):
+    - `leftTop`, `leftCenter` / `leftMiddle`, `leftBottom`
+    - `centerTop` / `middleTop`, `centerScaled` / `middleScaled`, `centerBottom` / `middleBottom`
+    - `rightTop`, `rightCenter` / `rightMiddle`, `rightBottom`
+  - Move only (no scaling, just align within widget):
+    - `moveLeftTop`, `moveLeftCenter` / `moveLeftMiddle`, `moveLeftBottom`
+    - `moveCenterTop` / `moveMiddleTop`, `moveCenter` / `moveMiddle`, `moveCenterBottom` / `moveMiddleBottom`
+    - `moveRightTop`, `moveRightCenter` / `moveRightMiddle`, `moveRightBottom`
+  - Deprecated scale aliases (use the non-prefixed form instead):
+    - `scaleKeepAspect`, `scaleLeftTop`, `scaleLeftCenter`, `scaleLeftMiddle`, `scaleLeftBottom`
+    - `scaleCenterTop`, `scaleMiddleTop`, `scaleCenter`, `scaleMiddle`, `scaleCenterBottom`, `scaleMiddleBottom`
+    - `scaleRightTop`, `scaleRightCenter`, `scaleRightMiddle`, `scaleRightBottom`
+
+#### scaleFlags=
+**(Deprecated - use scale)**
+- Values: Same as scale
+- Notes: Temporary compatibility alias; use `scale` in new skins.
 
 #### scrollbarMode=
 Scrollbar behavior
 - Values:
-  - `showOnDemand`: Show when needed
-  - `showAlways`: Always visible
+  - `showOnDemand`: Show on the right when needed
+  - `showAlways`: Always visible on the right
   - `showNever`: Never show
-  - `showLeft`: Show on left
-  - `showLeftOnDemand`: Show on left when needed
+  - `showLeft` **(Deprecated - use showLeftOnDemand)**: Show on left when needed
+  - `showLeftOnDemand`: Show on the left when needed
+  - `showLeftAlways`: Always visible on the left
+  - `showTopOnDemand`: Show on the top when needed
+  - `showTopAlways`: Always visible on the top
+
+#### scrollbarSliderBorderColor=
+**(Deprecated - use scrollbarBorderColor)**
+- Values: Same as scrollbarBorderColor
+
+#### scrollbarSliderBorderWidth=
+**(Deprecated - use scrollbarBorderWidth)**
+- Values: Same as scrollbarBorderWidth
+
+#### scrollbarSliderForegroundColor=
+**(Deprecated - use scrollbarForegroundColor)**
+- Values: Same as scrollbarForegroundColor
+
+#### scrollbarSliderPicture=
+**(Deprecated - use scrollbarForegroundPixmap)**
+- Values: Path to image file
+
+#### scrollbarSliderPixmap=
+**(Deprecated - use scrollbarForegroundPixmap)**
+- Values: Path to image file
 
 #### scrollbarWidth=
 Width of scrollbar
@@ -383,8 +440,16 @@ Background color of scrollbar
 Background gradient of scrollbar
 - Values: Same as backgroundGradient
 
+#### scrollbarBackgroundPicture=
+**(Deprecated - use scrollbarBackgroundPixmap)**
+- Values: Path to image file
+
 #### scrollbarBackgroundPixmap=
 Background image of scrollbar
+- Values: Path to image file
+
+#### scrollbarbackgroundPixmap=
+**(Deprecated - use scrollbarBackgroundPixmap)**
 - Values: Path to image file
 
 #### scrollbarForegroundGradient=
@@ -461,13 +526,17 @@ Zoom settings for selection
 Size settings for selection zoom
 - Values: `width,height,mode`
 
-#### separatorColor=
-Color of separator
+#### separatorLineColor=
+Color of the separator line drawn inside list items
 - Values: `#AARRGGBB` or named color
 
-#### separatorSize=
-Size of separator
-- Values: Integer pixels
+#### separatorLineSize=
+Position and size of the separator line drawn inside list items
+- Format: `height` | `top,height` | `left,top,width,height`
+  - `height`: line height; `left`/`top`/`width` default to `-1` (auto/full)
+  - `width=-1`: full item width minus margin
+  - `top=-1`: vertically centered (default)
+- Example: `separatorLineSize=1` — 1 px full-width line, centered
 
 #### shadowColor=
 Color of shadows
@@ -489,6 +558,10 @@ Pixel spacing used between children in a `vertical` or `horizontal` layout (or w
 #### spacingColor=
 Color of spacing
 - Values: `#AARRGGBB` or named color
+
+#### sliderPixmap=
+**(Deprecated - use scrollbarForegroundPixmap)**
+- Values: Path to image file
 
 #### stack=
 Describes stack usage / the stack widget concept.

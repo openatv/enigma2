@@ -2,6 +2,7 @@ from Components.config import config
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from enigma import eServiceCenter, eServiceReference, iServiceInformation
+from ServiceReference import isRadioServiceReference
 from xml.etree.ElementTree import parse
 
 
@@ -115,7 +116,7 @@ class ExtendedServiceInfo(Converter):
 
 	def getServiceNumber(self, name, ref):
 		_list = []
-		if ref.startswith('1:0:2'):
+		if isRadioServiceReference(ref):
 			_list = self.radio_list
 		elif ref.startswith('1:0:1'):
 			_list = self.tv_list

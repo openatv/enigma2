@@ -1,10 +1,11 @@
 from os import listdir
-from os.path import exists, getsize, isdir, join
+from os.path import exists, getmtime, getsize, isdir, join
 from re import sub
-from enigma import ePixmap  # , ePicLoad
+from enigma import ePixmap, eServiceReference, iServiceInformation  # , ePicLoad
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
+import NavigationInstance
 from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
@@ -91,6 +92,19 @@ def getPiconName(serviceName):
 	return pngname
 
 
+def getDABImage(serviceName):
+	ref = eServiceReference(serviceName or "")
+	if ref.type != eServiceReference.idServiceDAB or NavigationInstance.instance is None:
+		return ""
+	playingRef = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+	if not playingRef or playingRef.toString().split(":", 10)[:10] != ref.toString().split(":", 10)[:10]:
+		return ""
+	service = NavigationInstance.instance.getCurrentService()
+	info = service and service.info()
+	image = info and info.getInfoString(iServiceInformation.sTagImage) or ""
+	return image if image and exists(image) else ""
+
+
 class Picon(Renderer):
 	GUI_WIDGET = ePixmap
 
@@ -146,12 +160,13 @@ class Picon(Renderer):
 		if self.instance:
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
-				pngname = getPiconName(self.source.text)
+				pngname = getDABImage(self.source.text) or getPiconName(self.source.text)
 				if not exists(pngname):  # No picon for service found
 					pngname = self.defaultpngname
 				if not config.usage.showpicon.value:
 					pngname = self.nopicon
-				if self.pngname != pngname:
+				pngkey = (pngname, getmtime(pngname), getsize(pngname)) if pngname and exists(pngname) else pngname
+				if self.pngname != pngkey:
 					if pngname:
 						self.instance.setScale(1)
 						self.instance.setPixmapFromFile(pngname)
@@ -160,7 +175,7 @@ class Picon(Renderer):
 #						self.PicLoad.startDecode(pngname)
 					else:
 						self.instance.hide()
-					self.pngname = pngname
+					self.pngname = pngkey
 			elif what[0] == 2:
 				self.pngname = ""
 				self.instance.hide()

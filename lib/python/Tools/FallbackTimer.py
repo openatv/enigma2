@@ -177,6 +177,7 @@ class FallbackTimerClass(TimerObject):
 		self.descramble = timerdict.get("descramble", 1)
 		self.record_ecm = timerdict.get("record_ecm", 0)
 		self.always_zap = timerdict.get("always_zap", 0)
+		self.precondition = timerdict.get("precondition", 0)
 		self.isAutoTimer = timerdict.get("isAutoTimer", 0)
 		self.ice_timer_id = timerdict.get("ice_timer_id", 0)
 		if self.ice_timer_id == -1:

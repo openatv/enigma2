@@ -8,7 +8,7 @@ from os import listdir
 from os.path import exists, isfile, ismount, realpath, splitext
 from pickle import dump, load
 from re import match
-from socket import AF_UNIX, SOCK_STREAM, socket
+from Tools.ServiceAction import ServiceAction
 from sys import maxsize
 from time import localtime, strftime, time
 
@@ -37,6 +37,7 @@ from Components.VolumeControl import VolumeControl
 from Components.Renderer.PositionGauge import PositionGauge
 from Components.Renderer.Progress import Progress
 from Components.Sources.Boolean import Boolean
+from Components.Sources.RdsDecoder import RdsDecoder
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
@@ -1885,10 +1886,7 @@ class InfoBarAutoCam:
 					BoxInfo.setMutableItem("CurrentSoftcam", cam)
 
 	def switchCam(self, new):
-		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-		deamonSocket.connect("/tmp/deamon.socket")
-		deamonSocket.send(f"SWITCH_SOFTCAM,{new}".encode())
-		deamonSocket.close()
+		ServiceAction.switchSoftcam(new, None)
 
 
 autocam = InfoBarAutoCam()
@@ -1925,6 +1923,7 @@ class SecondInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = "SecondInfoBarECM" if config.usage.show_second_infobar.value == "3" else "SecondInfoBar"
+		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 		self["epg_description"] = ScrollLabel()
 		self["FullDescription"] = ScrollLabel()
 		self["channel"] = Label()
@@ -3396,6 +3395,7 @@ class InfoBarRdsDecoder:
 	"""provides RDS and Rass support/display"""
 
 	def __init__(self):
+		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
 		self.session.instantiateSummaryDialog(self.rds_display)
 		self.rds_display.setAnimationMode(0)
@@ -4269,7 +4269,7 @@ class InfoBarAspectSelection:
 			] + aspectSwitchList + [
 				(_("4:3 Letterbox"), "0"),
 				(_("4:3 PanScan"), "1"),
-				(_("16:9"), "2"),
+				("16:9", "2"),
 				(_("16:9 Always"), "3"),
 				(_("16:10 Letterbox"), "4"),
 				(_("16:10 PanScan"), "5"),
@@ -4822,7 +4822,7 @@ class InfoBarSubtitleSupport:
 	def __updatedInfo(self):
 		if not self.selected_subtitle:
 			subtitle = self.getCurrentServiceSubtitle()
-			cachedsubtitle = subtitle.getCachedSubtitle()
+			cachedsubtitle = subtitle and subtitle.getCachedSubtitle()
 			if cachedsubtitle:
 				self.enableSubtitle(cachedsubtitle)
 				self.doCenterDVBSubs()

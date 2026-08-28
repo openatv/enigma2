@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DAB-over-DVB feed definitions shipped with Enigma2.
+
+  The scanner reads the live DAB ensemble and service information from FIC;
+  therefore this file contains only stable satellite, transponder and transport
+  parameters. The packaged file is installed as /usr/share/enigma2/dab.xml.
+  An optional /etc/enigma2/dab.xml replaces it for local testing or overrides.
+
+  The native service supports MPE/UDP/EDI (fedi2eti), direct ETI-NA(V.11)
+  framing (tsniv2ni), and E1 ETI-NA with either 12 or 0 payload padding bytes
+  (ts2na12 and ts2na). All paths are normalised to ETI-NI before decoding.
+
+  Source checked 2026-08-26: https://de.kingofsat.tv/dab
+-->
+<dabFeeds version="2" updated="2026-08-26">
+  <satellite name="Eutelsat 7C 7.0E" orbitalPosition="70" namespace="460000">
+    <transponder frequency="11513800" polarization="V" system="DVB-S2"
+                 modulation="QPSK" symbolRate="17017000" fec="2/3"
+                 onid="0000" tsid="0000" parentServiceType="0001"
+                 parentSid="0001">
+      <feed id="allgaeu_donau_iller_7e_11513" name="AllgäuDonauIller"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.128.57.20" multicastPort="50020"
+            ensembleId="1133" />
+      <feed id="oberbayern_sued_7e" name="Oberbayern Süd"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.128.58.20" multicastPort="50020"
+            ensembleId="1196" />
+      <feed id="swr_bw_s_7e" name="SWR BW S"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.132.1.50" multicastPort="5004"
+            ensembleId="10EB" />
+      <feed id="swr_bw_n_7e" name="SWR BW N"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.132.1.51" multicastPort="5004"
+            ensembleId="10EA" />
+      <feed id="swr_rlp_7e" name="SWR RLP"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.132.1.52" multicastPort="5004"
+            ensembleId="10D9" />
+      <feed id="oberfranken_7e_11513" name="Oberfranken"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.16.242.11" multicastPort="60011"
+            ensembleId="1131" />
+      <feed id="oberbayern_schwaben_7e" name="Oberbayern/Schwaben"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.16.242.15" multicastPort="60015"
+            ensembleId="1162" />
+      <feed id="bayern_7e" name="Bayern"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.16.242.17" multicastPort="60017"
+            ensembleId="10A5" />
+      <feed id="ndr_sh_ki_7e" name="NDR SH KI"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.229.96.33" multicastPort="50000"
+            ensembleId="10F2" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Eutelsat 7B 7.0E" orbitalPosition="70" namespace="460000">
+    <transponder frequency="12567800" polarization="V" system="DVB-S2"
+                 modulation="QPSK" symbolRate="17017000" fec="2/3"
+                 onid="0001" tsid="0016" parentServiceType="0001"
+                 parentSid="0000">
+      <feed id="allgaeu_donau_iller_7e_12567" name="AllgäuDonauIller"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.128.57.20" multicastPort="50020"
+            ensembleId="1133" />
+      <feed id="oberfranken_7e_12567" name="Oberfranken"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.16.242.11" multicastPort="60011"
+            ensembleId="1131" />
+      <feed id="unterfranken_7e" name="Unterfranken"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.16.242.13" multicastPort="60013"
+            ensembleId="1134" />
+      <feed id="hr_radio_7e" name="hr Radio"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.192.254.200" multicastPort="10000"
+            ensembleId="107A" />
+      <feed id="ndr_mv_sn_7e" name="NDR MV SN"
+            pid="0065" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.229.96.43" multicastPort="50000"
+            ensembleId="1115" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Eutelsat 9B 9.0E" orbitalPosition="90" namespace="5A0000">
+    <transponder frequency="11727500" polarization="V" system="DVB-S2"
+                 modulation="8PSK" symbolRate="30000000" fec="3/4"
+                 onid="009E" tsid="C35A" parentServiceType="0001">
+      <feed id="dab_italia_9e" name="DAB Italia"
+            parentSid="035C" pid="1B77" decoder="tsniv2ni"
+            transport="MPE/NI" ensembleId="5009" />
+      <feed id="eurodab_italia_9e" name="EuroDab Italia"
+            parentSid="035D" pid="1BDB" decoder="tsniv2ni"
+            transport="MPE/NI" ensembleId="5003" />
+    </transponder>
+    <transponder frequency="12091900" polarization="H" system="DVB-S2"
+                 modulation="8PSK" symbolRate="27500000" fec="3/4"
+                 onid="009E" tsid="1AF4" parentServiceType="0001">
+      <feed id="d1_national_9e" name="D1 National"
+            parentSid="048D" pid="0426" decoder="ts2na12"
+            transport="TS/NA" ensembleId="C181" />
+      <feed id="sdl_national_9e" name="SDL National"
+            parentSid="0492" pid="0427" decoder="ts2na12"
+            transport="TS/NA" ensembleId="C1CE" />
+      <feed id="d1_scotland_9e" name="D1 Scotland"
+            parentSid="048E" pid="0429" decoder="ts2na12"
+            transport="TS/NA" ensembleId="C181" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Astra 19.2E" orbitalPosition="192" namespace="C00000">
+    <!-- KingOfSat currently publishes no ONID/TSID for this WDR transponder. -->
+    <transponder frequency="11603700" polarization="V" system="DVB-S"
+                 modulation="QPSK" symbolRate="2200000" fec="3/4"
+                 onid="0000" tsid="0000" parentServiceType="0001"
+                 parentSid="0000" enabled="false">
+      <feed id="wdr_nrw_19e" name="WDR NRW"
+            pid="0BB8" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="228.10.1.5" multicastPort="10010"
+            ensembleId="10EC" />
+      <feed id="wdr_regional_19e" name="WDR Regional"
+            pid="0BB8" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="228.10.2.5" multicastPort="10010"
+            ensembleId="10FA" />
+    </transponder>
+    <transponder frequency="12460500" polarization="H" system="DVB-S"
+                 modulation="QPSK" symbolRate="27500000" fec="3/4"
+                 onid="0085" tsid="0005" parentServiceType="0002">
+      <feed id="bundesmux1" name="DAB Bundesmux 1"
+            bouquetFile="userbouquet.dab_bundesmux_1.radio"
+            bouquetName="DAB Bundesmux 1 (Radio)"
+            parentSid="1019" pid="1019" decoder="fedi2eti"
+            transport="MPE/UDP/EDI" multicastAddress="239.128.43.43"
+            multicastPort="50043" ensembleId="10BC" />
+      <feed id="bundesmux2" name="DAB Bundesmux 2"
+            bouquetFile="userbouquet.dab_bundesmux_2.radio"
+            bouquetName="DAB Bundesmux 2 (Radio)"
+            parentSid="101A" pid="101A" decoder="fedi2eti"
+            transport="MPE/UDP/EDI" multicastAddress="239.128.72.10"
+            multicastPort="50010" ensembleId="11F7" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Astra 3C 23.5E" orbitalPosition="235" namespace="EB0000">
+    <transponder frequency="12168000" polarization="V" system="DVB-S"
+                 modulation="QPSK" symbolRate="27500000" fec="3/4"
+                 onid="0003" tsid="0C98" parentServiceType="0002">
+      <feed id="bundesmux1_235e" name="DAB Bundesmux 1 (23.5E)"
+            parentSid="1019" pid="1019" decoder="fedi2eti"
+            transport="MPE/UDP/EDI" multicastAddress="239.128.43.43"
+            multicastPort="50043" ensembleId="10BC" />
+      <feed id="bundesmux2_235e" name="DAB Bundesmux 2 (23.5E)"
+            parentSid="101A" pid="101A" decoder="fedi2eti"
+            transport="MPE/UDP/EDI" multicastAddress="239.128.72.10"
+            multicastPort="50010" ensembleId="11F7" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Astra 2E 28.2E" orbitalPosition="282" namespace="11A0000">
+    <transponder frequency="11426500" polarization="H" system="DVB-S"
+                 modulation="QPSK" symbolRate="27500000" fec="2/3"
+                 onid="003B" tsid="090B" parentServiceType="0001">
+      <feed id="bbc_national_282e" name="BBC National"
+            parentSid="2954" pid="0425" decoder="ts2na12"
+            transport="TS/NA" ensembleId="CE15" />
+      <feed id="d1_national_282e" name="D1 National"
+            parentSid="2959" pid="0426" decoder="ts2na12"
+            transport="TS/NA" ensembleId="C181" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Hellas Sat 3 39.0E" orbitalPosition="390" namespace="1860000">
+    <transponder frequency="12241500" polarization="H" system="DVB-S2"
+                 modulation="QPSK" symbolRate="13383000" fec="3/4"
+                 onid="212C" tsid="0001" parentServiceType="0001"
+                 parentSid="0001">
+      <feed id="ert_dab_39e" name="ERT DAB"
+            pid="03F2" decoder="tsniv2ni" transport="MPE/NI"
+            ensembleId="E000" />
+    </transponder>
+  </satellite>
+
+  <satellite name="Eutelsat 5 West B 5.0W" orbitalPosition="3550" namespace="DDE0000">
+    <transponder frequency="11461300" polarization="H" system="DVB-S2"
+                 modulation="QPSK" symbolRate="5780000" fec="3/4"
+                 onid="20FA" tsid="0003" parentServiceType="0001"
+                 parentSid="001E">
+      <feed id="metropolitain1_5w" name="Métropolitain 1"
+            pid="012D" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.0.1.11" multicastPort="5001"
+            ensembleId="F043" />
+      <feed id="metropolitain2_5w" name="Métropolitain 2"
+            pid="012D" decoder="fedi2eti" transport="MPE/UDP/EDI"
+            multicastAddress="239.0.1.12" multicastPort="5002"
+            ensembleId="F044" />
+    </transponder>
+    <transponder frequency="12564000" polarization="V" system="DVB-S2"
+                 modulation="8PSK" symbolRate="35294000" fec="2/3"
+                 onid="217C" tsid="00B7" parentServiceType="0001"
+                 parentSid="0001" inputStreamId="12" plsMode="Gold"
+                 plsCode="131070">
+      <feed id="rai_dab_test_5w" name="DAB+ RAI Test"
+            pid="03E9" decoder="ts2na" transport="TS/NA"
+            ensembleId="5DAB" />
+    </transponder>
+  </satellite>
+</dabFeeds>

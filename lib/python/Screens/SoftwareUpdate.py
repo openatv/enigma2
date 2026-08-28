@@ -397,7 +397,6 @@ class RunSoftwareUpdate(Screen):
 		self.deselectCount = 0
 		self.upgradeCount = 0
 		self.configureCount = 0
-		self.metrixUpdated = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
 		self.opkg = OpkgComponent()
@@ -434,8 +433,6 @@ class RunSoftwareUpdate(Screen):
 		elif event == OpkgComponent.EVENT_UPVERSION:
 			self.upgradeCount += 1
 			self["update"].appendText(f"{_("Updating")} {self.upgradeCount}/{self.packageTotal}: '{parameter}'.\n")
-			if "enigma2-plugin-skins-metrix-atv" in parameter:
-				self.metrixUpdated = True
 		elif event == OpkgComponent.EVENT_INSTALL:
 			self.installCount += 1
 			self["update"].appendText(f"{_("Installing")}: '{parameter}'.\n")
@@ -505,17 +502,6 @@ class RunSoftwareUpdate(Screen):
 		if self.opkg.isRunning():
 			self.opkg.stop()
 		self.opkg.removeCallback(self.opkgCallback)
-		if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and self.metrixUpdated:   # TODO: move this to Metrix Plugin.
-			try:
-				if not exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
-					from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreMyMetrixHD
-					self.session.openWithCallback(keyCancelCallback, RestoreMyMetrixHD)
-					return
-				elif config.plugins.MyMetrixLiteOther.EHDenabled.value != "0":
-					from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
-					ActivateSkinSettings().RefreshIcons()
-			except Exception:
-				pass
 		if self.upgradeCount != 0:
 			keyCancelCallback()
 		else:

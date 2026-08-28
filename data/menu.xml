@@ -18,23 +18,23 @@
 	<menu key="mainmenu" text="Main Menu" title="Main Menu">
 		<!-- Menu / Information -->
 		<menu key="information" level="0" text="Information" description="This menu contains selections to display information about the receiver." weight="5">
-			<item key="distribution_info_screen" level="0" text="About OpenATV" weight="5"><screen module="Information" screen="DistributionInformation" /></item>
-			<item key="receiver_info_screen" level="0" text="Receiver" weight="10"><screen module="Information" screen="ReceiverInformation" /></item>
-			<item key="benchmark_info_screen" level="2" text="Benchmarks" weight="12" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="BenchmarkInformation" /></item>
-			<item key="picture_info_screen" level="0" text="Pictures" weight="15" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="PictureInformation" /></item>
-			<item key="tuner_info_screen" level="0" text="Tuners" weight="20"><screen module="Information" screen="TunerInformation" /></item>
-			<item key="storage_info_screen" level="0" text="Storage / Disks" weight="25"><screen module="Information" screen="StorageInformation" /></item>
-			<item key="memory_info_screen" level="0" text="Memory" weight="30"><screen module="Information" screen="MemoryInformation" /></item>
-			<item key="network_info_screen" level="0" text="Network" weight="35"><screen module="Information" screen="NetworkInformation" /></item>
-			<item key="multiboot_info_screen" level="0" text="MultiBoot" weight="40" requires="canMultiBoot"><screen module="Information" screen="MultiBootInformation" /></item>
-			<item key="streaming_info_screen" level="2" text="Streaming" weight="45"><screen module="Information" screen="StreamingInformation" /></item>
-			<item key="geolocation_info_screen" level="0" text="Geolocation" weight="50"><screen module="Information" screen="GeolocationInformation" /></item>
-			<item key="build_info_screen" level="2" text="Build" weight="55" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="BuildInformation" /></item>
-			<item key="system_info_screen" level="2" text="System" weight="60" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="SystemInformation" /></item>
-			<item key="commit_info_screen" level="2" text="Commit" weight="65" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="CommitInformation" /></item>
-			<item key="debug_info_screen" level="2" text="Debug" weight="70" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="DebugInformation" /></item>
-			<item key="translation_info_screen" level="2" text="Translation" weight="75" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="TranslationInformation" /></item>
-			<item key="service_info_screen" level="1" text="Service" weight="80"><screen module="Information" screen="ServiceInformation" /></item>
+			<item key="distribution_info_screen" level="0" text="About OpenATV" weight="5"><screen module="Information" screen="InformationDistribution" /></item>
+			<item key="receiver_info_screen" level="0" text="Receiver" weight="10"><screen module="Information" screen="InformationReceiver" /></item>
+			<item key="benchmark_info_screen" level="2" text="Benchmarks" weight="12" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationBenchmark" /></item>
+			<item key="picture_info_screen" level="0" text="Pictures" weight="15" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationPicture" /></item>
+			<item key="tuner_info_screen" level="0" text="Tuners" weight="20"><screen module="Information" screen="InformationTuner" /></item>
+			<item key="storage_info_screen" level="0" text="Storage / Disks" weight="25"><screen module="Information" screen="InformationStorage" /></item>
+			<item key="memory_info_screen" level="0" text="Memory" weight="30"><screen module="Information" screen="InformationMemory" /></item>
+			<item key="network_info_screen" level="0" text="Network" weight="35"><screen module="Information" screen="InformationNetwork" /></item>
+			<item key="multiboot_info_screen" level="0" text="MultiBoot" weight="40" requires="canMultiBoot"><screen module="Information" screen="InformationMultiBoot" /></item>
+			<item key="streaming_info_screen" level="2" text="Streaming" weight="45"><screen module="Information" screen="InformationStreaming" /></item>
+			<item key="geolocation_info_screen" level="0" text="Geolocation" weight="50"><screen module="Information" screen="InformationGeolocation" /></item>
+			<item key="build_info_screen" level="2" text="Build" weight="55" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationBuild" /></item>
+			<item key="system_info_screen" level="2" text="System" weight="60" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationSystem" /></item>
+			<item key="commit_info_screen" level="2" text="Commit" weight="65" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationCommit" /></item>
+			<item key="debug_info_screen" level="2" text="Debug" weight="70" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationDebug" /></item>
+			<item key="translation_info_screen" level="2" text="Translation" weight="75" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationTranslation" /></item>
+			<item key="service_info_screen" level="1" text="Service" weight="80"><screen module="Information" screen="InformationService" /></item>
 		</menu>
 		<!-- Menu / Timer -->
 		<menu key="timermenu" level="0" text="Timers" weight="7">
@@ -147,6 +147,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1"><setup setupKey="Tuner" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
+				<item key="dab_scan" level="0" text="DAB+ Scan" weight="15" conditional="nimmanager.getEnabledNimListOfType('DVB-S')"><screen module="DABScan" screen="DABScan" /></item>
 				<item key="fallbacktuner_settings" text="Fallback Remote Receiver Settings"><screen module="SetupFallbacktuner"/></item>
 			</menu>
 			<!-- Menu / Setup / Common interface -->
@@ -187,15 +188,17 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			</menu>
 			<!-- Menu / Setup / Network -->
 			<menu key="network" level="0" text="Network" weight="60">
-				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<item key="device_setup" level="0" text="Network Overview" weight="0"><screen module="NetworkSetup" screen="NetworkOverview" /></item>
+				<item key="mount_setup" level="0" text="Network Mounts Overview" weight="1"><screen module="NetworkMounts" screen="NetworkMountsOverview" /></item>
 				<item key="dns_setup" level="1" text="DNS Settings" weight="10"><screen module="NetworkSetup" screen="DNSSettings" /></item>
-				<item key="password_setup" level="2" text="Password Settings" weight="15"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
-				<item key="networkservices_setup" level="2" text="Network Services" weight="20"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
-				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
-				<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
-				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
-				<item key="netsamba_setup" level="2" text="Samba Settings" weight="60" requires="samba"><screen module="NetworkSetup" screen="NetworkSambaSetup" /></item>
-				<item key="zerotier_setup" level="2" text="ZeroTier Settings" weight="65" requires="zerotier"><screen module="NetworkSetup" screen="NetworkZeroTierSetup" /></item>
+				<item key="password_setup" level="2" text="Password Settings" weight="15"><screen module="NetworkServices" screen="NetworkPassword" /></item>
+				<item key="networkservices_setup" level="2" text="Network Services" weight="20"><screen module="NetworkServices" screen="NetworkServicesSetup" /></item>
+				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkServices" screen="NetworkInadynSetup" /></item>
+				<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkServices" screen="NetworkMiniDLNASetup" /></item>
+				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkServices" screen="NetworkuShareSetup" /></item>
+				<item key="netnfs_setup" level="2" text="NFS Server Settings" weight="57" requires="nfsserver"><screen module="NetworkServices" screen="NetworkNFSSetup" /></item>
+				<item key="netsamba_setup" level="2" text="Samba Server Settings" weight="60" requires="samba"><screen module="NetworkServices" screen="NetworkSambaSetup" /></item>
+				<item key="zerotier_setup" level="2" text="ZeroTier Settings" weight="65" requires="zerotier"><screen module="NetworkServices" screen="NetworkZeroTierSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">

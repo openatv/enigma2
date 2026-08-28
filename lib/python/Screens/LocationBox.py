@@ -171,7 +171,7 @@ class LocationBox(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def __repr__(self):
-		return "%s(%s)" % (type(self), self.text)
+		return f"{type(self)}({self.text})"
 
 	def layoutFinished(self):
 		self["filelist"].enableAutoNavigation(False)  # Override listbox navigation.
@@ -197,7 +197,7 @@ class LocationBox(Screen, NumericalTextInput):
 				stat = statvfs(directory)
 				free = f"{scaleNumber(stat.f_bfree * stat.f_frsize, format="%0.f")} {_("Free")}"
 			except OSError as err:
-				print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, directory, err.strerror))
+				print(f"[LocationBox] Error {err.errno}: Unable to get '{directory}' status!  ({err.strerror})")
 				free = ""
 			self["targetfreespace"].setText(free)
 		else:  # Display a warning otherwise.
@@ -261,7 +261,7 @@ class LocationBox(Screen, NumericalTextInput):
 						if (status.f_bavail * status.f_bsize) / 1000000 > self.minFree:
 							return self.keySelectCallback(True)  # Automatically confirm if we have enough free disk space available.
 					except OSError as err:
-						print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currentFolder, err.strerror))
+						print(f"[LocationBox] Error {err.errno}: Unable to get '{currentFolder}' status!  ({err.strerror})")
 					self.session.openWithCallback(self.keySelectCallback, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
 				else:  # No minimum free space means we can safely close.
 					self.keySelectCallback(True)
@@ -279,31 +279,40 @@ class LocationBox(Screen, NumericalTextInput):
 			self.close(answer)
 
 	def keyShowMenu(self):
-		if self.bookmarks:
-			if self.currList == "filelist":
-				menu = [
+		if self.currList == "filelist":
+			menu = [
+				(_("List of Storage Devices"), self.gotoStorageDevices)
+			]
+			if self.bookmarks:
+				menu.extend((
 					(_("Switch To Bookmarks Panel"), self.switchToBookmarkList),
 					(_("Add Bookmark"), self.addRemoveBookmark),
 					(_("Reload Bookmarks"), self.reloadBookmarks)
-				]
-				if self.editDir:
-					menu.extend((
-						(_("Create Directory"), self.createDirectory),
-						(_("Rename Directory"), self.renameDirectory),
-						(_("Delete Directory"), self.deleteDirectory)
-					))
-			else:
-				menu = (
-					(_("Switch To File List Panel"), self.switchToFileList),
+				))
+			if self.editDir:
+				menu.extend((
+					(_("Create Directory"), self.createDirectory),
+					(_("Rename Directory"), self.renameDirectory),
+					(_("Delete Directory"), self.deleteDirectory)
+				))
+		else:
+			menu = [
+				(_("Switch To File List Panel"), self.switchToFileList),
+			]
+			if self.bookmarks:
+				menu.extend((
 					(_("Remove Bookmark"), self.addRemoveBookmark),
 					(_("Sort Bookmarks"), self.sortBookmarks),
 					(_("Reload Bookmarks"), self.reloadBookmarks)
-				)
-			self.session.openWithCallback(self.keyShowMenuCallback, ChoiceBox, title="Location Box Context Menu", list=menu)
+				))
+		self.session.openWithCallback(self.keyShowMenuCallback, ChoiceBox, title="Location Box Context Menu", list=menu)
 
 	def keyShowMenuCallback(self, choice):
 		if choice:
 			choice[1]()
+
+	def gotoStorageDevices(self):
+		self["filelist"].changeDir(None)
 
 	def switchToFileList(self):
 		self.currList = "filelist"
@@ -431,7 +440,7 @@ class LocationBox(Screen, NumericalTextInput):
 		if filename is not None:
 			if len(filename):
 				extension = splitext(self.filename)[1]
-				self.filename = "%s%s" % (filename, extension)
+				self.filename = f"{filename}{extension}"
 				self.updateState()
 			else:
 				self.session.open(MessageBox, _("Error: An empty filename is illegal!"), type=MessageBox.TYPE_ERROR, timeout=5)
@@ -456,7 +465,7 @@ class LocationBox(Screen, NumericalTextInput):
 			self.selectByStart()
 			self.quickSelectPos += 1
 		char = self.getKey(digit)  # Get char and append to text.
-		self.quickSelect = "%s%s" % (self.quickSelect[:self.quickSelectPos], str(char))
+		self.quickSelect = f"{self.quickSelect[:self.quickSelectPos]}{str(char)}"
 		self["quickselect"].setText(self.quickSelect)
 		self["quickselect"].visible = True
 		self.timerType = 0

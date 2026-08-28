@@ -1467,10 +1467,14 @@ def InitUsageConfig():
 
 	config.network.ZeroTierNetworkId = ConfigText(default=" " * 16, fixed_size=True)
 
+	config.network.mountsSortByMount = ConfigYesNo(default=True)
+	config.network.browserSortByIP = ConfigYesNo(default=False)
+	config.network.browserUsingIP = ConfigYesNo(default=False)
+
 	config.samba = ConfigSubsection()
 	config.samba.enableAutoShare = ConfigYesNo(default=True)
 	config.samba.autoShareAccess = ConfigSelection(default=1, choices=[
-		(0, _("Read Only")),
+		(0, _("Read-Only")),
 		(1, _("Read/Write"))
 	])
 

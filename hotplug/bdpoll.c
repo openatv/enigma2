@@ -104,6 +104,26 @@ static int exec_helper(char *const args[])
 	return WIFEXITED(status) ? WEXITSTATUS(status) : -1;
 }
 
+static bool is_mounted(const char device_file[]);
+
+static int mount_media(char *const args[], const char device_file[])
+{
+	int result = -1;
+
+	for (int attempt = 0; attempt < 3; ++attempt)
+	{
+		if (is_mounted(device_file))
+			return 0;
+		result = exec_helper(args);
+		if (result == 0 || is_mounted(device_file))
+			return 0;
+		if (attempt < 2)
+			sleep(1);
+	}
+
+	return result;
+}
+
 static void bdpoll_notify(const char devname[])
 {
 	char devpath0[64];
@@ -184,8 +204,8 @@ static void bdpoll_notify(const char devname[])
 			snprintf(mountpoint, sizeof(mountpoint), "/media/%s", volume_name);
 			mkdir(mountpoint, 0777); // NOSONAR
 			printf("Mounting device /dev/%s to %s\n", devname, mountpoint);
-			char *args_udf[] = {"/bin/mount", "-t", "udf", devpath0, mountpoint, NULL};
-			if (exec_helper(args_udf) == 0) {
+			char *args_udf[] = {"/bin/mount", "-t", "udf", "-o", "ro", devpath0, mountpoint, NULL};
+			if (mount_media(args_udf, devpath0) == 0) {
 				setenv("X_E2_MEDIA_STATUS", (media_status == MEDIA_STATUS_GOT_MEDIA) ? "1" : "0", 1);
 				char *args_add1[] = {"/usr/bin/hotplug_e2_helper", "add", devpath1, devpath2, "1", NULL};
 				IGNORE_RESULT(exec_helper(args_add1))
@@ -193,15 +213,18 @@ static void bdpoll_notify(const char devname[])
 			}
 			else {
 				// udf fails, try iso9660
-				char *args_iso[] = {"/bin/mount", "-t", "iso9660", devpath0, mountpoint, NULL};
-				if (exec_helper(args_iso) == 0) {
+				char *args_iso[] = {"/bin/mount", "-t", "iso9660", "-o", "ro", devpath0, mountpoint, NULL};
+				if (mount_media(args_iso, devpath0) == 0) {
 					setenv("X_E2_MEDIA_STATUS", (media_status == MEDIA_STATUS_GOT_MEDIA) ? "1" : "0", 1);
 					char *args_add2[] = {"/usr/bin/hotplug_e2_helper", "add", devpath1, devpath2, "1", NULL};
 					IGNORE_RESULT(exec_helper(args_add2))
 					media_mounted = true;
 				}
-				else
+				else {
 					printf("Unable to mount disc\n");
+					rmdir(mountpoint);
+					volume_name[0] = '\0';
+				}
 			}
 		}
 		else {

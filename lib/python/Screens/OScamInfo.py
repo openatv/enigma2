@@ -27,7 +27,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.BoundFunction import boundFunction
-from Tools.ServiceHelper import ServiceHelper
+from Tools.ServiceAction import ServiceAction
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
@@ -576,22 +576,29 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.loop.stop()
 		self.session.openWithCallback(self.keyCallback, OSCamInfoLog)
 
-	def _afterAction(self):
+	def _afterAction(self, action, exitCode=None):
+		if exitCode:
+			messages = {
+				"start": _("Starting %s failed (exit code %s)"),
+				"stop": _("Stopping %s failed (exit code %s)"),
+				"restart": _("Restarting %s failed (exit code %s)"),
+			}
+			self._showActionError(messages.get(action, _("%s action failed (exit code %s)")) % (self.camName, exitCode))
 		self.actionRefreshTimer.start(3000, True)
 		self.updateKeyLabels()
 		if config.oscaminfo.autoUpdate.value:
 			self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
 	def _localAction(self, action):
-		sa = ServiceHelper("softcam")
-		{"start": sa.start, "stop": sa.stop, "restart": sa.restart}[action](self._afterAction)
+		sa = ServiceAction("softcam")
+		{"start": sa.start, "stop": sa.stop, "restart": sa.restart}[action](boundFunction(self._afterAction, action))
 
 	def _remoteAction(self, action):
 		def doAction():
 			webifok, api, url, signstatus, result = self.openWebIF(part=action)
 			if not webifok:
 				self._showActionError(result)
-			self._afterAction()
+			self._afterAction(action)
 		callInThread(doAction)
 
 	def msgboxCB(self, action, answer):

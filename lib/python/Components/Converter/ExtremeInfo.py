@@ -3,6 +3,7 @@ from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite,
 from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from ServiceReference import isRadioServiceReference
 
 
 class ExtremeInfo(Poll, Converter):
@@ -433,7 +434,7 @@ class ExtremeInfo(Poll, Converter):
 
 	def getServiceNumber(self, name, ref):
 		items = []
-		if ref.startswith("1:0:2"):
+		if isRadioServiceReference(ref):
 			items = self.radio_list
 		elif ref.startswith("1:0:1"):
 			items = self.tv_list

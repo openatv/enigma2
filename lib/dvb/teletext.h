@@ -50,6 +50,7 @@ public:
 	static const int max_id = 26;
 	static const char *const my_country_codes[];
 	int start(int pid);
+	int getPid() const { return m_pid; }
 	void setPageAndMagazine(int page, int magazine, const char *lang);
 	void setMagazine(int magazine);
 	void connectNewStream(const sigc::slot<void()> &slot, ePtr<eConnection> &connection);

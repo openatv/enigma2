@@ -489,14 +489,17 @@ class Wizard(Screen):
 
 	def handleInputHelpers(self):
 		enabled = False
-		if self["config"].getCurrent():
-			if isinstance(self["config"].getCurrent()[1], (ConfigText, ConfigPassword)):
+		current = self["config"].getCurrent(full=False)
+		if current and len(current) >= 2:
+			configElement = current[1]
+			if isinstance(configElement, (ConfigText, ConfigPassword)):
 				if self.__class__.__name__ != "NetworkWizard":  # This is a temporary hack to fix a problem with VirtualKeyBoard input.
 					enabled = True
-				if "HelpWindow" in self:
-					if self["config"].getCurrent()[1].help_window.instance:
-						helpWindowPosition = self["HelpWindow"].getPosition()
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
+				helpWindow = getattr(configElement, "help_window", None)
+				helpWindowInstance = getattr(helpWindow, "instance", None)
+				if "HelpWindow" in self and helpWindowInstance is not None:
+					helpWindowPosition = self["HelpWindow"].getPosition()
+					helpWindowInstance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
 		if "VKeyIcon" in self:
 			self["key_text"].setText(_("TEXT") if enabled else "")
 			self["VirtualKB"].setEnabled(enabled)
@@ -511,10 +514,14 @@ class Wizard(Screen):
 	def keyText(self):
 		def keyTextCallback(text):
 			if text:
-				current = self["config"].getCurrent()
-				if isinstance(current[1], (ConfigText, ConfigPassword)) and "HelpWindow" in self and current[1].help_window.instance:
-					helpWindowPosition = self["HelpWindow"].getPosition()
-					current[1].help_window.instance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
+				current = self["config"].getCurrent(full=False)
+				if current and len(current) >= 2:
+					configElement = current[1]
+					helpWindow = getattr(configElement, "help_window", None)
+					helpWindowInstance = getattr(helpWindow, "instance", None)
+					if isinstance(configElement, (ConfigText, ConfigPassword)) and "HelpWindow" in self and helpWindowInstance is not None:
+						helpWindowPosition = self["HelpWindow"].getPosition()
+						helpWindowInstance.move(ePoint(helpWindowPosition[0], helpWindowPosition[1]))
 				self.configWidgetInstance.moveSelectionTo(configIndex)
 				self["config"].setCurrentIndex(configIndex)
 				self["config"].getCurrent()[1].setValue(text)
@@ -759,6 +766,12 @@ class Wizard(Screen):
 				# 	self.configWidgetInstance.hide()
 				# self.listWidgetInstance.show()
 			if self.showConfig:
+				current = self["config"].getCurrent(full=False)
+				if current and len(current) >= 2:
+					# Deselecting closes any open help_window (e.g. NumericalTextInputHelpDialog for a
+					# ConfigText field) via ConfigElement.onDeselect() - setList() below does not do this
+					# itself, so skipping it here leaks that popup for the rest of the wizard's lifetime.
+					current[1].onDeselect(self.session)
 				if self.wizard[self.currStep]["config"]["type"] == "dynamic":
 					print("[Wizard] Generating dynamic config by calling %s." % self.wizard[self.currStep]["config"]["source"])
 					self.configWidgetInstance.setZPosition(2)
@@ -779,6 +792,16 @@ class Wizard(Screen):
 						else:
 							self.screenInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
 						self.screenInstance.setAnimationMode(0)
+						sourceCurrent = self.screenInstance["config"].getCurrent(full=False)
+						if sourceCurrent and len(sourceCurrent) >= 2:
+							# The external screen's own config list already auto-selected its first entry
+							# on instantiation, which for a ConfigText opens a help_window popup positioned
+							# at that screen's own "HelpWindow" marker. Deselect now, before self["config"]
+							# below re-selects the same (shared) item and overwrites its help_window
+							# reference - otherwise this first popup is orphaned and never closed. destroy()
+							# further down is GUIComponent.destroy() (just clears __dict__), which skips
+							# preWidgetRemove(), the only other place that would call onDeselect().
+							sourceCurrent[1].onDeselect(self.session)
 						self["config"].setList(self.screenInstance["config"].getList())
 						callbacks = self.screenInstance["config"].onSelectionChanged[:]
 						self.screenInstance["config"].destroy()

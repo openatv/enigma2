@@ -32,10 +32,11 @@ def DVDOverlay(*args, **kwargs):  # for backward compatibility with plugins that
 def filescan_open(list, session, **kwargs):
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
 		cd = harddiskmanager.getCD()
-		if cd and (exists(join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
-				or exists(join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
-			print("[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(cd))
-			session.open(DVDPlayer, dvd_device="/dev/%s" % (harddiskmanager.getAutofsMountpoint(cd)))
+		mountpoint = harddiskmanager.getAutofsMountpoint(cd) if cd else None
+		if mountpoint and (exists(join(mountpoint, "VIDEO_TS"))
+				or exists(join(mountpoint, "video_ts"))):
+			print("[DVDplayer] found DVD mount path", mountpoint)
+			session.open(DVDPlayer, dvd_device=mountpoint)
 			return
 	else:
 		dvd_filelist = []
@@ -69,7 +70,7 @@ def filescan(**kwargs):
 
 def onPartitionChange(action, partition):
 	# print("[@] onPartitionChange", action, partition)
-	if partition != harddiskmanager.getCD():
+	if getattr(partition, "device", partition) == harddiskmanager.getCD():
 		global detected_DVD
 		if action == 'remove':
 			# print("[DVDplayer] DVD removed")
@@ -82,21 +83,20 @@ def onPartitionChange(action, partition):
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		global detected_DVD
-		if detected_DVD is None or detected_DVD:
-			cd = harddiskmanager.getCD()
-			if cd and (exists(join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
-					or exists(join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
-				print("[DVDplayer] Mountpoint is present and is", harddiskmanager.getAutofsMountpoint(cd))
-				detected_DVD = True
-			else:
-				detected_DVD = False
-			if onPartitionChange not in harddiskmanager.on_partition_list_change:
-				harddiskmanager.on_partition_list_change.append(onPartitionChange)
+		cd = harddiskmanager.getCD()
+		mountpoint = harddiskmanager.getAutofsMountpoint(cd) if cd else None
+		detected_DVD = bool(mountpoint and (exists(join(mountpoint, "VIDEO_TS"))
+				or exists(join(mountpoint, "video_ts"))))
 		if detected_DVD:
-			return [(_("DVD player"), play, "dvd_player", 46)]
+			print("[DVDplayer] Mountpoint is present and is", mountpoint)
+		if onPartitionChange not in harddiskmanager.on_partition_list_change:
+			harddiskmanager.on_partition_list_change.append(onPartitionChange)
+		if detected_DVD:
+			return [(_("DVD Player"), play, "dvd_player", 46)]
 	return []
 
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan),
-		PluginDescriptor(name=_("DVDPlayer"), description=_("Play DVDs"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]
+		PluginDescriptor(name=_("DVD Player"), description=_("Play DVDs"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=main),
+		PluginDescriptor(name=_("DVD Player"), description=_("Play DVDs"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]

@@ -4,17 +4,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2016-04-02 23:09+0200\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-16 16:05+0000\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid ""
 "\n"
@@ -1027,6 +1027,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
 
@@ -1047,6 +1053,12 @@ msgstr "%d minutter"
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d min"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d package found."
@@ -1162,13 +1174,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d times"
 msgstr "Slutt tid"
-
-#
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d trådløst nettverk funnet!"
-msgstr[1] "%d trådløst nettverk funnet!"
 
 msgid "%d+%b_"
 msgstr ""
@@ -1326,6 +1331,10 @@ msgstr "Oppsett"
 msgid "%s View"
 msgstr ""
 
+#, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "%s additional screens"
@@ -1341,6 +1350,17 @@ msgstr ""
 
 #, python-format
 msgid "%s imported from remote receiver."
+msgstr ""
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1360,6 +1380,10 @@ msgstr "ikke tilgjengelig"
 msgid "%s version"
 msgstr ""
 
+#, python-format
+msgid "%s webif disabled"
+msgstr ""
+
 #
 #, python-format
 msgid "%s%d min"
@@ -1367,6 +1391,10 @@ msgstr "%s%d min"
 
 #, python-format
 msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
+msgid "%s. (Lowest)"
 msgstr ""
 
 #, python-format
@@ -1412,6 +1440,22 @@ msgstr "Vis 1080p 24fps som"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' inneholder %d fil(er) og %d underkataloger.\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr ""
@@ -1501,17 +1545,8 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-#
-msgid "1.0"
-msgstr "1.0"
-
-#
-msgid "1.1"
-msgstr "1.1"
-
-#
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr ""
@@ -1539,20 +1574,12 @@ msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr ""
 
 #
-msgid "13 V"
-msgstr "13 V"
-
-#
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 #
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
-
-#
-msgid "16:9"
-msgstr "16:9"
 
 #
 msgid "16:9 Always"
@@ -1573,10 +1600,6 @@ msgstr ""
 
 msgid "16:9 reset to normal"
 msgstr ""
-
-#
-msgid "18 V"
-msgstr "18 V"
 
 msgid "1st InfoBar timeout"
 msgstr "Første infovindu tidsavbrudd"
@@ -1833,16 +1856,6 @@ msgstr ""
 msgid "A required tool (%s) was not found."
 msgstr "Nødvendig verktøy (%s) ble ikke funnet."
 
-#
-msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Et annet konfigurert nettverk har blitt funnet.\n"
-"\n"
-"Ønsker du å deaktivere det andre nettverket?"
-
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
@@ -1901,6 +1914,9 @@ msgstr ""
 msgid "AFL"
 msgstr "PAL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr ""
 
@@ -1936,10 +1952,10 @@ msgstr ""
 msgid "ATSC provider"
 msgstr "Legg til tilbyder"
 
-msgid "AV Setup"
+msgid "AV Receiver, Soundbar And Remote"
 msgstr ""
 
-msgid "AV receiver, soundbar and remote"
+msgid "AV Setup"
 msgstr ""
 
 msgid "Abkhazian"
@@ -1987,6 +2003,11 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -2030,16 +2051,8 @@ msgstr ""
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-#
-msgid "Activate network adapter configuration"
-msgstr "aktiver nettverks adapter konfigurasjon"
-
-#
-msgid "Activate network settings"
-msgstr "Aktivere nettverkinnstillinger"
-
-msgid "Activate the configured network settings."
-msgstr "Aktivere konfigurerte nettverksinnstillinger."
+msgid "Activate network adapter"
+msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
@@ -2060,6 +2073,13 @@ msgid "Active clients"
 msgstr "Aktive klienter"
 
 msgid "Active only"
+msgstr ""
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
 msgstr ""
 
 #
@@ -2110,6 +2130,9 @@ msgstr ""
 msgid "Add Marker To Bouquet"
 msgstr "Legg til markør"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -2138,6 +2161,12 @@ msgstr "Legg til Timer"
 #
 msgid "Add To Parental Protection"
 msgstr "legg til i foreldrekontrollen"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 #
 #, fuzzy
@@ -2170,6 +2199,9 @@ msgstr "Legg til zap timer for neste program"
 #
 msgid "Add a mark"
 msgstr "Legge til markør"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr ""
@@ -2344,6 +2376,9 @@ msgstr "voksen film/drama"
 #
 msgid "Advanced"
 msgstr "Avansert"
+
+msgid "Advanced Diagnostics"
+msgstr ""
 
 msgid "Advanced Options"
 msgstr "Avanserte innstillinger"
@@ -2607,6 +2642,9 @@ msgstr "Alternativ"
 msgid "Alternative Edit"
 msgstr "[alternativ editering]"
 
+msgid "Alternative Tuner Sources"
+msgstr ""
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -2774,10 +2812,6 @@ msgstr ""
 msgid "Are you sure to remove this entry?"
 msgstr "Er du sikker på at du vil fjerne dette innlegget?"
 
-#
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Er du sikker på at du vil aktivere denne nettverkskonfigurasjonen?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2803,10 +2837,6 @@ msgstr "Er du sikker på at du vil avslutte denne veiviseren?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Er du sikker på at du ønsker å omlaste EPG data fra:\n"
-
-#
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Er du sikker på at du vil restarte ditt nettverkskort?"
 
 #, python-format
 msgid ""
@@ -2921,6 +2951,9 @@ msgstr "Tildelt CAIds:"
 msgid "Assigned services/provider:"
 msgstr "Tildelte kanaler/tilbyder:"
 
+msgid "Associated"
+msgstr ""
+
 msgid "Astra 1 19.2e"
 msgstr ""
 
@@ -2962,6 +2995,12 @@ msgstr ""
 msgid "Audio Channel"
 msgstr "Kanal"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Audio PID"
 
@@ -2976,6 +3015,9 @@ msgid "Audio Source"
 msgstr ""
 
 msgid "Audio Sync"
+msgstr ""
+
+msgid "Audio Synchronization"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -3124,9 +3166,6 @@ msgstr "Automatisk oppløsnings etikett"
 msgid "Automatic scan for services"
 msgstr ""
 
-msgid "Automatic shares access"
-msgstr ""
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
 
@@ -3158,6 +3197,9 @@ msgstr "Tilgjengelige delinger:"
 
 msgid "Available shares:"
 msgstr "Tilgjengelige delinger:"
+
+msgid "Available tuner types"
+msgstr ""
 
 msgid "Avaric"
 msgstr ""
@@ -3210,9 +3252,8 @@ msgstr "Lang blå"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
-#
-msgid "Back"
-msgstr "Tilbake"
+msgid "BSSID"
+msgstr ""
 
 #
 #, fuzzy
@@ -3612,6 +3653,9 @@ msgstr "Lysstyrke (Normal)"
 msgid "Brightness (Standby)"
 msgstr "Lysstyrke (dvalemodus)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr ""
 
@@ -3639,10 +3683,19 @@ msgstr "kringkasting/presse"
 msgid "Broadcom"
 msgstr ""
 
+msgid "Broadcom default"
+msgstr ""
+
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
+msgstr ""
+
+msgid "Buffer Management"
 msgstr ""
 
 #, python-format
@@ -3700,10 +3753,16 @@ msgstr ""
 msgid "Burundi"
 msgstr ""
 
+msgid "Bus"
+msgstr ""
+
 msgid "Business"
 msgstr ""
 
 msgid "Business & Finance"
+msgstr ""
+
+msgid "Button Assignments"
 msgstr ""
 
 msgid "Button Setup"
@@ -3731,6 +3790,12 @@ msgstr "CH"
 #
 msgid "C-Band"
 msgstr "C-bånd"
+
+msgid "C/T input"
+msgstr ""
+
+msgid "C/T input switching"
+msgstr ""
 
 msgid "CCD-Width"
 msgstr ""
@@ -3875,6 +3940,12 @@ msgstr "Kabel"
 
 msgid "Cable Scan"
 msgstr "Kabel søk"
+
+msgid "Cable Unplugged"
+msgstr ""
+
+msgid "Cable input"
+msgstr ""
 
 #
 msgid "Cache thumbnails"
@@ -4298,6 +4369,12 @@ msgstr "Kanal"
 msgid "Channel 1 with prime time"
 msgstr "Kanalliste forhåndsvisning"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Kanal info"
 
@@ -4334,6 +4411,9 @@ msgid "Channel Selection Settings"
 msgstr "Kanalvalg innstillinger"
 
 msgid "Channel Selection picon path"
+msgstr ""
+
+msgid "Channel Zapping And Keys"
 msgstr ""
 
 #, fuzzy
@@ -4415,6 +4495,9 @@ msgstr "Kapittel"
 #, fuzzy
 msgid "Character device"
 msgstr "Liste over lagringsenheter"
+
+msgid "Character set"
+msgstr ""
 
 msgid "Chat show"
 msgstr ""
@@ -4661,6 +4744,9 @@ msgstr "Tøm"
 msgid "Clear Log"
 msgstr "Tøm log"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 #
 msgid "Clear before scan"
 msgstr "Slett før søking"
@@ -4732,6 +4818,9 @@ msgstr "Avslutt favorittlisten."
 
 msgid "Close dialog"
 msgstr "Lukk dialog"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr ""
@@ -4815,6 +4904,9 @@ msgstr "Fargeformat"
 msgid "Color"
 msgstr "Fargeformat"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Fargeformat"
 
@@ -4890,15 +4982,15 @@ msgstr "Common Interface oppdrag"
 msgid "Common Interface Settings"
 msgstr ""
 
-msgid "Common Settings"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Kommunikasjon"
 
 msgid "Comoros"
+msgstr ""
+
+msgid "Compatibility And Emulation"
 msgstr ""
 
 msgid "Compiled by"
@@ -4947,7 +5039,7 @@ msgstr "Konfigurasjonsmodus"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure DNS (name servers)"
+msgid "Configure DNS (Dynamic Name Server)"
 msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
@@ -4955,6 +5047,12 @@ msgstr "Konfigurer en ekstra forsinkelse for å bedre ekstern undertekst synkron
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Konfigurer en ekstra forsinkelse for å bedre undertekst synkronisering."
+
+msgid "Configure another network adapter"
+msgstr ""
+
+msgid "Configure cable reception on this input."
+msgstr ""
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
@@ -5002,15 +5100,14 @@ msgstr ""
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr ""
 
-#
-msgid "Configure interface"
-msgstr "Konfigurer interface"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Konfigurer på hvilke enheter bakgrunns slette alternativet skal brukes."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
@@ -5018,19 +5115,16 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Konfigurere fjernkontrollen"
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr ""
+
+msgid "Configure terrestrial reception on this input."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigurer DiSEqC modus for denne LNB."
 
-msgid "Configure the IP address."
-msgstr "Konfigurere IP-adressen."
-
 msgid "Configure the IP of the fallback remote receiver."
-msgstr ""
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure the Port of the fallback remote receiver."
@@ -5141,9 +5235,6 @@ msgstr ""
 msgid "Configure the function of the < and > buttons."
 msgstr ""
 
-msgid "Configure the gateway."
-msgstr "Konfigurer gateway."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr ""
 
@@ -5173,16 +5264,6 @@ msgstr "Konfigurer det minimum av diskplass til å være tilgjengelig for opptak
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Konfigurer minimumsbredde før du viser 'i' ikonet, '0' vil ikke vise ikonet i hele tatt."
-
-msgid "Configure the name server (DNS)."
-msgstr "Konfigurer navnetjener (DNS)."
-
-msgid "Configure the netmask."
-msgstr "Konfigurer nettmasken."
-
-#
-msgid "Configure the network again"
-msgstr "Konfigurere nettverket ditt igjen"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Konfigurere antall dager etter hvilke elementer som automatisk fjernes fra søppelbøtta."
@@ -5216,6 +5297,9 @@ msgstr "Konfigurere andre undertekstspråk."
 
 msgid "Configure the secondary EPG language."
 msgstr "Konfigurere det sekundære EPG språk."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr ""
@@ -5321,19 +5405,8 @@ msgstr "Konfigurere hvilke tuner som vil bli foretrukket, når mer enn én tuner
 msgid "Configure your NTP server."
 msgstr "Konfigurer din NTP server."
 
-msgid "Configure your Network"
-msgstr ""
-
-#
-msgid "Configure your internal LAN"
-msgstr "Konfigurer ditt lokal nettverk"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Konfigurere nettverksinnstillingene dine, og trykk OK for å starte skanningen"
-
-#
-msgid "Configure your wireless LAN again"
-msgstr "Konfigurer ditt trådløse nettverk igjen"
 
 msgid "Configures which video output connector will be used."
 msgstr "Konfigurer hvilken videoutgang som vil bli brukt."
@@ -5346,6 +5419,10 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -5370,11 +5447,13 @@ msgstr "Koble til"
 msgid "Connect to IceTV server every"
 msgstr "Kunne ikke koble til din %s %s .NFI Image Feed Server:"
 
-#
-msgid "Connect to a wireless network"
-msgstr "Koble til et trådløst nettverk"
-
 msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
 msgstr ""
 
 msgid "Connected clients"
@@ -5393,8 +5472,26 @@ msgstr "Koblet til"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr ""
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "Tilkoblet:"
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr ""
@@ -5444,6 +5541,9 @@ msgid "Context"
 msgstr ""
 
 msgid "Continent"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 msgid "Continue in background"
@@ -5599,9 +5699,23 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "Kunne ikke koble til din %s %s .NFI Image Feed Server:"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr ""
@@ -5626,6 +5740,12 @@ msgstr "Kunne ikke spille inn grunnet feil med kanal %s"
 msgid "Could not save configuration file %s!"
 msgstr "Kunne ikke lagre oppsettfila %s!"
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+
 #, fuzzy
 msgid "Country"
 msgstr "Mount"
@@ -5639,6 +5759,9 @@ msgstr ""
 
 #, python-format
 msgid "Crash %d/%d"
+msgstr ""
+
+msgid "Crash Handling"
 msgstr ""
 
 msgid "Crash Logs"
@@ -5750,6 +5873,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Oppretting av partisjon"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr ""
 
@@ -5857,10 +5987,6 @@ msgstr ""
 msgid "Current rotor position: unknown"
 msgstr ""
 
-#
-msgid "Current settings:"
-msgstr "Nåværende innstillinger:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr ""
 
@@ -5898,6 +6024,9 @@ msgstr ""
 msgid "Custom"
 msgstr "Tilpass"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr ""
 
@@ -5928,6 +6057,9 @@ msgstr ""
 #
 msgid "Cut"
 msgstr "Klipp ut"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr ""
@@ -5974,10 +6106,6 @@ msgstr ""
 msgid "DAC"
 msgstr "DAC"
 
-#
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA støtte"
 
@@ -5990,6 +6118,9 @@ msgstr "DMM normal"
 msgid "DNS Settings"
 msgstr ""
 
+msgid "DNS Settings Actions"
+msgstr ""
+
 msgid "DNS data source"
 msgstr ""
 
@@ -5997,9 +6128,6 @@ msgid "DNS override"
 msgstr ""
 
 msgid "DNS protocol mode"
-msgstr ""
-
-msgid "DNS suffix"
 msgstr ""
 
 msgid "DNSCrypt"
@@ -6031,6 +6159,9 @@ msgstr "DOBBEL LAGS DVD"
 msgid "DVB CI Delay"
 msgstr ""
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr ""
 
@@ -6043,9 +6174,6 @@ msgstr ""
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr ""
-
 #, fuzzy
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX C"
@@ -6053,7 +6181,7 @@ msgstr "DVB-C ANNEX C"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr ""
 
 #
@@ -6066,9 +6194,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -6090,7 +6215,7 @@ msgid "DVD Title list"
 msgstr ""
 
 #
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD spiller"
 
 #
@@ -6119,6 +6244,9 @@ msgid "Date"
 msgstr "Dato"
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date And Time"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -6289,7 +6417,13 @@ msgstr ""
 msgid "Deactivate Expander"
 msgstr ""
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivated"
 msgstr ""
 
 msgid "Debug"
@@ -6300,6 +6434,9 @@ msgid "Debug %d/%d"
 msgstr ""
 
 msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log Content"
 msgstr ""
 
 msgid "Debug Log Information"
@@ -6557,6 +6694,12 @@ msgstr ""
 msgid "Delete Line"
 msgstr ""
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr ""
 
@@ -6799,9 +6942,6 @@ msgstr ""
 msgid "Device Manager Actions"
 msgstr ""
 
-msgid "Device Settings"
-msgstr ""
-
 msgid "Device id"
 msgstr ""
 
@@ -6924,6 +7064,9 @@ msgstr ""
 msgid "Disable"
 msgstr "Slå av"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr ""
 
@@ -6951,6 +7094,9 @@ msgstr ""
 msgid "Disable Move Mode"
 msgstr "Slå av flyttemodus"
 
+msgid "Disable Network"
+msgstr ""
+
 #
 msgid "Disable Picture in Picture"
 msgstr "Slå av Bilde i Bilde"
@@ -6971,6 +7117,9 @@ msgstr ""
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr ""
 
@@ -6988,10 +7137,10 @@ msgstr "Avslått"
 msgid "Disabled PiP.\n"
 msgstr ""
 
-msgid "Disabled or WPA/WPA2"
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
-msgid "Disabling Chkroot failed!"
+msgid "Disconnected"
 msgstr ""
 
 msgid "Discussion"
@@ -7018,6 +7167,12 @@ msgstr "Vis 4:3 innhold som"
 #
 msgid "Display >16:9 content as"
 msgstr "Vis 16:9 som"
+
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
 
 msgid "Display Settings"
 msgstr ""
@@ -7197,16 +7352,19 @@ msgstr "Vil du virkelig fjerne ditt bokmerke %s?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Vil du virkelig slette timeren for %s"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to stop %s?"
 msgstr ""
 
 #, python-format
@@ -7334,6 +7492,9 @@ msgstr ""
 msgid "Domain"
 msgstr ""
 
+msgid "Domain name"
+msgstr ""
+
 msgid "Dominica"
 msgstr ""
 
@@ -7449,6 +7610,9 @@ msgstr ""
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr ""
 
@@ -7516,16 +7680,25 @@ msgstr "EPG Cache Sjekk"
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr ""
 
 msgid "EPG Jump"
 msgstr ""
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr ""
 
 msgid "EPG Other Actions"
+msgstr ""
+
+msgid "EPG Range And History"
 msgstr ""
 
 msgid "EPG Search"
@@ -7538,6 +7711,12 @@ msgid "EPG Settings"
 msgstr "EPG Oppsett"
 
 msgid "EPG Setup"
+msgstr ""
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7613,6 +7792,9 @@ msgstr "Endre"
 msgid "Edit Alternatives"
 msgstr "editer alternativer"
 
+msgid "Edit Credentials"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Edit Mode Off"
@@ -7639,6 +7821,9 @@ msgstr ""
 msgid "Edit Upgrade Source URL"
 msgstr ""
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 #
 msgid "Edit chapters of current title"
 msgstr "Endre kapittel i denne tittel"
@@ -7651,27 +7836,20 @@ msgstr "Gå til nåværende tidspunkt"
 msgid "Edit settings"
 msgstr "Endre innstillinger"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr ""
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr ""
 
-#
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Endre navneserver konfigurasjon for din %s %s."
-
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 msgid "Edit the currently selected timer"
 msgstr ""
-
-#
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Endre nettverks konfigurasjon for din %s %s."
 
 msgid "Edit the password."
 msgstr ""
@@ -7683,6 +7861,9 @@ msgid "Edit the remote CCCam port."
 msgstr ""
 
 msgid "Edit the remote IP address."
+msgstr ""
+
+msgid "Edit the selected network mount"
 msgstr ""
 
 #
@@ -7796,9 +7977,6 @@ msgstr ""
 msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
-msgid "Enable IPv6"
-msgstr ""
-
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "Aktivere EIT EPG"
@@ -7855,7 +8033,7 @@ msgstr "Aktivere ViaSat EPG"
 msgid "Enable Virgin EPG"
 msgstr ""
 
-msgid "Enable Wake On LAN"
+msgid "Enable adapter"
 msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
@@ -7937,10 +8115,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Aktiver flere favorittlister"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr ""
 
 msgid "Enable new GStreamer playback"
+msgstr ""
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
 msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
@@ -7954,6 +8138,9 @@ msgid "Enable preview"
 msgstr "Aktivere FreeSat EPG"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
+msgid "Enable saved Wi-Fi network"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -8057,25 +8244,11 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr "Aktiverer en funksjon slik at mottakeren kan dekryptere datastrømmer (hvis ECM data er inkludert i dataflyten og et gyldig kort er tilgjengelig)."
 
 #
-msgid "Encrypted: "
-msgstr "Kryptert:"
-
-#
 msgid "Encryption"
 msgstr "Kryptering"
 
-#
-#, fuzzy
-msgid "Encryption Type:"
-msgstr "Kryptering:"
-
-#
-msgid "Encryption key"
-msgstr "Krypteringsnøkkel"
-
-#
-msgid "Encryption key type"
-msgstr "Krypteringsnøkkel type"
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr ""
@@ -8189,6 +8362,9 @@ msgstr ""
 msgid "Enter expected ONID/TSID"
 msgstr ""
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr ""
 
@@ -8200,6 +8376,9 @@ msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "skriv nummer for å gå til kanalen."
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr ""
@@ -8235,25 +8414,46 @@ msgstr ""
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr ""
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr ""
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr ""
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr ""
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr ""
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr ""
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
+msgstr ""
+
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 #
@@ -8266,7 +8466,13 @@ msgstr ""
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr ""
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr ""
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -8424,34 +8630,6 @@ msgstr ""
 msgid "Error code"
 msgstr "Feilkode"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr ""
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
@@ -8497,9 +8675,6 @@ msgstr ""
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error, unknown Result!"
-msgstr ""
-
 #
 #, python-format
 msgid ""
@@ -8512,6 +8687,9 @@ msgstr ""
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Et tomt filnavn er ikke tillatt"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8567,6 +8745,10 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr ""
 
@@ -8574,6 +8756,9 @@ msgstr ""
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Fjerning av katalog %s feilet. (Kanskje ikke tom?)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8625,6 +8810,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8652,6 +8841,9 @@ msgstr "Estisk"
 msgid "EtPortal"
 msgstr "Portugisisk"
 
+msgid "Ethernet Adapter"
+msgstr ""
+
 msgid "Ethernet network interface"
 msgstr "Ethernet nettverks grensesnitt"
 
@@ -8672,6 +8864,9 @@ msgstr ""
 
 msgid "Event Info"
 msgstr "Program info"
+
+msgid "Event Metadata And Correction"
+msgstr ""
 
 msgid "Event View"
 msgstr ""
@@ -8790,21 +8985,6 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr "Avslutt mediaspiller?"
 
-#
-msgid "Exit network adapter configuration"
-msgstr "avslutt nettverks adapter innstilling"
-
-msgid "Exit network adapter setup menu"
-msgstr ""
-
-#
-msgid "Exit network interface list"
-msgstr "Avslutt nettverks grensesnitt liste"
-
-#
-msgid "Exit network wizard"
-msgstr "Avslutt nettverks veiviseren"
-
 msgid "Exit picture viewer"
 msgstr ""
 
@@ -8822,6 +9002,9 @@ msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
+msgstr ""
+
+msgid "Expand/collapse the selected host, or use the selected share"
 msgstr ""
 
 msgid "Experimental film/video"
@@ -8844,6 +9027,9 @@ msgstr "Ekspert"
 msgid "Expert mode"
 msgstr "Ekspert"
 
+msgid "Exports"
+msgstr ""
+
 msgid "Exposure bias"
 msgstr ""
 
@@ -8862,14 +9048,6 @@ msgstr ""
 
 msgid "Extended"
 msgstr ""
-
-#
-msgid "Extended Networksetup Plugin..."
-msgstr "Utvidet Nettverksinnstillings Plugin..."
-
-#
-msgid "Extended Setup..."
-msgstr "Utvidet Oppsett"
 
 msgid "Extended Shares"
 msgstr "Utvidede deling"
@@ -8897,6 +9075,9 @@ msgstr ""
 
 #, python-format
 msgid "External Storage %s"
+msgstr ""
+
+msgid "External Subtitles"
 msgstr ""
 
 msgid "External subtitle color"
@@ -9102,6 +9283,9 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "Hurtig DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Hurtig Søk"
 
@@ -9147,6 +9331,9 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
+msgstr ""
+
+msgid "Feeds And Networking"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -9279,6 +9466,9 @@ msgstr ""
 msgid "Filename"
 msgstr "filnavn"
 
+msgid "Files And Directories"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr ""
 
@@ -9344,10 +9534,6 @@ msgstr "Fin innstilling"
 #
 msgid "Finished"
 msgstr "Ferdig"
-
-#
-msgid "Finished configuring your network"
-msgstr "Ferdig med å konfigurere nettverk"
 
 msgid "Finland"
 msgstr ""
@@ -9456,14 +9642,14 @@ msgstr ""
 msgid "Flat by position on remote"
 msgstr "Endelig posisjon til"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
 msgid "Folk/Traditional music"
 msgstr "folkemusikk/tradisjonsmusikk"
-
-msgid "Follow instructions on TV"
-msgstr ""
 
 #, fuzzy
 msgid "Font size"
@@ -9508,7 +9694,7 @@ msgstr ""
 msgid "Force ToneBurst"
 msgstr "Tone burst"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr ""
 
 #
@@ -9591,11 +9777,6 @@ msgstr ""
 
 #
 msgid "Frequency"
-msgstr "Frekvens"
-
-#
-#, fuzzy
-msgid "Frequency Norm:"
 msgstr "Frekvens"
 
 #
@@ -9734,12 +9915,30 @@ msgstr "Generell"
 msgid "General AC3 delay"
 msgstr "Generell AC3 forsinkelse"
 
+msgid "General Appearance"
+msgstr ""
+
 #, fuzzy
 msgid "General BT audio delay"
 msgstr "Generell AC3 forsinkelse"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Genrell PCM forsinkelse"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 #, fuzzy
 msgid "Generic"
@@ -9799,6 +9998,9 @@ msgid "Ghana"
 msgstr ""
 
 msgid "Gibraltar"
+msgstr ""
+
+msgid "GigaBlue optimized"
 msgstr ""
 
 msgid "Given device id"
@@ -10063,6 +10265,9 @@ msgstr "Opptaksinnstillinger"
 msgid "HDMIin"
 msgstr ""
 
+msgid "HDR OSD adjustment"
+msgstr ""
+
 #, fuzzy
 msgid "HDR10 Support"
 msgstr "DLNA støtte"
@@ -10163,6 +10368,9 @@ msgid "Help"
 msgstr ""
 
 msgid "Help Action"
+msgstr ""
+
+msgid "Help And Visual Feedback"
 msgstr ""
 
 #, fuzzy
@@ -10442,9 +10650,6 @@ msgstr "Ungarsk"
 msgid "Hybrid Tuner"
 msgstr ""
 
-msgid "Hybrid tuner mode"
-msgstr ""
-
 msgid "Hz"
 msgstr ""
 
@@ -10476,6 +10681,9 @@ msgstr ""
 #, fuzzy
 msgid "IP"
 msgstr "IP:"
+
+msgid "IP Address"
+msgstr ""
 
 msgid "IP Address 1"
 msgstr ""
@@ -10509,6 +10717,9 @@ msgid "IP protocol"
 msgstr ""
 
 msgid "IPK Installer"
+msgstr ""
+
+msgid "IPv4 and IPv6"
 msgstr ""
 
 msgid "IPv4 only"
@@ -10927,6 +11138,12 @@ msgstr "Picon bredde"
 msgid "InfoBar"
 msgstr ""
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "Informasjonslinje EPG"
 
@@ -10937,6 +11154,12 @@ msgstr "InfobarEPG innstillinger"
 #
 msgid "InfoBar EPG mode"
 msgstr "InfoBar EPG modus"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr ""
@@ -11117,10 +11340,6 @@ msgstr "Interface"
 #, python-format
 msgid "Interface '%s'"
 msgstr ""
-
-#
-msgid "Interface: "
-msgstr "Interface: "
 
 #, fuzzy
 msgid "Interlaced"
@@ -11437,6 +11656,9 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 #
 msgid "Keyboard"
 msgstr "Tastatur"
@@ -11461,6 +11683,9 @@ msgid "Kiribati"
 msgstr ""
 
 msgid "Kodi"
+msgstr ""
+
+msgid "Kodi Add-on Packages"
 msgstr ""
 
 msgid "Kodi MediaCenter"
@@ -11503,12 +11728,11 @@ msgstr ""
 msgid "LAN"
 msgstr "LNB"
 
-#
-msgid "LAN adapter"
-msgstr "LAN adapter"
-
 msgid "LAN connection"
 msgstr "LAN forbindelse"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr ""
@@ -11541,6 +11765,9 @@ msgid "LED Deep Standby"
 msgstr "LED Dyp Dvalemodus"
 
 msgid "LED Deep Standby color"
+msgstr ""
+
+msgid "LED Indicators"
 msgstr ""
 
 msgid "LED Normal"
@@ -11683,6 +11910,9 @@ msgstr "Latvisk"
 msgid "Latvian"
 msgstr "Latvisk"
 
+msgid "Layout And Fonts"
+msgstr ""
+
 msgid "Leave"
 msgstr ""
 
@@ -11731,6 +11961,9 @@ msgid "Left, front USB"
 msgstr ""
 
 msgid "Left, wrapped"
+msgstr ""
+
+msgid "Legacy (SMB1)"
 msgstr ""
 
 msgid "Legacy mode"
@@ -11835,18 +12068,11 @@ msgstr ""
 msgid "Link detected"
 msgstr ""
 
-msgid "Link quality:"
-msgstr "Link kvalitet:"
-
 msgid "Link speed"
 msgstr ""
 
 msgid "Link target"
 msgstr ""
-
-#
-msgid "Link:"
-msgstr "Link:"
 
 #
 msgid "Linked titles with a DVD menu"
@@ -11855,14 +12081,14 @@ msgstr "Koblede titler med en DVD-meny"
 msgid "Links"
 msgstr ""
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr ""
 
 msgid "List available EPG functions"
 msgstr "Liste EPG funksjoner..."
-
-msgid "List available networks"
-msgstr "Vis tilgjengelige nettverk"
 
 msgid "List of Storage Devices"
 msgstr ""
@@ -11937,15 +12163,14 @@ msgstr ""
 msgid "Local information"
 msgstr ""
 
-#
-msgid "Local network"
-msgstr "Lokalt nettverk"
-
 msgid "Local or Regional"
 msgstr ""
 
 msgid "Local receiver"
 msgstr "Lokal boks"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr ""
@@ -12027,6 +12252,9 @@ msgstr ""
 
 msgid "Log Manager"
 msgstr "ogg Behandler"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -12136,11 +12364,11 @@ msgstr "Luxembourgsk"
 msgid "M2k Packages"
 msgstr ""
 
-msgid "MAC address"
+msgid "MAC Address"
 msgstr ""
 
-msgid "MAC-address"
-msgstr "MAC-adresse"
+msgid "MAC address"
+msgstr ""
 
 msgid "MENU"
 msgstr ""
@@ -12294,9 +12522,6 @@ msgstr "Manuelt Søk"
 msgid "Manual Service Searching"
 msgstr "Kanalsøk"
 
-msgid "Manual configuration"
-msgstr "Manuell konfigurering"
-
 msgid "Manual scan for services"
 msgstr ""
 
@@ -12380,9 +12605,6 @@ msgstr ""
 msgid "Max memory positions"
 msgstr ""
 
-msgid "Max. bitrate: "
-msgstr "Max. Bitrate: "
-
 msgid "Maxdown +"
 msgstr "Maks ned +"
 
@@ -12419,6 +12641,9 @@ msgid "Media"
 msgstr ""
 
 msgid "Media Center"
+msgstr ""
+
+msgid "Media Files And Navigation"
 msgstr ""
 
 #
@@ -12512,6 +12737,9 @@ msgstr ""
 msgid "Menu style"
 msgstr ""
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -12560,6 +12788,9 @@ msgid "MiniDLNA Settings"
 msgstr "MiniDLNA Oppsett"
 
 msgid "MiniTV"
+msgstr ""
+
+msgid "MiniTV And PiP"
 msgstr ""
 
 msgid "MiniTV with OSD"
@@ -12704,7 +12935,7 @@ msgstr ""
 msgid "Mount"
 msgstr "Mount"
 
-msgid "Mount Manager"
+msgid "Mount Context Menu"
 msgstr ""
 
 msgid "Mount Point"
@@ -12713,7 +12944,19 @@ msgstr ""
 msgid "Mount Setup"
 msgstr ""
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
+msgstr ""
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
@@ -12722,11 +12965,17 @@ msgstr ""
 msgid "Mount root file system."
 msgstr ""
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr ""
 
 msgid "Move"
 msgstr "Flytt"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "Flytt Venstre/Høyre"
@@ -12751,6 +13000,9 @@ msgstr ""
 #
 msgid "Move PiP to main picture"
 msgstr "Flytt BiB til hovedbilde"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "Flytt Opp/Ned"
@@ -12810,6 +13062,12 @@ msgstr "flytte ned til siste oppføring"
 #
 msgid "Move east"
 msgstr "Flytt østover"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr ""
@@ -12915,6 +13173,12 @@ msgid "Move to previous bouquet"
 msgstr ""
 
 msgid "Move to previous marker"
+msgstr ""
+
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -13024,6 +13288,9 @@ msgstr ""
 
 msgid "Movie List"
 msgstr "Filmliste"
+
+msgid "Movie List And Playback Behavior"
+msgstr ""
 
 #
 #, fuzzy
@@ -13176,10 +13443,16 @@ msgstr ""
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "NFS Oppsett"
 
+msgid "NFS Setup Actions"
+msgstr ""
+
 msgid "NFS threads"
+msgstr ""
+
+msgid "NFS version"
 msgstr ""
 
 msgid "NIM"
@@ -13227,14 +13500,6 @@ msgstr ""
 msgid "Name server %d"
 msgstr ""
 
-#
-msgid "Nameserver"
-msgstr "Navneserver"
-
-#
-msgid "Nameserver settings"
-msgstr "Navneserver innstillinger"
-
 msgid "Nameserver setup"
 msgstr ""
 
@@ -13279,6 +13544,12 @@ msgstr ""
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr ""
 
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
+
 msgid "Ndonga"
 msgstr ""
 
@@ -13303,22 +13574,20 @@ msgstr "Nettverksmaske"
 msgid "Network"
 msgstr "Nettverk"
 
-msgid "Network Adapter Actions"
+#, python-format
+msgid "Network Adapter '%s' Settings"
 msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr ""
 
-msgid "Network Adapter Setting Actions"
-msgstr ""
-
 msgid "Network Adapter Settings"
 msgstr ""
 
-msgid "Network Adapter Text Actions"
+msgid "Network Browser"
 msgstr ""
 
-msgid "Network Browser"
+msgid "Network Credentials"
 msgstr ""
 
 msgid "Network ID"
@@ -13339,7 +13608,22 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
+msgstr ""
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
 msgstr ""
 
 msgid "Network Packages"
@@ -13358,22 +13642,63 @@ msgstr "Nettverksinnstillinger"
 msgid "Network Setup Actions"
 msgstr ""
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "Nettverks Test"
 
-msgid "Network Test:"
-msgstr "Nettverks test:"
+msgid "Network Test Actions"
+msgstr ""
 
-msgid "Network Wizard"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
+
+msgid "Network Wi-Fi Settings"
+msgstr ""
+
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
 msgstr ""
 
 msgid "Network adapter not connected to a network!"
 msgstr ""
 
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
+msgstr ""
+
 msgid "Network address"
 msgstr ""
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
 msgstr ""
 
 msgid "Network information"
@@ -13403,27 +13728,10 @@ msgstr "Nettverkssøk"
 msgid "Network storage on"
 msgstr ""
 
-#
-msgid "Network test"
-msgstr "Nettverk test"
-
 msgid "Network test..."
 msgstr ""
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
 msgid "Network-ID"
-msgstr ""
-
-#
-msgid "Network:"
-msgstr "Nettverk:"
-
-msgid "NetworkWizard"
 msgstr ""
 
 msgid "Neutrino  (keymap.ntr)"
@@ -13460,6 +13768,9 @@ msgid "New Setting DXAndy "
 msgstr ""
 
 msgid "New Storage Device"
+msgstr ""
+
+msgid "New Wi-Fi"
 msgstr ""
 
 msgid "New Zealand"
@@ -13574,10 +13885,6 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "Ingen (støttet) DVDROM funnet!"
 
-#
-msgid "No Connection"
-msgstr "Ingen forbindelse"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Ingen gratis indekser tilgjengelig"
@@ -13585,6 +13892,15 @@ msgstr "Ingen gratis indekser tilgjengelig"
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen harddisk funnet eller harddisk ikke initialisert."
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr ""
@@ -13668,7 +13984,13 @@ msgstr "Ingen gratis indekser tilgjengelig"
 msgid "No free tuner!"
 msgstr "Ingen ledig tuner!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
+msgstr ""
+
+msgid "No hosts found yet - still scanning..."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13684,9 +14006,8 @@ msgstr ""
 msgid "No network storage detected."
 msgstr ""
 
-#
-msgid "No networks found"
-msgstr "Ingen nettverk funnet"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Ingen av elementene byttet (økt eller redusert)"
@@ -13713,6 +14034,9 @@ msgstr "Ingen kanal"
 
 msgid "No services/providers selected"
 msgstr "Ingen kanaler/tilbydere valgt"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr ""
@@ -13791,33 +14115,6 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
-
-msgid "No wireless networks found! Searching..."
-msgstr "Ingen trådløse nettverk funnet! Søker..."
-
-#
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Ingen nettverks adapter funnet.\n"
-"Vennligst bekreft at du har koblet til nettverks kabel og konfigurert nettverket ordentlig."
-
-#
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Ingen trådløse nettverks adapter funnet.\n"
-"Vennligst bekreft at du har koblet til en kompatibel WLAN enhet og konfigurert nettverket ordentlig."
-
-#
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Ingen trådløse nettverks grensesnitt funnet.\n"
-"Vennligst bekreft at du har koblet til en kompatibel WLAN enhet og aktivert ditt nettverksgrensesnitt."
 
 #
 msgid "No, but restart from begin"
@@ -13920,6 +14217,9 @@ msgstr "Norsk"
 msgid "Not Classified"
 msgstr "Ikke assosiert"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr ""
 
@@ -13968,7 +14268,13 @@ msgstr ""
 "Ledig plass: %sMB\n"
 "Sti: %s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
+msgstr ""
+
+msgid "Not mounted"
 msgstr ""
 
 msgid "Not required"
@@ -14003,6 +14309,9 @@ msgstr "Ingenting å oppgradere"
 
 msgid "Nothing, just leave this menu"
 msgstr "Ingenting, bare forlat denne menyen"
+
+msgid "Notifications And Display"
+msgstr ""
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -14094,9 +14403,6 @@ msgid "OSCam Information"
 msgstr "OSCam Info"
 
 msgid "OSCam Information Settings"
-msgstr ""
-
-msgid "OSCam webif disabled"
 msgstr ""
 
 msgid "OSCamInfo Actions"
@@ -14206,10 +14512,6 @@ msgstr ""
 #
 msgid "Once"
 msgstr "En gang"
-
-#
-msgid "One"
-msgstr "En"
 
 msgid "One line"
 msgstr "En linje"
@@ -14432,7 +14734,22 @@ msgstr "Åpne kanallisten, og velg forrige kanal for BiB"
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
+msgstr ""
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
 msgstr ""
 
 msgid "Open the Plugin Browser"
@@ -14471,7 +14788,13 @@ msgstr ""
 msgid "OpenViX Packages"
 msgstr ""
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
+msgstr ""
+
+msgid "Opening network adapter configuration..."
 msgstr ""
 
 msgid "Opera"
@@ -14503,6 +14826,9 @@ msgid "Option to disable picons on the InfoBar."
 msgstr ""
 
 msgid "Option to enable the hardware Standby timer."
+msgstr ""
+
+msgid "Optional arguments"
 msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
@@ -14553,6 +14879,9 @@ msgstr "Andre"
 #, fuzzy
 msgid "Other Actions"
 msgstr "videreutdanning"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr ""
@@ -14686,6 +15015,9 @@ msgid "PVR"
 msgstr ""
 
 msgid "Package"
+msgstr ""
+
+msgid "Package Categories"
 msgstr ""
 
 #
@@ -14971,6 +15303,9 @@ msgstr ""
 msgid "Picon width"
 msgstr "Picon bredde"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr ""
 
@@ -15010,6 +15345,9 @@ msgstr "Sorte kanter"
 #
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pinging..."
+msgstr ""
 
 msgid "Pink"
 msgstr ""
@@ -15120,6 +15458,12 @@ msgstr ""
 msgid "Play the selected service"
 msgstr ""
 
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
+
 msgid "Playback Settings"
 msgstr ""
 
@@ -15210,20 +15554,12 @@ msgid ""
 msgstr ""
 
 #
-msgid "Please follow the instructions on the TV"
-msgstr "Vennligst følg instruksjonene på TV"
-
-#
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Vennligst noter at tidligere valgte medie ikke er tilgjengelig, derfor er standard katalog tatt i bruk i stedet."
 
 #
 msgid "Please open Picture in Picture first"
 msgstr "Vennligst åpne Bilde i Bilde først"
-
-#
-msgid "Please press OK to continue."
-msgstr "Vennligst tast OK for å fortsette."
 
 msgid "Please press OK when ready"
 msgstr ""
@@ -15310,10 +15646,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Vennligst vent..."
 
-#
-msgid "Please wait for activation of your network configuration..."
-msgstr "Vennligst vent, aktiverer din nettverk konfigurering..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr ""
 
@@ -15371,19 +15703,8 @@ msgid "Please wait while we check your installed plugins..."
 msgstr ""
 
 #
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Vennligst vent mens vi klargjør ditt nettverks grensesnitt..."
-
-#
-msgid "Please wait while we test your network..."
-msgstr "Vennligst vent mens vi tester ditt nettverk..."
-
-#
 msgid "Please wait while your network is restarting..."
 msgstr "Vennligst vent, nettverk starter om igjen..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr ""
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Vennligst vent mens feeds sjekkes."
@@ -15687,10 +16008,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Trykk OK for å fortsette."
 
-#
-msgid "Press OK to activate the settings."
-msgstr "Trykk OK for å aktivere innstillingene"
-
 msgid "Press OK to continue."
 msgstr ""
 
@@ -15820,14 +16137,13 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-#
-msgid "Primary DNS"
-msgstr "Primær DNS"
-
 msgid "Primary DNS (IPv4)"
 msgstr ""
 
 msgid "Primary DNS (IPv6)"
+msgstr ""
+
+msgid "Prime Time"
 msgstr ""
 
 #, fuzzy
@@ -16215,11 +16531,20 @@ msgstr "Vurdering udefinert"
 msgid "Re-enter new PIN"
 msgstr ""
 
+msgid "Reachable"
+msgstr ""
+
 msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Les brukerdata fra oscam.conf"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr ""
 
 msgid "Read/Write"
 msgstr ""
@@ -16281,6 +16606,9 @@ msgid "Really shutdown now?"
 msgstr "Slå av nå?"
 
 msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
+msgid "Really start RetroGaming and stop the user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -16379,6 +16707,18 @@ msgstr ""
 msgid "Recording"
 msgstr "Spiller inn"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Opptaksinnstillinger"
 
@@ -16460,6 +16800,9 @@ msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
 msgid "Recovery"
+msgstr ""
+
+msgid "Recovery And Hardware"
 msgstr ""
 
 #
@@ -16612,11 +16955,20 @@ msgstr ""
 msgid "Remote Control Code Settings"
 msgstr ""
 
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
+
 msgid "Remote control information"
 msgstr ""
 
 msgid "Remote control type"
 msgstr "Fjernkontrolltype"
+
+msgid "Remote path"
+msgstr ""
 
 msgid "Remote receiver"
 msgstr "Ekstern boks"
@@ -16650,6 +17002,9 @@ msgstr ""
 #
 msgid "Remove Confirmation"
 msgstr "Fjern bekreftelse"
+
+msgid "Remove Credentials"
+msgstr ""
 
 #
 msgid "Remove Entry"
@@ -16886,6 +17241,15 @@ msgstr "Påkrevd medie type:"
 msgid "Rereading partition table"
 msgstr "Omleser partisjonstabellen"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "Reservert"
 
@@ -16954,9 +17318,19 @@ msgstr "Oppløsning"
 msgid "Resolution unit"
 msgstr ""
 
+msgid "Resolving..."
+msgstr ""
+
 #
 msgid "Restart"
 msgstr "Restart"
+
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
+msgid "Restart Adapter"
+msgstr ""
 
 #
 msgid "Restart GUI"
@@ -16973,12 +17347,6 @@ msgid "Restart GUI now?"
 msgstr "Restart GUI nå?"
 
 msgid "Restart Network"
-msgstr ""
-
-msgid "Restart Network Adapter"
-msgstr ""
-
-msgid "Restart OSCam"
 msgstr ""
 
 msgid "Restart enigma"
@@ -17002,9 +17370,15 @@ msgstr ""
 msgid "Restart test"
 msgstr "Restart test"
 
-#
-msgid "Restart your network connection and interfaces."
-msgstr "Restart dine nettverksadapter og grensesnitt."
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
+
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr ""
@@ -17014,9 +17388,6 @@ msgid "Restore"
 msgstr "Gjenopprett"
 
 msgid "Restore Deleted User Bouquets"
-msgstr ""
-
-msgid "Restore MetrixHD Settings"
 msgstr ""
 
 msgid "Restore Plugins"
@@ -17080,6 +17451,9 @@ msgstr "Fortsett ved %s"
 #
 msgid "Resuming playback"
 msgstr "Fortsetter avspilling"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -17294,10 +17668,10 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Settings"
-msgstr "SABnzbd Oppsett"
-
 msgid "SAT"
+msgstr ""
+
+msgid "SAT input"
 msgstr ""
 
 msgid "SATA"
@@ -17337,6 +17711,9 @@ msgstr ""
 #
 msgid "SINGLE LAYER DVD"
 msgstr "EN LAGS DVD"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr ""
@@ -17396,7 +17773,7 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr ""
 
 msgid "Same as in active"
@@ -17565,6 +17942,26 @@ msgstr "Lagre timeshift som film og stoppe opptaket"
 msgid "Save time shift buffer now and continue recording"
 msgstr ""
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -17604,6 +18001,9 @@ msgstr "Søk %s"
 msgid "Scan %s band"
 msgstr "Søk %s bånd"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 #
 msgid "Scan additional SR"
 msgstr "Søke ytterlige SR"
@@ -17620,13 +18020,6 @@ msgstr "Søk etter lokale utvidelser og installer disse. "
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
-
-#
-msgid "Scan wireless networks"
-msgstr "Søk etter trådløse nettverk"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Søke ditt nettverk etter trådløst tilgangspunkt og koble til med valgte enhet."
 
 msgid "Scanning"
 msgstr ""
@@ -17652,6 +18045,12 @@ msgstr[1] ""
 
 msgid "Scanning failed!"
 msgstr "Skanning mislykket!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "Søker..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -17774,10 +18173,6 @@ msgstr "Søking vest..."
 msgid "Second cable of motorized LNB"
 msgstr "Sekundær kabel til motorisert LNB"
 
-#
-msgid "Secondary DNS"
-msgstr "Sekundær DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -17863,6 +18258,9 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr ""
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
@@ -18020,6 +18418,9 @@ msgid "Select 'Yes' to set the cursor position to the end of the line when editi
 msgstr ""
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
@@ -18202,6 +18603,9 @@ msgstr "Velg oppgraderings kilde"
 msgid "Select Upgrade Source To Edit"
 msgstr "Velg oppgraderings kilde."
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -18245,6 +18649,9 @@ msgstr ""
 msgid "Select a network adapter"
 msgstr ""
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr ""
 
@@ -18255,6 +18662,12 @@ msgid "Select a repository commit log to view:"
 msgstr ""
 
 msgid "Select a script to run:"
+msgstr ""
+
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
@@ -18268,10 +18681,6 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr ""
-
-#
-msgid "Select a wireless network"
-msgstr "Velg ett trådløset nettverk"
 
 #
 #, fuzzy
@@ -18327,6 +18736,9 @@ msgstr ""
 msgid "Select destination for:"
 msgstr "Velg mål for:"
 
+msgid "Select exported directories"
+msgstr ""
+
 msgid "Select files to exclude from backup"
 msgstr ""
 
@@ -18373,9 +18785,6 @@ msgstr ""
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr ""
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr ""
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Velg hvordan du aktiverer hurtig EPG-modus:"
 
@@ -18386,6 +18795,9 @@ msgid "Select if an end time is required."
 msgstr ""
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr ""
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
 msgstr ""
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
@@ -18437,13 +18849,6 @@ msgid "Select input device."
 msgstr "Velg inn enhet."
 
 #
-msgid "Select interface"
-msgstr "Velg grensesnitt"
-
-msgid "Select menu entry"
-msgstr ""
-
-#
 msgid "Select movie"
 msgstr "Velg film"
 
@@ -18487,7 +18892,7 @@ msgstr ""
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -18574,6 +18979,9 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18733,10 +19141,13 @@ msgstr ""
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr ""
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
+msgstr ""
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18753,12 +19164,6 @@ msgid "Select the movie path"
 msgstr "Velg sti for lagring av film"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
 msgstr ""
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
@@ -18798,6 +19203,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr ""
 
@@ -18829,6 +19237,9 @@ msgid "Select the search mode to find picons. 'Single-path mode' uses one path f
 msgstr ""
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
+msgstr ""
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
 #
@@ -18927,10 +19338,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
 msgid "Select update source location"
@@ -18976,6 +19384,9 @@ msgstr ""
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr ""
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
+
 msgid "Select where the recording should be saved."
 msgstr ""
 
@@ -19004,7 +19415,7 @@ msgstr "Velg om flerkanals lydspor bør nedmikses til stereo."
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr ""
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr ""
 
 #, fuzzy
@@ -19025,10 +19436,6 @@ msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
-
-#
-msgid "Select wireless network"
-msgstr "Velg trådløst nettverk"
 
 #
 #, fuzzy
@@ -19138,11 +19545,14 @@ msgstr "seriøs musikk/klassisk musikk"
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "alvorlig/klassisk/religiøs/historisk film/drama"
 
+msgid "Server"
+msgstr ""
+
 #, fuzzy
 msgid "Server down"
 msgstr "Server:"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr ""
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -19182,6 +19592,9 @@ msgid "Service Information"
 msgstr ""
 
 msgid "Service Information Actions"
+msgstr ""
+
+msgid "Service List Appearance"
 msgstr ""
 
 msgid "Service Scan"
@@ -19559,13 +19972,16 @@ msgstr "Angi hva du vil at knappen skal gjøre."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
 
+msgid "Set up network"
+msgstr ""
+
 msgid "Set up tuner [TUNER]"
 msgstr ""
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
 
 msgid "Set voltage and 22KHz"
@@ -19928,6 +20344,9 @@ msgstr ""
 msgid "Show Kernel packages"
 msgstr ""
 
+msgid "Show Kodi Add-on packages"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show Live in MiniTV"
@@ -20059,10 +20478,6 @@ msgstr "Vis VCR scart på hovedmenyen"
 #, fuzzy
 msgid "Show Vertical EPG"
 msgstr "Vertikal"
-
-#
-msgid "Show WLAN status"
-msgstr "Vis WLAN status"
 
 msgid "Show Web Link packages"
 msgstr ""
@@ -20243,10 +20658,6 @@ msgid "Show in Standby"
 msgstr "Auto Dvalemodus"
 
 #
-msgid "Show info"
-msgstr "Vis info"
-
-#
 msgid "Show info line"
 msgstr "Vis info linjen "
 
@@ -20290,6 +20701,9 @@ msgid "Show movies"
 msgstr ""
 
 msgid "Show multi channel EPG"
+msgstr ""
+
+msgid "Show network adapter connection information"
 msgstr ""
 
 msgid "Show next commit log"
@@ -20492,6 +20906,9 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr ""
 
@@ -20577,10 +20994,6 @@ msgstr ""
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Viser ikonene hvis nye/usette, ellers ikke vise ikon."
 
-#
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Viser status for din trådløse forbindelse."
-
 msgid "Shows the watched status of the media."
 msgstr "Viser overvåket status av filmen."
 
@@ -20596,7 +21009,8 @@ msgstr "slå av"
 msgid "Shutdown"
 msgstr "Slå av"
 
-msgid "Shutdown OSCam"
+#, python-format
+msgid "Shutdown %s"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
@@ -20617,15 +21031,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal quality"
-msgstr "Signalkvaliteten"
-
 msgid "Signal strength"
 msgstr ""
-
-#
-msgid "Signal: "
-msgstr "Signal:"
 
 msgid "Signed by"
 msgstr ""
@@ -20731,6 +21138,9 @@ msgstr "Skin Innstilling"
 msgid "SkinSelection"
 msgstr ""
 
+msgid "Skip Modes"
+msgstr ""
+
 msgid "Skip back"
 msgstr ""
 
@@ -20777,6 +21187,9 @@ msgid "Skip forward (enter time)"
 msgstr "hopp framover (skriv inn tid)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip network setup"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
@@ -21023,6 +21436,9 @@ msgstr ""
 msgid "Socket"
 msgstr "låst"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -21042,6 +21458,9 @@ msgid "Softcam Setup"
 msgstr ""
 
 msgid "Softcams"
+msgstr ""
+
+msgid "Software Display Scrolling"
 msgstr ""
 
 #
@@ -21164,6 +21583,18 @@ msgstr ""
 msgid "Sort by"
 msgstr "Sorter etter"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "Sorter etter standard"
 
@@ -21194,6 +21625,9 @@ msgstr ""
 #
 msgid "Sound"
 msgstr "Lyd"
+
+msgid "Sound Enhancements"
+msgstr ""
 
 #
 msgid "Sound carrier"
@@ -21267,9 +21701,6 @@ msgstr "spesielle program"
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr ""
-
 msgid "Speed"
 msgstr ""
 
@@ -21324,6 +21755,10 @@ msgstr ""
 
 msgid "Start"
 msgstr "Start"
+
+#, python-format
+msgid "Start %s"
+msgstr ""
 
 msgid "Start Auto Refresh"
 msgstr ""
@@ -21381,10 +21816,6 @@ msgstr ""
 msgid "Start teletext"
 msgstr ""
 
-#
-msgid "Start test"
-msgstr "Start test"
-
 msgid "Start the Chkroot initialization"
 msgstr ""
 
@@ -21413,6 +21844,10 @@ msgstr ""
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr ""
 
@@ -21433,11 +21868,17 @@ msgstr ""
 msgid "Starts in a few seconds"
 msgstr "Begynn offline dekoding"
 
+msgid "Startup And Wakeup"
+msgstr ""
+
 msgid "Startup device not found!"
 msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
+msgstr ""
+
+msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
@@ -21538,10 +21979,6 @@ msgid "Stop streams"
 msgstr ""
 
 #
-msgid "Stop test"
-msgstr "Stopp test"
-
-#
 msgid "Stop testing plane after # failed transponders"
 msgstr "Stoppe teste plan etter # feilede transpondere"
 
@@ -21571,6 +22008,10 @@ msgstr "Stopp timer innspillingen"
 msgid "Stopped"
 msgstr "Stoppet"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr ""
 
@@ -21588,6 +22029,9 @@ msgid "Storage / Disks"
 msgstr ""
 
 msgid "Storage / Drive information"
+msgstr ""
+
+msgid "Storage And Deletion"
 msgstr ""
 
 #
@@ -21610,6 +22054,12 @@ msgstr "ikke tilgjengelig"
 #
 msgid "Store position"
 msgstr "Lagret posisjon"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 #
 msgid "Stored position"
@@ -21709,6 +22159,9 @@ msgstr ""
 #, fuzzy
 msgid "Subtitle Actions"
 msgstr "Undertekst valg"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 #
 msgid "Subtitle Quickmenu"
@@ -21948,10 +22401,6 @@ msgstr ""
 msgid "Switch to the right column"
 msgstr ""
 
-#
-msgid "Switchable tuner types:"
-msgstr "Byttbar tuner typer:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr ""
 
@@ -22063,17 +22512,17 @@ msgstr ""
 msgid "TV"
 msgstr "TV"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr ""
+
+msgid "TV Power"
+msgstr ""
+
 msgid "TV button mode"
 msgstr "TV-knappen modus"
 
-msgid "TV input and receiver wakeup"
-msgstr ""
-
 msgid "TV physical address report"
 msgstr "Tv's fysiske adresse rapport"
-
-msgid "TV power"
-msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -22185,6 +22634,9 @@ msgstr "Teletekst undertekst farge"
 msgid "Teletext StartY (lower border)"
 msgstr "Teletekst undertekst farge"
 
+msgid "Teletext Subtitles"
+msgstr ""
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr ""
 
@@ -22250,6 +22702,9 @@ msgstr "Tennis/Squash"
 msgid "Terrestrial"
 msgstr "Terrestrial"
 
+msgid "Terrestrial input"
+msgstr ""
+
 msgid "Test"
 msgstr ""
 
@@ -22266,11 +22721,6 @@ msgstr ""
 #
 msgid "Test mode"
 msgstr "Testmodus"
-
-#
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Test nettverkskonfigurasjonen for din %s %s."
 
 #
 msgid "Test type"
@@ -22383,18 +22833,6 @@ msgstr ""
 
 #, python-format
 msgid "The IceTV server has requested password for %s."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
 msgstr ""
 
 msgid ""
@@ -22547,13 +22985,6 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough innstillingene er feil."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Nettverket veiviser er ikke installert!\n"
-"Vennligst installer den."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -22623,29 +23054,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-
-#
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Den trådløse LAN-plugin er ikke installert!\n"
-"Vennligst installer den."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
@@ -22732,6 +23146,9 @@ msgstr ""
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr ""
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr ""
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -22753,6 +23170,9 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -22985,61 +23405,6 @@ msgstr ""
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr ""
 
-#
-msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Denne test søker etter konfigurerte navneservere.\n"
-"Hvis du får en 'ubekreftet' melding:\n"
-"- vennligst sjekk din DHCP, kabling og adapter oppsett\n"
-"- hvis du konfigurerte dine navneservere manuelt, vennligst sjekk at du skrev rett i 'Navneserver' konfigurasjonen"
-
-#
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Denne testen sjekker om en nettverkskabel er tilkoblet LAN-adapteret.\n"
-"Hvis du får en 'frakoblet' melding:\n"
-"- verifiser at nettverkskabelen er tilkoblet\n"
-"- verifiser at det ikke er brudd i kabelen"
-
-#
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Denne test sjekker om ditt LAN-adapter har fått en gyldig IP-addresse.\n"
-"Hvis du får en 'ubekreftet' melding:\n"
-"- ingen gyldig IP-addresse ble funnet\n"
-"- vennligst sjekk din DHCP, kabling og adapterkonfigurasjon"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Denne testen sjekker om ditt LAN-adapter er satt opp med automatisk IP-addresse via DHCP.\n"
-"Hvis du får en 'deaktivert' melding:\n"
-"- så er ditt LAN-adapter satt opp med manuell IP-addresse\n"
-"- verifiser at du har satt inn korrekt IP-informasjon i dialogen for adapterinnstallasjon.\n"
-"Hvis du får en 'aktivert' melding:\n"
-"- verifiser at du har en konfigurert og fungerende DHCP server i nettverket ditt."
-
-#
-msgid "This test detects your configured LAN adapter."
-msgstr "Denne testen detekterer ditt konfigurerte LAN-adapter."
-
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
@@ -23059,10 +23424,6 @@ msgstr ""
 
 msgid "This wizard has finished."
 msgstr ""
-
-#
-msgid "Three"
-msgstr "Tre"
 
 #
 msgid "Threshold"
@@ -23213,6 +23574,9 @@ msgstr "Tidssone"
 msgid "Time zone area"
 msgstr "Tidssone"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "Tidslinje 24 timers"
 
@@ -23226,6 +23590,12 @@ msgstr "Timer Listen"
 #
 msgid "Timeline scale"
 msgstr "Tidsskala"
+
+msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -23300,7 +23670,7 @@ msgstr "Timeshift"
 msgid "Timezone"
 msgstr ""
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -23404,6 +23774,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr ""
 
@@ -23491,6 +23864,9 @@ msgstr ""
 msgid "Traditional Chinese"
 msgstr ""
 
+msgid "Transceiver"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Transcode"
@@ -23550,6 +23926,9 @@ msgstr ""
 msgid "Transport Stream Type"
 msgstr "Transponder type"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Søppelbøtte"
 
@@ -23573,6 +23952,9 @@ msgid "Trim File System..."
 msgstr ""
 
 msgid "Trinidad and Tobago"
+msgstr ""
+
+msgid "Triple Tuner"
 msgstr ""
 
 msgid "True"
@@ -23640,6 +24022,12 @@ msgstr ""
 #
 msgid "Tuner :"
 msgstr "Tuner :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 #
 msgid "Tuner Configuration"
@@ -23786,10 +24174,6 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
-#
-msgid "Two"
-msgstr "To"
-
 msgid "Two lines"
 msgstr "To linjer"
 
@@ -23909,9 +24293,6 @@ msgstr ""
 msgid "Undetermined"
 msgstr "Ubestemt"
 
-msgid "Unencrypted"
-msgstr "Ukryptert"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
@@ -23975,11 +24356,6 @@ msgstr "Ukjent"
 msgid "Unknown Devices"
 msgstr ""
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-
 msgid "Unknown Packages"
 msgstr ""
 
@@ -24028,6 +24404,9 @@ msgstr ""
 msgid "Unpublished"
 msgstr "upublisert"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "dekode og ta opp ecm"
 
@@ -24040,10 +24419,6 @@ msgstr "Dekode http streams"
 
 msgid "Unset As Startup Service"
 msgstr "slutte å bruke som oppstarts kanal"
-
-#
-msgid "Unsupported"
-msgstr "Ikke støttet"
 
 #
 msgid "Until standby/restart"
@@ -24234,6 +24609,9 @@ msgstr ""
 msgid "Use MHW EPG information when it is available."
 msgstr "Bruk MHW EPG informasjon når den er tilgjengelig."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Bruk Netmed EPG informasjon når den er tilgjengelig."
 
@@ -24270,15 +24648,14 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-#
-msgid "Use a gateway"
-msgstr "Bruk en gateway"
-
 msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Bruk alternativ bilde"
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -24322,12 +24699,11 @@ msgstr ""
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgid "Use guest login"
 msgstr ""
 
-#
-msgid "Use interface"
-msgstr "Bruk grensesnittet"
+msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
+msgstr ""
 
 msgid "Use key map *"
 msgstr ""
@@ -24339,9 +24715,6 @@ msgid "Use official channel numbering"
 msgstr "Bruk offisielle kanalnummereringen"
 
 msgid "Use only DNSSEC servers"
-msgstr ""
-
-msgid "Use only for Wake on WLan (WoW)"
 msgstr ""
 
 msgid "Use only no-filter servers"
@@ -24396,9 +24769,6 @@ msgstr ""
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Bruk venstre/høyre-knappene på fjernkontrollen for å flytte brukergrensesnittet opp/ned"
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr ""
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr ""
 
@@ -24415,13 +24785,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-#
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Bruk nettverks veiviseren for å konfigurere valgte nettverkskortet"
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -24506,6 +24869,12 @@ msgstr "Brukernavn"
 msgid "Username (httpuser)"
 msgstr "Brukernavn (httpuser)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr ""
 
@@ -24531,9 +24900,6 @@ msgstr ""
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
 
-msgid "VLAN connection"
-msgstr ""
-
 #, fuzzy
 msgid "VMC"
 msgstr "MAC:"
@@ -24546,6 +24912,9 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
+msgstr ""
+
+msgid "VPN"
 msgstr ""
 
 msgid "VPS Settings"
@@ -24886,6 +25255,9 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr ""
 
@@ -24920,13 +25292,6 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
-#
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "WLAN tilkobling"
-
 msgid "WMA Pro"
 msgstr ""
 
@@ -24936,18 +25301,6 @@ msgstr "AAC downmix"
 
 msgid "WOL Standby"
 msgstr ""
-
-#
-msgid "WPA"
-msgstr "WPA"
-
-#
-msgid "WPA or WPA2"
-msgstr "WPA eller WPA2"
-
-#
-msgid "WPA2"
-msgstr "WPA2"
 
 #
 msgid "WSS on 4:3"
@@ -24965,6 +25318,9 @@ msgstr ""
 #
 msgid "Waiting"
 msgstr "Venter"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "Venter på partisjonen"
@@ -25011,6 +25367,9 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
+msgid "Warning: No Wi-Fi adapter found!"
 msgstr ""
 
 msgid "Warning: Overrides are currently active!"
@@ -25277,7 +25636,7 @@ msgstr "Når funksjonen er aktivert, vises kanalnummer i kanalvalg bildet."
 msgid "When enabled, show status or error messages."
 msgstr ""
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -25334,7 +25693,10 @@ msgstr ""
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr ""
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
+msgstr ""
+
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
@@ -25343,11 +25705,11 @@ msgstr ""
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
 msgstr ""
 
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Når funksjonen er aktivert, kan du bruke DHCP for IP-konfigurasjon."
+msgid "When enabled, time shift starts automatically in background after specified time."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr ""
@@ -25415,7 +25777,26 @@ msgstr "ikke tilgjengelig"
 msgid "White"
 msgstr "Hvit"
 
-msgid "Wi-Fi Connection Settings"
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
 msgstr ""
 
 msgid "Wide"
@@ -25441,30 +25822,6 @@ msgstr ""
 
 msgid "Wiping storage device..."
 msgstr ""
-
-#
-msgid "Wireless LAN"
-msgstr "Trådløst LAN"
-
-#
-msgid "Wireless network"
-msgstr "Trådløst Nettverk"
-
-#
-msgid "Wireless network configuration..."
-msgstr "Konfigurasjon av trådløst nettverk..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-
-msgid "Wireless network setup"
-msgstr ""
-
-msgid "Wireless network state"
-msgstr "Trådløst nettverks tilstand"
 
 msgid "With EXIT button"
 msgstr "med exit knappen"
@@ -25535,6 +25892,9 @@ msgstr ""
 #, fuzzy
 msgid "Wrestling"
 msgstr "Installerer"
+
+msgid "Write block size"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -25696,10 +26056,6 @@ msgstr ""
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr ""
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr ""
-
 #
 msgid "You cannot delete this!"
 msgstr "Du kan ikke slette denne!."
@@ -25773,18 +26129,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "Din %s %s er ikke koblet til Internett, vennligst sjekk nettverksinnstillingene dine, og prøv på nytt."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"Din %s %s er klar til bruk.\n"
-"\n"
-"Din internett tikobling virker nå.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Din %s %s starter på nytt"
 
@@ -25812,41 +26156,12 @@ msgid "Your %s %s will Restart..."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Din %s %s vil bli startet på nytt etter installasjonen av kanalen.\n"
-"\n"
-"Ønsker du å installere nå?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Din %s %s vil bli startet på nytt etter fjerning av kanaler\n"
-"Ønsker du å fjerne de nå?"
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Din internett forbindelse virker ikke!\n"
-"Vennligst velg hva du vil gjøre nå."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr ""
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Din STB vil starte om igjen etter at du har trykket OK."
 
 #
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
@@ -25892,10 +26207,6 @@ msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
-
-#
-msgid "Your network configuration has been activated."
-msgstr "Din nettverksinnstilling er aktivert."
 
 msgid "Your password must have at least 5 characters."
 msgstr ""
@@ -25943,6 +26254,9 @@ msgstr "Zap"
 
 msgid "Zap + Exit"
 msgstr "Zap + Exit"
+
+msgid "Zap Timer Settings"
+msgstr ""
 
 msgid "Zap Up/Down"
 msgstr ""
@@ -26175,14 +26489,6 @@ msgstr "lukk delt visning"
 msgid "config menu"
 msgstr ""
 
-#
-msgid "confirmed"
-msgstr "bekreftet"
-
-#
-msgid "connected"
-msgstr "tilkoblet"
-
 msgid "copy"
 msgstr "kopi"
 
@@ -26209,10 +26515,6 @@ msgstr "slett klipp"
 #
 msgid "disabled"
 msgstr "deaktivert"
-
-#
-msgid "disconnected"
-msgstr "frakoblet"
 
 msgid "eMMC"
 msgstr ""
@@ -26516,9 +26818,6 @@ msgstr "av et to lags medie brukt."
 msgid "of a SINGLE layer medium used."
 msgstr "av et en lags medie brukt."
 
-msgid "off or wpa2 on"
-msgstr ""
-
 msgid "offset is"
 msgstr "offset er"
 
@@ -26752,10 +27051,6 @@ msgid "unavailable"
 msgstr "unavailable"
 
 #
-msgid "unconfirmed"
-msgstr "ubekreftet"
-
-#
 msgid "unknown"
 msgstr "ukjent"
 
@@ -26824,6 +27119,544 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#
+#~ msgid "13 V"
+#~ msgstr "13 V"
+
+#
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#
+#~ msgid "18 V"
+#~ msgstr "18 V"
+
+#
+#~ msgid "One"
+#~ msgstr "En"
+
+#
+#~ msgid "Three"
+#~ msgstr "Tre"
+
+#
+#~ msgid "Two"
+#~ msgstr "To"
+
+#
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d trådløst nettverk funnet!"
+#~ msgstr[1] "%d trådløst nettverk funnet!"
+
+#
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Et annet konfigurert nettverk har blitt funnet.\n"
+#~ "\n"
+#~ "Ønsker du å deaktivere det andre nettverket?"
+
+#
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "aktiver nettverks adapter konfigurasjon"
+
+#
+#~ msgid "Activate network settings"
+#~ msgstr "Aktivere nettverkinnstillinger"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Aktivere konfigurerte nettverksinnstillinger."
+
+#
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Er du sikker på at du vil aktivere denne nettverkskonfigurasjonen?"
+
+#
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Er du sikker på at du vil restarte ditt nettverkskort?"
+
+#
+#~ msgid "Back"
+#~ msgstr "Tilbake"
+
+#
+#~ msgid "Configure interface"
+#~ msgstr "Konfigurer interface"
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Konfigurere IP-adressen."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Konfigurer gateway."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Konfigurer navnetjener (DNS)."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Konfigurer nettmasken."
+
+#
+#~ msgid "Configure the network again"
+#~ msgstr "Konfigurere nettverket ditt igjen"
+
+#
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Konfigurer ditt lokal nettverk"
+
+#
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Konfigurer ditt trådløse nettverk igjen"
+
+#
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Koble til et trådløst nettverk"
+
+#
+#~ msgid "Current settings:"
+#~ msgstr "Nåværende innstillinger:"
+
+#
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Endre navneserver konfigurasjon for din %s %s."
+
+#
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Endre nettverks konfigurasjon for din %s %s."
+
+#
+#~ msgid "Encrypted: "
+#~ msgstr "Kryptert:"
+
+#
+#, fuzzy
+#~ msgid "Encryption Type:"
+#~ msgstr "Kryptering:"
+
+#
+#~ msgid "Encryption key"
+#~ msgstr "Krypteringsnøkkel"
+
+#
+#~ msgid "Encryption key type"
+#~ msgstr "Krypteringsnøkkel type"
+
+#
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "avslutt nettverks adapter innstilling"
+
+#
+#~ msgid "Exit network interface list"
+#~ msgstr "Avslutt nettverks grensesnitt liste"
+
+#
+#~ msgid "Exit network wizard"
+#~ msgstr "Avslutt nettverks veiviseren"
+
+#
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Utvidet Nettverksinnstillings Plugin..."
+
+#
+#~ msgid "Extended Setup..."
+#~ msgstr "Utvidet Oppsett"
+
+#
+#~ msgid "Finished configuring your network"
+#~ msgstr "Ferdig med å konfigurere nettverk"
+
+#
+#, fuzzy
+#~ msgid "Frequency Norm:"
+#~ msgstr "Frekvens"
+
+#
+#~ msgid "Interface: "
+#~ msgstr "Interface: "
+
+#
+#~ msgid "LAN adapter"
+#~ msgstr "LAN adapter"
+
+#~ msgid "Link quality:"
+#~ msgstr "Link kvalitet:"
+
+#
+#~ msgid "Link:"
+#~ msgstr "Link:"
+
+#~ msgid "List available networks"
+#~ msgstr "Vis tilgjengelige nettverk"
+
+#
+#~ msgid "Local network"
+#~ msgstr "Lokalt nettverk"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-adresse"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Manuell konfigurering"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Max. Bitrate: "
+
+#
+#~ msgid "Nameserver"
+#~ msgstr "Navneserver"
+
+#
+#~ msgid "Nameserver settings"
+#~ msgstr "Navneserver innstillinger"
+
+#~ msgid "Network Test:"
+#~ msgstr "Nettverks test:"
+
+#
+#~ msgid "Network test"
+#~ msgstr "Nettverk test"
+
+#
+#~ msgid "Network:"
+#~ msgstr "Nettverk:"
+
+#
+#~ msgid "No Connection"
+#~ msgstr "Ingen forbindelse"
+
+#
+#~ msgid "No networks found"
+#~ msgstr "Ingen nettverk funnet"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Ingen trådløse nettverk funnet! Søker..."
+
+#
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Ingen nettverks adapter funnet.\n"
+#~ "Vennligst bekreft at du har koblet til nettverks kabel og konfigurert nettverket ordentlig."
+
+#
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Ingen trådløse nettverks adapter funnet.\n"
+#~ "Vennligst bekreft at du har koblet til en kompatibel WLAN enhet og konfigurert nettverket ordentlig."
+
+#
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Ingen trådløse nettverks grensesnitt funnet.\n"
+#~ "Vennligst bekreft at du har koblet til en kompatibel WLAN enhet og aktivert ditt nettverksgrensesnitt."
+
+#
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Vennligst følg instruksjonene på TV"
+
+#
+#~ msgid "Please press OK to continue."
+#~ msgstr "Vennligst tast OK for å fortsette."
+
+#
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Vennligst vent, aktiverer din nettverk konfigurering..."
+
+#
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Vennligst vent mens vi klargjør ditt nettverks grensesnitt..."
+
+#
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Vennligst vent mens vi tester ditt nettverk..."
+
+#
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Trykk OK for å aktivere innstillingene"
+
+#
+#~ msgid "Primary DNS"
+#~ msgstr "Primær DNS"
+
+#
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Restart dine nettverksadapter og grensesnitt."
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "SABnzbd Oppsett"
+
+#
+#~ msgid "Scan wireless networks"
+#~ msgstr "Søk etter trådløse nettverk"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Søke ditt nettverk etter trådløst tilgangspunkt og koble til med valgte enhet."
+
+#
+#~ msgid "Secondary DNS"
+#~ msgstr "Sekundær DNS"
+
+#
+#~ msgid "Select a wireless network"
+#~ msgstr "Velg ett trådløset nettverk"
+
+#
+#~ msgid "Select interface"
+#~ msgstr "Velg grensesnitt"
+
+#
+#~ msgid "Select wireless network"
+#~ msgstr "Velg trådløst nettverk"
+
+#
+#~ msgid "Show WLAN status"
+#~ msgstr "Vis WLAN status"
+
+#
+#~ msgid "Show info"
+#~ msgstr "Vis info"
+
+#
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Viser status for din trådløse forbindelse."
+
+#~ msgid "Signal quality"
+#~ msgstr "Signalkvaliteten"
+
+#
+#~ msgid "Signal: "
+#~ msgstr "Signal:"
+
+#
+#~ msgid "Start test"
+#~ msgstr "Start test"
+
+#
+#~ msgid "Stop test"
+#~ msgstr "Stopp test"
+
+#
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Test nettverkskonfigurasjonen for din %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Nettverket veiviser er ikke installert!\n"
+#~ "Vennligst installer den."
+
+#
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Den trådløse LAN-plugin er ikke installert!\n"
+#~ "Vennligst installer den."
+
+#
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Denne test søker etter konfigurerte navneservere.\n"
+#~ "Hvis du får en 'ubekreftet' melding:\n"
+#~ "- vennligst sjekk din DHCP, kabling og adapter oppsett\n"
+#~ "- hvis du konfigurerte dine navneservere manuelt, vennligst sjekk at du skrev rett i 'Navneserver' konfigurasjonen"
+
+#
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Denne testen sjekker om en nettverkskabel er tilkoblet LAN-adapteret.\n"
+#~ "Hvis du får en 'frakoblet' melding:\n"
+#~ "- verifiser at nettverkskabelen er tilkoblet\n"
+#~ "- verifiser at det ikke er brudd i kabelen"
+
+#
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Denne test sjekker om ditt LAN-adapter har fått en gyldig IP-addresse.\n"
+#~ "Hvis du får en 'ubekreftet' melding:\n"
+#~ "- ingen gyldig IP-addresse ble funnet\n"
+#~ "- vennligst sjekk din DHCP, kabling og adapterkonfigurasjon"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Denne testen sjekker om ditt LAN-adapter er satt opp med automatisk IP-addresse via DHCP.\n"
+#~ "Hvis du får en 'deaktivert' melding:\n"
+#~ "- så er ditt LAN-adapter satt opp med manuell IP-addresse\n"
+#~ "- verifiser at du har satt inn korrekt IP-informasjon i dialogen for adapterinnstallasjon.\n"
+#~ "Hvis du får en 'aktivert' melding:\n"
+#~ "- verifiser at du har en konfigurert og fungerende DHCP server i nettverket ditt."
+
+#
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Denne testen detekterer ditt konfigurerte LAN-adapter."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Ukryptert"
+
+#
+#~ msgid "Unsupported"
+#~ msgstr "Ikke støttet"
+
+#
+#~ msgid "Use a gateway"
+#~ msgstr "Bruk en gateway"
+
+#
+#~ msgid "Use interface"
+#~ msgstr "Bruk grensesnittet"
+
+#
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Bruk nettverks veiviseren for å konfigurere valgte nettverkskortet"
+
+#
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "WLAN tilkobling"
+
+#
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA eller WPA2"
+
+#
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Når funksjonen er aktivert, kan du bruke DHCP for IP-konfigurasjon."
+
+#
+#~ msgid "Wireless LAN"
+#~ msgstr "Trådløst LAN"
+
+#
+#~ msgid "Wireless network"
+#~ msgstr "Trådløst Nettverk"
+
+#
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Konfigurasjon av trådløst nettverk..."
+
+#~ msgid "Wireless network state"
+#~ msgstr "Trådløst nettverks tilstand"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Din %s %s er klar til bruk.\n"
+#~ "\n"
+#~ "Din internett tikobling virker nå.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Din %s %s vil bli startet på nytt etter installasjonen av kanalen.\n"
+#~ "\n"
+#~ "Ønsker du å installere nå?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Din %s %s vil bli startet på nytt etter fjerning av kanaler\n"
+#~ "Ønsker du å fjerne de nå?"
+
+#
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Din internett forbindelse virker ikke!\n"
+#~ "Vennligst velg hva du vil gjøre nå."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Din STB vil starte om igjen etter at du har trykket OK."
+
+#
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Din nettverksinnstilling er aktivert."
+
+#
+#~ msgid "confirmed"
+#~ msgstr "bekreftet"
+
+#
+#~ msgid "connected"
+#~ msgstr "tilkoblet"
+
+#
+#~ msgid "disconnected"
+#~ msgstr "frakoblet"
+
+#
+#~ msgid "unconfirmed"
+#~ msgstr "ubekreftet"
+
+#
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Byttbar tuner typer:"
 
 #
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
@@ -27174,9 +28007,6 @@ msgstr ""
 #
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "Søker..."
 
 #~ msgid "Servers:"
 #~ msgstr "Server:"

@@ -492,6 +492,7 @@ eServiceFactoryMP3::eServiceFactoryMP3() {
 	if (sc) {
 		std::list<std::string> extensions;
 		extensions.push_back("dts");
+		extensions.push_back("aac");
 		extensions.push_back("mp2");
 		extensions.push_back("mp3");
 		extensions.push_back("ogg");
@@ -1217,8 +1218,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	} else if (strcasecmp(ext, ".flac") == 0) {
 		m_sourceinfo.audiotype = atFLAC;
 		m_sourceinfo.is_audio = TRUE;
-	} else if (strcasecmp(ext, ".cda") == 0)
+	} else if (strcasecmp(ext, ".cda") == 0) {
 		m_sourceinfo.containertype = ctCDA;
+		m_sourceinfo.audiotype = atPCM;
+		m_sourceinfo.is_audio = TRUE;
+	}
 	if (strcasecmp(ext, ".dat") == 0) {
 		m_sourceinfo.containertype = ctVCD;
 		m_sourceinfo.is_video = TRUE;

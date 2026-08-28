@@ -1,5 +1,5 @@
 
-from enigma import eAVControl, iPlayableService, iServiceInformation
+from enigma import eAVControl, eServiceReference, iPlayableService, iServiceInformation
 
 from Components.Element import cached
 from Components.Converter.Converter import Converter
@@ -59,6 +59,7 @@ class ServiceInfo(Converter):
 	XRES = 45
 	YRES = 46
 	IS_SOFTCSA = 47
+	IS_DAB = 48
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -91,6 +92,7 @@ class ServiceInfo(Converter):
 			"Is576": (self.IS_576, (iPlayableService.evVideoSizeChanged,)),
 			"Is720": (self.IS_720, (iPlayableService.evVideoSizeChanged,)),
 			"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
+			"IsDAB": (self.IS_DAB, (iPlayableService.evStart, iPlayableService.evUpdatedInfo)),
 			"IsSoftCSA": (self.IS_SOFTCSA, (iPlayableService.evUpdatedInfo,)),
 			"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
 			"IsHDHDR": (self.IS_HDHDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
@@ -179,6 +181,9 @@ class ServiceInfo(Converter):
 					result = videoHeight > 700 and videoHeight <= 720
 				case self.IS_CRYPTED:
 					result = info.getInfo(iServiceInformation.sIsCrypted) == 1 and info.getInfo(iServiceInformation.sIsSoftCSA) != 1
+				case self.IS_DAB:
+					ref = info.getInfoString(iServiceInformation.sServiceref)
+					result = bool(ref and eServiceReference(ref).type == eServiceReference.idServiceDAB)
 				case self.IS_SOFTCSA:
 					result = info.getInfo(iServiceInformation.sIsSoftCSA) == 1
 				case self.IS_HD:

@@ -48,6 +48,7 @@ PKG_CHECK_MODULES(AVAHI, avahi-client)
 
 AC_CHECK_LIB([atomic], [__atomic_exchange_8], [LIBATOMIC_LIBS="-latomic"], [LIBATOMIC_LIBS=""])
 AC_SUBST(LIBATOMIC_LIBS)
+AC_CHECK_LIB([bluray], [bd_open])
 AC_CHECK_LIB([udfread], [udfread_init])
 AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"], [AC_MSG_ERROR([Could not find libdl])])
 AC_SUBST(LIBDL_LIBS)
@@ -1016,7 +1017,6 @@ lib/python/Plugins/SystemPlugins/FSBLUpdater/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/IceTV/Makefile
 lib/python/Plugins/SystemPlugins/LCNScanner/Makefile
-lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
@@ -1025,7 +1025,6 @@ lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancementAML/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
-lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/vps/Makefile
 lib/python/Plugins/SystemPlugins/vps/src_cc/Makefile
 lib/python/Plugins/SystemPlugins/vps/src_py/Makefile

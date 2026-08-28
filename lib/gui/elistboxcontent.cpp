@@ -539,7 +539,9 @@ void eListboxPythonStringContent::setList(ePyObject list) {
 }
 
 void eListboxPythonStringContent::updateEntry(int index, ePyObject entry) {
-	if (index < size()) {
+	if (index >= 0 && index < size()) {
+		Py_XDECREF(PyList_GET_ITEM(m_list, index));
+		Py_INCREF(entry);
 		PyList_SET_ITEM(m_list, index, entry);
 		if (m_listbox)
 			m_listbox->entryChanged(index);

@@ -1385,6 +1385,16 @@ void eDVBServicePlay::serviceEvent(int event)
 					}
 				}
 			}
+			else if (m_teletext_parser && m_decoder_index == 0)
+			{
+				// same as in updateDecoder: the text pid may only show up in a later program info
+				eDVBServicePMTHandler::program program;
+				if (!m_service_handler.getProgramInfo(program) && program.textPid >= 0 && program.textPid != m_teletext_parser->getPid())
+				{
+					m_teletext_parser->start(program.textPid);
+					eDebug("[eDVBServicePlay] Teletext parser restarted on PID %04x", program.textPid);
+				}
+			}
 
 			// Late-start case: session is active but SoftDecoder may not be running yet
 			// This happens when we switched to a channel where CSA-ALT was already cached
@@ -3748,6 +3758,12 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			}
 			m_teletext_parser->start(program.textPid);
 		}
+		else if (m_teletext_parser && m_decoder_index == 0 && tpid >= 0 && tpid != m_teletext_parser->getPid())
+		{
+			/* first program info can come from the service cache without a text pid,
+			   pick it up once the real PMT arrives */
+			m_teletext_parser->start(tpid);
+		}
 
 		/* don't worry about non-existing services, nor pvr services */
 		if (m_dvb_service)
@@ -4151,12 +4167,13 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		eDVBTeletextSubtitlePage tmppage = page;
 		pts_t diff = tmppage.m_pts - pts;
 
-		if (diff > 0 && diff < (MAX_SUBTITLE_LIFESPAN * 90000))
-		{
-			tmppage.m_pts += (m_is_pvr || m_timeshift_enabled) ? 0 : eSubtitleSettings::subtitle_bad_timing_delay;
-			m_subtitle_pages.push_back(tmppage);
-			m_subtitle_pages.sort(compare_pts);
-		}
+		// No usable timing (PES without PTS, or an absurd diff): show now instead of dropping the page.
+		if (diff <= 0 || diff >= (MAX_SUBTITLE_LIFESPAN * 90000))
+			tmppage.m_pts = pts;
+
+		tmppage.m_pts += (m_is_pvr || m_timeshift_enabled) ? 0 : eSubtitleSettings::subtitle_bad_timing_delay;
+		m_subtitle_pages.push_back(tmppage);
+		m_subtitle_pages.sort(compare_pts);
 
 		checkSubtitleTiming();
 	}

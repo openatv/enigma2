@@ -1,17 +1,17 @@
 # Ukrainian translations for Enigma2.
 #
-# openATV <openatv@gmail.com>, 2021.
-# kvinto <badsystem@ukr.net>, 2021, 2022, 2023, 2024, 2025.
+# openATV <openatv@gmail.com>, 2021, 2026.
+# kvinto <badsystem@ukr.net>, 2021, 2022, 2023, 2024, 2025, 2026.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023, 2025, 2026.
-# Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
-# Artem <artem@molotov.work>, 2022.
+# Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2026.
+# Artem <artem@molotov.work>, 2022, 2026.
 # Fqwe1 <Fqwe1@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:29+0000\n"
-"PO-Revision-Date: 2026-07-30 08:01+0000\n"
+"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"PO-Revision-Date: 2026-08-16 16:25+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -916,6 +916,13 @@ msgstr[1] "%d пакета каталогу каналів оновлено."
 msgstr[2] "%d пакетів каталогу каналів оновлено."
 
 #, python-format
+msgid "%d host found."
+msgid_plural "%d hosts found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "%d завдань виконується у фоновому режимі!"
 
@@ -934,6 +941,13 @@ msgstr "%d хвилин"
 #, python-format
 msgid "%d ms"
 msgstr "%d мс"
+
+#, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d package found."
@@ -1065,13 +1079,6 @@ msgstr "На пристрої створено %d слотів.\n"
 #, python-format
 msgid "%d times"
 msgstr "%d рази"
-
-#, python-format
-msgid "%d wireless network found!"
-msgid_plural "%d wireless networks found!"
-msgstr[0] "%d бездротову мережу знайдено!"
-msgstr[1] "%d бездротові мережі знайдено!"
-msgstr[2] "%d бездротових мереж знайдено!"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
@@ -1216,6 +1223,10 @@ msgid "%s View"
 msgstr "%s Перегляд"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s додатки до скіну"
 
@@ -1230,6 +1241,17 @@ msgstr "%s вимкнено."
 #, python-format
 msgid "%s imported from remote receiver."
 msgstr "%s імпортовано з резервного тюнера."
+
+#, python-format
+msgid ""
+"%s is currently not running.\n"
+"\n"
+"Do you want to start it?"
+msgstr ""
+
+#, python-format
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1249,12 +1271,20 @@ msgid "%s version"
 msgstr "Версія %s"
 
 #, python-format
+msgid "%s webif disabled"
+msgstr ""
+
+#, python-format
 msgid "%s%d min"
 msgstr "%s%d хв"
 
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(За замовчуванням: %s)"
+
+#, python-format
+msgid "%s. (Lowest)"
+msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1299,6 +1329,22 @@ msgstr "%sПоказати 1080i в якості 1080p"
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' містить %d файл(ів) і %d підкаталог(ів).\n"
+
+#, python-format
+msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' is listed more than once in 'Mount options'."
+msgstr ""
+
+#, python-format
+msgid "'%s' mounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' unmounted."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Буфер в годинах' або 'кількість останніх подій'. Яка з умов настає першою, по цій умові і видалятимуться старі файли таймшифта."
@@ -1384,14 +1430,8 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+msgid "1. (Highest)"
+msgstr ""
 
 msgid "10bit"
 msgstr "10біт"
@@ -1414,17 +1454,11 @@ msgstr "12біт"
 msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12біт 4:2:0/4:2:2 PiP відсутній"
 
-msgid "13 V"
-msgstr "13 В"
-
 msgid "16:10 Letterbox"
 msgstr "16:10 Поштова скринька"
 
 msgid "16:10 PanScan"
 msgstr "16:10 Панорама"
-
-msgid "16:9"
-msgstr "16:9"
 
 msgid "16:9 Always"
 msgstr "16:9 завжди"
@@ -1443,9 +1477,6 @@ msgstr "16:9 Pan Scan"
 
 msgid "16:9 reset to normal"
 msgstr "16/9 скидання до нормального"
-
-msgid "18 V"
-msgstr "18 В"
 
 msgid "1st InfoBar timeout"
 msgstr "Затримка першого інфобару"
@@ -1676,15 +1707,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Потрібний інструмент (%s) не знайдено."
 
 msgid ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Знайдено другий налаштований інтерфейс.\n"
-"\n"
-"Бажаєте відключити другий мережевий інтерфейс?"
-
-msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
@@ -1743,6 +1765,9 @@ msgstr "AC4"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr ""
+
 msgid "AI Translation color"
 msgstr "Колір субтитрів за допомогою AI"
 
@@ -1776,11 +1801,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC провайдер"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "AV-ресивер, звукова панель і пульт"
+
 msgid "AV Setup"
 msgstr "Налаштування Аудіо-Відео"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "AV-ресивер, звукова панель і пульт"
 
 msgid "Abkhazian"
 msgstr "Абхазька"
@@ -1821,6 +1846,11 @@ msgstr "Режим доступу"
 msgid "Access point"
 msgstr "Точка доступу"
 
+msgid ""
+"Access point not found.\n"
+"Check it is in range and the SSID is correct."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Для доступу до геолокаційної інформації потрібне підключення до Інтернету."
 
@@ -1860,14 +1890,8 @@ msgstr "Включити дію кнопок вгору/вниз для функ
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Активуйте спосіб надсилання окремих, або конкретних внутрішніх команд HDMI-CEC з командного рядка."
 
-msgid "Activate network adapter configuration"
-msgstr "активувати налаштування мережевого адаптера"
-
-msgid "Activate network settings"
-msgstr "Активувати налаштування мережі"
-
-msgid "Activate the configured network settings."
-msgstr "Активуйте налаштовані параметри мережі."
+msgid "Activate network adapter"
+msgstr ""
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Активуйте флеш-розширювач, збережіть усі змінені налаштування та вийдіть"
@@ -1889,6 +1913,13 @@ msgstr "Активні Клієнти"
 
 msgid "Active only"
 msgstr "Лише активні"
+
+msgid "Adapter"
+msgstr ""
+
+#, python-format
+msgid "Adapter '%s' Context Menu"
+msgstr ""
 
 msgid "Adapter Settings"
 msgstr "Налаштування адаптера"
@@ -1932,6 +1963,9 @@ msgstr "Додати HDMI IN до фавориту"
 msgid "Add Marker To Bouquet"
 msgstr "Додати закладку"
 
+msgid "Add Mount Manually"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr "Додати новий чотирьохканальний вхід"
 
@@ -1955,6 +1989,12 @@ msgstr "Додати Таймер"
 
 msgid "Add To Parental Protection"
 msgstr "Додати в батьківський контроль"
+
+msgid "Add Wi-Fi"
+msgstr ""
+
+msgid "Add Wi-Fi Manually"
+msgstr ""
 
 msgid "Add Zap+RecordTimer"
 msgstr "Додати Таймер Переключення+Запис"
@@ -1982,6 +2022,9 @@ msgstr "Додати таймер перемикання для наступно
 
 msgid "Add a mark"
 msgstr "Додати маркер"
+
+msgid "Add a new Saved Wi-Fi Network"
+msgstr ""
 
 msgid "Add a new bouquet"
 msgstr "Додати фаворитний список"
@@ -2142,6 +2185,9 @@ msgstr "дорослий фільм/драма"
 
 msgid "Advanced"
 msgstr "Розширений"
+
+msgid "Advanced Diagnostics"
+msgstr ""
 
 msgid "Advanced Options"
 msgstr "Розширені параметри"
@@ -2377,6 +2423,9 @@ msgstr "Альтернативний 2"
 msgid "Alternative Edit"
 msgstr "[редагування вибраного]"
 
+msgid "Alternative Tuner Sources"
+msgstr ""
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Альтернативні URL-адреси для DVB-T/C, або ATSC"
 
@@ -2538,9 +2587,6 @@ msgstr "Ви впевнені, що хочете видалити всі наз�
 msgid "Are you sure to remove this entry?"
 msgstr "Ви впевнені, що бажаєте видалити цей канал?"
 
-msgid "Are you sure you want to activate this network configuration?"
-msgstr "Ви дійсно бажаєте активувати цю конфігурацію мережі?"
-
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
@@ -2565,9 +2611,6 @@ msgstr "Ви дійсно бажаєте вийти з помічника?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Ви дійсно бажаєте перезавантажити дані ЕПГ з:\n"
-
-msgid "Are you sure you want to restart your network interfaces?"
-msgstr "Ви дійсно бажаєте перезавантажити мережеві інтерфейси?"
 
 #, python-format
 msgid ""
@@ -2678,6 +2721,9 @@ msgstr "Призначені CAId'и:"
 msgid "Assigned services/provider:"
 msgstr "Призначені Канали/Провайдери:"
 
+msgid "Associated"
+msgstr ""
+
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2E"
 
@@ -2715,6 +2761,12 @@ msgstr "Рівень звуку Автоматичного регулюванн�
 msgid "Audio Channel"
 msgstr "Канал аудіо"
 
+msgid "Audio Formats And Output"
+msgstr ""
+
+msgid "Audio Language And Track Selection"
+msgstr ""
+
 msgid "Audio PID"
 msgstr "Аудіо PID"
 
@@ -2730,6 +2782,9 @@ msgstr "Джерело аудіо"
 
 msgid "Audio Sync"
 msgstr "Синхронізація аудіо"
+
+msgid "Audio Synchronization"
+msgstr ""
 
 msgid "Audio language selection 1"
 msgstr "Вибір мови аудіо 1"
@@ -2857,9 +2912,6 @@ msgstr "Мітка автороздільності екрану"
 msgid "Automatic scan for services"
 msgstr "Автосканування каналів"
 
-msgid "Automatic shares access"
-msgstr "Автоматичний доступ до спільних ресурсів"
-
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Автоматично переводьте телевізор у режим очікування, коли приймач переходить у режим очікування, або глибокого очікування."
 
@@ -2889,6 +2941,9 @@ msgstr "Доступні регіони:"
 
 msgid "Available shares:"
 msgstr "Доступні мережеві диски:"
+
+msgid "Available tuner types"
+msgstr "Доступні типи тюнерів"
 
 msgid "Avaric"
 msgstr "Аварська"
@@ -2939,8 +2994,8 @@ msgstr "Синя довге натискання"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Синя-Заміна дії: Синя-коротке/Синя-довге"
 
-msgid "Back"
-msgstr "Назад"
+msgid "BSSID"
+msgstr ""
 
 msgid "Back USB"
 msgstr "USB Видалити"
@@ -3312,6 +3367,9 @@ msgstr "Яскравість (звичайний)"
 msgid "Brightness (Standby)"
 msgstr "Яскравість (режим очікування)"
 
+msgid "Brightness And Contrast"
+msgstr ""
+
 msgid "Brightness Video"
 msgstr "Яскравість відео"
 
@@ -3339,11 +3397,20 @@ msgstr "мовлення/преса"
 msgid "Broadcom"
 msgstr "Broadcom"
 
+msgid "Broadcom default"
+msgstr "Broadcom за замовчуванням"
+
+msgid "Browse"
+msgstr ""
+
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Переглядайте, встановлюйте або видаляйте плагіни по одному."
 
 msgid "Brunei Darussalam"
 msgstr "Бруней-Даруссалам"
+
+msgid "Buffer Management"
+msgstr ""
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3398,11 +3465,17 @@ msgstr "Запис до середовища"
 msgid "Burundi"
 msgstr "Бурундія"
 
+msgid "Bus"
+msgstr ""
+
 msgid "Business"
 msgstr "Бізнес"
 
 msgid "Business & Finance"
 msgstr "Бізнес і фінанси"
+
+msgid "Button Assignments"
+msgstr ""
 
 msgid "Button Setup"
 msgstr "Налаштування кнопок"
@@ -3427,6 +3500,12 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "С-Діапазон"
+
+msgid "C/T input"
+msgstr "Вхід C/T"
+
+msgid "C/T input switching"
+msgstr "Перемикання входу C/T"
 
 msgid "CCD-Width"
 msgstr "CCD-Ширина"
@@ -3570,6 +3649,12 @@ msgstr "Кабельне"
 
 msgid "Cable Scan"
 msgstr "Сканування кабельного"
+
+msgid "Cable Unplugged"
+msgstr ""
+
+msgid "Cable input"
+msgstr "Кабельний вхід"
 
 msgid "Cache thumbnails"
 msgstr "Кешування ескізів"
@@ -3975,6 +4060,12 @@ msgstr "Канал 1"
 msgid "Channel 1 with prime time"
 msgstr "Канал 1 з Прайм-тайму"
 
+msgid "Channel And EPG Import"
+msgstr ""
+
+msgid "Channel History And Messages"
+msgstr ""
+
 msgid "Channel Info"
 msgstr "Інформація каналу"
 
@@ -4010,6 +4101,9 @@ msgstr "Налаштування списку каналів"
 
 msgid "Channel Selection picon path"
 msgstr "Шлях пікона вибору каналу"
+
+msgid "Channel Zapping And Keys"
+msgstr ""
 
 msgid "Channel buttons"
 msgstr "Кнопки каналу"
@@ -4079,6 +4173,9 @@ msgstr "Розділ"
 
 msgid "Character device"
 msgstr "Властивість пристрою"
+
+msgid "Character set"
+msgstr ""
 
 msgid "Chat show"
 msgstr "Чат-шоу"
@@ -4314,6 +4411,9 @@ msgstr "Очистити"
 msgid "Clear Log"
 msgstr "Очистити лог"
 
+msgid "Clear Stored Credentials"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Очистити перед пошуком"
 
@@ -4379,6 +4479,9 @@ msgstr "Закрити список фаворитів."
 
 msgid "Close dialog"
 msgstr "Закрити діалог"
+
+msgid "Close network test"
+msgstr ""
 
 msgid "Close screen"
 msgstr "Закрити вікно"
@@ -4455,6 +4558,9 @@ msgstr "Колумбія"
 msgid "Color"
 msgstr "Колір"
 
+msgid "Color Button Assignments"
+msgstr ""
+
 msgid "Color format"
 msgstr "Формат кольору"
 
@@ -4525,14 +4631,14 @@ msgstr "Призначення Модуля доступу"
 msgid "Common Interface Settings"
 msgstr "Загальні налаштування інтерфейсу"
 
-msgid "Common Settings"
-msgstr "Загальні налаштування"
-
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
 
 msgid "Comoros"
 msgstr "Коморські острови"
+
+msgid "Compatibility And Emulation"
+msgstr ""
 
 msgid "Compiled by"
 msgstr "Зроблено"
@@ -4573,14 +4679,20 @@ msgstr "Режим конфігурації"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Параметри конфігурації довідки HELP можна знайти в 'Меню > Налаштування > Використання та інтерфейс > Settings'."
 
-msgid "Configure DNS (name servers)"
-msgstr "Налаштувати DNS (сервери імен)"
+msgid "Configure DNS (Dynamic Name Server)"
+msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Налаштування додаткової затримки для поліпшення синхронізації зовнішніх субтитрів."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Налаштування додаткової затримки для поліпшення синхронізації субтитрів."
+
+msgid "Configure another network adapter"
+msgstr ""
+
+msgid "Configure cable reception on this input."
+msgstr "Налаштуйте кабельний прийом на цьому вході."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Налаштувати параметри за замовчуванням для нових таймерів. Потрібно перезавантажити після зміни."
@@ -4627,41 +4739,32 @@ msgstr "Налаштуйте, чи відображати іконки типу 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Налаштування шрифтів для зовнішніх субтитрів, чи застосовувати до них налаштування для субтитрів, що йдуть з ефіру."
 
-msgid "Configure interface"
-msgstr "Налаштування інтерфейсу"
+msgid "Configure network adapter"
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Вкажіть, на яких пристроях слід використовувати опцію фонового видалення."
 
 msgid ""
-"Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
-"Налаштуйте або перевірте свій DNS (сервери імен), налаштувавши показані значення.\n"
-"\n"
-"Коли налаштування правильні, натисніть OK, щоб продовжити."
 
 msgid "Configure remote control type"
 msgstr "Налаштування типу пульта керування"
 
+msgid "Configure satellite reception on the separate SAT input."
+msgstr "Налаштуйте прийом супутникового сигналу на окремому вході SAT."
+
+msgid "Configure terrestrial reception on this input."
+msgstr "Налаштуйте ефірний прийом на цьому вході."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Налаштування DiSEqC режиму для цього конвертора."
 
-msgid "Configure the IP address."
-msgstr "Налаштування АП адресу."
-
 msgid "Configure the IP of the fallback remote receiver."
 msgstr "IP резервного віддаленого приймача."
-
-msgid ""
-"Configure the Internet connection by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"Налаштуйте підключення до Інтернету, ввівши показані значення.\n"
-"\n"
-"Коли налаштування правильні, натисніть OK, щоб продовжити."
 
 msgid "Configure the Port of the fallback remote receiver."
 msgstr "Порт резервного віддаленого приймача."
@@ -4765,9 +4868,6 @@ msgstr "Налаштування функції короткого натиск�
 msgid "Configure the function of the < and > buttons."
 msgstr "Налаштуйте функцію кнопок < та >."
 
-msgid "Configure the gateway."
-msgstr "Налаштування шлюза."
-
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Вкажіть, через який час знаходження приймача в режимі очікування або невикористання, переводити жорсткий диск в режим очікування."
 
@@ -4797,15 +4897,6 @@ msgstr "Налаштування мінімального обсягу диск�
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Вкажіть мінімальну ширину іконок 'i', '0' означає не показувати іконки взагалі."
-
-msgid "Configure the name server (DNS)."
-msgstr "Налаштування імені сервера (DNS)."
-
-msgid "Configure the netmask."
-msgstr "Налаштування маски мережі."
-
-msgid "Configure the network again"
-msgstr "Повторити налаштування мережі"
 
 msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Вкажіть через скільки днів файли з кошика будуть остаточно видалені."
@@ -4839,6 +4930,9 @@ msgstr "Налаштування другої мови субтитрів."
 
 msgid "Configure the secondary EPG language."
 msgstr "Налаштування другої мови ЕПГ."
+
+msgid "Configure the selected Wi-Fi network"
+msgstr ""
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Налаштуйте час пропуску при натисканні клавіш '1'/'3'."
@@ -4939,17 +5033,8 @@ msgstr "Вкажіть, який тюнер переважає, якщо дос�
 msgid "Configure your NTP server."
 msgstr "Налаштування NTP сервера."
 
-msgid "Configure your Network"
-msgstr "Налаштування Вашої мережі"
-
-msgid "Configure your internal LAN"
-msgstr "Налаштувати Вашого LAN інтерфейсу"
-
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Налаштуйте параметри мережі, а потім натисніть OK, щоб почати пошук"
-
-msgid "Configure your wireless LAN again"
-msgstr "Повторити налаштування Вашої безпровідної мережі"
 
 msgid "Configures which video output connector will be used."
 msgstr "Вкажіть, який роз'єм відеовиходу буде використаний."
@@ -4962,6 +5047,10 @@ msgstr "Налаштування каналу"
 
 msgid "Confirm Zap"
 msgstr "Підтвердити Zap"
+
+#, python-format
+msgid "Confirm the deletion of '%s'?"
+msgstr ""
 
 msgid "ConflictTimer Actions"
 msgstr "Дії кнопок ConflictTimer"
@@ -4982,11 +5071,14 @@ msgstr "Під'єднання"
 msgid "Connect to IceTV server every"
 msgstr "Підключення до сервера IceTV кожен"
 
-msgid "Connect to a wireless network"
-msgstr "Під'єднано до бездротової мережі"
-
 msgid "Connect to the Internet"
 msgstr "Підключитися до Інтернету"
+
+msgid "Connect to the selected Saved Wi-Fi Network"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
 
 msgid "Connected clients"
 msgstr "Підключені клієнти"
@@ -5003,8 +5095,26 @@ msgstr "Під'єднано до"
 msgid "Connected transcoding, limit - no PiP!"
 msgstr "Підключене перекодування, обмеження - немає PiP!"
 
+msgid ""
+"Connected, but no IP address was received.\n"
+"Check the router's DHCP settings."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connected.\n"
+"IP address is '%s'."
+msgstr ""
+
 msgid "Connected: "
 msgstr "Під'єднано: "
+
+#, python-format
+msgid "Connecting To '%s'"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
 
 msgid "Connection information"
 msgstr "Інформація про підключення"
@@ -5054,6 +5164,9 @@ msgstr "Контекст"
 
 msgid "Continent"
 msgstr "Континент"
+
+msgid "Continue"
+msgstr ""
 
 msgid "Continue in background"
 msgstr "Фоновий режим"
@@ -5201,8 +5314,22 @@ msgstr "Коста Ріка"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Кот -д'Івуар / Французька"
 
+#, python-format
+msgid "Could not connect (status '%s')."
+msgstr ""
+
 msgid "Could not connect to server"
 msgstr "Не вдалося підключитися до сервера"
+
+msgid ""
+"Could not connect.\n"
+"Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
+msgstr ""
+
+msgid ""
+"Could not connect.\n"
+"Wrong Wi-Fi password?"
+msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Неможливо визначити носій! Диск не вставлено?"
@@ -5226,6 +5353,12 @@ msgstr "Запис неможливий, канал %s невірний"
 msgid "Could not save configuration file %s!"
 msgstr "Не вдалося зберегти файл конфігурації %s!"
 
+msgid ""
+"Could not verify the saved Wi-Fi network.\n"
+"\n"
+"Do you want to change the settings again?"
+msgstr ""
+
 msgid "Country"
 msgstr "Країна"
 
@@ -5238,6 +5371,9 @@ msgstr "Інформація про рейтинг передач ЕПГ в кр
 #, python-format
 msgid "Crash %d/%d"
 msgstr "Збій %d/%d"
+
+msgid "Crash Handling"
+msgstr ""
 
 msgid "Crash Logs"
 msgstr "Логи збоїв"
@@ -5349,6 +5485,13 @@ msgstr ""
 msgid "Creating partition"
 msgstr "Створення розділу"
 
+msgid "Credentials"
+msgstr ""
+
+#, python-format
+msgid "Credentials for '%s'"
+msgstr ""
+
 msgid "Cree"
 msgstr "Cree"
 
@@ -5449,9 +5592,6 @@ msgstr "Поточне положення ротора:"
 msgid "Current rotor position: unknown"
 msgstr "Поточне положення ротора: невідоме"
 
-msgid "Current settings:"
-msgstr "Поточні налаштування:"
-
 msgid "Current supplied to the LNB and positioner."
 msgstr "Струм, що подається на LNB та позиціонер."
 
@@ -5487,6 +5627,9 @@ msgstr "Поточні рівні гучності, що запам'ятовую
 msgid "Custom"
 msgstr "Користувацька"
 
+msgid "Custom Skip Times"
+msgstr ""
+
 msgid "Custom mountpoint"
 msgstr "Користувацька точка монтування"
 
@@ -5513,6 +5656,9 @@ msgstr "Персональні налаштування користувача e
 
 msgid "Cut"
 msgstr "Вирізати"
+
+msgid "CutList Skipping"
+msgstr ""
 
 msgid "CutList skip time for '%s' button"
 msgstr "Час пропуску списку CutList для кнопки '%s'"
@@ -5556,9 +5702,6 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
-msgid "DHCP"
-msgstr "DHCP"
-
 msgid "DLNA support"
 msgstr "DLNA підтримка"
 
@@ -5571,6 +5714,9 @@ msgstr "DMM нормально"
 msgid "DNS Settings"
 msgstr "Налаштування DNS"
 
+msgid "DNS Settings Actions"
+msgstr ""
+
 msgid "DNS data source"
 msgstr "Джерело даних DNS"
 
@@ -5579,9 +5725,6 @@ msgstr "Перевизначення DNS"
 
 msgid "DNS protocol mode"
 msgstr "Режим DNS"
-
-msgid "DNS suffix"
-msgstr "DNS суфікс"
 
 msgid "DNSCrypt"
 msgstr "DNSCrypt"
@@ -5611,6 +5754,9 @@ msgstr "ДВОШАРОВИЙ DVD"
 msgid "DVB CI Delay"
 msgstr "Затримка DVB CI"
 
+msgid "DVB Subtitles"
+msgstr ""
+
 msgid "DVB Subtitles PID & Language"
 msgstr "PID і мова DVB субтитрів"
 
@@ -5623,17 +5769,14 @@ msgstr "Колір субтитрів DVB"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-msgid "DVB-C / Cable only"
-msgstr "Тільки DVB-C / кабельне телебачення"
-
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
-msgstr "DVB-C та DVB-T/T2 через зовнішній керований коаксіальний комутатор 5V"
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr ""
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5643,9 +5786,6 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
-
-msgid "DVB-T/T2 / Terrestrial only"
-msgstr "Тільки DVB-T/T2 / ефірне телебачення"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5662,7 +5802,7 @@ msgstr "Меню ДВД"
 msgid "DVD Title list"
 msgstr "Список назв DVD"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD програвач"
 
 msgid "DVDPlayer"
@@ -5685,6 +5825,9 @@ msgstr "Дата"
 
 msgid "Date / Time"
 msgstr "Дата / час"
+
+msgid "Date And Time"
+msgstr ""
 
 msgid "Date Time Input Actions"
 msgstr "Дії кнопок по введення дати та часу"
@@ -5852,8 +5995,14 @@ msgstr "Зупинити"
 msgid "Deactivate Expander"
 msgstr "Деактивувати Розширювач"
 
+msgid "Deactivate network adapter"
+msgstr ""
+
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Вимкніть розширювач флеш-пам'яті у вибраному пристрої"
+
+msgid "Deactivated"
+msgstr ""
 
 msgid "Debug"
 msgstr "Налагодження"
@@ -5864,6 +6013,9 @@ msgstr "Налагодження %d/%d"
 
 msgid "Debug Information"
 msgstr "Налагоджувальна інфо"
+
+msgid "Debug Log Content"
+msgstr ""
 
 msgid "Debug Log Information"
 msgstr "Інформація логу налагодження"
@@ -6106,6 +6258,12 @@ msgstr "Видалення іміджу"
 msgid "Delete Line"
 msgstr "Видалити рядок"
 
+msgid "Delete Mount"
+msgstr ""
+
+msgid "Delete Network"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Видалити плагіни"
 
@@ -6336,9 +6494,6 @@ msgstr "Диспетчер пристроїв"
 msgid "Device Manager Actions"
 msgstr "Дії кнопок меню диспетчера пристроїв"
 
-msgid "Device Settings"
-msgstr "Налаштування пристрою"
-
 msgid "Device id"
 msgstr "Ідентифікатор пристрою"
 
@@ -6448,6 +6603,9 @@ msgstr "Інформація про стан Каталогу/Файлу"
 msgid "Disable"
 msgstr "Вимкнуто"
 
+msgid "Disable Adapter"
+msgstr ""
+
 msgid "Disable Animations"
 msgstr "Вимкнути Анімацію"
 
@@ -6472,6 +6630,9 @@ msgstr "Вимкнути Міні-ТБ"
 msgid "Disable Move Mode"
 msgstr "Вимкнути режим переміщення"
 
+msgid "Disable Network"
+msgstr ""
+
 msgid "Disable Picture in Picture"
 msgstr "Вимкнути Картинка в Картинці"
 
@@ -6490,6 +6651,9 @@ msgstr "Вимкнути екран введення"
 msgid "Disable operator profiles"
 msgstr "Відключити профілі оператора"
 
+msgid "Disable saved Wi-Fi network"
+msgstr ""
+
 msgid "Disable the HDD Process on VFD."
 msgstr "Відключити показ стану HDD на дисплеї"
 
@@ -6505,11 +6669,11 @@ msgstr "Вимкнуто"
 msgid "Disabled PiP.\n"
 msgstr "Відключення PiP.\n"
 
-msgid "Disabled or WPA/WPA2"
-msgstr "Вимкнено, або WPA/WPA2"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Не вдалося вимкнути Chkroot!"
+
+msgid "Disconnected"
+msgstr ""
 
 msgid "Discussion"
 msgstr "Обговорення"
@@ -6531,6 +6695,12 @@ msgstr "Показати 4:3 як"
 
 msgid "Display >16:9 content as"
 msgstr "Показати >16:9 як"
+
+msgid "Display Power And Content"
+msgstr ""
+
+msgid "Display Scrolling"
+msgstr ""
 
 msgid "Display Settings"
 msgstr "Налаштування дисплея"
@@ -6704,23 +6874,20 @@ msgstr "Ви дійсно хочете видалити Вашу закладк�
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Ви дійсно хочете видалити таймер %s?"
 
-msgid ""
-"Do you really want to restart OSCam?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
+#, python-format
+msgid "Do you really want to restart %s?"
 msgstr ""
-"Ви дійсно хочете перезапустити OSCam?\n"
-"\n"
-"УВАГА: це займе приблизно 5 секунд!"
 
+#, python-format
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
-"Ви дійсно хочете вимкнути OSCam?\n"
-"\n"
-"УВАГА: Щоб повторно активувати OSCam, необхідно виконати повний перезапуск приймача!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6836,6 +7003,9 @@ msgstr "Dolby TrueHD"
 msgid "Domain"
 msgstr "Домен"
 
+msgid "Domain name"
+msgstr "Доменне ім'я"
+
 msgid "Dominica"
 msgstr "Домініка"
 
@@ -6943,6 +7113,9 @@ msgstr "Dreambox формат DVD-диску (сумісний з HDTV)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Dreambox формат даних DVD (не працюватиме в інших програвачах DVD)"
 
+msgid "Driver"
+msgstr ""
+
 msgid "Driver Packages"
 msgstr "Пакети драйверів"
 
@@ -7007,17 +7180,26 @@ msgstr "Перевірити кеш ЕПГ"
 msgid "EPG Channel/Service Selection"
 msgstr "Вибір каналу/послуг ЕПГ"
 
+msgid "EPG Data In Streams"
+msgstr ""
+
 msgid "EPG Display Actions"
 msgstr "Дії кнопок при відображені ЕПГ"
 
 msgid "EPG Jump"
 msgstr "Стрибок ЕПГ"
 
+msgid "EPG Language"
+msgstr ""
+
 msgid "EPG Navigation Actions"
 msgstr "Дії кнопок по навігації по ЕПГ"
 
 msgid "EPG Other Actions"
 msgstr "Інші дії ЕПГ"
+
+msgid "EPG Range And History"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Пошук ЕПГ"
@@ -7030,6 +7212,12 @@ msgstr "Налаштування ЕПГ"
 
 msgid "EPG Setup"
 msgstr "Налаштування ЕПГ"
+
+msgid "EPG Sources"
+msgstr ""
+
+msgid "EPG Storage And Refresh"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "Режим кнопки ЕПГ"
@@ -7107,6 +7295,9 @@ msgstr "Редагувати"
 msgid "Edit Alternatives"
 msgstr "Редагувати альтернативи"
 
+msgid "Edit Credentials"
+msgstr ""
+
 msgid "Edit Mode Off"
 msgstr "Редагування викл"
 
@@ -7128,6 +7319,9 @@ msgstr "Редагувати назву"
 msgid "Edit Upgrade Source URL"
 msgstr "Редагувати вихідну URL-адресу оновлення"
 
+msgid "Edit Username/Password Credentials"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Редагувати глави поточного заголовку"
 
@@ -7137,25 +7331,20 @@ msgstr "Редагувати даний рядок"
 msgid "Edit settings"
 msgstr "Редагування налаштувань"
 
+msgid "Edit stored username/password credentials for the selected host"
+msgstr ""
+
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "Редагування назви хосту сервера CCcam/NewCamd."
 
 msgid "Edit the CCcam/NewCamd server port."
 msgstr "Редагування порту сервера CCcam/NewCamd."
 
-#, python-format
-msgid "Edit the DNS configuration of your %s %s."
-msgstr "Редагувати конфігурацію DNS Вашого %s %s."
-
 msgid "Edit the NewCamd DES Key."
 msgstr "Редагування DES ключа NewCamd."
 
 msgid "Edit the currently selected timer"
 msgstr "Відредагуйте поточний вибраний таймер"
-
-#, python-format
-msgid "Edit the network configuration of your %s %s."
-msgstr "Редагувати конфігурацію мережі Вашого %s %s."
 
 msgid "Edit the password."
 msgstr "Редагування паролю."
@@ -7168,6 +7357,9 @@ msgstr "Редагування віддаленого порту CCCam."
 
 msgid "Edit the remote IP address."
 msgstr "Редагування віддаленої АП-адреси."
+
+msgid "Edit the selected network mount"
+msgstr ""
 
 msgid "Edit the upgrade source address."
 msgstr "Змінити адресу джерела оновлення."
@@ -7266,9 +7458,6 @@ msgstr "Увімкнути журнал налагодження GStreamer *"
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "Увімкнути графіки конвеєра GStreamer *"
 
-msgid "Enable IPv6"
-msgstr "Увімкнути IPv6"
-
 msgid "Enable IceTV"
 msgstr "Включити IceTV"
 
@@ -7320,8 +7509,8 @@ msgstr "Увімкнути ViaSat ЕПГ"
 msgid "Enable Virgin EPG"
 msgstr "Увімкнути Virgin ЕПГ"
 
-msgid "Enable Wake On LAN"
-msgstr "Включити функцію Wake On LAN"
+msgid "Enable adapter"
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Активація другого інфобара з додатковою інформацією (натисніть OK двічі для показу другого інфобару)."
@@ -7399,11 +7588,17 @@ msgstr "Увімкнути інтерфейс моніторингу"
 msgid "Enable multiple bouquets"
 msgstr "Відображати фаворитні списки"
 
+msgid "Enable network"
+msgstr ""
+
 msgid "Enable network traffic check"
 msgstr "Включити перевірку мережевого трафіку"
 
 msgid "Enable new GStreamer playback"
 msgstr "Увімкнути нове відтворення GStreamer"
+
+msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Ввімкнути, або вимкнути за допомогою HDMI-CEC."
@@ -7416,6 +7611,9 @@ msgstr "Включити перегляд"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Включити віддалений приймач enigma2, щоб спробувати настроїтись на канали, які неможливо настроїти на місцевому рівні (наприклад, приймач зайнятий або тип каналу недоступний на локальному тюнері. Вкажіть повну URL-адресу, включаючи http: // та номер порту (зазвичай: 8001), наприклад http: //second_box: 8001."
+
+msgid "Enable saved Wi-Fi network"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Включити кешування телетексту"
@@ -7516,20 +7714,11 @@ msgstr "Ввімкнено"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Включає функцію, за допомогою якої, приймач може розкодувати потік (якщо дані ECM додані у потік і вставлена робоча картка)."
 
-msgid "Encrypted: "
-msgstr "Кодовано: "
-
 msgid "Encryption"
 msgstr "Шифрування"
 
-msgid "Encryption Type:"
-msgstr "Тип шифрування:"
-
-msgid "Encryption key"
-msgstr "Ключ шифрування"
-
-msgid "Encryption key type"
-msgstr "Тип ключа шифрування"
+msgid "Encryption And Descrambling"
+msgstr ""
 
 msgid "End"
 msgstr "Кінець"
@@ -7639,6 +7828,9 @@ msgstr "Введіть нову назву для цього пристрою."
 msgid "Enter expected ONID/TSID"
 msgstr "Введіть очікуваний ONID/TSID"
 
+msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
+msgstr ""
+
 msgid "Enter if you are North or South of the equator."
 msgstr "Введіть де Ви знаходитесь на півночі чи півдні від екватора."
 
@@ -7650,6 +7842,9 @@ msgstr "Введіть нову назву каталогу:"
 
 msgid "Enter number to jump to channel"
 msgstr "Введіть номер, щоб перейти на канал"
+
+msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
+msgstr ""
 
 msgid "Enter persistent PIN code"
 msgstr "Введіть надійний пін-код"
@@ -7684,25 +7879,46 @@ msgstr "Введіть частоту порогу перемикання ниж
 msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
 msgstr "Введіть крок частоти, який тюнер буде використовувати при пошуку кабельних каналів. Для отримання додаткової інформації зверніться до документації Вашого провайдера."
 
+msgid "Enter the hostname or IP address of the network share's server."
+msgstr ""
+
+msgid "Enter the local directory name to be used as the local mount for the remote share."
+msgstr ""
+
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "Визначити DNS-суфікс."
+
+msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Введіть кількість потоків NFS-сервера, які будуть виділені/використані. Вищі значення покращують продуктивність з кількома клієнтами, але використовують більше пам'яті."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Введіть номер позиції в позиціонері, що відповідає цьому супутнику."
 
+msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the password to be used to access this host's shares."
+msgstr ""
+
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Введіть пароль, парольну фразу або попередньо створений ключ для вибраної бездротової мережі."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
+msgid "Enter the primary IPv4 DNS server for this adapter."
 msgstr "Введіть основний параметр DNS IPv4 для цього адаптера."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Введіть основний параметр DNS IPv6 для цього адаптера. (Необов’язково)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
+msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr ""
+
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Введіть вторинне налаштування DNS IPv4 для цього адаптера. (Необов’язково)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
 msgstr "Введіть вторинне налаштування DNS IPv6 для цього адаптера. (Необов’язково)"
 
 msgid "Enter the service pin"
@@ -7714,7 +7930,13 @@ msgstr "Введіть маску підмережі, яка використо�
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Введіть свій код підписки, уніфікований код для трейлу 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
+msgstr ""
+
+msgid "Enter the username to be used to access this host's shares."
+msgstr ""
+
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
 msgstr "Введіть назву робочої групи, яку цей приймач використовуватиме для з’єднань на основі Samba. (За замовчуванням — 'РОБОЧА ГРУПА'.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
@@ -7865,44 +8087,6 @@ msgstr "Затримка повторної спроби помилки"
 msgid "Error code"
 msgstr "Код помилки"
 
-msgid ""
-"Error creating EHD-Skin.\n"
-"Using HD-Skin!"
-msgstr ""
-"Помилка створення EHD скіна.\n"
-"Викорстовуємо HD скін!"
-
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
-"Using HD-Skin!"
-msgstr ""
-"Помилка створення EHD скіна. Завантаження значків не доступне.\n"
-"Викорстовуємо HD скін!"
-
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
-"Using HD-Skin!"
-msgstr ""
-"Помилка створення EHD скіна. Не вистачає флеш-пам'яті.\n"
-"Викорстовуємо HD-Skin!"
-
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
-"Using HD-Skin!"
-msgstr ""
-"Помилка створення EHD скіна.\n"
-"Викорстовуємо HD скін!"
-
-msgid "Error creating HD-Skin. Not enough flash memory free."
-msgstr "Помилка створення HD-Skin. Не вистачає флеш-пам'яті."
-
-msgid ""
-"Error creating MetrixHD-Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Помилка створення MetrixHD-Skin.\n"
-"Будь ласка, перевірте після перезавантаження MyMetrixLite-Plugin і застосуйте Ваші налаштування."
-
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Помилка завантаження іміджу '%s'!"
@@ -7951,9 +8135,6 @@ msgstr "Помилка запису '/etc/enigma2/epg.dat' на віддален
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Помилка під час запису 'epg.dat' на резервний приймач!"
 
-msgid "Error, unknown Result!"
-msgstr "Помилка, невідомий результат!"
-
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -7964,6 +8145,9 @@ msgstr ""
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Пусте ім'я файлу є недопустимим!"
+
+msgid "Error: Both 'server' and 'remote path' are required!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr "Помилка: не вдається знайти імідж!"
@@ -8017,12 +8201,19 @@ msgid "Error: It is not possible to run '%s' on '%s'!"
 msgstr "Помилка: Неможливо запустити '%s' на '%s'!"
 
 #, python-format
+msgid "Error: Mounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
 msgstr "Помилка: Програма '%s' не встановлена, і пакет, що містить цю програму, невідомий!"
 
 #, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Видалення директорії %s невдале. (Можливо не пуста)"
+
+msgid "Error: Rescan failed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8073,6 +8264,10 @@ msgid "Error: Unable to write log file '%s'!"
 msgstr "Помилка запису файлу: '%s'!"
 
 #, python-format
+msgid "Error: Unmounting '%s' failed!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Помилка: Ви не можете запустити '%s' на '%s'!"
 
@@ -8095,6 +8290,9 @@ msgstr "Естонська"
 msgid "EtPortal"
 msgstr "Et Портал"
 
+msgid "Ethernet Adapter"
+msgstr ""
+
 msgid "Ethernet network interface"
 msgstr "Інтерфейс локальної мережі"
 
@@ -8115,6 +8313,9 @@ msgstr "Навіть, якщо 'переключення' запустить т�
 
 msgid "Event Info"
 msgstr "Інформація про передачу"
+
+msgid "Event Metadata And Correction"
+msgstr ""
 
 msgid "Event View"
 msgstr "Перегляд завдань"
@@ -8229,18 +8430,6 @@ msgstr "Вийти з меню"
 msgid "Exit movie player?"
 msgstr "Вийти з відео плеєра?"
 
-msgid "Exit network adapter configuration"
-msgstr "вийти з налаштування мережевого адаптера"
-
-msgid "Exit network adapter setup menu"
-msgstr "Вийти з меню налаштування мережевого адаптера"
-
-msgid "Exit network interface list"
-msgstr "Вийти з списку мережевих інтерфейсів"
-
-msgid "Exit network wizard"
-msgstr "Вийти з майстра мережі"
-
 msgid "Exit picture viewer"
 msgstr "Вийти з програми перегляду зображень"
 
@@ -8259,6 +8448,9 @@ msgstr "Вийти і не робити резервної копії"
 msgid "Expand"
 msgstr "Розгорнути"
 
+msgid "Expand/collapse the selected host, or use the selected share"
+msgstr ""
+
 msgid "Experimental film/video"
 msgstr "експериментальний фільм/відео"
 
@@ -8273,6 +8465,9 @@ msgstr "Експерт"
 
 msgid "Expert mode"
 msgstr "Режим експерт"
+
+msgid "Exports"
+msgstr ""
 
 msgid "Exposure bias"
 msgstr "Зміщення експозиції"
@@ -8291,12 +8486,6 @@ msgstr "Розширити"
 
 msgid "Extended"
 msgstr "Розширений"
-
-msgid "Extended Networksetup Plugin..."
-msgstr "Плагін розширених параметрів мережі..."
-
-msgid "Extended Setup..."
-msgstr "Розширені налаштування..."
 
 msgid "Extended Shares"
 msgstr "Розширені мережеві диски"
@@ -8322,6 +8511,9 @@ msgstr "Зовнішній PiP"
 #, python-format
 msgid "External Storage %s"
 msgstr "Зовнішній накопичувач %s"
+
+msgid "External Subtitles"
+msgstr ""
 
 msgid "External subtitle color"
 msgstr "Колір зовнішніх субтитрів"
@@ -8517,6 +8709,9 @@ msgstr "Налаштування швидкої зміни каналу"
 msgid "Fast DiSEqC"
 msgstr "Швидкий DiSEqC"
 
+msgid "Fast Forward And Rewind"
+msgstr ""
+
 msgid "Fast Scan"
 msgstr "Швидкий Пошук"
 
@@ -8561,6 +8756,9 @@ msgstr "Фід стабільний."
 
 msgid "Feed unstable!"
 msgstr "Фід нестабільний!"
+
+msgid "Feeds And Networking"
+msgstr ""
 
 msgid "Fetch EPG and update timers now"
 msgstr "Отримайте ЕПГ та оновіть таймери зараз"
@@ -8686,6 +8884,9 @@ msgstr "Передачу файлу було скасовано користув
 msgid "Filename"
 msgstr "Назва файлу"
 
+msgid "Files And Directories"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr "Файли/теки виключити з резервної копії"
 
@@ -8746,9 +8947,6 @@ msgstr "Точне налаштування"
 
 msgid "Finished"
 msgstr "Завершено"
-
-msgid "Finished configuring your network"
-msgstr "Конфігурацію Вашої мережі завершено"
 
 msgid "Finland"
 msgstr "Фінляндія"
@@ -8849,14 +9047,14 @@ msgstr "Плоский за ключовою групою на пульті ке
 msgid "Flat by position on remote"
 msgstr "Плоске положення на пульті"
 
+msgid "Flush Cache and Rescan"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr "Фолк і кантрі"
 
 msgid "Folk/Traditional music"
 msgstr "народна/традиційна музика"
-
-msgid "Follow instructions on TV"
-msgstr "Дотримуйтесь інструкцій на телевізорі"
 
 msgid "Font size"
 msgstr "Розмір шрифта"
@@ -8894,7 +9092,7 @@ msgstr "Старий метод розрахунку сили сигналу"
 msgid "Force ToneBurst"
 msgstr "Потужність Тонового сигналу"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
 msgstr "Примусово встановіть певну швидкість мережевого з’єднання/дуплексний режим замість автоматичного узгодження. Змінюйте це лише за наявності конкретної причини, оскільки неправильне налаштування може перервати мережеве з’єднання."
 
 msgid "Force de-interlace"
@@ -8965,9 +9163,6 @@ msgstr "Французькі південні території"
 
 msgid "Frequency"
 msgstr "Частота"
-
-msgid "Frequency Norm:"
-msgstr "Частота:"
 
 msgid "Frequency bands"
 msgstr "Частотний діапазон"
@@ -9092,11 +9287,29 @@ msgstr "Загальні"
 msgid "General AC3 delay"
 msgstr "Загальна AC3 затримка"
 
+msgid "General Appearance"
+msgstr ""
+
 msgid "General BT audio delay"
 msgstr "Загальна затримка аудіо BT"
 
+msgid "General Channel Selection"
+msgstr ""
+
+msgid "General OSD Behavior"
+msgstr ""
+
 msgid "General PCM delay"
 msgstr "Загальна PCM затримка"
+
+msgid "General Setup Behavior"
+msgstr ""
+
+msgid "General Subtitle Appearance And Timing"
+msgstr ""
+
+msgid "General Time Shift Behavior"
+msgstr ""
 
 msgid "Generic"
 msgstr "Загальний"
@@ -9149,6 +9362,9 @@ msgstr "Гана"
 
 msgid "Gibraltar"
 msgstr "Гібралтар"
+
+msgid "GigaBlue optimized"
+msgstr "Оптимізовано для GigaBlue"
 
 msgid "Given device id"
 msgstr "Вказати ідентифікатор пристрою"
@@ -9390,6 +9606,9 @@ msgstr "HDMI-Вх. Налаштування запису"
 msgid "HDMIin"
 msgstr "HDMI вхід"
 
+msgid "HDR OSD adjustment"
+msgstr "Налаштування екранного меню HDR"
+
 msgid "HDR10 Support"
 msgstr "Підтримка HDR10"
 
@@ -9485,6 +9704,9 @@ msgstr "Допомога"
 
 msgid "Help Action"
 msgstr "Довідкова дія"
+
+msgid "Help And Visual Feedback"
+msgstr ""
 
 msgid "Help Screen Information"
 msgstr "Інформаційний Екран Допомоги"
@@ -9741,9 +9963,6 @@ msgstr "Венгрія"
 msgid "Hybrid Tuner"
 msgstr "Гібридний тюнер"
 
-msgid "Hybrid tuner mode"
-msgstr "Гібридний режим тюнера"
-
 msgid "Hz"
 msgstr "Гц"
 
@@ -9773,6 +9992,9 @@ msgstr "INS"
 
 msgid "IP"
 msgstr "АП"
+
+msgid "IP Address"
+msgstr ""
 
 msgid "IP Address 1"
 msgstr "IP-адреса 1"
@@ -9806,6 +10028,9 @@ msgstr "IP-протокол"
 
 msgid "IPK Installer"
 msgstr "IPK Інсталятор"
+
+msgid "IPv4 and IPv6"
+msgstr ""
 
 msgid "IPv4 only"
 msgstr "Лише IPv4"
@@ -10207,6 +10432,12 @@ msgstr "Ширина іконки Info"
 msgid "InfoBar"
 msgstr "Інфобар"
 
+msgid "InfoBar And Pause"
+msgstr ""
+
+msgid "InfoBar Content And Time Display"
+msgstr ""
+
 msgid "InfoBar EPG"
 msgstr "Інфобар ЕПГ"
 
@@ -10215,6 +10446,12 @@ msgstr "Налаштування інфобару ЕПГ"
 
 msgid "InfoBar EPG mode"
 msgstr "Режим інфобару EПГ"
+
+msgid "InfoBar Timing And Appearance"
+msgstr ""
+
+msgid "InfoBar Visibility And Behavior"
+msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr "Швидкість згасання Інфобару"
@@ -10375,9 +10612,6 @@ msgstr "Інтерфейс"
 #, python-format
 msgid "Interface '%s'"
 msgstr "Інтерфейс '%s'"
-
-msgid "Interface: "
-msgstr "Інтерфейс: "
 
 msgid "Interlaced"
 msgstr "Черезстрочна"
@@ -10673,6 +10907,9 @@ msgstr "Файли Kexec MultiBoot відсутні."
 msgid "Key"
 msgstr "Ключ"
 
+msgid "Key Map And Power Buttons"
+msgstr ""
+
 msgid "Keyboard"
 msgstr "Клавіатура"
 
@@ -10696,6 +10933,9 @@ msgstr "Кірибаті"
 
 msgid "Kodi"
 msgstr "Kodi"
+
+msgid "Kodi Add-on Packages"
+msgstr "Додаткові пакети Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi Медіа центр"
@@ -10733,11 +10973,11 @@ msgstr "Киргистан"
 msgid "LAN"
 msgstr "LAN"
 
-msgid "LAN adapter"
-msgstr "Мережевий адаптер"
-
 msgid "LAN connection"
 msgstr "LAN з'єднання"
+
+msgid "LAN link"
+msgstr ""
 
 msgid "LCD scroll speed"
 msgstr "Швидкість прокрутки на LCD"
@@ -10771,6 +11011,9 @@ msgstr "LED Режим Повного виключення"
 
 msgid "LED Deep Standby color"
 msgstr "Колір LED у вимкненому режимі"
+
+msgid "LED Indicators"
+msgstr ""
 
 msgid "LED Normal"
 msgstr "LED Нормально"
@@ -10898,6 +11141,9 @@ msgstr "Латвія"
 msgid "Latvian"
 msgstr "Латвійська"
 
+msgid "Layout And Fonts"
+msgstr ""
+
 msgid "Leave"
 msgstr "Залишити"
 
@@ -10942,6 +11188,9 @@ msgstr "Зліва, спереду USB"
 
 msgid "Left, wrapped"
 msgstr "зліва, прихований"
+
+msgid "Legacy (SMB1)"
+msgstr ""
 
 msgid "Legacy mode"
 msgstr "Старий вигляд"
@@ -11035,17 +11284,11 @@ msgstr "Лінгала"
 msgid "Link detected"
 msgstr "Виявлено посилання"
 
-msgid "Link quality:"
-msgstr "Якість з'єднання:"
-
 msgid "Link speed"
 msgstr "Швидкість з'єднання"
 
 msgid "Link target"
 msgstr "Цільове посилання"
-
-msgid "Link:"
-msgstr "З’єднання:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Заголовки пов'язані з DVD-Меню"
@@ -11053,14 +11296,14 @@ msgstr "Заголовки пов'язані з DVD-Меню"
 msgid "Links"
 msgstr "Посилання"
 
+msgid "List Appearance And Sorting"
+msgstr ""
+
 msgid "List Navigation Actions"
 msgstr "Список дій навігації"
 
 msgid "List available EPG functions"
 msgstr "Список функцій ЕПГ"
-
-msgid "List available networks"
-msgstr "Список доступних мереж"
 
 msgid "List of Storage Devices"
 msgstr "Список пристроїв зберігання"
@@ -11129,14 +11372,14 @@ msgstr "Локальні дата/година"
 msgid "Local information"
 msgstr "Локальна інформація"
 
-msgid "Local network"
-msgstr "Локальна мережа"
-
 msgid "Local or Regional"
 msgstr "Місцевий або регіональний"
 
 msgid "Local receiver"
 msgstr "Локальний приймач"
+
+msgid "Local share"
+msgstr ""
 
 msgid "Local time"
 msgstr "Локальна година"
@@ -11207,6 +11450,9 @@ msgstr "Лог %d/%d"
 
 msgid "Log Manager"
 msgstr "Управління логами"
+
+msgid "Log Retention And Access"
+msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11307,10 +11553,10 @@ msgstr "Люксембурська"
 msgid "M2k Packages"
 msgstr "Пакети M2k"
 
-msgid "MAC address"
-msgstr "MAC-адреса"
+msgid "MAC Address"
+msgstr ""
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC-адреса"
 
 msgid "MENU"
@@ -11455,9 +11701,6 @@ msgstr "Ручний пошук"
 msgid "Manual Service Searching"
 msgstr "Ручне сканування каналів"
 
-msgid "Manual configuration"
-msgstr "Ручне налаштування"
-
 msgid "Manual scan for services"
 msgstr "Ручний пошук каналів"
 
@@ -11530,9 +11773,6 @@ msgstr "Максимальна кількість каналів"
 msgid "Max memory positions"
 msgstr "Макс. кількість позицій в пам'яті"
 
-msgid "Max. bitrate: "
-msgstr "Макс. бітрейт: "
-
 msgid "Maxdown +"
 msgstr "Макс. вниз +"
 
@@ -11569,6 +11809,9 @@ msgstr "Медіа"
 
 msgid "Media Center"
 msgstr "Медіа Центр"
+
+msgid "Media Files And Navigation"
+msgstr ""
 
 msgid "Media Player"
 msgstr "Медіа Плеєр"
@@ -11652,6 +11895,9 @@ msgstr "Стиль входу в меню"
 msgid "Menu style"
 msgstr "Стиль меню"
 
+msgid "Menus And Setup"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Об'єднати ЕПГ з трансляцію IceTV"
 
@@ -11699,6 +11945,9 @@ msgstr "Налаштування MiniDLNA"
 
 msgid "MiniTV"
 msgstr "МініТВ"
+
+msgid "MiniTV And PiP"
+msgstr ""
 
 msgid "MiniTV with OSD"
 msgstr "Міні-ТВ з OSD"
@@ -11832,8 +12081,8 @@ msgstr "Мотори"
 msgid "Mount"
 msgstr "Підключення"
 
-msgid "Mount Manager"
-msgstr "Помічник монтування"
+msgid "Mount Context Menu"
+msgstr ""
 
 msgid "Mount Point"
 msgstr "Точка монтування"
@@ -11841,8 +12090,20 @@ msgstr "Точка монтування"
 msgid "Mount Setup"
 msgstr "Налаштування монтування"
 
+msgid "Mount at boot time (fstab)"
+msgstr ""
+
 msgid "Mount failed"
 msgstr "Монтування невдале"
+
+msgid "Mount mode"
+msgstr ""
+
+msgid "Mount on first access (autofs)"
+msgstr ""
+
+msgid "Mount or unmount the selected share"
+msgstr ""
 
 msgid "Mount point"
 msgstr "Точка монтування"
@@ -11850,11 +12111,17 @@ msgstr "Точка монтування"
 msgid "Mount root file system."
 msgstr "Монтування кореневої файлової системи."
 
+msgid "Mounted"
+msgstr ""
+
 msgid "Mounts"
 msgstr "Точки монтування"
 
 msgid "Move"
 msgstr "Переміщення"
+
+msgid "Move Down"
+msgstr ""
 
 msgid "Move Left/Right"
 msgstr "Переміщення вліво/вправо"
@@ -11873,6 +12140,9 @@ msgstr "Переміщення PIP"
 
 msgid "Move PiP to main picture"
 msgstr "Перемістити PiP на основний екран"
+
+msgid "Move Up"
+msgstr ""
 
 msgid "Move Up/Down"
 msgstr "Перемістити вгору/вниз"
@@ -11924,6 +12194,12 @@ msgstr "Перейти до останнього рядка у списку."
 
 msgid "Move east"
 msgstr "Перемістити на схід"
+
+msgid "Move item down"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
 
 msgid "Move job completed."
 msgstr "Переміщення завершено."
@@ -12031,6 +12307,12 @@ msgstr "Перейти до попереднього фавориту"
 msgid "Move to previous marker"
 msgstr "Перейти до попереднього маркера"
 
+msgid "Move to the Adapter list"
+msgstr ""
+
+msgid "Move to the Saved Wi-Fi Networks list"
+msgstr ""
+
 msgid "Move to the first item on the current line"
 msgstr "Перейти до першого елемента в поточному рядку"
 
@@ -12126,6 +12408,9 @@ msgstr "Дії при перегляді подій фільму"
 
 msgid "Movie List"
 msgstr "Список записів"
+
+msgid "Movie List And Playback Behavior"
+msgstr ""
 
 msgid "Movie Player Actions"
 msgstr "Дії для Плеєра записів"
@@ -12259,11 +12544,17 @@ msgstr "НАСТУПНА"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Settings"
+msgid "NFS Server Settings"
 msgstr "Налаштування NFS"
+
+msgid "NFS Setup Actions"
+msgstr ""
 
 msgid "NFS threads"
 msgstr "Потоки NFS"
+
+msgid "NFS version"
+msgstr ""
 
 msgid "NIM"
 msgstr "NIM"
@@ -12307,12 +12598,6 @@ msgstr "Назва за спаданням"
 msgid "Name server %d"
 msgstr "Сервер імен %d"
 
-msgid "Nameserver"
-msgstr "Назва сервера"
-
-msgid "Nameserver settings"
-msgstr "Параметри DNS"
-
 msgid "Nameserver setup"
 msgstr "Налаштування Nameserver"
 
@@ -12355,6 +12640,12 @@ msgstr "Перейти у вибраний каталог"
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Переміщення вгору/вниз за допомогою кнопок ВГОРУ/ВНИЗ та прокручування сторінок вгору/вниз за допомогою ВЛІВО/ВПРАВО. ОК, щоб виконати дію, описану в поточній довідці."
 
+msgid "Navigation And Button Assignments"
+msgstr ""
+
+msgid "Navigation And Time Range"
+msgstr ""
+
 msgid "Ndonga"
 msgstr "Ndonga"
 
@@ -12376,23 +12667,21 @@ msgstr "Маска мережі"
 msgid "Network"
 msgstr "Мережа"
 
-msgid "Network Adapter Actions"
-msgstr "Дії мережевого адаптера"
+#, python-format
+msgid "Network Adapter '%s' Settings"
+msgstr ""
 
 msgid "Network Adapter Selection"
 msgstr "Вибір мережного адаптера"
 
-msgid "Network Adapter Setting Actions"
-msgstr "Дії налаштування мережевого адаптера"
-
 msgid "Network Adapter Settings"
 msgstr "Налаштування мережевого адаптера"
 
-msgid "Network Adapter Text Actions"
-msgstr "Текстові дії мережевого адаптера"
-
 msgid "Network Browser"
 msgstr "Провідник мережі"
+
+msgid "Network Credentials"
+msgstr ""
 
 msgid "Network ID"
 msgstr "Мережевий ID"
@@ -12412,8 +12701,23 @@ msgstr "Лог Мережі"
 msgid "Network Log Actions"
 msgstr "Дії мережевого журналу"
 
+msgid "Network Mount Manager Actions"
+msgstr ""
+
+msgid "Network Mount Settings"
+msgstr ""
+
+msgid "Network Mounts Overview"
+msgstr ""
+
 msgid "Network Neighbourhood"
 msgstr "Мережеве оточення"
+
+msgid "Network Overview"
+msgstr ""
+
+msgid "Network Overview Actions"
+msgstr ""
 
 msgid "Network Packages"
 msgstr "Мережеві пакети"
@@ -12430,23 +12734,64 @@ msgstr "Налаштування мережі"
 msgid "Network Setup Actions"
 msgstr "Дії з налаштування мережі"
 
+msgid "Network Share Actions"
+msgstr ""
+
+msgid "Network Shares Browser"
+msgstr ""
+
+msgid "Network Shares Context Menu"
+msgstr ""
+
 msgid "Network Test"
 msgstr "Тест Мережі"
 
-msgid "Network Test:"
-msgstr "Тест мережі: "
+msgid "Network Test Actions"
+msgstr ""
 
-msgid "Network Wizard"
-msgstr "Майстер налашт. мережі"
+#, python-format
+msgid "Network Test For '%s'"
+msgstr ""
+
+msgid "Network Wi-Fi Settings"
+msgstr "Налаштування мережі Wi-Fi"
+
+msgid "Network adapter disabled."
+msgstr ""
+
+msgid "Network adapter enabled."
+msgstr ""
 
 msgid "Network adapter not connected to a network!"
 msgstr "Мережевий адаптер не підключений до мережі!"
 
+msgid "Network adapter setup result:"
+msgstr ""
+
+msgid "Network adapter status"
+msgstr ""
+
 msgid "Network address"
 msgstr "Мережева адреса"
 
+#, python-format
+msgid "Network cable connected (%s)"
+msgstr ""
+
+#, python-format
+msgid "Network cable disconnected (%s)"
+msgstr ""
+
 msgid "Network configuration..."
 msgstr "Налаштування мережі..."
+
+#, python-format
+msgid ""
+"Network connected successfully.\n"
+"\n"
+"Interface: %s\n"
+"IP address: %s"
+msgstr ""
 
 msgid "Network information"
 msgstr "Інформація про мережу"
@@ -12473,29 +12818,11 @@ msgstr "Мережевий пошук"
 msgid "Network storage on"
 msgstr "Мережевий накопичувач увімкнено"
 
-msgid "Network test"
-msgstr "Тест мережевого з'єднання"
-
 msgid "Network test..."
 msgstr "Тест мережевого з'єднання..."
 
-msgid ""
-"Network wizard completed.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Майстер мережі завершено.\n"
-"\n"
-"Натисніть OK, щоб продовжити."
-
 msgid "Network-ID"
 msgstr "Ідентифікатор мережі"
-
-msgid "Network:"
-msgstr "Мережа:"
-
-msgid "NetworkWizard"
-msgstr "Майстер налаштувань мережі"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Нейтрино (keymap.ntr)"
@@ -12529,6 +12856,9 @@ msgstr "Нові налаштування DXAndy "
 
 msgid "New Storage Device"
 msgstr "Новий пристрій зберігання даних"
+
+msgid "New Wi-Fi"
+msgstr ""
 
 msgid "New Zealand"
 msgstr "Нова Зеландія"
@@ -12627,14 +12957,20 @@ msgstr "На резервному приймачі не знайдено фай�
 msgid "No (supported) DVDROM found!"
 msgstr "Ніякого (сумісного) DVDROM привода не знайдено!"
 
-msgid "No Connection"
-msgstr "З'єднання відсутнє"
-
 msgid "No ECM PIDs available"
 msgstr "ECM PIDи відсутні"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Не знайдено жодного HDD, або HDD не ініціалізовано!"
+
+msgid "No IP address"
+msgstr ""
+
+msgid ""
+"No IP address was received.\n"
+"\n"
+"The network connection could not be established."
+msgstr ""
 
 msgid "No Internet connection"
 msgstr "Немає підключення до Інтернету"
@@ -12709,8 +13045,14 @@ msgstr "Немає вільного номера позиції"
 msgid "No free tuner!"
 msgstr "Немає вільного тюнера!"
 
+msgid "No gateway"
+msgstr ""
+
 msgid "No hard disks detected."
 msgstr "Жорстких дисків не виявлено."
+
+msgid "No hosts found yet - still scanning..."
+msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Файлів журналу не знайдено, тому журнали налагодження недоступні!"
@@ -12724,8 +13066,8 @@ msgstr "Немає ввімкнених/доступних мережевих а
 msgid "No network storage detected."
 msgstr "Мережеве сховище не виявлено."
 
-msgid "No networks found"
-msgstr "Мереж не знайдено"
+msgid "No networks found."
+msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Немає даних про перемикання (збільшення або зменшення)"
@@ -12750,6 +13092,9 @@ msgstr "Каналів немає"
 
 msgid "No services/providers selected"
 msgstr "Не вибрані канали/провайдери"
+
+msgid "No shares found."
+msgstr ""
 
 msgid "No slot images found"
 msgstr "Слотів з іміджами не знайдено"
@@ -12826,30 +13171,6 @@ msgstr "Не знайдено дійсного монтування для '%s'!
 
 msgid "No valid region details were found"
 msgstr "Не знайдено достовірних даних для регіону"
-
-msgid "No wireless networks found! Searching..."
-msgstr "Бездротові мережі не знайдено! Пошук..."
-
-msgid ""
-"No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
-msgstr ""
-"Не знайдено працюючого мережевого адаптера.\n"
-"Будь-ласка перевірте правильність під'єднання мережевого кабеля і налаштування мережі."
-
-msgid ""
-"No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
-msgstr ""
-"Не знайдено працюючого Wi-Fi мережевого адаптера.\n"
-"Будь-ласка перевірте чи під'єднаний сумісний Wi-Fi пристрій і мережа налаштована правильно."
-
-msgid ""
-"No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
-msgstr ""
-"Не знайдено працюючого Wi-Fi мережевого інтерфейсу.\n"
-"Перевірте чи під'єднано сумісний Wi-Fi пристрій або ввімкніть Ваш локальний мережевий інтерфейс."
 
 msgid "No, but restart from begin"
 msgstr "Ні, але відтворити фільм з початку"
@@ -12935,6 +13256,9 @@ msgstr "Норвезька Нинорськ"
 msgid "Not Classified"
 msgstr "Не класифіковано"
 
+msgid "Not Connected"
+msgstr ""
+
 msgid "Not Defined"
 msgstr "Не визначений"
 
@@ -12980,8 +13304,14 @@ msgstr ""
 "Вільне місце: %sMБ\n"
 "Шлях: %s"
 
+msgid "Not found"
+msgstr ""
+
 msgid "Not joined. Press Yellow to join."
 msgstr "Не приєдналися. Натисніть жовту кнопку, щоб приєднатися."
+
+msgid "Not mounted"
+msgstr ""
 
 msgid "Not required"
 msgstr "Не потрібно"
@@ -13010,6 +13340,9 @@ msgstr "Оновлень немає"
 
 msgid "Nothing, just leave this menu"
 msgstr "Нічого не робити, вийти з цього меню"
+
+msgid "Notifications And Display"
+msgstr ""
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13098,9 +13431,6 @@ msgstr "Oscam-Інфо"
 
 msgid "OSCam Information Settings"
 msgstr "Налаштування інформації OSCam"
-
-msgid "OSCam webif disabled"
-msgstr "oscam webif відключено"
 
 msgid "OSCamInfo Actions"
 msgstr "Дії OSCamInfo"
@@ -13205,9 +13535,6 @@ msgstr "На дійсних ONID, ігноруйте частину частот
 
 msgid "Once"
 msgstr "один раз"
-
-msgid "One"
-msgstr "Один"
 
 msgid "One line"
 msgstr "Один рядок"
@@ -13404,8 +13731,23 @@ msgstr "Відкрити список каналів і вибрати попе�
 msgid "Open the Channel Selection Settings screen"
 msgstr "Відкрити екран налаштувань Списку каналів"
 
+msgid "Open the Context Menu for the selected item"
+msgstr ""
+
 msgid "Open the Image information"
 msgstr "Відкрити інформацію про Імідж"
+
+msgid "Open the Mount Context Menu"
+msgstr ""
+
+msgid "Open the Network Adapter Settings for the selected item"
+msgstr ""
+
+msgid "Open the Network Shares Browser"
+msgstr ""
+
+msgid "Open the Network Shares Context Menu"
+msgstr ""
 
 msgid "Open the Plugin Browser"
 msgstr "Відкрити Провідник додатків"
@@ -13443,8 +13785,14 @@ msgstr "OpenVPN"
 msgid "OpenViX Packages"
 msgstr "Пакети OpenViX"
 
+msgid "OpenWebif Connection"
+msgstr ""
+
 msgid "OpenWebif picon path"
 msgstr "Шлях піконів OpenWebif"
+
+msgid "Opening network adapter configuration..."
+msgstr ""
 
 msgid "Opera"
 msgstr "Опера"
@@ -13472,6 +13820,9 @@ msgstr "Можливість вимкнення піконів в Інфобар
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Включити таймер режиму очікування HDD."
+
+msgid "Optional arguments"
+msgstr ""
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
 msgstr "Додаткова затримка між командами CEC під час надсилання серії команд. Залиште вимкненим, якщо пристрій не потребує повільнішої передачі."
@@ -13520,6 +13871,9 @@ msgstr "Інший"
 
 msgid "Other Actions"
 msgstr "Інші Дії"
+
+msgid "Other OSD Elements"
+msgstr ""
 
 msgid "Other Packages"
 msgstr "Інші пакети"
@@ -13645,6 +13999,9 @@ msgstr "PVR"
 
 msgid "Package"
 msgstr "Пакет"
+
+msgid "Package Categories"
+msgstr ""
 
 msgid "Package Manager"
 msgstr "Управління пакетами"
@@ -13913,6 +14270,9 @@ msgstr "Режим пошуку піконів"
 msgid "Picon width"
 msgstr "Ширина Піконів"
 
+msgid "Picture In Picture"
+msgstr ""
+
 msgid "Picture Information"
 msgstr "Інформація про зображення"
 
@@ -13943,6 +14303,9 @@ msgstr "Поштова скринька"
 
 msgid "Pilot"
 msgstr "Пілот"
+
+msgid "Pinging..."
+msgstr ""
 
 msgid "Pink"
 msgstr "рожевий"
@@ -14046,6 +14409,12 @@ msgstr "Відтворити аудіофайл"
 msgid "Play the selected service"
 msgstr "Відтворити вибраний канал"
 
+msgid "Playback And Saving"
+msgstr ""
+
+msgid "Playback And Status"
+msgstr ""
+
 msgid "Playback Settings"
 msgstr "Налаштування відтворення"
 
@@ -14128,17 +14497,11 @@ msgstr ""
 "Будь ласка, введіть свою електронну адресу, яка буде Вашим логіном.\n"
 "Через свій акаунт на веб-сайті IceTV ви можете отримувати повідомлення про послуги, нагадування про облікові записи та акційні пропозиції."
 
-msgid "Please follow the instructions on the TV"
-msgstr "Будь ласка, слідкуйте за інструкціями на TВ"
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Будь ласка, зверніть увагу, що раніше вибраний носій не може бути доступний, тому замість нього використовується каталог за замовчуванням."
 
 msgid "Please open Picture in Picture first"
 msgstr "Будь ласка, спочатку відкрийте картинку в картинці"
-
-msgid "Please press OK to continue."
-msgstr "Будь ласка, натисніть OK для продовження."
 
 msgid "Please press OK when ready"
 msgstr "Натисніть OK, коли будете готові"
@@ -14218,9 +14581,6 @@ msgstr ""
 msgid "Please wait"
 msgstr "Будь ласка, почекайте"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Будь ласка, почекайте на активацію налаштувань мережі..."
-
 msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "Зачекайте, поки буде створено/оновлено фаворити LCN..."
 
@@ -14275,17 +14635,8 @@ msgstr "Зачекайте, поки плагін оновиться."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Будь ласка, почекайте, йде перевірка встановлених плагінів ..."
 
-msgid "Please wait while we prepare your network interfaces..."
-msgstr "Будь ласка почекайте поки ми підготуємо Ваш мережевий інтерфейс..."
-
-msgid "Please wait while we test your network..."
-msgstr "Будь ласка, почекайте поки ми перевіримо Вашу мережу..."
-
 msgid "Please wait while your network is restarting..."
 msgstr "Будь ласка, почекайте поки перезавантажується мережа..."
-
-msgid "Please wait while your skin setting is restoring..."
-msgstr "Будь ласка, почекайте поки відновляться налаштування скіну..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Будь ласка, почекайте, перевіряється підключення до фіду."
@@ -14557,9 +14908,6 @@ msgstr "Натисніть OK, щоб вибрати MultiBoot."
 msgid "Press OK on your remote control to continue."
 msgstr "Натисніть ОК для продовження."
 
-msgid "Press OK to activate the settings."
-msgstr "Натисніть ОК для активації налаштувань."
-
 msgid "Press OK to continue."
 msgstr "Для продовження натисніть ОК."
 
@@ -14676,14 +15024,14 @@ msgstr "попередня/наступна сторінка"
 msgid "Prevsong"
 msgstr "Попер. пісня"
 
-msgid "Primary DNS"
-msgstr "Первинний DNS"
-
 msgid "Primary DNS (IPv4)"
 msgstr "Основний DNS (IPv4)"
 
 msgid "Primary DNS (IPv6)"
 msgstr "Основний DNS (IPv6)"
+
+msgid "Prime Time"
+msgstr ""
 
 msgid "Prime time"
 msgstr "Прайм-тайм"
@@ -15038,11 +15386,20 @@ msgstr "Рейтинг не визначений"
 msgid "Re-enter new PIN"
 msgstr "Повторно введіть новий ПІН"
 
+msgid "Reachable"
+msgstr ""
+
 msgid "Read Only"
-msgstr "Тільки для читання"
+msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Дані користувача з oscam.conf"
+
+msgid "Read block size"
+msgstr ""
+
+msgid "Read-Only"
+msgstr "Тільки для читання"
 
 msgid "Read/Write"
 msgstr "Читання/запис"
@@ -15097,6 +15454,9 @@ msgstr "Вимкнути зараз?"
 
 msgid "Really start Kodi and stop user interface now?"
 msgstr "Справді запустити Kodi і зупинити інтерфейс користувача зараз?"
+
+msgid "Really start RetroGaming and stop the user interface now?"
+msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Дійсно оновити передню панель і перезавантажити зараз?"
@@ -15188,6 +15548,18 @@ msgstr "Панель інструментів для запису"
 msgid "Recording"
 msgstr "Запис"
 
+msgid "Recording And Status Indicators"
+msgstr ""
+
+msgid "Recording Filenames And Data"
+msgstr ""
+
+msgid "Recording Locations"
+msgstr ""
+
+msgid "Recording Preparation And Margins"
+msgstr ""
+
 msgid "Recording Settings"
 msgstr "Налаштування запису"
 
@@ -15261,6 +15633,9 @@ msgstr "Записи можуть працювати неправильно бе
 
 msgid "Recovery"
 msgstr "Recovery"
+
+msgid "Recovery And Hardware"
+msgstr ""
 
 msgid "Recovery Mode"
 msgstr "Режим відновлення"
@@ -15401,11 +15776,20 @@ msgstr "Налаштування кнопок пульта"
 msgid "Remote Control Code Settings"
 msgstr "Код дистанційного керування"
 
+msgid "Remote Receiver Connection"
+msgstr ""
+
+msgid "Remote Timers"
+msgstr ""
+
 msgid "Remote control information"
 msgstr "Інформація про пульт"
 
 msgid "Remote control type"
 msgstr "Тип пульта управління"
+
+msgid "Remote path"
+msgstr ""
 
 msgid "Remote receiver"
 msgstr "Віддалений приймач"
@@ -15434,6 +15818,9 @@ msgstr "Видалити кабельні канали"
 
 msgid "Remove Confirmation"
 msgstr "Підтвердіть видалення"
+
+msgid "Remove Credentials"
+msgstr ""
 
 msgid "Remove Entry"
 msgstr "Видалити запис"
@@ -15649,6 +16036,15 @@ msgstr "Необхідний тип носія:"
 msgid "Rereading partition table"
 msgstr "Перечитати таблицю розділів"
 
+msgid "Rescan"
+msgstr ""
+
+msgid "Rescan for available Wi-Fi networks"
+msgstr ""
+
+msgid "Rescan for available network shares"
+msgstr ""
+
 msgid "Reserved"
 msgstr "Зарезервовано"
 
@@ -15712,8 +16108,18 @@ msgstr "Роздільна здатність"
 msgid "Resolution unit"
 msgstr "Одиниця роздільної здатності"
 
+msgid "Resolving..."
+msgstr ""
+
 msgid "Restart"
 msgstr "Перезавантажити"
+
+#, python-format
+msgid "Restart %s"
+msgstr ""
+
+msgid "Restart Adapter"
+msgstr ""
 
 msgid "Restart GUI"
 msgstr "Перезавантаження інтерфейсу"
@@ -15729,12 +16135,6 @@ msgstr "Перезавантажити графічний інтерфейс з�
 
 msgid "Restart Network"
 msgstr "Перезавантаження Мережі"
-
-msgid "Restart Network Adapter"
-msgstr "Перезапуск мережевого адаптера"
-
-msgid "Restart OSCam"
-msgstr "Перезапустити OSCam"
 
 msgid "Restart enigma"
 msgstr "Перезавантаження Enigma"
@@ -15754,8 +16154,15 @@ msgstr "Перезавантажити мережу з поточними нал
 msgid "Restart test"
 msgstr "Повторити тест"
 
-msgid "Restart your network connection and interfaces."
-msgstr "Перезавантаження мережевого з'єднання."
+#, python-format
+msgid "Restarting %s failed (exit code %s)"
+msgstr ""
+
+msgid "Restarting adapter..."
+msgstr ""
+
+msgid "Restarting saved Wi-Fi network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "Перезавантаження..."
@@ -15765,9 +16172,6 @@ msgstr "Відновлення"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "Відновити видалені фаворити"
-
-msgid "Restore MetrixHD Settings"
-msgstr "Відновити налаштування MetrixHD"
 
 msgid "Restore Plugins"
 msgstr "Відновити плагіни"
@@ -15823,6 +16227,9 @@ msgstr "Продовжити з останньої позиції на %s"
 
 msgid "Resuming playback"
 msgstr "Продовжити відтворення"
+
+msgid "Retest"
+msgstr ""
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -16022,11 +16429,11 @@ msgstr "Реюньйон"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Settings"
-msgstr "Налаштування SABnzbd"
-
 msgid "SAT"
 msgstr "САТ"
+
+msgid "SAT input"
+msgstr "Вхід для супутникового телебачення"
 
 msgid "SATA"
 msgstr "SATA"
@@ -16064,6 +16471,9 @@ msgstr "ПОМИЛКА перемикача SDcard! - вже на mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "ОДНОШАРОВИЙ DVD"
+
+msgid "SMB version"
+msgstr ""
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "Вибір запису QuickSelect у стилі SMS"
@@ -16119,7 +16529,7 @@ msgstr "Клієнт Samba"
 msgid "Samba Server"
 msgstr "Samba Сервер"
 
-msgid "Samba Settings"
+msgid "Samba Server Settings"
 msgstr "Налаштування Samba"
 
 msgid "Same as in active"
@@ -16270,6 +16680,26 @@ msgstr "Зберегти таймшифт як запис і зупинити з
 msgid "Save time shift buffer now and continue recording"
 msgstr "Зберегти таймшифт зараз як фільм і продовжувати запис"
 
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Context Menu"
+msgstr ""
+
+#, python-format
+msgid "Saved Wi-Fi Network '%s' Settings"
+msgstr ""
+
+msgid "Saved Wi-Fi Networks"
+msgstr ""
+
+msgid "Saved Wi-Fi network connection disabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network connection enabled."
+msgstr ""
+
+msgid "Saved Wi-Fi network will be retried automatically at next boot."
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr "Збережені рядки в повідомленнях сценарію"
 
@@ -16306,6 +16736,9 @@ msgstr "Пошук %s"
 msgid "Scan %s band"
 msgstr "Пошук %s діапазону"
 
+msgid "Scan Wi-Fi Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Сканувати додатковий SR"
 
@@ -16320,12 +16753,6 @@ msgstr "Пошук і встановлення локальних розшире
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Пошук наземних LCN і створення фаворитів LCN"
-
-msgid "Scan wireless networks"
-msgstr "Пошук Wі-Fі мереж"
-
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Сканувати мережу на наявність точок бездротового доступу та підключитись до них за допомогою вибраного бездротового пристрою."
 
 msgid "Scanning"
 msgstr "Сканування"
@@ -16353,6 +16780,12 @@ msgstr[2] "Сканування завершено, %d каналів знайд
 
 msgid "Scanning failed!"
 msgstr "Сканування не вдалося!"
+
+msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning..."
+msgstr "Сканування..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -16467,9 +16900,6 @@ msgstr "Пошук на захід..."
 msgid "Second cable of motorized LNB"
 msgstr "Другий кабель від позиціонера"
 
-msgid "Secondary DNS"
-msgstr "Вторинний DNS"
-
 msgid "Secondary DNS (IPv4)"
 msgstr "Вторинний DNS (IPv4)"
 
@@ -16550,6 +16980,9 @@ msgstr "Виберіть 'поляризацію', якщо використов
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Виберіть 'провайдер' для сканування з попередньо визначеного списку кабельних операторів. Виберіть 'смуга', щоб сканувати лише частину частот. Виберіть 'крок' для сканування з певним кроком смуги частот."
+
+msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
+msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Виберіть 'Унікальна нумерація', щоб призначити унікальні номери для кожного каналу в кожному фавориті. Використовуйте 'Фаворити починаються з 1', щоб почати нумерацію кожного фаворита з 1. Використовуйте 'Нумерацію LCN', щоб використовувати послідовні LCN канали, де б ці канали не використовувалися."
@@ -16706,6 +17139,9 @@ msgstr "Виберіть 'Так', щоб установити позицію к
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети 'dev', 'staticdev', 'dbg' і 'doc' на екрані завантаження плагінів."
+
+msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
+msgstr "Виберіть 'Так', щоб відобразити додаткові пакети Kodi на екрані завантаження плагінів."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети скінів РК-дисплея на екрані завантаження плагінів."
@@ -16884,6 +17320,9 @@ msgstr "Вибір джерела оновлення"
 msgid "Select Upgrade Source To Edit"
 msgstr "Виберіть джерело оновлення для редагування"
 
+msgid "Select Wi-Fi adapter"
+msgstr ""
+
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Виберіть камеру Softcam із доступного списку, як стандартну для AutoCam."
 
@@ -16927,6 +17366,9 @@ msgstr "Вибрати відео"
 msgid "Select a network adapter"
 msgstr "Вибір мережевого адаптера"
 
+msgid "Select a network interface to configure, or skip to configure the network later in system settings."
+msgstr ""
+
 msgid "Select a permanent mount point for all devices"
 msgstr "Виберіть постійну точку підключення для всіх пристроїв"
 
@@ -16939,6 +17381,12 @@ msgstr "Виберіть журнал фіксації сховища для п�
 msgid "Select a script to run:"
 msgstr "Вибір скрипта для запуску:"
 
+msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
+msgstr ""
+
+msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "Виберіть період часу для відображення запиту на підтвердження, перш ніж таймер Zap змінить поточну послугу. Це дозволить користувачеві скасувати Zap. Виберіть 'Вимкнено', щоб дозволити Zap продовжуватися без підтвердження."
 
@@ -16950,9 +17398,6 @@ msgstr "Виберіть час у режимі очікування, до як�
 
 msgid "Select a tuner"
 msgstr "Вибір тюнера"
-
-msgid "Select a wireless network"
-msgstr "Вибір бездротової мережі"
 
 msgid "Select action"
 msgstr "Вибір дії"
@@ -17003,6 +17448,9 @@ msgstr "Вибрати каталог File Commander за замовчуванн
 msgid "Select destination for:"
 msgstr "Виберіть призначення для:"
 
+msgid "Select exported directories"
+msgstr ""
+
 msgid "Select files to exclude from backup"
 msgstr "Виберіть файли, які будуть виключені з резервної копії"
 
@@ -17048,9 +17496,6 @@ msgstr "Виберіть спосіб налаштування супутник�
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Виберіть, як розклад оброблятиметься стосовно режиму очікування."
 
-msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Виберіть спосіб підключення цього тюнера DVB-C/T. Використовуйте зовнішній коаксіальний перемикач лише з коаксіальним перемикачем з керуванням 5 В."
-
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Вибір активації режиму швидкого ЕПГ."
 
@@ -17062,6 +17507,9 @@ msgstr "Виберіть, чи потрібен час завершення."
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Налаштування режиу затримки при переключенні каналів."
+
+msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
+msgstr ""
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Ця опція дозволяє вибрати, чи відображатиметься значення за замовчуванням для елемента налаштування, і, якщо так, то у якому місці відносно опису."
@@ -17111,12 +17559,6 @@ msgstr "Виберіть пристрій вводу"
 msgid "Select input device."
 msgstr "Виберіть пристрій вводу."
 
-msgid "Select interface"
-msgstr "Виберіть інтерфейс"
-
-msgid "Select menu entry"
-msgstr "Виберіть пункт меню"
-
 msgid "Select movie"
 msgstr "Виберіть фільм"
 
@@ -17157,7 +17599,7 @@ msgstr "Вибрати запис %s"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Налаштуйте мову перекладу за допомогою AI."
 
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
 msgid "Select the No / False response"
@@ -17245,6 +17687,9 @@ msgstr "Виберіть канал або послугу для цього та
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
+
+msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Виберіть колір світлодіода живлення на передній панелі, коли приймач працює. Ця опція також дозволяє деактивувати/вимикати світлодіод."
@@ -17401,11 +17846,14 @@ msgstr "Виберіть виробника свого пристрою SCR. Я�
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Виберіть метод відновлення роздільної здатності екрана та буфера обміну при виході з телетексту."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
 msgstr "Виберіть режим доступу для автоматично експортованих спільних ресурсів samba."
 
-msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
 msgstr "Виберіть режим доступу, Читання/Запис або Тільки читання, який застосовується до всіх експортованих каталогів."
+
+msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
+msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -17421,15 +17869,6 @@ msgstr "Виберіть теку для фільмів"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Виберіть швидкість передачі даних мережі, нижче якої має активуватися таймер, як зазначено. Трафік вище цієї норми з відключенням таймера."
-
-msgid ""
-"Select the network interface to be used for the Internet connection.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Виберіть мережевий інтерфейс, який буде використовуватися для підключення до Інтернету.\n"
-"\n"
-"Натисніть OK, щоб продовжити."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
 msgstr "Виберіть мережеву метрику для цього адаптера. Коли активно кілька адаптерів, той, що має найнижчу мережеву метрику, використовується як маршрут за замовчуванням для мережевого трафіку."
@@ -17468,6 +17907,9 @@ msgstr "Вибрати попередній канал та вийти із ус
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Виберіть протокол, який використовується Вашим пристроєм SCR. Виберіть 'SCR Unicable' (Unicable), або 'SCR JESS' (JESS, також відомий як Unicable II)."
 
+msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
+msgstr ""
+
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "Виберіть дію приймача, коли телевізор перемикається з входу приймача."
 
@@ -17500,6 +17942,9 @@ msgstr "Виберіть режим пошуку, щоб знайти пікон
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr "Виберіть протокол безпеки, який буде використовуватися для доступу до вибраної бездротової мережі."
+
+msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Виберіть набір символів клавіатури"
@@ -17594,14 +18039,8 @@ msgstr "Виберіть тип цього таймера."
 msgid "Select the video mode to be used on the TV."
 msgstr "Виберіть режим відео для використання на телевізорі."
 
-msgid ""
-"Select the wireless network to which you want to connect.\n"
-"\n"
-"Press OK to continue."
+msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
-"Виберіть бездротову мережу, до якої потрібно підключитися.\n"
-"\n"
-"Натисніть OK, щоб продовжити."
 
 msgid "Select update source location"
 msgstr "Виберіть розташування джерела оновлення"
@@ -17645,6 +18084,9 @@ msgstr "Виберіть дію для активації кнопки TV."
 msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Виберіть дію для активації кнопок Вгору/Вниз."
 
+msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
+msgstr ""
+
 msgid "Select where the recording should be saved."
 msgstr "Виберіть місце збереження запису."
 
@@ -17669,7 +18111,7 @@ msgstr "Виберіть, чи будуть відтворюватися зву�
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Виберіть, чи слід пропускати аудіодоріжки Dolby TrueHD, чи декодувати їх."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Вибрати режим роботи DNS."
 
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
@@ -17689,9 +18131,6 @@ msgstr "Виберіть, чи потрібно показати іконку п
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Виберіть, які IP-протоколи можна використовувати з цим адаптером."
-
-msgid "Select wireless network"
-msgstr "Виберіть бездротову мережу"
 
 msgid "Select your ATSC provider."
 msgstr "Виберіть Ваш ATSC провайдер."
@@ -17804,10 +18243,13 @@ msgstr "серйозна музика/класична музика"
 msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "серйозний/класичний/релігійний/історичний фільм/драма"
 
+msgid "Server"
+msgstr ""
+
 msgid "Server down"
 msgstr "Сервер вимкнений"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "Сервер не повинен застосовувати власний чорний список. Деякі сервери можуть впроваджувати власні чорні списки для блокування сайтів з метою батьківського контролю, блокування реклами тощо."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
@@ -17845,6 +18287,9 @@ msgstr "Інформація Каналу"
 
 msgid "Service Information Actions"
 msgstr "Інформаційні дії щодо каналу"
+
+msgid "Service List Appearance"
+msgstr ""
 
 msgid "Service Scan"
 msgstr "Пошук Каналів"
@@ -18206,17 +18651,20 @@ msgstr "Виберіть дію для кнопки."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Встановіть значення 'Так' для визначенн основної причини появи спінера."
 
+msgid "Set up network"
+msgstr ""
+
 msgid "Set up tuner [TUNER]"
 msgstr "Налаштувати тюнер [TUNER]"
 
 msgid ""
 "Set up tuner [TUNER].\n"
 "\n"
-"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+"For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
-"Налаштуйте тюнер [TUNER].\n"
+"Налаштування тюнера [TUNER].\n"
 "\n"
-"Для моделей з гібридним тюнером перемикайте тип тюнера кнопками ВЛІВО та ВПРАВО."
+"Для тюнерів, що підтримують кілька типів прийому, налаштуйте кожен доступний тип окремо."
 
 msgid "Set voltage and 22KHz"
 msgstr "Встановити напругу і 22KГц"
@@ -18556,6 +19004,9 @@ msgstr "Показати пікони в інфобарі"
 msgid "Show Kernel packages"
 msgstr "Показати пакети ядра"
 
+msgid "Show Kodi Add-on packages"
+msgstr "Показати пакети доповнень Kodi"
+
 msgid "Show Live in MiniTV"
 msgstr "Показати передачу в PіG-вікні"
 
@@ -18678,9 +19129,6 @@ msgstr "Показати Scart в головному меню"
 
 msgid "Show Vertical EPG"
 msgstr "Показати вертикальний телегід"
-
-msgid "Show WLAN status"
-msgstr "Показати статус Wi-Fi мережі"
 
 msgid "Show Web Link packages"
 msgstr "Показати пакети веб-посилань"
@@ -18843,9 +19291,6 @@ msgstr "Показати в Браузері плагінів"
 msgid "Show in Standby"
 msgstr "Показати в Режимі очікування"
 
-msgid "Show info"
-msgstr "Показати інформацію"
-
 msgid "Show info line"
 msgstr "Показати інфолінії"
 
@@ -18887,6 +19332,9 @@ msgstr "Показати записи"
 
 msgid "Show multi channel EPG"
 msgstr "Показати мульти телегід"
+
+msgid "Show network adapter connection information"
+msgstr ""
 
 msgid "Show next commit log"
 msgstr "Показати наступний журнал фіксації"
@@ -19071,6 +19519,9 @@ msgstr "Показати Інфо-екран CCcam"
 msgid "Show the Logs Settings screen"
 msgstr "Показати екран налаштувань журналів"
 
+msgid "Show the Network Information for the selected adapter"
+msgstr ""
+
 msgid "Show the OSCam information screen"
 msgstr "Показати Екран Інформації OSCam"
 
@@ -19152,9 +19603,6 @@ msgstr "Показується поточний канал або інформа
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Показується іконка, як нове/непереглянуте, інакше іконка показана не буде."
 
-msgid "Shows the state of your wireless LAN connection."
-msgstr "Відображає стан підключення до бездротової чи локальної мережі."
-
 msgid "Shows the watched status of the media."
 msgstr "Показується статус переглянутого запису."
 
@@ -19167,8 +19615,9 @@ msgstr "вимкнути"
 msgid "Shutdown"
 msgstr "Вимкнути"
 
-msgid "Shutdown OSCam"
-msgstr "Зупинити OSCam"
+#, python-format
+msgid "Shutdown %s"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr "Вимкнення. Будь ласка, зачекайте..."
@@ -19188,14 +19637,8 @@ msgstr "Дизайн Sigma"
 msgid "Signal Finder"
 msgstr "Пошук сигналу"
 
-msgid "Signal quality"
-msgstr "Якість сигналу"
-
 msgid "Signal strength"
 msgstr "Сила сигналу"
-
-msgid "Signal: "
-msgstr "Сигнал: "
 
 msgid "Signed by"
 msgstr "За підписом"
@@ -19287,6 +19730,9 @@ msgstr "Налаштування скіну"
 msgid "SkinSelection"
 msgstr "Вибір Скіна"
 
+msgid "Skip Modes"
+msgstr ""
+
 msgid "Skip back"
 msgstr "Перейти назад"
 
@@ -19333,6 +19779,9 @@ msgstr "перемотати вперед (введіть час)"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Пропустіть перехід до прямого ефіру під час зміщення часу за допомогою плагінів"
+
+msgid "Skip network setup"
+msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Пропустити встановлення пакетів, будуть доступні лише базові пакети"
@@ -19568,6 +20017,9 @@ msgstr "Суспільство та культура"
 msgid "Socket"
 msgstr "Сокет"
 
+msgid "Soft mount"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr "Налаштування SoftCSA"
 
@@ -19588,6 +20040,9 @@ msgstr "Налаштування Softcam"
 
 msgid "Softcams"
 msgstr "Softcams"
+
+msgid "Software Display Scrolling"
+msgstr ""
 
 msgid "Software Management"
 msgstr "Управління ПЗ"
@@ -19706,6 +20161,18 @@ msgstr "Сортування списку браузера плагінів"
 msgid "Sort by"
 msgstr "Сортувати по"
 
+msgid "Sort by Hostname/IP Address"
+msgstr ""
+
+msgid "Sort by IP Address"
+msgstr ""
+
+msgid "Sort by Mount Name"
+msgstr ""
+
+msgid "Sort by Name"
+msgstr ""
+
 msgid "Sort by default"
 msgstr "Сортувати за умовчанням"
 
@@ -19733,6 +20200,9 @@ msgstr "Соул/ритм-енд-блюз"
 
 msgid "Sound"
 msgstr "Звук"
+
+msgid "Sound Enhancements"
+msgstr ""
 
 msgid "Sound carrier"
 msgstr "Носій звуку"
@@ -19798,9 +20268,6 @@ msgstr "особливі події"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Вкажіть каталог, який використовуватиметься під час запуску Media Player."
 
-msgid "Specify the network domain name suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Визначити DNS-суфікс."
-
 msgid "Speed"
 msgstr "Швидкість"
 
@@ -19851,6 +20318,10 @@ msgstr "Режим очікування без вимкнення телевіз
 
 msgid "Start"
 msgstr "Старт"
+
+#, python-format
+msgid "Start %s"
+msgstr ""
 
 msgid "Start Auto Refresh"
 msgstr "Запустити автоматичне оновлення"
@@ -19903,9 +20374,6 @@ msgstr "Почати повторну спробу"
 msgid "Start teletext"
 msgstr "Запуск телетексту"
 
-msgid "Start test"
-msgstr "Почати тест"
-
 msgid "Start the Chkroot initialization"
 msgstr "Запустіть ініціалізацію Chkroot"
 
@@ -19933,6 +20401,10 @@ msgstr "Запуск/Зупинка/Вибір емулятора"
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Запуск/Зупинка/Вибір емулятора, спочатку потрібно встановити емулятор"
 
+#, python-format
+msgid "Starting %s failed (exit code %s)"
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Запуск Softcam"
 
@@ -19951,12 +20423,18 @@ msgstr "Час початку"
 msgid "Starts in a few seconds"
 msgstr "Починається через кілька секунд"
 
+msgid "Startup And Wakeup"
+msgstr ""
+
 msgid "Startup device not found!"
 msgstr "Пристрій запуску не знайдено!"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Регіон"
+
+msgid "Static"
+msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Статичний IP / Користувацький"
@@ -20042,9 +20520,6 @@ msgstr "При поверненні до записів не відтворюв�
 msgid "Stop streams"
 msgstr "Зупинити потоки"
 
-msgid "Stop test"
-msgstr "Зупинити тест"
-
 msgid "Stop testing plane after # failed transponders"
 msgstr "Зупинити тестування після # несправних транспондерів"
 
@@ -20072,6 +20547,10 @@ msgstr "Зупинити запис таймера"
 msgid "Stopped"
 msgstr "Зупинено"
 
+#, python-format
+msgid "Stopping %s failed (exit code %s)"
+msgstr ""
+
 msgid "Stopping Softcam"
 msgstr "Зупинка Softcam"
 
@@ -20091,6 +20570,9 @@ msgstr "Сховище/диски"
 msgid "Storage / Drive information"
 msgstr "Інформація про сховище/диск"
 
+msgid "Storage And Deletion"
+msgstr ""
+
 msgid "Storage Devices"
 msgstr "Пристрої зберігання"
 
@@ -20105,6 +20587,12 @@ msgstr "Диск не доступний для запису!"
 
 msgid "Store position"
 msgstr "Зберегти позицію"
+
+msgid "Stored credentials deleted for this server."
+msgstr ""
+
+msgid "Stored credentials for this server have been deleted."
+msgstr ""
 
 msgid "Stored position"
 msgstr "Збережена позиція"
@@ -20197,6 +20685,9 @@ msgstr "Субтитри"
 
 msgid "Subtitle Actions"
 msgstr "Дії для Субтитрів"
+
+msgid "Subtitle Language And Selection"
+msgstr ""
 
 msgid "Subtitle Quickmenu"
 msgstr "Швидке меню субтитрів"
@@ -20414,9 +20905,6 @@ msgstr "Перейти до іншої колонки"
 msgid "Switch to the right column"
 msgstr "Перейти до правої колонки"
 
-msgid "Switchable tuner types:"
-msgstr "Типи тюнерів що перемикаються:"
-
 msgid "Switching to live TV - time shift is still active!"
 msgstr "Перехід на телевізійні програми - таймшифт все ще активна!"
 
@@ -20505,7 +20993,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - Monja 29.07.2026"
+msgstr "Переклад: kvinto - Monja 15.08.2026"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20519,17 +21007,17 @@ msgstr "ТЮНЕР:"
 msgid "TV"
 msgstr "ТВ"
 
+msgid "TV Input And Receiver Wakeup"
+msgstr "Вхід телевізора та пробудження приймача"
+
+msgid "TV Power"
+msgstr "Потужність телевізора"
+
 msgid "TV button mode"
 msgstr "Режим кнопки TV"
 
-msgid "TV input and receiver wakeup"
-msgstr "Вхід телевізора та пробудження приймача"
-
 msgid "TV physical address report"
 msgstr "Звіт про фізичний адрес ТВ"
-
-msgid "TV power"
-msgstr "Потужність телевізора"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -20633,6 +21121,9 @@ msgstr "Телетекст Початок X (лівий край)"
 msgid "Teletext StartY (lower border)"
 msgstr "Телетекст Початок Y (нижня межа)"
 
+msgid "Teletext Subtitles"
+msgstr ""
+
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Телетекст TTF жирний (0=нормальний, 1=жирний)"
 
@@ -20695,6 +21186,9 @@ msgstr "теніс/сквош"
 msgid "Terrestrial"
 msgstr "Наземний"
 
+msgid "Terrestrial input"
+msgstr "Наземний вхід"
+
 msgid "Test"
 msgstr "Тест"
 
@@ -20709,10 +21203,6 @@ msgstr "Тестове завдання не вдалося!"
 
 msgid "Test mode"
 msgstr "Тестовий режим"
-
-#, python-format
-msgid "Test the network configuration of your %s %s."
-msgstr "Тест мережевого з'єднання Вашого %s %s."
 
 msgid "Test type"
 msgstr "Тип тесту"
@@ -20832,24 +21322,6 @@ msgstr ""
 #, python-format
 msgid "The IceTV server has requested password for %s."
 msgstr "Сервер IceTV запитує пароль для %s."
-
-msgid ""
-"The Internet connection appears to be working.\n"
-"\n"
-"Press OK to continue."
-msgstr ""
-"Здається, підключення до Інтернету працює.\n"
-"\n"
-"Натисніть OK, щоб продовжити."
-
-msgid ""
-"The Internet connection appears to not be working!\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Здається, підключення до Інтернету не працює!\n"
-"\n"
-"Виберіть, що робити далі."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -21020,13 +21492,6 @@ msgstr "Висота зображення. Вхід буде змінено, щ�
 msgid "The loopthrough setting is wrong."
 msgstr "Налаштування петлі неправильне."
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Майстер налаштування мережі не встановлено!\n"
-"Будь-ласка встановіть його."
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Каталог піконів уже існує і його потрібно видалити. Ви бажаєте продовжити?"
 
@@ -21104,35 +21569,12 @@ msgstr ""
 msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr "Інтерфейс користувача Вашого %s %s буде зупинено для запуску Kodi"
 
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run RetroGaming"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Ширина зображення. Вхід буде змінено, щоб відповідати цьому значенню."
-
-msgid ""
-"The wireless LAN Internet connection could not be started!\n"
-"Is the wireless LAN device connected?\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Не вдалося запустити підключення до Інтернету через бездротову локальну мережу!\n"
-"Чи під’єднано пристрій бездротової локальної мережі?\n"
-"\n"
-"Виберіть, що робити далі."
-
-msgid ""
-"The wireless LAN plugin code is not installed!\n"
-"\n"
-"Install it and choose what to do next."
-msgstr ""
-"Код плагіна бездротової локальної мережі не встановлено!\n"
-"\n"
-"Встановіть його та виберіть, що робити далі."
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Додаток Wі-Fі мережі не встановлений!\n"
-"Будь ласка, встановіть його."
 
 msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr "Майстер може створити резервну копію поточних налаштувань. Ви хочете почати резервне копіювання зараз?"
@@ -21215,6 +21657,9 @@ msgstr "Ця функція недоступна, оскільки обробк�
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Це обхідний шлях для деяких пристроїв, які знову прокидаються після переходу в режим очікування. Команда пробудження з інших пристроїв буде ігнорована протягом кількох секунд."
 
+msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
+msgstr "Це один тип прийому одного тюнера. Увімкнені типи прийому перемикаються автоматично та скануються окремо."
+
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Це поточна вибрана мова. [%s]"
@@ -21237,6 +21682,9 @@ msgstr "Це меню пропонує параметри, пов’язані �
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Це зміщення буде використовуватися, лише якщо канал не має власного зміщення гучності."
+
+msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
+msgstr "Ця опція налаштовує графіку SDR та кольори екранного меню, коли вихід HDMI перебуває в режимі HDR."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Опція служить для зниження шумів на зображенні. Це відбувається за рахунок різкості зображення."
@@ -21452,57 +21900,6 @@ msgid "This setting is for special setups only. It gives this LNB higher priorit
 msgstr "Ці налаштування призначені лише для спеціальних установок. Це дає даному LNB вищий пріоритет над іншими з меншими значеннями. Вільний LNB з найвищим пріоритетом буде першим LNB, вибраним для налаштування каналів."
 
 msgid ""
-"This test checks for configured DNS.\n"
-"If you get an \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Цей тест перевіряє правильність налаштувань Nameserver'ів.\n"
-"Якщо побачите повідомлення \"непідтверджений\":\n"
-"- перевірте DHCP, кабель і налаштування мережі\n"
-"- якщо ви налаштовували Nameserver вручну, будь ласка перевірте записи в \"Nameserver\" Конфігурація"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Цей тест перевірить чи під'єднаний кабель до Вашого мережевого адаптера.\n"
-"Якщо побачите повідомлення \"роз’єднано\":\n"
-"- перевірте чи мережевий кабель дійсно під'єднаний\n"
-"- перевірте чи мережевий кабель не пошкоджений"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
-msgstr ""
-"Цей тест перевірить чи знайдено вірний АП-адрес для Вашого мережевого адаптера.\n"
-"Якщо побачите повідомлення \"непідтверджений\":\n"
-"- IP-адреса не знайдена\n"
-"- перевірте DHCP, кабель і мережевий адаптер"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify that you have entered correct IP information in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Цей тест перевірить чи налаштований Ваш мережевий адаптер для автоматичної конфігурації АП-адреси з DHCP.\n"
-"Якщо побачите повідомлення \"disabled\":\n"
-"- тоді мережевий адаптер налаштований для ручної конфігурації IP-адреси без DHCP\n"
-"- перевірте чи в налаштуваннях адаптера введена правильна IP інформація.\n"
-"Якщо побачите повідомлення \"enabled\":\n"
-"- перевірте чи є в Вашій мережі правильно налаштований і працюючий DHCP сервер."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Цей тест визначить Ваш мережевий адаптер."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -21521,9 +21918,6 @@ msgstr "Цей майстер завершив роботу"
 
 msgid "This wizard has finished."
 msgstr "Цей майстер завершив роботу."
-
-msgid "Three"
-msgstr "Три"
 
 msgid "Threshold"
 msgstr "Поріг перемикання"
@@ -21660,6 +22054,9 @@ msgstr "Часовий пояс"
 msgid "Time zone area"
 msgstr "Регіон часового поясу"
 
+msgid "Timeline"
+msgstr ""
+
 msgid "Timeline 24 Hour"
 msgstr "Лінія часу 24 години"
 
@@ -21671,6 +22068,12 @@ msgstr "Часова історія"
 
 msgid "Timeline scale"
 msgstr "Шкала часу"
+
+msgid "Timeout"
+msgstr ""
+
+msgid "Timer Defaults And Retention"
+msgstr ""
 
 msgid "Timer Log Actions"
 msgstr "Дії логу таймера"
@@ -21738,7 +22141,7 @@ msgstr "Таймшифт"
 msgid "Timezone"
 msgstr "Часовий пояс"
 
-msgid "Timing and diagnostics"
+msgid "Timing And Diagnostics"
 msgstr "Терміни та діагностика"
 
 msgid "Timor-Leste / East Timor"
@@ -21838,6 +22241,9 @@ msgstr "Увімкнути режим багаторазового вибору"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Перемикання до нових текстових вставок, або перезаписати існуючий текст"
 
+msgid "Toggle picking a share by IP address or by DNS name"
+msgstr ""
+
 msgid "Toggle selection of the current tag"
 msgstr "Переключити вибір поточного тегу"
 
@@ -21920,6 +22326,9 @@ msgstr "Традиційний"
 msgid "Traditional Chinese"
 msgstr "Традиційна китайська"
 
+msgid "Transceiver"
+msgstr ""
+
 msgid "Transcode"
 msgstr "Перекодувати"
 
@@ -21970,6 +22379,9 @@ msgstr "Ідентифікатор транспортного потоку (TSID
 msgid "Transport Stream Type"
 msgstr "Тип транспортного потоку"
 
+msgid "Trash And Deletion"
+msgstr ""
+
 msgid "Trashcan"
 msgstr "Кошик"
 
@@ -21993,6 +22405,9 @@ msgstr "Обрізати файлову систему..."
 
 msgid "Trinidad and Tobago"
 msgstr "Тринідад і Тобаго"
+
+msgid "Triple Tuner"
+msgstr "Потрійний тюнер"
 
 msgid "True"
 msgstr "Вірно"
@@ -22050,6 +22465,12 @@ msgstr "Тюнер "
 
 msgid "Tuner :"
 msgstr "Тюнер :"
+
+msgid "Tuner Allocation And Conflicts"
+msgstr ""
+
+msgid "Tuner And Streaming"
+msgstr ""
 
 msgid "Tuner Configuration"
 msgstr "Конфігурація тюнера"
@@ -22173,9 +22594,6 @@ msgstr "Твін-гібрид"
 msgid "Twin Tuner"
 msgstr "Подвійний тюнер"
 
-msgid "Two"
-msgstr "Два"
-
 msgid "Two lines"
 msgstr "Два рядки"
 
@@ -22290,9 +22708,6 @@ msgstr "До 5 років"
 msgid "Undetermined"
 msgstr "Н/Д"
 
-msgid "Unencrypted"
-msgstr "Декодований"
-
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Неочікувана помилка доступу до WebIF: %s"
@@ -22352,13 +22767,6 @@ msgstr "Невідомий"
 msgid "Unknown Devices"
 msgstr "Невідомі пристрої"
 
-msgid ""
-"Unknown Error creating Skin.\n"
-"Please check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr ""
-"Невідома помилка створення скіну.\n"
-"Будь ласка, перевірте після перезавантаження MyMetrixLite-Plugin і застосуйте Ваші налаштування."
-
 msgid "Unknown Packages"
 msgstr "Невідомі пакети"
 
@@ -22400,6 +22808,9 @@ msgstr "Розпакувати файл"
 msgid "Unpublished"
 msgstr "неоприлюднений"
 
+msgid "Unreachable"
+msgstr ""
+
 msgid "Unscramble and record ECM"
 msgstr "розкодувати і записати ecm"
 
@@ -22411,9 +22822,6 @@ msgstr "Розкодувати приймачем http-потоку"
 
 msgid "Unset As Startup Service"
 msgstr "припинити користуватися каналом запуску"
-
-msgid "Unsupported"
-msgstr "Не підтримуєтья"
 
 msgid "Until standby/restart"
 msgstr "до режиму очікування/перезавантаження"
@@ -22595,6 +23003,9 @@ msgstr "Використовувати LNB 1 користувацький діа
 msgid "Use MHW EPG information when it is available."
 msgstr "Використовувати інформацію MHW ЕПГ, коли вона доступна."
 
+msgid "Use NFS file locking"
+msgstr ""
+
 msgid "Use Netmed EPG information when it is available."
 msgstr "Використовувати інформацію Netmed ЕПГ, коли вона доступна."
 
@@ -22631,14 +23042,14 @@ msgstr "Використовуйте час закінчення таймера 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Використовуйте кеш DNS для локального зберігання останніх DNS-запитів, щоб покращити продуктивність, зменшити затримку та вихідний трафік."
 
-msgid "Use a gateway"
-msgstr "Використовувати шлюз"
-
 msgid "Use alternate GitHub DNS"
 msgstr "Використати альтернативний DNS GitHub"
 
 msgid "Use an alternative smaller screen."
 msgstr "Використовувати альтернативне вікно."
+
+msgid "Use as HDD replacement"
+msgstr ""
 
 msgid "Use automatic mode detection"
 msgstr "Використовувати автоматичне визначення режиму"
@@ -22685,11 +23096,11 @@ msgstr "Використовуйте геолокацію для отриман�
 msgid "Use geolocation to set the current time zone location"
 msgstr "За допомогою геолокації встановіть поточне місце розташування часового поясу"
 
+msgid "Use guest login"
+msgstr ""
+
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "Використовуйте збільшену напругу '14/18 В ', якщо виникають проблеми при перемиканні конверторів."
-
-msgid "Use interface"
-msgstr "Використовувати інтерфейс"
 
 msgid "Use key map *"
 msgstr "Використовувати Keymap *"
@@ -22702,9 +23113,6 @@ msgstr "Використовувати звичайну нумерацію ка�
 
 msgid "Use only DNSSEC servers"
 msgstr "Використовуйте лише сервери DNSSEC"
-
-msgid "Use only for Wake on WLan (WoW)"
-msgstr "Використовувати тільки для пробудження по WLan (WoW)"
 
 msgid "Use only no-filter servers"
 msgstr "Використовуйте лише сервери без фільтрів"
@@ -22757,9 +23165,6 @@ msgstr "Використовуйте кнопки Вліво/Вправо на �
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Використовуйте кнопки Вліво/Вправо для переміщення OSD вгору/вниз."
 
-msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Використовуйте Майстер установок мережі. Майстер допоможе Вам налаштувати Вашу мережу"
-
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Використовуйте Панель емуляторів для управління емуляторами. Тут можете запустити/зупинити/вибрати потрібний емулятор"
 
@@ -22777,12 +23182,6 @@ msgstr "Використайте поточний вибір і вийдіть"
 
 msgid "Use the extended List"
 msgstr "Використання розширеного списку"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Використати Майстер мережі для налаштування вибраного мережевого адаптера"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Використовуйте мережевий майстер, щоб налаштувати мережу."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Використати Майстра для налаштування основних параметрів"
@@ -22860,6 +23259,12 @@ msgstr "Ім'я користувача"
 msgid "Username (httpuser)"
 msgstr "Ім'я користувача (httpuser)"
 
+msgid "Using DNS"
+msgstr ""
+
+msgid "Using IP"
+msgstr ""
+
 msgid "Using automatic address"
 msgstr "Використання автоматичної адреси"
 
@@ -22884,9 +23289,6 @@ msgstr "Узбекістан"
 msgid "VCR Scart Settings"
 msgstr "VCR скарт"
 
-msgid "VLAN connection"
-msgstr "VLAN з'єднання"
-
 msgid "VMC"
 msgstr "VMC"
 
@@ -22898,6 +23300,9 @@ msgstr "VOB файл"
 
 msgid "VOD"
 msgstr "VOD"
+
+msgid "VPN"
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "Налаштування VPS"
@@ -23236,6 +23641,9 @@ msgstr "Дії кнопок Вибору послуги Регулювання �
 msgid "Volume Adjust Settings"
 msgstr "Налаштування гучності"
 
+msgid "Volume Control"
+msgstr ""
+
 msgid "Volume adjustment mode"
 msgstr "Режим регулювання гучності"
 
@@ -23269,12 +23677,6 @@ msgstr "Інформація про підключення WAN"
 msgid "WARNING:"
 msgstr "УВАГА:"
 
-msgid "WEP"
-msgstr "WEP"
-
-msgid "WLAN connection"
-msgstr "Безпровідне з'єднання WLAN"
-
 msgid "WMA Pro"
 msgstr "WMA Pro"
 
@@ -23283,15 +23685,6 @@ msgstr "WMA Pro мікшування"
 
 msgid "WOL Standby"
 msgstr "WOL Режим очікування"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA або WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS на 4:3"
@@ -23307,6 +23700,9 @@ msgstr "Зачекайте, виконується сканування..."
 
 msgid "Waiting"
 msgstr "Очікування"
+
+msgid "Waiting for IP address..."
+msgstr ""
 
 msgid "Waiting for partition"
 msgstr "Очікування розділу"
@@ -23353,6 +23749,9 @@ msgstr "Попередження: %d фідів не вдалося переза
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
 msgstr "Попередження: Скасування цього процесу призведе до того, що фіди залишаться в незавершеному та непридатному для використання стані!"
+
+msgid "Warning: No Wi-Fi adapter found!"
+msgstr ""
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Попередження: перевизначення наразі активні!"
@@ -23615,7 +24014,7 @@ msgstr "Якщо включено, показується номер канал�
 msgid "When enabled, show status or error messages."
 msgstr "Якщо включено, будуть показуватися повідомлення про статус таймшифта."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Якщо ввімкнено, вкажіть власні налаштування DNS для цього адаптера замість глобальних налаштувань DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -23672,8 +24071,11 @@ msgstr "Якщо ввімкнено, таймер із резервного тю
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Коли цей режим увімкнено, цей адаптер Wi-Fi перебуває лише в режимі Wake-on-Wi-Fi і не використовуватиметься для підключення до жодної мережі."
 
-msgid "When enabled, this adapter is initialized and activated at boot time."
+msgid "When enabled, this adapter will be initialized and activated at boot time."
 msgstr "Коли цей адаптер увімкнено, він ініціалізується та активується під час завантаження."
+
+msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
+msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Якщо увімкнено, це налаштування має більшу вагу, ніж 'Бажаний тюнер для записів'."
@@ -23681,11 +24083,11 @@ msgstr "Якщо увімкнено, це налаштування має біл
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Якщо цей параметр увімкнено, він має більшу вагу, ніж 'Бажаний тюнер'."
 
+msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgstr ""
+
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "При включенні таймшифт автоматично буде запущений у фоновому режимі через обраний час."
-
-msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Якщо увімкнено, використовуйте DHCP для конфігурації АП."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Якщо увімкнено, Ви можете налаштувати параметри OpenWebIf для резервного тюнера."
@@ -23750,8 +24152,27 @@ msgstr "Поки доступно"
 msgid "White"
 msgstr "Білий"
 
-msgid "Wi-Fi Connection Settings"
-msgstr "Налаштування підключення Wi-Fi"
+msgid "Wi-Fi"
+msgstr ""
+
+msgid "Wi-Fi Activation Actions"
+msgstr ""
+
+msgid "Wi-Fi Adapter"
+msgstr ""
+
+msgid "Wi-Fi Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Wi-Fi Scan On '%s'"
+msgstr ""
+
+msgid "Wi-Fi connection"
+msgstr ""
+
+msgid "Wi-Fi link"
+msgstr ""
 
 msgid "Wide"
 msgstr "широкий"
@@ -23776,30 +24197,6 @@ msgstr "Очистити пристрій зберігання"
 
 msgid "Wiping storage device..."
 msgstr "Очищення пристрою зберігання..."
-
-msgid "Wireless LAN"
-msgstr "Безпровідний адаптер"
-
-msgid "Wireless network"
-msgstr "Безпровідна мережа"
-
-msgid "Wireless network configuration..."
-msgstr "Конфігурація безпровідної мережі..."
-
-msgid ""
-"Wireless network connection setup.\n"
-"\n"
-"Choose what to do next."
-msgstr ""
-"Налаштування підключення до бездротової мережі.\n"
-"\n"
-"Виберіть, що робити далі."
-
-msgid "Wireless network setup"
-msgstr "Налаштування бездротової мережі"
-
-msgid "Wireless network state"
-msgstr "Статус бездротової мережі"
 
 msgid "With EXIT button"
 msgstr "кнопкою exit"
@@ -23867,6 +24264,9 @@ msgstr "Хочете зберегти введений Пін %s як пості
 
 msgid "Wrestling"
 msgstr "Боротьба"
+
+msgid "Write block size"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -24009,10 +24409,6 @@ msgstr "Ви можете записувати тільки записи Dreambo
 msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Ви можете пропустити цю функцію та вимкнути ТВ, коли Ви вмикаєте тюнер і зразу ж вимикаєте його в режим очікування."
 
-#, python-format
-msgid "You can switch with left and right this tuner types %s"
-msgstr "Ви можете перемикатися з лівого і правого типу тюнера %s"
-
 msgid "You cannot delete this!"
 msgstr "Ви не можете це видалити!"
 
@@ -24086,18 +24482,6 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr "Ваш %s %s не підключений до Інтернету, будь ласка, перевірте налаштування мережі та повторіть спробу."
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-msgstr ""
-"Ваш %s %s готовий до роботи.\n"
-"\n"
-"Інтернет з'єднання вже працює.\n"
-"\n"
-
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Ваш %s %s перезавантажується"
 
@@ -24128,40 +24512,12 @@ msgid "Your %s %s will Restart..."
 msgstr "Ваш %s %s перезавантажиться..."
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
-"\n"
-"Do you want to install now ?"
-msgstr ""
-"Ваш %s %s буде перезавантажено після установки каналів.\n"
-"\n"
-"Хочете встановити зараз?"
-
-#, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
-"Do you want to remove now?"
-msgstr ""
-"Ваш %s %s буде перезавантажений після видалення каналу.\n"
-"Хочете видалити зараз?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Ваше інтернет з'єднання не працює!\n"
-"Виберіть наступну дію."
-
-#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "Ваше підключення до Інтернету працює (АП: %s)"
 
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "У Вашому приймачі виявлено проблему з ПЗ. Після останнього перезавантаження воно пройшло %d разів.\n"
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Приймач буде перезавантажено після натиснення ОК на пульті ДУ."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Ваша колекція перевищує розмір стандартного диску, вам буде потрібно чистий двошаровий DVD диск!"
@@ -24207,9 +24563,6 @@ msgstr ""
 "Ваша передня панель буде оновлена\n"
 "Це може зайняти кілька хвилин"
 
-msgid "Your network configuration has been activated."
-msgstr "Конфігурація мережі активована."
-
 msgid "Your password must have at least 5 characters."
 msgstr "Ваш пароль повинен містити не менше 5 символів."
 
@@ -24252,6 +24605,9 @@ msgstr "Переключити"
 
 msgid "Zap + Exit"
 msgstr "Переключити + Вихід"
+
+msgid "Zap Timer Settings"
+msgstr ""
 
 msgid "Zap Up/Down"
 msgstr "Zap вгору/вниз"
@@ -24461,12 +24817,6 @@ msgstr "закрити спільний перегляд"
 msgid "config menu"
 msgstr "меню конфігурації"
 
-msgid "confirmed"
-msgstr "підтверджений"
-
-msgid "connected"
-msgstr "під'єднаний"
-
 msgid "copy"
 msgstr "копіювати"
 
@@ -24490,9 +24840,6 @@ msgstr "видалити відмічене"
 
 msgid "disabled"
 msgstr "вимкнуто"
-
-msgid "disconnected"
-msgstr "роз'єднано"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24753,9 +25100,6 @@ msgstr "на Двошаровому диску використано."
 msgid "of a SINGLE layer medium used."
 msgstr "на Одношаровому диску використано."
 
-msgid "off or wpa2 on"
-msgstr "викл. чи вкл. wpa2"
-
 msgid "offset is"
 msgstr "зміщення є"
 
@@ -24965,9 +25309,6 @@ msgstr "uShare Налаштування"
 msgid "unavailable"
 msgstr "недоступно"
 
-msgid "unconfirmed"
-msgstr "непідтверджений"
-
 msgid "unknown"
 msgstr "невідомий"
 
@@ -25025,6 +25366,736 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "C/T input switching: external 5V coax switch"
+#~ msgstr "Перемикання входу C/T: зовнішній коаксіальний перемикач 5V"
+
+#~ msgid "Common Settings"
+#~ msgstr "Загальні налаштування"
+
+#~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
+#~ msgstr "DVB-C та DVB-T/T2 використовують цей вхід. Коли обидва ввімкнені, Enigma2 використовує 5 В для керування зовнішнім коаксіальним перемикачем."
+
+#~ msgid ""
+#~ "Do you really want to restart OSCam?\n"
+#~ "\n"
+#~ "HINT: This will take about 5 seconds!"
+#~ msgstr ""
+#~ "Ви дійсно хочете перезапустити OSCam?\n"
+#~ "\n"
+#~ "УВАГА: це займе приблизно 5 секунд!"
+
+#~ msgid ""
+#~ "Do you really want to shut down OSCam?\n"
+#~ "\n"
+#~ "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+#~ msgstr ""
+#~ "Ви дійсно хочете вимкнути OSCam?\n"
+#~ "\n"
+#~ "УВАГА: Щоб повторно активувати OSCam, необхідно виконати повний перезапуск приймача!"
+
+#~ msgid "Mount Manager"
+#~ msgstr "Помічник монтування"
+
+#~ msgid "OSCam webif disabled"
+#~ msgstr "oscam webif відключено"
+
+#~ msgid "Restart OSCam"
+#~ msgstr "Перезапустити OSCam"
+
+#~ msgid "Shutdown OSCam"
+#~ msgstr "Зупинити OSCam"
+
+#~ msgid "1.0"
+#~ msgstr "1.0"
+
+#~ msgid "1.1"
+#~ msgstr "1.1"
+
+#~ msgid "1.2"
+#~ msgstr "1.2"
+
+#~ msgid "13 V"
+#~ msgstr "13 В"
+
+#~ msgid "16:9"
+#~ msgstr "16:9"
+
+#~ msgid "18 V"
+#~ msgstr "18 В"
+
+#~ msgid "One"
+#~ msgstr "Один"
+
+#~ msgid "Three"
+#~ msgstr "Три"
+
+#~ msgid "Two"
+#~ msgstr "Два"
+
+#, python-format
+#~ msgid "%d wireless network found!"
+#~ msgid_plural "%d wireless networks found!"
+#~ msgstr[0] "%d бездротову мережу знайдено!"
+#~ msgstr[1] "%d бездротові мережі знайдено!"
+#~ msgstr[2] "%d бездротових мереж знайдено!"
+
+#~ msgid ""
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Знайдено другий налаштований інтерфейс.\n"
+#~ "\n"
+#~ "Бажаєте відключити другий мережевий інтерфейс?"
+
+#~ msgid "Activate network adapter configuration"
+#~ msgstr "активувати налаштування мережевого адаптера"
+
+#~ msgid "Activate network settings"
+#~ msgstr "Активувати налаштування мережі"
+
+#~ msgid "Activate the configured network settings."
+#~ msgstr "Активуйте налаштовані параметри мережі."
+
+#~ msgid "Are you sure you want to activate this network configuration?"
+#~ msgstr "Ви дійсно бажаєте активувати цю конфігурацію мережі?"
+
+#~ msgid "Are you sure you want to restart your network interfaces?"
+#~ msgstr "Ви дійсно бажаєте перезавантажити мережеві інтерфейси?"
+
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#~ msgid "Configure DNS (name servers)"
+#~ msgstr "Налаштувати DNS (сервери імен)"
+
+#~ msgid "Configure interface"
+#~ msgstr "Налаштування інтерфейсу"
+
+#~ msgid ""
+#~ "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Налаштуйте або перевірте свій DNS (сервери імен), налаштувавши показані значення.\n"
+#~ "\n"
+#~ "Коли налаштування правильні, натисніть OK, щоб продовжити."
+
+#~ msgid "Configure the IP address."
+#~ msgstr "Налаштування АП адресу."
+
+#~ msgid ""
+#~ "Configure the Internet connection by adjusting the values shown.\n"
+#~ "\n"
+#~ "When the settings are correct press OK to continue."
+#~ msgstr ""
+#~ "Налаштуйте підключення до Інтернету, ввівши показані значення.\n"
+#~ "\n"
+#~ "Коли налаштування правильні, натисніть OK, щоб продовжити."
+
+#~ msgid "Configure the gateway."
+#~ msgstr "Налаштування шлюза."
+
+#~ msgid "Configure the name server (DNS)."
+#~ msgstr "Налаштування імені сервера (DNS)."
+
+#~ msgid "Configure the netmask."
+#~ msgstr "Налаштування маски мережі."
+
+#~ msgid "Configure the network again"
+#~ msgstr "Повторити налаштування мережі"
+
+#~ msgid "Configure your Network"
+#~ msgstr "Налаштування Вашої мережі"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Налаштувати Вашого LAN інтерфейсу"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Повторити налаштування Вашої безпровідної мережі"
+
+#~ msgid "Connect to a wireless network"
+#~ msgstr "Під'єднано до бездротової мережі"
+
+#~ msgid "Current settings:"
+#~ msgstr "Поточні налаштування:"
+
+#~ msgid "DHCP"
+#~ msgstr "DHCP"
+
+#~ msgid "Device Settings"
+#~ msgstr "Налаштування пристрою"
+
+#~ msgid "Disabled or WPA/WPA2"
+#~ msgstr "Вимкнено, або WPA/WPA2"
+
+#, python-format
+#~ msgid "Edit the DNS configuration of your %s %s."
+#~ msgstr "Редагувати конфігурацію DNS Вашого %s %s."
+
+#, python-format
+#~ msgid "Edit the network configuration of your %s %s."
+#~ msgstr "Редагувати конфігурацію мережі Вашого %s %s."
+
+#~ msgid "Enable IPv6"
+#~ msgstr "Увімкнути IPv6"
+
+#~ msgid "Enable Wake On LAN"
+#~ msgstr "Включити функцію Wake On LAN"
+
+#~ msgid "Encrypted: "
+#~ msgstr "Кодовано: "
+
+#~ msgid "Encryption Type:"
+#~ msgstr "Тип шифрування:"
+
+#~ msgid "Encryption key"
+#~ msgstr "Ключ шифрування"
+
+#~ msgid "Encryption key type"
+#~ msgstr "Тип ключа шифрування"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Помилка створення EHD скіна.\n"
+#~ "Викорстовуємо HD скін!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Icon package download not available.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Помилка створення EHD скіна. Завантаження значків не доступне.\n"
+#~ "Викорстовуємо HD скін!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Not enough flash memory free.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Помилка створення EHD скіна. Не вистачає флеш-пам'яті.\n"
+#~ "Викорстовуємо HD-Skin!"
+
+#~ msgid ""
+#~ "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+#~ "Using HD-Skin!"
+#~ msgstr ""
+#~ "Помилка створення EHD скіна.\n"
+#~ "Викорстовуємо HD скін!"
+
+#~ msgid "Error creating HD-Skin. Not enough flash memory free."
+#~ msgstr "Помилка створення HD-Skin. Не вистачає флеш-пам'яті."
+
+#~ msgid ""
+#~ "Error creating MetrixHD-Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Помилка створення MetrixHD-Skin.\n"
+#~ "Будь ласка, перевірте після перезавантаження MyMetrixLite-Plugin і застосуйте Ваші налаштування."
+
+#~ msgid "Error, unknown Result!"
+#~ msgstr "Помилка, невідомий результат!"
+
+#~ msgid "Exit network adapter configuration"
+#~ msgstr "вийти з налаштування мережевого адаптера"
+
+#~ msgid "Exit network adapter setup menu"
+#~ msgstr "Вийти з меню налаштування мережевого адаптера"
+
+#~ msgid "Exit network interface list"
+#~ msgstr "Вийти з списку мережевих інтерфейсів"
+
+#~ msgid "Exit network wizard"
+#~ msgstr "Вийти з майстра мережі"
+
+#~ msgid "Extended Networksetup Plugin..."
+#~ msgstr "Плагін розширених параметрів мережі..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Розширені налаштування..."
+
+#~ msgid "Finished configuring your network"
+#~ msgstr "Конфігурацію Вашої мережі завершено"
+
+#~ msgid "Follow instructions on TV"
+#~ msgstr "Дотримуйтесь інструкцій на телевізорі"
+
+#~ msgid "Frequency Norm:"
+#~ msgstr "Частота:"
+
+#~ msgid "Interface: "
+#~ msgstr "Інтерфейс: "
+
+#~ msgid "LAN adapter"
+#~ msgstr "Мережевий адаптер"
+
+#~ msgid "Link quality:"
+#~ msgstr "Якість з'єднання:"
+
+#~ msgid "Link:"
+#~ msgstr "З’єднання:"
+
+#~ msgid "List available networks"
+#~ msgstr "Список доступних мереж"
+
+#~ msgid "Local network"
+#~ msgstr "Локальна мережа"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-адреса"
+
+#~ msgid "Manual configuration"
+#~ msgstr "Ручне налаштування"
+
+#~ msgid "Max. bitrate: "
+#~ msgstr "Макс. бітрейт: "
+
+#~ msgid "Nameserver"
+#~ msgstr "Назва сервера"
+
+#~ msgid "Nameserver settings"
+#~ msgstr "Параметри DNS"
+
+#~ msgid "Network Adapter Actions"
+#~ msgstr "Дії мережевого адаптера"
+
+#~ msgid "Network Adapter Setting Actions"
+#~ msgstr "Дії налаштування мережевого адаптера"
+
+#~ msgid "Network Adapter Text Actions"
+#~ msgstr "Текстові дії мережевого адаптера"
+
+#~ msgid "Network Test:"
+#~ msgstr "Тест мережі: "
+
+#~ msgid "Network Wizard"
+#~ msgstr "Майстер налашт. мережі"
+
+#~ msgid "Network test"
+#~ msgstr "Тест мережевого з'єднання"
+
+#~ msgid ""
+#~ "Network wizard completed.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Майстер мережі завершено.\n"
+#~ "\n"
+#~ "Натисніть OK, щоб продовжити."
+
+#~ msgid "Network:"
+#~ msgstr "Мережа:"
+
+#~ msgid "NetworkWizard"
+#~ msgstr "Майстер налаштувань мережі"
+
+#~ msgid "No Connection"
+#~ msgstr "З'єднання відсутнє"
+
+#~ msgid "No networks found"
+#~ msgstr "Мереж не знайдено"
+
+#~ msgid "No wireless networks found! Searching..."
+#~ msgstr "Бездротові мережі не знайдено! Пошук..."
+
+#~ msgid ""
+#~ "No working local network adapter found.\n"
+#~ "Please verify that you have attached a network cable and your network is configured correctly."
+#~ msgstr ""
+#~ "Не знайдено працюючого мережевого адаптера.\n"
+#~ "Будь-ласка перевірте правильність під'єднання мережевого кабеля і налаштування мережі."
+
+#~ msgid ""
+#~ "No working wireless network adapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+#~ msgstr ""
+#~ "Не знайдено працюючого Wi-Fi мережевого адаптера.\n"
+#~ "Будь-ласка перевірте чи під'єднаний сумісний Wi-Fi пристрій і мережа налаштована правильно."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable your local network interface."
+#~ msgstr ""
+#~ "Не знайдено працюючого Wi-Fi мережевого інтерфейсу.\n"
+#~ "Перевірте чи під'єднано сумісний Wi-Fi пристрій або ввімкніть Ваш локальний мережевий інтерфейс."
+
+#~ msgid "Please follow the instructions on the TV"
+#~ msgstr "Будь ласка, слідкуйте за інструкціями на TВ"
+
+#~ msgid "Please press OK to continue."
+#~ msgstr "Будь ласка, натисніть OK для продовження."
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Будь ласка, почекайте на активацію налаштувань мережі..."
+
+#~ msgid "Please wait while we prepare your network interfaces..."
+#~ msgstr "Будь ласка почекайте поки ми підготуємо Ваш мережевий інтерфейс..."
+
+#~ msgid "Please wait while we test your network..."
+#~ msgstr "Будь ласка, почекайте поки ми перевіримо Вашу мережу..."
+
+#~ msgid "Please wait while your skin setting is restoring..."
+#~ msgstr "Будь ласка, почекайте поки відновляться налаштування скіну..."
+
+#~ msgid "Press OK to activate the settings."
+#~ msgstr "Натисніть ОК для активації налаштувань."
+
+#~ msgid "Primary DNS"
+#~ msgstr "Первинний DNS"
+
+#~ msgid "Restart Network Adapter"
+#~ msgstr "Перезапуск мережевого адаптера"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Перезавантаження мережевого з'єднання."
+
+#~ msgid "Restore MetrixHD Settings"
+#~ msgstr "Відновити налаштування MetrixHD"
+
+#~ msgid "SABnzbd Settings"
+#~ msgstr "Налаштування SABnzbd"
+
+#~ msgid "Scan wireless networks"
+#~ msgstr "Пошук Wі-Fі мереж"
+
+#~ msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
+#~ msgstr "Сканувати мережу на наявність точок бездротового доступу та підключитись до них за допомогою вибраного бездротового пристрою."
+
+#~ msgid "Secondary DNS"
+#~ msgstr "Вторинний DNS"
+
+#~ msgid "Select a wireless network"
+#~ msgstr "Вибір бездротової мережі"
+
+#~ msgid "Select interface"
+#~ msgstr "Виберіть інтерфейс"
+
+#~ msgid "Select menu entry"
+#~ msgstr "Виберіть пункт меню"
+
+#~ msgid ""
+#~ "Select the network interface to be used for the Internet connection.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Виберіть мережевий інтерфейс, який буде використовуватися для підключення до Інтернету.\n"
+#~ "\n"
+#~ "Натисніть OK, щоб продовжити."
+
+#~ msgid ""
+#~ "Select the wireless network to which you want to connect.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Виберіть бездротову мережу, до якої потрібно підключитися.\n"
+#~ "\n"
+#~ "Натисніть OK, щоб продовжити."
+
+#~ msgid "Select wireless network"
+#~ msgstr "Виберіть бездротову мережу"
+
+#~ msgid "Show WLAN status"
+#~ msgstr "Показати статус Wi-Fi мережі"
+
+#~ msgid "Show info"
+#~ msgstr "Показати інформацію"
+
+#~ msgid "Shows the state of your wireless LAN connection."
+#~ msgstr "Відображає стан підключення до бездротової чи локальної мережі."
+
+#~ msgid "Signal quality"
+#~ msgstr "Якість сигналу"
+
+#~ msgid "Signal: "
+#~ msgstr "Сигнал: "
+
+#~ msgid "Start test"
+#~ msgstr "Почати тест"
+
+#~ msgid "Stop test"
+#~ msgstr "Зупинити тест"
+
+#, python-format
+#~ msgid "Test the network configuration of your %s %s."
+#~ msgstr "Тест мережевого з'єднання Вашого %s %s."
+
+#~ msgid ""
+#~ "The Internet connection appears to be working.\n"
+#~ "\n"
+#~ "Press OK to continue."
+#~ msgstr ""
+#~ "Здається, підключення до Інтернету працює.\n"
+#~ "\n"
+#~ "Натисніть OK, щоб продовжити."
+
+#~ msgid ""
+#~ "The Internet connection appears to not be working!\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Здається, підключення до Інтернету не працює!\n"
+#~ "\n"
+#~ "Виберіть, що робити далі."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Майстер налаштування мережі не встановлено!\n"
+#~ "Будь-ласка встановіть його."
+
+#~ msgid ""
+#~ "The wireless LAN Internet connection could not be started!\n"
+#~ "Is the wireless LAN device connected?\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Не вдалося запустити підключення до Інтернету через бездротову локальну мережу!\n"
+#~ "Чи під’єднано пристрій бездротової локальної мережі?\n"
+#~ "\n"
+#~ "Виберіть, що робити далі."
+
+#~ msgid ""
+#~ "The wireless LAN plugin code is not installed!\n"
+#~ "\n"
+#~ "Install it and choose what to do next."
+#~ msgstr ""
+#~ "Код плагіна бездротової локальної мережі не встановлено!\n"
+#~ "\n"
+#~ "Встановіть його та виберіть, що робити далі."
+
+#~ msgid ""
+#~ "The wireless LAN plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Додаток Wі-Fі мережі не встановлений!\n"
+#~ "Будь ласка, встановіть його."
+
+#~ msgid ""
+#~ "This test checks for configured DNS.\n"
+#~ "If you get an \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Цей тест перевіряє правильність налаштувань Nameserver'ів.\n"
+#~ "Якщо побачите повідомлення \"непідтверджений\":\n"
+#~ "- перевірте DHCP, кабель і налаштування мережі\n"
+#~ "- якщо ви налаштовували Nameserver вручну, будь ласка перевірте записи в \"Nameserver\" Конфігурація"
+
+#~ msgid ""
+#~ "This test checks whether a network cable is connected to your LAN adapter.\n"
+#~ "If you get a \"disconnected\" message:\n"
+#~ "- verify that a network cable is attached\n"
+#~ "- verify that the cable is not broken"
+#~ msgstr ""
+#~ "Цей тест перевірить чи під'єднаний кабель до Вашого мережевого адаптера.\n"
+#~ "Якщо побачите повідомлення \"роз’єднано\":\n"
+#~ "- перевірте чи мережевий кабель дійсно під'єднаний\n"
+#~ "- перевірте чи мережевий кабель не пошкоджений"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "Цей тест перевірить чи знайдено вірний АП-адрес для Вашого мережевого адаптера.\n"
+#~ "Якщо побачите повідомлення \"непідтверджений\":\n"
+#~ "- IP-адреса не знайдена\n"
+#~ "- перевірте DHCP, кабель і мережевий адаптер"
+
+#~ msgid ""
+#~ "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+#~ "If you get a \"disabled\" message:\n"
+#~ " - then your LAN adapter is configured for manual IP setup\n"
+#~ "- verify that you have entered correct IP information in the adapter setup dialog.\n"
+#~ "If you get an \"enabled\" message:\n"
+#~ "-verify that you have a configured and working DHCP server in your network."
+#~ msgstr ""
+#~ "Цей тест перевірить чи налаштований Ваш мережевий адаптер для автоматичної конфігурації АП-адреси з DHCP.\n"
+#~ "Якщо побачите повідомлення \"disabled\":\n"
+#~ "- тоді мережевий адаптер налаштований для ручної конфігурації IP-адреси без DHCP\n"
+#~ "- перевірте чи в налаштуваннях адаптера введена правильна IP інформація.\n"
+#~ "Якщо побачите повідомлення \"enabled\":\n"
+#~ "- перевірте чи є в Вашій мережі правильно налаштований і працюючий DHCP сервер."
+
+#~ msgid "This test detects your configured LAN adapter."
+#~ msgstr "Цей тест визначить Ваш мережевий адаптер."
+
+#~ msgid "Unencrypted"
+#~ msgstr "Декодований"
+
+#~ msgid ""
+#~ "Unknown Error creating Skin.\n"
+#~ "Please check after reboot MyMetrixLite-Plugin and apply your settings."
+#~ msgstr ""
+#~ "Невідома помилка створення скіну.\n"
+#~ "Будь ласка, перевірте після перезавантаження MyMetrixLite-Plugin і застосуйте Ваші налаштування."
+
+#~ msgid "Unsupported"
+#~ msgstr "Не підтримуєтья"
+
+#~ msgid "Use a gateway"
+#~ msgstr "Використовувати шлюз"
+
+#~ msgid "Use interface"
+#~ msgstr "Використовувати інтерфейс"
+
+#~ msgid "Use only for Wake on WLan (WoW)"
+#~ msgstr "Використовувати тільки для пробудження по WLan (WoW)"
+
+#~ msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
+#~ msgstr "Використовуйте Майстер установок мережі. Майстер допоможе Вам налаштувати Вашу мережу"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Використати Майстер мережі для налаштування вибраного мережевого адаптера"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Використовуйте мережевий майстер, щоб налаштувати мережу."
+
+#~ msgid "VLAN connection"
+#~ msgstr "VLAN з'єднання"
+
+#~ msgid "WEP"
+#~ msgstr "WEP"
+
+#~ msgid "WLAN connection"
+#~ msgstr "Безпровідне з'єднання WLAN"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA or WPA2"
+#~ msgstr "WPA або WPA2"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "When enabled, use DHCP for the IP configuration."
+#~ msgstr "Якщо увімкнено, використовуйте DHCP для конфігурації АП."
+
+#~ msgid "Wireless LAN"
+#~ msgstr "Безпровідний адаптер"
+
+#~ msgid "Wireless network"
+#~ msgstr "Безпровідна мережа"
+
+#~ msgid "Wireless network configuration..."
+#~ msgstr "Конфігурація безпровідної мережі..."
+
+#~ msgid ""
+#~ "Wireless network connection setup.\n"
+#~ "\n"
+#~ "Choose what to do next."
+#~ msgstr ""
+#~ "Налаштування підключення до бездротової мережі.\n"
+#~ "\n"
+#~ "Виберіть, що робити далі."
+
+#~ msgid "Wireless network setup"
+#~ msgstr "Налаштування бездротової мережі"
+
+#~ msgid "Wireless network state"
+#~ msgstr "Статус бездротової мережі"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s is now ready to be used.\n"
+#~ "\n"
+#~ "Your Internet connection is working now.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Ваш %s %s готовий до роботи.\n"
+#~ "\n"
+#~ "Інтернет з'єднання вже працює.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service.\n"
+#~ "\n"
+#~ "Do you want to install now ?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезавантажено після установки каналів.\n"
+#~ "\n"
+#~ "Хочете встановити зараз?"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s will be restarted after the removal of service\n"
+#~ "Do you want to remove now?"
+#~ msgstr ""
+#~ "Ваш %s %s буде перезавантажений після видалення каналу.\n"
+#~ "Хочете видалити зараз?"
+
+#~ msgid ""
+#~ "Your Internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Ваше інтернет з'єднання не працює!\n"
+#~ "Виберіть наступну дію."
+
+#~ msgid "Your STB will restart after pressing OK on your remote control."
+#~ msgstr "Приймач буде перезавантажено після натиснення ОК на пульті ДУ."
+
+#~ msgid "Your network configuration has been activated."
+#~ msgstr "Конфігурація мережі активована."
+
+#~ msgid "confirmed"
+#~ msgstr "підтверджений"
+
+#~ msgid "connected"
+#~ msgstr "під'єднаний"
+
+#~ msgid "disconnected"
+#~ msgstr "роз'єднано"
+
+#~ msgid "off or wpa2 on"
+#~ msgstr "викл. чи вкл. wpa2"
+
+#~ msgid "unconfirmed"
+#~ msgstr "непідтверджений"
+
+#~ msgid "Automatic shares access"
+#~ msgstr "Автоматичний доступ до спільних ресурсів"
+
+#~ msgid "DNS suffix"
+#~ msgstr "DNS суфікс"
+
+#~ msgid "DVB-C / Cable only"
+#~ msgstr "Тільки DVB-C / кабельне телебачення"
+
+#~ msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+#~ msgstr "DVB-C та DVB-T/T2 через зовнішній керований коаксіальний комутатор 5V"
+
+#~ msgid "DVB-T/T2 / Terrestrial only"
+#~ msgstr "Тільки DVB-T/T2 / ефірне телебачення"
+
+#~ msgid "Hybrid tuner mode"
+#~ msgstr "Гібридний режим тюнера"
+
+#~ msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+#~ msgstr "Виберіть спосіб підключення цього тюнера DVB-C/T. Використовуйте зовнішній коаксіальний перемикач лише з коаксіальним перемикачем з керуванням 5 В."
+
+#~ msgid ""
+#~ "Set up tuner [TUNER].\n"
+#~ "\n"
+#~ "For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+#~ msgstr ""
+#~ "Налаштуйте тюнер [TUNER].\n"
+#~ "\n"
+#~ "Для моделей з гібридним тюнером перемикайте тип тюнера кнопками ВЛІВО та ВПРАВО."
+
+#~ msgid "Switchable tuner types:"
+#~ msgstr "Типи тюнерів що перемикаються:"
+
+#~ msgid "Wi-Fi Connection Settings"
+#~ msgstr "Налаштування підключення Wi-Fi"
+
+#, python-format
+#~ msgid "You can switch with left and right this tuner types %s"
+#~ msgstr "Ви можете перемикатися з лівого і правого типу тюнера %s"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 #~ msgstr "В даний час триває запис. Зупиніть запис перед налаштуванням позиціонера."
@@ -25569,9 +26640,6 @@ msgstr "®"
 
 #~ msgid "SSID:"
 #~ msgstr "SSID:"
-
-#~ msgid "Scanning..."
-#~ msgstr "Сканування..."
 
 #~ msgid "Servers:"
 #~ msgstr "Сервери:"
@@ -26541,9 +27609,6 @@ msgstr "®"
 
 #~ msgid "Time Update in Minutes:"
 #~ msgstr "Час Оновлення в хвилинах:"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"
 
 #, python-format
 #~ msgid ""

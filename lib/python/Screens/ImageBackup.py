@@ -89,6 +89,7 @@ class ImageBackup(Screen):
 		self.runScript = "/tmp/imagebackup.sh"
 		self.usbBin = "usb_update.bin"
 		self.separator = f"{"_" * 66}"
+		self.imageInfo = {}
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.callLater(self.getImageList)
 
@@ -97,6 +98,7 @@ class ImageBackup(Screen):
 
 	def getImageList(self):
 		def getImageListCallback(imageList):
+			self.imageInfo = imageList or {}
 			currentImageSlot = MultiBoot.getCurrentSlotCode()
 			rootSlot = BoxInfo.getItem("HasKexecMultiboot") and currentImageSlot == "R"
 			flashSlot = currentImageSlot == "F"
@@ -159,6 +161,7 @@ class ImageBackup(Screen):
 
 		label, slotCode, target, recovery, slotDistro, slotVersion = answer if answer else (None, None, None, None, None, None)
 		if slotCode:
+			slotInfo = self.imageInfo.get(slotCode, {})
 			shutdownOK = config.usage.shutdownOK.value
 			config.usage.shutdownOK.setValue(True)
 			config.usage.shutdownOK.save()
@@ -287,7 +290,12 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.opkgCmd} list-installed | {self.grepCmd} \"enigma2-plugin-*\" >> /tmp/imageversion")
 			cmdLines.append(f"{self.echoCmd} 3 > /proc/sys/vm/drop_caches")  # Clear memory caches.
 			# Create the root file system image.
-			imageFs = BoxInfo.getItem("imagefs").strip().split()
+			imageFs = (slotInfo.get("imagefs") or BoxInfo.getItem("imagefs")).strip().split()
+			smallBoxBackup = bool(slotInfo.get("smallflash", BoxInfo.getItem("smallflash", False)) or slotInfo.get("smallboxmultiboot", False))
+			if smallBoxBackup and not recovery:
+				# SmallBox backups are installed by ofgwrite into the current image
+				# or a multiboot slot; an oversized USB-flashed UBI is not useful.
+				imageFs = ["tar"]
 			mkubifsArgs = BoxInfo.getItem("mkubifs")
 			backupRootNoSlash = backupRoot[:-1]
 			if "jffs2" in imageFs:
@@ -495,7 +503,7 @@ class ImageBackup(Screen):
 						cmdLines.append(f"{self.moveCmd} {workDir}{kernelFile} {mainDestination}")
 					else:
 						cmdLines.append(f"{self.moveCmd} {workDir}vmlinux.gz {mainDestination}{kernelFile}")
-					rootFile = BoxInfo.getItem("rootfile")
+					rootFile = "rootfs.tar.bz2" if smallBoxBackup else (slotInfo.get("rootfile") or BoxInfo.getItem("rootfile"))
 					if rootFile in ("rootfs.tar.bz2", "rootfs-two.tar.bz2", "rootfs-one.tar.bz2"):
 						if model in ("dreamone", "dreamtwo"):
 							cmdLines.append(f"{self.moveCmd} {workDir}rootfs.tar.bz2 {mainDestination}{rootFile}")

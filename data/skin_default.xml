@@ -284,6 +284,13 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<widget font="Enigma;20" halign="right" name="subtitleLabel" noWrap="1" position="510,105" borderColor="black" borderWidth="2" size="140,24" backgroundColor="transparent" zPosition="3"/>
 	</screen>
 	<screen name="RadioInfoBar" position="0,416" size="720,160" flags="wfNoBorder" >
+		<widget position="5,5" render="Picon" size="45,45" source="session.CurrentService" transparent="1" zPosition="3">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<widget alphatest="on" pixmap="icons/ico_dab-plus.png" position="15,62" render="Pixmap" size="25,25" source="session.CurrentService" zPosition="3">
+			<convert type="ServiceInfo">IsDAB</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget backgroundColor="#1f1f1f" font="Enigma;22" foregroundColor="foreground" position="55,5" render="Label" size="500,28" source="session.CurrentService" transparent="1" zPosition="3">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -314,6 +321,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		</widget>
 		<widget font="Regular;20" foregroundColor="foreground" position="55,90" render="Label" size="610,30" source="RdsDecoder" zPosition="3">
 			<convert type="RdsInfo">RadioText</convert>
+		</widget>
+		<widget font="Regular;17" foregroundColor="grey" position="55,122" render="Label" size="610,24" source="RdsDecoder" zPosition="3">
+			<convert type="RdsInfo">RtpText</convert>
 		</widget>
 		<widget backgroundColor="#1f1f1f" font="Enigma;15" foregroundColor="foreground" halign="right" position="567,5" render="Label" size="90,24" source="session.FrontendStatus" transparent="1" zPosition="3">
 			<convert type="FrontendInfo">SNRdB</convert>
