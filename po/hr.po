@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
-"PO-Revision-Date: 2026-08-25 09:29+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
+"PO-Revision-Date: 2026-08-27 04:50+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -913,6 +913,10 @@ msgstr[1] "%d paketa kataloga feeda su ažurirani."
 msgstr[2] "%d paketa kataloga feeda su ažurirani."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr "%d feedova je na nedostupnim satelitima, %d koristi nepodržane prijenose, a %d je onemogućeno"
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "Pronađen je %d domaćin."
@@ -945,6 +949,10 @@ msgid_plural "%d networks found."
 msgstr[0] "Pronađena %d mreža."
 msgstr[1] "Pronađeno %d mreža."
 msgstr[2] "Pronađeno %d mreža."
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr "%d od %d feedova dovršeno; neuspjeli feed buketi su spremljeni"
 
 #, python-format
 msgid "%d package found."
@@ -1057,6 +1065,10 @@ msgid_plural "%d plugins are not available:"
 msgstr[0] "%d dodatak nije dostupan:"
 msgstr[1] "%d dodatak nije dostupan:"
 msgstr[2] "%d dodatak nije dostupan:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr "stvoreno %d radijskih buketa"
 
 #, python-format
 msgid "%d sec"
@@ -1188,6 +1200,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr "%s - PID 0x%04X - %s"
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Podešavanje"
 
@@ -1289,6 +1305,10 @@ msgstr "%s. (Najniže)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr "%s: nije se mogao zapisati buket"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1606,6 +1626,9 @@ msgstr "<nema pronađenih zapisa>"
 
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr "Skeniranje DAB+ ne može se pokrenuti dok se odvija snimanje."
 
 msgid "A backup is now being created."
 msgstr "Rezervna kopija se sada kreira."
@@ -5715,6 +5738,12 @@ msgstr "Češka Republika"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr "DAB+ Skan"
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr "Skeniranje DAB+ nije uspjelo; postojeći buketi su zadržani."
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5815,14 +5844,11 @@ msgstr "Preglednik DVD datoteka"
 msgid "DVD Menu"
 msgstr "DVD menu"
 
-msgid "DVD Title list"
-msgstr "Popis DVD naslova"
-
 msgid "DVD Player"
 msgstr "DVD plejer"
 
-msgid "DVDPlayer"
-msgstr "DVDPlejer"
+msgid "DVD Title list"
+msgstr "Popis DVD naslova"
 
 msgid "Daily"
 msgstr "Svakodnevno"
@@ -10685,11 +10711,24 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Nevažeći"
 
+msgid "Invalid DAB feed file root element"
+msgstr "Neispravan korijenski element DAB datoteke feeda"
+
 msgid "Invalid Help Page"
 msgstr "Nevažeća stranica pomoći"
 
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr "Neispravno ime datoteke buketa '%s'"
+
 msgid "Invalid location!"
 msgstr "Nevažeća lokacija!"
+
+msgid "Invalid multicast port"
+msgstr "Nevažeći multicast port"
+
+msgid "Invalid orbital position"
+msgstr "Nevažeća orbitalna pozicija"
 
 msgid "Invalid transponder data"
 msgstr "Nevažeći podaci transpondera"
@@ -12010,6 +12049,13 @@ msgstr ""
 "Pogrešno konfigurirana unicable veza od tunera %s do tunera %s!\n"
 "Opcija %s tunera \"spojeno za\" sada je onemogućena"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr "Nedostaje atribut '%s'"
+
+msgid "Missing multicast address"
+msgstr "Nedostaje multicast adresa"
+
 msgid "Mobile connection"
 msgstr "Mobilna veza"
 
@@ -13137,6 +13183,9 @@ msgstr "Nije pronađena lokacija rezervne kopije!"
 msgid "No suitable sat tuner found!"
 msgstr "Nije pronađen odgovarajući sat tuner!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr "Za postavljene satelitske pozicije na ovom uređaju nisu dostupni podržani DAB+ izvori."
+
 msgid "No system softcam configured!"
 msgstr "Nema konfigurisanog softcam u sustavu!"
 
@@ -13187,6 +13236,9 @@ msgstr "Nije potrebno ažuriranje!"
 
 msgid "No updates available."
 msgstr "Nema dostupnih ažuriranja."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr "Nijedan valjani DAB+ feed nije konfiguriran. Provjeri /etc/enigma2/dab.xml."
 
 msgid "No valid device detected - Press OK"
 msgstr "Nije otkriven valjani uređaj - Pritisnite OK"
@@ -14138,6 +14190,10 @@ msgstr "Particije"
 
 msgid "Pass"
 msgstr "Prolaz"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr "Prolaz %d/%d"
 
 msgid "Pass-through"
 msgstr "Prolaz kroz"
@@ -16787,8 +16843,15 @@ msgstr "Skeniranje"
 msgid "Scanning %s..."
 msgstr "Skeniranje %s..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr "Skeniram DAB+ signal; čekam podatke uživo za FIC..."
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Skeniranje se ne može obaviti dok su snimanja u toku."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr "Skeniranje završeno, pronađeno %d DAB+ usluga."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16812,6 +16875,10 @@ msgstr "Pretražujem dijeljene datoteke..."
 
 msgid "Scanning..."
 msgstr "Skeniram..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr "Skeniranje: pronađeno %d usluga; provjera aktivnog rezultata (%d/%d)..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -20431,6 +20498,9 @@ msgstr "Pokreni/Zaustavi/Odabir Cam, prvo treba instalirati softcam"
 msgid "Starting %s failed (exit code %s)"
 msgstr "Pokretanje %s nije uspjelo (kod izlaza %s)"
 
+msgid "Starting DAB+ scan..."
+msgstr "Pokreće se DAB+ pretraživanje..."
+
 msgid "Starting Softcam"
 msgstr "Pokreni Softcam"
 
@@ -22098,6 +22168,9 @@ msgstr "Ljestvica vremenske trake"
 msgid "Timeout"
 msgstr "Pauza"
 
+msgid "Timeout waiting for FIC service data"
+msgstr "Isteklo vrijeme čekanja na podatke FIC usluge"
+
 msgid "Timer Defaults And Retention"
 msgstr "Zadane postavke vremenskog tajmera i čuvanje"
 
@@ -22715,6 +22788,9 @@ msgstr "Nije moguće naslijediti korisnički pojas za LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nije moguće inicijalizirati Kexec MultiBoot!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr "Ne mogu pokrenuti DAB+ prijenos"
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr "Nije moguće potvrditi Unicable poziciju za LNB %d: %s."
@@ -22801,6 +22877,9 @@ msgstr "Nepoznati Kanal"
 
 msgid "Unknown error code"
 msgstr "Nepoznata kod greška"
+
+msgid "Unknown feed"
+msgstr "Nepoznata objava"
 
 #, python-format
 msgid "Unknown group: %d"
@@ -25392,6 +25471,9 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "DVDPlejer"
 
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Prebacivanje C/T ulaza: vanjski 5V koaksijalni prekidač"

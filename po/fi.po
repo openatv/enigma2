@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
 "PO-Revision-Date: 2026-08-21 20:25+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -892,6 +892,10 @@ msgstr[0] "%d Ohjelmisto jakelu lista päivitetty."
 msgstr[1] "%d Ohjelmisto valmistaja listat on päivitetty."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr ""
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "%d Isäntä löytyi."
@@ -922,6 +926,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d verkko löytyi."
 msgstr[1] "%d verkkoa löytyi."
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1018,6 +1026,10 @@ msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
 msgstr[0] "%d ei ole saatavilla:"
 msgstr[1] "Lisäosa plugit %d eivät ole saatavilla"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1148,6 +1160,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Asetukset"
 
@@ -1246,6 +1262,10 @@ msgstr "%s. (Vähiten)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr ""
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1564,6 +1584,9 @@ msgstr "Loki ei löytynyt"
 
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr ""
 
 msgid "A backup is now being created."
 msgstr "Varmuuskopiontia tehdään nyt."
@@ -5675,6 +5698,12 @@ msgstr "Tšekki"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr ""
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5775,14 +5804,11 @@ msgstr "DVD-tiedostoselain"
 msgid "DVD Menu"
 msgstr "DVD Valikko"
 
-msgid "DVD Title list"
-msgstr "DVD Otsikko lista"
-
 msgid "DVD Player"
 msgstr "DVD soitin"
 
-msgid "DVDPlayer"
-msgstr "DVD soitin"
+msgid "DVD Title list"
+msgstr "DVD Otsikko lista"
 
 msgid "Daily"
 msgstr "Päivittäin"
@@ -10644,11 +10670,24 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Virheellinen"
 
+msgid "Invalid DAB feed file root element"
+msgstr ""
+
 msgid "Invalid Help Page"
 msgstr "Virheellinen ohjesivu"
 
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr ""
+
 msgid "Invalid location!"
 msgstr "Virheellinen sijainti!"
+
+msgid "Invalid multicast port"
+msgstr ""
+
+msgid "Invalid orbital position"
+msgstr ""
 
 msgid "Invalid transponder data"
 msgstr "Epäkelpo transponderin tieto"
@@ -11967,6 +12006,13 @@ msgstr ""
 "Väärin määritetty unicable yhteys virittimestä %s virittimeen %s!\n"
 "Viritin %s asetukset `yhdistetty` ovat nyt poissa käytöstä"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr ""
+
+msgid "Missing multicast address"
+msgstr ""
+
 msgid "Mobile connection"
 msgstr "Mobiiliyhteys"
 
@@ -13093,6 +13139,9 @@ msgstr "Yhteensopivia varmuuskopiointi sijainteja ei löytynyt!"
 msgid "No suitable sat tuner found!"
 msgstr "Sopivaa satelliittiviritintä ei löytynyt!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr "softcamia ei määritetty!"
 
@@ -13145,6 +13194,9 @@ msgstr "Ei päivitystä!"
 
 msgid "No updates available."
 msgstr "Ei päivityksiä saatavilla."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "Ei kelvollista laitetta havaittu - Paina OK"
@@ -14096,6 +14148,10 @@ msgstr "Levyosiot"
 
 msgid "Pass"
 msgstr "hyväksytty"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr ""
 
 msgid "Pass-through"
 msgstr "Läpilooppi"
@@ -16743,8 +16799,15 @@ msgstr "Skannaus"
 msgid "Scanning %s..."
 msgstr "Haetaan %s..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr ""
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Kanavien etsintää ei voi tehdä, kun tallennukset ovat käynnissä."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr ""
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16766,6 +16829,10 @@ msgstr ""
 
 msgid "Scanning..."
 msgstr "Haetaan..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -20391,6 +20458,9 @@ msgstr "Käynnistä/pysäytä/valitse cam, Sinun on ensin asennettava softcam"
 msgid "Starting %s failed (exit code %s)"
 msgstr ""
 
+msgid "Starting DAB+ scan..."
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Käynnistetään Softcam"
 
@@ -22063,6 +22133,9 @@ msgstr "Näytettävä aikaväli"
 msgid "Timeout"
 msgstr ""
 
+msgid "Timeout waiting for FIC service data"
+msgstr ""
+
 msgid "Timer Defaults And Retention"
 msgstr ""
 
@@ -22681,6 +22754,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec MultiBootin alustaminen ei onnistu!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr ""
@@ -22767,6 +22843,9 @@ msgstr "tuntematon kanava"
 
 msgid "Unknown error code"
 msgstr "Tuntematon virhekoodi"
+
+msgid "Unknown feed"
+msgstr ""
 
 #, python-format
 msgid "Unknown group: %d"
@@ -25361,6 +25440,9 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "DVD soitin"
 
 #~ msgid "Common Settings"
 #~ msgstr "Yleiset Asetukset"

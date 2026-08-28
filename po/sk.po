@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
-"PO-Revision-Date: 2026-08-24 12:20+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
+"PO-Revision-Date: 2026-08-28 11:13+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -916,6 +916,10 @@ msgstr[1] "Aktualizované boli %d balíčky so zdrojovým katalógom."
 msgstr[2] "Aktualizovaných bolo %d balíčkov so zdrojovým katalógom."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr "Počet zdrojov na nedostupných družiciach: %d, používajúcich nepodporovaný prenos: %d a zablokovaných: %d"
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "Našiel sa %d hostiteľ."
@@ -948,6 +952,10 @@ msgid_plural "%d networks found."
 msgstr[0] "Našla sa %d sieť."
 msgstr[1] "Našli sa %d siete."
 msgstr[2] "Našlo sa %d sietí."
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr "Dokončené zdroje: %d z %d; prehľady so zlyhávajúcimi zdrojmi zostali zachované"
 
 #, python-format
 msgid "%d package found."
@@ -1060,6 +1068,10 @@ msgid_plural "%d plugins are not available:"
 msgstr[0] "%d plugin nie je dostupný:"
 msgstr[1] "%d pluginy nie sú dostupné:"
 msgstr[2] "%d pluginov nie je dostupných:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr "Vytvorilo sa %d prehľadov rádií"
 
 #, python-format
 msgid "%d sec"
@@ -1191,6 +1203,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr "%s - PID 0x%04X - %s"
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavenie"
 
@@ -1292,6 +1308,10 @@ msgstr "%s. (najnižšie)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr "%s: prehľad nebolo možné zapísať"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1609,6 +1629,9 @@ msgstr "<nenašiel sa žiadny záznam denníka>"
 
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr "DAB+ nemožno sledovať počas prebiehajúceho nahrávania."
 
 msgid "A backup is now being created."
 msgstr "Teraz sa vytvára záloha."
@@ -5718,6 +5741,12 @@ msgstr "Česko"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr "Sken DAB+"
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr "Sken DAB+ bol neúspešný; existujúce prehľady zostali zachované."
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5818,14 +5847,11 @@ msgstr "DVD prehliadač súborov"
 msgid "DVD Menu"
 msgstr "DVD menu"
 
-msgid "DVD Title list"
-msgstr "Zoznam titulov DVD"
-
 msgid "DVD Player"
 msgstr "DVD prehrávač"
 
-msgid "DVDPlayer"
-msgstr "DVD prehrávač"
+msgid "DVD Title list"
+msgstr "Zoznam titulov DVD"
 
 msgid "Daily"
 msgstr "Denne"
@@ -10688,11 +10714,24 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Neplatné"
 
+msgid "Invalid DAB feed file root element"
+msgstr "Neplatný hlavný prvok súboru so zdrojmi DAB"
+
 msgid "Invalid Help Page"
 msgstr "Neplatná strana pomocníka"
 
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr "Neplatný názov súboru s prehľadom '%s'"
+
 msgid "Invalid location!"
 msgstr "Neplatné umiestnenie!"
+
+msgid "Invalid multicast port"
+msgstr "Neplatný port multicast"
+
+msgid "Invalid orbital position"
+msgstr "Neplatná pozícia na orbite"
 
 msgid "Invalid transponder data"
 msgstr "Neplatné údaje o transpondéri"
@@ -12013,6 +12052,13 @@ msgstr ""
 "Nesprávna konfigurácia unicable prepojenia z tunera %s do tunera %s!\n"
 "Možnosť 'pripojené na' pre tuner %s je teraz vypnutá"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr "Chýbajúci atribút '%s'"
+
+msgid "Missing multicast address"
+msgstr "Chýbajúca adresa multicast"
+
 msgid "Mobile connection"
 msgstr "Mobilné pripojenie"
 
@@ -13140,6 +13186,9 @@ msgstr "Nenašli sa žiadne vhodné umiestnenia pre zálohu!"
 msgid "No suitable sat tuner found!"
 msgstr "Nenašiel sa žiadny vhodný sat. tuner!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr "Na pozíciách družíc nakonfigurovaných v tomto prijímači sú dostupné nepodporované zdroje DAB+."
+
 msgid "No system softcam configured!"
 msgstr "Nie je nakonfigurovaný žiadny systémový softcam!"
 
@@ -13190,6 +13239,9 @@ msgstr "Nie je potrebná žiadna aktualizácia!"
 
 msgid "No updates available."
 msgstr "Nie sú dostupné žiadne aktualizácie."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr "Nie sú nakonfigurované platné zdroje DAB+. Skontrolujte /etc/enigma2/dab.xml."
 
 msgid "No valid device detected - Press OK"
 msgstr "Nenašlo sa žiadne platné zariadenie – stlačte OK"
@@ -14141,6 +14193,10 @@ msgstr "Partície"
 
 msgid "Pass"
 msgstr "Prechod"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr "Prechod %d/%d"
 
 msgid "Pass-through"
 msgstr "Prechod (pass-through)"
@@ -16790,8 +16846,15 @@ msgstr "Prehľadávanie"
 msgid "Scanning %s..."
 msgstr "Prehľadávanie %s..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr "Skenovanie zdroja DAB+; čaká sa na živé dáta FIC..."
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Vyhľadávanie nemožno vykonať vtedy, keď je spustené nahrávanie."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr "Skenovanie dokončené, počet nájdených služieb DAB+: %d."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16815,6 +16878,10 @@ msgstr "Prebieha skenovanie zdieľaní..."
 
 msgid "Scanning..."
 msgstr "Prehľadávanie…"
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr "Skenovanie: počet nájdených služieb %d; overuje sa živý výsledok (%d/%d)..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -20434,6 +20501,9 @@ msgstr "Spustenie/zastavenie/výber softcamov. Softcam je najprv potrebné nain�
 msgid "Starting %s failed (exit code %s)"
 msgstr "Spustenie %s bolo neúspešné (kód ukončenia %s)"
 
+msgid "Starting DAB+ scan..."
+msgstr "Spúšťa sa skenovanie DAB+..."
+
 msgid "Starting Softcam"
 msgstr "Spustenie softcamu"
 
@@ -22101,6 +22171,9 @@ msgstr "Časová mierka"
 msgid "Timeout"
 msgstr "Časový limit"
 
+msgid "Timeout waiting for FIC service data"
+msgstr "Čakanie s časovým limitom pre dáta FIC služby"
+
 msgid "Timer Defaults And Retention"
 msgstr "Predvolené časovače a uchovávanie"
 
@@ -22718,6 +22791,9 @@ msgstr "Nie je možné dedenie používateľského pásma pre LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nie je možné inicializovať Kexec MultiBoot!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr "Nemožno spustiť zdroj DAB+"
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr "Nemožno overiť pozíciu Unicable pre LNB %d: %s."
@@ -22804,6 +22880,9 @@ msgstr "Neznáma stanica"
 
 msgid "Unknown error code"
 msgstr "Neznámy kód chyby"
+
+msgid "Unknown feed"
+msgstr "Neznámy zdroj"
 
 #, python-format
 msgid "Unknown group: %d"
@@ -25395,6 +25474,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "DVD prehrávač"
 
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Prepínanie C/T vstupu: externý 5 V koaxiálny prepínač"

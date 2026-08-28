@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
 "PO-Revision-Date: 2026-08-17 05:14+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -915,6 +915,10 @@ msgstr[1] "Обновлено %d пакета с каталогами фидов
 msgstr[2] "Обновлено %d пакетов с каталогами фидов."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr ""
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] ""
@@ -947,6 +951,10 @@ msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1059,6 +1067,10 @@ msgid_plural "%d plugins are not available:"
 msgstr[0] "%d плагин недоступен:"
 msgstr[1] "%d плагина недоступно:"
 msgstr[2] "%d плагинов недоступно:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1190,6 +1202,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Настройка"
 
@@ -1288,6 +1304,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr ""
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1605,6 +1625,9 @@ msgstr "< Журнал не найден >"
 
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr ""
 
 msgid "A backup is now being created."
 msgstr "Сейчас создаётся резервная копия."
@@ -5693,6 +5716,12 @@ msgstr "Чешская Республика"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr ""
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5793,14 +5822,11 @@ msgstr "Обозреватель файлов DVD"
 msgid "DVD Menu"
 msgstr "Меню DVD"
 
-msgid "DVD Title list"
-msgstr "Список названий DVD"
-
 msgid "DVD Player"
 msgstr "Проигрыватель DVD"
 
-msgid "DVDPlayer"
-msgstr "Проигрыватель DVD"
+msgid "DVD Title list"
+msgstr "Список названий DVD"
 
 msgid "Daily"
 msgstr "Ежедневно"
@@ -10660,11 +10686,24 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Недопустимый"
 
+msgid "Invalid DAB feed file root element"
+msgstr ""
+
 msgid "Invalid Help Page"
+msgstr ""
+
+#, python-format
+msgid "Invalid bouquet file name '%s'"
 msgstr ""
 
 msgid "Invalid location!"
 msgstr "Каталог не существует!"
+
+msgid "Invalid multicast port"
+msgstr ""
+
+msgid "Invalid orbital position"
+msgstr ""
 
 msgid "Invalid transponder data"
 msgstr "Некорректные данные транспондера"
@@ -11985,6 +12024,13 @@ msgstr ""
 "Неправильная настройка соединения unicable от тюнера %s к тюнеру %s!\n"
 "Параметр 'подключён к' тюнера %s сейчас выключен"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr ""
+
+msgid "Missing multicast address"
+msgstr ""
+
 msgid "Mobile connection"
 msgstr "Мобильная сеть"
 
@@ -13105,6 +13151,9 @@ msgstr "Не найдено подходящих резервных копий!"
 msgid "No suitable sat tuner found!"
 msgstr "Спутниковый тюнер не найден!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr "Системный softcam не настроен!"
 
@@ -13155,6 +13204,9 @@ msgstr "Обновлений не требуется!"
 
 msgid "No updates available."
 msgstr "Нет доступных обновлений."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "Действительное устройство не обнаружено - нажмите OK"
@@ -14106,6 +14158,10 @@ msgstr "Разделы"
 
 msgid "Pass"
 msgstr "Проход"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr ""
 
 msgid "Pass-through"
 msgstr "Пропускать"
@@ -16755,8 +16811,15 @@ msgstr "Сканирование"
 msgid "Scanning %s..."
 msgstr "Сканирование %s ..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr ""
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Нельзя запустить поиск когда идет запись."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr ""
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16780,6 +16843,10 @@ msgstr ""
 
 msgid "Scanning..."
 msgstr "Сканирование..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -20396,6 +20463,9 @@ msgstr "Запуск/остановка/выбор ЭМУ, сначала нуж
 msgid "Starting %s failed (exit code %s)"
 msgstr ""
 
+msgid "Starting DAB+ scan..."
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Запускается эмулятор"
 
@@ -22063,6 +22133,9 @@ msgstr "Шкала времени"
 msgid "Timeout"
 msgstr ""
 
+msgid "Timeout waiting for FIC service data"
+msgstr ""
+
 msgid "Timer Defaults And Retention"
 msgstr ""
 
@@ -22680,6 +22753,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Не удалось инициализировать Kexec MultiBoot!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr ""
@@ -22766,6 +22842,9 @@ msgstr "Неизвестный канал"
 
 msgid "Unknown error code"
 msgstr "Неизвестный код ошибки"
+
+msgid "Unknown feed"
+msgstr ""
 
 #, python-format
 msgid "Unknown group: %d"
@@ -25357,6 +25436,9 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "Проигрыватель DVD"
 
 #~ msgid "Common Settings"
 #~ msgstr "Общие настройки"

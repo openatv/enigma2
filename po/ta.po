@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -896,6 +896,10 @@ msgstr[0] "%d ஊட்ட அட்டவணை தொகுப்பு பு
 msgstr[1] "%d ஊட்ட அட்டவணை தொகுப்புகள் புதுப்பிக்கப்பட்டன."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr ""
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] ""
@@ -926,6 +930,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1022,6 +1030,10 @@ msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
 msgstr[0] "%d சொருகி கிடைக்கவில்லை:"
 msgstr[1] "%d செருகுநிரல்கள் கிடைக்கவில்லை:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1152,6 +1164,10 @@ msgid "%s %sB"
 msgstr "%s %sb"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - அமைப்பு"
 
@@ -1250,6 +1266,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/ %s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr ""
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1567,6 +1587,9 @@ msgstr "<பதிவு இல்லை>"
 
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr ""
 
 msgid "A backup is now being created."
 msgstr "இப்போது ஒரு காப்புப்பிரதி உருவாக்கப்படுகிறது."
@@ -5653,6 +5676,12 @@ msgstr "செக் குடியரசு"
 msgid "D"
 msgstr "டி"
 
+msgid "DAB+ Scan"
+msgstr ""
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
 msgid "DAC"
 msgstr "டிஏசி"
 
@@ -5753,14 +5782,11 @@ msgstr "டிவிடி கோப்பு உலாவி"
 msgid "DVD Menu"
 msgstr "டிவிடி பட்டியல்"
 
-msgid "DVD Title list"
-msgstr "டிவிடி தலைப்பு பட்டியல்"
-
 msgid "DVD Player"
 msgstr "டிவிடி பிளேயர்"
 
-msgid "DVDPlayer"
-msgstr "டிவிடி பிளேயர்"
+msgid "DVD Title list"
+msgstr "டிவிடி தலைப்பு பட்டியல்"
 
 msgid "Daily"
 msgstr "நாள்தோறும்"
@@ -10617,11 +10643,24 @@ msgstr "இனுபியாக்"
 msgid "Invalid"
 msgstr "செல்லுபடியாகாத"
 
+msgid "Invalid DAB feed file root element"
+msgstr ""
+
 msgid "Invalid Help Page"
 msgstr "தவறான உதவிப் பக்கம்"
 
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr ""
+
 msgid "Invalid location!"
 msgstr "தவறான இடம்!"
+
+msgid "Invalid multicast port"
+msgstr ""
+
+msgid "Invalid orbital position"
+msgstr ""
 
 msgid "Invalid transponder data"
 msgstr "தவறான டிரான்ச்பாண்டர் தரவு"
@@ -11940,6 +11979,13 @@ msgstr ""
 "ட்யூனர் %s முதல் ட்யூனர் %s வரை தவறாக கட்டமைக்கப்பட்ட இணைக்க முடியாத இணைப்பு!\n"
 " ட்யூனர் %s விருப்பம் \"இணைக்கப்பட்டுள்ளது\" இப்போது முடக்கப்பட்டுள்ளது"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr ""
+
+msgid "Missing multicast address"
+msgstr ""
+
 msgid "Mobile connection"
 msgstr "மொபைல் இணைப்பு"
 
@@ -13060,6 +13106,9 @@ msgstr "பொருத்தமான காப்புப்பிரதி �
 msgid "No suitable sat tuner found!"
 msgstr "பொருத்தமான சட் ட்யூனர் எதுவும் கிடைக்கவில்லை!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr "சிச்டம் சாப்ட்கேம் கட்டமைக்கப்படவில்லை!"
 
@@ -13110,6 +13159,9 @@ msgstr "புதுப்பிப்பு தேவையில்லை!"
 
 msgid "No updates available."
 msgstr "புதுப்பிப்புகள் எதுவும் கிடைக்கவில்லை."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "செல்லுபடியாகும் சாதனம் கண்டறியப்படவில்லை - சரி என்பதை அழுத்தவும்"
@@ -14061,6 +14113,10 @@ msgstr "பகிர்வுகள்"
 
 msgid "Pass"
 msgstr "கணவாய்"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr ""
 
 msgid "Pass-through"
 msgstr "பாச்-த்ரூ"
@@ -16708,8 +16764,15 @@ msgstr "ச்கேனிங்"
 msgid "Scanning %s..."
 msgstr "ச்கேனிங் %s ..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr ""
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "பதிவுகள் நடந்து கொண்டிருக்கும்போது ச்கேனிங் செய்ய முடியாது."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr ""
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16731,6 +16794,10 @@ msgstr ""
 
 msgid "Scanning..."
 msgstr "ச்கேனிங் ..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -20342,6 +20409,9 @@ msgstr "உங்கள் கேமைத் தொடங்க/நிறுத
 msgid "Starting %s failed (exit code %s)"
 msgstr ""
 
+msgid "Starting DAB+ scan..."
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "சாப்ட்கேம் தொடங்குகிறது"
 
@@ -22008,6 +22078,9 @@ msgstr "காலவரிசை அளவு"
 msgid "Timeout"
 msgstr ""
 
+msgid "Timeout waiting for FIC service data"
+msgstr ""
+
 msgid "Timer Defaults And Retention"
 msgstr ""
 
@@ -22625,6 +22698,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "KEXEC மல்டிபூட்டை துவக்க முடியவில்லை!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr ""
@@ -22711,6 +22787,9 @@ msgstr "தெரியாத பணி"
 
 msgid "Unknown error code"
 msgstr "அறியப்படாத பிழைக் குறியீடு"
+
+msgid "Unknown feed"
+msgstr ""
 
 #, python-format
 msgid "Unknown group: %d"
@@ -25301,6 +25380,9 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "டிவிடி பிளேயர்"
 
 #~ msgid "Common Settings"
 #~ msgstr "பொதுவான அமைப்புகள்"

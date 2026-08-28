@@ -164,7 +164,7 @@ class DABScan(ServiceScan):
 		self["pass"].setText(_("Pass %d/%d") % (self.feedIndex + 1, len(self.feeds)))
 		self["network"].setText(feed["name"])
 		source = "%s:%d" % (feed["address"], feed["port"]) if feed["decoder"] == "fedi2eti" else feed["transport"]
-		self["transponder"].setText(_("%s - PID 0x%04X - %s") % (feed["satellite"], feed["pid"], source))
+		self["transponder"].setText("%s - PID 0x%04X - %s" % (feed["satellite"], feed["pid"], source))
 		self.setScanState(_("Scanning DAB+ feed; waiting for live FIC data..."))
 		self.updateProgress(0)
 		seed = self.buildReference(feed, 0, feed["name"])

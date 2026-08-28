@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
-"PO-Revision-Date: 2026-08-25 09:29+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
+"PO-Revision-Date: 2026-08-27 10:28+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -897,6 +897,10 @@ msgstr[0] "È stato aggiornato %d feed dal catalogo dei pacchetti."
 msgstr[1] "Sono stati aggiornati %d feed dal catalogo dei pacchetti."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr "%d feed si trovano su satelliti non disponibili, %d usano trasporti non supportati e %d sono disabilitati"
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "%d host trovati."
@@ -927,6 +931,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d rete trovata."
 msgstr[1] "%d reti trovate."
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr "%d di %d feed completati; i bouquet dei feed non riusciti sono stati mantenuti"
 
 #, python-format
 msgid "%d package found."
@@ -1023,6 +1031,10 @@ msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
 msgstr[0] "%d plugin non è disponibile:"
 msgstr[1] "%d plugin non sono disponibili:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr "%d bouquet radio creati"
 
 #, python-format
 msgid "%d sec"
@@ -1153,6 +1165,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr "%s - PID 0x%04X - %s"
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Setup"
 
@@ -1254,6 +1270,10 @@ msgstr "%s. (più basso)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr "%s: impossibile scrivere il bouquet"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1571,6 +1591,9 @@ msgstr "<nessun registro trovato"
 
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr "Non è possibile eseguire una scansione DAB+ mentre è in corso una registrazione."
 
 msgid "A backup is now being created."
 msgstr "È in corso la creazione di un backup."
@@ -5678,6 +5701,12 @@ msgstr "Repubblica Ceca"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr "Scansione DAB+"
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr "Scansione DAB+ non riuscita; i bouquet esistenti sono stati mantenuti."
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5778,14 +5807,11 @@ msgstr "Navigatore di file DVD"
 msgid "DVD Menu"
 msgstr "Menu DVD"
 
-msgid "DVD Title list"
-msgstr "Elenco titoli DVD"
-
 msgid "DVD Player"
 msgstr "Lettore DVD"
 
-msgid "DVDPlayer"
-msgstr "DVDPlayer"
+msgid "DVD Title list"
+msgstr "Elenco titoli DVD"
 
 msgid "Daily"
 msgstr "Giornaliero"
@@ -10645,11 +10671,24 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Non valido"
 
+msgid "Invalid DAB feed file root element"
+msgstr "Elemento radice del file feed DAB non valido"
+
 msgid "Invalid Help Page"
 msgstr "Pagina di aiuto non valida"
 
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr "Nome del file bouquet non valido '%s'"
+
 msgid "Invalid location!"
 msgstr "Posizione non valida!"
+
+msgid "Invalid multicast port"
+msgstr "Porta multicast non valida"
+
+msgid "Invalid orbital position"
+msgstr "Posizione orbitale non valida"
 
 msgid "Invalid transponder data"
 msgstr "Dati del transponder non validi"
@@ -11968,6 +12007,13 @@ msgstr ""
 "Collegamento unicable non configurato correttamente dal tuner %s al tuner %s!\n"
 "L'opzione \"connesso a\" del tuner %s è ora disabilitata"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr "Attributo mancante '%s'"
+
+msgid "Missing multicast address"
+msgstr "Indirizzo multicast mancante"
+
 msgid "Mobile connection"
 msgstr "Connessione mobile"
 
@@ -13095,6 +13141,9 @@ msgstr "Nessuna posizione trovata adatta al backup!"
 msgid "No suitable sat tuner found!"
 msgstr "Nessun tuner satellitare adatto trovato!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr "Non sono disponibili feed DAB+ supportati per le posizioni satellitari configurate su questo ricevitore."
+
 msgid "No system softcam configured!"
 msgstr "Nessuna softcam di sistema configurata!"
 
@@ -13145,6 +13194,9 @@ msgstr "Nessun aggiornamento richiesto!"
 
 msgid "No updates available."
 msgstr "Nessun aggiornamento disponibile."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr "Nessun feed DAB+ valido configurato. Controlla /etc/enigma2/dab.xml."
 
 msgid "No valid device detected - Press OK"
 msgstr "Nessun dispositivo valido rilevato - Premi OK"
@@ -14096,6 +14148,10 @@ msgstr "Partizioni"
 
 msgid "Pass"
 msgstr "Passaggio"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr "Passaggio %d/%d"
 
 msgid "Pass-through"
 msgstr "Passaggio senza conversione"
@@ -16743,8 +16799,15 @@ msgstr "Scansione"
 msgid "Scanning %s..."
 msgstr "Scansione %s.."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr "Scansione feed DAB+ in corso; attesa dei dati FIC in tempo reale..."
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "La scansione non può essere eseguita mentre sono in corso delle registrazioni."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr "Scansione completata, %d servizi DAB+ trovati."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16766,6 +16829,10 @@ msgstr "Ricerca condivisioni in corso..."
 
 msgid "Scanning..."
 msgstr "Ricerca in corso..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr "Scansione in corso: %d servizi trovati; convalida del risultato in tempo reale (%d/%d)..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -20380,6 +20447,9 @@ msgstr "Avvia, ferma, seleziona cam. È necessario installare prima una softcam"
 msgid "Starting %s failed (exit code %s)"
 msgstr "Avvio di %s non riuscito (codice di uscita %s)"
 
+msgid "Starting DAB+ scan..."
+msgstr "Avvio scansione DAB+..."
+
 msgid "Starting Softcam"
 msgstr "Avvia softcam"
 
@@ -22046,6 +22116,9 @@ msgstr "Scala oraria"
 msgid "Timeout"
 msgstr "Timeout"
 
+msgid "Timeout waiting for FIC service data"
+msgstr "Timeout in attesa dei dati di servizio FIC"
+
 msgid "Timer Defaults And Retention"
 msgstr "Valori predefiniti e conservazione timer"
 
@@ -22663,6 +22736,9 @@ msgstr "Impossibile ereditare la User Band per LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Impossibile inizializzare Kexec MultiBoot!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr "Impossibile avviare il feed DAB+"
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr "Impossibile convalidare la posizione Unicable per LNB %d: %s."
@@ -22749,6 +22825,9 @@ msgstr "Servizio sconosciuto"
 
 msgid "Unknown error code"
 msgstr "Codice di errore sconosciuto"
+
+msgid "Unknown feed"
+msgstr "Feed sconosciuto"
 
 #, python-format
 msgid "Unknown group: %d"
@@ -25339,6 +25418,9 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "DVDPlayer"
 
 #~ msgid "Bluetooth audio"
 #~ msgstr "Audio Bluetooth"

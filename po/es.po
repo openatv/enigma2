@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -911,6 +911,10 @@ msgstr[0] "%d se ha actualizado el paquete del repositorio."
 msgstr[1] "%d se han actualizado los paquetes del repositorio."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr ""
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "Se encontró el host %d."
@@ -943,6 +947,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1039,6 +1047,10 @@ msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
 msgstr[0] "%d Plugin no disponible:"
 msgstr[1] "%d Plugins no disponibles:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr ""
 
 #, python-format
 msgid "%d sec"
@@ -1172,6 +1184,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuración"
 
@@ -1272,6 +1288,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr ""
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1618,6 +1638,9 @@ msgstr "<no se han encontrado logs>"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr ""
 
 msgid "A backup is now being created."
 msgstr "Se está creando una copia de seguridad."
@@ -5895,6 +5918,12 @@ msgstr "República Checa"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr ""
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -6000,16 +6029,12 @@ msgid "DVD Menu"
 msgstr "Menú del DVD"
 
 #
-msgid "DVD Title list"
-msgstr "Lista de títulos de DVD"
-
-#
 msgid "DVD Player"
 msgstr "Reproductor de DVD"
 
 #
-msgid "DVDPlayer"
-msgstr "Reproductor de DVD"
+msgid "DVD Title list"
+msgstr "Lista de títulos de DVD"
 
 msgid "Daily"
 msgstr "Diario"
@@ -11092,11 +11117,24 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Inválido"
 
+msgid "Invalid DAB feed file root element"
+msgstr ""
+
 msgid "Invalid Help Page"
+msgstr ""
+
+#, python-format
+msgid "Invalid bouquet file name '%s'"
 msgstr ""
 
 msgid "Invalid location!"
 msgstr "¡Ubicación incorrecta!"
+
+msgid "Invalid multicast port"
+msgstr ""
+
+msgid "Invalid orbital position"
+msgstr ""
 
 msgid "Invalid transponder data"
 msgstr "Datos de transpondedor inválidos"
@@ -12500,6 +12538,13 @@ msgstr ""
 "¡Conexión unicable mal configurada desde el sintonizador %s hasta el sintonizador %s!\n"
 "La opción \"conectado a\" del sintonizador %s ahora está deshabilitada"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr ""
+
+msgid "Missing multicast address"
+msgstr ""
+
 msgid "Mobile connection"
 msgstr "Conexión móvil"
 
@@ -13686,6 +13731,9 @@ msgstr "No se han encontrado ubicaciones de respaldo adecuadas!"
 msgid "No suitable sat tuner found!"
 msgstr "No se encontró ningún sintonizador de satélite adecuado!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -13741,6 +13789,9 @@ msgstr "No es necesario actualizar!"
 
 msgid "No updates available."
 msgstr "No hay actualizaciones disponibles."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "No se ha detectado un dispositivo válido - Presiona OK"
@@ -14749,6 +14800,10 @@ msgstr "Particiones"
 
 msgid "Pass"
 msgstr "Paso"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr ""
 
 msgid "Pass-through"
 msgstr "Pass-through"
@@ -17588,7 +17643,14 @@ msgstr "Explorando"
 msgid "Scanning %s..."
 msgstr "Buscando %s..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr ""
+
 msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
 msgstr ""
 
 #, python-format
@@ -17611,6 +17673,10 @@ msgstr "Buscando acciones..."
 
 msgid "Scanning..."
 msgstr "Buscando..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -21369,6 +21435,9 @@ msgstr "Inicia/Para/Seleccione tu CAM, necesitas instalar antes una emuladora"
 msgid "Starting %s failed (exit code %s)"
 msgstr ""
 
+msgid "Starting DAB+ scan..."
+msgstr ""
+
 msgid "Starting Softcam"
 msgstr "Iniciando Softcam"
 
@@ -23120,6 +23189,9 @@ msgstr "Escala de tiempo"
 msgid "Timeout"
 msgstr "Fuera de tiempo"
 
+msgid "Timeout waiting for FIC service data"
+msgstr ""
+
 msgid "Timer Defaults And Retention"
 msgstr ""
 
@@ -23794,6 +23866,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr ""
@@ -23888,6 +23963,9 @@ msgstr "Canal desconocido"
 #
 msgid "Unknown error code"
 msgstr "Código de error desconocido"
+
+msgid "Unknown feed"
+msgstr ""
 
 #, python-format
 msgid "Unknown group: %d"
@@ -26649,6 +26727,10 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "DVDPlayer"
+#~ msgstr "Reproductor de DVD"
 
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Conmutación de entrada C/T: interruptor coaxial externo de 5 V"

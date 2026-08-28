@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 08:01+0000\n"
-"PO-Revision-Date: 2026-08-26 20:02+0000\n"
+"POT-Creation-Date: 2026-08-26 20:10+0000\n"
+"PO-Revision-Date: 2026-08-27 10:28+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -898,6 +898,10 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d kaynak kataloğu paketi güncellendi."
 
 #, python-format
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr "%d kaynaklar, erişilemeyen uydularda yer almaktadır; %d'i desteklenmeyen aktarım yöntemlerini kullanmaktadır ve %d'i devre dışıdır"
+
+#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "%d sunucu (lar) bulundu."
@@ -928,6 +932,10 @@ msgstr "%d ms"
 msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d ağ (lar) bulundu."
+
+#, python-format
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr "%d kaynağın %d'i tamamlandı; başarısız olan kaynak buketleri saklandı"
 
 #, python-format
 msgid "%d package found."
@@ -1008,6 +1016,10 @@ msgstr[0] "%d paket yükseltildi."
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
 msgstr[0] "%d eklentisi mevcut değil:"
+
+#, python-format
+msgid "%d radio bouquets created"
+msgstr "%d radyo buketi oluşturuldu"
 
 #, python-format
 msgid "%d sec"
@@ -1141,6 +1153,10 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s - PID 0x%04X - %s"
+msgstr "%s - PID 0x%04X - %s"
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Kurulum"
 
@@ -1245,6 +1261,10 @@ msgstr "%s. (En düşük)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr "%s: buket yazılamadı"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1578,6 +1598,9 @@ msgstr "<sistem günlüğü kaydı bulunamadı>"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr "Kayıt işlemi devam ederken DAB+ taraması çalıştırılamaz."
 
 msgid "A backup is now being created."
 msgstr "Şu anda bir yedekleme oluşturuluyor."
@@ -5856,6 +5879,12 @@ msgstr "Çek Cumhuriyeti"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr "DAB+ Tarama"
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr "DAB+ taraması başarısız oldu; mevcut buketler korundu."
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5960,14 +5989,11 @@ msgstr "DVD Dosya Tarayıcısı"
 msgid "DVD Menu"
 msgstr "DVD Menüsü"
 
-msgid "DVD Title list"
-msgstr "DVD Başlık Listesi"
-
 msgid "DVD Player"
 msgstr "DVD oynatıcı"
 
-msgid "DVDPlayer"
-msgstr "DVD oynatıcı"
+msgid "DVD Title list"
+msgstr "DVD Başlık Listesi"
 
 #
 msgid "Daily"
@@ -11029,12 +11055,25 @@ msgstr "İnyupikçe"
 msgid "Invalid"
 msgstr "Geçersiz"
 
+msgid "Invalid DAB feed file root element"
+msgstr "Geçersiz DAB kaynak dosyası kök öğesi"
+
 msgid "Invalid Help Page"
 msgstr "Geçersiz Yardım Sayfası"
+
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr "'%s' adlı buket dosyası geçersiz"
 
 #
 msgid "Invalid location!"
 msgstr "Geçersiz konum!"
+
+msgid "Invalid multicast port"
+msgstr "Geçersiz çoklu yayın bağlantı noktası"
+
+msgid "Invalid orbital position"
+msgstr "Geçersiz yörünge konumu"
 
 #
 msgid "Invalid transponder data"
@@ -12413,6 +12452,13 @@ msgstr ""
 "Tuner %s'den tuner %s'ye unicable bağlantısı yanlış yapılandırılmış!\n"
 "Tuner %s seçeneği \"bağlı\" şu anda devre dışı bırakıldı"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr "'%s' özniteliği eksik"
+
+msgid "Missing multicast address"
+msgstr "Eksik çoklu yayın adresi"
+
 msgid "Mobile connection"
 msgstr "Mobil bağlantı"
 
@@ -13606,6 +13652,9 @@ msgstr "Uygun yedekleme konumu bulunamadı!"
 msgid "No suitable sat tuner found!"
 msgstr "Uygun tuner bulunamadı!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr "Bu cihazda yapılandırılmış uydu konumları için desteklenen DAB+ yayınları mevcut değil."
+
 msgid "No system softcam configured!"
 msgstr "Sistem softcam yapılandırılmamış!"
 
@@ -13661,6 +13710,9 @@ msgstr "Güncelleme gerekmiyor!"
 
 msgid "No updates available."
 msgstr "Güncelleme yok."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr "Yapılandırılmış geçerli DAB+ kaynağı yok. /etc/enigma2/dab.xml dosyasını kontrol edin."
 
 msgid "No valid device detected - Press OK"
 msgstr "Geçerli bir cihaz algılanmadı - OK tuşuna basın"
@@ -14647,6 +14699,10 @@ msgstr "Bölümler"
 
 msgid "Pass"
 msgstr "Geçiş"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr "Geçiş %d/%d"
 
 msgid "Pass-through"
 msgstr "Geçiş"
@@ -17458,8 +17514,15 @@ msgstr "Tarama"
 msgid "Scanning %s..."
 msgstr "%s taranıyor..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr "DAB+ kaynağı taranıyor; canlı FIC verileri bekleniyor..."
+
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Kayıt işlemi devam ederken tarama işlemi gerçekleştirilemez."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr "Tarama tamamlandı, %d adet DAB+ kanalı bulundu."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -17479,6 +17542,10 @@ msgstr "Paylaşımlar taranıyor..."
 
 msgid "Scanning..."
 msgstr "Tarıyor..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr "Taramada: %d kanal bulundu; canlı sonuç doğrulanıyor (%d/%d)..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -21193,6 +21260,9 @@ msgstr "Cam'ı başlatın/durdurun/seçin, öncelikle bir softcam yüklemeniz ge
 msgid "Starting %s failed (exit code %s)"
 msgstr "%s başlatılamadı (çıkış kodu %s)"
 
+msgid "Starting DAB+ scan..."
+msgstr "DAB+ taraması başlatılıyor..."
+
 msgid "Starting Softcam"
 msgstr "Softcami Başlat"
 
@@ -22917,6 +22987,9 @@ msgstr "Zaman çizelgesi ölçeği"
 msgid "Timeout"
 msgstr "Zaman aşımı"
 
+msgid "Timeout waiting for FIC service data"
+msgstr "FIC kanal verileri beklenirken zaman aşımı oluştu"
+
 msgid "Timer Defaults And Retention"
 msgstr "Zamanlayıcı Varsayılanları ve Saklama Süresi"
 
@@ -23577,6 +23650,9 @@ msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec Çoklu Ön Yükleme başlatılamadı!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr "DAB+ kaynağı başlatılamıyor"
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
 msgstr "LNB %d için Unicable konumunu doğrulayamadı: %s."
@@ -23669,6 +23745,9 @@ msgstr "Bilinmeyen Kanal"
 #
 msgid "Unknown error code"
 msgstr "Bilinmeyen hata kodu"
+
+msgid "Unknown feed"
+msgstr "Bilinmeyen kaynak"
 
 #, python-format
 msgid "Unknown group: %d"
@@ -26404,6 +26483,9 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVDPlayer"
+#~ msgstr "DVD oynatıcı"
 
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "C/T girişi değişimi: harici 5V koaksiyel geçiş"
