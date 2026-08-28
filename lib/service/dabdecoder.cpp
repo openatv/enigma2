@@ -242,11 +242,10 @@ void eDABDecoder::feedETI(const uint8_t *data, size_t length)
 		streams.push_back(stream);
 		position += streamLength;
 	}
-	/* FL covers FC, STC, EOH, FIC and MSC in 32-bit words, so the MST ends at
-	 * 4 + FL * 4. It provides a second independent bound for malformed input. */
-	const size_t expectedMSTEnd = 4 + frameLengthWords * 4;
-	if (position != expectedMSTEnd || position + 2 > length ||
-		!checkInvertedCRC(data + mstStart, position + 2 - mstStart))
+	/* The MST CRC decides. FL is not compared against the parsed end, the frame
+	 * can come from eDABTSAdapter, whose reconstruction need not place the
+	 * fields where a broadcast ETI-NI frame does. */
+	if (position + 2 > length || !checkInvertedCRC(data + mstStart, position + 2 - mstStart))
 	{
 		++m_crc_errors;
 		return;
