@@ -134,7 +134,7 @@ uint8_t eDABTSAdapter::getAlignedByte(size_t bitPosition) const
 		(m_na_input[bytePosition + 1] >> (8 - shift)));
 }
 
-bool eDABTSAdapter::findE1Sync(size_t &bitPosition, bool &inverted) const
+bool eDABTSAdapter::findE1Sync(size_t startBit, size_t &bitPosition, bool &inverted) const
 {
 	const size_t spacing = E1_FRAME_SIZE * 2 * 8;
 	const size_t samples = 8;
@@ -142,7 +142,8 @@ bool eDABTSAdapter::findE1Sync(size_t &bitPosition, bool &inverted) const
 	const size_t availableBits = m_na_input.size() * 8;
 	if (availableBits < requiredBits)
 		return false;
-	for (size_t start = 0; start + requiredBits <= availableBits; ++start)
+	// Skip candidates the caller already rejected, otherwise they are found again.
+	for (size_t start = startBit; start + requiredBits <= availableBits; ++start)
 	{
 		const uint8_t first = getAlignedByte(start) & E1_SYNC_MASK;
 		if (first != E1_SYNC && first != (E1_SYNC ^ E1_SYNC_MASK))
@@ -328,7 +329,7 @@ void eDABTSAdapter::processTSNA()
 		{
 			size_t syncPosition = 0;
 			bool inverted = false;
-			if (!findE1Sync(syncPosition, inverted))
+			if (!findE1Sync(m_na_bit_position, syncPosition, inverted))
 				return;
 			m_na_bit_position = syncPosition;
 			m_na_inverted = inverted;

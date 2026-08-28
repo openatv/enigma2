@@ -39,18 +39,20 @@ const EEPProfile eepProfiles[8] = {
 class LATMBitWriter
 {
 public:
-	LATMBitWriter() : m_byte_bits(0) { }
+	LATMBitWriter() = default;
 
 	void addBits(uint32_t value, size_t count)
 	{
 		while (count)
 		{
-			if (!m_byte_bits)
+			const size_t usedBits = m_byte_bits & 7;  // Keeps the range provable, m_byte_bits is unsigned.
+			if (!usedBits)
 				m_data.push_back(0);
-			const size_t copyBits = std::min(count, static_cast<size_t>(8 - m_byte_bits));
+			const size_t freeBits = 8 - usedBits;
+			const size_t copyBits = std::min(count, freeBits);
 			const uint8_t copyData = static_cast<uint8_t>((value >> (count - copyBits)) & (0xff >> (8 - copyBits)));
-			m_data.back() |= static_cast<uint8_t>(copyData << (8 - m_byte_bits - copyBits));
-			m_byte_bits = (m_byte_bits + copyBits) % 8;
+			m_data.back() |= static_cast<uint8_t>(copyData << (freeBits - copyBits));
+			m_byte_bits = (usedBits + copyBits) % 8;
 			count -= copyBits;
 		}
 	}
@@ -73,7 +75,7 @@ public:
 
 private:
 	std::vector<uint8_t> m_data;
-	size_t m_byte_bits;
+	size_t m_byte_bits = 0;
 };
 }
 
@@ -240,9 +242,9 @@ void eDABDecoder::feedETI(const uint8_t *data, size_t length)
 		streams.push_back(stream);
 		position += streamLength;
 	}
-	/* FL covers FC, STC, EOH, FIC and MSC in 32-bit words. It provides a
-	 * second independent bound for malformed direct ETI input. */
-	const size_t expectedMSTEnd = 8 + frameLengthWords * 4;
+	/* FL covers FC, STC, EOH, FIC and MSC in 32-bit words, so the MST ends at
+	 * 4 + FL * 4. It provides a second independent bound for malformed input. */
+	const size_t expectedMSTEnd = 4 + frameLengthWords * 4;
 	if (position != expectedMSTEnd || position + 2 > length ||
 		!checkInvertedCRC(data + mstStart, position + 2 - mstStart))
 	{
@@ -262,10 +264,11 @@ void eDABDecoder::processAF(const uint8_t *data, size_t length)
 	const bool hasCRC = data[8] & 0x80;
 	if (((data[8] >> 4) & 7) != 1 || (data[8] & 0x0f) != 0 || data[9] != 'T')
 		return;
-	const size_t packetLength = 10 + tagLength + (hasCRC ? 2 : 0);
-	if (packetLength > length)
+	// LEN is 32 bit, adding to it wraps a 32-bit size_t.
+	const size_t overhead = hasCRC ? 12 : 10;
+	if (tagLength > length - overhead)
 		return;
-	if (hasCRC && !checkInvertedCRC(data, packetLength))
+	if (hasCRC && !checkInvertedCRC(data, overhead + tagLength))
 	{
 		++m_crc_errors;
 		return;
@@ -630,7 +633,7 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 		return;
 	for (size_t i = 0; i < streams.size(); ++i)
 	{
-		if (streams[i].subchannel != m_selected_subchannel && streams[i].startAddress != m_selected_start_address)
+		if (streams[i].subchannel != m_selected_subchannel)
 			continue;
 		++m_msc_frames;
 		if (m_selected_dabplus)

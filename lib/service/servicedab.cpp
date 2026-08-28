@@ -27,6 +27,15 @@ namespace
 {
 constexpr size_t TS_PACKET_SIZE = 188;
 constexpr size_t PSI_MAX_SIZE = 0x0fff;
+constexpr uint64_t LOAS_PROBE_MS = 8000;
+constexpr uint64_t LOAS_PROBE_OVERRUNS = 3;
+
+/* Latched when a sink advertises LOAS but does not consume it. */
+bool &loasSinkRejected()
+{
+	static bool rejected = false;
+	return rejected;
+}
 
 uint64_t monotonicMilliseconds()
 {
@@ -1032,7 +1041,10 @@ bool eServiceDAB::startTap()
 			uint64_t durationNs, uint8_t config) {
 			if (m_audio_capture)
 				fwrite(framed, 1, framedLength, m_audio_capture);
-			pushAudio(data, length, durationNs, config);
+			if (m_audio_loas)
+				pushAudio(framed, framedLength, durationNs, config);
+			else
+				pushAudio(data, length, durationNs, config);
 		},
 		[this](const uint8_t *data, size_t length, int format) { storeSlide(data, length, format); },
 		m_worker_pump));
@@ -1049,6 +1061,7 @@ bool eServiceDAB::startTap()
 		return false;
 	}
 	m_tap_running = true;
+	m_audio_probe_deadline = m_audio_loas ? monotonicMilliseconds() + LOAS_PROBE_MS : 0;
 	eDebug("[eServiceDAB] native PID tap started pid=%04x dabSid=%04x eid=%04x target=%s",
 		pid, m_reference.getUnsignedData(6) & 0xffff, m_reference.getUnsignedData(7) & 0xffff,
 		m_reference.path.c_str());
@@ -1112,6 +1125,19 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 	m_stats = stats;
 	pollAudioBus();
 	const uint64_t queueOverruns = m_audio_queue_overruns.load();
+	/* The sink advertised LOAS but leaves the queue to overflow, so it does not
+	 * consume what it claimed to take. Re-tap with the software decoder. */
+	if (queueOverruns >= LOAS_PROBE_OVERRUNS && m_audio_probe_deadline && monotonicMilliseconds() < m_audio_probe_deadline)
+	{
+		loasSinkRejected() = true;
+		m_audio_probe_deadline = 0;
+		eWarning("[eServiceDAB] sink does not consume LOAS after %llu overruns, falling back to the software decoder",
+			static_cast<unsigned long long>(queueOverruns));
+		stopTap();
+		if (!startTap())
+			eWarning("[eServiceDAB] unable to restart the tap with the software decoder");
+		return;
+	}
 	if (queueOverruns != m_reported_audio_queue_overruns)
 	{
 		guint levelBuffers = 0;
@@ -1172,6 +1198,58 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 		eWarning("[eServiceDAB] worker stopped with error %d", stats.error);
 }
 
+static bool structureOffersLOAS(const GstStructure *structure)
+{
+	const GValue *value = gst_structure_get_value(structure, "stream-format");
+	if (!value)
+		return false;
+	if (G_VALUE_HOLDS_STRING(value))
+		return g_strcmp0(g_value_get_string(value), "loas") == 0;
+	if (GST_VALUE_HOLDS_LIST(value))
+	{
+		for (guint index = 0; index < gst_value_list_get_size(value); ++index)
+		{
+			const GValue *item = gst_value_list_get_value(value, index);
+			if (G_VALUE_HOLDS_STRING(item) && g_strcmp0(g_value_get_string(item), "loas") == 0)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool eServiceDAB::sinkAcceptsLOAS(const char *factoryName)
+{
+	GstElementFactory *factory = gst_element_factory_find(factoryName);
+	if (!factory)
+		return false;
+	/* Require stream-format to name loas. A caps query would also match a sink
+	 * that leaves the field open, and such a sink decodes the access units as
+	 * plain AAC instead of LATM. */
+	bool accepted = false;
+	for (const GList *entry = gst_element_factory_get_static_pad_templates(factory); entry; entry = entry->next)
+	{
+		GstStaticPadTemplate *padTemplate = static_cast<GstStaticPadTemplate *>(entry->data);
+		if (padTemplate->direction != GST_PAD_SINK)
+			continue;
+		GstCaps *caps = gst_static_pad_template_get_caps(padTemplate);
+		if (!caps)
+			continue;
+		for (guint index = 0; index < gst_caps_get_size(caps); ++index)
+		{
+			if (structureOffersLOAS(gst_caps_get_structure(caps, index)))
+			{
+				accepted = true;
+				break;
+			}
+		}
+		gst_caps_unref(caps);
+		if (accepted)
+			break;
+	}
+	gst_object_unref(factory);
+	return accepted;
+}
+
 bool eServiceDAB::startAudioPipeline()
 {
 	if (m_audio_pipeline)
@@ -1181,10 +1259,15 @@ bool eServiceDAB::startAudioPipeline()
 #else
 	const char *sink = "dvbaudiosink";
 #endif
+	/* A sink that takes LOAS decodes in hardware. Fall back to the software
+	 * decoder only when it does not, dvbaudiosink advertises raw audio but
+	 * never consumes it. */
+	m_audio_loas = !loasSinkRejected() && sinkAcceptsLOAS(sink);
 	std::string description =
 		"appsrc name=dabsource is-live=true format=time do-timestamp=false block=false "
-		"! queue name=dabqueue max-size-buffers=64 max-size-bytes=524288 max-size-time=2000000000 leaky=downstream "
-		"! faad ! audioconvert ! audioresample ! ";
+		"! queue name=dabqueue max-size-buffers=64 max-size-bytes=524288 max-size-time=2000000000 leaky=downstream ! ";
+	if (!m_audio_loas)
+		description += "faad ! audioconvert ! audioresample ! ";
 	description += sink;
 	description += " name=dabaudiosink";
 	GError *error = nullptr;
@@ -1281,6 +1364,26 @@ void eServiceDAB::setAudioCaps(uint8_t config)
 	const unsigned formatIndex = (dacRate ? 2 : 0) | (sbr ? 1 : 0);
 	const unsigned coreSampleIndex = coreSampleIndexTable[formatIndex];
 	const unsigned coreChannels = stereo ? 2 : 1;
+	if (m_audio_loas)
+	{
+		// The StreamMuxConfig carries the AudioSpecificConfig, no codec_data needed.
+		const unsigned rate = sbr ? coreSampleRateTable[formatIndex] * 2 : coreSampleRateTable[formatIndex];
+		GstCaps *loasCaps = gst_caps_new_simple("audio/mpeg",
+			"mpegversion", G_TYPE_INT, 4,
+			"rate", G_TYPE_INT, static_cast<int>(rate),
+			"channels", G_TYPE_INT, static_cast<int>(coreChannels),
+			"stream-format", G_TYPE_STRING, "loas",
+			"framed", G_TYPE_BOOLEAN, TRUE, nullptr);
+		if (!loasCaps)
+			return;
+		g_object_set(m_audio_source, "caps", loasCaps, nullptr);
+		gst_caps_unref(loasCaps);
+		m_audio_format = config;
+		m_audio_caps_set = true;
+		eDebug("[eServiceDAB] AAC hardware decode configured: LOAS %u Hz channels=%u sbr=%d ps=%d",
+			rate, coreChannels, sbr, ps);
+		return;
+	}
 	uint8_t asc[7] = {
 		static_cast<uint8_t>((2 << 3) | (coreSampleIndex >> 1)),
 		static_cast<uint8_t>(((coreSampleIndex & 1) << 7) | (coreChannels << 3) | 0b100)

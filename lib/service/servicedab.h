@@ -208,6 +208,7 @@ private:
 	void stopTap();
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
+	static bool sinkAcceptsLOAS(const char *factoryName);
 	bool startAudioPipeline();
 	void stopAudioPipeline();
 	void pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config);
@@ -240,6 +241,8 @@ private:
 	uint64_t m_audio_next_pts;
 	uint8_t m_audio_format;
 	bool m_audio_caps_set;
+	bool m_audio_loas = false;
+	uint64_t m_audio_probe_deadline = 0;
 	std::atomic<uint64_t> m_audio_queue_overruns;
 	uint64_t m_reported_audio_queue_overruns;
 	std::string m_slide_jpeg_path;
