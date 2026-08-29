@@ -456,11 +456,11 @@ class ConfigListScreen:
 			notifier()
 		quitData = self.saveAll()
 		if quitData:
-			self.session.openWithCallback(boundFunction(self.restartConfirm, quitData[0]), MessageBox, quitData[1], default=True, type=MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(boundFunction(self.restartConfirm, quitValue=quitData[0]), MessageBox, quitData[1], default=True, type=MessageBox.TYPE_YESNO)
 		else:
 			self.close()
 
-	def restartConfirm(self, quitValue, result):
+	def restartConfirm(self, result, quitValue=QUIT_RESTART):
 		if result:
 			self.session.open(TryQuitMainloop, retvalue=quitValue)
 			self.close()
