@@ -3,7 +3,7 @@ from re import fullmatch, sub
 from time import monotonic
 from xml.etree.ElementTree import ParseError, parse
 
-from enigma import eDVBDB, eServiceReference, eTimer, iServiceInformation
+from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eServiceReference, eTimer, iServiceInformation
 
 from Components.NimManager import nimmanager
 from Screens.ServiceScan import ServiceScan
@@ -39,6 +39,8 @@ class DABScan(ServiceScan):
 		self.stablePolls = 0
 		self.feedStarted = 0
 		self.scanFinished = False
+		self.registeredParents = set()
+		self.saveRegisteredParents = False
 		ServiceScan.__init__(self, session, [])
 		self.skinName = ["ServiceScan"]
 		self.setImage("ServiceScan")
@@ -125,6 +127,8 @@ class DABScan(ServiceScan):
 		port = int(attribute("multicastPort", "0"), 10)
 		if decoder == "fedi2eti" and (port < 1 or port > 65535):
 			raise ValueError("invalid multicast port")
+		registerParent = attribute("registerParent", "true").lower() in ("1", "true", "yes", "on")
+		frontend = self.parseSatelliteFrontend(attribute, orbitalPosition) if registerParent else None
 		return {
 			"id": feedId,
 			"name": attribute("name", feedId),
@@ -141,8 +145,84 @@ class DABScan(ServiceScan):
 			"ensembleId": self.parseHex(node, transponder, satellite, "ensembleId"),
 			"address": address,
 			"port": port,
+			"frontend": frontend,
 			"bouquetFile": bouquetFile,
 			"bouquetName": attribute("bouquetName", attribute("name", feedId))
+		}
+
+	def parseSatelliteFrontend(self, attribute, orbitalPosition):
+		polarizations = {
+			"H": eDVBFrontendParametersSatellite.Polarisation_Horizontal,
+			"V": eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			"L": eDVBFrontendParametersSatellite.Polarisation_CircularLeft,
+			"R": eDVBFrontendParametersSatellite.Polarisation_CircularRight
+		}
+		fecValues = {
+			"1/2": eDVBFrontendParametersSatellite.FEC_1_2,
+			"2/3": eDVBFrontendParametersSatellite.FEC_2_3,
+			"3/4": eDVBFrontendParametersSatellite.FEC_3_4,
+			"5/6": eDVBFrontendParametersSatellite.FEC_5_6,
+			"7/8": eDVBFrontendParametersSatellite.FEC_7_8,
+			"AUTO": eDVBFrontendParametersSatellite.FEC_Auto
+		}
+		systems = {
+			"DVB-S": eDVBFrontendParametersSatellite.System_DVB_S,
+			"DVB-S2": eDVBFrontendParametersSatellite.System_DVB_S2
+		}
+		modulations = {
+			"QPSK": eDVBFrontendParametersSatellite.Modulation_QPSK,
+			"8PSK": eDVBFrontendParametersSatellite.Modulation_8PSK,
+			"AUTO": eDVBFrontendParametersSatellite.Modulation_Auto
+		}
+		plsModes = {
+			"ROOT": eDVBFrontendParametersSatellite.PLS_Root,
+			"GOLD": eDVBFrontendParametersSatellite.PLS_Gold,
+			"COMBO": eDVBFrontendParametersSatellite.PLS_Combo
+		}
+		polarization = attribute("polarization", "").upper()
+		fec = attribute("fec", "AUTO").upper()
+		system = attribute("system", "DVB-S").upper()
+		modulation = attribute("modulation", "AUTO").upper()
+		streamId = int(attribute("inputStreamId", str(eDVBFrontendParametersSatellite.No_Stream_Id_Filter)), 10)
+		plsMode = attribute("plsMode", "Gold").upper()
+		plsCode = int(attribute("plsCode", str(eDVBFrontendParametersSatellite.PLS_Default_Gold_Code)), 10)
+		t2miPlpId = int(attribute("t2miPlpId", str(eDVBFrontendParametersSatellite.No_T2MI_PLP_Id)), 10)
+		t2miPid = int(attribute("t2miPid", str(eDVBFrontendParametersSatellite.T2MI_Default_Pid)), 10)
+		if polarization not in polarizations:
+			raise ValueError("invalid or missing satellite polarization")
+		if fec not in fecValues:
+			raise ValueError(f"unsupported satellite FEC '{fec}'")
+		if system not in systems:
+			raise ValueError(f"unsupported satellite system '{system}'")
+		if modulation not in modulations:
+			raise ValueError(f"unsupported satellite modulation '{modulation}'")
+		if streamId < eDVBFrontendParametersSatellite.No_Stream_Id_Filter or streamId > 255:
+			raise ValueError(f"invalid input stream ID '{streamId}'")
+		if plsMode not in plsModes:
+			raise ValueError(f"unsupported PLS mode '{plsMode}'")
+		if plsCode < 0 or plsCode > 262143:
+			raise ValueError(f"invalid PLS code '{plsCode}'")
+		if t2miPlpId < eDVBFrontendParametersSatellite.No_T2MI_PLP_Id or t2miPlpId > 255:
+			raise ValueError(f"invalid T2MI PLP ID '{t2miPlpId}'")
+		if t2miPid < 0 or t2miPid > 8191:
+			raise ValueError(f"invalid T2MI PID '{t2miPid}'")
+		frequency = int(attribute("frequency", "0"), 10)
+		symbolRate = int(attribute("symbolRate", "0"), 10)
+		if frequency <= 0 or symbolRate <= 0:
+			raise ValueError("invalid or missing satellite frequency/symbol rate")
+		return {
+			"frequency": frequency,
+			"symbolRate": symbolRate,
+			"polarization": polarizations[polarization],
+			"fec": fecValues[fec],
+			"system": systems[system],
+			"modulation": modulations[modulation],
+			"orbitalPosition": orbitalPosition,
+			"streamId": streamId,
+			"plsMode": plsModes[plsMode],
+			"plsCode": plsCode,
+			"t2miPlpId": t2miPlpId,
+			"t2miPid": t2miPid
 		}
 
 	def parseHex(self, node, transponder, satellite, attribute):
@@ -150,6 +230,43 @@ class DABScan(ServiceScan):
 		if value is None:
 			raise ValueError(f"missing attribute '{attribute}'")
 		return int(value, 16)
+
+	def registerParent(self, feed):
+		frontend = feed["frontend"]
+		if frontend is None:
+			return True
+		parentKey = (feed["namespace"], feed["tsid"], feed["onid"], feed["parentSid"])
+		if parentKey in self.registeredParents:
+			return True
+		satellite = eDVBFrontendParametersSatellite()
+		satellite.frequency = frontend["frequency"]
+		satellite.symbol_rate = frontend["symbolRate"]
+		satellite.polarisation = frontend["polarization"]
+		satellite.fec = frontend["fec"]
+		satellite.inversion = eDVBFrontendParametersSatellite.Inversion_Unknown
+		satellite.orbital_position = frontend["orbitalPosition"]
+		satellite.system = frontend["system"]
+		satellite.modulation = frontend["modulation"]
+		satellite.rolloff = eDVBFrontendParametersSatellite.RollOff_auto
+		satellite.pilot = eDVBFrontendParametersSatellite.Pilot_Unknown
+		satellite.is_id = frontend["streamId"]
+		satellite.pls_mode = frontend["plsMode"]
+		satellite.pls_code = frontend["plsCode"]
+		satellite.t2mi_plp_id = frontend["t2miPlpId"]
+		satellite.t2mi_pid = frontend["t2miPid"]
+		parameters = eDVBFrontendParameters()
+		parameters.setDVBS(satellite)
+		parent = eServiceReference("1:0:%X:%X:%X:%X:%X:0:0:0:" % (
+			feed["parentServiceType"], feed["parentSid"], feed["tsid"], feed["onid"], feed["namespace"]))
+		parent.setName("%s DAB parent" % feed["satellite"])
+		if eDVBDB.getInstance().addChannelToDB(parent, parameters, [], [], 0):
+			print(f"[DABScan] Unable to register DVB parent for '{feed['name']}'.")
+			return False
+		self.registeredParents.add(parentKey)
+		self.saveRegisteredParents = True
+		print("[DABScan] Registered DVB parent '%s' at %d kHz, SR %d." % (
+			parent.toString(), frontend["frequency"], frontend["symbolRate"]))
+		return True
 
 	def startFeed(self):
 		if self.feedIndex >= len(self.feeds):
@@ -167,6 +284,9 @@ class DABScan(ServiceScan):
 		self["transponder"].setText(_("%s - PID 0x%04X - %s") % (feed["satellite"], feed["pid"], source))
 		self.setScanState(_("Scanning DAB+ feed; waiting for live FIC data..."))
 		self.updateProgress(0)
+		if not self.registerParent(feed):
+			self.feedFailed(_("Unable to register the DAB+ transponder"))
+			return
 		seed = self.buildReference(feed, 0, feed["name"])
 		print(f"[DABScan] Starting feed '{feed['name']}' with reference '{seed.toString()}'.")
 		if self.session.nav.playService(seed, checkParentalControl=False, adjust=False):
@@ -224,6 +344,7 @@ class DABScan(ServiceScan):
 		return services
 
 	def cleanLabel(self, label):
+		label = str(label or "").encode("utf-8", errors="replace").decode("utf-8")
 		return " ".join(label.replace("\r", " ").replace("\n", " ").split())[:63]
 
 	def showCurrentServices(self):
@@ -275,7 +396,15 @@ class DABScan(ServiceScan):
 			feed["parentServiceType"], feed["parentSid"], feed["tsid"], feed["onid"],
 			feed["namespace"], feed["pid"], sid, feed["ensembleId"], target)
 		reference = eServiceReference(text)
-		reference.setName(name)
+		name = str(name or "")
+		try:
+			reference.setName(name)
+		except TypeError:
+			try:
+				reference.setName(name.encode("utf-8", errors="replace"))
+			except TypeError:
+				# Some SWIG versions only accept ASCII Python strings for std::string.
+				reference.setName(name.encode("ascii", errors="replace").decode("ascii") or "DAB service")
 		return reference
 
 	def writeBouquet(self, feed, services):
@@ -316,6 +445,8 @@ class DABScan(ServiceScan):
 	def finishScan(self):
 		self.pollTimer.stop()
 		self.scanFinished = True
+		if self.saveRegisteredParents:
+			eDVBDB.getInstance().saveServicelist()
 		eDVBDB.getInstance().reloadBouquets()
 		self.restoreService()
 		self["scan_progress"].setValue(100)
