@@ -114,7 +114,7 @@ private:
 	static uint16_t crc16(uint16_t crc, const uint8_t *data, size_t length, uint16_t polynomial);
 	static bool checkInvertedCRC(const uint8_t *data, size_t length);
 	static bool checkFireCode(const uint8_t *data, size_t length);
-	static std::string decodeLabel(const uint8_t *data, size_t length);
+	static std::string decodeLabel(const uint8_t *data, size_t length, int charset);
 
 	uint32_t m_service_id;
 	uint16_t m_ensemble_id;

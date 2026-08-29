@@ -170,15 +170,9 @@ bool eDABDecoder::checkFireCode(const uint8_t *data, size_t length)
 	return crc16(0, data + 2, 9, 0x782f) == expected;
 }
 
-std::string eDABDecoder::decodeLabel(const uint8_t *data, size_t length)
+std::string eDABDecoder::decodeLabel(const uint8_t *data, size_t length, int charset)
 {
-	std::string label;
-	label.reserve(length);
-	for (size_t i = 0; i < length; ++i)
-	{
-		const unsigned char c = data[i];
-		label += (c >= 0x20 && c != 0x7f) ? static_cast<char>(c) : ' ';
-	}
+	std::string label = DABlinPAD::CharsetTools::ConvertTextToUTF8(data, length, charset, false, nullptr);
 	while (!label.empty() && label[label.size() - 1] == ' ')
 		label.resize(label.size() - 1);
 	return label;
@@ -563,6 +557,7 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 		return;
 	const int extension = data[0] & 7;
 	const bool otherEnsemble = data[0] & 8;
+	const int charset = data[0] >> 4;
 	if (otherEnsemble)
 		return;
 	if (extension == 0 && length >= 19)
@@ -570,7 +565,7 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 		const uint16_t eid = read16(data + 1);
 		if (!m_ensemble_id || eid == m_ensemble_id)
 		{
-			const std::string label = decodeLabel(data + 3, 16);
+			const std::string label = decodeLabel(data + 3, 16, charset);
 			if (m_ensemble_label != label)
 			{
 				m_ensemble_label = label;
@@ -581,7 +576,7 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 	else if (extension == 1 && length >= 21)
 	{
 		const uint16_t sid = read16(data + 1);
-		const std::string label = decodeLabel(data + 3, 16);
+		const std::string label = decodeLabel(data + 3, 16, charset);
 		if (m_services[sid].label != label)
 		{
 			m_services[sid].label = label;
@@ -591,7 +586,7 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 	else if (extension == 5 && length >= 23)
 	{
 		const uint32_t sid = read32(data + 1);
-		const std::string label = decodeLabel(data + 5, 16);
+		const std::string label = decodeLabel(data + 5, 16, charset);
 		if (m_services[sid].label != label)
 		{
 			m_services[sid].label = label;
