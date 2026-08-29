@@ -138,7 +138,7 @@ bool MOTObject::ParseCheckHeader(MOT_FILE& target_file) {
 			break;
 		}
 
-		if(offset + data_len - 1 >= data.size())
+		if(data_len > data.size() - offset)	// data_len may be zero, so do not add to it
 			return false;
 
 		// process parameter

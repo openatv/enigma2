@@ -430,7 +430,8 @@ public:
 		sIsSoftCSA,			/* 1 if current service uses software descrambling */
 
 		sUser = 0x100,
-		sDABServiceList = sUser + 1 /* tab-separated SID, bitrate, DAB+ flag and label */
+		sDABServiceList = sUser + 1, /* tab-separated SID, bitrate, DAB+ flag and label */
+		sDABServiceRevision = sUser + 2 /* rises while the FIC still changes */
 	};
 	enum {
 		resNA = -1,

@@ -327,6 +327,7 @@ size_t eDABDecoder::processPF(const uint8_t *data, size_t length)
 		collector.addressed = addressed;
 		collector.source = source;
 		collector.destination = destination;
+		collector.arrival = ++m_pf_arrival;
 		collector.fragments.resize(count);
 	}
 	if (collector.fragments[index].empty())
@@ -386,8 +387,18 @@ bool eDABDecoder::reconstructPF(uint16_t, PFCollection &collector, std::vector<u
 
 void eDABDecoder::trimPFCollectors()
 {
+	// Drop by age. begin() is the lowest sequence number, which is the newest
+	// collector right after the 16 bit sequence wraps.
 	while (m_pf_collectors.size() > 8)
-		m_pf_collectors.erase(m_pf_collectors.begin());
+	{
+		auto oldest = m_pf_collectors.begin();
+		for (auto entry = m_pf_collectors.begin(); entry != m_pf_collectors.end(); ++entry)
+		{
+			if (entry->second.arrival < oldest->second.arrival)
+				oldest = entry;
+		}
+		m_pf_collectors.erase(oldest);
+	}
 }
 
 void eDABDecoder::processTags(const uint8_t *data, size_t length)
@@ -444,6 +455,11 @@ void eDABDecoder::parseFIC(const uint8_t *data, size_t length)
 	++m_fic_frames;
 	for (size_t fib = 0; fib + 32 <= length; fib += 32)
 	{
+		if (!checkInvertedCRC(data + fib, 32))  // The last two bytes carry the FIB CRC.
+		{
+			++m_crc_errors;
+			continue;
+		}
 		size_t position = 0;
 		while (position < 30 && data[fib + position] != 0xff)
 		{

@@ -184,11 +184,6 @@ void eDABWorker::processInput(const uint8_t *data, size_t length)
 	}
 	if (offset)
 		m_input.erase(m_input.begin(), m_input.begin() + offset);
-	if (m_input.size() > TS_PACKET_SIZE * 4)
-	{
-		m_stats.syncErrors += m_input.size();
-		m_input.clear();
-	}
 }
 
 void eDABWorker::processTSPacket(const uint8_t *packet)
@@ -203,12 +198,17 @@ void eDABWorker::processTSPacket(const uint8_t *packet)
 	const bool payloadPresent = packet[3] & 0x10;
 	const bool adaptationPresent = packet[3] & 0x20;
 	const int cc = packet[3] & 0x0f;
-	if (payloadPresent && m_last_cc >= 0 && ((m_last_cc + 1) & 0x0f) != cc)
+	if (payloadPresent && m_last_cc >= 0)
 	{
-		++m_stats.continuityErrors;
-		clearSection();
-		if (m_ts_adapter)
-			m_ts_adapter->reset();
+		if (cc == m_last_cc)
+			return;  // A packet may be sent twice, feeding it again would corrupt the section.
+		if (((m_last_cc + 1) & 0x0f) != cc)
+		{
+			++m_stats.continuityErrors;
+			clearSection();
+			if (m_ts_adapter)
+				m_ts_adapter->reset();
+		}
 	}
 	if (payloadPresent)
 		m_last_cc = cc;
@@ -376,6 +376,7 @@ void eDABWorker::updateDecoderStats()
 	m_stats.dynamicLabel[sizeof(m_stats.dynamicLabel) - 1] = 0;
 	if (m_stats.serviceRevision != m_decoder->serviceRevision())
 	{
+		m_publish_pending = true;  // A scan waits for this to stop changing.
 		const std::vector<eDABDecoder::ServiceInfo> services = m_decoder->serviceList();
 		m_stats.serviceRevision = m_decoder->serviceRevision();
 		m_stats.ensembleId = m_decoder->ensembleId();
@@ -400,8 +401,9 @@ void eDABWorker::clearSection()
 void eDABWorker::publish(bool force)
 {
 	const uint64_t now = monotonicMilliseconds();
-	if (!force && now - m_last_publish_ms < 1000)
+	if (!force && !m_publish_pending && now - m_last_publish_ms < 1000)
 		return;
+	m_publish_pending = false;
 	m_last_publish_ms = now;
 	m_pump.send(m_stats);
 }
@@ -680,7 +682,7 @@ RESULT eServiceDABRecord::start(bool simulate)
 		return m_error;
 	}
 	m_state = stateRecording;
-	eDebug("[eServiceDABRecord] recording DAB+ ADTS to '%s'", m_filename.c_str());
+	eDebug("[eServiceDABRecord] recording DAB+ LOAS to '%s'", m_filename.c_str());
 	if (m_tuned && !startTap())
 	{
 		::close(m_file_fd);
@@ -1606,6 +1608,8 @@ int eServiceDAB::getInfo(int w)
 		return m_reference.getUnsignedData(4);
 	case sDVBState:
 		return m_parent_state;
+	case sDABServiceRevision:
+		return static_cast<int>(m_stats.serviceRevision);
 	case sTransferBPS:
 		return static_cast<int>(std::min<uint64_t>(m_transfer_bps, std::numeric_limits<int>::max()));
 	case sProvider:
