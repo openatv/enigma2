@@ -359,7 +359,12 @@ class SecConfigure:
 							continue
 						eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
 				else:
-					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
+					# For single-type tuners, respect configMode=nothing: disabled tuners (A-H with
+					# dvbc.configMode=nothing) must not advertise a delivery system, otherwise
+					# they could still be considered for tuning despite m_enabled=False.
+					slot_type = slot.getType()
+					if slot_type not in ("DVB-C", "DVB-C2") or config.Nims[slot.slot].dvbc.configMode.value != "nothing":
+						eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False)
 		print("[NimManager] sec config completed")
 
 	def updateAdvanced(self, sec, slotid):
@@ -2481,6 +2486,8 @@ def InitNimManager(nimmgr, update_slots=None):
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		slot_id = slot.slot
+		if slot_id >= len(config.Nims):
+			continue
 		nim = config.Nims[slot_id]
 		nim.force_legacy_signal_stats = ConfigYesNo(default=False)
 		if slot.canBeCompatible("DVB-S"):
@@ -2596,6 +2603,8 @@ def InitNimManager(nimmgr, update_slots=None):
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		slot_id = slot.slot
+		if slot_id >= len(config.Nims):
+			continue
 		nim = config.Nims[slot_id]
 		addMultiType = False
 		try:
