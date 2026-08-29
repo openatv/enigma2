@@ -301,14 +301,20 @@ class DABScan(ServiceScan):
 		elapsed = int((monotonic() - self.feedStarted) * 1000)
 		self.updateProgress(min(elapsed, self.FEED_TIMEOUT))
 		raw = ""
+		revision = 0
 		service = self.session.nav.getCurrentService()
 		if service:
 			info = service.info()
 			if info:
 				raw = info.getInfoString(iServiceInformation.sDABServiceList) or ""
+				revision = info.getInfo(iServiceInformation.sDABServiceRevision)
 		services = self.parseServiceList(raw)
 		if services:
-			signature = tuple((item["sid"], item["bitrate"], item["dabplus"], item["label"]) for item in services)
+			# The revision rises on every FIC change, including one that only adds
+			# a label. A service still missing its FIG 0/1 or FIG 1 is filtered
+			# out of the list, so without the revision the signature looks
+			# settled while the ensemble is still being assembled.
+			signature = (revision, tuple((item["sid"], item["bitrate"], item["dabplus"], item["label"]) for item in services))
 			if signature == self.lastSignature:
 				self.stablePolls += 1
 			else:

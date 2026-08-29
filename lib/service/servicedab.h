@@ -120,6 +120,7 @@ private:
 	bool m_started;
 	int m_last_cc;
 	uint64_t m_last_publish_ms;
+	bool m_publish_pending = false;
 	eDABWorkerStats m_stats;
 	std::vector<uint8_t> m_input;
 	std::vector<uint8_t> m_section;
