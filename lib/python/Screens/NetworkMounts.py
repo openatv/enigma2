@@ -68,7 +68,7 @@ class NetworkMountsOverview(Screen):
 	MOUNT = "/bin/mount"
 	UMOUNT = "/bin/umount"
 
-	def __init__(self, session):
+	def __init__(self, session, openBrowser=False):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Network Mounts Overview"))
 		indexNames = {
@@ -103,6 +103,9 @@ class NetworkMountsOverview(Screen):
 		self.buildList()
 		self.onShown.append(self.selectionChanged)
 		self.savedMount = None
+		self.transient = openBrowser
+		if openBrowser:
+			self.onFirstExecBegin.append(self.keyGreen)
 		self.onClose.append(self.console.killAll)
 
 	def selectionChanged(self):
@@ -270,9 +273,14 @@ class NetworkMountsOverview(Screen):
 			if isinstance(saved, bool) and saved:
 				self.close(True)
 				return
-			self.buildList()
 			if saved:
+				self.transient = False
+				self.buildList()
 				self.applyMountChange(saved)
+			elif self.transient:
+				self.close()
+			else:
+				self.buildList()
 
 		self.session.openWithCallback(keyGreenCallback, NetworkShares)
 
