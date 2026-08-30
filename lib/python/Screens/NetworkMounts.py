@@ -266,24 +266,13 @@ class NetworkMountsOverview(Screen):
 		self.session.openWithCallback(keyMenuCallback, ChoiceBox, title=_("Mount Context Menu"), list=choices)
 
 	def keyGreen(self):
-		def keyGreenCallback(picked=None):
-			if isinstance(picked, bool) and picked:  # Special case for close recursive.
+		def keyGreenCallback(saved=None):
+			if isinstance(saved, bool) and saved:
 				self.close(True)
 				return
-			mount = None
-			if picked:
-				mount = {
-					"server": picked.get("address") or ""
-				}
-				if picked.get("protocol"):
-					mount["protocol"] = picked["protocol"]
-				if picked.get("remotePath"):
-					mount["remotePath"] = picked["remotePath"]
-				if picked.get("shareName"):
-					mount["shareName"] = picked["shareName"]
-				if picked.get("smbVersion"):
-					mount["smbVersion"] = picked["smbVersion"]
-				self.session.openWithCallback(self.keySetupClosed, NetworkMountSetup, mount=mount, onSaved=self.mountSaved)
+			self.buildList()
+			if saved:
+				self.applyMountChange(saved)
 
 		self.session.openWithCallback(keyGreenCallback, NetworkShares)
 
@@ -507,6 +496,7 @@ class NetworkShares(Screen):
 		self.pendingProtocols = {}  # address -> {"nfs", "smb"} remaining
 		self.smbVersions = {}    # address -> negotiated dialect as a mount "vers=" value
 		self.smbGuestCallback = {}  # address -> one-shot callback run once the guest SMB probe below finishes
+		self.savedMount = None
 		self.configuredMounts = {}  # (server, remotePath) -> mount, for shares that are already configured
 		self.repository = NetworkMountRepository()
 		self.menuAddress = None
@@ -671,11 +661,9 @@ class NetworkShares(Screen):
 	def pickShare(self, share):
 		host = discoveryManager.hosts.get(share["address"]) or {}
 		hostname = host.get("hostname") or ""
-		address = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
-
-		picked = {
-			"address": address,
-			"hostname": hostname,
+		server = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
+		mount = {
+			"server": server,
 			"protocol": {
 				"smb": "cifs",
 				"nfs": "nfs"
@@ -684,8 +672,21 @@ class NetworkShares(Screen):
 			"shareName": share["name"],
 		}
 		if share["protocol"] == "smb":
-			picked["smbVersion"] = self.smbVersions.get(share["address"], self.SMB_FALLBACK_VERSION)
-		self.close(picked)
+			mount["smbVersion"] = self.smbVersions.get(share["address"], self.SMB_FALLBACK_VERSION)
+		self.session.openWithCallback(self.mountSetupClosed, NetworkMountSetup, mount=mount, onSaved=self.mountSaved)
+
+	def mountSaved(self, mount):
+		self.savedMount = mount
+
+	def mountSetupClosed(self, *args):
+		saved, self.savedMount = self.savedMount, None
+		if args and args[0] is True:
+			self.close(True)
+			return
+		if saved:
+			self.close(saved)
+		else:
+			self.buildList()
 
 	def startShareEnumeration(self, address):
 		if self.shareState.get(address) == "loading":
