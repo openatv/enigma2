@@ -2673,9 +2673,11 @@ int eDVBServicePlay::selectAudioStream(int i)
 		std::string pass = CFile::read("/proc/stb/audio/ac3");
 		if(pass.find("passthrough") != std::string::npos)
 		{
-			int shortAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
+			int audioDelay = apidtype == eDVBPMTParser::audioStream::atDDP
+				? eSimpleConfig::getInt("config.av.passthrough_fix_long", 1200)
+				: eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
 			m_passthrough_fix_timer->stop();
-			m_passthrough_fix_timer->start(shortAudioDelay, true);
+			m_passthrough_fix_timer->start(audioDelay, true);
 		}
 	}
 #endif
