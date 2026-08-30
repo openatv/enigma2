@@ -1940,6 +1940,7 @@ class AvahiProvider:
 		self.browser = None
 		self.started = False
 		self.onObservation: list[Callable] = []
+		self.onSnapshot: list[Callable] = []
 
 	def start(self):
 		if not self.started:
@@ -1958,8 +1959,12 @@ class AvahiProvider:
 			self.started = False
 
 	def changed(self):
+		addresses = set()
 		for entry in self.browser.getServices():
 			self.dispatch(entry)
+			addresses.update(entry["addresses"] or [])
+		for callback in self.onSnapshot:
+			callback(addresses)
 
 	def dispatch(self, entry: dict):
 		networkManager.log(f"AvahiProvider: found {entry["name"]} / {entry["hostname"]}")
@@ -2071,6 +2076,7 @@ class DiscoveryManager:
 		self.avahi = AvahiProvider()
 		self.netscan = NetscanProvider()
 		self.avahi.onObservation.append(self.onAvahiObservation)
+		self.avahi.onSnapshot.append(self.onAvahiSnapshot)
 		self.netscan.onObservation.append(self.onNetscanObservation)
 		self.stopTimer = eTimer()
 		self.stopTimer.callback.append(self.stop)
@@ -2152,6 +2158,13 @@ class DiscoveryManager:
 						host["avahiShares"][name] = share
 						changed = True
 		if changed:
+			self.notify()
+
+	def onAvahiSnapshot(self, addresses):
+		stale = [address for address, host in self.hosts.items() if host["source"] == "avahi" and address not in addresses]
+		for address in stale:
+			del self.hosts[address]
+		if stale:
 			self.notify()
 
 	def onNetscanObservation(self, observation):
