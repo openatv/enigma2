@@ -53,6 +53,10 @@ public:
 		    pts - zero-based PTS value
 		*/
 	int fixupPTS(const off_t &offset, pts_t &pts);
+	/* public wrapper around the protected getPTS(), for external offset -> zero-based PTS lookups
+	   (e.g. as a fallback position source when a live decoder clock isn't available yet).
+	   Prefers extrapolating from the recent samples map when possible - see tstools.cpp. */
+	int getPTSAt(off_t offset, pts_t &pts);
 	int calcLen(pts_t &len);
 	int calcBitrate(); /* in bits/sec */
 
@@ -110,6 +114,8 @@ private:
 	bool m_pmtready;
 
 	void PMTready(int error);
+
+	static int m_debugSeek; /* -1 = not yet read from config.crash.debugSeek, 0/1 = cached value */
 };
 
 #endif

@@ -363,6 +363,7 @@ private:
 	ePtr<eTable<ServiceDescriptionSection> > m_SDT;
 	void SDTready(int err);
 	static int m_debug;
+	static int m_debugSeek; /* -1 = not yet read from config.crash.debugSeek, 0/1 = cached value */
 };
 #endif // SWIG
 
