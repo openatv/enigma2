@@ -661,6 +661,10 @@ class NetworkShares(Screen):
 	def pickShare(self, share):
 		host = discoveryManager.hosts.get(share["address"]) or {}
 		hostname = host.get("hostname") or ""
+		existing = self.configuredMount(share["address"], hostname, share["path"])
+		if existing:
+			self.session.openWithCallback(self.mountSetupClosed, NetworkMountSetup, mount=existing, onSaved=self.mountSaved)
+			return
 		server = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
 		mount = {
 			"server": server,
