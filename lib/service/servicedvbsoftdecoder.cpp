@@ -9,6 +9,13 @@
 
 DEFINE_REF(eDVBSoftDecoder);
 
+static int64_t softDecoderMonotonicMs()
+{
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return static_cast<int64_t>(ts.tv_sec) * 1000 + ts.tv_nsec / 1000000;
+}
+
 eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
                                  ePtr<eDVBService> dvb_service,
                                  int decoder_index)
@@ -16,10 +23,16 @@ eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
 	, m_dvb_service(dvb_service)
 	, m_decoder_index(decoder_index)
 	, m_dvr_fd(-1)
+	, m_buffer_video_pid(-2)
+	, m_buffer_audio_pid(-2)
 	, m_running(false)
 	, m_stopping(false)
 	, m_noaudio(false)
 	, m_decoder_started(false)
+	, m_buffer_wait_started(0)
+	, m_buffer_target_ms(0)
+	, m_buffer_deadline_ms(0)
+	, m_buffer_last_log(0)
 	, m_last_pts(0)
 	, m_stall_count(0)
 	, m_recovery_attempts(0)
@@ -116,8 +129,16 @@ void eDVBSoftDecoder::startDecoderOrBuffer()
 {
 	if (int bufferTime = eSimpleConfig::getInt("config.softcsa.bufferTime", 0); bufferTime > 0)
 	{
-		eDebug("[eDVBSoftDecoder] Pre-buffering %dms before decoder start", bufferTime);
-		m_buffer_timer->start(bufferTime, true);
+		if (m_buffer_wait_started)
+			return;
+
+		m_buffer_target_ms = bufferTime;
+		m_buffer_deadline_ms = bufferTime + 500;
+		m_buffer_wait_started = softDecoderMonotonicMs();
+		m_buffer_last_log = 0;
+		eDebug("[eDVBSoftDecoder] Adaptive pre-buffer: target=%dms deadline=%dms",
+			m_buffer_target_ms, m_buffer_deadline_ms);
+		m_buffer_timer->start(25, false);
 		return;
 	}
 	startDecoder();
@@ -125,18 +146,74 @@ void eDVBSoftDecoder::startDecoderOrBuffer()
 
 void eDVBSoftDecoder::onBufferTimerExpired()
 {
-	eDebug("[eDVBSoftDecoder] Pre-buffer complete - starting decoder");
-	startDecoder();
+	if (m_decoder_started || !m_buffer_wait_started)
+		return;
+
+	const int64_t now = softDecoderMonotonicMs();
+	const int elapsed = static_cast<int>(now - m_buffer_wait_started);
+	if (!m_session)
+	{
+		eWarning("[eDVBSoftDecoder] Adaptive pre-buffer has no CSA session - starting decoder");
+		startDecoder();
+		return;
+	}
+
+	const eDVBCSASession::BufferReadiness readiness = m_session->getBufferReadiness();
+	// PES timestamps are quantized by the broadcaster and the timer itself is
+	// sampled every 25ms.  Treat a stream within 50ms of the configured target
+	// as ready so a nominal one-second buffer cannot miss by one timestamp step
+	// and overflow the idle DVR queue while waiting for the next PES header.
+	const unsigned int readiness_target_ms = m_buffer_target_ms > 50
+		? static_cast<unsigned int>(m_buffer_target_ms - 50)
+		: static_cast<unsigned int>(m_buffer_target_ms);
+	const bool video_ready = readiness.video_pid < 0
+		|| (readiness.video_pts_valid && readiness.video_ms >= readiness_target_ms);
+	const bool audio_ready = readiness.audio_pid < 0
+		|| (readiness.audio_pts_valid && readiness.audio_ms >= readiness_target_ms);
+
+	if (video_ready && audio_ready)
+	{
+		eDebug("[eDVBSoftDecoder] Adaptive pre-buffer ready after %dms "
+			"(video=%ums/%u packets, audio=%ums/%u packets)",
+			elapsed, readiness.video_ms, readiness.video_packets,
+			readiness.audio_ms, readiness.audio_packets);
+		startDecoder();
+		return;
+	}
+
+	if (elapsed >= m_buffer_deadline_ms)
+	{
+		eWarning("[eDVBSoftDecoder] Adaptive pre-buffer deadline after %dms "
+			"(video=%ums/%u packets, audio=%ums/%u packets) - starting decoder",
+			elapsed, readiness.video_ms, readiness.video_packets,
+			readiness.audio_ms, readiness.audio_packets);
+		startDecoder();
+		return;
+	}
+
+	if (!m_buffer_last_log || now - m_buffer_last_log >= 250)
+	{
+		eDebug("[eDVBSoftDecoder] Adaptive pre-buffer waiting: elapsed=%dms "
+			"video=%ums/%u audio=%ums/%u",
+			elapsed, readiness.video_ms, readiness.video_packets,
+			readiness.audio_ms, readiness.audio_packets);
+		m_buffer_last_log = now;
+	}
 }
 
 void eDVBSoftDecoder::startDecoder()
 {
 	if (m_decoder_started)
 		return;
+	if (m_buffer_timer)
+		m_buffer_timer->stop();
+	m_buffer_wait_started = 0;
 
 	// Start decoder
 	eDebug("[eDVBSoftDecoder] Starting decoder");
 	updatePids(true);
+	if (m_session)
+		m_session->configureBufferReadiness(-1, -1);
 	m_decoder_started = true;
 
 	if (!m_health_timer)
@@ -195,6 +272,12 @@ void eDVBSoftDecoder::stop()
 		m_health_timer->stop();
 		m_health_timer = nullptr;
 	}
+	if (m_buffer_timer)
+		m_buffer_timer->stop();
+	m_buffer_wait_started = 0;
+	m_buffer_target_ms = 0;
+	m_buffer_deadline_ms = 0;
+	m_buffer_last_log = 0;
 	if (m_first_cw_conn.connected())
 		m_first_cw_conn.disconnect();
 
@@ -244,6 +327,8 @@ void eDVBSoftDecoder::stop()
 	}
 
 	m_pids_active.clear();
+	m_buffer_video_pid = -2;
+	m_buffer_audio_pid = -2;
 	m_running = false;
 	m_decoder_started = false;
 	m_last_pts = 0;
@@ -619,8 +704,68 @@ void eDVBSoftDecoder::updatePids(bool withDecoder)
 	if (timing_pid != -1)
 		m_record->setTimingPID(timing_pid, timing_pid_type, timing_stream_type);
 
+	int readiness_apid = -1;
+	if (!m_noaudio && !program.audioStreams.empty())
+	{
+		int readiness_atype = -1;
+		unsigned int readiness_index = 0;
+		selectAudioStream(program, readiness_apid, readiness_atype, readiness_index, false);
+	}
+	if (m_session && !m_decoder_started
+		&& (vpid != m_buffer_video_pid || readiness_apid != m_buffer_audio_pid))
+	{
+		m_session->configureBufferReadiness(vpid, readiness_apid);
+		m_buffer_video_pid = vpid;
+		m_buffer_audio_pid = readiness_apid;
+	}
+
 	if (withDecoder)
 		updateDecoder(vpid, vpidtype, pcrpid);
+}
+
+bool eDVBSoftDecoder::selectAudioStream(const eDVBServicePMTHandler::program& program,
+	int& apid, int& atype, unsigned int& audio_index, bool log_selection)
+{
+	apid = -1;
+	atype = -1;
+	audio_index = 0;
+	if (program.audioStreams.empty())
+		return false;
+
+	// Use the service cache first so the readiness gate observes exactly the
+	// audio stream that updateDecoder() will select later.
+	if (m_dvb_service)
+	{
+		for (int m = 0; m < eDVBService::nAudioCacheTags; ++m)
+		{
+			const int cached_apid = m_dvb_service->getCacheEntry(eDVBService::audioCacheTags[m]);
+			if (cached_apid == -1)
+				continue;
+
+			for (unsigned int s = 0; s < program.audioStreams.size(); ++s)
+			{
+				if (program.audioStreams[s].pid != cached_apid)
+					continue;
+				apid = cached_apid;
+				atype = program.audioStreams[s].type;
+				audio_index = s;
+				if (log_selection)
+					eDebug("[eDVBSoftDecoder] Using cached audio: apid=%04x atype=%d (stream %u)",
+						apid, atype, audio_index);
+				return true;
+			}
+		}
+	}
+
+	audio_index = program.defaultAudioStream;
+	if (audio_index >= program.audioStreams.size())
+		audio_index = 0;
+	apid = program.audioStreams[audio_index].pid;
+	atype = program.audioStreams[audio_index].type;
+	if (log_selection)
+		eDebug("[eDVBSoftDecoder] Using default audio: apid=%04x atype=%d (stream %u of %zu)",
+			apid, atype, audio_index, program.audioStreams.size());
+	return true;
 }
 
 void eDVBSoftDecoder::updateDecoder(int vpid, int vpidtype, int pcrpid)
@@ -667,45 +812,7 @@ void eDVBSoftDecoder::updateDecoder(int vpid, int vpidtype, int pcrpid)
 			int atype = -1;
 			unsigned int audio_index = 0;
 
-			// First, try to get cached audio PID from service database
-			// This preserves user's previous audio selection for this channel
-			if (m_dvb_service)
-			{
-				for(int m = 0; m < eDVBService::nAudioCacheTags; m++)
-				{
-					int cached_apid = m_dvb_service->getCacheEntry(eDVBService::audioCacheTags[m]);
-					if (cached_apid != -1)
-					{
-						// Find matching stream index for this cached PID
-						for(unsigned int s = 0; s < program.audioStreams.size(); s++)
-						{
-							if (program.audioStreams[s].pid == cached_apid)
-							{
-								apid = cached_apid;
-								atype = program.audioStreams[s].type;
-								audio_index = s;
-								eDebug("[eDVBSoftDecoder] Using cached audio: apid=%04x atype=%d (stream %u)", apid, atype, audio_index);
-								break;
-							}
-						}
-						if (apid != -1)
-							break;
-					}
-				}
-			}
-
-			// If no cached audio, use language preferences (defaultAudioStream)
-			if (apid == -1)
-			{
-				audio_index = program.defaultAudioStream;
-				if (audio_index >= program.audioStreams.size())
-					audio_index = 0;  // Fallback to first stream
-
-				apid = program.audioStreams[audio_index].pid;
-				atype = program.audioStreams[audio_index].type;
-				eDebug("[eDVBSoftDecoder] Using default audio: apid=%04x atype=%d (stream %u of %zu)",
-				       apid, atype, audio_index, program.audioStreams.size());
-			}
+			selectAudioStream(program, apid, atype, audio_index, true);
 
 			if (!m_noaudio)
 			{
@@ -801,7 +908,13 @@ void eDVBSoftDecoder::setNoAudio(bool noaudio, int preferred_pid)
 {
 	if (!m_decoder || !m_decoder_started)
 	{
+		const bool changed = m_noaudio != noaudio;
 		m_noaudio = noaudio;
+		if (changed && m_running && m_record)
+		{
+			m_buffer_audio_pid = -2;
+			updatePids(false);
+		}
 		return;
 	}
 

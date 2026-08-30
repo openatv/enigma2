@@ -148,6 +148,57 @@ static bool dvbTripletMatch(const eServiceReferenceDVB& ref1, const eServiceRefe
 	       ref1.getOriginalNetworkID() == ref2.getOriginalNetworkID();
 }
 
+static bool extractTsPesPts(const unsigned char *packet, uint64_t &pts)
+{
+	if (!packet || packet[0] != 0x47 || !(packet[1] & 0x40))
+		return false;
+
+	const unsigned int adaptation_control = (packet[3] >> 4) & 0x03;
+	if (adaptation_control == 0 || adaptation_control == 2)
+		return false;
+
+	unsigned int payload_offset = 4;
+	if (adaptation_control == 3)
+	{
+		payload_offset += 1 + packet[4];
+		if (payload_offset >= 188)
+			return false;
+	}
+
+	const unsigned char *pes = packet + payload_offset;
+	const unsigned int available = 188 - payload_offset;
+	if (available < 14 || pes[0] != 0x00 || pes[1] != 0x00 || pes[2] != 0x01)
+		return false;
+	if (!(pes[7] & 0x80) || pes[8] < 5)
+		return false;
+	if (!(pes[9] & 0x01) || !(pes[11] & 0x01) || !(pes[13] & 0x01))
+		return false;
+
+	pts = (static_cast<uint64_t>(pes[9] & 0x0E) << 29)
+		| (static_cast<uint64_t>(pes[10]) << 22)
+		| (static_cast<uint64_t>(pes[11] & 0xFE) << 14)
+		| (static_cast<uint64_t>(pes[12]) << 7)
+		| (static_cast<uint64_t>(pes[13] & 0xFE) >> 1);
+	return true;
+}
+
+static unsigned int ptsSpanMs(uint64_t first, uint64_t last)
+{
+	static const uint64_t PTS_WRAP = 1ULL << 33;
+	const uint64_t span = last >= first ? last - first : PTS_WRAP - first + last;
+	return static_cast<unsigned int>(span / 90);
+}
+
+static unsigned int ptsBufferedMs(uint64_t first, uint64_t last, uint64_t last_step)
+{
+	// A PTS marks the beginning of a PES block, so last-first omits the media
+	// carried by the final block.  Include one observed interval (bounded to
+	// 500ms) to avoid systematically underestimating coarse audio PES chunks.
+	static const uint64_t MAX_TRAILING_STEP = 500ULL * 90;
+	const uint64_t trailing = last_step < MAX_TRAILING_STEP ? last_step : MAX_TRAILING_STEP;
+	return ptsSpanMs(first, last) + static_cast<unsigned int>(trailing / 90);
+}
+
 eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	: m_service_ref(ref)
 	, m_active(false)
@@ -163,8 +214,114 @@ eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	, m_cw_handler_registered(false)
 	, m_first_cw_signaled(false)
 	, m_pending_cw{}
+	, m_buffer_readiness_enabled(false)
+	, m_buffer_video_pid(-1)
+	, m_buffer_audio_pid(-1)
+	, m_buffer_video{}
+	, m_buffer_audio{}
 {
 	eDebug("[eDVBCSASession] Created for service %s", ref.toString().c_str());
+}
+
+void eDVBCSASession::configureBufferReadiness(int video_pid, int audio_pid)
+{
+	m_buffer_readiness_enabled.store(false, std::memory_order_release);
+	std::lock_guard<std::mutex> lock(m_buffer_readiness_mutex);
+	m_buffer_video_pid = video_pid;
+	m_buffer_audio_pid = audio_pid;
+	m_buffer_video = {};
+	m_buffer_audio = {};
+	const bool enabled = video_pid >= 0 || audio_pid >= 0;
+	m_buffer_readiness_enabled.store(enabled, std::memory_order_release);
+	if (enabled)
+		eDebug("[eDVBCSASession] Buffer readiness reset: vpid=%04x apid=%04x",
+			video_pid, audio_pid);
+	else
+		eDebug("[eDVBCSASession] Buffer readiness disabled");
+}
+
+eDVBCSASession::BufferReadiness eDVBCSASession::getBufferReadiness() const
+{
+	std::lock_guard<std::mutex> lock(m_buffer_readiness_mutex);
+	BufferReadiness readiness = {};
+	readiness.video_pid = m_buffer_video_pid;
+	readiness.audio_pid = m_buffer_audio_pid;
+	readiness.video_packets = m_buffer_video.packets;
+	readiness.audio_packets = m_buffer_audio.packets;
+	readiness.video_pts_valid = m_buffer_video.valid;
+	readiness.audio_pts_valid = m_buffer_audio.valid;
+	readiness.video_ms = m_buffer_video.valid
+		? ptsBufferedMs(m_buffer_video.first, m_buffer_video.last, m_buffer_video.last_step) : 0;
+	readiness.audio_ms = m_buffer_audio.valid
+		? ptsBufferedMs(m_buffer_audio.first, m_buffer_audio.last, m_buffer_audio.last_step) : 0;
+	return readiness;
+}
+
+void eDVBCSASession::updateBufferReadiness(const unsigned char *packets, int len)
+{
+	if (!packets || len < 188 || !m_buffer_readiness_enabled.load(std::memory_order_acquire))
+		return;
+
+	std::lock_guard<std::mutex> lock(m_buffer_readiness_mutex);
+	if (!m_buffer_readiness_enabled.load(std::memory_order_acquire)
+		|| (m_buffer_video_pid < 0 && m_buffer_audio_pid < 0))
+		return;
+
+	static const uint64_t MAX_PTS_STEP = 10ULL * 90000;
+	static const uint64_t MAX_PTS_REORDER = 2ULL * 90000;
+	static const uint64_t PTS_WRAP = 1ULL << 33;
+
+	for (int offset = 0; offset + 188 <= len; offset += 188)
+	{
+		const unsigned char *packet = packets + offset;
+		if (packet[0] != 0x47 || (packet[3] >> 6) != 0)
+			continue;
+
+		const int pid = ((packet[1] & 0x1F) << 8) | packet[2];
+		PtsReadiness *state = nullptr;
+		if (pid == m_buffer_video_pid)
+			state = &m_buffer_video;
+		else if (pid == m_buffer_audio_pid)
+			state = &m_buffer_audio;
+		if (!state)
+			continue;
+
+		++state->packets;
+		uint64_t pts = 0;
+		if (!extractTsPesPts(packet, pts))
+			continue;
+
+		if (!state->valid)
+		{
+			state->first = state->last = pts;
+			state->last_step = 0;
+			state->valid = true;
+			continue;
+		}
+
+		const uint64_t forward = pts >= state->last
+			? pts - state->last : PTS_WRAP - state->last + pts;
+		if (forward <= MAX_PTS_STEP)
+		{
+			if (forward)
+				state->last_step = forward;
+			state->last = pts;
+			continue;
+		}
+
+		const uint64_t backward = state->last >= pts
+			? state->last - pts : PTS_WRAP - pts + state->last;
+		if (backward <= MAX_PTS_REORDER)
+		{
+			// Presentation order can briefly move backwards for B-frames.
+			// Keep the furthest buffered timestamp instead of resetting.
+			continue;
+		}
+
+		// A discontinuity or stale data must not make the gate look ready.
+		state->first = state->last = pts;
+		state->last_step = 0;
+	}
 }
 
 eDVBCSASession::~eDVBCSASession()
@@ -623,4 +780,9 @@ void eDVBCSASession::descramble(unsigned char* packets, int len)
 
 	// CW available - descramble via engine (in-place)
 	m_engine->descramble(packets, len);
+
+	// The engine turns packets without the matching parity key into null
+	// packets.  Scanning after descrambling therefore counts only clear A/V
+	// packets that are safe to queue for decoder startup.
+	updateBufferReadiness(packets, len);
 }

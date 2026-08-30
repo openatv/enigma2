@@ -5,7 +5,9 @@
 #include <lib/dvb/idvb.h>
 #include <lib/base/ebase.h>
 #include <sigc++/sigc++.h>
+#include <atomic>
 #include <functional>
+#include <mutex>
 
 class eDVBCSAEngine;
 class eDVBCAHandler;
@@ -31,6 +33,18 @@ class eDVBCSASession : public iServiceScrambled, public sigc::trackable
 	DECLARE_REF(eDVBCSASession);
 
 public:
+	struct BufferReadiness
+	{
+		int video_pid;
+		int audio_pid;
+		unsigned int video_packets;
+		unsigned int audio_packets;
+		unsigned int video_ms;
+		unsigned int audio_ms;
+		bool video_pts_valid;
+		bool audio_pts_valid;
+	};
+
 	/**
 	 * Constructor
 	 * @param ref Service reference for CW filtering
@@ -71,6 +85,11 @@ public:
 	bool isEcmModeDetected() const { return m_ecm_mode_detected; }
 	bool isEcmAnalyzed() const { return m_ecm_analyzed; }  // true once ECM was analyzed
 	bool isCsaAlt() const { return m_csa_alt; }            // true if CSA-ALT was detected
+
+	// Track clear A/V data after software descrambling.  The live SoftDecoder
+	// uses this to start from actual buffered media instead of a blind timer.
+	void configureBufferReadiness(int video_pid, int audio_pid);
+	BufferReadiness getBufferReadiness() const;
 
 	/**
 	 * Force activation for recording sessions
@@ -140,6 +159,22 @@ private:
 		bool valid;
 	};
 	PendingCw m_pending_cw;
+
+	struct PtsReadiness
+	{
+		uint64_t first;
+		uint64_t last;
+		uint64_t last_step;
+		unsigned int packets;
+		bool valid;
+	};
+	std::atomic<bool> m_buffer_readiness_enabled;
+	mutable std::mutex m_buffer_readiness_mutex;
+	int m_buffer_video_pid;
+	int m_buffer_audio_pid;
+	PtsReadiness m_buffer_video;
+	PtsReadiness m_buffer_audio;
+	void updateBufferReadiness(const unsigned char *packets, int len);
 };
 
 #endif // __dvbcsasession_h

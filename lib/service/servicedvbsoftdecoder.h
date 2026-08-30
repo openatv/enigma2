@@ -110,6 +110,8 @@ private:
 
 	int m_decoder_index;
 	int m_dvr_fd;
+	int m_buffer_video_pid;
+	int m_buffer_audio_pid;
 	bool m_running;
 	bool m_stopping;
 	bool m_noaudio;  // When true, suppress audio (PIP mode)
@@ -122,6 +124,10 @@ private:
 
 	// Pre-buffer: delay decoder start to let DVR data accumulate
 	ePtr<eTimer> m_buffer_timer;
+	int64_t m_buffer_wait_started;
+	int m_buffer_target_ms;
+	int m_buffer_deadline_ms;
+	int64_t m_buffer_last_log;
 	void onBufferTimerExpired();
 
 	ePtr<eTimer> m_health_timer;
@@ -147,6 +153,8 @@ private:
 	int setupRecorder();
 	void updatePids(bool withDecoder = true);
 	void updateDecoder(int vpid, int vpidtype, int pcrpid);
+	bool selectAudioStream(const eDVBServicePMTHandler::program& program,
+		int& apid, int& atype, unsigned int& audio_index, bool log_selection);
 
 	// Video Event Signal
 	sigc::signal<void(struct iTSMPEGDecoder::videoEvent)> m_video_event;
