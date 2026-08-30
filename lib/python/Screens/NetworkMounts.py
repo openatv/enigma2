@@ -814,6 +814,9 @@ class NetworkShares(Screen):
 			for host in sorted(discoveryManager.hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
 				address = host["address"]
 				name = host["hostname"] or address
+				username = self.repository.credentialsGet(self.hostnameFor(address)).get("username", "")
+				if username:
+					name = f"{name} ({_('guest') if username == NetworkCredentials.GUEST_USERNAME else username})"
 				entries.append((self.TEMPLATE_HOST, self.GLYPH_HOST, 0, address, "", name, "", "", {"kind": "host", "address": address}))
 				if address not in self.expanded:
 					continue
