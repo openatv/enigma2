@@ -102,6 +102,7 @@ class NetworkMountsOverview(Screen):
 		self.onChangedEntry = []
 		self.buildList()
 		self.onShown.append(self.selectionChanged)
+		self.savedMount = None
 		self.onClose.append(self.console.killAll)
 
 	def selectionChanged(self):
@@ -149,14 +150,18 @@ class NetworkMountsOverview(Screen):
 	def keyEdit(self):
 		current = self["mountList"].getCurrent()
 		if current:
-			dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=current[self.LIST_DATA])
+			self.session.openWithCallback(self.keySetupClosed, NetworkMountSetup, mount=current[self.LIST_DATA], onSaved=self.mountSaved)
 
-	def keySetupClosed(self, dlg, *args):
-		if args and isinstance(args[0], bool) and args[0]:  # Special case for close recursive.
+	def mountSaved(self, mount):
+		self.savedMount = mount
+
+	def keySetupClosed(self, *args):
+		saved, self.savedMount = self.savedMount, None
+		if args and args[0] is True:
 			self.close(True)
 			return
 		self.buildList()
-		self.applyMountChange(getattr(dlg, "savedMount", None))
+		self.applyMountChange(saved)
 
 	def applyMountChange(self, mount):
 		def autofsRestarted(exitCode):
@@ -238,7 +243,7 @@ class NetworkMountsOverview(Screen):
 		def keyMenuCallback(choice=None):
 			if choice:
 				if choice[1] == "manual":
-					dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=None)
+					self.session.openWithCallback(self.keySetupClosed, NetworkMountSetup, mount=None, onSaved=self.mountSaved)
 				elif choice[1] == "delete":
 					deleteMount()
 				elif choice[1] == "edit_credentials":
@@ -278,7 +283,7 @@ class NetworkMountsOverview(Screen):
 					mount["shareName"] = picked["shareName"]
 				if picked.get("smbVersion"):
 					mount["smbVersion"] = picked["smbVersion"]
-				dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=mount)
+				self.session.openWithCallback(self.keySetupClosed, NetworkMountSetup, mount=mount, onSaved=self.mountSaved)
 
 		self.session.openWithCallback(keyGreenCallback, NetworkShares)
 
@@ -311,10 +316,11 @@ class NetworkMountsSummary(ScreenSummary):
 
 
 class NetworkMountSetup(Setup):
-	def __init__(self, session, mount=None):
+	def __init__(self, session, mount=None, onSaved=None):
 		def default(key, default=""):
 			return mount.get(key, default) if mount else default
 
+		self.onSaved = onSaved
 		self.repository = NetworkMountRepository()
 		self.mountId = mount.get("id") if mount else None
 		self.enabled = NoSave(ConfigYesNo(default=default("enabled", True)))
@@ -402,7 +408,8 @@ class NetworkMountSetup(Setup):
 		self.repository.save(mounts)
 		if self.enabled.value and self.mode.value == "fstab":
 			self.repository.ensureMountPoint(mount)
-		self.savedMount = mount
+		if self.onSaved:
+			self.onSaved(mount)
 		Setup.keySave(self)
 
 
