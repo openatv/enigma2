@@ -507,7 +507,7 @@ class NetworkShares(Screen):
 		self.pendingProtocols = {}  # address -> {"nfs", "smb"} remaining
 		self.smbVersions = {}    # address -> negotiated dialect as a mount "vers=" value
 		self.smbGuestCallback = {}  # address -> one-shot callback run once the guest SMB probe below finishes
-		self.configuredShares = {}  # (server, remotePath) -> local mount path, for already-configured shares
+		self.configuredMounts = {}  # (server, remotePath) -> mount, for shares that are already configured
 		self.repository = NetworkMountRepository()
 		self.menuAddress = None
 		self.menuHostname = None
@@ -520,7 +520,7 @@ class NetworkShares(Screen):
 	# Discovery only runs while this screen is open, so it stops as soon as
 	# the user leaves instead of scanning the network in the background.
 	def startDiscovery(self):
-		self.configuredShares = {(mount.get("server"), (mount.get("remotePath") or "").lstrip("/")): self.repository.mountPointFor(mount) for mount in self.repository.load()}
+		self.configuredMounts = {(mount.get("server"), (mount.get("remotePath") or "").lstrip("/")): mount for mount in self.repository.load()}
 		if self.onHostsChanged not in discoveryManager.onChanged:
 			discoveryManager.onChanged.append(self.onHostsChanged)
 		discoveryManager.start(runMs=None)
@@ -663,6 +663,10 @@ class NetworkShares(Screen):
 		if any(share["protocol"] == "smb" for share in self.shares.get(address, [])):
 			return
 		self.session.openWithCallback(lambda *args: self.startShareEnumeration(address), NetworkCredentials, hostname, self.repository)
+
+	def configuredMount(self, address, hostname, remotePath):
+		path = remotePath.lstrip("/")
+		return self.configuredMounts.get((address, path)) or (self.configuredMounts.get((hostname, path)) if hostname else None)
 
 	def pickShare(self, share):
 		host = discoveryManager.hosts.get(share["address"]) or {}
@@ -824,7 +828,8 @@ class NetworkShares(Screen):
 
 				for share in self.shares.get(address, []):
 					typeLabel = protocolLabels.get(share["protocol"], share["protocol"])
-					localPath = self.configuredShares.get((address, share["path"].lstrip("/")))
+					existing = self.configuredMount(address, host["hostname"], share["path"])
+					localPath = self.repository.mountPointFor(existing) if existing else None
 					glyph = self.GLYPH_MOUNTED if localPath else self.GLYPH_NOT_MOUNTED
 					glyphColor = self.COLOR_MOUNTED if localPath else self.COLOR_NOT_MOUNTED
 					entries.append((self.TEMPLATE_SHARE, glyph, glyphColor, "", typeLabel, share["name"], localPath or "", share.get("description") or "", dict(share, kind="share")))
