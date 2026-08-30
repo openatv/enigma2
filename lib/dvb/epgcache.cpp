@@ -17,6 +17,7 @@
 #include <lib/dvb/lowlevel/eit.h>
 #include <dvbsi++/content_identifier_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
+#include <algorithm>
 #include <unordered_set>
 
 
@@ -2503,13 +2504,28 @@ const char* eEPGCache::casetypestr(int value)
 }
 
 
+/* one search match, collected before maxmatches is applied */
+struct epgSearchHit
+{
+	time_t start;
+	uniqueEPGKey service;
+	eventData *event;
+	epgSearchHit(time_t start, const uniqueEPGKey &service, eventData *event)
+		:start(start), service(service), event(event)
+	{
+	}
+	bool operator<(const epgSearchHit &other) const
+	{
+		return start < other.start;
+	}
+};
+
 PyObject *eEPGCache::search(ePyObject arg)
 {
 	ePyObject ret;
 	std::deque<uint32_t> descr;
 	int eventid = -1;
 	const char *argstring=0;
-	char *refstr=0;
 	ssize_t argcount=0;
 	int querytype=-1;
 	bool needServiceEvent=false;
@@ -2770,14 +2786,35 @@ PyObject *eEPGCache::search(ePyObject arg)
 						for (DescriptorMap::iterator it(eventData::descriptors.begin());
 							it != eventData::descriptors.end(); ++it)
 						{
-							uint8_t *data = it->second.data;
-							
-							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
-							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
+							const uint8_t *data = it->second.data;
+							uint8_t descriptor_tag = data[0];
+
+							// the description can live in an extended event descriptor, or in the text
+							// field of a short event descriptor when no extended one is broadcast
+							if ( descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR || descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR )
 							{
-								int content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
-								const char *contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
-								if (data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2] < 0x20) //Codepage
+								int content_len;
+								const char *contentptr;
+								if ( descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR )
+								{
+									content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
+									contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
+								}
+								else
+								{
+									const eit_short_event_descriptor_struct *short_event_descriptor = (const eit_short_event_descriptor_struct *) ((const u_char *) data);
+									// text_length sits behind event_name, text follows it
+									int text_pos = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + short_event_descriptor->event_name_length;
+									if (text_pos > data[1] + 1)
+										/* no text field */
+										continue;
+									content_len = data[text_pos];
+									contentptr = (const char*)&data[text_pos+1];
+									if (text_pos + content_len > data[1] + 1)
+										/* truncated */
+										continue;
+								}
+								if (content_len && (unsigned char)contentptr[0] < 0x20) //Codepage
 								{
 									/* custom encoding */
 									content = convertDVBUTF8((unsigned char*)contentptr, content_len, 0x40, 0);
@@ -2894,26 +2931,22 @@ PyObject *eEPGCache::search(ePyObject arg)
 		return NULL;
 	}
 
-	if (!descr.empty())
+	if (!descr.empty() && maxmatches > 0)
 	{
-		int maxcount=maxmatches;
-		eServiceReferenceDVB ref(refstr?(const eServiceReferenceDVB&)handleGroup(eServiceReference(refstr)):eServiceReferenceDVB(""));
-		// ref is only valid in SIMILAR_BROADCASTING_SEARCH
-		// in this case we start searching with the base service
-		bool first = ref.valid() ? true : false;
 		singleLock s(cache_lock);
-		eventCache::iterator cit(ref.valid() ? eventDB.find(ref) : eventDB.begin());
-		while(cit != eventDB.end() && maxcount)
+		// Collect every match before maxmatches is applied. Cutting off during the
+		// traversal cuts along eventDB's hash order, which lets whichever services
+		// hash first eat the whole budget and hides the matches of every other
+		// source.
+		std::vector<epgSearchHit> hits;
+		// without the early abort the descriptor list is walked for every cached
+		// event, so look the crcs up by hash instead of scanning them
+		std::unordered_set<uint32_t> descrset(descr.begin(), descr.end());
+		for (eventCache::iterator cit(eventDB.begin()); cit != eventDB.end(); ++cit)
 		{
-			if ( ref.valid() && !first && cit->first == ref )
-			{
-				// do not scan base service twice ( only in SIMILAR BROADCASTING SEARCH )
-				++cit;
-				continue;
-			}
 			timeMap &evmap = cit->second.byTime;
 			// check all events
-			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
+			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end(); ++evit)
 			{
 				if (querytype == SIMILAR_BROADCASTINGS_SEARCH)
 				{
@@ -2925,112 +2958,102 @@ PyObject *eEPGCache::search(ePyObject arg)
 				unsigned int cnt = 0;
 				for (uint8_t i = 0; i < evit->second->n_crc; ++i)
 				{
-					uint32_t crc32 = evit->second->crc_list[i];
-					for (std::deque<uint32_t>::const_iterator it = descr.begin();
-						it != descr.end(); ++it)
+					if (descrset.contains(evit->second->crc_list[i]))  // found...
 					{
-						if (*it == crc32)  // found...
-						{
-							++cnt;
-							if (querytype)
-							{
-								/* we need only one match, when we're not looking for similar broadcasting events */
-								i = evit->second->n_crc;
-								break;
-							}
-						}
+						++cnt;
+						if (querytype)
+							/* we need only one match, when we're not looking for similar broadcasting events */
+							break;
 					}
 				}
-				if ( (querytype == SIMILAR_BROADCASTINGS_SEARCH && cnt == descr.size()) ||
+				if ( (querytype == SIMILAR_BROADCASTINGS_SEARCH && cnt == descrset.size()) ||
 					 ((querytype > SIMILAR_BROADCASTINGS_SEARCH) && cnt != 0) )
+					hits.emplace_back(evit->first, cit->first, evit->second);
+			}
+		}
+		// Order by start time, so the cut below keeps the earliest matches of all
+		// sources instead of an arbitrary subset of them.
+		std::stable_sort(hits.begin(), hits.end());
+
+		int maxcount = maxmatches;
+		for (std::vector<epgSearchHit>::const_iterator hit(hits.begin()); hit != hits.end() && maxcount > 0; ++hit)
+		{
+			std::vector<eServiceReference> refs;
+			eDVBDB::getInstance()->searchAllReferences(refs, hit->service.tsid, hit->service.onid, hit->service.sid);
+			for (unsigned int i = 0; i < refs.size() && maxcount > 0; i++)
+			{
+				eServiceReference ref = refs[i];
+				if (ref.valid())
 				{
-					const uniqueEPGKey &service = cit->first;
-					std::vector<eServiceReference> refs;
-					eDVBDB::getInstance()->searchAllReferences(refs, service.tsid, service.onid, service.sid);
-					for (unsigned int i = 0; i < refs.size(); i++)
+					ePyObject service_name;
+					ePyObject service_reference;
+				// create servive event
+					eServiceEvent ptr;
+					const eventData *ev_data=0;
+					if (needServiceEvent)
 					{
-						eServiceReference ref = refs[i];
-						if (ref.valid())
+						if (lookupEventId(ref, hit->event->getEventID(), ev_data))
+							eDebug("[eEPGCache] Event %04X not found!", hit->event->getEventID());
+						else
 						{
-							ePyObject service_name;
-							ePyObject service_reference;
-						// create servive event
-							eServiceEvent ptr;
-							const eventData *ev_data=0;
-							if (needServiceEvent)
-							{
-								if (lookupEventId(ref, evit->second->getEventID(), ev_data))
-									eDebug("[eEPGCache] Event %04X not found!", evit->second->getEventID());
-								else
-								{
-									const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
-									Event ev((uint8_t*)ev_data->get());
-									ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get(), dref.getServiceID().get());
-								}
-							}
-						// create service name
-							if (must_get_service_name && !service_name)
-							{
-								ePtr<iStaticServiceInformation> sptr;
-								eServiceCenterPtr service_center;
-								eServiceCenter::getPrivInstance(service_center);
-								if (service_center)
-								{
-									service_center->info(ref, sptr);
-									if (sptr)
-									{
-										std::string name;
-										sptr->getName(ref, name);
-
-										if (must_get_service_name == 1)
-										{
-											size_t pos;
-											// filter short name brakets
-											while((pos = name.find("\xc2\x86")) != std::string::npos)
-												name.erase(pos,2);
-											while((pos = name.find("\xc2\x87")) != std::string::npos)
-												name.erase(pos,2);
-										}
-										else
-											name = buildShortName(name);
-
-										if (name.length())
-											service_name = PyUnicode_FromString(name.c_str());
-									}
-								}
-								if (!service_name)
-									service_name = PyUnicode_FromString("<n/a>");
-							}
-						// create servicereference string
-							if (must_get_service_reference && !service_reference)
-								service_reference = PyUnicode_FromString(ref.toString().c_str());
-						// create list
-							if (!ret)
-								ret = PyList_New(0);
-						// create tuple
-							ePyObject tuple = PyTuple_New(argcount);
-						// fill tuple
-							ePyObject tmp = ePyObject();
-							fillTuple(tuple, argstring, argcount, service_reference, ev_data ? &ptr : 0, service_name, tmp, evit->second);
-							PyList_Append(ret, tuple);
-							Py_DECREF(tuple);
-							if (service_name)
-								Py_DECREF(service_name);
-							if (service_reference)
-								Py_DECREF(service_reference);
-							--maxcount;
+							const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
+							Event ev((uint8_t*)ev_data->get());
+							ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get(), dref.getServiceID().get());
 						}
 					}
+				// create service name
+					if (must_get_service_name && !service_name)
+					{
+						ePtr<iStaticServiceInformation> sptr;
+						eServiceCenterPtr service_center;
+						eServiceCenter::getPrivInstance(service_center);
+						if (service_center)
+						{
+							service_center->info(ref, sptr);
+							if (sptr)
+							{
+								std::string name;
+								sptr->getName(ref, name);
+
+								if (must_get_service_name == 1)
+								{
+									size_t pos;
+									// filter short name brakets
+									while((pos = name.find("\xc2\x86")) != std::string::npos)
+										name.erase(pos,2);
+									while((pos = name.find("\xc2\x87")) != std::string::npos)
+										name.erase(pos,2);
+								}
+								else
+									name = buildShortName(name);
+
+								if (name.length())
+									service_name = PyUnicode_FromString(name.c_str());
+							}
+						}
+						if (!service_name)
+							service_name = PyUnicode_FromString("<n/a>");
+					}
+				// create servicereference string
+					if (must_get_service_reference && !service_reference)
+						service_reference = PyUnicode_FromString(ref.toString().c_str());
+				// create list
+					if (!ret)
+						ret = PyList_New(0);
+				// create tuple
+					ePyObject tuple = PyTuple_New(argcount);
+				// fill tuple
+					ePyObject tmp = ePyObject();
+					fillTuple(tuple, argstring, argcount, service_reference, ev_data ? &ptr : nullptr, service_name, tmp, hit->event);
+					PyList_Append(ret, tuple);
+					Py_DECREF(tuple);
+					if (service_name)
+						Py_DECREF(service_name);
+					if (service_reference)
+						Py_DECREF(service_reference);
+					--maxcount;
 				}
 			}
-			if (first)
-			{
-				// now start at first service in epgcache database ( only in SIMILAR BROADCASTING SEARCH )
-				first=false;
-				cit=eventDB.begin();
-			}
-			else
-				++cit;
 		}
 	}
 	if (!ret)
