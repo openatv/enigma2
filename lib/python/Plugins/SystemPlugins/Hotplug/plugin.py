@@ -47,7 +47,7 @@ class HotPlugManager:
 	def processRawData(self, raw):
 		eventData = {}
 		if "\n" in raw:
-			data = raw[:-1].split("\n")
+			data = raw.rstrip("\0\n").split("\n")
 			eventData["mode"] = 1
 		else:
 			data = raw.split("\0")[:-1]
