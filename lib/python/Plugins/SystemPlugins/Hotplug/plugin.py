@@ -78,13 +78,15 @@ class HotPlugManager:
 			notFound = True
 			mounts = [(x[0], x[1].replace("\\040", " ")) for x in (line.split() for line in fileReadLines("/proc/mounts", default=[])) if len(x) > 1]
 			mountPoints = [x[1] for x in mounts]
+			fstabEntries = [x for x in (line.split() for line in fileReadLines("/etc/fstab", default=[])) if len(x) > 1 and not x[0].startswith("#")]
+			usedMountPoints = mountPoints + [x[1] for x in fstabEntries]
 			mountPoint = "/media/usb"
 			mountPointDevice = DEVNAME.replace("/dev/", "/media/")
-			mountPointHdd = None if "/media/hdd" in mountPoints else "/media/hdd"
+			mountPointHdd = None if "/media/hdd" in usedMountPoints else "/media/hdd"
 			knownDevices = fileReadLines("/etc/udev/known_devices", default=[])
 			knownDevice = ""
 			nr = 1
-			while mountPoint in mountPoints:
+			while mountPoint in usedMountPoints:
 				nr += 1
 				mountPoint = f"/media/usb{nr}"
 
@@ -105,7 +107,6 @@ class HotPlugManager:
 						break
 
 			if notFound and ID_FS_UUID:
-				fstabEntries = [x for x in (line.split() for line in fileReadLines("/etc/fstab", default=[])) if len(x) > 1]
 				fstabDevice = [x[1] for x in fstabEntries if x[0] == f"UUID={ID_FS_UUID}" and EXPANDER_MOUNT not in x[1]]
 				if fstabDevice and fstabDevice[0] not in mountPoints:  # Check if device is already in fstab and if the mountpoint not used
 					if not exists(fstabDevice[0]):
