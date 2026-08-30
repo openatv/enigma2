@@ -165,9 +165,13 @@ class HotPlugManager:
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
 						if knownDevice:
+							knownEntry = f"{ID_FS_UUID}:{knownDevice}"
 							for index, device in enumerate(knownDevices):
 								if device.startswith(f"{ID_FS_UUID}:"):
-									knownDevices[index] = f"{ID_FS_UUID}:{knownDevice}"
+									knownDevices[index] = knownEntry
+									break
+							else:
+								knownDevices.append(knownEntry)
 							fileWriteLines("/etc/udev/known_devices", knownDevices)
 					self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
 					self.addTimer.start(1000)
