@@ -829,7 +829,14 @@ class NetworkShares(Screen):
 			def sortKeyByName(host):
 				return (not host["protocols"], (host["hostname"] or host["address"]).lower())
 
-			for host in sorted(discoveryManager.hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
+			hosts = {}
+			for host in discoveryManager.hosts.values():
+				key = (host["hostname"] or host["address"], ":" in host["address"])
+				known = hosts.get(key)
+				if known is None or host["address"] < known["address"]:
+					hosts[key] = host
+
+			for host in sorted(hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
 				address = host["address"]
 				name = host["hostname"] or address
 				username = self.repository.credentialsGet(self.hostnameFor(address)).get("username", "")
