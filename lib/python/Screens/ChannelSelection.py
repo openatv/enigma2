@@ -3551,9 +3551,9 @@ class ChannelSelectionSetup(Setup):
 		ChannelSelectionSetup.updateSettings(self.session)
 
 	@staticmethod
-	def updateSettings(session):
+	def updateSettings(session, force=False):
 		styleChanged = False
-		styleScreenChanged = config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()
+		styleScreenChanged = force or config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()
 		if not styleScreenChanged:
 			for setting in ("showNumber", "showPicon", "showServiceTypeIcon", "showCryptoIcon", "recordIndicatorMode", "piconRatio"):
 				if getattr(config.channelSelection, setting).isChanged():

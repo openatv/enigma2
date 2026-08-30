@@ -119,7 +119,7 @@ class SkinSelection(Setup):
 				if isinstance(dialog, ChannelSelection):
 					exclude.add(id(dialog))
 			self.session.reloadDialogs(exclude=exclude)
-			ChannelSelectionSetup.updateSettings(self.session)
+			ChannelSelectionSetup.updateSettings(self.session, force=True)
 			Processing.instance.hideProgress()
 			self.close(True)
 			return
