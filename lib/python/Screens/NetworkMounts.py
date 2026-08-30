@@ -673,6 +673,11 @@ class NetworkShares(Screen):
 		}
 		if share["protocol"] == "smb":
 			mount["smbVersion"] = self.smbVersions.get(share["address"], self.SMB_FALLBACK_VERSION)
+			credentials = self.repository.credentialsGet(self.hostnameFor(share["address"]))
+			username = credentials.get("username", "")
+			if username and username != NetworkCredentials.GUEST_USERNAME:
+				mount["username"] = username
+				mount["password"] = credentials.get("password", "")
 		self.session.openWithCallback(self.mountSetupClosed, NetworkMountSetup, mount=mount, onSaved=self.mountSaved)
 
 	def mountSaved(self, mount):
