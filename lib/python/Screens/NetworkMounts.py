@@ -521,7 +521,8 @@ class NetworkShares(Screen):
 	# the user leaves instead of scanning the network in the background.
 	def startDiscovery(self):
 		self.configuredShares = {(mount.get("server"), (mount.get("remotePath") or "").lstrip("/")): self.repository.mountPointFor(mount) for mount in self.repository.load()}
-		discoveryManager.onChanged.append(self.onHostsChanged)
+		if self.onHostsChanged not in discoveryManager.onChanged:
+			discoveryManager.onChanged.append(self.onHostsChanged)
 		discoveryManager.start(runMs=None)
 		self["description"].setText(_("Scanning..."))
 		self.buildList()
