@@ -425,10 +425,10 @@ class NetworkShares(Screen):
 				</rowtemplate>
 				<rowtemplate>
 					<text index="Glyph" position="50,9" size="42,32" font="2" foregroundColor="+GlyphColor" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="Type" position="102,0" size="50,50" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Name" position="152,0" size="200,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="Description" position="352,0" size="500,25" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="LocalPath" position="372,25" size="480,25" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Type" position="102,0" size="70,50" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Name" position="172,0" size="200,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="Description" position="372,0" size="480,25" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="LocalPath" position="392,25" size="460,25" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 			</template>
 		</widget>
@@ -814,9 +814,6 @@ class NetworkShares(Screen):
 			for host in sorted(discoveryManager.hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
 				address = host["address"]
 				name = host["hostname"] or address
-				version = self.smbVersions.get(address)
-				if version:
-					name = f"{name} (SMB{version.split('.')[0]})"
 				entries.append((self.TEMPLATE_HOST, self.GLYPH_HOST, 0, address, "", name, "", "", {"kind": "host", "address": address}))
 				if address not in self.expanded:
 					continue
@@ -828,6 +825,10 @@ class NetworkShares(Screen):
 
 				for share in self.shares.get(address, []):
 					typeLabel = protocolLabels.get(share["protocol"], share["protocol"])
+					if share["protocol"] == "smb":
+						version = self.smbVersions.get(address)
+						if version:
+							typeLabel = f"SMB{version.split('.')[0]}"
 					existing = self.configuredMount(address, host["hostname"], share["path"])
 					localPath = self.repository.mountPointFor(existing) if existing else None
 					glyph = self.GLYPH_MOUNTED if localPath else self.GLYPH_NOT_MOUNTED
