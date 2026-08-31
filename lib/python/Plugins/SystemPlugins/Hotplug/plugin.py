@@ -47,7 +47,7 @@ class HotPlugManager:
 	def processRawData(self, raw):
 		eventData = {}
 		if "\n" in raw:
-			data = raw[:-1].split("\n")
+			data = raw.rstrip("\0\n").split("\n")
 			eventData["mode"] = 1
 		else:
 			data = raw.split("\0")[:-1]
@@ -78,13 +78,15 @@ class HotPlugManager:
 			notFound = True
 			mounts = [(x[0], x[1].replace("\\040", " ")) for x in (line.split() for line in fileReadLines("/proc/mounts", default=[])) if len(x) > 1]
 			mountPoints = [x[1] for x in mounts]
+			fstabEntries = [x for x in (line.split() for line in fileReadLines("/etc/fstab", default=[])) if len(x) > 1 and not x[0].startswith("#")]
+			usedMountPoints = mountPoints + [x[1] for x in fstabEntries]
 			mountPoint = "/media/usb"
 			mountPointDevice = DEVNAME.replace("/dev/", "/media/")
-			mountPointHdd = None if "/media/hdd" in mountPoints else "/media/hdd"
+			mountPointHdd = None if "/media/hdd" in usedMountPoints else "/media/hdd"
 			knownDevices = fileReadLines("/etc/udev/known_devices", default=[])
 			knownDevice = ""
 			nr = 1
-			while mountPoint in mountPoints:
+			while mountPoint in usedMountPoints:
 				nr += 1
 				mountPoint = f"/media/usb{nr}"
 
@@ -105,7 +107,6 @@ class HotPlugManager:
 						break
 
 			if notFound and ID_FS_UUID:
-				fstabEntries = [x for x in (line.split() for line in fileReadLines("/etc/fstab", default=[])) if len(x) > 1]
 				fstabDevice = [x[1] for x in fstabEntries if x[0] == f"UUID={ID_FS_UUID}" and EXPANDER_MOUNT not in x[1]]
 				if fstabDevice and fstabDevice[0] not in mountPoints:  # Check if device is already in fstab and if the mountpoint not used
 					if not exists(fstabDevice[0]):
@@ -164,9 +165,13 @@ class HotPlugManager:
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
 						if knownDevice:
+							knownEntry = f"{ID_FS_UUID}:{knownDevice}"
 							for index, device in enumerate(knownDevices):
 								if device.startswith(f"{ID_FS_UUID}:"):
-									knownDevices[index] = f"{ID_FS_UUID}:{knownDevice}"
+									knownDevices[index] = knownEntry
+									break
+							else:
+								knownDevices.append(knownEntry)
 							fileWriteLines("/etc/udev/known_devices", knownDevices)
 					self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
 					self.addTimer.start(1000)
