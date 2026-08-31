@@ -493,7 +493,10 @@ void eDVBSoftDecoder::serviceEventSource(int event)
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 		eDebug("[eDVBSoftDecoder] Source: eventNewProgramInfo");
 		if (m_running)
-			updatePids(true);  // Decoder already running, update it
+			// Keep recorder PIDs current while waiting for the first CW and the
+			// configured pre-buffer.  m_running only means that the recorder is
+			// active; creating the decoder here would bypass both start gates.
+			updatePids(m_decoder_started);
 		break;
 	default:
 		break;

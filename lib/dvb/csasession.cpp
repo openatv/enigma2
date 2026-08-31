@@ -2,8 +2,14 @@
 #include <lib/dvb/csaengine.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/cwhandler.h>
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/esimpleconfig.h>
+
+#include <cstdio>
+#include <fstream>
+#include <iomanip>
+#include <sstream>
 
 #ifdef DREAMNEXTGEN
 #include <lib/dvb/alsa.h>
@@ -23,6 +29,89 @@ struct ServiceCsaInfo {
 	bool serviceId_valid; // true if serviceId has been seen
 };
 static std::map<uint64_t, ServiceCsaInfo> s_csa_cache;
+static bool s_persistent_csa_cache_loaded = false;
+static bool s_persistent_csa_cache_dirty = false;
+
+static std::string persistentCsaCachePath()
+{
+	return eEnv::resolve("${sysconfdir}/enigma2/softcsa.cache");
+}
+
+// Keep positive CSA-ALT detections across GUI restarts so known services can
+// select SoftCSA immediately without repeating unnecessary HW decoder setup.
+static void loadPersistentCsaCache()
+{
+	if (s_persistent_csa_cache_loaded)
+		return;
+
+	s_persistent_csa_cache_loaded = true;
+	std::ifstream in(persistentCsaCachePath());
+	if (!in.good())
+		return;
+
+	unsigned int loaded = 0;
+	std::string line;
+	while (std::getline(in, line))
+	{
+		if (line.empty() || line[0] == '#')
+			continue;
+
+		unsigned long long key = 0;
+		unsigned int ecm_mode = 0;
+		unsigned int service_id = 0;
+		std::istringstream fields(line);
+		if (!(fields >> std::hex >> key >> ecm_mode >> service_id) || ecm_mode > 0x0F)
+			continue;
+
+		ServiceCsaInfo &info = s_csa_cache[static_cast<uint64_t>(key)];
+		info.is_csa_alt = true;
+		info.ecm_mode = static_cast<uint8_t>(ecm_mode);
+		info.valid = true;
+		info.serviceId = service_id;
+		info.serviceId_valid = service_id != 0;
+		++loaded;
+	}
+
+	eDebug("[eDVBCSASession] Loaded %u persistent CSA-ALT service(s)", loaded);
+}
+
+static void flushPersistentCsaCache()
+{
+	if (!s_persistent_csa_cache_dirty)
+		return;
+
+	const std::string path = persistentCsaCachePath();
+	const std::string temporary_path = path + ".tmp";
+	std::ofstream out(temporary_path, std::ios::trunc);
+	if (!out.good())
+	{
+		eWarning("[eDVBCSASession] Failed to write persistent cache %s", temporary_path.c_str());
+		return;
+	}
+
+	out << "# Enigma2 SoftCSA CSA-ALT cache v1\n";
+	for (const auto &entry : s_csa_cache)
+	{
+		const ServiceCsaInfo &info = entry.second;
+		if (!info.valid || !info.is_csa_alt)
+			continue;
+
+		out << std::hex << std::setfill('0')
+			<< std::setw(16) << entry.first << ' '
+			<< std::setw(2) << static_cast<unsigned int>(info.ecm_mode) << ' '
+			<< std::setw(8) << (info.serviceId_valid ? info.serviceId : 0) << '\n';
+	}
+	out.close();
+
+	if (!out.good() || std::rename(temporary_path.c_str(), path.c_str()) != 0)
+	{
+		eWarning("[eDVBCSASession] Failed to replace persistent cache %s", path.c_str());
+		std::remove(temporary_path.c_str());
+		return;
+	}
+
+	s_persistent_csa_cache_dirty = false;
+}
 
 // Helper: Check if CAID is VideoGuard
 static bool caid_is_videoguard(uint16_t caid)
@@ -126,16 +215,14 @@ bool eDVBCSASession::init()
 
 void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_t caid)
 {
-	if (!demux || ecm_pid == 0 || ecm_pid == 0xFFFF)
+	if (!demux)
 		return;
 
-	stopECMMonitor();
-
-	m_ecm_pid = ecm_pid;
 	m_caid = caid;
+	loadPersistentCsaCache();
 
-	// Cache-driven early activation: skip ECM section reader if CSA-ALT for
-	// this service is already known. Disabled in Aggressive mode (audio race on dm900).
+	// Cache-driven early activation when CSA-ALT for this service is already
+	// known. Disabled in Aggressive mode (audio race on dm900).
 	const bool cache_early_activate_disabled =
 		(eSimpleConfig::getInt("config.softcsa.decoderRelease", 0) == 2);
 
@@ -152,10 +239,10 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 			m_ecm_mode = info.ecm_mode;
 			m_ecm_mode_detected = true;
 
-			m_ecm_analyzed = true;
-			m_csa_alt = info.is_csa_alt;
+			const bool use_cached_alt = info.is_csa_alt && caid_is_videoguard(caid);
+			m_csa_alt = use_cached_alt;
 
-			if (info.is_csa_alt && !m_active)
+			if (use_cached_alt && !m_active)
 			{
 				if (shouldSuppressActivation && shouldSuppressActivation())
 				{
@@ -168,9 +255,31 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 				}
 			}
 
-			return;
+			if (!info.is_csa_alt)
+			{
+				m_ecm_analyzed = true;
+				return;
+			}
+
+			// A positive cache entry starts SoftCSA immediately, but keep the ECM
+			// monitor running once to validate it.  This automatically removes a
+			// stale entry if the provider changes the CA system or scrambling mode.
+			eDebug("[eDVBCSASession] ECM Monitor: Validating cached CSA-ALT info");
 		}
 	}
+
+	// The first program-info event can contain the CAID while its ECM PID is
+	// still the 0xFFFF placeholder.  Cache activation above must happen on that
+	// event so updateDecoder() never starts the hardware decoder.  A later event
+	// supplies the real ECM PID and starts validation normally.
+	if (ecm_pid == 0 || ecm_pid == 0xFFFF)
+	{
+		eDebug("[eDVBCSASession] ECM Monitor: Waiting for valid ECM PID after cache lookup");
+		return;
+	}
+
+	stopECMMonitor();
+	m_ecm_pid = ecm_pid;
 
 	// Create section reader
 	ePtr<iDVBSectionReader> reader;
@@ -247,12 +356,20 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 		eDebug("[eDVBCSASession] ECM received (PMT): caid=0x%04X, ecm[2]=0x%02X, ecm[4]=0x%02X, ecm_mode=0x%02X, CSA-ALT=%d",
 			m_caid, data[2], data[4], new_ecm_mode, is_csa_alt);
 
-		// Update unified cache (preserve serviceId if already known)
+		// Update unified cache (preserve serviceId if already known). Only
+		// rewrite the persistent positive-only view when that view changes.
 		uint64_t svc_key = makeServiceKey(m_service_ref);
 		auto& cached = s_csa_cache[svc_key];
+		const bool persistent_cache_changed = cached.valid
+			? cached.is_csa_alt != is_csa_alt
+				|| (is_csa_alt && cached.ecm_mode != new_ecm_mode)
+			: is_csa_alt;
 		cached.is_csa_alt = is_csa_alt;
 		cached.ecm_mode = new_ecm_mode;
 		cached.valid = true;
+		if (persistent_cache_changed)
+			s_persistent_csa_cache_dirty = true;
+		flushPersistentCsaCache();
 
 		m_ecm_analyzed = true;
 		m_csa_alt = is_csa_alt;
@@ -275,6 +392,17 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 		else
 		{
 			eDebug("[eDVBCSASession] ECM analyzed: Not CSA-ALT, hardware descrambling will be used");
+			if (m_active)
+			{
+				eWarning("[eDVBCSASession] Cached CSA-ALT info is stale, returning to hardware descrambling");
+				setActive(false);
+				// setActive(false) resets the analysis state; retain the result of
+				// this validation so eventNewProgramInfo does not start another reader.
+				m_ecm_mode = new_ecm_mode;
+				m_ecm_mode_detected = true;
+				m_ecm_analyzed = true;
+				m_csa_alt = false;
+			}
 		}
 
 		stopECMMonitor();
@@ -425,8 +553,16 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 
 		// Cache serviceId for future sessions (enables pre-registration on PiP swap)
 		auto& cached = s_csa_cache[svc_key];
-		cached.serviceId = serviceId;
-		cached.serviceId_valid = true;
+		const bool service_id_changed = serviceId != 0
+			&& (!cached.serviceId_valid || cached.serviceId != serviceId);
+		if (serviceId != 0)
+		{
+			cached.serviceId = serviceId;
+			cached.serviceId_valid = true;
+		}
+		if (cached.valid && cached.is_csa_alt && service_id_changed)
+			s_persistent_csa_cache_dirty = true;
+		flushPersistentCsaCache();
 	}
 	else if (serviceId != 0 && serviceId != m_cw_service_id &&
 		serviceId != m_cw_alt_service_id &&
