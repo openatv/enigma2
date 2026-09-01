@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 20:10+0000\n"
-"PO-Revision-Date: 2026-08-28 07:21+0000\n"
+"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"PO-Revision-Date: 2026-09-01 07:02+0000\n"
 "Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -911,10 +911,6 @@ msgstr[0] "%d Feed-Paket aktualisiert."
 msgstr[1] "%d Feed-Pakete aktualisiert."
 
 #, python-format
-msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
-msgstr "%d Feeds befinden sich auf nicht verfügbaren Satelliten, %d nutzen nicht unterstützte Übertragungsprotokolle und %d sind deaktiviert"
-
-#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "%d Host gefunden."
@@ -1184,10 +1180,6 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
-msgid "%s - PID 0x%04X - %s"
-msgstr "%s - PID 0x%04X - %s"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s-Einrichtung"
 
@@ -1340,7 +1332,7 @@ msgstr "'%s' ist bereits durch eine eigene Einstellung weiter oben festgelegt, d
 
 #, python-format
 msgid "'%s' is listed more than once in 'Mount options'."
-msgstr "'%s' ist mehrfach unter 'Mount-Optionen' aufgeführt."
+msgstr "'%s' ist mehrfach unter 'Einhängeoptionen' aufgeführt."
 
 #, python-format
 msgid "'%s' mounted."
@@ -3011,9 +3003,6 @@ msgstr "AutoCam-Einstellungen"
 msgid "AutoCam Setup Actions"
 msgstr "AutoCam-Einstellungsaktionen"
 
-msgid "AutoFS"
-msgstr "AutoFS"
-
 #
 msgid "AutoMountManager"
 msgstr "Automatische Mountverwaltung"
@@ -4560,9 +4549,6 @@ msgstr "Den einzurichtenden Tuner auswählen."
 msgid "Christmas Island"
 msgstr "Weihnachtsinsel"
 
-msgid "Chrony"
-msgstr "Chrony"
-
 msgid "Church Slavic"
 msgstr "Kirchenslawisch"
 
@@ -5768,9 +5754,6 @@ msgstr "Kroatien"
 msgid "Croatian"
 msgstr "Kroatisch"
 
-msgid "Cron"
-msgstr "Cron"
-
 msgid "Cron Manager"
 msgstr "Cronverwaltung"
 
@@ -6002,9 +5985,6 @@ msgstr "DNS überschreiben"
 
 msgid "DNS protocol mode"
 msgstr "DNS-Protokollmodus"
-
-msgid "DNSCrypt"
-msgstr "DNSCrypt"
 
 msgid "DNSCrypt Resolver"
 msgstr "DNSCrypt-Resolver"
@@ -9012,9 +8992,6 @@ msgstr "FSBL-Updateprüfung"
 msgid "FTA"
 msgstr "FreeTV (FTA)"
 
-msgid "FTP"
-msgstr "FTP"
-
 msgid "Factory Reset"
 msgstr "Werkseinstellungen"
 
@@ -11152,25 +11129,12 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Ungültig"
 
-msgid "Invalid DAB feed file root element"
-msgstr "Ungültiges Stammelement der DAB-Feed-Datei"
-
 msgid "Invalid Help Page"
 msgstr "Ungültige Hilfeseite"
-
-#, python-format
-msgid "Invalid bouquet file name '%s'"
-msgstr "Ungültiger Bouquet-Dateiname '%s'"
 
 #
 msgid "Invalid location!"
 msgstr "Unzulässiger Ort!"
-
-msgid "Invalid multicast port"
-msgstr "Ungültiger Multicast-Port"
-
-msgid "Invalid orbital position"
-msgstr "Ungültige Orbitalposition"
 
 # ScanSetup.py
 msgid "Invalid transponder data"
@@ -12564,13 +12528,6 @@ msgstr ""
 "Falsch konfigurierte Unicable-Verbindung von Tuner %s zu %s!\n"
 "Tuner %s Option 'Verbunden mit' ist jetzt deaktiviert."
 
-#, python-format
-msgid "Missing attribute '%s'"
-msgstr "Attribut '%s' fehlt"
-
-msgid "Missing multicast address"
-msgstr "Multicast-Adresse fehlt"
-
 msgid "Mobile connection"
 msgstr "Mobile Verbindung"
 
@@ -13159,9 +13116,6 @@ msgstr "N/A"
 #
 msgid "NEXT"
 msgstr "NÄCHSTE"
-
-msgid "NFS"
-msgstr "NFS"
 
 msgid "NFS Server Settings"
 msgstr "NFS-Dateiserver"
@@ -14501,9 +14455,6 @@ msgstr "Mit File Commander öffnen"
 
 msgid "OpenPLi Packages"
 msgstr "OpenPLi"
-
-msgid "OpenVPN"
-msgstr "OpenVPN"
 
 msgid "OpenViX Packages"
 msgstr "OpenViX"
@@ -17345,9 +17296,6 @@ msgstr "Ruanda"
 msgid "Réunion"
 msgstr "Réunion"
 
-msgid "SABnzbd"
-msgstr "SABnzbd"
-
 msgid "SAT"
 msgstr "SAT"
 
@@ -17362,9 +17310,6 @@ msgstr "SATA hinten"
 
 msgid "SATA FRONT"
 msgstr "SATA vorne"
-
-msgid "SATPI"
-msgstr "SATPI"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimierter Suchbereich"
@@ -17414,9 +17359,6 @@ msgstr "SRT-Datei"
 msgid "SSA file"
 msgstr "SSA-Datei"
 
-msgid "SSH"
-msgstr "SSH"
-
 msgid "SSID"
 msgstr "SSID"
 
@@ -17444,12 +17386,6 @@ msgstr "Saint-Pierre und Miquelon"
 
 msgid "Saint Vincent and the Grenadines"
 msgstr "St. Vincent und die Grenadinen"
-
-msgid "Samba Client"
-msgstr "Sambaclient"
-
-msgid "Samba Server"
-msgstr "Sambaserver"
 
 msgid "Samba Server Settings"
 msgstr "Samba"
@@ -18903,7 +18839,7 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "Das Protokoll des Unicable/SCR-Gerätes auswählen. 'SCR Unicable' (Unicable I-Format) oder 'SCR JESS' (Unicable II-Format)."
 
 msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
-msgstr "Die Mount-Option für die Puffergröße beim Lesen (rsize) auswählen. 'Automatisch' auswählen, damit Kernel und Server die optimale Größe aushandeln können."
+msgstr "Die Einhängeoption für die Puffergröße beim Lesen (rsize) auswählen. 'Automatisch' auswählen, damit Kernel und Server die optimale Größe aushandeln können."
 
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "Die Aktion auswählen, wenn der Fernseher vom Receivereingang wegschaltet."
@@ -19039,7 +18975,7 @@ msgstr ""
 "Sollte der Bildschirm danach dunkel bleiben, die Taste TXT (Videotext) etwas länger drücken."
 
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
-msgstr "Die Mount-Option für die Puffergröße beim Schreiben (wsize) auswählen. 'Automatisch' auswählen, damit Kernel und Server die optimale Größe aushandeln können."
+msgstr "Die Einhängeoption für die Puffergröße beim Schreiben (wsize) auswählen. 'Automatisch' auswählen, damit Kernel und Server die optimale Größe aushandeln können."
 
 msgid "Select update source location"
 msgstr "Updatequelle auswählen"
@@ -19901,9 +19837,6 @@ msgstr "Netzwerkfreigaben"
 #
 msgid "Sharpness"
 msgstr "Schärfe"
-
-msgid "ShellInABox"
-msgstr "ShellInABox"
 
 msgid "Shellscript"
 msgstr "Shellskript"
@@ -22313,9 +22246,6 @@ msgstr "Videotext-Zeichensatz/Auflösung"
 msgid "Teletext subtitle color"
 msgstr "Videotext-Untertitelfarbe"
 
-msgid "Telnet"
-msgstr "Telnet"
-
 msgid "Telnet Interface"
 msgstr "Telnet"
 
@@ -24040,9 +23970,6 @@ msgstr "Unbekannter Sender"
 #
 msgid "Unknown error code"
 msgstr "Unbekannter Fehlercode"
-
-msgid "Unknown feed"
-msgstr "Unbekannter Feed"
 
 #, python-format
 msgid "Unknown group: %d"
@@ -26069,9 +25996,6 @@ msgstr "ZeroTier-Aktionen"
 msgid "ZeroTier Settings"
 msgstr "ZeroTier-Einstellungen"
 
-msgid "ZeroTier-One"
-msgstr "ZeroTier-One"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 altes Modell"
 
@@ -26825,6 +26749,82 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+#~ msgstr "%d Feeds befinden sich auf nicht verfügbaren Satelliten, %d nutzen nicht unterstützte Übertragungsprotokolle und %d sind deaktiviert"
+
+#, python-format
+#~ msgid "%s - PID 0x%04X - %s"
+#~ msgstr "%s - PID 0x%04X - %s"
+
+#~ msgid "AutoFS"
+#~ msgstr "AutoFS"
+
+#~ msgid "Chrony"
+#~ msgstr "Chrony"
+
+#~ msgid "Cron"
+#~ msgstr "Cron"
+
+#~ msgid "DNSCrypt"
+#~ msgstr "DNSCrypt"
+
+#~ msgid "FTP"
+#~ msgstr "FTP"
+
+#~ msgid "Invalid DAB feed file root element"
+#~ msgstr "Ungültiges Stammelement der DAB-Feed-Datei"
+
+#, python-format
+#~ msgid "Invalid bouquet file name '%s'"
+#~ msgstr "Ungültiger Bouquet-Dateiname '%s'"
+
+#~ msgid "Invalid multicast port"
+#~ msgstr "Ungültiger Multicast-Port"
+
+#~ msgid "Invalid orbital position"
+#~ msgstr "Ungültige Orbitalposition"
+
+#, python-format
+#~ msgid "Missing attribute '%s'"
+#~ msgstr "Attribut '%s' fehlt"
+
+#~ msgid "Missing multicast address"
+#~ msgstr "Multicast-Adresse fehlt"
+
+#~ msgid "NFS"
+#~ msgstr "NFS"
+
+#~ msgid "OpenVPN"
+#~ msgstr "OpenVPN"
+
+#~ msgid "SABnzbd"
+#~ msgstr "SABnzbd"
+
+#~ msgid "SATPI"
+#~ msgstr "SATPI"
+
+#~ msgid "SSH"
+#~ msgstr "SSH"
+
+#~ msgid "Samba Client"
+#~ msgstr "Sambaclient"
+
+#~ msgid "Samba Server"
+#~ msgstr "Sambaserver"
+
+#~ msgid "ShellInABox"
+#~ msgstr "ShellInABox"
+
+#~ msgid "Telnet"
+#~ msgstr "Telnet"
+
+#~ msgid "Unknown feed"
+#~ msgstr "Unbekannter Feed"
+
+#~ msgid "ZeroTier-One"
+#~ msgstr "ZeroTier-One"
 
 #~ msgid "DVDPlayer"
 #~ msgstr "DVD-Player"
