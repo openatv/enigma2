@@ -1,13 +1,21 @@
+from os import listdir
+from os.path import isdir, join
+
 from enigma import eTimer
 
 from Components.ActionMap import HelpableActionMap
 from Components.Label import Label
+from Components.MenuList import MenuList
 from Components.Opkg import OpkgComponent
 from Components.ScrollLabel import ScrollLabel
 from Components.Slider import Slider
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from Screens.VirtualKeyBoard import VirtualKeyboard
+from Tools.Directories import fileReadLines, fileWriteLines
+
+MODULE_NAME = __name__.split(".")[-1]
 
 
 class Opkg(Screen):
@@ -175,3 +183,59 @@ class Opkg(Screen):
 			self["slider"].show()
 			self["activityslider"].show()
 			self["status"].show()
+
+
+class PackageFeedSelection(Screen):
+	PACKAGE_PATH = "/etc/opkg/"
+	skin = """
+	<screen name="PackageFeedSelection" title="Package Feed Selection" position="center,center" size="700,400" resolution="1280,720">
+		<widget name="feeds" position="10,10" size="e-20,e-70" font="Regular;20" itemHeight="25" />
+		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="200,e-50" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session, enableHelp=True, mandatoryWidgets=["feeds"])
+		self.setTitle(_("Select Upgrade Source To Edit"))
+		feedList = []
+		if isdir(self.PACKAGE_PATH):
+			for file in sorted(listdir(self.PACKAGE_PATH)):
+				if file.endswith(".conf") and file not in ("arch.conf", "opkg.conf"):
+					feedList.append(file)
+		self["feeds"] = MenuList(feedList)
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Edit") if feedList else "")
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"ok": (self.keyOk, _("Edit the currently highlighted feed")),
+			"cancel": (self.close, _("Close the screen")),
+			"red": (self.close, _("Close the screen")),
+			"green": (self.keyOk, _("Edit the currently highlighted feed"))
+		}, prio=0, description=_("Package Feed Editor Actions"))
+		self["actions"].setEnabledAction("ok", feedList != [])
+		self["actions"].setEnabledAction("green", feedList != [])
+
+	def keyOk(self):
+		self.session.open(PackageFeedEditor, join(self.PACKAGE_PATH, self["feeds"].getCurrent()))
+
+
+class PackageFeedEditor(VirtualKeyboard):
+	def __init__(self, session, configFile=None):
+		self.configFile = configFile
+		self.lines = fileReadLines(configFile, default=[], source=MODULE_NAME) if configFile else []
+		VirtualKeyboard.__init__(self, session, title=_("Edit the feed URL:"), text=self.lines[0] if self.lines else "", style=VirtualKeyboard.VKB_SAVE_ICON, windowTitle=_("Package Feed Editor"))
+
+	def save(self):  # This is a redefinition of the method in VirtualKeyboard.
+		self.smsGotChar()  # Commit any pending SMS character before the text is read.
+		text = self["text"].getText().replace(self.TAB_GLYPH, "\t")
+		if text and self.configFile:
+			if fileWriteLines(self.configFile, [text] + self.lines[1:], source=MODULE_NAME) == 0:  # Only the first line is edited, keep the others.
+				self.session.open(MessageBox, _("Error: There was a problem writing '%s'!") % self.configFile, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+				return  # Keep the screen open so the edit is not lost.
+		VirtualKeyboard.save(self)

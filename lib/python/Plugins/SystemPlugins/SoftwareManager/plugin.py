@@ -1,16 +1,12 @@
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, stat  # noqa F401
-from os.path import dirname, exists, isdir, isfile, join as pathjoin
+from os.path import dirname, isdir, isfile, join as pathjoin
 from stat import ST_MTIME
 from pickle import dump, load
 from time import time
 
-from enigma import getDesktop
-
-from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Harddisk import harddiskmanager  # noqa F401
-from Components.Input import Input
-from Components.MenuList import MenuList
 from Components.Opkg import OpkgComponent
 from Components.PluginComponent import plugins  # noqa F401
 from Components.SelectionList import SelectionList
@@ -64,154 +60,6 @@ class ImageWizard(ImageWizard):
 
 class RestoreMenu(RestoreMenu):
 	pass
-
-
-class IPKGMenu(Screen):
-	skin = """
-		<screen name="IPKGMenu" position="center,center" size="560,400" resolution="1280,720">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="filelist" position="5,50" size="550,340" scrollbarMode="showOnDemand" />
-		</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.setTitle(_("Select Upgrade Source To Edit"))
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Edit"))
-		self.sel = []
-		self.val = []
-		self.entry = False
-		self.exe = False
-		self.path = ""
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
-			"ok": self.KeyOk,
-			"cancel": self.keyCancel
-		}, prio=-1)
-		self["shortcuts"] = HelpableActionMap(self, ["ColorActions"], {
-			"red": self.keyCancel,
-			"green": self.KeyOk,
-		})
-		self["filelist"] = MenuList([])
-		self.fill_list()
-
-	def fill_list(self):
-		flist = []
-		self.path = "/etc/opkg/"
-		if (exists(self.path) is False):
-			self.entry = False
-			return
-		for file in listdir(self.path):
-			if file.endswith(".conf"):
-				if file not in ("arch.conf", "opkg.conf"):
-					flist.append((file))
-					self.entry = True
-		self["filelist"].l.setList(flist)
-
-	def KeyOk(self):
-		if (self.exe is False) and (self.entry is True):
-			self.sel = self["filelist"].getCurrent()
-			self.val = self.path + self.sel
-			self.session.open(IPKGSource, self.val)
-
-	def keyCancel(self):
-		self.close()
-
-	def Exit(self):
-		self.close()
-
-
-class IPKGSource(Screen):
-	skin = """
-		<screen name="IPKGSource" position="center,center" size="560,80" title="Edit upgrade source url." resolution="1280,720">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="text" position="5,50" size="550,25" font="Regular;20" backgroundColor="background" foregroundColor="#cccccc" />
-		</screen>"""
-
-	def __init__(self, session, configfile=None):
-		Screen.__init__(self, session)
-		self.setTitle(_("Edit Upgrade Source URL"))
-		self.configfile = configfile
-		text = ""
-		if self.configfile:
-			try:
-				fp = open(configfile)
-				sources = fp.readlines()
-				if sources:
-					text = sources[0]
-				fp.close()
-			except OSError:
-				pass
-		desk = getDesktop(0)
-		x = int(desk.size().width())  # noqa F841
-		y = int(desk.size().height())
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Save"))
-		if (y >= 720):
-			self["text"] = Input(text, maxSize=False, type=Input.TEXT)
-		else:
-			self["text"] = Input(text, maxSize=False, visible_width=55, type=Input.TEXT)
-		self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions", "ShortcutActions"], {
-			"ok": self.go,
-			"back": self.close,
-			"red": self.close,
-			"green": self.go,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"home": self.keyHome,
-			"end": self.keyEnd,
-			"deleteForward": self.keyDeleteForward,
-			"deleteBackward": self.keyDeleteBackward,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		}, prio=-1)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self["text"].right()
-
-	def go(self):
-		text = self["text"].getText()
-		if text:
-			fp = open(self.configfile, "w")
-			fp.write(text)
-			fp.write("\n")
-			fp.close()
-		self.close()
-
-	def keyLeft(self):
-		self["text"].left()
-
-	def keyRight(self):
-		self["text"].right()
-
-	def keyHome(self):
-		self["text"].home()
-
-	def keyEnd(self):
-		self["text"].end()
-
-	def keyDeleteForward(self):
-		self["text"].delete()
-
-	def keyDeleteBackward(self):
-		self["text"].deleteBackward()
-
-	def keyNumberGlobal(self, number):
-		self["text"].number(number)
 
 
 class IpkgInstaller(Screen):
