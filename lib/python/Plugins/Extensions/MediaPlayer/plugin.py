@@ -230,6 +230,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		InfoBarSeek.__init__(self, actionmap="MediaPlayerSeekActions")
 
+		if config.seek.arrowSkipMode.value != "t":
+			self["SeekActionsArrows"].setEnabled(False)
+
 		self.mediaPlayerInfoBar = self.session.instantiateDialog(MediaPlayerInfoBar)
 
 		self.onClose.append(self.delMPTimer)

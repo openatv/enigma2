@@ -584,6 +584,7 @@
 		<item level="2" text="Include screen load data" description="Enable this option to add screen names and resolution data to the debug log file." indent="1">config.crash.debugScreens</item>
 		<item level="2" text="Include opkg output data" description="Enable this option to add opkg output data to the debug log file." indent="1">config.crash.debugOpkg</item>
 		<item level="2" text="Include timer data" description="Enable this option to add timer debugging data to the debug log file." indent="1">config.crash.debugTimers</item>
+		<item level="2" text="Include seek data" description="Enable this option to add seek/time shift debugging data to the debug log file." indent="1">config.crash.debugSeek</item>
 		<item level="2" text="Include EPG data" description="Enable this option to add extra EPG data to the debug log file." indent="1">config.crash.debugEPG</item>
 		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file." restart="gui" indent="1">config.crash.debugDVBScan</item>
 		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file." restart="gui" indent="1">config.crash.debugDVBTime</item>
@@ -818,15 +819,17 @@
 		<item level="1" text="Show persistent InfoBar while paused" description="Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused." indent="1">config.usage.show_infobar_locked_on_pause</item>
 		<item level="2" text="Skip Modes" />
 		<item level="2" text="SeekBar activation" description="Select SeekBar to be activated by arrow LEFT/RIGHT (long) or &lt;&lt; &gt;&gt; (long)." indent="1">config.seek.baractivation</item>
-		<item level="2" text="Arrow skip mode" description="Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions." indent="1">config.seek.arrowSkipMode</item>
+		<item level="2" text="Arrow skip mode" description="Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions." restart="gui" indent="1">config.seek.arrowSkipMode</item>
 		<if conditional="config.seek.arrowSkipMode.value == 's'">
-			<item level="2" text="Skip sensibility (Horizontal)" description="Set the LEFT/RIGHT button skip percentage for the SeekBar." indent="2">config.seek.sensibilityHorizontal</item>
-			<item level="2" text="Skip sensibility (Vertical)" description="Set the UP/DOWN button skip percentage for the SeekBar." indent="2">config.seek.sensibilityVertical</item>
+			<item level="2" text="Skip sensibility for '%s' button" description="Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="UP" indent="2">config.seek.sensibilities["UP"]</item>
+			<item level="2" text="Skip sensibility for '%s' button" description="Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="LEFT" indent="2">config.seek.sensibilities["LEFT"]</item>
+			<item level="2" text="Skip sensibility for '%s' button" description="Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="RIGHT" indent="2">config.seek.sensibilities["RIGHT"]</item>
+			<item level="2" text="Skip sensibility for '%s' button" description="Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="DOWN" indent="2">config.seek.sensibilities["DOWN"]</item>
 		<elif conditional="config.seek.arrowSkipMode.value == 'd'" />
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="UP" indent="2">config.seek.defined["UP"]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="LEFT" indent="2">config.seek.defined["LEFT"]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="RIGHT" indent="2">config.seek.defined["RIGHT"]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="DOWN" indent="2">config.seek.defined["DOWN"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="UP" indent="2">config.seek.defined["UP"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="LEFT" indent="2">config.seek.defined["LEFT"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="RIGHT" indent="2">config.seek.defined["RIGHT"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="DOWN" indent="2">config.seek.defined["DOWN"]</item>
 		</if>
 		<item level="2" text="Numeric skip mode" description="Select how the number buttons will act during seek actions." indent="1">config.seek.numberSkipMode</item>
 		<if conditional="config.seek.numberSkipMode.value == 's'">
@@ -834,16 +837,16 @@
 			<item level="2" text="Skip time for '%s'/'%s' buttons" description="Set the skip time interval for the '%s'/'%s' buttons." data="4,6" indent="2">config.seek.defined[46]</item>
 			<item level="2" text="Skip time for '%s'/'%s' buttons" description="Set the skip time interval for the '%s'/'%s' buttons." data="7,9" indent="2">config.seek.defined[79]</item>
 		<elif conditional="config.seek.numberSkipMode.value == 'd'" />
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="1" indent="2">config.seek.defined[1]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="2" indent="2">config.seek.defined[2]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="3" indent="2">config.seek.defined[3]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="4" indent="2">config.seek.defined[4]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="5" indent="2">config.seek.defined[5]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="6" indent="2">config.seek.defined[6]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="7" indent="2">config.seek.defined[7]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="8" indent="2">config.seek.defined[8]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="9" indent="2">config.seek.defined[9]</item>
-			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="0" indent="2">config.seek.defined[0]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="1" indent="2">config.seek.defined[1]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="2" indent="2">config.seek.defined[2]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="3" indent="2">config.seek.defined[3]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="4" indent="2">config.seek.defined[4]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="5" indent="2">config.seek.defined[5]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="6" indent="2">config.seek.defined[6]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="7" indent="2">config.seek.defined[7]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="8" indent="2">config.seek.defined[8]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="9" indent="2">config.seek.defined[9]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward." data="0" indent="2">config.seek.defined[0]</item>
 		</if>
 		<item level="2" text="CutList Skipping" />
 		<item level="2" text="CutList skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="UP" indent="1">config.seek.defined["CUT_UP"]</item>
