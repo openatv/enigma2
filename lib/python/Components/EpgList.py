@@ -6,7 +6,7 @@ from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceRefe
 
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
@@ -932,7 +932,7 @@ class EPGList(GUIComponent):
 		displayPicon = None
 		if self.showPicon:
 			if picon is None:  # go find picon and cache its location
-				picon = getPiconName(service)
+				picon = getChannelSelectionPiconName(service)
 				curIdx = self.l.getCurrentSelectionIndex()
 				self.list[curIdx] = (service, service_name, events, picon, channel)
 			piconWidth = self.picon_size.width()
