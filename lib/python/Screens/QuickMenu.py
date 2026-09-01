@@ -330,7 +330,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	def subMenuMount(self):  # Mount Settings Menu.
 		self.subList = []
 		self.subList.append(self.quickSubMenuEntryComponent(_("Network Mounts Overview"), _("Manage network mounts"), _("Setup your network mounts"), screen="NetworkMounts", screenName="NetworkMountsOverview"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), screen="NetworkMounts", screenName="NetworkShares"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=self.openNetworkShares))
 		self.setSubList()
 
 	def subMenuNetwork(self):  # Network Menu.
@@ -454,6 +454,10 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.openScreen(screen, screenName=screenName)
 		elif callback and callable(callback):
 			callback()
+
+	def openNetworkShares(self):
+		from Screens.NetworkMounts import NetworkMountsOverview
+		self.session.open(NetworkMountsOverview, openBrowser=True)
 
 	def openSetup(self, key):
 		self.session.open(Setup, key)
