@@ -893,7 +893,6 @@ class NetworkWiFi(Setup):
 		(Encryption.WEP, "WEP"),
 		(Encryption.WPA, "WPA"),
 		(Encryption.WPA2, "WPA2"),
-		(Encryption.WPA3, "WPA3"),
 	]
 
 	def __init__(self, session, conn: Connection, adapter: Adapter):
