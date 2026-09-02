@@ -11,6 +11,7 @@ from Components.Label import Label
 from Components.NimManager import nimmanager  # noqa F401 needed in menu.xml
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
+from Components.RTLSDR import canScanRTLSDR, hasRTLSDRDevice  # noqa F401 needed in menu.xml
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName

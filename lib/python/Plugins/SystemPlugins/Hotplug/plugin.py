@@ -214,7 +214,14 @@ class HotPlugManager:
 			print("[Hotplug] DEBUG: ", eventData)
 		action = eventData.get("ACTION")
 		if mode == 1 and eventData.get("MODE", "") != "CD":
-			if action == "add":
+			if action == "dab-sdr-add":
+				device = eventData.get("DEVPATH", "").split("/")[-1]
+				for callback in hotplugNotifier[:]:
+					try:
+						callback(device, action)
+					except AttributeError:
+						hotplugNotifier.remove(callback)
+			elif action == "add":
 				self.addTimer.stop()
 				ID_TYPE = eventData.get("ID_TYPE")
 				DEVTYPE = eventData.get("DEVTYPE")

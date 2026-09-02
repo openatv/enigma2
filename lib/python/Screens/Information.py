@@ -8,7 +8,7 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.About import about
@@ -1567,6 +1567,9 @@ class InformationService(InformationBase):
 					subtitleDesc = subtitleTypes.get(subtitle[2], f"{_("Unknown")}: {subtitle[2]}")
 					info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  {subtitleDesc}  -  {subtitleLang}"))
 
+		if self.serviceReferenceType == eServiceReference.idServiceDAB and self.serviceInfo:
+			return self.showDABServiceInformation(getServiceInfoValue, formatHex)
+
 		info = []
 		info.append(self.formatLine("H", _("Service and PID information for '%s'") % self.serviceName))
 		info.append("")
@@ -1625,6 +1628,56 @@ class InformationService(InformationBase):
 			info.append(self.formatLine("P1", _("PMT PID"), formatHex(getServiceInfoValue(iServiceInformation.sPMTPID))))
 			info.append(self.formatLine("P1", _("TXT PID"), formatHex(getServiceInfoValue(iServiceInformation.sTXTPID))))
 			getSubtitleList()
+		return info
+
+	def showDABServiceInformation(self, getServiceInfoValue, formatHex):
+		def addIfAvailable(info, label, value):
+			if value not in (None, "", -1, _("N/A")):
+				info.append(self.formatLine("P1", label, value))
+
+		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		info = [self.formatLine("H", _("DAB service information for '%s'") % self.serviceName)]
+		info.append("")
+		addIfAvailable(info, _("Station"), self.serviceName)
+		addIfAvailable(info, _("Reception source"), getServiceInfoValue(iServiceInformation.sProvider))
+		addIfAvailable(info, _("Ensemble"), getServiceInfoValue(iServiceInformation.sDABEnsembleLabel))
+		ensembleId = getServiceInfoValue(iServiceInformation.sDABEnsembleId)
+		addIfAvailable(info, _("Ensemble ID (EID)"), formatHex(ensembleId))
+		addIfAvailable(info, _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID)))
+
+		channel = getServiceInfoValue(iServiceInformation.sDABChannel)
+		if channel:
+			from Components.RTLSDR import getRTLSDRChannelFrequency
+			frequency = getRTLSDRChannelFrequency(channel)
+			channelText = _("Block %s") % channel
+			if frequency:
+				channelText = _("Block %s - %.3f MHz") % (channel, frequency / 1000.0)
+			addIfAvailable(info, _("DAB channel"), channelText)
+		elif serviceRef:
+			addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
+
+		addIfAvailable(info, _("Programme type"), getServiceInfoValue(iServiceInformation.sTagGenre))
+		addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
+		addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
+		addIfAvailable(info, _("Audio bitrate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
+		addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))
+		addIfAvailable(info, _("Dynamic label"), getServiceInfoValue(iServiceInformation.sDABDynamicLabel))
+		addIfAvailable(info, _("RTL-SDR tuner"), getServiceInfoValue(iServiceInformation.sDABReceiverName))
+
+		frontendInfo = self.service and self.service.frontendInfo()
+		if frontendInfo and channel:
+			locked = frontendInfo.getFrontendInfo(iFrontendInformation.lockState)
+			info.append("")
+			addIfAvailable(info, _("Receiver lock"), _("Locked") if locked else _("Tuning"))
+			snr = frontendInfo.getFrontendInfo(iFrontendInformation.signalQualitydB)
+			if snr >= 0:
+				addIfAvailable(info, _("RF SNR"), "%.2f dB" % (snr / 100.0))
+			ficQuality = getServiceInfoValue(iServiceInformation.sDABFICQuality)
+			mscQuality = getServiceInfoValue(iServiceInformation.sDABMSCQuality)
+			if isinstance(ficQuality, int) and ficQuality >= 0:
+				addIfAvailable(info, _("FIC quality"), "%d %%" % ficQuality)
+			if isinstance(mscQuality, int) and mscQuality >= 0:
+				addIfAvailable(info, _("MSC audio frame quality"), "%d %%" % mscQuality)
 		return info
 
 	def showTransponderInformation(self):

@@ -207,6 +207,7 @@ public:
 
 	RESULT flush();
 	RESULT showSinglePic(const char *filename);
+	RESULT showSinglePic(const char *filename, bool keepVisible);
 	RESULT setRadioPic(const std::string &filename);
 		/* what 0=auto, 1=video, 2=audio. */
 	RESULT getPTS(int what, pts_t &pts);

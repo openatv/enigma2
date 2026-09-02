@@ -4,7 +4,8 @@
 #include <cctype>
 #include <cstring>
 
-#include <lib/base/eerror.h>
+#include <lib/service/dabdebug.h>
+#include <lib/service/dabpacketdecoder.h>
 
 namespace
 {
@@ -86,13 +87,13 @@ eDABDecoder::PFCollection::PFCollection()
 }
 
 eDABDecoder::eDABDecoder(uint32_t serviceId, uint16_t ensembleId, const AudioCallback &audioCallback,
-	const ImageCallback &imageCallback)
+	const ImageCallback &imageCallback, const MOTCallback &motCallback)
 	: m_service_id(serviceId), m_ensemble_id(ensembleId), m_audio_callback(audioCallback),
-	  m_image_callback(imageCallback), m_pad_decoder(this, true),
+	  m_image_callback(imageCallback), m_mot_callback(motCallback), m_pad_decoder(this, true),
 	  m_selected_subchannel(-1), m_selected_start_address(-1), m_selected_bitrate(0),
 	  m_selected_dabplus(false), m_superframe_part_size(0), m_superframe_parts(0),
 	  m_af_packets(0), m_eti_frames(0), m_fic_frames(0), m_msc_frames(0),
-	  m_audio_frames(0), m_crc_errors(0), m_pad_packets(0), m_dls_labels(0),
+	  m_audio_frames(0), m_crc_errors(0), m_pad_packets(0), m_dls_labels(0), m_dl_plus_revision(0),
 	  m_slides(0), m_service_revision(0), m_slide_format(0)
 {
 	m_pad_decoder.Reset();
@@ -546,7 +547,8 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 			{
 				const uint16_t description = read16(data + position);
 				position += 2;
-				if ((description >> 14) == 0)
+				const int transportMode = description >> 14;
+				if (transportMode == 0)
 				{
 					Service &service = m_services[sid];
 					const bool primary = description & 2;
@@ -562,9 +564,107 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 						}
 					}
 				}
+				else if (transportMode == 3)
+				{
+					const uint16_t componentId = (description >> 2) & 0x0fff;
+					PacketComponent &packet = m_packet_components[componentId];
+					if (packet.serviceId != sid || packet.serviceComponent != component)
+					{
+						packet.serviceId = sid;
+						packet.serviceComponent = component;
+						packet.logged = false;
+					}
+					reportPacketComponent(componentId);
+				}
 			}
 		}
 	}
+	else if (extension == 3)
+	{
+		while (position + 5 <= length)
+		{
+			const uint16_t componentId = read16(data + position) >> 4;
+			const bool caOrganization = data[position + 1] & 0x01;
+			PacketComponent &packet = m_packet_components[componentId];
+			const int subchannel = data[position + 3] >> 2;
+			const int dataServiceType = data[position + 2] & 0x3f;
+			const int packetAddress = ((data[position + 3] & 0x03) << 8) | data[position + 4];
+			const bool dataGroups = data[position + 2] & 0x80;
+			if (packet.subchannel != subchannel || packet.dataServiceType != dataServiceType ||
+				packet.packetAddress != packetAddress || packet.dataGroups != dataGroups)
+			{
+				packet.subchannel = subchannel;
+				packet.dataServiceType = dataServiceType;
+				packet.packetAddress = packetAddress;
+				packet.dataGroups = dataGroups;
+				packet.logged = false;
+			}
+			position += caOrganization ? 7 : 5;
+			reportPacketComponent(componentId);
+		}
+	}
+	else if (extension == 13)
+	{
+		while (position + (longSid ? 5 : 3) <= length)
+		{
+			const uint32_t sid = longSid ? read32(data + position) : read16(data + position);
+			position += longSid ? 4 : 2;
+			const int serviceComponent = data[position] >> 4;
+			const int applications = data[position++] & 0x0f;
+			for (int application = 0; application < applications && position + 2 <= length; ++application)
+			{
+				const uint16_t description = read16(data + position);
+				const int applicationType = description >> 5;
+				const size_t applicationLength = description & 0x1f;
+				position += 2;
+				for (std::map<uint16_t, PacketComponent>::iterator packet = m_packet_components.begin();
+					packet != m_packet_components.end(); ++packet)
+				{
+					if (packet->second.serviceId == sid && packet->second.serviceComponent == serviceComponent &&
+						packet->second.applicationType != applicationType)
+					{
+						packet->second.applicationType = applicationType;
+						packet->second.logged = false;
+						reportPacketComponent(packet->first);
+					}
+				}
+				if (position + applicationLength > length)
+				{
+					position = length;
+					break;
+				}
+				position += applicationLength;
+			}
+		}
+	}
+}
+
+void eDABDecoder::reportPacketComponent(uint16_t componentId)
+{
+	PacketComponent &packet = m_packet_components[componentId];
+	if (!packet.serviceId || packet.serviceComponent < 0 || packet.subchannel < 0 ||
+		packet.dataServiceType < 0 || packet.packetAddress < 0 || packet.applicationType < 0)
+		return;
+	if (packet.dataServiceType == 60 && packet.applicationType == 7 &&
+		m_packet_decoders.find(componentId) == m_packet_decoders.end())
+	{
+		m_packet_decoders[componentId].reset(new eDABPacketDecoder(packet.packetAddress,
+			[this](const uint8_t *data, size_t length, int contentType, int contentSubType,
+				const std::string &contentName, uint16_t transportId) {
+				if (m_mot_callback)
+					m_mot_callback(data, length, contentType, contentSubType, contentName, transportId);
+			}));
+	}
+	if (packet.logged)
+		return;
+	std::string label;
+	std::map<uint32_t, Service>::const_iterator service = m_services.find(packet.serviceId);
+	if (service != m_services.end())
+		label = service->second.label;
+	eDABDebug("[eDABDecoder] packet component sid=%08x label='%s' scid=%03x component=%d subch=%d dscty=%d app=%d address=%d dg=%d",
+		packet.serviceId, label.c_str(), componentId, packet.serviceComponent, packet.subchannel,
+		packet.dataServiceType, packet.applicationType, packet.packetAddress, packet.dataGroups);
+	packet.logged = true;
 }
 
 void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
@@ -631,7 +731,7 @@ void eDABDecoder::resolveService()
 		m_superframe.clear();
 		m_superframe_parts = 0;
 		m_superframe_part_size = 0;
-		eDebug("[eDABDecoder] service sid=%08x label='%s' subch=%d sad=%d bitrate=%d codec=%s ensemble='%s'",
+		eDABDebug("[eDABDecoder] service sid=%08x label='%s' subch=%d sad=%d bitrate=%d codec=%s ensemble='%s'",
 			m_service_id, m_service_label.c_str(), m_selected_subchannel, m_selected_start_address,
 			m_selected_bitrate, m_selected_dabplus ? "DAB+" : "DAB/MP2", m_ensemble_label.c_str());
 	}
@@ -639,16 +739,21 @@ void eDABDecoder::resolveService()
 
 void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 {
-	if (m_selected_subchannel < 0)
-		return;
 	for (size_t i = 0; i < streams.size(); ++i)
 	{
-		if (streams[i].subchannel != m_selected_subchannel)
-			continue;
-		++m_msc_frames;
-		if (m_selected_dabplus)
-			feedDABPlus(streams[i].data.data(), streams[i].data.size());
-		return;
+		if (streams[i].subchannel == m_selected_subchannel)
+		{
+			++m_msc_frames;
+			if (m_selected_dabplus)
+				feedDABPlus(streams[i].data.data(), streams[i].data.size());
+		}
+		for (std::map<uint16_t, std::unique_ptr<eDABPacketDecoder> >::iterator decoder =
+			m_packet_decoders.begin(); decoder != m_packet_decoders.end(); ++decoder)
+		{
+			std::map<uint16_t, PacketComponent>::const_iterator component = m_packet_components.find(decoder->first);
+			if (component != m_packet_components.end() && component->second.subchannel == streams[i].subchannel)
+				decoder->second->feed(streams[i].data.data(), streams[i].data.size());
+		}
 	}
 }
 
@@ -770,6 +875,50 @@ void eDABDecoder::PADChangeDynamicLabel(const DABlinPAD::DL_STATE &label)
 	{
 		m_dynamic_label = text;
 		++m_dls_labels;
+	}
+
+	/* DL+ describes individual parts of the Dynamic Label.  Keep music item
+	 * metadata separate from programme metadata: ITEM.TITLE changes for every
+	 * song, while PROGRAMME.NOW identifies the radio programme and is suitable
+	 * for a short-lived EPG fallback. */
+	if (!label.dl_plus_objects.empty())
+	{
+		std::string itemTitle;
+		std::string itemArtist;
+		std::string itemGenre;
+		std::string programmeNow;
+		std::string programmeNext;
+		std::string programmePart;
+		std::string programmeHost;
+		for (DABlinPAD::dl_plus_objects_t::const_iterator object = label.dl_plus_objects.begin();
+			object != label.dl_plus_objects.end(); ++object)
+		{
+			switch (object->content_type)
+			{
+			case 1: itemTitle = object->text; break;       // ITEM.TITLE
+			case 4: itemArtist = object->text; break;      // ITEM.ARTIST
+			case 11: itemGenre = object->text; break;      // ITEM.GENRE
+			case 33: programmeNow = object->text; break;   // PROGRAMME.NOW
+			case 34: programmeNext = object->text; break;  // PROGRAMME.NEXT
+			case 35: programmePart = object->text; break;  // PROGRAMME.PART
+			case 36: programmeHost = object->text; break;  // PROGRAMME.HOST
+			default: break;
+			}
+		}
+		if (itemTitle != m_dl_plus_item_title || itemArtist != m_dl_plus_item_artist ||
+			itemGenre != m_dl_plus_item_genre || programmeNow != m_dl_plus_programme_now ||
+			programmeNext != m_dl_plus_programme_next || programmePart != m_dl_plus_programme_part ||
+			programmeHost != m_dl_plus_programme_host)
+		{
+			m_dl_plus_item_title = itemTitle;
+			m_dl_plus_item_artist = itemArtist;
+			m_dl_plus_item_genre = itemGenre;
+			m_dl_plus_programme_now = programmeNow;
+			m_dl_plus_programme_next = programmeNext;
+			m_dl_plus_programme_part = programmePart;
+			m_dl_plus_programme_host = programmeHost;
+			++m_dl_plus_revision;
+		}
 	}
 }
 

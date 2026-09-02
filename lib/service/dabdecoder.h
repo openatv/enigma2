@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <functional>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -15,6 +16,8 @@ class eDABDecoder : private DABlinPAD::PADDecoderObserver
 public:
 	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
+	typedef std::function<void(const uint8_t *, size_t, int, int,
+		const std::string &, uint16_t)> MOTCallback;
 	struct ServiceInfo
 	{
 		uint32_t serviceId;
@@ -24,7 +27,7 @@ public:
 	};
 
 	eDABDecoder(uint32_t serviceId, uint16_t ensembleId, const AudioCallback &audioCallback,
-		const ImageCallback &imageCallback);
+		const ImageCallback &imageCallback, const MOTCallback &motCallback);
 	~eDABDecoder();
 
 	void feedEDI(const uint8_t *data, size_t length);
@@ -48,6 +51,14 @@ public:
 	const std::string &serviceLabel() const { return m_service_label; }
 	const std::string &ensembleLabel() const { return m_ensemble_label; }
 	const std::string &dynamicLabel() const { return m_dynamic_label; }
+	const std::string &dlPlusItemTitle() const { return m_dl_plus_item_title; }
+	const std::string &dlPlusItemArtist() const { return m_dl_plus_item_artist; }
+	const std::string &dlPlusItemGenre() const { return m_dl_plus_item_genre; }
+	const std::string &dlPlusProgrammeNow() const { return m_dl_plus_programme_now; }
+	const std::string &dlPlusProgrammeNext() const { return m_dl_plus_programme_next; }
+	const std::string &dlPlusProgrammePart() const { return m_dl_plus_programme_part; }
+	const std::string &dlPlusProgrammeHost() const { return m_dl_plus_programme_host; }
+	uint64_t dlPlusRevision() const { return m_dl_plus_revision; }
 	uint16_t ensembleId() const { return m_ensemble_id; }
 	uint64_t serviceRevision() const { return m_service_revision; }
 	std::vector<ServiceInfo> serviceList() const;
@@ -76,6 +87,21 @@ private:
 		Service() : subchannel(-1), dabplus(false) { }
 	};
 
+	struct PacketComponent
+	{
+		uint32_t serviceId;
+		int serviceComponent;
+		int subchannel;
+		int dataServiceType;
+		int packetAddress;
+		int applicationType;
+		bool dataGroups;
+		bool logged;
+		PacketComponent()
+			: serviceId(0), serviceComponent(-1), subchannel(-1), dataServiceType(-1),
+			  packetAddress(-1), applicationType(-1), dataGroups(false), logged(false) { }
+	};
+
 	struct PFCollection
 	{
 		uint32_t fragmentCount;
@@ -98,6 +124,7 @@ private:
 	void parseFIC(const uint8_t *data, size_t length);
 	void parseFIG0(const uint8_t *data, size_t length);
 	void parseFIG1(const uint8_t *data, size_t length);
+	void reportPacketComponent(uint16_t componentId);
 	void resolveService();
 	void feedMSC(const std::vector<Stream> &streams);
 	void feedDABPlus(const uint8_t *data, size_t length);
@@ -121,11 +148,14 @@ private:
 	uint16_t m_ensemble_id;
 	AudioCallback m_audio_callback;
 	ImageCallback m_image_callback;
+	MOTCallback m_mot_callback;
 	DABlinPAD::PADDecoder m_pad_decoder;
 	std::map<uint16_t, PFCollection> m_pf_collectors;
 	uint64_t m_pf_arrival = 0;
 	std::map<int, Subchannel> m_subchannels;
 	std::map<uint32_t, Service> m_services;
+	std::map<uint16_t, PacketComponent> m_packet_components;
+	std::map<uint16_t, std::unique_ptr<class eDABPacketDecoder> > m_packet_decoders;
 	std::string m_service_label;
 	std::string m_ensemble_label;
 	int m_selected_subchannel;
@@ -136,6 +166,13 @@ private:
 	size_t m_superframe_part_size;
 	int m_superframe_parts;
 	std::string m_dynamic_label;
+	std::string m_dl_plus_item_title;
+	std::string m_dl_plus_item_artist;
+	std::string m_dl_plus_item_genre;
+	std::string m_dl_plus_programme_now;
+	std::string m_dl_plus_programme_next;
+	std::string m_dl_plus_programme_part;
+	std::string m_dl_plus_programme_host;
 	uint64_t m_af_packets;
 	uint64_t m_eti_frames;
 	uint64_t m_fic_frames;
@@ -144,6 +181,7 @@ private:
 	uint64_t m_crc_errors;
 	uint64_t m_pad_packets;
 	uint64_t m_dls_labels;
+	uint64_t m_dl_plus_revision;
 	uint64_t m_slides;
 	uint64_t m_service_revision;
 	int m_slide_format;

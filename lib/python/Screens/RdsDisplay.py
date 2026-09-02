@@ -1,12 +1,153 @@
-from enigma import iPlayableService, iRdsDecoder
+from os import stat
+from os.path import exists
+
+from struct import unpack
+
+from enigma import ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
+from Components.config import config
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
+
+
+class DABSlideDisplay(Screen):
+	"""Display triggered DAB SLS images behind the existing radio UI."""
+
+	def __init__(self, session):
+		desktopSize = getDesktop(0).size()
+		width, height = desktopSize.width(), desktopSize.height()
+		self.desktopWidth = width
+		self.desktopHeight = height
+		self.pictureAreaHeight = height
+		self.skin = """
+			<screen name="DABSlideDisplay" position="0,0" size="%d,%d" zPosition="-20" backgroundColor="black" flags="wfNoBorder">
+				<widget name="picture" position="0,0" size="%d,%d" zPosition="0" alphatest="blend" scaleFlags="centerScaled" />
+			</screen>""" % (width, height, width, height)
+		Screen.__init__(self, session)
+		self["picture"] = Pixmap()
+		self.slidePath = ""
+		self.slideSignature = None
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evStart: self.updateSlide,
+			iPlayableService.evUpdatedInfo: self.updateSlide,
+			iPlayableService.evEnd: self.hideSlide
+		})
+		self.onLayoutFinish.append(self.layoutFinished)
+		self.onClose.append(self.removeNotifier)
+		config.dab.rtlsdr.slideshow.addNotifier(self.slideshowChanged, initial_call=False)
+
+	def layoutFinished(self):
+		self.hide()
+		self.updateSlide()
+
+	def slideshowChanged(self, configElement=None):
+		self.updateSlide()
+
+	def reserveRadioTextArea(self, radioDisplay):
+		"""Keep the complete 4:3 slide above the skin's RDS text band."""
+		try:
+			displayTop = radioDisplay.instance.position().y()
+			textTop = radioDisplay["RadioText"].instance.position().y()
+			pictureHeight = displayTop + textTop
+		except (AttributeError, KeyError):
+			return
+		if pictureHeight <= 0 or pictureHeight >= self.desktopHeight:
+			return
+		self.pictureAreaHeight = pictureHeight
+		if self["picture"].instance is not None:
+			self.slideSignature = None
+			self.updateSlide()
+
+	def imageSize(self, path):
+		try:
+			with open(path, "rb") as image:
+				header = image.read(24)
+				if header.startswith(b"\x89PNG\r\n\x1a\n") and len(header) >= 24:
+					return unpack(">II", header[16:24])
+				if not header.startswith(b"\xff\xd8"):
+					return 0, 0
+				image.seek(2)
+				while True:
+					marker = image.read(1)
+					if not marker:
+						break
+					if marker != b"\xff":
+						continue
+					while marker == b"\xff":
+						marker = image.read(1)
+					if not marker or marker in (b"\xd8", b"\xd9"):
+						continue
+					lengthData = image.read(2)
+					if len(lengthData) != 2:
+						break
+					length = unpack(">H", lengthData)[0]
+					if length < 2:
+						break
+					if marker[0] in (0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf):
+						frame = image.read(5)
+						if len(frame) == 5:
+							height, width = unpack(">HH", frame[1:5])
+							return width, height
+						break
+					image.seek(length - 2, 1)
+		except (OSError, ValueError):
+			pass
+		return 0, 0
+
+	def layoutPicture(self, path):
+		width, height = self.imageSize(path)
+		if width <= 0 or height <= 0:
+			width, height = 320, 240
+		# Avoid turning a typical 320x240 SLS bitmap into a visibly pixelated
+		# full-screen image. Higher-resolution slides may use more of the area.
+		scale = min(2.0, float(self.desktopWidth) / width, float(self.pictureAreaHeight) / height)
+		targetWidth = max(1, int(width * scale))
+		targetHeight = max(1, int(height * scale))
+		left = (self.desktopWidth - targetWidth) // 2
+		top = (self.pictureAreaHeight - targetHeight) // 2
+		self["picture"].instance.move(ePoint(left, top))
+		self["picture"].instance.resize(eSize(targetWidth, targetHeight))
+
+	def isEnabled(self, reference):
+		# The setting belongs to the optional USB receiver.  Satellite DAB uses
+		# the normal DAB radio behaviour and remains enabled.
+		return not reference.getPath().startswith("dab://rtlsdr/") or config.dab.rtlsdr.slideshow.value
+
+	def updateSlide(self):
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if not reference or reference.type != eServiceReference.idServiceDAB or not self.isEnabled(reference):
+			self.hideSlide()
+			return
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		path = info and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
+		if not path or not exists(path):
+			self.hideSlide()
+			return
+		try:
+			status = stat(path)
+			signature = (path, status.st_mtime_ns, status.st_size)
+		except OSError:
+			self.hideSlide()
+			return
+		if signature != self.slideSignature or not self.shown:
+			if self["picture"].instance is not None:
+				self.layoutPicture(path)
+				self["picture"].instance.setPixmapFromFile(path, True)
+				self.slidePath = path
+				self.slideSignature = signature
+				self.show()
+
+	def hideSlide(self):
+		self.hide()
+
+	def removeNotifier(self):
+		config.dab.rtlsdr.slideshow.removeNotifier(self.slideshowChanged)
 
 
 class RdsInfoDisplaySummary(Screen):

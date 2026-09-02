@@ -586,6 +586,7 @@
 		<item level="2" text="Include timer data" description="Enable this option to add timer debugging data to the debug log file." indent="1">config.crash.debugTimers</item>
 		<item level="2" text="Include seek data" description="Enable this option to add seek/time shift debugging data to the debug log file." indent="1">config.crash.debugSeek</item>
 		<item level="2" text="Include EPG data" description="Enable this option to add extra EPG data to the debug log file." indent="1">config.crash.debugEPG</item>
+		<item level="2" text="Include DAB+ data" description="Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file." restart="gui" indent="1">config.crash.debugDAB</item>
 		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file." restart="gui" indent="1">config.crash.debugDVBScan</item>
 		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file." restart="gui" indent="1">config.crash.debugDVBTime</item>
 		<item level="2" text="Include DVB details" description="Enable this option to add extra DVB details to the debug log file." restart="gui" indent="1">config.crash.debugDVB</item>

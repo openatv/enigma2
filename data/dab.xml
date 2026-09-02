@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  DAB-over-DVB feed definitions shipped with Enigma2.
+  DAB-over-DVB feed and terrestrial RTL-SDR scan definitions shipped with
+  Enigma2.
 
   The scanner reads the live DAB ensemble and service information from FIC;
   therefore this file contains only stable satellite, transponder and transport
@@ -14,6 +15,58 @@
   Source checked 2026-08-29: https://de.kingofsat.tv/dab
 -->
 <dabFeeds version="2" updated="2026-08-29">
+  <!--
+    Terrestrial Band III blocks are intentionally separate from the satellite
+    feed hierarchy below.  The "all" region selects every channel.  Other
+    regions select channels carrying their id in the regions attribute.
+
+    Europe uses the complete commonly supported Band III table.  Australia's
+    current regional planning uses 8A-8D and 9A-9D (ACMA station book, 2026).
+  -->
+  <terrestrial>
+    <region id="all" name="Worldwide Band III" />
+    <region id="europe" name="Europe (Band III)" />
+    <region id="australia" name="Australia" />
+    <channel id="5A" frequency="174928" regions="europe" />
+    <channel id="5B" frequency="176640" regions="europe" />
+    <channel id="5C" frequency="178352" regions="europe" />
+    <channel id="5D" frequency="180064" regions="europe" />
+    <channel id="6A" frequency="181936" regions="europe" />
+    <channel id="6B" frequency="183648" regions="europe" />
+    <channel id="6C" frequency="185360" regions="europe" />
+    <channel id="6D" frequency="187072" regions="europe" />
+    <channel id="7A" frequency="188928" regions="europe" />
+    <channel id="7B" frequency="190640" regions="europe" />
+    <channel id="7C" frequency="192352" regions="europe" />
+    <channel id="7D" frequency="194064" regions="europe" />
+    <channel id="8A" frequency="195936" regions="europe australia" />
+    <channel id="8B" frequency="197648" regions="europe australia" />
+    <channel id="8C" frequency="199360" regions="europe australia" />
+    <channel id="8D" frequency="201072" regions="europe australia" />
+    <channel id="9A" frequency="202928" regions="europe australia" />
+    <channel id="9B" frequency="204640" regions="europe australia" />
+    <channel id="9C" frequency="206352" regions="europe australia" />
+    <channel id="9D" frequency="208064" regions="europe australia" />
+    <channel id="10A" frequency="209936" regions="europe" />
+    <channel id="10B" frequency="211648" regions="europe" />
+    <channel id="10C" frequency="213360" regions="europe" />
+    <channel id="10D" frequency="215072" regions="europe" />
+    <channel id="11A" frequency="216928" regions="europe" />
+    <channel id="11B" frequency="218640" regions="europe" />
+    <channel id="11C" frequency="220352" regions="europe" />
+    <channel id="11D" frequency="222064" regions="europe" />
+    <channel id="12A" frequency="223936" regions="europe" />
+    <channel id="12B" frequency="225648" regions="europe" />
+    <channel id="12C" frequency="227360" regions="europe" />
+    <channel id="12D" frequency="229072" regions="europe" />
+    <channel id="13A" frequency="230784" regions="europe" />
+    <channel id="13B" frequency="232496" regions="europe" />
+    <channel id="13C" frequency="234208" regions="europe" />
+    <channel id="13D" frequency="235776" regions="europe" />
+    <channel id="13E" frequency="237488" regions="europe" />
+    <channel id="13F" frequency="239200" regions="europe" />
+  </terrestrial>
+
   <satellite name="Eutelsat 7C 7.0E" orbitalPosition="70" namespace="460000">
     <transponder frequency="11513800" polarization="V" system="DVB-S2"
                  modulation="QPSK" symbolRate="17017000" fec="2/3"

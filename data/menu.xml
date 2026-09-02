@@ -148,7 +148,8 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1"><setup setupKey="Tuner" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
-				<item key="dab_scan" level="0" text="DAB+ Scan" weight="15" conditional="nimmanager.getEnabledNimListOfType('DVB-S')"><screen module="DABScan" screen="DABScan" /></item>
+				<item key="dab_scan" level="0" text="DAB+ Scan" weight="15" conditional="nimmanager.getEnabledNimListOfType('DVB-S') or canScanRTLSDR()"><screen module="DABScan" screen="DABScan" /></item>
+				<item key="dab_usb_setup" level="0" text="DAB+ USB receiver" weight="16" conditional="hasRTLSDRDevice()"><screen module="RTLSDRSetup" screen="RTLSDRSetup" /></item>
 				<item key="fallbacktuner_settings" text="Fallback Remote Receiver Settings"><screen module="SetupFallbacktuner"/></item>
 			</menu>
 			<!-- Menu / Setup / Common interface -->
