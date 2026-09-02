@@ -1,7 +1,7 @@
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.RTLSDR import cacheRTLSDRTuner, enumerateRTLSDRDevices, getActiveRTLSDRTuner, hasAvailableSatelliteDAB, hasRTLSDRBackend, isRTLSDRInUse
+from Components.RTLSDR import cacheRTLSDRTuner, enumerateRTLSDRDevices, getActiveRTLSDRTuner, hasAvailableSatelliteDAB, hasRTLSDRBackend, isRTLSDRInUse, updateDABBoxInfo
 from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing, ConfigText, NoSave, ReadOnly, config, configfile, getConfigListEntry
 from Screens.Screen import Screen
@@ -40,6 +40,7 @@ class RTLSDRSetup(Screen, ConfigListScreen):
 
 	def refreshDevices(self):
 		self.devices = enumerateRTLSDRDevices(probe=True)
+		updateDABBoxInfo()
 		self.deviceByKey = {device["key"]: device for device in self.devices}
 		choices = [("auto", _("Automatic"))]
 		for device in self.devices:
