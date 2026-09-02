@@ -102,27 +102,27 @@ class NetworkOverview(Screen):
 	OVERVIEW_COLOR_IDLE_SELECTED = gRGB(0x00808080).argb()  # Gray – Disabled / Not Associated / Saved connection, row selected.
 
 	skin = """
-	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1070,540" resolution="1280,720">
+	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1100,540" resolution="1280,720">
 		<widget source="adapterList" render="Listbox" position="10,10" size="e-20,250">
 			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,enigma2icons;38,Regular;24,Regular;18,enigma2icons;20" itemHeight="50">
 				<rowtemplate>
-					<text index="AdapterName" position="0,0" size="240,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="MAC" position="450,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="IPAddress" position="620,0" size="150,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Gateway" position="770,0" size="140,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Speed" position="910,0" size="140,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="AdapterName" position="0,0" size="250,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="270,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="MAC" position="440,0" size="180,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="IPAddress" position="620,0" size="160,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Gateway" position="780,0" size="160,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Speed" position="940,0" size="140,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 				<rowtemplate>
 					<text index="AdapterGlyph" position="0,6" size="48,38" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="AdapterName" position="60,0" size="180,28" font="2" padding="5,0" verticalAlignment="center" />
-					<text index="AdapterType" position="60,28" size="180,22" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="InternetGlyph" position="240,15" size="40,20" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,50" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
-					<text index="MAC" position="450,0" size="170,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="IPAddress" position="620,0" size="150,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="Gateway" position="770,0" size="140,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="Speed" position="910,0" size="140,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="AdapterName" position="60,0" size="170,28" font="2" padding="5,0" verticalAlignment="center" />
+					<text index="AdapterType" position="60,28" size="170,22" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="InternetGlyph" position="230,15" size="40,20" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="270,0" size="170,50" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="MAC" position="440,0" size="180,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="IPAddress" position="620,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="Gateway" position="780,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="Speed" position="940,0" size="140,50" font="3" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 			</template>
 		</widget>
@@ -132,20 +132,20 @@ class NetworkOverview(Screen):
 		<widget source="savedList" render="Listbox" position="10,305" size="e-20,175">
 			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,Regular;20" itemHeight="35">
 				<rowtemplate>
-					<text index="SSID" position="0,0" size="280,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="BSSID" position="450,0" size="210,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Frequency" position="660,0" size="120,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Channel" position="780,0" size="120,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Encryption" position="900,0" size="150,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="SSID" position="0,0" size="200,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="200,0" size="170,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="BSSID" position="370,0" size="210,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Frequency" position="580,0" size="140,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Channel" position="720,0" size="120,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Encryption" position="840,0" size="240,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 				<rowtemplate>
-					<text index="SSID" position="0,0" size="280,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,35" font="1" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
-					<text index="BSSID" position="450,0" size="210,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="Frequency" position="660,0" size="120,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="Channel" position="780,0" size="120,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="Encryption" position="900,0" size="150,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="SSID" position="0,0" size="200,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="200,0" size="170,35" font="1" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="BSSID" position="370,0" size="210,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="Frequency" position="580,0" size="140,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="Channel" position="720,0" size="120,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="Encryption" position="840,0" size="240,35" font="1" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 			</template>
 		</widget>
@@ -1051,18 +1051,18 @@ class NetworkWiFiScan(Screen):
 	"""Runs iwlist scan and shows results sorted by signal strength."""
 
 	skin = """
-	<screen name="NetworkWiFiScan" title="Wi-Fi Scan" position="center,center" size="1060,455" resolution="1280,720">
+	<screen name="NetworkWiFiScan" title="Wi-Fi Scan" position="center,center" size="1120,455" resolution="1280,720">
 		<widget source="list" render="Listbox" position="10,10" size="e-20,e-105">
 			<template name="Default" fonts="Regular;22,Regular;20,enigma2icons;20" itemHeight="35">
 				<mode name="default">
 					<panel position="0,0" size="e,e" layout="horizontal">
 						<text index="Name" position="left" size="450,35" flags="scroll" font="0" padding="5,0" verticalAlignment="center" />
 						<text index="Glyph" position="left" size="30,35" font="2" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-						<text index="Percentage" position="left" size="60,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
-						<text index="dBm" position="left" size="90,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
-						<text index="Encryption" position="left" size="220,35" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
+						<text index="Percentage" position="left" size="65,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
+						<text index="dBm" position="left" size="100,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
+						<text index="Encryption" position="left" size="245,35" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
 						<text index="Channel" position="left" size="80,35" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-						<text index="Frequency" position="right" size="110,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
+						<text index="Frequency" position="right" size="130,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
 					</panel>
 				</mode>
 			</template>
