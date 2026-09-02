@@ -52,6 +52,10 @@ class Encryption(StrEnum):
 	WPA2 = "wpa2"
 	WPA_WPA2 = "wpa+wpa2"  # Legacy combined mode stored as wpa2 in wpa_supplicant.
 	WPA3 = "wpa3"
+	WPA2_WPA3 = "wpa2+wpa3"  # WPA3 transition mode, the access point offers PSK and SAE side by side.
+	WPA2_ENTERPRISE = "wpa2-eap"
+	WPA3_ENTERPRISE = "wpa3-eap"
+	WPA2_WPA3_ENTERPRISE = "wpa2+wpa3-eap"  # Same transition idea, 802.1X alongside 802.1X-SHA256.
 
 
 # Deferred via lambda so translation happens at display time, not import time.
@@ -61,7 +65,11 @@ encryptionLabels = {
 	Encryption.WPA: lambda: "WPA",
 	Encryption.WPA2: lambda: "WPA2",
 	Encryption.WPA_WPA2: lambda: "WPA/WPA2",
-	Encryption.WPA3: lambda: "WPA3"
+	Encryption.WPA3: lambda: "WPA3",
+	Encryption.WPA2_WPA3: lambda: "WPA2/WPA3",
+	Encryption.WPA2_ENTERPRISE: lambda: "WPA2 Enterprise",
+	Encryption.WPA3_ENTERPRISE: lambda: "WPA3 Enterprise",
+	Encryption.WPA2_WPA3_ENTERPRISE: lambda: "WPA2/WPA3 Enterprise"
 }
 
 # Driver-API identifiers.
@@ -1221,7 +1229,16 @@ def wpaDictToWiFiConfig(fields: dict[str, str], blockId: int) -> WiFiConfig:
 	if keyMgmt == "NONE":
 		enc = Encryption.NONE if not fields.get("wep_key0") else Encryption.WEP
 	elif "SAE" in keyMgmt:
-		enc = Encryption.WPA3
+		enc = Encryption.WPA2_WPA3 if "WPA-PSK" in keyMgmt else Encryption.WPA3
+	elif "EAP" in keyMgmt:
+		sha256 = "EAP-SHA256" in keyMgmt
+		plain = "EAP" in keyMgmt.replace("EAP-SHA256", "")
+		if sha256 and plain:
+			enc = Encryption.WPA2_WPA3_ENTERPRISE
+		elif sha256:
+			enc = Encryption.WPA3_ENTERPRISE
+		else:
+			enc = Encryption.WPA2_ENTERPRISE
 	elif "WPA" in keyMgmt:
 		enc = Encryption.WPA2 if ("CCMP" in pairwise or "WPA2" in proto or "RSN" in proto) else Encryption.WPA
 	else:
@@ -1268,7 +1285,24 @@ def wifiConfigToWpaBlock(wifi: WiFiConfig) -> list[str]:
 		case Encryption.WPA3:
 			lines.append("\tkey_mgmt=SAE")
 			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=2")  # WPA3 requires protected management frames.
 			lines.append(f'\tpsk="{wifi.key}"')
+		case Encryption.WPA2_WPA3:
+			lines.append("\tkey_mgmt=SAE WPA-PSK")  # Prefer SAE, fall back to PSK where the driver cannot do it.
+			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=1")
+			lines.append(f'\tpsk="{wifi.key}"')
+		case Encryption.WPA2_ENTERPRISE:  # 802.1X needs credentials this profile does not carry yet.
+			lines.append("\tkey_mgmt=WPA-EAP")
+			lines.append("\tproto=RSN")
+		case Encryption.WPA3_ENTERPRISE:
+			lines.append("\tkey_mgmt=WPA-EAP-SHA256")
+			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=2")
+		case Encryption.WPA2_WPA3_ENTERPRISE:
+			lines.append("\tkey_mgmt=WPA-EAP WPA-EAP-SHA256")
+			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=1")
 	if wifi.disabled:
 		lines.append("\tdisabled=1")
 	lines.append("}")
