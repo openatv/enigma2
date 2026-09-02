@@ -21,7 +21,7 @@ class NetworkCompat:
 		networkManager.activateInterface(iface, callback)
 
 	def restartNetwork(self, callback=None):
-		networkManager.restartNetwork(callback=callback)
+		networkManager.restartNetwork(callback=(lambda: callback(True)) if callback else None)
 
 	def getFriendlyAdapterName(self, iface: str) -> str:
 		return networkManager.getFriendlyAdapterName(iface)
