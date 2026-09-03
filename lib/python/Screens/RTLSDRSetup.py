@@ -53,8 +53,12 @@ class RTLSDRSetup(Setup):
 			inUse = isRTLSDRInUse(device)
 			if inUse:
 				cacheRTLSDRTuner(device, self.getActiveRTLSDRTuner())
-			status = _("In use by DAB+") if inUse else (_("Ready") if device.get("available") and hasRTLSDRBackend() else (
-				_("DAB+ decoder back end not installed") if device.get("available") else _("Unable to open tuner (%d)") % device.get("errorCode", -1)))
+			if inUse:
+				status = _("In use by DAB+")
+			elif device.get("available"):
+				status = _("Ready") if hasRTLSDRBackend() else _("DAB+ decoder back end not installed")
+			else:
+				status = _("Unable to open tuner (%d)") % device.get("errorCode", -1)
 			tuner = device.get("tuner")
 			if device.get("probeCached") and tuner:
 				tuner = _("%s (cached)") % tuner
