@@ -1,7 +1,8 @@
-from ctypes import CDLL, POINTER, byref, c_char, c_char_p, c_int, c_uint32, c_void_p, create_string_buffer
+from ctypes import ArgumentError, CDLL, POINTER, byref, c_char, c_char_p, c_int, c_uint32, c_void_p, create_string_buffer
 from glob import glob
 from os.path import basename, exists, join
 from re import fullmatch, split
+from threading import Thread
 from xml.etree.ElementTree import ParseError, parse
 
 from enigma import eTimer
@@ -289,12 +290,24 @@ def matchSysfs(devices):
 	return devices
 
 
-def enumerateRTLSDRDevices(probe=False):
+RTLSDR_PROBE_TIMEOUT = 3  # Seconds. A stuck USB transfer inside librtlsdr can block indefinitely otherwise.
+
+
+def _probeRTLSDRDevices(probe, result):
 	try:
 		library = RTLSDRLibrary()
-		devices = [library.device(index, probe=probe) for index in range(library.count())]
-	except (AttributeError, OSError, ValueError) as err:
+		result.extend(library.device(index, probe=probe) for index in range(library.count()))
+	except (ArgumentError, AttributeError, OSError, ValueError) as err:
 		print(f"[RTLSDR] Device enumeration failed: {err}")
+
+
+def enumerateRTLSDRDevices(probe=False):
+	devices = []
+	worker = Thread(target=_probeRTLSDRDevices, args=(probe, devices), daemon=True)
+	worker.start()
+	worker.join(RTLSDR_PROBE_TIMEOUT)
+	if worker.is_alive():
+		print(f"[RTLSDR] Device enumeration did not respond within {RTLSDR_PROBE_TIMEOUT}s; a USB transfer may be stuck.")
 		return []
 	matchSysfs(devices)
 	serialCounts = {}

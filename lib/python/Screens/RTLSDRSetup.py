@@ -1,6 +1,8 @@
+from enigma import iServiceInformation
+
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigNothing, ConfigText, NoSave, ReadOnly, config
-from Components.RTLSDR import cacheRTLSDRTuner, enumerateRTLSDRDevices, getActiveRTLSDRTuner, hasAvailableSatelliteDAB, hasRTLSDRBackend, isRTLSDRInUse, updateDABBoxInfo
+from Components.RTLSDR import cacheRTLSDRTuner, enumerateRTLSDRDevices, hasAvailableSatelliteDAB, hasRTLSDRBackend, isRTLSDRInUse, updateDABBoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.Setup import Setup
 
@@ -50,7 +52,7 @@ class RTLSDRSetup(Setup):
 		else:
 			inUse = isRTLSDRInUse(device)
 			if inUse:
-				cacheRTLSDRTuner(device, getActiveRTLSDRTuner())
+				cacheRTLSDRTuner(device, self.getActiveRTLSDRTuner())
 			status = _("In use by DAB+") if inUse else (_("Ready") if device.get("available") and hasRTLSDRBackend() else (
 				_("DAB+ decoder back end not installed") if device.get("available") else _("Unable to open tuner (%d)") % device.get("errorCode", -1)))
 			tuner = device.get("tuner")
@@ -83,3 +85,15 @@ class RTLSDRSetup(Setup):
 		else:
 			device = self.deviceByKey.get(key)
 		return device
+
+	def getActiveRTLSDRTuner(self):
+		try:
+			reference = self.session.nav.getCurrentlyPlayingServiceReference()
+			if reference and reference.getPath().startswith("dab://rtlsdr/"):
+				service = self.session.nav.getCurrentService()
+				info = service and service.info()
+				field = getattr(iServiceInformation, "sDABReceiverName", None)
+				return info.getInfoString(field).strip() if info and field is not None else ""
+		except (AttributeError, TypeError, ValueError):
+			pass
+		return ""
