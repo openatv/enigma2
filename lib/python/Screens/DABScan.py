@@ -22,6 +22,7 @@ class DABScan(ServiceScan):
 	FEED_TIMEOUT = DVB_FEED_TIMEOUT
 	STABLE_POLLS = 3
 	SUPPORTED_DECODERS = ("fedi2eti", "tsniv2ni", "ts2na12", "ts2na")
+
 	def __init__(self, session, source=None):
 		if source is None:
 			from Components.RTLSDR import canScanRTLSDR, hasAvailableSatelliteDAB
@@ -140,7 +141,7 @@ class DABScan(ServiceScan):
 			self.feeds.append({
 				"id": "rtlsdr_%s" % channel.lower(),
 				"name": _("DAB+ channel %s") % channel,
-				"satellite": _("RTL-SDR receiver"),
+				"satellite": _("RTL-SDR tuner"),
 				"orbitalPosition": 0,
 				"decoder": "rtlsdr",
 				"transport": channel,
