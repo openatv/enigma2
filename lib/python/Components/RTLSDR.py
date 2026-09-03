@@ -4,7 +4,7 @@ from os.path import basename, exists, join
 from re import fullmatch, split
 from xml.etree.ElementTree import ParseError, parse
 
-from enigma import eTimer, iServiceInformation
+from enigma import eTimer
 
 from Components.config import ConfigInteger, ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
 from Components.Opkg import OpkgComponent
@@ -343,20 +343,6 @@ def isRTLSDRInUse(device=None):
 		return False
 
 
-def getActiveRTLSDRTuner():
-	try:
-		from NavigationInstance import instance
-		reference = instance.getCurrentlyPlayingServiceReference() if instance else None
-		if not reference or not reference.getPath().startswith("dab://rtlsdr/"):
-			return ""
-		service = instance.getCurrentService()
-		info = service and service.info()
-		field = getattr(iServiceInformation, "sDABReceiverName", None)
-		return info.getInfoString(field).strip() if info and field is not None else ""
-	except (AttributeError, TypeError, ValueError):
-		return ""
-
-
 def cacheRTLSDRTuner(device, tuner):
 	if not device or not tuner:
 		return False
@@ -429,7 +415,7 @@ class DABUSBInstaller:
 			Toast.instance.showToast(
 				_("An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."),
 				Toast.TYPE_INFO, timeout=6)
-		self.opkg.runCommand(self.opkg.CMD_REFRESH_INSTALL, {"arguments": ["enigma2-plugin-systemplugins-dabusb"], "lineMode": True})
+		self.opkg.runCommand(self.opkg.CMD_REFRESH_INSTALL, {"arguments": ["enigma2-plugin-systemplugins-dabusb"]})
 
 	def opkgCallback(self, event, parameter):
 		if event == self.opkg.EVENT_ERROR:
@@ -451,20 +437,20 @@ class DABUSBInstaller:
 
 
 dabUSBInstaller = None
+dabHotplugNotifier = []
 
 
 def dabUSBHotplug(device, action):
-	if action == "dab-sdr-add" and dabUSBInstaller:
+	if action in ("dab-sdr-add", "dab-sdr-remove") and dabUSBInstaller:
 		dabUSBInstaller.requestInstall()
 
 
 def initRTLSDR(session):
-	from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 	global dabUSBInstaller
 	dabUSBInstaller = DABUSBInstaller()
 	dabUSBInstaller.session = session
-	if dabUSBHotplug not in hotplugNotifier:
-		hotplugNotifier.append(dabUSBHotplug)
+	if dabUSBHotplug not in dabHotplugNotifier:
+		dabHotplugNotifier.append(dabUSBHotplug)
 	# A receiver can already be present before Enigma2 opens the hotplug socket.
 	bootProbe = eTimer()
 	bootProbe.callback.append(dabUSBInstaller.requestInstall)

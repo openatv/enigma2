@@ -6,6 +6,7 @@ from enigma import eHotplugSocket, getDeviceDB, eTimer
 from Components.config import config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
+from Components.RTLSDR import dabHotplugNotifier
 from Components.Storage import EXPANDER_MOUNT, cleanMediaDirs
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import ModalMessageBox
@@ -214,13 +215,13 @@ class HotPlugManager:
 			print("[Hotplug] DEBUG: ", eventData)
 		action = eventData.get("ACTION")
 		if mode == 1 and eventData.get("MODE", "") != "CD":
-			if action == "dab-sdr-add":
+			if action in ("dab-sdr-add", "dab-sdr-remove"):
 				device = eventData.get("DEVPATH", "").split("/")[-1]
-				for callback in hotplugNotifier[:]:
+				for callback in dabHotplugNotifier[:]:
 					try:
 						callback(device, action)
 					except AttributeError:
-						hotplugNotifier.remove(callback)
+						dabHotplugNotifier.remove(callback)
 			elif action == "add":
 				self.addTimer.stop()
 				ID_TYPE = eventData.get("ID_TYPE")
