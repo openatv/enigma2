@@ -20,6 +20,7 @@ from Screens.Setup import Setup, setupDom
 from Tools.ISO639 import LanguageCodes
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
+SUBTITLE_PGS = 3  # iSubtitleOutput track type: 0 DVB, 1 teletext, 2 text, 3 PGS
 
 
 def getConfigMenuItem(configElementName):
@@ -352,10 +353,16 @@ class AudioSelection(ConfigListScreen, Screen):
 						languagetype = x[5].split()
 						if languagetype and len(languagetype) == 2:
 							language = "%s (%s)" % (language, languagetype[1])
+						elif x[5] != language:
+							language = "%s (%s)" % (language, x[5])
 
 					if x[0] == 0:
 						description = "DVB"
 						number = "%x" % (x[1])
+
+					elif x[0] == SUBTITLE_PGS:
+						description = "PGS"
+						number = str(int(number) + 1)
 
 					elif x[0] == 1:
 						description = "teletext"
@@ -688,7 +695,12 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("ai_translate_to"),
 				getConfigMenuItem("ai_subtitle_colors")
 			])
-		if sub[0] == 0:  # dvb
+		if sub[0] == SUBTITLE_PGS:  # bitmap, only the position settings reach it
+			menu.extend([
+				getConfigMenuItem("dvb_subtitles_original_position"),
+				getConfigMenuItem("subtitle_position")
+			])
+		elif sub[0] == 0:  # dvb
 			menu.extend([
 				getConfigMenuItem("dvb_subtitles_color"),
 				getConfigMenuItem("dvb_subtitles_backtrans"),
