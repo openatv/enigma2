@@ -411,6 +411,9 @@ def parseColor(value, default=0x00FFFFFF):
 #
 def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 	def scaleNumbers(coordinate, scale):
+		# Digits adjacent to "*" or "/", or immediately followed by "%", "w" or "h", are ratio/coefficient
+		# constants (e.g. the "4" in "e/4", the "3" in "3*e", the "25" in "25%") and must be left unscaled -
+		# only additive pixel offsets (e.g. the "48" in "e-48") represent real pixel quantities that need scaling.
 		inNumber = False
 		chars = []
 		digits = []
@@ -420,7 +423,12 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 				digits.append(char)
 			elif inNumber:
 				inNumber = False
-				chars.append(str(int(int("".join(digits)) * scale[0] / scale[1])))
+				precededByRatioOp = chars and chars[-1] in ("*", "/")
+				followedByRatioOp = char in ("*", "/", "%", "w", "h")
+				if precededByRatioOp or followedByRatioOp:
+					chars.append("".join(digits))
+				else:
+					chars.append(str(int(int("".join(digits)) * scale[0] / scale[1])))
 				digits = []
 				chars.append(char)
 			else:
