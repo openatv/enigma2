@@ -1811,6 +1811,8 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
 	config.sec.delay_after_diseqc_peripherial_poweron_cmd = x
 
+	config.crash.debugSec.addNotifier(lambda configElement: secClass.setParam(secClass.SEC_DEBUG, int(configElement.value)))
+
 # TODO: Add support for satPos depending nims to advanced nim configuration
 # so a second/third/fourth cable from a motorized lnb can used behind a
 # diseqc 1.0 / diseqc 1.1 / toneburst switch. The C(++) part should/can handle this.

@@ -763,6 +763,7 @@ config.crash.debugSeek = ConfigYesNo(default=False)
 config.crash.debugTeletext = ConfigYesNo(default=False)
 config.crash.debugStorage = ConfigYesNo(default=False)
 config.crash.debugDVBDB = ConfigYesNo(default=False)
+config.crash.debugSec = ConfigYesNo(default=False)
 config.crash.debugTextEncoding = ConfigYesNo(default=False)
 config.crash.debugNetwork = ConfigYesNo(default=True)
 
