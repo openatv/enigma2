@@ -1,10 +1,16 @@
-from ctypes import CDLL, POINTER, byref, c_char, c_char_p, c_int, c_uint32, c_void_p, create_string_buffer
+from ctypes import ArgumentError, CDLL, POINTER, byref, c_char, c_char_p, c_int, c_uint32, c_void_p, create_string_buffer
 from glob import glob
 from os.path import basename, exists, join
 from re import fullmatch, split
+from threading import Thread
 from xml.etree.ElementTree import ParseError, parse
 
-from Components.config import ConfigInteger, ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigText, ConfigYesNo, config
+from enigma import eTimer
+
+from Components.config import ConfigInteger, ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
+from Components.Opkg import OpkgComponent
+from Components.SystemInfo import BoxInfo
+from Screens.Toast import Toast
 from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, resolveFilename
 
 
@@ -84,7 +90,7 @@ def _dabXMLRoot(terrestrial=False):
 			if root.tag == "dabFeeds" and (not terrestrial or root.find("terrestrial") is not None):
 				return root
 		except (OSError, ParseError, ValueError) as err:
-			print("[RTLSDR] Unable to read DAB configuration '%s': %s" % (path, err))
+			print(f"[RTLSDR] Unable to read DAB configuration '{path}': {err}")
 	return None
 
 
@@ -164,14 +170,6 @@ def hasAvailableSatelliteDAB():
 	return False
 
 
-def _decode(value):
-	if not value:
-		return ""
-	if isinstance(value, bytes):
-		return value.decode("utf-8", "replace").strip()
-	return str(value).strip()
-
-
 def _read(path):
 	try:
 		with open(path, "r", encoding="utf-8", errors="replace") as fd:
@@ -180,7 +178,7 @@ def _read(path):
 		return ""
 
 
-def _usbDevices():
+def usbDevices():
 	devices = []
 	for path in sorted(glob("/sys/bus/usb/devices/*")):
 		vendor = _read(join(path, "idVendor"))
@@ -225,22 +223,29 @@ class RTLSDRLibrary:
 		return int(self.lib.rtlsdr_get_device_count())
 
 	def device(self, index, probe=False):
+		def decode(value):
+			if not value:
+				return ""
+			if isinstance(value, bytes):
+				return value.decode("utf-8", "replace").strip()
+			return str(value).strip()
+
 		manufacturer = create_string_buffer(256)
 		product = create_string_buffer(256)
 		serial = create_string_buffer(256)
 		result = self.lib.rtlsdr_get_device_usb_strings(index, manufacturer, product, serial)
 		info = {
 			"index": index,
-			"name": _decode(self.lib.rtlsdr_get_device_name(index)),
-			"manufacturer": _decode(manufacturer.value),
-			"product": _decode(product.value),
-			"serial": _decode(serial.value),
+			"name": decode(self.lib.rtlsdr_get_device_name(index)),
+			"manufacturer": decode(manufacturer.value),
+			"product": decode(product.value),
+			"serial": decode(serial.value),
 			"tunerType": 0,
 			"tuner": RTLSDR_TUNERS[0],
 			"gains": [],
 			"available": result == 0,
 			"errorCode": result,
-			"error": "" if result == 0 else "USB string query failed (%d)" % result
+			"error": "" if result == 0 else f"USB string query failed ({result})"
 		}
 		if probe and info["available"]:
 			device = c_void_p()
@@ -249,7 +254,7 @@ class RTLSDRLibrary:
 				try:
 					tunerType = int(self.lib.rtlsdr_get_tuner_type(device))
 					info["tunerType"] = tunerType
-					info["tuner"] = RTLSDR_TUNERS.get(tunerType, "Unknown (%d)" % tunerType)
+					info["tuner"] = RTLSDR_TUNERS.get(tunerType, f"Unknown ({tunerType})")
 					count = self.lib.rtlsdr_get_tuner_gains(device, None)
 					if count > 0:
 						values = (c_int * count)()
@@ -260,12 +265,12 @@ class RTLSDRLibrary:
 			else:
 				info["available"] = False
 				info["errorCode"] = result
-				info["error"] = "Unable to open device (%d)" % result
+				info["error"] = f"Unable to open device ({result})"
 		return info
 
 
-def _matchSysfs(devices):
-	sysfsDevices = _usbDevices()
+def matchSysfs(devices):
+	sysfsDevices = usbDevices()
 	used = set()
 	for device in devices:
 		matches = []
@@ -285,14 +290,26 @@ def _matchSysfs(devices):
 	return devices
 
 
-def enumerateRTLSDRDevices(probe=False):
+RTLSDR_PROBE_TIMEOUT = 3  # Seconds. A stuck USB transfer inside librtlsdr can block indefinitely otherwise.
+
+
+def _probeRTLSDRDevices(probe, result):
 	try:
 		library = RTLSDRLibrary()
-		devices = [library.device(index, probe=probe) for index in range(library.count())]
-	except (AttributeError, OSError, ValueError) as err:
-		print("[RTLSDR] Device enumeration failed: %s" % err)
+		result.extend(library.device(index, probe=probe) for index in range(library.count()))
+	except (ArgumentError, AttributeError, OSError, ValueError) as err:
+		print(f"[RTLSDR] Device enumeration failed: {err}")
+
+
+def enumerateRTLSDRDevices(probe=False):
+	devices = []
+	worker = Thread(target=_probeRTLSDRDevices, args=(probe, devices), daemon=True)
+	worker.start()
+	worker.join(RTLSDR_PROBE_TIMEOUT)
+	if worker.is_alive():
+		print(f"[RTLSDR] Device enumeration did not respond within {RTLSDR_PROBE_TIMEOUT}s; a USB transfer may be stuck.")
 		return []
-	_matchSysfs(devices)
+	matchSysfs(devices)
 	serialCounts = {}
 	for device in devices:
 		serial = device.get("serial", "")
@@ -301,11 +318,11 @@ def enumerateRTLSDRDevices(probe=False):
 		serial = device.get("serial", "")
 		port = device.get("port", "")
 		if serial not in GENERIC_SERIALS and serialCounts.get(serial) == 1:
-			key = "serial:%s" % serial
+			key = f"serial:{serial}"
 		elif port:
-			key = "port:%s" % port
+			key = f"port:{port}"
 		else:
-			key = "index:%d" % device["index"]
+			key = f"index:{device['index']}"
 		device["key"] = key
 		if probe and device.get("available") and device.get("tunerType"):
 			config.dab.rtlsdr.cachedDevice.value = key
@@ -327,10 +344,6 @@ def hasRTLSDRDevice():
 	return bool(enumerateRTLSDRDevices(probe=False))
 
 
-def hasRTLSDRUSBHardware():
-	return any((device.get("vendorId"), device.get("productId")) in RTLSDR_USB_DEVICES for device in _usbDevices())
-
-
 def isRTLSDRInUse(device=None):
 	try:
 		from NavigationInstance import instance
@@ -341,21 +354,6 @@ def isRTLSDRInUse(device=None):
 		return device is None or int(device.get("index", -1)) == config.dab.rtlsdr.deviceIndex.value
 	except (AttributeError, TypeError, ValueError):
 		return False
-
-
-def getActiveRTLSDRTuner():
-	try:
-		from enigma import iServiceInformation
-		from NavigationInstance import instance
-		reference = instance.getCurrentlyPlayingServiceReference() if instance else None
-		if not reference or not reference.getPath().startswith("dab://rtlsdr/"):
-			return ""
-		service = instance.getCurrentService()
-		info = service and service.info()
-		field = getattr(iServiceInformation, "sDABReceiverName", None)
-		return info.getInfoString(field).strip() if info and field is not None else ""
-	except (AttributeError, TypeError, ValueError):
-		return ""
 
 
 def cacheRTLSDRTuner(device, tuner):
@@ -382,7 +380,6 @@ def cacheRTLSDRTuner(device, tuner):
 	device["tuner"] = canonical
 	device["probeCached"] = True
 	if changed:
-		from Components.config import configfile
 		config.dab.rtlsdr.cachedDevice.save()
 		config.dab.rtlsdr.cachedTunerType.save()
 		config.dab.rtlsdr.cachedTuner.save()
@@ -398,12 +395,80 @@ def hasRTLSDRBackend():
 	return exists("/usr/bin/dab-rtlsdr-welle-e2")
 
 
-def hasRTLSDRRuntime():
-	return hasRTLSDRBackend() and any(exists(path) for path in RTLSDR_LIBRARY_PATHS)
-
-
 def canScanRTLSDR():
 	return isRTLSDREnabled() and hasRTLSDRBackend()
+
+
+def updateDABBoxInfo(configElement=None):
+	from Components.NimManager import nimmanager
+	BoxInfo.setMutableItem("HasRTLSDR", hasRTLSDRDevice())
+	BoxInfo.setMutableItem("CanScanDAB", canScanRTLSDR() or bool(nimmanager.getEnabledNimListOfType("DVB-S")))
+
+
+class DABUSBInstaller:
+	def __init__(self):
+		self.session = None
+		self.opkg = None
+		self.running = False
+
+	def hasRTLSDRRuntime(self):
+		return hasRTLSDRBackend() and any(exists(path) for path in RTLSDR_LIBRARY_PATHS)
+
+	def requestInstall(self):
+		def hasRTLSDRUSBHardware():
+			return any((device.get("vendorId"), device.get("productId")) in RTLSDR_USB_DEVICES for device in usbDevices())
+
+		updateDABBoxInfo()
+		if self.running or self.hasRTLSDRRuntime() or not hasRTLSDRUSBHardware() or self.session is None:
+			return
+		self.running = True
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
+		if Toast.instance:
+			Toast.instance.showToast(
+				_("An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."),
+				Toast.TYPE_INFO, timeout=6)
+		self.opkg.runCommand(self.opkg.CMD_REFRESH_INSTALL, {"arguments": ["enigma2-plugin-systemplugins-dabusb"]})
+
+	def opkgCallback(self, event, parameter):
+		if event == self.opkg.EVENT_ERROR:
+			self.finish(False)
+		elif event == self.opkg.EVENT_DONE:
+			self.finish(self.hasRTLSDRRuntime())
+
+	def finish(self, success):
+		if not self.running:
+			return
+		self.running = False
+		if self.opkg:
+			self.opkg.removeCallback(self.opkgCallback)
+			self.opkg = None
+		if self.session and Toast.instance:
+			Toast.instance.showToast(
+				_("DAB+ USB support was installed. You can now enable the receiver in Reception settings.") if success else _("DAB+ USB support could not be installed from the feed."),
+				Toast.TYPE_INFO if success else Toast.TYPE_ERROR, timeout=10)
+
+
+dabUSBInstaller = None
+dabHotplugNotifier = []
+
+
+def dabUSBHotplug(device, action):
+	if action in ("dab-sdr-add", "dab-sdr-remove") and dabUSBInstaller:
+		dabUSBInstaller.requestInstall()
+
+
+def initRTLSDR(session):
+	global dabUSBInstaller
+	dabUSBInstaller = DABUSBInstaller()
+	dabUSBInstaller.session = session
+	if dabUSBHotplug not in dabHotplugNotifier:
+		dabHotplugNotifier.append(dabUSBHotplug)
+	# A receiver can already be present before Enigma2 opens the hotplug socket.
+	bootProbe = eTimer()
+	bootProbe.callback.append(dabUSBInstaller.requestInstall)
+	bootProbe.start(2000, True)
+	dabUSBInstaller.bootProbe = bootProbe
 
 
 if not hasattr(config, "dab"):
@@ -429,3 +494,5 @@ if not hasattr(config.dab, "rtlsdr"):
 	# is a percentage, not a physical dB value.
 	config.dab.rtlsdr.gain = ConfigSelectionNumber(min=0, max=100, stepwidth=1, default=35, units="%")
 	config.dab.rtlsdr.ppm = ConfigInteger(default=0, limits=(-200, 200))
+
+config.dab.rtlsdr.enabled.addNotifier(updateDABBoxInfo)

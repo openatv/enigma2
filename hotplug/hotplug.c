@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
 				const char* env_bus = getenv("ID_BUS");
 				const char* env_model = getenv("ID_MODEL");
 				const char* env_name = getenv("ID_NAME");
-				if (strcmp(action, "dab-sdr-add") == 0) {
+				if (strcmp(action, "dab-sdr-add") == 0 || strcmp(action, "dab-sdr-remove") == 0) {
 					int len = snprintf(data, datalen, "ACTION=%s\nDEVPATH=%s\nID_TYPE=dab-sdr\nDEVTYPE=usb_device\nID_BUS=usb\nID_MODEL=%s", action,
 						devpath, env_model ? env_model : (env_name ? env_name : "RTL2832U"));
 					send_to_socket(sd, mode, debug, data, len, datalen);

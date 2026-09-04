@@ -21,6 +21,7 @@ from Components.Label import Label
 from Components.NetworkManager import encryptionLabels, networkManager
 from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
+from Components.RTLSDR import getRTLSDRChannelFrequency
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
@@ -1507,6 +1508,10 @@ class InformationService(InformationBase):
 		self.service = None
 
 	def showServiceInformation(self):
+		def addIfAvailable(info, label, value):
+			if value not in (None, "", -1, _("N/A")):
+				info.append(self.formatLine("P1", label, value))
+
 		def formatHex(value):
 			return f"0x{value:04X}  ({value})" if value and isinstance(value, int) else ""
 
@@ -1567,117 +1572,105 @@ class InformationService(InformationBase):
 					subtitleDesc = subtitleTypes.get(subtitle[2], f"{_("Unknown")}: {subtitle[2]}")
 					info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  {subtitleDesc}  -  {subtitleLang}"))
 
-		if self.serviceReferenceType == eServiceReference.idServiceDAB and self.serviceInfo:
-			return self.showDABServiceInformation(getServiceInfoValue, formatHex)
-
 		info = []
-		info.append(self.formatLine("H", _("Service and PID information for '%s'") % self.serviceName))
-		info.append("")
-		if self.serviceInfo:
-			from Components.Converter.PliExtraInfo import codec_data  # This should be in SystemInfo maybe as a BoxInfo variable.
-			videoData = []
-			videoData.append(codec_data.get(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
-			width = self.serviceInfo.getInfo(iServiceInformation.sVideoWidth)
-			height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
-			if width > 0 and height > 0:
-				videoData.append(f"{width}x{height}")
-				videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{("i", "p", "")[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
-				videoData.append(f"[{"4:3" if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else "16:9"}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
-			gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.serviceInfo.getInfo(iServiceInformation.sGamma)]  # This should be in SystemInfo maybe as a BoxInfo variable.
-			if gamma:
-				videoData.append(gamma)
-			videoData = "  -  ".join(videoData)
+		if self.serviceReferenceType == eServiceReference.idServiceDAB and self.serviceInfo:
+			info.append(self.formatLine("H", _("DAB+ service information for '%s'") % self.serviceName))
+			info.append("")
+			addIfAvailable(info, _("Station"), self.serviceName)
+			addIfAvailable(info, _("Reception source"), getServiceInfoValue(iServiceInformation.sProvider))
+			addIfAvailable(info, _("Ensemble"), getServiceInfoValue(iServiceInformation.sDABEnsembleLabel))
+			ensembleId = getServiceInfoValue(iServiceInformation.sDABEnsembleId)
+			addIfAvailable(info, _("Ensemble ID (EID)"), formatHex(ensembleId))
+			addIfAvailable(info, _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID)))
+			channel = getServiceInfoValue(iServiceInformation.sDABChannel)
+			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			if channel:
+				frequency = getRTLSDRChannelFrequency(channel)
+				channelText = _("Block %s") % channel
+				if frequency:
+					channelText = _("Block %s - %.3f MHz") % (channel, frequency / 1000.0)
+				addIfAvailable(info, _("DAB+ channel"), channelText)
+			elif serviceRef:
+				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
+			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
+			addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
+			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
+			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
+			addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))
+			addIfAvailable(info, _("Dynamic label"), getServiceInfoValue(iServiceInformation.sDABDynamicLabel))
+			addIfAvailable(info, _("RTL-SDR tuner"), getServiceInfoValue(iServiceInformation.sDABReceiverName))
+			frontendInfo = self.service and self.service.frontendInfo()
+			if frontendInfo and channel:
+				locked = frontendInfo.getFrontendInfo(iFrontendInformation.lockState)
+				info.append("")
+				addIfAvailable(info, _("Receiver lock"), _("Locked") if locked else _("Tuning"))
+				snr = frontendInfo.getFrontendInfo(iFrontendInformation.signalQualitydB)
+				if snr >= 0:
+					addIfAvailable(info, _("RF SNR"), "%.2f dB" % (snr / 100.0))
+				ficQuality = getServiceInfoValue(iServiceInformation.sDABFICQuality)
+				mscQuality = getServiceInfoValue(iServiceInformation.sDABMSCQuality)
+				if isinstance(ficQuality, int) and ficQuality >= 0:
+					addIfAvailable(info, _("FIC quality"), "%d %%" % ficQuality)
+				if isinstance(mscQuality, int) and mscQuality >= 0:
+					addIfAvailable(info, _("MSC audio frame quality"), "%d %%" % mscQuality)
 		else:
-			videoData = _("Unknown")
-		if "%3a//" in self.serviceReference and self.serviceReferenceType not in (1, 257, 4098, 4114):  # IPTV 4097 5001, no PIDs shown.
-			info.append(self.formatLine("P1", _("Video Codec, Size & Format"), videoData))
-			info.append(self.formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
-			info.append(self.formatLine("P1", _("URL"), self.serviceReference.split(":")[10].replace("%3a", ":")))
-			getSubtitleList()  # IanSav: This wasn't activated to be used!
-		else:
-			if ":/" in self.serviceReference:  # mp4 videos, DVB-S-T recording.
+			info.append(self.formatLine("H", _("Service and PID information for '%s'") % self.serviceName))
+			info.append("")
+			if self.serviceInfo:
+				from Components.Converter.PliExtraInfo import codec_data  # This should be in SystemInfo maybe as a BoxInfo variable.
+				videoData = []
+				videoData.append(codec_data.get(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
+				width = self.serviceInfo.getInfo(iServiceInformation.sVideoWidth)
+				height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
+				if width > 0 and height > 0:
+					videoData.append(f"{width}x{height}")
+					videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{("i", "p", "")[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
+					videoData.append(f"[{"4:3" if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else "16:9"}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
+				gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.serviceInfo.getInfo(iServiceInformation.sGamma)]  # This should be in SystemInfo maybe as a BoxInfo variable.
+				if gamma:
+					videoData.append(gamma)
+				videoData = "  -  ".join(videoData)
+			else:
+				videoData = _("Unknown")
+			if "%3a//" in self.serviceReference and self.serviceReferenceType not in (1, 257, 4098, 4114):  # IPTV 4097 5001, no PIDs shown.
 				info.append(self.formatLine("P1", _("Video Codec, Size & Format"), videoData))
 				info.append(self.formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
-				info.append(self.formatLine("P1", _("Filename"), self.serviceReference.split(":")[10]))
-			else:  # fallback, movistartv, live DVB-S-T.
-				info.append(self.formatLine("P1", _("Provider"), getServiceInfoValue(iServiceInformation.sProvider)))
-				info.append(self.formatLine("P1", _("Video Codec, Size & Format"), videoData))
-				if "%3a//" in self.serviceReference:  # fallback, movistartv.
-					info.append(self.formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
-					info.append(self.formatLine("P1", _("URL"), self.serviceReference.split(":")[10].replace("%3a", ":")))
-				else:  # Live DVB-S-T
-					info.append(self.formatLine("P1", _("Service reference"), self.serviceReference))
-			info.append(self.formatLine("P1", _("Namespace & Orbital position"), getNamespace(getServiceInfoValue(iServiceInformation.sNamespace))))
-			info.append(self.formatLine("P1", _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID))))
-			info.append(self.formatLine("P1", _("Transport Stream ID (TSID)"), formatHex(getServiceInfoValue(iServiceInformation.sTSID))))
-			info.append(self.formatLine("P1", _("Original Network ID (ONID)"), formatHex(getServiceInfoValue(iServiceInformation.sONID))))
-			info.append(self.formatLine("P1", _("Video PID"), formatHex(getServiceInfoValue(iServiceInformation.sVideoPID))))
-			audio = self.service and self.service.audioTracks()
-			numberOfTracks = audio and audio.getNumberOfTracks()
-			if numberOfTracks:
-				for index in range(numberOfTracks):
-					audioPID = audio.getTrackInfo(index).getPID()
-					audioDesc = audio.getTrackInfo(index).getDescription()
-					audioLang = audio.getTrackInfo(index).getLanguage() or _("Undefined")
-					audioPIDValue = _("N/A") if getServiceInfoValue(iServiceInformation.sAudioPID) == "N/A" else formatHex(audioPID)
-					indent = "P1F0" if numberOfTracks > 1 and audio.getCurrentTrack() == index else "P1"
-					info.append(self.formatLine(indent, _("Audio PID%s, Codec & Language") % (f" {index + 1}" if numberOfTracks > 1 else ""), f"{audioPIDValue}  -  {audioDesc}  -  {audioLang}"))
+				info.append(self.formatLine("P1", _("URL"), self.serviceReference.split(":")[10].replace("%3a", ":")))
+				getSubtitleList()  # IanSav: This wasn't activated to be used!
 			else:
-				info.append(self.formatLine("P1", _("Audio PID"), _("N/A")))
-			info.append(self.formatLine("P1", _("PCR PID"), formatHex(getServiceInfoValue(iServiceInformation.sPCRPID))))
-			info.append(self.formatLine("P1", _("PMT PID"), formatHex(getServiceInfoValue(iServiceInformation.sPMTPID))))
-			info.append(self.formatLine("P1", _("TXT PID"), formatHex(getServiceInfoValue(iServiceInformation.sTXTPID))))
-			getSubtitleList()
-		return info
-
-	def showDABServiceInformation(self, getServiceInfoValue, formatHex):
-		def addIfAvailable(info, label, value):
-			if value not in (None, "", -1, _("N/A")):
-				info.append(self.formatLine("P1", label, value))
-
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		info = [self.formatLine("H", _("DAB service information for '%s'") % self.serviceName)]
-		info.append("")
-		addIfAvailable(info, _("Station"), self.serviceName)
-		addIfAvailable(info, _("Reception source"), getServiceInfoValue(iServiceInformation.sProvider))
-		addIfAvailable(info, _("Ensemble"), getServiceInfoValue(iServiceInformation.sDABEnsembleLabel))
-		ensembleId = getServiceInfoValue(iServiceInformation.sDABEnsembleId)
-		addIfAvailable(info, _("Ensemble ID (EID)"), formatHex(ensembleId))
-		addIfAvailable(info, _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID)))
-
-		channel = getServiceInfoValue(iServiceInformation.sDABChannel)
-		if channel:
-			from Components.RTLSDR import getRTLSDRChannelFrequency
-			frequency = getRTLSDRChannelFrequency(channel)
-			channelText = _("Block %s") % channel
-			if frequency:
-				channelText = _("Block %s - %.3f MHz") % (channel, frequency / 1000.0)
-			addIfAvailable(info, _("DAB channel"), channelText)
-		elif serviceRef:
-			addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
-
-		addIfAvailable(info, _("Programme type"), getServiceInfoValue(iServiceInformation.sTagGenre))
-		addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
-		addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
-		addIfAvailable(info, _("Audio bitrate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
-		addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))
-		addIfAvailable(info, _("Dynamic label"), getServiceInfoValue(iServiceInformation.sDABDynamicLabel))
-		addIfAvailable(info, _("RTL-SDR tuner"), getServiceInfoValue(iServiceInformation.sDABReceiverName))
-
-		frontendInfo = self.service and self.service.frontendInfo()
-		if frontendInfo and channel:
-			locked = frontendInfo.getFrontendInfo(iFrontendInformation.lockState)
-			info.append("")
-			addIfAvailable(info, _("Receiver lock"), _("Locked") if locked else _("Tuning"))
-			snr = frontendInfo.getFrontendInfo(iFrontendInformation.signalQualitydB)
-			if snr >= 0:
-				addIfAvailable(info, _("RF SNR"), "%.2f dB" % (snr / 100.0))
-			ficQuality = getServiceInfoValue(iServiceInformation.sDABFICQuality)
-			mscQuality = getServiceInfoValue(iServiceInformation.sDABMSCQuality)
-			if isinstance(ficQuality, int) and ficQuality >= 0:
-				addIfAvailable(info, _("FIC quality"), "%d %%" % ficQuality)
-			if isinstance(mscQuality, int) and mscQuality >= 0:
-				addIfAvailable(info, _("MSC audio frame quality"), "%d %%" % mscQuality)
+				if ":/" in self.serviceReference:  # mp4 videos, DVB-S-T recording.
+					info.append(self.formatLine("P1", _("Video Codec, Size & Format"), videoData))
+					info.append(self.formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
+					info.append(self.formatLine("P1", _("Filename"), self.serviceReference.split(":")[10]))
+				else:  # fallback, movistartv, live DVB-S-T.
+					info.append(self.formatLine("P1", _("Provider"), getServiceInfoValue(iServiceInformation.sProvider)))
+					info.append(self.formatLine("P1", _("Video Codec, Size & Format"), videoData))
+					if "%3a//" in self.serviceReference:  # fallback, movistartv.
+						info.append(self.formatLine("P1", _("Service reference"), ":".join(self.serviceReference.split(":")[:9])))
+						info.append(self.formatLine("P1", _("URL"), self.serviceReference.split(":")[10].replace("%3a", ":")))
+					else:  # Live DVB-S-T
+						info.append(self.formatLine("P1", _("Service reference"), self.serviceReference))
+				info.append(self.formatLine("P1", _("Namespace & Orbital position"), getNamespace(getServiceInfoValue(iServiceInformation.sNamespace))))
+				info.append(self.formatLine("P1", _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID))))
+				info.append(self.formatLine("P1", _("Transport Stream ID (TSID)"), formatHex(getServiceInfoValue(iServiceInformation.sTSID))))
+				info.append(self.formatLine("P1", _("Original Network ID (ONID)"), formatHex(getServiceInfoValue(iServiceInformation.sONID))))
+				info.append(self.formatLine("P1", _("Video PID"), formatHex(getServiceInfoValue(iServiceInformation.sVideoPID))))
+				audio = self.service and self.service.audioTracks()
+				numberOfTracks = audio and audio.getNumberOfTracks()
+				if numberOfTracks:
+					for index in range(numberOfTracks):
+						audioPID = audio.getTrackInfo(index).getPID()
+						audioDesc = audio.getTrackInfo(index).getDescription()
+						audioLang = audio.getTrackInfo(index).getLanguage() or _("Undefined")
+						audioPIDValue = _("N/A") if getServiceInfoValue(iServiceInformation.sAudioPID) == "N/A" else formatHex(audioPID)
+						indent = "P1F0" if numberOfTracks > 1 and audio.getCurrentTrack() == index else "P1"
+						info.append(self.formatLine(indent, _("Audio PID%s, Codec & Language") % (f" {index + 1}" if numberOfTracks > 1 else ""), f"{audioPIDValue}  -  {audioDesc}  -  {audioLang}"))
+				else:
+					info.append(self.formatLine("P1", _("Audio PID"), _("N/A")))
+				info.append(self.formatLine("P1", _("PCR PID"), formatHex(getServiceInfoValue(iServiceInformation.sPCRPID))))
+				info.append(self.formatLine("P1", _("PMT PID"), formatHex(getServiceInfoValue(iServiceInformation.sPMTPID))))
+				info.append(self.formatLine("P1", _("TXT PID"), formatHex(getServiceInfoValue(iServiceInformation.sTXTPID))))
+				getSubtitleList()
 		return info
 
 	def showTransponderInformation(self):

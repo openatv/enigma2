@@ -1042,6 +1042,19 @@
 		<item level="1" text="Channel">config.rfmod.channel</item>
 		<item level="1" text="Fine-tune">config.rfmod.finetune</item>
 	</setup>
+	<setup key="RTLSDRSetup" title="DAB+ USB Tuner Settings">
+		<item level="0" text="Common Settings" />
+		<item level="0" text="Enable DAB+ mode" description="Use a selected RTL-SDR USB tuner device exclusively for DAB+ reception. This tuner will not be available for TV service reception." indent="1">config.dab.rtlsdr.enabled</item>
+		<if requires="config.dab.rtlsdr.enabled">
+			<item level="0" text="Select tuner" description="Select the RTL-SDR USB tuner to be used for DAB+ reception." indent="1">config.dab.rtlsdr.device</item>
+			<item level="0" text="Scan region" description="Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file." indent="1">config.dab.rtlsdr.region</item>
+			<item level="0" text="Reception sources to scan" description="Scan the USB tuner, available DAB+ satellite feeds, or both." conditional="self.hasAvailableSatelliteDAB()" indent="1">config.dab.rtlsdr.scanSource</item>
+			<item level="0" text="Show DAB+ slideshow" description="Replace the static radio background with pictures transmitted by the current DAB+ station." indent="1">config.dab.rtlsdr.slideshow</item>
+			<item level="0" text="Automatic gain" description="Let the tuner select its RF gain automatically." indent="1">config.dab.rtlsdr.automaticGain</item>
+			<item level="0" text="RF gain" description="Position in the tuner's supported gain range. The back end selects the closest gain step." conditional="not config.dab.rtlsdr.automaticGain.value" indent="1">config.dab.rtlsdr.gain</item>
+			<item level="0" text="Frequency correction offset" description="Adjust the tuner oscillator offset to refine the DAB+ signal reception." indent="1">config.dab.rtlsdr.ppm</item>
+		</if>
+	</setup>
 	<setup key="Satellite" title="Satellite Dish Settings">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>
