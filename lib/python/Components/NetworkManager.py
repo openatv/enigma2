@@ -1866,21 +1866,17 @@ class NetworkMountRepository:
 
 	@staticmethod
 	def credentialsPath(hostname):
-		return f"/etc/enigma2/{hostname.strip()}.cache"
+		return f"/etc/enigma2/{hostname.strip().split(".")[0].upper()}.cache"
 
 	def credentialsGet(self, hostname):
-		if not hostname:
-			return {}
-		try:
-			with open(self.credentialsPath(hostname), "rb") as fd:
-				data = pickleLoad(fd)
-		except Exception:
-			return {}
-		if not isinstance(data, dict):
-			return {}
-		username = data.get("username", "")
-		password = data.get("password", "")
-		return {"username": username, "password": password} if username or password else {}
+		data = {}
+		if hostname:
+			try:
+				with open(self.credentialsPath(hostname), "rb") as fd:
+					data = pickleLoad(fd)
+			except Exception:
+				pass
+		return data.get("username"), data.get("password", "")
 
 	def credentialsSave(self, hostname, username, password):
 		if not hostname:
@@ -2195,7 +2191,7 @@ class DiscoveryManager:
 			self.notify()
 
 	def onAvahiSnapshot(self, addresses):
-		stale = [address for address, host in self.hosts.items() if host["source"] == "avahi" and address not in addresses]
+		stale = [address for address, host in self.hosts.items() if host["source"] == "avahi" and host["hostnameSource"] != "netscan" and address not in addresses]
 		for address in stale:
 			del self.hosts[address]
 		if stale:
