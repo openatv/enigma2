@@ -595,6 +595,7 @@
 		<item level="2" text="Include bouquet DB data" description="Enable this option to add bouquet database information to the debug log file." restart="gui" indent="1">config.crash.debugDVBDB</item>
 		<item level="2" text="Include text encoding data" description="Enable this option to add text encoding information to the debug log file." restart="gui" indent="1">config.crash.debugTextEncoding</item>
 		<item level="2" text="Include network data" description="Enable this option to add network information to the debug log file." restart="gui" indent="1">config.crash.debugNetwork</item>
+		<item level="2" text="Include SEC/DiSEqC data" description="Enable this option to add verbose SEC/DiSEqC debug data to the debug log file." indent="1">config.crash.debugSec</item>
 		<item level="2" text="Log Retention And Access" />
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created." indent="1">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in Extension Menu" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)." indent="1">config.logmanager.showinextensions</item>
