@@ -802,7 +802,7 @@ class NetworkShares(Screen):
 		self.close(True)
 
 	def keyMenu(self):
-		def keyMenuCallback(self, choice=None):
+		def keyMenuCallback(choice=None):
 			def flushNeighborCache():
 				def flushDone(data, retVal, extra=None):
 					if retVal:
