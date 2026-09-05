@@ -3,9 +3,11 @@ from re import fullmatch, sub
 from time import monotonic
 from xml.etree.ElementTree import ParseError, parse
 
-from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eServiceReference, eTimer, iServiceInformation
+from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eDVBSatelliteEquipmentControl, eServiceReference, eTimer, iPlayableService, iServiceInformation
 
+from Components.config import config
 from Components.NimManager import nimmanager
+from Components.ServiceEventTracker import ServiceEventTracker
 from Screens.ServiceScan import ServiceScan
 from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, fileReadLines, fileWriteLines, resolveFilename
 
@@ -26,9 +28,8 @@ class DABScan(ServiceScan):
 	def __init__(self, session, source=None):
 		if source is None:
 			from Components.RTLSDR import canScanRTLSDR, hasAvailableSatelliteDAB
-			from Components.config import config
 			if canScanRTLSDR():
-				source = config.dab.rtlsdr.scanSource.value
+				source = config.dab.scanSource.value
 				if source == "dvb" and not hasAvailableSatelliteDAB():
 					source = "rtlsdr"
 			else:
@@ -42,6 +43,7 @@ class DABScan(ServiceScan):
 		self.knownFeeds = 0
 		self.skippedDisabledFeeds = 0
 		self.skippedUnavailableFeeds = 0
+		self.skippedUnselectedFeeds = 0
 		self.skippedUnsupportedFeeds = 0
 		self.feedIndex = 0
 		self.failures = []
@@ -53,10 +55,18 @@ class DABScan(ServiceScan):
 		self.lastSignature = None
 		self.stablePolls = 0
 		self.feedStarted = 0
+		self.feedTuneStarted = 0
+		self.feedTuneTimeout = self.DVB_FEED_TIMEOUT
+		self.feedTuned = False
+		self.feedTuneFailed = False
 		self.scanFinished = False
 		self.registeredParents = set()
 		self.saveRegisteredParents = False
 		ServiceScan.__init__(self, session, [])
+		self.serviceEventTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evTunedIn: self.serviceTunedIn,
+			iPlayableService.evTuneFailed: self.serviceTuneFailed
+		})
 		self.skinName = ["ServiceScan"]
 		self.setImage("ServiceScan")
 		self.setTitle(_("DAB+ Scan"))
@@ -86,6 +96,7 @@ class DABScan(ServiceScan):
 		self.knownFeeds = 0
 		self.skippedDisabledFeeds = 0
 		self.skippedUnavailableFeeds = 0
+		self.skippedUnselectedFeeds = 0
 		self.skippedUnsupportedFeeds = 0
 		if self.source in ("all", "dvb"):
 			self.loadDVBFeeds()
@@ -94,6 +105,11 @@ class DABScan(ServiceScan):
 		return bool(self.feeds)
 
 	def loadDVBFeeds(self):
+		from Components.RTLSDR import ensureDABSatelliteConfig, getDABSatelliteDefinitions
+		definitions = getDABSatelliteDefinitions(availableOnly=True)
+		satelliteSettings = ensureDABSatelliteConfig(definitions)
+		selectedPositions = {item["position"] for item in definitions if satelliteSettings[str(item["position"])].value}
+		motorizedPositions = {item["position"] for item in definitions if item["motorized"]}
 		configPath = resolveFilename(SCOPE_CONFIG, "dab.xml")
 		packagePath = resolveFilename(SCOPE_SKINS, "dab.xml")
 		xmlPath = configPath if exists(configPath) else packagePath
@@ -115,6 +131,10 @@ class DABScan(ServiceScan):
 					if not nimmanager.getNimListForSat(feed["orbitalPosition"]):
 						self.skippedUnavailableFeeds += 1
 						continue
+					if feed["orbitalPosition"] not in selectedPositions:
+						self.skippedUnselectedFeeds += 1
+						continue
+					feed["motorized"] = feed["orbitalPosition"] in motorizedPositions
 					if feed["decoder"] not in self.SUPPORTED_DECODERS:
 						self.skippedUnsupportedFeeds += 1
 						continue
@@ -125,13 +145,12 @@ class DABScan(ServiceScan):
 		except (OSError, ParseError, ValueError) as err:
 			self.feedErrors.append(f"{xmlPath}: {err}")
 		if self.knownFeeds:
-			print("[DABScan] Feed definitions: %d known, %d selected, %d unavailable, %d unsupported, %d disabled." % (self.knownFeeds, len(self.feeds), self.skippedUnavailableFeeds, self.skippedUnsupportedFeeds, self.skippedDisabledFeeds))
+			print("[DABScan] Feed definitions: %d known, %d selected, %d unavailable, %d deselected, %d unsupported, %d disabled." % (self.knownFeeds, len(self.feeds), self.skippedUnavailableFeeds, self.skippedUnselectedFeeds, self.skippedUnsupportedFeeds, self.skippedDisabledFeeds))
 		for error in self.feedErrors:
 			print(f"[DABScan] {error}")
 
 	def loadRTLSDRFeeds(self):
 		from Components.RTLSDR import canScanRTLSDR, getRTLSDRChannels
-		from Components.config import config
 		if not canScanRTLSDR():
 			return
 		region = config.dab.rtlsdr.region.value
@@ -337,7 +356,11 @@ class DABScan(ServiceScan):
 		self.feedListOffset = len(self.serviceList)
 		self.lastSignature = None
 		self.stablePolls = 0
-		self.feedStarted = monotonic()
+		self.feedTuneStarted = monotonic()
+		self.feedTuneTimeout = config.sec.motor_running_timeout.value * 1000 if feed.get("motorized") else self.DVB_FEED_TIMEOUT
+		self.feedStarted = self.feedTuneStarted if feed["decoder"] == "rtlsdr" else 0
+		self.feedTuned = feed["decoder"] == "rtlsdr"
+		self.feedTuneFailed = False
 		self["pass"].setText(_("Pass %d/%d") % (self.feedIndex + 1, len(self.feeds)))
 		self["network"].setText(feed["name"])
 		source = "%s:%d" % (feed["address"], feed["port"]) if feed["decoder"] == "fedi2eti" else feed["transport"]
@@ -345,7 +368,7 @@ class DABScan(ServiceScan):
 			self["transponder"].setText("%s - %s" % (feed["satellite"], source))
 		else:
 			self["transponder"].setText("%s - PID 0x%04X - %s" % (feed["satellite"], feed["pid"], source))
-		self.setScanState(_("Scanning DAB+ feed; waiting for live FIC data..."))
+		self.setScanState(_("Scanning DAB+ feed; waiting for live FIC data...") if self.feedTuned else (_("Moving rotor and tuning DAB+ satellite feed...") if feed.get("motorized") else _("Tuning DAB+ satellite feed...")))
 		self.updateProgress(0)
 		if not self.registerParent(feed):
 			self.feedFailed(_("Unable to register the DAB+ transponder"))
@@ -357,12 +380,27 @@ class DABScan(ServiceScan):
 			return
 		self.pollTimer.start(self.POLL_INTERVAL, False)
 
+	def serviceTunedIn(self):
+		if not self.scanFinished and self.state == self.RUNNING and self.feedIndex < len(self.feeds):
+			self.markFeedTuned()
+
+	def serviceTuneFailed(self):
+		if not self.scanFinished and self.state == self.RUNNING and self.feedIndex < len(self.feeds) and not self.feedTuned:
+			self.feedTuneFailed = True
+
+	def markFeedTuned(self):
+		if self.feedTuned:
+			return
+		self.feedTuned = True
+		self.feedStarted = monotonic()
+		feed = self.feeds[self.feedIndex]
+		print("[DABScan] Satellite feed '%s' tuned after %.1f seconds." % (feed["name"], self.feedStarted - self.feedTuneStarted))
+		self.setScanState(_("Scanning DAB+ feed; waiting for live FIC data..."))
+
 	def pollScan(self):
 		if self.scanFinished or self.state != self.RUNNING:
 			self.pollTimer.stop()
 			return
-		elapsed = int((monotonic() - self.feedStarted) * 1000)
-		self.updateProgress(min(elapsed, self.FEED_TIMEOUT))
 		raw = ""
 		revision = 0
 		service = self.session.nav.getCurrentService()
@@ -374,6 +412,23 @@ class DABScan(ServiceScan):
 				ensembleId = info.getInfo(iServiceInformation.sDABEnsembleId)
 				if ensembleId > 0:
 					self.feeds[self.feedIndex]["ensembleId"] = ensembleId
+		if self.feedTuneFailed:
+			self.feedFailed(_("Unable to tune the DAB+ satellite feed"))
+			return
+		if not self.feedTuned:
+			# A non-empty FIC list is also definitive proof of a successful tune
+			# if a platform did not forward evTunedIn to the service wrapper.
+			if raw:
+				self.markFeedTuned()
+			else:
+				tuneElapsed = int((monotonic() - self.feedTuneStarted) * 1000)
+				self.updateProgress(0)
+				motorized = self.feeds[self.feedIndex].get("motorized")
+				if tuneElapsed >= self.feedTuneTimeout and (not motorized or not eDVBSatelliteEquipmentControl.getInstance().isRotorMoving()):
+					self.feedFailed(_("Timeout waiting for tuner or rotor") if motorized else _("Timeout waiting for tuner lock"))
+				return
+		elapsed = int((monotonic() - self.feedStarted) * 1000)
+		self.updateProgress(min(elapsed, self.FEED_TIMEOUT))
 		services = self.parseServiceList(raw)
 		if services:
 			# The revision rises on every FIC change, including one that only adds

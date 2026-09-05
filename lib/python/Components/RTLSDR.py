@@ -1,13 +1,14 @@
 from ctypes import ArgumentError, CDLL, POINTER, byref, c_char, c_char_p, c_int, c_uint32, c_void_p, create_string_buffer
 from glob import glob
-from os.path import basename, exists, join
+from os import makedirs, replace, unlink, uname
+from os.path import basename, exists, join, realpath
 from re import fullmatch, split
 from threading import Thread
 from xml.etree.ElementTree import ParseError, parse
 
 from enigma import eTimer
 
-from Components.config import ConfigInteger, ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
+from Components.config import ConfigInteger, ConfigSelection, ConfigSelectionNumber, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
 from Components.Opkg import OpkgComponent
 from Components.SystemInfo import BoxInfo
 from Screens.Toast import Toast
@@ -18,6 +19,13 @@ RTLSDR_LIBRARY_PATHS = (
 	"/usr/lib/librtlsdr.so.0",
 	"/usr/lib/librtlsdr.so.2",
 	"/usr/lib/librtlsdr.so",
+)
+
+RTLSDR_DVB_BLACKLIST_PATH = "/etc/modprobe.d/enigma2-dab-rtlsdr.conf"
+RTLSDR_DVB_KERNEL_MODULES = (
+	"dvb_usb_rtl2832",
+	"dvb_usb_rtl28xxu",
+	"rtl2832",
 )
 
 RTLSDR_TUNERS = {
@@ -143,31 +151,107 @@ def getRTLSDRChannelFrequency(channel):
 	return 0
 
 
-def hasAvailableSatelliteDAB():
+def _enabled(value):
+	return str(value or "true").lower() not in ("0", "false", "no", "off")
+
+
+def _orbitalPositionName(position):
+	position = int(position)
+	direction = "W" if position > 1800 else "E"
+	degrees = (3600 - position if position > 1800 else position) / 10.0
+	return f"{degrees:.1f}°{direction}"
+
+
+def getDABSatelliteDefinitions(availableOnly=False):
+	"""Return DAB satellite positions which have at least one enabled feed.
+
+	Availability is derived from the configured Enigma2 tuner topology.  This
+	also covers USALS/positioner tuners because NimManager expands their
+	configured satellite list before getNimListForSat() is queried.
+	"""
 	root = _dabXMLRoot()
 	if root is None:
-		return False
+		return ()
 	from Components.NimManager import nimmanager
+	positions = {}
 	for satellite in root.findall("satellite"):
 		try:
 			orbitalPosition = int(satellite.get("orbitalPosition", "-1"), 10)
 		except ValueError:
 			continue
-		if not nimmanager.getNimListForSat(orbitalPosition):
-			continue
+		hasFeed = False
 		for transponder in satellite.findall("transponder"):
 			for feed in transponder.findall("feed"):
 				enabled = feed.get("enabled", transponder.get("enabled", satellite.get("enabled", "true")))
-				if enabled.lower() not in ("0", "false", "no", "off"):
-					return True
+				if _enabled(enabled):
+					hasFeed = True
+					break
+			if hasFeed:
+				break
+		if not hasFeed:
+			continue
+		entry = positions.setdefault(orbitalPosition, {"position": orbitalPosition, "names": []})
+		name = (satellite.get("name") or "").strip()
+		if name and name not in entry["names"]:
+			entry["names"].append(name)
 	for feed in root.findall("feed"):
 		try:
 			orbitalPosition = int(feed.get("orbitalPosition", "-1"), 10)
 		except ValueError:
 			continue
-		if feed.get("enabled", "true").lower() not in ("0", "false", "no", "off") and nimmanager.getNimListForSat(orbitalPosition):
-			return True
-	return False
+		if not _enabled(feed.get("enabled", "true")):
+			continue
+		entry = positions.setdefault(orbitalPosition, {"position": orbitalPosition, "names": []})
+		name = (feed.get("satellite") or "").strip()
+		if name and name not in entry["names"]:
+			entry["names"].append(name)
+	definitions = []
+	for entry in positions.values():
+		nimSlots = nimmanager.getNimListForSat(entry["position"])
+		entry["available"] = bool(nimSlots)
+		entry["motorized"] = any(entry["position"] in (satellite[0] for satellite in nimmanager.getRotorSatListForNim(slot)) for slot in nimSlots)
+		if availableOnly and not entry["available"]:
+			continue
+		positionName = _orbitalPositionName(entry["position"])
+		entry["label"] = "%s - %s" % (positionName, " / ".join(entry["names"])) if entry["names"] else positionName
+		definitions.append(entry)
+	return tuple(definitions)
+
+
+def ensureDABSatelliteConfig(definitions=None):
+	definitions = definitions if definitions is not None else getDABSatelliteDefinitions(availableOnly=True)
+	for definition in definitions:
+		key = str(definition["position"])
+		if key not in config.dab.satellites:
+			selection = ConfigYesNo(default=True)
+			selection.addNotifier(updateDABBoxInfo, initial_call=False)
+			config.dab.satellites[key] = selection
+	return config.dab.satellites
+
+
+def hasAvailableSatelliteDAB():
+	return bool(getDABSatelliteDefinitions(availableOnly=True))
+
+
+def isDABSatelliteEnabled(position):
+	position = int(position)
+	definitions = getDABSatelliteDefinitions(availableOnly=True)
+	if not any(item["position"] == position for item in definitions):
+		return False
+	settings = ensureDABSatelliteConfig(definitions)
+	selection = settings.get(str(position))
+	return bool(selection and selection.value)
+
+
+def isDABSatelliteMotorized(position):
+	position = int(position)
+	return any(item["position"] == position and item["motorized"] for item in getDABSatelliteDefinitions(availableOnly=True))
+
+
+def canScanSatelliteDAB(definitions=None):
+	definitions = definitions if definitions is not None else getDABSatelliteDefinitions(availableOnly=True)
+	settings = ensureDABSatelliteConfig(definitions)
+	return any(settings[str(item["position"])].value for item in definitions)
 
 
 def _read(path):
@@ -178,6 +262,27 @@ def _read(path):
 		return ""
 
 
+def _driverNames(path):
+	drivers = []
+	for interfacePath in sorted(glob(f"{path}:*")):
+		driverPath = join(interfacePath, "driver")
+		if exists(driverPath):
+			driver = basename(realpath(driverPath))
+			if driver and driver not in drivers:
+				drivers.append(driver)
+	return drivers
+
+
+def _dvbFrontends(path):
+	usbPath = realpath(path).rstrip("/")
+	frontends = []
+	for frontendPath in sorted(glob("/sys/class/dvb/dvb*.frontend*")):
+		devicePath = realpath(join(frontendPath, "device"))
+		if devicePath == usbPath or devicePath.startswith(f"{usbPath}/"):
+			frontends.append(basename(frontendPath))
+	return frontends
+
+
 def usbDevices():
 	devices = []
 	for path in sorted(glob("/sys/bus/usb/devices/*")):
@@ -185,18 +290,106 @@ def usbDevices():
 		productId = _read(join(path, "idProduct"))
 		if not vendor or not productId:
 			continue
+		deviceId = (vendor.lower(), productId.lower())
+		knownModel = RTLSDR_USB_DEVICES.get(deviceId, "")
+		drivers = _driverNames(path) if knownModel else []
 		devices.append({
 			"port": basename(path),
 			"vendorId": vendor.lower(),
 			"productId": productId.lower(),
-			"knownModel": RTLSDR_USB_DEVICES.get((vendor.lower(), productId.lower()), ""),
+			"knownModel": knownModel,
 			"manufacturer": _read(join(path, "manufacturer")),
 			"product": _read(join(path, "product")),
 			"serial": _read(join(path, "serial")),
 			"speed": _read(join(path, "speed")),
-			"driver": basename(_read(join(path, "driver")))
+			"driver": ", ".join(drivers),
+			"frontends": _dvbFrontends(path) if knownModel else []
 		})
 	return devices
+
+
+def enumerateRTLSDRSysfsDevices():
+	"""Enumerate supported receivers without calling or opening librtlsdr.
+
+	The setup screen runs this on the Enigma2 main thread, so it must only read
+	the kernel's already available sysfs attributes.  Cached tuner details are
+	added when a receiver has previously been opened by the DAB service.
+	"""
+	devices = [device for device in usbDevices() if (device["vendorId"], device["productId"]) in RTLSDR_USB_DEVICES]
+	serialCounts = {}
+	for device in devices:
+		serial = device.get("serial", "")
+		serialCounts[serial] = serialCounts.get(serial, 0) + 1
+	for index, device in enumerate(devices):
+		serial = device.get("serial", "")
+		port = device.get("port", "")
+		if serial not in GENERIC_SERIALS and serialCounts.get(serial) == 1:
+			key = f"serial:{serial}"
+		elif port:
+			key = f"port:{port}"
+		else:
+			key = f"index:{index}"
+		device.update({
+			"index": index,
+			"key": key,
+			"name": device.get("knownModel") or device.get("product") or _("RTL-SDR USB tuner"),
+			"available": True,
+			"errorCode": 0,
+			"error": "",
+			"tunerType": 0,
+			"tuner": "",
+			"gains": []
+		})
+		if config.dab.rtlsdr.cachedDevice.value == key:
+			device["tunerType"] = config.dab.rtlsdr.cachedTunerType.value
+			device["tuner"] = config.dab.rtlsdr.cachedTuner.value or RTLSDR_TUNERS.get(device["tunerType"], "")
+			try:
+				device["gains"] = [int(value) for value in config.dab.rtlsdr.cachedGains.value.split(",") if value]
+			except ValueError:
+				device["gains"] = []
+			device["probeCached"] = bool(device["tuner"])
+	return devices
+
+
+def hasRTLSDRUSBHardware():
+	return any((device.get("vendorId"), device.get("productId")) in RTLSDR_USB_DEVICES for device in usbDevices())
+
+
+def isRTLSDRDVBKernelDriverBlacklisted():
+	return exists(RTLSDR_DVB_BLACKLIST_PATH)
+
+
+def hasRTLSDRDVBKernelDriver(devices=None):
+	"""Detect the DVB side of a dual-purpose RTL2832 receiver without opening it."""
+	if isRTLSDRDVBKernelDriverBlacklisted():
+		return True
+	if any(exists(f"/sys/module/{module}") for module in RTLSDR_DVB_KERNEL_MODULES):
+		return True
+	devices = usbDevices() if devices is None else devices
+	for device in devices:
+		drivers = {driver.strip().replace("-", "_") for driver in device.get("driver", "").split(",") if driver.strip()}
+		if drivers.intersection(RTLSDR_DVB_KERNEL_MODULES):
+			return True
+	# A connected stick normally causes the module to be loaded.  Checking the
+	# dependency index additionally covers images where module auto-loading has
+	# been disabled for another reason, without recursively scanning the module tree.
+	modules = _read(f"/lib/modules/{uname().release}/modules.dep").replace("-", "_")
+	return any(f"/{module}.ko" in modules for module in RTLSDR_DVB_KERNEL_MODULES)
+
+
+def setRTLSDRDVBKernelDriverBlacklist(enabled):
+	"""Persist the mutually exclusive choice between kernel DVB and RTL-SDR use."""
+	if enabled:
+		makedirs("/etc/modprobe.d", exist_ok=True)
+		temporary = f"{RTLSDR_DVB_BLACKLIST_PATH}.tmp"
+		with open(temporary, "w", encoding="utf-8") as fd:
+			fd.write("# Managed by Enigma2 DAB+ settings.\n")
+			fd.write("# Disable the RTL2832 DVB frontend so librtlsdr can claim the receiver.\n")
+			for module in RTLSDR_DVB_KERNEL_MODULES:
+				fd.write(f"blacklist {module}\n")
+		replace(temporary, RTLSDR_DVB_BLACKLIST_PATH)
+	elif exists(RTLSDR_DVB_BLACKLIST_PATH):
+		unlink(RTLSDR_DVB_BLACKLIST_PATH)
 
 
 class RTLSDRLibrary:
@@ -341,7 +534,7 @@ def enumerateRTLSDRDevices(probe=False):
 
 
 def hasRTLSDRDevice():
-	return bool(enumerateRTLSDRDevices(probe=False))
+	return hasRTLSDRUSBHardware()
 
 
 def isRTLSDRInUse(device=None):
@@ -400,9 +593,12 @@ def canScanRTLSDR():
 
 
 def updateDABBoxInfo(configElement=None):
-	from Components.NimManager import nimmanager
-	BoxInfo.setMutableItem("HasRTLSDR", hasRTLSDRDevice())
-	BoxInfo.setMutableItem("CanScanDAB", canScanRTLSDR() or bool(nimmanager.getEnabledNimListOfType("DVB-S")))
+	hasUSB = hasRTLSDRUSBHardware()
+	satellites = getDABSatelliteDefinitions(availableOnly=True)
+	ensureDABSatelliteConfig(satellites)
+	BoxInfo.setMutableItem("HasRTLSDR", hasUSB)
+	BoxInfo.setMutableItem("HasDABSettings", hasUSB or bool(satellites))
+	BoxInfo.setMutableItem("CanScanDAB", canScanRTLSDR() or canScanSatelliteDAB(satellites))
 
 
 class DABUSBInstaller:
@@ -415,9 +611,6 @@ class DABUSBInstaller:
 		return hasRTLSDRBackend() and any(exists(path) for path in RTLSDR_LIBRARY_PATHS)
 
 	def requestInstall(self):
-		def hasRTLSDRUSBHardware():
-			return any((device.get("vendorId"), device.get("productId")) in RTLSDR_USB_DEVICES for device in usbDevices())
-
 		updateDABBoxInfo()
 		if self.running or self.hasRTLSDRRuntime() or not hasRTLSDRUSBHardware() or self.session is None:
 			return
@@ -462,6 +655,7 @@ def initRTLSDR(session):
 	global dabUSBInstaller
 	dabUSBInstaller = DABUSBInstaller()
 	dabUSBInstaller.session = session
+	updateDABBoxInfo()
 	if dabUSBHotplug not in dabHotplugNotifier:
 		dabHotplugNotifier.append(dabUSBHotplug)
 	# A receiver can already be present before Enigma2 opens the hotplug socket.
@@ -473,6 +667,16 @@ def initRTLSDR(session):
 
 if not hasattr(config, "dab"):
 	config.dab = ConfigSubsection()
+if not hasattr(config.dab, "satellites"):
+	config.dab.satellites = ConfigSubDict()
+if not hasattr(config.dab, "scanSource"):
+	config.dab.scanSource = ConfigSelection(default="all", choices=[
+		("all", _("USB and satellite")),
+		("rtlsdr", _("USB receiver only")),
+		("dvb", _("Satellite only"))
+	])
+if not hasattr(config.dab, "slideshow"):
+	config.dab.slideshow = ConfigYesNo(default=True)
 if not hasattr(config.dab, "rtlsdr"):
 	config.dab.rtlsdr = ConfigSubsection()
 	config.dab.rtlsdr.enabled = ConfigYesNo(default=False)
@@ -483,16 +687,11 @@ if not hasattr(config.dab, "rtlsdr"):
 	config.dab.rtlsdr.cachedTuner = ConfigText(default="", fixed_size=False)
 	config.dab.rtlsdr.cachedGains = ConfigText(default="", fixed_size=False)
 	config.dab.rtlsdr.region = ConfigSelection(default="all", choices=getRTLSDRRegions())
-	config.dab.rtlsdr.scanSource = ConfigSelection(default="all", choices=[
-		("all", _("USB and satellite")),
-		("rtlsdr", _("USB receiver only")),
-		("dvb", _("Satellite only"))
-	])
-	config.dab.rtlsdr.slideshow = ConfigYesNo(default=True)
 	config.dab.rtlsdr.automaticGain = ConfigYesNo(default=True)
 	# The Welle backend maps this value onto the receiver's discrete gain table.  It
 	# is a percentage, not a physical dB value.
 	config.dab.rtlsdr.gain = ConfigSelectionNumber(min=0, max=100, stepwidth=1, default=35, units="%")
 	config.dab.rtlsdr.ppm = ConfigInteger(default=0, limits=(-200, 200))
 
+ensureDABSatelliteConfig()
 config.dab.rtlsdr.enabled.addNotifier(updateDABBoxInfo)

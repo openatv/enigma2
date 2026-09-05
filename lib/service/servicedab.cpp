@@ -32,6 +32,7 @@
 #include <lib/base/nconfig.h>
 #include <lib/base/esimpleconfig.h>
 #include <lib/dvb/decoder.h>
+#include <lib/dvb/dvb.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/service/dabdebug.h>
@@ -551,8 +552,9 @@ void eDABWorker::publish(bool force)
 /*
  * RTL-SDR is intentionally kept out of the Enigma2 main loop.  This worker
  * owns the optional userspace receiver backend and forwards compressed LOAS
- * audio plus small metadata updates.  No DVB frontend is registered for the
- * USB device, so it cannot accidentally be allocated for TV reception.
+ * audio plus small metadata updates.  The resource manager rejects receivers
+ * which are still owned by a DVB kernel driver and serializes userspace SDR
+ * access for devices whose DVB modules have been blacklisted.
  */
 class eDABSDRWorker : private eThread
 {
@@ -659,6 +661,21 @@ private:
 
 	void thread() override
 	{
+		hasStarted();
+		ePtr<eDVBResourceManager> resourceManager;
+		if (eDVBResourceManager::getInstance(resourceManager) || resourceManager->acquireRTLSDRAdapter())
+		{
+			m_stats.error = EBUSY;
+			publish(true);
+			return;
+		}
+		struct RTLSDRAdapterLease
+		{
+			ePtr<eDVBResourceManager> manager;
+			explicit RTLSDRAdapterLease(eDVBResourceManager *resourceManager) : manager(resourceManager) { }
+			~RTLSDRAdapterLease() { manager->releaseRTLSDRAdapter(); }
+		} adapterLease(resourceManager);
+
 		int audioPipe[2] = {-1, -1};
 		int errorPipe[2] = {-1, -1};
 		int inputPipe[2] = {-1, -1};
@@ -666,7 +683,6 @@ private:
 		{
 			m_stats.error = errno;
 			closePipes(audioPipe, errorPipe, inputPipe);
-			hasStarted();
 			publish(true);
 			return;
 		}
@@ -710,7 +726,6 @@ private:
 		{
 			m_stats.error = errno;
 			closePipes(audioPipe, errorPipe, inputPipe);
-			hasStarted();
 			publish(true);
 			return;
 		}
@@ -739,7 +754,6 @@ private:
 #endif
 		fcntl(audioPipe[0], F_SETFL, fcntl(audioPipe[0], F_GETFL) | O_NONBLOCK);
 		fcntl(errorPipe[0], F_SETFL, fcntl(errorPipe[0], F_GETFL) | O_NONBLOCK);
-		hasStarted();
 		eDABDebug("[eDABSDRWorker] started channel=%s sid=%08x device=%s gain=%s",
 			m_channel.c_str(), m_service_id, m_device.c_str(), m_automatic_gain ? "automatic" : m_gain.c_str());
 
@@ -1339,8 +1353,8 @@ RESULT eServiceFactoryDAB::offlineOperations(const eServiceReference &, ePtr<iSe
 DEFINE_REF(eServiceDABRecord);
 
 eServiceDABRecord::eServiceDABRecord(const eServiceReference &ref)
-	: m_reference(ref), m_worker_pump(eApp, 1, "eServiceDABRecord"), m_file_fd(-1),
-	  m_state(stateIdle), m_simulate(false), m_tuned(false), m_tap_running(false),
+	: m_reference(ref), m_worker_pump(eApp, 1, "eServiceDABRecord"), m_sdr_consumer_token(0), m_file_fd(-1),
+	  m_state(stateIdle), m_simulate(false), m_streaming(false), m_tuned(false), m_tap_running(false),
 	  m_running_event_sent(false), m_write_error_reported(false), m_write_error(0),
 	  m_error(NoError), m_written_bytes(0)
 {
@@ -1416,6 +1430,23 @@ bool eServiceDABRecord::parseTransport(eDABTransport &transport, uint32_t &ip, u
 	return true;
 }
 
+bool eServiceDABRecord::parseRTLSDRChannel(std::string &channel) const
+{
+	const std::string prefix("dab://rtlsdr/");
+	if (m_reference.path.compare(0, prefix.size(), prefix) != 0)
+		return false;
+	channel = m_reference.path.substr(prefix.size());
+	static const char *validChannels[] = {
+		"5A", "5B", "5C", "5D", "6A", "6B", "6C", "6D",
+		"7A", "7B", "7C", "7D", "8A", "8B", "8C", "8D",
+		"9A", "9B", "9C", "9D", "10A", "10B", "10C", "10D",
+		"11A", "11B", "11C", "11D", "12A", "12B", "12C", "12D",
+		"13A", "13B", "13C", "13D", "13E", "13F"
+	};
+	return std::find(validChannels, validChannels + sizeof(validChannels) / sizeof(validChannels[0]), channel) !=
+		validChannels + sizeof(validChannels) / sizeof(validChannels[0]);
+}
+
 bool eServiceDABRecord::prepareParent()
 {
 	ePtr<eServiceCenter> center;
@@ -1443,12 +1474,17 @@ RESULT eServiceDABRecord::prepare(const char *filename, time_t beginTime, time_t
 	eDABTransport transport;
 	uint32_t destinationIp;
 	uint16_t destinationPort;
-	if (!parseTransport(transport, destinationIp, destinationPort))
+	std::string sdrChannel;
+	const bool rtlSDR = parseRTLSDRChannel(sdrChannel);
+	if (!rtlSDR && !parseTransport(transport, destinationIp, destinationPort))
+		return errMisconfiguration;
+	if (rtlSDR && !eConfigManager::getConfigBoolValue("config.dab.rtlsdr.enabled", false))
 		return errMisconfiguration;
 
 	m_filename = filename;
+	m_streaming = false;
 	m_state = statePrepared;
-	if (!prepareParent())
+	if (!rtlSDR && !prepareParent())
 	{
 		m_state = stateIdle;
 		m_error = errNoResources;
@@ -1477,6 +1513,37 @@ RESULT eServiceDABRecord::prepareStreaming(bool, bool)
 	return -1;
 }
 
+RESULT eServiceDABRecord::prepareStreamingToFD(int fd)
+{
+	if (m_state != stateIdle || fd < 0)
+		return errMisconfiguration;
+	eDABTransport transport;
+	uint32_t destinationIp;
+	uint16_t destinationPort;
+	std::string sdrChannel;
+	const bool rtlSDR = parseRTLSDRChannel(sdrChannel);
+	if (!rtlSDR && !parseTransport(transport, destinationIp, destinationPort))
+		return errMisconfiguration;
+	if (rtlSDR && !eConfigManager::getConfigBoolValue("config.dab.rtlsdr.enabled", false))
+		return errMisconfiguration;
+	m_file_fd = dup(fd);
+	if (m_file_fd < 0)
+		return errOpenRecordFile;
+	m_filename.clear();
+	m_streaming = true;
+	m_state = statePrepared;
+	if (!rtlSDR && !prepareParent())
+	{
+		::close(m_file_fd);
+		m_file_fd = -1;
+		m_state = stateIdle;
+		m_streaming = false;
+		m_error = errNoResources;
+		return m_error;
+	}
+	return 0;
+}
+
 RESULT eServiceDABRecord::start(bool simulate)
 {
 	m_simulate = simulate;
@@ -1490,15 +1557,36 @@ RESULT eServiceDABRecord::start(bool simulate)
 	if (m_state != statePrepared)
 		return errMisconfiguration;
 
-	m_file_fd = ::open(m_filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_LARGEFILE | O_CLOEXEC, 0666);
-	if (m_file_fd < 0)
+	if (!m_streaming)
 	{
-		m_error = errOpenRecordFile;
-		m_event(this, evRecordFailed);
-		return m_error;
+		m_file_fd = ::open(m_filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_LARGEFILE | O_CLOEXEC, 0666);
+		if (m_file_fd < 0)
+		{
+			m_error = errOpenRecordFile;
+			m_event(this, evRecordFailed);
+			return m_error;
+		}
 	}
 	m_state = stateRecording;
-	eDABDebug("[eServiceDABRecord] recording DAB+ LOAS to '%s'", m_filename.c_str());
+	if (m_streaming)
+		eDABDebug("[eServiceDABRecord] streaming DAB+ LOAS");
+	else
+		eDABDebug("[eServiceDABRecord] recording DAB+ LOAS to '%s'", m_filename.c_str());
+	std::string sdrChannel;
+	if (parseRTLSDRChannel(sdrChannel))
+	{
+		m_tuned = true;
+		m_event(this, evTunedIn);
+		if (!startRTLSDR())
+		{
+			::close(m_file_fd);
+			m_file_fd = -1;
+			m_state = statePrepared;
+			reportFailure(errNoResources, evRecordFailed);
+			return m_error;
+		}
+		return 0;
+	}
 	if (m_tuned && !startTap())
 	{
 		::close(m_file_fd);
@@ -1512,10 +1600,11 @@ RESULT eServiceDABRecord::start(bool simulate)
 
 RESULT eServiceDABRecord::stop()
 {
-	if (m_state == stateIdle && !m_parent && !m_worker && m_file_fd < 0)
+	if (m_state == stateIdle && !m_parent && !m_worker && !m_sdr_worker && !m_sdr_source && m_file_fd < 0)
 		return 0;
 	const bool notify = m_state != stateIdle;
 	m_state = stateIdle;
+	stopRTLSDR();
 	stopTap();
 	if (m_parent)
 		m_parent->stop();
@@ -1526,14 +1615,72 @@ RESULT eServiceDABRecord::stop()
 		::close(m_file_fd);
 		m_file_fd = -1;
 	}
-	if (!m_simulate && !m_filename.empty())
-		eDABDebug("[eServiceDABRecord] stopped '%s' after %llu bytes", m_filename.c_str(),
+	if (!m_simulate)
+		eDABDebug("[eServiceDABRecord] stopped %s%s%s after %llu bytes",
+			m_streaming ? "stream" : "'", m_streaming ? "" : m_filename.c_str(), m_streaming ? "" : "'",
 			static_cast<unsigned long long>(m_written_bytes));
 	m_tuned = false;
 	m_running_event_sent = false;
+	m_streaming = false;
 	if (notify)
 		m_event(this, evRecordStopped);
 	return 0;
+}
+
+bool eServiceDABRecord::startRTLSDR()
+{
+	if (m_sdr_worker || m_sdr_source)
+		return true;
+	std::string channel;
+	if (!parseRTLSDRChannel(channel) || !eConfigManager::getConfigBoolValue("config.dab.rtlsdr.enabled", false))
+		return false;
+	const uint32_t serviceId = m_reference.getUnsignedData(6);
+	if (!serviceId)
+		return false;
+	if (eServiceDAB::attachRTLSDRConsumer(m_reference,
+		[this](const uint8_t *data, size_t length) { writeAudio(data, length); },
+		[this](const eDABWorkerStats &stats) { workerMessage(stats); },
+		m_sdr_source, m_sdr_consumer_token))
+	{
+		eDABDebug("[eServiceDABRecord] reusing active RTL-SDR source dabSid=%08x", serviceId);
+		if (!m_running_event_sent)
+		{
+			m_running_event_sent = true;
+			m_event(this, evRecordRunning);
+		}
+		return true;
+	}
+	m_sdr_worker.reset(new eDABSDRWorker(channel, serviceId, std::string(),
+		[this](const uint8_t *data, size_t length) { writeAudio(data, length); },
+		[](const uint8_t *, size_t, int) { },
+		eDABSDRWorker::SPIImageCallback(), eDABSDRWorker::SPICallback(), eDABSDRWorker::MOTCallback(),
+		m_worker_pump));
+	if (!m_sdr_worker->start())
+	{
+		m_sdr_worker.reset();
+		return false;
+	}
+	eDABDebug("[eServiceDABRecord] RTL-SDR source started channel=%s dabSid=%08x", channel.c_str(), serviceId);
+	if (!m_running_event_sent)
+	{
+		m_running_event_sent = true;
+		m_event(this, evRecordRunning);
+	}
+	return true;
+}
+
+void eServiceDABRecord::stopRTLSDR()
+{
+	if (m_sdr_source)
+	{
+		m_sdr_source->detachRTLSDRConsumer(m_sdr_consumer_token);
+		m_sdr_source = nullptr;
+		m_sdr_consumer_token = 0;
+	}
+	if (!m_sdr_worker)
+		return;
+	m_sdr_worker->stop();
+	m_sdr_worker.reset();
 }
 
 bool eServiceDABRecord::startTap()
@@ -1634,7 +1781,7 @@ void eServiceDABRecord::writeAudio(const uint8_t *data, size_t length)
 		return;
 	while (length)
 	{
-		const ssize_t written = ::write(m_file_fd, data, length);
+		const ssize_t written = m_streaming ? ::send(m_file_fd, data, length, MSG_NOSIGNAL) : ::write(m_file_fd, data, length);
 		if (written < 0 && errno == EINTR)
 			continue;
 		if (written <= 0)
@@ -1702,6 +1849,9 @@ RESULT eServiceDABRecord::getFilenameExtension(std::string &extension)
 }
 
 DEFINE_REF(eServiceDAB);
+
+std::mutex eServiceDAB::s_rtlsdr_source_mutex;
+eServiceDAB *eServiceDAB::s_rtlsdr_source = nullptr;
 
 eServiceDAB::eServiceDAB(const eServiceReference &ref)
 	: m_reference(ref), m_worker_pump(eApp, 1, "eServiceDAB"), m_running(false),
@@ -1873,6 +2023,7 @@ RESULT eServiceDAB::stop()
 {
 	if (!m_running && !m_parent && !m_worker && !m_sdr_worker)
 		return 0;
+	m_running = false;
 	stopRTLSDR();
 	stopTap();
 	if (m_parent)
@@ -1880,7 +2031,6 @@ RESULT eServiceDAB::stop()
 	m_radio_picture_decoder = nullptr;
 	m_parent_event_connection = nullptr;
 	m_parent = nullptr;
-	m_running = false;
 	m_event(this, evStopped);
 	return 0;
 }
@@ -1889,6 +2039,14 @@ bool eServiceDAB::startRTLSDR()
 {
 	if (m_sdr_worker)
 		return true;
+	{
+		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
+		/* A retained source can still be feeding a recording or Port 8001 after
+		 * live playback has stopped.  Do not start a second decoder which could
+		 * steal the single RTL-SDR device from that consumer. */
+		if (s_rtlsdr_source && s_rtlsdr_source != this)
+			return false;
+	}
 	std::string channel;
 	if (!parseRTLSDRChannel(channel))
 		return false;
@@ -1916,6 +2074,10 @@ bool eServiceDAB::startRTLSDR()
 		stopAudioPipeline();
 		return false;
 	}
+	{
+		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
+		s_rtlsdr_source = this;
+	}
 	eDABDebug("[eServiceDAB] RTL-SDR receiver started channel=%s dabSid=%08x",
 		channel.c_str(), serviceId);
 	if (serviceId)
@@ -1930,14 +2092,86 @@ bool eServiceDAB::startRTLSDR()
 	return true;
 }
 
-void eServiceDAB::stopRTLSDR()
+void eServiceDAB::stopRTLSDR(bool force)
 {
 	if (!m_sdr_worker)
 		return;
 	m_audio_probe_deadline = 0;
+	if (!force && hasRTLSDRConsumers())
+	{
+		stopAudioPipeline();
+		return;
+	}
+	{
+		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
+		if (s_rtlsdr_source == this)
+			s_rtlsdr_source = nullptr;
+	}
 	m_sdr_worker->stop();
 	m_sdr_worker.reset();
 	stopAudioPipeline();
+}
+
+bool eServiceDAB::attachRTLSDRConsumer(const eServiceReference &reference,
+	const std::function<void(const uint8_t *, size_t)> &audioCallback,
+	const std::function<void(const eDABWorkerStats &)> &statsCallback,
+	ePtr<eServiceDAB> &source, uint64_t &token)
+{
+	ePtr<eServiceDAB> candidate;
+	{
+		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
+		if (!s_rtlsdr_source || s_rtlsdr_source->m_reference.toCompareString() != reference.toCompareString())
+			return false;
+		candidate = s_rtlsdr_source;
+	}
+	{
+		std::lock_guard<std::mutex> lock(candidate->m_rtlsdr_consumers_mutex);
+		if (!candidate->m_sdr_worker)
+			return false;
+		token = candidate->m_next_rtlsdr_consumer++;
+		candidate->m_rtlsdr_consumers[token] = {audioCallback, statsCallback};
+	}
+	source = candidate;
+	return true;
+}
+
+void eServiceDAB::detachRTLSDRConsumer(uint64_t token)
+{
+	bool stopSource = false;
+	{
+		std::lock_guard<std::mutex> lock(m_rtlsdr_consumers_mutex);
+		m_rtlsdr_consumers.erase(token);
+		stopSource = m_rtlsdr_consumers.empty() && !m_running;
+	}
+	if (stopSource)
+		stopRTLSDR(true);
+}
+
+bool eServiceDAB::hasRTLSDRConsumers()
+{
+	std::lock_guard<std::mutex> lock(m_rtlsdr_consumers_mutex);
+	return !m_rtlsdr_consumers.empty();
+}
+
+void eServiceDAB::dispatchRTLSDRAudio(const uint8_t *data, size_t length)
+{
+	std::lock_guard<std::mutex> lock(m_rtlsdr_consumers_mutex);
+	for (const auto &consumer : m_rtlsdr_consumers)
+		if (consumer.second.audioCallback)
+			consumer.second.audioCallback(data, length);
+}
+
+void eServiceDAB::dispatchRTLSDRStats(const eDABWorkerStats &stats)
+{
+	std::vector<std::function<void(const eDABWorkerStats &)> > callbacks;
+	{
+		std::lock_guard<std::mutex> lock(m_rtlsdr_consumers_mutex);
+		for (const auto &consumer : m_rtlsdr_consumers)
+			if (consumer.second.statsCallback)
+				callbacks.push_back(consumer.second.statsCallback);
+	}
+	for (const auto &callback : callbacks)
+		callback(stats);
 }
 
 bool eServiceDAB::startTap()
@@ -2062,6 +2296,12 @@ void eServiceDAB::parentEvent(iPlayableService *, int event)
 
 void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 {
+	dispatchRTLSDRStats(stats);
+	if (!m_running)
+	{
+		m_stats = stats;
+		return;
+	}
 	const bool dlsChanged = strcmp(m_stats.dynamicLabel, stats.dynamicLabel) != 0;
 	const bool dlPlusChanged = m_stats.dlPlusRevision != stats.dlPlusRevision ||
 		strcmp(m_stats.dlPlusItemTitle, stats.dlPlusItemTitle) != 0 ||
@@ -2095,7 +2335,7 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 			static_cast<unsigned long long>(queueOverruns));
 		if (m_sdr_worker)
 		{
-			stopRTLSDR();
+			stopRTLSDR(true);
 			if (!startRTLSDR())
 				eWarning("[eServiceDAB] unable to restart the SDR receiver with the software decoder");
 		}
@@ -2509,7 +2749,10 @@ void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t duratio
 
 void eServiceDAB::pushLOAS(const uint8_t *data, size_t length)
 {
-	if (!data || !length || !m_audio_source || !m_audio_input_loas)
+	if (!data || !length)
+		return;
+	dispatchRTLSDRAudio(data, length);
+	if (!m_audio_source || !m_audio_input_loas)
 		return;
 	if (m_audio_capture)
 		fwrite(data, 1, length, m_audio_capture);

@@ -22,6 +22,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <algorithm>
+#include <cctype>
 #include <fstream>
 
 #define MIN(a,b) (a < b ? a : b)
@@ -86,7 +88,7 @@ ePtr<eDVBResourceManager> NewResourceManagerPtr(void)
 }
 
 eDVBResourceManager::eDVBResourceManager()
-	:m_releaseCachedChannelTimer(eTimer::create(eApp))
+	:m_rtlsdr_acquired(false), m_releaseCachedChannelTimer(eTimer::create(eApp))
 {
 	avail = 1;
 	busy = 0;
@@ -261,6 +263,18 @@ bool eDVBAdapterLinux::isusb(int nr)
 }
 
 DEFINE_REF(eDVBUsbAdapter);
+
+static bool isRTL2832FrontendName(const char *name)
+{
+	if (!name)
+		return false;
+	std::string value(name);
+	std::transform(value.begin(), value.end(), value.begin(), [](unsigned char character) { return std::tolower(character); });
+	return value.find("rtl2832") != std::string::npos ||
+		value.find("rtl2838") != std::string::npos ||
+		value.find("rtl-sdr") != std::string::npos;
+}
+
 eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 : eDVBAdapterLinux(nr)
 {
@@ -277,6 +291,8 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	int fd;
 
 	pumpThread = 0;
+	rtlSDRBridge = false;
+	running = false;
 
 	int num_fe = 0;
 
@@ -448,6 +464,9 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	ioctl(vtunerFd, VTUNER_SET_TYPE, type);
 	ioctl(vtunerFd, VTUNER_SET_HAS_OUTPUTS, "no");
 	ioctl(vtunerFd, VTUNER_SET_ADAPTER, nr);
+	rtlSDRBridge = isRTL2832FrontendName(name) || isRTL2832FrontendName(fe_info.name);
+	if (rtlSDRBridge)
+		eDebug("[eDVBUsbAdapter] adapter%d is an RTL-SDR bridge", nr);
 
 	memset(pidList, 0xff, sizeof(pidList));
 
@@ -752,6 +771,31 @@ void eDVBResourceManager::setUsbTuner()
 			}
 		}
 	}
+}
+
+RESULT eDVBResourceManager::acquireRTLSDRAdapter()
+{
+	eSingleLocker lock(m_rtlsdr_lock);
+	if (m_rtlsdr_acquired)
+		return -EBUSY;
+	for (eSmartPtrList<iDVBAdapter>::iterator adapter(m_adapter.begin()); adapter != m_adapter.end(); ++adapter)
+	{
+		if (!adapter->isRTLSDRBridge())
+			continue;
+		eWarning("[eDVBResourceManager] refusing unsafe RTL-SDR handover while the DVB kernel driver owns the device");
+		return -EBUSY;
+	}
+	/* Also serialize SDR access when no DVB kernel driver/bridge is installed. */
+	m_rtlsdr_acquired = true;
+	return 0;
+}
+
+void eDVBResourceManager::releaseRTLSDRAdapter()
+{
+	eSingleLocker lock(m_rtlsdr_lock);
+	if (!m_rtlsdr_acquired)
+		return;
+	m_rtlsdr_acquired = false;
 }
 
 PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)

@@ -134,7 +134,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			defaultDir = ""
 		if defaultDir == "":
 			defaultDir = None
-		self.filelist = FileList(defaultDir, matchingPattern=r"(?i)^.*\.(mp2|mp3|ogg|stream|ts|trp|mts|m2ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|m4v|mkv|mp4|m4a|dat|flac|flv|mov|dts|3gp|3g2|asf|wmv|wma|webm)", useServiceRef=True, additionalExtensions="4098:m3u 4098:e2pls 4098:pls")
+		self.filelist = FileList(defaultDir, matchingPattern=r"(?i)^.*\.(aac|mp2|mp3|ogg|stream|ts|trp|mts|m2ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|m4v|mkv|mp4|m4a|dat|flac|flv|mov|dts|3gp|3g2|asf|wmv|wma|webm)", useServiceRef=True, additionalExtensions="4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
@@ -1246,7 +1246,7 @@ def filescan(**kwargs):
 			description=_("View video CD..."),
 			openfnc=filescan_open,
 		),
-		Scanner(mimetypes=["audio/mpeg", "audio/x-wav", "application/ogg", "audio/x-flac"],
+		Scanner(mimetypes=["audio/mpeg", "audio/x-aac", "audio/x-wav", "application/ogg", "audio/x-flac"],
 			paths_to_scan=[
 					ScanPath(path="", with_subdirs=False),
 				],

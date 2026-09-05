@@ -39,7 +39,7 @@ class DABSlideDisplay(Screen):
 		})
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.removeNotifier)
-		config.dab.rtlsdr.slideshow.addNotifier(self.slideshowChanged, initial_call=False)
+		config.dab.slideshow.addNotifier(self.slideshowChanged, initial_call=False)
 
 	def layoutFinished(self):
 		self.hide()
@@ -114,9 +114,7 @@ class DABSlideDisplay(Screen):
 		self["picture"].instance.resize(eSize(targetWidth, targetHeight))
 
 	def isEnabled(self, reference):
-		# The setting belongs to the optional USB receiver.  Satellite DAB uses
-		# the normal DAB radio behaviour and remains enabled.
-		return not reference.getPath().startswith("dab://rtlsdr/") or config.dab.rtlsdr.slideshow.value
+		return config.dab.slideshow.value
 
 	def updateSlide(self):
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -147,7 +145,7 @@ class DABSlideDisplay(Screen):
 		self.hide()
 
 	def removeNotifier(self):
-		config.dab.rtlsdr.slideshow.removeNotifier(self.slideshowChanged)
+		config.dab.slideshow.removeNotifier(self.slideshowChanged)
 
 
 class RdsInfoDisplaySummary(Screen):

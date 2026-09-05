@@ -5,7 +5,9 @@
 #include <cstdio>
 #include <cstdint>
 #include <functional>
+#include <map>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <vector>
 
@@ -232,6 +234,12 @@ public:
 	void showRassInteractivePic(int page, int subpage) override;
 	ePyObject getRassInteractiveMask() override;
 
+	static bool attachRTLSDRConsumer(const eServiceReference &reference,
+		const std::function<void(const uint8_t *, size_t)> &audioCallback,
+		const std::function<void(const eDABWorkerStats &)> &statsCallback,
+		ePtr<eServiceDAB> &source, uint64_t &token);
+	void detachRTLSDRConsumer(uint64_t token);
+
 private:
 	eServiceReferenceDVB parentReference() const;
 	bool parseTransport(eDABTransport &transport, uint32_t &ip, uint16_t &port) const;
@@ -239,7 +247,10 @@ private:
 	bool startTap();
 	bool startRTLSDR();
 	void stopTap();
-	void stopRTLSDR();
+	void stopRTLSDR(bool force = false);
+	bool hasRTLSDRConsumers();
+	void dispatchRTLSDRAudio(const uint8_t *data, size_t length);
+	void dispatchRTLSDRStats(const eDABWorkerStats &stats);
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
 	static bool sinkAcceptsLOAS(const char *factoryName);
@@ -270,6 +281,16 @@ private:
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
 	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	struct RTLSDRConsumer
+	{
+		std::function<void(const uint8_t *, size_t)> audioCallback;
+		std::function<void(const eDABWorkerStats &)> statsCallback;
+	};
+	static std::mutex s_rtlsdr_source_mutex;
+	static eServiceDAB *s_rtlsdr_source;
+	std::mutex m_rtlsdr_consumers_mutex;
+	std::map<uint64_t, RTLSDRConsumer> m_rtlsdr_consumers;
+	uint64_t m_next_rtlsdr_consumer = 1;
 	int m_socket[2];
 	bool m_running;
 	bool m_tap_running;
@@ -316,6 +337,7 @@ public:
 		const char *name, const char *description, const char *tags,
 		bool descramble, bool recordEcm, int packetSize) override;
 	RESULT prepareStreaming(bool descramble, bool includeEcm) override;
+	RESULT prepareStreamingToFD(int fd);
 	RESULT start(bool simulate = false) override;
 	RESULT stop() override;
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) override;
@@ -329,7 +351,10 @@ private:
 
 	eServiceReferenceDVB parentReference() const;
 	bool parseTransport(eDABTransport &transport, uint32_t &ip, uint16_t &port) const;
+	bool parseRTLSDRChannel(std::string &channel) const;
 	bool prepareParent();
+	bool startRTLSDR();
+	void stopRTLSDR();
 	bool startTap();
 	void stopTap();
 	void parentEvent(iPlayableService *service, int event);
@@ -344,10 +369,14 @@ private:
 	sigc::signal<void(iRecordableService *, int)> m_event;
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
+	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	ePtr<eServiceDAB> m_sdr_source;
+	uint64_t m_sdr_consumer_token;
 	int m_socket[2];
 	int m_file_fd;
 	State m_state;
 	bool m_simulate;
+	bool m_streaming;
 	bool m_tuned;
 	bool m_tap_running;
 	bool m_running_event_sent;

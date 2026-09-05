@@ -105,6 +105,7 @@ public:
 
 	virtual int getNumFrontends() = 0;
 	virtual RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate=false) = 0;
+	virtual bool isRTLSDRBridge() const { return false; }
 };
 
 class eDVBAdapterLinux: public iDVBAdapter
@@ -140,6 +141,7 @@ private:
 	int pipeFd[2];
 	std::string usbFrontendName;
 	std::string virtualFrontendName;
+	bool rtlSDRBridge;
 	bool running;
 	unsigned short int pidList[30];
 	unsigned char buffer[4 * 1024 * 188];
@@ -150,6 +152,7 @@ private:
 public:
 	eDVBUsbAdapter(int nr);
 	~eDVBUsbAdapter();
+	bool isRTLSDRBridge() const override { return rtlSDRBridge; }
 };
 #endif // SWIG
 
@@ -162,6 +165,8 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	eSmartPtrList<iDVBAdapter> m_adapter;
 	eSmartPtrList<eDVBRegisteredDemux> m_demux;
 	eSmartPtrList<eDVBRegisteredFrontend> m_frontend, m_simulate_frontend;
+	eSingleLock m_rtlsdr_lock;
+	bool m_rtlsdr_acquired;
 	void addAdapter(iDVBAdapter *adapter, bool front = false);
 	void setUsbTuner();
 
@@ -242,6 +247,8 @@ public:
 	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index);
 			/* allocate a demux able to filter on the selected frontend. */
 	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int &cap);
+	RESULT acquireRTLSDRAdapter();
+	void releaseRTLSDRAdapter();
 #ifdef SWIG
 public:
 #endif

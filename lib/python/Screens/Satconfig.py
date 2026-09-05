@@ -507,6 +507,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		except Exception:
 			pass
 		configfile.save()
+		# DAB+ satellite choices are derived from the live tuner topology. Keep
+		# their menu gating and position list in sync when a tuner is changed
+		# without requiring an Enigma2 restart.
+		from Components.RTLSDR import updateDABBoxInfo
+		updateDABBoxInfo()
 
 	def cancelConfirm(self, result):
 		if not result:

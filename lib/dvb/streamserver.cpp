@@ -25,6 +25,7 @@
 #include <lib/dvb/streamserver.h>
 #include <lib/dvb/encoder.h>
 #include <lib/python/python_helpers.h>
+#include <lib/service/servicedab.h>
 
 enum eStreamServerDBusEventType
 {
@@ -501,6 +502,7 @@ eStreamClient::eStreamClient(eStreamServer *handler, int socket, const std::stri
 eStreamClient::~eStreamClient()
 {
 	rsn->stop();
+	stopDABStream();
 	stop();
 	if (streamThread)
 	{
@@ -512,6 +514,45 @@ eStreamClient::~eStreamClient()
 		if (eEncoder::getInstance()) eEncoder::getInstance()->freeEncoder(encoderFd);
 	}
 	if (streamFd >= 0) ::close(streamFd);
+}
+
+bool eStreamClient::startDABStream(const std::string &serviceref)
+{
+	eServiceReference reference(serviceref);
+	if (!reference || reference.type != eServiceReference::idServiceDAB)
+		return false;
+	ePtr<eServiceDABRecord> record = new eServiceDABRecord(reference);
+	if (!record || record->prepareStreamingToFD(streamFd))
+		return false;
+	if (record->start())
+	{
+		record->stop();
+		return false;
+	}
+	m_dabRecord = static_cast<iRecordableService *>(record.operator->());
+	record->connectEvent(sigc::mem_fun(*this, &eStreamClient::dabRecordEvent), m_dabRecordConnection);
+	return true;
+}
+
+void eStreamClient::stopDABStream()
+{
+	m_dabRecordConnection = nullptr;
+	if (m_dabRecord)
+		m_dabRecord->stop();
+	m_dabRecord = nullptr;
+}
+
+void eStreamClient::dabRecordEvent(iRecordableService *service, int event)
+{
+	if (event == iRecordableService::evRecordFailed || event == iRecordableService::evRecordWriteError ||
+		event == iRecordableService::evTuneFailed || event == iRecordableService::evGstRecordEnded)
+	{
+		/* stopStream() releases the client's record pointer. Keep the record
+		 * alive until its synchronous event callback has returned. */
+		ePtr<iRecordableService> hold = service;
+		(void)hold;
+		stopStream();
+	}
 }
 
 void eStreamClient::start()
@@ -623,7 +664,10 @@ void eStreamClient::notifier(int what)
 			std::string serviceref = urlDecode(request.substr(5, pos - 5));
 			if (!serviceref.empty())
 			{
-				const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
+				const bool dabRequest = eServiceReference(serviceref).type == eServiceReference::idServiceDAB;
+				const char *reply = dabRequest ?
+					"HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: audio/aac\r\nServer: streamserver\r\n\r\n" :
+					"HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
 				writeAll(streamFd, reply, strlen(reply));
 				/* We don't expect any incoming data, so set a tiny buffer */
 				set_socket_option(streamFd, SO_RCVBUF, 1 * 1024);
@@ -673,8 +717,9 @@ void eStreamClient::notifier(int what)
 				{
 					parent->startStream(serviceref, m_remotehost);
 
-					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
-					if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+					eDebug("[eStreamClient] stream ref: %s", serviceref.c_str());
+					if ((dabRequest && startDABStream(serviceref)) ||
+						(!dabRequest && eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0))
 					{
 						running = true;
 						m_serviceref = serviceref;
@@ -692,13 +737,14 @@ void eStreamClient::notifier(int what)
 					}
 					pos = request.find("&bitrate=");
 					posdur = request.find("&duration=");
-					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
+					eDebug("[eStreamClient] stream ref: %s", serviceref.c_str());
 					if (posdur != std::string::npos)
 					{
 
 						parent->startStream(serviceref, m_remotehost);
 
-						if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+						if ((dabRequest && startDABStream(serviceref)) ||
+							(!dabRequest && eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0))
 						{
 							running = true;
 							m_serviceref = serviceref;
@@ -821,6 +867,7 @@ void eStreamClient::notifier(int what)
 void eStreamClient::stopStream()
 {
 	rsn->stop();
+	stopDABStream();
 	// Free encoder BEFORE connectionLost removes us from the list
 	// This ensures the encoder is released even if the destructor is delayed
 	if (encoderFd >= 0)
