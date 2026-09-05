@@ -553,7 +553,7 @@ class NetworkShares(Screen):
 				name = host["hostname"] or address
 				username, password = self.repository.credentialsGet(self.hostnameFor(address))
 				if username is None or username == NetworkCredentials.GUEST_USERNAME:
-					username = NetworkCredentials.GUEST_TRANSLATED:
+					username = NetworkCredentials.GUEST_TRANSLATED
 				entries.append((self.TEMPLATE_HOST, self.GLYPH_HOST, 0, address, "", name, "", "", username, f"{name} ({username})", {"kind": "host", "address": address}))
 				if address not in self.expanded:
 					continue
