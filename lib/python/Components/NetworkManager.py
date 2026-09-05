@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
+from ipaddress import ip_address
 from json import JSONDecodeError, loads
 from os import chmod, listdir, makedirs, remove, rmdir
 from os.path import basename, exists, isdir, ismount, realpath
@@ -1866,7 +1867,12 @@ class NetworkMountRepository:
 
 	@staticmethod
 	def credentialsPath(hostname):
-		return f"/etc/enigma2/{hostname.strip().split(".")[0].upper()}.cache"
+		hostname = hostname.strip()
+		try:
+			ip_address(hostname)
+		except ValueError:
+			hostname = hostname.split(".")[0]
+		return f"/etc/enigma2/{hostname.upper()}.cache"
 
 	def credentialsGet(self, hostname):
 		data = {}
@@ -1879,23 +1885,21 @@ class NetworkMountRepository:
 		return data.get("username"), data.get("password", "")
 
 	def credentialsSave(self, hostname, username, password):
-		if not hostname:
-			return
-		path = self.credentialsPath(hostname)
-		try:
-			with open(path, "wb") as fd:
-				pickleDump({"username": username, "password": password}, fd, -1)
-			chmod(path, 0o600)  # contains a plaintext password
-		except OSError as err:
-			print(f"[{MODULE_NAME}] Error {err.errno}: Error writing '{path}'!  ({err.strerror})")
+		if hostname:
+			path = self.credentialsPath(hostname)
+			try:
+				with open(path, "wb") as fd:
+					pickleDump({"username": username, "password": password}, fd, -1)
+				chmod(path, 0o600)  # contains a plaintext password
+			except OSError as err:
+				print(f"[{MODULE_NAME}] Error {err.errno}: Error writing '{path}'!  ({err.strerror})")
 
 	def credentialsClear(self, hostname):
-		if not hostname:
-			return
-		try:
-			remove(self.credentialsPath(hostname))
-		except OSError:
-			pass
+		if hostname:
+			try:
+				remove(self.credentialsPath(hostname))
+			except OSError:
+				pass
 
 
 class NetworkCheck:
