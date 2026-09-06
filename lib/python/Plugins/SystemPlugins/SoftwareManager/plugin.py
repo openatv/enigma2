@@ -8,9 +8,7 @@ from Components.config import config
 from Components.Harddisk import harddiskmanager  # noqa F401
 from Components.PluginComponent import plugins  # noqa F401
 from Components.SystemInfo import BoxInfo
-from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
-from Screens.Opkg import IpkgInstaller
 from Screens.Screen import Screen
 
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
@@ -56,19 +54,6 @@ class ImageWizard(ImageWizard):
 
 class RestoreMenu(RestoreMenu):
 	pass
-
-
-def filescan_open(list, session, **kwargs):
-	filelist = [x.path for x in list]
-	session.open(IpkgInstaller, filelist)  # List.
-
-
-def filescan(**kwargs):
-	from Components.Scanner import Scanner, ScanPath
-	return Scanner(mimetypes=["application/x-debian-package"], paths_to_scan=[
-		ScanPath(path="ipk", with_subdirs=True),
-		ScanPath(path="", with_subdirs=False),
-	], name="Ipkg", description=_("Install extensions."), openfnc=filescan_open)
 
 
 class BackupHelper(Screen):
@@ -126,4 +111,4 @@ class BackupHelper(Screen):
 
 
 def Plugins(path, **kwargs):
-	return [PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)]
+	return []
