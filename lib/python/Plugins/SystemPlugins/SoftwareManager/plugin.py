@@ -4,17 +4,13 @@ from stat import ST_MTIME
 from pickle import dump, load
 from time import time
 
-from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Harddisk import harddiskmanager  # noqa F401
-from Components.Opkg import OpkgComponent
 from Components.PluginComponent import plugins  # noqa F401
-from Components.SelectionList import SelectionList
 from Components.SystemInfo import BoxInfo
-from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
-from Screens.Opkg import Opkg
+from Screens.Opkg import IpkgInstaller
 from Screens.Screen import Screen
 
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
@@ -60,55 +56,6 @@ class ImageWizard(ImageWizard):
 
 class RestoreMenu(RestoreMenu):
 	pass
-
-
-class IpkgInstaller(Screen):
-	skin = """
-		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" resolution="1280,720">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget name="list" position="5,50" size="540,360" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
-			<widget source="introduction" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		</screen>"""
-
-	def __init__(self, session, list):
-		Screen.__init__(self, session)
-		self.selectionList = SelectionList()
-		self["list"] = self.selectionList
-		p = 0
-		if len(list):
-			p = list[0].rfind("/")
-			title = list[0][:p]
-			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
-		for listindex in range(len(list)):
-			self.selectionList.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
-		self.selectionList.sort()
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Install"))
-		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText(_("Invert"))
-		self["introduction"] = StaticText(_("Press OK to toggle the selection."))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"ok": self.selectionList.toggleSelection,
-			"cancel": self.close,
-			"red": self.close,
-			"green": self.install,
-			"blue": self.selectionList.toggleAllSelection
-		}, prio=-1)
-
-	def install(self):
-		packages = self.selectionList.getSelectionsList()
-		cmdList = [(OpkgComponent.CMD_UPDATE, None)]
-		for item in packages:
-			cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item[1]}))
-		self.session.open(Opkg, cmdList=cmdList)
 
 
 def filescan_open(list, session, **kwargs):
