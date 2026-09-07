@@ -124,8 +124,12 @@ class TrackInfo(Poll, Converter):
 						except Exception:
 							pass
 
+						description = _("unknown")
 						if selectedSubtitle[0] == 0:
 							description = "DVB"
+
+						elif selectedSubtitle[0] == 3:
+							description = "PGS"
 
 						elif selectedSubtitle[0] == 1:
 							description = _("teletext")
