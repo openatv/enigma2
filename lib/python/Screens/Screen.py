@@ -3,7 +3,7 @@ from types import CodeType
 
 from enigma import eRCInput, eStack, eTimer, eWindow, getDesktop
 
-from skin import GUI_SKIN_ID, applyAllAttributes, menus, readSkin, screens, setups
+from skin import DISPLAY_SKIN_ID, GUI_SKIN_ID, applyAllAttributes, menus, readSkin, screens, setups
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.GUIComponent import GUIComponent
@@ -289,7 +289,8 @@ class Screen(dict):
 				method()
 
 	def applySkin(self):
-		bounds = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())
+		skinId = DISPLAY_SKIN_ID if isinstance(self, ScreenSummary) else GUI_SKIN_ID
+		bounds = (getDesktop(skinId).size().width(), getDesktop(skinId).size().height())
 		resolution = bounds
 		zPosition = 0
 		for (key, value) in self.skinAttributes:
