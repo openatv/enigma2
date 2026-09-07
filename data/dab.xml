@@ -159,5 +159,14 @@ Source checked 2026-09-07: https://en.kingofsat.net/dab
 		<transponder frequency="12564000" polarization="V" system="DVB-S2" modulation="8PSK" symbolRate="35294000" fec="2/3" onid="217C" tsid="00B7" parentServiceType="0001" parentSid="0001" inputStreamId="12" plsMode="Gold" plsCode="131070">
 			<feed id="rai_dab_test_5w" name="DAB+ RAI Test" pid="03E9" decoder="ts2na" transport="TS/NA" ensembleId="5DAB" />
 		</transponder>
+		<!--
+		Manually reported feed (2026-09-07). Keep this entry during future
+		KingOfSat synchronizations unless it has been independently confirmed
+		inactive; KingOfSat currently lists the MIS 21 MEDIA DAB service but not
+		the DAB PID and ETI framing required here.
+		-->
+		<transponder frequency="12564000" polarization="V" system="DVB-S2" modulation="8PSK" symbolRate="35294000" fec="2/3" onid="0001" tsid="0064" parentServiceType="000C" parentSid="03E8" inputStreamId="21" plsMode="Gold" plsCode="131070">
+			<feed id="mediadab_liguria_5w" name="MediaDAB Liguria" pid="03EA" decoder="ts2na" transport="TS/NA" ensembleId="5050" />
+		</transponder>
 	</satellite>
 </dabFeeds>
