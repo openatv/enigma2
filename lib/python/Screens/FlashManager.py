@@ -643,6 +643,15 @@ class FlashImage(Screen):
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error unzipping image '%s'!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def flashImage(self):
+		if BoxInfo.getItem("model") in ("dm820", "dm7080") and not hasattr(self, "dreamKernelA"):
+			def featuresDone(data, retVal, extraArgs):
+				self.dreamKernelA = retVal == 0 and "dream-kernel-a" in data.split()
+				self.containerOFGWrite = None
+				self.flashImage()
+			self.containerOFGWrite = Console()
+			self.containerOFGWrite.ePopen(["/usr/bin/ofgwrite_bin", "/usr/bin/ofgwrite_bin", "--features"], callback=featuresDone)
+			return
+
 		def findImageFiles(path):
 			for path, subDirs, files in walk(path):
 				if not subDirs and files:
@@ -684,8 +693,14 @@ class FlashImage(Screen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-a"]
-			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
-				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
+			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):
+				if rootSubDir is None:
+					cmdArgs = ["-r"] if self.dreamKernelA else ["-rmmcblk0p1"]
+				else:
+					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
+				# Chkroot guests keep sharing A. Update it with the main internal image.
+				if self.dreamKernelA and (rootSubDir is None or (mtdRootFS == "mmcblk0p1" and rootSubDir == "linuxrootfs1")):
+					cmdArgs.append("-k")
 			elif MultiBoot.canMultiBoot() and self.slotCode not in ("R", "F"):  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				if BoxInfo.getItem("chkrootmb"):
 					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]

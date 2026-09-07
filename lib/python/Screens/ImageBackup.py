@@ -1,5 +1,6 @@
 from os import chmod, listdir, makedirs
 from os.path import exists, isdir, isfile, join
+from shlex import quote
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -21,6 +22,26 @@ MACHINE_NAME = BoxInfo.getItem("displaymodel")
 
 
 class ImageBackup(Screen):
+	def dreamKernelBackupCommands(self, backupRoot, workDir, kernelFile):
+		# Guests can contain an older /boot. Export the shared physical A bank,
+		# then replace kernel files only in the archive, never in the source image.
+		stage = join(workDir, "dream-kernel")
+		overlay = join(stage, "rootfs")
+		commands = [f"/usr/bin/ofgwrite_bin --backup-dream-kernel-a {quote(stage)} || exit 1"]
+		commands.append(f"{self.moveCmd} {quote(join(stage, 'kernel.bin'))} {quote(join(workDir, kernelFile))} || exit 1")
+		# Old recovery chooses dpkg first if its info directory exists. Do not
+		# invent a dpkg directory in an opkg image, as that hides all its postinsts.
+		commands.append(f"if [ -d {quote(join(backupRoot, 'var/lib/dpkg/info'))} ]; then kernelPackage=dpkg; elif [ -d {quote(join(backupRoot, 'var/lib/opkg/info'))} ]; then kernelPackage=opkg; else echo 'Dream: missing package info directory'; exit 1; fi")
+		commands.append(f'{self.makeDirCmd} -p {quote(overlay)}/var/lib/"$kernelPackage"/info || exit 1')
+		commands.append(f'{self.copyCmd} -p {quote(join(stage, "kernel-image.postinst"))} {quote(overlay)}/var/lib/"$kernelPackage"/info/kernel-image.postinst || exit 1')
+		commands.append(f'kernelName="$(readlink {quote(join(overlay, "boot/vmlinux.bin"))})" || exit 1')
+		excludes = " ".join(f"--exclude {quote(path)}" for path in (
+			"./boot/vmlinux.bin*", "./boot/vmlinux.gz*", "./usr/share/fastboot/lcd_anim.bin",
+			"./var/lib/dpkg/info/kernel-image.postinst", "./var/lib/opkg/info/kernel-image.postinst"))
+		# Append only files, preserving directory metadata from the original rootfs.
+		append = f'{self.tarCmd} -rf {quote(join(workDir, "rootfs.tar"))} -C {quote(overlay)} ./boot/vmlinux.bin "./boot/$kernelName" ./usr/share/fastboot/lcd_anim.bin "./var/lib/$kernelPackage/info/kernel-image.postinst" || exit 1'
+		return commands, excludes, append
+
 	skin = """
 	<screen name="ImageBackup" title="Image Backup" position="center,center" size="800,460" resolution="1280,720">
 		<widget source="description" render="Label" position="0,0" size="e,50" font="Regular;20" verticalAlignment="center" />
@@ -298,6 +319,15 @@ class ImageBackup(Screen):
 				imageFs = ["tar"]
 			mkubifsArgs = BoxInfo.getItem("mkubifs")
 			backupRootNoSlash = backupRoot[:-1]
+			boxName = BoxInfo.getItem("BoxName")
+			kernelFile = BoxInfo.getItem("kernelfile")
+			dreamBackup = boxName in ("dm820", "dm7080")
+			dreamExcludes = ""
+			if dreamBackup:
+				if recovery or "jffs2" in imageFs or "ubi" in imageFs:
+					cmdLines.append("echo 'Dream kernel A backup requires a rootfs tar archive'; exit 1")
+				dreamCommands, dreamExcludes, dreamAppend = self.dreamKernelBackupCommands(backupRoot, workDir, kernelFile)
+				cmdLines.extend(dreamCommands)
 			if "jffs2" in imageFs:
 				cmdLines.append(f"{self.echoCmd} \"{_("Create root journaling flash file system.")}\"")
 				cmdLines.append(f"{self.mkfsJffs2} --root={backupRootNoSlash} --faketime --output={workDir}root.jffs2 {mkubifsArgs}")
@@ -318,10 +348,12 @@ class ImageBackup(Screen):
 			elif not recovery:
 				cmdLines.append(f"{self.echoCmd} \"{_("Create tar file of root file system.")}\"")
 				# cmdLines.append(f"{self.touchCmd} {workDir}rootfs.tar")  # Uncomment this line and comment out the line below to enable a fast backup debugging mode.
-				cmdLines.append(f"{self.tarCmd} -cf {workDir}rootfs.tar -C {backupRootNoSlash} --exclude ./boot/kernel.img --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock --exclude ./run/udev/control .")
+				cmdLines.append(f"{self.tarCmd} -cf {quote(join(workDir, 'rootfs.tar'))} -C {quote(backupRootNoSlash)} {dreamExcludes} --exclude ./boot/kernel.img --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock --exclude ./run/udev/control .{' || exit 1' if dreamBackup else ''}")
+				if dreamBackup:
+					cmdLines.append(dreamAppend)
 				cmdLines.append(f"{self.syncCmd}")
 				cmdLines.append(f"{self.echoCmd} \"{_("Compress root file system tar file. (This takes the most time!)")}\"")
-				cmdLines.append(f"{self.bzip2Cmd} {workDir}rootfs.tar")
+				cmdLines.append(f"{self.bzip2Cmd} {quote(join(workDir, 'rootfs.tar'))}{' || exit 1' if dreamBackup else ''}")
 			cmdLines.append(f"{self.syncCmd}")
 			# Create other image backup components.
 			boxName = BoxInfo.getItem("BoxName")
@@ -370,7 +402,8 @@ class ImageBackup(Screen):
 			cmdLines.append(f"{self.echoCmd} \"{_("Create kernel dump.")}\"")
 			kernelFile = BoxInfo.getItem("kernelfile")
 			if boxName in ("dm820", "dm7080"):
-				cmdLines.append(f"{self.echoCmd} \"dummy file dont delete\" > {workDir}{kernelFile}")
+				# Already exported from A before creating the rootfs archive.
+				cmdLines.append(f"test -s {quote(join(workDir, kernelFile))} || exit 1")
 			elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "h8se", "hzero"):
 				if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
 					cmdLines.append(f"{self.copyCmd} /{mtdKernel} {workDir}{kernelFile}")
