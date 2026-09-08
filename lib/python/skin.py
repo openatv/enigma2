@@ -1100,7 +1100,7 @@ class AttributeParser:
 			self.guiObject.setFontScale(scaleType, size)
 
 	def foregroundColor(self, value):
-		if "," in value:
+		if "," in value or value in gradients:
 			self.guiObject.setForegroundGradient(*parseGradient(value))  # Only for eSlider.
 		else:
 			self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
@@ -1111,6 +1111,9 @@ class AttributeParser:
 	def foregroundGradient(self, value):
 		self.guiObject.setForegroundGradient(*parseGradient(value))
 		attribDeprecationWarning("foregroundGradient", "foregroundColor")
+
+	def gradientMode(self, value):  # Per-slider opt-in; existing skins keep their rendering behavior.
+		self.guiObject.setGradientMode(parseOptions({"legacy": 0, "explicit": 1}, "gradientMode", value, 0))
 
 	def hAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
