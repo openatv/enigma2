@@ -789,9 +789,9 @@ gDC::gDC()
 	m_gradient_fullSize = 0;
 }
 
-gDC::gDC(gPixmap *pixmap) : m_pixmap(pixmap)
+gDC::gDC(gPixmap *pixmap) : gDC()
 {
-	m_spinner_pic = 0;
+	m_pixmap = pixmap;
 }
 
 gDC::~gDC()
