@@ -1882,6 +1882,8 @@ class NetworkMountRepository:
 					data = pickleLoad(fd)
 			except Exception:
 				pass
+			if not isinstance(data, dict):
+				data = {}
 		return data.get("username"), data.get("password", "")
 
 	def credentialsSave(self, hostname, username, password):
