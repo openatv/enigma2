@@ -55,8 +55,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
-		if config.usage.show_infobar_lite.value and (config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml" or config.skin.primary_skin.value.startswith('MetrixHD/')):
-			self.skinName = "InfoBarLite"
+		if config.usage.show_infobar_lite.value:
+			self.skinName = ["InfoBarLite", "InfoBar"]
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions", {
 			"showMovies": (self.showMovies, _("Open Movie Selection")),  # PLAY, VIDEO (Break), PVR (Break), FILE (Break), MEDIA (Break).

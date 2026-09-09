@@ -1363,7 +1363,7 @@
 		<item level="1" text="Show InfoBar on event change" description="Select 'Yes' to display the InfoBar when a new event starts." indent="1">config.usage.show_infobar_on_event_change</item>
 		<item level="0" text="InfoBar Content And Time Display" />
 		<item level="1" text="Show channel number in InfoBar" description="Select 'Yes' to display the channel number in the InfoBar." indent="1">config.usage.show_infobar_channel_number</item>
-		<item level="0" text="Show picon background color" description="This option allows you to choose the background color of transparent picons." indent="1">config.usage.show_picon_bkgrn</item>
+		<item level="0" text="Show picon background color" description="This option allows you to choose the background color of transparent picons." conditional="not config.skin.primary_skin.value.startswith('Umbra/')" indent="1">config.usage.show_picon_bkgrn</item>
 		<item level="0" text="Show event genre information" description="This option allows you to choose whether or not to display genre information for the event." indent="1">config.usage.show_genre_info</item>
 		<item level="2" text="Show background in Radio Mode" description="Show background when tuned to a radio channel." indent="1">config.misc.showradiopic</item>
 		<item level="0" text="Show time remaining/elapsed" description="This option allows you to choose how to display the remaining time, the elapsed time, or both." indent="1">config.usage.swap_time_remaining_on_osd</item>
