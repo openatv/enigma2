@@ -12,7 +12,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
-from .ImageWizard import ImageWizard
 
 boxType = BoxInfo.getItem("machinebuild")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
@@ -45,11 +44,6 @@ def load_cache(cache_file):  # Does a cPickle load.
 	with open(cache_file, "rb") as fd:
 		cache_data = load(fd)
 	return cache_data
-
-
-# Helper for menu.xml
-class ImageWizard(ImageWizard):
-	pass
 
 
 class RestoreMenu(RestoreMenu):
