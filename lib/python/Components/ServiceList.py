@@ -1294,11 +1294,11 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 				backgroundColorSelected = attributes.get("backgroundColorSelected", defaults.get("backgroundColorSelected"))
 
 				if serviceAvail == 1:
-					foregroundColor = defaults.get("serviceNotAvailColor", foregroundColor)
-					foregroundColorSelected = defaults.get("serviceNotAvailColorSelected", foregroundColor)
+					foregroundColor = attributes.get("serviceNotAvailColor", defaults.get("serviceNotAvailColor", foregroundColor))
+					foregroundColorSelected = attributes.get("serviceNotAvailColorSelected", defaults.get("serviceNotAvailColorSelected", foregroundColor))
 				elif serviceAvail == 2:
-					foregroundColor = defaults.get("fallbackColor", foregroundColor)
-					foregroundColorSelected = defaults.get("fallbackColorSelected", foregroundColor)
+					foregroundColor = attributes.get("fallbackColor", defaults.get("fallbackColor", foregroundColor))
+					foregroundColorSelected = attributes.get("fallbackColorSelected", defaults.get("fallbackColorSelected", foregroundColor))
 
 			return foregroundColor, backgroundColor, foregroundColorSelected, backgroundColorSelected
 
