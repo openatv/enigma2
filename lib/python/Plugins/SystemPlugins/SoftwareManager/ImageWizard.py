@@ -6,7 +6,7 @@ from Components.Harddisk import harddiskmanager
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.Wizard import wizardManager, Wizard
+from Screens.Wizard import Wizard
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 from .BackupRestore import getBackupFilename, InitConfig as BackupRestore_InitConfig
@@ -95,7 +95,3 @@ class ImageWizard(Wizard, ShowRemoteControl):
 		config.plugins.configurationbackup.backuplocation.setValue(self.selectedDevice)
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
-
-
-if config.misc.firstrun.value:
-	wizardManager.registerWizard(ImageWizard, 0 if checkConfigBackup() is None else 1, priority=10)

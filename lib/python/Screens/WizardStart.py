@@ -210,6 +210,10 @@ class WizardStart(Wizard, ShowRemoteControl):
 	def isFlashExpanderActive(self):
 		return isdir(join(f"/{EXPANDER_MOUNT}/{EXPANDER_MOUNT}", "bin"))
 
+	def hasConfigBackup(self):  # Called by startwizard.xml's restorequestion condition.
+		from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkConfigBackup
+		return checkConfigBackup() is not None
+
 	def hasPartitions(self):
 		partitions = fileReadLines("/proc/partitions", source=MODULE_NAME)
 		count = 0
