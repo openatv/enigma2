@@ -1795,7 +1795,7 @@ class InformationService(InformationBase):
 						description = caidEntry[2]
 						break
 				if caID[2]:
-					case description:
+					match description:
 						case "Seca":
 							provid = ",".join([caID[2][y:y + 4] for y in range(len(caID[2]), 30)])
 						case "Nagra":
