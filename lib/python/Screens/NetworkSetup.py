@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from ipaddress import ip_address
 from os import rename
 from os.path import exists
-from re import IGNORECASE, compile
+from re import compile
 
 from enigma import eTimer, gRGB
 
@@ -11,7 +11,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigIP, ConfigNumber, ConfigPassword, ConfigSelection, ConfigText, ConfigYesNo, NoSave, ReadOnly, config, getConfigListEntry
 from Components.Console import Console
 from Components.Label import Label
-from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, networkManager, wpaCliBin
+from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, networkManager, wpaCliBin
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
@@ -82,7 +82,7 @@ def applyAdapterChange(interface: str, change: int, callback):
 			afterRestartCallback()
 
 
-def scanResultToConnection(scanResult: ScanResult, adapter: str) -> Connection:
+def scanResultToConnection(scanResult, adapter):
 	return Connection(adapter=adapter, name=scanResult.ssid, dhcp=True, enabled=True, priority=0, wifi=WiFiConfig(ssid=scanResult.ssid, encryption=scanResult.encryption))
 
 
@@ -499,7 +499,7 @@ class NetworkOverview(Screen):
 				_("Frequency"),   # Frequency.
 				_("Channel"),     # Channel.
 				_("Encryption"),  # Encryption.
-				_("State"),       # StatusText.
+				_("Status"),      # StatusText.
 				None,             # StatusGlyph.
 				None,             # StatusColor.
 				None,             # StatusColorSelected.
@@ -1030,7 +1030,7 @@ class ScanResult:
 		}.get(self.encryption, self.encryption.upper())
 
 
-# Runs iwlist scan and shows results sorted by signal strength.
+# Runs iw scan and shows results sorted by signal strength.
 #
 class NetworkWiFiScan(Screen):
 	skin = """
@@ -1103,7 +1103,6 @@ class NetworkWiFiScan(Screen):
 		self.akmEAPsha256Types = {5, 11, 12, 13}  # 802.1X-SHA256, Suite-B, Suite-B-192, FT-802.1X-SHA384 - WPA3-Enterprise.
 		# Verdicts that carry more detail than a bare RSN element, never overwritten by the generic branches.
 		self.enterpriseEncryptions = (Encryption.WPA2_ENTERPRISE, Encryption.WPA3_ENTERPRISE, Encryption.WPA2_WPA3_ENTERPRISE)
-		self.rsnDetermined = (Encryption.WPA3, Encryption.WPA2_WPA3, Encryption.WPA2_ENTERPRISE, Encryption.WPA3_ENTERPRISE, Encryption.WPA2_WPA3_ENTERPRISE)
 		self.console = Console()
 		self.scanning = False
 		self.accessPoints: dict[str, ScanResult] = {}
@@ -1130,16 +1129,8 @@ class NetworkWiFiScan(Screen):
 
 	def keyStartScan(self):
 		def ifUpCallback(results=None, retVal=0, extraArgs=None):
-			def scanCallback(results=None, retVal=0, extraArgs=None):
-				def scanResultsCallback(results, retVal, extraArgs=None):
-					scanFinishedCallback(results, self.parseWpaCliScanResults)
-
-				self.scanTimer = eTimer()
-				self.scanTimer.callback.append(lambda: self.console.ePopen((wpaCliBin, wpaCliBin, "-i", self.adapter, "scan_results"), callback=scanResultsCallback))
-				self.scanTimer.start(3000, True)
-
-			def iwlistScanCallback(results=None, retVal=0, extraArgs=None):
-				self.console.ePopen(("/sbin/iwlist", "/sbin/iwlist", self.adapter, "scanning"), callback=lambda results, rv, ea=None: scanFinishedCallback(results, self.parseIwlist))
+			def iwScanCallback(results=None, retVal=0, extraArgs=None):
+				self.console.ePopen((iwBin, iwBin, "dev", self.adapter, "scan"), callback=lambda results, rv, ea=None: scanFinishedCallback(results, self.parseIwScan))
 
 			def scanFinishedCallback(results, parser):
 				self.scanning = False
@@ -1171,12 +1162,10 @@ class NetworkWiFiScan(Screen):
 					self["list"].setList([])
 					self["description"].setText(_("No networks found."))
 
-			if networkManager.wpaSupplicantRunning(self.adapter):
-				self.console.ePopen((wpaCliBin, wpaCliBin, "-i", self.adapter, "scan"), callback=scanCallback)
-			elif self.adapterObj.isBroadcomWl:
-				self.console.ePopen(("/usr/bin/wl", "/usr/bin/wl", "up"), callback=iwlistScanCallback)
+			if not networkManager.wpaSupplicantRunning(self.adapter) and self.adapterObj.isBroadcomWl:
+				self.console.ePopen(("/usr/bin/wl", "/usr/bin/wl", "up"), callback=iwScanCallback)
 			else:
-				iwlistScanCallback()
+				iwScanCallback()
 
 		if not self.scanning:
 			self.scanning = True
@@ -1186,165 +1175,101 @@ class NetworkWiFiScan(Screen):
 			else:
 				self.console.ePopen(("/sbin/ifconfig", "/sbin/ifconfig", self.adapter, "up"), callback=ifUpCallback)
 
-	def parseWpaCliScanResults(self, raw: str) -> list[ScanResult]:
-		def channelFromFreq(freqMhz: int) -> int:
-			if freqMhz == 2484:
-				return 14
-			if 2412 <= freqMhz <= 2472:
-				return (freqMhz - 2407) // 5
-			if 5000 <= freqMhz <= 5900:
-				return (freqMhz - 5000) // 5
-			return 0
+	@staticmethod
+	def channelFromFreq(freqMhz: int) -> int:
+		if freqMhz == 2484:
+			return 14
+		if 2412 <= freqMhz <= 2472:
+			return (freqMhz - 2407) // 5
+		if 5000 <= freqMhz <= 5900:
+			return (freqMhz - 5000) // 5
+		return 0
 
-		results: list[ScanResult] = []
-		reBssid = compile(r"^[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}$")
-		for line in raw.splitlines():
-			fields = line.strip().split("\t")
-			if len(fields) < 5 or not reBssid.match(fields[0]):
-				continue
-			bssid, freqStr, signalStr, flags, ssid = fields[0], fields[1], fields[2], fields[3], fields[4]
-			if not ssid:
-				continue
-			try:
-				freqMhz = int(freqStr)
-				signalDbm = int(signalStr)
-			except ValueError:
-				continue
-			if "SAE" in flags:  # "[WPA2-PSK+SAE-CCMP]" is transition mode, "[WPA2-SAE-CCMP]" is WPA3 only.
-				encryption = Encryption.WPA2_WPA3 if "PSK" in flags else Encryption.WPA3
-			elif "EAP" in flags:  # "[WPA2-EAP+EAP-SHA256-CCMP]" is the enterprise transition mode.
-				sha256 = "EAP-SHA256" in flags
-				plain = "EAP" in flags.replace("EAP-SHA256", "")
-				if sha256 and plain:
-					encryption = Encryption.WPA2_WPA3_ENTERPRISE
-				elif sha256:
-					encryption = Encryption.WPA3_ENTERPRISE
-				else:
-					encryption = Encryption.WPA2_ENTERPRISE
-			elif "WPA2" in flags or "RSN" in flags:
-				encryption = Encryption.WPA2
-			elif "WPA" in flags:
-				encryption = Encryption.WPA
-			elif "WEP" in flags:
-				encryption = Encryption.WEP
-			else:
-				encryption = Encryption.NONE
-			results.append(ScanResult(
-				ssid=ssid,
-				bssid=bssid,
-				frequency=f"{freqMhz / 1000:.3f} GHz",
-				channel=channelFromFreq(freqMhz),
-				signalDbm=signalDbm,
-				signalPct=max(0, min(100, 2 * (signalDbm + 100))),
-				encryption=encryption,
-				encDetails=flags
-			))
-		return sorted(results, key=lambda x: -x.signalPct)
-
-	def parseIwlist(self, raw: str) -> list[ScanResult]:
-		# Suite types of the AKM list in an RSN information element, empty when it cannot be read.
-		# iwlist renders SAE as "unknown (8)" because wireless-tools predates WPA3, so the raw
-		# element it prints alongside is the only dependable source.
+	def parseIwScan(self, raw: str) -> list[ScanResult]:
+		# Unlike iwlist (wireless-tools), iw is nl80211-native and knows AKM suites by name,
+		# SAE/WPA3 included, so no raw RSN element byte-parsing is needed here. A suite is
+		# either a recognised name (e.g. "SAE", "PSK", "IEEE 802.1X/SHA-256") or, on an iw
+		# build too old to know it, an "00-0f-ac:N" OUI/number fallback - suiteNumbers()
+		# below picks up the latter, the plain substring checks the former.
 		#
-		def akmSuitesFromRsnIe(hexIe: str) -> set[int]:
-			try:
-				data = bytes.fromhex(hexIe)
-			except ValueError:
-				return set()
-			if data[:1] == b"\x30":  # Strip element id and length when the whole element is reported.
-				data = data[2:]
-			pos = 2 + 4  # Version and group cipher suite.
-			if len(data) < pos + 2:
-				return set()
-			pos += 2 + 4 * int.from_bytes(data[pos:pos + 2], "little")  # Skip the pairwise cipher list.
-			if len(data) < pos + 2:
-				return set()
-			count = int.from_bytes(data[pos:pos + 2], "little")
-			pos += 2
-			suites = set()
-			for index in range(count):
-				suite = data[pos + 4 * index:pos + 4 * (index + 1)]
-				if len(suite) == 4 and suite[:3] == b"\x00\x0f\xac":
-					suites.add(suite[3])
-			return suites
+		def suiteNumbers(suiteText: str) -> set[int]:
+			return {int(n) for n in compile(r":(\d+)\b").findall(suiteText)}
 
-		def enterpriseFrom(suites: set[int]) -> Encryption:  # WPA2 or WPA3-Enterprise, or the transition mode offering both.
-			sha256 = bool(suites & self.akmEAPsha256Types)
-			plain = bool(suites & self.akmEAPTypes)
-			if sha256 and plain:
-				return Encryption.WPA2_WPA3_ENTERPRISE
-			return Encryption.WPA3_ENTERPRISE if sha256 else Encryption.WPA2_ENTERPRISE
+		def finalizeEncryption(accessPoint: ScanResult, rsnSuites: str, wpaSeen: bool, hasPrivacy: bool):
+			if rsnSuites:
+				numbers = suiteNumbers(rsnSuites)
+				upper = rsnSuites.upper()
+				isSae = bool(numbers & self.akmSAETypes) or "SAE" in upper
+				isPsk = bool(numbers & self.akmPSKTypes) or "PSK" in upper
+				if isSae:
+					accessPoint.encryption = Encryption.WPA2_WPA3 if isPsk else Encryption.WPA3
+				elif numbers:  # Numeric OUI suites let sha256/plain EAP be told apart precisely.
+					sha256 = bool(numbers & self.akmEAPsha256Types)
+					plain = bool(numbers & self.akmEAPTypes)
+					if sha256 or plain:
+						accessPoint.encryption = Encryption.WPA2_WPA3_ENTERPRISE if sha256 and plain else (Encryption.WPA3_ENTERPRISE if sha256 else Encryption.WPA2_ENTERPRISE)
+					else:
+						accessPoint.encryption = Encryption.WPA2
+				elif "802.1X" in upper:
+					sha256 = "SHA-256" in upper or "SUITE-B" in upper or "SHA-384" in upper
+					accessPoint.encryption = Encryption.WPA3_ENTERPRISE if sha256 else Encryption.WPA2_ENTERPRISE
+				else:
+					accessPoint.encryption = Encryption.WPA2
+				accessPoint.encDetails = rsnSuites
+			elif wpaSeen:
+				accessPoint.encryption = Encryption.WPA
+			elif hasPrivacy:
+				accessPoint.encryption = Encryption.WEP
+			else:
+				accessPoint.encryption = Encryption.NONE
 
 		results: list[ScanResult] = []
 		current: ScanResult | None = None
-		reCell = compile(r"Cell \d+ - Address:\s*([0-9A-Fa-f:]{17})")
-		reSsid = compile(r"ESSID:\"(.*?)\"")
-		reFreq = compile(r"Frequency:([\d.]+ \w+Hz).*?Channel:?\s*(\d+)?")
-		reQuality = compile(r"Quality[=:]\s*(\d+)(?:/(\d+))?")
-		reSignalDbm = compile(r"Signal level[=:]\s*(-\d+)\s*dBm")
-		reSignalRel = compile(r"Signal level[=:]\s*(\d+)/(\d+)")
-		reRsnIe = compile(r"rsn_ie=([0-9A-Fa-f]+)")
-		reAuthSuites = compile(r"Authentication Suites \(\d+\)\s*:\s*(.+)")
-		reEncOn = compile(r"Encryption key:on")
-		reEncOff = compile(r"Encryption key:off")
-		reIeWpa1 = compile(r"IE:.*WPA Version 1", IGNORECASE)
-		reIeWpa2 = compile(r"IE:.*WPA2|IE:.*RSN", IGNORECASE)
+		reBss = compile(r"^BSS\s+([0-9A-Fa-f:]{17})")
+		reSsid = compile(r"^SSID:\s*(.*)$")
+		reFreq = compile(r"^freq:\s*(\d+)")
+		reSignal = compile(r"^signal:\s*(-?\d+(?:\.\d+)?)\s*dBm")
+		reDsChannel = compile(r"DS Parameter set:\s*channel\s*(\d+)")
+		reAuthSuites = compile(r"Authentication suites:\s*(.+)")
+		hasPrivacy = wpaSeen = inRsn = False
+		rsnSuites = ""
 		for line in raw.splitlines():
 			line = line.strip()
-			if match := reCell.search(line):
-				current = ScanResult(bssid=match.group(1))
+			if match := reBss.match(line):
+				if current is not None:
+					finalizeEncryption(current, rsnSuites, wpaSeen, hasPrivacy)
+				current = ScanResult(bssid=match.group(1).lower())
 				results.append(current)
+				hasPrivacy = wpaSeen = inRsn = False
+				rsnSuites = ""
 				continue
 			if current is None:
 				continue
-			if match := reSsid.search(line):
+			if match := reSsid.match(line):
 				current.ssid = match.group(1)
-			if match := reFreq.search(line):
-				current.frequency = match.group(1)
-				if match.group(2):
-					current.channel = int(match.group(2))
-			if match := reQuality.search(line):
-				qVal = int(match.group(1))
-				qMax = int(match.group(2)) if match.group(2) else 100
-				current.signalPct = max(0, min(100, int(qVal * 100 / qMax))) if qMax else 0
-			if match := reSignalDbm.search(line):
-				current.signalDbm = int(match.group(1))
-			else:
-				if match := reSignalRel.search(line):  # "Signal level=23/100" carries the real level, the quality above it is often a constant.
-					level, maximum = int(match.group(1)), int(match.group(2))
-					if maximum == 100:  # WEXT drivers without dBm scale the RSSI so that 0 means -100 dBm.
-						current.signalDbm = level - 100
-						current.signalPct = max(0, min(100, 2 * (current.signalDbm + 100)))
-					else:
-						current.signalPct = max(0, min(100, int(level * 100 / maximum))) if maximum else 0
-			if match := reRsnIe.search(line):
-				suites = akmSuitesFromRsnIe(match.group(1))
-				if suites:
-					if suites & self.akmSAETypes:
-						current.encryption = Encryption.WPA2_WPA3 if suites & self.akmPSKTypes else Encryption.WPA3
-					elif suites & (self.akmEAPTypes | self.akmEAPsha256Types):
-						current.encryption = enterpriseFrom(suites)
-					else:
-						current.encryption = Encryption.WPA2
-					current.encDetails = line
-			if (match := reAuthSuites.search(line)) and current.encryption not in self.rsnDetermined:
-				suiteText = match.group(1).upper()  # Fallback for drivers that print no raw element.
-				if "SAE" in suiteText or any(f"UNKNOWN ({x})" in suiteText for x in self.akmSAETypes):
-					current.encryption = Encryption.WPA2_WPA3 if "PSK" in suiteText else Encryption.WPA3
-					current.encDetails = line
-			if reIeWpa2.search(line):
-				if current.encryption not in self.rsnDetermined:  # Never downgrade a WPA3 verdict.
-					current.encryption = Encryption.WPA2
-					current.encDetails = line
-			elif reIeWpa1.search(line):
-				if current.encryption == Encryption.NONE:
-					current.encryption = Encryption.WPA
-					current.encDetails = line
-			elif reEncOn.search(line):
-				if current.encryption == Encryption.NONE:
-					current.encryption = Encryption.WEP
-			elif reEncOff.search(line):
-				current.encryption = Encryption.NONE
+			elif match := reFreq.match(line):
+				freqMhz = int(match.group(1))
+				current.frequency = f"{freqMhz / 1000:.3f} GHz"
+				current.channel = self.channelFromFreq(freqMhz)
+			elif match := reSignal.match(line):
+				current.signalDbm = round(float(match.group(1)))
+				current.signalPct = max(0, min(100, 2 * (current.signalDbm + 100)))
+			elif match := reDsChannel.search(line):
+				current.channel = int(match.group(1))
+			elif line.startswith("capability:"):
+				hasPrivacy = "Privacy" in line
+			elif line.startswith("RSN:"):
+				inRsn = True
+			elif line.startswith("WPA:"):
+				inRsn = False
+				wpaSeen = True
+			elif line.startswith("*"):
+				if inRsn and (match := reAuthSuites.search(line)):
+					rsnSuites = match.group(1)
+			else:  # Any other top-level field ends the RSN/WPA information element block.
+				inRsn = False
+		if current is not None:
+			finalizeEncryption(current, rsnSuites, wpaSeen, hasPrivacy)
 		return sorted((x for x in results if x.ssid), key=lambda x: -x.signalPct)
 
 

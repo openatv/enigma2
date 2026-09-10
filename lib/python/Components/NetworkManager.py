@@ -37,6 +37,7 @@ ifupBin = "/sbin/ifup"
 ifdownBin = "/sbin/ifdown"
 wpaSupplicantBin = "/usr/sbin/wpa_supplicant"
 wpaCliBin = "/usr/sbin/wpa_cli"
+iwBin = "/usr/sbin/iw"
 socketDaemonPath = "/var/run/daemon.socket"
 netEventSocketPath = "/var/run/daemon_net.socket"
 netinfoPath = "/var/run/netinfo"
@@ -948,7 +949,7 @@ class Adapter:
 	isWiFi: bool = False
 	module: str = ""
 	driverApi: str = apiNl80211
-	isBroadcomWl: bool = False  # Has the vendor "wl" tool available (needed to kick iwlist scans alive).
+	isBroadcomWl: bool = False  # Has the vendor "wl" tool available (needed to kick iw scans alive).
 	canWakeOnWiFi: bool = False
 	adapterEnabled: bool = False  # False -> Every line of this adapter's stanza in /etc/network/interfaces is commented out with "# " (see serializeConnection()), not just "auto <iface>".
 	present: bool = True  # False -> Known from /etc/network/interfaces (or was hotplug-removed) but not currently found in /sys/class/net. Kept in adapters/connections so save() doesn't drop its config, but should be hidden from adapter-picker UI.
