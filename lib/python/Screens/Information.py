@@ -848,18 +848,19 @@ class InformationMemory(InformationBase):
 			info.append("")
 		for line in memInfo:
 			key, value = (x for x in line.split(maxsplit=1))
-			if key == "MemTotal:":
-				info.append(self.formatLine("P1", _("Total memory"), formatNumber(value)))
-			elif key == "MemFree:":
-				info.append(self.formatLine("P1", _("Free memory"), formatNumber(value)))
-			elif key == "Buffers:":
-				info.append(self.formatLine("P1", _("Buffers"), formatNumber(value)))
-			elif key == "Cached:":
-				info.append(self.formatLine("P1", _("Cached"), formatNumber(value)))
-			elif key == "SwapTotal:":
-				info.append(self.formatLine("P1", _("Total swap"), formatNumber(value)))
-			elif key == "SwapFree:":
-				info.append(self.formatLine("P1", _("Free swap"), formatNumber(value)))
+			match key:
+				case "MemTotal:":
+					info.append(self.formatLine("P1", _("Total memory"), formatNumber(value)))
+				case "MemFree:":
+					info.append(self.formatLine("P1", _("Free memory"), formatNumber(value)))
+				case "Buffers:":
+					info.append(self.formatLine("P1", _("Buffers"), formatNumber(value)))
+				case "Cached:":
+					info.append(self.formatLine("P1", _("Cached"), formatNumber(value)))
+				case "SwapTotal:":
+					info.append(self.formatLine("P1", _("Total swap"), formatNumber(value)))
+				case "SwapFree:":
+					info.append(self.formatLine("P1", _("Free swap"), formatNumber(value)))
 		info.append("")
 		info.append(self.formatLine("S", _("FLASH")))
 		if self.extraSpacing:
@@ -1564,15 +1565,16 @@ class InformationService(InformationBase):
 			for subtitle in subList:
 				indent = "P1F0" if subtitle[:3] == subtitleSelected else "P1"
 				subtitleLang = subtitle[4]
-				if subtitle[0] == 0:  # DVB PID.
-					info.append(self.formatLine(indent, _("DVB Subtitles PID & Language"), f"{formatHex(subtitle[1])}  -  {subtitleLang}"))
-				elif subtitle[0] == 3:  # PGS.
-					info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  PGS  -  {subtitleLang}"))
-				elif subtitle[0] == 1:  # Teletext.
-					info.append(self.formatLine(indent, _("TXT Subtitles page & Language"), f"0x0{subtitle[3] or 8:X}{subtitle[2]:02X}  -  {subtitleLang}"))
-				elif subtitle[0] == 2:  # File.
-					subtitleDesc = subtitleTypes.get(subtitle[2], f"{_("Unknown")}: {subtitle[2]}")
-					info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  {subtitleDesc}  -  {subtitleLang}"))
+				match subtitle[0]:
+					case 0:  # DVB PID.
+						info.append(self.formatLine(indent, _("DVB Subtitles PID & Language"), f"{formatHex(subtitle[1])}  -  {subtitleLang}"))
+					case 1:  # Teletext.
+						info.append(self.formatLine(indent, _("TXT Subtitles page & Language"), f"0x0{subtitle[3] or 8:X}{subtitle[2]:02X}  -  {subtitleLang}"))
+					case 2:  # File.
+						subtitleDesc = subtitleTypes.get(subtitle[2], f"{_("Unknown")}: {subtitle[2]}")
+						info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  {subtitleDesc}  -  {subtitleLang}"))
+					case 3:  # PGS.
+						info.append(self.formatLine(indent, _("Other Subtitles & Language"), f"{subtitle[1] + 1}  -  PGS  -  {subtitleLang}"))
 
 		info = []
 		if self.serviceReferenceType == eServiceReference.idServiceDAB and self.serviceInfo:
@@ -1728,50 +1730,51 @@ class InformationService(InformationBase):
 			if not self.transponderInfo:
 				info.append(self.formatLine("P1", _("NIM"), f"{chr(ord("A") + frontendLive.get("tuner_number", 0))}"))
 			info.append(self.formatLine("P1", _("Type"), f"{frontendLive.get("tuner_type", na)}  [{tunerType}]"))
-			if tunerType == "DVB-C":
-				info.append(self.formatLine("P1", _("Modulation"), getValue("modulation", na)))
-				info.append(self.formatLine("P1", _("Frequency"), getDVBCFrequencyValue()))
-				info.append(self.formatLine("P1", _("Symbol rate"), getSymbolRateValue()))
-				info.append(self.formatLine("P1", _("Forward Error Correction (FEC)"), getValue("fec_inner", na)))
-				info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
-			elif tunerType == "DVB-S":
-				info.append(self.formatLine("P1", _("System"), getValue("system", na)))
-				info.append(self.formatLine("P1", _("Modulation"), getValue("modulation", na)))
-				info.append(self.formatLine("P1", _("Orbital position"), getValue("orbital_position", na)))
-				info.append(self.formatLine("P1", _("Frequency"), getDVBSFrequencyValue()))
-				info.append(self.formatLine("P1", _("Polarization"), getValue("polarization", na)))
-				info.append(self.formatLine("P1", _("Symbol rate"), getSymbolRateValue()))
-				info.append(self.formatLine("P1", _("Forward Error Correction (FEC)"), getValue("fec_inner", na)))
-				info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
-				info.append(self.formatLine("P1", _("Pilot"), getValue("pilot", na)))
-				info.append(self.formatLine("P1", _("Roll-off"), getValue("rolloff", na)))
-				info.append(self.formatLine("P1", _("Input Stream ID"), getInputStreamID()))
-				info.append(self.formatLine("P1", _("PLS Mode"), getValue("pls_mode", na)))
-				info.append(self.formatLine("P1", _("PLS Code"), getValue("pls_code", 0)))
-				valueLive = frontendLive.get("t2mi_plp_id", -1)
-				valueConfig = frontendConfig.get("t2mi_plp_id", -1)
-				if valueLive != -1 or valueConfig != -1:
-					info.append(self.formatLine("P1", _("T2MI PLP ID"), f"{valueLive}" if valueLive == valueConfig else f"{valueLive}  ({valueConfig})"))
-				valueLive = None if frontendLive.get("t2mi_plp_id", -1) == -1 else frontendLive.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
-				valueConfig = None if frontendConfig.get("t2mi_plp_id", -1) == -1 else frontendConfig.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
-				if valueLive or valueConfig:
-					info.append(self.formatLine("P1", _("T2MI PID"), f"{valueLive or "None"}" if valueLive == valueConfig else f"{valueLive or "None"}  ({valueConfig or "None"})"))
-			elif tunerType == "DVB-T":
-				info.append(self.formatLine("P1", _("Frequency"), getFrequencyValue()))
-				info.append(self.formatLine("P1", _("Channel"), getValue("channel", na)))
-				info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
-				info.append(self.formatLine("P1", _("Bandwidth"), getValue("bandwidth", na)))
-				info.append(self.formatLine("P1", _("Code rate LP"), getValue("code_rate_lp", na)))
-				info.append(self.formatLine("P1", _("Code rate HP"), getValue("code_rate_hp", na)))
-				info.append(self.formatLine("P1", _("Guard Interval"), getValue("guard_interval", na)))
-				info.append(self.formatLine("P1", _("Constellation"), getValue("constellation", na)))
-				info.append(self.formatLine("P1", _("Transmission mode"), getValue("transmission_mode", na)))
-				info.append(self.formatLine("P1", _("Hierarchy info"), getValue("hierarchy_information", na)))
-			elif tunerType == "ATSC":
-				info.append(self.formatLine("P1", _("System"), getValue("system", na)))
-				info.append(self.formatLine("P1", _("Modulation"), getValue("modulation", na)))
-				info.append(self.formatLine("P1", _("Frequency"), getFrequencyValue()))
-				info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
+			match tunerType:
+				case "ATSC":
+					info.append(self.formatLine("P1", _("System"), getValue("system", na)))
+					info.append(self.formatLine("P1", _("Modulation"), getValue("modulation", na)))
+					info.append(self.formatLine("P1", _("Frequency"), getFrequencyValue()))
+					info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
+				case "DVB-C":
+					info.append(self.formatLine("P1", _("Modulation"), getValue("modulation", na)))
+					info.append(self.formatLine("P1", _("Frequency"), getDVBCFrequencyValue()))
+					info.append(self.formatLine("P1", _("Symbol rate"), getSymbolRateValue()))
+					info.append(self.formatLine("P1", _("Forward Error Correction (FEC)"), getValue("fec_inner", na)))
+					info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
+				case "DVB-S":
+					info.append(self.formatLine("P1", _("System"), getValue("system", na)))
+					info.append(self.formatLine("P1", _("Modulation"), getValue("modulation", na)))
+					info.append(self.formatLine("P1", _("Orbital position"), getValue("orbital_position", na)))
+					info.append(self.formatLine("P1", _("Frequency"), getDVBSFrequencyValue()))
+					info.append(self.formatLine("P1", _("Polarization"), getValue("polarization", na)))
+					info.append(self.formatLine("P1", _("Symbol rate"), getSymbolRateValue()))
+					info.append(self.formatLine("P1", _("Forward Error Correction (FEC)"), getValue("fec_inner", na)))
+					info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
+					info.append(self.formatLine("P1", _("Pilot"), getValue("pilot", na)))
+					info.append(self.formatLine("P1", _("Roll-off"), getValue("rolloff", na)))
+					info.append(self.formatLine("P1", _("Input Stream ID"), getInputStreamID()))
+					info.append(self.formatLine("P1", _("PLS Mode"), getValue("pls_mode", na)))
+					info.append(self.formatLine("P1", _("PLS Code"), getValue("pls_code", 0)))
+					valueLive = frontendLive.get("t2mi_plp_id", -1)
+					valueConfig = frontendConfig.get("t2mi_plp_id", -1)
+					if valueLive != -1 or valueConfig != -1:
+						info.append(self.formatLine("P1", _("T2MI PLP ID"), f"{valueLive}" if valueLive == valueConfig else f"{valueLive}  ({valueConfig})"))
+					valueLive = None if frontendLive.get("t2mi_plp_id", -1) == -1 else frontendLive.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
+					valueConfig = None if frontendConfig.get("t2mi_plp_id", -1) == -1 else frontendConfig.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)
+					if valueLive or valueConfig:
+						info.append(self.formatLine("P1", _("T2MI PID"), f"{valueLive or "None"}" if valueLive == valueConfig else f"{valueLive or "None"}  ({valueConfig or "None"})"))
+				case "DVB-T":
+					info.append(self.formatLine("P1", _("Frequency"), getFrequencyValue()))
+					info.append(self.formatLine("P1", _("Channel"), getValue("channel", na)))
+					info.append(self.formatLine("P1", _("Inversion"), getValue("inversion", na)))
+					info.append(self.formatLine("P1", _("Bandwidth"), getValue("bandwidth", na)))
+					info.append(self.formatLine("P1", _("Code rate LP"), getValue("code_rate_lp", na)))
+					info.append(self.formatLine("P1", _("Code rate HP"), getValue("code_rate_hp", na)))
+					info.append(self.formatLine("P1", _("Guard Interval"), getValue("guard_interval", na)))
+					info.append(self.formatLine("P1", _("Constellation"), getValue("constellation", na)))
+					info.append(self.formatLine("P1", _("Transmission mode"), getValue("transmission_mode", na)))
+					info.append(self.formatLine("P1", _("Hierarchy info"), getValue("hierarchy_information", na)))
 		else:
 			info.append(self.formatLine("M0", _("Tuner data is not available!")))
 		return info
@@ -1792,12 +1795,13 @@ class InformationService(InformationBase):
 						description = caidEntry[2]
 						break
 				if caID[2]:
-					if description == "Seca":
-						provid = ",".join([caID[2][y:y + 4] for y in range(len(caID[2]), 30)])
-					elif description == "Nagra":
-						provid = caID[2][-4:]
-					elif description == "Via":
-						provid = caID[2][-6:]
+					case description:
+						case "Seca":
+							provid = ",".join([caID[2][y:y + 4] for y in range(len(caID[2]), 30)])
+						case "Nagra":
+							provid = caID[2][-4:]
+						case "Via":
+							provid = caID[2][-6:]
 					if provid:
 						extraInfo = f" provid={provid}"
 					else:
