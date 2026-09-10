@@ -210,27 +210,14 @@ class WizardStart(Wizard, ShowRemoteControl):
 	def isFlashExpanderActive(self):
 		return isdir(join(f"/{EXPANDER_MOUNT}/{EXPANDER_MOUNT}", "bin"))
 
-	def checkConfigBackup(self):
-		BACKUP_FILE = "enigma2settingsbackup.tar.gz"
-		BOX_TYPE = BoxInfo.getItem("machinebuild")
+	def hasConfigBackup(self):  # Called by startwizard.xml's restorequestion condition.
+		backupFilename = "enigma2settingsbackup.tar.gz"
 		partitions = [(x.description, x.mountpoint) for x in harddiskmanager.getMountedPartitions(onlyhotplug=False) if x.mountpoint != "/"]
-		# This test criteria should be in BoxInfo!  Don't add hardware dependencies into the general Enigma2 code.
-		# if BoxInfo.getItem("isMTDBackup"):
-		if BOX_TYPE in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6"):
-			partitions.append(("mtd backup", "/media/backup"))
 		if partitions:
 			for partition in partitions:
-				fullBackupFile1 = join(partition[1], "backup_%s_%s" % (BoxInfo.getItem("distro"), BOX_TYPE), BACKUP_FILE)
-				fullBackupFile2 = join(partition[1], "backup", BACKUP_FILE)
-				if isfile(fullBackupFile1) or isfile(fullBackupFile2):
-					config.plugins.configurationbackup.backuplocation.setValue(partition[1])
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return partition
-			return None
-
-	def hasConfigBackup(self):  # Called by startwizard.xml's restorequestion condition.
-		return self.checkConfigBackup() is not None
+				if isfile(join(partition[1], f"backup_{BoxInfo.getItem("distro")}_{BoxInfo.getItem("machinebuild")}", backupFilename)) or isfile(join(partition[1], "backup", backupFilename)):
+					return True
+		return False
 
 	def hasPartitions(self):
 		partitions = fileReadLines("/proc/partitions", source=MODULE_NAME)
