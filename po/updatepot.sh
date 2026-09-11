@@ -19,26 +19,26 @@ findoptions=""
 # Script only run with sed but on some distro normal sed is already sed so checking it.
 #
 sed --version 2> /dev/null | grep -q "GNU"
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
 	localgsed="sed"
 else
 	"$localgsed" --version | grep -q "GNU"
-	if [ $? -eq 0 ]; then
+	if [[ $? -eq 0 ]]; then
 		printf "GNU sed found: [%s]\n" $localgsed
 	fi
 fi
 
 which python
-if [ $? -eq 1 ]; then
+if [[ $? -eq 1 ]]; then
 	which python3
-	if [ $? -eq 1 ]; then
+	if [[ $? -eq 1 ]]; then
 		printf "python not found on this system, please install it first or ensure that it is in the PATH variable.\n"
 		exit 1
 	fi
 fi
 
 which xgettext
-if [ $? -eq 1 ]; then
+if [[ $? -eq 1 ]]; then
 	printf "xgettext not found on this system, please install it first or ensure that it is in the PATH variable.\n"
 	exit 1
 fi
@@ -64,7 +64,7 @@ find $findoptions .. -name "*.py" -exec xgettext --no-wrap -L Python --from-code
 $localgsed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
 printf "Creating temporary file enigma2-xml.pot\n"
 which python
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
 	find $findoptions .. -name "*.xml" -exec python xml2po.py {} \+ > enigma2-xml.pot
 else
 	find $findoptions .. -name "*.xml" -exec python3 xml2po.py {} \+ > enigma2-xml.pot
