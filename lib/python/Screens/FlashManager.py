@@ -20,7 +20,7 @@ from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
-from Tools.Downloader import DownloadWithProgress
+from Tools.Downloader import DownloadWithProgress, USER_AGENTS
 from Tools.MultiBoot import MultiBoot
 
 UMOUNT = "/bin/umount"
@@ -29,7 +29,7 @@ OFGWRITE = "/usr/bin/ofgwrite"
 FEED_DISTRIBUTION = 0
 FEED_JSON_URL = 1
 
-USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"}
+USER_AGENT = {"User-Agent": USER_AGENTS.CHROME}
 
 
 def checkImageFiles(files):
@@ -603,7 +603,11 @@ class FlashImage(Screen):
 			self.keyCancel()
 
 	def downloadProgress(self, current, total):
-		self["progress"].setValue(100 * current // total)
+		if total > 0:  # total is -1 while the download size is still unknown
+			self["progress"].setValue(100 * current // total)
+			eta = self.downloader.getEta()
+			eta = f" / {eta}s" if eta > 0 else ""
+			self["info"].setText(f"{self.imageName}{eta}")
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
@@ -614,7 +618,7 @@ class FlashImage(Screen):
 
 	def downloadError(self, error):
 		self.downloader.stop()
-		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error.strerror), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
