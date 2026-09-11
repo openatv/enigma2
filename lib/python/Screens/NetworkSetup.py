@@ -299,7 +299,7 @@ class NetworkOverview(Screen):
 
 	def refreshAdapters(self):
 		oldGateways = {x[self.indexAdapter].name: x[self.indexAdapter].netInfo.gateway for x in self["adapterList"].getList() if x[self.indexAdapter] is not None}
-		newGateways = {name: adapter.netInfo.gateway for name, adapter in networkManager.adapters.items()}
+		newGateways = {name: adapter.netInfo.gateway for name, adapter in networkManager.getAdapters().items()}
 		if oldGateways != newGateways:
 			self.internetChecked = False
 			self.checkInternet()
@@ -1088,13 +1088,19 @@ class NetworkWiFiScan(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText(_("Rescan"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"ok": (self.keySelect, _("Configure the selected Wi-Fi network")),
 			"cancel": (self.keyClose, _("Close the screen")),
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
 			"red": (self.keyClose, _("Close the screen")),
 			"green": (self.keySelect, _("Configure the selected Wi-Fi network")),
-			"yellow": (self.keyStartScan, _("Rescan for available Wi-Fi networks"))
+			"yellow": (self.keyStartScan, _("Rescan for available Wi-Fi networks")),
+			"top": (self["list"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["list"].goPageUp, _("Move up a screen")),
+			"up": (self["list"].goLineUp, _("Move up a line")),
+			"down": (self["list"].goLineDown, _("Move down a line")),
+			"pageDown": (self["list"].goPageDown, _("Move down a screen")),
+			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Wi-Fi Scan Actions"))
 		# AKM suite types under the 00-0F-AC organisation identifier (IEEE 802.11).
 		self.akmPSKTypes = {2, 4, 6, 19, 20}  # PSK, FT-PSK, PSK-SHA256, FT-PSK-SHA384, PSK-SHA384.
@@ -1106,7 +1112,11 @@ class NetworkWiFiScan(Screen):
 		self.console = Console()
 		self.scanning = False
 		self.accessPoints: dict[str, ScanResult] = {}
-		self.onLayoutFinish.append(self.keyStartScan)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self["list"].enableAutoNavigation(False)
+		self.keyStartScan()
 
 	def keySelect(self):
 		current = self["list"].getCurrent()
