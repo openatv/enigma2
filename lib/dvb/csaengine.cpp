@@ -222,19 +222,19 @@ void eDVBCSAEngine::setKey(int parity, uint8_t ecm_mode, const uint8_t* cw)
 	// so it never sees a partially-written key schedule.
 	if (parity == 0) // even
 	{
-		int active = m_key_even_idx.load(std::memory_order_relaxed);
+		int active = m_key_even_idx.load(std::memory_order_relaxed); // S8417: only this thread writes it
 		int inactive = 1 - active;
 		g_csa_api.key_set_ecm(ecm_mode, cw, m_key_even[inactive]);
-		m_key_even_idx.store(inactive, std::memory_order_release);
-		m_key_even_set.store(true, std::memory_order_release);
+		m_key_even_idx.store(inactive, std::memory_order_release); // S8417: publishes key write above
+		m_key_even_set.store(true, std::memory_order_release); // S8417: publishes idx store above
 	}
 	else // odd
 	{
-		int active = m_key_odd_idx.load(std::memory_order_relaxed);
+		int active = m_key_odd_idx.load(std::memory_order_relaxed); // S8417: only this thread writes it
 		int inactive = 1 - active;
 		g_csa_api.key_set_ecm(ecm_mode, cw, m_key_odd[inactive]);
-		m_key_odd_idx.store(inactive, std::memory_order_release);
-		m_key_odd_set.store(true, std::memory_order_release);
+		m_key_odd_idx.store(inactive, std::memory_order_release); // S8417: publishes key write above
+		m_key_odd_set.store(true, std::memory_order_release); // S8417: publishes idx store above
 	}
 
 	if (g_csa_api.get_ecm_table)
@@ -297,10 +297,10 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 	// Snapshot active key state and indices once for this entire buffer.
 	// setKey() on the CWHandler thread may swap the index at any time,
 	// but we consistently use the snapshot throughout this call.
-	const bool even_set = m_key_even_set.load(std::memory_order_acquire);
-	const bool odd_set = m_key_odd_set.load(std::memory_order_acquire);
-	dvbcsa_bs_key_t* key_even = even_set ? m_key_even[m_key_even_idx.load(std::memory_order_acquire)] : nullptr;
-	dvbcsa_bs_key_t* key_odd = odd_set ? m_key_odd[m_key_odd_idx.load(std::memory_order_acquire)] : nullptr;
+	const bool even_set = m_key_even_set.load(std::memory_order_acquire); // S8417: pairs with release in setKey()
+	const bool odd_set = m_key_odd_set.load(std::memory_order_acquire); // S8417: pairs with release in setKey()
+	dvbcsa_bs_key_t* key_even = even_set ? m_key_even[m_key_even_idx.load(std::memory_order_acquire)] : nullptr; // S8417: pairs with release in setKey()
+	dvbcsa_bs_key_t* key_odd = odd_set ? m_key_odd[m_key_odd_idx.load(std::memory_order_acquire)] : nullptr; // S8417: pairs with release in setKey()
 
 	int i        = 0;
 	int even_cnt = 0;
