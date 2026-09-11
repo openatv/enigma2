@@ -740,7 +740,7 @@
 	<setup key="NetworkWiFi" title="Network Wi-Fi Settings">
 		<item level="0" text="Network name (SSID)" description="Select the network name (SSID) of the wireless network to which the receiver should connect.">self.cfgSsid</item>
 		<item level="0" text="Enabled" description="When enabled, connection via saved network is attempted when the Wi-Fi adapter connects.">self.cfgEnabled</item>
-		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self._hasMultiplePriorities">self.cfgPriority</item>
+		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self.hasMultiplePriorities">self.cfgPriority</item>
 		<item level="1" text="Hidden network" description="When enabled, allow connection to access points that don't broadcast their SSID.">self.cfgHidden</item>
 		<item level="0" text="Encryption" description="Select the security protocol that will be used to access the selected wireless network.">self.cfgEncryption</item>
 		<if conditional="self.cfgEncryption.value != 'none'">
