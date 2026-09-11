@@ -6,7 +6,7 @@ from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceRefe
 
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
@@ -235,6 +235,7 @@ class EPGList(GUIComponent):
 		self.eventNameAlign = 'left'
 		self.eventNameWrap = 'yes'
 		self.NumberOfRows = None
+		self.minimumItemHeight = 0
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -362,6 +363,8 @@ class EPGList(GUIComponent):
 					self.backColorZapSelected = parseColor(value).argb()
 				elif attrib == "NumberOfRows":
 					self.NumberOfRows = int(value)
+				elif attrib == "MinimumItemHeight":
+					self.minimumItemHeight = max(0, int(value))
 				else:
 					attribs.append((attrib, value))
 			self.skinAttributes = attribs
@@ -608,6 +611,14 @@ class EPGList(GUIComponent):
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
+
+		# Opt-in readable rows: preserve native density preferences, but avoid partial rows.
+		if self.minimumItemHeight and self.listHeight > 0:
+			self.itemHeight = min(self.listHeight, max(self.minimumItemHeight, self.itemHeight))
+			self.listRows = max(1, self.listHeight // self.itemHeight)
+			self.l.setItemHeight(self.itemHeight)
+			self.listHeight = self.listRows * self.itemHeight
+			self.instance.resize(eSize(self.listWidth, self.listHeight))
 
 	def setFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -932,7 +943,7 @@ class EPGList(GUIComponent):
 		displayPicon = None
 		if self.showPicon:
 			if picon is None:  # go find picon and cache its location
-				picon = getPiconName(service)
+				picon = getChannelSelectionPiconName(service)
 				curIdx = self.l.getCurrentSelectionIndex()
 				self.list[curIdx] = (service, service_name, events, picon, channel)
 			piconWidth = self.picon_size.width()

@@ -5,7 +5,9 @@
 #include <cstdio>
 #include <cstdint>
 #include <functional>
+#include <map>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <vector>
 
@@ -16,6 +18,8 @@
 #include <lib/service/iservice.h>
 
 class eDABDecoder;
+class eDABSDRWorker;
+class eTSMPEGDecoder;
 typedef struct _GstElement GstElement;
 
 enum { DAB_MAX_SCANNED_SERVICES = 64 };
@@ -68,16 +72,34 @@ struct eDABWorkerStats
 	uint64_t motDataGroups;
 	uint64_t slides;
 	uint64_t serviceRevision;
+	uint64_t spiRevision;
+	uint64_t dlPlusRevision;
+	uint64_t logoRevision;
 	uint16_t ensembleId;
 	int serviceCount;
 	eDABScannedService services[DAB_MAX_SCANNED_SERVICES];
 	int slideFormat;
 	int bitrate;
+	int snrCentidB;
+	int ficQuality;
+	int mscQuality;
+	bool rfSynced;
 	bool serviceFound;
 	bool dabplus;
 	char serviceLabel[64];
 	char ensembleLabel[64];
 	char dynamicLabel[256];
+	char dlPlusItemTitle[256];
+	char dlPlusItemArtist[256];
+	char dlPlusItemGenre[128];
+	char dlPlusProgrammeNow[256];
+	char dlPlusProgrammeNext[256];
+	char dlPlusProgrammePart[256];
+	char dlPlusProgrammeHost[256];
+	char tunerName[64];
+	char language[64];
+	char programType[64];
+	char protection[32];
 	int error;
 
 	eDABWorkerStats();
@@ -88,10 +110,12 @@ class eDABWorker : private eThread
 public:
 	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
+	typedef std::function<int(const uint8_t *, size_t, int, int,
+		const std::string &, uint16_t)> MOTCallback;
 
 	eDABWorker(int fd, int pid, eDABTransport transport, uint32_t destinationIp, uint16_t destinationPort,
 		uint32_t serviceId, uint16_t ensembleId, const AudioCallback &audioCallback,
-		const ImageCallback &imageCallback,
+		const ImageCallback &imageCallback, const MOTCallback &motCallback,
 		eFixedMessagePump<eDABWorkerStats> &pump);
 	~eDABWorker();
 
@@ -136,6 +160,7 @@ class eStaticServiceDABInfo : public iStaticServiceInformation
 public:
 	eStaticServiceDABInfo();
 	RESULT getName(const eServiceReference &ref, std::string &name) override;
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t startTime) override;
 	int getLength(const eServiceReference &ref) override;
 	int getInfo(const eServiceReference &ref, int w) override;
 	std::string getInfoString(const eServiceReference &ref, int w) override;
@@ -162,7 +187,7 @@ private:
 	ePtr<eStaticServiceDABInfo> m_service_info;
 };
 
-class eServiceDAB : public iPlayableService, public iServiceInformation, public iRdsDecoder, public sigc::trackable
+class eServiceDAB : public iPlayableService, public iServiceInformation, public iFrontendInformation, public iRdsDecoder, public sigc::trackable
 {
 	DECLARE_REF(eServiceDAB);
 
@@ -193,8 +218,15 @@ public:
 	void setQpipMode(bool value, bool audio) override;
 
 	RESULT getName(std::string &name) override;
+	RESULT getEvent(ePtr<eServiceEvent> &event, int nowNext) override;
 	int getInfo(int w) override;
 	std::string getInfoString(int w) override;
+
+	// iFrontendInformation -- expose RTL-SDR reception data to normal skins.
+	int getFrontendInfo(int w) override;
+	ePtr<iDVBFrontendData> getFrontendData() override;
+	ePtr<iDVBFrontendStatus> getFrontendStatus() override;
+	ePtr<iDVBTransponderData> getTransponderData(bool original) override;
 
 	// iRdsDecoder -- DAB Dynamic Label uses the existing Enigma2 radio text UI.
 	std::string getText(int x = RadioText) override;
@@ -202,20 +234,42 @@ public:
 	void showRassInteractivePic(int page, int subpage) override;
 	ePyObject getRassInteractiveMask() override;
 
+	static bool attachRTLSDRConsumer(const eServiceReference &reference,
+		const std::function<void(const uint8_t *, size_t)> &audioCallback,
+		const std::function<void(const eDABWorkerStats &)> &statsCallback,
+		ePtr<eServiceDAB> &source, uint64_t &token);
+	void detachRTLSDRConsumer(uint64_t token);
+
 private:
 	eServiceReferenceDVB parentReference() const;
 	bool parseTransport(eDABTransport &transport, uint32_t &ip, uint16_t &port) const;
+	bool parseRTLSDRChannel(std::string &channel) const;
 	bool startTap();
+	bool startRTLSDR();
 	void stopTap();
+	void stopRTLSDR(bool force = false);
+	bool hasRTLSDRConsumers();
+	void dispatchRTLSDRAudio(const uint8_t *data, size_t length);
+	void dispatchRTLSDRStats(const eDABWorkerStats &stats);
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
 	static bool sinkAcceptsLOAS(const char *factoryName);
-	bool startAudioPipeline();
+	bool startAudioPipeline(bool loasInput = false);
 	void stopAudioPipeline();
 	void pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config);
+	void pushLOAS(const uint8_t *data, size_t length);
 	void setAudioCaps(uint8_t config);
 	static void audioQueueOverrun(GstElement *queue, void *userData);
+	void showRadioPicture();
 	void storeSlide(const uint8_t *data, size_t length, int format);
+	bool cacheSPIImage(const std::string &path, const std::string &contentName);
+	bool cacheSPIImageData(const uint8_t *data, size_t length, const std::string &contentName);
+	int importSPI(const std::string &path);
+	int importSPIData(const uint8_t *data, size_t length, const std::string &source);
+	int handleMOTObject(const uint8_t *data, size_t length, int contentType, int contentSubType,
+		const std::string &contentName, uint16_t transportId);
+	void updateDLPlusEPG(bool force = false);
+	std::string logoPath() const;
 	std::string slidePath() const;
 	void pollAudioBus();
 
@@ -226,6 +280,17 @@ private:
 	sigc::signal<void(iPlayableService *, int)> m_event;
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
+	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	struct RTLSDRConsumer
+	{
+		std::function<void(const uint8_t *, size_t)> audioCallback;
+		std::function<void(const eDABWorkerStats &)> statsCallback;
+	};
+	static std::mutex s_rtlsdr_source_mutex;
+	static eServiceDAB *s_rtlsdr_source;
+	std::mutex m_rtlsdr_consumers_mutex;
+	std::map<uint64_t, RTLSDRConsumer> m_rtlsdr_consumers;
+	uint64_t m_next_rtlsdr_consumer = 1;
 	int m_socket[2];
 	bool m_running;
 	bool m_tap_running;
@@ -238,16 +303,24 @@ private:
 	GstElement *m_audio_pipeline;
 	GstElement *m_audio_source;
 	GstElement *m_audio_queue;
+	ePtr<eTSMPEGDecoder> m_radio_picture_decoder;
 	FILE *m_audio_capture;
 	uint64_t m_audio_next_pts;
 	uint8_t m_audio_format;
 	bool m_audio_caps_set;
+	bool m_audio_input_loas = false;
 	bool m_audio_loas = false;
 	uint64_t m_audio_probe_deadline = 0;
 	std::atomic<uint64_t> m_audio_queue_overruns;
 	uint64_t m_reported_audio_queue_overruns;
+	uint64_t m_next_live_epg_check = 0;
+	time_t m_live_epg_start = 0;
+	std::string m_live_epg_title;
+	uint32_t m_source_hash;
+	std::string m_cache_directory;
 	std::string m_slide_jpeg_path;
 	std::string m_slide_png_path;
+	std::string m_logo_base;
 };
 
 class eServiceDABRecord : public iRecordableService, public sigc::trackable
@@ -264,6 +337,7 @@ public:
 		const char *name, const char *description, const char *tags,
 		bool descramble, bool recordEcm, int packetSize) override;
 	RESULT prepareStreaming(bool descramble, bool includeEcm) override;
+	RESULT prepareStreamingToFD(int fd);
 	RESULT start(bool simulate = false) override;
 	RESULT stop() override;
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) override;
@@ -277,7 +351,10 @@ private:
 
 	eServiceReferenceDVB parentReference() const;
 	bool parseTransport(eDABTransport &transport, uint32_t &ip, uint16_t &port) const;
+	bool parseRTLSDRChannel(std::string &channel) const;
 	bool prepareParent();
+	bool startRTLSDR();
+	void stopRTLSDR();
 	bool startTap();
 	void stopTap();
 	void parentEvent(iPlayableService *service, int event);
@@ -292,10 +369,14 @@ private:
 	sigc::signal<void(iRecordableService *, int)> m_event;
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
+	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	ePtr<eServiceDAB> m_sdr_source;
+	uint64_t m_sdr_consumer_token;
 	int m_socket[2];
 	int m_file_fd;
 	State m_state;
 	bool m_simulate;
+	bool m_streaming;
 	bool m_tuned;
 	bool m_tap_running;
 	bool m_running_event_sent;

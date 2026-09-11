@@ -102,27 +102,27 @@ class NetworkOverview(Screen):
 	OVERVIEW_COLOR_IDLE_SELECTED = gRGB(0x00808080).argb()  # Gray – Disabled / Not Associated / Saved connection, row selected.
 
 	skin = """
-	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1070,540" resolution="1280,720">
+	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1100,540" resolution="1280,720">
 		<widget source="adapterList" render="Listbox" position="10,10" size="e-20,250">
 			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,enigma2icons;38,Regular;24,Regular;18,enigma2icons;20" itemHeight="50">
 				<rowtemplate>
-					<text index="AdapterName" position="0,0" size="240,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="MAC" position="450,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="IPAddress" position="620,0" size="150,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Gateway" position="770,0" size="140,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Speed" position="910,0" size="140,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="AdapterName" position="0,0" size="250,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="270,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="MAC" position="440,0" size="180,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="IPAddress" position="620,0" size="160,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Gateway" position="780,0" size="160,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Speed" position="940,0" size="140,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 				<rowtemplate>
 					<text index="AdapterGlyph" position="0,6" size="48,38" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="AdapterName" position="60,0" size="180,28" font="2" padding="5,0" verticalAlignment="center" />
-					<text index="AdapterType" position="60,28" size="180,22" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="InternetGlyph" position="240,15" size="40,20" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,50" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
-					<text index="MAC" position="450,0" size="170,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="IPAddress" position="620,0" size="150,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="Gateway" position="770,0" size="140,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="Speed" position="910,0" size="140,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="AdapterName" position="60,0" size="170,28" font="2" padding="5,0" verticalAlignment="center" />
+					<text index="AdapterType" position="60,28" size="170,22" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="InternetGlyph" position="230,15" size="40,20" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="270,0" size="170,50" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="MAC" position="440,0" size="180,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="IPAddress" position="620,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="Gateway" position="780,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="Speed" position="940,0" size="140,50" font="3" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 			</template>
 		</widget>
@@ -132,20 +132,20 @@ class NetworkOverview(Screen):
 		<widget source="savedList" render="Listbox" position="10,305" size="e-20,175">
 			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,Regular;20" itemHeight="35">
 				<rowtemplate>
-					<text index="SSID" position="0,0" size="280,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="BSSID" position="450,0" size="210,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Frequency" position="660,0" size="120,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Channel" position="780,0" size="120,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Encryption" position="900,0" size="150,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="SSID" position="0,0" size="200,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="200,0" size="170,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="BSSID" position="370,0" size="210,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Frequency" position="580,0" size="140,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Channel" position="720,0" size="120,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Encryption" position="840,0" size="240,35" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 				<rowtemplate>
-					<text index="SSID" position="0,0" size="280,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="280,0" size="170,35" font="1" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
-					<text index="BSSID" position="450,0" size="210,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="Frequency" position="660,0" size="120,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="Channel" position="780,0" size="120,35" font="1" padding="5,0" verticalAlignment="center" />
-					<text index="Encryption" position="900,0" size="150,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="SSID" position="0,0" size="200,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="200,0" size="170,35" font="1" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="BSSID" position="370,0" size="210,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="Frequency" position="580,0" size="140,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="Channel" position="720,0" size="120,35" font="1" padding="5,0" verticalAlignment="center" />
+					<text index="Encryption" position="840,0" size="240,35" font="1" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 			</template>
 		</widget>
@@ -639,7 +639,11 @@ class NetworkOverview(Screen):
 			Encryption.WEP: "WEP",
 			Encryption.WPA: "WPA",
 			Encryption.WPA2: "WPA2",
-			Encryption.WPA3: "WPA3"
+			Encryption.WPA3: "WPA3",
+			Encryption.WPA2_WPA3: "WPA2/WPA3",
+			Encryption.WPA2_ENTERPRISE: "WPA2 Enterprise",
+			Encryption.WPA3_ENTERPRISE: "WPA3 Enterprise",
+			Encryption.WPA2_WPA3_ENTERPRISE: "WPA2/WPA3 Enterprise"
 		}
 		if conn.isWiFi and conn.wifi and conn.wifi.ssid:
 			result = f"{conn.adapter}  │  {conn.wifi.ssid}  [{encShort.get(conn.wifi.encryption, conn.wifi.encryption)}]"
@@ -893,6 +897,8 @@ class NetworkWiFi(Setup):
 		(Encryption.WEP, "WEP"),
 		(Encryption.WPA, "WPA"),
 		(Encryption.WPA2, "WPA2"),
+		(Encryption.WPA2_WPA3, "WPA2/WPA3"),
+		(Encryption.WPA3, "WPA3"),
 	]
 
 	def __init__(self, session, conn: Connection, adapter: Adapter):
@@ -934,7 +940,10 @@ class NetworkWiFi(Setup):
 		wifi = conn.wifi
 		self.cfgSsid = NoSave(ConfigText(default=wifi.ssid, fixed_size=False))
 		self.cfgHidden = NoSave(ConfigYesNo(default=wifi.hidden))
-		self.cfgEncryption = NoSave(ConfigSelection(choices=self.ENCRYPTION_CHOICES, default=wifi.encryption))
+		encryptionChoices = list(self.ENCRYPTION_CHOICES)  # A hand written config may carry a value this screen does not offer.
+		if wifi.encryption not in [x[0] for x in encryptionChoices]:
+			encryptionChoices.append((wifi.encryption, encryptionLabels.get(wifi.encryption, lambda: str(wifi.encryption))()))
+		self.cfgEncryption = NoSave(ConfigSelection(choices=encryptionChoices, default=wifi.encryption))
 		self.cfgKey = NoSave(ConfigPassword(default=wifi.key, fixed_size=False))
 
 	def keySave(self):
@@ -996,7 +1005,7 @@ class ScanResult:
 	bssid: str = ""
 	frequency: str = ""
 	channel: int = 0
-	signalDbm: int = -100
+	signalDbm: int | None = None  # None when the driver only reports a relative level.
 	signalPct: int = 0
 	encryption: Encryption = Encryption.NONE
 	encDetails: str = ""
@@ -1016,6 +1025,14 @@ class ScanResult:
 		return result
 
 	@property
+	def signalDbmText(self) -> str:
+		return f"{self.signalDbm} dBm" if self.signalDbm is not None else "—"  # Em dash, matching the adapter overview.
+
+	@property
+	def signalText(self) -> str:
+		return f"{self.signalPct}%  ({self.signalDbmText})" if self.signalDbm is not None else f"{self.signalPct}%"
+
+	@property
 	def encLabel(self) -> str:
 		return {
 			Encryption.NONE: _("None"),
@@ -1023,6 +1040,10 @@ class ScanResult:
 			Encryption.WPA: "WPA",
 			Encryption.WPA2: "WPA2",
 			Encryption.WPA3: "WPA3",
+			Encryption.WPA2_WPA3: "WPA2/WPA3",
+			Encryption.WPA2_ENTERPRISE: "WPA2 Enterprise",
+			Encryption.WPA3_ENTERPRISE: "WPA3 Enterprise",
+			Encryption.WPA2_WPA3_ENTERPRISE: "WPA2/WPA3 Enterprise",
 		}.get(self.encryption, self.encryption.upper())
 
 
@@ -1030,18 +1051,18 @@ class NetworkWiFiScan(Screen):
 	"""Runs iwlist scan and shows results sorted by signal strength."""
 
 	skin = """
-	<screen name="NetworkWiFiScan" title="Wi-Fi Scan" position="center,center" size="940,455" resolution="1280,720">
+	<screen name="NetworkWiFiScan" title="Wi-Fi Scan" position="center,center" size="1120,455" resolution="1280,720">
 		<widget source="list" render="Listbox" position="10,10" size="e-20,e-105">
 			<template name="Default" fonts="Regular;22,Regular;20,enigma2icons;20" itemHeight="35">
 				<mode name="default">
 					<panel position="0,0" size="e,e" layout="horizontal">
 						<text index="Name" position="left" size="450,35" flags="scroll" font="0" padding="5,0" verticalAlignment="center" />
 						<text index="Glyph" position="left" size="30,35" font="2" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-						<text index="Percentage" position="left" size="60,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
-						<text index="dBm" position="left" size="90,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
-						<text index="Encryption" position="left" size="100,35" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
+						<text index="Percentage" position="left" size="65,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
+						<text index="dBm" position="left" size="100,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
+						<text index="Encryption" position="left" size="245,35" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
 						<text index="Channel" position="left" size="80,35" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-						<text index="Frequency" position="right" size="110,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
+						<text index="Frequency" position="right" size="130,35" font="1" horizontalAlignment="right" padding="5,0" verticalAlignment="center" />
 					</panel>
 				</mode>
 			</template>
@@ -1102,7 +1123,11 @@ class NetworkWiFiScan(Screen):
 	def keySelect(self):
 		current = self["list"].getCurrent()
 		if current:
-			self.close(current[-1])
+			accessPoint = current[-1]
+			if accessPoint.encryption in self.ENTERPRISE_ENCRYPTIONS:
+				self.session.open(MessageBox, _("'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf.") % accessPoint.ssid, type=MessageBox.TYPE_INFO)
+				return
+			self.close(accessPoint)
 
 	def keyClose(self):
 		if self.console:
@@ -1129,9 +1154,9 @@ class NetworkWiFiScan(Screen):
 						accessPoint.ssid,                                            # SSID.
 						accessPoint.bssid,                                           # BSSID.
 						self.STRENGTH_GLYPHS[min(accessPoint.signalBars, 4)],        # Glyph.
-						f"{accessPoint.signalPct}%  ({accessPoint.signalDbm} dBm)",  # Strength.
+						accessPoint.signalText,                                      # Strength.
 						f"{accessPoint.signalPct}%",                                 # Percent.
-						f"{accessPoint.signalDbm} dBm",                              # dBM.
+						accessPoint.signalDbmText,                                   # dBM.
 						accessPoint.encLabel,                                        # Encryption.
 						f"Ch-{accessPoint.channel}  ({accessPoint.frequency})",      # ChannelFrequency.
 						f"Ch-{accessPoint.channel}",                                 # Channel.
@@ -1175,13 +1200,63 @@ class NetworkWiFiScan(Screen):
 			else:
 				self.console.ePopen(("/sbin/ifconfig", "/sbin/ifconfig", self.adapter, "up"), callback=ifUpCallback)
 
+	# AKM suite types under the 00-0F-AC organisation identifier (IEEE 802.11).
+	AKM_PSK_TYPES = {2, 4, 6, 19, 20}  # PSK, FT-PSK, PSK-SHA256, FT-PSK-SHA384, PSK-SHA384.
+	AKM_SAE_TYPES = {8, 9, 24, 25}  # SAE, FT-SAE, SAE-EXT-KEY, FT-SAE-EXT-KEY - all of them are WPA3-Personal.
+	AKM_EAP_TYPES = {1, 3}  # 802.1X, FT-802.1X - WPA2-Enterprise.
+	AKM_EAP_SHA256_TYPES = {5, 11, 12, 13}  # 802.1X-SHA256, Suite-B, Suite-B-192, FT-802.1X-SHA384 - WPA3-Enterprise.
+	# Verdicts that carry more detail than a bare RSN element, never overwritten by the generic branches.
+	ENTERPRISE_ENCRYPTIONS = (Encryption.WPA2_ENTERPRISE, Encryption.WPA3_ENTERPRISE, Encryption.WPA2_WPA3_ENTERPRISE)
+	RSN_DETERMINED = (Encryption.WPA3, Encryption.WPA2_WPA3, Encryption.WPA2_ENTERPRISE, Encryption.WPA3_ENTERPRISE, Encryption.WPA2_WPA3_ENTERPRISE)
+
+	@classmethod
+	def enterpriseFrom(cls, suites: set[int]) -> Encryption:
+		"""WPA2- or WPA3-Enterprise, or the transition mode offering both."""
+		sha256 = bool(suites & cls.AKM_EAP_SHA256_TYPES)
+		plain = bool(suites & cls.AKM_EAP_TYPES)
+		if sha256 and plain:
+			return Encryption.WPA2_WPA3_ENTERPRISE
+		return Encryption.WPA3_ENTERPRISE if sha256 else Encryption.WPA2_ENTERPRISE
+
+	@classmethod
+	def akmSuitesFromRsnIe(cls, hexIe: str) -> set[int]:
+		"""Suite types of the AKM list in an RSN information element, empty when it cannot be read.
+
+		iwlist renders SAE as "unknown (8)" because wireless-tools predates WPA3, so the raw
+		element it prints alongside is the only dependable source.
+		"""
+		try:
+			data = bytes.fromhex(hexIe)
+		except ValueError:
+			return set()
+		if data[:1] == b"\x30":  # Strip element id and length when the whole element is reported.
+			data = data[2:]
+		pos = 2 + 4  # Version and group cipher suite.
+		if len(data) < pos + 2:
+			return set()
+		pos += 2 + 4 * int.from_bytes(data[pos:pos + 2], "little")  # Skip the pairwise cipher list.
+		if len(data) < pos + 2:
+			return set()
+		count = int.from_bytes(data[pos:pos + 2], "little")
+		pos += 2
+		suites = set()
+		for index in range(count):
+			suite = data[pos + 4 * index:pos + 4 * (index + 1)]
+			if len(suite) == 4 and suite[:3] == b"\x00\x0f\xac":
+				suites.add(suite[3])
+		return suites
+
 	def parseIwlist(self, raw: str) -> list[ScanResult]:
 		results: list[ScanResult] = []
 		current: ScanResult | None = None
 		reCell = compile(r"Cell \d+ - Address:\s*([0-9A-Fa-f:]{17})")
 		reSsid = compile(r"ESSID:\"(.*?)\"")
 		reFreq = compile(r"Frequency:([\d.]+ \w+Hz).*?Channel:?\s*(\d+)?")
-		reQuality = compile(r"Quality=(\d+)/(\d+)\s+Signal level=(-?\d+) dBm")
+		reQuality = compile(r"Quality[=:]\s*(\d+)(?:/(\d+))?")
+		reSignalDbm = compile(r"Signal level[=:]\s*(-\d+)\s*dBm")
+		reSignalRel = compile(r"Signal level[=:]\s*(\d+)/(\d+)")
+		reRsnIe = compile(r"rsn_ie=([0-9A-Fa-f]+)")
+		reAuthSuites = compile(r"Authentication Suites \(\d+\)\s*:\s*(.+)")
 		reEncOn = compile(r"Encryption key:on")
 		reEncOff = compile(r"Encryption key:off")
 		reIeWpa1 = compile(r"IE:.*WPA Version 1", IGNORECASE)
@@ -1205,12 +1280,42 @@ class NetworkWiFiScan(Screen):
 					current.channel = int(match.group(2))
 			match = reQuality.search(line)
 			if match:
-				qVal, qMax = int(match.group(1)), int(match.group(2))
-				current.signalPct = int(qVal * 100 / qMax) if qMax else 0
-				current.signalDbm = int(match.group(3))
+				qVal = int(match.group(1))
+				qMax = int(match.group(2)) if match.group(2) else 100
+				current.signalPct = max(0, min(100, int(qVal * 100 / qMax))) if qMax else 0
+			match = reSignalDbm.search(line)
+			if match:
+				current.signalDbm = int(match.group(1))
+			else:
+				match = reSignalRel.search(line)
+				if match:  # "Signal level=23/100" carries the real level, the quality above it is often a constant.
+					level, maximum = int(match.group(1)), int(match.group(2))
+					if maximum == 100:  # WEXT drivers without dBm scale the RSSI so that 0 means -100 dBm.
+						current.signalDbm = level - 100
+						current.signalPct = max(0, min(100, 2 * (current.signalDbm + 100)))
+					else:
+						current.signalPct = max(0, min(100, int(level * 100 / maximum))) if maximum else 0
+			match = reRsnIe.search(line)
+			if match:
+				suites = self.akmSuitesFromRsnIe(match.group(1))
+				if suites:
+					if suites & self.AKM_SAE_TYPES:
+						current.encryption = Encryption.WPA2_WPA3 if suites & self.AKM_PSK_TYPES else Encryption.WPA3
+					elif suites & (self.AKM_EAP_TYPES | self.AKM_EAP_SHA256_TYPES):
+						current.encryption = self.enterpriseFrom(suites)
+					else:
+						current.encryption = Encryption.WPA2
+					current.encDetails = line
+			match = reAuthSuites.search(line)
+			if match and current.encryption not in self.RSN_DETERMINED:
+				suiteText = match.group(1).upper()  # Fallback for drivers that print no raw element.
+				if "SAE" in suiteText or any(f"UNKNOWN ({x})" in suiteText for x in self.AKM_SAE_TYPES):
+					current.encryption = Encryption.WPA2_WPA3 if "PSK" in suiteText else Encryption.WPA3
+					current.encDetails = line
 			if reIeWpa2.search(line):
-				current.encryption = Encryption.WPA2
-				current.encDetails = line
+				if current.encryption not in self.RSN_DETERMINED:  # Never downgrade a WPA3 verdict.
+					current.encryption = Encryption.WPA2
+					current.encDetails = line
 			elif reIeWpa1.search(line):
 				if current.encryption == Encryption.NONE:
 					current.encryption = Encryption.WPA
@@ -1247,7 +1352,18 @@ class NetworkWiFiScan(Screen):
 				signalDbm = int(signalStr)
 			except ValueError:
 				continue
-			if "WPA2" in flags or "RSN" in flags:
+			if "SAE" in flags:  # "[WPA2-PSK+SAE-CCMP]" is transition mode, "[WPA2-SAE-CCMP]" is WPA3 only.
+				encryption = Encryption.WPA2_WPA3 if "PSK" in flags else Encryption.WPA3
+			elif "EAP" in flags:  # "[WPA2-EAP+EAP-SHA256-CCMP]" is the enterprise transition mode.
+				sha256 = "EAP-SHA256" in flags
+				plain = "EAP" in flags.replace("EAP-SHA256", "")
+				if sha256 and plain:
+					encryption = Encryption.WPA2_WPA3_ENTERPRISE
+				elif sha256:
+					encryption = Encryption.WPA3_ENTERPRISE
+				else:
+					encryption = Encryption.WPA2_ENTERPRISE
+			elif "WPA2" in flags or "RSN" in flags:
 				encryption = Encryption.WPA2
 			elif "WPA" in flags:
 				encryption = Encryption.WPA

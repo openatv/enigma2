@@ -1,6 +1,6 @@
 from enigma import eListboxPythonMultiContent
 
-from skin import SkinContext, SkinContextStack, TemplateParser, parseFont, parsePadding
+from skin import SkinContext, SkinContextStack, TemplateParser, parseFont, parseListOrientation, parsePadding
 from Components.Converter.StringList import StringList
 
 
@@ -205,8 +205,9 @@ class MultiContentTemplateParser(TemplateParser):
 					for modeName, modeProperties in templateModes.items():
 						modeItemWidth = modeProperties.get("itemWidth")
 						modeItemHeight = modeProperties.get("itemHeight")
+						modeOrientation = modeProperties.get("orientation")
 						modeData = buildModeData(modesItems[modeName])
-						self.template["modes"][modeName] = ((modeItemWidth, modeItemHeight), modeData)
+						self.template["modes"][modeName] = ((modeItemWidth, modeItemHeight), modeData, modeOrientation)
 					rowTemplatesItems = parseRowTemplates(template)
 					if rowTemplatesItems:
 						self.template["rowTemplates"] = [buildModeData(items) for items in rowTemplatesItems]
@@ -264,12 +265,15 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 					itemWidth = modes[style][0][0]
 					itemHeight = modes[style][0][1]
 					template = modes[style][1]
+					orientation = modes[style][2]
 					selectionEnabled = self.template.get("selectionEnabled")
 					scrollbarMode = self.template.get("scrollbarMode")
 					itemWidth, itemHeight = self.scaleWithHeight(itemWidth, itemHeight)
 					self.content.setTemplate(template)
 					self.content.setItemWidth(itemWidth)
 					self.content.setItemHeight(itemHeight)
+					if orientation is not None:
+						self.content.setOrientation(parseListOrientation(orientation))
 					if selectionEnabled is not None:
 						self.selectionEnabled = selectionEnabled
 					if scrollbarMode is not None:

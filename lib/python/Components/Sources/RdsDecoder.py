@@ -10,6 +10,7 @@ class RdsDecoder(PerServiceBase, Source):
 		Source.__init__(self)
 		PerServiceBase.__init__(self, navcore, {
 			iPlayableService.evStart: self.gotEvent,
+			iPlayableService.evUpdatedEventInfo: self.gotEvent,
 			iPlayableService.evUpdatedRadioText: self.gotEvent,
 			iPlayableService.evUpdatedRtpText: self.gotEvent,
 			iPlayableService.evUpdatedRassInteractivePicMask: self.gotEvent,

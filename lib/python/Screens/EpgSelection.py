@@ -1,6 +1,7 @@
 from time import localtime, mktime, strftime, time
 
 from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
+from skin import parameters
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
@@ -54,6 +55,7 @@ class EPGSelection(Screen):
 
 	def __init__(self, session, service=None, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None, StartBouquet=None, StartRef=None, bouquets=None):
 		Screen.__init__(self, session, enableHelp=True)
+		graphicControl = Label if parameters.get("EPGNativeControls", 0) else Pixmap
 		self.setTitle(_("EPG Selection"))
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
@@ -270,10 +272,10 @@ class EPGSelection(Screen):
 			self["page"] = Label(_("PAGE UP/DOWN"))
 			self.time_lines = []
 			for x in list(range(0, MAX_TIMELINES)):
-				pm = Pixmap()
+				pm = graphicControl()
 				self.time_lines.append(pm)
 				self[f"timeline{x}"] = pm
-			self["timeline_now"] = Pixmap()
+			self["timeline_now"] = graphicControl()
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
 			self.updateTimelineTimer.start(60000)
@@ -300,12 +302,12 @@ class EPGSelection(Screen):
 			self.skinName = "EPGSelectionMulti"
 			self["bouquetlist"] = EPGBouquetList(graphic=graphic)
 			self["bouquetlist"].hide()
-			self["now_button"] = Pixmap()
-			self["next_button"] = Pixmap()
-			self["more_button"] = Pixmap()
-			self["now_button_sel"] = Pixmap()
-			self["next_button_sel"] = Pixmap()
-			self["more_button_sel"] = Pixmap()
+			self["now_button"] = graphicControl()
+			self["next_button"] = graphicControl()
+			self["more_button"] = graphicControl()
+			self["now_button_sel"] = graphicControl()
+			self["next_button_sel"] = graphicControl()
+			self["more_button_sel"] = graphicControl()
 			self["now_text"] = Label()
 			self["next_text"] = Label()
 			self["more_text"] = Label()

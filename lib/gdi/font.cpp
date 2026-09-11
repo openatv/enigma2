@@ -1328,7 +1328,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 							{
 								register int b=(*s++)>>4;
 								if(b)
-									*td=lookup32[b];
+									*td=lookup32[b] | 0xFF000000;
 								++td;
 							}
 							s += extra_source_stride;
@@ -1348,7 +1348,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 								register int b = (*s++) >> 4;
 								if (b)
 								{
-									// unsigned char frame_a = (*td) >> 24 & 0xFF;
+									unsigned char frame_a = (*td) >> 24 & 0xFF;
 									unsigned char frame_r = (*td) >> 16 & 0xFF;
 									unsigned char frame_g = (*td) >> 8 & 0xFF;
 									unsigned char frame_b = (*td) & 0xFF;
@@ -1359,11 +1359,12 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 									unsigned char db = lookup32[b] & 0xFF;
 
 #define BLEND(y, x, a) (y + (((x-y) * a)>>8))
+									frame_a = BLEND(frame_a, (unsigned char)(currentforeground.a ^ 0xFF), da) & 0xFF;
 									frame_r = BLEND(frame_r, dr, da) & 0xFF;
 									frame_g = BLEND(frame_g, dg, da) & 0xFF;
 									frame_b = BLEND(frame_b, db, da) & 0xFF;
 #undef BLEND
-									*td = ((currentforeground.a ^ 0xFF) << 24) | (frame_r << 16) | (frame_g << 8) | frame_b;
+									*td = (frame_a << 24) | (frame_r << 16) | (frame_g << 8) | frame_b;
 								}
 								++td;
 							}

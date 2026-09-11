@@ -35,6 +35,8 @@ protected:
 
 	void notifier(int);
 	ePtr<eSocketNotifier> rsn;
+	ePtr<iRecordableService> m_dabRecord;
+	ePtr<eConnection> m_dabRecordConnection;
 
 	std::string request;
 
@@ -42,6 +44,9 @@ protected:
 
 	void streamStopped() { stopStream(); }
 	void tuneFailed() { stopStream(); }
+	void dabRecordEvent(iRecordableService *service, int event);
+	bool startDABStream(const std::string &serviceref);
+	void stopDABStream();
 
 public:
 	void stopStream();

@@ -77,6 +77,7 @@
 				<item key="usage_setup" level="0" text="Customize System Settings" weight="15"><setup setupKey="Usage" /></item>
 				<!--item key="specialfeatures_menu" level="0" text="Special Features Settings" weight="20"><setup setupKey="SpecialFeatures" /></item-->
 				<item key="skin_setup" level="0" text="Skin Settings" weight="25"><screen module="SkinSelection" screen="SkinSelection" /></item>
+				<item key="picon_setup" level="0" text="Picon Settings" weight="26"><screen module="Picon" screen="PiconSettings" /></item>
 				<item key="display_setup" level="0" text="Display Settings" weight="30" requires="DisplaySetup"><setup setupKey="Display" /></item>
 				<item key="led_setup" level="1" text="Configure front panel LEDs" weight="35" requires="LEDColorControl"><setup setupKey="LEDs" /></item>
 				<item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="45"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
@@ -147,7 +148,8 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1"><setup setupKey="Tuner" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
-				<item key="dab_scan" level="0" text="DAB+ Scan" weight="15" conditional="nimmanager.getEnabledNimListOfType('DVB-S')"><screen module="DABScan" screen="DABScan" /></item>
+				<item key="dab_scan" level="0" text="DAB+ Scan" weight="15" requires="CanScanDAB"><screen module="DABScan" screen="DABScan" /></item>
+				<item key="dab_usb_setup" level="0" text="DAB+ Settings" weight="16" requires="HasDABSettings"><screen module="RTLSDRSetup" screen="RTLSDRSetup" /></item>
 				<item key="fallbacktuner_settings" text="Fallback Remote Receiver Settings"><screen module="SetupFallbacktuner"/></item>
 			</menu>
 			<!-- Menu / Setup / Common interface -->
@@ -182,7 +184,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="backup_additional" level="2" text="Select Additional Backup Files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">6</plugin></item>
 					<item key="backup_excluded" level="2" text="Select Excluded Backup Files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
 					<item key="package_manager" level="2" text="Package Manager" description="View, install and remove available or installed packages." weight="16"><screen module="PluginBrowser" screen="PackageAction">4</screen></item>
-					<item key="upgrade_source" level="2" text="Select Upgrade Source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
+					<item key="upgrade_source" level="2" text="Select Upgrade Source" description="Edit the upgrade source address." weight="16"><screen module="Opkg" screen="PackageFeedSelection" /></item>
 					<item key="upgrade_settings" level="2" text="Software Manager Settings" description="Here you can select which files should be updated with a online update" weight="16"><setup setupKey="SoftwareManager" /></item>
 				</menu>
 			</menu>

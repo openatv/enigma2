@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 20:10+0000\n"
-"PO-Revision-Date: 2026-08-26 20:02+0000\n"
+"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"PO-Revision-Date: 2026-08-31 04:51+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -897,10 +897,6 @@ msgstr[0] "已更新 %d 个订阅源目录包。"
 msgstr[1] "已更新 %d 个订阅源目录包。"
 
 #, python-format
-msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
-msgstr ""
-
-#, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "找到 %d 台主机。"
@@ -934,7 +930,7 @@ msgstr[1] "发现 %d 个网络。"
 
 #, python-format
 msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr ""
+msgstr "已完成 %d / %d 个传送源；失败的传送源分组已保留"
 
 #, python-format
 msgid "%d package found."
@@ -1034,7 +1030,7 @@ msgstr[1] "有 %d 个插件不可用："
 
 #, python-format
 msgid "%d radio bouquets created"
-msgstr ""
+msgstr "已创建 %d 个广播频道分组"
 
 #, python-format
 msgid "%d sec"
@@ -1165,10 +1161,6 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
-msgid "%s - PID 0x%04X - %s"
-msgstr ""
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - 设置"
 
@@ -1273,7 +1265,7 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%s: bouquet could not be written"
-msgstr ""
+msgstr "%s：无法写入频道分组"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1593,7 +1585,7 @@ msgid "A"
 msgstr "A"
 
 msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr ""
+msgstr "录制时无法执行 DAB+ 扫描。"
 
 msgid "A backup is now being created."
 msgstr "现在正在创建备份。"
@@ -2869,9 +2861,6 @@ msgstr "自动 CAM 设置"
 msgid "AutoCam Setup Actions"
 msgstr "自动 CAM 设置操作"
 
-msgid "AutoFS"
-msgstr "AutoFS"
-
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
 
@@ -4117,10 +4106,10 @@ msgid "Channel list service mode*"
 msgstr "频道列表频道模式 *"
 
 msgid "Channel list show MiniTV when Skin use."
-msgstr "皮肤使用时，频道列表上显示小电视。"
+msgstr "皮肤使用时，频道列表上显示小窗电视。"
 
 msgid "Channel list show MiniTV*"
-msgstr "频道列表上显示小电视*"
+msgstr "频道列表上显示小窗电视*"
 
 msgid "Channel list type"
 msgstr "频道列表类型"
@@ -4349,9 +4338,6 @@ msgstr "选择要配置的调谐器。"
 
 msgid "Christmas Island"
 msgstr "圣诞岛"
-
-msgid "Chrony"
-msgstr "克罗尼"
 
 msgid "Church Slavic"
 msgstr "教会斯拉夫语"
@@ -5509,9 +5495,6 @@ msgstr "克罗地亚"
 msgid "Croatian"
 msgstr "克罗地亚语"
 
-msgid "Cron"
-msgstr "Cron"
-
 msgid "Cron Manager"
 msgstr "Cron 管理器"
 
@@ -5702,10 +5685,10 @@ msgid "D"
 msgstr "D"
 
 msgid "DAB+ Scan"
-msgstr ""
+msgstr "DAB+ 扫描"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
-msgstr ""
+msgstr "DAB+ 扫描失败；已有的频道分组会被保留。"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5733,9 +5716,6 @@ msgstr "DNS 覆盖"
 
 msgid "DNS protocol mode"
 msgstr "DNS 模式"
-
-msgid "DNSCrypt"
-msgstr "DNSCrypt"
 
 msgid "DNSCrypt Resolver"
 msgstr "DNSCrypt 解析器"
@@ -6630,7 +6610,7 @@ msgid "Disable IceTV"
 msgstr "禁用 IceTV"
 
 msgid "Disable MiniTV"
-msgstr "禁用 MiniTV"
+msgstr "禁用小窗电视"
 
 msgid "Disable Move Mode"
 msgstr "禁用移动模式"
@@ -7478,7 +7458,7 @@ msgid "Enable MHW EPG"
 msgstr "启用 MHW EPG"
 
 msgid "Enable MiniTV"
-msgstr "启用 MiniTV"
+msgstr "启用小窗电视"
 
 msgid "Enable Move Mode"
 msgstr "打开移动模式"
@@ -8614,9 +8594,6 @@ msgstr "FSBL 更新检查"
 msgid "FTA"
 msgstr "免费播出"
 
-msgid "FTP"
-msgstr "FTP"
-
 msgid "Factory Reset"
 msgstr "恢复出厂设置"
 
@@ -9308,13 +9285,13 @@ msgid "General PCM delay"
 msgstr "常规 PCM 延迟"
 
 msgid "General Setup Behavior"
-msgstr ""
+msgstr "常规设置行为"
 
 msgid "General Subtitle Appearance And Timing"
-msgstr ""
+msgstr "字幕常规外观与同步"
 
 msgid "General Time Shift Behavior"
-msgstr ""
+msgstr "通用时移行为"
 
 msgid "Generic"
 msgstr "通用"
@@ -10457,7 +10434,7 @@ msgid "InfoBar EPG mode"
 msgstr "信息栏 EPG 模式"
 
 msgid "InfoBar Timing And Appearance"
-msgstr ""
+msgstr "信息栏触发时机及外观"
 
 msgid "InfoBar Visibility And Behavior"
 msgstr "信息栏可见性及行为"
@@ -10675,24 +10652,11 @@ msgstr "伊努皮克语"
 msgid "Invalid"
 msgstr "无效"
 
-msgid "Invalid DAB feed file root element"
-msgstr ""
-
 msgid "Invalid Help Page"
 msgstr "无效的帮助页面"
 
-#, python-format
-msgid "Invalid bouquet file name '%s'"
-msgstr ""
-
 msgid "Invalid location!"
 msgstr "无效位置!"
-
-msgid "Invalid multicast port"
-msgstr ""
-
-msgid "Invalid orbital position"
-msgstr ""
 
 msgid "Invalid transponder data"
 msgstr "无效的转发器数据"
@@ -11472,7 +11436,7 @@ msgid "Log Manager"
 msgstr "日志管理器"
 
 msgid "Log Retention And Access"
-msgstr ""
+msgstr "日志保留及访问"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11831,7 +11795,7 @@ msgid "Media Center"
 msgstr "媒体中心"
 
 msgid "Media Files And Navigation"
-msgstr ""
+msgstr "媒体文件及导航"
 
 msgid "Media Player"
 msgstr "媒体播放器"
@@ -11916,7 +11880,7 @@ msgid "Menu style"
 msgstr "菜单样式"
 
 msgid "Menus And Setup"
-msgstr ""
+msgstr "菜单与设置"
 
 msgid "Merge broadcast EPG with IceTV"
 msgstr "将广播 EPG 与 IceTV 合并"
@@ -11964,13 +11928,13 @@ msgid "MiniDLNA Settings"
 msgstr "MiniDLNA 设置"
 
 msgid "MiniTV"
-msgstr "MiniTV"
+msgstr "小窗电视"
 
 msgid "MiniTV And PiP"
-msgstr ""
+msgstr "小窗电视与画中画"
 
 msgid "MiniTV with OSD"
-msgstr "带 OSD 的MiniTV"
+msgstr "带 OSD 的小窗电视"
 
 #, python-format
 msgid "Minimum age %d years"
@@ -12010,13 +11974,6 @@ msgid ""
 msgstr ""
 "配置错误！ 从调谐器 %s 到调谐器 %s 不可靠的连接\n"
 "调谐器 %s 选项 \"已连接到\" 现在已被禁用"
-
-#, python-format
-msgid "Missing attribute '%s'"
-msgstr ""
-
-msgid "Missing multicast address"
-msgstr ""
 
 msgid "Mobile connection"
 msgstr "移动连接"
@@ -12437,7 +12394,7 @@ msgid "Movie List"
 msgstr "电影列表"
 
 msgid "Movie List And Playback Behavior"
-msgstr ""
+msgstr "电影列表与播放行为"
 
 msgid "Movie Player Actions"
 msgstr "电影播放器操作"
@@ -12568,9 +12525,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "下一个"
 
-msgid "NFS"
-msgstr "NFS"
-
 msgid "NFS Server Settings"
 msgstr "NFS设置"
 
@@ -12668,10 +12622,10 @@ msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. O
 msgstr "使用向上/向下按钮向上/向下导航，使用左/右向上/向下翻页。单击确定以执行当前突出显示的帮助中描述的操作。"
 
 msgid "Navigation And Button Assignments"
-msgstr ""
+msgstr "导航与按键分配"
 
 msgid "Navigation And Time Range"
-msgstr ""
+msgstr "导航与时间范围"
 
 msgid "Ndonga"
 msgstr "恩东加"
@@ -13146,7 +13100,7 @@ msgid "No suitable sat tuner found!"
 msgstr "没有找到合适的卫星调谐器！"
 
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
-msgstr ""
+msgstr "此设备所配置的卫星位置上没有可用的 DAB+ 传送源。"
 
 msgid "No system softcam configured!"
 msgstr "未配置系统 softcam！"
@@ -13200,7 +13154,7 @@ msgid "No updates available."
 msgstr "没有可用的更新。"
 
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
-msgstr ""
+msgstr "未配置有效的DAB+ 订阅源。请检查 /etc/enigma2/dab.xml。"
 
 msgid "No valid device detected - Press OK"
 msgstr "未检测到有效设备 - 按“确定”"
@@ -13382,7 +13336,7 @@ msgid "Nothing, just leave this menu"
 msgstr "没什么，只是离开这个菜单"
 
 msgid "Notifications And Display"
-msgstr ""
+msgstr "通知与显示"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13819,14 +13773,11 @@ msgstr "用 File Commander 打开"
 msgid "OpenPLi Packages"
 msgstr "OpenPLi 软件包"
 
-msgid "OpenVPN"
-msgstr "OpenVPN"
-
 msgid "OpenViX Packages"
 msgstr "OpenViX 软件包"
 
 msgid "OpenWebif Connection"
-msgstr ""
+msgstr "OpenWebif 连接"
 
 msgid "OpenWebif picon path"
 msgstr "OpenWebif 频道图标集"
@@ -13913,7 +13864,7 @@ msgid "Other Actions"
 msgstr "其他动作"
 
 msgid "Other OSD Elements"
-msgstr ""
+msgstr "其他 OSD 组件"
 
 msgid "Other Packages"
 msgstr "其他软件包"
@@ -14041,7 +13992,7 @@ msgid "Package"
 msgstr "软件包"
 
 msgid "Package Categories"
-msgstr ""
+msgstr "软件包类别"
 
 msgid "Package Manager"
 msgstr "软件包管理器"
@@ -14155,7 +14106,7 @@ msgstr "通过"
 
 #, python-format
 msgid "Pass %d/%d"
-msgstr ""
+msgstr "进度 %d/%d"
 
 msgid "Pass-through"
 msgstr "直通"
@@ -14315,7 +14266,7 @@ msgid "Picon width"
 msgstr "频道图标宽度"
 
 msgid "Picture In Picture"
-msgstr ""
+msgstr "画中画"
 
 msgid "Picture Information"
 msgstr "图片信息"
@@ -14454,10 +14405,10 @@ msgid "Play the selected service"
 msgstr "播放选择的频道"
 
 msgid "Playback And Saving"
-msgstr ""
+msgstr "播放与保存"
 
 msgid "Playback And Status"
-msgstr ""
+msgstr "播放与状态"
 
 msgid "Playback Settings"
 msgstr "播放设置"
@@ -15073,7 +15024,7 @@ msgid "Primary DNS (IPv6)"
 msgstr "首选 DNS（IPv6）"
 
 msgid "Prime Time"
-msgstr ""
+msgstr "黄金时段"
 
 msgid "Prime time"
 msgstr "黄金时段"
@@ -15591,16 +15542,16 @@ msgid "Recording"
 msgstr "录制"
 
 msgid "Recording And Status Indicators"
-msgstr ""
+msgstr "录制与状态指示"
 
 msgid "Recording Filenames And Data"
-msgstr ""
+msgstr "录制文件名及数据"
 
 msgid "Recording Locations"
-msgstr ""
+msgstr "录制位置"
 
 msgid "Recording Preparation And Margins"
-msgstr ""
+msgstr "录制准备与时间余量"
 
 msgid "Recording Settings"
 msgstr "录制设置"
@@ -15677,7 +15628,7 @@ msgid "Recovery"
 msgstr "恢复"
 
 msgid "Recovery And Hardware"
-msgstr ""
+msgstr "恢复与硬件"
 
 msgid "Recovery Mode"
 msgstr "恢复模式"
@@ -15819,10 +15770,10 @@ msgid "Remote Control Code Settings"
 msgstr "遥控器代码设置"
 
 msgid "Remote Receiver Connection"
-msgstr ""
+msgstr "远程接收机连接"
 
 msgid "Remote Timers"
-msgstr ""
+msgstr "远程定时器"
 
 msgid "Remote control information"
 msgstr "遥控器信息"
@@ -16158,7 +16109,7 @@ msgstr "重启"
 
 #, python-format
 msgid "Restart %s"
-msgstr ""
+msgstr "重启 %s"
 
 msgid "Restart Adapter"
 msgstr "重启适配器"
@@ -16198,7 +16149,7 @@ msgstr "重启测试"
 
 #, python-format
 msgid "Restarting %s failed (exit code %s)"
-msgstr ""
+msgstr "重启 %s 失败（退出代码 %s）"
 
 msgid "Restarting adapter..."
 msgstr "正在重启适配器..."
@@ -16468,9 +16419,6 @@ msgstr "卢旺达"
 msgid "Réunion"
 msgstr "留尼旺岛"
 
-msgid "SABnzbd"
-msgstr "SABnzbd"
-
 msgid "SAT"
 msgstr "卫星"
 
@@ -16485,9 +16433,6 @@ msgstr "背面 SATA"
 
 msgid "SATA FRONT"
 msgstr "前置 SATA"
-
-msgid "SATPI"
-msgstr "SATPI"
 
 msgid "SCPC optimized search range"
 msgstr "优化单路单载波搜索范围"
@@ -16535,9 +16480,6 @@ msgstr "SRT 文件"
 msgid "SSA file"
 msgstr "SSA 文件"
 
-msgid "SSH"
-msgstr "SSH"
-
 msgid "SSID"
 msgstr "SSID"
 
@@ -16564,12 +16506,6 @@ msgstr "圣皮埃尔和密克隆"
 
 msgid "Saint Vincent and the Grenadines"
 msgstr "圣文森特和格林纳丁斯"
-
-msgid "Samba Client"
-msgstr "Samba 客户端"
-
-msgid "Samba Server"
-msgstr "Samba 服务器"
 
 msgid "Samba Server Settings"
 msgstr "Samba 设置"
@@ -16728,19 +16664,19 @@ msgstr "已保存 Wi-Fi 网络“%s”的上下文菜单"
 
 #, python-format
 msgid "Saved Wi-Fi Network '%s' Settings"
-msgstr ""
+msgstr "已保存Wi-Fi网络“%s”的设置"
 
 msgid "Saved Wi-Fi Networks"
 msgstr "已保存的 Wi-Fi 网络"
 
 msgid "Saved Wi-Fi network connection disabled."
-msgstr ""
+msgstr "已保存的Wi-Fi网络连接已禁用。"
 
 msgid "Saved Wi-Fi network connection enabled."
-msgstr ""
+msgstr "已保存的Wi-Fi网络连接已启用。"
 
 msgid "Saved Wi-Fi network will be retried automatically at next boot."
-msgstr ""
+msgstr "已保存的Wi-Fi网络将在下次开机时自动重试连接。"
 
 msgid "Saved lines in script messages"
 msgstr "脚本消息中保存的行"
@@ -16804,14 +16740,14 @@ msgid "Scanning %s..."
 msgstr "正在扫描 %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
-msgstr ""
+msgstr "正在扫描 DAB+ 传送源，等待实时 FIC 数据…"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "录制过程中无法执行扫描。"
 
 #, python-format
 msgid "Scanning completed, %d DAB+ services found."
-msgstr ""
+msgstr "扫描完成，找到 %d 个 DAB+ 服务。"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -16836,7 +16772,7 @@ msgstr "正在扫描..."
 
 #, python-format
 msgid "Scanning: %d services found; validating live result (%d/%d)..."
-msgstr ""
+msgstr "扫描中：已找到 %d 个频道；正在验证实时结果（%d/%d）..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -17417,7 +17353,7 @@ msgid "Select a network adapter"
 msgstr "选择网络适配器"
 
 msgid "Select a network interface to configure, or skip to configure the network later in system settings."
-msgstr ""
+msgstr "选择要配置的网络接口，也可跳过，后续在系统设置中再配置网络。"
 
 msgid "Select a permanent mount point for all devices"
 msgstr "为所有设备选择一个永久挂载点"
@@ -17435,7 +17371,7 @@ msgid "Select a specific NFS version to force a specific NFS protocol version in
 msgstr "选择特定的 NFS 版本，以强制使用指定的 NFS 协议版本，而非允许自动协商。"
 
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
-msgstr ""
+msgstr "选择要使用的特定SMB协议版本，而非允许自动协商。仅当服务器过于老旧、不支持更新且更安全的SMB2/SMB3协议时，才使用“旧版（SMB1）”。"
 
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "设置在换台定时器切换频道前弹出确认提示的时间。用户可在期间取消切换。选‘禁用’则不提示直接换台。"
@@ -17499,7 +17435,7 @@ msgid "Select destination for:"
 msgstr "选择目的地为："
 
 msgid "Select exported directories"
-msgstr ""
+msgstr "选择导出的目录"
 
 msgid "Select files to exclude from backup"
 msgstr "选择要从备份中排除的文件"
@@ -17559,7 +17495,7 @@ msgid "Select if data entry timeouts are to be applied when entering digits into
 msgstr "设置换台延迟模式。"
 
 msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
-msgstr ""
+msgstr "选择文件锁定是否可用。选择“否”可将“nolock”添加到设置中，此选项与较旧/简易的NFS服务器兼容性最佳。"
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "选择是否显示设置条目的默认值，如果显示，则选择与描述相关的显示位置。"
@@ -17739,7 +17675,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
-msgstr ""
+msgstr "选择用于匹配/转换远程文件名字符集（iocharset）。"
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "选择接收机在运行状态下前面板电源 LED 的颜色。此选项也可将 LED 禁用/关闭。"
@@ -17900,10 +17836,10 @@ msgid "Select the mode of access, Read/Write or Read-Only, applied to all automa
 msgstr "为自动导出的 samba 共享选择访问模式。"
 
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
-msgstr ""
+msgstr "选择应用于所有导出目录的访问模式：读/写或只读。"
 
 msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
-msgstr ""
+msgstr "选择此共享挂载的访问模式：读/写或只读。"
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择Unicable 设备的型号。 如果未列出型号，请将“SCR”设置为“用户定义”，然后根据其规格手动输入设备参数。"
@@ -17958,7 +17894,7 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "选择您的 SCR 设备使用的协议。 选项有'SCR Unicable'（Unicable）或'SCR JESS'（JESS，也称为Unicable II）。"
 
 msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
-msgstr ""
+msgstr "选择读取块缓冲区大小（rsize）挂载选项。选择“自动”以允许内核和服务器协商最佳大小。"
 
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "当电视切换离开接收机输入源时，请选择接收机执行的操作。"
@@ -17994,7 +17930,7 @@ msgid "Select the security protocol that will be used to access the selected wir
 msgstr "选择用于访问所选无线网络的安全协议。"
 
 msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
-msgstr ""
+msgstr "选择要使用的共享协议：SMB（Windows 风格共享）或 NFS（Mac、Linux 共享）。"
 
 msgid "Select the shifted character set"
 msgstr "使用'shift'键选择字符集"
@@ -18090,7 +18026,7 @@ msgid "Select the video mode to be used on the TV."
 msgstr "选择要在电视上使用的视频模式。"
 
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
-msgstr ""
+msgstr "选择写入块缓冲区大小（wsize）挂载选项。选择“自动”以允许内核和服务器协商最佳大小。"
 
 msgid "Select update source location"
 msgstr "选择更新源位置"
@@ -18135,7 +18071,7 @@ msgid "Select what you want the UP/DOWN button to activate."
 msgstr "选择希望 上/下 按钮激活的功能。"
 
 msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
-msgstr ""
+msgstr "选择远程共享的挂载时机和方式。大多数情况下建议使用autofs。"
 
 msgid "Select where the recording should be saved."
 msgstr "选择录制保存的位置。"
@@ -18294,7 +18230,7 @@ msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "严肃/经典/宗教/历史影片/戏剧"
 
 msgid "Server"
-msgstr ""
+msgstr "服务器"
 
 msgid "Server down"
 msgstr "频道 向下"
@@ -18339,7 +18275,7 @@ msgid "Service Information Actions"
 msgstr "频道信息操作"
 
 msgid "Service List Appearance"
-msgstr ""
+msgstr "服务列表外观"
 
 msgid "Service Scan"
 msgstr "频道扫描"
@@ -18475,7 +18411,7 @@ msgid "Set Default"
 msgstr "设置默认值"
 
 msgid "Set Framerate for MiniTV"
-msgstr "设置 MiniTV 的帧率"
+msgstr "设置小窗电视的帧率"
 
 msgid "Set MAX CPU frequency for cores 0 and 1"
 msgstr "设置核心 0 和 1 的最高 CPU 频率"
@@ -18702,7 +18638,7 @@ msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "设置为“是”， 以调试出现旋转器的根本原因。"
 
 msgid "Set up network"
-msgstr ""
+msgstr "设置网络"
 
 msgid "Set up tuner [TUNER]"
 msgstr "设置调谐器 [调谐器]"
@@ -18900,9 +18836,6 @@ msgstr "共享"
 msgid "Sharpness"
 msgstr "清晰度"
 
-msgid "ShellInABox"
-msgstr "ShellInABox"
-
 msgid "Shellscript"
 msgstr "Shell 脚本"
 
@@ -19058,7 +18991,7 @@ msgid "Show Kodi Add-on packages"
 msgstr "显示 Kodi 插件包"
 
 msgid "Show Live in MiniTV"
-msgstr "在 MiniTV 中显示直播"
+msgstr "在小窗电视中显示直播"
 
 msgid "Show Log"
 msgstr "显示日志"
@@ -19079,7 +19012,7 @@ msgid "Show Merlin EPG Center"
 msgstr "显示梅林 EPG 中心"
 
 msgid "Show MiniTV in the Front Display"
-msgstr "在前端显示屏中显示 MiniTV"
+msgstr "在前端显示屏中显示小窗电视"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "在主菜单中显示电影选择"
@@ -19109,7 +19042,7 @@ msgid "Show PiP"
 msgstr "显示画中画"
 
 msgid "Show PiP in MiniTV"
-msgstr "在 MiniTV 中显示画中画"
+msgstr "在小窗电视中显示画中画"
 
 msgid "Show PiP in the Front Display"
 msgstr "在前端显示屏中显示画中画"
@@ -19384,7 +19317,7 @@ msgid "Show multi channel EPG"
 msgstr "显示多频道 EPG"
 
 msgid "Show network adapter connection information"
-msgstr ""
+msgstr "显示网络适配器连接信息"
 
 msgid "Show next commit log"
 msgstr "显示下一个提交日志"
@@ -19570,7 +19503,7 @@ msgid "Show the Logs Settings screen"
 msgstr "显示日志设备屏"
 
 msgid "Show the Network Information for the selected adapter"
-msgstr ""
+msgstr "显示所选适配器的网络信息"
 
 msgid "Show the OSCam information screen"
 msgstr "显示 OSCam 信息屏幕"
@@ -19667,7 +19600,7 @@ msgstr "关机"
 
 #, python-format
 msgid "Shutdown %s"
-msgstr ""
+msgstr "关闭 %s"
 
 msgid "Shutting down. Please wait..."
 msgstr "正在关闭。 请稍等..."
@@ -19781,7 +19714,7 @@ msgid "SkinSelection"
 msgstr "皮肤选择"
 
 msgid "Skip Modes"
-msgstr ""
+msgstr "跳转模式"
 
 msgid "Skip back"
 msgstr "往后跳"
@@ -19829,7 +19762,7 @@ msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "使用插件进行时移时跳过跳转到直播"
 
 msgid "Skip network setup"
-msgstr ""
+msgstr "跳过网络设置"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "跳过软件包安装，只有核心软件包可用"
@@ -20064,7 +19997,7 @@ msgid "Socket"
 msgstr "插口"
 
 msgid "Soft mount"
-msgstr ""
+msgstr "软挂载"
 
 msgid "SoftCSA Settings"
 msgstr "SoftCSA 设置"
@@ -20088,7 +20021,7 @@ msgid "Softcams"
 msgstr "Softcam"
 
 msgid "Software Display Scrolling"
-msgstr ""
+msgstr "软件显示滚动"
 
 msgid "Software Management"
 msgstr "软件管理"
@@ -20208,16 +20141,16 @@ msgid "Sort by"
 msgstr "排序方式"
 
 msgid "Sort by Hostname/IP Address"
-msgstr ""
+msgstr "按主机名/IP地址排序"
 
 msgid "Sort by IP Address"
-msgstr ""
+msgstr "按IP地址排序"
 
 msgid "Sort by Mount Name"
-msgstr ""
+msgstr "按挂载名称排序"
 
 msgid "Sort by Name"
-msgstr ""
+msgstr "按名称排序"
 
 msgid "Sort by default"
 msgstr "按默认排序"
@@ -20248,7 +20181,7 @@ msgid "Sound"
 msgstr "声音"
 
 msgid "Sound Enhancements"
-msgstr ""
+msgstr "音效增强"
 
 msgid "Sound carrier"
 msgstr "伴音载波"
@@ -20367,7 +20300,7 @@ msgstr "开始"
 
 #, python-format
 msgid "Start %s"
-msgstr ""
+msgstr "启动 %s"
 
 msgid "Start Auto Refresh"
 msgstr "启动自动刷新"
@@ -20449,10 +20382,10 @@ msgstr "启动/停止/选择 cam，需要首选安装 softcam"
 
 #, python-format
 msgid "Starting %s failed (exit code %s)"
-msgstr ""
+msgstr "启动 %s 失败（退出代码 %s）"
 
 msgid "Starting DAB+ scan..."
-msgstr ""
+msgstr "正在启动 DAB+ 扫描..."
 
 msgid "Starting Softcam"
 msgstr "正在启动 Softcam"
@@ -20473,7 +20406,7 @@ msgid "Starts in a few seconds"
 msgstr "几秒钟后开始"
 
 msgid "Startup And Wakeup"
-msgstr ""
+msgstr "启动与唤醒"
 
 msgid "Startup device not found!"
 msgstr "未找到启动设备！"
@@ -20483,7 +20416,7 @@ msgid "State"
 msgstr "省区/州"
 
 msgid "Static"
-msgstr ""
+msgstr "静态"
 
 msgid "Static IP / Custom"
 msgstr "静态 IP / 自定义"
@@ -20598,7 +20531,7 @@ msgstr "已停止"
 
 #, python-format
 msgid "Stopping %s failed (exit code %s)"
-msgstr ""
+msgstr "停止 %s 失败（退出代码 %s）"
 
 msgid "Stopping Softcam"
 msgstr "正在停止 Softcam"
@@ -20620,7 +20553,7 @@ msgid "Storage / Drive information"
 msgstr "存储 / 驱动器信息"
 
 msgid "Storage And Deletion"
-msgstr ""
+msgstr "存储与删除"
 
 msgid "Storage Devices"
 msgstr "存储设备"
@@ -20638,10 +20571,10 @@ msgid "Store position"
 msgstr "存储位置"
 
 msgid "Stored credentials deleted for this server."
-msgstr ""
+msgstr "此服务器的已存凭据已删除。"
 
 msgid "Stored credentials for this server have been deleted."
-msgstr ""
+msgstr "该服务器已保存的凭据已被删除。"
 
 msgid "Stored position"
 msgstr "已存储位置"
@@ -20736,7 +20669,7 @@ msgid "Subtitle Actions"
 msgstr "字幕操作"
 
 msgid "Subtitle Language And Selection"
-msgstr ""
+msgstr "字幕语言与选择"
 
 msgid "Subtitle Quickmenu"
 msgstr "字幕快捷菜单"
@@ -21171,7 +21104,7 @@ msgid "Teletext StartY (lower border)"
 msgstr "图文电视 起始点Y （下边框）"
 
 msgid "Teletext Subtitles"
-msgstr ""
+msgstr "图文电视字幕"
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "图文电视 TTFBold（0=正常，1=粗体）"
@@ -21202,9 +21135,6 @@ msgstr "图文电视字体和分辨率"
 
 msgid "Teletext subtitle color"
 msgstr "图文电视字幕颜色"
-
-msgid "Telnet"
-msgstr "设置 Telnet"
 
 msgid "Telnet Interface"
 msgstr "Telnet 界面"
@@ -21620,7 +21550,7 @@ msgstr "%s %s 的用户界面将停止运行 Kodi"
 
 #, python-format
 msgid "The user interface of your %s %s will be stopped to run RetroGaming"
-msgstr ""
+msgstr "您的 %s %s 用户界面将被停止以运行RetroGaming"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "图片的宽度。 输入将被缩放以匹配此值。"
@@ -22103,7 +22033,7 @@ msgid "Time zone area"
 msgstr "时区区域"
 
 msgid "Timeline"
-msgstr ""
+msgstr "时间轴"
 
 msgid "Timeline 24 Hour"
 msgstr "24小时时间线"
@@ -22118,13 +22048,13 @@ msgid "Timeline scale"
 msgstr "时间线尺度"
 
 msgid "Timeout"
-msgstr ""
+msgstr "超时"
 
 msgid "Timeout waiting for FIC service data"
-msgstr ""
+msgstr "等待 FIC 服务数据超时"
 
 msgid "Timer Defaults And Retention"
-msgstr ""
+msgstr "定时器默认设置及保留策略"
 
 msgid "Timer Log Actions"
 msgstr "定时器日志动作"
@@ -22293,7 +22223,7 @@ msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "在插入之前切换新文本或覆盖现有文本"
 
 msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
+msgstr "切换按 IP 地址还是按 DNS 名称选择共享"
 
 msgid "Toggle selection of the current tag"
 msgstr "切换当前标签的选择"
@@ -22378,7 +22308,7 @@ msgid "Traditional Chinese"
 msgstr "繁体中文"
 
 msgid "Transceiver"
-msgstr ""
+msgstr "收发器"
 
 msgid "Transcode"
 msgstr "转码"
@@ -22431,7 +22361,7 @@ msgid "Transport Stream Type"
 msgstr "传输流类型"
 
 msgid "Trash And Deletion"
-msgstr ""
+msgstr "回收站与删除"
 
 msgid "Trashcan"
 msgstr "回收站"
@@ -22518,10 +22448,10 @@ msgid "Tuner :"
 msgstr "调谐器："
 
 msgid "Tuner Allocation And Conflicts"
-msgstr ""
+msgstr "调谐器分配与冲突处理"
 
 msgid "Tuner And Streaming"
-msgstr ""
+msgstr "调谐器与串流"
 
 msgid "Tuner Configuration"
 msgstr "调谐器配置"
@@ -22741,7 +22671,7 @@ msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "无法初始化 Kexec 多系统启动！"
 
 msgid "Unable to start the DAB+ feed"
-msgstr ""
+msgstr "无法启动 DAB+ 传送源"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -22830,9 +22760,6 @@ msgstr "未知频道"
 msgid "Unknown error code"
 msgstr "未知错误代码"
 
-msgid "Unknown feed"
-msgstr ""
-
 #, python-format
 msgid "Unknown group: %d"
 msgstr "未知组：%d"
@@ -22866,7 +22793,7 @@ msgid "Unpublished"
 msgstr "未发布"
 
 msgid "Unreachable"
-msgstr ""
+msgstr "不可达"
 
 msgid "Unscramble and record ECM"
 msgstr "解扰并记录 ECM（授权控制信息）"
@@ -23061,7 +22988,7 @@ msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG 信息可用时使用。"
 
 msgid "Use NFS file locking"
-msgstr ""
+msgstr "使用 NFS 文件锁定"
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG 信息可用时使用。"
@@ -23106,7 +23033,7 @@ msgid "Use an alternative smaller screen."
 msgstr "使用一个更小的备用屏幕。"
 
 msgid "Use as HDD replacement"
-msgstr ""
+msgstr "作为硬盘替代"
 
 msgid "Use automatic mode detection"
 msgstr "使用自动模式检测"
@@ -23154,7 +23081,7 @@ msgid "Use geolocation to set the current time zone location"
 msgstr "使用地理位置设置当前时区位置"
 
 msgid "Use guest login"
-msgstr ""
+msgstr "使用访客登录"
 
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "如果切换高频头时出现问题，请使用增加“14/18V”的电压。"
@@ -23317,10 +23244,10 @@ msgid "Username (httpuser)"
 msgstr "用户名（http用户）"
 
 msgid "Using DNS"
-msgstr ""
+msgstr "使用 DNS"
 
 msgid "Using IP"
-msgstr ""
+msgstr "使用 IP 地址"
 
 msgid "Using automatic address"
 msgstr "使用自动地址"
@@ -23699,7 +23626,7 @@ msgid "Volume Adjust Settings"
 msgstr "音量调节设置"
 
 msgid "Volume Control"
-msgstr ""
+msgstr "音量控制"
 
 msgid "Volume adjustment mode"
 msgstr "音量调节模式"
@@ -23759,7 +23686,7 @@ msgid "Waiting"
 msgstr "正在等待"
 
 msgid "Waiting for IP address..."
-msgstr ""
+msgstr "正在等待获取 IP 地址…"
 
 msgid "Waiting for partition"
 msgstr "正在等待分区"
@@ -23808,7 +23735,7 @@ msgid "Warning: Canceling this process will leave the feeds in an incomplete and
 msgstr "警告：取消此过程将使订阅源处于不完整且无法使用的状态！"
 
 msgid "Warning: No Wi-Fi adapter found!"
-msgstr ""
+msgstr "警告：未找到Wi-Fi适配器！"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "警告：覆盖当前处于活动状态！"
@@ -24072,7 +23999,7 @@ msgid "When enabled, show status or error messages."
 msgstr "启用时，显示状态或错误消息。"
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
-msgstr ""
+msgstr "启用后，为此适配器指定自定义DNS设置，而非使用全局DNS设置。"
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "启用时，可以使用听力受损者的字幕。"
@@ -24129,10 +24056,10 @@ msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and wi
 msgstr "启用后，此 WiFi 适配器仅维持 WiFi 网络唤醒模式，不会连接任何无线网络。"
 
 msgid "When enabled, this adapter will be initialized and activated at boot time."
-msgstr ""
+msgstr "启用后，此适配器将在开机时初始化和激活。"
 
 msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
-msgstr ""
+msgstr "启用后，该主机的共享将以匿名（访客）方式列出，忽略下方输入的用户名/密码。"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
@@ -24449,7 +24376,7 @@ msgid "Yoruba"
 msgstr "约鲁巴"
 
 msgid "You can Display MiniTV with or without OSD Menu."
-msgstr "您可以显示带或不带 OSD 菜单的小电视。"
+msgstr "您可以显示带或不带 OSD 菜单的小窗电视。"
 
 msgid "You can Display PiP with or without OSD Menu."
 msgstr "您可以在有或没有 OSD 菜单的情况下显示画中画。"
@@ -24743,9 +24670,6 @@ msgstr "ZeroTier 操作"
 
 msgid "ZeroTier Settings"
 msgstr "ZeroTier 设置"
-
-msgid "ZeroTier-One"
-msgstr "ZeroTier-One"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7旧型号"
@@ -25422,6 +25346,51 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "AutoFS"
+#~ msgstr "AutoFS"
+
+#~ msgid "Chrony"
+#~ msgstr "克罗尼"
+
+#~ msgid "Cron"
+#~ msgstr "Cron"
+
+#~ msgid "DNSCrypt"
+#~ msgstr "DNSCrypt"
+
+#~ msgid "FTP"
+#~ msgstr "FTP"
+
+#~ msgid "NFS"
+#~ msgstr "NFS"
+
+#~ msgid "OpenVPN"
+#~ msgstr "OpenVPN"
+
+#~ msgid "SABnzbd"
+#~ msgstr "SABnzbd"
+
+#~ msgid "SATPI"
+#~ msgstr "SATPI"
+
+#~ msgid "SSH"
+#~ msgstr "SSH"
+
+#~ msgid "Samba Client"
+#~ msgstr "Samba 客户端"
+
+#~ msgid "Samba Server"
+#~ msgstr "Samba 服务器"
+
+#~ msgid "ShellInABox"
+#~ msgstr "ShellInABox"
+
+#~ msgid "Telnet"
+#~ msgstr "设置 Telnet"
+
+#~ msgid "ZeroTier-One"
+#~ msgstr "ZeroTier-One"
 
 #~ msgid "DVDPlayer"
 #~ msgstr "DVD 播放器"

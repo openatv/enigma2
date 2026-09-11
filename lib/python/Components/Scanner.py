@@ -147,6 +147,19 @@ class ScanFile:
 		return "<ScanFile " + self.path + " (" + str(self.mimetype) + ", " + str(self.size) + " MB)>"
 
 
+def filescan_open(list, session, **kwargs):
+	from Screens.Opkg import IpkgInstaller  # Prevent Cicle imports
+	filelist = [x.path for x in list]
+	session.open(IpkgInstaller, filelist)
+
+
+def filescan(**kwargs):
+	return Scanner(mimetypes=["application/x-debian-package"], paths_to_scan=[
+		ScanPath(path="ipk", with_subdirs=True),
+		ScanPath(path="", with_subdirs=False),
+	], name="Ipkg", description=_("Install extensions."), openfnc=filescan_open)
+
+
 def execute(option):
 	print("[Scanner] execute", option)
 	if option is None:
@@ -157,7 +170,7 @@ def execute(option):
 
 
 def scanDevice(mountpoint):
-	scanner = []
+	scanner = [filescan()]
 
 	for pluginObj in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		func = pluginObj()
@@ -214,7 +227,7 @@ def openList(session, files):
 	if not isinstance(files, list):
 		files = [files]
 
-	scanner = []
+	scanner = [filescan()]
 
 	for pluginObj in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		func = pluginObj()

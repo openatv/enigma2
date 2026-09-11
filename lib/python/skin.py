@@ -344,6 +344,21 @@ def parseOptions(options, attribute, value, default):
 	return value
 
 
+def parseValuePair(value, scale, object=None, desktop=None, size=None):
+	if value in variables:
+		value = variables[value]
+	(xValue, yValue) = value.split(",")  # These values will be stripped in parseCoordinate().
+	parentsize = eSize()
+	if object and ("c" in xValue or "c" in yValue or "e" in xValue or "e" in yValue or "%" in xValue or "%" in yValue):  # Need parent size for 'c', 'e' and '%'.
+		parentsize = getParentSize(object, desktop)
+	# x = xValue
+	# y = yValue
+	xValue = parseCoordinate(xValue, parentsize.width(), size and size.width() or 0, None, scale[0])
+	yValue = parseCoordinate(yValue, parentsize.height(), size and size.height() or 0, None, scale[1])
+	# print(f"[Skin] parseValuePair DEBUG: Scaled pair X {x} -> {xValue}, Y {y} -> {yValue}.")
+	return (xValue, yValue)
+
+
 def parseAlphaTest(value):
 	options = {
 		"on": BT_ALPHATEST,
@@ -410,60 +425,87 @@ def parseColor(value, default=0x00FFFFFF):
 # 	f	Replace with getSkinFactor().
 #
 def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
+	RATIOTOKENS = frozenset("ewhcf%")
+
 	def scaleNumbers(coordinate, scale):
-		inNumber = False
-		chars = []
-		digits = []
-		for char in list(f"{coordinate} "):
-			if char.isdigit():
-				inNumber = True
-				digits.append(char)
-			elif inNumber:
-				inNumber = False
-				chars.append(str(int(int("".join(digits)) * scale[0] / scale[1])))
-				digits = []
-				chars.append(char)
+		# Terms (split on "+"/"-") that reference an already real, resolution-independent
+		# quantity ("e", "c", "w", "h", "f" or "%") are ratios/coefficients of that quantity
+		# (e.g. the "4" in "e/4", the "3" in "3*e", the "25" in "25%") and must be left
+		# unscaled - only terms made up purely of literal numbers (e.g. the "48" in "e-48")
+		# represent real pixel quantities that need scaling.
+		def scaleTerm(term):
+			if not RATIOTOKENS.isdisjoint(term):  # Cheap early-exit set check instead of scanning the term once per token.
+				return term
+			inNumber = False
+			chars = []
+			digits = []
+			for char in f"{term} ":
+				if char.isdigit():
+					inNumber = True
+					digits.append(char)
+				elif inNumber:
+					inNumber = False
+					chars.append(str(int(int("".join(digits)) * scale[0] / scale[1])))
+					digits = []
+					chars.append(char)
+				else:
+					chars.append(char)
+			return "".join(chars).strip()
+
+		if RATIOTOKENS.isdisjoint(coordinate) or ("+" not in coordinate and "-" not in coordinate):
+			return scaleTerm(coordinate)  # Single term, no need to split - the common case.
+		terms = []
+		current = []
+		for char in coordinate:
+			if char in "+-":
+				terms.append("".join(current))
+				terms.append(char)
+				current = []
 			else:
-				chars.append(char)
-		return "".join(chars).strip()
+				current.append(char)
+		terms.append("".join(current))
+		return "".join(term if term in ("+", "-") else scaleTerm(term) for term in terms)
 
 	value = value.strip()
 	try:
-		result = int(int(value) * scale[0] / scale[1])  # For speed try a simple number first.
+		value = int(int(value) * scale[0] / scale[1])  # For speed try a simple number first.
 	except ValueError:
 		if value == "center":  # For speed as this can be common case.
-			return max(int((parent - size) // 2) if size else 0, 0)
+			value = max(int((parent - size) // 2) if size else 0, 0)
 		elif value == "*":
-			return None
-		if font is None:
-			font = "Body"
-			if "w" in value or "h" in value:
-				print(f"[Skin] Warning: Coordinate 'w' and/or 'h' used but font is None, '{font}' font ('{fonts[font][0]}', width={fonts[font][3]}, height={fonts[font][2]}) assumed!")
-		val = scaleNumbers(value, scale)
-		if "center" in val:
-			val = val.replace("center", str((parent - size) / 2.0))
-		if "e" in val:
-			val = val.replace("e", str(parent))
-		if "c" in val:
-			val = val.replace("c", str(parent / 2.0))
-		if "%" in val:
-			val = val.replace("%", f"*{parent / 100.0}")
-		if "w" in val:
-			val = val.replace("w", f"*{fonts[font][3]}")
-		if "h" in val:
-			val = val.replace("h", f"*{fonts[font][2]}")
-		if "f" in val:
-			val = val.replace("f", f"{getSkinFactor()}")
-		try:
-			result = int(val)  # For speed try a simple number first.
-		except ValueError:
+			value = None
+		else:
+			if font is None:
+				font = "Body"
+				if "w" in value or "h" in value:
+					print(f"[Skin] Warning: Coordinate 'w' and/or 'h' used but font is None, '{font}' font ('{fonts[font][0]}', width={fonts[font][3]}, height={fonts[font][2]}) assumed!")
+			val = scaleNumbers(value, scale)
+			if "center" in val:
+				val = val.replace("center", str((parent - size) / 2.0))
+			if "e" in val:
+				val = val.replace("e", str(parent))
+			if "c" in val:
+				val = val.replace("c", str(parent / 2.0))
+			if "%" in val:
+				val = val.replace("%", f"*{parent / 100.0}")
+			if "w" in val:
+				val = val.replace("w", f"*{fonts[font][3]}")
+			if "h" in val:
+				val = val.replace("h", f"*{fonts[font][2]}")
+			if "f" in val:
+				val = val.replace("f", f"{getSkinFactor()}")
 			try:
-				result = int(eval(val))
-			except Exception as err:
-				print(f"[Skin] Error ({type(err).__name__} - {err}): Coordinate '{value}', calculated to '{val}', can't be evaluated!")
-				result = 0
-	# print(f"[Skin] parseCoordinate DEBUG: value='{value}', parent='{parent}', size={size}, font='{font}', scale='{scale}', result='{result}'.")
-	return 0 if result < 0 else result
+				value = int(val)  # For speed try a simple number first.
+			except ValueError:
+				try:
+					value = int(eval(val))
+				except Exception as err:
+					print(f"[Skin] Error ({type(err).__name__} - {err}): Coordinate '{value}', calculated to '{val}', can't be evaluated!")
+					value = 0
+			# print(f"[Skin] parseCoordinate DEBUG: value='{value}', parent='{parent}', size={size}, font='{font}', scale='{scale}', val='{val}'.")
+			if value < 0:
+				value = 0
+	return value
 
 
 def parseFont(value, scale=((1, 1), (1, 1))):
@@ -587,16 +629,6 @@ def parseItemAlignment(value):
 	return parseOptions(options, "itemAlignment", value, eListbox.itemAlignLeftTop)
 
 
-def parseScrollbarLength(value, default):
-	if value and value.isdigit():
-		return int(value)
-	options = {
-		"full": 0,
-		"auto": -1
-	}
-	return options.get(value, default)
-
-
 def parseListOrientation(value):
 	options = {
 		"vertical": 0b01,
@@ -634,20 +666,21 @@ def parseOrientation(value):
 def parseParameter(value):
 	"""This function is responsible for parsing parameters in the skin, it can parse integers, floats, hex colors, hex integers, named colors, fonts and strings."""
 	if value[0] == "*":  # String.
-		return value[1:]
+		value = value[1:]
 	elif value[0] == "#":  # HEX Color.
-		return int(value[1:], 16)
+		value = int(value[1:], 16)
 	elif value[:2] == "0x":  # HEX Integer.
-		return int(value, 16)
+		value = int(value, 16)
 	elif "." in value:  # Float number.
-		return float(value)
+		value = float(value)
 	elif value in colors:  # Named color.
-		return colors[value].argb()
+		value = colors[value].argb()
 	elif value.find(";") != -1:  # Font.
 		(font, size) = (x.strip() for x in value.split(";", 1))
-		return [font, int(size)]
+		value = [font, int(size)]
 	else:  # Integer.
-		return int(value)
+		value = int(value)
+	return value
 
 
 def parsePixmap(path, desktop):
@@ -685,9 +718,22 @@ def parseRadius(value):
 		edgeValue = 0
 		for edge in edges:
 			edgeValue += edgesMask.get(edge, 0)
-		return int(data[0]), edgeValue
+		value = int(data[0]), edgeValue
 	else:
-		return int(data[0]), eWidget.RADIUS_ALL
+		value = int(data[0]), eWidget.RADIUS_ALL
+	return value
+
+
+def parseScrollbarLength(value, default):
+	if value and value.isdigit():
+		value = int(value)
+	else:
+		options = {
+			"full": 0,
+			"auto": -1
+		}
+		value = options.get(value, default)
+	return value
 
 
 def parseSize(value, scale, object=None, desktop=None):
@@ -703,21 +749,6 @@ def parseTabWidth(value, default):
 		}
 		value = options.get(value, default)
 	return value
-
-
-def parseValuePair(value, scale, object=None, desktop=None, size=None):
-	if value in variables:
-		value = variables[value]
-	(xValue, yValue) = value.split(",")  # These values will be stripped in parseCoordinate().
-	parentsize = eSize()
-	if object and ("c" in xValue or "c" in yValue or "e" in xValue or "e" in yValue or "%" in xValue or "%" in yValue):  # Need parent size for 'c', 'e' and '%'.
-		parentsize = getParentSize(object, desktop)
-	# x = xValue
-	# y = yValue
-	xValue = parseCoordinate(xValue, parentsize.width(), size and size.width() or 0, None, scale[0])
-	yValue = parseCoordinate(yValue, parentsize.height(), size and size.height() or 0, None, scale[1])
-	# print(f"[Skin] parseValuePair DEBUG: Scaled pair X {x} -> {xValue}, Y {y} -> {yValue}.")
-	return (xValue, yValue)
 
 
 def parseScale(value):
@@ -867,9 +898,9 @@ def parseSeparator(attribute, value):
 	values = [parseInteger(x.strip()) for x in value.split(",")]
 	count = len(values)
 	if count == 1:
-		return [-1, -1, -1, values[0]]
+		values = [-1, -1, -1, values[0]]
 	elif count == 2:
-		return [-1, values[0], -1, values[1]]
+		values = [-1, values[0], -1, values[1]]
 	elif count != 4:
 		print(f"[Skin] Error: Attribute '{attribute}' with value '{value}' is invalid!  Attribute must have 1, 2 or 4 values.")
 		values = [-1, -1, -1, 1]
@@ -902,16 +933,16 @@ def parseVerticalAlignment(value):
 
 
 def parseWrap(value):
-	options = {
-		"noWrap": 0,
-		"off": 0,
-		"0": 0,
-		"wrap": 1,  # RT_WRAP,
-		"on": 1,  # RT_WRAP,
-		"1": 1,  # RT_WRAP,
-		"ellipsis": 2  # RT_ELLIPSIS
-	}
-	return parseOptions(options, "wrap", value, 0)
+	match value:
+		case "ellipsis":
+			result = 2  # RT_ELLIPSIS.
+		case "noWrap":
+			result = 0
+		case "wrap":
+			result = 1  # RT_WRAP.
+		case _:
+			result = 1 if parseBoolean("1", value) else 0
+	return result
 
 
 def parseZoom(mode, zoomType):
@@ -1100,7 +1131,7 @@ class AttributeParser:
 			self.guiObject.setFontScale(scaleType, size)
 
 	def foregroundColor(self, value):
-		if "," in value:
+		if "," in value or value in gradients:
 			self.guiObject.setForegroundGradient(*parseGradient(value))  # Only for eSlider.
 		else:
 			self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
@@ -1111,6 +1142,9 @@ class AttributeParser:
 	def foregroundGradient(self, value):
 		self.guiObject.setForegroundGradient(*parseGradient(value))
 		attribDeprecationWarning("foregroundGradient", "foregroundColor")
+
+	def gradientMode(self, value):  # Per-slider opt-in; existing skins keep their rendering behavior.
+		self.guiObject.setGradientMode(parseOptions({"legacy": 0, "explicit": 1}, "gradientMode", value, 0))
 
 	def hAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)

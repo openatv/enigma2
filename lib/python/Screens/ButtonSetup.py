@@ -712,9 +712,20 @@ class InfoBarButtonSetup():
 					from Plugins.Extensions.Chromium.plugin import start_youtubetv_main
 					start_youtubetv_main(self.session)
 			elif selected[0] == "ReloadSkin":
+				from Screens.ChannelSelection import ChannelSelection
 				from skin import reloadSkins
+				open("/etc/.restore_skins", "w").close()
 				reloadSkins()
-				self.session.reloadDialogs()
+				for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SKINCHANGE):
+					plugin(session=self.session)
+				exclude = {id(x) for x in self.summaries}
+				for dialog, _shown in self.session.dialog_stack[1:]:
+					exclude.add(id(dialog))
+					exclude.update(id(x) for x in dialog.summaries)
+				for dialog in self.session.allDialogs:
+					if isinstance(dialog, ChannelSelection):
+						exclude.add(id(dialog))
+				self.session.reloadDialogs(exclude=exclude)
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):

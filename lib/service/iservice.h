@@ -431,7 +431,15 @@ public:
 
 		sUser = 0x100,
 		sDABServiceList = sUser + 1, /* tab-separated SID, bitrate, DAB+ flag and label */
-		sDABServiceRevision = sUser + 2 /* rises while the FIC still changes */
+		sDABServiceRevision = sUser + 2, /* rises while the FIC still changes */
+		sDABReceiverName = sUser + 3, /* RTL-SDR tuner reported by the active backend */
+		sDABChannel = sUser + 4,
+		sDABEnsembleLabel = sUser + 5,
+		sDABEnsembleId = sUser + 6,
+		sDABFICQuality = sUser + 7,
+		sDABMSCQuality = sUser + 8,
+		sDABProtection = sUser + 9,
+		sDABDynamicLabel = sUser + 10
 	};
 	enum {
 		resNA = -1,

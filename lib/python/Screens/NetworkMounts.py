@@ -68,7 +68,7 @@ class NetworkMountsOverview(Screen):
 	MOUNT = "/bin/mount"
 	UMOUNT = "/bin/umount"
 
-	def __init__(self, session):
+	def __init__(self, session, openBrowser=False):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Network Mounts Overview"))
 		indexNames = {
@@ -102,6 +102,10 @@ class NetworkMountsOverview(Screen):
 		self.onChangedEntry = []
 		self.buildList()
 		self.onShown.append(self.selectionChanged)
+		self.savedMount = None
+		self.transient = openBrowser
+		if openBrowser:
+			self.onFirstExecBegin.append(self.keyGreen)
 		self.onClose.append(self.console.killAll)
 
 	def selectionChanged(self):
@@ -149,14 +153,18 @@ class NetworkMountsOverview(Screen):
 	def keyEdit(self):
 		current = self["mountList"].getCurrent()
 		if current:
-			dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=current[self.LIST_DATA])
+			self.session.openWithCallback(self.keySetupClosed, NetworkMountSetup, mount=current[self.LIST_DATA], onSaved=self.mountSaved)
 
-	def keySetupClosed(self, dlg, *args):
-		if args and isinstance(args[0], bool) and args[0]:  # Special case for close recursive.
+	def mountSaved(self, mount):
+		self.savedMount = mount
+
+	def keySetupClosed(self, *args):
+		saved, self.savedMount = self.savedMount, None
+		if args and args[0] is True:
 			self.close(True)
 			return
 		self.buildList()
-		self.applyMountChange(getattr(dlg, "savedMount", None))
+		self.applyMountChange(saved)
 
 	def applyMountChange(self, mount):
 		def autofsRestarted(exitCode):
@@ -238,7 +246,7 @@ class NetworkMountsOverview(Screen):
 		def keyMenuCallback(choice=None):
 			if choice:
 				if choice[1] == "manual":
-					dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=None)
+					self.session.openWithCallback(self.keySetupClosed, NetworkMountSetup, mount=None, onSaved=self.mountSaved)
 				elif choice[1] == "delete":
 					deleteMount()
 				elif choice[1] == "edit_credentials":
@@ -261,24 +269,18 @@ class NetworkMountsOverview(Screen):
 		self.session.openWithCallback(keyMenuCallback, ChoiceBox, title=_("Mount Context Menu"), list=choices)
 
 	def keyGreen(self):
-		def keyGreenCallback(picked=None):
-			if isinstance(picked, bool) and picked:  # Special case for close recursive.
+		def keyGreenCallback(saved=None):
+			if isinstance(saved, bool) and saved:
 				self.close(True)
 				return
-			mount = None
-			if picked:
-				mount = {
-					"server": picked.get("address") or ""
-				}
-				if picked.get("protocol"):
-					mount["protocol"] = picked["protocol"]
-				if picked.get("remotePath"):
-					mount["remotePath"] = picked["remotePath"]
-				if picked.get("shareName"):
-					mount["shareName"] = picked["shareName"]
-				if picked.get("smbVersion"):
-					mount["smbVersion"] = picked["smbVersion"]
-				dlg = self.session.openWithCallback(lambda *args: self.keySetupClosed(dlg, *args), NetworkMountSetup, mount=mount)
+			if saved:
+				self.transient = False
+				self.buildList()
+				self.applyMountChange(saved)
+			elif self.transient:
+				self.close()
+			else:
+				self.buildList()
 
 		self.session.openWithCallback(keyGreenCallback, NetworkShares)
 
@@ -311,10 +313,11 @@ class NetworkMountsSummary(ScreenSummary):
 
 
 class NetworkMountSetup(Setup):
-	def __init__(self, session, mount=None):
+	def __init__(self, session, mount=None, onSaved=None):
 		def default(key, default=""):
 			return mount.get(key, default) if mount else default
 
+		self.onSaved = onSaved
 		self.repository = NetworkMountRepository()
 		self.mountId = mount.get("id") if mount else None
 		self.enabled = NoSave(ConfigYesNo(default=default("enabled", True)))
@@ -402,7 +405,8 @@ class NetworkMountSetup(Setup):
 		self.repository.save(mounts)
 		if self.enabled.value and self.mode.value == "fstab":
 			self.repository.ensureMountPoint(mount)
-		self.savedMount = mount
+		if self.onSaved:
+			self.onSaved(mount)
 		Setup.keySave(self)
 
 
@@ -418,10 +422,10 @@ class NetworkShares(Screen):
 				</rowtemplate>
 				<rowtemplate>
 					<text index="Glyph" position="50,9" size="42,32" font="2" foregroundColor="+GlyphColor" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="Type" position="102,0" size="50,50" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
-					<text index="Name" position="152,0" size="200,50" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="Description" position="352,0" size="500,25" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="LocalPath" position="372,25" size="480,25" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Type" position="102,0" size="70,50" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
+					<text index="Name" position="172,0" size="200,50" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="Description" position="372,0" size="480,25" font="3" padding="5,0" verticalAlignment="center" />
+					<text index="LocalPath" position="392,25" size="460,25" font="3" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 				</rowtemplate>
 			</template>
 		</widget>
@@ -500,7 +504,8 @@ class NetworkShares(Screen):
 		self.pendingProtocols = {}  # address -> {"nfs", "smb"} remaining
 		self.smbVersions = {}    # address -> negotiated dialect as a mount "vers=" value
 		self.smbGuestCallback = {}  # address -> one-shot callback run once the guest SMB probe below finishes
-		self.configuredShares = {}  # (server, remotePath) -> local mount path, for already-configured shares
+		self.savedMount = None
+		self.configuredMounts = {}  # (server, remotePath) -> mount, for shares that are already configured
 		self.repository = NetworkMountRepository()
 		self.menuAddress = None
 		self.menuHostname = None
@@ -513,8 +518,9 @@ class NetworkShares(Screen):
 	# Discovery only runs while this screen is open, so it stops as soon as
 	# the user leaves instead of scanning the network in the background.
 	def startDiscovery(self):
-		self.configuredShares = {(mount.get("server"), (mount.get("remotePath") or "").lstrip("/")): self.repository.mountPointFor(mount) for mount in self.repository.load()}
-		discoveryManager.onChanged.append(self.onHostsChanged)
+		self.configuredMounts = {(mount.get("server"), (mount.get("remotePath") or "").lstrip("/")): mount for mount in self.repository.load()}
+		if self.onHostsChanged not in discoveryManager.onChanged:
+			discoveryManager.onChanged.append(self.onHostsChanged)
 		discoveryManager.start(runMs=None)
 		self["description"].setText(_("Scanning..."))
 		self.buildList()
@@ -656,14 +662,20 @@ class NetworkShares(Screen):
 			return
 		self.session.openWithCallback(lambda *args: self.startShareEnumeration(address), NetworkCredentials, hostname, self.repository)
 
+	def configuredMount(self, address, hostname, remotePath):
+		path = remotePath.lstrip("/")
+		return self.configuredMounts.get((address, path)) or (self.configuredMounts.get((hostname, path)) if hostname else None)
+
 	def pickShare(self, share):
 		host = discoveryManager.hosts.get(share["address"]) or {}
 		hostname = host.get("hostname") or ""
-		address = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
-
-		picked = {
-			"address": address,
-			"hostname": hostname,
+		existing = self.configuredMount(share["address"], hostname, share["path"])
+		if existing:
+			self.session.openWithCallback(self.mountSetupClosed, NetworkMountSetup, mount=existing, onSaved=self.mountSaved)
+			return
+		server = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
+		mount = {
+			"server": server,
 			"protocol": {
 				"smb": "cifs",
 				"nfs": "nfs"
@@ -672,8 +684,26 @@ class NetworkShares(Screen):
 			"shareName": share["name"],
 		}
 		if share["protocol"] == "smb":
-			picked["smbVersion"] = self.smbVersions.get(share["address"], self.SMB_FALLBACK_VERSION)
-		self.close(picked)
+			mount["smbVersion"] = self.smbVersions.get(share["address"], self.SMB_FALLBACK_VERSION)
+			credentials = self.repository.credentialsGet(self.hostnameFor(share["address"]))
+			username = credentials.get("username", "")
+			if username and username != NetworkCredentials.GUEST_USERNAME:
+				mount["username"] = username
+				mount["password"] = credentials.get("password", "")
+		self.session.openWithCallback(self.mountSetupClosed, NetworkMountSetup, mount=mount, onSaved=self.mountSaved)
+
+	def mountSaved(self, mount):
+		self.savedMount = mount
+
+	def mountSetupClosed(self, *args):
+		saved, self.savedMount = self.savedMount, None
+		if args and args[0] is True:
+			self.close(True)
+			return
+		if saved:
+			self.close(saved)
+		else:
+			self.buildList()
 
 	def startShareEnumeration(self, address):
 		if self.shareState.get(address) == "loading":
@@ -799,12 +829,19 @@ class NetworkShares(Screen):
 			def sortKeyByName(host):
 				return (not host["protocols"], (host["hostname"] or host["address"]).lower())
 
-			for host in sorted(discoveryManager.hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
+			hosts = {}
+			for host in discoveryManager.hosts.values():
+				key = (host["hostname"] or host["address"], ":" in host["address"])
+				known = hosts.get(key)
+				if known is None or host["address"] < known["address"]:
+					hosts[key] = host
+
+			for host in sorted(hosts.values(), key=sortKeyByIP if config.network.browserSortByIP.value else sortKeyByName):
 				address = host["address"]
 				name = host["hostname"] or address
-				version = self.smbVersions.get(address)
-				if version:
-					name = f"{name} (SMB{version.split('.')[0]})"
+				username = self.repository.credentialsGet(self.hostnameFor(address)).get("username", "")
+				if username:
+					name = f"{name} ({_('guest') if username == NetworkCredentials.GUEST_USERNAME else username})"
 				entries.append((self.TEMPLATE_HOST, self.GLYPH_HOST, 0, address, "", name, "", "", {"kind": "host", "address": address}))
 				if address not in self.expanded:
 					continue
@@ -816,7 +853,12 @@ class NetworkShares(Screen):
 
 				for share in self.shares.get(address, []):
 					typeLabel = protocolLabels.get(share["protocol"], share["protocol"])
-					localPath = self.configuredShares.get((address, share["path"].lstrip("/")))
+					if share["protocol"] == "smb":
+						version = self.smbVersions.get(address)
+						if version:
+							typeLabel = f"SMB{version.split('.')[0]}"
+					existing = self.configuredMount(address, host["hostname"], share["path"])
+					localPath = self.repository.mountPointFor(existing) if existing else None
 					glyph = self.GLYPH_MOUNTED if localPath else self.GLYPH_NOT_MOUNTED
 					glyphColor = self.COLOR_MOUNTED if localPath else self.COLOR_NOT_MOUNTED
 					entries.append((self.TEMPLATE_SHARE, glyph, glyphColor, "", typeLabel, share["name"], localPath or "", share.get("description") or "", dict(share, kind="share")))

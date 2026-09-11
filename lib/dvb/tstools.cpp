@@ -2,12 +2,15 @@
 #include <lib/dvb/specs.h>
 #include <lib/base/eerror.h>
 #include <lib/base/cachedtssource.h>
+#include <lib/base/esimpleconfig.h>
 #include <unistd.h>
 #include <fcntl.h>
 
 #include <stdio.h>
 
 static const int m_maxrange = 256*1024;
+
+int eDVBTSTools::m_debugSeek = -1;
 
 static inline bool isHEVCIrapStructureEntry(unsigned int data)
 {
@@ -76,6 +79,8 @@ eDVBTSTools::eDVBTSTools():
 	m_last_filelength(0),
 	m_futile(0)
 {
+	if (m_debugSeek < 0)
+		m_debugSeek = eSimpleConfig::getBool("config.crash.debugSeek", false) ? 1 : 0;
 }
 
 void eDVBTSTools::closeSource()
@@ -123,8 +128,13 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	if (m_streaminfo.getPTS(offset, pts) == 0)
 		return 0; // Okay, the cache had it
 
+	bool have_fallback = false;
+	off_t fallback_offset = 0;
+	pts_t fallback_pts = 0;
+
 	if (m_streaminfo.hasStructure())
 	{
+		off_t requested_offset = offset;
 		off_t local_offset = offset;
 		unsigned long long data;
 		if (m_streaminfo.getStructureEntryFirst(local_offset, data) == 0)
@@ -139,7 +149,27 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 						// obsolete data that happens to have a '1' there
 						continue;
 					}
-					eDebug("[eDVBTSTools] getPTS got it from sc file offset=%lld pts=%lld", (long long)local_offset, pts);
+					if (llabs((long long)(local_offset - requested_offset)) > m_maxrange)
+					{
+						/* The nearest sc-file entry with a PTS is much further from the
+						   requested offset than the raw packet scan below would even look.
+						   Blindly accepting it here poisons getOffset()'s interpolation
+						   refinement with a "verified" sample that's actually way off (seen
+						   as the refinement loop repeatedly landing on the same distant sc
+						   entry without ever converging). Prefer the finer packet scan below,
+						   but remember this entry as a fallback: right at the live edge the
+						   packet scan can genuinely fail (not enough data flushed to disk
+						   yet), and returning nothing at all is worse than an imprecise but
+						   valid sample. */
+						if (m_debugSeek)
+							eDebug("[eDVBTSTools] getPTS sc entry at %lld is too far from requested offset %lld, falling back to packet scan", (long long)local_offset, (long long)requested_offset);
+						have_fallback = true;
+						fallback_offset = local_offset;
+						fallback_pts = pts;
+						break;
+					}
+					if (m_debugSeek)
+						eDebug("[eDVBTSTools] getPTS got it from sc file offset=%lld pts=%lld", (long long)local_offset, pts);
 					if (fixed && fixupPTS(local_offset, pts))
 					{
 						eDebug("[eDVBTSTools]    But failed to fixup!");
@@ -161,10 +191,11 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		}
 	}
 	if (!m_source || !m_source->valid())
-		return -1;
+		goto no_pts_found;
 
 	offset -= offset % m_packet_size;
 
+	{
 	int left = m_maxrange;
 	int resync_failed_counter = 64;
 
@@ -175,7 +206,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		if (m_source->read(offset, buffer, m_packet_size) != m_packet_size)
 		{
 			eDebug("[eDVBTSTools] getPTS read error");
-			return -1;
+			goto no_pts_found;
 		}
 		left -= m_packet_size;
 		offset += m_packet_size;
@@ -194,7 +225,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 				if (resync_failed_counter == 0)
 				{
 					eDebug("[eDVBTSTools] getPTS Too many resync failures, probably not a valid stream");
-					return -1;
+					goto no_pts_found;
 				}
 				--resync_failed_counter;
 			}
@@ -330,14 +361,31 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			return 0;
 		}
 	}
+	}
+
+no_pts_found:
+	if (have_fallback)
+	{
+		pts = fallback_pts;
+		offset = fallback_offset;
+		if (!(fixed && fixupPTS(offset, pts)))
+		{
+			if (m_debugSeek)
+			eDebug("[eDVBTSTools] getPTS packet scan found nothing usable, falling back to distant sc entry offset=%lld pts=%lld", (long long)offset, pts);
+			return 0;
+		}
+	}
 
 	return -1;
 }
 
 int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 {
-	if (m_streaminfo.fixupPTS(offset, now) == 0)
+	pts_t debug_now_in = now;
+	if (m_streaminfo.fixupPTS(offset, now, m_debugSeek) == 0)
 	{
+		if (m_debugSeek)
+			eDebug("[eDVBTSTools] fixupPTS: resolved via streaminfo (access points), now %lld -> %lld", debug_now_in, now);
 		return 0;
 	}
 	else
@@ -351,20 +399,72 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 		}
 
 		pts_t pos = m_pts_begin;
+		if (m_debugSeek)
+			eDebug("[eDVBTSTools] fixupPTS: streaminfo fixup unavailable, fallback branch: now=%lld, m_pts_begin=%lld", now, pos);
+		if (now == 0)
+		{
+			/* A real PTS is never exactly 0. A 0 here means the caller (usually the decoder's
+			   live getPTS(), right after unpause) hasn't got a real value yet - not a genuine
+			   wrap-around. Treating it as a wrap-around computes a bogus huge "now", which then
+			   resolves to a seek target far beyond the buffer and triggers a bogus EOF/SwitchToLive. */
+			if (m_debugSeek)
+				eDebug("[eDVBTSTools] fixupPTS: now == 0, not a real PTS (decoder not ready yet?) - refusing to fixup");
+			return -1;
+		}
 		if ((now < pos) && ((pos - now) < 90000 * 10))
 		{
+			if (m_debugSeek)
+				eDebug("[eDVBTSTools] fixupPTS: now is %lld before begin (<10s) - clamp-to-0 branch. NOTE: this leaves 'now' UNCHANGED (%lld) - only the local 'pos' is set to 0!", pos - now, now);
 			pos = 0;
 			return 0;
 		}
 
 		if (now < pos) /* wrap around */
+		{
 			now = now + 0x200000000LL - pos;
+			if (m_debugSeek)
+				eDebug("[eDVBTSTools] fixupPTS: wrap-around branch, now -> %lld", now);
+		}
 		else
+		{
 			now -= pos;
+			if (m_debugSeek)
+				eDebug("[eDVBTSTools] fixupPTS: normal branch, now -> %lld", now);
+		}
 		return 0;
 	}
 	eDebug("[eDVBTSTools] fixupPTS failed!");
 	return -1;
+}
+
+int eDVBTSTools::getPTSAt(off_t offset, pts_t &pts)
+{
+	/* The plain getPTS() lookup below relies on the .sc structure index (sparse/stale near the
+	   live edge) or, failing that, a raw packet scan (which can genuinely fail right at the live
+	   edge - not enough data flushed to disk yet). Both can be off by many seconds or fail
+	   outright in exactly the situation this is normally called for: finding "now" again right
+	   after a previous seek was just resolved (e.g. the decoder hasn't produced a real PTS yet).
+	   That previous resolution just added a precise, fresh sample to m_samples though - if the
+	   requested offset is close to it, a local linear extrapolation from the two most recent
+	   samples is far more accurate than falling all the way back to the coarse index.
+	   m_samples_taken must be checked as well: setSource() resets it without clearing
+	   m_samples, so without it we could extrapolate from the previous source's samples. */
+	if (m_samples_taken && m_samples.size() >= 2)
+	{
+		std::map<pts_t, off_t>::const_reverse_iterator newest = m_samples.rbegin();
+		std::map<pts_t, off_t>::const_reverse_iterator prev = newest;
+		++prev;
+		off_t offset_diff = newest->second - prev->second;
+		pts_t pts_diff = newest->first - prev->first;
+		if (offset_diff > 0 && pts_diff > 0 && llabs((long long)(offset - newest->second)) <= 4 * m_maxrange)
+		{
+			pts = newest->first + ((offset - newest->second) * pts_diff / offset_diff);
+			if (m_debugSeek)
+				eDebug("[eDVBTSTools] getPTSAt extrapolated from recent sample %jd:%lld (local bitrate) for offset %jd: pts=%lld", (intmax_t)newest->second, newest->first, (intmax_t)offset, pts);
+			return 0;
+		}
+	}
+	return getPTS(offset, pts, 1);
 }
 
 int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
@@ -428,7 +528,8 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 					continue;
 				}
 
-				eDebug("[eDVBTSTools] getOffset using: %lld:%lld -> %jd:%jd", l->first, u->first, (intmax_t)l->second, (intmax_t)u->second);
+				if (m_debugSeek)
+					eDebug("[eDVBTSTools] getOffset using: %lld:%lld -> %jd:%jd", l->first, u->first, (intmax_t)l->second, (intmax_t)u->second);
 
 				int bitrate;
 
@@ -461,7 +562,8 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 				{
 					int diff = (p - pts) / 90;
 
-					eDebug("[eDVBTSTools] getOffset calculated diff %d ms", diff);
+					if (m_debugSeek)
+						eDebug("[eDVBTSTools] getOffset calculated diff %d ms", diff);
 					if (abs(diff) > 300)
 					{
 						eDebug("[eDVBTSTools] getOffset diff to big, refining");
@@ -478,14 +580,16 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 			if (p != -1)
 			{
 				pts = p;
-				eDebug("[eDVBTSTools] getOffset aborting. Taking %lld as offset for %lld", (long long)offset, pts);
+				if (m_debugSeek)
+					eDebug("[eDVBTSTools] getOffset aborting. Taking %lld as offset for %lld", (long long)offset, pts);
 				return 0;
 			}
 		}
 
 		int bitrate = calcBitrate();
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
-		eDebug("[eDVBTSTools] getOffset fallback, bitrate=%d, results in %016jx", bitrate, (intmax_t)offset);
+		if (m_debugSeek)
+			eDebug("[eDVBTSTools] getOffset fallback, bitrate=%d, results in %016jx", bitrate, (intmax_t)offset);
 		offset -= offset % m_packet_size;
 		return 0;
 	}
@@ -508,10 +612,10 @@ void eDVBTSTools::calcBegin()
 		{
 			off_t begin = m_offset_begin;
 			pts_t pts = m_pts_begin;
-			if (m_streaminfo.fixupPTS(begin, pts) == 0)
+			if (m_streaminfo.fixupPTS(begin, pts, m_debugSeek) == 0 && m_debugSeek)
 			{
 				eDebug("[eDVBTSTools] calcBegin [@ML] m_streaminfo.getLastFrame returned %lld, %lld (%us), fixup to: %lld, %lld (%us)",
-				       (long long)m_offset_begin, (long long)m_pts_begin, (unsigned int)(m_pts_begin/90000), (long long)begin, pts, (unsigned int)(pts/90000));
+						(long long)m_offset_begin, (long long)m_pts_begin, (unsigned int)(m_pts_begin/90000), (long long)begin, pts, (unsigned int)(pts/90000));
 			}
 			m_begin_valid = 1;
 		}
@@ -667,8 +771,9 @@ void eDVBTSTools::takeSamples()
 
 	bytes_per_sample -= bytes_per_sample % m_packet_size;
 
-	eDebug("[eDVBTSTools] takeSamples step %lld, pts begin %lld, pts end %lld, offs begin %lld, offs end %lld:",
-		(long long)bytes_per_sample, m_pts_begin, m_pts_end, (long long)m_offset_begin, (long long)m_offset_end);
+	if(m_debugSeek)
+		eDebug("[eDVBTSTools] takeSamples step %lld, pts begin %lld, pts end %lld, offs begin %lld, offs end %lld:",
+			(long long)bytes_per_sample, m_pts_begin, m_pts_end, (long long)m_offset_begin, (long long)m_offset_end);
 
 	for (off_t offset = m_offset_begin; offset < m_offset_end;)
 	{
@@ -704,14 +809,16 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 			{
 				if ((l->second > off) || (u->second < off))
 				{
-					eDebug("[eDVBTSTools] takeSample ignoring sample %jd %jd %jd (%llu %llu %llu)",
-						(intmax_t)l->second, (intmax_t)off, (intmax_t)u->second, l->first, p, u->first);
+					if (m_debugSeek)
+						eDebug("[eDVBTSTools] takeSample ignoring sample %jd %jd %jd (%llu %llu %llu)",
+							(intmax_t)l->second, (intmax_t)off, (intmax_t)u->second, l->first, p, u->first);
 					return 1;
 				}
 			}
 		}
 
-		eDebug("[eDVBTSTools] takeSample adding sample %lld: pts %lld -> pos %lld (diff %lld bytes)", (long long)offset_org, p, (long long)off, (long long)(off-offset_org));
+		if (m_debugSeek)
+			eDebug("[eDVBTSTools] takeSample adding sample %lld: pts %lld -> pos %lld (diff %lld bytes)", (long long)offset_org, p, (long long)off, (long long)(off-offset_org));
 		m_samples[p] = off;
 		return 0;
 	}

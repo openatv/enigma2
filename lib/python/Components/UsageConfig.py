@@ -1483,11 +1483,9 @@ def InitUsageConfig():
 		("leftright", _("Long LEFT/RIGHT")),
 		("ffrw", _("Long <</>>"))
 	])
-	config.seek.sensibilityHorizontal = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
-	config.seek.sensibilityVertical = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
 	config.seek.arrowSkipMode = ConfigSelection(default="t", choices=[
 		("t", _("Traditional")),
-		("s", _("Symmetrical skips")),
+		("s", _("Sensibility skips")),
 		("d", _("Defined skips"))
 	])
 	config.seek.numberSkipMode = ConfigSelection(default="s", choices=[
@@ -1520,6 +1518,12 @@ def InitUsageConfig():
 	config.seek.defined["CUT_LEFT"] = ConfigSelectionNumber(default=-1, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.defined["CUT_RIGHT"] = ConfigSelectionNumber(default=1, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.defined["CUT_DOWN"] = ConfigSelectionNumber(default=-300, min=-600, max=600, stepwidth=1, wraparound=True)
+	config.seek.sensibilities = ConfigSubDict()
+	config.seek.sensibilities["UP"] = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilities["LEFT"] = ConfigSelection(default=-1.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilities["RIGHT"] = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilities["DOWN"] = ConfigSelection(default=-2.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+
 	# The following 4 items are legacy and kept for plugin compatibility.
 	config.seek.sensibility = ConfigSelectionNumber(default=10, min=1, max=10, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_13 = ConfigSelectionNumber(default=15, min=1, max=300, stepwidth=1, wraparound=True)

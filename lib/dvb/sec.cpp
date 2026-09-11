@@ -10,13 +10,12 @@
 #include <lib/base/eerror.h>
 
 #include "absdiff.h"
-#define SEC_DEBUG
 
-#ifdef SEC_DEBUG
-#define eSecDebug(arg...) eDebug(arg)
-#else
-#define eSecDebug(arg...)
-#endif
+#define eSecDebug(arg...) \
+	do { \
+		if (eDVBSatelliteEquipmentControl::m_params[eDVBSatelliteEquipmentControl::SEC_DEBUG]) \
+			eDebug(arg); \
+	} while (0)
 
 extern const uint32_t crc32_table[256];
 
