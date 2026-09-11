@@ -150,11 +150,9 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 				cmd = "stop" if isRunning else "start"
 				self.showProgress()
 				commands = [f"/etc/init.d/{service} {cmd}"]
-				if daemon["key"] == "sambas":
-					commands = [f"/etc/init.d/wsdd {cmd}"]
-					if isRunning:
-						commands.append("killall nmbd")
-						commands.append("killall smbd")
+				if daemon["key"] == "sambas" and isRunning:
+					commands.append("killall nmbd")
+					commands.append("killall smbd")
 				self.console.eBatch(commands, toggleStartStopCallback, debug=True)
 
 	def showLog(self):
