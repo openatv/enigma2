@@ -386,9 +386,9 @@ class SecConfigure:
 		for x in range(3601, 3605):
 			lnb = int(advanced.sat[x].lnb.value)
 			if lnb != 0:
-				for x in self.NimManager.satList:
-					print(f"[NimManager] add {x[0]} to {lnb}")
-					lnbSat[lnb].append(x[0])
+				for sat in self.NimManager.satList:
+					print(f"[NimManager] add {sat[0]} to {lnb}")
+					lnbSat[lnb].append(sat[0])
 
 		# Wildcard for user satellites ( for rotor )
 		for x in range(3605, 3607):
@@ -1672,8 +1672,8 @@ class NimManager:
 			elif configMode == "advanced":
 				for x in range(3601, 3605):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
-						for x in self.satList:
-							result.append(x)
+						for sat in self.satList:
+							result.append(sat)
 				if not result:
 					for x in self.satList:
 						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
@@ -1714,10 +1714,10 @@ class NimManager:
 			elif configMode == "advanced":
 				for x in range(3601, 3605):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
-						for x in self.satList:
+						for sat in self.satList:
 							if onlyFirst:
 								return True
-							result.append(x)
+							result.append(sat)
 				if not result:
 					for x in self.satList:
 						lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
