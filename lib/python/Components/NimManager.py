@@ -1382,6 +1382,20 @@ class NimManager:
 				entries[current_slot]["name"] = _("N/A")
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
+		# The tuner configuration is created once from the slots present during
+		# Enigma2 startup.  A VTUNER may finish registering later, but Enigma2
+		# does not support adding a new tuner configuration at runtime.  Keep
+		# updates to already known (including previously empty) slots, and defer
+		# completely new slot indices until the next GUI restart.
+		try:
+			configured_slots = len(config.Nims)
+		except AttributeError:
+			configured_slots = None
+		if configured_slots is not None:
+			late_slots = sorted(slot_id for slot_id in entries if slot_id >= configured_slots)
+			if late_slots:
+				print(f"[NimManager] New NIM slot(s) {late_slots} detected after tuner configuration initialization; a GUI restart is required before they can be used.")
+				entries = {slot_id: entry for slot_id, entry in entries.items() if slot_id < configured_slots}
 		self.number_of_slots = len(list(entries.keys()))
 		fbc_number = 0
 		fbc_tuner = 1
