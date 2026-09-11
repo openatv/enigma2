@@ -41,7 +41,7 @@ class ServiceAction:
 
     @classmethod
     def _on_result(cls, reqId: int, exitCode: int) -> None:
-        print(f"[ServiceAction] DEBUG _on_result: reqId={reqId} exitCode={exitCode} hasCallback={reqId in cls._cbs}")
+        # print(f"[ServiceAction] DEBUG _on_result: reqId={reqId} exitCode={exitCode} hasCallback={reqId in cls._cbs}")
         cb = cls._cbs.pop(reqId, None)
         if cb and callable(cb):
             cb(exitCode)
@@ -50,7 +50,7 @@ class ServiceAction:
     def _dispatch(cls, action: str, data: str, callback, timeout: int) -> int:
         cls._ensure_hooked()
         reqId = int(_C.getInstance().sendAction(action, data, timeout))
-        print(f"[ServiceAction] DEBUG _dispatch: action={action} data={data!r} reqId={reqId} timeout={timeout}")
+        # print(f"[ServiceAction] DEBUG _dispatch: action={action} data={data!r} reqId={reqId} timeout={timeout}")
         if callback and callable(callback):
             cls._cbs[reqId] = callback
         return reqId
