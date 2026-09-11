@@ -1,3 +1,4 @@
+from functools import total_ordering
 from pickle import dump, load
 from os import access, F_OK, R_OK
 from enigma import eServiceReference, eTimer
@@ -35,6 +36,7 @@ def setDecoderMode(value):
 		return newval == value
 
 
+@total_ordering
 class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
 		self.name = name
@@ -45,8 +47,11 @@ class QuadPipChannelEntry:
 		return "idx : %d, name : %s, ch0 : %s, ch1 : %s, ch2 : %s, ch3 : %s"\
 					% (self.idx, self.name, self.channel.get("1"), self.channel.get("2"), self.channel.get("3"), self.channel.get("4"))
 
+	def __eq__(self, other):
+		return self.idx == other.idx
+
 	def __lt__(self, other):
-		return self.idx - other.idx
+		return self.idx < other.idx
 
 	def getName(self):
 		return self.name
