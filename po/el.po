@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
 "PO-Revision-Date: 2026-09-01 07:02+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -7633,6 +7633,9 @@ msgstr "Ενεργοποιήστε αυτή την επιλογή για την 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη ονομάτων οθόνης και δεδομένων ανάλυσης εικόνας στο αρχείο καταγραφής αποσφαλμάτωσης."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για να προστεθούν οι πληροφορίες της συσκευής αποθήκευσης που ανιχνεύεται κατά την εκκίνηση του συστήματος και οι ενέργειες αυτόματης σύνδεσης στο αρχείο αποσφαλμάτωσης."
 
@@ -10336,6 +10339,9 @@ msgstr "Συμπερίληψη των δεδομένων τηλεχειριστ�
 
 msgid "Include screen load data"
 msgstr "Συμπερίληψη των δεδομένων φόρτωσης εικόνας"
+
+msgid "Include seek data"
+msgstr ""
 
 msgid "Include storage device data"
 msgstr "Συμπερίληψη δεδομένων συσκευής αποθήκευσης"
@@ -18180,6 +18186,9 @@ msgstr "Αποστολή DiSEqC μόνο σε αλλαγή δορυφόρου"
 msgid "Senegal"
 msgstr "Σενεγάλη"
 
+msgid "Sensibility skips"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Διαχωρισμός τίτλων με ένα κύριο μενού"
 
@@ -18448,12 +18457,6 @@ msgstr "Ορισμός συστήματος"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Ορισμός του ενδιάμεσου χρόνου παράκαμψης της λίστας αποκοπών για τα πλήκτρα '%s'/'%s'."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στη μπάρα αναζήτησης."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ στη μπάρα αναζήτησης."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Ορισμός του ID χρήστη του OpenWebif από το εφεδρικό σας tuner."
 
@@ -18520,8 +18523,14 @@ msgstr "Ορισμός της ταχύτητας κύλισης του κειμ�
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ορισμός της ταχύτητας κύλισης του κειμένου στην οθόνη πρόσοψης."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Ορισμός ενδιάμεσου χρόνου παράκαμψης για το πλήκτρο '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Ορισμός ενδιάμεσου χρόνου παράκαμψης για τα πλήκτρα '%s'/'%s'."
@@ -19736,11 +19745,8 @@ msgstr ""
 msgid "Skip package installation, only core packages will be available"
 msgstr "Παράβλεψη εγκατάστασης πακέτων, θα είναι διαθέσιμα μόνο τα βασικά πακέτα"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Ευαισθησία παράκαμψης (οριζόντια)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Ευαισθησία παράκαμψης (κάθετα)"
+msgid "Skip sensibility for '%s' button"
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Χρόνος παράκαμψης για το πλήκτρο '%s'"
@@ -22639,6 +22645,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Αδυναμία αρχικοποίησης της πολλαπλής εκκίνησης Kexec!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -25315,6 +25324,18 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στη μπάρα αναζήτησης."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ στη μπάρα αναζήτησης."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Ευαισθησία παράκαμψης (οριζόντια)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Ευαισθησία παράκαμψης (κάθετα)"
 
 #~ msgid "AutoFS"
 #~ msgstr "AutoFS"

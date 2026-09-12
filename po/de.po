@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-09-01 07:02+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-03 11:59+0000\n"
 "Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1328,7 +1328,7 @@ msgstr "'%s' enthält %d Datei(en) und %d Verzeichnis(se).\n"
 
 #, python-format
 msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
-msgstr "'%s' ist bereits durch eine eigene Einstellung weiter oben festgelegt, deshalb bitte aus den 'Mount-Optionen' entfernen."
+msgstr "'%s' ist bereits durch eine eigene Einstellung weiter oben festgelegt, deshalb bitte aus den 'Einhängeoptionen' entfernen."
 
 #, python-format
 msgid "'%s' is listed more than once in 'Mount options'."
@@ -7992,7 +7992,7 @@ msgid "Enable this option to add extra teletext details to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log zusätzlich Videotextdetails hinzuzufügen."
 
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
-msgstr "Aktivieren, um dem Debug-Log internationale Sprach- und Länderinformationen hinzuzufügen, die während des Systemstarts erkannt wurden."
+msgstr "Aktivieren, um dem Debug-Log während des Systemstarts erkannte internationale Sprach- und Länderinformationen hinzuzufügen."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Tastaturdaten hinzuzufügen."
@@ -8009,11 +8009,14 @@ msgstr "Aktivieren, um dem Debug-Log Fernbedienungsdaten hinzuzufügen."
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Bildschirmnamen und Auflösungsdaten hinzuzufügen."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log Such- und Timeshift-Daten hinzuzufügen."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
-msgstr "Aktivieren, um während des Bootvorgangs oder per Hot-Plug ermittelte Informationen zu Datenträgern im Debug-Log anzuzeigen."
+msgstr "Aktivieren, um dem Debug-Log während des Bootvorgangs oder per Hot-Plug ermittelte Informationen zu Datenträgern hinzuzufügen."
 
 msgid "Enable this option to add text encoding information to the debug log file."
-msgstr "Aktivieren, um Informationen zur Textkodierung in die Debug-Protokolldatei aufzunehmen."
+msgstr "Aktivieren, um dem Debug-Log Informationen zur Textkodierung hinzuzufügen."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Timerdaten hinzuzufügen."
@@ -10767,13 +10770,13 @@ msgid "Include CI assignment"
 msgstr "Berücksichtigung der CI-Zuweisung"
 
 msgid "Include DVB details"
-msgstr "Inklusive DVB-Details"
+msgstr "DVB-Details einschließen"
 
 msgid "Include DVB scan data"
-msgstr "Inklusive DVB-Scandaten"
+msgstr "DVB-Scandaten einschließen"
 
 msgid "Include DVB timesync data"
-msgstr "Inklusive DVB-Timesyncdaten"
+msgstr "DVB-Timesyncdaten einschließen"
 
 msgid "Include ECM in http streams"
 msgstr "ECM in HTTP-Streams integrieren"
@@ -10782,7 +10785,7 @@ msgid "Include EIT in http streams"
 msgstr "EIT in HTTP-Streams integrieren"
 
 msgid "Include EPG data"
-msgstr "Inklusive EPG-Daten"
+msgstr "EPG-Daten einschließen"
 
 msgid "Include MultiBoot data *"
 msgstr "Inklusive MultiBoot-Daten *"
@@ -10791,16 +10794,16 @@ msgid "Include SDT and BAT in http streams"
 msgstr "SDT und BAT in HTTP-Streams integrieren"
 
 msgid "Include action map data"
-msgstr "Inklusive ActionMap-Daten"
+msgstr "ActionMap-Daten einschließen"
 
 msgid "Include bouquet DB data"
-msgstr "Inklusive Favoriten-Datenbankdaten"
+msgstr "Favoriten-Datenbankdaten einschließen"
 
 msgid "Include international data *"
 msgstr "Inklusive internationaler Daten *"
 
 msgid "Include keyboard data"
-msgstr "Inklusive Tastaturdaten"
+msgstr "Tastaturdaten einschließen"
 
 msgid "Include network data"
 msgstr "Netzwerkdaten einschließen"
@@ -10812,13 +10815,16 @@ msgid "Include remote control data"
 msgstr "Fernbedienungsdaten einschließen"
 
 msgid "Include screen load data"
-msgstr "Inklusive Screendaten"
+msgstr "Screendaten einschließen"
+
+msgid "Include seek data"
+msgstr "Suchdaten einschließen"
 
 msgid "Include storage device data"
-msgstr "Inklusive Datenträgerdaten"
+msgstr "Datenträgerdaten einschließen"
 
 msgid "Include teletext details"
-msgstr "Inklusive Videotextdetails"
+msgstr "Videotextdetails einschließen"
 
 msgid "Include text encoding data"
 msgstr "Textkodierungsdaten einschließen"
@@ -19162,6 +19168,9 @@ msgstr "DiSEqC nur bei Satellitenwechsel senden"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "Sensible Sprünge"
+
 #
 msgid "Seperate titles with a main menu"
 msgstr "Separate Titel mit Hauptmenü"
@@ -19449,12 +19458,6 @@ msgstr "System einstellen"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "CutList-Editor-Sprungzeit für die Tasten '%s'/'%s' festlegen."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Links/Rechts festlegen."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Hoch/Runter festlegen."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Die Benutzer-ID vom OpenWebif des Reservetuners eintragen."
 
@@ -19537,8 +19540,14 @@ msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen (wird vom Soft
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Den Sprungprozentsatz für die Taste '%s' festlegen. Positive Werte bewirken einen Sprung vorwärts, negative rückwärts."
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Die Sprungzeit für die Taste '%s' festlegen."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Die Sprungzeit für die Taste '%s' festlegen. Positive Werte bewirken einen Sprung vorwärts, negative rückwärts."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Die Sprungzeit für die Tasten '%s'/'%s' festlegen."
@@ -20819,11 +20828,8 @@ msgstr "Netzwerkeinrichtung überspringen"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Die Paketinstallation überspringen. Nur die Kernpakete werden verfügbar sein."
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Horizontale Empfindlichkeit überspringen"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Vertikale Empfindlichkeit überspringen"
+msgid "Skip sensibility for '%s' button"
+msgstr "Sprungempfindlichkeit der Taste '%s'"
 
 msgid "Skip time for '%s' button"
 msgstr "Sprungzeit für die Taste '%s'"
@@ -20836,7 +20842,7 @@ msgid "Skip to %s0%% position (Add %s%% on second press)"
 msgstr "Zur %s0%%-Position springen (plus %s%% beim zweiten Druck)"
 
 msgid "Skip to 0% (start) position"
-msgstr "Nach 0% Position (Start) springen"
+msgstr "Zur 0%-Position (Start) springen"
 
 msgid "Sleep"
 msgstr "Ausschalttimer"
@@ -23874,6 +23880,9 @@ msgstr "Das User-Band für LNB %d: LNB 1 %s kann nicht übernommen werden."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec MultiBoot kann nicht initialisiert werden!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "Der DAB+-Transponder konnte nicht registriert werden"
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Der DAB+-Feed kann nicht gestartet werden"
 
@@ -26749,6 +26758,18 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Links/Rechts festlegen."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Hoch/Runter festlegen."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Horizontale Empfindlichkeit überspringen"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Vertikale Empfindlichkeit überspringen"
 
 #, python-format
 #~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"

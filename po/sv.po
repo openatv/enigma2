@@ -3,20 +3,21 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2024.
 # Daniel Nylander <daniel@danielnylander.se>, 2025, 2026.
 # Kristoffer Grundström <swedishsailfishosuser@tutanota.com>, 2026.
+# Daniel Nylander <yeagersthlm@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-08-16 18:28+0000\n"
-"Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-10 19:24+0000\n"
+"Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.9.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 msgid ""
@@ -43,7 +44,7 @@ msgid "  Red key : Show/Hide channel name"
 msgstr "  Röd knapp : Visa/dölj kanalnamn"
 
 msgid " (+5 volt terrestrial)"
-msgstr ""
+msgstr " (+5 volt markbunden)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -809,7 +810,7 @@ msgstr[1] "%d timmar"
 
 #, python-format
 msgid "%d Hz"
-msgstr ""
+msgstr "%d Hz"
 
 #, python-format
 msgid "%d MB"
@@ -907,8 +908,8 @@ msgstr[1] "%d foderkatalogpaket uppdaterades."
 #, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d värd hittades."
+msgstr[1] "%d värdar hittades."
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -933,12 +934,12 @@ msgstr "%d ms"
 #, python-format
 msgid "%d network found."
 msgid_plural "%d networks found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nätverk hittades."
+msgstr[1] "%d nätverk hittades."
 
 #, python-format
 msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr ""
+msgstr "%d av %d flöden slutfördes; misslyckade flödesbuketter behölls"
 
 #, python-format
 msgid "%d package found."
@@ -1038,7 +1039,7 @@ msgstr[1] "%d Plugins är inte tillgängliga:"
 
 #, python-format
 msgid "%d radio bouquets created"
-msgstr ""
+msgstr "%d radiobuketter skapades"
 
 #, python-format
 msgid "%d sec"
@@ -1180,7 +1181,7 @@ msgstr "%s Webbläsare Hantera åtgärder"
 
 #, python-format
 msgid "%s DMIPS per core"
-msgstr ""
+msgstr "%s DMIPS per kärna"
 
 #, python-format
 msgid "%s GHz"
@@ -1205,7 +1206,7 @@ msgstr "%s Visa"
 
 #, python-format
 msgid "%s action failed (exit code %s)"
-msgstr ""
+msgstr "Åtgärden %s misslyckades (slutkod %s)"
 
 #
 #, python-format
@@ -1230,10 +1231,13 @@ msgid ""
 "\n"
 "Do you want to start it?"
 msgstr ""
+"%s körs inte just nu.\n"
+"\n"
+"Vill du starta den?"
 
 #, python-format
 msgid "%s is currently stopped or unreachable. Press GREEN to start it."
-msgstr ""
+msgstr "%s är stoppad eller kan inte nås. Tryck på GRÖN för att starta den."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1255,7 +1259,7 @@ msgstr "%s version"
 
 #, python-format
 msgid "%s webif disabled"
-msgstr ""
+msgstr "%s webif är inaktiverat"
 
 #, python-format
 msgid "%s%d min"
@@ -1267,7 +1271,7 @@ msgstr "%s%s(Standard: %s)"
 
 #, python-format
 msgid "%s. (Lowest)"
-msgstr ""
+msgstr "%s. (Lägst)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1275,7 +1279,7 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%s: bouquet could not be written"
-msgstr ""
+msgstr "%s: det gick inte att skriva buketten"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1319,19 +1323,19 @@ msgstr "'%s' innehåller %d fil(er) och %d underkataloger.\n"
 
 #, python-format
 msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
-msgstr ""
+msgstr "”%s” är redan angiven av en särskild inställning ovan, ta bort den från ”Monteringsalternativ”."
 
 #, python-format
 msgid "'%s' is listed more than once in 'Mount options'."
-msgstr ""
+msgstr "”%s” anges mer än en gång i ”Monteringsalternativ”."
 
 #, python-format
 msgid "'%s' mounted."
-msgstr ""
+msgstr "”%s” monterades."
 
 #, python-format
 msgid "'%s' unmounted."
-msgstr ""
+msgstr "”%s” avmonterades."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "\"Buffert i timmar\" eller \"antal senaste händelser\". Vid radering av äldre time shift-filer prioriteras det tillstånd som inträffade först."
@@ -1355,7 +1359,7 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Observera: Det blir en omstart efter att %d har kraschat)"
 
 msgid "(Deep) Standby only"
-msgstr ""
+msgstr "Endast (djupt) vänteläge"
 
 msgid "(PiP)"
 msgstr "(PiP)"
@@ -1421,7 +1425,7 @@ msgid "1"
 msgstr "1"
 
 msgid "1. (Highest)"
-msgstr ""
+msgstr "1. (Högst)"
 
 msgid "10bit"
 msgstr "10 bitar"
@@ -1610,7 +1614,7 @@ msgid "A"
 msgstr "A"
 
 msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr ""
+msgstr "En DAB+-sökning kan inte köras medan en inspelning pågår."
 
 msgid "A backup is now being created."
 msgstr "En säkerhetskopia håller nu på att skapas."
@@ -1700,10 +1704,10 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "En inspelning pågår för närvarande. Vänligen stoppa inspelningen innan du försöker starta satellitsökaren."
 
 msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
-msgstr ""
+msgstr "En inspelning pågår eller startar inom sex minuter. Om du ändrar mottagarkonfigurationen kan inspelningen avbrytas. Spara ändå?"
 
 msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
-msgstr ""
+msgstr "En inspelning pågår eller startar inom sex minuter. Försök konfigurera positioneraren senare."
 
 #, python-format
 msgid ""
@@ -1753,6 +1757,8 @@ msgid ""
 "A zap timer wants to switch the channel.\n"
 "Do you want to zap now?\n"
 msgstr ""
+"En kanalswitchtimer vill byta kanal.\n"
+"Vill du byta kanal nu?\n"
 
 msgid "AAC downmix"
 msgstr "AAC nedmixning"
@@ -1773,14 +1779,14 @@ msgid "AC3plus transcoding"
 msgstr "AC3plus-omkodning"
 
 msgid "AC4"
-msgstr ""
+msgstr "AC4"
 
 #
 msgid "AFL"
 msgstr "AFL"
 
 msgid "AI Subtitles"
-msgstr ""
+msgstr "AI-undertexter"
 
 msgid "AI Translation color"
 msgstr "AI-översättning färg"
@@ -1817,7 +1823,7 @@ msgid "ATSC provider"
 msgstr "ATSC-leverantör"
 
 msgid "AV Receiver, Soundbar And Remote"
-msgstr ""
+msgstr "AV-receiver, soundbar och fjärrkontroll"
 
 msgid "AV Setup"
 msgstr "AV-inställning"
@@ -1862,7 +1868,7 @@ msgid "Above 200 Mbps"
 msgstr "Över 200 Mbps"
 
 msgid "Access mode"
-msgstr ""
+msgstr "Åtkomstläge"
 
 msgid "Access point"
 msgstr "Åtkomstpunkt"
@@ -1871,6 +1877,8 @@ msgid ""
 "Access point not found.\n"
 "Check it is in range and the SSID is correct."
 msgstr ""
+"Åtkomstpunkten hittades inte.\n"
+"Kontrollera att den är inom räckvidd och att SSID:t är rätt."
 
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "För att få tillgång till geolokaliseringsinformation krävs en internetanslutning."
@@ -1915,7 +1923,7 @@ msgid "Activate a way to send individual or specific internal HDMI-CEC commands 
 msgstr "Aktivera ett sätt att skicka enskilda eller specifika interna HDMI-CEC-kommandon från kommandoraden."
 
 msgid "Activate network adapter"
-msgstr ""
+msgstr "Aktivera nätverksadapter"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivera flashexpandern, spara alla ändrade inställningar och avsluta"
@@ -1940,11 +1948,11 @@ msgid "Active only"
 msgstr "Endast aktiv"
 
 msgid "Adapter"
-msgstr ""
+msgstr "Adapter"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
-msgstr ""
+msgstr "Sammanhangsmeny för adaptern ”%s”"
 
 #
 msgid "Adapter Settings"
@@ -1996,13 +2004,13 @@ msgid "Add Marker To Bouquet"
 msgstr "Lägg till markör till bukett"
 
 msgid "Add Mount Manually"
-msgstr ""
+msgstr "Lägg till montering manuellt"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Lägg till nytt Quad Channel-inträde"
 
 msgid "Add Path"
-msgstr ""
+msgstr "Lägg till sökväg"
 
 msgid "Add RecordTimer"
 msgstr "Lägg till RecordTimer"
@@ -2026,10 +2034,10 @@ msgid "Add To Parental Protection"
 msgstr "Lägg till i föräldraskydd"
 
 msgid "Add Wi-Fi"
-msgstr ""
+msgstr "Lägg till Wi-Fi"
 
 msgid "Add Wi-Fi Manually"
-msgstr ""
+msgstr "Lägg till Wi-Fi manuellt"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Lägg till Zappa+RecordTimer"
@@ -2060,7 +2068,7 @@ msgid "Add a mark"
 msgstr "Lägg till en markering"
 
 msgid "Add a new Saved Wi-Fi Network"
-msgstr ""
+msgstr "Lägg till ett nytt sparat Wi-Fi-nätverk"
 
 msgid "Add a new bouquet"
 msgstr "Lägg till en ny bukett"
@@ -2110,7 +2118,7 @@ msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Lägg till äldre vänster/höger-åtgärder"
 
 msgid "Add more slots"
-msgstr ""
+msgstr "Lägg till fler kortplatser"
 
 msgid "Add new CCcam line"
 msgstr "Lägg till ny CCcam-linje"
@@ -2192,7 +2200,7 @@ msgid "Adding schedule..."
 msgstr "Lägga till schema..."
 
 msgid "Additional cable of motorized LNB"
-msgstr ""
+msgstr "Extra kabel till motoriserat LNB"
 
 msgid "Additional files/folders to backup"
 msgstr "Ytterligare filer/mappar som ska säkerhetskopieras"
@@ -2205,7 +2213,7 @@ msgstr "Med ytterligare motoralternativ kan du ange detaljer från din motors sp
 
 #, python-format
 msgid "Additional rotor cable from %s"
-msgstr ""
+msgstr "Extra rotorkabel från %s"
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2218,7 +2226,7 @@ msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Justera den vertikala positionen för de bokstäver som används för text-tv."
 
 msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
+msgstr "Justerar kompensationen för maskinvarubuffertens latens för DM9x0."
 
 msgid "Adult"
 msgstr "Vuxen"
@@ -2234,7 +2242,7 @@ msgid "Advanced"
 msgstr "Avancerat"
 
 msgid "Advanced Diagnostics"
-msgstr ""
+msgstr "Avancerad diagnostik"
 
 #
 msgid "Advanced Options"
@@ -2291,10 +2299,10 @@ msgid "After zap"
 msgstr "Efter zapp"
 
 msgid "Aggregate data only"
-msgstr ""
+msgstr "Endast aggregerade data"
 
 msgid "Aggressive"
-msgstr ""
+msgstr "Aggressiv"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2389,7 +2397,7 @@ msgid "Allow 12bit"
 msgstr "Tillåt 12bit"
 
 msgid "Allow guest access"
-msgstr ""
+msgstr "Tillåt gäståtkomst"
 
 msgid "Allow quit movie player with exit"
 msgstr "Tillåt att avsluta filmspelaren med exit"
@@ -2404,7 +2412,7 @@ msgid "Allow unsupported modes"
 msgstr "Tillåt lägen som inte stöds"
 
 msgid "Allowed clients"
-msgstr ""
+msgstr "Tillåtna klienter"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Gör det möjligt för %s %s att regelbundet läsa de lagrade EPG-data."
@@ -2487,7 +2495,7 @@ msgid "Alternative Edit"
 msgstr "Alternativ redigering"
 
 msgid "Alternative Tuner Sources"
-msgstr ""
+msgstr "Alternativa mottagarkällor"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternativa webbadresser för DVB-T/C eller ATSC"
@@ -2544,7 +2552,7 @@ msgid "An unknown error occurred!"
 msgstr "Ett okänt fel har inträffat!"
 
 msgid "Ancient"
-msgstr ""
+msgstr "Forntida"
 
 msgid "Andorra"
 msgstr "Andorra"
@@ -2578,7 +2586,7 @@ msgid "Animations"
 msgstr "Animationer"
 
 msgid "Anonymize client IPs"
-msgstr ""
+msgstr "Anonymisera klient-IP-adresser"
 
 msgid "Antarctica"
 msgstr "Antarktis"
@@ -2587,7 +2595,7 @@ msgid "Antigua and Barbuda"
 msgstr "Antigua och Barbuda"
 
 msgid "Antiques"
-msgstr ""
+msgstr "Antikviteter"
 
 msgid "Any activity"
 msgstr "Alla aktiviteter"
@@ -2728,14 +2736,14 @@ msgid "Arrow skip mode"
 msgstr "Läge för pilhoppning"
 
 msgid "Art/Literature"
-msgstr ""
+msgstr "Konst/litteratur"
 
 #
 msgid "Artist"
 msgstr "Artist"
 
 msgid "Arts"
-msgstr ""
+msgstr "Konst"
 
 msgid "Arts/Culture"
 msgstr "Konst/Kultur"
@@ -2798,7 +2806,7 @@ msgid "Assigned services/provider:"
 msgstr "Tilldelade tjänster/leverantör:"
 
 msgid "Associated"
-msgstr ""
+msgstr "Associerad"
 
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19,2e"
@@ -2839,10 +2847,10 @@ msgid "Audio Channel"
 msgstr "Ljudkanal"
 
 msgid "Audio Formats And Output"
-msgstr ""
+msgstr "Ljudformat och utmatning"
 
 msgid "Audio Language And Track Selection"
-msgstr ""
+msgstr "Ljudspråk och val av ljudspår"
 
 msgid "Audio PID"
 msgstr "Ljud PID"
@@ -2861,7 +2869,7 @@ msgid "Audio Sync"
 msgstr "Synkronisering av ljud"
 
 msgid "Audio Synchronization"
-msgstr ""
+msgstr "Ljudsynkronisering"
 
 msgid "Audio language selection 1"
 msgstr "Val av ljudspråk 1"
@@ -2894,7 +2902,7 @@ msgid "Auto (not available)"
 msgstr "Auto(ej tillgänglig)"
 
 msgid "Auto DiSEqC search order"
-msgstr ""
+msgstr "Sökordning för automatisk DiSEqC"
 
 msgid "Auto Language"
 msgstr "Auto Språk"
@@ -3018,7 +3026,7 @@ msgid "Autostart"
 msgstr "Autostart"
 
 msgid "Available"
-msgstr ""
+msgstr "Tillgänglig"
 
 #
 msgid "Available format variables"
@@ -3031,7 +3039,7 @@ msgid "Available shares:"
 msgstr "Tillgängliga aktier:"
 
 msgid "Available tuner types"
-msgstr ""
+msgstr "Tillgängliga mottagartyper"
 
 msgid "Avaric"
 msgstr "Avariska"
@@ -3084,7 +3092,7 @@ msgid "BLUE switch: BLUE/BLUE long"
 msgstr "BLUE-omkopplare: BLÅ/BLÅ lång"
 
 msgid "BSSID"
-msgstr ""
+msgstr "BSSID"
 
 #
 msgid "Back USB"
@@ -3201,7 +3209,7 @@ msgid "Bahrain"
 msgstr "Bahrain"
 
 msgid "Ballet"
-msgstr ""
+msgstr "Balett"
 
 msgid "Bambara"
 msgstr "Bambara"
@@ -3294,7 +3302,7 @@ msgid "Benchmark information for %s %s"
 msgstr "Benchmark-information för %s %s"
 
 msgid "Benchmarks"
-msgstr ""
+msgstr "Prestandatester"
 
 msgid "Bengali"
 msgstr "Bengali"
@@ -3340,7 +3348,7 @@ msgid "Blacklist"
 msgstr "Svartlista"
 
 msgid "Blank screen"
-msgstr ""
+msgstr "Tom skärm"
 
 msgid "Blinking REC"
 msgstr "Blinkar REC"
@@ -3479,7 +3487,7 @@ msgid "Brightness (Standby)"
 msgstr "Ljusstyrka (standby)"
 
 msgid "Brightness And Contrast"
-msgstr ""
+msgstr "Ljusstyrka och kontrast"
 
 msgid "Brightness Video"
 msgstr "Ljusstyrka Video"
@@ -3488,10 +3496,10 @@ msgid "Brightness Video & OSD"
 msgstr "Ljusstyrka Video & OSD"
 
 msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
-msgstr ""
+msgstr "Ljusstyrka tillämpad på den kombinerade video- och OSD-utmatningen. Påverkar allt på skärmen, även denna meny."
 
 msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
-msgstr ""
+msgstr "Ljusstyrka tillämpad enbart på videolagret. Påverkar inte Enigma2-menyer eller OSD."
 
 msgid "British Indian Ocean Territory"
 msgstr "British Indian Oceanterritoriet"
@@ -3509,10 +3517,10 @@ msgid "Broadcom"
 msgstr "Broadcom"
 
 msgid "Broadcom default"
-msgstr ""
+msgstr "Broadcom-standard"
 
 msgid "Browse"
-msgstr ""
+msgstr "Bläddra"
 
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Bläddra, installera eller ta bort plugins på en och samma basis."
@@ -3521,7 +3529,7 @@ msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
 
 msgid "Buffer Management"
-msgstr ""
+msgstr "Buffert­hantering"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3577,16 +3585,16 @@ msgid "Burundi"
 msgstr "Burundi"
 
 msgid "Bus"
-msgstr ""
+msgstr "Buss"
 
 msgid "Business"
-msgstr ""
+msgstr "Näringsliv"
 
 msgid "Business & Finance"
 msgstr "Företag och finans"
 
 msgid "Button Assignments"
-msgstr ""
+msgstr "Knapptilldelningar"
 
 msgid "Button Setup"
 msgstr "Inställning av knappar"
@@ -3614,10 +3622,10 @@ msgid "C-Band"
 msgstr "C-band"
 
 msgid "C/T input"
-msgstr ""
+msgstr "C/T-ingång"
 
 msgid "C/T input switching"
-msgstr ""
+msgstr "Växling av C/T-ingång"
 
 msgid "CCD-Width"
 msgstr "CCD-bredd"
@@ -3742,7 +3750,7 @@ msgid "CPU brand"
 msgstr "CPU-varumärke"
 
 msgid "CPU memory clock"
-msgstr ""
+msgstr "CPU-minnesklocka"
 
 msgid "CPU priority for scripts"
 msgstr "CPU-prioritet för skript"
@@ -3767,10 +3775,10 @@ msgid "Cable Scan"
 msgstr "Kabelskanning"
 
 msgid "Cable Unplugged"
-msgstr ""
+msgstr "Kabeln är frånkopplad"
 
 msgid "Cable input"
-msgstr ""
+msgstr "Kabelingång"
 
 #
 msgid "Cache thumbnails"
@@ -3789,7 +3797,7 @@ msgid "Calculating benchmark..."
 msgstr "Beräkning av benchmark..."
 
 msgid "Calculating clock..."
-msgstr ""
+msgstr "Beräknar klockfrekvens …"
 
 msgid "Calculating rating..."
 msgstr "Beräkning av betyg..."
@@ -4060,7 +4068,7 @@ msgid "Cartoon"
 msgstr "Tecknad film"
 
 msgid "Cartoons"
-msgstr ""
+msgstr "Tecknat"
 
 msgid "Cartoons/Puppets"
 msgstr "tecknad film/marionetter"
@@ -4069,10 +4077,10 @@ msgid "Cascade PiP"
 msgstr "Cascade PiP"
 
 msgid "Case insensitive"
-msgstr ""
+msgstr "Skiftlägesokänslig"
 
 msgid "Case sensitive"
-msgstr ""
+msgstr "Skiftlägeskänslig"
 
 msgid "Catalan / Valencian"
 msgstr "Katalanska / Valencianska"
@@ -4105,7 +4113,7 @@ msgid "Central African Republic"
 msgstr "Centralafrikanska republiken"
 
 msgid "Central Europe"
-msgstr ""
+msgstr "Centraleuropa"
 
 msgid "Central Khmer"
 msgstr "Centralkhmeriska"
@@ -4194,10 +4202,10 @@ msgid "Channel 1 with prime time"
 msgstr "Kanal 1 med bästa sändningstid"
 
 msgid "Channel And EPG Import"
-msgstr ""
+msgstr "Kanal- och EPG-import"
 
 msgid "Channel History And Messages"
-msgstr ""
+msgstr "Kanalhistorik och meddelanden"
 
 msgid "Channel Info"
 msgstr "Kanalinformation"
@@ -4235,10 +4243,10 @@ msgid "Channel Selection Settings"
 msgstr "Inställningar för kanalval"
 
 msgid "Channel Selection picon path"
-msgstr ""
+msgstr "Picon-sökväg för kanalval"
 
 msgid "Channel Zapping And Keys"
-msgstr ""
+msgstr "Kanalbyte och knappar"
 
 msgid "Channel buttons"
 msgstr "Kanal-knappar"
@@ -4316,23 +4324,23 @@ msgid "Character device"
 msgstr "Karaktär enhet"
 
 msgid "Character set"
-msgstr ""
+msgstr "Teckenuppsättning"
 
 msgid "Chat show"
-msgstr ""
+msgstr "Pratshow"
 
 #
 msgid "Chechen"
 msgstr "Tjetjenska"
 
 msgid "Check ONID/TSID"
-msgstr ""
+msgstr "Kontrollera ONID/TSID"
 
 msgid "Check for PDC"
 msgstr "Kontrollera för PDC"
 
 msgid "Check for PDC availability on each service."
-msgstr "Kontrollera om PDC är tillgängligt för varje tjänst"
+msgstr "Kontrollera om PDC är tillgängligt för varje tjänst."
 
 msgid "Check power and input state from TV"
 msgstr "Kontrollera strömförsörjning och ingångsläge från TV:n"
@@ -4350,7 +4358,7 @@ msgid "Checking Logs..."
 msgstr "Kontrollerar loggar..."
 
 msgid "Checking ONID/TSID ..."
-msgstr ""
+msgstr "Kontrollerar ONID/TSID …"
 
 #
 msgid "Checking file system..."
@@ -4438,16 +4446,16 @@ msgid "Choose the amount of additional slots."
 msgstr "Välj antalet extra slots."
 
 msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Välj formateringsstil för visning av datum. \"D\" / \"DD\" är datumet och \"M\" / \"MM\" är månaden i siffror.  ('DD' och 'MM' har inledande nollor för ensiffriga värden.) Skärmbilden baseras på ditt val, men kan påverkas av huden."
+msgstr "Välj formateringsstil för visning av datum. ”D”/”DD” är datumet och ”M”/”MM” är månaden i siffror. (”DD” och ”MM” har inledande nollor för ensiffriga värden.) Skärmbilden baseras på ditt val, men kan påverkas av skalet."
 
 msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Välj formateringsstil för visning av tider. \"H\" / \"HH\" är timmen för en 24-timmarsklocka, \"h\" / \"hh\" är timmen för en 12-timmarsklocka, \"mm\" är minuterna och \"ss\" är sekunderna.  ('HH' och 'hh' har inledande nollor för ensiffriga värden.) Skärmbilden baseras på ditt val, men kan påverkas av huden."
+msgstr "Välj formateringsstil för visning av tider. ”H”/”HH” är timmen för en 24-timmarsklocka, ”h”/”hh” är timmen för en 12-timmarsklocka, ”mm” är minuterna och ”ss” är sekunderna. (”HH” och ”hh” har inledande nollor för ensiffriga värden.) Skärmbilden baseras på ditt val, men kan påverkas av skalet."
 
 msgid "Choose the fallback font."
 msgstr "Välj reservteckensnitt."
 
 msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Välj formateringsstil för datum på frontpanelens display. \"D\" / \"DD\" är datumet och \"M\" / \"MM\" är månaden i siffror.  ('DD' och 'MM' har inledande nollor för ensiffriga värden.) Skärmbilden baseras på ditt val, men kan påverkas av huden."
+msgstr "Välj formateringsstil för datum på frontpanelens display. ”D”/”DD” är datumet och ”M”/”MM” är månaden i siffror. (”DD” och ”MM” har inledande nollor för ensiffriga värden.) Skärmbilden baseras på ditt val, men kan påverkas av skalet."
 
 msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Välj formateringsstil för tider på frontpanelen. 'H' / 'HH' är timmen för en 24-timmarsklocka, 'h' / 'hh' är timmen för en 12-timmarsklocka, 'mm' är minuterna. ('HH' och 'hh' har inledande nollor för ensiffriga värden.) Frontpanelens display baseras på ditt val, men kan påverkas på alla tillämpliga sätt."
@@ -4486,7 +4494,7 @@ msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Välj det tidsintervall som grafiken ska avrundas till."
 
 msgid "Choose what appears when the screen saver is active."
-msgstr ""
+msgstr "Välj vad som ska visas när skärmsläckaren är aktiv."
 
 msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Välj vad du vill att knappen \"0\" ska göra när PiP är aktiv."
@@ -4525,7 +4533,7 @@ msgid "City"
 msgstr "Stad"
 
 msgid "Classical"
-msgstr ""
+msgstr "Klassiskt"
 
 msgid "Clean (Just flash and start clean)"
 msgstr "Ren (bara flasha och starta ren)"
@@ -4558,7 +4566,7 @@ msgid "Clear Log"
 msgstr "Töm logg"
 
 msgid "Clear Stored Credentials"
-msgstr ""
+msgstr "Rensa lagrade autentiseringsuppgifter"
 
 #
 msgid "Clear before scan"
@@ -4631,7 +4639,7 @@ msgid "Close dialog"
 msgstr "Stäng dialogrutan"
 
 msgid "Close network test"
-msgstr ""
+msgstr "Stäng nätverkstestet"
 
 msgid "Close screen"
 msgstr "Stäng skärmen"
@@ -4661,7 +4669,7 @@ msgid "Close the current screen"
 msgstr "Stäng den aktuella skärmen"
 
 msgid "Close the documentation screen"
-msgstr ""
+msgstr "Stäng dokumentationsskärmen"
 
 msgid "Close the screen"
 msgstr "Stäng skärmen"
@@ -4683,7 +4691,7 @@ msgid "Close title selection"
 msgstr "Stäng titelval"
 
 msgid "Club/Dance"
-msgstr ""
+msgstr "Klubb/dans"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosöarna"
@@ -4713,7 +4721,7 @@ msgid "Color"
 msgstr "Färg"
 
 msgid "Color Button Assignments"
-msgstr ""
+msgstr "Tilldelningar av färgknappar"
 
 msgid "Color format"
 msgstr "Färgformat"
@@ -4797,7 +4805,7 @@ msgid "Comoros"
 msgstr "Komorerna"
 
 msgid "Compatibility And Emulation"
-msgstr ""
+msgstr "Kompatibilitet och emulering"
 
 msgid "Compiled by"
 msgstr "Sammanställt av"
@@ -4843,7 +4851,7 @@ msgid "Configuration options for the HELP screen can be found in 'MENU > Setup >
 msgstr "Konfigurationsalternativ för HELP-skärmen finns i \"MENU > Setup > Usage & User Interface > Settings\"."
 
 msgid "Configure DNS (Dynamic Name Server)"
-msgstr ""
+msgstr "Konfigurera DNS (dynamisk namnserver)"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Konfigurera en extra fördröjning för att förbättra synkroniseringen av externa undertexter."
@@ -4852,10 +4860,10 @@ msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Konfigurera en extra fördröjning för att förbättra synkroniseringen av undertexter."
 
 msgid "Configure another network adapter"
-msgstr ""
+msgstr "Konfigurera en annan nätverksadapter"
 
 msgid "Configure cable reception on this input."
-msgstr ""
+msgstr "Konfigurera kabelmottagning på denna ingång."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Konfigurera standardinställning för nya timers. Behöver en omstart efter ändring."
@@ -4903,7 +4911,7 @@ msgid "Configure if the subtitle should switch between normal, italic, bold and 
 msgstr "Konfigurera om undertexten ska växla mellan normal, kursiv, fet och fet kursiv."
 
 msgid "Configure network adapter"
-msgstr ""
+msgstr "Konfigurera nätverksadapter"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Konfigurera på vilka enheter alternativet för borttagning av bakgrund ska användas."
@@ -4913,27 +4921,30 @@ msgid ""
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+"Konfigurera eller kontrollera DNS-inställningarna (dynamisk namnserver) genom att justera de visade värdena.\n"
+"\n"
+"När inställningarna är korrekta trycker du på OK för att fortsätta."
 
 msgid "Configure remote control type"
 msgstr "Konfigurera typ av fjärrkontroll"
 
 msgid "Configure satellite reception on the separate SAT input."
-msgstr ""
+msgstr "Konfigurera satellitmottagning på den separata SAT-ingången."
 
 msgid "Configure terrestrial reception on this input."
-msgstr ""
+msgstr "Konfigurera markbunden mottagning på denna ingång."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigurera DiSEqC-läget för den här LNB:n."
 
 msgid "Configure the IP of the fallback remote receiver."
-msgstr "IP för reservfjärrmottagare"
+msgstr "IP för reservfjärrmottagare."
 
 msgid "Configure the Port of the fallback remote receiver."
-msgstr "Port för reservfjärrmottagare"
+msgstr "Port för reservfjärrmottagare."
 
 msgid "Configure the URL of the fallback remote receiver."
-msgstr "URL för reservfjärrmottagare"
+msgstr "URL för reservfjärrmottagare."
 
 msgid "Configure the alignment of events."
 msgstr "Konfigurera anpassningen av händelser."
@@ -5095,7 +5106,7 @@ msgid "Configure the secondary EPG language."
 msgstr "Konfigurera det sekundära EPG-språket."
 
 msgid "Configure the selected Wi-Fi network"
-msgstr ""
+msgstr "Konfigurera det valda Wi-Fi-nätverket"
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Konfigurera tidsintervallet för hopp för knapparna \"1\" och \"3\"."
@@ -5211,11 +5222,11 @@ msgid "Configuring Service"
 msgstr "Konfigurera service"
 
 msgid "Confirm Zap"
-msgstr ""
+msgstr "Bekräfta kanalbyte"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
-msgstr ""
+msgstr "Bekräfta borttagningen av ”%s”?"
 
 msgid "ConflictTimer Actions"
 msgstr "ConflictTimer Åtgärder"
@@ -5243,10 +5254,10 @@ msgid "Connect to the Internet"
 msgstr "Anslut till Internet"
 
 msgid "Connect to the selected Saved Wi-Fi Network"
-msgstr ""
+msgstr "Anslut till det valda sparade Wi-Fi-nätverket"
 
 msgid "Connected"
-msgstr ""
+msgstr "Ansluten"
 
 msgid "Connected clients"
 msgstr "Anslutna klienter"
@@ -5268,22 +5279,26 @@ msgid ""
 "Connected, but no IP address was received.\n"
 "Check the router's DHCP settings."
 msgstr ""
+"Ansluten, men ingen IP-adress togs emot.\n"
+"Kontrollera routerns DHCP-inställningar."
 
 #, python-format
 msgid ""
 "Connected.\n"
 "IP address is '%s'."
 msgstr ""
+"Ansluten.\n"
+"IP-adressen är ”%s”."
 
 msgid "Connected: "
 msgstr "Ansluten: "
 
 #, python-format
 msgid "Connecting To '%s'"
-msgstr ""
+msgstr "Ansluter till ”%s”"
 
 msgid "Connecting..."
-msgstr ""
+msgstr "Ansluter …"
 
 msgid "Connection information"
 msgstr "Information om anslutning"
@@ -5336,7 +5351,7 @@ msgid "Continent"
 msgstr "Kontinent"
 
 msgid "Continue"
-msgstr ""
+msgstr "Fortsätt"
 
 msgid "Continue in background"
 msgstr "Fortsätt i bakgrunden"
@@ -5377,10 +5392,10 @@ msgid "Contrast Video & OSD"
 msgstr "Kontrast Video & OSD"
 
 msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
-msgstr ""
+msgstr "Kontrast tillämpad på den kombinerade video- och OSD-utmatningen. Påverkar allt på skärmen, även denna meny."
 
 msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
-msgstr ""
+msgstr "Kontrast tillämpad enbart på videolagret. Påverkar inte Enigma2-menyer eller OSD."
 
 msgid "Control LED can be turned on or off here."
 msgstr "Kontroll-LED kan sättas på eller stängas av här."
@@ -5389,7 +5404,7 @@ msgid "Control files:"
 msgstr "Kontrollera filer:"
 
 msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
-msgstr ""
+msgstr "Styr hur filer sorteras i skärmar som visar en fillista. Skiftlägeskänslig sortering grupperar först filer med versaler och därefter filer med gemener. Skiftlägesokänslig sortering ordnar filer alfabetiskt utan hänsyn till skiftläge."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Kontroll av positionen hur färdig timern är visas i Timer List."
@@ -5490,7 +5505,7 @@ msgstr "Elfenbenskusten / Cote d'Ivoire"
 
 #, python-format
 msgid "Could not connect (status '%s')."
-msgstr ""
+msgstr "Det gick inte att ansluta (status ”%s”)."
 
 #
 msgid "Could not connect to server"
@@ -5500,11 +5515,15 @@ msgid ""
 "Could not connect.\n"
 "Wi-Fi driver (wpa_supplicant) did not start, check the Wi-Fi settings."
 msgstr ""
+"Det gick inte att ansluta.\n"
+"Wi-Fi-drivrutinen (wpa_supplicant) startade inte, kontrollera Wi-Fi-inställningarna."
 
 msgid ""
 "Could not connect.\n"
 "Wrong Wi-Fi password?"
 msgstr ""
+"Det gick inte att ansluta.\n"
+"Fel Wi-Fi-lösenord?"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunde inte ladda Medium! Ingen skiva isatt?"
@@ -5534,6 +5553,9 @@ msgid ""
 "\n"
 "Do you want to change the settings again?"
 msgstr ""
+"Det gick inte att verifiera det sparade Wi-Fi-nätverket.\n"
+"\n"
+"Vill du ändra inställningarna igen?"
 
 msgid "Country"
 msgstr "Land"
@@ -5549,7 +5571,7 @@ msgid "Crash %d/%d"
 msgstr "Krasch %d/%d"
 
 msgid "Crash Handling"
-msgstr ""
+msgstr "Kraschhantering"
 
 msgid "Crash Logs"
 msgstr "Loggar över krascher"
@@ -5656,16 +5678,19 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Det gick inte att skapa eller aktivera växlingsfilen.\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "Skapa partition"
 
 msgid "Credentials"
-msgstr ""
+msgstr "Autentiseringsuppgifter"
 
 #, python-format
 msgid "Credentials for '%s'"
-msgstr ""
+msgstr "Autentiseringsuppgifter för ”%s”"
 
 msgid "Cree"
 msgstr "Cree"
@@ -5762,13 +5787,13 @@ msgid "Current mode: %s \n"
 msgstr "Aktuellt läge: %s\n"
 
 msgid "Current rotor position:"
-msgstr ""
+msgstr "Aktuell rotorposition:"
 
 msgid "Current rotor position: unknown"
-msgstr ""
+msgstr "Aktuell rotorposition: okänd"
 
 msgid "Current supplied to the LNB and positioner."
-msgstr ""
+msgstr "Ström som tillförs LNB och positionerare."
 
 msgid "Current time"
 msgstr "Aktuellt tid"
@@ -5807,7 +5832,7 @@ msgid "Custom"
 msgstr "Anpassad"
 
 msgid "Custom Skip Times"
-msgstr ""
+msgstr "Anpassade hopptider"
 
 msgid "Custom mountpoint"
 msgstr "Anpassad monteringspunkt"
@@ -5841,7 +5866,7 @@ msgid "Cut"
 msgstr "Klipp ut"
 
 msgid "CutList Skipping"
-msgstr ""
+msgstr "Hopp i klipplista"
 
 msgid "CutList skip time for '%s' button"
 msgstr "CutList hoppar över tiden för \"%s\"-knappen"
@@ -5885,10 +5910,10 @@ msgid "D"
 msgstr "D"
 
 msgid "DAB+ Scan"
-msgstr ""
+msgstr "DAB+-sökning"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
-msgstr ""
+msgstr "DAB+-sökningen misslyckades; befintliga buketter behölls."
 
 msgid "DAC"
 msgstr "DAC"
@@ -5906,19 +5931,19 @@ msgid "DNS Settings"
 msgstr "DNS-inställningar"
 
 msgid "DNS Settings Actions"
-msgstr ""
+msgstr "Åtgärder för DNS-inställningar"
 
 msgid "DNS data source"
 msgstr "DNS datakälla"
 
 msgid "DNS override"
-msgstr ""
+msgstr "Åsidosätt DNS"
 
 msgid "DNS protocol mode"
 msgstr "DNS-läge"
 
 msgid "DNSCrypt Resolver"
-msgstr ""
+msgstr "DNSCrypt-resolver"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5944,7 +5969,7 @@ msgid "DVB CI Delay"
 msgstr "DVB CI-fördröjning"
 
 msgid "DVB Subtitles"
-msgstr ""
+msgstr "DVB-undertexter"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB-undertexter PID & språk"
@@ -5965,7 +5990,7 @@ msgid "DVB-C ANNEX C"
 msgstr "DVB-C BILAGA C"
 
 msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
-msgstr ""
+msgstr "DVB-C och DVB-T/T2 delar denna ingång. Aktivera 5 V endast om antennsystemet eller en extern koaxialomkopplare kräver ström."
 
 #
 msgid "DVB-S"
@@ -6012,7 +6037,7 @@ msgid "Danish"
 msgstr "Danska"
 
 msgid "Darts"
-msgstr ""
+msgstr "Dart"
 
 #
 msgid "Date"
@@ -6022,7 +6047,7 @@ msgid "Date / Time"
 msgstr "Datum / Tid"
 
 msgid "Date And Time"
-msgstr ""
+msgstr "Datum och tid"
 
 msgid "Date Time Input Actions"
 msgstr "Datum Tid Inmatning Åtgärder"
@@ -6192,13 +6217,13 @@ msgid "Deactivate Expander"
 msgstr "Avaktivera Expander"
 
 msgid "Deactivate network adapter"
-msgstr ""
+msgstr "Inaktivera nätverksadapter"
 
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Avaktivera flashexpandern i den valda enheten"
 
 msgid "Deactivated"
-msgstr ""
+msgstr "Inaktiverad"
 
 msgid "Debug"
 msgstr "Debugg"
@@ -6211,7 +6236,7 @@ msgid "Debug Information"
 msgstr "Felsöknings information"
 
 msgid "Debug Log Content"
-msgstr ""
+msgstr "Innehåll i felsökningslogg"
 
 msgid "Debug Log Information"
 msgstr "Information om felsökningsloggen"
@@ -6226,13 +6251,13 @@ msgid "Debug log time format *"
 msgstr "Tidsformat för debugglogg *"
 
 msgid "Decoder release strategy"
-msgstr ""
+msgstr "Strategi för att frigöra avkodaren"
 
 msgid "Decoder start delay"
-msgstr ""
+msgstr "Fördröjning vid start av avkodaren"
 
 msgid "Decoder start timeout"
-msgstr ""
+msgstr "Tidsgräns för att starta avkodaren"
 
 #
 msgid "Decryption & Parental Control"
@@ -6276,7 +6301,7 @@ msgid "Default files/folders to backup"
 msgstr "Standardfiler/mappar för säkerhetskopiering"
 
 msgid "Default gateway"
-msgstr ""
+msgstr "Standardgateway"
 
 msgid "Default left column directory"
 msgstr "Standardkatalog för vänster kolumn"
@@ -6296,7 +6321,7 @@ msgid "Default right column directory"
 msgstr "Standardkatalog för höger kolumn"
 
 msgid "Default sort order for directories in the left column."
-msgstr "Standard sorteringsordning för kataloger i den vänstra kolumnen"
+msgstr "Standard sorteringsordning för kataloger i den vänstra kolumnen."
 
 msgid "Default sort order for directories in the right column."
 msgstr "Standard sorteringsordning för kataloger i högerkolumnen."
@@ -6317,7 +6342,7 @@ msgid "Default volume offset"
 msgstr "Standard volymförskjutning"
 
 msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Standardinställningarna är 5 minuter tidigare för att vakna från djup standby. Det kan eventuellt vara nödvändigt att ändra detta. (t.ex.: den faktiska väckningstiden är felaktig eller för sen, väntar på en nätverksenhet, etc.)"
+msgstr "Standardinställningarna är 5 minuter tidigare för att vakna från djup standby. Det kan eventuellt vara nödvändigt att ändra detta. (t.ex.: den faktiska väckningstiden är felaktig eller för sen, väntar på en nätverksenhet, etc.)."
 
 #, python-format
 msgid "Default: '%s'."
@@ -6333,7 +6358,7 @@ msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Definiera ytterligare fördröjning i millisekunder före start av http(s)-strömmar."
 
 msgid "Define path %s for picons."
-msgstr ""
+msgstr "Ange sökvägen %s för picons."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Definiera den anpassade monteringspunkten för enheten."
@@ -6464,10 +6489,10 @@ msgid "Delete Line"
 msgstr "Radera linje"
 
 msgid "Delete Mount"
-msgstr ""
+msgstr "Ta bort montering"
 
 msgid "Delete Network"
-msgstr ""
+msgstr "Ta bort nätverk"
 
 msgid "Delete Plugins"
 msgstr "Ta bort insticksprogram"
@@ -6495,7 +6520,7 @@ msgid "Delete all the text"
 msgstr "Ta bort all text"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
-msgstr "Ta bort och avinstallera Plugins. Detta kommer att ta bort pluginet från din box"
+msgstr "Ta bort och avinstallera Plugins. Detta kommer att ta bort pluginet från din box."
 
 msgid "Delete character to left of cursor or select AM times"
 msgstr "Radera tecken till vänster om markören eller välj AM gånger"
@@ -6584,7 +6609,7 @@ msgid "Delete these %d directories/files?"
 msgstr "Ta bort dessa %d kataloger/filer?"
 
 msgid "Delete this slot?"
-msgstr ""
+msgstr "Ta bort den här kortplatsen?"
 
 msgid "Delete this tag"
 msgstr "Ta bort denna tagg"
@@ -6681,7 +6706,7 @@ msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "Destination för reservfjärrmottagare för DVB-T"
 
 msgid "Destination of fallback remote receiver."
-msgstr "Destination för fjärrmottagare med reservfunktion"
+msgstr "Destination för fjärrmottagare med reservfunktion."
 
 msgid "Detail of GStreamer log."
 msgstr "Detalj av GStreamer-loggen."
@@ -6690,10 +6715,10 @@ msgid "Details"
 msgstr "Detaljer"
 
 msgid "Detect positioner movement by its current consumption."
-msgstr ""
+msgstr "Identifiera positionerarens rörelse genom dess strömförbrukning."
 
 msgid "Detective"
-msgstr ""
+msgstr "Deckare"
 
 msgid "Detective/Thriller"
 msgstr "deckare/thriller"
@@ -6833,7 +6858,7 @@ msgid "Disable"
 msgstr "Inaktivera"
 
 msgid "Disable Adapter"
-msgstr ""
+msgstr "Inaktivera adapter"
 
 msgid "Disable Animations"
 msgstr "Avaktivera animationer"
@@ -6862,7 +6887,7 @@ msgid "Disable Move Mode"
 msgstr "Inaktivera Move Mode"
 
 msgid "Disable Network"
-msgstr ""
+msgstr "Inaktivera nätverk"
 
 #
 msgid "Disable Picture in Picture"
@@ -6884,7 +6909,7 @@ msgid "Disable operator profiles"
 msgstr "Inaktivera operatörsprofiler"
 
 msgid "Disable saved Wi-Fi network"
-msgstr ""
+msgstr "Inaktivera sparat Wi-Fi-nätverk"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Inaktivera HDD-processen på VFD."
@@ -6907,10 +6932,10 @@ msgid "Disabling Chkroot failed!"
 msgstr "Inaktivering av Chkroot misslyckades!"
 
 msgid "Disconnected"
-msgstr ""
+msgstr "Frånkopplad"
 
 msgid "Discussion"
-msgstr ""
+msgstr "Diskussion"
 
 msgid "Discussion/Interview/Debate"
 msgstr "diskussion/intervju/debatt"
@@ -6934,10 +6959,10 @@ msgid "Display >16:9 content as"
 msgstr "Visa >16:9-innehåll som"
 
 msgid "Display Power And Content"
-msgstr ""
+msgstr "Skärmens ström och innehåll"
 
 msgid "Display Scrolling"
-msgstr ""
+msgstr "Skärmtext­rullning"
 
 msgid "Display Settings"
 msgstr "Visningsinställningar"
@@ -7123,7 +7148,7 @@ msgstr "Vill du verkligen ta bort timern för %s?"
 
 #, python-format
 msgid "Do you really want to restart %s?"
-msgstr ""
+msgstr "Vill du verkligen starta om %s?"
 
 #, python-format
 msgid ""
@@ -7131,17 +7156,20 @@ msgid ""
 "\n"
 "ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
+"Vill du verkligen stänga av %s?\n"
+"\n"
+"OBS! För att återaktivera %s måste mottagaren startas om helt!"
 
 #, python-format
 msgid "Do you really want to stop %s?"
-msgstr ""
+msgstr "Vill du verkligen stoppa %s?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Vill du verkligen stoppa och ta bort timern '%s'?"
 
 msgid "Do you really want to trim the file system?"
-msgstr ""
+msgstr "Vill du verkligen trimma filsystemet?"
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7245,7 +7273,7 @@ msgid "Do you want to update:"
 msgstr "Vill du uppdatera:"
 
 msgid "Docudrama"
-msgstr ""
+msgstr "Dokudrama"
 
 msgid "Documentary"
 msgstr "Dokumentärer"
@@ -7254,13 +7282,13 @@ msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital nedmixning är nu"
 
 msgid "Dolby TrueHD"
-msgstr ""
+msgstr "Dolby TrueHD"
 
 msgid "Domain"
 msgstr "Domän"
 
 msgid "Domain name"
-msgstr ""
+msgstr "Domännamn"
 
 msgid "Dominica"
 msgstr "Dominica"
@@ -7377,7 +7405,7 @@ msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Data-DVD i Dreambox-format (fungerar inte i andra DVD-spelare)"
 
 msgid "Driver"
-msgstr ""
+msgstr "Drivrutin"
 
 msgid "Driver Packages"
 msgstr "Drivrutinspaket"
@@ -7447,7 +7475,7 @@ msgid "EPG Channel/Service Selection"
 msgstr "Val av EPG-kanal/tjänst"
 
 msgid "EPG Data In Streams"
-msgstr ""
+msgstr "EPG-data i strömmar"
 
 msgid "EPG Display Actions"
 msgstr "Åtgärder för EPG-visning"
@@ -7456,7 +7484,7 @@ msgid "EPG Jump"
 msgstr "EPG hopp"
 
 msgid "EPG Language"
-msgstr ""
+msgstr "EPG-språk"
 
 msgid "EPG Navigation Actions"
 msgstr "Åtgärder för EPG-navigering"
@@ -7465,7 +7493,7 @@ msgid "EPG Other Actions"
 msgstr "EPG Övriga åtgärder"
 
 msgid "EPG Range And History"
-msgstr ""
+msgstr "EPG-omfång och historik"
 
 msgid "EPG Search"
 msgstr "EPG-sökning"
@@ -7480,10 +7508,10 @@ msgid "EPG Setup"
 msgstr "EPG-inställning"
 
 msgid "EPG Sources"
-msgstr ""
+msgstr "EPG-källor"
 
 msgid "EPG Storage And Refresh"
-msgstr ""
+msgstr "EPG-lagring och uppdatering"
 
 msgid "EPG button mode"
 msgstr "EPG-knappens läge"
@@ -7543,10 +7571,10 @@ msgid "East limit set"
 msgstr "Östra gränsen inställd"
 
 msgid "Eastern satellites"
-msgstr ""
+msgstr "Östliga satelliter"
 
 msgid "Easy listening"
-msgstr ""
+msgstr "Lättlyssnat"
 
 #
 msgid "EasyMedia"
@@ -7567,7 +7595,7 @@ msgid "Edit Alternatives"
 msgstr "Redigera alternativ"
 
 msgid "Edit Credentials"
-msgstr ""
+msgstr "Redigera autentiseringsuppgifter"
 
 #
 msgid "Edit Mode Off"
@@ -7595,7 +7623,7 @@ msgid "Edit Upgrade Source URL"
 msgstr "Redigera URL för uppgraderingskälla"
 
 msgid "Edit Username/Password Credentials"
-msgstr ""
+msgstr "Redigera autentiseringsuppgifter för användarnamn/lösenord"
 
 #
 msgid "Edit chapters of current title"
@@ -7609,7 +7637,7 @@ msgid "Edit settings"
 msgstr "Ändra inställningar"
 
 msgid "Edit stored username/password credentials for the selected host"
-msgstr ""
+msgstr "Redigera lagrade autentiseringsuppgifter för användarnamn/lösenord för den valda värden"
 
 msgid "Edit the CCcam/NewCamd server hostname."
 msgstr "Redigera CCcam/NewCamd-serverns värdnamn."
@@ -7636,7 +7664,7 @@ msgid "Edit the remote IP address."
 msgstr "Redigera fjärranslutningens IP-adress."
 
 msgid "Edit the selected network mount"
-msgstr ""
+msgstr "Redigera den valda nätverksmonteringen"
 
 #
 msgid "Edit the upgrade source address."
@@ -7653,13 +7681,13 @@ msgid "Education/Information"
 msgstr "Utbildning/Information"
 
 msgid "Education/Science/Factual"
-msgstr ""
+msgstr "Utbildning/vetenskap/fakta"
 
 msgid "Education/Science/Factual topics"
 msgstr "Utbildning/Vetenskap/Fakta"
 
 msgid "Educational"
-msgstr ""
+msgstr "Utbildande"
 
 msgid "Egypt"
 msgstr "Egypten"
@@ -7764,10 +7792,10 @@ msgid "Enable Move Mode"
 msgstr "Aktivera Move Mode"
 
 msgid "Enable NFSv3"
-msgstr ""
+msgstr "Aktivera NFSv3"
 
 msgid "Enable NFSv4"
-msgstr ""
+msgstr "Aktivera NFSv4"
 
 msgid "Enable Netmed EPG"
 msgstr "Aktivera Netmed EPG"
@@ -7798,7 +7826,7 @@ msgid "Enable Virgin EPG"
 msgstr "Aktivera Virgin EPG"
 
 msgid "Enable adapter"
-msgstr ""
+msgstr "Aktivera adapter"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Aktivera och ställ in varaktigheten för den andra InfoBar (tryck på \"OK\" två gånger) som kan innehålla ytterligare information."
@@ -7857,10 +7885,10 @@ msgid "Enable digital downmix"
 msgstr "Aktivera digital nedmixning"
 
 msgid "Enable extended cut file support"
-msgstr ""
+msgstr "Aktivera utökat stöd för klippfiler"
 
 msgid "Enable extended cut file support. This will write cut with more information and not only marker."
-msgstr ""
+msgstr "Aktivera utökat stöd för klippfiler. Då skrivs klippfiler med mer information, inte bara en markering."
 
 msgid "Enable fallback remote receiver"
 msgstr "Aktivera reservfjärrmottagare"
@@ -7872,14 +7900,14 @@ msgid "Enable intro screen"
 msgstr "Aktivera introskärm"
 
 msgid "Enable monitoring UI"
-msgstr ""
+msgstr "Aktivera övervakningsgränssnitt"
 
 #
 msgid "Enable multiple bouquets"
 msgstr "Aktivera flera buketter"
 
 msgid "Enable network"
-msgstr ""
+msgstr "Aktivera nätverk"
 
 msgid "Enable network traffic check"
 msgstr "Aktivera kontroll av nätverkstrafik"
@@ -7888,7 +7916,7 @@ msgid "Enable new GStreamer playback"
 msgstr "Aktivera ny GStreamer-uppspelning"
 
 msgid "Enable or disable this network mount. Disabling the mount will not delete its definition."
-msgstr ""
+msgstr "Aktivera eller inaktivera denna nätverksmontering. Om monteringen inaktiveras tas inte dess definition bort."
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Aktivera eller inaktivera användning av HDMI-CEC."
@@ -7903,7 +7931,7 @@ msgid "Enable remote receiver to be tried to tune into services that can't be tu
 msgstr "Gör det möjligt att försöka lyssna på tjänster som inte kan lyssnas på lokalt (t.ex. om tunern är upptagen eller om tjänstetypen inte är tillgänglig på den lokala tunern) med en fjärrstyrd enigma2-mottagare. Ange fullständig URL inklusive http:// och portnummer (normalt ...:8001), t.ex. http://second_box:8001."
 
 msgid "Enable saved Wi-Fi network"
-msgstr ""
+msgstr "Aktivera sparat Wi-Fi-nätverk"
 
 msgid "Enable teletext caching"
 msgstr "Aktivera cachelagring av text-tv"
@@ -7942,7 +7970,7 @@ msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Aktivera det här alternativet om du vill lägga till data om tangentbordets tangenter i debugloggfilen."
 
 msgid "Enable this option to add network information to the debug log file."
-msgstr ""
+msgstr "Aktivera detta alternativ för att lägga till nätverksinformation i felsökningsloggfilen."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Aktivera detta alternativ om du vill lägga till utdata från opkg i felsökningsloggfilen."
@@ -7953,11 +7981,14 @@ msgstr "Aktivera detta alternativ för att lägga till fjärrstyrningsdata i deb
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Aktivera det här alternativet för att lägga till skärmnamn och upplösningsdata i felsökningsloggfilen."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Aktivera detta alternativ för att lägga till felsökningsdata för sökning/tidsförskjutning i felsökningsloggfilen."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Aktivera det här alternativet för att lägga till information om lagringsenheter som upptäcks under systemstart och hot plug-händelser i debug-loggfilen."
 
 msgid "Enable this option to add text encoding information to the debug log file."
-msgstr ""
+msgstr "Aktivera detta alternativ för att lägga till information om textkodning i felsökningsloggfilen."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivera det här alternativet för att lägga till felsökningsdata för timern i felsökningsloggfilen."
@@ -7972,10 +8003,10 @@ msgid "Enable this setting if your aerial system needs power."
 msgstr "Aktivera denna inställning om ditt antennsystem behöver ström."
 
 msgid "Enable this when a power inserter or external supply powers the Unicable device."
-msgstr ""
+msgstr "Aktivera detta när en ströminmatningsenhet eller extern strömförsörjning försörjer Unicable-enheten."
 
 msgid "Enable this when the User Band is protected by a PIN in a multi-dwelling Unicable installation."
-msgstr ""
+msgstr "Aktivera detta när användarbandet skyddas av en PIN-kod i en Unicable-installation för flerbostadshus."
 
 msgid "Enable timer"
 msgstr "Aktivera timer"
@@ -8010,7 +8041,7 @@ msgid "Encryption"
 msgstr "Kryptering"
 
 msgid "Encryption And Descrambling"
-msgstr ""
+msgstr "Kryptering och avkodning"
 
 msgid "End"
 msgstr "Slut"
@@ -8121,10 +8152,10 @@ msgid "Enter a new name for this device."
 msgstr "Ange ett nytt namn för den här enheten."
 
 msgid "Enter expected ONID/TSID"
-msgstr ""
+msgstr "Ange förväntat ONID/TSID"
 
 msgid "Enter how long to wait for a response before retrying (or failing, with 'Give up if unreachable' below). Enter '0' to use the kernel's internal default instead of a fixed value."
-msgstr ""
+msgstr "Ange hur länge enheten ska vänta på svar innan ett nytt försök görs (eller misslyckas om ”Ge upp om onåbar” valts nedan). Ange ”0” för att använda kärnans interna standard i stället för ett fast värde."
 
 msgid "Enter if you are North or South of the equator."
 msgstr "Ange om du befinner dig norr eller söder om ekvatorn."
@@ -8139,7 +8170,7 @@ msgid "Enter number to jump to channel"
 msgstr "Ange nummer för att hoppa till kanal"
 
 msgid "Enter optional mount arguments not provided for in the configuration settings above. Multiple arguments should be comma-separated. Invalid/Inappropriate entries can cause the mount to fail!"
-msgstr ""
+msgstr "Ange valfria monteringsargument som inte anges i inställningarna ovan. Flera argument ska separeras med kommatecken. Ogiltiga eller olämpliga värden kan göra att monteringen misslyckas!"
 
 msgid "Enter persistent PIN code"
 msgstr "Ange PIN-kod för långvarig användning"
@@ -8152,22 +8183,22 @@ msgid "Enter text via an attached keyboard"
 msgstr "Skriv in text via ett anslutet tangentbord"
 
 msgid "Enter the IP address or subnet (e.g. 192.168.1.0/24) to which NFS host access is granted. Enter '*', the default, for all host access."
-msgstr ""
+msgstr "Ange IP-adressen eller subnätet (t.ex. 192.168.1.0/24) som NFS-värdåtkomst beviljas till. Ange standardvärdet ”*” för åtkomst från alla värdar."
 
 msgid "Enter the IP address to be used as the gateway to other networks for this adapter. Typically this is the IP address of your router."
-msgstr ""
+msgstr "Ange IP-adressen som ska användas som gateway till andra nätverk för denna nätverksadapter. Vanligtvis är detta routerns IP-adress."
 
 msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer or building operator."
-msgstr ""
+msgstr "Ange PIN-koden från 0 till 255 som har tilldelats detta användarband av installatören eller fastighetsförvaltaren."
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr ""
+msgstr "Ange ZeroTier-nätverkets ID. ID:t måste bestå av exakt 16 tecken."
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Ange den tid som ska läggas till i streamingbufferten efter ett streamingfel. Denna extra buffert kan bidra till att undvika ytterligare streamingproblem på grund av brist på buffertutrymme."
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
-msgstr ""
+msgstr "Ange den fasta/statiska IPv4-adress som ska användas för denna nätverksadapter."
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Ange den frekvens vid vilken LNB:n växlar mellan lågband och högband. Mer information finns i specifikationerna för din LNB."
@@ -8176,64 +8207,64 @@ msgid "Enter the frequency step size for the tuner to use when searching for cab
 msgstr "Ange den frekvensstegstorlek som tunern ska använda när den söker efter kabelmultiplexer. Mer information finns i dokumentationen från din kabeloperatör."
 
 msgid "Enter the hostname or IP address of the network share's server."
-msgstr ""
+msgstr "Ange värdnamnet eller IP-adressen för nätverksresursens server."
 
 msgid "Enter the local directory name to be used as the local mount for the remote share."
-msgstr ""
+msgstr "Ange namnet på den lokala katalog som ska användas som lokal montering för fjärresursen."
 
 msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
 msgstr "Definiera DNS-suffixet."
 
 msgid "Enter the network hostname to be used to identify this receiver."
-msgstr ""
+msgstr "Ange nätverksvärdnamnet som ska användas för att identifiera mottagaren."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
-msgstr ""
+msgstr "Ange antalet NFS-servertrådar som ska tilldelas/användas. Högre värden förbättrar prestandan med flera klienter men använder mer minne."
 
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr "Ange det nummer som är lagrat i positioneringsenheten och som motsvarar denna satellit."
 
 msgid "Enter the password to be used to access this host's shares if they require authentication credentials."
-msgstr ""
+msgstr "Ange lösenordet som ska användas för åtkomst till denna värds resurser om de kräver autentiseringsuppgifter."
 
 msgid "Enter the password to be used to access this host's shares."
-msgstr ""
+msgstr "Ange lösenordet som ska användas för åtkomst till denna värds resurser."
 
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
-msgstr ""
+msgstr "Ange lösenordet, lösenfrasen eller den delade nyckeln för det valda trådlösa nätverket."
 
 msgid "Enter the primary IPv4 DNS server for this adapter."
-msgstr ""
+msgstr "Ange den primära IPv4-DNS-servern för adaptern."
 
 msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
-msgstr ""
+msgstr "Ange den primära IPv6-DNS-servern för adaptern. (Valfritt)"
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
-msgstr ""
+msgstr "Ange fjärresursens namn (SMB) eller exporterade sökväg (NFS) på servern."
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
-msgstr ""
+msgstr "Ange den sekundära IPv4-DNS-servern för adaptern. (Valfritt)"
 
 msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
-msgstr ""
+msgstr "Ange den sekundära IPv6-DNS-servern för adaptern. (Valfritt)"
 
 msgid "Enter the service pin"
 msgstr "Ange servicekoden"
 
 msgid "Enter the subnet mask to be used for this network adapter. (e.g. 255.255.255.0)"
-msgstr ""
+msgstr "Ange subnätmasken som ska användas för denna nätverksadapter. (t.ex. 255.255.255.0)"
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Ange prenumerationskoden för att fullt ut aktivera plugin-programmet AI-Powered Translation, den enhetliga koden för test är 15."
 
 msgid "Enter the username to be used to access this host's shares if they require authentication credentials."
-msgstr ""
+msgstr "Ange användarnamnet som ska användas för åtkomst till denna värds resurser om de kräver autentiseringsuppgifter."
 
 msgid "Enter the username to be used to access this host's shares."
-msgstr ""
+msgstr "Ange användarnamnet som ska användas för åtkomst till denna värds resurser."
 
 msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
-msgstr ""
+msgstr "Ange arbetsgruppsnamnet som ska användas av denna server för Samba-baserade anslutningar. (Standard är ”WORKGROUP”.)"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Ange din aktuella latitud. Detta är antalet grader som du befinner dig från ekvatorn i decimalform."
@@ -8296,7 +8327,7 @@ msgid "Eritrea"
 msgstr "Eritrea"
 
 msgid "Erotic"
-msgstr ""
+msgstr "Erotik"
 
 #
 msgid "Error"
@@ -8379,10 +8410,10 @@ msgid "Error Download Setting"
 msgstr "Fel Nedladdning Inställning"
 
 msgid "Error Retry count"
-msgstr ""
+msgstr "Antal försök vid fel"
 
 msgid "Error Retry delay"
-msgstr ""
+msgstr "Fördröjning mellan försök efter fel"
 
 msgid "Error code"
 msgstr "Felkod"
@@ -8450,7 +8481,7 @@ msgid "Error: An empty filename is illegal!"
 msgstr "Fel i filen: Ett tomt filnamn är olagligt!"
 
 msgid "Error: Both 'server' and 'remote path' are required!"
-msgstr ""
+msgstr "Fel: Både ”server” och ”fjärrsökväg” krävs!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Fel: Kan inte hitta några bilder: Det går inte att hitta några bilder!"
@@ -8508,7 +8539,7 @@ msgstr "Felmeddelande: Det är inte möjligt att köra '%s' på '%s'!"
 
 #, python-format
 msgid "Error: Mounting '%s' failed!"
-msgstr ""
+msgstr "Fel: Det gick inte att montera ”%s”!"
 
 #, python-format
 msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
@@ -8520,7 +8551,7 @@ msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.
 msgstr "Fel vid borttagning av katalog Borttagning av katalogen '%s' misslyckades! (Kanske är katalogen inte tom.)"
 
 msgid "Error: Rescan failed!"
-msgstr ""
+msgstr "Fel: Det gick inte att söka igen!"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8573,7 +8604,7 @@ msgstr "Felmeddelande: Det går inte att skriva loggfilen '%s'!"
 
 #, python-format
 msgid "Error: Unmounting '%s' failed!"
-msgstr ""
+msgstr "Fel: Det gick inte att avmontera ”%s”!"
 
 #, python-format
 msgid "Error: You can't run '%s' on '%s'!"
@@ -8602,7 +8633,7 @@ msgid "EtPortal"
 msgstr "EtPortal"
 
 msgid "Ethernet Adapter"
-msgstr ""
+msgstr "Ethernet-adapter"
 
 msgid "Ethernet network interface"
 msgstr "Ethernet-nätverksgränssnitt"
@@ -8626,7 +8657,7 @@ msgid "Event Info"
 msgstr "Information"
 
 msgid "Event Metadata And Correction"
-msgstr ""
+msgstr "Händelsemetadata och korrigering"
 
 msgid "Event View"
 msgstr "Eventvy"
@@ -8653,7 +8684,7 @@ msgid "EventViewEPG Actions"
 msgstr "EventViewEPG Åtgärder"
 
 msgid "Events"
-msgstr ""
+msgstr "Evenemang"
 
 msgid "Everyday"
 msgstr "Varje dag"
@@ -8769,7 +8800,7 @@ msgid "Expand"
 msgstr "Expandera"
 
 msgid "Expand/collapse the selected host, or use the selected share"
-msgstr ""
+msgstr "Fäll ut/fäll ihop den valda värden, eller använd den valda resursen"
 
 msgid "Experimental film/video"
 msgstr "experimentell film/video"
@@ -8789,7 +8820,7 @@ msgid "Expert mode"
 msgstr "Expertläge"
 
 msgid "Exports"
-msgstr ""
+msgstr "Exporter"
 
 msgid "Exposure bias"
 msgstr "Exponeringsbias"
@@ -8837,7 +8868,7 @@ msgid "External Storage %s"
 msgstr "Extern lagring %s"
 
 msgid "External Subtitles"
-msgstr ""
+msgstr "Externa undertexter"
 
 msgid "External subtitle color"
 msgstr "Färg för extern undertext"
@@ -8849,7 +8880,7 @@ msgid "External subtitle switch fonts"
 msgstr "Teckensnitt för omkoppling av extern undertext"
 
 msgid "Externally powered"
-msgstr ""
+msgstr "Extern strömförsörjning"
 
 msgid "Extra High"
 msgstr "Extra hög"
@@ -8867,7 +8898,7 @@ msgid "Extract the package contents"
 msgstr "Extrahera paketets innehåll"
 
 msgid "Extreme"
-msgstr ""
+msgstr "Extrem"
 
 msgid "Extrude from left"
 msgstr "Stryk ut från vänster"
@@ -8895,10 +8926,10 @@ msgstr "FBC automatisk"
 
 #, python-format
 msgid "FBC automatic: connected to %s"
-msgstr ""
+msgstr "FBC automatiskt: ansluten till %s"
 
 msgid "FBC automatic: inactive"
-msgstr ""
+msgstr "FBC automatiskt: inaktiv"
 
 msgid "FCC enabled"
 msgstr "FCC-kompatibel"
@@ -8942,7 +8973,7 @@ msgid "Factory release"
 msgstr "Fabriksutgåva"
 
 msgid "Factual"
-msgstr ""
+msgstr "Fakta"
 
 msgid "Fade the InfoBar on hide."
 msgstr "Tona ut InfoBar vid döljning."
@@ -9037,13 +9068,13 @@ msgid "Fast DiSEqC"
 msgstr "Snabb DiSEqC"
 
 msgid "Fast Forward And Rewind"
-msgstr ""
+msgstr "Snabbspolning framåt och bakåt"
 
 msgid "Fast Scan"
 msgstr "Snabb skanning"
 
 msgid "Fast Skin Reload"
-msgstr ""
+msgstr "Snabb omladdning av skal"
 
 #
 msgid "Fast epoch"
@@ -9063,10 +9094,10 @@ msgid "Favorites"
 msgstr "Favoriter"
 
 msgid "Feature"
-msgstr ""
+msgstr "Långfilm"
 
 msgid "Features"
-msgstr ""
+msgstr "Inslag"
 
 msgid "Feed URL"
 msgstr "Feed URL"
@@ -9087,7 +9118,7 @@ msgid "Feed unstable!"
 msgstr "Mata instabilt!"
 
 msgid "Feeds And Networking"
-msgstr ""
+msgstr "Flöden och nätverk"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Hämta EPG och uppdatera timers nu"
@@ -9201,7 +9232,7 @@ msgid "File compression"
 msgstr "Komprimering av filer"
 
 msgid "File sorting mode"
-msgstr ""
+msgstr "Filsorteringsläge"
 
 msgid "File system"
 msgstr "Filsystem"
@@ -9217,7 +9248,7 @@ msgid "Filename"
 msgstr "Filnamn"
 
 msgid "Files And Directories"
-msgstr ""
+msgstr "Filer och kataloger"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Filer/mappar som ska uteslutas från säkerhetskopiering"
@@ -9384,10 +9415,10 @@ msgid "Flat by position on remote"
 msgstr "Platt efter position på fjärrkontrollen"
 
 msgid "Flush Cache and Rescan"
-msgstr ""
+msgstr "Töm cache och sök igen"
 
 msgid "Folk and Country"
-msgstr ""
+msgstr "Folkmusik och country"
 
 msgid "Folk/Traditional music"
 msgstr "folkmusik/traditionell musik"
@@ -9431,7 +9462,7 @@ msgid "Force ToneBurst"
 msgstr "Force ToneBurst"
 
 msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
-msgstr ""
+msgstr "Tvinga en viss länkhastighet/duplexläge i stället för automatisk förhandling. Ändra detta endast om du har ett särskilt skäl, eftersom fel inställning kan bryta nätverksanslutningen."
 
 #
 msgid "Force de-interlace"
@@ -9550,7 +9581,7 @@ msgid "Front USB 3.0"
 msgstr "USB 3.0 på framsidan"
 
 msgid "Front panel/Display picon path"
-msgstr ""
+msgstr "Picon-sökväg för frontpanel/skärm"
 
 msgid "Front processor version"
 msgstr "Frontprocessorversion"
@@ -9568,7 +9599,7 @@ msgid "Full factory reset"
 msgstr "Fullständig fabriksåterställning"
 
 msgid "Full range (no clipping)"
-msgstr ""
+msgstr "Hela intervallet (ingen klippning)"
 
 msgid "Full screen"
 msgstr "Fullskärm"
@@ -9642,28 +9673,28 @@ msgid "General AC3 delay"
 msgstr "Allmän AC3-fördröjning"
 
 msgid "General Appearance"
-msgstr ""
+msgstr "Allmänt utseende"
 
 msgid "General BT audio delay"
 msgstr "Allmänt BT Ljudfördröjning"
 
 msgid "General Channel Selection"
-msgstr ""
+msgstr "Allmänt kanalval"
 
 msgid "General OSD Behavior"
-msgstr ""
+msgstr "Allmänt OSD-beteende"
 
 msgid "General PCM delay"
 msgstr "Allmän PCM-fördröjning"
 
 msgid "General Setup Behavior"
-msgstr ""
+msgstr "Allmänt inställningsbeteende"
 
 msgid "General Subtitle Appearance And Timing"
-msgstr ""
+msgstr "Allmänt utseende och tidsinställning för undertexter"
 
 msgid "General Time Shift Behavior"
-msgstr ""
+msgstr "Allmänt tidsförskjutningsbeteende"
 
 msgid "Generic"
 msgstr "Allmän"
@@ -9723,7 +9754,7 @@ msgid "Gibraltar"
 msgstr "Gibraltar"
 
 msgid "GigaBlue optimized"
-msgstr ""
+msgstr "Optimerad för GigaBlue"
 
 msgid "Given device id"
 msgstr "Angivet enhets-ID"
@@ -9752,16 +9783,16 @@ msgid "Go to standby"
 msgstr "Gå till standby"
 
 msgid "Go to the first page of documentation"
-msgstr ""
+msgstr "Gå till första dokumentationssidan"
 
 msgid "Go to the last page of documentation"
-msgstr ""
+msgstr "Gå till sista dokumentationssidan"
 
 msgid "Go to the next page of documentation"
-msgstr ""
+msgstr "Gå till nästa dokumentationssida"
 
 msgid "Go to the previous page of documentation"
-msgstr ""
+msgstr "Gå till föregående dokumentationssida"
 
 msgid "Go up the list"
 msgstr "Gå upp i listan"
@@ -9922,7 +9953,7 @@ msgid "H"
 msgstr "H"
 
 msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr ""
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 ny modell"
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = timvis / D: = dagligen / W: = veckovis / M: = månadsvis"
@@ -9977,7 +10008,7 @@ msgid "HDMIin"
 msgstr "HDMIin"
 
 msgid "HDR OSD adjustment"
-msgstr ""
+msgstr "HDR-justering av OSD"
 
 msgid "HDR10 Support"
 msgstr "Stöd för HDR10"
@@ -10047,10 +10078,10 @@ msgid "Hardware information"
 msgstr "Information om hårdvara"
 
 msgid "Hardware latency correction"
-msgstr ""
+msgstr "Korrigering av maskinvarulatens"
 
 msgid "Hardware revision"
-msgstr ""
+msgstr "Maskinvarurevision"
 
 msgid "Hardware serial"
 msgstr "Seriell hårdvara"
@@ -10080,7 +10111,7 @@ msgid "Help Action"
 msgstr "Hjälpåtgärd"
 
 msgid "Help And Visual Feedback"
-msgstr ""
+msgstr "Hjälp och visuell återkoppling"
 
 msgid "Help Screen Information"
 msgstr "Information på hjälpskärmen"
@@ -10173,7 +10204,7 @@ msgid "Hide softcam servername"
 msgstr "Dölj servernamn för softcam"
 
 msgid "Hide sub-menu"
-msgstr ""
+msgstr "Dölj undermeny"
 
 msgid "Hide the InfoBar"
 msgstr "Dölj infofältet"
@@ -10205,7 +10236,7 @@ msgid "Hindi"
 msgstr "Hindi"
 
 msgid "Hip Hop"
-msgstr ""
+msgstr "Hiphop"
 
 msgid "Hiri Motu"
 msgstr "Hiri motu"
@@ -10266,7 +10297,7 @@ msgid "Home"
 msgstr "Hem"
 
 msgid "Home and Garden"
-msgstr ""
+msgstr "Hem och trädgård"
 
 msgid "Homepage"
 msgstr "Startsida"
@@ -10327,7 +10358,7 @@ msgid "Hours Minutes Seconds"
 msgstr "Timmar Minuter Sekunder"
 
 msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs a clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
-msgstr ""
+msgstr "Välj hur maskinvaruavkodaren ska frigöras vid byte till programvaruavkodning. ”Snabb” frigör direkt (snabbare kanalbyte). ”Normal” utför först en korrekt avstängning (stabilare på vissa boxar). ”Aggressiv” återställer avkodaren helt mellan krypterade kanaler."
 
 msgid "Http(s) stream start delay"
 msgstr "Fördröjning av start av Http(s)-ström"
@@ -10380,7 +10411,7 @@ msgid "IP"
 msgstr "IP"
 
 msgid "IP Address"
-msgstr ""
+msgstr "IP-adress"
 
 msgid "IP Address 1"
 msgstr "IP-adress 1"
@@ -10411,13 +10442,13 @@ msgid "IP address of the Stream Relay server used to descramble services that ca
 msgstr "IP-adress till Stream Relay-servern som används för att avkoda tjänster som endast kan avkrypteras via Stream Relay."
 
 msgid "IP protocol"
-msgstr ""
+msgstr "IP-protokoll"
 
 msgid "IPK Installer"
 msgstr "IPK-installatör"
 
 msgid "IPv4 and IPv6"
-msgstr ""
+msgstr "IPv4 och IPv6"
 
 msgid "IPv4 only"
 msgstr "Endast IPv4"
@@ -10443,7 +10474,7 @@ msgid "ISP"
 msgstr "ISP"
 
 msgid "Ice hockey"
-msgstr ""
+msgstr "Ishockey"
 
 msgid "IceTV"
 msgstr "IceTV"
@@ -10534,7 +10565,7 @@ msgid "If an event is interrupted and divided into separate recordings, this fea
 msgstr "Om ett program avbryts och delas in i separata händelser söker plugin-programmet efter de anslutna händelserna."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
-msgstr "Om den är aktiverad kommer boxens utmatningsupplösning att försöka matcha upplösningen för videoinnehållets upplösning"
+msgstr "Om den är aktiverad kommer boxens utmatningsupplösning att försöka matcha upplösningen för videoinnehållets upplösning."
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Om den är aktiverad kommer videon alltid att vara de-interlaced."
@@ -10654,13 +10685,13 @@ msgid "Immediately restart selected devices."
 msgstr "Starta om utvalda enheter omedelbart."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
-msgstr "Importera kanaler och/eller EPG från fjärrmottagarens URL när mottagaren startas"
+msgstr "Importera kanaler och/eller EPG från fjärrmottagarens URL när mottagaren startas."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
-msgstr "Importera kanaler och/eller EPG från fjärrmottagarens URL när mottagaren eller enigma2 startas om"
+msgstr "Importera kanaler och/eller EPG från fjärrmottagarens URL när mottagaren eller enigma2 startas om."
 
 msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
-msgstr "Importera kanaler och/eller EPG från fjärrmottagarens URL, även när mottagaren går ur standby"
+msgstr "Importera kanaler och/eller EPG från fjärrmottagarens URL, även när mottagaren går ur standby."
 
 msgid "Import from remote receiver URL"
 msgstr "Importera från fjärrmottagarens URL"
@@ -10758,7 +10789,7 @@ msgid "Include keyboard data"
 msgstr "Inkludera tangentbordsdata"
 
 msgid "Include network data"
-msgstr ""
+msgstr "Inkludera nätverksdata"
 
 msgid "Include opkg output data"
 msgstr "Inkludera opkg-utdata"
@@ -10769,6 +10800,9 @@ msgstr "Inkludera data för fjärrkontroll"
 msgid "Include screen load data"
 msgstr "Inkludera data för skärmbelastning"
 
+msgid "Include seek data"
+msgstr "Inkludera sökdata"
+
 msgid "Include storage device data"
 msgstr "Inkludera data för lagringsenhet"
 
@@ -10776,7 +10810,7 @@ msgid "Include teletext details"
 msgstr "Inkludera text-tv-detaljer"
 
 msgid "Include text encoding data"
-msgstr ""
+msgstr "Inkludera textkodningsdata"
 
 msgid "Include timer data"
 msgstr "Inkludera timerdata"
@@ -10833,10 +10867,10 @@ msgid "InfoBar"
 msgstr "InfoBar"
 
 msgid "InfoBar And Pause"
-msgstr ""
+msgstr "Informationsfält och paus"
 
 msgid "InfoBar Content And Time Display"
-msgstr ""
+msgstr "Informationsfältets innehåll och tidsvisning"
 
 msgid "InfoBar EPG"
 msgstr "InfoBar EPG"
@@ -10850,10 +10884,10 @@ msgid "InfoBar EPG mode"
 msgstr "InfoBar EPG-läge"
 
 msgid "InfoBar Timing And Appearance"
-msgstr ""
+msgstr "Informationsfältets tidsinställning och utseende"
 
 msgid "InfoBar Visibility And Behavior"
-msgstr ""
+msgstr "Informationsfältets synlighet och beteende"
 
 msgid "InfoBar fade-out speed"
 msgstr "Hastighet för uttoning av InfoBar"
@@ -10862,7 +10896,7 @@ msgid "InfoBar front end data source"
 msgstr "InfoBar front-end datakälla"
 
 msgid "InfoBar picon path"
-msgstr ""
+msgstr "Picon-sökväg för informationsfält"
 
 #
 msgid "Information"
@@ -10876,7 +10910,7 @@ msgid "Infotainment"
 msgstr "Infotainment"
 
 msgid "Inherited channel / frequency"
-msgstr ""
+msgstr "Ärvd kanal/frekvens"
 
 #
 msgid "Init"
@@ -11092,7 +11126,7 @@ msgid "Invalid"
 msgstr "Ogiltig"
 
 msgid "Invalid Help Page"
-msgstr ""
+msgstr "Ogiltig hjälpsida"
 
 #
 msgid "Invalid location!"
@@ -11177,7 +11211,7 @@ msgid "Javanese"
 msgstr "Javanesiska"
 
 msgid "Jazz"
-msgstr ""
+msgstr "Jazz"
 
 msgid "Jersey"
 msgstr "Jersey"
@@ -11186,13 +11220,13 @@ msgid "Job overview"
 msgstr "Översikt över jobbet"
 
 msgid "Join"
-msgstr ""
+msgstr "Anslut"
 
 msgid "Join or leave the configured ZeroTier network"
-msgstr ""
+msgstr "Anslut till eller lämna det konfigurerade ZeroTier-nätverket"
 
 msgid "Joined"
-msgstr ""
+msgstr "Ansluten"
 
 msgid "Jordan"
 msgstr "Jordanien"
@@ -11342,7 +11376,7 @@ msgid "Key"
 msgstr "Nyckel"
 
 msgid "Key Map And Power Buttons"
-msgstr ""
+msgstr "Tangentkarta och strömknappar"
 
 #
 msgid "Keyboard"
@@ -11370,7 +11404,7 @@ msgid "Kodi"
 msgstr "Kodi"
 
 msgid "Kodi Add-on Packages"
-msgstr ""
+msgstr "Kodi-tilläggspaket"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
@@ -11414,7 +11448,7 @@ msgid "LAN connection"
 msgstr "LAN-anslutning"
 
 msgid "LAN link"
-msgstr ""
+msgstr "LAN-länk"
 
 msgid "LCD scroll speed"
 msgstr "LCD-skrollhastighet"
@@ -11450,7 +11484,7 @@ msgid "LED Deep Standby color"
 msgstr "LED avstängningsfärg"
 
 msgid "LED Indicators"
-msgstr ""
+msgstr "LED-indikatorer"
 
 msgid "LED Normal"
 msgstr "LED Normal"
@@ -11490,16 +11524,16 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "LNB 1"
-msgstr ""
+msgstr "LNB 1"
 
 msgid "LNB 1 and the target LNB use different Unicable protocols"
-msgstr ""
+msgstr "LNB 1 och mål-LNB:t använder olika Unicable-protokoll"
 
 msgid "LNB current:"
-msgstr ""
+msgstr "LNB-ström:"
 
 msgid "LNB current: not available"
-msgstr ""
+msgstr "LNB-ström: inte tillgänglig"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "LNB/Switch Uppstartstid [ms]"
@@ -11589,10 +11623,10 @@ msgid "Latvian"
 msgstr "Lettiska"
 
 msgid "Layout And Fonts"
-msgstr ""
+msgstr "Layout och typsnitt"
 
 msgid "Leave"
-msgstr ""
+msgstr "Lämna"
 
 #
 msgid "Leave DVD player?"
@@ -11603,7 +11637,7 @@ msgid "Leave movie player"
 msgstr "Lämna filmspelare"
 
 msgid "Leave this at 0 to derive the position from the LNB number and device profile. Enter 1 to 64 only for a reprogrammed Unicable device."
-msgstr ""
+msgstr "Låt detta vara 0 för att härleda positionen från LNB-numret och enhetsprofilen. Ange 1 till 64 endast för en omprogrammerad Unicable-enhet."
 
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Låt detta vara inställt på \"Yes\" om du inte helt förstår varför du justerar det."
@@ -11641,7 +11675,7 @@ msgid "Left, wrapped"
 msgstr "Vänster, lindad"
 
 msgid "Legacy (SMB1)"
-msgstr ""
+msgstr "Äldre (SMB1)"
 
 msgid "Legacy mode"
 msgstr "Legacy mode"
@@ -11706,7 +11740,7 @@ msgid "Limit the characters that can be used in recording filenames to (7 bit) A
 msgstr "Begränsa de tecken som kan användas i inspelningsfilnamn till (7 bitars) ASCII. Detta säkerställer kompatibilitet med operativsystem eller filsystem med begränsade teckenuppsättningar."
 
 msgid "Limit the search to the satellite group normally used by this installation."
-msgstr ""
+msgstr "Begränsa sökningen till den satellitgrupp som normalt används av denna installation."
 
 #
 msgid "Limit west"
@@ -11716,7 +11750,7 @@ msgid "Limited memory size, swap file required"
 msgstr "Begränsad minnesstorlek, swap-fil krävs"
 
 msgid "Limited range (64..940)"
-msgstr ""
+msgstr "Begränsat intervall (64–940)"
 
 #
 msgid "Limits cancelled"
@@ -11745,7 +11779,7 @@ msgid "Link detected"
 msgstr "Länk upptäckt"
 
 msgid "Link speed"
-msgstr ""
+msgstr "Länkhastighet"
 
 msgid "Link target"
 msgstr "Länk"
@@ -11758,7 +11792,7 @@ msgid "Links"
 msgstr "Länkar"
 
 msgid "List Appearance And Sorting"
-msgstr ""
+msgstr "Listutseende och sortering"
 
 msgid "List Navigation Actions"
 msgstr "Åtgärder för listnavigering"
@@ -11826,7 +11860,7 @@ msgid "Loading information, please wait..."
 msgstr "Laddar information, vänta..."
 
 msgid "Loading skin..."
-msgstr ""
+msgstr "Läser in skal …"
 
 msgid "Loading slot information, please wait..."
 msgstr "Läser in platsinformation, vänta..."
@@ -11838,13 +11872,13 @@ msgid "Local information"
 msgstr "Lokal information"
 
 msgid "Local or Regional"
-msgstr ""
+msgstr "Lokalt eller regionalt"
 
 msgid "Local receiver"
 msgstr "Lokal box"
 
 msgid "Local share"
-msgstr ""
+msgstr "Lokal resurs"
 
 msgid "Local time"
 msgstr "Lokal tid"
@@ -11922,7 +11956,7 @@ msgid "Log Manager"
 msgstr "Loggansvarig"
 
 msgid "Log Retention And Access"
-msgstr ""
+msgstr "Loggkvarhållning och åtkomst"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11952,7 +11986,7 @@ msgid "Login to IceTV server"
 msgstr "Logga in på IceTV-servern"
 
 msgid "Logo"
-msgstr ""
+msgstr "Logotyp"
 
 msgid "Logs Settings"
 msgstr "Inställningar för loggar"
@@ -11995,7 +12029,7 @@ msgid "Lower Framerate saves CPU Time."
 msgstr "Lägre framerate sparar CPU-tid."
 
 msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
-msgstr ""
+msgstr "Nedre gräns för klippning av RGB-utdata. ”Hela intervallet” = ingen nedre klippning, ”Begränsat intervall” begränsar RGB-utdata till 64 (sändningssäkert)."
 
 msgid "Lower USB"
 msgstr "Lägre USB"
@@ -12029,7 +12063,7 @@ msgid "M2k Packages"
 msgstr "M2k Förpackningar"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC-adress"
 
 msgid "MAC address"
 msgstr "MAC-adress"
@@ -12078,7 +12112,7 @@ msgid "Madagascar"
 msgstr "Madagaskar"
 
 msgid "Magazine"
-msgstr ""
+msgstr "Magasin"
 
 msgid "Magazines/Reports/Documentary"
 msgstr "tidskrifter/reportage/dokumentär"
@@ -12100,7 +12134,7 @@ msgid "Make"
 msgstr "Märke"
 
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
-msgstr "Gör det möjligt att manuellt starta kanalimporten och/eller EPG via tilläggsmenyn"
+msgstr "Gör det möjligt att manuellt starta kanalimporten och/eller EPG via tilläggsmenyn."
 
 msgid "Make this mark an 'in' point"
 msgstr "Gör detta märke till en \"in\"-punkt"
@@ -12151,7 +12185,7 @@ msgid "Manage Plugins"
 msgstr "Hantera tillägg"
 
 msgid "Manage Plugins. This will remove/install Plugins on your receiver."
-msgstr "Hantera plugins. Detta kommer att ta bort/installera Plugins på din box"
+msgstr "Hantera plugins. Detta kommer att ta bort/installera Plugins på din box."
 
 msgid "Manage and explore directories and files."
 msgstr "Hantera och utforska kataloger och filer."
@@ -12284,13 +12318,13 @@ msgid "Maximum space used (MB)"
 msgstr "Maximalt använt utrymme (MB)"
 
 msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
-msgstr ""
+msgstr "Längsta tid att vänta på den första avkodningsnyckeln (CW) innan avkodaren startas. ”Inaktiverad” startar avkodaren direkt utan att vänta."
 
 msgid "Mayotte"
 msgstr "Mayotte"
 
 msgid "Measured current"
-msgstr ""
+msgstr "Uppmätt ström"
 
 msgid "Media"
 msgstr "Media"
@@ -12299,7 +12333,7 @@ msgid "Media Center"
 msgstr "Media Center"
 
 msgid "Media Files And Navigation"
-msgstr ""
+msgstr "Mediefiler och navigering"
 
 #
 msgid "Media Player"
@@ -12390,7 +12424,7 @@ msgid "Menu style"
 msgstr "Menytyp"
 
 msgid "Menus And Setup"
-msgstr ""
+msgstr "Menyer och inställningar"
 
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Sammanfoga EPG för sändningar med IceTV"
@@ -12442,7 +12476,7 @@ msgid "MiniTV"
 msgstr "MiniTV"
 
 msgid "MiniTV And PiP"
-msgstr ""
+msgstr "Mini-TV och bild-i-bild"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV med OSD"
@@ -12452,7 +12486,7 @@ msgid "Minimum age %d years"
 msgstr "Minimiålder %d år"
 
 msgid "Minimum difference between idle and moving current."
-msgstr ""
+msgstr "Minsta skillnad mellan viloström och ström under rörelse."
 
 msgid "Minimum send interval"
 msgstr "Minsta sändningsintervall"
@@ -12576,19 +12610,19 @@ msgid "Motor running timeout"
 msgstr "Timeout för motorkörning"
 
 msgid "Motor sport"
-msgstr ""
+msgstr "Motorsport"
 
 msgid "Motoring"
 msgstr "bilkörning"
 
 msgid "Motors"
-msgstr ""
+msgstr "Motor"
 
 msgid "Mount"
 msgstr "Montera"
 
 msgid "Mount Context Menu"
-msgstr ""
+msgstr "Sammanhangsmeny för montering"
 
 msgid "Mount Point"
 msgstr "Monteringspunkt"
@@ -12597,19 +12631,19 @@ msgid "Mount Setup"
 msgstr "Montering av fäste"
 
 msgid "Mount at boot time (fstab)"
-msgstr ""
+msgstr "Montera vid uppstart (fstab)"
 
 msgid "Mount failed"
 msgstr "Montering misslyckades"
 
 msgid "Mount mode"
-msgstr ""
+msgstr "Monteringsläge"
 
 msgid "Mount on first access (autofs)"
-msgstr ""
+msgstr "Montera vid första åtkomst (autofs)"
 
 msgid "Mount or unmount the selected share"
-msgstr ""
+msgstr "Montera eller avmontera den valda resursen"
 
 msgid "Mount point"
 msgstr "Monteringspunkt"
@@ -12618,7 +12652,7 @@ msgid "Mount root file system."
 msgstr "Montera rotfilsystemet."
 
 msgid "Mounted"
-msgstr ""
+msgstr "Monterad"
 
 msgid "Mounts"
 msgstr "Fästen"
@@ -12627,7 +12661,7 @@ msgid "Move"
 msgstr "Flytta"
 
 msgid "Move Down"
-msgstr ""
+msgstr "Flytta ned"
 
 msgid "Move Left/Right"
 msgstr "Flytta vänster/höger"
@@ -12652,7 +12686,7 @@ msgid "Move PiP to main picture"
 msgstr "Flytta PiP till huvudbilden"
 
 msgid "Move Up"
-msgstr ""
+msgstr "Flytta upp"
 
 msgid "Move Up/Down"
 msgstr "Flytta upp/ner"
@@ -12709,10 +12743,10 @@ msgid "Move east"
 msgstr "Flytta österut"
 
 msgid "Move item down"
-msgstr ""
+msgstr "Flytta objekt ned"
 
 msgid "Move item up"
-msgstr ""
+msgstr "Flytta objekt upp"
 
 msgid "Move job completed."
 msgstr "Flyttjobbet slutfört."
@@ -12724,13 +12758,13 @@ msgid "Move job queued."
 msgstr "Flyttjobb i kö."
 
 msgid "Move left a item"
-msgstr ""
+msgstr "Flytta ett objekt åt vänster"
 
 msgid "Move only highlighted file"
 msgstr "Flytta endast markerad fil"
 
 msgid "Move right a item"
-msgstr ""
+msgstr "Flytta ett objekt åt höger"
 
 msgid "Move the current bookmark down"
 msgstr "Flytta det aktuella bokmärket nedåt"
@@ -12782,7 +12816,7 @@ msgid "Move these directories/files?"
 msgstr "Flytta dessa kataloger/filer?"
 
 msgid "Move to first item / screen"
-msgstr ""
+msgstr "Flytta till första objektet/skärmen"
 
 msgid "Move to first line"
 msgstr "Flytta till första raden"
@@ -12797,7 +12831,7 @@ msgid "Move to home of list"
 msgstr "Flytta till början av listan"
 
 msgid "Move to last item / screen"
-msgstr ""
+msgstr "Flytta till sista objektet/skärmen"
 
 msgid "Move to last line"
 msgstr "Flytta till sista raden"
@@ -12821,10 +12855,10 @@ msgid "Move to previous marker"
 msgstr "Flytta till föregående markör"
 
 msgid "Move to the Adapter list"
-msgstr ""
+msgstr "Flytta till adapterlistan"
 
 msgid "Move to the Saved Wi-Fi Networks list"
-msgstr ""
+msgstr "Flytta till listan över sparade Wi-Fi-nätverk"
 
 msgid "Move to the first item on the current line"
 msgstr "Flytta till första objektet på den aktuella raden"
@@ -12930,7 +12964,7 @@ msgid "Movie List"
 msgstr "Filmlista"
 
 msgid "Movie List And Playback Behavior"
-msgstr ""
+msgstr "Filmlista och uppspelningsbeteende"
 
 #
 msgid "Movie Player Actions"
@@ -12990,7 +13024,7 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "Multi-path mode"
-msgstr ""
+msgstr "Flersökvägsläge"
 
 msgid "MultiBoot"
 msgstr "MultiBoot"
@@ -13079,13 +13113,13 @@ msgid "NFS Server Settings"
 msgstr "NFS-Konfiguration"
 
 msgid "NFS Setup Actions"
-msgstr ""
+msgstr "Åtgärder för NFS-konfiguration"
 
 msgid "NFS threads"
-msgstr ""
+msgstr "NFS-trådar"
 
 msgid "NFS version"
-msgstr ""
+msgstr "NFS-version"
 
 msgid "NIM"
 msgstr "NIM"
@@ -13145,7 +13179,7 @@ msgid "Narration"
 msgstr "Berättelse"
 
 msgid "National music"
-msgstr ""
+msgstr "Nationell musik"
 
 msgid "Native"
 msgstr "Inbyggd"
@@ -13175,10 +13209,10 @@ msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. O
 msgstr "Navigera uppåt/nedåt med UP/DOWN-knapparna och bläddra uppåt/nedåt med LEFT/RIGHT. OK för att utföra den åtgärd som beskrivs i den aktuella markerade hjälpen."
 
 msgid "Navigation And Button Assignments"
-msgstr ""
+msgstr "Navigering och knapptilldelningar"
 
 msgid "Navigation And Time Range"
-msgstr ""
+msgstr "Navigering och tidsomfång"
 
 msgid "Ndonga"
 msgstr "Ndonga"
@@ -13205,19 +13239,19 @@ msgstr "Nätverk"
 
 #, python-format
 msgid "Network Adapter '%s' Settings"
-msgstr ""
+msgstr "Inställningar för nätverksadaptern ”%s”"
 
 msgid "Network Adapter Selection"
 msgstr "Val av nätverksadapter"
 
 msgid "Network Adapter Settings"
-msgstr ""
+msgstr "Inställningar för nätverksadapter"
 
 msgid "Network Browser"
 msgstr "Nätverkswebbläsare"
 
 msgid "Network Credentials"
-msgstr ""
+msgstr "Nätverksautentiseringsuppgifter"
 
 msgid "Network ID"
 msgstr "Nätverks-ID"
@@ -13238,22 +13272,22 @@ msgid "Network Log Actions"
 msgstr "Åtgärder för nätverkslogg"
 
 msgid "Network Mount Manager Actions"
-msgstr ""
+msgstr "Åtgärder för nätverksmonteringshanteraren"
 
 msgid "Network Mount Settings"
-msgstr ""
+msgstr "Inställningar för nätverksmontering"
 
 msgid "Network Mounts Overview"
-msgstr ""
+msgstr "Översikt över nätverksmonteringar"
 
 msgid "Network Neighbourhood"
 msgstr "Nätverk Grannskap"
 
 msgid "Network Overview"
-msgstr ""
+msgstr "Nätverksöversikt"
 
 msgid "Network Overview Actions"
-msgstr ""
+msgstr "Åtgärder för nätverksöversikt"
 
 msgid "Network Packages"
 msgstr "Nätverkspaket"
@@ -13272,52 +13306,52 @@ msgid "Network Setup Actions"
 msgstr "Åtgärder för nätverksinställning"
 
 msgid "Network Share Actions"
-msgstr ""
+msgstr "Åtgärder för nätverksresurser"
 
 msgid "Network Shares Browser"
-msgstr ""
+msgstr "Bläddrare för nätverksresurser"
 
 msgid "Network Shares Context Menu"
-msgstr ""
+msgstr "Sammanhangsmeny för nätverksresurser"
 
 msgid "Network Test"
 msgstr "Nätverkstest"
 
 msgid "Network Test Actions"
-msgstr ""
+msgstr "Åtgärder för nätverkstest"
 
 #, python-format
 msgid "Network Test For '%s'"
-msgstr ""
+msgstr "Nätverkstest för ”%s”"
 
 msgid "Network Wi-Fi Settings"
-msgstr ""
+msgstr "Nätverks- och Wi-Fi-inställningar"
 
 msgid "Network adapter disabled."
-msgstr ""
+msgstr "Nätverksadaptern är inaktiverad."
 
 msgid "Network adapter enabled."
-msgstr ""
+msgstr "Nätverksadaptern är aktiverad."
 
 msgid "Network adapter not connected to a network!"
 msgstr "Nätverksadaptern är inte ansluten till ett nätverk!"
 
 msgid "Network adapter setup result:"
-msgstr ""
+msgstr "Resultat av nätverksadapterkonfiguration:"
 
 msgid "Network adapter status"
-msgstr ""
+msgstr "Status för nätverksadapter"
 
 msgid "Network address"
 msgstr "Nätverksadress"
 
 #, python-format
 msgid "Network cable connected (%s)"
-msgstr ""
+msgstr "Nätverkskabel ansluten (%s)"
 
 #, python-format
 msgid "Network cable disconnected (%s)"
-msgstr ""
+msgstr "Nätverkskabel frånkopplad (%s)"
 
 msgid "Network configuration..."
 msgstr "Nätverkskonfiguration..."
@@ -13329,6 +13363,10 @@ msgid ""
 "Interface: %s\n"
 "IP address: %s"
 msgstr ""
+"Nätverksanslutningen upprättades.\n"
+"\n"
+"Gränssnitt: %s\n"
+"IP-adress: %s"
 
 msgid "Network information"
 msgstr "Nätverksinformation"
@@ -13342,7 +13380,7 @@ msgid "Network menu"
 msgstr "Meny för nätverk"
 
 msgid "Network metric"
-msgstr ""
+msgstr "Nätverksmetrik"
 
 #
 msgid "Network mounts"
@@ -13362,7 +13400,7 @@ msgid "Network test..."
 msgstr "Nätverkstest..."
 
 msgid "Network-ID"
-msgstr ""
+msgstr "Nätverks-ID"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
@@ -13400,7 +13438,7 @@ msgid "New Storage Device"
 msgstr "Ny lagringsenhet"
 
 msgid "New Wi-Fi"
-msgstr ""
+msgstr "Nytt Wi-Fi"
 
 msgid "New Zealand"
 msgstr "Nya Zeeland"
@@ -13441,7 +13479,7 @@ msgid "News"
 msgstr "Nyheter"
 
 msgid "News and Weather"
-msgstr ""
+msgstr "Nyheter och väder"
 
 msgid "News magazine"
 msgstr "nyhetsmagasin"
@@ -13450,7 +13488,7 @@ msgid "News/Current affairs"
 msgstr "Nyheter/aktuella frågor"
 
 msgid "News/Documentary"
-msgstr ""
+msgstr "Nyheter/dokumentär"
 
 msgid "News/Weather report"
 msgstr "nyheter/väderrapport"
@@ -13512,13 +13550,16 @@ msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk hittades eller hårddisken initialiserades inte!"
 
 msgid "No IP address"
-msgstr ""
+msgstr "Ingen IP-adress"
 
 msgid ""
 "No IP address was received.\n"
 "\n"
 "The network connection could not be established."
 msgstr ""
+"Ingen IP-adress togs emot.\n"
+"\n"
+"Nätverksanslutningen kunde inte upprättas."
 
 msgid "No Internet connection"
 msgstr "Ingen internetanslutning"
@@ -13556,7 +13597,7 @@ msgid "No card inserted!"
 msgstr "Inget kort isatt!"
 
 msgid "No category"
-msgstr ""
+msgstr "Ingen kategori"
 
 #
 msgid "No channel"
@@ -13604,13 +13645,13 @@ msgid "No free tuner!"
 msgstr "Ingen gratis tuner!"
 
 msgid "No gateway"
-msgstr ""
+msgstr "Ingen gateway"
 
 msgid "No hard disks detected."
 msgstr "Inga hårddiskar upptäckta."
 
 msgid "No hosts found yet - still scanning..."
-msgstr ""
+msgstr "Inga värdar hittades ännu – söker fortfarande …"
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Inga loggfiler hittades så debug-loggar är inte tillgängliga!"
@@ -13626,7 +13667,7 @@ msgid "No network storage detected."
 msgstr "Ingen nätverkslagring har upptäckts."
 
 msgid "No networks found."
-msgstr ""
+msgstr "Inga nätverk hittades."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Antal artiklar som byts (ökning eller minskning)"
@@ -13656,7 +13697,7 @@ msgid "No services/providers selected"
 msgstr "Inga tjänster/leverantörer valda"
 
 msgid "No shares found."
-msgstr ""
+msgstr "Inga resurser hittades."
 
 msgid "No slot images found"
 msgstr "Inga slotbilder hittades"
@@ -13675,7 +13716,7 @@ msgid "No suitable sat tuner found!"
 msgstr "Ingen lämplig sat-tuner hittades!"
 
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
-msgstr ""
+msgstr "Inga DAB+-flöden som stöds är tillgängliga för satellitpositionerna som är konfigurerade på denna box."
 
 msgid "No system softcam configured!"
 msgstr "Ingen system softcam konfigurerad!"
@@ -13734,7 +13775,7 @@ msgid "No updates available."
 msgstr "Inga uppdateringar tillgängliga."
 
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
-msgstr ""
+msgstr "Inga giltiga DAB+-flöden är konfigurerade. Kontrollera /etc/enigma2/dab.xml."
 
 msgid "No valid device detected - Press OK"
 msgstr "Ingen giltig enhet har upptäckts - Tryck på OK"
@@ -13842,7 +13883,7 @@ msgid "Not Classified"
 msgstr "Ej klassificerad"
 
 msgid "Not Connected"
-msgstr ""
+msgstr "Inte ansluten"
 
 msgid "Not Defined"
 msgstr "Inte definierad"
@@ -13855,13 +13896,13 @@ msgid "Not Shown"
 msgstr "Visas ej"
 
 msgid "Not a valid tuner"
-msgstr ""
+msgstr "Inte en giltig mottagare"
 
 msgid "Not associated"
 msgstr "Inte associerad"
 
 msgid "Not available"
-msgstr ""
+msgstr "Inte tillgänglig"
 
 #
 msgid "Not configured"
@@ -13893,13 +13934,13 @@ msgstr ""
 "Sökväg: %s"
 
 msgid "Not found"
-msgstr ""
+msgstr "Hittades inte"
 
 msgid "Not joined. Press Yellow to join."
-msgstr ""
+msgstr "Inte ansluten. Tryck på gul knapp för att ansluta."
 
 msgid "Not mounted"
-msgstr ""
+msgstr "Inte monterad"
 
 msgid "Not required"
 msgstr "Krävs inte"
@@ -13933,7 +13974,7 @@ msgid "Nothing, just leave this menu"
 msgstr "Ingenting, lämna bara denna meny"
 
 msgid "Notifications And Display"
-msgstr ""
+msgstr "Aviseringar och visning"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -13955,7 +13996,7 @@ msgid "Number of IP Addresses"
 msgstr "Antal IP-adresser"
 
 msgid "Number of Slots"
-msgstr ""
+msgstr "Antal kortplatser"
 
 msgid "Number of digits in service number"
 msgstr "Antal siffror i servicenumret"
@@ -13998,7 +14039,7 @@ msgid "OK button mode"
 msgstr "OK-knappens läge"
 
 msgid "OK checks the currently tuned transponder."
-msgstr ""
+msgstr "OK kontrollerar den transponder som är inställd just nu."
 
 #
 msgid "OK, guide me through the upgrade process"
@@ -14008,13 +14049,13 @@ msgid "ONID"
 msgstr "ONID"
 
 msgid "ONID/TSID check timed out"
-msgstr ""
+msgstr "Tidsgränsen för ONID/TSID-kontrollen löpte ut"
 
 msgid "ONID/TSID does not match"
-msgstr ""
+msgstr "ONID/TSID stämmer inte överens"
 
 msgid "ONID/TSID valid"
-msgstr ""
+msgstr "ONID/TSID är giltigt"
 
 msgid "OSCam Info"
 msgstr "OSCam Info"
@@ -14029,7 +14070,7 @@ msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Åtgärder"
 
 msgid "OSCamInfo Capability Actions"
-msgstr ""
+msgstr "OSCamInfo-åtgärder för funktioner"
 
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo Loggåtgärder"
@@ -14039,7 +14080,7 @@ msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s Rättigheter för '%s'"
 
 msgid "OSCamInfo: Capabilities"
-msgstr ""
+msgstr "OSCamInfo: Funktioner"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -14168,13 +14209,13 @@ msgid "Only on startup"
 msgstr "Endast vid uppstart"
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
-msgstr ""
+msgstr "Använd endast DNS-servrar som implementerar DNS-over-HTTPS-protokollet. DNS-uppslagningar görs då via det krypterade HTTPS-protokollet."
 
 msgid "Only use DNS servers implementing the DNSCrypt protocol."
-msgstr ""
+msgstr "Använd endast DNS-servrar som implementerar DNSCrypt-protokollet."
 
 msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
-msgstr ""
+msgstr "Använd endast DNS-servrar som implementerar Oblivious DNS-over-HTTPS-protokollet. Det ger ett extra integritetslager genom att lägga till ett proxylager i DNS-over-HTTPS-begäran."
 
 msgid "Open"
 msgstr "Öppen"
@@ -14338,22 +14379,22 @@ msgid "Open the Channel Selection Settings screen"
 msgstr "Öppna skärmen Inställningar för kanalval"
 
 msgid "Open the Context Menu for the selected item"
-msgstr ""
+msgstr "Öppna sammanhangsmenyn för det valda objektet"
 
 msgid "Open the Image information"
 msgstr "Öppna bildinformationen"
 
 msgid "Open the Mount Context Menu"
-msgstr ""
+msgstr "Öppna sammanhangsmenyn för montering"
 
 msgid "Open the Network Adapter Settings for the selected item"
-msgstr ""
+msgstr "Öppna inställningarna för nätverksadaptern för det valda objektet"
 
 msgid "Open the Network Shares Browser"
-msgstr ""
+msgstr "Öppna bläddraren för nätverksresurser"
 
 msgid "Open the Network Shares Context Menu"
-msgstr ""
+msgstr "Öppna sammanhangsmenyn för nätverksresurser"
 
 msgid "Open the Plugin Browser"
 msgstr "Öppna Plugin-webbläsaren"
@@ -14377,7 +14418,7 @@ msgid "Open the single service EPG view"
 msgstr "Öppna EPG-vyn för en enda tjänst"
 
 msgid "Open tuner setup"
-msgstr ""
+msgstr "Öppna mottagarinställningar"
 
 msgid "Open with File Commander"
 msgstr "Öppna med File Commander"
@@ -14389,16 +14430,16 @@ msgid "OpenViX Packages"
 msgstr "OpenViX-paket"
 
 msgid "OpenWebif Connection"
-msgstr ""
+msgstr "OpenWebif-anslutning"
 
 msgid "OpenWebif picon path"
-msgstr ""
+msgstr "Picon-sökväg för OpenWebif"
 
 msgid "Opening network adapter configuration..."
-msgstr ""
+msgstr "Öppnar nätverksadapterkonfiguration …"
 
 msgid "Opera"
-msgstr ""
+msgstr "Opera"
 
 msgid "Operating LED status in Deep Standby"
 msgstr "Status för drift-LED i djupt standby-läge"
@@ -14426,10 +14467,10 @@ msgid "Option to enable the hardware Standby timer."
 msgstr "Alternativ för att aktivera standby-timern för maskinvara."
 
 msgid "Optional arguments"
-msgstr ""
+msgstr "Valfria argument"
 
 msgid "Optional delay between CEC commands when sending a series of commands. Leave disabled unless a device requires slower transmission."
-msgstr ""
+msgstr "Valfri fördröjning mellan CEC-kommandon när en serie kommandon skickas. Låt alternativet vara inaktiverat om inte en enhet kräver långsammare överföring."
 
 msgid "Optional parameter"
 msgstr "Valfri parameter"
@@ -14477,7 +14518,7 @@ msgid "Other Actions"
 msgstr "Andra åtgärder"
 
 msgid "Other OSD Elements"
-msgstr ""
+msgstr "Övriga OSD-element"
 
 msgid "Other Packages"
 msgstr "Övriga paket"
@@ -14575,7 +14616,7 @@ msgid "PGS file"
 msgstr "PGS fil"
 
 msgid "PIN"
-msgstr ""
+msgstr "PIN-kod"
 
 msgid "PIN code needed"
 msgstr "PIN-kod behövs"
@@ -14609,7 +14650,7 @@ msgid "Package"
 msgstr "Paket"
 
 msgid "Package Categories"
-msgstr ""
+msgstr "Paketkategorier"
 
 #
 msgid "Package Manager"
@@ -14728,7 +14769,7 @@ msgstr "Godkänd"
 
 #, python-format
 msgid "Pass %d/%d"
-msgstr ""
+msgstr "Genomgång %d/%d"
 
 msgid "Pass-through"
 msgstr "Genomgång"
@@ -14747,7 +14788,7 @@ msgid "Password (httpwd)"
 msgstr "Lösenord (httpwd)"
 
 msgid "Password / Key"
-msgstr ""
+msgstr "Lösenord/nyckel"
 
 msgid "Password Actions"
 msgstr "Lösenordsåtgärder"
@@ -14870,7 +14911,7 @@ msgid "Picon Packages"
 msgstr "Picon Förpackningar"
 
 msgid "Picon Settings"
-msgstr ""
+msgstr "Picon-inställningar"
 
 msgid "Picon and service name"
 msgstr "Picon och servicenamn"
@@ -14880,20 +14921,20 @@ msgstr "Picon installationsplats"
 
 #, python-format
 msgid "Picon path %s"
-msgstr ""
+msgstr "Picon-sökväg %s"
 
 #, python-format
 msgid "Picon path %s is in use and cannot be removed!"
-msgstr ""
+msgstr "Picon-sökvägen %s används och kan inte tas bort!"
 
 msgid "Picon search mode"
-msgstr ""
+msgstr "Picon-sökläge"
 
 msgid "Picon width"
 msgstr "Picon bredd"
 
 msgid "Picture In Picture"
-msgstr ""
+msgstr "Bild-i-bild"
 
 msgid "Picture Information"
 msgstr "Bildinformation"
@@ -14934,7 +14975,7 @@ msgid "Pilot"
 msgstr "Pilot"
 
 msgid "Pinging..."
-msgstr ""
+msgstr "Pingar …"
 
 msgid "Pink"
 msgstr "rosa"
@@ -14949,7 +14990,7 @@ msgid "Pixels\n"
 msgstr "Pixlar\n"
 
 msgid "Plano-stereoscopic"
-msgstr ""
+msgstr "Planostereoskopisk"
 
 msgid "Platform"
 msgstr "Plattform"
@@ -15045,10 +15086,10 @@ msgid "Play the selected service"
 msgstr "Spela upp den valda tjänsten"
 
 msgid "Playback And Saving"
-msgstr ""
+msgstr "Uppspelning och sparande"
 
 msgid "Playback And Status"
-msgstr ""
+msgstr "Uppspelning och status"
 
 msgid "Playback Settings"
 msgstr "Inställningar för uppspelning"
@@ -15385,7 +15426,7 @@ msgid "Polish"
 msgstr "Polska"
 
 msgid "Politics"
-msgstr ""
+msgstr "Politik"
 
 msgid "Popular culture/Traditional arts"
 msgstr "populärkultur/traditionell konst"
@@ -15452,7 +15493,7 @@ msgid "Positioner Setup Log"
 msgstr "Protokoll för inställning av positionerare"
 
 msgid "Positioner actions"
-msgstr ""
+msgstr "Positioneraråtgärder"
 
 #
 msgid "Positioner setup"
@@ -15522,7 +15563,7 @@ msgid "Prefer subtitles stored by service"
 msgstr "Föredra undertexter lagrade efter tjänst"
 
 msgid "Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority."
-msgstr ""
+msgstr "Föredragen anslutningsprioritet när flera Wi-Fi-profiler är konfigurerade. Lägre tal ger högre prioritet."
 
 msgid "Preferred tuner"
 msgstr "Rekommenderad tuner"
@@ -15717,13 +15758,13 @@ msgid "Prevsong"
 msgstr "Prevsong"
 
 msgid "Primary DNS (IPv4)"
-msgstr ""
+msgstr "Primär DNS (IPv4)"
 
 msgid "Primary DNS (IPv6)"
-msgstr ""
+msgstr "Primär DNS (IPv6)"
 
 msgid "Prime Time"
-msgstr ""
+msgstr "Bästa sändningstid"
 
 msgid "Prime time"
 msgstr "Bästa tiden"
@@ -15739,7 +15780,7 @@ msgid "Priority"
 msgstr "Prioritet"
 
 msgid "Privacy level"
-msgstr ""
+msgstr "Integritetsnivå"
 
 msgid "Problem starting scan"
 msgstr "Problem med att starta skanning"
@@ -15927,7 +15968,7 @@ msgid "Put TV in Standby"
 msgstr "Sätt TV:n i standby-läge"
 
 msgid "Put your AV Receiver or Soundbar in Standby"
-msgstr ""
+msgstr "Sätt AV-receivern eller soundbaren i vänteläge"
 
 msgid "Python"
 msgstr "Python"
@@ -16059,13 +16100,13 @@ msgid "RF Output Settings"
 msgstr "Inställningar för RF-utgång"
 
 msgid "RGB clamp (lower)"
-msgstr ""
+msgstr "RGB-begränsning (nedre)"
 
 msgid "RGB clamp (upper)"
-msgstr ""
+msgstr "RGB-begränsning (övre)"
 
 msgid "Racing"
-msgstr ""
+msgstr "Tävlingar"
 
 msgid "Radio"
 msgstr "Radioknapp"
@@ -16095,16 +16136,16 @@ msgid "Re-enter new PIN"
 msgstr "Ange ny PIN-kod igen"
 
 msgid "Reachable"
-msgstr ""
+msgstr "Nås"
 
 msgid "Read Only"
-msgstr ""
+msgstr "Skrivskyddad"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Läs användardata från oscam.conf"
 
 msgid "Read block size"
-msgstr ""
+msgstr "Läsblockstorlek"
 
 msgid "Read-Only"
 msgstr "Skrivskyddad"
@@ -16170,7 +16211,7 @@ msgid "Really start Kodi and stop user interface now?"
 msgstr "Starta verkligen Kodi och stoppa användargränssnittet nu?"
 
 msgid "Really start RetroGaming and stop the user interface now?"
-msgstr ""
+msgstr "Vill du verkligen starta RetroGaming och stoppa användargränssnittet nu?"
 
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Uppgraderar du verkligen frontpanelen och startar om nu?"
@@ -16269,16 +16310,16 @@ msgid "Recording"
 msgstr "Spelar in"
 
 msgid "Recording And Status Indicators"
-msgstr ""
+msgstr "Indikatorer för inspelning och status"
 
 msgid "Recording Filenames And Data"
-msgstr ""
+msgstr "Inspelningsfilnamn och data"
 
 msgid "Recording Locations"
-msgstr ""
+msgstr "Inspelningsplatser"
 
 msgid "Recording Preparation And Margins"
-msgstr ""
+msgstr "Inspelningsförberedelse och marginaler"
 
 msgid "Recording Settings"
 msgstr "Inställningar för inspelning"
@@ -16360,7 +16401,7 @@ msgid "Recovery"
 msgstr "Återhämtning"
 
 msgid "Recovery And Hardware"
-msgstr ""
+msgstr "Återställning och maskinvara"
 
 #
 msgid "Recovery Mode"
@@ -16399,7 +16440,7 @@ msgid "Refresh"
 msgstr "Uppdatera"
 
 msgid "Refresh ZeroTier status information"
-msgstr ""
+msgstr "Uppdatera ZeroTier-statusinformation"
 
 msgid "Refresh every"
 msgstr "Uppdatera varje (i timmar)"
@@ -16443,7 +16484,7 @@ msgid "Religion"
 msgstr "Religion"
 
 msgid "Religious"
-msgstr ""
+msgstr "Religiöst"
 
 msgid "Reload Bookmarks"
 msgstr "Ladda om bokmärken"
@@ -16461,7 +16502,7 @@ msgid "Reload blacklists"
 msgstr "Ladda om svarta listor"
 
 msgid "Reload the skin without restarting the GUI when switching skins."
-msgstr ""
+msgstr "Ladda om skalet utan att starta om det grafiska gränssnittet när du byter skal."
 
 msgid "Reloading EPG Cache..."
 msgstr "Laddar om EPG-cache..."
@@ -16506,10 +16547,10 @@ msgid "Remote Control Code Settings"
 msgstr "Inställningar för fjärrkontrollens kod"
 
 msgid "Remote Receiver Connection"
-msgstr ""
+msgstr "Anslutning till fjärrmottagare"
 
 msgid "Remote Timers"
-msgstr ""
+msgstr "Fjärrtimrar"
 
 msgid "Remote control information"
 msgstr "Information om fjärrkontrollen"
@@ -16518,7 +16559,7 @@ msgid "Remote control type"
 msgstr "Typ av fjärrkontroll"
 
 msgid "Remote path"
-msgstr ""
+msgstr "Fjärrsökväg"
 
 msgid "Remote receiver"
 msgstr "Fjärrkontroll"
@@ -16555,7 +16596,7 @@ msgid "Remove Confirmation"
 msgstr "Ta bort bekräftelse"
 
 msgid "Remove Credentials"
-msgstr ""
+msgstr "Ta bort autentiseringsuppgifter"
 
 #
 msgid "Remove Entry"
@@ -16572,7 +16613,7 @@ msgid "Remove New Found Flag"
 msgstr "Ta bort New Found Flag"
 
 msgid "Remove Path"
-msgstr ""
+msgstr "Ta bort sökväg"
 
 msgid "Remove Plugin"
 msgstr "Ta bort plugin"
@@ -16711,10 +16752,10 @@ msgstr "Byt namn på endast markerad fil"
 
 #, python-format
 msgid "Rename slot '%s' (leave empty to reset):"
-msgstr ""
+msgstr "Byt namn på kortplatsen ”%s” (lämna tomt för att återställa):"
 
 msgid "Rename the highlighted slot"
-msgstr ""
+msgstr "Byt namn på den markerade kortplatsen"
 
 msgid "Rename the proposed file to be created"
 msgstr "Byt namn på den föreslagna filen som ska skapas"
@@ -16794,13 +16835,13 @@ msgid "Rereading partition table"
 msgstr "Omläsning av partitionstabell"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Sök igen"
 
 msgid "Rescan for available Wi-Fi networks"
-msgstr ""
+msgstr "Sök igen efter tillgängliga Wi-Fi-nätverk"
 
 msgid "Rescan for available network shares"
-msgstr ""
+msgstr "Sök igen efter tillgängliga nätverksresurser"
 
 msgid "Reserved"
 msgstr "Reserverad"
@@ -16871,7 +16912,7 @@ msgid "Resolution unit"
 msgstr "Upplösningsenhet"
 
 msgid "Resolving..."
-msgstr ""
+msgstr "Slår upp …"
 
 #
 msgid "Restart"
@@ -16879,10 +16920,10 @@ msgstr "Starta om"
 
 #, python-format
 msgid "Restart %s"
-msgstr ""
+msgstr "Starta om %s"
 
 msgid "Restart Adapter"
-msgstr ""
+msgstr "Starta om adaptern"
 
 #
 msgid "Restart GUI"
@@ -16923,13 +16964,13 @@ msgstr "Starta om testet"
 
 #, python-format
 msgid "Restarting %s failed (exit code %s)"
-msgstr ""
+msgstr "Det gick inte att starta om %s (slutkod %s)"
 
 msgid "Restarting adapter..."
-msgstr ""
+msgstr "Startar om adaptern …"
 
 msgid "Restarting saved Wi-Fi network..."
-msgstr ""
+msgstr "Startar om sparat Wi-Fi-nätverk …"
 
 msgid "Restarting..."
 msgstr "Startar om..."
@@ -16977,7 +17018,7 @@ msgid "Restore your backups by date."
 msgstr "Återställ dina säkerhetskopior efter datum."
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
-msgstr "Återställ dina inställningar från en säkerhetskopia. Efter återställningen startar boxen om för att aktivera de nya inställningarna"
+msgstr "Återställ dina inställningar från en säkerhetskopia. Efter återställningen startar boxen om för att aktivera de nya inställningarna."
 
 msgid "Restoring..."
 msgstr "Återställer..."
@@ -17005,7 +17046,7 @@ msgid "Resuming playback"
 msgstr "Återuppta uppspelning"
 
 msgid "Retest"
-msgstr ""
+msgstr "Testa igen"
 
 #, python-format
 msgid "Retrieving '%s' commit log, please wait..."
@@ -17054,7 +17095,7 @@ msgid "Reverse list"
 msgstr "Omvänd lista"
 
 msgid "Review"
-msgstr ""
+msgstr "Recension"
 
 #
 msgid "Rewind"
@@ -17126,13 +17167,13 @@ msgid "Root file"
 msgstr "Rotfil"
 
 msgid "Root squash"
-msgstr ""
+msgstr "Root squash"
 
 msgid "Rose"
 msgstr "ros"
 
 msgid "Rotor is not configured"
-msgstr ""
+msgstr "Rotorn är inte konfigurerad"
 
 #
 msgid "Rotor turning speed"
@@ -17140,7 +17181,7 @@ msgstr "Rotorns varvtal"
 
 #, python-format
 msgid "Rotor: %d satellites"
-msgstr ""
+msgstr "Rotor: %d satelliter"
 
 msgid "Router / Gateway"
 msgstr "Router / Gateway"
@@ -17197,7 +17238,7 @@ msgid "Running command %d: '%s'."
 msgstr "Kör kommandot %d: '%s'."
 
 msgid "Running only"
-msgstr ""
+msgstr "Endast igång"
 
 #
 msgid "Russian"
@@ -17216,7 +17257,7 @@ msgid "SAT"
 msgstr "SAT"
 
 msgid "SAT input"
-msgstr ""
+msgstr "SAT-ingång"
 
 msgid "SATA"
 msgstr "SATA"
@@ -17254,7 +17295,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "DVD MED ETT LAGER"
 
 msgid "SMB version"
-msgstr ""
+msgstr "SMB-version"
 
 msgid "SMS style QuickSelect entry selection"
 msgstr "SMS-stil QuickSelect val av post"
@@ -17471,23 +17512,23 @@ msgstr "Spara tid skifta buffert nu och fortsätt inspelningen"
 
 #, python-format
 msgid "Saved Wi-Fi Network '%s' Context Menu"
-msgstr ""
+msgstr "Sammanhangsmeny för sparat Wi-Fi-nätverk ”%s”"
 
 #, python-format
 msgid "Saved Wi-Fi Network '%s' Settings"
-msgstr ""
+msgstr "Inställningar för sparat Wi-Fi-nätverk ”%s”"
 
 msgid "Saved Wi-Fi Networks"
-msgstr ""
+msgstr "Sparade Wi-Fi-nätverk"
 
 msgid "Saved Wi-Fi network connection disabled."
-msgstr ""
+msgstr "Anslutning till sparat Wi-Fi-nätverk är inaktiverad."
 
 msgid "Saved Wi-Fi network connection enabled."
-msgstr ""
+msgstr "Anslutning till sparat Wi-Fi-nätverk är aktiverad."
 
 msgid "Saved Wi-Fi network will be retried automatically at next boot."
-msgstr ""
+msgstr "Anslutning till sparat Wi-Fi-nätverk prövas automatiskt vid nästa uppstart."
 
 msgid "Saved lines in script messages"
 msgstr "Sparade rader i skriptmeddelanden"
@@ -17529,7 +17570,7 @@ msgid "Scan %s band"
 msgstr "Skanna %s band"
 
 msgid "Scan Wi-Fi Networks"
-msgstr ""
+msgstr "Sök Wi-Fi-nätverk"
 
 #
 msgid "Scan additional SR"
@@ -17557,14 +17598,14 @@ msgid "Scanning %s..."
 msgstr "Skanning %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
-msgstr ""
+msgstr "Söker DAB+-flöde; väntar på direkta FIC-data …"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Skanning kan inte utföras medan inspelningar pågår."
 
 #, python-format
 msgid "Scanning completed, %d DAB+ services found."
-msgstr ""
+msgstr "Sökningen slutfördes, %d DAB+-tjänster hittades."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -17582,14 +17623,14 @@ msgid "Scanning failed!"
 msgstr "Skanningen misslyckades!"
 
 msgid "Scanning for shares..."
-msgstr ""
+msgstr "Söker efter resurser …"
 
 msgid "Scanning..."
 msgstr "Söker..."
 
 #, python-format
 msgid "Scanning: %d services found; validating live result (%d/%d)..."
-msgstr ""
+msgstr "Söker: %d tjänster hittades; validerar direktresultat (%d/%d) …"
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -17635,7 +17676,7 @@ msgid "Science & Tech"
 msgstr "Vetenskap & teknik"
 
 msgid "Science fiction"
-msgstr ""
+msgstr "Science fiction"
 
 msgid "Science fiction/Fantasy/Horror"
 msgstr "science fiction/fantasy/skräck"
@@ -17644,7 +17685,7 @@ msgid "Scope"
 msgstr "Omfång"
 
 msgid "Screen saver mode"
-msgstr ""
+msgstr "Skärmsläckarläge"
 
 msgid "Screen saver movement"
 msgstr "Rörelse i skärmsläckaren"
@@ -17710,10 +17751,10 @@ msgid "Second cable of motorized LNB"
 msgstr "Andra kabeln för motoriserad LNB"
 
 msgid "Secondary DNS (IPv4)"
-msgstr ""
+msgstr "Sekundär DNS (IPv4)"
 
 msgid "Secondary DNS (IPv6)"
-msgstr ""
+msgstr "Sekundär DNS (IPv6)"
 
 #
 msgid "Seconds"
@@ -17796,7 +17837,7 @@ msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. 
 msgstr "Välj \"Provider\" för att söka från den fördefinierade listan med kabelmultiplexer. Välj \"Bands\" för att bara skanna vissa delar av spektrumet. Välj \"Steps\" för att skanna i steg av en viss frekvensbandbredd."
 
 msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
-msgstr ""
+msgstr "Välj ”Mjuk montering” för att låta filåtkomst returnera ett fel när servern slutar svara, i stället för att försöka igen för alltid. Standardvalet ”Hård montering” skyddar mot tyst dataförlust men kan få program som använder resursen att hänga när servern är otillgänglig."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Välj \"Unik numrering\" för att tilldela unika nummer för varje tjänst i varje bukett. Använd \"Bouquets start at 1\" för att börja numrera varje bukett från 1. Använd \"LCN numbering\" för att använda konsekventa LCN-nummer för tjänsterna oavsett var de används."
@@ -17865,7 +17906,7 @@ msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB su
 msgstr "Välj \"Ja\" för att aktivera AI-driven översättning för alla text-TV- och DVB-undertexter."
 
 msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr ""
+msgstr "Välj ”Ja” för att aktivera rotation av DNS-poster. Rotation ändrar ordningen i vilken listan över DNS-servrar används och kan undvika problem om en DNS-server i listan blir otillgänglig."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Välj \"Yes\" för att aktivera redigering av den här enhetens inställningar. Om du väljer \"No\" återställs enhetens inställningar till standardvärdena."
@@ -17883,7 +17924,7 @@ msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, us
 msgstr "Välj \"Yes\" för att aktivera laddning av olänkade användarbuketter. Det vill säga att användarbuketter som inte ingår i filerna bouquets.tv eller bouquets.radio kommer att laddas. På så sätt kan du t.ex. skapa buketter som inte står i konflikt med, eller ersätts av, buketter som kommer från inställningspaket."
 
 msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
-msgstr ""
+msgstr "Välj ”Ja” för att aktivera övervakningsgränssnittets webbgränssnitt för DNSCrypt-delsystemet."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Välj \"Yes\" för att aktivera användning av knapparna LEFT/RIGHT för att flytta PageUp/PageDown när knapparna LEFT/RIGHT annars är odefinierade. Detta ger äldre navigering för användare som föredrar det."
@@ -17940,13 +17981,13 @@ msgid "Select 'Yes' to remove all user interface data. Selecting this option wil
 msgstr "Välj \"Yes\" för att ta bort alla data i användargränssnittet. Om du väljer det här alternativet tas alla data för åsidosättning av kartor, menyer och inställningar bort och standarddefinitionerna återställs."
 
 msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr ""
+msgstr "Välj ”Ja” om uppgiften ska schemaläggas om när mottagaren går in i eller lämnar vänteläget. Tillståndsändringen måste inträffa inom uppgiftens schemalagda tidsfönster, annars körs inte uppgiften."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Välj \"Yes\" för att återställa nätverkskonfigurationen till standardinställningarna. Detta aktiverar Ethernet-porten om den finns och ställer in mottagaren så att den använder DHCP. Alla andra nätverksgränssnitt kommer att raderas."
 
 msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "Aktivera VPS som standard (nya timers)"
+msgstr "Aktivera VPS som standard (nya timers)."
 
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Välj \"Ja\" för att ställa in markörens position till slutet av raden när du redigerar en textfil.  Välj \"Nej\" för att ställa in markören till början av raden."
@@ -17955,7 +17996,7 @@ msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the 
 msgstr "Välj \"Yes\" för att visa paketen \"dev\", \"staticdev\", \"dbg\" och \"doc\" på skärmen Download Plugins."
 
 msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
-msgstr ""
+msgstr "Välj ”Ja” för att visa Kodi-tilläggspaket på skärmen Hämta tillägg."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
 msgstr "Välj \"Yes\" för att visa LCD-skinnpaket på skärmen Download Plugins."
@@ -18057,7 +18098,7 @@ msgid "Select 'Yes' to use the number keys for quick selection of files / direct
 msgstr "Välj \"Yes\" för att använda siffertangenterna för snabbval av filer/kataloger, välj \"No\" för att använda siffertangenterna för genvägar till MENU-alternativet."
 
 msgid "Select 'Yes' to use the same User Band channel and frequency as LNB 1. This is intended for multiple satellite positions delivered by the same Unicable system."
-msgstr ""
+msgstr "Välj ”Ja” för att använda samma användarbandskanal och frekvens som LNB 1. Detta är avsett för flera satellitpositioner som levereras av samma Unicable-system."
 
 msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Om det är aktiverat och nödvändigt kommer plugin-programmet att väcka mottagaren från Deep-Standby för den definierade starttiden för att kontrollera om programmet börjar tidigare."
@@ -18103,7 +18144,7 @@ msgid "Select Media Location"
 msgstr "Välj medieplats"
 
 msgid "Select Picon Directory"
-msgstr ""
+msgstr "Välj Picon-katalog"
 
 msgid "Select Playback Location"
 msgstr "Välj plats för uppspelning"
@@ -18140,7 +18181,7 @@ msgid "Select Upgrade Source To Edit"
 msgstr "Välj uppgraderingskälla för att redigera"
 
 msgid "Select Wi-Fi adapter"
-msgstr ""
+msgstr "Välj Wi-Fi-adapter"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Välj en Softcam från den tillgängliga listan som standard för AutoCam."
@@ -18186,7 +18227,7 @@ msgid "Select a network adapter"
 msgstr "Välj ett nätverksadapter"
 
 msgid "Select a network interface to configure, or skip to configure the network later in system settings."
-msgstr ""
+msgstr "Välj ett nätverksgränssnitt att konfigurera, eller hoppa över för att konfigurera nätverket senare i systeminställningarna."
 
 msgid "Select a permanent mount point for all devices"
 msgstr "Välj en permanent monteringspunkt för alla enheter"
@@ -18201,13 +18242,13 @@ msgid "Select a script to run:"
 msgstr "Välj ett skript som ska köras:"
 
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
-msgstr ""
+msgstr "Välj en särskild NFS-version för att tvinga en viss NFS-protokollversion i stället för att tillåta automatisk förhandling."
 
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
-msgstr ""
+msgstr "Välj en särskild SMB-protokollversion i stället för att tillåta automatisk förhandling. Använd ”Äldre (SMB1)” endast för äldre servrar som inte stöder de nyare och säkrare SMB2-/SMB3-protokollen."
 
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
-msgstr ""
+msgstr "Välj hur länge en bekräftelsefråga ska visas innan en kanalswitchtimer ändrar aktuell tjänst. Det ger användaren möjlighet att avbryta kanalbytet. Välj ”Inaktiverad” för att låta kanalbytet fortsätta utan bekräftelse."
 
 msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "Välj en tid, i standbyläge, efter vilken avtrappningen kan fortsätta."
@@ -18271,7 +18312,7 @@ msgid "Select destination for:"
 msgstr "Välj destination för:"
 
 msgid "Select exported directories"
-msgstr ""
+msgstr "Välj exporterade kataloger"
 
 msgid "Select files to exclude from backup"
 msgstr "Välj filer som ska uteslutas från säkerhetskopian"
@@ -18308,7 +18349,7 @@ msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act dur
 msgstr "Välj hur pilknapparna ('UP', 'DOWN', 'LEFT' och 'RIGHT') ska fungera under sökningen."
 
 msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
-msgstr ""
+msgstr "Välj hur den avkodade dataströmmen ska behandlas. ”Automatisk” använder asynkrona skrivningar (lägre CPU-användning) och återgår automatiskt till synkrona skrivningar om kärnans AIO inte stöds. ”Synkron” tvingar blockerande skrivningar (stabilt och mest kompatibelt)."
 
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Välj hur sifferknapparna ska fungera under sökningar."
@@ -18317,7 +18358,7 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Välj hur parabolantennen ska installeras, t.ex. fast parabol, enkel LNB, DiSEqC-omkopplare, positionerare osv."
 
 msgid "Select how the schedule is handled with respect to Standby."
-msgstr ""
+msgstr "Välj hur schemat ska hanteras i förhållande till vänteläget."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Välj hur Quick EPG-läget ska aktiveras."
@@ -18332,7 +18373,7 @@ msgid "Select if data entry timeouts are to be applied when entering digits into
 msgstr "Välj om tidsgränser för datainmatning ska tillämpas när siffror matas in i popup-fönstret för val av tjänst. När en timeout överskrids kommer det aktuella numret att användas för att välja tjänst. Standardtidsgränserna är första siffran 3 sekunder och övriga siffror 1 sekund."
 
 msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
-msgstr ""
+msgstr "Välj om fillåsning är tillgänglig. Välj ”Nej” för att lägga till ”nolock” i inställningarna, vilket är mest kompatibelt med äldre eller enkla NFS-servrar."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Välj om standardvärdet för en inställningspost ska visas och, om så är fallet, var det ska visas i förhållande till beskrivningen."
@@ -18434,16 +18475,16 @@ msgid "Select the No / False response"
 msgstr "Välj svarsalternativet Nej/Falskt"
 
 msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
-msgstr ""
+msgstr "Välj ovanstående Picon-sökväg som ska användas för picons vid kanalval."
 
 msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
-msgstr ""
+msgstr "Välj ovanstående Picon-sökväg som ska användas för picons på frontpanelen/skärmen."
 
 msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
-msgstr ""
+msgstr "Välj ovanstående Picon-sökväg som ska användas för picons i informationsfältet."
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
-msgstr ""
+msgstr "Välj ovanstående Picon-sökväg som ska användas för picons i OpenWebif."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18477,7 +18518,7 @@ msgid "Select the Yes / True response"
 msgstr "Välj svarsalternativet Ja / Sant"
 
 msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
-msgstr ""
+msgstr "Välj förutsättningsvillkor för kanalswitchtimern. Kanalswitchtimern aktiveras endast i det valda tillståndet."
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -18493,16 +18534,16 @@ msgid "Select the action to take when the SleepTimer activates."
 msgstr "Välj vilken typ av avstängning som önskas när SleepTimer aktiveras."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
-msgstr ""
+msgstr "Välj hur länge systemet ska vänta efter ett uppgiftsfel innan ett nytt körningsförsök görs."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Välj animeringshastighet för knappindikatorerna i hjälpskärmarna. \"Disabled\" stänger av animeringen så att indikatorerna hoppar mellan knapparna."
 
 msgid "Select the brightness of the front panel LED when the receiver is Running."
-msgstr ""
+msgstr "Välj ljusstyrka för frontpanelens lysdiod när mottagaren är igång."
 
 msgid "Select the brightness of the front panel LED when the receiver is in Standby."
-msgstr ""
+msgstr "Välj ljusstyrka för frontpanelens lysdiod när mottagaren är i vänteläge."
 
 msgid "Select the cardserver to be used from the list of available cardservers."
 msgstr "Välj den cardserver som ska användas i listan över tillgängliga cardservers."
@@ -18517,16 +18558,16 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Välj tecken eller handling under tangentbordsmarkören"
 
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
-msgstr ""
+msgstr "Välj teckenuppsättning (iocharset) för att matcha/översätta fjärrfilnamn."
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
-msgstr ""
+msgstr "Välj färg på frontpanelens strömlysdiod när mottagaren är igång. Alternativet låter dig även inaktivera/släcka lysdioden."
 
 msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
-msgstr ""
+msgstr "Välj färg på frontpanelens strömlysdiod när mottagaren är i djupt vänteläge."
 
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
-msgstr ""
+msgstr "Välj färg på frontpanelens strömlysdiod när mottagaren är i vänteläge. Alternativet låter dig även inaktivera/släcka lysdioden."
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Välj den färg som ska användas för texten AI-Powered Translation."
@@ -18580,7 +18621,7 @@ msgid "Select the delay before the timer activates."
 msgstr "Välj fördröjning innan timern aktiveras."
 
 msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
-msgstr ""
+msgstr "Välj fördröjningen för att buffra avkodade data innan uppspelningen startar. Detta kan minska AC3-ljudbortfall genom att säkerställa att tillräckligt med data finns när avkodaren startar. Högre värden är stabilare men ökar kanalbytestiden."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Välj den fördröjning som ska användas när en Stream Relay-tjänst stängs innan tunern omfördelas till en annan tjänst. Användning av '0' rekommenderas endast för boxar med flera satellitmottagare."
@@ -18613,12 +18654,12 @@ msgid "Select the duration of inactivity before the screen saver will be display
 msgstr "Välj hur lång tid inaktiviteten ska vara innan skärmsläckaren visas."
 
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Välj den sluttid före vilken denna timer kan aktiveras. Efter denna tid aktiveras inte timern även om övriga villkor uppfylls."
 
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
-msgstr ""
+msgstr "Välj filsorteringsordning för %s:"
 
 msgid "Select the file system for the device."
 msgstr "Välj filsystem för enheten."
@@ -18679,10 +18720,10 @@ msgid "Select the mode of access, Read/Write or Read-Only, applied to all automa
 msgstr "Välj åtkomstläge för de automatiskt exporterade samba-aktierna."
 
 msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
-msgstr ""
+msgstr "Välj åtkomstläge, läs/skriv eller skrivskyddat, som tillämpas på alla exporterade kataloger."
 
 msgid "Select the mode of access, Read/Write or Read-Only, for this share mount."
-msgstr ""
+msgstr "Välj åtkomstläge, läs/skriv eller skrivskyddat, för denna resursmontering."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Välj modellnummer för din Unicable-enhet. Om modellnumret inte finns med i listan, ställ in \"SCR\" på \"User defined\" och ange enhetens parametrar manuellt enligt specifikationerna."
@@ -18701,10 +18742,10 @@ msgid "Select the network data rate below which the timer should activate as spe
 msgstr "Välj den nätverksdatahastighet under vilken timern ska aktiveras enligt specifikation. Trafik över denna hastighet avaktiverar timern."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
-msgstr ""
+msgstr "Välj nätverksmetriken för adaptern. När flera adaptrar är aktiva används den med lägst nätverksmetrik som standardrutt för nätverkstrafiken."
 
 msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
-msgstr ""
+msgstr "Välj nätverksnamnet (SSID) för det trådlösa nätverk som mottagaren ska ansluta till."
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
@@ -18717,7 +18758,7 @@ msgid "Select the next item in the list"
 msgstr "Välj nästa objekt i listan"
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
-msgstr ""
+msgstr "Välj hur många gånger en uppgift ska köras igen om ett fel uppstår under körningen."
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Välj önskad serviceinformation som ska visas, utöver servicenumret, på popup-skärmen för val av service."
@@ -18738,10 +18779,10 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "Välj det protokoll som används av din SCR-enhet. Alternativen är \"SCR Unicable\" (Unicable) eller \"SCR JESS\" (JESS, även känt som Unicable II)."
 
 msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
-msgstr ""
+msgstr "Välj monteringsalternativet för läsblockbuffertens storlek (rsize). Välj ”Automatisk” för att låta kärnan och servern förhandla fram optimal storlek."
 
 msgid "Select the receiver action when the TV switches away from the receiver input."
-msgstr ""
+msgstr "Välj mottagarens åtgärd när TV:n växlar bort från mottagarens ingång."
 
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Välj den uppdateringsfrekvens som ska användas på TV:n."
@@ -18768,13 +18809,13 @@ msgid "Select the screen layout, from the options provided by the skin, to be us
 msgstr "Välj den skärmlayout som ska användas för ChannelSelection-skärmen från de alternativ som tillhandahålls av skinnet."
 
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
-msgstr ""
+msgstr "Välj sökläge för att hitta picons. ”Enkel sökväg” använder en sökväg för alla picons. ”Flera sökvägar” låter olika picon-sökvägar användas för olika användningsfall."
 
 msgid "Select the security protocol that will be used to access the selected wireless network."
-msgstr ""
+msgstr "Välj säkerhetsprotokoll som ska användas för åtkomst till det valda trådlösa nätverket."
 
 msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
-msgstr ""
+msgstr "Välj resursprotokoll: SMB (resurser i Windows-stil) eller NFS (resurser för Mac och Linux)."
 
 #
 msgid "Select the shifted character set"
@@ -18808,7 +18849,7 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Välj källplatsen där du vill hämta uppgraderingsfilerna."
 
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Välj den starttid efter vilken denna timer kan aktiveras. Före denna tid aktiveras inte timern även om övriga villkor uppfylls."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Välj den start-/initialkolumn som ska aktiveras när File Commander startas."
@@ -18871,7 +18912,7 @@ msgid "Select the video mode to be used on the TV."
 msgstr "Välj det videoläge som ska användas på TV:n."
 
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
-msgstr ""
+msgstr "Välj monteringsalternativet för skrivblockbuffertens storlek (wsize). Välj ”Automatisk” för att låta kärnan och servern förhandla fram optimal storlek."
 
 msgid "Select update source location"
 msgstr "Välj plats för uppdateringskälla"
@@ -18917,7 +18958,7 @@ msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Välj vad du vill att upp-/nedknappen ska aktivera."
 
 msgid "Select when, and how, the remote share will be mounted. For most purposes autofs is recommended."
-msgstr ""
+msgstr "Välj när och hur fjärresursen ska monteras. För de flesta ändamål rekommenderas autofs."
 
 msgid "Select where the recording should be saved."
 msgstr "Välj var inspelningen ska sparas."
@@ -18932,7 +18973,7 @@ msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Välj om AC3-ljudspår ska nedmixas till stereo."
 
 msgid "Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability."
-msgstr ""
+msgstr "Välj om AC4-ljudspår (Dolby Atmos) ska vidarebefordras till AVR, mixas ned till stereo eller dirigeras automatiskt baserat på HDMI-mottagarens funktioner."
 
 msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas eller omkodas."
@@ -18941,7 +18982,7 @@ msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas till stereo."
 
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
-msgstr ""
+msgstr "Välj om Dolby TrueHD-ljudspår ska vidarebefordras eller avkodas."
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
 msgstr "Välj läge för DNS."
@@ -18962,7 +19003,7 @@ msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Välj om en ikon ska visas när en motoriserad parabol rör sig eller inte."
 
 msgid "Select which IP protocols can be used with this adapter."
-msgstr ""
+msgstr "Välj vilka IP-protokoll som kan användas med adaptern."
 
 #
 msgid "Select your ATSC provider."
@@ -19060,6 +19101,9 @@ msgstr "Skicka DiSEqC endast vid satellitbyte"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "Känslighet för hopp"
+
 #
 msgid "Seperate titles with a main menu"
 msgstr "Separata titlar med en huvudmeny"
@@ -19086,19 +19130,19 @@ msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "seriös/klassisk/religiös/historisk film/drama"
 
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 msgid "Server down"
 msgstr "Server nere"
 
 msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
-msgstr ""
+msgstr "Servern får inte tillämpa sin egen blockeringslista. Vissa servrar kan implementera egna blockeringslistor för föräldrakontroll, annonsblockering eller liknande."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
-msgstr ""
+msgstr "Servern får inte logga användarfrågor (deklarerat). Det kan förbättra integriteten vid DNS-uppslagningar genom att förfrågan inte loggas på servern som tillhandahåller uppgifterna."
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
-msgstr ""
+msgstr "Servern måste stödja DNS Security Extensions (DNSSEC). Detta alternativ signerar data och skyddar DNS-datans integritet mot angrepp som cacheförgiftning."
 
 msgid "Servers"
 msgstr "Servrar"
@@ -19133,7 +19177,7 @@ msgid "Service Information Actions"
 msgstr "Serviceinformation Åtgärder"
 
 msgid "Service List Appearance"
-msgstr ""
+msgstr "Utseende för tjänstelista"
 
 msgid "Service Scan"
 msgstr "Service Scan"
@@ -19200,7 +19244,7 @@ msgid "Service off-air"
 msgstr "Service utanför sändning"
 
 msgid "Service online"
-msgstr ""
+msgstr "Tjänsten är online"
 
 msgid "Service picons aspect ratio"
 msgstr "Service picons bildförhållande"
@@ -19298,7 +19342,7 @@ msgid "Set Time"
 msgstr "Ställ in tid"
 
 msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "Om möjligt, x minuter innan en timer startar kommer VPS-Plugin att styra om programmet startar tidigare. (0 avaktiverar funktionen)"
+msgstr "Om möjligt, x minuter innan en timer startar kommer VPS-Plugin att styra om programmet startar tidigare. (0 avaktiverar funktionen)."
 
 msgid "Set action for 'Info' key"
 msgstr "Ställ in åtgärd för \"Info\"-knappen"
@@ -19344,14 +19388,8 @@ msgstr "Ställ in systemet"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Ställ in tidsintervallet för skipning i CutList Editor för knapparna '%s'/'%s'."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Ställ in procentandelen för hopp över vänster/högerknapp för SeekBar."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Ställ in procentsatsen för hopp över UP/DOWN-knappen för SeekBar."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
-msgstr "Ställ in användar-ID för OpenWebif från din reservtuner"
+msgstr "Ställ in användar-ID för OpenWebif från din reservtuner."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ställ in bildförhållandet för servicepikonerna."
@@ -19381,7 +19419,7 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Ställ in fördröjningstiden mellan upprepade loopar, detta används av mjukvarurendering i vissa skins."
 
 msgid "Set the hostname or IP address."
-msgstr "DNS-namn eller IP-adress"
+msgstr "DNS-namn eller IP-adress."
 
 msgid "Set the jump-size of the SeekBar."
 msgstr "Ställ in hoppstorleken för SeekBar."
@@ -19390,22 +19428,22 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "Ange antalet rader som ska sparas för utdata från \"stout\" och \"sterr\" i skript."
 
 msgid "Set the password for the monitoring UI web interface."
-msgstr ""
+msgstr "Ange lösenordet för övervakningsgränssnittets webbgränssnitt."
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
-msgstr "Ställ in lösenordet för OpenWebif från din reservtuner"
+msgstr "Ställ in lösenordet för OpenWebif från din reservtuner."
 
 msgid "Set the port address (8080-9999) for the monitoring UI web interface."
-msgstr ""
+msgstr "Ange portadressen (8080–9999) för övervakningsgränssnittets webbgränssnitt."
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
-msgstr "Ställ in porten för OpenWebif från din reservtuner"
+msgstr "Ställ in porten för OpenWebif från din reservtuner."
 
 msgid "Set the position of the recording icons."
 msgstr "Ställ in positionen för inspelningsikonerna."
 
 msgid "Set the privacy level for the monitoring UI web interface."
-msgstr ""
+msgstr "Ange integritetsnivån för övervakningsgränssnittets webbgränssnitt."
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Ställ in vilken skärmtyp du får när du trycker på \"OK\" när informationsfältet visas till 2nd infobar Lite eller eventinfo."
@@ -19416,8 +19454,14 @@ msgstr "Ställ in rullningshastigheten för text på den främre skärmen, detta
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ställ in rullningshastigheten för texten på den främre displayen."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Ange hoppprocenten för knappen ”%s”. Positiva tal hoppar framåt, negativa tal hoppar bakåt."
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Ställ in tidsintervallet för att hoppa över knappen '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Ange hoppets tidsintervall för knappen ”%s”. Positiva tal hoppar framåt, negativa tal hoppar bakåt."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Ställ in tidsintervallet för hopp för knapparna '%s'/'%s'."
@@ -19447,7 +19491,7 @@ msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Ställ in typen av förloppsindikering i kanalvalsskärmen."
 
 msgid "Set the username for the monitoring UI web interface."
-msgstr ""
+msgstr "Ange användarnamnet för övervakningsgränssnittets webbgränssnitt."
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -19506,7 +19550,7 @@ msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Ställ in på yes för felsökning av grundorsaken till en spinnare."
 
 msgid "Set up network"
-msgstr ""
+msgstr "Konfigurera nätverk"
 
 msgid "Set up tuner [TUNER]"
 msgstr "Ställa in tuner [TUNER]"
@@ -19516,6 +19560,9 @@ msgid ""
 "\n"
 "For tuners supporting multiple reception types, configure each available type separately."
 msgstr ""
+"Konfigurera mottagare [TUNER].\n"
+"\n"
+"För mottagare som stöder flera mottagningstyper konfigurerar du varje tillgänglig typ separat."
 
 msgid "Set voltage and 22KHz"
 msgstr "Ställ in spänning och 22KHz"
@@ -19818,7 +19865,7 @@ msgid "Show Driver packages"
 msgstr "Visa drivrutinspaket"
 
 msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "Visa EIT Now/Next-data i InfoBar."
+msgstr "Visa EIT Now/Next-data i InfoBar"
 
 msgid "Show EPG"
 msgstr "Visa EPG"
@@ -19866,7 +19913,7 @@ msgid "Show Kernel packages"
 msgstr "Visa Kernel-paket"
 
 msgid "Show Kodi Add-on packages"
-msgstr ""
+msgstr "Visa Kodi-tilläggspaket"
 
 #
 msgid "Show Live in MiniTV"
@@ -20214,7 +20261,7 @@ msgid "Show multi channel EPG"
 msgstr "Visa EPG för flera kanaler"
 
 msgid "Show network adapter connection information"
-msgstr ""
+msgstr "Visa anslutningsinformation för nätverksadapter"
 
 msgid "Show next commit log"
 msgstr "Visa nästa logg"
@@ -20238,10 +20285,10 @@ msgid "Show next system information screen"
 msgstr "Visa nästa skärmbild med systeminformation"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
-msgstr "Visa meddelande när import av kanaler och/eller EPG från fjärrmottagarens URL inte slutfördes"
+msgstr "Visa meddelande när import av kanaler och/eller EPG från fjärrmottagarens URL inte slutfördes."
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
-msgstr "Visa meddelande när import av kanaler och/eller EPG från fjärrmottagarens URL är klar"
+msgstr "Visa meddelande när import av kanaler och/eller EPG från fjärrmottagarens URL är klar."
 
 msgid "Show notification when import channels was not successful"
 msgstr "Visa meddelande när importen av kanaler inte lyckades"
@@ -20371,7 +20418,7 @@ msgid "Show status messages on switch to live TV"
 msgstr "Visa statusmeddelanden vid övergång till direktsänd TV"
 
 msgid "Show sub-menu"
-msgstr ""
+msgstr "Visa undermeny"
 
 #
 msgid "Show subservice selection"
@@ -20409,7 +20456,7 @@ msgid "Show the Logs Settings screen"
 msgstr "Visa skärmen Loggarnas inställningar"
 
 msgid "Show the Network Information for the selected adapter"
-msgstr ""
+msgstr "Visa nätverksinformationen för den valda adaptern"
 
 msgid "Show the OSCam information screen"
 msgstr "Visa skärmen för OSCam-information"
@@ -20473,7 +20520,7 @@ msgid "Show/Hide focus bar"
 msgstr "Visa/dölj fokusfält"
 
 msgid "Showbiz"
-msgstr ""
+msgstr "Nöjesnyheter"
 
 msgid "Showiframe"
 msgstr "Visa ram"
@@ -20510,7 +20557,7 @@ msgstr "Stäng av"
 
 #, python-format
 msgid "Shutdown %s"
-msgstr ""
+msgstr "Stäng av %s"
 
 msgid "Shutting down. Please wait..."
 msgstr "Stänger av. Vänta..."
@@ -20592,7 +20639,7 @@ msgid "Single step (GOP)"
 msgstr "Ett steg (GOP)"
 
 msgid "Single-path mode"
-msgstr ""
+msgstr "Enkel sökväg"
 
 #
 msgid "SingleEPG Settings"
@@ -20635,7 +20682,7 @@ msgid "SkinSelection"
 msgstr "SkinSelection"
 
 msgid "Skip Modes"
-msgstr ""
+msgstr "Hopplägen"
 
 #
 msgid "Skip back"
@@ -20688,16 +20735,13 @@ msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Hoppa till direktsändning när du tidsförskjuter med plugins"
 
 msgid "Skip network setup"
-msgstr ""
+msgstr "Hoppa över nätverkskonfiguration"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Hoppa över paketinstallation, endast kärnpaket kommer att vara tillgängliga"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Hoppa över känslighet (horisontell)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Hoppa över känslighet (vertikal)"
+msgid "Skip sensibility for '%s' button"
+msgstr "Hoppkänslighet för knappen ”%s”"
 
 msgid "Skip time for '%s' button"
 msgstr "Hoppa över tid för '%s'-knappen"
@@ -20899,13 +20943,13 @@ msgid "Smooth"
 msgstr "Smidig"
 
 msgid "Snooker/Pool"
-msgstr ""
+msgstr "Snooker/pool"
 
 msgid "SoC family"
 msgstr "SoC-familj"
 
 msgid "Soap"
-msgstr ""
+msgstr "Såpopera"
 
 msgid "Soap opera"
 msgstr "Såpopera"
@@ -20933,10 +20977,10 @@ msgid "Socket"
 msgstr "Uttag"
 
 msgid "Soft mount"
-msgstr ""
+msgstr "Mjuk montering"
 
 msgid "SoftCSA Settings"
-msgstr ""
+msgstr "SoftCSA-inställningar"
 
 msgid "Softcam"
 msgstr "Softcam"
@@ -20957,7 +21001,7 @@ msgid "Softcams"
 msgstr "Softkameror"
 
 msgid "Software Display Scrolling"
-msgstr ""
+msgstr "Rullning av programvaruskärm"
 
 #
 msgid "Software Management"
@@ -20986,7 +21030,7 @@ msgid "Software Update Actions"
 msgstr "Åtgärder för uppdatering av programvara"
 
 msgid "Software descrambling"
-msgstr ""
+msgstr "Programvaruavkodning"
 
 msgid "Software information"
 msgstr "Programinformation"
@@ -21011,7 +21055,7 @@ msgid "Somalia"
 msgstr "Somalia"
 
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
-msgstr "Vissa TV-apparater kan inte växla till rätt ingång om en annan HDMI-port är aktiv. Med den här inställningen ställs TV:n in i standby innan omkopplingen. (Om TV:n inte slås på igen kan det krävas ett långsammare sändningsintervall eller upprepning av väckningskommandot)"
+msgstr "Vissa TV-apparater kan inte växla till rätt ingång om en annan HDMI-port är aktiv. Med den här inställningen ställs TV:n in i standby innan omkopplingen. (Om TV:n inte slås på igen kan det krävas ett långsammare sändningsintervall eller upprepning av väckningskommandot)."
 
 #
 msgid "Sorbian"
@@ -21080,16 +21124,16 @@ msgid "Sort by"
 msgstr "Sortera efter"
 
 msgid "Sort by Hostname/IP Address"
-msgstr ""
+msgstr "Sortera efter värdnamn/IP-adress"
 
 msgid "Sort by IP Address"
-msgstr ""
+msgstr "Sortera efter IP-adress"
 
 msgid "Sort by Mount Name"
-msgstr ""
+msgstr "Sortera efter monteringsnamn"
 
 msgid "Sort by Name"
-msgstr ""
+msgstr "Sortera efter namn"
 
 msgid "Sort by default"
 msgstr "Sortera enligt standard"
@@ -21115,14 +21159,14 @@ msgid "Sotho, Southern"
 msgstr "Södra Sotho"
 
 msgid "Soul/Rhythm and Blues"
-msgstr ""
+msgstr "Soul/rhythm and blues"
 
 #
 msgid "Sound"
 msgstr "Ljud"
 
 msgid "Sound Enhancements"
-msgstr ""
+msgstr "Ljudförbättringar"
 
 #
 msgid "Sound carrier"
@@ -21239,7 +21283,7 @@ msgid "Standby / Restart"
 msgstr "Standby / Omstart"
 
 msgid "Standby execution"
-msgstr ""
+msgstr "Körning i vänteläge"
 
 msgid "Standby without TV shut down"
 msgstr "Standby utan avstängning av TV"
@@ -21249,7 +21293,7 @@ msgstr "Start"
 
 #, python-format
 msgid "Start %s"
-msgstr ""
+msgstr "Starta %s"
 
 msgid "Start Auto Refresh"
 msgstr "Starta automatisk uppdatering"
@@ -21301,7 +21345,7 @@ msgid "Start recording current event"
 msgstr "Starta inspelning av aktuell händelse"
 
 msgid "Start retry"
-msgstr ""
+msgstr "Starta nytt försök"
 
 #
 msgid "Start teletext"
@@ -21337,10 +21381,10 @@ msgstr "Starta/stoppa/välja din kamera, Du måste först installera en softcam"
 
 #, python-format
 msgid "Starting %s failed (exit code %s)"
-msgstr ""
+msgstr "Det gick inte att starta %s (slutkod %s)"
 
 msgid "Starting DAB+ scan..."
-msgstr ""
+msgstr "Startar DAB+-sökning …"
 
 msgid "Starting Softcam"
 msgstr "Starta Softcam"
@@ -21362,7 +21406,7 @@ msgid "Starts in a few seconds"
 msgstr "Startar på några sekunder"
 
 msgid "Startup And Wakeup"
-msgstr ""
+msgstr "Uppstart och uppvakning"
 
 msgid "Startup device not found!"
 msgstr "Uppstartsenheten hittades inte!"
@@ -21372,7 +21416,7 @@ msgid "State"
 msgstr "Tillstånd"
 
 msgid "Static"
-msgstr ""
+msgstr "Statisk"
 
 msgid "Static IP / Custom"
 msgstr "Statisk IP / Anpassad"
@@ -21501,13 +21545,13 @@ msgstr "Stoppat"
 
 #, python-format
 msgid "Stopping %s failed (exit code %s)"
-msgstr ""
+msgstr "Det gick inte att stoppa %s (slutkod %s)"
 
 msgid "Stopping Softcam"
 msgstr "Stoppa Softcam"
 
 msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Stoppar användningen av tidsförskjutning om en inspelning pågår. (Rekommenderas för USB-minnen.)"
+msgstr "Stoppar användningen av tidsförskjutning om en inspelning pågår. (Rekommenderas för USB-minnen.)."
 
 msgid "Storage / Disk Information"
 msgstr "Lagring / Diskinformation"
@@ -21523,7 +21567,7 @@ msgid "Storage / Drive information"
 msgstr "Lagring / Information om enheten"
 
 msgid "Storage And Deletion"
-msgstr ""
+msgstr "Lagring och borttagning"
 
 #
 msgid "Storage Devices"
@@ -21545,10 +21589,10 @@ msgid "Store position"
 msgstr "Position i butiken"
 
 msgid "Stored credentials deleted for this server."
-msgstr ""
+msgstr "Lagrade autentiseringsuppgifter för den här servern har tagits bort."
 
 msgid "Stored credentials for this server have been deleted."
-msgstr ""
+msgstr "Lagrade autentiseringsuppgifter för den här servern har tagits bort."
 
 #
 msgid "Stored position"
@@ -21623,7 +21667,7 @@ msgid "Style:"
 msgstr "Stil:"
 
 msgid "Subnet mask"
-msgstr ""
+msgstr "Subnätmask"
 
 msgid "Subscription Packages"
 msgstr "Prenumerationspaket"
@@ -21647,7 +21691,7 @@ msgid "Subtitle Actions"
 msgstr "Undertitel Åtgärder"
 
 msgid "Subtitle Language And Selection"
-msgstr ""
+msgstr "Undertextspråk och val"
 
 msgid "Subtitle Quickmenu"
 msgstr "Snabbmeny för undertexter"
@@ -21911,7 +21955,7 @@ msgid "Synchronize system time using transponder or Internet."
 msgstr "Synkronisera systemtiden med hjälp av transponder eller Internet."
 
 msgid "Synchronous"
-msgstr ""
+msgstr "Synkron"
 
 msgid "Syrian Arab Republic"
 msgstr "Syrien"
@@ -21986,10 +22030,10 @@ msgid "TV"
 msgstr "TV"
 
 msgid "TV Input And Receiver Wakeup"
-msgstr ""
+msgstr "TV-ingång och uppvakning av mottagare"
 
 msgid "TV Power"
-msgstr ""
+msgstr "TV-ström"
 
 msgid "TV button mode"
 msgstr "TV-knappens läge"
@@ -22075,7 +22119,7 @@ msgid "Team sports (excluding Football)"
 msgstr "lagsporter"
 
 msgid "Technology"
-msgstr ""
+msgstr "Teknik"
 
 msgid "Technology/Natural sciences"
 msgstr "teknik/naturvetenskap"
@@ -22104,7 +22148,7 @@ msgid "Teletext StartY (lower border)"
 msgstr "Text-tv StartY (nedre gränsen)"
 
 msgid "Teletext Subtitles"
-msgstr ""
+msgstr "Text-tv-undertexter"
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletext TTFBold (0=normal, 1=fet)"
@@ -22168,7 +22212,7 @@ msgid "Terrestrial"
 msgstr "Terrestrisk"
 
 msgid "Terrestrial input"
-msgstr ""
+msgstr "Markbunden ingång"
 
 msgid "Test"
 msgstr "Test"
@@ -22366,7 +22410,7 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV:n kopplades om till inspelningstjänsten!\n"
 
 msgid "The User Band channel, frequency and optional PIN are inherited from LNB 1 and cannot be changed here."
-msgstr ""
+msgstr "Användarbandskanalen, frekvensen och eventuell PIN-kod ärvdes från LNB 1 och kan inte ändras här."
 
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
@@ -22482,7 +22526,7 @@ msgid "The picon directory already exists and must be removed. Do you want to pr
 msgstr "Katalogen picon finns redan och måste tas bort. Vill du fortsätta?"
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
-msgstr ""
+msgstr "Positionerarmottagaren är inte tillgänglig just nu. Stoppa inspelningar eller andra tjänster som använder mottagaren och försök igen."
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
@@ -22559,7 +22603,7 @@ msgstr "Användargränssnittet för din %s %s kommer att stoppas för att köra 
 
 #, python-format
 msgid "The user interface of your %s %s will be stopped to run RetroGaming"
-msgstr ""
+msgstr "Användargränssnittet på din %s %s stoppas för att köra RetroGaming"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Bildens bredd. Inmatningen kommer att skalas för att matcha detta värde."
@@ -22650,7 +22694,7 @@ msgid "This is a workaround for devices that wake up immediately after entering 
 msgstr "Det här är en lösning för vissa enheter som vaknar igen efter att ha växlat till standby. Väckningskommandon från andra enheter ignoreras under några sekunder."
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
-msgstr ""
+msgstr "Detta är en mottagningstyp för en enskild mottagare. Aktiverade mottagningstyper växlas automatiskt och söks igenom separat."
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
@@ -22676,7 +22720,7 @@ msgid "This offset will only be used if the channel does not have its own volume
 msgstr "Denna offset används endast om kanalen inte har någon egen volymoffset."
 
 msgid "This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode."
-msgstr ""
+msgstr "Detta alternativ justerar SDR-grafik och OSD-färger medan HDMI-utmatningen är i HDR-läge."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Detta alternativ gör det möjligt att minska blockbruset i bilden. Självklart sker detta på bekostnad av bildens skärpa."
@@ -22697,7 +22741,7 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Med det här alternativet kan du förstärka de gröna tonerna i bilden."
 
 msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Detta alternativ gör att du kan kringgå HDMI EDID-kontrollen"
+msgstr "Detta alternativ gör att du kan kringgå HDMI EDID-kontrollen."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Med detta alternativ kan du ändra den virtuella högtalarens position."
@@ -22757,37 +22801,37 @@ msgid "This option allows you to choose the option for Subservice indicator or s
 msgstr "Med detta alternativ kan du välja alternativet för indikator eller val av underservice."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
-msgstr "Med det här alternativet kan du välja vad den första knapptryckningen hoppar till på skärmen med kanallistan (om du trycker på \"2\" hoppar du till \"A\" eller \"2\" först) när de förinställda åtgärderna i \"Snabbåtgärder\" utförs. "
+msgstr "Med det här alternativet kan du välja vad den första knapptryckningen hoppar till på skärmen med kanallistan (om du trycker på \"2\" hoppar du till \"A\" eller \"2\" först) när de förinställda åtgärderna i \"Snabbåtgärder\" utförs."
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Med det här alternativet kan du välja om du vill visa genreinformation för evenemanget eller inte."
 
 msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Med det här alternativet kan du konfigurera färgdjupet för UHD"
+msgstr "Med det här alternativet kan du konfigurera färgdjupet för UHD."
 
 msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Med det här alternativet kan du konfigurera kolorimetri för HDR"
+msgstr "Med det här alternativet kan du konfigurera kolorimetri för HDR."
 
 msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Med det här alternativet kan du konfigurera färgrymden från Auto till RGB"
+msgstr "Med det här alternativet kan du konfigurera färgrymden från Auto till RGB."
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Med det här alternativet kan du aktivera 3D Surround Sound."
 
 msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Med det här alternativet kan du aktivera eller inaktivera 10-bitars färgläge"
+msgstr "Med det här alternativet kan du aktivera eller inaktivera 10-bitars färgläge."
 
 msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Med det här alternativet kan du aktivera eller inaktivera 12-bitars färgläge"
+msgstr "Med det här alternativet kan du aktivera eller inaktivera 12-bitars färgläge."
 
 msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Med detta alternativ kan du tvinga fram HDR-lägena för UHD"
+msgstr "Med detta alternativ kan du tvinga fram HDR-lägena för UHD."
 
 msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Med detta alternativ kan du tvinga fram HDR10-lägena för UHD"
+msgstr "Med detta alternativ kan du tvinga fram HDR10-lägena för UHD."
 
 msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Med detta alternativ kan du tvinga fram HLG-lägena för UHD"
+msgstr "Med detta alternativ kan du tvinga fram HLG-lägena för UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Med det här alternativet kan du ställa in offsetvärden för olika Letterbox-upplösningar."
@@ -22805,7 +22849,7 @@ msgid "This option allows you to the SNR as a percentage (not all receivers supp
 msgstr "Med detta alternativ kan du ange SNR i procent (detta stöds inte av alla mottagare)."
 
 msgid "This option allows you to use all HDMI Modes."
-msgstr "Med detta alternativ kan du använda alla HDMI-lägen"
+msgstr "Med detta alternativ kan du använda alla HDMI-lägen."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Med det här alternativet kan du visa de gamla och nya inställningarna sida vid sida."
@@ -23058,7 +23102,7 @@ msgid "Time zone area"
 msgstr "Område för tidszon"
 
 msgid "Timeline"
-msgstr ""
+msgstr "Tidslinje"
 
 msgid "Timeline 24 Hour"
 msgstr "Tidslinje 24 timmar"
@@ -23074,13 +23118,13 @@ msgid "Timeline scale"
 msgstr "Tidslinje skala"
 
 msgid "Timeout"
-msgstr ""
+msgstr "Tidsgräns"
 
 msgid "Timeout waiting for FIC service data"
-msgstr ""
+msgstr "Tidsgränsen löpte ut medan FIC-tjänstdata inväntades"
 
 msgid "Timer Defaults And Retention"
-msgstr ""
+msgstr "Timerstandarder och kvarhållning"
 
 msgid "Timer Log Actions"
 msgstr "Timerlogg Åtgärder"
@@ -23099,7 +23143,7 @@ msgid "Timer editor"
 msgstr "Timer-editor"
 
 msgid "Timer end window"
-msgstr ""
+msgstr "Timerfönstrets sluttid"
 
 #
 msgid "Timer entry"
@@ -23130,7 +23174,7 @@ msgid "Timer selection"
 msgstr "Val av timer"
 
 msgid "Timer start window"
-msgstr ""
+msgstr "Timerfönstrets starttid"
 
 #
 msgid "Timer type"
@@ -23156,7 +23200,7 @@ msgid "Timezone"
 msgstr "Tidszon"
 
 msgid "Timing And Diagnostics"
-msgstr ""
+msgstr "Tidsinställning och diagnostik"
 
 msgid "Timor-Leste / East Timor"
 msgstr "Östtimor"
@@ -23260,7 +23304,7 @@ msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Toggle ny text infogas före eller skriver över befintlig text"
 
 msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
+msgstr "Växla mellan att välja en resurs efter IP-adress eller DNS-namn"
 
 msgid "Toggle selection of the current tag"
 msgstr "Växla val av aktuell tagg"
@@ -23349,7 +23393,7 @@ msgid "Traditional Chinese"
 msgstr "Traditionell kinesiska"
 
 msgid "Transceiver"
-msgstr ""
+msgstr "Sändtagare"
 
 #
 msgid "Transcode"
@@ -23397,7 +23441,7 @@ msgid "Transponder information for '%s'"
 msgstr "Transponderinformation för '%s'"
 
 msgid "Transport"
-msgstr ""
+msgstr "Transport"
 
 msgid "Transport Stream ID (TSID)"
 msgstr "ID för transportström (TSID)"
@@ -23407,7 +23451,7 @@ msgid "Transport Stream Type"
 msgstr "Typ av transportström"
 
 msgid "Trash And Deletion"
-msgstr ""
+msgstr "Papperskorg och borttagning"
 
 msgid "Trashcan"
 msgstr "Papperskorg"
@@ -23426,16 +23470,16 @@ msgid "Tries left:"
 msgstr "Försök vänster:"
 
 msgid "Trim File System"
-msgstr ""
+msgstr "Trimma filsystemet"
 
 msgid "Trim File System..."
-msgstr ""
+msgstr "Trimma filsystemet …"
 
 msgid "Trinidad and Tobago"
 msgstr "Trinidad och Tobago"
 
 msgid "Triple Tuner"
-msgstr ""
+msgstr "Trippelmottagare"
 
 msgid "True"
 msgstr "Sant"
@@ -23503,10 +23547,10 @@ msgid "Tuner :"
 msgstr "Tuner :"
 
 msgid "Tuner Allocation And Conflicts"
-msgstr ""
+msgstr "Tilldelning av mottagare och konflikter"
 
 msgid "Tuner And Streaming"
-msgstr ""
+msgstr "Mottagare och strömning"
 
 #
 msgid "Tuner Configuration"
@@ -23579,10 +23623,10 @@ msgid "Tunisia"
 msgstr "Tunisien"
 
 msgid "Tunnel IPv4"
-msgstr ""
+msgstr "Tunnel för IPv4"
 
 msgid "Tunnel IPv6"
-msgstr ""
+msgstr "Tunnel för IPv6"
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -23732,34 +23776,37 @@ msgstr "Ukrainska"
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
-msgstr ""
+msgstr "Det gick inte att ärva användarbandet för LNB %d: %s."
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
-msgstr ""
+msgstr "Det gick inte att ärva användarbandet för LNB %d: LNB 1 %s."
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Det gick inte att initiera Kexec MultiBoot!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "Det gick inte att registrera DAB+-transpondern"
+
 msgid "Unable to start the DAB+ feed"
-msgstr ""
+msgstr "Det gick inte att starta DAB+-flödet"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
-msgstr ""
+msgstr "Det gick inte att validera Unicable-positionen för LNB %d: %s."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Obevakad uppgradering utan GUI"
 
 msgid "Unavailable"
-msgstr ""
+msgstr "Otillgänglig"
 
 #
 msgid "Undefined"
 msgstr "Odefinierad"
 
 msgid "Under 5"
-msgstr ""
+msgstr "Under 5 år"
 
 msgid "Undetermined"
 msgstr "Ej fastställd"
@@ -23792,11 +23839,11 @@ msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
 msgid "Unicable position"
-msgstr ""
+msgstr "Unicable-position"
 
 #, python-format
 msgid "Unicable position %d is not supported by the selected device for LNB %d. Valid positions are %d to %d; use 'User defined' for a reprogrammed device."
-msgstr ""
+msgstr "Unicable-position %d stöds inte av den valda enheten för LNB %d. Giltiga positioner är %d till %d; använd ”Användardefinierad” för en omprogrammerad enhet."
 
 msgid "Uninstall"
 msgstr "Avinstallera"
@@ -23871,7 +23918,7 @@ msgid "Unpublished"
 msgstr "opublicerat"
 
 msgid "Unreachable"
-msgstr ""
+msgstr "Nås inte"
 
 msgid "Unscramble and record ECM"
 msgstr "Avkodning och inspelning av ECM"
@@ -23994,7 +24041,7 @@ msgid "Uphops: "
 msgstr "Uphops: "
 
 msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
-msgstr ""
+msgstr "Övre gräns för klippning av RGB-utdata. ”Hela intervallet” = ingen övre klippning, ”Begränsat intervall” begränsar RGB-utdata till 940 (sändningssäkert)."
 
 msgid "Upper USB"
 msgstr "Övre USB"
@@ -24035,19 +24082,19 @@ msgid "Use DHCP"
 msgstr "Använd DHCP"
 
 msgid "Use DNS cache"
-msgstr ""
+msgstr "Använd DNS-cache"
 
 msgid "Use DNS rotation"
-msgstr ""
+msgstr "Använd DNS-rotation"
 
 msgid "Use DNSCrypt servers"
-msgstr ""
+msgstr "Använd DNSCrypt-servrar"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Använd Deinterlacing för 1080i Videosignal?"
 
 msgid "Use DoH servers"
-msgstr ""
+msgstr "Använd DoH-servrar"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Använd EIT EPG-information när den är tillgänglig."
@@ -24068,25 +24115,25 @@ msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Använd standby-timer för hårdvara på hårddisk"
 
 msgid "Use LNB 1 User Band"
-msgstr ""
+msgstr "Använd LNB 1:s användarband"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Använd MHW EPG-information när den är tillgänglig."
 
 msgid "Use NFS file locking"
-msgstr ""
+msgstr "Använd NFS-fillåsning"
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Använd Netmed EPG-information när den finns tillgänglig."
 
 msgid "Use ODoH servers"
-msgstr ""
+msgstr "Använd ODoH-servrar"
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Använd OpenTV EPG. Kräver inställning till specifik transponder för att absorbera EPG."
 
 msgid "Use PIN"
-msgstr ""
+msgstr "Använd PIN-kod"
 
 msgid "Use QuickSelect"
 msgstr "Använd QuickSelect"
@@ -24110,7 +24157,7 @@ msgid "Use Zap timer end times"
 msgstr "Använd Zappa timer sluttider"
 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
-msgstr ""
+msgstr "Använd en DNS-cache för att lagra senaste DNS-uppslagningar lokalt och förbättra prestandan samt minska fördröjning och utgående trafik."
 
 msgid "Use alternate GitHub DNS"
 msgstr "Använd alternativ GitHub DNS"
@@ -24119,7 +24166,7 @@ msgid "Use an alternative smaller screen."
 msgstr "Använd en alternativ mindre skärm."
 
 msgid "Use as HDD replacement"
-msgstr ""
+msgstr "Använd som ersättning för hårddisk"
 
 msgid "Use automatic mode detection"
 msgstr "Använd automatisk lägesdetektering"
@@ -24168,7 +24215,7 @@ msgid "Use geolocation to set the current time zone location"
 msgstr "Använd geolokalisering för att ange aktuell plats i tidszonen"
 
 msgid "Use guest login"
-msgstr ""
+msgstr "Använd gästinloggning"
 
 msgid "Use increased voltage '14/18V' if there are problems when switching the LNB."
 msgstr "Använd den högre spänningen \"14/18V\" om det uppstår problem vid omkoppling av LNB."
@@ -24183,13 +24230,13 @@ msgid "Use official channel numbering"
 msgstr "Använd officiell kanalnumrering"
 
 msgid "Use only DNSSEC servers"
-msgstr ""
+msgstr "Använd endast DNSSEC-servrar"
 
 msgid "Use only no-filter servers"
-msgstr ""
+msgstr "Använd endast servrar utan filter"
 
 msgid "Use only no-log servers"
-msgstr ""
+msgstr "Använd endast servrar utan loggning"
 
 msgid "Use original DVB subtitle position"
 msgstr "Använd original DVB-undertextens position"
@@ -24338,10 +24385,10 @@ msgid "Username (httpuser)"
 msgstr "Användarnamn (httpuser)"
 
 msgid "Using DNS"
-msgstr ""
+msgstr "Använder DNS"
 
 msgid "Using IP"
-msgstr ""
+msgstr "Använder IP"
 
 msgid "Using automatic address"
 msgstr "Använda automatisk adressering"
@@ -24382,7 +24429,7 @@ msgid "VOD"
 msgstr "VOD"
 
 msgid "VPN"
-msgstr ""
+msgstr "VPN"
 
 msgid "VPS Settings"
 msgstr "VPS-inställningar"
@@ -24735,7 +24782,7 @@ msgid "Volume Adjust Settings"
 msgstr "Inställningar för volymjustering"
 
 msgid "Volume Control"
-msgstr ""
+msgstr "Volymkontroll"
 
 msgid "Volume adjustment mode"
 msgstr "Läge för volymjustering"
@@ -24744,7 +24791,7 @@ msgid "Volume down"
 msgstr "Volym nedåt"
 
 msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
-msgstr ""
+msgstr "Volymknapparna på mottagarens fjärrkontroll styr TV:ns, AV-receiverns eller soundbarens volym via HDMI-CEC. Om funktionen inte stöds saknar volymknapparna funktion!"
 
 msgid "Volume steps"
 msgstr "Volymsteg"
@@ -24798,7 +24845,7 @@ msgid "Waiting"
 msgstr "Väntar"
 
 msgid "Waiting for IP address..."
-msgstr ""
+msgstr "Väntar på IP-adress …"
 
 msgid "Waiting for partition"
 msgstr "Väntar på partition"
@@ -24820,13 +24867,13 @@ msgid "Wake up to standby"
 msgstr "Vakna till standby"
 
 msgid "Wake up your AV Receiver or Soundbar from Standby"
-msgstr ""
+msgstr "Väck AV-receivern eller soundbaren från vänteläget"
 
 msgid "Wake-on-LAN"
-msgstr ""
+msgstr "Wake-on-LAN"
 
 msgid "Wake-on-WiFi"
-msgstr ""
+msgstr "Wake-on-WiFi"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis och Futuna"
@@ -24848,7 +24895,7 @@ msgid "Warning: Canceling this process will leave the feeds in an incomplete and
 msgstr "Varning för detta: Om du avbryter denna process kommer matningarna att vara ofullständiga och oanvändbara!"
 
 msgid "Warning: No Wi-Fi adapter found!"
-msgstr ""
+msgstr "Varning: Ingen Wi-Fi-adapter hittades!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Varning för att Åsidosättningar är för närvarande aktiva!"
@@ -24857,7 +24904,7 @@ msgid "Warning: Recordings should not be stored on the Flash disk!"
 msgstr "Varning för detta: Inspelningar ska inte lagras på Flash-disken!"
 
 msgid "Warning: The second input of this dual tuner may not support Unicable devices. "
-msgstr ""
+msgstr "Varning: Den andra ingången på denna dubbla mottagare kanske inte stöder Unicable-enheter. "
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -24867,7 +24914,7 @@ msgid "Warning: There is only a network drive to store the backup. This means th
 msgstr "Varning för detta: Det finns bara en nätverksenhet för att lagra säkerhetskopian. Det innebär att den automatiska återställningen inte fungerar efter flashen. Alternativt kan du montera nätverksenheten efter flashen och utföra en återställning av tillverkaren för automatisk återställning."
 
 msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. "
-msgstr ""
+msgstr "Varning: Den här FBC-C V1-mottagaren bör installeras i den första kortplatsen. I den andra kortplatsen kan bara 2 av 8 demodulatorer vara tillgängliga. "
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Varning för krasch: Detta är den sista kraschen innan en automatisk omstart utförs.\n"
@@ -24883,7 +24930,7 @@ msgid "Water sport"
 msgstr "vattensport"
 
 msgid "Watersports"
-msgstr ""
+msgstr "Vattensport"
 
 msgid "Weather"
 msgstr "Väder"
@@ -24976,7 +25023,7 @@ msgid "Western Sahara"
 msgstr "Västsahara"
 
 msgid "Western satellites"
-msgstr ""
+msgstr "Västliga satelliter"
 
 msgid "What day of month?"
 msgstr "Vilken dag i månaden?"
@@ -24992,7 +25039,7 @@ msgid "What do you want to set as the default movie location?"
 msgstr "Vad vill du ange som standardplats för film?"
 
 msgid "What do you want to set as the picon location?"
-msgstr ""
+msgstr "Vad vill du ange som Picon-plats?"
 
 msgid "What would you like to do with the archive file:"
 msgstr "Vad skulle du vilja göra med arkivfilen:"
@@ -25046,28 +25093,28 @@ msgid "When enabled, a warning will be displayed and the user will get an option
 msgstr "När den är aktiverad visas en varning och användaren får möjlighet att stoppa eller fortsätta tidsomställningen."
 
 msgid "When enabled, allow Samba network access without a password."
-msgstr ""
+msgstr "När detta är aktiverat tillåts Samba-nätverksåtkomst utan lösenord."
 
 msgid "When enabled, allow connection to access points that don't broadcast their SSID."
-msgstr ""
+msgstr "När detta är aktiverat tillåts anslutning till åtkomstpunkter som inte sänder ut sitt SSID."
 
 msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Välj \"Yes\" om du vill att varje identifierad lagringsenhet automatiskt ska exporteras som samba-delning."
 
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
-msgstr ""
+msgstr "När detta är aktiverat kan mottagaren slås på av en Wake-on-LAN-nätverkssignal (Magic Packet)."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
-msgstr ""
+msgstr "När detta är aktiverat tillåts användning av NFS version 3-protokollen."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
-msgstr ""
+msgstr "När detta är aktiverat tillåts användning av NFS version 4-protokollen."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "När den är aktiverad krävs autentisering för att titta på http-strömmar."
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
-msgstr ""
+msgstr "När detta är aktiverat försöker adaptern ansluta via ett sparat nätverk när Wi-Fi-adaptern ansluts."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "När den är aktiverad kommer innehåll med ett bildförhållande på 4:3 att sträckas ut för att passa skärmen."
@@ -25091,10 +25138,10 @@ msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "När den är aktiverad är det möjligt att lämna filmspelaren med exit."
 
 msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
-msgstr ""
+msgstr "När detta är aktiverat hålls Wi-Fi-adaptern i energisnålt sökläge under vänteläge så att mottagaren kan slås på av en nätverkssignal (Magic Packet)."
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
-msgstr ""
+msgstr "När detta är aktiverat mappas root till nobody (säkrare). När det är inaktiverat finns fullständig root-åtkomst."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "När den är aktiverad mäts strömförbrukningen för att upptäcka när rotorn slutar snurra (när detta stöds av tunern)."
@@ -25106,7 +25153,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "När den är aktiverad döljs nummermarkeringarna."
 
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
-msgstr ""
+msgstr "När detta är aktiverat hämtas IP-adress, subnätmask, gateway och DNS-inställningar automatiskt via DHCP."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "När du trycker på \"0\" zappar du till den första kanalen i din första bukett och raderar din zap-historik."
@@ -25121,7 +25168,7 @@ msgid "When enabled, show status or error messages."
 msgstr "När den är aktiverad visas status- eller felmeddelanden."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
-msgstr ""
+msgstr "När detta är aktiverat anges egna DNS-inställningar för adaptern i stället för de globala DNS-inställningarna."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "När den är aktiverad kan undertexter för hörselskadade användas."
@@ -25142,10 +25189,10 @@ msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "När den är aktiverad visas alternativet VCR SCART på huvudmenyn."
 
 msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
-msgstr ""
+msgstr "När detta är aktiverat stängs den anslutna AV-receivern eller soundbaren av automatiskt."
 
 msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
-msgstr ""
+msgstr "När detta är aktiverat slås den anslutna AV-receivern eller soundbaren på automatiskt."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "När den är aktiverad visas längden på varje inspelning i filmlistan (detta kan orsaka en viss extra laddningstid)."
@@ -25169,19 +25216,19 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "När den är aktiverad väljer mottagaren ett AC3+-spår (när det finns tillgängligt)."
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "När den är aktiverad importeras timern från reservtunern"
+msgstr "När den är aktiverad importeras timern från reservtunern."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "När den är aktiverad är timern från reservtunern standardtimern"
+msgstr "När den är aktiverad är timern från reservtunern standardtimern."
 
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
-msgstr ""
+msgstr "När detta är aktiverat används Wi-Fi-adaptern endast i Wake-on-WiFi-läge och används inte för att ansluta till något nätverk."
 
 msgid "When enabled, this adapter will be initialized and activated at boot time."
-msgstr ""
+msgstr "När detta är aktiverat initieras och aktiveras adaptern vid uppstart."
 
 msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
-msgstr ""
+msgstr "När detta är aktiverat listas denna värds resurser anonymt (gäst) och användarnamn/lösenord nedan ignoreras."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "När den här inställningen är aktiverad har den större betydelse än \"Preferred tuner for recordings\"."
@@ -25190,13 +25237,13 @@ msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "När den här inställningen är aktiverad har den större betydelse än \"Preferred tuner\"."
 
 msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr ""
+msgstr "När detta är aktiverat monteras resursen på /media/hdd i stället för sin egen sökväg under /media/net. Använd detta endast om resursen är tillförlitligt tillgänglig."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "När den är aktiverad startar tidsomställningen automatiskt i bakgrunden efter angiven tid."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "När den är aktiverad kan du anpassa OpenWebIf-inställningarna för reservtunern"
+msgstr "När den är aktiverad kan du anpassa OpenWebIf-inställningarna för reservtunern."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "När den är aktiverad kommer mottagaren att upptäcka aktivitet på videobandspelarens SCART-ingång."
@@ -25235,7 +25282,7 @@ msgid "When the receiver wakes from Standby or Deep Standby it will send a comma
 msgstr "När mottagaren vaknar från standby eller djup standby skickar den ett kommando till TV:n för att få den att gå ur standby."
 
 msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr ""
+msgstr "När mottagaren vaknar från vänteläge skickas kommandon för aktiv källa, strömsökväg och dirigering så att TV:n växlar till HDMI-ingången som är ansluten till mottagaren."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "När den röda rutan är korrekt synlig trycker du på den GRÖNA knappen för att spara inställningarna och avsluta."
@@ -25261,26 +25308,26 @@ msgid "White"
 msgstr "Vit"
 
 msgid "Wi-Fi"
-msgstr ""
+msgstr "Wi-Fi"
 
 msgid "Wi-Fi Activation Actions"
-msgstr ""
+msgstr "Åtgärder för Wi-Fi-aktivering"
 
 msgid "Wi-Fi Adapter"
-msgstr ""
+msgstr "Wi-Fi-adapter"
 
 msgid "Wi-Fi Scan Actions"
-msgstr ""
+msgstr "Åtgärder för Wi-Fi-sökning"
 
 #, python-format
 msgid "Wi-Fi Scan On '%s'"
-msgstr ""
+msgstr "Wi-Fi-sökning på ”%s”"
 
 msgid "Wi-Fi connection"
-msgstr ""
+msgstr "Wi-Fi-anslutning"
 
 msgid "Wi-Fi link"
-msgstr ""
+msgstr "Wi-Fi-länk"
 
 msgid "Wide"
 msgstr "Bred"
@@ -25292,7 +25339,7 @@ msgid "Width / Height"
 msgstr "Bredd / höjd"
 
 msgid "Winter sport"
-msgstr ""
+msgstr "Vintersport"
 
 msgid "Winter sports"
 msgstr "vintersport"
@@ -25349,7 +25396,7 @@ msgid "Wizard Actions"
 msgstr "Åtgärder i guiden"
 
 msgid "WoW only"
-msgstr ""
+msgstr "Endast WoW"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -25358,13 +25405,13 @@ msgid "Workaround for old tuner driver."
 msgstr "Lösning för gammal tunerdrivrutin."
 
 msgid "Workgroup name"
-msgstr ""
+msgstr "Arbetsgruppsnamn"
 
 msgid "World Affairs"
-msgstr ""
+msgstr "Världsfrågor"
 
 msgid "World cultures"
-msgstr ""
+msgstr "Världskulturer"
 
 #, python-format
 msgid "Would you save the entered PIN %s persistent?"
@@ -25375,7 +25422,7 @@ msgid "Wrestling"
 msgstr "Brottning"
 
 msgid "Write block size"
-msgstr ""
+msgstr "Skrivblockstorlek"
 
 #, python-format
 msgid ""
@@ -25406,7 +25453,7 @@ msgid "XBox 360 support"
 msgstr "Stöd för XBox 360"
 
 msgid "XML Help Actions"
-msgstr ""
+msgstr "Åtgärder för XML-hjälp"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -25567,7 +25614,7 @@ msgid "You have to wait %s!"
 msgstr "Du måste vänta %s!"
 
 msgid "You managed to jump to an invalid page. Stop it :-)"
-msgstr ""
+msgstr "Du lyckades hoppa till en ogiltig sida. Sluta med det :-)"
 
 msgid "You must set at least one command!"
 msgstr "Du måste ange minst ett kommando!"
@@ -25737,7 +25784,7 @@ msgid "Zap + Exit"
 msgstr "Zappa + Avsluta"
 
 msgid "Zap Timer Settings"
-msgstr ""
+msgstr "Inställningar för kanalswitchtimer"
 
 msgid "Zap Up/Down"
 msgstr "Zappa upp/ner"
@@ -25757,7 +25804,7 @@ msgid "Zap back to service before tuner setup?"
 msgstr "Zappa tillbaka till service före tunerinstallation?"
 
 msgid "Zap condition"
-msgstr ""
+msgstr "Villkor för kanalbyte"
 
 msgid "Zap down"
 msgstr "Zappa ner"
@@ -25815,10 +25862,10 @@ msgid "Zap+Record next"
 msgstr "Zappa+Registrera nästa"
 
 msgid "ZeroTier Actions"
-msgstr ""
+msgstr "ZeroTier-åtgärder"
 
 msgid "ZeroTier Settings"
-msgstr ""
+msgstr "ZeroTier-inställningar"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 gammal modell"
@@ -26105,16 +26152,16 @@ msgid "handled"
 msgstr "hanterade"
 
 msgid "has incomplete Unicable settings"
-msgstr ""
+msgstr "har ofullständiga Unicable-inställningar"
 
 msgid "has no supported Unicable device type"
-msgstr ""
+msgstr "har ingen Unicable-enhetstyp som stöds"
 
 msgid "has no valid Unicable product"
-msgstr ""
+msgstr "har ingen giltig Unicable-produkt"
 
 msgid "has no valid User Band channel"
-msgstr ""
+msgstr "har ingen giltig användarbandskanal"
 
 msgid "height"
 msgstr "höjd"
@@ -26169,10 +26216,10 @@ msgid "internally loopthrough to"
 msgstr "intern genomgång till"
 
 msgid "is not configured"
-msgstr ""
+msgstr "är inte konfigurerad"
 
 msgid "is not configured for Unicable"
-msgstr ""
+msgstr "är inte konfigurerad för Unicable"
 
 #
 msgid "jump back to the previous title"
@@ -26190,7 +26237,7 @@ msgid "left"
 msgstr "vänster"
 
 msgid "left column"
-msgstr ""
+msgstr "vänster kolumn"
 
 #
 msgid "length"
@@ -26357,7 +26404,7 @@ msgid "right"
 msgstr "höger"
 
 msgid "right column"
-msgstr ""
+msgstr "höger kolumn"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -26471,16 +26518,16 @@ msgid "text"
 msgstr "text"
 
 msgid "the User Band channel from LNB 1 is not available"
-msgstr ""
+msgstr "användarbandskanalen från LNB 1 är inte tillgänglig"
 
 msgid "the selected device does not use the LNB 1 frequency on this User Band channel"
-msgstr ""
+msgstr "den valda enheten använder inte LNB 1-frekvensen på den här användarbandskanalen"
 
 msgid "the target LNB"
-msgstr ""
+msgstr "mål-LNB:t"
 
 msgid "the target LNB is not configured"
-msgstr ""
+msgstr "mål-LNB:t är inte konfigurerat"
 
 #
 msgid "this recording"
@@ -26534,7 +26581,7 @@ msgid "update"
 msgstr "uppdatera"
 
 msgid "uses an unavailable User Band frequency"
-msgstr ""
+msgstr "använder en otillgänglig användarbandsfrekvens"
 
 msgid "using:"
 msgstr "med hjälp av:"
@@ -26582,6 +26629,18 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Ställ in procentandelen för hopp över vänster/högerknapp för SeekBar."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Ställ in procentsatsen för hopp över UP/DOWN-knappen för SeekBar."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Hoppa över känslighet (horisontell)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Hoppa över känslighet (vertikal)"
 
 #~ msgid "AutoFS"
 #~ msgstr "AutoFS"

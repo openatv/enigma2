@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-08-31 04:51+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-12 12:41+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1918,7 +1918,7 @@ msgid "Activate a way to send individual or specific internal HDMI-CEC commands 
 msgstr "Aktywuj metodę wysyłania pojedynczych lub określonych wewnętrznych poleceń HDMI-CEC z wiersza poleceń."
 
 msgid "Activate network adapter"
-msgstr "Aktywuj kartę sieciową"
+msgstr "Aktywuj adapter"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktywuj rozszerzacza flash, zapisz wszystkie zmienione ustawienia i wyjdź"
@@ -1946,10 +1946,10 @@ msgstr "Adapter"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
-msgstr "Menu kontekstowe karty '%s'"
+msgstr "Menu kontekstowe adaptera sieciowego '%s'"
 
 msgid "Adapter Settings"
-msgstr "Ustawienia karty sieciowej"
+msgstr "Ustawienia adaptera"
 
 msgid "Add"
 msgstr "Dodaj"
@@ -2679,7 +2679,7 @@ msgid "Armenian"
 msgstr "Ormiański"
 
 msgid "Arrow skip mode"
-msgstr "Tryb pomijania strzałek"
+msgstr "Tryb przewijania strzałkami"
 
 msgid "Art/Literature"
 msgstr "Sztuka/Literatura"
@@ -2749,7 +2749,7 @@ msgid "Assigned services/provider:"
 msgstr "Przypisane kanały/nadawca:"
 
 msgid "Associated"
-msgstr "Powiązano"
+msgstr "Połączono"
 
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
@@ -2976,7 +2976,7 @@ msgid "Avestan"
 msgstr "Awestyjski"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
-msgstr "Unikać zablokowania (kosztem niektórych zacięć) kiedy czas skoku jest mniejszy niż czas między ramami."
+msgstr "Unikaj zablokowania (kosztem pewnego przycinania), gdy czas skoku jest krótszy niż odstęp między klatkami I."
 
 msgid "Aymara"
 msgstr "Ajmara"
@@ -4711,7 +4711,7 @@ msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Skonfiguruj dodatkowe opóźnienie w celu polepszenia synchronizacji napisów."
 
 msgid "Configure another network adapter"
-msgstr "Skonfiguruj inną kartę sieciową"
+msgstr "Skonfiguruj inny adapter sieciowy"
 
 msgid "Configure cable reception on this input."
 msgstr "Skonfiguruj odbiór telewizji kablowej na tym wejściu."
@@ -4762,7 +4762,7 @@ msgid "Configure if the subtitle should switch between normal, italic, bold and 
 msgstr "Skonfiguruj, czy napisy mają być wyświetlane w trybie normalnym, kursywą, pogrubionym i pogrubioną kursywą."
 
 msgid "Configure network adapter"
-msgstr "Skonfiguruj kartę sieciową"
+msgstr "Skonfiguruj adapter sieciowy"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Skonfiguruj dla jakich urządzeń opcja usuwania w tle ma być użyta."
@@ -4960,13 +4960,13 @@ msgid "Configure the selected Wi-Fi network"
 msgstr "Skonfiguruj wybraną sieć Wi-Fi"
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
-msgstr "Skonfiguruj czas przeskoku dla klawiszy '1'/'3'."
+msgstr "Skonfiguruj interwał czasowy przewijania dla przycisków '1'/'3'."
 
 msgid "Configure the skip time interval for the '4'/'6' buttons."
-msgstr "Skonfiguruj czas przeskoku dla klawiszy '4'/'6'."
+msgstr "Skonfiguruj interwał czasowy przewijania dla przycisków '4'/'6'."
 
 msgid "Configure the skip time interval for the '7'/'9' buttons."
-msgstr "Skonfiguruj czas przeskoku dla klawiszy '7'/'9'."
+msgstr "Skonfiguruj interwał czasowy przewijania dla przycisków '7'/'9'."
 
 msgid "Configure the slow motion speeds."
 msgstr "Skonfiguruj prędkości odtwarzania w zwolnionym tempie."
@@ -5056,7 +5056,7 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr "Skonfiguruj który tuner będzie wykorzystany, gdy posiadasz więcej niż jeden tuner. Jeśli ustawione na 'auto' system da pierwszeństwo dla tunera o najniższej liczbie kanałów/satelit."
 
 msgid "Configure your NTP server."
-msgstr "Tutaj możesz zmienić synchronizację serwera NTP."
+msgstr "Skonfiguruj serwer NTP."
 
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Skonfiguruj ustawienia sieci i wciśnij 'OK' aby rozpocząć skanowanie"
@@ -5667,13 +5667,13 @@ msgid "Custom mountpoint"
 msgstr "Niestandardowy punkt montowania"
 
 msgid "Custom skip time for '1'/'3' buttons"
-msgstr "Niestandardowy czas pomijania dla przycisków '1'/'3'"
+msgstr "Niestandardowy czas przewijania dla przycisków '1'/'3'"
 
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "Niestandardowy czas pomijania dla przycisków '4'/'6'"
+msgstr "Niestandardowy czas przewijania dla przycisków '4'/'6'"
 
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "Niestandardowy czas pomijania dla przycisków '7'/'9'"
+msgstr "Niestandardowy czas przewijania dla przycisków '7'/'9'"
 
 msgid "Customize"
 msgstr "Ustawienia zaawansowane"
@@ -5691,13 +5691,13 @@ msgid "Cut"
 msgstr "Wytnij"
 
 msgid "CutList Skipping"
-msgstr "Pomijanie Według Listy Cięć"
+msgstr "Przewijanie Według Listy Cięć"
 
 msgid "CutList skip time for '%s' button"
-msgstr "Czas przeskoku listy cięć dla przycisku '%s'"
+msgstr "Czas przewijania według znaczników cięcia dla przycisku '%s'"
 
 msgid "CutList skip time for '%s'/'%s' buttons"
-msgstr "Czas przeskoku listy cięć dla przycisków '%s'/'%s'"
+msgstr "Czas przewijania według znaczników cięcia dla przycisków '%s'/'%s'"
 
 msgid "Cutlist Editor"
 msgstr "Edytor listy cięć"
@@ -6029,7 +6029,7 @@ msgid "Deactivate Expander"
 msgstr "Wyłącz Rozszerzacza"
 
 msgid "Deactivate network adapter"
-msgstr "Dezaktywuj kartę sieciową"
+msgstr "Dezaktywuj adapter sieciowy"
 
 msgid "Deactivate the flash expander in the selected device"
 msgstr "Wyłącza rozszerzacza flash na wybranym urządzeniu"
@@ -6179,7 +6179,7 @@ msgid "Defined / Active"
 msgstr "Zdefiniowany/Aktywny"
 
 msgid "Defined skips"
-msgstr "Zdefiniowane pominięcia"
+msgstr "Zdefiniowane przewijania"
 
 msgid "Defined volume offset"
 msgstr "Zdefiniowane przesunięcie głośności"
@@ -6637,7 +6637,7 @@ msgid "Disable"
 msgstr "Wyłącz"
 
 msgid "Disable Adapter"
-msgstr "Wyłącz kartę sieciową"
+msgstr "Wyłącz adapter"
 
 msgid "Disable Animations"
 msgstr "Wyłącz animacje"
@@ -6706,7 +6706,7 @@ msgid "Disabling Chkroot failed!"
 msgstr "Wyłączenie Chkroot nie powiodło się!"
 
 msgid "Disconnected"
-msgstr "Rozłączono"
+msgstr "Rozłączony"
 
 msgid "Discussion"
 msgstr "Dyskusja"
@@ -7546,7 +7546,7 @@ msgid "Enable Virgin EPG"
 msgstr "Włącz Virgin EPG"
 
 msgid "Enable adapter"
-msgstr "Włącz kartę sieciową"
+msgstr "Włącz adapter"
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Włącz i ustaw czas trwania wyświetlania drugiego paska info (naciśnij przycisk 'OK' dwa razy), może zawierać więcej informacji na temat bieżącego kanału."
@@ -7698,6 +7698,9 @@ msgstr "Włącz tę opcję, aby dodać dane zdalnego sterowania do pliku dzienni
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać nazwy ekranów i dane rozdzielczości do pliku dziennika debugowania."
+
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dodatkowe dane diagnostyczne dotyczące przewijania i timeshift do pliku dziennika debugowania."
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Włącz tę opcję, aby dodać informacje o urządzeniu pamięci masowej wykrytym podczas rozruchu systemu i zdarzeń podłączania na gorąco do pliku dziennika debugowania."
@@ -8327,7 +8330,7 @@ msgid "EtPortal"
 msgstr "Et Portal"
 
 msgid "Ethernet Adapter"
-msgstr "Karta Ethernet"
+msgstr "Adapter Ethernet"
 
 msgid "Ethernet network interface"
 msgstr "Interfejs sieci przewodowej"
@@ -10405,6 +10408,9 @@ msgstr "Dołącz dane pilota zdalnego sterowania"
 msgid "Include screen load data"
 msgstr "Dołącz dane ładowania ekranów skórki"
 
+msgid "Include seek data"
+msgstr "Dołącz dane dotyczące przewijania"
+
 msgid "Include storage device data"
 msgstr "Dołącz dane urządzenia pamięci masowej"
 
@@ -10823,7 +10829,7 @@ msgid "Jump forward one hour"
 msgstr "Skocz w przód o godzinę"
 
 msgid "Jump time"
-msgstr "Czas skoku"
+msgstr "Czas przeskoku"
 
 msgid "Jump to beginning of list"
 msgstr "Skocz do początku listy"
@@ -12570,7 +12576,7 @@ msgid "Mystery"
 msgstr "Tajemnica"
 
 msgid "N/A"
-msgstr "N/A"
+msgstr "Niedostępny"
 
 msgid "NEXT"
 msgstr "NASTĘPNY"
@@ -12700,13 +12706,13 @@ msgstr "Sieć"
 
 #, python-format
 msgid "Network Adapter '%s' Settings"
-msgstr "Ustawienia karty sieciowej '%s'"
+msgstr "Ustawienia adaptera sieciowego '%s'"
 
 msgid "Network Adapter Selection"
 msgstr "Wybór karty sieciowej"
 
 msgid "Network Adapter Settings"
-msgstr "Ustawienia karty sieciowej"
+msgstr "Ustawienia adaptera"
 
 msgid "Network Browser"
 msgstr "Przeglądarka sieci"
@@ -12788,13 +12794,13 @@ msgid "Network Wi-Fi Settings"
 msgstr "Ustawienia sieci Wi-Fi"
 
 msgid "Network adapter disabled."
-msgstr "Karta sieciowa wyłączona."
+msgstr "Adapter sieciowy wyłączony."
 
 msgid "Network adapter enabled."
-msgstr "Karta sieciowa włączona."
+msgstr "Adapter sieciowy włączony."
 
 msgid "Network adapter not connected to a network!"
-msgstr "Karta sieciowa nie jest podłączona do sieci!"
+msgstr "Adapter sieciowy nie jest podłączony do sieci!"
 
 msgid "Network adapter setup result:"
 msgstr "Wynik konfiguracji karty sieciowej:"
@@ -13099,7 +13105,7 @@ msgid "No matching place names found"
 msgstr "Nie znaleziono pasujących nazw miejsc"
 
 msgid "No network adapters enabled/available!"
-msgstr "Brak włączonych/dostępnych kart sieciowych!"
+msgstr "Brak włączonych/dostępnych adapterów sieciowych!"
 
 msgid "No network storage detected."
 msgstr "Nie wykryto pamięci sieciowej."
@@ -13316,7 +13322,7 @@ msgid "Not a valid tuner"
 msgstr "Nieprawidłowy tuner"
 
 msgid "Not associated"
-msgstr "Niepowiązano"
+msgstr "Niepołączono"
 
 msgid "Not available"
 msgstr "Niedostępne"
@@ -13432,7 +13438,7 @@ msgid "Numbering mode"
 msgstr "Tryb numerowania"
 
 msgid "Numeric skip mode"
-msgstr "Tryb pomijania liczb"
+msgstr "Tryb przewijania numerycznego"
 
 msgid "OEM model"
 msgstr "Model OEM"
@@ -13575,7 +13581,7 @@ msgid "On end of movie (as menu)"
 msgstr "Po zakończeniu odtwarzania nagrania (jako menu)"
 
 msgid "On valid ONIDs, ignore frequency sub network part."
-msgstr "W przypadku prawidłowych identyfikatorów ONID zignoruj część podsieci częstotliwościowej."
+msgstr "W przypadku prawidłowych identyfikatorów ONID należy zignorować część podsieci częstotliwości."
 
 msgid "Once"
 msgstr "Jednorazowy"
@@ -13785,7 +13791,7 @@ msgid "Open the Mount Context Menu"
 msgstr "Otwórz menu kontekstowe montowania"
 
 msgid "Open the Network Adapter Settings for the selected item"
-msgstr "Otwórz ustawienia karty sieciowej dla wybranego elementu"
+msgstr "Otwórz ustawienia adaptera sieciowego dla wybranego elementu"
 
 msgid "Open the Network Shares Browser"
 msgstr "Otwórz przeglądarkę udziałów sieciowych"
@@ -14066,7 +14072,7 @@ msgid "Packages"
 msgstr "Pakiety"
 
 msgid "Packages and associated locales"
-msgstr "Pakiety i skojarzone ustawienia regionalne"
+msgstr "Pakiety i powiązane ustawienia regionalne"
 
 msgid "Page down"
 msgstr "Strona w dół"
@@ -16164,7 +16170,7 @@ msgid "Restart %s"
 msgstr "Uruchom ponownie %s"
 
 msgid "Restart Adapter"
-msgstr "Uruchom ponownie kartę sieciową"
+msgstr "Restart adaptera"
 
 msgid "Restart GUI"
 msgstr "Restart interfejsu"
@@ -16204,7 +16210,7 @@ msgid "Restarting %s failed (exit code %s)"
 msgstr "Ponowne uruchomienie %s nie powiodło się (kod wyjścia %s)"
 
 msgid "Restarting adapter..."
-msgstr "Ponowne uruchamianie karty sieciowej..."
+msgstr "Ponowne uruchamianie adaptera sieciowego..."
 
 msgid "Restarting saved Wi-Fi network..."
 msgstr "Ponowne uruchamianie zapisanej sieci Wi-Fi..."
@@ -16792,7 +16798,7 @@ msgid "Scanning %s..."
 msgstr "Skanowanie %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
-msgstr "Skanowanie źródła DAB+; oczekiwanie na dane FIC na żywo..."
+msgstr "Skanowanie sygnału DAB+ i oczekiwanie na dane FIC na żywo..."
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Skanowania nie można wykonać podczas nagrywania."
@@ -17405,7 +17411,7 @@ msgid "Select a movie"
 msgstr "Wybierz nagranie"
 
 msgid "Select a network adapter"
-msgstr "Wybierz kartę sieciową"
+msgstr "Wybierz adapter sieciowy"
 
 msgid "Select a network interface to configure, or skip to configure the network later in system settings."
 msgstr "Wybierz interfejs sieciowy, który chcesz skonfigurować, lub pomiń i przejdź do konfiguracji sieci później w ustawieniach systemowych."
@@ -17912,7 +17918,7 @@ msgid "Select the network data rate below which the timer should activate as spe
 msgstr "Wybierz szybkość przesyłania danych w sieci, poniżej której licznik czasu powinien być aktywowany. Ruch powyżej tej prędkości dezaktywuje timer."
 
 msgid "Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic."
-msgstr "Wybierz metrykę sieciową dla tej karty. Gdy aktywnych jest kilka kart sieciowych, jako domyślna trasa zostanie użyta karta z najniższą metryką."
+msgstr "Wybierz metrykę sieciową dla tego adaptera sieciowego. Gdy aktywnych jest kilka adapterów sieciowych, jako domyślna trasa zostanie użyty adapter z najniższą metryką."
 
 msgid "Select the network name (SSID) of the wireless network to which the receiver should connect."
 msgstr "Wybierz nazwę (SSID) sieci bezprzewodowej, z którą ma się łączyć odbiornik."
@@ -18171,7 +18177,7 @@ msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Wybierz, czy ikona ma być wyświetlana, gdy antena satelitarna jest w ruchu."
 
 msgid "Select which IP protocols can be used with this adapter."
-msgstr "Wybierz protokoły IP, które mają być używane przez tę kartę sieciową."
+msgstr "Wybierz protokoły IP, które mają być używane przez ten adapter sieciowy."
 
 msgid "Select your ATSC provider."
 msgstr "Wybierz dostawcę ATSC."
@@ -18262,6 +18268,9 @@ msgstr "Wyślij DiSEqC tylko podczas zmiany satelity"
 
 msgid "Senegal"
 msgstr "Senegal"
+
+msgid "Sensibility skips"
+msgstr "Czułość przewijania"
 
 msgid "Seperate titles with a main menu"
 msgstr "Oddzielne tytuły z menu głównego"
@@ -18529,13 +18538,7 @@ msgid "Set system"
 msgstr "Ustaw system"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
-msgstr "Ustaw czas przeskoku w Edytorze listy cięć dla przycisków '%s'/'%s'."
-
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Ustaw procent pomijania przycisków LEWO/PRAWO dla paska postępu."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Ustaw procent pomijania przycisków GÓRA/DÓŁ dla paska postępu."
+msgstr "Ustaw interwał czasowy przewijania w Edytorze listy cięć dla przycisków '%s'/'%s'."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Wpisz nazwę użytkownika do zalogowania do OpenWebif tunera zapasowego."
@@ -18603,11 +18606,17 @@ msgstr "Ustaw szybkość przewijania tekstu na wyświetlaczu. Jest używany prze
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ustaw szybkość przewijania tekstu na przednim wyświetlaczu."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Ustaw procent przeskoku dla przycisku '%s'. Liczby dodatnie oznaczają przeskok do przodu, a ujemne – przeskok do tyłu."
+
 msgid "Set the skip time interval for the '%s' button."
-msgstr "Ustaw czas przeskoku dla przycisku '%s'."
+msgstr "Ustaw interwał czasowy przewijania dla przycisku '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Ustaw interwał czasowy przewijania dla przycisku '%s'. Dodatnie wartości przewijają do przodu, a ujemne wartości przewijają do tyłu."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
-msgstr "Ustaw czas przeskoku dla przycisków '%s'/'%s'."
+msgstr "Ustaw interwał czasowy przewijania dla przycisków '%s'/'%s'."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Ustaw czas przed sprawdzeniem źródła wideo w celu uzyskania informacji o rozdzielczości."
@@ -19769,7 +19778,7 @@ msgid "SkinSelection"
 msgstr "Wybór skóry"
 
 msgid "Skip Modes"
-msgstr "Tryby Pomijania"
+msgstr "Tryby Przewijania"
 
 msgid "Skip back"
 msgstr "Przewijanie do tyłu"
@@ -19796,7 +19805,7 @@ msgstr "Pomiń puste kanały"
 
 #, python-format
 msgid "Skip for '%s' is disabled"
-msgstr "Pomijanie dla '%s' jest wyłączone"
+msgstr "Przewijanie dla '%s' jest wyłączone"
 
 msgid "Skip forward"
 msgstr "Przeskocz do przodu"
@@ -19824,17 +19833,14 @@ msgstr "Pomiń konfigurację sieci"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Pomiń instalację pakietu, tylko pakiety rdzenia będą dostępne"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Wrażliwość pomijania (poziomo)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Wrażliwość pomijania (pionowo)"
+msgid "Skip sensibility for '%s' button"
+msgstr "Czułość przewijania dla przycisku '%s'"
 
 msgid "Skip time for '%s' button"
-msgstr "Czas pomijania dla przycisku '%s'"
+msgstr "Czas przewijania przyciskiem '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
-msgstr "Czas pomijania dla przycisków '%s'/'%s'"
+msgstr "Czas przewijania przyciskami '%s'/'%s'"
 
 #, python-format
 msgid "Skip to %s0%% position (Add %s%% on second press)"
@@ -20960,7 +20966,7 @@ msgid "Symbolic link"
 msgstr "Powiązanie symboliczne"
 
 msgid "Symmetrical skips"
-msgstr "Symetryczne przeskoki"
+msgstr "Symetryczne przewijania"
 
 msgid "Sync NTP every"
 msgstr "Synchronizuj NTP co"
@@ -22010,19 +22016,19 @@ msgid "Time for next LCD scrolling"
 msgstr "Czas następnego przewijania przedniego wyświetlacza"
 
 msgid "Time jump avoid zero step size"
-msgstr "Unikaj zakłóceń obrazu podczas skoków"
+msgstr "Unikaj zerowego skoku czasowego"
 
 msgid "Time jump multiplier for fast backward"
-msgstr "Czas skoku mnożnika dla szybkiego przewijanie do tyłu"
+msgstr "Mnożnik skoku czasowego dla szybkiego przewijania do tyłu"
 
 msgid "Time jump multiplier for fast forward"
-msgstr "Czas skoku mnożnika do przodu"
+msgstr "Mnożnik skoku czasowego dla szybkiego przewijania do przodu"
 
 msgid "Time jump repeat interval for fast forward/backward"
-msgstr "Czas skoku interwału dla przewijania do przodu / tyłu"
+msgstr "Interwał powtarzania czasowego dla szybkiego przewijania do przodu/tyłu"
 
 msgid "Time jump: Use normal fast forward for speeds"
-msgstr "Czas skoku: używać normalnie dla prędkości do przodu"
+msgstr "Skok czasowy: użyj normalnego szybkiego przewijania dla prędkości"
 
 msgid "Time shift buffer delete after zap"
 msgstr "Usuń bufor timeshift po przełączeniu"
@@ -22731,8 +22737,11 @@ msgstr "Nie można odziedziczyć kanału użytkownika (User Band) dla LNB %d: LN
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nie udało się zainicjować Kexec MultiBoot!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "Nie można zarejestrować transpondera DAB+"
+
 msgid "Unable to start the DAB+ feed"
-msgstr "Nie można uruchomić źródła DAB+"
+msgstr "Nie można uruchomić sygnału DAB+"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -23238,7 +23247,7 @@ msgid "Use this video enhancement settings?"
 msgstr "Użyć tych ustawień korekcji obrazu?"
 
 msgid "Use time jumps for fast forward/backward"
-msgstr "Użyj czasu przeskoku na szybkie przewijanie do przodu/do tyłu"
+msgstr "Używaj skoków czasowych przy szybkim przewijaniu do przodu/tyłu"
 
 msgid "Use time shift SeekBar while time shifting"
 msgstr "Użyj paska postępu w trakcie timeshiftu"
@@ -23705,7 +23714,7 @@ msgid "Volume up"
 msgstr "Głośniej"
 
 msgid "Volume/Mute display timer"
-msgstr "Timer wyświetlania głośności/wyciszenia"
+msgstr "Czas wyświetlania głośności/wyciszenia"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -24006,7 +24015,7 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr "Jeśli włączone, będzie wymagana autoryzacja do oglądania strumieni http."
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
-msgstr "Po włączeniu podczas nawiązywania połączenia przez kartę Wi-Fi będzie podejmowana próba połączenia z zapisaną siecią."
+msgstr "Po włączeniu podczas nawiązywania połączenia przez adapter Wi-Fi będzie podejmowana próba połączenia z zapisaną siecią."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Po włączeniu tej opcji zawartość o proporcjach 4:3 zostanie rozciągnięta, aby dopasować się do ekranu."
@@ -24030,7 +24039,7 @@ msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Po włączeniu tej opcji możliwe jest wyjście z odtwarzacza nagrań za pomocą przycisku exit."
 
 msgid "When enabled, keep the Wi-Fi adapter in low-power scan mode during Standby to allow the receiver to be powered on by a remote network signal (Magic Packet)."
-msgstr "Po włączeniu karta Wi-Fi pozostanie w trybie niskiego poboru mocy podczas czuwania, umożliwiając zdalne włączenie odbiornika sygnałem sieciowym (Magic Packet)."
+msgstr "Po włączeniu adapter Wi-Fi pozostanie w trybie niskiego poboru mocy podczas czuwania, umożliwiając zdalne włączenie odbiornika sygnałem sieciowym (Magic Packet)."
 
 msgid "When enabled, map root to nobody (more secure). When disabled, full root access is available."
 msgstr "Po włączeniu użytkownik root jest mapowany na użytkownika „nobody” (większe bezpieczeństwo). Po wyłączeniu dostęp roota pozostaje nieograniczony."
@@ -24060,7 +24069,7 @@ msgid "When enabled, show status or error messages."
 msgstr "Po włączeniu pokaż komunikaty o stanie lub komunikaty o błędach."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
-msgstr "Po włączeniu można określić własne serwery DNS dla tej karty zamiast używać globalnych ustawień DNS."
+msgstr "Po włączeniu można określić własne serwery DNS dla tego adaptera sieciowego zamiast używać globalnych ustawień DNS."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Po włączeniu tej opcji możliwe będzie korzystanie z napisów dla osób niedosłyszących."
@@ -24114,10 +24123,10 @@ msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Po włączeniu timer zdalnego odbiornika staje się domyślnym timerem."
 
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
-msgstr "Po włączeniu karta Wi-Fi pozostaje wyłącznie w trybie Wake-on-WiFi i nie będzie używana do łączenia z żadną siecią."
+msgstr "Po włączeniu adapter Wi-Fi pozostaje wyłącznie w trybie Wake-on-WiFi i nie będzie używany do łączenia z żadną siecią."
 
 msgid "When enabled, this adapter will be initialized and activated at boot time."
-msgstr "Po włączeniu karta sieciowa jest inicjalizowana i aktywowana podczas uruchamiania odbiornika."
+msgstr "Po włączeniu adapter sieciowy jest inicjalizowany i aktywowany podczas uruchamiania odbiornika."
 
 msgid "When enabled, this host's shares are listed anonymously (guest), ignoring the username/password below."
 msgstr "Po włączeniu tej opcji udziały tego hosta będą wyświetlane anonimowo (gość), bez uwzględniania nazwy użytkownika i hasła podanego poniżej."
@@ -24204,7 +24213,7 @@ msgid "Wi-Fi Activation Actions"
 msgstr "Akcje aktywacji Wi-Fi"
 
 msgid "Wi-Fi Adapter"
-msgstr "Karta Wi-Fi"
+msgstr "Adapter Wi-Fi"
 
 msgid "Wi-Fi Scan Actions"
 msgstr "Akcje skanowania Wi-Fi"
@@ -25098,7 +25107,7 @@ msgid "multi"
 msgstr "multi"
 
 msgid "n/a"
-msgstr "Niedostępne"
+msgstr "Niedostępny"
 
 msgid "name"
 msgstr "nazwa"
@@ -25408,6 +25417,18 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Ustaw procent pomijania przycisków LEWO/PRAWO dla paska postępu."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Ustaw procent pomijania przycisków GÓRA/DÓŁ dla paska postępu."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Wrażliwość pomijania (poziomo)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Wrażliwość pomijania (pionowo)"
 
 #, python-format
 #~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"

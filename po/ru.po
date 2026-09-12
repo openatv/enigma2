@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
 "PO-Revision-Date: 2026-08-17 05:14+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -7663,6 +7663,9 @@ msgstr "Включите этот параметр, чтобы добавить 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Включите эту опцию, чтобы добавить имена экранов и данные о разрешении в файл лога отладки."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Включите эту опцию, чтобы добавить в файл журнала отладки информацию об устройствах хранения, обнаруженных во время загрузки системы и событий горячего подключения."
 
@@ -10368,6 +10371,9 @@ msgstr "Указать тип пульта управления"
 
 msgid "Include screen load data"
 msgstr "Включить данные о загрузке экрана"
+
+msgid "Include seek data"
+msgstr ""
 
 msgid "Include storage device data"
 msgstr "Включить данные устройства хранения"
@@ -18219,6 +18225,9 @@ msgstr "Отправлять команды DiSEqC только при смен�
 msgid "Senegal"
 msgstr "Сенегал"
 
+msgid "Sensibility skips"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Отдельные главы в главном меню"
 
@@ -18487,12 +18496,6 @@ msgstr "Настройка системы"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Установите интервал пропуска времени редактора CutList для кнопок '%s'/'%s'."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Установите процент пропуска кнопок ВЛЕВО/ВПРАВО для полосы прокрутки."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Установите процент пропускания кнопок ВВЕРХ/ВНИЗ для полосы прокрутки."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Установить ID пользователя OpenWebif из вашего резервного ресивера"
 
@@ -18559,8 +18562,14 @@ msgstr "Укажите скорость прокрутки текста на д�
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Укажите скорость прокрутки текста на дисплее."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Установите интервал пропуска для кнопки «%s»."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Установите интервал пропуска для кнопок '%s'/'%s'."
@@ -19777,11 +19786,8 @@ msgstr ""
 msgid "Skip package installation, only core packages will be available"
 msgstr "Пропустить установку пакетов. Будут доступны только основные пакеты"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Пропустить чувствительность (горизонтальную)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Чувствительность к пропускам (вертикальная)"
+msgid "Skip sensibility for '%s' button"
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Пропустить время для кнопки '%s'"
@@ -22683,6 +22689,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Не удалось инициализировать Kexec MultiBoot!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -25360,6 +25369,18 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Установите процент пропуска кнопок ВЛЕВО/ВПРАВО для полосы прокрутки."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Установите процент пропускания кнопок ВВЕРХ/ВНИЗ для полосы прокрутки."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Пропустить чувствительность (горизонтальную)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Чувствительность к пропускам (вертикальная)"
 
 #~ msgid "AutoFS"
 #~ msgstr "AutoFS"

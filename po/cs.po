@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-08-28 07:21+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-04 13:51+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.9\n"
 
 msgid ""
 "\n"
@@ -7689,6 +7689,9 @@ msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat d
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat názvy obrazovek a údaje o rozlišení."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Povolte tuto možnost, chcete-li do souboru protokolu ladění přidat ladicí data vyhledávání/časového posunu."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Povolte tuto možnost, chcete-li do souboru protokolu ladění přidat informace o úložném zařízení zjištěné během spouštění systému a událostí připojení za provozu."
 
@@ -10394,6 +10397,9 @@ msgstr "Zahrnout data dálkového ovládání"
 
 msgid "Include screen load data"
 msgstr "Zahrnout údaje o načtení obrazovky"
+
+msgid "Include seek data"
+msgstr "Zahrnout vyhledávací data"
 
 msgid "Include storage device data"
 msgstr "Zahrnout data úložného zařízení"
@@ -18252,6 +18258,9 @@ msgstr "Poslat DiSEqC pouze při změně satelitu"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "Citlivost přeskakování"
+
 msgid "Seperate titles with a main menu"
 msgstr "Samostatné tituly s hlavní nabídkou"
 
@@ -18520,12 +18529,6 @@ msgstr "Nastavit systém"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Nastavte časový interval přeskočení editoru CutList pro tlačítka '%s'/'%s'."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Nastavte procento přeskakování tlačítek LEFT/RIGHT pro SeekBar."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Nastavte procento přeskakování tlačítek NAHORU/DOLŮ pro SeekBar."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Nastavte ID uživatele OpenWebif z vašeho záložního tuneru."
 
@@ -18592,8 +18595,14 @@ msgstr "Nastavení rychlosti rolování textu na předním displeji, Provedení 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Nastavte rolování textu na čelním displeji."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Nastavte procento přeskakování pro tlačítko '%s'. Kladná čísla přeskakují vpřed, záporná čísla vzad."
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Nastavte interval přeskočení pro tlačítko '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Nastavte interval přeskakování pro tlačítko '%s'. Kladná čísla přeskakují vpřed, záporná čísla vzad."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Nastavte interval přeskakování pro tlačítka '%s'/'%s'."
@@ -19813,11 +19822,8 @@ msgstr "Přeskočit nastavení sítě"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Přeskočit instalaci balíčku, k dispozici budou pouze základní balíčky"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Citlivost přeskočení (horizontální)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Citlivost přeskočení (vertikální)"
+msgid "Skip sensibility for '%s' button"
+msgstr "Citlivost přeskočení pro tlačítko '%s'"
 
 msgid "Skip time for '%s' button"
 msgstr "Čas přeskočení pro tlačítko '%s'"
@@ -22719,6 +22725,9 @@ msgstr "Nelze zdědit uživatelské pásmo pro LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nelze inicializovat Kexec MultiBoot!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "Nelze zaregistrovat transpondér DAB+"
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Nelze spustit DAB+ kanál"
 
@@ -25396,6 +25405,18 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Nastavte procento přeskakování tlačítek LEFT/RIGHT pro SeekBar."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Nastavte procento přeskakování tlačítek NAHORU/DOLŮ pro SeekBar."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Citlivost přeskočení (horizontální)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Citlivost přeskočení (vertikální)"
 
 #, python-format
 #~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"

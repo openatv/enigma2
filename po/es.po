@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -7960,6 +7960,9 @@ msgstr "Habilitar esta opción para añadir los datos del control remoto al arch
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Habilita esta opción para añadir los nombres de las pantallas y los datos de resolución al archivo de registro de depuración."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Habilite esta opción para agregar información del dispositivo de almacenamiento detectado durante el arranque del sistema y eventos de conexión en caliente al archivo de registro de depuración."
 
@@ -10777,6 +10780,9 @@ msgstr "Incluir los datos del mando a distancia"
 
 msgid "Include screen load data"
 msgstr "Incluir datos de carga de la pantalla"
+
+msgid "Include seek data"
+msgstr ""
 
 msgid "Include storage device data"
 msgstr "Incluir datos del dispositivo de almacenamiento"
@@ -19087,6 +19093,9 @@ msgstr "Enviar DISEqC sólo en cambio de satélite"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr ""
+
 #
 msgid "Seperate titles with a main menu"
 msgstr "Separar títulos con un menú principal"
@@ -19375,12 +19384,6 @@ msgstr "Configurar sistema"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Establezca el intervalo de tiempo de omisión del plugin CutList para los botones '%s'/'%s'."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Establezca el porcentaje de omisión del botón IZQUIERDO/DERECHO para la barra de búsqueda."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Establezca el porcentaje de omisión del botón ARRIBA/ABAJO para la barra de búsqueda."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Configura el ID de usuario del OpenWebif del sintonizador reserva."
 
@@ -19448,8 +19451,14 @@ msgstr "Configura la velocidad del scroll de texto en el LCD, usa renderizado po
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Configura la velocidad de desplazamiento de texto en el LCD."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Establezca el intervalo de tiempo de salto para el botón '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Establezca el intervalo de tiempo de salto para los botones '%s'/'%s'."
@@ -20725,11 +20734,8 @@ msgstr "Omitir la configuración de red"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Omitir instalación de paquetes, solo paquetes básicos (sin servicio FTP)"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Sensibilidad de salto (Horizontal)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Sensibilidad de salto (Vertical)"
+msgid "Skip sensibility for '%s' button"
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Saltar tiempo para el botón '%s'"
@@ -23796,6 +23802,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -26651,6 +26660,18 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Establezca el porcentaje de omisión del botón IZQUIERDO/DERECHO para la barra de búsqueda."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Establezca el porcentaje de omisión del botón ARRIBA/ABAJO para la barra de búsqueda."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Sensibilidad de salto (Horizontal)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Sensibilidad de salto (Vertical)"
 
 #~ msgid "Chrony"
 #~ msgstr "Chrony"

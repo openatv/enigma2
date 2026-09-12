@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
 "PO-Revision-Date: 2026-08-17 22:30+0000\n"
 "Last-Translator: ikvat <ikvat@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -7632,6 +7632,9 @@ msgstr "Activez cette option pour ajouter des données de contrôle à distance 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Activez cette option pour ajouter des noms d'écran et des données de résolution au fichier journal de débogage."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr ""
 
@@ -10335,6 +10338,9 @@ msgstr "Inclure les données de la télécommande"
 
 msgid "Include screen load data"
 msgstr "Inclure les données de chargement d'écran"
+
+msgid "Include seek data"
+msgstr ""
 
 msgid "Include storage device data"
 msgstr "Inclure les données du périphérique de stockage"
@@ -18181,6 +18187,9 @@ msgstr "Envoyer DiSEqC seulement pour changement satellite"
 msgid "Senegal"
 msgstr "Sénégal"
 
+msgid "Sensibility skips"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Séparer les titres avec un menu principal"
 
@@ -18450,12 +18459,6 @@ msgstr "Définir le système"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr ""
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Définir l'ID utilisateur d’OpenWebif de votre tuner de secours"
 
@@ -18522,7 +18525,13 @@ msgstr "Définir de défilement du texte sur la face avant, cela est utilisé pa
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Définir de défilement du texte sur la face avant."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
+
 msgid "Set the skip time interval for the '%s' button."
+msgstr ""
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
 msgstr ""
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
@@ -19737,10 +19746,7 @@ msgstr ""
 msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
-msgid "Skip sensibility (Horizontal)"
-msgstr ""
-
-msgid "Skip sensibility (Vertical)"
+msgid "Skip sensibility for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s' button"
@@ -22634,6 +22640,9 @@ msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
+msgstr ""
+
+msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"

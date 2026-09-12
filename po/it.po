@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-08-27 10:28+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-02 10:36+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -7650,6 +7650,9 @@ msgstr "Abilita questa opzione per aggiungere dati del controllo remoto al file 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere nomi di schermate e dati di risoluzione al file di registro di debug."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Abilita questa opzione per aggiungere i dati di debug relativi alla ricerca/spostamento temporale al file di log di debug."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Abilita questa opzione per aggiungere al file di registro di debug le informazioni sul dispositivo di archiviazione rilevato durante l'avvio del sistema e gli eventi di hot plug."
 
@@ -10353,6 +10356,9 @@ msgstr "Includi dati del telecomando"
 
 msgid "Include screen load data"
 msgstr "Includi dati di caricamento dello schermo"
+
+msgid "Include seek data"
+msgstr "Includi dati di ricerca"
 
 msgid "Include storage device data"
 msgstr "Includi dati del dispositivo di archiviazione"
@@ -18204,6 +18210,9 @@ msgstr "Inviare DiSEqC solo su cambio satellite"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "Sensibilità salti"
+
 msgid "Seperate titles with a main menu"
 msgstr "Separare i titoli con un menu principale"
 
@@ -18472,12 +18481,6 @@ msgstr "Imposta sistema"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Imposta intervallo tempo di salto dell'editor CutList per i tasti '%s'/'%s'."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Imposta percentuale di salto del tasto SINISTRA/DESTRA per la Barra di ricerca."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Imposta percentuale di salto del tasto SU/GIÙ per la Barra di ricerca."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Imposta ID utente di OpenWebif dal tuo tuner di fallback."
 
@@ -18544,8 +18547,14 @@ msgstr "Imposta velocità di scorrimento del testo sul display frontale; questa 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Imposta velocità di scorrimento del testo sul display frontale."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Imposta percentuale di salto per il pulsante '%s'. I numeri positivi saltano in avanti, i numeri negativi saltano indietro."
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Imposta intervallo tempo di salto per il tasto '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Imposta intervallo di tempo per il tasto '%s'. I numeri positivi saltano in avanti, i numeri negativi saltano indietro."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Imposta intervallo tempo di salto per i tasti %s'/'%s'."
@@ -19763,11 +19772,8 @@ msgstr "Salta configurazione rete"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Salta installazione del pacchetto, saranno disponibili solo i pacchetti principali"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Sensibilità di salto (orizzontale)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Sensibilità di salto (verticale)"
+msgid "Skip sensibility for '%s' button"
+msgstr "Sensibilità salti per il pulsante '%s'"
 
 msgid "Skip time for '%s' button"
 msgstr "Salta tempo per il tasto'%s'"
@@ -22666,6 +22672,9 @@ msgstr "Impossibile ereditare la User Band per LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Impossibile inizializzare Kexec MultiBoot!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "Impossibile registrare il transponder DAB+"
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Impossibile avviare il feed DAB+"
 
@@ -25342,6 +25351,18 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Imposta percentuale di salto del tasto SINISTRA/DESTRA per la Barra di ricerca."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Imposta percentuale di salto del tasto SU/GIÙ per la Barra di ricerca."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Sensibilità di salto (orizzontale)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Sensibilità di salto (verticale)"
 
 #, python-format
 #~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"

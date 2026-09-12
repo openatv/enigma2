@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
 "PO-Revision-Date: 2026-08-16 15:58+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -7754,6 +7754,9 @@ msgstr "Activeer deze optie om gegevens van de afstandsbediening mee te nemen in
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in het debug log bestand."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Activeren, om tijdens het booten of via Hot-Plug gevonden informatie van opslagmedia in het Debug-Log bestand toe te voegen."
 
@@ -10477,6 +10480,9 @@ msgstr "Inclusief afstandsbediening data"
 
 msgid "Include screen load data"
 msgstr "Inclusief scherm data"
+
+msgid "Include seek data"
+msgstr ""
 
 msgid "Include storage device data"
 msgstr "Inclusief gegevens van opslagmedia"
@@ -18347,6 +18353,9 @@ msgstr "Verstuur DiSEqC alleen bij omschakelen naar een andere satelliet"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Scheidt titels met een hoofdmenu"
 
@@ -18615,12 +18624,6 @@ msgstr "Systeem instellingen"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "CutList-Editor-tijdsprong voor de knoppen '%s'/'%s' definiëren."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen LINKS/RECHTS."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen OMHOOG/OMLAAG."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "De gebruikers-ID van OpenWebif voor de Fallback tuner invoeren"
 
@@ -18690,8 +18693,14 @@ msgstr "Stel de snelheid in van een scrollende tekst in het display, deze functi
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de scroll-snelheid van tekst op het display van uw %s %s in."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "De tijdsprong voor de knop '%s' instellen."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "De tijdsprong voor de knoppen '%s'/'%s' instellen."
@@ -19926,11 +19935,8 @@ msgstr ""
 msgid "Skip package installation, only core packages will be available"
 msgstr "Sla de pakketinstallatie over, alleen de kernpakketten zullen beschikbaar zijn"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Grootte van de sprong (horizontaal)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Grootte van de sprong (verticaal)"
+msgid "Skip sensibility for '%s' button"
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Tijdsprong voor de knop '%s'"
@@ -22869,6 +22875,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kan Kexec MultiBoot niet initialiseren!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -25567,6 +25576,18 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen LINKS/RECHTS."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen OMHOOG/OMLAAG."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Grootte van de sprong (horizontaal)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Grootte van de sprong (verticaal)"
 
 #~ msgid "AutoFS"
 #~ msgstr "AutoFS"

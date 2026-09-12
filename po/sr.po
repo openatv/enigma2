@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-08-27 04:50+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-01 10:31+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -7688,6 +7688,9 @@ msgstr "Omogući ovu opciju da dodaš podatke daljinskog upravljanja u datoteku 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Omogući opciju dodavanja imena ekrana i podatke rezolucije u fajl evidencije otklanjanja greške."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Omogući ovu opciju da dodaš podatke za praćenje / vremenske pomake u datoteku za otklanjanje greške."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Omogućite ovu opciju da dodate informacije o uređaju za skladištenje otkrivene tokom pokretanja sistema i hot plug događaja u datoteku dnevnika za otklanjanje grešaka."
 
@@ -10393,6 +10396,9 @@ msgstr "Uključi podatke daljinskog upravljača"
 
 msgid "Include screen load data"
 msgstr "Uključiti podatke za učitavanje ekrana"
+
+msgid "Include seek data"
+msgstr "Uključi podatke o traženju"
 
 msgid "Include storage device data"
 msgstr "Uključite podatke o uređaju za skladištenje"
@@ -18251,6 +18257,9 @@ msgstr "Pošalji DiSEqC samo pri promeni satelita"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "Osetljivost preskakanja"
+
 msgid "Seperate titles with a main menu"
 msgstr "Odvoji naslove u glavnom meniju"
 
@@ -18519,12 +18528,6 @@ msgstr "Podešavanje sistema"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Postavite interval preskakanja vremena za '%s'/'%s' dugmiće u CutList Editor."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Podesite procenat preskakanja za LEVO/DEŠNO dugme na traci za pretraživanje."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Podesite procentualni preskok za dugmad GORE/DOLE na traci za pretraživanje."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Postavite korisnički ID OpenWebifa sa vašeg rezervnog tjunera."
 
@@ -18591,8 +18594,14 @@ msgstr "Podešavanje brzine pomeranja teksta na prednjem ekranu, a softverski pr
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Podešavanje brzine pomeranja teksta na prednjem ekranu."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Podesi procenat preskakanja za dugme '%s'. Pozitivni brojevi preskaču unapred, negativni brojevi preskaču unazad."
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Postavite interval preskakanja za dugme '%s'."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Podesi interval preskakanja vremena za dugme '%s'. Pozitivni brojevi preskaču unapred, negativni unazad."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Postavite vreme preskakanja za dugmadi '%s'/'%s'."
@@ -19812,11 +19821,8 @@ msgstr "Preskoči podešavanje mreže"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Preskoči instalaciju paketa, samo osnovni paketi će biti dostupni"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Preskoči senzibilitet (horizontalno)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Preskoči senzibilitet (vertikalno)"
+msgid "Skip sensibility for '%s' button"
+msgstr "Preskoči osetljivost za dugme '%s'"
 
 msgid "Skip time for '%s' button"
 msgstr "Lista sečenja preskoči vreme za '%s' dugme"
@@ -22718,6 +22724,9 @@ msgstr "Nije moguće naslediti korisnički bend za LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nije moguće inicijalizovati Kexec MultiBoot!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "Ne mogu da registrujem DAB+ transponder"
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Ne mogu da pokrenem DAB+ strim"
 
@@ -25395,6 +25404,18 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Podesite procenat preskakanja za LEVO/DEŠNO dugme na traci za pretraživanje."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Podesite procentualni preskok za dugmad GORE/DOLE na traci za pretraživanje."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Preskoči senzibilitet (horizontalno)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Preskoči senzibilitet (vertikalno)"
 
 #, python-format
 #~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"

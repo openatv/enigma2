@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -7622,6 +7622,9 @@ msgstr "பிழைத்திருத்த பதிவு கோப்ப�
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "பிழைத்திருத்த பதிவு கோப்பில் திரை பெயர்கள் மற்றும் தெளிவுத்திறன் தரவைச் சேர்க்க இந்த விருப்பத்தை இயக்கவும்."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "பிழைத்திருத்த பதிவு கோப்பில் கணினி துவக்க மற்றும் சூடான பிளக் நிகழ்வுகளின் போது கண்டறியப்பட்ட சேமிப்பக சாதன தகவல்களைச் சேர்க்க இந்த விருப்பத்தை இயக்கவும்."
 
@@ -10325,6 +10328,9 @@ msgstr "ரிமோட் கண்ட்ரோல் தரவைச் சே
 
 msgid "Include screen load data"
 msgstr "திரை சுமை தரவைச் சேர்க்கவும்"
+
+msgid "Include seek data"
+msgstr ""
 
 msgid "Include storage device data"
 msgstr "சேமிப்பக சாதனத் தரவைச் சேர்க்கவும்"
@@ -18169,6 +18175,9 @@ msgstr "செயற்கைக்கோள் மாற்றத்தில�
 msgid "Senegal"
 msgstr "செனகல்"
 
+msgid "Sensibility skips"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "முதன்மையான மெனுவுடன் தலைப்புகளை பிரிக்கவும்"
 
@@ -18437,12 +18446,6 @@ msgstr "அமைப்பை அமைக்கவும்"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "'%s'/'%s' பொத்தான்களுக்கு கட்லிச்ட் எடிட்டர் ச்கிப் நேர இடைவெளியை அமைக்கவும்."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "சீக்பருக்கான இடது/வலது பொத்தானை ச்கிப் சதவீதத்தை அமைக்கவும்."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "சீக்பருக்கான மேல்/கீழ் பொத்தானை ச்கிப் சதவீதத்தை அமைக்கவும்."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "உங்கள் குறைவடையும் ட்யூனரிலிருந்து OpenWebif இன் பயனர் ஐடியை அமைக்கவும்"
 
@@ -18509,8 +18512,14 @@ msgstr "முன் காட்சியில் உரையின் ச்
 msgid "Set the scrolling speed of text on the front display."
 msgstr "முன் காட்சியில் உரையின் ச்க்ரோலிங் வேகத்தை அமைக்கவும்."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "'%s' பொத்தானை ச்கிப் நேர இடைவெளியை அமைக்கவும்."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr ""
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "'%s'/'%s' பொத்தான்களுக்கு ச்கிப் நேர இடைவெளியை அமைக்கவும்."
@@ -19725,11 +19734,8 @@ msgstr ""
 msgid "Skip package installation, only core packages will be available"
 msgstr "தொகுப்பு நிறுவலைத் தவிர்க்கவும், முக்கிய தொகுப்புகள் மட்டுமே கிடைக்கும்"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "உணர்திறனைத் தவிர்க்கவும் (கிடைமட்டமாக)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "உணர்திறனைத் தவிர்க்கவும் (செங்குத்து)"
+msgid "Skip sensibility for '%s' button"
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "'%s' பொத்தானுக்கு நேரத்தைத் தவிர்க்கவும்"
@@ -22628,6 +22634,9 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "KEXEC மல்டிபூட்டை துவக்க முடியவில்லை!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -25304,6 +25313,18 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "சீக்பருக்கான இடது/வலது பொத்தானை ச்கிப் சதவீதத்தை அமைக்கவும்."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "சீக்பருக்கான மேல்/கீழ் பொத்தானை ச்கிப் சதவீதத்தை அமைக்கவும்."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "உணர்திறனைத் தவிர்க்கவும் (கிடைமட்டமாக)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "உணர்திறனைத் தவிர்க்கவும் (செங்குத்து)"
 
 #~ msgid "AutoFS"
 #~ msgstr "ஆட்டோஃப்"

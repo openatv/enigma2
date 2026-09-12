@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 11:30+0000\n"
-"PO-Revision-Date: 2026-08-27 10:28+0000\n"
+"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"PO-Revision-Date: 2026-09-01 10:31+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -7910,6 +7910,9 @@ msgstr "Hata ayıklama günlük dosyasına uzaktan kontrol verileri eklemek içi
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına ekran adları ve çözünürlük verileri eklemek için bu seçeneği etkinleştirin."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Hata ayıklama günlüğü dosyasına arama/zaman kaydırma hata ayıklama verilerini eklemek için bu seçeneği etkinleştirin."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Sistem önyükleme ve çalışırken takma olayları sırasında algılanan depolama aygıtı bilgilerini hata ayıklama günlük dosyasına eklemek için bu seçeneği etkinleştirin."
 
@@ -10716,6 +10719,9 @@ msgstr "Uzaktan kumanda verilerini dahil et"
 
 msgid "Include screen load data"
 msgstr "Ekran yükleme verilerini dahil et"
+
+msgid "Include seek data"
+msgstr "Arama verilerini dahil et"
 
 msgid "Include storage device data"
 msgstr "Depolama aygıtı verilerini dahil et"
@@ -18942,6 +18948,9 @@ msgstr "Yalnızca uydu değiştiğinde DiSEqC gönder"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "Atlama hassasiyeti"
+
 #
 msgid "Seperate titles with a main menu"
 msgstr "Ana menü ile başlıkları ayır"
@@ -19222,12 +19231,6 @@ msgstr "Sistemi ayarlayın"
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Kesim Listesi Düzenleyicisinde '%s'/'%s' tuşları için atlama zaman aralığını ayarlayın."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Arama Çubuğu için SOL/SAĞ tuşlarının atlama yüzdesini ayarlayın."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Arama Çubuğu için YUKARI/AŞAĞI tuşlarının atlama yüzdesini ayarlayın."
-
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Yedek uzak alıcıdan OpenWebif'in Kullanıcı Kimliğini ayarlayın."
 
@@ -19294,8 +19297,14 @@ msgstr "Ön ekrandaki metnin kaydırma hızını ayarlayın, bu bazı arayüzler
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ön panelde metin kayma hızını ayarlayın."
 
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "'%s' tuşu için atlama yüzdesini ayarlayın. Pozitif sayılar ileriye, negatif sayılar ise geriye atlama yapar."
+
 msgid "Set the skip time interval for the '%s' button."
 msgstr "'%s' tuşu için atlama zaman aralığını ayarlayın."
+
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "'%s' tuşu için atlama zaman aralığını ayarlayın. Pozitif sayılar ileriye, negatif sayılar geriye doğru atlama yapar."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "'%s'/‘%s’ tuşları için atlama zaman aralığını ayarlayın."
@@ -20555,11 +20564,8 @@ msgstr "Ağ kurulumunu atla"
 msgid "Skip package installation, only core packages will be available"
 msgstr "Paket kurulumu atlanacak, yalnızca temel paketler kullanılabilir olacak"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Atlama duyarlılığı (Yatay)"
-
-msgid "Skip sensibility (Vertical)"
-msgstr "Atlama duyarlılığı (Dikey)"
+msgid "Skip sensibility for '%s' button"
+msgstr "'%s' tuşu için atlama hassasiyeti"
 
 msgid "Skip time for '%s' button"
 msgstr "'%s' tuşu için atlama süresi"
@@ -23580,6 +23586,9 @@ msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec Çoklu Ön Yükleme başlatılamadı!"
 
+msgid "Unable to register the DAB+ transponder"
+msgstr "DAB+ aktarıcı kaydı yapılamadı"
+
 msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ kaynağı başlatılamıyor"
 
@@ -26407,6 +26416,18 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+#~ msgstr "Arama Çubuğu için SOL/SAĞ tuşlarının atlama yüzdesini ayarlayın."
+
+#~ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+#~ msgstr "Arama Çubuğu için YUKARI/AŞAĞI tuşlarının atlama yüzdesini ayarlayın."
+
+#~ msgid "Skip sensibility (Horizontal)"
+#~ msgstr "Atlama duyarlılığı (Yatay)"
+
+#~ msgid "Skip sensibility (Vertical)"
+#~ msgstr "Atlama duyarlılığı (Dikey)"
 
 #, python-format
 #~ msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
