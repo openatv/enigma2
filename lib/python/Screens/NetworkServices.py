@@ -36,6 +36,7 @@ class NetworkDaemons:
 			daemondict = {}
 			for key in ("key", "title", "installcheck", "package", "autostart", "autostartservice", "autostartprio", "running", "startservice", "logpath"):
 				daemondict[key] = daemon.get(key, "")
+			daemondict["removable"] = daemon.get("removable", "true").strip().lower() not in ("false", "no", "0")
 			if daemondict["key"] and daemondict["title"]:
 				daemondict["isinstalled"] = daemondict["installcheck"] == "" or exists(daemondict["installcheck"])
 				daemondict["isservice"] = daemondict["startservice"] != ""
@@ -81,7 +82,8 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 		title = daemon["title"]
 		if checkFile:
 			if exists(checkFile):
-				choices.append((2, _("Uninstall")))
+				if daemon["removable"]:
+					choices.append((2, _("Uninstall")))
 				if not autoStartCheck:
 					choices.append((3, _("Installed")))
 					default = 3
@@ -185,7 +187,7 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 		for item in self["config"].list:
 			if len(item) > 1 and item[1].isChanged():
 				daemon = item[3]
-				if item[1].value == 2:  # remove
+				if item[1].value == 2 and daemon["removable"]:  # remove
 					self.removePackages.append(daemon["package"])
 				elif item[1].value == 3:  # install
 					self.installPackages.append(daemon["package"])
