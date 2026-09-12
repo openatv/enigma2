@@ -702,6 +702,9 @@
 	<setup key="NetworkMounts" title="Network Mount Settings">
 		<item level="0" text="Enabled" description="Enable or disable this network mount. Disabling the mount will not delete its definition.">self.enabled</item>
 		<item level="0" text="Protocol" description="Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares).">self.protocol</item>
+		<if conditional="self.isNewMount and self.address and self.dnsHostname">
+			<item level="0" text="Use DNS name" description="Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address.">config.network.browserUsingDNS</item>
+		</if>
 		<item level="0" text="Server" description="Enter the hostname or IP address of the network share's server.">self.server</item>
 		<item level="0" text="Remote path" description="Enter the remote share name (SMB) or exported path (NFS) on the server.">self.remotePath</item>
 		<item level="0" text="Local share" description="Enter the local directory name to be used as the local mount for the remote share.">self.shareName</item>

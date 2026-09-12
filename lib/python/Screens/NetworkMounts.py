@@ -310,19 +310,26 @@ class NetworkMountsSummary(ScreenSummary):
 
 
 class NetworkMountSetup(Setup):
-	def __init__(self, session, mount=None, onSaved=None):
+	def __init__(self, session, mount=None, onSaved=None, address=None, hostname=None):
 		def default(key, default=""):
 			return mount.get(key, default) if mount else default
 
 		self.onSaved = onSaved
 		self.repository = NetworkMountRepository()
 		self.mountId = mount.get("id") if mount else None
+		self.isNewMount = not self.mountId
+		self.address = address
+		self.dnsHostname = hostname
 		self.enabled = NoSave(ConfigYesNo(default=default("enabled", True)))
 		self.protocol = NoSave(ConfigSelection(default=default("protocol", "cifs") or "cifs", choices=[
 			("cifs", "SMB / CIFS"),
 			("nfs", "NFS")
 		]))
-		self.server = NoSave(ConfigText(default=default("server"), fixed_size=False))
+		if self.isNewMount:
+			server = self.dnsHostname if (self.dnsHostname and config.network.browserUsingDNS.value) else (self.address or "")
+		else:
+			server = default("server")
+		self.server = NoSave(ConfigText(default=server, fixed_size=False))
 		self.remotePath = NoSave(ConfigText(default=default("remotePath"), fixed_size=False))
 		self.mode = NoSave(ConfigSelection(default=default("mode", "autofs") or "autofs", choices=[
 			("autofs", _("Mount on first access (autofs)")),
@@ -362,6 +369,16 @@ class NetworkMountSetup(Setup):
 		self.hddReplacement = NoSave(ConfigYesNo(default=default("hddReplacement", False)))
 		Setup.__init__(self, session=session, setup="NetworkMounts")
 		self.setTitle(_("Network Mount Settings"))
+
+	def changedEntry(self):
+		current = self["config"].getCurrent()
+		if self.isNewMount and current and current[1] is config.network.browserUsingDNS:
+			self.server.value = self.dnsHostname if config.network.browserUsingDNS.value else self.address
+			serverItem = next((item for item in self["config"].list if item[1] is self.server), None)
+			if serverItem is not None:
+				self.server.changed()
+				self["config"].invalidate(serverItem)
+		Setup.changedEntry(self)
 
 	def keySave(self):
 		server = self.server.value.strip()
@@ -437,9 +454,6 @@ class NetworkShares(Screen):
 		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_blue" render="Label" position="580,e-50" size="180,40" backgroundColor="key_blue" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
 		<widget source="key_menu" render="Label" position="e-200,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -486,7 +500,6 @@ class NetworkShares(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Credentials"))
 		self["key_yellow"] = StaticText(_("Rescan"))
-		self["key_blue"] = StaticText("")
 		self["key_menu"] = StaticText(_("MENU"))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "MenuActions", "ColorActions"], {
 			"ok": (self.keySelect, _("Expand/collapse the selected host, or use the selected share")),
@@ -496,7 +509,6 @@ class NetworkShares(Screen):
 			"red": (self.close, _("Close the screen")),
 			"green": (self.keyGreen, _("Edit stored username/password credentials for the selected host")),
 			"yellow": (self.keyRescan, _("Rescan for available network shares")),
-			"blue": (self.keyToggleUsingIP, _("Toggle picking a share by IP address or by DNS name")),
 		}, prio=0, description=_("Network Share Actions"))
 		self.expanded = set()
 		self.shares = {}  # address -> [share dict, ...].
@@ -521,13 +533,6 @@ class NetworkShares(Screen):
 		greenText = _("Credentials") if isHost else ""
 		self["key_green"].setText(greenText)
 		self["actions"].setEnabledAction("green", greenText != "")
-		blueText = ""
-		if current:
-			address = current[-1].get("address")
-			if address and (discoveryManager.hosts.get(address) or {}).get("hostname"):
-				blueText = _("Using IP") if config.network.browserUsingIP.value else _("Using DNS")
-		self["key_blue"].setText(blueText)
-		self["actions"].setEnabledAction("blue", blueText != "")
 
 	def buildList(self):
 		def sortKeyByIP(host):
@@ -775,9 +780,7 @@ class NetworkShares(Screen):
 		if existing:
 			self.session.openWithCallback(mountSetupCallback, NetworkMountSetup, mount=existing, onSaved=self.mountSaved)
 			return
-		server = hostname if (hostname and not config.network.browserUsingIP.value) else share["address"]
 		mount = {
-			"server": server,
 			"protocol": {
 				"smb": "cifs",
 				"nfs": "nfs"
@@ -793,7 +796,7 @@ class NetworkShares(Screen):
 			if username and username != NetworkCredentials.GUEST_USERNAME:
 				mount["username"] = username
 				mount["password"] = password
-		self.session.openWithCallback(mountSetupCallback, NetworkMountSetup, mount=mount, onSaved=self.mountSaved)
+		self.session.openWithCallback(mountSetupCallback, NetworkMountSetup, mount=mount, onSaved=self.mountSaved, address=share["address"], hostname=hostname)
 
 	def mountSaved(self, mount):
 		self.savedMount = mount
@@ -871,11 +874,6 @@ class NetworkShares(Screen):
 		self["key_yellow"].setText("")
 		self["actions"].setEnabledAction("yellow", False)
 		discoveryManager.rescan(keyRescanCallback)
-
-	def keyToggleUsingIP(self):
-		config.network.browserUsingIP.value = not config.network.browserUsingIP.value
-		config.network.browserUsingIP.save()
-		self.selectionChanged()
 
 
 class NetworkCredentials(Setup):
