@@ -78,13 +78,13 @@ class NetworkCompat:
 		]
 
 	def getInstalledAdapters(self) -> list[str]:
-		return list(networkManager.adapters.keys())
+		return list(networkManager.getAdapters().keys())
 
 	def getAdapterList(self) -> list[str]:
 		return self.getInstalledAdapters()
 
 	def getNumberOfAdapters(self) -> int:
-		return len(networkManager.adapters)
+		return len(self.getInstalledAdapters())
 
 	def getInterfaces(self, callback=None):
 		networkManager.load()
@@ -168,7 +168,7 @@ class NetworkCompat:
 	def ifaces(self) -> dict:
 		result = {}
 		ns = list(networkManager.nameserverConfig.servers)
-		for iface, adapter in networkManager.adapters.items():
+		for iface, adapter in networkManager.getAdapters().items():
 			net = adapter.netInfo
 			conn = networkManager.activeConnection(iface)
 			result[iface] = {

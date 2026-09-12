@@ -702,6 +702,9 @@
 	<setup key="NetworkMounts" title="Network Mount Settings">
 		<item level="0" text="Enabled" description="Enable or disable this network mount. Disabling the mount will not delete its definition.">self.enabled</item>
 		<item level="0" text="Protocol" description="Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares).">self.protocol</item>
+		<if conditional="self.isNewMount and self.address and self.dnsHostname">
+			<item level="0" text="Use DNS name" description="Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address.">config.network.browserUsingDNS</item>
+		</if>
 		<item level="0" text="Server" description="Enter the hostname or IP address of the network share's server.">self.server</item>
 		<item level="0" text="Remote path" description="Enter the remote share name (SMB) or exported path (NFS) on the server.">self.remotePath</item>
 		<item level="0" text="Local share" description="Enter the local directory name to be used as the local mount for the remote share.">self.shareName</item>
@@ -740,7 +743,7 @@
 	<setup key="NetworkWiFi" title="Network Wi-Fi Settings">
 		<item level="0" text="Network name (SSID)" description="Select the network name (SSID) of the wireless network to which the receiver should connect.">self.cfgSsid</item>
 		<item level="0" text="Enabled" description="When enabled, connection via saved network is attempted when the Wi-Fi adapter connects.">self.cfgEnabled</item>
-		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self._hasMultiplePriorities">self.cfgPriority</item>
+		<item level="0" text="Priority" description="Preferred connection priority when multiple Wi-Fi profiles are configured. Lower numbers have a higher priority." conditional="self.hasMultiplePriorities">self.cfgPriority</item>
 		<item level="1" text="Hidden network" description="When enabled, allow connection to access points that don't broadcast their SSID.">self.cfgHidden</item>
 		<item level="0" text="Encryption" description="Select the security protocol that will be used to access the selected wireless network.">self.cfgEncryption</item>
 		<if conditional="self.cfgEncryption.value != 'none'">

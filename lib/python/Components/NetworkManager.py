@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
+from ipaddress import ip_address
 from json import JSONDecodeError, loads
 from os import chmod, listdir, makedirs, remove, rmdir
 from os.path import basename, exists, isdir, ismount, realpath
@@ -36,6 +37,7 @@ ifupBin = "/sbin/ifup"
 ifdownBin = "/sbin/ifdown"
 wpaSupplicantBin = "/usr/sbin/wpa_supplicant"
 wpaCliBin = "/usr/sbin/wpa_cli"
+iwBin = "/usr/sbin/iw"
 socketDaemonPath = "/var/run/daemon.socket"
 netEventSocketPath = "/var/run/daemon_net.socket"
 netinfoPath = "/var/run/netinfo"
@@ -201,6 +203,15 @@ class NetworkManager:
 		except OSError:
 			names = []
 
+		# Adapters we knew about (from a previous scan or the interfaces file) that aren't
+		# physically here anymore. Keep them (so save() doesn't drop their interfaces-file
+		# stanza) but mark them absent so adapter-picker UI can hide them.
+		for interface, adapter in self.adapters.items():
+			if interface not in names:
+				adapter.present = False
+				adapter.netInfo.up = False
+				adapter.netInfo.link = False
+
 		def isWireless(interface: str) -> bool:
 			if isWirelessName(interface):
 				return True
@@ -247,6 +258,7 @@ class NetworkManager:
 					name=interface,
 					isWiFi=isWirelessName(interface),
 					driverApi=apiNl80211,
+					present=False,
 				)
 			self.connections[interface] = conns
 			self.adapters[interface].adapterEnabled = interface in autoIfaces
@@ -401,6 +413,11 @@ class NetworkManager:
 
 	def getAdapter(self, interface: str) -> Adapter | None:
 		return self.adapters.get(interface)
+
+	def getAdapters(self) -> dict[str, Adapter]:
+		"""self.adapters filtered to physically present adapters - use this wherever
+		only real, currently plugged-in adapters should be listed/selected."""
+		return {name: adapter for name, adapter in self.adapters.items() if adapter.present}
 
 	def getNetInfo(self, interface: str) -> NetInfo:
 		adapter = self.adapters.get(interface)
@@ -802,7 +819,8 @@ class NetworkManager:
 
 	def onIfaceAdd(self, interface: str):
 		self.log(f"onIfaceAdd: {interface}.")
-		if interface not in self.adapters:
+		adapter = self.adapters.get(interface)
+		if adapter is None or not adapter.present:
 			self.discoverAdapters()
 			self.loadInterfacesFile()
 			self.loadWpaSupplicantFiles()
@@ -810,7 +828,14 @@ class NetworkManager:
 
 	def onIfaceRemove(self, interface: str):
 		self.log(f"onIfaceRemove: {interface}.")
-		self.adapters.pop(interface, None)
+		adapter = self.adapters.get(interface)
+		if adapter is not None:
+			# Keep the adapter (and its connections) around, just hidden - a hotplug
+			# removal is often temporary and save() must not drop its interfaces-file
+			# stanza just because the device isn't plugged in right now.
+			adapter.present = False
+			adapter.netInfo.up = False
+			adapter.netInfo.link = False
 		self.notifyAdaptersChanged()
 
 	def onScanTrigger(self, interface: str):
@@ -924,9 +949,10 @@ class Adapter:
 	isWiFi: bool = False
 	module: str = ""
 	driverApi: str = apiNl80211
-	isBroadcomWl: bool = False  # Has the vendor "wl" tool available (needed to kick iwlist scans alive).
+	isBroadcomWl: bool = False  # Has the vendor "wl" tool available (needed to kick iw scans alive).
 	canWakeOnWiFi: bool = False
 	adapterEnabled: bool = False  # False -> Every line of this adapter's stanza in /etc/network/interfaces is commented out with "# " (see serializeConnection()), not just "auto <iface>".
+	present: bool = True  # False -> Known from /etc/network/interfaces (or was hotplug-removed) but not currently found in /sys/class/net. Kept in adapters/connections so save() doesn't drop its config, but should be hidden from adapter-picker UI.
 	netInfo: NetInfo = field(default_factory=NetInfo)
 	hasInternet: bool | None = None  # None = Not checked (yet) by NetworkManager.checkConnectionInternet().
 
@@ -1866,40 +1892,41 @@ class NetworkMountRepository:
 
 	@staticmethod
 	def credentialsPath(hostname):
-		return f"/etc/enigma2/{hostname.strip()}.cache"
+		hostname = hostname.strip()
+		try:
+			ip_address(hostname)
+		except ValueError:
+			hostname = hostname.split(".")[0]
+		return f"/etc/enigma2/{hostname.upper()}.cache"
 
 	def credentialsGet(self, hostname):
-		if not hostname:
-			return {}
-		try:
-			with open(self.credentialsPath(hostname), "rb") as fd:
-				data = pickleLoad(fd)
-		except Exception:
-			return {}
-		if not isinstance(data, dict):
-			return {}
-		username = data.get("username", "")
-		password = data.get("password", "")
-		return {"username": username, "password": password} if username or password else {}
+		data = {}
+		if hostname:
+			try:
+				with open(self.credentialsPath(hostname), "rb") as fd:
+					data = pickleLoad(fd)
+			except Exception:
+				pass
+			if not isinstance(data, dict):
+				data = {}
+		return data.get("username"), data.get("password", "")
 
 	def credentialsSave(self, hostname, username, password):
-		if not hostname:
-			return
-		path = self.credentialsPath(hostname)
-		try:
-			with open(path, "wb") as fd:
-				pickleDump({"username": username, "password": password}, fd, -1)
-			chmod(path, 0o600)  # contains a plaintext password
-		except OSError as err:
-			print(f"[{MODULE_NAME}] Error {err.errno}: Error writing '{path}'!  ({err.strerror})")
+		if hostname:
+			path = self.credentialsPath(hostname)
+			try:
+				with open(path, "wb") as fd:
+					pickleDump({"username": username, "password": password}, fd, -1)
+				chmod(path, 0o600)  # contains a plaintext password
+			except OSError as err:
+				print(f"[{MODULE_NAME}] Error {err.errno}: Error writing '{path}'!  ({err.strerror})")
 
 	def credentialsClear(self, hostname):
-		if not hostname:
-			return
-		try:
-			remove(self.credentialsPath(hostname))
-		except OSError:
-			pass
+		if hostname:
+			try:
+				remove(self.credentialsPath(hostname))
+			except OSError:
+				pass
 
 
 class NetworkCheck:
@@ -2195,7 +2222,7 @@ class DiscoveryManager:
 			self.notify()
 
 	def onAvahiSnapshot(self, addresses):
-		stale = [address for address, host in self.hosts.items() if host["source"] == "avahi" and address not in addresses]
+		stale = [address for address, host in self.hosts.items() if host["source"] == "avahi" and host["hostnameSource"] != "netscan" and address not in addresses]
 		for address in stale:
 			del self.hosts[address]
 		if stale:
