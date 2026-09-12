@@ -1,5 +1,5 @@
 from os import listdir, makedirs, stat, statvfs
-from os.path import join, isdir
+from os.path import join, isdir, isfile
 from re import search
 
 from enigma import eTimer
@@ -209,6 +209,15 @@ class WizardStart(Wizard, ShowRemoteControl):
 
 	def isFlashExpanderActive(self):
 		return isdir(join(f"/{EXPANDER_MOUNT}/{EXPANDER_MOUNT}", "bin"))
+
+	def hasConfigBackup(self):  # Called by startwizard.xml's restorequestion condition.
+		backupFilename = "enigma2settingsbackup.tar.gz"
+		partitions = [(x.description, x.mountpoint) for x in harddiskmanager.getMountedPartitions(onlyhotplug=False) if x.mountpoint != "/"]
+		if partitions:
+			for partition in partitions:
+				if isfile(join(partition[1], f"backup_{BoxInfo.getItem("distro")}_{BoxInfo.getItem("machinebuild")}", backupFilename)) or isfile(join(partition[1], "backup", backupFilename)):
+					return True
+		return False
 
 	def hasPartitions(self):
 		partitions = fileReadLines("/proc/partitions", source=MODULE_NAME)
