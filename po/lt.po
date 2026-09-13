@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-08-16 18:13+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -947,7 +947,11 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
 msgstr ""
 
 #, python-format
@@ -1196,6 +1200,14 @@ msgid "%s %sB"
 msgstr ""
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Sąranka"
 
@@ -1355,6 +1367,10 @@ msgstr ""
 
 #, python-format
 msgid "'%s' unmounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1618,10 +1634,10 @@ msgstr ""
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
+msgid "A backup is now being created."
 msgstr ""
 
-msgid "A backup is now being created."
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
 msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
@@ -1938,6 +1954,10 @@ msgid "Adapter"
 msgstr ""
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr ""
 
@@ -2188,6 +2208,9 @@ msgstr "Koreguokite spalvas taip, kad visos spalvos ir atspalviai būtų atskiri
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Koreguokite horizontalią raidžių poziciją, naudojamą teletekstui."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Koreguokite vertikalią raidžių poziciją, naudojamą teletekstui."
 
@@ -2313,6 +2336,9 @@ msgstr "visi įvykiai iki"
 
 msgid "All files"
 msgstr "Visi failai"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Visos raiškos"
@@ -2490,6 +2516,9 @@ msgstr "Amloginis nuotolinio valdymo pultas"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
 msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
@@ -2808,6 +2837,9 @@ msgstr "Garso sinchronizavimas"
 msgid "Audio Synchronization"
 msgstr ""
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "1-a pasirinkta garso kalba"
 
@@ -2921,6 +2953,9 @@ msgstr "Automatinė paieška"
 
 msgid "Automatic Service Searching"
 msgstr "Automatinė kanalų paieška"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Automatinė raiška"
@@ -3261,6 +3296,17 @@ msgstr "Mirksintis REC simbolis"
 
 msgid "Blinking REC symbol"
 msgstr "Mirksintis REC simbolis"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Blokuoti įrenginį"
@@ -4499,6 +4545,9 @@ msgstr "Baigti dialogą"
 msgid "Close network test"
 msgstr ""
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Uždaryti ekraną"
 
@@ -4558,6 +4607,9 @@ msgstr "Aukšto prioriteto kodavimo greitis HP"
 
 msgid "Code rate LP"
 msgstr "Žemo prioriteto kodavimo greitis LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Suskleisti"
@@ -4649,6 +4701,9 @@ msgstr ""
 
 msgid "Common Setup Actions"
 msgstr "Bendrieji nustatymo veiksmai"
+
+msgid "Common settings"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Komorai"
@@ -5449,6 +5504,9 @@ msgstr ""
 msgid "Create kernel dump."
 msgstr ""
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr ""
@@ -5719,7 +5777,36 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -5779,6 +5866,12 @@ msgstr ""
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB subtitrai PID ir kalba"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtitrų juodas skaidrumas"
@@ -6493,6 +6586,9 @@ msgstr "Išsamiau"
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr ""
 
@@ -6915,9 +7011,6 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr "Ar norite pakeisti \"%s\" prieigos režimą?"
 
-msgid "Do you want the upgrade guide?"
-msgstr ""
-
 msgid "Do you want to backup settings?"
 msgstr "Ar norite kurti atsarginių kopijų kūrimo parametrus?"
 
@@ -6995,9 +7088,6 @@ msgid "Do you want to resume this playback?"
 msgstr "Ar norite pratęsti šio įrašo peržiūrą?"
 
 msgid "Do you want to select another service?"
-msgstr ""
-
-msgid "Do you want to start a backup now?"
 msgstr ""
 
 msgid "Do you want to update:"
@@ -7157,6 +7247,9 @@ msgstr "Olandų / Flamandų"
 
 msgid "Dynamic contrast"
 msgstr "Dinaminis kontrastas"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7331,9 +7424,6 @@ msgstr "Redaguoti laikmatį"
 msgid "Edit Title"
 msgstr "Redaguoti pavadinimą"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Redaguoti atnaujinimo šaltinio adresą."
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7358,8 +7448,14 @@ msgstr "Redaguokite CCcam / NewCamd serverio prievadą."
 msgid "Edit the NewCamd DES Key."
 msgstr "Redaguokite NewCamd DES raktą."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Redaguoti šiuo metu pasirinktą laikmatį"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Redaguokite slaptažodį."
@@ -7452,6 +7548,9 @@ msgstr "įjungti paketo redagavimą"
 msgid "Enable Chkroot MultiBoot"
 msgstr ""
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Įjungti EIT EPG"
 
@@ -7523,6 +7622,9 @@ msgstr "Įjungti ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Įjungti Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7645,6 +7747,9 @@ msgstr "Įjunkite šią parinktį, jei norite pridėti veiksmų schemą / nuotol
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
 
@@ -7689,6 +7794,9 @@ msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Įjunkite šią parinktį, kad pridėtumėte laikmačio derinimo duomenis prie derinimo žurnalo failo."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr ""
@@ -7814,6 +7922,12 @@ msgstr "Enigma2 laida"
 
 msgid "Enigmalight"
 msgstr "Paprasta Enigma"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Įrašykite"
@@ -8611,6 +8725,9 @@ msgstr "FFmpeg zondas"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg neįdiegtas, todėl \".mvi\" failo veiksmai nepasiekiami!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9184,6 +9301,9 @@ msgstr "Dažnis"
 msgid "Frequency bands"
 msgstr "Dažnio juostos"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Dažnių diapazonas"
 
@@ -9273,6 +9393,9 @@ msgstr "Gabonas"
 
 msgid "Gaelic"
 msgstr "Gėlų"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Galisija (Ispanija)"
@@ -10262,9 +10385,6 @@ msgstr ""
 msgid "Image version"
 msgstr ""
 
-msgid "ImageWizard"
-msgstr "Atvaizdo vedlys"
-
 msgid "Immediate shut down"
 msgstr "Nedelsiant išjungti"
 
@@ -10320,6 +10440,9 @@ msgstr "Kad pradėti įrašymą pagal laikmatį, TV perjungtas į įrašomą kan
 msgid "In progress"
 msgstr "Vykdoma"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Neprieinama"
 
@@ -10340,6 +10463,9 @@ msgstr "Įtraukti AIT į įrašus"
 
 msgid "Include CI assignment"
 msgstr "Įtraukti CI priskyrimą"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr ""
@@ -10364,6 +10490,9 @@ msgstr "Įtraukite \"MultiBoot\" duomenis *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Įtraukite SDT, BAT į http srautus"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Įtraukti veiksmų struktūros duomenis"
@@ -10399,6 +10528,9 @@ msgid "Include teletext details"
 msgstr ""
 
 msgid "Include text encoding data"
+msgstr ""
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
 msgstr ""
 
 msgid "Include timer data"
@@ -10574,12 +10706,6 @@ msgstr ""
 msgid "Install Plugins"
 msgstr "Įdiegti priedus"
 
-msgid "Install a new image with a USB stick"
-msgstr "Įdiekite naują atvaizdą su USB raktu"
-
-msgid "Install a new image with your web browser"
-msgstr "Įdiekite naują atvaizdą su savo tinklo naršykle"
-
 msgid "Install extensions"
 msgstr "Įdiekite plėtinius"
 
@@ -10706,9 +10832,6 @@ msgstr "Perversti"
 
 msgid "Inverts the button function."
 msgstr "Perjungia mygtuko funkciją."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Iranas, Islamo Respublika"
@@ -10897,6 +11020,9 @@ msgid "Kenya"
 msgstr "Kenija"
 
 msgid "Kernel Packages"
+msgstr ""
+
+msgid "Kernel driver"
 msgstr ""
 
 msgid "Kernel file"
@@ -11221,6 +11347,9 @@ msgstr "Laisvalaikio pomėgiai"
 msgid "Lesotho"
 msgstr "Lesotas"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "Priartinimas, įterpiant juodas juostas"
 
@@ -11257,6 +11386,9 @@ msgstr "Limburgan / Limburger / Limburgish"
 
 msgid "Lime"
 msgstr "laimo žalia"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Riboti simbolių rinkinį, naudojamą įrašomų failų pavadinimuose"
@@ -11461,6 +11593,9 @@ msgstr "Vieta: %s"
 msgid "Lock:"
 msgstr "Fiksuota:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Žurnalas"
 
@@ -11596,6 +11731,9 @@ msgstr "DAUGIAU"
 
 msgid "MOUSE"
 msgstr "PELĖ"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD įkrova"
@@ -12465,6 +12603,9 @@ msgstr "Juda į rytus ..."
 msgid "Moving files"
 msgstr "Perkeliami failai"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Juda į poziciją"
 
@@ -13013,9 +13154,6 @@ msgstr "Aktyvaus kanalo nerasta."
 msgid "No age block"
 msgstr "Be amžiaus ribojimo"
 
-msgid "No backup needed"
-msgstr "Atsarginės kopijos nereikia"
-
 msgid "No cable tuner found!"
 msgstr "Kabelinio imtuvo nerasta!"
 
@@ -13030,6 +13168,9 @@ msgstr "Kanalų nėra"
 
 msgid "No channel list"
 msgstr "nėra kanalų sąrašo"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13182,6 +13323,9 @@ msgstr "Atnaujinimas nebūtinas!"
 msgid "No updates available."
 msgstr "Atnaujinimų nėra"
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13198,14 +13342,11 @@ msgstr "Nerasta tinkamos informacijos apie regioną"
 msgid "No, but restart from begin"
 msgstr "Ne, bet vėl pradėti nuo pradžių"
 
-msgid "No, do nothing."
-msgstr "Ne, nereikia."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Ne, nediekite šio atvaizdo"
-
-msgid "No, just start my %s %s"
-msgstr "Ne, tik įjungti %s %s"
 
 msgid "No, never"
 msgstr "Ne, niekada"
@@ -13430,9 +13571,6 @@ msgstr "OK mygtuko režimas"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr "Gerai, informuoti mane apie atnaujinimo eigą"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14023,6 +14161,12 @@ msgstr ""
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Paketų tvarkyklė"
 
@@ -14209,9 +14353,6 @@ msgstr "Procentai / eigos juosta dešinėje"
 
 msgid "Perform an on-line flash instead"
 msgstr "Vietoj to atlikite internetinį įdiegimą"
-
-msgid "Perform the upgrade?"
-msgstr ""
 
 msgid "Performing arts"
 msgstr "scenos menas"
@@ -14782,6 +14923,9 @@ msgstr "Portugalų"
 msgid "Position"
 msgstr ""
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Atliktų laikmačių padėtis laikmačių sąraše"
 
@@ -14983,9 +15127,6 @@ msgstr "Palydovams pasirinkti, spauskite OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Paspauskite OK, kad pasirinkti/nepasirinkti CAId."
 
-msgid "Press OK to start the backup now"
-msgstr ""
-
 msgid "Press OK to start the scan"
 msgstr "Kad pradėti paiešką, spauskite OK"
 
@@ -15108,6 +15249,9 @@ msgstr ""
 msgid "Processor information"
 msgstr "Procesoriaus informacija"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profilis"
 
@@ -15120,6 +15264,9 @@ msgstr "Programa"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Norint atlikti šį veiksmą, reikia įdiegti programą \"%s\". Ar norite įdiegti \"%s\" paketą, kad įdiegtumėte programą?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Programų sąrašo istorija"
@@ -15198,6 +15345,9 @@ msgstr "Apsaugoti išjungimo meniu"
 
 msgid "Protect timer menu"
 msgstr "Apsaugoti laikmačio meniu"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokolas"
@@ -15376,10 +15526,22 @@ msgstr "RAUDONAS ilgas mygtukas"
 msgid "RF Output Settings"
 msgstr "RF išvesties parametrai"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr ""
 
 msgid "RGB clamp (upper)"
+msgstr ""
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
 msgstr ""
 
 msgid "Racing"
@@ -15430,6 +15592,9 @@ msgstr ""
 
 msgid "Reader"
 msgstr "Skaitytuvas"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15521,6 +15686,9 @@ msgstr "Imtuvas, arba tvarkyklė nepalaiko Quad PiP."
 msgid "Receiver information for %s %s"
 msgstr "Informacija apie imtuvą %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Imtuva pavadinimas"
 
@@ -15529,6 +15697,12 @@ msgstr "Priėmimo sąrašai"
 
 msgid "Reception Settings"
 msgstr "Priėmimo nustatymai"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Įrašas"
@@ -15700,6 +15874,9 @@ msgstr ""
 
 msgid "Refresh every"
 msgstr "Atnaujinama kas (valandomis)"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Atnaujinimo dažnis"
@@ -16051,6 +16228,9 @@ msgstr ""
 "Visas žymes '%s' pakeiskite:\n"
 "(PASTABA: 'Atšaukti' negali anuliuoti tai!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Reikalauti autentifikavimo http srautams"
 
@@ -16185,7 +16365,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16221,11 +16401,11 @@ msgstr "Atkurti paryškintą lizdą"
 msgid "Restore your %s %s settings."
 msgstr "Atkurkite %s %s parametrus."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Atkurkite %s %s naudodami naują programinę įrangą."
-
 msgid "Restore your backups by date."
 msgstr "Atkurkite savo atsarginę kopiją pagal datą."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Atkurti savus nustatymus iš atsarginės kopijos. Po atkūrimo, kad aktyvuoti nustatymus, imtuvas bus paleistas iš naujo"
@@ -16586,6 +16766,9 @@ msgstr "Šeštadienis-sekmadienis"
 msgid "Satellite"
 msgstr "Palydovas"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Palydovo lėkštės nustatymas"
 
@@ -16594,6 +16777,12 @@ msgstr "Palydovo konfigūravimas"
 
 msgid "Satellite equipment setup"
 msgstr "Palydovinės įrangos sąranka"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Palydovai"
@@ -16761,6 +16950,12 @@ msgid "Scan for local extensions and install them."
 msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
 msgid "Scanning"
@@ -17340,7 +17535,7 @@ msgstr "Pasirinkite atnaujinimo šaltinį"
 msgid "Select Upgrade Source To Edit"
 msgstr "Pasirinkite versijos naujinimo šaltinį, kurį norite redaguoti"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17635,6 +17830,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -17993,9 +18191,6 @@ msgstr ""
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr ""
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18062,7 +18257,7 @@ msgstr ""
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
+msgid "Select tuner"
 msgstr ""
 
 msgid "Select video mode"
@@ -18148,6 +18343,9 @@ msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
@@ -18259,6 +18457,9 @@ msgstr "Serbų"
 
 msgid "Serial No"
 msgstr "Serijinis Nr"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "rimta muzika/klasikinė muzika"
@@ -18958,6 +19159,9 @@ msgstr "Rodyti CI pranešimus"
 msgid "Show Capabilities"
 msgstr ""
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Rodyti numatytuosius atsarginių kopijų failus"
 
@@ -19633,9 +19837,6 @@ msgstr "Išjungti"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr ""
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sičuanas Yi / Nuosu"
 
@@ -20070,9 +20271,6 @@ msgstr "Programinės įrangos tvarkyklės nustatymai"
 msgid "Software MultiBoot"
 msgstr "Švelni daugialypė įkrova"
 
-msgid "Software Restore"
-msgstr "Programinės įrangos atkūrimas"
-
 msgid "Software Update"
 msgstr "Programinės įrangos atnaujinimas"
 
@@ -20452,6 +20650,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Statinis IP / Pasirinktinis"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Būsena"
@@ -21257,9 +21458,6 @@ msgstr ""
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr ""
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr ""
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s skaito saugomus EPG duomenis kas (valandos)."
 
@@ -21366,6 +21564,12 @@ msgstr "PIN kodas sėkmingai išsaugotas."
 msgid "The PIN codes you entered are different."
 msgstr "Jūsų įvesti PIN kodai yra skirtingi."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21412,18 +21616,6 @@ msgstr ""
 "Ką jūs norite daryti ?"
 
 msgid "The backup can take up to about 15 minutes to complete."
-msgstr ""
-
-msgid "The backup failed"
-msgstr ""
-
-msgid "The backup failed! Choose a different backup location."
-msgstr ""
-
-msgid "The backup succeeded"
-msgstr ""
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr ""
 
 msgid ""
@@ -21503,6 +21695,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Rezultatai įrašyti į %s."
@@ -21576,9 +21774,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Vaizdo plotis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21916,12 +22111,6 @@ msgstr "Tai leis pereiti greitai pirmyn/atgal su laiko momentais, x secs"
 msgid "This window will automatically close in %d seconds."
 msgstr ""
 
-msgid "This wizard has finished"
-msgstr ""
-
-msgid "This wizard has finished."
-msgstr ""
-
 msgid "Threshold"
 msgstr "Heterodinas"
 
@@ -22076,6 +22265,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22244,9 +22439,6 @@ msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Įjunkite naujus teksto įterpimus prieš esamą tekstą arba perrašykite jį"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr "Perjungti dabartinės žymės pasirinkimą"
@@ -22532,6 +22724,12 @@ msgstr "Imtuvai"
 msgid "Tuners, Scanning & Reception"
 msgstr ""
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Derinimo algoritmas"
 
@@ -22653,12 +22851,30 @@ msgstr ""
 msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr ""
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
+msgstr ""
+
+msgid "USB speed"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -22693,10 +22909,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -22975,6 +23198,9 @@ msgid "Use DHCP"
 msgstr "Naudoti DHCP"
 
 msgid "Use DNS cache"
+msgstr ""
+
+msgid "Use DNS name"
 msgstr ""
 
 msgid "Use DNS rotation"
@@ -23265,12 +23491,6 @@ msgstr "Vartotojas"
 
 msgid "Username (httpuser)"
 msgstr "Vartotojo vardas (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "Automatinio adreso naudojimas"
@@ -23845,9 +24065,6 @@ msgstr ""
 "\n"
 "Tada ieškokite pabaigos, spauskite 'OK', pasirinkite 'iškirpimo pabaiga'. Štai ir viskas."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr ""
-
 msgid "Welcome..."
 msgstr "Sveiki atvykę..."
 
@@ -24136,9 +24353,6 @@ msgstr ""
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai tiksliai žinote, kam tą darote."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kur norite išsaugoti laikinus laiko poslinkio įrašus?"
 
@@ -24339,9 +24553,6 @@ msgstr "Taip, ir ištrinti šį filmą"
 msgid "Yes, and don't ask again for this session"
 msgstr ""
 
-msgid "Yes, backup my settings!"
-msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Taip, bet neišsaugoti laiko poslinkio, kaip įrašo"
 
@@ -24366,8 +24577,8 @@ msgstr "Taip, atlikti dar vieną rankinę paiešką"
 msgid "Yes, don't ask again"
 msgstr "Taip. Ir daugiau neklausti"
 
-msgid "Yes, restore the settings now"
-msgstr "Taip, atkurti nustatymus dabar"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Taip, grįžti į filmų sąrašą"
@@ -24377,9 +24588,6 @@ msgstr "Taip, bet jei nėra, parodyti priedų naršyklę"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Taip, bet jei nėra, parodyti laikmačio sąrašą"
-
-msgid "Yes, shut down now."
-msgstr "Taip, išjungti dabar."
 
 msgid "Yesterday"
 msgstr "Vakar"
@@ -24411,10 +24619,7 @@ msgstr "Galite praleisti šią funkciją ir išjungti televizorių, kai budėsit
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr ""
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
 msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
@@ -24445,11 +24650,6 @@ msgstr ""
 
 msgid "You must set at least one command!"
 msgstr "Turite nustatyti bent vieną komandą!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
 
 msgid "You seem to be in time shift!"
 msgstr "Panašu, kad naudojamas laiko poslinkis!"
@@ -24917,6 +25117,9 @@ msgstr "užgriebti vaizdą bmp formatu"
 msgid "green"
 msgstr "žalias"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -25360,6 +25563,51 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Redaguoti atnaujinimo šaltinio adresą."
+
+#~ msgid "ImageWizard"
+#~ msgstr "Atvaizdo vedlys"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Įdiekite naują atvaizdą su USB raktu"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Įdiekite naują atvaizdą su savo tinklo naršykle"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Atsarginės kopijos nereikia"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Ne, nereikia."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Ne, tik įjungti %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "Gerai, informuoti mane apie atnaujinimo eigą"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Atkurkite %s %s naudodami naują programinę įrangą."
+
+#~ msgid "Software Restore"
+#~ msgstr "Programinės įrangos atkūrimas"
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Taip, atkurti nustatymus dabar"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Taip, išjungti dabar."
 
 #~ msgid "FTP"
 #~ msgstr "FTP"

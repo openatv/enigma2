@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-09-01 07:02+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -929,8 +929,12 @@ msgstr[0] "βρέθηκε %d δίκτυο."
 msgstr[1] "βρέθηκαν %d δίκτυα."
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "Ολοκληρώθηκαν %d από %d πηγές: τα πακέτα πηγών που απέτυχαν έχουν διατηρηθεί"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1161,6 +1165,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Ρυθμίσεις"
 
@@ -1322,6 +1334,10 @@ msgstr "Το '%s' προσαρτήθηκε."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "Το '%s' αποπροσαρτήθηκε."
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Προφόρτωση σε ώρες' ή 'αριθμός τελευταίων προγραμμάτων'. Για τη διαγραφή των παλαιότερων χρονομετατοπίσεων, η συνθήκη που προέκυψε πρώτη έχει προτεραιότητα."
@@ -1584,11 +1600,11 @@ msgstr "<δεν βρέθηκε αρχείο καταγραφής>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "Η ανίχνευση DAB + δεν μπορεί να εκτελεστεί όσο μια εγγραφή βρίσκεται σε εξέλιξη."
-
 msgid "A backup is now being created."
 msgstr "Γίνεται δημιουργία του αντιγράφου ασφαλείας."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Μία λίστα διαχωρισμένη με κόμμα για χρήση στη ρύθμιση 'Η επέκτασή μου' στο 'Φιλτράρισμα επέκτασης'. Εισάγετε τα ονόματα αρχείων χωρίς να προηγείται τελεία (.)."
@@ -1900,6 +1916,10 @@ msgid "Adapter"
 msgstr "Προσαρμογέας"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "Μενού περιεχομένων προσαρμογέα '%s'"
 
@@ -2150,6 +2170,9 @@ msgstr "Ρυθμίστε την ένταση των χρωμάτων έτσι ώ
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Προσαρμογή της οριζόντιας θέσης των γραμμάτων που χρησιμοποιούνται για το τηλεκείμενο."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Προσαρμογή της κάθετης θέσης των γραμμάτων που χρησιμοποιούνται για το τηλεκείμενο."
 
@@ -2275,6 +2298,9 @@ msgstr "Όλα τα προγράμματα επάνω"
 
 msgid "All files"
 msgstr "Όλα τα αρχεία"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Όλες οι αναλύσεις"
@@ -2453,6 +2479,9 @@ msgstr "Amlogic τηλεχειριστήριο"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Ποσοστό %d / Επιτυχία %d / Αποτυχία %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Γίνεται προσπάθεια καταγραφής της τρέχουσας κατάστασης της τηλεόρασης. Αν αυτό δεν είναι δυνατό λόγω εσφαλμένων ή ελλιπών μηνυμάτων κατάστασης, ενδέχεται να προκληθεί απροσδόκητη απόκριση του δέκτη. Από την άλλη πλευρά, γίνεται προσπάθεια να ανταποκριθεί καλύτερα σε διαφορετικές συνθήκες λειτουργίας."
@@ -2768,6 +2797,9 @@ msgstr "Συγχρονισμός ήχου"
 msgid "Audio Synchronization"
 msgstr "Συγχρονισμός ήχου"
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Επιλογή γλώσσας ήχου 1"
 
@@ -2881,6 +2913,9 @@ msgstr "Αυτόματη ανίχνευση"
 
 msgid "Automatic Service Searching"
 msgstr "Αυτόματη ανίχνευση υπηρεσιών"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Αυτόματη ανάλυση"
@@ -3221,6 +3256,17 @@ msgstr "Αναβοσβηνόμενο Σύμβολο REC"
 
 msgid "Blinking REC symbol"
 msgstr "Αναβοσβηνόμενο Σύμβολο REC"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Μπλοκάρισμα συσκευής"
@@ -4458,6 +4504,9 @@ msgstr "Κλείσιμο διαλόγου"
 msgid "Close network test"
 msgstr "Κλείσιμο δοκιμής δικτύου"
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Κλείσιμο οθόνης"
 
@@ -4517,6 +4566,9 @@ msgstr "Κωδικορυθμός HP"
 
 msgid "Code rate LP"
 msgstr "Κωδικορυθμός LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Σύμπτυξη"
@@ -5400,6 +5452,9 @@ msgstr "Δημιουργία δεδομένων μεταφοράς πληροφ�
 msgid "Create kernel dump."
 msgstr "Δημιουργία δεδομένων μεταφοράς πυρήνα kernel."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Δημιουργία αντιγράφου ασφαλείας του image ανάκτησης '%s'."
@@ -5673,7 +5728,36 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -5733,6 +5817,12 @@ msgstr ""
 
 msgid "DVB Subtitles PID & Language"
 msgstr "Υπότιτλοι DVB PID & γλώσσα"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "Διαφάνεια υποτίτλων DVB"
@@ -6447,6 +6537,9 @@ msgstr "Λεπτομέρειες"
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "Ντετέκτιβ"
 
@@ -6871,9 +6964,6 @@ msgstr "Θέλετε σίγουρα να γίνει περικοπή του συ
 msgid "Do you want change '%s' access mode?"
 msgstr "Θέλετε να γίνει αλλαγή της λειτουργίας πρόσβασης '%s';"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Θέλετε τον οδηγό αναβάθμισης;"
-
 msgid "Do you want to backup settings?"
 msgstr "Θέλετε να γίνει εφεδρεία των ρυθμίσεων;"
 
@@ -6952,9 +7042,6 @@ msgstr "Θέλετε να επανασυνεχίσετε την αναπαραγ
 
 msgid "Do you want to select another service?"
 msgstr "Θέλετε να επιλέξετε μια άλλη υπηρεσία;"
-
-msgid "Do you want to start a backup now?"
-msgstr "Θέλετε να ξεκινήσει η εφεδρεία τώρα;"
 
 msgid "Do you want to update:"
 msgstr "Θέλετε να ενημερώσετε:"
@@ -7112,6 +7199,9 @@ msgstr "Ολλανδικά / Φλαμανδικά"
 
 msgid "Dynamic contrast"
 msgstr "Δυναμική αντίθεση"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Ντζόνγκα"
@@ -7286,9 +7376,6 @@ msgstr "Επεξεργασία χρονοδιακόπτη"
 msgid "Edit Title"
 msgstr "Επεξεργασία τίτλου"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Επεξεργασία της διεύθυνσης της πηγής αναβαθμίσεων"
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7313,8 +7400,14 @@ msgstr "Επεξεργασία θύρας διακομιστή CCcam/NewCamd."
 msgid "Edit the NewCamd DES Key."
 msgstr "Επεξεργασία κλειδιού NewCamd DES."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Επεξεργασία του τρέχοντος επιλεγμένου χρονοδιακόπτη"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Επεξεργασία κωδικού πρόσβασης."
@@ -7407,6 +7500,9 @@ msgstr "Ενεργοποίηση επεξεργασίας μπουκέτων"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Ενεργοποίηση πολλαπλής εκκίνησης Chkroot"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Ενεργοποίηση EIT EPG"
 
@@ -7478,6 +7574,9 @@ msgstr "Ενεργοποίηση ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Ενεργοποίηση Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7600,6 +7699,9 @@ msgstr "Ενεργοποιήστε αυτή την επιλογή για την 
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για να προστεθούν οι πληροφορίες της βάσης δεδομένων των μπουκέτων στο αρχείο αποσφαλμάτωσης."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για να προστεθούν επιπλέον λεπτομέρειες DVB στο αρχείο αποσφαλμάτωσης."
 
@@ -7644,6 +7746,9 @@ msgstr "Ενεργοποιήστε αυτή την επιλογή για να π
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη δεδομένων αποσφαλμάτωσης στο αρχείο καταγραφής."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για να εμφανίζονται όλες οι διαθέσιμες οθόνες πληροφοριών στη λίστα στοιχείων του μενού πληροφοριών."
@@ -7767,6 +7872,12 @@ msgstr "Αναθεώρηση enigma2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Enter"
@@ -8562,6 +8673,9 @@ msgstr "Ανιχνευτής FFmpeg"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "Το FFmpeg δεν είναι εγκατεστημένο, οπότε οι ενέργειες αρχείων '.mvi' δεν είναι διαθέσιμες!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9135,6 +9249,9 @@ msgstr "Συχνότητα"
 msgid "Frequency bands"
 msgstr "Μπάντες συχνοτήτων"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Κλίμακα συχνοτήτων"
 
@@ -9224,6 +9341,9 @@ msgstr "Γκαμπόν"
 
 msgid "Gaelic"
 msgstr "Γαλικιακά"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Γαλικία (Ισπανία)"
@@ -10213,9 +10333,6 @@ msgstr "Αποτυχία δημιουργίας image!"
 msgid "Image version"
 msgstr "Έκδοση image"
 
-msgid "ImageWizard"
-msgstr "Οδηγός Image"
-
 msgid "Immediate shut down"
 msgstr "Άμεσος τερματισμός"
 
@@ -10271,6 +10388,9 @@ msgstr "Για να εκτελεστεί μια εγγραφή, ο δέκτης 
 msgid "In progress"
 msgstr "Σε εξέλιξη"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Μη προσβάσιμο"
 
@@ -10291,6 +10411,9 @@ msgstr "Συμπερίληψη του AIT στις εγγραφές"
 
 msgid "Include CI assignment"
 msgstr "Συμπερίληψη ανάθεσης CI"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "Συμπερίληψη λεπτομερειών DVB"
@@ -10315,6 +10438,9 @@ msgstr "Συμπερίληψη των δεδομένων πολλαπλής εκ
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Συμπερίληψη των SDT, BAT στις ροές http"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Συμπερίληψη των δεδομένων χάρτη εντολών"
@@ -10351,6 +10477,9 @@ msgstr "Συμπερίληψη λεπτομερειών τηλεκειμένου
 
 msgid "Include text encoding data"
 msgstr "Συμπερίληψη δεδομένων κωδικοποίησης κειμένου"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Συμπερίληψη των δεδομένων χρονοδιακόπτη"
@@ -10525,12 +10654,6 @@ msgstr "Εγκατάσταση πρόσθετου"
 msgid "Install Plugins"
 msgstr "Εγκατάσταση προσθέτων"
 
-msgid "Install a new image with a USB stick"
-msgstr "Εγκατάσταση νέου λογισμικού μέσω usb στικ"
-
-msgid "Install a new image with your web browser"
-msgstr "Εγκατάσταση νέου λογισμικού μέσω πλοηγού web"
-
 msgid "Install extensions"
 msgstr "Εγκατάσταση επεκτάσεων"
 
@@ -10657,9 +10780,6 @@ msgstr "Αναστροφή"
 
 msgid "Inverts the button function."
 msgstr "Αντιστρέφει τη λειτουργία του πλήκτρου."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Ιράν, Ισλαμική Δημοκρατία"
@@ -10848,6 +10968,9 @@ msgstr "Κένυα"
 
 msgid "Kernel Packages"
 msgstr "Πακέτα πυρήνα Kernel"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Αρχείο kernel"
@@ -11171,6 +11294,9 @@ msgstr "Χόμπι αναψυχής"
 msgid "Lesotho"
 msgstr "Λεσότο"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "Ζουμάρισμα σε μπάρες πάνω - κάτω"
 
@@ -11207,6 +11333,9 @@ msgstr "Λιμβουργιανά"
 
 msgid "Lime"
 msgstr "λεμονί"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Περιορισμένο πλήθος χαρακτήρων για ονόματα εγγραφών"
@@ -11410,6 +11539,9 @@ msgstr "Τοποθεσία: %s"
 msgid "Lock:"
 msgstr "Κλείδ:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Καταγραφή"
 
@@ -11545,6 +11677,9 @@ msgstr "ΠΕΡΙΣΣΟΤΕΡΑ"
 
 msgid "MOUSE"
 msgstr "ΠΟΝΤΙΚΙ"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "Εκκίνηση MTD"
@@ -12414,6 +12549,9 @@ msgstr "Κίνηση ανατολικά..."
 msgid "Moving files"
 msgstr "Μετακίνηση αρχείων"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Κίνηση στη θέση"
 
@@ -12962,9 +13100,6 @@ msgstr "Δεν βρέθηκε ενεργό κανάλι."
 msgid "No age block"
 msgstr "Χωρίς περιορισμό ηλικίας"
 
-msgid "No backup needed"
-msgstr "Δεν απαιτείται εφεδρεία"
-
 msgid "No cable tuner found!"
 msgstr "Δεν βρέθηκε καλωδιακό tuner!"
 
@@ -12979,6 +13114,9 @@ msgstr "Χωρίς κανάλι"
 
 msgid "No channel list"
 msgstr "Χωρίς λίστα καναλιών"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13131,6 +13269,9 @@ msgstr "Δεν απαιτείται ενημέρωση!"
 msgid "No updates available."
 msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13147,14 +13288,11 @@ msgstr "Δεν βρέθηκαν έγκυρες πληροφορίες περιο
 msgid "No, but restart from begin"
 msgstr "Όχι, επανεκκίνηση από την αρχή"
 
-msgid "No, do nothing."
-msgstr "Όχι, να μη γίνει τίποτα."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Όχι, να μη γίνει φλασάρισμα αυτού του image"
-
-msgid "No, just start my %s %s"
-msgstr "Όχι, απλά να ξεκινήσει ο %s %s μου"
 
 msgid "No, never"
 msgstr "Όχι, ποτέ"
@@ -13379,9 +13517,6 @@ msgstr "Λειτουργία πλήκτρου ΟΚ"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr "ΟΚ, να οδηγηθώ στη διαδικασία αναβάθμισης"
 
 msgid "ONID"
 msgstr "ONID"
@@ -13972,6 +14107,12 @@ msgstr "Πακέτο"
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Διαχείριση πακέτων"
 
@@ -14158,9 +14299,6 @@ msgstr "Ποσοστό/μπάρα προόδου δεξιά"
 
 msgid "Perform an on-line flash instead"
 msgstr "Να γίνει διαδικτυακό φλασάρισμα αντ' αυτού"
-
-msgid "Perform the upgrade?"
-msgstr "Να γίνει η αναβάθμιση;"
 
 msgid "Performing arts"
 msgstr "τέχνες και θεάματα"
@@ -14729,6 +14867,9 @@ msgstr "Πορτογαλικά"
 msgid "Position"
 msgstr "Θέση"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Θέση των ολοκληρωμένων χρονοδιακοπτών στη λίστα"
 
@@ -14930,9 +15071,6 @@ msgstr "Πιέστε ΟΚ για επιλογή δορυφόρων"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Πιέστε ΟΚ για επιλογή/αποεπιλογή CAId."
 
-msgid "Press OK to start the backup now"
-msgstr "Πιέστε ΟΚ για να ξεκινήσει η εφεδρεία τώρα"
-
 msgid "Press OK to start the scan"
 msgstr "Πιέστε OK για να ξεκινήσει η ανίχνευση"
 
@@ -15055,6 +15193,9 @@ msgstr "Επεξεργασία"
 msgid "Processor information"
 msgstr "Πληροφορίες επεξεργαστή"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Προφίλ"
 
@@ -15067,6 +15208,9 @@ msgstr "Πρόγραμμα"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Το πρόγραμμα '%s' πρέπει να είναι εγκατεστημένο για να εκτελεστεί αυτή η ενέργεια. Να γίνει εγκατάσταση του πακέτου '%s' για την εγκατάσταση του προγράμματος;"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Ιστορικό λίστας προγραμμάτων"
@@ -15145,6 +15289,9 @@ msgstr "Προστασία μενού αναμονής"
 
 msgid "Protect timer menu"
 msgstr "Προστασία μενού χρονοδιακοπτών"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Πρωτόκολλο"
@@ -15323,11 +15470,23 @@ msgstr "Κόκκινο παρατεταμένο"
 msgid "RF Output Settings"
 msgstr "Ρυθμίσεις εξόδου RF"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr "Περιορισμός RGB (χαμηλός)"
 
 msgid "RGB clamp (upper)"
 msgstr "Περιορισμός RGB (υψηλός)"
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
+msgstr ""
 
 msgid "Racing"
 msgstr "Αγώνες ταχύτητας"
@@ -15377,6 +15536,9 @@ msgstr "Ανάγνωση/εγγραφή"
 
 msgid "Reader"
 msgstr "Αναγνώστης"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15468,6 +15630,9 @@ msgstr "Ο δέκτης ή ο οδηγός δεν υποστηρίζει το Τ
 msgid "Receiver information for %s %s"
 msgstr "Πληροφορίες δέκτη για τον %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Όνομα δέκτη"
 
@@ -15476,6 +15641,12 @@ msgstr "Λίστες λήψης"
 
 msgid "Reception Settings"
 msgstr "Ρυθμίσεις λήψης"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Εγγραφή"
@@ -15647,6 +15818,9 @@ msgstr "Ανανέωση των πληροφοριών κατάστασης το
 
 msgid "Refresh every"
 msgstr "Ανανέωση κάθε (σε ώρες)"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Συχνότητα ανανέωσης"
@@ -15998,6 +16172,9 @@ msgstr ""
 "Αντικατάσταση όλων των '%s' ετικετών με:\n"
 "(Σημείωση: Η 'Ακύρωση' δεν αναιρεί την ενέργεια αυτή!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Απαίτηση πιστοποίησης για ροές http"
 
@@ -16132,7 +16309,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16168,11 +16345,11 @@ msgstr "Επαναφορά της επιλεγμένης θύρας"
 msgid "Restore your %s %s settings."
 msgstr "Επαναφορά των ρυθμίσεων του %s %s σας."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Επαναφορά του %s %s σας με ένα νέο λογισμικό."
-
 msgid "Restore your backups by date."
 msgstr "Επαναφορά αντιγράφων ασφαλείας κατά ημερομηνία."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Επαναφορά των ρυθμίσεών σας από αντίγραφο ασφαλείας. Μετά την επαναφορά θα γίνει επανεκκίνηση του δέκτη για να ενεργοποιηθούν οι νέες ρυθμίσεις."
@@ -16533,6 +16710,9 @@ msgstr "Σαβ-Κυρ"
 msgid "Satellite"
 msgstr "Δορυφόρος"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Ρυθμίσεις κατόπτρου"
 
@@ -16541,6 +16721,12 @@ msgstr "Λειτουργία παραμετροποίησης δορυφόρου
 
 msgid "Satellite equipment setup"
 msgstr "Ρύθμιση δορυφορικού εξοπλισμού"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Δορυφόροι"
@@ -16709,6 +16895,12 @@ msgstr "Αναζήτηση και εγκατάσταση επεκτάσεων τ
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Ανίχνευση για επίγεια LCNs και δημιουργία μπουκέτων LCN"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Ανίχνευση"
@@ -17284,7 +17476,7 @@ msgstr "Επιλογή πηγής αναβαθμίσεων"
 msgid "Select Upgrade Source To Edit"
 msgstr "Επιλογή πηγής αναβάθμισης για επεξεργασία"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17579,6 +17771,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -17937,9 +18132,6 @@ msgstr "Επιλογή της σειράς ταξινόμησης των στο�
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Επιλογή της σειράς ταξινόμησης των στοιχείων των μενού. Αν είναι ορισμένη από τον χρήστη, επιτρέπεται επίσης και η απόκρυψή τους."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Επιλέξτε τη θέση προέλευσης από την οποία θα λάβετε τα αρχεία αναβάθμισης."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Επιλογή του χρόνου εκκίνησης μετά τον οποίο θα ενεργοποιείται αυτός ο χρονοδιακόπτης. Πριν από αυτό τον χρόνο, ο χρονοδιακόπτης δεν θα ενεργοποιείται, ακόμα και αν συντρέχουν διαφορετικές συνθήκες."
 
@@ -18006,8 +18198,8 @@ msgstr "Επιλέξτε τη λειτουργία βίντεο που θα χρ
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
-msgstr "Επιλογή της θέσης πηγής ενημερώσεων"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Επιλογή λειτουργίας εικόνας"
@@ -18092,6 +18284,9 @@ msgstr "Επιλέξτε αν θα γίνεται έξοδος των πολυκ
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Επιλέξτε αν ή όχι θα εμφανίζεται ένα εικονίδιο κατά την κίνηση του μοτέρ."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
@@ -18203,6 +18398,9 @@ msgstr "Σερβικά"
 
 msgid "Serial No"
 msgstr "Σειριακός αριθμός"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "σοβαρή μουσική/κλασική μουσική"
@@ -18905,6 +19103,9 @@ msgstr "Εμφάνιση μηνυμάτων CI"
 msgid "Show Capabilities"
 msgstr "Εμφάνιση δυνατοτήτων"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Εμφάνιση προεπιλεγμένων αρχείων εφεδρείας"
 
@@ -19580,9 +19781,6 @@ msgstr "Τερματισμός"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr "Τερματισμός. Παρακαλώ περιμένετε..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Νουοσού"
 
@@ -20013,9 +20211,6 @@ msgstr "Ρυθμίσεις διαχείρισης λογισμικού"
 msgid "Software MultiBoot"
 msgstr "Πολλαπλή εκκίνηση υλικού"
 
-msgid "Software Restore"
-msgstr "Επαναφορά λογισμικού"
-
 msgid "Software Update"
 msgstr "Ενημέρωση λογισμικού"
 
@@ -20395,6 +20590,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Στατική IP / προσαρμοσμένη"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Κατάσταση"
@@ -21206,9 +21404,6 @@ msgstr "Ο %s %s δεν διαθέτει σύνδεση στο διαδίκτυ�
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "Ο %s %s έχει περιορισμένη χωρητικότητα μνήμης. Απαιτείται ένα αρχείο swap για να αυξηθεί το ποσό της διαθέσιμης μνήμης, διαφορετικά ο %s %s μπορεί να μην λειτουργεί σωστά. Επιλέξτε τη συσκευή που θα περιέχει το αρχείο swap."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "Η λειτουργία του %s %s τερματίζεται. Παρακαλώ περιμένετε..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Ο %s %s σας διαβάζει το αποθηκευμένο EPG κάθε (ώρες)."
 
@@ -21317,6 +21512,12 @@ msgstr "Ο κωδικός PIN αποθηκεύτηκε με επιτυχία."
 msgid "The PIN codes you entered are different."
 msgstr "Οι κωδικοί PIN που εισάγατε είναι διαφορετικοί."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21366,18 +21567,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Η εφεδρεία μπορεί να χρειαστεί περίπου 15 λεπτά μέχρι να ολοκληρωθεί."
-
-msgid "The backup failed"
-msgstr "Η εφεδρεία απέτυχε"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Η εφεδρεία απέτυχε! Επιλέξτε μία διαφορετική θέση εφεδρείας."
-
-msgid "The backup succeeded"
-msgstr "Η εφεδρεία ήταν επιτυχής"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Η εφεδρεία ήταν επιτυχής. Θα συνεχίσουμε τώρα εξηγώντας τη διαδικασία αναβάθμισης."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21456,6 +21645,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Η διαδικασία θα διαρκέσει περίπου %d λεπτά μέχρι να ολοκληρωθεί."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Τα αποτελέσματα έχουν γραφεί στο %s."
@@ -21529,9 +21724,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Το πλάτος της εικόνας. Η είσοδος θα κλιμακωθεί για να ταιριάξει με αυτή την τιμή."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Ο οδηγός μπορεί να δημιουργήσει αντίγραφο ασφαλείας για τις τρέχουσες ρυθμίσεις σας. Θέλετε να δημιουργηθεί ένα αντίγραφο ασφαλείας τώρα;"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21866,12 +22058,6 @@ msgstr "Αυτό θα κάνει προώθηση εμπρός/πίσω με κ�
 msgid "This window will automatically close in %d seconds."
 msgstr "Αυτό το παράθυρο θα κλείσει αυτόματα σε %d δευτερόλεπτα."
 
-msgid "This wizard has finished"
-msgstr "Αυτός ο οδηγός ολοκληρώθηκε"
-
-msgid "This wizard has finished."
-msgstr "Αυτός ο οδηγός έχει τελειώσει."
-
 msgid "Threshold"
 msgstr "Όριο"
 
@@ -22026,6 +22212,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22196,9 +22388,6 @@ msgstr "Εναλλαγή λειτουργίας πολλαπλής επιλογ�
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Εναλλαγή νέων εισαγωγών κειμένου πριν ή αντικατάσταση υπάρχοντος κειμένου"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr "Εναλλαγή επιλογής τρέχουσας ετικέτας"
@@ -22484,6 +22673,12 @@ msgstr "Tuners"
 msgid "Tuners, Scanning & Reception"
 msgstr "Tuners, ανίχνευση & λήψη"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Αλγόριθμος συντονισμού"
 
@@ -22605,13 +22800,31 @@ msgstr "USB 2.0 (πίσω, εσωτερικό)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (πίσω, εξωτερικό)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "Αναγνώστης USB %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "Θύρα USB %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ΣΦΑΛΜΑ αλλαγής κάρτας SD! - ήδη στο USB"
@@ -22645,10 +22858,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Αδυναμία αρχικοποίησης της πολλαπλής εκκίνησης Kexec!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -22928,6 +23148,9 @@ msgstr "Χρήση DHCP"
 
 msgid "Use DNS cache"
 msgstr "Χρήση προσωρινής μνήμης DNS"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "Χρήση κυκλικής εναλλαγής DNS"
@@ -23220,12 +23443,6 @@ msgstr "Όνομα χρήστη"
 
 msgid "Username (httpuser)"
 msgstr "Όνομα χρήστη (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "Χρήση αυτόματης διεύθυνσης"
@@ -23808,9 +24025,6 @@ msgstr ""
 "\n"
 "Στη συνέχεια αναζητήστε το τέλος του τμήματος, πιέστε ΟΚ, επιλέξτε \"τέλος αποκοπής\". Αυτό ήταν."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Καλώς ήρθατε στον οδηγό αναβάθμισης του image. Ο οδηγός θα σας βοηθήσει στην αναβάθμιση του υλικολογισμικού του %s %s, παρέχοντας τη δυνατότητα δημιουργίας αντιγράφων ασφαλείας για τις τρέχουσες ρυθμίσεις και μια σύντομη επεξήγηση του τρόπου αναβάθμισης του υλικολογισμικού."
-
 msgid "Welcome..."
 msgstr "Καλώς ήρθατε..."
 
@@ -24099,9 +24313,6 @@ msgstr "Όταν το κόκκινο πλαίσιο είναι σωστά ορα
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Όταν το σύστημα συντονίζεται σε μία υπηρεσία, γίνεται αυτόματη ανίχνευση του αναμεταδότη και αποθηκεύονται οι όποιες αλλαγές. Θέστε αυτή την επιλογή σε 'ναι' μόνο αν είστε απολύτως σίγουροι για το τι κάνετε."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Πού θέλετε να γίνει η εφεδρεία των ρυθμίσεων;"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Πού θέλετε να γίνεται η προσωρινή αποθήκευση των χρονομετατοπισμένων εγγραφών;"
 
@@ -24302,9 +24513,6 @@ msgstr "Ναι, και διαγραφή αυτής της ταινίας"
 msgid "Yes, and don't ask again for this session"
 msgstr "Ναι, και να μην ξαναγίνει ερώτηση για αυτή τη συνεδρία"
 
-msgid "Yes, backup my settings!"
-msgstr "Ναι, να δημιουργηθεί αντίγραφο των ρυθμίσεων!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Ναι, αλλά να μη γίνει αποθήκευση της χρονομετατόπισης ως ταινία"
 
@@ -24329,8 +24537,8 @@ msgstr "Ναι, να γίνει ακόμα μία χειροκίνητη ανί�
 msgid "Yes, don't ask again"
 msgstr "Ναι, να μη γίνει ερώτηση ξανά"
 
-msgid "Yes, restore the settings now"
-msgstr "Ναι, επαναφορά των ρυθμίσεων τώρα"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Ναι, επιστροφή στη λίστα ταινιών"
@@ -24340,9 +24548,6 @@ msgstr "Ναι, αλλά αν δεν είναι διαθέσιμο εμφάνι�
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Ναι, αλλά αν δεν είναι διαθέσιμο εμφάνιση λίστας χρονοδιακοπτών"
-
-msgid "Yes, shut down now."
-msgstr "Ναι, να γίνει τερματισμός τώρα."
 
 msgid "Yesterday"
 msgstr "Χθες"
@@ -24374,11 +24579,8 @@ msgstr "Μπορείτε να παρακάμψετε αυτή τη λειτου�
 msgid "You cannot delete this!"
 msgstr "Δεν μπορείτε να διαγράψετε αυτό!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Έχετε επιλέξει να δημιουργηθούν αντίγραφα ασφαλείας των ρυθμίσεών σας. Πιέστε OK για να ξεκινήσει η εφεδρεία τώρα."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Έχετε επιλέξει επαναφορά των ρυθμίσεων. Θα γίνει επανεκκίνηση του Enigma2 μετά την επαναφορά. Πιέστε ΟΚ για να ξεκινήσει η διαδικασία τώρα."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Έχετε επιλέξει να αποθηκευτεί η τρέχουσα χρονομετατόπιση"
@@ -24408,13 +24610,6 @@ msgstr "Κατορθώσατε να μεταβείτε σε μη έγκυρη σ
 
 msgid "You must set at least one command!"
 msgstr "Πρέπει να οριστεί τουλάχιστον μία εντολή!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Απαιτείται ένας υπολογιστής συνδεδεμένος στον %s %s. Επισκεφθείτε την ιστοσελίδα https://www.opena.tv/ για περισσότερες οδηγίες.\n"
-"Η λειτουργία του %s %s θα παγώσει τώρα. Αφού εκτελέσετε τις οδηγίες ενημέρωσης από την ιστοσελίδα, το νέο υλικολογισμικό θα σας ζητήσει να επαναφέρετε τις ρυθμίσεις."
 
 msgid "You seem to be in time shift!"
 msgstr "Φαίνεται ότι εκτελείται χρονομετατόπιση!"
@@ -24882,6 +25077,9 @@ msgstr "λήψη στιγμιότυπου του καρέ ως bitmap"
 msgid "green"
 msgstr "πράσινο"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "ω:λλ"
 
@@ -25325,6 +25523,119 @@ msgstr "ναι (διατήρηση των feeds)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "Ολοκληρώθηκαν %d από %d πηγές: τα πακέτα πηγών που απέτυχαν έχουν διατηρηθεί"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "Η ανίχνευση DAB + δεν μπορεί να εκτελεστεί όσο μια εγγραφή βρίσκεται σε εξέλιξη."
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Θέλετε τον οδηγό αναβάθμισης;"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Θέλετε να ξεκινήσει η εφεδρεία τώρα;"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Επεξεργασία της διεύθυνσης της πηγής αναβαθμίσεων"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Οδηγός Image"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Εγκατάσταση νέου λογισμικού μέσω usb στικ"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Εγκατάσταση νέου λογισμικού μέσω πλοηγού web"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Δεν απαιτείται εφεδρεία"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Όχι, να μη γίνει τίποτα."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Όχι, απλά να ξεκινήσει ο %s %s μου"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "ΟΚ, να οδηγηθώ στη διαδικασία αναβάθμισης"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Να γίνει η αναβάθμιση;"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Πιέστε ΟΚ για να ξεκινήσει η εφεδρεία τώρα"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Επαναφορά του %s %s σας με ένα νέο λογισμικό."
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Επιλέξτε τη θέση προέλευσης από την οποία θα λάβετε τα αρχεία αναβάθμισης."
+
+#~ msgid "Select update source location"
+#~ msgstr "Επιλογή της θέσης πηγής ενημερώσεων"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Τερματισμός. Παρακαλώ περιμένετε..."
+
+#~ msgid "Software Restore"
+#~ msgstr "Επαναφορά λογισμικού"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "Η λειτουργία του %s %s τερματίζεται. Παρακαλώ περιμένετε..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Η εφεδρεία απέτυχε"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Η εφεδρεία απέτυχε! Επιλέξτε μία διαφορετική θέση εφεδρείας."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Η εφεδρεία ήταν επιτυχής"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Η εφεδρεία ήταν επιτυχής. Θα συνεχίσουμε τώρα εξηγώντας τη διαδικασία αναβάθμισης."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Ο οδηγός μπορεί να δημιουργήσει αντίγραφο ασφαλείας για τις τρέχουσες ρυθμίσεις σας. Θέλετε να δημιουργηθεί ένα αντίγραφο ασφαλείας τώρα;"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Αυτός ο οδηγός ολοκληρώθηκε"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Αυτός ο οδηγός έχει τελειώσει."
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Καλώς ήρθατε στον οδηγό αναβάθμισης του image. Ο οδηγός θα σας βοηθήσει στην αναβάθμιση του υλικολογισμικού του %s %s, παρέχοντας τη δυνατότητα δημιουργίας αντιγράφων ασφαλείας για τις τρέχουσες ρυθμίσεις και μια σύντομη επεξήγηση του τρόπου αναβάθμισης του υλικολογισμικού."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Πού θέλετε να γίνει η εφεδρεία των ρυθμίσεων;"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Ναι, να δημιουργηθεί αντίγραφο των ρυθμίσεων!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Ναι, επαναφορά των ρυθμίσεων τώρα"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Ναι, να γίνει τερματισμός τώρα."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Έχετε επιλέξει να δημιουργηθούν αντίγραφα ασφαλείας των ρυθμίσεών σας. Πιέστε OK για να ξεκινήσει η εφεδρεία τώρα."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Έχετε επιλέξει επαναφορά των ρυθμίσεων. Θα γίνει επανεκκίνηση του Enigma2 μετά την επαναφορά. Πιέστε ΟΚ για να ξεκινήσει η διαδικασία τώρα."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Απαιτείται ένας υπολογιστής συνδεδεμένος στον %s %s. Επισκεφθείτε την ιστοσελίδα https://www.opena.tv/ για περισσότερες οδηγίες.\n"
+#~ "Η λειτουργία του %s %s θα παγώσει τώρα. Αφού εκτελέσετε τις οδηγίες ενημέρωσης από την ιστοσελίδα, το νέο υλικολογισμικό θα σας ζητήσει να επαναφέρετε τις ρυθμίσεις."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στη μπάρα αναζήτησης."
 
@@ -25385,8 +25696,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "Αναπαραγωγός DVD"
 
-#~ msgid "Common Settings"
-#~ msgstr "Κοινές ρυθμίσεις"
+msgid "Common Settings"
+msgstr "Κοινές ρυθμίσεις"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-09-12 12:41+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -950,8 +950,12 @@ msgstr[1] "Знайдено %d мережі."
 msgstr[2] "Знайдено %d мереж."
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d з %d фідів завершено; невдалі букети фідів збережено"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1199,6 +1203,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Налаштування"
 
@@ -1360,6 +1372,10 @@ msgstr "'%s' підключено."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "'%s' відмонтовано."
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Буфер в годинах' або 'кількість останніх подій'. Яка з умов настає першою, по цій умові і видалятимуться старі файли таймшифта."
@@ -1622,11 +1638,11 @@ msgstr "<лог не знайдено"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "Сканування DAB+ не може виконуватися під час запису."
-
 msgid "A backup is now being created."
 msgstr "Створюється резервна копія."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Відокремлений комами список розширень, які будуть використовуватися для параметра 'Мої розширення' параметра 'Розширення Фільтр розширень'. Введіть назви розширень без крапки на початку (.)."
@@ -1938,6 +1954,10 @@ msgid "Adapter"
 msgstr "Адаптер"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "Контекстне меню адаптера '%s'"
 
@@ -2188,6 +2208,9 @@ msgstr "Налаштуйте параметри кольору так щоб в�
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Налаштування горизонтального положення букв, які використовуються для телетексту."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Налаштування вертикального положення букв, які використовуються для телетексту."
 
@@ -2313,6 +2336,9 @@ msgstr "всі події вверх"
 
 msgid "All files"
 msgstr "Всі файли"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Всі роздільності"
@@ -2491,6 +2517,9 @@ msgstr "Пульт Amlogic"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Кількість %d / Успіх %d / Невдача %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
@@ -2806,6 +2835,9 @@ msgstr "Синхронізація аудіо"
 msgid "Audio Synchronization"
 msgstr "Синхронізація аудіо"
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Вибір мови аудіо 1"
 
@@ -2919,6 +2951,9 @@ msgstr "Автоматичний пошук"
 
 msgid "Automatic Service Searching"
 msgstr "Автоматичний пошук каналів"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Автороздільність екрану"
@@ -3259,6 +3294,17 @@ msgstr "Мигаючий значок Запис"
 
 msgid "Blinking REC symbol"
 msgstr "Мигаючий значок запису"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Заблокований пристрій"
@@ -4497,6 +4543,9 @@ msgstr "Закрити діалог"
 msgid "Close network test"
 msgstr "Закрити тест мережі"
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Закрити вікно"
 
@@ -4556,6 +4605,9 @@ msgstr "Швидк. кодування HP"
 
 msgid "Code rate LP"
 msgstr "Швидк. кодування LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Згорнути"
@@ -5454,6 +5506,9 @@ msgstr "Створення дампу інформації про пристрі
 msgid "Create kernel dump."
 msgstr "Створення дампу ядра."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Створити копію іміджа для відновлення '%s'."
@@ -5727,8 +5782,37 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr "Сканування DAB+"
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "Сканування DAB+ не вдалося; наявні букети було збережено."
+
+#, python-format
+msgid "DAB+ service information for '%s'"
+msgstr ""
 
 msgid "DAC"
 msgstr "DAC"
@@ -5787,6 +5871,12 @@ msgstr "Субтитри DVB"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "PID і мова DVB субтитрів"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "Прозорість DVB субтитрів"
@@ -6501,6 +6591,9 @@ msgstr "Подробиці"
 msgid "Detect positioner movement by its current consumption."
 msgstr "Виявляти рух позиціонера за його споживаним струмом."
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "Детектив"
 
@@ -6928,9 +7021,6 @@ msgstr "Ви справді хочете обрізати файлову сис�
 msgid "Do you want change '%s' access mode?"
 msgstr "Бажаєте змінити режим доступу '%s'?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Хочете отримати посібник з оновлення?"
-
 msgid "Do you want to backup settings?"
 msgstr "Ви хочете створити резервну копію налаштувань?"
 
@@ -7009,9 +7099,6 @@ msgstr "Ви хочете продовжити відтворення?"
 
 msgid "Do you want to select another service?"
 msgstr "Бажаєте вибрати інший каналу?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Ви хочете почати резервне копіювання зараз?"
 
 msgid "Do you want to update:"
 msgstr "Бажаєте оновити:"
@@ -7170,6 +7257,9 @@ msgstr "Голландська / Фламандська"
 
 msgid "Dynamic contrast"
 msgstr "Динамічний контраст"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Дзонгха"
@@ -7344,9 +7434,6 @@ msgstr "Редагувати таймер"
 msgid "Edit Title"
 msgstr "Редагувати назву"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Редагувати вихідну URL-адресу оновлення"
-
 msgid "Edit Username/Password Credentials"
 msgstr "Редагувати облікові дані (ім'я користувача / пароль)"
 
@@ -7371,8 +7458,14 @@ msgstr "Редагування порту сервера CCcam/NewCamd."
 msgid "Edit the NewCamd DES Key."
 msgstr "Редагування DES ключа NewCamd."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Відредагуйте поточний вибраний таймер"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Редагування паролю."
@@ -7465,6 +7558,9 @@ msgstr "Ввімкнути редагування фавориту"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Увімкнути Chkroot MultiBoot"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Включити EIT ЕПГ"
 
@@ -7536,6 +7632,9 @@ msgstr "Увімкнути ViaSat ЕПГ"
 
 msgid "Enable Virgin EPG"
 msgstr "Увімкнути Virgin ЕПГ"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr "Увімкнути адаптер"
@@ -7658,6 +7757,9 @@ msgstr "Увімкніть цю опцію, щоб додати дані від�
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Ввімкніть цю опцію, щоб додати інформацію про базу даних фаворитів до файлу журналу налагодження."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати додаткові відомості про DVB до файлу журналу налагодження."
 
@@ -7702,6 +7804,9 @@ msgstr "Увімкніть цю опцію, щоб додати інформац
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати дані налагодження таймера до файлу журналу налагодження."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Увімкніть цей параметр, щоб відобразити всі доступні екрани інформації в списку пунктів меню 'Інформація'."
@@ -7827,6 +7932,12 @@ msgstr "Ревізія Enigma2"
 
 msgid "Enigmalight"
 msgstr "Енігма-light"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Ввести"
@@ -8622,6 +8733,9 @@ msgstr "FFmpeg Проба"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg не встановлено, тому дії з файлами '.mvi' недоступні!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9195,6 +9309,9 @@ msgstr "Частота"
 msgid "Frequency bands"
 msgstr "Частотний діапазон"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Діапазон частот"
 
@@ -9284,6 +9401,9 @@ msgstr "Габон"
 
 msgid "Gaelic"
 msgstr "Гальська"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Галіція (Іспанія)"
@@ -10273,9 +10393,6 @@ msgstr "Помилка створення Іміджу!"
 msgid "Image version"
 msgstr "Версія іміджа"
 
-msgid "ImageWizard"
-msgstr "Майстер іміджу"
-
 msgid "Immediate shut down"
 msgstr "Негайне вимкнення"
 
@@ -10331,6 +10448,9 @@ msgstr "Щоб записати таймер, телевізор перевел�
 msgid "In progress"
 msgstr "В процесі"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Недоступний"
 
@@ -10351,6 +10471,9 @@ msgstr "Додати AIT до запису"
 
 msgid "Include CI assignment"
 msgstr "Додати призначення CI"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "Додати деталі DVB"
@@ -10375,6 +10498,9 @@ msgstr "Включити дані MultiBoot *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Долучити SDT, BAT у потоки HTTP"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Включити дані карти дій"
@@ -10411,6 +10537,9 @@ msgstr "Додати деталі телетексту"
 
 msgid "Include text encoding data"
 msgstr "Включити дані кодування тексту"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Включити дані таймера"
@@ -10585,12 +10714,6 @@ msgstr "Встановити плагін"
 msgid "Install Plugins"
 msgstr "Встановити плагіни"
 
-msgid "Install a new image with a USB stick"
-msgstr "Встановити новий імідж з USB носія"
-
-msgid "Install a new image with your web browser"
-msgstr "Встановити новий імідж через веб-провідник"
-
 msgid "Install extensions"
 msgstr "Встановити розширення"
 
@@ -10717,9 +10840,6 @@ msgstr "Інвертувати"
 
 msgid "Inverts the button function."
 msgstr "Інвертувати функції кнопок."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Іран, Ісламська Республіка"
@@ -10909,6 +11029,9 @@ msgstr "Кенія"
 
 msgid "Kernel Packages"
 msgstr "Пакети ядра"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Файл ядра"
@@ -11232,6 +11355,9 @@ msgstr "Відпочинок хобі"
 msgid "Lesotho"
 msgstr "Лесото"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "Збільшення Поштова скринька"
 
@@ -11268,6 +11394,9 @@ msgstr "Лімбурган / Лімбургер / Лімбургський"
 
 msgid "Lime"
 msgstr "вапняний"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Ліміт символів для назв записаних файлів"
@@ -11472,6 +11601,9 @@ msgstr "Місцезнаходження: %s"
 msgid "Lock:"
 msgstr "З’єднання:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Лог"
 
@@ -11607,6 +11739,9 @@ msgstr "БІЛЬШЕ"
 
 msgid "MOUSE"
 msgstr "МИША"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD завантаження"
@@ -12476,6 +12611,9 @@ msgstr "Переміщення на схід..."
 msgid "Moving files"
 msgstr "Переміщення файлів"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Переміщення на позицію"
 
@@ -13024,9 +13162,6 @@ msgstr "Активного каналу не знайдено."
 msgid "No age block"
 msgstr "Вікових обмежень немає"
 
-msgid "No backup needed"
-msgstr "Резервна копія не потрібна"
-
 msgid "No cable tuner found!"
 msgstr "Тюнер DVB-C не знайдено!"
 
@@ -13041,6 +13176,9 @@ msgstr "Канали відсутні"
 
 msgid "No channel list"
 msgstr "немає списку каналів"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13193,6 +13331,9 @@ msgstr "Немає необхідного оновлення!"
 msgid "No updates available."
 msgstr "Немає доступних оновлень."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13209,14 +13350,11 @@ msgstr "Не знайдено достовірних даних для регі�
 msgid "No, but restart from begin"
 msgstr "Ні, але відтворити фільм з початку"
 
-msgid "No, do nothing."
-msgstr "Ні, не робити нічого."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Ні, не прошивати імідж"
-
-msgid "No, just start my %s %s"
-msgstr "Ні, тільки запустити %s %s"
 
 msgid "No, never"
 msgstr "Ні, ніколи"
@@ -13441,9 +13579,6 @@ msgstr "Режим кнопки OK"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "OK перевіряє поточний налаштований транспондер."
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, допомогти мені в процесі оновлення"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14034,6 +14169,12 @@ msgstr "Пакет"
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Управління пакетами"
 
@@ -14220,9 +14361,6 @@ msgstr "Відсоток/Смугжка поступу справа"
 
 msgid "Perform an on-line flash instead"
 msgstr "Замість цього виконайте онлайн-прошивку"
-
-msgid "Perform the upgrade?"
-msgstr "Виконати оновлення?"
 
 msgid "Performing arts"
 msgstr "виконавські види мистецтва"
@@ -14793,6 +14931,9 @@ msgstr "Португальська"
 msgid "Position"
 msgstr "Позиція"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Розташування виконаних таймерів в списку"
 
@@ -14994,9 +15135,6 @@ msgstr "Натисніть OK для вибору супутників"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Натисніть ОК щоб вибрати/зняти CAId."
 
-msgid "Press OK to start the backup now"
-msgstr "Натисніть OK, щоб почати резервне копіювання зараз"
-
 msgid "Press OK to start the scan"
 msgstr "Натисніть ОК, щоб почати пошук"
 
@@ -15119,6 +15257,9 @@ msgstr "Обробка"
 msgid "Processor information"
 msgstr "Інформація про прцесор"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Профіль"
 
@@ -15131,6 +15272,9 @@ msgstr "Передача"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Для виконання цієї дії необхідно встановити програму '%s'. Бажаєте встановити пакет '%s', щоб інсталювати програму?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Історія програми"
@@ -15209,6 +15353,9 @@ msgstr "Захистити меню вимкнення"
 
 msgid "Protect timer menu"
 msgstr "Захистити меню таймерів"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Протокол"
@@ -15387,11 +15534,23 @@ msgstr "Червона довге натискання"
 msgid "RF Output Settings"
 msgstr "RF вихід"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr "Затискач RGB (нижній)"
 
 msgid "RGB clamp (upper)"
 msgstr "Затискач RGB (верхній)"
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
+msgstr ""
 
 msgid "Racing"
 msgstr "Гонки"
@@ -15441,6 +15600,9 @@ msgstr "Читання/запис"
 
 msgid "Reader"
 msgstr "Рідер"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15532,6 +15694,9 @@ msgstr "Тюнер, або драйвер не підтримують чотир
 msgid "Receiver information for %s %s"
 msgstr "Інформація про приймач для %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Назва приймача"
 
@@ -15540,6 +15705,12 @@ msgstr "Супутники"
 
 msgid "Reception Settings"
 msgstr "Параметри прийому"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Запис"
@@ -15711,6 +15882,9 @@ msgstr "Оновити інформацію про стан ZeroTier"
 
 msgid "Refresh every"
 msgstr "Інтервал оновлення (в годинах)"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Частота оновлення"
@@ -16062,6 +16236,9 @@ msgstr ""
 "Замініть усі теги '%s' на:\n"
 "(ПРИМІТКА: 'Скасувати' не може це відмінити!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Вимагати перевірку автентичності для http потоків"
 
@@ -16196,7 +16373,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16232,11 +16409,11 @@ msgstr "Відновити виділений слот"
 msgid "Restore your %s %s settings."
 msgstr "Відновити Ваші %s %s налаштування."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Відновлення Вашого %s %s з новим ПЗ."
-
 msgid "Restore your backups by date."
 msgstr "Відновлення резервних копій за датою."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Відновіть налаштування з резервної копії. Після відновлення приймач перезавантажиться, щоб активувати нові налаштування."
@@ -16597,6 +16774,9 @@ msgstr "Сб-Нд"
 msgid "Satellite"
 msgstr "Супутник"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Налаштування супутникової антени"
 
@@ -16605,6 +16785,12 @@ msgstr "Режим конфігурації супутника"
 
 msgid "Satellite equipment setup"
 msgstr "Налаштування супутникового обладнання"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Супутники"
@@ -16773,6 +16959,12 @@ msgstr "Пошук і встановлення локальних розшире
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Пошук наземних LCN і створення фаворитів LCN"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Сканування"
@@ -17351,7 +17543,7 @@ msgstr "Вибір джерела оновлення"
 msgid "Select Upgrade Source To Edit"
 msgstr "Виберіть джерело оновлення для редагування"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17647,6 +17839,9 @@ msgstr "Виберіть шлях пікона з наведених вище в
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr "Виберіть шлях піконів з наведених вище варіантів, який буде використовуватися для піконів OpenWebif."
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18004,9 +18199,6 @@ msgstr "Виберіть порядок сортування пунктів ме
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Виберіть порядок сортування пунктів меню. Визначено користувачем також дозволяє приховувати пункти меню."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Виберіть джерело, звідки отримати файли оновлення."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Виберіть час початку, після якого цей таймер можна активувати. До цього часу таймер не буде активовано, навіть якщо будуть виконані інші умови."
 
@@ -18073,8 +18265,8 @@ msgstr "Виберіть режим відео для використання �
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
-msgstr "Виберіть розташування джерела оновлення"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Виберіть режим відео"
@@ -18159,6 +18351,9 @@ msgstr "Виберіть, чи багатоканальні звукові до�
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Виберіть, чи потрібно показати іконку при русі антени з мотопідвісом."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Виберіть, які IP-протоколи можна використовувати з цим адаптером."
@@ -18270,6 +18465,9 @@ msgstr "Сербська"
 
 msgid "Serial No"
 msgstr "Серійний №"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "серйозна музика/класична музика"
@@ -18975,6 +19173,9 @@ msgstr "Показати повідомлення СІ"
 msgid "Show Capabilities"
 msgstr "Показати можливості"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Файли резервної копії"
 
@@ -19650,9 +19851,6 @@ msgstr "Вимкнути"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr "Вимкнення. Будь ласка, зачекайте..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Сичуань І / Нуосу"
 
@@ -20087,9 +20285,6 @@ msgstr "Налаштування мененджера ПЗ"
 msgid "Software MultiBoot"
 msgstr "ПЗ MultiBoot"
 
-msgid "Software Restore"
-msgstr "Відновлення ПЗ"
-
 msgid "Software Update"
 msgstr "Оновлення ПЗ"
 
@@ -20469,6 +20664,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Статичний IP / Користувацький"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Статус"
@@ -21280,9 +21478,6 @@ msgstr "%s %s не має підключення до Інтернету."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "%s %s має обмежений обсяг пам'яті. Для збільшення обсягу доступної пам’яті потрібен файл підкачки, інакше %s %s може не працювати належним чином. Виберіть цільовий пристрій для зберігання файлу підкачки."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s вимикається. Будь ласка, зачекайте..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Ваш %s %s зчитує дані ЕПГ кожні (годин)."
 
@@ -21391,6 +21586,12 @@ msgstr "ПІН-код був успішно збережений."
 msgid "The PIN codes you entered are different."
 msgstr "Введені ПІН-коди не співпадають."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21440,18 +21641,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Резервне копіювання може тривати до 15 хвилин."
-
-msgid "The backup failed"
-msgstr "Помилка резервного копіювання"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Помилка резервного копіювання! Виберіть інше місце резервного копіювання."
-
-msgid "The backup succeeded"
-msgstr "Резервне копіювання виконано успішно"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Резервне копіювання виконано успішно. Тепер ми продовжимо пояснювати процес оновлення."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21530,6 +21719,12 @@ msgstr "Тюнер позиціонера наразі недоступний. �
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Процес триватиме приблизно %d хвилин."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Результати були записані до %s."
@@ -21603,9 +21798,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Ширина зображення. Вхід буде змінено, щоб відповідати цьому значенню."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Майстер може створити резервну копію поточних налаштувань. Ви хочете почати резервне копіювання зараз?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21941,12 +22133,6 @@ msgstr "Тут задаєте час x для швидкого перемоту�
 msgid "This window will automatically close in %d seconds."
 msgstr "Це вікно автоматично закриється через %d секунд."
 
-msgid "This wizard has finished"
-msgstr "Цей майстер завершив роботу"
-
-msgid "This wizard has finished."
-msgstr "Цей майстер завершив роботу."
-
 msgid "Threshold"
 msgstr "Поріг перемикання"
 
@@ -22101,6 +22287,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22271,9 +22463,6 @@ msgstr "Увімкнути режим багаторазового вибору"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Перемикання до нових текстових вставок, або перезаписати існуючий текст"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr "Переключити вибір поточного тегу"
@@ -22559,6 +22748,12 @@ msgstr "Тюнери"
 msgid "Tuners, Scanning & Reception"
 msgstr "Тюнери, сканування та прийом"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
 
@@ -22680,13 +22875,31 @@ msgstr "USB 2.0 (ззаду, внутрішній)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (ззаду, зовнішній)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB-зчитувач %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "Вхід USB %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB перемикач ПОМИЛКА! - вже на USB"
@@ -22720,10 +22933,17 @@ msgstr "Не вдалося успадкувати користувацький 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Неможливо ініціалізувати Kexec MultiBoot!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -23003,6 +23223,9 @@ msgstr "Використовувати DHCP"
 
 msgid "Use DNS cache"
 msgstr "Використовувати кеш DNS"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "Використовувати ротацію DNS"
@@ -23295,12 +23518,6 @@ msgstr "Ім'я користувача"
 
 msgid "Username (httpuser)"
 msgstr "Ім'я користувача (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "Використання автоматичної адреси"
@@ -23883,9 +24100,6 @@ msgstr ""
 "\n"
 "Перейдіть до місця, котре слугуватиме кінцем файлу. Натисніть ОК,вибравши 'кінець вирізання'. Це все."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Ласкаво просимо до майстра оновлення іміджу. Майстер допоможе вам оновити імідж %s %s, надаючи резервну копію поточних налаштувань і коротке пояснення того, як йог оновити."
-
 msgid "Welcome..."
 msgstr "Ласкаво просимо..."
 
@@ -24174,9 +24388,6 @@ msgstr "Коли червоне поле буде видно, натисніть
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "При від'ємному значенні, система буде сканувати транспондер у фоновому режимі на предмет змін і зберігати їх. Виберіть 'так', якщо тільки абсолютно впевнені, що робите."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Де хочете зробити копію своїх налаштувань?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Де зберігати тимчасові записи timeshift?"
 
@@ -24377,9 +24588,6 @@ msgstr "Так і видалити цей запис"
 msgid "Yes, and don't ask again for this session"
 msgstr "Так, і більше не запитувати у цій сесії"
 
-msgid "Yes, backup my settings!"
-msgstr "Так, зробити копію моїх налаштувань!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Так, але не зберігати таймшифт як фільм"
 
@@ -24404,8 +24612,8 @@ msgstr "Так, почати інший ручний пошук"
 msgid "Yes, don't ask again"
 msgstr "Так, більше не питай"
 
-msgid "Yes, restore the settings now"
-msgstr "Так, відновити мої налаштування зараз"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Так, але повернутись до списку фільмів"
@@ -24415,9 +24623,6 @@ msgstr "Так, але якщо доступно, покажіть перегл�
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Так, але якщо недоступно, покажіть список таймера"
-
-msgid "Yes, shut down now."
-msgstr "Так, вимкнути зараз."
 
 msgid "Yesterday"
 msgstr "Вчора"
@@ -24449,11 +24654,8 @@ msgstr "Ви можете пропустити цю функцію та вимк
 msgid "You cannot delete this!"
 msgstr "Ви не можете це видалити!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Ви вирішили створити резервну копію налаштувань. Натисніть OK, щоб почати резервне копіювання зараз."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Ви вибрали відновлення налаштувань. Enigma2 перезапуститься після відновлення. Натисніть OK, щоб почати відновлення зараз."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Ви вибрали збереження поточного таймшифту"
@@ -24483,13 +24685,6 @@ msgstr "Тобі вдалося перейти на недійсну сторі�
 
 msgid "You must set at least one command!"
 msgstr "Ви повинні встановити хоча б одну команду!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Вам потрібен ПК, підключений до %s %s. Відвідайте веб-сайт https://www.opena.tv/ для отримання подальших інструкцій.\n"
-"%s %s тепер буде зупинено. Після того, як ви виконаєте інструкції з оновлення на веб-сайті, новий імідж попросить вас відновити налаштування."
 
 msgid "You seem to be in time shift!"
 msgstr "Спочатку завершіть таймшифт!"
@@ -24957,6 +25152,9 @@ msgstr "захопити цей кадр як растрове зображен�
 msgid "green"
 msgstr "зелений"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "г:хх"
 
@@ -25401,6 +25599,119 @@ msgstr "так (зберігати фіди)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "%d з %d фідів завершено; невдалі букети фідів збережено"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "Сканування DAB+ не може виконуватися під час запису."
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Хочете отримати посібник з оновлення?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Ви хочете почати резервне копіювання зараз?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Редагувати вихідну URL-адресу оновлення"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Майстер іміджу"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Встановити новий імідж з USB носія"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Встановити новий імідж через веб-провідник"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Резервна копія не потрібна"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Ні, не робити нічого."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Ні, тільки запустити %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, допомогти мені в процесі оновлення"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Виконати оновлення?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Натисніть OK, щоб почати резервне копіювання зараз"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Відновлення Вашого %s %s з новим ПЗ."
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Виберіть джерело, звідки отримати файли оновлення."
+
+#~ msgid "Select update source location"
+#~ msgstr "Виберіть розташування джерела оновлення"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Вимкнення. Будь ласка, зачекайте..."
+
+#~ msgid "Software Restore"
+#~ msgstr "Відновлення ПЗ"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s вимикається. Будь ласка, зачекайте..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Помилка резервного копіювання"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Помилка резервного копіювання! Виберіть інше місце резервного копіювання."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Резервне копіювання виконано успішно"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Резервне копіювання виконано успішно. Тепер ми продовжимо пояснювати процес оновлення."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Майстер може створити резервну копію поточних налаштувань. Ви хочете почати резервне копіювання зараз?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Цей майстер завершив роботу"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Цей майстер завершив роботу."
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Ласкаво просимо до майстра оновлення іміджу. Майстер допоможе вам оновити імідж %s %s, надаючи резервну копію поточних налаштувань і коротке пояснення того, як йог оновити."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Де хочете зробити копію своїх налаштувань?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Так, зробити копію моїх налаштувань!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Так, відновити мої налаштування зараз"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Так, вимкнути зараз."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Ви вирішили створити резервну копію налаштувань. Натисніть OK, щоб почати резервне копіювання зараз."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Ви вибрали відновлення налаштувань. Enigma2 перезапуститься після відновлення. Натисніть OK, щоб почати відновлення зараз."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Вам потрібен ПК, підключений до %s %s. Відвідайте веб-сайт https://www.opena.tv/ для отримання подальших інструкцій.\n"
+#~ "%s %s тепер буде зупинено. Після того, як ви виконаєте інструкції з оновлення на веб-сайті, новий імідж попросить вас відновити налаштування."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Установити відсоток пропуску кнопки ВЛІВО/ВПРАВО для панелі пошуку."
 
@@ -25464,8 +25775,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Перемикання входу C/T: зовнішній коаксіальний перемикач 5V"
 
-#~ msgid "Common Settings"
-#~ msgstr "Загальні налаштування"
+msgid "Common Settings"
+msgstr "Загальні налаштування"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB-C та DVB-T/T2 використовують цей вхід. Коли обидва ввімкнені, Enigma2 використовує 5 В для керування зовнішнім коаксіальним перемикачем."

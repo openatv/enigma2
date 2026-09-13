@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -928,7 +928,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
 msgstr ""
 
 #, python-format
@@ -1160,6 +1164,14 @@ msgid "%s %sB"
 msgstr "%s %sb"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - அமைப்பு"
 
@@ -1317,6 +1329,10 @@ msgstr ""
 
 #, python-format
 msgid "'%s' unmounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1580,11 +1596,11 @@ msgstr "<பதிவு இல்லை>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr ""
-
 msgid "A backup is now being created."
 msgstr "இப்போது ஒரு காப்புப்பிரதி உருவாக்கப்படுகிறது."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "'என் நீட்டிப்பு' 'வடிகட்டி நீட்டிப்பு' அமைப்பிற்கு பயன்படுத்தப்பட வேண்டிய நீட்டிப்புகளின் கமா பிரிக்கப்பட்ட பட்டியல். முன்னணி புள்ளி (.) இல்லாமல் நீட்டிப்பு பெயர்களை உள்ளிடவும்."
@@ -1892,6 +1908,10 @@ msgid "Adapter"
 msgstr ""
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr ""
 
@@ -2142,6 +2162,9 @@ msgstr "வண்ண அமைப்புகளை சரிசெய்யவ�
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "டெலிடெக்ச்டுக்கு பயன்படுத்தப்படும் எழுத்துக்களின் கிடைமட்ட நிலையை சரிசெய்யவும்."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "டெலிடெக்ச்டுக்கு பயன்படுத்தப்படும் கடிதங்களின் செங்குத்து நிலையை சரிசெய்யவும்."
 
@@ -2267,6 +2290,9 @@ msgstr "அனைத்து நிகழ்வுகளும்"
 
 msgid "All files"
 msgstr "அனைத்து கோப்புகள்"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "அனைத்து தீர்மானங்களும்"
@@ -2445,6 +2471,9 @@ msgstr "அம்லோசிக் ரிமோட்"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "தொகை %d / செய் %d / தோல்வியுற்ற %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "தற்போதைய தொலைக்காட்சி நிலையைப் பிடிக்க முயற்சி மேற்கொள்ளப்படுகிறது. தவறான அல்லது காணாமல் போன நிலை செய்திகள் காரணமாக இது சாத்தியமில்லை என்றால், ரிசீவர் எதிர்பாராத விதமாக பதிலளிக்கக்கூடும். மறுபுறம், வெவ்வேறு இயக்க நிலைமைகளுக்கு சிறப்பாக பதிலளிக்க முயற்சிக்கிறது."
@@ -2760,6 +2789,9 @@ msgstr "ஆடியோ ஒத்திசைவு"
 msgid "Audio Synchronization"
 msgstr ""
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "ஆடியோ மொழி தேர்வு 1"
 
@@ -2873,6 +2905,9 @@ msgstr "தானியங்கி ச்கேன்"
 
 msgid "Automatic Service Searching"
 msgstr "தானியங்கி பணி தேடல்"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "தானியங்கி தீர்மானம்"
@@ -3213,6 +3248,17 @@ msgstr "ஒளிரும் ரெக்"
 
 msgid "Blinking REC symbol"
 msgstr "ஒளிரும் ரெக் அடையாளம்"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "தொகுதி சாதனம்"
@@ -4450,6 +4496,9 @@ msgstr "உரையாடலை மூடு"
 msgid "Close network test"
 msgstr ""
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "திரை மூடு"
 
@@ -4509,6 +4558,9 @@ msgstr "குறியீடு வீதம் எச்பி"
 
 msgid "Code rate LP"
 msgstr "குறியீடு வீதம் எல்பி"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "சரிவு"
@@ -5392,6 +5444,9 @@ msgstr "சாதன செய்தி டம்பை உருவாக்க
 msgid "Create kernel dump."
 msgstr "கர்னல் டம்பை உருவாக்கவும்."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "மீட்பு பட காப்புப்பிரதி '%s' ஐ உருவாக்கவும்."
@@ -5662,7 +5717,36 @@ msgstr "டி"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -5722,6 +5806,12 @@ msgstr ""
 
 msgid "DVB Subtitles PID & Language"
 msgstr "டி.வி.பி வசன வரிகள் பிஐடி & மொழி"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "டி.வி.பி வசன வரிகள் கருப்பு வெளிப்படைத்தன்மை"
@@ -6436,6 +6526,9 @@ msgstr "விவரங்கள்"
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "டிடெக்டிவ்"
 
@@ -6860,9 +6953,6 @@ msgstr "நீங்கள் உண்மையில் கோப்பு ம
 msgid "Do you want change '%s' access mode?"
 msgstr "'%s' அணுகல் பயன்முறையை மாற்ற விரும்புகிறீர்களா?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "மேம்படுத்தல் வழிகாட்டி வேண்டுமா?"
-
 msgid "Do you want to backup settings?"
 msgstr "அமைப்புகளை காப்புப்பிரதி எடுக்க விரும்புகிறீர்களா?"
 
@@ -6941,9 +7031,6 @@ msgstr "இந்த பின்னணியை மீண்டும் தொ
 
 msgid "Do you want to select another service?"
 msgstr "நீங்கள் மற்றொரு சேவையைத் தேர்ந்தெடுக்க விரும்புகிறீர்களா?"
-
-msgid "Do you want to start a backup now?"
-msgstr "நீங்கள் இப்போது காப்புப்பிரதியைத் தொடங்க விரும்புகிறீர்களா?"
 
 msgid "Do you want to update:"
 msgstr "நீங்கள் புதுப்பிக்க விரும்புகிறீர்களா:"
@@ -7101,6 +7188,9 @@ msgstr "டச்சு / பிளெமிச்"
 
 msgid "Dynamic contrast"
 msgstr "மாறும் மாறுபாடு"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "பூடானி"
@@ -7275,9 +7365,6 @@ msgstr "நேரத்தைத் திருத்து"
 msgid "Edit Title"
 msgstr "தலைப்பைத் திருத்து"
 
-msgid "Edit Upgrade Source URL"
-msgstr "மூல முகவரி ஐ மேம்படுத்தவும்"
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7302,8 +7389,14 @@ msgstr "CCCAM/NEWCAMD சேவையக போர்ட்டைத் தி�
 msgid "Edit the NewCamd DES Key."
 msgstr "NewCamd Des Key ஐத் திருத்தவும்."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "தற்போது தேர்ந்தெடுக்கப்பட்ட டைமரைத் திருத்தவும்"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "கடவுச்சொல்லைத் திருத்தவும்."
@@ -7396,6 +7489,9 @@ msgstr "பூச்செண்டு திருத்தத்தை இய�
 msgid "Enable Chkroot MultiBoot"
 msgstr "Chkroot மல்டிபூட்டை இயக்கவும்"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "EIT EPG ஐ இயக்கவும்"
 
@@ -7467,6 +7563,9 @@ msgstr "வயாசாட் ஈபிசியை இயக்கவும்"
 
 msgid "Enable Virgin EPG"
 msgstr "விர்சின் ஈ.பி.சி."
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7589,6 +7688,9 @@ msgstr "பிழைத்திருத்த பதிவு கோப்ப�
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "பிழைத்திருத்த பதிவு கோப்பில் பூங்கொத்து தரவுத்தள தகவலைச் சேர்க்க இந்த விருப்பத்தை இயக்கவும்."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "பிழைத்திருத்த பதிவு கோப்பில் கூடுதல் டிவிபி விவரங்களைச் சேர்க்க இந்த விருப்பத்தை இயக்கவும்."
 
@@ -7633,6 +7735,9 @@ msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "பிழைத்திருத்த பதிவு கோப்பில் நேரங்குறிகருவி பிழைத்திருத்த தரவைச் சேர்க்க இந்த விருப்பத்தை இயக்கவும்."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "செய்தி பட்டியல் உருப்படி பட்டியலில் கிடைக்கக்கூடிய அனைத்து செய்தி திரைகளையும் காட்ட இந்த விருப்பத்தை இயக்கவும்."
@@ -7756,6 +7861,12 @@ msgstr "Enigma2 திருத்தம்"
 
 msgid "Enigmalight"
 msgstr "புதிரானது"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "உள்ளிடவும்"
@@ -8551,6 +8662,9 @@ msgstr "Ffmpeg ஆய்வு"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFMPEG நிறுவப்படவில்லை, எனவே '.mvi' கோப்பு நடவடிக்கைகள் கிடைக்கவில்லை!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "ஃபிஃபோ"
 
@@ -9124,6 +9238,9 @@ msgstr "மீடிறன், மீள்திறன், நிகழ்வ�
 msgid "Frequency bands"
 msgstr "அதிர்வெண் பட்டைகள்"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "அதிர்வெண் வரம்பு"
 
@@ -9213,6 +9330,9 @@ msgstr "கபோன்"
 
 msgid "Gaelic"
 msgstr "கேலிக்"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "கலீசியா (ச்பெயின்)"
@@ -10202,9 +10322,6 @@ msgstr "பட உருவாக்கம் தோல்வியடைந்�
 msgid "Image version"
 msgstr "பட பதிப்பு"
 
-msgid "ImageWizard"
-msgstr "இமேச்விசார்ட்"
-
 msgid "Immediate shut down"
 msgstr "உடனடியாக மூடப்பட்டது"
 
@@ -10260,6 +10377,9 @@ msgstr "ஒரு டைமரை பதிவு செய்வதற்கா
 msgid "In progress"
 msgstr "முன்னேற்றத்தில் உள்ளது"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "அணுக முடியாத"
 
@@ -10280,6 +10400,9 @@ msgstr "பதிவுகளில் AIT ஐ சேர்க்கவும்
 
 msgid "Include CI assignment"
 msgstr "தொஒ ஒதுக்கீட்டைச் சேர்க்கவும்"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "டி.வி.பி விவரங்களைச் சேர்க்கவும்"
@@ -10304,6 +10427,9 @@ msgstr "மல்டிபூட் தரவைச் சேர்க்கவ�
 
 msgid "Include SDT and BAT in http streams"
 msgstr "HTTP ச்ட்ரீம்களில் SDT, BAT ஐ சேர்க்கவும்"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "செயல் வரைபடத் தரவைச் சேர்க்கவும்"
@@ -10339,6 +10465,9 @@ msgid "Include teletext details"
 msgstr "டெலிடெக்ச்ட் விவரங்களைச் சேர்க்கவும்"
 
 msgid "Include text encoding data"
+msgstr ""
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
 msgstr ""
 
 msgid "Include timer data"
@@ -10514,12 +10643,6 @@ msgstr "சொருகி நிறுவவும்"
 msgid "Install Plugins"
 msgstr "செருகுநிரல்களை நிறுவவும்"
 
-msgid "Install a new image with a USB stick"
-msgstr "யூ.எச்.பி குச்சியுடன் புதிய படத்தை நிறுவவும்"
-
-msgid "Install a new image with your web browser"
-msgstr "உங்கள் வலை உலாவியுடன் புதிய படத்தை நிறுவவும்"
-
 msgid "Install extensions"
 msgstr "நீட்டிப்புகளை நிறுவவும்"
 
@@ -10646,9 +10769,6 @@ msgstr "தலைகீழ்"
 
 msgid "Inverts the button function."
 msgstr "பொத்தான் செயல்பாட்டை தலைகீழாக மாற்றுகிறது."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "ஈரான், இச்லாமிக் குடியரசு"
@@ -10837,6 +10957,9 @@ msgstr "கென்யா"
 
 msgid "Kernel Packages"
 msgstr "கர்னல் தொகுப்புகள்"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "கர்னல் கோப்பு"
@@ -11160,6 +11283,9 @@ msgstr "ஓய்வு நேர பொழுதுபோக்குகள்"
 msgid "Lesotho"
 msgstr "லெசோதோ"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "லெட்டர்பாக்ச் சூம்"
 
@@ -11196,6 +11322,9 @@ msgstr "லிம்பர்கன் / லிம்பர்கர் / லி
 
 msgid "Lime"
 msgstr "சுண்ணாம்பு"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "கோப்பு பெயர்களைப் பதிவு செய்வதற்கான எழுத்துக்குறி அமைக்கப்பட்டுள்ளது"
@@ -11399,6 +11528,9 @@ msgstr "இடம்: %s"
 msgid "Lock:"
 msgstr "பூட்டு:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "பதிவு"
 
@@ -11534,6 +11666,9 @@ msgstr "மேலும்"
 
 msgid "MOUSE"
 msgstr "சுட்டி"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "எம்டிடி துவக்க"
@@ -12403,6 +12538,9 @@ msgstr "கிழக்கு நோக்கி நகரும் ..."
 msgid "Moving files"
 msgstr "கோப்புகளை நகர்த்துவது"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "நிலைக்கு நகரும்"
 
@@ -12951,9 +13089,6 @@ msgstr "செயலில் சேனல் எதுவும் கிடை
 msgid "No age block"
 msgstr "வயதுத் தொகுதி இல்லை"
 
-msgid "No backup needed"
-msgstr "காப்புப்பிரதி தேவையில்லை"
-
 msgid "No cable tuner found!"
 msgstr "கேபிள் ட்யூனர் எதுவும் கிடைக்கவில்லை!"
 
@@ -12968,6 +13103,9 @@ msgstr "சேனல் இல்லை"
 
 msgid "No channel list"
 msgstr "சேனல் பட்டியல் இல்லை"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13120,6 +13258,9 @@ msgstr "புதுப்பிப்பு தேவையில்லை!"
 msgid "No updates available."
 msgstr "புதுப்பிப்புகள் எதுவும் கிடைக்கவில்லை."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13136,14 +13277,11 @@ msgstr "செல்லுபடியாகும் பிராந்தி�
 msgid "No, but restart from begin"
 msgstr "இல்லை, ஆனால் தொடக்கத்திலிருந்து மறுதொடக்கம் செய்யுங்கள்"
 
-msgid "No, do nothing."
-msgstr "இல்லை, எதுவும் செய்ய வேண்டாம்."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "இல்லை, இந்த படத்தை ஒளிர வேண்டாம்"
-
-msgid "No, just start my %s %s"
-msgstr "இல்லை, எனது %s %s ஐத் தொடங்குங்கள்"
 
 msgid "No, never"
 msgstr "இல்லை, ஒருபோதும்"
@@ -13368,9 +13506,6 @@ msgstr "சரி பொத்தான் பயன்முறை"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr "சரி, மேம்படுத்தல் செயல்முறை மூலம் எனக்கு வழிகாட்டவும்"
 
 msgid "ONID"
 msgstr ""
@@ -13961,6 +14096,12 @@ msgstr "தொகுப்பு"
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "தொகுப்பு மேலாளர்"
 
@@ -14147,9 +14288,6 @@ msgstr "சதவீதம்/முன்னேற்றப் பட்டி 
 
 msgid "Perform an on-line flash instead"
 msgstr "அதற்கு பதிலாக ஆன்-லைன் ஃபிளாச் செய்யுங்கள்"
-
-msgid "Perform the upgrade?"
-msgstr "மேம்படுத்தல் செய்யவா?"
 
 msgid "Performing arts"
 msgstr "கலை நிகழ்ச்சிகள்"
@@ -14718,6 +14856,9 @@ msgstr "போர்த்துகீசியம்"
 msgid "Position"
 msgstr "நிலை"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "டைமர்லிச்ட்டில் முடிக்கப்பட்ட டைமர்களின் நிலை"
 
@@ -14919,9 +15060,6 @@ msgstr "செயற்கைக்கோள்களைத் தேர்ந�
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAID ஐத் தேர்ந்தெடுக்க/தேர்வுநீக்க சரி என்பதை அழுத்தவும்."
 
-msgid "Press OK to start the backup now"
-msgstr "இப்போது காப்புப்பிரதியைத் தொடங்க சரி என்பதை அழுத்தவும்"
-
 msgid "Press OK to start the scan"
 msgstr "ச்கேன் தொடங்க சரி என்பதை அழுத்தவும்"
 
@@ -15044,6 +15182,9 @@ msgstr "செயலாக்கம்"
 msgid "Processor information"
 msgstr "செயலி செய்தி"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "சுயவிவரம்"
 
@@ -15056,6 +15197,9 @@ msgstr "திட்டம்"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "இந்த செயலைச் செய்ய நிரல் '%s' நிறுவப்பட வேண்டும். நிரலை நிறுவ '%s' தொகுப்பை நிறுவ விரும்புகிறீர்களா?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "புரோகிராம்லிச்டன் வரலாறு"
@@ -15134,6 +15278,9 @@ msgstr "காத்திருப்பு மெனுவைப் பாத�
 
 msgid "Protect timer menu"
 msgstr "நேரங்குறிகருவி மெனுவைப் பாதுகாக்கவும்"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "நெறிமுறை"
@@ -15312,10 +15459,22 @@ msgstr "சிவப்பு நீண்ட"
 msgid "RF Output Settings"
 msgstr "வானலை வெளியீட்டு அமைப்புகள்"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr ""
 
 msgid "RGB clamp (upper)"
+msgstr ""
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
 msgstr ""
 
 msgid "Racing"
@@ -15366,6 +15525,9 @@ msgstr "படிக்க/எழுத"
 
 msgid "Reader"
 msgstr "வாசகர்"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15457,6 +15619,9 @@ msgstr "ரிசீவர் குவாட் பிப்பை ஆதரி
 msgid "Receiver information for %s %s"
 msgstr "%s %s க்கான ரிசீவர் செய்தி"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "பெறுநர் பெயர்"
 
@@ -15465,6 +15630,12 @@ msgstr "வரவேற்பு பட்டியல்கள்"
 
 msgid "Reception Settings"
 msgstr "வரவேற்பு அமைப்புகள்"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "பதிவு"
@@ -15636,6 +15807,9 @@ msgstr "ZeroTier நிலை தகவலைப் புதுப்பிக�
 
 msgid "Refresh every"
 msgstr "ஒவ்வொரு (மணிநேரத்திலும்) புதுப்பிக்கவும்"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "வீதத்தை புதுப்பிக்கவும்"
@@ -15987,6 +16161,9 @@ msgstr ""
 "அனைத்து '%s' குறிச்சொற்களையும் மாற்றவும்:\n"
 " (குறிப்பு: 'ரத்துசெய்' இதை செயல்தவிர்க்க முடியாது!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "HTTP ச்ட்ரீம்களுக்கு ஏற்பு தேவை"
 
@@ -16121,7 +16298,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16157,11 +16334,11 @@ msgstr "சிறப்பம்சமாக ச்லாட்டை மீட�
 msgid "Restore your %s %s settings."
 msgstr "உங்கள் %s %s அமைப்புகளை மீட்டெடுக்கவும்."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "புதிய ஃபார்ம்வேர் மூலம் உங்கள் %s %s ஐ மீட்டெடுக்கவும்."
-
 msgid "Restore your backups by date."
 msgstr "உங்கள் காப்புப்பிரதிகளை தேதியால் மீட்டெடுக்கவும்."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "உங்கள் அமைப்புகளை காப்புப்பிரதியிலிருந்து மீட்டெடுக்கவும். மீட்டமைத்த பிறகு பெட்டி புதிய அமைப்புகளை செயல்படுத்துவதற்கு மறுதொடக்கம் செய்யும்"
@@ -16522,6 +16699,9 @@ msgstr "சட்-சன்"
 msgid "Satellite"
 msgstr "செயற்கைக் கோள்"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "செயற்கைக்கோள் டிச் அமைப்புகள்"
 
@@ -16530,6 +16710,12 @@ msgstr "செயற்கைக்கோள் உள்ளமைவு மு�
 
 msgid "Satellite equipment setup"
 msgstr "செயற்கைக்கோள் உபகரணங்கள் அமைப்பு"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "செயற்கைக்கோள்கள்"
@@ -16698,6 +16884,12 @@ msgstr "உள்ளக நீட்டிப்புகளுக்கு ச�
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "நிலப்பரப்பு எல்.சி.என் -க்கு ச்கேன் செய்து எல்.சி.என் பூங்கொத்துகளை உருவாக்கவும்"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "ச்கேனிங்"
@@ -17273,7 +17465,7 @@ msgstr "மூலத்தை மேம்படுத்தவும் என�
 msgid "Select Upgrade Source To Edit"
 msgstr "திருத்த மூலத்தை மேம்படுத்தவும்"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17568,6 +17760,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -17926,9 +18121,6 @@ msgstr "சொருகி உலாவி பட்டியல் உள்ள
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "பட்டியல் உள்ளீடுகளின் வரிசை வரிசையைத் தேர்ந்தெடுக்கவும். பயனர் வரையறுக்கப்பட்ட பட்டியல் உள்ளீடுகளை மறைக்க அனுமதிக்கிறது."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "மேம்படுத்தல் கோப்புகளை எங்கிருந்து பெற வேண்டும் என்பதிலிருந்து மூல இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "இந்த டைமரை இயக்கக்கூடிய தொடக்க நேரத்தைத் தேர்ந்தெடுக்கவும். இதற்கு முன் மற்ற நிபந்தனைகள் நிறைவு செய்யப்பட்டாலும் நேரங்குறிகருவி இயக்கப்படாது."
 
@@ -17995,8 +18187,8 @@ msgstr "டிவியில் பயன்படுத்த வேண்ட�
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
-msgstr "புதுப்பிப்பு மூல இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "வீடியோ பயன்முறையைத் தேர்ந்தெடுக்கவும்"
@@ -18081,6 +18273,9 @@ msgstr "மல்டி சேனல் ஒலி தடங்கள் பி�
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "மின்னோடி பொருத்தப்பட்ட டிச் நகரும் போது ஐகானைக் காட்டலாமா வேண்டாமா என்பதைத் தேர்வுசெய்க."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
@@ -18192,6 +18387,9 @@ msgstr "செர்பிய"
 
 msgid "Serial No"
 msgstr "சீரியல் எண்"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "தீவிர இசை/கிளாசிக் இசை"
@@ -18894,6 +19092,9 @@ msgstr "தொஒ செய்திகளைக் காட்டு"
 msgid "Show Capabilities"
 msgstr "திறன்களைக் காட்டு"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "இயல்புநிலை காப்பு கோப்புகளைக் காட்டு"
 
@@ -19569,9 +19770,6 @@ msgstr "பணிநிறுத்தம்"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr "மூடுவது. தயவுசெய்து காத்திருங்கள் ..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Si any i / nu osu"
 
@@ -20002,9 +20200,6 @@ msgstr "மென்பொருள் மேலாளர் அமைப்ப�
 msgid "Software MultiBoot"
 msgstr "மென்பொருள் மல்டிபூட்"
 
-msgid "Software Restore"
-msgstr "மென்பொருள் மீட்டமை"
-
 msgid "Software Update"
 msgstr "மென்பொருள் புதுப்பிப்பு"
 
@@ -20384,6 +20579,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "நிலையான ஐபி / தனிப்பயன்"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "நிலை"
@@ -21195,9 +21393,6 @@ msgstr "%s %s இணைய இணைப்பு இல்லை."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "%s %s வரையறுக்கப்பட்ட நினைவக திறன் கொண்டது. கிடைக்கக்கூடிய நினைவகத்தின் அளவை அதிகரிக்க ஒரு இடமாற்று கோப்பு தேவைப்படுகிறது, இல்லையெனில் %s %s சரியாக வேலை செய்யாது. இடமாற்று கோப்பை வைத்திருக்க இலக்கு சாதனத்தைத் தேர்ந்தெடுக்கவும்."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s மூடப்படுகின்றன. தயவுசெய்து காத்திருங்கள் ..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s ஒவ்வொரு (மணிநேரமும்) சேமிக்கப்பட்ட ஈபிசி தரவை வாசிக்கிறது."
 
@@ -21306,6 +21501,12 @@ msgstr "முள் குறியீடு வெற்றிகரமாக 
 msgid "The PIN codes you entered are different."
 msgstr "நீங்கள் உள்ளிட்ட முள் குறியீடுகள் வேறுபட்டவை."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21355,18 +21556,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "காப்புப்பிரதி முடிக்க சுமார் 15 நிமிடங்கள் வரை ஆகலாம்."
-
-msgid "The backup failed"
-msgstr "காப்புப்பிரதி தோல்வியடைந்தது"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "காப்புப்பிரதி தோல்வியடைந்தது! வேறு காப்புப்பிரதி இருப்பிடத்தைத் தேர்வுசெய்க."
-
-msgid "The backup succeeded"
-msgstr "காப்புப்பிரதி செய் பெற்றது"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "காப்புப்பிரதி செய் பெற்றது. மேம்படுத்தல் செயல்முறையை இப்போது தொடர்ந்து விளக்குவோம்."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21445,6 +21634,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "செயல்முறை முடிக்க சுமார் %d நிமிடங்கள் ஆகும்."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "முடிவுகள் %s க்கு எழுதப்பட்டுள்ளன."
@@ -21518,9 +21713,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "படத்தின் அகலம். இந்த மதிப்புடன் பொருந்தக்கூடிய உள்ளீடு அளவிடப்படும்."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "உங்கள் தற்போதைய அமைப்புகளை மந்திரவாதி காப்புப் பிரதி எடுக்க முடியும். நீங்கள் இப்போது காப்புப்பிரதியைத் தொடங்க விரும்புகிறீர்களா?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21855,12 +22047,6 @@ msgstr "இது ஃச் வினாடிகளின் நேர பி�
 msgid "This window will automatically close in %d seconds."
 msgstr "இந்த சாளரம் தானாகவே %d வினாடிகளில் மூடப்படும்."
 
-msgid "This wizard has finished"
-msgstr "இந்த வழிகாட்டி முடிந்தது"
-
-msgid "This wizard has finished."
-msgstr "இந்த வழிகாட்டி முடிந்தது."
-
 msgid "Threshold"
 msgstr "வாசல்"
 
@@ -22015,6 +22201,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22185,9 +22377,6 @@ msgstr "பல தேர்வு பயன்முறையை மாற்ற
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "புதிய உரை செருகல்களை மாற்றுவதற்கு முன் அல்லது ஏற்கனவே உள்ள உரையை மேலெழுதும்"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr "தற்போதைய குறிச்சொல்லின் தேர்வை மாற்றவும்"
@@ -22473,6 +22662,12 @@ msgstr "சுருதிக்கூட்டிகள"
 msgid "Tuners, Scanning & Reception"
 msgstr "ட்யூனர்கள், ச்கேனிங் & வரவேற்பு"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "ட்யூனிங் வழிமுறை"
 
@@ -22594,13 +22789,31 @@ msgstr "யூ.எச்.பி 2.0 (பின், உள்)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "யூ.எச்.பி 3.0 (பின், வெளிப்புறம்)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB ரீடர் %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "யூ.எச்.பி ச்லாட் %s %s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "யூ.எச்.பி சுவிட்ச் பிழை! - ஏற்கனவே யூ.எச்.பி."
@@ -22634,10 +22847,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "KEXEC மல்டிபூட்டை துவக்க முடியவில்லை!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -22917,6 +23137,9 @@ msgstr "DHCP ஐப் பயன்படுத்தவும்"
 
 msgid "Use DNS cache"
 msgstr "DNS கேச் பயன்படுத்தவும்"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "DNS சுழற்சியைப் பயன்படுத்தவும்"
@@ -23209,12 +23432,6 @@ msgstr "பயனர்பெயர்"
 
 msgid "Username (httpuser)"
 msgstr "பயனர்பெயர் (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "தானியங்கி முகவரியைப் பயன்படுத்துதல்"
@@ -23797,9 +24014,6 @@ msgstr ""
 "\n"
 " பின்னர் முடிவைத் தேடுங்கள், சரி என்பதை அழுத்தவும், 'எண்ட் கட்' என்பதைத் தேர்ந்தெடுக்கவும். அவ்வளவுதான்."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "படத்தை மேம்படுத்தும் வழிகாட்டி வரவேற்கிறோம். தற்போதைய அமைப்புகளுக்கு காப்புப்பிரதி வசதியையும், ஃபார்ம்வேரை எவ்வாறு மேம்படுத்துவது என்பதற்கான ஒரு குறுகிய விளக்கத்தையும் வழங்குவதன் மூலம் %s %s இன் ஃபார்ம்வேரை மேம்படுத்துவதற்கு வழிகாட்டி உங்களுக்கு உதவும்."
-
 msgid "Welcome..."
 msgstr "வரவேற்கிறோம் ..."
 
@@ -24088,9 +24302,6 @@ msgstr "சிவப்பு பெட்டி சரியாகத் தெ
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "ஒரு சேவையுடன் இணைக்கப்படும்போது, கணினி பொதுவாக ஏதேனும் மாற்றங்களுக்காக டிரான்ச்பாண்டரை ச்கேன் செய்து அவற்றை சேமிக்கும். நீங்கள் என்ன செய்கிறீர்கள் என்பது உங்களுக்கு உறுதியாக இருந்தால் மட்டுமே 'ஆம்' என்று அமைக்கவும்."
 
-msgid "Where do you want to backup your settings?"
-msgstr "உங்கள் அமைப்புகளை எங்கே காப்புப் பிரதி எடுக்க விரும்புகிறீர்கள்?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "தற்காலிக நேர சிப்ட் பதிவுகளை எங்கு சேமிக்க விரும்புகிறீர்கள்?"
 
@@ -24291,9 +24502,6 @@ msgstr "ஆம், இந்த திரைப்படத்தை நீக�
 msgid "Yes, and don't ask again for this session"
 msgstr "ஆம், இந்த அமர்வுக்கு மீண்டும் கேட்க வேண்டாம்"
 
-msgid "Yes, backup my settings!"
-msgstr "ஆம், எனது அமைப்புகளை காப்புப் பிரதி எடுக்கவும்!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "ஆம், ஆனால் நேர மாற்றத்தை திரைப்படமாக சேமிக்க வேண்டாம்"
 
@@ -24318,8 +24526,8 @@ msgstr "ஆம், இப்போது மற்றொரு கையேட�
 msgid "Yes, don't ask again"
 msgstr "ஆம், மீண்டும் கேட்க வேண்டாம்"
 
-msgid "Yes, restore the settings now"
-msgstr "ஆம், இப்போது அமைப்புகளை மீட்டெடுக்கவும்"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "ஆம், திரைப்பட பட்டியலுக்குத் திரும்புதல்"
@@ -24329,9 +24537,6 @@ msgstr "ஆம், கிடைக்கவில்லை என்றால்
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "ஆம், கிடைக்கவில்லை என்றால் ரெக்கார்டிமரைக் காட்டு"
-
-msgid "Yes, shut down now."
-msgstr "ஆம், இப்போது மூடு."
 
 msgid "Yesterday"
 msgstr "நேற்று"
@@ -24363,11 +24568,8 @@ msgstr "நீங்கள் இந்த செயல்பாட்டைத�
 msgid "You cannot delete this!"
 msgstr "இதை நீங்கள் நீக்க முடியாது!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "உங்கள் அமைப்புகளை காப்புப் பிரதி எடுக்க நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள். இப்போது காப்புப்பிரதியைத் தொடங்க சரி என்பதை அழுத்தவும்."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "அமைப்புகளை மீட்டெடுக்க நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள். Enigma2 மீட்டமைத்த பிறகு மறுதொடக்கம் செய்யும். இப்போது மீட்டெடுப்பதைத் தொடங்க சரி என்பதை அழுத்தவும்."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "தற்போதைய நேர மாற்றத்தை சேமிக்க நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள்"
@@ -24397,13 +24599,6 @@ msgstr "நீங்கள் தவறான பக்கத்திற்க�
 
 msgid "You must set at least one command!"
 msgstr "நீங்கள் குறைந்தது ஒரு கட்டளையையாவது அமைக்க வேண்டும்!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"உங்கள் %s %s உடன் இணைக்கப்பட்ட பிசி தேவை. மேலதிக வழிமுறைகளுக்கு https://www.opena.tv/ வலைத்தளத்தைப் பார்வையிடவும்.\n"
-" %s %s இப்போது நிறுத்தப்படும். வலைத்தளத்திலிருந்து புதுப்பிப்பு வழிமுறைகளை நீங்கள் செய்த பிறகு, புதிய ஃபார்ம்வேர் அமைப்புகளை மீட்டெடுக்கும்படி கேட்கும்."
 
 msgid "You seem to be in time shift!"
 msgstr "நீங்கள் நேர மாற்றத்தில் இருப்பதாகத் தெரிகிறது!"
@@ -24871,6 +25066,9 @@ msgstr "இந்த சட்டகத்தை பிட்மேப்பா�
 msgid "green"
 msgstr "பச்சை"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "எச்: எம்.எம்"
 
@@ -25314,6 +25512,112 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 msgid "®"
 msgstr "®"
 
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "மேம்படுத்தல் வழிகாட்டி வேண்டுமா?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "நீங்கள் இப்போது காப்புப்பிரதியைத் தொடங்க விரும்புகிறீர்களா?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "மூல முகவரி ஐ மேம்படுத்தவும்"
+
+#~ msgid "ImageWizard"
+#~ msgstr "இமேச்விசார்ட்"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "யூ.எச்.பி குச்சியுடன் புதிய படத்தை நிறுவவும்"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "உங்கள் வலை உலாவியுடன் புதிய படத்தை நிறுவவும்"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "காப்புப்பிரதி தேவையில்லை"
+
+#~ msgid "No, do nothing."
+#~ msgstr "இல்லை, எதுவும் செய்ய வேண்டாம்."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "இல்லை, எனது %s %s ஐத் தொடங்குங்கள்"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "சரி, மேம்படுத்தல் செயல்முறை மூலம் எனக்கு வழிகாட்டவும்"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "மேம்படுத்தல் செய்யவா?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "இப்போது காப்புப்பிரதியைத் தொடங்க சரி என்பதை அழுத்தவும்"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "புதிய ஃபார்ம்வேர் மூலம் உங்கள் %s %s ஐ மீட்டெடுக்கவும்."
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "மேம்படுத்தல் கோப்புகளை எங்கிருந்து பெற வேண்டும் என்பதிலிருந்து மூல இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்."
+
+#~ msgid "Select update source location"
+#~ msgstr "புதுப்பிப்பு மூல இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "மூடுவது. தயவுசெய்து காத்திருங்கள் ..."
+
+#~ msgid "Software Restore"
+#~ msgstr "மென்பொருள் மீட்டமை"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s மூடப்படுகின்றன. தயவுசெய்து காத்திருங்கள் ..."
+
+#~ msgid "The backup failed"
+#~ msgstr "காப்புப்பிரதி தோல்வியடைந்தது"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "காப்புப்பிரதி தோல்வியடைந்தது! வேறு காப்புப்பிரதி இருப்பிடத்தைத் தேர்வுசெய்க."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "காப்புப்பிரதி செய் பெற்றது"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "காப்புப்பிரதி செய் பெற்றது. மேம்படுத்தல் செயல்முறையை இப்போது தொடர்ந்து விளக்குவோம்."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "உங்கள் தற்போதைய அமைப்புகளை மந்திரவாதி காப்புப் பிரதி எடுக்க முடியும். நீங்கள் இப்போது காப்புப்பிரதியைத் தொடங்க விரும்புகிறீர்களா?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "இந்த வழிகாட்டி முடிந்தது"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "இந்த வழிகாட்டி முடிந்தது."
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "படத்தை மேம்படுத்தும் வழிகாட்டி வரவேற்கிறோம். தற்போதைய அமைப்புகளுக்கு காப்புப்பிரதி வசதியையும், ஃபார்ம்வேரை எவ்வாறு மேம்படுத்துவது என்பதற்கான ஒரு குறுகிய விளக்கத்தையும் வழங்குவதன் மூலம் %s %s இன் ஃபார்ம்வேரை மேம்படுத்துவதற்கு வழிகாட்டி உங்களுக்கு உதவும்."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "உங்கள் அமைப்புகளை எங்கே காப்புப் பிரதி எடுக்க விரும்புகிறீர்கள்?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "ஆம், எனது அமைப்புகளை காப்புப் பிரதி எடுக்கவும்!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "ஆம், இப்போது அமைப்புகளை மீட்டெடுக்கவும்"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "ஆம், இப்போது மூடு."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "உங்கள் அமைப்புகளை காப்புப் பிரதி எடுக்க நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள். இப்போது காப்புப்பிரதியைத் தொடங்க சரி என்பதை அழுத்தவும்."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "அமைப்புகளை மீட்டெடுக்க நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள். Enigma2 மீட்டமைத்த பிறகு மறுதொடக்கம் செய்யும். இப்போது மீட்டெடுப்பதைத் தொடங்க சரி என்பதை அழுத்தவும்."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "உங்கள் %s %s உடன் இணைக்கப்பட்ட பிசி தேவை. மேலதிக வழிமுறைகளுக்கு https://www.opena.tv/ வலைத்தளத்தைப் பார்வையிடவும்.\n"
+#~ " %s %s இப்போது நிறுத்தப்படும். வலைத்தளத்திலிருந்து புதுப்பிப்பு வழிமுறைகளை நீங்கள் செய்த பிறகு, புதிய ஃபார்ம்வேர் அமைப்புகளை மீட்டெடுக்கும்படி கேட்கும்."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "சீக்பருக்கான இடது/வலது பொத்தானை ச்கிப் சதவீதத்தை அமைக்கவும்."
 
@@ -25374,8 +25678,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "டிவிடி பிளேயர்"
 
-#~ msgid "Common Settings"
-#~ msgstr "பொதுவான அமைப்புகள்"
+msgid "Common Settings"
+msgstr "பொதுவான அமைப்புகள்"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

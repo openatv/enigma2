@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-09-02 10:36+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -950,8 +950,12 @@ msgstr[1] "Našli sa %d siete."
 msgstr[2] "Našlo sa %d sietí."
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "Dokončené zdroje: %d z %d; prehľady so zlyhávajúcimi zdrojmi zostali zachované"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1199,6 +1203,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavenie"
 
@@ -1360,6 +1372,10 @@ msgstr "'%s' pripojené."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "'%s' odpojené."
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starších súborov timeshiftu má prednosť podmienka, ktorá nastala skôr."
@@ -1622,11 +1638,11 @@ msgstr "<nenašiel sa žiadny záznam denníka>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "DAB+ nemožno sledovať počas prebiehajúceho nahrávania."
-
 msgid "A backup is now being created."
 msgstr "Teraz sa vytvára záloha."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Zoznam rozšírení (oddelených čiarkou), ktoré sa majú použiť pre nastavenie 'Moje rozšírenie' v položke 'Filtrovať rozšírenie'. Zadajte názvy rozšírení bez úvodnej bodky."
@@ -1938,6 +1954,10 @@ msgid "Adapter"
 msgstr "Adaptér"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "Kontextové menu adaptéra '%s'"
 
@@ -2188,6 +2208,9 @@ msgstr "Upravte farby tak, aby sa dali jednotlivé odtiene dobre rozlíšiť, al
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Upravte horizontálnu pozíciu písmen používaných pre teletext."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Upravte vertikálnu pozíciu písmen používaných pre teletext."
 
@@ -2313,6 +2336,9 @@ msgstr "Všetky udalosti hore"
 
 msgid "All files"
 msgstr "Všetky súbory"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Všetky rozlíšenia"
@@ -2491,6 +2517,9 @@ msgstr "Diaľkové ovládanie Amlogic"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Počet: %d / Úspešných: %d / Neúspešných: %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Prebehne pokus o zaznamenanie aktuálneho stavu TV. Ak to nie je možné kvôli nesprávnym alebo chýbajúcim správam o stave, môže dôjsť k neočakávanej reakcii prijímača. V opačnom prípade to však pomôže dosiahnuť lepšiu reakciu na rôzne podmienky."
@@ -2806,6 +2835,9 @@ msgstr "Synchronizácia zvuku"
 msgid "Audio Synchronization"
 msgstr "Synchronizácia zvuku"
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Voľba jazyka zvuku 1"
 
@@ -2919,6 +2951,9 @@ msgstr "Automatické vyhľadávanie"
 
 msgid "Automatic Service Searching"
 msgstr "Automatické vyhľadávanie staníc"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Automatické rozlíšenie"
@@ -3259,6 +3294,17 @@ msgstr "Blikajúce REC"
 
 msgid "Blinking REC symbol"
 msgstr "Blikajúci symbol REC"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Blokovať zariadenie"
@@ -4497,6 +4543,9 @@ msgstr "Zatvoriť dialóg"
 msgid "Close network test"
 msgstr "Zavrieť test siete"
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Zatvoriť obrazovku"
 
@@ -4556,6 +4605,9 @@ msgstr "Rýchlosť kódovania HP"
 
 msgid "Code rate LP"
 msgstr "Rýchlosť kódovania LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Zbaliť"
@@ -5454,6 +5506,9 @@ msgstr "Vytvoriť výpis s informáciami o zariadení."
 msgid "Create kernel dump."
 msgstr "Vytvoriť výpis jadra."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Vytvoriť záložný image pre obnovenie '%s'."
@@ -5727,8 +5782,37 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr "Sken DAB+"
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "Sken DAB+ bol neúspešný; existujúce prehľady zostali zachované."
+
+#, python-format
+msgid "DAB+ service information for '%s'"
+msgstr ""
 
 msgid "DAC"
 msgstr "DAC"
@@ -5787,6 +5871,12 @@ msgstr "DVB titulky"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB titulky, PID a jazyk"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "Priehľadnosť pozadia DVD titulkov"
@@ -6501,6 +6591,9 @@ msgstr "Podrobnosti"
 msgid "Detect positioner movement by its current consumption."
 msgstr "Detegovať pohyb pozicionéra podľa jeho spotreby prúdu."
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "Detektívky"
 
@@ -6928,9 +7021,6 @@ msgstr "Naozaj chcete aktivovať TRIM pre systém súborov?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Chcete zmeniť režim prístupu '%s'?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Chcete aktualizovať sprievodcu?"
-
 msgid "Do you want to backup settings?"
 msgstr "Chcete zálohovať nastavenia?"
 
@@ -7009,9 +7099,6 @@ msgstr "Chcete pokračovať v prehrávaní?"
 
 msgid "Do you want to select another service?"
 msgstr "Chcete si vybrať inú stanicu?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Chcete v tejto chvíli spustiť zálohovanie?"
 
 msgid "Do you want to update:"
 msgstr "Aktualizovať:"
@@ -7170,6 +7257,9 @@ msgstr "holandčina/flámčina"
 
 msgid "Dynamic contrast"
 msgstr "Dynamický kontrast"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7344,9 +7434,6 @@ msgstr "Upraviť časovač"
 msgid "Edit Title"
 msgstr "Upraviť názov"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Upraviť URL zdroja aktualizácií"
-
 msgid "Edit Username/Password Credentials"
 msgstr "Upraviť meno používateľa/heslo v prihlasovacích údajoch"
 
@@ -7371,8 +7458,14 @@ msgstr "Upraviť port servera CCcam/NewCamd."
 msgid "Edit the NewCamd DES Key."
 msgstr "Upraviť kľúč DES NewCamd."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Upraviť aktuálne vybraný časovač"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Upravte heslo."
@@ -7465,6 +7558,9 @@ msgstr "Zapnúť úpravu prehľadu"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Zapnúť Chkroot MultiBoot"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Povoliť EIT EPG"
 
@@ -7536,6 +7632,9 @@ msgstr "Povoliť ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Povoliť Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr "Zapnúť adaptér"
@@ -7658,6 +7757,9 @@ msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia údaje 
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia informácie databázy prehľadov."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Aktiváciou tejto možnosti sa do súboru protokolu pridajú ďalšie podrobnosti o DVB."
 
@@ -7702,6 +7804,9 @@ msgstr "Aktiváciou tejto možnosti pridáte do denníka ladenia aj informáciu 
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia údaje ladenia časovača."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Aktiváciou tejto možnosti sa zobrazia všetky dostupné informačné obrazovky v zozname položiek menu s informáciami."
@@ -7827,6 +7932,12 @@ msgstr "Revízia Enigma2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Zadať"
@@ -8622,6 +8733,9 @@ msgstr "Sonda FFmpeg"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg nie je nainštalované, takže nie sú dostupné akcie pre súbor '.mvi'!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9195,6 +9309,9 @@ msgstr "Frekvencia"
 msgid "Frequency bands"
 msgstr "Frekvenčné pásma"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Frekvenčný rozsah"
 
@@ -9284,6 +9401,9 @@ msgstr "Gabon"
 
 msgid "Gaelic"
 msgstr "gaelčina"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Galícia (Španielsko)"
@@ -10273,9 +10393,6 @@ msgstr "Vytváranie image sa nepodarilo!"
 msgid "Image version"
 msgstr "Verzia image"
 
-msgid "ImageWizard"
-msgstr "Sprievodca pre image"
-
 msgid "Immediate shut down"
 msgstr "Ihneď vypnúť"
 
@@ -10331,6 +10448,9 @@ msgstr "Pre nahrávanie podľa časovača sa prijímač prepol na nahrávanú st
 msgid "In progress"
 msgstr "Prebieha"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Nedostupné"
 
@@ -10351,6 +10471,9 @@ msgstr "Zahrnúť AIT do nahrávok"
 
 msgid "Include CI assignment"
 msgstr "Zahrnúť priradenie CI"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "Zahrnúť podrobnosti o DVB"
@@ -10375,6 +10498,9 @@ msgstr "Zahrnúť údaje pre MultiBoot *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Zahrnúť SDT, BAT do http streamov"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Zahrnúť údaje z mapy akcií"
@@ -10411,6 +10537,9 @@ msgstr "Zahrnúť teletextové podrobnosti"
 
 msgid "Include text encoding data"
 msgstr "Zahrnúť údaje o kódovaní textu"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Zahrnúť údaje časovača"
@@ -10585,12 +10714,6 @@ msgstr "Inštalovať plugin"
 msgid "Install Plugins"
 msgstr "Inštalovať pluginy"
 
-msgid "Install a new image with a USB stick"
-msgstr "Inštalovať nový image z USB kľúča"
-
-msgid "Install a new image with your web browser"
-msgstr "Inštalovať nový image cez webový prehliadač"
-
 msgid "Install extensions"
 msgstr "Inštalovať rozšírenia"
 
@@ -10717,9 +10840,6 @@ msgstr "Invertovať"
 
 msgid "Inverts the button function."
 msgstr "Obráti funkciu tlačidla."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Irán (Islamská republika)"
@@ -10909,6 +11029,9 @@ msgstr "Keňa"
 
 msgid "Kernel Packages"
 msgstr "Balíčky kernelu"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Súbor kernelu"
@@ -11232,6 +11355,9 @@ msgstr "Voľný čas, koníčky"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "LetterBox zoom"
 
@@ -11268,6 +11394,9 @@ msgstr "limburčina"
 
 msgid "Lime"
 msgstr "limetková"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Obmedzená znaková sada pre názvy súborov s nahrávkami"
@@ -11472,6 +11601,9 @@ msgstr "Umiestnenie: %s"
 msgid "Lock:"
 msgstr "Zámok:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Denník"
 
@@ -11607,6 +11739,9 @@ msgstr "VIAC"
 
 msgid "MOUSE"
 msgstr "MYŠ"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD boot"
@@ -12476,6 +12611,9 @@ msgstr "Otáčanie na východ…"
 msgid "Moving files"
 msgstr "Presúvanie súborov"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Otáčanie na pozíciu"
 
@@ -13031,9 +13169,6 @@ msgstr "Nenašiel sa žiadny aktívny kanál."
 msgid "No age block"
 msgstr "Žiadne blokovanie veku"
 
-msgid "No backup needed"
-msgstr "Zálohovanie nie je potrebné"
-
 msgid "No cable tuner found!"
 msgstr "Nenašiel sa žiadny káblový tuner!"
 
@@ -13048,6 +13183,9 @@ msgstr "Žiadny kanál"
 
 msgid "No channel list"
 msgstr "Žiadny zoznam kanálov"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13200,6 +13338,9 @@ msgstr "Nie je potrebná žiadna aktualizácia!"
 msgid "No updates available."
 msgstr "Nie sú dostupné žiadne aktualizácie."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "Nie sú nakonfigurované platné zdroje DAB+. Skontrolujte /etc/enigma2/dab.xml."
 
@@ -13216,14 +13357,11 @@ msgstr "Nenašli sa žiadne platné podrobnosti o regióne"
 msgid "No, but restart from begin"
 msgstr "Nie, ale spustiť od začiatku"
 
-msgid "No, do nothing."
-msgstr "Nie, nerobiť nič."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Nie, neflashovať image"
-
-msgid "No, just start my %s %s"
-msgstr "Nie, len spustiť môj %s %s"
 
 msgid "No, never"
 msgstr "Nie, nikdy"
@@ -13448,9 +13586,6 @@ msgstr "Režim tlačidla OK"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "Tlačidlom OK sa skontroluje aktuálne naladený transpondér."
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, preveď ma procesom aktualizácie"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14041,6 +14176,12 @@ msgstr "Balíček"
 msgid "Package Categories"
 msgstr "Kategórie balíčka"
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Správa balíčkov"
 
@@ -14227,9 +14368,6 @@ msgstr "Percentá/ukazovateľ priebehu vpravo"
 
 msgid "Perform an on-line flash instead"
 msgstr "Namiesto toho vykonať on-line flashovanie"
-
-msgid "Perform the upgrade?"
-msgstr "Aktualizovať?"
 
 msgid "Performing arts"
 msgstr "scénické umenie"
@@ -14800,6 +14938,9 @@ msgstr "portugalčina"
 msgid "Position"
 msgstr "Pozícia"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Pozícia ukončených časovačov v zozname"
 
@@ -15001,9 +15142,6 @@ msgstr "Družice vyberiete stlačením OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Stlačením OK vyberiete/zrušíte výber CAID."
 
-msgid "Press OK to start the backup now"
-msgstr "Na spustenie zálohovania stlačte OK"
-
 msgid "Press OK to start the scan"
 msgstr "Stlačením tlačidla OK spustíte vyhľadávanie"
 
@@ -15126,6 +15264,9 @@ msgstr "Spracováva sa"
 msgid "Processor information"
 msgstr "Informácie o procesore"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -15138,6 +15279,9 @@ msgstr "Program"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Na vykonanie tejto akcie je potrebné nainštalovať program'%s'. Chcete nainštalovať balíček '%s' na inštaláciu programu?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "História zoznamov programov"
@@ -15216,6 +15360,9 @@ msgstr "Ochrana menu pohotovostného režimu"
 
 msgid "Protect timer menu"
 msgstr "Ochrana menu časovačov"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -15394,11 +15541,23 @@ msgstr "Červené – dlho"
 msgid "RF Output Settings"
 msgstr "RF výstup"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr "Uzamknutie RGB (dolná hranica)"
 
 msgid "RGB clamp (upper)"
 msgstr "Uzamknutie RGB (horná hranica)"
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
+msgstr ""
 
 msgid "Racing"
 msgstr "Jazdenie"
@@ -15448,6 +15607,9 @@ msgstr "Čítanie/zápis"
 
 msgid "Reader"
 msgstr "Čítačka"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15539,6 +15701,9 @@ msgstr "Prijímač alebo ovládač nepodporuje Quad PiP."
 msgid "Receiver information for %s %s"
 msgstr "Informácie o prijímači %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Názov prijímača"
 
@@ -15547,6 +15712,12 @@ msgstr "Družice"
 
 msgid "Reception Settings"
 msgstr "Nastavenie príjmu"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Nahrávanie"
@@ -15718,6 +15889,9 @@ msgstr "Obnoviť informáciu o stave ZeroTier"
 
 msgid "Refresh every"
 msgstr "Obnoviť každých"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Obnovovacia frekvencia"
@@ -16069,6 +16243,9 @@ msgstr ""
 "Nahradiť všetky tagy '%s' za:\n"
 "(POZNÁMKA: tlačidlom 'Zrušiť' nie je možné vrátiť túto akciu späť!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Vyžadovať prihlásenie pre http stream"
 
@@ -16203,8 +16380,8 @@ msgstr "Reštartovanie %s bolo neúspešné (kód ukončenia %s)"
 msgid "Restarting adapter..."
 msgstr "Adaptér sa reštartuje..."
 
-msgid "Restarting saved Wi-Fi network..."
-msgstr "Uložená sieť Wi-Fi sa reštartuje..."
+msgid "Restarting network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "Reštartuje sa…"
@@ -16239,11 +16416,11 @@ msgstr "Obnoviť zvýraznený slot"
 msgid "Restore your %s %s settings."
 msgstr "Obnoviť nastavenia vášho %s %s."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Obnoviť %s %s s novým firmwarom."
-
 msgid "Restore your backups by date."
 msgstr "Obnoviť zo zálohy podľa dátumu."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Obnovenie vašich nastavení zo zálohy. Po obnovení sa prijímač reštartuje a aktivujú sa nové nastavenia."
@@ -16604,6 +16781,9 @@ msgstr "So - Ne"
 msgid "Satellite"
 msgstr "Družica"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Nastavenie paraboly"
 
@@ -16612,6 +16792,12 @@ msgstr "Režim konfigurácie družice"
 
 msgid "Satellite equipment setup"
 msgstr "Nastavenie satelitného zariadenia"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Družice"
@@ -16780,6 +16966,12 @@ msgstr "Vyhľadať lokálne rozšírenia a nainštalovať ich."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Vyhľadanie pozemných LCN a vytvorenie prehľadov LCN"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Prehľadávanie"
@@ -17358,8 +17550,8 @@ msgstr "Vyberte zdroj pre aktualizáciu"
 msgid "Select Upgrade Source To Edit"
 msgstr "Vyberte zdroj aktualizácií na úpravu"
 
-msgid "Select Wi-Fi adapter"
-msgstr "Vybrať adaptér Wi-Fi"
+msgid "Select Wi-Fi adapter:"
+msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Z dostupného zoznamu vyberte softcam, ktorý bude pre AutoCam východiskový."
@@ -17654,6 +17846,9 @@ msgstr "Vyberte cestu k sade pikon, z možností uvedených hore, ktorá sa pou�
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr "Vyberte cestu k pikonám, z možností uvedených hore, ktorá sa použije pre pikony OpenWebif."
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18011,9 +18206,6 @@ msgstr "Vyberte poradie zoraďovania položiek menu v prehliadači pluginov. Pou
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Vyberte poradie zoraďovania položiek menu. Používateľské nastavenia tiež umožňujú skrytie položiek menu."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Vyberte zdrojové umiestnenie na získanie aktualizačných súborov."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Vyberte čas spustenia, po ktorom sa môže tento časovač aktivovať. Pred týmto časom sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
 
@@ -18080,8 +18272,8 @@ msgstr "Vyberte režim videa, ktorý sa použije na TV."
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr "Vyberte veľkosť bloku vyrov. pamäte na zápis (wsize) pri pripojení. Pri použití voľby 'Automaticky' umožníte jadru a serveru vzájomné vyjednanie optimálnej veľkosti."
 
-msgid "Select update source location"
-msgstr "Vyberte umiestnenie zdroja aktualizácie"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Vyberte režim videa"
@@ -18166,6 +18358,9 @@ msgstr "Vyberte, či majú byť viackanálové zvukové stopy na výstupe ako PC
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Vyberte, či sa má pri pohybe motora zobrazovať ikona."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Vyberte, ktoré IP protokoly sa môžu použiť s týmto adaptérom."
@@ -18277,6 +18472,9 @@ msgstr "srbčina"
 
 msgid "Serial No"
 msgstr "S/N"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "vážna hudba/klasická hudba"
@@ -18982,6 +19180,9 @@ msgstr "Zobraziť správy CI"
 msgid "Show Capabilities"
 msgstr "Zobraziť schopnosti"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Zobraziť predvolené záložné súbory"
 
@@ -19657,9 +19858,6 @@ msgstr "Vypnúť"
 msgid "Shutdown %s"
 msgstr "Vypnutie %s"
 
-msgid "Shutting down. Please wait..."
-msgstr "Vypína sa. Čakajte, prosím…"
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "sichuan Yi/nuosu"
 
@@ -20094,9 +20292,6 @@ msgstr "Nastavenia Správcu softvéru"
 msgid "Software MultiBoot"
 msgstr "Softvérový MultiBoot"
 
-msgid "Software Restore"
-msgstr "Obnovenie softvéru"
-
 msgid "Software Update"
 msgstr "Aktualizácia softvéru"
 
@@ -20476,6 +20671,9 @@ msgstr "Statické"
 
 msgid "Static IP / Custom"
 msgstr "Statická IP/vlastná IP"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Stav"
@@ -21287,9 +21485,6 @@ msgstr "Zariadenie %s %s nie je pripojené k internetu."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "Zariadenie %s %s má obmedzenú kapacitu pamäte. Na zvýšenie množstva dostupnej pamäte je potrebný odkladací (swap) súbor, inak %s %s nemusí fungovať správne. Vyberte cieľové zariadenie, na ktorom bude umiestnený odkladací (swap) súbor."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s sa vypína. Čakajte, prosím…"
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s načíta uložené dáta EPG každých (hodín)."
 
@@ -21398,6 +21593,12 @@ msgstr "Kód PIN bol úspešne uložený."
 msgid "The PIN codes you entered are different."
 msgstr "Zadané PIN kódy nie sú zhodné."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21447,18 +21648,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Dokončenie zálohovania môže trvať cca 15 minút."
-
-msgid "The backup failed"
-msgstr "Zálohovanie neúspešné"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Zálohovanie neúspešné! Vyberte pre zálohu iné umiestnenie."
-
-msgid "The backup succeeded"
-msgstr "Zálohovanie úspešne dokončené"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Zálohovanie úspešne dokončené. Nasleduje vysvetlenie procesu aktualizácie."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21537,6 +21726,12 @@ msgstr "Tuner ovládajúci pozicionér nie je práve dostupný. Zastavte nahráv
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Čas potrebný na dokončenie procesu: asi %d min."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Výsledky boli zapísané do súboru %s."
@@ -21610,9 +21805,6 @@ msgstr "Používateľské rozhranie vášho %s %s sa zastaví kvôli spusteniu R
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Šírka obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hodnote."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Sprievodca môže zálohovať vaše aktuálne nastavenia. Má sa v tejto chvíli spustiť zálohovanie?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21948,12 +22140,6 @@ msgstr "Počas rýchleho pretáčania dopredu/dozadu sa použijú časové rámc
 msgid "This window will automatically close in %d seconds."
 msgstr "Toto okno sa automaticky zatvorí o %d sekúnd."
 
-msgid "This wizard has finished"
-msgstr "Sprievodca bol dokončený"
-
-msgid "This wizard has finished."
-msgstr "Sprievodca bol dokončený."
-
 msgid "Threshold"
 msgstr "Prah"
 
@@ -22109,6 +22295,12 @@ msgstr "Časový limit"
 
 msgid "Timeout waiting for FIC service data"
 msgstr "Čakanie s časovým limitom pre dáta FIC služby"
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
+msgstr ""
 
 msgid "Timer Defaults And Retention"
 msgstr "Predvolené časovače a uchovávanie"
@@ -22278,9 +22470,6 @@ msgstr "Prepnúť režim viacnásobného výberu"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Prepnúť vkladanie nového textu dopredu alebo prepisovanie existujúceho textu"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr "Prepnúť výber zdieľania podľa IP adresy alebo DNS názvu"
 
 msgid "Toggle selection of the current tag"
 msgstr "Prepnúť výber aktuálneho tagu"
@@ -22566,6 +22755,12 @@ msgstr "Tunery"
 msgid "Tuners, Scanning & Reception"
 msgstr "Tunery, vyhľadávanie a príjem"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Algoritmus ladenia"
 
@@ -22687,13 +22882,31 @@ msgstr "USB 2.0 (zadný, vnútorný)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (zadný, vonkajší)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB čítačka %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB slot %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "CHYBA pri prepnutí na USB! Už je na USB"
@@ -22727,11 +22940,18 @@ msgstr "Nie je možné dedenie používateľského pásma pre LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nie je možné inicializovať Kexec MultiBoot!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "Nemožno zaregistrovať transpondér DAB+"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Nemožno spustiť zdroj DAB+"
+
+msgid "Unable to tune the DAB+ satellite feed"
+msgstr ""
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -23010,6 +23230,9 @@ msgstr "Použiť DHCP"
 
 msgid "Use DNS cache"
 msgstr "Používať vyrovnávaciu pamäť (cache) DNS"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "Používať rotáciu DNS"
@@ -23302,12 +23525,6 @@ msgstr "Meno používateľa"
 
 msgid "Username (httpuser)"
 msgstr "Meno používateľa (httpuser)"
-
-msgid "Using DNS"
-msgstr "Používanie DNS"
-
-msgid "Using IP"
-msgstr "Používanie IP"
 
 msgid "Using automatic address"
 msgstr "Použiť automatickú adresu"
@@ -23890,9 +24107,6 @@ msgstr ""
 "\n"
 "Potom vyhľadajte koniec úseku, stlačte OK, vyberte voľbu 'koniec strihu'. Hotovo."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Vitajte v sprievodcovi aktualizáciou image. Bude vás sprevádzať procesom aktualizácie firmvéru zariadenia %s %s a poskytne vám možnosť zálohovania aktuálnych nastavení. Poskytuje aj krátke vysvetlenie ako vykonať aktualizáciu firmvéru."
-
 msgid "Welcome..."
 msgstr "Vitajte…"
 
@@ -24181,9 +24395,6 @@ msgstr "Keď bude viditeľný červený rámik, uložte nastavenia ZELENÝM tla�
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Po naladení na stanicu/službu systém zvyčajne vyhľadá na transpondéri všetky zmeny a uloží ich. Zapínajte len vtedy, keď viete, čo to spôsobí."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Kam sa majú zálohovať vaše nastavenia?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam sa majú uložiť dočasné nahrávky s timeshiftom?"
 
@@ -24384,9 +24595,6 @@ msgstr "Áno a vymazať tento film"
 msgid "Yes, and don't ask again for this session"
 msgstr "Áno a počas tejto relácie sa už nepýtať"
 
-msgid "Yes, backup my settings!"
-msgstr "Áno, zálohovať nastavenia!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Áno, neukladať timeshift ako film"
 
@@ -24411,8 +24619,8 @@ msgstr "Áno, vykonať ďalšie ručné vyhľadávanie"
 msgid "Yes, don't ask again"
 msgstr "Áno a už sa nepýtať"
 
-msgid "Yes, restore the settings now"
-msgstr "Áno, obnoviť nastavenia hneď"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Áno, vrátiť sa do zoznamu filmov"
@@ -24422,9 +24630,6 @@ msgstr "Áno, ale ak nie je dostupné, zobraziť prehliadač pluginov"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Áno, ale ak nie je dostupné, zobraziť zoznam časovačov"
-
-msgid "Yes, shut down now."
-msgstr "Áno, vypnúť hneď."
 
 msgid "Yesterday"
 msgstr "Včera"
@@ -24456,11 +24661,8 @@ msgstr "Túto funkciu môžete preskočiť a vypnúť TV, ak sa prijímač prebu
 msgid "You cannot delete this!"
 msgstr "Nie je možné vymazať!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Vybrali ste si zálohovanie vašich nastavení. Zálohovanie sa spustí stlačením tlačidla OK."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Vybrali ste si obnovenie vašich nastavení. Systém Enigma2 sa po obnovení reštartuje. Obnovenie sa spustí stlačením tlačidla OK."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Vybrali ste si uloženie aktuálneho timeshiftu"
@@ -24490,13 +24692,6 @@ msgstr "Podarilo sa vám dostať na neplatnú stranu. Prestaňte s tým. :-)"
 
 msgid "You must set at least one command!"
 msgstr "Musíte nastaviť aspoň jeden príkaz!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Budete potrebovať PC s pripojením k zariadeniu %s %s. Ďalšie inštrukcie získate na stránke https://www.opena.tv/.\n"
-"%s %s sa teraz zastaví. Po vykonaní pokynov na aktualizáciu uvedených na webovej stránke, vás nový firmvér požiada o obnovenie nastavení."
 
 msgid "You seem to be in time shift!"
 msgstr "Pravdepodobne sledujete timeshift!"
@@ -24964,6 +25159,9 @@ msgstr "zachytiť túto snímku ako bitmapu"
 msgid "green"
 msgstr "zelené"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -25408,6 +25606,134 @@ msgstr "áno (zachovať zdroje)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "Dokončené zdroje: %d z %d; prehľady so zlyhávajúcimi zdrojmi zostali zachované"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "DAB+ nemožno sledovať počas prebiehajúceho nahrávania."
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Chcete aktualizovať sprievodcu?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Chcete v tejto chvíli spustiť zálohovanie?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Upraviť URL zdroja aktualizácií"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Sprievodca pre image"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Inštalovať nový image z USB kľúča"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Inštalovať nový image cez webový prehliadač"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Zálohovanie nie je potrebné"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Nie, nerobiť nič."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Nie, len spustiť môj %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, preveď ma procesom aktualizácie"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Aktualizovať?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Na spustenie zálohovania stlačte OK"
+
+#~ msgid "Restarting saved Wi-Fi network..."
+#~ msgstr "Uložená sieť Wi-Fi sa reštartuje..."
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Obnoviť %s %s s novým firmwarom."
+
+#~ msgid "Select Wi-Fi adapter"
+#~ msgstr "Vybrať adaptér Wi-Fi"
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Vyberte zdrojové umiestnenie na získanie aktualizačných súborov."
+
+#~ msgid "Select update source location"
+#~ msgstr "Vyberte umiestnenie zdroja aktualizácie"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Vypína sa. Čakajte, prosím…"
+
+#~ msgid "Software Restore"
+#~ msgstr "Obnovenie softvéru"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s sa vypína. Čakajte, prosím…"
+
+#~ msgid "The backup failed"
+#~ msgstr "Zálohovanie neúspešné"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Zálohovanie neúspešné! Vyberte pre zálohu iné umiestnenie."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Zálohovanie úspešne dokončené"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Zálohovanie úspešne dokončené. Nasleduje vysvetlenie procesu aktualizácie."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Sprievodca môže zálohovať vaše aktuálne nastavenia. Má sa v tejto chvíli spustiť zálohovanie?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Sprievodca bol dokončený"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Sprievodca bol dokončený."
+
+#~ msgid "Toggle picking a share by IP address or by DNS name"
+#~ msgstr "Prepnúť výber zdieľania podľa IP adresy alebo DNS názvu"
+
+#~ msgid "Using DNS"
+#~ msgstr "Používanie DNS"
+
+#~ msgid "Using IP"
+#~ msgstr "Používanie IP"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Vitajte v sprievodcovi aktualizáciou image. Bude vás sprevádzať procesom aktualizácie firmvéru zariadenia %s %s a poskytne vám možnosť zálohovania aktuálnych nastavení. Poskytuje aj krátke vysvetlenie ako vykonať aktualizáciu firmvéru."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Kam sa majú zálohovať vaše nastavenia?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Áno, zálohovať nastavenia!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Áno, obnoviť nastavenia hneď"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Áno, vypnúť hneď."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Vybrali ste si zálohovanie vašich nastavení. Zálohovanie sa spustí stlačením tlačidla OK."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Vybrali ste si obnovenie vašich nastavení. Systém Enigma2 sa po obnovení reštartuje. Obnovenie sa spustí stlačením tlačidla OK."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Budete potrebovať PC s pripojením k zariadeniu %s %s. Ďalšie inštrukcie získate na stránke https://www.opena.tv/.\n"
+#~ "%s %s sa teraz zastaví. Po vykonaní pokynov na aktualizáciu uvedených na webovej stránke, vás nový firmvér požiada o obnovenie nastavení."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Nastavte percento preskočenia tlačidlami DOĽAVA/DOPRAVA pre panel vyhľadávania."
 
@@ -25502,8 +25828,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Prepínanie C/T vstupu: externý 5 V koaxiálny prepínač"
 
-#~ msgid "Common Settings"
-#~ msgstr "Spoločné nastavenia"
+msgid "Common Settings"
+msgstr "Spoločné nastavenia"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "Tento vstup je zdieľaný medzi DVB-C a DVB-T/T2. Ak sú aktivované obidva, Enigma2 používa napätie 5 V na ovládanie externého koaxiálneho prepínača."

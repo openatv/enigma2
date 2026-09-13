@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-09-10 19:24+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -938,8 +938,12 @@ msgstr[0] "%d nätverk hittades."
 msgstr[1] "%d nätverk hittades."
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d av %d flöden slutfördes; misslyckade flödesbuketter behölls"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1172,6 +1176,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Inställning"
 
@@ -1336,6 +1348,10 @@ msgstr "”%s” monterades."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "”%s” avmonterades."
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "\"Buffert i timmar\" eller \"antal senaste händelser\". Vid radering av äldre time shift-filer prioriteras det tillstånd som inträffade först."
@@ -1613,11 +1629,11 @@ msgstr "<no log found>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "En DAB+-sökning kan inte köras medan en inspelning pågår."
-
 msgid "A backup is now being created."
 msgstr "En säkerhetskopia håller nu på att skapas."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "En kommaseparerad lista över tillägg som ska användas för inställningen \"My Extension\" i \"Filter extension\". Ange tilläggsnamnen utan en ledande punkt (.)."
@@ -1951,6 +1967,10 @@ msgid "Adapter"
 msgstr "Adapter"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "Sammanhangsmeny för adaptern ”%s”"
 
@@ -2222,6 +2242,9 @@ msgstr "Justera färginställningarna så att alla färgnyanser är urskiljbara,
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Justera den horisontella positionen för de bokstäver som används för text-tv."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Justera den vertikala positionen för de bokstäver som används för text-tv."
 
@@ -2357,6 +2380,9 @@ msgstr "Alla händelser upp"
 
 msgid "All files"
 msgstr "Alla filer"
+
+msgid "All regions"
+msgstr ""
 
 #
 msgid "All resolutions"
@@ -2543,6 +2569,9 @@ msgstr "Amlogic fjärrkontroll"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Mängd %d / Lyckades %d / Misslyckades %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Ett försök görs att fånga upp den aktuella TV-statusen. Om detta inte är möjligt på grund av felaktiga eller saknade statusmeddelanden kan det leda till att mottagaren reagerar oväntat. Å andra sidan försöker den reagera bättre på olika driftsförhållanden."
@@ -2871,6 +2900,9 @@ msgstr "Synkronisering av ljud"
 msgid "Audio Synchronization"
 msgstr "Ljudsynkronisering"
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Val av ljudspråk 1"
 
@@ -2997,6 +3029,9 @@ msgstr "Automatisk skanning"
 
 msgid "Automatic Service Searching"
 msgstr "Automatisk sökning av tjänster"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Automatisk upplösning"
@@ -3355,6 +3390,17 @@ msgstr "Blinkar REC"
 
 msgid "Blinking REC symbol"
 msgstr "Blinkande REC-symbol"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 #
 msgid "Block device"
@@ -4641,6 +4687,9 @@ msgstr "Stäng dialogrutan"
 msgid "Close network test"
 msgstr "Stäng nätverkstestet"
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Stäng skärmen"
 
@@ -4701,6 +4750,9 @@ msgstr "Kodhastighet HP"
 
 msgid "Code rate LP"
 msgstr "Kodhastighet LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Minimera"
@@ -5625,6 +5677,9 @@ msgstr "Skapa dumpning av enhetsinformation."
 msgid "Create kernel dump."
 msgstr "Skapa kerneldump."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Skapa säkerhetskopia av återställningsbild '%s'."
@@ -5912,8 +5967,37 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr "DAB+-sökning"
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "DAB+-sökningen misslyckades; befintliga buketter behölls."
+
+#, python-format
+msgid "DAB+ service information for '%s'"
+msgstr ""
 
 msgid "DAC"
 msgstr "DAC"
@@ -5973,6 +6057,12 @@ msgstr "DVB-undertexter"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB-undertexter PID & språk"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB-undertext svart transparens"
@@ -6717,6 +6807,9 @@ msgstr "Detaljer"
 msgid "Detect positioner movement by its current consumption."
 msgstr "Identifiera positionerarens rörelse genom dess strömförbrukning."
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "Deckare"
 
@@ -7175,9 +7268,6 @@ msgstr "Vill du verkligen trimma filsystemet?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Vill du ändra '%s' åtkomstläge?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Vill du ha uppgraderingsguiden?"
-
 msgid "Do you want to backup settings?"
 msgstr "Vill du göra en säkerhetskopia av inställningarna?"
 
@@ -7265,9 +7355,6 @@ msgstr "Vill du återuppta uppspelningen?"
 
 msgid "Do you want to select another service?"
 msgstr "Vill du välja en annan tjänst?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Vill du starta en backup nu?"
 
 msgid "Do you want to update:"
 msgstr "Vill du uppdatera:"
@@ -7435,6 +7522,9 @@ msgstr "Nederländska / flamländska"
 #
 msgid "Dynamic contrast"
 msgstr "Dynamisk kontrast"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7619,9 +7709,6 @@ msgstr "Redigera timer"
 msgid "Edit Title"
 msgstr "Redigera rubrik"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Redigera URL för uppgraderingskälla"
-
 msgid "Edit Username/Password Credentials"
 msgstr "Redigera autentiseringsuppgifter för användarnamn/lösenord"
 
@@ -7648,8 +7735,14 @@ msgstr "Redigera CCcam/NewCamd-serverporten."
 msgid "Edit the NewCamd DES Key."
 msgstr "Redigera NewCamd DES-nyckeln."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Redigera den aktuella valda timern"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Ändra lösenordet."
@@ -7750,6 +7843,9 @@ msgstr "Aktivera Bouquet Edit"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Aktivera Chkroot MultiBoot"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Aktivera EIT EPG"
 
@@ -7824,6 +7920,9 @@ msgstr "Aktivera ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Aktivera Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr "Aktivera adapter"
@@ -7948,6 +8047,9 @@ msgstr "Aktivera detta alternativ för att lägga till mappningsdata för action
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Aktivera det här alternativet om du vill lägga till information om bukettdatabasen i debugloggfilen."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Aktivera detta alternativ för att lägga till extra DVB-detaljer i debug-loggfilen."
 
@@ -7992,6 +8094,9 @@ msgstr "Aktivera detta alternativ för att lägga till information om textkodnin
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivera det här alternativet för att lägga till felsökningsdata för timern i felsökningsloggfilen."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Aktivera det här alternativet för att visa alla tillgängliga informationsskärmar i listan med menyalternativ för Information."
@@ -8122,6 +8227,12 @@ msgstr "Revision av Enigma2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Logga in"
@@ -8947,6 +9058,9 @@ msgstr "FFmpeg-sond"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg är inte installerat så '.mvi' filåtgärder är inte tillgängliga!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9545,6 +9659,9 @@ msgstr "Frekvens"
 msgid "Frequency bands"
 msgstr "Frekvensband"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Frekvensområde"
 
@@ -9640,6 +9757,9 @@ msgstr "Gabon"
 
 msgid "Gaelic"
 msgstr "Gaeliskt"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Galicien (Spanien)"
@@ -10671,9 +10791,6 @@ msgstr "Bildskapandet misslyckades!"
 msgid "Image version"
 msgstr "Bildversion"
 
-msgid "ImageWizard"
-msgstr "ImageWizard"
-
 #
 msgid "Immediate shut down"
 msgstr "Omedelbar avstängning"
@@ -10731,6 +10848,9 @@ msgstr "För att spela in en timer kopplades TV:n om till inspelningstjänsten!\
 msgid "In progress"
 msgstr "Påbörjad"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Otillgänglig"
 
@@ -10751,6 +10871,9 @@ msgstr "Inkludera AIT i inspelningar"
 
 msgid "Include CI assignment"
 msgstr "Inkludera CI-uppdrag"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "Inkludera DVB-detaljer"
@@ -10775,6 +10898,9 @@ msgstr "Inkludera MultiBoot-data *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Inkludera SDT, BAT i http-strömmar"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Inkludera data från åtgärdskartan"
@@ -10811,6 +10937,9 @@ msgstr "Inkludera text-tv-detaljer"
 
 msgid "Include text encoding data"
 msgstr "Inkludera textkodningsdata"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Inkludera timerdata"
@@ -11000,14 +11129,6 @@ msgid "Install Plugins"
 msgstr "Installera tillägg"
 
 #
-msgid "Install a new image with a USB stick"
-msgstr "Installera en ny image med ett USB-minne"
-
-#
-msgid "Install a new image with your web browser"
-msgstr "Installera en ny bild med din webbläsare"
-
-#
 msgid "Install extensions"
 msgstr "Installera tillägg"
 
@@ -11148,10 +11269,6 @@ msgstr "Invertera"
 
 msgid "Inverts the button function."
 msgstr "Inverterar knappens funktion."
-
-#
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Iran"
@@ -11346,6 +11463,9 @@ msgstr "Kenya"
 
 msgid "Kernel Packages"
 msgstr "Kernel-paket"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Kärnfil"
@@ -11686,6 +11806,9 @@ msgstr "Fritid och hobbyer"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 #
 msgid "LetterBox zoom"
 msgstr "LetterBox zoom"
@@ -11725,6 +11848,9 @@ msgstr "Limburgan / Limburger / Limburgska"
 
 msgid "Lime"
 msgstr "kalk"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Begränsa teckenuppsättningen för inspelning av filnamn"
@@ -11945,6 +12071,9 @@ msgstr "Plats: %s"
 msgid "Lock:"
 msgstr "Lås:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Logg"
 
@@ -12085,6 +12214,9 @@ msgstr "MER"
 
 msgid "MOUSE"
 msgstr "MOUSE"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD-stövel"
@@ -13005,6 +13137,9 @@ msgstr "Vi rör oss österut..."
 msgid "Moving files"
 msgstr "Flytta filer"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 #
 msgid "Moving to position"
 msgstr "Flyttar till position"
@@ -13586,10 +13721,6 @@ msgstr "Ingen aktiv kanal hittades."
 msgid "No age block"
 msgstr "Ingen åldersspärr"
 
-#
-msgid "No backup needed"
-msgstr "Ingen backup behövs"
-
 msgid "No cable tuner found!"
 msgstr "Ingen kabelmottagare hittades!"
 
@@ -13605,6 +13736,9 @@ msgstr "Ingen kanal"
 
 msgid "No channel list"
 msgstr "Ingen kanallista"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 #
 msgid ""
@@ -13774,6 +13908,9 @@ msgstr "Ingen uppdatering krävs!"
 msgid "No updates available."
 msgstr "Inga uppdateringar tillgängliga."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "Inga giltiga DAB+-flöden är konfigurerade. Kontrollera /etc/enigma2/dab.xml."
 
@@ -13791,17 +13928,12 @@ msgstr "Inga giltiga regionuppgifter hittades"
 msgid "No, but restart from begin"
 msgstr "Nej, men börja om från början"
 
-#
-msgid "No, do nothing."
-msgstr "Gör inget."
+msgid "No, continue with the setup"
+msgstr ""
 
 #
 msgid "No, don't flash this image"
 msgstr "Nej, visa inte den här bilden"
-
-#
-msgid "No, just start my %s %s"
-msgstr "Nej, starta bara min %s %s"
 
 msgid "No, never"
 msgstr "Nej, aldrig"
@@ -14040,10 +14172,6 @@ msgstr "OK-knappens läge"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "OK kontrollerar den transponder som är inställd just nu."
-
-#
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, guida mig genom uppgraderingsprocessen"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14652,6 +14780,12 @@ msgstr "Paket"
 msgid "Package Categories"
 msgstr "Paketkategorier"
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 #
 msgid "Package Manager"
 msgstr "Paketansvarig"
@@ -14848,9 +14982,6 @@ msgstr "Procent/framstegsbalk höger"
 
 msgid "Perform an on-line flash instead"
 msgstr "Utför en on-line flash istället"
-
-msgid "Perform the upgrade?"
-msgstr "Utföra uppgraderingen?"
 
 msgid "Performing arts"
 msgstr "scenkonst"
@@ -15467,6 +15598,9 @@ msgstr "Portugisiska"
 msgid "Position"
 msgstr "Position"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position för avslutade Timers i Timerlist"
 
@@ -15687,9 +15821,6 @@ msgstr "Tryck på OK för att välja satelliter"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Tryck på OK för att markera/avmarkera en CAId."
 
-msgid "Press OK to start the backup now"
-msgstr "Tryck på OK för att starta säkerhetskopieringen nu"
-
 #
 msgid "Press OK to start the scan"
 msgstr "Tryck på OK för att starta skanningen"
@@ -15818,6 +15949,9 @@ msgstr "Bearbetas"
 msgid "Processor information"
 msgstr "Information om processorn"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -15830,6 +15964,9 @@ msgstr "Program"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Programmet '%s' måste installeras för att utföra denna åtgärd. Vill du installera paketet '%s' för att installera programmet?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Programlista Historia"
@@ -15910,6 +16047,9 @@ msgstr "Skydda standby-menyn"
 
 msgid "Protect timer menu"
 msgstr "Meny för skyddstimer"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -16099,11 +16239,23 @@ msgstr "RED lång"
 msgid "RF Output Settings"
 msgstr "Inställningar för RF-utgång"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr "RGB-begränsning (nedre)"
 
 msgid "RGB clamp (upper)"
 msgstr "RGB-begränsning (övre)"
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
+msgstr ""
 
 msgid "Racing"
 msgstr "Tävlingar"
@@ -16155,6 +16307,9 @@ msgstr "Läsa/Skriva"
 
 msgid "Reader"
 msgstr "Läsare"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -16253,6 +16408,9 @@ msgstr "Mottagaren stöder inte Quad PiP."
 msgid "Receiver information for %s %s"
 msgstr "Mottagarinformation för %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Mottagarens namn"
 
@@ -16262,6 +16420,12 @@ msgstr "Mottagningslistor"
 #
 msgid "Reception Settings"
 msgstr "Inställningar för mottagning"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 #
 msgid "Record"
@@ -16444,6 +16608,9 @@ msgstr "Uppdatera ZeroTier-statusinformation"
 
 msgid "Refresh every"
 msgstr "Uppdatera varje (i timmar)"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Uppdateringsfrekvens"
@@ -16824,6 +16991,9 @@ msgstr ""
 "Ersätt alla '%s'-taggar med:\n"
 "(OBS: \"Avbryt\" kan inte ångra detta!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Kräv autentisering för http-strömmar"
 
@@ -16969,8 +17139,8 @@ msgstr "Det gick inte att starta om %s (slutkod %s)"
 msgid "Restarting adapter..."
 msgstr "Startar om adaptern …"
 
-msgid "Restarting saved Wi-Fi network..."
-msgstr "Startar om sparat Wi-Fi-nätverk …"
+msgid "Restarting network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "Startar om..."
@@ -17010,12 +17180,11 @@ msgid "Restore your %s %s settings."
 msgstr "Återställ dina %s %s inställningar."
 
 #
-msgid "Restore your %s %s with a new firmware."
-msgstr "Återställ din %s %s med en ny firmware."
-
-#
 msgid "Restore your backups by date."
 msgstr "Återställ dina säkerhetskopior efter datum."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Återställ dina inställningar från en säkerhetskopia. Efter återställningen startar boxen om för att aktivera de nya inställningarna."
@@ -17394,6 +17563,9 @@ msgstr "Lör-sön"
 msgid "Satellite"
 msgstr "Satellit"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 #
 msgid "Satellite Dish Settings"
 msgstr "Inställningar för parabolantenn"
@@ -17404,6 +17576,12 @@ msgstr "Konfigurationsläge för satellit"
 #
 msgid "Satellite equipment setup"
 msgstr "Installation av satellitutrustning"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 #
 msgid "Satellites"
@@ -17589,6 +17767,12 @@ msgstr "Sök efter lokala tillägg och installera dem."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skanna efter terrestra LCN och skapa LCN-buketter"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Skannar"
@@ -18180,8 +18364,8 @@ msgstr "Välj uppgraderingskälla"
 msgid "Select Upgrade Source To Edit"
 msgstr "Välj uppgraderingskälla för att redigera"
 
-msgid "Select Wi-Fi adapter"
-msgstr "Välj Wi-Fi-adapter"
+msgid "Select Wi-Fi adapter:"
+msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Välj en Softcam från den tillgängliga listan som standard för AutoCam."
@@ -18485,6 +18669,9 @@ msgstr "Välj ovanstående Picon-sökväg som ska användas för picons i inform
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr "Välj ovanstående Picon-sökväg som ska användas för picons i OpenWebif."
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18845,9 +19032,6 @@ msgstr "Välj sorteringsordning för menyalternativen i Plugin Browser. Använda
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Välj sorteringsordning för menyalternativen. Användardefinierat gör också att menyalternativen kan döljas."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Välj källplatsen där du vill hämta uppgraderingsfilerna."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Välj den starttid efter vilken denna timer kan aktiveras. Före denna tid aktiveras inte timern även om övriga villkor uppfylls."
 
@@ -18914,8 +19098,8 @@ msgstr "Välj det videoläge som ska användas på TV:n."
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr "Välj monteringsalternativet för skrivblockbuffertens storlek (wsize). Välj ”Automatisk” för att låta kärnan och servern förhandla fram optimal storlek."
 
-msgid "Select update source location"
-msgstr "Välj plats för uppdateringskälla"
+msgid "Select tuner"
+msgstr ""
 
 #
 msgid "Select video mode"
@@ -19001,6 +19185,9 @@ msgstr "Välj om flerkanaliga ljudspår ska matas ut som PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Välj om en ikon ska visas när en motoriserad parabol rör sig eller inte."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Välj vilka IP-protokoll som kan användas med adaptern."
@@ -19122,6 +19309,9 @@ msgstr "Serbiska"
 
 msgid "Serial No"
 msgstr "Serienummer"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "seriös musik/klassisk musik"
@@ -19849,6 +20039,9 @@ msgstr "Visa CI-meddelanden"
 msgid "Show Capabilities"
 msgstr "Visa förmågor"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Visa standardfiler för säkerhetskopiering"
 
@@ -20559,9 +20752,6 @@ msgstr "Stäng av"
 msgid "Shutdown %s"
 msgstr "Stäng av %s"
 
-msgid "Shutting down. Please wait..."
-msgstr "Stänger av. Vänta..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
 
@@ -21019,10 +21209,6 @@ msgstr "Inställningar för Software Manager"
 msgid "Software MultiBoot"
 msgstr "Programvara MultiBoot"
 
-#
-msgid "Software Restore"
-msgstr "Återställning av programvara"
-
 msgid "Software Update"
 msgstr "Uppdatering av programvara"
 
@@ -21420,6 +21606,9 @@ msgstr "Statisk"
 
 msgid "Static IP / Custom"
 msgstr "Statisk IP / Anpassad"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Status"
@@ -22281,9 +22470,6 @@ msgstr "%s %s har inte någon internetanslutning."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "%s %s har en begränsad minneskapacitet. En swap-fil krävs för att öka mängden tillgängligt minne, annars kanske inte %s %s fungerar som den ska. Välj den målenhet som ska innehålla växlingsfilen."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s håller på att stängas ner. Vänligen vänta..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Med %s %s läses de lagrade EPG-data varje (timmar)."
 
@@ -22392,6 +22578,12 @@ msgstr "PIN-koden har sparats framgångsrikt."
 msgid "The PIN codes you entered are different."
 msgstr "De PIN-koder du har angett är olika."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -22441,18 +22633,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Säkerhetskopieringen kan ta upp till cirka 15 minuter att slutföra."
-
-msgid "The backup failed"
-msgstr "Säkerhetskopieringen misslyckades"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Säkerhetskopieringen misslyckades! Välj en annan plats för säkerhetskopiering."
-
-msgid "The backup succeeded"
-msgstr "Säkerhetskopieringen lyckades"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Säkerhetskopieringen lyckades. Vi fortsätter nu med att förklara uppgraderingsprocessen."
 
 msgid ""
 "The channel may support VPS\n"
@@ -22532,6 +22712,12 @@ msgstr "Positionerarmottagaren är inte tillgänglig just nu. Stoppa inspelninga
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Processen kommer att ta cirka %d minuter att slutföra."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #
 #, python-format
 msgid "The results have been written to %s."
@@ -22607,9 +22793,6 @@ msgstr "Användargränssnittet på din %s %s stoppas för att köra RetroGaming"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Bildens bredd. Inmatningen kommer att skalas för att matcha detta värde."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Guiden kan säkerhetskopiera dina aktuella inställningar. Vill du starta en säkerhetskopiering nu?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -22950,12 +23133,6 @@ msgstr "Detta kommer att gå snabbt framåt/bakåt med tidsramar på x sekunder.
 msgid "This window will automatically close in %d seconds."
 msgstr "Detta fönster stängs automatiskt om %d sekunder."
 
-msgid "This wizard has finished"
-msgstr "Denna guide har avslutats"
-
-msgid "This wizard has finished."
-msgstr "Den här guiden har avslutats."
-
 #
 msgid "Threshold"
 msgstr "Tröskel"
@@ -23122,6 +23299,12 @@ msgstr "Tidsgräns"
 
 msgid "Timeout waiting for FIC service data"
 msgstr "Tidsgränsen löpte ut medan FIC-tjänstdata inväntades"
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
+msgstr ""
 
 msgid "Timer Defaults And Retention"
 msgstr "Timerstandarder och kvarhållning"
@@ -23302,9 +23485,6 @@ msgstr "Växla läge för flerval"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Toggle ny text infogas före eller skriver över befintlig text"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr "Växla mellan att välja en resurs efter IP-adress eller DNS-namn"
 
 msgid "Toggle selection of the current tag"
 msgstr "Växla val av aktuell tagg"
@@ -23616,6 +23796,12 @@ msgstr "Tuners"
 msgid "Tuners, Scanning & Reception"
 msgstr "Tuners, skanning och mottagning"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Avstämningsalgoritm"
 
@@ -23745,13 +23931,31 @@ msgstr "USB 2.0 (baksida, insida)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (baksida, utsida)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB-läsare %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB-kortplats %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB-omkopplare FEL! - redan på USB"
@@ -23785,11 +23989,18 @@ msgstr "Det gick inte att ärva användarbandet för LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Det gick inte att initiera Kexec MultiBoot!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "Det gick inte att registrera DAB+-transpondern"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Det gick inte att starta DAB+-flödet"
+
+msgid "Unable to tune the DAB+ satellite feed"
+msgstr ""
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -24083,6 +24294,9 @@ msgstr "Använd DHCP"
 
 msgid "Use DNS cache"
 msgstr "Använd DNS-cache"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "Använd DNS-rotation"
@@ -24383,12 +24597,6 @@ msgstr "Användarnamn"
 
 msgid "Username (httpuser)"
 msgstr "Användarnamn (httpuser)"
-
-msgid "Using DNS"
-msgstr "Använder DNS"
-
-msgid "Using IP"
-msgstr "Använder IP"
 
 msgid "Using automatic address"
 msgstr "Använda automatisk adressering"
@@ -24994,9 +25202,6 @@ msgstr ""
 "\n"
 "Sök sedan till slutet, tryck på OK, välj \"slutklipp\". Och så är det klart."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Välkommen till guiden för avbildningsuppgradering. Guiden hjälper dig att uppgradera den fasta programvaran i %s %s genom att tillhandahålla en säkerhetskopia för de aktuella inställningarna och en kort förklaring av hur du uppgraderar den fasta programvaran."
-
 msgid "Welcome..."
 msgstr "Välkommen..."
 
@@ -25291,10 +25496,6 @@ msgid "When tuned to a service, the system normally scans the transponder for ch
 msgstr "När systemet är inställt på en service skannar det normalt transpondern efter eventuella ändringar och sparar dem. Ställ endast in på \"yes\" om du är helt säker på vad du gör."
 
 #
-msgid "Where do you want to backup your settings?"
-msgstr "Var vill du säkerhetskopiera dina inställningar?"
-
-#
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Var vill du spara inspelningar av tillfälliga tidsomställningar?"
 
@@ -25502,10 +25703,6 @@ msgstr "Ja, och ta bort den här filmen"
 msgid "Yes, and don't ask again for this session"
 msgstr "Ja, och fråga inte igen för den här sessionen"
 
-#
-msgid "Yes, backup my settings!"
-msgstr "Ja, säkerhetskopiera mina inställningar!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Ja, men spara inte tid på att skifta som film"
 
@@ -25534,9 +25731,8 @@ msgstr "Ja, gör en ny manuell skanning nu"
 msgid "Yes, don't ask again"
 msgstr "Ja, fråga inte igen"
 
-#
-msgid "Yes, restore the settings now"
-msgstr "Ja, återställ inställningarna nu"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 #
 msgid "Yes, returning to movie list"
@@ -25547,10 +25743,6 @@ msgstr "Ja, visa Plugin Browser om den inte är tillgänglig"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Ja, visa RecordTimer om den inte är tillgänglig"
-
-#
-msgid "Yes, shut down now."
-msgstr "Ja, stäng av nu."
 
 msgid "Yesterday"
 msgstr "Igår"
@@ -25583,11 +25775,8 @@ msgstr "Du kan hoppa över denna funktion och stänga av TV:n när du väcker re
 msgid "You cannot delete this!"
 msgstr "Du kan inte radera detta!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Du har valt att säkerhetskopiera dina inställningar. Tryck på OK för att starta säkerhetskopieringen nu."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Du har valt att återställa inställningarna. Enigma2 kommer att starta om efter återställningen. Tryck på OK för att starta återställningen nu."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Du har valt att spara bufferten för det aktuella tidsskiftet"
@@ -25618,13 +25807,6 @@ msgstr "Du lyckades hoppa till en ogiltig sida. Sluta med det :-)"
 
 msgid "You must set at least one command!"
 msgstr "Du måste ange minst ett kommando!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Du behöver en dator som är ansluten till din %s %s. Besök webbplatsen https://www.opena.tv/ för ytterligare instruktioner.\n"
-"%s %s kommer nu att stoppas. När du har utfört uppdateringsinstruktionerna från webbplatsen kommer den nya firmware att be dig att återställa inställningarna."
 
 msgid "You seem to be in time shift!"
 msgstr "Du verkar vara i tidsförskjutning!"
@@ -26130,6 +26312,9 @@ msgstr "ta denna bildruta som bitmapp"
 msgid "green"
 msgstr "grön"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -26630,6 +26815,147 @@ msgstr "ja (behåller flöden)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "%d av %d flöden slutfördes; misslyckade flödesbuketter behölls"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "En DAB+-sökning kan inte köras medan en inspelning pågår."
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Vill du ha uppgraderingsguiden?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Vill du starta en backup nu?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Redigera URL för uppgraderingskälla"
+
+#~ msgid "ImageWizard"
+#~ msgstr "ImageWizard"
+
+#
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Installera en ny image med ett USB-minne"
+
+#
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Installera en ny bild med din webbläsare"
+
+#
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#
+#~ msgid "No backup needed"
+#~ msgstr "Ingen backup behövs"
+
+#
+#~ msgid "No, do nothing."
+#~ msgstr "Gör inget."
+
+#
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Nej, starta bara min %s %s"
+
+#
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, guida mig genom uppgraderingsprocessen"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Utföra uppgraderingen?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Tryck på OK för att starta säkerhetskopieringen nu"
+
+#~ msgid "Restarting saved Wi-Fi network..."
+#~ msgstr "Startar om sparat Wi-Fi-nätverk …"
+
+#
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Återställ din %s %s med en ny firmware."
+
+#~ msgid "Select Wi-Fi adapter"
+#~ msgstr "Välj Wi-Fi-adapter"
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Välj källplatsen där du vill hämta uppgraderingsfilerna."
+
+#~ msgid "Select update source location"
+#~ msgstr "Välj plats för uppdateringskälla"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Stänger av. Vänta..."
+
+#
+#~ msgid "Software Restore"
+#~ msgstr "Återställning av programvara"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s håller på att stängas ner. Vänligen vänta..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Säkerhetskopieringen misslyckades"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Säkerhetskopieringen misslyckades! Välj en annan plats för säkerhetskopiering."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Säkerhetskopieringen lyckades"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Säkerhetskopieringen lyckades. Vi fortsätter nu med att förklara uppgraderingsprocessen."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Guiden kan säkerhetskopiera dina aktuella inställningar. Vill du starta en säkerhetskopiering nu?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Denna guide har avslutats"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Den här guiden har avslutats."
+
+#~ msgid "Toggle picking a share by IP address or by DNS name"
+#~ msgstr "Växla mellan att välja en resurs efter IP-adress eller DNS-namn"
+
+#~ msgid "Using DNS"
+#~ msgstr "Använder DNS"
+
+#~ msgid "Using IP"
+#~ msgstr "Använder IP"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Välkommen till guiden för avbildningsuppgradering. Guiden hjälper dig att uppgradera den fasta programvaran i %s %s genom att tillhandahålla en säkerhetskopia för de aktuella inställningarna och en kort förklaring av hur du uppgraderar den fasta programvaran."
+
+#
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Var vill du säkerhetskopiera dina inställningar?"
+
+#
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Ja, säkerhetskopiera mina inställningar!"
+
+#
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Ja, återställ inställningarna nu"
+
+#
+#~ msgid "Yes, shut down now."
+#~ msgstr "Ja, stäng av nu."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Du har valt att säkerhetskopiera dina inställningar. Tryck på OK för att starta säkerhetskopieringen nu."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Du har valt att återställa inställningarna. Enigma2 kommer att starta om efter återställningen. Tryck på OK för att starta återställningen nu."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Du behöver en dator som är ansluten till din %s %s. Besök webbplatsen https://www.opena.tv/ för ytterligare instruktioner.\n"
+#~ "%s %s kommer nu att stoppas. När du har utfört uppdateringsinstruktionerna från webbplatsen kommer den nya firmware att be dig att återställa inställningarna."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Ställ in procentandelen för hopp över vänster/högerknapp för SeekBar."
 
@@ -26685,8 +27011,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "DVD-spelare"
 
-#~ msgid "Common Settings"
-#~ msgstr "Vanliga inställningar"
+msgid "Common Settings"
+msgstr "Vanliga inställningar"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

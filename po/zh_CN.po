@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-09-01 10:31+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -929,8 +929,12 @@ msgstr[0] "发现 %d 个网络。"
 msgstr[1] "发现 %d 个网络。"
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "已完成 %d / %d 个传送源；失败的传送源分组已保留"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1161,6 +1165,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - 设置"
 
@@ -1322,6 +1334,10 @@ msgstr "“%s”已挂载。"
 #, python-format
 msgid "'%s' unmounted."
 msgstr "“%s”未挂载。"
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "“缓冲时间（小时）”或“最后事件的数量”。对于删除较旧的时移文件，首先发生的条件具有优先级。"
@@ -1584,11 +1600,11 @@ msgstr "<未找到日志>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "录制时无法执行 DAB+ 扫描。"
-
 msgid "A backup is now being created."
 msgstr "现在正在创建备份。"
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "以逗号分隔的扩展名列表，用于“我的扩展名”>>“筛选扩展名”的设置。输入不带前导点（.）的扩展名。"
@@ -1900,6 +1916,10 @@ msgid "Adapter"
 msgstr "适配器"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "适配器“%s”上下文菜单"
 
@@ -2150,6 +2170,9 @@ msgstr "调整颜色设置以使所有的颜色深浅可以辨识出来，使之
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "调整用于图文电视的文字的水平位置。"
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "调整用于图文电视的文字的垂直位置。"
 
@@ -2275,6 +2298,9 @@ msgstr "所有事件已开始"
 
 msgid "All files"
 msgstr "所有文件"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "所有分辨率"
@@ -2453,6 +2479,9 @@ msgstr "晶晨遥控器"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "总数 %d / 成功 %d / 失败 %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "试图捕获当前的电视状态。如果由于状态消息不正确或丢失而无法执行此操作，则可能会导致接收机意外响应。另一方面，尝试更好地响应不同的操作条件。"
@@ -2768,6 +2797,9 @@ msgstr "音频同步"
 msgid "Audio Synchronization"
 msgstr "音频同步"
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "伴音语言选择 1"
 
@@ -2881,6 +2913,9 @@ msgstr "自动扫描"
 
 msgid "Automatic Service Searching"
 msgstr "自动搜索频道"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "自动分辨率"
@@ -3221,6 +3256,17 @@ msgstr "REC 闪烁"
 
 msgid "Blinking REC symbol"
 msgstr "REC 符号闪烁"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "块设备"
@@ -4458,6 +4504,9 @@ msgstr "关闭对话框"
 msgid "Close network test"
 msgstr "关闭网络测试"
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "关闭屏幕"
 
@@ -4517,6 +4566,9 @@ msgstr "高优先级编码率"
 
 msgid "Code rate LP"
 msgstr "低优先级编码率"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "折叠"
@@ -5414,6 +5466,9 @@ msgstr "创建设备信息转储。"
 msgid "Create kernel dump."
 msgstr "创建内核转储。"
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "创建恢复镜像备份“%s”。"
@@ -5687,8 +5742,37 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr "DAB+ 扫描"
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "DAB+ 扫描失败；已有的频道分组会被保留。"
+
+#, python-format
+msgid "DAB+ service information for '%s'"
+msgstr ""
 
 msgid "DAC"
 msgstr "DAC"
@@ -5747,6 +5831,12 @@ msgstr "DVB字幕"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB 字幕 PID 和语言"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB字幕黑色透明度"
@@ -6461,6 +6551,9 @@ msgstr "详情"
 msgid "Detect positioner movement by its current consumption."
 msgstr "通过定位器的电流消耗检测其运转状态。"
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "侦探"
 
@@ -6888,9 +6981,6 @@ msgstr "真的要修剪文件系统吗？"
 msgid "Do you want change '%s' access mode?"
 msgstr "是否要更改“%s”访问模式？"
 
-msgid "Do you want the upgrade guide?"
-msgstr "是否要升级指南？"
-
 msgid "Do you want to backup settings?"
 msgstr "是否要备份设置？"
 
@@ -6969,9 +7059,6 @@ msgstr "是否要恢复此播放？"
 
 msgid "Do you want to select another service?"
 msgstr "是否要选择其他服务？"
-
-msgid "Do you want to start a backup now?"
-msgstr "是否立即启动备份？"
 
 msgid "Do you want to update:"
 msgstr "是否要更新："
@@ -7129,6 +7216,9 @@ msgstr "荷兰语/佛兰芒语"
 
 msgid "Dynamic contrast"
 msgstr "动态对比度"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "宗喀语"
@@ -7303,9 +7393,6 @@ msgstr "编辑定时器"
 msgid "Edit Title"
 msgstr "编辑标题"
 
-msgid "Edit Upgrade Source URL"
-msgstr "编辑升级源 URL"
-
 msgid "Edit Username/Password Credentials"
 msgstr "编辑用户名/密码凭据"
 
@@ -7330,8 +7417,14 @@ msgstr "编辑 CCcam/NewCamd 服务器端口。"
 msgid "Edit the NewCamd DES Key."
 msgstr "编辑 NewCamd DES 密钥。"
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "编辑当前选中的定时器"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "编辑密码。"
@@ -7424,6 +7517,9 @@ msgstr "启用频道分组编辑"
 msgid "Enable Chkroot MultiBoot"
 msgstr "启用 Chkroot 多系统启动"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "启用 EIT（事件信息表） EPG"
 
@@ -7495,6 +7591,9 @@ msgstr "启用 ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "启用 Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr "启用适配器"
@@ -7617,6 +7716,9 @@ msgstr "启用此选项可将操作映射/远程控制映射数据添加到调�
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "启用此选项，可将频道分组数据库信息添加到调试日志文件中。"
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "启用此选项可将额外的 DVB 详细信息添加到调试日志文件中。"
 
@@ -7661,6 +7763,9 @@ msgstr "启用此选项可将文本编码信息添加到调试日志文件中。
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "启用此选项可将定时器调试数据添加到调试日志文件。"
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "启用此选项可显示信息菜单项列表中所有可用的信息屏幕。"
@@ -7784,6 +7889,12 @@ msgstr "Enigma2 修订版"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "输入"
@@ -8579,6 +8690,9 @@ msgstr "FFmpeg Probe"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "未安装 FFmpeg，因此“.mvi”文件操作不可用！"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9152,6 +9266,9 @@ msgstr "下行频率"
 msgid "Frequency bands"
 msgstr "频段"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "频率范围"
 
@@ -9241,6 +9358,9 @@ msgstr "加蓬"
 
 msgid "Gaelic"
 msgstr "盖尔语"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "加利西亚（西班牙）"
@@ -10234,9 +10354,6 @@ msgstr "镜像创建失败！"
 msgid "Image version"
 msgstr "镜像版本"
 
-msgid "ImageWizard"
-msgstr "镜像向导"
-
 msgid "Immediate shut down"
 msgstr "立即关闭"
 
@@ -10292,6 +10409,9 @@ msgstr "要录制一个定时器，电视要切换到录制频道！\n"
 msgid "In progress"
 msgstr "进行中"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "无法访问"
 
@@ -10312,6 +10432,9 @@ msgstr "录制中包括 AIT（应用信息表）"
 
 msgid "Include CI assignment"
 msgstr "包括 CI 分配"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "包括 DVB 详细信息"
@@ -10336,6 +10459,9 @@ msgstr "包括多系统启动数据*"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "http 串流中包含 SDT，BAT数据"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "包含动作映射数据"
@@ -10372,6 +10498,9 @@ msgstr "包括图文电视详细信息"
 
 msgid "Include text encoding data"
 msgstr "包含文本编码数据"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr ""
 
 msgid "Include timer data"
 msgstr "包含定时器数据"
@@ -10546,12 +10675,6 @@ msgstr "安装插件"
 msgid "Install Plugins"
 msgstr "安装插件"
 
-msgid "Install a new image with a USB stick"
-msgstr "通过 U 盘安装新镜像"
-
-msgid "Install a new image with your web browser"
-msgstr "通过网页浏览器安装新镜像"
-
 msgid "Install extensions"
 msgstr "安装扩展"
 
@@ -10678,9 +10801,6 @@ msgstr "反向"
 
 msgid "Inverts the button function."
 msgstr "颠倒按键功能。"
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "伊朗（伊斯兰共和国）"
@@ -10869,6 +10989,9 @@ msgstr "肯尼亚"
 
 msgid "Kernel Packages"
 msgstr "内核包"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "内核文件"
@@ -11192,6 +11315,9 @@ msgstr "休闲爱好"
 msgid "Lesotho"
 msgstr "莱索托"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "信箱模式缩放"
 
@@ -11228,6 +11354,9 @@ msgstr "林堡"
 
 msgid "Lime"
 msgstr "石灰"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "限制录制文件名称的字符集"
@@ -11431,6 +11560,9 @@ msgstr "位置： %s"
 msgid "Lock:"
 msgstr "锁定："
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "日志"
 
@@ -11566,6 +11698,9 @@ msgstr "更多"
 
 msgid "MOUSE"
 msgstr "MOUSE"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD 引导"
@@ -12435,6 +12570,9 @@ msgstr "东移中..."
 msgid "Moving files"
 msgstr "正在移动文件"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "移动到位置"
 
@@ -12990,9 +13128,6 @@ msgstr "没有找到活动的频道。"
 msgid "No age block"
 msgstr "无年龄块"
 
-msgid "No backup needed"
-msgstr "无需备份"
-
 msgid "No cable tuner found!"
 msgstr "找不到有线电视调谐器！"
 
@@ -13007,6 +13142,9 @@ msgstr "没有频道"
 
 msgid "No channel list"
 msgstr "没有频道列表"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13159,6 +13297,9 @@ msgstr "无需更新!"
 msgid "No updates available."
 msgstr "没有可用的更新。"
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "未配置有效的DAB+ 订阅源。请检查 /etc/enigma2/dab.xml。"
 
@@ -13175,14 +13316,11 @@ msgstr "找不到有效的区域详细信息"
 msgid "No, but restart from begin"
 msgstr "否，但从开始重新启动"
 
-msgid "No, do nothing."
-msgstr "不，什么也不做。"
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "不，不要刷写这个镜像"
-
-msgid "No, just start my %s %s"
-msgstr "不，仅启动 %s %s"
 
 msgid "No, never"
 msgstr "否，从不"
@@ -13407,9 +13545,6 @@ msgstr "OK 键模式"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "按 OK 键检查当前锁定的转发器。"
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK，引导我完成升级过程"
 
 msgid "ONID"
 msgstr "客户端(ONID)"
@@ -14000,6 +14135,12 @@ msgstr "软件包"
 msgid "Package Categories"
 msgstr "软件包类别"
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "软件包管理器"
 
@@ -14186,9 +14327,6 @@ msgstr "百分比/进度条右侧"
 
 msgid "Perform an on-line flash instead"
 msgstr "改为执行在线刷机"
-
-msgid "Perform the upgrade?"
-msgstr "是否执行升级？"
 
 msgid "Performing arts"
 msgstr "表演艺术"
@@ -14757,6 +14895,9 @@ msgstr "葡萄牙语"
 msgid "Position"
 msgstr "位置"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "定时器列表中已结束定时器的位置"
 
@@ -14958,9 +15099,6 @@ msgstr "请按 OK 键来选择卫星"
 msgid "Press OK to select/deselect a CAId."
 msgstr "请按 OK 键来选择/反选 CAId。"
 
-msgid "Press OK to start the backup now"
-msgstr "按“确定”立即开始备份"
-
 msgid "Press OK to start the scan"
 msgstr "请按 OK 键来启动扫描"
 
@@ -15083,6 +15221,9 @@ msgstr "处理中"
 msgid "Processor information"
 msgstr "处理器信息"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "配置文件"
 
@@ -15095,6 +15236,9 @@ msgstr "节目"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "需要安装程序“%s”才能执行此操作。是否要安装“%s”软件包以安装该程序？"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Programmlisten 历史"
@@ -15173,6 +15317,9 @@ msgstr "保护待机菜单"
 
 msgid "Protect timer menu"
 msgstr "保护定时器菜单"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "协议"
@@ -15351,11 +15498,23 @@ msgstr "长按红键"
 msgid "RF Output Settings"
 msgstr "射频输出设置"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr "RGB钳位（下限）"
 
 msgid "RGB clamp (upper)"
 msgstr "RGB钳位（上限）"
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
+msgstr ""
 
 msgid "Racing"
 msgstr "赛车"
@@ -15405,6 +15564,9 @@ msgstr "读/写"
 
 msgid "Reader"
 msgstr "读卡器"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15496,6 +15658,9 @@ msgstr "接收机不支持四画中画。"
 msgid "Receiver information for %s %s"
 msgstr "%s %s 接收机信息"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "接收机名称"
 
@@ -15504,6 +15669,12 @@ msgstr "接收列表"
 
 msgid "Reception Settings"
 msgstr "接收设置"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "录像"
@@ -15675,6 +15846,9 @@ msgstr "刷新 ZeroTier 状态信息"
 
 msgid "Refresh every"
 msgstr "刷新每（小时）"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "刷新率"
@@ -16026,6 +16200,9 @@ msgstr ""
 "将所有 '%s' 标签替换为：\n"
 "（注意：“取消”无法撤消此操作！）"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "http 串流需要身份认证"
 
@@ -16160,8 +16337,8 @@ msgstr "重启 %s 失败（退出代码 %s）"
 msgid "Restarting adapter..."
 msgstr "正在重启适配器..."
 
-msgid "Restarting saved Wi-Fi network..."
-msgstr "正在重启保存的 Wi-Fi 网络..."
+msgid "Restarting network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "正在重启..."
@@ -16196,11 +16373,11 @@ msgstr "还原突出显示的槽位"
 msgid "Restore your %s %s settings."
 msgstr "恢复 %s %s 的设置。"
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "使用新镜像来恢复 %s %s。"
-
 msgid "Restore your backups by date."
 msgstr "按日期恢复备份。"
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "从备份恢复设置。恢复后，接收机将重启以激活新设置。"
@@ -16561,6 +16738,9 @@ msgstr "周六至周日"
 msgid "Satellite"
 msgstr "卫星"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "卫星天线设置"
 
@@ -16569,6 +16749,12 @@ msgstr "卫星配置模式"
 
 msgid "Satellite equipment setup"
 msgstr "卫星设备设置"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "卫星"
@@ -16737,6 +16923,12 @@ msgstr "扫描本地扩展并安装。"
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "扫描地面波 LCN 并创建 LCN 频道分组"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "正在扫描"
@@ -17312,8 +17504,8 @@ msgstr "选择升级源"
 msgid "Select Upgrade Source To Edit"
 msgstr "选择要编辑的升级源"
 
-msgid "Select Wi-Fi adapter"
-msgstr "选择 Wi-Fi 适配器"
+msgid "Select Wi-Fi adapter:"
+msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "从可用列表中选择一个 Softcam 作为默认的自动Cam。"
@@ -17608,6 +17800,9 @@ msgstr "从上方选项中，选择信息栏 所使用的频道图标路径。"
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr "从上方选项中，选择 OpenWebif 网页界面使用的频道图标路径。"
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17965,9 +18160,6 @@ msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "选择菜单项的排序顺序。用户定义还允许隐藏菜单项。"
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "选择获取升级文件的源位置。"
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最早起始时间。早于此时限，即使满足其他所有条件，定时器也不会启动。"
 
@@ -18034,8 +18226,8 @@ msgstr "选择要在电视上使用的视频模式。"
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr "选择写入块缓冲区大小（wsize）挂载选项。选择“自动”以允许内核和服务器协商最佳大小。"
 
-msgid "Select update source location"
-msgstr "选择更新源位置"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "选择视频模式"
@@ -18120,6 +18312,9 @@ msgstr "选择是否应将多声道音轨作为 PCM 输出。"
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "极轴移动时选择是否显示图标。"
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "选择此适配器可用的 IP 协议。"
@@ -18231,6 +18426,9 @@ msgstr "塞尔维亚语"
 
 msgid "Serial No"
 msgstr "序列号"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "严肃音乐/经典音乐"
@@ -18936,6 +19134,9 @@ msgstr "显示 CI 消息"
 msgid "Show Capabilities"
 msgstr "显示功能列表"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "显示默认备份文件"
 
@@ -19611,9 +19812,6 @@ msgstr "关机"
 msgid "Shutdown %s"
 msgstr "关闭 %s"
 
-msgid "Shutting down. Please wait..."
-msgstr "正在关闭。 请稍等..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "四川彝族/糯苏"
 
@@ -20044,9 +20242,6 @@ msgstr "软件管理器设置"
 msgid "Software MultiBoot"
 msgstr "软件多系统启动"
 
-msgid "Software Restore"
-msgstr "软件恢复"
-
 msgid "Software Update"
 msgstr "软件更新"
 
@@ -20426,6 +20621,9 @@ msgstr "静态"
 
 msgid "Static IP / Custom"
 msgstr "静态 IP / 自定义"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "状态"
@@ -21237,9 +21435,6 @@ msgstr "%s %s 没有互联网连接。"
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "%s %s 的内存容量有限。 需要交换文件来增加可用内存量，否则 %s %s 可能无法正常工作。 选择保存交换文件的目标设备。"
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s 正在关闭。 请稍等..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s 读取存储的 EPG 数据每（小时）。"
 
@@ -21348,6 +21543,12 @@ msgstr "PIN 码已成功保存。"
 msgid "The PIN codes you entered are different."
 msgstr "输入的 PIN 码不相同。"
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21397,18 +21598,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "备份最多可能需要大约 15 分钟才能完成。"
-
-msgid "The backup failed"
-msgstr "备份失败"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "备份失败！ 选择不同的备份位置。"
-
-msgid "The backup succeeded"
-msgstr "备份成功"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "备份成功。 我们现在继续讲解升级过程。"
 
 msgid ""
 "The channel may support VPS\n"
@@ -21487,6 +21676,12 @@ msgstr "极轴马达调谐器当前不可用。请停止使用该调谐器的录
 msgid "The process will take approximately %d minutes to complete."
 msgstr "该操作预计需要约 %d 分钟完成。"
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "结果已写入 %s。"
@@ -21560,9 +21755,6 @@ msgstr "您的 %s %s 用户界面将被停止以运行RetroGaming"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "图片的宽度。 输入将被缩放以匹配此值。"
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "向导可以备份您的当前设置。是否立即启动备份？"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21897,12 +22089,6 @@ msgstr "这将在 x 秒的时间范围内快进/后退。"
 msgid "This window will automatically close in %d seconds."
 msgstr "此窗口将在 %d 秒后自动关闭。"
 
-msgid "This wizard has finished"
-msgstr "此向导已完成"
-
-msgid "This wizard has finished."
-msgstr "此向导已完成。"
-
 msgid "Threshold"
 msgstr "阈值"
 
@@ -22058,6 +22244,12 @@ msgstr "超时"
 
 msgid "Timeout waiting for FIC service data"
 msgstr "等待 FIC 服务数据超时"
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
+msgstr ""
 
 msgid "Timer Defaults And Retention"
 msgstr "定时器默认设置及保留策略"
@@ -22227,9 +22419,6 @@ msgstr "切换多选模式"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "在插入之前切换新文本或覆盖现有文本"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr "切换按 IP 地址还是按 DNS 名称选择共享"
 
 msgid "Toggle selection of the current tag"
 msgstr "切换当前标签的选择"
@@ -22515,6 +22704,12 @@ msgstr "调谐器"
 msgid "Tuners, Scanning & Reception"
 msgstr "调谐器、扫描和接收"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "调整算法"
 
@@ -22636,13 +22831,31 @@ msgstr "USB 2.0（背面，内部）"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0（背面，外部）"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB 读卡器 %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB 插槽 %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB切换错误！-已经在USB上"
@@ -22676,11 +22889,18 @@ msgstr "无法继承高频头 %d的用户频段：高频头 1 %s。"
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "无法初始化 Kexec 多系统启动！"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "无法注册 DAB+ 转发器"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
+
+msgid "Unable to tune the DAB+ satellite feed"
+msgstr ""
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -22959,6 +23179,9 @@ msgstr "使用 DHCP"
 
 msgid "Use DNS cache"
 msgstr "使用 DNS 缓存"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "使用 DNS 轮换"
@@ -23251,12 +23474,6 @@ msgstr "用户名"
 
 msgid "Username (httpuser)"
 msgstr "用户名（http用户）"
-
-msgid "Using DNS"
-msgstr "使用 DNS"
-
-msgid "Using IP"
-msgstr "使用 IP 地址"
 
 msgid "Using automatic address"
 msgstr "使用自动地址"
@@ -23839,9 +24056,6 @@ msgstr ""
 "\n"
 "然后搜寻结束点，按下 OK 键，选择 “结束剪辑”。就这样。"
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "欢迎使用镜像升级向导。 该向导将为当前设置提供备份功能，并简要说明如何升级固件，从而帮助您升级 %s %s 的镜像。"
-
 msgid "Welcome..."
 msgstr "欢迎..."
 
@@ -24130,9 +24344,6 @@ msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并保存它们。 仅当你在完全确定自己在做什么时设为“是”。"
 
-msgid "Where do you want to backup your settings?"
-msgstr "要备份你的设置到哪里？"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "您希望将临时时移录制保存到哪里？"
 
@@ -24333,9 +24544,6 @@ msgstr "是，并删除该影片"
 msgid "Yes, and don't ask again for this session"
 msgstr "是，并且不再询问此会话"
 
-msgid "Yes, backup my settings!"
-msgstr "是的，备份我的设置！"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "是，但不保存时移为电影"
 
@@ -24360,8 +24568,8 @@ msgstr "是，马上进行其他手动扫描"
 msgid "Yes, don't ask again"
 msgstr "是，不要再询问"
 
-msgid "Yes, restore the settings now"
-msgstr "是，马上还原设置"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "是，返回影片列表"
@@ -24371,9 +24579,6 @@ msgstr "是，如果不可用，则显示插件浏览器"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "是，如果不可用，则显示录制定时器"
-
-msgid "Yes, shut down now."
-msgstr "是，现在关机。"
 
 msgid "Yesterday"
 msgstr "昨天"
@@ -24405,11 +24610,8 @@ msgstr "将接收机从待机状态唤醒并立即切换回待机状态时，可
 msgid "You cannot delete this!"
 msgstr "不能删除这个！"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "您已选择备份您的设置。按“确定”立即开始备份。"
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "您已选择恢复设置。Enigma2将在恢复后重新启动。按“确定”立即开始恢复。"
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "你已选择保存当前时移"
@@ -24439,13 +24641,6 @@ msgstr "跳转到一个无效页面。停止操作 :-)"
 
 msgid "You must set at least one command!"
 msgstr "您必须至少设置一条指令!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"您需要一台连接到 %s%s 的电脑。请访问网站 https://www.opena.tv/ 以了解更多说明。\n"
-"%s%s 现在将停止。在执行网站上的更新说明后，新镜像将要求您恢复设置。"
 
 msgid "You seem to be in time shift!"
 msgstr "您似乎在时移中!"
@@ -24913,6 +25108,9 @@ msgstr "以 BMP 格式截屏"
 msgid "green"
 msgstr "绿色"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "12小时制 时:分分"
 
@@ -25356,6 +25554,134 @@ msgstr "是（保留订阅源）"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "已完成 %d / %d 个传送源；失败的传送源分组已保留"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "录制时无法执行 DAB+ 扫描。"
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "是否要升级指南？"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "是否立即启动备份？"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "编辑升级源 URL"
+
+#~ msgid "ImageWizard"
+#~ msgstr "镜像向导"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "通过 U 盘安装新镜像"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "通过网页浏览器安装新镜像"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "无需备份"
+
+#~ msgid "No, do nothing."
+#~ msgstr "不，什么也不做。"
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "不，仅启动 %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK，引导我完成升级过程"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "是否执行升级？"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "按“确定”立即开始备份"
+
+#~ msgid "Restarting saved Wi-Fi network..."
+#~ msgstr "正在重启保存的 Wi-Fi 网络..."
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "使用新镜像来恢复 %s %s。"
+
+#~ msgid "Select Wi-Fi adapter"
+#~ msgstr "选择 Wi-Fi 适配器"
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "选择获取升级文件的源位置。"
+
+#~ msgid "Select update source location"
+#~ msgstr "选择更新源位置"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "正在关闭。 请稍等..."
+
+#~ msgid "Software Restore"
+#~ msgstr "软件恢复"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s 正在关闭。 请稍等..."
+
+#~ msgid "The backup failed"
+#~ msgstr "备份失败"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "备份失败！ 选择不同的备份位置。"
+
+#~ msgid "The backup succeeded"
+#~ msgstr "备份成功"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "备份成功。 我们现在继续讲解升级过程。"
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "向导可以备份您的当前设置。是否立即启动备份？"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "此向导已完成"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "此向导已完成。"
+
+#~ msgid "Toggle picking a share by IP address or by DNS name"
+#~ msgstr "切换按 IP 地址还是按 DNS 名称选择共享"
+
+#~ msgid "Using DNS"
+#~ msgstr "使用 DNS"
+
+#~ msgid "Using IP"
+#~ msgstr "使用 IP 地址"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "欢迎使用镜像升级向导。 该向导将为当前设置提供备份功能，并简要说明如何升级固件，从而帮助您升级 %s %s 的镜像。"
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "要备份你的设置到哪里？"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "是的，备份我的设置！"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "是，马上还原设置"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "是，现在关机。"
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "您已选择备份您的设置。按“确定”立即开始备份。"
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "您已选择恢复设置。Enigma2将在恢复后重新启动。按“确定”立即开始恢复。"
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "您需要一台连接到 %s%s 的电脑。请访问网站 https://www.opena.tv/ 以了解更多说明。\n"
+#~ "%s%s 现在将停止。在执行网站上的更新说明后，新镜像将要求您恢复设置。"
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "设置进度条的左/右按键跳过百分比。"
 
@@ -25419,8 +25745,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "有线 / 地面输入切换：外接 5V 同轴开关"
 
-#~ msgid "Common Settings"
-#~ msgstr "通用设置"
+msgid "Common Settings"
+msgstr "通用设置"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB‑C 有线与 DVB‑T/T2 地面波共用此输入口。两项同时启用时，Enigma2 将输出 5V 控制外接同轴开关。"

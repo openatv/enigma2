@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-08-16 15:58+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -929,7 +929,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
 msgstr ""
 
 #, python-format
@@ -1161,6 +1165,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Instellingen"
 
@@ -1318,6 +1330,10 @@ msgstr ""
 
 #, python-format
 msgid "'%s' unmounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1581,11 +1597,11 @@ msgstr "<geen log gevonden"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr ""
-
 msgid "A backup is now being created."
 msgstr "Er wordt nu een back-up gemaakt."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Een door komma's gescheiden lijst van extensies, die voor de instelling van \"Mijn extensies\" in \"Extensies filteren\" gebruikt gaan worden. Geef de naam van de extensie op zonder leidende punt (.)."
@@ -1901,6 +1917,10 @@ msgid "Adapter"
 msgstr ""
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr ""
 
@@ -2151,6 +2171,9 @@ msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden zijn, maar we
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Pas de horizontale positie van de letters aan die worden gebruikt voor Teletekst."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Pas de verticale positie van de letters aan die worden gebruikt in Teletekst."
 
@@ -2276,6 +2299,9 @@ msgstr "Alle programma's omhoog"
 
 msgid "All files"
 msgstr "Alle bestanden"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Alle Resoluties"
@@ -2454,6 +2480,9 @@ msgstr "Amlogic afstandsbediening"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Aantal %d / %d Succesvol / %d Mislukt"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Er is een poging gedaan om de TV-status te lezen. Wanneer dit niet mogelijk is door ontbrekende of niet correcte status meldingen zou de ontvanger onverwacht kunnen reageren. Aan de andere kant, zou deze daar door beter kunnen reageren op diverse situaties."
@@ -2768,6 +2797,9 @@ msgstr "Audio synchronisatie"
 msgid "Audio Synchronization"
 msgstr ""
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Audio taalkeuze 1"
 
@@ -2881,6 +2913,9 @@ msgstr "Automatisch zoeken"
 
 msgid "Automatic Service Searching"
 msgstr "Automatisch zenders zoeken"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Automatische resolutie"
@@ -3223,6 +3258,17 @@ msgstr "Knipperen REC"
 
 msgid "Blinking REC symbol"
 msgstr "Knipperend REC-symbool"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Blokkeer apparaat"
@@ -4465,6 +4511,9 @@ msgstr "Sluit dialoog"
 msgid "Close network test"
 msgstr ""
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Sluit het scherm"
 
@@ -4524,6 +4573,9 @@ msgstr "Code rate HP"
 
 msgid "Code rate LP"
 msgstr "Code rate LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Lijst sluiten"
@@ -5514,6 +5566,9 @@ msgstr "Apparaat-informatie-dump opslaan."
 msgid "Create kernel dump."
 msgstr "Kernel-dump opslaan."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Maak een recovery image back-up '%s'."
@@ -5784,7 +5839,36 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -5844,6 +5928,12 @@ msgstr ""
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB ondertiteling PID & taal"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparantie van de achtergrond bij DVB-ondertitels"
@@ -6566,6 +6656,9 @@ msgstr "Details"
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr ""
 
@@ -6990,9 +7083,6 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr "Wilt u de toegangsmodus '%s' wijzigen?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Wil je de upgrade-handleiding zien?"
-
 msgid "Do you want to backup settings?"
 msgstr "Wilt u een back-up maken van de instellingen?"
 
@@ -7071,9 +7161,6 @@ msgstr "Wilt u verder gaan met het afspelen van deze opname?"
 
 msgid "Do you want to select another service?"
 msgstr "Wilt u een andere zender kiezen?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Wilt u nu een back-up maken?"
 
 msgid "Do you want to update:"
 msgstr "Wilt u dit updaten:"
@@ -7233,6 +7320,9 @@ msgstr "Nederlands / Vlaams"
 
 msgid "Dynamic contrast"
 msgstr "Dynamisch contrast"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7407,9 +7497,6 @@ msgstr "Pas een timer aan"
 msgid "Edit Title"
 msgstr "Wijzig titel"
 
-msgid "Edit Upgrade Source URL"
-msgstr "De URL-adres van de update-bron aanpassen"
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7434,8 +7521,14 @@ msgstr "De CCcam/NewCamd-serverpoort aanpassen."
 msgid "Edit the NewCamd DES Key."
 msgstr "De NewCamd DES-sleutel aanpassen."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "De geselecteerde timer wijzigen"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Het wachtwoord wijzigen."
@@ -7528,6 +7621,9 @@ msgstr "Favorietenlijst bewerken activeren"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Chkroot MultiBoot activeren"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "EIT EPG inschakelen"
 
@@ -7599,6 +7695,9 @@ msgstr "Viasat EPG inschakelen"
 
 msgid "Enable Virgin EPG"
 msgstr "Virgin EPG inschakelen"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7721,6 +7820,9 @@ msgstr "Activeer deze optie om gebruik van de afstandsbediening mee te nemen in 
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Activeren, om extra DVB-details aan het debug-log bestand toe te voegen."
 
@@ -7765,6 +7867,9 @@ msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activeer deze optie om Timer debug gegevens mee te nemen in het debug log bestand."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Activeren, om alle beschikbare informatie-schermen in het informatie-menu te tonen."
@@ -7892,6 +7997,12 @@ msgstr "Enigma2 revisie"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Enter"
@@ -8696,6 +8807,9 @@ msgstr "FFmpeg Probe"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg is niet geïnstalleerd dus '.mvi' bestandsacties zijn niet beschikbaar!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9269,6 +9383,9 @@ msgstr "Frequentie"
 msgid "Frequency bands"
 msgstr "Frequentiebanden"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Frequentiebereik"
 
@@ -9358,6 +9475,9 @@ msgstr "Gabon"
 
 msgid "Gaelic"
 msgstr "Gaelisch"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Galicië (Spanje)"
@@ -10354,9 +10474,6 @@ msgstr "Het maken van de image is mislukt!"
 msgid "Image version"
 msgstr "Imageversie"
 
-msgid "ImageWizard"
-msgstr "Image wizard"
-
 msgid "Immediate shut down"
 msgstr "Onmiddellijk uitschakelen"
 
@@ -10412,6 +10529,9 @@ msgstr "De ontvanger is vanwege een geplande opname (Timer) omgeschakeld op de i
 msgid "In progress"
 msgstr "Bezig"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Ontoegankelijk"
 
@@ -10432,6 +10552,9 @@ msgstr "AIT aan opnames toevoegen"
 
 msgid "Include CI assignment"
 msgstr "CI toewijzingen gebruiken"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "Inclusief DVB-details"
@@ -10456,6 +10579,9 @@ msgstr "Inclusief MultiBoot gegevens *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "SDT en BAT in http streams opnemen"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Inclusief action map data"
@@ -10491,6 +10617,9 @@ msgid "Include teletext details"
 msgstr "Inclusief Teletekst details"
 
 msgid "Include text encoding data"
+msgstr ""
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
 msgstr ""
 
 msgid "Include timer data"
@@ -10666,12 +10795,6 @@ msgstr "Plugin installeren"
 msgid "Install Plugins"
 msgstr "Plugins installeren"
 
-msgid "Install a new image with a USB stick"
-msgstr "Installeer een nieuwe image d.m.v. een USB-stick"
-
-msgid "Install a new image with your web browser"
-msgstr "Installeer een nieuwe image via uw browser"
-
 msgid "Install extensions"
 msgstr "Installeer plugins"
 
@@ -10798,9 +10921,6 @@ msgstr "Omgekeerd"
 
 msgid "Inverts the button function."
 msgstr "Omwisselen van knop functie."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Iran"
@@ -10989,6 +11109,9 @@ msgstr "Kenia"
 
 msgid "Kernel Packages"
 msgstr "Kernel"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Kernel bestand"
@@ -11312,6 +11435,9 @@ msgstr "Vrijetijd hobbies"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "LetterBox zoom"
 
@@ -11348,6 +11474,9 @@ msgstr "Limburgs"
 
 msgid "Lime"
 msgstr "limoen"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Beperk de tekenset voor de namen van de opnames"
@@ -11551,6 +11680,9 @@ msgstr "Locatie: %s"
 msgid "Lock:"
 msgstr "Lock:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Log"
 
@@ -11686,6 +11818,9 @@ msgstr "MEER"
 
 msgid "MOUSE"
 msgstr "MUIS"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD boot"
@@ -12555,6 +12690,9 @@ msgstr "Draaien naar oost ..."
 msgid "Moving files"
 msgstr "Verplaatst bestanden"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Draaien naar positie"
 
@@ -13103,9 +13241,6 @@ msgstr "Geen actieve zender gevonden."
 msgid "No age block"
 msgstr "Geen leeftijdsbeperking"
 
-msgid "No backup needed"
-msgstr "Geen back-up nodig"
-
 msgid "No cable tuner found!"
 msgstr "Geen kabeltuner gevonden!"
 
@@ -13120,6 +13255,9 @@ msgstr "Geen Zender"
 
 msgid "No channel list"
 msgstr "geen zenderlijst"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13272,6 +13410,9 @@ msgstr "Geen update vereist!"
 msgid "No updates available."
 msgstr "Geen updates beschikbaar."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13288,14 +13429,11 @@ msgstr "Geen geldige regio informatie gevonden"
 msgid "No, but restart from begin"
 msgstr "Nee, maar herstart vanaf begin"
 
-msgid "No, do nothing."
-msgstr "Nee, geen actie."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Nee, flash geen image"
-
-msgid "No, just start my %s %s"
-msgstr "Nee, uitsluitend %s %s starten"
 
 msgid "No, never"
 msgstr "Nee, nooit"
@@ -13523,9 +13661,6 @@ msgstr "OK-knop functie"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, mij tijdens de software update begeleiden"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14116,6 +14251,12 @@ msgstr "Pakket"
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Pakketbeheer"
 
@@ -14302,9 +14443,6 @@ msgstr "Percentage/Voortgangsbalk rechts"
 
 msgid "Perform an on-line flash instead"
 msgstr "In plaats daarvan een online flash uitvoeren"
-
-msgid "Perform the upgrade?"
-msgstr "De upgrade uitvoeren?"
 
 msgid "Performing arts"
 msgstr "podiumkunsten"
@@ -14874,6 +15012,9 @@ msgstr "Portugees"
 msgid "Position"
 msgstr "Positie"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Plaats van de voltooide timers in de lijst"
 
@@ -15077,9 +15218,6 @@ msgstr "Druk op OK om de satellieten te selecteren"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Druk op OK om de CAId aan/uit te zetten."
 
-msgid "Press OK to start the backup now"
-msgstr "Druk op OK om de back-up nu te starten"
-
 msgid "Press OK to start the scan"
 msgstr "Druk op OK om te zoeken"
 
@@ -15204,6 +15342,9 @@ msgstr "Verwerken"
 msgid "Processor information"
 msgstr "Processor informatie"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profiel"
 
@@ -15216,6 +15357,9 @@ msgstr "Program"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Programma '%s' moet geïnstalleerd worden om deze actie uit te voeren. Wilt u het pakket '%s' installeren om dit programma te installeren?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Zenderlijst History"
@@ -15294,6 +15438,9 @@ msgstr "Beveilig stand-by menu"
 
 msgid "Protect timer menu"
 msgstr "Beveilig timer menu"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protocol"
@@ -15472,10 +15619,22 @@ msgstr "ROOD-lang"
 msgid "RF Output Settings"
 msgstr "RF modulator"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr ""
 
 msgid "RGB clamp (upper)"
+msgstr ""
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
 msgstr ""
 
 msgid "Racing"
@@ -15526,6 +15685,9 @@ msgstr "Lezen/schrijven"
 
 msgid "Reader"
 msgstr "Lezer"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15617,6 +15779,9 @@ msgstr "Box of driver ondersteunt geen Quad PiP."
 msgid "Receiver information for %s %s"
 msgstr "Ontvanger informatie voor uw %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Ontvanger naam"
 
@@ -15625,6 +15790,12 @@ msgstr "Satellieten"
 
 msgid "Reception Settings"
 msgstr "Ontvangstinstellingen"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Opname"
@@ -15796,6 +15967,9 @@ msgstr ""
 
 msgid "Refresh every"
 msgstr "Actualiseer elke X uur"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Vernieuwingsfrequentie (Hz)"
@@ -16147,6 +16321,9 @@ msgstr ""
 "Vervang alle '%s' markeringen door:\n"
 "(Opmerking: 'Annuleren' kan dit niet ongedaan maken!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Wachtwoord gebruiken voor http-streams"
 
@@ -16281,7 +16458,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16317,11 +16494,11 @@ msgstr "Herstel het actuele slot"
 msgid "Restore your %s %s settings."
 msgstr "Herstel uw %s %s instellingen."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Herstel uw %s %s met nieuwe firmware."
-
 msgid "Restore your backups by date."
 msgstr "Zet een back-up van een bepaalde datum terug."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Herstel de instellingen uit een back-up. De ontvanger moet herstart worden om de nieuwe instellingen te activeren."
@@ -16682,6 +16859,9 @@ msgstr "Zat-Zon"
 msgid "Satellite"
 msgstr "Satelliet"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Schotelinstellingen"
 
@@ -16690,6 +16870,12 @@ msgstr "Satelliet configuratie-modus"
 
 msgid "Satellite equipment setup"
 msgstr "Apparatuurinstellingen"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Satellieten"
@@ -16860,6 +17046,12 @@ msgstr "Naar lokale plugins zoeken en die installeren."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "DVB-T LCN's scannen en daarmee LCN-Favorietenlijsten maken"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Scannen"
@@ -17443,7 +17635,7 @@ msgstr "Selecteer de update bron"
 msgid "Select Upgrade Source To Edit"
 msgstr "Selecteer te wijzigen Update-feed"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17738,6 +17930,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -18102,9 +18297,6 @@ msgstr "Volgorde van de menu-items in de Plugin Browser. 'Gebruiker gedefinieerd
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Selecteer de volgorde en zichtbaarheid van de menu items."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Selecteer de locatie waar u de upgradebestanden wilt ophalen."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18171,8 +18363,8 @@ msgstr "Selecteer de beeldresolutie die u voor de tv wilt gebruiken."
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
-msgstr "Selecteer de locatie waar de updates zijn opgeslagen"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Selecteer beeldmodus"
@@ -18259,6 +18451,9 @@ msgstr "Selecteer of meerkanaals geluid moet worden weergegeven als PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Kies hier of u een icon wilt zien wanneer uw gemotoriseerde schotel draait."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
@@ -18370,6 +18565,9 @@ msgstr "Servisch"
 
 msgid "Serial No"
 msgstr "Serienummer"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "serieuze/klassieke muziek"
@@ -19087,6 +19285,9 @@ msgstr "Toon CI berichten"
 msgid "Show Capabilities"
 msgstr ""
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Standaard back-up bestanden"
 
@@ -19770,9 +19971,6 @@ msgstr "Afsluiten"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr "Afsluiten. Even geduld a.u.b..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
 
@@ -20203,9 +20401,6 @@ msgstr "Online update instellingen"
 msgid "Software MultiBoot"
 msgstr "Software MultiBoot"
 
-msgid "Software Restore"
-msgstr "Software herstellen"
-
 msgid "Software Update"
 msgstr "Software update"
 
@@ -20585,6 +20780,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Statische IP / Aangepast"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Status"
@@ -21398,9 +21596,6 @@ msgstr "Uw %s %s heeft op dit moment geen internetverbinding."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "Uw %s %s heeft een beperkte geheugencapaciteit. Een swap-file (wisselbestand) is nodig om de beschikbare hoeveelheid geheugen te vergroten, anders werkt de %s %s mogelijk niet goed. Selecteer het apparaat waar de swap-file moet worden opgeslagen."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "Uw %s %s wordt afgesloten. Even geduld alstublieft..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
 
@@ -21509,6 +21704,12 @@ msgstr "De pincode is succesvol opgeslagen."
 msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes zijn niet gelijk."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21558,18 +21759,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Het maken van de back-up kan tot 15 minuten duren."
-
-msgid "The backup failed"
-msgstr "De back-up is mislukt"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "De back-up is mislukt! Kies een andere locatie voor de back-up."
-
-msgid "The backup succeeded"
-msgstr "De back-up is gelukt"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "De back-up is gelukt. We gaan nu verder met het uitleggen van het upgradeproces."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21648,6 +21837,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Dit zal ongeveer %d minuten duren."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "De resultaten zijn bewaard op %s."
@@ -21721,9 +21916,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "De breedte van het beeld. De invoer wordt aangepast aan deze waarde."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "De wizard kan een back-up maken van je huidige instellingen. Wilt u nu een back-up starten?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -22096,12 +22288,6 @@ msgstr "Dit gaat in sprongen van X seconden vooruit- of terug."
 msgid "This window will automatically close in %d seconds."
 msgstr "Dit venster sluit automatisch na %d seconden."
 
-msgid "This wizard has finished"
-msgstr "Deze wizard is voltooid"
-
-msgid "This wizard has finished."
-msgstr "Deze wizard is voltooid."
-
 msgid "Threshold"
 msgstr "Drempelwaarde"
 
@@ -22256,6 +22442,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22426,9 +22618,6 @@ msgstr "Multi-selectie modus omschakelen"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Schakel nieuwe tekst invoegingen in of overschrijf de bestaande tekst"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr "Wissel de selectie van de huidige tag"
@@ -22714,6 +22903,12 @@ msgstr "Tuners"
 msgid "Tuners, Scanning & Reception"
 msgstr "Tuners & Ontvangst"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Afstemalgoritme"
 
@@ -22835,13 +23030,31 @@ msgstr "USB 2.0 (achterkant, binnenzijde)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (achterkant, buitenzijde)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
+msgstr ""
+
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
 msgstr ""
 
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB-Slot %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB switch FOUT! - reeds op USB"
@@ -22875,10 +23088,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kan Kexec MultiBoot niet initialiseren!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -23157,6 +23377,9 @@ msgid "Use DHCP"
 msgstr "Automatisch een IP adres toewijzen (DHCP)"
 
 msgid "Use DNS cache"
+msgstr ""
+
+msgid "Use DNS name"
 msgstr ""
 
 msgid "Use DNS rotation"
@@ -23452,12 +23675,6 @@ msgstr "Gebruikersnaam"
 
 msgid "Username (httpuser)"
 msgstr "Gebruikersnaam (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "Het adres wordt automatisch ingesteld"
@@ -24040,9 +24257,6 @@ msgstr ""
 "\n"
 "Spoel dan naar het einde en druk op OK, en selecteer 'end cut'. Dat is het."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Welkom bij de Image upgrade Wizard. Deze wizard helpt je bij het upgraden van de %s %s firmware door een back-upmogelijkheid te bieden van de huidige instellingen en een korte uitleg te geven over het upgraden van de firmware."
-
 msgid "Welcome..."
 msgstr "Welkom..."
 
@@ -24348,9 +24562,6 @@ msgstr ""
 "Bij het overschakelen naar een andere zender wordt normaal gesproken de transponder gecontroleerd op wijzigingen.\n"
 "A.u.b. alleen activeren, wanneer u weet wat u doet!"
 
-msgid "Where do you want to backup your settings?"
-msgstr "Waar wilt u een back-up maken van de instellingen?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Waar wilt u de tijdelijke Timeshift opnames opslaan?"
 
@@ -24553,9 +24764,6 @@ msgstr "Ja, en verwijder dit bestand"
 msgid "Yes, and don't ask again for this session"
 msgstr "Ja, en het niet opnieuw vragen"
 
-msgid "Yes, backup my settings!"
-msgstr "Ja, een back-up maken van mijn instellingen!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Ja, en sla Timeshift niet op als opname"
 
@@ -24580,8 +24788,8 @@ msgstr "Ja, ik wil nogmaals handmatig zoeken"
 msgid "Yes, don't ask again"
 msgstr "Ja, niet opnieuw vragen"
 
-msgid "Yes, restore the settings now"
-msgstr "Ja, de gegevens nu terugplaatsen"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Ja, terug naar de opname lijst"
@@ -24591,9 +24799,6 @@ msgstr "Ja, maar wanneer niet beschikbaar toon de Plugin Browser"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Ja, maar als niet beschikbaar toon timer lijst"
-
-msgid "Yes, shut down now."
-msgstr "Ja, schakel nu uit."
 
 msgid "Yesterday"
 msgstr "Gisteren"
@@ -24628,11 +24833,8 @@ msgstr "U kunt deze instelling overslaan en de TV uitschakelen, wanneer u de ont
 msgid "You cannot delete this!"
 msgstr "U kunt dit niet wissen!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Je hebt ervoor gekozen om een back-up te maken van je instellingen. Druk op OK om de back-up nu te starten."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "U heeft gekozen om de instellingen te herstellen. Druk op OK om het herstel nu te starten."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "U heeft gekozen voor het opslaan van de huidige Timeshift"
@@ -24662,13 +24864,6 @@ msgstr ""
 
 msgid "You must set at least one command!"
 msgstr "Het instellen van minimaal één commando is verplicht!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"U hebt een pc nodig die is aangesloten op uw %s %s. Bezoek de website https://www.opena.tv/ voor verdere instructies.\n"
-"De %s %s wordt nu gepauzeerd. Nadat u de update-instructies van de website heeft uitgevoerd, zal de nieuwe firmware u vragen de instellingen te herstellen."
 
 msgid "You seem to be in time shift!"
 msgstr "Timeshift is waarschijnlijk actief!"
@@ -25136,6 +25331,9 @@ msgstr "Maak van dit scherm een screenshot"
 msgid "green"
 msgstr "groen"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -25577,6 +25775,112 @@ msgstr "ja (bewaar feeds)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Wil je de upgrade-handleiding zien?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Wilt u nu een back-up maken?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "De URL-adres van de update-bron aanpassen"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Image wizard"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Installeer een nieuwe image d.m.v. een USB-stick"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Installeer een nieuwe image via uw browser"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Geen back-up nodig"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Nee, geen actie."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Nee, uitsluitend %s %s starten"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, mij tijdens de software update begeleiden"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "De upgrade uitvoeren?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Druk op OK om de back-up nu te starten"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Herstel uw %s %s met nieuwe firmware."
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Selecteer de locatie waar u de upgradebestanden wilt ophalen."
+
+#~ msgid "Select update source location"
+#~ msgstr "Selecteer de locatie waar de updates zijn opgeslagen"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Afsluiten. Even geduld a.u.b..."
+
+#~ msgid "Software Restore"
+#~ msgstr "Software herstellen"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "Uw %s %s wordt afgesloten. Even geduld alstublieft..."
+
+#~ msgid "The backup failed"
+#~ msgstr "De back-up is mislukt"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "De back-up is mislukt! Kies een andere locatie voor de back-up."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "De back-up is gelukt"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "De back-up is gelukt. We gaan nu verder met het uitleggen van het upgradeproces."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "De wizard kan een back-up maken van je huidige instellingen. Wilt u nu een back-up starten?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Deze wizard is voltooid"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Deze wizard is voltooid."
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Welkom bij de Image upgrade Wizard. Deze wizard helpt je bij het upgraden van de %s %s firmware door een back-upmogelijkheid te bieden van de huidige instellingen en een korte uitleg te geven over het upgraden van de firmware."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Waar wilt u een back-up maken van de instellingen?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Ja, een back-up maken van mijn instellingen!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Ja, de gegevens nu terugplaatsen"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Ja, schakel nu uit."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Je hebt ervoor gekozen om een back-up te maken van je instellingen. Druk op OK om de back-up nu te starten."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "U heeft gekozen om de instellingen te herstellen. Druk op OK om het herstel nu te starten."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "U hebt een pc nodig die is aangesloten op uw %s %s. Bezoek de website https://www.opena.tv/ voor verdere instructies.\n"
+#~ "De %s %s wordt nu gepauzeerd. Nadat u de update-instructies van de website heeft uitgevoerd, zal de nieuwe firmware u vragen de instellingen te herstellen."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen LINKS/RECHTS."
 
@@ -25631,8 +25935,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "DVD speler"
 
-#~ msgid "Common Settings"
-#~ msgstr "Algemene instellingen"
+msgid "Common Settings"
+msgstr "Algemene instellingen"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

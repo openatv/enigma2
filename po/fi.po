@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-09-06 19:51+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -924,8 +924,12 @@ msgstr[0] "%d verkko löytyi."
 msgstr[1] "%d verkkoa löytyi."
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d / %d syötteestä käsitelty; epäonnistuneiden syötteiden kanavalistat säilytettiin"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr ""
 
 #, python-format
 msgid "%d package found."
@@ -1156,6 +1160,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Asetukset"
 
@@ -1317,6 +1329,10 @@ msgstr "'%s' liitetty."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "'%s' irrotettu."
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Puskuri tunteina tai viimeaikaisten tapahtumien määrä. Etusijalla poistaa vanhemmat aikasiirtotiedostot."
@@ -1579,11 +1595,11 @@ msgstr "Loki ei löytynyt"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "DAB+ skannaus ei onnistu, kun tallennus on käynnissä."
-
 msgid "A backup is now being created."
 msgstr "Varmuuskopiontia tehdään nyt."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Pilkuilla erotettu lisat laajennuksista, joita käytetään Suodatinlaajennus kohdassa \"Filtteri laajennus\" asetuksessa. Kirjoita laajennuksen nimi ilman etupistettä (.)."
@@ -1903,6 +1919,10 @@ msgid "Adapter"
 msgstr "Sovitin"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "Sovittimen ”%s” Konteksti Valikko"
 
@@ -2157,6 +2177,9 @@ msgstr ""
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Säädä teksti-TV:ssä käytettävien kirjainten vaakasuuntaista sijaintia."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Säädä teksti-TV:ssä käytettävien kirjainten pystysuuntaista sijaintia."
 
@@ -2282,6 +2305,9 @@ msgstr "Kaikki tapahtumat ylös"
 
 msgid "All files"
 msgstr "Kaikki tiedostot"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Kaikki resoluutiot"
@@ -2460,6 +2486,9 @@ msgstr "Amlogic kaukosäädin"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Määrä %d / Onnistui %d / Epäonnistui %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "TV:n nykyinen tila yritetään tallentaa. Jos tämä ei ole mahdollista virheellisten tai puuttuvien tilaviestien vuoksi, vastaanotin voi vastata odottamattomasti. Toisaalta yritetään reagoida paremmin erilaisiin käyttöolosuhteisiin."
@@ -2775,6 +2804,9 @@ msgstr "Äänen synkronointi"
 msgid "Audio Synchronization"
 msgstr "Audio synkronointi"
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Äänen kielivalinta 1"
 
@@ -2888,6 +2920,9 @@ msgstr "Automaattinen haku"
 
 msgid "Automatic Service Searching"
 msgstr "Automaattinen kanavahaku"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Automaattinen resoluutio"
@@ -3228,6 +3263,17 @@ msgstr "Vilkkuva REC symboli"
 
 msgid "Blinking REC symbol"
 msgstr "Vilkkuva REC-symboli"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Estä laite"
@@ -4466,6 +4512,9 @@ msgstr "Sulje valinta"
 msgid "Close network test"
 msgstr "Sammuta verkko testi"
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Sulje näyttö"
 
@@ -4525,6 +4574,9 @@ msgstr "Koodinopeus HP"
 
 msgid "Code rate LP"
 msgstr "Koodinopeus LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Pienennä"
@@ -5422,6 +5474,9 @@ msgstr "Luo laite tiedot vedos."
 msgid "Create kernel dump."
 msgstr "Luo kernel vedos."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Luo palautus varmuuskopio image '%s'."
@@ -5695,8 +5750,37 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr "DAB+ Haku"
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "DAB+-haku epäonnistui; olemassa olevat kanavanlistat säilytettiin."
+
+#, python-format
+msgid "DAB+ service information for '%s'"
+msgstr ""
 
 msgid "DAC"
 msgstr "DAC"
@@ -5755,6 +5839,12 @@ msgstr "DVB Tekstitys"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB teksitykset PID & kieli"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB tekstin mustan reunan läpinäkyvyys"
@@ -6469,6 +6559,9 @@ msgstr "Yksityiskohtaiset tiedot"
 msgid "Detect positioner movement by its current consumption."
 msgstr "Tunnista asento sen virrankulutuksen perusteella."
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr "Etsivä"
 
@@ -6896,9 +6989,6 @@ msgstr "Haluatko todella poistaa trim tiedostojärjestelmän?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Haluatko muuttaa '%s' käyttötilaa?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Haluatko päivitys oppaan?"
-
 msgid "Do you want to backup settings?"
 msgstr "Haluatko varmuuskopioida asetukset?"
 
@@ -6977,9 +7067,6 @@ msgstr "Jatketaanko kohdasta, johon katselu viimeksi jäi?"
 
 msgid "Do you want to select another service?"
 msgstr "Haluatko valita toisen kanavan?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Haluatko aloittaa varmuuskopioinnin nyt?"
 
 msgid "Do you want to update:"
 msgstr "Haluatko päivittää:"
@@ -7137,6 +7224,9 @@ msgstr "Hollanti / Flaami"
 
 msgid "Dynamic contrast"
 msgstr "Dynaaminen kontrasti"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7311,9 +7401,6 @@ msgstr "Muokkaa ajastusta"
 msgid "Edit Title"
 msgstr "Muokkaa otsikkoa"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Muuta päivitys osoite"
-
 msgid "Edit Username/Password Credentials"
 msgstr "Muokkaa käyttäjänimen ja salasanan kirjautumistietoja"
 
@@ -7338,8 +7425,14 @@ msgstr "Muokkaa CCcam/NewCamd palvelimen porttia."
 msgid "Edit the NewCamd DES Key."
 msgstr "Muokkaa NewCamd DES Avainta."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Muokkaa valittuna olevaa ajastusta"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Muokkaa salasanaa."
@@ -7432,6 +7525,9 @@ msgstr "Kanavalistojen lisäys ja poisto"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Ottaa käyttöön Chkroot MultiBoot"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Ota käyttöön EIT EPG"
 
@@ -7503,6 +7599,9 @@ msgstr "Ota käyttöön ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Ota käyttöön Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr "Ota käyttöön adapteri"
@@ -7625,6 +7724,9 @@ msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä toimintakarttatietoja vir
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Tämän vaihtoehdon avulla voit lisätä Kanavalistan tietokannan tietoja debug lokitiedostoon."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Aktivoi tämä vaihtoehto lisätäksesi DVB lisätietoja debug loki tiedostoon."
 
@@ -7669,6 +7771,9 @@ msgstr "Ota käyttöön tämä asetus lisätäksesi tekstikoodaus­tiedot debug-
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ajastin tiedot vianmääritys lokitiedostoon."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Aktivoi tämä vaihtoehto,Näyttäeksi kaikki käytettävissä olevat tietoruudut tieto valikossa."
@@ -7792,6 +7897,12 @@ msgstr "Järjestelmä tiedot"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Hyväksy"
@@ -8587,6 +8698,9 @@ msgstr "FFmpeg Probe"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg ei ole asennettu, joten '.mvi' tiedostot eivät ole käytettävissä!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9160,6 +9274,9 @@ msgstr "Taajuus"
 msgid "Frequency bands"
 msgstr "Taajuusalueet"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Taajuusalue"
 
@@ -9249,6 +9366,9 @@ msgstr "Gabon"
 
 msgid "Gaelic"
 msgstr "Gaelic"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Galicia (Espanja)"
@@ -10243,9 +10363,6 @@ msgstr "Varmuuskopionti epäonnistui!"
 msgid "Image version"
 msgstr "Imagen tiedot"
 
-msgid "ImageWizard"
-msgstr "Ohjelmisto Avustaja"
-
 msgid "Immediate shut down"
 msgstr "Sammuta heti"
 
@@ -10301,6 +10418,9 @@ msgstr "Vastaanotin vaihdetaan kanavalle tallennusta varten!\n"
 msgid "In progress"
 msgstr "Käynnissä"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Pääsy kielletty"
 
@@ -10321,6 +10441,9 @@ msgstr "Sisällytä AIT tallennuksiin"
 
 msgid "Include CI assignment"
 msgstr "SIsällytä CI määritys"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "DVB yksityiskohtaiset tiedot"
@@ -10345,6 +10468,9 @@ msgstr "Sisällytä MultiBoot tiedot *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Sisällytä SDT, BAT http striimeihin"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Sisällytä ohjelmiston toiminta tiedot"
@@ -10381,6 +10507,9 @@ msgstr "Teksitv teksityksen yksityiskohdat"
 
 msgid "Include text encoding data"
 msgstr "Sisältää tekstin koodaustiedot"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Sisällytä ajastimen tiedot"
@@ -10555,12 +10684,6 @@ msgstr "Asenna laajennus"
 msgid "Install Plugins"
 msgstr "Asenna lisäosia"
 
-msgid "Install a new image with a USB stick"
-msgstr "Päivitä uusi ohjelmisto USB muistitikulta"
-
-msgid "Install a new image with your web browser"
-msgstr "Päivitä uusi ohjelmisto nettiselaimella"
-
 msgid "Install extensions"
 msgstr "Asenna laajennukset"
 
@@ -10687,9 +10810,6 @@ msgstr "Käänteinen"
 
 msgid "Inverts the button function."
 msgstr "Käänteiset näppäin functiot."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Iran"
@@ -10878,6 +10998,9 @@ msgstr "Kenia"
 
 msgid "Kernel Packages"
 msgstr "Kernel Paketit"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Kerneli tiedosto"
@@ -11201,6 +11324,9 @@ msgstr "Vapaa-ajan harrastukset"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "Letterbox suurennus"
 
@@ -11237,6 +11363,9 @@ msgstr "Limburgan / Limburger / Limburgish"
 
 msgid "Lime"
 msgstr "Lime"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Rajoita tallenteiden merkistöä"
@@ -11440,6 +11569,9 @@ msgstr "Sijainti: %s"
 msgid "Lock:"
 msgstr "Lukittu:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Loki"
 
@@ -11575,6 +11707,9 @@ msgstr "Lisää"
 
 msgid "MOUSE"
 msgstr "HIIRI"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "MTD käynnistys"
@@ -12446,6 +12581,9 @@ msgstr "Liikkuu itään..."
 msgid "Moving files"
 msgstr "Siirretään tiedostoja"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Siirrytään sijaintiin"
 
@@ -13001,9 +13139,6 @@ msgstr "Aktiivista kanavaa ei löydy."
 msgid "No age block"
 msgstr "Ei ikärajoituksia"
 
-msgid "No backup needed"
-msgstr "Varmuuskopiota ei tarvita"
-
 msgid "No cable tuner found!"
 msgstr "Kaapeliverkon viritintä ei löytynyt!"
 
@@ -13018,6 +13153,9 @@ msgstr "Ei kanavaa"
 
 msgid "No channel list"
 msgstr "ei kanavalistaa"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13176,6 +13314,9 @@ msgstr "Ei päivitystä!"
 msgid "No updates available."
 msgstr "Ei päivityksiä saatavilla."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "Kelvollisia DAB+ lähteitä ei ole määritetty. Tarkista /etc/enigma2/dab.xml."
 
@@ -13192,14 +13333,11 @@ msgstr "Kelvollisia aluetietoja ei löytynyt"
 msgid "No, but restart from begin"
 msgstr "Ei, aloita alusta"
 
-msgid "No, do nothing."
-msgstr "Ei, älä tee mitään."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Ei, älä päivitä imagea"
-
-msgid "No, just start my %s %s"
-msgstr "Ei, käynnistä vain %s %s"
 
 msgid "No, never"
 msgstr "Ei koskaan"
@@ -13424,9 +13562,6 @@ msgstr "OK näppäimen toiminto"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "Tarkista nykyinen transponder."
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, opasta minua päivityksessä"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14017,6 +14152,12 @@ msgstr "Paketti"
 msgid "Package Categories"
 msgstr "Paketti kategoriat"
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Ohjelmistopaketin hallinnointi"
 
@@ -14203,9 +14344,6 @@ msgstr "Etenemispalkki oikealla"
 
 msgid "Perform an on-line flash instead"
 msgstr "Suorita sen sijaan uuden ohjelmiston lataus internetistä"
-
-msgid "Perform the upgrade?"
-msgstr "Suoritetaanko päivitys?"
 
 msgid "Performing arts"
 msgstr "esittävä taide"
@@ -14774,6 +14912,9 @@ msgstr "Portugali"
 msgid "Position"
 msgstr "Sijainti"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Tallennettujen ajastusten sijainti ajastusluettelossa"
 
@@ -14975,9 +15116,6 @@ msgstr "Valitse palveluntarjoaja painamalla OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Valitse/poista CAId:t OK näppäimellä."
 
-msgid "Press OK to start the backup now"
-msgstr "Aloita varmuuskopiointi painamalla OK"
-
 msgid "Press OK to start the scan"
 msgstr "Aloita haku painamalla OK"
 
@@ -15100,6 +15238,9 @@ msgstr "Käsitellään"
 msgid "Processor information"
 msgstr "Prosessorin tiedot"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profiili"
 
@@ -15112,6 +15253,9 @@ msgstr "Ohjelma"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Ohjelma '%s' on asennettava tämän toiminnon suorittamiseksi. Haluatko asentaa '%s' tämän paketin ohjelman asentamiseksi?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Ohjelmalista Historia"
@@ -15190,6 +15334,9 @@ msgstr "Suojaa sammutusvalikko"
 
 msgid "Protect timer menu"
 msgstr "Suojaa ajastusvalikko"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokolla"
@@ -15368,11 +15515,23 @@ msgstr "Punainen (pitkä)"
 msgid "RF Output Settings"
 msgstr "RF ulostulo"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr "RGB rajoitus (alataso)"
 
 msgid "RGB clamp (upper)"
 msgstr "RGB rajoitus (ylätaso)"
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
+msgstr ""
 
 msgid "Racing"
 msgstr "Moottoriurheilu"
@@ -15422,6 +15581,9 @@ msgstr "Lue/kirjoita"
 
 msgid "Reader"
 msgstr "Lukija"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15513,6 +15675,9 @@ msgstr "Vastaanottimesi tai ajuri ei tue neljää kuvaa PIP."
 msgid "Receiver information for %s %s"
 msgstr "Vastaanottimen tiedot %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Vastaanottimen malli"
 
@@ -15521,6 +15686,12 @@ msgstr "Kanavalistat"
 
 msgid "Reception Settings"
 msgstr "Virittimen asetukset"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Tallenna"
@@ -15692,6 +15863,9 @@ msgstr "Päivitä ZeroTier tila tiedot"
 
 msgid "Refresh every"
 msgstr "Päivitä joka (tunti)"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Virkistystaajuus"
@@ -16043,6 +16217,9 @@ msgstr ""
 "Korvaa kaikki '%s' -tunnisteet seuraavasti:\n"
 "(HUOMAUTUS: 'Peruuta' ei voi kumota tätä!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Vaadi hyväksyntä http palveluille"
 
@@ -16177,8 +16354,8 @@ msgstr "Verkon %s uudelleenkäynnistys epäonnistui (palautuskoodi %s)"
 msgid "Restarting adapter..."
 msgstr "Käynnistetään verkkosovitinta uudelleen..."
 
-msgid "Restarting saved Wi-Fi network..."
-msgstr "Käynnistetään tallennettu Wi-Fi verkko uudelleen..."
+msgid "Restarting network..."
+msgstr ""
 
 msgid "Restarting..."
 msgstr "Uudelleenkäynnistys..."
@@ -16213,11 +16390,11 @@ msgstr "Palauta korostettu image paikka"
 msgid "Restore your %s %s settings."
 msgstr "Palauta %s %s:n asetukset."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Palauta %s %s:n ohjelmisto perustilaan."
-
 msgid "Restore your backups by date."
 msgstr "Palauta asetukset varmuuskopio päivän mukaan."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Palauta asetukset takaisin varmuuskopiosta. Käynnistä vastaanotin uudelleen aktivoidaksesi uudet asetukset"
@@ -16578,6 +16755,9 @@ msgstr "La-su"
 msgid "Satellite"
 msgstr "Satelliitti"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Satelliittilautasen asetukset"
 
@@ -16586,6 +16766,12 @@ msgstr "Satelliitin määritystila"
 
 msgid "Satellite equipment setup"
 msgstr "Satelliittilaitteiden asetukset"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Satelliitit"
@@ -16754,6 +16940,12 @@ msgstr "Etsi paikallisia lisäosia ja asenna ne."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skannaa antenni kanavat ja luo LCN kanavalista"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Skannaus"
@@ -17339,8 +17531,8 @@ msgstr "Valitse päivityksen lähdeosoite"
 msgid "Select Upgrade Source To Edit"
 msgstr "Valitse päivityksen lähde muokattavaksi"
 
-msgid "Select Wi-Fi adapter"
-msgstr "Valitse Wi-Fi adapteri"
+msgid "Select Wi-Fi adapter:"
+msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Valitse Softcam käytettävissä olevasta listassa oletusarvona CI+."
@@ -17637,6 +17829,9 @@ msgstr "Valitse yllä olevista vaihtoehdoista tietopalkin kanavalogoissa käytet
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr "Valitse yllä olevista vaihtoehdoista OpenWebifin kanavalogoissa käytettävä polku."
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr ""
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -17994,9 +18189,6 @@ msgstr "Valitse Lisäosien valikko lajittelujärjestys. Käyttäjän määrittel
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Valitse valikon lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös tietyn valikko kohdan piilottamisen."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Valitse lähde, josta päivitys tiedostot haetaan."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Valitse aloitusaika, jonka jälkeen tämä ajastin voidaan aktivoida. Ennen tätä aikaa ajastinta ei aktivoida, vaikka muut ehdot täyttyisivät."
 
@@ -18063,8 +18255,8 @@ msgstr "Valitse videotila, jota käytetään televisiossa."
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr "Valitse lukupuskurin koko (rsize) verkkoliitoksen asetuksissa. Valitse ”Automaattinen”, jos haluat käyttöjärjestelmän ja palvelimen neuvottelevan sopivan koon automaattisesti."
 
-msgid "Select update source location"
-msgstr "Valitse päivityksen lähde"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Valitse videotila"
@@ -18149,6 +18341,9 @@ msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM-muo
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Valitse, näytetäänkö kuvake, kun moottoroitu lautanen liikkuu."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Valitse, mitä IP protokollia tämän verkkosovittimen kanssa voidaan käyttää."
@@ -18260,6 +18455,9 @@ msgstr "Serbia"
 
 msgid "Serial No"
 msgstr "Sarjanumero"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "vakava musiikki/klassinen musiikki"
@@ -18967,6 +19165,9 @@ msgstr "Näytä CI-viestit"
 msgid "Show Capabilities"
 msgstr "Näytä ominaisuudet"
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Varmuuskopion oletussisältö"
 
@@ -19642,9 +19843,6 @@ msgstr "Sammuta"
 msgid "Shutdown %s"
 msgstr "Sammuta %s"
 
-msgid "Shutting down. Please wait..."
-msgstr "Sammutetaan. Odota..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
 
@@ -20075,9 +20273,6 @@ msgstr "Ohjelmiston hallinnan asetukset"
 msgid "Software MultiBoot"
 msgstr "MultiBoot"
 
-msgid "Software Restore"
-msgstr "Ohjelmiston palautus"
-
 msgid "Software Update"
 msgstr "Ohjelmistopäivitykset"
 
@@ -20457,6 +20652,9 @@ msgstr "Statistinen"
 
 msgid "Static IP / Custom"
 msgstr "Staattinen IP / Mukautettu"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Tila"
@@ -21270,9 +21468,6 @@ msgstr "%s %s ei ole toimivaa internet yhteyttä."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "%s %s on rajoitettu muistikapasiteetti. swap tiedosto tarvitaan digiboksin muisti määrän lisäämiseksi, muuten %s %s ei ehkä toimi kunnolla. Valitse laite, johon swap tiedosto luodaan."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s sammuu. Ole hyvä ja odota..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s lukee tallennetun EPG-tiedon joka (tuntia)."
 
@@ -21381,6 +21576,12 @@ msgstr "PIN koodin tallennus onnistui."
 msgid "The PIN codes you entered are different."
 msgstr "Syöttämäsi PIN koodit eivät täsmää."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21430,18 +21631,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Varmuuskopiointi voi kestää jopa 10 minuuttia."
-
-msgid "The backup failed"
-msgstr "Varmuuskopiointi epäonnistui"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Varmuuskopiointi epäonnistui! Valitse toinen varmuuskopiointi sijainti."
-
-msgid "The backup succeeded"
-msgstr "Varmuuskopiointi onnistui"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21520,6 +21709,12 @@ msgstr "Viritin ei ole tällä hetkellä käytettävissä. Lopeta tätä viritin
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Prosessi vie noin %d minuuttia valmistuakseen."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Tulokset kirjoitettiin %s."
@@ -21593,9 +21788,6 @@ msgstr "%s %s käyttöliittymä pysäytetään RetroGamingin suorittamista varte
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Kuvan leveys. Tulo skaalataan vastaamaan tätä arvoa."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21934,12 +22126,6 @@ msgstr "Kun päällä, eteenpäin- ja taaksepäin kelauksessa käytetään aikah
 msgid "This window will automatically close in %d seconds."
 msgstr "Tämä ikkuna sulkeutuu automaattisesti %d sekunnin kuluttua."
 
-msgid "This wizard has finished"
-msgstr "Asennus on nyt valmis"
-
-msgid "This wizard has finished."
-msgstr "Asennus on nyt valmis."
-
 msgid "Threshold"
 msgstr "Kynnys"
 
@@ -22095,6 +22281,12 @@ msgstr "Aikaylitys"
 
 msgid "Timeout waiting for FIC service data"
 msgstr "FIC-palvelutietojen odotus aikakatkaistiin"
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
+msgstr ""
 
 msgid "Timer Defaults And Retention"
 msgstr "Ajastimien oletukset ja säilytys"
@@ -22264,9 +22456,6 @@ msgstr "Monivalintatilan vaihtaminen"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Vaihda uuden tekstin asennusosat ensiksi tai ylikirjoita nykyinen teksti"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr "Vaihda jaon IP osoitteen tai DNS nimen mukaan"
 
 msgid "Toggle selection of the current tag"
 msgstr "Nykyisen tagin valinnan vaihtaminen"
@@ -22552,6 +22741,12 @@ msgstr "Virittimet"
 msgid "Tuners, Scanning & Reception"
 msgstr "Virittimien asetukset"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Viritys alkometria"
 
@@ -22674,13 +22869,31 @@ msgstr "USB 2.0 (takana, sisäpuolella)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (takana)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB lukija %d"
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "Usb paikka %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB vaihdon VIRHE! - jo USB:lla"
@@ -22714,11 +22927,18 @@ msgstr "Käyttäjäkaistaa LNB:lle %d ei voitu periä: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec MultiBootin alustaminen ei onnistu!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "DAB+ lähetintä ei voitu rekisteröidä"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ syötettä ei voitu käynnistää"
+
+msgid "Unable to tune the DAB+ satellite feed"
+msgstr ""
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -22997,6 +23217,9 @@ msgstr "Käytä DHCP:tä"
 
 msgid "Use DNS cache"
 msgstr "Käytä DNS välimuistia"
+
+msgid "Use DNS name"
+msgstr ""
 
 msgid "Use DNS rotation"
 msgstr "Käytä DNS kiertoa"
@@ -23289,12 +23512,6 @@ msgstr "Käyttäjänimi"
 
 msgid "Username (httpuser)"
 msgstr "Käyttäjänimi (httpkäyttäjä)"
-
-msgid "Using DNS"
-msgstr "Käyttää DNS"
-
-msgid "Using IP"
-msgstr "Käytetään IP osoitetta"
 
 msgid "Using automatic address"
 msgstr "Käyttää automaattista osoitetta"
@@ -23877,9 +24094,6 @@ msgstr ""
 "\n"
 "Hae seuraavaksi kohta, johon haluat lopettaa leikkauksen. Paina OK näppäintä ja valitse 'Lopeta leikkaus'."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Tervetuloa ohjelmiston päivitysavustajaan. Avustaja opastaa %s %s:n ohjelmiston päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa päivityksen jälkeen."
-
 msgid "Welcome..."
 msgstr "Tervetuloa..."
 
@@ -24168,9 +24382,6 @@ msgstr "Kun punainen laatikko on oikein näkyvissä, paina VIHREÄÄ painiketta 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muutokset ja tallentaa ne. Valitse 'kyllä' Vain edistynemmille käyttäjille."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Minne haluat varmuuskopioida asetukset?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Minne ajansiirron väliaikainen tiedosto tallennetaan?"
 
@@ -24371,9 +24582,6 @@ msgstr "Kyllä ja poista tämä tallenne"
 msgid "Yes, and don't ask again for this session"
 msgstr "Kyllä, äläkä kysy uudelleen tämän istunnon aikana"
 
-msgid "Yes, backup my settings!"
-msgstr "Kyllä, varmuuskopioi asetukset!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Kyllä, mutta älä muunna ajansiirtoa tallenteeksi"
 
@@ -24398,8 +24606,8 @@ msgstr "Kyllä, tee toinen manuaalihaku nyt"
 msgid "Yes, don't ask again"
 msgstr "Kyllä, älä kysy uudelleen"
 
-msgid "Yes, restore the settings now"
-msgstr "Kyllä, palauta asetukset nyt"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Kyllä, palataan tallennelistaan"
@@ -24409,9 +24617,6 @@ msgstr "Kyllä, jos ei saatavilla näytä lisäosa lista"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Kyllä, jos ei käytettävissä, näytä ajastinluettelo"
-
-msgid "Yes, shut down now."
-msgstr "Kyllä, sammuta nyt."
 
 msgid "Yesterday"
 msgstr "Eilen"
@@ -24443,11 +24648,8 @@ msgstr "Voit ohittaa tämän toiminnon ja sammuttaa television, kun herätät va
 msgid "You cannot delete this!"
 msgstr "Et voi poistaa tätä!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Valitsit asetusten varmuuskopioinnin. Aloita painamalla OK näppäintä."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Valitsit asetusten palautuksen. Ohjelmisto käynnistyy uudelleen palautuksen jälkeen. Aloita painamalla OK-näppäintä."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Olet valinnut ajansiirron muunnon tallenteeksi"
@@ -24477,13 +24679,6 @@ msgstr "Onnistuit hyppäämään virheelliselle sivulle. Lopeta se :-)"
 
 msgid "You must set at least one command!"
 msgstr "Sinun on tehtävä vähintään yksi komento!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Tarvitset tietokoneen, joka on yhdistetty %s %s. Katso lisäohjeita verkkosivulta https://www.opena.tv/.\n"
-"%s %s pysäytetään nyt. Kun olet suorittanut verkko sivun päivitysohjeet, uusi ohjelmisto pyytää sinua palauttamaan asetukset."
 
 msgid "You seem to be in time shift!"
 msgstr "Ajansiirto on päällä!"
@@ -24955,6 +25150,9 @@ msgstr "Tallenna tämä ruutu kuvatiedostoksi"
 msgid "green"
 msgstr "vihreä"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -25398,6 +25596,134 @@ msgstr "kyllä (pidä syötteet)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "%d / %d syötteestä käsitelty; epäonnistuneiden syötteiden kanavalistat säilytettiin"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "DAB+ skannaus ei onnistu, kun tallennus on käynnissä."
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Haluatko päivitys oppaan?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Haluatko aloittaa varmuuskopioinnin nyt?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Muuta päivitys osoite"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Ohjelmisto Avustaja"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Päivitä uusi ohjelmisto USB muistitikulta"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Päivitä uusi ohjelmisto nettiselaimella"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Varmuuskopiota ei tarvita"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Ei, älä tee mitään."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Ei, käynnistä vain %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, opasta minua päivityksessä"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Suoritetaanko päivitys?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Aloita varmuuskopiointi painamalla OK"
+
+#~ msgid "Restarting saved Wi-Fi network..."
+#~ msgstr "Käynnistetään tallennettu Wi-Fi verkko uudelleen..."
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Palauta %s %s:n ohjelmisto perustilaan."
+
+#~ msgid "Select Wi-Fi adapter"
+#~ msgstr "Valitse Wi-Fi adapteri"
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Valitse lähde, josta päivitys tiedostot haetaan."
+
+#~ msgid "Select update source location"
+#~ msgstr "Valitse päivityksen lähde"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Sammutetaan. Odota..."
+
+#~ msgid "Software Restore"
+#~ msgstr "Ohjelmiston palautus"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s sammuu. Ole hyvä ja odota..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Varmuuskopiointi epäonnistui"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Varmuuskopiointi epäonnistui! Valitse toinen varmuuskopiointi sijainti."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Varmuuskopiointi onnistui"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Asennus on nyt valmis"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Asennus on nyt valmis."
+
+#~ msgid "Toggle picking a share by IP address or by DNS name"
+#~ msgstr "Vaihda jaon IP osoitteen tai DNS nimen mukaan"
+
+#~ msgid "Using DNS"
+#~ msgstr "Käyttää DNS"
+
+#~ msgid "Using IP"
+#~ msgstr "Käytetään IP osoitetta"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Tervetuloa ohjelmiston päivitysavustajaan. Avustaja opastaa %s %s:n ohjelmiston päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa päivityksen jälkeen."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Minne haluat varmuuskopioida asetukset?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Kyllä, varmuuskopioi asetukset!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Kyllä, palauta asetukset nyt"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Kyllä, sammuta nyt."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Valitsit asetusten varmuuskopioinnin. Aloita painamalla OK näppäintä."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Valitsit asetusten palautuksen. Ohjelmisto käynnistyy uudelleen palautuksen jälkeen. Aloita painamalla OK-näppäintä."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Tarvitset tietokoneen, joka on yhdistetty %s %s. Katso lisäohjeita verkkosivulta https://www.opena.tv/.\n"
+#~ "%s %s pysäytetään nyt. Kun olet suorittanut verkko sivun päivitysohjeet, uusi ohjelmisto pyytää sinua palauttamaan asetukset."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Aseta VASEN/OIKEA näppäiten ohitus prosentti hakupalkille."
 
@@ -25458,8 +25784,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "DVD soitin"
 
-#~ msgid "Common Settings"
-#~ msgstr "Yleiset Asetukset"
+msgid "Common Settings"
+msgstr "Yleiset Asetukset"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -979,7 +979,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
 msgstr ""
 
 #, python-format
@@ -1216,6 +1220,14 @@ msgstr "%s %s mando a distancia (nativo)"
 msgid "%s %sB"
 msgstr ""
 
+#, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
 #
 #, python-format
 msgid "%s - Setup"
@@ -1379,6 +1391,10 @@ msgstr ""
 
 #, python-format
 msgid "'%s' unmounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1659,10 +1675,10 @@ msgstr ""
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
+msgid "A backup is now being created."
 msgstr ""
 
-msgid "A backup is now being created."
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
 msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
@@ -1998,6 +2014,10 @@ msgid "Adapter"
 msgstr ""
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr ""
 
@@ -2271,6 +2291,9 @@ msgstr "Ajusteu la configuració del color de manera que es distingeixin totes l
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Ajustar la posició horitzontal de les lletres utilitzades al teletext."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Ajustar la posició vertical de les lletres utilitzades per al teletext."
 
@@ -2407,6 +2430,9 @@ msgstr ""
 
 msgid "All files"
 msgstr "Tots els arxius"
+
+msgid "All regions"
+msgstr ""
 
 #
 msgid "All resolutions"
@@ -2592,6 +2618,9 @@ msgstr "Comandament Amlogic"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
 msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
@@ -2919,6 +2948,9 @@ msgstr "Sincronització d'àudio"
 msgid "Audio Synchronization"
 msgstr ""
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Selecció d’idiomes d’àudio 1"
 
@@ -3046,6 +3078,9 @@ msgstr "Escaneig automàtic"
 #
 msgid "Automatic Service Searching"
 msgstr "Recerca automàtica de canals"
+
+msgid "Automatic gain"
+msgstr ""
 
 #
 msgid "Automatic resolution"
@@ -3400,6 +3435,17 @@ msgid "Blinking REC"
 msgstr "REC parpellejant"
 
 msgid "Blinking REC symbol"
+msgstr ""
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
 msgstr ""
 
 #
@@ -4692,6 +4738,9 @@ msgstr "Tancar diàleg"
 msgid "Close network test"
 msgstr ""
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Tancar pantalla"
 
@@ -4752,6 +4801,9 @@ msgstr "Taxa de codi HP"
 
 msgid "Code rate LP"
 msgstr "Taxa de codi lP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Colapsar"
@@ -5661,6 +5713,9 @@ msgstr ""
 msgid "Create kernel dump."
 msgstr ""
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr ""
@@ -5946,7 +6001,36 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -6007,6 +6091,12 @@ msgstr ""
 
 msgid "DVB Subtitles PID & Language"
 msgstr "Subtítols DVB PID i lang"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparència de subtítols negre DVB"
@@ -6753,6 +6843,9 @@ msgstr "Detalls"
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr ""
 
@@ -7204,9 +7297,6 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr "Vols canviar el mode d'accés '%s'?"
 
-msgid "Do you want the upgrade guide?"
-msgstr ""
-
 msgid "Do you want to backup settings?"
 msgstr "Vols fer backup de les configuracions?"
 
@@ -7293,9 +7383,6 @@ msgstr "Vols continuar on ho havies deixat?"
 
 msgid "Do you want to select another service?"
 msgstr ""
-
-msgid "Do you want to start a backup now?"
-msgstr "Vols fer backup de les configuracions?"
 
 msgid "Do you want to update:"
 msgstr ""
@@ -7460,6 +7547,9 @@ msgstr "Dutch / Flemish"
 #
 msgid "Dynamic contrast"
 msgstr "Contrast dinàmic"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7642,9 +7732,6 @@ msgstr "Edita el temporitzador"
 msgid "Edit Title"
 msgstr "Editar títol"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Editar la URL font de l'actualització"
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7671,8 +7758,14 @@ msgstr "Editar el port del servidor CCcam/NewCamd."
 msgid "Edit the NewCamd DES Key."
 msgstr "Editar la NewCamd DES Key."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Editar el temporitzador seleccionat"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Editar la contrasenya."
@@ -7774,6 +7867,9 @@ msgstr "activar l'edició de la llista"
 msgid "Enable Chkroot MultiBoot"
 msgstr ""
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Activa EIT EPG"
 
@@ -7849,6 +7945,9 @@ msgstr "Habilita ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Habilita Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7974,6 +8073,9 @@ msgstr "Activar aquesta opció per afegir dades de mapes d'acció/control remot 
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
 
@@ -8018,6 +8120,9 @@ msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activar aquesta opció per afegir dades de depuració de temporitzadors a l'arxiu del log de depuració."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr ""
@@ -8148,6 +8253,12 @@ msgstr "Revisió enigma2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 #
 msgid "Enter"
@@ -8967,6 +9078,9 @@ msgstr "FFmpeg Probe"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg no està instal·lat, així que les accions per arxius '.mvi' no estan disponibles!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9570,6 +9684,9 @@ msgstr "Freqüència"
 msgid "Frequency bands"
 msgstr "Bandes de freqüència"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Rang de freqüències"
 
@@ -9663,6 +9780,9 @@ msgid "Gabon"
 msgstr "Gabon"
 
 msgid "Gaelic"
+msgstr ""
+
+msgid "Gain steps"
 msgstr ""
 
 msgid "Galicia (Spain)"
@@ -10701,9 +10821,6 @@ msgstr ""
 msgid "Image version"
 msgstr ""
 
-msgid "ImageWizard"
-msgstr "Assistent d'imatge"
-
 msgid "Immediate shut down"
 msgstr "Apagat immediat"
 
@@ -10760,6 +10877,9 @@ msgstr "Per a gravar d'un temporitzador, la TV s'ha canviat al canal de gravaci�
 msgid "In progress"
 msgstr "Progrés d'execució"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Inaccessible"
 
@@ -10780,6 +10900,9 @@ msgstr "Incloure AIT en gravacions"
 
 msgid "Include CI assignment"
 msgstr "Incloure l’assignació de CI"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr ""
@@ -10803,6 +10926,9 @@ msgid "Include MultiBoot data *"
 msgstr "Incloure dades MultiBoot *"
 
 msgid "Include SDT and BAT in http streams"
+msgstr ""
+
+msgid "Include SEC/DiSEqC data"
 msgstr ""
 
 msgid "Include action map data"
@@ -10840,6 +10966,9 @@ msgid "Include teletext details"
 msgstr ""
 
 msgid "Include text encoding data"
+msgstr ""
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
 msgstr ""
 
 msgid "Include timer data"
@@ -11027,14 +11156,6 @@ msgstr ""
 msgid "Install Plugins"
 msgstr "Instal·lar plugins"
 
-#
-msgid "Install a new image with a USB stick"
-msgstr "Instal·lar una nova imatge amb pendrive USB"
-
-#
-msgid "Install a new image with your web browser"
-msgstr "Instal·lar una nova imatge amb el navegador web"
-
 msgid "Install extensions"
 msgstr "Instal·leu extensions"
 
@@ -11176,10 +11297,6 @@ msgstr "Invertir"
 
 msgid "Inverts the button function."
 msgstr "Inverteix la funció del botó."
-
-#
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Iran, Islamic Republic of"
@@ -11373,6 +11490,9 @@ msgstr "Kenya"
 
 msgid "Kernel Packages"
 msgstr "Mòduls de kernel"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Arxiu de kernel"
@@ -11714,6 +11834,9 @@ msgstr "Aficions de lleure"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 #
 msgid "LetterBox zoom"
 msgstr "LetterBox zoom"
@@ -11752,6 +11875,9 @@ msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgan / Limburger / Limburgish"
 
 msgid "Lime"
+msgstr ""
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
 msgstr ""
 
 msgid "Limit character set for recording filenames"
@@ -11975,6 +12101,9 @@ msgstr "Ubicació: %s"
 msgid "Lock:"
 msgstr "Bloqueig:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Log"
 
@@ -12114,6 +12243,9 @@ msgstr "MÉS"
 
 msgid "MOUSE"
 msgstr "RATOLÍ"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "Arranc MTD"
@@ -13039,6 +13171,9 @@ msgstr "En moviment cap a l’est …"
 msgid "Moving files"
 msgstr "Movent arxius"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 #
 msgid "Moving to position"
 msgstr "Passant a la posició"
@@ -13622,10 +13757,6 @@ msgstr "No s'ha trobat cap canal actiu."
 msgid "No age block"
 msgstr "Sense bloc d’edat"
 
-#
-msgid "No backup needed"
-msgstr "No cal backup"
-
 msgid "No cable tuner found!"
 msgstr "No s'ha trobat sintonitzador de cable!"
 
@@ -13641,6 +13772,9 @@ msgstr "No hi ha canal"
 
 msgid "No channel list"
 msgstr "no canal a la llista"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 #
 msgid ""
@@ -13808,6 +13942,9 @@ msgstr "No es requereix cap actualització!"
 msgid "No updates available."
 msgstr "No hi ha actualitzacions disponibles."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13825,17 +13962,12 @@ msgstr "No s'han trobat detalls de regió vàlids"
 msgid "No, but restart from begin"
 msgstr "No, però reinicieu des del començament"
 
-#
-msgid "No, do nothing."
-msgstr "No, no cal."
+msgid "No, continue with the setup"
+msgstr ""
 
 #
 msgid "No, don't flash this image"
 msgstr "No, no instal·lis aquesta imatge"
-
-#
-msgid "No, just start my %s %s"
-msgstr "No, només arrenca el meu %s %s"
 
 msgid "No, never"
 msgstr "No, mai"
@@ -14068,10 +14200,6 @@ msgstr "Mode de botó OK"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-#
-msgid "OK, guide me through the upgrade process"
-msgstr "D'acord, guia'm a través del procés d'actualizació"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14703,6 +14831,12 @@ msgstr ""
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 #
 msgid "Package Manager"
 msgstr "Gestió de paquets"
@@ -14900,9 +15034,6 @@ msgstr "Percentatge/Barra de progres a la dreta"
 
 msgid "Perform an on-line flash instead"
 msgstr "Executa una instal·lació online al seu lloc"
-
-msgid "Perform the upgrade?"
-msgstr ""
 
 msgid "Performing arts"
 msgstr "les Arts escèniques"
@@ -15514,6 +15645,9 @@ msgstr "Portuguès"
 msgid "Position"
 msgstr ""
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posició temporitzadors finalitzats en llista temporitzadors"
 
@@ -15732,9 +15866,6 @@ msgstr "Premeu OK per seleccionar satèl·lits"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Premeu OK per seleccionar / deseleccionar un CAId."
 
-msgid "Press OK to start the backup now"
-msgstr "Prem OK per a començar la recerca"
-
 #
 msgid "Press OK to start the scan"
 msgstr "Prem OK per a començar la recerca"
@@ -15865,6 +15996,9 @@ msgstr "Procés"
 msgid "Processor information"
 msgstr "Informació de processador"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Perfil"
 
@@ -15877,6 +16011,9 @@ msgstr "Programa"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Es necessita instal·lar el programa '%s' per executar aquesta acció. Vols instal·lar el paquet '%s' per instal·lar el programa?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr ""
@@ -15959,6 +16096,9 @@ msgstr "Protegiu el menú d’espera"
 
 msgid "Protect timer menu"
 msgstr "Protegiu el menú del temporitzador"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protocol"
@@ -16147,10 +16287,22 @@ msgstr "VERMELL llarg"
 msgid "RF Output Settings"
 msgstr "Sortida RF"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr ""
 
 msgid "RGB clamp (upper)"
+msgstr ""
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
 msgstr ""
 
 msgid "Racing"
@@ -16203,6 +16355,9 @@ msgstr ""
 
 msgid "Reader"
 msgstr "Lector"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -16300,6 +16455,9 @@ msgstr "Receptor o driver no és compatible amb Quad Pip."
 msgid "Receiver information for %s %s"
 msgstr "Informació de receptor per al %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Nom del receptor"
 
@@ -16308,6 +16466,12 @@ msgstr ""
 
 msgid "Reception Settings"
 msgstr "Configuració de recepció"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 #
 msgid "Record"
@@ -16495,6 +16659,9 @@ msgid "Refresh ZeroTier status information"
 msgstr ""
 
 msgid "Refresh every"
+msgstr ""
+
+msgid "Refresh list of RTL-SDR USB tuners"
 msgstr ""
 
 msgid "Refresh rate"
@@ -16874,6 +17041,9 @@ msgstr ""
 "Substituir totes les etiquetes '%s' per:\n"
 "(NOTA: \"Cancel·lar\" no pot desfer-ho!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Requereix autenticació per als streams http"
 
@@ -17019,7 +17189,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -17058,12 +17228,12 @@ msgstr "Restaurar el slot resaltat"
 msgid "Restore your %s %s settings."
 msgstr "Restaurar la configuració del teu %s %s."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Restaura el teu %s %s amb un nou firmware."
-
 #
 msgid "Restore your backups by date."
 msgstr "Restaura els backups per data."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr ""
@@ -17442,6 +17612,9 @@ msgstr "Sat-Sun"
 msgid "Satellite"
 msgstr "Satèl·lit"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 #
 msgid "Satellite Dish Settings"
 msgstr "Configuració antena de satèl·lit"
@@ -17453,6 +17626,12 @@ msgstr "Mode configuración de satèl·lit"
 #
 msgid "Satellite equipment setup"
 msgstr "Configuració d’equips per satèl·lit"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 #
 msgid "Satellites"
@@ -17633,6 +17812,12 @@ msgid "Scan for local extensions and install them."
 msgstr "Buscar extensions locals i instal·lar-les."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
 msgid "Scanning"
@@ -18225,7 +18410,7 @@ msgstr "Seleccionar font d'actualització"
 msgid "Select Upgrade Source To Edit"
 msgstr "Sel·lecciona font d'actualització a editar"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -18529,6 +18714,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -18890,9 +19078,6 @@ msgstr "Selecciona l'ordre d'entrades del menú Navegador de plugins. Definit pe
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Selecciona l'ordre d'entrades del menú. Definit per l'usuari també permet ocultar les entrades del menú."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Selecciona la ubicació on guardar la gravació:"
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18959,8 +19144,8 @@ msgstr "Selecciona el mode de video que s'utilitzarà a la TV."
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
-msgstr "Seleccionar ubicació multimèdia"
+msgid "Select tuner"
+msgstr ""
 
 #
 msgid "Select video mode"
@@ -19045,6 +19230,9 @@ msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr ""
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr ""
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
 msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
@@ -19165,6 +19353,9 @@ msgstr "Serbian"
 
 msgid "Serial No"
 msgstr "No. de sèrie"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "música seriosa / música clàssica"
@@ -19892,6 +20083,9 @@ msgstr "Mostra els missatges de CI"
 msgid "Show Capabilities"
 msgstr ""
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Mostrar arxius per defecte del backup"
 
@@ -20597,10 +20791,6 @@ msgstr "Tancar"
 msgid "Shutdown %s"
 msgstr ""
 
-#, fuzzy
-msgid "Shutting down. Please wait..."
-msgstr "El teu %s %s s'està apagant. Espera un moment..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
 
@@ -21050,10 +21240,6 @@ msgstr "Configuració del gestor de programa"
 msgid "Software MultiBoot"
 msgstr "Software MultiBoot"
 
-#
-msgid "Software Restore"
-msgstr "Restaurar software"
-
 msgid "Software Update"
 msgstr "Actualització de software"
 
@@ -21448,6 +21634,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "IP estàtica / Personalitzada"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Estat"
@@ -22305,9 +22494,6 @@ msgstr "Comproveu internet"
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "El %s %s té una capacitat de memòria limitada. Es requereix un arxiu swap per augmentar la quantitat de memòria disponible, en cas contrari, és possible que el %s %s no funcioni correctament. Seleccioneu el dispositiu que contindrà l'arxiu swap."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "El teu %s %s s'està apagant. Espera un moment..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr ""
 
@@ -22417,6 +22603,12 @@ msgstr "El codi PIN s’ha desat correctament."
 msgid "The PIN codes you entered are different."
 msgstr "Els codis PIN que heu introduït són diferents."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -22464,18 +22656,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr ""
-
-msgid "The backup failed"
-msgstr "Ha fallat el backup."
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "El backup ha fallat. Escull un altre destí."
-
-msgid "The backup succeeded"
-msgstr "No cal backup"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "El backup ha acabat. Ara continuarem explicant el procés d'actualització."
 
 msgid ""
 "The channel may support VPS\n"
@@ -22556,6 +22736,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #
 #, python-format
 msgid "The results have been written to %s."
@@ -22626,9 +22812,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "L'amplada de la imatge. L'entrada s'escalarà perquè coincideixi amb aquest valor."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "L'assistent pot fer un backup de la teva configuració actual. Vols fer-lo ara?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -22967,12 +23150,6 @@ msgstr ""
 msgid "This window will automatically close in %d seconds."
 msgstr ""
 
-msgid "This wizard has finished"
-msgstr "L'assistent ha finalitzat."
-
-msgid "This wizard has finished."
-msgstr "L'assistent ha finalitzat."
-
 #
 msgid "Threshold"
 msgstr "Llindar"
@@ -23139,6 +23316,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -23320,9 +23503,6 @@ msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Commuta o inserta el text nou abans o sobreescriu el text existent"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr ""
@@ -23637,6 +23817,12 @@ msgstr ""
 msgid "Tuners, Scanning & Reception"
 msgstr ""
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -23768,12 +23954,30 @@ msgstr ""
 msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr ""
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
+msgstr ""
+
+msgid "USB speed"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -23808,10 +24012,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "No es pot inicialitzar Multiboot Kexec!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -24105,6 +24316,9 @@ msgid "Use DHCP"
 msgstr "Utilitzar DHCP"
 
 msgid "Use DNS cache"
+msgstr ""
+
+msgid "Use DNS name"
 msgstr ""
 
 msgid "Use DNS rotation"
@@ -24405,12 +24619,6 @@ msgstr "Nom d'usuari"
 
 msgid "Username (httpuser)"
 msgstr "Nom d'usuari (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "Utilitzant direcció automàtica"
@@ -24984,9 +25192,6 @@ msgid ""
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Benvingut a l'assistent per a l'actualització de la imatge. L'assistent t'ajudarà a actualitzar el firmware del teu %s %s, donant-te la possibilitat de fer backup de la configuració actual, i amb una petita explicació sobre com actualitzar el firmware."
-
 msgid "Welcome..."
 msgstr "Benvingut…"
 
@@ -25282,10 +25487,6 @@ msgid "When tuned to a service, the system normally scans the transponder for ch
 msgstr ""
 
 #
-msgid "Where do you want to backup your settings?"
-msgstr "On vols guardar el backup de la configuració?"
-
-#
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "On desar els enregistraments temporals de temps?"
 
@@ -25496,10 +25697,6 @@ msgstr "Sí, i suprimeix aquesta pel·lícula"
 msgid "Yes, and don't ask again for this session"
 msgstr "Sí, i no preguntar de nou en aquesta sessió"
 
-#
-msgid "Yes, backup my settings!"
-msgstr "Sí, fes un backup de la configuració!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr ""
 
@@ -25527,9 +25724,8 @@ msgstr "Si, fer una altra recerca manual ara"
 msgid "Yes, don't ask again"
 msgstr ""
 
-#
-msgid "Yes, restore the settings now"
-msgstr "Si, restaura la configuració ara"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 #
 msgid "Yes, returning to movie list"
@@ -25540,10 +25736,6 @@ msgstr ""
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr ""
-
-#
-msgid "Yes, shut down now."
-msgstr "Si, apaga ara."
 
 msgid "Yesterday"
 msgstr "Ahir"
@@ -25576,10 +25768,7 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "Això no es pot eliminar!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "L'assistent pot fer un backup de la teva configuració actual. Vols fer-lo ara?"
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
 msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
@@ -25608,11 +25797,6 @@ msgid "You managed to jump to an invalid page. Stop it :-)"
 msgstr ""
 
 msgid "You must set at least one command!"
-msgstr ""
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
 
 msgid "You seem to be in time shift!"
@@ -26114,6 +26298,9 @@ msgstr "agafeu aquest marc com a mapa de bits"
 msgid "green"
 msgstr "verd"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -26614,6 +26801,109 @@ msgstr "si (mantenir feeds)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Vols fer backup de les configuracions?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Editar la URL font de l'actualització"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Assistent d'imatge"
+
+#
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Instal·lar una nova imatge amb pendrive USB"
+
+#
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Instal·lar una nova imatge amb el navegador web"
+
+#
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#
+#~ msgid "No backup needed"
+#~ msgstr "No cal backup"
+
+#
+#~ msgid "No, do nothing."
+#~ msgstr "No, no cal."
+
+#
+#~ msgid "No, just start my %s %s"
+#~ msgstr "No, només arrenca el meu %s %s"
+
+#
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "D'acord, guia'm a través del procés d'actualizació"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Prem OK per a començar la recerca"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Restaura el teu %s %s amb un nou firmware."
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Selecciona la ubicació on guardar la gravació:"
+
+#~ msgid "Select update source location"
+#~ msgstr "Seleccionar ubicació multimèdia"
+
+#, fuzzy
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "El teu %s %s s'està apagant. Espera un moment..."
+
+#
+#~ msgid "Software Restore"
+#~ msgstr "Restaurar software"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "El teu %s %s s'està apagant. Espera un moment..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Ha fallat el backup."
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "El backup ha fallat. Escull un altre destí."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "No cal backup"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "El backup ha acabat. Ara continuarem explicant el procés d'actualització."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "L'assistent pot fer un backup de la teva configuració actual. Vols fer-lo ara?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "L'assistent ha finalitzat."
+
+#~ msgid "This wizard has finished."
+#~ msgstr "L'assistent ha finalitzat."
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Benvingut a l'assistent per a l'actualització de la imatge. L'assistent t'ajudarà a actualitzar el firmware del teu %s %s, donant-te la possibilitat de fer backup de la configuració actual, i amb una petita explicació sobre com actualitzar el firmware."
+
+#
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "On vols guardar el backup de la configuració?"
+
+#
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Sí, fes un backup de la configuració!"
+
+#
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Si, restaura la configuració ara"
+
+#
+#~ msgid "Yes, shut down now."
+#~ msgstr "Si, apaga ara."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "L'assistent pot fer un backup de la teva configuració actual. Vols fer-lo ara?"
+
 #~ msgid "Chrony"
 #~ msgstr "Chrony"
 
@@ -26639,8 +26929,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "DVDPlayer"
 
-#~ msgid "Common Settings"
-#~ msgstr "Accions de configuració comú"
+msgid "Common Settings"
+msgstr "Accions de configuració comú"
 
 #~ msgid "Mount Manager"
 #~ msgstr "Administrador de muntatges"

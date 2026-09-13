@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
-"PO-Revision-Date: 2026-09-01 10:31+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
+"PO-Revision-Date: 2026-09-12 16:19+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 msgid ""
 "\n"
@@ -947,8 +947,12 @@ msgstr[1] "Pronađeno %d mreža."
 msgstr[2] "Pronađeno %d mreža."
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d od %d feedova dovršeno; neuspjeli feed buketi su spremljeni"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr "%d od %d kanala sadržavalo je DAB+ zajedno"
+
+#, python-format
+msgid "%d of %d feeds completed"
+msgstr "%d od %d feedova dovršeno"
 
 #, python-format
 msgid "%d package found."
@@ -1196,6 +1200,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr "%s (pohranjeno u predmemoriji)"
+
+#, python-format
+msgid "%s (motor)"
+msgstr "%s (motor)"
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Podešavanje"
 
@@ -1357,6 +1369,10 @@ msgstr "'%s' montirano."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "'%s' je odspojen."
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr "'%s' koristi autentifikaciju za poduzeća (802.1X). Mreže poput ove se ovdje ne mogu postaviti, one se moraju ručno konfigurirati u wpa_supplicant.conf."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Međuspremnik u satima\" ili \"broj posljednjih događaja\". Za brisanje starijih datoteka s vremenskim pomakom, stanje koje se prvo dogodilo ima prioritet."
@@ -1619,11 +1635,11 @@ msgstr "<nema pronađenih zapisa>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "Skeniranje DAB+ ne može se pokrenuti dok se odvija snimanje."
-
 msgid "A backup is now being created."
 msgstr "Rezervna kopija se sada kreira."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr "Pronađena je sigurnosna kopija vaših prethodnih postavki. Želite li je vratiti prije nastavka s postavljanjem?"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Popis proširenja odvojenih zarezima za upotrebu za postavku 'Proširenja filtra' 'Moje proširenje'. Unesite nazive oznaka vrste datoteka bez početne točke (.)."
@@ -1935,6 +1951,10 @@ msgid "Adapter"
 msgstr "Adapter"
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr "Priključak'%s'"
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr "Kontekstni Izbornik Adaptera '%s'"
 
@@ -2185,6 +2205,9 @@ msgstr "Podesite postavke boja tako da su sve sjene boja prepoznatljive, tako da
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Podesite položaj slova teleteksta vodoravno."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr "Podesi pomak oscilatora tunera da poboljša prijem DAB+ signala."
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Podesite položaj slova teleteksta okomito."
 
@@ -2310,6 +2333,9 @@ msgstr "Svi događaji nagore"
 
 msgid "All files"
 msgstr "Sve datoteke"
+
+msgid "All regions"
+msgstr "Sve regije"
 
 msgid "All resolutions"
 msgstr "Sve rezolucije"
@@ -2488,6 +2514,9 @@ msgstr "Amlogic daljinski kontrolor"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Količina %d / Uspješno %d / Neuspješno %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr "Otkriven je RTL-SDR prijamnik. Opcionalni DAB+ USB vrijeme izvođenja se instalira s feeda."
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Pokušava se zabeležiti trenutni status televizora. Ako su statusne poruke netačne ili nedostaju, prijemnik može reagovati neočekivano. U suprotnom, to pomaže prijemniku da efikasnije upravlja različitim operativnim uslovima."
@@ -2803,6 +2832,9 @@ msgstr "Audio Sinhronizacija"
 msgid "Audio Synchronization"
 msgstr "Sinkronizacija zvuka"
 
+msgid "Audio bit rate"
+msgstr "Brzina prijenosa zvuka"
+
 msgid "Audio language selection 1"
 msgstr "Odabir audio jezika 1"
 
@@ -2916,6 +2948,9 @@ msgstr "Automatsko Skeniranje"
 
 msgid "Automatic Service Searching"
 msgstr "Automatska Pretraga Kanala"
+
+msgid "Automatic gain"
+msgstr "Automatsko pojačanje"
 
 msgid "Automatic resolution"
 msgstr "Automatska rezolucija"
@@ -3256,6 +3291,17 @@ msgstr "Trepčući SNIM"
 
 msgid "Blinking REC symbol"
 msgstr "Trepčući SNIM Simbol"
+
+#, python-format
+msgid "Block %s"
+msgstr "Blokiraj %s"
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr "Blokiraj %s - %.3f MHz"
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr "Blokiran RTL2832 DVB kernel driver"
 
 msgid "Block device"
 msgstr "Zablokiran uređaj"
@@ -4494,6 +4540,9 @@ msgstr "Zatvori prozor"
 msgid "Close network test"
 msgstr "Test zatvorene mreže"
 
+msgid "Close network test and exit all menus"
+msgstr "Zatvori test mreže i izađi iz svih izbornika"
+
 msgid "Close screen"
 msgstr "Zatvori zaslon"
 
@@ -4553,6 +4602,9 @@ msgstr "Brzina kodiranja HP"
 
 msgid "Code rate LP"
 msgstr "Brzina kodiranja LP"
+
+msgid "Codec"
+msgstr "Kodek"
 
 msgid "Collapse"
 msgstr "Skupi"
@@ -5451,6 +5503,9 @@ msgstr "Kreiraj deponiju info o uređaju."
 msgid "Create kernel dump."
 msgstr "Kreiraj deponiju jezgra."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr "Kreiraj ili ukloni crnu listu za RTL2832 DVB modul. Potrebno je ponovno pokretanje prijemnika; dok je omogućeno, ovaj USB tuner je dostupan za DAB+, ali ne i za DVB-T/T2."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Stvorite sigurnosnu kopiju imidža za oporavak '%s'."
@@ -5724,8 +5779,37 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr "DAB+ Skan"
 
+msgid "DAB+ Settings"
+msgstr "Postavke DAB+"
+
+msgid "DAB+ Settings Actions"
+msgstr "Radnje Postavki DAB+"
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr "Podrška za DAB+ USB nije se mogla instalirati s izvora."
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr "Podrška za DAB+ USB je instalirana. Sada možete omogućiti prijemnik u postavkama prijema."
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr "DAB+ USB: buket nije mogao biti zapisan"
+
+msgid "DAB+ channel"
+msgstr "DAB+ kanal"
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr "DAB+ kanal %s"
+
+msgid "DAB+ decoder back end not installed"
+msgstr "DAB+ dekoder stražnja strana nije instalirana"
+
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "Skeniranje DAB+ nije uspjelo; postojeći buketi su zadržani."
+
+#, python-format
+msgid "DAB+ service information for '%s'"
+msgstr "Informacije o DAB+ usluzi za '%s'"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5784,6 +5868,12 @@ msgstr "DVB titlovi"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB Subtitl PID & Jezik"
+
+msgid "DVB frontend"
+msgstr "DVB prednji"
+
+msgid "DVB payload PID"
+msgstr "DVB PID podaci"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB Titl crna prozirnost"
@@ -6498,6 +6588,9 @@ msgstr "Detalji"
 msgid "Detect positioner movement by its current consumption."
 msgstr "Prati kretanje pozicionera prema njegovoj potrošnji struje."
 
+msgid "Detected USB hardware"
+msgstr "Otkriven USB hardver"
+
 msgid "Detective"
 msgstr "Detektivski"
 
@@ -6925,9 +7018,6 @@ msgstr "Doista li želite očistiti datotečni sustav?"
 msgid "Do you want change '%s' access mode?"
 msgstr "Želite li promijeniti način pristupa '%s'?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Želite li vodič za nadogradnju?"
-
 msgid "Do you want to backup settings?"
 msgstr "Želite li sigurnosno kopirati postavke?"
 
@@ -7006,9 +7096,6 @@ msgstr "Želite li nastaviti ovu reprodukciju?"
 
 msgid "Do you want to select another service?"
 msgstr "Želite li odabrati drugu uslugu?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Želite li sada pokrenuti sigurnosno kopiranje?"
 
 msgid "Do you want to update:"
 msgstr "Želite li ažurirati:"
@@ -7167,6 +7254,9 @@ msgstr "Dutch / Flemish"
 
 msgid "Dynamic contrast"
 msgstr "Dinamički kontrast"
+
+msgid "Dynamic label"
+msgstr "Dinamična oznaka"
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7341,9 +7431,6 @@ msgstr "Uredi Tajmer"
 msgid "Edit Title"
 msgstr "Uredi Naslov"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Uređivanje izvornog URL nadogradnje"
-
 msgid "Edit Username/Password Credentials"
 msgstr "Uredi Korisničko ime/Lozinku Vjerodajnica"
 
@@ -7368,8 +7455,14 @@ msgstr "Uredite CCcam/NewCamd poslužiteljski port."
 msgid "Edit the NewCamd DES Key."
 msgstr "Uredite NewCamd DES ključ."
 
+msgid "Edit the currently highlighted feed"
+msgstr "Uredi trenutno označeni feed"
+
 msgid "Edit the currently selected timer"
 msgstr "Uredite trenutno odabrani tajmer"
+
+msgid "Edit the feed URL:"
+msgstr "Uredi URL feeda:"
 
 msgid "Edit the password."
 msgstr "Uredite lozinku."
@@ -7462,6 +7555,9 @@ msgstr "Omogući uređivanje buketa"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Omogući Chkroot MultiBoot"
 
+msgid "Enable DAB+ mode"
+msgstr "Uključi DAB+ način"
+
 msgid "Enable EIT EPG"
 msgstr "Omogući EIT EPG"
 
@@ -7533,6 +7629,9 @@ msgstr "Omogući ViaSat EPG"
 
 msgid "Enable Virgin EPG"
 msgstr "Omogući Virgin EPG"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr "Omogućite odabrani RTL-SDR USB prijemnik za DAB+ prijem. DVB-T i DAB+ ne mogu istovremeno koristiti isti prijemnik."
 
 msgid "Enable adapter"
 msgstr "Omogući adapter"
@@ -7655,6 +7754,9 @@ msgstr "Omogućite ovu opciju da biste dodali podatke mape radnji / daljinskog k
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Omogućite ovu opciju za dodavanje informacija iz baze buketa u datoteku zapisnika za otklanjanje pogrešaka."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr "Omogući ovu opciju kako bi se u datoteku zapisnika za otklanjanje pogrešaka dodale detaljne informacije o DAB+ prijamniku, paketima, MOT i SPI."
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Omogućite ovu opciju da biste dodali dodatne DVB detalje u datoteku dnevnika otklanjanja pogrešaka."
 
@@ -7699,6 +7801,9 @@ msgstr "Omogućite ovu opciju za dodavanje informacija o kodiranju teksta u dato
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Omogućite ovu mogućnost da biste dodali podatke o otklanjanju pogrešaka mjerača vremena u datoteku zapisnika otklanjanja pogrešaka."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr "Omogući ovu opciju da dodaš detaljne SEC/DiSEqC podatke za ispravljanje pogrešaka u datoteku dnevnika."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Omogućite ovu opciju da biste prikazali sve dostupne zaslone s informacijama na popisu stavki menu Informacije."
@@ -7824,6 +7929,12 @@ msgstr "Enigma2 revizija"
 
 msgid "Enigmalight"
 msgstr "Enigma svjetlo"
+
+msgid "Ensemble"
+msgstr "Zajedno"
+
+msgid "Ensemble ID (EID)"
+msgstr "Zajedno ID (EID)"
 
 msgid "Enter"
 msgstr "Unesi"
@@ -8619,6 +8730,9 @@ msgstr "FFmpeg Proba"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg nije instaliran pa radnje datoteke '.mvi' nisu dostupne!"
 
+msgid "FIC quality"
+msgstr "FIC kvaliteta"
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9192,6 +9306,9 @@ msgstr "Frekvencija"
 msgid "Frequency bands"
 msgstr "Band Frekvencije"
 
+msgid "Frequency correction offset"
+msgstr "Pomak korekcije frekvencije"
+
 msgid "Frequency range"
 msgstr "Frekvencijski raspon"
 
@@ -9281,6 +9398,9 @@ msgstr "Gabon"
 
 msgid "Gaelic"
 msgstr "Gaelic"
+
+msgid "Gain steps"
+msgstr "Pojačanje koraka"
 
 msgid "Galicia (Spain)"
 msgstr "Galicia (Spain)"
@@ -10270,9 +10390,6 @@ msgstr "Stvaranje slike nije uspjelo!"
 msgid "Image version"
 msgstr "Imidž verzija"
 
-msgid "ImageWizard"
-msgstr "Čarobnjak za Imidž"
-
 msgid "Immediate shut down"
 msgstr "Odmah isključi"
 
@@ -10328,6 +10445,9 @@ msgstr "Da bi snimio po tajmeru, TV je prebačen na kanal za snimanje!\n"
 msgid "In progress"
 msgstr "U tijeku"
 
+msgid "In use by DAB+"
+msgstr "Koristi se na DAB+"
+
 msgid "Inaccessible"
 msgstr "Nedostupno"
 
@@ -10348,6 +10468,9 @@ msgstr "Uključiti AIT u snimak"
 
 msgid "Include CI assignment"
 msgstr "Uključiti CI dodelu"
+
+msgid "Include DAB+ data"
+msgstr "Uključi DAB+ podatke"
 
 msgid "Include DVB details"
 msgstr "Uključi DVB detalje"
@@ -10372,6 +10495,9 @@ msgstr "Uključiti MultiBoot podatke *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Uključiti SDT, BAT u http streams"
+
+msgid "Include SEC/DiSEqC data"
+msgstr "Uključi SEC/DiSEqC podatke"
 
 msgid "Include action map data"
 msgstr "Uključiti akciju map podataka"
@@ -10408,6 +10534,9 @@ msgstr "Uključite detalje teleteksta"
 
 msgid "Include text encoding data"
 msgstr "Uključi podatke o kodiranju teksta"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr "Uključi ovu konfiguriranu satelitsku poziciju u DAB+ skeniranje. Isključi je da preskočiš poziciju."
 
 msgid "Include timer data"
 msgstr "Uključiti tajmer podatke"
@@ -10582,12 +10711,6 @@ msgstr "Instaliraj Dodatak"
 msgid "Install Plugins"
 msgstr "Instaliraj Dodatke"
 
-msgid "Install a new image with a USB stick"
-msgstr "Instaliraj novi imidž s USB stika"
-
-msgid "Install a new image with your web browser"
-msgstr "Instaliraj novi imidž kroz web pregledač"
-
 msgid "Install extensions"
 msgstr "Instaliraj proširenje"
 
@@ -10714,9 +10837,6 @@ msgstr "Obrnuto"
 
 msgid "Inverts the button function."
 msgstr "Obrnuta funkcija dugmeta."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 msgid "Iran, Islamic Republic of"
 msgstr "Iran"
@@ -10906,6 +11026,9 @@ msgstr "Kenya"
 
 msgid "Kernel Packages"
 msgstr "Jezgra Paketa"
+
+msgid "Kernel driver"
+msgstr "Kernel upravljački program"
 
 msgid "Kernel file"
 msgstr "Datoteka jezgre"
@@ -11229,6 +11352,9 @@ msgstr "Ležerni hobi"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr "Neka tuner automatski odabere svoj RF pojačanje."
+
 msgid "LetterBox zoom"
 msgstr "Letterbox zum"
 
@@ -11265,6 +11391,9 @@ msgstr "Limburgan / Limburger / Limburgish"
 
 msgid "Lime"
 msgstr "Limun"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr "Ograniči DAB+ USB skeniranje na frekvencijske blokove definirane za ovu regiju u 'dab.xml' datoteci."
 
 msgid "Limit character set for recording filenames"
 msgstr "Ograničite skup znakova za snimanje naziva datoteka"
@@ -11469,6 +11598,9 @@ msgstr "Lokacija: %s"
 msgid "Lock:"
 msgstr "Zaključaj:"
 
+msgid "Locked"
+msgstr "Zaključano"
+
 msgid "Log"
 msgstr "Log"
 
@@ -11604,6 +11736,9 @@ msgstr "VIŠE"
 
 msgid "MOUSE"
 msgstr "MIŠ"
+
+msgid "MSC audio frame quality"
+msgstr "Kvaliteta MSC audio frejma"
 
 msgid "MTD boot"
 msgstr "MTD boot"
@@ -12473,6 +12608,9 @@ msgstr "Pokret na istok ..."
 msgid "Moving files"
 msgstr "Premještanje datoteka"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr "Pomičem rotor i podešavam DAB+ satelitski prijem..."
+
 msgid "Moving to position"
 msgstr "Premještanje na položaj"
 
@@ -13028,9 +13166,6 @@ msgstr "Nije pronađen aktivni kanal."
 msgid "No age block"
 msgstr "Nema starosnog ograničenja"
 
-msgid "No backup needed"
-msgstr "Nije potrebna rezervna kopija"
-
 msgid "No cable tuner found!"
 msgstr "Nije pronađen kablovski tuner!"
 
@@ -13045,6 +13180,9 @@ msgstr "Nema kanala"
 
 msgid "No channel list"
 msgstr "Nema liste kanala"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr "Nije pronađen kompatibilni RTL-SDR USB tuner"
 
 msgid ""
 "No data on transponder!\n"
@@ -13197,6 +13335,9 @@ msgstr "Nije potrebno ažuriranje!"
 msgid "No updates available."
 msgstr "Nema dostupnih ažuriranja."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr "Nije pronađen nijedan upotrebljiv RTL-SDR DAB+ prijamnik."
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "Nijedan valjani DAB+ feed nije konfiguriran. Provjeri /etc/enigma2/dab.xml."
 
@@ -13213,14 +13354,11 @@ msgstr "Nisu pronađeni valjani podaci o regiji"
 msgid "No, but restart from begin"
 msgstr "Ne, ali ponovno pokretanje od početka"
 
-msgid "No, do nothing."
-msgstr "Ne, ne radi ništa."
+msgid "No, continue with the setup"
+msgstr "Ne, nastavi sa postavljanjem"
 
 msgid "No, don't flash this image"
 msgstr "Ne, ne flash imidža"
-
-msgid "No, just start my %s %s"
-msgstr "Ne, samo pokreni moj %s %s"
 
 msgid "No, never"
 msgstr "Ne, nikada"
@@ -13445,9 +13583,6 @@ msgstr "Način rada dugmeta OK"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "OK provjerava trenutno podešeni transponder."
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, vodite me kroz postupak nadogradnje"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14038,6 +14173,12 @@ msgstr "Paket"
 msgid "Package Categories"
 msgstr "Kategorije paketa"
 
+msgid "Package Feed Editor"
+msgstr "Uređivač Paketa Feeda"
+
+msgid "Package Feed Editor Actions"
+msgstr "Radnje Uređivača Paketa Feeda"
+
 msgid "Package Manager"
 msgstr "Upravitelj paketa"
 
@@ -14224,9 +14365,6 @@ msgstr "Postotak/traka napretka desno"
 
 msgid "Perform an on-line flash instead"
 msgstr "Umjesto toga izvedite on-line flash"
-
-msgid "Perform the upgrade?"
-msgstr "Izvršiti nadogradnju?"
 
 msgid "Performing arts"
 msgstr "Scenske umjetnosti"
@@ -14797,6 +14935,9 @@ msgstr "Portugalski"
 msgid "Position"
 msgstr "Pozicija"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr "Pozicija u rasponu pojačanja koji podržava tuner. Stražnja strana odabire najbliži korak pojačanja."
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Pozicija završnih tajmera na tajmer spisku"
 
@@ -14998,9 +15139,6 @@ msgstr "Pritisni ОК da bi odabrali satelit"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Pritisni ОК da odabereš/poništiš CAID."
 
-msgid "Press OK to start the backup now"
-msgstr "Pritisnite OK da bi pokrenuli pravljenje rezervne kopije"
-
 msgid "Press OK to start the scan"
 msgstr "Pritisni OK za početak skeniranja"
 
@@ -15123,6 +15261,9 @@ msgstr "Obrada"
 msgid "Processor information"
 msgstr "Procesor info"
 
+msgid "Product"
+msgstr "Proizvod"
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -15135,6 +15276,9 @@ msgstr "Program"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Potrebno je instalirati program '%s' da bi se izvršila ova radnja. Želite li da instalirate '%s' peket da bi instalirali program?"
+
+msgid "Program type"
+msgstr "Vrsta programa"
 
 msgid "Programmlisten History"
 msgstr "Povijest spiska kanala"
@@ -15213,6 +15357,9 @@ msgstr "Zaštita menu pripravnosti"
 
 msgid "Protect timer menu"
 msgstr "Zaštita tajmer menu"
+
+msgid "Protection"
+msgstr "Zaštita"
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -15391,11 +15538,23 @@ msgstr "CRVENO dugo"
 msgid "RF Output Settings"
 msgstr "RF Izlaz Postavke"
 
+msgid "RF SNR"
+msgstr "RF SNR"
+
+msgid "RF gain"
+msgstr "RF pojačanje"
+
 msgid "RGB clamp (lower)"
 msgstr "RGB ograničenje (donje)"
 
 msgid "RGB clamp (upper)"
 msgstr "RGB ograničenje (gornje)"
+
+msgid "RTL-SDR USB tuner"
+msgstr "RTL-SDR USB tuner"
+
+msgid "RTL-SDR tuner"
+msgstr "RTL-SDR tuner"
 
 msgid "Racing"
 msgstr "Utrke"
@@ -15445,6 +15604,9 @@ msgstr "Čitanje/Pisanje"
 
 msgid "Reader"
 msgstr "Čitač"
+
+msgid "Ready"
+msgstr "Spreman"
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15536,6 +15698,9 @@ msgstr "Prijemnik ne podržava 4x PiP."
 msgid "Receiver information for %s %s"
 msgstr "Info o resiveru za %s %s"
 
+msgid "Receiver lock"
+msgstr "Blokada prijamnika"
+
 msgid "Receiver name"
 msgstr "Ime Prijemnika"
 
@@ -15544,6 +15709,12 @@ msgstr "Skenirana Lista"
 
 msgid "Reception Settings"
 msgstr "Postavke Skeniranja"
+
+msgid "Reception source"
+msgstr "Izvor prijama"
+
+msgid "Reception sources to scan"
+msgstr "Izvori prijama za skeniranje"
 
 msgid "Record"
 msgstr "Snimanje"
@@ -15715,6 +15886,9 @@ msgstr "Osvježi informacije o statusu ZeroTier-a"
 
 msgid "Refresh every"
 msgstr "Osvježi svakih"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr "Osvježi popis RTL-SDR USB tuner-a"
 
 msgid "Refresh rate"
 msgstr "Učestalost osvježevanja"
@@ -16066,6 +16240,9 @@ msgstr ""
 "Zamjeni sve '%s' oznake sa:\n"
 "(NAPOMENA: 'Otkaži' nije moguće opozvati ovo!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr "Zamijeni statičnu radio pozadinu slikama koje prenosi trenutna DAB+ stanica."
+
 msgid "Require authentication for http streams"
 msgstr "Zahtjevaj potvrdu identiteta http streams"
 
@@ -16200,8 +16377,8 @@ msgstr "Ponovni pokušaj pokretanja %s nije uspio (kod izlaza %s)"
 msgid "Restarting adapter..."
 msgstr "Ponovno pokrećem adapter..."
 
-msgid "Restarting saved Wi-Fi network..."
-msgstr "Ponovno pokretanje spremljene Wi-Fi mreže..."
+msgid "Restarting network..."
+msgstr "Ponovno pokrećem mrežu..."
 
 msgid "Restarting..."
 msgstr "Ponovno pokretanje..."
@@ -16236,11 +16413,11 @@ msgstr "Vraćanje istaknutog utora u predhodno stanje"
 msgid "Restore your %s %s settings."
 msgstr "Vratiti vaše %s %s postavke."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Vratiti %s %s u predhodno stanje sa novim softverom."
-
 msgid "Restore your backups by date."
 msgstr "Vratiti rezervne kopije u predhodno stanje po datumu."
+
+msgid "Restore your previous settings?"
+msgstr "Želiš li vratiti prethodne postavke?"
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Vratite svoja podešavanja iz rezervne kopije. Nakon vraćanja, prijemnik će se restartovati da bi aktivirao nova podešavanja."
@@ -16601,6 +16778,9 @@ msgstr "Su-Ne"
 msgid "Satellite"
 msgstr "Satelit"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr "Satelitski DAB+ prijenosi se ne mogu pregledavati dok snimanje traje, a USB prijamnik nije dostupan."
+
 msgid "Satellite Dish Settings"
 msgstr "Postavke Satelitske Antene"
 
@@ -16609,6 +16789,12 @@ msgstr "Režim satelitske konfiguracije"
 
 msgid "Satellite equipment setup"
 msgstr "Postavke satelitske opreme"
+
+msgid "Satellite feeds to scan"
+msgstr "Satelitski prijenosi za pregled"
+
+msgid "Satellite only"
+msgstr "Samo sateliti"
 
 msgid "Satellites"
 msgstr "Sateliti"
@@ -16777,6 +16963,12 @@ msgstr "Skan lokalnih proširenja i instalirajte ih."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skeniraj za zemaljske LCN i kreiraj LCN bukete"
+
+msgid "Scan region"
+msgstr "Skeniraj područje"
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr "Skeniraj USB tuner, dostupne DAB+ satelitske prijenose, ili oboje."
 
 msgid "Scanning"
 msgstr "Skeniranje"
@@ -17355,8 +17547,8 @@ msgstr "Odaberi Izvor Nadogradnje"
 msgid "Select Upgrade Source To Edit"
 msgstr "Odaberi Izvor Nadogradnje za Uređivanje"
 
-msgid "Select Wi-Fi adapter"
-msgstr "Odaberi Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
+msgstr "Odaberi Wi-Fi adapter:"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Odaberi Softcam sa dostupnog spiska kao zadani za AutoCam."
@@ -17651,6 +17843,9 @@ msgstr "Odaberi Pikon putanju, iz gore navedenih opcija, koja će se koristiti z
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
 msgstr "Odaberi Pikon putanju, iz gore navedenih opcija, koja će se koristiti za OpenWebif pikone."
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr "Odaberi RTL-SDR USB tuner koji će se koristiti za prijam DAB+."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18008,9 +18203,6 @@ msgstr "Odaberi redoslijed sortiranja stavki menu Dodatak Preglednika. Korisnič
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Odaberi redoslijed sortiranja stavki menu. Korisnički zadano omogućava da stavke menu budu sakrivene."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Odaberi izvornu lokaciju odakle želite da nabavite datoteku za nadogradnju."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Odaberite vrijeme početka nakon kojeg se ovaj tajmer može aktivirati. Prije tog vremena tajmer se neće aktivirati, čak ni ako su ispunjeni ostali uvjeti."
 
@@ -18077,8 +18269,8 @@ msgstr "Odaberi video način koji će se koristiti na TV."
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr "Odaberi veličinu predmemorije za zapisivanje (wsize) u opcijama montiranja. Koristi 'Automatski' da bi kernel i server dogovorili optimalnu veličinu."
 
-msgid "Select update source location"
-msgstr "Odaberi izvorne lokacije ažuriranja"
+msgid "Select tuner"
+msgstr "Odaberi tuner"
 
 msgid "Select video mode"
 msgstr "Odaberi video način"
@@ -18163,6 +18355,9 @@ msgstr "Odaberite hoće li se višekanalni audio zapisi reproducirati kao PCM."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Odaberite hoće li se ikona prikazivati kada se motorizirana antena pomiče."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr "Odaberite želite li unaprijed popuniti polje 'Server' dolje s otkrivenim DNS/mDNS imenom ovog računala umjesto njegove IP adrese."
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Odaberi koje IP protokole ovaj adapter može koristiti."
@@ -18273,6 +18468,9 @@ msgid "Serbian"
 msgstr "Srpski"
 
 msgid "Serial No"
+msgstr "Serijski broj"
+
+msgid "Serial number"
 msgstr "Serijski broj"
 
 msgid "Serious music/Classic music"
@@ -18979,6 +19177,9 @@ msgstr "Pokaži CI poruku"
 msgid "Show Capabilities"
 msgstr "Prikaži mogućnosti"
 
+msgid "Show DAB+ slideshow"
+msgstr "Pokaži DAB+ slajd prezentaciju"
+
 msgid "Show Default Backup Files"
 msgstr "Pokaži zadanu rezervnu kopiju datoteke"
 
@@ -19654,9 +19855,6 @@ msgstr "Isključivanje"
 msgid "Shutdown %s"
 msgstr "Isključi %s"
 
-msgid "Shutting down. Please wait..."
-msgstr "Isključivanje. Molimo sačekajte..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
 
@@ -20091,9 +20289,6 @@ msgstr "Postavke Upravljača Softvera"
 msgid "Software MultiBoot"
 msgstr "Softver MultiBoot"
 
-msgid "Software Restore"
-msgstr "Vraćanje softvera u predhodno stanje"
-
 msgid "Software Update"
 msgstr "Ažuriranje Softvera"
 
@@ -20473,6 +20668,9 @@ msgstr "Statik"
 
 msgid "Static IP / Custom"
 msgstr "Statički IP / Prilagođen"
+
+msgid "Station"
+msgstr "Stanica"
 
 msgid "Status"
 msgstr "Status"
@@ -21284,9 +21482,6 @@ msgstr "Vaš %s %s nema Internet vezu."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "Vaš %s %s ima ograničen kapacitet memorije. Potrebna je swap datoteka za povećanje količine dostupne memorije, inače %s %s možda neće ispravno raditi. Odaberite ciljni uređaj za čuvanje swap datoteke."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "Vaš %s %s se isključuje. Molimo sačekajte..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Vaš %s %s čita pohranjene EPG podatke svakih odabranih nekoliko sati."
 
@@ -21395,6 +21590,14 @@ msgstr "PIN kod je uspješno spremljen."
 msgid "The PIN codes you entered are different."
 msgstr "PIN kodovi koje ste unijeli su različiti."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+"Nije se mogla ažurirati crna lista kernela za RTL2832:\n"
+"%s"
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21444,18 +21647,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Sigurnosno kopiranje može potrajati do oko 15 minuta."
-
-msgid "The backup failed"
-msgstr "Sigurnosna kopija nije uspjela"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Sigurnosna kopija nije uspjela! Odaberite drugu lokaciju sigurnosne kopije."
-
-msgid "The backup succeeded"
-msgstr "Sigurnosna kopija je uspjela"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Sigurnosna kopija je uspjela. Sada ćemo nastaviti objašnjavati postupak nadogradnje."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21534,6 +21725,15 @@ msgstr "Tuner za pozicioniranje trenutno nije dostupan. Zaustavite snimanja ili 
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Proces će trajati približno %d minuta."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+"Vraćanje je završeno. %s %s se treba ponovno pokrenuti.\n"
+"\n"
+"Molimo pritisnite OK za ponovno pokretanje %s %s."
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Rezultati su zapisani na %s."
@@ -21607,9 +21807,6 @@ msgstr "Korisničko sučelje vašeg %s %s bit će zaustavljeno kako bi se pokren
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Širina slike. Ulaz će se skalirati kako bi odgovarao ovoj vrijednosti."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Čarobnjak može sigurnosno kopirati vaše trenutne postavke. Želite li sada pokrenuti sigurnosno kopiranje?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21945,12 +22142,6 @@ msgstr "Ovo će ići brzo naprijed/natrag s vremenskim frames od x sekundi."
 msgid "This window will automatically close in %d seconds."
 msgstr "Ovaj će se prozor automatski zatvoriti za %d sekundi."
 
-msgid "This wizard has finished"
-msgstr "Ovaj čarobnjak je završio"
-
-msgid "This wizard has finished."
-msgstr "Ovaj čarobnjak je završio."
-
 msgid "Threshold"
 msgstr "Prag"
 
@@ -22106,6 +22297,12 @@ msgstr "Pauza"
 
 msgid "Timeout waiting for FIC service data"
 msgstr "Isteklo vrijeme čekanja na podatke FIC usluge"
+
+msgid "Timeout waiting for tuner lock"
+msgstr "Isteklo vrijeme čekanja na zaključavanje tunera"
+
+msgid "Timeout waiting for tuner or rotor"
+msgstr "Isteklo je vrijeme čekanja na tuner ili rotor"
 
 msgid "Timer Defaults And Retention"
 msgstr "Zadane postavke vremenskog tajmera i čuvanje"
@@ -22275,9 +22472,6 @@ msgstr "Prebacivanje načina višestrukog odabira"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Uključivanje umetanja novog teksta prije ili prebrisavanja postojećeg teksta"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr "Uključi odabir dijeljenja prema IP adresi ili DNS imenu"
 
 msgid "Toggle selection of the current tag"
 msgstr "Prebacivanje odabira trenutne oznake"
@@ -22563,6 +22757,12 @@ msgstr "Tuneri"
 msgid "Tuners, Scanning & Reception"
 msgstr "Tuneri, Skeniranje & Prijem"
 
+msgid "Tuning"
+msgstr "Podešavanje"
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr "Podešavanje DAB+ satelitskog signala..."
+
 msgid "Tuning algorithm"
 msgstr "Algoritam podešavanja"
 
@@ -22684,13 +22884,31 @@ msgstr "USB 2.0 (Pozadi, unutrašnji)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (Pozadi, spolja)"
 
+msgid "USB ID"
+msgstr "USB ID"
+
+msgid "USB and satellite"
+msgstr "USB i satelit"
+
+msgid "USB port"
+msgstr "USB priključak"
+
 #, python-format
 msgid "USB reader %d"
 msgstr "USB čitač %d"
 
+msgid "USB receiver only"
+msgstr "Samo USB prijamnik"
+
+msgid "USB receiver settings"
+msgstr "Postavke USB prijamnika"
+
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB utor %s%s"
+
+msgid "USB speed"
+msgstr "USB brzina"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB priključak GREŠKA! - već na USB"
@@ -22724,11 +22942,18 @@ msgstr "Nije moguće naslijediti korisnički pojas za LNB %d: LNB 1 %s."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nije moguće inicijalizirati Kexec MultiBoot!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr "Ne mogu otvoriti tuner (%d)"
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "Ne mogu registrirati DAB+ transponder"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Ne mogu pokrenuti DAB+ prijenos"
+
+msgid "Unable to tune the DAB+ satellite feed"
+msgstr "Ne mogu pronaći DAB+ satelitski signal"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -23007,6 +23232,9 @@ msgstr "Koristi DHCP"
 
 msgid "Use DNS cache"
 msgstr "Koristi DNS predmemoriju"
+
+msgid "Use DNS name"
+msgstr "Koristi DNS ime"
 
 msgid "Use DNS rotation"
 msgstr "Koristi DNS rotaciju"
@@ -23299,12 +23527,6 @@ msgstr "Ime korisnika"
 
 msgid "Username (httpuser)"
 msgstr "Ime korisnika (httpuser)"
-
-msgid "Using DNS"
-msgstr "Korištenje DNS"
-
-msgid "Using IP"
-msgstr "Korištenje IP"
 
 msgid "Using automatic address"
 msgstr "Korišćenje auto adrese"
@@ -23887,9 +24109,6 @@ msgstr ""
 "\n"
 "Zatim traži kraj, pritisni OK, izaberi opciju 'kraj isečka'. To je to."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Dobrodošli u čarobnjak za nadogradnju slike. Čarobnjak će vam pomoći u nadogradnji firmvera %s %s pružajući sigurnosnu kopiju za trenutne postavke i kratko objašnjenje kako nadograditi firmware."
-
 msgid "Welcome..."
 msgstr "Dobro došli..."
 
@@ -24178,9 +24397,6 @@ msgstr "Kada je crveni tuner ispravno vidljiv, pritisnite ZELENU tipku za sprema
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Kada je sustav podešen na uslugu, obično skenira predajnik radi promjena i sprema ih. Omogućite samo ako znate što radite."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Gdje želite napraviti sigurnosnu kopiju postavki?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Gdje želite spremiti privremene snimke vremenskih pomaka?"
 
@@ -24381,9 +24597,6 @@ msgstr "Da, i izbriši ovaj film"
 msgid "Yes, and don't ask again for this session"
 msgstr "Da, i ne pitaj ponovo za ovu sesiju"
 
-msgid "Yes, backup my settings!"
-msgstr "Da, napravi rezervnu kopiju mojih podešavanja!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Da, ali nemojte spremati timeshift kao film"
 
@@ -24408,8 +24621,8 @@ msgstr "Da, produži ručno skeniranje sada"
 msgid "Yes, don't ask again"
 msgstr "Da, ne pitaj ponovo"
 
-msgid "Yes, restore the settings now"
-msgstr "Da, vrati postavke u predhodno stanje sada"
+msgid "Yes, restore my settings now"
+msgstr "Da, vrati moje postavke sada"
 
 msgid "Yes, returning to movie list"
 msgstr "Da, povratak na popis filmova"
@@ -24419,9 +24632,6 @@ msgstr "Da, prikaži preglednik dodataka ako nije dostupan"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Da, prikaži tajmer snimanja ako nije dostupno"
-
-msgid "Yes, shut down now."
-msgstr "Da, ugasi sada."
 
 msgid "Yesterday"
 msgstr "Jučer"
@@ -24453,11 +24663,8 @@ msgstr "Možete preskočiti ovu funkciju i isključiti TV kada probudite prijemn
 msgid "You cannot delete this!"
 msgstr "Ovo ne možete izbrisati!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Odabrali ste sigurnosnu kopiju postavki. Pritisnite OK da biste odmah pokrenuli sigurnosno kopiranje."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Odabrali ste vraćanje postavki. Enigma2 će se ponovno pokrenuti nakon vraćanja. Pritisnite OK da biste odmah započeli vraćanje."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr "Odabrali ste vraćanje postavki. %s %s će se ponovno pokrenuti nakon vraćanja. Pritisnite OK za početak vraćanja sada."
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Vi ste izabrali da sačuvate trenutni timešift bafera"
@@ -24487,13 +24694,6 @@ msgstr "Uspio si skočiti na nevažeću stranicu. Prestani :-)"
 
 msgid "You must set at least one command!"
 msgstr "Morate postaviti barem jednu naredbu!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Potreban vam je PC povezan s vašim %s %s. Posjetite web stranicu https://www.hd-digital-satcrew.com/forum/ za daljnje upute.\n"
-"%s %s sada će biti zaustavljen. Nakon što izvršite upute za ažuriranje s web-mjesta, novi firmver će od vas tražiti da vratite postavke."
 
 msgid "You seem to be in time shift!"
 msgstr "Izgleda da ste u tajmšiftu!"
@@ -24961,6 +25161,9 @@ msgstr "zgrabite ovaj okvir kao bitmapu"
 msgid "green"
 msgstr "zelena"
 
+msgid "guest"
+msgstr "gost"
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -25405,6 +25608,134 @@ msgstr "da (zadrži fidove)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
+#~ msgstr "%d od %d feedova dovršeno; neuspjeli feed buketi su spremljeni"
+
+#~ msgid "A DAB+ scan cannot run while a recording is in progress."
+#~ msgstr "Skeniranje DAB+ ne može se pokrenuti dok se odvija snimanje."
+
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Želite li vodič za nadogradnju?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Želite li sada pokrenuti sigurnosno kopiranje?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Uređivanje izvornog URL nadogradnje"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Čarobnjak za Imidž"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Instaliraj novi imidž s USB stika"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Instaliraj novi imidž kroz web pregledač"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Nije potrebna rezervna kopija"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Ne, ne radi ništa."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Ne, samo pokreni moj %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, vodite me kroz postupak nadogradnje"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Izvršiti nadogradnju?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Pritisnite OK da bi pokrenuli pravljenje rezervne kopije"
+
+#~ msgid "Restarting saved Wi-Fi network..."
+#~ msgstr "Ponovno pokretanje spremljene Wi-Fi mreže..."
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Vratiti %s %s u predhodno stanje sa novim softverom."
+
+#~ msgid "Select Wi-Fi adapter"
+#~ msgstr "Odaberi Wi-Fi adapter"
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Odaberi izvornu lokaciju odakle želite da nabavite datoteku za nadogradnju."
+
+#~ msgid "Select update source location"
+#~ msgstr "Odaberi izvorne lokacije ažuriranja"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Isključivanje. Molimo sačekajte..."
+
+#~ msgid "Software Restore"
+#~ msgstr "Vraćanje softvera u predhodno stanje"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "Vaš %s %s se isključuje. Molimo sačekajte..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Sigurnosna kopija nije uspjela"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Sigurnosna kopija nije uspjela! Odaberite drugu lokaciju sigurnosne kopije."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Sigurnosna kopija je uspjela"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Sigurnosna kopija je uspjela. Sada ćemo nastaviti objašnjavati postupak nadogradnje."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Čarobnjak može sigurnosno kopirati vaše trenutne postavke. Želite li sada pokrenuti sigurnosno kopiranje?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Ovaj čarobnjak je završio"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Ovaj čarobnjak je završio."
+
+#~ msgid "Toggle picking a share by IP address or by DNS name"
+#~ msgstr "Uključi odabir dijeljenja prema IP adresi ili DNS imenu"
+
+#~ msgid "Using DNS"
+#~ msgstr "Korištenje DNS"
+
+#~ msgid "Using IP"
+#~ msgstr "Korištenje IP"
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Dobrodošli u čarobnjak za nadogradnju slike. Čarobnjak će vam pomoći u nadogradnji firmvera %s %s pružajući sigurnosnu kopiju za trenutne postavke i kratko objašnjenje kako nadograditi firmware."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Gdje želite napraviti sigurnosnu kopiju postavki?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Da, napravi rezervnu kopiju mojih podešavanja!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Da, vrati postavke u predhodno stanje sada"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Da, ugasi sada."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Odabrali ste sigurnosnu kopiju postavki. Pritisnite OK da biste odmah pokrenuli sigurnosno kopiranje."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Odabrali ste vraćanje postavki. Enigma2 će se ponovno pokrenuti nakon vraćanja. Pritisnite OK da biste odmah započeli vraćanje."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Potreban vam je PC povezan s vašim %s %s. Posjetite web stranicu https://www.hd-digital-satcrew.com/forum/ za daljnje upute.\n"
+#~ "%s %s sada će biti zaustavljen. Nakon što izvršite upute za ažuriranje s web-mjesta, novi firmver će od vas tražiti da vratite postavke."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Podesite postotak preskakanja za LIJEVO/DESNO dugme na traci za pretraživanje."
 
@@ -25499,8 +25830,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Prebacivanje C/T ulaza: vanjski 5V koaksijalni prekidač"
 
-#~ msgid "Common Settings"
-#~ msgstr "Modul Podešavanja"
+msgid "Common Settings"
+msgstr "Modul Podešavanja"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB-C i DVB-T/T2 dijele ovaj ulaz. Kada su oba omogućena, Enigma2 koristi 5V za upravljanje vanjskim koaksijalnim prekidačem."

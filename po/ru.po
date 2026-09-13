@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-08-17 05:14+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -949,7 +949,11 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
 msgstr ""
 
 #, python-format
@@ -1198,6 +1202,14 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Настройка"
 
@@ -1355,6 +1367,10 @@ msgstr ""
 
 #, python-format
 msgid "'%s' unmounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1618,11 +1634,11 @@ msgstr "< Журнал не найден >"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr ""
-
 msgid "A backup is now being created."
 msgstr "Сейчас создаётся резервная копия."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Разделённый запятыми список расширений, которые будут использоваться для настройки 'Моё расширение' 'Фильтровать расширение'. Введите имена расширений без ведущей точки (.)."
@@ -1930,6 +1946,10 @@ msgid "Adapter"
 msgstr ""
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr ""
 
@@ -2180,6 +2200,9 @@ msgstr "Настройте параметры цвета так, чтобы вс
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Установите позицию символов телетекста по горизонтали."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Установите позицию символов телетекста по вертикали."
 
@@ -2305,6 +2328,9 @@ msgstr "все события вверх"
 
 msgid "All files"
 msgstr "Все файлы"
+
+msgid "All regions"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Любое разрешение"
@@ -2483,6 +2509,9 @@ msgstr "Amlogic пульт"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Сумма %d / Успех %d / Неудача %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Предпринята попытка зафиксировать текущий статус ТВ. Если это невозможно из-за неправильных или отсутствующих сообщений о состоянии, это может привести к неожиданному ответу получателя. С другой стороны, старается лучше реагировать на разные условия эксплуатации."
@@ -2798,6 +2827,9 @@ msgstr "Аудио синхронизация"
 msgid "Audio Synchronization"
 msgstr ""
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Выбор языка аудио 1"
 
@@ -2911,6 +2943,9 @@ msgstr "Автоматический поиск"
 
 msgid "Automatic Service Searching"
 msgstr "Автоматический поиск каналов"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Авторазрешение экрана"
@@ -3251,6 +3286,17 @@ msgstr "Мигающий значок записи REC"
 
 msgid "Blinking REC symbol"
 msgstr "Мигающий значок записи"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Заблокировать устройство"
@@ -4489,6 +4535,9 @@ msgstr "Закрыть окно"
 msgid "Close network test"
 msgstr ""
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr "Закрыть экран"
 
@@ -4548,6 +4597,9 @@ msgstr "Скорость кодирования HP"
 
 msgid "Code rate LP"
 msgstr "Скорость кодирования LP"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Свернуть"
@@ -5432,6 +5484,9 @@ msgstr "Создать дамп информации об устройстве."
 msgid "Create kernel dump."
 msgstr "Создать дамп ядра."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Создать резервную копию образа для восстановления '%s'."
@@ -5702,7 +5757,36 @@ msgstr "D"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -5762,6 +5846,12 @@ msgstr ""
 
 msgid "DVB Subtitles PID & Language"
 msgstr "DVB Субтитры PID и язык"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "Прозрачность чёрного фона DVB субтитров"
@@ -6476,6 +6566,9 @@ msgstr "Подробности"
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr ""
 
@@ -6900,9 +6993,6 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr "Вы хотите изменить режим доступа '%s'?"
 
-msgid "Do you want the upgrade guide?"
-msgstr "Вам нужно руководство по обновлению?"
-
 msgid "Do you want to backup settings?"
 msgstr "Хотите сделать резервную копию настроек?"
 
@@ -6981,9 +7071,6 @@ msgstr "Хотите продолжить воспроизведение?"
 
 msgid "Do you want to select another service?"
 msgstr "Хотите выбрать другой сервис?"
-
-msgid "Do you want to start a backup now?"
-msgstr "Вы хотите начать резервное копирование сейчас?"
 
 msgid "Do you want to update:"
 msgstr "Вы хотите обновить:"
@@ -7142,6 +7229,9 @@ msgstr "Голландский / Фламандский"
 
 msgid "Dynamic contrast"
 msgstr "Динамическая контрастность"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr "Дзонгка"
@@ -7316,9 +7406,6 @@ msgstr "Редактировать таймер"
 msgid "Edit Title"
 msgstr "Изменить заголовок"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Изменить URL-адрес источника обновления"
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7343,8 +7430,14 @@ msgstr "Отредактировать порт сервера CCcam/NewCamd."
 msgid "Edit the NewCamd DES Key."
 msgstr "Отредактировать ключ NewCamd DES."
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
 msgstr "Изменить текущий выбранный таймер"
+
+msgid "Edit the feed URL:"
+msgstr ""
 
 msgid "Edit the password."
 msgstr "Отредактировать пароль."
@@ -7437,6 +7530,9 @@ msgstr "Редактировать букет"
 msgid "Enable Chkroot MultiBoot"
 msgstr "Включить Chkroot MultiBoot"
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Включить ТВ-гид EIT"
 
@@ -7508,6 +7604,9 @@ msgstr "Включить ТВ-гид ViaSat"
 
 msgid "Enable Virgin EPG"
 msgstr "Включить ТВ-гид Virgin"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7630,6 +7729,9 @@ msgstr "Включите этот параметр, чтобы добавить 
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Включите эту опцию, чтобы добавить дополнительные сведения о DVB в файл журнала отладки."
 
@@ -7674,6 +7776,9 @@ msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные отладки таймера в файл лога отладки."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Включите эту опцию, чтобы отобразить все доступные информационные экраны в списке пунктов меню 'Информация'."
@@ -7799,6 +7904,12 @@ msgstr "Ревизия Enigma2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
+msgstr ""
 
 msgid "Enter"
 msgstr "Ввод"
@@ -8594,6 +8705,9 @@ msgstr "FFmpeg проба"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg не установлен, поэтому действия с файлами '.mvi' недоступны!"
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9167,6 +9281,9 @@ msgstr "Частота"
 msgid "Frequency bands"
 msgstr "Частотные диапазоны"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr "Диапазон частот"
 
@@ -9256,6 +9373,9 @@ msgstr "Габон"
 
 msgid "Gaelic"
 msgstr "Гэльский"
+
+msgid "Gain steps"
+msgstr ""
 
 msgid "Galicia (Spain)"
 msgstr "Галисия (Испания)"
@@ -10245,9 +10365,6 @@ msgstr "Не удалось создать образ!"
 msgid "Image version"
 msgstr "Версия изображения"
 
-msgid "ImageWizard"
-msgstr "Мастер прошивок"
-
 msgid "Immediate shut down"
 msgstr "Немедленное выключение"
 
@@ -10303,6 +10420,9 @@ msgstr "Для записи по таймеру TV был переключён �
 msgid "In progress"
 msgstr "В процессе"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr "Недоступно"
 
@@ -10323,6 +10443,9 @@ msgstr "Включать AIT в записи"
 
 msgid "Include CI assignment"
 msgstr "Включить назначение CI"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr "Включить данные DVB"
@@ -10347,6 +10470,9 @@ msgstr "Включить данные мультизагрузки *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Включить SDT, BAT в потоки http"
+
+msgid "Include SEC/DiSEqC data"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Включить данные карты действий"
@@ -10382,6 +10508,9 @@ msgid "Include teletext details"
 msgstr "Включать подробности о телетексте"
 
 msgid "Include text encoding data"
+msgstr ""
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
 msgstr ""
 
 msgid "Include timer data"
@@ -10557,12 +10686,6 @@ msgstr "Установить плагин"
 msgid "Install Plugins"
 msgstr "Установить плагины"
 
-msgid "Install a new image with a USB stick"
-msgstr "Установить новый образ с USB-накопителя"
-
-msgid "Install a new image with your web browser"
-msgstr "Установить новый образ через веб-браузер"
-
 msgid "Install extensions"
 msgstr "Установить дополнения"
 
@@ -10689,9 +10812,6 @@ msgstr "Инвертировать"
 
 msgid "Inverts the button function."
 msgstr "Инвертирует функцию кнопки."
-
-msgid "Ipkg"
-msgstr "Ipkg "
 
 msgid "Iran, Islamic Republic of"
 msgstr "Иран, Исламская Республика"
@@ -10881,6 +11001,9 @@ msgstr "Кения"
 
 msgid "Kernel Packages"
 msgstr "Пакеты ядра"
+
+msgid "Kernel driver"
+msgstr ""
 
 msgid "Kernel file"
 msgstr "Файл ядра"
@@ -11204,6 +11327,9 @@ msgstr "Отдых, хобби"
 msgid "Lesotho"
 msgstr "Лесото"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "Увеличение в режиме ящика"
 
@@ -11240,6 +11366,9 @@ msgstr "Лимбурган / Лимбургер / Лимбургский"
 
 msgid "Lime"
 msgstr "цвет лайма"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr ""
 
 msgid "Limit character set for recording filenames"
 msgstr "Ограничить набор символов в именах записей"
@@ -11444,6 +11573,9 @@ msgstr "Местоположение: %s"
 msgid "Lock:"
 msgstr "Захват"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Лог"
 
@@ -11579,6 +11711,9 @@ msgstr "Потом"
 
 msgid "MOUSE"
 msgstr "МЫШЬ"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr "Загрузка MTD"
@@ -12448,6 +12583,9 @@ msgstr "Перемещение на восток..."
 msgid "Moving files"
 msgstr "Перемещение файлов"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Перемещение на позицию"
 
@@ -12996,9 +13134,6 @@ msgstr "Активного канала не найдено."
 msgid "No age block"
 msgstr "Возрастных ограничений нет"
 
-msgid "No backup needed"
-msgstr "Резервная копия не нужна"
-
 msgid "No cable tuner found!"
 msgstr "Тюнер DVB-C не найден!"
 
@@ -13013,6 +13148,9 @@ msgstr "Нет канала"
 
 msgid "No channel list"
 msgstr "Список каналов отсутствует"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13165,6 +13303,9 @@ msgstr "Обновлений не требуется!"
 msgid "No updates available."
 msgstr "Нет доступных обновлений."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13181,14 +13322,11 @@ msgstr "Не найдено действительной информации о
 msgid "No, but restart from begin"
 msgstr "Нет, но начать сначала"
 
-msgid "No, do nothing."
-msgstr "Нет, ничего не делать."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Нет, не прошивать этот образ"
-
-msgid "No, just start my %s %s"
-msgstr "Нет, только запустить %s %s"
 
 msgid "No, never"
 msgstr "Нет, никогда"
@@ -13413,9 +13551,6 @@ msgstr "Кнопка OK"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, подсказывать мне в процессе обновления"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14006,6 +14141,12 @@ msgstr "Пакет"
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Управление пакетами"
 
@@ -14192,9 +14333,6 @@ msgstr "Прогресс-бар справа"
 
 msgid "Perform an on-line flash instead"
 msgstr "Вместо этого выполните онлайн-прошивку"
-
-msgid "Perform the upgrade?"
-msgstr "Выполнить обновление?"
 
 msgid "Performing arts"
 msgstr "Исполнительское искусство"
@@ -14765,6 +14903,9 @@ msgstr "Португальский"
 msgid "Position"
 msgstr "Позиция"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Позиции выполненных таймеров в таймер-листе"
 
@@ -14966,9 +15107,6 @@ msgstr "Нажмите ОК для выбора спутников"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Нажмите ОК, чтобы выбрать/отменить CAID."
 
-msgid "Press OK to start the backup now"
-msgstr "Нажмите OK, чтобы начать резервное копирование сейчас"
-
 msgid "Press OK to start the scan"
 msgstr "Нажмите OK для начала поиска"
 
@@ -15091,6 +15229,9 @@ msgstr "Обработка данных"
 msgid "Processor information"
 msgstr "Процессор"
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Профиль"
 
@@ -15103,6 +15244,9 @@ msgstr "Программа"
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Для выполнения этого действия необходимо установить программу '%s'. Вы хотите установить пакет '%s' для установки программы?"
+
+msgid "Program type"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Изменения списка каналов"
@@ -15181,6 +15325,9 @@ msgstr "Ограничить доступ к меню режима ожидан�
 
 msgid "Protect timer menu"
 msgstr "Ограничить доступ к меню таймера"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Протокол"
@@ -15359,10 +15506,22 @@ msgstr "Красная, долгая"
 msgid "RF Output Settings"
 msgstr "ВЧ выход"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr ""
 
 msgid "RGB clamp (upper)"
+msgstr ""
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
 msgstr ""
 
 msgid "Racing"
@@ -15413,6 +15572,9 @@ msgstr "Чтение/Запись"
 
 msgid "Reader"
 msgstr "Ридер"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15504,6 +15666,9 @@ msgstr "Ресивер или драйвер не поддерживает 4X Pi
 msgid "Receiver information for %s %s"
 msgstr "Сведения о ресивере %s %s"
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr "Имя ресивера"
 
@@ -15512,6 +15677,12 @@ msgstr "Вид списка"
 
 msgid "Reception Settings"
 msgstr "Параметры приёма"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Параметры записей"
@@ -15683,6 +15854,9 @@ msgstr ""
 
 msgid "Refresh every"
 msgstr "Интервал обновления (час)"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Частота обновления"
@@ -16034,6 +16208,9 @@ msgstr ""
 "Замените все теги '%s' на:\n"
 "(ПРИМЕЧАНИЕ: 'Отмена' не может отменить это!)"
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Аутентификация для HTTP потоков"
 
@@ -16168,7 +16345,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16204,11 +16381,11 @@ msgstr "Восстановить выделенный слот"
 msgid "Restore your %s %s settings."
 msgstr "Восстановить настройки %s %s."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "Восстановить свой %s %s с новой прошивкой."
-
 msgid "Restore your backups by date."
 msgstr "Восстановление резервных копий по дате."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Восстановление настроек из копии. После восстановления ресивер будет перезагружен для активации новых настроек"
@@ -16569,6 +16746,9 @@ msgstr "Сб-Вс"
 msgid "Satellite"
 msgstr "Спутник"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Настройки спутникового оборудования"
 
@@ -16577,6 +16757,12 @@ msgstr "Режим настройки спутника"
 
 msgid "Satellite equipment setup"
 msgstr "Настройки спутникового оборудования"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Спутники"
@@ -16745,6 +16931,12 @@ msgstr "Найти локальные расширения и установит
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Сканирование наземных LCN и создание букетов LCN"
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr ""
 
 msgid "Scanning"
 msgstr "Сканирование"
@@ -17323,7 +17515,7 @@ msgstr "Выбор источника обновления"
 msgid "Select Upgrade Source To Edit"
 msgstr "Выбор источника для редактирования"
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17618,6 +17810,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -17976,9 +18171,6 @@ msgstr "Выберите порядок сортировки пунктов ме
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню. Определяемый пользователем также позволяет скрывать пункты меню."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Выберите исходное расположение, откуда можно получить файлы обновления."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18045,8 +18237,8 @@ msgstr "Выберите видеорежим, который будет исп�
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
-msgstr "Выберите расположение источника обновления"
+msgid "Select tuner"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Выберите видеорежим"
@@ -18131,6 +18323,9 @@ msgstr "Следует ли многоканальные звуковые дор
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Нужно ли показывать значок во время движении антенны с мотоподвесом."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
@@ -18242,6 +18437,9 @@ msgstr "Сербский"
 
 msgid "Serial No"
 msgstr "Сериал номер"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "Классическая музыка"
@@ -18944,6 +19142,9 @@ msgstr "Показывать сообщения CI"
 msgid "Show Capabilities"
 msgstr ""
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Файлы для копирования"
 
@@ -19619,9 +19820,6 @@ msgstr "Выключить"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr "Выключение. Пожалуйста, подождите..."
-
 msgid "Sichuan Yi / Nuosu"
 msgstr "Сычуань И / Нуосу"
 
@@ -20056,9 +20254,6 @@ msgstr "Настройки менеджера ПО"
 msgid "Software MultiBoot"
 msgstr "Мультизагрузка ПО"
 
-msgid "Software Restore"
-msgstr "Восстановление ПО"
-
 msgid "Software Update"
 msgstr "Обновление ПО"
 
@@ -20438,6 +20633,9 @@ msgstr ""
 
 msgid "Static IP / Custom"
 msgstr "Статический IP/Пользовательский"
+
+msgid "Station"
+msgstr ""
 
 msgid "Status"
 msgstr "Состояние"
@@ -21249,9 +21447,6 @@ msgstr "%s %s не имеет подключения к Интернету."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr "%s %s имеет ограниченный объём памяти. Файл подкачки необходим для увеличения объёма доступной памяти, иначе %s %s может работать неправильно. Выберите целевое устройство для хранения файла подкачки."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "%s %s завершает работу. Пожалуйста, подождите..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Ваш %s %s считывает данные ТВ-гида каждые (часов)."
 
@@ -21360,6 +21555,12 @@ msgstr "ПИН-код успешно сохранен."
 msgid "The PIN codes you entered are different."
 msgstr "Пин-коды, введённые Вами разные."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21409,18 +21610,6 @@ msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Резервное копирование может занять до 15 минут."
-
-msgid "The backup failed"
-msgstr "Резервное копирование не удалось"
-
-msgid "The backup failed! Choose a different backup location."
-msgstr "Резервная копия не удалась! Выберите другое место для резервного копирования."
-
-msgid "The backup succeeded"
-msgstr "Резервное копирование выполнено успешно"
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Резервное копирование удалось. Теперь мы продолжим объяснять процесс обновления."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21499,6 +21688,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Процесс займёт приблизительно %d минут."
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Результаты записаны в %s."
@@ -21572,9 +21767,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Ширина рисунка. Вход будет масштабирован, чтобы соответствовать этому значению."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr "Мастер может сделать резервную копию ваших текущих настроек. Хотите начать резервное копирование сейчас?"
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -21910,12 +22102,6 @@ msgstr "Перематывать вперёд/назад фиксированн�
 msgid "This window will automatically close in %d seconds."
 msgstr "Это окно автоматически закроется через %d секунд."
 
-msgid "This wizard has finished"
-msgstr "Этот мастер завершил работу"
-
-msgid "This wizard has finished."
-msgstr "Этот мастер завершил работу."
-
 msgid "Threshold"
 msgstr "Гетеродин"
 
@@ -22070,6 +22256,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22240,9 +22432,6 @@ msgstr "Переключить режим множественного выбо�
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Переключение нового текста вставляется перед существующим или перезаписывает его"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr "Переключить выделение текущего тега"
@@ -22528,6 +22717,12 @@ msgstr "Тюнеры"
 msgid "Tuners, Scanning & Reception"
 msgstr "Тюнеры, поиск каналов и приём"
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Алгоритм настройки"
 
@@ -22649,13 +22844,31 @@ msgstr "USB 2.0 (сзади, внутри)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (сзади, снаружи)"
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
+msgstr ""
+
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
 msgstr ""
 
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB-слот %s%s"
+
+msgid "USB speed"
+msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ОШИБКА USB-переключателя! - уже на USB"
@@ -22689,10 +22902,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Не удалось инициализировать Kexec MultiBoot!"
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -22971,6 +23191,9 @@ msgid "Use DHCP"
 msgstr "Использовать DHCP"
 
 msgid "Use DNS cache"
+msgstr ""
+
+msgid "Use DNS name"
 msgstr ""
 
 msgid "Use DNS rotation"
@@ -23264,12 +23487,6 @@ msgstr "Имя пользователя"
 
 msgid "Username (httpuser)"
 msgstr "Имя пользователя (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr "Использование автоматического адреса"
@@ -23852,9 +24069,6 @@ msgstr ""
 "\n"
 "Затем перемотайте к концу, нажмите OK, выберите 'Конец вырезаемого фрагмента'. Готово."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr "Добро пожаловать в мастер обновления. Мастер поможет обновить прошивку %s %s и предлагает функцию резервного копирования текущих настроек и краткое объяснение того, как обновить прошивку."
-
 msgid "Welcome..."
 msgstr "Добро пожаловать..."
 
@@ -24143,9 +24357,6 @@ msgstr "Когда красная рамка будет надлежащим о�
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Обычно во время приема канала система в фоновом режиме сканирует текущий транспондер на предмет изменений и сохраняет их. Выберите 'Да' только если абсолютно уверены в том, что делаете."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Где вы хотите сохранить резервную копию своих настроек?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Куда сохранить временные файлы отложенного просмотра?"
 
@@ -24346,9 +24557,6 @@ msgstr "Да, и удалить эту запись"
 msgid "Yes, and don't ask again for this session"
 msgstr "Да, и больше не спрашивать в этом сеансе"
 
-msgid "Yes, backup my settings!"
-msgstr "Да, сохранить мои настройки!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Да, но не сохранять таймшифт как фильм"
 
@@ -24373,8 +24581,8 @@ msgstr "Да, продолжить ручной поиск"
 msgid "Yes, don't ask again"
 msgstr "Да, больше не спрашивать"
 
-msgid "Yes, restore the settings now"
-msgstr "Да, восстановить настройки сейчас"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Да, вернуться к списку записей"
@@ -24384,9 +24592,6 @@ msgstr "Да, иначе показывать браузер плагинов"
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Да, иначе показывать список таймеров"
-
-msgid "Yes, shut down now."
-msgstr "Да, выключить сейчас."
 
 msgid "Yesterday"
 msgstr "Вчера"
@@ -24418,11 +24623,8 @@ msgstr "Вы можете пропустить эту функцию и выкл
 msgid "You cannot delete this!"
 msgstr "Не можете удалит это!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr "Вы выбрали резервное копирование настроек. Нажмите OK, чтобы начать резервное копирование сейчас."
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
-msgstr "Вы выбрали восстановление настроек. Enigma2 перезапустится после восстановления. Нажмите OK, чтобы начать восстановление сейчас."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Вы выбрали текущий таймшифт для сохранения"
@@ -24452,13 +24654,6 @@ msgstr ""
 
 msgid "You must set at least one command!"
 msgstr "Вы должны установить хотя бы одну команду!"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
-msgstr ""
-"Необходим компьютер, подключенный к вашему %s %s. Посетите веб-сайт https://www.opena.tv/ для получения дальнейших инструкций.\n"
-"%s %s будет сейчас остановлен. После выполнения инструкций с сайта по обновлению новая прошивка предложит вам восстановить настройки."
 
 msgid "You seem to be in time shift!"
 msgstr "Сначала завершите таймшифт!"
@@ -24926,6 +25121,9 @@ msgstr "захват кадра в растровое изображение"
 msgid "green"
 msgstr "Зелёный"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "ч:мм"
 
@@ -25370,6 +25568,112 @@ msgstr "Да (оставить фиды)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Do you want the upgrade guide?"
+#~ msgstr "Вам нужно руководство по обновлению?"
+
+#~ msgid "Do you want to start a backup now?"
+#~ msgstr "Вы хотите начать резервное копирование сейчас?"
+
+#~ msgid "Edit Upgrade Source URL"
+#~ msgstr "Изменить URL-адрес источника обновления"
+
+#~ msgid "ImageWizard"
+#~ msgstr "Мастер прошивок"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Установить новый образ с USB-накопителя"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Установить новый образ через веб-браузер"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg "
+
+#~ msgid "No backup needed"
+#~ msgstr "Резервная копия не нужна"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Нет, ничего не делать."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Нет, только запустить %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, подсказывать мне в процессе обновления"
+
+#~ msgid "Perform the upgrade?"
+#~ msgstr "Выполнить обновление?"
+
+#~ msgid "Press OK to start the backup now"
+#~ msgstr "Нажмите OK, чтобы начать резервное копирование сейчас"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "Восстановить свой %s %s с новой прошивкой."
+
+#~ msgid "Select the source location from where to obtain the upgrade files."
+#~ msgstr "Выберите исходное расположение, откуда можно получить файлы обновления."
+
+#~ msgid "Select update source location"
+#~ msgstr "Выберите расположение источника обновления"
+
+#~ msgid "Shutting down. Please wait..."
+#~ msgstr "Выключение. Пожалуйста, подождите..."
+
+#~ msgid "Software Restore"
+#~ msgstr "Восстановление ПО"
+
+#~ msgid "The %s %s is shutting down. Please wait..."
+#~ msgstr "%s %s завершает работу. Пожалуйста, подождите..."
+
+#~ msgid "The backup failed"
+#~ msgstr "Резервное копирование не удалось"
+
+#~ msgid "The backup failed! Choose a different backup location."
+#~ msgstr "Резервная копия не удалась! Выберите другое место для резервного копирования."
+
+#~ msgid "The backup succeeded"
+#~ msgstr "Резервное копирование выполнено успешно"
+
+#~ msgid "The backup succeeded. We will now continue to explain the upgrade process."
+#~ msgstr "Резервное копирование удалось. Теперь мы продолжим объяснять процесс обновления."
+
+#~ msgid "The wizard can backup your current settings. Do you want to start a backup now?"
+#~ msgstr "Мастер может сделать резервную копию ваших текущих настроек. Хотите начать резервное копирование сейчас?"
+
+#~ msgid "This wizard has finished"
+#~ msgstr "Этот мастер завершил работу"
+
+#~ msgid "This wizard has finished."
+#~ msgstr "Этот мастер завершил работу."
+
+#~ msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
+#~ msgstr "Добро пожаловать в мастер обновления. Мастер поможет обновить прошивку %s %s и предлагает функцию резервного копирования текущих настроек и краткое объяснение того, как обновить прошивку."
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Где вы хотите сохранить резервную копию своих настроек?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Да, сохранить мои настройки!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Да, восстановить настройки сейчас"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Да, выключить сейчас."
+
+#~ msgid "You have chosen to backup your settings. Press OK to start the backup now."
+#~ msgstr "Вы выбрали резервное копирование настроек. Нажмите OK, чтобы начать резервное копирование сейчас."
+
+#~ msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+#~ msgstr "Вы выбрали восстановление настроек. Enigma2 перезапустится после восстановления. Нажмите OK, чтобы начать восстановление сейчас."
+
+#~ msgid ""
+#~ "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
+#~ "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+#~ msgstr ""
+#~ "Необходим компьютер, подключенный к вашему %s %s. Посетите веб-сайт https://www.opena.tv/ для получения дальнейших инструкций.\n"
+#~ "%s %s будет сейчас остановлен. После выполнения инструкций с сайта по обновлению новая прошивка предложит вам восстановить настройки."
+
 #~ msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 #~ msgstr "Установите процент пропуска кнопок ВЛЕВО/ВПРАВО для полосы прокрутки."
 
@@ -25424,8 +25728,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "Проигрыватель DVD"
 
-#~ msgid "Common Settings"
-#~ msgstr "Общие настройки"
+msgid "Common Settings"
+msgstr "Общие настройки"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

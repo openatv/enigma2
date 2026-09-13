@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 07:06+0000\n"
+"POT-Creation-Date: 2026-09-12 12:46+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -956,7 +956,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr ""
+
+#, python-format
+msgid "%d of %d feeds completed"
 msgstr ""
 
 #, python-format
@@ -1193,6 +1197,14 @@ msgid "%s %sB"
 msgstr ""
 
 #, python-format
+msgid "%s (cached)"
+msgstr ""
+
+#, python-format
+msgid "%s (motor)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - beállítás"
 
@@ -1350,6 +1362,10 @@ msgstr ""
 
 #, python-format
 msgid "'%s' unmounted."
+msgstr ""
+
+#, python-format
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
@@ -1616,10 +1632,10 @@ msgstr ""
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
+msgid "A backup is now being created."
 msgstr ""
 
-msgid "A backup is now being created."
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
 msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
@@ -1935,6 +1951,10 @@ msgid "Adapter"
 msgstr ""
 
 #, python-format
+msgid "Adapter '%s'"
+msgstr ""
+
+#, python-format
 msgid "Adapter '%s' Context Menu"
 msgstr ""
 
@@ -2185,6 +2205,9 @@ msgstr "Állítsa be úgy a színeket, hogy a színcsíkok megkülönböztethet�
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Állítsa be a használt teletext betűinek vízszintes pozícióját."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr ""
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Állítsa be a használt teletext betűinek függőleges pozícióját."
 
@@ -2310,6 +2333,9 @@ msgid "All events up"
 msgstr "minden esemény fel"
 
 msgid "All files"
+msgstr ""
+
+msgid "All regions"
 msgstr ""
 
 msgid "All resolutions"
@@ -2489,6 +2515,9 @@ msgstr "Amlogic távvezérlő"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
 msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
@@ -2808,6 +2837,9 @@ msgstr "Audió Sync"
 msgid "Audio Synchronization"
 msgstr ""
 
+msgid "Audio bit rate"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Elsődleges előnyben részesített hangsáv"
 
@@ -2921,6 +2953,9 @@ msgstr "Automatikus keresés"
 
 msgid "Automatic Service Searching"
 msgstr "Automatikus csatornakeresés"
+
+msgid "Automatic gain"
+msgstr ""
 
 msgid "Automatic resolution"
 msgstr "Automatikus felbontás"
@@ -3265,6 +3300,17 @@ msgstr "Villogó REC szimbólum"
 
 msgid "Blinking REC symbol"
 msgstr "Villogó REC szimbólum"
+
+#, python-format
+msgid "Block %s"
+msgstr ""
+
+#, python-format
+msgid "Block %s - %.3f MHz"
+msgstr ""
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr ""
 
 msgid "Block device"
 msgstr "Eszköz letiltása"
@@ -4496,6 +4542,9 @@ msgstr "Párbeszédpanel bezárása"
 msgid "Close network test"
 msgstr ""
 
+msgid "Close network test and exit all menus"
+msgstr ""
+
 msgid "Close screen"
 msgstr ""
 
@@ -4555,6 +4604,9 @@ msgstr "HP kódarány"
 
 msgid "Code rate LP"
 msgstr "LP kódarány"
+
+msgid "Codec"
+msgstr ""
 
 msgid "Collapse"
 msgstr "Becsukás"
@@ -4646,6 +4698,9 @@ msgstr ""
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Indításkori művelet"
+
+msgid "Common settings"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comore-szigetek"
@@ -5443,6 +5498,9 @@ msgstr ""
 msgid "Create kernel dump."
 msgstr ""
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr ""
@@ -5713,7 +5771,36 @@ msgstr "SD"
 msgid "DAB+ Scan"
 msgstr ""
 
+msgid "DAB+ Settings"
+msgstr ""
+
+msgid "DAB+ Settings Actions"
+msgstr ""
+
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr ""
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr ""
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr ""
+
+msgid "DAB+ channel"
+msgstr ""
+
+#, python-format
+msgid "DAB+ channel %s"
+msgstr ""
+
+msgid "DAB+ decoder back end not installed"
+msgstr ""
+
 msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr ""
+
+#, python-format
+msgid "DAB+ service information for '%s'"
 msgstr ""
 
 msgid "DAC"
@@ -5774,6 +5861,12 @@ msgstr ""
 #, fuzzy
 msgid "DVB Subtitles PID & Language"
 msgstr "Felirat hosszan"
+
+msgid "DVB frontend"
+msgstr ""
+
+msgid "DVB payload PID"
+msgstr ""
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB felirat fekete-áttetszőssége"
@@ -6497,6 +6590,9 @@ msgstr ""
 msgid "Detect positioner movement by its current consumption."
 msgstr ""
 
+msgid "Detected USB hardware"
+msgstr ""
+
 msgid "Detective"
 msgstr ""
 
@@ -6916,9 +7012,6 @@ msgstr ""
 msgid "Do you want change '%s' access mode?"
 msgstr ""
 
-msgid "Do you want the upgrade guide?"
-msgstr ""
-
 msgid "Do you want to backup settings?"
 msgstr ""
 
@@ -6996,9 +7089,6 @@ msgid "Do you want to resume this playback?"
 msgstr "Szeretné folytatni ezt a lejátszást?"
 
 msgid "Do you want to select another service?"
-msgstr ""
-
-msgid "Do you want to start a backup now?"
 msgstr ""
 
 msgid "Do you want to update:"
@@ -7157,6 +7247,9 @@ msgstr ""
 
 msgid "Dynamic contrast"
 msgstr "Dinamikus kontraszt"
+
+msgid "Dynamic label"
+msgstr ""
 
 msgid "Dzongkha"
 msgstr ""
@@ -7332,9 +7425,6 @@ msgstr "Időzítő módosítása"
 msgid "Edit Title"
 msgstr "Cím szerkesztése"
 
-msgid "Edit Upgrade Source URL"
-msgstr ""
-
 msgid "Edit Username/Password Credentials"
 msgstr ""
 
@@ -7359,7 +7449,13 @@ msgstr ""
 msgid "Edit the NewCamd DES Key."
 msgstr ""
 
+msgid "Edit the currently highlighted feed"
+msgstr ""
+
 msgid "Edit the currently selected timer"
+msgstr ""
+
+msgid "Edit the feed URL:"
 msgstr ""
 
 msgid "Edit the password."
@@ -7453,6 +7549,9 @@ msgstr "csatornacsomag szerkesztés engedélyezése"
 msgid "Enable Chkroot MultiBoot"
 msgstr ""
 
+msgid "Enable DAB+ mode"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "EIT EPG engedélyezése"
 
@@ -7524,6 +7623,9 @@ msgstr "ViaSat EPG engedélyezése"
 
 msgid "Enable Virgin EPG"
 msgstr "Virgin EPG engedélyezése"
+
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr ""
 
 msgid "Enable adapter"
 msgstr ""
@@ -7646,6 +7748,9 @@ msgstr ""
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
 
@@ -7689,6 +7794,9 @@ msgid "Enable this option to add text encoding information to the debug log file
 msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
@@ -7812,6 +7920,12 @@ msgid "Enigma2 revision"
 msgstr ""
 
 msgid "Enigmalight"
+msgstr ""
+
+msgid "Ensemble"
+msgstr ""
+
+msgid "Ensemble ID (EID)"
 msgstr ""
 
 msgid "Enter"
@@ -8604,6 +8718,9 @@ msgstr ""
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
+msgid "FIC quality"
+msgstr ""
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9183,6 +9300,9 @@ msgstr "Frekvencia"
 msgid "Frequency bands"
 msgstr "Frekvencia sávok"
 
+msgid "Frequency correction offset"
+msgstr ""
+
 msgid "Frequency range"
 msgstr ""
 
@@ -9272,6 +9392,9 @@ msgid "Gabon"
 msgstr "Gabon"
 
 msgid "Gaelic"
+msgstr ""
+
+msgid "Gain steps"
 msgstr ""
 
 msgid "Galicia (Spain)"
@@ -10269,9 +10392,6 @@ msgstr ""
 msgid "Image version"
 msgstr ""
 
-msgid "ImageWizard"
-msgstr "ImageWizard"
-
 msgid "Immediate shut down"
 msgstr "Azonnali kikapcsolás"
 
@@ -10328,6 +10448,9 @@ msgstr ""
 msgid "In progress"
 msgstr "Folyamatban"
 
+msgid "In use by DAB+"
+msgstr ""
+
 msgid "Inaccessible"
 msgstr ""
 
@@ -10348,6 +10471,9 @@ msgstr "A felvételek tartalmazzák az AIT"
 
 msgid "Include CI assignment"
 msgstr "Tartalmazza a CI hozzárendelést"
+
+msgid "Include DAB+ data"
+msgstr ""
 
 msgid "Include DVB details"
 msgstr ""
@@ -10371,6 +10497,9 @@ msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT and BAT in http streams"
+msgstr ""
+
+msgid "Include SEC/DiSEqC data"
 msgstr ""
 
 #, fuzzy
@@ -10410,6 +10539,9 @@ msgid "Include teletext details"
 msgstr ""
 
 msgid "Include text encoding data"
+msgstr ""
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
 msgstr ""
 
 msgid "Include timer data"
@@ -10585,12 +10717,6 @@ msgstr ""
 msgid "Install Plugins"
 msgstr "Bővítméynek telepítése"
 
-msgid "Install a new image with a USB stick"
-msgstr "Új image telepítése USB meghajtóról"
-
-msgid "Install a new image with your web browser"
-msgstr "Új image telepítése webes felületről"
-
 msgid "Install extensions"
 msgstr "Bővítmények telepítése"
 
@@ -10718,9 +10844,6 @@ msgstr "Invertálás"
 
 msgid "Inverts the button function."
 msgstr "A gomb funkciók megcserélése."
-
-msgid "Ipkg"
-msgstr "Ipkg"
 
 #, fuzzy
 msgid "Iran, Islamic Republic of"
@@ -10912,6 +11035,9 @@ msgid "Kenya"
 msgstr "Kenya"
 
 msgid "Kernel Packages"
+msgstr ""
+
+msgid "Kernel driver"
 msgstr ""
 
 msgid "Kernel file"
@@ -11243,6 +11369,9 @@ msgstr "Pihenés/Hobby"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr ""
+
 msgid "LetterBox zoom"
 msgstr "Letterbox nagyítás"
 
@@ -11278,6 +11407,9 @@ msgid "Limburgan / Limburger / Limburgish"
 msgstr ""
 
 msgid "Lime"
+msgstr ""
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
 msgstr ""
 
 msgid "Limit character set for recording filenames"
@@ -11486,6 +11618,9 @@ msgstr ""
 msgid "Lock:"
 msgstr "Hangolás:"
 
+msgid "Locked"
+msgstr ""
+
 msgid "Log"
 msgstr "Napló"
 
@@ -11622,6 +11757,9 @@ msgstr "MÉG"
 
 msgid "MOUSE"
 msgstr "EGÉR"
+
+msgid "MSC audio frame quality"
+msgstr ""
 
 msgid "MTD boot"
 msgstr ""
@@ -12523,6 +12661,9 @@ msgstr "Mozgatás kelet felé..."
 msgid "Moving files"
 msgstr "Fájlok mozgatása"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Moving to position"
 msgstr "Mozgatás ebbe a pozícióba"
 
@@ -13075,9 +13216,6 @@ msgstr "Nem található aktív csatorna."
 msgid "No age block"
 msgstr "Nincs korhatár"
 
-msgid "No backup needed"
-msgstr "Nincs mentésre szükség"
-
 msgid "No cable tuner found!"
 msgstr "Nem található kábeltuner!"
 
@@ -13092,6 +13230,9 @@ msgstr "Nincs csatorna"
 
 msgid "No channel list"
 msgstr "nincs csatornalista"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -13243,6 +13384,9 @@ msgstr "Nincs elérhető frissítés!"
 msgid "No updates available."
 msgstr ""
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr ""
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
@@ -13259,14 +13403,11 @@ msgstr "Nem található érvényes régiórészlet"
 msgid "No, but restart from begin"
 msgstr "Nem, de indítsa elölröl"
 
-msgid "No, do nothing."
-msgstr "Nem, ne csináljon semmit."
+msgid "No, continue with the setup"
+msgstr ""
 
 msgid "No, don't flash this image"
 msgstr "Ne Flash-eljen egy lemezképet"
-
-msgid "No, just start my %s %s"
-msgstr "Nem, csak indítsa el %s %s"
 
 msgid "No, never"
 msgstr "Nem, soha"
@@ -13495,9 +13636,6 @@ msgstr "OK gomb mód"
 
 msgid "OK checks the currently tuned transponder."
 msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, vezessen végig a frissítési folyamaton"
 
 msgid "ONID"
 msgstr "ONID"
@@ -14107,6 +14245,12 @@ msgstr ""
 msgid "Package Categories"
 msgstr ""
 
+msgid "Package Feed Editor"
+msgstr ""
+
+msgid "Package Feed Editor Actions"
+msgstr ""
+
 msgid "Package Manager"
 msgstr "Csomagkezelés"
 
@@ -14293,9 +14437,6 @@ msgid "Percentage/Progress bar right"
 msgstr "Százalék/folyamatjelző sáv jobbra"
 
 msgid "Perform an on-line flash instead"
-msgstr ""
-
-msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Performing arts"
@@ -14863,6 +15004,9 @@ msgstr "Portugál"
 msgid "Position"
 msgstr ""
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Befejezett időzítések pozíciója az Időzítések listájában"
 
@@ -15066,9 +15210,6 @@ msgstr "Nyomja le az OK gombot a műholdak kiválasztásához"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Nyomja le az OK gombot a CAId ki/bejelöléséhez."
 
-msgid "Press OK to start the backup now"
-msgstr ""
-
 msgid "Press OK to start the scan"
 msgstr "Az OK gombbal indíthatja a keresést"
 
@@ -15191,6 +15332,9 @@ msgstr ""
 msgid "Processor information"
 msgstr ""
 
+msgid "Product"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -15202,6 +15346,9 @@ msgstr "Program"
 
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
+msgstr ""
+
+msgid "Program type"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15281,6 +15428,9 @@ msgstr "Készenléti menü védelme"
 
 msgid "Protect timer menu"
 msgstr "Időzítő menü védelme"
+
+msgid "Protection"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -15461,10 +15611,22 @@ msgstr "Piros hosszan"
 msgid "RF Output Settings"
 msgstr "RF kimenet"
 
+msgid "RF SNR"
+msgstr ""
+
+msgid "RF gain"
+msgstr ""
+
 msgid "RGB clamp (lower)"
 msgstr ""
 
 msgid "RGB clamp (upper)"
+msgstr ""
+
+msgid "RTL-SDR USB tuner"
+msgstr ""
+
+msgid "RTL-SDR tuner"
 msgstr ""
 
 msgid "Racing"
@@ -15515,6 +15677,9 @@ msgstr ""
 
 msgid "Reader"
 msgstr "Olvasó"
+
+msgid "Ready"
+msgstr ""
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -15606,6 +15771,9 @@ msgstr "A készülék vagy a illesztőprogram nem támogatja a Quad Kép-a-Képb
 msgid "Receiver information for %s %s"
 msgstr ""
 
+msgid "Receiver lock"
+msgstr ""
+
 msgid "Receiver name"
 msgstr ""
 
@@ -15614,6 +15782,12 @@ msgstr "Vételi listák"
 
 msgid "Reception Settings"
 msgstr "Vételi beállítások"
+
+msgid "Reception source"
+msgstr ""
+
+msgid "Reception sources to scan"
+msgstr ""
 
 msgid "Record"
 msgstr "Felvétel"
@@ -15785,6 +15959,9 @@ msgstr ""
 
 msgid "Refresh every"
 msgstr "Ennyi óránként frissít mindent"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Képernyő-frissítés"
@@ -16134,6 +16311,9 @@ msgid ""
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
 
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Azonosítás megkövetelése HTTP streamek esetén"
 
@@ -16268,7 +16448,7 @@ msgstr ""
 msgid "Restarting adapter..."
 msgstr ""
 
-msgid "Restarting saved Wi-Fi network..."
+msgid "Restarting network..."
 msgstr ""
 
 msgid "Restarting..."
@@ -16304,11 +16484,11 @@ msgstr ""
 msgid "Restore your %s %s settings."
 msgstr "A(z) %s %s készülék beállításainak visszaállítása."
 
-msgid "Restore your %s %s with a new firmware."
-msgstr "A(z) %s %s készülék visszaállítása egy új firmware-el."
-
 msgid "Restore your backups by date."
 msgstr "Visszaállítás dátum szerint."
+
+msgid "Restore your previous settings?"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Állítsd vissza a beállításaidat a mentésből. Visszaállítás után a készülék újraindul az új beállítások érvényesítése miatt"
@@ -16675,6 +16855,9 @@ msgstr ""
 msgid "Satellite"
 msgstr "Műhold"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr ""
+
 msgid "Satellite Dish Settings"
 msgstr "Műholdvevö antenna beállítása"
 
@@ -16683,6 +16866,12 @@ msgstr "Műhold konfigurációs mód"
 
 msgid "Satellite equipment setup"
 msgstr "Műholdvevö eszköz beállítása"
+
+msgid "Satellite feeds to scan"
+msgstr ""
+
+msgid "Satellite only"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Műholdak"
@@ -16851,6 +17040,12 @@ msgid "Scan for local extensions and install them."
 msgstr "Helyileg bemásolt bővítmények keresése, telepítése."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
+msgid "Scan region"
+msgstr ""
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
 msgid "Scanning"
@@ -17428,7 +17623,7 @@ msgstr "Válasszon szerkesztendő frissítési forrást"
 msgid "Select Upgrade Source To Edit"
 msgstr "Válasszon szerkesztendő frissítési forrást."
 
-msgid "Select Wi-Fi adapter"
+msgid "Select Wi-Fi adapter:"
 msgstr ""
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
@@ -17723,6 +17918,9 @@ msgid "Select the Picon path, from the option(s) above, to be used for InfoBar p
 msgstr ""
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
+msgstr ""
+
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
 msgstr ""
 
 #, python-format
@@ -18085,9 +18283,6 @@ msgstr ""
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr ""
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18154,7 +18349,7 @@ msgstr ""
 msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr ""
 
-msgid "Select update source location"
+msgid "Select tuner"
 msgstr ""
 
 msgid "Select video mode"
@@ -18240,6 +18435,9 @@ msgstr "Válassza ki, hogy a többcsatornás hangsávot PCM-ként kell kiadni."
 
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Válassza ki, hogy megjelenjen-e egy ikon, miközben az antenna forgatómotorja dolgozik."
+
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
@@ -18349,6 +18547,9 @@ msgstr "Szerb"
 
 msgid "Serial No"
 msgstr "Sorozatszám"
+
+msgid "Serial number"
+msgstr ""
 
 msgid "Serious music/Classic music"
 msgstr "komolyzene"
@@ -19050,6 +19251,9 @@ msgstr "CI üzenetek mutatása"
 msgid "Show Capabilities"
 msgstr ""
 
+msgid "Show DAB+ slideshow"
+msgstr ""
+
 msgid "Show Default Backup Files"
 msgstr "Alapértelmezett mentési fájlok"
 
@@ -19728,9 +19932,6 @@ msgstr "Kikapcsolás"
 msgid "Shutdown %s"
 msgstr ""
 
-msgid "Shutting down. Please wait..."
-msgstr ""
-
 msgid "Sichuan Yi / Nuosu"
 msgstr ""
 
@@ -20163,9 +20364,6 @@ msgstr "Szoftver karbantartó Beállításai"
 msgid "Software MultiBoot"
 msgstr ""
 
-msgid "Software Restore"
-msgstr "Szoftver visszaállítás"
-
 msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
@@ -20547,6 +20745,9 @@ msgid "Static"
 msgstr ""
 
 msgid "Static IP / Custom"
+msgstr ""
+
+msgid "Station"
 msgstr ""
 
 msgid "Status"
@@ -21370,9 +21571,6 @@ msgstr ""
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
 msgstr ""
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr ""
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "A(z) %s %s készülék ennyi óránként frissíti a tárolt EPG adatokat."
 
@@ -21479,6 +21677,12 @@ msgstr "A PIN-kód sikeresen tárolva."
 msgid "The PIN codes you entered are different."
 msgstr "A megadott PIN-kódok eltérnek egymástól."
 
+#, python-format
+msgid ""
+"The RTL2832 kernel driver blacklist could not be updated:\n"
+"%s"
+msgstr ""
+
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
@@ -21523,18 +21727,6 @@ msgstr ""
 "Mit akar csinálni?"
 
 msgid "The backup can take up to about 15 minutes to complete."
-msgstr ""
-
-msgid "The backup failed"
-msgstr ""
-
-msgid "The backup failed! Choose a different backup location."
-msgstr ""
-
-msgid "The backup succeeded"
-msgstr ""
-
-msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr ""
 
 msgid ""
@@ -21609,6 +21801,12 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
 
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Az eredmények ide lettek kiírva: %s."
@@ -21677,9 +21875,6 @@ msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "A kép szélessége. A bemenetet a fenti értékhez igazítva skálázzák."
-
-msgid "The wizard can backup your current settings. Do you want to start a backup now?"
-msgstr ""
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
@@ -22016,12 +22211,6 @@ msgstr "Gyors Előre/Hátra haladás, az x másodperc időléptékkel"
 msgid "This window will automatically close in %d seconds."
 msgstr ""
 
-msgid "This wizard has finished"
-msgstr ""
-
-msgid "This wizard has finished."
-msgstr ""
-
 msgid "Threshold"
 msgstr "Threshold"
 
@@ -22176,6 +22365,12 @@ msgid "Timeout"
 msgstr ""
 
 msgid "Timeout waiting for FIC service data"
+msgstr ""
+
+msgid "Timeout waiting for tuner lock"
+msgstr ""
+
+msgid "Timeout waiting for tuner or rotor"
 msgstr ""
 
 msgid "Timer Defaults And Retention"
@@ -22347,9 +22542,6 @@ msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Váltás az új szöveg beszúrásra a meglévő szöveg felülírása elött"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr ""
 
 msgid "Toggle selection of the current tag"
 msgstr ""
@@ -22639,6 +22831,12 @@ msgstr ""
 msgid "Tuners, Scanning & Reception"
 msgstr ""
 
+msgid "Tuning"
+msgstr ""
+
+msgid "Tuning DAB+ satellite feed..."
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr "Tuningolási algoritmus"
 
@@ -22763,12 +22961,30 @@ msgstr ""
 msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
+msgid "USB ID"
+msgstr ""
+
+msgid "USB and satellite"
+msgstr ""
+
+msgid "USB port"
+msgstr ""
+
 #, python-format
 msgid "USB reader %d"
 msgstr ""
 
+msgid "USB receiver only"
+msgstr ""
+
+msgid "USB receiver settings"
+msgstr ""
+
 #, python-format
 msgid "USB slot %s%s"
+msgstr ""
+
+msgid "USB speed"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -22803,10 +23019,17 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
+#, python-format
+msgid "Unable to open tuner (%d)"
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
@@ -23085,6 +23308,9 @@ msgid "Use DHCP"
 msgstr "DHCP használata"
 
 msgid "Use DNS cache"
+msgstr ""
+
+msgid "Use DNS name"
 msgstr ""
 
 msgid "Use DNS rotation"
@@ -23375,12 +23601,6 @@ msgstr "Felhasználónév"
 
 msgid "Username (httpuser)"
 msgstr "Felhasználónév (httpuser)"
-
-msgid "Using DNS"
-msgstr ""
-
-msgid "Using IP"
-msgstr ""
 
 msgid "Using automatic address"
 msgstr ""
@@ -23937,9 +24157,6 @@ msgstr ""
 "\n"
 "Majd menjen a kivágandó rész végére, nyomja meg az OK gombot és válassza a 'Vágás vége' opciót. Ennyi az egész."
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
-msgstr ""
-
 msgid "Welcome..."
 msgstr "Üdvözöljük..."
 
@@ -24229,9 +24446,6 @@ msgstr ""
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Ha letiltja a csatornakeresést a háttérben, akkor a keresés során megtalált csatorna nem lesz elmentve."
 
-msgid "Where do you want to backup your settings?"
-msgstr "Hova szeretné elmenteni a beállításait?"
-
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
 
@@ -24432,9 +24646,6 @@ msgstr "Igen, és felvétel törlése"
 msgid "Yes, and don't ask again for this session"
 msgstr ""
 
-msgid "Yes, backup my settings!"
-msgstr "Igen, mentse el a beállításaim!"
-
 msgid "Yes, but don't save time shift as movie"
 msgstr "Igen, de ne mentsen el semmit"
 
@@ -24459,8 +24670,8 @@ msgstr "Igen, indítsunk most el egy másik keresést"
 msgid "Yes, don't ask again"
 msgstr ""
 
-msgid "Yes, restore the settings now"
-msgstr "Igen, állítsuk vissza most a beállításokat"
+msgid "Yes, restore my settings now"
+msgstr ""
 
 msgid "Yes, returning to movie list"
 msgstr "Igen, térjen vissza a felvételek listájához"
@@ -24470,9 +24681,6 @@ msgstr "Igen, de ha nem áll rendelkezésre, akkor a bővítmény böngésző mu
 
 msgid "Yes, show RecordTimer if unavailable"
 msgstr "Igen, de ha nem érhető el, mutassa meg az időzítőlistát"
-
-msgid "Yes, shut down now."
-msgstr "Igen, leállítás most."
 
 msgid "Yesterday"
 msgstr "Tegnap"
@@ -24505,10 +24713,7 @@ msgstr "Ezt a funkciót kihagyhatja, és kikapcsolhatja a TV-készüléket, amik
 msgid "You cannot delete this!"
 msgstr "Ez nem törölheti le!"
 
-msgid "You have chosen to backup your settings. Press OK to start the backup now."
-msgstr ""
-
-msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
 msgstr ""
 
 msgid "You have chosen to save the current time shift buffer"
@@ -24538,11 +24743,6 @@ msgid "You managed to jump to an invalid page. Stop it :-)"
 msgstr ""
 
 msgid "You must set at least one command!"
-msgstr ""
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
 
 msgid "You seem to be in time shift!"
@@ -25014,6 +25214,9 @@ msgstr "pillanatkép mentése"
 msgid "green"
 msgstr "zöld"
 
+msgid "guest"
+msgstr ""
+
 msgid "h:mm"
 msgstr "h:mm"
 
@@ -25458,6 +25661,48 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "ImageWizard"
+#~ msgstr "ImageWizard"
+
+#~ msgid "Install a new image with a USB stick"
+#~ msgstr "Új image telepítése USB meghajtóról"
+
+#~ msgid "Install a new image with your web browser"
+#~ msgstr "Új image telepítése webes felületről"
+
+#~ msgid "Ipkg"
+#~ msgstr "Ipkg"
+
+#~ msgid "No backup needed"
+#~ msgstr "Nincs mentésre szükség"
+
+#~ msgid "No, do nothing."
+#~ msgstr "Nem, ne csináljon semmit."
+
+#~ msgid "No, just start my %s %s"
+#~ msgstr "Nem, csak indítsa el %s %s"
+
+#~ msgid "OK, guide me through the upgrade process"
+#~ msgstr "OK, vezessen végig a frissítési folyamaton"
+
+#~ msgid "Restore your %s %s with a new firmware."
+#~ msgstr "A(z) %s %s készülék visszaállítása egy új firmware-el."
+
+#~ msgid "Software Restore"
+#~ msgstr "Szoftver visszaállítás"
+
+#~ msgid "Where do you want to backup your settings?"
+#~ msgstr "Hova szeretné elmenteni a beállításait?"
+
+#~ msgid "Yes, backup my settings!"
+#~ msgstr "Igen, mentse el a beállításaim!"
+
+#~ msgid "Yes, restore the settings now"
+#~ msgstr "Igen, állítsuk vissza most a beállításokat"
+
+#~ msgid "Yes, shut down now."
+#~ msgstr "Igen, leállítás most."
 
 #~ msgid "FTP"
 #~ msgstr "FTP"
