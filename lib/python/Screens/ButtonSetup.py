@@ -228,6 +228,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", textInfoBar))
 	ButtonSetupFunctions.append((_("Instant record"), "Infobar/instantRecord", textInfoBar))
 	ButtonSetupFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", textInfoBar))
+	ButtonSetupFunctions.append((_("Start instant recording and set duration"), "Infobar/startInstantRecordingWithDuration", textInfoBar))
+	ButtonSetupFunctions.append((_("Start instant recording and set end time"), "Infobar/startInstantRecordingWithEndTime", textInfoBar))
 	ButtonSetupFunctions.append((_("Start recording current event"), "Infobar/startRecordingCurrentEvent", textInfoBar))
 	ButtonSetupFunctions.append((_("Activate time shift End"), "Infobar/activateTimeshiftEnd", textInfoBar))
 	ButtonSetupFunctions.append((_("Activate time shift end and pause"), "Infobar/activateTimeshiftEndAndPause", textInfoBar))
