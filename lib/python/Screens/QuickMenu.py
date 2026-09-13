@@ -10,7 +10,7 @@ from Components.NetworkManager import networkManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
+from Screens.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction
