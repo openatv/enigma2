@@ -413,6 +413,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 	enigma.resumeInit()
 	enigma.eProfileWrite("Session")
+	toast = Toast()  # noqa F841
 	nav = Navigation(config.misc.nextWakeup.value)
 	session = Session(desktop=enigma.getDesktop(0), summaryDesktop=enigma.getDesktop(1), navigation=nav)
 	CiHandler.setSession(session)
@@ -456,7 +457,6 @@ def runScreenTest():
 	vol = VolumeAdjust(session)  # noqa F841
 	enigma.eProfileWrite("Global MessageBox Screen")
 	modalMessagebox = ModalMessageBox(session)  # noqa F841
-	toast = Toast(session)  # noqa F841
 	enigma.eProfileWrite("PowerKey")
 	power = PowerKey(session)  # noqa F841
 	if enigma.getVFDSymbolsPoll():
@@ -757,15 +757,15 @@ config.crash.debugRemoteControls = ConfigYesNo(default=False)
 config.crash.debugScreens = ConfigYesNo(default=False)
 config.crash.debugEPG = ConfigYesNo(default=False)
 config.crash.debugDAB = ConfigYesNo(default=False)
+config.crash.debugDVB = ConfigYesNo(default=False)
+config.crash.debugDVBDB = ConfigYesNo(default=False)
 config.crash.debugDVBScan = ConfigYesNo(default=False)
 config.crash.debugDVBTime = ConfigYesNo(default=False)
-config.crash.debugDVB = ConfigYesNo(default=False)
 config.crash.debugTimers = ConfigYesNo(default=False)
+config.crash.debugSec = ConfigYesNo(default=False)
 config.crash.debugSeek = ConfigYesNo(default=False)
 config.crash.debugTeletext = ConfigYesNo(default=False)
 config.crash.debugStorage = ConfigYesNo(default=False)
-config.crash.debugDVBDB = ConfigYesNo(default=False)
-config.crash.debugSec = ConfigYesNo(default=False)
 config.crash.debugTextEncoding = ConfigYesNo(default=False)
 config.crash.debugNetwork = ConfigYesNo(default=True)
 

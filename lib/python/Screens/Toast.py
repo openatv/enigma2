@@ -9,7 +9,7 @@ FADESTEPS = 10
 
 class ToastScreen(Screen):
 	skin = """
-	<screen name="ToastScreen" position="0,0" size="1280,720" resolution="1280,720" backgroundColor="#FE000000" flags="wfNoBorder" zPosition="101">
+	<screen name="ToastScreen" position="0,0" size="1280,720" resolution="1280,720" backgroundColor="#FE000000" flags="wfNoBorder,wfModal" zPosition="101">
 		<widget name="border" position="0,0" size="40,40" backgroundColor="#00000000" widgetBorderColor="#FFFFFF" widgetBorderWidth="2" />
 		<widget name="icon" position="0,0" size="40,40" font="enigma2icons;34" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#00000000" />
 		<widget name="text" position="0,0" size="e,e" font="Regular;25" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#00000000" />
@@ -137,22 +137,27 @@ class Toast:
 	TYPE_ERROR = 2
 	instance = None
 
-	def __init__(self, session):
+	def __init__(self):
 		if Toast.instance:
 			print("[Toast] Error: Only one Toast instance is allowed!")
 		else:
 			Toast.instance = self
-			self._dialog = session.instantiateDialog(ToastScreen)
-			self._dialog.hide()
+			self._dialog = None
 			self._queue = []
-			self._nextTimer = eTimer()
-			self._nextTimer.callback.append(self._showNext)
-			self._dialog.onHide.append(self._scheduleNext)
+
+	def setup(self, session):
+		self._dialog = session.instantiateDialog(ToastScreen)
+		self._dialog.hide()
+		self._nextTimer = eTimer()
+		self._nextTimer.callback.append(self._showNext)
+		self._dialog.onHide.append(self._scheduleNext)
+		if self._queue:
+			self._showNext()
 
 	def showToast(self, text, toasttype, timeout, customIcon=None):
 		timeout = max(3, min(timeout, 10))  # Minimum 3 maximum 10
 		self._queue.append((text, toasttype, timeout, customIcon))
-		if not self._dialog.shown and not self._nextTimer.isActive():
+		if self._dialog and not self._dialog.shown and not self._nextTimer.isActive():
 			self._showNext()
 
 	def _scheduleNext(self):
