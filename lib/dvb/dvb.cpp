@@ -22,6 +22,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <algorithm>
+#include <cctype>
 #include <fstream>
 
 #define MIN(a,b) (a < b ? a : b)
@@ -86,7 +88,7 @@ ePtr<eDVBResourceManager> NewResourceManagerPtr(void)
 }
 
 eDVBResourceManager::eDVBResourceManager()
-	:m_releaseCachedChannelTimer(eTimer::create(eApp))
+	:m_rtlsdr_acquired(false), m_releaseCachedChannelTimer(eTimer::create(eApp))
 {
 	avail = 1;
 	busy = 0;
@@ -261,6 +263,18 @@ bool eDVBAdapterLinux::isusb(int nr)
 }
 
 DEFINE_REF(eDVBUsbAdapter);
+
+static bool isRTL2832FrontendName(const char *name)
+{
+	if (!name)
+		return false;
+	std::string value(name);
+	std::transform(value.begin(), value.end(), value.begin(), [](unsigned char character) { return std::tolower(character); });
+	return value.find("rtl2832") != std::string::npos ||
+		value.find("rtl2838") != std::string::npos ||
+		value.find("rtl-sdr") != std::string::npos;
+}
+
 eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 : eDVBAdapterLinux(nr)
 {
@@ -277,6 +291,8 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	int fd;
 
 	pumpThread = 0;
+	rtlSDRBridge = false;
+	running = false;
 
 	int num_fe = 0;
 
@@ -448,6 +464,9 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	ioctl(vtunerFd, VTUNER_SET_TYPE, type);
 	ioctl(vtunerFd, VTUNER_SET_HAS_OUTPUTS, "no");
 	ioctl(vtunerFd, VTUNER_SET_ADAPTER, nr);
+	rtlSDRBridge = isRTL2832FrontendName(name) || isRTL2832FrontendName(fe_info.name);
+	if (rtlSDRBridge)
+		eDebug("[eDVBUsbAdapter] adapter%d is an RTL-SDR bridge", nr);
 
 	memset(pidList, 0xff, sizeof(pidList));
 
@@ -752,6 +771,31 @@ void eDVBResourceManager::setUsbTuner()
 			}
 		}
 	}
+}
+
+RESULT eDVBResourceManager::acquireRTLSDRAdapter()
+{
+	eSingleLocker lock(m_rtlsdr_lock);
+	if (m_rtlsdr_acquired)
+		return -EBUSY;
+	for (eSmartPtrList<iDVBAdapter>::iterator adapter(m_adapter.begin()); adapter != m_adapter.end(); ++adapter)
+	{
+		if (!adapter->isRTLSDRBridge())
+			continue;
+		eWarning("[eDVBResourceManager] refusing unsafe RTL-SDR handover while the DVB kernel driver owns the device");
+		return -EBUSY;
+	}
+	/* Also serialize SDR access when no DVB kernel driver/bridge is installed. */
+	m_rtlsdr_acquired = true;
+	return 0;
+}
+
+void eDVBResourceManager::releaseRTLSDRAdapter()
+{
+	eSingleLocker lock(m_rtlsdr_lock);
+	if (!m_rtlsdr_acquired)
+		return;
+	m_rtlsdr_acquired = false;
 }
 
 PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
@@ -1814,11 +1858,14 @@ void eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len)
 DEFINE_REF(eDVBChannel);
 
 int eDVBChannel::m_debug = -1;
+int eDVBChannel::m_debugSeek = -1;
 
 eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend): m_state(state_idle), m_mgr(mgr)
 {
 	if(eDVBChannel::m_debug < 0)
 		eDVBChannel::m_debug = eSimpleConfig::getBool("config.crash.debugDVB", false) ? 1 : 0;
+	if(eDVBChannel::m_debugSeek < 0)
+		eDVBChannel::m_debugSeek = eSimpleConfig::getBool("config.crash.debugSeek", false) ? 1 : 0;
 
 	m_frontend = frontend;
 
@@ -2119,6 +2166,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("[eDVBChannel] decoder getPTS failed, can't seek relative");
 				continue;
 			}
+			if (m_debugSeek)
+				eDebug("[eDVBChannel] seekRelative: decoder->getPTS() succeeded, now=%lld (before getCurrentPosition/fixupPTS)", now);
 			if (!m_cue->m_decoding_demux)
 			{
 				eDebug("[eDVBChannel] getNextSourceSpan, no decoding demux. couldn't seek to %llu... ignore request!", pts);
@@ -2126,11 +2175,34 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				size = max;
 				continue;
 			}
-			if (getCurrentPosition(m_cue->m_decoding_demux, now, 1))
+			if (now == 0)
+			{
+				/* Decoder hasn't produced a real PTS yet (e.g. right after unpause) - now==0 gets
+				   rejected by tstools.cpp's fixupPTS() (it's not a genuine wrap-around), so
+				   getCurrentPosition() would just fail and this whole relative seek would be
+				   silently dropped, leaving playback wherever the previous request in this batch
+				   (e.g. the timeshift-activation seek) landed. Fall back to the position we're
+				   already reading from (from the file/index, not the live decoder) instead. */
+				off_t fileOffset = current_offset;
+				m_tstools_lock.lock();
+				int r = m_tstools.getPTSAt(fileOffset, now);
+				m_tstools_lock.unlock();
+				if (r)
+				{
+					if (m_debugSeek)
+						eDebug("[eDVBChannel] seekRelative: decoder PTS not ready and file-based fallback failed, can't seek relative");
+					continue;
+				}
+				if (m_debugSeek)
+					eDebug("[eDVBChannel] seekRelative: decoder PTS not ready, using file-based position instead, now=%lld", now);
+			}
+			else if (getCurrentPosition(m_cue->m_decoding_demux, now, 1))
 			{
 				eDebug("[eDVBChannel] seekTo: getCurrentPosition failed!");
 				continue;
 			}
+			if (m_debugSeek)
+				eDebug("[eDVBChannel] seekRelative: after getCurrentPosition/fixupPTS, now=%lld", now);
 		} else if (pts < 0) /* seek relative to end */
 		{
 			pts_t len;
@@ -2184,6 +2256,29 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 
 		eDebug("[eDVBChannel] ok, resolved skip (rel: %d, diff %lld), now at %16jx", relative, pts, (intmax_t)offset);
 		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
+
+		/* The pts->offset resolution above is approximate (no dense access points exist for
+		   these timeshift files) and has no way of knowing whether the requested pts actually
+		   corresponds to data that has been written yet. A forward seek can therefore resolve
+		   to an offset beyond the real end of the buffer. Landing there makes the span lookup
+		   below return size=0, which stalls the file-push thread in its "wait for driver eof,
+		   buffer might grow" loop for a long time. Clamp to just inside the last known-valid
+		   span - the actual, currently-known live edge - instead of guessing a safety duration
+		   up front (jump sizes are user-configurable per key, so no fixed duration margin can
+		   be correct for all of them). */
+		if (!m_source_span.empty())
+		{
+			off_t live_end = m_source_span.back().second;
+			if (current_offset >= live_end)
+			{
+				off_t clamped = align(live_end, blocksize) - blocksize;
+				if (clamped < 0)
+					clamped = 0;
+				if (m_debugSeek)
+					eDebug("[eDVBChannel] resolved offset %16jx is beyond the known live edge %16jx, clamping to %16jx", (intmax_t)current_offset, (intmax_t)live_end, (intmax_t)clamped);
+				current_offset = clamped;
+			}
+		}
 	}
 
 	m_cue->m_lock.Unlock();

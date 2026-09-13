@@ -4,6 +4,7 @@
 		title="<display name>"                     Mandatory.
 		installcheck="file to check if installed"  Optional, no install/remove if file doesn't exist.
 		package="ipk name"                         Optional, no install/remove if package doesn't exist.
+		removable="true"                           Optional, set to false to prevent removal while allowing installation.
 		autostart="autostart file"                 Optional, no service if file doesn't exist.
 		autostartservice="autostart service name"  Optional, no service if service name doesn't exist.
 		autostartprio=""                           Optional, default is 20.
@@ -21,7 +22,8 @@
 	<daemon key="dnscrypt" title="DNSCrypt" installcheck="/etc/init.d/dnscrypt-proxy" package="dnscrypt-proxy" autostart="/etc/rc2.d/S20dnscrypt-proxy" autostartservice="dnscrypt-proxy" running="dnscrypt-proxy" startservice="dnscrypt-proxy" />
 	<daemon key="ftp" title="FTP" installcheck="/etc/init.d/vsftpd" package="vsftpd" autostart="/etc/rc2.d/S*0vsftpd" autostartservice="vsftpd" running="vsftpd" startservice="vsftpd" />
 	<daemon key="inadyn" title="Inadyn" installcheck="/etc/init.d/inadyn-mt" package="inadyn-mt" autostart="/etc/rc2.d/S20inadyn-mt" autostartservice="inadyn-mt" running="inadyn-mt" startservice="inadyn-mt" logpath="/var/log/inadyn.log" />
-	<daemon key="llmnrd" title="LLMNR" installcheck="/etc/init.d/llmnrd" package="llmnrd" autostart="/etc/rc2.d/S20llmnrd" autostartservice="llmnrd" autostartprio="20" running="llmnrd" startservice="llmnrd" />
+	<!-- Required by the network core package group; keep installation and service controls available. -->
+	<daemon key="llmnrd" title="LLMNR" installcheck="/etc/init.d/llmnrd" package="llmnrd" removable="false" autostart="/etc/rc2.d/S20llmnrd" autostartservice="llmnrd" autostartprio="20" running="llmnrd" startservice="llmnrd" />
 	<daemon key="minidlna" title="MiniDLNA" installcheck="/etc/init.d/minidlna" package="minidlna" autostart="/etc/rc2.d/S20minidlna" autostartservice="minidlna" running="minidlnad" startservice="minidlna" logpath="/var/volatile/log/minidlna.log" />
 	<daemon key="nfs" title="NFS" installcheck="/etc/init.d/nfsserver" package="packagegroup-base-nfs" autostart="/etc/rc2.d/S*nfsserver" autostartservice="nfsserver" autostartprio="13" running="nfsd" startservice="nfsserver" />
 	<daemon key="openvpn" title="OpenVPN" installcheck="/etc/init.d/openvpn" package="openvpn" autostart="/etc/rc2.d/S10openvpn" autostartservice="openvpn" running="openvpn" startservice="openvpn" logpath="/etc/openvpn/openvpn.log" />

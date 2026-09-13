@@ -20,7 +20,7 @@ public:
 	int load(const char *filename);
 
 		/* fixup timestamp near offset, i.e. convert to zero-based */
-	int fixupPTS(const off_t &offset, pts_t &ts);
+	int fixupPTS(const off_t &offset, pts_t &ts, bool debug = false);
 
 		/* get PTS before offset */
 	int getPTS(off_t &offset, pts_t &pts);

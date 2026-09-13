@@ -1,4 +1,17 @@
 <wizard>
+	<step id="restorequestion">
+		<condition>
+self.condition = self.hasConfigBackup()
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="A backup of your previous settings was found. Do you want to restore it before continuing with the setup?" />
+		<displaytext value="Restore your previous settings?" />
+		<list>
+			<listentry caption="Yes, restore my settings now" step="restore" />
+			<listentry caption="No, continue with the setup" step="introduction" />
+		</list>
+	</step>
+
 	<step id="introduction" >
 		<buttons enable="OK,UP,DOWN" />
 		<text value="Welcome to OpenATV.\n\nUse the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen." />
@@ -434,5 +447,24 @@ self.condition = self.isLastWizard
 		<buttons enable="OK" />
 		<text value="Thank you for using and completing the wizard. The %s %s is now ready to use.\n\nPlease press OK to start using the %s %s." />
 		<displaytext value="Press OK to start using %s %s" />
+	</step>
+
+	<step id="restore" nextstep="restorereboot">
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
+		<text value="You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now." />
+		<displaytext value="Restore settings now" />
+		<config screen="RestoreScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
+	</step>
+
+	<step id="restorereboot">
+		<buttons enable="OK" />
+		<text value="The restore has finished. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />
+		<displaytext value="Restart needed, press OK to restart" />
+		<code>
+self.markDone()
+from enigma import quitMainloop
+from Screens.Standby import QUIT_RESTART
+quitMainloop(QUIT_RESTART)
+		</code>
 	</step>
 </wizard>

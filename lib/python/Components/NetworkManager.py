@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
+from ipaddress import ip_address
 from json import JSONDecodeError, loads
 from os import chmod, listdir, makedirs, remove, rmdir
 from os.path import basename, exists, isdir, ismount, realpath
@@ -36,6 +37,7 @@ ifupBin = "/sbin/ifup"
 ifdownBin = "/sbin/ifdown"
 wpaSupplicantBin = "/usr/sbin/wpa_supplicant"
 wpaCliBin = "/usr/sbin/wpa_cli"
+iwBin = "/usr/sbin/iw"
 socketDaemonPath = "/var/run/daemon.socket"
 netEventSocketPath = "/var/run/daemon_net.socket"
 netinfoPath = "/var/run/netinfo"
@@ -52,6 +54,10 @@ class Encryption(StrEnum):
 	WPA2 = "wpa2"
 	WPA_WPA2 = "wpa+wpa2"  # Legacy combined mode stored as wpa2 in wpa_supplicant.
 	WPA3 = "wpa3"
+	WPA2_WPA3 = "wpa2+wpa3"  # WPA3 transition mode, the access point offers PSK and SAE side by side.
+	WPA2_ENTERPRISE = "wpa2-eap"
+	WPA3_ENTERPRISE = "wpa3-eap"
+	WPA2_WPA3_ENTERPRISE = "wpa2+wpa3-eap"  # Same transition idea, 802.1X alongside 802.1X-SHA256.
 
 
 # Deferred via lambda so translation happens at display time, not import time.
@@ -61,7 +67,11 @@ encryptionLabels = {
 	Encryption.WPA: lambda: "WPA",
 	Encryption.WPA2: lambda: "WPA2",
 	Encryption.WPA_WPA2: lambda: "WPA/WPA2",
-	Encryption.WPA3: lambda: "WPA3"
+	Encryption.WPA3: lambda: "WPA3",
+	Encryption.WPA2_WPA3: lambda: "WPA2/WPA3",
+	Encryption.WPA2_ENTERPRISE: lambda: "WPA2 Enterprise",
+	Encryption.WPA3_ENTERPRISE: lambda: "WPA3 Enterprise",
+	Encryption.WPA2_WPA3_ENTERPRISE: lambda: "WPA2/WPA3 Enterprise"
 }
 
 # Driver-API identifiers.
@@ -193,6 +203,15 @@ class NetworkManager:
 		except OSError:
 			names = []
 
+		# Adapters we knew about (from a previous scan or the interfaces file) that aren't
+		# physically here anymore. Keep them (so save() doesn't drop their interfaces-file
+		# stanza) but mark them absent so adapter-picker UI can hide them.
+		for interface, adapter in self.adapters.items():
+			if interface not in names:
+				adapter.present = False
+				adapter.netInfo.up = False
+				adapter.netInfo.link = False
+
 		def isWireless(interface: str) -> bool:
 			if isWirelessName(interface):
 				return True
@@ -239,6 +258,7 @@ class NetworkManager:
 					name=interface,
 					isWiFi=isWirelessName(interface),
 					driverApi=apiNl80211,
+					present=False,
 				)
 			self.connections[interface] = conns
 			self.adapters[interface].adapterEnabled = interface in autoIfaces
@@ -393,6 +413,11 @@ class NetworkManager:
 
 	def getAdapter(self, interface: str) -> Adapter | None:
 		return self.adapters.get(interface)
+
+	def getAdapters(self) -> dict[str, Adapter]:
+		"""self.adapters filtered to physically present adapters - use this wherever
+		only real, currently plugged-in adapters should be listed/selected."""
+		return {name: adapter for name, adapter in self.adapters.items() if adapter.present}
 
 	def getNetInfo(self, interface: str) -> NetInfo:
 		adapter = self.adapters.get(interface)
@@ -794,7 +819,8 @@ class NetworkManager:
 
 	def onIfaceAdd(self, interface: str):
 		self.log(f"onIfaceAdd: {interface}.")
-		if interface not in self.adapters:
+		adapter = self.adapters.get(interface)
+		if adapter is None or not adapter.present:
 			self.discoverAdapters()
 			self.loadInterfacesFile()
 			self.loadWpaSupplicantFiles()
@@ -802,7 +828,14 @@ class NetworkManager:
 
 	def onIfaceRemove(self, interface: str):
 		self.log(f"onIfaceRemove: {interface}.")
-		self.adapters.pop(interface, None)
+		adapter = self.adapters.get(interface)
+		if adapter is not None:
+			# Keep the adapter (and its connections) around, just hidden - a hotplug
+			# removal is often temporary and save() must not drop its interfaces-file
+			# stanza just because the device isn't plugged in right now.
+			adapter.present = False
+			adapter.netInfo.up = False
+			adapter.netInfo.link = False
 		self.notifyAdaptersChanged()
 
 	def onScanTrigger(self, interface: str):
@@ -916,9 +949,10 @@ class Adapter:
 	isWiFi: bool = False
 	module: str = ""
 	driverApi: str = apiNl80211
-	isBroadcomWl: bool = False  # Has the vendor "wl" tool available (needed to kick iwlist scans alive).
+	isBroadcomWl: bool = False  # Has the vendor "wl" tool available (needed to kick iw scans alive).
 	canWakeOnWiFi: bool = False
 	adapterEnabled: bool = False  # False -> Every line of this adapter's stanza in /etc/network/interfaces is commented out with "# " (see serializeConnection()), not just "auto <iface>".
+	present: bool = True  # False -> Known from /etc/network/interfaces (or was hotplug-removed) but not currently found in /sys/class/net. Kept in adapters/connections so save() doesn't drop its config, but should be hidden from adapter-picker UI.
 	netInfo: NetInfo = field(default_factory=NetInfo)
 	hasInternet: bool | None = None  # None = Not checked (yet) by NetworkManager.checkConnectionInternet().
 
@@ -1221,7 +1255,16 @@ def wpaDictToWiFiConfig(fields: dict[str, str], blockId: int) -> WiFiConfig:
 	if keyMgmt == "NONE":
 		enc = Encryption.NONE if not fields.get("wep_key0") else Encryption.WEP
 	elif "SAE" in keyMgmt:
-		enc = Encryption.WPA3
+		enc = Encryption.WPA2_WPA3 if "WPA-PSK" in keyMgmt else Encryption.WPA3
+	elif "EAP" in keyMgmt:
+		sha256 = "EAP-SHA256" in keyMgmt
+		plain = "EAP" in keyMgmt.replace("EAP-SHA256", "")
+		if sha256 and plain:
+			enc = Encryption.WPA2_WPA3_ENTERPRISE
+		elif sha256:
+			enc = Encryption.WPA3_ENTERPRISE
+		else:
+			enc = Encryption.WPA2_ENTERPRISE
 	elif "WPA" in keyMgmt:
 		enc = Encryption.WPA2 if ("CCMP" in pairwise or "WPA2" in proto or "RSN" in proto) else Encryption.WPA
 	else:
@@ -1268,7 +1311,24 @@ def wifiConfigToWpaBlock(wifi: WiFiConfig) -> list[str]:
 		case Encryption.WPA3:
 			lines.append("\tkey_mgmt=SAE")
 			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=2")  # WPA3 requires protected management frames.
 			lines.append(f'\tpsk="{wifi.key}"')
+		case Encryption.WPA2_WPA3:
+			lines.append("\tkey_mgmt=SAE WPA-PSK")  # Prefer SAE, fall back to PSK where the driver cannot do it.
+			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=1")
+			lines.append(f'\tpsk="{wifi.key}"')
+		case Encryption.WPA2_ENTERPRISE:  # 802.1X needs credentials this profile does not carry yet.
+			lines.append("\tkey_mgmt=WPA-EAP")
+			lines.append("\tproto=RSN")
+		case Encryption.WPA3_ENTERPRISE:
+			lines.append("\tkey_mgmt=WPA-EAP-SHA256")
+			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=2")
+		case Encryption.WPA2_WPA3_ENTERPRISE:
+			lines.append("\tkey_mgmt=WPA-EAP WPA-EAP-SHA256")
+			lines.append("\tproto=RSN")
+			lines.append("\tieee80211w=1")
 	if wifi.disabled:
 		lines.append("\tdisabled=1")
 	lines.append("}")
@@ -1832,40 +1892,41 @@ class NetworkMountRepository:
 
 	@staticmethod
 	def credentialsPath(hostname):
-		return f"/etc/enigma2/{hostname.strip()}.cache"
+		hostname = hostname.strip()
+		try:
+			ip_address(hostname)
+		except ValueError:
+			hostname = hostname.split(".")[0]
+		return f"/etc/enigma2/{hostname.upper()}.cache"
 
 	def credentialsGet(self, hostname):
-		if not hostname:
-			return {}
-		try:
-			with open(self.credentialsPath(hostname), "rb") as fd:
-				data = pickleLoad(fd)
-		except Exception:
-			return {}
-		if not isinstance(data, dict):
-			return {}
-		username = data.get("username", "")
-		password = data.get("password", "")
-		return {"username": username, "password": password} if username or password else {}
+		data = {}
+		if hostname:
+			try:
+				with open(self.credentialsPath(hostname), "rb") as fd:
+					data = pickleLoad(fd)
+			except Exception:
+				pass
+			if not isinstance(data, dict):
+				data = {}
+		return data.get("username"), data.get("password", "")
 
 	def credentialsSave(self, hostname, username, password):
-		if not hostname:
-			return
-		path = self.credentialsPath(hostname)
-		try:
-			with open(path, "wb") as fd:
-				pickleDump({"username": username, "password": password}, fd, -1)
-			chmod(path, 0o600)  # contains a plaintext password
-		except OSError as err:
-			print(f"[{MODULE_NAME}] Error {err.errno}: Error writing '{path}'!  ({err.strerror})")
+		if hostname:
+			path = self.credentialsPath(hostname)
+			try:
+				with open(path, "wb") as fd:
+					pickleDump({"username": username, "password": password}, fd, -1)
+				chmod(path, 0o600)  # contains a plaintext password
+			except OSError as err:
+				print(f"[{MODULE_NAME}] Error {err.errno}: Error writing '{path}'!  ({err.strerror})")
 
 	def credentialsClear(self, hostname):
-		if not hostname:
-			return
-		try:
-			remove(self.credentialsPath(hostname))
-		except OSError:
-			pass
+		if hostname:
+			try:
+				remove(self.credentialsPath(hostname))
+			except OSError:
+				pass
 
 
 class NetworkCheck:
@@ -1940,6 +2001,7 @@ class AvahiProvider:
 		self.browser = None
 		self.started = False
 		self.onObservation: list[Callable] = []
+		self.onSnapshot: list[Callable] = []
 
 	def start(self):
 		if not self.started:
@@ -1958,8 +2020,12 @@ class AvahiProvider:
 			self.started = False
 
 	def changed(self):
+		addresses = set()
 		for entry in self.browser.getServices():
 			self.dispatch(entry)
+			addresses.update(entry["addresses"] or [])
+		for callback in self.onSnapshot:
+			callback(addresses)
 
 	def dispatch(self, entry: dict):
 		networkManager.log(f"AvahiProvider: found {entry["name"]} / {entry["hostname"]}")
@@ -2071,6 +2137,7 @@ class DiscoveryManager:
 		self.avahi = AvahiProvider()
 		self.netscan = NetscanProvider()
 		self.avahi.onObservation.append(self.onAvahiObservation)
+		self.avahi.onSnapshot.append(self.onAvahiSnapshot)
 		self.netscan.onObservation.append(self.onNetscanObservation)
 		self.stopTimer = eTimer()
 		self.stopTimer.callback.append(self.stop)
@@ -2152,6 +2219,13 @@ class DiscoveryManager:
 						host["avahiShares"][name] = share
 						changed = True
 		if changed:
+			self.notify()
+
+	def onAvahiSnapshot(self, addresses):
+		stale = [address for address, host in self.hosts.items() if host["source"] == "avahi" and host["hostnameSource"] != "netscan" and address not in addresses]
+		for address in stale:
+			del self.hosts[address]
+		if stale:
 			self.notify()
 
 	def onNetscanObservation(self, observation):

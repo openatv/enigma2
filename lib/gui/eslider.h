@@ -39,6 +39,7 @@ public:
 	void setPixmapScale(int flags);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setIsScrollbar();
+	void setGradientMode(bool explicitMode);
 	static void setDefaultBorderWidth(int borderwidth)
 	{
 		defaultSliderBorderWidth = borderwidth;
@@ -89,6 +90,7 @@ private:
 	static int defaultSliderBorderWidth;
 
 	bool m_background_gradient_set = false;
+	bool m_explicit_gradients = false;
 	bool m_background_gradient_alphablend = false;
 	uint8_t m_background_gradient_direction = 0;
 	std::vector<gRGB> m_background_gradient_colors;

@@ -20,13 +20,20 @@ def playService(service, **kwargs):
 				url = url.replace(SCHEMA, "")
 				url = url.replace("%3a", ":")
 				try:
-					ydl = YoutubeDL({"format": "b", "no_color": True, "usenetrc": True})
+					ydl = YoutubeDL({"format": "b/bv*+ba/bv*", "no_color": True, "usenetrc": True})
 					result = ydl.extract_info(url, download=False)
 					result = ydl.sanitize_info(result)
-					if result and result.get("url"):
-						url = result["url"]
-						print(f"[{WRAPPER}] playService result url '{url}'")
-						return (url, errormsg)
+					stream = result.get("url") if result else None
+					if not stream and result:
+						# Video and audio come as separate streams, which the player cannot
+						# merge. Hand it the master playlist holding both instead.
+						for fmt in (result.get("requested_formats") or []) + (result.get("formats") or []):
+							stream = fmt.get("manifest_url")
+							if stream:
+								break
+					if stream:
+						print(f"[{WRAPPER}] playService result url '{stream}'")
+						return (stream, errormsg)
 					else:
 						errormsg = "No Link found!"
 						print(f"[{WRAPPER}] playService no streams")

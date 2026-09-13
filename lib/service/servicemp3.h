@@ -5,11 +5,13 @@
 #include <lib/base/message.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/pgssubtitle.h>
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <lib/service/iservice.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
+#include <atomic>
 #include <mutex>
 
 class eStaticServiceMP3Info;
@@ -95,14 +97,12 @@ class GstMessageContainer : public iObject {
 	GstPad* messagePad;
 	GstBuffer* messageBuffer;
 	int messageType;
+	int messageGeneration;
 
 public:
-	GstMessageContainer(int type, GstMessage* msg, GstPad* pad, GstBuffer* buffer) {
-		messagePointer = msg;
-		messagePad = pad;
-		messageBuffer = buffer;
-		messageType = type;
-	}
+	GstMessageContainer(int type, GstMessage* msg, GstPad* pad, GstBuffer* buffer, int generation = 0)
+		: messagePointer(msg), messagePad(pad), messageBuffer(buffer), messageType(type),
+		  messageGeneration(generation) {}
 	~GstMessageContainer() {
 		if (messagePointer)
 			gst_message_unref(messagePointer);
@@ -113,6 +113,9 @@ public:
 	}
 	int getType() {
 		return messageType;
+	}
+	int getGeneration() const {
+		return messageGeneration;
 	}
 	operator GstMessage*() {
 		return messagePointer;
@@ -339,6 +342,10 @@ private:
 	int m_currentAudioStream;
 	int m_currentSubtitleStream;
 	int m_cachedSubtitleStream;
+	/* bumped on every subtitle stream switch and on every seek; buffers stamped
+	   with an older generation are still in the pump queue and must not reach a
+	   parser. Written on the main thread, read on the gstreamer thread. */
+	std::atomic<int> m_subtitle_generation{0};
 	int selectAudioStream(int i, bool skipAudioFix = false);
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
@@ -427,6 +434,8 @@ private:
 #endif
 	ePtr<eDVBSubtitleParser> m_dvb_subtitle_parser;
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
+	ePtr<ePGSSubtitleParser> m_pgs_subtitle_parser;
+	ePtr<eConnection> m_new_pgs_subtitle_page_connection;
 	void newDVBSubtitlePage(const eDVBSubtitlePage& p);
 
 	pts_t m_prev_decoder_time = -1;

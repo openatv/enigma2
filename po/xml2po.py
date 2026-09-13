@@ -27,7 +27,7 @@ class parseXML(ContentHandler, LexicalHandler):
 				pass
 
 
-excludeFiles = ["dnsservers.xml"]
+excludeFiles = ["dnsservers.xml", "networkdaemons.xml"]
 
 parser = make_parser()
 attributes = set()

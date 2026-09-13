@@ -19,7 +19,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.ServiceList import ServiceList, ServiceListLegacy, refreshServiceList
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.UsageConfig import preferredTimerPath
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from Components.Sources.Event import Event
 from Components.Sources.List import List
 from Components.Sources.RdsDecoder import RdsDecoder
@@ -83,6 +83,7 @@ def unregisterServicelistInfoKeyHandler(key):
 
 def getServicelistInfoKeyHandler(key):
 	return SERVICELIST_INFOKEY_HANDLERS.get(key)
+
 
 # Values for csel.bouquet_mark_edit:
 OFF = 0
@@ -3478,7 +3479,7 @@ class HistoryZapSelector(Screen):
 						localBegin = localtime(begin)
 						localEnd = localtime(end)
 						eventDuration = f"{strftime(config.usage.time.short.value, localBegin)}  -  {strftime(config.usage.time.short.value, localEnd)}    ({prefix}{ngettext('%d Min', '%d Mins', remaining) % remaining})"
-				servicePicon = getPiconName(str(ServiceReference(serviceReference)))
+				servicePicon = getChannelSelectionPiconName(str(ServiceReference(serviceReference)))
 				servicePicon = loadPNG(servicePicon) if servicePicon else ""
 				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, serviceReference))
 		if config.usage.zapHistorySort.value == 0:

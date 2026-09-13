@@ -386,9 +386,9 @@ class SecConfigure:
 		for x in range(3601, 3605):
 			lnb = int(advanced.sat[x].lnb.value)
 			if lnb != 0:
-				for x in self.NimManager.satList:
-					print(f"[NimManager] add {x[0]} to {lnb}")
-					lnbSat[lnb].append(x[0])
+				for sat in self.NimManager.satList:
+					print(f"[NimManager] add {sat[0]} to {lnb}")
+					lnbSat[lnb].append(sat[0])
 
 		# Wildcard for user satellites ( for rotor )
 		for x in range(3605, 3607):
@@ -1382,6 +1382,20 @@ class NimManager:
 				entries[current_slot]["name"] = _("N/A")
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
+		# The tuner configuration is created once from the slots present during
+		# Enigma2 startup.  A VTUNER may finish registering later, but Enigma2
+		# does not support adding a new tuner configuration at runtime.  Keep
+		# updates to already known (including previously empty) slots, and defer
+		# completely new slot indices until the next GUI restart.
+		try:
+			configured_slots = len(config.Nims)
+		except AttributeError:
+			configured_slots = None
+		if configured_slots is not None:
+			late_slots = sorted(slot_id for slot_id in entries if slot_id >= configured_slots)
+			if late_slots:
+				print(f"[NimManager] New NIM slot(s) {late_slots} detected after tuner configuration initialization; a GUI restart is required before they can be used.")
+				entries = {slot_id: entry for slot_id, entry in entries.items() if slot_id < configured_slots}
 		self.number_of_slots = len(list(entries.keys()))
 		fbc_number = 0
 		fbc_tuner = 1
@@ -1658,8 +1672,8 @@ class NimManager:
 			elif configMode == "advanced":
 				for x in range(3601, 3605):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
-						for x in self.satList:
-							result.append(x)
+						for sat in self.satList:
+							result.append(sat)
 				if not result:
 					for x in self.satList:
 						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
@@ -1700,10 +1714,10 @@ class NimManager:
 			elif configMode == "advanced":
 				for x in range(3601, 3605):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
-						for x in self.satList:
+						for sat in self.satList:
 							if onlyFirst:
 								return True
-							result.append(x)
+							result.append(sat)
 				if not result:
 					for x in self.satList:
 						lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
@@ -1810,6 +1824,8 @@ def InitSecParams():
 	x = ConfigInteger(default=150, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
 	config.sec.delay_after_diseqc_peripherial_poweron_cmd = x
+
+	config.crash.debugSec.addNotifier(lambda configElement: secClass.setParam(secClass.SEC_DEBUG, int(configElement.value)))
 
 # TODO: Add support for satPos depending nims to advanced nim configuration
 # so a second/third/fourth cable from a motorized lnb can used behind a

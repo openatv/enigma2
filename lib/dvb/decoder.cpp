@@ -34,6 +34,16 @@
 #endif
 
 #ifdef DREAMNEXTGEN
+struct dream_video_frame
+{
+	uint64_t pts;
+	ssize_t bytes[8];
+	const uint8_t *data[8];
+	int is_phys_addr[8];
+};
+
+#define DREAM_VIDEO_SET_FRAME _IOWR('o', 64, struct dream_video_frame)
+
 #define ASPECT_4_3      ((3<<8)/4)
 #define ASPECT_16_9     ((9<<8)/16)
 #endif
@@ -1787,6 +1797,11 @@ RESULT eTSMPEGDecoder::setRadioPic(const std::string &filename)
 
 RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 {
+	return showSinglePic(filename, false);
+}
+
+RESULT eTSMPEGDecoder::showSinglePic(const char *filename, bool keepVisible)
+{
 	if (m_decoder == 0)
 	{
 		eDebug("[eTSMPEGDecoder] showSinglePic %s", filename);
@@ -1834,6 +1849,22 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					eDebug("[eTSMPEGDecoder] VIDEO_CLEAR_BUFFER: %m");
 				while(pos <= (s.st_size-4) && !(seq_end_avail = (!iframe[pos] && !iframe[pos+1] && iframe[pos+2] == 1 && iframe[pos+3] == 0xB7)))
 					++pos;
+#ifdef DREAMNEXTGEN
+				dream_video_frame frame = {};
+				int segment = 0;
+				frame.pts = 0;
+				frame.bytes[segment] = s.st_size;
+				frame.data[segment++] = iframe;
+				if (!seq_end_avail)
+				{
+					frame.bytes[segment] = sizeof(seq_end);
+					frame.data[segment++] = seq_end;
+				}
+				frame.bytes[segment] = sizeof(stuffing);
+				frame.data[segment] = stuffing;
+				if (ioctl(m_video_clip_fd, DREAM_VIDEO_SET_FRAME, &frame) < 0)
+					eDebug("[eTSMPEGDecoder] VIDEO_SET_FRAME failed: %m");
+#else
 				if ((iframe[3] >> 4) != 0xE) // no pes header
 					writeAll(m_video_clip_fd, pes_header, sizeof(pes_header));
 				else
@@ -1845,10 +1876,12 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					if (ret < 0) eDebug("[eTSMPEGDecoder] write failed: %m");
 				}
 				writeAll(m_video_clip_fd, stuffing, 8192);
+#endif
 #if HAVE_HISILICON
 				;
 #else
-				m_showSinglePicTimer->start(150, true);
+				if (!keepVisible)
+					m_showSinglePicTimer->start(150, true);
 #endif
 			}
 			close(f);

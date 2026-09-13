@@ -13,7 +13,7 @@ from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eSe
 from Components.GUIComponent import GUIComponent
 from Components.config import config
 from Components.MultiContent import MultiContentEntryProgress, MultiContentEntryText, MultiContentEntryRectangle, MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 import NavigationInstance
 from ServiceReference import ServiceReference, isRadioServiceReference
 from skin import componentTemplates, getcomponentTemplate, parseColor, parseFont, parseListOrientation, reloadSkinTemplates, SizeTuple, SkinContext, SkinContextStack, TemplateParser
@@ -821,7 +821,7 @@ class ServiceListLegacy(ServiceListBase):
 		self.l.setShowTwoLines(twoLines)
 
 		if config.usage.service_icon_enable.value:
-			self.l.setGetPiconNameFunc(getPiconName)
+			self.l.setGetPiconNameFunc(getChannelSelectionPiconName)
 		else:
 			self.l.setGetPiconNameFunc(None)
 
@@ -1087,7 +1087,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 			service_str = first_in_alternative.toString() if first_in_alternative else service.toString()
 		else:
 			service_str = service.toString()
-		picon = getPiconName(service_str)
+		picon = getChannelSelectionPiconName(service_str)
 		if exists(picon):
 			return loadPNG(picon)
 		return None
@@ -1294,11 +1294,11 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 				backgroundColorSelected = attributes.get("backgroundColorSelected", defaults.get("backgroundColorSelected"))
 
 				if serviceAvail == 1:
-					foregroundColor = defaults.get("serviceNotAvailColor", foregroundColor)
-					foregroundColorSelected = defaults.get("serviceNotAvailColorSelected", foregroundColor)
+					foregroundColor = attributes.get("serviceNotAvailColor", defaults.get("serviceNotAvailColor", foregroundColor))
+					foregroundColorSelected = attributes.get("serviceNotAvailColorSelected", defaults.get("serviceNotAvailColorSelected", foregroundColor))
 				elif serviceAvail == 2:
-					foregroundColor = defaults.get("fallbackColor", foregroundColor)
-					foregroundColorSelected = defaults.get("fallbackColorSelected", foregroundColor)
+					foregroundColor = attributes.get("fallbackColor", defaults.get("fallbackColor", foregroundColor))
+					foregroundColorSelected = attributes.get("fallbackColorSelected", defaults.get("fallbackColorSelected", foregroundColor))
 
 			return foregroundColor, backgroundColor, foregroundColorSelected, backgroundColorSelected
 

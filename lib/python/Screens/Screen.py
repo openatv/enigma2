@@ -1,9 +1,9 @@
 from os.path import isfile
 from types import CodeType
 
-from enigma import eRCInput, eStack, eTimer, eWindow, getDesktop
+from enigma import eRCInput, eStack, eTimer, eWindow
 
-from skin import GUI_SKIN_ID, applyAllAttributes, menus, readSkin, screens, setups
+from skin import applyAllAttributes, menus, readSkin, screens, setups
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.GUIComponent import GUIComponent
@@ -289,7 +289,7 @@ class Screen(dict):
 				method()
 
 	def applySkin(self):
-		bounds = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())
+		bounds = (self.desktop.size().width(), self.desktop.size().height())
 		resolution = bounds
 		zPosition = 0
 		for (key, value) in self.skinAttributes:

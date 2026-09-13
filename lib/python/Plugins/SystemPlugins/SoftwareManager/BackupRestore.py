@@ -509,7 +509,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 		fullbackupfilename = join(self.backuppath, self.backupfile)
 		if not exists(fullbackupfilename):
 			for directory in (d for d in listdir("/media") if d not in MEDIA_BLACKLIST):
-				possiblefile = join("/media", directory, f"backup_{BoxInfo.getItem('distro')}_{MACHINEBUILD}")
+				possiblefile = join("/media", directory, f"backup_{BoxInfo.getItem('distro')}_{MACHINEBUILD}", self.backupfile)
 				if exists(possiblefile):
 					fullbackupfilename = possiblefile
 					break

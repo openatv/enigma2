@@ -24,7 +24,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	  m_run_state(0)
 {
 	m_current_position = 0;
-	m_force_position.store(-1, std::memory_order_relaxed);
+	m_force_position.store(-1, std::memory_order_relaxed); // S8417: no other shared data depends on this store
 	if (m_buffer == NULL)
 		eFatal("[eFilePushThread] Failed to allocate %zu bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -84,7 +84,7 @@ void eFilePushThread::thread()
 			 * exchange() atomically reads the value and resets to -1
 			 * in one operation.  Prevents the lost-update race that
 			 * exists with separate if(v>=0) / v=-1 on volatile. */
-			off_t forced = m_force_position.exchange(-1, std::memory_order_relaxed);
+			off_t forced = m_force_position.exchange(-1, std::memory_order_relaxed); // S8417: no other shared data depends on this value
 			if (forced >= 0)
 			{
 				m_current_position = forced;
@@ -291,7 +291,7 @@ void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 	m_source = source;
 	m_fd_dest = fd_dest;
 	m_current_position = 0;
-	m_force_position.store(-1, std::memory_order_relaxed);
+	m_force_position.store(-1, std::memory_order_relaxed); // S8417: no other shared data depends on this store
 	m_run_state = 1;
 	m_stop = 0;
 	run();
@@ -303,7 +303,7 @@ void eFilePushThread::forcePosition(off_t pos)
 	 * it up on its next loop iteration via exchange().
 	 * memory_order_relaxed is sufficient: the consumer only reads
 	 * m_force_position — no other shared data depends on this store. */
-	m_force_position.store(pos, std::memory_order_relaxed);
+	m_force_position.store(pos, std::memory_order_relaxed); // S8417
 }
 
 void eFilePushThread::stop()

@@ -150,6 +150,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		InfoBarSeek.__init__(self)
 		InfoBarPVRState.__init__(self)
 
+		if config.seek.arrowSkipMode.value != "t":
+			self["SeekActionsArrows"].setEnabled(False)
+
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.dvdScreen = None
 		self.session.nav.stopService()

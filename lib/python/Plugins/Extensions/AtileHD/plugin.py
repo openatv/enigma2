@@ -45,7 +45,8 @@ def Plugins(**kwargs):
 
 
 def menu(menuid, **kwargs):
-	exclude = ["MetrixHD/skin.MySkin.xml", "MetrixHD/skin.xml", "SevenHD/skin.xml", "KravenVB/skin.xml", "OverlayHD/skin.xml"]
+	exclude = ["MetrixHD/skin.MySkin.xml", "MetrixHD/skin.xml", "SevenHD/skin.xml", "KravenVB/skin.xml", "OverlayHD/skin.xml",
+		"Umbra/skin.xml", "Umbra/HD/skin.xml", "Umbra/FHD/skin.xml", "Umbra/WQHD/skin.xml"]
 	if menuid == "system" and config.skin.primary_skin.value not in exclude:
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:

@@ -146,8 +146,11 @@ class ConfigElement:
 		if self.loadValue is None:
 			self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
 		# print(f"[Config] save DEBUG: Load='{self.loadValue}', Value='{self.value}'.")
-		self.saved_value = None if self.save_disabled or (self.value == self.default and not self.saveForced) else self.toString(self.value)
-		if self.value != self.loadValue:
+		value = self.value
+		self.saved_value = None if self.save_disabled or (value == self.default and not self.saveForced) else self.toString(value)
+		changed = value != self.loadValue
+		self.loadValue = value
+		if changed:
 			self.changedFinal()  # Call non-immediate_feedback notifiers, immediate_feedback notifiers are called as the values chanage.
 
 	def setReadOnly(self, value):

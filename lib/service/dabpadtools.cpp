@@ -112,6 +112,23 @@ std::string CharsetTools::ConvertCharEBUToUTF8(const uint8_t value) {
 std::string CharsetTools::ConvertTextToUTF8(const uint8_t *data, size_t len, int charset,
 	bool mot, std::string *charset_name)
 {
+	/* UCS-2 is two bytes per character, so the control characters have to be
+	 * dropped as code points. Removing single bytes would shift everything
+	 * that follows. */
+	if (charset == 6 && !mot)
+	{
+		if (charset_name)
+			*charset_name = "UCS-2BE";
+		std::string result;
+		for (size_t i = 0; i + 1 < len; i += 2)
+		{
+			const unsigned value = (static_cast<unsigned>(data[i]) << 8) | data[i + 1];
+			if (value == 0x00 || value == 0x0a || value == 0x0b || value == 0x1f)
+				continue;
+			result += CodepointToUTF8(value);
+		}
+		return result;
+	}
 	std::vector<uint8_t> cleaned;
 	for (size_t i = 0; i < len; ++i)
 	{
@@ -142,15 +159,6 @@ std::string CharsetTools::ConvertTextToUTF8(const uint8_t *data, size_t len, int
 		std::string result;
 		for (std::vector<uint8_t>::const_iterator it = cleaned.begin(); it != cleaned.end(); ++it)
 			result += CodepointToUTF8(*it);
-		return result;
-	}
-	if (charset == 6 && !mot)
-	{
-		if (charset_name)
-			*charset_name = "UCS-2BE";
-		std::string result;
-		for (size_t i = 0; i + 1 < cleaned.size(); i += 2)
-			result += CodepointToUTF8((static_cast<unsigned>(cleaned[i]) << 8) | cleaned[i + 1]);
 		return result;
 	}
 	if (charset == 15)

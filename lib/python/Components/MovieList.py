@@ -14,7 +14,7 @@ from Components.config import config
 from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, KNOWN_EXTENSIONS
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryText
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from Screens.LocationBox import defaultInhibitDirs
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.FuzzyDate import FuzzyTime
@@ -451,7 +451,7 @@ class MovieList(GUIComponent):
 				print(f"[MovieList] Load extended info get failed: '{str(err)}'!")
 			if ext == "2":
 				try:
-					picon = getPiconName(ref)
+					picon = getChannelSelectionPiconName(ref)
 					picon = loadPNG(picon)
 				except Exception as err:
 					print(f"[MovieList] Load picon get failed: '{str(err)}'!")

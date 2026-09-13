@@ -2,6 +2,8 @@ from os.path import isdir
 
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
+from Components.Renderer.LcdPicon import resetLcdPiconPath
+from Components.Renderer.Picon import resetPiconPath
 from Components.Sources.StaticText import StaticText
 from Screens.LocationBox import LocationBox, DEFAULT_INHIBIT_DIRECTORIES
 from Screens.Setup import Setup
@@ -50,7 +52,11 @@ class PiconSettings(Setup):
 			if path and not isdir(path):
 				self.setFootnote(_("Directory '%s' does not exist!") % path)
 				return
+		pathChanged = any(getattr(config.picon, f"set{index}").path.isChanged() for index in range(4)) or any(cfg.isChanged() for cfg in (config.picon.mode, config.picon.infobar, config.picon.channelselection, config.picon.display))
 		Setup.keySave(self)
+		if pathChanged:
+			resetPiconPath()
+			resetLcdPiconPath()
 
 	def updateButtons(self):
 		yellowText = "" if config.picon.mode.value == 0 or config.picon.set3.path.value else _("Add Path")

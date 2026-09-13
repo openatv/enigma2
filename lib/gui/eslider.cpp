@@ -15,6 +15,15 @@ void eSlider::setIsScrollbar()
 	m_scrollbar = true;
 }
 
+void eSlider::setGradientMode(bool explicitMode)
+{
+	if (m_explicit_gradients != explicitMode)
+	{
+		m_explicit_gradients = explicitMode;
+		invalidate();
+	}
+}
+
 void eSlider::setPixmap(ePtr<gPixmap> &pixmap)
 {
 	setPixmap(pixmap.operator->());
@@ -78,12 +87,13 @@ int eSlider::event(int event, void *data, void *data2)
 
 		/* paint background */
 		const int cornerRadius = getCornerRadius();
-		if (!cornerRadius && !isGradientSet()) // don't call eWidget paint if radius or gradient
+		if (!cornerRadius && !isGradientSet() && !(m_explicit_gradients && m_background_gradient_set))
 			eWidget::event(evtPaint, data, data2);
 
 		gPainter &painter = *(gPainter *)data2;
 
 		bool drawborder = (m_slider_border_width > 0);
+		const uint8_t legacyGradientDirection = m_orientation == orHorizontal ? GRADIENT_HORIZONTAL : GRADIENT_VERTICAL;
 
 		if (m_backgroundpixmap)
 		{
@@ -104,6 +114,7 @@ int eSlider::event(int event, void *data, void *data2)
 		if (cornerRadius || m_background_gradient_set)
 		{
 			painter.setRadius(cornerRadius, getCornerRadiusEdges());
+			const uint8_t gradientDirection = m_explicit_gradients ? m_background_gradient_direction : legacyGradientDirection;
 
 			if (drawborder)
 			{
@@ -115,19 +126,20 @@ int eSlider::event(int event, void *data, void *data2)
 					painter.setBackgroundColor(color);
 				}
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
-				if(m_background_gradient_set) {
-					if (m_orientation == orHorizontal)
-						painter.setGradient(m_background_gradient_colors, 2, m_background_gradient_alphablend, 0);
-					else
-						painter.setGradient(m_background_gradient_colors, 1, m_background_gradient_alphablend, 0);
-				}
+				if (m_background_gradient_set)
+					painter.setGradient(m_background_gradient_colors, gradientDirection, m_background_gradient_alphablend, 0);
 				else
 					painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
 				painter.setRadius(cornerRadius, getCornerRadiusEdges());
 				painter.drawRectangle(eRect(m_slider_border_width, m_slider_border_width, size().width() - m_slider_border_width * 2, size().height() - m_slider_border_width * 2));
 				drawborder = false;
 			}
-			else if(m_have_background_color)
+			else if (m_explicit_gradients && m_background_gradient_set)
+			{
+				painter.setGradient(m_background_gradient_colors, gradientDirection, m_background_gradient_alphablend, 0);
+				painter.drawRectangle(eRect(ePoint(0, 0), size()));
+			}
+			else if (m_have_background_color)
 			{
 				painter.setBackgroundColor(m_background_color);
 				painter.drawRectangle(eRect(ePoint(0, 0), size()));
@@ -145,10 +157,12 @@ int eSlider::event(int event, void *data, void *data2)
 			{
 				if (m_foreground_gradient_set)
 				{
-					if (m_orientation == orHorizontal)
-						painter.setGradient(m_foreground_gradient_colors, 2, m_foreground_gradient_alphablend, m_foreground_gradient_fullcolor ? 0 : m_currently_filled.extends.size().height());
-					else
-						painter.setGradient(m_foreground_gradient_colors, 1, m_foreground_gradient_alphablend, m_foreground_gradient_fullcolor ? 0 : m_currently_filled.extends.size().width());
+					// Keep legacy axis/full-size semantics unless this widget explicitly opts in.
+					const uint8_t gradientDirection = m_explicit_gradients ? m_foreground_gradient_direction : legacyGradientDirection;
+					const int gradientSize = m_explicit_gradients
+						? (gradientDirection == GRADIENT_VERTICAL ? s.height() : s.width()) - m_slider_border_width * 2
+						: (m_orientation == orHorizontal ? m_currently_filled.extends.height() : m_currently_filled.extends.width());
+					painter.setGradient(m_foreground_gradient_colors, gradientDirection, m_foreground_gradient_alphablend, m_foreground_gradient_fullcolor ? 0 : gradientSize);
 				}
 				else
 				{
@@ -252,7 +266,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 		const int cornerRadius = getCornerRadius();
 
-		if (cornerRadius)
+		if (cornerRadius || (m_explicit_gradients && m_foreground_gradient_set && m_foreground_gradient_fullcolor))
 		{
 			invalidate(old_currently_filled);
 			invalidate(m_currently_filled);

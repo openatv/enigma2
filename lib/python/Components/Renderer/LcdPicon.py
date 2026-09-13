@@ -2,6 +2,7 @@ from os import listdir
 from os.path import exists, getsize, isdir, join
 from re import sub
 from enigma import ePixmap, ePicLoad
+from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
 from Components.SystemInfo import BoxInfo
@@ -12,6 +13,19 @@ from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanit
 searchPaths = []
 lastLcdPiconPath = None
 BW = BoxInfo.getItem("displaytype") in ("bwlcd255", "bwlcd140") and not BoxInfo.getItem("grautec")
+
+
+def resetLcdPiconPath():
+	global lastLcdPiconPath
+	lastLcdPiconPath = None
+
+
+def getPiconPath():
+	if config.picon.mode.value:
+		path = getattr(config.picon, f"set{config.picon.display.value}").path.value
+		if isdir(path):
+			return path
+	return None
 
 
 def initLcdPiconPaths():
@@ -68,12 +82,17 @@ def onPartitionChange(why, part):
 def findLcdPicon(serviceName):
 	global lastLcdPiconPath
 	if lastLcdPiconPath is not None:
-		pngname = f"{lastLcdPiconPath}{serviceName}.png"
+		pngname = join(lastLcdPiconPath, f"{serviceName}.png")
 		return pngname if exists(pngname) else ""
 	else:
+		path = getPiconPath()
+		if path:
+			lastLcdPiconPath = path
+			pngname = join(lastLcdPiconPath, f"{serviceName}.png")
+			return pngname if exists(pngname) else ""
 		for path in searchPaths:
-			if exists(path) and not path.startswith("/media/net"):
-				pngname = f"{path}{serviceName}.png"
+			if isdir(path) and not path.startswith("/media/net"):
+				pngname = join(path, f"{serviceName}.png")
 				if exists(pngname):
 					lastLcdPiconPath = path
 					return pngname
