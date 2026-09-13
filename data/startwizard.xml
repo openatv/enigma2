@@ -453,7 +453,7 @@ self.condition = self.isLastWizard
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
 		<text value="You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now." />
 		<displaytext value="Restore settings now" />
-		<config screen="RestoreScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
+		<config screen="RestoreScreen" module="Screens.BackupRestore" type="ConfigList" />
 	</step>
 
 	<step id="restorereboot">

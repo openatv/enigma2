@@ -16,7 +16,7 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+from Screens.BackupRestore import BackupScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
