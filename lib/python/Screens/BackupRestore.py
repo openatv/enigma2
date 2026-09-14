@@ -21,7 +21,7 @@ from Screens.RestartNetwork import RestartNetwork
 from Screens.Screen import Screen
 from Tools.Directories import fileWriteLines, resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
-from . import ShellCompatibleFunctions
+from Tools.ShellCompatibleFunctions import backupUserDB, listpkg, restoreUserDB, BLACKLISTED, MANDATORY_RIGHTS
 
 
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
@@ -31,13 +31,6 @@ MEDIA_BLACKLIST = ("audiocd", "autofs")
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
 	return [] if resolve == path else resolve.split()
-
-
-# MANDATORY_RIGHTS contains commands to ensure correct rights for certain files, shared with ShellCompatibleFunctions for FastRestore
-MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS + " ; exit 0"
-
-# BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly, shared with ShellCompatibleFunctions for FastRestore
-BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
 
 
 def InitConfig():
@@ -86,8 +79,6 @@ def InitConfig():
 
 	config.plugins.configurationbackup = ConfigSubsection()
 	defaultlocation = "/media/hdd/"
-	if MACHINEBUILD in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6") and not exists(f"/media/hdd/backup_{MACHINEBUILD}"):
-		defaultlocation = "/media/backup/"
 	config.plugins.configurationbackup.backuplocation = ConfigText(default=defaultlocation, visible_width=50, fixed_size=False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
 	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[])  # "backupdirs_addon" is called "backupdirs" for backwards compatibility, holding the user"s old selection, duplicates are removed during backup
@@ -172,11 +163,11 @@ class BackupScreen(ConfigListScreen, Screen):
 						if f"tmp/{file}" not in backupDirs:
 							backupDirs += f" tmp/{file}"
 
-					ShellCompatibleFunctions.backupUserDB()
-					pkgs = ShellCompatibleFunctions.listpkg(type="user")
+					backupUserDB()
+					pkgs = listpkg(type="user")
 					fileWriteLines("/tmp/installed-list.txt", pkgs)
 					if exists("/usr/lib/package.lst"):
-						pkgs = ShellCompatibleFunctions.listpkg(type="installed")
+						pkgs = listpkg(type="installed")
 						with open("/usr/lib/package.lst") as fd:
 							installed = set(line.split()[0] for line in pkgs)
 							preinstalled = set(line.split()[0] for line in fd)
@@ -454,7 +445,7 @@ class RestoreMenu(Screen):
 		for f in BLACKLISTED:
 			tarcmd += f" --exclude {f.strip('/')}"
 
-		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
+		cmds = [tarcmd, MANDATORY_RIGHTS + " ; exit 0", "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret:
 			cmds.insert(0, "rm -R /etc/enigma2")
 		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds, showScripts=False)
@@ -517,7 +508,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 		tarcmd = f"tar -C / -xzvf {fullbackupfilename}"
 		for f in BLACKLISTED:
 			tarcmd = tarcmd + f" --exclude {f.strip('/')}"
-		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS]
+		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS + " ; exit 0"]
 		if exists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
@@ -525,7 +516,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist, closeOnSuccess=True, showScripts=False)
 
 	def restoreFinishedCB(self, retval=None):
-		ShellCompatibleFunctions.restoreUserDB()
+		restoreUserDB()
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):
@@ -632,7 +623,7 @@ class installedPlugins(Screen):
 			self.readPluginList()
 
 	def readPluginList(self):
-		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
+		installedpkgs = listpkg(type="installed")
 		self.PluginList = []
 		if exists("/tmp/installed-list.txt"):
 			with open("/tmp/installed-list.txt") as f:
@@ -854,3 +845,57 @@ class SoftwareManagerInfo(Screen):
 			for entry in backupfiles:
 				self.infoList.append((entry,))
 			self["list"].setList(self.infoList)
+
+
+class BackupHelper(Screen):
+	skin = """
+		<screen name="BackupHelper" position="0,0" size="1,1" title="SoftwareManager">
+		</screen>"""
+
+	def __init__(self, session, args=0):
+		Screen.__init__(self, session)
+		self.args = args
+		self.backuppath = getBackupPath()
+		if not isdir(self.backuppath):
+			self.backuppath = getOldBackupPath()
+		self.backupfile = getBackupFilename()
+		self.fullbackupfilename = join(self.backuppath, self.backupfile)
+		self.callLater(self.doAction)
+
+	def doAction(self):
+		doClose = True
+		if self.args == 1:
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True, closeOnSuccess=5)
+			doClose = False
+		elif self.args == 2:
+			if isfile(self.fullbackupfilename):
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
+				doClose = False
+			else:
+				self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
+		elif self.args == 3:
+			try:
+				from Plugins.Extensions.MediaScanner.plugin import scan
+				scan(self.session, self)
+				doClose = False
+			except ImportError:
+				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
+		elif self.args == 5:
+			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True, mode="backupfiles")
+		elif self.args == 6:
+			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False, mode="backupfiles_addon")
+		elif self.args == 7:
+			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
+		if doClose:
+			self.close()
+
+	def startRestore(self, ret=False):
+		if (ret is True):
+			self.exe = True
+			self.session.open(RestoreScreen, runRestore=True)
+		self.close()
+
+	def backupDone(self, retval=None):
+		#message = _("Backup completed.") if retval else _("Backup failed.")
+		#self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
+		self.close()
