@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-01 10:31+0000\n"
+"PO-Revision-Date: 2026-09-14 14:56+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -930,11 +930,11 @@ msgstr[1] "发现 %d 个网络。"
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
-msgstr ""
+msgstr "%d/%d 个频道包含DAB+ Ensemble（复用集）"
 
 #, python-format
 msgid "%d of %d feeds completed"
-msgstr ""
+msgstr "%d/%d 个传送源已完成"
 
 #, python-format
 msgid "%d package found."
@@ -1166,11 +1166,11 @@ msgstr "%s %sB"
 
 #, python-format
 msgid "%s (cached)"
-msgstr ""
+msgstr "%s（已缓存）"
 
 #, python-format
 msgid "%s (motor)"
-msgstr ""
+msgstr "%s（马达）"
 
 #, python-format
 msgid "%s - Setup"
@@ -1337,7 +1337,7 @@ msgstr "“%s”未挂载。"
 
 #, python-format
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
-msgstr ""
+msgstr "“%s”使用企业级认证（802.1X）。此类网络无法在此设置，需在 wpa_supplicant.conf 中手动配置。"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "“缓冲时间（小时）”或“最后事件的数量”。对于删除较旧的时移文件，首先发生的条件具有优先级。"
@@ -1604,7 +1604,7 @@ msgid "A backup is now being created."
 msgstr "现在正在创建备份。"
 
 msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
-msgstr ""
+msgstr "检测到原有设置的备份。是否在继续设置前恢复该备份？"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "以逗号分隔的扩展名列表，用于“我的扩展名”>>“筛选扩展名”的设置。输入不带前导点（.）的扩展名。"
@@ -1917,7 +1917,7 @@ msgstr "适配器"
 
 #, python-format
 msgid "Adapter '%s'"
-msgstr ""
+msgstr "适配器 '%s'"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
@@ -2171,7 +2171,7 @@ msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "调整用于图文电视的文字的水平位置。"
 
 msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
-msgstr ""
+msgstr "调整调谐器本振偏移，优化 DAB+ 信号接收。"
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "调整用于图文电视的文字的垂直位置。"
@@ -2300,7 +2300,7 @@ msgid "All files"
 msgstr "所有文件"
 
 msgid "All regions"
-msgstr ""
+msgstr "所有区域"
 
 msgid "All resolutions"
 msgstr "所有分辨率"
@@ -2481,7 +2481,7 @@ msgid "Amount %d / Success %d / Failed %d"
 msgstr "总数 %d / 成功 %d / 失败 %d"
 
 msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
-msgstr ""
+msgstr "检测到RTL-SDR接收器，正在从订阅源安装可选的DAB+ USB运行库。"
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "试图捕获当前的电视状态。如果由于状态消息不正确或丢失而无法执行此操作，则可能会导致接收机意外响应。另一方面，尝试更好地响应不同的操作条件。"
@@ -2798,7 +2798,7 @@ msgid "Audio Synchronization"
 msgstr "音频同步"
 
 msgid "Audio bit rate"
-msgstr ""
+msgstr "音频比特率"
 
 msgid "Audio language selection 1"
 msgstr "伴音语言选择 1"
@@ -2915,7 +2915,7 @@ msgid "Automatic Service Searching"
 msgstr "自动搜索频道"
 
 msgid "Automatic gain"
-msgstr ""
+msgstr "自动增益"
 
 msgid "Automatic resolution"
 msgstr "自动分辨率"
@@ -3259,14 +3259,14 @@ msgstr "REC 符号闪烁"
 
 #, python-format
 msgid "Block %s"
-msgstr ""
+msgstr "屏蔽 %s"
 
 #, python-format
 msgid "Block %s - %.3f MHz"
-msgstr ""
+msgstr "屏蔽 %s - %.3f MHz"
 
 msgid "Block RTL2832 DVB kernel driver"
-msgstr ""
+msgstr "屏蔽 RTL2832 DVB 内核驱动"
 
 msgid "Block device"
 msgstr "块设备"
@@ -4505,7 +4505,7 @@ msgid "Close network test"
 msgstr "关闭网络测试"
 
 msgid "Close network test and exit all menus"
-msgstr ""
+msgstr "关闭网络测试并退出所有菜单"
 
 msgid "Close screen"
 msgstr "关闭屏幕"
@@ -4568,7 +4568,7 @@ msgid "Code rate LP"
 msgstr "低优先级编码率"
 
 msgid "Codec"
-msgstr ""
+msgstr "编解码器"
 
 msgid "Collapse"
 msgstr "折叠"
@@ -5467,7 +5467,7 @@ msgid "Create kernel dump."
 msgstr "创建内核转储。"
 
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
-msgstr ""
+msgstr "创建或移除RTL2832 DVB模块黑名单。设备需要完全重启；启用后，此USB调谐器可用于DAB+，但无法用于DVB-T/T2。"
 
 #, python-format
 msgid "Create recovery image backup '%s'."
@@ -5743,36 +5743,36 @@ msgid "DAB+ Scan"
 msgstr "DAB+ 扫描"
 
 msgid "DAB+ Settings"
-msgstr ""
+msgstr "DAB+ 设置"
 
 msgid "DAB+ Settings Actions"
-msgstr ""
+msgstr "DAB+ 设置操作"
 
 msgid "DAB+ USB support could not be installed from the feed."
-msgstr ""
+msgstr "无法从订阅源安装DAB+ USB支持组件。"
 
 msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
-msgstr ""
+msgstr "DAB+ USB支持组件已安装。您现在可以在接收设置中启用该接收器。"
 
 msgid "DAB+ USB: bouquet could not be written"
-msgstr ""
+msgstr "DAB+ USB：无法写入频道分组"
 
 msgid "DAB+ channel"
-msgstr ""
+msgstr "DAB+ 频道"
 
 #, python-format
 msgid "DAB+ channel %s"
-msgstr ""
+msgstr "DAB+ 频道 %s"
 
 msgid "DAB+ decoder back end not installed"
-msgstr ""
+msgstr "DAB+ 解码器后端未安装"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "DAB+ 扫描失败；已有的频道分组会被保留。"
 
 #, python-format
 msgid "DAB+ service information for '%s'"
-msgstr ""
+msgstr "'%s' 的 DAB+ 频道信息"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5833,10 +5833,10 @@ msgid "DVB Subtitles PID & Language"
 msgstr "DVB 字幕 PID 和语言"
 
 msgid "DVB frontend"
-msgstr ""
+msgstr "DVB 前端"
 
 msgid "DVB payload PID"
-msgstr ""
+msgstr "DVB 载荷 PID"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB字幕黑色透明度"
@@ -6552,7 +6552,7 @@ msgid "Detect positioner movement by its current consumption."
 msgstr "通过定位器的电流消耗检测其运转状态。"
 
 msgid "Detected USB hardware"
-msgstr ""
+msgstr "检测到 USB 硬件"
 
 msgid "Detective"
 msgstr "侦探"
@@ -7218,7 +7218,7 @@ msgid "Dynamic contrast"
 msgstr "动态对比度"
 
 msgid "Dynamic label"
-msgstr ""
+msgstr "动态标签"
 
 msgid "Dzongkha"
 msgstr "宗喀语"
@@ -7418,13 +7418,13 @@ msgid "Edit the NewCamd DES Key."
 msgstr "编辑 NewCamd DES 密钥。"
 
 msgid "Edit the currently highlighted feed"
-msgstr ""
+msgstr "编辑当前高亮的订阅源"
 
 msgid "Edit the currently selected timer"
 msgstr "编辑当前选中的定时器"
 
 msgid "Edit the feed URL:"
-msgstr ""
+msgstr "编辑订阅源地址："
 
 msgid "Edit the password."
 msgstr "编辑密码。"
@@ -7518,7 +7518,7 @@ msgid "Enable Chkroot MultiBoot"
 msgstr "启用 Chkroot 多系统启动"
 
 msgid "Enable DAB+ mode"
-msgstr ""
+msgstr "启用 DAB+ 模式"
 
 msgid "Enable EIT EPG"
 msgstr "启用 EIT（事件信息表） EPG"
@@ -7593,7 +7593,7 @@ msgid "Enable Virgin EPG"
 msgstr "启用 Virgin EPG"
 
 msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
-msgstr ""
+msgstr "启用选中的RTL-SDR USB接收器用于DAB+接收。DVB-T和DAB+不能同时使用同一接收器。"
 
 msgid "Enable adapter"
 msgstr "启用适配器"
@@ -7717,7 +7717,7 @@ msgid "Enable this option to add bouquet database information to the debug log f
 msgstr "启用此选项，可将频道分组数据库信息添加到调试日志文件中。"
 
 msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
-msgstr ""
+msgstr "启用此选项可将详细的DAB+接收器、数据包、MOT和SPI信息添加到调试日志文件中。"
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "启用此选项可将额外的 DVB 详细信息添加到调试日志文件中。"
@@ -7765,7 +7765,7 @@ msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "启用此选项可将定时器调试数据添加到调试日志文件。"
 
 msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
-msgstr ""
+msgstr "启用此选项可将详细的SEC/DiSEqC调试数据添加到调试日志文件中。"
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "启用此选项可显示信息菜单项列表中所有可用的信息屏幕。"
@@ -7891,10 +7891,10 @@ msgid "Enigmalight"
 msgstr "Enigmalight"
 
 msgid "Ensemble"
-msgstr ""
+msgstr "复用集"
 
 msgid "Ensemble ID (EID)"
-msgstr ""
+msgstr "复用集标识（EID）"
 
 msgid "Enter"
 msgstr "输入"
@@ -8691,7 +8691,7 @@ msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "未安装 FFmpeg，因此“.mvi”文件操作不可用！"
 
 msgid "FIC quality"
-msgstr ""
+msgstr "FIC 质量"
 
 msgid "FIFO"
 msgstr "FIFO"
@@ -9267,7 +9267,7 @@ msgid "Frequency bands"
 msgstr "频段"
 
 msgid "Frequency correction offset"
-msgstr ""
+msgstr "频偏校正"
 
 msgid "Frequency range"
 msgstr "频率范围"
@@ -9360,7 +9360,7 @@ msgid "Gaelic"
 msgstr "盖尔语"
 
 msgid "Gain steps"
-msgstr ""
+msgstr "增益步进"
 
 msgid "Galicia (Spain)"
 msgstr "加利西亚（西班牙）"
@@ -10410,7 +10410,7 @@ msgid "In progress"
 msgstr "进行中"
 
 msgid "In use by DAB+"
-msgstr ""
+msgstr "DAB+ 占用中"
 
 msgid "Inaccessible"
 msgstr "无法访问"
@@ -10434,7 +10434,7 @@ msgid "Include CI assignment"
 msgstr "包括 CI 分配"
 
 msgid "Include DAB+ data"
-msgstr ""
+msgstr "包含 DAB+ 数据"
 
 msgid "Include DVB details"
 msgstr "包括 DVB 详细信息"
@@ -10461,7 +10461,7 @@ msgid "Include SDT and BAT in http streams"
 msgstr "http 串流中包含 SDT，BAT数据"
 
 msgid "Include SEC/DiSEqC data"
-msgstr ""
+msgstr "包含 SEC/DiSEqC 数据"
 
 msgid "Include action map data"
 msgstr "包含动作映射数据"
@@ -10500,7 +10500,7 @@ msgid "Include text encoding data"
 msgstr "包含文本编码数据"
 
 msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
-msgstr ""
+msgstr "在 DAB+ 扫描中包含此已配置的卫星位置。禁用则跳过该位置。"
 
 msgid "Include timer data"
 msgstr "包含定时器数据"
@@ -10991,7 +10991,7 @@ msgid "Kernel Packages"
 msgstr "内核包"
 
 msgid "Kernel driver"
-msgstr ""
+msgstr "内核驱动"
 
 msgid "Kernel file"
 msgstr "内核文件"
@@ -11316,7 +11316,7 @@ msgid "Lesotho"
 msgstr "莱索托"
 
 msgid "Let the tuner select its RF gain automatically."
-msgstr ""
+msgstr "让调谐器自动选择射频增益。"
 
 msgid "LetterBox zoom"
 msgstr "信箱模式缩放"
@@ -11561,7 +11561,7 @@ msgid "Lock:"
 msgstr "锁定："
 
 msgid "Locked"
-msgstr ""
+msgstr "锁定"
 
 msgid "Log"
 msgstr "日志"
@@ -11700,7 +11700,7 @@ msgid "MOUSE"
 msgstr "MOUSE"
 
 msgid "MSC audio frame quality"
-msgstr ""
+msgstr "MSC 音频帧质量"
 
 msgid "MTD boot"
 msgstr "MTD 引导"
