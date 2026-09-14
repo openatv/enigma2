@@ -24,7 +24,7 @@ from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
 from Tools.CIHelper import cihelper
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
-from Tools.Notifications import AddModalNotification, AddNotification, AddNotificationWithCallback, AddPopup
+from Tools.Notifications import AddModalNotification, AddNotification, AddNotificationWithCallback, AddPopup, showInfo
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
 
@@ -696,6 +696,7 @@ class RecordTimerEntry(TimerEntry):
 		self.forceDeepStandby = False
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
+		self.startMessage = ""  # Extra line for the 'recording has been started' notification.
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24  # One day.
 		self.tags = tags or []
@@ -1495,11 +1496,14 @@ class RecordTimerEntry(TimerEntry):
 				return
 			text = _("A recording has been started:\n%s") % self.name
 			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
+			if self.startMessage:
+				text = "\n".join((text, self.startMessage))
+				notify = True
 			if self.dirnameHadToFallback:
 				text = "\n".join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
 			if notify:
-				AddPopup(text=text, type=MessageBox.TYPE_INFO, timeout=3)
+				showInfo(text, timeout=10 if self.startMessage else 4)
 		elif event == iRecordableService.evRecordAborted:
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
 		elif event == iRecordableService.evGstRecordEnded:
