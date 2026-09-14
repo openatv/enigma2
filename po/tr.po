@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-12 15:06+0000\n"
+"PO-Revision-Date: 2026-09-13 12:11+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -3362,10 +3362,10 @@ msgstr "%s'yi engelle"
 
 #, python-format
 msgid "Block %s - %.3f MHz"
-msgstr ""
+msgstr "%s - %.3f MHz engelle"
 
 msgid "Block RTL2832 DVB kernel driver"
-msgstr ""
+msgstr "RTL2832 DVB çekirdek sürücüsünü engelle"
 
 #
 msgid "Block device"
@@ -4645,7 +4645,7 @@ msgid "Close network test"
 msgstr "Ağ testini kapat"
 
 msgid "Close network test and exit all menus"
-msgstr ""
+msgstr "Ağ testini kapat ve tüm menülerden çık"
 
 msgid "Close screen"
 msgstr "Ekranı kapat"
@@ -4709,7 +4709,7 @@ msgid "Code rate LP"
 msgstr "LP kod oranı"
 
 msgid "Codec"
-msgstr ""
+msgstr "Kodek"
 
 msgid "Collapse"
 msgstr "Daralt"
@@ -5633,7 +5633,7 @@ msgid "Create kernel dump."
 msgstr "Çekirdek dökümü oluşturuluyor."
 
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
-msgstr ""
+msgstr "RTL2832 DVB modülü kara listesini oluşturun veya kaldırın. Alıcının tamamen yeniden başlatılması gerekir; bu özellik etkinleştirildiğinde, söz konusu USB tuner DAB+ için kullanılabilir ancak DVB-T/T2 için kullanılamaz."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
@@ -5921,36 +5921,36 @@ msgid "DAB+ Scan"
 msgstr "DAB+ Tarama"
 
 msgid "DAB+ Settings"
-msgstr ""
+msgstr "DAB+ Ayarları"
 
 msgid "DAB+ Settings Actions"
-msgstr ""
+msgstr "DAB+ Ayarları İşlemleri"
 
 msgid "DAB+ USB support could not be installed from the feed."
-msgstr ""
+msgstr "DAB+ USB desteği, kaynağından yüklenemedi."
 
 msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
-msgstr ""
+msgstr "DAB+ USB desteği yüklendi. Artık alıcı ayarlarından bu özelliği etkinleştirebilirsiniz."
 
 msgid "DAB+ USB: bouquet could not be written"
-msgstr ""
+msgstr "DAB+ USB: buket yazılamadı"
 
 msgid "DAB+ channel"
-msgstr ""
+msgstr "DAB+ kanalı"
 
 #, python-format
 msgid "DAB+ channel %s"
-msgstr ""
+msgstr "DAB+ kanalı %s"
 
 msgid "DAB+ decoder back end not installed"
-msgstr ""
+msgstr "DAB+ kod çözücü arka ucu yüklenmemiş"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "DAB+ taraması başarısız oldu; mevcut buketler korundu."
 
 #, python-format
 msgid "DAB+ service information for '%s'"
-msgstr ""
+msgstr "'%s' için DAB+ kanal bilgisi"
 
 msgid "DAC"
 msgstr "DAC"
@@ -6011,10 +6011,10 @@ msgid "DVB Subtitles PID & Language"
 msgstr "DVB Altyazıları PID & Dil"
 
 msgid "DVB frontend"
-msgstr ""
+msgstr "DVB ön ucu"
 
 msgid "DVB payload PID"
-msgstr ""
+msgstr "DVB verisi PID'si"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB altyazı siyah arka plan şeffaflığı"
@@ -6756,7 +6756,7 @@ msgid "Detect positioner movement by its current consumption."
 msgstr "Konumlayıcının hareketini akım tüketimine göre tespit edin."
 
 msgid "Detected USB hardware"
-msgstr ""
+msgstr "Algılanan USB donanımı"
 
 msgid "Detective"
 msgstr "Dedektif"
@@ -7460,7 +7460,7 @@ msgid "Dynamic contrast"
 msgstr "Dinamik kontrast"
 
 msgid "Dynamic label"
-msgstr ""
+msgstr "Dinamik etiket"
 
 msgid "Dzongkha"
 msgstr "Dzongkha Dili"
@@ -7666,13 +7666,13 @@ msgid "Edit the NewCamd DES Key."
 msgstr "NewCamd DES Anahtarını düzenleyin."
 
 msgid "Edit the currently highlighted feed"
-msgstr ""
+msgstr "Şu anda vurgulanan kaynağı düzenleyin"
 
 msgid "Edit the currently selected timer"
 msgstr "Şu anda seçili olan zamanlayıcıyı düzenle"
 
 msgid "Edit the feed URL:"
-msgstr ""
+msgstr "Kaynak URL'sini düzenle:"
 
 msgid "Edit the password."
 msgstr "Parolayı düzenleyin."
@@ -7774,7 +7774,7 @@ msgid "Enable Chkroot MultiBoot"
 msgstr "Chkroot Çoklu Önyüklemeyi Etkinleştir"
 
 msgid "Enable DAB+ mode"
-msgstr ""
+msgstr "DAB+ modunu etkinleştir"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG etkinleştir"
@@ -7852,7 +7852,7 @@ msgid "Enable Virgin EPG"
 msgstr "Virgin EPG etkinleştir"
 
 msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
-msgstr ""
+msgstr "Seçili RTL-SDR USB alıcısını DAB+ yayını alımı için etkinleştirin. DVB-T ve DAB+ aynı alıcıyı eşzamanlı olarak kullanamaz."
 
 msgid "Enable adapter"
 msgstr "Bağdaştırıcıyı etkinleştir"
@@ -7977,7 +7977,7 @@ msgid "Enable this option to add bouquet database information to the debug log f
 msgstr "Hata ayıklama günlüğü dosyasına buket veri tabanı bilgilerini eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
-msgstr ""
+msgstr "Hata ayıklama günlüğü dosyasına ayrıntılı DAB+ alıcı, paket, MOT ve SPI bilgilerini eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Hata ayıklama günlüğü dosyasına ek DVB ayrıntıları eklemek için bu seçeneği etkinleştirin."
@@ -8025,7 +8025,7 @@ msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Zamanlayıcı hata ayıklama verilerini hata ayıklama günlük dosyasına eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
-msgstr ""
+msgstr "Hata ayıklama günlüğü dosyasına ayrıntılı SEC/DiSEqC hata ayıklama verileri eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Bilgi menü öğesi listesindeki tüm mevcut bilgi ekranlarını göstermek için bu seçeneği etkinleştirin."
@@ -8156,10 +8156,10 @@ msgid "Enigmalight"
 msgstr "Enigmalight"
 
 msgid "Ensemble"
-msgstr ""
+msgstr "Topluluk"
 
 msgid "Ensemble ID (EID)"
-msgstr ""
+msgstr "Topluluk Kimliği (EID)"
 
 msgid "Enter"
 msgstr "Girmek"
@@ -8986,7 +8986,7 @@ msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg yüklü olmadığı için '.mvi' dosyalarıyla ilgili işlemler kullanılamıyor!"
 
 msgid "FIC quality"
-msgstr ""
+msgstr "FIC kalitesi"
 
 msgid "FIFO"
 msgstr "FIFO"
@@ -9586,7 +9586,7 @@ msgid "Frequency bands"
 msgstr "Frekans bantları"
 
 msgid "Frequency correction offset"
-msgstr ""
+msgstr "Frekans düzeltme değeri"
 
 msgid "Frequency range"
 msgstr "Frekans aralığı"
@@ -9684,7 +9684,7 @@ msgid "Gaelic"
 msgstr "Galce"
 
 msgid "Gain steps"
-msgstr ""
+msgstr "Kazanım kademeleri"
 
 msgid "Galicia (Spain)"
 msgstr "Galiçya (İspanya)"
@@ -10769,7 +10769,7 @@ msgid "In progress"
 msgstr "Devam ediyor"
 
 msgid "In use by DAB+"
-msgstr ""
+msgstr "DAB+ tarafından kullanılıyor"
 
 msgid "Inaccessible"
 msgstr "Erişilemez"
@@ -10793,7 +10793,7 @@ msgid "Include CI assignment"
 msgstr "Ortak Arayüz Modülü ( CI ) atamasını dahil et"
 
 msgid "Include DAB+ data"
-msgstr ""
+msgstr "DAB+ verilerini dahil et"
 
 msgid "Include DVB details"
 msgstr "DVB detaylarını dahil et"
@@ -10820,7 +10820,7 @@ msgid "Include SDT and BAT in http streams"
 msgstr "SDT ve BAT'ı http akışlarına dahil et"
 
 msgid "Include SEC/DiSEqC data"
-msgstr ""
+msgstr "SEC/DiSEqC verilerini dahil et"
 
 msgid "Include action map data"
 msgstr "Eylem haritası verilerini dahil et"
@@ -10859,7 +10859,7 @@ msgid "Include text encoding data"
 msgstr "Metin kodlama verilerini dahil et"
 
 msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
-msgstr ""
+msgstr "Bu yapılandırılmış uydu konumunu DAB+ taramasına dahil edin. Konumu atlamak için devre dışı bırakın."
 
 msgid "Include timer data"
 msgstr "Zamanlayıcı verilerini dahil et"
@@ -11376,7 +11376,7 @@ msgid "Kernel Packages"
 msgstr "Çekirdek Paketleri"
 
 msgid "Kernel driver"
-msgstr ""
+msgstr "Çekirdek sürücüsü"
 
 msgid "Kernel file"
 msgstr "Çekirdek dosyası"
@@ -11717,7 +11717,7 @@ msgid "Lesotho"
 msgstr "Lesotho"
 
 msgid "Let the tuner select its RF gain automatically."
-msgstr ""
+msgstr "Tunerin RF kazanımını otomatik olarak seçmesine izin verin."
 
 msgid "LetterBox zoom"
 msgstr "Sinemaskop yakınlaştırma"
@@ -11758,7 +11758,7 @@ msgid "Lime"
 msgstr "kireç rengi"
 
 msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
-msgstr ""
+msgstr "DAB+ USB taramasını 'dab.xml' dosyasında bu bölge için tanımlanan frekans bloklarıyla sınırlayın."
 
 msgid "Limit character set for recording filenames"
 msgstr "Kayıt dosya isimleri için karakter sayısını sınırla"
@@ -11976,7 +11976,7 @@ msgid "Lock:"
 msgstr "Kilit:"
 
 msgid "Locked"
-msgstr ""
+msgstr "Kilitli"
 
 msgid "Log"
 msgstr "Günlük"
@@ -12119,7 +12119,7 @@ msgid "MOUSE"
 msgstr "FARE"
 
 msgid "MSC audio frame quality"
-msgstr ""
+msgstr "MSC ses karesi kalitesi"
 
 msgid "MTD boot"
 msgstr "MTD önyüklemesi"
@@ -13037,7 +13037,7 @@ msgid "Moving files"
 msgstr "Dosyalar taşınıyor"
 
 msgid "Moving rotor and tuning DAB+ satellite feed..."
-msgstr ""
+msgstr "Rotor hareket ettiriliyor ve DAB+ uydu yayını ayarlanıyor..."
 
 #
 msgid "Moving to position"
@@ -13634,7 +13634,7 @@ msgid "No channel list"
 msgstr "Kanal listesi yok"
 
 msgid "No compatible RTL-SDR USB tuner detected"
-msgstr ""
+msgstr "Uyumlu bir RTL-SDR USB tuner algılanmadı"
 
 #
 msgid ""
@@ -13806,7 +13806,7 @@ msgid "No updates available."
 msgstr "Güncelleme yok."
 
 msgid "No usable RTL-SDR DAB+ receiver was found."
-msgstr ""
+msgstr "Kullanılabilir bir RTL-SDR DAB+ alıcısı bulunamadı."
 
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "Yapılandırılmış geçerli DAB+ kaynağı yok. /etc/enigma2/dab.xml dosyasını kontrol edin."
@@ -13826,7 +13826,7 @@ msgid "No, but restart from begin"
 msgstr "Hayır, ama baştan başlat"
 
 msgid "No, continue with the setup"
-msgstr ""
+msgstr "Hayır, kuruluma devam et"
 
 msgid "No, don't flash this image"
 msgstr "Hayır, bu yazılımı yükleme"
@@ -14671,10 +14671,10 @@ msgid "Package Categories"
 msgstr "Paket Kategorileri"
 
 msgid "Package Feed Editor"
-msgstr ""
+msgstr "Paket Kaynak Düzenleyicisi"
 
 msgid "Package Feed Editor Actions"
-msgstr ""
+msgstr "Paket Kaynak Düzenleyicisi İşlemleri"
 
 #
 msgid "Package Manager"
@@ -15480,7 +15480,7 @@ msgid "Position"
 msgstr "Konum"
 
 msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
-msgstr ""
+msgstr "Tunerin desteklediği kazanım aralığı içinde bir değer seçin. Arka uç, en yakın kazanım kademesini seçer."
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Zamanlayıcı listesinde tamamlanmış zamanlayıcıların konumu"
@@ -15825,7 +15825,7 @@ msgid "Processor information"
 msgstr "İşlemci bilgisi"
 
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 msgid "Profile"
 msgstr "Profil"
@@ -15841,7 +15841,7 @@ msgid "Program '%s' needs to be installed to perform this action. Do you want to
 msgstr "Bu işlemi gerçekleştirmek için '%s' programının yüklenmesi gerekiyor. Programı yüklemek için '%s' paketini yüklemek istiyor musunuz?"
 
 msgid "Program type"
-msgstr ""
+msgstr "Program türü"
 
 msgid "Programmlisten History"
 msgstr "Programmlisten Tarihçesi"
@@ -15924,7 +15924,7 @@ msgid "Protect timer menu"
 msgstr "Zamanlayıcı menüsünü koru"
 
 msgid "Protection"
-msgstr ""
+msgstr "Koruma"
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -16112,10 +16112,10 @@ msgid "RF Output Settings"
 msgstr "RF Çıkış Ayarları"
 
 msgid "RF SNR"
-msgstr ""
+msgstr "RF SNR"
 
 msgid "RF gain"
-msgstr ""
+msgstr "RF kazanımı"
 
 msgid "RGB clamp (lower)"
 msgstr "RGB kelepçesi (alt)"
@@ -16124,10 +16124,10 @@ msgid "RGB clamp (upper)"
 msgstr "RGB kelepçesi (üst)"
 
 msgid "RTL-SDR USB tuner"
-msgstr ""
+msgstr "RTL-SDR USB tuneri"
 
 msgid "RTL-SDR tuner"
-msgstr ""
+msgstr "RTL-SDR tuneri"
 
 msgid "Racing"
 msgstr "Yarış"
@@ -16181,7 +16181,7 @@ msgid "Reader"
 msgstr "Okuyucu"
 
 msgid "Ready"
-msgstr ""
+msgstr "Hazır"
 
 #, python-format
 msgid "Ready to install \"%s\"?"
@@ -16281,7 +16281,7 @@ msgid "Receiver information for %s %s"
 msgstr "%s %s için alıcı bilgileri"
 
 msgid "Receiver lock"
-msgstr ""
+msgstr "Alıcı kilidi"
 
 msgid "Receiver name"
 msgstr "Alıcı ismi"
@@ -16293,10 +16293,10 @@ msgid "Reception Settings"
 msgstr "Uydu Ayarları"
 
 msgid "Reception source"
-msgstr ""
+msgstr "Alım kaynağı"
 
 msgid "Reception sources to scan"
-msgstr ""
+msgstr "Taranacak alım kaynakları"
 
 #
 msgid "Record"
@@ -16479,7 +16479,7 @@ msgid "Refresh every"
 msgstr "Yenileme zamanı"
 
 msgid "Refresh list of RTL-SDR USB tuners"
-msgstr ""
+msgstr "RTL-SDR USB tuner listesini yenile"
 
 msgid "Refresh rate"
 msgstr "Yenileme hızı"
@@ -16858,7 +16858,7 @@ msgstr ""
 "(NOT: 'İptal' bunu geri alamaz!)"
 
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
-msgstr ""
+msgstr "Statik radyo arka planını, mevcut DAB+ istasyonu tarafından iletilen resimlerle değiştirin."
 
 msgid "Require authentication for http streams"
 msgstr "Http akışları için kimlik doğrulaması iste"
@@ -17005,7 +17005,7 @@ msgid "Restarting adapter..."
 msgstr "Bağdaştırıcı yeniden başlatılıyor..."
 
 msgid "Restarting network..."
-msgstr ""
+msgstr "Ağ yeniden başlatılıyor..."
 
 msgid "Restarting..."
 msgstr "Yeniden başlatılıyor..."
@@ -17049,7 +17049,7 @@ msgid "Restore your backups by date."
 msgstr "Yedeklerinizi tarihe göre geri yükleyin."
 
 msgid "Restore your previous settings?"
-msgstr ""
+msgstr "Önceki ayarlarınızı geri yüklemek ister misiniz?"
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Ayarlarınızı bir yedeklemeden geri yükleyin. Geri yükleme işleminden sonra alıcı, yeni ayarları etkinleştirmek için yeniden başlatılacaktır."
@@ -17423,7 +17423,7 @@ msgid "Satellite"
 msgstr "Uydu"
 
 msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
-msgstr ""
+msgstr "Kayıt devam ederken uydu DAB+ kanalları taranamaz ve USB alıcısı bulunmamaktadır."
 
 #
 msgid "Satellite Dish Settings"
@@ -17437,10 +17437,10 @@ msgid "Satellite equipment setup"
 msgstr "Uydu ekipmanı kurulumu"
 
 msgid "Satellite feeds to scan"
-msgstr ""
+msgstr "Taranacak uydu yayınları"
 
 msgid "Satellite only"
-msgstr ""
+msgstr "Yalnızca uydu"
 
 #
 msgid "Satellites"
@@ -17628,10 +17628,10 @@ msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Karasal LCN'leri tarayın ve LCN buketleri oluşturun"
 
 msgid "Scan region"
-msgstr ""
+msgstr "Tarama bölgesi"
 
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
-msgstr ""
+msgstr "USB tuneri, mevcut DAB+ uydu yayınlarını veya her ikisini de tarayın."
 
 msgid "Scanning"
 msgstr "Tarama"
@@ -18218,7 +18218,7 @@ msgid "Select Upgrade Source To Edit"
 msgstr "Düzenlemek İçin Yükseltme Kaynağını Seç"
 
 msgid "Select Wi-Fi adapter:"
-msgstr ""
+msgstr "Wi-Fi bağdaştırıcısını seç:"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "AutoCam için varsayılan olarak mevcut listeden bir Softcam seçin."
@@ -18522,7 +18522,7 @@ msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif
 msgstr "Yukarıdaki seçenek(ler)den OpenWebif pikonları için kullanılacak Pikon yolunu seçin."
 
 msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
-msgstr ""
+msgstr "DAB+ alımı için kullanılacak RTL-SDR USB tunerini seçin."
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -18948,7 +18948,7 @@ msgid "Select the write block buffer size (wsize) mount option. Use 'Automatic' 
 msgstr "Yazma bloğu arabellek boyutu (wsize) bağlantı seçeneğini seçin. Çekirdek ve sunucunun en uygun boyutu belirlemesi için 'Otomatik' seçeneğini kullanın."
 
 msgid "Select tuner"
-msgstr ""
+msgstr "Tuner seç"
 
 #
 msgid "Select video mode"
@@ -19036,7 +19036,7 @@ msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Motorlu anten hareket halindeyken bir simge gösterilip gösterilmeyeceğini seçin."
 
 msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
-msgstr ""
+msgstr "Aşağıdaki 'Sunucu' alanının, IP adresi yerine bu ana bilgisayarın tespit edilen DNS/mDNS adıyla önceden doldurulup doldurulmayacağını seçin."
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Bu ağ bağdaştırıcısı ile hangi IP protokollerinin kullanılabileceğini seçin."
@@ -19158,7 +19158,7 @@ msgid "Serial No"
 msgstr "Seri No"
 
 msgid "Serial number"
-msgstr ""
+msgstr "Seri numarası"
 
 msgid "Serious music/Classic music"
 msgstr "Ciddi müzik/Klasik müzik"
@@ -19880,7 +19880,7 @@ msgid "Show Capabilities"
 msgstr "Yetenekleri Göster"
 
 msgid "Show DAB+ slideshow"
-msgstr ""
+msgstr "DAB+ slaytlarını göster"
 
 msgid "Show Default Backup Files"
 msgstr "Varsayılan Yedekleme Dosyalarını Göster"
@@ -21424,7 +21424,7 @@ msgid "Static IP / Custom"
 msgstr "Statik IP / Özel"
 
 msgid "Station"
-msgstr ""
+msgstr "İstasyon"
 
 msgid "Status"
 msgstr "Durum"
@@ -22395,6 +22395,8 @@ msgid ""
 "The RTL2832 kernel driver blacklist could not be updated:\n"
 "%s"
 msgstr ""
+"RTL2832 çekirdek sürücüsü kara listesi güncellenemedi:\n"
+"%s"
 
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
@@ -22529,6 +22531,9 @@ msgid ""
 "\n"
 "Please press OK to restart the %s %s."
 msgstr ""
+"Geri yükleme tamamlandı. %s %s'in yeniden başlatılması gerekiyor.\n"
+"\n"
+"%s %s'i yeniden başlatmak için lütfen OK tuşuna basın."
 
 #
 #, python-format
@@ -23104,10 +23109,10 @@ msgid "Timeout waiting for FIC service data"
 msgstr "FIC kanal verileri beklenirken zaman aşımı oluştu"
 
 msgid "Timeout waiting for tuner lock"
-msgstr ""
+msgstr "Tuner kilidi beklenirken zaman aşımı"
 
 msgid "Timeout waiting for tuner or rotor"
-msgstr ""
+msgstr "Tuner veya rotoru beklerken zaman aşımı"
 
 msgid "Timer Defaults And Retention"
 msgstr "Zamanlayıcı Varsayılanları ve Saklama Süresi"
@@ -23598,10 +23603,10 @@ msgid "Tuners, Scanning & Reception"
 msgstr "Tunerler, Tarama & Uydular"
 
 msgid "Tuning"
-msgstr ""
+msgstr "Ayarlama"
 
 msgid "Tuning DAB+ satellite feed..."
-msgstr ""
+msgstr "DAB+ uydu yayını ayarlanıyor..."
 
 msgid "Tuning algorithm"
 msgstr "Ayarlama algoritması"
@@ -23733,30 +23738,30 @@ msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (Arka, dış)"
 
 msgid "USB ID"
-msgstr ""
+msgstr "USB Kimliği"
 
 msgid "USB and satellite"
-msgstr ""
+msgstr "USB ve uydu"
 
 msgid "USB port"
-msgstr ""
+msgstr "USB portu"
 
 #, python-format
 msgid "USB reader %d"
 msgstr "USB okuyucu %d"
 
 msgid "USB receiver only"
-msgstr ""
+msgstr "Sadece USB alıcı"
 
 msgid "USB receiver settings"
-msgstr ""
+msgstr "USB alıcı ayarları"
 
 #, python-format
 msgid "USB slot %s%s"
 msgstr "USB yuvası %s%s"
 
 msgid "USB speed"
-msgstr ""
+msgstr "USB hızı"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB anahtarı HATA! - zaten USB'de"
@@ -23792,7 +23797,7 @@ msgstr "Kexec Çoklu Ön Yükleme başlatılamadı!"
 
 #, python-format
 msgid "Unable to open tuner (%d)"
-msgstr ""
+msgstr "Tuner (%d) açılamadı"
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "DAB+ aktarıcı kaydı yapılamadı"
@@ -23801,7 +23806,7 @@ msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ kaynağı başlatılamıyor"
 
 msgid "Unable to tune the DAB+ satellite feed"
-msgstr ""
+msgstr "DAB+ uydu yayını ayarlanamıyor"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s."
@@ -24096,7 +24101,7 @@ msgid "Use DNS cache"
 msgstr "DNS önbelleğini kullan"
 
 msgid "Use DNS name"
-msgstr ""
+msgstr "DNS adı kullan"
 
 msgid "Use DNS rotation"
 msgstr "DNS rotasyonu kullanın"
@@ -25528,7 +25533,7 @@ msgid "Yes, don't ask again"
 msgstr "Evet, bir daha sorma"
 
 msgid "Yes, restore my settings now"
-msgstr ""
+msgstr "Evet, ayarlarımı şimdi geri yükle"
 
 #
 msgid "Yes, returning to movie list"
@@ -25572,7 +25577,7 @@ msgid "You cannot delete this!"
 msgstr "Bunu silemezsiniz!"
 
 msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
-msgstr ""
+msgstr "Ayarlarınızı geri yüklemeyi seçtiniz. Geri yükleme işleminden sonra %s %s yeniden başlatılacaktır. Geri yüklemeyi hemen başlatmak için OK tuşuna basın."
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Geçerli zaman kaydırma arabelleğini kaydetmeyi seçtiniz"
@@ -26103,7 +26108,7 @@ msgid "green"
 msgstr "yeşil"
 
 msgid "guest"
-msgstr ""
+msgstr "konuk"
 
 msgid "h:mm"
 msgstr "s:dd"
