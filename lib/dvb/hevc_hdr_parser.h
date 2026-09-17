@@ -745,7 +745,7 @@ private:
 		updateResult(false);
 	}
 
-	void updateResult(bool final)
+	void updateResult(bool is_final)
 	{
 		if (m_gamma != GammaUnknown)
 			return;
@@ -759,7 +759,7 @@ private:
 			m_gamma = GammaHDR10;
 			m_authoritative = true;
 		}
-		else if (final && m_sps_count)
+		else if (is_final && m_sps_count)
 		{
 			m_gamma = GammaSDR;
 			m_authoritative = false;

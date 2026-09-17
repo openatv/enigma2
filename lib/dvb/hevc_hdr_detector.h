@@ -38,7 +38,7 @@ private:
 	void data(const uint8_t *buffer, int length);
 	void timerExpired();
 	void scheduleResult(int gamma);
-	static int selectGamma(int pes_gamma, int es_gamma, bool final);
+	static int selectGamma(int pes_gamma, int es_gamma, bool is_final);
 
 	ePtr<eDVBDemux> m_demux;
 	ePtr<iDVBPESReader> m_reader;
