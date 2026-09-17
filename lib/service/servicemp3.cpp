@@ -3576,30 +3576,35 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				 * (in which case the sink will not produce data while paused, so we won't
 				 * recover from an empty buffer)
 				 */
-				if (m_use_prefillbuffer && !m_is_live && !m_sourceinfo.is_hls && --m_ignore_buffering_messages <= 0) {
-					if (m_bufferInfo.bufferPercent == 100) {
-						GstState state, pending;
-						/* avoid setting to play while still in async state change mode */
-						gst_element_get_state(m_gst_playbin, &state, &pending, 5 * GST_SECOND);
-						if (state != GST_STATE_PLAYING && !m_first_paused) {
-							eDebug("[eServiceMP3] *** PREFILL BUFFER action start playing *** pending state was %s",
-								   pending == GST_STATE_VOID_PENDING ? "NO_PENDING" : "A_PENDING_STATE");
-							gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+				if (m_use_prefillbuffer && !m_is_live && !m_sourceinfo.is_hls)
+				{
+					--m_ignore_buffering_messages;
+					if (m_ignore_buffering_messages <= 0)
+					{
+						if (m_bufferInfo.bufferPercent == 100) {
+							GstState state, pending;
+							/* avoid setting to play while still in async state change mode */
+							gst_element_get_state(m_gst_playbin, &state, &pending, 5 * GST_SECOND);
+							if (state != GST_STATE_PLAYING && !m_first_paused) {
+								eDebug("[eServiceMP3] *** PREFILL BUFFER action start playing *** pending state was %s",
+									   pending == GST_STATE_VOID_PENDING ? "NO_PENDING" : "A_PENDING_STATE");
+								gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+							}
+							/*
+							 * when we start the pipeline, the contents of the buffer will immediately drain
+							 * into the (hardware buffers of the) sinks, so we will receive low buffer level
+							 * messages right away.
+							 * Ignore the first few buffering messages, giving the buffer the chance to recover
+							 * a bit, before we start handling empty buffer states again.
+							 */
+							m_ignore_buffering_messages = 10;
+						} else if (m_bufferInfo.bufferPercent == 0 && !m_first_paused) {
+							eDebug("[eServiceMP3] *** PREFILLBUFFER action start pause ***");
+							gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+							m_ignore_buffering_messages = 0;
+						} else {
+							m_ignore_buffering_messages = 0;
 						}
-						/*
-						 * when we start the pipeline, the contents of the buffer will immediately drain
-						 * into the (hardware buffers of the) sinks, so we will receive low buffer level
-						 * messages right away.
-						 * Ignore the first few buffering messages, giving the buffer the chance to recover
-						 * a bit, before we start handling empty buffer states again.
-						 */
-						m_ignore_buffering_messages = 10;
-					} else if (m_bufferInfo.bufferPercent == 0 && !m_first_paused) {
-						eDebug("[eServiceMP3] *** PREFILLBUFFER action start pause ***");
-						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-						m_ignore_buffering_messages = 0;
-					} else {
-						m_ignore_buffering_messages = 0;
 					}
 				}
 			}
@@ -3815,6 +3820,8 @@ void eServiceMP3::handleElementAdded(GstBin* bin, GstElement* element, gpointer 
 	eServiceMP3* _this = (eServiceMP3*)user_data;
 	if (_this) {
 		gchar* elementname = gst_element_get_name(element);
+		bool is_uridecodebin = g_str_has_prefix(elementname, "uridecodebin");
+		bool is_decodebin = g_str_has_prefix(elementname, "decodebin");
 
 		if (g_str_has_prefix(elementname, "queue2")) {
 			if (_this->m_download_buffer_path != "") {
@@ -3822,7 +3829,7 @@ void eServiceMP3::handleElementAdded(GstBin* bin, GstElement* element, gpointer 
 			} else {
 				g_object_set(G_OBJECT(element), "temp-template", NULL, NULL);
 			}
-		} else if (g_str_has_prefix(elementname, "uridecodebin") || g_str_has_prefix(elementname, "decodebin")) {
+		} else if (is_uridecodebin || is_decodebin) {
 			/*
 			 * Listen for queue2 element added to uridecodebin/decodebin2 as well.
 			 * Ignore other bins since they may have unrelated queues
