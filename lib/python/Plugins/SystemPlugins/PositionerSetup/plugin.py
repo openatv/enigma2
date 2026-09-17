@@ -21,7 +21,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.NimManager import inputPowerSlotForNim, nimmanager
 from Components.MenuList import MenuList
 from Components.ScrollLabel import ScrollLabel
-from Components.config import config, ConfigFloat, ConfigInteger, ConfigNothing, ConfigSatlist, ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, KEY_0, NoSave, getConfigListEntry
+from Components.config import config, ConfigFloat, ConfigInteger, ConfigNothing, ConfigSatlist, ConfigSelection, ConfigSubsection, ActionKeys, NoSave, getConfigListEntry
 from Components.TuneTest import Tuner
 from Tools.Transponder import ConvertToHumanReadable
 
@@ -419,13 +419,13 @@ class PositionerSetup(Screen):
 			self.updateColors(self.getCurrentConfigPath())
 
 	def keyNumberGlobal(self, number):
-		self["list"].handleKey(KEY_0 + number)
+		self["list"].handleKey(ActionKeys.ACTIONKEY_0 + number)
 
 	def keyLeft(self):
-		self["list"].handleKey(KEY_LEFT)
+		self["list"].handleKey(ActionKeys.ACTIONKEY_LEFT)
 
 	def keyRight(self):
-		self["list"].handleKey(KEY_RIGHT)
+		self["list"].handleKey(ActionKeys.ACTIONKEY_RIGHT)
 
 	def updateColors(self, entry):
 		if entry == "tune":
