@@ -264,10 +264,13 @@ void ePixmap::setAniPixmapFromFile(const char* filename, bool autostart) {
 				if (gif->Image.Interlace) {
 					const int start[] = {0, 4, 2, 1};
 					const int step[] = {8, 8, 4, 2};
-					for (int p = 0; p < 4; ++p) {
+					bool readError = false;
+					for (int p = 0; p < 4 && !readError; ++p) {
 						for (int y = start[p]; y < fh; y += step[p]) {
-							if (DGifGetLine(gif, indexBuffer.data() + y * fw, fw) == GIF_ERROR)
-								goto after_image_read;
+							if (DGifGetLine(gif, indexBuffer.data() + y * fw, fw) == GIF_ERROR) {
+								readError = true;
+								break;
+							}
 						}
 					}
 				} else {
@@ -276,7 +279,6 @@ void ePixmap::setAniPixmapFromFile(const char* filename, bool autostart) {
 							break;
 					}
 				}
-			after_image_read:
 
 				// Composite indices into canvas (skip transparent pixels)
 				for (int y = 0; y < fh; ++y) {
