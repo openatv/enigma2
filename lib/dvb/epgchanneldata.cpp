@@ -766,6 +766,31 @@ uint8_t *eEPGChannelData::delimitName( uint8_t *in, uint8_t *out, int len_in )
 	return out;
 }
 
+// MHW times are Central European local time.
+static time_t lastSundayUtc(int year, int month /* 0-based */)
+{
+	tm t = {};
+	t.tm_year = year - 1900;
+	t.tm_mon = month;
+	t.tm_mday = 31; // both March and October have 31 days
+	t.tm_hour = 1;
+	time_t probe = timegm(&t);
+	tm norm;
+	gmtime_r(&probe, &norm);
+	return probe - norm.tm_wday * 86400; // tm_wday: 0 = Sunday
+}
+
+static int centralEuropeUtcOffsetSeconds(time_t t)
+{
+	tm utc;
+	gmtime_r(&t, &utc);
+	int year = utc.tm_year + 1900;
+	time_t dstStart = lastSundayUtc(year, 2);  // March
+	time_t dstEnd = lastSundayUtc(year, 9);    // October
+	bool dst = t >= dstStart && t < dstEnd;
+	return dst ? 7200 : 3600;
+}
+
 void eEPGChannelData::timeMHW2DVB( u_char hours, u_char minutes, u_char *return_time)
 // For time of day
 {
@@ -782,7 +807,6 @@ void eEPGChannelData::timeMHW2DVB( int minutes, u_char *return_time)
 void eEPGChannelData::timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time)
 // For date plus time of day
 {
-	char tz_saved[1024];
 	// Remove offset in mhw time.
 	uint8_t local_hours = hours;
 	if ( hours >= 16 )
@@ -791,17 +815,15 @@ void eEPGChannelData::timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_c
 		local_hours -= 2;
 
 	// As far as we know all mhw time data is sent in central Europe time zone.
-	// So, temporarily set timezone to western europe
+	// Compute the current CET/CEST offset directly instead of temporarily
+	// overriding the process-wide TZ environment variable, which is not
+	// thread-safe (other threads may call localtime/gmtime/getenv("TZ")
+	// concurrently) and needed an unbounded strcpy to save/restore it.
 	time_t dt = ::time(0);
-
-	char *old_tz = getenv( "TZ" );
-	if (old_tz)
-		strcpy(tz_saved, old_tz);
-	putenv((char*)"TZ=CET-1CEST,M3.5.0/2,M10.5.0/3");
-	tzset();
+	time_t localNow = dt + centralEuropeUtcOffsetSeconds(dt);
 
 	tm localnow;
-	localtime_r(&dt, &localnow);
+	gmtime_r(&localNow, &localnow);
 
 	if (day == 7)
 		day = 0;
@@ -814,13 +836,7 @@ void eEPGChannelData::timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_c
 	dt += 3600*(local_hours - localnow.tm_hour);  // Shift dt to the recording hour.
 
 	tm recdate;
-	gmtime_r( &dt, &recdate );   // This will also take care of DST.
-
-	if ( old_tz == NULL )
-		unsetenv( "TZ" );
-	else
-		setenv("TZ", tz_saved, 1);
-	tzset();
+	gmtime_r( &dt, &recdate );
 
 	// Calculate MJD according to annex in ETSI EN 300 468
 	int l=0;
