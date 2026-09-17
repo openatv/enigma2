@@ -1004,7 +1004,17 @@ class NIM:
 		return None
 
 	def isEnabled(self):
-		return self.config_mode_dvbs != "nothing" or self.isFBCLinkEnabled()
+		if not self.isSupported() or self.empty:
+			return False
+		if self.canBeCompatible("DVB-S") and (self.config_mode_dvbs != "nothing" or self.isFBCLinkEnabled()):
+			return True
+		if self.canBeCompatible("DVB-C") and self.config_mode_dvbc != "nothing":
+			return True
+		if self.canBeCompatible("DVB-T") and self.config_mode_dvbt != "nothing":
+			return True
+		if self.canBeCompatible("ATSC") and self.config_mode_atsc != "nothing":
+			return True
+		return False
 
 	friendly_full_description = property(getFriendlyFullDescription)
 	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
