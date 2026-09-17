@@ -15,7 +15,7 @@ jobs:
       image: ghcr.io/openatv/enigma2-buildenv/enigma2-buildenv:latest
       options: --user root
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build enigma2
         env:
