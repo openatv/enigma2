@@ -296,7 +296,6 @@ static void nsvg__parseElement(char* s,
 		char quote;
 
 		// Skip white space before the attrib name
-		if (!s || !*s) break; // Check for null or end of string early
 		while (*s && nsvg__isspace(*s)) s++;
 		if (!*s) break;
 		if (*s == '/') {
@@ -318,7 +317,7 @@ static void nsvg__parseElement(char* s,
 		if (*s) { *s++ = '\0'; }
 
 		// Store only well formed attributes
-		if (value) { // `nameAttrib` is guaranteed to be non-null here
+		if (nameAttrib && value) {
 			attr[nattr++] = nameAttrib;
 			attr[nattr++] = value;
 		}
@@ -1275,9 +1274,9 @@ static unsigned int nsvg__parseColorRGB(const char* str)
 			else break;
 		}
 		if (i == 3) {
-			rgbi[0] = static_cast<unsigned int>(round(rgbf[0] * 2.55));
-			rgbi[1] = static_cast<unsigned int>(round(rgbf[1] * 2.55));
-			rgbi[2] = static_cast<unsigned int>(round(rgbf[2] * 2.55));
+			rgbi[0] = static_cast<unsigned int>(round(rgbf[0] * 255.0 / 100.0));
+			rgbi[1] = static_cast<unsigned int>(round(rgbf[1] * 255.0 / 100.0));
+			rgbi[2] = static_cast<unsigned int>(round(rgbf[2] * 255.0 / 100.0));
 		} else {
 			rgbi[0] = rgbi[1] = rgbi[2] = 128;
 		}
@@ -2270,7 +2269,7 @@ static void nsvg__pathArcTo(NSVGparser* p, double* cpx, double* cpy, double* arg
 		hda *= 0.5;
 	else
 		hda = (1.0 - cos(hda)) / sin(hda);
-	kappa = fabsf(4.0 / 3.0 * hda);
+	kappa = fabs(4.0 / 3.0 * hda);
 	if (da < 0.0)
 		kappa = -kappa;
 
@@ -3015,9 +3014,7 @@ static void nsvg__scaleToViewbox(NSVGparser* p, const char* units)
 
 static void nsvg__createGradients(NSVGparser* p)
 {
-	NSVGshape* shape;
-
-	for (shape = p->image->shapes; shape != nullptr; shape = shape->next) {
+	for (NSVGshape* shape = p->image->shapes; shape != nullptr; shape = shape->next) {
 		if (shape->fill.type == NSVG_PAINT_UNDEF) {
 			if (shape->fillGradient[0] != '\0') {
 				double inv[6], localBounds[4];
@@ -3082,7 +3079,7 @@ NSVGimage* nsvgParseFromFile(const char* filename, const char* units, double dpi
 	fseek(fp, 0, SEEK_END);
 	ftell_size = ftell(fp);
 	if (ftell_size < 0) goto error;	// ftell() failed; size_t size would wrap and malloc(0) below
-	size = (size_t)ftell_size;
+	size = static_cast<size_t>(ftell_size);
 	fseek(fp, 0, SEEK_SET);
 	data = static_cast<char*>(malloc(size+1));
 	if (data == nullptr) goto error;
