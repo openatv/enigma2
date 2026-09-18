@@ -24,6 +24,7 @@ RTLSDR_LIBRARY_PATHS = (
 RTLSDR_DVB_BLACKLIST_PATH = "/etc/modprobe.d/enigma2-dab-rtlsdr.conf"
 RTLSDR_DVB_KERNEL_MODULES = (
 	"dvb_usb_rtl2832",
+	"dvb_usb_rtl2832u",
 	"dvb_usb_rtl28xxu",
 	"rtl2832",
 )
