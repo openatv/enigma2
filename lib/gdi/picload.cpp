@@ -1046,8 +1046,12 @@ void ePicLoad::decodeThumb() {
 			char crcstr[16];
 			*crcstr = 0;
 
-			while (count-- > 0 && (c = getc(f)) != EOF)
+			while (count-- > 0) {
+				c = getc(f);
+				if (c == EOF)
+					break;
 				crc32 = crc32_table[((crc32) ^ (c)) & 0xFF] ^ ((crc32) >> 8);
+			}
 
 			fclose(f);
 			crc32 = ~crc32;
