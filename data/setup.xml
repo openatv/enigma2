@@ -1347,7 +1347,7 @@
 		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information." indent="1">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd InfoBar timeout" description="Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'." indent="2">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the InfoBar." indent="1">config.usage.showpicon</item>
-		<item level="0" text="Show InfoBar lite" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info." restart="gui" indent="1">config.usage.show_infobar_lite</item>
+		<item level="0" text="Show InfoBar lite" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info." indent="1">config.usage.show_infobar_lite</item>
 		<if requires="CanChangeOsdAlpha">
 			<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide." indent="1">config.usage.show_infobar_do_dimming</item>
 			<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." conditional="config.usage.show_infobar_do_dimming.value" indent="2">config.usage.show_infobar_dimming_speed</item>

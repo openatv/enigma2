@@ -55,8 +55,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
-		if config.usage.show_infobar_lite.value:
+		self.showInfoBarLite = config.usage.show_infobar_lite.value
+		if self.showInfoBarLite:
 			self.skinName = ["InfoBarLite", "InfoBar"]
+		self.onExecBegin.append(self.updateInfoBarSkin)
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions", {
 			"showMovies": (self.showMovies, _("Open Movie Selection")),  # PLAY, VIDEO (Break), PVR (Break), FILE (Break), MEDIA (Break).
@@ -117,6 +119,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.zoomin = 1
 
 		self.onShow.append(self.doButtonsCheck)
+
+	def updateInfoBarSkin(self):
+		showInfoBarLite = config.usage.show_infobar_lite.value
+		if self.showInfoBarLite != showInfoBarLite:
+			self.showInfoBarLite = showInfoBarLite
+			self.skinName = ["InfoBarLite", "InfoBar"] if showInfoBarLite else "InfoBar"
+			# Rebuild on return from setup, before the components are activated.
+			self.reloadSkin()
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
