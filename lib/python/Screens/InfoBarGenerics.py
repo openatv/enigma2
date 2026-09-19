@@ -31,6 +31,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Task import job_manager
 from Components.TimerList import TimerList  # Deprecated!
+from Components.TimerSanityCheck import TimerSanityCheck
 from Components.Timeshift import InfoBarTimeshift
 from Components.UsageConfig import defaultMoviePath, preferredInstantRecordPath, preferredTimerPath
 from Components.VolumeControl import VolumeControl
@@ -61,7 +62,7 @@ from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
 from Screens.Standby import Standby, TryQuitMainloop  # noqa F401
-from Screens.Timers import RecordTimerEdit, RecordTimerOverview
+from Screens.Timers import ConflictTimerOverview, RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
 from Tools.BoundFunction import boundFunction
@@ -2051,7 +2052,7 @@ class TimerSelection(Screen):
 		}, -1, description=_("Timer Selection Actions"))
 
 	def keySelected(self):
-		self.close(self["timerlist"].getCurrentIndex())
+		self.close(self["timerlist"].getCurrent())
 
 	def keyClose(self):
 		self.close(None)
@@ -3925,6 +3926,7 @@ class InfoBarInstantRecord:
 			if InfoBarInstance:
 				self.recording = InfoBarInstance.recording
 		self.saveTimeshiftEventPopupActive = False
+		self.timerConflicts = None
 
 	def instantRecord(self, serviceRef=None):  # Used in Timeshift.
 		return self.keyInstantRecord(serviceRef=serviceRef)
@@ -3946,41 +3948,44 @@ class InfoBarInstantRecord:
 				pirp = ""
 			self.session.open(MessageBox, "%s\n\n%s" % (_("Path '%s' missing!") % pirp, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
 			return
-		if isStandardInfoBar(self):
+		serviceReference = ServiceReference(serviceRef or self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		if isStandardInfoBar(self) and serviceReference.isRecordable():
 			commonRecord = [
-				(_("Add recording (Stop after current event)"), "event"),
-				(_("Add recording (Indefinitely - 24 hours)"), "indefinitely"),
-				(_("Add recording (Enter recording duration)"), "manualduration"),
-				(_("Add recording (Enter recording end time)"), "manualendtime")
-			]
-			commonTimeshift = [
-				(_("Time shift save recording (Stop after current event)"), "savetimeshift"),
-				(_("Time shift save recording (Select event)"), "savetimeshiftEvent")
+				(_("Add recording (Stop after current event)"), "event", "1"),
+				(_("Add recording (Indefinitely - 24 hours)"), "indefinitely", "2"),
+				(_("Add recording (Enter recording duration)"), "manualduration", "3"),
+				(_("Add recording (Enter recording end time)"), "manualendtime", "4")
 			]
 		else:
 			commonRecord = []
+		if isStandardInfoBar(self):
+			commonTimeshift = [
+				(_("Time shift save recording (Stop after current event)"), "savetimeshift", "9"),
+				(_("Time shift save recording (Select event)"), "savetimeshiftEvent", "yellow")
+			]
+		else:
 			commonTimeshift = []
 		if isInstantRecordRunning():
 			title = _("A recording is currently running.\nWhat do you want to do?")
-			choiceList = [
-				(_("Stop recording"), "stop")
-			] + commonRecord + [
-				(_("Change recording (Duration)"), "changeduration"),
-				(_("Change recording (End time)"), "changeendtime")
+			entryList = commonRecord + [
+				(_("Change recording (Duration)"), "changeduration", "5"),
+				(_("Change recording (End time)"), "changeendtime", "6"),
+				(_("Stop recording"), "stop", "7")
 			]
-			if self.isTimerRecordRunning():
-				choiceList.append((_("Stop timer recording"), "timer"))
 		else:
 			title = _("Start instant recording?")
-			choiceList = commonRecord
-			if self.isTimerRecordRunning():
-				choiceList.append((_("Stop timer recording"), "timer"))
+			entryList = commonRecord[:]
+		if self.isTimerRecordRunning():
+			entryList.append((_("Stop timer recording"), "timer", "8"))
+		self.timerConflicts = self.getTimerConflicts()
+		if self.timerConflicts:
+			entryList.append((_("Manage timer conflicts"), "conflicts", "blue"))
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
-			choiceList.extend(commonTimeshift)
+			entryList.extend(commonTimeshift)
 		if isStandardInfoBar(self):
-			choiceList.append((_("Do not record"), "no"))
-		if choiceList:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=choiceList)
+			entryList.append((_("Do not record"), "no", "0"))
+		if entryList:
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=[(x[0], x[1]) for x in entryList], buttonList=[x[2] for x in entryList])
 
 	def recordQuestionCallback(self, answer):  # Used in Timeshift and in plugins
 		if answer is None or answer[1] == "no":
@@ -3996,28 +4001,30 @@ class InfoBarInstantRecord:
 			match answer[1]:
 				case "changeduration":
 					if len(self.recording) == 1:
-						self.changeDuration(0)
+						self.changeDuration(self.recording[0])
 					else:
 						self.session.openWithCallback(self.changeDuration, TimerSelection, items)
 				case "changeendtime":
 					if len(self.recording) == 1:
-						self.changeEndTime(0)
+						self.changeEndTime(self.recording[0])
 					else:
 						self.session.openWithCallback(self.changeEndTime, TimerSelection, items)
 				case "timer":
 					self.session.open(RecordTimerOverview)
+				case "conflicts":
+					self.session.open(ConflictTimerOverview, self.timerConflicts)
 				case "stop":
 					self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, items)
 				case "indefinitely" | "manualduration" | "manualendtime" | "event":
 					if len(items) >= 2 and BoxInfo.getItem("ChipsetString") in ("meson-6", "meson-64"):
 						Notifications.AddNotification(MessageBox, _("Sorry it is only possible to record 2 channels at once!"), MessageBox.TYPE_ERROR, timeout=5)
 						return
-					self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
+					recording = self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
 					match answer[1]:
 						case "manualduration":
-							self.changeDuration(len(self.recording) - 1)
+							self.changeDuration(recording, 5)
 						case "manualendtime":
-							self.changeEndTime(len(self.recording) - 1)
+							self.changeEndTime(recording)
 				case "savetimeshift":
 					if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
 						InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=f"pts_livebuffer_{self.pts_currplaying}")
@@ -4033,9 +4040,8 @@ class InfoBarInstantRecord:
 			if answer[1] != "savetimeshiftEvent":
 				self.saveTimeshiftEventPopupActive = False
 
-	def changeDuration(self, entry):
+	def changeDuration(self, entry, duration=0):
 		def changeDurationCallback(value):
-			entry = self.recording[self.selectedEntry]
 			if value is not None:
 				value = int(value.replace(" ", "") or "0")
 				if value:
@@ -4046,31 +4052,40 @@ class InfoBarInstantRecord:
 				entry.marginAfter = 0
 				self.session.nav.RecordTimer.timeChanged(entry)
 
-		if entry is not None and entry >= 0:
-			self.selectedEntry = entry
-			self.session.openWithCallback(changeDurationCallback, InputBox, title=_("For how many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
+		if entry is not None:
+			if not duration:  # Default to what is left of the running recording.
+				duration = int((entry.end - int(time())) / 60) + 1
+			self.session.openWithCallback(changeDurationCallback, InputBox, title=_("For how many minutes do you want to record?"), text=str(duration).ljust(3), maxSize=True, type=Input.NUMBER)
 
 	def changeEndTime(self, entry):
 		def changeEndTimeCallback(result):
 			if len(result) > 1 and result[0]:
 				print(f"[InfoBarGenerics] InfoBarInstantRecord: Instant recording due to stop at {strftime('%F %T', localtime(result[1]))}.")
-				if recordingEntry.end != result[1]:
-					recordingEntry.autoincrease = False
-				recordingEntry.end = result[1]
-				recordingEntry.eventEnd = recordingEntry.end
-				recordingEntry.marginAfter = 0  # Why is this being done?
-				self.session.nav.RecordTimer.timeChanged(recordingEntry)
+				if entry.end != result[1]:
+					entry.autoincrease = False
+				entry.end = result[1]
+				entry.eventEnd = entry.end
+				entry.marginAfter = 0  # Why is this being done?
+				self.session.nav.RecordTimer.timeChanged(entry)
 
-		if entry is not None and entry >= 0:
-			recordingEntry = self.recording[entry]
-			self.session.openWithCallback(changeEndTimeCallback, InstantRecordingEndTime, recordingEntry.eventEnd)
+		if entry is not None:
+			self.session.openWithCallback(changeEndTimeCallback, InstantRecordingEndTime, entry.eventEnd)
 
-	def stopCurrentRecording(self, entry=-1):
-		if entry is not None and entry != -1:
-			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
-			self.recording.remove(self.recording[entry])
+	def stopCurrentRecording(self, entry=None):
+		if entry is not None:
+			self.session.nav.RecordTimer.removeEntry(entry)
+			self.recording.remove(entry)
 
 	def startInstantRecording(self, limitEvent=False):
+		def conflictMessageCallback(simulTimerList, answer):
+			if answer == "manage":
+				self.session.open(ConflictTimerOverview, simulTimerList)
+
+		conflictChoices = [
+			(_("Manage timer conflicts"), "manage"),
+			(_("Cancel"), False)
+		]
+
 		def getProgramInfoAndEvent(info, name):
 			info["serviceref"] = hasattr(self, "selectedInstantServiceRef") and self.selectedInstantServiceRef or self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			event = None  # Try to get event information.
@@ -4097,9 +4112,10 @@ class InfoBarInstantRecord:
 				info["eventid"] = curEvent[4]
 				info["end"] = curEvent[1]
 
+		noEventInfo = False
 		begin = int(time())
 		end = begin + 3600  # Dummy.
-		name = "instant record"
+		name = _("Instant record")
 		info = {}
 		getProgramInfoAndEvent(info, name)
 		serviceReference = info["serviceref"]
@@ -4109,7 +4125,7 @@ class InfoBarInstantRecord:
 				end = info["end"]
 		else:
 			if limitEvent:
-				self.session.open(MessageBox, _("No event information found, recording default is 24 hours."), MessageBox.TYPE_INFO)
+				noEventInfo = True
 		if isinstance(serviceReference, eServiceReference):
 			serviceReference = ServiceReference(serviceReference)
 		if not limitEvent:
@@ -4118,6 +4134,8 @@ class InfoBarInstantRecord:
 		recording.marginBefore = 0
 		recording.dontSave = True
 		recording.eventBegin = recording.begin
+		if noEventInfo:
+			recording.startMessage = _("No event information found, recording default is 24 hours.")
 		if not limitEvent:
 			recording.marginAfter = 0
 			recording.eventEnd = recording.end
@@ -4125,27 +4143,50 @@ class InfoBarInstantRecord:
 			recording.autoincrease = True
 			recording.setAutoincreaseEnd()
 		simulTimerList = self.session.nav.RecordTimer.record(recording)
+		started = False
 		if simulTimerList is None:  # No conflict.
 			recording.autoincrease = False
 			self.recording.append(recording)
+			started = True
 		else:
 			if len(simulTimerList) > 1:  # With other recording.
 				name = simulTimerList[1].name
 				nameDate = " ".join((name, strftime("%F %T", localtime(simulTimerList[1].begin))))
 				# print(f"[InfoBarGenerics] InfoBarInstantRecord: InstantTimer conflicts with {nameDate}!")
 				recording.autoincrease = True  # Start with max available length, then increment.
-				if recording.setAutoincreaseEnd():
-					self.session.nav.RecordTimer.record(recording)
+				if recording.setAutoincreaseEnd() and self.session.nav.RecordTimer.record(recording) is None:
 					self.recording.append(recording)
-					self.session.open(MessageBox, _("Recording time limited due to conflicting timer:%s") % f"\n\t'{nameDate}'", MessageBox.TYPE_INFO)
+					started = True
+					message = _("Recording time limited due to conflicting timer:%s") % f"\n'{nameDate}'"
 				else:
-					self.session.open(MessageBox, _("Could not record due to conflicting timer:%s") % f"\n\t'{name}'", MessageBox.TYPE_INFO)
+					message = _("Could not record due to conflicting timer:%s") % f"\n'{name}'"
+				self.session.openWithCallback(boundFunction(conflictMessageCallback, simulTimerList), MessageBox, message, MessageBox.TYPE_YESNO, timeout=10, list=conflictChoices, default=1, timeoutDefault=False)
 			else:
-				self.session.open(MessageBox, _("Could not record due to invalid service:%s") % f"\n\t'{serviceReference}'", MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Could not record due to invalid service:%s") % f"\n'{serviceReference}'", MessageBox.TYPE_INFO, timeout=10)
 			recording.autoincrease = False
+		return recording if started else None
 
 	def startRecordingCurrentEvent(self):  # Used by ButtonSetup.
 		self.startInstantRecording(True)
+
+	def startInstantRecordingWithDuration(self):  # Used by ButtonSetup.
+		self.selectedInstantServiceRef = None
+		self.recordQuestionCallback((None, "manualduration"))
+
+	def startInstantRecordingWithEndTime(self):  # Used by ButtonSetup.
+		self.selectedInstantServiceRef = None
+		self.recordQuestionCallback((None, "manualendtime"))
+
+	def getTimerConflicts(self):
+		now = int(time())
+		end = now + 86400  # Longest instant recording.
+		timerList = [timer for timer in self.session.nav.RecordTimer.timer_list if timer.repeated or (timer.begin < end and timer.end > now)]
+		timerSanityCheck = TimerSanityCheck(timerList)
+		if not timerSanityCheck.check():
+			simulTimerList = timerSanityCheck.getSimulTimerList()
+			if simulTimerList and len(simulTimerList) > 1:
+				return simulTimerList
+		return None
 
 	def isTimerRecordRunning(self):
 		identical = timers = 0

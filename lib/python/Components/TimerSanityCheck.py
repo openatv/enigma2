@@ -160,7 +160,7 @@ class TimerSanityCheck:
 		overlaplist = []
 		ci_timer = False
 		ci_timer_slot = -1
-		if config.misc.use_ci_assignment.value and self.newtimer.descramble:
+		if config.misc.use_ci_assignment.value and self.newtimer is not None and self.newtimer.descramble:
 			ci_timer_slot = cihelper.getAssignedSlot(self.newtimer.service_ref.ref)
 			if ci_timer_slot != -1:
 				print("[TimerSanityCheck] DEBUG - CI timer detected. ref: " + str(self.newtimer.service_ref.ref) + " slot: " + str(ci_timer_slot))
