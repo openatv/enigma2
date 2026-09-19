@@ -36,6 +36,14 @@ def checkImageFiles(files):
 	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
 
 
+def isNewNativeAdditionalSlot(slotCode, slotData):
+	if not slotCode or not slotCode.isdecimal() or BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot") or BoxInfo.getItem("hasUBIMB"):
+		return False
+	cmdLines = slotData.get("cmdline", {})
+	cmdLines = cmdLines.values() if isinstance(cmdLines, dict) else (cmdLines,)
+	return any("extra=true" in cmdLine for cmdLine in cmdLines if cmdLine)
+
+
 class FlashManager(Screen):
 	skin = """
 	<screen name="FlashManager" title="Flash Manager" position="center,center" size="900,485" resolution="1280,720">
@@ -706,7 +714,10 @@ class FlashImage(Screen):
 				if self.dreamKernelA and (rootSubDir is None or (mtdRootFS == "mmcblk0p1" and rootSubDir == "linuxrootfs1")):
 					cmdArgs.append("-k")
 			elif MultiBoot.canMultiBoot() and self.slotCode not in ("R", "F"):  # Receiver with SD card MultiBoot if (rootSubDir) is None.
-				if BoxInfo.getItem("chkrootmb"):
+				newNativeAdditionalSlot = isNewNativeAdditionalSlot(self.slotCode, bootSlots[self.slotCode])
+				if BoxInfo.getItem("chkrootmb") or newNativeAdditionalSlot:
+					if newNativeAdditionalSlot:
+						print("[FlashManager] Preserving the shared NewMB slot 1 kernel while flashing additional slot '%s'." % self.slotCode)
 					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
 				else:
 					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]

@@ -520,8 +520,11 @@ class MultiBootClass():
 				"bootCodes": self.bootSlots[self.slotCode].get("bootCodes", [""]),
 				"device": self.bootSlots[self.slotCode].get("device", _("Unknown")),
 				"devicelog": self.bootSlots[self.slotCode].get("device", "Unknown"),
+				"imagename": _("Unknown"),
+				"imagelogname": "Unknown",
 				"root": self.bootSlots[self.slotCode].get("rootsubdir", _("Not required")),
-				"rootlog": self.bootSlots[self.slotCode].get("rootsubdir", "Not required")
+				"rootlog": self.bootSlots[self.slotCode].get("rootsubdir", "Not required"),
+				"status": "unknown"
 			}
 			if self.slotCode == "A":
 				self.imageList[self.slotCode]["detection"] = "Found an Android slot"
@@ -905,6 +908,12 @@ class MultiBootClass():
 	def emptySlot(self, slotCode, callback):
 		self.manageSlot(slotCode, callback, self.hideSlot)
 
+	def wipeSlot(self, slotCode, callback):
+		if not self.bootSlots or slotCode == self.bootSlot or slotCode not in self.bootSlots:
+			callback(1)
+		else:
+			self.manageSlot(slotCode, callback, self.wipeSlotMounted)
+
 	def restoreSlot(self, slotCode, callback):
 		self.manageSlot(slotCode, callback, self.revealSlot)
 
@@ -950,6 +959,52 @@ class MultiBootClass():
 				except OSError as err:
 					print(f"[MultiBoot] hideSlot Error {err.errno}: Unable to hide item '{enigmaFile}' in slot '{self.slotCode}' ({self.device})!  ({err.strerror})")
 			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.cleanUpSlot)
+
+	def wipeSlotMounted(self, data, retVal, extraArgs):  # Part of wipeSlot().
+		if retVal:
+			print(f"[MultiBoot] wipeSlotMounted Error {retVal}: Unable to mount slot '{self.slotCode}' ({self.device})!")
+			try:
+				rmdir(self.tempDir)
+			except OSError:
+				pass
+			self.callback(2)
+			return
+		rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
+		imageDir = realpath(join(self.tempDir, rootDir)) if rootDir else realpath(self.tempDir)
+		mountDir = realpath(self.tempDir)
+		if imageDir != mountDir and not imageDir.startswith(f"{mountDir}/"):
+			print(f"[MultiBoot] wipeSlotMounted Error: Refusing to wipe unsafe slot path '{imageDir}'!")
+			self.wipeSlotResult = 4
+			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.wipeSlotUnmounted)
+			return
+		try:
+			items = [join(imageDir, item) for item in listdir(imageDir)]
+		except OSError as err:
+			print(f"[MultiBoot] wipeSlotMounted Error {err.errno}: Unable to list slot '{self.slotCode}' ({imageDir})!  ({err.strerror})")
+			self.wipeSlotResult = 4
+			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.wipeSlotUnmounted)
+			return
+		self.wipeSlotResult = 0
+		if items:
+			self.console.ePopen([REMOVE, REMOVE, "-rf"] + items, self.wipeSlotRemoved)
+		else:
+			self.wipeSlotRemoved("", 0, None)
+
+	def wipeSlotRemoved(self, data, retVal, extraArgs):  # Part of wipeSlot().
+		if retVal:
+			print(f"[MultiBoot] wipeSlotRemoved Error {retVal}: Unable to wipe all files in slot '{self.slotCode}' ({self.device})!")
+			self.wipeSlotResult = 4
+		self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.wipeSlotUnmounted)
+
+	def wipeSlotUnmounted(self, data, retVal, extraArgs):  # Part of wipeSlot().
+		if retVal:
+			print(f"[MultiBoot] wipeSlotUnmounted Error {retVal}: Unable to unmount slot '{self.slotCode}' ({self.device})!")
+			self.callback(3)
+			return
+		rmdir(self.tempDir)
+		if exists(DREAM_BOOT_FILE):
+			self.updateDreamBootSection(self.slotCode)
+		self.callback(self.wipeSlotResult)
 
 	def revealSlot(self, data, retVal, extraArgs):  # Part of restoreSlot().
 		if retVal:
