@@ -4,7 +4,7 @@ from xml.sax.handler import ContentHandler
 from enigma import ePoint, eTimer
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ConfigPassword, ConfigText, KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE, KEY_LEFT, KEY_RIGHT, config  # noqa F401
+from Components.config import ConfigPassword, ConfigText, ActionKeys, config  # noqa F401
 from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -422,13 +422,18 @@ class Wizard(Screen):
 		if self.wizard[self.currStep]["config"]["screen"] and hasattr(self.screenInstance, "blue") and callable(self.screenInstance.blue):
 			self.screenInstance.blue()
 
+	def handleConfigKey(self, key):
+		current = self["config"].getCurrent(full=False)
+		if current and not current[1].isReadOnly():
+			self["config"].handleKey(key)
+
 	def keyBackspace(self):
 		print("[Wizard] DEBUG: BACKSPACE button pressed in step %d." % self.currStep)
 		self.timerReset()
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyBackspace()
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
-			self["config"].handleKey(KEY_BACKSPACE)
+			self.handleConfigKey(ActionKeys.ACTIONKEY_BACKSPACE)
 
 	def keyDelete(self):
 		print("[Wizard] DEBUG: DELETE button pressed in step %d." % self.currStep)
@@ -436,7 +441,7 @@ class Wizard(Screen):
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyDelete()
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
-			self["config"].handleKey(KEY_DELETE)
+			self.handleConfigKey(ActionKeys.ACTIONKEY_DELETE)
 
 	def keyUp(self):
 		print("[Wizard] DEBUG: UP button pressed in step %d." % self.currStep)
@@ -459,7 +464,7 @@ class Wizard(Screen):
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyLeft()
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
-			self["config"].handleKey(KEY_LEFT)
+			self.handleConfigKey(ActionKeys.ACTIONKEY_LEFT)
 		self.configChanged()  # This shouldn't be called for lists.  I should be fixed when the action map is fixed!
 
 	def keyRight(self):
@@ -468,7 +473,7 @@ class Wizard(Screen):
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyRight()
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
-			self["config"].handleKey(KEY_RIGHT)
+			self.handleConfigKey(ActionKeys.ACTIONKEY_RIGHT)
 		self.configChanged()  # This shouldn't be called for lists.  I should be fixed when the action map is fixed!
 
 	def keyDown(self):
@@ -509,7 +514,7 @@ class Wizard(Screen):
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyNumberGlobal(digit)
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
-			self["config"].handleKey(KEY_0 + digit)
+			self.handleConfigKey(ActionKeys.ACTIONKEY_0 + digit)
 
 	def keyText(self):
 		def keyTextCallback(text):
@@ -531,10 +536,8 @@ class Wizard(Screen):
 		self.session.openWithCallback(keyTextCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
 	def keyGotAscii(self):
-		if self.wizard[self.currStep]["config"]["screen"]:
-			self["config"].handleKey(KEY_ASCII)
-		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
-			self["config"].handleKey(KEY_ASCII)
+		if self.wizard[self.currStep]["config"]["screen"] or self.wizard[self.currStep]["config"]["type"] == "dynamic":
+			self.handleConfigKey(ActionKeys.ACTIONKEY_ASCII)
 
 	# def findStepByNameBad(self, name):
 	# 	for key in self.wizard.keys():
