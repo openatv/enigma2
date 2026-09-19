@@ -11,7 +11,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigIP, ConfigNumber, ConfigPassword, ConfigSelection, ConfigText, ConfigYesNo, NoSave, ReadOnly, config, getConfigListEntry
 from Components.Console import Console
 from Components.Label import Label
-from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, iwListBin, networkManager, wpaCliBin
+from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, iwListBin, networkManager, wlBin, wpaCliBin
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
@@ -1190,7 +1190,7 @@ class NetworkWiFiScan(Screen):
 			# iw needs nl80211, drivers without cfg80211 only answer wireless extensions.
 			scanCallback = iwScanCallback if exists(f"/sys/class/net/{self.adapter}/phy80211") else iwlistScanCallback
 			if not networkManager.wpaSupplicantRunning(self.adapter) and self.adapterObj.isBroadcomWl:
-				self.console.ePopen(("/usr/bin/wl", "/usr/bin/wl", "up"), callback=scanCallback)
+				self.console.ePopen((wlBin, wlBin, "up"), callback=scanCallback)
 			else:
 				scanCallback()
 

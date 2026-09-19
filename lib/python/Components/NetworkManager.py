@@ -39,6 +39,7 @@ wpaSupplicantBin = "/usr/sbin/wpa_supplicant"
 wpaCliBin = "/usr/sbin/wpa_cli"
 iwBin = "/usr/sbin/iw"
 iwListBin = "/sbin/iwlist"
+wlBin = "/usr/bin/wl"
 socketDaemonPath = "/var/run/daemon.socket"
 netEventSocketPath = "/var/run/daemon_net.socket"
 netinfoPath = "/var/run/netinfo"
@@ -339,11 +340,15 @@ class NetworkManager:
 			interface = adapter.name
 			api = adapter.driverApi
 			driverFlags = f"-D {api}" if api != apiNl80211 else ""
-			return [
+			lines = [
 				f"pre-up {ifconfigBin} {interface} up || true",
 				f"pre-up {wpaSupplicantBin} -i{interface} -c{adapter.wpaConfPath} -B {driverFlags} -P{adapter.wpaPidPath} || true",
-				f"pre-down {wpaCliBin} -i{interface} terminate 2>/dev/null; true",
 			]
+			if adapter.isBroadcomWl and exists(wlBin):
+				# The dongle radio stays down on ifconfig up, and at boot wl only reaches the dongle once wpa_supplicant has opened it.
+				lines.append(f'pre-up n=0; until {wlBin} isup 2>&1 | grep -qx "[01]" || [ $n -ge 10 ]; do sleep 1; n=$((n+1)); done; {wlBin} up && {wpaCliBin} -i{interface} reassociate >/dev/null || true')
+			lines.append(f"pre-down {wpaCliBin} -i{interface} terminate 2>/dev/null; true")
+			return lines
 
 		self.log("save: Starting.")
 		ok = True
@@ -737,7 +742,7 @@ class NetworkManager:
 				netInfo.signal = data.get("signal_dbm", 0)
 			else:
 				netInfo.link = netInfo.up and data.get("link", False)
-				netInfo.speed = data.get("speed", -1)
+				netInfo.speed = data.get("speed", -1) if netInfo.link else -1
 				netInfo.duplex = data.get("duplex", "")
 				netInfo.port = data.get("port", "")
 				netInfo.transceiver = data.get("transceiver", "")
@@ -1401,6 +1406,8 @@ class WiFiRuntime:
 		cmds: list[str] = []
 		cmds.extend(self.commandsDeactivate())
 		cmds.append(f"{ifconfigBin} {iface} up || true")
+		if self.adapter.isBroadcomWl and exists(wlBin):
+			cmds.append(f"{wlBin} up || true")
 		if conn.wifi and conn.wifi.encryption != Encryption.NONE:
 			cmds.append(f"{wpaSupplicantBin} -B -D {self.adapter.driverApi} -i{iface} -c{self.adapter.wpaConfPath} -P{self.adapter.wpaPidPath} || true")
 		elif conn.wifi:
