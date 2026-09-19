@@ -885,10 +885,10 @@ static NSVGactiveEdge* nsvg__addActive(NSVGrasterizer* r, NSVGedge* e, double st
 //	STBTT_assert(e->y0 <= start_point);
 	// round dx down to avoid going too far
 	if (dxdy < 0)
-		z->dx = static_cast<int>(-roundf(NSVG__FIX * -dxdy));
+		z->dx = static_cast<int>(-round(NSVG__FIX * -dxdy));
 	else
-		z->dx = static_cast<int>(roundf(NSVG__FIX * dxdy));
-	z->x = static_cast<int>(roundf(NSVG__FIX * (e->x0 + dxdy * (startPoint - e->y0))));
+		z->dx = static_cast<int>(round(NSVG__FIX * dxdy));
+	z->x = static_cast<int>(round(NSVG__FIX * (e->x0 + dxdy * (startPoint - e->y0))));
 //	z->x -= off_x * FIX;
 	z->ey = e->y1;
 	z->next = nullptr;
@@ -1211,7 +1211,7 @@ static void nsvg__rasterizeSortedEdges(NSVGrasterizer *r, double tx, double ty, 
 		if (xmin < 0) xmin = 0;
 		if (xmax > r->width-1) xmax = r->width-1;
 		if (xmin <= xmax) {
-			nsvg__scanlineSolid(r->bitmap + (ptrdiff_t)y * r->stride + xmin*4, xmax-xmin+1, &r->scanline[xmin], xmin, y, tx,ty, scalex, scaley, cache);
+			nsvg__scanlineSolid(r->bitmap + static_cast<ptrdiff_t>(y) * r->stride + xmin*4, xmax-xmin+1, &r->scanline[xmin], xmin, y, tx,ty, scalex, scaley, cache);
 		}
 	}
 
@@ -1223,7 +1223,7 @@ static void nsvg__unpremultiplyAlpha(unsigned char* image, int w, int h, int str
 
 	// Unpremultiply
 	for (y = 0; y < h; y++) {
-		unsigned char *row = image + (ptrdiff_t)y * stride;
+		unsigned char *row = image + static_cast<ptrdiff_t>(y) * stride;
 		for (x = 0; x < w; x++) {
 			int r = row[0], g = row[1], b = row[2], a = row[3];
 			if (a != 0) {
@@ -1237,7 +1237,7 @@ static void nsvg__unpremultiplyAlpha(unsigned char* image, int w, int h, int str
 
 	// Defringe
 	for (y = 0; y < h; y++) {
-		unsigned char *row = image + (ptrdiff_t)y * stride;
+		unsigned char *row = image + static_cast<ptrdiff_t>(y) * stride;
 		for (x = 0; x < w; x++) {
 			int a = row[3];
 			if (a == 0) {
@@ -1284,7 +1284,7 @@ static void nsvg__unpremultiplyBGRAlpha(unsigned char* image, int w, int h, int 
 
 	// Unpremultiply
 	for (y = 0; y < h; y++) {
-		unsigned char *row = image + (ptrdiff_t)y * stride;
+		unsigned char *row = image + static_cast<ptrdiff_t>(y) * stride;
 		for (x = 0; x < w; x++) {
 			int b = row[0], g = row[1], r = row[2], a = row[3];
 			if (a != 0) {
@@ -1298,7 +1298,7 @@ static void nsvg__unpremultiplyBGRAlpha(unsigned char* image, int w, int h, int 
 
 	// Defringe
 	for (y = 0; y < h; y++) {
-		unsigned char *row = image + (ptrdiff_t)y * stride;
+		unsigned char *row = image + static_cast<ptrdiff_t>(y) * stride;
 		for (x = 0; x < w; x++) {
 			int r = 0, g = 0, b = 0, a = row[3], n = 0;
 			if (a == 0) {
@@ -1423,7 +1423,7 @@ void nsvgRasterizeFull(NSVGrasterizer* r,
 	if (stride <= 0) return;
 
 	for (i = 0; i < h; i++)
-		memset(dst + (ptrdiff_t)i * stride, 0, w*4);
+		memset(&dst[static_cast<size_t>(i) * stride], 0, static_cast<size_t>(w) * 4);
 
 	for (shape = image->shapes; shape != nullptr; shape = shape->next) {
 		if (!(shape->flags & NSVG_FLAGS_VISIBLE))

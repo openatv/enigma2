@@ -25,6 +25,11 @@ originalAudioTracks = "orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ
 visuallyImpairedCommentary = "NAR qad"
 
 
+def eEnv_resolve_multi(path):
+	resolve = eEnv.resolve(path)
+	return [] if resolve == path else resolve.split()
+
+
 def InitUsageConfig():
 	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
 	RemoteChoices = []
@@ -2483,6 +2488,57 @@ def InitUsageConfig():
 		config.plugins.softwaremanager.backuptarget.setChoices([("", _("Ask user"))] + hddchoises)
 
 	harddiskmanager.on_partition_list_change.append(partitionListChanged)
+
+	# BackupRestore
+	config.plugins.configurationbackup = ConfigSubsection()
+
+	# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
+	BACKUPFILES = ["/etc/enigma2/", "/etc/CCcam.cfg", "/usr/keys/", "/etc/wireguard/",
+		"/etc/davfs2/", "/etc/tuxbox/config/", "/etc/auto.network", "/etc/feeds.xml", "/etc/machine-id", "/etc/rc.local",
+		"/etc/openvpn/", "/etc/ipsec.conf", "/etc/ipsec.secrets", "/etc/ipsec.user", "/etc/strongswan.conf", "/etc/vtuner.conf",
+		"/etc/default/crond", "/etc/dropbear/", "/etc/default/dropbear", "/home/", "/etc/samba/", "/etc/fstab", "/etc/inadyn.conf",
+		"/etc/network/interfaces", "/etc/wpa_supplicant.conf", "/etc/wpa_supplicant.ath0.conf", "/etc/ciplus/", "/etc/udev/known_devices",
+		"/etc/resolv.conf", "/etc/enigma2/nameserversdns.conf", "/etc/default_gw", "/etc/hostname", "/etc/hosts", "/etc/epgimport/", "/etc/exports",
+		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin", "/etc/PrivateKey.key", "/etc/wg_token.key",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config",
+		"/usr/share/enigma2/MetrixHD/skinparts/",
+		"/usr/share/enigma2/display/skin_display_usr.xml",
+		"/usr/share/enigma2/display/userskin.png",
+		"/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml",
+		"/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db",
+		"/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db",
+		"/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db", "/etc/ConfFS",
+		"/etc/rc3.d/S99tuner.sh",
+		"/usr/bin/enigma2_pre_start.sh",
+		"/var/lib/bluetooth/",
+		"/etc/enigma2/AutoBouquetsMaker/custom/",
+		"/etc/enigma2/AutoBouquetsMaker/providers/",
+		"/home/root/.config/content_shell/",
+		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
+		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
+		+ eEnv_resolve_multi("${sysconfdir}/wpa_supplicant.wlan*.conf")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
+		+ eEnv_resolve_multi("/etc/*.emu")\
+		+ eEnv_resolve_multi("${sysconfdir}/cron*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
+		+ eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
+		+ eEnv_resolve_multi("/usr/sundtek/*")\
+		+ eEnv_resolve_multi("/opt/bin/*")\
+		+ eEnv_resolve_multi("/usr/script/*")
+
+	# Drop non existant paths from list
+	backupset = [f for f in BACKUPFILES if exists(f)]
+
+	config.plugins.configurationbackup.backuplocation = ConfigText(default="/media/hdd/", visible_width=50, fixed_size=False)
+	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
+	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[])  # "backupdirs_addon" is called "backupdirs" for backwards compatibility, holding the user"s old selection, duplicates are removed during backup
+	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 
 	# Picon
 	config.picon = ConfigSubsection()

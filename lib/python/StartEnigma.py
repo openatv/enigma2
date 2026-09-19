@@ -430,9 +430,9 @@ def runScreenTest():
 	if config.misc.firstrun.value and (firstPath := next((f"/media/{d}/images/config/settings" for d in listdir("/media") if d not in ("audiocd", "autofs") and isfile(f"/media/{d}/images/config/settings")), None)):
 		if autorestoreLoop(autorestoreFilename):
 			RestoreSettings = True
+			from Screens.BackupRestore import RestoreScreen
 			if firstPath:
 				config.plugins.configurationbackup.backuplocation.value = firstPath.replace("images/config/settings", "")
-			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
 			session.open(RestoreScreen, runRestore=True)
 		else:
 			screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]

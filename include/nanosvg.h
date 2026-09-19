@@ -1274,9 +1274,9 @@ static unsigned int nsvg__parseColorRGB(const char* str)
 			else break;
 		}
 		if (i == 3) {
-			rgbi[0] = roundf(rgbf[0] * 2.55);
-			rgbi[1] = roundf(rgbf[1] * 2.55);
-			rgbi[2] = roundf(rgbf[2] * 2.55);
+			rgbi[0] = static_cast<unsigned int>(round(rgbf[0] * 255.0 / 100.0));
+			rgbi[1] = static_cast<unsigned int>(round(rgbf[1] * 255.0 / 100.0));
+			rgbi[2] = static_cast<unsigned int>(round(rgbf[2] * 255.0 / 100.0));
 		} else {
 			rgbi[0] = rgbi[1] = rgbi[2] = 128;
 		}
@@ -2268,8 +2268,8 @@ static void nsvg__pathArcTo(NSVGparser* p, double* cpx, double* cpy, double* arg
 	if ((hda < 1e-3) && (hda > -1e-3))
 		hda *= 0.5;
 	else
-		hda = (1.0 - cosf(hda)) / sinf(hda);
-	kappa = fabsf(4.0 / 3.0 * hda);
+		hda = (1.0 - cos(hda)) / sin(hda);
+	kappa = fabs(4.0 / 3.0 * hda);
 	if (da < 0.0)
 		kappa = -kappa;
 
@@ -2455,8 +2455,8 @@ static void nsvg__parseRect(NSVGparser* p, const char** attr)
 		else if (strcmp(attr[i], "y") == 0) y = nsvg__parseCoordinate(p, attr[i+1], nsvg__actualOrigY(p), nsvg__actualHeight(p));
 		else if (strcmp(attr[i], "width") == 0) w = nsvg__parseCoordinate(p, attr[i+1], 0.0f, nsvg__actualWidth(p));
 		else if (strcmp(attr[i], "height") == 0) h = nsvg__parseCoordinate(p, attr[i+1], 0.0f, nsvg__actualHeight(p));
-		else if (strcmp(attr[i], "rx") == 0) rx = fabsf(nsvg__parseCoordinate(p, attr[i+1], 0.0f, nsvg__actualWidth(p)));
-		else if (strcmp(attr[i], "ry") == 0) ry = fabsf(nsvg__parseCoordinate(p, attr[i+1], 0.0f, nsvg__actualHeight(p)));
+		else if (strcmp(attr[i], "rx") == 0) rx = fabs(nsvg__parseCoordinate(p, attr[i+1], 0.0f, nsvg__actualWidth(p)));
+		else if (strcmp(attr[i], "ry") == 0) ry = fabs(nsvg__parseCoordinate(p, attr[i+1], 0.0f, nsvg__actualHeight(p)));
 		else nsvg__parseAttr(p, attr[i], attr[i + 1]);
 	}
 
@@ -3014,9 +3014,7 @@ static void nsvg__scaleToViewbox(NSVGparser* p, const char* units)
 
 static void nsvg__createGradients(NSVGparser* p)
 {
-	NSVGshape* shape;
-
-	for (shape = p->image->shapes; shape != NULL; shape = shape->next) {
+	for (NSVGshape* shape = p->image->shapes; shape != nullptr; shape = shape->next) {
 		if (shape->fill.type == NSVG_PAINT_UNDEF) {
 			if (shape->fillGradient[0] != '\0') {
 				double inv[6], localBounds[4];
@@ -3071,6 +3069,7 @@ NSVGimage* nsvgParse(char* input, const char* units, double dpi)
 
 NSVGimage* nsvgParseFromFile(const char* filename, const char* units, double dpi)
 {
+	long ftell_size;
 	size_t size;
 	char* data = nullptr;
 	NSVGimage* image = nullptr;
@@ -3078,7 +3077,9 @@ NSVGimage* nsvgParseFromFile(const char* filename, const char* units, double dpi
 	FILE* fp = fopen(filename, "rb");
 	if (!fp) goto error;
 	fseek(fp, 0, SEEK_END);
-	size = ftell(fp);
+	ftell_size = ftell(fp);
+	if (ftell_size < 0) goto error;	// ftell() failed; size_t size would wrap and malloc(0) below
+	size = static_cast<size_t>(ftell_size);
 	fseek(fp, 0, SEEK_SET);
 	data = static_cast<char*>(malloc(size+1));
 	if (data == nullptr) goto error;
