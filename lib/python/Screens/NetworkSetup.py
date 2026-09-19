@@ -11,7 +11,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigIP, ConfigNumber, ConfigPassword, ConfigSelection, ConfigText, ConfigYesNo, NoSave, ReadOnly, config, getConfigListEntry
 from Components.Console import Console
 from Components.Label import Label
-from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, iwListBin, networkManager, ssidDisplay, ssidFromEscaped, wlBin, wpaCliBin
+from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, iwListBin, networkManager, wlBin, wpaCliBin
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
@@ -474,7 +474,7 @@ class NetworkOverview(Screen):
 				statusText, statusGlyph, statusColor, statusColorSelected = _("Disabled"), "\uEA79", idle, idleSelected  # Glyph is Signal Wifi Off.
 			return (
 				self.overviewTemplateRow,
-				ssidDisplay(ssid),                                                           # SSID.
+				conn.wifi.displaySsid,                                                       # SSID.
 				netInfo.bssid.upper() if isLive and netInfo.bssid else "-",                  # BSSID.
 				f"{netInfo.freqMhz / 1000:.2f} GHz" if isLive and netInfo.freqMhz else "-",  # Frequency.
 				str(netInfo.channel) if isLive and netInfo.channel else "-",                 # Channel.
@@ -616,7 +616,7 @@ class NetworkOverview(Screen):
 
 	def connectionLabel(self, adapter: Adapter, connection: Connection) -> str:
 		if connection.isWiFi and connection.wifi and connection.wifi.ssid:
-			result = f"{connection.adapter}  │  {ssidDisplay(connection.wifi.ssid)}  [{self.encryptionShortText.get(connection.wifi.encryption, connection.wifi.encryption)}]"
+			result = f"{connection.adapter}  │  {connection.wifi.displaySsid}  [{self.encryptionShortText.get(connection.wifi.encryption, connection.wifi.encryption)}]"
 		else:
 			result = f"{connection.adapter}  │  {"DHCP" if connection.dhcp else connection.ipStr()}"
 		return result
@@ -923,7 +923,7 @@ class NetworkWiFiSetup(Setup):
 			self.wifiConnsSorted = []
 			self.cfgPriority = NoSave(ConfigNumber(default=connection.priority))
 		wifi = connection.wifi
-		self.cfgSsid = NoSave(ConfigText(default=ssidDisplay(wifi.ssid), fixed_size=False))
+		self.cfgSsid = NoSave(ConfigText(default=wifi.displaySsid, fixed_size=False))
 		self.cfgHidden = NoSave(ConfigYesNo(default=wifi.hidden))
 		encryptionChoices = [  # A hand written configuration may carry a value this screen does not offer.
 			(Encryption.NONE, _("None")),
@@ -965,7 +965,7 @@ class NetworkWiFiSetup(Setup):
 			connection.priority = int(self.cfgPriority.value)
 		wifi = connection.wifi
 		ssid = self.cfgSsid.value.strip()
-		if ssid != ssidDisplay(wifi.ssid):  # Keep bytes the text field could not show.
+		if ssid != wifi.displaySsid:  # Keep bytes the text field could not show.
 			wifi.ssid = ssid
 		wifi.hidden = self.cfgHidden.value
 		wifi.encryption = self.cfgEncryption.value
@@ -1137,7 +1137,7 @@ class NetworkWiFiScan(Screen):
 		if current:
 			accessPoint = current[-1]
 			if accessPoint.encryption in self.enterpriseEncryptions:
-				self.session.open(MessageBox, _("'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf.") % ssidDisplay(accessPoint.ssid), type=MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf.") % WiFiConfig.displayText(accessPoint.ssid), type=MessageBox.TYPE_INFO)
 			else:
 				self.close(accessPoint)
 
@@ -1168,9 +1168,10 @@ class NetworkWiFiScan(Screen):
 				if self.accessPoints:
 					accessPointList = []
 					for accessPoint in sorted(self.accessPoints.values(), key=lambda ap: -ap.signalPct):
+						ssid = WiFiConfig.displayText(accessPoint.ssid)
 						accessPointList.append((
-							f"{ssidDisplay(accessPoint.ssid)}  ({accessPoint.bssid})",  # Name.
-							ssidDisplay(accessPoint.ssid),                            # SSID.
+							f"{ssid}  ({accessPoint.bssid})",                        # Name.
+							ssid,                                                    # SSID.
 							accessPoint.bssid,                                       # BSSID.
 							accessPoint.signalGlyphs,                                # Glyph.
 							accessPoint.signalText,                                  # Strength.
@@ -1275,7 +1276,7 @@ class NetworkWiFiScan(Screen):
 			if current is None:
 				continue
 			if match := reSsid.match(line):
-				current.ssid = ssidFromEscaped(match.group(1))
+				current.ssid = WiFiConfig.ssidFromEscaped(match.group(1))
 			elif match := reFreq.match(line):
 				freqMhz = int(match.group(1))
 				current.frequency = f"{freqMhz / 1000:.3f} GHz"
@@ -1358,7 +1359,7 @@ class NetworkWiFiScan(Screen):
 			if current is None:
 				continue
 			if match := reSsid.search(line):
-				current.ssid = ssidFromEscaped(match.group(1))
+				current.ssid = WiFiConfig.ssidFromEscaped(match.group(1))
 			if match := reFreq.search(line):
 				current.frequency = match.group(1)
 				if match.group(2):
@@ -1436,7 +1437,7 @@ class NetworkWiFiActivator(Screen):
 		self.closeTimer = eTimer()
 		self.pollInterval = 1500
 		self.pollMaxAttempts = 20
-		self.ssid = ssidDisplay(connection.wifi.ssid) if connection.wifi else adapter.name
+		self.ssid = connection.wifi.displaySsid if connection.wifi else adapter.name
 		self.pollCount = 0
 		self.onLayoutFinish.append(self.start)
 

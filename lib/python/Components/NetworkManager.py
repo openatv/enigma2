@@ -869,6 +869,37 @@ class WiFiConfig:
 	def needsKey(self) -> bool:
 		return self.encryption != Encryption.NONE
 
+	@property
+	def displaySsid(self) -> str:
+		return self.displayText(self.ssid)
+
+	# wpa_supplicant stores an SSID quoted or, when it is not plain printable ASCII, as hex digits.
+	@property
+	def wpaSsid(self) -> str:
+		if self.ssid.isascii() and self.ssid.isprintable() and '"' not in self.ssid:
+			return f'"{self.ssid}"'
+		return self.ssid.encode("utf-8", errors="surrogateescape").hex()
+
+	@staticmethod
+	def ssidFromWpaValue(value: str) -> str:
+		if value.startswith('"'):
+			return value.strip('"')
+		try:
+			return bytes.fromhex(value).decode("utf-8", errors="surrogateescape")
+		except ValueError:
+			return value
+
+	# iw, iwlist and wpa_cli print every byte outside printable ASCII as \xNN. Bytes that are no
+	# valid UTF-8 are kept as surrogates, so the SSID is written back to wpa_supplicant unchanged.
+	@staticmethod
+	def ssidFromEscaped(text: str) -> str:
+		return sub(rb"\\x([0-9A-Fa-f]{2})", lambda hexByte: bytes((int(hexByte.group(1), 16),)), text.encode("utf-8")).decode("utf-8", errors="surrogateescape")
+
+	# Surrogates cannot be passed on to the C++ side, the screens show U+FFFD for them.
+	@staticmethod
+	def displayText(ssid: str) -> str:
+		return ssid.encode("utf-8", errors="surrogateescape").decode("utf-8", errors="replace")
+
 
 # Logical network configuration attached to one physical Adapter.
 @dataclass
@@ -1222,7 +1253,7 @@ class WpaSupplicantFile:
 			if "=" in stripped and depth > 0:
 				key, sep, value = stripped.partition("=")
 				key, value = key.strip(), value.strip()
-				current[key] = ssidFromWpaValue(value) if key == "ssid" else value.strip('"')
+				current[key] = WiFiConfig.ssidFromWpaValue(value) if key == "ssid" else value.strip('"')
 			if depth <= 0 and current is not None:
 				wifi = wpaDictToWiFiConfig(current, blockId)
 				if wifi.ssid:
@@ -1253,33 +1284,6 @@ class WpaSupplicantFile:
 
 	def ensureDir(self):
 		makedirs(wpaSupplicantDir, exist_ok=True)
-
-
-# iw, iwlist and wpa_cli print every byte outside printable ASCII as \xNN. Bytes that are no
-# valid UTF-8 are kept as surrogates, so the SSID is written back to wpa_supplicant unchanged.
-def ssidFromEscaped(text: str) -> str:
-	return sub(rb"\\x([0-9A-Fa-f]{2})", lambda hexByte: bytes((int(hexByte.group(1), 16),)), text.encode("utf-8")).decode("utf-8", errors="surrogateescape")
-
-
-# Surrogates cannot be passed on to the C++ side, the screens show U+FFFD for them.
-def ssidDisplay(ssid: str) -> str:
-	return ssid.encode("utf-8", errors="surrogateescape").decode("utf-8", errors="replace")
-
-
-# wpa_supplicant stores an SSID quoted or, when it is not plain printable ASCII, as hex digits.
-def ssidFromWpaValue(value: str) -> str:
-	if value.startswith('"'):
-		return value.strip('"')
-	try:
-		return bytes.fromhex(value).decode("utf-8", errors="surrogateescape")
-	except ValueError:
-		return value
-
-
-def ssidToWpaValue(ssid: str) -> str:
-	if ssid.isascii() and ssid.isprintable() and '"' not in ssid:
-		return f'"{ssid}"'
-	return ssid.encode("utf-8", errors="surrogateescape").hex()
 
 
 def wpaDictToWiFiConfig(fields: dict[str, str], blockId: int) -> WiFiConfig:
@@ -1321,7 +1325,7 @@ def wpaDictToWiFiConfig(fields: dict[str, str], blockId: int) -> WiFiConfig:
 
 def wifiConfigToWpaBlock(wifi: WiFiConfig) -> list[str]:
 	lines = ["network={"]
-	lines.append(f"\tssid={ssidToWpaValue(wifi.ssid)}")
+	lines.append(f"\tssid={wifi.wpaSsid}")
 	if wifi.hidden:
 		lines.append("\tscan_ssid=1")
 	lines.append(f"\tpriority={wifi.priority}")
@@ -1439,7 +1443,7 @@ class WiFiRuntime:
 		if conn.wifi and conn.wifi.encryption != Encryption.NONE:
 			cmds.append(f"{wpaSupplicantBin} -B -D {self.adapter.driverApi} -i{iface} -c{self.adapter.wpaConfPath} -P{self.adapter.wpaPidPath} || true")
 		elif conn.wifi:
-			ssid = ssidDisplay(conn.wifi.ssid).replace("\\", "\\\\").replace('"', '\\"').replace("$", "\\$").replace("`", "\\`")
+			ssid = conn.wifi.displaySsid.replace("\\", "\\\\").replace('"', '\\"').replace("$", "\\$").replace("`", "\\`")
 			cmds.append(f'iwconfig {iface} essid "{ssid}" || true')
 		cmds.append(f"{ifupBin} {iface}")
 		return cmds
