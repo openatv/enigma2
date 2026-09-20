@@ -115,6 +115,8 @@ class MessageBox(Screen):
 		if self.list:
 			self["list"].enableAutoNavigation(False)  # Override listbox navigation.
 			self["list"].moveToIndex(self.startIndex)
+		if "icon" in self and getattr(self["icon"], "iconGlyphs", None) is not None:
+			self["icon"].setVisible(bool(self.typeIcon))
 		if self.typeIcon:
 			self["icon"].setPixmapNum(self.typeIcon - 1)
 		prefix = self.TYPE_PREFIX.get(self.type, _("Unknown"))

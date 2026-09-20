@@ -1,8 +1,8 @@
 from os.path import isfile
 
-from enigma import ePixmap, eTimer
+from enigma import eLabel, ePixmap, eTimer
 
-from skin import domScreens, parsePixmap
+from skin import domScreens, parseColor, parsePixmap
 from Components.ConditionalWidget import ConditionalWidget
 from Components.GUIComponent import GUIComponent
 from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, fileExists, resolveFilename
@@ -146,8 +146,39 @@ class MultiPixmap(Pixmap):
 	def __init__(self):
 		Pixmap.__init__(self)
 		self.pixmaps = []
+		self.iconGlyphs = None
+		self.iconColors = []
+		self.iconFont = None
+
+	def createWidget(self, parent):
+		# Widget-local opt-in: embedded plugin skins can still use their PNGs.
+		attributes = dict(self.skinAttributes or ())
+		self.iconGlyphs = None
+		self.iconColors = []
+		self.iconFont = attributes.get("iconFont")
+		if attributes.get("iconFont") and attributes.get("iconGlyphs"):
+			try:
+				codepoints = [int(value.strip(), 0) for value in attributes["iconGlyphs"].split(",")]
+				if any(not 0 < value <= 0x10FFFF or 0xD800 <= value <= 0xDFFF for value in codepoints):
+					raise ValueError("Invalid Unicode codepoint")
+				self.iconGlyphs = [chr(value) for value in codepoints]
+			except ValueError as error:
+				print(f"[MultiPixmap] Invalid iconGlyphs, using pixmaps: {error}")
+		return eLabel(parent) if self.iconGlyphs is not None else Pixmap.createWidget(self, parent)
 
 	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attributes = dict(self.skinAttributes)
+			self.skinAttributes = [(name, value) for name, value in self.skinAttributes if name not in ("iconFont", "iconGlyphs", "iconColors")]
+			if self.iconGlyphs is not None:
+				self.skinAttributes = [(name, value) for name, value in self.skinAttributes if name not in ("pixmap", "pixmaps", "scale", "font")]
+				self.skinAttributes.append(("font", self.iconFont))
+				if "iconColors" in attributes:
+					self.iconColors = [parseColor(value.strip()) for value in attributes["iconColors"].split(",") if value.strip()]
+					if len(self.iconColors) != len(self.iconGlyphs):
+						print("[MultiPixmap] iconColors must provide one color per glyph; using the widget foreground color")
+						self.iconColors = []
+				return GUIComponent.applySkin(self, desktop, screen)
 		if self.skinAttributes is not None:
 			myScreen, path = domScreens.get(screen.__class__.__name__, (None, None))
 			skinPathPrefix = getattr(screen, "skin_path", path)
@@ -183,6 +214,12 @@ class MultiPixmap(Pixmap):
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	def setPixmapNum(self, index):
+		if self.iconGlyphs is not None:
+			if self.instance and 0 <= index < len(self.iconGlyphs):
+				self.instance.setText(self.iconGlyphs[index])
+				if index < len(self.iconColors):
+					self.instance.setForegroundColor(self.iconColors[index])
+			return
 		if self.instance and self.pixmaps:
 			if len(self.pixmaps) > index:
 				self.instance.setPixmap(self.pixmaps[index])
