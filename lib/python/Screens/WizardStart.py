@@ -8,7 +8,9 @@ from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
+from Components.International import international
 from Components.NetworkManager import networkManager
+from Components.Opkg import OpkgComponent
 from Components.Storage import EXPANDER_MOUNT
 from Components.SystemInfo import BoxInfo
 from Components.Pixmap import Pixmap
@@ -17,6 +19,7 @@ from Screens.HarddiskSetup import HarddiskSelection
 from Screens.HelpMenu import ShowRemoteControl
 from Screens.MessageBox import MessageBox
 from Screens.NetworkSetup import NetworkAdapterSetup, NetworkWiFiAddFlow
+from Screens.Processing import Processing
 from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.WizardVideo import WizardVideo
 from Screens.Wizard import wizardManager, Wizard
@@ -56,6 +59,8 @@ class WizardStart(Wizard, ShowRemoteControl):
 		self.nwSubFlowActive = False
 		self.nwPollIntervalMs = 1500
 		self.nwPollMaxAttempts = 12  # 18 s total
+		self.opkgComponent = OpkgComponent()
+		self.opkgComponent.addCallback(self.opkgComponentCallback)
 
 	def markDone(self):
 		# All boxes use the same remote control setting except the dm8000, which needs its own.
@@ -64,6 +69,30 @@ class WizardStart(Wizard, ShowRemoteControl):
 		config.misc.firstrun.value = False
 		config.misc.firstrun.save()
 		configfile.save()
+
+	def purgeLocales(self):
+		packages = international.getPurgablePackages()
+		if packages:
+			Processing.instance.setDescription(_("Please wait while unused locales/languages are purged..."))
+			Processing.instance.showProgress(endless=True)
+			opkgArguments = {
+				"options": ["--autoremove", "--force-depends"],
+				"arguments": [international.LOCALE_TEMPLATE % x for x in packages]
+			}
+			self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args=opkgArguments)
+		else:
+			self.purgeLocalesDone()
+
+	def purgeLocalesDone(self):
+		international.initInternational()
+		Processing.instance.hideProgress()
+		# See the +1 note in nwBackToList() above - same off-by-one compensation.
+		self.currStep = self.getStepWithID("restartdevice") + 1
+		self.updateValues()
+
+	def opkgComponentCallback(self, event, parameter):
+		if event == self.opkgComponent.EVENT_DONE:
+			self.purgeLocalesDone()
 
 	def createSwapFileFlashExpander(self, callback):
 		def messageBoxCallback(*res):
@@ -97,11 +126,12 @@ class WizardStart(Wizard, ShowRemoteControl):
 		print("[WizardStart] DEBUG createSwapFileFlashExpander")
 		messageBox = self.session.openWithCallback(messageBoxCallback, MessageBox, _("Please wait, swap is being created. This could take a few minutes to complete."), MessageBox.TYPE_INFO, enable_input=False, windowTitle=_("Create swap"))
 		fileName = join("/.FlashExpander", "swapfile")
-		commands = []
-		commands.append(f"/bin/dd if=/dev/zero of='{fileName}' bs=1024 count=131072 2>/dev/null")  # Use 128 MB because creation of bigger swap is very slow.
-		commands.append(f"/bin/chmod 600 '{fileName}'")
-		commands.append(f"/sbin/mkswap '{fileName}'")
-		commands.append(f"/sbin/swapon '{fileName}'")
+		commands = [
+			f"/bin/dd if=/dev/zero of='{fileName}' bs=1024 count=131072 2>/dev/null",  # Use 128 MB because creation of bigger swap is very slow.
+			f"/bin/chmod 600 '{fileName}'",
+			f"/sbin/mkswap '{fileName}'",
+			f"/sbin/swapon '{fileName}'"
+		]
 		self.console.eBatch(commands, creataSwapFileCallback, debug=True)
 
 	def createSwapFile(self, callback):
@@ -152,12 +182,13 @@ class WizardStart(Wizard, ShowRemoteControl):
 				if callback and callable(callback):
 					callback()
 				return
-			commands = []
-			commands.append("/bin/mount -a")
-			commands.append(f"/bin/dd if=/dev/zero of='{fileName}' bs=1024 count=131072 2>/dev/null")  # Use 128 MB because creation of bigger swap is very slow.
-			commands.append(f"/bin/chmod 600 '{fileName}'")
-			commands.append(f"/sbin/mkswap '{fileName}'")
-			commands.append(f"/sbin/swapon '{fileName}'")
+			commands = [
+				"/bin/mount -a",
+				f"/bin/dd if=/dev/zero of='{fileName}' bs=1024 count=131072 2>/dev/null",  # Use 128 MB because creation of bigger swap is very slow.
+				f"/bin/chmod 600 '{fileName}'",
+				f"/sbin/mkswap '{fileName}'",
+				f"/sbin/swapon '{fileName}'"
+			]
 			self.console.eBatch(commands, creataSwapFileCallback, debug=True)
 		else:
 			self.session.open(MessageBox, _("No valid mount for '%s' found!") % path, type=MessageBox.TYPE_ERROR)
