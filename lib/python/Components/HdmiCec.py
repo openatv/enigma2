@@ -88,13 +88,13 @@ VOLUME_FORWARDING_STATE_FILES = (VOLUME_FORWARDING_STATE_FILE, "/var/run/cec_vol
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
-HDMI_CEC_CODE_MARKER = "ATV-CEC-20260711-02"
+HDMI_CEC_CODE_MARKER = "ATV-CEC-20260923-01"
 ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
-ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS = 1000
-ACTIVE_SOURCE_SWITCH_RETRIES = 1
-PANASONIC_SOURCE_SWITCH_DELAY_MS = 3000
+ACTIVE_SOURCE_CONFIRM_DELAY_MS = 100
 TV_WAKEUP_SEQUENCE_INTERVAL_MS = 300
-TV_WAKEUP_ACTIVE_SOURCE_DELAY_MS = 1200
+TV_POWER_STATUS_INITIAL_DELAY_MS = 300
+TV_POWER_STATUS_RETRY_INTERVAL_MS = 2000
+TV_POWER_STATUS_RETRIES = 10
 TV_STANDBY_WAKE_GUARD_MS = 3000
 SYSTEM_AUDIO_MODE_REQUEST_DELAY_MS = 1500
 SYSTEM_AUDIO_MODE_REQUEST_INTERVAL_MS = 300
@@ -197,7 +197,7 @@ CECintcmd = {
 	"Report Physical Address": "reportaddress",
 	"Report Power Status On": "poweractive",
 	"Report Power Status Standby": "powerinactive",
-	"Routing Information": "routinginfo",
+	"Request Active Source": "requestactivesource",
 	"Set Stream Path": "setstreampath",
 	"Set OSD Name": "osdname",
 	"Set System Audio Mode Off": "deactivatesystemaudiomode",
@@ -599,11 +599,13 @@ class HdmiCec:
 			self.activeSourceTimer = eTimer()
 			self.activeSourceTimer.callback.append(self.sendActiveSourceCommand)
 			self.activeSourceMessages = []
-			self.activeSourceRetryPending = False
-			self.activeSourceRetryCounter = 0
 			self.tvWakeupTimer = eTimer()
 			self.tvWakeupTimer.callback.append(self.sendTvWakeupCommand)
 			self.tvWakeupMessages = []
+			self.tvPowerStatusTimer = eTimer()
+			self.tvPowerStatusTimer.callback.append(self.requestTvPowerStatus)
+			self.tvPowerStatusPolling = False
+			self.tvPowerStatusRequestCounter = 0
 			self.tvStandbyWakeGuardUntil = 0.0
 			self.systemAudioModeTimer = eTimer()
 			self.systemAudioModeTimer.callback.append(self.requestSystemAudioMode)
@@ -753,13 +755,6 @@ class HdmiCec:
 	def activeSourceInterval(self):
 		return max(config.hdmicec.minimum_send_interval.value or 0, ACTIVE_SOURCE_SWITCH_INTERVAL_MS)
 
-	def activeSourceInitialDelay(self):
-		if self.tv_vendor == CEC_VENDOR_PANASONIC and "on" not in self.tv_powerstate:
-			return PANASONIC_SOURCE_SWITCH_DELAY_MS
-		if self.tvWakeupMessages or self.tvWakeupTimer.isActive():
-			return TV_WAKEUP_ACTIVE_SOURCE_DELAY_MS
-		return self.activeSourceInterval()
-
 	def setTvStatePending(self, pending):
 		if self.tv_state_pending != pending:
 			self.CECwritedebug(f"[HdmiCec] TV state pending: {pending}", True)
@@ -799,10 +794,13 @@ class HdmiCec:
 			self.sendMessage(0, "textviewon", immediate=True)
 			self.tvWakeupMessages = [(0, "keypoweron"), (0, "keyrelease")]
 			self.tvWakeupTimer.start(TV_WAKEUP_SEQUENCE_INTERVAL_MS, True)
+		if not config.hdmicec.report_active_source.value:
+			self.startTvPowerStatusPolling()
 
 	def sendTvWakeupCommand(self):
 		if Screens.Standby.inStandby or self.what == "standby":
 			self.stopTvWakeupSequence()
+			self.stopTvPowerStatusPolling()
 			self.setTvStatePending(False)
 			return
 		if self.tvWakeupMessages:
@@ -811,62 +809,87 @@ class HdmiCec:
 			if self.tvWakeupMessages:
 				self.tvWakeupTimer.start(TV_WAKEUP_SEQUENCE_INTERVAL_MS, True)
 
+	def stopTvPowerStatusPolling(self):
+		active = self.tvPowerStatusPolling or self.tvPowerStatusTimer.isActive()
+		if self.tvPowerStatusTimer.isActive():
+			self.tvPowerStatusTimer.stop()
+		self.tvPowerStatusPolling = False
+		self.tvPowerStatusRequestCounter = 0
+		return active
+
+	def startTvPowerStatusPolling(self):
+		if not config.hdmicec.enabled.value or not config.hdmicec.control_tv_wakeup.value or Screens.Standby.inStandby:
+			return
+		self.stopTvPowerStatusPolling()
+		self.tvPowerStatusPolling = True
+		self.setTvStatePending(True)
+		self.CECwritedebug(f"[HdmiCec] query TV power status in {TV_POWER_STATUS_INITIAL_DELAY_MS} ms", True)
+		self.tvPowerStatusTimer.start(TV_POWER_STATUS_INITIAL_DELAY_MS, True)
+
+	def requestTvPowerStatus(self):
+		if Screens.Standby.inStandby or self.what == "standby" or not config.hdmicec.control_tv_wakeup.value:
+			self.stopTvPowerStatusPolling()
+			self.setTvStatePending(False)
+			return
+		if self.tvPowerStatusRequestCounter > TV_POWER_STATUS_RETRIES:
+			self.CECwritedebug("[HdmiCec] TV power status was not confirmed after wakeup", True)
+			self.stopTvPowerStatusPolling()
+			self.setTvStatePending(False)
+			return
+		self.tvPowerStatusRequestCounter += 1
+		self.CECwritedebug(f"[HdmiCec] request TV power status ({self.tvPowerStatusRequestCounter}/{TV_POWER_STATUS_RETRIES + 1})", True)
+		self.sendMessage(0, "powerstate", immediate=True)
+		self.tvPowerStatusTimer.start(TV_POWER_STATUS_RETRY_INTERVAL_MS, True)
+
+	def confirmTvWakeup(self):
+		if not self.tvPowerStatusPolling:
+			return
+		self.stopTvPowerStatusPolling()
+		if config.hdmicec.report_active_source.value and not Screens.Standby.inStandby and self.what != "standby":
+			self.CECwritedebug(f"[HdmiCec] TV power on confirmed, repeat active source in {ACTIVE_SOURCE_CONFIRM_DELAY_MS} ms", True)
+			self.stopActiveSourceSequence()
+			self.activeSourceMessages = [(0, "sourceactive")]
+			self.activeSourceTimer.start(ACTIVE_SOURCE_CONFIRM_DELAY_MS, True)
+		else:
+			self.setTvStatePending(False)
+
 	def stopActiveSourceSequence(self):
 		active = False
 		if self.activeSourceTimer.isActive():
 			self.activeSourceTimer.stop()
 			active = True
-		if self.activeSourceMessages or self.activeSourceRetryPending:
+		if self.activeSourceMessages:
 			active = True
 		self.activeSourceMessages = []
-		self.activeSourceRetryPending = False
 		return active
 
-	def startActiveSourceSequence(self, retry=False):
+	def startActiveSourceSequence(self):
 		if not config.hdmicec.enabled.value or not config.hdmicec.report_active_source.value or Screens.Standby.inStandby:
 			return
-		if retry and self.activesource:
-			self.activeSourceRetryPending = False
-			self.setTvStatePending(False)
-			return
-		if not retry:
-			self.activeSourceRetryCounter = 0
-			self.setTvStatePending(True)
-		if self.activeSourceTimer.isActive():
-			self.activeSourceTimer.stop()
-		self.activeSourceRetryPending = False
-		self.activeSourceMessages = [(0, "setstreampath"), (0, "sourceactive"), (0, "routinginfo")]
+		self.stopActiveSourceSequence()
+		self.activeSourceMessages = [(0, "sourceactive")]
 		if config.hdmicec.report_active_menu.value:
 			self.activeSourceMessages.append((0, "menuactive"))
-		delay = self.activeSourceInterval() if retry else self.activeSourceInitialDelay()
-		self.CECwritedebug(f"[HdmiCec] schedule active source sequence in {delay} ms" + (" (retry)" if retry else ""), True)
-		if delay:
-			self.activeSourceTimer.start(delay, True)
-		else:
-			self.sendActiveSourceCommand()
+		self.CECwritedebug("[HdmiCec] announce receiver as active source", True)
+		self.sendActiveSourceCommand()
+		if config.hdmicec.control_tv_wakeup.value:
+			self.startTvPowerStatusPolling()
 
 	def sendActiveSourceCommand(self):
-		if self.activeSourceRetryPending:
-			self.activeSourceRetryPending = False
-			self.startActiveSourceSequence(retry=True)
-			return
 		if Screens.Standby.inStandby or self.what == "standby":
 			self.stopActiveSourceSequence()
+			self.stopTvPowerStatusPolling()
 			self.setTvStatePending(False)
 			return
 		if self.activeSourceMessages:
 			address, message = self.activeSourceMessages.pop(0)
 			self.sendMessage(address, message, immediate=True)
+			if message == "sourceactive":
+				self.activesource = True
 			if self.activeSourceMessages:
 				self.activeSourceTimer.start(self.activeSourceInterval(), True)
 				return
-		if (self.what == "on" and config.hdmicec.report_active_source.value and not self.activesource and
-			self.activeSourceRetryCounter < ACTIVE_SOURCE_SWITCH_RETRIES and not Screens.Standby.inStandby):
-			self.activeSourceRetryCounter += 1
-			self.activeSourceRetryPending = True
-			self.CECwritedebug(f"[HdmiCec] active source not confirmed, retry in {ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS} ms", True)
-			self.activeSourceTimer.start(ACTIVE_SOURCE_SWITCH_RETRY_TIME_MS, True)
-		else:
+		if not self.tvPowerStatusPolling:
 			self.setTvStatePending(False)
 
 	def shouldRequestSystemAudioMode(self):
@@ -1100,6 +1123,7 @@ class HdmiCec:
 				self.CECwritedebug("[HdmiCec] workaround for wrong address active", True)
 				address = 0
 			# //
+			active = False
 
 			match cmd:
 				case 0x00:  # feature abort
@@ -1140,7 +1164,7 @@ class HdmiCec:
 				case 0x83:  # request address
 					self.sendMessage(address, "reportaddress")
 				case 0x85:  # request active source
-					if not Screens.Standby.inStandby and config.hdmicec.report_active_source.value:
+					if not Screens.Standby.inStandby and config.hdmicec.report_active_source.value and self.activesource:
 						self.sendMessage(address, "sourceactive")
 				case 0x8c:  # request vendor id
 					self.sendMessage(address, "vendorid")
@@ -1153,7 +1177,7 @@ class HdmiCec:
 							self.sendMessage(address, "menuinactive")
 						else:
 							self.sendMessage(address, "menuactive")
-				case 0x90:  # report power state from the tv
+				case 0x90 if address == 0:  # report power state from the TV
 					if ctrl0 == 0:
 						self.tvStandbyWakeGuardUntil = 0.0
 						self.tv_powerstate = "on"
@@ -1163,9 +1187,14 @@ class HdmiCec:
 						self.tv_powerstate = "get_on"
 					elif ctrl0 == 3:
 						self.tv_powerstate = "get_standby"
-					if address == 0 and ctrl0 in (0, 1):
+					wakeupPolling = self.tvPowerStatusPolling
+					if wakeupPolling and ctrl0 == 0:
+						self.confirmTvWakeup()
+					elif not wakeupPolling and ctrl0 in (0, 1):
 						self.setTvStatePending(False)
-					if checkstate and not self.firstrun:
+					if wakeupPolling:
+						self.CECwritedebug(f"[HdmiCec] TV power status during wakeup: {self.tv_powerstate}", True)
+					elif checkstate and not self.firstrun:
 						self.checkTVstate("powerstate")
 					elif self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
 						self.firstrun = False
@@ -1178,18 +1207,31 @@ class HdmiCec:
 						if config.hdmicec.handle_tv_standby.value != "disabled":
 							self.handleTVRequest("tvstandby")
 						self.checkTVstate("tvstandby")
-				case 0x80:  # routing changed
+				case 0x80 if length >= 4:  # routing changed
 					ctrl3 = message.getControl3()
 					oldaddress = ctrl0 * 256 + ctrl1
 					newaddress = ctrl2 * 256 + ctrl3
 					ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
 					active = (newaddress == ouraddress)
+					self.activesource = active
+					if active and not self.tvPowerStatusPolling:
+						self.setTvStatePending(False)
 					hexstring = f"{oldaddress:04x}"
 					oldaddress = hexstring[0] + "." + hexstring[1] + "." + hexstring[2] + "." + hexstring[3]
 					hexstring = f"{newaddress:04x}"
 					newaddress = hexstring[0] + "." + hexstring[1] + "." + hexstring[2] + "." + hexstring[3]
 					self.CECwritedebug(f"[HdmiCec] routing has changed... from '{oldaddress}' to '{newaddress}' (to our address: {active})", True)
-				case 0x86 | 0x82:  # set streaming path, active source changed
+				case 0x81 if length >= 2:  # routing information from a CEC switch
+					newaddress = ctrl0 * 256 + ctrl1
+					ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
+					active = (newaddress == ouraddress)
+					self.activesource = active
+					if active and not self.tvPowerStatusPolling:
+						self.setTvStatePending(False)
+					hexstring = f"{newaddress:04x}"
+					newaddress = hexstring[0] + "." + hexstring[1] + "." + hexstring[2] + "." + hexstring[3]
+					self.CECwritedebug(f"[HdmiCec] routing information received for '{newaddress}' (to our address: {active})", True)
+				case 0x86 | 0x82 if length >= 2:  # set streaming path, active source changed
 					newaddress = ctrl0 * 256 + ctrl1
 					ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
 					active = (newaddress == ouraddress)
@@ -1203,7 +1245,7 @@ class HdmiCec:
 							txt += " has changed... to our address"
 						self.CECwritedebug(f"[HdmiCec] {txt}: {active}", True)
 					self.activesource = active
-					if active:
+					if active and not self.tvPowerStatusPolling:
 						self.setTvStatePending(False)
 					if not checkstate:
 						if cmd == 0x86 and not Screens.Standby.inStandby and self.activesource:
@@ -1278,14 +1320,12 @@ class HdmiCec:
 					cmd = 0x82
 					physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 					data = pack("BB", int(physicaladdress / 256), int(physicaladdress % 256))
+				case "requestactivesource":
+					address = 0x0f  # use broadcast address
+					cmd = 0x85
 				case "setstreampath":
 					address = 0x0f  # use broadcast address
 					cmd = 0x86
-					physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-					data = pack("BB", int(physicaladdress / 256), int(physicaladdress % 256))
-				case "routinginfo":
-					address = 0x0f  # use broadcast address
-					cmd = 0x81
 					physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 					data = pack("BB", int(physicaladdress / 256), int(physicaladdress % 256))
 				case "standby":
@@ -1402,7 +1442,7 @@ class HdmiCec:
 			self.scheduleSystemAudioModeRequest()
 
 	def repeatMessages(self):
-		if len(self.queue) or self.activeSourceTimer.isActive():
+		if len(self.queue) or self.activeSourceTimer.isActive() or self.tvPowerStatusPolling:
 			self.repeatTimer.start(1000, True)
 		elif self.firstrun:
 			if self.stateTimer.isActive():
@@ -1483,6 +1523,9 @@ class HdmiCec:
 
 	def standbyMessages(self, allowBroadcast=True):
 		self.handleTimerStop()
+		self.stopTvWakeupSequence()
+		self.stopTvPowerStatusPolling()
+		self.stopActiveSourceSequence()
 		self.tvStandbyWakeGuardUntil = 0.0
 		self.allowBroadcastStandby = allowBroadcast
 		if self.tv_skip_messages:
@@ -1539,11 +1582,13 @@ class HdmiCec:
 			self.systemAudioModeMessages = []
 			if self.stopTvWakeupSequence():
 				active = True
+			if self.stopTvPowerStatusPolling():
+				active = True
 			if self.stopActiveSourceSequence():
 				active = True
 			return active
 		else:
-			return self.repeatTimer.isActive() or self.stateTimer.isActive() or self.activeSourceTimer.isActive() or self.tvWakeupTimer.isActive()
+			return self.repeatTimer.isActive() or self.stateTimer.isActive() or self.activeSourceTimer.isActive() or self.tvWakeupTimer.isActive() or self.tvPowerStatusPolling
 
 	def stateTimeout(self):
 		self.CECwritedebug("[HdmiCec] timeout for check TV state!", True)
@@ -1562,10 +1607,10 @@ class HdmiCec:
 			self.stateTimer.stop()
 
 		timeout = 3000
-		need_routinginfo = config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value
+		need_active_source = config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value
 		if "source" in state:
 			self.tv_powerstate = "on"
-			if self.activesource:
+			if self.activesource and not self.tvPowerStatusPolling:
 				self.setTvStatePending(False)
 			if state == "activesource" and self.what == "on" and config.hdmicec.report_active_source.value and not self.activesource and not self.firstrun:  # last try for switch to correct input
 				self.startActiveSourceSequence()
@@ -1575,10 +1620,10 @@ class HdmiCec:
 			self.activesource = False
 			self.tv_powerstate = "standby"
 			self.setTvStatePending(False)
-		elif state == "firstrun" and ((not config.hdmicec.handle_deepstandby_events.value and (need_routinginfo or config.hdmicec.report_active_menu.value)) or config.hdmicec.check_tv_state.value or config.hdmicec.workaround_activesource.value):
+		elif state == "firstrun" and ((not config.hdmicec.handle_deepstandby_events.value and (need_active_source or config.hdmicec.report_active_menu.value)) or config.hdmicec.check_tv_state.value or config.hdmicec.workaround_activesource.value):
 			self.setTvStatePending(True)
 			self.stateTimer.start(timeout, True)
-			self.sendMessage(0, "routinginfo")
+			self.sendMessage(0, "requestactivesource")
 		elif state == "firstrun" and not config.hdmicec.handle_deepstandby_events.value:
 			self.firstrun = False
 			self.setTvStatePending(False)
@@ -1599,14 +1644,14 @@ class HdmiCec:
 			elif state == "powerstate" and "on" in self.tv_powerstate:
 				self.setTvStatePending(True)
 				self.stateTimer.start(timeout, True)
-				self.sendMessage(0, "routinginfo")
+				self.sendMessage(0, "requestactivesource")
 		else:
-			if state == "on" and need_routinginfo:
+			if state == "on" and need_active_source:
 				self.activesource = False
 				self.tv_powerstate = "unknown"
 				self.setTvStatePending(True)
 				self.stateTimer.start(timeout, True)
-				self.sendMessage(0, "routinginfo")
+				self.sendMessage(0, "requestactivesource")
 			elif state == "standby" and config.hdmicec.control_tv_standby.value:
 				self.activesource = False
 				self.tv_powerstate = "standby"
@@ -1729,7 +1774,8 @@ class HdmiCec:
 			return
 		self.old_configReportActiveMenu = config.hdmicec.report_active_menu.value
 		if config.hdmicec.report_active_menu.value:
-			self.sendMessage(0, "sourceactive")
+			if self.activesource:
+				self.sendMessage(0, "sourceactive")
 			self.sendMessage(0, "menuactive")
 		else:
 			self.sendMessage(0, "menuinactive")
@@ -1740,7 +1786,7 @@ class HdmiCec:
 		self.old_configTVstate = config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)
 		if not self.sendMessagesIsActive() and self.old_configTVstate:
 			self.sendMessage(0, "powerstate")
-			self.sendMessage(0, "routinginfo")
+			self.sendMessage(0, "requestactivesource")
 
 	def keyEvent(self, keyCode, keyEvent):
 		if not self.volumeForwardingEnabled:
