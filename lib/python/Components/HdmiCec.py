@@ -88,7 +88,7 @@ VOLUME_FORWARDING_STATE_FILES = (VOLUME_FORWARDING_STATE_FILE, "/var/run/cec_vol
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
-HDMI_CEC_CODE_MARKER = "ATV-CEC-20260923-02"
+HDMI_CEC_CODE_MARKER = "ATV-CEC-20260923-03"
 ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
 ACTIVE_SOURCE_CONFIRM_DELAY_MS = 100
 TV_WAKEUP_SEQUENCE_INTERVAL_MS = 300
@@ -602,6 +602,7 @@ class HdmiCec:
 			self.tvWakeupTimer = eTimer()
 			self.tvWakeupTimer.callback.append(self.sendTvWakeupCommand)
 			self.tvWakeupMessages = []
+			self.tvWakeupInitiated = False
 			self.tvPowerStatusTimer = eTimer()
 			self.tvPowerStatusTimer.callback.append(self.requestTvPowerStatus)
 			self.tvPowerStatusPolling = False
@@ -782,6 +783,7 @@ class HdmiCec:
 		if self.tvWakeupMessages:
 			self.tvWakeupMessages = []
 			active = True
+		self.tvWakeupInitiated = False
 		return active
 
 	def startTvWakeupSequence(self):
@@ -789,6 +791,7 @@ class HdmiCec:
 			return
 		self.setTvStatePending(True)
 		self.stopTvWakeupSequence()
+		self.tvWakeupInitiated = True
 		self.sendMessage(0, "wakeup", immediate=True)
 		if self.useExtendedTvWakeup():
 			self.CECwritedebug(f"[HdmiCec] use extended TV wakeup sequence for {self.vendorName(self.tv_vendor)}", True)
@@ -817,13 +820,17 @@ class HdmiCec:
 		self.tvPowerStatusPolling = False
 		self.tvPowerStatusRequestCounter = 0
 		self.tvPowerStatusActivityHandled = False
+		self.tvWakeupInitiated = False
 		return active
 
 	def startTvPowerStatusPolling(self):
-		if not config.hdmicec.enabled.value or not config.hdmicec.control_tv_wakeup.value or Screens.Standby.inStandby:
+		if not config.hdmicec.enabled.value or not config.hdmicec.control_tv_wakeup.value or not self.tvWakeupInitiated or Screens.Standby.inStandby:
 			return
-		self.stopTvPowerStatusPolling()
+		if self.tvPowerStatusTimer.isActive():
+			self.tvPowerStatusTimer.stop()
 		self.tvPowerStatusPolling = True
+		self.tvPowerStatusRequestCounter = 0
+		self.tvPowerStatusActivityHandled = False
 		self.setTvStatePending(True)
 		self.CECwritedebug(f"[HdmiCec] query TV power status in {TV_POWER_STATUS_INITIAL_DELAY_MS} ms", True)
 		self.tvPowerStatusTimer.start(TV_POWER_STATUS_INITIAL_DELAY_MS, True)
@@ -880,7 +887,7 @@ class HdmiCec:
 			self.activeSourceMessages.append((0, "menuactive"))
 		self.CECwritedebug("[HdmiCec] announce receiver as active source", True)
 		self.sendActiveSourceCommand()
-		if config.hdmicec.control_tv_wakeup.value:
+		if config.hdmicec.control_tv_wakeup.value and self.tvWakeupInitiated:
 			self.startTvPowerStatusPolling()
 
 	def sendActiveSourceCommand(self):
@@ -1132,7 +1139,7 @@ class HdmiCec:
 				address = 0
 			# //
 			active = False
-			if (self.tvPowerStatusPolling and address == 0 and cmd not in (0x36, 0x90) and
+			if (self.tvWakeupInitiated and self.tvPowerStatusPolling and address == 0 and cmd not in (0x36, 0x90) and
 				not self.tvPowerStatusActivityHandled):
 				self.tvPowerStatusActivityHandled = True
 				self.scheduleActiveSourceReannouncement("TV CEC activity received without power-on confirmation")
