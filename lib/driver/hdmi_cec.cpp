@@ -533,7 +533,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			}
 #endif
 		}
-		bool hdmicec_enabled = eConfigManager::getConfigBoolValue("config.hdmicec.enabled", false);
+		bool hdmicec_enabled = eConfigManager::getConfigBoolValue("config.hdmicec.enabled", true);
 		if (hasdata && hdmicec_enabled && rxmessage.length > 0)
 		{
 			bool keypressed = false;
@@ -546,7 +546,7 @@ void eHdmiCEC::hdmiEvent(int what)
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
 			eDebugNoNewLine("\n");
-			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
+			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", true);
 			if (hdmicec_report_active_menu)
 			{
 				switch (rxmessage.data[0])
