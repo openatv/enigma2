@@ -740,6 +740,8 @@ class NetworkManager:
 				netInfo.channel = data.get("channel", 0)
 				netInfo.bitrateBps = data.get("bitrate_bps", 0)
 				netInfo.signal = data.get("signal_dbm", 0)
+				netInfo.keyMgmt = data.get("key_mgmt", "")
+				netInfo.pairwiseCipher = data.get("pairwise_cipher", "")
 			else:
 				netInfo.link = netInfo.up and data.get("link", False)
 				netInfo.speed = data.get("speed", -1) if netInfo.link else -1
@@ -801,15 +803,23 @@ class NetworkManager:
 			callback()
 			return
 
-		remaining = [len(candidates)]
+		pending = list(candidates)
 
-		def onResult(interface: str, ok: bool):
-			self.adapters[interface].hasInternet = ok
-			remaining[0] -= 1
-			if remaining[0] == 0:
+		# One interface at a time: a ping occupies the daemon until it has its
+		# reply or runs into its timeout, so firing all of them at once can
+		# outlast the caller's timeout on boxes with several interfaces.
+		def nextInterface():
+			if pending:
+				interface = pending.pop(0)
+				ServiceAction.ping(interface, "8.8.8.8", lambda exitCode, iface=interface: primaryDone(iface, exitCode))
+			else:
 				results = {interface: self.adapters[interface].hasInternet for interface in candidates}
 				self.log(f"checkConnectionInternet: results={results}.")
 				callback()
+
+		def onResult(interface: str, ok: bool):
+			self.adapters[interface].hasInternet = ok
+			nextInterface()
 
 		def fallbackDone(interface: str, exitCode: int):
 			onResult(interface, exitCode == 0)
@@ -818,10 +828,9 @@ class NetworkManager:
 			if exitCode == 0:
 				onResult(interface, True)
 			else:
-				ServiceAction.ping(interface, "1.1.1.1", lambda ec, iface=interface: fallbackDone(interface, ec))
+				ServiceAction.ping(interface, "1.1.1.1", lambda exitCode, iface=interface: fallbackDone(iface, exitCode))
 
-		for interface in candidates:
-			ServiceAction.ping(interface, "8.8.8.8", lambda ec, iface=interface: primaryDone(interface, ec))
+		nextInterface()
 
 	def onIfaceAdd(self, interface: str):
 		self.log(f"onIfaceAdd: {interface}.")
@@ -955,6 +964,8 @@ class NetInfo:
 	channel: int = 0  # Wi-Fi only, channel number.
 	bitrateBps: int = 0  # Wi-Fi only, TX bitrate in bps.
 	signal: int = 0  # Wi-Fi only, dBm.
+	keyMgmt: str = ""  # Wi-Fi only, key management wpa_supplicant negotiated (e.g. "SAE", "WPA2-PSK").
+	pairwiseCipher: str = ""  # Wi-Fi only, negotiated pairwise cipher (e.g. "CCMP", "WEP-104").
 	driver: str = ""  # Kernel module name (e.g. "r8168", "mt76x2u").
 	hwId: str = ""  # "VVVV:DDDD" PCI or USB vendor:product hex.
 	bus: str = ""  # Physical bus from socketdaemon (e.g. "usb", "pci", "platform").
@@ -1017,6 +1028,29 @@ class Adapter:
 		if value not in dict(NetworkManager.ROUTE_METRIC_CHOICES):
 			value = 600 if self.isWiFi else 100
 		return value
+
+	@property
+	def connectionText(self) -> str:
+		# Encryption is what wpa_supplicant negotiated, not what the saved connection asks for; DHCP reflects the active connection's own setting.
+		parts = []
+		connection = networkManager.activeConnection(self.name)
+		if connection and connection.dhcp:
+			parts.append("DHCP")
+		if self.isWiFi and self.netInfo.link:
+			keyMgmt = self.netInfo.keyMgmt.upper()
+			if "SAE" in keyMgmt or "OWE" in keyMgmt:
+				text = "WPA3"
+			elif "WPA2" in keyMgmt:
+				text = "WPA2"
+			elif "WPA" in keyMgmt:
+				text = "WPA"
+			elif "WEP" in self.netInfo.pairwiseCipher.upper():
+				text = "WEP"
+			else:
+				text = ""
+			if text:
+				parts.append(f"{text}E" if "EAP" in keyMgmt else text)  # 802.1X, e.g. "WPA2E".
+		return ", ".join(parts)
 
 
 @dataclass

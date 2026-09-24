@@ -92,7 +92,7 @@ class NetworkOverview(Screen):
 	skin = """
 	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1100,540" resolution="1280,720">
 		<widget source="adapterList" render="Listbox" position="10,10" size="e-20,250">
-			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,enigma2icons;38,Regular;24,Regular;18,enigma2icons;20" itemHeight="50">
+			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,enigma2icons;38,Regular;24,Regular;18,enigma2icons;20,Regular;16" itemHeight="50">
 				<rowtemplate>
 					<text index="AdapterName" position="0,0" size="250,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 					<text index="StatusText" position="270,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
@@ -105,8 +105,9 @@ class NetworkOverview(Screen):
 					<text index="AdapterGlyph" position="0,6" size="48,38" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
 					<text index="AdapterName" position="60,0" size="170,28" font="2" padding="5,0" verticalAlignment="center" />
 					<text index="AdapterType" position="60,28" size="170,22" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="InternetGlyph" position="230,15" size="40,20" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="270,0" size="170,50" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="InternetGlyph" position="230,0" size="40,50" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="270,0" size="170,25" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="ConnectionText" position="270,25" size="150,25" font="5" padding="5,0" verticalAlignment="center" />
 					<text index="MAC" position="440,0" size="180,50" font="3" padding="5,0" verticalAlignment="center" />
 					<text index="IPAddress" position="620,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
 					<text index="Gateway" position="780,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
@@ -193,9 +194,10 @@ class NetworkOverview(Screen):
 			"IPAddress": 8,
 			"Gateway": 9,
 			"Speed": 10,
-			"InternetGlyph": 11
+			"InternetGlyph": 11,
+			"ConnectionText": 12
 		}
-		self.indexAdapter = 12
+		self.indexAdapter = 13
 		self["adapterList"] = List([], indexNames=indexNames)
 		indexNames = {
 			"Reserved_for_rowTemplate": 0,
@@ -368,6 +370,7 @@ class NetworkOverview(Screen):
 				ip4Str(netInfo.gateway) or "-",                                   # Gateway.
 				speed,                                                            # Speed.
 				inetGlyph,                                                        # InternetGlyph.
+				adapter.connectionText,                                        # ConnectionText.
 				adapter,                                                          # -> indexAdapter.
 			)
 
@@ -392,6 +395,7 @@ class NetworkOverview(Screen):
 				"-",                    # Gateway.
 				"-",                    # Speed.
 				inetGlyph,              # InternetGlyph.
+				"",                     # ConnectionText.
 				None,                   # -> indexAdapter.
 			)
 
@@ -409,6 +413,7 @@ class NetworkOverview(Screen):
 				_("Gateway"),      # Gateway.
 				_("Speed"),        # Speed.
 				None,              # InternetGlyph.
+				None,              # ConnectionText.
 				None,              # -> indexAdapter.
 			)
 
@@ -809,7 +814,7 @@ class NetworkAdapterSetup(Setup):
 		self.hasMetric = currentMetric is not None and len(networkManager.getAdapters()) > 1
 		self.cfgMetric = NoSave(ConfigSelection(choices=networkManager.ROUTE_METRIC_CHOICES, default=currentMetric if currentMetric is not None else (600 if adapter.isWiFi else 100)))
 		hasOwn = bool(connection.dnsServers)
-		self.cfgDnsOverride = NoSave(ConfigYesNo(default=hasOwn))
+		self.cfgDNSOverride = NoSave(ConfigYesNo(default=hasOwn))
 		dnsV4 = [x for x in connection.dnsServers if isinstance(x, list)]
 		dnsV6 = [x for x in connection.dnsServers if isinstance(x, str)]
 		self.cfgDNS1v4 = NoSave(ConfigIP(default=dnsV4[0] if len(dnsV4) > 0 else [0, 0, 0, 0]))
@@ -849,7 +854,7 @@ class NetworkAdapterSetup(Setup):
 			connection.ip = self.cfgIp.value
 			connection.netmask = self.cfgNetmask.value
 			connection.gateway = self.cfgGateway.value
-		if not self.cfgDnsOverride.value:
+		if not self.cfgDNSOverride.value:
 			connection.dnsServers = []
 		else:
 			servers = []
