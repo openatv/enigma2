@@ -13,12 +13,12 @@ import Screens.Standby
 from Tools.Directories import fileExists, fileReadLine, pathExists
 
 config.hdmicec = ConfigSubsection()
-config.hdmicec.enabled = ConfigYesNo(default=True)  # Query from this value in hdmi_cec.cpp
+config.hdmicec.enabled = ConfigYesNo(default=True)  # Pushed to eHdmiCEC in hdmi_cec.cpp
 config.hdmicec.control_tv_standby = ConfigYesNo(default=True)
 config.hdmicec.control_tv_wakeup = ConfigYesNo(default=True)
 config.hdmicec.report_active_source = ConfigYesNo(default=True)
 config.hdmicec.force_tv_input = ConfigYesNo(default=True)
-config.hdmicec.report_active_menu = ConfigYesNo(default=True)  # Query from this value in hdmi_cec.cpp
+config.hdmicec.report_active_menu = ConfigYesNo(default=True)  # Pushed to eHdmiCEC in hdmi_cec.cpp
 choicelist = [
 	("disabled", _("Disabled")),
 	("standby", _("Standby")),
@@ -647,6 +647,8 @@ class HdmiCec:
 			config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call=False)
 			config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call=False)
 			self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
+			eHdmiCEC.getInstance().setEnabled(config.hdmicec.enabled.value)
+			eHdmiCEC.getInstance().setReportActiveMenu(config.hdmicec.report_active_menu.value)
 
 			self.volumeForwardingEnabled = False
 			self.volumeForwardingDestination = 0
@@ -1782,6 +1784,7 @@ class HdmiCec:
 				sleep(max(config.hdmicec.minimum_send_interval.value, 250) / 1000.0)
 
 	def configVolumeForwarding(self, configElement):
+		eHdmiCEC.getInstance().setEnabled(configElement.value)
 		self.updateVolumeForwardingState()
 		if self.volumeForwardingEnabled:
 			self.sendMessage(5, "vendorrequest")
@@ -1792,6 +1795,7 @@ class HdmiCec:
 		if self.old_configReportActiveMenu == config.hdmicec.report_active_menu.value:
 			return
 		self.old_configReportActiveMenu = config.hdmicec.report_active_menu.value
+		eHdmiCEC.getInstance().setReportActiveMenu(config.hdmicec.report_active_menu.value)
 		if config.hdmicec.report_active_menu.value:
 			if self.activesource:
 				self.sendMessage(0, "sourceactive")

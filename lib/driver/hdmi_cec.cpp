@@ -10,7 +10,6 @@
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
 #include <lib/base/ebase.h>
-#include <lib/base/nconfig.h>
 #include <lib/driver/input_fake.h>
 #include <lib/driver/hdmi_cec.h>
 #include <lib/driver/avcontrol.h>
@@ -143,6 +142,8 @@ eHdmiCEC::eHdmiCEC()
 	amlogicCEC = false;
 	hdmiFd = -1;
 	fixedAddress = false;
+	enabled = true;
+	reportActiveMenu = true;
 	physicalAddress[0] = 0x10;
 	physicalAddress[1] = 0x00;
 	logicalAddress = CEC_LOG_ADDR_TUNER_1;
@@ -461,6 +462,16 @@ int eHdmiCEC::getDeviceType()
 	return deviceType;
 }
 
+void eHdmiCEC::setEnabled(bool enabled)
+{
+	this->enabled = enabled;
+}
+
+void eHdmiCEC::setReportActiveMenu(bool enabled)
+{
+	reportActiveMenu = enabled;
+}
+
 bool eHdmiCEC::getActiveStatus()
 {
 	bool active = true;
@@ -533,8 +544,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			}
 #endif
 		}
-		bool hdmicec_enabled = eConfigManager::getConfigBoolValue("config.hdmicec.enabled", true);
-		if (hasdata && hdmicec_enabled && rxmessage.length > 0)
+		if (hasdata && enabled && rxmessage.length > 0)
 		{
 			bool keypressed = false;
 			static unsigned char pressedkey = 0;
@@ -546,8 +556,7 @@ void eHdmiCEC::hdmiEvent(int what)
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
 			eDebugNoNewLine("\n");
-			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", true);
-			if (hdmicec_report_active_menu)
+			if (reportActiveMenu)
 			{
 				switch (rxmessage.data[0])
 				{

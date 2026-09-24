@@ -112,6 +112,8 @@ protected:
 	bool amlogicCEC;
 	unsigned char physicalAddress[2];
 	bool fixedAddress;
+	bool enabled;
+	bool reportActiveMenu;
 	unsigned char deviceType, logicalAddress;
 	int hdmiFd;
 	ePtr<eSocketNotifier> messageNotifier;
@@ -139,6 +141,8 @@ public:
 	int getPhysicalAddress();
 	void setFixedPhysicalAddress(int address);
 	int getDeviceType();
+	void setEnabled(bool enabled);
+	void setReportActiveMenu(bool enabled);
 };
 
 #ifndef SWIG
