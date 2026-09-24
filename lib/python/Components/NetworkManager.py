@@ -159,7 +159,7 @@ class NetworkManager:
 			driver = apiNl80211
 			if isBroadcomWl(interface, module):
 				driver = apiWext
-			elif isdir(f"{sysfsNet}/{interface}/device/ieee80211"):
+			elif isdir(f"{sysfsNet}/{interface}/phy80211"):
 				driver = apiNl80211
 			elif module in ("ath_pci", "ath5k", "ar6k_wlan"):
 				driver = apiMadwifi
