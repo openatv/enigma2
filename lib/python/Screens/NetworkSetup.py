@@ -845,6 +845,7 @@ class NetworkAdapterSetup(Setup):
 		connection = self.connection
 		wasEnabled = adapter.adapterEnabled
 		wasGeneral = (connection.dhcp, connection.ipMode, connection.ip, connection.netmask, connection.gateway, connection.dnsServers)
+		wasWakeOnWiFi = connection.wakeOnWiFi
 		wasLinkSpeed = networkManager.getLinkSpeed(adapter.name)
 		wasMetric = adapter.metric if self.hasMetric else None
 		adapter.adapterEnabled = self.cfgEnabled.value
@@ -881,7 +882,7 @@ class NetworkAdapterSetup(Setup):
 				networkManager.setRouteMetrics(lanMetric=self.cfgMetric.value)
 		nowGeneral = (connection.dhcp, connection.ipMode, connection.ip, connection.netmask, connection.gateway, connection.dnsServers)
 		change = CHANGE_NONE
-		if nowGeneral != wasGeneral or self.cfgLinkSpeed.value != wasLinkSpeed:
+		if nowGeneral != wasGeneral or self.cfgLinkSpeed.value != wasLinkSpeed or connection.wakeOnWiFi != wasWakeOnWiFi:
 			change |= CHANGE_GENERAL
 		if adapter.adapterEnabled != wasEnabled:
 			change |= CHANGE_ADAPTER_ENABLED if adapter.adapterEnabled else CHANGE_ADAPTER_DISABLED
