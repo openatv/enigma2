@@ -13,10 +13,10 @@ The native service supports MPE/UDP/EDI (fedi2eti), direct ETI-NA(V.11)
 framing (tsniv2ni), and E1 ETI-NA with either 12 or 0 payload padding bytes
 (ts2na12 and ts2na). All paths are normalized to ETI-NI before decoding.
 
-Source checked 2026-09-07: https://en.kingofsat.net/dab
+Source checked 2026-09-18: https://en.kingofsat.net/dab
 
 -->
-<dabFeeds version="2" updated="2026-09-07">
+<dabFeeds version="2" updated="2026-09-18">
 	<!--
 
 	Terrestrial Band III blocks are intentionally separate from the satellite
@@ -156,14 +156,16 @@ Source checked 2026-09-07: https://en.kingofsat.net/dab
 			<feed id="metropolitain1_5w" name="Métropolitain 1" pid="012D" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="239.0.1.11" multicastPort="5001" ensembleId="F043" />
 			<feed id="metropolitain2_5w" name="Métropolitain 2" pid="012D" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="239.0.1.12" multicastPort="5002" ensembleId="F044" />
 		</transponder>
+		<transponder frequency="12564000" polarization="V" system="DVB-S2" modulation="8PSK" symbolRate="35294000" fec="2/3" onid="217C" tsid="00B7" parentServiceType="0001" parentSid="03E9" inputStreamId="11" plsMode="Gold" plsCode="131070">
+			<feed id="rai_dab_5w" name="DAB+ RAI" pid="03E8" decoder="ts2na" transport="TS/NA" ensembleId="5001" />
+		</transponder>
 		<transponder frequency="12564000" polarization="V" system="DVB-S2" modulation="8PSK" symbolRate="35294000" fec="2/3" onid="217C" tsid="00B7" parentServiceType="0001" parentSid="0001" inputStreamId="12" plsMode="Gold" plsCode="131070">
 			<feed id="rai_dab_test_5w" name="DAB+ RAI Test" pid="03E9" decoder="ts2na" transport="TS/NA" ensembleId="5DAB" />
 		</transponder>
 		<!--
-		Manually reported feed (2026-09-07). Keep this entry during future
+		Manually reported feed added 2026-09-07. Keep this entry during future
 		KingOfSat synchronizations unless it has been independently confirmed
-		inactive; KingOfSat currently lists the MIS 21 MEDIA DAB service but not
-		the DAB PID and ETI framing required here.
+		inactive. KingOfSat now also confirms MIS 21, PID 1002, ts2na and EID 5050.
 		-->
 		<transponder frequency="12564000" polarization="V" system="DVB-S2" modulation="8PSK" symbolRate="35294000" fec="2/3" onid="0001" tsid="0064" parentServiceType="000C" parentSid="03E8" inputStreamId="21" plsMode="Gold" plsCode="131070">
 			<feed id="mediadab_liguria_5w" name="MediaDAB Liguria" pid="03EA" decoder="ts2na" transport="TS/NA" ensembleId="5050" />

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-04 13:51+0000\n"
+"PO-Revision-Date: 2026-09-18 05:51+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.9\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 msgid ""
 "\n"
@@ -949,11 +949,11 @@ msgstr[2] "Nalezeno %d sítí."
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
-msgstr ""
+msgstr "%d z %d kanálů obsahovalo soubor DAB+"
 
 #, python-format
 msgid "%d of %d feeds completed"
-msgstr ""
+msgstr "Dokončeno %d z %d kanálů"
 
 #, python-format
 msgid "%d package found."
@@ -1202,11 +1202,11 @@ msgstr "%s %sB"
 
 #, python-format
 msgid "%s (cached)"
-msgstr ""
+msgstr "%s (uloženo v mezipaměti)"
 
 #, python-format
 msgid "%s (motor)"
-msgstr ""
+msgstr "%s (motor)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1373,7 +1373,7 @@ msgstr "'%s' odpojeno."
 
 #, python-format
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
-msgstr ""
+msgstr "„%s“ používá podnikové ověřování (802.1X). Sítě jako je tato zde nelze nastavit, je nutné je konfigurovat ručně v souboru wpa_supplicant.conf."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer v hodinách' nebo 'počet posledních událostí'. Pro smazání starších Timeshift souborů. Stav, který nastal dčíve má prioritu."
@@ -1640,7 +1640,7 @@ msgid "A backup is now being created."
 msgstr "Záloha se nyní vytváří."
 
 msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
-msgstr ""
+msgstr "Byla nalezena záloha vašich předchozích nastavení. Chcete ji obnovit, než budete pokračovat v nastavení?"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Čárkami oddělený seznam přípon, které mají být použity pro nastavení 'Moje rozšíření' v části 'Filtrovat příponu'. Názvy přípon zadejte bez úvodní tečky (.)."
@@ -1953,7 +1953,7 @@ msgstr "Adaptér"
 
 #, python-format
 msgid "Adapter '%s'"
-msgstr ""
+msgstr "Adaptér '%s'"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
@@ -2207,7 +2207,7 @@ msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Upravte vodorovnou polohu písmen používaných pro teletext."
 
 msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
-msgstr ""
+msgstr "Upravte ofset oscilátoru tuneru pro zpřesnění příjmu signálu DAB+."
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Upravte svislou polohu písmen používaných pro teletext."
@@ -2336,7 +2336,7 @@ msgid "All files"
 msgstr "Všechny soubory"
 
 msgid "All regions"
-msgstr ""
+msgstr "Všechny regiony"
 
 msgid "All resolutions"
 msgstr "Všechna rozlišení"
@@ -2517,7 +2517,7 @@ msgid "Amount %d / Success %d / Failed %d"
 msgstr "Částka %d / Úspěch %d / Neúspěch %d"
 
 msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
-msgstr ""
+msgstr "Byl detekován přijímač RTL-SDR. Volitelný runtime modul DAB+ USB se instaluje z kanálu."
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Je proveden pokus o zachycení aktuálního stavu TV. Pokud to není možné kvůli nesprávným nebo chybějícím stavovým zprávám, může to způsobit neočekávanou odpověď přijímače. Na druhou stranu se snaží lépe reagovat na různé provozní podmínky."
@@ -2834,7 +2834,7 @@ msgid "Audio Synchronization"
 msgstr "Synchronizace zvuku"
 
 msgid "Audio bit rate"
-msgstr ""
+msgstr "Přenosová rychlost zvuku"
 
 msgid "Audio language selection 1"
 msgstr "Volba jazyka zvuku 1"
@@ -2951,7 +2951,7 @@ msgid "Automatic Service Searching"
 msgstr "Automatické vyhledávání služeb"
 
 msgid "Automatic gain"
-msgstr ""
+msgstr "Automatické zesílení"
 
 msgid "Automatic resolution"
 msgstr "Automatické rozlišení"
@@ -3295,14 +3295,14 @@ msgstr "Blikající REC Symbol"
 
 #, python-format
 msgid "Block %s"
-msgstr ""
+msgstr "Blok %s"
 
 #, python-format
 msgid "Block %s - %.3f MHz"
-msgstr ""
+msgstr "Blok %s - %.3f MHz"
 
 msgid "Block RTL2832 DVB kernel driver"
-msgstr ""
+msgstr "Ovladač jádra Block RTL2832 DVB"
 
 msgid "Block device"
 msgstr "Blokovat zařízení"
@@ -4542,7 +4542,7 @@ msgid "Close network test"
 msgstr "Zavřít test sítě"
 
 msgid "Close network test and exit all menus"
-msgstr ""
+msgstr "Zavřít test sítě a opustit všechny nabídky"
 
 msgid "Close screen"
 msgstr "Zavřít obrazovku"
@@ -4605,7 +4605,7 @@ msgid "Code rate LP"
 msgstr "Rychlost LP"
 
 msgid "Codec"
-msgstr ""
+msgstr "Kodek"
 
 msgid "Collapse"
 msgstr "Zhroucení"
@@ -5505,7 +5505,7 @@ msgid "Create kernel dump."
 msgstr "Vytvořit výpis jádra."
 
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
-msgstr ""
+msgstr "Vytvořte nebo odstraňte černou listinu modulu RTL2832 DVB. Je vyžadován úplný restart přijímače; pokud je tento tuner povolen, je k dispozici pro DAB+, ale ne pro DVB-T/T2."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
@@ -5781,22 +5781,22 @@ msgid "DAB+ Scan"
 msgstr "Skenování DAB+"
 
 msgid "DAB+ Settings"
-msgstr ""
+msgstr "Nastavení DAB+"
 
 msgid "DAB+ Settings Actions"
-msgstr ""
+msgstr "Akce nastavení DAB+"
 
 msgid "DAB+ USB support could not be installed from the feed."
-msgstr ""
+msgstr "Podporu DAB+ USB z kanálu se nepodařilo nainstalovat."
 
 msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
-msgstr ""
+msgstr "Podpora DAB+ USB byla nainstalována. Nyní můžete přijímač povolit v nastavení příjmu."
 
 msgid "DAB+ USB: bouquet could not be written"
-msgstr ""
+msgstr "DAB+ USB: seznam se nepodařilo zapsat"
 
 msgid "DAB+ channel"
-msgstr ""
+msgstr "DAB+ kanál"
 
 #, python-format
 msgid "DAB+ channel %s"

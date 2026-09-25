@@ -11,12 +11,13 @@
 # Paweł <paps@poczta.onet.pl>, 2025, 2026.
 # n4d01 <artur.nadolski@gmail.com>, 2025.
 # pololoko111 <pololoko111@o2.pl>, 2026.
+# Mat <mathew87@poczta.fm>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-12 21:51+0000\n"
+"PO-Revision-Date: 2026-09-22 17:00+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -865,7 +866,7 @@ msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] "%d miesiąc"
 msgstr[1] "%d miesiące"
-msgstr[2] "%d miesiący"
+msgstr[2] "%d miesięcy"
 
 #, python-format
 msgid "%d Pixel"
@@ -911,7 +912,7 @@ msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d rdzeń"
 msgstr[1] "%d rdzenie"
-msgstr[2] "%d rdzeń"
+msgstr[2] "%d rdzeni"
 
 #, python-format
 msgid "%d feed catalog package was updated."
@@ -1221,7 +1222,7 @@ msgstr "%s - Ustawienia"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr "%s Przeglądarka zarządzaj działaniami"
+msgstr "Akcje zarządzania przeglądarką %s"
 
 #, python-format
 msgid "%s DMIPS per core"
@@ -1293,7 +1294,7 @@ msgstr "%s długo"
 
 #, python-format
 msgid "%s not available."
-msgstr "%s nie dostępne."
+msgstr "%s niedostępne."
 
 #, python-format
 msgid "%s version"
@@ -1393,7 +1394,7 @@ msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if un
 msgstr "Dekodowanie i nagrywanie ECM' daje możliwość późniejszego deszyfrowania, jeśli deszyfrowanie przy nagrywaniu zakończyło się niepowodzeniem. 'Nie dekoduj, nagrywaj ECM', zapisz nagranie, które można odszyfrować podczas odtwarzania. \"Normalny\" oznacza deszyfrowanie nagrania i nie rejestruje ECM."
 
 msgid "'WeatherPlugin' is not installed!"
-msgstr "'Weatherplugin' nie jest zainstalowany!"
+msgstr "'WeatherPlugin' nie jest zainstalowany!"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
@@ -1514,7 +1515,7 @@ msgid "16:9 PanScan"
 msgstr "16:9 Pan Scan"
 
 msgid "16:9 reset to normal"
-msgstr "16/9 przywrócić do normy"
+msgstr "16:9 przywróć do normy"
 
 msgid "1st InfoBar timeout"
 msgstr "Czas wyświetlania pierwszego paska informacyjnego"
@@ -1701,7 +1702,7 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Zakończony zaplanowany timer chce wyłączyć %s %s. Czy chcesz to teraz zrobić?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
-msgstr "Podświetlenie na pilocie pokazuje, do którego przycisku odnosi się pomoc. Jeśli wskazaną funkcję wykonuje więcej niż jeden przycisk, wyświetlony zostanie więcej niż jeden znacznik. Tekst pod listą zawiera listę aktywnych przycisków oraz informację, czy dana funkcja wymaga długiego naciśnięcia lub przesunięcia przycisku (przycisków)."
+msgstr "Podświetlenie na obrazie pilota wskazuje, którego przycisku dotyczy pomoc. Jeśli więcej niż jeden przycisk realizuje wskazaną funkcję, zostanie pokazane więcej niż jedno podświetlenie. Tekst pod listą wskazuje aktywne przyciski oraz to, czy funkcja wymaga długiego naciśnięcia lub SHIFT danego przycisku (danych przycisków)."
 
 msgid "A new storage device has been connected:"
 msgstr "Podłączono nowe urządzenie pamięci masowej:"
@@ -1867,7 +1868,7 @@ msgid "Aborted a pseudo recording.\n"
 msgstr "Pseudo nagrywanie anulowane.\n"
 
 msgid "Aborted a streaming service.\n"
-msgstr "Przerwano usługę przesyłania strumieniowego\n"
+msgstr "Przerwano usługę przesyłania strumieniowego.\n"
 
 msgid "About"
 msgstr "System"
@@ -1919,7 +1920,7 @@ msgid "Activate"
 msgstr "Aktywuj"
 
 msgid "Activate Expander"
-msgstr "Aktywuj Rozszerzacza"
+msgstr "Aktywuj ekspander"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktywuj HbbTV (Czerwony przycisk)"
@@ -1937,7 +1938,7 @@ msgid "Activate network adapter"
 msgstr "Aktywuj adapter"
 
 msgid "Activate the flash expander, save all changed settings and exit"
-msgstr "Aktywuj rozszerzacza flash, zapisz wszystkie zmienione ustawienia i wyjdź"
+msgstr "Aktywuj ekspander flash, zapisz wszystkie zmienione ustawienia i wyjdź"
 
 msgid "Activate this device"
 msgstr "Aktywuj to urządzenie"
@@ -2188,7 +2189,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Dodaj/Usuń podświetloną wtyczkę do/z listy aktualizacji"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr "Dodaj/usuń bieżący kanał do/z listy przesunięcia głośnosci"
+msgstr "Dodaj/usuń bieżący kanał do/z listy przesunięcia głośności"
 
 msgid "Adding schedule..."
 msgstr "Dodawanie harmonogramu..."
@@ -2438,7 +2439,7 @@ msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE bu
 msgstr "Umożliwia pokazanie/ukrycie OScam/CCcam na ekranie Menu rozszerzeń (NIEBIESKI przycisk)."
 
 msgid "Alpha"
-msgstr "Litera"
+msgstr "Alfa"
 
 msgid "Alphabetical"
 msgstr "Alfabetycznie"
@@ -2595,7 +2596,7 @@ msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Zastosuj aktualny region/języ i wyjdź"
 
 msgid "Aqua"
-msgstr "Aqua"
+msgstr "Morski"
 
 msgid "Arabic"
 msgstr "Arabski"
@@ -2821,7 +2822,7 @@ msgid "Audio Formats And Output"
 msgstr "Formaty Dźwięku i Wyjście Audio"
 
 msgid "Audio Language And Track Selection"
-msgstr "Język Dźwięku i Wybór Ścieżki Audio"
+msgstr "Wybór Języka i Ścieżki Dźwiękowej"
 
 msgid "Audio PID"
 msgstr "PID dźwięku"
@@ -2903,7 +2904,7 @@ msgid "Auto detect"
 msgstr "Automatyczne wykrywanie"
 
 msgid "Auto flesh"
-msgstr "Auto odświeżanie"
+msgstr "Automatyczne odcienie skórki"
 
 msgid "Auto focus"
 msgstr "Automatyczny obrót"
@@ -2990,7 +2991,7 @@ msgid "Autostart"
 msgstr "Autostart"
 
 msgid "Available"
-msgstr "Dostępne"
+msgstr "Dostępny"
 
 msgid "Available format variables"
 msgstr "Dostępne zmienne formatu"
@@ -3051,7 +3052,7 @@ msgid "BLUE long"
 msgstr "Niebieski (długo)"
 
 msgid "BLUE switch: BLUE/BLUE long"
-msgstr "Akcja dla przycisku 'Niebieski' (Krótko/Długo)"
+msgstr "Akcja dla przycisku NIEBIESKI (Krótko/Długo)"
 
 msgid "BSSID"
 msgstr "BSSID"
@@ -3951,7 +3952,7 @@ msgid "Cancel the selection and exit"
 msgstr "Anuluj wybór i wyjdź"
 
 msgid "Cancel the service history zap"
-msgstr "Anuluj historię przełącznia kanałów"
+msgstr "Anuluj historię przełączania kanałów"
 
 msgid "Cancel the service selection"
 msgstr "Anuluj wybór usługi"
@@ -4197,7 +4198,7 @@ msgid "Channel list service mode*"
 msgstr "Tryb serwisowy listy kanałów*"
 
 msgid "Channel list show MiniTV when Skin use."
-msgstr "Pokazuje MiniTV na liście kanałów jeśli Skóra to wspiera."
+msgstr "Pokazuje MiniTV na liście kanałów jeśli skórka to wspiera."
 
 msgid "Channel list show MiniTV*"
 msgstr "Lista kanałów pokazuje MiniTV*"
@@ -4365,16 +4366,16 @@ msgid "Choose the amount of additional slots."
 msgstr "Wybierz ilość dodatkowych slotów."
 
 msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Wybierz styl formatowania wyświetlania dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
+msgstr "Wybierz styl formatowania wyświetlania dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skórka może na niego wpływać."
 
 msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Wybierz styl formatowania wyświetlania dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty, a „ss” to sekundy. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
+msgstr "Wybierz styl formatowania wyświetlania dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty, a „ss” to sekundy. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skórka może na niego wpływać."
 
 msgid "Choose the fallback font."
 msgstr "Wybierz czcionkę zapasową."
 
 msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Wybierz styl formatowania wyświetlania na wyświetlaczu przednim dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
+msgstr "Wybierz styl formatowania wyświetlania na wyświetlaczu przednim dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skórka może na niego wpływać."
 
 msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Wybierz styl formatowania i wyświetlania na przednim wyświetlaczu dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Wyświetlacz na panelu przednim będzie zależał od twojego wyboru, ale może mieć wpływ na dowolną odpowiednią skórkę."
@@ -4707,6 +4708,9 @@ msgstr "Ustawienia modułu"
 
 msgid "Common Setup Actions"
 msgstr "Typowe Czynności Konfiguracyjne"
+
+msgid "Common settings"
+msgstr "Ustawienia Wspólne"
 
 msgid "Comoros"
 msgstr "Komory"
@@ -5417,10 +5421,10 @@ msgstr ""
 "Nieprawidłowe hasło Wi-Fi?"
 
 msgid "Could not load Medium! No disc inserted?"
-msgstr "Nie można załadować nośnika!Brak płyty?"
+msgstr "Nie można załadować nośnika! Brak płyty?"
 
 msgid "Could not open Picture in Picture"
-msgstr "Nie mozna otworzyć PiP"
+msgstr "Nie można otworzyć PiP"
 
 #, python-format
 msgid "Could not open the file %s!"
@@ -5482,7 +5486,7 @@ msgid "Create Directory"
 msgstr "Utwórz katalog"
 
 msgid "Create Expander"
-msgstr "Utwórz Rozszerzacz"
+msgstr "Utwórz ekspander"
 
 msgid "Create ISO"
 msgstr "Utwórz ISO"
@@ -5549,7 +5553,7 @@ msgid "Create the additional slots on the selected device"
 msgstr "Utwórz dodatkowe sloty na wybranym urządzeniu"
 
 msgid "Create the flash expander in the selected device"
-msgstr "Tworzy rozszerzacza flash na wybranym urządzeniu"
+msgstr "Tworzy ekspandera flash na wybranym urządzeniu"
 
 msgid "Create working directories."
 msgstr "Tworzenie katalogów roboczych."
@@ -5782,7 +5786,7 @@ msgid "Czech"
 msgstr "Czeski"
 
 msgid "Czech Republic"
-msgstr "Republika Czeska"
+msgstr "Czechy"
 
 msgid "D"
 msgstr "D"
@@ -6017,7 +6021,7 @@ msgid "Day Mon-D"
 msgstr "Dzień Mon-D"
 
 msgid "Day Mon-DD"
-msgstr "Dzień Mon-D"
+msgstr "Dzień Mon-DD"
 
 msgid "Day of week"
 msgstr "Dzień tygodnia"
@@ -6116,13 +6120,13 @@ msgid "Deactivate"
 msgstr "Dezaktywuj"
 
 msgid "Deactivate Expander"
-msgstr "Wyłącz Rozszerzacza"
+msgstr "Wyłącz ekspander"
 
 msgid "Deactivate network adapter"
 msgstr "Dezaktywuj adapter sieciowy"
 
 msgid "Deactivate the flash expander in the selected device"
-msgstr "Wyłącza rozszerzacza flash na wybranym urządzeniu"
+msgstr "Wyłącza ekspander flash na wybranym urządzeniu"
 
 msgid "Deactivated"
 msgstr "Nieaktywne"
@@ -6373,7 +6377,7 @@ msgid "Delete EPG Cache"
 msgstr "Usuń pamięć podręczną EPG"
 
 msgid "Delete Expander"
-msgstr "Usuń Rozszerzacza"
+msgstr "Usuń ekspander"
 
 msgid "Delete Image"
 msgstr "Usuń system"
@@ -6485,7 +6489,7 @@ msgid "Delete the directory/file '%s'?"
 msgstr "Usuń katalog/plik '%s'?"
 
 msgid "Delete the flash expander in the selected device"
-msgstr "Usuwa rozszerzacza flash na wybranym urządzeniu"
+msgstr "Usuwa ekspandera flash na wybranym urządzeniu"
 
 msgid "Delete the selected locally stored image"
 msgstr "Usuń wybrane przechowywane lokalnie obrazy"
@@ -7039,7 +7043,7 @@ msgid "Do you want to continue?"
 msgstr "Czy chcesz kontynuować?"
 
 msgid "Do you want to deactivate this flash expander?"
-msgstr "Czy chcesz wyłączyć tego rozszerzacza flash?"
+msgstr "Czy chcesz wyłączyć ten ekspander flash?"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7055,7 +7059,7 @@ msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Czy chcesz najpierw usunąć stare ustawienia z /etc/enigma2?"
 
 msgid "Do you want to delete this flash expander directory?"
-msgstr "Czy chcesz usunąć ten katalog rozszerzacza flash?"
+msgstr "Czy chcesz usunąć ten katalog ekspandera flash?"
 
 msgid "Do you want to delete this log file?"
 msgstr "Czy chcesz usunąć ten plik logu?"
@@ -7091,7 +7095,7 @@ msgstr "Czy chcesz usunąć wszystkie regiony/języki poza %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s?"
-msgstr "Czy chcesz zrestartować %s %s?"
+msgstr "Czy chcesz ponownie uruchomić %s %s?"
 
 msgid "Do you want to remove:"
 msgstr "Czy chcesz usunąć:"
@@ -8548,7 +8552,7 @@ msgid "Exit Movie Selection"
 msgstr "Zamknij listę nagrań"
 
 msgid "Exit Quad Channel Selection"
-msgstr "Wyjdź z wyboru kanału"
+msgstr "Wyjdź z wyboru kanału Quad"
 
 msgid "Exit all menus"
 msgstr "Wyjdź z wszystkich menu"
@@ -8650,7 +8654,7 @@ msgid "Extensions"
 msgstr "Rozszerzenia"
 
 msgid "Extensions/QuickMenu"
-msgstr "Rozszerzenia/Szybkie Menu"
+msgstr "Rozszerzenia/Szybkie menu"
 
 msgid "External"
 msgstr "Zewnętrzny"
@@ -8793,7 +8797,7 @@ msgid "Fallback Font"
 msgstr "Czcionka zapasowa"
 
 msgid "Fallback Remote Receiver Settings"
-msgstr "Konfiguracja zdalnego odbiornika"
+msgstr "Ustawienia zdalnego odbiornika"
 
 msgid "Fallback Timer"
 msgstr "Timer zastępczy"
@@ -9123,10 +9127,10 @@ msgid "Flash"
 msgstr "Flash"
 
 msgid "Flash Expander"
-msgstr "Rozszerzanie Flash"
+msgstr "Ekspander flash"
 
 msgid "Flash Expander Actions"
-msgstr "Akcje rozszerzacza flash"
+msgstr "Akcje ekspandera flash"
 
 msgid "Flash Image"
 msgstr "Instalacja systemu"
@@ -9173,7 +9177,7 @@ msgstr "Zainstaluj system dekodera z sieci."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
-msgstr "Rozszerzacz flash przy starcie to '%s'.  Status rozszerzacza flash '%s'."
+msgstr "Ekspander flash przy starcie to '%s'.  Status ekspandera flash '%s'."
 
 msgid "Flashing"
 msgstr "Instalowanie"
@@ -9586,22 +9590,22 @@ msgid "Goto X"
 msgstr "Idź do X"
 
 msgid "Goto current channel and now"
-msgstr "Idż do bieżącego kanału"
+msgstr "Idź do bieżącego kanału"
 
 msgid "Goto deep standby"
 msgstr "Przejdź w tryb wyłączenia"
 
 msgid "Goto first channel"
-msgstr "Idż do pierwszego kanału"
+msgstr "Idź do pierwszego kanału"
 
 msgid "Goto last channel"
-msgstr "Idż do ostatniego kanału"
+msgstr "Idź do ostatniego kanału"
 
 msgid "Goto next bouquet"
 msgstr "Idź do następnej pozycji listy kanałów"
 
 msgid "Goto next channel"
-msgstr "Idż do nastepnego kanału"
+msgstr "Idź do następnego kanału"
 
 msgid "Goto next event"
 msgstr "Idź do kolejnego wydarzenia"
@@ -9664,7 +9668,7 @@ msgid "Grenada"
 msgstr "Grenada"
 
 msgid "Grey"
-msgstr "Zielony"
+msgstr "Szary"
 
 msgid "Group"
 msgstr "Grupa"
@@ -10003,10 +10007,10 @@ msgid "History Zap"
 msgstr "Historia przełączania kanałów"
 
 msgid "History Zap Actions"
-msgstr "Akcje historii Zap"
+msgstr "Akcje historii przełączania"
 
 msgid "History Zap Navigation Actions"
-msgstr "Akcje nawigacji historii Zap"
+msgstr "Akcje nawigacji historii przełączania"
 
 msgid "History back"
 msgstr "Historia (wstecz)"
@@ -10051,7 +10055,7 @@ msgid "Honduras"
 msgstr "Honduras"
 
 msgid "Hong Kong"
-msgstr "Hong Kong"
+msgstr "Hongkong"
 
 msgid "Hops:"
 msgstr "Hops:"
@@ -10323,7 +10327,7 @@ msgid "If the Deep Standby workaround is enabled wait until the system time is s
 msgstr "Jeśli włączono obejście trybu wyłączenia, należy poczekać na synchronizację czasu systemowego. W zależności od wymagań, wybudzanie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Jeśli ilość wolnego miejsca jest mniejsza niż ustawiona wartości, to następnie usuwa stare pliki timeshiftu."
+msgstr "Jeśli ilość wolnego miejsca jest mniejsza niż ustawiona wartość, to następnie usuwa stare pliki timeshiftu."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Jeśli tekst jest zbyt długi, aby można go było wyświetlić na panelu przednim, zostanie powtórzony (określoną liczbę razy)."
@@ -11124,7 +11128,7 @@ msgid "Kurdish"
 msgstr "Kurdyjski"
 
 msgid "Kurdistan"
-msgstr "Kurdistan"
+msgstr "Kurdystan"
 
 msgid "Kuwait"
 msgstr "Kuwejt"
@@ -11393,7 +11397,7 @@ msgid "Lifestyle"
 msgstr "Styl życia"
 
 msgid "Light Grey"
-msgstr "Jasno Szary"
+msgstr "Jasnoszary"
 
 msgid "Light source"
 msgstr "Źródło światła"
@@ -11968,7 +11972,7 @@ msgid "Maximum number of days in EPG"
 msgstr "Maksymalna liczba dni w EPG"
 
 msgid "Maximum space used (MB)"
-msgstr "Maksymalna powierzchnia używana (MB):"
+msgstr "Maksymalna ilość wykorzystanego miejsca (MB)"
 
 msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
 msgstr "Maksymalny czas oczekiwania na pierwszy klucz deszyfrujący (CW) przed uruchomieniem dekodera. 'Wyłączone' uruchamia dekoder natychmiast, bez oczekiwania."
@@ -11998,7 +12002,7 @@ msgid "Media Stream"
 msgstr "Strumień multimediów"
 
 msgid "Media playback Remaining/Elapsed as"
-msgstr "Odtwarzanie multimediów Pozostałe/Czas, który upłynął od"
+msgstr "Pokaż czas odtwarzania mediów pozostały/upływający jako"
 
 msgid "Media scanner"
 msgstr "Media skaner"
@@ -12714,7 +12718,7 @@ msgid "Mystery"
 msgstr "Tajemnica"
 
 msgid "N/A"
-msgstr "Niedostępny"
+msgstr "N/A"
 
 msgid "NEXT"
 msgstr "NASTĘPNY"
@@ -13219,7 +13223,7 @@ msgid "No event information found, recording default is 24 hours."
 msgstr "Nie znaleziono informacji o wydarzeniu. Domyślny czas nagrywania wynosi 24 godziny."
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
-msgstr "'Przewijanie' nie dostępne (jeszcze)... można użyć przycisków numerycznych aby przeskoczyć w przód/tył!"
+msgstr "'Przewijanie' niedostępne (jeszcze)... można użyć przycisków numerycznych aby przeskoczyć w przód/tył!"
 
 msgid "No free index available"
 msgstr "Brak wolnego indexu"
@@ -13537,7 +13541,7 @@ msgid "Now"
 msgstr "Teraz"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
-msgstr "Teraz użyj ustawień kontrastu aby ustawić jak nawiększą jasność tła, ale tak, żeby nadal widać było różnicę pomiędzy dwoma najjaśniejszymi odcieniami, Jeśli skończyłeś, wciśnij 'OK'."
+msgstr "Teraz użyj ustawień kontrastu, aby ustawić jak największą jasność tła, ale tak, żeby nadal widać było różnicę pomiędzy dwoma najjaśniejszymi odcieniami. Jeśli skończyłeś, wciśnij OK."
 
 msgid "Number"
 msgstr "Numer"
@@ -13752,7 +13756,7 @@ msgid "Only move the dish quickly before this hour."
 msgstr "Przesuń szybko antenę tylko przed tą godziną."
 
 msgid "Only on startup"
-msgstr "Tylko przy starcie"
+msgstr "Tylko przy uruchomieniu"
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Używaj wyłącznie serwerów DNS obsługujących protokół DNS-over-HTTPS. Dzięki temu wyszukiwania DNS będą wykonywane za pomocą szyfrowanego protokołu HTTPS."
@@ -15232,7 +15236,7 @@ msgid "Primetime minute"
 msgstr "Minuta w primetime"
 
 msgid "Priority"
-msgstr "Priorytet konwertera"
+msgstr "Priorytet"
 
 msgid "Privacy level"
 msgstr "Poziom prywatności"
@@ -15482,7 +15486,7 @@ msgid "QuickMenu"
 msgstr "Szybkie menu"
 
 msgid "QuickMenu/Extensions"
-msgstr "Szybkie Menu/Rozszerzenia"
+msgstr "Szybkie menu/Rozszerzenia"
 
 msgid "QuickSelect Actions"
 msgstr "Akcje szybkiego wyboru"
@@ -15675,7 +15679,7 @@ msgid "Really upgrade the front panel and reboot now?"
 msgstr "Naprawdę uaktualnić przedni wyświetlacz i uruchomić ponownie?"
 
 msgid "Really upgrade the front panel processor and reboot now?"
-msgstr "Czy naprawdę zaktualizować frontprocesor i zrestartować odbiornik?"
+msgstr "Czy naprawdę zaktualizować frontprocesor i ponownie uruchomić odbiornik?"
 
 #, python-format
 msgid "Really upgrade your %s %s and reboot now?"
@@ -15689,7 +15693,7 @@ msgstr "Uruchom ponownie"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr "Czy teraz zrestartować %s %s?"
+msgstr "Uruchomić ponownie %s %s teraz?"
 
 msgid "Rec"
 msgstr "Nagrywanie"
@@ -15704,7 +15708,7 @@ msgid "Receiver Information Actions"
 msgstr "Akcje dotyczące informacji o odbiorniku"
 
 msgid "Receiver does not support Quad PiP."
-msgstr "Tuner lub sterownik nie obsługuje Quad PiP."
+msgstr "Odbiornik nie obsługuje Quad PiP."
 
 #, python-format
 msgid "Receiver information for %s %s"
@@ -16063,7 +16067,7 @@ msgid "Remove Path"
 msgstr "Usuń ścieżkę"
 
 msgid "Remove Plugin"
-msgstr "Usuń wtyczki"
+msgstr "Usuń wtyczkę"
 
 msgid "Remove Plugins"
 msgstr "Usuń wtyczki"
@@ -16096,7 +16100,7 @@ msgid "Remove all other data"
 msgstr "Usuń wszystkie inne dane"
 
 msgid "Remove all plugin setting data"
-msgstr "Usuń wszystkie dane ustawień pluginów"
+msgstr "Usuń wszystkie dane ustawień wtyczek"
 
 msgid "Remove all resume point data"
 msgstr "Usuń wszystkie dane punktu wznowienia"
@@ -16356,7 +16360,7 @@ msgid "Restart GUI after x crashes"
 msgstr "Uruchom ponownie interfejs po x błędach"
 
 msgid "Restart GUI now to start using the new locale/language?"
-msgstr "Zrestartować GUI teraz, aby rozpocząć korzystanie z nowych ustawień regionalnych/języka?"
+msgstr "Czy zrestartować interfejs teraz, aby rozpocząć korzystanie z nowych ustawień regionalnych/języka?"
 
 msgid "Restart GUI now?"
 msgstr "Czy chcesz zrestartować interfejs?"
@@ -16368,7 +16372,7 @@ msgid "Restart enigma"
 msgstr "Uruchom ponownie system"
 
 msgid "Restart necessary, restart GUI now?"
-msgstr "Wymagane jest ponowne uruchomienie, czy zrestartować interfejs teraz?"
+msgstr "Wymagany restart, czy zrestartować interfejs teraz?"
 
 msgid "Restart needed, press OK to restart"
 msgstr "Wymagane ponowne uruchomienie. Naciśnij OK, aby ponownie uruchomić"
@@ -16496,7 +16500,7 @@ msgid "Return to previous service"
 msgstr "Powrót do poprzedniego kanału"
 
 msgid "Reverse bouquet buttons"
-msgstr "Odwrócić przyciski listy kanałów"
+msgstr "Odwróć przyciski listy kanałów"
 
 msgid "Reverse list"
 msgstr "Odwróć listę"
@@ -17245,7 +17249,7 @@ msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is st
 msgstr "Wybierz 'Tak', jeśli telewizor ma zostać włączony po uruchomieniu timera przełączania."
 
 msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Wybierz „Tak”, jeśli chcesz, aby telewizor wybudzał się po uruchomieniu zaplanowanego zadania „Wybudzanie”."
+msgstr "Wybierz 'Tak', jeśli chcesz, aby telewizor wybudzał się po uruchomieniu zaplanowanego zadania 'Wybudzanie'."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeśli jest ustawione na 'tak' pasek informacyjny pozostanie wyświetlany na stałe w stanie 'pauzy' (bez timeoutu)."
@@ -17254,19 +17258,19 @@ msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadca
 msgstr "Wybierz 'Tak', aby umożliwić serwerowi VPS dostosowywanie timerów nagrywania na podstawie danych z kontroli dostarczania programów (PDC) transmisji. Aby to działało, usługa musi dostarczać wiarygodne dane PDC zdarzeń."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Wybierz „Tak”, aby zezwolić na użycie paska postępu w celu przejścia do wybranego punktu w ramach zdarzenia."
+msgstr "Wybierz 'Tak', aby zezwolić na użycie paska postępu w celu przejścia do wybranego punktu w ramach zdarzenia."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr "Ustawienie tej opcji na 'tak' spowoduje, że zostanie wyświetlona najpierw lista kanałów. Jeśli ustawione na 'nie' zostaną wyświetlone kanały obecnej listy."
+msgstr "Ustawienie tej opcji na 'Tak' spowoduje, że zostanie wyświetlona najpierw lista kanałów. Jeśli ustawione na 'Nie' zostaną wyświetlone kanały obecnej listy."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
-msgstr "Wybierz \"Tak\", aby sprawdzić, czy połączenia sieciowe pochodzą z wyznaczonych adresów IP w momencie aktywacji timera. Jeśli tak, timer zostanie dezaktywowany."
+msgstr "Wybierz 'Tak', aby sprawdzić, czy połączenia sieciowe pochodzą z wyznaczonych adresów IP w momencie aktywacji timera. Jeśli tak, timer zostanie dezaktywowany."
 
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
-msgstr "Wybierz \"Tak\", aby stale wyświetlać wszystkie obrazy w pętli, lub \"Nie\", aby wyświetlić wszystkie obrazy raz, a następnie zatrzymać."
+msgstr "Wybierz 'Tak', aby stale wyświetlać wszystkie obrazy w pętli, lub 'Nie', aby wyświetlić wszystkie obrazy raz, a następnie zatrzymać."
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
-msgstr "Wybierz opcję „Tak”, aby wyłączyć tryb wielokrotnego wyboru po każdej operacji. Wybierz opcję „Nie”, aby pozostawić aktywny tryb wielokrotnego wyboru i niezmienione wybory."
+msgstr "Wybierz opcję 'Tak', aby wyłączyć tryb wielokrotnego wyboru po każdej operacji. Wybierz opcję 'Nie', aby pozostawić aktywny tryb wielokrotnego wyboru i niezmienione wybory."
 
 msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
 msgstr "Wybierz 'Tak', aby wyłączyć wtyczkę ServiceHiSilicon i umożliwić korzystanie z domyślnego wewnętrznego kodu odtwarzacza multimedialnego."
@@ -17275,16 +17279,16 @@ msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) withi
 msgstr "Wybierz 'Tak', aby wyświetlić mały obraz telewizyjny (PiG - Picture in Graphic) na ekranie EPG."
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
-msgstr "Wybierz „Tak”, aby wyświetlić pasek informacyjny po rozpoczęciu nowego wydarzenia."
+msgstr "Wybierz 'Tak', aby wyświetlić pasek informacyjny po rozpoczęciu nowego wydarzenia."
 
 msgid "Select 'Yes' to display the InfoBar when changing channels."
-msgstr "Jeśli jest ustawione na 'tak' ,zostanie wyświetlony pasek informacyjny podczas zmiany kanałów."
+msgstr "Wybierz 'Tak', aby wyświetlać pasek informacyjny podczas zmiany kanału."
 
 msgid "Select 'Yes' to display the channel number in the InfoBar."
-msgstr "Jeśli ustawione na 'tak' numer kanału będzie wyświetlany na pasku informacyjnym."
+msgstr "Wybierz 'Tak', aby wyświetlić numer kanału na pasku informacyjnym."
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
-msgstr "Wybierz \"Tak\", aby wyświetlić nieznane pliki w podglądzie plików File Commander, wybierz \"Nie\", aby nie przetwarzać nieznanych plików."
+msgstr "Wybierz 'Tak', aby wyświetlić nieznane pliki w podglądzie plików File Commander, wybierz 'Nie', aby nie przetwarzać nieznanych plików."
 
 msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr "Wybierz 'Tak', aby włączyć tłumaczenie AI dla wszystkich napisów teletekstowych i DVB."
@@ -17293,7 +17297,7 @@ msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the orde
 msgstr "Taka rotacja zmienia kolejność, w jakiej używana jest lista serwerów DNS, i pozwala uniknąć problemów, jeśli serwer DNS na liście stanie się niedostępny."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
-msgstr "Wybierz \"Tak\", aby włączyć edycję ustawień urządzenia. Wybierz \"Nie\" aby przywrócić domyślne ustawienia urządzenia."
+msgstr "Wybierz 'Tak', aby włączyć edycję ustawień urządzenia. Wybierz 'Nie' aby przywrócić domyślne ustawienia urządzenia."
 
 msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
 msgstr "Wybierz 'Tak', aby nowe timery przełączania domyślnie miały włączony i ustawiony czas zakończenia."
@@ -17302,7 +17306,7 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Wybierz 'Tak', aby włączyć podgląd kanałów na liście EPG."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
-msgstr "Jeśli ustawione na „tak”, możesz wyświetlać podgląd kanałów na liście kanałów. Naciśnij 'OK', aby wyświetlić podgląd wybranego kanału. Naciśnij 'OK' drugi raz, aby wyjść i przejść do tego kanału, natomiast naciskając 'EXIT' powrócisz do kanału, na którym zacząłeś."
+msgstr "Wybierz 'Tak', aby włączyć podgląd kanałów na liście EPG. Naciśnij 'OK', aby wyświetlić podgląd aktualnie wybranego kanału. Naciśnij ponownie 'OK', aby wyjść z EPG i przejść do wybranego kanału. Naciśnij 'WYJŚCIE', aby wyjść z EPG i powrócić do poprzednio wybranego kanału."
 
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
 msgstr "Wybierz 'Tak', aby włączyć wczytywanie niepowiązanych list kanałów. Oznacza to, że wczytane zostaną listy kanałów, które nie znajdują się w plikach bouquets.tv lub bouquets.radio. Pozwala to na przykład na tworzenie list, które nie kolidują z listami kanałów pochodzącymi z pakietów ustawień ani nie są przez nie zastępowane."
@@ -17317,43 +17321,43 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Wybierz 'Tak', aby ukryć kanały bez danych EPG."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
-msgstr "Wybierz opcję „Tak”, aby ukryć nazwę i adres IP serwera."
+msgstr "Wybierz 'Tak', aby ukryć nazwę serwera i adres IP serwera."
 
 #, python-format
 msgid "Select 'Yes' to include %s multiplexes in your search."
-msgstr "Wybierz \"tak\", aby uwzględnić w wyszukiwaniu %s multipleksy."
+msgstr "Wybierz 'Tak', aby uwzględnić w wyszukiwaniu %s multipleksy."
 
 #, python-format
 msgid "Select 'Yes' to include symbol rate %s in your search."
-msgstr "Wybierz 'tak', aby w wyszukiwaniu uwzględniona została stawka symbolu %s."
+msgstr "Wybierz 'Tak', aby w wyszukiwaniu uwzględniona została stawka symbolu %s."
 
 #, python-format
 msgid "Select 'Yes' to include the %s band in your search."
-msgstr "Wybierz \"tak\", aby uwzględnić pasmo %s w wyszukiwaniu."
+msgstr "Wybierz 'Tak', aby uwzględnić pasmo %s w wyszukiwaniu."
 
 msgid "Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap."
-msgstr "Wybierz 'tak' aby wysyłać komendę DiSEqC tylko przy zmianie satelity na innego, lub wybierz 'nie' aby komenda DiSEqC była wysyłana ponownie przy każdym zapie."
+msgstr "Wybierz 'Tak' aby wysyłać komendę DiSEqC tylko przy zmianie satelity na innego, lub wybierz 'Nie' aby komenda DiSEqC była wysyłana ponownie przy każdym zapie."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr "Wybierz „Tak”, aby usunąć wszystkie główne dane konfiguracyjne ustawień. Wybranie tej opcji spowoduje przywrócenie wszystkich ustawień Enigma2 do wartości domyślnych. Spowoduje to również uruchomienie Kreatora powitalnego po ponownym uruchomieniu Enigma2."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie główne dane konfiguracyjne ustawień. Wybranie tej opcji spowoduje przywrócenie wszystkich ustawień Enigma2 do wartości domyślnych. Spowoduje to również uruchomienie Kreatora powitalnego po ponownym uruchomieniu Enigma2."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
-msgstr "Wybierz \"Tak\", aby usunąć wszystkie dane wznowienia odtwarzacza multimedialnego. Wybranie tej opcji spowoduje usunięcie danych używanych do wznowienia odtwarzania plików multimedialnych z pozycji, w której odtwarzanie zostało ostatnio zatrzymane. Nie ma to wpływu na pozycję odtwarzania nagrań."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie dane wznowienia odtwarzacza multimedialnego. Wybranie tej opcji spowoduje usunięcie danych używanych do wznowienia odtwarzania plików multimedialnych z pozycji, w której odtwarzanie zostało ostatnio zatrzymane. Nie ma to wpływu na pozycję odtwarzania nagrań."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr "Wybierz 'Tak' aby usunąć wszystkie dane montowania sieci. Wybranie tej opcji spowoduje usunięcie wszystkich danych sieciowych, w tym automatycznych montaży i danych połączeń sieciowych, w tym kont i haseł połączeń. Może to spowodować awarię niektórych funkcji Enigma2, jeśli są one skonfigurowane do korzystania z tych zasobów sieciowych."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie dane montowania sieci. Wybranie tej opcji spowoduje usunięcie wszystkich danych sieciowych, w tym automatycznych montaży i danych połączeń sieciowych, w tym kont i haseł połączeń. Może to spowodować awarię niektórych funkcji Enigma2, jeśli są one skonfigurowane do korzystania z tych zasobów sieciowych."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
 msgstr "Wybierz 'Tak', aby usunąć wszystkie inne pliki i katalogi nieobjęte powyższymi opcjami."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr "Wybierz 'Tak' aby usunąć wszystkie dane konfiguracyjne pluginów. Wybranie tej opcji spowoduje usunięcie wszystkich danych konfiguracyjnych pluginów, które są przechowywane w folderze konfiguracyjnym Enigma2. Spowoduje to, że wszystkie wtyczki, których to dotyczy, powrócą do ustawień domyślnych. Może to spowodować, że niektóre wtyczki nie będą działać, dopóki nie zostaną skonfigurowane."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie dane konfiguracyjne wtyczek. Wybranie tej opcji spowoduje usunięcie wszystkich danych konfiguracyjnych wtyczek, które są przechowywane w folderze konfiguracyjnym Enigma2. Spowoduje to, że wszystkie wtyczki, których to dotyczy, powrócą do ustawień domyślnych. Może to spowodować, że niektóre wtyczki nie będą działać, dopóki nie zostaną skonfigurowane."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Wybierz opcję 'Tak', aby usunąć wszystkie ustawienia, dane strojenia, timery, wskaźniki wznowienia itp. Wybranie tej opcji spowoduje przywrócenie konfiguracji do ustawień początkowych, zanim zastosowane zostaną jakiekolwiek ustawienia konfiguracyjne. Jest to najbardziej niezawodna forma Resetu Fabrycznego."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
-msgstr "Wybierz 'Tak' aby usunąć wszystkie dane konfiguracyjne timerów. Wybranie tej opcji spowoduje skasowanie wszystkich timerów, autotimerów i timerów zasilania."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie dane konfiguracyjne timerów. Wybranie tej opcji spowoduje skasowanie wszystkich timerów, autotimerów i timerów zasilania."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "Wybierz 'Tak', aby usunąć wszystkie dane strojenia. Wybranie tej opcji spowoduje usunięcie wszystkich danych strojenia i listy kanałów oraz spowoduje, że timery nie będą działać, dopóki odbiornik nie zostanie ponownie dostrojony."
@@ -17362,7 +17366,7 @@ msgid "Select 'Yes' to remove all user customizations of skin data. Selecting th
 msgstr "Wybierz 'Tak', aby usunąć wszystkie personalizacje użytkownika dotyczące danych skórek. Wybranie tej opcji spowoduje usunięcie wszystkich personalizacji skórek użytkownika. Wszystkie skórki, których to dotyczy, powrócą do ustawień standardowych. Spowoduje to również usunięcie wszelkich spersonalizowanych logotypów i tła."
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
-msgstr "Wybierz 'Tak' aby usunąć wszystkie dane interfejsu użytkownika. Wybranie tej opcji spowoduje usunięcie wszystkich danych dotyczących map klawiszy, menu i zastępowania ustawień oraz przywrócenie domyślnych definicji."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie dane interfejsu użytkownika. Wybranie tej opcji spowoduje usunięcie wszystkich danych dotyczących map klawiszy, menu i zastępowania ustawień oraz przywrócenie domyślnych definicji."
 
 msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr "Wybierz 'Tak', aby przeplanować zadanie na moment, gdy odbiornik przejdzie w tryb czuwania lub z niego wyjdzie. Zmiana stanu musi nastąpić w oknie harmonogramu zadań, w przeciwnym razie zadanie nie zostanie uruchomione."
@@ -17374,94 +17378,94 @@ msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "Wybierz 'Tak', aby flaga VPS była domyślnie ustawiana na wszystkich nowych timerach."
 
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
-msgstr "Wybierz \"Tak\", aby ustawić pozycję kursora na końcu wiersza podczas edycji pliku tekstowego.  Wybierz \"Nie\", aby ustawić kursor na początku wiersza."
+msgstr "Wybierz 'Tak', aby ustawić pozycję kursora na końcu wiersza podczas edycji pliku tekstowego.  Wybierz 'Nie', aby ustawić kursor na początku wiersza."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety \"dev\", \"staticdev\", \"dbg\" i \"doc\" na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety 'dev', 'staticdev', 'dbg' i 'doc' na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show Kodi add-on packages in the Download Plugins screen."
-msgstr "Wybierz „Tak”, aby wyświetlić pakiety dodatków Kodi na ekranie Pobierz wtyczki."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety dodatków kodi na ekranie Pobierz wtyczki."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety skórek LCD na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety skórek LCD na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety OpenPLi na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety OpenPLi na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety OpenViX na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety OpenViX na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety Softcam na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety Softcam na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr "Wybierz 'Tak', aby wyświetlić katalogi na górze/początku listy lub wybierz 'Nie', aby wyświetlić najpierw pliki."
 
 msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety sterowników na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety sterowników na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety wtyczek na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety wtyczek na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety kernel na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety kernel na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety m2k na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety m2k na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety pikon na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety pikon na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety skórek wtyczek na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety skórek wtyczek na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety bezpieczeństwa na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety bezpieczeństwa na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety ustawień (listy kanałów) na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety ustawień (listy kanałów) na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety komponentów skórki na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety komponentów skórki na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety skórek na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety skórek na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety źródłowe \"src\" na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety źródłowe 'src' na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
-msgstr "Wybierz opcję „Tak”, aby wyświetlić pakiety subskrypcji na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety subskrypcji na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety wtyczek systemowych na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety wtyczek systemowych na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
-msgstr "Wybierz 'Tak”' aby wyświetlać pozycję 'Lista nagrań' w menu głównym. Umożliwia to dostęp do ekranu listy nagrań, gdy na pilocie nie ma przypisanego odpowiedniego przycisku."
+msgstr "Wybierz 'Tak' aby wyświetlać pozycję 'Lista nagrań' w menu głównym. Umożliwia to dostęp do ekranu listy nagrań, gdy na pilocie nie ma przypisanego odpowiedniego przycisku."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr "Wybierz \"Tak\", aby wyświetlić zaawansowane opcje ustawień."
+msgstr "Wybierz 'Tak', aby wyświetlić zaawansowane opcje ustawień."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "Wybierz „Tak”, aby za każdym razem, gdy otworzysz EPG, wyświetlał się ekran wyboru kanałów."
+msgstr "Wybierz 'Tak', aby za każdym razem, gdy otworzysz EPG, wyświetlał się ekran wyboru kanałów."
 
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "Wybierz 'Tak', aby wyświetlić listę kanałów po przełączeniu się pomiędzy trybami radia i telewizji."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
-msgstr "Wybierz \"Tak\", aby wyświetlić bieżący katalog na liście katalogów. Należy pamiętać, że aby ta zmiana zaczęła obowiązywać, należy ponownie uruchomić File Commander."
+msgstr "Wybierz 'Tak', aby wyświetlić bieżący katalog na liście katalogów. Należy pamiętać, że aby ta zmiana zaczęła obowiązywać, należy ponownie uruchomić File Commander."
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr "Wybierz „Tak”, aby poziom głośności był wyświetlany przy każdej automatycznej zmianie poziomu głośności."
+msgstr "Wybierz 'Tak', aby poziom głośności był wyświetlany przy każdej automatycznej zmianie poziomu głośności."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
-msgstr "Wybierz opcję „Tak”, aby wyświetlić tę wtyczkę w przeglądarce wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić tę wtyczkę w przeglądarce wtyczek."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr "Wybierz opcję „Tak”, aby wyświetlić pakiety łączy internetowych na ekranie pobierania wtyczek."
+msgstr "Wybierz 'Tak', aby wyświetlić pakiety łączy internetowych na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr "Wybierz „Tak”, aby natychmiast wyłączyć urządzenie zamiast rozpoczynać deszyfrowanie."
+msgstr "Wybierz 'Tak', aby natychmiast wyłączyć urządzenie zamiast rozpoczynać deszyfrowanie."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
@@ -17470,13 +17474,13 @@ msgid "Select 'Yes' to use PDC data, if available on the current service, to acc
 msgstr "Wybierz 'Tak', aby użyć danych PDC, jeśli są dostępne w bieżącej usłudze, w celu dokładnego zatrzymania natychmiastowego nagrywania po zakończeniu zdarzenia."
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Wybierz \"Tak\", aby użyć alternatywnego adresu IP feed'a GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych feed'ów za pomocą opublikowanych nazw DNS."
+msgstr "Wybierz 'Tak', aby użyć alternatywnego adresu IP feed'a GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych feed'ów za pomocą opublikowanych nazw DNS."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
-msgstr "Wybierz „Tak”, aby użyć starszej nawigacji, w której CH+/- zamienia aktywną kolumnę. Wybierz opcję „Nie”, aby użyć nowszej, ujednoliconej opcji nawigacji w celu spójnej nawigacji z innymi ekranami, gdzie LEWO/PRAWO zamienia aktywną kolumnę i strony CH+/- w górę i w dół listy."
+msgstr "Wybierz 'Tak', aby użyć starszej nawigacji, w której CH+/- zamienia aktywną kolumnę. Wybierz 'Nie', aby użyć nowszej, ujednoliconej opcji nawigacji w celu spójnej nawigacji z innymi ekranami, gdzie LEWO/PRAWO zamienia aktywną kolumnę i strony CH+/- w górę i w dół listy."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr "Jeśli ustawione na \"tak\", wartości sygnału (SNR itp.) będą obliczane na podstawie API V3. Jest to stara wersja API, która została już zastąpiona."
+msgstr "Wybierz 'Tak', aby użyć wartości sygnału (SNR itp.) obliczonych na podstawie starszej wersji API V3. Ta wersja API została zastąpiona."
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Wybierz 'Tak', aby użyć klawiszy numerycznych do szybkiego wyboru plików / katalogów, wybierz 'Nie', aby użyć klawiszy numerycznych do skrótów opcji MENU."
@@ -17488,7 +17492,7 @@ msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording st
 msgstr "Wybierz 'Tak', aby wybudzić odbiornik ze stanu wyłączenia przed czasem rozpoczęcia nagrywania i umożliwić danym PDC dokonanie ostatnich zmian w timerze."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
-msgstr "Jeśli jest ustawione na 'tak' ,pasek informacyjny będzie wyświetlany podczas szybkiego przewijania do przodu lub do tyłu(odtwarzacz multimediów)."
+msgstr "Wybierz 'Tak', aby pasek informacyjny był wyświetlany podczas przewijania do przodu lub do tyłu podczas odtwarzania multimediów."
 
 msgid "Select Additional Backup Files"
 msgstr "Dodatkowe pliki kopii zapasowej"
@@ -17506,7 +17510,7 @@ msgid "Select Device"
 msgstr "Wybierz urządzenie"
 
 msgid "Select Enigma2 Skin"
-msgstr "Wybierz skórę dla Enigma2"
+msgstr "Wybierz skórkę dla Enigma2"
 
 msgid "Select Excluded Backup Files"
 msgstr "Wykluczone pliki kopii zapasowej"
@@ -17578,7 +17582,7 @@ msgid "Select a device to create multiboot slots"
 msgstr "Wybierz urządzenie, aby utworzyć sloty multiboot"
 
 msgid "Select a device to use as the flash expander"
-msgstr "Wybierz urządzenie, aby skorzystać z rozszerzacza flash"
+msgstr "Wybierz urządzenie, aby skorzystać z ekspandera flash"
 
 msgid "Select a device to use for the additional slots"
 msgstr "Wybierz urządzenie, na którym będziesz korzystać z dodatkowych slotów"
@@ -18399,7 +18403,7 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr "Wypierz, przełącz proces lub edytuj aktualny wpis"
 
 msgid "Select/Zap to the selected service"
-msgstr "Wybierz/Zap do wybranej usługi"
+msgstr "Wybierz/Przełącz na zaznaczony kanał"
 
 #, python-format
 msgid ""
@@ -18921,7 +18925,7 @@ msgid "Sets the root directory of media list. This removes the '..' entry from b
 msgstr "Ustawia katalog główny listy multimediów. Powoduje to ukrycie pozycji '..'w tym katalogu."
 
 msgid "Setting Packages"
-msgstr "Pakiety ustawień"
+msgstr "Pakiety ustawień (listy kanałów)"
 
 msgid "Setting Restored "
 msgstr "Ustawienie przywrócone "
@@ -19042,7 +19046,7 @@ msgid "Setup your OSD"
 msgstr "Ustawienia OSD"
 
 msgid "Setup your Skin"
-msgstr "Skonfiguruj swoją skórę"
+msgstr "Skonfiguruj swoją skórkę"
 
 msgid "Setup your System"
 msgstr "Ustawienia systemu"
@@ -19271,7 +19275,7 @@ msgid "Show Media Player in Main Menu"
 msgstr "Pokaż odtwarzacz multimedialny w menu głównym"
 
 msgid "Show Media playback remaining/elapsed as"
-msgstr "Pokaż pozostały/upływający czas odtwarzania multimediów jako"
+msgstr "Pokaż czas pozostały/upływający odtwarzania mediów jako"
 
 msgid "Show Merlin EPG Center"
 msgstr "Pokaż Centrum Merlin EPG"
@@ -19792,7 +19796,7 @@ msgid "Show translation information"
 msgstr "Pokaż informacje o tłumaczeniu"
 
 msgid "Show transponder remaining/elapsed as"
-msgstr "Pokaż pozostały/upływający czas transpondera jako"
+msgstr "Pokaż czas pozostały/upływający transpondera jako"
 
 msgid "Show two lines per entry"
 msgstr "Pokaż dwie linie na liście kanałów"
@@ -19958,7 +19962,7 @@ msgid "Size descending"
 msgstr "Rozmiar malejąco"
 
 msgid "Skin & Resolution"
-msgstr "Skóra i rozdzielczość"
+msgstr "Skórka i rozdzielczość"
 
 msgid "Skin Component Packages"
 msgstr "Pakiety komponentów skórki"
@@ -20457,7 +20461,7 @@ msgid "South"
 msgstr "Południe"
 
 msgid "South Africa"
-msgstr "Południowa Afryka"
+msgstr "Republika Południowej Afryki"
 
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "Georgia Południowa i Sandwich Południowy"
@@ -21068,7 +21072,7 @@ msgid "Swimming"
 msgstr "Pływanie"
 
 msgid "Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)."
-msgstr "Przełącz NIEBIESKI krótki (SzybkieMenu) na NIEBIESKI długi (Menu rozszerzenia)."
+msgstr "Przełącz NIEBIESKI krótki (Szybkie menu) na NIEBIESKI długi (Menu rozszerzenia)."
 
 msgid "Switch EPG Page Down"
 msgstr "Przełącz stronę EPG w dół"
@@ -21826,7 +21830,7 @@ msgid "There are no actions available to process '%s'!"
 msgstr "Brak dostępnych akcji do przetworzenia '%s'!"
 
 msgid "There are no items currently available for this screen."
-msgstr "Aktualnie niema dostępnych elementów dla tego ekranu."
+msgstr "Brak elementów dostępnych obecnie na tym ekranie."
 
 msgid "There are no repositories defined so commit logs are unavailable!"
 msgstr "Nie ma zdefiniowanych repozytoriów, więc logi commitów są niedostępne!"
@@ -22106,7 +22110,7 @@ msgid "This option sets the picture color space."
 msgstr "Ta opcja ustawia przestrzeń kolorów obrazu."
 
 msgid "This option sets the picture flesh tones."
-msgstr "Ta opcja ustawia ton obrazu."
+msgstr "Ta opcja ustawia odcień skóry na obrazie."
 
 msgid "This option sets the picture hue."
 msgstr "Ta opcja ustawia odcień obrazu."
@@ -22874,7 +22878,7 @@ msgid "UHD Test"
 msgstr "Test UHD"
 
 msgid "UP/DOWN button mode"
-msgstr "Tryb przycisków Góra/Dół"
+msgstr "Tryb przycisków GÓRA/DÓŁ"
 
 msgid "UP/DOWN buttons also for 'all up/down'"
 msgstr "Przyciski Góra/Dół również dla 'wszystkich góra/dół'"
@@ -23421,7 +23425,7 @@ msgid "Use spacer lines"
 msgstr "Użyj linii dystansowych"
 
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
-msgstr "Użyj linii dystansowych, aby wypełnić bukiet, aby numery linii #SERVICE odpowiadały numerowi LCN."
+msgstr "Użyj linii rozdzielających, aby wypełnić listę kanałów, tak aby numery linii #SERVICE odpowiadały numerowi LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Użyj przycisków LEWO/PRAWO na pilocie, aby wyregulować wysokość OSD. Przycisk LEWY zmniejsza wysokość, PRAWY zwiększa wysokość."
@@ -23640,20 +23644,20 @@ msgstr ""
 "Jeżeli zegar jest zaprogramowany ręcznie (nie poprzez EPG), konieczne jest ustawienie VPS-Time, aby włączyć VPS. VPS-Time (znany również jako PDC) to pierwszy opublikowany czas rozpoczęcia, np. podawany w czasopismach. Jeśli ustawisz VPS-Time, musisz pozostawić nazwę timera pustą."
 
 msgid "VPS-Plugin checks if the channel supports VPS ..."
-msgstr "VPS-Plugin sprawdza, czy kanał obsługuje VPS ..."
+msgstr "Wtyczka VPS sprawdza, czy kanał obsługuje VPS ..."
 
 msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
-"VPS-Wtyczka nie mógła sprawdzić, czy kanał obsługuje VPS.\n"
+"Wtyczka VPS nie mogła sprawdzić, czy kanał obsługuje VPS.\n"
 " Czy mimo wszystko chcesz włączyć VPS?"
 
 msgid ""
 "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
 " Do you really want to enable VPS?"
 msgstr ""
-"VPS-Wtyczka nie mógła sprawdzić, czy wybrany kanał obsługuje VPS.\n"
+"Wtyczka VPS nie mogła sprawdzić, czy wybrany kanał obsługuje VPS.\n"
 " Czy naprawdę chcesz włączyć VPS?"
 
 msgid "VPS-Time (date)"
@@ -23765,7 +23769,7 @@ msgstr "Tryb wideo: %s"
 
 #, python-format
 msgid "Video mode: %s not available"
-msgstr "Tryb wideo: %s nie dostępny"
+msgstr "Tryb wideo: %s niedostępny"
 
 msgid "Video output"
 msgstr "Wyjście wideo"
@@ -24686,7 +24690,7 @@ msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do?"
 msgstr ""
-"Wybrałeś zapis bieżącego wydarzenie timeshiftu, ale wydarzenie jeszcze się nie skończyło\n"
+"Wybrałeś zapis bieżącego wydarzenia timeshiftu, ale wydarzenie jeszcze się nie skończyło\n"
 "Co chcesz robić?"
 
 msgid "You have no script to run."
@@ -24894,7 +24898,7 @@ msgid "Zap focused channel on full screen"
 msgstr "Przełączanie na pełnym ekranie"
 
 msgid "Zap history sequence"
-msgstr "Sekwencja historii przełącznia kanałów"
+msgstr "Sekwencja historii przełączania kanałów"
 
 msgid "Zap mode"
 msgstr "Tryb przełączania"
@@ -24918,7 +24922,7 @@ msgid "Zap to next service in history"
 msgstr "Przełącz do następnego kanału w historii"
 
 msgid "Zap to next service in the current bouquet"
-msgstr "Przejdź do następnego kanału w bieżącej liscie kanałów"
+msgstr "Przełącz na następny kanał na bieżącej liście kanałów"
 
 msgid "Zap to previous service"
 msgstr "Przełącz na poprzedni kanał"
@@ -24927,7 +24931,7 @@ msgid "Zap to previous service in history"
 msgstr "Przełącz na poprzedni kanał w historii"
 
 msgid "Zap to previous service in the current bouquet"
-msgstr "Przejdź do poprzedniego kanału w bieżącej liscie kanałów"
+msgstr "Przejdź do poprzedniego kanału w bieżącej liście kanałów"
 
 msgid "Zap up"
 msgstr "Przełącz w górę"
@@ -25154,7 +25158,7 @@ msgid "flat alphabetic reverse"
 msgstr "płaski alfabet odwrócony"
 
 msgid "forward to the next chapter"
-msgstr "Przeskocz do nastepnego rozdziału"
+msgstr "Przeskocz do następnego rozdziału"
 
 msgid "free"
 msgstr "wolne"
@@ -25310,7 +25314,7 @@ msgid "multi"
 msgstr "multi"
 
 msgid "n/a"
-msgstr "Niedostępny"
+msgstr "n/a"
 
 msgid "name"
 msgstr "nazwa"
@@ -25843,8 +25847,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Przełączanie wejścia C/T: zewnętrzny przełącznik koncentryczny 5 V"
 
-msgid "Common Settings"
-msgstr "Ustawienia Wspólne"
+#~ msgid "Common Settings"
+#~ msgstr "Ustawienia Wspólne"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB-C i DVB-T/T2 korzystają z tego samego wejścia. Gdy oba są włączone, Enigma2 używa napięcia 5 V do sterowania zewnętrznym przełącznikiem koncentrycznym."

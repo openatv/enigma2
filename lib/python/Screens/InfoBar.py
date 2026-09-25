@@ -55,8 +55,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
-		if config.usage.show_infobar_lite.value:
+		self.showInfoBarLite = config.usage.show_infobar_lite.value
+		if self.showInfoBarLite:
 			self.skinName = ["InfoBarLite", "InfoBar"]
+		self.onExecBegin.append(self.updateInfoBarSkin)
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions", {
 			"showMovies": (self.showMovies, _("Open Movie Selection")),  # PLAY, VIDEO (Break), PVR (Break), FILE (Break), MEDIA (Break).
@@ -117,6 +119,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.zoomin = 1
 
 		self.onShow.append(self.doButtonsCheck)
+
+	def updateInfoBarSkin(self):
+		showInfoBarLite = config.usage.show_infobar_lite.value
+		if self.showInfoBarLite != showInfoBarLite:
+			self.showInfoBarLite = showInfoBarLite
+			self.skinName = ["InfoBarLite", "InfoBar"] if showInfoBarLite else "InfoBar"
+			# Rebuild on return from setup, before the components are activated.
+			self.reloadSkin()
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
@@ -703,7 +713,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 					self.leavePlayerConfirmed([True, "quit"])
 		elif answer in "repeatcurrent":
 			if config.usage.next_movie_msg.value:
-				(item, length) = self.getPlaylistServiceInfo(self.cur_service)
+				(next_service, item, length) = self.getPlaylistServiceInfo(self.cur_service)
 				self.displayPlayedName(self.cur_service, item, length)
 			self.session.nav.stopService()
 			self.session.nav.playService(self.cur_service)
@@ -816,7 +826,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
-					return i + 1, len(playlist)
+					return service, i + 1, len(playlist)
 				i += 1
 				if i < len(playlist):
 					return playlist[i], i + 1, len(playlist)

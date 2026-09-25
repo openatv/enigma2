@@ -92,7 +92,7 @@ class NetworkOverview(Screen):
 	skin = """
 	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1100,540" resolution="1280,720">
 		<widget source="adapterList" render="Listbox" position="10,10" size="e-20,250">
-			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,enigma2icons;38,Regular;24,Regular;18,enigma2icons;20" itemHeight="50">
+			<template name="Default" colors="#0000CC00,#00CC0000,#00CCCCCC,#00003300,#00330000,#00333333" fonts="Regular;25,enigma2icons;38,Regular;24,Regular;18,enigma2icons;20,Regular;16" itemHeight="50">
 				<rowtemplate>
 					<text index="AdapterName" position="0,0" size="250,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
 					<text index="StatusText" position="270,0" size="170,50" font="0" foregroundColor="gray" padding="5,0" verticalAlignment="center" />
@@ -105,8 +105,9 @@ class NetworkOverview(Screen):
 					<text index="AdapterGlyph" position="0,6" size="48,38" font="1" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
 					<text index="AdapterName" position="60,0" size="170,28" font="2" padding="5,0" verticalAlignment="center" />
 					<text index="AdapterType" position="60,28" size="170,22" font="3" padding="5,0" verticalAlignment="center" />
-					<text index="InternetGlyph" position="230,15" size="40,20" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
-					<text index="StatusText" position="270,0" size="170,50" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="InternetGlyph" position="230,0" size="40,50" font="4" horizontalAlignment="center" padding="5,0" verticalAlignment="center" />
+					<text index="StatusText" position="270,0" size="170,25" font="3" foregroundColor="+StatusColor" foregroundColorSelected="+StatusColorSelected" padding="5,0" verticalAlignment="center" />
+					<text index="ConnectionText" position="270,25" size="150,25" font="5" padding="5,0" verticalAlignment="center" />
 					<text index="MAC" position="440,0" size="180,50" font="3" padding="5,0" verticalAlignment="center" />
 					<text index="IPAddress" position="620,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
 					<text index="Gateway" position="780,0" size="160,50" font="3" padding="5,0" verticalAlignment="center" />
@@ -193,9 +194,10 @@ class NetworkOverview(Screen):
 			"IPAddress": 8,
 			"Gateway": 9,
 			"Speed": 10,
-			"InternetGlyph": 11
+			"InternetGlyph": 11,
+			"ConnectionText": 12
 		}
-		self.indexAdapter = 12
+		self.indexAdapter = 13
 		self["adapterList"] = List([], indexNames=indexNames)
 		indexNames = {
 			"Reserved_for_rowTemplate": 0,
@@ -368,6 +370,7 @@ class NetworkOverview(Screen):
 				ip4Str(netInfo.gateway) or "-",                                   # Gateway.
 				speed,                                                            # Speed.
 				inetGlyph,                                                        # InternetGlyph.
+				adapter.connectionText,                                        # ConnectionText.
 				adapter,                                                          # -> indexAdapter.
 			)
 
@@ -392,6 +395,7 @@ class NetworkOverview(Screen):
 				"-",                    # Gateway.
 				"-",                    # Speed.
 				inetGlyph,              # InternetGlyph.
+				"",                     # ConnectionText.
 				None,                   # -> indexAdapter.
 			)
 
@@ -409,6 +413,7 @@ class NetworkOverview(Screen):
 				_("Gateway"),      # Gateway.
 				_("Speed"),        # Speed.
 				None,              # InternetGlyph.
+				None,              # ConnectionText.
 				None,              # -> indexAdapter.
 			)
 
@@ -474,7 +479,7 @@ class NetworkOverview(Screen):
 				statusText, statusGlyph, statusColor, statusColorSelected = _("Disabled"), "\uEA79", idle, idleSelected  # Glyph is Signal Wifi Off.
 			return (
 				self.overviewTemplateRow,
-				ssid,                                                                        # SSID.
+				conn.wifi.displaySsid,                                                       # SSID.
 				netInfo.bssid.upper() if isLive and netInfo.bssid else "-",                  # BSSID.
 				f"{netInfo.freqMhz / 1000:.2f} GHz" if isLive and netInfo.freqMhz else "-",  # Frequency.
 				str(netInfo.channel) if isLive and netInfo.channel else "-",                 # Channel.
@@ -521,15 +526,11 @@ class NetworkOverview(Screen):
 		if listName == "adapterList":
 			self["actions"].setEnabledAction("first", False)
 			self["actions"].setEnabledAction("left", False)
-			self["key_info"].setText(_("INFO"))
-			self["actions"].setEnabledAction("info", True)
 			self["adapterList"].selectionEnabled(True)
 			self["savedList"].selectionEnabled(False)
 		else:
 			self["actions"].setEnabledAction("first", True)
 			self["actions"].setEnabledAction("left", True)
-			self["key_info"].setText("")
-			self["actions"].setEnabledAction("info", False)
 			self["actions"].setEnabledAction("right", False)
 			self["actions"].setEnabledAction("last", False)
 			self["adapterList"].selectionEnabled(False)
@@ -540,21 +541,32 @@ class NetworkOverview(Screen):
 	def updateButtons(self):
 		greenText = ""
 		blueText = ""
-		if adapter := self.getCurrentAdapter():
+		infoText = ""
+		isVpn = False
+		adapter = self.getCurrentAdapter()
+		if adapter:
 			if self.currentList == "adapterList":
 				greenText = _("Deactivate") if adapter.adapterEnabled else _("Activate")
 				valid = self["savedList"].count() > 1
 				self["actions"].setEnabledAction("right", valid)
 				self["actions"].setEnabledAction("last", valid)
+				infoText = _("INFO")
 			else:
 				if connection := self.getCurrentSaved():
 					greenText = _("Disable") if connection.enabled else _("Enable")
 					if connection.enabled and not self.isConnectionLive(adapter, connection):
 						blueText = _("Connect")
+		else:
+			isVpn = self.currentList == "adapterList" and self["adapterList"].getCurrent() is not None
+
 		self["key_green"].setText(greenText)
 		self["key_blue"].setText(blueText)
+		self["key_info"].setText(infoText)
 		self["actions"].setEnabledAction("green", greenText != "")
 		self["actions"].setEnabledAction("blue", blueText != "")
+		self["actions"].setEnabledAction("ok", not isVpn)
+		self["actions"].setEnabledAction("menu", not isVpn)
+		self["actions"].setEnabledAction("info", infoText != "")
 
 	# True if saved entry is the Wi-Fi connection the adapter is currently
 	# associated with, same check as buildOverviewConnectionRow()'s isLive.
@@ -616,7 +628,7 @@ class NetworkOverview(Screen):
 
 	def connectionLabel(self, adapter: Adapter, connection: Connection) -> str:
 		if connection.isWiFi and connection.wifi and connection.wifi.ssid:
-			result = f"{connection.adapter}  │  {connection.wifi.ssid}  [{self.encryptionShortText.get(connection.wifi.encryption, connection.wifi.encryption)}]"
+			result = f"{connection.adapter}  │  {connection.wifi.displaySsid}  [{self.encryptionShortText.get(connection.wifi.encryption, connection.wifi.encryption)}]"
 		else:
 			result = f"{connection.adapter}  │  {"DHCP" if connection.dhcp else connection.ipStr()}"
 		return result
@@ -809,7 +821,7 @@ class NetworkAdapterSetup(Setup):
 		self.hasMetric = currentMetric is not None and len(networkManager.getAdapters()) > 1
 		self.cfgMetric = NoSave(ConfigSelection(choices=networkManager.ROUTE_METRIC_CHOICES, default=currentMetric if currentMetric is not None else (600 if adapter.isWiFi else 100)))
 		hasOwn = bool(connection.dnsServers)
-		self.cfgDnsOverride = NoSave(ConfigYesNo(default=hasOwn))
+		self.cfgDNSOverride = NoSave(ConfigYesNo(default=hasOwn))
 		dnsV4 = [x for x in connection.dnsServers if isinstance(x, list)]
 		dnsV6 = [x for x in connection.dnsServers if isinstance(x, str)]
 		self.cfgDNS1v4 = NoSave(ConfigIP(default=dnsV4[0] if len(dnsV4) > 0 else [0, 0, 0, 0]))
@@ -840,6 +852,7 @@ class NetworkAdapterSetup(Setup):
 		connection = self.connection
 		wasEnabled = adapter.adapterEnabled
 		wasGeneral = (connection.dhcp, connection.ipMode, connection.ip, connection.netmask, connection.gateway, connection.dnsServers)
+		wasWakeOnWiFi = connection.wakeOnWiFi
 		wasLinkSpeed = networkManager.getLinkSpeed(adapter.name)
 		wasMetric = adapter.metric if self.hasMetric else None
 		adapter.adapterEnabled = self.cfgEnabled.value
@@ -849,7 +862,7 @@ class NetworkAdapterSetup(Setup):
 			connection.ip = self.cfgIp.value
 			connection.netmask = self.cfgNetmask.value
 			connection.gateway = self.cfgGateway.value
-		if not self.cfgDnsOverride.value:
+		if not self.cfgDNSOverride.value:
 			connection.dnsServers = []
 		else:
 			servers = []
@@ -876,7 +889,7 @@ class NetworkAdapterSetup(Setup):
 				networkManager.setRouteMetrics(lanMetric=self.cfgMetric.value)
 		nowGeneral = (connection.dhcp, connection.ipMode, connection.ip, connection.netmask, connection.gateway, connection.dnsServers)
 		change = CHANGE_NONE
-		if nowGeneral != wasGeneral or self.cfgLinkSpeed.value != wasLinkSpeed:
+		if nowGeneral != wasGeneral or self.cfgLinkSpeed.value != wasLinkSpeed or connection.wakeOnWiFi != wasWakeOnWiFi:
 			change |= CHANGE_GENERAL
 		if adapter.adapterEnabled != wasEnabled:
 			change |= CHANGE_ADAPTER_ENABLED if adapter.adapterEnabled else CHANGE_ADAPTER_DISABLED
@@ -923,7 +936,7 @@ class NetworkWiFiSetup(Setup):
 			self.wifiConnsSorted = []
 			self.cfgPriority = NoSave(ConfigNumber(default=connection.priority))
 		wifi = connection.wifi
-		self.cfgSsid = NoSave(ConfigText(default=wifi.ssid, fixed_size=False))
+		self.cfgSsid = NoSave(ConfigText(default=wifi.displaySsid, fixed_size=False))
 		self.cfgHidden = NoSave(ConfigYesNo(default=wifi.hidden))
 		encryptionChoices = [  # A hand written configuration may carry a value this screen does not offer.
 			(Encryption.NONE, _("None")),
@@ -964,7 +977,9 @@ class NetworkWiFiSetup(Setup):
 		else:
 			connection.priority = int(self.cfgPriority.value)
 		wifi = connection.wifi
-		wifi.ssid = self.cfgSsid.value.strip()
+		ssid = self.cfgSsid.value.strip()
+		if ssid != wifi.displaySsid:  # Keep bytes the text field could not show.
+			wifi.ssid = ssid
 		wifi.hidden = self.cfgHidden.value
 		wifi.encryption = self.cfgEncryption.value
 		if wifi.encryption != Encryption.NONE:
@@ -1135,7 +1150,7 @@ class NetworkWiFiScan(Screen):
 		if current:
 			accessPoint = current[-1]
 			if accessPoint.encryption in self.enterpriseEncryptions:
-				self.session.open(MessageBox, _("'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf.") % accessPoint.ssid, type=MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf.") % WiFiConfig.displayText(accessPoint.ssid), type=MessageBox.TYPE_INFO)
 			else:
 				self.close(accessPoint)
 
@@ -1166,9 +1181,10 @@ class NetworkWiFiScan(Screen):
 				if self.accessPoints:
 					accessPointList = []
 					for accessPoint in sorted(self.accessPoints.values(), key=lambda ap: -ap.signalPct):
+						ssid = WiFiConfig.displayText(accessPoint.ssid)
 						accessPointList.append((
-							f"{accessPoint.ssid}  ({accessPoint.bssid})",            # Name.
-							accessPoint.ssid,                                        # SSID.
+							f"{ssid}  ({accessPoint.bssid})",                        # Name.
+							ssid,                                                    # SSID.
 							accessPoint.bssid,                                       # BSSID.
 							accessPoint.signalGlyphs,                                # Glyph.
 							accessPoint.signalText,                                  # Strength.
@@ -1273,7 +1289,7 @@ class NetworkWiFiScan(Screen):
 			if current is None:
 				continue
 			if match := reSsid.match(line):
-				current.ssid = match.group(1)
+				current.ssid = WiFiConfig.ssidFromEscaped(match.group(1))
 			elif match := reFreq.match(line):
 				freqMhz = int(match.group(1))
 				current.frequency = f"{freqMhz / 1000:.3f} GHz"
@@ -1356,7 +1372,7 @@ class NetworkWiFiScan(Screen):
 			if current is None:
 				continue
 			if match := reSsid.search(line):
-				current.ssid = match.group(1)
+				current.ssid = WiFiConfig.ssidFromEscaped(match.group(1))
 			if match := reFreq.search(line):
 				current.frequency = match.group(1)
 				if match.group(2):
@@ -1434,7 +1450,7 @@ class NetworkWiFiActivator(Screen):
 		self.closeTimer = eTimer()
 		self.pollInterval = 1500
 		self.pollMaxAttempts = 20
-		self.ssid = connection.wifi.ssid if connection.wifi else adapter.name
+		self.ssid = connection.wifi.displaySsid if connection.wifi else adapter.name
 		self.pollCount = 0
 		self.onLayoutFinish.append(self.start)
 

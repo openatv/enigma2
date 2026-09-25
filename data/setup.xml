@@ -510,7 +510,7 @@
 				<item level="0" text="Even if a 'Wakeup' scheduled task starting?" description="Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting." indent="2">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="TV Input And Receiver Wakeup" />
-			<item level="0" text="Switch TV to correct input" description="When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver." indent="1">config.hdmicec.report_active_source</item>
+			<item level="0" text="Switch TV to correct input" description="When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input." indent="1">config.hdmicec.report_active_source</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value" indent="2">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wake up from TV" description="When enabled, the receiver will automatically wake from Standby when the TV is turned on." indent="1">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle Standby from TV" description="When enabled, the receiver will automatically return to Standby when the TV is turned off." indent="1">config.hdmicec.handle_tv_standby</item>
@@ -673,15 +673,15 @@
 				</if>
 			</if>
 			<item level="1" text="Network metric" description="Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic." conditional="self.hasMetric">self.cfgMetric</item> 
-			<item level="1" text="DNS override" description="When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings.">self.cfgDnsOverride</item>
-			<if conditional="self.cfgDnsOverride.value">
+			<item level="1" text="DNS override" description="When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings.">self.cfgDNSOverride</item>
+			<if conditional="self.cfgDNSOverride.value">
 				<if conditional="self.cfgIpMode.value != 1">
-					<item level="0" text="Primary DNS (IPv4)" description="Enter the primary IPv4 DNS server for this adapter.">self.cfgDns1v4</item>
-					<item level="0" text="Secondary DNS (IPv4)" description="Enter the secondary IPv4 DNS server for this adapter. (Optional)">self.cfgDns2v4</item>
+					<item level="0" text="Primary DNS (IPv4)" description="Enter the primary IPv4 DNS server for this adapter.">self.cfgDNS1v4</item>
+					<item level="0" text="Secondary DNS (IPv4)" description="Enter the secondary IPv4 DNS server for this adapter. (Optional)">self.cfgDNS2v4</item>
 				</if>
 				<if conditional="self.cfgIpMode.value != 0">
-					<item level="0" text="Primary DNS (IPv6)" description="Enter the primary IPv6 DNS server for this adapter. (Optional)">self.cfgDns1v6</item>
-					<item level="0" text="Secondary DNS (IPv6)" description="Enter the secondary IPv6 DNS server for this adapter. (Optional)">self.cfgDns2v6</item>
+					<item level="0" text="Primary DNS (IPv6)" description="Enter the primary IPv6 DNS server for this adapter. (Optional)">self.cfgDNS1v6</item>
+					<item level="0" text="Secondary DNS (IPv6)" description="Enter the secondary IPv6 DNS server for this adapter. (Optional)">self.cfgDNS2v6</item>
 				</if>
 			</if>
 			<if conditional="not self.adapter.isWiFi">
@@ -1347,7 +1347,7 @@
 		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information." indent="1">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd InfoBar timeout" description="Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'." indent="2">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the InfoBar." indent="1">config.usage.showpicon</item>
-		<item level="0" text="Show InfoBar lite" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info." restart="gui" indent="1">config.usage.show_infobar_lite</item>
+		<item level="0" text="Show InfoBar lite" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info." indent="1">config.usage.show_infobar_lite</item>
 		<if requires="CanChangeOsdAlpha">
 			<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide." indent="1">config.usage.show_infobar_do_dimming</item>
 			<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." conditional="config.usage.show_infobar_do_dimming.value" indent="2">config.usage.show_infobar_dimming_speed</item>

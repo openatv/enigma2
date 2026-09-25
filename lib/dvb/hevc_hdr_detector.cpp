@@ -83,7 +83,7 @@ void eHEVCHDRDetector::stop()
 	m_bytes_received = 0;
 }
 
-int eHEVCHDRDetector::selectGamma(int pes_gamma, int es_gamma, bool final)
+int eHEVCHDRDetector::selectGamma(int pes_gamma, int es_gamma, bool is_final)
 {
 	/* HLG wins a conflict with mastering-display SEI.  HLG services may carry
 	 * mastering metadata in addition to transfer_characteristics 18. */
@@ -91,7 +91,7 @@ int eHEVCHDRDetector::selectGamma(int pes_gamma, int es_gamma, bool final)
 		return eHEVCHDRParser::GammaHLG;
 	if (pes_gamma == eHEVCHDRParser::GammaHDR10 || es_gamma == eHEVCHDRParser::GammaHDR10)
 		return eHEVCHDRParser::GammaHDR10;
-	if (final && (pes_gamma == eHEVCHDRParser::GammaSDR || es_gamma == eHEVCHDRParser::GammaSDR))
+	if (is_final && (pes_gamma == eHEVCHDRParser::GammaSDR || es_gamma == eHEVCHDRParser::GammaSDR))
 		return eHEVCHDRParser::GammaSDR;
 	return eHEVCHDRParser::GammaUnknown;
 }
