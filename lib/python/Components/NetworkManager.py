@@ -320,10 +320,10 @@ class NetworkManager:
 					conn.wifi.disabled = not conn.enabled
 					conn.wifi.priority = conn.priority
 			wifiConfigs = [x.wifi for x in conns if x.wifi is not None and x.wifi.ssid]
-			if not wifiConfigs:
+			wpf = WpaSupplicantFile(interface)
+			if not wifiConfigs and not wpf.exists():
 				continue
 			self.log(f"saveWpaSupplicant: {interface} writing {len(wifiConfigs)} wifi config(s): {", ".join(f"{x.ssid!r}(disabled={x.disabled})" for x in wifiConfigs)}.")
-			wpf = WpaSupplicantFile(interface)
 			wpf.ensureDir()
 			ok = wpf.save(wifiConfigs) and ok
 			self.reconfigureWifi(interface)
