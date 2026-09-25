@@ -526,15 +526,11 @@ class NetworkOverview(Screen):
 		if listName == "adapterList":
 			self["actions"].setEnabledAction("first", False)
 			self["actions"].setEnabledAction("left", False)
-			self["key_info"].setText(_("INFO"))
-			self["actions"].setEnabledAction("info", True)
 			self["adapterList"].selectionEnabled(True)
 			self["savedList"].selectionEnabled(False)
 		else:
 			self["actions"].setEnabledAction("first", True)
 			self["actions"].setEnabledAction("left", True)
-			self["key_info"].setText("")
-			self["actions"].setEnabledAction("info", False)
 			self["actions"].setEnabledAction("right", False)
 			self["actions"].setEnabledAction("last", False)
 			self["adapterList"].selectionEnabled(False)
@@ -545,21 +541,32 @@ class NetworkOverview(Screen):
 	def updateButtons(self):
 		greenText = ""
 		blueText = ""
-		if adapter := self.getCurrentAdapter():
+		infoText = ""
+		isVpn = False
+		adapter = self.getCurrentAdapter()
+		if adapter:
 			if self.currentList == "adapterList":
 				greenText = _("Deactivate") if adapter.adapterEnabled else _("Activate")
 				valid = self["savedList"].count() > 1
 				self["actions"].setEnabledAction("right", valid)
 				self["actions"].setEnabledAction("last", valid)
+				infoText = _("INFO")
 			else:
 				if connection := self.getCurrentSaved():
 					greenText = _("Disable") if connection.enabled else _("Enable")
 					if connection.enabled and not self.isConnectionLive(adapter, connection):
 						blueText = _("Connect")
+		else:
+			isVpn = self.currentList == "adapterList" and self["adapterList"].getCurrent() is not None
+
 		self["key_green"].setText(greenText)
 		self["key_blue"].setText(blueText)
+		self["key_info"].setText(infoText)
 		self["actions"].setEnabledAction("green", greenText != "")
 		self["actions"].setEnabledAction("blue", blueText != "")
+		self["actions"].setEnabledAction("ok", not isVpn)
+		self["actions"].setEnabledAction("menu", not isVpn)
+		self["actions"].setEnabledAction("info", infoText != "")
 
 	# True if saved entry is the Wi-Fi connection the adapter is currently
 	# associated with, same check as buildOverviewConnectionRow()'s isLive.
