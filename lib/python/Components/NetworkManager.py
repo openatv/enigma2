@@ -159,7 +159,7 @@ class NetworkManager:
 			driver = apiNl80211
 			if isBroadcomWl(interface, module):
 				driver = apiWext
-			elif isdir(f"{sysfsNet}/{interface}/device/ieee80211"):
+			elif isdir(f"{sysfsNet}/{interface}/phy80211"):
 				driver = apiNl80211
 			elif module in ("ath_pci", "ath5k", "ar6k_wlan"):
 				driver = apiMadwifi
@@ -320,10 +320,10 @@ class NetworkManager:
 					conn.wifi.disabled = not conn.enabled
 					conn.wifi.priority = conn.priority
 			wifiConfigs = [x.wifi for x in conns if x.wifi is not None and x.wifi.ssid]
-			if not wifiConfigs:
+			wpf = WpaSupplicantFile(interface)
+			if not wifiConfigs and not wpf.exists():
 				continue
 			self.log(f"saveWpaSupplicant: {interface} writing {len(wifiConfigs)} wifi config(s): {", ".join(f"{x.ssid!r}(disabled={x.disabled})" for x in wifiConfigs)}.")
-			wpf = WpaSupplicantFile(interface)
 			wpf.ensureDir()
 			ok = wpf.save(wifiConfigs) and ok
 			self.reconfigureWifi(interface)
@@ -340,7 +340,12 @@ class NetworkManager:
 			interface = adapter.name
 			api = adapter.driverApi
 			driverFlags = f"-D {api}" if api != apiNl80211 else ""
-			lines = [
+			lines = []
+			if self.getBaseConnection(interface).wakeOnWiFi and exists(wlBin):
+				# The firmware forgets the wake pattern whenever the interface goes down.
+				lines.append(f"pre-up {wlBin} -i {interface} wowl 0x100 || true")
+				lines.append(f"pre-up {wlBin} -i {interface} wowl_activate || true")
+			lines += [
 				f"pre-up {ifconfigBin} {interface} up || true",
 				f"pre-up {wpaSupplicantBin} -i{interface} -c{adapter.wpaConfPath} -B {driverFlags} -P{adapter.wpaPidPath} || true",
 			]
@@ -597,16 +602,7 @@ class NetworkManager:
 		procPath = BoxInfo.getItem("WakeOnLAN") or ""
 		if procPath and exists(procPath):
 			cmds.append(f"echo '{'enable' if enable else 'disable'}' > {procPath}")
-		self.updateWowPreup(adapter, enable)
 		return cmds
-
-	def updateWowPreup(self, adapter: Adapter, enable: bool):
-		baseConn = self.getBaseConnection(adapter.name)
-		interface = adapter.name
-		baseConn.extraLines = [x for x in baseConn.extraLines if "wowl" not in x]
-		if enable:
-			baseConn.extraLines.insert(0, f"pre-up wl -i {interface} wowl_activate || true")
-			baseConn.extraLines.insert(0, f"pre-up wl -i {interface} wowl 0x100 || true")
 
 	def getWakeOnWiFi(self, interface: str) -> bool:
 		if interface not in self.adapters:
