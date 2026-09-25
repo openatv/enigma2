@@ -759,6 +759,9 @@ public:
 	virtual void setPage(const ePangoSubtitlePage &p) = 0;
 	virtual void setPage(const eVobSubtitlePage &p) = 0;
 	virtual void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest) = 0;
+	/* hide the page on screen now; setPage() armed the widget's own hide timer
+	   for that page's timeout and knows nothing about a track switch */
+	virtual void clearPage() = 0;
 	virtual void destroy() = 0;
 };
 
