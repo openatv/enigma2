@@ -4487,6 +4487,11 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 	if (m_currentSubtitleStream == track.pid && !eSubtitleSettings::pango_autoturnon)
 		return 0;
 
+	/* the page on screen belongs to the old track and would sit there until
+	   its own timeout elapses */
+	if (m_subtitle_widget)
+		m_subtitle_widget->clearPage();
+
 	m_subtitle_generation++;
 	m_subtitle_sync_timer->stop();
 	m_dvb_subtitle_sync_timer->stop();
