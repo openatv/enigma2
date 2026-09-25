@@ -340,16 +340,12 @@ class NetworkManager:
 			interface = adapter.name
 			api = adapter.driverApi
 			driverFlags = f"-D {api}" if api != apiNl80211 else ""
-<<<<<<< HEAD
-			lines = [
-=======
 			lines = []
 			if self.getBaseConnection(interface).wakeOnWiFi and exists(wlBin):
 				# The firmware forgets the wake pattern whenever the interface goes down.
 				lines.append(f"pre-up {wlBin} -i {interface} wowl 0x100 || true")
 				lines.append(f"pre-up {wlBin} -i {interface} wowl_activate || true")
 			lines += [
->>>>>>> master
 				f"pre-up {ifconfigBin} {interface} up || true",
 				f"pre-up {wpaSupplicantBin} -i{interface} -c{adapter.wpaConfPath} -B {driverFlags} -P{adapter.wpaPidPath} || true",
 			]
