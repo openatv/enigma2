@@ -1061,7 +1061,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_clear_buffers = true;
 	m_initial_start = false;
 	m_send_ev_start = true;
-	m_pending_seek_pos = 0;
+	m_pending_seek_pos = -1;
+	m_prerolled = false;
+	m_resume_pending = false;
+	m_subtitle_requested = false;
 	m_first_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
@@ -1139,15 +1142,58 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if (!m_ref.alternativeurl.empty())
 		filename = m_ref.alternativeurl.c_str();
 
+	// optional start position/tracks, strip them before "&suburi=" below
+	{
+		static const char* const markers[] = {"&e2startoffset=", "&e2audiotrack=", "&e2subtitletrack="};
+		std::string url = filename;
+		bool stripped = false;
+		for (int p = 0; p < 3; p++) {
+			size_t ppos = url.find(markers[p]);
+			if (ppos == std::string::npos)
+				continue;
+			size_t value_start = ppos + strlen(markers[p]);
+			size_t value_end = url.find('&', value_start);
+			std::string value = url.substr(value_start, value_end == std::string::npos ? std::string::npos : value_end - value_start);
+			url.erase(ppos, (value_end == std::string::npos ? url.size() : value_end) - ppos);
+			stripped = true;
+			switch (p) {
+				case 0:
+					m_pending_seek_pos = atoll(value.c_str());
+					if (m_pending_seek_pos < 0)
+						m_pending_seek_pos = -1;
+					else
+						m_resume_pending = true;
+					eDebug("[eServiceMP3] e2startoffset=%lld", (long long)m_pending_seek_pos);
+					break;
+				case 1:
+					m_currentAudioStream = atoi(value.c_str());
+					eDebug("[eServiceMP3] e2audiotrack=%d", m_currentAudioStream);
+					break;
+				case 2: {
+					// picked up via getCachedSubtitle(), negative = no subtitle
+					int index = atoi(value.c_str());
+					m_cachedSubtitleStream = index >= 0 ? index : -1;
+					m_subtitle_requested = true;
+					eDebug("[eServiceMP3] e2subtitletrack=%d", m_cachedSubtitleStream);
+				} break;
+			}
+		}
+		if (stripped) {
+			filename_str = url;
+			filename = filename_str.c_str();
+		}
+	}
+
 	gchar* suburi = NULL;
 
 	m_external_subtitle_path = "";
 	m_external_subtitle_language = "";
 	m_external_subtitle_extension = "";
 
-	pos = m_ref.path.find("&suburi=");
+	std::string suburi_source = filename;
+	pos = suburi_source.find("&suburi=");
 	if (pos != std::string::npos) {
-		filename_str = filename;
+		filename_str = suburi_source;
 
 		std::string suburi_str = filename_str.substr(pos + 8);
 		filename = suburi_str.c_str();
@@ -1623,6 +1669,7 @@ RESULT eServiceMP3::start() {
 
 	m_subtitles_paused = false;
 	m_base_mpegts = -1;  // Reset MPEGTS base for WebVTT at new start
+	m_prerolled = false;
 	if (m_gst_playbin) {
 		eDebug("[eServiceMP3] *** starting pipeline ****");
 		GstStateChangeReturn ret;
@@ -1880,16 +1927,12 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 	m_last_seek_pos = to;
 	m_base_mpegts = -1;  // Reset when seeking to avoid stale base
 
-	if(m_pending_seek_pos == 0 && to > 0)
-	{
-		GstState state;
-		gst_element_get_state(m_gst_playbin, &state, NULL, 0);
-
-		if (state < GST_STATE_PAUSED) {
-			eDebug("[eServiceMP3] seekTo delayed (state=%d)", state);
-			m_pending_seek_pos = to;
-			return 0;
-		}
+	// a flushing seek before preroll stalls playback, apply it on ASYNC_DONE
+	if (!m_prerolled) {
+		eDebug("[eServiceMP3] seekTo %lld deferred until preroll", (long long)to);
+		m_pending_seek_pos = to;
+		m_seeking_or_paused = false;
+		return 0;
 	}
 
 	/* 200ms gate against seek-spam: stacked FLUSH seeks deadlock the
@@ -1925,9 +1968,36 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		if (!m_to_paused) {
 			m_seeking_or_paused = false;
 			m_last_seek_count = 1;
+			// seek before the first getPlayPosition(), position would stay frozen
+			if (!m_play_position_timer->isActive())
+				m_play_position_timer->start(50, false);
 		}
 	}
 	return 0;
+}
+
+/**
+ * @brief Applies a seek held back until preroll and sends evResumed.
+ */
+void eServiceMP3::applyPendingSeek() {
+	m_prerolled = true;
+	if (m_pending_seek_pos >= 0) {
+		pts_t pos = m_pending_seek_pos;
+		m_pending_seek_pos = -1;
+		if (m_is_live) {
+			eDebug("[eServiceMP3] dropping deferred seek to %lld, source is live", (long long)pos);
+		} else if (pos == 0) {
+			// already at 0, and it runs MPEG-TS into EOS
+			eDebug("[eServiceMP3] dropping deferred seek to 0, already there");
+		} else {
+			eDebug("[eServiceMP3] performing deferred seek to %lld", (long long)pos);
+			seekTo(pos);
+		}
+	}
+	if (m_resume_pending) {
+		m_resume_pending = false;
+		m_event((iPlayableService*)this, evResumed);
+	}
 }
 
 /**
@@ -3110,6 +3180,9 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 						m_is_live = true;
 					}
+					// live sources do not preroll
+					if (m_is_live && !m_prerolled)
+						applyPendingSeek();
 				} break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED: {
 					m_state = stRunning;
@@ -3165,6 +3238,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						   gst_element_state_change_return_get_name(ret));
 					if (!m_is_live && ret == GST_STATE_CHANGE_NO_PREROLL)
 						m_is_live = true;
+					if (m_is_live && !m_prerolled)
+						applyPendingSeek();
 					m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					updateEpgCacheNowNext();
 
@@ -3382,6 +3457,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					m_event((iPlayableService*)this, evUpdatedInfo);
 					m_send_ev_start = false;
 				}
+				if (!m_prerolled)
+					applyPendingSeek();
 				break;
 			}
 
@@ -3514,15 +3591,12 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					m_event((iPlayableService*)this, evUpdatedInfo);
 				}
 
-				if (m_pending_seek_pos > 0) {
-					eDebug("[eServiceMP3] Performing deferred seek to %llds", (long long)m_pending_seek_pos);
-					seekTo(m_pending_seek_pos);
-					m_pending_seek_pos = -1;
-				}
-
 			} else {
 				m_send_ev_start = true;
 			}
+
+			if (!m_prerolled)
+				applyPendingSeek();
 
 			if (m_errorInfo.missing_codec != "") {
 				if (m_errorInfo.missing_codec.find("video/") == 0 ||
@@ -4637,7 +4711,7 @@ static int subtitleTrackType(subtype_t type) {
  */
 RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack& track) {
 	// If autostart not active, exit
-	if (!eSubtitleSettings::pango_autoturnon)
+	if (!eSubtitleSettings::pango_autoturnon && !m_subtitle_requested)
 		return -1;
 	int autosub_level = 5;
 	std::string configvalue;

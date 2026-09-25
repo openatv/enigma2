@@ -1007,6 +1007,9 @@ public:
 		evUpdateIDv3Cover,
 		evGstreamerStart,
 
+		// "&e2startoffset=" start position applied
+		evResumed,
+
 		evUser = 0x100
 	};
 };
