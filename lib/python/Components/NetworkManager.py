@@ -1094,6 +1094,8 @@ class InterfacesFile:
 				elif len(tokens_inner) >= 3 and tokens_inner[0] == "Only" and tokens_inner[1] == "WakeOnWiFi":
 					wakeOnWiFiIfaces.add(tokens_inner[2])
 					continue
+				elif current is not None and not current.enabled:
+					line = inner
 				else:
 					disabled = False
 					continue
@@ -1182,7 +1184,7 @@ class InterfacesFile:
 					if ip:
 						current.dnsServers.append(ip)
 			elif kw in ("pre-up", "pre-down", "post-up", "post-down", "up", "down"):
-				current.extraLines.append(raw.strip())
+				current.extraLines.append(line)
 		return result, autoIfaces, wakeOnWiFiIfaces
 
 	def serialize(self, connectionsByAdapter: dict[str, list[Connection]], adapterEnabledMap: dict[str, bool] | None = None) -> list[str]:
