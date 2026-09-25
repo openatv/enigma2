@@ -1005,10 +1005,17 @@ class DeviceManagerMountPoints(Setup):
 				self.options[index].value = self.defaultOptions.get(self.fileSystems[index].value)
 		Setup.changedEntry(self)
 
+	def sanitizedCustomMountPoint(self, index):
+		return "".join(x for x in self.customMountPoints[index].value if x.isalnum() or x in "_-")
+
 	def setFootnote(self, footnote):
-		if self["config"].getCurrent()[1] != self.configMode:
-			disk = self["config"].getCurrent()[4]
-			footnote = self.disks.get(disk, "")
+		current = self["config"].getCurrent()
+		if current[1] != self.configMode:
+			index = current[3]
+			if current[1] == self.customMountPoints[index] and not self.sanitizedCustomMountPoint(index):
+				footnote = _("The custom mount point for '%s' is empty!") % self.devices[index][0]
+			else:
+				footnote = self.disks.get(current[4], "")
 		Setup.setFootnote(self, footnote)
 
 	def keySave(self):
@@ -1036,25 +1043,36 @@ class DeviceManagerMountPoints(Setup):
 			cleanMediaDirs()
 			harddiskmanager.refreshMountPoints()
 			self.close(needReboot)
-		oldFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
-		newFstab = []
-		UUIDs = [device[3] for device in self.devices if device[3]]
-		for line in oldFstab:
-			found = False
-			for UUID in UUIDs:
-				if UUID in line:
-					found = True
-					break
-			if not found or EXPANDER_MOUNT in line:
-				newFstab.append(line)
-		self.deviceMounts = []
+		mountPoints = []
 		for index, device in enumerate(self.devices):
 			if self.mountPoints[index].value:
 				mountPoint = self.mountPoints[index].value
 			else:
-				mountPoint = self.customMountPoints[index].value
-				mountPoint = "".join(x for x in mountPoint if x.isalnum() or x in "_-")
+				mountPoint = self.sanitizedCustomMountPoint(index)
+				if not mountPoint:  # An empty name would mount the device over "/media" itself.
+					for item in self["config"].list:
+						if item[1] == self.customMountPoints[index]:
+							self.moveToItem(item)
+							break
+					self.setFootnote(None)
+					return
 				mountPoint = f"/media/{mountPoint}"
+			mountPoints.append(mountPoint)
+		oldFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
+		newFstab = []
+		UUIDs = [device[3] for device in self.devices if device[3]]
+		devicePoints = [device[0] for device in self.devices]
+		for line in oldFstab:
+			parts = line.split()
+			source = parts[0] if parts else ""
+			# Drop the old entries of the devices shown, by UUID and, as written when the UUID was
+			# unavailable, by device name.  Without the latter such entries pile up on every save.
+			found = source in devicePoints or any(UUID in source for UUID in UUIDs)
+			if not found or EXPANDER_MOUNT in line:
+				newFstab.append(line)
+		self.deviceMounts = []
+		for index, device in enumerate(self.devices):
+			mountPoint = mountPoints[index]
 			fileSystem = self.fileSystems[index].value
 			options = self.options[index].value
 			# device, fstabmountpoint, isMounted, deviceUuid, name, choiceList
