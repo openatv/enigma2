@@ -1044,9 +1044,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_pgs_subtitle_parser = new ePGSSubtitleParser();
 	m_pgs_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
 										  m_new_pgs_subtitle_page_connection);
-#ifdef PASSTHROUGH_FIX
-	m_passthrough_fix_timer = eTimer::create(eApp);
-#endif
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
@@ -1105,9 +1102,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	CONNECT(m_dvb_subtitle_sync_timer->timeout, eServiceMP3::pushDVBSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
-#ifdef PASSTHROUGH_FIX
-	CONNECT(m_passthrough_fix_timer->timeout, eServiceMP3::forcePassthrough);
-#endif
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
@@ -1500,15 +1494,6 @@ eServiceMP3::~eServiceMP3() {
 	m_new_dvb_subtitle_page_connection = 0;
 	m_new_pgs_subtitle_page_connection = nullptr;
 }
-
-#ifdef PASSTHROUGH_FIX
-void eServiceMP3::forcePassthrough() {
-	eTrace("[eServiceMP3] Setting 'passthrough' to force correct operation");
-	CFile::writeStr("/proc/stb/audio/ac3", "passthrough");
-	m_clear_buffers = true;
-	clearBuffers();
-}
-#endif
 
 /**
  * @brief Updates the EPG cache for the current and next events.
@@ -2800,10 +2785,6 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
-#ifdef PASSTHROUGH_FIX
-	if ((!m_initial_start || !m_clear_buffers) && !force)
-		return;
-#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
@@ -2870,40 +2851,7 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
 			eDebug("[eServiceMP3] switched to audio stream %d", current_audio);
 			m_currentAudioStream = i;
 
-#ifdef PASSTHROUGH_FIX
-			GstPad* pad = 0;
-			g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
-			GstCaps* caps = gst_pad_get_current_caps(pad);
-			gst_object_unref(pad);
-			if (caps) {
-				GstStructure* str = gst_caps_get_structure(caps, 0);
-				const gchar* g_type = gst_structure_get_name(str);
-				audiotype_t apidtype = gstCheckAudioPad(str);
-				gst_caps_unref(caps);
-				if (apidtype == atAC3 || apidtype == atEAC3 || apidtype == atAAC || apidtype == atUnknown ||
-					apidtype == atPCM) {
-					std::string pass = CFile::read("/proc/stb/audio/ac3");
-					if (pass.find("passthrough") != std::string::npos) {
-						int longAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_long", 1200);
-						int shortAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
-						if (m_clear_buffers) {
-							m_passthrough_fix_timer->stop();
-							m_passthrough_fix_timer->start(apidtype == atEAC3 && i > 0 && current_audio_orig > -1
-															   ? longAudioDelay
-															   : shortAudioDelay,
-														   true);
-						}
-
-					} else {
-						clearBuffers();
-					}
-				} else {
-					clearBuffers();
-				}
-			}
-#else
 			clearBuffers();
-#endif
 			setCacheEntry(true, i);
 		}
 		return 0;
@@ -3191,11 +3139,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						int deferred_audio = m_audio_switch_deferred;
 						m_audio_switch_deferred = -1;
 						// eDebug("[eServiceMP3] applying deferred audio switch to stream %d", deferred_audio);
-#ifdef PASSTHROUGH_FIX
-						selectAudioStream(deferred_audio);
-#else
 						selectTrack(deferred_audio);
-#endif
 					} else if (m_currentAudioStream < 0) {
 						unsigned int autoaudio = 0;
 						int autoaudio_level = 5;
@@ -3228,26 +3172,10 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 							}
 						}
 						if (autoaudio)
-#ifdef PASSTHROUGH_FIX
-							selectAudioStream(autoaudio);
-#else
 							selectTrack(autoaudio);
-#endif
 					} else {
-#ifdef PASSTHROUGH_FIX
-						selectAudioStream(m_currentAudioStream);
-#else
 						selectTrack(m_currentAudioStream);
-#endif
 					}
-#ifdef PASSTHROUGH_FIX
-					m_clear_buffers = false;
-					if (!m_initial_start) {
-						if (!m_sourceinfo.is_streaming)
-							seekTo(0);
-						m_initial_start = true;
-					}
-#endif
 					if (!m_first_paused)
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					m_first_paused = false;
