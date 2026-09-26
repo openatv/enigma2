@@ -271,7 +271,20 @@ class LocaleSelection(Screen):
 		config.osd.language.value = self.currentLocale  # This setting is now deprecated but retained for plugins.
 		config.osd.language.save()
 		international.activateLocale(self.currentLocale, runCallbacks=True)
-		if not self.inWizard and self.currentLocale != self.initialLocale:
+		if self.inWizard:
+			packages = international.getPurgablePackages(self.currentLocale)
+			if packages:
+				self["description"].text = _("Purging unused locales/languages...")
+				Processing.instance.setDescription(_("Please wait while locales/languages are purged..."))
+				Processing.instance.showProgress(endless=True)
+				opkgArguments = {
+					"options": ["--autoremove", "--force-depends"],
+					"arguments": [international.LOCALE_TEMPLATE % x for x in packages]
+				}
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args=opkgArguments)
+			else:
+				self.close()
+		elif self.currentLocale != self.initialLocale:
 			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now to start using the new locale/language?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
 		else:
 			self.close()
@@ -395,6 +408,8 @@ class LocaleSelection(Screen):
 				Processing.instance.hideProgress()
 				self.updateLocaleList(self.currentLocale)
 				self.updateText()
+				if self.inWizard:
+					self.close()
 			case _:
 				print(f"[LocaleSelection] Error: Unexpected opkg event '{self.opkgComponent.getEventText(event)}'!")
 
