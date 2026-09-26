@@ -40,21 +40,28 @@ ACTIONKEY_ERASE = 26
 #
 # (These should be removed when all Enigma2 uses the new and less confusing names.)
 #
-KEY_LEFT = ACTIONKEY_LEFT
-KEY_RIGHT = ACTIONKEY_RIGHT
-KEY_OK = ACTIONKEY_SELECT
-KEY_DELETE = ACTIONKEY_DELETE
-KEY_BACKSPACE = ACTIONKEY_BACKSPACE
-KEY_HOME = ACTIONKEY_FIRST
-KEY_END = ACTIONKEY_LAST
-KEY_TOGGLEOW = ACTIONKEY_TOGGLE
-KEY_ASCII = ACTIONKEY_ASCII
-KEY_TIMEOUT = ACTIONKEY_TIMEOUT
-KEY_NUMBERS = ACTIONKEY_NUMBERS
-KEY_0 = ACTIONKEY_0
-KEY_9 = ACTIONKEY_9
+KEY_LEFT = 0  # ACTIONKEY_LEFT.
+KEY_RIGHT = 1  # ACTIONKEY_RIGHT.
+KEY_OK = 2  # ACTIONKEY_SELECT.
+KEY_DELETE = 3  # ACTIONKEY_DELETE.
+KEY_BACKSPACE = 4  # ACTIONKEY_BACKSPACE.
+KEY_HOME = 5  # ACTIONKEY_FIRST.
+KEY_END = 6  # ACTIONKEY_LAST.
+KEY_TOGGLEOW = 7  # ACTIONKEY_TOGGLE.
+KEY_ASCII = 8  # ACTIONKEY_ASCII.
+KEY_TIMEOUT = 9  # ACTIONKEY_TIMEOUT.
+KEY_NUMBERS = list(range(12, 12 + 10))  # ACTIONKEY_NUMBERS.
+KEY_0 = 12  # ACTIONKEY_0.
+KEY_9 = 21  # ACTIONKEY_9.
 
-READONLY_COLOR = r"\c007f7f7f"
+DEFAULT_READONLY_COLOR = r"\c007F7F7F"
+READONLY_COLOR = DEFAULT_READONLY_COLOR
+
+
+def setReadOnlyColor(value):
+	global READONLY_COLOR
+	READONLY_COLOR = value
+
 
 setupOnSave = {}  # This is used to trigger setup callbacks on save, it is populated by setup modules which want to use it. It's used in openwebif to trigger setup callbacks when saving settings via the web interface. It is a dictionary with section names as keys and callback functions as values.
 
@@ -88,6 +95,35 @@ def NoSave(element):
 def ReadOnly(element):
 	element.setReadOnly(True)
 	return element
+
+
+class ActionKeys:
+	ACTIONKEY_LEFT = 0
+	ACTIONKEY_RIGHT = 1
+	ACTIONKEY_SELECT = 2
+	ACTIONKEY_DELETE = 3
+	ACTIONKEY_BACKSPACE = 4
+	ACTIONKEY_FIRST = 5
+	ACTIONKEY_LAST = 6
+	ACTIONKEY_TOGGLE = 7
+	ACTIONKEY_ASCII = 8
+	ACTIONKEY_TIMEOUT = 9
+	ACTIONKEY_NUMBERS = tuple(range(12, 12 + 10))
+	ACTIONKEY_0 = 12
+	ACTIONKEY_1 = 13
+	ACTIONKEY_2 = 14
+	ACTIONKEY_3 = 15
+	ACTIONKEY_4 = 16
+	ACTIONKEY_5 = 17
+	ACTIONKEY_6 = 18
+	ACTIONKEY_7 = 19
+	ACTIONKEY_8 = 20
+	ACTIONKEY_9 = 21
+	ACTIONKEY_PAGEUP = 22
+	ACTIONKEY_PAGEDOWN = 23
+	ACTIONKEY_PREV = 24
+	ACTIONKEY_NEXT = 25
+	ACTIONKEY_ERASE = 26
 
 
 # ConfigElement, the base class of all ConfigElements.
@@ -193,7 +229,7 @@ class ConfigElement:
 		return self.value
 
 	def getMulti(self, selected):  # You need to override this to do appropriate value conversion to a display renderer.
-		return ("text", self.value)
+		return ("text", f"{READONLY_COLOR}{self.value}" if self.isReadOnly() else self.value)
 
 	def fromString(self, value):  # You need to override to return the value as the correct type.  This is correct if value is a string.
 		return value
@@ -335,7 +371,7 @@ class ConfigElement:
 		self.finalNotifiers = []
 
 	def verifyNotifiers(self, notifiers):
-		if any([not callable(notifier) for notifier in notifiers]):
+		if any(not callable(notifier) for notifier in notifiers):
 			raise TypeError("[Config] Error: All notifiers must be callable!")
 
 
@@ -351,7 +387,7 @@ class ConfigElement:
 # If choices is a dictionary then the values will be the keys of the
 # dictionary and the descriptions will be the values.
 #
-class choicesList():
+class choicesList:
 	TYPE_LIST = 1
 	TYPE_DICT = 2
 
@@ -419,7 +455,7 @@ class choicesList():
 			if isinstance(default, tuple):
 				default = default[0]
 		else:
-			default = list(choices.keys())[0]
+			default = next(iter(choices.keys()))
 		return default
 
 	def index(self, value):
@@ -474,7 +510,7 @@ class descriptionsList(choicesList):
 # 		self.actionargs = args
 #
 # 	def handleKey(self, key):
-# 		if (key == ACTIONKEY_SELECT):
+# 		if (key == ActionKeys.ACTIONKEY_SELECT):
 # 			self.action(*self.actionargs)
 #
 # 	def getMulti(self, selected):
@@ -489,7 +525,6 @@ class ConfigBoolean(ConfigElement):
 	def __init__(self, default=False, descriptions=None, graphic=True):
 		ConfigElement.__init__(self)
 		if not isinstance(default, bool):
-			# raise TypeError("[Config] Error: 'ConfigBoolean' default must be a Boolean!")
 			print(f"[Config] Error: 'ConfigBoolean' default must be a Boolean!  ({default})")
 		if descriptions is None:
 			descriptions = {
@@ -509,26 +544,26 @@ class ConfigBoolean(ConfigElement):
 
 	def handleKey(self, key, callback=None):
 		prev = self.value
-		if key in (ACTIONKEY_TOGGLE, ACTIONKEY_SELECT, ACTIONKEY_LEFT, ACTIONKEY_RIGHT):
-			self.value = not self.value
-		elif key == ACTIONKEY_FIRST:
-			self.value = False
-		elif key == ACTIONKEY_LAST:
-			self.value = True
-		if self.value != prev:
-			# self.changed() allready called in setValue
-			if callable(callback):
-				callback()
+		match key:
+			case ActionKeys.ACTIONKEY_TOGGLE | ActionKeys.ACTIONKEY_SELECT | ActionKeys.ACTIONKEY_LEFT | ActionKeys.ACTIONKEY_RIGHT:
+				self.value = not self.value
+			case ActionKeys.ACTIONKEY_FIRST:
+				self.value = False
+			case ActionKeys.ACTIONKEY_LAST:
+				self.value = True
+		if self.value != prev and callable(callback):
+			callback()
 
 	def getText(self):
 		return self.descriptions[self.value]
 
 	def getMulti(self, selected):
-		from skin import switchPixmap
-		from Components.config import config
-		if self.graphic and config.usage.boolean_graphic.value and "menu_on" in switchPixmap and "menu_off" in switchPixmap:
-			return ("pixmap", switchPixmap["menu_on" if self.value else "menu_off"])
-		return ("text", self.descriptions[self.value])
+		from Components.config import config  # This import must be here to avoid a circular import!
+		if self.graphic and config.usage.boolean_graphic.value:
+			from skin import switchPixmap  # This import must be here to avoid a circular import!
+			if "menu_on" in switchPixmap and "menu_off" in switchPixmap:
+				return ("pixmap", switchPixmap["menu_on" if self.value else "menu_off"])
+		return ("text", f"{READONLY_COLOR}{self.descriptions[self.value]}" if self.isReadOnly() else self.descriptions[self.value])
 
 	def fromString(self, value):
 		return str(value).lower() in self.trueValues
@@ -567,11 +602,9 @@ class ConfigYesNo(ConfigBoolean):
 class ConfigDateTime(ConfigElement):
 	def __init__(self, default, formatstring, increment=86400):
 		ConfigElement.__init__(self)
-		if isinstance(default, float):
-			default = default
-		elif isinstance(default, int):
+		if isinstance(default, int):
 			default = float(default)
-		else:
+		if not isinstance(default, float):
 			raise TypeError("[Config] Error: 'ConfigDateTime' default must be a float or int!")
 		if not isinstance(formatstring, str):
 			raise TypeError("[Config] Error: 'ConfigDateTime' formatstring must be a string!")
@@ -585,22 +618,21 @@ class ConfigDateTime(ConfigElement):
 
 	def handleKey(self, key, callback=None):
 		prev = self.value
-		if key == ACTIONKEY_LEFT:
-			self.value -= self.increment
-		elif key == ACTIONKEY_RIGHT:
-			self.value += self.increment
-		elif key == ACTIONKEY_FIRST or key == ACTIONKEY_LAST:
-			self.value = self.default
-		if self.value != prev:
-			# self.changed() allready called in setValue
-			if callable(callback):
-				callback()
+		match key:
+			case ActionKeys.ACTIONKEY_LEFT:
+				self.value -= self.increment
+			case ActionKeys.ACTIONKEY_RIGHT:
+				self.value += self.increment
+			case ActionKeys.ACTIONKEY_FIRST | ActionKeys.ACTIONKEY_LAST:
+				self.value = self.default
+		if self.value != prev and callable(callback):
+			callback()
 
 	def getText(self):
 		return strftime(self.formatString, localtime(self.value))
 
 	def getMulti(self, selected):
-		return ("text", strftime(self.formatString, localtime(self.value)))
+		return ("text", f"{READONLY_COLOR}{strftime(self.formatString, localtime(self.value))}" if self.isReadOnly() else strftime(self.formatString, localtime(self.value)))
 
 	def fromString(self, value):
 		return int(value)
@@ -612,8 +644,10 @@ class ConfigDateTime(ConfigElement):
 # This is the control, and base class, for dictionary settings.
 #
 class ConfigDictionarySet(ConfigElement):
-	def __init__(self, default={}):
+	def __init__(self, default=None):
 		ConfigElement.__init__(self)
+		if default is None:
+			default = {}
 		self.default = default
 		self.dirs = {}
 		self.value = self.default
@@ -660,9 +694,8 @@ class ConfigDictionarySet(ConfigElement):
 	value = property(getValue, setValue)
 
 	def getConfigValue(self, value, config_key):
-		if isinstance(value, str) and isinstance(config_key, str):
-			if value in self.dirs and config_key in self.dirs[value]:
-				return self.dirs[value][config_key]
+		if isinstance(value, str) and isinstance(config_key, str) and value in self.dirs and config_key in self.dirs[value]:
+			return self.dirs[value][config_key]
 		return None
 
 	def changeConfigValue(self, value, config_key, config_value):
@@ -717,14 +750,15 @@ class ConfigLocations(ConfigElement):
 
 	def handleKey(self, key, callback=None):
 		count = len(self.value) - 1
-		if key == ACTIONKEY_FIRST:
-			self.item = 0
-		elif key == ACTIONKEY_LEFT:
-			self.item = self.item - 1 if self.item > 0 else count
-		elif key == ACTIONKEY_RIGHT:
-			self.item = self.item + 1 if self.item < count else 0
-		elif key == ACTIONKEY_LAST:
-			self.item = count
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
+				self.item = 0
+			case ActionKeys.ACTIONKEY_LEFT:
+				self.item = self.item - 1 if self.item > 0 else count
+			case ActionKeys.ACTIONKEY_RIGHT:
+				self.item = self.item + 1 if self.item < count else 0
+			case ActionKeys.ACTIONKEY_LAST:
+				self.item = count
 
 	def getText(self):
 		return " ".join(self.value)
@@ -861,18 +895,17 @@ class ConfigSelection(ConfigElement):
 		if count > 1:
 			prev = str(self.value)
 			index = self.choices.index(str(self.value))  # Temporary hack until keys don't have to be strings.
-			if key == ACTIONKEY_LEFT:
-				self.value = self.choices[(index + count - 1) % count]
-			elif key == ACTIONKEY_RIGHT:
-				self.value = self.choices[(index + 1) % count]
-			elif key == ACTIONKEY_FIRST:
-				self.value = self.choices[0]
-			elif key == ACTIONKEY_LAST:
-				self.value = self.choices[count - 1]
-			if str(self.value) != prev:
-				# self.changed() allready called in setValue
-				if callable(callback):
-					callback()
+			match key:
+				case ActionKeys.ACTIONKEY_LEFT:
+					self.value = self.choices[(index + count - 1) % count]
+				case ActionKeys.ACTIONKEY_RIGHT:
+					self.value = self.choices[(index + 1) % count]
+				case ActionKeys.ACTIONKEY_FIRST:
+					self.value = self.choices[0]
+				case ActionKeys.ACTIONKEY_LAST:
+					self.value = self.choices[count - 1]
+			if str(self.value) != prev and callable(callback):
+				callback()
 
 	def getText(self):
 		if self._descr is None:
@@ -882,7 +915,7 @@ class ConfigSelection(ConfigElement):
 	def getMulti(self, selected):
 		if self._descr is None:
 			self._descr = self.description[self.value]
-		return ("text", self._descr)
+		return ("text", f"{READONLY_COLOR}{self._descr}" if self.isReadOnly() else self._descr)
 
 	def toDisplayString(self, val):
 		return self.description[val]
@@ -993,9 +1026,9 @@ class ConfigSelectionInteger(ConfigSelection):
 
 	def handleKey(self, key, callback=None):
 		if not self.wrap:
-			if key == ACTIONKEY_RIGHT and self.choices.index(self.value) == len(self.choices) - 1:
+			if key == ActionKeys.ACTIONKEY_RIGHT and self.choices.index(self.value) == len(self.choices) - 1:
 				return
-			if key == ACTIONKEY_LEFT and self.choices.index(self.value) == 0:
+			if key == ActionKeys.ACTIONKEY_LEFT and self.choices.index(self.value) == 0:
 				return
 		ConfigSelection.handleKey(self, key, callback)
 
@@ -1052,93 +1085,85 @@ class ConfigSequence(ConfigElement):
 		self.markedPos = 0
 
 	def handleKey(self, key, callback=None):
-		if key == ACTIONKEY_FIRST:
-			self.markedPos = 0
-		elif key == ACTIONKEY_LEFT:
-			if self.markedPos > 0:
-				self.markedPos -= 1
-		elif key == ACTIONKEY_RIGHT:
-			if self.markedPos < self.totalLen:
-				self.markedPos += 1
-		elif key == ACTIONKEY_LAST:
-			self.markedPos = self.totalLen
-		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
-			# prev = self._value
-			if key == ACTIONKEY_ASCII:
-				code = getPrevAsciiCode()
-				if code < 48 or code > 57:
-					return
-				number = code - 48
-			else:
-				number = getKeyNumber(key)
-			pos = 0
-			blockNumber = 0
-			block_len_total = [0]
-			for x in self.blockLen:
-				pos += self.blockLen[blockNumber]
-				block_len_total.append(pos)
-				if pos - 1 >= self.markedPos:
-					pass
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
+				self.markedPos = 0
+			case ActionKeys.ACTIONKEY_LEFT:
+				if self.markedPos > 0:
+					self.markedPos -= 1
+			case ActionKeys.ACTIONKEY_RIGHT:
+				if self.markedPos < self.totalLen:
+					self.markedPos += 1
+			case ActionKeys.ACTIONKEY_LAST:
+				self.markedPos = self.totalLen
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS) or x == ActionKeys.ACTIONKEY_ASCII:
+				# prev = self._value
+				if key == ActionKeys.ACTIONKEY_ASCII:
+					code = getPrevAsciiCode()
+					if code < 48 or code > 57:
+						return
+					number = code - 48
 				else:
-					blockNumber += 1
-			number_len = len(str(self.limits[blockNumber][1]))  # Length of number block.
-			posinblock = self.markedPos - block_len_total[blockNumber]  # Position in the block.
-			oldvalue = abs(self._value[blockNumber])  # We are using abs() in order to allow change negative values like default -1.
-			olddec = oldvalue % 10 ** (number_len - posinblock) - (oldvalue % 10 ** (number_len - posinblock - 1))
-			newvalue = oldvalue - olddec + (10 ** (number_len - posinblock - 1) * number)
-			self._value[blockNumber] = newvalue
-			self.markedPos += 1
-			self.validate()
-			# if self._value != prev:
-			self.changed()
-			if callable(callback):
-				callback()
+					number = getKeyNumber(key)
+				pos = 0
+				blockNumber = 0
+				block_len_total = [0]
+				for x in self.blockLen:
+					pos += self.blockLen[blockNumber]
+					block_len_total.append(pos)
+					if pos - 1 >= self.markedPos:
+						pass
+					else:
+						blockNumber += 1
+				number_len = len(str(self.limits[blockNumber][1]))  # Length of number block.
+				posinblock = self.markedPos - block_len_total[blockNumber]  # Position in the block.
+				oldvalue = abs(self._value[blockNumber])  # We are using abs() in order to allow change negative values like default -1.
+				olddec = oldvalue % 10 ** (number_len - posinblock) - (oldvalue % 10 ** (number_len - posinblock - 1))
+				newvalue = oldvalue - olddec + (10 ** (number_len - posinblock - 1) * number)
+				self._value[blockNumber] = newvalue
+				self.markedPos += 1
+				self.validate()
+				# if self._value != prev:
+				self.changed()
+				if callable(callback):
+					callback()
 
 	def validate(self):
 		maxPos = 0
-		num = 0
-		for i in self._value:
-			maxPos += len(str(self.limits[num][1]))
-
-			if self._value[num] < self.limits[num][0]:
-				self._value[num] = self.limits[num][0]
-			if self._value[num] > self.limits[num][1]:
-				self._value[num] = self.limits[num][1]
-			num += 1
+		for index, item in enumerate(self._value):
+			maxPos += len(str(self.limits[index][1]))
+			self._value[index] = max(self._value[index], self.limits[index][0])
+			self._value[index] = min(self._value[index], self.limits[index][1])
 		if self.markedPos >= maxPos:
 			if self.endNotifier:
-				for x in self.endNotifier:
-					x(self)
+				for callback in self.endNotifier:
+					callback(self)
 			self.markedPos = maxPos - 1
-		if self.markedPos < 0:
-			self.markedPos = 0
+		self.markedPos = max(self.markedPos, 0)
 
 	def getText(self):
-		(value, mPos) = self.genText()
+		(value, _) = self.genText()
 		return value
 
 	def getMulti(self, selected):
 		(value, mPos) = self.genText()
-		# Only mark cursor when we are selected.  (This code is heavily ink optimized!)
-		if self.enabled:
-			return ("mtext"[1 - selected:], value, [mPos])
-		else:
-			return ("text", value)
+		if self.isReadOnly():
+			return ("text", f"{READONLY_COLOR}{value}")
+		else:  # Only mark cursor when we are selected.  (This code is heavily ink optimized!)
+			return ("mtext"[1 - selected:], value, [mPos]) if self.enabled else ("text", value)
 
 	def genText(self):
 		value = ""
 		mPos = self.markedPos
-		num = 0
-		for item in self._value:
+		for index, item in enumerate(self._value):
 			if value:  # Fixme no heading separator possible!
 				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
 			if self.censor == "" or not self.hidden:
-				value += (f"{item:0{len(str(self.limits[num][1]))}d}")
+				value += (f"{item:0{len(str(self.limits[index][1]))}d}")
 			else:
-				value += (self.censor * len(str(self.limits[num][1])))
-			num += 1
+				value += (self.censor * len(str(self.limits[index][1])))
 		return (value, mPos)
 
 	def fromString(self, value):
@@ -1186,52 +1211,53 @@ class ConfigCECAddress(ConfigSequence):
 		self.zeroPad = False
 
 	def handleKey(self, key, callback=None):
-		if key == ACTIONKEY_LEFT:
-			if self.marked_block > 0:
-				self.marked_block -= 1
-			self.overwrite = True
-		elif key == ACTIONKEY_RIGHT:
-			if self.marked_block < len(self.limits) - 1:
-				self.marked_block += 1
-			self.overwrite = True
-		elif key == ACTIONKEY_FIRST:
-			self.marked_block = 0
-			self.overwrite = True
-		elif key == ACTIONKEY_LAST:
-			self.marked_block = len(self.limits) - 1
-			self.overwrite = True
-		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
-			if key == ACTIONKEY_ASCII:
-				code = getPrevAsciiCode()
-				if code < 48 or code > 57:
-					return
-				number = code - 48
-			else:
-				number = getKeyNumber(key)
-			oldvalue = self._value[self.marked_block]
-			if self.overwrite:
-				self._value[self.marked_block] = number
-				self.overwrite = False
-			else:
-				oldvalue *= 10
-				newvalue = oldvalue + number
-				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits) - 1:
-					self.handleKey(ACTIONKEY_RIGHT, callback)
-					self.handleKey(key, callback)
-					return
+		match key:
+			case ActionKeys.ACTIONKEY_LEFT:
+				if self.marked_block > 0:
+					self.marked_block -= 1
+				self.overwrite = True
+			case ActionKeys.ACTIONKEY_RIGHT:
+				if self.marked_block < len(self.limits) - 1:
+					self.marked_block += 1
+				self.overwrite = True
+			case ActionKeys.ACTIONKEY_FIRST:
+				self.marked_block = 0
+				self.overwrite = True
+			case ActionKeys.ACTIONKEY_LAST:
+				self.marked_block = len(self.limits) - 1
+				self.overwrite = True
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS) or x == ActionKeys.ACTIONKEY_ASCII:
+				if key == ActionKeys.ACTIONKEY_ASCII:
+					code = getPrevAsciiCode()
+					if code < 48 or code > 57:
+						return
+					number = code - 48
 				else:
-					self._value[self.marked_block] = newvalue
-			if len(str(self._value[self.marked_block])) >= self.blockLen[self.marked_block]:
-				self.handleKey(ACTIONKEY_RIGHT, callback)
-			self.validate()
-			self.changed()
+					number = getKeyNumber(key)
+				oldvalue = self._value[self.marked_block]
+				if self.overwrite:
+					self._value[self.marked_block] = number
+					self.overwrite = False
+				else:
+					oldvalue *= 10
+					newvalue = oldvalue + number
+					if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits) - 1:
+						self.handleKey(ActionKeys.ACTIONKEY_RIGHT, callback)
+						self.handleKey(key, callback)
+						return
+					else:
+						self._value[self.marked_block] = newvalue
+				if len(str(self._value[self.marked_block])) >= self.blockLen[self.marked_block]:
+					self.handleKey(ActionKeys.ACTIONKEY_RIGHT, callback)
+				self.validate()
+				self.changed()
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
-		if self.enabled:
-			return ("mtext"[1 - selected:], value, mBlock)
+		if self.isReadOnly():
+			return ("text", f"{READONLY_COLOR}{value}")
 		else:
-			return ("text", value)
+			return ("mtext"[1 - selected:], value, mBlock) if self.enabled else ("text", value)
 
 	def genText(self):
 		value = ""
@@ -1253,18 +1279,18 @@ class ConfigClock(ConfigSequence):
 		ConfigSequence.__init__(self, seperator=":", limits=[(0, 23), (0, 59)], default=[self.time.tm_hour, self.time.tm_min])
 
 	def handleKey(self, key, callback=None):
-		if key == ACTIONKEY_DELETE and config.usage.time.wide.value:
+		if key == ActionKeys.ACTIONKEY_DELETE and config.usage.time.wide.value:
 			if self._value[0] < 12:
 				self._value[0] += 12
 				self.validate()
 				self.changed()
-		elif key == ACTIONKEY_BACKSPACE and config.usage.time.wide.value:
+		elif key == ActionKeys.ACTIONKEY_BACKSPACE and config.usage.time.wide.value:
 			if self._value[0] >= 12:
 				self._value[0] -= 12
 				self.validate()
 				self.changed()
-		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
-			if key == ACTIONKEY_ASCII:
+		elif key in ActionKeys.ACTIONKEY_NUMBERS or key == ActionKeys.ACTIONKEY_ASCII:
+			if key == ActionKeys.ACTIONKEY_ASCII:
 				code = getPrevAsciiCode()
 				if code < 48 or code > 57:
 					return
@@ -1419,30 +1445,30 @@ class ConfigIP(ConfigSequence):
 		self.zeroPad = False
 
 	def handleKey(self, key, callback=None):
-		if not self.isReadOnly():
-			if key == ACTIONKEY_FIRST:
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
 				self.markedPos = 0
 				self.overwrite = True
-			elif key == ACTIONKEY_LEFT:
+			case ActionKeys.ACTIONKEY_LEFT:
 				if self.markedPos > 0:
 					self.markedPos -= 1
 				self.overwrite = True
-			elif key == ACTIONKEY_RIGHT:
+			case ActionKeys.ACTIONKEY_RIGHT:
 				if self.markedPos < len(self.limits) - 1:
 					self.markedPos += 1
 				self.overwrite = True
-			elif key == ACTIONKEY_LAST:
+			case ActionKeys.ACTIONKEY_LAST:
 				self.markedPos = len(self.limits) - 1
 				self.overwrite = True
-			elif key in (ACTIONKEY_DELETE, ACTIONKEY_BACKSPACE):
+			case ActionKeys.ACTIONKEY_DELETE | ActionKeys.ACTIONKEY_BACKSPACE:
 				self._value[self.markedPos] = 0
 				self.overwrite = True
-			elif key == ACTIONKEY_ERASE:
+			case ActionKeys.ACTIONKEY_ERASE:
 				self.markedPos = 0
 				self._value = [0, 0, 0, 0]
 				self.overwrite = True
-			elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
-				if key == ACTIONKEY_ASCII:
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS) or x == ActionKeys.ACTIONKEY_ASCII:
+				if key == ActionKeys.ACTIONKEY_ASCII:
 					code = getPrevAsciiCode()
 					if code < 48 or code > 57:
 						return
@@ -1456,13 +1482,13 @@ class ConfigIP(ConfigSequence):
 				else:
 					newValue = (self._value[self.markedPos] * 10) + number
 					if self.autoJump and newValue > self.limits[self.markedPos][1] and self.markedPos < len(self.limits) - 1:
-						self.handleKey(ACTIONKEY_RIGHT, callback)
+						self.handleKey(ActionKeys.ACTIONKEY_RIGHT, callback)
 						self.handleKey(key, callback)
 						return
 					else:
 						self._value[self.markedPos] = newValue
 				if len(str(self._value[self.markedPos])) >= self.blockLen[self.markedPos]:
-					self.handleKey(ACTIONKEY_RIGHT, callback)
+					self.handleKey(ActionKeys.ACTIONKEY_RIGHT, callback)
 				self.validate()
 				if self._value != prev:
 					self.changed()
@@ -1520,26 +1546,26 @@ class ConfigSet(ConfigElement):
 		self.value.sort()
 
 	def handleKey(self, key, callback=None):
-		if key == ACTIONKEY_FIRST:
-			self.pos = 0
-		elif key == ACTIONKEY_LEFT:
-			self.pos = self.pos - 1 if self.pos > 0 else len(self.choices) - 1
-		elif key == ACTIONKEY_RIGHT:
-			self.pos = self.pos + 1 if self.pos < len(self.choices) - 1 else 0
-		elif key == ACTIONKEY_LAST:
-			self.pos = len(self.choices) - 1
-		elif key in [ACTIONKEY_TOGGLE, ACTIONKEY_SELECT, ACTIONKEY_DELETE, ACTIONKEY_BACKSPACE] + ACTIONKEY_NUMBERS:
-			value = self.value
-			choice = self.choices[self.pos]
-			if choice in value:
-				value.remove(choice)
-			else:
-				value.append(choice)
-				value.sort()
-			self.value = value
-			# self.changed() allready called in setValue
-			if callable(callback):
-				callback()
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
+				self.pos = 0
+			case ActionKeys.ACTIONKEY_LEFT:
+				self.pos = self.pos - 1 if self.pos > 0 else len(self.choices) - 1
+			case ActionKeys.ACTIONKEY_RIGHT:
+				self.pos = self.pos + 1 if self.pos < len(self.choices) - 1 else 0
+			case ActionKeys.ACTIONKEY_LAST:
+				self.pos = len(self.choices) - 1
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS) or x == ActionKeys.ACTIONKEY_TOGGLE or x == ActionKeys.ACTIONKEY_SELECT or x == ActionKeys.ACTIONKEY_DELETE or x == ActionKeys.ACTIONKEY_BACKSPACE:
+				value = self.value
+				choice = self.choices[self.pos]
+				if choice in value:
+					value.remove(choice)
+				else:
+					value.append(choice)
+					value.sort()
+				self.value = value
+				if callable(callback):
+					callback()
 
 	def getText(self):
 		return " ".join([self.description[x] for x in self.value])
@@ -1560,7 +1586,7 @@ class ConfigSet(ConfigElement):
 				pos += length
 			return ("mtext", "".join(text), list(range(start, end)))
 		else:
-			return ("text", " ".join([self.description[x] for x in self.value]))
+			return ("text", f"{READONLY_COLOR}{" ".join([self.description[x] for x in self.value])}" if self.isReadOnly() else " ".join([self.description[x] for x in self.value]))
 
 	def fromString(self, value):
 		return eval(value)
@@ -1601,23 +1627,23 @@ class ConfigSlider(ConfigElement):
 
 	def handleKey(self, key, callback=None):
 		value = self.value
-		if key == ACTIONKEY_FIRST:
-			value = self.min
-		elif key == ACTIONKEY_LEFT:
-			value -= self.increment
-		elif key == ACTIONKEY_RIGHT:
-			value += self.increment
-		elif key == ACTIONKEY_LAST:
-			value = self.max
-		else:
-			return
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
+				value = self.min
+			case ActionKeys.ACTIONKEY_LEFT:
+				value -= self.increment
+			case ActionKeys.ACTIONKEY_RIGHT:
+				value += self.increment
+			case ActionKeys.ACTIONKEY_LAST:
+				value = self.max
+			case _:
+				return
 		if value < self.min:
 			value = self.min
 		elif value > self.max:
 			value = self.max
 		if value != self.value:
 			self.value = value
-			# self.changed() allready called in setValue
 			if callable(callback):
 				callback()
 
@@ -1643,38 +1669,38 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.visible_width = visible_width
 		self.offset = 0
 		self.overwrite = fixed_size
-		self.help_window = None  # DEBUG: Used in ConfigList.py, Wizard.py and NetworkSetup.py!
+		self.help_window = None  # DEBUG: Used in ConfigList.py and Wizard.py!
 		self.value = self.lastValue = self.default = default
 		self.callback = None
 
 	def handleKey(self, key, callback=None):  # This will not change anything on the value itself so we can handle it here in GUI element.
-		if not self.isReadOnly():
-			if callable(callback):
-				self.callback = callback
-			prev = self.value
-			if key == ACTIONKEY_FIRST:
+		if callable(callback):
+			self.callback = callback
+		prev = self.value
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
 				self.timeout()
 				self.allmarked = False
 				self.markedPos = 0
-			elif key == ACTIONKEY_LEFT:
+			case ActionKeys.ACTIONKEY_LEFT:
 				self.timeout()
 				if self.allmarked:
 					self.markedPos = len(self.text)
 					self.allmarked = False
 				else:
 					self.markedPos -= 1
-			elif key == ACTIONKEY_RIGHT:
+			case ActionKeys.ACTIONKEY_RIGHT:
 				self.timeout()
 				if self.allmarked:
 					self.markedPos = 0
 					self.allmarked = False
 				else:
 					self.markedPos += 1
-			elif key == ACTIONKEY_LAST:
+			case ActionKeys.ACTIONKEY_LAST:
 				self.timeout()
 				self.allmarked = False
 				self.markedPos = len(self.text)
-			elif key == ACTIONKEY_BACKSPACE:
+			case ActionKeys.ACTIONKEY_BACKSPACE:
 				self.timeout()
 				if self.allmarked:
 					self.deleteAllChars()
@@ -1684,7 +1710,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 					if not self.fixed_size and self.offset > 0:
 						self.offset -= 1
 					self.markedPos -= 1
-			elif key == ACTIONKEY_DELETE:
+			case ActionKeys.ACTIONKEY_DELETE:
 				self.timeout()
 				if self.allmarked:
 					self.deleteAllChars()
@@ -1693,13 +1719,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 					self.deleteChar(self.markedPos)
 					if self.fixed_size and self.overwrite:
 						self.markedPos += 1
-			elif key == ACTIONKEY_ERASE:
+			case ActionKeys.ACTIONKEY_ERASE:
 				self.timeout()
 				self.deleteAllChars()
-			elif key == ACTIONKEY_TOGGLE:
+			case ActionKeys.ACTIONKEY_TOGGLE:
 				self.timeout()
 				self.overwrite = not self.overwrite
-			elif key == ACTIONKEY_ASCII:
+			case ActionKeys.ACTIONKEY_ASCII:
 				self.timeout()
 				newChar = chr(getPrevAsciiCode())
 				if not self.useableChars or newChar in self.useableChars:
@@ -1708,7 +1734,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 						self.allmarked = False
 					self.insertChar(newChar, self.markedPos, False)
 					self.markedPos += 1
-			elif key in ACTIONKEY_NUMBERS:
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS):
 				owr = self.lastKey == getKeyNumber(key)
 				newChar = self.getKey(getKeyNumber(key))
 				if self.allmarked:
@@ -1718,16 +1744,16 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				if self.help_window:
 					self.help_window.update(self)
 				return
-			elif key == ACTIONKEY_TIMEOUT:
+			case ActionKeys.ACTIONKEY_TIMEOUT:
 				self.timeout()
 				if self.help_window:
 					self.help_window.update(self)
 				return
-			self.validateMarker()
-			if self.value != prev:
-				self.changed()
-				if self.callback:
-					self.callback()
+		self.validateMarker()
+		if self.value != prev:
+			self.changed()
+			if self.callback:
+				self.callback()
 
 	def nextFunc(self):
 		self.markedPos += 1
@@ -1753,32 +1779,22 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.text = f"{self.text[0:pos]}{self.text[pos + 1:]} "
 
 	def deleteAllChars(self):
-		if self.fixed_size:
-			self.text = " " * len(self.text)
-		else:
-			self.text = ""
+		self.text = " " * len(self.text) if self.fixed_size else ""
 		self.markedPos = 0
 
 	def validateMarker(self):
-		textlen = len(self.text)
-		if self.fixed_size:
-			if self.markedPos > textlen - 1:
-				self.markedPos = textlen - 1
-		else:
-			if self.markedPos > textlen:
-				self.markedPos = textlen
-		if self.markedPos < 0:
-			self.markedPos = 0
+		textLen = len(self.text)
+		self.markedPos = min(self.markedPos, textLen - 1) if self.fixed_size else min(self.markedPos, textLen)
+		self.markedPos = max(self.markedPos, 0)
 		if self.visible_width:
-			if self.markedPos < self.offset:
-				self.offset = self.markedPos
+			self.offset = min(self.offset, self.markedPos)
 			if self.markedPos >= self.offset + self.visible_width:
-				if self.markedPos == textlen:
+				if self.markedPos == textLen:
 					self.offset = self.markedPos - self.visible_width
 				else:
 					self.offset = self.markedPos - self.visible_width + 1
-			if self.offset > 0 and self.offset + self.visible_width > textlen:
-				self.offset = max(0, textlen - self.visible_width)
+			if self.offset > 0 and self.offset + self.visible_width > textLen:
+				self.offset = max(0, textLen - self.visible_width)
 
 	def getText(self):
 		return self.text
@@ -1787,13 +1803,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		padding = "\u00A0" if selected else ""
 		if self.visible_width:
 			if self.allmarked:
-				mark = list(range(0, min(self.visible_width, len(self.text))))
+				mark = list(range(min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.markedPos - self.offset]
 			multi = f"{self.text[self.offset:self.offset + self.visible_width]}{padding}"
 		else:
 			if self.allmarked:
-				mark = list(range(0, len(self.text)))
+				mark = list(range(len(self.text)))
 			else:
 				mark = [self.markedPos]
 			multi = f"{self.text}{padding}"
@@ -1812,8 +1828,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
-		if session is not None:
-			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
+		if session is not None and not self.isReadOnly():
+			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog  # This import must be here to avoid a circular import!
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
 			self.help_window.setAnimationMode(0)
 			self.help_window.show()
@@ -1851,15 +1867,11 @@ class ConfigDirectory(ConfigText):
 		ConfigText.__init__(self, default, fixed_size=True, visible_width=visible_width)
 
 	def handleKey(self, key, callback=None):
-		# pass
 		if callable(callback):
 			callback()
 
 	def getMulti(self, selected):
-		if self.text == "":
-			return ("mtext"[1 - selected:], _("List of storage devices"), list(range(0)))
-		else:
-			return ConfigText.getMulti(self, selected)
+		return ("mtext"[1 - selected:], _("List of storage devices"), list(range(0))) if self.text == "" else ConfigText.getMulti(self, selected)
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1875,33 +1887,34 @@ class ConfigMACText(ConfigText):
 		if callable(callback):
 			self.callback = callback
 		prev = self.value
-		if key == ACTIONKEY_FIRST:
-			self.timeout()
-			self.markedPos = 0
-		elif key == ACTIONKEY_LEFT:
-			self.timeout()
-			self.markedPos -= 2 if self.text[self.markedPos - 1] == ":" else 1
-		elif key == ACTIONKEY_RIGHT:
-			self.timeout()
-			self.markedPos += 2 if self.markedPos < self.visible_width - 1 and self.text[self.markedPos + 1] == ":" else 1
-		elif key == ACTIONKEY_LAST:
-			self.timeout()
-			self.markedPos = len(self.text)
-		elif key == ACTIONKEY_ERASE:
-			self.timeout()
-			self.text = self.text[2].join(["00"] * 6)
-			self.markedPos = 0
-		elif key in ACTIONKEY_NUMBERS:
-			owr = self.lastKey == getKeyNumber(key)
-			newChar = self.getKey(getKeyNumber(key))
-			self.insertChar(newChar, self.markedPos, owr)
-		elif key == ACTIONKEY_TIMEOUT:
-			self.timeout()
-			if self.help_window:
-				self.help_window.update(self)
-			if self.text[self.markedPos] == ":":
-				self.markedPos += 1
-			return
+		match key:
+			case ActionKeys.ACTIONKEY_FIRST:
+				self.timeout()
+				self.markedPos = 0
+			case ActionKeys.ACTIONKEY_LEFT:
+				self.timeout()
+				self.markedPos -= 2 if self.text[self.markedPos - 1] == ":" else 1
+			case ActionKeys.ACTIONKEY_RIGHT:
+				self.timeout()
+				self.markedPos += 2 if self.markedPos < self.visible_width - 1 and self.text[self.markedPos + 1] == ":" else 1
+			case ActionKeys.ACTIONKEY_LAST:
+				self.timeout()
+				self.markedPos = len(self.text)
+			case ActionKeys.ACTIONKEY_ERASE:
+				self.timeout()
+				self.text = self.text[2].join(["00"] * 6)
+				self.markedPos = 0
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS):
+				owr = self.lastKey == getKeyNumber(key)
+				newChar = self.getKey(getKeyNumber(key))
+				self.insertChar(newChar, self.markedPos, owr)
+			case ActionKeys.ACTIONKEY_TIMEOUT:
+				self.timeout()
+				if self.help_window:
+					self.help_window.update(self)
+				if self.text[self.markedPos] == ":":
+					self.markedPos += 1
+				return
 		if self.help_window:
 			self.help_window.update(self)
 		self.validateMarker()
@@ -1911,9 +1924,9 @@ class ConfigMACText(ConfigText):
 				self.callback()
 
 	def validateMarker(self):
-		textlen = len(self.text)
-		if self.markedPos > textlen - 1:
-			self.markedPos = textlen - 1
+		textLen = len(self.text)
+		if self.markedPos > textLen - 1:
+			self.markedPos = textLen - 1
 		elif self.markedPos < 0:
 			self.markedPos = 0
 
@@ -1941,27 +1954,28 @@ class ConfigNumber(ConfigText):
 		self.value = self.lastValue = self.default = default
 
 	def handleKey(self, key, callback=None):
-		if key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
-			prev = int(self.text)
-			if key == ACTIONKEY_ASCII:
-				ascii = getPrevAsciiCode()
-				if not (48 <= ascii <= 57):
-					return
-			else:
-				ascii = getKeyNumber(key) + 48
-			newChar = chr(ascii)
-			if self.allmarked:
-				self.deleteAllChars()
-				self.allmarked = False
-			self.insertChar(newChar, self.markedPos, False)
-			self.markedPos += 1
-			self.validateMarker()
-			if int(self.text) != prev:
-				self.changed()
-				if callable(callback):
-					callback()
-		else:
-			ConfigText.handleKey(self, key, callback)
+		match key:
+			case x if (x in ActionKeys.ACTIONKEY_NUMBERS) or x == ActionKeys.ACTIONKEY_ASCII:
+				prev = int(self.text)
+				if key == ActionKeys.ACTIONKEY_ASCII:
+					ascii = getPrevAsciiCode()
+					if not (48 <= ascii <= 57):
+						return
+				else:
+					ascii = getKeyNumber(key) + 48
+				newChar = chr(ascii)
+				if self.allmarked:
+					self.deleteAllChars()
+					self.allmarked = False
+				self.insertChar(newChar, self.markedPos, False)
+				self.markedPos += 1
+				self.validateMarker()
+				if int(self.text) != prev:
+					self.changed()
+					if callable(callback):
+						callback()
+			case _:
+				ConfigText.handleKey(self, key, callback)
 
 	def validateMarker(self):
 		pos = len(self.text) - self.markedPos
@@ -1999,6 +2013,11 @@ class ConfigPassword(ConfigText):
 		self.hidden = True
 
 	def getMulti(self, selected):
+		if self.isReadOnly():
+			mtext, text = ConfigText.getMulti(self, selected)
+			if self.hidden:
+				text = f"{READONLY_COLOR}{self.censor * (len(text) - len(READONLY_COLOR))}"  # For more security a fixed length string can be used!
+			return (mtext, text)
 		mtext, text, mark = ConfigText.getMulti(self, selected)
 		if self.hidden:
 			text = self.censor * len(text)  # For more security a fixed length string can be used!
@@ -2213,13 +2232,13 @@ class Config(ConfigSubsection):
 
 	def pickleThis(self, prefix, toPickle, result):
 		for (key, val) in sorted(toPickle.items(), key=lambda x: str(x[0]) if x[0].isdigit() else x[0].lower()):
-			name = ".".join((prefix, key))
+			name = f"{prefix}.{key}"
 			if isinstance(val, dict):
 				self.pickleThis(name, val, result)
 			elif isinstance(val, tuple):
-				result += [f"{name}={str(val[0])}\n"]
+				result += [f"{name}={val[0]!s}\n"]
 			else:
-				result += [f"{name}={str(val)}\n"]
+				result += [f"{name}={val!s}\n"]
 
 	def pickle(self):
 		result = []
@@ -2294,11 +2313,10 @@ class ConfigFile:
 	#
 	def getResolvedKey(self, key, silent=False):
 		names = key.split(".")
-		if len(names) > 1:
-			if names[0] == "config":
-				val = self.__resolveValue(names[1:], config.content.items)
-				if val and len(val) or val == "":
-					return val
+		if len(names) > 1 and names[0] == "config":
+			val = self.__resolveValue(names[1:], config.content.items)
+			if val and len(val) or val == "":
+				return val
 		if silent:
 			return None
 		print(f"[Config] Error: getResolvedKey '{key}' failed!  (Typo?)")
@@ -2324,8 +2342,8 @@ configfile.load()
 # config.arg = ConfigSubDict()
 # config.arg["Hello"] = ConfigYesNo()
 #
-# config.arg["Hello"].handleKey(ACTIONKEY_RIGHT)
-# config.arg["Hello"].handleKey(ACTIONKEY_RIGHT)
+# config.arg["Hello"].handleKey(ActionKeys.ACTIONKEY_RIGHT)
+# config.arg["Hello"].handleKey(ActionKeys.ACTIONKEY_RIGHT)
 #
 # #config.saved_value
 #

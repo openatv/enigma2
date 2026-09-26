@@ -6,7 +6,7 @@ from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
-from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
+from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, DEFAULT_READONLY_COLOR, config, setReadOnlyColor
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML, clearResolveLists
@@ -243,6 +243,7 @@ def reloadSkins():
 	menus.clear()
 	screens.clear()
 	parameters.clear()
+	setReadOnlyColor(DEFAULT_READONLY_COLOR)
 	setups.clear()
 	switchPixmap.clear()
 	windowStyles.clear()
@@ -1676,6 +1677,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				except Exception as err:
 					skinError(f"Unknown style color name '{name}' ({err})")
 		for configList in tag.findall("configList"):
+			if "readOnlyColor" in configList.attrib:
+				color = parseColor(configList.attrib.get("readOnlyColor"), 0x007F7F7F)
+				setReadOnlyColor(rf"\c{color.argb():08X}")
 			if "entryFont" in configList.attrib:
 				style.setEntryFont(parseFont(configList.attrib.get("entryFont", "Regular;20"), ((1, 1), (1, 1))))
 			if "valueFont" in configList.attrib:

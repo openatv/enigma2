@@ -4,7 +4,7 @@ from enigma import eTimer, eDVBCI_UI
 
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
-from Components.config import config, ConfigEnableDisable, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
+from Components.config import config, ConfigEnableDisable, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, ActionKeys, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
@@ -246,19 +246,19 @@ class MMIDialog(Screen):
 		self.timer.stop()
 		if self.is_pin_list > -1:
 			self.is_pin_list += 1
-		self.keyConfigEntry(KEY_0 + number)
+		self.keyConfigEntry(ActionKeys.ACTIONKEY_0 + number)
 
 	def keyLeft(self):
 		self.timer.stop()
 		if self.is_pin_list > 0:
 			self.is_pin_list += -1
-		self.keyConfigEntry(KEY_LEFT)
+		self.keyConfigEntry(ActionKeys.ACTIONKEY_LEFT)
 
 	def keyRight(self):
 		self.timer.stop()
 		if self.is_pin_list > -1 and self.is_pin_list < 4:
 			self.is_pin_list += 1
-		self.keyConfigEntry(KEY_RIGHT)
+		self.keyConfigEntry(ActionKeys.ACTIONKEY_RIGHT)
 
 	def updateList(self, list):
 		List = self["entries"]
