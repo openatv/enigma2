@@ -74,6 +74,21 @@ struct eventData
 		rawEITdata[8] = toBCD((duration % 3600) / 60);
 		rawEITdata[9] = toBCD(duration % 60);
 	}
+	void setStartTime(time_t t)
+	{
+		tm time;
+		gmtime_r(&t, &time);
+		int l = 0;
+		int month = time.tm_mon + 1;
+		if (month == 1 || month == 2)
+			l = 1;
+		int mjd = 14956 + time.tm_mday + (int)((time.tm_year - l) * 365.25) + (int)((month + 1 + l * 12) * 30.6001);
+		rawEITdata[2] = mjd >> 8;
+		rawEITdata[3] = mjd & 0xFF;
+		rawEITdata[4] = toBCD(time.tm_hour);
+		rawEITdata[5] = toBCD(time.tm_min);
+		rawEITdata[6] = toBCD(time.tm_sec);
+	}
 };
 
 unsigned int eventData::CacheSize = 0;
@@ -654,18 +669,65 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 
 				if ((old_start < new_end) && (old_end > new_start))
 				{
-					if (old_start < new_start && old_duration > SUSPICIOUS_DURATION_THRESHOLD)
+					bool oldHigherPriority = it->second->getEventID() != event_id && (source & ~EPG_IMPORT) > (it->second->type & ~EPG_IMPORT);
+
+					if (oldHigherPriority)
 					{
-						if (m_debug)
-							eDebug("[eEPGCache] Truncating suspiciously long event %04X: "
+						// The cached event overlapping this new one comes from a strictly
+						// higher-priority source (e.g. NOWNEXT) than the new event (e.g.
+						// SCHEDULE). Keep it instead of letting a less accurate source
+						// delete a more accurate one due to minor timing overlap.
+						if(m_debug)
+							eDebug("[eEPGCache] Keeping higher-priority event %04X for service (%04X:%04X:%04X) "
+								"(%lld~%lld, type=0x%X) instead of removing it for lower-priority "
+								"overlapping event %04X (%lld~%lld, source=0x%X).",
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								(long long)old_start, (long long)old_end, it->second->type,
+								event_id, (long long)new_start, (long long)new_end, source);
+						++it;
+					}
+					else if (it->second->getEventID() != event_id &&
+							old_start < new_start && old_end <= new_end)
+					{
+						// The cached event only sticks out at the FRONT (its own start is
+						// before the new event's start, and it has no tail beyond new_end).
+						// That head portion isn't claimed by the new event at all, so keep
+						// it and just shrink the old event's end down to new_start instead
+						// of deleting it outright -- regardless of duration or priority,
+						// since the head was never in conflict with the new event.
+						if(m_debug)
+							eDebug("[eEPGCache] Truncating event %04X for service (%04X:%04X:%04X): "
 								"duration %d s, end %lld -> %lld "
 								"(overlaps new event %04X at %lld).",
-								it->second->getEventID(), old_duration,
-								(long long)old_end, (long long)new_start,
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								old_duration, (long long)old_end, (long long)new_start,
 								event_id, (long long)new_start);
 
 						it->second->setDuration(new_start - old_start);
 						++it;
+					}
+					else if (it->second->getEventID() != event_id && old_end > new_end)
+					{
+						// The cached event sticks out at the BACK (its end is beyond the
+						// new event's end), typically NOWNEXT "now" vs a previously cached
+						// NOWNEXT "next", but also a lower-priority SCHEDULE tail. The new
+						// event only claims [new_start,new_end); keep the cached event's
+						// tail instead of dropping it outright, so the slot after new_end
+						// isn't left empty until the next refresh.
+						if(m_debug)
+							eDebug("[eEPGCache] Truncating event %04X for service (%04X:%04X:%04X) "
+								"(%lld~%lld, type=0x%X) to tail %lld~%lld instead of removing it, "
+								"superseded at the front by new event %04X (%lld~%lld, source=0x%X).",
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								(long long)old_start, (long long)old_end, it->second->type,
+								(long long)new_end, (long long)old_end,
+								event_id, (long long)new_start, (long long)new_end, source);
+
+						eventData *tail = it->second;
+						timemap.erase(it++);
+						tail->setStartTime(new_end);
+						tail->setDuration(old_end - new_end);
+						timemap[new_end] = tail;
 					}
 					else
 					{
