@@ -6,11 +6,15 @@ from Components.Renderer.LcdPicon import resetLcdPiconPath
 from Components.Renderer.Picon import resetPiconPath
 from Components.Sources.StaticText import StaticText
 from Screens.LocationBox import LocationBox, DEFAULT_INHIBIT_DIRECTORIES
+from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
 
 
 class PiconSettings(Setup):
 	def __init__(self, session):
+		self.piconPaths = tuple(getattr(config.picon, f"set{index}").path for index in range(4))
+		self.piconAssignments = (config.picon.infobar, config.picon.channelselection, config.picon.display, config.picon.openwebif)
+		self.piconConfig = (config.picon.mode,) + self.piconPaths + self.piconAssignments
 		Setup.__init__(self, session, "Picon")
 		self["key_yellow"] = StaticText(_("Add Path"))
 		self["key_blue"] = StaticText(_("Remove Path"))
@@ -58,6 +62,33 @@ class PiconSettings(Setup):
 			resetPiconPath()
 			resetLcdPiconPath()
 
+	def saveAll(self):
+		# Removed paths and assignments hidden by single-path mode are no longer
+		# in the config list, but must be saved before Setup writes the settings.
+		visible = [item[1] for item in self["config"].list if len(item) > 1]
+		for cfg in self.piconConfig:
+			if cfg not in visible:
+				cfg.save()
+		return Setup.saveAll(self)
+
+	def closeConfigList(self, closeParameters=()):
+		if any(cfg.isChanged() for cfg in self.piconConfig):
+			self.closeParameters = closeParameters
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, self.cancelMsg, default=False, type=MessageBox.TYPE_YESNO)
+		else:
+			Setup.closeConfigList(self, closeParameters)
+
+	def cancelConfirm(self, result):
+		if result:
+			# Restore paths and their choices first, otherwise ConfigSelection
+			# cannot restore an assignment to a path removed during this edit.
+			for path in self.piconPaths:
+				path.cancel()
+			self.updatePathChoices()
+			for cfg in (config.picon.mode,) + self.piconAssignments:
+				cfg.cancel()
+		Setup.cancelConfirm(self, result)
+
 	def updateButtons(self):
 		yellowText = "" if config.picon.mode.value == 0 or config.picon.set3.path.value else _("Add Path")
 		blueText = _("Remove Path") if config.picon.mode.value == 1 and config.picon.set1.path.value else ""
@@ -79,6 +110,7 @@ class PiconSettings(Setup):
 			if path is not None:
 				current.value = path
 			self["config"].invalidateCurrent()
+			self.pathStatus()
 
 		self.session.openWithCallback(
 			callback,
@@ -98,9 +130,16 @@ class PiconSettings(Setup):
 
 	def changedEntry(self):
 		Setup.changedEntry(self)
+		self.updateButtons()
 		self.pathStatus()
 
+	def updatePathChoices(self):
+		choices = [(index, _("Picon path %s") % (index + 1)) for index, path in enumerate(self.piconPaths) if index == 0 or path.value]
+		for cfg in self.piconAssignments:
+			cfg.setChoices(choices)
+
 	def pathStatus(self):
+		self.updatePathChoices()
 		current = self.getCurrentItem()
 		paths = [getattr(config.picon, f"set{i}").path for i in range(4)]
 		if current in paths:
@@ -110,6 +149,3 @@ class PiconSettings(Setup):
 			else:
 				footnote = ""
 			self.setFootnote(footnote)
-			choices = [(x, _("Picon path %s") % (x + 1)) for x in range(4) if x == 0 or getattr(config.picon, f"set{x}").path.value]
-			for cfg in (config.picon.infobar, config.picon.channelselection, config.picon.display, config.picon.openwebif):
-				cfg.setChoices(choices)
