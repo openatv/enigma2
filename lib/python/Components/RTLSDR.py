@@ -678,6 +678,8 @@ if not hasattr(config.dab, "scanSource"):
 	])
 if not hasattr(config.dab, "slideshow"):
 	config.dab.slideshow = ConfigYesNo(default=True)
+if not hasattr(config.dab, "clearBeforeScan"):
+	config.dab.clearBeforeScan = ConfigYesNo(default=False)
 if not hasattr(config.dab, "rtlsdr"):
 	config.dab.rtlsdr = ConfigSubsection()
 	config.dab.rtlsdr.enabled = ConfigYesNo(default=False)

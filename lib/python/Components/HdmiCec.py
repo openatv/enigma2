@@ -1784,7 +1784,7 @@ class HdmiCec:
 				sleep(max(config.hdmicec.minimum_send_interval.value, 250) / 1000.0)
 
 	def configVolumeForwarding(self, configElement):
-		eHdmiCEC.getInstance().setEnabled(configElement.value)
+		eHdmiCEC.getInstance().setEnabled(config.hdmicec.enabled.value)
 		self.updateVolumeForwardingState()
 		if self.volumeForwardingEnabled:
 			self.sendMessage(5, "vendorrequest")

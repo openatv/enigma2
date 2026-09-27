@@ -3,16 +3,14 @@ from re import fullmatch, sub
 from time import monotonic
 from xml.etree.ElementTree import ParseError, parse
 
-from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eDVBSatelliteEquipmentControl, eServiceReference, eTimer, iPlayableService, iServiceInformation
+from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eDVBSatelliteEquipmentControl, eServiceCenter, eServiceReference, eTimer, iFrontendInformation, iPlayableService, iServiceInformation
 
 from Components.config import config
 from Components.NimManager import nimmanager
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.ServiceList import refreshServiceList
 from Screens.ServiceScan import ServiceScan
-from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, fileReadLines, fileWriteLines, resolveFilename
-
-
-MODULE_NAME = __name__.split(".")[-1]
+from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, resolveFilename
 
 
 class DABScan(ServiceScan):
@@ -21,8 +19,11 @@ class DABScan(ServiceScan):
 	POLL_INTERVAL = 500
 	DVB_FEED_TIMEOUT = 15000
 	RTLSDR_FEED_TIMEOUT = 8000
+	RTLSDR_SIGNAL_TIMEOUT = 20000
+	RTLSDR_SIGNAL_SNR = 500  # Centi-dB; ignore the false zero/negative locks reported on empty channels.
 	FEED_TIMEOUT = DVB_FEED_TIMEOUT
 	STABLE_POLLS = 3
+	RTLSDR_STABLE_POLLS = 6
 	SUPPORTED_DECODERS = ("fedi2eti", "tsniv2ni", "ts2na12", "ts2na")
 
 	def __init__(self, session, source=None):
@@ -50,10 +51,15 @@ class DABScan(ServiceScan):
 		self.committedServices = 0
 		self.currentServices = []
 		self.usbServices = []
+		self.usbScanChannels = set()
+		self.completedUSBChannels = set()
+		self.clearBeforeScan = config.dab.clearBeforeScan.value
 		self.writtenBouquets = set()
 		self.feedListOffset = 0
 		self.lastSignature = None
 		self.stablePolls = 0
+		self.stablePollsRequired = self.STABLE_POLLS
+		self.feedSignalDetected = False
 		self.feedStarted = 0
 		self.feedTuneStarted = 0
 		self.feedTuneTimeout = self.DVB_FEED_TIMEOUT
@@ -86,7 +92,7 @@ class DABScan(ServiceScan):
 				self.finishWithError(_("Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."))
 				return
 			if feedCount != len(self.feeds):
-				print("[DABScan] DVB feeds skipped while recording; continuing with %d RTL-SDR channels." % len(self.feeds))
+				print(f"[DABScan] DVB feeds skipped while recording; continuing with {len(self.feeds)} RTL-SDR channels.")
 		self["scan_state"].setText(_("Starting DAB+ scan..."))
 		self.startFeed()
 
@@ -145,7 +151,7 @@ class DABScan(ServiceScan):
 		except (OSError, ParseError, ValueError) as err:
 			self.feedErrors.append(f"{xmlPath}: {err}")
 		if self.knownFeeds:
-			print("[DABScan] Feed definitions: %d known, %d selected, %d unavailable, %d deselected, %d unsupported, %d disabled." % (self.knownFeeds, len(self.feeds), self.skippedUnavailableFeeds, self.skippedUnselectedFeeds, self.skippedUnsupportedFeeds, self.skippedDisabledFeeds))
+			print(f"[DABScan] Feed definitions: {self.knownFeeds} known, {len(self.feeds)} selected, {self.skippedUnavailableFeeds} unavailable, {self.skippedUnselectedFeeds} deselected, {self.skippedUnsupportedFeeds} unsupported, {self.skippedDisabledFeeds} disabled.")
 		for error in self.feedErrors:
 			print(f"[DABScan] {error}")
 
@@ -157,6 +163,7 @@ class DABScan(ServiceScan):
 		channels = getRTLSDRChannels(region)
 		channelCount = 0
 		for channel in channels:
+			self.usbScanChannels.add(channel)
 			self.feeds.append({
 				"id": "rtlsdr_%s" % channel.lower(),
 				"name": _("DAB+ channel %s") % channel,
@@ -179,7 +186,7 @@ class DABScan(ServiceScan):
 			})
 			channelCount += 1
 		self.knownFeeds += channelCount
-		print("[DABScan] RTL-SDR Band III scan: region=%s, %d channels." % (region, channelCount))
+		print(f"[DABScan] RTL-SDR Band III scan: region={region}, {channelCount} channels.")
 
 	def feedAttribute(self, node, transponder, satellite, attribute, default=None):
 		for source in (node, transponder, satellite):
@@ -342,8 +349,7 @@ class DABScan(ServiceScan):
 			return False
 		self.registeredParents.add(parentKey)
 		self.saveRegisteredParents = True
-		print("[DABScan] Registered DVB parent '%s' at %d kHz, SR %d." % (
-			parent.toString(), frontend["frequency"], frontend["symbolRate"]))
+		print(f"[DABScan] Registered DVB parent '{parent.toString()}' at {frontend['frequency']} kHz, SR {frontend['symbolRate']}.")
 		return True
 
 	def startFeed(self):
@@ -356,6 +362,8 @@ class DABScan(ServiceScan):
 		self.feedListOffset = len(self.serviceList)
 		self.lastSignature = None
 		self.stablePolls = 0
+		self.stablePollsRequired = self.RTLSDR_STABLE_POLLS if feed["decoder"] == "rtlsdr" else self.STABLE_POLLS
+		self.feedSignalDetected = False
 		self.feedTuneStarted = monotonic()
 		self.feedTuneTimeout = config.sec.motor_running_timeout.value * 1000 if feed.get("motorized") else self.DVB_FEED_TIMEOUT
 		self.feedStarted = self.feedTuneStarted if feed["decoder"] == "rtlsdr" else 0
@@ -394,7 +402,7 @@ class DABScan(ServiceScan):
 		self.feedTuned = True
 		self.feedStarted = monotonic()
 		feed = self.feeds[self.feedIndex]
-		print("[DABScan] Satellite feed '%s' tuned after %.1f seconds." % (feed["name"], self.feedStarted - self.feedTuneStarted))
+		print(f"[DABScan] Satellite feed '{feed['name']}' tuned after {self.feedStarted - self.feedTuneStarted:.1f} seconds.")
 		self.setScanState(_("Scanning DAB+ feed; waiting for live FIC data..."))
 
 	def pollScan(self):
@@ -412,6 +420,17 @@ class DABScan(ServiceScan):
 				ensembleId = info.getInfo(iServiceInformation.sDABEnsembleId)
 				if ensembleId > 0:
 					self.feeds[self.feedIndex]["ensembleId"] = ensembleId
+			if self.feeds[self.feedIndex]["decoder"] == "rtlsdr" and not self.feedSignalDetected:
+				frontendInfo = service.frontendInfo()
+				if frontendInfo:
+					locked = frontendInfo.getFrontendInfo(iFrontendInformation.lockState)
+					snr = frontendInfo.getFrontendInfo(iFrontendInformation.signalQualitydB)
+					if locked and snr >= self.RTLSDR_SIGNAL_SNR:
+						self.feedSignalDetected = True
+						self.FEED_TIMEOUT = self.RTLSDR_SIGNAL_TIMEOUT
+						print("[DABScan] Plausible RF signal detected on USB channel %s (%.1f dB); extending the FIC timeout to %.1f seconds." % (
+							self.feeds[self.feedIndex]["transport"], snr / 100.0, self.FEED_TIMEOUT / 1000.0))
+						self.setScanState(_("DAB+ signal detected; waiting for FIC service data..."))
 		if self.feedTuneFailed:
 			self.feedFailed(_("Unable to tune the DAB+ satellite feed"))
 			return
@@ -443,8 +462,8 @@ class DABScan(ServiceScan):
 				self.stablePolls = 1
 				self.currentServices = services
 				self.showCurrentServices()
-			self.setScanState(_("Scanning: %d services found; validating live result (%d/%d)...") % (self.foundServices, self.stablePolls, self.STABLE_POLLS))
-			if self.stablePolls >= self.STABLE_POLLS:
+			self.setScanState(_("Scanning: %d services found; validating live result (%d/%d)...") % (self.foundServices, self.stablePolls, self.stablePollsRequired))
+			if self.stablePolls >= self.stablePollsRequired:
 				self.feedComplete()
 				return
 		else:
@@ -493,6 +512,7 @@ class DABScan(ServiceScan):
 		self.pollTimer.stop()
 		feed = self.feeds[self.feedIndex]
 		if feed["decoder"] == "rtlsdr":
+			self.completedUSBChannels.add(feed["transport"])
 			for service in self.currentServices:
 				self.usbServices.append((feed, service))
 			count = len(self.currentServices)
@@ -518,10 +538,19 @@ class DABScan(ServiceScan):
 		feed = self.feeds[self.feedIndex]
 		message = f"{feed['name']}: {reason}"
 		self.failures.append(message)
+		cleared = False
+		if self.clearBeforeScan and feed["decoder"] != "rtlsdr":
+			bouquetPath = resolveFilename(SCOPE_CONFIG, feed["bouquetFile"])
+			if exists(bouquetPath):
+				cleared = self.writeBouquet(feed, [])
+				if cleared:
+					self.writtenBouquets.add(feed["bouquetFile"])
+				else:
+					self.failures.append(_("%s: bouquet could not be cleared") % feed["name"])
 		del self.serviceList[self.feedListOffset:]
 		self["servicelist"].setList(self.serviceList)
 		self.foundServices = self.committedServices
-		print(f"[DABScan] {message}; keeping the existing bouquet.")
+		print(f"[DABScan] {message}; {'cleared the existing bouquet' if cleared else 'keeping the existing bouquet'}.")
 		self.feedIndex += 1
 		self.startFeed()
 
@@ -546,53 +575,62 @@ class DABScan(ServiceScan):
 		return reference
 
 	def writeBouquet(self, feed, services):
-		bouquetPath = resolveFilename(SCOPE_CONFIG, feed["bouquetFile"])
-		lines = [f"#NAME {feed['bouquetName']}"]
+		entries = []
 		for service in services:
 			reference = self.buildReference(feed, service["sid"], service["label"])
-			lines.append(f"#SERVICE {reference.toString()}")
-			lines.append(f"#DESCRIPTION {service['label']}")
-		if not fileWriteLines(bouquetPath, list(lines), source=MODULE_NAME):
-			return False
+			entries.append((self.serviceIdentity(reference), service["label"], reference.toString()))
+		if not self.clearBeforeScan:
+			known = {entry[0] for entry in entries}
+			for identity, label, referenceText in self.readBouquetEntries(feed["bouquetFile"]):
+				if identity not in known:
+					entries.append((identity, label, referenceText))
+					known.add(identity)
+		references = [referenceText for identity, label, referenceText in entries]
+		return eDVBDB.getInstance().addOrUpdateBouquet(feed["bouquetName"], feed["bouquetFile"], references, False) == 0
 
-		masterPath = resolveFilename(SCOPE_CONFIG, "bouquets.radio")
-		masterLines = fileReadLines(masterPath, default=[], source=MODULE_NAME) or []
-		if not any(feed["bouquetFile"] in line for line in masterLines):
-			masterLines.append(''.join((
-				'#SERVICE 1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "',
-				feed["bouquetFile"], '" ORDER BY bouquet')))
-			if not fileWriteLines(masterPath, list(masterLines), source=MODULE_NAME):
-				return False
-		return True
+	def serviceIdentity(self, reference):
+		return tuple(reference.getUnsignedData(index) for index in range(1, 8)) + (reference.getPath(),)
+
+	def readBouquetEntries(self, bouquetFile):
+		reference = eServiceReference(f'1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "{bouquetFile}" ORDER BY bouquet')
+		serviceList = eServiceCenter.getInstance().list(reference)
+		entries = []
+		for referenceText in (serviceList.getContent("S", False) if serviceList else []):
+			try:
+				entry = eServiceReference(referenceText)
+			except (TypeError, ValueError):
+				continue
+			entries.append((self.serviceIdentity(entry), entry.getName(), referenceText))
+		return entries
 
 	def writeUSBBouquet(self):
-		if not self.usbServices:
+		if not self.usbServices and not self.clearBeforeScan:
 			return True
 		bouquetFile = "userbouquet.dab_usb.radio"
-		bouquetPath = resolveFilename(SCOPE_CONFIG, bouquetFile)
-		lines = ["#NAME DAB+ USB (Radio)"]
+		entries = []
 		seen = set()
-		for feed, service in sorted(self.usbServices, key=lambda item: item[1]["label"].casefold()):
+		for feed, service in self.usbServices:
 			key = (feed["transport"], service["sid"])
 			if key in seen:
 				continue
 			seen.add(key)
 			reference = self.buildReference(feed, service["sid"], service["label"])
-			lines.append(f"#SERVICE {reference.toString()}")
-			lines.append(f"#DESCRIPTION {service['label']}")
-		if not fileWriteLines(bouquetPath, list(lines), source=MODULE_NAME):
-			return False
-
-		masterPath = resolveFilename(SCOPE_CONFIG, "bouquets.radio")
-		masterLines = fileReadLines(masterPath, default=[], source=MODULE_NAME) or []
-		if not any(bouquetFile in line for line in masterLines):
-			masterLines.append(''.join((
-				'#SERVICE 1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "',
-				bouquetFile, '" ORDER BY bouquet')))
-		if not fileWriteLines(masterPath, list(masterLines), source=MODULE_NAME):
+			entries.append((self.serviceIdentity(reference), service["label"], reference.toString()))
+		if not self.clearBeforeScan:
+			known = {entry[0] for entry in entries}
+			for identity, label, referenceText in self.readBouquetEntries(bouquetFile):
+				reference = eServiceReference(referenceText)
+				path = reference.getPath()
+				channel = path[len("dab://rtlsdr/"):] if path.startswith("dab://rtlsdr/") else ""
+				if channel not in self.completedUSBChannels and identity not in known:
+					entries.append((identity, label, referenceText))
+					known.add(identity)
+		entries.sort(key=lambda entry: entry[1].casefold())
+		references = [referenceText for identity, label, referenceText in entries]
+		if eDVBDB.getInstance().addOrUpdateBouquet("DAB+ USB (Radio)", bouquetFile, references, False) != 0:
 			return False
 		self.writtenBouquets.add(bouquetFile)
-		print("[DABScan] Wrote %d collected services to '%s'." % (len(seen), bouquetFile))
+		print(f"[DABScan] Wrote {len(entries)} collected services to '{bouquetFile}'.")
 		return True
 
 	def updateProgress(self, elapsed):
@@ -613,11 +651,12 @@ class DABScan(ServiceScan):
 	def finishScan(self):
 		self.pollTimer.stop()
 		self.scanFinished = True
-		if self.usbServices and not self.writeUSBBouquet():
+		if self.usbScanChannels and (self.usbServices or self.clearBeforeScan) and not self.writeUSBBouquet():
 			self.failures.append(_("DAB+ USB: bouquet could not be written"))
 		if self.saveRegisteredParents:
 			eDVBDB.getInstance().saveServicelist()
 		eDVBDB.getInstance().reloadBouquets()
+		refreshServiceList()
 		self.restoreService()
 		self["scan_progress"].setValue(100)
 		self["pass"].setText("")

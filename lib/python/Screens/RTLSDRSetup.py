@@ -59,7 +59,9 @@ class RTLSDRSetup(Setup):
 		items = [
 			(_("Common settings"),),
 			((_("Show DAB+ slideshow"), 1), config.dab.slideshow,
-				_("Replace the static radio background with pictures transmitted by the current DAB+ station."))
+				_("Replace the static radio background with pictures transmitted by the current DAB+ station.")),
+			((_("Clear before scan"), 1), config.dab.clearBeforeScan,
+				_("Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."))
 		]
 		if self.hasRTLSDRHardware() and self.hasAvailableSatelliteDAB():
 			items.append((
