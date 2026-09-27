@@ -2552,12 +2552,40 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				standbyScreen.correctChannelNumber = True
 			elif self == ChannelSelection.instance:
 				doPlay = True  # Do real playback only for the first instance and only if not in Standby
+				startupService = self.getStartupService(lastservice)
+				if startupService != lastservice:
+					self.performZap(startupService)
+					return
 
 			if self.isSubservices():
 				self.zap(ref=lastservice, doPlay=doPlay)
 				self.enterSubservices()
 			else:
 				self.zap(doPlay=doPlay)
+
+	def getStartupService(self, service):
+		# Due timers can reserve the tuners before ChannelSelection is created.
+		# Keep their reservations and share a recording's transponder if the
+		# requested startup service is no longer playable. Do not delay timers.
+		if service.type != eServiceReference.idDVB or (service.getPath() and not service.flags & eServiceReference.isGroup):
+			return service
+		recordings = [timer for timer in self.session.nav.RecordTimer.timer_list
+			if not timer.disabled and not timer.justplay and not timer.failed
+			and timer.state in (timer.StatePrepared, timer.StateRunning) and timer.record_service]
+		if recordings:
+			serviceHandler = eServiceCenter.getInstance()
+			ignoreService = eServiceReference()
+			info = serviceHandler.info(service)
+			if info and not info.isPlayable(service, ignoreService):
+				for timer in recordings:
+					recordingService = timer.service_ref.ref
+					if recordingService.type != eServiceReference.idDVB or (recordingService.getPath() and not recordingService.flags & eServiceReference.isGroup):
+						continue
+					info = serviceHandler.info(recordingService)
+					if info and info.isPlayable(recordingService, ignoreService):
+						print(f"[ChannelSelection] Startup service '{service.toString()}' unavailable during recording, using '{recordingService.toString()}'.")
+						return recordingService
+		return service
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
