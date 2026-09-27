@@ -3,7 +3,7 @@ from re import fullmatch, sub
 from time import monotonic
 from xml.etree.ElementTree import ParseError, parse
 
-from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eDVBSatelliteEquipmentControl, eServiceReference, eTimer, iPlayableService, iServiceInformation
+from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatellite, eDVBSatelliteEquipmentControl, eServiceReference, eTimer, iFrontendInformation, iPlayableService, iServiceInformation
 
 from Components.config import config
 from Components.NimManager import nimmanager
@@ -21,8 +21,11 @@ class DABScan(ServiceScan):
 	POLL_INTERVAL = 500
 	DVB_FEED_TIMEOUT = 15000
 	RTLSDR_FEED_TIMEOUT = 8000
+	RTLSDR_SIGNAL_TIMEOUT = 20000
+	RTLSDR_SIGNAL_SNR = 500  # Centi-dB; ignore the false zero/negative locks reported on empty channels.
 	FEED_TIMEOUT = DVB_FEED_TIMEOUT
 	STABLE_POLLS = 3
+	RTLSDR_STABLE_POLLS = 6
 	SUPPORTED_DECODERS = ("fedi2eti", "tsniv2ni", "ts2na12", "ts2na")
 
 	def __init__(self, session, source=None):
@@ -57,6 +60,8 @@ class DABScan(ServiceScan):
 		self.feedListOffset = 0
 		self.lastSignature = None
 		self.stablePolls = 0
+		self.stablePollsRequired = self.STABLE_POLLS
+		self.feedSignalDetected = False
 		self.feedStarted = 0
 		self.feedTuneStarted = 0
 		self.feedTuneTimeout = self.DVB_FEED_TIMEOUT
@@ -360,6 +365,8 @@ class DABScan(ServiceScan):
 		self.feedListOffset = len(self.serviceList)
 		self.lastSignature = None
 		self.stablePolls = 0
+		self.stablePollsRequired = self.RTLSDR_STABLE_POLLS if feed["decoder"] == "rtlsdr" else self.STABLE_POLLS
+		self.feedSignalDetected = False
 		self.feedTuneStarted = monotonic()
 		self.feedTuneTimeout = config.sec.motor_running_timeout.value * 1000 if feed.get("motorized") else self.DVB_FEED_TIMEOUT
 		self.feedStarted = self.feedTuneStarted if feed["decoder"] == "rtlsdr" else 0
@@ -416,6 +423,17 @@ class DABScan(ServiceScan):
 				ensembleId = info.getInfo(iServiceInformation.sDABEnsembleId)
 				if ensembleId > 0:
 					self.feeds[self.feedIndex]["ensembleId"] = ensembleId
+			if self.feeds[self.feedIndex]["decoder"] == "rtlsdr" and not self.feedSignalDetected:
+				frontendInfo = service.frontendInfo()
+				if frontendInfo:
+					locked = frontendInfo.getFrontendInfo(iFrontendInformation.lockState)
+					snr = frontendInfo.getFrontendInfo(iFrontendInformation.signalQualitydB)
+					if locked and snr >= self.RTLSDR_SIGNAL_SNR:
+						self.feedSignalDetected = True
+						self.FEED_TIMEOUT = self.RTLSDR_SIGNAL_TIMEOUT
+						print("[DABScan] Plausible RF signal detected on USB channel %s (%.1f dB); extending the FIC timeout to %.1f seconds." % (
+							self.feeds[self.feedIndex]["transport"], snr / 100.0, self.FEED_TIMEOUT / 1000.0))
+						self.setScanState(_("DAB+ signal detected; waiting for FIC service data..."))
 		if self.feedTuneFailed:
 			self.feedFailed(_("Unable to tune the DAB+ satellite feed"))
 			return
@@ -447,8 +465,8 @@ class DABScan(ServiceScan):
 				self.stablePolls = 1
 				self.currentServices = services
 				self.showCurrentServices()
-			self.setScanState(_("Scanning: %d services found; validating live result (%d/%d)...") % (self.foundServices, self.stablePolls, self.STABLE_POLLS))
-			if self.stablePolls >= self.STABLE_POLLS:
+			self.setScanState(_("Scanning: %d services found; validating live result (%d/%d)...") % (self.foundServices, self.stablePolls, self.stablePollsRequired))
+			if self.stablePolls >= self.stablePollsRequired:
 				self.feedComplete()
 				return
 		else:
