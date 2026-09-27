@@ -407,6 +407,7 @@ class HarddiskManager:
 	def __init__(self):
 		self.debug = False
 		self.hdd = []
+		self.refreshingBlockDevices = False
 		self.cd = ""
 		self.partitions = []
 		self.devices_scanned_on_init = []
@@ -665,10 +666,12 @@ class HarddiskManager:
 	def addHotplugPartition(self, device, physdev=None, model=None):
 		device = device.replace("/dev/", "")
 		self.debugPrint(f"addHotplugPartition {device}")
+		dev = self.splitDeviceName(device)[0]
+		if not exists(join("/sys/block", dev)):
+			return True, False, False, False, [], False
 		# device -> the device name, without /dev.
 		# physdev -> the physical device path, which we (might) use to determine the user friendly name.
 		if not physdev:
-			dev, part = self.splitDeviceName(device)
 			try:
 				physdev = realpath(f"/sys/block/{dev}/device")[4:]
 			except OSError as err:
@@ -676,6 +679,12 @@ class HarddiskManager:
 				print(f"[Harddisk] Error {err.errno}: Couldn't determine blockdev or physdev for device '{device}'!  ({err.strerror})")
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
+			# udev may report only partitions. Register their parent disk before
+			# notifying consumers so HDDList() is already current in callbacks.
+			if dev not in [hdd.device for hdd in self.hdd]:
+				self.hdd.append(Harddisk(dev, removable, model))
+				self.hdd.sort()
+			BoxInfo.setItem("Harddisk", True)
 			mountpoint = self.getMountpoint(device)
 			# A device can be reported more than once (udev re-add after a bus
 			# glitch, bdpoll, optical media change).  Do not register it twice.
@@ -692,12 +701,6 @@ class HarddiskManager:
 			self.partitions.append(p)
 			if p.mountpoint:  # Plugins won't expect unmounted devices
 				self.triggerAddRemovePartion("add", p)
-			# see if this is a harddrive
-			if not search(r"mmcblk\dp\d+|sd\w\d+", device):
-				if device not in [hdd.device for hdd in self.hdd]:
-					self.hdd.append(Harddisk(device, removable, model))
-					self.hdd.sort()
-				BoxInfo.setItem("Harddisk", True)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def addHotplugAudiocd(self, device, physdev=None):
@@ -722,23 +725,52 @@ class HarddiskManager:
 	def removeHotplugPartition(self, device):
 		device = device.replace("/dev/", "")
 		self.debugPrint(f"removeHotplugPartition {device}")
+		dev, part = self.splitDeviceName(device)
+		removeDisk = not part or not exists(join("/sys/block", dev))
+		if removeDisk:
+			for hdd in self.hdd[:]:
+				if hdd.device == dev:
+					hdd.stop()
+					self.hdd.remove(hdd)
+			BoxInfo.setItem("Harddisk", bool(self.hdd))
 		for x in self.partitions[:]:
-			if x.device == device:
+			if x.device == device or (removeDisk and x.device and self.splitDeviceName(x.device)[0] == dev):
 				self.partitions.remove(x)
 				if x.mountpoint:  # Plugins won't expect unmounted devices.
 					self.triggerAddRemovePartion("remove", x)
-		if not search(r"mmcblk\dp\d+|sd\w\d+", device):
-			for hdd in self.hdd:
-				if hdd.device == device:
-					hdd.stop()
-					self.hdd.remove(hdd)
-					break
-			BoxInfo.setItem("Harddisk", len(self.hdd) > 0)
+
+	def refreshBlockDevices(self):
+		# Some mount scripts omit disk events (e.g. disks without a filesystem
+		# UUID or MultiBoot partitions excluded from automount). Reconcile the
+		# shared cache on demand, not with a background timer or a mount command.
+		if self.refreshingBlockDevices:
+			return
+		try:
+			devices = set(listdir("/sys/block"))
+		except OSError:
+			return
+		self.refreshingBlockDevices = True
+		try:
+			knownDevices = {hdd.device for hdd in self.hdd}
+			for device in sorted(knownDevices - devices):
+				self.removeHotplugPartition(device)
+			blacklist = ("ram", "rom", "loop", "zram", "md0") + tuple((BoxInfo.getItem("mtdblack") or "").split())
+			for device in sorted(devices - knownDevices):
+				if device.startswith(blacklist):
+					continue
+				error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(device)
+				if not error and not blacklisted and medium_found:
+					for partition in partitions:
+						self.addHotplugPartition(partition)
+		finally:
+			self.refreshingBlockDevices = False
 
 	def HDDCount(self):
+		self.refreshBlockDevices()
 		return len(self.hdd)
 
 	def HDDList(self):
+		self.refreshBlockDevices()
 		list = []
 		for hd in self.hdd:
 			hdd = f"{hd.model()} - {hd.bus()}"
@@ -765,13 +797,16 @@ class HarddiskManager:
 		return [x for x in parts if (not x.device or x.device in devs) and x.mountpoint]  # Return all devices which are not removed due to being a whole disk when a partition exists.
 
 	def splitDeviceName(self, devname):
-		if search(r"^mmcblk\d(?:p\d+$|$)", devname):
-			m = search(r"(?P<dev>mmcblk\d)p(?P<part>\d+)$", devname)
+		if search(r"^mmcblk\d+(?:p\d+$|$)", devname):
+			m = search(r"(?P<dev>mmcblk\d+)p(?P<part>\d+)$", devname)
 			if m:
 				return m.group("dev"), m.group("part") and int(m.group("part")) or 0
 			else:
 				return devname, 0
 		else:
+			m = search(r"^(?P<dev>(?:sd|hd)[a-z]+)(?P<part>\d*)$", devname)
+			if m:
+				return m.group("dev"), int(m.group("part") or 0)
 			# This works for: sdaX, hdaX, sr0 (which is in fact dev="sr0", part=""). It doesn't work for other names like mtdblock3, but they are blacklisted anyway.
 			dev = devname[:3]
 			part = devname[3:]
