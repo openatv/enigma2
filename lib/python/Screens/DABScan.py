@@ -8,6 +8,7 @@ from enigma import eDVBDB, eDVBFrontendParameters, eDVBFrontendParametersSatelli
 from Components.config import config
 from Components.NimManager import nimmanager
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.ServiceList import refreshServiceList
 from Screens.ServiceScan import ServiceScan
 from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, resolveFilename
 
@@ -655,6 +656,7 @@ class DABScan(ServiceScan):
 		if self.saveRegisteredParents:
 			eDVBDB.getInstance().saveServicelist()
 		eDVBDB.getInstance().reloadBouquets()
+		refreshServiceList()
 		self.restoreService()
 		self["scan_progress"].setValue(100)
 		self["pass"].setText("")
