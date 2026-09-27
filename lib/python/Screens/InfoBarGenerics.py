@@ -4217,9 +4217,9 @@ class InfoBarInstantRecord:
 			# one occurrence of a repeating timer or disabling its future occurrences.
 			if not timer.repeated:
 				if timer.state in (RecordTimerEntry.StatePrepared, RecordTimerEntry.StateRunning):
-					choices.append((_("Stop recording: %s") % timer.name, ("stop", timer)))
+					choices.append((_("Stop recording: '%s'") % timer.name, ("stop", timer)))
 				else:
-					choices.append((_("Disable timer: %s") % timer.name, ("disable", timer)))
+					choices.append((_("Disable timer: '%s'") % timer.name, ("disable", timer)))
 		choices.extend([
 			(_("Manage timer conflicts"), ("manage", None)),
 			(_("Cancel"), ("cancel", None))
