@@ -1395,6 +1395,7 @@ class NativeSlotManager(Setup):
 
 		inspectDir = mkdtemp(prefix="NativeSlotManager_")
 		rawStartupFiles = {}
+		startupContents = {}
 		try:
 			Console().ePopen(["/bin/mount", "/bin/mount", startupDevice, inspectDir])
 			if not ismount(inspectDir):
@@ -1405,6 +1406,8 @@ class NativeSlotManager(Setup):
 				if match:
 					slotNumber = int(match.group(1))
 					rawStartupFiles.setdefault(slotNumber, []).append(startupFile)
+					if slotNumber == 1:
+						startupContents[startupFile] = fileReadLines(join(inspectDir, startupFile), source=MODULE_NAME)
 		finally:
 			if ismount(inspectDir):
 				Console().ePopen(["/bin/umount", "/bin/umount", inspectDir])
@@ -1430,7 +1433,13 @@ class NativeSlotManager(Setup):
 			startupFile = startupFiles.get(bootCode)
 			cmdLine = cmdLines.get(bootCode)
 			if startupFile and cmdLine and "root=" in cmdLine and "kernel=" in cmdLine:
-				modes.append((bootCode, startupFile, cmdLine))
+				startupLines = startupContents.get(startupFile)
+				if not startupLines or not any(line.strip() for line in startupLines):
+					return _("Unable to read the manufacturer STARTUP file '%s'.") % startupFile
+				if " ".join(line.strip() for line in startupLines if line.strip()) != cmdLine:
+					return _("The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again.") % startupFile
+				# cmdLine is only for detection. Keep the bootloader's original line structure.
+				modes.append((bootCode, startupFile, startupLines))
 		if not modes:
 			return _("Manufacturer slot 1 has no usable STARTUP command with a kernel device.")
 
@@ -1447,12 +1456,12 @@ class NativeSlotManager(Setup):
 				self.slotPlan = []
 				return _("The root subdirectory in the manufacturer STARTUP file cannot be safely extended.")
 			startupData = []
-			for bootCode, startupFile, cmdLine in modes:
+			for bootCode, startupFile, startupLines in modes:
 				newStartupFile = self.getStartupName(startupFile, sourceSlot, str(newSlot))
 				if not newStartupFile:
 					self.slotPlan = []
 					return _("The manufacturer STARTUP filename '%s' cannot be safely extended.") % startupFile
-				startupData.append((bootCode, newStartupFile, cmdLine))
+				startupData.append((bootCode, newStartupFile, startupLines))
 			self.slotPlan.append((str(newSlot), rootSubdir, startupData))
 		return None
 
@@ -1473,9 +1482,9 @@ class NativeSlotManager(Setup):
 			return None
 		return "_".join(parts)
 
-	def updateStartupContent(self, cmdLine, rootSubdir, rootDevice):
-		content = cmdLine
-		# Legacy manufacturer subdirboot initramfs images mount root directly and cannot resolve UUID= targets.
+	def updateStartupContent(self, startupContent, rootSubdir, rootDevice):
+		content = startupContent
+		# rootDevice may be a UUID selector when the running NewMB initramfs supports it.
 		content = sub(r"(?<![A-Za-z0-9_])root=[^\s'\"]+", f"root={rootDevice}", content, count=1)
 		if not compile(r"(?<![A-Za-z0-9_])rootwait(?:=[^\s'\"]+)?(?=$|[\s'\"])").search(content):
 			content = sub(r"((?<![A-Za-z0-9_])root=[^\s'\"]+)", r"\1 rootwait", content, count=1)
@@ -1536,11 +1545,30 @@ class NativeSlotManager(Setup):
 		self.session.openWithCallback(self.formatDeviceCallback, ConsoleScreen, title=self.getTitle(), cmdlist=cmdlist)
 
 	def formatDeviceCallback(self):
+		# The runtime marker lives in devtmpfs, not in an image that may be booted
+		# with an older shared kernel. Keep /dev paths until that kernel is updated.
+		if exists("/dev/.newMB-uuid"):
+			self.console.ePopen(["/sbin/blkid", "/sbin/blkid", "-s", "UUID", "-o", "value", self.rootDevice], self.rootUUIDCallback)
+		else:
+			self.writeStartupFiles(self.rootDevice)
+
+	def rootUUIDCallback(self, output, retVal, extraArgs=None):
+		uuid = output.strip()
+		if retVal or not fullmatch(r"[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}", uuid):
+			Console().ePopen(["/bin/umount", "/bin/umount", "/tmp/NativeSlotManagerBoot"])
+			self.session.open(MessageBox, _("Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+			return
+		self.writeStartupFiles(f"UUID={uuid.lower()}")
+
+	def writeStartupFiles(self, rootReference):
 		def closeStartupCallback(answer):
 			if answer:
 				self.session.open(TryQuitMainloop, QUIT_RESTART)
 
 		mountPoint = "/tmp/NativeSlotManagerBoot"
+		if not ismount(mountPoint):
+			self.session.open(MessageBox, _("The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+			return
 		created = 0
 		failed = False
 		for startupFile in self.startupFilesToRemove:
@@ -1555,9 +1583,9 @@ class NativeSlotManager(Setup):
 		for _slotCode, rootSubdir, startupData in self.slotPlan:
 			if failed:
 				break
-			for _bootCode, startupFile, cmdLine in startupData:
-				content = self.updateStartupContent(cmdLine, rootSubdir, self.rootDevice)
-				if not fileWriteLine(join(mountPoint, startupFile), content, source=MODULE_NAME):
+			for _bootCode, startupFile, startupLines in startupData:
+				content = self.updateStartupContent("\n".join(startupLines), rootSubdir, rootReference)
+				if not fileWriteLines(join(mountPoint, startupFile), content.split("\n"), source=MODULE_NAME):
 					failed = True
 					break
 			if failed:
