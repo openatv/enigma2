@@ -560,6 +560,7 @@ class eDABSDRWorker : private eThread
 {
 public:
 	typedef std::function<void(const uint8_t *, size_t)> LOASCallback;
+	typedef std::function<void(const uint8_t *, size_t, unsigned)> PCMCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 	typedef std::function<bool(const std::string &, const std::string &)> SPIImageCallback;
 	typedef std::function<int(const std::string &)> SPICallback;
@@ -567,10 +568,12 @@ public:
 		const std::string &, uint16_t)> MOTCallback;
 
 	eDABSDRWorker(const std::string &channel, uint32_t serviceId, const std::string &motCachePrefix, const LOASCallback &loasCallback,
+		const PCMCallback &pcmCallback,
 		const ImageCallback &imageCallback, const SPIImageCallback &spiImageCallback,
 		const SPICallback &spiCallback, const MOTCallback &motCallback,
 		eFixedMessagePump<eDABWorkerStats> &pump)
 		: m_channel(channel), m_service_id(serviceId), m_mot_cache_prefix(motCachePrefix), m_loas_callback(loasCallback),
+		  m_pcm_callback(pcmCallback),
 		  m_image_callback(imageCallback), m_spi_image_callback(spiImageCallback), m_spi_callback(spiCallback),
 		  m_mot_callback(motCallback),
 		  m_pump(pump), m_stop(false), m_started(false),
@@ -583,6 +586,7 @@ public:
 		m_automatic_gain = eConfigManager::getConfigBoolValue("config.dab.rtlsdr.automaticGain", true);
 		m_gain = configValue("config.dab.rtlsdr.gain", "35");
 		m_loas.reserve(32768);
+		m_pcm.reserve(32768);
 		m_stderr.reserve(4096);
 	}
 
@@ -676,13 +680,15 @@ private:
 			~RTLSDRAdapterLease() { manager->releaseRTLSDRAdapter(); }
 		} adapterLease(resourceManager);
 
+		int pcmPipe[2] = {-1, -1};
 		int audioPipe[2] = {-1, -1};
 		int errorPipe[2] = {-1, -1};
 		int inputPipe[2] = {-1, -1};
-		if (pipe(audioPipe) || pipe(errorPipe) || pipe(inputPipe))
+		const bool pcmRequested = static_cast<bool>(m_pcm_callback);
+		if ((pcmRequested && pipe(pcmPipe)) || pipe(audioPipe) || pipe(errorPipe) || pipe(inputPipe))
 		{
 			m_stats.error = errno;
-			closePipes(audioPipe, errorPipe, inputPipe);
+			closePipes(audioPipe, errorPipe, inputPipe, pcmPipe);
 			publish(true);
 			return;
 		}
@@ -716,6 +722,11 @@ private:
 			arguments.push_back("-S");
 			arguments.push_back(sid);
 		}
+		if (pcmRequested)
+		{
+			arguments.push_back("-P");
+			arguments.push_back("3");
+		}
 		std::vector<char *> argv;
 		for (size_t index = 0; index < arguments.size(); ++index)
 			argv.push_back(const_cast<char *>(arguments[index].c_str()));
@@ -725,7 +736,7 @@ private:
 		if (child < 0)
 		{
 			m_stats.error = errno;
-			closePipes(audioPipe, errorPipe, inputPipe);
+			closePipes(audioPipe, errorPipe, inputPipe, pcmPipe);
 			publish(true);
 			return;
 		}
@@ -734,7 +745,13 @@ private:
 			dup2(inputPipe[0], STDIN_FILENO);
 			dup2(audioPipe[1], STDOUT_FILENO);
 			dup2(errorPipe[1], STDERR_FILENO);
-			closePipes(audioPipe, errorPipe, inputPipe);
+			if (pcmRequested)
+				dup2(pcmPipe[1], 3);
+			int *pipes[] = {audioPipe, errorPipe, inputPipe, pcmPipe};
+			for (size_t pipeIndex = 0; pipeIndex < sizeof(pipes) / sizeof(pipes[0]); ++pipeIndex)
+				for (int end = 0; end < 2; ++end)
+					if (pipes[pipeIndex][end] > 3)
+						close(pipes[pipeIndex][end]);
 			execv(argv[0], argv.data());
 			_exit(127);
 		}
@@ -744,6 +761,8 @@ private:
 		close(audioPipe[1]);
 		close(errorPipe[1]);
 		close(inputPipe[0]);
+		if (pcmRequested)
+			close(pcmPipe[1]);
 		m_stdin_fd = inputPipe[1];
 #ifdef F_SETPIPE_SZ
 		/* SPI directories can deliver dozens of logo objects in one burst.
@@ -754,19 +773,29 @@ private:
 #endif
 		fcntl(audioPipe[0], F_SETFL, fcntl(audioPipe[0], F_GETFL) | O_NONBLOCK);
 		fcntl(errorPipe[0], F_SETFL, fcntl(errorPipe[0], F_GETFL) | O_NONBLOCK);
+		if (pcmRequested)
+		{
+#ifdef F_SETPIPE_SZ
+			fcntl(pcmPipe[0], F_SETPIPE_SZ, 1024 * 1024);
+#endif
+			fcntl(pcmPipe[0], F_SETFL, fcntl(pcmPipe[0], F_GETFL) | O_NONBLOCK);
+		}
 		eDABDebug("[eDABSDRWorker] started channel=%s sid=%08x device=%s gain=%s",
 			m_channel.c_str(), m_service_id, m_device.c_str(), m_automatic_gain ? "automatic" : m_gain.c_str());
 
 		bool audioOpen = true;
 		bool errorOpen = true;
-		while (!m_stop && (audioOpen || errorOpen))
+		bool pcmOpen = pcmRequested;
+		while (!m_stop && (audioOpen || errorOpen || pcmOpen))
 		{
-			struct pollfd descriptors[2] = {};
+			struct pollfd descriptors[3] = {};
 			descriptors[0].fd = audioPipe[0];
 			descriptors[0].events = audioOpen ? POLLIN : 0;
 			descriptors[1].fd = errorPipe[0];
 			descriptors[1].events = errorOpen ? POLLIN : 0;
-			const int result = poll(descriptors, 2, 250);
+			descriptors[2].fd = pcmPipe[0];
+			descriptors[2].events = pcmOpen ? POLLIN : 0;
+			const int result = poll(descriptors, 3, 250);
 			if (result < 0 && errno != EINTR)
 			{
 				m_stats.error = errno;
@@ -776,6 +805,8 @@ private:
 				audioOpen = readAudio(audioPipe[0]);
 			if (errorOpen && result > 0 && descriptors[1].revents)
 				errorOpen = readMetadata(errorPipe[0], audioPipe[0], audioOpen);
+			if (pcmOpen && result > 0 && descriptors[2].revents)
+				pcmOpen = readPCM(pcmPipe[0]);
 			publish();
 		}
 
@@ -804,6 +835,8 @@ private:
 		m_child_pid = -1;
 		close(audioPipe[0]);
 		close(errorPipe[0]);
+		if (pcmPipe[0] >= 0)
+			close(pcmPipe[0]);
 		if (m_stdin_fd >= 0)
 		{
 			close(m_stdin_fd);
@@ -812,7 +845,7 @@ private:
 		publish(true);
 	}
 
-	static void closePipes(int (&audioPipe)[2], int (&errorPipe)[2], int (&inputPipe)[2])
+	static void closePipes(int (&audioPipe)[2], int (&errorPipe)[2], int (&inputPipe)[2], int (&pcmPipe)[2])
 	{
 		for (int index = 0; index < 2; ++index)
 		{
@@ -822,6 +855,8 @@ private:
 				close(errorPipe[index]);
 			if (inputPipe[index] >= 0)
 				close(inputPipe[index]);
+			if (pcmPipe[index] >= 0)
+				close(pcmPipe[index]);
 		}
 	}
 
@@ -854,6 +889,42 @@ private:
 				++m_stats.audioFrames;
 				m_stats.serviceFound = true;
 				m_publish_pending = true;
+			}
+			return true;
+		}
+		return bytes < 0 && (errno == EAGAIN || errno == EINTR);
+	}
+
+	bool readPCM(int fd)
+	{
+		uint8_t buffer[32768];
+		const ssize_t bytes = read(fd, buffer, sizeof(buffer));
+		if (bytes > 0)
+		{
+			m_pcm.insert(m_pcm.end(), buffer, buffer + bytes);
+			while (m_pcm.size() >= 12)
+			{
+				if (m_pcm[0] != 'D' || m_pcm[1] != 'P' || m_pcm[2] != 'C' || m_pcm[3] != 'M')
+				{
+					m_pcm.erase(m_pcm.begin());
+					continue;
+				}
+				const unsigned sampleRate = (static_cast<unsigned>(m_pcm[4]) << 24) |
+					(static_cast<unsigned>(m_pcm[5]) << 16) |
+					(static_cast<unsigned>(m_pcm[6]) << 8) | m_pcm[7];
+				const size_t payloadLength = (static_cast<size_t>(m_pcm[8]) << 24) |
+					(static_cast<size_t>(m_pcm[9]) << 16) |
+					(static_cast<size_t>(m_pcm[10]) << 8) | m_pcm[11];
+				if (sampleRate < 8000 || sampleRate > 192000 || !payloadLength ||
+					payloadLength > 1024 * 1024 || payloadLength % (2 * sizeof(int16_t)))
+				{
+					m_pcm.erase(m_pcm.begin());
+					continue;
+				}
+				if (m_pcm.size() < 12 + payloadLength)
+					break;
+				m_pcm_callback(m_pcm.data() + 12, payloadLength, sampleRate);
+				m_pcm.erase(m_pcm.begin(), m_pcm.begin() + 12 + payloadLength);
 			}
 			return true;
 		}
@@ -1214,6 +1285,7 @@ private:
 	bool m_automatic_gain;
 	std::string m_gain;
 	LOASCallback m_loas_callback;
+	PCMCallback m_pcm_callback;
 	ImageCallback m_image_callback;
 	SPIImageCallback m_spi_image_callback;
 	SPICallback m_spi_callback;
@@ -1230,6 +1302,7 @@ private:
 	bool m_publish_pending = false;
 	eDABWorkerStats m_stats;
 	std::vector<uint8_t> m_loas;
+	std::vector<uint8_t> m_pcm;
 	std::string m_stderr;
 };
 
@@ -1652,6 +1725,7 @@ bool eServiceDABRecord::startRTLSDR()
 	}
 	m_sdr_worker.reset(new eDABSDRWorker(channel, serviceId, std::string(),
 		[this](const uint8_t *data, size_t length) { writeAudio(data, length); },
+		eDABSDRWorker::PCMCallback(),
 		[](const uint8_t *, size_t, int) { },
 		eDABSDRWorker::SPIImageCallback(), eDABSDRWorker::SPICallback(), eDABSDRWorker::MOTCallback(),
 		m_worker_pump));
@@ -2051,15 +2125,25 @@ bool eServiceDAB::startRTLSDR()
 	if (!parseRTLSDRChannel(channel))
 		return false;
 	const uint32_t serviceId = m_reference.getUnsignedData(6);
+	bool pcmOutput = false;
+#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
+	pcmOutput = serviceId != 0;
+#endif
 	char motCachePrefix[192];
 	snprintf(motCachePrefix, sizeof(motCachePrefix), "%s/dab-mot-%08x-%04x",
 		m_cache_directory.c_str(), m_source_hash, m_reference.getUnsignedData(7) & 0xffff);
 	/* A SID of zero is the transient scan service.  It needs ensemble and
 	 * service metadata only, so no audio pipeline is opened while scanning. */
-	if (serviceId && !startAudioPipeline(true))
+	if (serviceId && !startAudioPipeline(!pcmOutput, pcmOutput))
 		return false;
+	eDABSDRWorker::PCMCallback pcmCallback;
+	if (pcmOutput)
+		pcmCallback = [this](const uint8_t *data, size_t length, unsigned sampleRate) {
+			pushPCM(data, length, sampleRate);
+		};
 	m_sdr_worker.reset(new eDABSDRWorker(channel, serviceId, motCachePrefix,
 		[this](const uint8_t *data, size_t length) { pushLOAS(data, length); },
+		pcmCallback,
 		[this](const uint8_t *data, size_t length, int format) { storeSlide(data, length, format); },
 		[this](const std::string &path, const std::string &contentName) { return cacheSPIImage(path, contentName); },
 		[this](const std::string &path) { return importSPI(path); },
@@ -2513,27 +2597,37 @@ bool eServiceDAB::sinkAcceptsLOAS(const char *factoryName)
 	return accepted;
 }
 
-bool eServiceDAB::startAudioPipeline(bool loasInput)
+bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 {
 	if (m_audio_pipeline)
 		return true;
-	eDABDebug("[eServiceDAB] starting audio pipeline input=%s", loasInput ? "LOAS" : "raw AAC");
+	eDABDebug("[eServiceDAB] starting audio pipeline input=%s",
+		pcmInput ? "PCM" : (loasInput ? "LOAS" : "raw AAC"));
 #ifdef DREAMNEXTGEN
 	const char *hardwareSink = "dreamaudiosink";
 #else
 	const char *hardwareSink = "dvbaudiosink";
 #endif
 	/* A sink that takes LOAS decodes in hardware. Fall back to the software
-	 * decoder only when it does not, dvbaudiosink advertises raw audio but
-	 * never consumes it. */
-	m_audio_input_loas = loasInput;
-	m_audio_loas = !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
+	 * decoder when it does not. Legacy Dreambox hardware receives DAB-aware
+	 * FAAD2 PCM from the RTL-SDR backend because FFmpeg cannot decode SBR with
+	 * DAB's 960-sample transform. */
+	m_audio_input_loas = loasInput && !pcmInput;
+	m_audio_input_pcm = pcmInput;
+	m_audio_loas = !pcmInput && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
 	eDABDebug("[eServiceDAB] selected %s decode via '%s'", m_audio_loas ? "hardware" : "software", hardwareSink);
-	std::string description =
-		"appsrc name=dabsource is-live=true format=time do-timestamp=false block=false "
+	std::string description = "appsrc name=dabsource is-live=";
+	description += pcmInput ? "false " : "true ";
+	description +=
+		"format=time do-timestamp=false block=false "
 		"! queue name=dabqueue min-threshold-buffers=24 max-size-buffers=256 "
 		"max-size-bytes=1048576 max-size-time=5000000000 leaky=downstream ! ";
-	if (loasInput)
+	if (pcmInput)
+	{
+		/* The backend already supplies the exact S16LE format accepted by the
+		 * Dreambox sink. Keep this path identical to direct PCM playback. */
+	}
+	else if (loasInput)
 	{
 		description += "aacparse ! ";
 		if (!m_audio_loas)
@@ -2541,6 +2635,10 @@ bool eServiceDAB::startAudioPipeline(bool loasInput)
 	}
 	else if (!m_audio_loas)
 		description += "faad ! audioconvert ! audioresample ! ";
+#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
+	if (!m_audio_loas && !pcmInput)
+		description += "audio/x-raw,format=S16LE,rate=48000,channels=2 ! ";
+#endif
 	description += hardwareSink;
 	description += " name=dabaudiosink";
 	GError *error = nullptr;
@@ -2566,7 +2664,7 @@ bool eServiceDAB::startAudioPipeline(bool loasInput)
 		stopAudioPipeline();
 		return false;
 	}
-	if (loasInput)
+	if (loasInput && !pcmInput)
 	{
 		GstCaps *caps = gst_caps_new_simple("audio/mpeg",
 			"mpegversion", G_TYPE_INT, 4,
@@ -2587,15 +2685,18 @@ bool eServiceDAB::startAudioPipeline(bool loasInput)
 	{
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-sync"))
 		{
-#ifdef DREAMNEXTGEN
-			/* DreamAudio uses e2-sync=true to identify pure audio. DAB has no
-			 * video PTS against which its userspace A/V anchor could run. */
+#if defined(DREAMNEXTGEN) || defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
+			/* Match eServiceMP3's audio-only setup. In particular, legacy
+			 * Dreambox dvbaudiosink must be clocked by GStreamer; with e2-sync
+			 * disabled it consumes software-decoded PCM too quickly. */
 			g_object_set(audioSink, "e2-sync", TRUE, nullptr);
 #else
 			g_object_set(audioSink, "e2-sync", FALSE, nullptr);
 #endif
 		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-async"))
+			/* DAB is a live appsrc and must not wait for an asynchronous
+			 * preroll. Clock synchronisation is handled by e2-sync above. */
 			g_object_set(audioSink, "e2-async", FALSE, nullptr);
 		gst_object_unref(audioSink);
 	}
@@ -2608,7 +2709,8 @@ bool eServiceDAB::startAudioPipeline(bool loasInput)
 	eDABDebug("[eServiceDAB] audio pipeline is starting in PLAYING state");
 	m_audio_next_pts = 0;
 	m_audio_format = 0;
-	m_audio_caps_set = loasInput;
+	m_audio_caps_set = loasInput && !pcmInput;
+	m_pcm_sample_rate = 0;
 	m_audio_queue_overruns = 0;
 	m_reported_audio_queue_overruns = 0;
 	if (!access("/tmp/dab-capture", F_OK))
@@ -2649,6 +2751,8 @@ void eServiceDAB::stopAudioPipeline()
 	m_audio_format = 0;
 	m_audio_caps_set = false;
 	m_audio_input_loas = false;
+	m_audio_input_pcm = false;
+	m_pcm_sample_rate = 0;
 }
 
 void eServiceDAB::setAudioCaps(uint8_t config)
@@ -2767,6 +2871,43 @@ void eServiceDAB::pushLOAS(const uint8_t *data, size_t length)
 		eWarning("[eServiceDAB] unable to push RTL-SDR LOAS buffer: %s", gst_flow_get_name(flow));
 }
 
+void eServiceDAB::pushPCM(const uint8_t *data, size_t length, unsigned sampleRate)
+{
+	if (!data || !length || !sampleRate || !m_audio_source || !m_audio_input_pcm ||
+		length % (2 * sizeof(int16_t)))
+		return;
+	if (!m_audio_caps_set || m_pcm_sample_rate != sampleRate)
+	{
+		GstCaps *caps = gst_caps_new_simple("audio/x-raw",
+			"format", G_TYPE_STRING, "S16LE",
+			"layout", G_TYPE_STRING, "interleaved",
+			"rate", G_TYPE_INT, static_cast<int>(sampleRate),
+			"channels", G_TYPE_INT, 2, nullptr);
+		if (!caps)
+			return;
+		g_object_set(m_audio_source, "caps", caps, nullptr);
+		gst_caps_unref(caps);
+		m_pcm_sample_rate = sampleRate;
+		m_audio_caps_set = true;
+		eDABDebug("[eServiceDAB] RTL-SDR software PCM configured: %u Hz stereo", sampleRate);
+	}
+	const uint64_t frames = length / (2 * sizeof(int16_t));
+	const uint64_t durationNs = gst_util_uint64_scale(frames, GST_SECOND, sampleRate);
+	GstBuffer *buffer = gst_buffer_new_allocate(nullptr, length, nullptr);
+	if (!buffer)
+		return;
+	gst_buffer_fill(buffer, 0, data, length);
+	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DURATION(buffer) = durationNs;
+	m_audio_next_pts += durationNs;
+	GstFlowReturn flow = GST_FLOW_OK;
+	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
+	gst_buffer_unref(buffer);
+	if (flow != GST_FLOW_OK)
+		eWarning("[eServiceDAB] unable to push RTL-SDR PCM buffer: %s", gst_flow_get_name(flow));
+}
+
 void eServiceDAB::audioQueueOverrun(GstElement *, void *userData)
 {
 	static_cast<eServiceDAB *>(userData)->m_audio_queue_overruns.fetch_add(1);
@@ -2774,6 +2915,12 @@ void eServiceDAB::audioQueueOverrun(GstElement *, void *userData)
 
 void eServiceDAB::showRadioPicture()
 {
+#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
+	/* These drivers share decoder state between video0 and audio0. Starting the
+	 * MPEG still-picture decoder can silence DAB audio sent through audio0.
+	 * DABSlideDisplay supplies a GUI-rendered logo/SLS background instead. */
+	return;
+#endif
 	if (m_radio_picture_decoder)
 		return;
 	const bool showRadioBackground = eSimpleConfig::getBool("config.misc.showradiopic", true);

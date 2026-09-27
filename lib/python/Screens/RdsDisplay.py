@@ -6,12 +6,13 @@ from struct import unpack
 from enigma import ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
+from Components.SystemInfo import BoxInfo
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
 from Components.config import config
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN, SCOPE_SKINS
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -24,6 +25,10 @@ class DABSlideDisplay(Screen):
 		self.desktopWidth = width
 		self.desktopHeight = height
 		self.pictureAreaHeight = height
+		self.legacyDreamGUIRadioPicture = BoxInfo.getItem("machinebuild") in ("dm7080", "dm820", "dm900", "dm920")
+		self.defaultRadioImage = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
+		if not exists(self.defaultRadioImage):
+			self.defaultRadioImage = resolveFilename(SCOPE_SKINS, "skin_default/picon_default.png")
 		self.skin = """
 			<screen name="DABSlideDisplay" position="0,0" size="%d,%d" zPosition="-20" backgroundColor="black" flags="wfNoBorder">
 				<widget name="picture" position="0,0" size="%d,%d" zPosition="0" alphatest="blend" scaleFlags="centerScaled" />
@@ -118,12 +123,17 @@ class DABSlideDisplay(Screen):
 
 	def updateSlide(self):
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
-		if not reference or reference.type != eServiceReference.idServiceDAB or not self.isEnabled(reference):
+		if not reference or reference.type != eServiceReference.idServiceDAB:
 			self.hideSlide()
 			return
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		path = info and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
+		path = info and self.isEnabled(reference) and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
+		if self.legacyDreamGUIRadioPicture and (not path or not exists(path)):
+			# The legacy Dreambox DVB driver cannot keep its MPEG still-picture
+			# decoder open while DAB audio is playing. Render the station logo
+			# (or the skin's default picon) in the GUI until SLS is available.
+			path = info and info.getInfoString(iServiceInformation.sTagImage) or self.defaultRadioImage
 		if not path or not exists(path):
 			self.hideSlide()
 			return
