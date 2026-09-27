@@ -929,6 +929,7 @@ class NimManager:
 		global maxFixedLnbPositions
 		maxFixedLnbPositions = sec.getMaxFixedLnbPositions()
 		self.satList = []
+		self.satelliteConfigWarnings = set()
 		self.cablesList = []
 		self.terrestrialsList = []
 		self.atscList = []
@@ -1518,6 +1519,25 @@ class NimManager:
 				res = res or (configMode != "nothing")
 			return res
 
+	def getConfiguredLnbForSatellite(self, slotid, nim, orbitalPosition):
+		# A reloaded satellite list can contain positions absent from the existing tuner configuration.
+		satConfig = nim.advanced.sat.get(orbitalPosition)
+		lnbNumber = None
+		if satConfig is not None:
+			lnbNumber = int(satConfig.lnb.value)
+			if lnbNumber == 0:
+				return None
+			lnb = nim.advanced.lnb.get(lnbNumber)
+			if lnb is not None and not isinstance(lnb, ConfigNothing):
+				return lnb
+		# These queries also run on key presses. Report each incomplete mapping only once.
+		warning = (slotid, orbitalPosition, lnbNumber)
+		if warning not in self.satelliteConfigWarnings:
+			self.satelliteConfigWarnings.add(warning)
+			missing = "satellite configuration" if satConfig is None else f"LNB {lnbNumber} configuration"
+			print(f"[NimManager] Tuner {slotid}: missing {missing} for position {orbitalPosition}; ignoring this mapping.")
+		return None
+
 	def getSatListForNim(self, slotid):
 		result = []
 		if self.nim_slots[slotid].canBeCompatible("DVB-S"):
@@ -1557,21 +1577,21 @@ class NimManager:
 								result.append(x)
 				case "advanced":
 					for x in range(3601, 3605):
-						if int(nim.advanced.sat[x].lnb.value) != 0:
+						if self.getConfiguredLnbForSatellite(slotid, nim, x) is not None:
 							for sat in self.satList:
 								result.append(sat)
 					if not result:
 						for x in self.satList:
-							if int(nim.advanced.sat[x[0]].lnb.value) != 0:
+							if self.getConfiguredLnbForSatellite(slotid, nim, x[0]) is not None:
 								result.append(x)
 					for x in range(3605, 3607):
-						if int(nim.advanced.sat[x].lnb.value) != 0:
+						if self.getConfiguredLnbForSatellite(slotid, nim, x) is not None:
 							for user_sat in self.satList:
 								if orbitalPositionInList(user_sat[0], nim.advanced.sat[x].userSatellitesList.value) and user_sat not in result:
 									result.append(user_sat)
-					if int(nim.advanced.sat[3607].lnb.value) != 0 and nim.connectedTo.value.isdigit():
+					if self.getConfiguredLnbForSatellite(slotid, nim, 3607) is not None and nim.connectedTo.value.isdigit():
 						sourceSlot = int(nim.connectedTo.value)
-						if sourceSlot != slotid:
+						if sourceSlot != slotid and 0 <= sourceSlot < len(self.nim_slots):
 							for sourceSatellite in self.getRotorSatListForNim(sourceSlot):
 								if sourceSatellite not in result:
 									result.append(sourceSatellite)
@@ -1600,22 +1620,20 @@ class NimManager:
 									result.append(sat)
 				case "advanced":
 					for x in range(3601, 3605):
-						if int(nim.advanced.sat[x].lnb.value) != 0:
+						if self.getConfiguredLnbForSatellite(slotid, nim, x) is not None:
 							for sat in self.satList:
 								if onlyFirst:
 									return True
 								result.append(sat)
 					if not result:
 						for x in self.satList:
-							lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
-							if lnbnum != 0:
-								lnb = nim.advanced.lnb[lnbnum]
-								if lnb.diseqcMode.value == "1_2":
-									if onlyFirst:
-										return True
-									result.append(x)
+							lnb = self.getConfiguredLnbForSatellite(slotid, nim, x[0])
+							if lnb is not None and lnb.diseqcMode.value == "1_2":
+								if onlyFirst:
+									return True
+								result.append(x)
 					for x in range(3605, 3607):
-						if int(nim.advanced.sat[x].lnb.value) != 0:
+						if self.getConfiguredLnbForSatellite(slotid, nim, x) is not None:
 							for user_sat in self.satList:
 								if orbitalPositionInList(user_sat[0], nim.advanced.sat[x].userSatellitesList.value) and user_sat not in result:
 									if onlyFirst:
