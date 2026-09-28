@@ -1325,6 +1325,7 @@ class RecordTimerEntry(TimerEntry):
 					self.log(1, "The 'get best playable service for group... record' call failed!")
 					return False
 			self.setRecordingPreferredTuner()
+			NavigationInstance.instance.prepareDVBIFallbackForRecording(recordingReference)
 			self.record_service = recordingReference and NavigationInstance.instance.recordService(recordingReference, False, pNavigation.isRealRecording)
 			if not self.record_service:
 				self.log(1, "The 'record service' call failed!")

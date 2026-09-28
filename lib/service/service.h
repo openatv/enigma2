@@ -28,6 +28,7 @@ public:
 
 	int getServiceTypeForExtension(const char *str);
 	int getServiceTypeForExtension(const std::string &str);
+	bool hasServiceFactory(int id) const { return handler.find(id) != handler.end(); }
 
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);

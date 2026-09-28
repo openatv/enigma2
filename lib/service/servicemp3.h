@@ -23,6 +23,7 @@ public:
 	eServiceFactoryMP3();
 	virtual ~eServiceFactoryMP3();
 	enum { id = eServiceReference::idServiceMP3 };
+	static eServiceFactoryMP3 *getDVBIFactory(const eServiceReference &ref);
 
 	// iServiceHandler
 	RESULT play(const eServiceReference&, ePtr<iPlayableService>& ptr);
@@ -33,6 +34,7 @@ public:
 	gint m_eServicemp3_counter;
 
 private:
+	static eServiceFactoryMP3 *instance;
 	ePtr<eStaticServiceMP3Info> m_service_info;
 };
 
@@ -374,6 +376,7 @@ private:
 	bool m_audiosink_not_running;
 	/* DASH path: bypass playbin, build explicit pipeline via gst_parse_launch */
 	bool m_is_dash_pipeline;
+	bool m_is_adaptive_stream;
 	/* servicemMP3 chapter TOC support CVR */
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */

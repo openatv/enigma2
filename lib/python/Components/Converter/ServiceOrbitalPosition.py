@@ -21,6 +21,8 @@ class ServiceOrbitalPosition(Converter):
 	def getText(self):
 		service = self.source.service
 		if isinstance(service, iPlayableServicePtr):
+			if getattr(self.source, "isDVBI", False):
+				return "DVB-I"
 			info = service and service.info()
 			ref = None
 		else: # reference
@@ -61,5 +63,5 @@ class ServiceOrbitalPosition(Converter):
 	text = property(getText)
 
 	def changed(self, what):
-		if what[0] != self.CHANGED_SPECIFIC or what[1] in [iPlayableService.evStart]:
+		if what[0] != self.CHANGED_SPECIFIC or what[1] in (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo):
 			Converter.changed(self, what)

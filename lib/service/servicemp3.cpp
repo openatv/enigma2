@@ -60,6 +60,9 @@ Licensed under GPLv2.
  */
 typedef enum { BUFFERING_ENABLED = 0x00000001, PROGRESSIVE_DOWNLOAD = 0x00000002 } eServiceMP3Flags;
 
+// Worker-verified DVB-I media hints in data[7]; low buffering bits stay unchanged.
+enum { DVB_I_DASH = 0x100, DVB_I_HLS = 0x200, DVB_I_MEDIA_MASK = 0x300 };
+
 /*
  * GstPlayFlags flags from playbin2. It is the policy of GStreamer to
  * not publicly expose element-specific enums. That's why this
@@ -504,7 +507,19 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 #undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 /**/
 
+eServiceFactoryMP3 *eServiceFactoryMP3::instance = nullptr;
+
+eServiceFactoryMP3 *eServiceFactoryMP3::getDVBIFactory(const eServiceReference &ref) {
+	const int hint = ref.getData(7) & DVB_I_MEDIA_MASK;
+	const std::string &url = ref.alternativeurl.empty() ? ref.path : ref.alternativeurl;
+	// Only worker-marked DVB-I adaptive HTTP streams bypass a third-party 4097 factory.
+	// eAutoInitPtr keeps the native factory alive even after its public registration is replaced.
+	return ref.type == id && (hint == DVB_I_DASH || hint == DVB_I_HLS)
+		&& (url.compare(0, 7, "http://") == 0 || url.compare(0, 8, "https://") == 0) ? instance : nullptr;
+}
+
 eServiceFactoryMP3::eServiceFactoryMP3() {
+	instance = this;
 	ePtr<eServiceCenter> sc;
 
 	eServiceCenter::getPrivInstance(sc);
@@ -546,6 +561,8 @@ eServiceFactoryMP3::eServiceFactoryMP3() {
 }
 
 eServiceFactoryMP3::~eServiceFactoryMP3() {
+	if (instance == this)
+		instance = nullptr;
 	ePtr<eServiceCenter> sc;
 
 	eServiceCenter::getPrivInstance(sc);
@@ -1069,6 +1086,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
 	m_is_dash_pipeline = false;
+	m_is_adaptive_stream = false;
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
@@ -1297,6 +1315,14 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	if (strstr(filename, "://"))
 		m_sourceinfo.is_streaming = TRUE;
+	const int mediaHint = m_ref.getData(7) & DVB_I_MEDIA_MASK;
+	m_is_adaptive_stream = (!strncmp(filename, "http://", 7) || !strncmp(filename, "https://", 8))
+		&& (mediaHint == DVB_I_DASH || mediaHint == DVB_I_HLS);
+	if (m_is_adaptive_stream) {
+		m_sourceinfo.is_hls = mediaHint == DVB_I_HLS;
+		m_sourceinfo.is_audio = m_ref.getData(0) == 2;
+		m_sourceinfo.is_video = !m_sourceinfo.is_audio;
+	}
 
 	gchar* uri;
 
@@ -1336,7 +1362,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		uri = g_filename_to_uri(filename, NULL, NULL);
 
 	std::string uri_string = uri ? uri : "";
-	m_is_dash_pipeline = m_sourceinfo.is_streaming && isDashUri(uri_string);
+	// Keep the legacy HbbTV workaround. DVB-I uses normal caps discovery and HW sinks.
+	m_is_dash_pipeline = m_sourceinfo.is_streaming && isDashUri(uri_string) && !m_is_adaptive_stream;
 
 	if (m_is_dash_pipeline) {
 		/* playbin auto-plug stalls dreamvideosink on .mpd; build explicit pipeline. */
@@ -3030,11 +3057,11 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo& info, unsigned int i) {
 
 	info.m_language = m_audioStreams[i].language_code;
 
-	if (!info.m_language.empty())
-		info.m_language += "/";
-
-	if (!m_audioStreams[i].title.empty())
+	if (!m_audioStreams[i].title.empty()) {
+		if (!info.m_language.empty())
+			info.m_language += "/";
 		info.m_language += m_audioStreams[i].title;
+	}
 
 	// eDebug("[eServiceMP3] getTrackInfo (%d) - m_description=%s m_language=%s", i, info.m_description.c_str(),
 	// info.m_language.c_str());
@@ -3484,7 +3511,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 
 				for (i = 0; i < n_audio; i++) {
 					audioStream audio = {};
-					gchar *g_codec, *g_lang;
+					gchar *g_codec, *g_lang, *g_title;
 					GstTagList* tags = NULL;
 					GstPad* pad = 0;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
@@ -3502,6 +3529,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					audio.codec = g_type;
 					g_codec = NULL;
 					g_lang = NULL;
+					g_title = NULL;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-tags", i, &tags);
 					if (tags && GST_IS_TAG_LIST(tags)) {
 						if (gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_codec)) {
@@ -3511,6 +3539,10 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						if (gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang)) {
 							audio.language_code = std::string(g_lang);
 							g_free(g_lang);
+						}
+						if (gst_tag_list_get_string(tags, GST_TAG_TITLE, &g_title)) {
+							audio.title = std::string(g_title);
+							g_free(g_title);
 						}
 						gst_tag_list_free(tags);
 					}

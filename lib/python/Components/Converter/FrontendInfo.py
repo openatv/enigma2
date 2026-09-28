@@ -17,6 +17,7 @@ class FrontendInfo(Converter):
 	STRING = 7
 	REC_TUNER = 8
 	TUNERS = 9
+	SNR_STREAM = 10
 
 	range = 65536
 
@@ -52,6 +53,7 @@ class FrontendInfo(Converter):
 				"BER": self.BER,
 				"SNR": self.SNR,
 				"SNRdB": self.SNRdB,
+				"SNRStream": self.SNR_STREAM,
 				"AGC": self.AGC,
 				"NUMBER": self.SLOT_NUMBER,
 				"TYPE": self.TUNER_TYPE
@@ -109,6 +111,15 @@ class FrontendInfo(Converter):
 	@cached
 	def getText(self):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
+		# Opt-in InfoBar display; ordinary SNR widgets (e.g. Satfinder) stay unchanged.
+		prefix = "SNR: " if self.type == self.SNR_STREAM else ""
+		if self.type == self.SNR_STREAM:
+			nav = NavigationInstance.instance
+			ref = nav.getCurrentlyPlayingServiceReference() if nav and getattr(nav, "isCurrentServiceDVBI", False) else None
+			if ref:
+				# The importer already verified the format; never probe URLs from the UI.
+				streamType = {0x100: "DASH", 0x200: "HLS"}.get(ref.getUnsignedData(7) & 0x300, "DVB-I")
+				return f"IP: {streamType}"
 		percent = None
 		snrSwap = config.usage.swap_snr_on_osd.value
 		match self.type:
@@ -117,13 +128,13 @@ class FrontendInfo(Converter):
 			case self.BER:  # As count.
 				count = self.source.ber
 				return _("N/A") if count is None else str(count)
-			case self.SNR if not snrSwap:
+			case self.SNR | self.SNR_STREAM if not snrSwap:
 				percent = self.source.snr
 			case self.SNRdB if snrSwap:
 				percent = self.source.snr
-			case self.SNR | self.SNRdB if self.source.snr_db is not None:
-				return "%3.01f dB" % (self.source.snr_db / 100.0)
-			case self.SNR | self.SNRdB:  # Fallback to normal SNR.
+			case self.SNR | self.SNRdB | self.SNR_STREAM if self.source.snr_db is not None:
+				return prefix + "%3.01f dB" % (self.source.snr_db / 100.0)
+			case self.SNR | self.SNRdB | self.SNR_STREAM:  # Fallback to normal SNR.
 				percent = self.source.snr
 			case self.STRING:
 				tuners = []
@@ -159,7 +170,7 @@ class FrontendInfo(Converter):
 				return self.spacer.join(tuners)
 			case self.TUNER_TYPE:
 				return self.source.frontend_type or _("Unknown")
-		return _("N/A") if percent is None else f"{percent * 100 // 65536}%"
+		return prefix + (_("N/A") if percent is None else f"{percent * 100 // 65536}%")
 
 	@cached
 	def getBool(self):

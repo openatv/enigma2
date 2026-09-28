@@ -79,6 +79,94 @@ public:
 
 DEFINE_REF(eStaticServiceDVBInformation);
 
+namespace
+{
+	std::map<eServiceReference, eServiceReference> dvbiFallbackServices;
+
+	bool isBroadcastReference(const eServiceReference &ref)
+	{
+		return ref.type == eServiceFactoryDVB::id && ref.path.empty() && ref.alternativeurl.empty()
+			&& !(ref.flags & (eServiceReference::isDirectory | eServiceReference::isMarker | eServiceReference::isGroup));
+	}
+
+	int broadcastAvailability(const eServiceReference &ref, const eServiceReference &ignore)
+	{
+		ePtr<eDVBResourceManager> manager;
+		if (!isBroadcastReference(ref) || eDVBResourceManager::getInstance(manager))
+			return -1;
+		eDVBChannelID channel, ignored;
+		((const eServiceReferenceDVB&)ref).getChannelID(channel);
+		if (isBroadcastReference(ignore))
+			((const eServiceReferenceDVB&)ignore).getChannelID(ignored);
+		int system;
+		return manager->canAllocateChannel(channel, ignored, system, false);
+	}
+}
+
+int eDVBIFallback::setServices(ePyObject services)
+{
+	// Replace atomically: a bad payload must never leave a half-installed map.
+	if (!PyList_Check(services) || PyList_Size(services) > 10000)
+		return -1;
+	std::map<eServiceReference, eServiceReference> replacements;
+	for (Py_ssize_t i = 0; i < PyList_Size(services); ++i)
+	{
+		PyObject *pair = PyList_GetItem(services, i);
+		if (!PyTuple_Check(pair) || PyTuple_Size(pair) != 2
+			|| !PyUnicode_Check(PyTuple_GetItem(pair, 0)) || !PyUnicode_Check(PyTuple_GetItem(pair, 1)))
+			return -1;
+		const char *source = PyUnicode_AsUTF8(PyTuple_GetItem(pair, 0));
+		const char *target = PyUnicode_AsUTF8(PyTuple_GetItem(pair, 1));
+		if (!source || !target)
+			return -1;
+		eServiceReference from(source), to(target);
+		if (!isBroadcastReference(from) || to.flags
+			|| (to.type != 1 && to.type != 4097 && to.type != 5001 && to.type != 5002)
+			|| (to.path.compare(0, 7, "http://") && to.path.compare(0, 8, "https://")))
+			return -1;
+		// Preserve the broadcast EPG identity; only player, media hint and URL differ.
+		for (int field = 0; field < 7; ++field)
+			if (from.data[field] != to.data[field])
+				return -1;
+		auto existing = replacements.find(from);
+		if (existing != replacements.end() && existing->second != to)
+			return -1;
+		replacements[from] = to;
+	}
+	dvbiFallbackServices.swap(replacements);
+	return dvbiFallbackServices.size();
+}
+
+eServiceReference eDVBIFallback::get(const eServiceReference &ref)
+{
+	if (dvbiFallbackServices.empty() || !isBroadcastReference(ref))
+		return eServiceReference();
+	auto entry = dvbiFallbackServices.find(ref);
+	if (entry == dvbiFallbackServices.end())
+		return eServiceReference();
+	ePtr<eServiceCenter> center;
+	if (eServiceCenter::getPrivInstance(center) || !center || !center->hasServiceFactory(entry->second.type))
+		return eServiceReference();
+	return entry->second;
+}
+
+eServiceReference eDVBIFallback::resolve(const eServiceReference &ref, bool force)
+{
+	eServiceReference fallback = get(ref);
+	if (fallback && (force || broadcastAvailability(ref, eServiceReference()) == 0))
+		return fallback;
+	return eServiceReference();
+}
+
+bool eDVBIFallback::canReleaseForRecording(const eServiceReference &live, const eServiceReference &recording)
+{
+	// Same multiplex, free second tuner, or a conflict held by another recording:
+	// none of these should interrupt live TV. Never change the recording target.
+	return get(live) && isBroadcastReference(recording)
+		&& broadcastAvailability(recording, eServiceReference()) == 0
+		&& broadcastAvailability(recording, live) > 0;
+}
+
 RESULT eStaticServiceDVBInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
@@ -1258,6 +1346,21 @@ void eDVBServicePlay::updateEpgCacheNowNext()
 	if (update) m_event((iPlayableService*)this, evUpdatedEventInfo);
 }
 
+void eDVBServicePlay::dvbiSignalLost()
+{
+	// Event-driven grace period, not frontend polling. Recheck opt-in and lock:
+	// a short disturbance, disabled addon or active timeshift must not switch.
+	if (!m_is_primary || m_timeshift_enabled || !eDVBIFallback::get(m_reference))
+		return;
+	eUsePtr<iDVBChannel> channel;
+	int state;
+	if (m_service_handler.getChannel(channel) || !channel || channel->getState(state)
+		|| state == iDVBChannel::state_ok)
+		return;
+	eDebug("[eDVBServicePlay] DVB-I: sustained signal loss, requesting live fallback");
+	m_event((iPlayableService*)this, evTuneFailed);
+}
+
 void eDVBServicePlay::serviceEvent(int event)
 {
 	m_tune_state = event;
@@ -1266,6 +1369,8 @@ void eDVBServicePlay::serviceEvent(int event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
+		if (m_dvbi_signal_timer)
+			m_dvbi_signal_timer->stop();
 		/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */
 		updateEpgCacheNowNext();
 
@@ -1292,8 +1397,8 @@ void eDVBServicePlay::serviceEvent(int event)
 	}
 	case eDVBServicePMTHandler::eventSignalLost:
 	{
-		// Signal loss is an early recovery trigger for timeshift only.
-		// Non-timeshift services keep the old tune-failed workflow.
+		// Keep existing timeshift recovery; only opted-in live services may
+		// request DVB-I after a short signal-loss grace period.
 		if (m_stream_corruption_detected)
 			break;
 
@@ -1302,6 +1407,16 @@ void eDVBServicePlay::serviceEvent(int event)
 			eTrace("[PreciseRecovery] Signal lost during timeshift. Initiating recovery.");
 			m_stream_corruption_detected = true;
 			handleEofRecovery();
+		}
+		else if (m_is_primary && eDVBIFallback::get(m_reference))
+		{
+			if (!m_dvbi_signal_timer)
+			{
+				m_dvbi_signal_timer = eTimer::create(eApp);
+				CONNECT(m_dvbi_signal_timer->timeout, eDVBServicePlay::dvbiSignalLost);
+			}
+			if (!m_dvbi_signal_timer->isActive())
+				m_dvbi_signal_timer->start(1500, true);
 		}
 		break;
 	}
@@ -1721,6 +1836,8 @@ RESULT eDVBServicePlay::start()
 
 RESULT eDVBServicePlay::stop()
 {
+	if (m_dvbi_signal_timer)
+		m_dvbi_signal_timer->stop();
 		/* add bookmark for last play position */
 		/* m_cutlist_enabled bit 2 is the "don't remember bit" */
 	if (m_is_pvr && ((m_cutlist_enabled & 2) == 0))

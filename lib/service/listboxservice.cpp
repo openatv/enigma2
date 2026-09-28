@@ -1,6 +1,7 @@
 #include <lib/service/listboxservice.h>
 #include <lib/base/esimpleconfig.h>
 #include <lib/service/service.h>
+#include <lib/service/servicedvb.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/epng.h>
 #include <lib/dvb/epgcache.h>
@@ -767,6 +768,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid())
 		{
 			isplayable_value = service_info->isPlayable(*m_cursor, m_is_playable_ignore);
+			// Presentation only: timer simulation must still require a DVB tuner.
+			if (!isplayable_value && eDVBIFallback::get(*m_cursor))
+				isplayable_value = 1;
 
 			if (isplayable_value == 0) // service unavailable
 			{
