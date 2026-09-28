@@ -3,6 +3,8 @@
 
 #include <lib/gdi/gpixmap.h>
 
+void clearPixmapCache();
+
 #ifndef SWIG
 
 class PixmapCache
