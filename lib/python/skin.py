@@ -4,7 +4,7 @@ from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
@@ -253,6 +253,7 @@ def reloadSkins():
 	variables.clear()
 	clearResolveLists()
 	clearFonts()
+	clearPixmapCache()
 	InitSkins()
 
 
