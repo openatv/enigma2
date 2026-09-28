@@ -742,7 +742,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				newPath = basename(normpath(path))
 				if isdir(newPath):
 					newPath = join(newPath, "")
-				self.targetColumn.refresh(join(self.targetColumn.getCurrentDirectory(), newPath))
+				currentDirectory = self.targetColumn.getCurrentDirectory()
+				self.targetColumn.refresh(join(currentDirectory, newPath) if currentDirectory else None)
 			else:
 				self.displayPopUp(f"{windowTitle}: {_('Copy job completed.')}", MessageBox.TYPE_INFO)
 
@@ -754,7 +755,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				newPath = basename(normpath(path))
 				if isdir(newPath):
 					newPath = join(newPath, "")
-				self.targetColumn.refresh(join(self.targetColumn.getCurrentDirectory(), newPath))
+				currentDirectory = self.targetColumn.getCurrentDirectory()
+				self.targetColumn.refresh(join(currentDirectory, newPath) if currentDirectory else None)
 			else:
 				self.displayPopUp(f"{windowTitle}: {_('Copy job failed!')}", MessageBox.TYPE_ERROR)
 
@@ -1189,7 +1191,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
 				self.sourceColumn.refresh()
-				self.targetColumn.refresh(join(self.targetColumn.getCurrentDirectory(), basename(normpath(path))))
+				currentDirectory = self.targetColumn.getCurrentDirectory()
+				self.targetColumn.refresh(join(currentDirectory, basename(normpath(path))) if currentDirectory else None)
 				# if startIndex < self.sourceColumn.count():
 				# 	self.sourceColumn.setCurrentIndex(startIndex)
 				# else:
@@ -1203,7 +1206,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Move job failed!"))
 				self.sourceColumn.refresh()
-				self.targetColumn.refresh(join(self.targetColumn.getCurrentDirectory(), basename(normpath(path))))
+				currentDirectory = self.targetColumn.getCurrentDirectory()
+				self.targetColumn.refresh(join(currentDirectory, basename(normpath(path))) if currentDirectory else None)
 			else:
 				self.displayPopUp(f"{windowTitle}: {_('Move job failed!')}", MessageBox.TYPE_ERROR)
 
