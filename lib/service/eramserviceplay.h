@@ -27,7 +27,7 @@ public:
 	RESULT getLength(pts_t& len) override;
 	RESULT getPlayPosition(pts_t& pos) override;
 
-	// Seek disabled for RAM timeshift
+	// Seek resolved from the PCR history, see eramserviceplay.cpp
 	RESULT seekTo(pts_t to) override;
 	RESULT seekRelative(int direction, pts_t to) override;
 
