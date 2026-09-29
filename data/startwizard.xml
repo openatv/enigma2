@@ -424,7 +424,20 @@ config.ParentalControl.setuppin.save()
 	</step>
 	-->
 
-	<step id="reboot" nextstep="end">
+	<step id="reboot">
+		<condition>
+from Components.International import international
+self.condition = bool(international.getPurgablePackages())
+		</condition>
+		<buttons enable="" />
+		<text value="Please wait while unused locales/languages are purged..." />
+		<displaytext value="Purging unused locales/languages..." />
+		<code async="yes">
+self.purgeLocales()
+		</code>
+	</step>
+
+	<step id="restartdevice" nextstep="end">
 		<condition>
 from Components.SystemInfo import BoxInfo
 self.condition = BoxInfo.getItem("SmallFlash")
