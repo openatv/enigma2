@@ -13,6 +13,7 @@
 #include <lib/gdi/gmaindc.h>
 #include <asm/ptrace.h>
 #include <lib/base/modelinformation.h>
+#include <lib/base/profile.h>
 
 #include "version_info.h"
 
@@ -108,7 +109,24 @@ bool bsodRestart()
 {
 	return bsodrestart; //unused
 }
-void bsodFatal(const char *component)
+/* The last lines of a log buffer, lines counts down to 0. */
+static std::string logTail(const char *log, unsigned int length, int &lines)
+{
+	unsigned int size = length;
+	while (size)
+	{
+		const char *r = (const char *)memrchr(log, '\n', size);
+		if (!r)
+			return std::string(log, length);
+		size = r - log;
+		if (!--lines)
+			return std::string(r, length - size);
+	}
+	return std::string();
+}
+
+/* signum is 0 when not called from the signal handler. */
+static void bsodFatalSignal(const char *component, int signum)
 {
 	//handle python crashes	
 	bool bsodpython = (eConfigManager::getConfigBoolValue("config.crash.bsodpython", false) && eConfigManager::getConfigBoolValue("config.crash.bsodpython_ready", false));
@@ -259,103 +277,77 @@ void bsodFatal(const char *component)
 		sleep(1);
 		return;
 	}
+	/* The ORM follows a failed start and shows the crash itself, then without blue screen. */
+	bool ormTakesOver = false;
+	if (component || !bsodpython)
+	{
+		std::string message = signum ? "crash " + std::to_string(signum) : "crash python";
+		ormTakesOver = eProfile::notify(message) && eProfile::ormTakesOver();
+	}
+
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
 	gPainter p(my_dc);
-	p.resetOffset();
-	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
-	p.setBackgroundColor(gRGB(0x27408B));
-	p.setForegroundColor(gRGB(0xFFFFFF));
-	int hd =  my_dc->size().width() == 1920;
-	ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
-	p.setFont(font);
-	p.clear();
-
-	eRect usable_area = eRect(hd ? 30 : 100, hd ? 30 : 70, my_dc->size().width() - (hd ? 60 : 150), hd ? 150 : 100);
-
-	os.str("");
-	os.clear();
-	os_text.clear();
-
-	if (!bsodpython)
+	if (!ormTakesOver)
 	{
-		os_text << "Your receiver encountered a software problem, and needs to be restarted.\n"
-			"Please send the logfile " << crashlog_name << " to the OpenATV forum (www.opena.tv).\n"
-			"Your receiver will restart in 10 seconds.\n"
-			"Component: " << component;
-		os << os_text.str();
-	}
-	else
-	{
-		std::string txt;
-		if (!bsodmax && bsodcnt < bsodmaxmax)
-			txt = "after maximum " + std::to_string(bsodmaxmax) + " crashes";
-		else if (bsodmax - bsodcnt > 0)
-			txt = "if it happens " + std::to_string(bsodmax - bsodcnt) + " more time(s)";
-		else
-			txt = "if it happens one more time";
-
-		os_text << "Your receiver encountered a Python software problem. There have been " << bsodcnt << " crashes so far.\n"
-			"Please send the logfile " << crashlog_name << " to the OpenATV forum (www.opena.tv).\n"
-			"Your receiver will restart " << txt << ".\n"
-			"Component: " << component;
-		os << os_text.str();
-	}
-
-	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
-
-	std::string logtail;
-	int lines = 20;
-	
-	if (logp2)
-	{
-		unsigned int size = logs2;
-		while (size) {
-			const char* r = (const char*)memrchr(logp2, '\n', size);
-			if (r) {
-				size = r - logp2;
-				--lines;
-				if (!lines) {
-					logtail = std::string(r, logs2 - size);
-					break;
-				} 
-			}
-			else {
-				logtail = std::string(logp2, logs2);
-				break;
-			}
-		}
-	}
-
-	if (lines && logp1)
-	{
-		unsigned int size = logs1;
-		while (size) {
-			const char* r = (const char*)memrchr(logp1, '\n', size);
-			if (r) {
-				--lines;
-				size = r - logp1;
-				if (!lines) {
-					logtail += std::string(r, logs1 - size);
-					break;
-				} 
-			}
-			else {
-				logtail += std::string(logp1, logs1);
-				break;
-			}
-		}
-	}
-
-	if (!logtail.empty())
-	{
-		font = new gFont("Regular", hd ? 21 : 14);
+		p.resetOffset();
+		p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
+		p.setBackgroundColor(gRGB(0x27408B));
+		p.setForegroundColor(gRGB(0xFFFFFF));
+		int hd =  my_dc->size().width() == 1920;
+		ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 		p.setFont(font);
-		usable_area = eRect(hd ? 30 : 100, hd ? 180 : 170, my_dc->size().width() - (hd ? 60 : 180), my_dc->size().height() - (hd ? 30 : 20));
-		p.renderText(usable_area, logtail, gPainter::RT_HALIGN_LEFT);
+		p.clear();
+
+		eRect usable_area = eRect(hd ? 30 : 100, hd ? 30 : 70, my_dc->size().width() - (hd ? 60 : 150), hd ? 150 : 100);
+
+		os.str("");
+		os.clear();
+		os_text.clear();
+
+		if (!bsodpython)
+		{
+			os_text << "Your receiver encountered a software problem, and needs to be restarted.\n"
+				"Please send the logfile " << crashlog_name << " to the OpenATV forum (www.opena.tv).\n"
+				"Your receiver will restart in 10 seconds.\n"
+				"Component: " << component;
+			os << os_text.str();
+		}
+		else
+		{
+			std::string txt;
+			if (!bsodmax && bsodcnt < bsodmaxmax)
+				txt = "after maximum " + std::to_string(bsodmaxmax) + " crashes";
+			else if (bsodmax - bsodcnt > 0)
+				txt = "if it happens " + std::to_string(bsodmax - bsodcnt) + " more time(s)";
+			else
+				txt = "if it happens one more time";
+
+			os_text << "Your receiver encountered a Python software problem. There have been " << bsodcnt << " crashes so far.\n"
+				"Please send the logfile " << crashlog_name << " to the OpenATV forum (www.opena.tv).\n"
+				"Your receiver will restart " << txt << ".\n"
+				"Component: " << component;
+			os << os_text.str();
+		}
+
+		p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
+
+		int lines = 20;
+		std::string logtail = logp2 ? logTail(logp2, logs2, lines) : "";
+		if (lines && logp1)
+			logtail += logTail(logp1, logs1, lines);
+
+		if (!logtail.empty())
+		{
+			font = new gFont("Regular", hd ? 21 : 14);
+			p.setFont(font);
+			usable_area = eRect(hd ? 30 : 100, hd ? 180 : 170, my_dc->size().width() - (hd ? 60 : 180), my_dc->size().height() - (hd ? 30 : 20));
+			p.renderText(usable_area, logtail, gPainter::RT_HALIGN_LEFT);
+		}
+
+		sleep(10);
 	}
-	sleep(10);
 
 	/*
 	 * When 'component' is NULL, we are called because of a python exception.
@@ -383,6 +375,11 @@ void bsodFatal(const char *component)
 		if (eConfigManager::getConfigBoolValue("config.crash.coredump", false)) raise(SIGTRAP);
 		raise(SIGKILL);
 	}
+}
+
+void bsodFatal(const char *component)
+{
+	bsodFatalSignal(component, 0);
 }
 
 void oops(const mcontext_t &context)
@@ -436,7 +433,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 	oops(uc->uc_mcontext);
 	print_backtrace();
 	eLog(lvlFatal, "-------FATAL SIGNAL");
-	bsodFatal("enigma2, signal");
+	bsodFatalSignal("enigma2, signal", signum);
 }
 
 void bsodCatchSignals()

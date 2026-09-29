@@ -225,11 +225,27 @@ fi
 ulimit -n 16384 2>/dev/null || ulimit -n 8192
 # Clear page cache and dentries/inodes
 echo 3 > /proc/sys/vm/drop_caches
+# ORM follows the start of enigma2 and steps in when it fails.
+ORM=@bindir@/recovery-manager
+ORM_RESULT=/tmp/orm.result
+ormpid=
+enigma2bin=@bindir@/enigma2
+if [ -x $ORM ]; then
+	if [ -e @sysconfdir@/enigma2/.orm-once ]; then
+		# Once instead of enigma2, e.g. for later calls via enigma2 menu
+		rm -f @sysconfdir@/enigma2/.orm-once
+		enigma2bin="$ORM --manual"
+	else
+		[ -e $ORM_RESULT ] && mv -f $ORM_RESULT $ORM_RESULT.last
+		ormpid=$($ORM --watch $ORM_RESULT 2>/dev/null)
+	fi
+fi
+
 # Start enigma2 with or without debug
 if [ -n "$ENIGMA_DEBUG" ]; then
-	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 >> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log 2>&1) &
+	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" $enigma2bin >> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log 2>&1) &
 else
-	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2) &
+	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" $enigma2bin) &
 fi
 
 enigma2pid=$!
@@ -255,6 +271,15 @@ wait ${enigma2pid}
 # >128 signal
 
 ret=$?
+
+# ORM ends its watch and decides whether its GUI is needed; it answers like enigma2: 1 halt, 2 reboot.
+if [ -n "$ormpid" ]; then
+	$ORM --crash $ORM_RESULT $ormpid
+	action=$?
+	if [ "$action" = "1" ] || [ "$action" = "2" ]; then
+		ret=$action
+	fi
+fi
 
 function check_busybox_update {
 	if [ -e /etc/enigma2/.busybox_update_required ]; then

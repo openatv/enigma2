@@ -13,12 +13,25 @@ Licensed under GPLv2.
 #include <fstream>
 #include <algorithm>
 #include <chrono>
+#include <cstring>
+#include <string_view>
+#include <sys/socket.h>
+#include <sys/un.h>
+
+/* ORM started by enigma2.sh, learns here how far the start came. */
+#define ORM_SOCKET "/var/run/enigma2-orm.socket"
+/* Like STABLE_SECONDS of ORM: it takes over a crash until this long after ready. */
+#define ORM_STABLE_SECONDS 60
 
 class eProfile
 {
 public:
 	eProfile() : m_profileStart(clock_::now())
 	{
+		m_ormFd = socket(AF_UNIX, SOCK_DGRAM | SOCK_CLOEXEC, 0);
+		m_ormAddress.sun_family = AF_UNIX;
+		strncpy(m_ormAddress.sun_path, ORM_SOCKET, sizeof(m_ormAddress.sun_path) - 1);
+
 		std::string fileName = "/var/local/profile";
 		std::ifstream f(fileName.c_str());
 
@@ -48,8 +61,28 @@ public:
 		return m_instance;
 	}
 
+	/* Returns false when ORM does not listen. */
+	static bool notify(std::string_view message)
+	{
+		if (m_ormFd < 0)
+			return false;
+		if (sendto(m_ormFd, message.data(), message.size(), MSG_DONTWAIT | MSG_NOSIGNAL, (const struct sockaddr *)&m_ormAddress, sizeof(m_ormAddress)) < 0)
+			return false;
+		if (message == "ready")
+			m_ormReady = std::chrono::steady_clock::now();
+		return true;
+	}
+
+	/* A crash before ready or shortly after it is a failed start, ORM shows it instead of the blue screen. */
+	static bool ormTakesOver()
+	{
+		return m_ormReady == std::chrono::steady_clock::time_point() ||
+			std::chrono::steady_clock::now() - m_ormReady < std::chrono::seconds(ORM_STABLE_SECONDS);
+	}
+
 	void write(const char *checkPoint)
 	{
+		notify(std::string("step ") + checkPoint);
 		if (m_handle)
 		{
 			double nowDiff = std::chrono::duration<double, std::milli>(clock_::now() - m_profileStart).count();
@@ -121,6 +154,9 @@ private:
 	float m_totalTime = 1;
 	bool m_noproc = false;
 	FILE *m_handle;
+	static inline int m_ormFd = -1;
+	static inline std::chrono::steady_clock::time_point m_ormReady;
+	static inline struct sockaddr_un m_ormAddress = {};
 };
 
 #endif
