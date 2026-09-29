@@ -441,6 +441,27 @@ PyObject *New_iCECMessagePtr(const ePtr<iCECMessage> &ptr)
 
 /* needed for service groups */
 
+int setDVBIFallbackServices(PyObject *services);
+PyObject *getDVBIFallbackService(const eServiceReference &ref, bool force=false);
+bool canDVBIFallbackReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
+%{
+int setDVBIFallbackServices(PyObject *services)
+{
+	return eDVBIFallback::setServices(services);
+}
+PyObject *getDVBIFallbackService(const eServiceReference &ref, bool force=false)
+{
+	eServiceReference fallback = eDVBIFallback::resolve(ref, force);
+	if (fallback)
+		return New_eServiceReference(fallback);
+	Py_RETURN_NONE;
+}
+bool canDVBIFallbackReleaseForRecording(const eServiceReference &live, const eServiceReference &recording)
+{
+	return eDVBIFallback::canReleaseForRecording(live, recording);
+}
+%}
+
 PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore, bool simulate=false);
 %{
 PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore, bool simulate=false)

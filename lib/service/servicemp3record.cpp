@@ -14,6 +14,7 @@
 DEFINE_REF(eServiceMP3Record);
 
 eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
+	m_dvbi(eServiceFactoryMP3::getDVBIFactory(ref) != nullptr),
 	m_ref(ref),
 	//m_streamingsrc_timeout(eTimer::create(eApp)),
 	m_pump(eApp, 1,"eServiceMP3Record")
@@ -22,6 +23,7 @@ eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 	m_error = 0;
 	m_simulate = false;
 	m_recording_pipeline = 0;
+	m_source = nullptr;
 	m_useragent = "Enigma2 Mediaplayer";
 	m_extra_headers = "";
 
@@ -64,6 +66,14 @@ RESULT eServiceMP3Record::prepare(const char *filename, time_t begTime, time_t e
 
 			meta.m_time_create = begTime;
 			meta.m_ref = eServiceReferenceDVB(m_ref.toString());
+			if (m_dvbi)
+			{
+				// The IP codec need not match the broadcast service type (e.g. DVB-T2
+				// HEVC vs. DASH AVC). Let TS playback use the recorded PMT codec.
+				int type = meta.m_ref.getServiceType();
+				meta.m_ref.setServiceType(type == eServiceReferenceDVB::dRadio || type == eServiceReferenceDVB::dRadioAvc
+					? eServiceReferenceDVB::dRadio : eServiceReferenceDVB::dTv);
+			}
 			meta.m_data_ok = 1;
 			meta.m_service_data = service_data;
 			if (name)
@@ -77,8 +87,7 @@ RESULT eServiceMP3Record::prepare(const char *filename, time_t begTime, time_t e
 			if (!ret)
 			{
 				std::string fname = m_filename;
-				fname.erase(fname.length()-6, 6);
-				fname += "eit";
+				fname.replace(fname.find_last_of('.'), std::string::npos, ".eit");
 				eEPGCache::getInstance()->saveEventToFile(fname.c_str(), m_ref, eit_event_id, begTime, endTime);
 			}
 			m_state = statePrepared;
@@ -104,6 +113,25 @@ RESULT eServiceMP3Record::start(bool simulate)
 
 RESULT eServiceMP3Record::stop()
 {
+	if (m_dvbi)
+	{
+		m_state = stateIdle;
+		bool schedule = false;
+		{
+			std::lock_guard<std::mutex> lock(m_task_mutex);
+			if (m_task_hold && !m_stopping)
+			{
+				// Register shutdown atomically with the worker completion check.
+				++m_pending_tasks;
+				m_stopping = true;
+				schedule = true;
+			}
+		}
+		if (schedule)
+			gst_element_call_async(m_recording_pipeline, stopDVBIPipeline, this, nullptr);
+		m_event((iRecordableService*)this, evRecordStopped);
+		return 0;
+	}
 	if (!m_simulate)
 		eDebug("[eMP3ServiceRecord] stop recording");
 	if (m_state == stateRecording)
@@ -154,6 +182,9 @@ int eServiceMP3Record::doPrepare()
 		if(!m_ref.alternativeurl.empty())
 			stream_uri = m_ref.alternativeurl;
 
+		if (m_dvbi)
+			return prepareDVBIPipeline(stream_uri);
+
 		eDebug("[eMP3ServiceRecord] doPrepare uri=%s", stream_uri.c_str());
 		uri = g_strdup_printf ("%s", stream_uri.c_str());
 
@@ -190,14 +221,228 @@ int eServiceMP3Record::doPrepare()
 	return 0;
 }
 
+int eServiceMP3Record::prepareDVBIPipeline(const std::string &uri)
+{
+	m_recording_pipeline = gst_pipeline_new("dvbi-recording");
+	m_source = gst_element_factory_make("uridecodebin", "source");
+	m_mux = gst_element_factory_make("mpegtsmux", "mux");
+	GstElement *sink = gst_element_factory_make("filesink", "record-file");
+	if (!m_recording_pipeline || !m_source || !m_mux || !sink)
+	{
+		if (m_source) gst_object_unref(m_source);
+		if (m_mux) gst_object_unref(m_mux);
+		if (sink) gst_object_unref(sink);
+		if (m_recording_pipeline) gst_object_unref(m_recording_pipeline);
+		m_source = m_mux = m_recording_pipeline = nullptr;
+		eWarning("[eServiceMP3Record] DVB-I requires uridecodebin, mpegtsmux and filesink");
+		return errMisconfiguration;
+	}
+
+	// Stop at compressed elementary streams. Never allocate a decoder/encoder.
+	GstCaps *caps = gst_caps_from_string("video/x-h264;video/x-h265;video/mpeg,systemstream=(boolean)false;audio/mpeg;audio/x-ac3;audio/x-eac3;audio/x-dts;audio/x-opus");
+	g_object_set(m_source, "uri", uri.c_str(), "caps", caps, "use-buffering", FALSE, NULL);
+	gst_caps_unref(caps);
+	g_object_set(sink, "location", m_filename.c_str(), "sync", FALSE, "async", FALSE, NULL);
+	g_object_set(m_mux, "alignment", 7, NULL);
+	// Preserve the service ID for ordinary E2 TS playback and .meta/.eit lookup.
+	// Predeclare all bounded PID slots before streaming, avoiding live map mutation.
+	GstStructure *programs = gst_structure_new_empty("program_map");
+	int program = m_ref.getData(1) & 0xffff;
+	for (unsigned int i = 0; i < 32; ++i)
+		gst_structure_set(programs, ("sink_" + std::to_string(256 + i)).c_str(), G_TYPE_INT, program ? program : 1, NULL);
+	g_object_set(m_mux, "prog-map", programs, NULL);
+	gst_structure_free(programs);
+	gst_bin_add_many(GST_BIN(m_recording_pipeline), m_source, m_mux, sink, NULL);
+	if (!gst_element_link(m_mux, sink))
+	{
+		gst_object_unref(m_recording_pipeline);
+		m_source = m_mux = m_recording_pipeline = nullptr;
+		return errMisconfiguration;
+	}
+	g_signal_connect(m_source, "notify::source", G_CALLBACK(handleUridecNotifySource), this);
+	g_signal_connect(m_source, "autoplug-continue", G_CALLBACK(handleAutoPlugCont), this);
+	g_signal_connect(m_source, "autoplug-select", G_CALLBACK(selectDVBIFactory), this);
+	g_signal_connect(m_source, "pad-added", G_CALLBACK(handleDVBIPadAdded), this);
+	g_signal_connect(m_source, "pad-removed", G_CALLBACK(handleDVBIPadRemoved), this);
+	GstBus *bus = gst_pipeline_get_bus(GST_PIPELINE(m_recording_pipeline));
+	gst_bus_set_sync_handler(bus, gstBusSyncHandler, this, nullptr);
+	gst_object_unref(bus);
+	return 0;
+}
+
+void eServiceMP3Record::startDVBIPipeline(GstElement *pipeline, gpointer user_data)
+{
+	auto *self = static_cast<eServiceMP3Record*>(user_data);
+	{
+		std::lock_guard<std::mutex> lock(self->m_pipeline_mutex);
+		if (!self->m_stopping && gst_element_set_state(pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE)
+			GST_ELEMENT_ERROR(pipeline, RESOURCE, FAILED, ("Cannot start DVB-I recording"), (NULL));
+	}
+	self->completeDVBITask();
+}
+
+void eServiceMP3Record::stopDVBIPipeline(GstElement *pipeline, gpointer user_data)
+{
+	auto *self = static_cast<eServiceMP3Record*>(user_data);
+	{
+		std::lock_guard<std::mutex> lock(self->m_pipeline_mutex);
+		// TS has no closing index/trailer. NULL cancels outstanding HTTP requests
+		// and flushes/closes filesink without an unbounded adaptive-source EOS wait.
+		gst_element_set_state(pipeline, GST_STATE_NULL);
+		GstBus *bus = gst_pipeline_get_bus(GST_PIPELINE(pipeline));
+		gst_bus_set_sync_handler(bus, nullptr, nullptr, nullptr);
+		gst_object_unref(bus);
+	}
+	self->completeDVBITask();
+}
+
+void eServiceMP3Record::completeDVBITask()
+{
+	bool finished;
+	{
+		std::lock_guard<std::mutex> lock(m_task_mutex);
+		finished = --m_pending_tasks == 0 && m_stopping;
+	}
+	if (finished)
+		m_pump.send(new GstMessageContainer(2, nullptr, nullptr, nullptr));
+}
+
+gint eServiceMP3Record::selectDVBIFactory(GstElement *, GstPad *, GstCaps *, GstElementFactory *factory, gpointer)
+{
+	// uridecodebin autoplug-select: TRY=0, EXPOSE=1. Unsupported codecs are
+	// exposed and rejected below instead of silently decoded in software/hardware.
+	return gst_element_factory_list_is_type(factory, GST_ELEMENT_FACTORY_TYPE_DECODER) ? 1 : 0;
+}
+
+void eServiceMP3Record::handleDVBIPadAdded(GstElement *, GstPad *pad, gpointer user_data)
+{
+	auto *self = static_cast<eServiceMP3Record*>(user_data);
+	std::lock_guard<std::mutex> lock(self->m_pad_mutex);
+	if (self->m_stopping)
+		return;
+	GstCaps *caps = gst_pad_get_current_caps(pad);
+	if (!caps || gst_caps_is_empty(caps))
+	{
+		if (caps) gst_caps_unref(caps);
+		GST_ELEMENT_ERROR(self->m_source, STREAM, FORMAT, ("Missing DVB-I recording stream caps"), (NULL));
+		return;
+	}
+	const GstStructure *structure = gst_caps_get_structure(caps, 0);
+	const char *name = gst_structure_get_name(structure);
+	const char *parser = nullptr;
+	if (!strcmp(name, "video/x-h264")) parser = "h264parse config-interval=-1 ! capsfilter caps=\"video/x-h264,stream-format=byte-stream,alignment=au\"";
+	else if (!strcmp(name, "video/x-h265")) parser = "h265parse config-interval=-1 ! capsfilter caps=\"video/x-h265,stream-format=byte-stream,alignment=au\"";
+	else if (!strcmp(name, "audio/x-ac3")) parser = "ac3parse";
+	else if (!strcmp(name, "audio/x-dts")) parser = "dcaparse";
+	else if (!strcmp(name, "audio/x-opus")) parser = "opusparse";
+	else if (!strcmp(name, "audio/mpeg") || !strcmp(name, "video/mpeg"))
+	{
+		int version = 0;
+		gst_structure_get_int(structure, "mpegversion", &version);
+		if (!strcmp(name, "audio/mpeg"))
+			parser = version == 1 ? "mpegaudioparse" : (version == 2 || version == 4 ? "aacparse" : nullptr);
+		else
+			parser = version == 4 ? "mpeg4videoparse" : (version == 1 || version == 2 ? "mpegvideoparse" : nullptr);
+	}
+	bool unsupported = !parser && (g_str_has_prefix(name, "video/") || g_str_has_prefix(name, "audio/") || !strcmp(name, "application/x-cenc"));
+	unsigned int slot = 0;
+	while (slot < 32 && (self->m_pad_slots & (guint32(1) << slot)))
+		++slot;
+	if (unsupported || slot == 32)
+	{
+		GST_ELEMENT_ERROR(self->m_source, STREAM, FORMAT, ("Unsupported DVB-I recording stream: %s", name), (NULL));
+		gst_caps_unref(caps);
+		return;
+	}
+	eDebug("[eServiceMP3Record] DVB-I %s %s", parser ? "recording" : "ignoring non-A/V stream", name);
+	gst_caps_unref(caps);
+
+	std::string description = "queue max-size-buffers=0 max-size-bytes=4194304 max-size-time=3000000000 ! ";
+	description += parser ? parser : "fakesink sync=false async=false";
+	GError *error = nullptr;
+	GstElement *branch = gst_parse_bin_from_description(description.c_str(), TRUE, &error);
+	if (!branch || error)
+	{
+		GST_ELEMENT_ERROR(self->m_source, CORE, MISSING_PLUGIN, ("Cannot create DVB-I recording parser: %s", error ? error->message : "unknown error"), (NULL));
+		if (error) g_error_free(error);
+		if (branch) gst_object_unref(branch);
+		return;
+	}
+	gst_bin_add(GST_BIN(self->m_recording_pipeline), branch);
+	GstPad *muxPad = nullptr;
+	bool linked = true;
+	if (parser)
+	{
+		std::string padName = "sink_" + std::to_string(256 + slot);
+		muxPad = gst_element_request_pad_simple(self->m_mux, padName.c_str());
+		GstPad *src = gst_element_get_static_pad(branch, "src");
+		linked = muxPad && src && gst_pad_link(src, muxPad) == GST_PAD_LINK_OK;
+		if (src) gst_object_unref(src);
+	}
+	GstPad *sinkPad = gst_element_get_static_pad(branch, "sink");
+	linked = linked && sinkPad && gst_pad_link(pad, sinkPad) == GST_PAD_LINK_OK;
+	if (sinkPad) gst_object_unref(sinkPad);
+	if (linked)
+		linked = gst_element_sync_state_with_parent(branch);
+	if (!linked)
+	{
+		if (muxPad)
+		{
+			gst_element_release_request_pad(self->m_mux, muxPad);
+			gst_object_unref(muxPad);
+		}
+		gst_element_set_state(branch, GST_STATE_NULL);
+		gst_bin_remove(GST_BIN(self->m_recording_pipeline), branch);
+		GST_ELEMENT_ERROR(self->m_source, STREAM, MUX, ("Cannot link DVB-I recording stream"), (NULL));
+		return;
+	}
+	if (muxPad)
+		g_object_set_data_full(G_OBJECT(branch), "dvbi-record-muxpad", muxPad, (GDestroyNotify)gst_object_unref);
+	g_object_set_data(G_OBJECT(branch), "dvbi-record-slot", GUINT_TO_POINTER(slot + 1));
+	g_object_set_data(G_OBJECT(pad), "dvbi-record-branch", branch);
+	self->m_pad_slots |= guint32(1) << slot;
+}
+
+void eServiceMP3Record::handleDVBIPadRemoved(GstElement *, GstPad *pad, gpointer user_data)
+{
+	auto *self = static_cast<eServiceMP3Record*>(user_data);
+	std::lock_guard<std::mutex> lock(self->m_pad_mutex);
+	if (self->m_stopping)
+		return; // Parent teardown owns the branches after the async NULL transition.
+	GstElement *branch = static_cast<GstElement*>(g_object_get_data(G_OBJECT(pad), "dvbi-record-branch"));
+	if (!branch)
+		return;
+	g_object_set_data(G_OBJECT(pad), "dvbi-record-branch", nullptr);
+	unsigned int slot = GPOINTER_TO_UINT(g_object_get_data(G_OBJECT(branch), "dvbi-record-slot")) - 1;
+	self->m_pad_slots &= ~(guint32(1) << slot);
+	GstPad *muxPad = static_cast<GstPad*>(g_object_get_data(G_OBJECT(branch), "dvbi-record-muxpad"));
+	if (muxPad)
+		gst_element_release_request_pad(self->m_mux, muxPad);
+	gst_element_set_state(branch, GST_STATE_NULL);
+	gst_bin_remove(GST_BIN(self->m_recording_pipeline), branch);
+}
+
 int eServiceMP3Record::doRecord()
 {
+	if (m_dvbi && m_stopping)
+		return errMisconfiguration;
+	if (m_dvbi && m_state == stateRecording)
+		return 0;
 	int err = doPrepare();
 	if (err)
 	{
 		m_error = errMisconfiguration;
 		m_event((iRecordableService*)this, evRecordFailed);
 		return err;
+	}
+
+	if (m_dvbi)
+	{
+		m_state = stateRecording;
+		m_task_hold = this;
+		m_pending_tasks = 1;
+		gst_element_call_async(m_recording_pipeline, startDVBIPipeline, this, nullptr);
+		return 0;
 	}
 
 	if (gst_element_set_state(m_recording_pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE)
@@ -216,6 +461,15 @@ int eServiceMP3Record::doRecord()
 
 void eServiceMP3Record::gstPoll(ePtr<GstMessageContainer> const &msg)
 {
+	// Release the final service reference on the E2 main loop, not a GST worker.
+	ePtr<eServiceMP3Record> guard = this;
+	if (msg->getType() == 2)
+	{
+		m_task_hold = nullptr;
+		return;
+	}
+	if (m_dvbi && m_stopping)
+		return;
 	switch (msg->getType())
 	{
 		case 1:
@@ -258,6 +512,16 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 			break;
 		case GST_MESSAGE_STATE_CHANGED:
 		{
+			if (m_dvbi && source == GST_OBJECT(m_recording_pipeline))
+			{
+				GstState oldState, newState, pending;
+				gst_message_parse_state_changed(msg, &oldState, &newState, &pending);
+				if (newState == GST_STATE_PLAYING && !m_running_notified)
+				{
+					m_running_notified = true;
+					m_event((iRecordableService*)this, evRecordRunning);
+				}
+			}
 			/*
 			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_recording_pipeline))
 				break;
@@ -290,6 +554,20 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 			gchar *debug;
 			GError *err;
 			gst_message_parse_error(msg, &err, &debug);
+			if (m_dvbi)
+			{
+				eWarning("[eServiceMP3Record] DVB-I recording failed: %s (%s)", err->message, sourceName);
+				bool writeError = err->domain == GST_RESOURCE_ERROR &&
+					(err->code == GST_RESOURCE_ERROR_WRITE || err->code == GST_RESOURCE_ERROR_NO_SPACE_LEFT || err->code == GST_RESOURCE_ERROR_OPEN_WRITE);
+				m_error = writeError ? (err->code == GST_RESOURCE_ERROR_NO_SPACE_LEFT ? errDiskFull : errOpenRecordFile) : errMisconfiguration;
+				g_free(debug);
+				g_error_free(err);
+				stop();
+				m_event((iRecordableService*)this, writeError ? evRecordWriteError : evRecordFailed);
+				if (!writeError)
+					m_event((iRecordableService*)this, evGstRecordEnded);
+				break;
+			}
 			g_free(debug);
 			//if (err->code != GST_STREAM_ERROR_CODEC_NOT_FOUND)
 			//	eWarning("[eServiceMP3Record] gstBusCall Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName);
@@ -331,7 +609,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 					const gchar *eventname = gst_structure_get_name(msgstruct);
 					if (eventname)
 					{
-						if (!strcmp(eventname, "redirect"))
+						if (!m_dvbi && !strcmp(eventname, "redirect"))
 						{
 							const char *uri = gst_structure_get_string(msgstruct, "new-location");
 							eDebug("[eServiceMP3Record] gstBusCall redirect to %s", uri);
@@ -385,6 +663,11 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 
 void eServiceMP3Record::handleMessage(GstMessage *msg)
 {
+	if (m_dvbi && m_stopping)
+	{
+		gst_message_unref(msg);
+		return;
+	}
 	if (GST_MESSAGE_TYPE(msg) == GST_MESSAGE_STATE_CHANGED && GST_MESSAGE_SRC(msg) != GST_OBJECT(m_recording_pipeline))
 	{
 		/*
@@ -419,14 +702,14 @@ void eServiceMP3Record::handleUridecNotifySource(GObject *object, GParamSpec *un
 				const gchar *sourcename = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
 				if (!strcmp(sourcename, "souphttpsrc"))
 				{
-					g_object_set(G_OBJECT(source), "timeout", HTTP_TIMEOUT, NULL);
-					g_object_set(G_OBJECT(source), "retries", 20, NULL);
+					g_object_set(G_OBJECT(source), "timeout", _this->m_dvbi ? 15 : HTTP_TIMEOUT, NULL);
+					g_object_set(G_OBJECT(source), "retries", _this->m_dvbi ? 2 : 20, NULL);
 				}
 			}
 		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "ssl-strict") != 0)
 		{
-			g_object_set(G_OBJECT(source), "ssl-strict", FALSE, NULL);
+			g_object_set(G_OBJECT(source), "ssl-strict", _this->m_dvbi ? TRUE : FALSE, NULL);
 		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "user-agent") != 0 && !_this->m_useragent.empty())
 		{
@@ -505,6 +788,14 @@ void eServiceMP3Record::handlePadAdded(GstElement *element, GstPad *pad, gpointe
 
 gboolean eServiceMP3Record::handleAutoPlugCont(GstElement *bin, GstPad *pad, GstCaps *caps, gpointer user_data)
 {
+	if (static_cast<eServiceMP3Record*>(user_data)->m_dvbi)
+	{
+		const char *name = gst_structure_get_name(gst_caps_get_structure(caps, 0));
+		// Expose timed text for draining; do not decode/render it while recording.
+		return !(g_str_has_prefix(name, "text/") || g_str_has_prefix(name, "subpicture/") ||
+			g_str_has_prefix(name, "application/x-subtitle") || !strcmp(name, "application/ttml+xml") ||
+			!strcmp(name, "application/x-cenc"));
+	}
 	eDebug("[eMP3ServiceRecord] handleAutoPlugCont found caps %s", gst_caps_to_string(caps));
 	return true;
 }

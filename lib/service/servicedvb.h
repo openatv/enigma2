@@ -240,6 +240,8 @@ protected:
 	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
+	ePtr<eTimer> m_dvbi_signal_timer;
+	void dvbiSignalLost();
 	bool m_noaudio;
 
 	/* in time shift mode, we essentially have two channels, and thus pmt handlers. */
@@ -381,6 +383,17 @@ protected:
 	void resetRecoveryState(); // Resets all recovery state variables.
 	virtual void onRecoveryPaused() {} // Hook after playback is actually paused
 	// -- END: Precise Recovery System --
+};
+
+// Populated only by the enabled DVB-I addon, on the main loop. No persistent
+// setting, network access or XML parsing is involved in a service selection.
+class eDVBIFallback
+{
+public:
+	static int setServices(ePyObject services);
+	static eServiceReference get(const eServiceReference &ref);
+	static eServiceReference resolve(const eServiceReference &ref, bool force = false);
+	static bool canReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {
