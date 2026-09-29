@@ -8,7 +8,7 @@
 from datetime import datetime
 from os.path import exists
 from time import time, localtime, mktime
-from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eServiceCenter, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eEPGCache, getDesktop, eTimer, loadPNG
+from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eServiceCenter, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eEPGCache, getDesktop, eTimer, loadPNG, getDVBIFallbackService
 
 from Components.GUIComponent import GUIComponent
 from Components.config import config
@@ -1321,6 +1321,9 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		if not marked and isPlayable and info:
 			oldref = self.PlayableIgnoreService or eServiceReference()
 			isPlayableValue = info.isPlayable(service, oldref)
+			# Presentation only: keep the DVB tuner check unchanged for recordings.
+			if isPlayableValue == 0 and getDVBIFallbackService(service, True) is not None:
+				isPlayableValue = 1
 			if isPlayableValue == 0:
 				serviceAvail = 1
 			elif isPlayableValue == 2:
