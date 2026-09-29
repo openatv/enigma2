@@ -7,11 +7,6 @@
 #include <pthread.h>
 #include <stdint.h>
 
-struct eRamBlock {
-	off_t offset; // absolute write offset at this block
-	bool is_access_point;
-};
-
 // eRamRingBuffer
 //
 // Seekable circular RAM buffer for DVB TS data.
@@ -27,14 +22,17 @@ struct eRamBlock {
 // The caller does NOT need external synchronization.
 class eRamRingBuffer {
 public:
-	eRamRingBuffer(size_t capacity_bytes, size_t max_blocks);
+	eRamRingBuffer(size_t capacity_bytes, size_t max_access_points);
 	~eRamRingBuffer();
 
-	bool isValid() const { return m_buf && m_blocks; }
+	bool isValid() const { return m_buf && m_aps; }
 
 	// Write TS data into the ring. Returns bytes written (aligned
-	// down to 188). is_access_point marks the block for fast seek.
-	int write(const uint8_t* data, size_t len, bool is_access_point = false);
+	// down to 188).
+	int write(const uint8_t* data, size_t len);
+
+	// Record the absolute offset of an access point for fast seek.
+	void addAccessPoint(off_t offset);
 
 	// Read TS data from the ring at the given absolute offset.
 	// Returns bytes read, or -1 with errno=EAGAIN if the region
@@ -55,13 +53,14 @@ private:
 	uint8_t* m_buf;
 	size_t m_capacity;
 
-	size_t m_max_blocks;
 	off_t m_write_offset;
 	int64_t m_first_write_ms;
 
-	eRamBlock* m_blocks;
-	size_t m_block_write_idx;
-	size_t m_total_blocks;
+	// Circular list of access point offsets, oldest entries overwritten.
+	off_t* m_aps;
+	size_t m_max_aps;
+	size_t m_ap_write_idx;
+	size_t m_ap_count;
 
 	mutable pthread_mutex_t m_mutex;
 };

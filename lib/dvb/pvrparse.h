@@ -88,6 +88,9 @@ public:
 		return m_access_points.size()
 		     + m_streamtime_access_points.size();
 	}
+	/* Offset of the most recently added access point, -1 if there is none.
+	 * RAM timeshift has no .ap file to read back and needs the offset. */
+	off_t getLastAccessPointOffset() const { return m_last_access_point_offset; }
 private:
 	void close();
 	struct AccessPoint
@@ -97,6 +100,7 @@ private:
 		AccessPoint(off_t o, pts_t p): off(o), pts(p) {}
 	};
 	std::deque<AccessPoint> m_access_points, m_streamtime_access_points;
+	off_t m_last_access_point_offset = -1;
 	struct PendingWrite
 	{
 		PendingWrite();

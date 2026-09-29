@@ -30,6 +30,8 @@ RESULT eRamServicePlay::startTimeshift() {
 	if (m_service_handler.getDataDemux(demux))
 		return -2;
 
+	// 8192 access points are hours at one I-frame per second, so the list
+	// never wraps before the ring itself does.
 	m_ram_ring = std::make_shared<eRamRingBuffer>(m_capacity_bytes, 8192);
 	if (!m_ram_ring->isValid()) {
 		eWarning("[eRamServicePlay] RAM buffer allocation failed");

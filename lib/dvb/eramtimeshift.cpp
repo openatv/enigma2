@@ -19,29 +19,29 @@ int64_t eRamRingBuffer::nowMs() {
 	return (int64_t)(ts.tv_sec * 1000) + (ts.tv_nsec / 1000000);
 }
 
-eRamRingBuffer::eRamRingBuffer(size_t capacity_bytes, size_t max_blocks) : m_max_blocks(max_blocks), m_write_offset(0), m_first_write_ms(0), m_block_write_idx(0), m_total_blocks(0) {
+eRamRingBuffer::eRamRingBuffer(size_t capacity_bytes, size_t max_access_points) : m_write_offset(0), m_first_write_ms(0), m_max_aps(max_access_points), m_ap_write_idx(0), m_ap_count(0) {
 	m_capacity = capacity_bytes - (capacity_bytes % 188);
 	m_buf = static_cast<uint8_t*>(malloc(m_capacity));
-	m_blocks = m_buf ? static_cast<eRamBlock*>(calloc(m_max_blocks, sizeof(eRamBlock))) : nullptr;
+	m_aps = m_buf ? static_cast<off_t*>(calloc(m_max_aps, sizeof(off_t))) : nullptr;
 	pthread_mutex_init(&m_mutex, nullptr);
-	if (!m_buf || !m_blocks) {
+	if (!m_buf || !m_aps) {
 		eWarning("[eRamRingBuffer] allocation failed (%zu MB) — RAM timeshift disabled", m_capacity >> 20);
 		free(m_buf);
-		free(m_blocks);
+		free(m_aps);
 		m_buf = nullptr;
-		m_blocks = nullptr;
+		m_aps = nullptr;
 		return;
 	}
-	eDebug("[eRamRingBuffer] ready: %zu MB, %zu blocks", m_capacity >> 20, m_max_blocks);
+	eDebug("[eRamRingBuffer] ready: %zu MB, %zu access points", m_capacity >> 20, m_max_aps);
 }
 
 eRamRingBuffer::~eRamRingBuffer() {
 	pthread_mutex_destroy(&m_mutex);
-	free(m_blocks);
+	free(m_aps);
 	free(m_buf);
 }
 
-int eRamRingBuffer::write(const uint8_t* data, size_t len, bool is_access_point) {
+int eRamRingBuffer::write(const uint8_t* data, size_t len) {
 	len -= len % 188;
 	if (!data || len == 0 || len > m_capacity)
 		return 0;
@@ -57,15 +57,20 @@ int eRamRingBuffer::write(const uint8_t* data, size_t len, bool is_access_point)
 		memcpy(m_buf + ring_pos, data, part1);
 		memcpy(m_buf, data + part1, len - part1);
 	}
-	eRamBlock& blk = m_blocks[m_block_write_idx];
-	blk.offset = m_write_offset;
-	blk.is_access_point = is_access_point;
-	m_block_write_idx = (m_block_write_idx + 1) % m_max_blocks;
-	if (m_total_blocks < m_max_blocks)
-		m_total_blocks++;
 	m_write_offset += (off_t)len;
 	pthread_mutex_unlock(&m_mutex);
 	return (int)len;
+}
+
+void eRamRingBuffer::addAccessPoint(off_t offset) {
+	if (!m_aps || offset < 0)
+		return;
+	pthread_mutex_lock(&m_mutex);
+	m_aps[m_ap_write_idx] = offset;
+	m_ap_write_idx = (m_ap_write_idx + 1) % m_max_aps;
+	if (m_ap_count < m_max_aps)
+		m_ap_count++;
+	pthread_mutex_unlock(&m_mutex);
 }
 
 int eRamRingBuffer::read(off_t offset, uint8_t* buf, size_t len) {
@@ -126,11 +131,11 @@ off_t eRamRingBuffer::findNearestAccessPoint(off_t from_offset) const {
 	pthread_mutex_lock(&m_mutex);
 	off_t min_off = (m_write_offset > (off_t)m_capacity) ? m_write_offset - (off_t)m_capacity : 0;
 	off_t best = -1;
-	for (size_t i = 0; i < m_total_blocks; i++) {
-		const eRamBlock& b = m_blocks[i];
-		if (b.offset >= from_offset && b.offset >= min_off && b.is_access_point) {
-			if (best == -1 || b.offset < best)
-				best = b.offset;
+	for (size_t i = 0; i < m_ap_count; i++) {
+		const off_t ap = m_aps[i];
+		if (ap >= from_offset && ap >= min_off) {
+			if (best == -1 || ap < best)
+				best = ap;
 		}
 	}
 	pthread_mutex_unlock(&m_mutex);
@@ -334,10 +339,17 @@ int eRamRecorder::writeData(int len) {
 	if (is_corrupt)
 		return len;
 
-	bool is_ap = (m_ts_parser.getAccessPointCount() > ap_before);
-	int written = m_ring->write(m_buffer, (size_t)len, is_ap);
+	int written = m_ring->write(m_buffer, (size_t)len);
 	if (written <= 0)
 		return written;
+
+	// Record the access point at its own offset, not at the start of this
+	// buffer: a seek that snapped to the buffer start would begin mid-GOP.
+	if (m_ts_parser.getAccessPointCount() > ap_before) {
+		const off_t ap = m_ts_parser.getLastAccessPointOffset();
+		if (ap >= m_current_offset && ap < m_current_offset + written)
+			m_ring->addAccessPoint(ap);
+	}
 
 	// Sample only what reached the ring, each against its own packet offset.
 	pthread_mutex_lock(&m_pcr_mutex);

@@ -765,6 +765,7 @@ write_ap_error:
 
 void eMPEGStreamInformationWriter::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
 {
+	m_last_access_point_offset = offset;
 	if (streamtime)
 	{
 		m_streamtime_access_points.push_back(AccessPoint(offset, pts));
