@@ -225,24 +225,59 @@ RESULT eRamServicePlay::stopTimeshift(bool swToLive) {
 	return 0;
 }
 
+void eRamServicePlay::updateTimeshiftClockPid(int pid) {
+	if (m_ram_recorder)
+		m_ram_recorder->setPcrPid(pid);
+}
+
+// tstools loads the .ap once at tuneExt and never re-reads it, so after a ring
+// wrap its offsets are stale. Resolve the target from the PCR history instead
+// and push it straight into the filepush thread.
 RESULT eRamServicePlay::seekTo(pts_t to) {
-	// Seek disabled for RAM timeshift to prevent issues with 4K channels
-	// and to offload PCR history searches. Does not affect PRS.
-	if (m_timeshift_active && m_ram_recorder) {
-		eTrace("[eRamServicePlay] seekTo: disabled on RAM timeshift");
+	if (!m_timeshift_active || !m_ram_recorder)
+		return eDVBServicePlay::seekTo(to);
+
+	// `to` is relative to the first PCR, same frame as getPlayPosition().
+	pts_t first_pcr = 0;
+	if (m_ram_recorder->getFirstPCR(first_pcr) != 0)
 		return -1;
-	}
-	return eDVBServicePlay::seekTo(to);
+
+	pts_t win_first = 0, win_last = 0;
+	if (m_ram_recorder->getPTSWindow(win_first, win_last) != 0)
+		return -1;
+
+	const pts_t lo = pts_delta(win_first, first_pcr);
+	const pts_t hi = pts_delta(win_last, first_pcr);
+	if (to < lo)
+		to = lo;
+	if (to > hi)
+		to = hi;
+
+	off_t byte_offset = m_ram_recorder->findOffsetForPTS(pts_delta(first_pcr + to, 0));
+	if (byte_offset < 0)
+		return -1;
+
+	ePtr<iDVBPVRChannel> pvr_channel;
+	if (m_service_handler_timeshift.getPVRChannel(pvr_channel) != 0)
+		return -1;
+
+	eDebug("[eRamServicePlay] seekTo: pts=%lld -> offset=%lld", (long long)to, (long long)byte_offset);
+	pvr_channel->forceSourcePosition(byte_offset);
+	return 0;
 }
 
 RESULT eRamServicePlay::seekRelative(int direction, pts_t to) {
-	// Seek disabled for RAM timeshift to prevent issues with 4K channels
-	// and to offload PCR history searches. Does not affect PRS.
-	if (m_timeshift_active && m_ram_recorder) {
-		eTrace("[eRamServicePlay] seekRelative: disabled on RAM timeshift");
+	if (!m_timeshift_active || !m_ram_recorder)
+		return eDVBServicePlay::seekRelative(direction, to);
+
+	pts_t pos = 0;
+	if (getPlayPosition(pos) != 0)
 		return -1;
-	}
-	return eDVBServicePlay::seekRelative(direction, to);
+
+	pts_t target = pos + (pts_t)direction * to;
+	if (target < 0)
+		target = 0;
+	return seekTo(target);
 }
 
 RESULT eRamServicePlay::saveTimeshiftFile() {

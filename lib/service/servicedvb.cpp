@@ -3435,6 +3435,10 @@ void eDVBServicePlay::updateTimeshiftPids() {
 	if (program.pmtPid != -1)
 		pids_to_record.insert(program.pmtPid);
 
+	// PCR
+	if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
+		pids_to_record.insert(program.pcrPid);
+
 	// Videotext
 	if (program.textPid != -1)
 		pids_to_record.insert(program.textPid);
@@ -3482,6 +3486,8 @@ void eDVBServicePlay::updateTimeshiftPids() {
 
 	if (timing_pid != -1)
 		m_record->setTimingPID(timing_pid, timing_pid_type, timing_stream_type);
+
+	updateTimeshiftClockPid((program.pcrPid >= 0 && program.pcrPid < 0x1fff) ? program.pcrPid : timing_pid);
 }
 
 RESULT eDVBServicePlay::setNextPlaybackFile(const char *f)

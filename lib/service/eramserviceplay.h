@@ -42,6 +42,7 @@ public:
 protected:
 	RESULT startTimeshift() override;
 	RESULT stopTimeshift(bool swToLive = false) override;
+	void updateTimeshiftClockPid(int pid) override;
 	ePtr<iTsSource> createTsSource(eServiceReferenceDVB& ref, int packetsize = 188) override;
 
 private:

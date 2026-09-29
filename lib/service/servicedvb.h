@@ -280,6 +280,8 @@ protected:
 
 	void updateTimeshiftPids();
 
+	virtual void updateTimeshiftClockPid(int /*pid*/) {}
+
 	void resetTimeshift(int start);
 	void switchToTimeshift();
 

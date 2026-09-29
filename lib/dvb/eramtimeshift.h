@@ -116,9 +116,8 @@ private:
 // instead of a disk file. Descrambling (CI, SoftCAM, StreamRelay) and
 // I-frame detection work identically to the disk path.
 //
-// relies entirely on the base class eDVBRecordFileThread for PTS
-// extraction (via eMPEGStreamParserTS) to drive the seek bar and
-// the Precise Recovery System, matching the standard master branch behavior.
+// PCR is taken from the adaptation field of each TS packet (unencrypted
+// even on scrambled channels) and drives the seek bar and the PRS.
 class eRamRecorder : public eDVBRecordScrambledThread {
 public:
 	explicit eRamRecorder(eRamRingBuffer* buf, int packetsize = 188);
@@ -126,12 +125,49 @@ public:
 
 	eRamRingBuffer* getRingBuffer() { return m_ring; }
 
+	// Sample PCR only from this pid; -1 = any. Callable from eApp while running.
+	void setPcrPid(int pid);
+
+	// eDVBTSRecorder::getCurrentPCR() routes through getLastPTS().
+	int getLastPTS(pts_t& pts) override;
+	int getFirstPTS(pts_t& pts) override;
+
+	// Fixed reference, stable across ring wraps.
+	int getFirstPCR(pts_t& pcr) const;
+
+	// Oldest and newest PCR still inside the ring. -1 if not enough data.
+	int getPTSWindow(pts_t& first, pts_t& last) const;
+
+	// Ring offset closest to target, snapped forward to an access point.
+	off_t findOffsetForPTS(pts_t target) const;
+
 protected:
 	int writeData(int len) override;
 	void flush() override;
 
 private:
+	static bool extractPCR(const uint8_t* pkt, pts_t& pcr, int& out_pid, bool& discontinuity);
+	void updatePCR(pts_t pcr, off_t offset);
+
 	eRamRingBuffer* m_ring;
+
+	pts_t m_last_pcr = 0;
+	bool m_last_pcr_valid = false;
+	int64_t m_last_pcr_ms = 0;
+	pts_t m_first_pcr = 0;
+	bool m_first_pcr_valid = false;
+
+	int m_pcr_pid = -1; // written from eApp, read on the recorder thread
+
+	// ~25 PCR/sec, so 8192 entries cover ~5.5 min.
+	static const size_t PCR_HISTORY = 8192;
+	struct PcrSample { off_t offset; pts_t pcr; };
+	PcrSample m_pcr_history[PCR_HISTORY];
+	size_t m_pcr_hist_write = 0;
+	size_t m_pcr_hist_count = 0;
+
+	mutable pthread_mutex_t m_pcr_mutex;
+	int64_t m_last_pcrpid_warn_ms = 0;
 };
 
 #endif // __lib_dvb_eramtimeshift_h

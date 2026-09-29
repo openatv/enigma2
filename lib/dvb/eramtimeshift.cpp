@@ -241,9 +241,75 @@ eRamRecorder::eRamRecorder(eRamRingBuffer* buf, int packetsize) : eDVBRecordScra
 	// RAM timeshift always uses packetsize=188 (see startTimeshift()),
 	// but assert here to catch any future misuse early.
 	assert(packetsize == 188);
+	memset(m_pcr_history, 0, sizeof(m_pcr_history));
+	pthread_mutex_init(&m_pcr_mutex, nullptr);
 }
 
-eRamRecorder::~eRamRecorder() {}
+eRamRecorder::~eRamRecorder() {
+	pthread_mutex_destroy(&m_pcr_mutex);
+}
+
+// 33-bit PCR base in 90 kHz units, from the adaptation field.
+bool eRamRecorder::extractPCR(const uint8_t* pkt, pts_t& pcr, int& out_pid, bool& discontinuity) {
+	out_pid = -1;
+	discontinuity = false;
+	if (pkt[0] != 0x47)
+		return false;
+	if (pkt[1] & 0x80) // transport_error_indicator
+		return false;
+	out_pid = ((pkt[1] & 0x1F) << 8) | pkt[2];
+	if (!(pkt[3] & 0x20)) // adaptation_field_control
+		return false;
+	if (pkt[4] < 7) // adaptation_field_length
+		return false;
+	discontinuity = (pkt[5] & 0x80) != 0;
+	if (!(pkt[5] & 0x10)) // PCR_flag
+		return false;
+	pcr = ((pts_t)pkt[6] << 25) | ((pts_t)pkt[7] << 17) | ((pts_t)pkt[8] << 9) | ((pts_t)pkt[9] << 1) | ((pts_t)(pkt[10] >> 7) & 1);
+	return true;
+}
+
+void eRamRecorder::updatePCR(pts_t pcr, off_t offset) {
+	pthread_mutex_lock(&m_pcr_mutex);
+	m_last_pcr = pcr;
+	m_last_pcr_valid = true;
+	m_last_pcr_ms = eRamRingBuffer::nowMs();
+	if (!m_first_pcr_valid) {
+		m_first_pcr = pcr;
+		m_first_pcr_valid = true;
+	}
+
+	m_pcr_history[m_pcr_hist_write].offset = offset;
+	m_pcr_history[m_pcr_hist_write].pcr = pcr;
+	m_pcr_hist_write = (m_pcr_hist_write + 1) % PCR_HISTORY;
+	if (m_pcr_hist_count < PCR_HISTORY)
+		m_pcr_hist_count++;
+	pthread_mutex_unlock(&m_pcr_mutex);
+}
+
+void eRamRecorder::setPcrPid(int pid) {
+	if (pid < 0 || pid >= 0x1fff)
+		pid = -1;
+
+	pthread_mutex_lock(&m_pcr_mutex);
+	const int old = m_pcr_pid;
+	m_pcr_pid = pid;
+
+	// Different pid = different clock, so drop the old reference.
+	if (old != pid) {
+		m_last_pcr_valid = false;
+		m_first_pcr_valid = false;
+		m_last_pcr = 0;
+		m_first_pcr = 0;
+		m_last_pcr_ms = 0;
+		m_pcr_hist_write = 0;
+		m_pcr_hist_count = 0;
+	}
+	pthread_mutex_unlock(&m_pcr_mutex);
+
+	if (old != pid)
+		eDebug("[eRamRecorder] PCR pid %d -> %d (clock reference reset)", old, pid);
+}
 
 int eRamRecorder::writeData(int len) {
 	if (len <= 0 || !m_ring)
@@ -270,10 +336,159 @@ int eRamRecorder::writeData(int len) {
 
 	bool is_ap = (m_ts_parser.getAccessPointCount() > ap_before);
 	int written = m_ring->write(m_buffer, (size_t)len, is_ap);
-	if (written > 0) {
-		m_current_offset += written;
+	if (written <= 0)
+		return written;
+
+	// Sample only what reached the ring, each against its own packet offset.
+	pthread_mutex_lock(&m_pcr_mutex);
+	const int want_pid = m_pcr_pid;
+	pthread_mutex_unlock(&m_pcr_mutex);
+
+	const uint8_t* data = reinterpret_cast<const uint8_t*>(m_buffer);
+	int foreign_pid = -1;
+	for (int i = 0; i + 188 <= written; i += 188) {
+		pts_t pcr;
+		int pid;
+		bool discontinuity;
+		if (!extractPCR(data + i, pcr, pid, discontinuity))
+			continue;
+		if (want_pid >= 0 && pid != want_pid) {
+			foreign_pid = pid;
+			continue;
+		}
+		if (discontinuity) {
+			// History is on the old timeline — drop it rather than seek wrong.
+			pthread_mutex_lock(&m_pcr_mutex);
+			m_pcr_hist_write = 0;
+			m_pcr_hist_count = 0;
+			pthread_mutex_unlock(&m_pcr_mutex);
+			eDebug("[eRamRecorder] PCR discontinuity on pid %d, history dropped", pid);
+		}
+		updatePCR(pcr, m_current_offset + i);
 	}
+
+	if (foreign_pid >= 0) {
+		const int64_t now = eRamRingBuffer::nowMs();
+		if (now - m_last_pcrpid_warn_ms >= 10000) {
+			m_last_pcrpid_warn_ms = now;
+			eDebug("[eRamRecorder] ignoring PCR on pid %d (using %d)", foreign_pid, want_pid);
+		}
+	}
+
+	m_current_offset += written;
 	return written;
+}
+
+// Extrapolated forward, but capped: on disk getLastPTS() freezes when data
+// stops, and an uncapped delay drives the PRS into a pause/unpause loop.
+int eRamRecorder::getLastPTS(pts_t& pts) {
+	pthread_mutex_lock(&m_pcr_mutex);
+	bool valid = m_last_pcr_valid;
+	pts_t val = m_last_pcr;
+	int64_t seen_ms = m_last_pcr_ms;
+	pthread_mutex_unlock(&m_pcr_mutex);
+
+	if (!valid)
+		return -1;
+
+	int64_t elapsed_ms = eRamRingBuffer::nowMs() - seen_ms;
+	if (elapsed_ms < 0)
+		elapsed_ms = 0;
+	if (elapsed_ms > 200)
+		elapsed_ms = 200;
+
+	pts = (val + (pts_t)(elapsed_ms * 90)) & ((1LL << 33) - 1);
+	return 0;
+}
+
+int eRamRecorder::getFirstPTS(pts_t& pts) {
+	return getFirstPCR(pts);
+}
+
+int eRamRecorder::getFirstPCR(pts_t& pcr) const {
+	pthread_mutex_lock(&m_pcr_mutex);
+	bool valid = m_first_pcr_valid;
+	pts_t val = m_first_pcr;
+	pthread_mutex_unlock(&m_pcr_mutex);
+	if (!valid)
+		return -1;
+	pcr = val;
+	return 0;
+}
+
+int eRamRecorder::getPTSWindow(pts_t& first, pts_t& last) const {
+	if (!m_ring)
+		return -1;
+
+	const off_t min_off = m_ring->getMinOffset();
+
+	pthread_mutex_lock(&m_pcr_mutex);
+	if (!m_last_pcr_valid || m_pcr_hist_count == 0) {
+		pthread_mutex_unlock(&m_pcr_mutex);
+		return -1;
+	}
+	last = m_last_pcr;
+
+	// Offsets grow monotonically, so the smallest one >= min_off is the oldest.
+	pts_t oldest_pcr = 0;
+	off_t oldest_offset = -1;
+	bool found = false;
+	for (size_t i = 0; i < m_pcr_hist_count; i++) {
+		const PcrSample& s = m_pcr_history[i];
+		if (s.offset < min_off)
+			continue;
+		if (!found || s.offset < oldest_offset) {
+			oldest_pcr = s.pcr;
+			oldest_offset = s.offset;
+			found = true;
+		}
+	}
+	pthread_mutex_unlock(&m_pcr_mutex);
+
+	if (!found)
+		return -1;
+	first = oldest_pcr;
+	return 0;
+}
+
+off_t eRamRecorder::findOffsetForPTS(pts_t target) const {
+	if (!m_ring)
+		return -1;
+
+	const off_t min_off = m_ring->getMinOffset();
+
+	pthread_mutex_lock(&m_pcr_mutex);
+	off_t best_offset = -1;
+	pts_t best_delta = INT64_MAX;
+	for (size_t i = 0; i < m_pcr_hist_count; i++) {
+		const PcrSample& s = m_pcr_history[i];
+		if (s.offset < min_off)
+			continue;
+
+		// Shorter arc of the 33-bit circle, so a wrap is not counted as distant.
+		const pts_t mask = (1LL << 33) - 1;
+		pts_t fwd = (s.pcr - target) & mask;
+		pts_t bwd = (target - s.pcr) & mask;
+		pts_t diff = (fwd < bwd) ? fwd : bwd;
+
+		if (best_offset < 0 || diff < best_delta) {
+			best_delta = diff;
+			best_offset = s.offset;
+		}
+	}
+	pthread_mutex_unlock(&m_pcr_mutex);
+
+	if (best_offset < 0)
+		return -1;
+
+	best_offset -= best_offset % 188;
+
+	// Snap forward to an I-frame, like an .ap seek on the disk path.
+	off_t ap = m_ring->findNearestAccessPoint(best_offset);
+	if (ap >= 0)
+		best_offset = ap;
+
+	return best_offset;
 }
 
 void eRamRecorder::flush() {}
