@@ -767,8 +767,11 @@ public:
 
 	/* Force the push thread's read position to the given byte offset.
 	 * Default no-op — only used by RAM timeshift where the normal
-	 * cue-sheet seek path (through tstools) is not available. */
-	virtual void forceSourcePosition(off_t /*offset*/) {}
+	 * cue-sheet seek path (through tstools) is not available.
+	 * A non-null flush_demux drops the buffers between source and decoder,
+	 * as a cue-sheet seek does. Omit it to keep already decoded data, which
+	 * is what the lap recovery wants. */
+	virtual void forceSourcePosition(off_t /*offset*/, iDVBDemux * /*flush_demux*/ = nullptr) {}
 
 		/* skipping must be done with a cue sheet */
 };
