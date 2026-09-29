@@ -357,12 +357,14 @@ int eRamRecorder::writeData(int len) {
 			continue;
 		}
 		if (discontinuity) {
-			// History is on the old timeline — drop it rather than seek wrong.
+			// Everything sampled so far is on the old timeline.
 			pthread_mutex_lock(&m_pcr_mutex);
+			m_first_pcr_valid = false;
+			m_first_pcr = 0;
 			m_pcr_hist_write = 0;
 			m_pcr_hist_count = 0;
 			pthread_mutex_unlock(&m_pcr_mutex);
-			eDebug("[eRamRecorder] PCR discontinuity on pid %d, history dropped", pid);
+			eDebug("[eRamRecorder] PCR discontinuity on pid %d, clock reference reset", pid);
 		}
 		updatePCR(pcr, m_current_offset + i);
 	}
