@@ -263,6 +263,10 @@ RESULT eRamServicePlay::seekTo(pts_t to) {
 
 	eDebug("[eRamServicePlay] seekTo: pts=%lld -> offset=%lld", (long long)to, (long long)byte_offset);
 	pvr_channel->forceSourcePosition(byte_offset);
+
+	// Same as the cue-sheet seek in eDVBServicePlay::seekTo().
+	m_dvb_subtitle_pages.clear();
+	m_subtitle_pages.clear();
 	return 0;
 }
 
