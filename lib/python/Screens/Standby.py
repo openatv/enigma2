@@ -232,7 +232,7 @@ class Standby2(Screen):
 			else:
 				self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
-		if hasattr(self.session, "pipshown") and self.session.pipshown:
+		if getattr(self.session, "pipshown", False) and hasattr(self.session, "pip"):
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
