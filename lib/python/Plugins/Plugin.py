@@ -49,7 +49,7 @@ class PluginDescriptor:
 	# and 'None' as parameter to call the plugin from the Softwaremanager menus. "menuEntryName" and
 	# "menuEntryDescription" should be provided to name and describe the new menu entry.
 	WHERE_SOFTWAREMANAGER = 15
-	# Arguments: session, serviceref (currently selected). Start as channellist context menu plugin.
+	# Arguments: session, service (currently selected). Optional serviceFilter(service) controls visibility.
 	WHERE_CHANNEL_CONTEXT_MENU = 16
 	# The fnc must take an interface name as parameter and return None if the plugin supports an extended setup
 	# or return a function which is called with session and the interface name for extended setup of this interface.
@@ -73,7 +73,7 @@ class PluginDescriptor:
 
 	DO_CLOSE_RECURSIVE = 2
 
-	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0, closeMode=0):
+	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0, closeMode=0, serviceFilter=None):
 		self.name = name
 		if not where:
 			where = []
@@ -93,6 +93,7 @@ class PluginDescriptor:
 		self.path = None
 		self.key = name
 		self.closeMode = closeMode
+		self.serviceFilter = serviceFilter
 
 	def __call__(self, *args, **kwargs):
 		if callable(self.function):
