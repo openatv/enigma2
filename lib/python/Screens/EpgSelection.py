@@ -1848,7 +1848,7 @@ class EPGSelection(Screen):
 			self.Oldpipshown = False
 			self.session.pipshown = False
 			del self.session.pip
-		if self.Oldpipshown:
+		if self.Oldpipshown and hasattr(self.session, "pip"):
 			self.session.pipshown = True
 
 	def zap(self):
