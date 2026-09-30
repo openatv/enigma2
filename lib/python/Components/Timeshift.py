@@ -117,6 +117,7 @@ class InfoBarTimeshift:
 		self.service_changed = 0
 		self.event_changed = False
 		self.pts_justzapped = False  # True only when files should be erased due to 'deleteAfterZap', not after a fresh GUI/box restart.
+		self.ptsCleanupError = None
 		self.checkEvents_value = config.timeshift.checkEvents.value
 		self.pts_starttime = time()
 		self.ptsAskUser_wait = False
@@ -539,10 +540,12 @@ class InfoBarTimeshift:
 	def activatePermanentTimeshift(self):
 		self.createTimeshiftFolder()
 		if self.pts_eventcount == 0 and self.pts_justzapped:  # Only cleanup folder after switching channels with 'deleteAfterZap', not after a fresh GUI/box restart.
-			self.ptsCleanTimeshiftFolder(justZapped=True)  # Remove all time shift files.
+			if not self.ptsCleanTimeshiftFolder(justZapped=True):  # Remove all time shift files.
+				return
 			self.pts_justzapped = False
 		else:
-			self.ptsCleanTimeshiftFolder(justZapped=False)  # Only delete very old time shift files based on config.timeshift.maxHours.
+			if not self.ptsCleanTimeshiftFolder(justZapped=False):  # Only delete very old time shift files based on config.timeshift.maxHours.
+				return
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopWhileRecording.value and self.pts_record_running):
 			return
 		# (Re)start time shift now.
@@ -892,7 +895,41 @@ class InfoBarTimeshift:
 	def ptsCleanTimeshiftFolder(self, justZapped=True):
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
 			self.ptsEventCleanTimerSTOP()
-			return
+			return False
+		try:
+			self.ptsCleanTimeshiftFiles(justZapped)
+		except OSError as err:
+			self.ptsHandleCleanupError(err)
+			return False
+		self.ptsCleanupError = None
+		return True
+
+	def ptsHandleCleanupError(self, err):
+		# A disconnected device may still pass the path/access check. Do not keep
+		# retrying the cleanup timer or start a new buffer after an I/O failure.
+		self.pts_delay_timer.stop()
+		self.pts_cleanUp_timer.stop()
+		self.ptsEventCleanTimerSTOP(justStop=True)
+		ts = self.getTimeshift()
+		if ts and ts.isTimeshiftEnabled():
+			self.save_current_timeshift = False
+			self.stopTimeshiftAskUserCallback(True)
+		error = (config.timeshift.path.value, err.errno)
+		if self.ptsCleanupError != error:
+			self.ptsCleanupError = error
+			print(f"[Timeshift] Unable to clean time shift directory '{error[0]}': {err}")
+			AddNotification(MessageBox, _("The time shift storage device is not available.\nPlease check the device and the time shift path.") + f"\n\n{error[0]}\n{err}", MessageBox.TYPE_ERROR, timeout=10)
+
+	def ptsEraseTimeshiftFile(self, path, statinfo=None):
+		try:
+			if statinfo is None:
+				statinfo = stat(path)
+			self.BgFileEraser.erase(path)
+			return statinfo.st_size
+		except FileNotFoundError:
+			return 0  # The background eraser may already have removed this file.
+
+	def ptsCleanTimeshiftFiles(self, justZapped):
 		freespace = config.timeshift.checkFreeSpace.value
 		timeshiftEnabled = self.timeshiftEnabled()
 		isSeekable = self.isSeekable()
@@ -908,11 +945,8 @@ class InfoBarTimeshift:
 				if not self.event_changed:
 					lockedFiles.append(f"pts_livebuffer_{self.pts_currplaying}")
 		if freespace:
-			try:
-				status = statvfs(config.timeshift.path.value)
-				freespace = status.f_bavail * status.f_bsize // 1024 // 1024
-			except Exception as err:
-				print(f"[Timeshift] Error {err.errno}: Unable to evaluate disk free space with 'statvfs' call!  ({err.strerror})")
+			status = statvfs(config.timeshift.path.value)
+			freespace = status.f_bavail * status.f_bsize // 1024 // 1024
 		if freespace < config.timeshift.checkFreeSpace.value:
 			for index in range(1, self.pts_eventcount + 1):
 				removeFiles.append(f"pts_livebuffer_{index}")
@@ -922,14 +956,13 @@ class InfoBarTimeshift:
 			for index in range(1, self.pts_eventcount - config.timeshift.maxEvents.value + offset):
 				removeFiles.append(f"pts_livebuffer_{index}")
 		for filename in listdir(config.timeshift.path.value):
-			if exists(join(config.timeshift.path.value, filename)) and filename.startswith(("timeshift.", "pts_livebuffer_")):
+			if filename.startswith(("timeshift.", "pts_livebuffer_")):
 				try:
 					statinfo = stat(join(config.timeshift.path.value, filename))
-				except OSError:
-					statinfo = None  # A .del file may have been deleted between "exists" and "stat".
+				except FileNotFoundError:
+					continue  # A file may have been deleted after listing the directory.
 				if justZapped and not filename.endswith(".del") and not filename.endswith(".copy"):
-					filesize += getsize(join(config.timeshift.path.value, filename))  # After zapping, remove all regular time shift files.
-					self.BgFileEraser.erase(join(config.timeshift.path.value, filename))
+					filesize += self.ptsEraseTimeshiftFile(join(config.timeshift.path.value, filename), statinfo)  # After zapping, remove all regular time shift files.
 				elif statinfo and not filename.endswith((".eit", ".meta", ".sc", ".del", ".copy")):
 					# Remove old files, but only complete sets of files (base file, EIT, META, SC),
 					# and not while saveTimeshiftEventPopup is active (avoid deleting files about to be saved)
@@ -938,20 +971,9 @@ class InfoBarTimeshift:
 						filecounter += 1
 					if ((statinfo.st_mtime < (time() - 3600 * config.timeshift.maxHours.value)) or any(filename in x for x in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in x for x in lockedFiles):
 						# print(f"[Timeshift] Erasing set of old time shift files (base file, EIT, META, SC) '{filename}'.")
-						filesize += getsize(join(config.timeshift.path.value, filename))
-						self.BgFileEraser.erase(join(config.timeshift.path.value, filename))
-						path = join(config.timeshift.path.value, f"{filename}.eit")
-						if exists(path):
-							filesize += getsize(path)
-							self.BgFileEraser.erase(path)
-						path = join(config.timeshift.path.value, f"{filename}.meta")
-						if exists(path):
-							filesize += getsize(path)
-							self.BgFileEraser.erase(path)
-						path = join(config.timeshift.path.value, f"{filename}.sc")
-						if exists(path):
-							filesize += getsize(path)
-							self.BgFileEraser.erase(path)
+						filesize += self.ptsEraseTimeshiftFile(join(config.timeshift.path.value, filename), statinfo)
+						for suffix in (".eit", ".meta", ".sc"):
+							filesize += self.ptsEraseTimeshiftFile(join(config.timeshift.path.value, f"{filename}{suffix}"))
 						if not filename.startswith("timeshift."):
 							filecounter -= 1
 				elif statinfo:
@@ -959,17 +981,14 @@ class InfoBarTimeshift:
 						# print(f"[Timeshift] Erasing very old time shift file '{filename}'.")
 						path = join(config.timeshift.path.value, filename)
 						if filename.endswith(".del") is True:
-							filesize += getsize(path)
 							try:
 								newPath = join(config.timeshift.path.value, f"{filename}.del_again")
 								rename(path, newPath)
-								self.BgFileEraser.erase(newPath)
-							except Exception as err:
-								print(f"[Timeshift] Error {err.errno}: Can't rename '{path}'!  ({err.strerror})")
-								self.BgFileEraser.erase(path)
+							except FileNotFoundError:
+								continue
+							filesize += self.ptsEraseTimeshiftFile(newPath, statinfo)
 						else:
-							filesize += getsize(path)
-							self.BgFileEraser.erase(path)
+							filesize += self.ptsEraseTimeshiftFile(path, statinfo)
 		if filecounter == 0:
 			self.ptsEventCleanTimerSTOP()
 		else:
