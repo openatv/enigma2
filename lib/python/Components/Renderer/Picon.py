@@ -1,5 +1,5 @@
 from os import listdir
-from os.path import exists, getmtime, getsize, isdir, join
+from os.path import exists, getmtime, getsize, isdir, join, normpath
 from re import sub
 from enigma import ePixmap, eServiceReference, iServiceInformation  # , ePicLoad
 from Components.config import config
@@ -26,6 +26,11 @@ def setPiconPath(key, path):
 	piconPathCache[key] = path
 	if key in (None, "infobar"):
 		lastPiconPath = path
+
+
+def getDefaultPiconPath():
+	path = getPiconPath("infobar") or lastPiconPath or next((x for x in searchPaths if not x.startswith("/media/net")), None)
+	return normpath(path) if path else None
 
 
 def getPiconPath(mode=None):
