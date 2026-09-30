@@ -1367,7 +1367,8 @@ class ChannelContextMenu(Screen):
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
 				if isPlayable:
 					for plugin in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
-						appendWhenValid(current, menu, (plugin.name, boundFunction(self.runPlugin, plugin)))
+						if plugin.serviceFilter is None or plugin.serviceFilter(current):
+							appendWhenValid(current, menu, (plugin.name, boundFunction(self.runPlugin, plugin)))
 					if config.servicelist.startupservice.value == self.csel.getCurrentSelection().toString():
 						appendWhenValid(current, menu, (_("Unset As Startup Service"), self.unsetStartupService))
 					else:
