@@ -225,6 +225,7 @@ int exit_code;
 
 void quitMainloop(int exitCode)
 {
+	eProfile::notify("quit " + std::to_string(exitCode));  /* ORM, an end on purpose is no failed start. */
 	FILE *f = fopen("/proc/stb/fp/was_timer_wakeup", "w");
 	if (f)
 	{
