@@ -238,10 +238,10 @@ class Session:
 	def showInfo(self, text, timeout=4):
 		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
 
-	def showWarning(self, text, timeout=4):
+	def showWarning(self, text, timeout=5):
 		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
 
-	def showError(self, text, timeout=4):
+	def showError(self, text, timeout=5):
 		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_ERROR, timeout=timeout)
 
 
