@@ -224,6 +224,7 @@ class Wizard(Screen):
 					"timeoutAction": attributes.get("timeoutaction", "nextpage"),
 					"timeoutStep": attributes.get("timeoutstep", ""),
 					"list": [],
+					"evaluatedList": [],
 					"config": {
 						"screen": None,
 						"args": None,
@@ -578,6 +579,8 @@ class Wizard(Screen):
 			return
 		stepName = self.wizard[self.currStep].get("name", "* Unknown *")
 		print("[Wizard] Preparing step %d (%s)." % (self.currStep, stepName))
+		# An asynchronous step has no selectable entries until afterAsyncCode().
+		self.wizard[self.currStep]["evaluatedList"] = []
 		self.timeoutTimer.stop()
 		# if stepName == "scanquestion":  # Enable this block to debug a specified step.
 		# 	for key in self.wizard[self.currStep].keys():

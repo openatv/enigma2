@@ -21,6 +21,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from Screens.Toast import Toast
 from Tools.Conversions import formatNetworkSpeed
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 from Tools.ServiceAction import ServiceAction
@@ -1821,8 +1822,9 @@ class DNSSettings(Setup):
 		self.dnsServerGroups = []
 		if config.usage.dns.value != "dnscrypt":
 			current = self.dnsOptions[config.usage.dns.value]
-			self.dnsServersV4 = current["v4"][:]
-			self.dnsServersV6 = current["v6"][:]
+			# Keep edits and ordering in the profile when another option rebuilds the list.
+			self.dnsServersV4 = current["v4"]
+			self.dnsServersV6 = current["v6"]
 			v4 = config.usage.dnsMode.value != 3
 			v6 = config.usage.dnsMode.value != 2
 			isCustom = config.usage.dns.value == "custom"
@@ -1880,7 +1882,9 @@ class DNSSettings(Setup):
 					if value:
 						servers.append(value)
 		networkManager.setNameservers(servers)
-		networkManager.save()
+		if not networkManager.save():
+			Toast.instance.showToast(text=_("Unable to save network configuration!"), toasttype=Toast.TYPE_ERROR, timeout=5)
+			return
 		Setup.keySave(self)
 
 	def writeDnsCryptToml(self):  # DNSCrypt TOML helpers.

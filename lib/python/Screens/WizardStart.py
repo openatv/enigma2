@@ -368,8 +368,10 @@ class WizardStart(Wizard, ShowRemoteControl):
 					NetworkWiFiAddFlow.start(self.session, adapter=adapter, callback=nwWifiFlowDone)
 				else:
 					self.nwBackToList()
-			else:
+			elif saved and adapter.adapterEnabled:
 				nwStartIpPoll()
+			else:
+				self.nwBackToList()
 
 		if self.nwSubFlowActive:
 			print("[WizardStart] nwOpenSetup: Spurious re-entry while Wi-Fi sub-flow is active -> ignored!")
