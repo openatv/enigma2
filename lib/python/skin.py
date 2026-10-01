@@ -1677,7 +1677,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				except Exception as err:
 					skinError(f"Unknown style color name '{name}' ({err})")
 		for configList in tag.findall("configList"):
-			if "readOnlyColor" in configList.attrib:
+			if "readOnlyColor" in configList.attrib:  # This is a global setting, not per window style.  The last loaded skin that sets it wins.
 				color = parseColor(configList.attrib.get("readOnlyColor"), 0x007F7F7F)
 				setReadOnlyColor(rf"\c{color.argb():08X}")
 			if "entryFont" in configList.attrib:

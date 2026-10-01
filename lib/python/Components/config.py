@@ -1083,7 +1083,7 @@ class ConfigSequence(ConfigElement):
 					self.markedPos += 1
 			case ActionKeys.LAST:
 				self.markedPos = self.totalLen
-			case x if (x in ActionKeys.NUMBERS) or x == ActionKeys.ASCII:
+			case _ if key in ActionKeys.NUMBERS or key == ActionKeys.ASCII:
 				# prev = self._value
 				if key == ActionKeys.ASCII:
 					code = getPrevAsciiCode()
@@ -1213,7 +1213,7 @@ class ConfigCECAddress(ConfigSequence):
 			case ActionKeys.LAST:
 				self.marked_block = len(self.limits) - 1
 				self.overwrite = True
-			case x if (x in ActionKeys.NUMBERS) or x == ActionKeys.ASCII:
+			case _ if key in ActionKeys.NUMBERS or key == ActionKeys.ASCII:
 				if key == ActionKeys.ASCII:
 					code = getPrevAsciiCode()
 					if code < 48 or code > 57:
@@ -1454,7 +1454,7 @@ class ConfigIP(ConfigSequence):
 				self.markedPos = 0
 				self._value = [0, 0, 0, 0]
 				self.overwrite = True
-			case x if (x in ActionKeys.NUMBERS) or x == ActionKeys.ASCII:
+			case _ if key in ActionKeys.NUMBERS or key == ActionKeys.ASCII:
 				if key == ActionKeys.ASCII:
 					code = getPrevAsciiCode()
 					if code < 48 or code > 57:
@@ -1542,7 +1542,7 @@ class ConfigSet(ConfigElement):
 				self.pos = self.pos + 1 if self.pos < len(self.choices) - 1 else 0
 			case ActionKeys.LAST:
 				self.pos = len(self.choices) - 1
-			case x if (x in ActionKeys.NUMBERS) or x == ActionKeys.TOGGLE or x == ActionKeys.SELECT or x == ActionKeys.DELETE or x == ActionKeys.BACKSPACE:
+			case _ if key in ActionKeys.NUMBERS or key in (ActionKeys.TOGGLE, ActionKeys.SELECT, ActionKeys.DELETE, ActionKeys.BACKSPACE):
 				value = self.value
 				choice = self.choices[self.pos]
 				if choice in value:
@@ -1721,7 +1721,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 						self.allmarked = False
 					self.insertChar(newChar, self.markedPos, False)
 					self.markedPos += 1
-			case x if (x in ActionKeys.NUMBERS):
+			case _ if key in ActionKeys.NUMBERS:
 				owr = self.lastKey == getKeyNumber(key)
 				newChar = self.getKey(getKeyNumber(key))
 				if self.allmarked:
@@ -1891,7 +1891,7 @@ class ConfigMACText(ConfigText):
 				self.timeout()
 				self.text = self.text[2].join(["00"] * 6)
 				self.markedPos = 0
-			case x if (x in ActionKeys.NUMBERS):
+			case _ if key in ActionKeys.NUMBERS:
 				owr = self.lastKey == getKeyNumber(key)
 				newChar = self.getKey(getKeyNumber(key))
 				self.insertChar(newChar, self.markedPos, owr)
@@ -1942,7 +1942,7 @@ class ConfigNumber(ConfigText):
 
 	def handleKey(self, key, callback=None):
 		match key:
-			case x if (x in ActionKeys.NUMBERS) or x == ActionKeys.ASCII:
+			case _ if key in ActionKeys.NUMBERS or key == ActionKeys.ASCII:
 				prev = int(self.text)
 				if key == ActionKeys.ASCII:
 					ascii = getPrevAsciiCode()
