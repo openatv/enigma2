@@ -419,13 +419,13 @@ class PositionerSetup(Screen):
 			self.updateColors(self.getCurrentConfigPath())
 
 	def keyNumberGlobal(self, number):
-		self["list"].handleKey(ActionKeys.ACTIONKEY_0 + number)
+		self["list"].handleKey(ActionKeys.NUMBER_0 + number)
 
 	def keyLeft(self):
-		self["list"].handleKey(ActionKeys.ACTIONKEY_LEFT)
+		self["list"].handleKey(ActionKeys.LEFT)
 
 	def keyRight(self):
-		self["list"].handleKey(ActionKeys.ACTIONKEY_RIGHT)
+		self["list"].handleKey(ActionKeys.RIGHT)
 
 	def updateColors(self, entry):
 		if entry == "tune":

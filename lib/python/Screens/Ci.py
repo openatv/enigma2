@@ -246,19 +246,19 @@ class MMIDialog(Screen):
 		self.timer.stop()
 		if self.is_pin_list > -1:
 			self.is_pin_list += 1
-		self.keyConfigEntry(ActionKeys.ACTIONKEY_0 + number)
+		self.keyConfigEntry(ActionKeys.NUMBER_0 + number)
 
 	def keyLeft(self):
 		self.timer.stop()
 		if self.is_pin_list > 0:
 			self.is_pin_list += -1
-		self.keyConfigEntry(ActionKeys.ACTIONKEY_LEFT)
+		self.keyConfigEntry(ActionKeys.LEFT)
 
 	def keyRight(self):
 		self.timer.stop()
 		if self.is_pin_list > -1 and self.is_pin_list < 4:
 			self.is_pin_list += 1
-		self.keyConfigEntry(ActionKeys.ACTIONKEY_RIGHT)
+		self.keyConfigEntry(ActionKeys.RIGHT)
 
 	def updateList(self, list):
 		List = self["entries"]
