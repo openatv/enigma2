@@ -2868,6 +2868,12 @@ ePtr<iServiceInfoContainer> eServiceMP3::getInfoObject(int w) {
 }
 
 RESULT eServiceMP3::audioChannel(ePtr<iAudioChannelSelection>& ptr) {
+	GstElement* sink = getAudioChannelSink();
+	if (!sink) {
+		ptr = nullptr;
+		return -1;
+	}
+	gst_object_unref(sink);
 	ptr = this;
 	return 0;
 }
@@ -3063,13 +3069,44 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
 	return -1;
 }
 
+GstElement* eServiceMP3::getAudioChannelSink() {
+	if (!m_gst_playbin)
+		return nullptr;
+	GstElement* sink = nullptr;
+	if (m_is_dash_pipeline)
+		sink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "dashaudiosink");
+	else
+		g_object_get(m_gst_playbin, "audio-sink", &sink, NULL);
+	if (sink && (!g_signal_lookup("set-audio-channel", G_OBJECT_TYPE(sink)) ||
+		!g_object_class_find_property(G_OBJECT_GET_CLASS(sink), "audio-channel"))) {
+		gst_object_unref(sink);
+		sink = nullptr;
+	}
+	return sink; // Caller owns the reference; never use another service's global sink.
+}
+
 int eServiceMP3::getCurrentChannel() {
-	return STEREO;
+	gint channel = STEREO;
+	GstElement* sink = getAudioChannelSink();
+	if (sink) {
+		g_object_get(sink, "audio-channel", &channel, NULL);
+		gst_object_unref(sink);
+	}
+	return channel;
 }
 
 RESULT eServiceMP3::selectChannel(int i) {
-	eDebug("[eServiceMP3] selectChannel(%i)", i);
-	return 0;
+	if (i != LEFT && i != STEREO && i != RIGHT)
+		return -1;
+	GstElement* sink = getAudioChannelSink();
+	if (!sink)
+		return -1;
+	gboolean selected = FALSE;
+	g_signal_emit_by_name(sink, "set-audio-channel", i, &selected);
+	gst_object_unref(sink);
+	if (!selected)
+		eDebug("[eServiceMP3] selectChannel(%d) failed", i);
+	return selected ? 0 : -1;
 }
 
 /**

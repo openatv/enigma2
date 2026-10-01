@@ -359,6 +359,7 @@ private:
 	/* audio stream requested while the pipeline was not settled in PLAYING, -1 if none */
 	int m_audio_switch_deferred = -1;
 	int selectAudioStream(int i, bool skipAudioFix = false);
+	GstElement* getAudioChannelSink();
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
 	iSubtitleUser* m_subtitle_widget;
