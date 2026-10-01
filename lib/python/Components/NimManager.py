@@ -348,14 +348,21 @@ class SecConfigure:
 	def updateAdvanced(self, sec, slotid):
 		def setupUnicable(configManufacturer, ProductDict):
 			manufacturer_name = configManufacturer.value
-			manufacturer = ProductDict[manufacturer_name]
+			manufacturer = ProductDict.get(manufacturer_name)
+			if manufacturer is None:
+				print(f"[NimManager] Skipping LNB '{x}': Unicable manufacturer '{manufacturer_name}' is not available.")
+				return False
 			product_name = manufacturer.product.value
-			if product_name == "None" and manufacturer.product.saved_value != "None":
+			if product_name in (None, "None") and manufacturer.product.saved_value in manufacturer.scr:
 				product_name = manufacturer.product.value = manufacturer.product.saved_value
 			manufacturer_scr = manufacturer.scr
-			manufacturer_positions_value = manufacturer.positions[product_name][0].value
-			position_idx = (posnum - 1) % manufacturer_positions_value
 			if product_name in manufacturer_scr:
+				positions = manufacturer.positions.get(product_name)
+				if not positions or positions[0].value <= 0:
+					print(f"[NimManager] Skipping LNB '{x}': Unicable product '{product_name}' has no valid positions.")
+					return False
+				manufacturer_positions_value = positions[0].value
+				position_idx = (posnum - 1) % manufacturer_positions_value
 				diction = manufacturer.diction[product_name].value
 				positionsoffset = manufacturer.positionsoffset[product_name][0].value
 				if diction != "EN50607" or ((posnum <= (positionsoffset + manufacturer_positions_value) and (posnum > positionsoffset) and x <= maxFixedLnbPositions)):  # For every allowed position.
@@ -371,10 +378,12 @@ class SecConfigure:
 					configManufacturer.save_forced = True
 					manufacturer.product.save_forced = True
 					manufacturer.vco[product_name][manufacturer_scr[product_name].index].save_forced = True
+					return True
 				else:  # Position number out of range.
-					print("[NimManager] The position number is out of range!")
+					print(f"[NimManager] Skipping LNB '{x}': The position number is out of range!")
 			else:
-				print("[NimManager] No product is in the list!")
+				print(f"[NimManager] Skipping LNB '{x}': Unicable product '{product_name}' is not available for '{manufacturer_name}'.")
+			return False
 
 		advanced = config.Nims[slotid].dvbs.advanced
 		try:
@@ -486,10 +495,12 @@ class SecConfigure:
 						sec.setLNBBootupTime(0 if currLnb.powerInserter.value else currLnb.bootuptimeuser.value)
 					elif currLnb.unicable.value == "unicable_matrix":
 						self.reconstructUnicableData(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
-						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)
+						if not setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix):
+							continue
 					elif currLnb.unicable.value == "unicable_lnb":
 						self.reconstructUnicableData(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
-						setupUnicable(currLnb.unicableLnbManufacturer, currLnb.unicableLnb)
+						if not setupUnicable(currLnb.unicableLnbManufacturer, currLnb.unicableLnb):
+							continue
 				elif currLnb.lof.value == "c_band":
 					sec.setLNBLOFL(5150000)
 					sec.setLNBLOFH(5150000)
@@ -1954,10 +1965,14 @@ def InitNimManager(nimmgr, update_slots=None):
 			if isinstance(section.unicable, ConfigNothing):
 				# Monoblock LNBs also provide profiles for additional satellite positions.
 				unicableChoices = UNICABLE_CHOICES()
-				defaultUnicable = lnbTemplateValue(template, "unicable", unicable_choices_default)
+				# Older settings omit the matrix default for LNBs 2 through 64.
+				legacyDefault = "unicable_matrix" if 1 < lnb <= maxFixedLnbPositions else unicable_choices_default
+				defaultUnicable = lnbTemplateValue(template, "unicable", legacyDefault)
 				if defaultUnicable not in unicableChoices:
-					defaultUnicable = unicable_choices_default
+					defaultUnicable = legacyDefault
 				section.unicable = ConfigSelection(unicableChoices, defaultUnicable)
+				# A template is only used for new LNBs, so persist its selected type explicitly.
+				section.unicable.save_forced = True
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check, defaultProduct=None, defaultSlot=0):
 				for manufacturer in unicableproducts:
