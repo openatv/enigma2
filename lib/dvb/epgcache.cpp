@@ -26,6 +26,15 @@
  * duration truncated instead of being deleted outright. */
 #define SUSPICIOUS_DURATION_THRESHOLD (18 * 60 * 60)  // 18 hours
 
+/* Minimum remaining part of a truncated event that is kept although it is
+ * less than half of the original duration. */
+#define MIN_REMAINDER_DURATION (10 * 60)  // 10 minutes
+
+static inline bool keepRemainder(int remainder, int duration)
+{
+	return remainder > 0 && (remainder * 2 >= duration || remainder >= MIN_REMAINDER_DURATION || duration > SUSPICIOUS_DURATION_THRESHOLD);
+}
+
 /* Interval between "garbage collect" cycles */
 #define CLEAN_INTERVAL (60 * 1000)       //  1 minute
 
@@ -73,6 +82,21 @@ struct eventData
 		rawEITdata[7] = toBCD(duration / 3600);
 		rawEITdata[8] = toBCD((duration % 3600) / 60);
 		rawEITdata[9] = toBCD(duration % 60);
+	}
+	void setStartTime(time_t t)
+	{
+		tm time;
+		gmtime_r(&t, &time);
+		int l = 0;
+		int month = time.tm_mon + 1;
+		if (month == 1 || month == 2)
+			l = 1;
+		int mjd = 14956 + time.tm_mday + (int)((time.tm_year - l) * 365.25) + (int)((month + 1 + l * 12) * 30.6001);
+		rawEITdata[2] = mjd >> 8;
+		rawEITdata[3] = mjd & 0xFF;
+		rawEITdata[4] = toBCD(time.tm_hour);
+		rawEITdata[5] = toBCD(time.tm_min);
+		rawEITdata[6] = toBCD(time.tm_sec);
 	}
 };
 
@@ -518,7 +542,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 	eventMap &eventmap = servicemap.byEvent;
 	timeMap &timemap = servicemap.byTime;
 
-	if(m_icetv_enabled) 
+	if(m_icetv_enabled)
 	{
 		if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
 			return;
@@ -607,6 +631,51 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 //			if(m_debug)
 //				eDebug("[eEPGCache] Created event %04X at %ld.", new_evt->getEventID(), new_start);
 
+			// Clip the new event against overlapping events from a higher-priority source
+			{
+				time_t clip_start = new_start;
+				time_t clip_end = new_end;
+				timeMap::iterator hp = timemap.lower_bound(new_start);
+				if (hp != timemap.begin())
+					--hp;
+				for (; hp != timemap.end() && hp->first < clip_end && clip_start < clip_end; ++hp)
+				{
+					if (hp->second->getEventID() == event_id || (source & ~EPG_IMPORT) <= (hp->second->type & ~EPG_IMPORT))
+						continue;
+					time_t hp_start = hp->first;
+					time_t hp_end = hp_start + hp->second->getDuration();
+					if (hp_end <= clip_start)
+						continue;
+					if (hp_start <= clip_start)
+						clip_start = hp_end;
+					else if (hp_end >= clip_end)
+						clip_end = hp_start;
+					else
+						clip_end = clip_start; // higher-priority event inside the new one
+				}
+
+				if (clip_start != new_start || clip_end != new_end)
+				{
+					int remainder = clip_end > clip_start ? clip_end - clip_start : 0;
+					if (!keepRemainder(remainder, new_end - new_start))
+					{
+						if(m_debug)
+							eDebug("[eEPGCache] Event %04X for service (%04X:%04X:%04X) (%lld~%lld, source=0x%X) skipped: overlaps higher-priority event.",
+								event_id, service.onid, service.tsid, service.sid, (long long)new_start, (long long)new_end, source);
+						delete new_evt;
+						goto next;
+					}
+					if(m_debug)
+						eDebug("[eEPGCache] Event %04X for service (%04X:%04X:%04X) (source=0x%X) clipped %lld~%lld -> %lld~%lld by higher-priority event.",
+							event_id, service.onid, service.tsid, service.sid, source, (long long)new_start, (long long)new_end, (long long)clip_start, (long long)clip_end);
+					if (clip_start != new_start)
+						new_evt->setStartTime(clip_start);
+					new_evt->setDuration(remainder);
+					new_start = clip_start;
+					new_end = clip_end;
+				}
+			}
+
 			// Remove existing event if the id matches
 			eventMap::iterator ev_it = eventmap.find(event_id);
 			if (ev_it != eventmap.end())
@@ -625,7 +694,8 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 				// Remove existing event
 				if (timemap.erase(ev_it->second->getStartTime()) == 0)
 				{
-					eDebug("[eEPGCache] Event %04X not found in time map at %lld.", event_id, (long long)ev_it->second->getStartTime());
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X not found in time map at %lld.", event_id, (long long)ev_it->second->getStartTime());
 				}
 				eventData *data = ev_it->second;
 				eventmap.erase(ev_it);
@@ -654,18 +724,36 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 
 				if ((old_start < new_end) && (old_end > new_start))
 				{
-					if (old_start < new_start && old_duration > SUSPICIOUS_DURATION_THRESHOLD)
+					// Keep the part sticking out at the front, else the one at the back.
+					if (old_start < new_start && keepRemainder(new_start - old_start, old_duration))
 					{
-						if (m_debug)
-							eDebug("[eEPGCache] Truncating suspiciously long event %04X: "
+						if(m_debug)
+							eDebug("[eEPGCache] Truncating event %04X for service (%04X:%04X:%04X): "
 								"duration %d s, end %lld -> %lld "
 								"(overlaps new event %04X at %lld).",
-								it->second->getEventID(), old_duration,
-								(long long)old_end, (long long)new_start,
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								old_duration, (long long)old_end, (long long)new_start,
 								event_id, (long long)new_start);
 
 						it->second->setDuration(new_start - old_start);
 						++it;
+					}
+					else if (old_end > new_end && keepRemainder(old_end - new_end, old_duration) && timemap.find(new_end) == timemap.end())
+					{
+						if(m_debug)
+							eDebug("[eEPGCache] Truncating event %04X for service (%04X:%04X:%04X) "
+								"(%lld~%lld, type=0x%X) to tail %lld~%lld instead of removing it, "
+								"superseded at the front by new event %04X (%lld~%lld, source=0x%X).",
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								(long long)old_start, (long long)old_end, it->second->type,
+								(long long)new_end, (long long)old_end,
+								event_id, (long long)new_start, (long long)new_end, source);
+
+						eventData *tail = it->second;
+						timemap.erase(it++);
+						tail->setStartTime(new_end);
+						tail->setDuration(old_end - new_end);
+						timemap[new_end] = tail;
 					}
 					else
 					{
@@ -1147,7 +1235,7 @@ void eEPGCache::save()
 				return;
 			}
 		}
-	
+
 		char* buf = realpath(EPGDAT, NULL);
 		if (!buf)
 		{
@@ -1167,7 +1255,7 @@ void eEPGCache::save()
 			free(buf);
 			return;
 		}
-	
+
 		// check for enough free space on storage
 		tmp=st.f_bfree;
 		tmp*=st.f_bsize;
@@ -2259,7 +2347,7 @@ unsigned int eEPGCache::getEpgSources()
 	return m_enabledEpgSources;
 }
 
-unsigned int eEPGCache::getEpgmaxdays()  
+unsigned int eEPGCache::getEpgmaxdays()
 {
 	return maxdays;
 }
@@ -2685,14 +2773,14 @@ PyObject *eEPGCache::search(ePyObject arg)
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
-							if ( querytype == CRID_SEARCH ) { 
+							if ( querytype == CRID_SEARCH ) {
 								if (data[0] == CONTENT_IDENTIFIER_DESCRIPTOR )
 								{
 									auto cid = ContentIdentifierDescriptor(data);
 									auto cril = cid.getIdentifier();
 									for (auto crid = cril->begin(); crid != cril->end(); ++crid)
 									{
-										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
+										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than
 										// the specification's 1 and 2 for episode and series respectively
 										if (((*crid)->getType() & 0xf) == casetype && (*crid)->getBytes()->data() != NULL)
 										{
@@ -2705,10 +2793,10 @@ PyObject *eEPGCache::search(ePyObject arg)
 											}
 										}
 									}
-								}								
+								}
 								continue;
 							}
-														
+
 							eit_short_event_descriptor_struct *short_event_descriptor = (eit_short_event_descriptor_struct *) ((u_char *) data);
 							if ((u_char)short_event_descriptor->descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR ) // short event descriptor
 							{
@@ -3557,8 +3645,8 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 				data_eit_short_event->iso_639_2_language_code_2 = title.iso_639_2;
 				data_eit_short_event->iso_639_2_language_code_3 = title.iso_639_3;
 
-				data_tmp[6] = 0;
-				data_tmp[7] = current_text_length;
+				data_tmp[6] = 0; //item information (car, year, director, etc. Unsupported for now)
+				data_tmp[7] = current_text_length; //length of description string (part in this message)
 				if (IS_UTF8(title.flags))
 				{
 					data_tmp[8] = 0x15;
