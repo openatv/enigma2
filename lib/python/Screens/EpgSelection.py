@@ -1767,8 +1767,6 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
                        EPGServiceZap, EPGStandardButtons):
     """Graphical grid EPG screen (EPG_TYPE_GRAPH)."""
 
-    skinName = "EPGSelectionGrid"
-
     def __init__(self, session, zapFunc=None, startBouquet=None,
                  startRef=None, bouquets=None, graphic=False):
         self.type = EPG_TYPE_GRAPH
@@ -1781,6 +1779,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
 
         EPGSelectionBase.__init__(self, session, config.epgselection.grid,
                                   startBouquet, startRef, bouquets)
+        self.skinName = "GraphicalEPGPIG" if config.epgselection.grid.pig.value else "GraphicalEPG"
         EPGServiceZap.__init__(self, zapFunc)
         # graphic=True: graphical bouquet list (channel logos alongside names).
         EPGBouquetSelection.__init__(self, graphic)
@@ -2051,8 +2050,6 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
                                EPGServiceZap, EPGStandardButtons):
     """Infobar graphical grid EPG screen (EPG_TYPE_INFOBARGRAPH)."""
 
-    skinName = "QuickGraphEPG"
-
     def __init__(self, session, zapFunc=None, startBouquet=None,
                  startRef=None, bouquets=None, graphic=False):
         self.type = EPG_TYPE_INFOBARGRAPH
@@ -2064,6 +2061,7 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
 
         EPGSelectionBase.__init__(self, session, config.epgselection.infobar,
                                   startBouquet, startRef, bouquets)
+        self.skinName = "GraphicalInfoBarEPG"
         EPGServiceZap.__init__(self, zapFunc)
         EPGBouquetSelection.__init__(self, graphic)
 
@@ -2275,6 +2273,7 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
 
         EPGSelectionBase.__init__(self, session, config.epgselection.infobar,
                                   startBouquet, startRef, bouquets)
+        self.skinName = "QuickEPG"
         EPGServiceZap.__init__(self, zapFunc)
         EPGServiceBrowse.__init__(self)
         EPGServiceNumberSelection.__init__(self)
@@ -2343,6 +2342,7 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
 
         EPGSelectionBase.__init__(self, session, config.epgselection.multi,
                                   startBouquet, startRef, bouquets)
+        self.skinName = "EPGSelectionMulti"
         EPGServiceZap.__init__(self, zapFunc)
         # EPGBouquetSelection uses graphic=True for the visual bouquet list.
         EPGBouquetSelection.__init__(self, True)
@@ -2478,6 +2478,7 @@ class EPGSelectionSimilar(EPGSelectionBase, EPGServiceZap, EPGStandardButtons):
 
         # No bouquets for similar EPG — pass empty/None values.
         EPGSelectionBase.__init__(self, session, config.epgselection.single, None, None, None)
+        self.skinName = "EPGSelection"
         EPGServiceZap.__init__(self, zapFunc)
 
         self["list"] = EPGListSingle(session, config.epgselection.single,
@@ -2532,6 +2533,7 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
         #         self.startBouquet, self.startRef, self.bouquets, action maps.
         EPGSelectionBase.__init__(self, session, config.epgselection.single,
                                   startBouquet, startRef, bouquets)
+        self.skinName = "EPGSelection"
         # Step 3: zap mixin needs self.session.nav (available after Screen.__init__).
         EPGServiceZap.__init__(self, zapFunc)
         # Step 4: browse/bouquet mixin needs self.epgConfig and self.startRef.

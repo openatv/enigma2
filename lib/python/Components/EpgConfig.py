@@ -292,7 +292,7 @@ def initEPGConfig():
 
 	# ATV old: ConfigSelectionNumber(default=2, min=1, max=4) – no skin-default option.
 	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(1, 5)]
-	config.epgselection.infobar.itemsperpage = ConfigSelection(default=0, choices=choices)
+	config.epgselection.infobar.itemsperpage = ConfigSelection(default=2, choices=choices)
 
 	config.epgselection.infobar.roundto = ConfigSelection(default="15", choices=[
 		("15", _("%d minutes") % 15),
@@ -355,7 +355,7 @@ def initEPGConfig():
 	config.epgselection.single.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	# ATV old: ConfigSelectionNumber(default=16, min=8, max=40) – no skin-default option.
 	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(1, 41)]
-	config.epgselection.single.itemsperpage = ConfigSelection(default=0, choices=choices)
+	config.epgselection.single.itemsperpage = ConfigSelection(default=16, choices=choices)
 	config.epgselection.single.btn_ok = ConfigSelection(choices=okActions, default="zap")
 	config.epgselection.single.btn_oklong = ConfigSelection(choices=okActions, default="zapExit")
 	config.epgselection.single.btn_epg = ConfigSelection(choices=infoActions, default="openSingleEPG")
@@ -381,8 +381,8 @@ def initEPGConfig():
 	config.epgselection.multi.preview_mode = ConfigYesNo(default=True)
 	config.epgselection.multi.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	# ATV old: ConfigSelectionNumber(default=16, min=8, max=40) – no skin-default option.
-	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(12, 41)]
-	config.epgselection.multi.itemsperpage = ConfigSelection(default=0, choices=choices)
+	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(8, 41)]
+	config.epgselection.multi.itemsperpage = ConfigSelection(default=16, choices=choices)
 	config.epgselection.multi.servicewidth = ConfigSelectionNumber(default=7, stepwidth=1, min=5, max=20, wraparound=True)
 	config.epgselection.multi.btn_ok = ConfigSelection(choices=okActions, default="zap")
 	config.epgselection.multi.btn_oklong = ConfigSelection(choices=okActions, default="zapExit")
@@ -461,7 +461,7 @@ def initEPGConfig():
 
 	# ATV old: ConfigSelectionNumber(default=8, min=3, max=20) – no skin-default option.
 	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(3, 21)]
-	config.epgselection.grid.itemsperpage = ConfigSelection(default=0, choices=choices)
+	config.epgselection.grid.itemsperpage = ConfigSelection(default=8, choices=choices)
 
 	# ATV old default: False. OpenViX default: True. Using OpenViX default.
 	config.epgselection.grid.pig = ConfigYesNo(default=True)
