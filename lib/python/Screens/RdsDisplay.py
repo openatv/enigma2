@@ -207,6 +207,7 @@ class RdsInfoDisplay(Screen):
 		decoder = service and service.rdsDecoder()
 		rdsText = decoder and decoder.getText(iRdsDecoder.RadioText)
 		if rdsText and len(rdsText):
+			self.show()
 			self["RadioText"].setText(rdsText)
 			self["RadioText"].show()
 		else:
@@ -219,6 +220,7 @@ class RdsInfoDisplay(Screen):
 		decoder = service and service.rdsDecoder()
 		rtpText = decoder and decoder.getText(iRdsDecoder.RtpText)
 		if rtpText and len(rtpText):
+			self.show()
 			self["RtpText"].setText(rtpText)
 			self["RtpText"].show()
 		else:
