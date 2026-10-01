@@ -1,36 +1,11 @@
-from time import (
-    localtime,
-    mktime,
-    strftime,
-    time,
-)
+from time import localtime, mktime, strftime, time
 
-from enigma import (
-    ePoint,
-    eServiceCenter,
-    eServiceReference,
-    eTimer,
-)
+from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
 
-from Components.ActionMap import (
-    ActionMap,
-    HelpableActionMap,
-    HelpableNumberActionMap,
-)
+from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.EpgConfig import EPGSettings
-from Components.EpgList import (
-    EPGBouquetList,
-    EPG_TYPE_ENHANCED,
-    EPG_TYPE_GRAPH,
-    EPG_TYPE_INFOBAR,
-    EPG_TYPE_INFOBARGRAPH,
-    EPG_TYPE_MULTI,
-    EPG_TYPE_SIMILAR,
-    EPG_TYPE_SINGLE,
-    EPG_TYPE_VERTICAL,
-    MAX_TIMELINES,
-)
+from Components.EpgList import EPGBouquetList, EPGListGrid, EPGListMulti, EPGListSingle, EPGListVertical, EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SIMILAR, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL, MAX_TIMELINES, TimelineText
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
@@ -38,30 +13,16 @@ from Components.Sources.Event import Event
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
-from Components.config import (
-    ConfigClock,
-    config,
-    configfile,
-)
-from RecordTimer import (
-    AFTEREVENT,
-    RecordTimerEntry,
-    parseEvent,
-)
+from Components.config import ConfigClock, config, configfile
+from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
-from Screens.EventView import (
-    getEventViewInstance,
-    showEventViewCallback,
-)
+from Screens.EventView import showEventViewCallback
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
-from Screens.TimerEntry import (
-    InstantRecordTimerEntry,
-    TimerEntry,
-)
+from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from ServiceReference import ServiceReference
 from skin import parameters
 from Tools.FallbackTimer import FallbackTimerList
@@ -302,8 +263,6 @@ class EPGSelectionBase(Screen, HelpableScreen):
                                   similarEPGCB=self.openSimilarList)
 
     def openSimilarList(self, eventId, refstr):
-        # Opens the similar broadcasts EPG. Import deferred to avoid circular imports.
-        from Screens.EPGSelection import EPGSelection
         self.session.open(EPGSelection, refstr, None, eventId)
 
     def eventViewCallback(self, setEvent, setService, val):
@@ -381,7 +340,6 @@ class EPGSelectionBase(Screen, HelpableScreen):
 
     def openSingleEPG(self):
         # ATV-specific: opens EPGSelection in single mode for the current service.
-        from Screens.EPGSelection import EPGSelection
         event, service = self["list"].getCurrent()[:2]
         if service is not None:
             self.session.open(EPGSelection, service.ref)
@@ -520,10 +478,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
     def createMenu(self):
         self.closeEventViewDialog()
         from Screens.Setup import Setup
-        from Components.EpgList import (EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH,
-                                        EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH,
-                                        EPG_TYPE_MULTI, EPG_TYPE_SINGLE,
-                                        EPG_TYPE_VERTICAL)
+        from Components.EpgList import EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL
         _SETUP_KEYS = {
             EPG_TYPE_SINGLE: ("EPGSingle", None),
             EPG_TYPE_MULTI: ("EPGMulti", None),
@@ -1181,8 +1136,8 @@ class EPGSelectionBase(Screen, HelpableScreen):
     def onCreate(self):
         pass
 
-    # getCurrentBouquet / moveToService are abstract; mixins and concrete
-    # classes provide the implementation.
+    def moveToService(self, service):
+        self[f"list{self.activeList}"].moveToService(service)
 
     # ------------------------------------------------------------------
     # Public API — called from ChannelSelection, InfoBarGenerics, EventView.
@@ -1257,9 +1212,6 @@ class EPGServiceZap:
 
     def zapExit(self):
         # Zap to the selected service and exit the EPG immediately.
-        selectedService = self["list"].getCurrent()[1]
-        from Screens.InfoBar import MoviePlayer
-        MoviePlayer.ensureClosed(selectedService)
         self.zapSelectedService()
         self.closeEventViewDialog()
         self.close()
@@ -1268,13 +1220,11 @@ class EPGServiceZap:
         # Preview zap: same service a second time = exit; first time = stay.
         currentService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
         if currentService and currentService.isPlayback():
-            from Screens.InfoBarGenerics import resumePointsInstance
-            resumePointsInstance.setResumePoint(self.session)
+            from Screens.InfoBarGenerics import setResumePoint
+            setResumePoint(self.session)
         self.zapSelectedService(True)
         self.refreshTimer.start(1)
         if not self.currch or self.currch == self.prevch:
-            from Screens.InfoBar import MoviePlayer
-            MoviePlayer.ensureClosed(currentService)
             self.zapFunc(None, False)
             self.closeEventViewDialog()
             self.close()
@@ -1306,7 +1256,7 @@ class EPGServiceZap:
                        or None)
         selectedService = self["list"].getCurrent()[1]
         if selectedService is not None:
-            self.zapFunc(selectedService, bouquet=self.getCurrentBouquet(), preview=prev)
+            self.zapFunc(selectedService.ref, bouquet=self.getCurrentBouquet(), preview=prev)
             self.currch = (self.session.nav.getCurrentlyPlayingServiceReference()
                            and self.session.nav.getCurrentlyPlayingServiceReference().toString())
 
@@ -2614,6 +2564,9 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
         if service:
             self._fillList(service)
 
+    def moveToService(self, service):
+        self._fillList(service)
+
     # ------------------------------------------------------------------
     # Sort toggle — ATV-specific; not in OpenViX (no sortSingleEPG there).
     # ------------------------------------------------------------------
@@ -2629,13 +2582,11 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
     # ------------------------------------------------------------------
 
     def epgButtonPressed(self):
-        from Screens.EPGSelection import EPGSelection
-        from Components.EpgList import EPG_TYPE_MULTI
         event, service = self["list"].getCurrent()
         sref = service.ref if service else self._originalPlayingService
         self.session.openWithCallback(
-            self._epgSwitchClosed, EPGSelection, sref, None, None,
-            self.bouquets, EPG_TYPE_MULTI)
+            self._epgSwitchClosed, EPGSelectionMulti, self.zapFunc,
+            self.getCurrentBouquet(), sref, self.bouquets)
 
     def _epgSwitchClosed(self, *args):
         pass
@@ -3300,19 +3251,8 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
 #
 # New file (2026). Factory/router for the new split EPG screen classes.
 #
-# Usage:
-#   from Screens.EpgSelectionRouter import openEPG
-#   openEPG(session, service, zapFunc, eventid, bouquets, startBouquet, startRef, EPGtype)
-#
-# The individual concrete screen classes can also be used directly:
-#
-#   from Screens.EpgSelectionSingle       import EPGSelectionSingle
-#   from Screens.EpgSelectionInfobarSingle import EPGSelectionInfobarSingle
-#   from Screens.EpgSelectionMulti        import EPGSelectionMulti
-#   from Screens.EpgSelectionGrid         import EPGSelectionGrid
-#   from Screens.EpgSelectionInfobarGrid  import EPGSelectionInfobarGrid
-#   from Screens.EpgSelectionSimilar      import EPGSelectionSimilar
-#   from Screens.EpgSelectionVertical     import EPGSelectionVertical
+# EPGSelection() keeps the old constructor signature and returns the matching
+# concrete screen, so existing session.open(EPGSelection, ...) callers keep working.
 
 
 _EPG_TYPE_STR = {
@@ -3327,68 +3267,29 @@ _EPG_TYPE_STR = {
 }
 
 
-def _resolveType(epgTypeStr, service, eventid):
-    """Resolve EPG type string or None → EPG_TYPE_* constant."""
-    from enigma import eServiceReference
-    if epgTypeStr is None and eventid is None and isinstance(service, eServiceReference):
-        return EPG_TYPE_SINGLE
-    return _EPG_TYPE_STR.get(epgTypeStr, EPG_TYPE_SIMILAR)
+def EPGSelection(session, service=None, zapFunc=None, eventid=None,
+                 bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,
+                 StartBouquet=None, StartRef=None, bouquets=None):
+    """Drop-in replacement for the old EPGSelection screen class.
 
-
-def openEPG(session, service=None, zapFunc=None, eventid=None,
-            bouquetChangeCB=None, serviceChangeCB=None,
-            EPGtype=None, startBouquet=None, startRef=None, bouquets=None,
-            callback=None):
+    session.open() only needs a callable returning the screen instance, so
+    existing callers keep working unchanged.
     """
-    Open the appropriate EPG screen for the given EPGtype.
-
-    Parameters match the old EPGSelection.__init__ signature for drop-in use.
-    Pass callback to use session.openWithCallback instead of session.open.
-    """
-    epg_type = _resolveType(EPGtype, service, eventid)
-    _open = (lambda cls, *a, **kw: session.openWithCallback(callback, cls, *a, **kw)) \
-        if callback else \
-        (lambda cls, *a, **kw: session.open(cls, *a, **kw))
-
-    if epg_type == EPG_TYPE_SIMILAR:
-        from Screens.EpgSelectionSimilar import EPGSelectionSimilar
-        _open(EPGSelectionSimilar, service, eventid, zapFunc)
-
-    elif epg_type == EPG_TYPE_SINGLE:
-        from Screens.EpgSelectionSingle import EPGSelectionSingle
-        _open(EPGSelectionSingle, zapFunc, startBouquet, startRef, bouquets,
-              EPG_TYPE_SINGLE)
-
-    elif epg_type == EPG_TYPE_ENHANCED:
-        from Screens.EpgSelectionSingle import EPGSelectionSingle
-        _open(EPGSelectionSingle, zapFunc, startBouquet, startRef, bouquets,
-              EPG_TYPE_ENHANCED)
-
-    elif epg_type == EPG_TYPE_INFOBAR:
-        # Route to text or graphical infobar based on type_mode config.
-        if config.epgselection.infobar.type_mode.value == "graphics":
-            from Screens.EpgSelectionInfobarGrid import EPGSelectionInfobarGrid
-            graphic = True
-            _open(EPGSelectionInfobarGrid, zapFunc, startBouquet, startRef,
-                  bouquets, graphic)
-        else:
-            from Screens.EpgSelectionInfobarSingle import EPGSelectionInfobarSingle
-            _open(EPGSelectionInfobarSingle, zapFunc, startBouquet, startRef, bouquets)
-
-    elif epg_type == EPG_TYPE_GRAPH:
-        from Screens.EpgSelectionGrid import EPGSelectionGrid
-        graphic = config.epgselection.grid.type_mode.value == "graphics"
-        _open(EPGSelectionGrid, zapFunc, startBouquet, startRef, bouquets, graphic)
-
-    elif epg_type == EPG_TYPE_INFOBARGRAPH:
-        from Screens.EpgSelectionInfobarGrid import EPGSelectionInfobarGrid
-        graphic = config.epgselection.infobar.type_mode.value == "graphics"
-        _open(EPGSelectionInfobarGrid, zapFunc, startBouquet, startRef, bouquets, graphic)
-
-    elif epg_type == EPG_TYPE_MULTI:
-        from Screens.EpgSelectionMulti import EPGSelectionMulti
-        _open(EPGSelectionMulti, zapFunc, startBouquet, startRef, bouquets)
-
-    elif epg_type == EPG_TYPE_VERTICAL:
-        from Screens.EpgSelectionVertical import EPGSelectionVertical
-        _open(EPGSelectionVertical, zapFunc, startBouquet, startRef, bouquets)
+    if EPGtype is None and eventid is None and isinstance(service, eServiceReference):
+        epgType = EPG_TYPE_SINGLE
+        StartRef = service
+    else:
+        epgType = _EPG_TYPE_STR.get(EPGtype, EPG_TYPE_SIMILAR)
+    if epgType == EPG_TYPE_SIMILAR:
+        return EPGSelectionSimilar(session, service, eventid, zapFunc)
+    if epgType in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED):
+        return EPGSelectionSingle(session, zapFunc, StartBouquet, StartRef, bouquets, epgType)
+    if epgType == EPG_TYPE_INFOBAR:
+        return EPGSelectionInfobarSingle(session, zapFunc, StartBouquet, StartRef, bouquets)
+    if epgType == EPG_TYPE_GRAPH:
+        return EPGSelectionGrid(session, zapFunc, StartBouquet, StartRef, bouquets, config.epgselection.grid.type_mode.value == "graphics")
+    if epgType == EPG_TYPE_INFOBARGRAPH:
+        return EPGSelectionInfobarGrid(session, zapFunc, StartBouquet, StartRef, bouquets, config.epgselection.infobar.type_mode.value == "graphics")
+    if epgType == EPG_TYPE_MULTI:
+        return EPGSelectionMulti(session, zapFunc, StartBouquet, StartRef, bouquets)
+    return EPGSelectionVertical(session, zapFunc, StartBouquet, StartRef, bouquets)

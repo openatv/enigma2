@@ -1,4 +1,4 @@
-from time import time
+from time import mktime, time
 
 from enigma import RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP
 
@@ -131,7 +131,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.infobar.histminutes, "epgselection.infobar_histminutes")
 		upgrade(config.epgselection.infobar.prevtimeperiod, "epgselection.infobar_prevtimeperiod")
 		# Old key was an integer hour (e.g. "20"); ConfigClock needs "HH:MM" format.
-		upgrade(config.epgselection.infobar.primetime, "epgselection.infobar_primetimehour", mapper=lambda v: v + ":00")
+		upgrade(config.epgselection.infobar.primetime, "epgselection.infobar_primetimehour", mapper=lambda v: f"{v}:{getOldValue('epgselection.infobar_primetimemins') or 15}")
 		upgrade(config.epgselection.infobar.servicetitle_mode, "epgselection.infobar_servicetitle_mode", titleModeMap)
 		upgrade(config.epgselection.infobar.servfs, "epgselection.infobar_servfs")
 		upgrade(config.epgselection.infobar.eventfs, "epgselection.infobar_eventfs")
@@ -170,7 +170,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.grid.roundto, "epgselection.graph_roundto")
 		upgrade(config.epgselection.grid.histminutes, "epgselection.graph_histminutes")
 		upgrade(config.epgselection.grid.prevtimeperiod, "epgselection.graph_prevtimeperiod")
-		upgrade(config.epgselection.grid.primetime, "epgselection.graph_primetimehour", mapper=lambda v: v + ":00")
+		upgrade(config.epgselection.grid.primetime, "epgselection.graph_primetimehour", mapper=lambda v: f"{v}:{getOldValue('epgselection.graph_primetimemins') or 15}")
 		upgrade(config.epgselection.grid.servicetitle_mode, "epgselection.graph_servicetitle_mode", titleModeMap)
 		upgrade(config.epgselection.grid.servicename_alignment, "epgselection.graph_servicename_alignment")
 		upgrade(config.epgselection.grid.event_alignment, "epgselection.graph_event_alignment")
@@ -195,7 +195,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.grid.btn_blue, "epgselection.graph_blue", colorMap)
 
 		# vertical
-		upgrade(config.epgselection.vertical.primetime, "epgselection.vertical_primetimehour", mapper=lambda v: v + ":00")
+		upgrade(config.epgselection.vertical.primetime, "epgselection.vertical_primetimehour", mapper=lambda v: f"{v}:{getOldValue('epgselection.vertical_primetimemins') or 15}")
 		upgrade(config.epgselection.vertical.itemsperpage, "epgselection.vertical_itemsperpage")
 		upgrade(config.epgselection.vertical.eventfs, "epgselection.vertical_eventfs")
 		upgrade(config.epgselection.vertical.preview_mode, "epgselection.vertical_preview_mode")
@@ -315,7 +315,7 @@ def initEPGConfig():
 	# ATV old stored primetime as two ints (infobar_primetimehour + infobar_primetimemins).
 	# Now unified to ConfigClock. Migration converts old hour value by appending ":00".
 	# OpenViX default: (20, 0). ATV old: hour=20, mins=15. Using OpenViX default.
-	config.epgselection.infobar.primetime = ConfigClock(default=(20, 0))
+	config.epgselection.infobar.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
 
 	# ATV old default: "picon+servicename". OpenViX default: "servicename".
 	# Keeping ATV default for a better visual experience on existing installs.
@@ -434,7 +434,7 @@ def initEPGConfig():
 	# ATV old stored primetime as two ints (graph_primetimehour + graph_primetimemins).
 	# Now unified to ConfigClock. Migration converts old hour value by appending ":00".
 	# OpenViX default: (20, 0). ATV old: hour=20, mins=15. Using OpenViX default.
-	config.epgselection.grid.primetime = ConfigClock(default=(20, 0))
+	config.epgselection.grid.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
 
 	# ATV-specific: start position mode when opening grid EPG. OpenViX does not have this.
 	config.epgselection.grid.startmode = ConfigSelection(default="standard", choices=[
@@ -511,7 +511,7 @@ def initEPGConfig():
 
 	# ATV old stored as two ints (vertical_primetimehour + vertical_primetimemins).
 	# Migration converts old hour value by appending ":00".
-	config.epgselection.vertical.primetime = ConfigClock(default=(20, 0))
+	config.epgselection.vertical.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
 	config.epgselection.vertical.prevtime = ConfigClock(default=time())
 	config.epgselection.vertical.itemsperpage = ConfigSelectionNumber(default=6, stepwidth=1, min=3, max=12, wraparound=True)
 	config.epgselection.vertical.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-10, max=10, wraparound=True)

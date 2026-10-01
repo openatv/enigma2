@@ -1,54 +1,19 @@
 import datetime
 import re
-from time import (
-    localtime,
-    mktime,
-    strftime,
-    time,
-)
+from time import localtime, mktime, strftime, time
 
-from enigma import (
-    BT_KEEP_ASPECT_RATIO,
-    BT_SCALE,
-    RT_HALIGN_CENTER,
-    RT_HALIGN_LEFT,
-    RT_HALIGN_RIGHT,
-    RT_VALIGN_CENTER,
-    RT_WRAP,
-    eEPGCache,
-    eListbox,
-    eListboxPythonMultiContent,
-    eRect,
-    eServiceReference,
-    eSize,
-    gFont,
-    loadPNG,
-)
-
+from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eEPGCache, eListbox, eListboxPythonMultiContent, eRect, eServiceReference, eSize, gFont, loadPNG
 
 from Components.GUIComponent import GUIComponent
-from Components.MultiContent import (
-    MultiContentEntryPixmapAlphaBlend,
-    MultiContentEntryPixmapAlphaTest,
-    MultiContentEntryText,
-)
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.Renderer.Picon import getPiconName
 from Components.config import config
+from ServiceReference import ServiceReference
 from Tools.Alternatives import CompareWithAlternatives
-from Tools.Directories import (
-    SCOPE_CURRENT_SKIN,
-    SCOPE_GUISKIN,
-    resolveFilename,
-)
+from Tools.Directories import SCOPE_CURRENT_SKIN, SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
-from skin import (
-    getSkinFactor,
-    parameters as skinparameter,
-    parseColor,
-    parseFont,
-    parseScale,
-)
+from skin import getSkinFactor, parameters as skinparameter, parseColor, parseFont, parseScale
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -58,6 +23,8 @@ EPG_TYPE_INFOBAR = 4
 EPG_TYPE_GRAPH = 5
 EPG_TYPE_INFOBARGRAPH = 7
 EPG_TYPE_VERTICAL = 8
+
+MAX_TIMELINES = 6
 
 
 # lib/python/Components/EpgListBase.py
@@ -275,7 +242,7 @@ class EPGListBase(GUIComponent):
         tmp = self.l.getCurrentSelection()
         if tmp is None:
             return None, None
-        service = eServiceReference(tmp[0])
+        service = ServiceReference(tmp[0])
         eventId = tmp[1]
         event = self.getEventFromId(service, eventId)
         return event, service
@@ -1157,7 +1124,6 @@ class EPGListGrid(EPGListBase):
             return None, None
         events = self.cur_service[2]
         refstr = self.cur_service[0]
-        from ServiceReference import ServiceReference
         try:
             if self.cur_event is None or not events or self.cur_event > len(events) - 1:
                 return None, ServiceReference(refstr)
@@ -1989,7 +1955,6 @@ class EPGListMulti(EPGListBase):
         tmp = self.l.getCurrentSelection()
         if tmp is None:
             return None, None
-        from ServiceReference import ServiceReference
         # Multi list tuple: (changecount, service_ref, event_id, ...)
         service = ServiceReference(tmp[1])
         eventId = tmp[2]
@@ -2424,7 +2389,6 @@ class EPGListSingle(EPGListBase):
         tmp = self.l.getCurrentSelection()
         if tmp is None:
             return None, None
-        from ServiceReference import ServiceReference
         service = ServiceReference(tmp[0])
         eventId = tmp[1]
         event = self.getEventFromId(service, eventId)
@@ -2883,7 +2847,6 @@ class EPGListVertical(EPGListBase):
         tmp = self.l.getCurrentSelection()
         if tmp is None:
             return None, None
-        from ServiceReference import ServiceReference
         service = ServiceReference(tmp[0])
         eventId = tmp[1]
         event = self.getEventFromId(service, eventId)
@@ -2900,7 +2863,6 @@ class EPGListVertical(EPGListBase):
         else:
             t = time()
             epg_time = t - self.epgConfig.histminutes.value * 60 if hasattr(self.epgConfig, "histminutes") else t
-        from Components.config import config
         test = ["RIBDT", (service.ref.toString(), 0, int(epg_time), -1)]
         self.list = self.queryEPG(test)
         self.l.setList(self.list)

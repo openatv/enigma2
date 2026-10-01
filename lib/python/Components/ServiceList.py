@@ -1383,7 +1383,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 						eventIndex = 1000
 						now = localtime(time())
 						try:
-							hour, minute = config.epgselection.graph_primetimehour.value, config.epgselection.graph_primetimemins.value
+							hour, minute = config.epgselection.grid.primetime.value
 						except Exception:
 							hour, minute = 20, 15
 						dt = datetime(now.tm_year, now.tm_mon, now.tm_mday, hour, minute)
