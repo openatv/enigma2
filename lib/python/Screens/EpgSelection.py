@@ -25,6 +25,7 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from ServiceReference import ServiceReference
 from skin import parameters
+from Tools.Alternatives import CompareWithAlternatives
 from Tools.FallbackTimer import FallbackTimerList
 
 
@@ -246,22 +247,22 @@ class EPGSelectionBase(Screen, HelpableScreen):
     # ------------------------------------------------------------------
 
     def moveUp(self):
-        self["list"].moveTo(self["list"].instance.moveUp)
+        self[f"list{self.activeList}"].moveTo(self[f"list{self.activeList}"].instance.moveUp)
 
     def moveDown(self):
-        self["list"].moveTo(self["list"].instance.moveDown)
+        self[f"list{self.activeList}"].moveTo(self[f"list{self.activeList}"].instance.moveDown)
 
     def nextPage(self):
-        self["list"].moveTo(self["list"].instance.pageDown)
+        self[f"list{self.activeList}"].moveTo(self[f"list{self.activeList}"].instance.pageDown)
 
     def prevPage(self):
-        self["list"].moveTo(self["list"].instance.pageUp)
+        self[f"list{self.activeList}"].moveTo(self[f"list{self.activeList}"].instance.pageUp)
 
     def toTop(self):
-        self["list"].moveTo(self["list"].instance.moveTop)
+        self[f"list{self.activeList}"].moveTo(self[f"list{self.activeList}"].instance.moveTop)
 
     def toEnd(self):
-        self["list"].moveTo(self["list"].instance.moveEnd)
+        self[f"list{self.activeList}"].moveTo(self[f"list{self.activeList}"].instance.moveEnd)
 
     # ------------------------------------------------------------------
     # Event view
@@ -270,7 +271,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
     def openEventView(self):
         # ATV approach: showEventViewCallback handles the dialog lifecycle.
         # OpenViX uses: self.session.open(EventViewEPGSelect, event, service, ...)
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if event is not None:
             showEventViewCallback(None, self.session, False, event, service,
                                   callback=self.eventViewCallback,
@@ -286,7 +287,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.moveUp()
         elif val == +1:
             self.moveDown()
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         setService(service)
         setEvent(event)
 
@@ -354,7 +355,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
 
     def openSingleEPG(self):
         # ATV-specific: opens EPGSelection in single mode for the current service.
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if service is not None:
             self.session.open(EPGSelection, service.ref)
 
@@ -363,7 +364,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
     # ATV routes EPG type switches differently (through EPGSelection.__init__ EPGtype param).
     # def switchToSingleEPG(self):
     #     from Screens.EpgSelectionSingle import EPGSelectionSingle
-    #     event, service = self["list"].getCurrent()[:2]
+    #     event, service = self[f"list{self.activeList}"].getCurrent()[:2]
     #     if service is not None:
     #         self.close("open", EPGSelectionSingle, self.getCurrentBouquet(), service, self.bouquets, ...)
     # def switchToGridEPG(self): ...
@@ -382,7 +383,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."),
                               type=MessageBox.TYPE_INFO, timeout=10)
             return
-        event = self["list"].getCurrent()[0]
+        event = self[f"list{self.activeList}"].getCurrent()[0]
         if event is not None:
             self.session.open(IMDB, event.getEventName(), False)
 
@@ -394,7 +395,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.session.open(MessageBox, _("The TMDb plugin is not installed!\nPlease install it."),
                               type=MessageBox.TYPE_INFO, timeout=10)
             return
-        event = self["list"].getCurrent()[0]
+        event = self[f"list{self.activeList}"].getCurrent()[0]
         if event is not None:
             self.session.open(tmdbScreen, event.getEventName(), 2)
 
@@ -406,7 +407,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."),
                               type=MessageBox.TYPE_INFO, timeout=10)
             return
-        event = self["list"].getCurrent()[0]
+        event = self[f"list{self.activeList}"].getCurrent()[0]
         if event is not None:
             self.session.open(EPGSearch, event.getEventName(), False)
 
@@ -414,7 +415,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         # OpenViX: checks timer.autoTimerId to decide add vs edit.
         # ATV: addAutoTimer handles both cases internally.
         self.closeEventViewDialog()
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if event is None:
             return
         timer = self.session.nav.RecordTimer.getTimerForEvent(service, event)
@@ -431,7 +432,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."),
                               type=MessageBox.TYPE_INFO, timeout=10)
             return
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if event is None:
             return
         addAutotimerFromEvent(self.session, evt=event, service=service)
@@ -457,7 +458,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."),
                               type=MessageBox.TYPE_INFO, timeout=10)
             return
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if event is None:
             return
         addAutotimerFromEventSilent(self.session, evt=event, service=service)
@@ -468,8 +469,8 @@ class EPGSelectionBase(Screen, HelpableScreen):
     # ------------------------------------------------------------------
 
     def setupKeyPlayButtonDisplay(self, stime, service):
-        if hasattr(self["list"], "detectCatchupAvailable"):
-            enabled = self["list"].detectCatchupAvailable(stime, service)
+        if hasattr(self[f"list{self.activeList}"], "detectCatchupAvailable"):
+            enabled = self[f"list{self.activeList}"].detectCatchupAvailable(stime, service)
             if "epgcatchupactions" in self:
                 self["epgcatchupactions"].setEnabled(enabled and callable(self.catchupPlayerFunc))
             self["key_play"].setText(_("PLAY") if enabled and callable(self.catchupPlayerFunc) else "")
@@ -477,11 +478,11 @@ class EPGSelectionBase(Screen, HelpableScreen):
     def playCatchup(self):
         if not callable(self.catchupPlayerFunc):
             return
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         stime = event and event.getBeginTime()
         service = service and service.ref
-        if hasattr(self["list"], "detectCatchupAvailable"):
-            if self["list"].detectCatchupAvailable(stime, service):
+        if hasattr(self[f"list{self.activeList}"], "detectCatchupAvailable"):
+            if self[f"list{self.activeList}"].detectCatchupAvailable(stime, service):
                 self.catchupPlayerFunc(event, service)
 
     # ------------------------------------------------------------------
@@ -640,7 +641,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         # OpenViX splits this into addEditTimer (via addTimerFromEvent) and
         # addEditTimerMenu (via PopupChoiceBox with three static choices).
         # ATV version also handles FallbackTimerList for external timers.
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if event is None:
             return
         serviceRefStr = service.ref.toCompareString()
@@ -689,13 +690,12 @@ class EPGSelectionBase(Screen, HelpableScreen):
                 ChoiceBox, text=title, choiceList=menu,
                 buttonList=["red", "green", "yellow", "blue"],
                 skinName="RecordTimerQuestion")
-            serviceRef = eServiceReference(str(self["list"].getCurrent()[1]))
-            pos = self["list"].getSelectionPosition(serviceRef)
+            pos = self[f"list{self.activeList}"].getSelectionPosition()
             posX = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width(), 0)
             posY = self.instance.position().y() + pos[1]
-            posY += self["list"].itemHeight - 2
+            posY += self[f"list{self.activeList}"].itemHeight - 2
             if posY + self.ChoiceBoxDialog.instance.size().height() > 720:
-                posY -= self["list"].itemHeight - 4 + self.ChoiceBoxDialog.instance.size().height()
+                posY -= self[f"list{self.activeList}"].itemHeight - 4 + self.ChoiceBoxDialog.instance.size().height()
             self.ChoiceBoxDialog.instance.move(ePoint(int(posX), int(posY)))
             self.showChoiceBoxDialog()
 
@@ -722,7 +722,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         self.doInstantTimer(0, 1)
 
     def doInstantTimer(self, zap, zaprecord):
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if event is None:
             return
         newEntry = RecordTimerEntry(service, checkOldTimers=True,
@@ -845,7 +845,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
     # ------------------------------------------------------------------
 
     def onSelectionChanged(self):
-        event, service = self["list"].getCurrent()[:2]
+        event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         self["Event"].newEvent(event)
         self["Service"].newService(service.ref if service else None)
 
@@ -996,7 +996,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         self.prevch = (self.session.nav.getCurrentlyPlayingServiceReference()
                        and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
                        or None)
-        ref, service = self["list"].getCurrent()[:2]
+        ref, service = self[f"list{self.activeList}"].getCurrent()[:2]
         if service is not None:
             self.zapFunc(service.ref, bouquet=self.getCurrentBouquet(), preview=prev)
             self.currch = (self.session.nav.getCurrentlyPlayingServiceReference()
@@ -1102,10 +1102,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         # Search bouquets for a service matching the entered number.
         service, bouquet = self._getServiceByNumber(int(number))
         if service is not None:
-            self.startRef = service
-            if bouquet is not None:
-                self.startBouquet = bouquet
-            self.moveToService(service)
+            self.numberEntered(service, bouquet)
 
     def _getServiceByNumber(self, number):
         # Returns (service, bouquet) for the given channel number.
@@ -1115,13 +1112,13 @@ class EPGSelectionBase(Screen, HelpableScreen):
         if config.usage.alternative_number_mode.value:
             services = self._getBouquetServices(self.getCurrentBouquet())
             for service in services:
-                if service.getChannelNum() == number:
+                if service.ref.getChannelNum() == number:
                     return service, self.getCurrentBouquet()
         else:
             for bouquet in self.bouquets:
                 services = self._getBouquetServices(bouquet[1])
                 for service in services:
-                    if service.getChannelNum() == number:
+                    if service.ref.getChannelNum() == number:
                         return service, bouquet[1]
         return None, None
 
@@ -1346,6 +1343,8 @@ class EPGServiceNumberSelectionPopup(Screen):
 
 class EPGServiceNumberSelection:
     def __init__(self):
+        self["number"] = Label()
+        self["number"].hide()
         helpMsg = _("Enter a number to jump to a service/channel")
         self["numberactions"] = HelpableNumberActionMap(self, "NumberActions",
             dict([(str(i), (self.keyNumberGlobal, helpMsg)) for i in range(0, 10)]),
@@ -1371,6 +1370,15 @@ class EPGServiceNumberSelection:
     #
     # ATV uses keyNumberGlobal from EPGSelectionBase (inline NumberZapTimer).
     # That method is already defined there; this mixin just registers the action map.
+
+    def numberEntered(self, service, bouquet):
+        self.setBouquet(bouquet)
+        if isinstance(self, EPGServiceBrowse):
+            self.setCurrentService(service)
+            self.serviceChanged()
+        else:
+            self.bouquetChanged()
+            self.moveToService(service)
 
 
 # ===========================================================================
@@ -1425,7 +1433,10 @@ class EPGBouquetSelection:
         EPGSelectionBase.onSelectionChanged(self)
         if self.restoreLastService:
             EPGBouquetSelection.lastBouquet = self.getCurrentBouquet()
-            EPGBouquetSelection.lastService = self.getCurrentService()
+            if isinstance(self, EPGServiceBrowse):
+                EPGBouquetSelection.lastService = self.getCurrentService()
+            else:
+                EPGBouquetSelection.lastService = self[f"list{self.activeList}"].getCurrent()[1]
 
     def _getBouquetServices(self, bouquet):
         # ATV: also returns subservices when the bouquet is a subservice list.
@@ -1545,13 +1556,13 @@ class EPGBouquetSelection:
     def getServiceByNumber(self, number):
         if config.usage.alternative_number_mode.value:
             for service in self.services:
-                if service.getChannelNum() == number:
+                if service.ref.getChannelNum() == number:
                     return service, self.getCurrentBouquet()
         else:
             for bouquet in self.bouquets:
                 services = self._getBouquetServices(bouquet[1])
                 for service in services:
-                    if service.getChannelNum() == number:
+                    if service.ref.getChannelNum() == number:
                         return service, bouquet[1]
         return None, None
 
@@ -1578,10 +1589,14 @@ class EPGServiceBrowse(EPGBouquetSelection):
         if serviceRef is None:
             self.selectedServiceIndex = 0
             return
+        refstr = serviceRef.toString()
         for i, service in enumerate(self.services):
-            if service == serviceRef:
+            if CompareWithAlternatives(service.ref.toString(), refstr):
                 self.selectedServiceIndex = i
                 return
+
+    def bouquetChanged(self):
+        self.serviceChanged()
 
     def getCurrentService(self):
         if self.selectedServiceIndex >= 0:
@@ -2477,12 +2492,15 @@ class EPGSelectionSimilar(EPGSelectionBase, EPGServiceZap, EPGStandardButtons):
 
     def onCreate(self):
         self.setTitle(_("Similar EPG"))
-        self["list"].fillSimilarList(self.currentService, self.eventid)
+        self["list"].fillSimilarList(self.currentService.toString(), self.eventid)
         self.onSelectionChanged()
 
     def refreshlist(self):
-        self["list"].fillSimilarList(self.currentService, self.eventid)
+        self["list"].fillSimilarList(self.currentService.toString(), self.eventid)
         self.onSelectionChanged()
+
+    def getCurrentBouquet(self):
+        return self.startBouquet
 # lib/python/Screens/EpgSelectionSingle.py
 #
 # New file (2026). Concrete EPG screen for single-channel and enhanced modes.

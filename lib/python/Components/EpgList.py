@@ -211,22 +211,22 @@ class EPGListBase(GUIComponent):
             self.instance.moveSelection(direction)
 
     def getSelectionPosition(self):
-        # Returns (x, y) pixel position of the current selection within the widget.
-        # x = right edge of the list (used to position popup dialogs).
-        rowCount = self.listHeight // self.itemHeight
+        # Returns (x, y) of the current selection within the screen.
+        # x = right edge of the selection (used to position popup dialogs).
+        rowCount = max(self.listHeight // self.itemHeight, 1)
         index = self.l.getCurrentSelectionIndex() % rowCount
-        sely = self.instance.position().y() + self.itemHeight * index
-        if sely >= self.instance.position().y() + self.listHeight:
-            sely -= self.listHeight
-        return self.listWidth, sely
+        position = self.instance.position()
+        return position.x() + self.getSelectionRight(), position.y() + self.itemHeight * index
+
+    def getSelectionRight(self):
+        return self.listWidth
 
     def getIndexFromService(self, serviceref):
         if serviceref is not None:
-            for x in range(len(self.list)):
-                if CompareWithAlternatives(self.list[x][0], serviceref):
-                    return x
-                if CompareWithAlternatives(self.list[x][1], serviceref):
-                    return x
+            refstr = serviceref if isinstance(serviceref, str) else serviceref.toString()
+            for index, entry in enumerate(self.list):
+                if any(isinstance(x, str) and CompareWithAlternatives(x, refstr) for x in entry[:2]):
+                    return index
         return None
 
     def moveToService(self, serviceref):
@@ -739,26 +739,15 @@ class EPGListGrid(EPGListBase):
     def resetOffset(self):
         self.offs = 0
 
+    def getSelectionRight(self):
+        return self.select_rect.x + self.select_rect.w if self.select_rect else self.listWidth
+
     def getChannelNumber(self, service):
         if hasattr(service, "ref") and service.ref and '0:0:0:0:0:0:0:0:0' not in service.ref.toString():
             num = service.ref.getChannelNum()
             if num is not None:
                 return num
         return None
-
-    def getSelectedEventId(self):
-        x = self.l.getCurrentSelection()
-        return x and x[1]
-
-    def moveToEventId(self, eventId):
-        if not eventId:
-            return
-        index = 0
-        for x in self.list:
-            if x[1] == eventId:
-                self.instance.moveSelectionTo(index)
-                break
-            index += 1
 
     def setCurrentlyPlaying(self, serviceref):
         self.currentlyPlaying = serviceref
@@ -2851,6 +2840,20 @@ class EPGListVertical(EPGListBase):
         eventId = tmp[1]
         event = self.getEventFromId(service, eventId)
         return event, service
+
+    def getSelectedEventId(self):
+        x = self.l.getCurrentSelection()
+        return x and x[1]
+
+    def moveToEventId(self, eventId):
+        if not eventId:
+            return
+        index = 0
+        for x in self.list:
+            if x[1] == eventId:
+                self.instance.moveSelectionTo(index)
+                break
+            index += 1
 
     # ------------------------------------------------------------------
     # EPG data loading
