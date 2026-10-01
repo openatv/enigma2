@@ -378,9 +378,10 @@ class Screen(dict):
 			self.additionalWidgets = []
 		if hasattr(self, "renderer"):
 			for renderer in self.renderer:
-				renderer.disconnectAll()
+				# Remove widget callbacks before disconnectAll destroys the renderer state.
 				if hasattr(renderer, "instance") and renderer.instance:
 					renderer.GUIdelete()
+				renderer.disconnectAll()
 			self.renderer = []
 		self.onLayoutFinish = [x for x in self.onLayoutFinish if not isinstance(x, CodeType)]
 		self.onContentChanged = [x for x in self.onContentChanged if not isinstance(x, CodeType)]
