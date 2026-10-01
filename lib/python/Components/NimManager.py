@@ -1952,13 +1952,11 @@ def InitNimManager(nimmgr, update_slots=None):
 			section = lnbs[lnb]
 			template = getattr(configElement, "lnb_template", None)
 			if isinstance(section.unicable, ConfigNothing):
-				if lnb == 1 or lnb > maxFixedLnbPositions:
-					unicableChoices = UNICABLE_CHOICES()
-				else:
-					unicableChoices = {"unicable_matrix": _("Unicable Matrix"), "unicable_user": "Unicable " + _("User defined")}
+				# Monoblock LNBs also provide profiles for additional satellite positions.
+				unicableChoices = UNICABLE_CHOICES()
 				defaultUnicable = lnbTemplateValue(template, "unicable", unicable_choices_default)
 				if defaultUnicable not in unicableChoices:
-					defaultUnicable = "unicable_matrix" if lnb != 1 and lnb <= maxFixedLnbPositions else unicable_choices_default
+					defaultUnicable = unicable_choices_default
 				section.unicable = ConfigSelection(unicableChoices, defaultUnicable)
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check, defaultProduct=None, defaultSlot=0):
