@@ -442,9 +442,37 @@ PyObject *New_iCECMessagePtr(const ePtr<iCECMessage> &ptr)
 /* needed for service groups */
 
 int setDVBIFallbackServices(PyObject *services);
+int setDVBIServiceProfiles(PyObject *profiles);
+int setDVBIHbbTVApplications(PyObject *applications);
+PyObject *getDVBIPlaybackService(const eServiceReference &ref, const eServiceReference &after);
+int getDVBIServiceAvailability(const eServiceReference &ref);
+int getDVBIMinimumAge(const eServiceReference &ref);
 PyObject *getDVBIFallbackService(const eServiceReference &ref, bool force=false);
 bool canDVBIFallbackReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
 %{
+int setDVBIHbbTVApplications(PyObject *applications)
+{
+	return eDVBIFallback::setApplications(applications);
+}
+int setDVBIServiceProfiles(PyObject *profiles)
+{
+	return eDVBIFallback::setProfiles(profiles);
+}
+PyObject *getDVBIPlaybackService(const eServiceReference &ref, const eServiceReference &after)
+{
+	eServiceReference target = eDVBIFallback::playback(ref, after);
+	if (target)
+		return New_eServiceReference(target);
+	Py_RETURN_NONE;
+}
+int getDVBIServiceAvailability(const eServiceReference &ref)
+{
+	return eDVBIFallback::availability(ref);
+}
+int getDVBIMinimumAge(const eServiceReference &ref)
+{
+	return eDVBIFallback::minimumAge(ref);
+}
 int setDVBIFallbackServices(PyObject *services)
 {
 	return eDVBIFallback::setServices(services);

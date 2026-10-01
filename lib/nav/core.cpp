@@ -4,6 +4,7 @@
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/fcc.h>
+#include <lib/service/servicedvb.h>
 
 eNavigation *eNavigation::instance;
 
@@ -122,7 +123,11 @@ RESULT eNavigation::clearPiPService(void)
 RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate, pNavigation::RecordType type)
 {
 	ASSERT(m_servicehandler);
-	RESULT res = m_servicehandler->record(ref, service);
+	// Conflict checks need the recording factory, not today's event airtime.
+	eServiceReference simulated;
+	if (simulate && ref.path.compare(0, 7, "dvbi://") == 0)
+		simulated = eDVBIFallback::playback(ref, eServiceReference(), true);
+	RESULT res = m_servicehandler->record(simulated ? simulated : ref, service);
 	if (res)
 	{
 		eDebug("[eNavigation] record: %d", res);

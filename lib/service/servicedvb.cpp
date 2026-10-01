@@ -2,6 +2,7 @@
 #include <lib/base/object.h>
 #include <lib/base/modelinformation.h>
 #include <string>
+#include <memory>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
 #include <lib/dvb/csasession.h>
@@ -81,7 +82,65 @@ DEFINE_REF(eStaticServiceDVBInformation);
 
 namespace
 {
+	struct DVBIInterval
+	{
+		int days, start, end, recurrence;
+	};
+	struct DVBIPeriod
+	{
+		long long from, to;
+		std::vector<DVBIInterval> intervals;
+	};
+	struct DVBICandidate
+	{
+		eServiceReference ref;
+		bool restricted;
+		std::vector<DVBIPeriod> periods;
+		bool available(time_t now) const
+		{
+			if (!restricted)
+				return true;
+			for (const auto &period : periods)
+			{
+				if ((period.from && now < period.from) || (period.to && now >= period.to))
+					continue;
+				if (period.intervals.empty())
+					return true;
+				for (const auto &interval : period.intervals)
+				{
+					struct tm utc;
+					gmtime_r(&now, &utc);
+					int clock = (utc.tm_hour * 3600 + utc.tm_min * 60 + utc.tm_sec) * 1000;
+					bool overnight = interval.end <= interval.start;
+					if (overnight ? (clock < interval.start && clock >= interval.end) : (clock < interval.start || clock >= interval.end))
+						continue;
+					time_t day = now - (overnight && clock < interval.end ? 86400 : 0);
+					gmtime_r(&day, &utc);
+					if (!(interval.days & (1 << ((utc.tm_wday + 6) % 7))))
+						continue;
+					if (interval.recurrence > 1)
+					{
+						if (!period.from)
+							continue;
+						// Unix epoch Thursday; weeks start Monday, UTC.
+						long long weeks = (day / 86400 + 3) / 7 - (period.from / 86400 + 3) / 7;
+						if (weeks < 0 || weeks % interval.recurrence)
+							continue;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+	};
+	struct DVBIProfile
+	{
+		int age;
+		std::vector<DVBICandidate> candidates;
+	};
+	std::map<eServiceReference, std::shared_ptr<DVBIProfile>> dvbiProfiles;
 	std::map<eServiceReference, eServiceReference> dvbiFallbackServices;
+	std::map<eServiceReference, eDVBIHbbTV> dvbiApplications;
 
 	bool isBroadcastReference(const eServiceReference &ref)
 	{
@@ -101,6 +160,209 @@ namespace
 		int system;
 		return manager->canAllocateChannel(channel, ignored, system, false);
 	}
+}
+
+int eDVBIFallback::setApplications(ePyObject entries)
+{
+	if (!PyList_Check(entries) || PyList_Size(entries) > 10000)
+		return -1;
+	std::map<eServiceReference, eDVBIHbbTV> replacements;
+	size_t applicationCount = 0;
+	for (Py_ssize_t i = 0; i < PyList_Size(entries); ++i)
+	{
+		const char *reference;
+		PyObject *apps;
+		eDVBIHbbTV metadata;
+		if (!PyArg_ParseTuple(PyList_GetItem(entries, i), "s(iii)O", &reference, &metadata.tsid, &metadata.onid, &metadata.sid, &apps))
+		{
+			PyErr_Clear();
+			return -1;
+		}
+		eServiceReference ref(reference);
+		if (ref.type != 4097 || ref.flags || (ref.path.compare(0, 7, "http://") && ref.path.compare(0, 8, "https://"))
+			|| metadata.tsid < 0 || metadata.tsid > 65535 || metadata.onid < 0 || metadata.onid > 65535 || metadata.sid < 0 || metadata.sid > 65535
+			|| !PyList_Check(apps) || PyList_Size(apps) > 32)
+			return -1;
+		for (Py_ssize_t j = 0; j < PyList_Size(apps); ++j)
+		{
+			int control, appId, profile;
+			PyObject *orgValue;
+			const char *name, *url;
+			if (!PyArg_ParseTuple(PyList_GetItem(apps, j), "issOii", &control, &name, &url, &orgValue, &appId, &profile))
+			{
+				PyErr_Clear();
+				return -1;
+			}
+			unsigned long long orgId = PyLong_AsUnsignedLongLong(orgValue);
+			if (PyErr_Occurred())
+			{
+				PyErr_Clear();
+				return -1;
+			}
+			std::string location(url);
+			if (++applicationCount > 100000 || (control != 1 && control != 2) || orgId > 0xFFFFFFFFUL || appId < 0 || appId > 65535 || profile != 0
+				|| strlen(name) > 512 || location.size() > 8192 || (location.compare(0, 7, "http://") && location.compare(0, 8, "https://"))
+				|| std::any_of(location.begin(), location.end(), [](unsigned char c) { return c < 32; }))
+				return -1;
+			metadata.applications.emplace_back(control, static_cast<int>(orgId), appId, location, name, profile);
+		}
+		replacements.emplace(ref, std::move(metadata));
+	}
+	dvbiApplications.swap(replacements);
+	return PyList_Size(entries);
+}
+
+const eDVBIHbbTV *eDVBIFallback::applications(const eServiceReference &ref)
+{
+	// Never expose DVB-I signalling on a native DVB service or unrelated IPTV.
+	auto entry = dvbiApplications.find(ref);
+	return ref.type != 4097 || availability(ref) != 1 || entry == dvbiApplications.end() ? nullptr : &entry->second;
+}
+
+int eDVBIFallback::setProfiles(ePyObject profiles)
+{
+	if (!PyList_Check(profiles) || PyList_Size(profiles) > 10000)
+		return -1;
+	std::map<eServiceReference, std::shared_ptr<DVBIProfile>> replacements;
+	size_t candidateCount = 0, ruleCount = 0;
+	for (Py_ssize_t i = 0; i < PyList_Size(profiles); ++i)
+	{
+		const char *source;
+		int age;
+		PyObject *candidates;
+		if (!PyArg_ParseTuple(PyList_GetItem(profiles, i), "siO", &source, &age, &candidates))
+		{
+			PyErr_Clear();
+			return -1;
+		}
+		if (age < 0 || age > 18 || !PyList_Check(candidates) || PyList_Size(candidates) > 16)
+			return -1;
+		eServiceReference original(source);
+		if (!original || original.flags)
+			return -1;
+		auto profile = std::make_shared<DVBIProfile>();
+		profile->age = age;
+		for (Py_ssize_t j = 0; j < PyList_Size(candidates); ++j)
+		{
+			if (++candidateCount > 20000)
+				return -1;
+			const char *target;
+			PyObject *periods;
+			if (!PyArg_ParseTuple(PyList_GetItem(candidates, j), "sO", &target, &periods))
+			{
+				PyErr_Clear();
+				return -1;
+			}
+			DVBICandidate candidate;
+			candidate.ref = eServiceReference(target);
+			candidate.restricted = periods != Py_None;
+			if (candidate.ref.flags || (candidate.ref.type != 1 && candidate.ref.type != 4097 && candidate.ref.type != 5001 && candidate.ref.type != 5002)
+				|| (candidate.ref.path.compare(0, 7, "http://") && candidate.ref.path.compare(0, 8, "https://")))
+				return -1;
+			for (int field = 0; field < 7; ++field)
+				if (candidate.ref.data[field] != original.data[field])
+					return -1;
+			if (candidate.restricted)
+			{
+				if (!PyList_Check(periods) || PyList_Size(periods) > 64)
+					return -1;
+				for (Py_ssize_t k = 0; k < PyList_Size(periods); ++k)
+				{
+					if (++ruleCount > 65536)
+						return -1;
+					DVBIPeriod period;
+					PyObject *intervals;
+					if (!PyArg_ParseTuple(PyList_GetItem(periods, k), "LLO", &period.from, &period.to, &intervals))
+					{
+						PyErr_Clear();
+						return -1;
+					}
+					if (period.from < 0 || period.to < 0 || (period.to && period.to <= period.from) || !PyList_Check(intervals) || PyList_Size(intervals) > 64)
+						return -1;
+					for (Py_ssize_t n = 0; n < PyList_Size(intervals); ++n)
+					{
+						if (++ruleCount > 65536)
+							return -1;
+						DVBIInterval interval;
+						if (!PyArg_ParseTuple(PyList_GetItem(intervals, n), "iiii", &interval.days, &interval.start, &interval.end, &interval.recurrence))
+						{
+							PyErr_Clear();
+							return -1;
+						}
+						if (interval.days < 0 || interval.days > 127 || interval.start < 0 || interval.start >= 86400000 || interval.end < 0 || interval.end >= 86400000 || interval.recurrence < 1)
+							return -1;
+						period.intervals.push_back(interval);
+					}
+					candidate.periods.push_back(period);
+				}
+			}
+			auto duplicate = std::find_if(profile->candidates.begin(), profile->candidates.end(),
+				[&candidate](const DVBICandidate &existing) { return existing.ref == candidate.ref; });
+			if (duplicate == profile->candidates.end())
+				profile->candidates.push_back(candidate);
+			else
+			{
+				// Repeated URLs are one attempt, with the union of their airtimes.
+				// A provider must not accidentally create an A -> B -> A retry loop.
+				duplicate->restricted = duplicate->restricted && candidate.restricted;
+				if (duplicate->restricted)
+					duplicate->periods.insert(duplicate->periods.end(), candidate.periods.begin(), candidate.periods.end());
+				else
+					duplicate->periods.clear();
+			}
+		}
+		replacements[original] = profile;
+		for (const auto &candidate : profile->candidates)
+			replacements[candidate.ref] = profile;
+	}
+	dvbiProfiles.swap(replacements);
+	return PyList_Size(profiles);
+}
+
+eServiceReference eDVBIFallback::playback(const eServiceReference &ref, const eServiceReference &after, bool simulate)
+{
+	auto profile = dvbiProfiles.find(ref);
+	if (profile == dvbiProfiles.end())
+		return eServiceReference();
+	ePtr<eServiceCenter> center;
+	if (eServiceCenter::getPrivInstance(center) || !center)
+		return eServiceReference();
+	bool next = !after;
+	for (const auto &candidate : profile->second->candidates)
+	{
+		if (next && (simulate || candidate.available(time(nullptr))) && center->hasServiceFactory(candidate.ref.type))
+			return candidate.ref;
+		if (candidate.ref == after)
+			next = true;
+	}
+	return eServiceReference();  // Never wrap around a failed alternative list.
+}
+
+int eDVBIFallback::availability(const eServiceReference &ref)
+{
+	auto profile = dvbiProfiles.find(ref);
+	if (profile == dvbiProfiles.end())
+		return 0;
+	for (const auto &candidate : profile->second->candidates)
+		if (candidate.ref == ref)
+			return candidate.available(time(nullptr)) ? 1 : -1;
+	return playback(ref) ? 1 : -1;
+}
+
+int eDVBIFallback::minimumAge(const eServiceReference &ref)
+{
+	auto profile = dvbiProfiles.find(ref);
+	return profile == dvbiProfiles.end() ? 0 : profile->second->age;
+}
+
+bool eDVBIFallback::hasSchedule(const eServiceReference &ref)
+{
+	auto profile = dvbiProfiles.find(ref);
+	if (profile != dvbiProfiles.end())
+		for (const auto &candidate : profile->second->candidates)
+			if (candidate.restricted)
+				return true;
+	return false;
 }
 
 int eDVBIFallback::setServices(ePyObject services)
@@ -144,6 +406,8 @@ eServiceReference eDVBIFallback::get(const eServiceReference &ref)
 	auto entry = dvbiFallbackServices.find(ref);
 	if (entry == dvbiFallbackServices.end())
 		return eServiceReference();
+	if (dvbiProfiles.count(ref))
+		return playback(ref);
 	ePtr<eServiceCenter> center;
 	if (eServiceCenter::getPrivInstance(center) || !center || !center->hasServiceFactory(entry->second.type))
 		return eServiceReference();

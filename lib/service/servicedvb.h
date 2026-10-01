@@ -387,6 +387,12 @@ protected:
 
 // Populated only by the enabled DVB-I addon, on the main loop. No persistent
 // setting, network access or XML parsing is involved in a service selection.
+struct eDVBIHbbTV
+{
+	int tsid, onid, sid;
+	std::vector<HbbTVApplicationInfo> applications;
+};
+
 class eDVBIFallback
 {
 public:
@@ -394,6 +400,13 @@ public:
 	static eServiceReference get(const eServiceReference &ref);
 	static eServiceReference resolve(const eServiceReference &ref, bool force = false);
 	static bool canReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
+	static int setProfiles(ePyObject profiles);
+	static eServiceReference playback(const eServiceReference &ref, const eServiceReference &after = eServiceReference(), bool simulate = false);
+	static int availability(const eServiceReference &ref);
+	static int minimumAge(const eServiceReference &ref);
+	static bool hasSchedule(const eServiceReference &ref);
+	static int setApplications(ePyObject applications);
+	static const eDVBIHbbTV *applications(const eServiceReference &ref);
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {

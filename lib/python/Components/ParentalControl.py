@@ -1,6 +1,6 @@
 from time import time
 
-from enigma import eDVBDB, eServiceCenter, eServiceReference, eTimer, iServiceInformation
+from enigma import eDVBDB, eServiceCenter, eServiceReference, eTimer, getDVBIMinimumAge, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.config import ConfigInteger, ConfigPIN, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigYesNo, config
@@ -103,6 +103,7 @@ class ParentalControl:
 			rating = event and event.getParentalData()
 			age = rating and rating.getRating()
 			age = age and age <= 15 and age + 3 or 0
+			age = max(age, getDVBIMinimumAge(ref))
 		if (age and age >= config.ParentalControl.age.value) or service and service in self.blacklist:
 			if self.sessionPinCached:  # Check if the session PIN is cached.
 				return True

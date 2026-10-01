@@ -244,6 +244,8 @@ public:
 	int getInfo(int w);
 	std::string getInfoString(int w);
 	ePtr<iServiceInfoContainer> getInfoObject(int w);
+	void getAITApplications(std::map<int, std::string>& aitlist);
+	PyObject *getHbbTVApplications();
 
 	// iAudioTrackSelection
 	int getNumberOfTracks();
@@ -319,6 +321,8 @@ public:
 
 protected:
 	ePtr<eTimer> m_nownext_timer;
+	ePtr<eTimer> m_dvbiAvailabilityTimer;
+	void checkDVBIAvailability();
 	ePtr<eServiceEvent> m_event_now, m_event_next;
 	void updateEpgCacheNowNext();
 
