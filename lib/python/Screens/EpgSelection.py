@@ -211,6 +211,10 @@ class EPGSelectionBase(Screen, HelpableScreen):
 
         # Base epgactions map; concrete classes add their own entries.
         self["epgactions"] = HelpableActionMap(self, "EPGSelectActions", {}, prio=-1)
+        self["epgcursoractions"] = HelpableActionMap(self, "DirectionActions", {
+            "up": (self.moveUp, _("Go to previous channel")),
+            "down": (self.moveDown, _("Go to next channel")),
+        }, prio=-1, description=_("EPG navigation commands"))
 
         self["epgcatchupactions"] = HelpableActionMap(self, "EPGCatchUpActions", {
             "play": (self.playCatchup, _("Play catch-up archive")),
@@ -231,9 +235,12 @@ class EPGSelectionBase(Screen, HelpableScreen):
         # Defer actual list population until the screen layout is complete.
         self.onLayoutFinish.append(self.onCreate)
 
-    def addEpgActions(self, actions):
+    def addEpgActions(self, actions, mapName="epgactions", context="EPGSelectActions"):
         for action, response in actions.items():
-            self["epgactions"].addAction(self, "EPGSelectActions", action, response)
+            self[mapName].addAction(self, context, action, response)
+
+    def addCursorActions(self, actions):
+        self.addEpgActions(actions, "epgcursoractions", "DirectionActions")
 
     def getDefaultBouquets(self, servicelist, startBouquet):
         bouquets = servicelist.getBouquetList() if servicelist else None
@@ -1753,6 +1760,39 @@ class EPGStandardButtons:
         # the currently configured actions. Concrete classes can override.
         # Base implementation does nothing (labels are set statically in __init__).
         pass
+# ===========================================================================
+# EPGGridNavigation — left/right and CH+/CH- handling shared by both grid EPGs.
+# ===========================================================================
+
+class EPGGridNavigation:
+    def leftPressed(self):
+        self.updEvent(-1)
+
+    def rightPressed(self):
+        self.updEvent(+1)
+
+    def nextService(self):
+        self.channelButton(config.epgselection.grid.btn_channelup.value)
+
+    def prevService(self):
+        self.channelButton(config.epgselection.grid.btn_channeldown.value)
+
+    def channelButton(self, action):
+        func = {
+            "forward24Hours": lambda: self.updEvent(+24),
+            "back24Hours": lambda: self.updEvent(-24),
+            "nextPage": self.nextPage,
+            "prevPage": self.prevPage,
+            "nextBouquet": self.nextBouquet,
+            "prevBouquet": self.prevBouquet,
+        }.get(action)
+        if func:
+            func()
+
+    def bouquetChanged(self):
+        self._moveBouquetAndFill(0)
+
+
 # lib/python/Screens/EpgSelectionGrid.py
 #
 # New file (2026). Concrete EPG screen for graphical grid mode.
@@ -1764,7 +1804,7 @@ class EPGStandardButtons:
 
 
 class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
-                       EPGServiceZap, EPGStandardButtons):
+                       EPGServiceZap, EPGStandardButtons, EPGGridNavigation):
     """Graphical grid EPG screen (EPG_TYPE_GRAPH)."""
 
     def __init__(self, session, zapFunc=None, startBouquet=None,
@@ -1834,11 +1874,15 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
             "nextBouquet": (self.nextBouquet, _("Next bouquet")),
             "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
             "input_date_time": (self.enterDateTime, _("Jump to date/time")),
-            "nextService": (self._nextService, _("Next service row (+24)")),
-            "prevService": (self._prevService, _("Prev service row (-24)")),
-            "showFavourites": (self.toggleBouquetList, _("Toggle bouquet list")),
-            "nextPage": (self.nextPage, _("Page down")),
-            "prevPage": (self.prevPage, _("Page up")),
+            "nextService": (self.nextService, _("CHANNEL+ button (setup in menu)")),
+            "prevService": (self.prevService, _("CHANNEL- button (setup in menu)")),
+            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
+            "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
+        })
+        self.addCursorActions({
+            "left": (self.leftPressed, _("Go to previous event")),
+            "right": (self.rightPressed, _("Go to next event")),
         })
 
     # ------------------------------------------------------------------
@@ -1905,13 +1949,6 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
             self["list"].prevPage()
         else:
             self["list"].moveTo(self["list"].instance.pageUp)
-
-    def _nextService(self):
-        # Move +24 event rows in the grid (jump one full "screen" right).
-        self.updEvent(+24)
-
-    def _prevService(self):
-        self.updEvent(-24)
 
     def updEvent(self, direction, visible=True):
         if self["list"].selEntry(direction, visible):
@@ -2047,7 +2084,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
 
 
 class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
-                               EPGServiceZap, EPGStandardButtons):
+                               EPGServiceZap, EPGStandardButtons, EPGGridNavigation):
     """Infobar graphical grid EPG screen (EPG_TYPE_INFOBARGRAPH)."""
 
     def __init__(self, session, zapFunc=None, startBouquet=None,
@@ -2109,9 +2146,15 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
             "nextBouquet": (self.nextBouquet, _("Next bouquet")),
             "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
             "input_date_time": (self.enterDateTime, _("Jump to date/time")),
-            "nextService": (self._nextService, _("Next service row")),
-            "prevService": (self._prevService, _("Prev service row")),
-            "showFavourites": (self.toggleBouquetList, _("Toggle bouquet list")),
+            "nextService": (self.nextService, _("CHANNEL+ button (setup in menu)")),
+            "prevService": (self.prevService, _("CHANNEL- button (setup in menu)")),
+            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
+            "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
+        })
+        self.addCursorActions({
+            "left": (self.leftPressed, _("Go to previous event")),
+            "right": (self.rightPressed, _("Go to next event")),
         })
 
     def onCreate(self):
@@ -2151,12 +2194,6 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
 
     def prevPage(self):
         self["list"].prevPage()
-
-    def _nextService(self):
-        self.updEvent(+24)
-
-    def _prevService(self):
-        self.updEvent(-24)
 
     def updEvent(self, direction, visible=True):
         if self["list"].selEntry(direction, visible):
@@ -2287,8 +2324,14 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
             "menu": (self.createMenu, _("Menu")),
             "nextBouquet": (self.nextBouquet, _("Next bouquet")),
             "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "channelUp": (self.prevPage, _("Page up")),
-            "channelDown": (self.nextPage, _("Page down")),
+            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+            "nextService": (self.prevPage, _("Page up")),
+            "prevService": (self.nextPage, _("Page down")),
+            "epg": (self.epgButtonPressed, _("Single EPG")),
+        })
+        self.addCursorActions({
+            "left": (self.prevService, _("Go to previous channel")),
+            "right": (self.nextService, _("Go to next channel")),
         })
 
     def onCreate(self):
@@ -2364,10 +2407,15 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
             "menu": (self.createMenu, _("Menu")),
             "nextBouquet": (self.nextBouquet, _("Next bouquet")),
             "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "nextService": (self.nextPage, _("Page down")),
-            "prevService": (self.prevPage, _("Page up")),
+            "nextService": (self.prevPage, _("Page up")),
+            "prevService": (self.nextPage, _("Page down")),
             "input_date_time": (self.enterDateTime, _("Jump to date/time")),
-            "showFavourites": (self.showFavourites, _("Show favourites")),
+            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
+        })
+        self.addCursorActions({
+            "left": (self.leftPressed, _("Go to previous event")),
+            "right": (self.rightPressed, _("Go to next event")),
         })
 
     # ------------------------------------------------------------------
@@ -2434,23 +2482,19 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
         self["list"].fillMultiEPG(self.services, self.ask_time)
         self.setTitle(self["bouquetlist"].getCurrentBouquet())
 
-    def showFavourites(self):
-        # Jump to the first bouquet (typically "Favourites").
-        if self.bouquets:
-            self.selectedBouquetIndex = 0
-            self.services = self._getBouquetServices(self.getCurrentBouquet())
-            self["list"].fillMultiEPG(self.services, self.ask_time)
-            self.setTitle(self["bouquetlist"].getCurrentBouquet())
-
     # ------------------------------------------------------------------
     # Multi-EPG has next/prev for events in time (not just services).
     # ------------------------------------------------------------------
 
-    def nextPage(self):
+    def leftPressed(self):
+        self["list"].updateMultiEPG(-1)
+
+    def rightPressed(self):
         self["list"].updateMultiEPG(1)
 
-    def prevPage(self):
-        self["list"].updateMultiEPG(-1)
+    def _onDateTimeEntered(self, jumpTime):
+        self.ask_time = jumpTime
+        self["list"].fillMultiEPG(self.services, jumpTime)
 # lib/python/Screens/EpgSelectionSimilar.py
 #
 # New file (2026). Similar-events EPG screen.
@@ -2488,8 +2532,7 @@ class EPGSelectionSimilar(EPGSelectionBase, EPGServiceZap, EPGStandardButtons):
         self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Event info")),
-            "channelUp": (self.prevPage, _("Page up")),
-            "channelDown": (self.nextPage, _("Page down")),
+            "menu": (self.createMenu, _("Menu")),
         })
 
     def onCreate(self):
@@ -2524,7 +2567,8 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
     """Single-channel EPG screen (EPG_TYPE_SINGLE / EPG_TYPE_ENHANCED)."""
 
     def __init__(self, session, zapFunc=None, startBouquet=None,
-                 startRef=None, bouquets=None, epgType=EPG_TYPE_SINGLE):
+                 startRef=None, bouquets=None, epgType=EPG_TYPE_SINGLE, serviceChangeCB=None):
+        self.serviceChangeCB = serviceChangeCB
         # Must be set before EPGSelectionBase.__init__: helpKeyAction() reads self._cfg.
         self.type = epgType
         self._cfg = EPGSettings(epgType)
@@ -2548,15 +2592,22 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
 
         # Add type-specific extra actions on top of the base epgactions map.
         self.addEpgActions({
-            "epg": (self.epgButtonPressed, _("EPG")),
+            "epg": (self.epgButtonPressed, _("Event info") if epgType == EPG_TYPE_SINGLE else _("Single EPG")),
             "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Single EPG")),
             "menu": (self.createMenu, _("Menu")),
-            "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-            "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
-            "channelUp": (self.prevPage, _("Page up")),
-            "channelDown": (self.nextPage, _("Page down")),
+            "nextService": (self.nextService, _("Go to next channel")),
+            "prevService": (self.prevService, _("Go to previous channel")),
+        })
+        if epgType == EPG_TYPE_ENHANCED:
+            self.addEpgActions({
+                "infolong": (self.InfoLong, _("Single EPG")),
+                "nextBouquet": (self.nextBouquet, _("Next bouquet")),
+                "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
+                "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+            })
+        self.addCursorActions({
+            "left": (self.prevPage, _("Page up")),
+            "right": (self.nextPage, _("Page down")),
         })
 
     # ------------------------------------------------------------------
@@ -2616,18 +2667,35 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
         self["list"].sortSingleEPG(self._sortMode)
 
     # ------------------------------------------------------------------
-    # EPG button — switch to multi EPG (ATV behaviour).
+    # EPG button — event info in single EPG, single EPG in enhanced EPG.
     # ------------------------------------------------------------------
 
     def epgButtonPressed(self):
-        event, service = self["list"].getCurrent()
-        sref = service.ref if service else self._originalPlayingService
-        self.session.openWithCallback(
-            self._epgSwitchClosed, EPGSelectionMulti, self.zapFunc,
-            self.getCurrentBouquet(), sref, self.bouquets)
+        if self.type == EPG_TYPE_SINGLE:
+            self.Info()
+        else:
+            self.openSingleEPG()
 
-    def _epgSwitchClosed(self, *args):
-        pass
+    # ------------------------------------------------------------------
+    # CH+/CH- in single EPG moves the calling channel list (serviceChangeCB).
+    # ------------------------------------------------------------------
+
+    def nextService(self):
+        if self.type == EPG_TYPE_SINGLE and self.serviceChangeCB:
+            self.serviceChangeCB(1, self)
+        else:
+            EPGServiceBrowse.nextService(self)
+
+    def prevService(self):
+        if self.type == EPG_TYPE_SINGLE and self.serviceChangeCB:
+            self.serviceChangeCB(-1, self)
+        else:
+            EPGServiceBrowse.prevService(self)
+
+    def setService(self, service):
+        self.setCurrentService(service)
+        self._fillList(service)
+        self.onSelectionChanged()
 
     # ------------------------------------------------------------------
     # Auto-refresh — restarts the poll timer after each fill.
@@ -2708,7 +2776,15 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
             "nextBouquet": (self.nextBouquet, _("Next bouquet")),
             "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
             "input_date_time": (self.enterDateTime, _("Jump to date/time")),
-            "showFavourites": (self.toggleBouquetList, _("Toggle bouquet list")),
+            "nextService": (self.nextPage, _("CHANNEL+ button (setup in menu)")),
+            "prevService": (self.prevPage, _("CHANNEL- button (setup in menu)")),
+            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
+            "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
+        })
+        self.addCursorActions({
+            "left": (self.leftPressed, _("Go to previous channel")),
+            "right": (self.rightPressed, _("Go to next channel")),
         })
 
     # ------------------------------------------------------------------
@@ -2908,6 +2984,9 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
 
     def prevBouquet(self):
         self._moveBouquetAndFill(-1)
+
+    def bouquetChanged(self):
+        self._moveBouquetAndFill(0)
 
     def _moveBouquetAndFill(self, direction):
         n = len(self.bouquets)
@@ -3318,7 +3397,7 @@ def createEPGSelection(session, service=None, zapFunc=None, eventid=None,
     if epgType == EPG_TYPE_SIMILAR:
         return EPGSelectionSimilar(session, service, eventid, zapFunc)
     if epgType in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED):
-        return EPGSelectionSingle(session, zapFunc, StartBouquet, StartRef, bouquets, epgType)
+        return EPGSelectionSingle(session, zapFunc, StartBouquet, StartRef, bouquets, epgType, serviceChangeCB)
     if epgType == EPG_TYPE_INFOBAR:
         return EPGSelectionInfobarSingle(session, zapFunc, StartBouquet, StartRef, bouquets)
     if epgType == EPG_TYPE_GRAPH:
@@ -3363,7 +3442,7 @@ class EPGSelection(EPGSelectionSingle, metaclass=EPGSelectionMeta):
             service = eServiceReference(service)
         elif not isinstance(service, eServiceReference):
             service = None
-        EPGSelectionSingle.__init__(self, session, zapFunc, StartBouquet, StartRef or service, bouquets)
+        EPGSelectionSingle.__init__(self, session, zapFunc, StartBouquet, StartRef or service, bouquets, EPG_TYPE_SINGLE, serviceChangeCB)
         if EPGtype == "similar" or (EPGtype is None and eventid is not None):
             self.type = EPG_TYPE_SIMILAR
             self.currentService = ServiceReference(service)

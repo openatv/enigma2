@@ -54,11 +54,13 @@ infoActions = [
 channelUpActions = [
 	("forward24Hours", _("+24 hours")),
 	("prevPage", _("Page up")),
+	("nextBouquet", _("Next bouquet")),
 ]
 
 channelDownActions = [
 	("back24Hours", _("-24 hours")),
 	("nextPage", _("Page down")),
+	("prevBouquet", _("Previous bouquet")),
 ]
 
 
@@ -117,9 +119,8 @@ def upgradeConfig():
 			"servicenumber+picon+servicename": "picon+servicenumber+servicename",
 		}
 		# graph_channelbtn ("24"/"page"/"bouquet") → split into btn_channelup / btn_channeldown.
-		# "bouquet" has no equivalent in channelUpActions/channelDownActions → falls to default.
-		channelUpMap = {"24": "forward24Hours", "page": "prevPage"}
-		channelDownMap = {"24": "back24Hours", "page": "nextPage"}
+		channelUpMap = {"24": "forward24Hours", "page": "prevPage", "bouquet": "nextBouquet"}
+		channelDownMap = {"24": "back24Hours", "page": "nextPage", "bouquet": "prevBouquet"}
 
 		# infobar
 		upgrade(config.epgselection.infobar.type_mode, "epgselection.infobar_type_mode")
