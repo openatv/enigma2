@@ -273,133 +273,237 @@
 		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events." indent="1">config.misc.epggenrecountry</item>
 		<item level="2" text="Correct invalid EPG data" description="Choose the option to correct invalid EPG data." indent="1">config.usage.correct_invalid_epgdata</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     EnhancedEPG (EPG_TYPE_ENHANCED) — single-service multi-event list
+	     Old config: enhanced_*  →  new config: single.*
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGEnhanced" title="SingleEPG Settings" level="2" showOpenWebif="yes">
-		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.enhanced_preview_mode</item>
+		<item level="2" text="Browse mode" description="Which service to select when opening the EPG.">config.epgselection.single.browse_mode</item>
+		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.single.preview_mode</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
-		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.enhanced_ok</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.enhanced_oklong</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
+		<item level="2" text="Sort list by" description="Sort by time or alphanumerically.">config.epgselection.sort</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.single.itemsperpage</item>
+		<item level="2" text="Event font size" description="Relative font size adjustment.">config.epgselection.single.eventfs</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.single.btn_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_oklong</item>
+		<item level="2" text="EPG button (short)" description="Set to what you want the button to do.">config.epgselection.single.btn_epg</item>
+		<item level="2" text="EPG button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_epglong</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.single.btn_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_infolong</item>
+		<item level="2" text="RED button" description="Set to what you want the button to do.">config.epgselection.single.btn_red</item>
+		<item level="2" text="RED button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_redlong</item>
+		<item level="2" text="GREEN button" description="Set to what you want the button to do.">config.epgselection.single.btn_green</item>
+		<item level="2" text="GREEN button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_greenlong</item>
+		<item level="2" text="YELLOW button" description="Set to what you want the button to do.">config.epgselection.single.btn_yellow</item>
+		<item level="2" text="YELLOW button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_yellowlong</item>
+		<item level="2" text="BLUE button" description="Set to what you want the button to do.">config.epgselection.single.btn_blue</item>
+		<item level="2" text="BLUE button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_bluelong</item>
+		<item level="2" text="Record button (short)" description="Set to what you want the button to do.">config.epgselection.single.btn_rec</item>
+		<item level="2" text="Record button (long)" description="Set to what you want the button to do.">config.epgselection.single.btn_reclong</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     GraphicalEPG (EPG_TYPE_GRAPH) — grid/timeline EPG
+	     Old config: graph_*  →  new config: grid.*
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGGraphical" title="GraphicalEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="General Appearance" />
-		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics)." indent="1">config.epgselection.graph_type_mode</item>
-		<item level="2" text="Channel preview mode" description="Unless set to 'disabled' you get a preview of channels inside the EPG list." indent="1">config.epgselection.graph_preview_mode</item>
-		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG." indent="1">config.epgselection.graph_showbouquet</item>
-		<item level="2" text="Picture in graphics" description="Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen." indent="1">config.epgselection.graph_pig</item>
-		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG." indent="1">config.epgselection.graph_servicetitle_mode</item>
+		<item level="2" text="Browse mode" description="Which service to select when opening the EPG." indent="1">config.epgselection.grid.browse_mode</item>
+		<item level="2" text="View mode" description="Text or Graphics layout." indent="1">config.epgselection.grid.type_mode</item>
+		<item level="2" text="Channel preview mode" description="Unless set to 'disabled' you get a preview of channels inside the EPG list." indent="1">config.epgselection.grid.preview_mode</item>
+		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG." indent="1">config.epgselection.grid.showbouquet</item>
+		<item level="2" text="Picture in graphics" description="Select 'Yes' to display a small TV image (PiG) within the EPG screen." indent="1">config.epgselection.grid.pig</item>
+		<item level="2" text="Highlight current events" description="Highlight events currently airing." indent="1">config.epgselection.grid.highlight_current_events</item>
+		<item level="2" text="Service Title mode" description="Configure to show channel names, picons, or both in the EPG." indent="1">config.epgselection.grid.servicetitle_mode</item>
 		<item level="2" text="Button Assignments" />
-		<item level="2" text="Info button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.graph_info</item>
-		<item level="2" text="Info button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.graph_infolong</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.graph_ok</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.graph_oklong</item>
-		<item level="2" text="RED button" description="Set to what you want the button to do." indent="1">config.epgselection.graph_red</item>
-		<item level="2" text="GREEN button" description="Set to what you want the button to do." indent="1">config.epgselection.graph_green</item>
-		<item level="2" text="YELLOW button" description="Set to what you want the button to do." indent="1">config.epgselection.graph_yellow</item>
-		<item level="2" text="BLUE button" description="Set to what you want the button to do." indent="1">config.epgselection.graph_blue</item>
-		<item level="2" text="CHANNEL +/-" description="Set to what you want the button to do." indent="1">config.epgselection.graph_channelbtn</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_oklong</item>
+		<item level="2" text="EPG button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_epg</item>
+		<item level="2" text="EPG button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_epglong</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_infolong</item>
+		<item level="2" text="CHANNEL+ button" description="Action for the channel up button." indent="1">config.epgselection.grid.btn_channelup</item>
+		<item level="2" text="CHANNEL- button" description="Action for the channel down button." indent="1">config.epgselection.grid.btn_channeldown</item>
+		<item level="2" text="Record button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_rec</item>
+		<item level="2" text="Record button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_reclong</item>
+		<item level="2" text="RED button" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_red</item>
+		<item level="2" text="RED button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_redlong</item>
+		<item level="2" text="GREEN button" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_green</item>
+		<item level="2" text="GREEN button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_greenlong</item>
+		<item level="2" text="YELLOW button" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_yellow</item>
+		<item level="2" text="YELLOW button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_yellowlong</item>
+		<item level="2" text="BLUE button" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_blue</item>
+		<item level="2" text="BLUE button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.grid.btn_bluelong</item>
 		<item level="2" text="Navigation And Time Range" />
-		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used." indent="1">config.epgselection.graph_startmode</item>
+		<item level="2" text="Start mode" description="Open at current channel, channel 1, or with primetime." indent="1">config.epgselection.grid.startmode</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data." indent="1">config.epgselection.overjump</item>
-		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off." indent="1">config.epgselection.graph_roundto</item>
-		<item level="2" text="Primetime hour" description="Set to the desired primetime hour." indent="1">config.epgselection.graph_primetimehour</item>
-		<item level="2" text="Primetime minute" description="Set to the desired primetime minutes." indent="1">config.epgselection.graph_primetimemins</item>
+		<item level="2" text="Base time" description="Time interval to which the timeline is rounded." indent="1">config.epgselection.grid.roundto</item>
+		<item level="2" text="Primetime" description="Set the desired primetime (hour and minute)." indent="1">config.epgselection.grid.primetime</item>
+		<item level="2" text="Number buttons mode" description="Use number buttons for paging or to enter a service number." indent="1">config.epgselection.grid.number_buttons_mode</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.graph_itemsperpage</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.graph_eventfs</item>
-		<item level="2" text="Alignment of events" description="Configure the alignment of events." indent="1">config.epgselection.graph_event_alignment</item>
-		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.graph_servfs</item>
-		<item level="2" text="Alignment of service names" description="Configure the alignment of service names." indent="1">config.epgselection.graph_servicename_alignment</item>
-		<item level="2" text="Service width" description="Configure the width allocated to the service name." indent="1">config.epgselection.graph_servicewidth</item>
-		<item level="2" text="Picon width" description="Configure the width allocated to the picon." indent="1">config.epgselection.graph_piconwidth</item>
-		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all." indent="1">config.epgselection.graph_infowidth</item>
-		<item level="2" text="Position of recording icons" description="Set the position of the recording icons." indent="1">config.epgselection.graph_rec_icon_height</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.grid.itemsperpage</item>
+		<item level="2" text="Event font size" description="Relative font size adjustment for events." indent="1">config.epgselection.grid.eventfs</item>
+		<item level="2" text="Alignment of events" description="Configure the alignment of event text." indent="1">config.epgselection.grid.event_alignment</item>
+		<item level="2" text="Service font size" description="Relative font size adjustment for service names." indent="1">config.epgselection.grid.servfs</item>
+		<item level="2" text="Alignment of service names" description="Configure the alignment of service names." indent="1">config.epgselection.grid.servicename_alignment</item>
+		<item level="2" text="Alignment of service numbers" description="Configure the alignment of service numbers." indent="1">config.epgselection.grid.servicenumber_alignment</item>
+		<item level="2" text="Service width" description="Width allocated to the service name column." indent="1">config.epgselection.grid.servicewidth</item>
+		<item level="2" text="Picon width" description="Width allocated to the picon." indent="1">config.epgselection.grid.piconwidth</item>
+		<item level="2" text="Info icon width" description="Minimum width before showing the info icon. '0' disables the icon." indent="1">config.epgselection.grid.infowidth</item>
+		<item level="2" text="Position of recording icons" description="Set the position of the recording icons." indent="1">config.epgselection.grid.rec_icon_height</item>
 		<item level="2" text="Timeline" />
-		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.graph_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." indent="1">config.epgselection.graph_timeline24h</item>
-		<item level="2" text="Timeline marker" description="Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events." indent="1">config.epgselection.graph_histminutes</item>
-		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented." indent="1">config.epgselection.graph_prevtimeperiod</item>
+		<item level="2" text="Timeline font size" description="Relative font size adjustment for the timeline." indent="1">config.epgselection.grid.timelinefs</item>
+		<item level="2" text="Timeline 24 Hour" description="Show time in 24-hour format." indent="1">config.epgselection.grid.timeline24h</item>
+		<item level="2" text="Alignment of timeline date" description="Configure the alignment of the date in the timeline." indent="1">config.epgselection.grid.timelinedate_alignment</item>
+		<item level="2" text="Timeline marker" description="How many minutes of past EPG to show before 'now'." indent="1">config.epgselection.grid.histminutes</item>
+		<item level="2" text="Timeline scale" description="Configure the amount of time shown in the timeline." indent="1">config.epgselection.grid.prevtimeperiod</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     InfoBarEPG (EPG_TYPE_INFOBAR) — text EPG launched from infobar
+	     Old config: infobar_*  →  new config: infobar.*
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="yes">
-		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
-		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.infobar_preview_mode</item>
+		<item level="2" text="View mode" description="Select EPG type: Text Grid, Graphics Grid, or Single EPG.">config.epgselection.infobar.type_mode</item>
+		<item level="2" text="Channel preview mode" description="Preview of channels while in the EPG list.">config.epgselection.infobar.preview_mode</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
-		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.infobar_ok</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.infobar_oklong</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
+		<item level="2" text="Sort list by" description="Sort by time or alphanumerically.">config.epgselection.sort</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar.itemsperpage</item>
+		<item level="2" text="Event font size" description="Relative font size adjustment.">config.epgselection.infobar.eventfs</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_oklong</item>
+		<item level="2" text="EPG button (short)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_epg</item>
+		<item level="2" text="EPG button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_epglong</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_infolong</item>
+		<item level="2" text="RED button" description="Set to what you want the button to do.">config.epgselection.infobar.btn_red</item>
+		<item level="2" text="RED button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_redlong</item>
+		<item level="2" text="GREEN button" description="Set to what you want the button to do.">config.epgselection.infobar.btn_green</item>
+		<item level="2" text="GREEN button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_greenlong</item>
+		<item level="2" text="YELLOW button" description="Set to what you want the button to do.">config.epgselection.infobar.btn_yellow</item>
+		<item level="2" text="YELLOW button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_yellowlong</item>
+		<item level="2" text="BLUE button" description="Set to what you want the button to do.">config.epgselection.infobar.btn_blue</item>
+		<item level="2" text="BLUE button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_bluelong</item>
+		<item level="2" text="Record button (short)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_rec</item>
+		<item level="2" text="Record button (long)" description="Set to what you want the button to do.">config.epgselection.infobar.btn_reclong</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     GraphicalInfoBarEPG (EPG_TYPE_INFOBARGRAPH) — graphical timeline from infobar
+	     Old config: infobar_* (for most) + graph_* (shared alignment/rec_icon)
+	     New config: all infobar.* — alignment now has its own infobar keys
+	     Note: in old setup.xml, graph_event_alignment and graph_servicename_alignment
+	           were used here. These are now grid.* since infobar has no separate
+	           alignment settings in EpgConfig.py. TODO: add infobar.* alignment if needed.
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGInfobarGraphical" title="Graphical InfoBar EPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="General Appearance" />
-		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics)." indent="1">config.epgselection.infobar_type_mode</item>
-		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list." indent="1">config.epgselection.infobar_preview_mode</item>
-		<item level="2" text="Service Title mode" description="Configure to show channel names, numbers, picons or all three inside EPG." indent="1">config.epgselection.infobar_servicetitle_mode</item>
+		<item level="2" text="View mode" description="Select EPG type: Text Grid or Graphics Grid." indent="1">config.epgselection.infobar.type_mode</item>
+		<item level="2" text="Channel preview mode" description="Preview of channels while in the EPG list." indent="1">config.epgselection.infobar.preview_mode</item>
+		<item level="2" text="Service Title mode" description="Configure to show channel names, numbers, picons, or all three." indent="1">config.epgselection.infobar.servicetitle_mode</item>
 		<item level="2" text="Button Assignments" />
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar_ok</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar_oklong</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_oklong</item>
+		<item level="2" text="EPG button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_epg</item>
+		<item level="2" text="EPG button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_epglong</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_infolong</item>
+		<item level="2" text="Record button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_rec</item>
+		<item level="2" text="Record button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_reclong</item>
+		<item level="2" text="RED button" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_red</item>
+		<item level="2" text="RED button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_redlong</item>
+		<item level="2" text="GREEN button" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_green</item>
+		<item level="2" text="GREEN button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_greenlong</item>
+		<item level="2" text="YELLOW button" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_yellow</item>
+		<item level="2" text="YELLOW button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_yellowlong</item>
+		<item level="2" text="BLUE button" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_blue</item>
+		<item level="2" text="BLUE button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.infobar.btn_bluelong</item>
 		<item level="2" text="Navigation And Time Range" />
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data." indent="1">config.epgselection.overjump</item>
-		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off." indent="1">config.epgselection.infobar_roundto</item>
-		<item level="2" text="Primetime hour" description="Set to the desired primetime hour." indent="1">config.epgselection.infobar_primetimehour</item>
-		<item level="2" text="Primetime minute" description="Set to the desired primetime minutes." indent="1">config.epgselection.infobar_primetimemins</item>
+		<item level="2" text="Base time" description="Time interval to which the timeline is rounded." indent="1">config.epgselection.infobar.roundto</item>
+		<item level="2" text="Primetime" description="Set the desired primetime (hour and minute)." indent="1">config.epgselection.infobar.primetime</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.infobar_itemsperpage</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.infobar_eventfs</item>
-		<item level="2" text="Alignment of events" description="Configure the alignment of events." indent="1">config.epgselection.graph_event_alignment</item>
-		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.infobar_servfs</item>
-		<item level="2" text="Alignment of service names" description="Configure the alignment of service names." indent="1">config.epgselection.graph_servicename_alignment</item>
-		<item level="2" text="Service width" description="Configure the width allocated to the service name." indent="1">config.epgselection.infobar_servicewidth</item>
-		<item level="2" text="Picon width" description="Configure the width allocated to the picon." indent="1">config.epgselection.infobar_piconwidth</item>
-		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all." indent="1">config.epgselection.infobar_infowidth</item>
-		<item level="2" text="Position of recording icons" description="Set the position of the recording icons." indent="1">config.epgselection.graph_rec_icon_height</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.infobar.itemsperpage</item>
+		<item level="2" text="Event font size" description="Relative font size adjustment for events." indent="1">config.epgselection.infobar.eventfs</item>
+		<item level="2" text="Alignment of events" description="Configure the alignment of event text." indent="1">config.epgselection.grid.event_alignment</item>
+		<item level="2" text="Service font size" description="Relative font size adjustment for service names." indent="1">config.epgselection.infobar.servfs</item>
+		<item level="2" text="Alignment of service names" description="Configure the alignment of service names." indent="1">config.epgselection.grid.servicename_alignment</item>
+		<item level="2" text="Service width" description="Width allocated to the service name column." indent="1">config.epgselection.infobar.servicewidth</item>
+		<item level="2" text="Picon width" description="Width allocated to the picon." indent="1">config.epgselection.infobar.piconwidth</item>
+		<item level="2" text="Info icon width" description="Minimum width before showing the info icon. '0' disables the icon." indent="1">config.epgselection.infobar.infowidth</item>
+		<item level="2" text="Position of recording icons" description="Set the position of the recording icons." indent="1">config.epgselection.grid.rec_icon_height</item>
 		<item level="2" text="Timeline" />
-		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.infobar_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." indent="1">config.epgselection.infobar_timeline24h</item>
-		<item level="2" text="Timeline marker" description="Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events." indent="1">config.epgselection.infobar_histminutes</item>
-		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented." indent="1">config.epgselection.infobar_prevtimeperiod</item>
+		<item level="2" text="Timeline font size" description="Relative font size adjustment for the timeline." indent="1">config.epgselection.infobar.timelinefs</item>
+		<item level="2" text="Timeline 24 Hour" description="Show time in 24-hour format." indent="1">config.epgselection.infobar.timeline24h</item>
+		<item level="2" text="Timeline marker" description="How many minutes of past EPG to show before 'now'." indent="1">config.epgselection.infobar.histminutes</item>
+		<item level="2" text="Timeline scale" description="Configure the amount of time shown in the timeline." indent="1">config.epgselection.infobar.prevtimeperiod</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     MultiEPG (EPG_TYPE_MULTI) — now/next/later view
+	     Old config: multi_*  →  new config: multi.*
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGMulti" title="MultiEPG Settings" level="2" showOpenWebif="yes">
-		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.multi_preview_mode</item>
-		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG.">config.epgselection.multi_showbouquet</item>
+		<item level="2" text="Browse mode" description="Which service to select when opening the EPG.">config.epgselection.multi.browse_mode</item>
+		<item level="2" text="Channel preview mode" description="Preview of channels while in the EPG list.">config.epgselection.multi.preview_mode</item>
+		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG.">config.epgselection.multi.showbouquet</item>
 		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.multi_ok</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.multi_oklong</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi_itemsperpage</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.multi_eventfs</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi.itemsperpage</item>
+		<item level="2" text="Service width (characters)" description="Width of the service name column in characters.">config.epgselection.multi.servicewidth</item>
+		<item level="2" text="Event font size" description="Relative font size adjustment.">config.epgselection.multi.eventfs</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.multi.btn_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_oklong</item>
+		<item level="2" text="EPG button (short)" description="Set to what you want the button to do.">config.epgselection.multi.btn_epg</item>
+		<item level="2" text="EPG button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_epglong</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.multi.btn_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_infolong</item>
+		<item level="2" text="RED button" description="Set to what you want the button to do.">config.epgselection.multi.btn_red</item>
+		<item level="2" text="RED button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_redlong</item>
+		<item level="2" text="GREEN button" description="Set to what you want the button to do.">config.epgselection.multi.btn_green</item>
+		<item level="2" text="GREEN button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_greenlong</item>
+		<item level="2" text="YELLOW button" description="Set to what you want the button to do.">config.epgselection.multi.btn_yellow</item>
+		<item level="2" text="YELLOW button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_yellowlong</item>
+		<item level="2" text="BLUE button" description="Set to what you want the button to do.">config.epgselection.multi.btn_blue</item>
+		<item level="2" text="BLUE button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_bluelong</item>
+		<item level="2" text="Record button (short)" description="Set to what you want the button to do.">config.epgselection.multi.btn_rec</item>
+		<item level="2" text="Record button (long)" description="Set to what you want the button to do.">config.epgselection.multi.btn_reclong</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     SingleEPG (EPG_TYPE_SINGLE) — minimal channel-event list
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGSingle" title="ChannelEPG Settings" level="2" showOpenWebif="yes">
-		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
-		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
-		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
+		<item level="2" text="Sort list by" description="Sort by time or alphanumerically.">config.epgselection.sort</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.single.itemsperpage</item>
+		<item level="2" text="Event font size" description="Relative font size adjustment.">config.epgselection.single.eventfs</item>
 	</setup>
+	<!-- ═══════════════════════════════════════════════════════════════════
+	     VerticalEPG (EPG_TYPE_VERTICAL) — column-based multi-channel view
+	     Old config: vertical_*  →  new config: vertical.*
+	     Old ok/info had string labels as values; new uses action IDs.
+	     Old color buttons had old-style string values; new uses action IDs.
+	     Primetime: two int items merged to one ConfigClock item.
+	     ═══════════════════════════════════════════════════════════════════ -->
 	<setup key="EPGVertical" title="VerticalEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="General Appearance" />
-		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used." indent="1">config.epgselection.vertical_startmode</item>
-		<item level="2" text="Picture in EPG" description="Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen." indent="1">config.epgselection.vertical_pig</item>
-		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list." indent="1">config.epgselection.vertical_preview_mode</item>
-		<item level="2" text="Show parting lines" description="Show parting lines between events." indent="1">config.epgselection.vertical_showlines</item>
-		<item level="2" text="Show marked events" description="Show marked events in all rows." indent="1">config.epgselection.vertical_eventmarker</item>
+		<item level="2" text="Start mode" description="Open at current channel, channel 1, or with primetime." indent="1">config.epgselection.vertical.startmode</item>
+		<item level="2" text="Picture in EPG" description="Select 'Yes' to display a small TV image (PiG) within the EPG screen." indent="1">config.epgselection.vertical.pig</item>
+		<item level="2" text="Channel preview mode" description="Preview of channels while in the EPG list." indent="1">config.epgselection.vertical.preview_mode</item>
+		<item level="2" text="Show parting lines" description="Show parting lines between events." indent="1">config.epgselection.vertical.showlines</item>
+		<item level="2" text="Show marked events" description="Show marked events in all rows." indent="1">config.epgselection.vertical.eventmarker</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.vertical_itemsperpage</item>
-		<item level="2" text="Font size" description="Configure the font size relative to default size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.vertical_eventfs</item>
+		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.vertical.itemsperpage</item>
+		<item level="2" text="Font size" description="Relative font size adjustment." indent="1">config.epgselection.vertical.eventfs</item>
 		<item level="2" text="Navigation And Button Assignments" />
-		<item level="2" text="Channel buttons" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_channelbtn</item>
-		<item level="2" text="Channel buttons invert" description="Inverts the button function." indent="1">config.epgselection.vertical_channelbtn_invert</item>
-		<item level="2" text="UP/DOWN buttons also for 'all up/down'" description="Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column." indent="1">config.epgselection.vertical_updownbtn</item>
-		<item level="2" text="OK button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_ok</item>
-		<item level="2" text="OK button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_oklong</item>
-		<item level="2" text="Info button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_info</item>
-		<item level="2" text="Info button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_infolong</item>
+		<item level="2" text="Channel buttons" description="Action for channel +/- buttons." indent="1">config.epgselection.vertical.channelbtn</item>
+		<item level="2" text="Channel buttons invert" description="Invert the channel button direction." indent="1">config.epgselection.vertical.channelbtn_invert</item>
+		<item level="2" text="UP/DOWN buttons also for 'all up/down'" description="Activate UP/DOWN buttons for all-up/all-down at list boundaries." indent="1">config.epgselection.vertical.updownbtn</item>
+		<item level="2" text="OK button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_ok</item>
+		<item level="2" text="OK button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_oklong</item>
+		<item level="2" text="Info button (short)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_info</item>
+		<item level="2" text="Info button (long)" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_infolong</item>
 		<item level="2" text="Prime Time" />
-		<item level="2" text="Primetime hour" description="Set to the desired primetime hour." indent="1">config.epgselection.vertical_primetimehour</item>
-		<item level="2" text="Primetime minute" description="Set to the desired primetime minutes." indent="1">config.epgselection.vertical_primetimemins</item>
+		<item level="2" text="Primetime" description="Set the desired primetime (hour and minute)." indent="1">config.epgselection.vertical.primetime</item>
 		<item level="2" text="Color Button Assignments" />
-		<item level="2" text="RED button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_red</item>
-		<item level="2" text="GREEN button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_green</item>
-		<item level="2" text="YELLOW button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_yellow</item>
-		<item level="2" text="BLUE button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical_blue</item>
+		<item level="2" text="RED button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_red</item>
+		<item level="2" text="GREEN button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_green</item>
+		<item level="2" text="YELLOW button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_yellow</item>
+		<item level="2" text="BLUE button" description="Set to what you want the button to do." indent="1">config.epgselection.vertical.btn_blue</item>
 	</setup>
 	<setup key="FactoryReset" title="Factory Reset">
 		<item level="0" text="Full factory reset" description="Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset.">config.factory.resetFull</item>
