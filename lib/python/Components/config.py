@@ -9,50 +9,66 @@ from Tools.Directories import SCOPE_CONFIG, fileAccess, resolveFilename
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.Harddisk import harddiskmanager  # This import is order critical!
 
-ACTIONKEY_LEFT = 0
-ACTIONKEY_RIGHT = 1
-ACTIONKEY_SELECT = 2
-ACTIONKEY_DELETE = 3
-ACTIONKEY_BACKSPACE = 4
-ACTIONKEY_FIRST = 5
-ACTIONKEY_LAST = 6
-ACTIONKEY_TOGGLE = 7
-ACTIONKEY_ASCII = 8
-ACTIONKEY_TIMEOUT = 9
-ACTIONKEY_NUMBERS = list(range(12, 12 + 10))
-ACTIONKEY_0 = 12
-ACTIONKEY_1 = 13
-ACTIONKEY_2 = 14
-ACTIONKEY_3 = 15
-ACTIONKEY_4 = 16
-ACTIONKEY_5 = 17
-ACTIONKEY_6 = 18
-ACTIONKEY_7 = 19
-ACTIONKEY_8 = 20
-ACTIONKEY_9 = 21
-ACTIONKEY_PAGEUP = 22
-ACTIONKEY_PAGEDOWN = 23
-ACTIONKEY_PREV = 24
-ACTIONKEY_NEXT = 25
-ACTIONKEY_ERASE = 26
+class ActionKeys:
+	LEFT = 0
+	RIGHT = 1
+	SELECT = 2
+	DELETE = 3
+	BACKSPACE = 4
+	FIRST = 5
+	LAST = 6
+	TOGGLE = 7
+	ASCII = 8
+	TIMEOUT = 9
+	NUMBER_0 = 12
+	NUMBER_1 = 13
+	NUMBER_2 = 14
+	NUMBER_3 = 15
+	NUMBER_4 = 16
+	NUMBER_5 = 17
+	NUMBER_6 = 18
+	NUMBER_7 = 19
+	NUMBER_8 = 20
+	NUMBER_9 = 21
+	NUMBERS = tuple(range(NUMBER_0, NUMBER_9 + 1))
+	PAGEUP = 22
+	PAGEDOWN = 23
+	PREV = 24
+	NEXT = 25
+	ERASE = 26
+
 
 # Deprecated / Legacy action key names...
 #
-# (These should be removed when all Enigma2 uses the new and less confusing names.)
+# (These should be removed when all Enigma2 uses ActionKeys.)
 #
-KEY_LEFT = 0  # ACTIONKEY_LEFT.
-KEY_RIGHT = 1  # ACTIONKEY_RIGHT.
-KEY_OK = 2  # ACTIONKEY_SELECT.
-KEY_DELETE = 3  # ACTIONKEY_DELETE.
-KEY_BACKSPACE = 4  # ACTIONKEY_BACKSPACE.
-KEY_HOME = 5  # ACTIONKEY_FIRST.
-KEY_END = 6  # ACTIONKEY_LAST.
-KEY_TOGGLEOW = 7  # ACTIONKEY_TOGGLE.
-KEY_ASCII = 8  # ACTIONKEY_ASCII.
-KEY_TIMEOUT = 9  # ACTIONKEY_TIMEOUT.
-KEY_NUMBERS = list(range(12, 12 + 10))  # ACTIONKEY_NUMBERS.
-KEY_0 = 12  # ACTIONKEY_0.
-KEY_9 = 21  # ACTIONKEY_9.
+ACTIONKEY_LEFT = KEY_LEFT = ActionKeys.LEFT
+ACTIONKEY_RIGHT = KEY_RIGHT = ActionKeys.RIGHT
+ACTIONKEY_SELECT = KEY_OK = ActionKeys.SELECT
+ACTIONKEY_DELETE = KEY_DELETE = ActionKeys.DELETE
+ACTIONKEY_BACKSPACE = KEY_BACKSPACE = ActionKeys.BACKSPACE
+ACTIONKEY_FIRST = KEY_HOME = ActionKeys.FIRST
+ACTIONKEY_LAST = KEY_END = ActionKeys.LAST
+ACTIONKEY_TOGGLE = KEY_TOGGLEOW = ActionKeys.TOGGLE
+ACTIONKEY_ASCII = KEY_ASCII = ActionKeys.ASCII
+ACTIONKEY_TIMEOUT = KEY_TIMEOUT = ActionKeys.TIMEOUT
+ACTIONKEY_NUMBERS = list(ActionKeys.NUMBERS)  # Legacy code expects a list.
+KEY_NUMBERS = ACTIONKEY_NUMBERS
+ACTIONKEY_0 = KEY_0 = ActionKeys.NUMBER_0
+ACTIONKEY_1 = ActionKeys.NUMBER_1
+ACTIONKEY_2 = ActionKeys.NUMBER_2
+ACTIONKEY_3 = ActionKeys.NUMBER_3
+ACTIONKEY_4 = ActionKeys.NUMBER_4
+ACTIONKEY_5 = ActionKeys.NUMBER_5
+ACTIONKEY_6 = ActionKeys.NUMBER_6
+ACTIONKEY_7 = ActionKeys.NUMBER_7
+ACTIONKEY_8 = ActionKeys.NUMBER_8
+ACTIONKEY_9 = KEY_9 = ActionKeys.NUMBER_9
+ACTIONKEY_PAGEUP = ActionKeys.PAGEUP
+ACTIONKEY_PAGEDOWN = ActionKeys.PAGEDOWN
+ACTIONKEY_PREV = ActionKeys.PREV
+ACTIONKEY_NEXT = ActionKeys.NEXT
+ACTIONKEY_ERASE = ActionKeys.ERASE
 
 DEFAULT_READONLY_COLOR = r"\c007F7F7F"
 READONLY_COLOR = DEFAULT_READONLY_COLOR
@@ -71,9 +87,9 @@ def setOnSaveCallback(setup, callback):
 
 
 def getKeyNumber(key):
-	if key not in ACTIONKEY_NUMBERS:
+	if key not in ActionKeys.NUMBERS:
 		raise ValueError(f"[Config] Error: The key '{key}' is not a numeric digit!")
-	return key - ACTIONKEY_0
+	return key - ActionKeys.NUMBER_0
 
 
 def getConfigListEntry(*args):
@@ -95,35 +111,6 @@ def NoSave(element):
 def ReadOnly(element):
 	element.setReadOnly(True)
 	return element
-
-
-class ActionKeys:
-	LEFT = 0
-	RIGHT = 1
-	SELECT = 2
-	DELETE = 3
-	BACKSPACE = 4
-	FIRST = 5
-	LAST = 6
-	TOGGLE = 7
-	ASCII = 8
-	TIMEOUT = 9
-	NUMBERS = tuple(range(12, 12 + 10))
-	NUMBER_0 = 12
-	NUMBER_1 = 13
-	NUMBER_2 = 14
-	NUMBER_3 = 15
-	NUMBER_4 = 16
-	NUMBER_5 = 17
-	NUMBER_6 = 18
-	NUMBER_7 = 19
-	NUMBER_8 = 20
-	NUMBER_9 = 21
-	PAGEUP = 22
-	PAGEDOWN = 23
-	PREV = 24
-	NEXT = 25
-	ERASE = 26
 
 
 # ConfigElement, the base class of all ConfigElements.
