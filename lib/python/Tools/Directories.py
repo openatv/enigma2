@@ -88,6 +88,8 @@ scopeLCDSkin = defaultPaths[SCOPE_LCDSKIN][0]
 scopeFonts = defaultPaths[SCOPE_FONTS][0]
 scopePlugins = defaultPaths[SCOPE_PLUGINS][0]
 
+pluginBlacklist = set()
+
 
 def InitDefaultPaths():
 	resolveFilename(SCOPE_CONFIG)
@@ -695,7 +697,19 @@ def mediaFilesInUse(session):
 	return set([file for file in files if not (filename and file == filename and files.count(filename) < 2)])
 
 
+def readPluginBlacklist():
+	pluginBlacklist.clear()
+	for filename in (join(scopeConfig, "plugin_blacklist"), "/tmp/plugin_blacklist"):
+		pluginBlacklist.update(x.strip() for x in fileReadLines(filename, default=[], source=DEFAULT_MODULE_NAME) if x.strip())
+	return pluginBlacklist
+
+
+readPluginBlacklist()
+
+
 def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):
+	if pluginName in pluginBlacklist:
+		return False
 	types = ["Extensions", "SystemPlugins"]
 	if pluginType:
 		types = [pluginType]
