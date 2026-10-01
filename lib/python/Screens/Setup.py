@@ -176,6 +176,7 @@ class Setup(ConfigListScreen, Screen):
 		if config.usage.setupShowDefault.value:
 			spacer = "\n" if config.usage.setupShowDefault.value == "newline" else "  "
 			itemDefault = item.toDisplayString(item.default)
+			# TRANSLATORS: The second %s is a spacer.
 			itemDescription = _("%s%s(Default: %s)") % (itemDescription, spacer, itemDefault) if itemDescription and itemDescription != " " else _("Default: '%s'.") % itemDefault
 		return itemDescription
 

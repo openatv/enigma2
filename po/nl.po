@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
+"POT-Creation-Date: 2026-09-29 20:19+0000\n"
 "PO-Revision-Date: 2026-08-16 15:58+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -885,6 +885,10 @@ msgstr[0] "%d jaar"
 msgstr[1] "%d jaren"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr ""
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d core"
@@ -927,6 +931,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr ""
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1271,6 +1279,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr ""
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2071,9 +2083,6 @@ msgstr "Geselecteerde map aan bookmarks toevoegen"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Oorspronkelijke LINKS/RECHTS acties"
 
-msgid "Add more slots"
-msgstr ""
-
 msgid "Add new CCcam line"
 msgstr "Een nieuwe CCcam line toevoegen"
 
@@ -2082,6 +2091,9 @@ msgstr "Nieuwe NewCamd line toevoegen"
 
 msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
+
+msgid "Add or change additional slots"
+msgstr ""
 
 msgid "Add provider"
 msgstr "Provider toevoegen"
@@ -2163,6 +2175,9 @@ msgstr "Aanvullende motoropties geven de mogelijkheid de specifieke eigenschappe
 
 #, python-format
 msgid "Additional rotor cable from %s"
+msgstr ""
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2290,6 +2305,10 @@ msgstr "Alle zenders"
 
 msgid "All ages"
 msgstr "Alle leeftijden"
+
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr ""
 
 msgid "All events down"
 msgstr "Alle programma's omlaag"
@@ -2486,6 +2505,12 @@ msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Er is een poging gedaan om de TV-status te lezen. Wanneer dit niet mogelijk is door ontbrekende of niet correcte status meldingen zou de ontvanger onverwacht kunnen reageren. Aan de andere kant, zou deze daar door beter kunnen reageren op diverse situaties."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr ""
+
+msgid "An instant recording is already running on this service."
+msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "Er is een onbekende fout opgetreden!"
@@ -4057,6 +4082,9 @@ msgstr "Verander herhalings- en vertragingsinstellingen?"
 msgid "Change skin"
 msgstr "Wijzig skin"
 
+msgid "Change slots"
+msgstr ""
+
 msgid "Change step size"
 msgstr "Wijzig stapgrootte"
 
@@ -4666,6 +4694,9 @@ msgstr "Common Interface-instellingen"
 
 msgid "Common Setup Actions"
 msgstr "Algemene keuzes"
+
+msgid "Common settings"
+msgstr ""
 
 msgid "Comoros"
 msgstr "Comoren"
@@ -5482,10 +5513,6 @@ msgid "Could not open the file %s!"
 msgstr "Kon het bestand %s niet openen!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "Kon niet opnemen vanwege conflicterende timer %s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "Kon niet opnemen vanwege een ongeldige service %s"
 
@@ -5871,6 +5898,9 @@ msgstr ""
 msgid "DAB+ service information for '%s'"
 msgstr ""
 
+msgid "DAB+ signal detected; waiting for FIC service data..."
+msgstr ""
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5892,7 +5922,7 @@ msgstr ""
 msgid "DNS data source"
 msgstr "DNS gegevensbron"
 
-msgid "DNS override"
+msgid "Override DNS"
 msgstr ""
 
 msgid "DNS protocol mode"
@@ -6845,6 +6875,14 @@ msgstr "De MultBoot-optie deactiveren"
 
 msgid "Disable timer"
 msgstr "Timer uitschakelen"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Gedeactiveerd"
@@ -11487,6 +11525,10 @@ msgstr "Begrens debug logs op (MB)"
 msgid "Limit east"
 msgstr "Limiet oost"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr ""
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Indien geactiveerd beperkt u het aantal karakters wat gebruikt wordt voor de namen van de opnames (7 bit ascii). Dit zorgt ervoor dat de compatibiliteit tussen besturings-systemen of bestandssystemen met een beperkte tekenset gewaarborgd is."
 
@@ -11934,6 +11976,9 @@ msgstr "De geselecteerde %s beheren"
 msgid "Manage the highlighted %s / list of %s"
 msgstr "De geselecteerde %s / lijst van %s beheren"
 
+msgid "Manage timer conflicts"
+msgstr ""
+
 msgid "Manage your online update files"
 msgstr "Selecteer te overschrijven bestanden bij een update"
 
@@ -11957,6 +12002,15 @@ msgstr "Handmatige import vanaf de Fallback tuner"
 
 msgid "Manufacturer"
 msgstr "Fabrikant"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr ""
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr ""
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr ""
 
 msgid "Manx"
 msgstr "Manx-Gaelisch"
@@ -13220,6 +13274,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "Geen internetverbinding"
 
+msgid "No Internet connection available!"
+msgstr ""
+
 msgid "No Name"
 msgstr "Onbekend"
 
@@ -13237,6 +13294,9 @@ msgstr "Geen TS recorder beschikbaar"
 
 msgid "No active channel found."
 msgstr "Geen actieve zender gevonden."
+
+msgid "No additional slots have been planned."
+msgstr ""
 
 msgid "No age block"
 msgstr "Geen leeftijdsbeperking"
@@ -13418,6 +13478,9 @@ msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "Geen geschikt apparaat gevonden - Druk op OK"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr ""
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -14466,6 +14529,12 @@ msgstr "Prullenbak leegmaken"
 msgid "Permanently remove the MultiBoot files?"
 msgstr "De MultiBoot-bestanden definitief verwijderen?"
 
+msgid "Permanently wipe the highlighted slot"
+msgstr ""
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr ""
+
 msgid "Permissions"
 msgstr "Machtigingen"
 
@@ -14858,6 +14927,9 @@ msgstr "De beschikbare talen worden opgeruimd. Een moment geduld..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Een ogenblik geduld, zoeken is bezig..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr ""
+
 msgid "Please wait while the data is extracted..."
 msgstr "De gegevens worden uitgepakt, even geduld..."
 
@@ -14885,6 +14957,9 @@ msgstr "Plugin wordt vervangen. Even geduld..."
 
 msgid "Please wait while the plugin is updated."
 msgstr "Plugin wordt geactualiseerd. Even geduld..."
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Een ogenblik geduld, geïnstalleerde plugins worden gecontroleerd..."
@@ -15150,6 +15225,12 @@ msgstr "Peuters"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Druk '0' om de PiP modus te wisselen"
 
+msgid "Press BLUE to add more slots."
+msgstr ""
+
+msgid "Press BLUE to change the additional slots."
+msgstr ""
+
 msgid "Press EXIT to close."
 msgstr "Druk op EXIT om af te sluiten."
 
@@ -15238,12 +15319,10 @@ msgstr "Druk op OK om deze taal te gebruiken.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Druk op OK om deze locale te gebruiken.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
 msgstr ""
-"Druk op OMHOOG/OMLAAG knoppen om een slot te selecteren en druk OK of GROEN om opnieuw te starten naar dat image. Wanneer beschikbaar, kan met GEEL het image worden \"verwijderd\" of \"gewist\".\n"
-"Een \"verwijderde\" image kan hersteld worden met de BLAUWE-knop. Een \"gewiste\" image is compleet verwijderd en kan NIET hersteld worden!"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15486,6 +15565,9 @@ msgstr "Alles verwijderen behalve de huidige en permanente talen. Installeer de 
 
 msgid "Purging all unused locales/languages..."
 msgstr "Verwijderd nu alle niet gebruikte talen..."
+
+msgid "Purging unused locales/languages..."
+msgstr ""
 
 msgid "Purple"
 msgstr "Paars"
@@ -15884,10 +15966,6 @@ msgstr "Opname begonnen! Timeshift stopt nu ..."
 msgid "Recording stopped"
 msgstr "Opname is gestopt"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Opnametijd beperkt vanwege conflicterende timer %s"
-
 msgid "Recording tuning failed"
 msgstr "Opname instelling fout"
 
@@ -16193,6 +16271,9 @@ msgstr "De momenteel geselecteerde titel verwijderen"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Verwijder geselecteerde map van bookmarks"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr "Zender uit AutoCam verwijderen"
@@ -18486,6 +18567,10 @@ msgid "Select/Zap to the selected service"
 msgstr "Ga naar het geselecteerde zender"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr ""
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19717,6 +19802,9 @@ msgstr "Toon een melding indien de import niet geslaagd is"
 msgid "Show notification when import channels was successful"
 msgstr "Toon een melding indien de import geslaagd is"
 
+msgid "Show or hide empty slots"
+msgstr ""
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Toon of verberg de uitgebreide beschrijving (skin afhankelijk)."
 
@@ -20692,6 +20780,12 @@ msgstr "Start vanaf het begin"
 msgid "Start instant recording"
 msgstr "Start een directe opname"
 
+msgid "Start instant recording and set duration"
+msgstr ""
+
+msgid "Start instant recording and set end time"
+msgstr ""
+
 msgid "Start instant recording?"
 msgstr "Een directe opname starten?"
 
@@ -20858,6 +20952,10 @@ msgstr "Stop opname en wis deze"
 
 msgid "Stop recording now"
 msgstr "Stop de opname nu"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Stop zender bij terugkeren naar opname lijst"
@@ -21770,6 +21868,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Het commando voor opstarten uit standby zal meerdere keren verstuurd worden."
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21827,6 +21929,23 @@ msgstr "De hoogte van het beeld. De invoer wordt aangepast aan deze waarde."
 msgid "The loopthrough setting is wrong."
 msgstr "De loopthrough instelling is verkeerd."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr ""
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr ""
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "De map voor de Picons bestaat al en moet verwijderd worden. Dit nu uitvoeren?"
 
@@ -21836,6 +21955,12 @@ msgstr ""
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Dit zal ongeveer %d minuten duren."
+
+msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr ""
 
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
@@ -21847,6 +21972,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "De resultaten zijn bewaard op %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "De opgeslagen pincode is verwijderd."
 
@@ -21856,6 +21984,12 @@ msgid ""
 msgstr ""
 "De geselecteerde zender ondersteunt geen VPS voor handmatige timers!\n"
 "Wilt u VPS echt inschakelen?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr ""
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
 
 msgid "The service list is reloaded."
 msgstr "De zenderlijst is opnieuw geladen."
@@ -22255,6 +22389,9 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr ""
 "Hiermee stelt u de beeldscherpte in als het beeld moet worden opgeschaald.\n"
 "(Default: 0)"
+
+msgid "This recording has already ended."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Deze zender is beveiligd met een PIN-code (kinderslot)!"
@@ -23077,6 +23214,12 @@ msgstr "Oekraïne"
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr ""
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr ""
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr ""
@@ -23092,7 +23235,17 @@ msgstr "Kan Kexec MultiBoot niet initialiseren!"
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr ""
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
+msgid "Unable to remove the obsolete additional STARTUP files."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24551,7 +24704,7 @@ msgstr "Wanneer de invoercursor dit punt bereikt (percentage van de breedte, van
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Wanneer de ontvanger ontwaakt uit stand-by of deep standby zal die een commando sturen waardoor de TV ook ontwaakt uit stand-by."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -25775,6 +25928,19 @@ msgstr "ja (bewaar feeds)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "Kon niet opnemen vanwege conflicterende timer %s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "Opnametijd beperkt vanwege conflicterende timer %s"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr ""
+#~ "Druk op OMHOOG/OMLAAG knoppen om een slot te selecteren en druk OK of GROEN om opnieuw te starten naar dat image. Wanneer beschikbaar, kan met GEEL het image worden \"verwijderd\" of \"gewist\".\n"
+#~ "Een \"verwijderde\" image kan hersteld worden met de BLAUWE-knop. Een \"gewiste\" image is compleet verwijderd en kan NIET hersteld worden!"
+
 #~ msgid "Do you want the upgrade guide?"
 #~ msgstr "Wil je de upgrade-handleiding zien?"
 
@@ -25935,8 +26101,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "DVD speler"
 
-msgid "Common Settings"
-msgstr "Algemene instellingen"
+#~ msgid "Common Settings"
+#~ msgstr "Algemene instellingen"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

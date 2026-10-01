@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-13 06:40+0000\n"
+"POT-Creation-Date: 2026-09-29 20:19+0000\n"
+"PO-Revision-Date: 2026-09-30 21:51+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -885,6 +885,10 @@ msgstr[0] "%d anno"
 msgstr[1] "%d anni"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr "%d slot aggiuntivi sono stati creati.\n"
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d core"
@@ -927,6 +931,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d rete trovata."
 msgstr[1] "%d reti trovate."
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr "%d file STARTUP del produttore obsoleti verranno sostituiti o rimossi."
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1274,6 +1282,10 @@ msgstr "%s. (più basso)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr "%s: impossibile svuotare il bouquet"
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2070,9 +2082,6 @@ msgstr "Aggiungi cartella selezionata ai segnalibri"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Aggiungi azioni SIN/DES compatibili"
 
-msgid "Add more slots"
-msgstr "Aggiungi altri slot"
-
 msgid "Add new CCcam line"
 msgstr "Aggiungi nuova linea CCcam"
 
@@ -2081,6 +2090,9 @@ msgstr "Aggiungi nuova linea NewCamd"
 
 msgid "Add new tag"
 msgstr "Aggiungi nuovo tag"
+
+msgid "Add or change additional slots"
+msgstr "Aggiungi o modifica slot aggiuntivi"
 
 msgid "Add provider"
 msgstr "Aggiungi provider"
@@ -2163,6 +2175,9 @@ msgstr "Ulteriori opzioni del motore ti consentono di inserire i dettagli dalla 
 #, python-format
 msgid "Additional rotor cable from %s"
 msgstr "Cavo del rotore aggiuntivo da %s"
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
+msgstr "Gli slot aggiuntivi non possono essere modificati mentre il ricevitore sta funzionando da uno di essi."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Regola le impostazioni del colore in modo che tutte le sfumature di colore siano distinguibili, ma appaiano il più saturate possibile. Se sei soddisfatto del risultato, premi OK per chiudere la regolazione fine del video, oppure usa i tasti numerici per selezionare altre schermate di prova."
@@ -2289,6 +2304,10 @@ msgstr "Tutti i servizi"
 
 msgid "All ages"
 msgstr "Tutte le età"
+
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr "Tutti i dati sul dispositivo selezionato verranno cancellati. Creare una partizione dati condivisa con %d slot MultiBoot aggiuntivi, una partizione di swap da 512 MiB e il kernel dello slot interno 1?"
 
 msgid "All events down"
 msgstr "tutti gli eventi giù"
@@ -2485,6 +2504,12 @@ msgstr "È stato rilevato un ricevitore RTL-SDR. Il runtime USB opzionale per DA
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Viene effettuato un tentativo di acquisire lo stato TV attuale. Se non è possibile a causa di messaggi di stato errati o mancanti, il ricevitore potrebbe rispondere in modo imprevisto. D'altra parte, cerca di rispondere meglio alle diverse condizioni operative."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr "Un timer esistente registra già questo servizio nell'orario richiesto."
+
+msgid "An instant recording is already running on this service."
+msgstr "Una registrazione istantanea è già in corso su questo servizio."
 
 msgid "An unknown error occurred!"
 msgstr "Si è verificato un errore sconosciuto!"
@@ -4055,6 +4080,9 @@ msgstr "Cambiare impostazioni di ripetizione e ritardo?"
 msgid "Change skin"
 msgstr "Cambia skin"
 
+msgid "Change slots"
+msgstr "Modifica slot"
+
 msgid "Change step size"
 msgstr "Cambia dimensioni passo"
 
@@ -4659,6 +4687,9 @@ msgstr "Impostazioni Common Interface"
 
 msgid "Common Setup Actions"
 msgstr "Azioni di configurazione comuni"
+
+msgid "Common settings"
+msgstr "Impostazioni comuni"
 
 msgid "Comoros"
 msgstr "Comore"
@@ -5379,10 +5410,6 @@ msgid "Could not open the file %s!"
 msgstr "Impossibile aprire il file %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "Impossibile registrare a causa di un conflitto tra timer %s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "Impossibile registrare a causa di un servizio non valido %s"
 
@@ -5774,6 +5801,9 @@ msgstr "Scansione DAB+ non riuscita; i bouquet esistenti sono stati mantenuti."
 msgid "DAB+ service information for '%s'"
 msgstr "Informazioni sul servizio DAB+ per '%s'"
 
+msgid "DAB+ signal detected; waiting for FIC service data..."
+msgstr "Segnale DAB+ rilevato; attesa dei dati di servizio FIC..."
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -5795,7 +5825,7 @@ msgstr "Azioni impostazioni DNS"
 msgid "DNS data source"
 msgstr "Sorgente dati DNS"
 
-msgid "DNS override"
+msgid "Override DNS"
 msgstr "Sovrascrittura DNS"
 
 msgid "DNS protocol mode"
@@ -6740,6 +6770,14 @@ msgstr "Disabilita opzione MultiBoot"
 
 msgid "Disable timer"
 msgstr "Disabilita timer"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr "Disabilitare il timer '%s'?"
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr "Disabilita timer: '%s'"
 
 msgid "Disabled"
 msgstr "Disabilitato"
@@ -11363,6 +11401,10 @@ msgstr "Limita dimensione del registro di debug (MB)"
 msgid "Limit east"
 msgstr "Limite est"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr "Limita la registrazione istantanea fino alle %s"
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Limita i caratteri che possono essere usati nella registrazione dei nomi di file a (7 bit) ASCII. Garantisce la compatibilità con sistemi operativi o file system con set di caratteri limitati."
 
@@ -11810,6 +11852,9 @@ msgstr "Gestisci %s evidenziati"
 msgid "Manage the highlighted %s / list of %s"
 msgstr "Gestisci %s evidenziati o elenco di %s"
 
+msgid "Manage timer conflicts"
+msgstr "Gestisci conflitti timer"
+
 msgid "Manage your online update files"
 msgstr "Gestisci file di aggiornamento in linea"
 
@@ -11833,6 +11878,15 @@ msgstr "Importa manualmente dal tuner di fallback"
 
 msgid "Manufacturer"
 msgstr "Produttore"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr "Lo slot 1 del produttore non fornisce file STARTUP adatti."
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr "Lo slot 1 del produttore non ha un comando STARTUP usabile con un dispositivo kernel."
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr "Lo slot 1 del produttore non è stato trovato e non può essere usato come modello kernel condiviso."
 
 msgid "Manx"
 msgstr "Mannese"
@@ -13103,6 +13157,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "Nessuna connessione Internet"
 
+msgid "No Internet connection available!"
+msgstr "Nessuna connessione Internet disponibile!"
+
 msgid "No Name"
 msgstr "Nessun nome"
 
@@ -13120,6 +13177,9 @@ msgstr "Nessun registratore TS disponibile"
 
 msgid "No active channel found."
 msgstr "Nessun canale attivo trovato."
+
+msgid "No additional slots have been planned."
+msgstr "Non è stato pianificato alcuno slot aggiuntivo."
 
 msgid "No age block"
 msgstr "Nessun blocco d'età"
@@ -13301,6 +13361,9 @@ msgstr "Nessun feed DAB+ valido configurato. Controlla /etc/enigma2/dab.xml."
 
 msgid "No valid device detected - Press OK"
 msgstr "Nessun dispositivo valido rilevato - Premi OK"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr "Non è stato trovato alcuno slot MultiBoot del produttore valido."
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -14346,6 +14409,12 @@ msgstr "Rimuovi definitivamente tutti gli elementi eliminati"
 msgid "Permanently remove the MultiBoot files?"
 msgstr "Rimuovere definitivamente i file MultiBoot?"
 
+msgid "Permanently wipe the highlighted slot"
+msgstr "Cancella definitivamente lo slot evidenziato"
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr "Cancellare definitivamente questo slot? Tutti i file nello slot verranno eliminati e non potranno essere ripristinati."
+
 msgid "Permissions"
 msgstr "Autorizzazioni"
 
@@ -14737,6 +14806,9 @@ msgstr "Attendi rimozione completa delle localizzazioni/lingue..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Attendi mentre la scansione è in corso..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr "Attendi mentre viene verificata la connessione Internet..."
+
 msgid "Please wait while the data is extracted..."
 msgstr "Attendi estrazione dei dati..."
 
@@ -14764,6 +14836,9 @@ msgstr "Attendi mentre il plugin viene sostituito."
 
 msgid "Please wait while the plugin is updated."
 msgstr "Attendi mentre il plugin viene aggiornato."
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr "Attendi mentre vengono eliminate le lingue/localizzazioni non usate..."
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Attendi mentre controllo i plugin installati..."
@@ -15029,6 +15104,12 @@ msgstr "Scuola materna"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Premere '0' per attivare la modalità PiP"
 
+msgid "Press BLUE to add more slots."
+msgstr "Premi BLU per aggiungere altri slot."
+
+msgid "Press BLUE to change the additional slots."
+msgstr "Premi BLU per modificare gli slot aggiuntivi."
+
 msgid "Press EXIT to close."
 msgstr "Premi ESCI per chiudere."
 
@@ -15115,11 +15196,11 @@ msgstr "Premi OK per usare questa lingua. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Premi OK per usare queste impostazioni locali.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "Premi i tasti SU/GIÙ per selezionare uno slot e premere OK o VERDE per riavviare l'immagine. Se disponibile, GIALLO eliminerà o cancellerà definitivamente l'immagine. Un'immagine eliminata può essere ripristinata con il tasto BLU. Un'immagine cancellata definitivamente viene completamente rimossa e non può essere ripristinata!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr "Premi i pulsanti SU/GIÙ per selezionare uno slot e premi OK o VERDE per riavviare su quello slot. Premi GIALLO per eliminare l'immagine selezionata o tieni premuto GIALLO per cancellarla definitivamente. Un'immagine eliminata può essere ripristinata con BLU, ma un'immagine cancellata definitivamente no. Premi INFO per mostrare o nascondere gli slot vuoti."
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
-msgstr "Premi i pulsanti SU/GIÙ per selezionare uno slot, quindi premi OK o VERDE per riavviare in quell'immagine. Se disponibile, il GIALLO disabiliterà il Multiboot, eliminerà o cancellerà l'immagine selezionata. Premi BLU per aggiungere altri slot."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
+msgstr "Premi i pulsanti SU/GIÙ per selezionare uno slot, poi premi OK o VERDE per riavviare in quello slot. Se disponibile, GIALLO disabiliterà MultiBoot, eliminerà o cancellerà lo slot selezionato."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Premendo questo tasto si simula una pressione lunga del tasto premuto successivamente (questo sovrascrive ogni altra azione assegnata al tasto)."
@@ -15361,6 +15442,9 @@ msgstr "Elimina tutte le lingue tranne le regioni linguistiche attuali e permane
 
 msgid "Purging all unused locales/languages..."
 msgstr "Eliminazione di tutte le impostazioni di localizzazione/lingua inusate..."
+
+msgid "Purging unused locales/languages..."
+msgstr "Eliminazione delle lingue/localizzazioni non usate..."
 
 msgid "Purple"
 msgstr "viola"
@@ -15759,10 +15843,6 @@ msgstr "Registrazione iniziata! Arresto timeshift ora..."
 msgid "Recording stopped"
 msgstr "Registrazione interrotta"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Tempo di registrazione limitato a causa di un conflitto tra timer %s"
-
 msgid "Recording tuning failed"
 msgstr "Errore di sintonizzazione della registrazione"
 
@@ -16068,6 +16148,9 @@ msgstr "Rimuovi titolo attualmente selezionato"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Rimuovi cartella evidenziata dai segnalibri"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr "Rimuove i servizi memorizzati in precedenza dai multiplex DAB+ scansionati. Disabilita questa opzione per conservare i servizi quando un multiplex è temporaneamente non disponibile."
 
 msgid "Remove service from AutoCam"
 msgstr "Rimuovi servizio da AutoCam"
@@ -18343,6 +18426,10 @@ msgid "Select/Zap to the selected service"
 msgstr "Seleziona/Zap al servizio selezionato"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr "Dispositivo selezionato: %s"
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19558,6 +19645,9 @@ msgstr "Mostra una notifica quando i canali di importazione non sono stati compl
 msgid "Show notification when import channels was successful"
 msgstr "Mostra una notifica quando i canali di importazione sono stati completati"
 
+msgid "Show or hide empty slots"
+msgstr "Mostra o nascondi slot vuoti"
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Mostra o nascondi la descrizione estesa (dipende dalla skin)."
 
@@ -20529,6 +20619,12 @@ msgstr "Avvio dall'inizio"
 msgid "Start instant recording"
 msgstr "Avvia la registrazione istantanea"
 
+msgid "Start instant recording and set duration"
+msgstr "Avvia la registrazione istantanea e imposta la durata"
+
+msgid "Start instant recording and set end time"
+msgstr "Avvia la registrazione istantanea e imposta l'ora di fine"
+
 msgid "Start instant recording?"
 msgstr "Avviare registrazione istantanea?"
 
@@ -20695,6 +20791,10 @@ msgstr "Ferma registrazione ed elimina"
 
 msgid "Stop recording now"
 msgstr "Ferma registrazione adesso"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr "Ferma registrazione: '%s'"
 
 msgid "Stop service on return to movie list"
 msgstr "Ferma servizio al ritorno all'elenco registrazioni"
@@ -21607,6 +21707,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Il comando di riattivazione dalla modalità standby verrà inviato più volte."
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr "Il punto di mount personalizzato per '%s' è vuoto!"
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21664,6 +21768,23 @@ msgstr "L'altezza dell'immagine. Quella di input sarà ridimensionata per raggiu
 msgid "The loopthrough setting is wrong."
 msgstr "Configurazione 'in cascata da' errata."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr "Il dispositivo STARTUP del produttore non può essere montato per l'ispezione."
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr "Il dispositivo STARTUP del produttore non è montato. I file STARTUP non sono stati modificati."
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr "Il dispositivo STARTUP del produttore non è stato trovato."
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr "Il file STARTUP del produttore '%s'è cambiato. Riavvia l'interfaccia utente e riprova."
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr "Il nome file STARTUP del produttore '%s' non può essere esteso in modo sicuro."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "La cartella dei picon esiste già e deve essere rimossa. Vuoi procedere?"
 
@@ -21673,6 +21794,12 @@ msgstr "Il sintonizzatore del posizionatore non è attualmente disponibile. Inte
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Il completamento del processo richiederà circa %d minuti."
+
+msgid "The recording end time has already passed."
+msgstr "L'ora di fine registrazione è già trascorsa."
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr "La registrazione richiesta è in conflitto con altri timer. Cosa vuoi fare?"
 
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
@@ -21687,6 +21814,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "Risultati salvati su %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr "La sottocartella radice nel file STARTUP del produttore non può essere estesa in modo sicuro."
+
 msgid "The saved PIN was cleared."
 msgstr "Il codice PIN salvato è stato cancellato."
 
@@ -21696,6 +21826,12 @@ msgid ""
 msgstr ""
 "Questo canale non supporta la funzione VPS per i timer programmati manualmente.\n"
 "Abilitare comunque VPS?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr "Il dispositivo selezionato non è un dispositivo a blocchi rimovibile supportato."
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr "Il dispositivo selezionato è troppo piccolo. Sono richiesti almeno 2561 MiB."
 
 msgid "The service list is reloaded."
 msgstr "L'elenco dei servizi viene ricaricato."
@@ -22057,6 +22193,9 @@ msgstr "Questa opzione imposta la soppressione di contorni digitali falsi, che s
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Questa opzione imposta la nitidezza dell'immagine, usato quando l'immagine è in fase upscaling."
+
+msgid "This recording has already ended."
+msgstr "Questa registrazione è già terminata."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Questo servizio è protetto dal PIN del controllo genitori!"
@@ -22879,6 +23018,12 @@ msgstr "Ucraina"
 msgid "Ukrainian"
 msgstr "Ucraino"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr "Impossibile creare i file STARTUP aggiuntivi."
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr "Impossibile creare i nuovi file STARTUP del produttore."
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr "Impossibile ereditare la User Band per LNB %d: %s."
@@ -22894,8 +23039,18 @@ msgstr "Impossibile inizializzare Kexec MultiBoot!"
 msgid "Unable to open tuner (%d)"
 msgstr "Impossibile aprire il tuner (%d)"
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr "Impossibile leggere l'UUID della nuova partizione MultiBoot. I file STARTUP non sono stati modificati."
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr "Impossibile leggere il file STARTUP del produttore '%s'."
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "Impossibile registrare il transponder DAB+"
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr "Impossibile rimuovere i file STARTUP aggiuntivi obsoleti."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Impossibile avviare il feed DAB+"
@@ -24336,8 +24491,8 @@ msgstr "Se il cursore di input raggiunge questo punto (percentuale della larghez
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Se il ricevitore si riattiva dallo standby o dallo spegnimento, invierà un comando alla TV per portarla fuori dallo standby."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr "Quando il ricevitore si riattiva dalla modalità Standby, invia i comandi di sorgente attiva, percorso di streaming e routing per sintonizzare la TV sull'ingresso HDMI collegato al ricevitore."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
+msgstr "Quando il ricevitore si riattiva dallo standby, lo annuncia come sorgente attiva in modo che la TV passi all'ingresso HDMI collegato."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Quando il riquadro rosso è visibile correttamente premi il tasto VERDE per salvare le impostazioni ed uscire."
@@ -25556,6 +25711,26 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "Impossibile registrare a causa di un conflitto tra timer %s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "Tempo di registrazione limitato a causa di un conflitto tra timer %s"
+
+#~ msgid "Add more slots"
+#~ msgstr "Aggiungi altri slot"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr "Premi i tasti SU/GIÙ per selezionare uno slot e premere OK o VERDE per riavviare l'immagine. Se disponibile, GIALLO eliminerà o cancellerà definitivamente l'immagine. Un'immagine eliminata può essere ripristinata con il tasto BLU. Un'immagine cancellata definitivamente viene completamente rimossa e non può essere ripristinata!"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+#~ msgstr "Premi i pulsanti SU/GIÙ per selezionare uno slot, quindi premi OK o VERDE per riavviare in quell'immagine. Se disponibile, il GIALLO disabiliterà il Multiboot, eliminerà o cancellerà l'immagine selezionata. Premi BLU per aggiungere altri slot."
+
+#~ msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+#~ msgstr "Quando il ricevitore si riattiva dalla modalità Standby, invia i comandi di sorgente attiva, percorso di streaming e routing per sintonizzare la TV sull'ingresso HDMI collegato al ricevitore."
+
+#, python-format
 #~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
 #~ msgstr "%d di %d feed completati; i bouquet dei feed non riusciti sono stati mantenuti"
 
@@ -25786,8 +25961,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Commutazione ingresso C/T: interruttore coassiale esterno da 5 V"
 
-msgid "Common Settings"
-msgstr "Impostazioni comuni"
+#~ msgid "Common Settings"
+#~ msgstr "Impostazioni comuni"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB-C e DVB-T/T2 condividono questo ingresso. Quando entrambi sono abilitati, Enigma2 utilizza 5V per controllare lo switch coassiale esterno."

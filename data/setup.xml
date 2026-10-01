@@ -673,7 +673,7 @@
 				</if>
 			</if>
 			<item level="1" text="Network metric" description="Select the network metric for this adapter. When multiple adapters are active, the one with the lowest network metric is used as the default route for network traffic." conditional="self.hasMetric">self.cfgMetric</item> 
-			<item level="1" text="DNS override" description="When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings.">self.cfgDNSOverride</item>
+			<item level="1" text="Override DNS" description="When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings.">self.cfgDNSOverride</item>
 			<if conditional="self.cfgDNSOverride.value">
 				<if conditional="self.cfgIpMode.value != 1">
 					<item level="0" text="Primary DNS (IPv4)" description="Enter the primary IPv4 DNS server for this adapter.">self.cfgDNS1v4</item>
