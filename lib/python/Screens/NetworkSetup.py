@@ -21,7 +21,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Screens.Toast import Toast
 from Tools.Conversions import formatNetworkSpeed
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 from Tools.ServiceAction import ServiceAction
@@ -1882,10 +1881,10 @@ class DNSSettings(Setup):
 					if value:
 						servers.append(value)
 		networkManager.setNameservers(servers)
-		if not networkManager.save():
-			Toast.instance.showToast(text=_("Unable to save network configuration!"), toasttype=Toast.TYPE_ERROR, timeout=5)
-			return
-		Setup.keySave(self)
+		if networkManager.save():
+			Setup.keySave(self)
+		else:
+			self.session.showError(_("Unable to save network configuration!"))
 
 	def writeDnsCryptToml(self):  # DNSCrypt TOML helpers.
 		def replaceKeyLine(line, key, value, foundSet):
