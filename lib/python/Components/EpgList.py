@@ -361,7 +361,7 @@ class EPGListGrid(EPGListBase):
         self.cur_service = None
         self.offs = 0
         self.time_base = None
-        self.time_epoch = time_epoch
+        self.time_epoch = int(time_epoch)
         self.select_rect = None
         self.event_rect = None
         self.service_rect = None
@@ -930,7 +930,7 @@ class EPGListGrid(EPGListBase):
 
         if self.showServiceTitle or displayPicon is None:
             namefont = 0
-            namefontflag = int(self.epgConfig.servicename_alignment.value)
+            namefontflag = int(config.epgselection.grid.servicename_alignment.value)
             namewidth = r1.w - channelWidth - piconWidth
             res.append(MultiContentEntryText(
                 pos=(r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding
@@ -1070,7 +1070,7 @@ class EPGListGrid(EPGListBase):
                 else:
                     res.append(MultiContentEntryText(
                         pos=(evX, evY), size=(evW, evH),
-                        font=1, flags=int(self.epgConfig.event_alignment.value),
+                        font=1, flags=int(config.epgselection.grid.event_alignment.value),
                         text=ev[1],
                         color=foreColor, color_sel=foreColorSel,
                         backcolor=backColor, backcolor_sel=backColorSel))
@@ -1087,7 +1087,7 @@ class EPGListGrid(EPGListBase):
                             pos=pos, size=size, png=pixmap, flags=BT_SCALE))
 
                 # Recording icon.
-                rec_icon_height_cfg = self.epgConfig.rec_icon_height.value
+                rec_icon_height_cfg = config.epgselection.grid.rec_icon_height.value
                 if ewidth > 23 and rec_icon_height_cfg != "hide":
                     if rec_icon_height_cfg == "middle":
                         RecIconY = top + height // 2 - self.posy

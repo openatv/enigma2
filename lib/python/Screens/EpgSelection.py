@@ -144,7 +144,11 @@ class EPGSelectionBase(Screen, HelpableScreen):
 
         # epgConfig is the config subsection for this EPG type, e.g. config.epgselection.grid
         self.epgConfig = epgConfig
-        self.bouquets = bouquets
+        from Screens.InfoBar import InfoBar
+        servicelist = InfoBar.instance.servicelist if InfoBar.instance else None
+        if startBouquet is None and servicelist:
+            startBouquet = servicelist.getRoot()
+        self.bouquets = bouquets or self.getDefaultBouquets(servicelist, startBouquet)
         self.startBouquet = startBouquet
         self.startRef = startRef
 
@@ -225,6 +229,16 @@ class EPGSelectionBase(Screen, HelpableScreen):
 
         # Defer actual list population until the screen layout is complete.
         self.onLayoutFinish.append(self.onCreate)
+
+    def addEpgActions(self, actions):
+        for action, response in actions.items():
+            self["epgactions"].addAction(self, "EPGSelectActions", action, response)
+
+    def getDefaultBouquets(self, servicelist, startBouquet):
+        bouquets = servicelist.getBouquetList() if servicelist else None
+        if not bouquets and startBouquet:
+            bouquets = [(ServiceReference(startBouquet).getServiceName(), startBouquet)]
+        return bouquets or []
 
     # ------------------------------------------------------------------
     # Navigation — delegate to the list widget. Concrete classes extend
@@ -883,7 +897,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         }
         # Graph and infobargraph treat channelup/down as 24-hour jumps.
         if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
-            dispatch = dict(common, forward24Hours=self.nextService, back24Hours=self.prevService)
+            dispatch = dict(common, forward24Hours=lambda: self.updEvent(+24), back24Hours=lambda: self.updEvent(-24))
         elif self.type == EPG_TYPE_VERTICAL:
             dispatch = dict(common, forward24Hours=self.setPlus24h, back24Hours=self.setMinus24h)
         else:
@@ -1397,7 +1411,9 @@ class EPGBouquetSelection:
         self.onClose.append(self.__onClose)
 
         # browse_mode "lastepgservice": restore the last EPG position on reopen.
-        if self.epgConfig.browse_mode.value == "lastepgservice":
+        browseMode = getattr(self.epgConfig, "browse_mode", None)
+        self.restoreLastService = browseMode is not None and browseMode.value == "lastepgservice"
+        if self.restoreLastService:
             if (EPGBouquetSelection.lastPlaying and self.startRef
                     and EPGBouquetSelection.lastBouquet
                     and EPGBouquetSelection.lastPlaying == self.startRef):
@@ -1407,7 +1423,7 @@ class EPGBouquetSelection:
 
     def __onClose(self):
         EPGSelectionBase.onSelectionChanged(self)
-        if self.epgConfig.browse_mode.value == "lastepgservice":
+        if self.restoreLastService:
             EPGBouquetSelection.lastBouquet = self.getCurrentBouquet()
             EPGBouquetSelection.lastService = self.getCurrentService()
 
@@ -1765,7 +1781,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
         graphicControl = Label if parameters.get("EPGNativeControls", 0) else Pixmap
 
         # Timeline text widget labels the time axis above the event grid.
-        self["timeline_text"] = TimelineText(epg_type=EPG_TYPE_GRAPH, graphic=graphic)
+        self["timeline_text"] = TimelineText(epgType=EPG_TYPE_GRAPH, graphic=graphic)
         self["timeline_now"] = graphicControl()
 
         # Pixmap slots for vertical "now" and interval tick markers.
@@ -1797,7 +1813,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
             "0": (lambda: self._numberKeyPressed(0), _("Go to first channel")),
         }, prio=-1, description=_("Graph EPG navigation"))
 
-        self["epgactions"].update({
+        self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Single EPG")),
             "menu": (self.createMenu, _("Menu")),
@@ -2046,7 +2062,7 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
         # timeline graphics, e.g. to apply icon-font glyphs.
         graphicControl = Label if parameters.get("EPGNativeControls", 0) else Pixmap
 
-        self["timeline_text"] = TimelineText(epg_type=EPG_TYPE_INFOBARGRAPH, graphic=graphic)
+        self["timeline_text"] = TimelineText(epgType=EPG_TYPE_INFOBARGRAPH, graphic=graphic)
         self["timeline_now"] = graphicControl()
 
         self.time_lines = []
@@ -2073,7 +2089,7 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
             "0": (lambda: self._numberKeyPressed(0), _("Go to first channel")),
         }, prio=-1, description=_("Infobar graph EPG navigation"))
 
-        self["epgactions"].update({
+        self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Single EPG")),
             "menu": (self.createMenu, _("Menu")),
@@ -2251,7 +2267,7 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
         self["list"] = EPGListSingle(session, config.epgselection.infobar,
                                      EPG_TYPE_INFOBAR, self.onSelectionChanged)
 
-        self["epgactions"].update({
+        self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Single EPG")),
             "menu": (self.createMenu, _("Menu")),
@@ -2326,7 +2342,7 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
         for key in ("now_text", "next_text", "more_text", "date"):
             self[key] = Label()
 
-        self["epgactions"].update({
+        self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Single EPG")),
             "menu": (self.createMenu, _("Menu")),
@@ -2446,13 +2462,13 @@ class EPGSelectionSimilar(EPGSelectionBase, EPGServiceZap, EPGStandardButtons):
         self.eventid = eventid
 
         # No bouquets for similar EPG — pass empty/None values.
-        EPGSelectionBase.__init__(self, session, None, None, None, None)
+        EPGSelectionBase.__init__(self, session, config.epgselection.single, None, None, None)
         EPGServiceZap.__init__(self, zapFunc)
 
-        self["list"] = EPGListSingle(session, None,
+        self["list"] = EPGListSingle(session, config.epgselection.single,
                                      EPG_TYPE_SIMILAR, self.onSelectionChanged)
 
-        self["epgactions"].update({
+        self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Event info")),
             "channelUp": (self.prevPage, _("Page up")),
@@ -2510,7 +2526,7 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
                                      epgType, self.onSelectionChanged)
 
         # Add type-specific extra actions on top of the base epgactions map.
-        self["epgactions"].update({
+        self.addEpgActions({
             "epg": (self.epgButtonPressed, _("EPG")),
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Single EPG")),
@@ -2663,7 +2679,7 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
             "5": (lambda: self._numberKeyPressed(5), _("Set base time")),
         }, prio=-1, description=_("Vertical EPG navigation"))
 
-        self["epgactions"].update({
+        self.addEpgActions({
             "info": (self.Info, _("Event info")),
             "infolong": (self.InfoLong, _("Single EPG")),
             "menu": (self.createMenu, _("Menu")),
@@ -3277,9 +3293,10 @@ def EPGSelection(session, service=None, zapFunc=None, eventid=None,
     """
     if EPGtype is None and eventid is None and isinstance(service, eServiceReference):
         epgType = EPG_TYPE_SINGLE
-        StartRef = service
     else:
         epgType = _EPG_TYPE_STR.get(EPGtype, EPG_TYPE_SIMILAR)
+    if StartRef is None and isinstance(service, eServiceReference):
+        StartRef = service
     if epgType == EPG_TYPE_SIMILAR:
         return EPGSelectionSimilar(session, service, eventid, zapFunc)
     if epgType in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED):
