@@ -210,9 +210,10 @@ class EPGListBase(GUIComponent):
         if self.instance is not None:
             self.instance.moveSelection(direction)
 
-    def getSelectionPosition(self):
+    def getSelectionPosition(self, serviceref=None, activeList=None):
         # Returns (x, y) of the current selection within the screen.
         # x = right edge of the selection (used to position popup dialogs).
+        # The arguments are unused and kept for plugins like Partnerbox2.
         rowCount = max(self.listHeight // self.itemHeight, 1)
         index = self.l.getCurrentSelectionIndex() % rowCount
         position = self.instance.position()
@@ -2452,6 +2453,17 @@ class EPGListSingle(EPGListBase):
             if x[1] == eventId:
                 self.instance.moveSelectionTo(index)
                 break
+class EPGList(EPGListSingle):
+    """Old EPGList API for plugins like EPGSearch (single EPG only)."""
+
+    def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=False, graphic=False):
+        if type not in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_SIMILAR):
+            print(f"[EPGList] Warning: Type {type} is not supported, using single EPG.")
+            type = EPG_TYPE_SINGLE
+        from Screens.InfoBar import InfoBar
+        EPGListSingle.__init__(self, InfoBar.instance.session, config.epgselection.single, type, selChangedCB)
+
+
 # lib/python/Components/EpgListVertical.py
 #
 # New file (2026). EPG list renderer for vertical multi-day mode.

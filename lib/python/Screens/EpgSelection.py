@@ -2304,6 +2304,7 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
             return
         if not hasattr(sref, "ref"):
             sref = ServiceReference(sref)
+        self.currentService = sref  # Old attribute, used by plugins like SeriesPlugin.
         self["list"].fillSingleEPG(sref)
 
     def refreshlist(self):
@@ -2582,6 +2583,7 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
             return
         if not hasattr(sref, "ref"):
             sref = ServiceReference(sref)
+        self.currentService = sref  # Old attribute, used by plugins like SeriesPlugin.
         self["list"].fillSingleEPG(sref)
 
     def refreshlist(self):
@@ -3303,14 +3305,10 @@ _EPG_TYPE_STR = {
 }
 
 
-def EPGSelection(session, service=None, zapFunc=None, eventid=None,
-                 bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,
-                 StartBouquet=None, StartRef=None, bouquets=None):
-    """Drop-in replacement for the old EPGSelection screen class.
-
-    session.open() only needs a callable returning the screen instance, so
-    existing callers keep working unchanged.
-    """
+def createEPGSelection(session, service=None, zapFunc=None, eventid=None,
+                       bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None,
+                       StartBouquet=None, StartRef=None, bouquets=None):
+    """Returns the EPG screen matching the old EPGSelection arguments."""
     if EPGtype is None and eventid is None and isinstance(service, eServiceReference):
         epgType = EPG_TYPE_SINGLE
     else:
@@ -3330,3 +3328,79 @@ def EPGSelection(session, service=None, zapFunc=None, eventid=None,
     if epgType == EPG_TYPE_MULTI:
         return EPGSelectionMulti(session, zapFunc, StartBouquet, StartRef, bouquets)
     return EPGSelectionVertical(session, zapFunc, StartBouquet, StartRef, bouquets)
+
+
+class EPGSelectionMeta(type):
+    # Plugins like Partnerbox2 patch methods on EPGSelection; apply them to all EPG screens.
+    # __init__ and the compat overrides are not forwarded, their signatures differ.
+    def __init__(cls, name, bases, namespace):
+        super().__init__(name, bases, namespace)
+        type.__setattr__(cls, "compatNames", frozenset(namespace))
+
+    def __setattr__(cls, name, value):
+        forward = cls is EPGSelection and not name.startswith("__") and name not in cls.compatNames
+        type.__setattr__(cls, name, value)
+        if forward:
+            type.__setattr__(EPGSelectionBase, name, value)
+
+
+class EPGSelection(EPGSelectionSingle, metaclass=EPGSelectionMeta):
+    """Old EPGSelection API for plugins.
+
+    Calling EPGSelection returns the EPG screen matching the arguments.
+    Subclasses like AutoTimer or EPGSearch get a single or similar EPG.
+    """
+
+    activeList = ""  # EPGSearch does not call __init__.
+
+    def __new__(cls, session, *args, **kwargs):
+        if cls is EPGSelection:
+            return createEPGSelection(session, *args, **kwargs)
+        return EPGSelectionSingle.__new__(cls)
+
+    def __init__(self, session, service=None, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None, StartBouquet=None, StartRef=None, bouquets=None):
+        if isinstance(service, str):
+            service = eServiceReference(service)
+        elif not isinstance(service, eServiceReference):
+            service = None
+        EPGSelectionSingle.__init__(self, session, zapFunc, StartBouquet, StartRef or service, bouquets)
+        if EPGtype == "similar" or (EPGtype is None and eventid is not None):
+            self.type = EPG_TYPE_SIMILAR
+            self.currentService = ServiceReference(service)
+            self.eventid = eventid
+            self["list"] = EPGListSingle(session, config.epgselection.single, EPG_TYPE_SIMILAR, self.onSelectionChanged)
+
+    def onCreate(self):
+        if self.type == EPG_TYPE_SIMILAR:
+            EPGSelectionSimilar.onCreate(self)
+        else:
+            EPGSelectionSingle.onCreate(self)
+
+    def refreshlist(self):
+        if self.type == EPG_TYPE_SIMILAR:
+            EPGSelectionSimilar.refreshlist(self)
+        else:
+            EPGSelectionSingle.refreshlist(self)
+
+    def Info(self):
+        from Screens.InfoBar import InfoBar
+        if not InfoBar.instance.LongButtonPressed:
+            self.infoKeyPressed()
+
+    def infoKeyPressed(self, eventviewopen=False):
+        self.openEventView()
+
+    def eventSelected(self):
+        self.infoKeyPressed()
+
+    def timerAdd(self):
+        self.RecordTimerQuestion(True)
+
+    def OpenSingleEPG(self):
+        self.openSingleEPG()
+
+    def redButtonPressed(self):
+        self._dispatchEpgAction(EPGSettings(EPG_TYPE_SINGLE).btn("red"))
+
+    def blueButtonPressedLong(self):
+        self.openAutoTimerList()
