@@ -139,6 +139,8 @@ class NetworkManager:
 			print(f"[{MODULE_NAME}] {msg}")
 
 	def startNetworkCheck(self):
+		# InitUsageConfig has finished by this stage of StartEnigma.
+		self.loadNameservers()
 		self.networkCheck = NetworkCheck()
 		self.networkCheck.start()
 
@@ -147,7 +149,7 @@ class NetworkManager:
 		self.discoverAdapters()
 		self.loadInterfacesFile()
 		self.loadWpaSupplicantFiles()
-		self.nsFiles.load(self.nameserverConfig)
+		self.loadNameservers()
 		self.applyNetinfo()
 		self.log(f"load: Done, adapters={sorted(self.adapters.keys())}.")
 
@@ -384,7 +386,8 @@ class NetworkManager:
 		ok = self.saveWpaSupplicant() and ok
 
 		anyDhcp = any(conn.dhcp for conns in connMap.values() for conn in conns if conn.enabled)
-		self.nsFiles.save(self.nameserverConfig, anyDhcp)
+		self.updateNameserverConfig()
+		ok = self.nsFiles.save(self.nameserverConfig, anyDhcp) and ok
 		self.log(f"save: Done, status={ok}.")
 		return ok
 
@@ -479,6 +482,21 @@ class NetworkManager:
 
 	def setNameservers(self, servers: list):
 		self.nameserverConfig.servers = list(servers)
+
+	def loadNameservers(self):
+		# WizardStart imports the singleton before InitUsageConfig. Use the live
+		# resolver then, and load the configured override at network startup.
+		usage = getattr(config, "usage", None)
+		if all(hasattr(usage, name) for name in ("dns", "dnsMode", "dnsRotate", "dnsSuffix")):
+			self.updateNameserverConfig()
+		self.nsFiles.load(self.nameserverConfig)
+
+	def updateNameserverConfig(self):
+		# Keep the shared backend in sync for both the DNS screen and adapter saves.
+		self.nameserverConfig.mode = config.usage.dns.value
+		self.nameserverConfig.ipMode = config.usage.dnsMode.value
+		self.nameserverConfig.rotate = config.usage.dnsRotate.value
+		self.nameserverConfig.suffix = config.usage.dnsSuffix.value
 
 	# Returns a human-readable adapter label.
 	def getFriendlyAdapterName(self, interface: str) -> str:
@@ -1410,7 +1428,7 @@ class NameserverFiles:
 	RE_NS6 = compile(r"nameserver\s+(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})")
 
 	def load(self, ns: NameserverConfig):
-		path = resolvFile if ns.mode == "dhcp-router" else nameserverFile
+		path = nameserverFile if ns.mode != "dhcp-router" and exists(nameserverFile) else resolvFile
 		ns.servers = self.parse(path)
 
 	def parse(self, path: str) -> list:
@@ -1425,7 +1443,7 @@ class NameserverFiles:
 				servers.append(m6.group(1))
 		return servers
 
-	def save(self, ns: NameserverConfig, anyDhcpActive: bool):
+	def save(self, ns: NameserverConfig, anyDhcpActive: bool) -> bool:
 		def build(ns: NameserverConfig) -> list[str]:
 			v4 = ["nameserver " + ".".join(str(octet) for octet in x) for x in ns.servers if isinstance(x, list) and x != [0, 0, 0, 0]]
 			v6 = [f"nameserver {x}" for x in ns.servers if isinstance(x, str) and x]
@@ -1446,15 +1464,20 @@ class NameserverFiles:
 			return prefix + nsLines
 
 		lines = build(ns)
-		if not anyDhcpActive:
-			fileWriteLines(resolvFile, lines, source=MODULE_NAME)
 		if ns.mode != "dhcp-router":
-			fileWriteLines(nameserverFile, lines, source=MODULE_NAME)
+			# DHCP hooks also read this override. Persist it before updating the
+			# live resolver, even when an enabled adapter still uses DHCP.
+			if not fileWriteLines(nameserverFile, lines[:], source=MODULE_NAME):
+				return False
 		elif exists(nameserverFile):
 			try:
 				remove(nameserverFile)
-			except OSError:
-				pass
+			except OSError as err:
+				print(f"[{MODULE_NAME}] Error {err.errno}: Cannot remove '{nameserverFile}'!  ({err.strerror})")
+				return False
+		if ns.mode != "dhcp-router" or not anyDhcpActive:
+			return bool(fileWriteLines(resolvFile, lines, source=MODULE_NAME))
+		return True
 
 
 class WiFiRuntime:
