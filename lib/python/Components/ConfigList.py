@@ -74,7 +74,7 @@ class ConfigList(GUIComponent):
 
 	def handleKey(self, key, callback=None):
 		selection = self.getCurrent(full=False)
-		if selection and selection[1].enabled:
+		if selection and selection[1].enabled and not selection[1].isReadOnly():
 			changed = selection[1].handleKey(key, callback)
 			self.invalidateCurrent()
 			if key in ActionKeys.ACTIONKEY_NUMBERS:
