@@ -6,7 +6,7 @@ from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_L
 
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryText
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Alternatives import CompareWithAlternatives
@@ -761,7 +761,7 @@ class EPGListGrid(EPGListBase):
         if not beginTime:
             return None
         rec = self.session.nav.RecordTimer.isInTimer(
-            eventId, beginTime, duration, ":".join(service.split(":")[:11]))
+            eventId, beginTime, duration, eServiceReference(service).toCompareString())
         if rec is not None:
             self.wasEntryAutoTimer = bool(rec[2] & 1)
             self.wasEntryIceTV = bool(rec[2] & 2)
@@ -882,7 +882,7 @@ class EPGListGrid(EPGListBase):
         piconWidth = 0
         if self.showPicon:
             if picon is None:
-                picon = getPiconName(service)
+                picon = getChannelSelectionPiconName(service)
                 curIdx = self.l.getCurrentSelectionIndex()
                 self.list[curIdx] = (service, service_name, events, picon, channel)
             if picon != "":
@@ -957,7 +957,14 @@ class EPGListGrid(EPGListBase):
                     pos=pos, size=size, png=pixmap, flags=BT_SCALE))
 
         # Default event area background.
-        if not self.graphic:
+        if self.graphic:
+            areaPix = self.selEvPix if selected else self.othEvPix
+            if areaPix:
+                res.append(MultiContentEntryPixmapAlphaTest(
+                    pos=(r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+                    size=(r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+                    png=areaPix, flags=BT_SCALE))
+        else:
             res.append(MultiContentEntryText(
                 pos=(left, top), size=(width, height),
                 font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
@@ -1485,11 +1492,7 @@ class TimelineText(GUIComponent):
         if event_rect is None or time_epoch is None or time_base is None:
             return
 
-        alignment = (
-            0x20 | 0x08  # RT_HALIGN_RIGHT | RT_VALIGN_CENTER
-            if self.timelineAlign.lower() == "right"
-            else 0x00 | 0x08  # RT_HALIGN_LEFT | RT_VALIGN_CENTER
-        )
+        alignment = (RT_HALIGN_RIGHT if self.timelineAlign.lower() == "right" else RT_HALIGN_LEFT) | RT_VALIGN_CENTER
 
         eventLeft = event_rect.left()
         res = [None]
@@ -1810,7 +1813,7 @@ class EPGListMulti(EPGListBase):
         if not beginTime:
             return None
         rec = self.session.nav.RecordTimer.isInTimer(
-            eventId, beginTime, duration, ":".join(service.split(":")[:11]))
+            eventId, beginTime, duration, eServiceReference(service).toCompareString())
         if rec is not None:
             self.wasEntryAutoTimer = bool(rec[2] & 1)
             self.wasEntryIceTV = bool(rec[2] & 2)
@@ -2246,7 +2249,7 @@ class EPGListSingle(EPGListBase):
         if not beginTime:
             return None
         rec = self.session.nav.RecordTimer.isInTimer(
-            eventId, beginTime, duration, ":".join(service.split(":")[:11]))
+            eventId, beginTime, duration, eServiceReference(service).toCompareString())
         if rec is not None:
             self.wasEntryAutoTimer = bool(rec[2] & 1)
             self.wasEntryIceTV = bool(rec[2] & 2)
@@ -2720,7 +2723,7 @@ class EPGListVertical(EPGListBase):
         if not beginTime:
             return None
         rec = self.session.nav.RecordTimer.isInTimer(
-            eventId, beginTime, duration, ":".join(service.split(":")[:11]))
+            eventId, beginTime, duration, eServiceReference(service).toCompareString())
         if rec is not None:
             self.wasEntryAutoTimer = bool(rec[2] & 1)
             self.wasEntryIceTV = bool(rec[2] & 2)

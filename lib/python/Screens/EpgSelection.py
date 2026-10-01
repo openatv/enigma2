@@ -17,7 +17,7 @@ from Components.config import ConfigClock, config, configfile
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
-from Screens.EventView import showEventViewCallback
+from Screens.EventView import getEventViewInstance, showEventViewCallback
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -27,6 +27,11 @@ from ServiceReference import ServiceReference
 from skin import parameters
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.FallbackTimer import FallbackTimerList
+
+try:  # PiPServiceRelation installed?
+    from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
+except ImportError:
+    getRelationDict = None
 
 
 # lib/python/Screens/EpgSelectionBase.py
@@ -156,6 +161,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         self.closeRecursive = False
         self.eventviewDialog = None
         self.eventviewWasShown = False
+        self.pipServiceRelation = getRelationDict() if getRelationDict else {}
         self.ChoiceBoxDialog = None
         # key_green_choice tracks current timer state for the green button label.
         self.key_green_choice = self.EMPTY
@@ -279,10 +285,23 @@ class EPGSelectionBase(Screen, HelpableScreen):
         # ATV approach: showEventViewCallback handles the dialog lifecycle.
         # OpenViX uses: self.session.open(EventViewEPGSelect, event, service, ...)
         event, service = self[f"list{self.activeList}"].getCurrent()[:2]
-        if event is not None:
-            showEventViewCallback(None, self.session, False, event, service,
-                                  callback=self.eventViewCallback,
-                                  similarEPGCB=self.openSimilarList)
+        if self.eventviewDialog:
+            self.closeEventViewDialog()
+        elif event is not None:
+            if self.type == EPG_TYPE_INFOBARGRAPH:
+                self.eventviewDialog = getEventViewInstance(self.session, event, service, skinName="InfoBarEventView")
+                self.eventviewDialog.show()
+            else:
+                showEventViewCallback(None, self.session, False, event, service,
+                                      callback=self.eventViewCallback,
+                                      similarEPGCB=self.openSimilarList)
+
+    def updateEventViewDialog(self, event, service):
+        # Keep the infobar event view overlay in sync with the selection.
+        if self.eventviewDialog and event is not None and self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH):
+            self.closeEventViewDialog()
+            self.eventviewDialog = getEventViewInstance(self.session, event, service, skinName="InfoBarEventView")
+            self.eventviewDialog.show()
 
     def openSimilarList(self, eventId, refstr):
         self.session.open(EPGSelection, refstr, None, eventId)
@@ -517,6 +536,10 @@ class EPGSelectionBase(Screen, HelpableScreen):
         def _setupDone(test=None):
             if closeType:
                 self.close(closeType)
+            else:
+                self._updateButtonText()
+                self.key_green_choice = self.EMPTY  # Force the timer label update.
+                self.onSelectionChanged()
 
         self.session.openWithCallback(_setupDone, Setup, key)
 
@@ -855,6 +878,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         event, service = self[f"list{self.activeList}"].getCurrent()[:2]
         self["Event"].newEvent(event)
         self["Service"].newService(service.ref if service else None)
+        self.updateEventViewDialog(event, service)
 
         if service is None or service.getServiceName() == "":
             if self.key_green_choice != self.EMPTY:
@@ -989,7 +1013,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
             return
         if self.zapFunc:
             self.zapSelectedService(prev=True)
-            self.refreshTimer.start(6000)
+            self.refreshTimer.start(2000)
         if not self.currch or self.currch == self.prevch:
             if self.zapFunc:
                 self.zapFunc(None, False)
@@ -1000,14 +1024,59 @@ class EPGSelectionBase(Screen, HelpableScreen):
                 self.close()
 
     def zapSelectedService(self, prev=False):
-        self.prevch = (self.session.nav.getCurrentlyPlayingServiceReference()
-                       and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
-                       or None)
-        ref, service = self[f"list{self.activeList}"].getCurrent()[:2]
-        if service is not None:
+        playing = self.session.nav.getCurrentlyPlayingServiceReference()
+        currservice = playing.toString() if playing else None
+        if self.session.pipshown:
+            pipService = self.session.pip.getCurrentService()
+            self.prevch = pipService.toString() if pipService else None
+        else:
+            self.prevch = currservice
+        epgList = self[f"list{self.activeList}"]
+        if hasattr(epgList, "getCurrentChangeCount") and epgList.getCurrentChangeCount():
+            return
+        service = epgList.getCurrent()[1]
+        if service is None and self.type == EPG_TYPE_VERTICAL and self.myServices:
+            service = ServiceReference(self.myServices[self["list"].getSelectionIndex() + self.activeList - 1][0])
+        if service is None:
+            return
+        if self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar.preview_mode.value == "2":
+            if not prev:
+                self.closePiP()
+                self.zapFunc(service.ref, bouquet=self.getCurrentBouquet(), preview=False)
+                return
+            if not self.previewInPiP(service, currservice):
+                return
+        else:
             self.zapFunc(service.ref, bouquet=self.getCurrentBouquet(), preview=prev)
-            self.currch = (self.session.nav.getCurrentlyPlayingServiceReference()
-                           and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()))
+            playing = self.session.nav.getCurrentlyPlayingServiceReference()
+            self.currch = playing.toString() if playing else None
+        if hasattr(epgList, "setCurrentlyPlaying"):
+            epgList.setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+
+    def previewInPiP(self, service, currservice):
+        # Infobar preview mode 2: preview in PiP, zap when the PiP service is selected again.
+        # Returns False when it zapped instead of previewing.
+        if not self.session.pipshown:
+            from Screens.PictureInPicture import PictureInPicture
+            self.session.pip = self.session.instantiateDialog(PictureInPicture)
+            self.session.pip.show()
+            self.session.pipshown = True
+        pipRef = self.pipServiceRelation.get(str(service.ref))
+        pipRef = eServiceReference(pipRef) if pipRef else service.ref
+        if self.currch == pipRef.toString():
+            self.closePiP()
+            self.zapFunc(service.ref, bouquet=self.getCurrentBouquet(), preview=False)
+            return False
+        if self.prevch != pipRef.toString() and currservice != pipRef.toString():
+            self.session.pip.playService(pipRef)
+            pipService = self.session.pip.getCurrentService()
+            self.currch = pipService.toString() if pipService else None
+        return True
+
+    def closePiP(self):
+        if self.session.pipshown:
+            self.session.pipshown = False
+            del self.session.pip
 
     # ------------------------------------------------------------------
     # Green button text — keeps display in sync with current timer state.
@@ -1016,7 +1085,10 @@ class EPGSelectionBase(Screen, HelpableScreen):
     # ------------------------------------------------------------------
 
     def setTimerButtonText(self, text):
-        self["key_green"].setText(text)
+        # Update every color button that is configured to add/edit timers.
+        for color in ("red", "green", "yellow", "blue"):
+            if self._cfg.btn(color) == "addEditTimer":
+                self[f"key_{color}"].setText(text)
 
     # ------------------------------------------------------------------
     # OK / OKLong — dispatch based on EPGSettings config.
@@ -1585,6 +1657,7 @@ class EPGServiceBrowse(EPGBouquetSelection):
         # graphic=False: single/enhanced/infobar don't use the graphical bouquet list.
         EPGBouquetSelection.__init__(self, False)
         self.selectedServiceIndex = -1
+        self.currentService = None
 
     def _populateBouquetList(self):
         EPGBouquetSelection._populateBouquetList(self)
@@ -1756,10 +1829,12 @@ class EPGStandardButtons:
         return (fn_map.get(actionName, lambda: None), help_text)
 
     def _updateButtonText(self):
-        # Called after init and after config changes to sync button labels with
-        # the currently configured actions. Concrete classes can override.
-        # Base implementation does nothing (labels are set statically in __init__).
-        pass
+        # Show the label of the configured action on each color button.
+        from Components.EpgConfig import epgActions
+        labels = {x[0]: x[1] for x in epgActions}
+        labels[""] = ""
+        for color in ("red", "green", "yellow", "blue"):
+            self[f"key_{color}"].setText(labels.get(self._cfg.btn(color), ""))
 # ===========================================================================
 # EPGGridNavigation — left/right and CH+/CH- handling shared by both grid EPGs.
 # ===========================================================================
@@ -1985,7 +2060,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
         serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
         self["list"].fillGraphEPG(None, self.ask_time, True)
         self["list"].moveToService(serviceref)
-        name = self["bouquetlist"].getCurrentBouquet() if "bouquetlist" in self else ""
+        name = self.getCurrentBouquetName()
         self.setTitle(name)
         self.moveTimeLines(True)
 
@@ -2219,7 +2294,7 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
         serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
         self["list"].fillGraphEPG(None, self.ask_time, True)
         self["list"].moveToService(serviceref)
-        name = self["bouquetlist"].getCurrentBouquet() if "bouquetlist" in self else ""
+        name = self.getCurrentBouquetName()
         self.setTitle(name)
         self.moveTimeLines(True)
 
@@ -2348,14 +2423,26 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
         if not hasattr(sref, "ref"):
             sref = ServiceReference(sref)
         self.currentService = sref  # Old attribute, used by plugins like SeriesPlugin.
+        name = sref.getServiceName()
+        self.setTitle(name if self.type == EPG_TYPE_SINGLE else f"{self.getCurrentBouquetName()} - {name}")
         self["list"].fillSingleEPG(sref)
+        self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 
     def refreshlist(self):
-        event, service = self["list"].getCurrent()
-        if service:
-            self["list"].fillSingleEPG(service)
+        if self.currentService:
+            index = self["list"].getCurrentIndex()
+            self["list"].fillSingleEPG(self.currentService)
+            self["list"].sortSingleEPG(int(config.epgselection.sort.value))
+            self["list"].setCurrentIndex(index)
         self.onSelectionChanged()
         self.startRefreshTimer()
+
+    def sortEPG(self):
+        self.closeEventViewDialog()
+        config.epgselection.sort.value = "1" if config.epgselection.sort.value == "0" else "0"
+        config.epgselection.sort.save()
+        configfile.save()
+        self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 
     def serviceChanged(self):
         service = self.getCurrentService()
@@ -2467,20 +2554,8 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
         bouquet = self.getCurrentBouquet()
         if bouquet:
             self.services = self._getBouquetServices(bouquet)
-            self.setTitle(self["bouquetlist"].getCurrentBouquet())
+            self.setTitle(self.getCurrentBouquetName())
             self["list"].fillMultiEPG(self.services, self.ask_time)
-
-    def nextBouquet(self):
-        self.selectedBouquetIndex = (self.selectedBouquetIndex + 1) % len(self.bouquets)
-        self.services = self._getBouquetServices(self.getCurrentBouquet())
-        self["list"].fillMultiEPG(self.services, self.ask_time)
-        self.setTitle(self["bouquetlist"].getCurrentBouquet())
-
-    def prevBouquet(self):
-        self.selectedBouquetIndex = (self.selectedBouquetIndex - 1) % len(self.bouquets)
-        self.services = self._getBouquetServices(self.getCurrentBouquet())
-        self["list"].fillMultiEPG(self.services, self.ask_time)
-        self.setTitle(self["bouquetlist"].getCurrentBouquet())
 
     # ------------------------------------------------------------------
     # Multi-EPG has next/prev for events in time (not just services).
@@ -2635,14 +2710,26 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
         if not hasattr(sref, "ref"):
             sref = ServiceReference(sref)
         self.currentService = sref  # Old attribute, used by plugins like SeriesPlugin.
+        name = sref.getServiceName()
+        self.setTitle(name if self.type == EPG_TYPE_SINGLE else f"{self.getCurrentBouquetName()} - {name}")
         self["list"].fillSingleEPG(sref)
+        self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 
     def refreshlist(self):
-        event, service = self["list"].getCurrent()
-        if service:
-            self["list"].fillSingleEPG(service)
+        if self.currentService:
+            index = self["list"].getCurrentIndex()
+            self["list"].fillSingleEPG(self.currentService)
+            self["list"].sortSingleEPG(int(config.epgselection.sort.value))
+            self["list"].setCurrentIndex(index)
         self.onSelectionChanged()
         self.startRefreshTimer()
+
+    def sortEPG(self):
+        self.closeEventViewDialog()
+        config.epgselection.sort.value = "1" if config.epgselection.sort.value == "0" else "0"
+        config.epgselection.sort.save()
+        configfile.save()
+        self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 
     # ------------------------------------------------------------------
     # Service navigation — called by EPGServiceBrowse when bouquet changes.
@@ -2659,12 +2746,6 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
     # ------------------------------------------------------------------
     # Sort toggle — ATV-specific; not in OpenViX (no sortSingleEPG there).
     # ------------------------------------------------------------------
-
-    def sortEPG(self):
-        if not hasattr(self, "_sortMode"):
-            self._sortMode = 0
-        self._sortMode = 1 - self._sortMode
-        self["list"].sortSingleEPG(self._sortMode)
 
     # ------------------------------------------------------------------
     # EPG button — event info in single EPG, single EPG in enhanced EPG.
@@ -2799,7 +2880,7 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
         self["bouquetlist"].fillBouquetList(self.bouquets)
         self["bouquetlist"].moveToService(self.startBouquet)
         self["bouquetlist"].setCurrentBouquet(self.startBouquet)
-        self.setTitle(self["bouquetlist"].getCurrentBouquet())
+        self.setTitle(self.getCurrentBouquetName())
         self["list"].setList(self.getChannels())
 
         # Try to position on the currently playing channel.
@@ -2996,8 +3077,7 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
         self.services = self._getBouquetServices(self.getCurrentBouquet())
         self["list"].setList(self.getChannels())
         self.gotoFirst()
-        self.setTitle(self["bouquetlist"].getCurrentBouquet()
-                      if "bouquetlist" in self else "")
+        self.setTitle(self.getCurrentBouquetName())
 
     # ------------------------------------------------------------------
     # Date/time jump.
@@ -3431,6 +3511,7 @@ class EPGSelection(EPGSelectionSingle, metaclass=EPGSelectionMeta):
     """
 
     activeList = ""  # EPGSearch does not call __init__.
+    _cfg = EPGSettings(EPG_TYPE_SIMILAR)  # Default button actions for EPGSearch.
 
     def __new__(cls, session, *args, **kwargs):
         if cls is EPGSelection:
