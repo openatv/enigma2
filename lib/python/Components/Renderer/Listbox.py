@@ -33,8 +33,9 @@ class Listbox(Renderer):
 		self.setScrollbarMode(self.scrollbarMode)
 
 	def preWidgetRemove(self, instance):
-		instance.setContent(None)
+		# Clearing the content emits selectionChanged, so disconnect the callback first.
 		instance.selectionChanged.get().remove(self.selectionChanged)
+		instance.setContent(None)
 
 	def setWrapAround(self, wrapAround):
 		if self.instance is not None:
@@ -63,7 +64,10 @@ class Listbox(Renderer):
 	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)
 
 	def selectionChanged(self):
-		self.source.selectionChanged(self.index)
+		# Ignore late widget events after the source or GUI has been detached.
+		source = getattr(self, "source", None)
+		if source is not None and getattr(self, "instance", None) is not None:
+			source.selectionChanged(self.index)
 
 	def entryChanged(self, index):
 		if self.instance is not None:
