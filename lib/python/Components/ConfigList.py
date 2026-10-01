@@ -323,7 +323,7 @@ class ConfigListScreen:
 		if currConfig is not None:
 			currentConfig = currConfig[1]
 			if currentConfig.isReadOnly():
-				self["configActions"].setEnabled(False)
+				self["configActions"].setEnabledAction("select", False)
 				self["navigationActions"].setEnabledAction("first", False)
 				self["navigationActions"].setEnabledAction("left", False)
 				self["navigationActions"].setEnabledAction("right", False)
@@ -334,7 +334,7 @@ class ConfigListScreen:
 				self["editConfigActions"].setEnabled(False)
 				showVirtualKeyBoard(False)
 			else:
-				self["configActions"].setEnabled(True)
+				self["configActions"].setEnabledAction("select", True)
 				self["navigationActions"].setEnabledAction("first", True)
 				self["navigationActions"].setEnabledAction("left", True)
 				self["navigationActions"].setEnabledAction("right", True)
