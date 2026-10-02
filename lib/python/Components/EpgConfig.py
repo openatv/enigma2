@@ -90,6 +90,15 @@ def upgradeConfig():
 					configItem.saved_value = newvalue
 					configItem.load()
 
+		def upgradePrimetime(configItem, prefix):
+			# Old ATV stored hour and minutes separately, each one only when changed (default 20:15).
+			hour = getOldValue(f"epgselection.{prefix}_primetimehour")
+			mins = getOldValue(f"epgselection.{prefix}_primetimemins")
+			if hour is not None or mins is not None:
+				print(f"[EpgConfig] upgrading epgselection.{prefix}_primetimehour/mins {hour}:{mins}")
+				configItem.saved_value = f"{hour or 20}:{mins or 15}"
+				configItem.load()
+
 		print("[EpgConfig] Upgrading EPG settings from flat ATV keys to subsection structure")
 
 		okMap = {"Zap": "zap", "Zap + Exit": "zapExit"}
@@ -129,7 +138,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.infobar.histminutes, "epgselection.infobar_histminutes")
 		upgrade(config.epgselection.infobar.prevtimeperiod, "epgselection.infobar_prevtimeperiod")
 		# Old key was an integer hour (e.g. "20"); ConfigClock needs "HH:MM" format.
-		upgrade(config.epgselection.infobar.primetime, "epgselection.infobar_primetimehour", mapper=lambda v: f"{v}:{getOldValue('epgselection.infobar_primetimemins') or 15}")
+		upgradePrimetime(config.epgselection.infobar.primetime, "infobar")
 		upgrade(config.epgselection.infobar.servicetitle_mode, "epgselection.infobar_servicetitle_mode", titleModeMap)
 		upgrade(config.epgselection.infobar.servfs, "epgselection.infobar_servfs")
 		upgrade(config.epgselection.infobar.eventfs, "epgselection.infobar_eventfs")
@@ -168,7 +177,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.grid.roundto, "epgselection.graph_roundto")
 		upgrade(config.epgselection.grid.histminutes, "epgselection.graph_histminutes")
 		upgrade(config.epgselection.grid.prevtimeperiod, "epgselection.graph_prevtimeperiod")
-		upgrade(config.epgselection.grid.primetime, "epgselection.graph_primetimehour", mapper=lambda v: f"{v}:{getOldValue('epgselection.graph_primetimemins') or 15}")
+		upgradePrimetime(config.epgselection.grid.primetime, "graph")
 		upgrade(config.epgselection.grid.servicetitle_mode, "epgselection.graph_servicetitle_mode", titleModeMap)
 		upgrade(config.epgselection.grid.servicename_alignment, "epgselection.graph_servicename_alignment")
 		upgrade(config.epgselection.grid.event_alignment, "epgselection.graph_event_alignment")
@@ -193,7 +202,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.grid.btn_blue, "epgselection.graph_blue", colorMap)
 
 		# vertical
-		upgrade(config.epgselection.vertical.primetime, "epgselection.vertical_primetimehour", mapper=lambda v: f"{v}:{getOldValue('epgselection.vertical_primetimemins') or 15}")
+		upgradePrimetime(config.epgselection.vertical.primetime, "vertical")
 		upgrade(config.epgselection.vertical.itemsperpage, "epgselection.vertical_itemsperpage")
 		upgrade(config.epgselection.vertical.eventfs, "epgselection.vertical_eventfs")
 		upgrade(config.epgselection.vertical.preview_mode, "epgselection.vertical_preview_mode")
@@ -310,9 +319,7 @@ def initEPGConfig():
 		(str(x), _("%d minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)
 	])
 
-	# ATV old stored primetime as two ints (infobar_primetimehour + infobar_primetimemins).
-	# Now unified to ConfigClock. Migration converts old hour value by appending ":00".
-	# OpenViX default: (20, 0). ATV old: hour=20, mins=15. Using OpenViX default.
+	# Old ATV keys infobar_primetimehour/mins are migrated to this clock (default 20:15).
 	config.epgselection.infobar.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
 
 	# ATV old default: "picon+servicename". OpenViX default: "servicename".
@@ -429,10 +436,20 @@ def initEPGConfig():
 		(str(x), _("%d minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)
 	])
 
-	# ATV old stored primetime as two ints (graph_primetimehour + graph_primetimemins).
-	# Now unified to ConfigClock. Migration converts old hour value by appending ":00".
-	# OpenViX default: (20, 0). ATV old: hour=20, mins=15. Using OpenViX default.
+	# Old ATV keys graph_primetimehour/mins are migrated to this clock (default 20:15).
 	config.epgselection.grid.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
+
+	# The old keys are still read by skin renderers (e.g. MetrixHD, AX-Blue and Multibox PrimeTime),
+	# so they are kept and follow grid.primetime.
+	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=0, max=23, wraparound=True)
+	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=0, max=59, wraparound=True)
+
+	def primetimeChanged(configElement):
+		for item, value in ((config.epgselection.graph_primetimehour, configElement.value[0]), (config.epgselection.graph_primetimemins, configElement.value[1])):
+			item.value = value
+			item.save()
+
+	config.epgselection.grid.primetime.addNotifier(primetimeChanged)
 
 	# ATV-specific: start position mode when opening grid EPG. OpenViX does not have this.
 	config.epgselection.grid.startmode = ConfigSelection(default="standard", choices=[
@@ -507,8 +524,7 @@ def initEPGConfig():
 
 	config.epgselection.vertical = ConfigSubsection()
 
-	# ATV old stored as two ints (vertical_primetimehour + vertical_primetimemins).
-	# Migration converts old hour value by appending ":00".
+	# Old ATV keys vertical_primetimehour/mins are migrated to this clock (default 20:15).
 	config.epgselection.vertical.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
 	config.epgselection.vertical.prevtime = ConfigClock(default=time())
 	config.epgselection.vertical.itemsperpage = ConfigSelectionNumber(default=6, stepwidth=1, min=3, max=12, wraparound=True)
@@ -987,14 +1003,10 @@ class EPGSettings:
 	# ── primetime ────────────────────────────────────────────────────────────
 	@property
 	def primetime(self):
-		"""Primetime as (hour, minute) from ConfigClock. Returns (20, 0) as fallback."""
-		if self._section is None:
-			return (20, 0)
-		cfg = getattr(self._section, "primetime", None)
-		if cfg is None:
-			return (20, 0)
-		v = cfg.value
-		return (v[0], v[1]) if v else (20, 0)
+		"""Primetime as (hour, minute) from ConfigClock. Returns the default (20, 15) as fallback."""
+		cfg = getattr(self._section, "primetime", None) if self._section is not None else None
+		v = cfg.value if cfg is not None else None
+		return (v[0], v[1]) if v else (20, 15)
 
 	# ── itemsperpage ─────────────────────────────────────────────────────────
 	@property
