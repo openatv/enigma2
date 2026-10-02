@@ -8,6 +8,8 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
+from twisted.internet.defer import Deferred
+
 from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
@@ -741,13 +743,26 @@ class InformationGeolocation(InformationBase):
 		self.setTitle(_("Geolocation Information"))
 		self.skinName.insert(0, "InformationGeolocation")
 		self.skinName.insert(1, "GeolocationInformation")
+		self.geolocationData = None
+
+	def fetchInformation(self):
+		self.informationTimer.stop()
+		Deferred.fromCoroutine(self.fetchGeolocation())
+
+	async def fetchGeolocation(self):
+		self.geolocationData = await geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self)
+		for callback in self.onInformationUpdated:
+			if callable(callback):
+				callback()
 
 	def displayInformation(self):
 		info = []
 		info.append(self.formatLine("H", _("Geolocation information for %s %s") % getBoxDisplayName()))
 		info.append("")
-		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
-		if geolocationData.get("status", None) == "success":
+		geolocationData = self.geolocationData
+		if geolocationData is None:
+			info.append(self.formatLine("P1", _("Retrieving geolocation information...")))
+		elif geolocationData.get("status", None) == "success":
 			info.append(self.formatLine("S", _("Location information")))
 			if self.extraSpacing:
 				info.append("")
@@ -974,7 +989,10 @@ class InformationNetwork(InformationBase):
 		self.geolocationData = []
 
 	def keyUseGeolocation(self):
-		geolocationData = geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False)
+		Deferred.fromCoroutine(self.fetchGeolocation())
+
+	async def fetchGeolocation(self):
+		geolocationData = await geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self)
 		info = []
 		if geolocationData.get("status", None) == "success":
 			info.append("")
