@@ -140,6 +140,7 @@ class EPGSelectionBase(Screen):
 
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
+		self.onClose.append(self.stopTimers)
 
 		# Defer actual list population until the screen layout is complete.
 		self.onLayoutFinish.append(self.onCreate)
@@ -795,6 +796,10 @@ class EPGSelectionBase(Screen):
 		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
 			return
 		self.close(True)
+
+	def stopTimers(self):
+		self.refreshTimer.stop()
+		self.NumberZapTimer.stop()
 
 	def restorePiP(self):
 		# Restores the PiP state that was saved at EPG open time.
@@ -1548,10 +1553,10 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
 			self[f"timeline{i}"] = pm
 
 		# Re-fire moveTimeLines every minute to slide the "now" marker.
-		from enigma import eTimer as _eTimer
-		self.updateTimelineTimer = _eTimer()
+		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60000)
+		self.onClose.append(self.updateTimelineTimer.stop)
 
 		# Number keys 0-9 drive graph navigation (epoch, time-jump, primetime).
 		# No channel-number zap in graph mode.
@@ -1798,10 +1803,10 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
 			self.time_lines.append(pm)
 			self[f"timeline{i}"] = pm
 
-		from enigma import eTimer as _eTimer
-		self.updateTimelineTimer = _eTimer()
+		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60000)
+		self.onClose.append(self.updateTimelineTimer.stop)
 
 		from Components.ActionMap import HelpableNumberActionMap
 		self["input_actions"] = HelpableNumberActionMap(self, "NumberActions", {

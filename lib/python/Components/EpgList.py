@@ -968,7 +968,7 @@ class EPGListGrid(EPGListBase):
 					else:
 						pos = (left + xpos + ewidth - self.picx - self.posx, RecIconY)
 
-					for typeIcon in self.getIcons(clock_types, service, ev[0]):
+					for typeIcon in self.getIcons(clock_types, service, stime):
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos=(pos[0] - self.picx - self.gap, pos[1]),
 							size=(self.picx, self.picy), png=typeIcon))
@@ -1413,7 +1413,7 @@ class TimelineText(GUIComponent):
 					timetext = strftime("%H:%M", ttime)
 				else:
 					h = int(strftime("%H", ttime))
-					timetext = strftime("%-I:%M", ttime) + (_("pm") if h > 12 else _("am"))
+					timetext = strftime("%-I:%M", ttime) + (_("pm") if h >= 12 else _("am"))
 				res.append(MultiContentEntryText(
 					pos=(service_rect.width() + xpos, 0),
 					size=(incWidth, self.listHeight),
