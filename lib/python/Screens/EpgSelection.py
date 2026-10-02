@@ -84,17 +84,17 @@ autotimer = None
 epgActions = [
     ("", _("Do nothing")),
     ("openIMDb", _("IMDb Search"), _("IMDb search for current event")),
-    ("openTMDb", _("TMDb Search"), _("TMDb search for current event")),
-    ("sortEPG", _("Sort"), _("Sort the EPG list")),
-    ("addEditTimer", _("Add Timer"), _("Add/Edit/Remove timer for current event")),
-    ("openTimerList", _("Show Timer List"), _("Show timer list")),
+    ("openTMDb", _("TMDB Search"), _("TMDb search for current event")),
+    ("sortEPG", _("Sort"), _("Sort EPG List")),
+    ("addEditTimer", _("Add Timer"), _("Add/Remove a timer for the current event")),
+    ("openTimerList", _("Show Timer List"), _("Show Timer List")),
     ("openEPGSearch", _("EPG Search"), _("Search for similar events")),
-    ("addEditAutoTimer", _("Add AutoTimer"), _("Add/Edit autotimer for current event")),
-    ("openAutoTimerList", _("AutoTimer List"), _("Show autotimer list")),
-    ("forward24Hours", _("+24 hours"), _("Go forward 24 hours")),
-    ("back24Hours", _("-24 hours"), _("Go back 24 hours")),
+    ("addEditAutoTimer", _("Add AutoTimer"), _("Add an AutoTimer for the current event")),
+    ("openAutoTimerList", _("AutoTimer List"), _("Show AutoTimer List")),
+    ("forward24Hours", _("+24 Hours"), _("Jump forward 24 hours")),
+    ("back24Hours", _("-24 Hours"), _("Jump back 24 hours")),
     ("openEventView", _("Event Info"), _("Show detailed event info")),
-    ("openSingleEPG", _("Single EPG"), _("Show single channel EPG")),
+    ("openSingleEPG", _("Show single EPG for current channel"), _("Show single EPG for current channel")),
     ("showMovies", _("Recordings"), _("Show recorded movies")),
 ]
 
@@ -115,7 +115,7 @@ recActions = [
 infoActions = [
     ("", _("Do nothing")),
     ("openEventView", _("Event Info"), _("Show detailed event info")),
-    ("openSingleEPG", _("Single EPG"), _("Show single channel EPG")),
+    ("openSingleEPG", _("Show single EPG for current channel"), _("Show single EPG for current channel")),
     # OpenViX also supports switchToSingleEPG, switchToGridEPG, switchToMultiEPG here.
     # Those require EPGSelection factory routing that ATV does differently.
     # ("switchToSingleEPG", _("Switch to Single EPG")),
@@ -125,12 +125,12 @@ infoActions = [
 
 # These are used by grid/infobargraph for channelup/down key config.
 channelUpActions = [
-    ("forward24Hours", _("+24 hours"), _("Go forward 24 hours")),
+    ("forward24Hours", _("+24 Hours"), _("Jump forward 24 hours")),
     ("prevPage", _("Page up")),
 ]
 
 channelDownActions = [
-    ("back24Hours", _("-24 hours"), _("Go back 24 hours")),
+    ("back24Hours", _("-24 Hours"), _("Jump back 24 hours")),
     ("nextPage", _("Page down")),
 ]
 
@@ -180,7 +180,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
 
         self["Service"] = ServiceEvent()
         self["Event"] = Event()
-        self["lab1"] = Label(_("Please wait while gathering EPG data..."))
+        self["lab1"] = Label(_("Please wait while gathering data..."))
         self["lab1"].hide()
 
         # Button label widgets — concrete classes may override text via _updateButtonText.
@@ -194,7 +194,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         self["key_epg"] = StaticText(_("EPG"))
         self["key_play"] = StaticText("")
 
-        helpDescription = _("EPG Commands")
+        helpDescription = _("EPG Actions")
 
         self["okactions"] = HelpableActionMap(self, "OkCancelActions", {
             "cancel": (self.closeScreen, _("Exit EPG")),
@@ -221,13 +221,13 @@ class EPGSelectionBase(Screen, HelpableScreen):
         # Base epgactions map; concrete classes add their own entries.
         self["epgactions"] = HelpableActionMap(self, "EPGSelectActions", {}, prio=-1)
         self["epgcursoractions"] = HelpableActionMap(self, "DirectionActions", {
-            "up": (self.moveUp, _("Go to previous channel")),
-            "down": (self.moveDown, _("Go to next channel")),
-        }, prio=-1, description=_("EPG navigation commands"))
+            "up": (self.moveUp, _("Goto previous channel")),
+            "down": (self.moveDown, _("Goto next channel")),
+        }, prio=-1, description=_("EPG Navigation Actions"))
 
         self["epgcatchupactions"] = HelpableActionMap(self, "EPGCatchUpActions", {
-            "play": (self.playCatchup, _("Play catch-up archive")),
-        }, prio=-2, description=_("Catch-up player commands"))
+            "play": (self.playCatchup, _("Play catch up service archive")),
+        }, prio=-2, description=_("Catch Up Player Actions"))
         self["epgcatchupactions"].setEnabled(callable(self.catchupPlayerFunc))
 
         # dialogactions is enabled while ChoiceBoxDialog is open (disables other maps).
@@ -421,7 +421,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
         try:
             from Plugins.Extensions.tmdb.tmdb import tmdbScreen
         except ImportError:
-            self.session.open(MessageBox, _("The TMDb plugin is not installed!\nPlease install it."),
+            self.session.open(MessageBox, _("The TMDB plugin is not installed!\nPlease install it."),
                               type=MessageBox.TYPE_INFO, timeout=10)
             return
         event = self[f"list{self.activeList}"].getCurrent()[0]
@@ -568,7 +568,7 @@ class EPGSelectionBase(Screen, HelpableScreen):
                 autotimer.readXml()
             except SyntaxError as se:
                 self.session.open(MessageBox,
-                                  _("Your AutoTimer config file is not well-formed:\n%s") % str(se),
+                                  _("Your config file is not well-formed:\n%s") % str(se),
                                   type=MessageBox.TYPE_ERROR, timeout=10)
                 return
             if autopoller is not None:
@@ -699,9 +699,9 @@ class EPGSelectionBase(Screen, HelpableScreen):
                     (_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb2),
                 ]
                 if timer.disabled:
-                    menu.append((_("Enable Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb4))
+                    menu.append((_("Enable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb4))
                 else:
-                    menu.append((_("Disable Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb3))
+                    menu.append((_("Disable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb3))
             title = _("Select action for timer %s:") % event.getEventName()
         else:
             if not manual:
@@ -929,6 +929,8 @@ class EPGSelectionBase(Screen, HelpableScreen):
             "openEventView": self.openEventView,
             "openSingleEPG": self.openSingleEPG,
         }
+        # Navigation actions that not every EPG type supports.
+        common.update({x: getattr(self, x) for x in ("prevPage", "nextPage", "prevBouquet", "nextBouquet", "toggleBouquetList", "enterDateTime", "gotoPrimetime", "setBasetime") if hasattr(self, x)})
         # Graph and infobargraph treat channelup/down as 24-hour jumps.
         if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
             dispatch = dict(common, forward24Hours=lambda: self.updEvent(+24), back24Hours=lambda: self.updEvent(-24))
@@ -1384,8 +1386,8 @@ class EPGServiceNumberSelectionPopup(Screen):
         self.getServiceByNumber = getServiceByNumber
         self.callback = callback
 
-        helpDescription = _("EPG Commands")
-        helpMsg = _("Enter a number to jump to a service/channel")
+        helpDescription = _("EPG Actions")
+        helpMsg = _("Enter number to jump to channel")
         self["actions"] = HelpableNumberActionMap(self, "NumberActions",
             dict([(str(i), (self.keyNumber, helpMsg)) for i in range(0, 10)]),
             prio=-1, description=helpDescription)
@@ -1440,10 +1442,10 @@ class EPGServiceNumberSelection:
     def __init__(self):
         self["number"] = Label()
         self["number"].hide()
-        helpMsg = _("Enter a number to jump to a service/channel")
+        helpMsg = _("Enter number to jump to channel")
         self["numberactions"] = HelpableNumberActionMap(self, "NumberActions",
             dict([(str(i), (self.keyNumberGlobal, helpMsg)) for i in range(0, 10)]),
-            prio=-1, description=_("Service/Channel number zap commands"))
+            prio=-1, description=_("EPG Channel/Service Selection"))
 
     # OpenViX EPGServiceNumberSelection uses EPGServiceNumberSelectionPopup:
     # def keyNumberGlobal(self, number):
@@ -1826,9 +1828,9 @@ class EPGStandardButtons:
         # Returns a (function, help_text) tuple for use in HelpableActionMap.
         # help_text is resolved dynamically from the currently configured action,
         # matching the OpenViX UserDefinedButtons approach.
-        from Components.EpgConfig import epgActions, okActions, recActions, infoActions
+        from Components.EpgConfig import okActions, recActions, infoActions, verticalActions
         _labels = {action_id: label for action_id, label, *_
-                   in epgActions + okActions + recActions + infoActions}
+                   in verticalActions + okActions + recActions + infoActions}
 
         _color = {"red": "red", "redlong": "red",
                   "green": "green", "greenlong": "green",
@@ -1844,12 +1846,12 @@ class EPGStandardButtons:
             help_text = _labels.get(self._cfg.reclong) or _("Do nothing")
         else:
             help_text = {
-                "ok": _("Zap to channel/service"),
-                "oklong": _("Zap to channel/service and close"),
+                "ok": _("Zap to channel (setup in menu)"),
+                "oklong": _("Zap to channel and close (setup in menu)"),
                 "epg": _("Show single EPG for current channel"),
                 "epglong": "",
-                "info": _("Show event info (setup in menu)"),
-                "infolong": _("Show single EPG (setup in menu)"),
+                "info": _("Show detailed event info (setup in menu)"),
+                "infolong": _("Show single EPG for current channel (setup in menu)"),
             }.get(actionName, "")
 
         fn_map = {
@@ -1866,8 +1868,8 @@ class EPGStandardButtons:
 
     def _updateButtonText(self):
         # Show the label of the configured action on each color button.
-        from Components.EpgConfig import epgActions
-        labels = {x[0]: x[1] for x in epgActions}
+        from Components.EpgConfig import verticalActions  # All color button actions.
+        labels = {x[0]: x[1] for x in verticalActions}
         labels[""] = ""
         for color in ("red", "green", "yellow", "blue"):
             self[f"key_{color}"].setText(labels.get(self._cfg.btn(color), ""))
@@ -1973,32 +1975,32 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
             "1": (lambda: self._numberKeyPressed(1), _("Reduce time scale")),
             "2": (lambda: self._numberKeyPressed(2), _("Page up")),
             "3": (lambda: self._numberKeyPressed(3), _("Increase time scale")),
-            "4": (lambda: self._numberKeyPressed(4), _("Step left")),
+            "4": (lambda: self._numberKeyPressed(4), _("Page left")),
             "5": (lambda: self._numberKeyPressed(5), _("Jump to current time")),
-            "6": (lambda: self._numberKeyPressed(6), _("Step right")),
-            "7": (lambda: self._numberKeyPressed(7), _("Height switch")),
+            "6": (lambda: self._numberKeyPressed(6), _("Page right")),
+            "7": (lambda: self._numberKeyPressed(7), _("No of items switch (increase or reduced)")),
             "8": (lambda: self._numberKeyPressed(8), _("Page down")),
             "9": (lambda: self._numberKeyPressed(9), _("Jump to prime time")),
-            "0": (lambda: self._numberKeyPressed(0), _("Go to first channel")),
-        }, prio=-1, description=_("Graph EPG navigation"))
+            "0": (lambda: self._numberKeyPressed(0), _("Goto first channel")),
+        }, prio=-1, description=_("EPG Navigation Actions"))
 
         self.addEpgActions({
-            "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Single EPG")),
-            "menu": (self.createMenu, _("Menu")),
-            "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-            "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+            "info": (self.Info, _("Show detailed event info")),
+            "infolong": (self.InfoLong, _("Show single EPG for current channel")),
+            "menu": (self.createMenu, _("Setup menu")),
+            "nextBouquet": (self.nextBouquet, _("Goto next bouquet")),
+            "prevBouquet": (self.prevBouquet, _("Goto previous bouquet")),
+            "input_date_time": (self.enterDateTime, _("Goto specific date/time")),
             "nextService": (self.nextService, _("CHANNEL+ button (setup in menu)")),
             "prevService": (self.prevService, _("CHANNEL- button (setup in menu)")),
-            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epg": (self.epgButtonPressed, _("Show single EPG for current channel")),
             "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
-            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
-            "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
+            "tv": (self.toggleBouquetList, _("Toggle between bouquet/EPG lists")),
+            "tvlong": (self.togglePIG, _("Toggle Picture in Graphics")),
         })
         self.addCursorActions({
-            "left": (self.leftPressed, _("Go to previous event")),
-            "right": (self.rightPressed, _("Go to next event")),
+            "left": (self.leftPressed, _("Goto previous event")),
+            "right": (self.rightPressed, _("Goto next event")),
         })
 
     # ------------------------------------------------------------------
@@ -2251,31 +2253,31 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
             "1": (lambda: self._numberKeyPressed(1), _("Reduce time scale")),
             "2": (lambda: self._numberKeyPressed(2), _("Page up")),
             "3": (lambda: self._numberKeyPressed(3), _("Increase time scale")),
-            "4": (lambda: self._numberKeyPressed(4), _("Step left")),
+            "4": (lambda: self._numberKeyPressed(4), _("Page left")),
             "5": (lambda: self._numberKeyPressed(5), _("Jump to current time")),
-            "6": (lambda: self._numberKeyPressed(6), _("Step right")),
+            "6": (lambda: self._numberKeyPressed(6), _("Page right")),
             "8": (lambda: self._numberKeyPressed(8), _("Page down")),
             "9": (lambda: self._numberKeyPressed(9), _("Jump to prime time")),
-            "0": (lambda: self._numberKeyPressed(0), _("Go to first channel")),
-        }, prio=-1, description=_("Infobar graph EPG navigation"))
+            "0": (lambda: self._numberKeyPressed(0), _("Goto first channel")),
+        }, prio=-1, description=_("EPG Navigation Actions"))
 
         self.addEpgActions({
-            "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Single EPG")),
-            "menu": (self.createMenu, _("Menu")),
-            "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-            "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+            "info": (self.Info, _("Show detailed event info")),
+            "infolong": (self.InfoLong, _("Show single EPG for current channel")),
+            "menu": (self.createMenu, _("Setup menu")),
+            "nextBouquet": (self.nextBouquet, _("Goto next bouquet")),
+            "prevBouquet": (self.prevBouquet, _("Goto previous bouquet")),
+            "input_date_time": (self.enterDateTime, _("Goto specific date/time")),
             "nextService": (self.nextService, _("CHANNEL+ button (setup in menu)")),
             "prevService": (self.prevService, _("CHANNEL- button (setup in menu)")),
-            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epg": (self.epgButtonPressed, _("Show single EPG for current channel")),
             "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
-            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
-            "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
+            "tv": (self.toggleBouquetList, _("Toggle between bouquet/EPG lists")),
+            "tvlong": (self.togglePIG, _("Toggle Picture in Graphics")),
         })
         self.addCursorActions({
-            "left": (self.leftPressed, _("Go to previous event")),
-            "right": (self.rightPressed, _("Go to next event")),
+            "left": (self.leftPressed, _("Goto previous event")),
+            "right": (self.rightPressed, _("Goto next event")),
         })
 
     def onCreate(self):
@@ -2440,24 +2442,24 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
                                      EPG_TYPE_INFOBAR, self.onSelectionChanged)
 
         self.addEpgActions({
-            "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Single EPG")),
-            "menu": (self.createMenu, _("Menu")),
-            "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-            "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+            "info": (self.Info, _("Show detailed event info")),
+            "infolong": (self.InfoLong, _("Show single EPG for current channel")),
+            "menu": (self.createMenu, _("Setup menu")),
+            "nextBouquet": (self.nextBouquet, _("Goto next bouquet")),
+            "prevBouquet": (self.prevBouquet, _("Goto previous bouquet")),
+            "input_date_time": (self.enterDateTime, _("Goto specific date/time")),
             "nextService": (self.prevPage, _("Page up")),
             "prevService": (self.nextPage, _("Page down")),
-            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epg": (self.epgButtonPressed, _("Show single EPG for current channel")),
             "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
         })
         self.addCursorActions({
-            "left": (self.prevService, _("Go to previous channel")),
-            "right": (self.nextService, _("Go to next channel")),
+            "left": (self.prevService, _("Goto previous channel")),
+            "right": (self.nextService, _("Goto next channel")),
         })
 
     def onCreate(self):
-        self.setTitle(_("Infobar EPG"))
+        self.setTitle(_("EPG Selection"))
         self._populateBouquetList()
         self._fillList(self.startRef)
         self.onSelectionChanged()
@@ -2536,21 +2538,21 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
             self[key] = Label()
 
         self.addEpgActions({
-            "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Single EPG")),
-            "menu": (self.createMenu, _("Menu")),
-            "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-            "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
+            "info": (self.Info, _("Show detailed event info")),
+            "infolong": (self.InfoLong, _("Show single EPG for current channel")),
+            "menu": (self.createMenu, _("Setup menu")),
+            "nextBouquet": (self.nextBouquet, _("Goto next bouquet")),
+            "prevBouquet": (self.prevBouquet, _("Goto previous bouquet")),
             "nextService": (self.prevPage, _("Page up")),
             "prevService": (self.nextPage, _("Page down")),
-            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
-            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "input_date_time": (self.enterDateTime, _("Goto specific date/time")),
+            "epg": (self.epgButtonPressed, _("Show single EPG for current channel")),
             "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
-            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
+            "tv": (self.toggleBouquetList, _("Toggle between bouquet/EPG lists")),
         })
         self.addCursorActions({
-            "left": (self.leftPressed, _("Go to previous event")),
-            "right": (self.rightPressed, _("Go to next event")),
+            "left": (self.leftPressed, _("Goto previous event")),
+            "right": (self.rightPressed, _("Goto next event")),
         })
 
     # ------------------------------------------------------------------
@@ -2558,8 +2560,8 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
     # ------------------------------------------------------------------
 
     def onCreate(self):
-        self.setTitle(_("Multi Channel EPG"))
         self._populateBouquetList()
+        self.setTitle(self.getCurrentBouquetName())
         self._fillList()
         self.onSelectionChanged()
 
@@ -2655,13 +2657,13 @@ class EPGSelectionSimilar(EPGSelectionBase, EPGServiceZap, EPGStandardButtons):
                                      EPG_TYPE_SIMILAR, self.onSelectionChanged)
 
         self.addEpgActions({
-            "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Event info")),
-            "menu": (self.createMenu, _("Menu")),
+            "info": (self.Info, _("Show detailed event info")),
+            "infolong": (self.InfoLong, _("Show detailed event info")),
+            "menu": (self.createMenu, _("Setup menu")),
         })
 
     def onCreate(self):
-        self.setTitle(_("Similar EPG"))
+        self.setTitle(_("EPG Selection"))
         self["list"].fillSimilarList(self.currentService.toString(), self.eventid)
         self.onSelectionChanged()
 
@@ -2717,19 +2719,19 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
 
         # Add type-specific extra actions on top of the base epgactions map.
         self.addEpgActions({
-            "epg": (self.epgButtonPressed, _("Event info") if epgType == EPG_TYPE_SINGLE else _("Single EPG")),
+            "epg": (self.epgButtonPressed, _("Show detailed event info") if epgType == EPG_TYPE_SINGLE else _("Show single EPG for current channel")),
             "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
-            "info": (self.Info, _("Event info")),
-            "menu": (self.createMenu, _("Menu")),
-            "nextService": (self.nextService, _("Go to next channel")),
-            "prevService": (self.prevService, _("Go to previous channel")),
+            "info": (self.Info, _("Show detailed event info")),
+            "menu": (self.createMenu, _("Setup menu")),
+            "nextService": (self.nextService, _("Goto next channel")),
+            "prevService": (self.prevService, _("Goto previous channel")),
         })
         if epgType == EPG_TYPE_ENHANCED:
             self.addEpgActions({
-                "infolong": (self.InfoLong, _("Single EPG")),
-                "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-                "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-                "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+                "infolong": (self.InfoLong, _("Show single EPG for current channel")),
+                "nextBouquet": (self.nextBouquet, _("Goto next bouquet")),
+                "prevBouquet": (self.prevBouquet, _("Goto previous bouquet")),
+                "input_date_time": (self.enterDateTime, _("Goto specific date/time")),
             })
         self.addCursorActions({
             "left": (self.prevPage, _("Page up")),
@@ -2741,10 +2743,7 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
     # ------------------------------------------------------------------
 
     def onCreate(self):
-        if self.type == EPG_TYPE_ENHANCED:
-            self.setTitle(_("Enhanced EPG"))
-        else:
-            self.setTitle(_("Single Channel EPG"))
+        self.setTitle(_("EPG Selection"))
         self._populateBouquetList()
         self._fillList(self.startRef)
         self.onSelectionChanged()
@@ -2888,26 +2887,26 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
             "7": (lambda: self._numberKeyPressed(7), _("Goto now")),
             "8": (lambda: self._numberKeyPressed(8), _("All events down")),
             "9": (lambda: self._numberKeyPressed(9), _("Jump to prime time")),
-            "5": (lambda: self._numberKeyPressed(5), _("Set base time")),
-        }, prio=-1, description=_("Vertical EPG navigation"))
+            "5": (lambda: self._numberKeyPressed(5), _("Set Base Time")),
+        }, prio=-1, description=_("EPG Navigation Actions"))
 
         self.addEpgActions({
-            "info": (self.Info, _("Event info")),
-            "infolong": (self.InfoLong, _("Single EPG")),
-            "menu": (self.createMenu, _("Menu")),
-            "nextBouquet": (self.nextBouquet, _("Next bouquet")),
-            "prevBouquet": (self.prevBouquet, _("Previous bouquet")),
-            "input_date_time": (self.enterDateTime, _("Jump to date/time")),
+            "info": (self.Info, _("Show detailed event info")),
+            "infolong": (self.InfoLong, _("Show single EPG for current channel")),
+            "menu": (self.createMenu, _("Setup menu")),
+            "nextBouquet": (self.nextBouquet, _("Goto next bouquet")),
+            "prevBouquet": (self.prevBouquet, _("Goto previous bouquet")),
+            "input_date_time": (self.enterDateTime, _("Goto specific date/time")),
             "nextService": (self.nextPage, _("CHANNEL+ button (setup in menu)")),
             "prevService": (self.prevPage, _("CHANNEL- button (setup in menu)")),
-            "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epg": (self.epgButtonPressed, _("Show single EPG for current channel")),
             "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
-            "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
-            "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
+            "tv": (self.toggleBouquetList, _("Toggle between bouquet/EPG lists")),
+            "tvlong": (self.togglePIG, _("Toggle Picture in Graphics")),
         })
         self.addCursorActions({
-            "left": (self.leftPressed, _("Go to previous channel")),
-            "right": (self.rightPressed, _("Go to next channel")),
+            "left": (self.leftPressed, _("Goto previous channel")),
+            "right": (self.rightPressed, _("Goto next channel")),
         })
 
     # ------------------------------------------------------------------

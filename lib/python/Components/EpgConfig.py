@@ -3,7 +3,6 @@ from time import mktime, time
 from enigma import RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP
 
 from Components.config import config, ConfigClock, ConfigNumber, ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave
-from Components.EpgList import EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import isPluginInstalled
 
@@ -14,18 +13,29 @@ from Tools.Directories import isPluginInstalled
 epgActions = [
 	("", _("Do nothing")),
 	("openIMDb", _("IMDb Search")),
-	("openTMDb", _("TMDb Search")),
+	("openTMDb", _("TMDB Search")),
 	("sortEPG", _("Sort")),
 	("addEditTimer", _("Add Timer")),
 	("openTimerList", _("Show Timer List")),
 	("openEPGSearch", _("EPG Search")),
 	("addEditAutoTimer", _("Add AutoTimer")),
-	("openAutoTimerList", _("AutoTimer List")),
-	("forward24Hours", _("+24 hours")),
-	("back24Hours", _("-24 hours")),
+	("openAutoTimerList", _("Show AutoTimer List")),
+	("forward24Hours", _("+24 Hours")),
+	("back24Hours", _("-24 Hours")),
+	("prevPage", _("Previous Page")),
+	("nextPage", _("Next Page")),
+	("prevBouquet", _("Previous Bouquet")),
+	("nextBouquet", _("Next Bouquet")),
+	("toggleBouquetList", _("Bouquet List")),
+	("enterDateTime", _("Goto Date/Time")),
 	("openEventView", _("Event Info")),
 	("openSingleEPG", _("Single EPG")),
 	("showMovies", _("Recordings")),
+]
+
+verticalActions = epgActions + [
+	("gotoPrimetime", _("Goto Prime Time")),
+	("setBasetime", _("Set Base Time")),
 ]
 
 okActions = [
@@ -49,20 +59,22 @@ infoActions = [
 ]
 
 channelUpActions = [
-	("forward24Hours", _("+24 hours")),
-	("prevPage", _("Page up")),
-	("nextBouquet", _("Next bouquet")),
+	("forward24Hours", _("+24 Hours")),
+	("prevPage", _("Previous Page")),
+	("nextBouquet", _("Next Bouquet")),
 ]
 
 channelDownActions = [
-	("back24Hours", _("-24 hours")),
-	("nextPage", _("Page down")),
-	("prevBouquet", _("Previous bouquet")),
+	("back24Hours", _("-24 Hours")),
+	("nextPage", _("Next Page")),
+	("prevBouquet", _("Previous Bouquet")),
 ]
 
 
 def upgradeConfig():
 	if config.epgselection.migrationVersion.value < 1:
+		oldKeys = []
+
 		def getOldValue(name):
 			value = config.content.stored_values
 			found = True
@@ -74,6 +86,7 @@ def upgradeConfig():
 			return value if found else None
 
 		def upgrade(configItem, name, valuemap=None, mapper=None):
+			oldKeys.append(name)
 			value = getOldValue(name)
 			if value is not None:
 				newvalue = None
@@ -92,6 +105,7 @@ def upgradeConfig():
 
 		def upgradePrimetime(configItem, prefix):
 			# Old ATV stored hour and minutes separately, each one only when changed (default 20:15).
+			oldKeys.extend((f"epgselection.{prefix}_primetimehour", f"epgselection.{prefix}_primetimemins"))
 			hour = getOldValue(f"epgselection.{prefix}_primetimehour")
 			mins = getOldValue(f"epgselection.{prefix}_primetimemins")
 			if hour is not None or mins is not None:
@@ -106,9 +120,15 @@ def upgradeConfig():
 		# Old ATV vertical ok had one more choice "Channel Info" (same as "openEventView")
 		verticalOkMap = {"Channel Info": "openEventView", "Zap": "zap", "Zap + Exit": "zapExit"}
 		# Old ATV color button string values → new epgActions IDs.
-		# Note: "prevpage"/"nextpage"/"prevbouquet"/"nextbouquet"/"bouquetlist"/"gotodatetime"
-		# have no equivalent in the new epgActions list → will fall back to configured default.
 		colorMap = {
+			"prevpage": "prevPage",
+			"nextpage": "nextPage",
+			"prevbouquet": "prevBouquet",
+			"nextbouquet": "nextBouquet",
+			"bouquetlist": "toggleBouquetList",
+			"gotodatetime": "enterDateTime",
+			"gotoprimetime": "gotoPrimetime",
+			"setbasetime": "setBasetime",
 			"24minus": "back24Hours",
 			"24plus": "forward24Hours",
 			"autotimer": "addEditAutoTimer",
@@ -165,8 +185,6 @@ def upgradeConfig():
 
 		# grid (formerly "graph")
 		upgrade(config.epgselection.grid.showbouquet, "epgselection.graph_showbouquet")
-		# graph_channel1 was True/False; browse_mode is a string choice
-		upgrade(config.epgselection.grid.browse_mode, "epgselection.graph_channel1", {"True": "firstservice", "False": "currentservice"})
 		upgrade(config.epgselection.grid.preview_mode, "epgselection.graph_preview_mode")
 		upgrade(config.epgselection.grid.type_mode, "epgselection.graph_type_mode")
 		# upgrade(config.epgselection.grid.highlight_current_events, "epgselection.graph_highlight_current_events")  # Not implemented yet.
@@ -222,6 +240,10 @@ def upgradeConfig():
 		upgrade(config.epgselection.vertical.btn_yellow, "epgselection.vertical_yellow", colorMap)
 		upgrade(config.epgselection.vertical.btn_blue, "epgselection.vertical_blue", colorMap)
 
+		# Remove the migrated old keys from the settings.
+		storedValues = config.epgselection.content.stored_values
+		for name in oldKeys:
+			storedValues.pop(name.split(".", 1)[1], None)
 		config.epgselection.migrationVersion.value = 1
 		config.epgselection.migrationVersion.save()
 
@@ -240,14 +262,14 @@ def initEPGConfig():
 	# OpenViX uses 8 choices (full set). ATV old had 5 choices with slightly different labels.
 	# The full set is used here; migration maps old ordering variants to new keys.
 	serviceTitleChoices = [
-		("servicename", _("Service Name")),
+		("servicename", _("Service name")),
 		("picon", _("Picon")),
-		("picon+servicename", _("Picon and Service Name")),
-		("servicenumber+picon", _("Service Number and Picon")),
-		("picon+servicenumber", _("Picon and Service Number")),
-		("servicenumber+servicename", _("Service Number and Service Name")),
-		("picon+servicenumber+servicename", _("Picon, Service Number and Service Name")),
-		("servicenumber+picon+servicename", _("Service Number, Picon and Service Name")),
+		("picon+servicename", _("Picon and service name")),
+		("servicenumber+picon", _("Service number and picon")),
+		("picon+servicenumber", _("Picon and service number")),
+		("servicenumber+servicename", _("Service number and service name")),
+		("picon+servicenumber+servicename", _("Picon, service number and service name")),
+		("servicenumber+picon+servicename", _("Service number, picon and service name")),
 	]
 
 	singleBrowseModeChoices = [
@@ -262,12 +284,12 @@ def initEPGConfig():
 	]
 
 	possibleAlignmentChoices = [
-		(str(RT_HALIGN_LEFT | RT_VALIGN_CENTER), _("left")),
-		(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER), _("centered")),
-		(str(RT_HALIGN_RIGHT | RT_VALIGN_CENTER), _("right")),
-		(str(RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP), _("left, wrapped")),
-		(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP), _("centered, wrapped")),
-		(str(RT_HALIGN_RIGHT | RT_VALIGN_CENTER | RT_WRAP), _("right, wrapped")),
+		(str(RT_HALIGN_LEFT | RT_VALIGN_CENTER), _("Left")),
+		(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER), _("Centered")),
+		(str(RT_HALIGN_RIGHT | RT_VALIGN_CENTER), _("Right")),
+		(str(RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP), _("Left, wrapped")),
+		(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP), _("Centered, wrapped")),
+		(str(RT_HALIGN_RIGHT | RT_VALIGN_CENTER | RT_WRAP), _("Right, wrapped")),
 	]
 
 	# ─── infobar ───────────────────────────────────────────────────────────────
@@ -279,8 +301,8 @@ def initEPGConfig():
 
 	# ATV old labels: "Text" / "Multi EPG" / "Single EPG". OpenViX labels differ slightly.
 	config.epgselection.infobar.type_mode = ConfigSelection(default="text", choices=[
-		("text", _("Text Grid EPG")),
-		("graphics", _("Graphics Grid EPG")),
+		("text", _("Text")),
+		("graphics", _("Multi EPG")),
 		("single", _("Single EPG")),
 	])
 
@@ -408,7 +430,6 @@ def initEPGConfig():
 
 	config.epgselection.grid = ConfigSubsection()
 	config.epgselection.grid.showbouquet = ConfigYesNo(default=False)
-	# ATV old had no grid browse_mode (used graph_channel1 True/False instead). New from OpenViX.
 	config.epgselection.grid.browse_mode = ConfigSelection(default="currentservice", choices=multiBrowseModeChoices)
 	config.epgselection.grid.preview_mode = ConfigYesNo(default=True)
 	config.epgselection.grid.type_mode = ConfigSelection(choices=[
@@ -436,18 +457,6 @@ def initEPGConfig():
 
 	# Old ATV keys graph_primetimehour/mins are migrated to this clock (default 20:15).
 	config.epgselection.grid.primetime = ConfigClock(default=mktime((2000, 1, 1, 20, 15, 0, 0, 0, -1)))
-
-	# The old keys are still read by skin renderers (e.g. MetrixHD, AX-Blue and Multibox PrimeTime),
-	# so they are kept and follow grid.primetime.
-	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=0, max=23, wraparound=True)
-	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=0, max=59, wraparound=True)
-
-	def primetimeChanged(configElement):
-		for item, value in ((config.epgselection.graph_primetimehour, configElement.value[0]), (config.epgselection.graph_primetimemins, configElement.value[1])):
-			item.value = value
-			item.save()
-
-	config.epgselection.grid.primetime.addNotifier(primetimeChanged)
 
 	# ATV-specific: start position mode when opening grid EPG. OpenViX does not have this.
 	config.epgselection.grid.startmode = ConfigSelection(default="standard", choices=[
@@ -480,10 +489,10 @@ def initEPGConfig():
 	config.epgselection.grid.piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
 	config.epgselection.grid.infowidth = ConfigSelectionNumber(default=25, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.grid.rec_icon_height = ConfigSelection(choices=[
-		("bottom", _("bottom")),
-		("top", _("top")),
-		("middle", _("middle")),
-		("hide", _("hide")),
+		("bottom", _("Bottom")),
+		("top", _("Top")),
+		("middle", _("Middle")),
+		("hide", _("Hide")),
 	], default="bottom")
 
 	# Not implemented yet.
@@ -548,17 +557,32 @@ def initEPGConfig():
 	config.epgselection.vertical.btn_infolong = ConfigSelection(choices=infoActions, default="openSingleEPG")
 	# Old ATV vertical had graph_red/green/yellow/blue with old-style string values.
 	# Migration maps via colorMap; unmapped values (prevpage etc.) fall to default.
-	config.epgselection.vertical.btn_red = ConfigSelection(choices=epgActions, default="openTMDb" if tmdb else "openIMDb")
-	config.epgselection.vertical.btn_green = ConfigSelection(choices=epgActions, default="addEditTimer")
-	config.epgselection.vertical.btn_yellow = ConfigSelection(choices=epgActions, default="openEPGSearch")
-	config.epgselection.vertical.btn_blue = ConfigSelection(choices=epgActions, default="addEditAutoTimer")
+	config.epgselection.vertical.btn_red = ConfigSelection(choices=verticalActions, default="openTMDb" if tmdb else "openIMDb")
+	config.epgselection.vertical.btn_redlong = ConfigSelection(choices=verticalActions, default="sortEPG")
+	config.epgselection.vertical.btn_green = ConfigSelection(choices=verticalActions, default="addEditTimer")
+	config.epgselection.vertical.btn_greenlong = ConfigSelection(choices=verticalActions, default="openTimerList")
+	config.epgselection.vertical.btn_yellow = ConfigSelection(choices=verticalActions, default="openEPGSearch")
+	config.epgselection.vertical.btn_yellowlong = ConfigSelection(choices=verticalActions, default="")
+	config.epgselection.vertical.btn_blue = ConfigSelection(choices=verticalActions, default="addEditAutoTimer")
+	config.epgselection.vertical.btn_bluelong = ConfigSelection(choices=verticalActions, default="openAutoTimerList")
+
+	# Old keys that are still read by plugins (EPGSearch) and skin renderers (MetrixHD, AX-Blue
+	# and Multibox PrimeTime). They follow the new settings and are not saved.
+	def addLegacyKey(name, element, source, convert=None):
+		def sourceChanged(configElement):
+			getattr(config.epgselection, name).value = convert(configElement.value) if convert else configElement.value
+
+		setattr(config.epgselection, name, NoSave(element))
+		element.saved_value = None  # Drop the old stored value from the settings.
+		source.addNotifier(sourceChanged)
+
+	addLegacyKey("graph_primetimehour", ConfigSelectionNumber(default=20, stepwidth=1, min=0, max=23, wraparound=True), config.epgselection.grid.primetime, lambda value: value[0])
+	addLegacyKey("graph_primetimemins", ConfigSelectionNumber(default=15, stepwidth=1, min=0, max=59, wraparound=True), config.epgselection.grid.primetime, lambda value: value[1])
+	addLegacyKey("enhanced_eventfs", ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True), config.epgselection.single.eventfs)
+	addLegacyKey("enhanced_itemsperpage", ConfigSelectionNumber(default=16, stepwidth=1, min=0, max=40, wraparound=True), config.epgselection.single.itemsperpage)
 
 	# Run migration from flat ATV keys to new subsection structure.
 	upgradeConfig()
-
-	# Backwards-compatibility aliases so plugins referencing old flat keys still work.
-	config.epgselection.enhanced_eventfs = config.epgselection.single.eventfs
-	config.epgselection.enhanced_itemsperpage = config.epgselection.single.itemsperpage
 
 
 # ─── Settings mapping: old flat key → new subsection key ───────────────────────
@@ -886,20 +910,20 @@ class EPGSettings:
 		self._dispatchEpgAction(self._cfg.btn("blue", long=True))
 	"""
 
-	# Maps EPG type constant → config subsection object (set after initEPGConfig runs)
-	_TYPE_SECTION = {
-		EPG_TYPE_GRAPH: lambda: config.epgselection.grid,
-		EPG_TYPE_INFOBARGRAPH: lambda: config.epgselection.infobar,
-		EPG_TYPE_INFOBAR: lambda: config.epgselection.infobar,
-		EPG_TYPE_ENHANCED: lambda: config.epgselection.single,
-		EPG_TYPE_MULTI: lambda: config.epgselection.multi,
-		EPG_TYPE_VERTICAL: lambda: config.epgselection.vertical,
-		EPG_TYPE_SINGLE: lambda: config.epgselection.single,
-	}
-
 	def __init__(self, epg_type):
-		factory = self._TYPE_SECTION.get(epg_type)
-		self._section = factory() if factory else None
+		# Imported here to keep Components.EpgList out of the startup imports (UsageConfig).
+		from Components.EpgList import EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL
+		sections = {
+			EPG_TYPE_GRAPH: "grid",
+			EPG_TYPE_INFOBARGRAPH: "infobar",
+			EPG_TYPE_INFOBAR: "infobar",
+			EPG_TYPE_ENHANCED: "single",
+			EPG_TYPE_MULTI: "multi",
+			EPG_TYPE_VERTICAL: "vertical",
+			EPG_TYPE_SINGLE: "single",
+		}
+		section = sections.get(epg_type)
+		self._section = getattr(config.epgselection, section) if section else None
 		self._type = epg_type
 
 	@property
@@ -969,12 +993,19 @@ class EPGSettings:
 			action ID string (e.g. "openIMDb") or "" if not configured / unknown type.
 		"""
 		suffix = "long" if long else ""
-		defaults = {
-			"red": "openIMDb",
-			"green": "addEditTimer",
-			"yellow": "openEPGSearch",
-			"blue": "addEditAutoTimer",
-		}
+		if long:
+			defaults = {
+				"red": "sortEPG",
+				"green": "openTimerList",
+				"blue": "openAutoTimerList",
+			}
+		else:
+			defaults = {
+				"red": "openIMDb",
+				"green": "addEditTimer",
+				"yellow": "openEPGSearch",
+				"blue": "addEditAutoTimer",
+			}
 		return self._get(f"btn_{color}{suffix}", defaults.get(color, ""))
 
 	# ── channel+/- (grid only) ───────────────────────────────────────────────
