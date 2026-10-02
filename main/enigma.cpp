@@ -430,12 +430,15 @@ int main(int argc, char **argv)
 	setIoPrio(IOPRIO_CLASS_BE, 3);
 
 	/* start at full size */
-	eVideoWidget::setFullsize(true);
+	// Only reset the main decoder here. Some proprietary Broadcom drivers
+	// crash when decoder 1 is resized after its buffers have been released by
+	// the previous Enigma2 instance. PiP configures decoder 1 when it is used.
+	eVideoWidget::setFullsize(true, true);
 
 	python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str());
 
-	/* restore both decoders to full size */
-	eVideoWidget::setFullsize(true);
+	/* Do not touch the video destinations while Enigma2 is shutting down.
+	 * The next instance restores the main decoder before Python starts. */
 
 	if (exit_code == 5) /* python crash */
 	{

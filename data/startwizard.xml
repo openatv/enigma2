@@ -427,7 +427,8 @@ config.ParentalControl.setuppin.save()
 	<step id="reboot">
 		<condition>
 from Components.International import international
-self.condition = bool(international.getPurgablePackages())
+from Components.SystemInfo import BoxInfo
+self.condition = not BoxInfo.getItem("SmallFlash") and bool(international.getPurgablePackages())
 		</condition>
 		<buttons enable="" />
 		<text value="Please wait while unused locales/languages are purged..." />

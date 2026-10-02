@@ -71,6 +71,12 @@ class WizardStart(Wizard, ShowRemoteControl):
 		configfile.save()
 
 	def purgeLocales(self):
+		# SmallBox images deliberately contain only English, German and French.
+		# Avoid an unnecessary opkg removal pass (and its high temporary memory
+		# use) during the first-run wizard.
+		if BoxInfo.getItem("SmallFlash"):
+			self.purgeLocalesDone()
+			return
 		packages = international.getPurgablePackages()
 		if packages:
 			Processing.instance.setDescription(_("Please wait while unused locales/languages are purged..."))
