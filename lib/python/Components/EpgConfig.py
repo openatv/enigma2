@@ -278,8 +278,7 @@ def initEPGConfig():
 	config.epgselection.infobar.browse_mode = ConfigSelection(default="currentservice", choices=singleBrowseModeChoices)
 
 	# ATV old labels: "Text" / "Multi EPG" / "Single EPG". OpenViX labels differ slightly.
-	# ATV old default: "text". OpenViX default: "graphics". Using OpenViX default.
-	config.epgselection.infobar.type_mode = ConfigSelection(default="graphics", choices=[
+	config.epgselection.infobar.type_mode = ConfigSelection(default="text", choices=[
 		("text", _("Text Grid EPG")),
 		("graphics", _("Graphics Grid EPG")),
 		("single", _("Single EPG")),
@@ -332,8 +331,7 @@ def initEPGConfig():
 	config.epgselection.infobar.timeline24h = ConfigYesNo(default=True)
 	config.epgselection.infobar.servicewidth = ConfigSelectionNumber(default=250, stepwidth=1, min=70, max=500, wraparound=True)
 	config.epgselection.infobar.piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
-	# ATV old infowidth default: 25. OpenViX default: 50. Using OpenViX default.
-	config.epgselection.infobar.infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
+	config.epgselection.infobar.infowidth = ConfigSelectionNumber(default=25, stepwidth=25, min=0, max=150, wraparound=True)
 
 	config.epgselection.infobar.btn_ok = ConfigSelection(choices=okActions, default="zap")
 	config.epgselection.infobar.btn_oklong = ConfigSelection(choices=okActions, default="zapExit")
@@ -355,7 +353,7 @@ def initEPGConfig():
 	# ─── single ────────────────────────────────────────────────────────────────
 
 	config.epgselection.single = ConfigSubsection()
-	config.epgselection.single.browse_mode = ConfigSelection(default="lastepgservice", choices=singleBrowseModeChoices)
+	config.epgselection.single.browse_mode = ConfigSelection(default="currentservice", choices=singleBrowseModeChoices)
 	config.epgselection.single.preview_mode = ConfigYesNo(default=True)
 	config.epgselection.single.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	# ATV old: ConfigSelectionNumber(default=16, min=8, max=40) – no skin-default option.
@@ -416,7 +414,7 @@ def initEPGConfig():
 	config.epgselection.grid.type_mode = ConfigSelection(choices=[
 		("graphics", _("Graphics")),
 		("text", _("Text")),
-	], default="graphics")
+	], default="text")
 	config.epgselection.grid.highlight_current_events = ConfigYesNo(default=True)
 	config.epgselection.grid.roundto = ConfigSelection(default="15", choices=[
 		("15", _("%d minutes") % 15),
@@ -478,13 +476,11 @@ def initEPGConfig():
 	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(3, 21)]
 	config.epgselection.grid.itemsperpage = ConfigSelection(default=8, choices=choices)
 
-	# ATV old default: False. OpenViX default: True. Using OpenViX default.
-	config.epgselection.grid.pig = ConfigYesNo(default=True)
+	config.epgselection.grid.pig = ConfigYesNo(default=False)
 	config.epgselection.grid.heightswitch = NoSave(ConfigYesNo(default=False))
 	config.epgselection.grid.servicewidth = ConfigSelectionNumber(default=250, stepwidth=1, min=70, max=500, wraparound=True)
 	config.epgselection.grid.piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
-	# ATV old infowidth default: 25. OpenViX default: 50. Using OpenViX default.
-	config.epgselection.grid.infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
+	config.epgselection.grid.infowidth = ConfigSelectionNumber(default=25, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.grid.rec_icon_height = ConfigSelection(choices=[
 		("bottom", _("bottom")),
 		("top", _("top")),
