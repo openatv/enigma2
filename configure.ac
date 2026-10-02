@@ -795,10 +795,6 @@ if test "$BOXTYPE" == "vuduo" -o "$BOXTYPE" == "vusolo" -o "$BOXTYPE" == "vuduo2
 
 fi
 
-if test "$BOXTYPE" == "vuultimo4k" -o "$BOXTYPE" == "vuduo4kse"; then
-	AC_DEFINE(PASSTHROUGH_FIX, 1 ,[define when passthrough is not entirely supported by drivers (usually Vu+)])
-fi
-
 if test "$BOXTYPE" == "vp7358ci" ; then
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 	AC_DEFINE(KEY_HELP_TO_KEY_INFO, 1,[define when rc sends a KEY_HELP event we need KEY_INFO])
