@@ -88,7 +88,7 @@ VOLUME_FORWARDING_STATE_FILES = (VOLUME_FORWARDING_STATE_FILE, "/var/run/cec_vol
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
-HDMI_CEC_CODE_MARKER = "ATV-CEC-20261001-01"
+HDMI_CEC_CODE_MARKER = "ATV-CEC-20261002-01"
 ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
 ACTIVE_SOURCE_CONFIRM_DELAY_MS = 100
 TV_WAKEUP_ACTIVE_SOURCE_DELAY_MS = 300
@@ -1503,14 +1503,13 @@ class HdmiCec:
 			self.allowBroadcastStandby and
 			self.what == "standby" and
 			config.hdmicec.control_tv_standby.value and
-			config.hdmicec.tv_standby_notinputactive.value and
-			not self.activesource
+			config.hdmicec.tv_standby_notinputactive.value
 		)
 
 	def messagesWithBroadcastStandby(self, messages):
 		messages = list(messages)
 		if (0x0f, "standby") not in messages:
-			self.CECwritedebug("[HdmiCec] add broadcast standby because receiver is not the active source", True)
+			self.CECwritedebug("[HdmiCec] add broadcast standby to ensure TV standby", True)
 			messages.append((0x0f, "standby"))
 		return messages
 
