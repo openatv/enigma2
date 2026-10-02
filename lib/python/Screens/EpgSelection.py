@@ -154,6 +154,8 @@ class EPGSelectionBase(Screen, HelpableScreen):
         if startBouquet is None and servicelist:
             startBouquet = servicelist.getRoot()
         self.bouquets = bouquets or self.getDefaultBouquets(servicelist, startBouquet)
+        # Enhanced, infobar and vertical EPG keep the channel list in sync (as in the old EPGSelection).
+        self.servicelist = servicelist if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_VERTICAL) else None
         self.startBouquet = startBouquet
         self.startRef = startRef
 
@@ -1148,8 +1150,21 @@ class EPGSelectionBase(Screen, HelpableScreen):
             self.openSingleEPG()
 
     def epgButtonPressed(self):
-        # TODO: dispatch via self._cfg.epg / self._cfg.epglong when all epgActions are supported.
-        self.openSingleEPG()
+        from Screens.InfoBar import InfoBar
+        if not InfoBar.instance.LongButtonPressed:
+            self.epgButtonAction(self._cfg.epg)
+
+    def epgButtonPressedLong(self):
+        from Screens.InfoBar import InfoBar
+        if InfoBar.instance.LongButtonPressed:
+            self.epgButtonAction(self._cfg.epglong)
+
+    def epgButtonAction(self, action):
+        # A single EPG of the single EPG makes no sense, show the event info instead (as in the old EPGSelection).
+        if action == "openEventView" or (action == "openSingleEPG" and self.type == EPG_TYPE_SINGLE):
+            self.openEventView()
+        elif action == "openSingleEPG":
+            self.openSingleEPG()
 
     # ------------------------------------------------------------------
     # Number zap — ATV inline approach (number field displayed in the EPG).
@@ -1518,6 +1533,15 @@ class EPGBouquetSelection:
             else:
                 EPGBouquetSelection.lastService = self[f"list{self.activeList}"].getCurrent()[1]
 
+    def getStartService(self):
+        # Service to select when opening the EPG, see browse_mode.
+        if self.restoreLastService and self.startRef:
+            return self.startRef
+        return self.session.nav.getCurrentlyPlayingServiceOrGroup()
+
+    def selectFirstService(self):
+        return getattr(self.epgConfig, "browse_mode", None) is not None and self.epgConfig.browse_mode.value == "firstservice"
+
     def _getBouquetServices(self, bouquet):
         if bouquet is None:
             return []
@@ -1692,22 +1716,26 @@ class EPGServiceBrowse(EPGBouquetSelection):
         return eServiceReference()
 
     def nextService(self):
-        self.selectedServiceIndex += 1
-        if self.selectedServiceIndex >= len(self.services):
-            if config.usage.quickzap_bouquet_change.value and self.bouquets:
-                self.selectedBouquetIndex = (self.selectedBouquetIndex + 1) % len(self.bouquets)
-                self.services = self._getBouquetServices(self.getCurrentBouquet())
-            self.selectedServiceIndex = 0 if self.services else -1
-        self.serviceChanged()
+        self.moveService(+1)
 
     def prevService(self):
-        self.selectedServiceIndex -= 1
-        if self.selectedServiceIndex < 0:
-            if config.usage.quickzap_bouquet_change.value and self.bouquets:
-                self.selectedBouquetIndex = (self.selectedBouquetIndex - 1) % len(self.bouquets)
-                self.services = self._getBouquetServices(self.getCurrentBouquet())
-            self.selectedServiceIndex = len(self.services) - 1 if self.services else -1
-        self.serviceChanged()
+        self.moveService(-1)
+
+    def moveService(self, direction):
+        # Skips services without EPG data when "Skip empty services" is enabled.
+        for x in range(max(len(self.services), 1)):
+            self.selectedServiceIndex += direction
+            if not 0 <= self.selectedServiceIndex < len(self.services):
+                if config.usage.quickzap_bouquet_change.value and self.bouquets:
+                    self.selectedBouquetIndex = (self.selectedBouquetIndex + direction) % len(self.bouquets)
+                    self.services = self._getBouquetServices(self.getCurrentBouquet())
+                self.selectedServiceIndex = (0 if direction > 0 else len(self.services) - 1) if self.services else -1
+            self.serviceChanged()
+            if not config.epgselection.overjump.value or self["list"].getCurrent()[1]:
+                break
+        service = self.getCurrentService()
+        if self.servicelist and isinstance(service, ServiceReference):
+            self.setServicelistSelection(self.getCurrentBouquet(), service.ref)
 
 
 # ===========================================================================
@@ -1831,7 +1859,7 @@ class EPGStandardButtons:
             "blue": self._btn_blue, "bluelong": self._btn_bluelong,
             "ok": self.OK, "oklong": self.OKLong,
             "rec": self._btn_rec, "reclong": self._btn_reclong,
-            "epg": self.epgButtonPressed, "epglong": lambda: None,
+            "epg": self.epgButtonPressed, "epglong": self.epgButtonPressedLong,
             "info": self.Info, "infolong": self.InfoLong,
         }
         return (fn_map.get(actionName, lambda: None), help_text)
@@ -1964,6 +1992,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
             "nextService": (self.nextService, _("CHANNEL+ button (setup in menu)")),
             "prevService": (self.prevService, _("CHANNEL- button (setup in menu)")),
             "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
             "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
             "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
         })
@@ -1991,10 +2020,10 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
         serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
         self["list"].fillGraphEPG(self.services, self.ask_time)
         self["list"].setCurrentlyPlaying(serviceref)
-        self["list"].moveToService(serviceref)
+        self["list"].moveToService(self.getStartService())
         self["list"].fillGraphEPG(None, self.ask_time, True)
         self["list"].setShowServiceMode(config.epgselection.grid.servicetitle_mode.value)
-        if "channel1" in config.epgselection.grid.startmode.value:
+        if "channel1" in config.epgselection.grid.startmode.value or self.selectFirstService():
             self["list"].instance.moveSelectionTo(0)
         self.moveTimeLines(True)
         self.onSelectionChanged()
@@ -2240,6 +2269,7 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
             "nextService": (self.nextService, _("CHANNEL+ button (setup in menu)")),
             "prevService": (self.prevService, _("CHANNEL- button (setup in menu)")),
             "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
             "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
             "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
         })
@@ -2254,7 +2284,7 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
         serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
         self["list"].fillGraphEPG(self.services, self.ask_time)
         self["list"].setCurrentlyPlaying(serviceref)
-        self["list"].moveToService(serviceref)
+        self["list"].moveToService(self.getStartService())
         self["list"].fillGraphEPG(None, self.ask_time, True)
         self["list"].setShowServiceMode(config.epgselection.infobar.servicetitle_mode.value)
         self.moveTimeLines(True)
@@ -2419,6 +2449,7 @@ class EPGSelectionInfobarSingle(EPGSelectionBase, EPGServiceNumberSelection,
             "nextService": (self.prevPage, _("Page up")),
             "prevService": (self.nextPage, _("Page down")),
             "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
         })
         self.addCursorActions({
             "left": (self.prevService, _("Go to previous channel")),
@@ -2514,6 +2545,7 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
             "prevService": (self.nextPage, _("Page down")),
             "input_date_time": (self.enterDateTime, _("Jump to date/time")),
             "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
             "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
         })
         self.addCursorActions({
@@ -2550,10 +2582,12 @@ class EPGSelectionMulti(EPGSelectionBase, EPGServiceNumberSelection,
         EPGSelectionBase.onSelectionChanged(self)
 
     def _fillList(self):
-        serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
         self["list"].recalcEntrySize()
         self["list"].fillMultiEPG(self.services, self.ask_time)
-        self["list"].moveToService(serviceref)
+        if self.selectFirstService():
+            self["list"].setCurrentIndex(0)
+        else:
+            self["list"].moveToService(self.getStartService())
 
     def refreshlist(self):
         curr = self["list"].getCurrentChangeCount()
@@ -2684,6 +2718,7 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
         # Add type-specific extra actions on top of the base epgactions map.
         self.addEpgActions({
             "epg": (self.epgButtonPressed, _("Event info") if epgType == EPG_TYPE_SINGLE else _("Single EPG")),
+            "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
             "info": (self.Info, _("Event info")),
             "menu": (self.createMenu, _("Menu")),
             "nextService": (self.nextService, _("Go to next channel")),
@@ -2762,16 +2797,6 @@ class EPGSelectionSingle(EPGSelectionBase, EPGServiceNumberSelection,
     # ------------------------------------------------------------------
     # Sort toggle — ATV-specific; not in OpenViX (no sortSingleEPG there).
     # ------------------------------------------------------------------
-
-    # ------------------------------------------------------------------
-    # EPG button — event info in single EPG, single EPG in enhanced EPG.
-    # ------------------------------------------------------------------
-
-    def epgButtonPressed(self):
-        if self.type == EPG_TYPE_SINGLE:
-            self.Info()
-        else:
-            self.openSingleEPG()
 
     # ------------------------------------------------------------------
     # CH+/CH- in single EPG moves the calling channel list (serviceChangeCB).
@@ -2876,6 +2901,7 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
             "nextService": (self.nextPage, _("CHANNEL+ button (setup in menu)")),
             "prevService": (self.prevPage, _("CHANNEL- button (setup in menu)")),
             "epg": (self.epgButtonPressed, _("Single EPG")),
+            "epglong": (self.epgButtonPressedLong, _("EPG button long (setup in menu)")),
             "tv": (self.toggleBouquetList, _("Toggle bouquet list")),
             "tvlong": (self.togglePIG, _("Toggle picture in graphics")),
         })

@@ -46,9 +46,6 @@ infoActions = [
 	("", _("Do nothing")),
 	("openEventView", _("Event Info")),
 	("openSingleEPG", _("Single EPG")),
-	("switchToSingleEPG", _("Switch to Single EPG")),
-	("switchToGridEPG", _("Switch to Grid EPG")),
-	("switchToMultiEPG", _("Switch to Multi EPG")),
 ]
 
 channelUpActions = [
