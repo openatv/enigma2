@@ -37,7 +37,7 @@ okActions = [
 recActions = [
 	("addEditTimerMenu", _("Timer Menu")),
 	("addEditTimer", _("Add Timer")),
-	("addEditTimerSilent", _("Create Timer")),
+	# ("addEditTimerSilent", _("Create Timer")),  # Not implemented yet.
 	("addEditZapTimerSilent", _("Create Zap Timer")),
 	("addEditAutoTimer", _("Add AutoTimer")),
 ]
@@ -169,7 +169,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.grid.browse_mode, "epgselection.graph_channel1", {"True": "firstservice", "False": "currentservice"})
 		upgrade(config.epgselection.grid.preview_mode, "epgselection.graph_preview_mode")
 		upgrade(config.epgselection.grid.type_mode, "epgselection.graph_type_mode")
-		upgrade(config.epgselection.grid.highlight_current_events, "epgselection.graph_highlight_current_events")
+		# upgrade(config.epgselection.grid.highlight_current_events, "epgselection.graph_highlight_current_events")  # Not implemented yet.
 		upgrade(config.epgselection.grid.btn_ok, "epgselection.graph_ok", okMap)
 		upgrade(config.epgselection.grid.btn_oklong, "epgselection.graph_oklong", okMap)
 		upgrade(config.epgselection.grid.btn_info, "epgselection.graph_info", infoMap)
@@ -386,7 +386,7 @@ def initEPGConfig():
 	# ATV old: ConfigSelectionNumber(default=16, min=8, max=40) – no skin-default option.
 	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(8, 41)]
 	config.epgselection.multi.itemsperpage = ConfigSelection(default=16, choices=choices)
-	config.epgselection.multi.servicewidth = ConfigSelectionNumber(default=7, stepwidth=1, min=5, max=20, wraparound=True)
+	# config.epgselection.multi.servicewidth = ConfigSelectionNumber(default=7, stepwidth=1, min=5, max=20, wraparound=True)  # Not implemented yet.
 	config.epgselection.multi.btn_ok = ConfigSelection(choices=okActions, default="zap")
 	config.epgselection.multi.btn_oklong = ConfigSelection(choices=okActions, default="zapExit")
 	config.epgselection.multi.btn_epg = ConfigSelection(choices=infoActions, default="openSingleEPG")
@@ -415,7 +415,7 @@ def initEPGConfig():
 		("graphics", _("Graphics")),
 		("text", _("Text")),
 	], default="text")
-	config.epgselection.grid.highlight_current_events = ConfigYesNo(default=True)
+	# config.epgselection.grid.highlight_current_events = ConfigYesNo(default=True)  # Not implemented yet.
 	config.epgselection.grid.roundto = ConfigSelection(default="15", choices=[
 		("15", _("%d minutes") % 15),
 		("30", _("%d minutes") % 30),
@@ -461,11 +461,9 @@ def initEPGConfig():
 	config.epgselection.grid.servicetitle_mode = ConfigSelection(default="picon+servicename", choices=serviceTitleChoices)
 
 	config.epgselection.grid.servicename_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
-	# ATV old had no graph_servicenumber_alignment – new from OpenViX, no migration.
-	config.epgselection.grid.servicenumber_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
+	# config.epgselection.grid.servicenumber_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)  # Not implemented yet.
 	config.epgselection.grid.event_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
-	# ATV old had no graph_timelinedate_alignment – new from OpenViX, no migration.
-	config.epgselection.grid.timelinedate_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
+	# config.epgselection.grid.timelinedate_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)  # Not implemented yet.
 
 	config.epgselection.grid.servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.grid.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -488,11 +486,11 @@ def initEPGConfig():
 		("hide", _("hide")),
 	], default="bottom")
 
-	# ATV old had no number_buttons_mode – new from OpenViX, no migration.
-	config.epgselection.grid.number_buttons_mode = ConfigSelection(choices=[
-		("paging", _("Standard")),
-		("service", _("Enter service number")),
-	], default="paging")
+	# Not implemented yet.
+	# config.epgselection.grid.number_buttons_mode = ConfigSelection(choices=[
+	# 	("paging", _("Standard")),
+	# 	("service", _("Enter service number")),
+	# ], default="paging")
 
 	config.epgselection.grid.btn_ok = ConfigSelection(choices=okActions, default="zap")
 	config.epgselection.grid.btn_oklong = ConfigSelection(choices=okActions, default="zapExit")
