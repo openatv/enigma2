@@ -1029,6 +1029,11 @@ class EPGListGrid(EPGListBase):
 						break
 			self.cur_event = best
 		self.selEntry(0)
+		# The listbox draws the old and new row before the selection state is updated, so redraw both rows.
+		if old_service is not cur_service:
+			for index, entry in enumerate(self.list):
+				if entry is old_service or entry is cur_service:
+					self.l.invalidateEntry(index)
 
 	def selEntry(self, dir, visible=True):
 		cur_service = self.cur_service
