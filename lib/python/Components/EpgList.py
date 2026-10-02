@@ -238,6 +238,19 @@ class EPGListBase(GUIComponent):
             newIdx = 0
         self.setCurrentIndex(newIdx)
 
+    def getSelectedEventId(self):
+        # Single, similar and vertical lists keep the event id in field 1.
+        x = self.l.getCurrentSelection()
+        return x and x[1]
+
+    def moveToEventId(self, eventId):
+        if not eventId:
+            return
+        for index, x in enumerate(self.list):
+            if x[1] == eventId:
+                self.instance.moveSelectionTo(index)
+                break
+
     def getCurrent(self):
         # Returns (event, service) for the currently highlighted row.
         tmp = self.l.getCurrentSelection()
@@ -2437,25 +2450,14 @@ class EPGListSingle(EPGListBase):
     # OpenViX does not have a sort function for the single EPG list.
     def sortSingleEPG(self, sort_type):
         if self.list:
-            event_id = self._getSelectedEventId()
+            event_id = self.getSelectedEventId()
             if sort_type == 1:
                 self.list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
             else:
                 self.list.sort(key=lambda x: x[2])
             self.l.invalidate()
-            self._moveToEventId(event_id)
+            self.moveToEventId(event_id)
 
-    def _getSelectedEventId(self):
-        x = self.l.getCurrentSelection()
-        return x and x[1]
-
-    def _moveToEventId(self, eventId):
-        if not eventId:
-            return
-        for index, x in enumerate(self.list):
-            if x[1] == eventId:
-                self.instance.moveSelectionTo(index)
-                break
 class EPGList(EPGListSingle):
     """Old EPGList API for plugins like EPGSearch (single EPG only)."""
 
@@ -2855,20 +2857,6 @@ class EPGListVertical(EPGListBase):
         eventId = tmp[1]
         event = self.getEventFromId(service, eventId)
         return event, service
-
-    def getSelectedEventId(self):
-        x = self.l.getCurrentSelection()
-        return x and x[1]
-
-    def moveToEventId(self, eventId):
-        if not eventId:
-            return
-        index = 0
-        for x in self.list:
-            if x[1] == eventId:
-                self.instance.moveSelectionTo(index)
-                break
-            index += 1
 
     # ------------------------------------------------------------------
     # EPG data loading

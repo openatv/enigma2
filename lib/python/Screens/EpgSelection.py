@@ -3,7 +3,6 @@ from time import localtime, mktime, strftime, time
 from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
 
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
-from Components.Button import Button
 from Components.EpgConfig import EPGSettings
 from Components.EpgList import EPGBouquetList, EPGListGrid, EPGListMulti, EPGListSingle, EPGListVertical, EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SIMILAR, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL, MAX_TIMELINES, TimelineText
 from Components.Label import Label
@@ -183,12 +182,14 @@ class EPGSelectionBase(Screen, HelpableScreen):
         self["lab1"].hide()
 
         # Button label widgets — concrete classes may override text via _updateButtonText.
-        self["key_red"] = Button(_("IMDb Search"))
-        self["key_green"] = Button(_("Add Timer"))
-        self["key_yellow"] = Button(_("EPG Search"))
-        self["key_blue"] = Button(_("Add AutoTimer"))
+        self["key_red"] = StaticText(_("IMDb Search"))
+        self["key_green"] = StaticText(_("Add Timer"))
+        self["key_yellow"] = StaticText(_("EPG Search"))
+        self["key_blue"] = StaticText(_("Add AutoTimer"))
         self["key_menu"] = StaticText(_("MENU"))
         self["key_info"] = StaticText(_("INFO"))
+        self["key_text"] = StaticText(_("TEXT"))
+        self["key_epg"] = StaticText(_("EPG"))
         self["key_play"] = StaticText("")
 
         helpDescription = _("EPG Commands")
@@ -1518,6 +1519,8 @@ class EPGBouquetSelection:
                 EPGBouquetSelection.lastService = self[f"list{self.activeList}"].getCurrent()[1]
 
     def _getBouquetServices(self, bouquet):
+        if bouquet is None:
+            return []
         # ATV: also returns subservices when the bouquet is a subservice list.
         # OpenViX: only uses eServiceCenter.
         # OpenViX version:
@@ -1617,6 +1620,8 @@ class EPGBouquetSelection:
         self.bouquetChanged()
 
     def setBouquetIndex(self, index):
+        if not self.bouquets:
+            return
         self.selectedBouquetIndex = index % len(self.bouquets)
         self.services = self._getBouquetServices(self.getCurrentBouquet())
         self.selectedServiceIndex = 0 if self.services else -1
@@ -1628,6 +1633,9 @@ class EPGBouquetSelection:
                 if bouquet[1] == bouquetRef:
                     self.selectedBouquetIndex = i
                     break
+            else:  # The start bouquet (e.g. all services or a provider) is not in the bouquet list.
+                self.bouquets = [(ServiceReference(bouquetRef).getServiceName(), bouquetRef)] + self.bouquets
+                self["bouquetlist"].fillBouquetList(self.bouquets)
         self["bouquetlist"].setCurrentIndex(self.selectedBouquetIndex)
         self.services = self._getBouquetServices(bouquetRef)
         self.selectedServiceIndex = 0 if self.services else -1
@@ -1686,7 +1694,7 @@ class EPGServiceBrowse(EPGBouquetSelection):
     def nextService(self):
         self.selectedServiceIndex += 1
         if self.selectedServiceIndex >= len(self.services):
-            if config.usage.quickzap_bouquet_change.value:
+            if config.usage.quickzap_bouquet_change.value and self.bouquets:
                 self.selectedBouquetIndex = (self.selectedBouquetIndex + 1) % len(self.bouquets)
                 self.services = self._getBouquetServices(self.getCurrentBouquet())
             self.selectedServiceIndex = 0 if self.services else -1
@@ -1695,7 +1703,7 @@ class EPGServiceBrowse(EPGBouquetSelection):
     def prevService(self):
         self.selectedServiceIndex -= 1
         if self.selectedServiceIndex < 0:
-            if config.usage.quickzap_bouquet_change.value:
+            if config.usage.quickzap_bouquet_change.value and self.bouquets:
                 self.selectedBouquetIndex = (self.selectedBouquetIndex - 1) % len(self.bouquets)
                 self.services = self._getBouquetServices(self.getCurrentBouquet())
             self.selectedServiceIndex = len(self.services) - 1 if self.services else -1
@@ -1911,6 +1919,10 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection,
 
         # Timeline text widget labels the time axis above the event grid.
         self["timeline_text"] = TimelineText(epgType=EPG_TYPE_GRAPH, graphic=graphic)
+        self["primetime"] = Label(_("PRIMETIME"))
+        self["change_bouquet"] = Label(_("CHANGE BOUQUET"))
+        self["jump"] = Label(_("JUMP 24 HOURS"))
+        self["page"] = Label(_("PAGE UP/DOWN"))
         self["timeline_now"] = graphicControl()
 
         # Pixmap slots for vertical "now" and interval tick markers.
@@ -2188,6 +2200,10 @@ class EPGSelectionInfobarGrid(EPGSelectionBase, EPGBouquetSelection,
         graphicControl = Label if parameters.get("EPGNativeControls", 0) else Pixmap
 
         self["timeline_text"] = TimelineText(epgType=EPG_TYPE_INFOBARGRAPH, graphic=graphic)
+        self["primetime"] = Label(_("PRIMETIME"))
+        self["change_bouquet"] = Label(_("CHANGE BOUQUET"))
+        self["jump"] = Label(_("JUMP 24 HOURS"))
+        self["page"] = Label(_("PAGE UP/DOWN"))
         self["timeline_now"] = graphicControl()
 
         self.time_lines = []
@@ -3559,8 +3575,31 @@ class EPGSelection(EPGSelectionSingle, metaclass=EPGSelectionMeta):
     def OpenSingleEPG(self):
         self.openSingleEPG()
 
-    def redButtonPressed(self):
-        self._dispatchEpgAction(EPGSettings(EPG_TYPE_SINGLE).btn("red"))
+    # Old method names used by plugins (e.g. EPGSearch, PrimeTimeManager).
+    redButtonPressed = EPGStandardButtons._btn_red
+    redButtonPressedLong = EPGStandardButtons._btn_redlong
+    greenButtonPressed = EPGStandardButtons._btn_green
+    greenButtonPressedLong = EPGStandardButtons._btn_greenlong
+    yellowButtonPressed = EPGStandardButtons._btn_yellow
+    blueButtonPressed = EPGStandardButtons._btn_blue
+    blueButtonPressedLong = EPGStandardButtons._btn_bluelong
+    recButtonPressed = EPGStandardButtons._btn_rec
+    recButtonPressedLong = EPGStandardButtons._btn_reclong
 
-    def blueButtonPressedLong(self):
+    def sortEpg(self):
+        self.sortEPG()
+
+    def showTimerList(self):
+        self.openTimerList()
+
+    def showAutoTimerList(self):
         self.openAutoTimerList()
+
+    def showMovieSelection(self):
+        self.showMovies()
+
+    def openTMDB(self):
+        self.openTMDb()
+
+    def createSetup(self):
+        self.createMenu()
