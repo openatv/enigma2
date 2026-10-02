@@ -33,7 +33,7 @@
 	<daemon key="satpi" title="SATPI" installcheck="/etc/init.d/satpi" package="satpi" autostart="/etc/rc2.d/S80satpi" autostartservice="satpi" autostartprio="80" running="satpi" startservice="satpi" />
 	<daemon key="shellinabox" title="ShellInABox" installcheck="/etc/init.d/shellinabox" package="shellinabox" autostart="/etc/rc2.d/S20shellinabox" autostartservice="shellinabox" running="shellinaboxd" startservice="shellinabox" />
 	<daemon key="smartd" title="SMART monitoring" installcheck="/etc/init.d/smartd" package="smartmontools" autostart="/etc/rc2.d/S60smartd" autostartservice="smartd" autostartprio="60" running="smartd" startservice="smartd" />
-	<daemon key="ssh" title="SSH" autostart="/etc/rc2.d/S10dropbear" autostartservice="dropbear" autostartprio="10" running="dropbear" startservice="dropbear" />
+	<daemon key="ssh" title="SSH / SFTP" installcheck="/etc/init.d/dropbear" package="packagegroup-oea-network-ssh" autostart="/etc/rc2.d/S10dropbear" autostartservice="dropbear" autostartprio="10" running="dropbear" startservice="dropbear" />
 	<daemon key="telnet" title="Telnet" autostart="/etc/rc2.d/S20telnetd.busybox" autostartservice="telnetd.busybox" running="telnetd" startservice="telnetd" />
 	<daemon key="ushare" title="uShare" installcheck="/etc/init.d/ushare" package="ushare" autostart="/etc/rc2.d/S20ushare" autostartservice="ushare" running="ushare" startservice="ushare" />
 	<daemon key="wsdd" title="Windows network discovery" installcheck="/etc/init.d/wsdd2" package="wsdd2" autostart="/etc/rc2.d/S99wsdd2" autostartservice="wsdd2" autostartprio="99" running="wsdd2" startservice="wsdd2" />
