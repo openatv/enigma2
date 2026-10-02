@@ -1,5 +1,6 @@
 from bisect import insort
 from datetime import datetime, timedelta
+from functools import total_ordering
 from time import localtime, mktime, time
 
 from enigma import eActionMap, eTimer
@@ -181,6 +182,7 @@ class Timer:
 		self.processed_timers = [x for x in self.processed_timers if (x.disabled and x.repeated) or (x.end and (x.end > limit))]
 
 
+@total_ordering
 class TimerEntry:
 	StateWaiting = 0
 	StatePrepared = 1
