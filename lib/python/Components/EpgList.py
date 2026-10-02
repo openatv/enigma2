@@ -28,6 +28,30 @@ MAX_TIMELINES = 6
 
 
 class EPGListBase(GUIComponent):
+	# Skin attribute tables, extended by the list classes.
+	skinColors = {
+		"EntryForegroundColor": "foreColor",
+		"EntryForegroundColorSelected": "foreColorSelected",
+		"EntryBackgroundColor": "backColor",
+		"EntryBackgroundColorSelected": "backColorSelected",
+		"EntryForegroundColorNow": "foreColorNow",
+		"EntryForegroundColorNowSelected": "foreColorNowSelected",
+		"EntryBackgroundColorNow": "backColorNow",
+		"EntryBackgroundColorNowSelected": "backColorNowSelected",
+		"EntryForegroundColorPast": "foreColorPast",
+		"EntryForegroundColorPastSelected": "foreColorPastSelected",
+		"EntryBackgroundColorPast": "backColorPast",
+		"EntryBackgroundColorPastSelected": "backColorPastSelected",
+	}
+	skinFonts = {}
+	skinValues = {
+		"NumberOfRows": ("numberOfRows", int),
+		"itemHeight": ("skinItemHeight", parseScale),
+		"MinimumItemHeight": ("minimumItemHeight", lambda value: max(0, int(value))),
+	}
+	defaultItemHeight = 32  # Unscaled default row height.
+	minItemHeight = 0  # Unscaled minimum row height, 0 = no minimum.
+
 	def __init__(self, session, selChangedCB=None):
 		GUIComponent.__init__(self)
 
@@ -102,15 +126,10 @@ class EPGListBase(GUIComponent):
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = []
+			self.skinUsingForeColorByTime = False
+			self.skinUsingBackColorByTime = False
 			for (attrib, value) in self.skinAttributes:
-				if attrib == "itemHeight":
-					self.skinItemHeight = parseScale(value)
-				elif attrib == "NumberOfRows":
-					# Row count specified directly by the skin.
-					self.numberOfRows = int(value)
-				elif attrib == "MinimumItemHeight":
-					self.minimumItemHeight = max(0, int(value))
-				else:
+				if not self.applySkinAttribute(attrib, value):
 					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
@@ -120,26 +139,47 @@ class EPGListBase(GUIComponent):
 		self.setItemsPerPage()
 		return rc
 
-	def setItemsPerPage(self, defaultItemHeight=54):
+	def applySkinAttribute(self, attrib, value):
+		# Handles the attributes from the skinColors, skinFonts and skinValues tables, returns False for others.
+		if attrib in self.skinColors:
+			setattr(self, self.skinColors[attrib], parseColor(value).argb())
+			if attrib.endswith(("Now", "NowSelected", "Past", "PastSelected")):
+				if attrib.startswith("EntryForeground"):
+					self.skinUsingForeColorByTime = True
+				elif attrib.startswith("EntryBackground"):
+					self.skinUsingBackColorByTime = True
+		elif attrib in self.skinFonts:
+			font = parseFont(value, ((1, 1), (1, 1)))
+			name, size = self.skinFonts[attrib]
+			setattr(self, name, font.family)
+			setattr(self, size, font.pointSize)
+		elif attrib in self.skinValues:
+			name, convert = self.skinValues[attrib]
+			setattr(self, name, convert(value))
+		else:
+			return False
+		return True
+
+	def setItemsPerPage(self, defaultItemHeight=None):
+		sf = getSkinFactor()
+		if defaultItemHeight is None:
+			defaultItemHeight = int(self.defaultItemHeight * sf)
 		ipp = self.epgConfig.itemsperpage.value
-		if ipp:
-			# Config explicitly sets the number of rows.
-			itemHeight = (self.skinListHeight // ipp) if self.skinListHeight > 0 else defaultItemHeight
-		elif self.numberOfRows:
-			# Fall back to the row count baked into the skin.
-			itemHeight = (self.skinListHeight // self.numberOfRows) if self.skinListHeight > 0 else defaultItemHeight
+		if ipp and self.skinListHeight > 0:
+			itemHeight = self.skinListHeight // ipp
+		elif self.numberOfRows and self.skinListHeight > 0:
+			itemHeight = self.skinListHeight // self.numberOfRows
 		elif self.skinItemHeight:
 			itemHeight = self.skinItemHeight
 		else:
 			itemHeight = defaultItemHeight
-
-		if itemHeight <= 0:
+		if self.minItemHeight and itemHeight < int(self.minItemHeight * sf):
+			itemHeight = int(self.minItemHeight * sf)
+		elif itemHeight <= 0:
 			itemHeight = defaultItemHeight
-
 		# Opt-in readable rows: enforce a minimum height while keeping only fully visible rows.
 		if self.minimumItemHeight and self.skinListHeight > 0:
 			itemHeight = min(self.skinListHeight, max(self.minimumItemHeight, itemHeight))
-
 		self.l.setItemHeight(itemHeight)
 		self.instance.resize(eSize(self.listWidth, self.skinListHeight // itemHeight * itemHeight))
 		self.listHeight = self.instance.size().height()
@@ -176,6 +216,15 @@ class EPGListBase(GUIComponent):
 		for x in self.onSelChanged:
 			if x is not None:
 				x()
+
+	def postWidgetCreate(self, instance):
+		instance.setWrapAround(False)
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
+
+	def preWidgetRemove(self, instance):
+		instance.selectionChanged.get().remove(self.selectionChanged)
+		instance.setContent(None)
 
 	def selectionEnabled(self, enabled):
 		if self.instance is not None:
@@ -314,6 +363,38 @@ class Rect:
 class EPGListGrid(EPGListBase):
 	"""EPG list for graphical timeline mode (EPG_TYPE_GRAPH / EPG_TYPE_INFOBARGRAPH)."""
 
+	skinColors = dict(EPGListBase.skinColors, **{
+		"ServiceForegroundColor": "foreColorService",
+		"ServiceForegroundColorNow": "foreColorServiceNow",
+		"ServiceBackgroundColor": "backColorService",
+		"ServiceBackgroundColorNow": "backColorServiceNow",
+		"RecordForegroundColor": "foreColorRecord",
+		"RecordForegroundColorSelected": "foreColorRecordSelected",
+		"RecordBackgroundColor": "backColorRecord",
+		"RecordBackgroundColorSelected": "backColorRecordSelected",
+		"ZapForegroundColor": "foreColorZap",
+		"ZapBackgroundColor": "backColorZap",
+		"ZapForegroundColorSelected": "foreColorZapSelected",
+		"ZapBackgroundColorSelected": "backColorZapSelected",
+		"ServiceBorderColor": "borderColorService",
+		"EntryBorderColor": "borderColor",
+	})
+	skinFonts = {
+		"ServiceFontGraphical": ("serviceFontNameGraph", "serviceFontSizeGraph"),
+		"EntryFontGraphical": ("eventFontNameGraph", "eventFontSizeGraph"),
+		"ServiceFontInfobar": ("serviceFontNameInfobar", "serviceFontSizeInfobar"),
+		"EventFontInfobar": ("eventFontNameInfobar", "eventFontSizeInfobar"),
+	}
+	skinValues = dict(EPGListBase.skinValues, **{
+		"EntryFontAlignment": ("eventNameAlign", str),
+		"EntryFontWrap": ("eventNameWrap", str),
+		"ServiceBorderWidth": ("serviceBorderWidth", int),
+		"ServiceNamePadding": ("serviceNamePadding", int),
+		"ServiceNumberPadding": ("serviceNumberPadding", int),
+		"EventBorderWidth": ("eventBorderWidth", int),
+		"EventNamePadding": ("eventNamePadding", int),
+	})
+
 	def __init__(self, session, epgConfig, epgType=EPG_TYPE_GRAPH,
 					selChangedCB=None, graphic=False, overjump_empty=False, time_epoch=120):
 		EPGListBase.__init__(self, session, selChangedCB)
@@ -435,10 +516,6 @@ class EPGListGrid(EPGListBase):
 		instance.selectionChanged.get().remove(self.serviceChanged)
 		instance.setContent(None)
 
-	def selectionEnabled(self, enabled):
-		if self.instance is not None:
-			self.instance.setSelectionEnable(enabled)
-
 	def isSelectable(self, service, service_name, events, picon, channel):
 		return bool(events and len(events))
 
@@ -447,107 +524,6 @@ class EPGListGrid(EPGListBase):
 			self.l.setSelectableFunc(self.isSelectable)
 		else:
 			self.l.setSelectableFunc(None)
-
-
-	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = []
-			self.skinUsingForeColorByTime = False
-			self.skinUsingBackColorByTime = False
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "ServiceFontGraphical":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.serviceFontNameGraph = font.family
-					self.serviceFontSizeGraph = font.pointSize
-				elif attrib == "EntryFontGraphical":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.eventFontNameGraph = font.family
-					self.eventFontSizeGraph = font.pointSize
-				elif attrib == "ServiceFontInfobar":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.serviceFontNameInfobar = font.family
-					self.serviceFontSizeInfobar = font.pointSize
-				elif attrib == "EventFontInfobar":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.eventFontNameInfobar = font.family
-					self.eventFontSizeInfobar = font.pointSize
-				elif attrib == "EntryFontAlignment":
-					self.eventNameAlign = value
-				elif attrib == "EntryFontWrap":
-					self.eventNameWrap = value
-				elif attrib == "ServiceForegroundColor":
-					self.foreColorService = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColorNow":
-					self.foreColorServiceNow = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColor":
-					self.backColorService = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColorNow":
-					self.backColorServiceNow = parseColor(value).argb()
-				elif attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNow":
-					self.backColorNow = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryBackgroundColorNowSelected":
-					self.backColorNowSelected = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryForegroundColorNow":
-					self.foreColorNow = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryForegroundColorNowSelected":
-					self.foreColorNowSelected = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "RecordForegroundColor":
-					self.foreColorRecord = parseColor(value).argb()
-				elif attrib == "RecordForegroundColorSelected":
-					self.foreColorRecordSelected = parseColor(value).argb()
-				elif attrib == "RecordBackgroundColor":
-					self.backColorRecord = parseColor(value).argb()
-				elif attrib == "RecordBackgroundColorSelected":
-					self.backColorRecordSelected = parseColor(value).argb()
-				elif attrib == "ZapForegroundColor":
-					self.foreColorZap = parseColor(value).argb()
-				elif attrib == "ZapBackgroundColor":
-					self.backColorZap = parseColor(value).argb()
-				elif attrib == "ZapForegroundColorSelected":
-					self.foreColorZapSelected = parseColor(value).argb()
-				elif attrib == "ZapBackgroundColorSelected":
-					self.backColorZapSelected = parseColor(value).argb()
-				elif attrib == "ServiceBorderColor":
-					self.borderColorService = parseColor(value).argb()
-				elif attrib == "ServiceBorderWidth":
-					self.serviceBorderWidth = int(value)
-				elif attrib == "ServiceNamePadding":
-					self.serviceNamePadding = int(value)
-				elif attrib == "ServiceNumberPadding":
-					self.serviceNumberPadding = int(value)
-				elif attrib == "EntryBorderColor":
-					self.borderColor = parseColor(value).argb()
-				elif attrib == "EventBorderWidth":
-					self.eventBorderWidth = int(value)
-				elif attrib == "EventNamePadding":
-					self.eventNamePadding = int(value)
-				elif attrib == "NumberOfRows":
-					self.numberOfRows = int(value)
-				elif attrib == "itemHeight":
-					self.skinItemHeight = int(value)
-				elif attrib == "MinimumItemHeight":
-					self.minimumItemHeight = max(0, int(value))
-				else:
-					attribs.append((attrib, value))
-			self.skinAttributes = attribs
-		rc = GUIComponent.applySkin(self, desktop, screen)
-		self.skinListHeight = self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.setFontsize()
-		self.setItemsPerPage()
-		return rc
 
 
 	def setFontsize(self):
@@ -1114,21 +1090,6 @@ class EPGListGrid(EPGListBase):
 		self.selectionChanged()
 		return False
 
-	def getIndexFromService(self, serviceref):
-		if serviceref is not None:
-			for x in range(len(self.list)):
-				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
-					return x
-				if CompareWithAlternatives(self.list[x][1], serviceref.toString()):
-					return x
-		return 0
-
-	def moveToService(self, serviceref):
-		if not serviceref:
-			return
-		self.setCurrentIndex(self.getIndexFromService(serviceref))
-
-
 	def nextPage(self, selectFirstService=False):
 		if self.listFirstServiceIndex + self.listRows < len(self.serviceList):
 			self.listFirstServiceIndex += self.listRows
@@ -1449,6 +1410,9 @@ class TimelineText(GUIComponent):
 class EPGListMulti(EPGListBase):
 	"""EPG list for multi-channel now/next mode (EPG_TYPE_MULTI)."""
 
+	skinFonts = {"EventFontMulti": ("eventFontNameMulti", "eventFontSizeMulti")}
+	minItemHeight = 25
+
 	def __init__(self, session, epgConfig, selChangedCB=None):
 		EPGListBase.__init__(self, session, selChangedCB)
 
@@ -1483,81 +1447,10 @@ class EPGListMulti(EPGListBase):
 
 	GUI_WIDGET = eListbox
 
-	def postWidgetCreate(self, instance):
-		instance.setWrapAround(False)
-		instance.selectionChanged.get().append(self.selectionChanged)
-		instance.setContent(self.l)
-
-	def preWidgetRemove(self, instance):
-		instance.selectionChanged.get().remove(self.selectionChanged)
-		instance.setContent(None)
-
-	def selectionEnabled(self, enabled):
-		if self.instance is not None:
-			self.instance.setSelectionEnable(enabled)
-
-
-	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = []
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "EventFontMulti":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.eventFontNameMulti = font.family
-					self.eventFontSizeMulti = font.pointSize
-				elif attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "NumberOfRows":
-					self.numberOfRows = int(value)
-				elif attrib == "itemHeight":
-					self.skinItemHeight = int(value)
-				elif attrib == "MinimumItemHeight":
-					self.minimumItemHeight = max(0, int(value))
-				else:
-					attribs.append((attrib, value))
-			self.skinAttributes = attribs
-		rc = GUIComponent.applySkin(self, desktop, screen)
-		self.skinListHeight = self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.setFontsize()
-		self.setItemsPerPage()
-		return rc
-
-
 	def setFontsize(self):
 		fs = self.eventFontSizeMulti + self.epgConfig.eventfs.value
 		self.l.setFont(0, gFont(self.eventFontNameMulti, fs))
 		self.l.setFont(1, gFont(self.eventFontNameMulti, fs - 4))
-
-	def setItemsPerPage(self, defaultItemHeight=None):
-		sf = getSkinFactor()
-		if defaultItemHeight is None:
-			defaultItemHeight = int(32 * sf)
-		ipp = self.epgConfig.itemsperpage.value
-		if ipp and self.skinListHeight > 0:
-			itemHeight = self.skinListHeight // ipp
-		elif self.numberOfRows and self.skinListHeight > 0:
-			itemHeight = self.skinListHeight // self.numberOfRows
-		elif self.skinItemHeight:
-			itemHeight = self.skinItemHeight
-		else:
-			itemHeight = defaultItemHeight
-		if itemHeight < int(25 * sf):
-			itemHeight = int(25 * sf)
-		# Opt-in readable rows: enforce a minimum height while keeping only fully visible rows.
-		if self.minimumItemHeight and self.skinListHeight > 0:
-			itemHeight = min(self.skinListHeight, max(self.minimumItemHeight, itemHeight))
-		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.skinListHeight // itemHeight * itemHeight))
-		self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.itemHeight = itemHeight
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
@@ -1713,6 +1606,12 @@ class EPGListSingle(EPGListBase):
 	applies (single / infobar).  The column layout is the same for all four.
 	"""
 
+	skinFonts = {
+		"EventFontSingle": ("eventFontNameSingle", "eventFontSizeSingle"),
+		"EventFontInfobar": ("eventFontNameInfobar", "eventFontSizeInfobar"),
+	}
+	minItemHeight = 15
+
 	def __init__(self, session, epgConfig, epgType=EPG_TYPE_SINGLE, selChangedCB=None):
 		EPGListBase.__init__(self, session, selChangedCB)
 
@@ -1758,83 +1657,6 @@ class EPGListSingle(EPGListBase):
 
 	GUI_WIDGET = eListbox
 
-	def postWidgetCreate(self, instance):
-		instance.setWrapAround(False)
-		instance.selectionChanged.get().append(self.selectionChanged)
-		instance.setContent(self.l)
-
-	def preWidgetRemove(self, instance):
-		instance.selectionChanged.get().remove(self.selectionChanged)
-		instance.setContent(None)
-
-	def selectionEnabled(self, enabled):
-		if self.instance is not None:
-			self.instance.setSelectionEnable(enabled)
-
-
-	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = []
-			self.skinUsingForeColorByTime = False
-			self.skinUsingBackColorByTime = False
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "EventFontSingle":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.eventFontNameSingle = font.family
-					self.eventFontSizeSingle = font.pointSize
-				elif attrib == "EventFontInfobar":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.eventFontNameInfobar = font.family
-					self.eventFontSizeInfobar = font.pointSize
-				elif attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNow":
-					self.backColorNow = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryBackgroundColorNowSelected":
-					self.backColorNowSelected = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryForegroundColorNow":
-					self.foreColorNow = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryForegroundColorNowSelected":
-					self.foreColorNowSelected = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryBackgroundColorPast":
-					self.backColorPast = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryBackgroundColorPastSelected":
-					self.backColorPastSelected = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryForegroundColorPast":
-					self.foreColorPast = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryForegroundColorPastSelected":
-					self.foreColorPastSelected = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "NumberOfRows":
-					self.numberOfRows = int(value)
-				elif attrib == "itemHeight":
-					self.skinItemHeight = int(value)
-				elif attrib == "MinimumItemHeight":
-					self.minimumItemHeight = max(0, int(value))
-				else:
-					attribs.append((attrib, value))
-			self.skinAttributes = attribs
-		rc = GUIComponent.applySkin(self, desktop, screen)
-		self.skinListHeight = self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.setFontsize()
-		self.setItemsPerPage()
-		return rc
-
-
 	def setFontsize(self):
 		if self.type == EPG_TYPE_INFOBAR:
 			fs = self.eventFontSizeInfobar + self.epgConfig.eventfs.value
@@ -1842,30 +1664,6 @@ class EPGListSingle(EPGListBase):
 		else:
 			fs = self.eventFontSizeSingle + self.epgConfig.eventfs.value
 			self.l.setFont(0, gFont(self.eventFontNameSingle, fs))
-
-	def setItemsPerPage(self, defaultItemHeight=None):
-		sf = getSkinFactor()
-		if defaultItemHeight is None:
-			defaultItemHeight = int(32 * sf)
-		ipp = self.epgConfig.itemsperpage.value
-		if ipp and self.skinListHeight > 0:
-			itemHeight = self.skinListHeight // ipp
-		elif self.numberOfRows and self.skinListHeight > 0:
-			itemHeight = self.skinListHeight // self.numberOfRows
-		elif self.skinItemHeight:
-			itemHeight = self.skinItemHeight
-		else:
-			itemHeight = defaultItemHeight
-		if itemHeight < int(15 * sf):
-			itemHeight = int(15 * sf)
-		# Opt-in readable rows: enforce a minimum height while keeping only fully visible rows.
-		if self.minimumItemHeight and self.skinListHeight > 0:
-			itemHeight = min(self.skinListHeight, max(self.minimumItemHeight, itemHeight))
-		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.skinListHeight // itemHeight * itemHeight))
-		self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.itemHeight = itemHeight
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
@@ -1982,28 +1780,6 @@ class EPGListSingle(EPGListBase):
 		return res
 
 
-	def getCurrent(self):
-		tmp = self.l.getCurrentSelection()
-		if tmp is None:
-			return None, None
-		service = ServiceReference(tmp[0])
-		eventId = tmp[1]
-		event = self.getEventFromId(service, eventId)
-		return event, service
-
-	def getIndexFromService(self, serviceref):
-		if serviceref is not None:
-			for x in range(len(self.list)):
-				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
-					return x
-		return 0
-
-	def moveToService(self, serviceref):
-		if not serviceref:
-			return
-		self.setCurrentIndex(self.getIndexFromService(serviceref))
-
-
 	def fillSingleEPG(self, service, stime=None):
 		if stime is not None:
 			t = epg_time = int(stime)
@@ -2058,6 +1834,18 @@ class EPGList(EPGListSingle):
 class EPGListVertical(EPGListBase):
 	"""EPG list for one column of the vertical multi-day EPG (EPG_TYPE_VERTICAL)."""
 
+	skinColors = dict(EPGListBase.skinColors, **{
+		"TimeForegroundColor": "foreColorTime",
+		"TimeBackgroundColor": "backColorTime",
+		"PrimeTimeForegroundColor": "foreColorPrimeTime",
+		"PrimeTimeBackgroundColor": "backColorPrimeTime",
+	})
+	skinFonts = {
+		"EventFontVertical": ("eventFontNameVertical", "eventFontSizeVertical"),
+		"TimeFontVertical": ("timeFontNameVertical", "timeFontSizeVertical"),
+	}
+	defaultItemHeight = 90
+
 	def __init__(self, session, epgConfig, selChangedCB=None):
 		EPGListBase.__init__(self, session, selChangedCB)
 
@@ -2108,119 +1896,10 @@ class EPGListVertical(EPGListBase):
 
 	GUI_WIDGET = eListbox
 
-	def postWidgetCreate(self, instance):
-		instance.setWrapAround(False)
-		instance.selectionChanged.get().append(self.selectionChanged)
-		instance.setContent(self.l)
-
-	def preWidgetRemove(self, instance):
-		instance.selectionChanged.get().remove(self.selectionChanged)
-		instance.setContent(None)
-
-	def selectionEnabled(self, enabled):
-		if self.instance is not None:
-			self.instance.setSelectionEnable(enabled)
-
-
-	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = []
-			self.skinUsingForeColorByTime = False
-			self.skinUsingBackColorByTime = False
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "EventFontVertical":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.eventFontNameVertical = font.family
-					self.eventFontSizeVertical = font.pointSize
-				elif attrib == "TimeFontVertical":
-					font = parseFont(value, ((1, 1), (1, 1)))
-					self.timeFontNameVertical = font.family
-					self.timeFontSizeVertical = font.pointSize
-				elif attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNow":
-					self.backColorNow = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryBackgroundColorNowSelected":
-					self.backColorNowSelected = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryForegroundColorNow":
-					self.foreColorNow = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryForegroundColorNowSelected":
-					self.foreColorNowSelected = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryBackgroundColorPast":
-					self.backColorPast = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryBackgroundColorPastSelected":
-					self.backColorPastSelected = parseColor(value).argb()
-					self.skinUsingBackColorByTime = True
-				elif attrib == "EntryForegroundColorPast":
-					self.foreColorPast = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "EntryForegroundColorPastSelected":
-					self.foreColorPastSelected = parseColor(value).argb()
-					self.skinUsingForeColorByTime = True
-				elif attrib == "TimeForegroundColor":
-					self.foreColorTime = parseColor(value).argb()
-				elif attrib == "TimeBackgroundColor":
-					self.backColorTime = parseColor(value).argb()
-				elif attrib == "PrimeTimeForegroundColor":
-					self.foreColorPrimeTime = parseColor(value).argb()
-				elif attrib == "PrimeTimeBackgroundColor":
-					self.backColorPrimeTime = parseColor(value).argb()
-				elif attrib == "NumberOfRows":
-					self.numberOfRows = int(value)
-				elif attrib == "itemHeight":
-					self.skinItemHeight = int(value)
-				elif attrib == "MinimumItemHeight":
-					self.minimumItemHeight = max(0, int(value))
-				else:
-					attribs.append((attrib, value))
-			self.skinAttributes = attribs
-		rc = GUIComponent.applySkin(self, desktop, screen)
-		self.skinListHeight = self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.setFontsize()
-		self.setItemsPerPage()
-		return rc
-
-
 	def setFontsize(self):
 		fs = self.epgConfig.eventfs.value
 		self.l.setFont(0, gFont(self.timeFontNameVertical, self.timeFontSizeVertical + fs))
 		self.l.setFont(1, gFont(self.eventFontNameVertical, self.eventFontSizeVertical + fs))
-
-	def setItemsPerPage(self, defaultItemHeight=None):
-		sf = getSkinFactor()
-		if defaultItemHeight is None:
-			defaultItemHeight = int(90 * sf)
-		ipp = self.epgConfig.itemsperpage.value
-		if ipp and self.skinListHeight > 0:
-			itemHeight = self.skinListHeight // ipp
-		elif self.numberOfRows and self.skinListHeight > 0:
-			itemHeight = self.skinListHeight // self.numberOfRows
-		elif self.skinItemHeight:
-			itemHeight = self.skinItemHeight
-		else:
-			itemHeight = defaultItemHeight
-		if itemHeight <= 0:
-			itemHeight = defaultItemHeight
-		# Opt-in readable rows: enforce a minimum height while keeping only fully visible rows.
-		if self.minimumItemHeight and self.skinListHeight > 0:
-			itemHeight = min(self.skinListHeight, max(self.minimumItemHeight, itemHeight))
-		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.skinListHeight // itemHeight * itemHeight))
-		self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.itemHeight = itemHeight
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
@@ -2328,16 +2007,6 @@ class EPGListVertical(EPGListBase):
 				foreColor, foreColorSel, backColor, backColorSel),
 		))
 		return res
-
-
-	def getCurrent(self):
-		tmp = self.l.getCurrentSelection()
-		if tmp is None:
-			return None, None
-		service = ServiceReference(tmp[0])
-		eventId = tmp[1]
-		event = self.getEventFromId(service, eventId)
-		return event, service
 
 
 	def fillVerticalEPG(self, service, stime=None):
