@@ -19,6 +19,9 @@
 		<!-- Menu / Information -->
 		<menu key="information" level="0" text="Information" description="This menu contains selections to display information about the receiver." weight="5">
 			<item key="distribution_info_screen" level="0" text="About OpenATV" weight="5"><screen module="Information" screen="InformationDistribution" /></item>
+			<menu key="support" level="0" text="Support" description="This menu contains selections to get help and report problems." weight="7">
+				<item key="user_manual" level="0" text="User Manual" weight="5"><screen module="UserManual" screen="UserManual" /></item>
+			</menu>
 			<item key="receiver_info_screen" level="0" text="Receiver" weight="10"><screen module="Information" screen="InformationReceiver" /></item>
 			<item key="benchmark_info_screen" level="2" text="Benchmarks" weight="12" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationBenchmark" /></item>
 			<item key="picture_info_screen" level="0" text="Pictures" weight="15" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="InformationPicture" /></item>
