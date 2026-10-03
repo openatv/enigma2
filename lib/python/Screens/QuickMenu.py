@@ -46,10 +46,10 @@ class QuickMenu(Screen, ProtectedScreen):
 		<eLabel position="369,0" size="2,450" backgroundColor="#00666666" />
 		<widget source="sublist" render="Listbox" position="380,0" size="360,450" backgroundColor="#00000000" itemHeight="50">
 			<templates>
-				<template name="Default" fonts="Regular;20,Regular;15" itemWidth="380" itemHeight="50">
+				<template name="Default" fonts="Regular;20,Regular;15" itemWidth="360" itemHeight="50">
 					<mode name="default">
 						<text index="0" position="10,0" size="e-20,30" font="0" verticalAlignment="center" />
-						<text index="1" position="30,30" size="e-40,20" font="1" verticalAlignment="center" />
+						<text index="1" position="30,30" size="e-40,20" font="1" verticalAlignment="center" wrap="ellipsis" />
 					</mode>
 				</template>
 			</templates>
