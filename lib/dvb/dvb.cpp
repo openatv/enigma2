@@ -2678,10 +2678,18 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	return 0;
 }
 
-void eDVBChannel::forceSourcePosition(off_t offset)
+void eDVBChannel::forceSourcePosition(off_t offset, iDVBDemux *flush_demux)
 {
-	if (m_pvr_thread)
-		m_pvr_thread->forcePosition(offset);
+	if (!m_pvr_thread)
+		return;
+
+	/* Reposition first: flushPVR() resumes the thread at the end, and a
+	   thread resumed before the new position is set would push another
+	   buffer from the old one. */
+	m_pvr_thread->forcePosition(offset);
+
+	if (flush_demux)
+		flushPVR(flush_demux);
 }
 
 void eDVBChannel::flushPVR(iDVBDemux *decoding_demux)

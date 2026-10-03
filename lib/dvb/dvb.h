@@ -313,7 +313,7 @@ public:
 
 	RESULT getLength(pts_t &len);
 	RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode);
-	void forceSourcePosition(off_t offset) override;
+	void forceSourcePosition(off_t offset, iDVBDemux *flush_demux = nullptr) override;
 
 	int getUseCount() { return m_use_count; }
 

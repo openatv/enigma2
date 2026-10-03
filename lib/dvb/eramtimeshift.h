@@ -7,11 +7,6 @@
 #include <pthread.h>
 #include <stdint.h>
 
-struct eRamBlock {
-	off_t offset; // absolute write offset at this block
-	bool is_access_point;
-};
-
 // eRamRingBuffer
 //
 // Seekable circular RAM buffer for DVB TS data.
@@ -27,14 +22,17 @@ struct eRamBlock {
 // The caller does NOT need external synchronization.
 class eRamRingBuffer {
 public:
-	eRamRingBuffer(size_t capacity_bytes, size_t max_blocks);
+	eRamRingBuffer(size_t capacity_bytes, size_t max_access_points);
 	~eRamRingBuffer();
 
-	bool isValid() const { return m_buf && m_blocks; }
+	bool isValid() const { return m_buf && m_aps; }
 
 	// Write TS data into the ring. Returns bytes written (aligned
-	// down to 188). is_access_point marks the block for fast seek.
-	int write(const uint8_t* data, size_t len, bool is_access_point = false);
+	// down to 188).
+	int write(const uint8_t* data, size_t len);
+
+	// Record the absolute offset of an access point for fast seek.
+	void addAccessPoint(off_t offset);
 
 	// Read TS data from the ring at the given absolute offset.
 	// Returns bytes read, or -1 with errno=EAGAIN if the region
@@ -55,13 +53,14 @@ private:
 	uint8_t* m_buf;
 	size_t m_capacity;
 
-	size_t m_max_blocks;
 	off_t m_write_offset;
 	int64_t m_first_write_ms;
 
-	eRamBlock* m_blocks;
-	size_t m_block_write_idx;
-	size_t m_total_blocks;
+	// Circular list of access point offsets, oldest entries overwritten.
+	off_t* m_aps;
+	size_t m_max_aps;
+	size_t m_ap_write_idx;
+	size_t m_ap_count;
 
 	mutable pthread_mutex_t m_mutex;
 };
@@ -116,9 +115,8 @@ private:
 // instead of a disk file. Descrambling (CI, SoftCAM, StreamRelay) and
 // I-frame detection work identically to the disk path.
 //
-// relies entirely on the base class eDVBRecordFileThread for PTS
-// extraction (via eMPEGStreamParserTS) to drive the seek bar and
-// the Precise Recovery System, matching the standard master branch behavior.
+// PCR is taken from the adaptation field of each TS packet (unencrypted
+// even on scrambled channels) and drives the seek bar and the PRS.
 class eRamRecorder : public eDVBRecordScrambledThread {
 public:
 	explicit eRamRecorder(eRamRingBuffer* buf, int packetsize = 188);
@@ -126,12 +124,49 @@ public:
 
 	eRamRingBuffer* getRingBuffer() { return m_ring; }
 
+	// Sample PCR only from this pid; -1 = any. Callable from eApp while running.
+	void setPcrPid(int pid);
+
+	// eDVBTSRecorder::getCurrentPCR() routes through getLastPTS().
+	int getLastPTS(pts_t& pts) override;
+	int getFirstPTS(pts_t& pts) override;
+
+	// Fixed reference, stable across ring wraps.
+	int getFirstPCR(pts_t& pcr) const;
+
+	// Oldest and newest PCR still inside the ring. -1 if not enough data.
+	int getPTSWindow(pts_t& first, pts_t& last) const;
+
+	// Ring offset closest to target, snapped forward to an access point.
+	off_t findOffsetForPTS(pts_t target) const;
+
 protected:
 	int writeData(int len) override;
 	void flush() override;
 
 private:
+	static bool extractPCR(const uint8_t* pkt, pts_t& pcr, int& out_pid, bool& discontinuity);
+	void updatePCR(pts_t pcr, off_t offset);
+
 	eRamRingBuffer* m_ring;
+
+	pts_t m_last_pcr = 0;
+	bool m_last_pcr_valid = false;
+	int64_t m_last_pcr_ms = 0;
+	pts_t m_first_pcr = 0;
+	bool m_first_pcr_valid = false;
+
+	int m_pcr_pid = -1; // written from eApp, read on the recorder thread
+
+	// ~25 PCR/sec, so 8192 entries cover ~5.5 min.
+	static const size_t PCR_HISTORY = 8192;
+	struct PcrSample { off_t offset; pts_t pcr; };
+	PcrSample m_pcr_history[PCR_HISTORY];
+	size_t m_pcr_hist_write = 0;
+	size_t m_pcr_hist_count = 0;
+
+	mutable pthread_mutex_t m_pcr_mutex;
+	int64_t m_last_pcrpid_warn_ms = 0;
 };
 
 #endif // __lib_dvb_eramtimeshift_h

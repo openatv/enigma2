@@ -99,7 +99,7 @@ public:
 	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	void startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
-	int getLastPTS(pts_t &pts);
+	virtual int getLastPTS(pts_t &pts);
 	virtual int getFirstPTS(pts_t &pts);
 	void setTargetFD(int fd) { m_fd_dest = fd; }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
