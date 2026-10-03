@@ -1,6 +1,11 @@
-from json import loads
-from requests import exceptions, get
-from enigma import checkInternetAccess
+from twisted.internet import reactor
+from twisted.internet.defer import Deferred
+from twisted.python.failure import Failure
+from twisted.web.error import Error
+
+from enigma import eInternetCheck
+
+from Tools.Downloader import formatError, getJson
 
 
 # Data available from http://ip-api.com/json/:
@@ -72,37 +77,59 @@ geolocationFields = {
 class Geolocation:
 	def __init__(self):
 		self.geolocation = {}
+		self.internetChecks = {}
 		# Enable this line to force load the geolocation data on initialization.
 		# NOT: Doing this without user consent may violate privacy laws!
 		# self.getGeolocationData(fields=None)
 
-	def getGeolocationData(self, fields=None, useCache=True):
+	def checkInternetAccess(self, host, timeout):
+		""" Runs eInternetCheck in its own thread, the SWIG call to checkInternetAccess() would hold the GIL. """
+		def checkCallback(result):
+			reactor.callLater(0, self.internetChecks.pop, key)  # Release the check outside of its own callback.
+			deferred.callback(result)
+
+		deferred = Deferred()
+		key = object()  # The callback must not reference the check, else the check is never freed.
+		check = eInternetCheck()
+		check.callback.get().append(checkCallback)
+		self.internetChecks[key] = check
+		check.startThread(host, timeout, True)
+		return deferred
+
+	async def getGeolocationData(self, fields=None, useCache=True, screen=None):
+		""" Returns the geolocation data or {} on failure.
+			With screen it does not return anymore once that screen is closed. """
+		screenClosed = Deferred()
+		if screen is not None:
+			screen.onClose.append(lambda: screenClosed.callback(None))
+		geolocation = await self.fetchGeolocationData(fields, useCache)
+		if screenClosed.called:
+			await Deferred()  # Never fires, the waiting caller is dropped with its screen.
+		return geolocation
+
+	async def fetchGeolocationData(self, fields, useCache):
 		fields = self.fieldsToNumber(fields)
 		if useCache and self.checkGeolocationData(fields):
 			print("[Geolocation] Using cached data.")
 			return self.geolocation
-		internetAccess = checkInternetAccess("ip-api.com", 5)
+		internetAccess = await self.checkInternetAccess("ip-api.com", 5)
 		if internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
 			try:
-				response = get("http://ip-api.com/json/?fields=%s" % fields, timeout=(3, 2))
-				if response.status_code == 200 and response.content:
-					geolocation = loads(response.content)
-					status = geolocation.get("status", "unknown/undefined")
-					if status and status == "success":
-						print("[Geolocation] Geolocation data retrieved.")
-						for key in geolocation.keys():
-							self.geolocation[key] = geolocation[key]
-						return self.geolocation
-					else:
-						print("[Geolocation] Error: Geolocation lookup returned '%s' status!  Message '%s' returned." % (status, geolocation.get("message", None)))
-				else:
-					print("[Geolocation] Error: Geolocation lookup returned a status code of %d!" % response.status_code)
-			except exceptions.RequestException as err:
-				print("[Geolocation] Error: Geolocation server connection failure! (%s)" % str(err))
+				geolocation = await getJson(f"http://ip-api.com/json/?fields={fields}", timeout=5)
+				if not isinstance(geolocation, dict):
+					raise ValueError("Geolocation data is not a JSON object")
+				status = geolocation.get("status", "unknown/undefined")
+				if status == "success":
+					print("[Geolocation] Geolocation data retrieved.")
+					self.geolocation.update(geolocation)
+					return self.geolocation
+				print(f"[Geolocation] Error: Geolocation lookup returned '{status}' status!  Message '{geolocation.get('message')}' returned.")
+			except Error as err:
+				print(f"[Geolocation] Error: Geolocation lookup returned a status code of {int(err.status)}!")
 			except ValueError:
 				print("[Geolocation] Error: Geolocation data returned can not be processed!")
-			except Exception as err:
-				print("[Geolocation] Error: Unexpected error!  (%s)" % str(err))
+			except Exception:
+				print(f"[Geolocation] Error: Geolocation server connection failure! ({formatError(Failure())})")
 		elif internetAccess == 1:
 			print("[Geolocation] Error: Geolocation server DNS error!")
 		elif internetAccess == 2:
@@ -127,7 +154,7 @@ class Geolocation:
 				if value:
 					number |= value
 				else:
-					print("[Geolocation] Warning: Ignoring invalid geolocation field '%s'!" % field)
+					print(f"[Geolocation] Warning: Ignoring invalid geolocation field '{field}'!")
 		# print("[Geolocation] DEBUG: fields='%s' -> number=%d." % (sorted(fields), number))
 		return number | 0x0000C000  # Always get "status" and "message".
 
