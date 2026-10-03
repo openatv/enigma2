@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 20:19+0000\n"
-"PO-Revision-Date: 2026-09-30 21:51+0000\n"
+"POT-Creation-Date: 2026-10-03 18:44+0000\n"
+"PO-Revision-Date: 2026-10-02 22:25+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -871,16 +871,16 @@ msgstr[2] "%d miesięcy"
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] "%d pixel"
-msgstr[1] "%d pixele"
-msgstr[2] "%d pixeli"
+msgstr[0] "%d piksel"
+msgstr[1] "%d piksele"
+msgstr[2] "%d pikseli"
 
 #, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
-msgstr[0] "%d Szerokość piksela"
-msgstr[1] "%d Szerokość pikseli"
-msgstr[2] "%d Szerokość pikseli"
+msgstr[0] "%d piksel szerokości"
+msgstr[1] "%d piksele szerokości"
+msgstr[2] "%d pikseli szerokości"
 
 #, python-format
 msgid "%d Pixels"
@@ -1316,6 +1316,7 @@ msgstr "%s webif wyłączony"
 msgid "%s%d min"
 msgstr "%s%d min"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Domyślnie: %s)"
@@ -1856,7 +1857,7 @@ msgid "ATSC provider"
 msgstr "ATSC dostawca"
 
 msgid "AV Receiver, Soundbar And Remote"
-msgstr "Odbiornik AV, Soundbar I Pilot"
+msgstr "Odbiornik AV, Soundbar i Pilot"
 
 msgid "AV Setup"
 msgstr "Audio/Wideo"
@@ -2226,7 +2227,7 @@ msgid "Additional slots cannot be changed while the receiver is running from one
 msgstr "Dodatkowych slotów nie można zmienić, jeśli odbiornik korzysta z jednego z nich."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Dostosuj ustawienia koloru, tak aby wszystkie odcienie były rozpoznawalne, ale jak najbardziej nasycone. Jeśli jesteś zadowolony z rezultatu wciśnij 'OK' aby wyjść z tego menu lub użyj przycisków numerycznych aby zobaczyć inne ekrany testowe."
+msgstr "Dostosuj ustawienia koloru, tak aby wszystkie odcienie były rozpoznawalne, ale jak najbardziej nasycone. Jeśli jesteś zadowolony z rezultatu wciśnij 'OK', aby wyjść z tego menu lub użyj przycisków numerycznych aby zobaczyć inne ekrany testowe."
 
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Dostosuj poziomą pozycję liter używanych w telegazecie."
@@ -2328,7 +2329,7 @@ msgid "Algeria"
 msgstr "Algieria"
 
 msgid "Alias"
-msgstr "Inaczej"
+msgstr "Alias"
 
 msgid "Alignment channel number"
 msgstr "Wyrównanie numeru kanału"
@@ -4765,7 +4766,7 @@ msgid "Compress root file system tar file. (This takes the most time!)"
 msgstr "Kompresowanie pliku tar głównego systemu plików. (To zajmuje najwięcej czasu!)"
 
 msgid "Compressed bits/pixel"
-msgstr "Skompresowane bity/pixele"
+msgstr "Skompresowane bity/piksele"
 
 #, python-format
 msgid "Config file %s saved."
@@ -4990,7 +4991,7 @@ msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Skonfiguruj poziome wyrównanie napisów."
 
 msgid "Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed."
-msgstr "Skonfiguruj początkową prędkość przewijania w przód. Gdy wciśniesz przycisk [>>] przewijanie rozpocznie się z tą prędkością."
+msgstr "Skonfiguruj początkową prędkość przewijania do przodu. Po naciśnięciu przycisku przewijania do przodu przewijanie rozpocznie się z tą prędkością."
 
 msgid "Configure the initial rewind speed. When you press the rewind button, winding will start at this speed."
 msgstr "Skonfiguruj początkową prędkość przewijania wstecz. Gdy wciśniesz przycisk przewijania w wstecz przewijanie rozpocznie się z tą prędkością."
@@ -5159,7 +5160,7 @@ msgstr "Potwierdzenie przełączenia"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
-msgstr "Potwierdzić usunięcie '%s'?"
+msgstr "Czy na pewno usunąć '%s'?"
 
 msgid "ConflictTimer Actions"
 msgstr "Akcje ConflictTimer"
@@ -5873,9 +5874,6 @@ msgstr "Akcje ustawień DNS"
 
 msgid "DNS data source"
 msgstr "Źródło danych DNS"
-
-msgid "Override DNS"
-msgstr "Nadpisanie DNS"
 
 msgid "DNS protocol mode"
 msgstr "Tryb protokołu DNS"
@@ -6892,7 +6890,7 @@ msgid "Display message before playing next movie"
 msgstr "Wyświetl komunikat przed odtworzeniem następnego nagrania"
 
 msgid "Display more information about this file"
-msgstr "Wyświetl więcej informacji nt. tego pliku"
+msgstr "Wyświetl więcej informacji o tym pliku"
 
 msgid "Display oscam information."
 msgstr "Wyświetl informacje o oscam."
@@ -8862,7 +8860,7 @@ msgid "Fallback remote receiver for DVB-T"
 msgstr "Zdalny odbiornik zastępczy dla DVB-T"
 
 msgid "False"
-msgstr "Fałszywe"
+msgstr "Fałsz"
 
 msgid "Family"
 msgstr "Rodzina"
@@ -9895,7 +9893,7 @@ msgid "Height"
 msgstr "Wysokość"
 
 msgid "Help"
-msgstr "Help"
+msgstr "Pomoc"
 
 msgid "Help Action"
 msgstr "Akcje pomocy"
@@ -9905,6 +9903,9 @@ msgstr "Pomoc i Informacje Wizualne"
 
 msgid "Help Screen Information"
 msgstr "Informacje ekranu pomocy"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr "Szybkość animacji wskaźników pomocy"
@@ -13288,6 +13289,9 @@ msgstr "Brak wolnego indexu"
 msgid "No free tuner!"
 msgstr "Brak wolnego tunera!"
 
+msgid "No further DVB-I alternative is available."
+msgstr "Nie jest dostępna żadna kolejna alternatywa DVB-I."
+
 msgid "No gateway"
 msgstr "Brak bramy"
 
@@ -13788,6 +13792,9 @@ msgstr "Jednorazowy"
 msgid "One line"
 msgstr "Jedna linia"
 
+msgid "Online manual"
+msgstr ""
+
 msgid "Online software update"
 msgstr "Aktualizacja oprogramowania"
 
@@ -14019,6 +14026,9 @@ msgstr "Otwórz EPG wielu kanałów"
 msgid "Open the single service EPG view"
 msgstr "Otwórz EPG"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
+
 msgid "Open tuner setup"
 msgstr "Otwórz konfigurację tunera"
 
@@ -14139,6 +14149,9 @@ msgstr "Tekst wyjściowy:"
 
 msgid "Overall progress:"
 msgstr "Ogólny postęp:"
+
+msgid "Override DNS"
+msgstr "Nadpisz DNS"
 
 msgid "Overscan Test"
 msgstr "Test Overscan"
@@ -14533,7 +14546,7 @@ msgid "Picture In Picture"
 msgstr "Obraz w Obrazie"
 
 msgid "Picture Information"
-msgstr "Informacje o obrazie"
+msgstr "Informacje o wyglądzie urządzenia"
 
 msgid "Picture Information Actions"
 msgstr "Akcje informacji o obrazie"
@@ -16074,7 +16087,7 @@ msgid "Remember service PIN"
 msgstr "Pamiętaj PIN kanału"
 
 msgid "Remote Control"
-msgstr "Pilot zdalnego sterowania"
+msgstr "Pilot sterowania"
 
 msgid "Remote Control Button Settings"
 msgstr "Ustawienia przycisków pilota"
@@ -17062,6 +17075,9 @@ msgstr "Skanuj w poszukiwaniu naziemnych LCN i stwórz listy kanałów"
 
 msgid "Scan region"
 msgstr "Region skanowania"
+
+msgid "Scan the QR code to open the manual:"
+msgstr ""
 
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr "Przeskanuj tuner USB, dostępne satelitarne źródła DAB+ lub oba naraz."
@@ -19930,6 +19946,9 @@ msgstr "Pokaż iframe"
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Pokazuje przeglądarkę rozszerzeń. Tutaj można skonfigurować zainstalowaną Wtyczkę"
 
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
+
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Pokazuje dostępne wtyczki. Tutaj możesz je pobrać i zainstalować"
 
@@ -21108,6 +21127,9 @@ msgstr "Sundajski"
 msgid "Sunday"
 msgstr "Niedziela"
 
+msgid "Support"
+msgstr ""
+
 msgid "Suriname"
 msgstr "Surinam"
 
@@ -21760,7 +21782,7 @@ msgstr ""
 "Co chcesz robić?"
 
 msgid "The backup can take up to about 15 minutes to complete."
-msgstr "Utworzenie kopii zapasowej może zająć do około 15 minut."
+msgstr "Utworzenie kopii zapasowej może potrwać około 15 minut."
 
 msgid ""
 "The channel may support VPS\n"
@@ -21896,7 +21918,7 @@ msgid "The selected device is not a supported removable block device."
 msgstr "Wybrane urządzenie nie jest obsługiwanym wymiennym urządzeniem blokowym."
 
 msgid "The selected device is too small. At least 3 GB is required."
-msgstr "Wybrane urządzenie jest za małe. Wymagane jest co najmniej 2561 MiB."
+msgstr "Wybrane urządzenie jest za małe. Wymagane są co najmniej 3 GB."
 
 msgid "The service list is reloaded."
 msgstr "Lista kanałów została przeładowana."
@@ -21923,6 +21945,13 @@ msgid ""
 msgstr ""
 "Czas buforowania dla timeshiftu przekracza określony limit w ustawieniach\n"
 "Co chcesz robić?"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
+"Urządzenie do zapisu timeshift jest niedostępne.\n"
+"Sprawdź urządzenie oraz ścieżkę timeshift."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22026,6 +22055,9 @@ msgstr "Dzięki temu możesz ustalić maksymalną liczbę cyfr na liście kanał
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Ta lista kanałów jest chroniona PINem kontroli rodzicielskiej!"
 
+msgid "This channel is currently off air."
+msgstr "Ten kanał obecnie nie nadaje."
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "To pole umożliwia wyszukiwanie dodatkowej szybkości transmisji symboli do %s."
@@ -22054,7 +22086,7 @@ msgid "This is the order in which DiSEqC commands are sent to the aerial system.
 msgstr "Jest to kolejność wysyłania poleceń DiSEqC do systemu antenowego. Kolejność musi dokładnie odpowiadać kolejności, w jakiej urządzenia fizyczne są ułożone wzdłuż kabla sygnałowego (zaczynając od końca odbiornika)."
 
 msgid "This menu contains selections to display information about the receiver."
-msgstr "To menu zawiera opcje umożliwiające wyświetlanie informacji o odbiorniku."
+msgstr "W tym menu znajdują się opcje umożliwiające wyświetlanie informacji o odbiorniku."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "W tym menu znajdują się opcje związane z zarządzaniem oprogramowaniem w %s %s."
@@ -22792,7 +22824,7 @@ msgid "Triple Tuner"
 msgstr "Potrójny tuner"
 
 msgid "True"
-msgstr "Prawdziwe"
+msgstr "Prawda"
 
 msgid "TrueType font (HD)"
 msgstr "Czcionka TrueType (HD)"
@@ -23117,6 +23149,12 @@ msgstr "Nie można zarejestrować transpondera DAB+"
 
 msgid "Unable to remove the obsolete additional STARTUP files."
 msgstr "Nie można usunąć przestarzałych dodatkowych plików STARTUP."
+
+msgid "Unable to save network configuration!"
+msgstr ""
+
+msgid "Unable to select the audio channel."
+msgstr ""
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Nie można nastroić sygnału DAB+"
@@ -23671,6 +23709,9 @@ msgstr "Adres URL kanału użytkownika"
 
 msgid "User ID"
 msgstr "Nazwa użytkownika"
+
+msgid "User Manual"
+msgstr ""
 
 msgid "User comments"
 msgstr "Komentarze użytkownika"

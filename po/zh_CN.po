@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 20:19+0000\n"
-"PO-Revision-Date: 2026-09-30 21:51+0000\n"
+"POT-Creation-Date: 2026-10-03 18:44+0000\n"
+"PO-Revision-Date: 2026-10-02 14:24+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -1271,6 +1271,7 @@ msgstr "%s Web界面已禁用"
 msgid "%s%d min"
 msgstr "%s%d 分"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(默认：%s)"
@@ -5825,9 +5826,6 @@ msgstr "DNS 设置操作"
 msgid "DNS data source"
 msgstr "DNS 数据源"
 
-msgid "Override DNS"
-msgstr "DNS 覆盖"
-
 msgid "DNS protocol mode"
 msgstr "DNS 模式"
 
@@ -9854,6 +9852,9 @@ msgstr "帮助与视觉反馈"
 msgid "Help Screen Information"
 msgstr "帮助屏信息"
 
+msgid "Help and support"
+msgstr ""
+
 msgid "Help animation speed"
 msgstr "帮助动画速度"
 
@@ -13237,6 +13238,9 @@ msgstr "没有剩余索引可用"
 msgid "No free tuner!"
 msgstr "没有空闲的调谐器！"
 
+msgid "No further DVB-I alternative is available."
+msgstr "没有其他可用的 DVB-I 备选源。"
+
 msgid "No gateway"
 msgstr "没有网关"
 
@@ -13737,6 +13741,9 @@ msgstr "一次"
 msgid "One line"
 msgstr "单行"
 
+msgid "Online manual"
+msgstr ""
+
 msgid "Online software update"
 msgstr "在线软件更新"
 
@@ -13968,6 +13975,9 @@ msgstr "打开多频道 EPG 视图"
 msgid "Open the single service EPG view"
 msgstr "打开单频道 EPG 视图"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
+
 msgid "Open tuner setup"
 msgstr "打开调谐器设置"
 
@@ -14088,6 +14098,9 @@ msgstr "输出文本："
 
 msgid "Overall progress:"
 msgstr "总体进程："
+
+msgid "Override DNS"
+msgstr "DNS 覆盖"
 
 msgid "Overscan Test"
 msgstr "过扫描测试"
@@ -17010,6 +17023,9 @@ msgstr "扫描地面波 LCN 并创建 LCN 频道分组"
 msgid "Scan region"
 msgstr "扫描区域"
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr "扫描 USB 调谐器、可用 DAB+ 卫星传送源，或同时扫描两者。"
 
@@ -19874,6 +19890,9 @@ msgstr "展示架"
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "显示插件浏览器。可在此设置已安装的插件"
 
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
+
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "显示可用插件。可在此下载和安装它们"
 
@@ -21047,6 +21066,9 @@ msgstr "圣丹内斯语"
 msgid "Sunday"
 msgstr "星期天"
 
+msgid "Support"
+msgstr ""
+
 msgid "Suriname"
 msgstr "苏里南"
 
@@ -21863,6 +21885,13 @@ msgstr ""
 "时移的缓冲时间超过设置中指定的限制。\n"
 "你想让我做什么 ？"
 
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
+"时移存储设备不可用。\n"
+"请检查设备和时移路径。"
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "定时器文件“%s”已损坏，无法加载。"
@@ -21963,6 +21992,9 @@ msgstr "如果您有超过9999个频道，这允许您将数字位数设置为6�
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "此频道分组由家长控制密码保护！"
+
+msgid "This channel is currently off air."
+msgstr "该频道当前停播。"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -23056,6 +23088,12 @@ msgstr "无法注册 DAB+ 转发器"
 msgid "Unable to remove the obsolete additional STARTUP files."
 msgstr "无法移除过时的额外 STARTUP 文件。"
 
+msgid "Unable to save network configuration!"
+msgstr ""
+
+msgid "Unable to select the audio channel."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
 
@@ -23609,6 +23647,9 @@ msgstr "用户订阅源地址"
 
 msgid "User ID"
 msgstr "用户名"
+
+msgid "User Manual"
+msgstr ""
 
 msgid "User comments"
 msgstr "用户评论"
