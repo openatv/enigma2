@@ -7,6 +7,7 @@ from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
 from Components.Label import Label
 from Components.NetworkManager import networkManager
+from Components.PluginComponent import plugins
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -16,6 +17,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, isPluginInstalled, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
@@ -222,6 +224,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.mainList.append(quickMenuEntryComponent(6, "Tuner_Setup", _("Tuner Setup"), _("Setup Tuner"), _("Setup your Tuner and search for channels")))
 		self.mainList.append(quickMenuEntryComponent(7, "Plugins", _("Plugins"), _("Setup Plugins"), _("Shows available plugins. Here you can download and install them")))
 		self.mainList.append(quickMenuEntryComponent(8, "Harddisk", _("Harddisk"), _("Harddisk Setup"), _("Setup your Harddisk")))
+		self.mainList.append(quickMenuEntryComponent(9, "InfoPanel", _("Support"), _("Help and support"), _("Open the user manual and tools to get help or report problems")))
 		self["mainlist"].setList([(x[0], x[1], x[2]) for x in self.mainList])
 
 	def selectMainItem(self):
@@ -244,6 +247,8 @@ class QuickMenu(Screen, ProtectedScreen):
 				self.subMenuPlugin()
 			case 8:
 				self.subMenuHarddisk()
+			case 9:
+				self.subMenuSupport()
 		self["sublist"].selectionEnabled(0)
 
 	def subMenuSoftware(self):  # Software Manager Menu.
@@ -438,6 +443,14 @@ class QuickMenu(Screen, ProtectedScreen):
 	def subMenuHarddisk(self):  # Harddisk Menu.
 		self.subList = []
 		self.subList.append(self.quickSubMenuEntryComponent(_("Device Manager"), _("Device Manager"), _("Setup your Device mounts (USB, HDD, others...)"), screen="DeviceManager", screenName="DeviceManager"))
+		self.setSubList()
+
+	def subMenuSupport(self):  # Support Menu, the plugins register via WHERE_MENU with menuid "support".
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("User Manual"), _("Online manual"), _("Shows a QR code to open the online manual on your phone or PC"), screen="UserManual"))
+		for plugin, description in sorted(plugins.getPluginsForMenuWithDescription("support"), key=lambda x: int(x[0][3] or 50)):
+			callback = boundFunction(plugin[1], self.session, self.close) if len(plugin) > 4 and plugin[4] else boundFunction(plugin[1], self.session)
+			self.subList.append(self.quickSubMenuEntryComponent(plugin[0], description or "", description or "", callback=callback))
 		self.setSubList()
 
 	def quickSubMenuEntryComponent(self, name, description, longDescription=None, width=540, setup=None, screen=None, screenName=None, callback=None):
