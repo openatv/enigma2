@@ -441,7 +441,7 @@ self.purgeLocales()
 	<step id="restartdevice" nextstep="end">
 		<condition>
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash")
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
 		</condition>
 		<buttons enable="OK" />
 		<text value="Thank you for using and completing the wizard. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />

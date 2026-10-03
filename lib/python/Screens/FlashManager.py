@@ -36,6 +36,12 @@ def checkImageFiles(files):
 	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
 
 
+def isSmallBoxBootstrapImage(image):
+	# This archive only boots the mandatory native setup from a USB stick.  A
+	# running SmallBox image must use the full companion Multiboot archive.
+	return BoxInfo.getItem("SmallBoxWizard") and str(image).split("?", 1)[0].lower().endswith("_usb.zip")
+
+
 def isNewNativeAdditionalSlot(slotCode, slotData):
 	if not slotCode or not slotCode.isdecimal() or BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot") or BoxInfo.getItem("hasUBIMB"):
 		return False
@@ -114,7 +120,7 @@ class FlashManager(Screen):
 			return result[0] if result else None
 
 		def getImages(path, files):
-			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and (boxname in x or machinebuild in x or model in x)]:
+			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and (boxname in x or machinebuild in x or model in x) and not isSmallBoxBootstrapImage(x)]:
 				try:
 					zipData = ZipFile(file, mode="r")
 					zipFiles = zipData.namelist()
@@ -147,6 +153,14 @@ class FlashManager(Screen):
 			try:
 				req = Request(feedURL, None, USER_AGENT)
 				self.imagesList = dict(load(urlopen(req)))
+				if BoxInfo.getItem("SmallBoxWizard"):
+					self.imagesList = {
+						category: {
+							image: data for image, data in images.items()
+							if not isSmallBoxBootstrapImage(data.get("name", image))
+						} for category, images in self.imagesList.items()
+					}
+					self.imagesList = {category: images for category, images in self.imagesList.items() if images}
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, box)
 				# 	self.imagesList.update(dict(load(urlopen(url))))
