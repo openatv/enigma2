@@ -234,7 +234,7 @@ if [ -x $ORM ]; then
 	if [ -e @sysconfdir@/enigma2/.orm-once ]; then
 		# Once instead of enigma2, e.g. for later calls via enigma2 menu
 		rm -f @sysconfdir@/enigma2/.orm-once
-		enigma2bin="$ORM --manual"
+		enigma2bin=$ORM
 	else
 		[ -e $ORM_RESULT ] && mv -f $ORM_RESULT $ORM_RESULT.last
 		ormpid=$($ORM --watch $ORM_RESULT 2>/dev/null)
