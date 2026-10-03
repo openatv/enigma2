@@ -3366,7 +3366,7 @@ class InfoBarEPG:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
-		if (self.EPGtype == "multi" and config.epgselection.multi_showbouquet.value) or (self.EPGtype == "graph" and config.epgselection.graph_showbouquet.value):
+		if (self.EPGtype == "multi" and config.epgselection.multi.showbouquet.value) or (self.EPGtype == "graph" and config.epgselection.grid.showbouquet.value):
 			if cnt > 1:  # Show bouquet list.
 				self.bouquetSel = self.session.openWithCallback(self.closed, EpgBouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
 				self.dlg_stack.append(self.bouquetSel)
@@ -3422,7 +3422,7 @@ class InfoBarEPG:
 		if not reopen:
 			self.StartBouquet = self.servicelist.getRoot()
 			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if config.epgselection.infobar_type_mode.value == "single":
+		if config.epgselection.infobar.type_mode.value == "single":
 			self.EPGtype = "infobar"
 			self.SingleServiceEPG()
 		else:

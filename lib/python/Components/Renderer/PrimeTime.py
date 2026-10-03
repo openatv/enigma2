@@ -23,8 +23,7 @@ class PrimeTime(Renderer, VariableText):
 			if self.epgCache:
 				events = self.epgCache.lookupEvent(["IBDCT", (self.source.service.toString(), 0, -1, -1)])
 				if events:
-					hour = config.epgselection.graph_primetimehour.value
-					minute = config.epgselection.graph_primetimemins.value
+					hour, minute = config.epgselection.grid.primetime.value
 					now = localtime()
 					primeTime = int(mktime(datetime(now.tm_year, now.tm_mon, now.tm_mday, hour, minute).timetuple()))
 					nextEvent = False
