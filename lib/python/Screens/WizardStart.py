@@ -47,6 +47,10 @@ class WizardStart(Wizard, ShowRemoteControl):
 		flashSize = statvfs('/')
 		flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2 ** 20
 		self.smallFlashSize = BoxInfo.getItem("SmallFlash") and flashSize < 130
+		# The native bootstrap wizard writes this marker only after the USB
+		# setup and the complete SmallBox package installation succeeded.  A
+		# Chkroot installation writes it into the new root file system.
+		self.smallBoxPrepared = isfile("/etc/smallbox-wizard.done")
 		self.swapExists = "/dev/" in "".join(fileReadLines("/proc/swaps", default=[], source=MODULE_NAME))
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
