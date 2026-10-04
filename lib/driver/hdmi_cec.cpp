@@ -142,7 +142,7 @@ eHdmiCEC::eHdmiCEC()
 	amlogicCEC = false;
 	hdmiFd = -1;
 	fixedAddress = false;
-	enabled = true;
+	cecEnabled = true;
 	reportActiveMenu = true;
 	physicalAddress[0] = 0x10;
 	physicalAddress[1] = 0x00;
@@ -475,7 +475,7 @@ int eHdmiCEC::getDeviceType()
 
 void eHdmiCEC::setEnabled(bool enabled)
 {
-	this->enabled = enabled;
+	cecEnabled = enabled;
 }
 
 void eHdmiCEC::setReportActiveMenu(bool enabled)
@@ -600,7 +600,7 @@ void eHdmiCEC::hdmiEvent(int what)
 				}
 #endif
 			}
-			if (hasdata && enabled && rxmessage.length > 0)
+			if (hasdata && cecEnabled && rxmessage.length > 0)
 			{
 				bool keypressed = false;
 				static unsigned char pressedkey = 0;
