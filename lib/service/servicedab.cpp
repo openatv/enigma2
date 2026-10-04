@@ -47,6 +47,39 @@ constexpr uint64_t LOAS_PROBE_OVERRUNS = 3;
 constexpr uint16_t DAB_LIVE_EPG_EVENT_ID = 0xdab0;
 constexpr int DAB_LIVE_EPG_WINDOW = 4 * 60 * 60;
 
+enum class DABAudioMode
+{
+	Automatic,
+	HardwareAAC,
+	SoftwarePCM
+};
+
+DABAudioMode dabAudioMode()
+{
+	const std::string value = eConfigManager::getConfigValue("config.dab.audioMode");
+	if (value == "aac")
+		return DABAudioMode::HardwareAAC;
+	if (value == "pcm")
+		return DABAudioMode::SoftwarePCM;
+	return DABAudioMode::Automatic;
+}
+
+bool defaultDABPCMCompatibility()
+{
+#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920) || defined(HWOSMIO4K) || defined(HWOSMIO4KPLUS) || defined(HWSF4008)
+	return true;
+#else
+	return false;
+#endif
+}
+
+bool useDABPCMCompatibility()
+{
+	const DABAudioMode mode = dabAudioMode();
+	return mode == DABAudioMode::SoftwarePCM ||
+		(mode == DABAudioMode::Automatic && defaultDABPCMCompatibility());
+}
+
 /* Latched when a sink advertises LOAS but does not consume it. */
 bool &loasSinkRejected()
 {
@@ -2125,10 +2158,7 @@ bool eServiceDAB::startRTLSDR()
 	if (!parseRTLSDRChannel(channel))
 		return false;
 	const uint32_t serviceId = m_reference.getUnsignedData(6);
-	bool pcmOutput = false;
-#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
-	pcmOutput = serviceId != 0;
-#endif
+	const bool pcmOutput = serviceId && useDABPCMCompatibility();
 	char motCachePrefix[192];
 	snprintf(motCachePrefix, sizeof(motCachePrefix), "%s/dab-mot-%08x-%04x",
 		m_cache_directory.c_str(), m_source_hash, m_reference.getUnsignedData(7) & 0xffff);
@@ -2612,10 +2642,16 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 	 * decoder when it does not. Legacy Dreambox hardware receives DAB-aware
 	 * FAAD2 PCM from the RTL-SDR backend because FFmpeg cannot decode SBR with
 	 * DAB's 960-sample transform. */
+	const DABAudioMode audioMode = dabAudioMode();
+	const bool pcmCompatibility = pcmInput || useDABPCMCompatibility();
 	m_audio_input_loas = loasInput && !pcmInput;
 	m_audio_input_pcm = pcmInput;
-	m_audio_loas = !pcmInput && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
-	eDABDebug("[eServiceDAB] selected %s decode via '%s'", m_audio_loas ? "hardware" : "software", hardwareSink);
+	m_audio_loas = !pcmCompatibility && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
+	eDABDebug("[eServiceDAB] selected %s decode via '%s' (mode=%s, pcmCompatibility=%d)",
+		m_audio_loas ? "hardware" : "software", hardwareSink,
+		audioMode == DABAudioMode::HardwareAAC ? "aac" :
+			audioMode == DABAudioMode::SoftwarePCM ? "pcm" : "auto",
+		pcmCompatibility);
 	std::string description = "appsrc name=dabsource is-live=";
 	description += pcmInput ? "false " : "true ";
 	description +=
@@ -2635,10 +2671,8 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 	}
 	else if (!m_audio_loas)
 		description += "faad ! audioconvert ! audioresample ! ";
-#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
-	if (!m_audio_loas && !pcmInput)
+	if (!m_audio_loas && !pcmInput && pcmCompatibility)
 		description += "audio/x-raw,format=S16LE,rate=48000,channels=2 ! ";
-#endif
 	description += hardwareSink;
 	description += " name=dabaudiosink";
 	GError *error = nullptr;
@@ -2685,14 +2719,13 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 	{
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-sync"))
 		{
-#if defined(DREAMNEXTGEN) || defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
-			/* Match eServiceMP3's audio-only setup. In particular, legacy
-			 * Dreambox dvbaudiosink must be clocked by GStreamer; with e2-sync
-			 * disabled it consumes software-decoded PCM too quickly. */
-			g_object_set(audioSink, "e2-sync", TRUE, nullptr);
-#else
-			g_object_set(audioSink, "e2-sync", FALSE, nullptr);
+			/* Match eServiceMP3's audio-only setup. Compatibility sinks must
+			 * be clocked by GStreamer when software-decoded PCM is used. */
+			bool sinkSync = pcmCompatibility;
+#ifdef DREAMNEXTGEN
+			sinkSync = true;
 #endif
+			g_object_set(audioSink, "e2-sync", sinkSync, nullptr);
 		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-async"))
 			/* DAB is a live appsrc and must not wait for an asynchronous
@@ -2915,12 +2948,13 @@ void eServiceDAB::audioQueueOverrun(GstElement *, void *userData)
 
 void eServiceDAB::showRadioPicture()
 {
-#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920)
-	/* These drivers share decoder state between video0 and audio0. Starting the
-	 * MPEG still-picture decoder can silence DAB audio sent through audio0.
-	 * DABSlideDisplay supplies a GUI-rendered logo/SLS background instead. */
-	return;
-#endif
+	if (useDABPCMCompatibility())
+	{
+		/* Some drivers share decoder state between video0 and audio0. Starting
+		 * the MPEG still-picture decoder can disturb DAB PCM sent through audio0.
+		 * DABSlideDisplay supplies a GUI-rendered logo/SLS background instead. */
+		return;
+	}
 	if (m_radio_picture_decoder)
 		return;
 	const bool showRadioBackground = eSimpleConfig::getBool("config.misc.showradiopic", true);
