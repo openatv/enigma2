@@ -16,7 +16,7 @@ from time import localtime, strftime, time
 from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
-from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, createRecordTimerEntry, findSafeRecordPath, parseEvent
+from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, createRecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import avSwitch
@@ -34,7 +34,7 @@ from Components.Task import job_manager
 from Components.TimerList import TimerList  # Deprecated!
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.Timeshift import InfoBarTimeshift
-from Components.UsageConfig import defaultMoviePath, preferredInstantRecordPath, preferredTimerPath
+from Components.UsageConfig import preferredInstantRecordPath, preferredTimerPath
 from Components.VolumeControl import VolumeControl
 from Components.Renderer.PositionGauge import PositionGauge
 from Components.Renderer.Progress import Progress
@@ -3934,12 +3934,6 @@ class InfoBarInstantRecord:
 
 	def keyInstantRecord(self, serviceRef=None):
 		self.selectedInstantServiceRef = serviceRef
-		pirp = preferredInstantRecordPath()
-		if not findSafeRecordPath(pirp) and not findSafeRecordPath(defaultMoviePath()):
-			if not pirp:
-				pirp = ""
-			self.session.open(MessageBox, "%s\n\n%s" % (_("Path '%s' missing!") % pirp, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
-			return
 		serviceReference = ServiceReference(serviceRef or self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if isStandardInfoBar(self) and serviceReference.isRecordable() and not self.getInstantRecordings(serviceReference):
 			commonRecord = [
@@ -4119,9 +4113,6 @@ class InfoBarInstantRecord:
 		if self.getInstantRecordings(serviceReference):
 			Notifications.showInfo(_("An instant recording is already running on this service."))
 			return None
-		if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
-			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
-			return None
 		recording = RecordTimerEntry(serviceReference, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
 		recording.marginBefore = 0
 		recording.dontSave = True
@@ -4178,6 +4169,7 @@ class InfoBarInstantRecord:
 			self.showInstantRecordingConflict(recording, None, checker, conflicts)
 		elif recording in manager.timer_list:
 			self.recording.append(recording)
+			Notifications.showInfo(_("Preparing recording..."))
 			return recording
 		else:  # RecordTimer.record() also returns None for an existing duplicate.
 			Notifications.showInfo(_("An existing timer already records this service during the requested time."))
