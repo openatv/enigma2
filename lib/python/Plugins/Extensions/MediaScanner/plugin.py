@@ -39,7 +39,10 @@ def mountpoint_choosen(option):
 			parentScreen.close()
 		return
 
-	notificationCenter.addModalNotification(_("The following files were found..."), list=list, callback=execute)
+	if popup and len(list) == 1:  # Skip a redundant choice for manual scans, but keep hotplug confirmation.
+		execute(list[0][1])
+	else:
+		notificationCenter.addModalNotification(_("The following files were found..."), list=list, callback=execute)
 
 
 def scan(session, parent=None):
