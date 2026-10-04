@@ -50,6 +50,7 @@ private:
 	friend class eDVBTSRecorder;
 	friend class eDVBCAService;
 	friend class eTSMPEGDecoder;
+	friend class eHEVCHDRDetector;
 	sigc::signal<void(int)> m_event;
 	int openDemux(void);
 };
