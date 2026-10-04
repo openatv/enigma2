@@ -434,7 +434,7 @@ class OpkgComponent:
 				if line.startswith("Not selecting "):
 					print(f"[Opkg] Warning: Not selecting '{line[14:]}'.")
 			args = []
-			for line in lines:
+			for line in lines + [""]:  # Flush the last record even without a trailing blank line.
 				if args:
 					if line[:1] == " ":
 						args[-1] = f"{args[-1]} {line.strip()}"
@@ -448,8 +448,7 @@ class OpkgComponent:
 						data[package].append(entry)
 					else:
 						data[package] = [entry]
-				args = line.split(" - ", 2)
-				args = [x.strip() for x in args]
+				args = [x.strip() for x in line.split(" - ", 2)] if line.strip() else []
 		packages = []
 		for package in sorted(data.keys()):
 			select = 0
@@ -469,7 +468,7 @@ class OpkgComponent:
 			token = None
 			entry = {}
 			value = ""
-			for line in lines:
+			for line in lines + [""]:  # Flush the last record even without a trailing blank line.
 				if line == "":
 					if "Package" in entry:
 						if "Size" in entry and isinstance(entry["Size"], str):
