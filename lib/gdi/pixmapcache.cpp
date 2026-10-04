@@ -96,8 +96,8 @@ gPixmap* PixmapCache::Get(const char *filename)
 			else
 			{
 				// file no longer exists, has been modified or changed size, so remove from the cache
-				pixmapCache.erase(it);
 				disposePixmap = it->second.pixmap;
+				pixmapCache.erase(it);
 			}
 		}
 	}
@@ -145,18 +145,19 @@ void PixmapCache::Set(const char *filename, gPixmap* pixmap)
 				it->second.pixmap = pixmap;
 				it->second.filesize = img_stat.st_size;
 				it->second.modifiedDate = img_stat.st_mtime;
+				it->second.lastUsed = ::time(0);
 			}
 			else
 			{
-				if (pixmapCache.size() > MaximumSize)
+				if (pixmapCache.size() >= MaximumSize)
 				{
 					// find the least recently used
 					NameToPixmap::iterator it = std::min_element(pixmapCache.begin(), pixmapCache.end(), &CompareLastUsed);
 					if (it != pixmapCache.end())
 					{
-						pixmapCache.erase(it);
 						// need to release the pixmap being removed after we've finished updating the cache
 						disposePixmap = it->second.pixmap;
+						pixmapCache.erase(it);
 					}
 				}
 

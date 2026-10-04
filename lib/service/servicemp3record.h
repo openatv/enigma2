@@ -22,12 +22,23 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 	RESULT getServiceType(int &serviceType) { serviceType = -1; return -1; };
-	RESULT getFilenameExtension(std::string &ext) { ext = ".stream"; return 0; };
+	RESULT getFilenameExtension(std::string &ext) { ext = m_dvbi ? ".ts" : ".stream"; return 0; };
 
 private:
 	enum { stateIdle, statePrepared, stateRecording };
 	GstElement* m_recording_pipeline;
 	GstElement* m_source;
+	GstElement* m_mux = nullptr;
+	const bool m_dvbi;
+	std::atomic<bool> m_stopping{false};
+	std::atomic<unsigned int> m_pending_tasks{0};
+	std::mutex m_pipeline_mutex;
+	std::mutex m_task_mutex;
+	std::mutex m_pad_mutex;
+	guint32 m_pad_slots = 0;
+	bool m_running_notified = false;
+	// Keep callback data alive until the asynchronous NULL transition completes.
+	ePtr<eServiceMP3Record> m_task_hold;
 	bool m_simulate;
 	int m_state;
 	int m_error;
@@ -53,6 +64,13 @@ private:
 	static void handleUridecNotifySource(GObject *object, GParamSpec *unused, gpointer user_data);
 	static void handlePadAdded(GstElement *element, GstPad *pad, gpointer user_data);
 	static gboolean handleAutoPlugCont(GstElement *bin, GstPad *pad, GstCaps *caps, gpointer user_data);
+	int prepareDVBIPipeline(const std::string &uri);
+	static void startDVBIPipeline(GstElement *pipeline, gpointer user_data);
+	static void stopDVBIPipeline(GstElement *pipeline, gpointer user_data);
+	void completeDVBITask();
+	static void handleDVBIPadAdded(GstElement *element, GstPad *pad, gpointer user_data);
+	static void handleDVBIPadRemoved(GstElement *element, GstPad *pad, gpointer user_data);
+	static gint selectDVBIFactory(GstElement *bin, GstPad *pad, GstCaps *caps, GstElementFactory *factory, gpointer user_data);
 
 	/* events */
 	sigc::signal<void(iRecordableService*,int)> m_event;

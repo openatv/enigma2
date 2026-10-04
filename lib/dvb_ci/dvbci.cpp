@@ -1170,34 +1170,40 @@ int eDVBCIInterfaces::setCIClockRate(int slotid, const std::string &rate)
    (with correct caid) */
 void eDVBCIInterfaces::setCIPlusRouting(int slotid)
 {
-	int ciplus_routing_tunernum;
-	std::string ciplus_routing_input;
-	std::string ciplus_routing_ci_input;
-
 	eDebug("[CI] setCIRouting slotid=%d", slotid);
 	singleLock s(m_pmt_handler_lock);
-	if (m_pmt_handlers.size() == 0)
+	eDVBCISlot *slot = getSlot(slotid);
+	if (!slot)
+		return;
+
+	if (m_pmt_handlers.empty())
 	{
-		eDebug("[CI] setCIRouting no pmt handler available! Unplug/plug again the CI module.");
+		eDebug("[CI] setCIRouting no pmt handler available, leaving routing unchanged.");
 		return;
 	}
 
-	eDVBCISlot *slot = getSlot(slotid);
 	if (slot->isCamMgrRoutingActive()) // CamMgr has already set up routing. Don't change that.
 	{
 		eDebug("[CI] CamMgrRouting is active -> return");
 		return;
 	}
 
-	PMTHandlerList::iterator it = m_pmt_handlers.begin();
-	while (it != m_pmt_handlers.end())
+	// Repeated content-control session requests must not overwrite the saved
+	// sources with temporary CI routing, or reapply routing after authentication.
+	if (slot->ciplusRoutingDone() || slot->getCIPlusRoutingTunerNum() >= 0)
+	{
+		eDebug("[CI] setCIRouting already configured or completed for slot %d", slotid);
+		return;
+	}
+
+	for (PMTHandlerList::iterator it = m_pmt_handlers.begin(); it != m_pmt_handlers.end(); ++it)
 	{
 		int tunernum = -1;
 		eUsePtr<iDVBChannel> channel;
-		if (!it->pmthandler->getChannel(channel))
+		if (!it->pmthandler->getChannel(channel) && channel)
 		{
 			ePtr<iDVBFrontend> frontend;
-			if (!channel->getFrontend(frontend))
+			if (!channel->getFrontend(frontend) && frontend)
 			{
 				eDVBFrontend *fe = (eDVBFrontend *)&(*frontend);
 				tunernum = fe->getSlotID();
@@ -1207,46 +1213,27 @@ void eDVBCIInterfaces::setCIPlusRouting(int slotid)
 		if (tunernum < 0)
 			continue;
 
-		ciplus_routing_tunernum = slot->getCIPlusRoutingTunerNum();
-
-		// read and store old routing config
+		// Both sources must be available before changing any routing. CFile::read
+		// closes the file on every path; stream extraction accepts an optional newline.
 		char file_name[64];
-		char tmp[8];
-		int rd;
+		std::string ciplus_routing_input;
+		std::string ciplus_routing_ci_input;
 
-		snprintf(file_name, 64, "/proc/stb/tsmux/input%d", tunernum);
-		int fd = open(file_name, O_RDONLY);
-		if (fd > -1)
+		snprintf(file_name, sizeof(file_name), "/proc/stb/tsmux/input%d", tunernum);
+		std::istringstream input(CFile::read(file_name));
+		if (!(input >> ciplus_routing_input))
 		{
-			rd = read(fd, tmp, 8);
-			if (rd > 0)
-			{
-				if (ciplus_routing_tunernum != tunernum)
-					ciplus_routing_input = std::string(tmp, rd - 1);
-			}
-			else
-				continue;
-			close(fd);
-		}
-		else
+			eDebug("[CI] setCIRouting cannot read source from %s", file_name);
 			continue;
+		}
 
-		snprintf(file_name, 64, "/proc/stb/tsmux/ci%d_input", slotid);
-		fd = open(file_name, O_RDONLY);
-		if (fd > -1)
+		snprintf(file_name, sizeof(file_name), "/proc/stb/tsmux/ci%d_input", slotid);
+		std::istringstream ci_input(CFile::read(file_name));
+		if (!(ci_input >> ciplus_routing_ci_input))
 		{
-			rd = read(fd, tmp, 8);
-			if (rd > 0)
-			{
-				if (ciplus_routing_tunernum != tunernum)
-					ciplus_routing_ci_input = std::string(tmp, rd - 1);
-			}
-			else
-				continue;
-			close(fd);
-		}
-		else
+			eDebug("[CI] setCIRouting cannot read source from %s", file_name);
 			continue;
+		}
 
 		std::stringstream new_input_source;
 		new_input_source << "CI" << slot->getSlotID();
@@ -1261,14 +1248,14 @@ void eDVBCIInterfaces::setCIPlusRouting(int slotid)
 		slot->setCIPlusRoutingParameter(tunernum, ciplus_routing_input, ciplus_routing_ci_input);
 		eDebug("[CI] CIRouting active slotid=%d tuner=%d old_input=%s old_ci_input=%s", slotid, tunernum, ciplus_routing_input.c_str(), ciplus_routing_ci_input.c_str());
 		break;
-
-		++it;
 	}
 }
 
 void eDVBCIInterfaces::revertCIPlusRouting(int slotid)
 {
 	eDVBCISlot *slot = getSlot(slotid);
+	if (!slot)
+		return;
 
 	int ciplus_routing_tunernum = slot->getCIPlusRoutingTunerNum();
 	std::string ciplus_routing_input = slot->getCIPlusRoutingInput();
@@ -1279,6 +1266,15 @@ void eDVBCIInterfaces::revertCIPlusRouting(int slotid)
 	if (slot->isCamMgrRoutingActive() || // CamMgr has set up routing. Don't revert that.
 		slot->ciplusRoutingDone())		 // need to only run once during CI initialization
 	{
+		slot->setCIPlusRoutingDone();
+		return;
+	}
+
+	// Authentication can finish even when setCIPlusRouting could not find a
+	// usable frontend or read its sources. There is then nothing to restore.
+	if (ciplus_routing_tunernum < 0 || ciplus_routing_input.empty() || ciplus_routing_ci_input.empty())
+	{
+		eDebug("[CI] revertCIPlusRouting: no saved routing for slot %d, leaving sources unchanged", slotid);
 		slot->setCIPlusRoutingDone();
 		return;
 	}

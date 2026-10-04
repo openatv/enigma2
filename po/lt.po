@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
 "PO-Revision-Date: 2026-08-16 18:13+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -899,6 +899,10 @@ msgstr[1] "%d Metai"
 msgstr[2] "%d Metų"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr ""
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d branduolys"
@@ -945,6 +949,10 @@ msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr ""
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1295,6 +1303,7 @@ msgstr ""
 msgid "%s%d min"
 msgstr "%s%d min."
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Default: %s)"
@@ -1306,6 +1315,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr ""
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2108,9 +2121,6 @@ msgstr "Pridėti pasirinktą aplanką į žymes"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Senstelėjusių LEFT/RIGHT veiksmų įtraukimas"
 
-msgid "Add more slots"
-msgstr ""
-
 msgid "Add new CCcam line"
 msgstr "Pridėkite naują CCcam eilutę"
 
@@ -2119,6 +2129,9 @@ msgstr "Pridėti naują NewCamd eilutę"
 
 msgid "Add new tag"
 msgstr "Pridėti naują žymę"
+
+msgid "Add or change additional slots"
+msgstr ""
 
 msgid "Add provider"
 msgstr "Pridėti teikėją"
@@ -2200,6 +2213,9 @@ msgstr "Papildomos variklio galimybės leidžia įvesti duomenis iš jūsų vari
 
 #, python-format
 msgid "Additional rotor cable from %s"
+msgstr ""
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2328,6 +2344,10 @@ msgstr "Visi kanalai"
 msgid "All ages"
 msgstr "Visi amžiai"
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr ""
+
 msgid "All events down"
 msgstr "visi įvykiai žemyn"
 
@@ -2336,6 +2356,9 @@ msgstr "visi įvykiai iki"
 
 msgid "All files"
 msgstr "Visi failai"
+
+msgid "All packages"
+msgstr ""
 
 msgid "All regions"
 msgstr ""
@@ -2525,6 +2548,12 @@ msgid "An attempt is made to capture the current TV status. If status messages a
 msgstr ""
 "Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
 "Kita vertus, bando geriau reaguoti į skirtingas eksploatavimo sąlygas."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr ""
+
+msgid "An instant recording is already running on this service."
+msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "Įvyko nežinoma klaida!"
@@ -4092,8 +4121,14 @@ msgstr "Keisti įrašymą (nurodyti pabaigos laiką)"
 msgid "Change repeat and delay settings?"
 msgstr "Keisti pakartojimo ir delsos nustatymus?"
 
+msgid "Change search"
+msgstr ""
+
 msgid "Change skin"
 msgstr "Pakeisti temą"
+
+msgid "Change slots"
+msgstr ""
 
 msgid "Change step size"
 msgstr "Keisti žingsnio dydį"
@@ -4484,6 +4519,9 @@ msgstr "Išvalyti nustatytus"
 
 msgid "Clear play list"
 msgstr "Išvalyti grojaraštį"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear the logs for this timer"
 msgstr "Išvalykite šio laikmačio žurnalus"
@@ -5420,10 +5458,6 @@ msgid "Could not open the file %s!"
 msgstr "Nepavyko atverti failo %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "Nepavyko įrašyti dėl konfliktų laikmatyje %s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "Nepavyko įrašyti dėl neveikiančių kanalų %s"
 
@@ -5792,6 +5826,9 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr ""
 
@@ -5807,6 +5844,9 @@ msgstr ""
 
 #, python-format
 msgid "DAB+ service information for '%s'"
+msgstr ""
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
 msgstr ""
 
 msgid "DAC"
@@ -5829,9 +5869,6 @@ msgstr ""
 
 msgid "DNS data source"
 msgstr "DNS duomenų šaltinis"
-
-msgid "DNS override"
-msgstr ""
 
 msgid "DNS protocol mode"
 msgstr ""
@@ -6775,6 +6812,14 @@ msgstr ""
 
 msgid "Disable timer"
 msgstr "Išjungti laikmatį"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Išjungta"
@@ -9806,6 +9851,9 @@ msgstr "Kietasis diskas"
 msgid "Harddisk Setup"
 msgstr "Kietojo disko nustatymas"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr "Daugialypės įkrovos įrenginys"
 
@@ -9850,6 +9898,9 @@ msgstr ""
 
 msgid "Help Screen Information"
 msgstr "Žinyno ekrano informacija"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr "Pagalbos animacijos greitis"
@@ -11399,6 +11450,10 @@ msgstr "Riboti klaidų žurnalo dydį (MB)"
 msgid "Limit east"
 msgstr "Rytų riba"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr ""
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Apriboti simbolius, kurie gali būti naudojami failų pavadinimuose į (7 bitų) ASCII. Tai užtikrina suderinamumą su operacinėmis sistemomis arba failų sistemomis su ribotų simbolių grupėmis."
 
@@ -11847,6 +11902,9 @@ msgstr ""
 msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
+msgid "Manage timer conflicts"
+msgstr ""
+
 msgid "Manage your online update files"
 msgstr "Tvarkyti savo internetinio atnaujinimo failus"
 
@@ -11870,6 +11928,15 @@ msgstr ""
 
 msgid "Manufacturer"
 msgstr "Gamintojas"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr ""
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr ""
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr ""
 
 msgid "Manx"
 msgstr "Meno salos"
@@ -13133,6 +13200,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Internet connection available!"
+msgstr ""
+
 msgid "No Name"
 msgstr ""
 
@@ -13150,6 +13220,9 @@ msgstr "Nėra TS įrašymo įrenginio"
 
 msgid "No active channel found."
 msgstr "Aktyvaus kanalo nerasta."
+
+msgid "No additional slots have been planned."
+msgstr ""
 
 msgid "No age block"
 msgstr "Be amžiaus ribojimo"
@@ -13203,6 +13276,9 @@ msgstr "Nėra laisvo pasiekiamo indekso"
 msgid "No free tuner!"
 msgstr "Nėra laisvo imtuvo!"
 
+msgid "No further DVB-I alternative is available."
+msgstr ""
+
 msgid "No gateway"
 msgstr ""
 
@@ -13229,6 +13305,9 @@ msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nėra perjungimo elementų (padidinti arba sumažinti)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Nuotraukų nėra"
@@ -13330,6 +13409,9 @@ msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
 msgid "No valid device detected - Press OK"
+msgstr ""
+
+msgid "No valid manufacturer MultiBoot slots were found."
 msgstr ""
 
 #, python-format
@@ -13700,6 +13782,9 @@ msgstr "vieną kartą"
 msgid "One line"
 msgstr "Viena eilutė"
 
+msgid "Online manual"
+msgstr ""
+
 msgid "Online software update"
 msgstr "Programinės įrangos atnaujinimas internetu"
 
@@ -13931,6 +14016,9 @@ msgstr "Atidaryti kelių kanalų EPG rodinį"
 msgid "Open the single service EPG view"
 msgstr "Atidaryti vienos kanalo EPG rodinį"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
+
 msgid "Open tuner setup"
 msgstr ""
 
@@ -14051,6 +14139,9 @@ msgstr "Išvesties tekstas:"
 
 msgid "Overall progress:"
 msgstr "Bendra eiga:"
+
+msgid "Override DNS"
+msgstr ""
 
 msgid "Overscan Test"
 msgstr "Patikrinimo testas"
@@ -14374,6 +14465,12 @@ msgid "Permanently remove all deleted items"
 msgstr "Negrįžtamai pašalinti visus ištrintus elementus"
 
 msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
+msgid "Permanently wipe the highlighted slot"
+msgstr ""
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
 msgstr ""
 
 msgid "Permissions"
@@ -14767,6 +14864,9 @@ msgstr ""
 msgid "Please wait while scanning is in progress..."
 msgstr "Prašome laukti kol vyksta paieška..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr ""
+
 msgid "Please wait while the data is extracted..."
 msgstr "Palaukite, kol duomenys bus išgauti..."
 
@@ -14795,6 +14895,9 @@ msgid "Please wait while the plugin is replaced."
 msgstr ""
 
 msgid "Please wait while the plugin is updated."
+msgstr ""
+
+msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
@@ -15061,6 +15164,12 @@ msgstr "Ikimokyklinis"
 msgid "Press '0' to toggle PiP mode"
 msgstr "PiP langams sukeisti spauskite '0'"
 
+msgid "Press BLUE to add more slots."
+msgstr ""
+
+msgid "Press BLUE to change the additional slots."
+msgstr ""
+
 msgid "Press EXIT to close."
 msgstr "Paspauskite EXIT, kad uždarytumėte."
 
@@ -15147,10 +15256,10 @@ msgstr "Paspauskite OK, kad naudotumėte šią kalbą.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte lizdą, ir paspauskite Gerai arba ŽALIA, kad iš naujo paleistumėte į tą vaizdą. Jei įmanoma, geltona ištrins arba nušluostys vaizdą. Panaikintą vaizdą galima atkurti mygtuku MĖLYNA. Nuvalytas vaizdas visiškai pašalinamas ir jo negalima atkurti!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15393,6 +15502,9 @@ msgstr "Išvalo visas, išskyrus dabartines ir nuolatines lokales / kalbas.  Įt
 
 msgid "Purging all unused locales/languages..."
 msgstr "Išvalomos visos nepanaudotos lokalės / kalbos..."
+
+msgid "Purging unused locales/languages..."
+msgstr ""
 
 msgid "Purple"
 msgstr "violetinė"
@@ -15791,10 +15903,6 @@ msgstr "Įrašas pradėtas! Laiko poslinkis stabdomas..."
 msgid "Recording stopped"
 msgstr "Įrašymas sustabdytas"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Įrašo laikas apribotas dėl konfliktinio laikmačio %s"
-
 msgid "Recording tuning failed"
 msgstr "Nepavyko suderinti įrašymo"
 
@@ -16100,6 +16208,9 @@ msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Pašalinkite pasirinktą aplanką iš žymių"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -16955,6 +17066,9 @@ msgstr ""
 msgid "Scan region"
 msgstr ""
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
@@ -17085,6 +17199,9 @@ msgstr "Ieškoti palydovų"
 msgid "Search Sats, check signal and lock"
 msgstr "Ieškoti palydovų, tikrinti signalą ir užfiksuoti"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "Ieškoti rytų"
 
@@ -17093,6 +17210,12 @@ msgstr "Bendrų tinklo resursų paieška"
 
 msgid "Search for similar events"
 msgstr "Panašių įvykių paieška"
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search weather location ID"
 msgstr "Orų prognozės vietovės ID"
@@ -18378,6 +18501,10 @@ msgid "Select/Zap to the selected service"
 msgstr "Pasirinkti/Zap pasirinktai paslaugai"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr ""
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19587,6 +19714,9 @@ msgstr "Rodyti pranešimą, kai kanalų importas nepavyko"
 msgid "Show notification when import channels was successful"
 msgstr "Rodyti pranešimą, kai kanalų importas pavyko"
 
+msgid "Show or hide empty slots"
+msgstr ""
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Rodyti arba slėpti išplėstą aprašymą, (priklauso nuo temos)."
 
@@ -19808,6 +19938,9 @@ msgstr "Rodymo rėmelis"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Rodyti priedų naršyklę. Čia galite tvarkyti įdiegtus priedus"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Rodyti galimus priedus. Čia galite atsisiųsti ir įdiegti priedus"
@@ -20271,6 +20404,9 @@ msgstr "Programinės įrangos tvarkyklės nustatymai"
 msgid "Software MultiBoot"
 msgstr "Švelni daugialypė įkrova"
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "Programinės įrangos atnaujinimas"
 
@@ -20562,6 +20698,12 @@ msgstr "Pradėti iš pradžių"
 msgid "Start instant recording"
 msgstr "Pradėti tiesioginį įrašymą"
 
+msgid "Start instant recording and set duration"
+msgstr ""
+
+msgid "Start instant recording and set end time"
+msgstr ""
+
 msgid "Start instant recording?"
 msgstr ""
 
@@ -20728,6 +20870,10 @@ msgstr "Stabdyti įrašymą ir trinti"
 
 msgid "Stop recording now"
 msgstr "Stabdyti įrašymą dabar"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Stabdyti kanalą ir grįžti į filmų sąrašą"
@@ -20975,6 +21121,9 @@ msgstr "Sundanese"
 
 msgid "Sunday"
 msgstr "Sekmadienis"
+
+msgid "Support"
+msgstr ""
 
 msgid "Suriname"
 msgstr "Surinamas"
@@ -21628,6 +21777,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Komanda, pažadinama iš laukimo režimo, bus išsiųsta kelis kartus."
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21685,6 +21838,23 @@ msgstr "Vaizdo aukštis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 msgid "The loopthrough setting is wrong."
 msgstr "Ciklo parametras neteisingas."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr ""
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr ""
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21693,6 +21863,12 @@ msgstr ""
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
+msgstr ""
+
+msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
 msgstr ""
 
 msgid ""
@@ -21705,6 +21881,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "Rezultatai įrašyti į %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Išsaugotas PIN išvalytas."
 
@@ -21714,6 +21893,12 @@ msgid ""
 msgstr ""
 "Šis kanalas nepalaiko VPS rankiniu būdu nustatytiems laikmačiams!\n"
 " Ar tikrai norite įjungti VPS?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr ""
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
 
 msgid "The service list is reloaded."
 msgstr "Kanalų sąrašas įkeltas iš naujo."
@@ -21740,6 +21925,11 @@ msgid ""
 msgstr ""
 "Įsiminimo laikas, skirtas laiko poslinkiui, didesnis, negu nurodyt nustatymuose.\n"
 "Ką jūs norite daryti ?"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21844,6 +22034,9 @@ msgstr "Ši parinktis leidžia nustatyti 6 skaitmenų skaičių, jei turite daug
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "šis paketas apsaugotas tėvų kontrolės PIN kodu"
+
+msgid "This channel is currently off air."
+msgstr ""
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22078,6 +22271,9 @@ msgstr "Ši parinktis nustato klaidingų skaitmeninių kontūrų, kurie yra iš 
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nustato paveikslėlių vaizdo ryškumą keičiantis masteliui."
+
+msgid "This recording has already ended."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "šis kanalas apsaugotas tėvų kontrolės pin kodu"
@@ -22898,6 +23094,12 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr ""
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr ""
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr ""
@@ -22906,14 +23108,33 @@ msgstr ""
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr ""
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
+msgstr ""
+
+msgid "Unable to load package information."
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr ""
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr ""
+
+msgid "Unable to save network configuration."
+msgstr ""
+
+msgid "Unable to select the audio channel."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23287,6 +23508,9 @@ msgstr "Naudokite alternatyvų mažesnį ekraną."
 msgid "Use as HDD replacement"
 msgstr ""
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23466,6 +23690,9 @@ msgstr "Vartotojo šaltinių URL"
 
 msgid "User ID"
 msgstr "Vartotojo ID"
+
+msgid "User Manual"
+msgstr ""
 
 msgid "User comments"
 msgstr ""
@@ -24344,7 +24571,7 @@ msgstr "Kai įvesties žymeklis pasiekia šį tašką (pločio procentą iš abi
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Kai imtuvas atsibunda iš budėjimo arba gilaus budėjimo režimo, jis išsiųs komandą televizoriui kad išjungti budėjimo režimą."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -25563,6 +25790,17 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "Nepavyko įrašyti dėl konfliktų laikmatyje %s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "Įrašo laikas apribotas dėl konfliktinio laikmačio %s"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte lizdą, ir paspauskite Gerai arba ŽALIA, kad iš naujo paleistumėte į tą vaizdą. Jei įmanoma, geltona ištrins arba nušluostys vaizdą. Panaikintą vaizdą galima atkurti mygtuku MĖLYNA. Nuvalytas vaizdas visiškai pašalinamas ir jo negalima atkurti!"
 
 #~ msgid "Edit Upgrade Source URL"
 #~ msgstr "Redaguoti atnaujinimo šaltinio adresą."

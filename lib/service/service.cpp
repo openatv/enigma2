@@ -1,6 +1,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <lib/service/service.h>
+#include <lib/service/servicemp3.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <lib/dvb/idvb.h>
@@ -201,6 +202,8 @@ DEFINE_REF(eServiceCenter);
 
 RESULT eServiceCenter::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
+	if (auto *factory = eServiceFactoryMP3::getDVBIFactory(ref))
+		return factory->play(ref, ptr);
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
@@ -212,6 +215,8 @@ RESULT eServiceCenter::play(const eServiceReference &ref, ePtr<iPlayableService>
 
 RESULT eServiceCenter::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
+	if (auto *factory = eServiceFactoryMP3::getDVBIFactory(ref))
+		return factory->record(ref, ptr);
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
@@ -234,6 +239,8 @@ RESULT eServiceCenter::list(const eServiceReference &ref, ePtr<iListableService>
 
 RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
+	if (auto *factory = eServiceFactoryMP3::getDVBIFactory(ref))
+		return factory->info(ref, ptr);
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{

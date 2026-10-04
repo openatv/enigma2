@@ -15,7 +15,7 @@ from Tools.StbHardware import getFPWasTimerWakeup
 
 vps_exe = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/vps/vps")
 if not access(vps_exe, X_OK):
-	chmod(vps_exe, 493)
+	chmod(vps_exe, 0o755)
 
 
 class vps_timer:

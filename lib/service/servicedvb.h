@@ -240,6 +240,8 @@ protected:
 	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
+	ePtr<eTimer> m_dvbi_signal_timer;
+	void dvbiSignalLost();
 	bool m_noaudio;
 
 	/* in time shift mode, we essentially have two channels, and thus pmt handlers. */
@@ -335,11 +337,6 @@ protected:
 	ePtr<eTimer> m_nownext_timer;
 	void updateEpgCacheNowNext();
 
-#ifdef PASSTHROUGH_FIX
-	ePtr<eTimer> m_passthrough_fix_timer;
-	void forcePassthrough();
-#endif
-
 	/* radiotext */
 	ePtr<eDVBRdsDecoder> m_rds_decoder;
 	ePtr<eConnection> m_rds_decoder_event_connection;
@@ -381,6 +378,30 @@ protected:
 	void resetRecoveryState(); // Resets all recovery state variables.
 	virtual void onRecoveryPaused() {} // Hook after playback is actually paused
 	// -- END: Precise Recovery System --
+};
+
+// Populated only by the enabled DVB-I addon, on the main loop. No persistent
+// setting, network access or XML parsing is involved in a service selection.
+struct eDVBIHbbTV
+{
+	int tsid, onid, sid;
+	std::vector<HbbTVApplicationInfo> applications;
+};
+
+class eDVBIFallback
+{
+public:
+	static int setServices(ePyObject services);
+	static eServiceReference get(const eServiceReference &ref);
+	static eServiceReference resolve(const eServiceReference &ref, bool force = false);
+	static bool canReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
+	static int setProfiles(ePyObject profiles);
+	static eServiceReference playback(const eServiceReference &ref, const eServiceReference &after = eServiceReference(), bool simulate = false);
+	static int availability(const eServiceReference &ref);
+	static int minimumAge(const eServiceReference &ref);
+	static bool hasSchedule(const eServiceReference &ref);
+	static int setApplications(ePyObject applications);
+	static const eDVBIHbbTV *applications(const eServiceReference &ref);
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {

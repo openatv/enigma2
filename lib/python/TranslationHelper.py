@@ -130,3 +130,10 @@ translate = _("Playback Time:")  # used in Metrix skin
 # temprary for disabled code in Setup.py
 translate = _("Setup entry sort")
 translate = _("Enable to display setup entries alphabetically.")
+
+# PluginBrowser
+translate = _("Feed server DNS error!")
+translate = _("Feed server access error!")
+translate = _("Network adapter not connected to a network!")
+translate = _("No network adapters enabled/available!")
+translate = _("No Internet connection available!")

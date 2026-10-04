@@ -1,11 +1,16 @@
+from io import BytesIO
+from json import loads
 from os import unlink
 
 from time import time
 
 from twisted.internet import reactor
+from twisted.internet.defer import Deferred, TimeoutError
 from twisted.internet.protocol import Protocol
 from twisted.internet.threads import deferToThread
-from twisted.web.client import Agent, RedirectAgent, BrowserLikePolicyForHTTPS, ResponseDone, ResponseFailed, PotentialDataLoss
+from twisted.python.failure import Failure
+from twisted.web.client import Agent, RedirectAgent, BrowserLikeRedirectAgent, BrowserLikePolicyForHTTPS, FileBodyProducer, PartialDownloadError, ResponseDone, ResponseFailed, PotentialDataLoss, readBody
+from twisted.web.error import Error
 from twisted.web.http_headers import Headers
 
 
@@ -38,9 +43,15 @@ WRITE_PAUSE_SIZE = 4 * 1024 * 1024  # stop reading the socket while the writer l
 STALL_CHECK_INTERVAL = 5  # how often the stall watchdog looks at the clock
 
 
-def makeAgent(connectTimeout=5):
+def makeAgent(connectTimeout=5, followRedirect=True, redirectLimit=20, afterFoundGet=False):
 	base = Agent(reactor, contextFactory=BrowserLikePolicyForHTTPS(), connectTimeout=connectTimeout)
-	return RedirectAgent(base)
+	if not followRedirect:
+		return base
+	return (BrowserLikeRedirectAgent if afterFoundGet else RedirectAgent)(base, redirectLimit)
+
+
+def encode(value):
+	return value.encode("utf-8") if isinstance(value, str) else value
 
 
 def normaliseHeaders(headers):
@@ -85,6 +96,33 @@ class DiscardProtocol(Protocol):
 
 	def connectionLost(self, reason):  # Overwrite
 		pass
+
+
+class FileProtocol(Protocol):
+	""" Writes a response body to an open file and fires deferred with None at the end. """
+
+	def __init__(self, deferred, fd):
+		self.deferred = deferred
+		self.fd = fd
+		self.error = None
+
+	def dataReceived(self, data):  # Overwrite
+		if self.error is None:
+			try:
+				self.fd.write(data)
+			except Exception as err:
+				self.error = err
+				self.transport.stopProducing()
+
+	def connectionLost(self, reason):  # Overwrite
+		if self.deferred.called:  # cancelled or timed out
+			return
+		if self.error is not None:
+			self.deferred.errback(self.error)
+		elif reason.check(ResponseDone, PotentialDataLoss):
+			self.deferred.callback(None)
+		else:
+			self.deferred.errback(reason)
 
 
 class DownloadProtocol(Protocol):
@@ -587,6 +625,85 @@ class DownloadWithProgress:
 			return 0
 
 		return int(remaining / speed)
+
+
+# ------------------------------------------------------------
+# SIMPLE REQUESTS
+# Replacements for the removed twisted.web.client getPage(), downloadPage().
+# The keyword arguments match the old HTTPClientFactory. All three return a
+# Deferred, a HTTP status other than 2xx fails with twisted.web.error.Error.
+# HTTPS certificates are verified.
+# ------------------------------------------------------------
+def requestPage(url, receive, method=b"GET", postdata=None, headers=None, agent=None, timeout=0, cookies=None, followRedirect=True, redirectLimit=20, afterFoundGet=False, connectTimeout=5, **kwargs):
+	def checkStatus(response):
+		if 200 <= response.code < 300:
+			return response
+
+		def fail(body):
+			raise Error(response.code, response.phrase, body if isinstance(body, bytes) else b"")
+
+		return readBody(response).addBoth(fail)
+
+	rawHeaders = normaliseHeaders(headers)
+	if agent:
+		rawHeaders["User-Agent"] = normaliseHeaders({"User-Agent": agent})["User-Agent"]
+	if cookies:
+		rawHeaders["Cookie"] = "; ".join(f"{k}={v}" for k, v in normaliseHeaders(cookies).items())
+	body = None if postdata is None else FileBodyProducer(BytesIO(encode(postdata)))
+	client = makeAgent(connectTimeout, followRedirect, redirectLimit, afterFoundGet)
+	deferred = client.request(encode(method), encode(url), buildHeaders(rawHeaders), body).addCallback(checkStatus).addCallback(receive)
+	if timeout:  # covers the whole transfer, not only the connect
+		deferred.addTimeout(timeout, reactor, onTimeoutCancel=lambda result, timeout: Failure(TimeoutError(f"Timeout after {timeout} seconds")) if isinstance(result, Failure) else result)
+	return deferred
+
+
+def getPage(url, **kwargs):
+	""" Fires with the response body as bytes. """
+	def partial(failure):
+		failure.trap(PartialDownloadError)  # body without Content-Length ended by connection close
+		return failure.value.response
+
+	return requestPage(url, lambda response: readBody(response).addErrback(partial), **kwargs)
+
+
+def getJson(url, **kwargs):
+	""" Fires with the decoded JSON response body. """
+	kwargs["headers"] = {"Accept": "application/json", **normaliseHeaders(kwargs.get("headers"))}
+	return getPage(url, **kwargs).addCallback(loads)
+
+
+def downloadPage(url, file, **kwargs):
+	""" Writes the response body to file (a path or an open binary file object)
+		and fires with None. A file opened here is removed again on failure. """
+	ownFile = isinstance(file, (str, bytes))
+	fd = None
+
+	def receive(response):
+		nonlocal fd
+		try:
+			fd = open(file, "wb") if ownFile else file
+		except Exception:
+			response.deliverBody(DiscardProtocol())
+			raise
+		deferred = Deferred(lambda x: protocol.transport.stopProducing())
+		protocol = FileProtocol(deferred, fd)
+		response.deliverBody(protocol)
+		return deferred
+
+	def finish(result):
+		if ownFile and fd:
+			try:
+				fd.close()
+			except Exception:
+				pass
+			if isinstance(result, Failure):
+				try:
+					unlink(file)
+				except OSError:
+					pass
+		return result
+
+	return requestPage(url, receive, **kwargs).addBoth(finish)
 
 
 # ------------------------------------------------------------

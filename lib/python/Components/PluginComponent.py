@@ -7,7 +7,7 @@ from enigma import eProfileWrite
 
 from Components.ActionMap import loadKeymap
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import SCOPE_PLUGINS, resolveFilename
+from Tools.Directories import SCOPE_PLUGINS, readPluginBlacklist, resolveFilename
 from Tools.Import import my_import
 
 
@@ -48,12 +48,16 @@ class PluginComponent:
 	def readPluginList(self, directory):
 		"""Enumerates plugins."""
 		newPlugins = []
+		blacklist = readPluginBlacklist()
 		for pluginDirectory in listdir(directory):
 			pluginPath = join(directory, pluginDirectory)
 			if not isdir(pluginPath):
 				continue
 			for pluginName in listdir(pluginPath):
 				if pluginName == "__pycache__":
+					continue
+				if pluginName in blacklist:
+					print("[PluginComponent] Plugin '%s/%s' is blacklisted, skipping." % (pluginDirectory, pluginName))
 					continue
 				path = join(pluginPath, pluginName)
 				if isdir(path):

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-15 16:51+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"PO-Revision-Date: 2026-10-04 11:54+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -885,6 +885,10 @@ msgstr[0] "%d 年"
 msgstr[1] "%d 年"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr "已创建 %d 个额外槽位。\n"
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d 核"
@@ -927,6 +931,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "发现 %d 个网络。"
 msgstr[1] "发现 %d 个网络。"
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr "%d 个过时的厂商STARTUP文件将被替换或移除。"
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1263,6 +1271,7 @@ msgstr "%s Web界面已禁用"
 msgid "%s%d min"
 msgstr "%s%d 分"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(默认：%s)"
@@ -1274,6 +1283,10 @@ msgstr "%s。（最低）"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr "%s：频道分组无法清空"
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2070,9 +2083,6 @@ msgstr "将突出显示的目录添加到书签"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "添加传统 左/右键操作"
 
-msgid "Add more slots"
-msgstr "添加更多插槽"
-
 msgid "Add new CCcam line"
 msgstr "添加新 CCcam 行"
 
@@ -2081,6 +2091,9 @@ msgstr "添加新的 NewCamd 行"
 
 msgid "Add new tag"
 msgstr "添加新标签"
+
+msgid "Add or change additional slots"
+msgstr "添加或更改额外槽位"
 
 msgid "Add provider"
 msgstr "添加供应商"
@@ -2163,6 +2176,9 @@ msgstr "其他电机选项允许您输入电机规格的详细信息，以便 En
 #, python-format
 msgid "Additional rotor cable from %s"
 msgstr "%s 附加极轴电机线缆"
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
+msgstr "接收机从额外插槽启动时，无法修改这些插槽。"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "调整颜色设置以使所有的颜色深浅可以辨识出来，使之看起来尽可能饱和。如果满意当前设置，按 OK 键关闭视频微调，或者用数字键选择画面上的其他测试。"
@@ -2290,6 +2306,10 @@ msgstr "全部频道"
 msgid "All ages"
 msgstr "所有年龄段"
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr "所选设备上的所有数据将被擦除。是否创建一个共享数据分区，包含 %d 个额外多系统启动槽位、一个512 MiB交换分区以及内部槽位1内核？"
+
 msgid "All events down"
 msgstr "所有事件均已停止"
 
@@ -2298,6 +2318,9 @@ msgstr "所有事件已开始"
 
 msgid "All files"
 msgstr "所有文件"
+
+msgid "All packages"
+msgstr ""
 
 msgid "All regions"
 msgstr "所有区域"
@@ -2485,6 +2508,12 @@ msgstr "检测到RTL-SDR接收器，正在从订阅源安装可选的DAB+ USB运
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "试图捕获当前的电视状态。如果由于状态消息不正确或丢失而无法执行此操作，则可能会导致接收机意外响应。另一方面，尝试更好地响应不同的操作条件。"
+
+msgid "An existing timer already records this service during the requested time."
+msgstr "已有一个定时器在请求的时间段内录制此频道。"
+
+msgid "An instant recording is already running on this service."
+msgstr "该频道正在进行即时录制。"
 
 msgid "An unknown error occurred!"
 msgstr "出现未知错误！"
@@ -4052,8 +4081,14 @@ msgstr "更改录制（结束时间）"
 msgid "Change repeat and delay settings?"
 msgstr "更改重复和延迟的设置？"
 
+msgid "Change search"
+msgstr ""
+
 msgid "Change skin"
 msgstr "更改皮肤"
+
+msgid "Change slots"
+msgstr "更改槽位"
 
 msgid "Change step size"
 msgstr "更改步长"
@@ -4445,6 +4480,9 @@ msgstr "清除固定地址"
 msgid "Clear play list"
 msgstr "清除播放列表"
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear the logs for this timer"
 msgstr "清除此定时器的日志"
 
@@ -4659,6 +4697,9 @@ msgstr "通用接口设置"
 
 msgid "Common Setup Actions"
 msgstr "通用设置操作"
+
+msgid "Common settings"
+msgstr "通用设置"
 
 msgid "Comoros"
 msgstr "科摩罗"
@@ -5379,10 +5420,6 @@ msgid "Could not open the file %s!"
 msgstr "无法打开文件 %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "由于定时器冲突而无法录制：%s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "由于频道无效而无法录制：%s"
 
@@ -5757,6 +5794,9 @@ msgstr "DAB+ USB支持组件已安装。您现在可以在接收设置中启用�
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB：无法写入频道分组"
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr "DAB+ 频道"
 
@@ -5773,6 +5813,9 @@ msgstr "DAB+ 扫描失败；已有的频道分组会被保留。"
 #, python-format
 msgid "DAB+ service information for '%s'"
 msgstr "'%s' 的 DAB+ 频道信息"
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
+msgstr "检测到 DAB+ 信号；正在等待 FIC 频道数据..."
 
 msgid "DAC"
 msgstr "DAC"
@@ -5794,9 +5837,6 @@ msgstr "DNS 设置操作"
 
 msgid "DNS data source"
 msgstr "DNS 数据源"
-
-msgid "DNS override"
-msgstr "DNS 覆盖"
 
 msgid "DNS protocol mode"
 msgstr "DNS 模式"
@@ -6740,6 +6780,14 @@ msgstr "禁用多系统启动选项"
 
 msgid "Disable timer"
 msgstr "禁用定时器"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr "禁用“%s”定时器？"
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr "禁用定时器：“%s”"
 
 msgid "Disabled"
 msgstr "已禁用"
@@ -9771,6 +9819,9 @@ msgstr "硬盘"
 msgid "Harddisk Setup"
 msgstr "硬盘设置"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr "硬件多系统启动设备"
 
@@ -9815,6 +9866,9 @@ msgstr "帮助与视觉反馈"
 
 msgid "Help Screen Information"
 msgstr "帮助屏信息"
+
+msgid "Help and support"
+msgstr "帮助与支持"
 
 msgid "Help animation speed"
 msgstr "帮助动画速度"
@@ -11367,6 +11421,10 @@ msgstr "限制调试日志大小 （MB）"
 msgid "Limit east"
 msgstr "东极限位置"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr "将即时录制限制到 %s"
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "将可用于录像文件名的字符限制为（7位）ascii。 这确保与具有有限字符集的操作系统或文件系统的兼容性。"
 
@@ -11814,6 +11872,9 @@ msgstr "管理突出显示的 %s"
 msgid "Manage the highlighted %s / list of %s"
 msgstr "管理突出显示的 %s / %s 列表"
 
+msgid "Manage timer conflicts"
+msgstr "管理定时器冲突"
+
 msgid "Manage your online update files"
 msgstr "管理在线更新文件"
 
@@ -11837,6 +11898,15 @@ msgstr "从备用调谐器手动导入"
 
 msgid "Manufacturer"
 msgstr "制造商"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr "厂商槽位 1 未提供合适的 STARTUP 文件。"
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr "厂商槽位 1 没有可用的带内核设备的 STARTUP 命令。"
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr "未找到厂商槽位 1，无法将其用作共享内核模板。"
 
 msgid "Manx"
 msgstr "马恩岛"
@@ -13107,6 +13177,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "没有互联网连接"
 
+msgid "No Internet connection available!"
+msgstr "无可用互联网连接！"
+
 msgid "No Name"
 msgstr "无名"
 
@@ -13124,6 +13197,9 @@ msgstr "没有可用的 TS 记录器"
 
 msgid "No active channel found."
 msgstr "没有找到活动的频道。"
+
+msgid "No additional slots have been planned."
+msgstr "未规划额外槽位。"
 
 msgid "No age block"
 msgstr "无年龄块"
@@ -13177,6 +13253,9 @@ msgstr "没有剩余索引可用"
 msgid "No free tuner!"
 msgstr "没有空闲的调谐器！"
 
+msgid "No further DVB-I alternative is available."
+msgstr "没有其他可用的 DVB-I 备选源。"
+
 msgid "No gateway"
 msgstr "没有网关"
 
@@ -13203,6 +13282,9 @@ msgstr "没有发现网络。"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "项目数量切换（增加或减少）"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "没有可用的图片"
@@ -13305,6 +13387,9 @@ msgstr "未配置有效的DAB+ 订阅源。请检查 /etc/enigma2/dab.xml。"
 
 msgid "No valid device detected - Press OK"
 msgstr "未检测到有效设备 - 按“确定”"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr "未找到有效的多系统启动槽位。"
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -13674,6 +13759,9 @@ msgstr "一次"
 msgid "One line"
 msgstr "单行"
 
+msgid "Online manual"
+msgstr "在线手册"
+
 msgid "Online software update"
 msgstr "在线软件更新"
 
@@ -13905,6 +13993,9 @@ msgstr "打开多频道 EPG 视图"
 msgid "Open the single service EPG view"
 msgstr "打开单频道 EPG 视图"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr "打开用户手册与工具，获取帮助或提交问题反馈"
+
 msgid "Open tuner setup"
 msgstr "打开调谐器设置"
 
@@ -14025,6 +14116,9 @@ msgstr "输出文本："
 
 msgid "Overall progress:"
 msgstr "总体进程："
+
+msgid "Override DNS"
+msgstr "DNS 覆盖"
 
 msgid "Overscan Test"
 msgstr "过扫描测试"
@@ -14349,6 +14443,12 @@ msgstr "永久删除所有已删除项目"
 
 msgid "Permanently remove the MultiBoot files?"
 msgstr "是否永久删除多系统启动文件？"
+
+msgid "Permanently wipe the highlighted slot"
+msgstr "永久擦除高亮的插槽"
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr "永久擦除此槽位？该槽位中的所有文件将被删除，且无法恢复。"
 
 msgid "Permissions"
 msgstr "权限"
@@ -14741,6 +14841,9 @@ msgstr "正在清除区域设置/语言，请稍候..."
 msgid "Please wait while scanning is in progress..."
 msgstr "扫描正在进行，请稍等..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr "正在检查互联网连接，请稍候..."
+
 msgid "Please wait while the data is extracted..."
 msgstr "正在提取数据，请稍候..."
 
@@ -14768,6 +14871,9 @@ msgstr "正在更换插件，请稍候。"
 
 msgid "Please wait while the plugin is updated."
 msgstr "正在更新插件，请稍候。"
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr "正在清除未使用的区域设置/语言，请稍候..."
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "正在检测已安装的插件，请稍等..."
@@ -15033,6 +15139,12 @@ msgstr "幼儿园"
 msgid "Press '0' to toggle PiP mode"
 msgstr "按 “0” 键切换画中画模式"
 
+msgid "Press BLUE to add more slots."
+msgstr "按蓝色键添加更多槽位。"
+
+msgid "Press BLUE to change the additional slots."
+msgstr "按蓝色键更改额外槽位。"
+
 msgid "Press EXIT to close."
 msgstr "请按 EXIT 键关闭。"
 
@@ -15119,11 +15231,11 @@ msgstr "按“确定”使用此语言。[%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "按“确定”使用此区域设置。[%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "按向上/向下按钮选择一个槽位，然后按 OK 或 绿键 重新启动到该镜像。 如果可用，黄键将删除或擦除镜像。 可以使用蓝键恢复已删除的镜像。 擦除的镜像被完全删除，无法恢复！"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr "按上/下键选择槽位，按 OK 或绿色键重启到该槽位。按黄色键删除所选镜像，长按黄色键则永久擦除该镜像。已删除的镜像可用蓝色键恢复，但已擦除的镜像无法恢复。按 INFO 键显示或隐藏空槽位。"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
-msgstr "使用 上/下 键选择槽位，按 OK 或绿键重启进入对应系统镜像。若可用，黄键可禁用多系统启动、删除或清除所选镜像。按蓝键可添加更多槽位。"
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
+msgstr "按上/下键选择槽位，然后按 OK 或绿色键重启进入该槽位。如可用，黄色键将禁用多系统启动、删除或擦除所选槽位。"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按下此按钮以模拟之后按下的按钮的长按操作（此操作还会覆盖分配给模拟按钮的任何其他功能）。"
@@ -15365,6 +15477,9 @@ msgstr "清除除当前和永久区域设置/语言之外的所有区域设置/�
 
 msgid "Purging all unused locales/languages..."
 msgstr "正在清除所有未使用的区域设置/语言..."
+
+msgid "Purging unused locales/languages..."
+msgstr "正在清除未使用的区域设置/语言..."
 
 msgid "Purple"
 msgstr "紫色"
@@ -15763,10 +15878,6 @@ msgstr "录制已开始，正在停止时移。"
 msgid "Recording stopped"
 msgstr "录制已停止"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "由于定时器冲突，录制时间受到限制：%s"
-
 msgid "Recording tuning failed"
 msgstr "录制调制失败"
 
@@ -16072,6 +16183,9 @@ msgstr "删除当前选中的标题"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "从书签中删除突出显示的目录"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr "移除已扫描 DAB+ 复用集中先前存储的频道。禁用此选项可在复用集暂时不可用时保留频道。"
 
 msgid "Remove service from AutoCam"
 msgstr "从自动Cam 删除频道"
@@ -16927,6 +17041,9 @@ msgstr "扫描地面波 LCN 并创建 LCN 频道分组"
 msgid "Scan region"
 msgstr "扫描区域"
 
+msgid "Scan the QR code to open the manual:"
+msgstr "扫描二维码打开手册："
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr "扫描 USB 调谐器、可用 DAB+ 卫星传送源，或同时扫描两者。"
 
@@ -17054,6 +17171,9 @@ msgstr "搜索卫星"
 msgid "Search Sats, check signal and lock"
 msgstr "搜索卫星，检查信号和锁定"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "搜索东面"
 
@@ -17062,6 +17182,12 @@ msgstr "搜索网络共享"
 
 msgid "Search for similar events"
 msgstr "搜索相似的事件"
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search weather location ID"
 msgstr "搜索天气位置 ID"
@@ -18347,6 +18473,10 @@ msgid "Select/Zap to the selected service"
 msgstr "选择/切换到选择的频道"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr "所选设备：%s"
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19562,6 +19692,9 @@ msgstr "导入频道不成功时显示通知"
 msgid "Show notification when import channels was successful"
 msgstr "导入频道成功时显示通知"
 
+msgid "Show or hide empty slots"
+msgstr "显示或隐藏空槽位"
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "显示或隐藏扩展描述，（视皮肤而定）。"
 
@@ -19783,6 +19916,9 @@ msgstr "展示架"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "显示插件浏览器。可在此设置已安装的插件"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr "显示二维码，可在手机或电脑上打开在线手册"
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "显示可用插件。可在此下载和安装它们"
@@ -20242,6 +20378,9 @@ msgstr "软件管理器设置"
 msgid "Software MultiBoot"
 msgstr "软件多系统启动"
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "软件更新"
 
@@ -20533,6 +20672,12 @@ msgstr "从头开始"
 msgid "Start instant recording"
 msgstr "开始即时录制"
 
+msgid "Start instant recording and set duration"
+msgstr "开始即时录制并设置时长"
+
+msgid "Start instant recording and set end time"
+msgstr "开始即时录制并设置结束时间"
+
 msgid "Start instant recording?"
 msgstr "开始即时录制？"
 
@@ -20699,6 +20844,10 @@ msgstr "停止录制并删除"
 
 msgid "Stop recording now"
 msgstr "马上停止录制"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr "停止录制：“%s”"
 
 msgid "Stop service on return to movie list"
 msgstr "返回电影列表时停止频道"
@@ -20946,6 +21095,9 @@ msgstr "圣丹内斯语"
 
 msgid "Sunday"
 msgstr "星期天"
+
+msgid "Support"
+msgstr "支持"
 
 msgid "Suriname"
 msgstr "苏里南"
@@ -21611,6 +21763,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "从待机状态唤醒的命令将被发送多次。"
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr "“%s”的自定义挂载点为空！"
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21668,6 +21824,23 @@ msgstr "图片的高度。 输入将被缩放以匹配此值。"
 msgid "The loopthrough setting is wrong."
 msgstr "环通设置错误。"
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr "无法挂载厂商 STARTUP 设备以进行检查。"
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr "厂商 STARTUP 设备未挂载。STARTUP 文件未被更改。"
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr "未找到厂商 STARTUP 设备。"
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr "厂商 STARTUP 文件“%s”已变更。请重启界面后重试。"
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr "厂商 STARTUP 文件名“%s”无法安全扩展。"
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "频道图标目录已存在，必须删除。是否要继续？"
 
@@ -21677,6 +21850,12 @@ msgstr "极轴马达调谐器当前不可用。请停止使用该调谐器的录
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "该操作预计需要约 %d 分钟完成。"
+
+msgid "The recording end time has already passed."
+msgstr "录制结束时间已过。"
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr "请求的录制与其他定时器冲突。您想如何处理？"
 
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
@@ -21691,6 +21870,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "结果已写入 %s。"
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr "厂商 STARTUP 文件中的根子目录无法安全扩展。"
+
 msgid "The saved PIN was cleared."
 msgstr "已清除保存的 PIN 码。"
 
@@ -21700,6 +21882,12 @@ msgid ""
 msgstr ""
 "所选频道不支持手动编程定时器的VPS！\n"
 "是否确实要启用VPS？"
+
+msgid "The selected device is not a supported removable block device."
+msgstr "所选设备不是受支持的可移动块设备。"
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr "所选设备容量太小。至少需要 2561 MiB。"
 
 msgid "The service list is reloaded."
 msgstr "频道列表被重新加载。"
@@ -21726,6 +21914,13 @@ msgid ""
 msgstr ""
 "时移的缓冲时间超过设置中指定的限制。\n"
 "你想让我做什么 ？"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
+"时移存储设备不可用。\n"
+"请检查设备和时移路径。"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21827,6 +22022,9 @@ msgstr "如果您有超过9999个频道，这允许您将数字位数设置为6�
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "此频道分组由家长控制密码保护！"
+
+msgid "This channel is currently off air."
+msgstr "该频道当前停播。"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22061,6 +22259,9 @@ msgstr "此选项设置抑制虚假数字轮廓，这是有限数量的离散值
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "此选项设置图片清晰度，当图片放大时使用。"
+
+msgid "This recording has already ended."
+msgstr "此录制已结束。"
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "此频道由家长控制密码保护！"
@@ -22883,6 +23084,12 @@ msgstr "乌克兰"
 msgid "Ukrainian"
 msgstr "乌克兰语"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr "无法创建额外的 STARTUP 文件。"
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr "无法创建新的厂商 STARTUP 文件。"
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr "无法继承高频头 %d 的用户频段：%s。"
@@ -22891,15 +23098,34 @@ msgstr "无法继承高频头 %d 的用户频段：%s。"
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr "无法继承高频头 %d的用户频段：高频头 1 %s。"
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
 msgstr "无法初始化 Kexec 多系统启动！"
+
+msgid "Unable to load package information."
+msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "无法打开调谐器（%d）"
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr "无法读取新的多系统启动分区的 UUID。STARTUP 文件未被更改。"
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr "无法读取厂商 STARTUP 文件“%s”。"
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "无法注册 DAB+ 转发器"
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr "无法移除过时的额外 STARTUP 文件。"
+
+msgid "Unable to save network configuration."
+msgstr "无法保存网络配置！"
+
+msgid "Unable to select the audio channel."
+msgstr "无法选择音频声道。"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
@@ -23272,6 +23498,9 @@ msgstr "使用一个更小的备用屏幕。"
 msgid "Use as HDD replacement"
 msgstr "作为硬盘替代"
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "使用自动模式检测"
 
@@ -23454,6 +23683,9 @@ msgstr "用户订阅源地址"
 
 msgid "User ID"
 msgstr "用户名"
+
+msgid "User Manual"
+msgstr "用户手册"
 
 msgid "User comments"
 msgstr "用户评论"
@@ -24340,8 +24572,8 @@ msgstr "当输入光标到达该点（宽度的百分比，从任意一侧）时
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "当接收机从待机或深度待机中唤醒时，它将向电视发送命令以使其脱离待机状态。"
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr "当接收机从待机状态唤醒时，发送活动信号源、串流路径和路由命令，让电视切换到与之相连的 HDMI 接口。"
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
+msgstr "接收机从待机唤醒时，将其设为活动源，让电视自动切换到对应的 HDMI 输入。"
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
@@ -25560,6 +25792,26 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "由于定时器冲突而无法录制：%s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "由于定时器冲突，录制时间受到限制：%s"
+
+#~ msgid "Add more slots"
+#~ msgstr "添加更多插槽"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr "按向上/向下按钮选择一个槽位，然后按 OK 或 绿键 重新启动到该镜像。 如果可用，黄键将删除或擦除镜像。 可以使用蓝键恢复已删除的镜像。 擦除的镜像被完全删除，无法恢复！"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+#~ msgstr "使用 上/下 键选择槽位，按 OK 或绿键重启进入对应系统镜像。若可用，黄键可禁用多系统启动、删除或清除所选镜像。按蓝键可添加更多槽位。"
+
+#~ msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+#~ msgstr "当接收机从待机状态唤醒时，发送活动信号源、串流路径和路由命令，让电视切换到与之相连的 HDMI 接口。"
+
+#, python-format
 #~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
 #~ msgstr "已完成 %d / %d 个传送源；失败的传送源分组已保留"
 
@@ -25750,8 +26002,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "有线 / 地面输入切换：外接 5V 同轴开关"
 
-msgid "Common Settings"
-msgstr "通用设置"
+#~ msgid "Common Settings"
+#~ msgstr "通用设置"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB‑C 有线与 DVB‑T/T2 地面波共用此输入口。两项同时启用时，Enigma2 将输出 5V 控制外接同轴开关。"

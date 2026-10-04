@@ -431,6 +431,7 @@ BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
 BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
+BoxInfo.setItem("SmallBoxWizard", fileExists("/etc/smallbox-wizard.done"))
 BoxInfo.setItem("SoftCam", hasSoftcam())
 BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
@@ -477,9 +478,6 @@ BoxInfo.setItem("zerotier", exists("/etc/init.d/zerotier"))
 
 # AI
 BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
-
-# Vu+ EAC3Fix
-BoxInfo.setItem("VuEAC3Fix", MODEL in ("vuultimo4k", "vuduo4kse"))
 
 BoxInfo.setItem("CanDescrambleInStandby", any(x in fileReadLine("/proc/stb/tsmux/ci0_input_choices", default="", source=MODULE_NAME) for x in ("PVR", "DVR0")))
 

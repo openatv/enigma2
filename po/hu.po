@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -912,6 +912,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr ""
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d core"
@@ -954,6 +958,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr ""
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1292,6 +1300,7 @@ msgstr ""
 msgid "%s%d min"
 msgstr "%s%d perc"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Alapértelmezett: %s)"
@@ -1303,6 +1312,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr ""
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2105,9 +2118,6 @@ msgstr "Kijelölt mappa hozzáadása könyvjelzőkhöz"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr ""
 
-msgid "Add more slots"
-msgstr ""
-
 msgid "Add new CCcam line"
 msgstr ""
 
@@ -2116,6 +2126,9 @@ msgstr ""
 
 msgid "Add new tag"
 msgstr "Új címke hozzáadása "
+
+msgid "Add or change additional slots"
+msgstr ""
 
 msgid "Add provider"
 msgstr "Szolgáltató hozzáadása"
@@ -2197,6 +2210,9 @@ msgstr "A motor kiegészítő opciói lehetővé teszik az adatok megadását a 
 
 #, python-format
 msgid "Additional rotor cable from %s"
+msgstr ""
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2326,6 +2342,10 @@ msgstr "Összes csatorna"
 msgid "All ages"
 msgstr "Minden korosztály"
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr ""
+
 msgid "All events down"
 msgstr "minden esemény lefelé"
 
@@ -2333,6 +2353,9 @@ msgid "All events up"
 msgstr "minden esemény fel"
 
 msgid "All files"
+msgstr ""
+
+msgid "All packages"
 msgstr ""
 
 msgid "All regions"
@@ -2522,6 +2545,12 @@ msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Kísérlet történik a TV aktuális állapotának rögzítésére. Ha ez a hibás vagy hiányzó állapotüzenetek miatt nem lehetséges, a vevő váratlanul reagálhat. Másrészt igyekszik jobban reagálni a különböző működési feltételekre."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr ""
+
+msgid "An instant recording is already running on this service."
+msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "Ismeretlen hiba keletkezett!"
@@ -4088,8 +4117,14 @@ msgstr "Felvétel módosítása (befejezés időpontja)"
 msgid "Change repeat and delay settings?"
 msgstr "Billentyű ismétlést/késletletést megváltoztatja?"
 
+msgid "Change search"
+msgstr ""
+
 msgid "Change skin"
 msgstr "Kinézet (Skin) váltása"
+
+msgid "Change slots"
+msgstr ""
 
 msgid "Change step size"
 msgstr "Lépésmérték módosítása"
@@ -4482,6 +4517,9 @@ msgstr "Rögzítettek törlése"
 
 msgid "Clear play list"
 msgstr "Lejátszási lista törlése"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear the logs for this timer"
 msgstr ""
@@ -5414,10 +5452,6 @@ msgid "Could not open the file %s!"
 msgstr "Nem sikerült megnyitni a %s fájlt!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "A felvétel nem tud elindulni időzítés ütközés miatt: %s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "Az %s érvénytelen csatorna miatt a felvétel nem lehetséges"
 
@@ -5786,6 +5820,9 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr ""
 
@@ -5801,6 +5838,9 @@ msgstr ""
 
 #, python-format
 msgid "DAB+ service information for '%s'"
+msgstr ""
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
 msgstr ""
 
 msgid "DAC"
@@ -5822,9 +5862,6 @@ msgid "DNS Settings Actions"
 msgstr ""
 
 msgid "DNS data source"
-msgstr ""
-
-msgid "DNS override"
 msgstr ""
 
 msgid "DNS protocol mode"
@@ -6780,6 +6817,14 @@ msgstr ""
 
 msgid "Disable timer"
 msgstr "Időzítő letiltása"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Letiltva"
@@ -9810,6 +9855,9 @@ msgstr "Háttértár"
 msgid "Harddisk Setup"
 msgstr "Háttértár beállítás"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr ""
 
@@ -9855,6 +9903,9 @@ msgstr ""
 #, fuzzy
 msgid "Help Screen Information"
 msgstr "Eszközinformáció"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr "Súgó ikonok animáció-sebessége"
@@ -11421,6 +11472,10 @@ msgstr "Hibakeresési napló méretkorlátja (MB)"
 msgid "Limit east"
 msgstr "Keleti limit"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr ""
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "A fájlnevekben használt karaktertábla (7 bites) ASCII-re legyen korlátozva. Ezáltal a kompatibilitás garantált olyan operációs rendszerekkel is, melyekben limitált a karakterkészlet."
 
@@ -11879,6 +11934,9 @@ msgstr ""
 msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
+msgid "Manage timer conflicts"
+msgstr ""
+
 msgid "Manage your online update files"
 msgstr "Az online frissítési fájlok kezelése"
 
@@ -11902,6 +11960,15 @@ msgstr ""
 
 msgid "Manufacturer"
 msgstr "Gyártó"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr ""
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr ""
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr ""
 
 msgid "Manx"
 msgstr ""
@@ -13195,6 +13262,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Internet connection available!"
+msgstr ""
+
 msgid "No Name"
 msgstr ""
 
@@ -13212,6 +13282,9 @@ msgstr "Nem áll rendelkezésre TS felvevő"
 
 msgid "No active channel found."
 msgstr "Nem található aktív csatorna."
+
+msgid "No additional slots have been planned."
+msgstr ""
 
 msgid "No age block"
 msgstr "Nincs korhatár"
@@ -13265,6 +13338,9 @@ msgstr "Nincs szabad index"
 msgid "No free tuner!"
 msgstr "Nincs szabad tuner!"
 
+msgid "No further DVB-I alternative is available."
+msgstr ""
+
 msgid "No gateway"
 msgstr ""
 
@@ -13291,6 +13367,9 @@ msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nincs kapcsoló (növelés vagy csökkentés)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -13391,6 +13470,9 @@ msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
 msgid "No valid device detected - Press OK"
+msgstr ""
+
+msgid "No valid manufacturer MultiBoot slots were found."
 msgstr ""
 
 #, python-format
@@ -13765,6 +13847,9 @@ msgstr "egyszeri"
 msgid "One line"
 msgstr "Egy sor"
 
+msgid "Online manual"
+msgstr ""
+
 msgid "Online software update"
 msgstr "Online szoftverfrissítés"
 
@@ -14012,6 +14097,9 @@ msgstr ""
 msgid "Open the single service EPG view"
 msgstr ""
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
+
 msgid "Open tuner setup"
 msgstr ""
 
@@ -14134,6 +14222,9 @@ msgstr ""
 
 msgid "Overall progress:"
 msgstr "Összes folyamat:"
+
+msgid "Override DNS"
+msgstr ""
 
 msgid "Overscan Test"
 msgstr "Overscan teszt"
@@ -14459,6 +14550,12 @@ msgid "Permanently remove all deleted items"
 msgstr "Minden törölt elem végleges eltávolítása"
 
 msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
+msgid "Permanently wipe the highlighted slot"
+msgstr ""
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
 msgstr ""
 
 msgid "Permissions"
@@ -14850,6 +14947,9 @@ msgstr ""
 msgid "Please wait while scanning is in progress..."
 msgstr "Kérem várjon, ameddig a keresés folyamatban van..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr ""
+
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
@@ -14876,6 +14976,9 @@ msgid "Please wait while the plugin is replaced."
 msgstr ""
 
 msgid "Please wait while the plugin is updated."
+msgstr ""
+
+msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
@@ -15143,6 +15246,12 @@ msgstr "Óvodai"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Nyomja meg a '0' gombot a Jelenlegi mód váltásához"
 
+msgid "Press BLUE to add more slots."
+msgstr ""
+
+msgid "Press BLUE to change the additional slots."
+msgstr ""
+
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -15230,10 +15339,10 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15475,6 +15584,9 @@ msgid "Purge all but the current and permanent locales/languages. Add the curren
 msgstr ""
 
 msgid "Purging all unused locales/languages..."
+msgstr ""
+
+msgid "Purging unused locales/languages..."
 msgstr ""
 
 msgid "Purple"
@@ -15876,10 +15988,6 @@ msgstr "A felvétel elkezdődött! A Timeshift megállítása most ..."
 msgid "Recording stopped"
 msgstr "A felvétel leállítva"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
-
 msgid "Recording tuning failed"
 msgstr "A felvétel hangolása nem sikerült"
 
@@ -16185,6 +16293,9 @@ msgstr "Kijelölt címek eltávolítása"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -17045,6 +17156,9 @@ msgstr ""
 msgid "Scan region"
 msgstr ""
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
@@ -17172,6 +17286,9 @@ msgstr "Műholdak keresése"
 msgid "Search Sats, check signal and lock"
 msgstr "Műholdak keresése, szignál ellenőrzés és zárolás"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "Léptetés kelet felé"
 
@@ -17180,6 +17297,12 @@ msgstr "Hálózati megosztások keresése"
 
 msgid "Search for similar events"
 msgstr "Hasonló események keresése"
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search weather location ID"
 msgstr "Időjárás helyszín azonosítójának keresése"
@@ -18471,6 +18594,10 @@ msgid "Select/Zap to the selected service"
 msgstr "Ugrás a kijelölt csatornára"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr ""
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19681,6 +19808,9 @@ msgstr "Figyelmeztetés mutatása, ha a csatornák importálása sikertelen volt
 msgid "Show notification when import channels was successful"
 msgstr "Figyelmeztetés mutatása, ha a csatornák importálása sikeres volt"
 
+msgid "Show or hide empty slots"
+msgstr ""
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Mutassa be vagy rejtse el a kiterjesztett leírást (kinézet függő)."
 
@@ -19903,6 +20033,9 @@ msgstr ""
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Bővítménykezelő mutatása. Itt tudja beállítani a telepített bővítményeket"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Az elérhető bővítményeket mutatja meg. Itt le tudja tölteni és telepíteni őket"
@@ -20364,6 +20497,9 @@ msgstr "Szoftver karbantartó Beállításai"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
@@ -20658,6 +20794,12 @@ msgstr "Indítsa az elejétől"
 msgid "Start instant recording"
 msgstr "Azonalli felvétel indítása"
 
+msgid "Start instant recording and set duration"
+msgstr ""
+
+msgid "Start instant recording and set end time"
+msgstr ""
+
 msgid "Start instant recording?"
 msgstr ""
 
@@ -20824,6 +20966,10 @@ msgstr "Felvétel leállítás és törlés"
 
 msgid "Stop recording now"
 msgstr "Felvétel leállítása most"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "Csatorna megállítása a filmlistára váltáskor"
@@ -21073,6 +21219,9 @@ msgstr "Vasárnap"
 
 msgid "Sunday"
 msgstr "Vasárnap"
+
+msgid "Support"
+msgstr ""
 
 msgid "Suriname"
 msgstr "Suriname"
@@ -21737,6 +21886,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21791,6 +21944,23 @@ msgstr "A kép magassága. A bemenetet a fenti értékhez igazítva skálázzák
 msgid "The loopthrough setting is wrong."
 msgstr "Az átfűzés beállítása hibás."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr ""
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr ""
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -21799,6 +21969,12 @@ msgstr ""
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
+msgstr ""
+
+msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
 msgstr ""
 
 msgid ""
@@ -21811,12 +21987,21 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "Az eredmények ide lettek kiírva: %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Mentett PIN törölve."
 
 msgid ""
 "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
+msgstr ""
+
+msgid "The selected device is not a supported removable block device."
+msgstr ""
+
+msgid "The selected device is too small. At least 3 GB is required."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -21841,6 +22026,11 @@ msgid ""
 msgstr ""
 "A Timeshift pufferidő meghaladja a beállított határértéket.\n"
 "Mit akar csinálni ?"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21944,6 +22134,9 @@ msgstr "Ez lehetővé teszi, hogy a számjegyek számát 6-re állítsa be, ha t
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "ez a csatornacsomag gyermekzár PIN-kóddal védett"
+
+msgid "This channel is currently off air."
+msgstr ""
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22178,6 +22371,9 @@ msgstr "Ezzel beállítja a hibás digitális körvonalak elfojtását."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ezzel beállítja a kép élességét, amelyet a kép felskálázásnál használ."
+
+msgid "This recording has already ended."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "ez a csatorna gyermekzárral védett"
@@ -23008,6 +23204,12 @@ msgstr "Ukrajna"
 msgid "Ukrainian"
 msgstr "Ukrán"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr ""
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr ""
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr ""
@@ -23016,14 +23218,33 @@ msgstr ""
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr ""
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
+msgstr ""
+
+msgid "Unable to load package information."
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr ""
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr ""
+
+msgid "Unable to save network configuration."
+msgstr ""
+
+msgid "Unable to select the audio channel."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23397,6 +23618,9 @@ msgstr "Használja az alternatív képernyőt"
 msgid "Use as HDD replacement"
 msgstr ""
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23576,6 +23800,9 @@ msgstr "felhasználó feed url-je"
 
 msgid "User ID"
 msgstr "Felhasználói azonosító"
+
+msgid "User Manual"
+msgstr ""
 
 msgid "User comments"
 msgstr ""
@@ -24437,7 +24664,7 @@ msgstr ""
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr ""
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -25661,6 +25888,14 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "A felvétel nem tud elindulni időzítés ütközés miatt: %s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
 
 #~ msgid "ImageWizard"
 #~ msgstr "ImageWizard"

@@ -1047,23 +1047,24 @@ class Adapter:
 	def connectionText(self) -> str:
 		# Encryption is what wpa_supplicant negotiated, not what the saved connection asks for; DHCP reflects the active connection's own setting.
 		parts = []
-		connection = networkManager.activeConnection(self.name)
-		if connection and connection.dhcp:
-			parts.append("DHCP")
-		if self.isWiFi and self.netInfo.link:
-			keyMgmt = self.netInfo.keyMgmt.upper()
-			if "SAE" in keyMgmt or "OWE" in keyMgmt:
-				text = "WPA3"
-			elif "WPA2" in keyMgmt:
-				text = "WPA2"
-			elif "WPA" in keyMgmt:
-				text = "WPA"
-			elif "WEP" in self.netInfo.pairwiseCipher.upper():
-				text = "WEP"
-			else:
-				text = ""
-			if text:
-				parts.append(f"{text}E" if "EAP" in keyMgmt else text)  # 802.1X, e.g. "WPA2E".
+		if self.adapterEnabled:
+			connection = networkManager.activeConnection(self.name)
+			if connection and connection.dhcp:
+				parts.append("DHCP")
+			if self.isWiFi and self.netInfo.link:
+				keyMgmt = self.netInfo.keyMgmt.upper()
+				if "SAE" in keyMgmt or "OWE" in keyMgmt:
+					text = "WPA3"
+				elif "WPA2" in keyMgmt:
+					text = "WPA2"
+				elif "WPA" in keyMgmt:
+					text = "WPA"
+				elif "WEP" in self.netInfo.pairwiseCipher.upper():
+					text = "WEP"
+				else:
+					text = ""
+				if text:
+					parts.append(f"{text}E" if "EAP" in keyMgmt else text)  # 802.1X, e.g. "WPA2E".
 		return ", ".join(parts)
 
 

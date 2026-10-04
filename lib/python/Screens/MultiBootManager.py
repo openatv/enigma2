@@ -526,7 +526,7 @@ class KexecInit(Screen):
 			}, prio=0, description=_("Kexec MultiBoot Actions"))
 		else:
 			self.descriptionSuffix = ""
-			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot!"), _("Kexec MultiBoot files are missing.")))
+			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot."), _("Kexec MultiBoot files are missing.")))
 
 	def rootInit(self):
 		def rootInitCallback(*args, **kwargs):
@@ -1626,7 +1626,7 @@ class NativeSlotManager(Setup):
 			self.NativeSlotManagerDevice = None
 			self.NativeSlotManagerLocation.value = None
 			self.createSetup()
-			self.updateStatus(_("The selected device is too small. At least 2561 MiB is required."))
+			self.updateStatus(_("The selected device is too small. At least 3 GB is required."))
 			return
 		self.NativeSlotManagerSlots.updateLimits([(1, maxSlots)])
 		if self.NativeSlotManagerSlots.value > maxSlots:
@@ -1685,6 +1685,7 @@ class NativeSlotManager(Setup):
 			ACTION_SELECT: _("Select Device"),
 			ACTION_CREATE: _("Create Slots")
 		}.get(self.green, _("Invalid")))
+
 
 class UBISlotManager(Setup):
 	def __init__(self, session):

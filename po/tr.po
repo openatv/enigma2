@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-13 12:11+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"PO-Revision-Date: 2026-10-04 11:54+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -888,6 +888,10 @@ msgid_plural "%d Years"
 msgstr[0] "%d Yıl"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr "%d adet ek yuva oluşturuldu.\n"
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d çekirdek"
@@ -928,6 +932,10 @@ msgstr "%d ms"
 msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d ağ (lar) bulundu."
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr "%d eski üretici BAŞLATMA dosyası değiştirilecek veya kaldırılacak."
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1254,6 +1262,7 @@ msgstr "%s webif devre dışı bırakıldı"
 msgid "%s%d min"
 msgstr "%s%d dak"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Varsayılan: %s)"
@@ -1265,6 +1274,10 @@ msgstr "%s. (En düşük)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr "%s: buket temizlenemedi"
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2110,9 +2123,6 @@ msgstr "Seçilen dizini yer imlerine ekle"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Eski SOL/SAĞ işlemlerini ekleyin"
 
-msgid "Add more slots"
-msgstr "Daha fazla yuva ekle"
-
 msgid "Add new CCcam line"
 msgstr "Yeni CCcam satırı ekle"
 
@@ -2121,6 +2131,9 @@ msgstr "Yeni NewCamd satırı ekle"
 
 msgid "Add new tag"
 msgstr "Yeni etiket ekle"
+
+msgid "Add or change additional slots"
+msgstr "Ek yuvalar ekleyin veya değiştirin"
 
 #
 msgid "Add provider"
@@ -2207,6 +2220,9 @@ msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntılar�
 #, python-format
 msgid "Additional rotor cable from %s"
 msgstr "%s'den gelen ek rotor kablosu"
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
+msgstr "Alıcı, ek yuvalardan biri üzerinden çalışırken bu yuvalar değiştirilemez."
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2344,6 +2360,10 @@ msgstr "Tüm Kanallar"
 msgid "All ages"
 msgstr "Her yaş grubu"
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr "Seçili cihazdaki tüm veriler silinecek. %d adet ek MultiBoot yuvası, 512 MiB'lık bir takas (swap) bölümü ve dahili yuva 1 çekirdeği içeren ortak bir veri bölümü oluşturulsun mu?"
+
 msgid "All events down"
 msgstr "Tüm etkinlikler aşağıda"
 
@@ -2352,6 +2372,9 @@ msgstr "Tüm etkinlikler yukarıda"
 
 msgid "All files"
 msgstr "Tüm dosyalar"
+
+msgid "All packages"
+msgstr ""
 
 msgid "All regions"
 msgstr "Tüm bölgeler"
@@ -2547,6 +2570,12 @@ msgstr "Bir RTL-SDR alıcısı algılandı. İsteğe bağlı DAB+ USB çalışma
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Televizyonun mevcut durumunu yakalamaya çalışılır. Durum mesajları yanlış veya eksikse, alıcı beklenmedik şekilde yanıt verebilir. Aksi takdirde, alıcının farklı çalışma koşullarını daha etkili bir şekilde ele almasına yardımcı olur."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr "Mevcut bir zamanlayıcı, talep edilen süre boyunca bu kanalı halihazırda kaydetmektedir."
+
+msgid "An instant recording is already running on this service."
+msgstr "Bu kanalda halihazırda bir anlık kayıt devam ediyor."
 
 #
 msgid "An unknown error occurred!"
@@ -4172,8 +4201,14 @@ msgstr "Kaydı değiştir (Bitiş zamanı)"
 msgid "Change repeat and delay settings?"
 msgstr "Tekrarlama ve gecikme ayarlarını değiştirmek mi istiyorsunuz?"
 
+msgid "Change search"
+msgstr ""
+
 msgid "Change skin"
 msgstr "Arayüzü değiştir"
+
+msgid "Change slots"
+msgstr "Slotları değiştir"
 
 #
 msgid "Change step size"
@@ -4584,6 +4619,9 @@ msgstr "Sabiti temizle"
 msgid "Clear play list"
 msgstr "Oynatma listesini temizle"
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear the logs for this timer"
 msgstr "Bu zamanlayıcı için günlükleri temizle"
 
@@ -4807,6 +4845,9 @@ msgstr "Ortak Arayüz Ayarları"
 
 msgid "Common Setup Actions"
 msgstr "Ortak Kurulum İşlemleri"
+
+msgid "Common settings"
+msgstr "Genel ayarlar"
 
 msgid "Comoros"
 msgstr "Komorlar"
@@ -5544,10 +5585,6 @@ msgid "Could not open the file %s!"
 msgstr "%s dosyası açılamadı!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "Çakışan zamanlayıcı: %s nedeniyle kayıt yapılamadı"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "Geçersiz kanal: %s yüzünden kayıt yapılamadı"
 
@@ -5935,6 +5972,9 @@ msgstr "DAB+ USB desteği yüklendi. Artık alıcı ayarlarından bu özelliği 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: buket yazılamadı"
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr "DAB+ kanalı"
 
@@ -5951,6 +5991,9 @@ msgstr "DAB+ taraması başarısız oldu; mevcut buketler korundu."
 #, python-format
 msgid "DAB+ service information for '%s'"
 msgstr "'%s' için DAB+ kanal bilgisi"
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
+msgstr "DAB+ sinyali algılandı; FIC hizmet verisi bekleniyor..."
 
 msgid "DAC"
 msgstr "DAC"
@@ -5972,9 +6015,6 @@ msgstr "DNS Ayarları İşlemleri"
 
 msgid "DNS data source"
 msgstr "DNS veri kaynağı"
-
-msgid "DNS override"
-msgstr "DNS geçersiz kılma"
 
 msgid "DNS protocol mode"
 msgstr "DNS protokol modu"
@@ -6956,6 +6996,14 @@ msgstr "Çoklu Önyükleme seçeneğini devre dışı bırak"
 
 msgid "Disable timer"
 msgstr "Zamanlayıcıyı devre dışı bırak"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr "'%s' zamanlayıcısı devre dışı bırakılsın mı?"
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr "Zamanlayıcıyı devre dışı bırak: '%s'"
 
 #
 msgid "Disabled"
@@ -10113,6 +10161,9 @@ msgstr "Sabit disk"
 msgid "Harddisk Setup"
 msgstr "Sabit Disk Kurulumu"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr "Donanım Çoklu Önyükleme cihazı"
 
@@ -10157,6 +10208,9 @@ msgstr "Yardım ve Görsel Geri Bildirim"
 
 msgid "Help Screen Information"
 msgstr "Yardım Ekranı Bilgileri"
+
+msgid "Help and support"
+msgstr "Yardım ve destek"
 
 msgid "Help animation speed"
 msgstr "Yardım ekranlarında tuş göstergelerinin animasyon hızı"
@@ -11770,6 +11824,10 @@ msgstr "Hata ayıklama günlük boyutunu sınırla (MB)"
 msgid "Limit east"
 msgstr "Doğu limiti"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr "Anında kaydı %s'ye kadar sınırla"
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Dosya isimlerinde kullanılabilecek karakterleri (7 bit) ASCII ile sınırlandırın. Bu, sınırlı karakter setine sahip işletim sistemleri veya dosya sistemleriyle uyumluluğu sağlar."
 
@@ -12238,6 +12296,9 @@ msgstr "Vurgulananları yönet %s"
 msgid "Manage the highlighted %s / list of %s"
 msgstr "Vurgulanan %s / %s listesi yönetimi"
 
+msgid "Manage timer conflicts"
+msgstr "Zamanlayıcı çakışmalarını yönetin"
+
 msgid "Manage your online update files"
 msgstr "Çevrimiçi güncelleme dosyalarınızı yönetin"
 
@@ -12264,6 +12325,15 @@ msgstr "Yedek uzak alıcıdan manuel olarak içe aktar"
 #
 msgid "Manufacturer"
 msgstr "Üretici"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr "Üretici yuvası 1, uygun STARTUP dosyaları sağlamıyor."
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr "Üretici yuvası 1'de, bir çekirdek aygıtı ile kullanılabilir bir STARTUP komutu bulunmuyor."
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr "Üretici yuvası 1 bulunamadı ve paylaşılan çekirdek şablonu olarak kullanılamaz."
 
 msgid "Manx"
 msgstr "Manx"
@@ -13596,6 +13666,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "Internet bağlantısı yok"
 
+msgid "No Internet connection available!"
+msgstr "İnternet bağlantısı yok!"
+
 msgid "No Name"
 msgstr "İsim Yok"
 
@@ -13614,6 +13687,9 @@ msgstr "TS kaydedici mevcut değil"
 
 msgid "No active channel found."
 msgstr "Aktif kanal bulunamadı."
+
+msgid "No additional slots have been planned."
+msgstr "Ek yuvalar planlanmamıştır."
 
 msgid "No age block"
 msgstr "Yaş engeli yok"
@@ -13675,6 +13751,9 @@ msgstr "Boş dizin mevcut değil"
 msgid "No free tuner!"
 msgstr "Boş tuner yok!"
 
+msgid "No further DVB-I alternative is available."
+msgstr "Başka bir DVB-I alternatifi mevcut değildir."
+
 msgid "No gateway"
 msgstr "Ağ geçidi yok"
 
@@ -13702,6 +13781,9 @@ msgstr "Hiçbir ağ bulunamadı."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Öğe sayısı değişimi (artış veya azalma)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Resimler mevcut değil"
@@ -13813,6 +13895,9 @@ msgstr "Yapılandırılmış geçerli DAB+ kaynağı yok. /etc/enigma2/dab.xml d
 
 msgid "No valid device detected - Press OK"
 msgstr "Geçerli bir cihaz algılanmadı - OK tuşuna basın"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr "Geçerli bir üretici MultiBoot yuvası bulunamadı."
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -14198,6 +14283,9 @@ msgstr "Bir kere"
 msgid "One line"
 msgstr "Tek satır"
 
+msgid "Online manual"
+msgstr "Çevrimiçi kullanım kılavuzu"
+
 msgid "Online software update"
 msgstr "Çevrimiçi yazılım güncelleme"
 
@@ -14436,6 +14524,9 @@ msgstr "Çoklu kanal EPG görünümünü aç"
 msgid "Open the single service EPG view"
 msgstr "Tekli kanal EPG görünümünü aç"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr "Yardım almak veya sorunları bildirmek için kullanım kılavuzunu ve araçları açın"
+
 msgid "Open tuner setup"
 msgstr "Tuner kurulumunu aç"
 
@@ -14558,6 +14649,9 @@ msgstr "Çıktı metni:"
 #
 msgid "Overall progress:"
 msgstr "Genel ilerleme:"
+
+msgid "Override DNS"
+msgstr "DNS geçersiz kılma"
 
 #
 msgid "Overscan Test"
@@ -14893,6 +14987,12 @@ msgstr "Silinen tüm öğeleri kalıcı olarak kaldırın"
 
 msgid "Permanently remove the MultiBoot files?"
 msgstr "Çoklu Önyükleme dosyalarını kalıcı olarak silmek mi istiyorsunuz?"
+
+msgid "Permanently wipe the highlighted slot"
+msgstr "Vurgulanan yuvayı kalıcı olarak silin"
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr "Bu yuvayı kalıcı olarak silmek istiyor musunuz? Yuvadaki tüm dosyalar silinecek ve geri getirilemeyecektir."
 
 msgid "Permissions"
 msgstr "İzinler"
@@ -15315,6 +15415,9 @@ msgstr "Yerel ayarlar/diller temizlenirken lütfen bekleyin..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Tarama işlemi devam ederken lütfen bekleyin..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr "İnternet bağlantısı kontrol edilirken lütfen bekleyin..."
+
 msgid "Please wait while the data is extracted..."
 msgstr "Veriler ayıklanırken lütfen bekleyin..."
 
@@ -15340,6 +15443,9 @@ msgstr "Lütfen eklenti değiştirilirken bekleyin."
 
 msgid "Please wait while the plugin is updated."
 msgstr "Lütfen eklenti güncellenirken bekleyin."
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr "Kullanılmayan yerel ayarlar/diller temizlenirken lütfen bekleyin..."
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Yüklediğiniz eklentileri kontrol ederken lütfen bekleyin..."
@@ -15624,6 +15730,12 @@ msgstr "Okul öncesi"
 msgid "Press '0' to toggle PiP mode"
 msgstr "PiP modunu açıp kapatmak için '0' tuşuna basın"
 
+msgid "Press BLUE to add more slots."
+msgstr "Daha fazla yuva eklemek için MAVİ tuşa basın."
+
+msgid "Press BLUE to change the additional slots."
+msgstr "Ek yuvaları değiştirmek için MAVİ tuşa basın."
+
 msgid "Press EXIT to close."
 msgstr "Kapatmak için EXIT tuşuna basın."
 
@@ -15719,11 +15831,11 @@ msgstr "Bu dili kullanmak için OK tuşuna basın. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Bu yerel ayarı kullanmak için OK tuşuna basın. [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "Bir yuva seçmek için YUKARI/AŞAĞI tuşlarına basın ve o yazılımı yeniden başlatmak için OK veya YEŞİL tuşuna basın. Varsa, SARI tuş yazılımı siler veya tamamen kaldırır. Silinen bir yazılım MAVİ tuş ile geri yüklenebilir. Tamamen kaldırılan bir yazılım geri yüklenemez!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr "Bir yuva seçmek için YUKARI/AŞAĞI tuşlarına basın ve o yuvadan yeniden başlatmak için OK veya YEŞİL tuşuna basın. Seçili görüntüyü silmek için SARI tuşa basın ya da kalıcı olarak silmek (tamamen temizlemek) için SARI tuşa basılı tutun. Silinen bir görüntü MAVİ tuş ile geri getirilebilir, ancak tamamen temizlenen bir görüntü geri getirilemez. Boş yuvaları göstermek veya gizlemek için INFO tuşuna basın."
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
-msgstr "Bir yuva seçmek için YUKARI/AŞAĞI tuşlarına basın, ardından o yazılımı yeniden başlatmak için OK veya YEŞİL tuşa basın. Varsa, SARI tuş Çoklu Önyüklemeyi devre dışı bırakır, seçilen yazılımı siler veya temizler. Daha fazla yuva eklemek için MAVİ tuşa basın."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
+msgstr "Bir yuva seçmek için YUKARI/AŞAĞI tuşlarına basın, ardından o yuvada yeniden başlatmak için OK veya YEŞİL tuşuna basın. Seçenek mevcutsa, SARI tuş MultiBoot özelliğini devre dışı bırakır ya da seçili yuvayı siler veya temizler."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Bu tuşa basarak, sonrasında basılan bir tuşa uzun basış işlemini taklit edebilirsiniz (bu işlem, taklit tuşuna atanmış diğer tüm eylemleri de geçersiz kılar)."
@@ -15972,6 +16084,9 @@ msgstr "Geçerli ve kalıcı yerel ayarlar/diller hariç tümünü temizleyin. K
 
 msgid "Purging all unused locales/languages..."
 msgstr "Kullanılmayan tüm yerel ayarlar/diller temizleniyor..."
+
+msgid "Purging unused locales/languages..."
+msgstr "Kullanılmayan yerel ayarlar/diller temizleniyor..."
 
 msgid "Purple"
 msgstr "Mor"
@@ -16389,11 +16504,6 @@ msgstr "Kayıt işlemi başladı, zaman kaydırma işlemi şimdi durduruluyor."
 msgid "Recording stopped"
 msgstr "Kayıt işlemi durduruldu"
 
-#
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Çakışan zamanlayıcı nedeniyle kayıt süresi sınırlı:%s"
-
 msgid "Recording tuning failed"
 msgstr "Kayıt ayarı başarısız oldu"
 
@@ -16717,6 +16827,9 @@ msgstr "Seçilen geçerli başlığı kaldır"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Seçilen klasörü yer imlerinden kaldır"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr "Taranan DAB+ çoklu yayınlarından önceden kaydedilmiş kanalları kaldırın. Bir çoklu yayın geçici olarak kullanılamadığında kanalları korumak için bu seçeneği devre dışı bırakın."
 
 msgid "Remove service from AutoCam"
 msgstr "AutoCam içinden kanalı kaldır"
@@ -17630,6 +17743,9 @@ msgstr "Karasal LCN'leri tarayın ve LCN buketleri oluşturun"
 msgid "Scan region"
 msgstr "Tarama bölgesi"
 
+msgid "Scan the QR code to open the manual:"
+msgstr "Kullanım kılavuzunu açmak için QR kodunu tarayın:"
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr "USB tuneri, mevcut DAB+ uydu yayınlarını veya her ikisini de tarayın."
 
@@ -17755,6 +17871,9 @@ msgstr "Uyduları Ara"
 msgid "Search Sats, check signal and lock"
 msgstr "Uyduları ara, sinyali kontrol et ve kilitle"
 
+msgid "Search all packages"
+msgstr ""
+
 #
 msgid "Search east"
 msgstr "Doğuyu ara"
@@ -17764,6 +17883,12 @@ msgstr "Ağ paylaşımlarını ara"
 
 msgid "Search for similar events"
 msgstr "Benzer etkinlikleri ara"
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 #
 msgid "Search weather location ID"
@@ -19070,6 +19195,10 @@ msgid "Select/Zap to the selected service"
 msgstr "Seçilen kanala geç/seç"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr "Seçilen cihaz: %s"
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -20320,6 +20449,9 @@ msgstr "Kanalları içe aktarma başarılı olmadığında bildirim göster"
 msgid "Show notification when import channels was successful"
 msgstr "Kanalları içe aktarma başarılı olduğunda bildirim göster"
 
+msgid "Show or hide empty slots"
+msgstr "Boş yuvaları göster veya gizle"
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Genişletilmiş açıklamayı göster veya gizle. Bu işlev, arayüze bağlı olabilir."
 
@@ -20550,6 +20682,9 @@ msgstr "Çerçeveyi göster"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Eklentiler Listesini gösterir. Burada yüklü eklentileri ayarlayabilirsiniz"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr "Telefonunuzda veya bilgisayarınızda çevrimiçi kullanım kılavuzunu açmak için bir QR kodu gösterir"
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Geçerli eklentileri gösterir. Buradan indirebilir ve yükleyebilirsiniz"
@@ -21030,6 +21165,9 @@ msgstr "Yazılım Yöneticisi Ayarları"
 msgid "Software MultiBoot"
 msgstr "Yazılım Çoklu Önyükleme"
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "Yazılım Güncellemesi"
 
@@ -21332,6 +21470,12 @@ msgstr "Baştan başla"
 msgid "Start instant recording"
 msgstr "Anında kayıt başlat"
 
+msgid "Start instant recording and set duration"
+msgstr "Anında kaydı başlatın ve süreyi ayarlayın"
+
+msgid "Start instant recording and set end time"
+msgstr "Anında kaydı başlatın ve bitiş saatini ayarlayın"
+
 msgid "Start instant recording?"
 msgstr "Anında kayıt başlatılsın mı?"
 
@@ -21511,6 +21655,10 @@ msgstr "Kaydı durdur ve sil"
 
 msgid "Stop recording now"
 msgstr "Kaydı şimdi durdur"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr "Kaydı durdur: '%s'"
 
 msgid "Stop service on return to movie list"
 msgstr "Film listesine geri dönüldüğünde kanalı durdur"
@@ -21773,6 +21921,9 @@ msgstr "Sunda dili"
 #
 msgid "Sunday"
 msgstr "Pazar"
+
+msgid "Support"
+msgstr "Destek"
 
 msgid "Suriname"
 msgstr "Surinam"
@@ -22458,6 +22609,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Bekleme modundan uyandırma komutu birden fazla kez gönderilecektir."
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr "'%s' için özel bağlantı noktası boş!"
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -22516,6 +22671,23 @@ msgstr "Resmin yüksekliği. Girdi, bu değere uyacak şekilde ölçeklendirilec
 msgid "The loopthrough setting is wrong."
 msgstr "Döngüsel geçiş ayarı yanlış."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr "Üreticiye ait STARTUP cihazı, inceleme amacıyla monte edilemez."
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr "Üretici STARTUP aygıtı takılı değil. STARTUP dosyaları değiştirilmemiş."
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr "Üreticiye ait STARTUP cihazı bulunamadı."
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr "'%s' adlı STARTUP dosyasında değişiklik yapıldı. Kullanıcı arayüzünü yeniden başlatın ve lütfen tekrar deneyin."
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr "'%s' üretici STARTUP dosya adı güvenli bir şekilde genişletilemiyor."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Pikon dizini zaten mevcut ve silinmesi gerekiyor. Devam etmek istiyor musunuz?"
 
@@ -22525,6 +22697,12 @@ msgstr "Konumlandırıcı tuner şu anda kullanılamıyor. Bu tuneri kullanan ka
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "İşlemin tamamlanması yaklaşık %d dakika sürecektir."
+
+msgid "The recording end time has already passed."
+msgstr "Kayıt bitiş zamanı çoktan geçti."
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr "İstenen kayıt, diğer zamanlayıcılarla çakışıyor. Ne yapmak istiyorsunuz?"
 
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
@@ -22540,6 +22718,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "Sonuçlar %s dosyasına yazıldı."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr "Üretici STARTUP dosyasındaki kök alt dizin güvenli bir şekilde genişletilemez."
+
 msgid "The saved PIN was cleared."
 msgstr "Kaydedilen PIN kodu silindi."
 
@@ -22549,6 +22730,12 @@ msgid ""
 msgstr ""
 "Seçilen kanal, manuel olarak programlanan zamanlayıcılar için VPS'yi desteklemiyor!\n"
 " VPS'yi gerçekten etkinleştirmek istiyor musunuz?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr "Seçilen aygıt, desteklenen bir çıkarılabilir blok aygıtı değildir."
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr "Seçilen aygıt çok küçük. En az 2561 MiB gerekiyor."
 
 msgid "The service list is reloaded."
 msgstr "Kanal listesi yeniden yükleniyor."
@@ -22575,6 +22762,13 @@ msgid ""
 msgstr ""
 "Zaman kaydırma arabelleği, ayarlarda belirtilen sınırı aşıyor.\n"
 "Ne yapmak istiyorsunuz?"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
+"Zaman kaydırma depolama aygıtı kullanılamıyor.\n"
+"Lütfen aygıtı ve zaman kaydırma yolunu kontrol edin."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22679,6 +22873,9 @@ msgstr "Bu özellik kanal numarasındaki maksimum basamak sayısını en fazla 6
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Bu buket bir ebeveyn kontrol PIN kodu ile korunmaktadır!"
+
+msgid "This channel is currently off air."
+msgstr "Bu kanal şu anda yayında değil."
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22913,6 +23110,9 @@ msgstr "Bu seçenek sınırlı sayıda ayrık değerin sonucu olan yanlış diji
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Bu seçenek resim büyütülürken kullanılan resim keskinliğini ayarlar."
+
+msgid "This recording has already ended."
+msgstr "Bu kayıt zaten sona erdi."
 
 #
 msgid "This service is protected by a parental control PIN!"
@@ -23784,6 +23984,12 @@ msgstr "Ukrayna"
 msgid "Ukrainian"
 msgstr "Ukraynaca"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr "Ek STARTUP dosyaları oluşturulamadı."
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr "Yeni üretici STARTUP dosyaları oluşturulamadı."
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: %s."
@@ -23792,15 +23998,34 @@ msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: %s."
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: LNB 1 %s."
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
 msgstr "Kexec Çoklu Ön Yükleme başlatılamadı!"
+
+msgid "Unable to load package information."
+msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Tuner (%d) açılamadı"
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr "Yeni MultiBoot bölümünün UUID'si okunamıyor. STARTUP dosyalarında herhangi bir değişiklik yapılmamıştır."
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr "Üreticiye ait '%s' STARTUP dosyasını okuyamadı."
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "DAB+ aktarıcı kaydı yapılamadı"
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr "Kullanım dışı ek STARTUP dosyaları kaldırılamıyor."
+
+msgid "Unable to save network configuration."
+msgstr "Ağ yapılandırması kaydedilemiyor!"
+
+msgid "Unable to select the audio channel."
+msgstr "Ses kanalı seçilemiyor."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ kaynağı başlatılamıyor"
@@ -24187,6 +24412,9 @@ msgstr "Alternatif daha küçük bir ekran kullanın."
 msgid "Use as HDD replacement"
 msgstr "HDD yerine kullan"
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Otomatik mod algılamayı kullanın"
 
@@ -24372,6 +24600,9 @@ msgstr "Kullanıcı Kaynağı URL si"
 
 msgid "User ID"
 msgstr "Kullanıcı Kimliği"
+
+msgid "User Manual"
+msgstr "Kullanım Kılavuzu"
 
 msgid "User comments"
 msgstr "Kullanıcı yorumları"
@@ -25288,8 +25519,8 @@ msgstr "Giriş imleci bu noktaya (genişliğin yüzdesi, her iki taraftan) ulaş
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Alıcı bekleme modundan veya derin bekleme modundan çıktığında, TV'ye bekleme modundan çıkması için bir komut gönderir."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr "Alıcınız Bekleme Modundan uyandığında, TV'nin alıcınıza bağlı HDMI girişine geçmesi için aktif kaynak, akış yolu ve yönlendirme komutlarını gönderin."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
+msgstr "Alıcı Bekleme modundan uyandığında TV'nin bağlı HDMI girişine geçmesi için alıcıyı aktif kaynak olarak seçin."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kırmızı kutu doğru şekilde göründüğünde, ayarları kaydetmek ve çıkmak için YEŞİL tuşa basın."
@@ -26608,6 +26839,27 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "Çakışan zamanlayıcı: %s nedeniyle kayıt yapılamadı"
+
+#
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "Çakışan zamanlayıcı nedeniyle kayıt süresi sınırlı:%s"
+
+#~ msgid "Add more slots"
+#~ msgstr "Daha fazla yuva ekle"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr "Bir yuva seçmek için YUKARI/AŞAĞI tuşlarına basın ve o yazılımı yeniden başlatmak için OK veya YEŞİL tuşuna basın. Varsa, SARI tuş yazılımı siler veya tamamen kaldırır. Silinen bir yazılım MAVİ tuş ile geri yüklenebilir. Tamamen kaldırılan bir yazılım geri yüklenemez!"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+#~ msgstr "Bir yuva seçmek için YUKARI/AŞAĞI tuşlarına basın, ardından o yazılımı yeniden başlatmak için OK veya YEŞİL tuşa basın. Varsa, SARI tuş Çoklu Önyüklemeyi devre dışı bırakır, seçilen yazılımı siler veya temizler. Daha fazla yuva eklemek için MAVİ tuşa basın."
+
+#~ msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+#~ msgstr "Alıcınız Bekleme Modundan uyandığında, TV'nin alıcınıza bağlı HDMI girişine geçmesi için aktif kaynak, akış yolu ve yönlendirme komutlarını gönderin."
+
+#, python-format
 #~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
 #~ msgstr "%d kaynağın %d'i tamamlandı; başarısız olan kaynak buketleri saklandı"
 
@@ -26842,8 +27094,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "C/T girişi değişimi: harici 5V koaksiyel geçiş"
 
-msgid "Common Settings"
-msgstr "Ortak Ayarlar"
+#~ msgid "Common Settings"
+#~ msgstr "Ortak Ayarlar"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB-C ve DVB-T/T2 bu girişi paylaşır. Her ikisi de etkinleştirildiğinde, Enigma2 harici koaksiyel geçişi kontrol etmek için 5V kullanır."

@@ -112,7 +112,7 @@ protected:
 	bool amlogicCEC;
 	unsigned char physicalAddress[2];
 	bool fixedAddress;
-	bool enabled;
+	bool cecEnabled;
 	bool reportActiveMenu;
 	unsigned char deviceType, logicalAddress;
 	int hdmiFd;

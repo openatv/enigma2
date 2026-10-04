@@ -1,3 +1,5 @@
+from os.path import basename, dirname
+
 from Plugins.Plugin import PluginDescriptor
 from enigma import getDesktop
 
@@ -20,11 +22,13 @@ def main(session, **kwargs):
 
 
 def filescan_open(list, session, **kwargs):
-	# Recreate List as expected by PicView
-	filelist = [((file.path, False), None) for file in list]
-	from .ui import Pic_Full_View
-	p = filelist[0][0][0]
-	session.open(Pic_Full_View, filelist, 0, p)
+	if not list:
+		return
+	# FileList metadata is shared by the thumbnail and full-screen views.
+	filelist = [((file.path, False, False, None, basename(file.path), None), None) for file in sorted(list, key=lambda file: file.path.casefold())]
+	from .ui import Pic_Full_View, Pic_Thumb
+	path = dirname(filelist[0][0][0])
+	session.open(Pic_Thumb if len(filelist) > 1 else Pic_Full_View, filelist, 0, path)
 
 
 def filescan(**kwargs):

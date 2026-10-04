@@ -60,6 +60,7 @@ class ServiceInfo(Converter):
 	YRES = 46
 	IS_SOFTCSA = 47
 	IS_DAB = 48
+	IS_DVBI = 49
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -93,6 +94,7 @@ class ServiceInfo(Converter):
 			"Is720": (self.IS_720, (iPlayableService.evVideoSizeChanged,)),
 			"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
 			"IsDAB": (self.IS_DAB, (iPlayableService.evStart, iPlayableService.evUpdatedInfo)),
+			"IsDVBI": (self.IS_DVBI, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"IsSoftCSA": (self.IS_SOFTCSA, (iPlayableService.evUpdatedInfo,)),
 			"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
 			"IsHDHDR": (self.IS_HDHDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
@@ -151,6 +153,8 @@ class ServiceInfo(Converter):
 
 		result = False
 		service = self.source.service
+		if self.token == self.IS_DVBI:
+			return bool(service and getattr(self.source, "isDVBI", False))
 		info = service and service.info()
 		if info:
 			videoData = info.getInfoString(iServiceInformation.sVideoInfo) or "-1|-1|-1|-1|-1|-1"

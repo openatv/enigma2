@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
 "PO-Revision-Date: 2026-08-17 05:16+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -923,6 +923,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr ""
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] ""
@@ -965,6 +969,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr ""
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1303,6 +1311,7 @@ msgstr ""
 msgid "%s%d min"
 msgstr "%d นาที"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr ""
@@ -1313,6 +1322,10 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
+msgstr ""
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
 msgstr ""
 
 #, python-format
@@ -2122,9 +2135,6 @@ msgstr "เลือกไฟล์/โฟล์เดอร์ที่จะ�
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr ""
 
-msgid "Add more slots"
-msgstr ""
-
 msgid "Add new CCcam line"
 msgstr ""
 
@@ -2132,6 +2142,9 @@ msgid "Add new NewCamd line"
 msgstr ""
 
 msgid "Add new tag"
+msgstr ""
+
+msgid "Add or change additional slots"
 msgstr ""
 
 #, fuzzy
@@ -2217,6 +2230,9 @@ msgstr ""
 
 #, python-format
 msgid "Additional rotor cable from %s"
+msgstr ""
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2353,6 +2369,10 @@ msgstr "บริการต่างๆ"
 msgid "All ages"
 msgstr ""
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr ""
+
 msgid "All events down"
 msgstr ""
 
@@ -2360,6 +2380,9 @@ msgid "All events up"
 msgstr ""
 
 msgid "All files"
+msgstr ""
+
+msgid "All packages"
 msgstr ""
 
 msgid "All regions"
@@ -2553,6 +2576,12 @@ msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being 
 msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
+msgstr ""
+
+msgid "An existing timer already records this service during the requested time."
+msgstr ""
+
+msgid "An instant recording is already running on this service."
 msgstr ""
 
 msgid "An unknown error occurred!"
@@ -4135,9 +4164,15 @@ msgstr ""
 msgid "Change repeat and delay settings?"
 msgstr ""
 
+msgid "Change search"
+msgstr ""
+
 #, fuzzy
 msgid "Change skin"
 msgstr "เปลี่ยน Step"
+
+msgid "Change slots"
+msgstr ""
 
 msgid "Change step size"
 msgstr "เปลี่ยน Step"
@@ -4540,6 +4575,9 @@ msgstr ""
 #, fuzzy
 msgid "Clear play list"
 msgstr "ล้างสารบัญรายการ"
+
+msgid "Clear search"
+msgstr ""
 
 msgid "Clear the logs for this timer"
 msgstr ""
@@ -5485,10 +5523,6 @@ msgid "Could not open the file %s!"
 msgstr ""
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr ""
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr ""
 
@@ -5865,6 +5899,9 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr ""
 
@@ -5880,6 +5917,9 @@ msgstr ""
 
 #, python-format
 msgid "DAB+ service information for '%s'"
+msgstr ""
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
 msgstr ""
 
 msgid "DAC"
@@ -5901,9 +5941,6 @@ msgid "DNS Settings Actions"
 msgstr ""
 
 msgid "DNS data source"
-msgstr ""
-
-msgid "DNS override"
 msgstr ""
 
 msgid "DNS protocol mode"
@@ -6867,6 +6904,14 @@ msgstr ""
 #, fuzzy
 msgid "Disable timer"
 msgstr "ลบไฟล์"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr ""
 
 msgid "Disabled"
 msgstr "ไม่ใช้งาน"
@@ -9924,6 +9969,9 @@ msgstr "ฮาร์ดดิสก์"
 msgid "Harddisk Setup"
 msgstr ""
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr ""
 
@@ -9969,6 +10017,9 @@ msgstr ""
 #, fuzzy
 msgid "Help Screen Information"
 msgstr "ข้อมูล"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr ""
@@ -11558,6 +11609,10 @@ msgstr ""
 msgid "Limit east"
 msgstr "จำกัดทางตะวันออก"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr ""
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr ""
 
@@ -12017,6 +12072,9 @@ msgstr ""
 msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
+msgid "Manage timer conflicts"
+msgstr ""
+
 msgid "Manage your online update files"
 msgstr ""
 
@@ -12041,6 +12099,15 @@ msgstr ""
 
 msgid "Manufacturer"
 msgstr "ผู้ผลิต"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr ""
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr ""
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr ""
 
 msgid "Manx"
 msgstr ""
@@ -13355,6 +13422,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Internet connection available!"
+msgstr ""
+
 msgid "No Name"
 msgstr ""
 
@@ -13369,6 +13439,9 @@ msgid "No TS recorder available"
 msgstr "ไม่มีรายละเอียดเพิ่มเติม"
 
 msgid "No active channel found."
+msgstr ""
+
+msgid "No additional slots have been planned."
 msgstr ""
 
 msgid "No age block"
@@ -13427,6 +13500,9 @@ msgstr "ไม่มีรายละเอียดเพิ่มเติม
 msgid "No free tuner!"
 msgstr "ไม่มี Tuner ว่างที่จะใช้งานได้"
 
+msgid "No further DVB-I alternative is available."
+msgstr ""
+
 msgid "No gateway"
 msgstr ""
 
@@ -13453,6 +13529,9 @@ msgid "No networks found."
 msgstr ""
 
 msgid "No of items switch (increase or reduced)"
+msgstr ""
+
+msgid "No packages found."
 msgstr ""
 
 msgid "No pictures available"
@@ -13555,6 +13634,9 @@ msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr ""
 
 msgid "No valid device detected - Press OK"
+msgstr ""
+
+msgid "No valid manufacturer MultiBoot slots were found."
 msgstr ""
 
 #, python-format
@@ -13930,6 +14012,9 @@ msgstr "ครั้งเดียว"
 msgid "One line"
 msgstr ""
 
+msgid "Online manual"
+msgstr ""
+
 msgid "Online software update"
 msgstr ""
 
@@ -14178,6 +14263,9 @@ msgstr ""
 msgid "Open the single service EPG view"
 msgstr ""
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
+
 msgid "Open tuner setup"
 msgstr ""
 
@@ -14301,6 +14389,9 @@ msgstr ""
 #, fuzzy
 msgid "Overall progress:"
 msgstr "กำลังทำงาน"
+
+msgid "Override DNS"
+msgstr ""
 
 #, fuzzy
 msgid "Overscan Test"
@@ -14632,6 +14723,12 @@ msgid "Permanently remove all deleted items"
 msgstr ""
 
 msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
+msgid "Permanently wipe the highlighted slot"
+msgstr ""
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
 msgstr ""
 
 msgid "Permissions"
@@ -15035,6 +15132,9 @@ msgstr ""
 msgid "Please wait while scanning is in progress..."
 msgstr "กำลังค้นหา... รอสักครู่"
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr ""
+
 msgid "Please wait while the data is extracted..."
 msgstr ""
 
@@ -15062,6 +15162,9 @@ msgid "Please wait while the plugin is replaced."
 msgstr ""
 
 msgid "Please wait while the plugin is updated."
+msgstr ""
+
+msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
@@ -15334,6 +15437,12 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr ""
 
+msgid "Press BLUE to add more slots."
+msgstr ""
+
+msgid "Press BLUE to change the additional slots."
+msgstr ""
+
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -15422,10 +15531,10 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15670,6 +15779,9 @@ msgid "Purge all but the current and permanent locales/languages. Add the curren
 msgstr ""
 
 msgid "Purging all unused locales/languages..."
+msgstr ""
+
+msgid "Purging unused locales/languages..."
 msgstr ""
 
 msgid "Purple"
@@ -16086,10 +16198,6 @@ msgstr ""
 msgid "Recording stopped"
 msgstr "กำลังบันทึกรายการ"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "การบันทึกถูกจำกัด เนื่องจากซ้ำซ้อนกับ %s"
-
 #, fuzzy
 msgid "Recording tuning failed"
 msgstr "ความเร็วในการหมุนของ Rotor"
@@ -16398,6 +16506,9 @@ msgid "Remove currently selected title"
 msgstr "ลบเชื่อเรื่องที่เลือกออก"
 
 msgid "Remove highlighted directory from bookmarks"
+msgstr ""
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -17274,6 +17385,9 @@ msgstr ""
 msgid "Scan region"
 msgstr ""
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
@@ -17401,6 +17515,9 @@ msgstr ""
 msgid "Search Sats, check signal and lock"
 msgstr ""
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "ค้นหาทางทิศตะวันออก"
 
@@ -17408,6 +17525,12 @@ msgid "Search for network shares"
 msgstr ""
 
 msgid "Search for similar events"
+msgstr ""
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
 msgstr ""
 
 #, fuzzy
@@ -18710,6 +18833,10 @@ msgid "Select/Zap to the selected service"
 msgstr "กรุณาเลือกบริการย่อย..."
 
 #, python-format
+msgid "Selected device: %s"
+msgstr ""
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19936,6 +20063,9 @@ msgstr ""
 msgid "Show notification when import channels was successful"
 msgstr ""
 
+msgid "Show or hide empty slots"
+msgstr ""
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr ""
 
@@ -20168,6 +20298,9 @@ msgid "Showiframe"
 msgstr ""
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
+msgstr ""
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
 msgstr ""
 
 msgid "Shows available plugins. Here you can download and install them"
@@ -20641,6 +20774,9 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr ""
 
@@ -20933,6 +21069,12 @@ msgstr "เริ่มตั้งแต่ต้น"
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start instant recording and set duration"
+msgstr ""
+
+msgid "Start instant recording and set end time"
+msgstr ""
+
 msgid "Start instant recording?"
 msgstr ""
 
@@ -21107,6 +21249,10 @@ msgstr ""
 #, fuzzy
 msgid "Stop recording now"
 msgstr "กำลังถูกบันทึก"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr ""
@@ -21362,6 +21508,9 @@ msgstr "วันอาทิตย์"
 
 msgid "Sunday"
 msgstr "วันอาทิตย์"
+
+msgid "Support"
+msgstr ""
 
 #, fuzzy
 msgid "Suriname"
@@ -22005,6 +22154,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -22055,6 +22208,23 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr ""
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr ""
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -22063,6 +22233,12 @@ msgstr ""
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
+msgstr ""
+
+msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
 msgstr ""
 
 msgid ""
@@ -22075,12 +22251,21 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "ผลลัพธ์ถูกเขียนลง %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr ""
 
 msgid ""
 "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
+msgstr ""
+
+msgid "The selected device is not a supported removable block device."
+msgstr ""
+
+msgid "The selected device is too small. At least 3 GB is required."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -22102,6 +22287,11 @@ msgstr ""
 msgid ""
 "The time shift buffer exceeds the limit specified in the settings.\n"
 "What do you want to do?"
+msgstr ""
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
 msgstr ""
 
 #, python-format
@@ -22205,6 +22395,9 @@ msgid "This allows you to set the maximum number of digits in a service number, 
 msgstr ""
 
 msgid "This bouquet is protected by a parental control PIN!"
+msgstr ""
+
+msgid "This channel is currently off air."
 msgstr ""
 
 #, python-format
@@ -22439,6 +22632,9 @@ msgid "This option sets the suppression of false digital contours, that are the 
 msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
+msgstr ""
+
+msgid "This recording has already ended."
 msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
@@ -23285,6 +23481,12 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
+msgid "Unable to create the additional STARTUP files."
+msgstr ""
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr ""
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr ""
@@ -23293,14 +23495,33 @@ msgstr ""
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr ""
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
+msgstr ""
+
+msgid "Unable to load package information."
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr ""
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr ""
+
+msgid "Unable to save network configuration."
+msgstr ""
+
+msgid "Unable to select the audio channel."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23675,6 +23896,9 @@ msgstr ""
 msgid "Use as HDD replacement"
 msgstr ""
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23854,6 +24078,9 @@ msgstr ""
 
 msgid "User ID"
 msgstr "ผู้ใช้กำหนด"
+
+msgid "User Manual"
+msgstr ""
 
 msgid "User comments"
 msgstr ""
@@ -24717,7 +24944,7 @@ msgstr ""
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr ""
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -25937,6 +26164,10 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "การบันทึกถูกจำกัด เนื่องจากซ้ำซ้อนกับ %s"
 
 #~ msgid "Install a new image with a USB stick"
 #~ msgstr "ติดตั้งอิมเมจจาก USB เมมโมรี่"

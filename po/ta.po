@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -884,6 +884,10 @@ msgstr[0] "%d ஆண்டு"
 msgstr[1] "%d ஆண்டுகள்"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr ""
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d கோர்"
@@ -926,6 +930,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr ""
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1259,6 +1267,7 @@ msgstr ""
 msgid "%s%d min"
 msgstr "%s%d min"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s %s (இயல்புநிலை: %s)"
@@ -1270,6 +1279,10 @@ msgstr ""
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/ %s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr ""
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2062,9 +2075,6 @@ msgstr "புக்மார்க்குகளுக்கு சிறப�
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "மரபு இடது/வலது செயல்களைச் சேர்க்கவும்"
 
-msgid "Add more slots"
-msgstr ""
-
 msgid "Add new CCcam line"
 msgstr "புதிய CCCAM வரியைச் சேர்க்கவும்"
 
@@ -2073,6 +2083,9 @@ msgstr "புதிய NewCamd வரியைச் சேர்க்கவ�
 
 msgid "Add new tag"
 msgstr "புதிய குறிச்சொல்லைச் சேர்க்கவும்"
+
+msgid "Add or change additional slots"
+msgstr ""
 
 msgid "Add provider"
 msgstr "வழங்குநரைச் சேர்க்கவும்"
@@ -2154,6 +2167,9 @@ msgstr "கூடுதல் மின்னோடி விருப்பங�
 
 #, python-format
 msgid "Additional rotor cable from %s"
+msgstr ""
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2282,6 +2298,10 @@ msgstr "அனைத்து சேவைகளும்"
 msgid "All ages"
 msgstr "எல்லா வயதினரும்"
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr ""
+
 msgid "All events down"
 msgstr "அனைத்து நிகழ்வுகளும் கீழே"
 
@@ -2290,6 +2310,9 @@ msgstr "அனைத்து நிகழ்வுகளும்"
 
 msgid "All files"
 msgstr "அனைத்து கோப்புகள்"
+
+msgid "All packages"
+msgstr ""
 
 msgid "All regions"
 msgstr ""
@@ -2477,6 +2500,12 @@ msgstr ""
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "தற்போதைய தொலைக்காட்சி நிலையைப் பிடிக்க முயற்சி மேற்கொள்ளப்படுகிறது. தவறான அல்லது காணாமல் போன நிலை செய்திகள் காரணமாக இது சாத்தியமில்லை என்றால், ரிசீவர் எதிர்பாராத விதமாக பதிலளிக்கக்கூடும். மறுபுறம், வெவ்வேறு இயக்க நிலைமைகளுக்கு சிறப்பாக பதிலளிக்க முயற்சிக்கிறது."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr ""
+
+msgid "An instant recording is already running on this service."
+msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "தெரியாத பிழை ஏற்பட்டது!"
@@ -4044,8 +4073,14 @@ msgstr "பதிவை மாற்றவும் (இறுதி நேர�
 msgid "Change repeat and delay settings?"
 msgstr "மீண்டும் மீண்டும் மாற்றவும், அமைப்புகளை தாமதப்படுத்தவும்?"
 
+msgid "Change search"
+msgstr ""
+
 msgid "Change skin"
 msgstr "சருமத்தை மாற்றவும்"
+
+msgid "Change slots"
+msgstr ""
 
 msgid "Change step size"
 msgstr "படி அளவை மாற்றவும்"
@@ -4437,6 +4472,9 @@ msgstr "தெளிவான நிலையான"
 msgid "Clear play list"
 msgstr "தெளிவான விளையாட்டு பட்டியல்"
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear the logs for this timer"
 msgstr "இந்த டைமருக்கான பதிவுகளை அழிக்கவும்"
 
@@ -4651,6 +4689,9 @@ msgstr "பொதுவான இடைமுக அமைப்புகள்"
 
 msgid "Common Setup Actions"
 msgstr "பொதுவான அமைவு செயல்கள்"
+
+msgid "Common settings"
+msgstr ""
 
 msgid "Comoros"
 msgstr "கோமரோச்"
@@ -5360,10 +5401,6 @@ msgid "Could not open the file %s!"
 msgstr "%s கோப்பைத் திறக்க முடியவில்லை!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "முரண்பட்ட நேரங்குறிகருவி காரணமாக பதிவு செய்ய முடியவில்லை:%s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "தவறான பணி காரணமாக பதிவு செய்ய முடியவில்லை:%s"
 
@@ -5732,6 +5769,9 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr ""
 
@@ -5747,6 +5787,9 @@ msgstr ""
 
 #, python-format
 msgid "DAB+ service information for '%s'"
+msgstr ""
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
 msgstr ""
 
 msgid "DAC"
@@ -5769,9 +5812,6 @@ msgstr ""
 
 msgid "DNS data source"
 msgstr "டிஎன்எச் தரவு மூல"
-
-msgid "DNS override"
-msgstr ""
 
 msgid "DNS protocol mode"
 msgstr "டிஎன்எச் பயன்முறை"
@@ -6715,6 +6755,14 @@ msgstr "மல்டிபூட் விருப்பத்தை முட�
 
 msgid "Disable timer"
 msgstr "டைமரை முடக்கு"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr ""
 
 msgid "Disabled"
 msgstr "முடக்கப்பட்டது"
@@ -9743,6 +9791,9 @@ msgstr "வன்"
 msgid "Harddisk Setup"
 msgstr "வன் அமைப்பு"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr "வன்பொருள் மல்டிபூட் சாதனம்"
 
@@ -9787,6 +9838,9 @@ msgstr ""
 
 msgid "Help Screen Information"
 msgstr "திரை தகவலுக்கு உதவுங்கள்"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr "அனிமேசன் வேகத்திற்கு உதவுங்கள்"
@@ -11335,6 +11389,10 @@ msgstr "பிழைத்திருத்த பதிவு அளவைக�
 msgid "Limit east"
 msgstr "கிழக்கைக் கட்டுப்படுத்துங்கள்"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr ""
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "கோப்பு பெயர்களைப் பதிவு செய்வதில் பயன்படுத்தக்கூடிய எழுத்துக்களை (7 பிட்) ASCII க்கு மட்டுப்படுத்தவும். இது இயக்க முறைமைகள் அல்லது வரையறுக்கப்பட்ட எழுத்துத் தொகுப்புகளுடன் கோப்பு முறைமைகளுடன் பொருந்தக்கூடிய தன்மையை உறுதி செய்கிறது."
 
@@ -11782,6 +11840,9 @@ msgstr "சிறப்பம்சமாக %s நிர்வகிக்க�
 msgid "Manage the highlighted %s / list of %s"
 msgstr "சிறப்பம்சமாக %s / %s பட்டியலை நிர்வகிக்கவும்"
 
+msgid "Manage timer conflicts"
+msgstr ""
+
 msgid "Manage your online update files"
 msgstr "உங்கள் நிகழ்நிலை புதுப்பிப்பு கோப்புகளை நிர்வகிக்கவும்"
 
@@ -11805,6 +11866,15 @@ msgstr "குறைவடையும் ட்யூனரிலிருந�
 
 msgid "Manufacturer"
 msgstr "உற்பத்தியாளர்"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr ""
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr ""
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr ""
 
 msgid "Manx"
 msgstr "மேங்க்ச்"
@@ -13068,6 +13138,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "இணைய இணைப்பு இல்லை"
 
+msgid "No Internet connection available!"
+msgstr ""
+
 msgid "No Name"
 msgstr "பெயர் இல்லை"
 
@@ -13085,6 +13158,9 @@ msgstr "TS ரெக்கார்டர் எதுவும் கிடை�
 
 msgid "No active channel found."
 msgstr "செயலில் சேனல் எதுவும் கிடைக்கவில்லை."
+
+msgid "No additional slots have been planned."
+msgstr ""
 
 msgid "No age block"
 msgstr "வயதுத் தொகுதி இல்லை"
@@ -13138,6 +13214,9 @@ msgstr "இலவச குறியீடு எதுவும் கிடை
 msgid "No free tuner!"
 msgstr "இலவச ட்யூனர் இல்லை!"
 
+msgid "No further DVB-I alternative is available."
+msgstr ""
+
 msgid "No gateway"
 msgstr ""
 
@@ -13164,6 +13243,9 @@ msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "உருப்படிகள் சுவிட்ச் இல்லை (அதிகரிப்பு அல்லது குறைக்கப்பட்ட)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "படங்கள் எதுவும் கிடைக்கவில்லை"
@@ -13266,6 +13348,9 @@ msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "செல்லுபடியாகும் சாதனம் கண்டறியப்படவில்லை - சரி என்பதை அழுத்தவும்"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr ""
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -13635,6 +13720,9 @@ msgstr "ஒருமுறை"
 msgid "One line"
 msgstr "ஒரு வரி"
 
+msgid "Online manual"
+msgstr ""
+
 msgid "Online software update"
 msgstr "நிகழ்நிலை மென்பொருள் புதுப்பிப்பு"
 
@@ -13866,6 +13954,9 @@ msgstr "பல பணி ஈபிசி பார்வையைத் தி�
 msgid "Open the single service EPG view"
 msgstr "ஒற்றை பணி EPG பார்வையைத் திறக்கவும்"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
+
 msgid "Open tuner setup"
 msgstr ""
 
@@ -13986,6 +14077,9 @@ msgstr "வெளியீட்டு உரை:"
 
 msgid "Overall progress:"
 msgstr "ஒட்டுமொத்த முன்னேற்றம்:"
+
+msgid "Override DNS"
+msgstr ""
 
 msgid "Overscan Test"
 msgstr "அதிகப்படியான சோதனை"
@@ -14310,6 +14404,12 @@ msgstr "நீக்கப்பட்ட அனைத்து பொருட�
 
 msgid "Permanently remove the MultiBoot files?"
 msgstr "மல்டிபூட் கோப்புகளை நிரந்தரமாக அகற்றவா?"
+
+msgid "Permanently wipe the highlighted slot"
+msgstr ""
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr ""
 
 msgid "Permissions"
 msgstr "அனுமதிகள்"
@@ -14702,6 +14802,9 @@ msgstr "இடங்கள்/மொழிகள் சுத்திகரி�
 msgid "Please wait while scanning is in progress..."
 msgstr "ச்கேனிங் நடந்து கொண்டிருக்கும்போது தயவுசெய்து காத்திருங்கள் ..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr ""
+
 msgid "Please wait while the data is extracted..."
 msgstr "தரவு பிரித்தெடுக்கப்படும்போது காத்திருங்கள் ..."
 
@@ -14729,6 +14832,9 @@ msgstr "சொருகி மாற்றப்படும்போது க�
 
 msgid "Please wait while the plugin is updated."
 msgstr "சொருகி புதுப்பிக்கப்படும் போது காத்திருங்கள்."
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr ""
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "உங்கள் நிறுவப்பட்ட செருகுநிரல்களை நாங்கள் சரிபார்க்கும்போது காத்திருங்கள் ..."
@@ -14994,6 +15100,12 @@ msgstr "பாலர்"
 msgid "Press '0' to toggle PiP mode"
 msgstr "பிப் பயன்முறையை மாற்ற '0' ஐ அழுத்தவும்"
 
+msgid "Press BLUE to add more slots."
+msgstr ""
+
+msgid "Press BLUE to change the additional slots."
+msgstr ""
+
 msgid "Press EXIT to close."
 msgstr "மூடுவதற்கு வெளியேறவும்."
 
@@ -15080,11 +15192,11 @@ msgstr "இந்த மொழியைப் பயன்படுத்த ச
 msgid "Press OK to use this locale.  [%s]"
 msgstr "இந்த இடத்தைப் பயன்படுத்த சரி என்பதை அழுத்தவும். [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "ஒரு ச்லாட்டைத் தேர்ந்தெடுக்க மேல்/கீழ் பொத்தான்களை அழுத்தி, அந்த படத்திற்கு மறுதொடக்கம் செய்ய சரி அல்லது பச்சை நிறத்தை அழுத்தவும். கிடைத்தால், மஞ்சள் படத்தை நீக்குகிறது அல்லது துடைக்கும். நீக்கப்பட்ட படத்தை நீல பொத்தானைக் கொண்டு மீட்டெடுக்க முடியும். துடைக்கப்பட்ட படம் முற்றிலுமாக அகற்றப்பட்டு மீட்டமைக்க முடியாது!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr ""
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
-msgstr "ச்லாட்டைத் தேர்ந்தெடுக்க, மேல்/கீழ் பட்டன்களை அழுத்தவும், பின்னர் அந்தப் படத்தை மறுதொடக்கம் செய்ய சரி அல்லது பச்சை ஐ அழுத்தவும். கிடைத்தால், தேர்ந்தெடுக்கப்பட்ட படத்தை மஞ்சள் மல்டிபூட்டை முடக்கும், நீக்கும் அல்லது துடைக்கும். மேலும் ச்லாட்டுகளைச் சேர்க்க நீலத்தை அழுத்தவும்."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
+msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "பின்னர் அழுத்தப்பட்ட ஒரு பொத்தானை நீண்ட நேரம் அழுத்துவதற்கு இந்த பொத்தானை அழுத்தவும் (இது எமுலேசன் பொத்தானுக்கு ஒதுக்கப்பட்ட வேறு எந்த செயலையும் மீறுகிறது)."
@@ -15326,6 +15438,9 @@ msgstr "தற்போதைய மற்றும் நிரந்தர இ
 
 msgid "Purging all unused locales/languages..."
 msgstr "பயன்படுத்தப்படாத அனைத்து இடங்களையும்/மொழிகளையும் தூய்மைப்படுத்துதல் ..."
+
+msgid "Purging unused locales/languages..."
+msgstr ""
 
 msgid "Purple"
 msgstr "ஊதா"
@@ -15724,10 +15839,6 @@ msgstr "பதிவு தொடங்கியது! இப்போது �
 msgid "Recording stopped"
 msgstr "பதிவு நிறுத்தப்பட்டது"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "முரண்பட்ட நேரங்குறிகருவி காரணமாக பதிவு நேரம் வரையறுக்கப்பட்டுள்ளது:%s"
-
 msgid "Recording tuning failed"
 msgstr "பதிவுசெய்தல் டியூனிங் தோல்வியடைந்தது"
 
@@ -16033,6 +16144,9 @@ msgstr "தற்போது தேர்ந்தெடுக்கப்ப�
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "புக்மார்க்குகளிலிருந்து சிறப்பிக்கப்பட்ட கோப்பகத்தை அகற்று"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr "ஆட்டோகாமில் இருந்து சேவையை அகற்று"
@@ -16888,6 +17002,9 @@ msgstr "நிலப்பரப்பு எல்.சி.என் -க்க�
 msgid "Scan region"
 msgstr ""
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
@@ -17015,6 +17132,9 @@ msgstr "சாட்சைத் தேடுங்கள்"
 msgid "Search Sats, check signal and lock"
 msgstr "SATS ஐத் தேடுங்கள், சமிக்ஞை மற்றும் பூட்டை சரிபார்க்கவும்"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "கிழக்கு நோக்கி தேடுங்கள்"
 
@@ -17023,6 +17143,12 @@ msgstr "பிணைய பங்குகளைத் தேடுங்கள�
 
 msgid "Search for similar events"
 msgstr "ஒத்த நிகழ்வுகளைத் தேடுங்கள்"
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search weather location ID"
 msgstr "வானிலை இருப்பிட ஐடியைத் தேடுங்கள்"
@@ -18308,6 +18434,10 @@ msgid "Select/Zap to the selected service"
 msgstr "தேர்ந்தெடுக்கப்பட்ட சேவைக்கு/zap ஐத் தேர்ந்தெடுக்கவும்"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr ""
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19520,6 +19650,9 @@ msgstr "இறக்குமதி சேனல்கள் வெற்றி�
 msgid "Show notification when import channels was successful"
 msgstr "இறக்குமதி சேனல்கள் வெற்றிகரமாக இருக்கும்போது அறிவிப்பைக் காட்டு"
 
+msgid "Show or hide empty slots"
+msgstr ""
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "நீட்டிக்கப்பட்ட விளக்கத்தைக் காட்டவும் அல்லது மறைக்கவும், (தோல் சார்ந்தது)."
 
@@ -19741,6 +19874,9 @@ msgstr "சோஃப்ரேம்"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "செருகுநிரல்கள் உலாவியைக் காட்டுகிறது. நிறுவப்பட்ட சொருகி இங்கே அமைக்கலாம்"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "கிடைக்கக்கூடிய செருகுநிரல்களைக் காட்டுகிறது. இங்கே நீங்கள் அவற்றை பதிவிறக்கம் செய்து நிறுவலாம்"
@@ -20200,6 +20336,9 @@ msgstr "மென்பொருள் மேலாளர் அமைப்ப�
 msgid "Software MultiBoot"
 msgstr "மென்பொருள் மல்டிபூட்"
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "மென்பொருள் புதுப்பிப்பு"
 
@@ -20491,6 +20630,12 @@ msgstr "ஆரம்பத்தில் இருந்தே தொடங்�
 msgid "Start instant recording"
 msgstr "உடனடி பதிவைத் தொடங்கவும்"
 
+msgid "Start instant recording and set duration"
+msgstr ""
+
+msgid "Start instant recording and set end time"
+msgstr ""
+
 msgid "Start instant recording?"
 msgstr "உடனடி பதிவைத் தொடங்கவா?"
 
@@ -20657,6 +20802,10 @@ msgstr "பதிவு செய்வதை நிறுத்தி நீக
 
 msgid "Stop recording now"
 msgstr "இப்போது பதிவு செய்வதை நிறுத்துங்கள்"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr ""
 
 msgid "Stop service on return to movie list"
 msgstr "திரைப்பட பட்டியலுக்குத் திரும்பும்போது சேவையை நிறுத்துங்கள்"
@@ -20904,6 +21053,9 @@ msgstr "சுந்தானியர்கள்"
 
 msgid "Sunday"
 msgstr "ஞாயிற்றுக்கிழமை"
+
+msgid "Support"
+msgstr ""
 
 msgid "Suriname"
 msgstr "சூரினாம்"
@@ -21567,6 +21719,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "காத்திருப்பிலிருந்து எழுந்திருக்க கட்டளை பல முறை அனுப்பப்படும்."
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21624,6 +21780,23 @@ msgstr "படத்தின் உயரம். இந்த மதிப்�
 msgid "The loopthrough setting is wrong."
 msgstr "லூப் த்ரோ அமைப்பு தவறு."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr ""
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr ""
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr ""
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "பிகான் அடைவு ஏற்கனவே உள்ளது மற்றும் அகற்றப்பட வேண்டும். நீங்கள் தொடர விரும்புகிறீர்களா?"
 
@@ -21633,6 +21806,12 @@ msgstr ""
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "செயல்முறை முடிக்க சுமார் %d நிமிடங்கள் ஆகும்."
+
+msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr ""
 
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
@@ -21644,6 +21823,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "முடிவுகள் %s க்கு எழுதப்பட்டுள்ளன."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "சேமித்த முள் அழிக்கப்பட்டது."
 
@@ -21653,6 +21835,12 @@ msgid ""
 msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட சேனல் கைமுறையாக திட்டமிடப்பட்ட டைமர்களுக்கு VPS ஐ ஆதரிக்காது!\n"
 " நீங்கள் உண்மையில் வி.பி.எச்சை இயக்க விரும்புகிறீர்களா?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr ""
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
 
 msgid "The service list is reloaded."
 msgstr "பணி பட்டியல் மீண்டும் ஏற்றப்பட்டுள்ளது."
@@ -21679,6 +21867,11 @@ msgid ""
 msgstr ""
 "நேர மாற்றத்திற்கான இடையக நேரம் அமைப்புகளில் குறிப்பிட்ட வரம்பை மீறுகிறது.\n"
 " நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21780,6 +21973,9 @@ msgstr "உங்களிடம் 99999 க்கும் மேற்பட�
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "இந்த பூச்செண்டு பெற்றோரின் கட்டுப்பாட்டு முள் மூலம் பாதுகாக்கப்படுகிறது!"
+
+msgid "This channel is currently off air."
+msgstr ""
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22014,6 +22210,9 @@ msgstr "இந்த விருப்பம் தவறான டிசிட
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "இந்த விருப்பம் படக் கூர்மையை அமைக்கிறது, இது படம் உயர்த்தப்படும்போது பயன்படுத்தப்படுகிறது."
+
+msgid "This recording has already ended."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "இந்த பணி பெற்றோரின் கட்டுப்பாட்டு முள் மூலம் பாதுகாக்கப்படுகிறது!"
@@ -22836,6 +23035,12 @@ msgstr "உக்ரெயின்"
 msgid "Ukrainian"
 msgstr "உக்ரேனிய"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr ""
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr ""
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr ""
@@ -22844,14 +23049,33 @@ msgstr ""
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr ""
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
 msgstr "KEXEC மல்டிபூட்டை துவக்க முடியவில்லை!"
+
+msgid "Unable to load package information."
+msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr ""
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr ""
+
 msgid "Unable to register the DAB+ transponder"
+msgstr ""
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr ""
+
+msgid "Unable to save network configuration."
+msgstr ""
+
+msgid "Unable to select the audio channel."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23225,6 +23449,9 @@ msgstr "மாற்று சிறிய திரையைப் பயன்
 msgid "Use as HDD replacement"
 msgstr ""
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "தானியங்கி பயன்முறை கண்டறிதலைப் பயன்படுத்தவும்"
 
@@ -23407,6 +23634,9 @@ msgstr "பயனர் ஊட்ட முகவரி"
 
 msgid "User ID"
 msgstr "பயனர் ஐடி"
+
+msgid "User Manual"
+msgstr ""
 
 msgid "User comments"
 msgstr "பயனர் கருத்துகள்"
@@ -24293,7 +24523,7 @@ msgstr "உள்ளீட்டு கர்சர் இந்த புள்
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "ரிசீவர் காத்திருப்பு அல்லது ஆழ்ந்த காத்திருப்பு ஆகியவற்றிலிருந்து எழுந்திருக்கும்போது, அதை காத்திருப்பிலிருந்து வெளியே கொண்டு வர டிவிக்கு ஒரு கட்டளையை அனுப்பும்."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -25512,6 +25742,20 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "முரண்பட்ட நேரங்குறிகருவி காரணமாக பதிவு செய்ய முடியவில்லை:%s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "முரண்பட்ட நேரங்குறிகருவி காரணமாக பதிவு நேரம் வரையறுக்கப்பட்டுள்ளது:%s"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr "ஒரு ச்லாட்டைத் தேர்ந்தெடுக்க மேல்/கீழ் பொத்தான்களை அழுத்தி, அந்த படத்திற்கு மறுதொடக்கம் செய்ய சரி அல்லது பச்சை நிறத்தை அழுத்தவும். கிடைத்தால், மஞ்சள் படத்தை நீக்குகிறது அல்லது துடைக்கும். நீக்கப்பட்ட படத்தை நீல பொத்தானைக் கொண்டு மீட்டெடுக்க முடியும். துடைக்கப்பட்ட படம் முற்றிலுமாக அகற்றப்பட்டு மீட்டமைக்க முடியாது!"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+#~ msgstr "ச்லாட்டைத் தேர்ந்தெடுக்க, மேல்/கீழ் பட்டன்களை அழுத்தவும், பின்னர் அந்தப் படத்தை மறுதொடக்கம் செய்ய சரி அல்லது பச்சை ஐ அழுத்தவும். கிடைத்தால், தேர்ந்தெடுக்கப்பட்ட படத்தை மஞ்சள் மல்டிபூட்டை முடக்கும், நீக்கும் அல்லது துடைக்கும். மேலும் ச்லாட்டுகளைச் சேர்க்க நீலத்தை அழுத்தவும்."
+
 #~ msgid "Do you want the upgrade guide?"
 #~ msgstr "மேம்படுத்தல் வழிகாட்டி வேண்டுமா?"
 
@@ -25678,8 +25922,8 @@ msgstr "®"
 #~ msgid "DVDPlayer"
 #~ msgstr "டிவிடி பிளேயர்"
 
-msgid "Common Settings"
-msgstr "பொதுவான அமைப்புகள்"
+#~ msgid "Common Settings"
+#~ msgstr "பொதுவான அமைப்புகள்"
 
 #~ msgid ""
 #~ "Do you really want to restart OSCam?\n"

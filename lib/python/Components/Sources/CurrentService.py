@@ -41,6 +41,12 @@ class CurrentService(PerServiceBase, Source):
 	service = property(getCurrentService)
 
 	@cached
+	def getIsDVBI(self):
+		return self.navcore.isCurrentServiceDVBI
+
+	isDVBI = property(getIsDVBI)
+
+	@cached
 	def getCurrentServiceRef(self):
 		if NavigationInstance.instance is not None:
 			return NavigationInstance.instance.getCurrentServiceReferenceOriginal()

@@ -246,7 +246,7 @@ class InfoBarTimeshift:
 				self.posDiff = 0
 				if self.pts_FileJump_timer.isActive():
 					self.pts_FileJump_timer.stop()
-					AddNotification(MessageBox, _("First playable time shift file!"), MessageBox.TYPE_INFO, timeout=3)
+					self.session.showInfo(_("First playable time shift file!"))
 				if not self.pts_FileJump_timer.isActive():
 					self.pts_FileJump_timer.start(5000, True)
 				return
@@ -295,7 +295,7 @@ class InfoBarTimeshift:
 				self.pts_file_changed = False
 			else:
 				if not config.timeshift.startDelay.value and config.timeshift.showLiveTVMsg.value:
-					AddNotification(MessageBox, _("Switching to live TV - time shift is still active!"), MessageBox.TYPE_INFO, timeout=3)
+					self.session.showInfo(_("Switching to live TV - time shift is still active!"), timeout=3)
 				self.posDiff = 0
 				self.pts_lastposition = 0
 				self.pts_currplaying -= 1
@@ -609,7 +609,7 @@ class InfoBarTimeshift:
 
 	def restartTimeshift(self):
 		self.activatePermanentTimeshift()
-		AddNotification(MessageBox, _("[Timeshift] Restarting time shift!"), MessageBox.TYPE_INFO, timeout=5)
+		self.session.showInfo(_("[Timeshift] Restarting time shift!"))
 
 	def saveTimeshiftEventPopup(self):
 		self.saveTimeshiftEventPopupActive = True
@@ -673,7 +673,7 @@ class InfoBarTimeshift:
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
 		if savefilename is None:
-			AddNotification(MessageBox, _("No time shift buffer found to save as recording!"), MessageBox.TYPE_ERROR, timeout=30)
+			self.session.showError(_("No time shift buffer found to save as recording!"))
 		else:
 			timeshift_saved = True
 			timeshift_saveerror1 = ""
@@ -784,7 +784,7 @@ class InfoBarTimeshift:
 							eventname = ""
 						JobManager.AddJob(CopyTimeshiftJob(self, f"mv \"{join(config.timeshift.path.value, {copy_file}.copy)}\" \"{fullname}.ts\"", copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
-							AddNotification(MessageBox, _("Saving time shift buffer, this might take a while."), MessageBox.TYPE_INFO, timeout=30)
+							self.session.showInfo(_("Saving time shift buffer, this might take a while."), timeout=10)
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
@@ -1195,7 +1195,7 @@ class InfoBarTimeshift:
 		if Screens.Standby.inTryQuitMainloop:
 			self.pts_QuitMainloop_timer.start(30000, True)
 		else:
-			AddNotification(MessageBox, _("Time shift saved to your hard disk drive!"), MessageBox.TYPE_INFO, timeout=30)
+			self.session.showInfo(_("Time shift saved to your hard disk drive!"))
 
 	def ptsMergePostCleanUp(self):
 		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
@@ -1323,7 +1323,7 @@ class InfoBarTimeshift:
 			elif self.pts_lastplaying <= self.pts_currplaying:
 				self.ptsAskUser("nextfile")
 			else:
-				AddNotification(MessageBox, _("Can't play the previous time shift file! You can try again."), MessageBox.TYPE_INFO, timeout=3)
+				self.session.showWarning(_("Can't play the previous time shift file! You can try again."))
 				self.doSeek(0)
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.pts_currplaying = self.pts_lastplaying
@@ -1408,7 +1408,7 @@ class InfoBarTimeshift:
 					if self.seekstate != self.SEEK_STATE_PLAY:
 						self.setSeekState(self.SEEK_STATE_PLAY)
 					if self.isSeekable():
-						AddNotification(MessageBox, _("Recording started, stopping time shift now."), MessageBox.TYPE_INFO, timeout=30)
+						self.session.showInfo(_("Recording started, stopping time shift now."), timeout=10)
 					self.switchToLive = False
 					self.stopTimeshiftcheckTimeshiftRunningCallback(True)
 				if timer.state == TimerEntry.StateEnded:

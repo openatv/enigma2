@@ -1882,10 +1882,10 @@ class DNSSettings(Setup):
 					if value:
 						servers.append(value)
 		networkManager.setNameservers(servers)
-		if not networkManager.save():
-			Toast.instance.showToast(text=_("Unable to save network configuration!"), toasttype=Toast.TYPE_ERROR, timeout=5)
-			return
-		Setup.keySave(self)
+		if networkManager.save():
+			Setup.keySave(self)
+		else:
+			self.session.showError(_("Unable to save network configuration."))
 
 	def writeDnsCryptToml(self):  # DNSCrypt TOML helpers.
 		def replaceKeyLine(line, key, value, foundSet):

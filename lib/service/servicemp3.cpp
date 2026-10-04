@@ -28,6 +28,7 @@ Licensed under GPLv2.
 #include <lib/service/service.h>
 #include <lib/service/servicemp3.h>
 #include <lib/service/servicemp3record.h>
+#include <lib/service/servicedvb.h>
 
 #include <lib/base/cfile.h>
 
@@ -59,6 +60,9 @@ Licensed under GPLv2.
  * Progressive download requires buffering enabled, so it's mandatory to use flag 3 not 2
  */
 typedef enum { BUFFERING_ENABLED = 0x00000001, PROGRESSIVE_DOWNLOAD = 0x00000002 } eServiceMP3Flags;
+
+// Worker-verified DVB-I media hints in data[7]; low buffering bits stay unchanged.
+enum { DVB_I_DASH = 0x100, DVB_I_HLS = 0x200, DVB_I_MEDIA_MASK = 0x300 };
 
 /*
  * GstPlayFlags flags from playbin2. It is the policy of GStreamer to
@@ -504,7 +508,19 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 #undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 /**/
 
+eServiceFactoryMP3 *eServiceFactoryMP3::instance = nullptr;
+
+eServiceFactoryMP3 *eServiceFactoryMP3::getDVBIFactory(const eServiceReference &ref) {
+	const int hint = ref.getData(7) & DVB_I_MEDIA_MASK;
+	const std::string &url = ref.alternativeurl.empty() ? ref.path : ref.alternativeurl;
+	// Only worker-marked DVB-I adaptive HTTP streams bypass a third-party 4097 factory.
+	// eAutoInitPtr keeps the native factory alive even after its public registration is replaced.
+	return ref.type == id && (hint == DVB_I_DASH || hint == DVB_I_HLS)
+		&& (url.compare(0, 7, "http://") == 0 || url.compare(0, 8, "https://") == 0) ? instance : nullptr;
+}
+
 eServiceFactoryMP3::eServiceFactoryMP3() {
+	instance = this;
 	ePtr<eServiceCenter> sc;
 
 	eServiceCenter::getPrivInstance(sc);
@@ -546,6 +562,8 @@ eServiceFactoryMP3::eServiceFactoryMP3() {
 }
 
 eServiceFactoryMP3::~eServiceFactoryMP3() {
+	if (instance == this)
+		instance = nullptr;
 	ePtr<eServiceCenter> sc;
 
 	eServiceCenter::getPrivInstance(sc);
@@ -1044,9 +1062,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_pgs_subtitle_parser = new ePGSSubtitleParser();
 	m_pgs_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
 										  m_new_pgs_subtitle_page_connection);
-#ifdef PASSTHROUGH_FIX
-	m_passthrough_fix_timer = eTimer::create(eApp);
-#endif
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
@@ -1061,11 +1076,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_clear_buffers = true;
 	m_initial_start = false;
 	m_send_ev_start = true;
-	m_pending_seek_pos = 0;
+	m_pending_seek_pos = -1;
+	m_prerolled = false;
+	m_resume_pending = false;
+	m_subtitle_requested = false;
 	m_first_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
 	m_is_dash_pipeline = false;
+	m_is_adaptive_stream = false;
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
@@ -1105,9 +1124,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	CONNECT(m_dvb_subtitle_sync_timer->timeout, eServiceMP3::pushDVBSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
-#ifdef PASSTHROUGH_FIX
-	CONNECT(m_passthrough_fix_timer->timeout, eServiceMP3::forcePassthrough);
-#endif
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
@@ -1139,15 +1155,58 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if (!m_ref.alternativeurl.empty())
 		filename = m_ref.alternativeurl.c_str();
 
+	// optional start position/tracks, strip them before "&suburi=" below
+	{
+		static const char* const markers[] = {"&e2startoffset=", "&e2audiotrack=", "&e2subtitletrack="};
+		std::string url = filename;
+		bool stripped = false;
+		for (int p = 0; p < 3; p++) {
+			size_t ppos = url.find(markers[p]);
+			if (ppos == std::string::npos)
+				continue;
+			size_t value_start = ppos + strlen(markers[p]);
+			size_t value_end = url.find('&', value_start);
+			std::string value = url.substr(value_start, value_end == std::string::npos ? std::string::npos : value_end - value_start);
+			url.erase(ppos, (value_end == std::string::npos ? url.size() : value_end) - ppos);
+			stripped = true;
+			switch (p) {
+				case 0:
+					m_pending_seek_pos = atoll(value.c_str());
+					if (m_pending_seek_pos < 0)
+						m_pending_seek_pos = -1;
+					else
+						m_resume_pending = true;
+					eDebug("[eServiceMP3] e2startoffset=%lld", (long long)m_pending_seek_pos);
+					break;
+				case 1:
+					m_currentAudioStream = atoi(value.c_str());
+					eDebug("[eServiceMP3] e2audiotrack=%d", m_currentAudioStream);
+					break;
+				case 2: {
+					// picked up via getCachedSubtitle(), negative = no subtitle
+					int index = atoi(value.c_str());
+					m_cachedSubtitleStream = index >= 0 ? index : -1;
+					m_subtitle_requested = true;
+					eDebug("[eServiceMP3] e2subtitletrack=%d", m_cachedSubtitleStream);
+				} break;
+			}
+		}
+		if (stripped) {
+			filename_str = url;
+			filename = filename_str.c_str();
+		}
+	}
+
 	gchar* suburi = NULL;
 
 	m_external_subtitle_path = "";
 	m_external_subtitle_language = "";
 	m_external_subtitle_extension = "";
 
-	pos = m_ref.path.find("&suburi=");
+	std::string suburi_source = filename;
+	pos = suburi_source.find("&suburi=");
 	if (pos != std::string::npos) {
-		filename_str = filename;
+		filename_str = suburi_source;
 
 		std::string suburi_str = filename_str.substr(pos + 8);
 		filename = suburi_str.c_str();
@@ -1251,6 +1310,14 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	if (strstr(filename, "://"))
 		m_sourceinfo.is_streaming = TRUE;
+	const int mediaHint = m_ref.getData(7) & DVB_I_MEDIA_MASK;
+	m_is_adaptive_stream = (!strncmp(filename, "http://", 7) || !strncmp(filename, "https://", 8))
+		&& (mediaHint == DVB_I_DASH || mediaHint == DVB_I_HLS);
+	if (m_is_adaptive_stream) {
+		m_sourceinfo.is_hls = mediaHint == DVB_I_HLS;
+		m_sourceinfo.is_audio = m_ref.getData(0) == 2;
+		m_sourceinfo.is_video = !m_sourceinfo.is_audio;
+	}
 
 	gchar* uri;
 
@@ -1290,7 +1357,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		uri = g_filename_to_uri(filename, NULL, NULL);
 
 	std::string uri_string = uri ? uri : "";
-	m_is_dash_pipeline = m_sourceinfo.is_streaming && isDashUri(uri_string);
+	// Keep the legacy HbbTV workaround. DVB-I uses normal caps discovery and HW sinks.
+	m_is_dash_pipeline = m_sourceinfo.is_streaming && isDashUri(uri_string) && !m_is_adaptive_stream;
 
 	if (m_is_dash_pipeline) {
 		/* playbin auto-plug stalls dreamvideosink on .mpd; build explicit pipeline. */
@@ -1501,15 +1569,6 @@ eServiceMP3::~eServiceMP3() {
 	m_new_pgs_subtitle_page_connection = nullptr;
 }
 
-#ifdef PASSTHROUGH_FIX
-void eServiceMP3::forcePassthrough() {
-	eTrace("[eServiceMP3] Setting 'passthrough' to force correct operation");
-	CFile::writeStr("/proc/stb/audio/ac3", "passthrough");
-	m_clear_buffers = true;
-	clearBuffers();
-}
-#endif
-
 /**
  * @brief Updates the EPG cache for the current and next events.
  *
@@ -1620,9 +1679,16 @@ RESULT eServiceMP3::connectEvent(const sigc::slot<void(iPlayableService*, int)>&
  */
 RESULT eServiceMP3::start() {
 	ASSERT(m_state == stIdle);
+	if (eDVBIFallback::hasSchedule(m_ref))
+	{
+		m_dvbiAvailabilityTimer = eTimer::create(eApp);
+		CONNECT(m_dvbiAvailabilityTimer->timeout, eServiceMP3::checkDVBIAvailability);
+		m_dvbiAvailabilityTimer->start(1000);
+	}
 
 	m_subtitles_paused = false;
 	m_base_mpegts = -1;  // Reset MPEGTS base for WebVTT at new start
+	m_prerolled = false;
 	if (m_gst_playbin) {
 		eDebug("[eServiceMP3] *** starting pipeline ****");
 		GstStateChangeReturn ret;
@@ -1675,6 +1741,8 @@ RESULT eServiceMP3::start() {
  * @return RESULT Returns 0 on success, or an error code if the service fails to stop.
  */
 RESULT eServiceMP3::stop() {
+	if (m_dvbiAvailabilityTimer)
+		m_dvbiAvailabilityTimer->stop();
 	if (!m_gst_playbin || m_state == stStopped)
 		return -1;
 
@@ -1700,6 +1768,17 @@ RESULT eServiceMP3::stop() {
 		   gst_element_state_get_name(pending), gst_element_state_change_return_get_name(ret));
 
 	return 0;
+}
+
+void eServiceMP3::checkDVBIAvailability()
+{
+	int available = eDVBIFallback::availability(m_ref);
+	if (available <= 0)
+	{
+		m_dvbiAvailabilityTimer->stop();
+		if (available < 0)
+			m_event((iPlayableService*)this, evTuneFailed);
+	}
 }
 
 /**
@@ -1880,16 +1959,12 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 	m_last_seek_pos = to;
 	m_base_mpegts = -1;  // Reset when seeking to avoid stale base
 
-	if(m_pending_seek_pos == 0 && to > 0)
-	{
-		GstState state;
-		gst_element_get_state(m_gst_playbin, &state, NULL, 0);
-
-		if (state < GST_STATE_PAUSED) {
-			eDebug("[eServiceMP3] seekTo delayed (state=%d)", state);
-			m_pending_seek_pos = to;
-			return 0;
-		}
+	// a flushing seek before preroll stalls playback, apply it on ASYNC_DONE
+	if (!m_prerolled) {
+		eDebug("[eServiceMP3] seekTo %lld deferred until preroll", (long long)to);
+		m_pending_seek_pos = to;
+		m_seeking_or_paused = false;
+		return 0;
 	}
 
 	/* 200ms gate against seek-spam: stacked FLUSH seeks deadlock the
@@ -1919,15 +1994,44 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 	if (m_paused || m_to_paused) {
 		m_last_seek_count = 0;
 		m_event((iPlayableService*)this, evUpdatedInfo);
+		if (eDVBIFallback::applications(m_ref))
+			m_event(this, evHBBTVInfo);
 	}
 	// eDebug("[eServiceMP3] seekToImpl DONE position %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
 	if (!m_paused) {
 		if (!m_to_paused) {
 			m_seeking_or_paused = false;
 			m_last_seek_count = 1;
+			// seek before the first getPlayPosition(), position would stay frozen
+			if (!m_play_position_timer->isActive())
+				m_play_position_timer->start(50, false);
 		}
 	}
 	return 0;
+}
+
+/**
+ * @brief Applies a seek held back until preroll and sends evResumed.
+ */
+void eServiceMP3::applyPendingSeek() {
+	m_prerolled = true;
+	if (m_pending_seek_pos >= 0) {
+		pts_t pos = m_pending_seek_pos;
+		m_pending_seek_pos = -1;
+		if (m_is_live) {
+			eDebug("[eServiceMP3] dropping deferred seek to %lld, source is live", (long long)pos);
+		} else if (pos == 0) {
+			// already at 0, and it runs MPEG-TS into EOS
+			eDebug("[eServiceMP3] dropping deferred seek to 0, already there");
+		} else {
+			eDebug("[eServiceMP3] performing deferred seek to %lld", (long long)pos);
+			seekTo(pos);
+		}
+	}
+	if (m_resume_pending) {
+		m_resume_pending = false;
+		m_event((iPlayableService*)this, evResumed);
+	}
 }
 
 /**
@@ -2378,6 +2482,15 @@ RESULT eServiceMP3::getEvent(ePtr<eServiceEvent>& evt, int nownext) {
  */
 int eServiceMP3::getInfo(int w) {
 	const gchar* tag = 0;
+	if (const auto *hbbtv = eDVBIFallback::applications(m_ref)) {
+		switch (w) {
+			case sHBBTVUrl: return resIsString;
+			case sTSID: return hbbtv->tsid;
+			case sONID: return hbbtv->onid;
+			case sSID: if (hbbtv->sid) return hbbtv->sid; break;
+			default: break;
+		}
+	}
 
 	switch (w) {
 		case sVideoHeight:
@@ -2503,6 +2616,13 @@ int eServiceMP3::getInfo(int w) {
  * @return std::string Returns the requested information as a string.
  */
 std::string eServiceMP3::getInfoString(int w) {
+	if (w == sHBBTVUrl) {
+		if (const auto *hbbtv = eDVBIFallback::applications(m_ref))
+			for (const auto &app : hbbtv->applications)
+				if (app.m_ControlCode == 1)
+					return app.m_HbbTVUrl;
+		return "";
+	}
 	if (m_sourceinfo.is_streaming) {
 		switch (w) {
 			case sProvider:
@@ -2658,6 +2778,23 @@ std::string eServiceMP3::getInfoString(int w) {
  * @param[in] w The tag for which to retrieve the information object.
  * @return ePtr<iServiceInfoContainer> Returns a pointer to the information container.
  */
+void eServiceMP3::getAITApplications(std::map<int, std::string>& aitlist) {
+	if (const auto *hbbtv = eDVBIFallback::applications(m_ref))
+		for (const auto &app : hbbtv->applications)
+			aitlist[app.m_AppId] = app.m_HbbTVUrl;
+}
+
+PyObject *eServiceMP3::getHbbTVApplications() {
+	PyObject *result = PyList_New(0);
+	if (const auto *hbbtv = eDVBIFallback::applications(m_ref))
+		for (const auto &app : hbbtv->applications) {
+			PyObject *entry = Py_BuildValue("isskii", app.m_ControlCode, app.m_ApplicationName.c_str(), app.m_HbbTVUrl.c_str(), static_cast<unsigned long>(static_cast<uint32_t>(app.m_OrgId)), app.m_AppId, app.m_ProfileCode);
+			PyList_Append(result, entry);
+			Py_DECREF(entry);
+		}
+	return result;
+}
+
 ePtr<iServiceInfoContainer> eServiceMP3::getInfoObject(int w) {
 	eServiceMP3InfoContainer* container = new eServiceMP3InfoContainer;
 	ePtr<iServiceInfoContainer> retval = container;
@@ -2806,10 +2943,6 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
-#ifdef PASSTHROUGH_FIX
-	if ((!m_initial_start || !m_clear_buffers) && !force)
-		return;
-#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
@@ -2876,40 +3009,7 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
 			eDebug("[eServiceMP3] switched to audio stream %d", current_audio);
 			m_currentAudioStream = i;
 
-#ifdef PASSTHROUGH_FIX
-			GstPad* pad = 0;
-			g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
-			GstCaps* caps = gst_pad_get_current_caps(pad);
-			gst_object_unref(pad);
-			if (caps) {
-				GstStructure* str = gst_caps_get_structure(caps, 0);
-				const gchar* g_type = gst_structure_get_name(str);
-				audiotype_t apidtype = gstCheckAudioPad(str);
-				gst_caps_unref(caps);
-				if (apidtype == atAC3 || apidtype == atEAC3 || apidtype == atAAC || apidtype == atUnknown ||
-					apidtype == atPCM) {
-					std::string pass = CFile::read("/proc/stb/audio/ac3");
-					if (pass.find("passthrough") != std::string::npos) {
-						int longAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_long", 1200);
-						int shortAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
-						if (m_clear_buffers) {
-							m_passthrough_fix_timer->stop();
-							m_passthrough_fix_timer->start(apidtype == atEAC3 && i > 0 && current_audio_orig > -1
-															   ? longAudioDelay
-															   : shortAudioDelay,
-														   true);
-						}
-
-					} else {
-						clearBuffers();
-					}
-				} else {
-					clearBuffers();
-				}
-			}
-#else
 			clearBuffers();
-#endif
 			setCacheEntry(true, i);
 		}
 		return 0;
@@ -2997,11 +3097,11 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo& info, unsigned int i) {
 
 	info.m_language = m_audioStreams[i].language_code;
 
-	if (!info.m_language.empty())
-		info.m_language += "/";
-
-	if (!m_audioStreams[i].title.empty())
+	if (!m_audioStreams[i].title.empty()) {
+		if (!info.m_language.empty())
+			info.m_language += "/";
 		info.m_language += m_audioStreams[i].title;
+	}
 
 	// eDebug("[eServiceMP3] getTrackInfo (%d) - m_description=%s m_language=%s", i, info.m_description.c_str(),
 	// info.m_language.c_str());
@@ -3137,6 +3237,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					m_event(this, evGstreamerStart);
 					if (m_send_ev_start)
 						m_event(this, evStart);
+					if (eDVBIFallback::applications(m_ref))
+						m_event(this, evHBBTVInfo);
 					if (!m_is_live)
 						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 					ret = gst_element_get_state(m_gst_playbin, &state, &pending, 5LL * GST_SECOND);
@@ -3147,6 +3249,9 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 						m_is_live = true;
 					}
+					// live sources do not preroll
+					if (m_is_live && !m_prerolled)
+						applyPendingSeek();
 				} break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED: {
 					m_state = stRunning;
@@ -3202,6 +3307,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						   gst_element_state_change_return_get_name(ret));
 					if (!m_is_live && ret == GST_STATE_CHANGE_NO_PREROLL)
 						m_is_live = true;
+					if (m_is_live && !m_prerolled)
+						applyPendingSeek();
 					m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					updateEpgCacheNowNext();
 
@@ -3228,11 +3335,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						int deferred_audio = m_audio_switch_deferred;
 						m_audio_switch_deferred = -1;
 						// eDebug("[eServiceMP3] applying deferred audio switch to stream %d", deferred_audio);
-#ifdef PASSTHROUGH_FIX
-						selectAudioStream(deferred_audio);
-#else
 						selectTrack(deferred_audio);
-#endif
 					} else if (m_currentAudioStream < 0) {
 						unsigned int autoaudio = 0;
 						int autoaudio_level = 5;
@@ -3265,26 +3368,10 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 							}
 						}
 						if (autoaudio)
-#ifdef PASSTHROUGH_FIX
-							selectAudioStream(autoaudio);
-#else
 							selectTrack(autoaudio);
-#endif
 					} else {
-#ifdef PASSTHROUGH_FIX
-						selectAudioStream(m_currentAudioStream);
-#else
 						selectTrack(m_currentAudioStream);
-#endif
 					}
-#ifdef PASSTHROUGH_FIX
-					m_clear_buffers = false;
-					if (!m_initial_start) {
-						if (!m_sourceinfo.is_streaming)
-							seekTo(0);
-						m_initial_start = true;
-					}
-#endif
 					if (!m_first_paused)
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					m_first_paused = false;
@@ -3308,6 +3395,15 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 			gst_message_parse_error(msg, &err, &debug);
 			g_free(debug);
 			eWarning("Gstreamer error: %s (%i, %i) from %s", err->message, err->code, err->domain, sourceName);
+			if (eDVBIFallback::availability(m_ref))
+			{
+				// Navigation defers teardown out of this callback. Only registered
+				// DVB-I services may advance through their bounded alternatives.
+				m_errorInfo.error_message = err->message;
+				g_error_free(err);
+				m_event((iPlayableService*)this, evTuneFailed);
+				break;
+			}
 			if (err->domain == GST_STREAM_ERROR) {
 				if (err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND) {
 					if (g_strrstr(sourceName, "videosink"))
@@ -3417,8 +3513,12 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				/* No playbin n-video/n-audio to introspect; streams pre-registered. */
 				if (m_send_ev_start) {
 					m_event((iPlayableService*)this, evUpdatedInfo);
+					if (eDVBIFallback::applications(m_ref))
+						m_event(this, evHBBTVInfo);
 					m_send_ev_start = false;
 				}
+				if (!m_prerolled)
+					applyPendingSeek();
 				break;
 			}
 
@@ -3439,12 +3539,12 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				std::vector<subtitleStream> subtitleStreams_temp;
 
 				std::vector<audioMeta> audiometa;
-				if (m_sourceinfo.is_hls)
+				if (m_sourceinfo.is_hls && !(m_ref.data[7] & DVB_I_MEDIA_MASK))
 					audiometa = parse_hls_audio_meta("/tmp/gsthlsaudiometa.info");
 
 				for (i = 0; i < n_audio; i++) {
 					audioStream audio = {};
-					gchar *g_codec, *g_lang;
+					gchar *g_codec, *g_lang, *g_title;
 					GstTagList* tags = NULL;
 					GstPad* pad = 0;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
@@ -3462,6 +3562,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					audio.codec = g_type;
 					g_codec = NULL;
 					g_lang = NULL;
+					g_title = NULL;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-tags", i, &tags);
 					if (tags && GST_IS_TAG_LIST(tags)) {
 						if (gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_codec)) {
@@ -3471,6 +3572,14 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						if (gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang)) {
 							audio.language_code = std::string(g_lang);
 							g_free(g_lang);
+						}
+						if (gst_tag_list_get_string(tags, GST_TAG_TITLE, &g_title)) {
+							audio.title = std::string(g_title);
+							g_free(g_title);
+						}
+						if (audio.title.empty() && (m_ref.data[7] & DVB_I_MEDIA_MASK) && gst_tag_list_get_string(tags, GST_TAG_DESCRIPTION, &g_title)) {
+							audio.title = g_title;
+							g_free(g_title);
 						}
 						gst_tag_list_free(tags);
 					}
@@ -3549,17 +3658,16 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					m_subtitleStreams.assign(subtitleStreams_temp.begin(), subtitleStreams_temp.end());
 					eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE before evUpdatedInfo");
 					m_event((iPlayableService*)this, evUpdatedInfo);
-				}
-
-				if (m_pending_seek_pos > 0) {
-					eDebug("[eServiceMP3] Performing deferred seek to %llds", (long long)m_pending_seek_pos);
-					seekTo(m_pending_seek_pos);
-					m_pending_seek_pos = -1;
+					if (eDVBIFallback::applications(m_ref))
+						m_event(this, evHBBTVInfo);
 				}
 
 			} else {
 				m_send_ev_start = true;
 			}
+
+			if (!m_prerolled)
+				applyPendingSeek();
 
 			if (m_errorInfo.missing_codec != "") {
 				if (m_errorInfo.missing_codec.find("video/") == 0 ||
@@ -4674,7 +4782,7 @@ static int subtitleTrackType(subtype_t type) {
  */
 RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack& track) {
 	// If autostart not active, exit
-	if (!eSubtitleSettings::pango_autoturnon)
+	if (!eSubtitleSettings::pango_autoturnon && !m_subtitle_requested)
 		return -1;
 	int autosub_level = 5;
 	std::string configvalue;

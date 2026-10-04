@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-12 12:46+0000\n"
-"PO-Revision-Date: 2026-09-12 15:06+0000\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"PO-Revision-Date: 2026-10-04 11:54+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 
 msgid ""
 "\n"
@@ -899,6 +899,10 @@ msgstr[1] "%d Godine"
 msgstr[2] "%d Godine"
 
 #, python-format
+msgid "%d additional slots have been created.\n"
+msgstr "Kreirano je još %d mesta.\n"
+
+#, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d jezgra"
@@ -945,6 +949,10 @@ msgid_plural "%d networks found."
 msgstr[0] "Pronađena je %d mreža."
 msgstr[1] "Pronađeno je %d mreža."
 msgstr[2] "Pronađeno je %d mreža."
+
+#, python-format
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr "%d zastarelih STARTUP fajlova proizvođača biće zamenjeno ili uklonjeno."
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
@@ -1298,6 +1306,7 @@ msgstr "%s webif je onemogućen"
 msgid "%s%d min"
 msgstr "%s%d min"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Zadano: %s)"
@@ -1309,6 +1318,10 @@ msgstr "%s. (Najniži)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be cleared"
+msgstr "%s: buket nije mogao da se ukloni"
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -2105,9 +2118,6 @@ msgstr "Dodaj izabranu fasciklu u označivač"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Dodavanje zastarelih radnji LEVO/DESNO"
 
-msgid "Add more slots"
-msgstr "Dodaj još slotova"
-
 msgid "Add new CCcam line"
 msgstr "Dodaj novi CCcam red"
 
@@ -2116,6 +2126,9 @@ msgstr "Dodaj novi Newcamd red"
 
 msgid "Add new tag"
 msgstr "Dodaj novu oznaku"
+
+msgid "Add or change additional slots"
+msgstr "Dodaj ili promeni dodatne slotove"
 
 msgid "Add provider"
 msgstr "Dodaj provajdera"
@@ -2198,6 +2211,9 @@ msgstr "Dodatne motorne opcije omogućavaju vam da unesete detalje iz specifikac
 #, python-format
 msgid "Additional rotor cable from %s"
 msgstr "Dodatni rotor kabl od %s"
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
+msgstr "Dodatni slotovi se ne mogu menjati dok prijemnik radi iz jednog od njih."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Podesi postavke boje tako da su sve senke boja raspoznatljive, da izgledaju maksimalno zasićene. Ako ste zadovoljni rezultatom pritisnite ОК, da zatvorite video fino-podešen, ili koristite numeričke tastere da izaberete drugi test ekran."
@@ -2325,6 +2341,10 @@ msgstr "Svi Kanali"
 msgid "All ages"
 msgstr "Sav uzrast"
 
+#, python-format
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr "Svi podaci na izabranom uređaju biće obrisani. Napraviti jednu zajedničku particiju za podatke sa %d dodatna MultiBoot mesta, 512 MiB swap particijom i internim slotom 1 za kernel?"
+
 msgid "All events down"
 msgstr "Svi događaji nadole"
 
@@ -2333,6 +2353,9 @@ msgstr "Svi događaji gore"
 
 msgid "All files"
 msgstr "Svi fajlovi"
+
+msgid "All packages"
+msgstr ""
 
 msgid "All regions"
 msgstr "Sav region"
@@ -2520,6 +2543,12 @@ msgstr "Detektovan je RTL-SDR prijemnik. Opciono DAB+ USB izvršava se instalira
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Pokušava se zabeležiti trenutni status televizora. Ako su statusne poruke netačne ili nedostaju, prijemnik može reagovati neočekivano. U suprotnom, to pomaže prijemniku da efikasnije upravlja različitim operativnim uslovima."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr "Već postoji tajmer koji beleži ovu uslugu u traženo vreme."
+
+msgid "An instant recording is already running on this service."
+msgstr "Trenutno se već snima na ovom servisu."
 
 msgid "An unknown error occurred!"
 msgstr "Nepoznata greška se desila!"
@@ -4087,8 +4116,14 @@ msgstr "Promeni snimanje (vreme završetka)"
 msgid "Change repeat and delay settings?"
 msgstr "Promeni postavke ponavljanja i odlaganja?"
 
+msgid "Change search"
+msgstr ""
+
 msgid "Change skin"
 msgstr "Promeni skin"
+
+msgid "Change slots"
+msgstr "Promeni slotove"
 
 msgid "Change step size"
 msgstr "Promeni veličinu koraka"
@@ -4480,6 +4515,9 @@ msgstr "Brisanje fiksirano"
 msgid "Clear play list"
 msgstr "Obriši plej listu"
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear the logs for this timer"
 msgstr "Obriši log za ovaj tajmer"
 
@@ -4696,6 +4734,9 @@ msgstr "Opšta podešavanja interfejsa"
 
 msgid "Common Setup Actions"
 msgstr "Opšte Radnje Podešavanja"
+
+msgid "Common settings"
+msgstr "Uobičajena podešavanja"
 
 msgid "Comoros"
 msgstr "Comoros"
@@ -5416,10 +5457,6 @@ msgid "Could not open the file %s!"
 msgstr "Nemože otvoriti fajl %s!"
 
 #, python-format
-msgid "Could not record due to conflicting timer:%s"
-msgstr "Snimanje nije moguće zbog neusaglašenog tajmera %s"
-
-#, python-format
 msgid "Could not record due to invalid service:%s"
 msgstr "Snimanje nije moguće kanal %s ne postoji"
 
@@ -5794,6 +5831,9 @@ msgstr "Podrška za DAB+ USB je instalirana. Sada možeš da uključiš prijemni
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: buket nije mogao biti snimljen"
 
+msgid "DAB+ audio decoding"
+msgstr ""
+
 msgid "DAB+ channel"
 msgstr "DAB+ kanala"
 
@@ -5810,6 +5850,9 @@ msgstr "DAB+ skeniranje nije uspelo; postojeći buketi su sačuvani."
 #, python-format
 msgid "DAB+ service information for '%s'"
 msgstr "DAB+ informacije o servisu za '%s'"
+
+msgid "DAB+ signal detected; waiting for FIC service data..."
+msgstr "DAB+ signal detektovan; čekanje na FIC servisne podatke..."
 
 msgid "DAC"
 msgstr "DAC"
@@ -5831,9 +5874,6 @@ msgstr "Akcije podešavanja DNS"
 
 msgid "DNS data source"
 msgstr "DNS izvor podataka"
-
-msgid "DNS override"
-msgstr "DNS prepisivanje"
 
 msgid "DNS protocol mode"
 msgstr "DNS režim protokola"
@@ -6777,6 +6817,14 @@ msgstr "Onemogući opciju MultiBoot"
 
 msgid "Disable timer"
 msgstr "Isključi tajmer"
+
+#, python-format
+msgid "Disable timer '%s'?"
+msgstr "Isključiti tajmer '%s'?"
+
+#, python-format
+msgid "Disable timer: '%s'"
+msgstr "Isključi tajmer: '%s'"
 
 msgid "Disabled"
 msgstr "Onemogućeno"
@@ -9811,6 +9859,9 @@ msgstr "Hard disk"
 msgid "Harddisk Setup"
 msgstr "Podešavanje hard diska"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr "MultiBoot uređaj"
 
@@ -9855,6 +9906,9 @@ msgstr "Pomoć i Vizuelni Odziv"
 
 msgid "Help Screen Information"
 msgstr "Pomoć Info o Ekranu"
+
+msgid "Help and support"
+msgstr "Pomoć i podrška"
 
 msgid "Help animation speed"
 msgstr "Pomoć brzina animacije"
@@ -11404,6 +11458,10 @@ msgstr "Ograničena veličina debug log (MB)"
 msgid "Limit east"
 msgstr "Limit istok"
 
+#, python-format
+msgid "Limit instant recording until %s"
+msgstr "Ograniči trenutno snimanje do %s"
+
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Ograničeno znakova koji se mogu koristiti za ime fajla snimanja, (7 bit) ASCII. Na taj se način obezbeđuje kontabilnost sa OS ili fajl sistem sa ograničenim skupovima znakova."
 
@@ -11852,6 +11910,9 @@ msgstr "Upravljanje istaknutim %s"
 msgid "Manage the highlighted %s / list of %s"
 msgstr "Upravljanje istaknutim %s listama od %s"
 
+msgid "Manage timer conflicts"
+msgstr "Upravljaj konfliktima tajmera"
+
 msgid "Manage your online update files"
 msgstr "Upravljanje fajlovima ispravki na mreži"
 
@@ -11875,6 +11936,15 @@ msgstr "Ručno uvoz iz rezervnog tjunera"
 
 msgid "Manufacturer"
 msgstr "Proizvođač"
+
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr "Proizvođač slot 1 ne obezbeđuje odgovarajuće STARTUP fajlove."
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr "Proizvođač slot 1 nema upotrebljivu STARTUP komandu sa kernel uređajem."
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr "Slot proizvođača 1 nije pronađen i ne može se koristiti kao šablon za zajednički kernel."
 
 msgid "Manx"
 msgstr "Manx"
@@ -13145,6 +13215,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "Provera spajanja Interneta"
 
+msgid "No Internet connection available!"
+msgstr "Nema dostupne internet konekcije!"
+
 msgid "No Name"
 msgstr "Bez Imena"
 
@@ -13162,6 +13235,9 @@ msgstr "Nijedan TS snimač nije dostupan"
 
 msgid "No active channel found."
 msgstr "Nije pronađen aktivni kanal."
+
+msgid "No additional slots have been planned."
+msgstr "Nisu planirani dodatni termini."
 
 msgid "No age block"
 msgstr "Nema starosnog ograničenja"
@@ -13215,6 +13291,9 @@ msgstr "Nema slobodnog broja"
 msgid "No free tuner!"
 msgstr "Nema slobodnog tjunera!"
 
+msgid "No further DVB-I alternative is available."
+msgstr "Nema dostupne druge DVB-I alternative."
+
 msgid "No gateway"
 msgstr "Nema prolaza"
 
@@ -13241,6 +13320,9 @@ msgstr "Nema pronađenih mreža."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nema prekidača stavki (povećaj ili smanji)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "Slike nisu dostupne"
@@ -13343,6 +13425,9 @@ msgstr "Nema podešenih validnih DAB+ kanala. Proveri /etc/enigma2/dab.xml."
 
 msgid "No valid device detected - Press OK"
 msgstr "Nema validnog uređaja - Pritisnite OK"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr "Nije pronađen nijedan važeći MultiBoot slot proizvođača."
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -13712,6 +13797,9 @@ msgstr "Jednom"
 msgid "One line"
 msgstr "Jedan red"
 
+msgid "Online manual"
+msgstr "Online priručnik"
+
 msgid "Online software update"
 msgstr "Ažuriranje softvera na mreži"
 
@@ -13943,6 +14031,9 @@ msgstr "Otvori EPG prikaz za više kanala"
 msgid "Open the single service EPG view"
 msgstr "Otvori EPG prikaz za jedan kanal"
 
+msgid "Open the user manual and tools to get help or report problems"
+msgstr "Otvori korisnički priručnik i alatke da dobiješ pomoć ili prijaviš probleme"
+
 msgid "Open tuner setup"
 msgstr "Otvori podešavanja tjunera"
 
@@ -14063,6 +14154,9 @@ msgstr "Izlazni tekst:"
 
 msgid "Overall progress:"
 msgstr "Ukupan napredak:"
+
+msgid "Override DNS"
+msgstr "DNS prepisivanje"
 
 msgid "Overscan Test"
 msgstr "Overscan Test"
@@ -14387,6 +14481,12 @@ msgstr "Trajno ukloniti sve izbrisane stavke"
 
 msgid "Permanently remove the MultiBoot files?"
 msgstr "Trajno ukloniti MultiBoot fajlove?"
+
+msgid "Permanently wipe the highlighted slot"
+msgstr "Trajno obriši označeni slot"
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr "Da li trajno obrisati ovaj slot? Svi fajlovi u slotu će biti izbrisani i neće moći da se povrate."
 
 msgid "Permissions"
 msgstr "Dozvole"
@@ -14779,6 +14879,9 @@ msgstr "Molimo vas da sačekate dok se lokali/jezici brišu..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Sačekajte dok je skeniranje u toku..."
 
+msgid "Please wait while the Internet connection is checked..."
+msgstr "Molim te sačekaj dok se proverava Internet konekcija..."
+
 msgid "Please wait while the data is extracted..."
 msgstr "Sačekajte dok se podaci izdvoje..."
 
@@ -14808,6 +14911,9 @@ msgstr "Molimo vas da sačekate dok se dodatak menja."
 
 msgid "Please wait while the plugin is updated."
 msgstr "Molimo vas da sačekate dok se dodatak ažurira."
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr "Molim te sačekaj dok se neiskorišćeni jezici/lokalizacije brišu..."
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "Sačekajte dok proverimo vaše instalirane plugin-ove..."
@@ -15073,6 +15179,12 @@ msgstr "Predškolski"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Pritisni '0' da bi preklopili PiP režim"
 
+msgid "Press BLUE to add more slots."
+msgstr "Pritisni PLAVO da dodaš više slotova."
+
+msgid "Press BLUE to change the additional slots."
+msgstr "Pritisni PLAVO da promeniš dodatne slotove."
+
 msgid "Press EXIT to close."
 msgstr "Pritisni EXIT da bi zatvorili."
 
@@ -15159,11 +15271,11 @@ msgstr "Pritisni ОК da bi koristili ovaj jezik.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Pritisni OK da bi koristili ovaj lokalni standard.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
-msgstr "Pritisni GORE/DOLE da bi izabrali slot i pritisni OK ili ZELENA da bi ponovo pokrenuli resiver sa tim imidžom. ŽUTA briše izabrani imidž. Izbrisani imidž se može vratiti pomoću PLAVOG tastera. Obrisani imidž je potpuno uklonjen i nemože se vratiti u predhodno stanje!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr "Pritisni DUGME GORE/DOLE da izabereš slot i pritisni OK ili ZELENO da restartuješ na tom slotu. Pritisni ŽUTO da obrišeš izabranu sliku ili drži ŽUTO da je trajno obrišeš. Obrisana slika se može vratiti pomoću PLAVOG, ali obrisana trajno ne može. Pritisni INFO da prikažeš ili sakriješ prazne slotove."
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
-msgstr "Pritisnite dugmad GORE/DOLE da izaberete slot, zatim pritisnite OK ili ZELENO da restartujete u tu sliku. Ako je dostupno, ŽUTO će onemogućiti Multiboot, izbrisati ili obrisati izabranu sliku. Pritisnite PLAVO da dodate više slotova."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
+msgstr "Pritisni DUGME GORE/DOLE da izabereš slot, zatim pritisni OK ili ZELENO da se restartuješ u taj slot. Ako je dostupno, ŽUTO će isključiti MultiBoot, obrisati ili izbrisati izabrani slot."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Pritisni ovaj taster da bi oponašali dugačko pritiskanje tastera pritisnutog posle toga (ovo također zamenjuje sve druge radnje dodeljene tasteru za emulaciju)."
@@ -15405,6 +15517,9 @@ msgstr "Očisti sve osim trenutnih i stalnih lokalnih/jezika. Dodajte trenutni l
 
 msgid "Purging all unused locales/languages..."
 msgstr "Čišćenje svih neiskorišćenih lokalnih/jezika..."
+
+msgid "Purging unused locales/languages..."
+msgstr "Čišćenje neiskorišćenih lokala/jezika..."
 
 msgid "Purple"
 msgstr "Ljubičasta"
@@ -15803,10 +15918,6 @@ msgstr "Započelo je snimanje, sada zaustavljam vremensku promenu."
 msgid "Recording stopped"
 msgstr "Snimanje je zaustavljeno"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Vreme snimanja je ograničeno zbog sukobljenog tajmera.:%s"
-
 msgid "Recording tuning failed"
 msgstr "Podešavanje snimanja nije uspelo"
 
@@ -16112,6 +16223,9 @@ msgstr "Ukloni trenutno izabrani naslov"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Uklanjanje istaknutog direktorijuma iz obeleživača"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr "Ukloni prethodno sačuvane servise iz skeniranih DAB+ multipleksa. Isključi ovu opciju da zadržiš servise kada multiplex privremeno nije dostupan."
 
 msgid "Remove service from AutoCam"
 msgstr "Ukloni servis iz AutoCam"
@@ -16967,6 +17081,9 @@ msgstr "Skeniraj za zemaljske LCN i kreiraj LCN bukete"
 msgid "Scan region"
 msgstr "Skeniraj područje"
 
+msgid "Scan the QR code to open the manual:"
+msgstr "Skeniraj QR kod da otvoriš priručnik:"
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr "Skeniraj USB tuner, dostupne DAB+ satelitske prijenose, ili oboje."
 
@@ -17097,6 +17214,9 @@ msgstr "Pretraži Satelite"
 msgid "Search Sats, check signal and lock"
 msgstr "Pretraži Satelite, provera signala i zaključavanje"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "Pretraži istok"
 
@@ -17105,6 +17225,12 @@ msgstr "Traženje mrežnih resursa"
 
 msgid "Search for similar events"
 msgstr "Traženje sličnih događaja"
+
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search weather location ID"
 msgstr "Traženje ID lokacije vremenske prognoze"
@@ -18390,6 +18516,10 @@ msgid "Select/Zap to the selected service"
 msgstr "Izaberi/Vrati na odabranoj usluzi"
 
 #, python-format
+msgid "Selected device: %s"
+msgstr "Izabrani uređaj: %s"
+
+#, python-format
 msgid ""
 "Selected settings list:\n"
 "\n"
@@ -19605,6 +19735,9 @@ msgstr "Pokaži obaveštenje kada uvoz kanala nije bio uspešan"
 msgid "Show notification when import channels was successful"
 msgstr "Pokaži obaveštenje kada je uvoz kanala bio uspešan"
 
+msgid "Show or hide empty slots"
+msgstr "Prikaži ili sakrij prazne slotove"
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Prikaži ili sakrij prošireni opis. Ova funkcionalnost može zavisiti od skin-a."
 
@@ -19826,6 +19959,9 @@ msgstr "Pokaži frejm"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Pokaži Plugin Pregledač. Ovde možete podesiti instalirani Plugin"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr "Prikazuje QR kod za otvaranje online priručnika na tvom telefonu ili računaru"
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Pokaži dostupne plugine. Ovde ih možete preuzeti i instalirati"
@@ -20289,6 +20425,9 @@ msgstr "Postavke Menadžera Softvera"
 msgid "Software MultiBoot"
 msgstr "Softver MultiBoot"
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "Ažuriranje Softvera"
 
@@ -20580,6 +20719,12 @@ msgstr "Počni od početka"
 msgid "Start instant recording"
 msgstr "Započni trenutno snimanje"
 
+msgid "Start instant recording and set duration"
+msgstr "Pokreni trenutno snimanje i postavi trajanje"
+
+msgid "Start instant recording and set end time"
+msgstr "Pokreni trenutno snimanje i postavi vreme završetka"
+
 msgid "Start instant recording?"
 msgstr "Započni trenutno snimanje?"
 
@@ -20746,6 +20891,10 @@ msgstr "Zaustavi snimanje i izbriši"
 
 msgid "Stop recording now"
 msgstr "Zaustavi snimanje sada"
+
+#, python-format
+msgid "Stop recording: '%s'"
+msgstr "Zaustavi snimanje: '%s'"
 
 msgid "Stop service on return to movie list"
 msgstr "Zaustavi kanal po povratku na listu filmova"
@@ -20993,6 +21142,9 @@ msgstr "Sundanese"
 
 msgid "Sunday"
 msgstr "Nedelja"
+
+msgid "Support"
+msgstr "Podrška"
 
 msgid "Suriname"
 msgstr "Suriname"
@@ -21658,6 +21810,10 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Komanda za buđenje iz režima čekanja biće poslana više puta."
 
+#, python-format
+msgid "The custom mount point for '%s' is empty!"
+msgstr "Prilagođena tačka montiranja za '%s' je prazna!"
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21715,6 +21871,23 @@ msgstr "Visina slike. Veličina unosa će se podudarati sa ovom vrednošću."
 msgid "The loopthrough setting is wrong."
 msgstr "Postavka petlje je pogrešna."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr "Proizvođač STARTUP uređaj se ne može montirati za inspekciju."
+
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr "STARTUP uređaj proizvođača nije montiran. STARTUP fajlovi nisu menjani."
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr "Proizvođač STARTUP uređaja nije pronađen."
+
+#, python-format
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr "STARTUP fajl proizvođača '%s' je promenjen. Ponovo pokreni korisnički interfejs i pokušaj opet."
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr "Fajl proizvođača STARTUP '%s' ne može se bezbedno produžiti."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da nastavite?"
 
@@ -21724,6 +21897,12 @@ msgstr "Taj pozicioner tjuner trenutno nije dostupan. Zaustavite snimanja ili dr
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Proces će trajati otprilike %d minuta da se završi."
+
+msgid "The recording end time has already passed."
+msgstr "Vreme završetka snimanja je već prošlo."
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr "Zatraženi snimak se poklapa sa drugim tajmerima. Šta želiš da uradiš?"
 
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
@@ -21738,6 +21917,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "Rezultati su upisani u %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr "Root poddirektorijum u STARTUP fajlu proizvođača ne može se bezbedno proširiti."
+
 msgid "The saved PIN was cleared."
 msgstr "Sačuvani pin je očišćen."
 
@@ -21747,6 +21929,12 @@ msgid ""
 msgstr ""
 "Izabrani kanal ne podržava VPS za ručno programirane tajmere!\n"
 " Želite li zaista da omogućite VPS?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr "Izabrani uređaj nije podržani prenosivi blok uređaj."
+
+msgid "The selected device is too small. At least 3 GB is required."
+msgstr "Izabrani uređaj je premali. Potrebno je najmanje 2561 MiB."
 
 msgid "The service list is reloaded."
 msgstr "Lista kanala se ponovo učitava."
@@ -21773,6 +21961,13 @@ msgid ""
 msgstr ""
 "Bafer za vremensko pomeranje prelazi granicu definisanu u podešavanjima. \n"
 "Šta želite da uradite?"
+
+msgid ""
+"The time shift storage device is not available.\n"
+"Please check the device and the time shift path."
+msgstr ""
+"Uređaj za čuvanje vremenskog pomaka nije dostupan.\n"
+"Proveri uređaj i putanju pomeranja vremena."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21875,6 +22070,9 @@ msgstr "Ovo vam omogućava da postavite maksimalan broj cifara u servis broju, d
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Ovaj buket je zaštićen pinom roditeljske kontrole!"
+
+msgid "This channel is currently off air."
+msgstr "Ovaj kanal trenutno ne emituje."
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22109,6 +22307,9 @@ msgstr "Оva opcija postavlja suzbijanje lažnih digitalnih kontura, koje su rez
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Оva opcija podešava oštrinu slike koja se koristi prilikom upscaled slike."
+
+msgid "This recording has already ended."
+msgstr "Ovaj snimak je već završen."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Ovaj kanal je zaštićen pinom roditeljske kontrole!"
@@ -22931,6 +23132,12 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr "Ne mogu da kreiram dodatne STARTUP fajlove."
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr "Ne mogu da napravim nove STARTUP fajlove proizvođača."
+
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s."
 msgstr "Ne mogu da nasledim korisnički opseg za LNB %d: %s."
@@ -22939,15 +23146,34 @@ msgstr "Ne mogu da nasledim korisnički opseg za LNB %d: %s."
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr "Nije moguće naslediti korisnički bend za LNB %d: LNB 1 %s."
 
-msgid "Unable to initialize Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot."
 msgstr "Nije moguće inicijalizovati Kexec MultiBoot!"
+
+msgid "Unable to load package information."
+msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Ne mogu da otvorim tjuner (%d)"
 
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr "Ne mogu da pročitam UUID nove MultiBoot particije. STARTUP fajlovi nisu izmenjeni."
+
+#, python-format
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr "Ne mogu da pročitam STARTUP fajl proizvođača '%s'."
+
 msgid "Unable to register the DAB+ transponder"
 msgstr "Ne mogu da registrujem DAB+ transponder"
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr "Ne mogu da uklonim zastarele dodatne STARTUP fajlove."
+
+msgid "Unable to save network configuration."
+msgstr "Ne mogu da sačuvam podešavanja mreže!"
+
+msgid "Unable to select the audio channel."
+msgstr "Ne mogu da izaberem audio kanal."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Ne mogu da pokrenem DAB+ strim"
@@ -23320,6 +23546,9 @@ msgstr "Koristi alternativni manji ekran."
 msgid "Use as HDD replacement"
 msgstr "Koristi kao zamenu za HDD"
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Koristite automatsko prepoznavanje načina"
 
@@ -23502,6 +23731,9 @@ msgstr "Korisnički fid URL"
 
 msgid "User ID"
 msgstr "Korisnički ID"
+
+msgid "User Manual"
+msgstr "Korisnički Priručnik"
 
 msgid "User comments"
 msgstr "Korisnički komentar"
@@ -24388,8 +24620,8 @@ msgstr "Kada kursor unosa dostigne ovu tačku (procenat širine, sa obe strane) 
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Kada prijemnik izađe iz režima čekanja ili dubokog čekanja, poslaće komandu televizoru da ga izvuče iz režima čekanja."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr "Kada se risiver probudi iz Pripravnog režima, pošalji aktivan izvor, putanju strima i komande za usmeravanje kako bi TV prešao na HDMI ulaz povezan sa risiverom."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
+msgstr "Kad prijemnik izađe iz režima pripravnosti, najavi ga kao aktivni izvor tako da se TV prebaci na povezani HDMI ulaz."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kada je crven box pravilno vidljiv, pritisnite ZELENU dugmad da sačuvate podešavanja i izađete."
@@ -25609,6 +25841,26 @@ msgid "®"
 msgstr "®"
 
 #, python-format
+#~ msgid "Could not record due to conflicting timer:%s"
+#~ msgstr "Snimanje nije moguće zbog neusaglašenog tajmera %s"
+
+#, python-format
+#~ msgid "Recording time limited due to conflicting timer:%s"
+#~ msgstr "Vreme snimanja je ograničeno zbog sukobljenog tajmera.:%s"
+
+#~ msgid "Add more slots"
+#~ msgstr "Dodaj još slotova"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+#~ msgstr "Pritisni GORE/DOLE da bi izabrali slot i pritisni OK ili ZELENA da bi ponovo pokrenuli resiver sa tim imidžom. ŽUTA briše izabrani imidž. Izbrisani imidž se može vratiti pomoću PLAVOG tastera. Obrisani imidž je potpuno uklonjen i nemože se vratiti u predhodno stanje!"
+
+#~ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+#~ msgstr "Pritisnite dugmad GORE/DOLE da izaberete slot, zatim pritisnite OK ili ZELENO da restartujete u tu sliku. Ako je dostupno, ŽUTO će onemogućiti Multiboot, izbrisati ili obrisati izabranu sliku. Pritisnite PLAVO da dodate više slotova."
+
+#~ msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+#~ msgstr "Kada se risiver probudi iz Pripravnog režima, pošalji aktivan izvor, putanju strima i komande za usmeravanje kako bi TV prešao na HDMI ulaz povezan sa risiverom."
+
+#, python-format
 #~ msgid "%d of %d feeds completed; failed feed bouquets were kept"
 #~ msgstr "%d od %d feedova završeno; neuspešni feed buketi su sačuvani"
 
@@ -25830,8 +26082,8 @@ msgstr "®"
 #~ msgid "C/T input switching: external 5V coax switch"
 #~ msgstr "Prebacivanje C/T ulaza: eksterni 5V koaksijalni prekidač"
 
-msgid "Common Settings"
-msgstr "Modul Podešavanja"
+#~ msgid "Common Settings"
+#~ msgstr "Modul Podešavanja"
 
 #~ msgid "DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch."
 #~ msgstr "DVB-C i DVB-T/T2 dele ovaj ulaz. Kada su oba omogućena, Enigma2 koristi 5V za kontrolu spoljnog koaksijalnog prekidača."

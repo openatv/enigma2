@@ -1,7 +1,8 @@
+from gettext import bindtextdomain, dgettext
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
 from os import makedirs, remove, unlink
-from os.path import exists, isfile, join as pathjoin, normpath, splitext
+from os.path import dirname, exists, isdir, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
@@ -15,7 +16,7 @@ from Components.International import international
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_HDD, SCOPE_PLUGINS, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
@@ -31,13 +32,24 @@ def eEnv_resolve_multi(path):
 
 
 def refreshChannelSelectionStyleChoices():
+	def translateSkinString(text):
+		return dgettext(skinDir, text)
+
+	skinDir = dirname(config.skin.primary_skin.value).replace("MetrixHD", "MyMetrixLite")
+	localePath = resolveFilename(SCOPE_PLUGINS, pathjoin("Extensions", skinDir, "locale"))
+
+	if skinDir and isdir(localePath):
+		bindtextdomain(skinDir, localePath)
+	else:
+		translateSkinString = _
+
 	screenChoiceList = [("", _("Legacy mode"))]
 	styles = getcomponentTemplateNames("serviceList") or []
 	if styles:
 		for screen, (element, path) in domScreens.items():
 			if element.get("base") == "ChannelSelection":
-				screenChoiceList.append((screen, element.get("label", screen)))
-	widgetChoiceList = [(style, style) for style in styles]
+				screenChoiceList.append((screen, translateSkinString(element.get("label", screen))))
+	widgetChoiceList = [(style, translateSkinString(style)) for style in styles]
 	for name, choices, default in (
 		("screenStyle", screenChoiceList, ""),
 		("widgetStyle", widgetChoiceList, styles[0] if styles else "")

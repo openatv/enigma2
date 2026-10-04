@@ -1773,48 +1773,55 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 
 	if (!backgroundscanresult)
 	{
-		/* only create a 'Last Scanned' bouquet when this is not the result of a background scan */
-		std::string bouquetname = "userbouquet.LastScanned.tv";
-		std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
-		eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
-		bouquetref.setData(0, 1); /* set bouquet 'servicetype' to tv (even though we probably have both tv and radio channels) */
-		eBouquet *bouquet = NULL;
-		eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet");
-		if (!db->getBouquet(bouquetref, bouquet) && bouquet)
+		/* Keep separate TV/radio results; background scans must not replace them. */
+		for (int bouquetType : {eServiceReferenceDVB::dTv, eServiceReferenceDVB::dRadio})
 		{
-			/* bouquet already exists, empty it before we continue */
-			bouquet->m_services.clear();
-		}
-		else
-		{
-			/* bouquet doesn't yet exist, create a new one */
-			if (!db->getBouquet(rootref, bouquet) && bouquet)
+			bool radio = bouquetType == eServiceReferenceDVB::dRadio;
+			std::string extension = radio ? "radio" : "tv";
+			std::string bouquetname = "userbouquet.LastScanned." + extension;
+			std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
+			eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
+			bouquetref.setData(0, bouquetType);
+			eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets." + extension + "\" ORDER BY bouquet");
+			rootref.setData(0, bouquetType);
+			eBouquet *root = NULL;
+			if (db->getBouquet(rootref, root) || !root)
 			{
-				bouquet->m_services.push_back(bouquetref);
-				bouquet->flushChanges();
+				eDebug("[eDVBScan] failed to find bouquet root for '%s'!", bouquetname.c_str());
+				continue;
 			}
-			/* loading the bouquet seems to be the only way to add it to the bouquet list */
-			eDVBDB *dvbdb = eDVBDB::getInstance();
-			if (dvbdb) dvbdb->loadBouquet(bouquetname.c_str());
-			/* and now that it has been added to the list, we can find it */
-			db->getBouquet(bouquetref, bouquet);
-		}
-		if (bouquet)
-		{
-			bouquet->m_bouquet_name = "Last Scanned";
+			if (std::find(root->m_services.begin(), root->m_services.end(), bouquetref) == root->m_services.end())
+			{
+				root->m_services.push_back(bouquetref);
+				root->flushChanges();
+			}
 
+			eBouquet *bouquet = NULL;
+			if (db->getBouquet(bouquetref, bouquet) || !bouquet)
+			{
+				/* Loading also registers a new bouquet in the database. */
+				eDVBDB::getInstance()->loadBouquet(bouquetname.c_str());
+				db->getBouquet(bouquetref, bouquet);
+			}
+			if (!bouquet)
+			{
+				eDebug("[eDVBScan] failed to create '%s'!", bouquetname.c_str());
+				continue;
+			}
+
+			bouquet->m_bouquet_name = "Last Scanned";
+			bouquet->m_services.clear();
 			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::const_iterator
 				service(m_new_services.begin()); service != m_new_services.end(); ++service)
 			{
-				bouquet->m_services.push_back(service->first);
+				int serviceType = service->first.getServiceType();
+				bool radioService = serviceType == eServiceReferenceDVB::dRadio || serviceType == eServiceReferenceDVB::dRadioAvc;
+				if (radioService == radio)
+					bouquet->m_services.push_back(service->first);
 			}
 			bouquet->flushChanges();
-			eDVBDB::getInstance()->renumberBouquet();
 		}
-		else
-		{
-			eDebug("[eDVBScan] failed to create 'Last Scanned' bouquet!");
-		}
+		eDVBDB::getInstance()->renumberBouquet();
 
 		if(m_updateLCN)
 		{
