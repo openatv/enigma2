@@ -526,7 +526,7 @@ class KexecInit(Screen):
 			}, prio=0, description=_("Kexec MultiBoot Actions"))
 		else:
 			self.descriptionSuffix = ""
-			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot!"), _("Kexec MultiBoot files are missing.")))
+			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot."), _("Kexec MultiBoot files are missing.")))
 
 	def rootInit(self):
 		def rootInitCallback(*args, **kwargs):

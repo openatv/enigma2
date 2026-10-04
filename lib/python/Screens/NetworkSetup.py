@@ -1884,7 +1884,7 @@ class DNSSettings(Setup):
 		if networkManager.save():
 			Setup.keySave(self)
 		else:
-			self.session.showError(_("Unable to save network configuration!"))
+			self.session.showError(_("Unable to save network configuration."))
 
 	def writeDnsCryptToml(self):  # DNSCrypt TOML helpers.
 		def replaceKeyLine(line, key, value, foundSet):
