@@ -3104,7 +3104,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				service = servicelist.getNext()
 				while service.valid():
 					if service.flags & eServiceReference.isDirectory:
-						if level == 0 and "userbouquet.LastScanned.tv" in service.toString():  # Don't search in LastScanned.
+						if level == 0 and any(name in service.getPath() for name in ('"userbouquet.LastScanned.tv"', '"userbouquet.LastScanned.radio"')):  # Don't search in LastScanned.
 							service = servicelist.getNext()
 							continue
 						found = walk(serviceHandler, service, level + 1)
