@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-03 18:44+0000\n"
-"PO-Revision-Date: 2026-10-04 11:54+0000\n"
-"Last-Translator: VfBFan <vfbfan@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"PO-Revision-Date: 2026-10-04 17:51+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2436,6 +2436,9 @@ msgstr "Alle Ereignisse hoch"
 msgid "All files"
 msgstr "Alle Dateien"
 
+msgid "All packages"
+msgstr "Alle Pakete"
+
 msgid "All regions"
 msgstr "Alle Regionen"
 
@@ -4270,6 +4273,9 @@ msgstr "Aufnahme ändern (Aufnahmeendzeit)"
 msgid "Change repeat and delay settings?"
 msgstr "Wiederholung und Verzögerung ändern?"
 
+msgid "Change search"
+msgstr "Suche ändern"
+
 msgid "Change skin"
 msgstr "Skin wechseln"
 
@@ -4687,6 +4693,9 @@ msgstr "Feste löschen"
 # Mediaplayer playlist Menue
 msgid "Clear play list"
 msgstr "Playlist leeren"
+
+msgid "Clear search"
+msgstr "Suche löschen"
 
 msgid "Clear the logs for this timer"
 msgstr "Die Logs für diesen Timer löschen"
@@ -6053,6 +6062,9 @@ msgstr "DAB+-USB-Unterstützung wurde installiert. Der Empfänger kann nun in de
 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+-USB: Bouquet konnte nicht geschrieben werden"
+
+msgid "DAB+ audio decoding"
+msgstr "DAB+ Audio-Decodierung"
 
 msgid "DAB+ channel"
 msgstr "DAB+-Sender"
@@ -10247,6 +10259,9 @@ msgstr "Festplatte"
 msgid "Harddisk Setup"
 msgstr "Festplatteneinstellungen"
 
+msgid "Hardware AAC"
+msgstr "Hardware AAC"
+
 msgid "Hardware MultiBoot device"
 msgstr "MultiBoot-Gerät"
 
@@ -13888,6 +13903,9 @@ msgstr "Keine Netzwerke gefunden."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Zeilenanzahl-Schalter (erhöhen/reduzieren)"
+
+msgid "No packages found."
+msgstr "Keine Pakete gefunden."
 
 msgid "No pictures available"
 msgstr "Keine Bilder verfügbar"
@@ -18047,6 +18065,9 @@ msgstr "Satellitensuche und Pegelanzeige"
 msgid "Search Sats, check signal and lock"
 msgstr "Nach Satelliten suchen und Signal überprüfen"
 
+msgid "Search all packages"
+msgstr "Alle Pakete suchen"
+
 #
 msgid "Search east"
 msgstr "Östlich suchen"
@@ -18056,6 +18077,12 @@ msgstr "Nach Netzwerkfreigaben suchen"
 
 msgid "Search for similar events"
 msgstr "Nach ähnlichen Sendungen suchen"
+
+msgid "Search in the current view"
+msgstr "In der aktuellen Ansicht Suchen"
+
+msgid "Search packages by name or description"
+msgstr "Pakete nach Namen oder Beschreibung suchen"
 
 msgid "Search weather location ID"
 msgstr "Wetter-Städtecode suchen"
@@ -21401,6 +21428,9 @@ msgstr "Updateeinstellungen"
 msgid "Software MultiBoot"
 msgstr "Software-MultiBoot"
 
+msgid "Software PCM"
+msgstr "Software PCM"
+
 #
 msgid "Software Update"
 msgstr "Software aktualisieren"
@@ -23004,7 +23034,7 @@ msgid ""
 "Please check the device and the time shift path."
 msgstr ""
 "Der Datenträger für Timeshift ist nicht verfügbar.\n"
-"Bitte den Datenträger und Timeshift-Pfad überprüfen."
+"Bitte den Datenträger und den Timeshift-Pfad überprüfen."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -24263,7 +24293,10 @@ msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
 msgstr "Das User-Band für LNB %d: LNB 1 %s kann nicht übernommen werden."
 
 msgid "Unable to initialize Kexec MultiBoot."
-msgstr "Kexec MultiBoot kann nicht initialisiert werden!"
+msgstr "Kexec MultiBoot kann nicht initialisiert werden."
+
+msgid "Unable to load package information."
+msgstr "Paketinformationen konnte nicht geladen werden."
 
 #, python-format
 msgid "Unable to open tuner (%d)"
@@ -24283,7 +24316,7 @@ msgid "Unable to remove the obsolete additional STARTUP files."
 msgstr "Die veralteten zusätzlichen STARTUP-Dateien konnten nicht entfernt werden."
 
 msgid "Unable to save network configuration."
-msgstr "Die Netzwerkkonfiguration konnte nicht gespeichert werden!"
+msgstr "Die Netzwerkkonfiguration konnte nicht gespeichert werden."
 
 msgid "Unable to select the audio channel."
 msgstr "Der Audiokanal konnte nicht ausgewählt werden."
@@ -24680,6 +24713,9 @@ msgstr "Legt fest, ob eine alternative Anzeige verwendet werden soll."
 
 msgid "Use as HDD replacement"
 msgstr "Als Festplattenersatz verwenden"
+
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr "Automatische Hardware-Erkennung verwenden, Hardware AAC-Dekodierung anfragen oder Software PCM-Kompatibilität benutzen."
 
 msgid "Use automatic mode detection"
 msgstr "Automatische Moduserkennung verwenden"
