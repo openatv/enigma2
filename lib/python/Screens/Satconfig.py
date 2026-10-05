@@ -3,7 +3,7 @@ from datetime import datetime
 from os.path import exists
 from time import localtime, mktime, time
 
-from enigma import eDVBDB, eDVBResourceManager, eStreamServer, eTimer, getLinkedSlotID, isFBCLink
+from enigma import eDVBDB, eDVBResourceManager, eDVBSatelliteEquipmentControl, eStreamServer, eTimer, getLinkedSlotID, isFBCLink
 
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -11,7 +11,7 @@ from Components.config import ConfigBoolean, ConfigNothing, ConfigSelection, con
 from Components.ConfigList import ConfigListScreen
 from Components.International import international
 from Components.Label import Label
-from Components.NimManager import LNB_CHOICES, MAX_LNB_WILDCARDS, UNICABLE_CHOICES, inputPowerSlotForNim, maxFixedLnbPositions, nimmanager
+from Components.NimManager import LNB_CHOICES, MAX_LNB_WILDCARDS, UNICABLE_CHOICES, inputPowerSlotForNim, isPolarizationDependentDiseqc, maxFixedLnbPositions, nimmanager
 from Components.SelectionList import SelectionEntryComponent, SelectionList
 from Components.SystemInfo import BoxInfo
 from Components.Sources.List import List
@@ -737,6 +737,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.turnFastEpochEnd = None
 		self.toneburst = None
 		self.committedDiseqcCommand = None
+		self.diseqcPortByPolarization = None
 		self.uncommittedDiseqcCommand = None
 		self.commandOrder = None
 		self.cableScanType = None
@@ -994,7 +995,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 			self.advancedType, self.advancedSCR, self.advancedDiction, self.advancedManufacturer, self.advancedUnicable, self.advancedUnicableUseLnb1, self.advancedUnicableUsePin, self.advancedConnected, self.advancedUnicableTuningAlgo, self.advancedPowerInserter,
-			self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
+			self.toneburst, self.committedDiseqcCommand, self.diseqcPortByPolarization, self.uncommittedDiseqcCommand, self.singleSatEntry,
 			self.commandOrder, self.showAdditionalMotorOptions, self.autoDiseqcOrderEntry, self.cableScanType, self.terrestrialCountriesEntry, self.cableCountriesEntry
 		)
 		for x in checkList:
@@ -1176,10 +1177,19 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc, _("Select Fast DiSEqC if your aerial system supports it. If you are unsure select 'No'.")))
 				self.toneburst = getConfigListEntry(_("Tone burst"), currLnb.toneburst, _("Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."))
 				self.list.append(self.toneburst)
-				self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand, _("If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."))
-				self.list.append(self.committedDiseqcCommand)
+				if currLnb.lof.value != "unicable" and hasattr(eDVBSatelliteEquipmentControl, "setCommittedCommandByPolarization"):
+					self.diseqcPortByPolarization = getConfigListEntry(_("DiSEqC port by polarization"), currLnb.diseqcPortByPolarization, _("Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."))
+					self.list.append(self.diseqcPortByPolarization)
+				polarizationPorts = isPolarizationDependentDiseqc(currLnb)
+				if polarizationPorts:
+					self.list.append(getConfigListEntry(_("DiSEqC port for horizontal"), currLnb.diseqcPortHorizontal, _("Select the committed switch port connected to the horizontal LNB.")))
+					self.list.append(getConfigListEntry(_("DiSEqC port for vertical"), currLnb.diseqcPortVertical, _("Select the committed switch port connected to the vertical LNB.")))
+				else:
+					self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand, _("If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."))
+					self.list.append(self.committedDiseqcCommand)
+				committedCommand = polarizationPorts or currLnb.commitedDiseqcCommand.index
 				if currLnb.diseqcMode.value == "1_0":
-					if currLnb.toneburst.index and currLnb.commitedDiseqcCommand.index:
+					if currLnb.toneburst.index and committedCommand:
 						self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0, _("This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end).")))
 				else:
 					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command"), currLnb.uncommittedDiseqcCommand, _("If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."))
@@ -1192,7 +1202,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					else:
 						currLnb.commandOrder.value = "tc" if currLnb.commandOrder.index & 1 else "ct"
 					self.commandOrder = getConfigListEntry(_("Command order"), currLnb.commandOrder, _("This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."))
-					if 1 < ((1 if currLnb.uncommittedDiseqcCommand.index else 0) + (1 if currLnb.commitedDiseqcCommand.index else 0) + (1 if currLnb.toneburst.index else 0)):
+					if 1 < ((1 if currLnb.uncommittedDiseqcCommand.index else 0) + (1 if committedCommand else 0) + (1 if currLnb.toneburst.index else 0)):
 						self.list.append(self.commandOrder)
 					if currLnb.uncommittedDiseqcCommand.index:
 						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats, _("If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one.")))

@@ -143,10 +143,11 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				for(sit = ii.first; sit != ii.second; ++sit)
 				{
 					bool diseqc=false;
+					const int committedCommand = di_param.getCommittedCommand(sat.polarisation);
 					long band=0,
 						satpos_depends_ptr=fe_satpos_depends_ptr,
 						advanced_satposdepends_ptr=fe_advanced_satposdepends_ptr,
-						csw = di_param.m_committed_cmd,
+						csw = committedCommand,
 						ucsw = di_param.m_uncommitted_cmd,
 						toneburst = di_param.m_toneburst_param,
 						rotor_pos = fe_rotor_pos;
@@ -173,10 +174,10 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 					{
 						diseqc=true;
-						if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
+						if ( committedCommand < eDVBSatelliteDiseqcParameters::SENDNO )
 							csw = 0xF0 | (csw << 2);
 
-						if (di_param.m_committed_cmd <= eDVBSatelliteDiseqcParameters::SENDNO)
+						if (committedCommand <= eDVBSatelliteDiseqcParameters::SENDNO)
 							csw |= band;
 
 						if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
@@ -486,10 +487,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 			bool doSetVoltageToneFrontend = true;
 			bool forceChanged = false;
 			bool needDiSEqCReset = false;
+			const int committedCommand = di_param.getCommittedCommand(sat.polarisation);
 			long band=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
-				csw = di_param.m_committed_cmd,
+				csw = committedCommand,
 				ucsw = di_param.m_uncommitted_cmd,
 				toneburst = di_param.m_toneburst_param,
 				lastcsw = -1,
@@ -669,14 +671,14 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 
 			if (diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 			{
-				if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
+				if ( committedCommand < eDVBSatelliteDiseqcParameters::SENDNO )
 					csw = 0xF0 | (csw << 2);
 
-				if (di_param.m_committed_cmd <= eDVBSatelliteDiseqcParameters::SENDNO)
+				if (committedCommand <= eDVBSatelliteDiseqcParameters::SENDNO)
 					csw |= band;
 
 				bool send_csw =
-					(di_param.m_committed_cmd != eDVBSatelliteDiseqcParameters::SENDNO);
+					(committedCommand != eDVBSatelliteDiseqcParameters::SENDNO);
 				bool changed_csw = send_csw && (forceChanged || csw != lastcsw);
 
 				bool send_ucsw =
@@ -716,7 +718,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				if (changed_csw)
 				{
 					if ( di_param.m_use_fast
-						&& di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO
+						&& committedCommand < eDVBSatelliteDiseqcParameters::SENDNO
 						&& (lastcsw & 0xF0)
 						&& ((csw / 4) == (lastcsw / 4)) )
 						eDebugNoSimulate("[eDVBSatelliteEquipmentControl] dont send committed cmd (fast diseqc)");
@@ -1570,6 +1572,8 @@ RESULT eDVBSatelliteEquipmentControl::addLNB()
 		m_curSat=m_lnbs[++m_lnbidx].m_satellites.end();
 		m_lnbs[m_lnbidx].SatCR_pin = -1;
 		m_lnbs[m_lnbidx].m_advanced_satposdepends = -1;
+		m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd_horizontal = -1;
+		m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd_vertical = -1;
 	}
 	else
 	{
@@ -1724,9 +1728,27 @@ RESULT eDVBSatelliteEquipmentControl::setCommittedCommand(int command)
 {
 	eSecDebug("[eDVBSatelliteEquipmentControl] eDVBSatelliteEquipmentControl::setCommittedCommand(%d)", command);
 	if ( currentLNBValid() )
+	{
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd=command;
+		m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd_horizontal = -1;
+		m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd_vertical = -1;
+	}
 	else
 		return -ENOENT;
+	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::setCommittedCommandByPolarization(int horizontal, int vertical)
+{
+	if (!currentLNBValid())
+		return -ENOENT;
+	if (!((horizontal == -1 && vertical == -1)
+		|| (horizontal >= eDVBSatelliteDiseqcParameters::AA && horizontal <= eDVBSatelliteDiseqcParameters::BB
+			&& vertical >= eDVBSatelliteDiseqcParameters::AA && vertical <= eDVBSatelliteDiseqcParameters::BB)))
+		return -EINVAL;
+	eSecDebug("[eDVBSatelliteEquipmentControl] setCommittedCommandByPolarization(%d, %d)", horizontal, vertical);
+	m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd_horizontal = horizontal;
+	m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd_vertical = vertical;
 	return 0;
 }
 

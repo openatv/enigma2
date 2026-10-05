@@ -53,6 +53,13 @@ def orbitalPositionInList(orbitalPosition, orbitalPositionList):
 	return str(orbitalPosition) in positions
 
 
+def isPolarizationDependentDiseqc(lnb):
+	"""Capability/configuration check shared with optional scan plugins."""
+	return (hasattr(secClass, "setCommittedCommandByPolarization")
+		and lnb.lof.value != "unicable" and lnb.diseqcMode.value != "none"
+		and bool(getattr(getattr(lnb, "diseqcPortByPolarization", None), "value", False)))
+
+
 def inputPowerSlotForNim(slotid, nimmgr=None):
 	if nimmgr is None:
 		nimmgr = nimManager
@@ -551,6 +558,8 @@ class SecConfigure:
 						"BB": diseqcParam.BB
 					}
 					sec.setCommittedCommand(c[cdc] if cdc in c else int(cdc))
+					if isPolarizationDependentDiseqc(currLnb):
+						sec.setCommittedCommandByPolarization(c[currLnb.diseqcPortHorizontal.value], c[currLnb.diseqcPortVertical.value])
 					sec.setFastDiSEqC(currLnb.fastDiseqc.value)
 					sec.setSeqRepeat(currLnb.sequenceRepeat.value)
 					if currLnb.diseqcMode.value == "1_0":
@@ -2143,6 +2152,9 @@ def InitNimManager(nimmgr, update_slots=None):
 				tmp.addNotifier(configDiSEqCModeChanged)
 			section.diseqcMode = tmp
 			section.commitedDiseqcCommand = ConfigSelection(advanced_lnb_csw_choices)
+			section.diseqcPortByPolarization = ConfigYesNo(default=False)
+			section.diseqcPortHorizontal = ConfigSelection(["AA", "AB", "BA", "BB"], default="AA")
+			section.diseqcPortVertical = ConfigSelection(["AA", "AB", "BA", "BB"], default="AB")
 			section.fastDiseqc = ConfigYesNo(default=lnbTemplateValue(template, "fastDiseqc", False))
 			section.sequenceRepeat = ConfigYesNo(default=lnbTemplateValue(template, "sequenceRepeat", False))
 			section.commandOrder1_0 = ConfigSelection(advanced_lnb_commandOrder1_0_choices, lnbTemplateValue(template, "commandOrder1_0", "ct"))
