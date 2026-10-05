@@ -536,6 +536,15 @@ def InitUsageConfig():
 	] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 30, 45, 60)]
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choiceList)
 
+	def createConfiguredDirectory(configElement):
+		if configElement.isChanged():  # Final notifiers also run when leaving an unsaved setup entry.
+			return
+		path = configElement.value
+		try:
+			makedirs(path, 0o755, exist_ok=True)
+		except OSError as err:
+			print(f"[UsageConfig] Error {err.errno}: Unable to create configured directory '{path}'!  ({err.strerror})")
+
 	defaultPath = resolveFilename(SCOPE_HDD)
 	config.usage.default_path = ConfigSelection(default=defaultPath, choices=[(defaultPath, defaultPath)])
 	config.usage.default_path.load()
@@ -546,18 +555,7 @@ def InitUsageConfig():
 			config.usage.default_path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.usage.default_path.value = savedPath
 	config.usage.default_path.save()
-	currentPath = config.usage.default_path.value
-	print(f"[UsageConfig] Checking/Creating current movie directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current movie directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default movie directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default movie directory '{defaultPath}'!  ({err.strerror})")
+	config.usage.default_path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	choiceList = [
 		("<default>", "<Default>"),
@@ -2626,18 +2624,7 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
-	currentPath = config.timeshift.path.value
-	print(f"[UsageConfig] Checking/Creating current time shift directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current time shift directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default time shift directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default time shift directory '{defaultPath}'!  ({err.strerror})")
+	config.timeshift.path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
