@@ -59,6 +59,8 @@ public:
 
 	// Set write accumulation threshold (0 = continuous writing)
 	virtual void setMinWrite(size_t size) = 0;
+	// Single-service output only. Other demux implementations may leave PSI unchanged.
+	virtual void setServiceFilter(int serviceId, int pmtPid, bool shared) { }
 
 	enum {
 		eventWriteError,

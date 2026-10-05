@@ -407,12 +407,13 @@ void eFilePushThread::filterRecordData(const unsigned char *data, int len)
 {
 }
 
-eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t buffersize) : m_fd_source(-1),
+eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t buffersize, int packetSize) : m_fd_source(-1),
 																							 m_buffersize(buffersize),
 																							 m_buffer(buffer),
 																							 m_overflow_count(0),
 																							 m_buffer_fill(0),
 																							 m_stop(1),
+																							 m_packetSize(packetSize),
 																							 m_messagepump(eApp, 0, "eFilePushThreadRecorder")
 {
 	m_protocol = m_stream_id = m_session_id = m_packet_no = 0;
@@ -421,6 +422,51 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t b
 	/* Ensure min_write doesn't exceed buffer size. */
 	if (m_buffer_min_write > m_buffersize)
 		m_buffer_min_write = m_buffersize;
+}
+
+void eFilePushThreadRecorder::setServiceFilter(int serviceId, int pmtPid, bool shared)
+{
+	if (serviceId <= 0 || serviceId > 0xffff || pmtPid <= 0 || pmtPid >= 0x1fff)
+		return;
+	// Once enabled, keep the output counters continuous even if the broadcaster
+	// stops sharing this PID. Normal transponders never enable the filter.
+	if (shared || m_serviceFilterConfig.load() != -1)
+		m_serviceFilterConfig.store((serviceId << 13) | pmtPid);
+}
+
+int eFilePushThreadRecorder::writeBuffer()
+{
+	int config = m_serviceFilterConfig.load();
+	if (!m_protocol && (m_packetSize == 188 || m_packetSize == 192) && !m_filteredBytes && config != m_appliedFilterConfig)
+	{
+		m_serviceFilter.configure(config >> 13, config & 0x1fff);
+		m_appliedFilterConfig = config;
+		eDebug("[eFilePushThreadRecorder] Filtering shared PMT PID %04x for service %04x", config & 0x1fff, config >> 13);
+	}
+	size_t length = m_buffer_fill;
+	unsigned char tail[192];
+	size_t remainder = 0;
+	if (m_serviceFilter.active())
+	{
+		// Retain an incomplete TS packet across reads, including buffer rotation
+		// by asynchronous writes. Never feed the same bytes to the filter twice.
+		remainder = length % m_packetSize;
+		length -= remainder;
+		memcpy(tail, m_buffer + length, remainder);
+		m_serviceFilter.process(m_buffer + m_filteredBytes, length - m_filteredBytes, m_packetSize);
+		m_filteredBytes = length;
+	}
+	if (!length)
+		return 0;
+	int result = writeData(length);
+	if (result > 0)
+	{
+		m_buffer_fill = remainder;
+		m_filteredBytes = 0;
+		if (remainder)
+			memcpy(m_buffer, tail, remainder);
+	}
+	return result;
 }
 
 #define copy16(a, i, v)           \
@@ -595,6 +641,7 @@ void eFilePushThreadRecorder::thread()
 	}
 
 	m_buffer_fill = 0;
+	m_filteredBytes = 0;
 
 	/* m_stop must be evaluated after each syscall to avoid deadlock
 	 * when recordings are finishing. */
@@ -622,14 +669,13 @@ void eFilePushThreadRecorder::thread()
 			/* Timeout — flush accumulated data if any. */
 			if (m_buffer_fill > 0)
 			{
-				int w = writeData(m_buffer_fill);
+				int w = writeBuffer();
 				if (w < 0)
 				{
 					eDebug("[eFilePushThreadRecorder] WRITE ERROR on timeout flush: %m");
 					sendEvent(evtWriteError);
 					break;
 				}
-				m_buffer_fill = 0;
 			}
 			continue;
 		}
@@ -659,14 +705,13 @@ void eFilePushThreadRecorder::thread()
 				/* No data available — flush what we have if any. */
 				if (m_buffer_fill > 0)
 				{
-					int w = writeData(m_buffer_fill);
+					int w = writeBuffer();
 					if (w < 0)
 					{
 						eDebug("[eFilePushThreadRecorder] WRITE ERROR on EAGAIN flush: %m");
 						sendEvent(evtWriteError);
 						break;
 					}
-					m_buffer_fill = 0;
 				}
 				continue;
 			}
@@ -692,7 +737,7 @@ void eFilePushThreadRecorder::thread()
 			struct timeval now = {};
 			gettimeofday(&starttime, NULL);
 #endif
-			int w = writeData(m_buffer_fill);
+			int w = writeBuffer();
 #ifdef SHOW_WRITE_TIME
 			gettimeofday(&now, NULL);
 			suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
@@ -710,18 +755,13 @@ void eFilePushThreadRecorder::thread()
 				 * Keep data in buffer and retry on next iteration. */
 				usleep(1000);
 			}
-			else
-			{
-				/* Write successful — clear buffer. */
-				m_buffer_fill = 0;
-			}
 		}
 	}
 
 	/* Flush remaining data. */
 	if (m_buffer_fill > 0)
 	{
-		writeData(m_buffer_fill);
+		writeBuffer();
 		m_buffer_fill = 0;
 	}
 

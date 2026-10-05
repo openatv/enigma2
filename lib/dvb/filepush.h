@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <lib/base/rawfile.h>
 #include <atomic>
+#include <lib/dvb/servicetsfilter.h>
 
 #define FLAGBIT_TIMESHIFT  (1 << 0)
 #define FLAGBIT_RAM_MODE   (1 << 1)
@@ -84,7 +85,7 @@ private:
 class eFilePushThreadRecorder: public eThread, public sigc::trackable
 {
 public:
-	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=188*1024);
+	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=188*1024, int packetSize=188);
 	void thread();
 	void stop();
 	void start(int sourcefd);
@@ -98,6 +99,7 @@ public:
 	static const size_t minWriteDefault = 32 * 1024;
 	static const size_t minWriteMPEG = 4 * 1024;
 	void setMinWrite(size_t s) { m_buffer_min_write = s; }
+	void setServiceFilter(int serviceId, int pmtPid, bool shared);
 	int read_dmx(int fd, void *m_buffer, int size);
 	int pushReply(void *buf, int len);
 	void sendEvent(int evt);
@@ -120,6 +122,12 @@ protected:
 	size_t m_buffer_min_write = minWriteDefault;
 	int m_stop;
 private:
+	int writeBuffer();
+	int m_packetSize;
+	std::atomic<int> m_serviceFilterConfig{-1};
+	int m_appliedFilterConfig = -1;
+	size_t m_filteredBytes = 0;
+	eDVBServiceTSFilter m_serviceFilter;
 	eFixedMessagePump<int> m_messagepump;
 	void recvEvent(const int &evt);
 	int m_protocol, m_session_id, m_stream_id, m_packet_no;

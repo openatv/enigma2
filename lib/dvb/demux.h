@@ -213,6 +213,7 @@ public:
 	// Wait for first data to be written (for SoftDecoder sync)
 	bool waitForFirstData(int timeout_ms);
 	void setMinWrite(size_t size) override;
+	void setServiceFilter(int serviceId, int pmtPid, bool shared) override;
 	void replaceThread(eDVBRecordFileThread *newThread);
 private:
 	RESULT startPID(int pid);

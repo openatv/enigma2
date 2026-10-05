@@ -234,6 +234,24 @@ void eDVBServicePMTHandler::sendEventNoPatEntry()
 	}
 }
 
+bool eDVBServicePMTHandler::hasSharedPmtPid(int pmtPid)
+{
+	ePtr<eTable<ProgramAssociationSection>> pat;
+	if (pmtPid <= 0 || m_PAT.getCurrent(pat))
+		return false;
+	bool own = false, other = false;
+	for (const auto &section : pat->getSections())
+		for (const auto &program : *section->getPrograms())
+			if (program->getProgramNumber() && program->getProgramMapPid() == pmtPid)
+			{
+				if (program->getProgramNumber() == m_reference.getServiceID().get())
+					own = true;
+				else
+					other = true;
+			}
+	return own && other;
+}
+
 void eDVBServicePMTHandler::PATready(int)
 {
 	if(eDVBServicePMTHandler::m_debug)
