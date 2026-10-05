@@ -1,12 +1,9 @@
 from bisect import insort
 from datetime import datetime
-from errno import ENODEV, ENOENT, ENOSPC
 from os import access, fsync, makedirs, remove, rename, statvfs, W_OK
 from os.path import exists, isdir, realpath, ismount
-from queue import Empty, Queue
-from tempfile import TemporaryFile
-from threading import BoundedSemaphore, Event, Thread
-from time import ctime, localtime, monotonic, strftime, time
+from threading import Thread, Timer as ThreadTimer
+from time import ctime, localtime, strftime, time
 
 from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iRecordableService, quitMainloop, pNavigation, setPreferredTuner
 
@@ -20,14 +17,14 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.ScrambledRecordings import ScrambledRecordings
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.Task import job_manager
-from Components.UsageConfig import calcFrontendPriorityIntval
+from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
 from Tools.CIHelper import cihelper
-from Tools.Directories import SCOPE_CONFIG, defaultRecordingLocation, fileReadXML, getRecordingFilename, resolveFilename
-from Tools.Notifications import AddModalNotification, AddNotification, AddNotificationWithCallback, AddPopup, showError, showInfo
+from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
+from Tools.Notifications import AddModalNotification, AddNotification, AddNotificationWithCallback, AddPopup, showInfo
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
 
@@ -301,7 +298,6 @@ class RecordTimer(Timer):
 	#
 	def doActivate(self, timer):
 		if timer.shouldSkip():
-			timer.cancelMountCheck()
 			timer.state = RecordTimerEntry.StateEnded
 		else:
 			# When active returns True this means "accepted", otherwise, the current
@@ -339,8 +335,6 @@ class RecordTimer(Timer):
 		self.saveTimers()
 
 	def shutdown(self):
-		for timer in self.timer_list + self.processed_timers:
-			timer.cancelMountCheck()
 		self.saveTimers()
 
 	def getNextRecordingTimeOld(self, getNextStbPowerOn=False):
@@ -618,7 +612,7 @@ class RecordTimer(Timer):
 		self.fallbackTimerlist = [timer for timer in timerList if timer.state != 3]
 
 
-def findSafeRecordPath(dirname):
+def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 	if not dirname:
 		return None
 	dirname = realpath(dirname)
@@ -633,94 +627,6 @@ def findSafeRecordPath(dirname):
 			print(f"[RecordTimer] Error {err.errno}: Failed to create directory '{dirname}'!  ({err.strerror})")
 			return None
 	return dirname
-
-
-class RecordPathCheck:
-	# A blocked network filesystem call cannot be killed by a Python timeout.
-	# Bound the number of workers, including those still blocked after a timeout.
-	workers = BoundedSemaphore(4)
-	timeout = 10
-
-	def __init__(self, dirname, defaultPath, writeError=False):
-		self.dirname = dirname
-		self.defaultPath = defaultPath
-		self.writeError = writeError
-		self.deadline = monotonic() + self.timeout
-		self.cancelled = Event()
-		self.results = Queue(maxsize=1)
-		self.started = False
-
-	def expired(self):
-		return self.cancelled.is_set() or monotonic() >= self.deadline
-
-	def check(self):
-		# Only filesystem work and private result data belong in this worker.
-		# Do not read/change timer entries, config elements or GUI objects here.
-		dirname = self.dirname
-		fallback = False
-		try:
-			if self.expired():
-				return (dirname, 4, fallback)
-			path = findSafeRecordPath(dirname) if dirname else None
-			if not path and not self.writeError:
-				if self.expired():
-					return (dirname, 4, fallback)
-				fallback = bool(dirname)
-				dirname = defaultRecordingLocation(self.defaultPath)
-				if self.expired():
-					return (dirname, 4, fallback)
-				path = findSafeRecordPath(dirname)
-			if not path:
-				return (dirname, 1, fallback)
-			dirname = path
-			if self.expired():
-				return (dirname, 4, fallback)
-			if not access(dirname, W_OK):
-				return (dirname, 2, fallback)
-			if self.expired():
-				return (dirname, 4, fallback)
-			status = statvfs(dirname)
-			if self.expired():
-				return (dirname, 4, fallback)
-			if (status.f_bavail * status.f_bsize) // 1000000 < 1024:
-				return (dirname, 3, fallback)
-			if not self.writeError:
-				# Metadata checks can be cached while the disk is still asleep.
-				# Wake it here, not on the GUI thread when prepare() opens the recording.
-				with TemporaryFile(dir=dirname, prefix=".enigma2-recording-") as probe:
-					if self.expired():
-						return (dirname, 4, fallback)
-					probe.write(b"\0" * 4096)
-					probe.flush()
-					fsync(probe.fileno())
-			return (dirname, 4 if self.expired() else 0, fallback)
-		except OSError as err:
-			print(f"[RecordTimer] Storage check failed for '{dirname}': {err}")
-			return (dirname, 1 if err.errno in (ENOENT, ENODEV) else 3 if err.errno == ENOSPC else 2, fallback)
-
-	def run(self):
-		try:
-			self.results.put(self.check())
-		finally:
-			self.workers.release()
-
-	def poll(self):
-		if self.expired():
-			self.cancelled.set()
-			return (self.dirname, 4, False)
-		try:
-			return self.results.get_nowait()
-		except Empty:
-			pass
-		if not self.started and self.workers.acquire(blocking=False):
-			self.started = True
-			try:
-				Thread(target=self.run, name="RecordPathCheck", daemon=True).start()
-			except RuntimeError as err:
-				self.workers.release()
-				print(f"[RecordTimer] Unable to start storage check: {err}")
-				return (self.dirname, 2, False)
-		return None
 
 
 def createRecordTimerEntry(timer):
@@ -795,9 +701,6 @@ class RecordTimerEntry(TimerEntry):
 		self.autoincreasetime = 3600 * 24  # One day.
 		self.tags = tags or []
 		self.mountPath = None
-		self.mountCheck = None
-		self.mountCheckTimer = None
-		self.mountCheckResult = None
 		self.messageString = ""
 		self.messageStringShow = False
 		self.messageBoxAnswerPending = False
@@ -884,18 +787,17 @@ class RecordTimerEntry(TimerEntry):
 				self.start_prepare = int(time()) + 5  # Is it really 5 seconds to tune a service.
 				self.justTriedFreeingTuner = False
 				return False
-			space = True if self.justplay else self.freespacePending()
-			if space is None:
-				self.start_prepare = int(time()) + 1
-				return False
-			if not space:
-				if self.mountPathErrorNumber != 3 and self.mountPathRetryCounter < 3:
+			if not self.justplay and not self.freespace():
+				if self.mountPathErrorNumber < 3 and self.mountPathRetryCounter < 3:
 					self.mountPathRetryCounter += 1
 					self.start_prepare = int(time()) + 5  # tryPrepare in 5 seconds.
 					self.log(0, f"Next try in 5 seconds.  ({self.mountPathRetryCounter}/3)")
 					return False
-				message = _("Write error at start of recording. %s\n%s") % (self.getMountError(self.mountPathErrorNumber), self.name)
-				showError(message, timeout=10)
+				message = _("Write error at start of recording. %s\n%s") % ((_("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"))[self.mountPathErrorNumber - 1], self.name)
+				if InfoBar and InfoBar.instance:
+					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=20)
+				else:
+					AddPopup(message, MessageBox.TYPE_ERROR, timeout=20, id="DiskFullMessage")
 				self.failed = True
 				self.next_activation = int(time())
 				self.lastend = self.end
@@ -1233,20 +1135,11 @@ class RecordTimerEntry(TimerEntry):
 		}[nextState]
 
 	def timeChanged(self):
-		self.cancelMountCheck()
 		oldPrepare = self.start_prepare
 		self.start_prepare = int(self.begin) - config.recording.prepare_time.value  # self.prepare_time
 		self.backoff = 0
 		if oldPrepare > 60 and oldPrepare != self.start_prepare:
 			self.log(15, f"Record time changed, start prepare is now {ctime(self.start_prepare)}.")
-
-	def abort(self):
-		self.cancelMountCheck()
-		TimerEntry.abort(self)
-
-	def disable(self):
-		self.cancelMountCheck()
-		TimerEntry.disable(self)
 
 	def do_backoff(self):
 		if self.backoff == 0:
@@ -1297,79 +1190,81 @@ class RecordTimerEntry(TimerEntry):
 			else:
 				AddNotification(session, 1)
 
-	def cancelMountCheck(self):
-		if self.mountCheck is not None:
-			self.mountCheck.cancelled.set()
-			self.mountCheck = None
-		if self.mountCheckTimer is not None:
-			self.mountCheckTimer.stop()
-			self.mountCheckTimer.callback.remove(self.pollMountCheck)
-			self.mountCheckTimer = None
-		self.mountCheckResult = None
+	def mountTest(self, dirname, cmd):
+		if cmd == "writeable":
+			if not access(dirname, W_OK):
+				self.stopMountText(None, cmd)
+		elif cmd == "freespace":
+			try:
+				s = statvfs(dirname)
+				if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
+					self.stopMountText(None, cmd)
+			except FileNotFoundError:
+				self.stopMountText(None, "writeable")
 
-	def startMountCheck(self, writeError=False):
-		self.cancelMountCheck()
-		self.mountCheckWriteError = writeError
-		self.mountCheck = RecordPathCheck(self.mountPath if writeError else self.dirname, config.usage.default_path.value, writeError)
-		if self.mountCheckTimer is None:
-			self.mountCheckTimer = eTimer()
-			self.mountCheckTimer.callback.append(self.pollMountCheck)
-		self.mountCheckTimer.start(100, False)
-
-	def pollMountCheck(self):
-		if self.mountCheck is None:
-			return
-		if self.cancelled or self.disabled or (not self.mountCheckWriteError and (self not in self.Timer.timer_list or self.state != self.StateWaiting or self.justplay or self.end <= time())):
-			self.cancelMountCheck()
-			return
-		result = self.mountCheck.poll()
-		if result is None:
-			return
-		self.cancelMountCheck()
-		if self.mountCheckWriteError:
-			path, error, fallback = result
-			self.log(16, f"Write error while recording, storage check '{path}': {error}.")
-			showError(_("Write error while recording. %s") % self.getMountError(error), timeout=10)
-		else:
-			self.mountCheckResult = result
-			# eTimer callbacks run in the GUI thread. Wake the existing scheduler,
-			# rather than changing timer state or starting a service from the worker.
-			if self in self.Timer.timer_list:
-				self.start_prepare = int(time())
-				self.Timer.timer_list.sort()
-				self.Timer.calcNextActivation()
-
-	def freespacePending(self):
-		if self.mountCheckResult is not None:
-			result = self.mountCheckResult
-			self.mountCheckResult = None
-			return self.applyMountCheck(result)
-		if self.mountCheck is None:
-			self.mountPath = None
-			self.startMountCheck()
-		return None
-
-	def applyMountCheck(self, result):
-		path, error, fallback = result
-		self.mountPathErrorNumber = error
-		if error:
-			self.log(0, f"Storage check failed for '{path}': {error}.")
-			return False
-		self.dirnameHadToFallback = fallback
-		self.mountPathRetryCounter = 0
-		self.mountPath = path
-		return True
-
-	def getMountError(self, error):
-		return (_("An unknown error occurred!"), _("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"), _("Storage device did not respond in time!"))[error]
+	def stopMountText(self, thread, cmd):
+		if thread and thread.is_alive():
+			print(f"[RecordTimer] Timeout thread: '{cmd}'.")
+			thread.join(timeout=1)
+		if cmd == "writeable":
+			self.mountPathErrorNumber = 2
+		elif cmd == "freespace":
+			self.mountPathErrorNumber = 3
 
 	def freespace(self, WRITEERROR=False):
-		# Compatibility for external callers. Core timer/record-event paths use
-		# the asynchronous check instead of waiting for filesystem I/O here.
-		result = RecordPathCheck(self.mountPath if WRITEERROR else self.dirname, config.usage.default_path.value, WRITEERROR).check()
 		if WRITEERROR:
-			return (f"Storage check '{result[0]}': {result[1]}.", result[1])
-		return self.applyMountCheck(result)
+			dirname = self.mountPath
+			if findSafeRecordPath(dirname) is None:
+				return (f"mount '{dirname}' is not available.", 1)
+		else:
+			self.mountPath = None
+			if not self.dirname:
+				dirname = findSafeRecordPath(defaultMoviePath())
+			else:
+				dirname = findSafeRecordPath(self.dirname)
+				if dirname is None:
+					dirname = findSafeRecordPath(defaultMoviePath())
+					self.dirnameHadToFallback = True
+			if not dirname:
+				dirname = self.dirname
+				if not dirname:
+					dirname = defaultMoviePath() or "-"
+				self.log(0, f"Mount '{dirname}' is not available.")
+				self.mountPathErrorNumber = 1
+				return False
+		self.mountPathErrorNumber = 0
+		for cmd in ("writeable", "freespace"):
+			print(f"[RecordTimer] Starting thread: '{cmd}'.")
+			processThread = Thread(target=self.mountTest, args=(dirname, cmd))
+			timerThread = ThreadTimer(5, self.stopMountText, args=(processThread, cmd))
+			timerThread.start()
+			processThread.start()
+			processThread.join()
+			timerThread.cancel()
+			if self.mountPathErrorNumber:
+				print(f"[RecordTimer] Break: Error number {self.mountPathErrorNumber}.")
+				break
+			print(f"[RecordTimer] Finished thread: '{cmd}'.")
+		if WRITEERROR:
+			if self.mountPathErrorNumber == 2:
+				return (f"mount '{dirname}' is not writable.", 2)
+			elif self.mountPathErrorNumber == 3:
+				return (f"mount '{dirname}' has not enough free space to record.", 3)
+			else:
+				return ("unknown error.", 0)
+		if self.mountPathErrorNumber == 2:
+			self.log(0, f"Mount '{dirname}' is not writable.")
+			return False
+		elif self.mountPathErrorNumber == 3:
+			self.log(0, f"Mount '{dirname}' has insufficient free space to record.")
+			return False
+		else:
+			if DEBUG:
+				self.log(0, "Found enough free space to record.")
+			self.mountPathRetryCounter = 0
+			self.mountPathErrorNumber = 0
+			self.mountPath = dirname
+			return True
 
 	def calculateFilename(self, name=None):
 		if self.PVRFilename:
@@ -1588,8 +1483,12 @@ class RecordTimerEntry(TimerEntry):
 			self.lastend = self.end
 			self.end = int(time()) + 5
 			self.backoff = 0
-			self.log(16, "Write error while recording; checking storage asynchronously.")
-			self.startMountCheck(writeError=True)
+			msg, err = self.freespace(True)
+			self.log(16, f"Write error while recording, {msg}")
+			print(f"[RecordTimer] Write error while recording, {msg}")
+			# Show notification. The 'id' will make sure that it will be displayed only once, even if
+			# more timers are failing at the same time which is very likely in case of disk full.
+			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# Okay, the recording has been stopped. We need to properly note that in our
 			# state, with also keeping the possibility to re-try.
 			# DEBUG: This has to be done!
