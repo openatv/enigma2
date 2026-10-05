@@ -16,6 +16,7 @@ public:
 	off_t offset();
 	int valid();
 	bool isStream() { return m_source->isStream(); };
+	bool isConnecting() { return m_source->isConnecting(); }
 private:
 	ePtr<iTsSource> m_source;
 	char* m_cache_buffer;

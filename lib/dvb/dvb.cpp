@@ -1951,6 +1951,15 @@ void eDVBChannel::pvrEvent(int event)
 {
 	switch (event)
 	{
+	case eFilePushThread::evtSourceReady:
+	case eFilePushThread::evtReadError:
+		if (m_state == state_tuning && m_source && m_source->isStream())
+		{
+			// Start PAT/PMT timeouts only after the asynchronous connection attempt.
+			m_state = event == eFilePushThread::evtSourceReady ? state_ok : state_failed;
+			m_stateChanged(this);
+		}
+		break;
 	case eFilePushThread::evtEOF:
 		eDebug("[eDVBChannel] End of file!");
 		m_event(this, evtEOF);
@@ -2598,11 +2607,12 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 
 	m_event(this, evtPreStart);
 
-	m_pvr_thread->start(m_source, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
+	m_state = m_source->isStream() ? state_tuning : state_ok;
+	m_pvr_thread->start(m_source, m_pvr_fd_dst);
 
-	m_state = state_ok;
-	m_stateChanged(this);
+	if (!m_source->isStream())
+		m_stateChanged(this);
 
 	return 0;
 }

@@ -48,7 +48,7 @@ public:
 	 * with separate read+write on volatile (as in the original code). */
 	void forcePosition(off_t pos);
 
-	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
+	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped, evtSourceReady };
 	sigc::signal<void(int)> m_event;
 
 		/* you can send private events if you want */
