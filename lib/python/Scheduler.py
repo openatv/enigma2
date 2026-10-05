@@ -477,18 +477,18 @@ class Scheduler(Timer):
 		return -1
 
 	def isAutoDeepstandbyEnabled(self):
-		returnValue = True
 		if Screens.Standby.inStandby:
 			now = int(time())
 			for timer in self.timer_list:
-				if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-					if timer.begin <= now + 900:
-						returnValue = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
-					elif timer.autosleepwindow:
-						returnValue = timer.autosleepbegin <= now + 900
-				if not returnValue:
-					break
-		return returnValue
+				if timer.timerType != TIMERTYPE.AUTODEEPSTANDBY or timer.disabled or timer.cancelled or timer.failed:
+					continue
+				# An inactive auto-sleep window must not prevent shutdown after a recording.
+				# Do not call getAutoSleepWindow() here: it changes the timer's state and schedule.
+				if timer.autosleepwindow and not timer.autosleepbegin <= now < timer.autosleepend:
+					continue
+				if timer.begin <= now + 900 and (timer.getNetworkTraffic() or timer.getNetworkAdress()):
+					return False
+		return True
 
 	def isProcessing(self, exceptTimer=None, endedTimer=None):
 		isRunning = False
