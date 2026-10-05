@@ -760,9 +760,12 @@ class Wizard(Screen):
 						entry = self.getTranslation(entry)
 						print("[Wizard] DEBUG: Adding XML item '%s' to list." % entry)
 						newList.append((entry, step))
-				self.wizard[self.currStep]["evaluatedList"] = newList
+				# Do not run onSelect against the previous step's index while rebuilding.
+				self.wizard[self.currStep]["evaluatedList"] = []
 				self["list"].setList(newList)
 				self["list"].setCurrentIndex(0)
+				self.wizard[self.currStep]["evaluatedList"] = newList
+				self.listChanged()
 				# if self.configWidgetInstance:
 				# 	self.configWidgetInstance.hide()
 				# self.listWidgetInstance.show()
