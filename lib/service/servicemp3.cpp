@@ -1113,7 +1113,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		for (std::vector<ePtr<eDVBService>>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it) {
 			// eDebug("[eServiceMP3] iptv_services m_reference_str : %s", (*it)->m_reference_str.c_str());
 			if (sref.find((*it)->m_reference_str) != std::string::npos) {
-				m_currentAudioStream = (*it)->getCacheEntry(eDVBService::cMPEGAPID);
+				if (eSettings::audio_usecache)
+					m_initialAudioStream = (*it)->getCacheEntry(eDVBService::cMPEGAPID);
 				m_currentSubtitleStream = (*it)->getCacheEntry(eDVBService::cSUBTITLE);
 				m_cachedSubtitleStream = m_currentSubtitleStream;
 				break;
@@ -1179,8 +1180,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 					eDebug("[eServiceMP3] e2startoffset=%lld", (long long)m_pending_seek_pos);
 					break;
 				case 1:
-					m_currentAudioStream = atoi(value.c_str());
-					eDebug("[eServiceMP3] e2audiotrack=%d", m_currentAudioStream);
+					m_initialAudioStream = atoi(value.c_str());
+					eDebug("[eServiceMP3] e2audiotrack=%d", m_initialAudioStream);
 					break;
 				case 2: {
 					// picked up via getCachedSubtitle(), negative = no subtitle
@@ -2900,14 +2901,14 @@ int eServiceMP3::getNumberOfTracks() {
  * @brief Gets the current audio track index.
  *
  * This function retrieves the current audio track index from the GStreamer playbin.
- * If the current audio stream is not set, it queries the playbin for the current audio stream.
+ * The saved preference is not necessarily the track currently selected by playbin.
  *
  * @return int Returns the index of the current audio track, or -1 if no audio stream is set.
  */
 int eServiceMP3::getCurrentTrack() {
 	if (m_is_dash_pipeline)
 		return m_currentAudioStream >= 0 ? m_currentAudioStream : 0;
-	if (m_currentAudioStream == -1)
+	if (m_gst_playbin)
 		g_object_get(m_gst_playbin, "current-audio", &m_currentAudioStream, NULL);
 	return m_currentAudioStream;
 }
@@ -2923,14 +2924,63 @@ int eServiceMP3::getCurrentTrack() {
  * @return RESULT Returns 0 on success, or an error code if the selection fails.
  */
 RESULT eServiceMP3::selectTrack(unsigned int i) {
+	if (i >= m_audioStreams.size())
+		return -1;
+	m_initialAudioSelection = false;
+	m_audio_switch_deferred = -1;
 	m_currentAudioStream = getCurrentTrack();
-	if (m_currentAudioStream == (int)i)
-		return m_currentAudioStream;
+	if (m_currentAudioStream == (int)i) {
+		setCacheEntry(true, i);
+		return 0;
+	}
 	eDebug("[eServiceMP3 selectTrack %d", i);
 
 	m_clear_buffers = true;
 	int result = selectAudioStream(i);
+	// AudioSelection saves the cache immediately, even when switching is deferred.
+	if (!result && m_audio_switch_deferred >= 0)
+		setCacheEntry(true, i);
 	return result;
+}
+
+void eServiceMP3::applyAudioSelection() {
+	if (m_is_dash_pipeline || m_audioStreams.empty() || !pipelineSettledInPlaying(m_gst_playbin))
+		return;
+	if (m_audio_switch_deferred >= 0) {
+		selectTrack(m_audio_switch_deferred);
+		return;
+	}
+	if (!m_initialAudioSelection)
+		return;
+
+	int wanted = m_initialAudioStream;
+	if (wanted < 0 || wanted >= (int)m_audioStreams.size()) {
+		wanted = getCurrentTrack();
+		if (wanted < 0 || wanted >= (int)m_audioStreams.size())
+			wanted = 0;
+		const std::string languages[] = {eSettings::audio_autoselect1, eSettings::audio_autoselect2,
+			eSettings::audio_autoselect3, eSettings::audio_autoselect4};
+		int best = 4;
+		for (unsigned int i = 0; i < m_audioStreams.size(); ++i) {
+			const std::string& language = m_audioStreams[i].language_code;
+			if (language.empty())
+				continue;
+			for (int priority = 0; priority < best; ++priority) {
+				if (!languages[priority].empty() && languages[priority].find(language) != std::string::npos) {
+					wanted = i;
+					best = priority;
+					break;
+				}
+			}
+		}
+	}
+	// Apply only after discovery and PLAYING, whichever arrives last. A seek or
+	// pause/resume must not restore the startup preference over a manual choice.
+	m_initialAudioSelection = false;
+	if (getCurrentTrack() != wanted)
+		// Startup selection does not need a flushing seek. Non-seekable streams
+		// would otherwise restart the pipeline and lose the selected track again.
+		selectAudioStream(wanted, true, false);
 }
 
 /**
@@ -2955,6 +3005,8 @@ void eServiceMP3::clearBuffers(bool force) {
 		/* flush */
 		int res = seekTo(ppos);
 		if (res == -1) {
+			m_initialAudioStream = getCurrentTrack();
+			m_initialAudioSelection = true;
 			m_clear_buffers = false;
 			m_send_ev_start = false;
 			stop();
@@ -2973,9 +3025,10 @@ void eServiceMP3::clearBuffers(bool force) {
  *
  * @param[in] i The index of the audio stream to select.
  * @param[in] skipAudioFix If true, skips the audio fix logic.
+ * @param[in] remember If true, saves a successful manual selection.
  * @return int Returns 0 on success, or -1 if the selection fails.
  */
-int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
+int eServiceMP3::selectAudioStream(int i, bool skipAudioFix, bool remember) {
 	if (m_is_dash_pipeline) {
 		/* Single-track DASH pipeline; any non-zero index = unsupported. */
 		m_currentAudioStream = 0;
@@ -2997,20 +3050,16 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
 	}
 	if (!skipAudioFix)
 		m_audio_switch_deferred = -1;
-	int current_audio, current_audio_orig;
-	g_object_get(m_gst_playbin, "current-audio", &current_audio_orig, NULL);
+	int current_audio;
 	g_object_set(m_gst_playbin, "current-audio", i, NULL);
 	g_object_get(m_gst_playbin, "current-audio", &current_audio, NULL);
-	if (current_audio != i) {
-		current_audio = i;
-	}
 	if (current_audio == i) {
+		m_currentAudioStream = i;
 		if (!skipAudioFix) {
 			eDebug("[eServiceMP3] switched to audio stream %d", current_audio);
-			m_currentAudioStream = i;
-
 			clearBuffers();
-			setCacheEntry(true, i);
+			if (remember)
+				setCacheEntry(true, i);
 		}
 		return 0;
 	}
@@ -3331,47 +3380,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						// eDebug("[eServiceMP3] applying deferred subtitle switch");
 						applySubtitleStreamSwitch();
 					}
-					if (m_audio_switch_deferred >= 0) {
-						int deferred_audio = m_audio_switch_deferred;
-						m_audio_switch_deferred = -1;
-						// eDebug("[eServiceMP3] applying deferred audio switch to stream %d", deferred_audio);
-						selectTrack(deferred_audio);
-					} else if (m_currentAudioStream < 0) {
-						unsigned int autoaudio = 0;
-						int autoaudio_level = 5;
-						std::string configvalue;
-						std::vector<std::string> autoaudio_languages;
-						configvalue = eSettings::audio_autoselect1;
-						if (configvalue != "")
-							autoaudio_languages.push_back(configvalue);
-						configvalue = eSettings::audio_autoselect2;
-						if (configvalue != "")
-							autoaudio_languages.push_back(configvalue);
-						configvalue = eSettings::audio_autoselect3;
-						if (configvalue != "")
-							autoaudio_languages.push_back(configvalue);
-						configvalue = eSettings::audio_autoselect4;
-						if (configvalue != "")
-							autoaudio_languages.push_back(configvalue);
-
-						for (unsigned int i = 0; i < m_audioStreams.size(); i++) {
-							if (!m_audioStreams[i].language_code.empty()) {
-								int x = 1;
-								for (std::vector<std::string>::iterator it = autoaudio_languages.begin();
-									 x < autoaudio_level && it != autoaudio_languages.end(); x++, it++) {
-									if ((*it).find(m_audioStreams[i].language_code) != std::string::npos) {
-										autoaudio = i;
-										autoaudio_level = x;
-										break;
-									}
-								}
-							}
-						}
-						if (autoaudio)
-							selectTrack(autoaudio);
-					} else {
-						selectTrack(m_currentAudioStream);
-					}
+					applyAudioSelection();
 					if (!m_first_paused)
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					m_first_paused = false;
@@ -3570,18 +3579,17 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					GstTagList* tags = NULL;
 					GstPad* pad = 0;
 					g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
-					if(!pad)
-						continue;
-					GstCaps* caps = gst_pad_get_current_caps(pad);
-					gst_object_unref(pad);
-					if (!caps)
-						continue;
-					GstStructure* str = gst_caps_get_structure(caps, 0);
-					const gchar* g_type = gst_structure_get_name(str);
-					// eDebug("[eServiceMP3] AUDIO STRUCT=%s", g_type);
-					audio.type = gstCheckAudioPad(str);
+					GstCaps* caps = pad ? gst_pad_get_current_caps(pad) : NULL;
+					if (pad)
+						gst_object_unref(pad);
+					// Keep playbin's indices even if an unselected pad has no caps yet.
+					// Dropping it would make every subsequent cached/menu index incorrect.
+					if (caps && gst_caps_get_size(caps)) {
+						GstStructure* str = gst_caps_get_structure(caps, 0);
+						audio.type = gstCheckAudioPad(str);
+						audio.codec = gst_structure_get_name(str);
+					}
 					audio.language_code = "und";
-					audio.codec = g_type;
 					g_codec = NULL;
 					g_lang = NULL;
 					g_title = NULL;
@@ -3615,7 +3623,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					// audio.language_code.c_str()); codec_tofix = (audio.codec.find("MPEG-1 Layer 3 (MP3)") == 0 ||
 					// audio.codec.find("MPEG-2 AAC") == 0) && n_audio - n_video == 1;
 					audioStreams_temp.push_back(audio);
-					gst_caps_unref(caps);
+					if (caps)
+						gst_caps_unref(caps);
 				}
 
 				for (i = 0; i < n_text; i++) {
@@ -3687,6 +3696,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 			} else {
 				m_send_ev_start = true;
 			}
+			applyAudioSelection();
 
 			if (!m_prerolled)
 				applyPendingSeek();
