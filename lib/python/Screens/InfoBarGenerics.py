@@ -12,6 +12,8 @@ from re import match
 from Tools.ServiceAction import ServiceAction
 from sys import maxsize
 from time import localtime, strftime, time
+from twisted.internet import reactor
+from twisted.internet.threads import deferToThread
 
 from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
 
@@ -3894,6 +3896,8 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 class InfoBarInstantRecord:
 	"""Instant Record - Handles the instantRecord action in order to start/stop instant recordings."""
 
+	instantRecordPending = set()  # Shared by all instances, like self.recording.
+
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord", {
 			"instantRecord": (self.keyInstantRecord, _("Start an instant recording")),
@@ -3913,12 +3917,6 @@ class InfoBarInstantRecord:
 
 	def keyInstantRecord(self, serviceRef=None):
 		self.selectedInstantServiceRef = serviceRef
-		pirp = preferredInstantRecordPath()
-		if not findSafeRecordPath(pirp) and not findSafeRecordPath(defaultMoviePath()):
-			if not pirp:
-				pirp = ""
-			self.session.open(MessageBox, "%s\n\n%s" % (_("Path '%s' missing!") % pirp, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
-			return
 		serviceReference = ServiceReference(serviceRef or self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if isStandardInfoBar(self) and serviceReference.isRecordable() and not self.getInstantRecordings(serviceReference):
 			commonRecord = [
@@ -4098,9 +4096,6 @@ class InfoBarInstantRecord:
 		if self.getInstantRecordings(serviceReference):
 			Notifications.showInfo(_("An instant recording is already running on this service."))
 			return None
-		if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
-			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
-			return None
 		recording = RecordTimerEntry(serviceReference, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
 		recording.marginBefore = 0
 		recording.dontSave = True
@@ -4123,7 +4118,7 @@ class InfoBarInstantRecord:
 		if original is not None and (original not in manager.timer_list or original.state >= RecordTimerEntry.StateEnded or original.cancelled):
 			Notifications.showInfo(_("This recording has already ended."))
 			return None
-		if original is None and self.getInstantRecordings(recording.service_ref):
+		if original is None and (self.getInstantRecordings(recording.service_ref) or str(recording.service_ref) in self.instantRecordPending):
 			Notifications.showInfo(_("An instant recording is already running on this service."))
 			return None
 		recording.begin = recording.eventBegin = int(time())
@@ -4149,6 +4144,36 @@ class InfoBarInstantRecord:
 		if len(self.getInstantRecordings()) >= 2 and BoxInfo.getItem("ChipsetString") in ("meson-6", "meson-64"):
 			Notifications.AddNotification(MessageBox, _("Sorry it is only possible to record 2 channels at once!"), MessageBox.TYPE_ERROR, timeout=5)
 			return None
+		# Check the record path in a thread, a sleeping HDD would block the GUI until spin-up.
+		self.prepareInstantRecordingPath(recording)
+		return None
+
+	def prepareInstantRecordingPath(self, recording):
+		def showPopup():
+			Notifications.AddPopup(_("Preparing recording, please wait..."), MessageBox.TYPE_INFO, timeout=30, id=popupId)
+
+		def finish(resolvedPath):
+			if popupTimer.active():
+				popupTimer.cancel()
+			Notifications.RemovePopup(popupId)
+			self.instantRecordPending.discard(serviceKey)
+			self.finishInstantRecordingSubmit(recording, resolvedPath)
+
+		serviceKey = str(recording.service_ref)
+		self.instantRecordPending.add(serviceKey)
+		popupId = f"InstantRecordPrepare-{id(recording)}"
+		popupTimer = reactor.callLater(0.3, showPopup)  # Only show the popup if the HDD has to spin up.
+		path = recording.dirname or preferredInstantRecordPath()
+		deferred = deferToThread(lambda: findSafeRecordPath(path) or findSafeRecordPath(defaultMoviePath()))
+		deferred.addTimeout(30, reactor)
+		deferred.addCallbacks(finish, lambda failure: finish(None))
+
+	def finishInstantRecordingSubmit(self, recording, resolvedPath):
+		if not resolvedPath:
+			path = recording.dirname or preferredInstantRecordPath() or ""
+			self.session.open(MessageBox, "%s\n\n%s" % (_("Path '%s' missing!") % path, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
+			return
+		manager = self.session.nav.RecordTimer
 		conflicts = manager.record(recording)
 		if conflicts:
 			# Re-evaluate if timer state changed since the first check.
@@ -4157,10 +4182,8 @@ class InfoBarInstantRecord:
 			self.showInstantRecordingConflict(recording, None, checker, conflicts)
 		elif recording in manager.timer_list:
 			self.recording.append(recording)
-			return recording
 		else:  # RecordTimer.record() also returns None for an existing duplicate.
 			Notifications.showInfo(_("An existing timer already records this service during the requested time."))
-		return None
 
 	def getInstantRecordingLimit(self, recording, original, checker):
 		# Use the expanded timer occurrences, including repeating timers. Try the
