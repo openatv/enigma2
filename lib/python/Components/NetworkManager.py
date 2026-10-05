@@ -4,8 +4,8 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from ipaddress import ip_address
 from json import JSONDecodeError, loads
-from os import chmod, listdir, makedirs, remove, rmdir
-from os.path import basename, exists, isdir, ismount, realpath
+from os import chmod, listdir, makedirs, readlink, remove, replace, rmdir, symlink
+from os.path import abspath, basename, dirname, exists, isdir, islink, ismount, join, lexists, realpath
 from pickle import dump as pickleDump, load as pickleLoad
 from re import compile, match, sub
 from shutil import copy2
@@ -1639,6 +1639,116 @@ class NetworkMountRepository:
 	FSTAB_PATH = "/etc/fstab"
 	MOUNT_BIN = "/bin/mount"
 	DISABLED_PREFIX = "#DISABLED# "
+	HDD_PATH = "/media/hdd"
+	AUTOFS_PATH = "/media/autofs"
+	MOUNTS_PATH = "/proc/mounts"
+	HDD_AUTOFS_PREFIX = "# enigma2-autofs-hdd: "
+
+	def hddLink(self):
+		# Do not resolve/stat the destination: that would wake an offline NAS.
+		return abspath(join(dirname(self.HDD_PATH), readlink(self.HDD_PATH))) if islink(self.HDD_PATH) else None
+
+	def validateHddReplacement(self, mounts, previous):
+		replacements = [mount for mount in mounts if mount.get("hddReplacement")]
+		if len(replacements) > 1:
+			return _("Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first.")
+		mountPoints = set()
+		for mount in mounts:
+			name = mount.get("shareName", "")
+			if not name or name in (".", "..") or any(char.isspace() or char in "/\\#" for char in name):
+				return _("The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'.")
+			path = self.mountPointFor(mount)
+			if path in mountPoints:
+				return _("The mount point '%s' is used by more than one share.") % path
+			mountPoints.add(path)
+		if any(mount.get("hddReplacement") and mount.get("enabled") and mount.get("mode") == "fstab" for mount in mounts):
+			return self.hddReplacementConflict(mounts, previous)
+		return None
+
+	def hddReplacementConflict(self, mounts, previous):
+		replacements = [mount for mount in mounts if mount.get("hddReplacement")]
+		active = next((mount for mount in replacements if mount.get("enabled")), None)
+		oldTargets = {self.mountPointFor(mount) for mount in previous if mount.get("hddReplacement") and mount.get("mode") == "autofs"}
+		link = self.hddLink()
+		if active is None and link not in oldTargets:
+			return None
+		for line in fileReadLines(self.FSTAB_PATH, default=[], source=MODULE_NAME):
+			fields = line.split()
+			if fields and not line.lstrip().startswith("#") and len(fields) > 1 and fields[1].rstrip("/") == self.HDD_PATH and self.parseFstabLine(line) is None:
+				return _("/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first.")
+		mountLines = fileReadLines(self.MOUNTS_PATH, default=None, source=MODULE_NAME)
+		if mountLines is None:
+			return _("Unable to check existing mounts. HDD replacement was not changed.")
+		sameFstabMount = False
+		for line in mountLines:
+			fields = line.split()
+			if len(fields) < 3 or not (fields[1] == self.HDD_PATH or fields[1].startswith(f"{self.HDD_PATH}/")):
+				continue
+			# Editing options of the same mounted fstab share is safe. Switching
+			# to a different share/mode or touching a local mount is not.
+			mounted = self.parseFstabLine(line)
+			if active and active.get("mode") == "fstab" and mounted and fields[1] == self.HDD_PATH and all(active.get(key) == mounted.get(key) for key in ("server", "protocol", "remotePath")):
+				sameFstabMount = True
+				continue
+			return _("/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement.")
+		if sameFstabMount:
+			return None
+		if link:
+			if link not in oldTargets and not (active and active.get("mode") == "autofs" and link == self.mountPointFor(active)):
+				return _("/media/hdd is an existing symbolic link to another location. It will not be overwritten.")
+		elif lexists(self.HDD_PATH):
+			if not isdir(self.HDD_PATH):
+				return _("/media/hdd already exists and is not a directory. It will not be overwritten.")
+			# Only empty standard directories may be removed, never user data.
+			for name in listdir(self.HDD_PATH):
+				path = join(self.HDD_PATH, name)
+				if name not in ("movie", "timeshift") or islink(path) or not isdir(path) or listdir(path):
+					return _("/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted.")
+		return None
+
+	def applyHddReplacement(self, mounts, previous):
+		error = self.validateHddReplacement(mounts, previous)
+		if error:
+			return error
+		conflict = self.hddReplacementConflict(mounts, previous)
+		if conflict:
+			# HDD replacement is optional for autofs. Leave occupied paths alone;
+			# the share still works through /media/autofs without a UI error.
+			print(f"[{MODULE_NAME}] Skipping autofs HDD link: {conflict}")
+			return None
+		target = next((self.mountPointFor(mount) for mount in mounts if mount.get("hddReplacement") and mount.get("enabled") and mount.get("mode") == "autofs"), None)
+		link = self.hddLink()
+		oldTargets = {self.mountPointFor(mount) for mount in previous if mount.get("hddReplacement") and mount.get("mode") == "autofs"}
+		if target == link:
+			return None
+		if target is None:
+			if link in oldTargets:
+				remove(self.HDD_PATH)  # Only the owned link, never its destination.
+				makedirs(self.HDD_PATH, exist_ok=True)
+			return None
+		temporary = f"{self.HDD_PATH}.{uuid4().hex}.tmp"
+		removed = []
+		try:
+			symlink(target, temporary)
+			if not link and lexists(self.HDD_PATH):
+				for name in listdir(self.HDD_PATH):
+					if name not in ("movie", "timeshift"):
+						raise OSError("HDD directory changed while setting up the link")
+					path = join(self.HDD_PATH, name)
+					rmdir(path)  # Fails safely if a file appeared after validation.
+					removed.append(path)
+				rmdir(self.HDD_PATH)
+			replace(temporary, self.HDD_PATH)
+		except OSError:
+			if not link:
+				makedirs(self.HDD_PATH, exist_ok=True)
+				for path in removed:
+					makedirs(path, exist_ok=True)
+			raise
+		finally:
+			if islink(temporary):
+				remove(temporary)
+		return None
 
 	def parseFstabLine(self, line):
 		line = line.strip()
@@ -1671,7 +1781,7 @@ class NetworkMountRepository:
 			"mode": "fstab",
 			"protocol": protocol,
 			"enabled": enabled,
-			"hddReplacement": mountpoint.rstrip("/") == "/media/hdd",
+			"hddReplacement": mountpoint.rstrip("/") == self.HDD_PATH,
 			"shareName": shareName,
 			"server": server,
 			"remotePath": remotePath,
@@ -1775,6 +1885,11 @@ class NetworkMountRepository:
 				mounts += readMode(root, "old_enigma2")
 		mergeUnmanaged(mounts, self.FSTAB_PATH, self.parseFstabLine)
 		mergeUnmanaged(mounts, self.AUTO_NETWORK_PATH, self.parseAutoNetworkLine)
+		hddShares = {line.strip()[len(self.HDD_AUTOFS_PREFIX):] for line in fileReadLines(self.FSTAB_PATH, default=[], source=MODULE_NAME) if line.strip().startswith(self.HDD_AUTOFS_PREFIX)}
+		link = self.hddLink()
+		for mount in mounts:
+			if mount.get("mode") == "autofs":
+				mount["hddReplacement"] = mount["shareName"] in hddShares if hddShares else (mount.get("hddReplacement", False) or link == self.mountPointFor(mount))
 		return mounts
 
 	def save(self, mounts):
@@ -1782,7 +1897,7 @@ class NetworkMountRepository:
 			autoNetworkLines = [line for line in fileReadLines(self.AUTO_NETWORK_PATH, default=[], source=MODULE_NAME)
 				if self.parseAutoNetworkLine(line) is None]
 			fstabLines = [line for line in fileReadLines(self.FSTAB_PATH, default=[], source=MODULE_NAME)
-				if self.parseFstabLine(line) is None]
+				if self.parseFstabLine(line) is None and not line.strip().startswith(self.HDD_AUTOFS_PREFIX)]
 			for mount, mode in effective:
 				prefix = "" if mount.get("enabled") else self.DISABLED_PREFIX
 				protocol = mount.get("protocol") or "nfs"
@@ -1790,6 +1905,8 @@ class NetworkMountRepository:
 				remotePath = mount.get("remotePath") or ""
 				shareName = mount.get("shareName") or ""
 				if mode == "autofs":
+					if mount.get("hddReplacement"):
+						fstabLines.append(f"{self.HDD_AUTOFS_PREFIX}{shareName}")
 					if protocol == "nfs":
 						autoNetworkLines.append(f"{prefix}{shareName} -fstype=nfs,{self.buildNfsOptions(mount)} {server}:/{remotePath}")
 					else:
@@ -1807,8 +1924,8 @@ class NetworkMountRepository:
 
 			# print("[{MODULE_NAME}] NetworkMountRepository autoNetworkLines:", autoNetworkLines)
 			# print("[{MODULE_NAME}] NetworkMountRepository fstabLines:", fstabLines)
-			fileWriteLines(self.AUTO_NETWORK_PATH, autoNetworkLines, source=MODULE_NAME)
-			fileWriteLines(self.FSTAB_PATH, fstabLines, source=MODULE_NAME)
+			return (fileWriteLines(self.AUTO_NETWORK_PATH, autoNetworkLines, source=MODULE_NAME)
+				and fileWriteLines(self.FSTAB_PATH, fstabLines, source=MODULE_NAME))
 
 		effective = []
 		for mount in mounts:
@@ -1816,7 +1933,25 @@ class NetworkMountRepository:
 			if mode not in self.WRITE_MODES:
 				mode = "fstab"
 			effective.append((mount, mode))
-		writeMountFiles(effective)
+		previous = self.load()
+		try:
+			error = self.validateHddReplacement(mounts, previous)
+		except OSError as err:
+			return _("Unable to check HDD replacement: %s") % err
+		if error:
+			return error
+		originals = {path: fileReadLines(path, default=[], source=MODULE_NAME) for path in (self.AUTO_NETWORK_PATH, self.FSTAB_PATH)}
+		try:
+			if not writeMountFiles(effective):
+				error = _("Unable to save network mount configuration!")
+			else:
+				error = self.applyHddReplacement(mounts, previous)
+		except OSError as err:
+			error = _("Unable to update HDD replacement: %s") % err
+		if error:
+			for path, lines in originals.items():
+				fileWriteLines(path, lines, source=MODULE_NAME)
+		return error
 
 	NFS_RESERVED_OPTION_KEYS = frozenset(("ro", "rw", "nolock", "lock", "proto", "nfsvers", "rsize", "wsize", "timeo", "soft", "hard"))
 	CIFS_RESERVED_OPTION_KEYS = frozenset(("user", "username", "pass", "password", "ro", "rw", "vers", "iocharset"))
@@ -1943,9 +2078,9 @@ class NetworkMountRepository:
 	def mountPointFor(self, mount):
 		shareName = mount.get("shareName") or mount.get("id", "")
 		if mount.get("mode") == "autofs":
-			return f"/media/autofs/{shareName}"
+			return f"{self.AUTOFS_PATH}/{shareName}"
 		if mount.get("hddReplacement"):
-			return "/media/hdd"
+			return self.HDD_PATH
 		return f"/media/net/{shareName}"
 
 	def isMounted(self, mount):
@@ -2035,6 +2170,15 @@ class NetworkCheck:
 		self.console = Console()
 
 	def start(self):
+		# The link is local metadata; restoring it must not wait for network/DNS.
+		repository = NetworkMountRepository()
+		try:
+			mounts = repository.load()
+			error = repository.applyHddReplacement(mounts, mounts)
+		except OSError as err:
+			error = str(err)
+		if error:
+			print(f"[{MODULE_NAME}] HDD replacement: {error}")
 		self.retry = 10
 		self.timer.start(1000, True)
 
