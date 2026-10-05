@@ -3404,6 +3404,28 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				m_event((iPlayableService*)this, evTuneFailed);
 				break;
 			}
+			if (m_sourceinfo.is_streaming && !m_is_dash_pipeline && !m_is_adaptive_stream
+				&& m_state != stStopped && err->domain == GST_RESOURCE_ERROR
+				&& (err->code == GST_RESOURCE_ERROR_READ || err->code == GST_RESOURCE_ERROR_OPEN_READ
+					|| err->code == GST_RESOURCE_ERROR_SEEK)) {
+				// Notify Navigation before the existing stop/EOF handling. It may
+				// retry live TV, but must leave movie players and normal EOF alone.
+				GstElement* input = NULL;
+				g_object_get(m_gst_playbin, "source", &input, NULL);
+				GstElementFactory* factory = input ? gst_element_get_factory(input) : NULL;
+				const GstStructure* details = NULL;
+				guint status = 0;
+				gst_message_parse_error_details(msg, &details);
+				if (details)
+					gst_structure_get_uint(details, "http-status-code", &status);
+				bool retry = input && source == GST_OBJECT(input) && factory
+					&& !strcmp(gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory)), "souphttpsrc")
+					&& (status < 400 || status == 500 || status == 502 || status == 503 || status == 504);
+				if (input)
+					gst_object_unref(input);
+				if (retry)
+					m_event((iPlayableService*)this, evStreamError);
+			}
 			if (err->domain == GST_STREAM_ERROR) {
 				if (err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND) {
 					if (g_strrstr(sourceName, "videosink"))
