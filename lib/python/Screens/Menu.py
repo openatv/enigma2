@@ -198,6 +198,11 @@ class Menu(Screen, ProtectedScreen):
 		self.selectedEntry = None
 		self.subMenuSort = None
 		self.createMenuList()
+		self.protectionSections = {
+			"setup": ("configuration",),
+			"timermenu": ("timer_menu",),
+			"shutdown": ("standby_menu",)
+		}.get(self.menuID, ())
 		ProtectedScreen.__init__(self)  # ProtectedScreen needs self.menuID
 		# For the skin: first try a menu_<menuID>, then Menu.
 		self.skinName = []
@@ -249,7 +254,8 @@ class Menu(Screen, ProtectedScreen):
 		self.nextNumberTimer = eTimer()
 		self.nextNumberTimer.callback.append(self.okbuttonClick)
 		if len(self.menuList) == 1:  # Does this menu have only one item, if so just run that item.
-			self.onExecBegin.append(self.singleItemMenu)
+			self.singleItemMenuAction = self.protectedCallback(self.singleItemMenu)
+			self.onExecBegin.append(self.singleItemMenuAction)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def createMenuList(self, showNumericHelp=False):
@@ -494,7 +500,7 @@ class Menu(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
 	def singleItemMenu(self):
-		self.onExecBegin.remove(self.singleItemMenu)
+		self.onExecBegin.remove(self.singleItemMenuAction)
 		self.okbuttonClick()
 
 	def closeRecursive(self):
@@ -503,17 +509,6 @@ class Menu(Screen, ProtectedScreen):
 
 	def createSummary(self):
 		return MenuSummary
-
-	def isProtected(self):
-		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value and not (hasattr(self.session, "infobar") and self.session.infobar is None):
-				return self.menuID == "mainmenu"
-			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
-				return True
-			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
-				return True
-			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
-				return True
 
 	def keyOk(self):
 		if self.sortMode and len(self.menuList):

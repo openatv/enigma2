@@ -19,6 +19,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Information import InformationNetwork
 from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.Conversions import formatNetworkSpeed
@@ -88,7 +89,9 @@ def scanResultToConnection(scanResult, adapter):
 
 # Adapters (top list) and Saved Wi-Fi Networks for the selected adapter (bottom list).
 #
-class NetworkOverview(Screen):
+class NetworkOverview(Screen, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	skin = """
 	<screen name="NetworkOverview" title="Network Overview" position="center,center" size="1100,540" resolution="1280,720">
 		<widget source="adapterList" render="Listbox" position="10,10" size="e-20,250">
@@ -174,6 +177,7 @@ class NetworkOverview(Screen):
 			networkManager.onAdaptersChanged.remove(self.refreshAdapters)
 
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Network Overview"))
 		self["savedLabel"] = StaticText()
 		self["key_red"] = StaticText(_("Close"))

@@ -54,6 +54,7 @@ from Screens.EventView import showEventViewCallback
 from Screens.InputBox import InputBox
 from Screens.Menu import Menu, MenuHorizontal, findMenu
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen, runWithScreenProtection, runWithScreenProtectionScopes
 from Screens.MinuteInput import MinuteInput
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
@@ -320,7 +321,9 @@ class InfoBarMenu:
 		self.session.open(MessageBox, _("Aspect ratio set to '%s'.") % aspectRatios[index][1], MessageBox.TYPE_INFO, timeout=3, closeOnAnyKey=True, windowTitle=_("Aspect Ratio"))
 
 
-class ExtensionsList(ChoiceBox):
+class ExtensionsList(ChoiceBox, ProtectedScreen):
+	protectionSections = ("extensions_menu", "plugin_browser")
+
 	def __init__(self, session, extensions):
 		colorKeys = {
 			"red": 1,
@@ -352,6 +355,7 @@ class ExtensionsList(ChoiceBox):
 			extensionList.append((extension[0], extension[1]))
 		reorderConfig = "extensionOrder" if config.usage.sortExtensionslist.value == "user" else ""
 		ChoiceBox.__init__(self, session, title=_("Extensions"), list=extensionList, keys=extensionKeys, reorderConfig=reorderConfig, skinName="ExtensionsList")
+		ProtectedScreen.__init__(self)
 
 
 class InfoBarExtensions:
@@ -395,11 +399,15 @@ class InfoBarExtensions:
 		self.session.open(QuickMenu)
 
 	def showExtensionSelection(self):
+		authorizedSections = set()
+
 		def showExtensionSelectionCallback(answer):
 			if answer is not None:
-				answer[1][1]()
+				runWithScreenProtectionScopes(self.session, authorizedSections, answer[1][1])
 
-		self.session.openWithCallback(showExtensionSelectionCallback, ExtensionsList, self.extensionList)
+		dialog = self.session.openWithCallback(showExtensionSelectionCallback, ExtensionsList, self.extensionList)
+		# ChoiceBox is destroyed before its selection callback runs.
+		dialog.onClose.append(lambda: authorizedSections.update(dialog.screenProtectionScopes))
 
 	def keyExtensions(self):
 		if config.workaround.blueswitch.value:
@@ -510,6 +518,9 @@ class InfoBarPlugins:  # Depends on InfoBarExtensions.
 		return name
 
 	def runPlugin(self, plugin):  # Used in AudioSelection.py
+		return runWithScreenProtection(self.session, ("plugin_browser", "extensions_menu"), boundFunction(self.runPluginProtected, plugin))
+
+	def runPluginProtected(self, plugin):
 		if isinstance(self, InfoBarChannelSelection):
 			plugin(session=self.session, servicelist=self.servicelist)
 		else:
@@ -3240,7 +3251,7 @@ class InfoBarEPG:
 			answer[1]()
 
 	def runPlugin(self, plugin):
-		plugin(session=self.session, servicelist=self.servicelist)
+		return runWithScreenProtection(self.session, ("plugin_browser", "extensions_menu"), boundFunction(plugin, session=self.session, servicelist=self.servicelist))
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:

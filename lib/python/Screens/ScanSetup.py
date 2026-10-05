@@ -1,3 +1,4 @@
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, ConfigFloat
@@ -604,9 +605,12 @@ class TerrestrialTransponderSearchSupport:
 		self.terrestrial_search_container.execute(cmd)
 
 
-class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
+class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Manual Scan"))
 
 		self.finished_cb = None
@@ -1890,7 +1894,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		self.closeRecursive()
 
 
-class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
+class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	def getNetworksForNim(self, nim):
 		networks = []
 		if nim.canBeCompatible("DVB-S") and nim.config.dvbs.configMode.value != "nothing":
@@ -1910,6 +1916,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Automatic Scan"))
 
 		self["key_red"] = StaticText(_("Close"))

@@ -41,6 +41,13 @@ config.ParentalControl.config_sections.context_menus = ConfigYesNo(default=False
 # config.ParentalControl.config_sections.infopanel = ConfigYesNo(default=False)
 config.ParentalControl.config_sections.quickmenu = ConfigYesNo(default=False)
 config.ParentalControl.config_sections.software_update = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.multiboot = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.flash_restore = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.storage = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.packages = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.scripts = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.extensions_menu = ConfigYesNo(default=False)
+config.ParentalControl.config_sections.manufacturer_reset = ConfigYesNo(default=False)
 # Added for backwards compatibility with some 3rd party plugins that depend on this configuration.
 config.ParentalControl.servicepinactive = config.ParentalControl.configured
 config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]

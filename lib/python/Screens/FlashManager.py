@@ -21,6 +21,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.BackupRestore import BackupScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.Downloader import DownloadWithProgress, USER_AGENTS
 from Tools.MultiBoot import MultiBoot
@@ -145,7 +146,9 @@ class LocalImageScan:
 			self.workerSlots.release()
 
 
-class FlashManager(Screen):
+class FlashManager(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "flash_restore")
+
 	skin = """
 	<screen name="FlashManager" title="Flash Manager" position="center,center" size="900,485" resolution="1280,720">
 		<widget name="list" position="0,0" size="e,400" scrollbarMode="showOnDemand" />
@@ -169,6 +172,7 @@ class FlashManager(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.skinName = ["FlashManager", "FlashOnline"]
 		self.imageFeed = "OpenATV"
 		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
@@ -216,7 +220,7 @@ class FlashManager(Screen):
 		self.feedUrls = [
 			("OpenATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName"))
 		]
-		self.callLater(self.getImagesList)
+		self.callLater(self.protectedCallback(self.getImagesList))
 
 	def getImagesList(self):
 		if not self.imagesListLoaded:
@@ -467,7 +471,9 @@ class FlashManager(Screen):
 		self["deleteActions"].setEnabled(canDelete)
 
 
-class FlashImage(Screen):
+class FlashImage(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "flash_restore")
+
 	skin = """
 	<screen name="FlashImage" title="Flash Image" position="center,center" size="720,225" resolution="1280,720">
 		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
@@ -477,6 +483,7 @@ class FlashImage(Screen):
 
 	def __init__(self, session, imageName, source, downloadOnly=False):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.imageName = imageName
 		self.source = source
 		self.setTitle(_("Flash Image"))
@@ -497,7 +504,7 @@ class FlashImage(Screen):
 			"ok": (self.keyOK, _("Continue with the flash process"))
 		}, prio=-1, description=_("Image Flash Actions"))
 		self.hide()
-		self.callLater(self.confirmation)
+		self.callLater(self.protectedCallback(self.confirmation))
 		self.backupBasePath = config.plugins.configurationbackup.backuplocation.value if not exists("/media/hdd/") else "/media/hdd/"
 
 	def keyCancel(self, reply=None):

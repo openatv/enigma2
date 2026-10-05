@@ -16,6 +16,7 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.Console import Console as ConsoleScreen
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
@@ -85,7 +86,9 @@ def hasAdditionalSlots():
 	return any(isAdditionalSlot(slotCode) for slotCode in MultiBoot.getBootSlots())
 
 
-class MultiBootManager(Screen):
+class MultiBootManager(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "multiboot")
+
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
 	skin = """
@@ -117,6 +120,7 @@ class MultiBootManager(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("MultiBoot Manager"))
 		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
 		self.defaultDescription = _("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots.")
@@ -175,7 +179,7 @@ class MultiBootManager(Screen):
 		self.emptySlotCount = 0
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
-		self.callLater(self.getSlotList)
+		self.callLater(self.protectedCallback(self.getSlotList))
 
 	def layoutFinished(self):
 		self["slotlist"].enableAutoNavigation(False)
@@ -490,7 +494,9 @@ class MultiBootManager(Screen):
 			self.session.open(KexecSlotManager)
 
 
-class KexecInit(Screen):
+class KexecInit(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "multiboot")
+
 	skin = """
 	<screen name="KexecInit" title="Kexec MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
 		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
@@ -507,6 +513,7 @@ class KexecInit(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Kexec MultiBoot Manager"))
 		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()
@@ -567,6 +574,8 @@ class KexecInit(Screen):
 
 
 class KexecSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -736,6 +745,8 @@ class KexecSlotManager(Setup):
 
 
 class GPTSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -991,7 +1002,9 @@ class GPTSlotManager(Setup):
 		}.get(self.green, _("Invalid")))
 
 
-class ChkrootInit(Screen):
+class ChkrootInit(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "multiboot")
+
 	skin = """
 	<screen name="ChkrootInit" title="Chkroot MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
 		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
@@ -1008,6 +1021,7 @@ class ChkrootInit(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.skinName = "KexecInit"
 		self.setTitle(_("Chkroot MultiBoot Manager"))
 		self["key_red"] = StaticText()
@@ -1094,6 +1108,8 @@ class ChkrootInit(Screen):
 
 
 class ChkrootSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -1288,6 +1304,8 @@ class ChkrootSlotManager(Setup):
 
 
 class NativeSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -1688,6 +1706,8 @@ class NativeSlotManager(Setup):
 
 
 class UBISlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {

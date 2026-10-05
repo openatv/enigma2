@@ -24,6 +24,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 import Screens.InfoBar
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
@@ -36,6 +37,8 @@ MODULE_NAME = __name__.split(".")[-1]
 
 
 class StorageDeviceAction(Setup):
+	protectionSections = ("configuration", "storage")
+
 	ACTION_INITIALIZE = 1
 	ACTION_CHECK = 2
 	ACTION_EXT4CONVERSION = 3
@@ -418,7 +421,9 @@ class StorageDeviceManager():
 		return result
 
 
-class DeviceManager(Screen):
+class DeviceManager(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "storage")
+
 	MOUNT = "/bin/mount"
 	UMOUNT = "/bin/umount"
 	SWAPON = "/sbin/swapon"
@@ -481,6 +486,7 @@ class DeviceManager(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session, mandatoryWidgets=["devicelist"], enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Device Manager"))
 		self.onChangedEntry = []
 		self.deviceList = []
@@ -879,6 +885,8 @@ class DeviceManager(Screen):
 
 
 class DeviceManagerMountPoints(Setup):
+	protectionSections = ("configuration", "storage")
+
 	UMOUNT = "/bin/umount"
 	MOUNT = "/bin/mount"
 	defaultOptions = {
@@ -1113,6 +1121,8 @@ class DeviceManagerMountPoints(Setup):
 
 
 class DeviceManagerSetup(Setup):
+	protectionSections = ("configuration", "storage")
+
 	def __init__(self, session):
 		Setup.__init__(self, session, "HardDisk")
 

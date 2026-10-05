@@ -23,6 +23,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 
 class SoftwareUpdate(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "software_update", "packages")
+
 	FEED_UNKNOWN = 0
 	FEED_DISABLED = 1
 	FEED_UNSTABLE = 2
@@ -137,12 +139,7 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self.timer.callback.append(self.checkTrafficLight)
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and \
-			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value or hasattr(self.session, "infobar") and self.session.infobar is None) and \
-			config.ParentalControl.config_sections.software_update.value
+		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
 
 	def timeout(self):
 		if self.activity < 0:
@@ -378,7 +375,9 @@ class SoftwareUpdateSummary(ScreenSummary):
 		self["value"].setText(f"{self.parent["package_text"].getText()} {self.parent["package_count"].getText()}")
 
 
-class RunSoftwareUpdate(Screen):
+class RunSoftwareUpdate(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "software_update", "packages")
+
 	skin = """
 	<screen name="RunSoftwareUpdate" position="center,center" size="720,435" resolution="1280,720">
 		<widget name="update" position="10,10" size="700,400" font="Regular;20" halign="center" transparent="1" valign="center" />
@@ -387,6 +386,7 @@ class RunSoftwareUpdate(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Software Update"))
 		self.onTimerTick = []
 		self["update"] = ScrollLabel(_("Software update starting, please wait.\n\n"))
@@ -414,7 +414,7 @@ class RunSoftwareUpdate(Screen):
 		self.timer.callback.append(self.timeout)
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
 
 	def timeout(self):
 		if self.activity < 0:

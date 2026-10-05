@@ -19,6 +19,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.AutoDiseqc import AutoDiseqc
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import SetupSummary
 from Tools.BoundFunction import boundFunction
@@ -110,10 +111,13 @@ class ServiceStopScreen:
 			self.serviceSlot = -1
 
 
-class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
+class NimSetup(Screen, ConfigListScreen, ServiceStopScreen, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	def __init__(self, session, slotid):
 		printCallSequence(10)
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setup_title = _("Tuner Settings")
 		self.slotid = slotid
 		self.list = []
@@ -153,7 +157,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if self.canMeasureInputPower:
 			self.updateInputPowerStatus()
 			self.inputPowerTimer.start(500, False)
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
 
 	def layoutFinished(self):
 		self.newConfig()
@@ -1413,9 +1417,12 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		return SetupSummary
 
 
-class NimSelection(Screen):
+class NimSelection(Screen, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Choose Tuner"))
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
