@@ -54,10 +54,10 @@ if [ -x "@bindir@/showiframe" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 		if [ ! $stbcheck == "u5" ] && [ ! $stbcheck == "u4" ]; then
-			killall -9 showiframe; sleep 1
+			killall -9 showiframe && sleep 1
 		fi
 	else
-		killall -9 showiframe; sleep 1
+		killall -9 showiframe && sleep 1
 	fi
 	SKIN=`sed -En 's|^config\.skin\.primary_skin=(.+)/skin\.xml$|\1|p' "@sysconfdir@/enigma2/settings"`
 	if [ -n "${SKIN}" ]; then
@@ -71,11 +71,6 @@ if [ -x "@bindir@/showiframe" ]; then
 			break
 		fi
 	done
-fi
-
-# hook to execute dhcp wait script
-if [ -x @bindir@/enigma2_dhcp_wait.sh ]; then
-	@bindir@/enigma2_dhcp_wait.sh
 fi
 
 # hook to execute scripts always before enigma2 start
