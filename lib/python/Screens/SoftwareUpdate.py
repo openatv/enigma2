@@ -283,14 +283,17 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 					self.session.open(FlashManager)
 				case 2:
 					self.session.open(RunSoftwareUpdate)
+				case 3:
+					from Screens.ImageBackup import ImageBackup
+					self.session.openWithCallback(showWarning, ImageBackup)
+					return
+				case 4:
+					from Screens.BackupRestore import BackupScreen
+					self.session.openWithCallback(showWarning, BackupScreen, runBackup=True)
+					return
 			self.close()
 
-		self.opkg.removeCallback(self.opkgCallback)
-		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
-		if self.packageCount <= updateLimit:
-			keyUpdateCallback(2)
-		else:
-			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
+		def showWarning(*args):
 			message = [
 				_("Warning: There are %d update packages!") % self.packageCount,
 				_("There is a risk that your %s %s will not boot or may malfunction after such a large on-line update.") % getBoxDisplayName(),
@@ -301,9 +304,19 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 			optionList = [
 				(_("Cancel the update"), 0),
 				(_("Perform an on-line flash instead"), 1),
-				(_("Continue with the on-line update"), 2)
+				(_("Continue with the on-line update"), 2),
+				(_("Create an image backup"), 3),
+				(_("Create a settings backup"), 4)
 			]
 			self.session.openWithCallback(keyUpdateCallback, MessageBox, message, list=optionList, default=0)
+
+		self.opkg.removeCallback(self.opkgCallback)
+		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
+		if self.packageCount <= updateLimit:
+			keyUpdateCallback(2)
+		else:
+			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
+			showWarning()
 
 	def keyRefresh(self):
 		self.timer.callback.append(self.checkTrafficLight)
