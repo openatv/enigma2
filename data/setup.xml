@@ -96,8 +96,8 @@
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet." indent="1">config.usage.multibouquet</item>
 		<item level="2" text="Load unlinked user bouquets" description="Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages." indent="1">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Hide number markers" description="When enabled, number markers will be hidden." indent="1">config.usage.hide_number_markers</item>
-		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history." indent="1">config.usage.panicbutton</item>
-		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet." indent="2">config.usage.panicchannel</item>
+		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history." indent="1">config.usage.panicbutton</item>
+		<item level="1" text="Panic channel" description="Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered." indent="2">config.usage.panicsref</item>
 		<item level="2" text="Show picons in quickzap" description="Configure if service picons will be shown in quickzap." indent="1">config.usage.numzappicon</item>
 		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed." indent="1">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Service List Appearance" />

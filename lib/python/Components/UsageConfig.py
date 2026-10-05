@@ -10,7 +10,7 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
@@ -388,7 +388,11 @@ def InitUsageConfig():
 	# ####################################################
 
 	config.usage.panicbutton = ConfigYesNo(default=False)
-	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))
+	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))  # Legacy setting, migrated to a service reference.
+	config.usage.panicsref = ConfigService()
+	if not config.usage.panicsref.value and (config.usage.panicbutton.value or config.usage.panicchannel.saved_value is not None):
+		from ServiceReference import getPanicService
+		getPanicService()
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 

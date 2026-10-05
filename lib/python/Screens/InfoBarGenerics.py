@@ -17,7 +17,7 @@ from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandl
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, createRecordTimerEntry, findSafeRecordPath, parseEvent
-from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur
+from ServiceReference import ServiceReference, getPanicService, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur, isRadioServiceReference
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, ConfigClock, ConfigSelection, config, configfile
@@ -733,49 +733,28 @@ class InfoBarNumberZap:
 	def recallPrevService(self, reply):
 		if reply:
 			if config.usage.panicbutton.value:
+				service, path = getPanicService()
+				if service is None:
+					Notifications.showWarning(_("The panic channel was not found. Please select it again in Channel Selection Settings."))
+					return
 				if self.session.pipshown:
+					if self.servicelist.dopipzap:
+						self.togglePipzap()
 					del self.session.pip
 					self.session.pipshown = False
-				self.servicelist.history_tv = []
-				self.servicelist.history_radio = []
-				self.servicelist.history = self.servicelist.history_tv
-				self.servicelist.history_pos = 0
-				self.servicelist2.history_tv = []
-				self.servicelist2.history_radio = []
-				self.servicelist2.history = self.servicelist.history_tv
-				self.servicelist2.history_pos = 0
-				if config.usage.multibouquet.value:
-					bqrootstr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
-				else:
-					self.service_types = service_types_tv
-					bqrootstr = "%s FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet" % self.service_types
-				serviceHandler = eServiceCenter.getInstance()
-				rootbouquet = eServiceReference(bqrootstr)
-				bouquet = eServiceReference(bqrootstr)
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist is not None:
-					while True:
-						bouquet = bouquetlist.getNext()
-						if bouquet.flags & eServiceReference.isDirectory:
-							self.servicelist.clearPath()
-							self.servicelist.setRoot(bouquet)
-							servicelist = serviceHandler.list(bouquet)
-							if servicelist is not None:
-								serviceIterator = servicelist.getNext()
-								while serviceIterator.valid():
-									service, bouquet2 = self.searchNumber(config.usage.panicchannel.value)
-									if service == serviceIterator:
-										break
-									serviceIterator = servicelist.getNext()
-								if serviceIterator.valid() and service == serviceIterator:
-									break
-					self.servicelist.enterPath(rootbouquet)
-					self.servicelist.enterPath(bouquet)
-					self.servicelist.saveRoot()
-					self.servicelist2.enterPath(rootbouquet)
-					self.servicelist2.enterPath(bouquet)
-					self.servicelist2.saveRoot()
-				self.selectAndStartService(service, bouquet)
+				for serviceList in (self.servicelist, self.servicelist2):
+					serviceList.history_tv = []
+					serviceList.history_radio = []
+					serviceList.history_pos = 0
+					serviceList.delhistpoint = None
+					if isRadioServiceReference(service):
+						serviceList.setModeRadio(force=True)
+					else:
+						serviceList.setModeTv()
+					serviceList.clearPath()
+					for bouquet in path:
+						serviceList.enterPath(bouquet)
+				self.selectAndStartService(service, path[-1])
 			else:
 				self.servicelist.recallPrevService()
 
