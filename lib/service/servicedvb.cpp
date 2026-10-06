@@ -1810,22 +1810,22 @@ void eDVBServicePlay::handleEofRecovery() {
 
 	eTrace("[PreciseRecovery] Corruption detected. Pausing playback, recording continues.");
 
+	/* Take the delay fingerprint BEFORE pausing: pause() freezes the decoder
+	 * clock, and a getPlayPosition() taken after it would read a stale or
+	 * zero PTS, corrupting the fingerprint. */
+	if (m_record) {
+		pts_t live_pts = 0, playback_pts = 0;
+		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
+			m_original_timeshift_delay = live_pts - playback_pts;
+			m_delay_calculated = true;
+			eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
+		}
+	}
+
 	if (m_decoder) {
 		m_decoder->pause();
 		m_is_paused = 1;
 		onRecoveryPaused();
-	}
-
-	if (m_record) {
-		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0) {
-			if (live_pts >= playback_pts)
-				m_original_timeshift_delay = live_pts - playback_pts;
-			else
-				m_original_timeshift_delay = (live_pts + 0x200000000LL) - playback_pts;
-			m_delay_calculated = true;
-			eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
-		}
 	}
 
 	m_precise_recovery_timer->start(100, false);
@@ -1837,13 +1837,14 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 		return;
 	}
 
+	/* The fingerprint is taken in handleEofRecovery() before the pause, so by
+	 * the time this timer runs m_delay_calculated is expected to be set. If it
+	 * is not (reads failed), keep retrying once per tick rather than stopping
+	 * the recovery outright. */
 	if (!m_delay_calculated) {
 		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0) {
-			if (live_pts >= playback_pts)
-				m_original_timeshift_delay = live_pts - playback_pts;
-			else
-				m_original_timeshift_delay = (live_pts + 0x200000000LL) - playback_pts;
+		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
+			m_original_timeshift_delay = live_pts - playback_pts;
 			m_delay_calculated = true;
 			eTrace("[PreciseRecovery] Delayed fingerprint set: %lld PTS", m_original_timeshift_delay);
 		}
