@@ -30,6 +30,8 @@ VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/p
 
 
 class QuickMenu(Screen, ProtectedScreen):
+	protectionSections = ("quickmenu",)
+
 	skin = """
 	<screen name="QuickMenu" title="Quick Launch Menu" position="center,center" size="1150,500" backgroundColor="#00000000" resolution="1280,720">
 		<widget source="mainlist" render="Listbox" position="0,0" size="360,450" backgroundColor="#00000000" itemHeight="50">
@@ -136,9 +138,6 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["mainlist"].enableAutoNavigation(False)
 		self["sublist"].enableAutoNavigation(False)
 		self["sublist"].selectionEnabled(False)
-
-	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.quickmenu.value
 
 	def selectionMainChanged(self):
 		if self.selectedList == self["mainlist"]:

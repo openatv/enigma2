@@ -2518,10 +2518,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.setTvMode()
 		self.setMode()
 
-	def setModeRadio(self):
+	def setModeRadio(self, force=False):
 		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
 			self.revertMode = MODE_TV
-		if config.usage.e1like_radio_mode.value:
+		if force or config.usage.e1like_radio_mode.value:
 			self.history = self.history_radio
 			self.lastservice = config.radio.lastservice
 			self.lastroot = config.radio.lastroot

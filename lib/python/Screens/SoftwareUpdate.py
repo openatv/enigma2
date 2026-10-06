@@ -23,6 +23,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 
 class SoftwareUpdate(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "software_update", "packages")
+
 	FEED_UNKNOWN = 0
 	FEED_DISABLED = 1
 	FEED_UNSTABLE = 2
@@ -137,12 +139,7 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self.timer.callback.append(self.checkTrafficLight)
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and \
-			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value or hasattr(self.session, "infobar") and self.session.infobar is None) and \
-			config.ParentalControl.config_sections.software_update.value
+		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
 
 	def timeout(self):
 		if self.activity < 0:
@@ -283,14 +280,17 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 					self.session.open(FlashManager)
 				case 2:
 					self.session.open(RunSoftwareUpdate)
+				case 3:
+					from Screens.ImageBackup import ImageBackup
+					self.session.openWithCallback(showWarning, ImageBackup)
+					return
+				case 4:
+					from Screens.BackupRestore import BackupScreen
+					self.session.openWithCallback(showWarning, BackupScreen, runBackup=True)
+					return
 			self.close()
 
-		self.opkg.removeCallback(self.opkgCallback)
-		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
-		if self.packageCount <= updateLimit:
-			keyUpdateCallback(2)
-		else:
-			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
+		def showWarning(*args):
 			message = [
 				_("Warning: There are %d update packages!") % self.packageCount,
 				_("There is a risk that your %s %s will not boot or may malfunction after such a large on-line update.") % getBoxDisplayName(),
@@ -301,9 +301,19 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 			optionList = [
 				(_("Cancel the update"), 0),
 				(_("Perform an on-line flash instead"), 1),
-				(_("Continue with the on-line update"), 2)
+				(_("Continue with the on-line update"), 2),
+				(_("Create an image backup"), 3),
+				(_("Create a settings backup"), 4)
 			]
 			self.session.openWithCallback(keyUpdateCallback, MessageBox, message, list=optionList, default=0)
+
+		self.opkg.removeCallback(self.opkgCallback)
+		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
+		if self.packageCount <= updateLimit:
+			keyUpdateCallback(2)
+		else:
+			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
+			showWarning()
 
 	def keyRefresh(self):
 		self.timer.callback.append(self.checkTrafficLight)
@@ -365,7 +375,9 @@ class SoftwareUpdateSummary(ScreenSummary):
 		self["value"].setText(f"{self.parent["package_text"].getText()} {self.parent["package_count"].getText()}")
 
 
-class RunSoftwareUpdate(Screen):
+class RunSoftwareUpdate(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "software_update", "packages")
+
 	skin = """
 	<screen name="RunSoftwareUpdate" position="center,center" size="720,435" resolution="1280,720">
 		<widget name="update" position="10,10" size="700,400" font="Regular;20" halign="center" transparent="1" valign="center" />
@@ -374,6 +386,7 @@ class RunSoftwareUpdate(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Software Update"))
 		self.onTimerTick = []
 		self["update"] = ScrollLabel(_("Software update starting, please wait.\n\n"))
@@ -401,7 +414,7 @@ class RunSoftwareUpdate(Screen):
 		self.timer.callback.append(self.timeout)
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
 
 	def timeout(self):
 		if self.activity < 0:

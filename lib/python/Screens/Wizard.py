@@ -59,17 +59,17 @@ class Wizard(Screen):
 		parser.setContentHandler(wizardHandler)
 		if not isinstance(self.xmlfile, list):  # DEBUG: Pass the XML file in via the command list and not via a shared variable.
 			self.xmlfile = [self.xmlfile]
-		print("[Wizard] Processing wizard script list %s." % self.xmlfile)
+		print(f"[Wizard] Processing wizard script list {self.xmlfile}.")
 		for xmlFile in self.xmlfile:
 			parser.parse(resolveFilename(SCOPE_SKINS, xmlFile))
 		self.debugMode = False  # True if "debug" in self.wizard[0] else False
 		if self.debugMode:  # Dump the wizard dictionary.
 			for key in self.wizard:
-				print("[Wizard] Wizard step %s - %s: Name='%s'." % (key, self.wizard[key]["type"], self.wizard[key]["name"]))
+				print(f"[Wizard] Wizard step {key} - {self.wizard[key]['type']}: Name='{self.wizard[key]['name']}'.")
 				for item in sorted(self.wizard[key]):
 					if item in ("name", "type"):
 						continue
-					print("[Wizard]        %s: '%s'" % (item, self.wizard[key][item]))
+					print(f"[Wizard]        {item}: '{self.wizard[key][item]}'")
 		self["text"] = Label()
 		self.displayText = ""
 		if showSteps:
@@ -93,31 +93,6 @@ class Wizard(Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.defaultButtons = ["HELP"]  # Should we also add "OK" to the default button list?
-		# self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "ColorActions", "NavigationActions", "NumberActions", "SetupActions", "InputAsciiActions", "KeyboardInputActions"], {
-		# 	"ok": (self.keySelect, _("Select the currently highlighted option and move to the next step")),
-		# 	"back": (self.keyStepBack, _("Go back to the previous step")),
-		# 	"red": (self.keyRed, _("Select the action associated with the RED button")),
-		# 	"green": (self.keyGreen, _("Select the action associated with the GREEN button")),
-		# 	"yellow": (self.keyYellow, _("Select the action associated with the YELLOW button")),
-		# 	"blue": (self.keyBlue, _("Select the action associated with the BLUE button")),
-		# 	"up": (self.keyUp, _("Select the previous list item")),
-		# 	"left": (self.keyLeft, _("Select previous option item in the option list")),
-		# 	"right": (self.keyRight, _("Select next option item in the option list")),
-		# 	"down": (self.keyDown, _("Select the next list item")),
-		# 	"deleteBackward": (self.keyBackspace, _("BACKSPACE button")),
-		# 	"deleteForward": (self.keyDelete, _("DELETE button")),
-		# 	"1": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"2": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"3": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"4": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"5": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"6": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"7": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"8": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"9": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"0": (self.keyNumberGlobal, _("DIGIT button")),
-		# 	"gotAsciiCode": (self.keyGotAscii, _("ASCII button"))
-		# }, prio=-1, description=_("Wizard Actions"))
 		self["wizardActions"] = HelpableActionMap(self, ["WizardActions", "InputAsciiActions"], {
 			"ok": (self.keySelect, _("Proceed to the next step")),
 			"back": (self.keyStepBack, _("Go back to the previous step")),
@@ -192,25 +167,13 @@ class Wizard(Screen):
 
 	class parseWizard(ContentHandler):
 		def __init__(self, wizard):
-			# self.isPointsElement = 0
-			# self.isReboundsElement = 0
 			self.wizard = wizard
 			self.tag = None
 			self.step = 0
 
 		def startElement(self, tag, attributes):  # Process and initialize tags.
-			# print("[Wizard] startElement '%s'." % tag)
+			# print(f"[Wizard] startElement '{tag}'.")
 			self.tag = tag
-			# if tag == "wizard":
-			# 	self.wizard[0] = {}
-			# 	self.wizard[0]["type"] = "Wizard"
-			# 	self.wizard[0]["name"] = "WizardMain"
-			# 	self.wizard[0]["id"] = "WizardMain"
-			# 	# self.createString("name", None, attributes, "WizardMain")
-			# 	# self.createString("title", None, attributes)
-			# 	# self.createBoolean("forceTitle", None, attributes, "False")
-			# 	# self.createBoolean("showSteps", None, attributes, "False")
-			# 	# self.createBoolean("debug", None, attributes, "False")
 			if tag == "step":
 				self.step += 1
 				self.wizard[self.step] = {}
@@ -221,8 +184,8 @@ class Wizard(Screen):
 					"condition": "",
 					"text": "",
 					"timeout": int(attributes.get("timeout", 0)),
-					"timeoutAction": attributes.get("timeoutaction", "nextpage"),
-					"timeoutStep": attributes.get("timeoutstep", ""),
+					"timeoutAction": attributes.get("timeoutAction", attributes.get("timeoutaction", "nextPage")),
+					"timeoutStep": attributes.get("timeoutStep", attributes.get("timeoutstep", "")),
 					"list": [],
 					"evaluatedList": [],
 					"config": {
@@ -234,15 +197,13 @@ class Wizard(Screen):
 					"codeAfter": "",
 					"codeAsync": "",
 					"codeAfterAsync": "",
-					"nextStep": attributes.get("nextstep", None)
+					"nextStep": attributes.get("nextStep", attributes.get("nextstep", None))
 				}
-				if "laststep" in attributes:
-					self.wizard[self.step]["lastStep"] = attributes.get("laststep")
+				if "lastStep" in attributes or "laststep" in attributes:
+					self.wizard[self.step]["lastStep"] = attributes.get("lastStep", attributes.get("laststep"))
 			elif tag == "text":
 				self.wizard[self.step]["text"] = attributes.get("value", "").replace("\\n", "\n")
-			elif tag == "displaytext":
-				self.wizard[self.step]["display"] = attributes.get("value", "").replace("\\n", "\n")
-			elif tag == "display":
+			elif tag in ("display", "displaytext"):
 				self.wizard[self.step]["display"] = attributes.get("value", "").replace("\\n", "\n")
 			elif tag == "list":
 				self.wizard[self.step]["type"] = "List"
@@ -251,9 +212,9 @@ class Wizard(Screen):
 						self.wizard[self.step]["dynamicList"] = attributes.get("source")
 				if "evaluation" in attributes:
 					self.wizard[self.step]["listEvaluation"] = attributes.get("evaluation")
-				if "onselect" in attributes:
-					self.wizard[self.step]["onSelect"] = attributes.get("onselect")
-			elif tag == "listentry":
+				if "onSelect" in attributes or "onselect" in attributes:
+					self.wizard[self.step]["onSelect"] = attributes.get("onSelect", attributes.get("onselect"))
+			elif tag in ("item", "listentry"):
 				self.wizard[self.step]["list"].append((attributes.get("caption", ""), attributes.get("step", "")))
 			elif tag == "config":
 				self.wizard[self.step]["type"] = "Config"
@@ -303,7 +264,7 @@ class Wizard(Screen):
 			elif tag == "condition":
 				self.wizard[self.step]["condition"] = self.wizard[self.step]["condition"].strip()
 			elif tag == "step":
-				# print("[Wizard] Step number %d: '%s'." % (self.step, self.wizard[self.step]))
+				# print(f"[Wizard] Step number {self.step}: '{self.wizard[self.step]}'.")
 				pass
 
 		def characters(self, text):  # Capture the data between block tags.  Data with no value will be deleted in the endElement code.
@@ -340,10 +301,10 @@ class Wizard(Screen):
 			callback()
 
 	def listChanged(self):
-		print("[Wizard] DEBUG: List selection changed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: List selection changed in step {self.currStep}.")
 		if self.wizard[self.currStep]["evaluatedList"] and "onSelect" in self.wizard[self.currStep]:
 			self.selection = self["list"].current[-1]
-			print("[Wizard] self.selection: %s" % str(self.selection))
+			print(f"[Wizard] self.selection: {self.selection}")
 			exec("self.%s()" % self.wizard[self.currStep]["onSelect"])
 		for callback in self.onListChanged:
 			callback()
@@ -353,7 +314,7 @@ class Wizard(Screen):
 			callback()
 
 	def keySelect(self):
-		print("[Wizard] DEBUG: OK button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: OK button pressed in step {self.currStep}.")
 		if self.disableKeys:
 			print("[Wizard] DEBUG: Button disabled!")
 			return
@@ -371,21 +332,21 @@ class Wizard(Screen):
 				self.screenInstance.run()
 		self.finished()
 
-	def back(self):  # temporary fix for Satconfig.py
+	def back(self):  # Temporary fix for Satconfig.py.
 		self.keyStepBack()
 
 	def keyStepBack(self):
 		# def keyCancelCallback(answer):  # The exitWizardQuestion() method is required by the AutoTimer plugin!
-		# 	print("[Wizard] Exiting the wizard %s." % answer)
+		# 	print(f"[Wizard] Exiting the wizard {answer}.")
 		# 	if answer:
 		# 		self.markDone()
 		# 		self.exit()
 
-		print("[Wizard] DEBUG: EXIT button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: EXIT button pressed in step {self.currStep}.")
 		if self.disableKeys:
 			print("[Wizard] DEBUG: Button disabled!")
 			return
-		print("[Wizard] The starting step is %d and the current step history is %s." % (self.currStep, self.stepHistory))
+		print(f"[Wizard] The starting step is {self.currStep} and the current step history is {self.stepHistory}.")
 		if len(self.stepHistory) > 1:
 			self.currStep = self.stepHistory[-2]
 			self.stepHistory = self.stepHistory[:-2]
@@ -393,38 +354,38 @@ class Wizard(Screen):
 			self.session.openWithCallback(self.exitWizardQuestion, MessageBox, (_("Are you sure you want to exit this wizard?")), windowTitle=self.getTitle())
 		if self.currStep < 1:
 			self.currStep = 1
-		print("[Wizard] The current step is %d and the current step history is %s." % (self.currStep, self.stepHistory))
+		print(f"[Wizard] The current step is {self.currStep} and the current step history is {self.stepHistory}.")
 		self.updateValues()
-		print("[Wizard] The ending is %d and the current step history is %s." % (self.currStep, self.stepHistory))
+		print(f"[Wizard] The ending is {self.currStep} and the current step history is {self.stepHistory}.")
 
 	def exitWizardQuestion(self, answer):  # This method is required by the AutoTimer plugin!
-		print("[Wizard] Exiting the wizard %s." % answer)
+		print(f"[Wizard] Exiting the wizard {answer}.")
 		if answer:
 			self.markDone()
 			self.exit()
 
 	def keyRed(self):
-		print("[Wizard] DEBUG: RED button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: RED button pressed in step {self.currStep}.")
 		if self.wizard[self.currStep]["config"]["screen"] and hasattr(self.screenInstance, "red") and callable(self.screenInstance.red):
 			self.screenInstance.red()
 
 	def keyGreen(self):
-		print("[Wizard] DEBUG: GREEN button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: GREEN button pressed in step {self.currStep}.")
 		if self.wizard[self.currStep]["config"]["screen"] and hasattr(self.screenInstance, "green") and callable(self.screenInstance.green):
 			self.screenInstance.green()
 
 	def keyYellow(self):
-		print("[Wizard] DEBUG: YELLOW button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: YELLOW button pressed in step {self.currStep}.")
 		if self.wizard[self.currStep]["config"]["screen"] and hasattr(self.screenInstance, "yellow") and callable(self.screenInstance.yellow):
 			self.screenInstance.yellow()
 
 	def keyBlue(self):
-		print("[Wizard] DEBUG: BLUE button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: BLUE button pressed in step {self.currStep}.")
 		if self.wizard[self.currStep]["config"]["screen"] and hasattr(self.screenInstance, "blue") and callable(self.screenInstance.blue):
 			self.screenInstance.blue()
 
 	def keyBackspace(self):
-		print("[Wizard] DEBUG: BACKSPACE button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: BACKSPACE button pressed in step {self.currStep}.")
 		self.timerReset()
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyBackspace()
@@ -432,7 +393,7 @@ class Wizard(Screen):
 			self["config"].handleKey(ActionKeys.BACKSPACE)
 
 	def keyDelete(self):
-		print("[Wizard] DEBUG: DELETE button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: DELETE button pressed in step {self.currStep}.")
 		self.timerReset()
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyDelete()
@@ -440,7 +401,7 @@ class Wizard(Screen):
 			self["config"].handleKey(ActionKeys.DELETE)
 
 	def keyUp(self):
-		print("[Wizard] DEBUG: UP button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: UP button pressed in step {self.currStep}.")
 		self.timerReset()
 		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] or self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			# self["config"].instance.goLineUp()
@@ -449,13 +410,13 @@ class Wizard(Screen):
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedList"]) > 0:
 			self["list"].goLineUp()
 			if "onSelect" in self.wizard[self.currStep]:
-				# print("[Wizard] current: %s" % str(self["list"].current))
+				# print(f"[Wizard] current: {self['list'].current}")
 				# self.selection = self.wizard[self.currStep]["evaluatedList"][self["list"].getCurrentSelectionIndex()][1]
 				self.selection = self["list"].current[-1]
 				exec("self.%s()" % self.wizard[self.currStep]["onSelect"])
 
 	def keyLeft(self):
-		print("[Wizard] DEBUG: LEFT button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: LEFT button pressed in step {self.currStep}.")
 		self.timerReset()
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyLeft()
@@ -464,7 +425,7 @@ class Wizard(Screen):
 		self.configChanged()  # This shouldn't be called for lists.  I should be fixed when the action map is fixed!
 
 	def keyRight(self):
-		print("[Wizard] DEBUG: RIGHT button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: RIGHT button pressed in step {self.currStep}.")
 		self.timerReset()
 		if self.wizard[self.currStep]["config"]["screen"]:
 			self.screenInstance.keyRight()
@@ -473,7 +434,7 @@ class Wizard(Screen):
 		self.configChanged()  # This shouldn't be called for lists.  I should be fixed when the action map is fixed!
 
 	def keyDown(self):
-		print("[Wizard] DEBUG: DOWN button pressed in step %d." % self.currStep)
+		print(f"[Wizard] DEBUG: DOWN button pressed in step {self.currStep}.")
 		self.timerReset()
 		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] or self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			# self["config"].instance.goLineDown()
@@ -483,7 +444,7 @@ class Wizard(Screen):
 			# self.listWidgetInstance.goLineDown()
 			self["list"].goLineDown()
 			if "onSelect" in self.wizard[self.currStep]:
-				# print("current: '%s'." % self["list"].current)
+				# print(f"current: '{self['list'].current}'.")
 				# self.selection = self.wizard[self.currStep]["evaluatedList"][self["list"].getCurrentSelectionIndex()][1]
 				self.selection = self["list"].current[-1]  # IanSav: Should this be +1?
 				exec("self.%s()" % self.wizard[self.currStep]["onSelect"])
@@ -538,17 +499,17 @@ class Wizard(Screen):
 	# def findStepByNameBad(self, name):
 	# 	for key in self.wizard.keys():
 	# 		if self.wizard[key]["name"] == name:
-	# 			print("[Wizard] Step name '%s' evaluates to step number %d." % (name, key))
+	# 			print(f"[Wizard] Step name '{name}' evaluates to step number {key}.")
 	# 			return key
-	# 	print("[Wizard] Step name '%s' not found!" % name)
+	# 	print(f"[Wizard] Step name '{name}' not found!")
 	# 	return 0
 
 	def findStepByName(self, name):
 		for count, key in enumerate(self.wizard.keys()):
 			if self.wizard[key]["name"] == name:
-				# print("[Wizard] Step name '%s' evaluates to step number %d." % (name, count))
+				# print(f"[Wizard] Step name '{name}' evaluates to step number {count}.")
 				return count
-		print("[Wizard] Step name '%s' not found!" % name)
+		print(f"[Wizard] Step name '{name}' not found!")
 		return 0
 
 	def getStepWithID(self, id):  # Legacy interface.
@@ -559,12 +520,12 @@ class Wizard(Screen):
 
 	def timerTimeout(self):
 		self.timerCount -= 1
-		# print("[Wizard] Timeout timer is %d." % self.timerCount)
+		# print(f"[Wizard] Timeout timer is {self.timerCount}.")
 		if self.timerCount == 0:
-			if self.wizard[self.currStep]["timeoutAction"] == "selectnext":
+			if self.wizard[self.currStep]["timeoutAction"] in ("selectNext", "selectnext"):
 				# print("[Wizard] Timeout fired, moving to next item.")
 				self.keyDown()
-			elif self.wizard[self.currStep]["timeoutAction"] == "changestep":
+			elif self.wizard[self.currStep]["timeoutAction"] in ("changeStep", "changestep"):
 				self.finished(gotoStep=self.wizard[self.currStep]["timeoutStep"])
 		self.updateText()
 
@@ -576,13 +537,13 @@ class Wizard(Screen):
 			self.exit()
 			return
 		stepName = self.wizard[self.currStep].get("name", "* Unknown *")
-		print("[Wizard] Preparing step %d (%s)." % (self.currStep, stepName))
+		print(f"[Wizard] Preparing step {self.currStep} ({stepName}).")
 		# An asynchronous step has no selectable entries until afterAsyncCode().
 		self.wizard[self.currStep]["evaluatedList"] = []
 		self.timeoutTimer.stop()
 		# if stepName == "scanquestion":  # Enable this block to debug a specified step.
 		# 	for key in self.wizard[self.currStep].keys():
-		# 		print("[Wizard] DEBUG: Key %s: '%s'." % (key, self.wizard[self.currStep][key]))
+		# 		print(f"[Wizard] DEBUG: Key {key}: '{self.wizard[self.currStep][key]}'.")
 		if self.screenInstance:  # Remove callbacks.
 			self.screenInstance["config"].onSelectionChanged = []
 			del self.screenInstance["config"]
@@ -598,7 +559,7 @@ class Wizard(Screen):
 			self.updateText(firstSet=True)
 			if "display" in self.wizard[self.currStep]:  # IanSav: Should this be repeated?
 				displayText = self.getTranslation(self.wizard[self.currStep]["display"])
-				print("[Wizard] Setting display text to '%s'." % displayText)
+				print(f"[Wizard] Setting display text to '{displayText}'.")
 				self.textChanged(displayText)
 			if self.showSteps:
 				self["step"].setText("%s %d/%d" % (_("Step"), self.currStep, self.numSteps))  # IanSav: Translation change "Step " to "Step".
@@ -634,7 +595,7 @@ class Wizard(Screen):
 		if buttonList is not None:
 			if not isinstance(buttonList, list):
 				buttonList = [buttonList]
-			print("[Wizard] Allowed buttons are %s." % ", ".join(buttonList + self.defaultButtons))
+			print(f"[Wizard] Allowed buttons are {', '.join(buttonList + self.defaultButtons)}.")
 			actions = set()
 			for button in buttonList + self.defaultButtons:
 				self.selectKey(button)
@@ -699,7 +660,7 @@ class Wizard(Screen):
 				eval("self.%s" % self.wizard[currStep]["config"]["evaluation"])()
 		if self.showList:
 			if len(self.wizard[currStep]["evaluatedList"]) > 0:
-				# print("[Wizard] current: '%s'." % self["list"].current)
+				# print(f"[Wizard] current: '{self['list'].current}'.")
 				nextStep = self["list"].current[1]
 				if "listEvaluation" in self.wizard[currStep]:
 					exec("self.%s('%s')" % (self.wizard[self.currStep]["listEvaluation"], nextStep))
@@ -721,11 +682,11 @@ class Wizard(Screen):
 				if self.updateValues in self.onShown:
 					self.onShown.remove(self.updateValues)
 		# if printNow:
-		# 	print("[Wizard] Now: '%s'." % self.currStep)
+		# 	print(f"[Wizard] Now: '{self.currStep}'.")
 
 	def runCode(self, code):
 		if code != "":
-			print("[Wizard] Running script code: '%s'." % code)
+			print(f"[Wizard] Running script code: '{code}'.")
 			exec(code)
 			return True
 		return False
@@ -749,20 +710,23 @@ class Wizard(Screen):
 				newList = []
 				if "dynamicList" in self.wizard[self.currStep]:
 					dynamicList = self.wizard[self.currStep]["dynamicList"]
-					print("[Wizard] Generating dynamic list by calling '%s'." % dynamicList)
+					print(f"[Wizard] Generating dynamic list by calling '{dynamicList}'.")
 					dynamicList = eval("self.%s()" % dynamicList)
 					for entry, step in dynamicList:
-						print("[Wizard] DEBUG: Adding dynamic item '%s' to list." % entry)
+						print(f"[Wizard] DEBUG: Adding dynamic item '{entry}' to list.")
 						newList.append((entry, step))
 					# del self.wizard[self.currStep]["dynamicList"]
 				if self.wizard[self.currStep]["list"]:
 					for entry, step in self.wizard[self.currStep]["list"]:
 						entry = self.getTranslation(entry)
-						print("[Wizard] DEBUG: Adding XML item '%s' to list." % entry)
+						print(f"[Wizard] DEBUG: Adding XML item '{entry}' to list.")
 						newList.append((entry, step))
-				self.wizard[self.currStep]["evaluatedList"] = newList
+				# Do not run onSelect against the previous step's index while rebuilding.
+				self.wizard[self.currStep]["evaluatedList"] = []
 				self["list"].setList(newList)
 				self["list"].setCurrentIndex(0)
+				self.wizard[self.currStep]["evaluatedList"] = newList
+				self.listChanged()
 				# if self.configWidgetInstance:
 				# 	self.configWidgetInstance.hide()
 				# self.listWidgetInstance.show()
@@ -774,19 +738,19 @@ class Wizard(Screen):
 					# itself, so skipping it here leaks that popup for the rest of the wizard's lifetime.
 					current[1].onDeselect(self.session)
 				if self.wizard[self.currStep]["config"]["type"] == "dynamic":
-					print("[Wizard] Generating dynamic config by calling %s." % self.wizard[self.currStep]["config"]["source"])
+					print(f"[Wizard] Generating dynamic config by calling {self.wizard[self.currStep]['config']['source']}.")
 					self.configWidgetInstance.setZPosition(2)
 					self["config"].setList(eval("self.%s" % self.wizard[self.currStep]["config"]["source"])())
 				elif self.wizard[self.currStep]["config"]["screen"]:
 					if self.wizard[self.currStep]["config"]["type"] == "standalone":
 						def screenCallback(*retVal):
 							self.keySelect()
-						print("[Wizard] Loading an external config screen %s." % self.wizard[self.currStep]["config"]["screen"])
+						print(f"[Wizard] Loading an external config screen {self.wizard[self.currStep]['config']['screen']}.")
 						if self.updateValues in self.onShown:
 							self.onShown.remove(self.updateValues)
 						self.session.openWithCallback(screenCallback, self.wizard[self.currStep]["config"]["screen"])
 					else:
-						print("[Wizard] Extracting 'Config' widget from external screen %s." % self.wizard[self.currStep]["config"]["screen"])
+						print(f"[Wizard] Extracting 'Config' widget from external screen {self.wizard[self.currStep]['config']['screen']}.")
 						self.configWidgetInstance.setZPosition(2)
 						if self.wizard[self.currStep]["config"]["args"] is None:
 							self.screenInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
@@ -806,12 +770,12 @@ class Wizard(Screen):
 						self["config"].setList(self.screenInstance["config"].getList())
 						callbacks = self.screenInstance["config"].onSelectionChanged[:]
 						self.screenInstance["config"].destroy()
-						# print("[Wizard] DEBUG: clearConfigList %s %s" % (str(self.screenInstance["config"]), str(self["config"])))
+						# print(f"[Wizard] DEBUG: clearConfigList {self.screenInstance['config']} {self['config']}")
 						self.screenInstance["config"] = self["config"]
 						self.screenInstance["config"].onSelectionChanged = callbacks
 						if self.configChanged not in self.screenInstance["config"].onSelectionChanged:
 							self.screenInstance["config"].onSelectionChanged.append(self.configChanged)
-						# print("[Wizard] DEBUG: clearConfigList %s %s" % (str(self.screenInstance["config"]), str(self["config"])))
+						# print(f"[Wizard] DEBUG: clearConfigList {self.screenInstance['config']} {self['config']}")
 				else:
 					self["config"].setList([])
 				self["config"].setCurrentIndex(0)
@@ -875,18 +839,18 @@ class WizardManager:
 		self.wizards = []
 
 	def registerWizard(self, wizard, preCondition, priority=0):
-		print("[Wizard] registerWizard DEBUG: wizard=%s, preCondition=%s, priority=%d." % (str(wizard), preCondition, priority))
+		print(f"[Wizard] registerWizard DEBUG: wizard={wizard}, preCondition={preCondition}, priority={priority}.")
 		self.wizards.append((wizard, preCondition, priority))
 
 	def getWizards(self):
 		for wizard in self.wizards:  # For self.wizards, x[0]=wizard, x[1]=preCondition and x[2]=priority.
-			print("[Wizard] getWizards DEBUG: Defined wizard=%s, preCondition=%s, priority=%d." % (wizard[0], wizard[1], wizard[2]))
+			print(f"[Wizard] getWizards DEBUG: Defined wizard={wizard[0]}, preCondition={wizard[1]}, priority={wizard[2]}.")
 			wizard[0].isLastWizard = False
 		if len(self.wizards) > 0:
 			self.wizards[-1][0].isLastWizard = True
 		wizards = [(x[2], x[0]) for x in self.wizards if x[1]]  # For wizards, x[0]=priority and x[1]=wizard. The wizards will be sorted in StartEnigma.py.
 		for wizard in wizards:
-			print("[Wizard] getWizards DEBUG: Active priority=%d, wizard=%s." % (wizard[0], wizard[1]))
+			print(f"[Wizard] getWizards DEBUG: Active priority={wizard[0]}, wizard={wizard[1]}.")
 		return wizards
 
 

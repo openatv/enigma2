@@ -3,6 +3,7 @@
 #ifndef __lib_dvb_hevc_hdr_detector_h
 #define __lib_dvb_hevc_hdr_detector_h
 
+#include <array>
 #include <cstddef>
 
 #include <lib/base/ebase.h>
@@ -10,13 +11,14 @@
 #include <lib/dvb/hevc_hdr_parser.h>
 
 /*
- * Reads the selected HEVC video PID through a temporary DMX_OUT_TAP filter and
- * reports a gamma value when SPS/VUI or HDR SEI signalling is conclusive.
+ * Reads the selected HEVC video PID through a temporary DMX_OUT_TSDEMUX_TAP
+ * filter and reports a gamma value when SPS/VUI or HDR SEI signalling is
+ * conclusive.
  *
- * Vu+ driver generations differ in what DMX_OUT_TAP returns: some expose full
- * PES packets, others expose the elementary-stream payload.  Both forms are
- * parsed in parallel.  The detector is a fallback; callers may stop it as soon
- * as the native video driver reports a useful VIDEO_EVENT_GAMMA_CHANGED value.
+ * A TS tap is used instead of DMX_OUT_TAP: on Vu+ (dvb_bcm7444) a PES tap on
+ * the running video PID uses a separate recpump whose close can deadlock in
+ * DMX_STOP.  The detector is a fallback; callers may stop it as soon as the
+ * native video driver reports a useful VIDEO_EVENT_GAMMA_CHANGED value.
  */
 class eHEVCHDRDetector : public sigc::trackable
 {
@@ -32,24 +34,29 @@ private:
 	enum
 	{
 		ScanTimeoutMs = 12000,
-		DeferredResultMs = 1
+		DeferredResultMs = 1,
+		TSPacketSize = 188,
+		TapBufferSize = 512 * 1024
 	};
 
-	void data(const uint8_t *buffer, int length);
+	void readData(int what);
+	int payloadOffset(const uint8_t *packet) const;
+	void closeTap();
 	void timerExpired();
 	void scheduleResult(int gamma);
-	static int selectGamma(int pes_gamma, int es_gamma, bool is_final);
 
 	ePtr<eDVBDemux> m_demux;
-	ePtr<iDVBPESReader> m_reader;
-	ePtr<eConnection> m_read_connection;
+	ePtr<eSocketNotifier> m_notifier;
 	ePtr<eTimer> m_timer;
 	sigc::slot<void(int)> m_result_slot;
-	eHEVCHDRParser m_pes_parser;
-	eHEVCHDRParser m_es_parser;
-	bool m_running;
-	int m_pending_gamma;
-	size_t m_bytes_received;
+	eHEVCHDRParser m_parser;
+	int m_fd = -1;
+	int m_pid = -1;
+	std::array<uint8_t, TSPacketSize> m_partial = {};
+	size_t m_partial_length = 0;
+	bool m_running = false;
+	int m_pending_gamma = eHEVCHDRParser::GammaUnknown;
+	size_t m_bytes_received = 0;
 };
 
 #endif

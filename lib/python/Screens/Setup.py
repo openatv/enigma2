@@ -8,6 +8,7 @@ from Components.Label import Label
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen, ScreenSummary
+from Screens.ScreenProtection import ProtectedScreen
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename  # noqa F401
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -16,7 +17,9 @@ domSetups = {}
 setupModTimes = {}
 
 
-class Setup(ConfigListScreen, Screen):
+class Setup(ConfigListScreen, Screen, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	ALLOW_SUSPEND = False  # Do not allow shutdown from Setup based screens.
 
 	skin = """
@@ -54,6 +57,7 @@ class Setup(ConfigListScreen, Screen):
 
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
 		Screen.__init__(self, session, mandatoryWidgets=["config", "footnote", "description"], enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setImage(setup, "setup")
 		self.setup = setup
 		self.plugin = plugin

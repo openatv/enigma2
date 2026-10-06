@@ -6,14 +6,15 @@ from shutil import rmtree
 from Components.config import ConfigSubsection, ConfigYesNo, NoSave, config
 from Components.Console import Console
 from Screens.MessageBox import MessageBox
-from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Setup import Setup
 from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, copyFile, fileWriteLine, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
 
-class FactoryReset(Setup, ProtectedScreen):
+class FactoryReset(Setup):
+	protectionSections = ("configuration", "manufacturer_reset")
+
 	def __init__(self, session):
 		self.configDir = resolveFilename(SCOPE_CONFIG)
 		config.factory = ConfigSubsection()
@@ -29,11 +30,7 @@ class FactoryReset(Setup, ProtectedScreen):
 		config.factory.resetTimers = NoSave(ConfigYesNo(default=True))
 		config.factory.resetOthers = NoSave(ConfigYesNo(default=True))
 		Setup.__init__(self, session=session, setup="FactoryReset")
-		ProtectedScreen.__init__(self)
 		self["key_green"].text = _("Reset")
-
-	def isProtected(self):
-		return config.ParentalControl.configured.value and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.manufacturer_reset.value
 
 	def createSetup(self):  # NOSONAR silence S2638
 		self.analyzeConfig()

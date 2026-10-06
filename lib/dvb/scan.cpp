@@ -431,6 +431,24 @@ RESULT eDVBScan::startFilter()
 void eDVBScan::SDTready(int err)
 {
 	SCAN_eDebug("[eDVBScan] got sdt %d", err);
+	if (err && m_SDT)
+	{
+		eDVBTableSpec previous;
+		if (!m_SDT->getSpec(previous) && (previous.flags & eDVBTableSpec::tfHaveTIDExt))
+		{
+			// Some multiplexes signal a different TSID in PAT and SDT. Before
+			// falling back to SID-only names, read SDT actual without the PAT TSID.
+			// Do not accept SDT other here: it describes a different transponder.
+			eDVBTableSpec fallback = eDVBSDTSpec();
+			fallback.timeout = 10000;
+			SCAN_eDebug("[eDVBScan] SDT for PAT TSID %04x unavailable, retrying SDT actual without TSID filter", previous.tidext);
+			m_SDT = new eTable<ServiceDescriptionSection>;
+			CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
+			if (!m_SDT->start(m_demux, fallback))
+				return;
+			SCAN_eDebug("[eDVBScan] failed to start SDT actual fallback");
+		}
+	}
 	m_ready |= readySDT;
 	if (!err)
 		m_ready |= validSDT;

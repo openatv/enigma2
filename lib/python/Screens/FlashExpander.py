@@ -48,6 +48,8 @@ config.flashExpander.device = ConfigText(default="")
 
 
 class FlashExpander(Setup):
+	protectionSections = ("configuration", "storage")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {

@@ -19,6 +19,8 @@ public:
 	virtual int valid()=0;
 	virtual off_t offset() = 0;
 	virtual bool isStream() { return false; }
+	/* An asynchronous source must not be treated as EOF while connecting. */
+	virtual bool isConnecting() { return false; }
 	virtual int reconnect() { return 0; }
 	unsigned int getPacketSize() const { return packetSize; }
 };

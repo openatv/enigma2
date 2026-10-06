@@ -141,6 +141,8 @@ config.pluginfilter.userfeed = ConfigText(default="https://", fixed_size=False)
 
 
 class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
+	protectionSections = ("plugin_browser",)
+
 	skin = """
 	<screen name="PluginBrowser" title="Plugin Browser" position="center,center" size="1000,535" resolution="1280,720">
 		<widget source="pluginList" render="Listbox" position="0,0" size="e,450" conditional="pluginList" listOrientation="vertical" scrollbarMode="showOnDemand">
@@ -284,13 +286,10 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		self.internetCheckedTime = None
 		self.internetCheckThread = None
 		if config.pluginfilter.userfeed.value != "https://" and not exists("/etc/opkg/user-feed.conf"):
-			self.createFeedConfig()
-		self.onFirstExecBegin.append(self.checkWarnings)  # This is needed to avoid a modal screen issue.
+			self.protectedCallback(self.createFeedConfig)()
+		self.callLater(self.protectedCallback(self.checkWarnings))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.doClose)
-
-	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
 
 	def createGUIScreen(self, parent, desktop, updateonly=False):
 		for item in self.renderer:
@@ -817,7 +816,9 @@ class PluginBrowserSummary(ScreenSummary):
 		self["value"].setText(description)
 
 
-class PackageAction(Screen, NumericalTextInput):
+class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
+	protectionSections = ("configuration", "packages", "plugin_browser")
+
 	skin = """
 	<screen name="PackageAction" title="Plugin Browser Action" position="center,center" size="900,585" resolution="1280,720">
 		<widget source="plugins" render="Listbox" position="0,0" size="e,500" scrollbarMode="showOnDemand">
@@ -918,6 +919,7 @@ class PackageAction(Screen, NumericalTextInput):
 
 	def __init__(self, session, mode=MODE_REMOVE):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		self.skinName = ["PackageAction", "PluginAction"]
 		self.modeData = self.MANAGE_OPTIONS.get(mode, self.MANAGE_OPTIONS[self.MODE_MANAGE])
@@ -1078,7 +1080,7 @@ class PackageAction(Screen, NumericalTextInput):
 		# for count, exclude in enumerate(displayExclude, start=1):
 		# 	print(f"[PluginBrowser] DEBUG: Plugin exclude filter {count} is '{exclude}'.")
 		# print("[PluginBrowser] DEBUG: Exclude filter is '%s'." % (r"(%s)$" % "|".join(displayExclude) if displayExclude else r"^$"))
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
 		self.onClose.append(self.doClose)
 
 	def doClose(self):
@@ -1439,7 +1441,7 @@ class PackageAction(Screen, NumericalTextInput):
 						self.searchLoading = False
 						self.searchText = ""
 						self.displayPluginList(self.pluginList, False)
-						self.session.open(MessageBox, _("Unable to load package information."), type=MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox, _("Unable to load package information!"), type=MessageBox.TYPE_ERROR)
 					self.setWaiting(None)
 					haveLogs = self.logData != ""
 					self["logAction"].setEnabled(haveLogs)

@@ -12,12 +12,14 @@ from re import match
 from Tools.ServiceAction import ServiceAction
 from sys import maxsize
 from time import localtime, strftime, time
+from twisted.internet import reactor
+from twisted.internet.threads import deferToThread
 
 from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, createRecordTimerEntry, findSafeRecordPath, parseEvent
-from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur
+from ServiceReference import ServiceReference, getPanicService, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur, isRadioServiceReference
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, ConfigClock, ConfigSelection, config, configfile
@@ -52,6 +54,7 @@ from Screens.EventView import showEventViewCallback
 from Screens.InputBox import InputBox
 from Screens.Menu import Menu, MenuHorizontal, findMenu
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen, runWithScreenProtection, runWithScreenProtectionScopes
 from Screens.MinuteInput import MinuteInput
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
@@ -318,7 +321,9 @@ class InfoBarMenu:
 		self.session.open(MessageBox, _("Aspect ratio set to '%s'.") % aspectRatios[index][1], MessageBox.TYPE_INFO, timeout=3, closeOnAnyKey=True, windowTitle=_("Aspect Ratio"))
 
 
-class ExtensionsList(ChoiceBox):
+class ExtensionsList(ChoiceBox, ProtectedScreen):
+	protectionSections = ("extensions_menu", "plugin_browser")
+
 	def __init__(self, session, extensions):
 		colorKeys = {
 			"red": 1,
@@ -350,6 +355,7 @@ class ExtensionsList(ChoiceBox):
 			extensionList.append((extension[0], extension[1]))
 		reorderConfig = "extensionOrder" if config.usage.sortExtensionslist.value == "user" else ""
 		ChoiceBox.__init__(self, session, title=_("Extensions"), list=extensionList, keys=extensionKeys, reorderConfig=reorderConfig, skinName="ExtensionsList")
+		ProtectedScreen.__init__(self)
 
 
 class InfoBarExtensions:
@@ -393,11 +399,15 @@ class InfoBarExtensions:
 		self.session.open(QuickMenu)
 
 	def showExtensionSelection(self):
+		authorizedSections = set()
+
 		def showExtensionSelectionCallback(answer):
 			if answer is not None:
-				answer[1][1]()
+				runWithScreenProtectionScopes(self.session, authorizedSections, answer[1][1])
 
-		self.session.openWithCallback(showExtensionSelectionCallback, ExtensionsList, self.extensionList)
+		dialog = self.session.openWithCallback(showExtensionSelectionCallback, ExtensionsList, self.extensionList)
+		# ChoiceBox is destroyed before its selection callback runs.
+		dialog.onClose.append(lambda: authorizedSections.update(dialog.screenProtectionScopes))
 
 	def keyExtensions(self):
 		if config.workaround.blueswitch.value:
@@ -508,6 +518,9 @@ class InfoBarPlugins:  # Depends on InfoBarExtensions.
 		return name
 
 	def runPlugin(self, plugin):  # Used in AudioSelection.py
+		return runWithScreenProtection(self.session, ("plugin_browser", "extensions_menu"), boundFunction(self.runPluginProtected, plugin))
+
+	def runPluginProtected(self, plugin):
 		if isinstance(self, InfoBarChannelSelection):
 			plugin(session=self.session, servicelist=self.servicelist)
 		else:
@@ -733,49 +746,28 @@ class InfoBarNumberZap:
 	def recallPrevService(self, reply):
 		if reply:
 			if config.usage.panicbutton.value:
+				service, path = getPanicService()
+				if service is None:
+					Notifications.showWarning(_("The panic channel was not found. Please select it again in Channel Selection Settings."))
+					return
 				if self.session.pipshown:
+					if self.servicelist.dopipzap:
+						self.togglePipzap()
 					del self.session.pip
 					self.session.pipshown = False
-				self.servicelist.history_tv = []
-				self.servicelist.history_radio = []
-				self.servicelist.history = self.servicelist.history_tv
-				self.servicelist.history_pos = 0
-				self.servicelist2.history_tv = []
-				self.servicelist2.history_radio = []
-				self.servicelist2.history = self.servicelist.history_tv
-				self.servicelist2.history_pos = 0
-				if config.usage.multibouquet.value:
-					bqrootstr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
-				else:
-					self.service_types = service_types_tv
-					bqrootstr = "%s FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet" % self.service_types
-				serviceHandler = eServiceCenter.getInstance()
-				rootbouquet = eServiceReference(bqrootstr)
-				bouquet = eServiceReference(bqrootstr)
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist is not None:
-					while True:
-						bouquet = bouquetlist.getNext()
-						if bouquet.flags & eServiceReference.isDirectory:
-							self.servicelist.clearPath()
-							self.servicelist.setRoot(bouquet)
-							servicelist = serviceHandler.list(bouquet)
-							if servicelist is not None:
-								serviceIterator = servicelist.getNext()
-								while serviceIterator.valid():
-									service, bouquet2 = self.searchNumber(config.usage.panicchannel.value)
-									if service == serviceIterator:
-										break
-									serviceIterator = servicelist.getNext()
-								if serviceIterator.valid() and service == serviceIterator:
-									break
-					self.servicelist.enterPath(rootbouquet)
-					self.servicelist.enterPath(bouquet)
-					self.servicelist.saveRoot()
-					self.servicelist2.enterPath(rootbouquet)
-					self.servicelist2.enterPath(bouquet)
-					self.servicelist2.saveRoot()
-				self.selectAndStartService(service, bouquet)
+				for serviceList in (self.servicelist, self.servicelist2):
+					serviceList.history_tv = []
+					serviceList.history_radio = []
+					serviceList.history_pos = 0
+					serviceList.delhistpoint = None
+					if isRadioServiceReference(service):
+						serviceList.setModeRadio(force=True)
+					else:
+						serviceList.setModeTv()
+					serviceList.clearPath()
+					for bouquet in path:
+						serviceList.enterPath(bouquet)
+				self.selectAndStartService(service, path[-1])
 			else:
 				self.servicelist.recallPrevService()
 
@@ -3259,7 +3251,7 @@ class InfoBarEPG:
 			answer[1]()
 
 	def runPlugin(self, plugin):
-		plugin(session=self.session, servicelist=self.servicelist)
+		return runWithScreenProtection(self.session, ("plugin_browser", "extensions_menu"), boundFunction(plugin, session=self.session, servicelist=self.servicelist))
 
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
@@ -3915,6 +3907,8 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 class InfoBarInstantRecord:
 	"""Instant Record - Handles the instantRecord action in order to start/stop instant recordings."""
 
+	instantRecordPending = set()  # Shared by all instances, like self.recording.
+
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord", {
 			"instantRecord": (self.keyInstantRecord, _("Start an instant recording")),
@@ -3934,12 +3928,6 @@ class InfoBarInstantRecord:
 
 	def keyInstantRecord(self, serviceRef=None):
 		self.selectedInstantServiceRef = serviceRef
-		pirp = preferredInstantRecordPath()
-		if not findSafeRecordPath(pirp) and not findSafeRecordPath(defaultMoviePath()):
-			if not pirp:
-				pirp = ""
-			self.session.open(MessageBox, "%s\n\n%s" % (_("Path '%s' missing!") % pirp, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
-			return
 		serviceReference = ServiceReference(serviceRef or self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if isStandardInfoBar(self) and serviceReference.isRecordable() and not self.getInstantRecordings(serviceReference):
 			commonRecord = [
@@ -4119,9 +4107,6 @@ class InfoBarInstantRecord:
 		if self.getInstantRecordings(serviceReference):
 			Notifications.showInfo(_("An instant recording is already running on this service."))
 			return None
-		if not findSafeRecordPath(preferredInstantRecordPath()) and not findSafeRecordPath(defaultMoviePath()):
-			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
-			return None
 		recording = RecordTimerEntry(serviceReference, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
 		recording.marginBefore = 0
 		recording.dontSave = True
@@ -4144,7 +4129,7 @@ class InfoBarInstantRecord:
 		if original is not None and (original not in manager.timer_list or original.state >= RecordTimerEntry.StateEnded or original.cancelled):
 			Notifications.showInfo(_("This recording has already ended."))
 			return None
-		if original is None and self.getInstantRecordings(recording.service_ref):
+		if original is None and (self.getInstantRecordings(recording.service_ref) or str(recording.service_ref) in self.instantRecordPending):
 			Notifications.showInfo(_("An instant recording is already running on this service."))
 			return None
 		recording.begin = recording.eventBegin = int(time())
@@ -4170,6 +4155,36 @@ class InfoBarInstantRecord:
 		if len(self.getInstantRecordings()) >= 2 and BoxInfo.getItem("ChipsetString") in ("meson-6", "meson-64"):
 			Notifications.AddNotification(MessageBox, _("Sorry it is only possible to record 2 channels at once!"), MessageBox.TYPE_ERROR, timeout=5)
 			return None
+		# Check the record path in a thread, a sleeping HDD would block the GUI until spin-up.
+		self.prepareInstantRecordingPath(recording)
+		return None
+
+	def prepareInstantRecordingPath(self, recording):
+		def showPopup():
+			Notifications.AddPopup(_("Preparing recording, please wait..."), MessageBox.TYPE_INFO, timeout=30, id=popupId)
+
+		def finish(resolvedPath):
+			if popupTimer.active():
+				popupTimer.cancel()
+			Notifications.RemovePopup(popupId)
+			self.instantRecordPending.discard(serviceKey)
+			self.finishInstantRecordingSubmit(recording, resolvedPath)
+
+		serviceKey = str(recording.service_ref)
+		self.instantRecordPending.add(serviceKey)
+		popupId = f"InstantRecordPrepare-{id(recording)}"
+		popupTimer = reactor.callLater(0.3, showPopup)  # Only show the popup if the HDD has to spin up.
+		path = recording.dirname or preferredInstantRecordPath()
+		deferred = deferToThread(lambda: findSafeRecordPath(path) or findSafeRecordPath(defaultMoviePath()))
+		deferred.addTimeout(30, reactor)
+		deferred.addCallbacks(finish, lambda failure: finish(None))
+
+	def finishInstantRecordingSubmit(self, recording, resolvedPath):
+		if not resolvedPath:
+			path = recording.dirname or preferredInstantRecordPath() or ""
+			self.session.open(MessageBox, "%s\n\n%s" % (_("Path '%s' missing!") % path, _("No HDD found or HDD not initialized!")), MessageBox.TYPE_ERROR)
+			return
+		manager = self.session.nav.RecordTimer
 		conflicts = manager.record(recording)
 		if conflicts:
 			# Re-evaluate if timer state changed since the first check.
@@ -4178,10 +4193,8 @@ class InfoBarInstantRecord:
 			self.showInstantRecordingConflict(recording, None, checker, conflicts)
 		elif recording in manager.timer_list:
 			self.recording.append(recording)
-			return recording
 		else:  # RecordTimer.record() also returns None for an existing duplicate.
 			Notifications.showInfo(_("An existing timer already records this service during the requested time."))
-		return None
 
 	def getInstantRecordingLimit(self, recording, original, checker):
 		# Use the expanded timer occurrences, including repeating timers. Try the

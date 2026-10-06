@@ -5,7 +5,7 @@ from os.path import exists, isdir, realpath, ismount
 from threading import Thread, Timer as ThreadTimer
 from time import ctime, localtime, strftime, time
 
-from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iRecordableService, quitMainloop, pNavigation, setPreferredTuner
+from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iRecordableService, quitMainloop, pNavigation, setPreferredTuner
 
 import NavigationInstance
 from timer import Timer, TimerEntry
@@ -20,7 +20,7 @@ from Components.Task import job_manager
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.ASCIItranslit import legacyEncode
 from Tools.CIHelper import cihelper
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
@@ -168,6 +168,8 @@ class RecordTimer(Timer):
 			}[timer.afterEvent]))
 			timerEntry.append(f"disabled=\"{int(timer.disabled)}\"")
 			timerEntry.append(f"justplay=\"{int(timer.justplay)}\"")
+			if timer.justplay and timer.hasEndTime and timer.zapBack:
+				timerEntry.append('zapBack="1"')
 			timerEntry.append(f"always_zap=\"{int(timer.always_zap)}\"")
 			if timer.justplay and timer.precondition:
 				timerEntry.append(f"precondition=\"{timer.precondition}\"")
@@ -269,6 +271,7 @@ class RecordTimer(Timer):
 		timer.eventEnd = eventEnd
 		timer.marginAfter = marginAfter
 		timer.hasEndTime = hasEndTime
+		timer.zapBack = bool(justplay and hasEndTime and timerDom.get("zapBack", "0").lower() in ("1", "true", "yes"))
 		timer.cridSeries = cridSeries
 		timer.cridEpisode = cridEpisode
 		timer.cridRecommendation = cridRecommendation
@@ -298,6 +301,7 @@ class RecordTimer(Timer):
 	#
 	def doActivate(self, timer):
 		if timer.shouldSkip():
+			timer.clearZapBack()
 			timer.state = RecordTimerEntry.StateEnded
 		else:
 			# When active returns True this means "accepted", otherwise, the current
@@ -335,6 +339,8 @@ class RecordTimer(Timer):
 		self.saveTimers()
 
 	def shutdown(self):
+		for timer in self.timer_list:
+			timer.clearZapBack()
 		self.saveTimers()
 
 	def getNextRecordingTimeOld(self, getNextStbPowerOn=False):
@@ -630,11 +636,14 @@ def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 
 
 def createRecordTimerEntry(timer):
-	return RecordTimerEntry(
+	entry = RecordTimerEntry(
 		timer.service_ref, timer.begin, timer.end, timer.name, timer.description, timer.eit, timer.disabled,
 		timer.justplay, timer.afterEvent, dirname=timer.dirname, tags=timer.tags, descramble=timer.descramble,
 		record_ecm=timer.record_ecm, always_zap=timer.always_zap, rename_repeat=timer.rename_repeat
 	)
+	entry.hasEndTime = timer.hasEndTime
+	entry.zapBack = getattr(timer, "zapBack", False)
+	return entry
 
 
 class RecordTimerEntry(TimerEntry):
@@ -693,6 +702,9 @@ class RecordTimerEntry(TimerEntry):
 		self.always_zap = always_zap
 		self.precondition = precondition
 		self.afterEvent = afterEvent
+		self.zapBack = False
+		self.zapBackService = None
+		self.zapBackActive = False
 		self.forceDeepStandby = False
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
@@ -953,6 +965,7 @@ class RecordTimerEntry(TimerEntry):
 			if self.failed:
 				return True
 			if self.justplay:
+				self.clearZapBack()
 				if Screens.Standby.inStandby:
 					if self.precondition == 1:
 						self.log(11, "In standby, zap timer ignored (running only).")
@@ -974,12 +987,7 @@ class RecordTimerEntry(TimerEntry):
 					AddModalNotification(text=message, timeout=config.recording.confirmZapDelay.value, default=True, windowTitle=_("Zap"), callback=self.zapTimerCB)
 				else:
 					self.log(11, "Zapping.")
-					Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
-					NavigationInstance.instance.isMovieplayerActive()
-					if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
-						InfoBar.instance.servicelist.performZap(self.service_ref.ref)
-					else:
-						NavigationInstance.instance.playService(self.service_ref.ref)
+					self.startZapTimer()
 				return True
 			else:
 				self.log(11, "Start recording.")
@@ -998,6 +1006,7 @@ class RecordTimerEntry(TimerEntry):
 				self.log(12, f"Auto increase recording length {int((self.end - oldEnd) / 60)} minute(s).")
 				self.state -= 1
 				return True
+			self.returnFromZapTimer()
 			if self.justplay:
 				self.log(12, "End zapping.")
 			else:
@@ -1455,16 +1464,89 @@ class RecordTimerEntry(TimerEntry):
 		self.messageBoxAnswerPending = False
 
 	def zapTimerCB(self, answer):
-		if answer:
+		if answer and not self.cancelled and not self.failed and (not self.hasEndTime or time() < self.end):
 			self.log(11, "User confirmed zap timer.")
-			Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
-			NavigationInstance.instance.isMovieplayerActive()
-			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
-				InfoBar.instance.servicelist.performZap(self.service_ref.ref)
-			else:
-				NavigationInstance.instance.playService(self.service_ref.ref)
+			self.startZapTimer()
 		else:
 			self.log(11, "User cancelled zap timer.")
+
+	def clearZapBack(self):
+		self.zapBackService = None
+		self.zapBackActive = False
+		nav = NavigationInstance.instance
+		if nav and self.zapBackServiceChanged in nav.event:
+			nav.event.remove(self.zapBackServiceChanged)
+
+	def zapBackServiceChanged(self, event):
+		# Keep the callback registered until cleanup: Navigation iterates the live event list.
+		if self.zapBackService is None:
+			return
+		if event == iPlayableService.evStart:
+			current = NavigationInstance.instance.getCurrentlyPlayingServiceOrGroup()
+			if not self.zapBackActive and current == self.service_ref.ref:
+				self.zapBackActive = True
+			else:
+				self.zapBackService = None
+		elif (event == iPlayableService.evEnd and self.zapBackActive) or event == iPlayableService.evTuneFailed:
+			self.zapBackService = None
+
+	def startZapTimer(self):
+		nav = NavigationInstance.instance
+		self.clearZapBack()
+		current = nav.getCurrentlyPlayingServiceOrGroup()
+		serviceList = InfoBar.instance.servicelist if InfoBar and InfoBar.instance else None
+		if (self.zapBack and self.hasEndTime and self.afterEvent == AFTEREVENT.NONE
+			and not Screens.Standby.inStandby and current and current != self.service_ref.ref
+			and not current.getPath().startswith("/") and not (serviceList and serviceList.dopipzap)):
+			self.zapBackService = current
+			nav.event.append(self.zapBackServiceChanged)
+		Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
+		nav.isMovieplayerActive()
+		if serviceList:
+			serviceList.performZap(self.service_ref.ref)
+		else:
+			nav.playService(self.service_ref.ref)
+
+	def returnFromZapTimer(self):
+		previous = self.zapBackService if self.zapBackActive else None
+		self.clearZapBack()
+		if (not previous or not self.justplay or not self.zapBack or not self.hasEndTime or self.afterEvent != AFTEREVENT.NONE
+			or self.cancelled or self.failed or self.disabled or Screens.Standby.inStandby or Screens.Standby.inTryQuitMainloop):
+			return
+		nav = NavigationInstance.instance
+		if nav.getCurrentlyPlayingServiceOrGroup() != self.service_ref.ref:
+			return
+		# Do not compete with another zap timer, including one due in this timer tick.
+		now = int(time())
+		if any(timer is not self and not timer.disabled and not timer.cancelled and not timer.failed
+			and (timer.justplay or timer.always_zap) and timer.begin <= now + 1 and now < timer.end
+			for timer in nav.RecordTimer.timer_list):
+			self.log(12, "Not returning to previous service: another zap timer has priority.")
+			return
+		service = nav.getCurrentService()
+		timeshift = service and service.timeshift()
+		if timeshift and timeshift.isTimeshiftActive():
+			self.log(12, "Not returning to previous service: timeshift playback is active.")
+			return
+		if not isPlayableForCur(previous):
+			self.log(12, "Not returning to previous service: no free tuner or service unavailable.")
+			return
+		serviceList = InfoBar.instance.servicelist if InfoBar and InfoBar.instance else None
+		if serviceList and serviceList.dopipzap:
+			return
+		self.log(12, "Returning to service watched before zap timer.")
+		if serviceList:
+			serviceList.performZap(previous)
+		else:
+			nav.playService(previous)
+
+	def abort(self):
+		self.clearZapBack()
+		TimerEntry.abort(self)
+
+	def disable(self):
+		self.clearZapBack()
+		TimerEntry.disable(self)
 
 	def check_justplay(self):
 		if self.justplay:

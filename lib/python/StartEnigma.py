@@ -481,7 +481,7 @@ def runScreenTest():
 	if not config.usage.shutdownOK.value and not config.usage.shutdownNOK_action.value == "normal" or not config.usage.boot_action.value == "normal":
 		print("[StartEnigma] Last shutdown=%s." % config.usage.shutdownOK.value)
 		from Screens.PowerLost import PowerLost
-		PowerLost(session)
+		powerLost = PowerLost(session)  # noqa F841 - Keep the deferred startup action alive.
 	if not RestoreSettings:
 		config.usage.shutdownOK.setValue(False)
 		config.usage.shutdownOK.save()

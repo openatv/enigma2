@@ -19,7 +19,7 @@ from Screens.MessageBox import MessageBox
 import Screens.Standby
 from Tools.ASCIItranslit import legacyEncode
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import SCOPE_TIMESHIFT, copyfile, fileExists, fileWriteLine, getRecordingFilename, resolveFilename
+from Tools.Directories import copyfile, fileExists, fileWriteLine, getRecordingFilename
 from Tools.Notifications import AddNotification
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -600,7 +600,7 @@ class InfoBarTimeshift:
 			self.pts_firstplayable = self.pts_eventcount
 
 	def createTimeshiftFolder(self):
-		timeshiftdir = resolveFilename(SCOPE_TIMESHIFT)
+		timeshiftdir = config.timeshift.path.value
 		if not exists(timeshiftdir):
 			try:
 				makedirs(timeshiftdir)

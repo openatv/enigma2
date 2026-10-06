@@ -1541,22 +1541,31 @@ class RecordTimerEdit(Setup):
 				tagName = "%s%s" % (tagName[0].upper(), tagName[1:].replace(" ", "_"))
 				self.tags.append(tagName)
 		self.timerTags = ConfigSelection(choices=[not self.tags and "None" or " ".join(self.tags)])
-		self.timerAfterEvent = ConfigSelection(default=RECORDTIMER_AFTER_EVENTS.get(self.timer.afterEvent, "auto"), choices=[
+		self.timerFallback = ConfigYesNo(default=self.timer.external_prev)
+		afterEvent = "zapback" if getattr(self.timer, "zapBack", False) else RECORDTIMER_AFTER_EVENTS.get(self.timer.afterEvent, "auto")
+		self.timerAfterEvent = ConfigSelection(default=afterEvent, choices=[
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.NONE), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.NONE)),
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.STANDBY), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.STANDBY)),
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.DEEPSTANDBY), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.DEEPSTANDBY)),
-			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.AUTO), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.AUTO))
+			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.AUTO), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.AUTO)),
+			("zapback", _("Return to previous channel"))
 		])
 		self.timerPrecondition = ConfigSelection(default=self.timer.precondition, choices=[
 			(0, _("Always")),
 			(1, _("Running only")),
 			(2, _("(Deep) Standby only")),
 		])
-		self.timerFallback = ConfigYesNo(default=self.timer.external_prev)
 		for callback in onRecordTimerCreate:
 			callback(self)
 
 	def createSetup(self):  # NOSONAR silence S2638
+		choices = [(value, self.timerAfterEvent.description[value]) for value in self.timerAfterEvent.choices if value != "zapback"]
+		if self.timerType.value == "zap" and self.timerHasEndTime.value and not self.timerFallback.value:
+			choices.append(("zapback", _("Return to previous channel")))
+		elif self.timerAfterEvent.value == "zapback":
+			self.timerAfterEvent.value = "nothing"
+		default = self.timerAfterEvent.default
+		self.timerAfterEvent.setChoices(choices, default=default if any(value == default for value, label in choices) else "nothing")
 		Setup.createSetup(self)
 		for callback in onRecordTimerSetup:
 			callback(self)
@@ -1575,7 +1584,7 @@ class RecordTimerEdit(Setup):
 				self.timerHasEndTime.value = config.recording.zap_has_endtime.value
 				self.timerMarginBefore.value = config.recording.zap_margin_before.value // 60
 				self.timerMarginAfter.value = config.recording.zap_margin_after.value // 60
-				Setup.createSetup(self)
+				self.createSetup()
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
@@ -1692,7 +1701,8 @@ class RecordTimerEdit(Setup):
 		}[self.timerRecordingType.value]
 		self.saveMovieDir()
 		self.timer.tags = self.tags
-		self.timer.afterEvent = RECORDTIMER_AFTER_VALUES[self.timerAfterEvent.value]
+		self.timer.zapBack = self.timer.justplay and self.timer.hasEndTime and not self.timerFallback.value and self.timerAfterEvent.value == "zapback"
+		self.timer.afterEvent = RECORD_AFTEREVENT.NONE if self.timer.zapBack else RECORDTIMER_AFTER_VALUES.get(self.timerAfterEvent.value, RECORD_AFTEREVENT.NONE)
 		if self.timer.eit is not None and not self.lookupEvent():
 			return
 		self.saveTimers()

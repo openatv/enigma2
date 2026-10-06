@@ -1009,6 +1009,7 @@ public:
 
 		// "&e2startoffset=" start position applied
 		evResumed,
+		evStreamError, /* recoverable failure of the primary HTTP source, not normal EOF */
 
 		evUser = 0x100
 	};

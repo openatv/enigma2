@@ -96,8 +96,8 @@
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet." indent="1">config.usage.multibouquet</item>
 		<item level="2" text="Load unlinked user bouquets" description="Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages." indent="1">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Hide number markers" description="When enabled, number markers will be hidden." indent="1">config.usage.hide_number_markers</item>
-		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history." indent="1">config.usage.panicbutton</item>
-		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet." indent="2">config.usage.panicchannel</item>
+		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history." indent="1">config.usage.panicbutton</item>
+		<item level="1" text="Panic channel" description="Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered." indent="2">config.usage.panicsref</item>
 		<item level="2" text="Show picons in quickzap" description="Configure if service picons will be shown in quickzap." indent="1">config.usage.numzappicon</item>
 		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed." indent="1">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Service List Appearance" />
@@ -612,6 +612,7 @@
 	<setup key="MovieSelection" title="Movie Selection Settings" showOpenWebif="yes">
 		<item level="0" text="Trash And Deletion" />
 		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately." indent="1">config.usage.movielist_trashcan</item>
+		<item level="0" text="Confirm moving files to the trashcan" description="Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged." requires="config.usage.movielist_trashcan" indent="1">config.usage.movielistTrashcanConfirm</item>
 		<item level="0" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan." indent="1">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning." indent="1">config.usage.movielist_trashcan_network_clean</item>
 		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan." indent="1">config.usage.movielist_trashcan_reserve</item>
@@ -705,7 +706,7 @@
 		<item level="0" text="Remote path" description="Enter the remote share name (SMB) or exported path (NFS) on the server.">self.remotePath</item>
 		<item level="0" text="Local share" description="Enter the local directory name to be used as the local mount for the remote share.">self.shareName</item>
 		<item level="0" text="Mount mode" description="Select when, and how, the remote share will be mounted. For most purposes autofs is recommended.">self.mode</item>
-		<item level="0" text="Use as HDD replacement" description="When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available.">self.hddReplacement</item>
+		<item level="0" text="Use as HDD replacement" description="Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten.">self.hddReplacement</item>
 		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read-Only, for this share mount.">self.accessMode</item>
 		<if conditional="self.protocol.value == 'nfs'">
 			<item level="0" text="NFS version" description="Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation.">self.nfsVersion</item>
@@ -784,6 +785,42 @@
 			<item level="0" text="OSD visibility" description="This option lets you adjust the transparency of the OSD.">config.osd.alpha</item>
 			<item level="0" text="Teletext base visibility" description="Base transparency for teletext, more options are available within teletext screen.">config.osd.alpha_teletext</item>
 			<item level="0" text="Web browser base visibility" description="Base transparency for OpenOpera web browser.">config.osd.alpha_webbrowser</item>
+		</if>
+	</setup>
+	<setup key="ParentalControlChangePin" title="Change pin code">
+		<item level="0" text="New PIN" description="Enter the new four-digit PIN code.">self.pin1</item>
+		<item level="0" text="Re-enter new PIN" description="Enter the same PIN code again to confirm it.">self.pin2</item>
+	</setup>
+	<setup key="ParentalControlSetup" title="Parental control setup">
+		<item level="0" text="Protect services" description="Require a PIN code to watch protected services or programmes covered by the selected age limit.">config.ParentalControl.servicepinactive</item>
+		<if conditional="config.ParentalControl.servicepinactive.value">
+			<item level="0" text="Change PIN" description="Press OK to change the PIN used for service and screen protection.">self.changePin</item>
+			<item level="0" text="Remember service PIN" description="Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions.">config.ParentalControl.storeservicepin</item>
+			<item level="0" text="Hide parental locked services" description="Hide protected services while the service PIN is not remembered." conditional="config.ParentalControl.storeservicepin.value != 'never'">config.ParentalControl.hideBlacklist</item>
+			<item level="0" text="Protect on epg age" description="Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster.">config.ParentalControl.age</item>
+			<item level="0" text="Reload blacklists" description="Press OK to reload the list of protected services from disk.">self.reloadLists</item>
+		</if>
+		<item level="0" text="Protect Screens" description="Require a PIN code to access the selected menus and system functions, including their protected shortcuts.">config.ParentalControl.setuppinactive</item>
+		<if conditional="config.ParentalControl.setuppinactive.value">
+			<item level="0" text="Change PIN" description="Press OK to change the PIN used for service and screen protection." conditional="not config.ParentalControl.servicepinactive.value">self.changePin</item>
+			<item level="0" text="Protect main menu" description="Protect the main menu and the system functions covered by screen protection, including access through shortcuts.">config.ParentalControl.config_sections.main_menu</item>
+			<if conditional="not config.ParentalControl.config_sections.main_menu.value">
+				<item level="0" text="Protect timer menu" description="Require a PIN code to open the timer menu.">config.ParentalControl.config_sections.timer_menu</item>
+				<item level="0" text="Protect plugin browser" description="Require a PIN code to open the plugin browser and launch plugins through protected entry points.">config.ParentalControl.config_sections.plugin_browser</item>
+				<item level="0" text="Protect configuration" description="Require a PIN code to open settings and protected system configuration screens.">config.ParentalControl.config_sections.configuration</item>
+				<item level="0" text="Protect standby menu" description="Require a PIN code to open the standby and shutdown menu.">config.ParentalControl.config_sections.standby_menu</item>
+				<item level="0" text="Protect software update screen" description="Require a PIN code to access software updates.">config.ParentalControl.config_sections.software_update</item>
+			</if>
+			<item level="0" text="Protect movie list" description="Require a PIN code to open the movie list.">config.ParentalControl.config_sections.movie_list</item>
+			<item level="0" text="Protect context menus" description="Require a PIN code to open protected context menus.">config.ParentalControl.config_sections.context_menus</item>
+			<item level="0" text="Protect Quickmenu" description="Require a PIN code to open the Quickmenu.">config.ParentalControl.config_sections.quickmenu</item>
+			<item level="0" text="Protect extensions menu" description="Require a PIN code to open the extensions menu.">config.ParentalControl.config_sections.extensions_menu</item>
+			<item level="0" text="Protect MultiBoot" description="Require a PIN code to manage MultiBoot images and slots.">config.ParentalControl.config_sections.multiboot</item>
+			<item level="0" text="Protect image flashing and restoring backups" description="Require a PIN code to flash images or restore backups.">config.ParentalControl.config_sections.flash_restore</item>
+			<item level="0" text="Protect storage device management" description="Require a PIN code to access protected storage management, swap and flash expansion screens.">config.ParentalControl.config_sections.storage</item>
+			<item level="0" text="Protect package installation and removal" description="Require a PIN code to install or remove packages, including IPK files found on removable media.">config.ParentalControl.config_sections.packages</item>
+			<item level="0" text="Protect script execution" description="Require a PIN code to open the script runner.">config.ParentalControl.config_sections.scripts</item>
+			<item level="0" text="Protect factory reset" description="Require a PIN code before resetting the receiver configuration.">config.ParentalControl.config_sections.manufacturer_reset</item>
 		</if>
 	</setup>
 	<setup key="Password" title="Password Settings">
@@ -876,6 +913,7 @@
 		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames." indent="1">config.seek.withjumps_avoid_zero</item>
 		<item level="1" text="Trash And Deletion" />
 		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately." indent="1">config.usage.movielist_trashcan</item>
+		<item level="1" text="Confirm moving files to the trashcan" description="Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged." requires="config.usage.movielist_trashcan" indent="1">config.usage.movielistTrashcanConfirm</item>
 		<item level="1" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan." indent="1">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning." indent="1">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan." indent="1">config.usage.movielist_trashcan_reserve</item>

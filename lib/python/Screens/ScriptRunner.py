@@ -1,3 +1,4 @@
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
@@ -8,7 +9,9 @@ from Components.MenuList import MenuList
 from os import listdir, mkdir, path, access, X_OK, chmod
 
 
-class ScriptRunner(Screen):
+class ScriptRunner(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "scripts")
+
 	skin = """<screen name="ScriptRunner" position="center,center" size="560,400" title="Script Runner" flags="wfBorder" resolution="1280,720">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
@@ -23,6 +26,7 @@ class ScriptRunner(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Script Manager"))
 		self['lab1'] = Label()
 		self.list = []

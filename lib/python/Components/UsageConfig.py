@@ -10,7 +10,7 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
@@ -388,7 +388,11 @@ def InitUsageConfig():
 	# ####################################################
 
 	config.usage.panicbutton = ConfigYesNo(default=False)
-	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))
+	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))  # Legacy setting, migrated to a service reference.
+	config.usage.panicsref = ConfigService()
+	if not config.usage.panicsref.value and (config.usage.panicbutton.value or config.usage.panicchannel.saved_value is not None):
+		from ServiceReference import getPanicService
+		getPanicService()
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 
@@ -536,6 +540,15 @@ def InitUsageConfig():
 	] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 30, 45, 60)]
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choiceList)
 
+	def createConfiguredDirectory(configElement):
+		if configElement.isChanged():  # Final notifiers also run when leaving an unsaved setup entry.
+			return
+		path = configElement.value
+		try:
+			makedirs(path, 0o755, exist_ok=True)
+		except OSError as err:
+			print(f"[UsageConfig] Error {err.errno}: Unable to create configured directory '{path}'!  ({err.strerror})")
+
 	defaultPath = resolveFilename(SCOPE_HDD)
 	config.usage.default_path = ConfigSelection(default=defaultPath, choices=[(defaultPath, defaultPath)])
 	config.usage.default_path.load()
@@ -546,18 +559,7 @@ def InitUsageConfig():
 			config.usage.default_path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.usage.default_path.value = savedPath
 	config.usage.default_path.save()
-	currentPath = config.usage.default_path.value
-	print(f"[UsageConfig] Checking/Creating current movie directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current movie directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default movie directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default movie directory '{defaultPath}'!  ({err.strerror})")
+	config.usage.default_path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	choiceList = [
 		("<default>", "<Default>"),
@@ -583,6 +585,7 @@ def InitUsageConfig():
 	config.usage.instantrec_path.save()
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
+	config.usage.movielistTrashcanConfirm = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
@@ -2626,18 +2629,7 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
-	currentPath = config.timeshift.path.value
-	print(f"[UsageConfig] Checking/Creating current time shift directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current time shift directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default time shift directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default time shift directory '{defaultPath}'!  ({err.strerror})")
+	config.timeshift.path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))

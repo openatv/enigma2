@@ -504,6 +504,26 @@ class descriptionsList(choicesList):
 # 		return ("text", _("<Press OK to perform action>") if selected else "")
 
 
+class ConfigService(ConfigElement):
+	"""Store a service reference, but display its name and select it with OK."""
+	def __init__(self, default=""):
+		ConfigElement.__init__(self)
+		self.default = default
+		self.value = default
+		self.lastValue = default
+
+	def toDisplayString(self, value):
+		from ServiceReference import ServiceReference
+		return (ServiceReference(value).getServiceName() or _("Service not found")) if value else _("Not set")
+
+	def getText(self):
+		return self.toDisplayString(self.value)
+
+	def getMulti(self, selected):
+		text = self.getText()
+		return ("text", f"{READONLY_COLOR}{text}" if self.isReadOnly() else text)
+
+
 # This is the control, and base class, for binary decision settings.
 #
 # Several customized versions exist for different descriptions.

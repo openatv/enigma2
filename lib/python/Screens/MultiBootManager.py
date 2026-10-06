@@ -16,6 +16,7 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.Console import Console as ConsoleScreen
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
@@ -85,7 +86,9 @@ def hasAdditionalSlots():
 	return any(isAdditionalSlot(slotCode) for slotCode in MultiBoot.getBootSlots())
 
 
-class MultiBootManager(Screen):
+class MultiBootManager(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "multiboot")
+
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
 	skin = """
@@ -117,6 +120,7 @@ class MultiBootManager(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("MultiBoot Manager"))
 		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
 		self.defaultDescription = _("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots.")
@@ -175,7 +179,7 @@ class MultiBootManager(Screen):
 		self.emptySlotCount = 0
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
-		self.callLater(self.getSlotList)
+		self.callLater(self.protectedCallback(self.getSlotList))
 
 	def layoutFinished(self):
 		self["slotlist"].enableAutoNavigation(False)
@@ -490,7 +494,9 @@ class MultiBootManager(Screen):
 			self.session.open(KexecSlotManager)
 
 
-class KexecInit(Screen):
+class KexecInit(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "multiboot")
+
 	skin = """
 	<screen name="KexecInit" title="Kexec MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
 		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
@@ -507,6 +513,7 @@ class KexecInit(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Kexec MultiBoot Manager"))
 		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()
@@ -526,7 +533,7 @@ class KexecInit(Screen):
 			}, prio=0, description=_("Kexec MultiBoot Actions"))
 		else:
 			self.descriptionSuffix = ""
-			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot."), _("Kexec MultiBoot files are missing.")))
+			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot!"), _("Kexec MultiBoot files are missing.")))
 
 	def rootInit(self):
 		def rootInitCallback(*args, **kwargs):
@@ -567,6 +574,8 @@ class KexecInit(Screen):
 
 
 class KexecSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -626,7 +635,7 @@ class KexecSlotManager(Setup):
 						remove(join("/", startupFile))
 			except OSError as err:
 				print(f"[KexecSlotManager] Error {err.errno}: Unable to remove obsolete additional STARTUP files.  ({err.strerror})")
-				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 				return
 			model = BoxInfo.getItem("model")[2:]
 			for slot in range(4, self.kexecSlotManagerSlots.value + 4):
@@ -736,6 +745,8 @@ class KexecSlotManager(Setup):
 
 
 class GPTSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -829,13 +840,13 @@ class GPTSlotManager(Setup):
 						remove(join("/data", startupFile))
 			except OSError as err:
 				print(f"[GPTSlotManager] Error {err.errno}: Unable to remove obsolete additional STARTUP files.  ({err.strerror})")
-				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 				return False
 			for i in range(numSlots):
 				content = f"root=/dev/mmcblk1p{i + 2} rootfstype=ext4 kernel=/kernel{i + 2}.img\n"
 				path = join("/data", f"STARTUP_{i + offset}")
 				if not fileWriteLine(path, content, source=MODULE_NAME):
-					self.session.open(MessageBox, _("Unable to create the additional STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+					self.session.open(MessageBox, _("Error: Unable to create the additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 					return False
 			return True
 
@@ -991,7 +1002,9 @@ class GPTSlotManager(Setup):
 		}.get(self.green, _("Invalid")))
 
 
-class ChkrootInit(Screen):
+class ChkrootInit(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "multiboot")
+
 	skin = """
 	<screen name="ChkrootInit" title="Chkroot MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
 		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
@@ -1008,6 +1021,7 @@ class ChkrootInit(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.skinName = "KexecInit"
 		self.setTitle(_("Chkroot MultiBoot Manager"))
 		self["key_red"] = StaticText()
@@ -1094,6 +1108,8 @@ class ChkrootInit(Screen):
 
 
 class ChkrootSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -1288,6 +1304,8 @@ class ChkrootSlotManager(Setup):
 
 
 class NativeSlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
@@ -1435,7 +1453,7 @@ class NativeSlotManager(Setup):
 			if startupFile and cmdLine and "root=" in cmdLine and "kernel=" in cmdLine:
 				startupLines = startupContents.get(startupFile)
 				if not startupLines or not any(line.strip() for line in startupLines):
-					return _("Unable to read the manufacturer STARTUP file '%s'.") % startupFile
+					return _("Unable to read the manufacturer STARTUP file '%s'!") % startupFile
 				if " ".join(line.strip() for line in startupLines if line.strip()) != cmdLine:
 					return _("The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again.") % startupFile
 				# cmdLine is only for detection. Keep the bootloader's original line structure.
@@ -1556,7 +1574,7 @@ class NativeSlotManager(Setup):
 		uuid = output.strip()
 		if retVal or not fullmatch(r"[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}", uuid):
 			Console().ePopen(["/bin/umount", "/bin/umount", "/tmp/NativeSlotManagerBoot"])
-			self.session.open(MessageBox, _("Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+			self.session.open(MessageBox, _("Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 			return
 		self.writeStartupFiles(f"UUID={uuid.lower()}")
 
@@ -1594,7 +1612,7 @@ class NativeSlotManager(Setup):
 		Console().ePopen(["/bin/sync"])
 		Console().ePopen(["/bin/umount", "/bin/umount", mountPoint])
 		if failed:
-			self.session.open(MessageBox, _("Unable to create the new manufacturer STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+			self.session.open(MessageBox, _("Error: Unable to create the new manufacturer STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 			return
 		self.session.openWithCallback(closeStartupCallback, MessageBox, _("%d additional slots have been created.\n") % created, type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 
@@ -1688,6 +1706,8 @@ class NativeSlotManager(Setup):
 
 
 class UBISlotManager(Setup):
+	protectionSections = ("configuration", "multiboot")
+
 	def __init__(self, session):
 		def getGreenHelpText():
 			return {
