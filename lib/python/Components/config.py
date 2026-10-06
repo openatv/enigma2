@@ -939,6 +939,7 @@ class ConfigSelection(ConfigElement):
 	def setSelectionList(self, choices, default=None):
 		value = self.value
 		self.choices = choicesList(choices)
+		self._descr = None
 		if default is None:
 			default = self.choices.default()
 		self.default = default
