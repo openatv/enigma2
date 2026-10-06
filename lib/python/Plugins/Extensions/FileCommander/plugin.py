@@ -2920,6 +2920,7 @@ class FileTransferTask(Task):
 		if lexists(srcPath) and exists(dstPath):
 			self.srcPath = srcPath
 			self.dstPath = dstPath
+			self.jobType = jobType
 			target = join(dstPath, "") if isdir(srcPath) else join(dstPath, basename(normpath(srcPath)))
 			if jobType == self.JOB_COPY:
 				cmdLine = ("cp", "-pr", srcPath, target)
@@ -2935,7 +2936,7 @@ class FileTransferTask(Task):
 				print(f"[Directories] FileTransferTask Error: Unknown job type '{jobType}' specified!")
 				cmdLine = None
 			self.mountPoints = [normpath(x.mountpoint) for x in harddiskmanager.getMountedPartitions()]
-			self.initialSize = self.dirSize(target) if isdir(target) else 0
+			self.initialSize = self.dirSize(target) if jobType in (self.JOB_COPY, self.JOB_MOVE) and isdir(target) else 0
 			if isfile(srcPath):
 				self.dstPath = target
 			if cmdLine:
@@ -2950,15 +2951,21 @@ class FileTransferTask(Task):
 				self.progressTimer.callback.append(self.progressUpdate)
 
 	def progressUpdate(self):
-		if exists(self.dstPath):
-			dstSize = float((self.dirSize(self.dstPath) - self.initialSize) if isdir(self.dstPath) else getsize(self.dstPath))
-			self.setProgress(dstSize / self.srcSize * 100.0)
-		else:
-			self.setProgress(100)
+		try:
+			if self.jobType in (self.JOB_DELETE, self.JOB_DELETE_TREE):  # Measure what is left of the source.
+				doneSize = self.srcSize - (self.pathSize(self.srcPath) if lexists(self.srcPath) else 0)
+				self.setProgress(doneSize / self.srcSize * 100.0 if self.srcSize else 100)
+			elif exists(self.dstPath):
+				dstSize = float((self.dirSize(self.dstPath) - self.initialSize) if isdir(self.dstPath) else getsize(self.dstPath))
+				self.setProgress(dstSize / self.srcSize * 100.0 if self.srcSize else 100)
+			else:
+				self.setProgress(100)
+		except OSError as err:  # Files can vanish while the command is running.
+			print(f"[FileCommander] FileTransferTask Error: Unable to update the progress!  ({err})")
 		self.progressTimer.start(self.updateTime, True)
 
 	def prepare(self):
-		self.srcSize = float(self.dirSize(self.srcPath) if isdir(self.srcPath) else lstat(self.srcPath).st_size)
+		self.srcSize = float(self.pathSize(self.srcPath))
 		self.updateTime = max(1000, int(self.srcSize * 0.000001 * 0.5))  # Based on 20Mb/s transfer rate.
 		self.progressTimer.start(self.updateTime, True)
 
@@ -2979,16 +2986,26 @@ class FileTransferTask(Task):
 		self.cleanup(notMet)
 		self.callback(self, notMet)
 
+	def pathSize(self, path):
+		return self.dirSize(path) if isdir(path) and not islink(path) else lstat(path).st_size
+
 	def dirSize(self, directory):
-		totalSize = getsize(directory)
-		for item in listdir(directory):
+		try:
+			totalSize = getsize(directory)
+			items = listdir(directory)
+		except OSError:  # Directory vanished while the command is running.
+			return 0
+		for item in items:
 			path = join(directory, item)
 			if path in ("/dev", "/proc", "/run", "/sys") or path in self.mountPoints or islink(path):  # Don't analyze system directories, mount points or links.
 				continue
-			if isfile(path):
-				totalSize += getsize(path)
-			elif isdir(path):
-				totalSize += self.dirSize(path)
+			try:
+				if isfile(path):
+					totalSize += getsize(path)
+				elif isdir(path):
+					totalSize += self.dirSize(path)
+			except OSError:  # File vanished while the command is running.
+				pass
 		return totalSize
 
 
