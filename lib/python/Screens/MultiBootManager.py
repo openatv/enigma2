@@ -533,7 +533,7 @@ class KexecInit(Screen, ProtectedScreen):
 			}, prio=0, description=_("Kexec MultiBoot Actions"))
 		else:
 			self.descriptionSuffix = ""
-			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot."), _("Kexec MultiBoot files are missing.")))
+			self["description"].setText("%s: %s\n\n%s" % (_("NOTE"), _("Unable to initialize Kexec MultiBoot!"), _("Kexec MultiBoot files are missing.")))
 
 	def rootInit(self):
 		def rootInitCallback(*args, **kwargs):
@@ -635,7 +635,7 @@ class KexecSlotManager(Setup):
 						remove(join("/", startupFile))
 			except OSError as err:
 				print(f"[KexecSlotManager] Error {err.errno}: Unable to remove obsolete additional STARTUP files.  ({err.strerror})")
-				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 				return
 			model = BoxInfo.getItem("model")[2:]
 			for slot in range(4, self.kexecSlotManagerSlots.value + 4):
@@ -840,13 +840,13 @@ class GPTSlotManager(Setup):
 						remove(join("/data", startupFile))
 			except OSError as err:
 				print(f"[GPTSlotManager] Error {err.errno}: Unable to remove obsolete additional STARTUP files.  ({err.strerror})")
-				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 				return False
 			for i in range(numSlots):
 				content = f"root=/dev/mmcblk1p{i + 2} rootfstype=ext4 kernel=/kernel{i + 2}.img\n"
 				path = join("/data", f"STARTUP_{i + offset}")
 				if not fileWriteLine(path, content, source=MODULE_NAME):
-					self.session.open(MessageBox, _("Unable to create the additional STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+					self.session.open(MessageBox, _("Error: Unable to create the additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 					return False
 			return True
 
@@ -1453,7 +1453,7 @@ class NativeSlotManager(Setup):
 			if startupFile and cmdLine and "root=" in cmdLine and "kernel=" in cmdLine:
 				startupLines = startupContents.get(startupFile)
 				if not startupLines or not any(line.strip() for line in startupLines):
-					return _("Unable to read the manufacturer STARTUP file '%s'.") % startupFile
+					return _("Unable to read the manufacturer STARTUP file '%s'!") % startupFile
 				if " ".join(line.strip() for line in startupLines if line.strip()) != cmdLine:
 					return _("The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again.") % startupFile
 				# cmdLine is only for detection. Keep the bootloader's original line structure.
@@ -1574,7 +1574,7 @@ class NativeSlotManager(Setup):
 		uuid = output.strip()
 		if retVal or not fullmatch(r"[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}", uuid):
 			Console().ePopen(["/bin/umount", "/bin/umount", "/tmp/NativeSlotManagerBoot"])
-			self.session.open(MessageBox, _("Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+			self.session.open(MessageBox, _("Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 			return
 		self.writeStartupFiles(f"UUID={uuid.lower()}")
 
@@ -1612,7 +1612,7 @@ class NativeSlotManager(Setup):
 		Console().ePopen(["/bin/sync"])
 		Console().ePopen(["/bin/umount", "/bin/umount", mountPoint])
 		if failed:
-			self.session.open(MessageBox, _("Unable to create the new manufacturer STARTUP files."), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+			self.session.open(MessageBox, _("Error: Unable to create the new manufacturer STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 			return
 		self.session.openWithCallback(closeStartupCallback, MessageBox, _("%d additional slots have been created.\n") % created, type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 

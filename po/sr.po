@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
-"PO-Revision-Date: 2026-10-04 11:54+0000\n"
+"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"PO-Revision-Date: 2026-10-05 17:19+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -1459,6 +1459,21 @@ msgstr "-24 Sata"
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Sata"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/s"
 
@@ -2281,6 +2296,9 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Posle Događaja"
 
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr ""
+
 msgid "After event"
 msgstr "Posle događaja"
 
@@ -2355,7 +2373,7 @@ msgid "All files"
 msgstr "Svi fajlovi"
 
 msgid "All packages"
-msgstr ""
+msgstr "Svi paketi"
 
 msgid "All regions"
 msgstr "Sav region"
@@ -2755,6 +2773,9 @@ msgstr "Kao plugin na proširenij traci"
 
 msgid "Ascending"
 msgstr "Rastući"
+
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
 
 msgid "Ask user"
 msgstr "Pitaj korisnika"
@@ -3425,6 +3446,10 @@ msgstr "Način Izbora Buketa"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Način Navigacije Izbora Buketa"
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
 
 msgid "Bouquets"
 msgstr "Buket"
@@ -4117,7 +4142,7 @@ msgid "Change repeat and delay settings?"
 msgstr "Promeni postavke ponavljanja i odlaganja?"
 
 msgid "Change search"
-msgstr ""
+msgstr "Promeni pretragu"
 
 msgid "Change skin"
 msgstr "Promeni skin"
@@ -4516,7 +4541,7 @@ msgid "Clear play list"
 msgstr "Obriši plej listu"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Očisti pretragu"
 
 msgid "Clear the logs for this timer"
 msgstr "Obriši log za ovaj tajmer"
@@ -5155,6 +5180,9 @@ msgstr "Podešavanje Servisa"
 msgid "Confirm Zap"
 msgstr "Potvrdi Zap"
 
+msgid "Confirm moving files to the trashcan"
+msgstr ""
+
 #, python-format
 msgid "Confirm the deletion of '%s'?"
 msgstr "Da li želiš da obrišeš '%s'?"
@@ -5522,8 +5550,14 @@ msgstr "Kreiraj direktorijum"
 msgid "Create a randomly generated password"
 msgstr "Kreiranje nasumično generisane lozinke"
 
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
 msgstr "Kreiranje simboličke veze"
+
+msgid "Create an image backup"
+msgstr ""
 
 msgid "Create application loader dump."
 msgstr "Kreirajte deponiju utovarivača aplikacija."
@@ -5832,7 +5866,7 @@ msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: buket nije mogao biti snimljen"
 
 msgid "DAB+ audio decoding"
-msgstr ""
+msgstr "DAB+ dekodiranje zvuka"
 
 msgid "DAB+ channel"
 msgstr "DAB+ kanala"
@@ -6691,6 +6725,15 @@ msgstr "DiSEqC režim"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "Port DiSEqC %s: %s"
+
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
 
 msgid "DiSEqC-tester settings"
 msgstr "Postavke DiSEqC-tastera"
@@ -8078,6 +8121,9 @@ msgstr "Odredite DNS sufiks mreže koji će se primeniti kada je naveden samo na
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Unesi ime domaće mreže koja će se koristiti za identifikaciju ovog prijemnika."
 
+msgid "Enter the new four-digit PIN code."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Unesite broj NFS server niti koje će biti dodeljene/korištene. Veće vrednosti poboljšavaju performanse sa više klijenata, ali koriste više memorije."
 
@@ -8101,6 +8147,9 @@ msgstr "Unesi primarnu IPv6 DNS postavku za ovaj adapter. (Opcionalno)"
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Unesi ime udaljenog deljenog domaćina(SMB) ili izvezeni put (NFS) na serveru."
+
+msgid "Enter the same PIN code again to confirm it."
+msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Unesi sekundarnu IPv4 DNS postavku za ovaj adapter. (Opcionalno)"
@@ -8274,12 +8323,18 @@ msgstr "Greška odlaganje ponovnog pokušaja"
 msgid "Error code"
 msgstr "Greška koda"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Greška preuzimanja imidža '%s'!"
 
 msgid "Error executing plugin"
 msgstr "Greška izvršavanja plugina"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8295,11 +8350,17 @@ msgstr "Greška kreće 'epg.dat' do svog odredišta!"
 msgid "Error opening recording file"
 msgstr "Greška otvaranja fajla snimanja"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "Greška čitanja web stranice!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Greška pri preuzimanju \"epg.dat\" sa daljinskog prijemnika!"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "Tekst greška:"
@@ -8315,9 +8376,6 @@ msgid ""
 msgstr ""
 "Greška prilikom preuzimanja informacija o rezervnom tajmeru\n"
 "%s"
-
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "Greška pri pisanju '/etc/enigma2/epg.dat' na daljinskom prijemniku!"
 
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Greška pri pisanju 'epg.dat' na daljinskom prijemniku!"
@@ -9860,7 +9918,7 @@ msgid "Harddisk Setup"
 msgstr "Podešavanje hard diska"
 
 msgid "Hardware AAC"
-msgstr ""
+msgstr "Hardver AAC"
 
 msgid "Hardware MultiBoot device"
 msgstr "MultiBoot uređaj"
@@ -9990,6 +10048,9 @@ msgstr "Sakrij zaključane kanale"
 
 msgid "Hide player"
 msgstr "Sakrij plejer"
+
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
 
 msgid "Hide softcam servername"
 msgstr "Sakrij softcam ime servera"
@@ -13254,6 +13315,9 @@ msgstr "Bez kategorije"
 msgid "No channel"
 msgstr "Nema kanala"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "Nema liste kanala"
 
@@ -13303,6 +13367,9 @@ msgstr "Nije otkriven hard disk."
 msgid "No hosts found yet - still scanning..."
 msgstr "Još nisu pronađeni domaćini - još se skenira..."
 
+msgid "No local images found."
+msgstr ""
+
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nije pronađen fajl evidencije tako da otklanjanje greške nije dostupno!"
 
@@ -13322,7 +13389,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Nema prekidača stavki (povećaj ili smanji)"
 
 msgid "No packages found."
-msgstr ""
+msgstr "Nema pronađenih paketa."
 
 msgid "No pictures available"
 msgstr "Slike nisu dostupne"
@@ -13580,6 +13647,9 @@ msgstr "Nije obavezno"
 msgid "Not running"
 msgstr "Nije pokrenuto"
 
+msgid "Not set"
+msgstr ""
+
 msgid "Not tested:"
 msgstr "Nije testirano:"
 
@@ -13829,6 +13899,9 @@ msgstr "Samo pomerite antenu brzo pre ovog sata."
 
 msgid "Only on startup"
 msgstr "Samo pri pokretanju"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Koristite samo DNS servere koji implementiraju DNS-over-HTTPS protokol. Ovo uzrokuje da se DNS pretrage obavljaju preko šifrovanog HTTPS protokola."
@@ -14389,12 +14462,6 @@ msgstr "Prolaz %d/%d"
 
 msgid "Pass-through"
 msgstr "Prolaz-uputstvo"
-
-msgid "Passthrough audio handling delay AC3"
-msgstr "Kašnjenje u obradi sa AC3 prolaznim zvukom"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "Kašnjenje u obradi sa AC3+ prolaznim zvukom"
 
 msgid "Password"
 msgstr "Lozinka"
@@ -15170,6 +15237,9 @@ msgstr "Preferiraj tjuner za snimanje, više dozvoljenih selekcija"
 msgid "Preparation time for recording"
 msgstr "Vreme pripreme za snimanje"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "Priprema... Molim sačekajte"
 
@@ -15194,11 +15264,17 @@ msgstr "Pritisni EXIT da bi se vratili na ekran za pomoć."
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "Pritisnite ZELENU da omogućite MultiBoot!"
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Pritisni OK za izbor MultiBoot."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Pritisni OK na DU da bi nastavili."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr "Pritisni OK za nastavak."
@@ -15227,6 +15303,9 @@ msgstr "Pritisni ОК da bi instalirali i koristili ovaj lokalni standard.  [%s]
 msgid "Press OK to open module info"
 msgstr "Pritisnite OK da otvorite informacije o modulu"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr "Pritisnite OK da resetujete PIN kod"
 
@@ -15247,6 +15326,9 @@ msgstr "Pritisni OK da bi izabrali kanal."
 
 msgid "Press OK to select satellites"
 msgstr "Pritisni ОК da bi izabrali satelit"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "Pritisni ОК da izabereš/poništiš CAID."
@@ -15279,9 +15361,6 @@ msgstr "Pritisni DUGME GORE/DOLE da izabereš slot, zatim pritisni OK ili ZELENO
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Pritisni ovaj taster da bi oponašali dugačko pritiskanje tastera pritisnutog posle toga (ovo također zamenjuje sve druge radnje dodeljene tasteru za emulaciju)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "Pritiskanjem tastera za paniku biće zap na ovaj broj kanala u vašem prvom buketu."
 
 msgid "Prev quad PiP channel"
 msgstr "Predhodni kanal 4X PiP"
@@ -15434,6 +15513,9 @@ msgstr "Veličina fonta info napretka"
 msgid "Properties of current title"
 msgstr "Svojstva trenutnog naslova"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "Zaštita Brzog Menija"
 
@@ -15446,6 +15528,15 @@ msgstr "Zaštita konfiguracije"
 msgid "Protect context menus"
 msgstr "Zaštita kontekstualnih menija"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "Zaštita glavnog menija"
 
@@ -15455,8 +15546,14 @@ msgstr "Zaštita liste filmova"
 msgid "Protect on epg age"
 msgstr "Zaštita od starog epg"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "Zaštita plugin pregledača"
+
+msgid "Protect script execution"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Zaštita za kanale"
@@ -15466,6 +15563,12 @@ msgstr "Zaštita ekrana softverskih ispravki"
 
 msgid "Protect standby menu"
 msgstr "Zaštita menija pripravnosti"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "Zaštita tajmer menija"
@@ -16357,8 +16460,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr "Zameni statičnu radio pozadinu slikama koje emituje trenutna DAB+ stanica."
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Zahtevaj potvrdu identiteta http strima"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 msgid "Required medium type:"
 msgstr "Potrebni tip medija:"
@@ -16576,6 +16733,9 @@ msgstr "Preuzimanje '%s' log, sačekajte..."
 msgid "Retrieving boot slot information..."
 msgstr "Preuzimanje info o slotu za pokretanje sistema..."
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr "Preuzimanje liste imidža, sačekajte..."
 
@@ -16593,6 +16753,9 @@ msgstr "Davanje trenutnog odgovora na izbor"
 
 msgid "Return to movie list"
 msgstr "Povratak na listu filmova"
+
+msgid "Return to previous channel"
+msgstr ""
 
 msgid "Return to previous service"
 msgstr "Povratak na predhodni kanal"
@@ -17215,7 +17378,7 @@ msgid "Search Sats, check signal and lock"
 msgstr "Pretraži Satelite, provera signala i zaključavanje"
 
 msgid "Search all packages"
-msgstr ""
+msgstr "Pretraži sve pakete"
 
 msgid "Search east"
 msgstr "Pretraži istok"
@@ -17227,10 +17390,10 @@ msgid "Search for similar events"
 msgstr "Traženje sličnih događaja"
 
 msgid "Search in the current view"
-msgstr ""
+msgstr "Pretraži u trenutnom prikazu"
 
 msgid "Search packages by name or description"
-msgstr ""
+msgstr "Pretraži pakete po imenu ili opisu"
 
 msgid "Search weather location ID"
 msgstr "Traženje ID lokacije vremenske prognoze"
@@ -17246,6 +17409,9 @@ msgstr "Pretraživanje"
 
 msgid "Searching east ..."
 msgstr "Pretraživanje istoka ..."
+
+msgid "Searching for local images, please wait..."
+msgstr ""
 
 msgid "Searching west ..."
 msgstr "Pretraživanje zapada ..."
@@ -17734,6 +17900,9 @@ msgstr "Izaberi evidenciju obaveznog log za prikaz:"
 msgid "Select a script to run:"
 msgstr "Izaberi skriptu za pokretanje:"
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr "Izaberi određenu NFS verziju da bi forsirao određenu NFS verziju protokola umesto da dozvoli automatsku dogovaranje."
 
@@ -17809,6 +17978,9 @@ msgstr "Izaberi fajlove koje želite isključiti iz rezervne kopije"
 
 msgid "Select files/folders to backup"
 msgstr "Izaberi fajl/fasciklu za pravljenje rezervne kopije"
+
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Odaberite koliko dugo će slika čuvara ekrana ostati na istom mestu na ekranu pre nego što se pomeri."
@@ -17923,6 +18095,9 @@ msgstr "Izaberi provajdera za dodavanje..."
 
 msgid "Select refresh rate"
 msgstr "Izaberi učestalost osveženja"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr "Izaberite informacije o servisu da biste ih pregledali:"
@@ -18058,6 +18233,12 @@ msgstr "Izaberi boju LED diode na prednjoj ploči za napajanje kada je prijemnik
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Izaberite boju koja će se koristiti za tekst preVoda na bazi veštačke inteligencije."
+
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr ""
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Izaberi trenutno obeleženu lokaciju i izađi"
@@ -18697,6 +18878,9 @@ msgstr "Ime Kanala"
 
 msgid "Service name font size"
 msgstr "Ime Kanala veličina fonta"
+
+msgid "Service not found"
+msgstr ""
 
 msgid ""
 "Service not found!\n"
@@ -20426,7 +20610,7 @@ msgid "Software MultiBoot"
 msgstr "Softver MultiBoot"
 
 msgid "Software PCM"
-msgstr ""
+msgstr "Softver PCM"
 
 msgid "Software Update"
 msgstr "Ažuriranje Softvera"
@@ -20461,6 +20645,9 @@ msgstr "Somalia"
 
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Neki televizori ne mogu da pređu na odgovarajući ulaz ako je drugi HDMI port aktivan. Ova opcija stavlja televizor u režim čekanja pre nego što se prebacite. Ako se televizor ne uključi ponovo, možda će biti potrebno sporije slanje signala ili ponavljanje komande za buđenje."
+
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
 
 msgid "Sorbian"
 msgstr "Sorbian"
@@ -21868,6 +22055,12 @@ msgstr "Brzina frejma snimka. Idealno, ovo se podudara sa brzinom frejma izvora 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Visina slike. Veličina unosa će se podudarati sa ovom vrednošću."
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
+
 msgid "The loopthrough setting is wrong."
 msgstr "Postavka petlje je pogrešna."
 
@@ -21887,6 +22080,13 @@ msgstr "STARTUP fajl proizvođača '%s' je promenjen. Ponovo pokreni korisnički
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
 msgstr "Fajl proizvođača STARTUP '%s' ne može se bezbedno produžiti."
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
+msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da nastavite?"
@@ -23132,57 +23332,83 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
-msgid "Unable to create the additional STARTUP files."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
+msgstr ""
+
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Unable to complete the bouquet update. Please check your bouquets."
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
 msgstr "Ne mogu da kreiram dodatne STARTUP fajlove."
 
-msgid "Unable to create the new manufacturer STARTUP files."
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr "Ne mogu da napravim nove STARTUP fajlove proizvođača."
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr "Ne mogu da nasledim korisnički opseg za LNB %d: %s."
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr "Nije moguće naslediti korisnički bend za LNB %d: LNB 1 %s."
 
-msgid "Unable to initialize Kexec MultiBoot."
-msgstr "Nije moguće inicijalizovati Kexec MultiBoot!"
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Nije moguće pokrenuti Kexec MultiBoot."
 
-msgid "Unable to load package information."
-msgstr ""
+msgid "Unable to load package information!"
+msgstr "Ne mogu da učitam informacije o paketu."
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Ne mogu da otvorim tjuner (%d)"
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
 msgstr "Ne mogu da pročitam UUID nove MultiBoot particije. STARTUP fajlovi nisu izmenjeni."
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Ne mogu da pročitam STARTUP fajl proizvođača '%s'."
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
+msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "Ne mogu da registrujem DAB+ transponder"
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
 msgstr "Ne mogu da uklonim zastarele dodatne STARTUP fajlove."
 
-msgid "Unable to save network configuration."
-msgstr "Ne mogu da sačuvam podešavanja mreže!"
+msgid "Unable to save network configuration!"
+msgstr "Ne mogu da sačuvam podešavanja mreže."
 
-msgid "Unable to select the audio channel."
+msgid "Unable to save network mount configuration!"
+msgstr ""
+
+msgid "Error: Unable to select the nominated audio channel!"
 msgstr "Ne mogu da izaberem audio kanal."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Ne mogu da pokrenem DAB+ strim"
 
+msgid "Unable to start the local image search. Please try again later."
+msgstr ""
+
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr "Ne mogu da podesim DAB+ satelitski signal"
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Ne mogu da potvrdim Unicable poziciju za LNB %d: %s."
 
 msgid "Unattended upgrade without GUI"
@@ -23203,6 +23429,9 @@ msgstr "Neodređeno"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Neočekivana greška prilikom pristupa WebIF: %s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Neočekivana greška prilikom preuzimanja informacija o tajmeru rezervnog tjunera"
@@ -23357,6 +23586,9 @@ msgstr "Ažuriranje nije uspelo!"
 
 msgid "Update finished!"
 msgstr "Ažuriranje je završeno!"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -23547,7 +23779,7 @@ msgid "Use as HDD replacement"
 msgstr "Koristi kao zamenu za HDD"
 
 msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
-msgstr ""
+msgstr "Koristi automatsko otkrivanje hardvera, zatraži hardversko AAC dekodiranje ili primoraj softversku PCM kompatibilnost."
 
 msgid "Use automatic mode detection"
 msgstr "Koristite automatsko prepoznavanje načina"
@@ -23687,6 +23919,9 @@ msgstr "Koristi Čarobnjaka za podešavanje osnovnih funkcija"
 msgid "Use these input device settings?"
 msgstr "Koristi ove postavke ulaznog uređaja?"
 
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
+
 msgid "Use this video enhancement settings?"
 msgstr "Koristi ove postavke poboljšanja video zapisa?"
 
@@ -23710,12 +23945,6 @@ msgstr "Korisnik fleš"
 
 msgid "Used service scan type"
 msgstr "Tip skeniranja kanala"
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "Koristi se za određivanje kašnjenja prilikom prebacivanja između usluga kada je AC3 prolaz omogućeno."
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "Koristi se za određivanje kašnjenja prilikom prelaska između usluga kada je omogućen AC3+/Atmos prolaz."
 
 msgid "Used:"
 msgstr "Korisnik:"
@@ -24494,8 +24723,8 @@ msgstr "Kada je omogućeno, označivači brojeva će biti sakriveni."
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr "Kada je uključeno, automatski dobija IP adresu, masku mreže, pristupnik i DNS podešavanja preko DHCP-a."
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Kada je omogućeno, pritiskanjem tastera '0' će vas odvesti do prvog kanala u vašem prvom buketu i izbrisati vašu zap-istoriju."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kada je omogućeno, ponovo promenite titlove tako da se podudaraju sa širinom ekrana."
@@ -24574,9 +24803,6 @@ msgstr "Kada je omogućeno, ova postavka ima veću težinu od 'Preferirani tjune
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Kada je aktivirano, ova postavka ima veću težinu od 'Preferiranog tjunera'."
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr "Kada je omogućeno, ovaj deljeni se montira na /media/hdd umesto na svoj /media/net put. Koristi ovo samo ako je deljeni folder pouzdano dostupan."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kada je omogućeno, tajmšift se automatski pokreće u pozadini nakon navedenog vremena."
@@ -25839,6 +26065,30 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "Greška pri pisanju '/etc/enigma2/epg.dat' na daljinskom prijemniku!"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "Kašnjenje u obradi sa AC3 prolaznim zvukom"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "Kašnjenje u obradi sa AC3+ prolaznim zvukom"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "Pritiskanjem tastera za paniku biće zap na ovaj broj kanala u vašem prvom buketu."
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "Koristi se za određivanje kašnjenja prilikom prebacivanja između usluga kada je AC3 prolaz omogućeno."
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "Koristi se za određivanje kašnjenja prilikom prelaska između usluga kada je omogućen AC3+/Atmos prolaz."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "Kada je omogućeno, pritiskanjem tastera '0' će vas odvesti do prvog kanala u vašem prvom buketu i izbrisati vašu zap-istoriju."
+
+#~ msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+#~ msgstr "Kada je omogućeno, ovaj deljeni se montira na /media/hdd umesto na svoj /media/net put. Koristi ovo samo ako je deljeni folder pouzdano dostupan."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

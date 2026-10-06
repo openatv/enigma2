@@ -328,7 +328,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen, ProtectedScreen):
 				continue
 			device, error = self.getUnicableUserBand(lnb, requireFrequency=False)
 			if error:
-				return _("Unable to validate the Unicable position for LNB %d: %s.") % (lnbnum, error)
+				return _("Unable to validate the Unicable position for LNB %d: %s!") % (lnbnum, error)
 			firstPosition = device["positionsOffset"] + 1
 			lastPosition = device["positionsOffset"] + device["positions"]
 			if not firstPosition <= lnb.unicablePosition.value <= lastPosition:
@@ -392,10 +392,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen, ProtectedScreen):
 			if isinstance(lnb, ConfigNothing) or lnb.lof.value != "unicable" or not lnb.unicableUseLnb1UserBand.value:
 				continue
 			if error:
-				return _("Unable to inherit the User Band for LNB %d: LNB 1 %s.") % (lnbnum, error)
+				return _("Unable to inherit the User Band for LNB %d: LNB 1 %s!") % (lnbnum, error)
 			plan, planError = self.getInheritedUnicableUserBand(lnbnum, source)
 			if planError:
-				return _("Unable to inherit the User Band for LNB %d: %s.") % (lnbnum, planError)
+				return _("Unable to inherit the User Band for LNB %d: %s!") % (lnbnum, planError)
 			plans.append(plan)
 		for plan in plans:
 			plan["scr"].setValue(plan["scrValue"])
