@@ -617,7 +617,9 @@ class InformationDistribution(InformationBase):
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 		if MultiBoot.canMultiBoot():
 			device = MultiBoot.getBootDevice()
-			if BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
+			if slotCode not in MultiBoot.getBootSlots() or not device:
+				device = _("Unknown")
+			elif BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
 				slotCode = int(slotCode)
 				image = slotCode - 4 if slotCode > 4 else slotCode - 1
 				device = _("SDcard slot %s%s") % (image, f"  -  {device}" if device else "")
@@ -635,7 +637,7 @@ class InformationDistribution(InformationBase):
 				else:
 					device = _("USB slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 			info.append(self.formatLine("P1", _("Hardware MultiBoot device"), device))
-			info.append(self.formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
+			info.append(self.formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile() or _("Unknown")))
 		if bootCode:
 			info.append(self.formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
 		info.append(self.formatLine("P1", _("Software MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
