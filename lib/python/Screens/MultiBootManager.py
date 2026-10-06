@@ -46,9 +46,11 @@ def getDiskDevice(device):
 	device = realpath(device) if exists(device) else device
 	base = device.rsplit("/", 1)[-1]
 	if base.startswith(("mmcblk", "nvme")):
-		base = sub(r"p\d+$", "", base)
+		disk, separator, partition = base.rpartition("p")
+		if separator and partition.isdigit():
+			base = disk
 	elif base.startswith(("sd", "cf")):
-		base = sub(r"\d+$", "", base)
+		base = base.rstrip("0123456789")
 	return f"/dev/{base}"
 
 
