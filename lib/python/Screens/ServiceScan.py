@@ -17,6 +17,8 @@ from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
 from ServiceReference import isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, resolveFilename
+from Tools.Notifications import notificationCenter
+from Tools.ScanBouquetRepair import ScanBouquetRepair
 from Tools.Transponder import getChannelNumber
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -33,10 +35,13 @@ class ServiceScan(Screen):
 		3: _("No channel list")
 	}
 
-	def __init__(self, session, scanList):
+	def __init__(self, session, scanList, updateBouquets=False):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Service Scan"))
 		self.scanList = scanList
+		self.updateBouquets = updateBouquets and bool(scanList) and all(scan["flags"] & eComponentScan.scanRemoveServices for scan in scanList)
+		self.bouquetRepair = None
+		self.onClose.append(self.clearBouquetRepair)
 		if hasattr(session, "infobar"):
 			self.currentInfobar = InfoBar.instance
 			if self.currentInfobar:
@@ -106,6 +111,12 @@ class ServiceScan(Screen):
 			self["pass"].setText(_("Recording in progress!"))
 			self["scan_state"].setText(_("Scanning can't be performed while recordings are in progress."))
 		else:
+			if self.run == 0 and self.updateBouquets:
+				try:
+					self.bouquetRepair = ScanBouquetRepair()
+				except Exception as err:
+					print(f"[ServiceScan] Unable to prepare bouquet update: {err}")
+					notificationCenter.showError(_("Unable to prepare the bouquet update. The scan will continue without updating bouquets."))
 			self.scan = eComponentScan()
 			self.scan.newService.get().append(self.newService)
 			self.scan.statusChanged.get().append(self.statusChanged)
@@ -125,6 +136,8 @@ class ServiceScan(Screen):
 		self.foundServices += 1
 		serviceName = self.scan.getLastServiceName()
 		serviceRef = self.scan.getLastServiceRef()
+		if self.bouquetRepair is not None:
+			self.bouquetRepair.addScannedService(serviceRef)
 		self.serviceList.append((serviceName, serviceRef))
 		self["servicelist"].setList(self.serviceList)
 		self["servicelist"].goBottom()
@@ -315,6 +328,7 @@ class ServiceScan(Screen):
 					self.timer.callback.append(delayNext1)  # Hack to work around a timing bug in eComponentScan!
 					self.timer.startLongTimer(2)  # Delay the next step by 2 seconds to give eComponentScan time to finish.
 				else:
+					self.finishBouquetRepair()
 					def delayNext2():
 						self.timer.stop()
 						self.timer.callback.remove(delayNext2)
@@ -330,12 +344,35 @@ class ServiceScan(Screen):
 					self.timer.callback.append(delayNext2)  # Hack to work around a timing bug in eComponentScan!
 					self.timer.startLongTimer(2)  # Delay the next step by 2 seconds to give eComponentScan time to finish.
 			case self.ERROR:
+				self.clearBouquetRepair()
 				stateText = _("Error: Failed to run service scan!  (%s)") % self.ERRORS[errorCode]
 
 		if stateText:
 			self["scan_state"].setText(stateText)
 			for callback in self.onStateChanged:
 				callback(stateText)
+
+	def clearBouquetRepair(self):
+		if self.bouquetRepair is not None:
+			self.bouquetRepair.clear()
+			self.bouquetRepair = None
+
+	def finishBouquetRepair(self):
+		if self.bouquetRepair is None:
+			return
+		try:
+			updated, unresolved, failed = self.bouquetRepair.repair()
+			message = _("Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed.") % {"updated": updated, "unresolved": unresolved, "failed": failed}
+			print(f"[ServiceScan] {message}")
+			if failed:
+				notificationCenter.showError(message, timeout=8)
+			else:
+				notificationCenter.showInfo(message, timeout=8)
+		except Exception as err:
+			print(f"[ServiceScan] Unable to update bouquets: {err}")
+			notificationCenter.showError(_("Unable to complete the bouquet update. Please check your bouquets."))
+		finally:
+			self.clearBouquetRepair()
 
 	def runLCNScanner(self):
 		def performScan():
@@ -369,6 +406,9 @@ class ServiceScan(Screen):
 		self.finish(True)
 
 	def finish(self, returnValue):
+		self.clearBouquetRepair()
+		if self.state == self.RUNNING:
+			self.timer.stop()
 		# try:
 		# 	self.session.nav.playService(self.currentServiceRef)
 		# except Exception:
