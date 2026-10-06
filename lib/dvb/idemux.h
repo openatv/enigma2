@@ -41,6 +41,10 @@ public:
 		/* for saving additional meta data. */
 	virtual RESULT setTargetFilename(const std::string& filename) = 0;
 	virtual RESULT setBoundary(off_t max) = 0;
+	// Optional fixed-size file parts (basename, basename.001, ...). Zero disables splitting.
+	virtual RESULT setSplitSize(off_t bytes) { return -1; }
+	// Confirmed contiguous data, rounded down to complete transport packets.
+	virtual long long getWrittenBytes() { return -1; }
 	virtual RESULT enableAccessPoints(bool enable) = 0;
 
 	virtual RESULT stop() = 0;

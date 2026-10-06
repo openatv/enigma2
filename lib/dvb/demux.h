@@ -2,6 +2,7 @@
 #define __dvb_demux_h
 
 #include <aio.h>
+#include <sys/types.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/pvrparse.h>
@@ -98,11 +99,14 @@ public:
 	eDVBRecordFileThread(int packetsize, int bufferCount, int buffersize = -1, bool sync_mode = false);
 	virtual ~eDVBRecordFileThread();
 	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
-	void startSaveMetaInformation(const std::string &filename);
+	int startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
 	virtual int getFirstPTS(pts_t &pts);
-	void setTargetFD(int fd) { m_fd_dest = fd; }
+	void setTargetFD(int fd) { m_fd_dest = fd; _targetCached = false; }
+	void setTargetFilename(const std::string &filename) { _targetFilename = filename; _fileOutput = !filename.empty(); _targetCached = false; }
+	RESULT setSplitSize(off_t bytes);
+	long long getWrittenBytes() const { return _writtenBytes.load(); }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 	void setDescrambler(ePtr<iServiceScrambled> serviceDescrambler) { m_serviceDescrambler = serviceDescrambler; };
 	void setDiscardOnTimeout(bool discard) { m_discard_on_timeout = discard; }
@@ -114,6 +118,12 @@ protected:
 	int asyncWrite(int len);
 	/* override */ int writeData(int len);
 	/* override */ void flush();
+	int _drainWrites(bool allowCancelled = false);
+	int _syncWrite(int len, bool parse = true);
+	int _nextPart();
+	int _cacheFileTarget();
+	int _checkTargetBase();
+	void _publishWrittenBytes();
 
 	struct AsyncIO
 	{
@@ -124,9 +134,9 @@ protected:
 			memset(&aio, 0, sizeof(aiocb));
 			buffer = NULL;
 		}
-		int wait(const volatile int* stop_flag = nullptr, int* short_write_count = nullptr);
+		int wait(int* short_write_count = nullptr, bool allowCancelled = false);
 		int start(int fd, off_t offset, size_t nbytes, void* buffer);
-		int poll(int* short_write_count = nullptr); // returns 1 if busy, 0 if ready, <0 on error return
+		int poll(int* short_write_count = nullptr, bool allowCancelled = false); // returns 1 if busy, 0 if ready, <0 on error return
 		int cancel(int fd); // returns <0 on error, 0 cancelled, >0 bytes written?
 	};
 	eMPEGStreamParserTS m_ts_parser;
@@ -141,6 +151,20 @@ protected:
 	std::vector<int> m_buffer_use_histogram;
 	ePtr<iServiceScrambled> m_serviceDescrambler;
 	int m_aio_short_write_count = 0;
+	std::string _targetFilename;
+	bool _fileOutput = false;
+	bool _ownsTarget = false;
+	off_t _splitSize = 0;
+	off_t _partStart = 0;
+	unsigned int _partNumber = 0;
+	int _packetSize;
+	bool _targetCached = false;
+	int _targetDirectoryFd = -1;
+	std::string _targetBasename;
+	dev_t _targetDevice = 0;
+	ino_t _targetInode = 0;
+	mode_t _targetMode = 0;
+	std::atomic<long long> _writtenBytes{0};
 };
 
 class eDVBRecordStreamThread: public eDVBRecordFileThread
@@ -153,7 +177,6 @@ protected:
 	void flush();
 };
 
-// Note: flush() inherited from StreamThread (cancel behavior)
 class eDVBRecordScrambledThread: public eDVBRecordStreamThread
 {
 public:
@@ -169,6 +192,7 @@ public:
 
 protected:
 	int writeData(int len);
+	void flush() override;
 
 private:
 	unsigned char key[8];
@@ -198,6 +222,8 @@ public:
 	RESULT setTargetFD(int fd);
 	RESULT setTargetFilename(const std::string& filename);
 	RESULT setBoundary(off_t max);
+	RESULT setSplitSize(off_t bytes) override;
+	long long getWrittenBytes() override { return m_thread->getWrittenBytes(); }
 	RESULT enableAccessPoints(bool enable);
 
 	RESULT stop();

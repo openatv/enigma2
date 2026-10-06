@@ -86,6 +86,7 @@ class eFilePushThreadRecorder: public eThread, public sigc::trackable
 {
 public:
 	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=188*1024, int packetSize=188);
+	int getWriteError() const { return _writeError; }
 	void thread();
 	void stop();
 	void start(int sourcefd);
@@ -113,6 +114,7 @@ protected:
 	/* Called when the recording thread is stopping. Allows cleanup
 	 * of memory, flushing buffers, and terminating outstanding IO. */
 	virtual void flush() = 0;
+	void _setWriteError(int error);
 
 	int m_fd_source;
 	size_t m_buffersize;
@@ -120,7 +122,8 @@ protected:
 	unsigned int m_overflow_count;
 	size_t m_buffer_fill;
 	size_t m_buffer_min_write = minWriteDefault;
-	int m_stop;
+	std::atomic<int> m_stop;
+	int _writeError = 0;
 private:
 	int writeBuffer();
 	int m_packetSize;

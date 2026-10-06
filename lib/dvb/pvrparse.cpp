@@ -699,7 +699,8 @@ eMPEGStreamInformationWriter::eMPEGStreamInformationWriter():
 	m_structure_write_fd(-1),
 	m_structure_pos(0),
 	m_write_buffer(NULL),
-	m_buffer_filled(0)
+	m_buffer_filled(0),
+	_writeError(0)
 {}
 
 eMPEGStreamInformationWriter::~eMPEGStreamInformationWriter()
@@ -709,16 +710,35 @@ eMPEGStreamInformationWriter::~eMPEGStreamInformationWriter()
 
 int eMPEGStreamInformationWriter::startSave(const std::string& filename)
 {
+	close();
+	_writeError = 0;
 	m_filename = filename;
+	m_structure_pos = 0;
+	m_access_points.clear();
+	m_streamtime_access_points.clear();
 	m_structure_write_fd = ::open((m_filename + ".sc").c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644);
 	m_buffer_filled = 0;
 	m_write_buffer = NULL;
-	return 0;
+	if (m_structure_write_fd < 0)
+		_setWriteError(errno);
+	return _writeError ? -1 : 0;
+}
+
+void eMPEGStreamInformationWriter::_setWriteError(int error)
+{
+	if (!_writeError)
+		_writeError = error ? error : EIO;
+	errno = _writeError;
 }
 
 int eMPEGStreamInformationWriter::stopSave(void)
 {
 	close();
+	if (_writeError)
+	{
+		errno = _writeError;
+		return -1;
+	}
 	if (m_filename.empty())
 		return 1;
 	// No access points at all, then don't save a file. A single initial
@@ -729,21 +749,32 @@ int eMPEGStreamInformationWriter::stopSave(void)
 
 	// do not create access points if there is no recording file
 	if (::access(m_filename.c_str(), R_OK) < 0)
-		return 1;
+	{
+		if (errno == ENOENT)
+			return 1;
+		_setWriteError(errno);
+		return -1;
+	}
 
 	std::string ap_filename(m_filename);
 	ap_filename += ".ap";
 	{
 		CFile f(ap_filename.c_str(), "wb");
 		if (!f)
+		{
+			_setWriteError(errno);
 			return -1;
+		}
 		for (std::deque<AccessPoint>::const_iterator i(m_streamtime_access_points.begin()); i != m_streamtime_access_points.end(); ++i)
 		{
 			unsigned long long d[2];
 			d[0] = htobe64(i->off);
 			d[1] = htobe64(i->pts);
 			if (fwrite(d, sizeof(d), 1, f) <= 0)
+			{
+				_setWriteError(errno);
 				goto write_ap_error;
+			}
 		}
 		for (std::deque<AccessPoint>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 		{
@@ -751,7 +782,31 @@ int eMPEGStreamInformationWriter::stopSave(void)
 			d[0] = htobe64(i->off);
 			d[1] = htobe64(i->pts);
 			if (fwrite(d, sizeof(d), 1, f) <= 0)
+			{
+				_setWriteError(errno);
 				goto write_ap_error;
+			}
+		}
+		if (fflush(f) < 0)
+		{
+			_setWriteError(errno);
+			goto write_ap_error;
+		}
+		int result;
+		do
+			result = fsync(fileno(f));
+		while (result < 0 && errno == EINTR);
+		if (result < 0)
+		{
+			_setWriteError(errno);
+			goto write_ap_error;
+		}
+		FILE *handle = f.handle;
+		f.handle = NULL;
+		if (fclose(handle) < 0)
+		{
+			_setWriteError(errno);
+			goto write_ap_error;
 		}
 	}
 	return 0;
@@ -760,11 +815,14 @@ write_ap_error:
 	 * it if writing it fails */
 	eDebug("[eMPEGStreamInformationWriter] Failed to write %s, removing it", ap_filename.c_str());
 	::unlink(ap_filename.c_str());
+	errno = _writeError;
 	return -1;
 }
 
 void eMPEGStreamInformationWriter::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
 {
+	if (_writeError)
+		return;
 	if (streamtime)
 	{
 		m_streamtime_access_points.push_back(AccessPoint(offset, pts));
@@ -782,7 +840,7 @@ void eMPEGStreamInformationWriter::addAccessPoint(off_t offset, pts_t pts, bool 
 
 void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned long long data)
 {
-	if (m_structure_write_fd >= 0)
+	if (m_structure_write_fd >= 0 && !_writeError)
 	{
 		if (m_write_buffer == NULL)
 		{
@@ -791,6 +849,7 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 			if (m_write_buffer == NULL)
 			{
 				eWarning("[eMPEGStreamInformationWriter] malloc fail");
+				_setWriteError(ENOMEM);
 				return;
 			}
 		}
@@ -804,7 +863,10 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 }
 
 eMPEGStreamInformationWriter::PendingWrite::PendingWrite():
-	m_buffer(NULL) // empty constructor because deque will make a COPY first.
+	m_buffer(NULL),
+	m_aio(),
+	_pending(false),
+	_error(0)
 {
 }
 
@@ -820,81 +882,90 @@ int eMPEGStreamInformationWriter::PendingWrite::start(int fd, off_t where, void*
 	if (r < 0)
 	{
 		eDebug("[eMPEGStreamInformationWriter] aio_write returned failure: %m");
+		_error = errno ? errno : EIO;
+		free(m_buffer);
+		m_buffer = NULL;
+		errno = _error;
 	}
+	else
+		_pending = true;
 	return r;
 }
 
 eMPEGStreamInformationWriter::PendingWrite::~PendingWrite()
 {
-	if (m_buffer != NULL)
-	{
-		wait();
-		free(m_buffer);
-	}
+	wait();
 }
 
 int eMPEGStreamInformationWriter::PendingWrite::wait()
 {
-	//eDebug("[eMPEGStreamInformationWriter] PendingWrite waiting for IO completion");
+	int result;
 	struct aiocb* aio = &m_aio;
-	while (aio_error(aio) == EINPROGRESS)
+	while ((result = poll()) > 0)
 	{
-		eDebug("[eMPEGStreamInformationWriter] Waiting for I/O to complete");
-		int r = aio_suspend(&aio, 1, NULL);
-		if (r < 0)
+		struct timespec timeout = {1, 0};
+		if (aio_suspend(&aio, 1, &timeout) < 0 && errno != EINTR && errno != EAGAIN)
 		{
 			eDebug("[eMPEGStreamInformationWriter] aio_suspend failed: %m");
-			return -1;
+			// A wait failure does not cancel the request or release its buffer.
+			usleep(10000);
 		}
 	}
-	int r = aio_return(aio);
-	if (r < 0)
-	{
-		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
-	}
-	return r;
+	return result;
 }
 
-bool eMPEGStreamInformationWriter::PendingWrite::poll()
+int eMPEGStreamInformationWriter::PendingWrite::poll()
 {
-	if (m_buffer == NULL)
-		return true; // Nothing pending
-	if (aio_error(&m_aio) == EINPROGRESS)
+	if (_pending)
 	{
-		return false; // still busy
+		int error = aio_error(&m_aio);
+		if (error == EINPROGRESS)
+			return 1;
+		if (error < 0)
+		{
+			// Without a completion status the request still owns its buffer.
+			if (!_error)
+				_error = errno ? errno : EIO;
+			return 1;
+		}
+		ssize_t result = aio_return(&m_aio);
+		_pending = false;
+		if (error || result < 0 || static_cast<size_t>(result) != m_aio.aio_nbytes)
+			_error = error > 0 ? error : (result < 0 && errno ? errno : EIO);
+		free(m_buffer);
+		m_buffer = NULL;
 	}
-	int r = aio_return(&m_aio);
-	if (r < 0)
-	{
-		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
-	}
-	free(m_buffer);
-	m_buffer = NULL;
-	return true;
+	if (_error)
+		errno = _error;
+	return _error ? -1 : 0;
 }
 
 void eMPEGStreamInformationWriter::commit()
 {
-	std::deque<PendingWrite>::iterator head = m_pending_writes.begin();
-	while (head != m_pending_writes.end())
+	while (!m_pending_writes.empty())
 	{
-		if (!head->poll())
-		{
-			// Not ready yet, stop polling
+		int result = m_pending_writes.front().poll();
+		if (result > 0)
 			break;
-		}
-		else
-		{
-			// head is done remove it from the queue
-			m_pending_writes.pop_front();
-			head = m_pending_writes.begin();
-		}
+		if (result < 0)
+			_setWriteError(errno);
+		m_pending_writes.pop_front();
 	}
 	if (m_write_buffer != NULL)
 	{
-		m_pending_writes.push_back(PendingWrite()); // calls copy constructor, so don't initialize it
-		m_pending_writes.back().start(m_structure_write_fd, m_structure_pos, m_write_buffer, m_buffer_filled);
-		m_structure_pos += m_buffer_filled;
+		// A stalled volume must not accumulate an unbounded metadata queue.
+		if (m_pending_writes.size() >= 64)
+			_setWriteError(ENOBUFS);
+		if (_writeError)
+			free(m_write_buffer); // This buffer has not been submitted.
+		else
+		{
+			m_pending_writes.emplace_back();
+			if (m_pending_writes.back().start(m_structure_write_fd, m_structure_pos, m_write_buffer, m_buffer_filled) < 0)
+				_setWriteError(errno);
+			else
+				m_structure_pos += m_buffer_filled;
+		}
 		m_write_buffer = NULL;
 		m_buffer_filled = 0;
 	}
@@ -905,12 +976,24 @@ void eMPEGStreamInformationWriter::close()
 	if (m_structure_write_fd != -1)
 	{
 		commit();
-		m_pending_writes.clear(); // this waits for all IO to complete
-		::close(m_structure_write_fd);
-		m_structure_write_fd = -1;
-		if ((m_structure_pos == 0) && !m_filename.empty())
+		while (!m_pending_writes.empty())
 		{
-			// If the file is empty, attempt to delete it.
+			if (m_pending_writes.front().wait() < 0)
+				_setWriteError(errno);
+			m_pending_writes.pop_front();
+		}
+		int result;
+		do
+			result = fsync(m_structure_write_fd);
+		while (result < 0 && errno == EINTR);
+		if (result < 0)
+			_setWriteError(errno);
+		if (::close(m_structure_write_fd) < 0)
+			_setWriteError(errno);
+		m_structure_write_fd = -1;
+		if ((m_structure_pos == 0 || _writeError) && !m_filename.empty())
+		{
+			// An incomplete structure index must not be mistaken for a valid one.
 			::unlink((m_filename + ".sc").c_str());
 		}
 	}

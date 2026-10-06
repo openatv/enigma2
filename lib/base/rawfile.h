@@ -2,6 +2,7 @@
 #define __lib_base_rawfile_h
 
 #include <string>
+#include <vector>
 #include <lib/base/itssource.h>
 
 class eRawFile: public iTsSource
@@ -20,19 +21,16 @@ public:
 	int valid();
 private:
 	int m_fd;
-	int m_nrfiles;
-	off_t m_splitsize;
+	std::vector<off_t> m_file_offsets;
 	off_t m_totallength;
-	off_t m_current_offset;
-	off_t m_base_offset;
 	off_t m_last_offset;
 	int m_current_file;
 	std::string m_basename;
 
 	int close();
-	void scan();
-	int switchOffset(off_t off);
-	off_t lseek_internal(off_t offset);
+	int scan();
+	off_t switchOffset(off_t off);
+	std::string _filename(int nr) const;
 	int openFileUncached(int nr);
 };
 
