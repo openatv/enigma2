@@ -1513,7 +1513,12 @@ class NimSelection(Screen, ProtectedScreen):
 		self.updateList(index)
 
 	def showNim(self, nim):
-		return not (nim.isEmpty() or (nim.isCompatible("DVB-C") and nim.isFBCTuner() and not nim.isFBCRoot()))
+		# DM7080 can report six demodulators but only provides five frontend inputs.
+		return not (
+			nim.isEmpty()
+			or (BoxInfo.getItem("machinebuild") == "dm7080" and not nim.isSupported())
+			or (nim.isCompatible("DVB-C") and nim.isFBCTuner() and not nim.isFBCRoot())
+		)
 
 	@staticmethod
 	def orbitalPositionToString(position):
@@ -1533,7 +1538,9 @@ class NimSelection(Screen, ProtectedScreen):
 				fbc_text = ""
 				if x.isFBCTuner():
 					fbc_text = (x.isFBCRoot() and _("Slot %s / FBC in %s") % (x.is_fbc[2], x.is_fbc[1])) or _("Slot %s / FBC virtual %s") % (x.is_fbc[2], x.is_fbc[1] - (x.isCompatible("DVB-S") and 2 or 1))
-				if x.isMultiType():
+				if not x.isSupported():
+					text = _("Tuner is not supported")
+				elif x.isMultiType():
 					enabledTypes = []
 					for frontendType in x.getMultiTypeList().values():
 						if frontendType.startswith("DVB-S") and nimmanager.getNimConfig(x.slot).dvbs.configMode.value != "nothing":
@@ -1652,8 +1659,6 @@ class NimSelection(Screen, ProtectedScreen):
 						text = _("nothing connected")
 					elif nimConfig.configMode.value == "enabled":
 						text = _("Enabled")
-				if not x.isSupported():
-					text = _("Tuner is not supported")
 				self.list.append((slotid, x.friendly_full_description_compressed if x.isCompatible("DVB-C") and x.isFBCTuner() else x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
 		self["nimlist"].updateList(self.list)
