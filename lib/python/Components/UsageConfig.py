@@ -585,6 +585,7 @@ def InitUsageConfig():
 	config.usage.instantrec_path.save()
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
+	config.usage.movielistTrashcanConfirm = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
