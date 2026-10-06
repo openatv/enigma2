@@ -121,12 +121,16 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			}
 
 			serviceEvent(eventTuned);
+			if (eDVBCIInterfaces::getInstance())
+				eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 		}
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
 		eDebug("[eDVBServicePMTHandler] tune failed.");
 		serviceEvent(eventTuneFailed);
+		if (eDVBCIInterfaces::getInstance())
+			eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 	}
 }
 
