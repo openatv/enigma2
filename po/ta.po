@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"POT-Creation-Date: 2026-10-06 15:24+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -1420,6 +1420,21 @@ msgstr "-24 மணி நேரம்"
 msgid "-24h/+24 Hours"
 msgstr "-24H/+24 மணி நேரம்"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/கள்"
 
@@ -2238,6 +2253,9 @@ msgstr "ஆப்பிரிக்கா"
 msgid "After Event"
 msgstr "நிகழ்வுக்குப் பிறகு"
 
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr ""
+
 msgid "After event"
 msgstr "நிகழ்வுக்குப் பிறகு"
 
@@ -2712,6 +2730,9 @@ msgstr "நீட்டிக்கப்பட்ட பட்டியில�
 
 msgid "Ascending"
 msgstr "ஏறுதல்"
+
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
 
 msgid "Ask user"
 msgstr "பயனரிடம் கேளுங்கள்"
@@ -3382,6 +3403,10 @@ msgstr "பூச்செண்டு தேர்வாளர் செயல�
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "பூச்செண்டு தேர்வாளர் வழிசெலுத்தல் நடவடிக்கைகள்"
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
 
 msgid "Bouquets"
 msgstr "பூங்கொத்துகள்"
@@ -5107,6 +5132,9 @@ msgstr "சேவையை உள்ளமைத்தல்"
 msgid "Confirm Zap"
 msgstr ""
 
+msgid "Confirm moving files to the trashcan"
+msgstr ""
+
 #, python-format
 msgid "Confirm the deletion of '%s'?"
 msgstr ""
@@ -5463,8 +5491,14 @@ msgstr "ஒரு கோப்பகத்தை உருவாக்கவு�
 msgid "Create a randomly generated password"
 msgstr "தோராயமாக உருவாக்கப்பட்ட கடவுச்சொல்லை உருவாக்கவும்"
 
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
 msgstr "ஒரு குறியீட்டு இணைப்பை உருவாக்கவும்"
+
+msgid "Create an image backup"
+msgstr ""
 
 msgid "Create application loader dump."
 msgstr "பயன்பாட்டு ஏற்றி டம்பை உருவாக்கவும்."
@@ -6629,6 +6663,15 @@ msgstr "Diseqc ஃபேசன்"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "Diseqc துறைமுகம் %s: %s"
+
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
 
 msgid "DiSEqC-tester settings"
 msgstr "Diseqc- டெச்டர் அமைப்புகள்"
@@ -8010,6 +8053,9 @@ msgstr "டிஎன்எச் பின்னொட்டை வரையற�
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr ""
 
+msgid "Enter the new four-digit PIN code."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
@@ -8032,6 +8078,9 @@ msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr ""
+
+msgid "Enter the same PIN code again to confirm it."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -8206,12 +8255,18 @@ msgstr "பிழை மீண்டும் முயல நேரந்தவ
 msgid "Error code"
 msgstr "பிழைக் குறியீடு"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "படத்தைப் பதிவிறக்குவதில் பிழை '%s'!"
 
 msgid "Error executing plugin"
 msgstr "சொருகி செயல்படுத்துவதில் பிழை"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8227,11 +8282,17 @@ msgstr "'Epg.dat' ஐ அதன் இலக்குக்கு நகர்�
 msgid "Error opening recording file"
 msgstr "பதிவுசெய்தல் கோப்பைத் திறப்பதில் பிழை"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "வலைப்பக்கத்தைப் படிப்பதில் பிழை!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "தொலைநிலை பெறுநரிடமிருந்து 'epg.dat' ஐ மீட்டெடுப்பதில் பிழை!"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "பிழை உரை:"
@@ -8247,9 +8308,6 @@ msgid ""
 msgstr ""
 "குறைவடையும் நேரங்குறிகருவி தகவலை மீட்டெடுக்கும் போது பிழை\n"
 " %s"
-
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "தொலைநிலை ரிசீவரில் '/etc/enigma2/epg.dat' எழுதுவது பிழை!"
 
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "தொலைநிலை ரிசீவரில் 'epg.dat' எழுதுவது பிழை!"
@@ -9922,6 +9980,9 @@ msgstr "பெற்றோர் பூட்டப்பட்ட சேவை�
 
 msgid "Hide player"
 msgstr "பிளேயரை மறைக்க"
+
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
 
 msgid "Hide softcam servername"
 msgstr "சாப்ட்காம் சேவையகத்தை மறைக்கவும்"
@@ -13177,6 +13238,9 @@ msgstr "வகை இல்லை"
 msgid "No channel"
 msgstr "சேனல் இல்லை"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "சேனல் பட்டியல் இல்லை"
 
@@ -13224,6 +13288,9 @@ msgid "No hard disks detected."
 msgstr "கடினமான வட்டுகள் கண்டறியப்படவில்லை."
 
 msgid "No hosts found yet - still scanning..."
+msgstr ""
+
+msgid "No local images found."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13503,6 +13570,9 @@ msgstr "தேவையில்லை"
 msgid "Not running"
 msgstr "ஓடவில்லை"
 
+msgid "Not set"
+msgstr ""
+
 msgid "Not tested:"
 msgstr "சோதிக்கப்படவில்லை:"
 
@@ -13752,6 +13822,9 @@ msgstr "இந்த மணி நேரத்திற்கு முன்ப
 
 msgid "Only on startup"
 msgstr "தொடக்கத்தில் மட்டுமே"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "DNS-over-HTTPS நெறிமுறையை செயல்படுத்தும் DNS சேவையகங்களை மட்டும் பயன்படுத்தவும். இது மறைகுறியாக்கப்பட்ட HTTPS நெறிமுறை வழியாக DNS தேடல்களை உருவாக்குகிறது."
@@ -14312,12 +14385,6 @@ msgstr ""
 
 msgid "Pass-through"
 msgstr "பாச்-த்ரூ"
-
-msgid "Passthrough audio handling delay AC3"
-msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3+"
 
 msgid "Password"
 msgstr "கடவுச்சொல்"
@@ -15091,6 +15158,9 @@ msgstr "பதிவுகளுக்கான விருப்பமான �
 msgid "Preparation time for recording"
 msgstr "பதிவு செய்வதற்கான தயாரிப்பு நேரம்"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "ஆயத்தம் ... தயவுசெய்து காத்திருங்கள்"
 
@@ -15115,11 +15185,17 @@ msgstr "உதவித் திரைக்குத் திரும்ப 
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "மல்டிபூட்டை இயக்க பச்சை அழுத்தவும்!"
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "மல்டிபூட் தேர்வுக்கு சரி என்பதை அழுத்தவும்."
 
 msgid "Press OK on your remote control to continue."
 msgstr "தொடர உங்கள் ரிமோட் கண்ட்ரோலில் சரி என்பதை அழுத்தவும்."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr "தொடர சரி என்பதை அழுத்தவும்."
@@ -15148,6 +15224,9 @@ msgstr "இந்த இடத்தை நிறுவ மற்றும் �
 msgid "Press OK to open module info"
 msgstr "தொகுதி தகவலைத் திறக்க சரி என்பதை அழுத்தவும்"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr "முள் குறியீட்டை மீட்டமைக்க சரி என்பதை அழுத்தவும்"
 
@@ -15168,6 +15247,9 @@ msgstr "ஒரு சேவையைத் தேர்ந்தெடுக்�
 
 msgid "Press OK to select satellites"
 msgstr "செயற்கைக்கோள்களைத் தேர்ந்தெடுக்க சரி என்பதை அழுத்தவும்"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAID ஐத் தேர்ந்தெடுக்க/தேர்வுநீக்க சரி என்பதை அழுத்தவும்."
@@ -15200,9 +15282,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "பின்னர் அழுத்தப்பட்ட ஒரு பொத்தானை நீண்ட நேரம் அழுத்துவதற்கு இந்த பொத்தானை அழுத்தவும் (இது எமுலேசன் பொத்தானுக்கு ஒதுக்கப்பட்ட வேறு எந்த செயலையும் மீறுகிறது)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "அச்சம் பொத்தானை அழுத்தினால் உங்கள் முதல் பூச்செடியில் இந்த சேனல் எண்ணுக்கு உங்களைத் தூண்டிவிடும்."
 
 msgid "Prev quad PiP channel"
 msgstr "முந்தைய குவாட் பிப் சேனல்"
@@ -15355,6 +15434,9 @@ msgstr "முன்னேற்ற செய்தி எழுத்துர�
 msgid "Properties of current title"
 msgstr "தற்போதைய தலைப்பின் பண்புகள்"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "குயிக்மெனுவைப் பாதுகாக்கவும்"
 
@@ -15367,6 +15449,15 @@ msgstr "உள்ளமைவைப் பாதுகாக்கவும்"
 msgid "Protect context menus"
 msgstr "சூழல் மெனுக்களைப் பாதுகாக்கவும்"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "முதன்மையான மெனுவைப் பாதுகாக்கவும்"
 
@@ -15376,8 +15467,14 @@ msgstr "திரைப்பட பட்டியலைப் பாதுக�
 msgid "Protect on epg age"
 msgstr "ஈபிசி வயதில் பாதுகாக்கவும்"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "சொருகி உலாவியைப் பாதுகாக்கவும்"
+
+msgid "Protect script execution"
+msgstr ""
 
 msgid "Protect services"
 msgstr "சேவைகளைப் பாதுகாக்கவும்"
@@ -15387,6 +15484,12 @@ msgstr "மென்பொருள் புதுப்பிப்பு த�
 
 msgid "Protect standby menu"
 msgstr "காத்திருப்பு மெனுவைப் பாதுகாக்கவும்"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "நேரங்குறிகருவி மெனுவைப் பாதுகாக்கவும்"
@@ -16278,8 +16381,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr ""
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "HTTP ச்ட்ரீம்களுக்கு ஏற்பு தேவை"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 msgid "Required medium type:"
 msgstr "தேவையான நடுத்தர வகை:"
@@ -16497,6 +16654,9 @@ msgstr "'%s' பதிவை மீட்டெடுப்பது, தயவ�
 msgid "Retrieving boot slot information..."
 msgstr "துவக்க ச்லாட் தகவல்களை மீட்டெடுப்பது ..."
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr "பட பட்டியலை மீட்டெடுப்பது, தயவுசெய்து காத்திருங்கள் ..."
 
@@ -16514,6 +16674,9 @@ msgstr "தற்போதைய தேர்வு பதிலைத் தர
 
 msgid "Return to movie list"
 msgstr "திரைப்பட பட்டியலுக்குத் திரும்பு"
+
+msgid "Return to previous channel"
+msgstr ""
 
 msgid "Return to previous service"
 msgstr "முந்தைய சேவைக்குத் திரும்பு"
@@ -17165,6 +17328,9 @@ msgstr "தேடுகிறது"
 msgid "Searching east ..."
 msgstr "கிழக்கைத் தேடுகிறது ..."
 
+msgid "Searching for local images, please wait..."
+msgstr ""
+
 msgid "Searching west ..."
 msgstr "மேற்கு தேடுகிறது ..."
 
@@ -17652,6 +17818,9 @@ msgstr "பார்வைக்கு ஒரு களஞ்சியத்த�
 msgid "Select a script to run:"
 msgstr "இயக்க ஒரு ச்கிரிப்டைத் தேர்ந்தெடுக்கவும்:"
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr ""
 
@@ -17727,6 +17896,9 @@ msgstr "காப்புப்பிரதியிலிருந்து �
 
 msgid "Select files/folders to backup"
 msgstr "காப்புப்பிரதிக்கு கோப்புகள்/கோப்புறைகளைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "திரை சேவர் படம் நகர்த்தப்படுவதற்கு முன்பு திரையில் அதே இடத்தில் எவ்வளவு நேரம் இருக்கும் என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -17841,6 +18013,9 @@ msgstr "சேர்க்க வழங்குநரைத் தேர்ந�
 
 msgid "Select refresh rate"
 msgstr "புதுப்பிப்பு வீதத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr "பார்க்க பணி தகவல்களைத் தேர்ந்தெடுக்கவும்:"
@@ -17976,6 +18151,12 @@ msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "AI- இயங்கும் மொழிபெயர்ப்பு உரைக்கு பயன்படுத்த வேண்டிய வண்ணத்தைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr ""
 
 msgid "Select the current bookmarked location and exit"
 msgstr "தற்போதைய புக்மார்க்கு செய்யப்பட்ட இருப்பிடத்தைத் தேர்ந்தெடுத்து வெளியேறவும்"
@@ -18615,6 +18796,9 @@ msgstr "பணி பெயர்"
 
 msgid "Service name font size"
 msgstr "பணி பெயர் எழுத்துரு அளவு"
+
+msgid "Service not found"
+msgstr ""
 
 msgid ""
 "Service not found!\n"
@@ -20373,6 +20557,9 @@ msgstr "சோமாலியா"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "மற்றொரு HDMI துறைமுகம் செயலில் இருந்தால் சில தொலைக்காட்சிகள் சரியான உள்ளீட்டிற்கு மாற முடியாது. இந்த அமைப்பு சுவிட்சுக்கு முன் டிவியை காத்திருப்புக்கு அமைக்கிறது. (டிவியைத் திரும்பப் பெறாவிட்டால், அதை மெதுவான பரிமாற்ற இடைவெளி அல்லது விழித்தெழுந்த கட்டளையின் மறுபடியும் தேவைப்படலாம்.)"
 
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
+
 msgid "Sorbian"
 msgstr "சோர்பியன்"
 
@@ -21777,6 +21964,12 @@ msgstr "பதிவின் பிரேம் வீதம். வெறு�
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "படத்தின் உயரம். இந்த மதிப்புடன் பொருந்தக்கூடிய உள்ளீடு அளவிடப்படும்."
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
+
 msgid "The loopthrough setting is wrong."
 msgstr "லூப் த்ரோ அமைப்பு தவறு."
 
@@ -21795,6 +21988,13 @@ msgstr ""
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -23035,57 +23235,83 @@ msgstr "உக்ரெயின்"
 msgid "Ukrainian"
 msgstr "உக்ரேனிய"
 
-msgid "Unable to create the additional STARTUP files."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Unable to create the new manufacturer STARTUP files."
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Unable to complete the bouquet update. Please check your bouquets."
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr ""
 
-msgid "Unable to initialize Kexec MultiBoot."
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "KEXEC மல்டிபூட்டை துவக்க முடியவில்லை!"
 
-msgid "Unable to load package information."
+msgid "Unable to load package information!"
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
 msgstr ""
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
+msgstr ""
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
 msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
 msgstr ""
 
-msgid "Unable to save network configuration."
+msgid "Unable to save network configuration!"
 msgstr ""
 
-msgid "Unable to select the audio channel."
+msgid "Unable to save network mount configuration!"
+msgstr ""
+
+msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23106,6 +23332,9 @@ msgstr "வரையறுக்கப்பட்டாத"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Webif ஐ அணுகும் எதிர்பாராத பிழை: %s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "ஃபிள்பேக் ட்யூனரின் நேரங்குறிகருவி தகவலை மீட்டெடுக்கும் போது எதிர்பாராத பிழை"
@@ -23260,6 +23489,9 @@ msgstr "புதுப்பிப்பு தோல்வியடைந்�
 
 msgid "Update finished!"
 msgstr "புதுப்பிப்பு முடிந்தது!"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -23590,6 +23822,9 @@ msgstr "அடிப்படை அம்சங்களை அமைக்க 
 msgid "Use these input device settings?"
 msgstr "இந்த உள்ளீட்டு சாதன அமைப்புகளைப் பயன்படுத்தவா?"
 
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
+
 msgid "Use this video enhancement settings?"
 msgstr "இந்த வீடியோ மேம்பாட்டு அமைப்புகளைப் பயன்படுத்தவா?"
 
@@ -23613,12 +23848,6 @@ msgstr "ஃபிளாச் பயன்படுத்தப்பட்ட�
 
 msgid "Used service scan type"
 msgstr "பயன்படுத்தப்பட்ட பணி ச்கேன் வகை"
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3 பாச்ட்ரூ இயக்கப்பட்டிருக்கும்."
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3+/ATMOS PASSTHROUGH இயக்கப்பட்டது."
 
 msgid "Used:"
 msgstr "பயன்படுத்தப்பட்டது:"
@@ -24397,8 +24626,8 @@ msgstr "இயக்கப்பட்டால், எண் குறிப்
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr ""
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "இயக்கப்பட்டால், '0' ஐ அழுத்தினால் உங்கள் முதல் பூச்செடியில் முதல் சேனலுக்கு உங்களைச் சேர்த்து, உங்கள் சாப்-வரலாற்றை நீக்கிவிடும்."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "இயக்கப்பட்டால், திரையின் அகலத்துடன் பொருந்தக்கூடிய வகையில் வசன வரிகள்."
@@ -24477,9 +24706,6 @@ msgstr "இயக்கப்பட்டால், இந்த அமைப்
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "இயக்கப்பட்டால், இந்த அமைப்பு 'விருப்பமான ட்யூனரை' விட அதிக எடையைக் கொண்டுள்ளது."
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "இயக்கப்பட்டால், குறிப்பிட்ட நேரத்திற்குப் பிறகு நேர மாற்றம் தானாக பின்னணியில் தொடங்குகிறது."
@@ -25741,6 +25967,27 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "தொலைநிலை ரிசீவரில் '/etc/enigma2/epg.dat' எழுதுவது பிழை!"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3+"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "அச்சம் பொத்தானை அழுத்தினால் உங்கள் முதல் பூச்செடியில் இந்த சேனல் எண்ணுக்கு உங்களைத் தூண்டிவிடும்."
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3 பாச்ட்ரூ இயக்கப்பட்டிருக்கும்."
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3+/ATMOS PASSTHROUGH இயக்கப்பட்டது."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "இயக்கப்பட்டால், '0' ஐ அழுத்தினால் உங்கள் முதல் பூச்செடியில் முதல் சேனலுக்கு உங்களைச் சேர்த்து, உங்கள் சாப்-வரலாற்றை நீக்கிவிடும்."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

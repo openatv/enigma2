@@ -1678,7 +1678,7 @@ class NetworkMountRepository:
 				return _("/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first.")
 		mountLines = fileReadLines(self.MOUNTS_PATH, default=None, source=MODULE_NAME)
 		if mountLines is None:
-			return _("Unable to check existing mounts. HDD replacement was not changed.")
+			return _("Error: Unable to check existing mounts so the HDD replacement has not be changed!")
 		sameFstabMount = False
 		for line in mountLines:
 			fields = line.split()

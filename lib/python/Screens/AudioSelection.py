@@ -528,7 +528,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					mode.setValue(str(self.audioChannel.getCurrentChannel()))
 				finally:
 					mode.addNotifier(self.changeMode, initial_call=False)
-				self.session.showError(_("Unable to select the audio channel."))
+				self.session.showError(_("Error: Unable to select the nominated audio channel!"))
 
 	def changeAudio(self, audio):
 		track = int(audio)

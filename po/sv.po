@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"POT-Creation-Date: 2026-10-06 15:24+0000\n"
 "PO-Revision-Date: 2026-09-10 19:24+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1441,6 +1441,21 @@ msgstr "-24 timmar"
 msgid "-24h/+24 Hours"
 msgstr "-24 timmar/+24 timmar"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/s"
 
@@ -2323,6 +2338,9 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Efter evenemanget"
 
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr ""
+
 #
 msgid "After event"
 msgstr "Efter evenemanget"
@@ -2820,6 +2838,9 @@ msgstr "Som plugin i utökad bar"
 
 msgid "Ascending"
 msgstr "Stigande"
+
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
 
 #
 msgid "Ask user"
@@ -3529,6 +3550,10 @@ msgstr "Bukettväljare Åtgärder"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Bouquet Selector Navigation Åtgärder"
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
 
 msgid "Bouquets"
 msgstr "Buketter"
@@ -5317,6 +5342,9 @@ msgstr "Konfigurera service"
 msgid "Confirm Zap"
 msgstr "Bekräfta kanalbyte"
 
+msgid "Confirm moving files to the trashcan"
+msgstr ""
+
 #, python-format
 msgid "Confirm the deletion of '%s'?"
 msgstr "Bekräfta borttagningen av ”%s”?"
@@ -5696,8 +5724,14 @@ msgstr "Skapa en katalog"
 msgid "Create a randomly generated password"
 msgstr "Skapa ett slumpmässigt genererat lösenord"
 
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
 msgstr "Skapa en symbolisk länk"
+
+msgid "Create an image backup"
+msgstr ""
 
 msgid "Create application loader dump."
 msgstr "Skapa dumpning av applikationsladdare."
@@ -6918,6 +6952,15 @@ msgstr "DiSEqC-läge"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC port %s: %s"
+
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
 
 #
 msgid "DiSEqC-tester settings"
@@ -8377,6 +8420,9 @@ msgstr "Definiera DNS-suffixet."
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Ange nätverksvärdnamnet som ska användas för att identifiera mottagaren."
 
+msgid "Enter the new four-digit PIN code."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Ange antalet NFS-servertrådar som ska tilldelas/användas. Högre värden förbättrar prestandan med flera klienter men använder mer minne."
 
@@ -8400,6 +8446,9 @@ msgstr "Ange den primära IPv6-DNS-servern för adaptern. (Valfritt)"
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Ange fjärresursens namn (SMB) eller exporterade sökväg (NFS) på servern."
+
+msgid "Enter the same PIN code again to confirm it."
+msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Ange den sekundära IPv4-DNS-servern för adaptern. (Valfritt)"
@@ -8577,6 +8626,9 @@ msgstr "Fördröjning mellan försök efter fel"
 msgid "Error code"
 msgstr "Felkod"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Fel vid nedladdning av bild '%s'!"
@@ -8584,6 +8636,9 @@ msgstr "Fel vid nedladdning av bild '%s'!"
 #
 msgid "Error executing plugin"
 msgstr "Fel vid exekvering av plugin"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8599,11 +8654,17 @@ msgstr "Fel vid flyttning av 'epg.dat' till dess destination!"
 msgid "Error opening recording file"
 msgstr "Fel vid öppning av inspelningsfil"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "Fel vid läsning av webbsida!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fel vid hämtning av 'epg.dat' från fjärrmottagaren!"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "Felaktig text:"
@@ -8619,9 +8680,6 @@ msgid ""
 msgstr ""
 "Fel vid hämtning av information om fallback-timer\n"
 "%s"
-
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "Fel vid skrivning av '/etc/enigma2/epg.dat' på fjärrmottagaren!"
 
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Fel vid skrivning av 'epg.dat' på fjärrmottagaren!"
@@ -10373,6 +10431,9 @@ msgstr "Dölj föräldralåsta tjänster"
 #
 msgid "Hide player"
 msgstr "Dölj spelare"
+
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
 
 msgid "Hide softcam servername"
 msgstr "Dölj servernamn för softcam"
@@ -13810,6 +13871,9 @@ msgstr "Ingen kategori"
 msgid "No channel"
 msgstr "Ingen kanal"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "Ingen kanallista"
 
@@ -13865,6 +13929,9 @@ msgstr "Inga hårddiskar upptäckta."
 
 msgid "No hosts found yet - still scanning..."
 msgstr "Inga värdar hittades ännu – söker fortfarande …"
+
+msgid "No local images found."
+msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Inga loggfiler hittades så debug-loggar är inte tillgängliga!"
@@ -14166,6 +14233,9 @@ msgstr "Krävs inte"
 msgid "Not running"
 msgstr "Körs inte"
 
+msgid "Not set"
+msgstr ""
+
 msgid "Not tested:"
 msgstr "Ej testad:"
 
@@ -14423,6 +14493,9 @@ msgstr "Flytta bara disken snabbt före denna timme."
 
 msgid "Only on startup"
 msgstr "Endast vid uppstart"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Använd endast DNS-servrar som implementerar DNS-over-HTTPS-protokollet. DNS-uppslagningar görs då via det krypterade HTTPS-protokollet."
@@ -15001,12 +15074,6 @@ msgstr "Genomgång %d/%d"
 
 msgid "Pass-through"
 msgstr "Genomgång"
-
-msgid "Passthrough audio handling delay AC3"
-msgstr "Fördröjning av passthrough-ljudhantering AC3"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "Passthrough ljudhantering fördröjning AC3+"
 
 #
 msgid "Password"
@@ -15842,6 +15909,9 @@ msgstr "Företrädesvis tuners för inspelningar, flera val tillåtna"
 msgid "Preparation time for recording"
 msgstr "Förberedelsetid för inspelning"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 #
 msgid "Preparing... Please wait"
 msgstr "Förbereder... Vänligen vänta"
@@ -15868,12 +15938,18 @@ msgstr "Tryck på EXIT för att återgå till hjälpskärmen."
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "Tryck på GRÖN för att aktivera MultiBoot!"
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Tryck på OK för att välja MultiBoot."
 
 #
 msgid "Press OK on your remote control to continue."
 msgstr "Tryck på OK på fjärrkontrollen för att fortsätta."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr "Tryck på OK för att fortsätta."
@@ -15904,6 +15980,9 @@ msgstr "Tryck på OK för att installera och använda denna locale.  [%s]"
 msgid "Press OK to open module info"
 msgstr "Tryck på OK för att öppna modulinfo"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr "Tryck på OK för att återställa PIN-koden"
 
@@ -15928,6 +16007,9 @@ msgstr "Tryck på OK för att välja en tjänst."
 #
 msgid "Press OK to select satellites"
 msgstr "Tryck på OK för att välja satelliter"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 #
 msgid "Press OK to select/deselect a CAId."
@@ -15964,9 +16046,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Tryck på denna knapp för att emulera en lång tryckning på en knapp som trycks in efteråt (detta åsidosätter även alla andra åtgärder som tilldelats emuleringsknappen)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "Om du trycker på panikknappen kommer du att zappa till detta kanalnummer i din första bukett."
 
 msgid "Prev quad PiP channel"
 msgstr "Föregående quad PiP-kanal"
@@ -16123,6 +16202,9 @@ msgstr "Fontstorlek för Progress-information"
 msgid "Properties of current title"
 msgstr "Egenskaper för aktuell titel"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "Skydda snabbmenyn"
 
@@ -16135,6 +16217,15 @@ msgstr "Skydda konfigurationen"
 msgid "Protect context menus"
 msgstr "Skydda snabbmenyer"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "Skydda huvudmenyn"
 
@@ -16144,8 +16235,14 @@ msgstr "Skydda filmlistan"
 msgid "Protect on epg age"
 msgstr "Skydda mot epg-ålder"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "Skydda plugin-webbläsare"
+
+msgid "Protect script execution"
+msgstr ""
 
 #
 msgid "Protect services"
@@ -16156,6 +16253,12 @@ msgstr "Skydda skärmen för uppdatering av programvara"
 
 msgid "Protect standby menu"
 msgstr "Skydda standby-menyn"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "Meny för skyddstimer"
@@ -17107,8 +17210,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr ""
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Kräv autentisering för http-strömmar"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 #
 msgid "Required medium type:"
@@ -17345,6 +17502,9 @@ msgstr "Hämtar loggen '%s', vänta..."
 msgid "Retrieving boot slot information..."
 msgstr "Hämtar information om startplatsen..."
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 #
 msgid "Retrieving image list, please wait..."
 msgstr "Hämtar bildlista, vänta..."
@@ -17365,6 +17525,9 @@ msgstr "Returnera svaret på aktuellt val"
 #
 msgid "Return to movie list"
 msgstr "Återgå till filmlistan"
+
+msgid "Return to previous channel"
+msgstr ""
 
 #
 msgid "Return to previous service"
@@ -18051,6 +18214,9 @@ msgstr "Söker"
 msgid "Searching east ..."
 msgstr "Söker österut..."
 
+msgid "Searching for local images, please wait..."
+msgstr ""
+
 #
 msgid "Searching west ..."
 msgstr "Söker västerut..."
@@ -18550,6 +18716,9 @@ msgstr "Välj en logg från en förvarslösning för att visa den:"
 msgid "Select a script to run:"
 msgstr "Välj ett skript som ska köras:"
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr "Välj en särskild NFS-version för att tvinga en viss NFS-protokollversion i stället för att tillåta automatisk förhandling."
 
@@ -18629,6 +18798,9 @@ msgstr "Välj filer som ska uteslutas från säkerhetskopian"
 #
 msgid "Select files/folders to backup"
 msgstr "Välj filer/mappar som ska säkerhetskopieras"
+
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Välj hur länge skärmsläckarbilden ska ligga kvar på samma plats på skärmen innan den flyttas."
@@ -18746,6 +18918,9 @@ msgstr "Välj leverantör för att lägga till..."
 #
 msgid "Select refresh rate"
 msgstr "Välj uppdateringsfrekvens"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr "Välj serviceinformation som ska visas:"
@@ -18883,6 +19058,12 @@ msgstr "Välj färg på frontpanelens strömlysdiod när mottagaren är i vänte
 
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Välj den färg som ska användas för texten AI-Powered Translation."
+
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr ""
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Välj den aktuella platsen för bokmärket och avsluta"
@@ -19541,6 +19722,9 @@ msgstr "Namn på service"
 
 msgid "Service name font size"
 msgstr "Tjänstenamnets teckenstorlek"
+
+msgid "Service not found"
+msgstr ""
 
 #
 msgid ""
@@ -21381,6 +21565,9 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Vissa TV-apparater kan inte växla till rätt ingång om en annan HDMI-port är aktiv. Med den här inställningen ställs TV:n in i standby innan omkopplingen. (Om TV:n inte slås på igen kan det krävas ett långsammare sändningsintervall eller upprepning av väckningskommandot)."
 
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
+
 #
 msgid "Sorbian"
 msgstr "Sorbiska"
@@ -22854,6 +23041,12 @@ msgstr "Bildfrekvensen för inspelningen. Helst ska detta matcha källans bildfr
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Bildens höjd. Inmatningen kommer att skalas för att matcha detta värde."
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
+
 msgid "The loopthrough setting is wrong."
 msgstr "Inställningen för loopthrough är fel."
 
@@ -22872,6 +23065,13 @@ msgstr ""
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -24176,57 +24376,83 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukrainska"
 
-msgid "Unable to create the additional STARTUP files."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Unable to create the new manufacturer STARTUP files."
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Unable to complete the bouquet update. Please check your bouquets."
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr "Det gick inte att ärva användarbandet för LNB %d: %s."
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr "Det gick inte att ärva användarbandet för LNB %d: LNB 1 %s."
 
-msgid "Unable to initialize Kexec MultiBoot."
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Det gick inte att initiera Kexec MultiBoot!"
 
-msgid "Unable to load package information."
+msgid "Unable to load package information!"
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
 msgstr ""
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
+msgstr ""
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
 msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "Det gick inte att registrera DAB+-transpondern"
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
 msgstr ""
 
-msgid "Unable to save network configuration."
+msgid "Unable to save network configuration!"
 msgstr ""
 
-msgid "Unable to select the audio channel."
+msgid "Unable to save network mount configuration!"
+msgstr ""
+
+msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Det gick inte att starta DAB+-flödet"
 
+msgid "Unable to start the local image search. Please try again later."
+msgstr ""
+
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Det gick inte att validera Unicable-positionen för LNB %d: %s."
 
 msgid "Unattended upgrade without GUI"
@@ -24248,6 +24474,9 @@ msgstr "Ej fastställd"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Oväntat fel vid åtkomst till WebIF: %s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Oväntat fel vid hämtning av timerinformation för reservtunern"
@@ -24412,6 +24641,9 @@ msgstr "Uppdateringen misslyckades!"
 #
 msgid "Update finished!"
 msgstr "Uppdatering klar!"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -24748,6 +24980,9 @@ msgstr "Använd guiden för att konfigurera grundläggande funktioner"
 msgid "Use these input device settings?"
 msgstr "Använda dessa inställningar för inmatningsenheter?"
 
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
+
 #
 msgid "Use this video enhancement settings?"
 msgstr "Använda denna videoförbättringsinställningar?"
@@ -24773,12 +25008,6 @@ msgstr "Begagnad blixt"
 #
 msgid "Used service scan type"
 msgstr "Använd service scan typ"
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "Används för att ange fördröjning vid växling mellan tjänster och AC3 passthrough är aktiverat."
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "Används för att ange fördröjning vid växling mellan tjänster och när AC3+/Atmos passthrough är aktiverat."
 
 msgid "Used:"
 msgstr "Används:"
@@ -25589,8 +25818,8 @@ msgstr "När den är aktiverad döljs nummermarkeringarna."
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr "När detta är aktiverat hämtas IP-adress, subnätmask, gateway och DNS-inställningar automatiskt via DHCP."
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "När du trycker på \"0\" zappar du till den första kanalen i din första bukett och raderar din zap-historik."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "När den är aktiverad omformateras undertexter så att de passar skärmens bredd."
@@ -25669,9 +25898,6 @@ msgstr "När den här inställningen är aktiverad har den större betydelse än
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "När den här inställningen är aktiverad har den större betydelse än \"Preferred tuner\"."
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr "När detta är aktiverat monteras resursen på /media/hdd i stället för sin egen sökväg under /media/net. Använd detta endast om resursen är tillförlitligt tillgänglig."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "När den är aktiverad startar tidsomställningen automatiskt i bakgrunden efter angiven tid."
@@ -27043,6 +27269,30 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "Fel vid skrivning av '/etc/enigma2/epg.dat' på fjärrmottagaren!"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "Fördröjning av passthrough-ljudhantering AC3"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "Passthrough ljudhantering fördröjning AC3+"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "Om du trycker på panikknappen kommer du att zappa till detta kanalnummer i din första bukett."
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "Används för att ange fördröjning vid växling mellan tjänster och AC3 passthrough är aktiverat."
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "Används för att ange fördröjning vid växling mellan tjänster och när AC3+/Atmos passthrough är aktiverat."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "När du trycker på \"0\" zappar du till den första kanalen i din första bukett och raderar din zap-historik."
+
+#~ msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+#~ msgstr "När detta är aktiverat monteras resursen på /media/hdd i stället för sin egen sökväg under /media/net. Använd detta endast om resursen är tillförlitligt tillgänglig."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

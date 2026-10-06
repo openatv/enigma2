@@ -1441,7 +1441,7 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 						self.searchLoading = False
 						self.searchText = ""
 						self.displayPluginList(self.pluginList, False)
-						self.session.open(MessageBox, _("Unable to load package information."), type=MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox, _("Unable to load package information!"), type=MessageBox.TYPE_ERROR)
 					self.setWaiting(None)
 					haveLogs = self.logData != ""
 					self["logAction"].setEnabled(haveLogs)
