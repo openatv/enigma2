@@ -210,6 +210,10 @@ private:
 	eFixedMessagePump<int> m_messagepump_thread; // message handling in the thread
 	eFixedMessagePump<int> m_messagepump_main;	 // message handling in the e2 mainloop
 	ePtr<eTimer> m_runTimer;					 // workaround to interrupt thread mainloop as some ci drivers don't implement poll properly
+	ePtr<eTimer> m_ciReleaseTimer;
+	bool m_needs_ci_release_refresh;
+	std::set<int> m_pending_ci_releases;
+	void refreshReleasedRouting();
 	static pthread_mutex_t m_pmt_handler_lock;
 
 	int sendCAPMT(int slot);
@@ -233,6 +237,7 @@ public:
 	void gotPMT(eDVBServicePMTHandler *pmthandler);
 	bool isCiConnected(eDVBServicePMTHandler *pmthandler);
 	bool hasActiveCiRouting();
+	void retryReleasedRouting();
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
 

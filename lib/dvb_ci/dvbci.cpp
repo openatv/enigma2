@@ -16,6 +16,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/esimpleconfig.h>
+#include <lib/base/modelinformation.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb_ci/dvbci.h>
@@ -102,7 +103,7 @@ static std::string getTunerLetterDM(int NimNumber)
 #endif
 
 eDVBCIInterfaces::eDVBCIInterfaces()
-	: m_messagepump_thread(this, 1, "dvbci"), m_messagepump_main(eApp, 1, "dvbci"), m_runTimer(eTimer::create(this))
+	: m_messagepump_thread(this, 1, "dvbci"), m_messagepump_main(eApp, 1, "dvbci"), m_runTimer(eTimer::create(this)), m_ciReleaseTimer(eTimer::create(eApp))
 {
 	int num_ci = 0;
 	std::stringstream path;
@@ -110,6 +111,9 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	instance = this;
 	m_stream_interface = interface_none;
 	m_stream_finish_mode = finish_none;
+	const std::string machine = eModelInformation::getInstance().getValue("machinebuild");
+	m_needs_ci_release_refresh = machine == "gbquad4kpro" || machine == "vuduo4klite";
+	CONNECT(m_ciReleaseTimer->timeout, eDVBCIInterfaces::refreshReleasedRouting);
 
 	CONNECT(m_messagepump_thread.recv_msg, eDVBCIInterfaces::gotMessageThread);
 	CONNECT(m_messagepump_main.recv_msg, eDVBCIInterfaces::gotMessageMain);
@@ -359,6 +363,10 @@ int eDVBCIInterfaces::cancelEnq(int slotid)
 
 void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 {
+	{
+		singleLock s(m_slot_lock);
+		m_pending_ci_releases.erase(slot->getSlotID());
+	}
 	if (slot->use_count)
 	{
 		singleLock s1(m_pmt_handler_lock);
@@ -655,6 +663,7 @@ void eDVBCIInterfaces::recheckPMTHandlers() {
 					}
 
 					++ci_it->use_count;
+					m_pending_ci_releases.erase(ci_it->getSlotID());
 					eTrace("[CI] (1)Slot %d, usecount now %d", ci_it->getSlotID(), ci_it->use_count);
 
 					std::stringstream ci_source;
@@ -862,13 +871,116 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 					base_slot = slot->linked_next;
 				slot->linked_next = 0;
 				slot->user_mapped = false;
+				if (m_needs_ci_release_refresh)
+				{
+					m_pending_ci_releases.insert(slot->getSlotID());
+					eDebug("[CI] slot %d released, waiting for tuner/demux handover", slot->getSlotID());
+				}
 			}
 			eDebug("[CI] (3) slot %d usecount is now %d", slot->getSlotID(), slot->use_count);
 			slot = next;
 		}
 		// check if another service is waiting for the CI
 		recheckPMTHandlers();
+		retryReleasedRouting();
 	}
+}
+
+void eDVBCIInterfaces::retryReleasedRouting()
+{
+	if (!m_needs_ci_release_refresh)
+		return;
+	singleLock s(m_slot_lock);
+	if (!m_pending_ci_releases.empty())
+		m_ciReleaseTimer->start(0, true);
+}
+
+void eDVBCIInterfaces::refreshReleasedRouting()
+{
+	singleLock s1(m_pmt_handler_lock);
+	singleLock s2(m_slot_lock);
+	if (m_pending_ci_releases.empty())
+		return;
+
+	// A newly assigned CAM owns its routing again. Never replay its old release.
+	bool ci_active = false;
+	for (eSmartPtrList<eDVBCISlot>::iterator slot(m_slots.begin()); slot != m_slots.end(); ++slot)
+	{
+		const bool authenticating = !slot->ciplusRoutingDone() && slot->getCIPlusRoutingTunerNum() >= 0;
+		if (slot->use_count || authenticating || slot->getState() != eDVBCISlot::stateInserted)
+			m_pending_ci_releases.erase(slot->getSlotID());
+		if (slot->use_count || authenticating)
+			ci_active = true;
+	}
+	if (ci_active || m_pending_ci_releases.empty())
+		return;
+
+	// A zero-delay mainloop callback also covers a background recording ending.
+	// During a zap, wait for every new frontend and its data demux instead of
+	// touching the previous route while the new tuner is still being prepared.
+	bool demux_ready = false;
+	for (PMTHandlerList::iterator it = m_pmt_handlers.begin(); it != m_pmt_handlers.end(); ++it)
+	{
+		eUsePtr<iDVBChannel> channel;
+		ePtr<iDVBFrontend> frontend;
+		if (it->pmthandler->getChannel(channel) || !channel || channel->getFrontend(frontend) || !frontend)
+			continue;
+		int state = iDVBChannel::state_failed;
+		if (channel->getState(state))
+			return;
+		if (state == iDVBChannel::state_failed)
+			continue;
+		ePtr<iDVBDemux> demux;
+		if (state != iDVBChannel::state_ok || it->pmthandler->getDataDemux(demux) || !demux)
+			return;
+
+		const int tuner = static_cast<eDVBFrontend *>(&*frontend)->getSlotID();
+		if (tuner < 0)
+			return;
+		char path[64];
+		snprintf(path, sizeof(path), "/proc/stb/tsmux/input%d", tuner);
+		std::string source;
+		std::istringstream input(CFile::read(path));
+		if (!(input >> source) || source.compare(0, 2, "CI") == 0)
+			return;
+		demux_ready = true;
+	}
+	if (!demux_ready)
+		return;
+
+	for (std::set<int>::iterator it = m_pending_ci_releases.begin(); it != m_pending_ci_releases.end(); ++it)
+	{
+		eDVBCISlot *slot = getSlot(*it);
+		char path[64];
+		snprintf(path, sizeof(path), "/proc/stb/tsmux/ci%d_input", *it);
+		std::string source;
+		std::istringstream input(CFile::read(path));
+		// Only refresh an unchanged direct tuner source, never a CI chain or DVR.
+		if (!slot || slot->linked_next || !(input >> source) || source != slot->current_source ||
+			source.size() != 1 || source[0] < 'A' || source[0] > 'Z')
+		{
+			eDebug("[CI] slot %d release refresh skipped: source changed or not a direct tuner", *it);
+			continue;
+		}
+		if (slot->current_tuner >= 0)
+		{
+			char tuner_path[64];
+			snprintf(tuner_path, sizeof(tuner_path), "/proc/stb/tsmux/input%d", slot->current_tuner);
+			std::string tuner_source;
+			std::istringstream tuner_input(CFile::read(tuner_path));
+			if (!(tuner_input >> tuner_source) || tuner_source != eDVBCISlot::getTunerLetter(slot->current_tuner))
+			{
+				eDebug("[CI] slot %d release refresh skipped: tuner bypass not restored", *it);
+				continue;
+			}
+		}
+		if (CFile::write(path, source.c_str()) < 0)
+			eDebug("[CI] slot %d release refresh failed: %m", *it);
+		else
+			eDebug("[CI] slot %d release refresh after demux handover: %s", *it, source.c_str());
+	}
+	// One attempt per real release; never periodically rewrite a healthy route.
+	m_pending_ci_releases.clear();
 }
 
 void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
@@ -1238,6 +1350,7 @@ void eDVBCIInterfaces::setCIPlusRouting(int slotid)
 		std::stringstream new_input_source;
 		new_input_source << "CI" << slot->getSlotID();
 
+		m_pending_ci_releases.erase(slotid);
 		setInputSource(tunernum, new_input_source.str());
 #ifdef DREAMBOX_DUAL_TUNER
 		slot->setSource(getTunerLetterDM(tunernum));
