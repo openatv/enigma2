@@ -5,13 +5,16 @@ from os import unlink
 from time import time
 
 from twisted.internet import reactor
-from twisted.internet.defer import Deferred, TimeoutError
+from twisted.internet.defer import CancelledError, Deferred, TimeoutError
 from twisted.internet.protocol import Protocol
+from twisted.internet.ssl import CertificateOptions
 from twisted.internet.threads import deferToThread
 from twisted.python.failure import Failure
 from twisted.web.client import Agent, RedirectAgent, BrowserLikeRedirectAgent, BrowserLikePolicyForHTTPS, FileBodyProducer, PartialDownloadError, ResponseDone, ResponseFailed, PotentialDataLoss, readBody
 from twisted.web.error import Error
 from twisted.web.http_headers import Headers
+from twisted.web.iweb import IPolicyForHTTPS
+from zope.interface import implementer
 
 
 # ------------------------------------------------------------
@@ -43,8 +46,16 @@ WRITE_PAUSE_SIZE = 4 * 1024 * 1024  # stop reading the socket while the writer l
 STALL_CHECK_INTERVAL = 5  # how often the stall watchdog looks at the clock
 
 
-def makeAgent(connectTimeout=5, followRedirect=True, redirectLimit=20, afterFoundGet=False):
-	base = Agent(reactor, contextFactory=BrowserLikePolicyForHTTPS(), connectTimeout=connectTimeout)
+@implementer(IPolicyForHTTPS)
+class NoVerifyPolicyForHTTPS:
+	""" Accepts any certificate, e.g. a self-signed one on a local receiver. """
+
+	def creatorForNetloc(self, hostname, port):  # NOSONAR
+		return CertificateOptions(verify=False)
+
+
+def makeAgent(connectTimeout=5, followRedirect=True, redirectLimit=20, afterFoundGet=False, verify=True):
+	base = Agent(reactor, contextFactory=BrowserLikePolicyForHTTPS() if verify else NoVerifyPolicyForHTTPS(), connectTimeout=connectTimeout)
 	if not followRedirect:
 		return base
 	return (BrowserLikeRedirectAgent if afterFoundGet else RedirectAgent)(base, redirectLimit)
@@ -101,12 +112,15 @@ class DiscardProtocol(Protocol):
 class FileProtocol(Protocol):
 	""" Writes a response body to an open file and fires deferred with None at the end. """
 
-	def __init__(self, deferred, fd):
+	def __init__(self, deferred, fd, onData=None):
 		self.deferred = deferred
 		self.fd = fd
+		self.onData = onData
 		self.error = None
 
 	def dataReceived(self, data):  # Overwrite
+		if self.onData:
+			self.onData()
 		if self.error is None:
 			try:
 				self.fd.write(data)
@@ -631,10 +645,11 @@ class DownloadWithProgress:
 # SIMPLE REQUESTS
 # Replacements for the removed twisted.web.client getPage(), downloadPage().
 # The keyword arguments match the old HTTPClientFactory. All three return a
-# Deferred, a HTTP status other than 2xx fails with twisted.web.error.Error.
-# HTTPS certificates are verified.
+# Deferred, a HTTP status other than 2xx fails with twisted.web.error.Error,
+# cancelling fails with CancelledError.
+# HTTPS certificates are verified unless verify=False is given.
 # ------------------------------------------------------------
-def requestPage(url, receive, method=b"GET", postdata=None, headers=None, agent=None, timeout=0, cookies=None, followRedirect=True, redirectLimit=20, afterFoundGet=False, connectTimeout=5, **kwargs):
+def requestPage(url, receive, method=b"GET", postdata=None, headers=None, agent=None, timeout=0, cookies=None, followRedirect=True, redirectLimit=20, afterFoundGet=False, connectTimeout=5, verify=True, **kwargs):
 	def checkStatus(response):
 		if 200 <= response.code < 300:
 			return response
@@ -644,14 +659,21 @@ def requestPage(url, receive, method=b"GET", postdata=None, headers=None, agent=
 
 		return readBody(response).addBoth(fail)
 
+	def unwrapCancel(failure):  # Agent wraps a cancel before the response in ResponseNeverReceived.
+		if failure.check(ResponseFailed) and any(reason.check(CancelledError) for reason in failure.value.reasons):
+			return Failure(CancelledError())
+		return failure
+
+	if kwargs:
+		print(f"[Downloader] Warning: Ignoring unsupported arguments {', '.join(kwargs)}!")
 	rawHeaders = normaliseHeaders(headers)
 	if agent:
 		rawHeaders["User-Agent"] = normaliseHeaders({"User-Agent": agent})["User-Agent"]
 	if cookies:
 		rawHeaders["Cookie"] = "; ".join(f"{k}={v}" for k, v in normaliseHeaders(cookies).items())
 	body = None if postdata is None else FileBodyProducer(BytesIO(encode(postdata)))
-	client = makeAgent(connectTimeout, followRedirect, redirectLimit, afterFoundGet)
-	deferred = client.request(encode(method), encode(url), buildHeaders(rawHeaders), body).addCallback(checkStatus).addCallback(receive)
+	client = makeAgent(connectTimeout, followRedirect, redirectLimit, afterFoundGet, verify)
+	deferred = client.request(encode(method), encode(url), buildHeaders(rawHeaders), body).addErrback(unwrapCancel).addCallback(checkStatus).addCallback(receive)
 	if timeout:  # covers the whole transfer, not only the connect
 		deferred.addTimeout(timeout, reactor, onTimeoutCancel=lambda result, timeout: Failure(TimeoutError(f"Timeout after {timeout} seconds")) if isinstance(result, Failure) else result)
 	return deferred
@@ -672,11 +694,32 @@ def getJson(url, **kwargs):
 	return getPage(url, **kwargs).addCallback(loads)
 
 
-def downloadPage(url, file, **kwargs):
+def downloadPage(url, file, idleTimeout=0, **kwargs):
 	""" Writes the response body to file (a path or an open binary file object)
-		and fires with None. A file opened here is removed again on failure. """
+		and fires with None. A file opened here is removed again on failure.
+		idleTimeout aborts when no data arrives for that many seconds, without
+		limiting the total transfer time like timeout does. Writes happen on the
+		reactor thread, use DownloadWithProgress for slow targets like USB or NFS. """
 	ownFile = isinstance(file, (str, bytes))
 	fd = None
+	idleCall = None
+	timedOut = False
+
+	def idle():
+		nonlocal timedOut
+		timedOut = True
+		deferred.cancel()
+
+	def resetIdle():
+		if idleCall and idleCall.active():
+			idleCall.reset(idleTimeout)
+
+	def stopIdle(result):
+		if idleCall and idleCall.active():
+			idleCall.cancel()
+		if timedOut and isinstance(result, Failure):
+			return Failure(TimeoutError(f"No data received for {idleTimeout} seconds"))
+		return result
 
 	def receive(response):
 		nonlocal fd
@@ -686,7 +729,7 @@ def downloadPage(url, file, **kwargs):
 			response.deliverBody(DiscardProtocol())
 			raise
 		deferred = Deferred(lambda x: protocol.transport.stopProducing())
-		protocol = FileProtocol(deferred, fd)
+		protocol = FileProtocol(deferred, fd, resetIdle)
 		response.deliverBody(protocol)
 		return deferred
 
@@ -703,7 +746,11 @@ def downloadPage(url, file, **kwargs):
 					pass
 		return result
 
-	return requestPage(url, receive, **kwargs).addBoth(finish)
+	deferred = requestPage(url, receive, **kwargs)
+	if idleTimeout:
+		idleCall = reactor.callLater(idleTimeout, idle)
+		deferred.addBoth(stopIdle)
+	return deferred.addBoth(finish)
 
 
 # ------------------------------------------------------------

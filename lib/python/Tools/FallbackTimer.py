@@ -2,10 +2,9 @@ from ServiceReference import ServiceReference
 from Components.config import config
 from Screens.MessageBox import MessageBox
 from timer import TimerEntry as TimerObject
+from base64 import b64encode
 from urllib.parse import quote
-from json import loads
-from requests import get, exceptions
-from twisted.internet.threads import deferToThread
+from Tools.Downloader import formatError, getJson
 
 
 class FallbackTimerList():
@@ -35,17 +34,11 @@ class FallbackTimerList():
 			service_ref = service_ref.rsplit("::", 1)[0] + ":"
 		return service_ref
 
-	def sendAPIcommand(self, url, timeout=(3.05, 3), headers=None, verify=False):
-		def sendUrl(url, timeout, headers, auth):
-			try:
-				response = get(url, headers=headers or {}, auth=auth, timeout=timeout, verify=verify)
-				response.raise_for_status()
-				return loads(response.content)
-			except exceptions.RequestException as error:
-				print("sendAPIcommand", error)
-
-		auth = (self.userid, self.password) if self.password else None
-		return deferToThread(lambda: sendUrl(url, timeout, headers, auth))
+	def sendAPIcommand(self, url, timeout=10, headers=None):
+		headers = dict(headers or {})
+		if self.password:
+			headers["Authorization"] = f"Basic {b64encode(f'{self.userid}:{self.password}'.encode()).decode()}"
+		return getJson(quote(url, safe="!#$%&'()*+,/:;=?@[]~"), headers=headers, connectTimeout=3, timeout=timeout, verify=False)  # Requote like requests did.
 
 	def getUrl(self, url):
 		print("[FallbackTimer] getURL", url)
@@ -55,7 +48,7 @@ class FallbackTimerList():
 		self.list = []
 		if self.url:
 			try:
-				self.getUrl("api/timerlist").addCallback(self.gotFallbackTimerList).addErrback(self.fallback)
+				self.getUrl("api/timerlist").addCallbacks(self.gotFallbackTimerList, self.gotFallbackTimerListError)
 			except Exception:
 				self.fallback(_("Unexpected error while retrieving fallback tuner's timer information"))
 		else:
@@ -81,21 +74,25 @@ class FallbackTimerList():
 		print(f"[FallbackTimer] read {len(self.list)} timers from fallback tuner")
 		self.parent.session.nav.RecordTimer.setFallbackTimerList(self.list)
 
+	def gotFallbackTimerListError(self, failure):
+		self.fallbackError(failure)
+		self.parent.session.nav.RecordTimer.setFallbackTimerList(self.list)
+
 	def removeTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		self.getUrl(f"api/timerdelete?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallback)
+		self.getUrl(f"api/timerdelete?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallbackError)
 
 	def toggleTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		self.getUrl(f"api/timertogglestatus?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallback)
+		self.getUrl(f"api/timertogglestatus?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallbackError)
 
 	def cleanupTimers(self, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		if self.url:
-			self.getUrl("api/timercleanup?cleanup=true").addCallback(self.getUrlFallback).addErrback(self.fallback)
+			self.getUrl("api/timercleanup?cleanup=true").addCallback(self.getUrlFallback).addErrback(self.fallbackError)
 		else:
 			self.fallback()
 
@@ -121,13 +118,13 @@ class FallbackTimerList():
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		url = f"api/timeradd?sRef={self.cleanServiceRef(timer.service_ref)}{self.timerurldata(timer)}"
-		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallback)
+		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallbackError)
 
 	def editTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		url = f"api/timerchange?sRef={self.cleanServiceRef(timer.service_ref)}&channelOld={timer.service_ref_prev}&beginOld={timer.begin_prev}&endOld={timer.end_prev}{self.timerurldata(timer)}"
-		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallback)
+		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallbackError)
 
 	def getUrlFallback(self, data):
 		if data.get("result"):
@@ -140,6 +137,10 @@ class FallbackTimerList():
 			self.parent.session.openWithCallback(self.fallbackNOK, MessageBox, _("Error while retrieving fallback timer information\n%s") % message, MessageBox.TYPE_ERROR)
 		else:
 			self.fallbackFunction()
+
+	def fallbackError(self, failure):
+		print(f"[FallbackTimer] sendAPIcommand Error: {formatError(failure)}")
+		self.fallback(formatError(failure))
 
 	def fallbackNOK(self, answer=None):
 		self.fallbackFunctionNOK()
