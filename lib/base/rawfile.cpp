@@ -1,4 +1,8 @@
+#include <algorithm>
+#include <cerrno>
 #include <cstdio>
+#include <limits>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <lib/base/rawfile.h>
@@ -10,11 +14,7 @@ eRawFile::eRawFile(unsigned int packetsize)
 	: iTsSource(packetsize)
 	, m_lock()
 	, m_fd(-1)
-	, m_nrfiles(0)
-	, m_splitsize(0)
 	, m_totallength(0)
-	, m_current_offset(0)
-	, m_base_offset(0)
 	, m_last_offset(0)
 	, m_current_file(0)
 {
@@ -29,24 +29,23 @@ int eRawFile::open(const char *filename)
 {
 	close();
 	m_basename = filename;
-	scan();
-	m_current_offset = 0;
+	m_file_offsets.clear();
+	m_totallength = 0;
+	m_current_file = 0;
 	m_last_offset = 0;
 	m_fd = ::open(filename, O_RDONLY | O_LARGEFILE | O_CLOEXEC);
-	posix_fadvise(m_fd, 0, 0, POSIX_FADV_SEQUENTIAL);
-	return m_fd;
-}
-
-off_t eRawFile::lseek_internal(off_t offset)
-{
-//	eDebug("[eRawFile] lseek: %lld, %d", offset, whence);
-		/* if there is only one file, use the native lseek - the file could be growing! */
-	if (m_nrfiles < 2)
+	if (m_fd >= 0)
 	{
-		return ::lseek(m_fd, offset, SEEK_SET);
+		posix_fadvise(m_fd, 0, 0, POSIX_FADV_SEQUENTIAL);
+		m_file_offsets.push_back(0);
+		if (scan() < 0)
+		{
+			int saved_errno = errno;
+			close();
+			errno = saved_errno;
+		}
 	}
-	m_current_offset = offset;
-	return m_current_offset;
+	return m_fd;
 }
 
 int eRawFile::close()
@@ -65,30 +64,39 @@ ssize_t eRawFile::read(off_t offset, void *buf, size_t count)
 {
 	eSingleLocker l(m_lock);
 
-	if (offset != m_current_offset)
+	if (m_fd < 0 || offset < 0)
 	{
-		m_current_offset = lseek_internal(offset);
-		if (m_current_offset < 0)
-			return m_current_offset;
+		errno = m_fd < 0 ? EBADF : EINVAL;
+		return -1;
 	}
 
-	switchOffset(m_current_offset);
-
-	if (m_nrfiles >= 2)
+	count = std::min(count, static_cast<size_t>(std::numeric_limits<ssize_t>::max()));
+	size_t done = 0;
+	while (done < count)
 	{
-		if (static_cast<size_t>(m_current_offset+count) > static_cast<size_t>(m_totallength))
-			count = m_totallength - m_current_offset;
-		if (count < 0)
-			return 0;
-	}
+		// Only the current last part can grow. Discover successors at its end.
+		if (offset >= m_totallength && scan() < 0)
+			return done ? static_cast<ssize_t>(done) : -1;
+		if (switchOffset(offset) < 0)
+			return done ? static_cast<ssize_t>(done) : -1;
+		if (offset >= m_totallength)
+			break;
 
-	ssize_t ret = ::read(m_fd, buf, count);
-
-	if (ret > 0)
-	{
-		m_current_offset = m_last_offset += ret;
+		off_t end = m_current_file + 1 < static_cast<int>(m_file_offsets.size()) ? m_file_offsets[m_current_file + 1] : m_totallength;
+		size_t amount = std::min<off_t>(count - done, end - offset);
+		ssize_t result;
+		do
+			result = ::read(m_fd, static_cast<char *>(buf) + done, amount);
+		while (result < 0 && errno == EINTR);
+		if (result < 0)
+			return done ? static_cast<ssize_t>(done) : -1;
+		if (!result)
+			break;
+		done += result;
+		offset += result;
+		m_last_offset = offset;
 	}
-	return ret;
+	return done;
 }
 
 int eRawFile::valid()
@@ -96,77 +104,96 @@ int eRawFile::valid()
 	return m_fd != -1;
 }
 
-void eRawFile::scan()
+int eRawFile::scan()
 {
-	m_nrfiles = 0;
-	m_totallength = 0;
-	while (m_nrfiles < 1000) /* .999 is the last possible */
+	if (m_fd < 0 || m_file_offsets.empty())
 	{
-		int f = openFileUncached(m_nrfiles);
-		if (f < 0)
-			break;
-		if (!m_nrfiles)
-			m_splitsize = ::lseek(f, 0, SEEK_END);
-		m_totallength += ::lseek(f, 0, SEEK_END);
-		::close(f);
-		++m_nrfiles;
+		errno = EBADF;
+		return -1;
 	}
-//	eDebug("[eRawFile] found %d files, splitsize: %llx, totallength: %llx", m_nrfiles, m_splitsize, m_totallength);
+	int last = m_file_offsets.size() - 1;
+	struct stat current = {};
+	if ((last == m_current_file ? ::fstat(m_fd, &current) : ::stat(_filename(last).c_str(), &current)) < 0)
+		return -1;
+	while (true)
+	{
+		if (current.st_size < 0 || current.st_size > std::numeric_limits<off_t>::max() - m_file_offsets[last])
+		{
+			errno = EOVERFLOW;
+			return -1;
+		}
+		m_totallength = m_file_offsets[last] + current.st_size;
+		if (last == 999) // Preserve the established base.ts through base.ts.999 limit.
+			break;
+		struct stat next = {};
+		if (::stat(_filename(last + 1).c_str(), &next) < 0)
+		{
+			if (errno == ENOENT)
+				break;
+			return -1;
+		}
+		// A successor proves that its predecessor is complete. Recheck its final
+		// size, since the writer may have filled it between the two stat calls.
+		if ((last == m_current_file ? ::fstat(m_fd, &current) : ::stat(_filename(last).c_str(), &current)) < 0)
+			return -1;
+		if (current.st_size < 0 || current.st_size > std::numeric_limits<off_t>::max() - m_file_offsets[last])
+		{
+			errno = EOVERFLOW;
+			return -1;
+		}
+		m_totallength = m_file_offsets[last] + current.st_size;
+		m_file_offsets.push_back(m_totallength);
+		++last;
+		current = next;
+	}
+	return 0;
 }
 
-int eRawFile::switchOffset(off_t off)
+off_t eRawFile::switchOffset(off_t off)
 {
-	if (m_splitsize)
+	int filenr = std::upper_bound(m_file_offsets.begin(), m_file_offsets.end(), off) - m_file_offsets.begin() - 1;
+	if (filenr != m_current_file)
 	{
-		int filenr = off / m_splitsize;
-		if (filenr >= m_nrfiles)
-			filenr = m_nrfiles - 1;
-		if (filenr != m_current_file)
-		{
-//			eDebug("[eRawFile] -> %d", filenr);
-			close();
-			m_fd = openFileUncached(filenr);
-			m_last_offset = m_base_offset = m_splitsize * filenr;
-			m_current_file = filenr;
-		}
-	} else
-		m_base_offset = 0;
-
+		int fd = openFileUncached(filenr);
+		if (fd < 0)
+			return -1;
+		close();
+		m_fd = fd;
+		posix_fadvise(m_fd, 0, 0, POSIX_FADV_SEQUENTIAL);
+		m_current_file = filenr;
+		m_last_offset = m_file_offsets[filenr];
+	}
 	if (off != m_last_offset)
 	{
-		m_last_offset = ::lseek(m_fd, off - m_base_offset, SEEK_SET) + m_base_offset;
-		return m_last_offset;
-	} else
-	{
-		return m_last_offset;
+		off_t position = ::lseek(m_fd, off - m_file_offsets[filenr], SEEK_SET);
+		if (position < 0)
+			return -1;
+		m_last_offset = position + m_file_offsets[filenr];
 	}
+	return m_last_offset;
 }
 
-int eRawFile::openFileUncached(int nr)
+std::string eRawFile::_filename(int nr) const
 {
 	std::string filename = m_basename;
 	if (nr)
 	{
-		char suffix[5];
-		snprintf(suffix, 5, ".%03d", nr);
+		char suffix[16];
+		snprintf(suffix, sizeof(suffix), ".%03d", nr);
 		filename += suffix;
 	}
-	return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE | O_CLOEXEC);
+	return filename;
+}
+
+int eRawFile::openFileUncached(int nr)
+{
+	return ::open(_filename(nr).c_str(), O_RDONLY | O_LARGEFILE | O_CLOEXEC);
 }
 
 off_t eRawFile::length()
 {
-	if (m_nrfiles >= 2)
-	{
-		return m_totallength;
-	}
-	else
-	{
-		struct stat st = {};
-		if (::fstat(m_fd, &st) < 0)
-			return -1;
-		return st.st_size;
-	}
+	eSingleLocker l(m_lock);
+	return scan() < 0 ? -1 : m_totallength;
 }
 
 off_t eRawFile::offset()

@@ -259,6 +259,7 @@ RESULT eDVBServiceRecord::start(bool simulate)
 
 RESULT eDVBServiceRecord::stop()
 {
+	int result = 0;
 	m_eit_retry_timer->stop();
 	m_eitFilename.clear();
 
@@ -270,7 +271,7 @@ RESULT eDVBServiceRecord::stop()
 	// so we must ensure it's not running before we release the CSA session.
 	if (m_state == stateRecording && m_record)
 	{
-		m_record->stop();
+		result = m_record->stop();
 	}
 
 	// Now safe to remove descrambler and release session
@@ -293,11 +294,13 @@ RESULT eDVBServiceRecord::stop()
 	{
 		if (m_target_fd >= 0)
 		{
-			::close(m_target_fd);
+			if (::close(m_target_fd) < 0)
+				result = -1;
 			m_target_fd = -1;
 		}
 
-		saveCutlist();
+		if (!result)
+			saveCutlist();
 
 		m_state = statePrepared;
 	} else if (!m_simulate)
@@ -308,7 +311,9 @@ RESULT eDVBServiceRecord::stop()
 		m_state = stateIdle;
 	}
 	m_event((iRecordableService*)this, evRecordStopped);
-	return 0;
+	if (result)
+		m_event((iRecordableService*)this, evRecordWriteError);
+	return result;
 }
 
 int eDVBServiceRecord::doPrepare()
@@ -512,6 +517,16 @@ int eDVBServiceRecord::doRecord()
 		}
 		m_record->setTargetFD(fd);
 		m_record->setTargetFilename(m_filename);
+		off_t splitSize = CFile::getRecordingSplitSize(fd, m_packet_size);
+		if (splitSize < 0 || (splitSize && m_record->setSplitSize(splitSize)))
+		{
+			eWarning("[eDVBServiceRecord] cannot prepare recording storage: %m");
+			m_record = 0;
+			::close(fd);
+			m_error = errOpenRecordFile;
+			m_event((iRecordableService*)this, evRecordFailed);
+			return errOpenRecordFile;
+		}
 		m_record->connectEvent(sigc::mem_fun(*this, &eDVBServiceRecord::recordEvent), m_con_record_event);
 
 		m_target_fd = fd;
@@ -903,10 +918,13 @@ void eDVBServiceRecord::recordEvent(int event)
 	switch (event)
 	{
 	case iDVBTSRecorder::eventWriteError:
+	{
 		eWarning("[eDVBServiceRecord] record write error");
-		stop();
-		m_event((iRecordableService*)this, evRecordWriteError);
+		ePtr<iDVBTSRecorder> recorder = m_record;
+		if (!stop())
+			m_event((iRecordableService*)this, evRecordWriteError);
 		return;
+	}
 	default:
 		eDebug("[eDVBServiceRecord] unhandled record event %d", event);
 	}

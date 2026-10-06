@@ -1460,37 +1460,79 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 RESULT eEPGCache::saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime)
 {
 	RESULT ret = -1;
-	singleLock s(cache_lock);
-	const eventData *data = NULL;
-	if ( eit_event_id != -1 )
+	// The descriptor loop has a 12-bit length. Copy the shared scratch buffer
+	// while holding the cache lock, then release it before touching storage.
+	uint8_t eventBytes[4096 + 12];
+	size_t eventLength = 0;
 	{
-		eDebug("[eEPGCache] %s EPG event id %X.", __func__, eit_event_id);
-		ret = lookupEventId(service, eit_event_id, data);
-	}
-	if ( (ret != 0) && (begTime != -1) )
-	{
-		time_t queryTime = begTime;
-		if (endTime != -1)
-			queryTime += (endTime - begTime) / 2;
-		ret = lookupEventTime(service, queryTime, data);
+		singleLock lock(cache_lock);
+		const eventData *data = NULL;
+		if (eit_event_id != -1)
+		{
+			eDebug("[eEPGCache] %s EPG event id %X.", __func__, eit_event_id);
+			ret = lookupEventId(service, eit_event_id, data);
+		}
+		if (ret != 0 && begTime != -1)
+		{
+			time_t queryTime = begTime;
+			if (endTime != -1)
+				queryTime += (endTime - begTime) / 2;
+			ret = lookupEventTime(service, queryTime, data);
+		}
+		if (ret == 0 && data)
+		{
+			const eit_event_struct *event = data->get();
+			eventLength = event->getDescriptorsLoopLength() + 12;
+			if (eventLength <= sizeof(eventBytes))
+				memcpy(eventBytes, event, eventLength);
+			else
+				ret = -1;
+		}
+		else
+			ret = -1;
 	}
 	if (ret == 0)
 	{
-		int fd = open(filename, O_CREAT|O_WRONLY, 0666);
+		std::string path(filename);
+		PyThreadState *threadState = NULL;
+		if (Py_IsInitialized() && PyGILState_Check())
+			threadState = PyEval_SaveThread();
+		// No Python API or borrowed cache data is used until the GIL is restored.
+		int error = 0;
+		int fd;
+		do
+			fd = ::open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC | O_CLOEXEC, 0666);
+		while (fd < 0 && errno == EINTR);
 		if (fd < 0)
+			error = errno;
+		else
 		{
-			eDebug("[eEPGCache] Failed to create file '%s'!", filename);
-			return fd;
+			size_t written = 0;
+			while (written < eventLength)
+			{
+				ssize_t count = ::write(fd, eventBytes + written, eventLength - written);
+				if (count > 0)
+					written += count;
+				else if (count < 0 && errno == EINTR)
+					continue;
+				else
+				{
+					error = count < 0 ? errno : EIO;
+					break;
+				}
+			}
+			if (::close(fd) < 0 && !error)
+				error = errno;
+			if (error)
+				::unlink(path.c_str());
 		}
-		const eit_event_struct *event = data->get();
-		int evLen = event->getDescriptorsLoopLength() + 12/*EIT_LOOP_SIZE*/;
-		int wr = ::write( fd, event, evLen );
-		::close(fd);
-		if ( wr != evLen )
+		if (threadState)
+			PyEval_RestoreThread(threadState);
+		if (error)
 		{
-			::unlink(filename); /* Remove faulty file */
-			eDebug("[eEPGCache] EIT write error on '%s'!  (%m)", filename);
-			ret = (wr < 0) ? wr : -1;
+			eDebug("[eEPGCache] EIT write error on '%s': %s", path.c_str(), strerror(error));
+			errno = error;
+			ret = -1;
 		}
 	}
 	return ret;

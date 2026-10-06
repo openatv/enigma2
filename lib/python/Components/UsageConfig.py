@@ -2628,7 +2628,8 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
-	config.timeshift.path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
+	# The Timeshift storage worker creates missing directories after checking
+	# the mount. A settings notifier must not create them on fallback RAM/flash.
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
@@ -2639,13 +2640,14 @@ def InitUsageConfig():
 
 	config.timeshift.path.addNotifier(setTimeshiftPath)
 
+	choiceList = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movie list location>")), ("<timer>", _("<Last timer location>"))]
 	config.timeshift.recordingPath = ConfigSelection(default="<default>", choices=choiceList)
 	config.timeshift.recordingPath.load()
 	if config.timeshift.recordingPath.saved_value:
 		savedValue = config.timeshift.recordingPath.saved_value if config.timeshift.recordingPath.saved_value.startswith("<") else pathjoin(config.timeshift.recordingPath.saved_value, "")
-		if savedValue and savedValue not in choiceList:
+		if savedValue and savedValue not in [x[0] for x in choiceList]:
 			config.timeshift.recordingPath.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
-			config.timeshift.recordingPath.value = savedValue
+		config.timeshift.recordingPath.value = savedValue
 	config.timeshift.recordingPath.save()
 
 

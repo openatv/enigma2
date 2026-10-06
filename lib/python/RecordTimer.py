@@ -68,6 +68,75 @@ class TIMERTYPE:
 		pass
 
 
+class _RecordingTunerHandoff:
+	"""One prepare attempt may release live TV, never a later or cancelled timer."""
+
+	def __init__(self, entry, priority):
+		self._entry = entry
+		self.priority = priority
+		self._nav = NavigationInstance.instance
+		self._reference = entry.service_ref.ref
+		self._begin = entry.begin
+		self._previousReference = self._nav.getCurrentlyPlayingServiceOrGroup()
+		self._previousService = self._nav.getCurrentService()
+		self._confirmed = False
+
+	def _timerIsValid(self):
+		entry = self._entry
+		return entry._tunerHandoff is self and entry.state == entry.StateWaiting and not (entry.cancelled or entry.failed or entry.disabled) and entry.begin == self._begin and entry.end > time() and entry.service_ref.ref == self._reference and any(x is entry for x in self._nav.RecordTimer.timer_list)
+
+	def isValid(self):
+		return self._timerIsValid() and self._nav.getCurrentlyPlayingServiceOrGroup() == self._previousReference and self._nav.getCurrentService() is self._previousService
+
+	def confirm(self, answer):
+		if not self._confirmed:
+			self._confirmed = True
+			self._entry._requestTunerHandoff(answer, self)
+
+	def stopService(self):
+		if not self.isValid():
+			self.finish(False)
+			return False
+		infobar = InfoBar and InfoBar.instance
+		try:
+			if self.priority and infobar:
+				if getattr(infobar, "_recordingPriorityHandoff", None) is not None:
+					self.finish(False)
+					return False
+				infobar._recordingPriorityHandoff = self
+				infobar.session.showInfo(_("A recording has priority. Time shift is being stopped."), timeout=10)
+			# Unlike a generic evEnd (notably FCC), this returns after the old
+			# native service has stopped. A pending PIN/PTS choice is not completion.
+			self._nav.stopService()
+		except Exception as err:
+			self.finish(False)
+			self._entry.log(14, f"Unable to stop live TV for recording: {err}")
+			return False
+		finally:
+			if infobar and getattr(infobar, "_recordingPriorityHandoff", None) is self:
+				infobar._recordingPriorityHandoff = None
+		# Native stop dispatches callbacks synchronously. They may cancel this
+		# attempt or start another service, which this request must not replace.
+		if not self._timerIsValid() or self._nav.getCurrentService() is not None:
+			self.finish(False)
+			return False
+		return True
+
+	def finish(self, released):
+		entry = self._entry
+		if entry._tunerHandoff is not self:
+			return
+		valid = self._timerIsValid()
+		entry._tunerHandoff = None
+		self._previousService = None
+		entry.messageBoxAnswerPending = False
+		if valid and released:
+			entry.log(13, "Live TV released for recording; retrying prepare.")
+			entry.justTriedFreeingTuner = True
+		elif valid:
+			entry.log(14, "Live TV was not released; recording may fail.")
+
+
 # Parses an event, and gives out a basic event data tuple.  The tuple provided
 # depends on the newTimerData flag.  By default the legacy tuple will be returned.
 # The begin and end will be corrected to include the recording margin padding.
@@ -315,6 +384,8 @@ class RecordTimer(Timer):
 		if timer.state < RecordTimerEntry.StateEnded:  # Did this timer reach the last state?
 			insort(self.timer_list, timer)  # No, sort it into active list.
 		else:  # Yes, process repeated, and re-add.
+			if getattr(timer, "_tunerHandoff", None):
+				timer._tunerHandoff.finish(False)
 			if timer.repeated:
 				timer.processRepeated()
 				timer.state = RecordTimerEntry.StateWaiting
@@ -341,6 +412,8 @@ class RecordTimer(Timer):
 	def shutdown(self):
 		for timer in self.timer_list:
 			timer.clearZapBack()
+			if getattr(timer, "_tunerHandoff", None):
+				timer._tunerHandoff.finish(False)
 		self.saveTimers()
 
 	def getNextRecordingTimeOld(self, getNextStbPowerOn=False):
@@ -716,6 +789,7 @@ class RecordTimerEntry(TimerEntry):
 		self.messageString = ""
 		self.messageStringShow = False
 		self.messageBoxAnswerPending = False
+		self._tunerHandoff = None
 		self.justTriedFreeingTuner = False
 		self.mountPathRetryCounter = 0
 		self.mountPathErrorNumber = 0
@@ -792,6 +866,8 @@ class RecordTimerEntry(TimerEntry):
 			self.log(5, f"Activating state {nextState}.")
 		# print("[RecordTimer] Activate called", time(), nextState, self.first_try_prepare, " pending ", self.messageBoxAnswerPending, " justTried ", self.justTriedFreeingTuner, " show ", self.messageStringShow, self.messageString)  # DEBUG: remove.
 		if nextState == self.StatePrepared:
+			if getattr(self, "_tunerHandoff", None) and not self._tunerHandoff.isValid():
+				self._tunerHandoff.finish(False)
 			if self.messageBoxAnswerPending:
 				self.start_prepare = int(time()) + 1  # Call again in 1 second.
 				return False
@@ -926,21 +1002,24 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				currentReference = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if currentReference and not currentReference.getPath():
+					handoff = _RecordingTunerHandoff(self, config.recording.asktozap.value)
+					self._tunerHandoff = handoff
+					self.messageBoxAnswerPending = True
 					if Screens.Standby.inStandby:
 						self.setRecordingPreferredTuner()
-						self.failureCB(True)
+						handoff.confirm(True)
 					elif not config.recording.asktozap.value:
 						self.log(8, "Asking user to zap.")
 						self.messageBoxAnswerPending = True
 						message = _("A timer failed to record!\nDisable TV and try again?\n")
 						if InfoBar and InfoBar.instance:
-							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
+							InfoBar.instance.openInfoBarMessageWithCallback(handoff.confirm, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
 						else:
-							AddNotificationWithCallback(self.failureCB, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
+							AddNotificationWithCallback(handoff.confirm, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
 					else:  # Zap without asking.
 						self.log(9, "Zap without asking.")
 						self.setRecordingPreferredTuner()
-						self.failureCB(True)
+						handoff.confirm(True)
 					return False
 				elif currentReference:
 					self.log(8, "Running service is not a live service so stopping it makes no sense.")
@@ -1144,6 +1223,8 @@ class RecordTimerEntry(TimerEntry):
 		}[nextState]
 
 	def timeChanged(self):
+		if getattr(self, "_tunerHandoff", None):
+			self._tunerHandoff.finish(False)
 		oldPrepare = self.start_prepare
 		self.start_prepare = int(self.begin) - config.recording.prepare_time.value  # self.prepare_time
 		self.backoff = 0
@@ -1448,6 +1529,22 @@ class RecordTimerEntry(TimerEntry):
 			self.log(14, "User didn't want to abort streaming, try other methods of freeing a tuner.")
 		self.messageBoxAnswerPending = False
 
+	def _requestTunerHandoff(self, answer, handoff):
+		if not answer or not handoff.isValid():
+			handoff.finish(False)
+			return
+		try:
+			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+				InfoBar.instance.servicelist.performZap(self.service_ref.ref, recordingHandoff=handoff)
+			elif handoff.stopService():
+				try:
+					NavigationInstance.instance.playService(self.service_ref.ref)
+				finally:
+					handoff.finish(True)
+		except Exception as err:
+			handoff.finish(False)
+			self.log(14, f"Unable to release live TV for recording: {err}")
+
 	def failureCB(self, answer):
 		if answer:
 			self.log(13, "Okay, zapped away.")
@@ -1543,10 +1640,14 @@ class RecordTimerEntry(TimerEntry):
 	def abort(self):
 		self.clearZapBack()
 		TimerEntry.abort(self)
+		if getattr(self, "_tunerHandoff", None):
+			self._tunerHandoff.finish(False)
 
 	def disable(self):
 		self.clearZapBack()
 		TimerEntry.disable(self)
+		if getattr(self, "_tunerHandoff", None):
+			self._tunerHandoff.finish(False)
 
 	def check_justplay(self):
 		if self.justplay:

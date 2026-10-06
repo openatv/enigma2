@@ -80,7 +80,12 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 
 void eBackgroundFileEraser::gotMessage(const Message &msg )
 {
-	if (msg.filename.empty())
+	if (msg.timeshift)
+	{
+		_eraseTimeshift(msg);
+		stop_thread_timer->start(1000, true);
+	}
+	else if (msg.filename.empty())
 	{
 		quit(0);
 	}
@@ -140,6 +145,95 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		}
 		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}
+}
+
+void eBackgroundFileEraser::_eraseTimeshift(const Message &msg)
+{
+	// The message owns this FD exactly once; message-pump copies do not close it.
+	struct DirectoryCloser
+	{
+		int fd;
+		~DirectoryCloser()
+		{
+			if (fd >= 0 && close(fd) < 0)
+				eWarning("[eBackgroundFileEraser] closing time shift directory failed: %m");
+		}
+	} directory{msg.directoryFd};
+	if (msg.directoryFd < 0 || msg.filename.empty())
+		return;
+	const std::string name = msg.filename.substr(msg.filename.find_last_of('/') + 1);
+	if (name.empty() || name == "." || name == "..")
+		return;
+	auto matchesBase = [&]()
+	{
+		struct stat status = {};
+		if (fstatat(msg.directoryFd, name.c_str(), &status, AT_SYMLINK_NOFOLLOW) < 0)
+		{
+			eWarning("[eBackgroundFileEraser] cannot verify time shift %s: %m", msg.filename.c_str());
+			return false;
+		}
+		if (!S_ISREG(status.st_mode) || status.st_dev != msg.device || status.st_ino != msg.inode)
+		{
+			eWarning("[eBackgroundFileEraser] retaining replaced time shift %s", msg.filename.c_str());
+			return false;
+		}
+		return true;
+	};
+	if (!matchesBase())
+		return;
+	auto removePart = [&](const std::string &part)
+	{
+		if (!matchesBase())
+			return -1;
+		struct stat status = {};
+		if (fstatat(msg.directoryFd, part.c_str(), &status, AT_SYMLINK_NOFOLLOW) < 0)
+		{
+			if (errno == ENOENT)
+				return 0;
+			eWarning("[eBackgroundFileEraser] cannot verify time shift part %s: %m", part.c_str());
+			return -1;
+		}
+		if (!S_ISREG(status.st_mode) || status.st_dev != msg.device)
+		{
+			eWarning("[eBackgroundFileEraser] retaining replaced time shift part %s", part.c_str());
+			return -1;
+		}
+		if (unlinkat(msg.directoryFd, part.c_str(), 0) < 0)
+		{
+			eWarning("[eBackgroundFileEraser] removing time shift part %s failed: %m", part.c_str());
+			return -1;
+		}
+		return 1;
+	};
+	// Keep the base as an ownership anchor until all related names are removed.
+	for (unsigned int part = 1; part < 1000; ++part)
+	{
+		char suffix[8];
+		snprintf(suffix, sizeof(suffix), ".%03u", part);
+		int result = removePart(name + suffix);
+		if (result < 0)
+			return;
+		if (!result)
+			break;
+	}
+	for (const char *suffix : {".sc", ".ap", ".cuts", ".meta", ".eit"})
+		if (removePart(name + suffix) < 0)
+			return;
+	if (matchesBase() && unlinkat(msg.directoryFd, name.c_str(), 0) < 0)
+		eWarning("[eBackgroundFileEraser] removing time shift %s failed: %m", msg.filename.c_str());
+}
+
+void eBackgroundFileEraser::eraseTimeshift(const std::string& filename, int directoryFd, dev_t device, ino_t inode)
+{
+	if (directoryFd < 0)
+		return;
+	messages.send(Message(filename, directoryFd, device, inode));
+	run();
+}
+
+void eBackgroundFileEraser::releaseTimeshiftDirectory(int directoryFd)
+{
+	eraseTimeshift(std::string(), directoryFd, 0, 0);
 }
 
 void eBackgroundFileEraser::setEraseSpeed(int inMBperSecond)

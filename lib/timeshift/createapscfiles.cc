@@ -31,6 +31,65 @@
 
 using namespace std;
 
+static std::string _inputName;
+static int _inputPart;
+
+static std::string _inputFilename(int part)
+{
+	std::string name = _inputName;
+	if (part)
+	{
+		char suffix[16];
+		snprintf(suffix, sizeof(suffix), ".%03d", part);
+		name += suffix;
+	}
+	return name;
+}
+
+// Keep the parser's descriptor interface and fill its existing packet-aligned
+// buffer across physical parts. Its offsets remain relative to the whole stream.
+static ssize_t _readInput(int fd, void *buffer, size_t count)
+{
+	size_t done = 0;
+	while (done < count)
+	{
+		ssize_t amount = read(fd, static_cast<char *>(buffer) + done, count - done);
+		if (amount < 0)
+		{
+			if (errno == EINTR)
+				continue;
+			return -1;
+		}
+		if (amount)
+		{
+			done += amount;
+			continue;
+		}
+		if (_inputPart == 999)
+			break;
+		int next = open(_inputFilename(_inputPart + 1).c_str(), O_RDONLY | O_LARGEFILE | O_NOFOLLOW | O_CLOEXEC);
+		if (next < 0)
+		{
+			if (errno == ENOENT)
+				break;
+			return -1;
+		}
+		int result;
+		do
+			result = dup2(next, fd);
+		while (result < 0 && errno == EINTR);
+		int saved_errno = errno;
+		close(next);
+		if (result < 0)
+		{
+			errno = saved_errno;
+			return -1;
+		}
+		++_inputPart;
+	}
+	return done;
+}
+
 std::string makefilename(const char* base, const char* ext, const char* post)
 {
 	std::string buf = "";
@@ -51,10 +110,41 @@ int writebufinternal(int f, off64_t sz, off64_t tm)
 	off64_t buf[2];
 	buf[0] = (off64_t)bswap_64((unsigned long long int)sz);
 	buf[1] = (off64_t)bswap_64((unsigned long long int)tm);
-	if (write(f, buf, 16) != 16)
-		return 1;
-	else
-		return 0;
+	size_t written = 0;
+	while (written < sizeof(buf))
+	{
+		ssize_t result = write(f, reinterpret_cast<char *>(buf) + written, sizeof(buf) - written);
+		if (result > 0)
+			written += result;
+		else if (result < 0 && errno == EINTR)
+			continue;
+		else
+			return 1;
+	}
+	return 0;
+}
+
+static int _finishOutput(int &descriptor)
+{
+	int result;
+	do
+		result = fsync(descriptor);
+	while (result < 0 && errno == EINTR);
+	// close() must never be retried: its descriptor may already be reusable.
+	if (close(descriptor) < 0)
+		result = -1;
+	descriptor = -1;
+	return result;
+}
+
+static void _removeOutput(const std::string &filename, const struct stat &identity)
+{
+	struct stat current = {};
+	// Keep ownership after close(), but never adopt a replacement pathname.
+	// This check and unlink are not atomic against another concurrent writer.
+	if (S_ISREG(identity.st_mode) && lstat(filename.c_str(), &current) == 0 &&
+		S_ISREG(current.st_mode) && current.st_dev == identity.st_dev && current.st_ino == identity.st_ino)
+		unlink(filename.c_str());
 }
 
 int framepid(unsigned char* buf, int pos)
@@ -93,17 +183,20 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
 	static int sdflag = 0;
 	unsigned char* p;
 	if (pos == -1 || first) {
-		num = read(fts, buf, LEN);
+		num = _readInput(fts, buf, LEN);
+		if (num < 0)
+			return -2;
 		ind = 0;
 		pos = 0;
 		st = 0;
 		sdflag = 0;
 		pid = -1;
+		bytecount = 0;
 	}
 	while (1) {
 		p = buf+ind+st;
 		ind = -1;
-		for (; p < buf+num-6; p++) {
+		for (; (p - buf) + 6 < num; p++) {
 
 			bytecount = bytecount + 1;
 
@@ -149,7 +242,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
 			}
 		}
 
-		progress = bytecount/filesize*100;
+		progress = filesize ? bytecount/filesize*100 : 100;
 		cout << "\rcreating ap&sc files:  ";
 		cout.width(2);
 		cout << (int)progress << "%";
@@ -158,7 +251,9 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
 		sdflag = 0; // reset to get some fault tolerance
 		if (num == LEN) {
 			pos += num;
-			num = read(fts, buf, LEN);
+			num = _readInput(fts, buf, LEN);
+			if (num < 0)
+				return -2;
 			ind = 0;
 		} else if (num) {
 			ind = num;
@@ -183,7 +278,8 @@ int do_one(int fts, int fap, int fsc, unsigned long long filesize)
 	off64_t pts;
 	off64_t dat;
 	int first = 1;
-	while (framesearch(fts, first, pos, pts, pos2, dat, filesize) >= 0) {
+	int result;
+	while ((result = framesearch(fts, first, pos, pts, pos2, dat, filesize)) >= 0) {
 		first = 0;
 		if (pos >= 0 && pts >= 0)
 			if (fap >= 0 && writebufinternal(fap, pos, pts))
@@ -191,7 +287,7 @@ int do_one(int fts, int fap, int fsc, unsigned long long filesize)
 		if (fsc >= 0 && writebufinternal(fsc, pos2, dat))
 			return 1;
 	}
-	return 0;
+	return result < -1 ? 1 : 0;
 }
 
 const char *getext(const char *filename)
@@ -205,42 +301,64 @@ const char *getext(const char *filename)
 int do_movie(char* inname)
 {
 	int f_ts=-1, f_sc=-1, f_ap=-1, f_tmp=-1;
-	unsigned long long filesize;
+	unsigned long long filesize = 0;
 	struct stat fp = {};
+	struct stat tmpOutput = {}, apOutput = {}, scOutput = {};
 
 	const char *innameext = getext(inname);
 
 	std::string tmpname = makefilename(inname, innameext, 0);
-	f_ts = open(tmpname.c_str(), O_RDONLY | O_LARGEFILE);
+	f_ts = open(tmpname.c_str(), O_RDONLY | O_LARGEFILE | O_NOFOLLOW | O_CLOEXEC);
 
 	if (f_ts == -1) {
 		printf("Failed to open input stream file \"%s\"\n", tmpname.c_str());
 		return 1;
 	}
+	_inputName = tmpname;
+	_inputPart = 0;
+	for (int part = 0; part < 1000; ++part) {
+		if (stat(_inputFilename(part).c_str(), &fp) < 0) {
+			if (part && errno == ENOENT)
+				break;
+			printf("Failed to inspect input stream file \"%s\"\n", _inputFilename(part).c_str());
+			close(f_ts);
+			return 1;
+		}
+		if (!S_ISREG(fp.st_mode) || fp.st_size < 0) {
+			printf("Invalid input stream file \"%s\"\n", _inputFilename(part).c_str());
+			close(f_ts);
+			return 1;
+		}
+		filesize += fp.st_size;
+	}
 	tmpname = makefilename(inname, innameext, ".reconstruct_apsc");
-	f_tmp = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0x1a4);
+	f_tmp = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW | O_CLOEXEC, 0x1a4);
 	if (f_tmp == -1) {
 		printf("Failed to open sentry file \"%s\"\n", tmpname.c_str());
 		goto failure;
 	}
-	close(f_tmp);
+	if (fstat(f_tmp, &tmpOutput) < 0)
+		goto failure;
+	if (_finishOutput(f_tmp) < 0)
+		goto failure;
 	tmpname = makefilename(inname, innameext, ".ap");
-	f_ap = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0x1a4);
+	f_ap = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW | O_CLOEXEC, 0x1a4);
 	if (f_ap == -1) {
 		printf("Failed to open output .ap file \"%s\"\n", tmpname.c_str());
 		goto failure;
 	}
+	if (fstat(f_ap, &apOutput) < 0)
+		goto failure;
 	tmpname = makefilename(inname, innameext, ".sc");
-	f_sc = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0x1a4);
+	f_sc = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW | O_CLOEXEC, 0x1a4);
 	if (f_sc == -1) {
 		printf("Failed to open output .sc file \"%s\"\n", tmpname.c_str());
 		goto failure;
 	}
+	if (fstat(f_sc, &scOutput) < 0)
+		goto failure;
 
 	//printf("  Processing .ap and .sc of \"%s\" ... ", inname);
-
-	stat(inname, &fp);
-	filesize = fp.st_size;
 
 	fflush(stdout);
 	if (do_one(f_ts, f_ap, f_sc, filesize)) {
@@ -248,34 +366,49 @@ int do_movie(char* inname)
 		goto failure;
 	}
 
+	if (_finishOutput(f_ap) < 0 || _finishOutput(f_sc) < 0)
+		goto failure;
+
 	cout << "\rcreating ap&sc files: ";
 	cout.width(3);
 	cout << "100" << "%\n";
 
 	close(f_ts);
-	close(f_ap);
-	close(f_sc);
-	unlink(makefilename(inname, innameext, ".reconstruct_apsc").c_str());
+	_removeOutput(makefilename(inname, innameext, ".reconstruct_apsc"), tmpOutput);
 	return 0;
 	failure:
+	if (f_tmp != -1)
+		close(f_tmp);
 	if (f_ts != -1)
 		close(f_ts);
-	if (f_ap != -1) {
+	if (f_ap != -1)
 		close(f_ap);
-		unlink(makefilename(inname, innameext, ".ap").c_str());
-	}
-	if (f_sc != -1) {
+	if (f_sc != -1)
 		close(f_sc);
-		unlink(makefilename(inname, innameext, ".sc").c_str());
-	}
-	unlink(makefilename(inname, innameext, ".reconstruct_apsc").c_str());
+	_removeOutput(makefilename(inname, innameext, ".ap"), apOutput);
+	_removeOutput(makefilename(inname, innameext, ".sc"), scOutput);
+	_removeOutput(makefilename(inname, innameext, ".reconstruct_apsc"), tmpOutput);
 	return 1;
 }
 
 int main(int argc, char* argv[])
 {
 	if (argc == 2 && *argv[1] != '-') {
-		if (do_movie(argv[1]))
+		// Keep all parts and sidecars on the same pinned directory if a mount
+		// disappears while this standalone worker is indexing the recording.
+		std::string input = argv[1];
+		size_t separator = input.find_last_of('/');
+		std::string directory = separator == std::string::npos ? "." : separator ? input.substr(0, separator) : "/";
+		std::string name = separator == std::string::npos ? input : input.substr(separator + 1);
+		int directoryFd = open(directory.c_str(), O_RDONLY | O_DIRECTORY | O_CLOEXEC);
+		if (directoryFd < 0 || fchdir(directoryFd) < 0) {
+			if (directoryFd >= 0)
+				close(directoryFd);
+			printf("Failed to open recording directory\n");
+			exit(1);
+		}
+		close(directoryFd);
+		if (do_movie(const_cast<char *>(name.c_str())))
 			exit(1);
 	} else {
 		printf("Usage: reconstruct_apsc movie_file\n");
