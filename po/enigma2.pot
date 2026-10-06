@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"POT-Creation-Date: 2026-10-06 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1412,6 +1412,21 @@ msgstr ""
 msgid "-24h/+24 Hours"
 msgstr ""
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr ""
 
@@ -2209,6 +2224,9 @@ msgid "Afrikaans"
 msgstr ""
 
 msgid "After Event"
+msgstr ""
+
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
 msgstr ""
 
 msgid "After event"
@@ -3342,6 +3360,10 @@ msgid "Bouquet Selector Actions"
 msgstr ""
 
 msgid "Bouquet Selector Navigation Actions"
+msgstr ""
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
 msgstr ""
 
 msgid "Bouquets"
@@ -5399,7 +5421,13 @@ msgstr ""
 msgid "Create a randomly generated password"
 msgstr ""
 
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
+msgstr ""
+
+msgid "Create an image backup"
 msgstr ""
 
 msgid "Create application loader dump."
@@ -6560,6 +6588,15 @@ msgstr ""
 
 #, python-format
 msgid "DiSEqC port %s: %s"
+msgstr ""
+
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
 msgstr ""
 
 msgid "DiSEqC-tester settings"
@@ -8114,11 +8151,17 @@ msgstr ""
 msgid "Error code"
 msgstr ""
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
 
 msgid "Error executing plugin"
+msgstr ""
+
+msgid "Error extracting the channel backup!"
 msgstr ""
 
 #, python-format
@@ -8133,10 +8176,16 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr ""
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr ""
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving the channel backup from the remote receiver!"
 msgstr ""
 
 msgid "Error text:"
@@ -8150,9 +8199,6 @@ msgstr ""
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
-msgstr ""
-
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error writing 'epg.dat' on the remote receiver!"
@@ -13053,6 +13099,9 @@ msgstr ""
 msgid "No channel"
 msgstr ""
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr ""
 
@@ -13098,6 +13147,9 @@ msgid "No hard disks detected."
 msgstr ""
 
 msgid "No hosts found yet - still scanning..."
+msgstr ""
+
+msgid "No local images found."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13366,6 +13418,9 @@ msgstr ""
 msgid "Not running"
 msgstr ""
 
+msgid "Not set"
+msgstr ""
+
 msgid "Not tested:"
 msgstr ""
 
@@ -13612,6 +13667,9 @@ msgid "Only move the dish quickly before this hour."
 msgstr ""
 
 msgid "Only on startup"
+msgstr ""
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14172,12 +14230,6 @@ msgid "Pass %d/%d"
 msgstr ""
 
 msgid "Pass-through"
-msgstr ""
-
-msgid "Passthrough audio handling delay AC3"
-msgstr ""
-
-msgid "Passthrough audio handling delay AC3+"
 msgstr ""
 
 msgid "Password"
@@ -14944,6 +14996,9 @@ msgstr ""
 msgid "Preparation time for recording"
 msgstr ""
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr ""
 
@@ -15022,6 +15077,9 @@ msgstr ""
 msgid "Press OK to select satellites"
 msgstr ""
 
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
+
 msgid "Press OK to select/deselect a CAId."
 msgstr ""
 
@@ -15052,9 +15110,6 @@ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reb
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
-msgstr ""
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr ""
 
 msgid "Prev quad PiP channel"
@@ -15208,6 +15263,9 @@ msgstr ""
 msgid "Properties of current title"
 msgstr ""
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr ""
 
@@ -15220,6 +15278,15 @@ msgstr ""
 msgid "Protect context menus"
 msgstr ""
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr ""
 
@@ -15229,7 +15296,13 @@ msgstr ""
 msgid "Protect on epg age"
 msgstr ""
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
+msgstr ""
+
+msgid "Protect script execution"
 msgstr ""
 
 msgid "Protect services"
@@ -15239,6 +15312,9 @@ msgid "Protect software update screen"
 msgstr ""
 
 msgid "Protect standby menu"
+msgstr ""
+
+msgid "Protect storage device management"
 msgstr ""
 
 msgid "Protect timer menu"
@@ -16343,6 +16419,9 @@ msgstr ""
 msgid "Retrieving boot slot information..."
 msgstr ""
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr ""
 
@@ -16359,6 +16438,9 @@ msgid "Return the current selection response"
 msgstr ""
 
 msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous channel"
 msgstr ""
 
 msgid "Return to previous service"
@@ -17011,6 +17093,9 @@ msgstr ""
 msgid "Searching east ..."
 msgstr ""
 
+msgid "Searching for local images, please wait..."
+msgstr ""
+
 msgid "Searching west ..."
 msgstr ""
 
@@ -17498,6 +17583,9 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr ""
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr ""
 
@@ -17688,6 +17776,9 @@ msgstr ""
 msgid "Select refresh rate"
 msgstr ""
 
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
+
 msgid "Select service information to view:"
 msgstr ""
 
@@ -17821,6 +17912,12 @@ msgid "Select the color of the front panel power LED when the receiver is in Sta
 msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
+
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
@@ -18443,6 +18540,9 @@ msgid "Service name"
 msgstr ""
 
 msgid "Service name font size"
+msgstr ""
+
+msgid "Service not found"
 msgstr ""
 
 msgid ""
@@ -20193,6 +20293,9 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr ""
 
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
+
 msgid "Sorbian"
 msgstr ""
 
@@ -21554,6 +21657,12 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
+
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
@@ -21572,6 +21681,13 @@ msgstr ""
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -22797,6 +22913,16 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
+#, python-format
+msgid "Unable to check HDD replacement: %s"
+msgstr ""
+
+msgid "Unable to check existing mounts. HDD replacement was not changed."
+msgstr ""
+
+msgid "Unable to complete the bouquet update. Please check your bouquets."
+msgstr ""
+
 msgid "Unable to create the additional STARTUP files."
 msgstr ""
 
@@ -22821,11 +22947,17 @@ msgstr ""
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
+
 msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
 msgstr ""
 
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr ""
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
 msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
@@ -22837,13 +22969,23 @@ msgstr ""
 msgid "Unable to save network configuration."
 msgstr ""
 
+msgid "Unable to save network mount configuration!"
+msgstr ""
+
 msgid "Unable to select the audio channel."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
+msgid "Unable to start the local image search. Please try again later."
+msgstr ""
+
 msgid "Unable to tune the DAB+ satellite feed"
+msgstr ""
+
+#, python-format
+msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
 #, python-format
@@ -22867,6 +23009,9 @@ msgstr ""
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
+msgid "Unexpected error while importing from the remote receiver!"
 msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
@@ -23021,6 +23166,9 @@ msgid "Update failed!"
 msgstr ""
 
 msgid "Update finished!"
+msgstr ""
+
+msgid "Update outdated bouquet entries"
 msgstr ""
 
 msgid ""
@@ -23344,6 +23492,9 @@ msgstr ""
 msgid "Use these input device settings?"
 msgstr ""
 
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
+
 msgid "Use this video enhancement settings?"
 msgstr ""
 
@@ -23366,12 +23517,6 @@ msgid "Used flash"
 msgstr ""
 
 msgid "Used service scan type"
-msgstr ""
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr ""
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
 msgstr ""
 
 msgid "Used:"
@@ -24112,7 +24257,7 @@ msgstr ""
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr ""
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
 msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -24191,9 +24336,6 @@ msgid "When enabled, this setting has more weight than 'Preferred tuner for reco
 msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr ""
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
 msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after specified time."
