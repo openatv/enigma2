@@ -432,7 +432,7 @@ class uShareSelection(Screen):
 			# "right": (self.right, _("Move down to last entry")),
 			"down": (self["checkList"].goLineDown, _("Move down a line")),
 			"pageDown": (self["checkList"].goPageDown, _("Move down a screen")),
-			"bottom": (self["checkList"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["checkList"].goBottom, _("Move to the last line / screen"))
 		}, prio=-1, description=_("uShare Selection Actions"))
 		if self.selectionChanged not in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
@@ -844,7 +844,7 @@ class NetworkLogScreen(Screen):
 			"up": (self["infotext"].goLineUp, _("Move up a line")),
 			"down": (self["infotext"].goLineDown, _("Move down a line")),
 			"pageDown": (self["infotext"].goPageDown, _("Move down a screen")),
-			"bottom": (self["infotext"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["infotext"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Network Log Actions"))
 		self.console = Console()
 		if self.tailLog:

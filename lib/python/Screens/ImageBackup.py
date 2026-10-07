@@ -75,7 +75,7 @@ class ImageBackup(Screen):
 			"up": (self["config"].goLineUp, _("Move up a line")),
 			"down": (self["config"].goLineDown, _("Move down a line")),
 			"pageDown": (self["config"].goPageDown, _("Move down a screen")),
-			"bottom": (self["config"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["config"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Image Backup Actions"))
 		self.bzip2Cmd = "/usr/bin/bzip2"
 		self.catCmd = "/bin/cat"

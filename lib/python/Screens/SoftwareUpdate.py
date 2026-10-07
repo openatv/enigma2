@@ -117,7 +117,7 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 			"up": (self["list"].goLineUp, _("Move up a line")),
 			"down": (self["list"].goLineDown, _("Move down a line")),
 			"pageDown": (self["list"].goPageDown, _("Move down a page / screen")),
-			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["list"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		updateMsg = _("Proceed with the update")
 		self["updateActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
@@ -399,7 +399,7 @@ class RunSoftwareUpdate(Screen, ProtectedScreen):
 			"up": (self["update"].goLineUp, _("Move up a page / screen")),
 			"down": (self["update"].goLineDown, _("Move down a page / screen")),
 			"pageDown": (self["update"].goPageDown, _("Move down a page / screen")),
-			"bottom": (self["update"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["update"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		self.activity = 0
 		self.packageTotal = 0

@@ -88,7 +88,7 @@ class ServiceScan(Screen):
 			"up": (self["servicelist"].goLineUp, _("Move up a line")),
 			"down": (self["servicelist"].goLineDown, _("Move down a line")),
 			"pageDown": (self["servicelist"].goPageDown, _("Move down a screen")),
-			"bottom": (self["servicelist"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["servicelist"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Service Scan Actions"))
 		self["doneActions"].setEnabled(False)
 		self.lcnScanner = LCNScanner() if LCNScanner else None

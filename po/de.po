@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-06 15:24+0000\n"
-"PO-Revision-Date: 2026-10-06 15:57+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"PO-Revision-Date: 2026-10-06 22:18+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1446,19 +1446,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24/+24 Stunden"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr "/media/hdd existiert bereits und ist kein Verzeichnis. Es wird nicht überschrieben."
+msgstr "'/media/hdd' existiert bereits und ist kein Verzeichnis. Es wird nicht überschrieben."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr "/media/hdd enthält Dateien oder andere Verzeichnisse. Diese vor dem Aktivieren des Festplattenersatzes verschieben; es wurde nichts gelöscht."
+msgstr "'/media/hdd' enthält Dateien oder andere Verzeichnisse. Diese vor dem Aktivieren des Festplattenersatzes verschieben; es wurde nichts gelöscht."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr "/media/hdd ist ein vorhandener symbolischer Link auf einen anderen Ort. Er wird nicht überschrieben."
+msgstr "'/media/hdd' ist ein vorhandener symbolischer Link auf einen anderen Ort. Er wird nicht überschrieben."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr "/media/hdd wird verwendet. Das vorhandene Gerät oder die Freigabe vor dem Ändern des Festplattenersatzes aushängen."
+msgstr "'/media/hdd' wird verwendet. Bitte das vorhandene Gerät oder die Freigabe vor dem Ändern des Festplattenersatzes aushängen."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr "/media/hdd ist in /etc/fstab für ein anderes Gerät reserviert. Zuerst den Einhängepunkt dieses Geräts ändern."
+msgstr "'/media/hdd' ist in '/etc/fstab' für ein anderes Gerät reserviert. Bitte zuerst den Einhängepunkt dieses Geräts ändern."
 
 msgid "/s"
 msgstr "/s"
@@ -8657,7 +8657,7 @@ msgid "Error code"
 msgstr "Fehlercode"
 
 msgid "Error creating the channel backup on the remote receiver!"
-msgstr "Fehler beim Erstellen der Sendersicherung auf dem entfernten Receiver!"
+msgstr "Fehler beim Erstellen der Sendersicherung auf dem Reservereceiver!"
 
 #, python-format
 msgid "Error downloading image '%s'!"
@@ -8694,7 +8694,7 @@ msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fehler beim Empfangen der Datei 'epg.dat' vom Reservereceiver!"
 
 msgid "Error retrieving the channel backup from the remote receiver!"
-msgstr "Fehler beim Abrufen der Sendersicherung vom entfernten Receiver!"
+msgstr "Fehler beim Abrufen der Sendersicherung vom Reservereceiver!"
 
 msgid "Error text:"
 msgstr "Fehlertext:"
@@ -10452,7 +10452,7 @@ msgid "Hide player"
 msgstr "Player verbergen"
 
 msgid "Hide protected services while the service PIN is not remembered."
-msgstr "Geschützte Sender ausblenden, solange die Sender-PIN nicht gemerkt ist."
+msgstr "Geschützte Sender ausblenden, solange die Sender-PIN nicht gespeichert wurde."
 
 msgid "Hide softcam servername"
 msgstr "Softcam-Servernamen verbergen"
@@ -13894,7 +13894,7 @@ msgid "No channel"
 msgstr "Kein Sender"
 
 msgid "No channel backup found on the remote receiver!"
-msgstr "Keine Sendersicherung auf dem entfernten Receiver gefunden!"
+msgstr "Keine Sendersicherung auf dem Reservereceiver gefunden!"
 
 msgid "No channel list"
 msgstr "Keine Senderliste"
@@ -15951,7 +15951,7 @@ msgid "Preparation time for recording"
 msgstr "Vorbereitungszeit für die Aufnahme"
 
 msgid "Preparing recording, please wait..."
-msgstr "Aufnahme wird vorbereitet, bitte warten..."
+msgstr "Aufnahme wird vorbereitet. Bitte warten …"
 
 #
 msgid "Preparing... Please wait"
@@ -16307,7 +16307,7 @@ msgid "Protect storage device management"
 msgstr "Speichergeräteverwaltung schützen"
 
 msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
-msgstr "Das Hauptmenü und die vom Bedienoberflächenschutz erfassten Systemfunktionen schützen, einschließlich des Zugriffs über Tastenbelegungen."
+msgstr "Das Hauptmenü und die vom Bedienoberflächenschutz erfassten Systemfunktionen, einschließlich des Zugriffs über Tastenbelegungen, schützen."
 
 msgid "Protect timer menu"
 msgstr "Timermenü schützen"
@@ -17308,7 +17308,7 @@ msgid "Require a PIN code to watch protected services or programmes covered by t
 msgstr "Zum Ansehen geschützter Sender oder von Sendungen, die unter die ausgewählte Altersgrenze fallen, eine PIN abfragen."
 
 msgid "Require authentication for http streams"
-msgstr "Verlange Authentifizierung für HTTP-Streams"
+msgstr "Authentifizierung für HTTP-Streams erforderlich"
 
 msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
 msgstr "Die Sender-PIN für Sendungen ab dieser Altersfreigabe abfragen. Dazu werden die Altersangaben des Senders verwendet."
@@ -17551,7 +17551,7 @@ msgid "Retrieving boot slot information..."
 msgstr "Abrufen von Boot-Slot-Informationen …"
 
 msgid "Retrieving geolocation information..."
-msgstr "Standortinformationen werden abgerufen..."
+msgstr "Standortinformationen werden abgerufen …"
 
 msgid "Retrieving image list, please wait..."
 msgstr "Imageliste wird abgerufen. Bitte warten …"
@@ -18264,7 +18264,7 @@ msgid "Searching east ..."
 msgstr "Osten wird gesucht …"
 
 msgid "Searching for local images, please wait..."
-msgstr "Lokale Images werden gesucht, bitte warten..."
+msgstr "Lokale Images werden gesucht. Bitte warten …"
 
 msgid "Searching west ..."
 msgstr "Westen wird gesucht …"
@@ -21651,7 +21651,7 @@ msgid "Some TVs can't switch to the correct input if another HDMI port is active
 msgstr "Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in Standby. Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen erforderlich."
 
 msgid "Some image locations could not be read. Check your storage devices."
-msgstr "Einige Image-Speicherorte konnten nicht gelesen werden. Die Speichergeräte überprüfen."
+msgstr "Einige Image-Speicherorte konnten nicht gelesen werden. Bitte die Speichergeräte überprüfen."
 
 msgid "Sorbian"
 msgstr "Sorbisch"
@@ -23119,7 +23119,7 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Die Höhe des Bildes. Die Eingabe wird skaliert, um mit diesem Wert übereinzustimmen."
 
 msgid "The local image search timed out. Check your storage devices."
-msgstr "Zeitüberschreitung bei der Suche nach lokalen Images. Die Speichergeräte überprüfen."
+msgstr "Zeitüberschreitung bei der Suche nach lokalen Images. Bitte die Speichergeräte überprüfen."
 
 msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
 msgstr "Der lokale Freigabename darf keine Leerzeichen, Schrägstriche oder '#' enthalten und nicht '.' oder '..' lauten."
@@ -24489,7 +24489,7 @@ msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr "Die Bouquet-Aktualisierung konnte nicht abgeschlossen werden. Bitte die Bouquets überprüfen."
 
 msgid "Error: Unable to create the additional STARTUP files!"
-msgstr "Die zusätzlichen STARTUP-Dateien konnten nicht erstellt werden!"
+msgstr "Fehler: Die zusätzlichen STARTUP-Dateien konnten nicht erstellt werden!"
 
 msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr "Fehler: Die neuen STARTUP-Dateien des Herstellers konnten nicht erstellt werden!"
@@ -24516,7 +24516,7 @@ msgid "Unable to prepare the bouquet update. The scan will continue without upda
 msgstr "Die Bouquet-Aktualisierung konnte nicht vorbereitet werden. Der Suchlauf wird ohne Aktualisierung der Bouquets fortgesetzt."
 
 msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr "Fehler: Die UUID der neuen MultiBoot-Partition konnte nicht gelesen werden daher wurden die STARTUP-Dateien nicht geändert!"
+msgstr "Fehler: Die UUID der neuen MultiBoot-Partition konnte nicht gelesen werden, daher wurden die STARTUP-Dateien nicht geändert!"
 
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
@@ -24579,7 +24579,7 @@ msgid "Unexpected error accessing WebIF: %s"
 msgstr "Unerwarteter Fehler beim Zugriff auf Webif: %s"
 
 msgid "Unexpected error while importing from the remote receiver!"
-msgstr "Unerwarteter Fehler beim Import vom entfernten Receiver!"
+msgstr "Unerwarteter Fehler beim Import vom Reservereceiver!"
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Unerwarteter Fehler beim Abrufen der Timerinformationen des Reservetuners!"
@@ -25096,7 +25096,7 @@ msgid "Use these input device settings?"
 msgstr "Diese Eingabegeräteeinstellungen verwenden?"
 
 msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
-msgstr "Diese Freigabe als /media/hdd verwenden. Bei autofs wird nur dann ein Link erstellt, wenn /media/hdd verfügbar ist; andernfalls bleibt die Freigabe unter /media/autofs erreichbar. Bei fstab wird die Freigabe direkt eingebunden. Es kann nur eine Freigabe ausgewählt werden. Vorhandene Einhängepunkte und Dateien werden nicht überschrieben."
+msgstr "Diese Freigabe als '/media/hdd' verwenden. Bei autofs wird nur dann ein Link erstellt, wenn '/media/hdd' verfügbar ist; andernfalls bleibt die Freigabe unter '/media/autofs' erreichbar. Bei fstab wird die Freigabe direkt eingebunden. Es kann nur eine Freigabe ausgewählt werden. Vorhandene Einhängepunkte und Dateien werden nicht überschrieben."
 
 #
 msgid "Use this video enhancement settings?"

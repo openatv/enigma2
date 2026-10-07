@@ -516,10 +516,10 @@ class TimerOverviewBase(Screen):
 			"pageUp": (self.keyGoPageUp, _("Move up a page / screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
 			# "first": (self.keyTop, _("Move to the first line / screen")),
-			# "last": (self.keyBottom, _("Move to last line / screen")),
+			# "last": (self.keyBottom, _("Move to the last line / screen")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a page / screen")),
-			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
+			"bottom": (self.keyGoBottom, _("Move to the last line / screen"))
 		}, prio=0, description=MODE_DATA[mode][MODE_DATA_ACTIONS])
 		if mode == MODE_CONFLICT:
 			self["key_blue"].setText(_("Ignore"))
@@ -1987,7 +1987,7 @@ class TimerLog(Screen):
 			# "right": (self["log"].pageDown, _("Move down a screen")),
 			"down": (self["log"].moveDown, _("Move down a line")),
 			"pageDown": (self["log"].pageDown, _("Move down a screen")),
-			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
+			"bottom": (self["log"].moveBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Timer Log Actions"))
 		self.refreshLog()
 

@@ -508,7 +508,7 @@ class XMLHelp(Screen):
 			"last": (self.lastPage, _("Go to the last page of documentation")),
 			"down": (self["detailtext"].goLineDown, _("Move down a line")),
 			"pageDown": (self["detailtext"].goPageDown, _("Move down a screen")),
-			"bottom": (self["detailtext"].goBottom, _("Move to last line / screen")),
+			"bottom": (self["detailtext"].goBottom, _("Move to the last line / screen")),
 			"yellow": (self.prevPage, _("Go to the previous page of documentation")),
 			"left": (self.prevPage, _("Go to the previous page of documentation")),
 			"blue": (self.nextPage, _("Go to the next page of documentation")),

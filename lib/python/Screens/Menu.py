@@ -237,7 +237,7 @@ class Menu(Screen, ProtectedScreen):
 			# "last": (self.keyLast, _("Jump to last item in list or the end of text")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Menu Navigation Actions"))
 		if config.usage.menuSortOrder.value == "user":
 			self["editActions"] = HelpableActionMap(self, ["ColorActions"], {

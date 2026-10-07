@@ -47,7 +47,7 @@ class Console(Screen):
 			"up": (self.keyLineUp, _("Move up a line")),
 			"down": (self.keyLineDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Console Actions"))
 		self["hideAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyToggleHideShow, _("Hide/Show the console screen"), _("NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned.")),

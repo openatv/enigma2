@@ -96,7 +96,7 @@ class InformationBase(Screen):
 			"up": (self["information"].goLineUp, _("Move up a line")),
 			"down": (self["information"].goLineDown, _("Move down a line")),
 			"pageDown": (self["information"].goPageDown, _("Move down a screen")),
-			"bottom": (self["information"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["information"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
 		self.informationColors = ["H", "S", "P", "V", "M", "F"]
 		self.informationColor = {

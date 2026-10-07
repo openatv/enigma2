@@ -110,7 +110,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			"right": (self.keyRight, _("Switch to the right column")),
 			"down": (self.keyLineDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Quick Menu Actions"))
 		helpStr = _("Direct menu item selection")
 		self["numberActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
