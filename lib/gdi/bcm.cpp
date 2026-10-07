@@ -577,8 +577,6 @@ int bcm_accel_sync()
 			DREAMBCM_BCM_STAT_INC(s_bcm_sync_exec);
 			if (dreambcm_bcm_trace_enabled())
 				eDebug("[dreamBCM:bcm] sync exec ptr=%d", ptr);
-#else
-			eDebug("bcm_accel_sync: ptr %d", ptr);
 #endif
 			retval = exec_list("sync");
 		}
