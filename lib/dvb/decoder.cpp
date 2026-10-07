@@ -407,6 +407,9 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	: m_demux(demux), m_dev(dev), m_fcc_enable(fcc_enable),
 	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1), m_gamma(-1), m_streamtype(-1),
 	m_hdr_detector(0), m_hdr_gamma(-1), m_driver_gamma(-1), m_hdr_gamma_authoritative(false), m_gamma_from_driver_event(false)
+#ifdef DREAMNEXTGEN
+	, m_sysfs_size_event_sent(false), m_sysfs_poll_attempts(0)
+#endif
 {
 
 	if (eDVBVideo::m_debug < 0)
@@ -475,10 +478,12 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	}
 
 #ifdef DREAMNEXTGEN
-	// AMLogic doesn't send VIDEO_EVENTs, so we poll sysfs for video size changes
+	// AMLogic doesn't reliably send VIDEO_EVENTs. Poll until all initial
+	// video attributes have settled, then leave the main loop alone.
 	m_sysfs_poll_timer = eTimer::create(eApp);
 	CONNECT(m_sysfs_poll_timer->timeout, eDVBVideo::sysfs_poll_timeout);
-	m_sysfs_poll_timer->start(500, false); // Poll every 500ms
+	if (m_fd >= 0)
+		m_sysfs_poll_timer->start(500, true);
 #endif
 }
 
@@ -1055,6 +1060,8 @@ void eDVBVideo::video_event(int)
 void eDVBVideo::sysfs_poll_timeout()
 {
 	int new_width = -1, new_height = -1, new_framerate = -1, new_progressive = -1;
+	if (m_sysfs_poll_attempts < 10)
+		++m_sysfs_poll_attempts;
 	
 	CFile::parseInt(&new_width, "/sys/class/video/frame_width");
 	CFile::parseInt(&new_height, "/sys/class/video/frame_height");
@@ -1063,8 +1070,11 @@ void eDVBVideo::sysfs_poll_timeout()
 	
 	bool changed = false;
 	
-	// Check if size changed
-	if (new_width > 0 && new_height > 0 && (new_width != m_width || new_height != m_height))
+	// Always publish the first valid size. readApiSize() can populate the same
+	// values before listeners are connected, which otherwise suppresses the
+	// only size event on AMLogic.
+	if (new_width > 0 && new_height > 0 &&
+		(!m_sysfs_size_event_sent || new_width != m_width || new_height != m_height))
 	{
 		m_width = new_width;
 		m_height = new_height;
@@ -1075,6 +1085,7 @@ void eDVBVideo::sysfs_poll_timeout()
 		event.height = m_height;
 		event.aspect = m_aspect;
 		/* emit */ m_event(event);
+		m_sysfs_size_event_sent = true;
 		changed = true;
 	}
 	
@@ -1091,7 +1102,7 @@ void eDVBVideo::sysfs_poll_timeout()
 	}
 	
 	// Check if progressive changed
-	if (new_progressive >= 0 && new_progressive != m_progressive && new_progressive != 2)
+	if ((new_progressive == 0 || new_progressive == 1) && new_progressive != m_progressive)
 	{
 		m_progressive = new_progressive;
 		
@@ -1102,10 +1113,19 @@ void eDVBVideo::sysfs_poll_timeout()
 		changed = true;
 	}
 	
-	// Stop polling once we have valid values and no more changes
-	if (m_width > 0 && m_height > 0 && m_framerate > 0 && !changed)
+	// Use this poll's values, not cached attributes: a temporary read failure
+	// must not stop detection before the decoder supplies complete data.
+	const bool attributes_ready = new_width > 0 && new_height > 0 && new_framerate > 0 &&
+		(new_progressive == 0 || new_progressive == 1);
+	if (m_sysfs_size_event_sent && attributes_ready && !changed)
 	{
 		m_sysfs_poll_timer->stop();
+	}
+	else
+	{
+		// Slow down after the initial five seconds, but keep detecting delayed
+		// pictures and metadata until this decoder is released. No busy loop.
+		m_sysfs_poll_timer->start(m_sysfs_poll_attempts < 10 ? 500 : 2000, true);
 	}
 }
 #endif

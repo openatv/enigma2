@@ -60,6 +60,8 @@ private:
 	int read_driver_gamma();
 #ifdef DREAMNEXTGEN
 	ePtr<eTimer> m_sysfs_poll_timer;
+	bool m_sysfs_size_event_sent;
+	unsigned int m_sysfs_poll_attempts;
 	void sysfs_poll_timeout();
 #endif
 public:
@@ -347,4 +349,3 @@ private:
 #endif // DREAMNEXTGEN
 
 #endif
-
