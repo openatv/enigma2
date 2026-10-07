@@ -137,7 +137,7 @@ class MultiBootManager(Screen, ProtectedScreen):
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Cancel the slot selection and exit")),
 			"close": (self.keyCloseRecursive, _("Cancel the slot selection and exit all menus")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			# "left": (self.keyUp, _("Move up a line")),

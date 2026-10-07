@@ -501,7 +501,7 @@ class XMLHelp(Screen):
 		self["detailtext"] = ScrollLabel()
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.close, _("Close the documentation screen")),
-			"top": (self["detailtext"].goTop, _("Move to first line / screen")),
+			"top": (self["detailtext"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["detailtext"].goPageUp, _("Move up a screen")),
 			"up": (self["detailtext"].goLineUp, _("Move up a line")),
 			"first": (self.firstPage, _("Go to the first page of documentation")),

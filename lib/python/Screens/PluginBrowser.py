@@ -1715,7 +1715,7 @@ class PackageActionLog(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.close, _("Close the screen")),
-			"top": (self["log"].moveTop, _("Move to first line / screen")),
+			"top": (self["log"].moveTop, _("Move to the first line / screen")),
 			"pageUp": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			"down": (self["log"].moveDown, _("Move down a line")),

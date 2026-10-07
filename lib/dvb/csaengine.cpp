@@ -53,7 +53,7 @@ bool csa_load_library()
 
 	if (!g_csa_api.handle)
 	{
-		eWarning("[eDVBCSAEngine] libdvbcsa not found (dlopen failed)");
+		eDebug("[eDVBCSAEngine] libdvbcsa not found, software CSA is disabled");
 		return false;
 	}
 
@@ -71,7 +71,7 @@ bool csa_load_library()
 		!g_csa_api.batch_size  ||
 		!g_csa_api.decrypt)
 	{
-		eWarning("[eDVBCSAEngine] %s loaded but missing required symbols", loaded_name);
+		eWarning("[eDVBCSAEngine] %s loaded but missing required symbols, software CSA is disabled", loaded_name);
 		dlclose(g_csa_api.handle);
 		g_csa_api.handle    = 0;
 		g_csa_api.available = false;

@@ -70,7 +70,7 @@ class ImageBackup(Screen):
 			"save": (self.keyStart, _("Start the backup of the selected image")),
 			"close": (self.keyCloseRecursive, _("Exit and close all screens without performing a backup")),
 			"ok": (self.keyStart, _("Start the backup of the selected image")),
-			"top": (self["config"].goTop, _("Move to first line / screen")),
+			"top": (self["config"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["config"].goPageUp, _("Move up a screen")),
 			"up": (self["config"].goLineUp, _("Move up a line")),
 			"down": (self["config"].goLineDown, _("Move down a line")),
