@@ -106,6 +106,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/csaengine.h>
+#include <lib/hbbtv/oipfapplication.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
@@ -195,6 +197,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/python/python_service.i>
 %include <lib/python/python_pmt.i>
 %include <lib/python/python_pcore.i>
+%include <lib/python/python_hbbtv.i>
 
 %immutable eSocketNotifier::activated;
 %immutable eHotplugSocket::dataReceived;
@@ -396,6 +399,18 @@ public:
 %template(PSignal3VISS) PSignal3<void,int,const char *,const char *>;
 
 %typemap(out) PSignal3VISS {
+	$1 = $input->get();
+}
+
+template<class R, class P0, class P1, class P2, class P3> class PSignal4
+{
+public:
+	PyObject *get();
+};
+
+%template(PSignal4VIIII) PSignal4<void,int,int,int,int>;
+
+%typemap(out) PSignal4VIIII {
 	$1 = $input->get();
 }
 

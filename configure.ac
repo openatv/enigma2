@@ -939,7 +939,7 @@ AC_ARG_WITH(po,
 	[with_po="$withval"],[with_po="no"])
 AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
-ENIGMA2_CFLAGS="-fno-rtti -rdynamic -funwind-tables"
+ENIGMA2_CFLAGS="-frtti -rdynamic -funwind-tables"
 AC_SUBST(ENIGMA2_CFLAGS)
 AX_CXX_COMPILE_STDCXX([20], [ext], [mandatory])
 

@@ -1662,6 +1662,29 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 	return -1;
 }
 
+std::vector< ePtr<eServiceEvent> > eEPGCache::lookupEvents(const eServiceReference &service, int startTime, int minutes)
+{
+	std::vector< ePtr<eServiceEvent> > events;
+
+	if (startTime < 0)
+		startTime = ::time(0);
+
+	if (startTimeQuery(service, (time_t)startTime, minutes))
+		return events;
+
+	while (true)
+	{
+		ePtr<eServiceEvent> event;
+		if (getNextTimeEntry(event) == -1)
+			break;
+		if (event)
+			events.push_back(event);
+	}
+
+	return events;
+}
+
+
 void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject service_reference, eServiceEvent *ptr, ePyObject service_name, ePyObject nowTime, eventData *evData)
 {
 	// eDebug("[eEPGCache] fillTuple arg=%s argcnt=%d, ptr=%d evData=%d", argstring, argcount, ptr ? 1 : 0, evData ? 1 : 0);
