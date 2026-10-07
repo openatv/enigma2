@@ -8,8 +8,6 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from twisted.internet.defer import Deferred
-
 from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
@@ -749,10 +747,10 @@ class InformationGeolocation(InformationBase):
 
 	def fetchInformation(self):
 		self.informationTimer.stop()
-		Deferred.fromCoroutine(self.fetchGeolocation())
+		geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
 
-	async def fetchGeolocation(self):
-		self.geolocationData = await geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self)
+	def fetchGeolocationCallback(self, geolocationData):
+		self.geolocationData = geolocationData
 		for callback in self.onInformationUpdated:
 			if callable(callback):
 				callback()
@@ -991,10 +989,9 @@ class InformationNetwork(InformationBase):
 		self.geolocationData = []
 
 	def keyUseGeolocation(self):
-		Deferred.fromCoroutine(self.fetchGeolocation())
+		geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
 
-	async def fetchGeolocation(self):
-		geolocationData = await geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self)
+	def fetchGeolocationCallback(self, geolocationData):
 		info = []
 		if geolocationData.get("status", None) == "success":
 			info.append("")
