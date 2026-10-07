@@ -496,6 +496,16 @@ class AudioSelection(ConfigListScreen, Screen):
 	def setAudioSource(self, audiosource):
 		config.av.audio_source.setValue(audiosource.value)
 		config.av.audio_source.save()
+		# Apply immediately so PCM/SPDIF/BT switches without a zap.
+		# audio_source: 0=PCM, 1=SPDIF, 2=BT
+		try:
+			val = str(audiosource.value)
+			with open("/sys/class/amhdmitx/amhdmitx0/audio_source", "w") as f:
+				f.write(val)
+			with open("/sys/class/amhdmitx/amhdmitx0/config", "w") as f:
+				f.write("audio_off" if val in ("1", "2") else "audio_on")
+		except Exception as e:
+			print("[AudioSelection][setAudioSource] failed:", e)
 
 	def setDTSHD(self, downmix):
 		config.av.dtshd.setValue(downmix.value)
