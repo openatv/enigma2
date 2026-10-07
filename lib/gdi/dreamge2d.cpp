@@ -1527,7 +1527,7 @@ bool dreamGE2DFill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 		statsEvent("fill-no-phys");
 		return false;
 	}
-	const bool fb_dreamos_submit = dst_target.framebuffer && s_fb_submit_dreamos_fill_enabled;
+	const bool fb_dreamos_submit = (dst_target.framebuffer || dst_target.managed) && s_fb_submit_dreamos_fill_enabled;
 	if (dst_target.framebuffer && !s_fb_fill_enabled)
 	{
 		++s_stats.fill_fallback;
@@ -1554,6 +1554,8 @@ bool dreamGE2DFill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 		statsEvent("fill-open-fail");
 		return false;
 	}
+
+	syncTargetDevice(dst_target);
 
 	if (!configureFillTarget(fd, dst_target, fb_dreamos_submit, (unsigned int)col))
 	{
