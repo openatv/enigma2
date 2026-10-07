@@ -428,6 +428,7 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 			eDebug("[%s] %s: ignoring '%s' while HDMI output is disabled", __MODULE__, "setVideoMode", driverMode.c_str());
 		return;
 	}
+#endif
 #ifdef VIDEO_MODE_50
 	// gigablue driver bug
 	CFile::writeStr(proc_videomode_50, driverMode, __MODULE__, flags);
