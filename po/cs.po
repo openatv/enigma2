@@ -1740,7 +1740,7 @@ msgstr ""
 "Nahrává se\n"
 "Co chcete udělat?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Právě se nahrává. Prosím, ukončete nahrávání před prohledáváním kanálů."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7738,7 +7738,7 @@ msgid "Enable auto fast scan"
 msgstr "Povolit automatické rychlé ladění (Fast Scan)"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Povolit automatické rychlé vyhledávání pro %s"
 
 msgid "Enable automatic shares"
@@ -17255,7 +17255,7 @@ msgid "Scanning"
 msgstr "Prohledávání"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Prohledávám %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17282,7 +17282,7 @@ msgstr[0] "Skenování dokončeno, nalezena %d služba."
 msgstr[1] "Skenování dokončeno, nalezeny %d služby."
 msgstr[2] "Skenování dokončeno, nalezeno %d služeb."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Prohledávání selhalo!"
 
 msgid "Scanning for shares..."
@@ -23809,10 +23809,10 @@ msgstr "Použijte řádky popisu"
 msgid "Use extended List"
 msgstr "Použít rozšířený seznam"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Použít 'Fast Scan' jména kanálů"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Použít 'Fast Scan' číslování kanálů"
 
 msgid "Use for load only x days in EPG."

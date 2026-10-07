@@ -1704,7 +1704,7 @@ msgstr ""
 "Μια εγγραφή είναι σε εξέλιξη.\n"
 "Τι θέλετε να γίνει;"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να σταματήσετε την εγγραφή πριν την ανίχνευση."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7682,7 +7682,7 @@ msgid "Enable auto fast scan"
 msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Ενεργοποίηση αυτόματης γρήγορης ανίχνευσης για το %s"
 
 msgid "Enable automatic shares"
@@ -17186,7 +17186,7 @@ msgid "Scanning"
 msgstr "Ανίχνευση"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Ανίχνευση %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17211,7 +17211,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Η ανίχνευση ολοκληρώθηκε, βρέθηκε %d υπηρεσία."
 msgstr[1] "Η ανίχνευση ολοκληρώθηκε, βρέθηκαν %d υπηρεσίες."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Η ανίχνευση απέτυχε!"
 
 msgid "Scanning for shares..."
@@ -23722,10 +23722,10 @@ msgstr "Χρήση γραμμών περιγραφής"
 msgid "Use extended List"
 msgstr "Χρήση εκτεταμένης λίστας"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Χρήση ονομάτων γρήγορης ανίχνευσης"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Χρήση αριθμοδότησης γρήγορης ανίχνευσης"
 
 msgid "Use for load only x days in EPG."

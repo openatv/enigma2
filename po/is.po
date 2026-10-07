@@ -1839,7 +1839,7 @@ msgstr ""
 "Upptaka er nú í gangi.\n"
 "Hvað viltu núna gera?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr ""
 
 #
@@ -8053,7 +8053,7 @@ msgid "Enable auto fast scan"
 msgstr ""
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr ""
 
 msgid "Enable automatic shares"
@@ -18301,7 +18301,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr ""
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -18326,7 +18326,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr ""
 
 msgid "Scanning for shares..."
@@ -25161,10 +25161,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr ""
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr ""
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr ""
 
 msgid "Use for load only x days in EPG."

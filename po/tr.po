@@ -1718,7 +1718,7 @@ msgstr ""
 "Şu anda kayıt işlemi devam ediyor.\n"
 "Ne yapmak istersiniz?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Şu anda bir kayıt işlemi devam etmektedir. Lütfen tarama işlemine başlamadan önce kaydı durdurun."
 
 #
@@ -7958,7 +7958,7 @@ msgid "Enable auto fast scan"
 msgstr "Otomatik hızlı kanal taramayı etkinleştir"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "%s için otomatik hızlı kanal taramayı etkinleştir"
 
 msgid "Enable automatic shares"
@@ -17916,7 +17916,7 @@ msgid "Scanning"
 msgstr "Tarama"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "%s taranıyor..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17939,7 +17939,7 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Tarama tamamlandı, %d kanal bulundu."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Tarama başarısız oldu!"
 
 msgid "Scanning for shares..."
@@ -24674,10 +24674,10 @@ msgstr "Açıklama satırlarını kullanın"
 msgid "Use extended List"
 msgstr "Genişletilmiş Listeyi kullan"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Hızlı tarama kanal isimleri kullan"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Hızlı tarama kanal numaralama kullan"
 
 msgid "Use for load only x days in EPG."

@@ -1709,7 +1709,7 @@ msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7803,7 +7803,7 @@ msgid "Enable auto fast scan"
 msgstr "Auto Fastscan inschakelen"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Activeer snelle auto scan voor %s"
 
 msgid "Enable automatic shares"
@@ -17335,7 +17335,7 @@ msgid "Scanning"
 msgstr "Scannen"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Zoeken %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17360,7 +17360,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Scan gereed, %d zender gevonden."
 msgstr[1] "Scan gereed, %d zenders gevonden."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Zoeken mislukt!"
 
 msgid "Scanning for shares..."
@@ -23950,10 +23950,10 @@ msgstr "Gebruik omschrijvingen"
 msgid "Use extended List"
 msgstr "Uitgebreide lijst gebruiken"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Gebruik fastscan zendernamen"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Gebruik fastscan zendervolgorde"
 
 msgid "Use for load only x days in EPG."

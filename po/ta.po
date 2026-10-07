@@ -1700,7 +1700,7 @@ msgstr ""
 "ஒரு பதிவு தற்போது இயங்குகிறது.\n"
 " நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "ஒரு பதிவு தற்போது இயங்குகிறது. ச்கேன் செய்ய முயற்சிக்கும் முன் பதிவை நிறுத்துங்கள்."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7671,7 +7671,7 @@ msgid "Enable auto fast scan"
 msgstr "ஆட்டோ ஃபாச்ட் ச்கேன் இயக்கவும்"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "%s க்கு ஆட்டோ ஃபாச்ட் ச்கேன் இயக்கவும்"
 
 msgid "Enable automatic shares"
@@ -17175,7 +17175,7 @@ msgid "Scanning"
 msgstr "ச்கேனிங்"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "ச்கேனிங் %s ..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17200,7 +17200,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "ச்கேனிங் முடிந்தது, %d பணி கண்டறியப்பட்டது."
 msgstr[1] "ச்கேனிங் முடிந்தது, %d சேவைகள் காணப்பட்டன."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "ச்கேனிங் தோல்வியுற்றது!"
 
 msgid "Scanning for shares..."
@@ -23711,10 +23711,10 @@ msgstr "விளக்க வரிகளைப் பயன்படுத்�
 msgid "Use extended List"
 msgstr "நீட்டிக்கப்பட்ட பட்டியலைப் பயன்படுத்தவும்"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "ஃபாச்ட்ச்கான் சேனல் பெயர்களைப் பயன்படுத்தவும்"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "ஃபாச்ட்ச்கான் சேனல் எண்ணைப் பயன்படுத்தவும்"
 
 msgid "Use for load only x days in EPG."

@@ -1729,7 +1729,7 @@ msgstr ""
 "錄製正在進行中.\n"
 "您想做什麼?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr ""
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7917,7 +7917,7 @@ msgid "Enable auto fast scan"
 msgstr "啟用解析度自動調整"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr ""
 
 msgid "Enable automatic shares"
@@ -17908,7 +17908,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr ""
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17931,7 +17931,7 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr ""
 
 msgid "Scanning for shares..."
@@ -24693,10 +24693,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "隱藏說明"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr ""
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr ""
 
 msgid "Use for load only x days in EPG."

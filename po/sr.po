@@ -1739,7 +1739,7 @@ msgstr ""
 "Snimak je trenutno u toku.\n"
 "Šta želite da uradite?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Snimak je trenutno u toku. Molimo Vas da zaustavite snimanje pre nego što pokušate da skenirate."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7737,7 +7737,7 @@ msgid "Enable auto fast scan"
 msgstr "Omogući auto brzo skeniranje"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Omogući auto brzo skeniranje za %s"
 
 msgid "Enable automatic shares"
@@ -17254,7 +17254,7 @@ msgid "Scanning"
 msgstr "Skeniranje"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Skeniranje %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17281,7 +17281,7 @@ msgstr[0] "Skeniranje je završeno, pronađena su %d usluge."
 msgstr[1] "Skeniranje završeno, pronađeno je %d usluga."
 msgstr[2] "Skeniranje završeno, pronađeno je %d usluga."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Skeniranje nije uspelo!"
 
 msgid "Scanning for shares..."
@@ -23808,10 +23808,10 @@ msgstr "Koristite opisne redove"
 msgid "Use extended List"
 msgstr "Koristi proširenu listu"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Korišćenje imena kanala za brzo skeniranje"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Korišćenje brzog skeniranja numerisanog kanala"
 
 msgid "Use for load only x days in EPG."
