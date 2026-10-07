@@ -6,6 +6,8 @@
 #include "gmaindc.h"
 
 #ifndef SWIG
+#include <mutex>
+
 class gFBDC: public gMainDC
 {
 	fbClass *fb;
@@ -14,6 +16,8 @@ class gFBDC: public gMainDC
 	gUnmanagedSurface surface_back;
 	gUnmanagedSurface surface_third;
 	int m_number_of_pages = 1;
+	bool m_graphics_suspended = false;
+	mutable std::recursive_mutex m_graphics_mutex;
 	unsigned char ramp[256], rampalpha[256]; // RGB ramp 0..255
 	void exec(const gOpcode *opcode);
 	void calcRamp();
@@ -22,6 +26,9 @@ class gFBDC: public gMainDC
 	int getSurfaceOffset(const gUnmanagedSurface &s) const;
 public:
 	void setResolution(int xres, int yres, int bpp = 32);
+	bool suspendGraphics() override;
+	bool resumeGraphics() override;
+	bool isGraphicsSuspended() const override;
 	void reloadSettings();
 	void setAlpha(int alpha);
 	void setBrightness(int brightness);

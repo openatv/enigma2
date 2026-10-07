@@ -166,6 +166,13 @@ static bool dreambcm_env_enabled(const char *name, bool default_value)
 
 void gFBDC::exec(const gOpcode *o)
 {
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+	if (m_graphics_suspended)
+	{
+		discardOpcode(o);
+		return;
+	}
+
 	switch (o->opcode)
 	{
 	case gOpcode::setPalette:
@@ -404,6 +411,7 @@ void gFBDC::setGamma(int g)
 
 void gFBDC::setResolution(int xres, int yres, int bpp)
 {
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
 	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp)
 	#if defined(CONFIG_HISILICON_FB)
 		&& islocked()==0
@@ -529,6 +537,63 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	if (grc)
 		grc->unlock();
 #endif
+}
+
+bool gFBDC::suspendGraphics()
+{
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+
+	if (m_graphics_suspended)
+		return true;
+	if (!fb || !fb->Available())
+		return false;
+	if (!fb->islocked())
+		eDebug("[gFBDC] suspending graphics without fbClass lock; callers should lock painting first");
+
+	/*
+	 * fbClass::lock() prevents new gPainter commands.  The suspended flag also
+	 * makes exec() dispose commands which were already queued without touching
+	 * the framebuffer while an external graphics client owns the display.
+	 */
+	m_graphics_suspended = true;
+	eDebug("[gFBDC] framebuffer graphics suspended");
+	return true;
+}
+
+bool gFBDC::resumeGraphics()
+{
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+
+	if (!m_graphics_suspended)
+		return true;
+	if (!fb || !fb->Available())
+		return false;
+	if (fb->islocked())
+	{
+		eDebug("[gFBDC] graphics resume deferred while fbClass is still locked");
+		return false;
+	}
+
+	/*
+	 * fbClass::unlock() calls SetMode().  On ION targets this unmaps and maps
+	 * the framebuffer again, so the unmanaged surfaces and m_pixmap must be
+	 * rebound before drawing is allowed to continue.
+	 */
+	const int xres = surface.x;
+	const int yres = surface.y;
+	const int bpp = surface.bpp;
+	m_pixmap = 0;
+	m_graphics_suspended = false;
+	setResolution(xres, yres, bpp);
+
+	eDebug("[gFBDC] framebuffer graphics resumed at %dx%dx%d", xres, yres, bpp);
+	return true;
+}
+
+bool gFBDC::isGraphicsSuspended() const
+{
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+	return m_graphics_suspended;
 }
 
 void gFBDC::saveSettings()
