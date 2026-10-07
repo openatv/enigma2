@@ -213,7 +213,19 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
 #if defined(CONFIG_ION) || defined(DREAMNEXTGEN)
 	screeninfo.yres = nyRes;
-	screeninfo.yres_virtual = nyRes * 3;
+	int wanted_pages = 3;
+#if defined(DREAMNEXTGEN)
+	const char *pages_env = getenv("DREAM_FB_PAGES");
+	if (pages_env)
+	{
+		int env_pages = atoi(pages_env);
+		if (env_pages >= 1 && env_pages <= 3)
+			wanted_pages = env_pages;
+		else
+			eDebug("[fb] ignoring invalid DREAM_FB_PAGES=%s", pages_env);
+	}
+#endif
+	screeninfo.yres_virtual = nyRes * wanted_pages;
 #else
 	screeninfo.yres_virtual=(screeninfo.yres=nyRes)*2;
 #endif
@@ -268,6 +280,9 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	}
 
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
+#if defined(DREAMNEXTGEN)
+	eDebug("[fb] DreamNextGen framebuffer pages requested=%d active=%d", wanted_pages, m_number_of_pages);
+#endif
 	if (m_number_of_pages >= 3)
 		eDebug("[fb] triple buffering available!");
 	else if (m_number_of_pages == 2)

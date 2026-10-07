@@ -3,6 +3,9 @@
 #include <lib/base/init_num.h>
 #include <lib/gdi/accel.h>
 #include <lib/base/eerror.h>
+#ifdef DREAMNEXTGEN
+#include <lib/gdi/dreamge2d.h>
+#endif
 #include <lib/gdi/esize.h>
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
@@ -384,6 +387,9 @@ gAccel::~gAccel()
 #ifdef HAVE_HISILICON_ACCEL
 	dinobot_accel_close();
 #endif
+#ifdef DREAMNEXTGEN
+	dreamGE2DReset();
+#endif
 	instance = 0;
 }
 
@@ -392,6 +398,9 @@ void gAccel::dumpDebug()
 	if(!m_accel_debug)
 		return;
 	eDebug("[gAccel] info --");
+#ifdef DREAMNEXTGEN
+	dreamGE2DReleaseAccelMemory();
+#endif
 	for (MemoryBlockList::const_iterator it = m_accel_allocation.begin();
 		 it != m_accel_allocation.end();
 		 ++it)
@@ -496,12 +505,22 @@ bool gAccel::hasAlphaBlendingSupport()
 #ifdef HAVE_HISILICON_ACCEL
 	return dinobot_accel_has_alphablending();
 #else
+#ifdef DREAMNEXTGEN
+	return dreamGE2DHasAlphaBlendingSupport();
+#endif
 	return false;
 #endif
 }
 
 int gAccel::blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags)
 {
+#ifdef DREAMNEXTGEN
+	if (dreamGE2DBlit(dst, src, p, area, flags))
+		return 0;
+	if (dreamGE2DIsManagedSurface(dst) || dreamGE2DIsManagedSurface(src))
+		return -1;
+#endif
+
 #ifdef BCM_ACCEL
 	if (!m_bcm_accel_state)
 	{
@@ -606,6 +625,14 @@ int gAccel::fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 	if (dreambcm_fill_disabled())
 		return -1;
 #endif
+
+#ifdef DREAMNEXTGEN
+	if (dreamGE2DFill(dst, area, col))
+		return 0;
+	if (dreamGE2DIsManagedSurface(dst))
+		return -1;
+#endif
+
 #ifdef BCM_ACCEL
 	if (!m_bcm_accel_state) {
 		bcm_accel_fill(
@@ -693,6 +720,7 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 		return dreambcm_ion_alloc_surface(surface, stride, size, m_accel_debug);
 #endif
 
+#ifndef DREAMNEXTGEN
 	size += ACCEL_ALIGNMENT_MASK;
 	size >>= ACCEL_ALIGNMENT_SHIFT;
 
@@ -724,10 +752,28 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 
 	eDebug("[gAccel] accel alloc failed\n");
 	return -3;
+#else
+	if (surface->bpp == 32 && dreamGE2DAllocSurface(surface, stride, size))
+		return 0;
+
+	/* Fall back to normal heap allocation in gSurface instead of using the tiny
+	 * framebuffer tail area. On 1080p triple buffering this area is only a few
+	 * hundred KiB and creates avoidable accelAlloc noise. Return success with
+	 * surface->data left empty so gSurface allocates its normal CPU buffer without
+	 * printing an acceleration error.
+	 */
+	if(m_accel_debug)
+		eDebug("[gAccel] dreamGE2D accelAlloc unavailable, using CPU surface fallback");
+	return 0;
+#endif
 }
 
 void gAccel::accelFree(gUnmanagedSurface* surface)
 {
+#ifdef DREAMNEXTGEN
+	if (dreamGE2DFreeSurface(surface))
+		return;
+#endif
 	int phys_addr = surface->data_phys;
 	if (phys_addr != 0)
 	{

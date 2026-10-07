@@ -5,6 +5,10 @@
 
 #include <lib/gdi/accel.h>
 
+#ifdef DREAMNEXTGEN
+#include <lib/gdi/dreamge2d.h>
+#endif
+
 #include <algorithm>
 #include <cstring>
 
@@ -292,9 +296,20 @@ void gFBDC::exec(const gOpcode *o)
 
 			rotateSurfaces();
 
-			const int copy_bytes = surface.stride * surface.y;
-			if (copy_bytes > 0)
-				std::memcpy(surface.data, surface_back.data, copy_bytes);
+			bool ge2d_copied = dreamGE2DCopySurface(&surface, &surface_back, surface.x, surface.y);
+			if (!ge2d_copied)
+			{
+				const int virtual_height = surface.y * m_number_of_pages;
+				const int src_y = getSurfaceOffset(surface_back);
+				const int dst_y = getSurfaceOffset(surface);
+				ge2d_copied = dreamGE2DCopyOSD(src_y, dst_y, surface.x, surface.y, virtual_height);
+			}
+			if (!ge2d_copied)
+			{
+				const int copy_bytes = surface.stride * surface.y;
+				if (copy_bytes > 0)
+					std::memcpy(surface.data, surface_back.data, copy_bytes);
+			}
 		}
 #endif
 #if defined(CONFIG_HISILICON_FB)
@@ -494,6 +509,10 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 
 	surface_back.clut = surface.clut;
 	surface_third.clut = surface.clut;
+
+#ifdef DREAMNEXTGEN
+	dreamGE2DRegisterFramebuffer(fb->lfb, base_phys, surface.x, surface.y, surface.stride, m_number_of_pages);
+#endif
 
 #if defined(CONFIG_HISILICON_FB)
 	if(islocked()==0)
