@@ -421,6 +421,13 @@ std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) c
 void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 {
 	std::string driverMode = getDriverVideoMode(newMode);
+#ifdef DREAMNEXTGEN
+	if (!m_encoder_active && !m_standby_video_mode.empty())
+	{
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s: ignoring '%s' while HDMI output is disabled", __MODULE__, "setVideoMode", driverMode.c_str());
+		return;
+	}
 #ifdef VIDEO_MODE_50
 	// gigablue driver bug
 	CFile::writeStr(proc_videomode_50, driverMode, __MODULE__, flags);
@@ -722,6 +729,30 @@ void eAVControl::setInput(const std::string &newMode, int flags)
 
 #ifdef DREAMNEXTGEN
 	m_encoder_active = newMode == "encoder";
+	if (newMode == "off")
+	{
+		std::string currentMode = CFile::read(proc_videomode, __MODULE__, flags);
+		currentMode.erase(std::remove(currentMode.begin(), currentMode.end(), '\n'), currentMode.end());
+		currentMode.erase(std::remove(currentMode.begin(), currentMode.end(), '\r'), currentMode.end());
+		if (!currentMode.empty() && currentMode != "null")
+		{
+			if (CFile::write(proc_videomode, "null", __MODULE__, flags) >= 0)
+			{
+				m_standby_video_mode = currentMode;
+				if (flags & FLAGS_DEBUG)
+					eDebug("[%s] %s: HDMI output disabled, saved mode '%s'", __MODULE__, "setInput", m_standby_video_mode.c_str());
+			}
+		}
+	}
+	else if (m_encoder_active && !m_standby_video_mode.empty())
+	{
+		if (CFile::write(proc_videomode, m_standby_video_mode.c_str(), __MODULE__, flags) >= 0)
+		{
+			if (flags & FLAGS_DEBUG)
+				eDebug("[%s] %s: HDMI output enabled, restored mode '%s'", __MODULE__, "setInput", m_standby_video_mode.c_str());
+			m_standby_video_mode.clear();
+		}
+	}
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setInput", newMode.c_str());
 #else
