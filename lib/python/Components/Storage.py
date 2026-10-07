@@ -481,7 +481,12 @@ def getProcMountsNew():
 def cleanMediaDirs():
 	mounts = getProcMountsNew()
 	mounts = [x[1] for x in mounts if x[1].startswith("/media/")]
-	for directory in listdir("/media"):
+	try:
+		directories = listdir("/media")
+	except OSError as err:
+		print(f"[Storage] Error {err.errno}: Unable to list '/media'!  ({err.strerror})")
+		return
+	for directory in directories:
 		if directory not in ("audiocd", "autofs", "hdd", "net"):
 			mediaDirectory = join("/media/", directory)
 			if mediaDirectory not in mounts and not ismount(mediaDirectory):
