@@ -35,6 +35,11 @@ config.misc.wizardLanguageEnabled = ConfigBoolean(default=True)
 class WizardStart(Wizard, ShowRemoteControl):
 
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
+		def _onClose():
+			self.opkgComponent.removeCallback(self.opkgComponentCallback)
+			if self.disableKeys:
+				Processing.instance.hideProgress()
+
 		self.xmlfile = ["startwizard.xml"]
 		Wizard.__init__(self, session, showSteps=False)
 		ShowRemoteControl.__init__(self)
@@ -65,6 +70,7 @@ class WizardStart(Wizard, ShowRemoteControl):
 		self.nwPollMaxAttempts = 12  # 18 s total
 		self.opkgComponent = OpkgComponent()
 		self.opkgComponent.addCallback(self.opkgComponentCallback)
+		self.onClose.append(_onClose)
 
 	def markDone(self):
 		# All boxes use the same remote control setting except the dm8000, which needs its own.
@@ -83,6 +89,8 @@ class WizardStart(Wizard, ShowRemoteControl):
 			return
 		packages = international.getPurgablePackages()
 		if packages:
+			# Processing is non-modal, so block navigation until opkg finishes.
+			self.disableKeys = True
 			Processing.instance.setDescription(_("Please wait while unused locales/languages are purged..."))
 			Processing.instance.showProgress(endless=True)
 			opkgArguments = {
@@ -96,6 +104,7 @@ class WizardStart(Wizard, ShowRemoteControl):
 	def purgeLocalesDone(self):
 		international.initInternational()
 		Processing.instance.hideProgress()
+		self.disableKeys = False
 		# See the +1 note in nwBackToList() above - same off-by-one compensation.
 		self.currStep = self.getStepWithID("restartdevice") + 1
 		self.updateValues()
