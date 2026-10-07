@@ -178,6 +178,7 @@ public:
 	std::string getEventName() const { return m_event_name; }
 	std::string getShortDescription() const { return m_short_description; }
 	std::string getExtendedDescription() const { return m_extended_description; }
+	std::string getExtendedDescription(bool original);
 	std::string getExtraEventData() const { return m_extra_event_data; }
 	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;

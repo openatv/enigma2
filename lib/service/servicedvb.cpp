@@ -5,6 +5,7 @@
 #include <memory>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/service/servicedvbsoftdecoder.h>
@@ -1797,6 +1798,8 @@ void eDVBServicePlay::serviceEvent(int event)
 		m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventHBBTVInfo:
+		if (eHbbtv::getInstance()->getPlayableService() == this)
+			eHbbtv::getInstance()->updateApplicationsFromPMTHandler(&m_service_handler);
 		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
 	}
@@ -2174,6 +2177,9 @@ RESULT eDVBServicePlay::setTarget(int target, bool noaudio)
 	m_is_primary = !target;
 	m_decoder_index = target;
 	m_noaudio = noaudio;
+	// An FCC service may already have read its AIT while running in the background.
+	if (m_is_primary && eHbbtv::getInstance()->getPlayableService() == this)
+		eHbbtv::getInstance()->updateApplicationsFromPMTHandler(&m_service_handler);
 	return 0;
 }
 

@@ -552,6 +552,16 @@ void eDVBServicePMTHandler::AITready(int error)
 	m_AIT.stop();
 }
 
+
+void eDVBServicePMTHandler::getHbbTVApplicationInfos(std::vector<HbbTVApplicationInfo> &applications) const
+{
+	applications.clear();
+	for (HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin(); infoiter != m_HbbTVApplications.end(); ++infoiter)
+	{
+		applications.push_back(**infoiter);
+	}
+}
+
 void eDVBServicePMTHandler::OCready(int error)
 {
 	if(eDVBServicePMTHandler::m_debug)

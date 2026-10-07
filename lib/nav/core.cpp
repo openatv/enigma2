@@ -1,4 +1,5 @@
 #include <lib/nav/core.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/base/eerror.h>
 #include <lib/python/python.h>
 #include <lib/dvb/idvb.h>
@@ -14,6 +15,12 @@ void eNavigation::serviceEvent(iPlayableService *service, int event)
 	{
 		eDebug("[eNavigation] event %d for other service", event);
 		return;
+	}
+	if (m_decoder == 0)
+	{
+		eHbbtv::getInstance()->onCurrentServiceEvent(service, event);
+		if (service == m_runningService && event == iPlayableService::evTuneFailed)
+			eHbbtv::getInstance()->notifyChannelError(eHbbtv::CHANNEL_ERROR_TUNE_FAILED);
 	}
 	m_event(event);
 }
@@ -45,13 +52,15 @@ RESULT eNavigation::playService(const eServiceReference &service)
 	res = m_servicehandler->play(service, m_runningService);
 #endif
 
+	m_runningServiceRef = service;
+	if (m_decoder == 0)
+		eHbbtv::getInstance()->setCurrentService(service, m_runningService);
 	if (m_runningService)
 	{
 		m_runningService->setTarget(m_decoder);
 		m_runningService->connectEvent(sigc::mem_fun(*this, &eNavigation::serviceEvent), m_service_event_conn);
 		res = m_runningService->start();
 	}
-	m_runningServiceRef = service;
 	return res;
 }
 
@@ -100,6 +109,8 @@ RESULT eNavigation::stopService(void)
 	ePtr<iPlayableService> tmp = m_runningService;
 	m_runningService = 0;
 	m_runningServiceRef = eServiceReference();
+	if (m_decoder == 0)
+		eHbbtv::getInstance()->onCurrentServiceStop();
 	tmp->stop();
 
 	/* send stop event */
