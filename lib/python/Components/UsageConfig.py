@@ -1668,6 +1668,12 @@ def InitUsageConfig():
 		("beginning", _("At beginning")),
 		("end", _("At end"))
 	])
+	config.usage.timerListSortOrder = ConfigSelection(default="dateAscending", choices=[
+		("dateAscending", _("Start Time (Earliest First)")),
+		("dateDescending", _("Start Time (Latest First)")),
+		("nameAscending", _("Name (A-Z)")),
+		("nameDescending", _("Name (Z-A)"))
+	])
 	config.usage.timerlist_show_epg = ConfigYesNo(default=True)
 
 	def updateEnterForward(configElement):

@@ -10,7 +10,7 @@ from ServiceReference import ServiceReference
 from skin import parseBoolean, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config
+from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config, configfile
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -841,6 +841,28 @@ class RecordTimerOverview(TimerOverviewBase):
 		TimerOverviewBase.__init__(self, session, mode=MODE_RECORD)
 		self["Event"] = Event()
 		self["Service"] = ServiceEvent()
+		self["sortActions"] = HelpableActionMap(self, ["MenuActions"], {
+			"menu": (self._sortTimers, _("Select the timer list sort order"))
+		}, prio=0, description=MODE_DATA[MODE_RECORD][MODE_DATA_ACTIONS])
+
+	def _sortTimers(self):
+		sortOrder = config.usage.timerListSortOrder
+		choices = [(x[1], x[0]) for x in sortOrder.getSelectionList()]
+		self.session.openWithCallback(self._sortTimersCallback, MessageBox, _("Select how to sort the timer list."), type=MessageBox.TYPE_YESNO, list=choices, default=sortOrder.index, windowTitle=_("Sort Timers"))
+
+	def _sortTimersCallback(self, choice):
+		sortOrder = config.usage.timerListSortOrder
+		if choice in sortOrder.getChoices() and choice != sortOrder.value:
+			selectedTimer = self["timerlist"].getCurrent()
+			sortOrder.value = choice
+			sortOrder.save()
+			configfile.save()
+			self.loadTimerList()
+			for index, item in enumerate(self["timerlist"].getList()):
+				if item[0] is selectedTimer:
+					self["timerlist"].setCurrentIndex(index)
+					break
+			self.selectionChanged()
 
 	def doChangeCallbackAppend(self):
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
@@ -853,20 +875,21 @@ class RecordTimerOverview(TimerOverviewBase):
 		self.selectionChanged()
 
 	def loadTimerList(self):
-		def condition(element):
-			return element[0].state == TimerEntry.StateEnded, element[0].begin
-
 		timerList = []
 		if self.fallbackTimer.list:
-			timerList.extend([(timer, False) for timer in self.fallbackTimer.list if timer.state != 3])
-			timerList.extend([(timer, True) for timer in self.fallbackTimer.list if timer.state == 3])
-		timerList.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
-		timerList.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
+			timerList.extend([(x, False) for x in self.fallbackTimer.list if x.state != TimerEntry.StateEnded])
+			timerList.extend([(x, True) for x in self.fallbackTimer.list if x.state == TimerEntry.StateEnded])
+		timerList.extend([(x, False) for x in self.session.nav.RecordTimer.timer_list])
+		timerList.extend([(x, True) for x in self.session.nav.RecordTimer.processed_timers])
+		sortOrder = config.usage.timerListSortOrder.value
+		timerList.sort(key=lambda x: x[0].begin, reverse=sortOrder == "dateDescending")
+		if sortOrder in ("nameAscending", "nameDescending"):
+			timerList.sort(key=lambda x: (x[0].name or "").casefold(), reverse=sortOrder == "nameDescending")
 		if config.usage.timerlist_finished_timer_position.index:  # End of list.
-			timerList.sort(key=condition)
-		else:
-			timerList.sort(key=lambda x: x[0].begin)
+			# Stable grouping keeps completed timers last in either sort direction.
+			timerList.sort(key=lambda x: x[0].state == TimerEntry.StateEnded)
 		self["timerlist"].setList(timerList)
+		self.setTitle(f"{MODE_DATA[MODE_RECORD][MODE_DATA_TITLE]} - {config.usage.timerListSortOrder.getText()}")
 
 	def getEventDescription(self, timer):
 		description = timer.description
