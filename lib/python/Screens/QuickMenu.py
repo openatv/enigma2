@@ -99,11 +99,11 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions", "ColorActions"], {
 			"ok": (self.keyOk, _("Select the current menu item")),
-			"cancel": (self.close, _("Close this screen")),
-			"red": (self.close, _("Close this screen")),
+			"cancel": (self.close, _("Close the screen")),
+			"red": (self.close, _("Close the screen")),
 			"green": (self.keyDistributionInformation, _("Open the Image information")),
 			"yellow": (self.keyStorageInformation, _("Open the Storage Device information")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyLineUp, _("Move up a line")),
 			"left": (self.keyLeft, _("Switch to the left column")),

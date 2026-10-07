@@ -91,7 +91,7 @@ class InformationBase(Screen):
 			"close": (self.keyCloseRecursive, _("Close the screen and exit all menus")),
 			"save": (self.refreshInformation, _("Refresh the screen")),
 			"ok": (self.refreshInformation, _("Refresh the screen")),
-			"top": (self["information"].goTop, _("Move to first line / screen")),
+			"top": (self["information"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["information"].goPageUp, _("Move up a screen")),
 			"up": (self["information"].goLineUp, _("Move up a line")),
 			"down": (self["information"].goLineDown, _("Move down a line")),

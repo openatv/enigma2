@@ -48,10 +48,10 @@ class EventViewBase:
 		self["channel"] = Label()
 		self["duration"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "EventViewActions"], {
-			"cancel": (self.close, _("Close screen")),
-			"ok": (self.close, _("Close screen")),
+			"cancel": (self.close, _("Close the screen")),
+			"ok": (self.close, _("Close the screen")),
 			"contextMenu": (self.doContext, _("Open context menu")),
-			"info": (self.close, _("Close screen")),
+			"info": (self.close, _("Close the screen")),
 			"pageUp": (self.pageUp, _("Show previous page")),
 			"pageDown": (self.pageDown, _("Show next page"))
 		}, prio=0, description=_("Event View Actions"))
@@ -328,8 +328,8 @@ class EventViewMovieEvent(Screen):
 		self["channel"] = Label()
 		self["duration"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "EventViewActions"], {
-			"cancel": (self.close, _("Close the current screen")),
-			"ok": (self.close, _("Close the current screen")),
+			"cancel": (self.close, _("Close the screen")),
+			"ok": (self.close, _("Close the screen")),
 			"pageUp": (self.pageUp, _("Show previous page")),
 			"pageDown": (self.pageDown, _("Show next page")),
 		}, prio=0, description=_("Movie Event View Actions"))
