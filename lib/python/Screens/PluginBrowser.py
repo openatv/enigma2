@@ -306,6 +306,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	def doClose(self):
 		if self.internetCheckThread:
 			Processing.instance.hideProgress()
+			self.internetCheckThread.callback.get().clear()
 			self.internetCheckThread = None
 
 	def selectionChanged(self):
@@ -392,9 +393,9 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		self.internetCheckThread.startThread(FEED_SERVER, INTERNET_TIMEOUT, True)
 
 	def internetCheckCallback(self, result, mode):  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
+		# Keep the native check alive until doClose or the next check, after its signal has finished dispatching.
 		Processing.instance.hideProgress()
 		self.updateButtons()
-		self.internetCheckThread = None
 		if result == 0:
 			self.internetCheckedTime = time()
 			self.openDownloadScreen(mode)
