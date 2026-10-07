@@ -1,0 +1,14 @@
+<setupxml>
+	<setup key="FastScan" title="Fast Scan" allowDefault="yes">
+		<item level="0" text="Provider" description="Select the fast scan provider and press BLUE to start the scan.">self.scanProvider</item>
+		<if conditional="self.scanProvider.value">
+			<item level="0" text="Tuner" description="Select the tuner to use for the fast scan.">self.scanNims</item>
+			<item level="0" text="Use fast scan channel numbering" description="Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps.">config.plugins.FastScan.keepNumbering</item>
+			<item level="0" text="Use fast scan channel names" description="Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'.">config.plugins.FastScan.keepSettings</item>
+			<item level="0" text="Create separate radio user bouquet" description="Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet.">config.plugins.FastScan.createRadioBouquet</item>
+			<item level="0" text="Drop unconfigured satellites" description="Ignore services on satellites that are not configured in the tuner settings.">config.plugins.FastScan.drop</item>
+			<item level="0" text="Enable auto fast scan" description="Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers.">config.plugins.FastScan.auto</item>
+			<item level="0" text="HD list" description="Use the HD channel list provided by the fast scan." conditional="self.hasHDList()">config.plugins.FastScan.hd</item>
+		</if>
+	</setup>
+</setupxml>
