@@ -60,6 +60,7 @@ class Session:
 		self.in_exec = False
 		self.screen = SessionGlobals(self)
 		self.shutdown = False
+		self.isStandby = False  # Set by Screens.Standby.
 		from Components.FrontPanelLed import frontPanelLed
 		frontPanelLed.setSession(self)
 		from Tools.Notifications import notificationCenter
