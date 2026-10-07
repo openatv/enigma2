@@ -1744,7 +1744,7 @@ msgstr ""
 "Egy felvétel folyamatban van. \n"
 "Mit szeretne tenni?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Egy felvétel folyamatban van. A keresés elindítása előtt állítsa meg a felvételt."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7728,7 +7728,7 @@ msgid "Enable auto fast scan"
 msgstr "Automatikus gyorskeresés engedélyezése"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Automatikus gyorskeresés engedélyezése ehhez: %s"
 
 msgid "Enable automatic shares"
@@ -17329,7 +17329,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "%s keresés..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17354,7 +17354,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "A keresés sikertelen!"
 
 msgid "Scanning for shares..."
@@ -23877,10 +23877,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "Használjon kiterjesztett listát"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Szolgáltató által megadott csatorna elnevezés"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Szolgáltató által megadott csatorna számozás"
 
 msgid "Use for load only x days in EPG."

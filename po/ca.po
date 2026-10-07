@@ -1795,7 +1795,7 @@ msgstr ""
 "En aquests moments s'està realitzant una gravació.\n"
 "Què voleu fer?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Actualment s'està executant una gravació. Atureu la gravació abans d'intentar escanejar."
 
 #
@@ -8053,7 +8053,7 @@ msgid "Enable auto fast scan"
 msgstr "Activar recerca ràpida automàtica"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Activar recerca ràpida automàtica per %s"
 
 msgid "Enable automatic shares"
@@ -18103,7 +18103,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Buscant %s …"
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -18128,7 +18128,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Ha fallat la recerca!"
 
 msgid "Scanning for shares..."
@@ -24890,10 +24890,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "Utilitzar llista extesa"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Utilitzeu noms de canals de fastscan"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Utilitzeu la numeració de canals de fastscan"
 
 msgid "Use for load only x days in EPG."

@@ -1705,7 +1705,7 @@ msgstr ""
 "Tallennus on parhaillaan käynnissä.\n"
 "Mitä haluat tehdä?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7707,7 +7707,7 @@ msgid "Enable auto fast scan"
 msgstr "Ota käyttöön autom. pikahaku"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Ota automaattinen pikahaku kohteelle %s"
 
 msgid "Enable automatic shares"
@@ -17231,7 +17231,7 @@ msgid "Scanning"
 msgstr "Skannaus"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Haetaan %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17256,7 +17256,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Haku valmis, löytyi %d kanava."
 msgstr[1] "Haku valmis, löytyi %d kanavaa."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Haku epäonnistui!"
 
 msgid "Scanning for shares..."
@@ -23791,10 +23791,10 @@ msgstr "Käytä tyhjiä rivejä"
 msgid "Use extended List"
 msgstr "Käytä laajennettua luetteloa"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Käytä pikahaun kanavanimiä"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Käytä pikahaun kanavanumeroita"
 
 msgid "Use for load only x days in EPG."

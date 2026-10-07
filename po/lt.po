@@ -1746,7 +1746,7 @@ msgstr ""
 "Dabar vyksta įrašymas.\n"
 "Ką norite daryti?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Dabar vyksta įrašymas. Prieš skenuodami, nutraukite įrašymą."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7727,7 +7727,7 @@ msgid "Enable auto fast scan"
 msgstr "Įjungti automatinę greitą paiešką"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Įjungti automatinę greitą paiešką %s"
 
 msgid "Enable automatic shares"
@@ -17239,7 +17239,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Skenuojama %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17266,7 +17266,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Skenavimas nepavyko!"
 
 msgid "Scanning for shares..."
@@ -23767,10 +23767,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "Naudoti išplėstinį sąrašą"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Greitai paieškai naudoti kanalų pavadinimus"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Greitai paieškai naudoti kanalų numerius"
 
 msgid "Use for load only x days in EPG."

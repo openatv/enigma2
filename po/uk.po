@@ -1742,7 +1742,7 @@ msgstr ""
 "Триває запис.\n"
 "Що хочете зробити?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "В даний час триває запис. Зупиніть запис, щоб виконати пошук."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7740,7 +7740,7 @@ msgid "Enable auto fast scan"
 msgstr "Включити швидке автосканування"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Включити швидке автосканування для %s"
 
 msgid "Enable automatic shares"
@@ -17257,7 +17257,7 @@ msgid "Scanning"
 msgstr "Сканування"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Сканування %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17284,7 +17284,7 @@ msgstr[0] "Сканування завершено, %d канал знайден
 msgstr[1] "Сканування завершено, %d канали знайдено."
 msgstr[2] "Сканування завершено, %d каналів знайдено."
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Сканування не вдалося!"
 
 msgid "Scanning for shares..."
@@ -23809,10 +23809,10 @@ msgstr "Використовуйте рядки опису"
 msgid "Use extended List"
 msgstr "Використовувати розширений список"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Швидкий пошук по іменах каналів"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Швидкий пошук по номерам каналів"
 
 msgid "Use for load only x days in EPG."

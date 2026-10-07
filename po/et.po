@@ -1716,7 +1716,7 @@ msgstr ""
 "Toimub salvestamine.\n"
 "Mida tuleks teha?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
 msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
@@ -7791,7 +7791,7 @@ msgid "Enable auto fast scan"
 msgstr "Luba automaatne kiirotsing"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Kiire automaatotsing %s jaoks"
 
 msgid "Enable automatic shares"
@@ -17576,7 +17576,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "%s otsing"
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17601,7 +17601,7 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Scanning failed!"
+msgid "Error: Scan failed!"
 msgstr "Otsing nurjus!"
 
 msgid "Scanning for shares..."
@@ -24227,10 +24227,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "Kasuta laiendatud vaadet"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Kasuta kiirotsingu kanalinimesi"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Kasuta kiirotsingu kanalinumeratsiooni"
 
 msgid "Use for load only x days in EPG."
