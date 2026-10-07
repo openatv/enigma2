@@ -26,6 +26,7 @@ public:
 
 	int accelAlloc(gUnmanagedSurface* surface);
 	void accelFree(gUnmanagedSurface* surface);
+	void dreamBCMPagecopyStat();
 
 	void dumpDebug();
 	void setAccelDebug(bool enable) { m_accel_debug = enable; }

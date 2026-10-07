@@ -48,8 +48,12 @@ fbClass::fbClass(const char *fb)
 	cmap.green=green;
 	cmap.blue=blue;
 	cmap.transp=trans;
-	
+
 #ifdef CONFIG_ION
+	m_accel_fd = -1;
+#endif
+
+#if defined(CONFIG_ION) && !defined(DREAMBCM_ION_ACCEL)
 	int ion;
 #endif
 
@@ -76,7 +80,7 @@ fbClass::fbClass(const char *fb)
 	available = fix.smem_len;
 	m_phys_mem = fix.smem_start;
 	eDebug("[fb] %s: %dk video mem", fb, available/1024);
-#if defined(CONFIG_ION)
+#if defined(CONFIG_ION) && !defined(DREAMBCM_ION_ACCEL)
 	/* allocate accel memory here... its independent from the framebuffer */
 	ion = open("/dev/ion", O_RDWR | O_CLOEXEC);
 	if (ion >= 0)
@@ -152,6 +156,11 @@ err_ioc_free:
 		eFatal("[fb] failed to open ION device node! no allocate accel memory available !!");
 		m_accel_fd = -1;
 	}
+#elif defined(DREAMBCM_ION_ACCEL)
+	/*
+	 * Dreambox Broadcom ION boxes allocate acceleration surfaces per pixmap.
+	 */
+	eDebug("[fb] Using Dreambox Broadcom per-surface ION allocator");
 #else
 	eDebug("[fb] %dk video mem", available/1024);
 	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fbFd, 0);

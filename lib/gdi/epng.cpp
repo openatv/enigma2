@@ -2,6 +2,7 @@
 #include <zlib.h>
 #include <png.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <lib/base/cfile.h>
 #include <lib/base/wrappers.h>
 #include <lib/gdi/epng.h>
@@ -29,6 +30,65 @@ extern "C" {
 #include <nanosvgrast.h>
 
 #include <lib/gdi/picexif.h>
+
+#ifdef DREAMBCM_ION_ACCEL
+#ifdef DREAMBCM_RUNTIME_DEBUG
+static bool dreambcm_png_env_disabled(const char *value)
+{
+	if (!value || !value[0])
+		return false;
+	if (value[0] == '0' && value[1] == 0)
+		return true;
+	if (!strcmp(value, "no") || !strcmp(value, "false") || !strcmp(value, "off"))
+		return true;
+	return false;
+}
+
+static bool dreambcm_png_env_enabled(const char *value)
+{
+	if (!value || !value[0])
+		return false;
+	if (value[0] == '1' && value[1] == 0)
+		return true;
+	if (!strcmp(value, "yes") || !strcmp(value, "true") || !strcmp(value, "on"))
+		return true;
+	return false;
+}
+
+static bool dreambcm_png32_palette_enabled()
+{
+	const char *value = getenv("DREAMBCM_PNG32_PALETTE");
+	return !dreambcm_png_env_disabled(value);
+}
+
+static bool dreambcm_png32_palette_alpha_only()
+{
+	return dreambcm_png_env_enabled(getenv("DREAMBCM_PNG32_PALETTE_ALPHA_ONLY"));
+}
+
+static bool dreambcm_png32_trace_enabled()
+{
+	const char *value = getenv("DREAMBCM_PNG32_TRACE");
+	return value && !dreambcm_png_env_disabled(value);
+}
+#else
+static inline bool dreambcm_png32_palette_enabled()
+{
+	return true;
+}
+
+static inline bool dreambcm_png32_palette_alpha_only()
+{
+	return false;
+}
+
+static inline bool dreambcm_png32_trace_enabled()
+{
+	return false;
+}
+#endif
+#endif
+
 
 /* TODO: I wonder why this function ALWAYS returns 0 */
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
@@ -97,6 +157,13 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, 0, 0);
 	channels = png_get_channels(png_ptr, info_ptr);
 	trns = png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS);
+#ifdef DREAMBCM_ION_ACCEL
+	bool dreambcm_force_palette_png32 = dreambcm_png32_palette_enabled() &&
+		(color_type == PNG_COLOR_TYPE_PALETTE) &&
+		(!dreambcm_png32_palette_alpha_only() || trns);
+#else
+	bool dreambcm_force_palette_png32 = false;
+#endif
 	//eDebug("[ePNG] %s: before %dx%dx%dbpcx%dchan coltyp=%d", filename, (int)width, (int)height, bit_depth, channels, color_type);
 
 	/*
@@ -118,6 +185,26 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 		png_set_gray_to_rgb(png_ptr);
 		png_set_bgr(png_ptr);
 	}
+
+#ifdef DREAMBCM_ION_ACCEL
+	if (dreambcm_force_palette_png32)
+	{
+		/*
+		 * DM9x0: indexed PNGs are expanded to 32-bit at load time. DreamOS
+		 * sends the same ePixmap PNG class to FBIO_ACCEL as FORMAT 0x07c68888
+		 * surfaces and does not use palette opcodes 0x78/0x79/0x7a.
+		 */
+		png_set_palette_to_rgb(png_ptr);
+		if (trns)
+			png_set_tRNS_to_alpha(png_ptr);
+		else
+			png_set_add_alpha(png_ptr, 255, PNG_FILLER_AFTER);
+		png_set_bgr(png_ptr);
+
+		if (dreambcm_png32_trace_enabled())
+			eDebug("[dreamBCM:ePNG] palette PNG -> 32-bit for %s trns=%d", filename, trns ? 1 : 0);
+	}
+#endif
 
 	if (color_type == PNG_COLOR_TYPE_RGB) {
 		if (trns)
@@ -159,7 +246,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 	}
 	
 	int num_palette = -1, num_trans = -1;
-	if (color_type == PNG_COLOR_TYPE_PALETTE) {
+	if (!dreambcm_force_palette_png32 && color_type == PNG_COLOR_TYPE_PALETTE) {
 		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE)) {
 			png_color *palette;
 			png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);

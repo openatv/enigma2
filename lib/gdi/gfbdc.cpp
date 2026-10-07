@@ -8,6 +8,10 @@
 #include <algorithm>
 #include <cstring>
 
+#if defined(DREAMBCM_ION_ACCEL)
+#include <cstdlib>
+#endif
+
 #include <time.h>
 #include <sys/time.h>
 
@@ -146,6 +150,16 @@ void gFBDC::rotateSurfaces()
 	}
 }
 
+#if defined(DREAMBCM_ION_ACCEL)
+static bool dreambcm_env_enabled(const char *name, bool default_value)
+{
+	const char *value = getenv(name);
+	if (!value || !*value)
+		return default_value;
+	return atoi(value) != 0;
+}
+#endif
+
 void gFBDC::exec(const gOpcode *o)
 {
 	switch (o->opcode)
@@ -213,17 +227,62 @@ void gFBDC::exec(const gOpcode *o)
 #if defined(CONFIG_ION)
 		if (surface_back.data_phys)
 		{
-		fb->waitVSync();
-		fb->setOffset(getSurfaceOffset(surface));
+#if defined(DREAMBCM_ION_ACCEL)
+			const bool pagecopy_enabled = dreambcm_env_enabled("DREAMBCM_PAGECOPY", true);
+			const bool prepan_pagecopy = pagecopy_enabled && dreambcm_env_enabled("DREAMBCM_PREPAN_PAGECOPY", true) && (m_number_of_pages > 2) && surface_third.data_phys;
 
-		rotateSurfaces();
+			if (prepan_pagecopy)
+			{
+				/*
+				 * Triple-buffer Dreambox Broadcom path:
+				 * copy the fully rendered draw page into the next draw page before
+				 * switching the displayed framebuffer page.  The old OpenATV order
+				 * panned first and copied afterwards; DreamOS traces show the Broadcom
+				 * acceleration work before FBIOPAN_DISPLAY.
+				 */
+				bcm_accel_blit(
+					surface.data_phys, surface.x, surface.y, surface.stride, 0,
+					surface_third.data_phys, surface_third.x, surface_third.y, surface_third.stride,
+					0, 0, surface.x, surface.y,
+					0, 0, surface.x, surface.y,
+					0, 0);
+				if (gAccel::getInstance())
+				{
+					gAccel::getInstance()->dreamBCMPagecopyStat();
+					gAccel::getInstance()->sync();
+				}
 
-		bcm_accel_blit(
-		surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride, 0,
-		surface.data_phys, surface.x, surface.y, surface.stride,
-		0, 0, surface.x, surface.y,
-		0, 0, surface.x, surface.y,
-		0, 0);
+				fb->waitVSync();
+				fb->setOffset(getSurfaceOffset(surface));
+				rotateSurfaces();
+			}
+			else
+#endif
+			{
+				fb->waitVSync();
+				fb->setOffset(getSurfaceOffset(surface));
+
+				rotateSurfaces();
+
+#if defined(DREAMBCM_ION_ACCEL)
+				if (pagecopy_enabled)
+				{
+#endif
+				bcm_accel_blit(
+					surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride, 0,
+					surface.data_phys, surface.x, surface.y, surface.stride,
+					0, 0, surface.x, surface.y,
+					0, 0, surface.x, surface.y,
+					0, 0);
+#if defined(DREAMBCM_ION_ACCEL)
+					if (gAccel::getInstance())
+					{
+						gAccel::getInstance()->dreamBCMPagecopyStat();
+						gAccel::getInstance()->sync();
+					}
+				}
+#endif
+			}
 		}
 #elif defined(DREAMNEXTGEN)
 		if (surface_back.data_phys && surface.data)
@@ -235,7 +294,7 @@ void gFBDC::exec(const gOpcode *o)
 
 			const int copy_bytes = surface.stride * surface.y;
 			if (copy_bytes > 0)
-			std::memcpy(surface.data, surface_back.data, copy_bytes);
+				std::memcpy(surface.data, surface_back.data, copy_bytes);
 		}
 #endif
 #if defined(CONFIG_HISILICON_FB)
