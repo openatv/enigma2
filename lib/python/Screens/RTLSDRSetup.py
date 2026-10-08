@@ -60,7 +60,7 @@ class RTLSDRSetup(Setup):
 			(_("Common settings"),),
 			((_("Show DAB+ slideshow"), 1), config.dab.slideshow,
 				_("Replace the static radio background with pictures transmitted by the current DAB+ station.")),
-			((_("DAB+ audio decoding"), 1), config.dab.audioMode,
+			((_("Audio decoding"), 1), config.dab.audioMode,
 				_("Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path.")),
 			((_("Clear before scan"), 1), config.dab.clearBeforeScan,
 				_("Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."))
