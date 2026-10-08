@@ -18,6 +18,16 @@ int CFile::parseIntHex(int *result, const char *fileName)
 	return 0;
 }
 
+int CFile::parseUint32Hex(uint32_t *result, const char *filename)
+{
+	CFile f(filename, "r");
+	if (!f)
+		return -1;
+	if (fscanf(f, "0x%x", result) != 1)
+		return -2;
+	return 0;
+}
+
 int CFile::parseInt(int *result, const char *fileName)
 {
 	CFile f(fileName, "r");
@@ -44,6 +54,14 @@ int CFile::writeIntHex(const char *fileName, int value)
 	if (!f)
 		return -1;
 	return fprintf(f, "%x", value);
+}
+
+int CFile::writeUint32Hex(const char *filename, uint32_t value)
+{
+	CFile f(filename, "w");
+	if (!f)
+		return -1;
+	return fprintf(f, "0x%x", value);
 }
 
 int CFile::writeInt(const char *fileName, int value)

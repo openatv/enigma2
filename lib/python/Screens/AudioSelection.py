@@ -95,6 +95,9 @@ class AudioSelection(ConfigListScreen, Screen):
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO, ""), (PAGE_SUBTITLES, "")]
 		self.settings.menupage = ConfigSelection(choices=choicelist, default=page)
+		self.focus = FOCUS_STREAMS
+		self["streams"].onSelectionChanged.append(self.updateSummary)
+		self["config"].onSelectionChanged.append(self.updateSummary)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def runHooks(self, type):
@@ -113,7 +116,6 @@ class AudioSelection(ConfigListScreen, Screen):
 
 	def __layoutFinished(self):
 		self["config"].instance.setSelectionEnable(False)
-		self.focus = FOCUS_STREAMS
 		self.settings.menupage.addNotifier(self.fillList)
 
 	def fillList(self, arg=None):
@@ -397,9 +399,29 @@ class AudioSelection(ConfigListScreen, Screen):
 
 		self["streams"].list = streams
 		self["streams"].setIndex(selectedidx)
+		self.updateSummary()
 
 	def __updatedInfo(self):
 		self.fillList()
+
+	def getCurrentEntry(self):
+		if self.focus == FOCUS_STREAMS:
+			current = self["streams"].getCurrent()
+			return f"{current[2]} {current[4]}" if current else ""
+		return ConfigListScreen.getCurrentEntry(self)
+
+	def getCurrentValue(self):
+		if self.focus == FOCUS_STREAMS:
+			current = self["streams"].getCurrent()
+			return current[3] if current else ""
+		current = self["config"].getCurrent()
+		return ConfigListScreen.getCurrentValue(self) if current and len(current) > 1 else ""
+
+	def updateSummary(self):
+		entry = self.getCurrentEntry()
+		value = self.getCurrentValue()
+		self["summary_description"].setText(f"{entry} {value}" if entry and value else entry or value)
+		self.changedEntry()
 
 	def getSubtitleList(self):
 		service = self.session.nav.getCurrentService()
@@ -496,6 +518,16 @@ class AudioSelection(ConfigListScreen, Screen):
 	def setAudioSource(self, audiosource):
 		config.av.audio_source.setValue(audiosource.value)
 		config.av.audio_source.save()
+		# Apply immediately so PCM/SPDIF/BT switches without a zap.
+		# audio_source: 0=PCM, 1=SPDIF, 2=BT
+		try:
+			val = str(audiosource.value)
+			with open("/sys/class/amhdmitx/amhdmitx0/audio_source", "w") as f:
+				f.write(val)
+			with open("/sys/class/amhdmitx/amhdmitx0/config", "w") as f:
+				f.write("audio_off" if val in ("1", "2") else "audio_on")
+		except Exception as e:
+			print("[AudioSelection][setAudioSource] failed:", e)
 
 	def setDTSHD(self, downmix):
 		config.av.dtshd.setValue(downmix.value)
@@ -541,18 +573,23 @@ class AudioSelection(ConfigListScreen, Screen):
 
 	def keyLeft(self):
 		if self.focus == FOCUS_CONFIG:
-			ConfigListScreen.keyLeft(self)
+			current = self["config"].getCurrent()
+			if current and len(current) > 1:
+				ConfigListScreen.keyLeft(self)
+				self.updateSummary()
 		elif self.focus == FOCUS_STREAMS:
 			self.keyAudioSubtitle()
 
 	def keyRight(self, config=False):
 		if config or self.focus == FOCUS_CONFIG:
-			if self.settings.menupage.value == PAGE_AUDIO and self["config"].getCurrent()[2]:
-				self["config"].getCurrent()[2]()
+			current = self["config"].getCurrent()
+			if self.settings.menupage.value == PAGE_AUDIO and current and len(current) > 2 and current[2]:
+				current[2]()
 			elif self.settings.menupage.value == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0):
 				self.session.open(QuickSubtitlesConfigMenu, self.infobar)
-			else:
+			elif current and len(current) > 1:
 				ConfigListScreen.keyRight(self)
+			self.updateSummary()
 
 		if self.focus == FOCUS_STREAMS and config is False:
 			self.keyAudioSubtitle()
@@ -595,14 +632,17 @@ class AudioSelection(ConfigListScreen, Screen):
 		if self.focus == FOCUS_CONFIG:
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif self.focus == FOCUS_STREAMS:
-			if self["streams"].getIndex() == 0:
+			if self["streams"].getIndex() == 0 or not self["streams"].list:
+				if not self["config"].getList():
+					return
 				self["switchdescription"].hide()
 				self["key_left"].hide()
 				self["key_right"].hide()
 				self["config"].instance.setSelectionEnable(True)
 				self["streams"].style = "notselected"
-				self["config"].setCurrentIndex(len(self["config"].getList()) - 1)
 				self.focus = FOCUS_CONFIG
+				self["config"].setCurrentIndex(len(self["config"].getList()) - 1)
+				self.updateSummary()
 			else:
 				self["streams"].selectPrevious()
 
@@ -617,6 +657,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				self["config"].instance.setSelectionEnable(False)
 				self["streams"].style = "default"
 				self.focus = FOCUS_STREAMS
+				self.updateSummary()
 		elif self.focus == FOCUS_STREAMS:
 			self["streams"].selectNext()
 

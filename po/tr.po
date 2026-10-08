@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-10-06 10:36+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1718,9 +1718,6 @@ msgstr ""
 "Şu anda kayıt işlemi devam ediyor.\n"
 "Ne yapmak istersiniz?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Şu anda bir kayıt işlemi devam etmektedir. Lütfen tarama işlemine başlamadan önce kaydı durdurun."
-
 #
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Şu anda bir kayıt işlemi devam etmektedir. Uydu bulucu uygulamasını çalıştırmadan önce lütfen kaydı durdurun."
@@ -3061,6 +3058,9 @@ msgstr "Kanallar için otomatik tarama"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Zaman kaydırma işlemi otomatik olarak şu süreden sonra başlatılır"
@@ -4710,9 +4710,6 @@ msgstr "Ağ testini kapat"
 msgid "Close network test and exit all menus"
 msgstr "Ağ testini kapat ve tüm menülerden çık"
 
-msgid "Close screen"
-msgstr "Ekranı kapat"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Chkroot Çoklu Önyükleme Yöneticisini kapat"
 
@@ -4734,26 +4731,26 @@ msgstr "Başlangıç noktasına döndükten sonra Arama Çubuğunu kapat"
 msgid "Close the choice box"
 msgstr "Seçim kutusunu kapat"
 
-msgid "Close the current screen"
-msgstr "Geçerli ekranı kapat"
-
 msgid "Close the documentation screen"
 msgstr "Belge ekranını kapat"
 
 msgid "Close the screen"
 msgstr "Ekranı kapat"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Ekranı kapat ve tüm menülerden çık"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Herhangi bir değişiklik kaydetmeden ekranı kapatın"
 
 msgid "Close the window"
 msgstr "Pencereyi kapat"
-
-msgid "Close this screen"
-msgstr "Bu ekranı kapat"
 
 #
 msgid "Close title selection"
@@ -5265,9 +5262,6 @@ msgstr "Ekran arayüzünde ve LCD arayüzünde yer alan 'kayıt' simgesinin yaln
 msgid "Configure which color format should be used on the SCART output."
 msgstr "SCART çıkışında hangi renk formatının kullanılacağını belirleyin."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Birden fazla tuner mevcut olduğunda, kayıtlar için hangi tunerin tercih edileceğini yapılandırın."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Aynı kanalın farklı tuner türlerinde olması durumunda hangi tunerin tercih edileceğini belirleyin."
 
@@ -5679,6 +5673,9 @@ msgstr "Bir dizin oluştur"
 msgid "Create a randomly generated password"
 msgstr "Rastgele üretilmiş bir şifre oluştur"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -6006,7 +6003,7 @@ msgstr "DAB+ USB desteği yüklendi. Artık alıcı ayarlarından bu özelliği 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: buket yazılamadı"
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr "DAB+ ses kod çözme"
 
 msgid "DAB+ channel"
@@ -7530,6 +7527,9 @@ msgstr "Sürücü ve çekirdek bilgileri"
 msgid "Drivers version"
 msgstr "Sürücü sürümü"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Dubleks"
 
@@ -7958,7 +7958,7 @@ msgid "Enable auto fast scan"
 msgstr "Otomatik hızlı kanal taramayı etkinleştir"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "%s için otomatik hızlı kanal taramayı etkinleştir"
 
 msgid "Enable automatic shares"
@@ -8619,6 +8619,9 @@ msgstr ""
 "Hata: %s\n"
 "Tekrar denensin mi?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Şu anda bir kayıt işlemi devam etmektedir. Lütfen tarama işlemine başlamadan önce kaydı durdurun."
+
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Hata: Boş dosya adı geçersizdir!"
@@ -8696,6 +8699,9 @@ msgstr "Hata: '%s' dizini kaldırılamadı! (Belki dizin boş değildir.)"
 msgid "Error: Rescan failed!"
 msgstr "Hata: Yeniden tarama başarısız oldu!"
 
+msgid "Error: Scan failed!"
+msgstr "Tarama başarısız oldu!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Hata: '%s' komut dosyasının çalıştırılabilmesi için okuma iznine sahip olması gerekir!"
@@ -8734,12 +8740,27 @@ msgstr "Hata: '%s' yazarken bir sorun oluştu!"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Hata: Kaynakların sıfırlanmasında bir sorun oluştu! Lütfen %s %s cihazını yeniden başlatın ve bu komutu tekrar denemeden önce dosya sisteminde herhangi bir hata olup olmadığını kontrol edin."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr "Ek STARTUP dosyaları oluşturulamadı."
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr "Yeni üretici STARTUP dosyaları oluşturulamadı."
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Hata: Hedef cihazda (örneğin USB bellek veya sabit disk) gerekli dizinler oluşturulamadı! Lütfen cihazı doğrulayın ve tekrar deneyin."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr "Yeni MultiBoot bölümünün UUID'si okunamıyor. STARTUP dosyalarında herhangi bir değişiklik yapılmamıştır."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Hata: '%s' dizini '%s' olarak yeniden adlandırılamıyor!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr "Ses kanalı seçilemiyor."
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -9220,6 +9241,14 @@ msgstr "İleri ve Geri Sarma"
 msgid "Fast Scan"
 msgstr "Hızlı Tarama"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+
 msgid "Fast Skin Reload"
 msgstr "Hızlı Arayüz Yenileme"
 
@@ -9232,6 +9261,9 @@ msgstr "Hızlı ileri sarma"
 
 msgid "Fast forward speeds"
 msgstr "Hızlı ileri sarma hızları"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 #
 msgid "Favorite Edit"
@@ -10801,6 +10833,9 @@ msgstr "DVB-T ad alanı alt ağını yok say"
 msgid "Ignore Standby"
 msgstr "Bekleme modunu yok say"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Beklenmedik şekilde uyanmayı yok say ve bekleme modunda kal"
 
@@ -11960,11 +11995,6 @@ msgstr "Depolama Cihazlarının Listesi"
 msgid "List of storage devices"
 msgstr "Depolama cihazları listesi"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Liste sürümü %d, %d kanal bulundu"
-
 msgid "List/Fav"
 msgstr "Liste/Favoriler"
 
@@ -12983,9 +13013,6 @@ msgstr "İlk öğeye/ekrana geç"
 msgid "Move to first line"
 msgstr "İlk satıra git"
 
-msgid "Move to first line / screen"
-msgstr "İlk satıra / ekrana git"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Paneldeki ilk satıra/ekrana git"
 
@@ -12997,9 +13024,6 @@ msgstr "Son öğeye/ekrana geç"
 
 msgid "Move to last line"
 msgstr "Son satıra taşı"
-
-msgid "Move to last line / screen"
-msgstr "Son satıra / ekrana taşı"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Paneldeki son satıra/ekrana taşı"
@@ -13319,6 +13343,12 @@ msgstr "NTSC"
 #
 msgid "Name"
 msgstr "İsim"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "İsim artan"
@@ -17916,7 +17946,7 @@ msgid "Scanning"
 msgstr "Tarama"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "%s taranıyor..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17938,9 +17968,6 @@ msgstr[0] "Tarama tamamlandı, %d kanal bulundu"
 msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Tarama tamamlandı, %d kanal bulundu."
-
-msgid "Scanning failed!"
-msgstr "Tarama başarısız oldu!"
 
 msgid "Scanning for shares..."
 msgstr "Paylaşımlar taranıyor..."
@@ -18696,6 +18723,9 @@ msgstr "Bekleme durumuna ilişkin planlamanın nasıl ele alınacağını seçin
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Hızlı EPG modunu nasıl etkinleştireceğinizi seçin."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Alıcınızın nasıl yükseltileceğini seçin."
 
@@ -19000,6 +19030,9 @@ msgstr "Ekran koruyucunun görüntülenmesinden önce ne kadar süreyle işlem y
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Bu zamanlayıcının etkinleştirilebileceği bitiş zamanını seçin. Bu zamandan sonra, diğer koşullar sağlansa bile zamanlayıcı etkinleştirilmeyecektir."
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -19178,9 +19211,6 @@ msgstr "Dosya satırları için sıralama düzenini seçin:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Uzantı menüsü girişlerinin sıralama düzenini seçin."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Eklentiler Listesi menü öğelerinin sıralama düzenini seçin. Kullanıcı tanımlı ayar, menü öğelerinin gizlenmesine de olanak tanır."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Eklentiler Listesi menü öğelerinin sıralama düzenini seçin. Kullanıcı tanımlı ayar, menü öğelerinin gizlenmesine de olanak tanır."
 
@@ -19226,8 +19256,14 @@ msgstr "Bölge veya alan içindeki saat dilimini seçin."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Yedek uzak alıcıdan varsayılan olarak zamanlayıcı seçin"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Motorlu anteni kontrol eden tuneri seçin."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "SCR cihazının sinyal kablosunun bağlı olduğu tuneri seçin."
@@ -19359,9 +19395,6 @@ msgstr "Ülkenizi seçin. Eğer ülke mevcut değilse 'Tümünü' seçin."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Sağlayıcınızı ve bölgenizi seçin. Bu listede yoksa, diğer 'Kanal tarama türlerinden' birini seçmeniz gerekecektir."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Sağlayıcınızı seçin ve taramayı başlatmak için OK tuşuna basın"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Bölgenizi seçin. Eğer bölge mevcut değilse, 'Ülke'yi 'Tüm' olarak değiştirin ve varsayılan seçeneklerden birini seçin."
@@ -21446,11 +21479,11 @@ msgstr "EPG listesini sırala"
 msgid "Sort Extension Menu"
 msgstr "Uzantı menüsü sıralama düzeni"
 
-msgid "Sort Plugin Browser"
-msgstr "Eklentiler listesi sıralama düzeni"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Eklentiler Listesi girişlerini sırala"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Göre sırala"
@@ -21635,6 +21668,12 @@ msgstr "Önyükleme Başlatma Sıklığı"
 msgid "Start RDS interactive"
 msgstr "RDS etkileşimini başlat"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Başlatma Sihirbazı"
 
@@ -21692,6 +21731,9 @@ msgstr "Kexec başlatma işlemini başlatın"
 
 msgid "Start the backup of the selected image"
 msgstr "Seçilen yazılımın yedeklemesini başlatın"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Vurgulanan eklentiyi başlatın"
@@ -24188,17 +24230,8 @@ msgstr "Ukraynaca"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr "Ek STARTUP dosyaları oluşturulamadı."
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
-msgstr "Yeni üretici STARTUP dosyaları oluşturulamadı."
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s!"
@@ -24221,9 +24254,6 @@ msgstr "Tuner (%d) açılamadı"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr "Yeni MultiBoot bölümünün UUID'si okunamıyor. STARTUP dosyalarında herhangi bir değişiklik yapılmamıştır."
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Üreticiye ait '%s' STARTUP dosyasını okuyamadı."
@@ -24242,9 +24272,6 @@ msgstr "Ağ yapılandırması kaydedilemiyor."
 
 msgid "Unable to save network mount configuration!"
 msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
-msgstr "Ses kanalı seçilemiyor."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ kaynağı başlatılamıyor"
@@ -24674,10 +24701,10 @@ msgstr "Açıklama satırlarını kullanın"
 msgid "Use extended List"
 msgstr "Genişletilmiş Listeyi kullan"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Hızlı tarama kanal isimleri kullan"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Hızlı tarama kanal numaralama kullan"
 
 msgid "Use for load only x days in EPG."
@@ -24738,6 +24765,9 @@ msgstr "Ayırıcı çizgiler kullanın"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "#KANAL satır numaralarının LCN ile eşleşmesini sağlamak için, buketi doldurmak üzere ayırıcı çizgiler kullanın."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Ekranda gösterim yüksekliğini ayarlamak için uzaktan kumandanızdaki SOL/SAĞ tuşlarını kullanın. SOL tuş yüksekliği azaltır, SAĞ tuş ise yüksekliği artırır."
 
@@ -24773,6 +24803,9 @@ msgstr "Yedeklenecek kurulu yazılımı seçmek için YUKARI/AŞAĞI tuşların�
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Alternatif veya klasik radyo modunu kullanın."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Geçerli seçimi kullan ve çık"
@@ -26708,10 +26741,6 @@ msgstr "ay"
 msgid "move"
 msgstr "taşı"
 
-#
-msgid "multi"
-msgstr "çoklu"
-
 msgid "n/a"
 msgstr "yok"
 
@@ -27063,6 +27092,42 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Ekranı kapat"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Geçerli ekranı kapat"
+
+#~ msgid "Close this screen"
+#~ msgstr "Bu ekranı kapat"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Birden fazla tuner mevcut olduğunda, kayıtlar için hangi tunerin tercih edileceğini yapılandırın."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Liste sürümü %d, %d kanal bulundu"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "İlk satıra / ekrana git"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Son satıra / ekrana taşı"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Eklentiler Listesi menü öğelerinin sıralama düzenini seçin. Kullanıcı tanımlı ayar, menü öğelerinin gizlenmesine de olanak tanır."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Sağlayıcınızı seçin ve taramayı başlatmak için OK tuşuna basın"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Eklentiler listesi sıralama düzeni"
+
+#
+#~ msgid "multi"
+#~ msgstr "çoklu"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Yedek uzak alıcıda '/etc/enigma2/epg.dat' dosyasına yazma işleminde hata oluştu!"

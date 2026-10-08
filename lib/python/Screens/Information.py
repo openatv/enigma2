@@ -8,8 +8,6 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from twisted.internet.defer import Deferred
-
 from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
@@ -91,12 +89,12 @@ class InformationBase(Screen):
 			"close": (self.keyCloseRecursive, _("Close the screen and exit all menus")),
 			"save": (self.refreshInformation, _("Refresh the screen")),
 			"ok": (self.refreshInformation, _("Refresh the screen")),
-			"top": (self["information"].goTop, _("Move to first line / screen")),
+			"top": (self["information"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["information"].goPageUp, _("Move up a screen")),
 			"up": (self["information"].goLineUp, _("Move up a line")),
 			"down": (self["information"].goLineDown, _("Move down a line")),
 			"pageDown": (self["information"].goPageDown, _("Move down a screen")),
-			"bottom": (self["information"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["information"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
 		self.informationColors = ["H", "S", "P", "V", "M", "F"]
 		self.informationColor = {
@@ -748,14 +746,14 @@ class InformationGeolocation(InformationBase):
 		self.geolocationData = None
 
 	def fetchInformation(self):
-		self.informationTimer.stop()
-		Deferred.fromCoroutine(self.fetchGeolocation())
+		def fetchInformationCallback(geolocationData):
+			self.geolocationData = geolocationData
+			for callback in self.onInformationUpdated:
+				if callable(callback):
+					callback()
 
-	async def fetchGeolocation(self):
-		self.geolocationData = await geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self)
-		for callback in self.onInformationUpdated:
-			if callable(callback):
-				callback()
+		self.informationTimer.stop()
+		geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self, callback=fetchInformationCallback)
 
 	def displayInformation(self):
 		info = []
@@ -991,10 +989,9 @@ class InformationNetwork(InformationBase):
 		self.geolocationData = []
 
 	def keyUseGeolocation(self):
-		Deferred.fromCoroutine(self.fetchGeolocation())
+		geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
 
-	async def fetchGeolocation(self):
-		geolocationData = await geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self)
+	def fetchGeolocationCallback(self, geolocationData):
 		info = []
 		if geolocationData.get("status", None) == "success":
 			info.append("")
@@ -2276,28 +2273,6 @@ class InformationTuner(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Tuner Information"
-
-
-class InformationTesting(InformationBase):
-	def __init__(self, session):
-		InformationBase.__init__(self, session)
-		self.setTitle(_("Testing Information"))
-		self.skinName.insert(0, "InformationTesting")
-		self.skinName.insert(1, "TestingInformation")
-		self.slotImages = None
-
-	def displayInformation(self):
-		html = remoteControl.getOpenWebifHTML()
-		if html is None:
-			html = "OpenWebif HTML file isn't available."
-		self["information"].setText(html)
-		# info = []
-		# for index in range(1, 24):
-		# 	info.append("This is test line %d." % index)
-		# self["information"].setText("\n".join(info))
-
-	def getSummaryInformation(self):
-		return "Testing Information Data"
 
 
 class InformationSummary(ScreenSummary):

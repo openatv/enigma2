@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-09-01 07:02+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1704,9 +1704,6 @@ msgstr ""
 "Μια εγγραφή είναι σε εξέλιξη.\n"
 "Τι θέλετε να γίνει;"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να σταματήσετε την εγγραφή πριν την ανίχνευση."
-
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Μία εγγραφή βρίσκεται σε εξέλιξη. Σταματήστε την εγγραφή πριν ξεκινήσετε την εύρεση σήματος."
 
@@ -2978,6 +2975,9 @@ msgstr "Αυτόματη ανίχνευση υπηρεσιών"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Θέστε αυτόματα την TV σε αναμονή κάθε φορά που ο δέκτης μεταβαίνει σε κατάσταση κοινής ή βαθιάς αναμονής."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Αυτόματη εκκίνηση της χρονομετατόπισης μετά από"
@@ -4570,9 +4570,6 @@ msgstr "Κλείσιμο δοκιμής δικτύου"
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Κλείσιμο οθόνης"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Κλείσιμο διαχείρισης πολλαπλής εκκίνησης Chkroot"
 
@@ -4594,26 +4591,26 @@ msgstr "Κλείσιμο της μπάρας αναζήτησης μετά τη�
 msgid "Close the choice box"
 msgstr "Κλείσιμο του παραθύρου επιλογών"
 
-msgid "Close the current screen"
-msgstr "Κλείσιμο τρέχουσας οθόνης"
-
 msgid "Close the documentation screen"
 msgstr "Κλείσιμο οθόνης τεκμηρίωσης"
 
 msgid "Close the screen"
 msgstr "Κλείσιμο παραθύρου"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Κλείσιμο οθόνης και έξοδος από όλα τα μενού"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Κλείσιμο οθόνης χωρίς αποθήκευση αλλαγών"
 
 msgid "Close the window"
 msgstr "Κλείσιμο παραθύρου"
-
-msgid "Close this screen"
-msgstr "Κλείσιμο αυτής της οθόνης"
 
 msgid "Close title selection"
 msgstr "Κλείσιμο επιλογής τίτλου"
@@ -5110,9 +5107,6 @@ msgstr "Ρυθμίστε αν το σύμβολο 'εγγραφής' (στην �
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Ρυθμίστε ποιο φορμά χρώματος θα χρησιμοποιείται στην έξοδο SCART."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Ρυθμίστε ποιο tuner θα επιλέγεται για εγγραφές, όταν περισσότερα του ενός είναι διαθέσιμα."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Ρυθμίστε ποιο tuner θα προτιμάται, όταν η ίδια υπηρεσία είναι διαθέσιμη σε διαφορετικούς τύπους tuner."
 
@@ -5499,6 +5493,9 @@ msgstr "Δημιουργία φακέλου"
 msgid "Create a randomly generated password"
 msgstr "Δημιουργία τυχαίου κωδικού πρόσβασης"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -5814,7 +5811,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -7273,6 +7270,9 @@ msgstr "Πληροφορίες οδηγού και kernel"
 msgid "Drivers version"
 msgstr "Έκδοση οδηγών"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Διπλότυπο"
 
@@ -7682,7 +7682,7 @@ msgid "Enable auto fast scan"
 msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Ενεργοποίηση αυτόματης γρήγορης ανίχνευσης για το %s"
 
 msgid "Enable automatic shares"
@@ -8331,6 +8331,9 @@ msgstr ""
 "Σφάλμα: %s\n"
 "Προσπάθεια ξανά;"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να σταματήσετε την εγγραφή πριν την ανίχνευση."
+
 msgid "Error: An empty filename is illegal!"
 msgstr "Σφάλμα: Ένα κενό όνομα αρχείου δεν είναι έγκυρο!"
 
@@ -8403,6 +8406,9 @@ msgstr "Σφάλμα: Η διαγραφή του φακέλου '%s' απέτυ�
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "Η ανίχνευση απέτυχε!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Σφάλμα: Η δέσμη ενεργειών '%s' πρέπει να έχει δικαίωμα ανάγνωσης για να μπορέσει να εκτελεστεί!"
@@ -8440,12 +8446,27 @@ msgstr "Σφάλμα: Παρουσιάστηκε πρόβλημα με την ε
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Σφάλμα: Παρουσιάστηκε πρόβλημα στην επαναφορά των πηγών. Επανεκκινήστε τον %s %s και ελέγξτε το σύστημα αρχείων για τυχόν σφάλματα πριν εκτελέσετε ξανά αυτή την εντολή."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Σφάλμα: αδυναμία δημιουργίας των απαιτούμενων φακέλων στη συσκευή προρισμού (π.χ. USB στικ ή σκληρό δίσκο)! Παρακαλώ επαληθεύστε τη συσκευή και δοκιμάστε ξανά."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Σφάλμα: Αδυναμία μετονομασίας του φακέλου '%s' σε '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8903,6 +8924,15 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "Γρήγορη ανίχνευση"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -8914,6 +8944,9 @@ msgstr "Προώθηση εμπρός"
 
 msgid "Fast forward speeds"
 msgstr "Ταχύτητες προώθησης εμπρός"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "[Επεξεργασία αγαπημένου]"
@@ -10423,6 +10456,9 @@ msgstr "Αγνόηση του υπο-δικτύου στον χώρο ονόμα
 msgid "Ignore Standby"
 msgstr "Αγνόηση κατάστασης αναμονής"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Αγνόηση της ξαφνικής αφύπνισης και παραμονή σε αναμονή"
 
@@ -11529,12 +11565,6 @@ msgstr "Λίστα συσκευών αποθήκευσης"
 msgid "List of storage devices"
 msgstr "Λίστα μέσων αποθήκευσης"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Έκδοση λίστας %d, βρέθηκε %d κανάλι"
-msgstr[1] "Έκδοση λίστας %d, βρέθηκαν %d κανάλια"
-
 msgid "List/Fav"
 msgstr "Λίστα/Αγαπημένα"
 
@@ -12509,9 +12539,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr "Μετακίνηση στην πρώτη γραμμή"
 
-msgid "Move to first line / screen"
-msgstr "Μετακίνηση στην πρώτη γραμμή / οθόνη"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Μετακίνηση στην πρώτη γραμμή / οθόνη στον πίνακα"
 
@@ -12523,9 +12550,6 @@ msgstr ""
 
 msgid "Move to last line"
 msgstr "Μετακίνηση στην τελευταία γραμμή"
-
-msgid "Move to last line / screen"
-msgstr "Μετακίνηση στην τελευταία γραμμή / οθόνη"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Μετακίνηση στην τελευταία γραμμή / οθόνη στον πίνακα"
@@ -12822,6 +12846,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Όνομα"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Αύξουσα ονομασία"
@@ -17186,7 +17216,7 @@ msgid "Scanning"
 msgstr "Ανίχνευση"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Ανίχνευση %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17210,9 +17240,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Η ανίχνευση ολοκληρώθηκε, βρέθηκε %d υπηρεσία."
 msgstr[1] "Η ανίχνευση ολοκληρώθηκε, βρέθηκαν %d υπηρεσίες."
-
-msgid "Scanning failed!"
-msgstr "Η ανίχνευση απέτυχε!"
 
 msgid "Scanning for shares..."
 msgstr ""
@@ -17953,6 +17980,9 @@ msgstr "Επιλογή του τρόπου χειρισμού του προγρ�
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Επιλογή του τρόπου ενεργοποίησης λειτουργίας του γρήγορου EPG."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Επιλογή του τρόπου αναβάθμισης του δέκτη σας."
 
@@ -18253,6 +18283,9 @@ msgstr "Ρύθμιση της διάρκειας σε λεπτά πριν την
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Επιλογή του χρόνου λήξης πριν από τον οποίο θα ενεργοποιείται αυτός ο χρονοδιακόπτης. Μετά το πέρας αυτού του χρόνου, ο χρονοδιακόπτης δεν θα ενεργοποιείται, ακόμα και αν συντρέχουν διαφορετικές συνθήκες."
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18430,9 +18463,6 @@ msgstr "Επιλογή σειράς ταξινόμησης για τις γρα�
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Επιλογή της σειράς ταξινόμησης των στοιχείων του μενού επεκτάσεων."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Επιλογή της σειράς ταξινόμησης των στοιχείων του πλοηγού προσθέτων. Αν είναι ορισμένη από τον χρήστη, επιτρέπεται επίσης και η απόκρυψή τους."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Επιλογή της σειράς ταξινόμησης των στοιχείων του πλοηγού προσθέτων. Αν είναι ορισμένη από τον χρήστη, επιτρέπεται επίσης και η απόκρυψή τους."
 
@@ -18478,8 +18508,14 @@ msgstr "Επιλογή της χρονικής ζώνης εντός της αν
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του χρονοδιακόπτη από το εφεδρικό tuner"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Επιλέξτε το tuner που ελέγχει το μοτέρ που κινεί το κάτοπτρο."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Επιλέξτε το tuner στο οποίο είναι συνδεδεμένο το καλώδιο σήματος της SCR συσκευής σας."
@@ -18609,9 +18645,6 @@ msgstr "Επιλέξτε τη χώρα σας. Αν δεν είναι διαθέ
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Επιλέξτε τον πάροχο και την περιοχή σας. Αν δεν υπάρχουν στη λίστα θα χρειαστεί να επιλέξετε άλλον από το 'τύποι ανίχνευσης υπηρεσιών'."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Επιλέξτε πάροχο, και πιέστε ΟΚ για να ξεκινήσει η ανίχνευση"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Επιλέξτε την περιοχή σας. Αν δεν είναι διαθέσιμη αλλάξτε τη χώρα σε 'όλες' και επιλέξτε μία από τις προρυθμισμένες εναλλακτικές."
@@ -20627,11 +20660,11 @@ msgstr "Ταξινόμηση της λίστας EPG"
 msgid "Sort Extension Menu"
 msgstr "Σειρά ταξινόμησης στοιχείων επεκτάσεων"
 
-msgid "Sort Plugin Browser"
-msgstr "Ταξινόμηση πλοηγού προσθέτων"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Ταξινόμηση των στοιχείων του πλοηγού προσθέτων"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Ταξινόμηση ανά"
@@ -20807,6 +20840,12 @@ msgstr "Συχνότητα εκκίνησης"
 msgid "Start RDS interactive"
 msgstr "Εμφάνιση διαδραστικού RDS"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Οδηγός εκκίνησης"
 
@@ -20863,6 +20902,9 @@ msgstr "Εκκίνηση αρχικοποίησης kexec"
 
 msgid "Start the backup of the selected image"
 msgstr "Εκκίνηση εφεδρείας του επιλεγμένου image"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Εκκίνηση του επιλεγμένου πρόσθετου"
@@ -23250,16 +23292,7 @@ msgstr "Ουκρανικά"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr ""
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
@@ -23283,9 +23316,6 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr ""
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23303,9 +23333,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23722,10 +23749,10 @@ msgstr "Χρήση γραμμών περιγραφής"
 msgid "Use extended List"
 msgstr "Χρήση εκτεταμένης λίστας"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Χρήση ονομάτων γρήγορης ανίχνευσης"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Χρήση αριθμοδότησης γρήγορης ανίχνευσης"
 
 msgid "Use for load only x days in EPG."
@@ -23785,6 +23812,9 @@ msgstr "Χρήση γραμμών διαστήματος"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Χρήση γραμμών διαστήματος εμβόλιμα στο μπουκέτο ώστε οι αριθμοί των γραμμών #SERVICE να ταιριάζουν με το LCN."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Χρησιμοποιήστε τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στο τηλεχειριστήριο για να ρυθμίσετε το ύψος του OSD. Το ΑΡΙΣΤΕΡΟ μειώνει το ύψος, το ΔΕΞΙ το αυξάνει."
 
@@ -23820,6 +23850,9 @@ msgstr "Χρησιμοποιήστε τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ γ�
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Χρήση της εναλλακτικής ή της κλασσικής λειτουργίας ραδιοφώνου."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Χρήση της τρέχουσας επιλογής και έξοδος"
@@ -25665,9 +25698,6 @@ msgstr "μήνας"
 msgid "move"
 msgstr "μετακίνηση"
 
-msgid "multi"
-msgstr "πολλαπλό"
-
 msgid "n/a"
 msgstr "μ/δ"
 
@@ -25978,6 +26008,42 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Κλείσιμο οθόνης"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Κλείσιμο τρέχουσας οθόνης"
+
+#~ msgid "Close this screen"
+#~ msgstr "Κλείσιμο αυτής της οθόνης"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Ρυθμίστε ποιο tuner θα επιλέγεται για εγγραφές, όταν περισσότερα του ενός είναι διαθέσιμα."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Έκδοση λίστας %d, βρέθηκε %d κανάλι"
+#~ msgstr[1] "Έκδοση λίστας %d, βρέθηκαν %d κανάλια"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Μετακίνηση στην πρώτη γραμμή / οθόνη"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Μετακίνηση στην τελευταία γραμμή / οθόνη"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Επιλογή της σειράς ταξινόμησης των στοιχείων του πλοηγού προσθέτων. Αν είναι ορισμένη από τον χρήστη, επιτρέπεται επίσης και η απόκρυψή τους."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Επιλέξτε πάροχο, και πιέστε ΟΚ για να ξεκινήσει η ανίχνευση"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Ταξινόμηση πλοηγού προσθέτων"
+
+#~ msgid "multi"
+#~ msgstr "πολλαπλό"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Σφάλμα εγγραφής του '/etc/enigma2/epg.dat' στον απομακρυσμένο δέκτη!"

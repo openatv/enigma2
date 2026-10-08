@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-08-16 15:58+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1709,9 +1709,6 @@ msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
-
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
 
@@ -2978,6 +2975,9 @@ msgstr "Hier kunt u automatisch naar zenders zoeken"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatisch de TV in Stand-by zetten wanneer de ontvanger naar Stand-by gaat of wordt uitgeschakeld."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Timeshift automatisch starten na"
@@ -4577,9 +4577,6 @@ msgstr ""
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Sluit het scherm"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Chkroot MultiBoot Manager sluiten"
 
@@ -4601,26 +4598,26 @@ msgstr ""
 msgid "Close the choice box"
 msgstr "Keuzemenu sluiten"
 
-msgid "Close the current screen"
-msgstr "Sluit het huidige scherm"
-
 msgid "Close the documentation screen"
 msgstr ""
 
 msgid "Close the screen"
 msgstr "Dit scherm sluiten"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Dit scherm sluiten en exit uit alle menu's"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Dit scherm afsluiten zonder de wijzigingen op te slaan"
 
 msgid "Close the window"
 msgstr "Sluit het venster"
-
-msgid "Close this screen"
-msgstr "Dit scherm sluiten"
 
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
@@ -5213,12 +5210,6 @@ msgstr "Stel in of het opname symbool (in de skin en op het display) alleen zich
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Stel in welk kleurformaat gebruikt wordt bij weergave via de scart."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr ""
-"Met deze optie stelt u in welke tuner de voorkeurstuner is voor opnames indien er meerdere tuners beschikbaar zijn.\n"
-"\n"
-"U kunt, afhankelijk van het aantal beschikbare tuners, kiezen uit Automatisch of de Handmatig door u gekozen tuner."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Bepaal welk tunertype de voorkeur heeft, als dezelfde zender beschikbaar is voor verschillende tuners."
 
@@ -5613,6 +5604,9 @@ msgstr "Een map aanmaken"
 msgid "Create a randomly generated password"
 msgstr "Maak een willekeurig wachtwoord aan"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -5925,7 +5919,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -7394,6 +7388,9 @@ msgstr "Driver en kernel informatie"
 msgid "Drivers version"
 msgstr "Drivers versie"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7803,7 +7800,7 @@ msgid "Enable auto fast scan"
 msgstr "Auto Fastscan inschakelen"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Activeer snelle auto scan voor %s"
 
 msgid "Enable automatic shares"
@@ -8462,6 +8459,9 @@ msgstr ""
 "Fout: %s\n"
 "Opnieuw?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
+
 msgid "Error: An empty filename is illegal!"
 msgstr "Fout: Geen bestandsnaam is niet toegestaan!"
 
@@ -8534,6 +8534,9 @@ msgstr "Verwijderen van map %s mislukt (is deze map niet leeg?)"
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "Zoeken mislukt!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Fout: Script '%s' moet leesrechten hebben om te kunnen worden uitgevoerd!"
@@ -8574,12 +8577,27 @@ msgstr ""
 "A.u.b. uw %s %s opnieuw starten, daarna het bestandssysteem op fouten controleren,\n"
 "voordat u deze opdracht opnieuw uitvoert."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Fout: Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken! Controleer het medium en probeer het nog een keer."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Fout: Kan directory '%s' niet hernoemen naar '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -9037,6 +9055,15 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "Fast Scan"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -9048,6 +9075,9 @@ msgstr "Vooruitspoelen"
 
 msgid "Fast forward speeds"
 msgstr "Vooruit-spoelsnelheden"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "[favorieten bewerken]"
@@ -10564,6 +10594,9 @@ msgstr "Negeer DVB-T subnetwerk"
 msgid "Ignore Standby"
 msgstr ""
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Negeer onvoorzien ontwaken en blijf in stand-by"
 
@@ -11670,12 +11703,6 @@ msgstr "Overzicht van opslagmedia"
 msgid "List of storage devices"
 msgstr "Overzicht van opslagmedia"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Lijstversie %d, %d zender gevonden"
-msgstr[1] "Lijstversie %d, %d zenders gevonden"
-
 msgid "List/Fav"
 msgstr "List/Fav"
 
@@ -12650,9 +12677,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr "Ga naar de eerste regel"
 
-msgid "Move to first line / screen"
-msgstr "Ga naar de eerste regel / scherm"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Naar de eerste regel / beeldscherm gaan"
 
@@ -12664,9 +12688,6 @@ msgstr ""
 
 msgid "Move to last line"
 msgstr "Ga naar de laatste regel"
-
-msgid "Move to last line / screen"
-msgstr "Ga naar de laatste regel / scherm"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Naar de laatste regel / beeldscherm gaan"
@@ -12963,6 +12984,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Naam"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Op naam oplopend"
@@ -17335,7 +17362,7 @@ msgid "Scanning"
 msgstr "Scannen"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Zoeken %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17359,9 +17386,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Scan gereed, %d zender gevonden."
 msgstr[1] "Scan gereed, %d zenders gevonden."
-
-msgid "Scanning failed!"
-msgstr "Zoeken mislukt!"
 
 msgid "Scanning for shares..."
 msgstr ""
@@ -18110,6 +18134,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Kies hier met welke knop u Quick-EPG wilt starten, of schakel deze functie UIT."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Selecteer hoe u de box wilt updaten."
 
@@ -18412,6 +18439,9 @@ msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten de
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18593,9 +18623,6 @@ msgstr "Kies de sorteervolgorde voor de bestandsregels:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Kies de sorteervolgorde van de menu items in het Extensies-menu. (BLAUW-lang)"
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plugin Browser."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Volgorde van de menu-items in de Plugin Browser. 'Gebruiker gedefinieerd' maakt het ook mogelijk om items te verbergen."
 
@@ -18641,8 +18668,14 @@ msgstr "Selecteer de tijdzone binnen uw gebied of regio."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Nieuwe timers altijd naar de Fallback tuner sturen (default)."
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Selecteer de tuner die de gemotoriseerde schotel aanstuurt."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Selecteer de tuner die met het SCR-apparaat kabel verbonden is."
@@ -18774,9 +18807,6 @@ msgstr "Selecteer het land. Indien niet beschikbaar kiest u 'alle'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Selecteer uw provider en regio. Wanneer deze niet beschikbaar zijn, kiest u één van de andere 'service scan types'."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Selecteer provider, en druk OK om de scan te starten"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Selecteer uw regio. Indien deze niet beschikbaar is verandert u 'land' naar 'alle' en selecteert u één van de default alternatieven."
@@ -20815,11 +20845,11 @@ msgstr "Sorteer EPG-lijst"
 msgid "Sort Extension Menu"
 msgstr "Sorteer het Extensies-menu alfabetisch"
 
-msgid "Sort Plugin Browser"
-msgstr "Sorteer de volgorde van plugins in de Plugin Browser"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Plugin Browser items sorteren"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Sorteren op"
@@ -20995,6 +21025,12 @@ msgstr "Bootfrequentie bij de start"
 msgid "Start RDS interactive"
 msgstr "Start RDS interactief"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Start Wizard"
 
@@ -21051,6 +21087,9 @@ msgstr "De Kexec-initialisatie starten"
 
 msgid "Start the backup of the selected image"
 msgstr "Back-up starten van de geselecteerde image"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Start de geselecteerde plugin"
@@ -23478,16 +23517,7 @@ msgstr "Oekraïens"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr ""
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
@@ -23511,9 +23541,6 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr ""
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23531,9 +23558,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23950,10 +23974,10 @@ msgstr "Gebruik omschrijvingen"
 msgid "Use extended List"
 msgstr "Uitgebreide lijst gebruiken"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Gebruik fastscan zendernamen"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Gebruik fastscan zendervolgorde"
 
 msgid "Use for load only x days in EPG."
@@ -24013,6 +24037,9 @@ msgstr "Gebruik koppeltekens"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Gebruik koppeltekens bij het vullen van de Favorietenlijst om de #ZENDER nummers overeen te laten komen met de LCN."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "De knoppen LINKS/RECHTS gebruiken om de hoogte van de Gebruikersinterface/OSD in te stellen. LINKS is lager, RECHTS is hoger."
 
@@ -24050,6 +24077,9 @@ msgstr "Met de knoppen OMHOOG/OMLAAG het geïnstalleerde image kiezen. Daarna 'S
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Gebruik de alternatieve of de conventionele radio modus."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "De huidige selectie gebruiken en afsluiten"
@@ -25917,9 +25947,6 @@ msgstr "maand"
 msgid "move"
 msgstr "verplaats"
 
-msgid "multi"
-msgstr "Multi"
-
 msgid "n/a"
 msgstr "Niet beschikbaar"
 
@@ -26228,6 +26255,45 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Sluit het scherm"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Sluit het huidige scherm"
+
+#~ msgid "Close this screen"
+#~ msgstr "Dit scherm sluiten"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr ""
+#~ "Met deze optie stelt u in welke tuner de voorkeurstuner is voor opnames indien er meerdere tuners beschikbaar zijn.\n"
+#~ "\n"
+#~ "U kunt, afhankelijk van het aantal beschikbare tuners, kiezen uit Automatisch of de Handmatig door u gekozen tuner."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Lijstversie %d, %d zender gevonden"
+#~ msgstr[1] "Lijstversie %d, %d zenders gevonden"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Ga naar de eerste regel / scherm"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Ga naar de laatste regel / scherm"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plugin Browser."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Selecteer provider, en druk OK om de scan te starten"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Sorteer de volgorde van plugins in de Plugin Browser"
+
+#~ msgid "multi"
+#~ msgstr "Multi"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Fout bij het schrijven van '/etc/enigma2/epg.dat' naar de remote receiver!"

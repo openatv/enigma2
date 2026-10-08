@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-09-15 16:51+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1705,9 +1705,6 @@ msgstr ""
 "Tallennus on parhaillaan käynnissä.\n"
 "Mitä haluat tehdä?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
-
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
 
@@ -2985,6 +2982,9 @@ msgstr "Automaattinen kanavahaku"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Laittaa television automaattisesti valmiustilaan, kun vastaanotin siirtyy valmiustilaan tai virransäästötilaan."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Aloita ajansiirto automaattisesti asetetun ajan kuluttua"
@@ -4578,9 +4578,6 @@ msgstr "Sammuta verkko testi"
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Sulje näyttö"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Sulje Chkroot MultiBoot hallinta"
 
@@ -4602,25 +4599,25 @@ msgstr "Sulje hakupalkkia palattuaan lähtöpisteeseen"
 msgid "Close the choice box"
 msgstr "Sulje valinta ruutu"
 
-msgid "Close the current screen"
-msgstr "Sulje nykyinen näyttö"
-
 msgid "Close the documentation screen"
 msgstr "Sulje dokumenttinäytöt"
 
 msgid "Close the screen"
 msgstr "Sulje ikkuna"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Sulje ikkuna ja poistu kaikista valikoista"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Sulje näyttö tallentamatta muutoksia"
 
 msgid "Close the window"
-msgstr "Sulje ikkuna"
-
-msgid "Close this screen"
 msgstr "Sulje ikkuna"
 
 msgid "Close title selection"
@@ -5121,9 +5118,6 @@ msgstr "Määrittää, näytetäänkö REC-symboli vain todellisille tallennuksi
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Määritä mitä värijärjestelmää käytetään SCART-ulostulossa."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Määrittää ensisijaisen virittimen, jos useampia virittimiä käytettävissä. Valinnalla Autom. laite valitsee itse, mitä viritintä käytetään."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Määrittää, minkä tyyppistä viritintä käytetään ensijaisesti, kun sama kanava on saatavilla eri lähteistä."
 
@@ -5521,6 +5515,9 @@ msgstr "Luo hakemisto"
 msgid "Create a randomly generated password"
 msgstr "Luo satunnaisesti luotu salasana"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -5836,7 +5833,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -7298,6 +7295,9 @@ msgstr "Ajurien ja kernelin tiedot"
 msgid "Drivers version"
 msgstr "Ajurien versio"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7707,7 +7707,7 @@ msgid "Enable auto fast scan"
 msgstr "Ota käyttöön autom. pikahaku"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Ota automaattinen pikahaku kohteelle %s"
 
 msgid "Enable automatic shares"
@@ -8356,6 +8356,9 @@ msgstr ""
 "Virhe: %s\n"
 "Yritä uudelleen?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
+
 msgid "Error: An empty filename is illegal!"
 msgstr "Virhe: Tyhjä nimi ei ole sallittu!"
 
@@ -8428,6 +8431,9 @@ msgstr "Hakemiston %s poisto epäonnistui. (Ei ehkä ole tyhjä.)"
 msgid "Error: Rescan failed!"
 msgstr "Virhe: Uudelleen skannaus epäonnistui!"
 
+msgid "Error: Scan failed!"
+msgstr "Haku epäonnistui!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Virhe: Skriptillä '%s' täytyy olla lukuoikeus, jotta se voidaan suorittaa!"
@@ -8465,12 +8471,27 @@ msgstr "Virhe: '%s kirjoittamisessa oli ongelma!"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Virhe: Syötteen resetoinnissa oli ongelmia! Käynnistä %s %s ja tarkista tiedostojärjestelmä virheistä, ennen kuin kokeilet tätä komentoa uudelleen."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Virhe: Tarvittavia kansioita ei voi luoda kohdelaitteeseen (esim. USB-tikku tai kiintolevy)! Tarkista laite ja yritä uudelleen."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Virhe: Ei voida nimetä hakemistoa '%s' uudelleen muotoon '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8928,6 +8949,15 @@ msgstr "Kelaus eteen ja taaksepäin"
 msgid "Fast Scan"
 msgstr "Nopea haku"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr "Teeman nopea uudelleen lataus"
 
@@ -8939,6 +8969,9 @@ msgstr "Kelausnopeudet eteenpäin"
 
 msgid "Fast forward speeds"
 msgstr "Kelausnopeudet eteenpäin"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "[Suosikkien lisäys ja poisto]"
@@ -10453,6 +10486,9 @@ msgstr "Ohita DVB-T aliverkko"
 msgid "Ignore Standby"
 msgstr "Ohita valmiustila"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ohita odottamaton herätys ja pysy valmiustilassa"
 
@@ -11559,12 +11595,6 @@ msgstr "Tallennuslaitteet"
 msgid "List of storage devices"
 msgstr "Tallennuslaitteet"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Luetteloversio %d, löytyi %d kanava"
-msgstr[1] "Luetteloversio %d, löytyi %d kanavaa"
-
 msgid "List/Fav"
 msgstr "Lista/Suosikit"
 
@@ -12541,9 +12571,6 @@ msgstr "Siirry ensimmäiselle riville / näytölle"
 msgid "Move to first line"
 msgstr "Siirry ensimmäiselle riville"
 
-msgid "Move to first line / screen"
-msgstr "Siirry ensimmäiselle riville / näytölle"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Siirry paneelin ensimmäiselle riville / näytölle"
 
@@ -12555,9 +12582,6 @@ msgstr "Siirry viimeiselle riville/näytölle"
 
 msgid "Move to last line"
 msgstr "Siirry viimeiselle riville"
-
-msgid "Move to last line / screen"
-msgstr "Siirry viimeiselle riville/näytölle"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Siirry paneelin ensimmäiselle riville / näytölle"
@@ -12854,6 +12878,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Nimi"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Nimi nouseva"
@@ -17231,7 +17261,7 @@ msgid "Scanning"
 msgstr "Skannaus"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Haetaan %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17255,9 +17285,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Haku valmis, löytyi %d kanava."
 msgstr[1] "Haku valmis, löytyi %d kanavaa."
-
-msgid "Scanning failed!"
-msgstr "Haku epäonnistui!"
 
 msgid "Scanning for shares..."
 msgstr "Etsii jakoja..."
@@ -18010,6 +18037,9 @@ msgstr "Valitse, miten aikataulu käsitellään valmiustilassa."
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Määrittää, kuinka Nopea EPG aktivoidaan."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Valitse, kuinka vastaanottimesi päivittyy."
 
@@ -18310,6 +18340,9 @@ msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuink
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Valitse päättymisaika, ennen jota tämä ajastin voidaan aktivoida. Tämän ajan jälkeen ajastinta ei aktivoida, vaikka muut ehdot täyttyisivät."
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18487,9 +18520,6 @@ msgstr "Valitse tiedostorivien lajittelujärjestys:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Valitse Laajennusvalikon merkintöjen lajittelujärjestys."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Valitse Plugin selaimen valikko lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Valitse Lisäosien valikko lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
 
@@ -18535,8 +18565,14 @@ msgstr "Valitse aikavyöhyke."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Kun käytössä, ajastukset tuodaan etävastaanottimelta"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Valitse viritin, joka ohjaa moottoroitua lautasta."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Valitse viritin, johon SCR laiteen signaalikaapeli on kytketty."
@@ -18666,9 +18702,6 @@ msgstr "Valitse maasi, jos ei ole saatavilla valitse 'kaikki'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Valitse palveluntarjoajasi ja alue. Jos sitä ei ole tässä luettelossa, sinun on valittava yksi muista `palvelun skannaus tyypeistä`."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Valitse palveluntarjoaja ja aloita haku OK näppäimellä"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Valitse alueesi. Jos se ei ole käytettävissä, vaihda Maa asetukseksi 'kaikki' ja valitse yksi oletusvaihtoehdoista."
@@ -20689,11 +20722,11 @@ msgstr "Järjestä EPG lista"
 msgid "Sort Extension Menu"
 msgstr "Näytä laajennukset aakkosjärjestyksessä"
 
-msgid "Sort Plugin Browser"
-msgstr "Lisäosavalikko merkinnät"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Näytä lisäosavalikko aakkosjärjestyksessä"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Listan järjestystapa"
@@ -20869,6 +20902,12 @@ msgstr "Aloita käynnistys taajuus"
 msgid "Start RDS interactive"
 msgstr "Avaa interaktiivinen tv (HbbTV)"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Käynnistä Avustaja"
 
@@ -20925,6 +20964,9 @@ msgstr "Aloita Kexec alustus"
 
 msgid "Start the backup of the selected image"
 msgstr "Aloita valitun ohjelmiston varmuuskopiointi"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Käynnistä korostettu lisäosa"
@@ -23319,16 +23361,7 @@ msgstr "Ukraina"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr ""
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
@@ -23352,9 +23385,6 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr ""
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23372,9 +23402,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23791,10 +23818,10 @@ msgstr "Käytä tyhjiä rivejä"
 msgid "Use extended List"
 msgstr "Käytä laajennettua luetteloa"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Käytä pikahaun kanavanimiä"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Käytä pikahaun kanavanumeroita"
 
 msgid "Use for load only x days in EPG."
@@ -23854,6 +23881,9 @@ msgstr "Käytä väli rivijä"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Käytä tyhjiä välirivejä kanavalistassa pitääksesi looginen kanavanumerointi."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Käytä VASEN/OIKEA painikkeita kaukosäätimessäsi säätääksesi kuvaruudun korkeutta. VASEN painike pienentää korkeutta, OIKEA painike kasvattaa korkeutta."
 
@@ -23889,6 +23919,9 @@ msgstr "Käytä YLÖS/ALAS painikkeita valitaksesi varmuuskopioitavan ohjelmisto
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Käytä vaihtoehtoista tai tavallista radiotilaa."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Käytä nykyistä valintaa ja poistu"
@@ -25738,9 +25771,6 @@ msgstr "kuukausi"
 msgid "move"
 msgstr "siirrä"
 
-msgid "multi"
-msgstr "moni"
-
 msgid "n/a"
 msgstr "ei saatavilla"
 
@@ -26051,6 +26081,42 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Sulje näyttö"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Sulje nykyinen näyttö"
+
+#~ msgid "Close this screen"
+#~ msgstr "Sulje ikkuna"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Määrittää ensisijaisen virittimen, jos useampia virittimiä käytettävissä. Valinnalla Autom. laite valitsee itse, mitä viritintä käytetään."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Luetteloversio %d, löytyi %d kanava"
+#~ msgstr[1] "Luetteloversio %d, löytyi %d kanavaa"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Siirry ensimmäiselle riville / näytölle"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Siirry viimeiselle riville/näytölle"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Valitse Plugin selaimen valikko lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Valitse palveluntarjoaja ja aloita haku OK näppäimellä"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Lisäosavalikko merkinnät"
+
+#~ msgid "multi"
+#~ msgstr "moni"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Virheiden kirjoittaessa \"/etc/enigma2/epg.dat\" etävastaanottimella!"

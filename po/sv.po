@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-09-10 19:24+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1740,9 +1740,6 @@ msgstr ""
 "En inspelning pågår för närvarande.\n"
 "Vad är det du vill göra?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "En inspelning pågår för närvarande. Vänligen stoppa inspelningen innan du försöker skanna."
-
 #
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "En inspelning pågår för närvarande. Vänligen stoppa inspelningen innan du försöker starta satellitsökaren."
@@ -3094,6 +3091,9 @@ msgstr "Automatisk sökning efter tjänster"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Sätt automatiskt TV:n i standby när mottagaren går in i standby eller djup standby."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Starta automatiskt tidsomställningen efter"
@@ -4753,9 +4753,6 @@ msgstr "Stäng nätverkstestet"
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Stäng skärmen"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Stäng Chkroot MultiBoot Manager"
 
@@ -4777,26 +4774,26 @@ msgstr "Stäng SeekBar efter att du återvänt till startpunkten"
 msgid "Close the choice box"
 msgstr "Stäng valboxen"
 
-msgid "Close the current screen"
-msgstr "Stäng den aktuella skärmen"
-
 msgid "Close the documentation screen"
 msgstr "Stäng dokumentationsskärmen"
 
 msgid "Close the screen"
 msgstr "Stäng skärmen"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Stäng skärmen och avsluta alla menyer"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Stäng skärmen utan att spara några ändringar"
 
 msgid "Close the window"
 msgstr "Stäng fönstret"
-
-msgid "Close this screen"
-msgstr "Stäng denna skärm"
 
 #
 msgid "Close title selection"
@@ -5310,9 +5307,6 @@ msgstr "Ställ in om symbolen \"inspelning\" (i display- och LCD-skärmen) ska v
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Konfigurera vilket färgformat som ska användas på SCART-utgången."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Konfigurera vilken tuner för inspelningar som ska föredras när mer än en tuner är tillgänglig."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Konfigurera vilken typ av tuner som ska föredras när samma tjänst är tillgänglig på olika typer av tuners."
 
@@ -5724,6 +5718,9 @@ msgstr "Skapa en katalog"
 msgid "Create a randomly generated password"
 msgstr "Skapa ett slumpmässigt genererat lösenord"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -6053,7 +6050,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -7594,6 +7591,9 @@ msgstr "Information om drivrutiner och kärnprogram"
 msgid "Drivers version"
 msgstr "Version av drivrutiner"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -8029,7 +8029,7 @@ msgid "Enable auto fast scan"
 msgstr "Aktivera automatisk snabbskanning"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Aktivera automatisk snabbscanning för %s"
 
 msgid "Enable automatic shares"
@@ -8693,6 +8693,9 @@ msgstr ""
 "Felmeddelande: %s\n"
 "Försök igen?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "En inspelning pågår för närvarande. Vänligen stoppa inspelningen innan du försöker skanna."
+
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Fel i filen: Ett tomt filnamn är olagligt!"
@@ -8770,6 +8773,9 @@ msgstr "Fel vid borttagning av katalog Borttagning av katalogen '%s' misslyckade
 msgid "Error: Rescan failed!"
 msgstr "Fel: Det gick inte att söka igen!"
 
+msgid "Error: Scan failed!"
+msgstr "Skanningen misslyckades!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Fel i skriptet: Skriptet '%s' måste ha läsbehörighet för att kunna köras!"
@@ -8808,12 +8814,27 @@ msgstr "Felmeddelande: Det uppstod ett problem med att skriva '%s'!"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Fel i flödet: Det uppstod ett problem vid återställningen av flödena! Starta om %s %s och kontrollera filsystemet för eventuella fel innan du försöker med det här kommandot igen."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Felmeddelande: Det gick inte att skapa de nödvändiga katalogerna på målenheten (t.ex. USB-minne eller hårddisk)! Vänligen verifiera enheten och försök igen."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Fel: Det går inte att byta namn på Det gick inte att byta namn på katalogen '%s' till '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -9293,6 +9314,15 @@ msgstr "Snabbspolning framåt och bakåt"
 msgid "Fast Scan"
 msgstr "Snabb skanning"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr "Snabb omladdning av skal"
 
@@ -9305,6 +9335,9 @@ msgstr "Snabbspola"
 
 msgid "Fast forward speeds"
 msgstr "Snabbspolningshastigheter"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 #
 msgid "Favorite Edit"
@@ -10881,6 +10914,9 @@ msgstr "Ignorera DVB-T namnrymdens undernätverk"
 msgid "Ignore Standby"
 msgstr "Ignorera standby"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignorera oväntat uppvaknande och förbli i standby"
 
@@ -12052,12 +12088,6 @@ msgstr "Lista över lagringsenheter"
 msgid "List of storage devices"
 msgstr "Lista över lagringsenheter"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Lista version %d, hittades %d kanal"
-msgstr[1] "Lista version %d, hittade %d kanaler"
-
 msgid "List/Fav"
 msgstr "Lista/Fav"
 
@@ -13084,9 +13114,6 @@ msgstr "Flytta till första objektet/skärmen"
 msgid "Move to first line"
 msgstr "Flytta till första raden"
 
-msgid "Move to first line / screen"
-msgstr "Flytta till första raden/skärmen"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Flytta till första raden/skärmen i panelen"
 
@@ -13098,9 +13125,6 @@ msgstr "Flytta till sista objektet/skärmen"
 
 msgid "Move to last line"
 msgstr "Flytta till sista raden"
-
-msgid "Move to last line / screen"
-msgstr "Flytta till sista raden/skärmen"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Flytta till sista raden/skärmen i panelen"
@@ -13421,6 +13445,12 @@ msgstr "NTSC"
 #
 msgid "Name"
 msgstr "Namn"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Stigande i namn"
@@ -18057,7 +18087,7 @@ msgid "Scanning"
 msgstr "Skannar"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Skanning %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -18081,9 +18111,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Skanning slutförd, %d tjänst hittad."
 msgstr[1] "Avsökning slutförd, %d tjänster hittade."
-
-msgid "Scanning failed!"
-msgstr "Skanningen misslyckades!"
 
 msgid "Scanning for shares..."
 msgstr "Söker efter resurser …"
@@ -18844,6 +18871,9 @@ msgstr "Välj hur schemat ska hanteras i förhållande till vänteläget."
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Välj hur Quick EPG-läget ska aktiveras."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Välj hur din box ska uppgraderas."
 
@@ -19149,6 +19179,9 @@ msgstr "Välj hur lång tid inaktiviteten ska vara innan skärmsläckaren visas.
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Välj den sluttid före vilken denna timer kan aktiveras. Efter denna tid aktiveras inte timern även om övriga villkor uppfylls."
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -19329,9 +19362,6 @@ msgstr "Välj sorteringsordning för filraderna:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Välj sorteringsordning för posterna i tilläggsmenyn."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Välj sorteringsordning för menyalternativen i Plugin Browser. Användardefinierat gör det också möjligt att dölja menyposterna."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Välj sorteringsordning för menyalternativen i Plugin Browser. Användardefinierat gör också att plugin-posterna kan döljas."
 
@@ -19377,8 +19407,14 @@ msgstr "Välj tidszon inom området eller regionen."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Välj timern från reservtunern som standard"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Välj den tuner som styr den motoriserade parabolen."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Välj den tuner som SCR-enhetens signalkabel är ansluten till."
@@ -19510,9 +19546,6 @@ msgstr "Välj ditt land. Om det inte är tillgängligt, välj \"Alla\"."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Välj din leverantör och region. Om det inte finns med i listan måste du välja någon av de andra \"Service scan types\"."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Välj leverantör och tryck på OK för att starta skanningen"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Välj din region. Om den inte är tillgänglig ändrar du \"Country\" till \"All\" och väljer ett av standardalternativen."
@@ -21625,11 +21658,11 @@ msgstr "Sortera EPG-lista"
 msgid "Sort Extension Menu"
 msgstr "Meny för sorteringstillägg"
 
-msgid "Sort Plugin Browser"
-msgstr "Sortera plugin-webbläsare"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Sortera Plugin Browser-poster"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Sortera efter"
@@ -21816,6 +21849,12 @@ msgstr "Start Startfrekvens"
 msgid "Start RDS interactive"
 msgstr "Starta RDS interaktiv"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Start guiden"
 
@@ -21876,6 +21915,9 @@ msgstr "Starta initieringen av Kexec"
 
 msgid "Start the backup of the selected image"
 msgstr "Starta säkerhetskopieringen av den valda bilden"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Starta det markerade insticksprogrammet"
@@ -24380,16 +24422,7 @@ msgstr "Ukrainska"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr ""
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
@@ -24413,9 +24446,6 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr ""
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -24433,9 +24463,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24868,10 +24895,10 @@ msgstr "Använd beskrivningsrader"
 msgid "Use extended List"
 msgstr "Använd utökad lista"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Använda fastscan-kanalnamn"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Använd numrering av fastscan-kanaler"
 
 msgid "Use for load only x days in EPG."
@@ -24932,6 +24959,9 @@ msgstr "Använd distanslinjer"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Använd distanslinjer för att fylla ut buketten så att #SERVICE-linjenumren matchar LCN."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Använd knapparna LEFT/RIGHT på fjärrkontrollen för att justera höjden på OSD. Vänsterknappen minskar höjden, högerknappen ökar höjden."
 
@@ -24967,6 +24997,9 @@ msgstr "Använd knapparna UP/DOWN för att välja den installerade bild som ska 
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Använd det alternativa eller det konventionella radioläget."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Använd det aktuella valet och avsluta"
@@ -26912,10 +26945,6 @@ msgstr "månad"
 msgid "move"
 msgstr "flytta"
 
-#
-msgid "multi"
-msgstr "multi"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -27269,6 +27298,43 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Stäng skärmen"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Stäng den aktuella skärmen"
+
+#~ msgid "Close this screen"
+#~ msgstr "Stäng denna skärm"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Konfigurera vilken tuner för inspelningar som ska föredras när mer än en tuner är tillgänglig."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Lista version %d, hittades %d kanal"
+#~ msgstr[1] "Lista version %d, hittade %d kanaler"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Flytta till första raden/skärmen"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Flytta till sista raden/skärmen"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Välj sorteringsordning för menyalternativen i Plugin Browser. Användardefinierat gör det också möjligt att dölja menyposterna."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Välj leverantör och tryck på OK för att starta skanningen"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Sortera plugin-webbläsare"
+
+#
+#~ msgid "multi"
+#~ msgstr "multi"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Fel vid skrivning av '/etc/enigma2/epg.dat' på fjärrmottagaren!"

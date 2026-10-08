@@ -110,6 +110,7 @@ protected:
 	static eHdmiCEC *instance;
 	bool linuxCEC;
 	bool amlogicCEC;
+	bool eventsSuspended;
 	unsigned char physicalAddress[2];
 	bool fixedAddress;
 	bool cecEnabled;
@@ -141,6 +142,9 @@ public:
 	int getPhysicalAddress();
 	void setFixedPhysicalAddress(int address);
 	int getDeviceType();
+	bool suspendEvents();
+	bool resumeEvents();
+	bool areEventsSuspended() const { return eventsSuspended; }
 	void setEnabled(bool enabled);
 	void setReportActiveMenu(bool enabled);
 };

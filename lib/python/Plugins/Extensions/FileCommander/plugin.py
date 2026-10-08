@@ -310,7 +310,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			# "bluelong": (self.keySortRight, _("Sort right column files by name, date or size")),
 		}, prio=0, description=_("File Commander Actions"))
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self.keyGoTop, _("Move to first line / screen")),
+			"top": (self.keyGoTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyGoPageUp, _("Move up a screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
 			"first": (self.keyGoLeftColumn, _("Switch to the left column")),
@@ -319,18 +319,18 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			"last": (self.keyGoRightColumn, _("Switch to the right column")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
-			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
+			"bottom": (self.keyGoBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("File Commander Navigation Actions"))
 		self["navigationActions"].setEnabled(not config.plugins.FileCommander.legacyNavigation.value)
 		self["legacyNavigationActions"] = HelpableActionMap(self, ["FileCommanderActions", "NavigationActions"], {
-			"top": (self.keyGoTop, _("Move to first line / screen")),
+			"top": (self.keyGoTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyToggleColumn, _("Switch to the other column")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
 			"left": (self.keyGoPageUp, _("Move up a screen")),
 			"right": (self.keyGoPageDown, _("Move down a screen")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyToggleColumn, _("Switch to the other column")),
-			"bottom": (self.keyGoBottom, _("Move to last line / screen")),
+			"bottom": (self.keyGoBottom, _("Move to the last line / screen")),
 			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
 			"panelRight": (self.keyGoRightColumn, _("Switch to the right column"))
 		}, prio=0, description=_("File Commander Navigation Actions"))
@@ -1941,19 +1941,19 @@ class FileCommanderData(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		item = data.get("Description", _("File Commander Data Actions"))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"cancel": (self.close, _("Close this screen")),
-			"ok": (self.close, _("Close this screen")),
-			"red": (self.close, _("Close this screen"))
+			"cancel": (self.close, _("Close the screen")),
+			"ok": (self.close, _("Close the screen")),
+			"red": (self.close, _("Close the screen"))
 		}, prio=0, description=item)
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self["data"].goTop, _("Move to first line / screen")),
+			"top": (self["data"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
 			"up": (self["data"].goLineUp, _("Move up a line")),
 			# "left": (self["data"].goPageUp, _("Move up a screen")),
 			# "right": (self["data"].goPageDown, _("Move down a screen")),
 			"down": (self["data"].goLineDown, _("Move down a line")),
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
-			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["data"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=item)
 		self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 
@@ -2205,12 +2205,12 @@ class FileCommanderFileViewer(Screen):
 			"cancel": (self.close, _("Exit viewer")),
 			"ok": (self.close, _("Exit viewer")),
 			"red": (self.close, _("Exit viewer")),
-			"top": (self["data"].goTop, _("Move to first line / screen")),
+			"top": (self["data"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
 			"up": (self["data"].goLineUp, _("Move up a line")),
 			"down": (self["data"].goLineDown, _("Move down a line")),
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
-			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["data"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("File Commander File Viewer Actions"))
 		self["hexAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyHex, _("Display file as hexadecimal"))
@@ -2721,12 +2721,12 @@ class FileCommanderTextEditor(Screen):
 			"yellowlong": (self.keyDeleteDuplicateLines, _("Delete all duplicated lines")),
 			"bluelong": (self.keyDuplicateCurrentLine, _("Duplicate the current line")),
 			"text": (self.keySortTextMenu, _("Open file sort menu")),
-			"top": (self["data"].goTop, _("Move to first line / screen")),
+			"top": (self["data"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
 			"up": (self["data"].goLineUp, _("Move up a line")),
 			"down": (self["data"].goLineDown, _("Move down a line")),
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
-			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["data"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {
 			"first": (self.keyMoveLineUp, _("Move the current line up")),

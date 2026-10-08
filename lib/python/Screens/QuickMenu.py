@@ -99,18 +99,18 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions", "ColorActions"], {
 			"ok": (self.keyOk, _("Select the current menu item")),
-			"cancel": (self.close, _("Close this screen")),
-			"red": (self.close, _("Close this screen")),
+			"cancel": (self.close, _("Close the screen")),
+			"red": (self.close, _("Close the screen")),
 			"green": (self.keyDistributionInformation, _("Open the Image information")),
 			"yellow": (self.keyStorageInformation, _("Open the Storage Device information")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyLineUp, _("Move up a line")),
 			"left": (self.keyLeft, _("Switch to the left column")),
 			"right": (self.keyRight, _("Switch to the right column")),
 			"down": (self.keyLineDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Quick Menu Actions"))
 		helpStr = _("Direct menu item selection")
 		self["numberActions"] = HelpableNumberActionMap(self, ["NumberActions"], {

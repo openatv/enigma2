@@ -195,12 +195,12 @@ class FlashManager(Screen, ProtectedScreen):
 			"red": (self.keyCancel, _("Cancel the image selection and exit")),
 			"green": (self.keyOk, _("Select the highlighted image and proceed to the slot selection")),
 			"yellow": (self.keyDistribution, _("Select a distribution from where images are to be obtained")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=-1, description=_("Flash Manager Actions"))
 		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"blue": (self.keyDeleteImage, _("Delete the selected locally stored image")),

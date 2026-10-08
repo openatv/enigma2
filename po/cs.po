@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
-"PO-Revision-Date: 2026-10-01 19:31+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"PO-Revision-Date: 2026-10-08 07:37+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 
 msgid ""
 "\n"
@@ -1461,19 +1461,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24 hodin/+24 hodin"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd již existuje a není to adresář. Nebude přepsán."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr ""
+msgstr "/media/hdd obsahuje soubory nebo jiné adresáře. Před povolením výměny pevného disku je přesuňte; nic nebylo smazáno."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd je existující symbolický odkaz na jiné umístění. Nebude přepsán."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr ""
+msgstr "/media/hdd se používá. Před výměnou pevného disku odpojte stávající zařízení nebo sdílenou složku."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr ""
+msgstr "Adresa /media/hdd je v souboru /etc/fstab rezervována jiným zařízením. Nejprve změňte bod připojení tohoto zařízení."
 
 msgid "/s"
 msgstr "/s"
@@ -1739,9 +1739,6 @@ msgid ""
 msgstr ""
 "Nahrává se\n"
 "Co chcete udělat?"
-
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Právě se nahrává. Prosím, ukončete nahrávání před prohledáváním kanálů."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Právě probíhá nahrávání. Před pokusem o spuštění satelitního vyhledávače zastavte nahrávání."
@@ -2298,7 +2295,7 @@ msgid "After Event"
 msgstr "Po události"
 
 msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
-msgstr ""
+msgstr "Po úspěšném skenování nahraďte chybějící služby v balíčku služeb jedinečně pojmenovanými službami se stejným typem příjmu a polohou satelitu. Nejednoznačné shody zůstanou nezměněny. Pořadí balíčků a vlastní názvy zůstanou zachovány."
 
 msgid "After event"
 msgstr "Po skončení"
@@ -2374,7 +2371,7 @@ msgid "All files"
 msgstr "Všechny soubory"
 
 msgid "All packages"
-msgstr ""
+msgstr "Všechny balíčky"
 
 msgid "All regions"
 msgstr "Všechny regiony"
@@ -2776,7 +2773,7 @@ msgid "Ascending"
 msgstr "Vzestupně"
 
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
-msgstr ""
+msgstr "Před přesunutím jednotlivých souborů do koše si vyžádejte potvrzení. Potvrzení smazání složek a trvalého smazání zůstávají nezměněna."
 
 msgid "Ask user"
 msgstr "Zeptat se"
@@ -3014,6 +3011,9 @@ msgstr "Autonaticky vyhledá dostupné programy"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automaticky přepne televizor do pohotovostního režimu, kdykoli přijímač přejde do pohotovostního režimu nebo hlubokého spánku."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr "Automaticky spustit rychlé skenování 90 sekund po každém přepnutí do pohotovostního režimu a každých 24 hodin, pokud je pohotovostní režim aktivní. Pokud probíhá nahrávání, zkuste to znovu po hodině. Vyberte možnost „Více“ pro skenování více poskytovatelů."
 
 msgid "Automatically start time shift after"
 msgstr "Automaticky spustit časový posun po"
@@ -3450,7 +3450,7 @@ msgstr "Akce navigace pro výběr přehledu"
 
 #, python-format
 msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
-msgstr ""
+msgstr "Aktualizace seznamu: %(updated)d aktualizováno, %(unresolved)d nevyřešeno, %(failed)d selhalo."
 
 msgid "Bouquets"
 msgstr "Seznamy"
@@ -4143,7 +4143,7 @@ msgid "Change repeat and delay settings?"
 msgstr "Změnit nastavení opakování a zpoždění?"
 
 msgid "Change search"
-msgstr ""
+msgstr "Změnit vyhledávání"
 
 msgid "Change skin"
 msgstr "Změna vzhledu"
@@ -4542,7 +4542,7 @@ msgid "Clear play list"
 msgstr "Vymazat seznam přehrávání"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Vymazat vyhledávání"
 
 msgid "Clear the logs for this timer"
 msgstr "Vymazat protokoly tohoto časovače"
@@ -4607,9 +4607,6 @@ msgstr "Zavřít test sítě"
 msgid "Close network test and exit all menus"
 msgstr "Zavřít test sítě a opustit všechny nabídky"
 
-msgid "Close screen"
-msgstr "Zavřít obrazovku"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Zavřete Správce vícenásobného spouštění Chkroot"
 
@@ -4631,26 +4628,26 @@ msgstr "Zavřete SeekBar po návratu do počátečního bodu"
 msgid "Close the choice box"
 msgstr "Zavřít políčko s výběrem"
 
-msgid "Close the current screen"
-msgstr "Zavřít aktuální obrazovku"
-
 msgid "Close the documentation screen"
 msgstr "Zavřít obrazovku dokumentace"
 
 msgid "Close the screen"
 msgstr "Zavřít obrazovku"
 
+msgid "Close the screen after the scan has finished"
+msgstr "Po dokončení skenování zavřít obrazovku"
+
 msgid "Close the screen and exit all menus"
 msgstr "Zavřít obrazovku a opustit všechny nabídky"
+
+msgid "Close the screen and stop a running scan"
+msgstr "Zavřít obrazovku a zastavit spuštěné skenování"
 
 msgid "Close the screen without saving any changes"
 msgstr "Zavřít obrazovku bez uložení změn"
 
 msgid "Close the window"
 msgstr "Zavřít okno"
-
-msgid "Close this screen"
-msgstr "Zavřít tuto obrazovku"
 
 msgid "Close title selection"
 msgstr "Zavřít výběr titulku"
@@ -5151,9 +5148,6 @@ msgstr "Nastavuje, zda je viditelný symbol 'nahrávání' (ve vzhledu displeje 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Nastavuje barevný formát pro SCART výstup."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Nastavuje, který tuner bude mít prioritu při nahrávání, jestliže je k dispozici více než jeden tuner."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Nastavuje, který tuner bude mít prioritu, jestliže je stejný program dostupný na odlišných typech tunerů."
 
@@ -5182,7 +5176,7 @@ msgid "Confirm Zap"
 msgstr "Potvrdit přepnutí"
 
 msgid "Confirm moving files to the trashcan"
-msgstr ""
+msgstr "Potvrdit přesunutí souborů do koše"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
@@ -5551,14 +5545,17 @@ msgstr "Vytvořte adresář"
 msgid "Create a randomly generated password"
 msgstr "Vytvořit náhodně vygenerované heslo"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr "Vytvořit samostatnou skupinu pro rozhlasové služby. Pokud je tato možnost vypnuta, rozhlasové služby jsou zahrnuty v televizní skupině."
+
 msgid "Create a settings backup"
-msgstr ""
+msgstr "Vytvořit zálohu nastavení"
 
 msgid "Create a symbolic link"
 msgstr "Vytvořte symbolický odkaz"
 
 msgid "Create an image backup"
-msgstr ""
+msgstr "Vytvořit zálohu obrazu"
 
 msgid "Create application loader dump."
 msgstr "Vytvořit výpis zavaděče aplikace."
@@ -5866,8 +5863,8 @@ msgstr "Podpora DAB+ USB byla nainstalována. Nyní můžete přijímač povolit
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: seznam se nepodařilo zapsat"
 
-msgid "DAB+ audio decoding"
-msgstr ""
+msgid "Audio decoding"
+msgstr "Dekódování zvuku DAB+"
 
 msgid "DAB+ channel"
 msgstr "DAB+ kanál"
@@ -6728,13 +6725,13 @@ msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC port %s: %s"
 
 msgid "DiSEqC port by polarization"
-msgstr ""
+msgstr "DiSEqC port podle polarizace"
 
 msgid "DiSEqC port for horizontal"
-msgstr ""
+msgstr "Port DiSEqC pro horizontální"
 
 msgid "DiSEqC port for vertical"
-msgstr ""
+msgstr "Port DiSEqC pro vertikální"
 
 msgid "DiSEqC-tester settings"
 msgstr "Nastavení DiSEqC testeru"
@@ -7329,6 +7326,9 @@ msgstr "Informace o ovladači a jádře"
 msgid "Drivers version"
 msgstr "Verze ovladačů"
 
+msgid "Drop unconfigured satellites"
+msgstr "Zrušit nenakonfigurované satelity"
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7738,7 +7738,7 @@ msgid "Enable auto fast scan"
 msgstr "Povolit automatické rychlé ladění (Fast Scan)"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Povolit automatické rychlé vyhledávání pro %s"
 
 msgid "Enable automatic shares"
@@ -8123,7 +8123,7 @@ msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Zadejte název síťového hostitele, který se má použít k identifikaci tohoto přijímače."
 
 msgid "Enter the new four-digit PIN code."
-msgstr ""
+msgstr "Zadejte nový čtyřmístný PIN kód."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Zadejte počet vláken NFS serveru, která mají být alokována/použita. Vyšší hodnoty zlepšují výkon s více klienty, ale spotřebovávají více paměti."
@@ -8150,7 +8150,7 @@ msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Zadejte název vzdálené sdílené složky (SMB) nebo exportovanou cestu (NFS) na serveru."
 
 msgid "Enter the same PIN code again to confirm it."
-msgstr ""
+msgstr "Zadejte stejný PIN kód znovu pro potvrzení."
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Zadejte sekundární nastavení DNS IPv4 pro tento adaptér. (Volitelný)"
@@ -8325,7 +8325,7 @@ msgid "Error code"
 msgstr "Kód chyby"
 
 msgid "Error creating the channel backup on the remote receiver!"
-msgstr ""
+msgstr "Chyba při vytváření zálohy kanálu na vzdáleném přijímači!"
 
 #, python-format
 msgid "Error downloading image '%s'!"
@@ -8335,7 +8335,7 @@ msgid "Error executing plugin"
 msgstr "Chyba při provádění pluginu"
 
 msgid "Error extracting the channel backup!"
-msgstr ""
+msgstr "Chyba při extrahování zálohy kanálu!"
 
 #, python-format
 msgid ""
@@ -8352,7 +8352,7 @@ msgid "Error opening recording file"
 msgstr "Chyba při otevírání souboru záznamu"
 
 msgid "Error overwriting the channel files on the local receiver!"
-msgstr ""
+msgstr "Chyba při přepisování souborů kanálů na lokálním přijímači!"
 
 msgid "Error reading webpage!"
 msgstr "Chyba načtení webu!"
@@ -8361,7 +8361,7 @@ msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Chyba při načítání 'epg.dat' ze vzdáleného přijímače!"
 
 msgid "Error retrieving the channel backup from the remote receiver!"
-msgstr ""
+msgstr "Chyba při načítání zálohy kanálu ze vzdáleného přijímače!"
 
 msgid "Error text:"
 msgstr "Text chyby:"
@@ -8388,6 +8388,9 @@ msgid ""
 msgstr ""
 "Chyba: %s\n"
 "opakovat?"
+
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Právě se nahrává. Prosím, ukončete nahrávání před prohledáváním kanálů."
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Chyba: Prázdný název souboru není povolen!"
@@ -8461,6 +8464,9 @@ msgstr "Chyba: Odebrání adresáře '%s' se nezdařilo! (Možná, že adresář
 msgid "Error: Rescan failed!"
 msgstr "Chyba: Opakované skenování se nezdařilo!"
 
+msgid "Error: Scan failed!"
+msgstr "Prohledávání selhalo!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Chyba: Skript '%s' musí mít oprávnění ke čtení, aby mohl být spuštěn!"
@@ -8498,12 +8504,27 @@ msgstr "Chyba: Při psaní '%s' došlo k problému!"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Chyba: Při resetování zdrojů došlo k problému! Restartujte prosím %s %s a před dalším pokusem o tento příkaz zkontrolujte souborový systém, zda neobsahuje nějaké chyby."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr "Chyba: Nelze zkontrolovat stávající připojení, takže náhradní pevný disk nebyl změněn!"
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr "Nelze vytvořit další soubory STARTUP."
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr "Nelze vytvořit nové STARTUP soubory výrobce."
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Chyba: Nelze vytvořit požadované adresáře na cílovém zařízení (např. USB klíčenka nebo pevný disk)! Ověřte prosím zařízení a zkuste to znovu."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr "Nelze přečíst UUID nového oddílu MultiBoot. Soubory STARTUP nebyly změněny."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Chyba: Nelze přejmenovat adresář '%s' na '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr "Chyba: Nelze vybrat zvolený zvukový kanál!"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8961,6 +8982,16 @@ msgstr "Rychlé převíjení vpřed a vzad"
 msgid "Fast Scan"
 msgstr "Rychlé ladění (Fast Scan)"
 
+msgid "Fast Scan Actions"
+msgstr "Akce rychlého skenování"
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] "Rychlé skenování verze %d: Nalezen %d kanál."
+msgstr[1] "Rychlé skenování verze %d: Nalezeny %d kanály."
+msgstr[2] "Rychlé skenování verze %d: Nalezeno %d kanálů."
+
 msgid "Fast Skin Reload"
 msgstr "Rychlé znovunačtení skinu"
 
@@ -8972,6 +9003,9 @@ msgstr "Rychlý posun vpřed"
 
 msgid "Fast forward speeds"
 msgstr "Rychlosti přetáčení vpřed"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr "Rychlé skenování může přejmenovat stávající služby a zabránit jejich aktualizaci běžným skenováním. Aktualizace rychlého skenování stále fungují. Zakázáním této možnosti se neobnoví původní názvy ani pravidelné aktualizace skenování. Chcete-li je obnovit, znovu skenujte služby s možností „Vymazat před skenováním“ nastavenou na „Ano“."
 
 msgid "Favorite Edit"
 msgstr "[Úprava oblíbených položek]"
@@ -9919,7 +9953,7 @@ msgid "Harddisk Setup"
 msgstr "Nastavení pevného disku"
 
 msgid "Hardware AAC"
-msgstr ""
+msgstr "Hardwarový AAC"
 
 msgid "Hardware MultiBoot device"
 msgstr "Hardwarové zařízení MultiBoot"
@@ -9967,7 +10001,7 @@ msgid "Help Screen Information"
 msgstr "Informace na obrazovce nápovědy"
 
 msgid "Help and support"
-msgstr ""
+msgstr "Pomoc a podpora"
 
 msgid "Help animation speed"
 msgstr "Rychlosti animace nápovědy"
@@ -10051,7 +10085,7 @@ msgid "Hide player"
 msgstr "Skrýt přehrávač"
 
 msgid "Hide protected services while the service PIN is not remembered."
-msgstr ""
+msgstr "Skrýt chráněné služby, dokud se nezapamatuje PIN služby."
 
 msgid "Hide softcam servername"
 msgstr "Skrýt název serveru softcam"
@@ -10480,6 +10514,9 @@ msgstr "Ignorovat podsíť jmenného prostoru DVB-T"
 
 msgid "Ignore Standby"
 msgstr "Ignorovat pohotovostní režim"
+
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr "Ignorovat služby na satelitech, které nejsou nakonfigurovány v nastavení tuneru."
 
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignorovat neočekávané probuzení a zůstat v pohotovostním režimu"
@@ -11588,13 +11625,6 @@ msgstr "Seznam úložných zařízení"
 msgid "List of storage devices"
 msgstr "Seznam záznamových zařízení"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Seznam verze %d, nalezen %d kanál"
-msgstr[1] "Seznam verze %d, nalezeny %d kanály"
-msgstr[2] "Seznam verze %d, nalezeno %d kanálů"
-
 msgid "List/Fav"
 msgstr "Seznam/Oblíbené"
 
@@ -12569,9 +12599,6 @@ msgstr "Přejít na první položku / obrazovku"
 msgid "Move to first line"
 msgstr "Přechod na první řádek"
 
-msgid "Move to first line / screen"
-msgstr "Přechod na první řádek/obrazovku"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Přejít v panelu na první řádek / obrazovku"
 
@@ -12583,9 +12610,6 @@ msgstr "Přejít na poslední položku / obrazovku"
 
 msgid "Move to last line"
 msgstr "Přechod na poslední řádek"
-
-msgid "Move to last line / screen"
-msgstr "Přechod na poslední řádek/obrazovku"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Přejít v panelu na poslední řádek / obrazovku"
@@ -12882,6 +12906,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Jméno"
+
+msgid "Name (A-Z)"
+msgstr "Jméno (A-Z)"
+
+msgid "Name (Z-A)"
+msgstr "Jméno (Z-A)"
 
 msgid "Name ascending"
 msgstr "Název vzestupně"
@@ -13317,7 +13347,7 @@ msgid "No channel"
 msgstr "Žádný kanál"
 
 msgid "No channel backup found on the remote receiver!"
-msgstr ""
+msgstr "Na vzdáleném přijímači nebyla nalezena žádná záloha kanálu!"
 
 msgid "No channel list"
 msgstr "žádný seznam kanálů"
@@ -13369,7 +13399,7 @@ msgid "No hosts found yet - still scanning..."
 msgstr "Zatím nenalezen žádný hostitel - stále se skenuje..."
 
 msgid "No local images found."
-msgstr ""
+msgstr "Nebyly nalezeny žádné lokální obrázky."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
@@ -13390,7 +13420,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "Není co přepnout (zvýšit nebo snížit)"
 
 msgid "No packages found."
-msgstr ""
+msgstr "Nebyly nalezeny žádné balíčky."
 
 msgid "No pictures available"
 msgstr "Nejsou k dispozici žádné obrazy"
@@ -13649,7 +13679,7 @@ msgid "Not running"
 msgstr "Nefunguje"
 
 msgid "Not set"
-msgstr ""
+msgstr "Není nastaveno"
 
 msgid "Not tested:"
 msgstr "Netestováno:"
@@ -13869,7 +13899,7 @@ msgid "One line"
 msgstr "Jeden řádek"
 
 msgid "Online manual"
-msgstr ""
+msgstr "Online manuál"
 
 msgid "Online software update"
 msgstr "Aktualizace software Online"
@@ -13902,7 +13932,7 @@ msgid "Only on startup"
 msgstr "Po startu přijímače"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
-msgstr ""
+msgstr "Jako náhradu pevného disku lze použít pouze jednu síťovou sdílenou složku. Nejprve na druhé sdílené složce vypněte možnost „Použít jako náhradu pevného disku“."
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Používat pouze DNS-over-HTTPS. Překlady DNS tak budou probíhat pouze přes zabezpečený protokol HTTPS."
@@ -14106,7 +14136,7 @@ msgid "Open the single service EPG view"
 msgstr "Otevřít zobrazení EPG pro jednu službu"
 
 msgid "Open the user manual and tools to get help or report problems"
-msgstr ""
+msgstr "Otevřete uživatelskou příručku a nástroje pro získání pomoci nebo nahlášení problémů"
 
 msgid "Open tuner setup"
 msgstr "Otevřít nastavení tuneru"
@@ -15239,7 +15269,7 @@ msgid "Preparation time for recording"
 msgstr "Doba přípravy na nahrávání (sekundy)"
 
 msgid "Preparing recording, please wait..."
-msgstr ""
+msgstr "Příprava nahrávání, čekejte prosím..."
 
 msgid "Preparing... Please wait"
 msgstr "Připravuji... Prosím čekejte"
@@ -15266,7 +15296,7 @@ msgid "Press GREEN to enable MultiBoot!"
 msgstr "Stiskněte ZELENÉ tlačítko pro aktivaci funkce MultiBoot!"
 
 msgid "Press OK"
-msgstr ""
+msgstr "Stiskněte OK"
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Stiskněte tlačítko OK pro výběr MultiBoot."
@@ -15275,7 +15305,7 @@ msgid "Press OK on your remote control to continue."
 msgstr "Stiskněte OK na dálkovém ovladači pro pokračování."
 
 msgid "Press OK to change the PIN used for service and screen protection."
-msgstr ""
+msgstr "Stisknutím tlačítka OK změníte PIN používaný pro služby a ochranu obrazovky."
 
 msgid "Press OK to continue."
 msgstr "Pokračujte stisknutím tlačítka OK."
@@ -15305,7 +15335,7 @@ msgid "Press OK to open module info"
 msgstr "Stiskněte OK pro otevření informací o modulu"
 
 msgid "Press OK to reload the list of protected services from disk."
-msgstr ""
+msgstr "Stisknutím tlačítka OK znovu načtěte seznam chráněných služeb z disku."
 
 msgid "Press OK to reset PIN code"
 msgstr "Stisknutím tlačítka OK resetujte kód PIN"
@@ -15329,7 +15359,7 @@ msgid "Press OK to select satellites"
 msgstr "Stiskněte OK k vybrání satelitů"
 
 msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
-msgstr ""
+msgstr "Stisknutím tlačítka OK vyberte kanál pro paniku. Vybraná služba se zachová i při změně pořadí kanálů nebo skupin."
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "OK vyberete/odznačíte CAId."
@@ -15515,7 +15545,7 @@ msgid "Properties of current title"
 msgstr "Vlastnosti zvoleného titulu"
 
 msgid "Protect MultiBoot"
-msgstr ""
+msgstr "Chránit MultiBoot"
 
 msgid "Protect Quickmenu"
 msgstr "Chránit Rychlé menu"
@@ -15530,7 +15560,7 @@ msgid "Protect context menus"
 msgstr "Chránit Kontextové menu"
 
 msgid "Protect extensions menu"
-msgstr ""
+msgstr "Nabídka ochrany rozšíření"
 
 msgid "Protect factory reset"
 msgstr ""
@@ -17255,7 +17285,7 @@ msgid "Scanning"
 msgstr "Prohledávání"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Prohledávám %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17281,9 +17311,6 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Skenování dokončeno, nalezena %d služba."
 msgstr[1] "Skenování dokončeno, nalezeny %d služby."
 msgstr[2] "Skenování dokončeno, nalezeno %d služeb."
-
-msgid "Scanning failed!"
-msgstr "Prohledávání selhalo!"
 
 msgid "Scanning for shares..."
 msgstr "Hledání sdílených položek..."
@@ -18025,6 +18052,9 @@ msgstr "Vyberte, jak se má s plánem zacházet s ohledem na pohotovostní reži
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vyberte způsob aktivace režimu Quick EPG."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Nastavte si podrobnosti vašich aktualizací."
 
@@ -18325,6 +18355,9 @@ msgstr "Nastavení doby v minutách pro spořič obrazovky."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Vyberte čas ukončení, před kterým lze tento časovač aktivovat. Po uplynutí této doby se časovač neaktivuje, i když jsou splněny ostatní podmínky."
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18502,9 +18535,6 @@ msgstr "Vybrat pořadí řazení řádků souborů:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Vyberte pořadí řazení položek nabídky Rozšíření."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Vyberte pořadí řazení položek v nabídce prohlížeče pluginů. Uživatelsky definované také umožňuje skrýt položky nabídky."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Vyberte pořadí řazení položek nabídky prohlížeče pluginů. Definováno uživatelem také umožňuje skrýt položky pluginu."
 
@@ -18550,8 +18580,14 @@ msgstr "Vybrat časové pásmo v oblasti nebo regionu."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Vybrat časovač ze záložního tuneru jako výchozí"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Vyberte tuner, který ovládá motorizovanou parabolu."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Vyberte tuner, ke kterému je připojen signálový kabel zařízení SCR."
@@ -18681,9 +18717,6 @@ msgstr "Vyberte vaší zemi. Pokud není k dispozici, vyberte „vše“."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Vyberte poskytovatele a region. Pokud se v tomto seznamu nenachází, budete muset vybrat jeden z dalších „typů skenování služeb“."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Zvolte poskytovatele a stiskem OK začněte prohledávat"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Vyberte svůj region. Pokud není k dispozici, změňte „Země“ na „vše“ a vyberte jednu z výchozích alternativ."
@@ -20706,11 +20739,11 @@ msgstr "Třídit seznam EPG"
 msgid "Sort Extension Menu"
 msgstr "Třídit rozšířenou nabídku podle abecedy"
 
-msgid "Sort Plugin Browser"
-msgstr "Řazení prohlížeče pluginů"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Řazení položek prohlížeče pluginů"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Řadit podle"
@@ -20886,6 +20919,12 @@ msgstr "Počáteční spouštěcí frekvence"
 msgid "Start RDS interactive"
 msgstr "Spustit interaktivní RDS"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Spustit průvodce"
 
@@ -20942,6 +20981,9 @@ msgstr "Spustit inicializaci Kexec"
 
 msgid "Start the backup of the selected image"
 msgstr "Spustit zálohování vybraného obrazu"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Spustit označený plugin"
@@ -23337,17 +23379,8 @@ msgstr "Ukrajinština"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr "Nelze vytvořit další soubory STARTUP."
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
-msgstr "Nelze vytvořit nové STARTUP soubory výrobce."
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s!"
@@ -23370,9 +23403,6 @@ msgstr "Nelze otevřít tuner (%d)"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr "Nelze přečíst UUID nového oddílu MultiBoot. Soubory STARTUP nebyly změněny."
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Nelze přečíst STARTUP soubor výrobce '%s'."
@@ -23390,9 +23420,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23809,10 +23836,10 @@ msgstr "Použijte řádky popisu"
 msgid "Use extended List"
 msgstr "Použít rozšířený seznam"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Použít 'Fast Scan' jména kanálů"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Použít 'Fast Scan' číslování kanálů"
 
 msgid "Use for load only x days in EPG."
@@ -23872,6 +23899,9 @@ msgstr "Použijte vymezovací čáry"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "K vyplnění seznamu použijte vymezovací čáry, aby čísla řádků #SERVICE odpovídala LCN."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Pomocí tlačítek VLEVO/VPRAVO na dálkovém ovládání upravte výšku nabídky OSD. Tlačítko VLEVO snižuje výšku, VPRAVO zvyšuje výšku."
 
@@ -23907,6 +23937,9 @@ msgstr "Pomocí tlačítek NAHORU/DOLŮ vyberte nainstalovaný obraz, který chc
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Použít alternativní nebo konvenční režim Rádia."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Použít aktuální výběr a odejít"
@@ -25752,9 +25785,6 @@ msgstr "měsíc"
 msgid "move"
 msgstr "přesun"
 
-msgid "multi"
-msgstr "vícenásobné"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -26066,6 +26096,43 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Zavřít obrazovku"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Zavřít aktuální obrazovku"
+
+#~ msgid "Close this screen"
+#~ msgstr "Zavřít tuto obrazovku"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Nastavuje, který tuner bude mít prioritu při nahrávání, jestliže je k dispozici více než jeden tuner."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Seznam verze %d, nalezen %d kanál"
+#~ msgstr[1] "Seznam verze %d, nalezeny %d kanály"
+#~ msgstr[2] "Seznam verze %d, nalezeno %d kanálů"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Přechod na první řádek/obrazovku"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Přechod na poslední řádek/obrazovku"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Vyberte pořadí řazení položek v nabídce prohlížeče pluginů. Uživatelsky definované také umožňuje skrýt položky nabídky."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Zvolte poskytovatele a stiskem OK začněte prohledávat"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Řazení prohlížeče pluginů"
+
+#~ msgid "multi"
+#~ msgstr "vícenásobné"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Chyba při zápisu '/etc/enigma2/epg.dat' na vzdáleném přijímači!"

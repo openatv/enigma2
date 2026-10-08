@@ -46,9 +46,11 @@ def getDiskDevice(device):
 	device = realpath(device) if exists(device) else device
 	base = device.rsplit("/", 1)[-1]
 	if base.startswith(("mmcblk", "nvme")):
-		base = sub(r"p\d+$", "", base)
+		disk, separator, partition = base.rpartition("p")
+		if separator and partition.isdigit():
+			base = disk
 	elif base.startswith(("sd", "cf")):
-		base = sub(r"\d+$", "", base)
+		base = base.rstrip("0123456789")
 	return f"/dev/{base}"
 
 
@@ -135,14 +137,14 @@ class MultiBootManager(Screen, ProtectedScreen):
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Cancel the slot selection and exit")),
 			"close": (self.keyCloseRecursive, _("Cancel the slot selection and exit all menus")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			# "left": (self.keyUp, _("Move up a line")),
 			# "right": (self.keyDown, _("Move down a line")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=actionDescription)
 		self["restartActions"] = HelpableActionMap(self, ["OkSaveActions"], {
 			"save": (self.keyReboot, _("Select the highlighted slot and reboot")),

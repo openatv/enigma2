@@ -58,6 +58,9 @@ public:
 	int setSlowMotion(int ratio);
 	int setFastForward(int ratio);
 	int setTrickmode();
+#ifdef DREAMNEXTGEN
+	void setUserPauseActive(bool b);
+#endif
 
 	// Audio Control
 	int setAudioPID(int pid, int type);

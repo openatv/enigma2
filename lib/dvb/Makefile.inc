@@ -47,6 +47,15 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/fccdecoder.cpp \
 	dvb/eramtimeshift.cpp
 
+if DREAMNEXTGEN
+dvb_libenigma_dvb_a_SOURCES += 	\
+	dvb/alsa.cpp \
+	dvb/audiomanager.cpp \
+	dvb/avsync_core.cpp \
+	dvb/iec61937.cpp \
+	dvb/tsparser.cpp
+endif
+
 dvbincludedir = $(pkgincludedir)/lib/dvb
 dvbinclude_HEADERS = \
 	dvb/cablescan.h \
@@ -104,7 +113,8 @@ dvbinclude_HEADERS = \
 if DREAMNEXTGEN
 dvbinclude_HEADERS += \
 	dvb/alsa.h \
-	dvb/decoders.h \
-	dvb/ringbuffer.h \
+	dvb/audiomanager.h \
+	dvb/avsync_core.h \
+	dvb/iec61937.h \
 	dvb/tsparser.h
 endif

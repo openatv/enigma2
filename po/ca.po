@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1795,9 +1795,6 @@ msgstr ""
 "En aquests moments s'està realitzant una gravació.\n"
 "Què voleu fer?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Actualment s'està executant una gravació. Atureu la gravació abans d'intentar escanejar."
-
 #
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "En aquests moments s'està realitzant una gravació. Si us plau, atureu-la abans de posar en marxa el satfinder."
@@ -3144,6 +3141,9 @@ msgid "Automatic scan for services"
 msgstr "Recerca automàtica dels canals"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
+msgstr ""
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
 msgid "Automatically start time shift after"
@@ -4804,9 +4804,6 @@ msgstr ""
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Tancar pantalla"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr ""
 
@@ -4828,26 +4825,26 @@ msgstr ""
 msgid "Close the choice box"
 msgstr ""
 
-msgid "Close the current screen"
-msgstr "Tancar la pantalla actual"
-
 msgid "Close the documentation screen"
 msgstr ""
 
 msgid "Close the screen"
 msgstr "Tancar la pantalla"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Tancar la pantalla i sortir de tots els menús"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Tancar la pantalla sense guardar cap canvi"
 
 msgid "Close the window"
 msgstr "Tancar la finestra"
-
-msgid "Close this screen"
-msgstr "Tancar aquesta pantalla"
 
 #
 msgid "Close title selection"
@@ -5359,9 +5356,6 @@ msgstr ""
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Configureu quin format de color s’ha d’utilitzar a la sortida SCART."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Configureu quin sintonitzador preferirà, quan hi ha més d’un sintonitzador disponible."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Configura quin tipus de sintonitzador serà el preferit, quan el mateix servei estigui disponible en diferents tipus de sintonitzadors."
 
@@ -5760,6 +5754,9 @@ msgstr "Crear un directori"
 msgid "Create a randomly generated password"
 msgstr "Crear una contrasenya generada aleatòriament"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -6087,7 +6084,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -7619,6 +7616,9 @@ msgstr "Informació de driver i kernel"
 msgid "Drivers version"
 msgstr "Versió de drivers"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -8053,7 +8053,7 @@ msgid "Enable auto fast scan"
 msgstr "Activar recerca ràpida automàtica"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Activar recerca ràpida automàtica per %s"
 
 msgid "Enable automatic shares"
@@ -8720,6 +8720,9 @@ msgstr ""
 "Error: %s\n"
 "Tornar-ho a provar?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Actualment s'està executant una gravació. Atureu la gravació abans d'intentar escanejar."
+
 #
 msgid "Error: An empty filename is illegal!"
 msgstr "Error: Un nom de fitxer buit és il·legal!"
@@ -8796,6 +8799,9 @@ msgstr "Error: Ha fallat l’eliminació del directori %s. (Potser no està buit
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "Ha fallat la recerca!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Error: El script '%s' ha de tenir permisos de lectura per poder executar-se!"
@@ -8834,12 +8840,27 @@ msgstr "Error: Hi ha un problema en escriure '%s'!"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr ""
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "No es poden crear els directoris obligatoris al suport (per exemple, stick USB o Harddisk). Verifiqueu el material i proveu-ho de nou."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Error: Impossible renombrar el directori '%s' a '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -9313,6 +9334,15 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "Recerca ràpida"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -9325,6 +9355,9 @@ msgstr "Avanç ràpid"
 
 msgid "Fast forward speeds"
 msgstr "Velocitats d’avanç ràpid"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 #
 msgid "Favorite Edit"
@@ -10911,6 +10944,9 @@ msgstr "Ignora la subxarxa de l’espai de noms DVB-T"
 msgid "Ignore Standby"
 msgstr ""
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr ""
 
@@ -12080,12 +12116,6 @@ msgstr "Llista de dispositius d’emmagatzematge"
 msgid "List of storage devices"
 msgstr "Llista de dispositius d’emmagatzematge"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Versió de llista %d, trobat %d canal"
-msgstr[1] "Versió de llista %d, trobats %d canals"
-
 msgid "List/Fav"
 msgstr "Llista/Fav"
 
@@ -13117,9 +13147,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr "Moure a la primera línia"
 
-msgid "Move to first line / screen"
-msgstr "Moure a la primera línia/pantalla"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Moure a la primera línia/pantalla al panell"
 
@@ -13131,9 +13158,6 @@ msgstr ""
 
 msgid "Move to last line"
 msgstr "Moure a l'última línia"
-
-msgid "Move to last line / screen"
-msgstr "Moure a l'última línia/pantalla"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Moure a l'última línia/pantalla al panell"
@@ -13456,6 +13480,12 @@ msgstr "NTSC"
 #
 msgid "Name"
 msgstr "Nom"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Nom ascendent"
@@ -18103,7 +18133,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Buscant %s …"
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -18127,9 +18157,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr "Ha fallat la recerca!"
 
 msgid "Scanning for shares..."
 msgstr ""
@@ -18891,6 +18918,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccionar com activar el mode d'EPG ràpid."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr ""
 
@@ -19195,6 +19225,9 @@ msgstr "Configureu la durada en minuts per al protector de pantalla."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -19375,9 +19408,6 @@ msgstr ""
 msgid "Select the sort order of the Extension Menu entries."
 msgstr ""
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Selecciona l'ordre d'entrades del menú Navegador de plugins. Definit per l'usuari també permet ocultar les entrades del menú."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Selecciona l'ordre d'entrades del menú Navegador de plugins. Definit per l'usuari també permet ocultar les entrades del menú."
 
@@ -19423,8 +19453,14 @@ msgstr "Seleccioneu el fus horari dins de la zona o regió."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Quan estigui activat, s'importarà el programador del sintonitzador de reserva"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Seleccioneu el sintonitzador que controla el plat motoritzat."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Seleccioneu el sintonitzador al qual està connectat el cable de senyal del dispositiu SCR."
@@ -19555,9 +19591,6 @@ msgstr "Seleccioneu el vostre país. Si no està disponible, seleccioneu “tot�
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Seleccioneu el vostre proveïdor i la vostra regió. Si no apareix en aquesta llista, haureu de seleccionar un dels altres “tipus d’exploració de serveis”."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Seleccioneu el vostre proveïdor i premeu D’acord per iniciar l’exploració"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Seleccioneu la vostra regió. Si no està disponible, canvieu “País” a “tot” i seleccioneu una de les alternatives per defecte."
@@ -21655,11 +21688,11 @@ msgstr "Ordenar la llista d'EPG"
 msgid "Sort Extension Menu"
 msgstr ""
 
-msgid "Sort Plugin Browser"
-msgstr "Ordre Navegador de plugins"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Ordre Navegador de plugins"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Ordenar per"
@@ -21846,6 +21879,12 @@ msgstr ""
 msgid "Start RDS interactive"
 msgstr "Iniciar RDS interactiu"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Assistent d'inici"
 
@@ -21903,6 +21942,9 @@ msgid "Start the Kexec initialization"
 msgstr "Iniciar la inicialització Kexec"
 
 msgid "Start the backup of the selected image"
+msgstr ""
+
+msgid "Start the fast scan"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -24403,16 +24445,7 @@ msgstr "Ukrainian"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr ""
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
@@ -24436,9 +24469,6 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr ""
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -24456,9 +24486,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24890,10 +24917,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "Utilitzar llista extesa"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Utilitzeu noms de canals de fastscan"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Utilitzeu la numeració de canals de fastscan"
 
 msgid "Use for load only x days in EPG."
@@ -24954,6 +24981,9 @@ msgstr ""
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
@@ -24989,6 +25019,9 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Utilitzar el mode de ràdio alternatiu o convencional."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Utilitzar la selección actual y prèmer exit"
@@ -26898,10 +26931,6 @@ msgstr "mes"
 msgid "move"
 msgstr "moure"
 
-#
-msgid "multi"
-msgstr "multi"
-
 msgid "n/a"
 msgstr "N/A"
 
@@ -27255,6 +27284,43 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Tancar pantalla"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Tancar la pantalla actual"
+
+#~ msgid "Close this screen"
+#~ msgstr "Tancar aquesta pantalla"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Configureu quin sintonitzador preferirà, quan hi ha més d’un sintonitzador disponible."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Versió de llista %d, trobat %d canal"
+#~ msgstr[1] "Versió de llista %d, trobats %d canals"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Moure a la primera línia/pantalla"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Moure a l'última línia/pantalla"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Selecciona l'ordre d'entrades del menú Navegador de plugins. Definit per l'usuari també permet ocultar les entrades del menú."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Seleccioneu el vostre proveïdor i premeu D’acord per iniciar l’exploració"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Ordre Navegador de plugins"
+
+#
+#~ msgid "multi"
+#~ msgstr "multi"
 
 #~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 #~ msgstr "Prement el botó de pànic, es canviarà a aquest número de canal de la primera llista."

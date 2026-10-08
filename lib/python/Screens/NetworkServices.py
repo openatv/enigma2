@@ -425,14 +425,14 @@ class uShareSelection(Screen):
 			"red": self.exit,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
-			"top": (self["checkList"].goTop, _("Move to first line / screen")),
+			"top": (self["checkList"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["checkList"].goPageUp, _("Move up a screen")),
 			"up": (self["checkList"].goLineUp, _("Move up a line")),
 			# "left": (self.left, _("Move up to first entry")),
 			# "right": (self.right, _("Move down to last entry")),
 			"down": (self["checkList"].goLineDown, _("Move down a line")),
 			"pageDown": (self["checkList"].goPageDown, _("Move down a screen")),
-			"bottom": (self["checkList"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["checkList"].goBottom, _("Move to the last line / screen"))
 		}, prio=-1, description=_("uShare Selection Actions"))
 		if self.selectionChanged not in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
@@ -839,12 +839,12 @@ class NetworkLogScreen(Screen):
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
 			"ok": (self.keyCancel, _("Close the screen")),
-			"top": (self["infotext"].goTop, _("Move to first line / screen")),
+			"top": (self["infotext"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["infotext"].goPageUp, _("Move up a screen")),
 			"up": (self["infotext"].goLineUp, _("Move up a line")),
 			"down": (self["infotext"].goLineDown, _("Move down a line")),
 			"pageDown": (self["infotext"].goPageDown, _("Move down a screen")),
-			"bottom": (self["infotext"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["infotext"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Network Log Actions"))
 		self.console = Console()
 		if self.tailLog:

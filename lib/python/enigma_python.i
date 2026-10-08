@@ -54,6 +54,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/driver/rcinput_swig.h>
 #include <lib/driver/ehotplug_socket.h>
 #include <lib/driver/inputhotplug.h>
+#include <lib/driver/inputdevicemanager.h>
 #include <lib/service/event.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
@@ -254,6 +255,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
 %include <lib/driver/rcinput_swig.h>
+%include <lib/python/python_inputdevicemanager.i>
 %include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>

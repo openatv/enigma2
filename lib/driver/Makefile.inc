@@ -10,6 +10,7 @@ driver_libenigma_driver_a_SOURCES = \
 	driver/inputhotplug.cpp \
 	driver/misc_options.cpp \
 	driver/rc.cpp \
+	driver/inputdevicemanager.cpp \
 	driver/rcinput.cpp \
 	driver/rfmod.cpp \
 	driver/hdmi_cec.cpp
@@ -24,6 +25,7 @@ driverinclude_HEADERS = \
 	driver/inputhotplug.h \
 	driver/misc_options.h \
 	driver/rc.h \
+	driver/inputdevicemanager.h \
 	driver/rcconsole.h \
 	driver/rcdbox.h \
 	driver/rcdreambox2.h \

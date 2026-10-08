@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-10-06 10:36+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1704,9 +1704,6 @@ msgstr ""
 "正在进行录制。\n"
 "您需要做什么？"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "正在进行录制。扫描前请先停止录制。"
-
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "正在进行录制。 开始寻星前请先停止录制。"
 
@@ -2978,6 +2975,9 @@ msgstr "频道自动扫描"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "每当接收机进入待机或深度待机时，自动将电视置于待机状态。"
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "在？之后自动开始时移"
@@ -4570,9 +4570,6 @@ msgstr "关闭网络测试"
 msgid "Close network test and exit all menus"
 msgstr "关闭网络测试并退出所有菜单"
 
-msgid "Close screen"
-msgstr "关闭屏幕"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "关闭 Chkroot 多系统启动管理器"
 
@@ -4594,26 +4591,26 @@ msgstr "返回起始点后关闭进度条"
 msgid "Close the choice box"
 msgstr "关闭选择框"
 
-msgid "Close the current screen"
-msgstr "关闭当前屏幕"
-
 msgid "Close the documentation screen"
 msgstr "关闭文档屏幕"
 
 msgid "Close the screen"
 msgstr "关闭屏幕"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "关闭屏幕并退出所有菜单"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "关闭屏幕，不保存任何更改"
 
 msgid "Close the window"
 msgstr "关闭此窗口"
-
-msgid "Close this screen"
-msgstr "关闭此屏幕"
 
 msgid "Close title selection"
 msgstr "关闭标题选择"
@@ -5113,9 +5110,6 @@ msgstr "配置“录制”符号（在显示皮肤和 LCD 皮肤中）是仅对�
 msgid "Configure which color format should be used on the SCART output."
 msgstr "配置SCART输出使用的色彩格式。"
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "当有多个调谐器可用时，配置首选哪个调谐器进行录制。"
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "配置哪种调谐器类型将是首选，当相同的频道可用于不同类型的调谐器时。"
 
@@ -5513,6 +5507,9 @@ msgstr "创建一个目录"
 msgid "Create a randomly generated password"
 msgstr "创建一个随机生成的密码"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -5828,7 +5825,7 @@ msgstr "DAB+ USB支持组件已安装。您现在可以在接收设置中启用�
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB：无法写入频道分组"
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr "DAB+ 音频解码"
 
 msgid "DAB+ channel"
@@ -7290,6 +7287,9 @@ msgstr "驱动程序和内核信息"
 msgid "Drivers version"
 msgstr "驱动程序版本"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "双工模式"
 
@@ -7699,7 +7699,7 @@ msgid "Enable auto fast scan"
 msgstr "启用自动快速扫描"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "为 %s 启用自动快速扫描"
 
 msgid "Enable automatic shares"
@@ -8348,6 +8348,9 @@ msgstr ""
 "错误： %s\n"
 "重试?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "正在进行录制。扫描前请先停止录制。"
+
 msgid "Error: An empty filename is illegal!"
 msgstr "错误：空文件名是非法的！"
 
@@ -8420,6 +8423,9 @@ msgstr "错误：删除目录“%s”失败！（可能目录不是空的。）"
 msgid "Error: Rescan failed!"
 msgstr "错误：重新扫描失败！"
 
+msgid "Error: Scan failed!"
+msgstr "扫描失败！"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "错误：脚本“%s”必须具有读取权限才能运行！"
@@ -8457,12 +8463,27 @@ msgstr "错误：写入“%s”时出现问题！"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "错误：重置订阅源时出现问题！ 请重新启动 %s %s 并检查文件系统是否有任何错误，然后再尝试此命令。"
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr "无法创建额外的 STARTUP 文件。"
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr "无法创建新的厂商 STARTUP 文件。"
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "错误：无法在目标设备（如 U 盘或硬盘）上创建所需目录！请验证设备，然后重试。"
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr "无法读取新的多系统启动分区的 UUID。STARTUP 文件未被更改。"
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "错误：无法将目录“%s”重命名为“%s”！"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr "无法选择音频声道。"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8920,6 +8941,15 @@ msgstr "快进与快退"
 msgid "Fast Scan"
 msgstr "快速扫描"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr "快速皮肤重载"
 
@@ -8931,6 +8961,9 @@ msgstr "快进"
 
 msgid "Fast forward speeds"
 msgstr "快进速度"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "编辑收藏夹"
@@ -10444,6 +10477,9 @@ msgstr "忽略 DVB-T 名称空间子网络"
 msgid "Ignore Standby"
 msgstr "忽略待机"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "忽略意外唤醒并保持待机状态"
 
@@ -11550,12 +11586,6 @@ msgstr "存贮设备列表"
 msgid "List of storage devices"
 msgstr "存贮设备列表"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "列表版本 %d，找到 %d 个频道"
-msgstr[1] "列表版本 %d，找到 %d 个频道"
-
 msgid "List/Fav"
 msgstr "列表/收藏"
 
@@ -12530,9 +12560,6 @@ msgstr "移到第一项 / 首屏"
 msgid "Move to first line"
 msgstr "移到首行"
 
-msgid "Move to first line / screen"
-msgstr "移到第 1 行/屏幕"
-
 msgid "Move to first line / screen in the panel"
 msgstr "移动到面板中的首行/屏幕"
 
@@ -12544,9 +12571,6 @@ msgstr "移到末项 / 末屏"
 
 msgid "Move to last line"
 msgstr "移到末行"
-
-msgid "Move to last line / screen"
-msgstr "移到末行/屏幕"
 
 msgid "Move to last line / screen in the panel"
 msgstr "移动到面板中的末行/屏幕"
@@ -12843,6 +12867,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "名称"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "名称升序"
@@ -17214,7 +17244,7 @@ msgid "Scanning"
 msgstr "正在扫描"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "正在扫描 %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17238,9 +17268,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "扫描完成，找到 %d 个频道。"
 msgstr[1] "扫描完成，找到 %d 个频道。"
-
-msgid "Scanning failed!"
-msgstr "扫描失败！"
 
 msgid "Scanning for shares..."
 msgstr "正在扫描共享..."
@@ -17981,6 +18008,9 @@ msgstr "选择如何在待机模式下处理计划任务。"
 msgid "Select how to activate the Quick EPG mode."
 msgstr "选择如何激活快速 EPG 模式。"
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "选择您的机顶盒如何升级。"
 
@@ -18281,6 +18311,9 @@ msgstr "配置屏幕保护程序显示前的持续时间（分钟）。"
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最晚截止时间。超过此时限后，即使满足其他所有条件，定时器也不再启动。"
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18458,9 +18491,6 @@ msgstr "选择文件行的排序顺序："
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "选择扩展菜单条目的排序顺序。"
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐藏菜单项。"
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐藏插件条目。"
 
@@ -18506,8 +18536,14 @@ msgstr "选择区域或区域内的时区。"
 msgid "Select the timer from the fallback tuner by default"
 msgstr "默认情况下，从备用调谐器选择定时器"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "选择控制电动天线的调谐器。"
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "选择与 SCR 设备的信号线连接的调谐器。"
@@ -18637,9 +18673,6 @@ msgstr "选择您的国家/地区。如果不可用，请选择“全部”。"
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "选择您的供应商和地区。如果不在此列表中，则需要选择其他“频道扫描类型”之一。"
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "选择供应商，并按 OK 键开始扫描"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "选择您所在的地区。如果不可用，请将“国家/地区”更改为“全部”，然后选择一个默认的备选方案。"
@@ -20658,11 +20691,11 @@ msgstr "排序 EPG 列表"
 msgid "Sort Extension Menu"
 msgstr "排序扩展菜单"
 
-msgid "Sort Plugin Browser"
-msgstr "插件浏览器排序"
-
 msgid "Sort Plugin Browser entries"
 msgstr "对插件浏览器条目进行排序"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "排序方式"
@@ -20838,6 +20871,12 @@ msgstr "开始引导频率"
 msgid "Start RDS interactive"
 msgstr "启动 RDS 交互"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "开始向导"
 
@@ -20894,6 +20933,9 @@ msgstr "开始 Kexec 初始化"
 
 msgid "Start the backup of the selected image"
 msgstr "开始备份所选镜像"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "启动突出显示的插件"
@@ -23288,17 +23330,8 @@ msgstr "乌克兰语"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr "无法创建额外的 STARTUP 文件。"
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
-msgstr "无法创建新的厂商 STARTUP 文件。"
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s!"
@@ -23321,9 +23354,6 @@ msgstr "无法打开调谐器（%d）"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr "无法读取新的多系统启动分区的 UUID。STARTUP 文件未被更改。"
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "无法读取厂商 STARTUP 文件“%s”。"
@@ -23342,9 +23372,6 @@ msgstr "无法保存网络配置。"
 
 msgid "Unable to save network mount configuration!"
 msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
-msgstr "无法选择音频声道。"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
@@ -23760,10 +23787,10 @@ msgstr "使用描述行"
 msgid "Use extended List"
 msgstr "使用扩展列表"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "使用快速扫描频道名称"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "使用快速扫描频道编号"
 
 msgid "Use for load only x days in EPG."
@@ -23823,6 +23850,9 @@ msgstr "使用间隔线"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "使用间隔线填充频道分组，使 #频道 行号与 LCN 匹配。"
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "使用遥控器上的向左/向右按钮调整 OSD 的高度。左按钮降低高度，右按钮增加高度。"
 
@@ -23858,6 +23888,9 @@ msgstr "使用向上/向下按钮选择要备份的已安装镜像。按“开�
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备用模式或传统收音机模式。"
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "使用当前选择并退出"
@@ -25703,9 +25736,6 @@ msgstr "月"
 msgid "move"
 msgstr "移动"
 
-msgid "multi"
-msgstr "多个"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -26016,6 +26046,42 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "关闭屏幕"
+
+#~ msgid "Close the current screen"
+#~ msgstr "关闭当前屏幕"
+
+#~ msgid "Close this screen"
+#~ msgstr "关闭此屏幕"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "当有多个调谐器可用时，配置首选哪个调谐器进行录制。"
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "列表版本 %d，找到 %d 个频道"
+#~ msgstr[1] "列表版本 %d，找到 %d 个频道"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "移到第 1 行/屏幕"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "移到末行/屏幕"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐藏菜单项。"
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "选择供应商，并按 OK 键开始扫描"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "插件浏览器排序"
+
+#~ msgid "multi"
+#~ msgstr "多个"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "在远程接收机上写入“/etc/enigma2/epg.dat”时出错！"

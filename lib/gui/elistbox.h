@@ -549,6 +549,9 @@ private:
 	ePoint getItemPostion(int index);
 	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int oldRow, int maxItems, bool indexChanged, int pageOffset, int topLeft);
 	void recalcSizeAlignment(bool scrollbarVisible);
+#ifdef DREAMNEXTGEN
+	void hapticFeedback();
+#endif
 	/* row count available for scrolling; one less than m_max_rows when the first row is locked */
 	int effectiveMaxRows() const { return (m_lock_first_row && m_orientation == orVertical && m_max_rows > 1) ? m_max_rows - 1 : m_max_rows; }
 	int setScrollbarPosition();
