@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:24+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-08-17 05:14+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1738,9 +1738,6 @@ msgstr ""
 "Идёт запись\n"
 "Что хотите сделать?"
 
-msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
-msgstr "Идёт запись. Остановите запись перед поиском."
-
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Идёт запись. Остановите запись перед поиском спутника."
 
@@ -3008,6 +3005,9 @@ msgstr "Автопоиск каналов"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Автоматически переводить телевизор в режим ожидания, когда ресивер переходит в режим ожидания или глубокий режим ожидания."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Автоматически включать таймшифт через"
@@ -4601,9 +4601,6 @@ msgstr ""
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Закрыть экран"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Закройте Chkroot MultiBoot Manager"
 
@@ -4625,26 +4622,26 @@ msgstr "Закройте SeekBar после возвращения в исход
 msgid "Close the choice box"
 msgstr "Закройте окно выбора"
 
-msgid "Close the current screen"
-msgstr "Закройте текущий экран"
-
 msgid "Close the documentation screen"
 msgstr ""
 
 msgid "Close the screen"
 msgstr "Закрыть экран"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Закрыть экран и выйти из всех меню"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Закрыть экран без сохранения изменений"
 
 msgid "Close the window"
 msgstr "Закрыть окно"
-
-msgid "Close this screen"
-msgstr "Закрыть этот экран"
 
 msgid "Close title selection"
 msgstr "Закрыть выбор названия"
@@ -5142,9 +5139,6 @@ msgstr "Укажите, когда выводить значок записи н
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Настройте, какой формат цвета следует использовать на выходе SCART."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Укажите, какой тюнер предпочтительнее для записи, если в ресивере их несколько."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Укажите, какой тип тюнера предпочтительнее, если канал доступен на различных типах тюнеров."
 
@@ -5531,6 +5525,9 @@ msgstr "Создать каталог"
 msgid "Create a randomly generated password"
 msgstr "Сгенерировать случайный пароль"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
 msgid "Create a settings backup"
 msgstr ""
 
@@ -5843,7 +5840,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -7303,6 +7300,9 @@ msgstr "Драйвера и ядро"
 msgid "Drivers version"
 msgstr "Обновление драйверов"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Двойной"
 
@@ -8363,6 +8363,9 @@ msgstr ""
 "Ошибка %s\n"
 "Повторить?"
 
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Идёт запись. Остановите запись перед поиском."
+
 msgid "Error: An empty filename is illegal!"
 msgstr "Ошибка: пустое имя файла является недопустимым!"
 
@@ -8435,6 +8438,9 @@ msgstr "Ошибка удаления каталога %s (Возможно он
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "Ошибка поиска!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Ошибка: скрипт '%s' должен иметь разрешение на чтение, чтобы его можно было запустить!"
@@ -8472,12 +8478,27 @@ msgstr "Ошибка: возникла проблема при записи '%s'
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Ошибка: Возникла проблема со сбросом фидов! Пожалуйста, перезагрузите %s %s и проверьте файловую систему на ошибки прежде чем повторить эту команду."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Невозможно создать необходимые каталоги на носителе (например, USB-накопителе или жёстком диске) - Пожалуйста, проверьте носитель и повторите попытку."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Ошибка: невозможно переименовать каталог '%s' в '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8935,6 +8956,16 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "Быстрый поиск по оператору"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -8946,6 +8977,9 @@ msgstr "Перемотать вперёд"
 
 msgid "Fast forward speeds"
 msgstr "Скорость перемотки вперёд"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "[Редактирование избранного]"
@@ -10455,6 +10489,9 @@ msgstr "Игнорировать пространство имён подсет�
 msgid "Ignore Standby"
 msgstr ""
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Игнорировать неожиданное пробуждение и оставаться в режиме ожидания"
 
@@ -11562,13 +11599,6 @@ msgstr "Список устройств хранения"
 msgid "List of storage devices"
 msgstr "Список устройств хранения"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Список версии %d, найден %d канал"
-msgstr[1] "Список версии %d, найдено %d канала"
-msgstr[2] "Список версии %d, найдены %d каналов"
-
 msgid "List/Fav"
 msgstr "Список/Избранное"
 
@@ -12543,9 +12573,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr "Перейти к первой строке"
 
-msgid "Move to first line / screen"
-msgstr "Перейти к первой строке/экрану"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Перейти к первой строке/экрану на панели"
 
@@ -12557,9 +12584,6 @@ msgstr ""
 
 msgid "Move to last line"
 msgstr "Перейти к последней строке"
-
-msgid "Move to last line / screen"
-msgstr "Переход к последней строке/экрану"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Перейти к последней строке/экрану на панели"
@@ -12856,6 +12880,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Имя"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Имя по возрастанию"
@@ -17249,9 +17279,6 @@ msgstr[0] "Поиск завершен, %d канал найден."
 msgstr[1] "Поиск завершен, %d канала найдено."
 msgstr[2] "Поиск завершен, %d каналов найдено."
 
-msgid "Error: Scan failed!"
-msgstr "Ошибка поиска!"
-
 msgid "Scanning for shares..."
 msgstr ""
 
@@ -17992,6 +18019,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Выбор активации режима быстрого ТВ-гида."
 
+msgid "Select how to sort the timer list."
+msgstr ""
+
 msgid "Select how your receiver will upgrade."
 msgstr "Выберите способ обновления ресивера."
 
@@ -18292,6 +18322,9 @@ msgstr "Настройте продолжительность заставки �
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18469,9 +18502,6 @@ msgstr "Выберите порядок сортировки строк файл
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Выберите порядок сортировки записей меню расширений."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать записи плагина."
 
@@ -18517,8 +18547,14 @@ msgstr "Выберите часовой пояс в пределах облас�
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Выбор таймера из резервного ресивера по умолчанию"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Выберите тюнер, управляющий моторизованной антенной."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Выберите тюнер, к которому подключён сигнальный кабель устройства SCR."
@@ -18648,9 +18684,6 @@ msgstr "Выберите свою страну. Если страна недос
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Выберите своего оператора и регион. Если их нет в этом списке, нужно выбрать другой тип поиска каналов."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Выберите своего оператора и нажмите ОК, чтобы начать поиск"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Выберите свой регион. Если он недоступен, измените для параметра 'Страна' значение 'все' и выберите один из вариантов по умолчанию."
@@ -20670,11 +20703,11 @@ msgstr "Сортировать список ТВ-гида"
 msgid "Sort Extension Menu"
 msgstr "Сортировать дополнения по алфавиту"
 
-msgid "Sort Plugin Browser"
-msgstr "Сортировать плагины"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Сортировка записей обозревателя плагинов"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Сортировка по"
@@ -20850,6 +20883,12 @@ msgstr "Начальная частота загрузки"
 msgid "Start RDS interactive"
 msgstr "Запустить интерактивную службу RDS"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Мастер запуска"
 
@@ -20906,6 +20945,9 @@ msgstr "Запустите инициализацию Kexec"
 
 msgid "Start the backup of the selected image"
 msgstr "Начать резервное копирование выбранного образа"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Запустите выделенный плагин"
@@ -23294,16 +23336,7 @@ msgstr "Украинский"
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
-
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
-
-msgid "Error: Unable to create the additional STARTUP files!"
-msgstr ""
-
-msgid "Error: Unable to create the new manufacturer STARTUP files!"
 msgstr ""
 
 #, python-format
@@ -23327,9 +23360,6 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
-msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr ""
-
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23347,9 +23377,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23829,6 +23856,9 @@ msgstr "Использовать пустые строки"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Использовать пустые строки при заполнении букета, чтобы номера строк #SERVICE соответствовали логическим номерам каналов (LCN)."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' на пульте дистанционного управления, чтобы отрегулировать высоту экранного меню. Кнопка 'ВЛЕВО' уменьшает высоту, 'ВПРАВО' увеличивает высоту."
 
@@ -23864,6 +23894,9 @@ msgstr "Используйте кнопки ВВЕРХ/ВНИЗ, чтобы вы
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Используйте альтернативный или обычный режим радио."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
 
 msgid "Use the current selection and exit"
 msgstr "Использовать текущий выбор и выйти"
@@ -25709,9 +25742,6 @@ msgstr "Месяц"
 msgid "move"
 msgstr "Переместить"
 
-msgid "multi"
-msgstr "мульти"
-
 msgid "n/a"
 msgstr "Недоступно"
 
@@ -26023,6 +26053,43 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Закрыть экран"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Закройте текущий экран"
+
+#~ msgid "Close this screen"
+#~ msgstr "Закрыть этот экран"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Укажите, какой тюнер предпочтительнее для записи, если в ресивере их несколько."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Список версии %d, найден %d канал"
+#~ msgstr[1] "Список версии %d, найдено %d канала"
+#~ msgstr[2] "Список версии %d, найдены %d каналов"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Перейти к первой строке/экрану"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Переход к последней строке/экрану"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Выберите своего оператора и нажмите ОК, чтобы начать поиск"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Сортировать плагины"
+
+#~ msgid "multi"
+#~ msgstr "мульти"
 
 #~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
 #~ msgstr "Ошибка записи '/etc/enigma2/epg.dat' на удалённом ресивере!"

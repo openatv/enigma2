@@ -96,16 +96,23 @@ class Geolocation:
 		check.startThread(host, timeout, True)
 		return deferred
 
-	async def getGeolocationData(self, fields=None, useCache=True, screen=None):
-		""" Returns the geolocation data or {} on failure.
-			With screen it does not return anymore once that screen is closed. """
-		screenClosed = Deferred()
+	def getGeolocationData(self, fields=None, useCache=True, screen=None, callback=None):
+		""" Returns a Deferred with the geolocation data or {} on failure.
+			The callback is called with the geolocation data.
+			With screen it does not fire anymore once that screen is closed. """
+		async def fetch():
+			geolocation = await self.fetchGeolocationData(fields, useCache)
+			if screenClosed:
+				await Deferred()  # Never fires, the waiting caller is dropped with its screen.
+			return geolocation
+
+		screenClosed = []
 		if screen is not None:
-			screen.onClose.append(lambda: screenClosed.callback(None))
-		geolocation = await self.fetchGeolocationData(fields, useCache)
-		if screenClosed.called:
-			await Deferred()  # Never fires, the waiting caller is dropped with its screen.
-		return geolocation
+			screen.onClose.append(lambda: screenClosed.append(True))
+		deferred = Deferred.fromCoroutine(fetch())
+		if callback:
+			deferred.addCallback(callback)
+		return deferred
 
 	async def fetchGeolocationData(self, fields, useCache):
 		fields = self.fieldsToNumber(fields)

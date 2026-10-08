@@ -86,6 +86,7 @@ class Setup(ConfigListScreen, Screen, ProtectedScreen):
 	def changedEntry(self):
 		if isinstance(self["config"].getCurrent()[1], (ConfigBoolean, ConfigSelection)):
 			self.createSetup()
+		ConfigListScreen.changedEntry(self)
 
 	def createSetup(self, appendItems=None, prependItems=None):
 		oldList = self.list
