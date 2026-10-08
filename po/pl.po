@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
-"PO-Revision-Date: 2026-10-04 17:52+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"PO-Revision-Date: 2026-10-07 23:35+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1470,6 +1470,21 @@ msgstr "-24 godziny"
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 godziny"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr "/media/hdd już istnieje i nie jest katalogiem. Nie zostanie nadpisany."
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr "/media/hdd zawiera pliki lub inne katalogi. Przenieś je przed włączeniem zamiennika HDD; nic nie zostało usunięte."
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr "/media/hdd jest istniejącym dowiązaniem symbolicznym do innej lokalizacji. Nie zostanie nadpisany."
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr "/media/hdd jest w użyciu. Odmontuj istniejące urządzenie lub udział sieciowy przed zmianą zamiennika HDD."
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr "/media/hdd jest zarezerwowany przez inne urządzenie w /etc/fstab. Najpierw zmień punkt montowania tego urządzenia."
+
 msgid "/s"
 msgstr "/s"
 
@@ -1734,9 +1749,6 @@ msgid ""
 msgstr ""
 "Nagrywanie w toku...\n"
 "Co chcesz zrobić?"
-
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Trwa nagrywanie. Zatrzymaj nagrywanie przed próbą skanowania."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Trwa nagrywanie. Zatrzymaj nagrywanie przed próbą uruchomienia wyszukiwarki satelitarnej."
@@ -2292,6 +2304,9 @@ msgstr "Afrykański"
 msgid "After Event"
 msgstr "Po wydarzeniu"
 
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr "Po udanym skanowaniu zastępuj brakujące kanały na listach kanałami o unikalnej nazwie z tym samym typem odbioru i tą samą pozycją satelity. Niejednoznaczne dopasowania pozostają bez zmian. Kolejność na listach i własne nazwy zostają zachowane."
+
 msgid "After event"
 msgstr "Po wydarzeniu"
 
@@ -2456,7 +2471,7 @@ msgid "Allows you to set the maximum size of the Debug log size (MB). When that 
 msgstr "Umożliwia ustawienie maksymalnej wielkości rozmiaru dziennika zdarzeń (MB). Kiedy ten rozmiar zostanie osiągnięty, zostanie utworzony nowy plik."
 
 msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
-msgstr "Umożliwia pokazanie/ukrycie Menedżera logów na ekranie Menu rozszerzeń (przycisk NIEBIESKI)."
+msgstr "Umożliwia pokazanie/ukrycie menedżera logów na ekranie Menu rozszerzeń (przycisk NIEBIESKI)."
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr "Umożliwia pokazanie/ukrycie OScam/CCcam na ekranie Menu rozszerzeń (NIEBIESKI przycisk)."
@@ -2767,6 +2782,9 @@ msgstr "Jako wtyczki w rozszerzonym pasku"
 msgid "Ascending"
 msgstr "Rosnąco"
 
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr "Pytaj o potwierdzenie przed przeniesieniem pojedynczych plików do kosza. Potwierdzenia usuwania folderów i trwałego usuwania pozostają bez zmian."
+
 msgid "Ask user"
 msgstr "Zapytaj użytkownika"
 
@@ -3003,6 +3021,9 @@ msgstr "Automatyczne skanowanie kanałów"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatyczne przełączanie telewizora w tryb czuwania za każdym razem, gdy odbiornik przejdzie w tryb czuwania lub wyłączenia."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr "Automatycznie uruchamia szybkie skanowanie 90 sekund po każdym przejściu w tryb czuwania oraz co 24 godziny, dopóki odbiornik pozostaje w trybie czuwania. Jeśli trwa nagrywanie, ponawia próbę po godzinie. Wybierz 'Multi', aby skanować wielu dostawców."
 
 msgid "Automatically start time shift after"
 msgstr "Czas, po którym ma zostać uruchomiony timeshift"
@@ -3436,6 +3457,10 @@ msgstr "Akcje selektora listy kanałów"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Akcje nawigacji selektora listy kanałów"
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr "Aktualizacja list: zaktualizowane %(updated)d, niedopasowane %(unresolved)d, nieudane %(failed)d."
 
 msgid "Bouquets"
 msgstr "Listy kanałów"
@@ -4593,9 +4618,6 @@ msgstr "Zamknij test sieci"
 msgid "Close network test and exit all menus"
 msgstr "Zamknij test sieci i wyjdź ze wszystkich menu"
 
-msgid "Close screen"
-msgstr "Zamknij ekran"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Zamknij menedżera Chkroot MultiBoot"
 
@@ -4617,26 +4639,26 @@ msgstr "Zamknij pasek postępu po powrocie do punktu początkowego"
 msgid "Close the choice box"
 msgstr "Zamknij pole wyboru"
 
-msgid "Close the current screen"
-msgstr "Zamknij aktualny ekran"
-
 msgid "Close the documentation screen"
 msgstr "Zamknij ekran dokumentacji"
 
 msgid "Close the screen"
 msgstr "Zamknij ekran"
 
+msgid "Close the screen after the scan has finished"
+msgstr "Zamknij ekran po zakończeniu skanowania"
+
 msgid "Close the screen and exit all menus"
-msgstr "Zamknij ekran i wyjdź"
+msgstr "Zamknij ekran i wyjdź ze wszystkich menu"
+
+msgid "Close the screen and stop a running scan"
+msgstr "Zamknij ekran i zatrzymaj trwające skanowanie"
 
 msgid "Close the screen without saving any changes"
 msgstr "Zamknij ekran bez zapisywania żadnych zmian"
 
 msgid "Close the window"
 msgstr "Zamknij okno"
-
-msgid "Close this screen"
-msgstr "Zamknij ten ekran"
 
 msgid "Close title selection"
 msgstr "Zamknij wybór tytułu"
@@ -5137,14 +5159,11 @@ msgstr "Skonfiguruj, czy symbol 'nagrywania' (w skórce wyświetlacza i skórce 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Wybierz, jaki format koloru powinien być stosowany na wyjściu SCART."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Skonfiguruj, który tuner do nagrań będzie preferowany, jeśli dostępny jest więcej niż jeden tuner."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Skonfiguruj, który tuner ma być preferowany, jeżeli kanał jest dostępny z różnych typów tunerów."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen."
-msgstr "Skonfiguruj, który tuner będzie preferowany do nagrań, gdy dostępnych jest więcej niż jeden tuner. Opcja 'Wyłączone' spowoduje wybór tunera na podstawie preferowanego tunera w ekranie personalizacji. Opcja 'Auto' spowoduje wybór na podstawie domyślnych reguł E2, ignorując preferowany tuner w ekranie personalizacji."
+msgstr "Skonfiguruj, który tuner będzie preferowany przy nagrywaniu, gdy dostępny jest więcej niż jeden tuner. 'Wyłączone' wybiera tuner na podstawie preferowanego tunera ustawionego na ekranie personalizacji. 'Auto' wybiera tuner według domyślnych reguł Enigma2, ignorując preferowany tuner z ekranu personalizacji."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Skonfiguruj, który tuner będzie wykorzystany, gdy posiadasz więcej niż jeden tuner. Jeśli ustawione na 'auto' system da pierwszeństwo dla tunera o najniższej liczbie kanałów/satelit."
@@ -5166,6 +5185,9 @@ msgstr "Konfiguracja usługi"
 
 msgid "Confirm Zap"
 msgstr "Potwierdzenie przełączenia"
+
+msgid "Confirm moving files to the trashcan"
+msgstr "Potwierdzaj przenoszenie plików do kosza"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
@@ -5534,8 +5556,17 @@ msgstr "Utwórz katalog"
 msgid "Create a randomly generated password"
 msgstr "Utwórz losowo wygenerowane hasło"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr "Tworzy osobną listę dla kanałów radiowych. Po wyłączeniu kanały radiowe są dodawane do listy TV."
+
+msgid "Create a settings backup"
+msgstr "Utwórz kopię zapasową ustawień"
+
 msgid "Create a symbolic link"
 msgstr "Utwórz link symboliczny"
+
+msgid "Create an image backup"
+msgstr "Utwórz kopię zapasową systemu"
 
 msgid "Create application loader dump."
 msgstr "Utwórz zrzut modułu ładującego aplikacje."
@@ -5843,7 +5874,7 @@ msgstr "Zainstalowano obsługę DAB+ USB. Możesz teraz włączyć odbiornik w m
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: nie udało się zapisać listy kanałów"
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr "Dekodowanie dźwięku DAB+"
 
 msgid "DAB+ channel"
@@ -6704,6 +6735,15 @@ msgstr "Tryb DiSEqC"
 msgid "DiSEqC port %s: %s"
 msgstr "Port DiSEqC %s: %s"
 
+msgid "DiSEqC port by polarization"
+msgstr "Port DiSEqC według polaryzacji"
+
+msgid "DiSEqC port for horizontal"
+msgstr "Port DiSEqC dla polaryzacji poziomej"
+
+msgid "DiSEqC port for vertical"
+msgstr "Port DiSEqC dla polaryzacji pionowej"
+
 msgid "DiSEqC-tester settings"
 msgstr "Test ustawień DiSEqC"
 
@@ -7297,6 +7337,9 @@ msgstr "Informacje o sterowniku i kernel"
 msgid "Drivers version"
 msgstr "Wersja sterownika"
 
+msgid "Drop unconfigured satellites"
+msgstr "Pomiń nieskonfigurowane satelity"
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7706,8 +7749,8 @@ msgid "Enable auto fast scan"
 msgstr "Włącz automatyczne szybkie skanowanie"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
-msgstr "Włącz automatyczne szybkie skanowanie dla %s"
+msgid "Enable auto fast scan for '%s'"
+msgstr "Włącz automatyczne szybkie skanowanie dla '%s'"
 
 msgid "Enable automatic shares"
 msgstr "Włącz automatyczne udostępnianie"
@@ -8090,6 +8133,9 @@ msgstr "Wprowadź sufiks nazwy domeny sieciowej, który ma zostać dodany do pow
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Wprowadź nazwę hosta sieciowego, która będzie używana do identyfikacji tego odbiornika."
 
+msgid "Enter the new four-digit PIN code."
+msgstr "Wprowadź nowy czterocyfrowy kod PIN."
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Wprowadź liczbę wątków serwera NFS, które mają zostać przydzielone/użyte. Wyższe wartości poprawiają wydajność w przypadku wielu klientów, ale zużywają więcej pamięci."
 
@@ -8113,6 +8159,9 @@ msgstr "Wprowadź podstawowy serwer DNS IPv6 dla tego adaptera. (Opcjonalnie)"
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Wprowadź nazwę udziału zdalnego (SMB) lub ścieżkę eksportową (NFS) na serwerze."
+
+msgid "Enter the same PIN code again to confirm it."
+msgstr "Wprowadź ponownie ten sam kod PIN, aby go potwierdzić."
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Wprowadź dodatkowy serwer DNS IPv4 dla tego adaptera. (Opcjonalnie)"
@@ -8286,12 +8335,18 @@ msgstr "Błąd opóźnienia ponownej próby"
 msgid "Error code"
 msgstr "Kod błędu"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr "Błąd podczas tworzenia kopii zapasowej kanałów na zdalnym odbiorniku!"
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Błąd podczas pobierania systemu '%s'!"
 
 msgid "Error executing plugin"
 msgstr "Błąd podczas uruchamiania wtyczki"
+
+msgid "Error extracting the channel backup!"
+msgstr "Błąd podczas rozpakowywania kopii zapasowej kanałów!"
 
 #, python-format
 msgid ""
@@ -8307,11 +8362,17 @@ msgstr "Błąd podczas przenoszenia pliku 'epg.dat' do miejsca docelowego!"
 msgid "Error opening recording file"
 msgstr "Błąd podczas otwierania pliku nagrania"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr "Błąd podczas nadpisywania plików kanałów na lokalnym odbiorniku!"
+
 msgid "Error reading webpage!"
 msgstr "Błąd odczytu strony!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Błąd podczas pobierania pliku 'epg.dat' ze zdalnego odbiornika!"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr "Błąd podczas pobierania kopii zapasowej kanałów ze zdalnego odbiornika!"
 
 msgid "Error text:"
 msgstr "Tekst błędu:"
@@ -8328,9 +8389,6 @@ msgstr ""
 "Błąd podczas pobierania informacji o liczniku czasu awaryjnego\n"
 "%s"
 
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "Błąd podczas zapisu '/etc/enigma2/epg.dat' na zdalnym odbiorniku!"
-
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Błąd podczas zapisu 'epg.dat' na zdalnym odbiorniku!"
 
@@ -8341,6 +8399,9 @@ msgid ""
 msgstr ""
 "Błąd: %s\n"
 "Ponowić?"
+
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Błąd: trwa nagrywanie! Zatrzymaj nagrywanie lub poczekaj, aż się zakończy, zanim spróbujesz przeprowadzić skanowanie."
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Błąd: pusta nazwa pliku jest nieprawidłowa!"
@@ -8412,7 +8473,10 @@ msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.
 msgstr "Usunięcie katalogu %s nie powiodło się. (Być może nie jest pusty.)"
 
 msgid "Error: Rescan failed!"
-msgstr "Błąd: Ponowne skanowanie nie powiodło się!"
+msgstr "Błąd: ponowne skanowanie nie powiodło się!"
+
+msgid "Error: Scan failed!"
+msgstr "Błąd: skanowanie nie powiodło się!"
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
@@ -8451,12 +8515,27 @@ msgstr "Błąd: Wystąpił problem z zapisem '%s'!"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "Błąd: Wystąpił problem podczas resetowania feed'ów! Proszę zrestartować %s %s i sprawdzić system plików pod kątem błędów przed ponowną próbą wykonania tego polecenia."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr "Błąd: nie można sprawdzić istniejących punktów montowania, więc zamiennik HDD nie został zmieniony!"
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr "Błąd: nie można utworzyć dodatkowych plików STARTUP!"
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr "Błąd: nie można utworzyć nowych plików STARTUP producenta!"
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Błąd: Nie udało się utworzyć wymaganych katalogów na dysku (np. USB lub dysk twardy)! Sprawdź dysk i spróbuj ponownie."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr "Błąd: nie można odczytać UUID nowej partycji MultiBoot, więc pliki STARTUP nie zostały zmienione!"
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Błąd: Nie można zmienić nazwy katalogu \"%s\" na \"%s\"!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr "Błąd: nie można wybrać wskazanej ścieżki dźwiękowej!"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8914,6 +8993,16 @@ msgstr "Przewijanie do Przodu i do Tyłu"
 msgid "Fast Scan"
 msgstr "Szybkie skanowanie"
 
+msgid "Fast Scan Actions"
+msgstr "Akcje szybkiego skanowania"
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] "Szybkie skanowanie, wersja %d: znaleziono %d kanał."
+msgstr[1] "Szybkie skanowanie, wersja %d: znaleziono %d kanały."
+msgstr[2] "Szybkie skanowanie, wersja %d: znaleziono %d kanałów."
+
 msgid "Fast Skin Reload"
 msgstr "Szybkie przeładowanie skórki"
 
@@ -8925,6 +9014,9 @@ msgstr "Przewijanie do przodu"
 
 msgid "Fast forward speeds"
 msgstr "Szybkie przewijanie do przodu"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr "Szybkie skanowanie może zmienić nazwy istniejących kanałów i uniemożliwić ich aktualizację przez zwykłe skanowanie. Aktualizacje przez szybkie skanowanie nadal działają. Wyłączenie tej opcji nie przywróci oryginalnych nazw ani aktualizacji przez zwykłe skanowanie. Aby je przywrócić, przeskanuj kanały ponownie z opcją 'Wyczyść przed skanowaniem' ustawioną na 'Tak'."
 
 msgid "Favorite Edit"
 msgstr "[edycja ulubionych]"
@@ -10003,6 +10095,9 @@ msgstr "Ukryj zablokowane kanały dla rodziców"
 msgid "Hide player"
 msgstr "Ukryj odtwarzacz"
 
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr "Ukrywaj chronione kanały, dopóki PIN kanałów nie zostanie zapamiętany."
+
 msgid "Hide softcam servername"
 msgstr "Ukryj nazwę serwera softcam"
 
@@ -10431,6 +10526,9 @@ msgstr "Ignoruj przestrzeń nazw podsieci DVB-T"
 msgid "Ignore Standby"
 msgstr "Ignoruj tryb czuwania"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr "Pomija kanały z satelitów, które nie są skonfigurowane w ustawieniach tunerów."
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignoruj nieoczekiwane budzenie i pozostań w trybie czuwania"
 
@@ -10563,7 +10661,7 @@ msgid "Include SDT and BAT in http streams"
 msgstr "Uwzględnij SDT, BAT w strumieniach http"
 
 msgid "Include SEC/DiSEqC data"
-msgstr "Uwzględnij dane SEC/DiSEqC"
+msgstr "Dołącz dane SEC/DiSEqC"
 
 msgid "Include action map data"
 msgstr "Dołącz dane mapy działań"
@@ -11539,13 +11637,6 @@ msgstr "Lista urządzeń pamięci masowej"
 msgid "List of storage devices"
 msgstr "Lista urządzeń pamięci masowej"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Wersja listy %d, znaleziono %d kanał"
-msgstr[1] "Wersja listy %d, znaleziono %d kanały"
-msgstr[2] "Wersja listy %d, znaleziono %d kanałów"
-
 msgid "List/Fav"
 msgstr "Lista/Ulubione"
 
@@ -12520,11 +12611,8 @@ msgstr "Przejdź do pierwszego elementu / ekranu"
 msgid "Move to first line"
 msgstr "Przenieś do pierwszej linii"
 
-msgid "Move to first line / screen"
-msgstr "Przesuń do pierwszej linii / ekranu"
-
 msgid "Move to first line / screen in the panel"
-msgstr "Przejdź do pierwszej linii / ekranu w panelu"
+msgstr "Przejdź do pierwszego wiersza / ekranu w panelu"
 
 msgid "Move to home of list"
 msgstr "Przenieś do domowej listy"
@@ -12535,11 +12623,8 @@ msgstr "Przejdź do ostatniego elementu / ekranu"
 msgid "Move to last line"
 msgstr "Przenieś do ostatniej linii"
 
-msgid "Move to last line / screen"
-msgstr "Przesuń do ostatniej linii / ekranu"
-
 msgid "Move to last line / screen in the panel"
-msgstr "Przejdź do ostatniej linii / ekranu w panelu"
+msgstr "Przejdź do ostatniego wiersza / ekranu w panelu"
 
 msgid "Move to next bouquet"
 msgstr "Przejdź do następnej listy"
@@ -12566,7 +12651,7 @@ msgid "Move to the first item on the first screen"
 msgstr "Przejdź do pierwszego elementu na pierwszym ekranie"
 
 msgid "Move to the first line / screen"
-msgstr "Przejdź do pierwszej linii / ekranu"
+msgstr "Przejdź do pierwszego wiersza / ekranu"
 
 msgid "Move to the last item on the current line"
 msgstr "Przejdź do ostatniego elementu w bieżącym wierszu"
@@ -12575,7 +12660,7 @@ msgid "Move to the last item on the last screen"
 msgstr "Przejdź do ostatniego elementu na ostatnim ekranie"
 
 msgid "Move to the last line / screen"
-msgstr "Przejdź do ostatniej linii / ekranu"
+msgstr "Przejdź do ostatniego wiersza / ekranu"
 
 msgid "Move to the next category in the list"
 msgstr "Przejdź do następnej kategorii na liście"
@@ -12620,7 +12705,7 @@ msgid "Move up one line"
 msgstr "Przesunięcie o jeden wiersz w górę"
 
 msgid "Move up one line. Move to the bottom of the previous screen if this is the first line of the screen. Move to the last of the entry / list if this is the first line of the list."
-msgstr "Przechodzenie o jeden wiersz w górę. Przechodzenie na dół poprzedniego ekranu, jeśli jest to pierwszy wiersz ekranu. Przejdź do ostatniego wpisu / listy, jeśli jest to pierwszy wiersz listy."
+msgstr "Przejdź o jeden wiersz w górę. Jeśli to pierwszy wiersz ekranu, przejdź na dół poprzedniego ekranu. Jeśli to pierwszy wiersz listy, przejdź do ostatniej pozycji / końca listy."
 
 msgid "Move up one screen"
 msgstr "Przesunięcie o jeden ekran w górę"
@@ -12833,6 +12918,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Nazwa"
+
+msgid "Name (A-Z)"
+msgstr "Nazwa (A-Z)"
+
+msgid "Name (Z-A)"
+msgstr "Nazwa (Z-A)"
 
 msgid "Name ascending"
 msgstr "Nazwa rosnąco"
@@ -13267,6 +13358,9 @@ msgstr "Brak kategorii"
 msgid "No channel"
 msgstr "Brak kanału"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr "Nie znaleziono kopii zapasowej kanałów na zdalnym odbiorniku!"
+
 msgid "No channel list"
 msgstr "Brak listy kanałów"
 
@@ -13315,6 +13409,9 @@ msgstr "Nie wykryto twardych dysków."
 
 msgid "No hosts found yet - still scanning..."
 msgstr "Nie znaleziono jeszcze żadnych hostów — skanowanie nadal trwa..."
+
+msgid "No local images found."
+msgstr "Nie znaleziono lokalnych obrazów systemu."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nie znaleziono plików logów, więc logi debugowania są niedostępne!"
@@ -13593,6 +13690,9 @@ msgstr "Nie wymagane"
 msgid "Not running"
 msgstr "Nie działa"
 
+msgid "Not set"
+msgstr "Nie ustawiono"
+
 msgid "Not tested:"
 msgstr "Nie testowane:"
 
@@ -13842,6 +13942,9 @@ msgstr "Przesuń szybko antenę tylko przed tą godziną."
 
 msgid "Only on startup"
 msgstr "Tylko przy uruchomieniu"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr "Tylko jeden udział sieciowy może być używany jako zamiennik HDD. Najpierw wyłącz 'Użyj jako zamiennik HDD' w drugim udziale."
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Używaj wyłącznie serwerów DNS obsługujących protokół DNS-over-HTTPS. Dzięki temu wyszukiwania DNS będą wykonywane za pomocą szyfrowanego protokołu HTTPS."
@@ -14349,7 +14452,7 @@ msgid "Panama"
 msgstr "Panama"
 
 msgid "Panic channel"
-msgstr "Kanał alarmowy"
+msgstr "Kanał awaryjny"
 
 msgid "Panic to"
 msgstr "Panika do"
@@ -14402,12 +14505,6 @@ msgstr "Przebieg %d/%d"
 
 msgid "Pass-through"
 msgstr "Pass-through"
-
-msgid "Passthrough audio handling delay AC3"
-msgstr "Opóźnienie obsługi Passthrough AC3"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "Opóźnienie obsługi Passthrough AC3+"
 
 msgid "Password"
 msgstr "Hasło"
@@ -15183,6 +15280,9 @@ msgstr "Preferowane tunery do nagrań, dozwolony wybór wielokrotny"
 msgid "Preparation time for recording"
 msgstr "Czas przygotowania do nagrania"
 
+msgid "Preparing recording, please wait..."
+msgstr "Przygotowywanie nagrywania, proszę czekać..."
+
 msgid "Preparing... Please wait"
 msgstr "Przygotowywanie... Proszę czekać"
 
@@ -15207,11 +15307,17 @@ msgstr "Naciśnij EXIT, aby powrócić do ekranu pomocy."
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "Naciśnij ZIELONY, aby włączyć MultiBoot!"
 
+msgid "Press OK"
+msgstr "Naciśnij OK"
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Naciśnij OK, aby wybrać opcję MultiBoot."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Naciśnij OK na pilocie, aby kontynuować."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr "Naciśnij OK, aby zmienić PIN używany do ochrony kanałów i ekranów."
 
 msgid "Press OK to continue."
 msgstr "Naciśnij OK, aby kontynuować."
@@ -15240,6 +15346,9 @@ msgstr "Naciśnij OK, aby zainstalować i użyć tych ustawień regionalnych.  [
 msgid "Press OK to open module info"
 msgstr "Naciśnij OK, aby otworzyć informacje o module"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr "Naciśnij OK, aby ponownie wczytać listę chronionych kanałów z dysku."
+
 msgid "Press OK to reset PIN code"
 msgstr "Naciśnij OK, aby zresetować kod PIN"
 
@@ -15260,6 +15369,9 @@ msgstr "Naciśnij 'OK', aby wybrać kanał."
 
 msgid "Press OK to select satellites"
 msgstr "Naciśnij 'OK', aby wybrać satelity"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr "Naciśnij OK, aby wybrać kanał awaryjny. Wybrany kanał zostanie zachowany przy zmianie kolejności kanałów lub list."
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "Naciśnij OK, aby zaznaczyć/odznaczyć CAId."
@@ -15292,9 +15404,6 @@ msgstr "Naciśnij GÓRA/DÓŁ, aby wybrać slot, a następnie naciśnij OK lub Z
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Naciśnij ten przycisk, aby emulować długie naciśnięcie przycisku (to zastąpi wszelkie inne czynności przypisane do tego przycisku)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "Naciśnięcie przycisku alarmowego przełączy na ten numer kanału z pierwszej listy kanałów."
 
 msgid "Prev quad PiP channel"
 msgstr "Poprzedni kanał quad PiP"
@@ -15447,6 +15556,9 @@ msgstr "Rozmiar czcionki informacji o postępie"
 msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
 
+msgid "Protect MultiBoot"
+msgstr "Chroń MultiBoot"
+
 msgid "Protect Quickmenu"
 msgstr "Chroń szybkie menu"
 
@@ -15459,6 +15571,15 @@ msgstr "Chroń konfigurację"
 msgid "Protect context menus"
 msgstr "Chroń menu kontekstowe"
 
+msgid "Protect extensions menu"
+msgstr "Chroń menu rozszerzeń"
+
+msgid "Protect factory reset"
+msgstr "Chroń przywracanie ustawień fabrycznych"
+
+msgid "Protect image flashing and restoring backups"
+msgstr "Chroń instalowanie systemu i przywracanie kopii zapasowych"
+
 msgid "Protect main menu"
 msgstr "Chroń menu główne"
 
@@ -15468,8 +15589,14 @@ msgstr "Chroń listę nagrań"
 msgid "Protect on epg age"
 msgstr "Zabezpiecz wiek epg"
 
+msgid "Protect package installation and removal"
+msgstr "Chroń instalowanie i usuwanie pakietów"
+
 msgid "Protect plugin browser"
 msgstr "Chroń przeglądarkę wtyczek"
+
+msgid "Protect script execution"
+msgstr "Chroń uruchamianie skryptów"
 
 msgid "Protect services"
 msgstr "Zabezpiecz kanały"
@@ -15479,6 +15606,12 @@ msgstr "Chroń ekran aktualizacji oprogramowania"
 
 msgid "Protect standby menu"
 msgstr "Chroń menu czuwania"
+
+msgid "Protect storage device management"
+msgstr "Chroń zarządzanie urządzeniami pamięci masowej"
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr "Chroń menu główne i funkcje systemowe objęte ochroną ekranów, także przy dostępie przez skróty."
 
 msgid "Protect timer menu"
 msgstr "Chroń menu timera"
@@ -16370,8 +16503,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr "Zastąp statyczne tło radia obrazami przesyłanymi przez bieżącą stację DAB+."
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr "Wymaga kodu PIN przed zresetowaniem konfiguracji odbiornika."
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr "Wymaga kodu PIN, aby uzyskać dostęp do chronionych ekranów zarządzania pamięcią masową, menedżera swap i ekspandera flash."
+
+msgid "Require a PIN code to access software updates."
+msgstr "Wymaga kodu PIN, aby uzyskać dostęp do aktualizacji oprogramowania."
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr "Wymaga kodu PIN, aby uzyskać dostęp do wybranych menu i funkcji systemowych, łącznie z ich chronionymi skrótami."
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr "Wymaga kodu PIN, aby instalować obrazy systemu lub przywracać kopie zapasowe."
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr "Wymaga kodu PIN, aby instalować lub usuwać pakiety, w tym pliki IPK znalezione na nośnikach wymiennych."
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr "Wymaga kodu PIN, aby zarządzać systemami i slotami MultiBoot."
+
+msgid "Require a PIN code to open protected context menus."
+msgstr "Wymaga kodu PIN, aby otwierać chronione menu kontekstowe."
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr "Wymaga kodu PIN, aby otwierać ustawienia i chronione ekrany konfiguracji systemu."
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr "Wymaga kodu PIN, aby otworzyć szybkie menu."
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr "Wymaga kodu PIN, aby otworzyć menu rozszerzeń."
+
+msgid "Require a PIN code to open the movie list."
+msgstr "Wymaga kodu PIN, aby otworzyć listę nagrań."
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr "Wymaga kodu PIN, aby otworzyć przeglądarkę wtyczek i uruchamiać wtyczki przez chronione punkty dostępu."
+
+msgid "Require a PIN code to open the script runner."
+msgstr "Wymaga kodu PIN, aby otworzyć ekran menedżera skryptów."
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr "Wymaga kodu PIN, aby otworzyć menu czuwania i wyłączania."
+
+msgid "Require a PIN code to open the timer menu."
+msgstr "Wymaga kodu PIN, aby otworzyć menu timerów."
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr "Wymaga kodu PIN, aby oglądać chronione kanały lub programy objęte wybranym ograniczeniem wiekowym."
+
 msgid "Require authentication for http streams"
 msgstr "Wymagaj uwierzytelniania dla strumieni http"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr "Wymaga PIN-u kanałów dla programów od tego wieku wzwyż, na podstawie informacji o wieku dostarczonych przez nadawcę."
 
 msgid "Required medium type:"
 msgstr "Wymagany typ nośnika:"
@@ -16589,6 +16776,9 @@ msgstr "Pobieranie logów '%s', proszę czekać..."
 msgid "Retrieving boot slot information..."
 msgstr "Pobieranie informacji o slocie rozruchowym..."
 
+msgid "Retrieving geolocation information..."
+msgstr "Pobieranie informacji o geolokalizacji..."
+
 msgid "Retrieving image list, please wait..."
 msgstr "Pobieranie listy systemów, proszę czekać..."
 
@@ -16606,6 +16796,9 @@ msgstr "Zwróć odpowiedź aktualnie zaznaczonego wyboru"
 
 msgid "Return to movie list"
 msgstr "Powrót do listy nagrań"
+
+msgid "Return to previous channel"
+msgstr "Wróć do poprzedniego kanału"
 
 msgid "Return to previous service"
 msgstr "Powrót do poprzedniego kanału"
@@ -17104,14 +17297,14 @@ msgid "Scanning"
 msgstr "Skanowanie"
 
 #, python-format
-msgid "Scanning %s..."
-msgstr "Skanowanie %s..."
+msgid "Scanning '%s'..."
+msgstr "Skanowanie '%s'..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
 msgstr "Skanowanie źródeł DAB+ i oczekiwanie na dane FIC na żywo..."
 
 msgid "Scanning can't be performed while recordings are in progress."
-msgstr "Skanowania nie można wykonać podczas nagrywania."
+msgstr "Nie można przeprowadzić skanowania, gdy trwa nagrywanie."
 
 #, python-format
 msgid "Scanning completed, %d DAB+ services found."
@@ -17130,9 +17323,6 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Zakończono skanowanie, znaleziono %d kanał."
 msgstr[1] "Zakończono skanowanie, znaleziono %d kanały."
 msgstr[2] "Zakończono skanowanie, znaleziono %d kanałów."
-
-msgid "Scanning failed!"
-msgstr "Skanowanie nie powiodło się!"
 
 msgid "Scanning for shares..."
 msgstr "Skanowanie udziałów..."
@@ -17259,6 +17449,9 @@ msgstr "Wyszukiwanie"
 
 msgid "Searching east ..."
 msgstr "Przeszukuję wschód..."
+
+msgid "Searching for local images, please wait..."
+msgstr "Wyszukiwanie lokalnych obrazów systemu, proszę czekać..."
 
 msgid "Searching west ..."
 msgstr "Przeszukiwanie zachodu..."
@@ -17747,6 +17940,9 @@ msgstr "Wybierz log z repozytorium, który chcesz zobaczyć:"
 msgid "Select a script to run:"
 msgstr "Wybierz skrypt do uruchomienia:"
 
+msgid "Select a service"
+msgstr "Wybierz kanał"
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr "Wybierz konkretną wersję NFS, aby wymusić konkretną wersję protokołu NFS zamiast zezwalać na automatyczną negocjację."
 
@@ -17823,6 +18019,9 @@ msgstr "Wybierz pliki, które chcesz wykluczyć z kopii zapasowej"
 msgid "Select files/folders to backup"
 msgstr "Wybierz pliki kopii zapasowej"
 
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr "Wybierz, jak długo poprawnie wprowadzony PIN kanałów ma być zapamiętany. Nie odblokowuje to chronionych ustawień ani funkcji systemowych."
+
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Wybierz, jak długo obraz wygaszacza ekranu będzie pozostawał w tym samym miejscu na ekranie, zanim zostanie przeniesiony."
 
@@ -17864,6 +18063,9 @@ msgstr "Wybierz sposób obsługi harmonogramu w odniesieniu do trybu czuwania."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Wybierz sposób aktywacji trybu szybkiego EPG."
+
+msgid "Select how to sort the timer list."
+msgstr "Wybierz sposób sortowania listy timerów."
 
 msgid "Select how your receiver will upgrade."
 msgstr "Wybierz sposób aktualizacji urządzenia."
@@ -17936,6 +18138,9 @@ msgstr "Wybierz operatora do dodania..."
 
 msgid "Select refresh rate"
 msgstr "Wybierz prędkość odświeżania"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr "Wybierz osobne porty DiSEqC 1.0 dla konwerterów LNB polaryzacji poziomej i pionowej w instalacji z OMT na tym samym satelicie. Tryb napięcia pozostaje niezależny. Zewnętrzne narzędzia do skanowania na ślepo mogą nie obsługiwać tej konfiguracji."
 
 msgid "Select service information to view:"
 msgstr "Wybierz informacje o usłudze, które chcesz wyświetlić:"
@@ -18072,6 +18277,12 @@ msgstr "Wybierz kolor diody LED zasilania na panelu przednim, gdy odbiornik jest
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Wybierz kolor, który będzie używany dla tekstu tłumaczenia AI."
 
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr "Wybierz port przełącznika DiSEqC (committed) podłączony do konwertera LNB polaryzacji poziomej."
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr "Wybierz port przełącznika DiSEqC (committed) podłączony do konwertera LNB polaryzacji pionowej."
+
 msgid "Select the current bookmarked location and exit"
 msgstr "Wybierz bieżącą lokalizację zakładki i wyjdź"
 
@@ -18155,6 +18366,9 @@ msgstr "Wybierz czas bezczynności, po którym zostanie wyświetlony wygaszacz e
 
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Wybierz godzinę zakończenia, przed którą ten timer może zostać aktywowany. Po tym czasie timer nie zostanie aktywowany, nawet jeśli zostaną spełnione inne warunki."
+
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr "Wybierz dostawcę szybkiego skanowania i naciśnij NIEBIESKI, aby rozpocząć skanowanie."
 
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
@@ -18333,11 +18547,8 @@ msgstr "Wybierz kolejność sortowania linii plików:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Wybierz porządek sortowania wpisów w menu rozszerzeń."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Wybierz kolejność sortowania wpisów w przeglądarce wtyczek. Opcja 'Własne' umożliwia także ukrywanie wpisów menu."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
-msgstr "Wybierz kolejność sortowania wpisów w przeglądarce wtyczek. Opcja 'Własne' umożliwia także ukrywanie wpisów wtyczek."
+msgstr "Wybierz kolejność sortowania pozycji w menu przeglądarki wtyczek. Opcja 'Własne' pozwala także ukrywać pozycje wtyczek."
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Wybierz kolejność sortowania wpisów menu. Opcja 'Własne' umożliwia także ukrywanie wpisów menu."
@@ -18381,8 +18592,14 @@ msgstr "Wybierz strefę czasową w obszarze lub regionie."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Wybierz domyślnie timer zdalnego odbiornika"
 
+msgid "Select the timer list sort order"
+msgstr "Wybierz kolejność sortowania listy timerów"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Wybierz tuner sterujący zmotoryzowaną anteną."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr "Wybierz tuner używany do szybkiego skanowania."
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Wybierz tuner, do którego podłączony jest kabel sygnałowy urządzenia SCR."
@@ -18512,9 +18729,6 @@ msgstr "Wybierz swój kraj. Jeśli nie jest dostępny, wybierz 'Wszystkie'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Wybierz dostawcę i region. Jeśli nie ma go na tej liście, musisz wybrać jeden z pozostałych 'Typów skanowania kanałów'."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Wybierz swojego dostawcę i naciśnij OK, aby rozpocząć skanowanie"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Wybierz swój region. Jeśli nie jest dostępny, zmień 'Kraj' na 'Wszystkie' i wybierz jedną z domyślnych opcji."
@@ -18710,6 +18924,9 @@ msgstr "Nazwa kanału"
 
 msgid "Service name font size"
 msgstr "Rozmiar czcionki nazwy kanału"
+
+msgid "Service not found"
+msgstr "Nie znaleziono kanału"
 
 msgid ""
 "Service not found!\n"
@@ -20476,6 +20693,9 @@ msgstr "Somalia"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Niektóre telewizory nie mogą przełączyć się na właściwe wejście, jeśli aktywny jest inny port HDMI. To ustawienie przełącza telewizor w tryb czuwania przed przełączeniem. Jeśli telewizor się nie włączy, może być konieczne wydłużenie interwału transmisji lub powtórzenie polecenia wybudzenia."
 
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr "Nie udało się odczytać niektórych lokalizacji obrazów systemu. Sprawdź urządzenia pamięci masowej."
+
 msgid "Sorbian"
 msgstr "Serbski"
 
@@ -20532,11 +20752,11 @@ msgstr "Sortuj listę EPG"
 msgid "Sort Extension Menu"
 msgstr "Sortuj Menu rozszerzeń"
 
-msgid "Sort Plugin Browser"
-msgstr "Sortuj wpisy przeglądarki wtyczek"
-
 msgid "Sort Plugin Browser entries"
-msgstr "Sortuj wpisy przeglądarki wtyczek"
+msgstr "Sortuj pozycje przeglądarki wtyczek"
+
+msgid "Sort Timers"
+msgstr "Sortuj timery"
 
 msgid "Sort by"
 msgstr "Sortuj według"
@@ -20712,6 +20932,12 @@ msgstr "Częstotliwość uruchamiania"
 msgid "Start RDS interactive"
 msgstr "Uruchom interaktywny RDS"
 
+msgid "Start Time (Earliest First)"
+msgstr "Czas rozpoczęcia (od najwcześniejszego)"
+
+msgid "Start Time (Latest First)"
+msgstr "Czas rozpoczęcia (od najpóźniejszego)"
+
 msgid "Start Wizard"
 msgstr "Uruchom kreator"
 
@@ -20768,6 +20994,9 @@ msgstr "Rozpocznij inicjowanie Kexec"
 
 msgid "Start the backup of the selected image"
 msgstr "Rozpocznij tworzenie kopii zapasowej wybranego systemu"
+
+msgid "Start the fast scan"
+msgstr "Rozpocznij szybkie skanowanie"
 
 msgid "Start the highlighted plugin"
 msgstr "Uruchom podświetloną wtyczkę"
@@ -21882,6 +22111,12 @@ msgstr "Liczba klatek na sekundę nagrania. Idealnie, będzie to pasowało do li
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Wysokość zdjęcia. Dane wejściowe zostaną przeskalowane w celu dopasowania do tej wartości."
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr "Upłynął limit czasu wyszukiwania lokalnych obrazów systemu. Sprawdź urządzenia pamięci masowej."
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr "Lokalna nazwa udziału nie może zawierać spacji, ukośników ani '#' i nie może być '.' ani '..'."
+
 msgid "The loopthrough setting is wrong."
 msgstr "Ustawienie przelotu sygnału jest nieprawidłowe."
 
@@ -21901,6 +22136,13 @@ msgstr "Plik STARTUP producenta '%s' został zmieniony. Zrestartuj interfejs i s
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
 msgstr "Nazwy pliku STARTUP producenta '%s' nie można bezpiecznie rozszerzyć."
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr "Punkt montowania '%s' jest używany przez więcej niż jeden udział."
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
+msgstr "Nie znaleziono kanału awaryjnego. Wybierz go ponownie w 'Ustawieniach listy kanałów'."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Katalog pikon już istnieje i musi zostać usunięty. Czy chcesz kontynuować?"
@@ -23146,58 +23388,69 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraiński"
 
-msgid "Unable to create the additional STARTUP files."
-msgstr "Nie można utworzyć dodatkowych plików STARTUP."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
+msgstr "Nie można sprawdzić zamiennika HDD: %s"
 
-msgid "Unable to create the new manufacturer STARTUP files."
-msgstr "Nie można utworzyć nowych plików STARTUP producenta."
+msgid "Unable to complete the bouquet update. Please check your bouquets."
+msgstr "Nie można ukończyć aktualizacji list. Sprawdź swoje listy."
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
-msgstr "Nie można odziedziczyć kanału użytkownika (User Band) dla LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
+msgstr "Nie można przejąć pasma użytkownika dla LNB %d: %s!"
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
-msgstr "Nie można odziedziczyć kanału użytkownika (User Band) dla LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
+msgstr "Nie można przejąć pasma użytkownika dla LNB %d: LNB 1 %s!"
 
-msgid "Unable to initialize Kexec MultiBoot."
-msgstr "Nie udało się zainicjować Kexec MultiBoot."
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Nie można zainicjować Kexec MultiBoot!"
 
-msgid "Unable to load package information."
-msgstr "Nie można wczytać informacji o pakiecie."
+msgid "Unable to load package information!"
+msgstr "Nie można wczytać informacji o pakietach!"
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Nie można otworzyć tunera (%d)"
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
-msgstr "Nie można odczytać UUID nowej partycji MultiBoot. Pliki STARTUP nie zostały zmienione."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr "Nie można przygotować aktualizacji list. Skanowanie będzie kontynuowane bez aktualizacji list."
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
-msgstr "Nie można odczytać pliku STARTUP producenta '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
+msgstr "Nie można odczytać pliku STARTUP producenta '%s'!"
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
+msgstr "Nie można ponownie połączyć się ze strumieniem. Spróbuj włączyć ten kanał później."
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "Nie można zarejestrować transpondera DAB+"
 
-msgid "Unable to remove the obsolete additional STARTUP files."
-msgstr "Nie można usunąć przestarzałych dodatkowych plików STARTUP."
+msgid "Unable to remove the obsolete additional STARTUP files!"
+msgstr "Nie można usunąć przestarzałych dodatkowych plików STARTUP!"
 
-msgid "Unable to save network configuration."
-msgstr "Nie można zapisać konfiguracji sieciowej."
+msgid "Unable to save network configuration!"
+msgstr "Nie można zapisać konfiguracji sieci!"
 
-msgid "Unable to select the audio channel."
-msgstr "Nie można wybrać ścieżki dźwięku."
+msgid "Unable to save network mount configuration!"
+msgstr "Nie można zapisać konfiguracji montowania udziałów sieciowych!"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Nie można nastroić sygnału DAB+"
+
+msgid "Unable to start the local image search. Please try again later."
+msgstr "Nie można uruchomić wyszukiwania lokalnych obrazów systemu. Spróbuj ponownie później."
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr "Nie można nastroić sygnału DAB+"
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
-msgstr "Nie można zweryfikować pozycji Unicable dla LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr "Nie można zaktualizować zamiennika HDD: %s"
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr "Nie można zweryfikować pozycji Unicable dla LNB %d: %s!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Nienadzorowana aktualizacja bez interfejsu graficznego"
@@ -23217,6 +23470,9 @@ msgstr "Nieokreślony"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Nieoczekiwany błąd podczas dostępu do WebIF: %s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr "Nieoczekiwany błąd podczas importu ze zdalnego odbiornika!"
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Nieoczekiwany błąd podczas pobierania informacji o timerze odbiornika zadalnego"
@@ -23371,6 +23627,9 @@ msgstr "Aktualizacja nieudana!"
 
 msgid "Update finished!"
 msgstr "Aktualizacja zakończona!"
+
+msgid "Update outdated bouquet entries"
+msgstr "Aktualizuj nieaktualne pozycje na listach"
 
 msgid ""
 "Update succeeded!\n"
@@ -23558,7 +23817,7 @@ msgid "Use an alternative smaller screen."
 msgstr "Użyj alternatywnego mniejszego ekranu."
 
 msgid "Use as HDD replacement"
-msgstr "Użyj jako zamiennika dysku HDD"
+msgstr "Użyj jako zamiennik HDD"
 
 msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
 msgstr "Użyj automatycznego wykrywania, sprzętowego dekodowania AAC lub wymuś zgodny tryb programowego PCM."
@@ -23590,11 +23849,11 @@ msgstr "Użyj linii opisu"
 msgid "Use extended List"
 msgstr "Użyj rozszerzonej listy"
 
-msgid "Use fastscan channel names"
-msgstr "Użyj szybkiego skanowania nazw kanałów"
+msgid "Use fast scan channel names"
+msgstr "Użyj nazw kanałów z szybkiego skanowania"
 
-msgid "Use fastscan channel numbering"
-msgstr "Użyj szybkiego skanowania numerów kanałów"
+msgid "Use fast scan channel numbering"
+msgstr "Użyj numeracji kanałów z szybkiego skanowania"
 
 msgid "Use for load only x days in EPG."
 msgstr "Użyj do ładowania tylko x dni w EPG."
@@ -23653,6 +23912,9 @@ msgstr "Użyj linii dystansowych"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Użyj linii rozdzielających, aby wypełnić listę kanałów, tak aby numery linii #SERVICE odpowiadały numerowi LCN."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr "Używa listy kanałów HD dostarczanej przez szybkie skanowanie."
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Użyj przycisków LEWO/PRAWO na pilocie, aby wyregulować wysokość OSD. Przycisk LEWY zmniejsza wysokość, PRAWY zwiększa wysokość."
 
@@ -23681,13 +23943,16 @@ msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select
 msgstr "Użyj panelu Softcam, aby kontrolować swój Cam. Pozwala to na uruchomienie / zatrzymanie / wybranie Cam"
 
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
-msgstr "Użyj przycisków w górę lub w dół, aby wybrać region/język, następnie naciśnij OK aby kontynuować."
+msgstr "Użyj przycisków GÓRA i DÓŁ, aby wybrać ustawienia regionalne/język, a następnie naciśnij przycisk OK, aby kontynuować."
 
 msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
 msgstr "Użyj przycisków GÓRA/DÓŁ, aby wybrać zainstalowany system, z którego ma zostać utworzona kopia zapasowa. Następnie naciśnij przycisk 'Start' (ZIELONY), aby rozpocząć tworzenie kopii zapasowej."
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Użyj alternatywnego lub konwencjonalnego trybu radiowego."
+
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr "Używa numeracji kanałów dostarczanej przez szybkie skanowanie, łącznie z przerwami. Po wyłączeniu kanały są numerowane kolejno, bez przerw."
 
 msgid "Use the current selection and exit"
 msgstr "Użyj bieżącego wyboru i wyjdź"
@@ -23700,6 +23965,9 @@ msgstr "Użyj kreatora, aby ustawić podstawowe funkcje"
 
 msgid "Use these input device settings?"
 msgstr "Użyć tych ustawień dla urządzenia?"
+
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr "Używaj tego udziału jako /media/hdd. W trybie autofs dowiązanie jest tworzone tylko wtedy, gdy /media/hdd jest dostępny; w przeciwnym razie udział pozostaje dostępny w /media/autofs. W trybie fstab udział jest montowany bezpośrednio. Można wybrać tylko jeden udział. Istniejące punkty montowania i pliki nie są nadpisywane."
 
 msgid "Use this video enhancement settings?"
 msgstr "Użyć tych ustawień korekcji obrazu?"
@@ -23724,12 +23992,6 @@ msgstr "Użyte"
 
 msgid "Used service scan type"
 msgstr "Używany typ skanowania kanałów"
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "Służy do określenia opóźnienia przy przełączaniu między kanałami, gdy włączone jest passthrough AC3."
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "Służy do określenia opóźnienia przy przełączaniu między kanałami, gdy włączona jest funkcja passthrough AC3+/Atmos."
 
 msgid "Used:"
 msgstr "Używany:"
@@ -24508,8 +24770,8 @@ msgstr "Po włączeniu znaczniki liczb będą ukryte."
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr "Po włączeniu adres IP, maska podsieci, brama oraz serwery DNS będą pobierane automatycznie przez DHCP."
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Po włączeniu naciśnięcie przycisku '0' przełączy na pierwszy kanał z pierwszej listy kanałów i wyczyści historię przełączeń."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr "Po włączeniu naciśnięcie '0' przełączy na wybrany kanał awaryjny i usunie historię przełączania kanałów."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Po włączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
@@ -24588,9 +24850,6 @@ msgstr "Po włączeniu to ustawienie ma większe znaczenie niż 'Preferowany tun
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Po włączeniu to ustawienie ma większą wagę niż 'Preferowany tuner'."
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr "Po włączeniu, ten udział jest montowany w katalogu /media/hdd, a nie w jego własnej ścieżce /media/net. Używaj tej opcji tylko wtedy, gdy udział jest niezawodnie dostępny."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Po włączeniu tej opcji timeshift rozpocznie się automatycznie w tle po upływie określonego czasu."
@@ -25539,9 +25798,6 @@ msgstr "miesiąc"
 msgid "move"
 msgstr "ruch"
 
-msgid "multi"
-msgstr "multi"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -25853,6 +26109,67 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Zamknij ekran"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Zamknij aktualny ekran"
+
+#~ msgid "Close this screen"
+#~ msgstr "Zamknij ten ekran"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Skonfiguruj, który tuner do nagrań będzie preferowany, jeśli dostępny jest więcej niż jeden tuner."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Wersja listy %d, znaleziono %d kanał"
+#~ msgstr[1] "Wersja listy %d, znaleziono %d kanały"
+#~ msgstr[2] "Wersja listy %d, znaleziono %d kanałów"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Przesuń do pierwszej linii / ekranu"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Przesuń do ostatniej linii / ekranu"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Wybierz kolejność sortowania wpisów w przeglądarce wtyczek. Opcja 'Własne' umożliwia także ukrywanie wpisów menu."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Wybierz swojego dostawcę i naciśnij OK, aby rozpocząć skanowanie"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Sortuj wpisy przeglądarki wtyczek"
+
+#~ msgid "multi"
+#~ msgstr "multi"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "Błąd podczas zapisu '/etc/enigma2/epg.dat' na zdalnym odbiorniku!"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "Opóźnienie obsługi Passthrough AC3"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "Opóźnienie obsługi Passthrough AC3+"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "Naciśnięcie przycisku alarmowego przełączy na ten numer kanału z pierwszej listy kanałów."
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "Służy do określenia opóźnienia przy przełączaniu między kanałami, gdy włączone jest passthrough AC3."
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "Służy do określenia opóźnienia przy przełączaniu między kanałami, gdy włączona jest funkcja passthrough AC3+/Atmos."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "Po włączeniu naciśnięcie przycisku '0' przełączy na pierwszy kanał z pierwszej listy kanałów i wyczyści historię przełączeń."
+
+#~ msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+#~ msgstr "Po włączeniu, ten udział jest montowany w katalogu /media/hdd, a nie w jego własnej ścieżce /media/net. Używaj tej opcji tylko wtedy, gdy udział jest niezawodnie dostępny."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

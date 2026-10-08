@@ -218,6 +218,7 @@ public:
 	// Events are parsed epg events.. it's safe to use them after cache unlock
 	// after use the Event pointer must be released using "delete".
 	RESULT lookupEventId(const eServiceReference &service, int event_id, Event* &);
+	std::vector< ePtr<eServiceEvent> > lookupEvents(const eServiceReference &service, int startTime, int minutes=-1);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, Event* &, int direction=0);
 	RESULT getNextTimeEntry(Event *&);
 #endif

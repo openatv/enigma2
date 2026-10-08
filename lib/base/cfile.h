@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <sys/types.h>
+#include <unistd.h>
 
 typedef long long pts_t;
 
@@ -30,9 +31,11 @@ struct CFile
 
 	/* Fetch integer from /proc files and such */
 	static int parseIntHex(int *result, const char *fileName);
+	static int parseUint32Hex(uint32_t *result, const char *filename);
 	static int parseInt(int *result, const char *fileName);
 	static int parsePts_t(pts_t *result, const char *fileName);
 	static int writeIntHex(const char *fileName, int value);
+	static int writeUint32Hex(const char *filename, uint32_t value);
 	static int writeInt(const char *fileName, int value);
 	static int writeStr(const char *fileName, const std::string &value);
 	static int write(const char *fileName, const char *value);

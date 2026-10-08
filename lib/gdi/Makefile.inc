@@ -9,6 +9,7 @@ gdi_libenigma_gdi_a_SOURCES = \
 	gdi/drawing.cpp \
 	gdi/epng.cpp \
 	gdi/erect.cpp \
+	gdi/dreamge2d.cpp \
 	gdi/fb.cpp \
 	gdi/font.cpp \
 	gdi/font_arabic.cpp \

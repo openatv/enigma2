@@ -2087,6 +2087,14 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 						accel = true;
 					else if (flag & blitAlphaTest) /* Alpha test only on 8-bit */
 						accel = (src.surface->bpp == 8);
+					else if (flag & blitAlphaBlend)
+					{
+#ifdef DREAMNEXTGEN
+						accel = (src.surface->bpp == 32);
+#else
+						accel = false;
+#endif
+					}
 					else
 						accel = false;
 #endif

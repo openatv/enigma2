@@ -140,6 +140,7 @@ eHdmiCEC::eHdmiCEC()
 	instance = this;
 	linuxCEC = false;
 	amlogicCEC = false;
+	eventsSuspended = false;
 	hdmiFd = -1;
 	fixedAddress = false;
 	cecEnabled = true;
@@ -303,6 +304,8 @@ eHdmiCEC::eHdmiCEC()
 
 eHdmiCEC::~eHdmiCEC()
 {
+	if (messageNotifier)
+		messageNotifier->stop();
 	if (amlogicCEC && hdmiFd >= 0)
 	{
 		uint32_t enable = 0;
@@ -315,6 +318,58 @@ eHdmiCEC::~eHdmiCEC()
 eHdmiCEC *eHdmiCEC::getInstance()
 {
 	return instance;
+}
+
+bool eHdmiCEC::suspendEvents()
+{
+	if (hdmiFd < 0 || !messageNotifier)
+		return false;
+	if (!eventsSuspended)
+	{
+		messageNotifier->stop();
+		eventsSuspended = true;
+		eDebug("[eHdmiCEC] event handling suspended");
+	}
+	return true;
+}
+
+bool eHdmiCEC::resumeEvents()
+{
+	if (hdmiFd < 0 || !messageNotifier)
+		return false;
+	if (eventsSuspended)
+	{
+		/*
+		 * Legacy set-top-box CEC drivers use ioctl 0 to flush their private
+		 * packet ring.  Do this before rearming poll: an HDMI mode/EGL owner
+		 * transition can otherwise leave a stale packet queued, and old
+		 * Broadcom drivers may dereference an invalid ring-buffer pointer
+		 * while reading it.  Linux CEC and Amlogic use different ioctls.
+		 */
+		if (!linuxCEC && !amlogicCEC)
+		{
+			int result;
+			do
+			{
+#ifdef DREAMBOX
+				unsigned int value = 0;
+				result = ::ioctl(hdmiFd, 4, &value);
+#else
+				result = ::ioctl(hdmiFd, 0);
+#endif
+			}
+			while (result < 0 && errno == EINTR);
+			if (result < 0)
+			{
+				eDebug("[eHdmiCEC] failed to flush legacy HDMI-CEC events on resume: %m");
+				return false;
+			}
+		}
+		messageNotifier->start();
+		eventsSuspended = false;
+		eDebug("[eHdmiCEC] event handling resumed");
+	}
+	return true;
 }
 
 void eHdmiCEC::reportPhysicalAddress()
@@ -494,6 +549,9 @@ bool eHdmiCEC::getActiveStatus()
 
 void eHdmiCEC::hdmiEvent(int what)
 {
+	if (eventsSuspended)
+		return;
+
 	if (what & eSocketNotifier::Priority)
 	{
 		if (linuxCEC)
@@ -530,7 +588,8 @@ void eHdmiCEC::hdmiEvent(int what)
 
 	if (what & eSocketNotifier::Read)
 	{
-		while (true)
+		// A key or message callback can suspend CEC while this handler is active.
+		while (!eventsSuspended)
 		{
 			bool hasdata = false;
 			struct cec_rx_message rxmessage = {};
@@ -626,7 +685,7 @@ void eHdmiCEC::hdmiEvent(int what)
 						{
 							long code = translateKey(pressedkey);
 							if (keypressed) code |= 0x80000000;
-							for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
+							for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end() && !eventsSuspended; ++i)
 							{
 								(*i)->handleCode(code);
 							}
@@ -634,6 +693,8 @@ void eHdmiCEC::hdmiEvent(int what)
 						}
 					}
 				}
+				if (eventsSuspended)
+					return;
 				int operandLength = rxmessage.length > 1 ? rxmessage.length - 1 : 0;
 				ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], operandLength);
 				messageReceived(msg);

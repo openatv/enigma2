@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
 "PO-Revision-Date: 2026-08-16 15:58+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1421,6 +1421,21 @@ msgstr "-24 uren"
 msgid "-24h/+24 Hours"
 msgstr "-24/+24 Uur"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/s"
 
@@ -1693,9 +1708,6 @@ msgid ""
 msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
-
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
@@ -2247,6 +2259,9 @@ msgstr "Afrikaans"
 msgid "After Event"
 msgstr "Na de taak"
 
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr ""
+
 msgid "After event"
 msgstr "Na deze taak"
 
@@ -2721,6 +2736,9 @@ msgstr "Als plugin in de uitgebreide informatiebalk"
 msgid "Ascending"
 msgstr "Oplopend"
 
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
+
 msgid "Ask user"
 msgstr "Vraag gebruiker"
 
@@ -2957,6 +2975,9 @@ msgstr "Hier kunt u automatisch naar zenders zoeken"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatisch de TV in Stand-by zetten wanneer de ontvanger naar Stand-by gaat of wordt uitgeschakeld."
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "Timeshift automatisch starten na"
@@ -3392,6 +3413,10 @@ msgstr "Favorietenlijst selectie Acties"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Favorietenlijst navigatie Acties"
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
 
 msgid "Bouquets"
 msgstr "Favorietenlijsten"
@@ -4552,9 +4577,6 @@ msgstr ""
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "Sluit het scherm"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Chkroot MultiBoot Manager sluiten"
 
@@ -4576,26 +4598,26 @@ msgstr ""
 msgid "Close the choice box"
 msgstr "Keuzemenu sluiten"
 
-msgid "Close the current screen"
-msgstr "Sluit het huidige scherm"
-
 msgid "Close the documentation screen"
 msgstr ""
 
 msgid "Close the screen"
 msgstr "Dit scherm sluiten"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "Dit scherm sluiten en exit uit alle menu's"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "Dit scherm afsluiten zonder de wijzigingen op te slaan"
 
 msgid "Close the window"
 msgstr "Sluit het venster"
-
-msgid "Close this screen"
-msgstr "Dit scherm sluiten"
 
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
@@ -5188,12 +5210,6 @@ msgstr "Stel in of het opname symbool (in de skin en op het display) alleen zich
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Stel in welk kleurformaat gebruikt wordt bij weergave via de scart."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr ""
-"Met deze optie stelt u in welke tuner de voorkeurstuner is voor opnames indien er meerdere tuners beschikbaar zijn.\n"
-"\n"
-"U kunt, afhankelijk van het aantal beschikbare tuners, kiezen uit Automatisch of de Handmatig door u gekozen tuner."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Bepaal welk tunertype de voorkeur heeft, als dezelfde zender beschikbaar is voor verschillende tuners."
 
@@ -5223,6 +5239,9 @@ msgid "Configuring Service"
 msgstr "Service configureren"
 
 msgid "Confirm Zap"
+msgstr ""
+
+msgid "Confirm moving files to the trashcan"
 msgstr ""
 
 #, python-format
@@ -5585,8 +5604,17 @@ msgstr "Een map aanmaken"
 msgid "Create a randomly generated password"
 msgstr "Maak een willekeurig wachtwoord aan"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
 msgstr "Een snelkoppeling maken"
+
+msgid "Create an image backup"
+msgstr ""
 
 msgid "Create application loader dump."
 msgstr "Applicatie Loader-Dump opslaan."
@@ -5891,7 +5919,7 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "DAB+ audio decoding"
+msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -6760,6 +6788,15 @@ msgstr "DiSEqC-modus"
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC poort %s: %s"
 
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
+
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC tester instellingen"
 
@@ -7351,6 +7388,9 @@ msgstr "Driver en kernel informatie"
 msgid "Drivers version"
 msgstr "Drivers versie"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7760,7 +7800,7 @@ msgid "Enable auto fast scan"
 msgstr "Auto Fastscan inschakelen"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Activeer snelle auto scan voor %s"
 
 msgid "Enable automatic shares"
@@ -8152,6 +8192,9 @@ msgstr "Het DNS-achtervoegsel invullen."
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr ""
 
+msgid "Enter the new four-digit PIN code."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr ""
 
@@ -8174,6 +8217,9 @@ msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr ""
+
+msgid "Enter the same PIN code again to confirm it."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -8348,12 +8394,18 @@ msgstr ""
 msgid "Error code"
 msgstr "Foutcode"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Fout bij het downloaden van het image '%s'!"
 
 msgid "Error executing plugin"
 msgstr "Fout bij het uitvoeren van een plugin"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8369,11 +8421,17 @@ msgstr "Fout bij het verplaatsen van epg.dat !"
 msgid "Error opening recording file"
 msgstr "Fout bij het openen van de opname"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "Fout bij lezen webpagina!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fout bij het lezen van epg.dat vanaf de Fallback tuner!"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "Fouttekst:"
@@ -8390,9 +8448,6 @@ msgstr ""
 "Fout tijdens het ophalen van de Fallback timer informatie\n"
 "%s"
 
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "Fout bij het schrijven van '/etc/enigma2/epg.dat' naar de remote receiver!"
-
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Fout bij het schrijven van epg.dat naar de Fallback tuner!"
 
@@ -8403,6 +8458,9 @@ msgid ""
 msgstr ""
 "Fout: %s\n"
 "Opnieuw?"
+
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Fout: Geen bestandsnaam is niet toegestaan!"
@@ -8476,6 +8534,9 @@ msgstr "Verwijderen van map %s mislukt (is deze map niet leeg?)"
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "Zoeken mislukt!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "Fout: Script '%s' moet leesrechten hebben om te kunnen worden uitgevoerd!"
@@ -8516,12 +8577,27 @@ msgstr ""
 "A.u.b. uw %s %s opnieuw starten, daarna het bestandssysteem op fouten controleren,\n"
 "voordat u deze opdracht opnieuw uitvoert."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Fout: Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken! Controleer het medium en probeer het nog een keer."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Fout: Kan directory '%s' niet hernoemen naar '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8979,6 +9055,15 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "Fast Scan"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -8990,6 +9075,9 @@ msgstr "Vooruitspoelen"
 
 msgid "Fast forward speeds"
 msgstr "Vooruit-spoelsnelheden"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "[favorieten bewerken]"
@@ -10071,6 +10159,9 @@ msgstr "Verberg de zenders die achter het kinderslot zitten"
 msgid "Hide player"
 msgstr "Afspelen op de achtergrond"
 
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
+
 msgid "Hide softcam servername"
 msgstr "Softcam servernaam verbergen"
 
@@ -10501,6 +10592,9 @@ msgid "Ignore DVB-T namespace sub network"
 msgstr "Negeer DVB-T subnetwerk"
 
 msgid "Ignore Standby"
+msgstr ""
+
+msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in Standby"
@@ -11609,12 +11703,6 @@ msgstr "Overzicht van opslagmedia"
 msgid "List of storage devices"
 msgstr "Overzicht van opslagmedia"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Lijstversie %d, %d zender gevonden"
-msgstr[1] "Lijstversie %d, %d zenders gevonden"
-
 msgid "List/Fav"
 msgstr "List/Fav"
 
@@ -12589,9 +12677,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr "Ga naar de eerste regel"
 
-msgid "Move to first line / screen"
-msgstr "Ga naar de eerste regel / scherm"
-
 msgid "Move to first line / screen in the panel"
 msgstr "Naar de eerste regel / beeldscherm gaan"
 
@@ -12603,9 +12688,6 @@ msgstr ""
 
 msgid "Move to last line"
 msgstr "Ga naar de laatste regel"
-
-msgid "Move to last line / screen"
-msgstr "Ga naar de laatste regel / scherm"
 
 msgid "Move to last line / screen in the panel"
 msgstr "Naar de laatste regel / beeldscherm gaan"
@@ -12902,6 +12984,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "Naam"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "Op naam oplopend"
@@ -13329,6 +13417,9 @@ msgstr ""
 msgid "No channel"
 msgstr "Geen Zender"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "geen zenderlijst"
 
@@ -13376,6 +13467,9 @@ msgid "No hard disks detected."
 msgstr "Geen harde schijven gevonden"
 
 msgid "No hosts found yet - still scanning..."
+msgstr ""
+
+msgid "No local images found."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13655,6 +13749,9 @@ msgstr "Niet nodig"
 msgid "Not running"
 msgstr "Niet Actief"
 
+msgid "Not set"
+msgstr ""
+
 msgid "Not tested:"
 msgstr "Niet getest:"
 
@@ -13907,6 +14004,9 @@ msgstr "Verplaats de schotel alléén met hoge snelheid voor dit tijdstip."
 
 msgid "Only on startup"
 msgstr "Enkel na het opstarten"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr ""
@@ -14467,12 +14567,6 @@ msgstr ""
 
 msgid "Pass-through"
 msgstr "Pass-through"
-
-msgid "Passthrough audio handling delay AC3"
-msgstr "Audio-vertraging bij het doorgeven (passthrough) van AC3"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "Audio-vertraging bij het doorgeven (passthrough) van AC3+"
 
 msgid "Password"
 msgstr "Wachtwoord"
@@ -15247,6 +15341,9 @@ msgstr "Voorkeurstuners voor opnames, meerdere selecteren toegestaan"
 msgid "Preparation time for recording"
 msgstr "Voorbereidingstijd voor opnames (seconden)"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "Voorbereiden... Een ogenblik geduld a.u.b."
 
@@ -15271,6 +15368,9 @@ msgstr "Druk op EXIT om terug te gaan naar het help scherm."
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "Druk op de GROENE-knop om MultiBoot in te schakelen!"
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "Druk op OK voor het MultiBoot keuzemenu."
 
@@ -15278,6 +15378,9 @@ msgid "Press OK on your remote control to continue."
 msgstr ""
 "Druk OK op uw afstandsbediening\n"
 "om verder te gaan."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr "Druk op OK om door te gaan."
@@ -15306,6 +15409,9 @@ msgstr "Druk op OK om deze locale te installeren en te gebruiken.  [%s]"
 msgid "Press OK to open module info"
 msgstr "Druk op OK voor informatie over de module"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr "Druk op OK om de PIN-code te resetten"
 
@@ -15326,6 +15432,9 @@ msgstr "Druk op OK om een zender te selecteren."
 
 msgid "Press OK to select satellites"
 msgstr "Druk op OK om de satellieten te selecteren"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "Druk op OK om de CAId aan/uit te zetten."
@@ -15358,9 +15467,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Druk deze knop om een lange knop druk te emuleren op de eerst volgende knop (dit overschrijft alle andere acties toegewezen aan de emulatie knop)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "Bij het drukken van de Paniek-knop schakelt u over naar deze zender in uw eerste favorietenlijst."
 
 msgid "Prev quad PiP channel"
 msgstr "Vorige Quad PiP zender"
@@ -15513,6 +15619,9 @@ msgstr "Programma voortgang lettergrootte"
 msgid "Properties of current title"
 msgstr "Eigenschappen van huidige titel"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "Beveilig het Snelstartmenu"
 
@@ -15525,6 +15634,15 @@ msgstr "Beveilig instellingen"
 msgid "Protect context menus"
 msgstr "Beveilig context menu's"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "Beveilig hoofdmenu"
 
@@ -15534,8 +15652,14 @@ msgstr "Beveilig opname lijst"
 msgid "Protect on epg age"
 msgstr "Beveilig op epg leeftijd"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "Beveilig de Plugin Browser"
+
+msgid "Protect script execution"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
@@ -15545,6 +15669,12 @@ msgstr "Protect software update scherm"
 
 msgid "Protect standby menu"
 msgstr "Beveilig stand-by menu"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "Beveilig timer menu"
@@ -16436,8 +16566,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr ""
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Wachtwoord gebruiken voor http-streams"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 msgid "Required medium type:"
 msgstr "Benodigd mediumtype:"
@@ -16655,6 +16839,9 @@ msgstr "Bezig met ophalen van '%s' log, even geduld..."
 msgid "Retrieving boot slot information..."
 msgstr "Boot slot informatie opvragen..."
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr "Image lijst word opgehaald. Een ogenblik geduld ..."
 
@@ -16672,6 +16859,9 @@ msgstr "Accepteer de huidige selectie"
 
 msgid "Return to movie list"
 msgstr "Terug naar de opnamelijst"
+
+msgid "Return to previous channel"
+msgstr ""
 
 msgid "Return to previous service"
 msgstr "Terug naar de laatste zender"
@@ -17172,7 +17362,7 @@ msgid "Scanning"
 msgstr "Scannen"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Zoeken %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17196,9 +17386,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Scan gereed, %d zender gevonden."
 msgstr[1] "Scan gereed, %d zenders gevonden."
-
-msgid "Scanning failed!"
-msgstr "Zoeken mislukt!"
 
 msgid "Scanning for shares..."
 msgstr ""
@@ -17326,6 +17513,9 @@ msgstr "Zoeken"
 
 msgid "Searching east ..."
 msgstr "Oost zoeken ..."
+
+msgid "Searching for local images, please wait..."
+msgstr ""
 
 msgid "Searching west ..."
 msgstr "West zoeken ..."
@@ -17820,6 +18010,9 @@ msgstr "Selecteer een repository commit-log:"
 msgid "Select a script to run:"
 msgstr "Selecteer script om uit te voeren:"
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr ""
 
@@ -17896,6 +18089,9 @@ msgstr "Selecteer uitgesloten back-up bestanden"
 msgid "Select files/folders to backup"
 msgstr "Selecteer bestanden voor een back-up"
 
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
+
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Selecteer hoe lang de screensaver-afbeelding op dezelfde positie mag blijven voordat die wordt verplaatst."
 
@@ -17937,6 +18133,9 @@ msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Kies hier met welke knop u Quick-EPG wilt starten, of schakel deze functie UIT."
+
+msgid "Select how to sort the timer list."
+msgstr ""
 
 msgid "Select how your receiver will upgrade."
 msgstr "Selecteer hoe u de box wilt updaten."
@@ -18009,6 +18208,9 @@ msgstr "Selecteer provider om toe te voegen..."
 
 msgid "Select refresh rate"
 msgstr "Selecteer vernieuwingsfrequentie (Hz)"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr "Welke zender-informatie wilt u zien:"
@@ -18145,6 +18347,12 @@ msgstr ""
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Kleur van de door AI vertaalde ondertiteling kiezen."
 
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr ""
+
 msgid "Select the current bookmarked location and exit"
 msgstr "Selecteer de huidige locatie met bladwijzers en exit"
 
@@ -18229,6 +18437,9 @@ msgid "Select the duration of inactivity before the screen saver will be display
 msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
 
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
+msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr ""
 
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
@@ -18412,9 +18623,6 @@ msgstr "Kies de sorteervolgorde voor de bestandsregels:"
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "Kies de sorteervolgorde van de menu items in het Extensies-menu. (BLAUW-lang)"
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plugin Browser."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Volgorde van de menu-items in de Plugin Browser. 'Gebruiker gedefinieerd' maakt het ook mogelijk om items te verbergen."
 
@@ -18460,8 +18668,14 @@ msgstr "Selecteer de tijdzone binnen uw gebied of regio."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Nieuwe timers altijd naar de Fallback tuner sturen (default)."
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Selecteer de tuner die de gemotoriseerde schotel aanstuurt."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Selecteer de tuner die met het SCR-apparaat kabel verbonden is."
@@ -18593,9 +18807,6 @@ msgstr "Selecteer het land. Indien niet beschikbaar kiest u 'alle'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Selecteer uw provider en regio. Wanneer deze niet beschikbaar zijn, kiest u één van de andere 'service scan types'."
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Selecteer provider, en druk OK om de scan te starten"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Selecteer uw regio. Indien deze niet beschikbaar is verandert u 'land' naar 'alle' en selecteert u één van de default alternatieven."
@@ -18791,6 +19002,9 @@ msgstr "Zendernaam"
 
 msgid "Service name font size"
 msgstr "Zendernaam lettergrootte"
+
+msgid "Service not found"
+msgstr ""
 
 msgid ""
 "Service not found!\n"
@@ -20572,6 +20786,9 @@ msgstr "Somalië"
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Sommige TV-apparaten kunnen niet naar de juiste poort schakelen wanneer een andere HDMI poort actief is. Deze instelling schakelt de TV eerst naar standby voor de poortwissel. (Wanneer de TV niet meer inschakelt eventueel een tragere verzend-interval of een herhaling van wake-up commando's proberen)."
 
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
+
 msgid "Sorbian"
 msgstr "Servisch"
 
@@ -20628,11 +20845,11 @@ msgstr "Sorteer EPG-lijst"
 msgid "Sort Extension Menu"
 msgstr "Sorteer het Extensies-menu alfabetisch"
 
-msgid "Sort Plugin Browser"
-msgstr "Sorteer de volgorde van plugins in de Plugin Browser"
-
 msgid "Sort Plugin Browser entries"
 msgstr "Plugin Browser items sorteren"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "Sorteren op"
@@ -20808,6 +21025,12 @@ msgstr "Bootfrequentie bij de start"
 msgid "Start RDS interactive"
 msgstr "Start RDS interactief"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "Start Wizard"
 
@@ -20864,6 +21087,9 @@ msgstr "De Kexec-initialisatie starten"
 
 msgid "Start the backup of the selected image"
 msgstr "Back-up starten van de geselecteerde image"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Start de geselecteerde plugin"
@@ -21978,6 +22204,12 @@ msgstr "De framesnelheid van de opname. Ideaal komt deze overeen met de bron fra
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "De hoogte van het beeld. De invoer wordt aangepast aan deze waarde."
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
+
 msgid "The loopthrough setting is wrong."
 msgstr "De loopthrough instelling is verkeerd."
 
@@ -21996,6 +22228,13 @@ msgstr ""
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -23274,57 +23513,68 @@ msgstr "Oekraïne"
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
-msgid "Unable to create the additional STARTUP files."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Unable to create the new manufacturer STARTUP files."
+msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr ""
 
-msgid "Unable to initialize Kexec MultiBoot."
+msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kan Kexec MultiBoot niet initialiseren!"
 
-msgid "Unable to load package information."
+msgid "Unable to load package information!"
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
+msgstr ""
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
 msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
 msgstr ""
 
-msgid "Unable to save network configuration."
+msgid "Unable to save network configuration!"
 msgstr ""
 
-msgid "Unable to select the audio channel."
+msgid "Unable to save network mount configuration!"
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23345,6 +23595,9 @@ msgstr "Onbekend"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Onverwachte fout bij openen van WebIF:%s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Onverwachte fout bij het ophalen van timer-informatie van de FallBack tuner!"
@@ -23499,6 +23752,9 @@ msgstr "Update mislukt!"
 
 msgid "Update finished!"
 msgstr "Update voltooid!"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -23718,10 +23974,10 @@ msgstr "Gebruik omschrijvingen"
 msgid "Use extended List"
 msgstr "Uitgebreide lijst gebruiken"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Gebruik fastscan zendernamen"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Gebruik fastscan zendervolgorde"
 
 msgid "Use for load only x days in EPG."
@@ -23781,6 +24037,9 @@ msgstr "Gebruik koppeltekens"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "Gebruik koppeltekens bij het vullen van de Favorietenlijst om de #ZENDER nummers overeen te laten komen met de LCN."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "De knoppen LINKS/RECHTS gebruiken om de hoogte van de Gebruikersinterface/OSD in te stellen. LINKS is lager, RECHTS is hoger."
 
@@ -23819,6 +24078,9 @@ msgstr "Met de knoppen OMHOOG/OMLAAG het geïnstalleerde image kiezen. Daarna 'S
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Gebruik de alternatieve of de conventionele radio modus."
 
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
+
 msgid "Use the current selection and exit"
 msgstr "De huidige selectie gebruiken en afsluiten"
 
@@ -23830,6 +24092,9 @@ msgstr "Start de wizard voor de basisinstellingen"
 
 msgid "Use these input device settings?"
 msgstr "Instellingen voor dit apparaat gebruiken?"
+
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
 
 msgid "Use this video enhancement settings?"
 msgstr "Gebruik deze videoverbeteringsinstellingen?"
@@ -23854,12 +24119,6 @@ msgstr "Gebruikt flash geheugen"
 
 msgid "Used service scan type"
 msgstr "Gebruikte zoekmethode"
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "Wordt gebruikt voor het opgeven van de vertraging tijdens het schakelen tussen zenders wanneer AC3 passthrough is geactiveerd."
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "Wordt gebruikt voor het opgeven van de vertraging tijdens het schakelen tussen zenders wanneer AC3+/Atmos passthrough is geactiveerd."
 
 msgid "Used:"
 msgstr "Gebruikt:"
@@ -24643,8 +24902,8 @@ msgstr "Wanneer geactiveerd, zijn de numerieke markeringen niet zichtbaar."
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr ""
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Indien geactiveerd, zapt '0' naar de eerste zender van de eerste favorietenlijst en wordt de zap-historie verwijderd."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Breedte van de ondertitels automatisch aanpassen aan de breedte van het beeldscherm."
@@ -24723,9 +24982,6 @@ msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven d
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Indien geactiveerd, dan wordt er voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner'."
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr ""
@@ -25691,9 +25947,6 @@ msgstr "maand"
 msgid "move"
 msgstr "verplaats"
 
-msgid "multi"
-msgstr "Multi"
-
 msgid "n/a"
 msgstr "Niet beschikbaar"
 
@@ -26002,6 +26255,66 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "Sluit het scherm"
+
+#~ msgid "Close the current screen"
+#~ msgstr "Sluit het huidige scherm"
+
+#~ msgid "Close this screen"
+#~ msgstr "Dit scherm sluiten"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr ""
+#~ "Met deze optie stelt u in welke tuner de voorkeurstuner is voor opnames indien er meerdere tuners beschikbaar zijn.\n"
+#~ "\n"
+#~ "U kunt, afhankelijk van het aantal beschikbare tuners, kiezen uit Automatisch of de Handmatig door u gekozen tuner."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "Lijstversie %d, %d zender gevonden"
+#~ msgstr[1] "Lijstversie %d, %d zenders gevonden"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "Ga naar de eerste regel / scherm"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "Ga naar de laatste regel / scherm"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plugin Browser."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Selecteer provider, en druk OK om de scan te starten"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "Sorteer de volgorde van plugins in de Plugin Browser"
+
+#~ msgid "multi"
+#~ msgstr "Multi"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "Fout bij het schrijven van '/etc/enigma2/epg.dat' naar de remote receiver!"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "Audio-vertraging bij het doorgeven (passthrough) van AC3"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "Audio-vertraging bij het doorgeven (passthrough) van AC3+"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "Bij het drukken van de Paniek-knop schakelt u over naar deze zender in uw eerste favorietenlijst."
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "Wordt gebruikt voor het opgeven van de vertraging tijdens het schakelen tussen zenders wanneer AC3 passthrough is geactiveerd."
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "Wordt gebruikt voor het opgeven van de vertraging tijdens het schakelen tussen zenders wanneer AC3+/Atmos passthrough is geactiveerd."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "Indien geactiveerd, zapt '0' naar de eerste zender van de eerste favorietenlijst en wordt de zap-historie verwijderd."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

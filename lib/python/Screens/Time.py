@@ -30,7 +30,9 @@ class Time(Setup):
 		Setup.selectionChanged(self)
 
 	def useGeolocation(self):
-		geolocationData = geolocation.getGeolocationData(fields="status,message,timezone,proxy")
+		geolocation.getGeolocationData(fields="status,message,timezone,proxy", screen=self, callback=self.setGeolocationTimezone)
+
+	def setGeolocationTimezone(self, geolocationData):
 		if geolocationData.get("proxy", True):
 			self.setFootnote(_("Geolocation data is not available."))
 			return

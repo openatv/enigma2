@@ -5,6 +5,7 @@
 #include <memory>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/service/servicedvbsoftdecoder.h>
@@ -15,6 +16,9 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
+#ifdef DREAMNEXTGEN
+#include <lib/dvb/alsa.h>
+#endif
 
 #include <lib/base/cfile.h>
 #include <lib/dvb/pmtparse.h>
@@ -1462,6 +1466,10 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_skipmode(0),
 	m_fastforward(0),
 	m_slowmotion(0),
+#ifdef DREAMNEXTGEN
+	m_pos_before_skipmode(0),
+	m_skipmode_entry_ms(0),
+#endif
 	m_tap_recorder(0),
 	m_cuesheet_changed(0),
 	m_cutlist_enabled(1),
@@ -1797,6 +1805,8 @@ void eDVBServicePlay::serviceEvent(int event)
 		m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventHBBTVInfo:
+		if (eHbbtv::getInstance()->getPlayableService() == this)
+			eHbbtv::getInstance()->updateApplicationsFromPMTHandler(&m_service_handler);
 		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
 	}
@@ -1817,22 +1827,22 @@ void eDVBServicePlay::handleEofRecovery() {
 
 	eTrace("[PreciseRecovery] Corruption detected. Pausing playback, recording continues.");
 
+	/* Take the delay fingerprint BEFORE pausing: pause() freezes the decoder
+	 * clock, and a getPlayPosition() taken after it would read a stale or
+	 * zero PTS, corrupting the fingerprint. */
+	if (m_record) {
+		pts_t live_pts = 0, playback_pts = 0;
+		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
+			m_original_timeshift_delay = live_pts - playback_pts;
+			m_delay_calculated = true;
+			eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
+		}
+	}
+
 	if (m_decoder) {
 		m_decoder->pause();
 		m_is_paused = 1;
 		onRecoveryPaused();
-	}
-
-	if (m_record) {
-		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0) {
-			if (live_pts >= playback_pts)
-				m_original_timeshift_delay = live_pts - playback_pts;
-			else
-				m_original_timeshift_delay = (live_pts + 0x200000000LL) - playback_pts;
-			m_delay_calculated = true;
-			eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
-		}
 	}
 
 	m_precise_recovery_timer->start(100, false);
@@ -1844,13 +1854,14 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 		return;
 	}
 
+	/* The fingerprint is taken in handleEofRecovery() before the pause, so by
+	 * the time this timer runs m_delay_calculated is expected to be set. If it
+	 * is not (reads failed), keep retrying once per tick rather than stopping
+	 * the recovery outright. */
 	if (!m_delay_calculated) {
 		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0) {
-			if (live_pts >= playback_pts)
-				m_original_timeshift_delay = live_pts - playback_pts;
-			else
-				m_original_timeshift_delay = (live_pts + 0x200000000LL) - playback_pts;
+		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
+			m_original_timeshift_delay = live_pts - playback_pts;
 			m_delay_calculated = true;
 			eTrace("[PreciseRecovery] Delayed fingerprint set: %lld PTS", m_original_timeshift_delay);
 		}
@@ -2173,6 +2184,9 @@ RESULT eDVBServicePlay::setTarget(int target, bool noaudio)
 	m_is_primary = !target;
 	m_decoder_index = target;
 	m_noaudio = noaudio;
+	// An FCC service may already have read its AIT while running in the background.
+	if (m_is_primary && eHbbtv::getInstance()->getPlayableService() == this)
+		eHbbtv::getInstance()->updateApplicationsFromPMTHandler(&m_service_handler);
 	return 0;
 }
 
@@ -2255,6 +2269,28 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 	if (m_skipmode != skipmode)
 	{
 		eDebug("[eDVBServicePlay] setFastForward setting cue skipmode to %d", skipmode);
+#ifdef DREAMNEXTGEN
+		/* Snapshot pos+wallclock at skipmode entry/rate-change so
+		 * getPlayPosition can extrapolate while audio PTS is unreliable. */
+		if (skipmode != 0) {
+			pts_t cur = 0;
+			/* Already in skipmode → use running estimate; else live pos. */
+			if (m_skipmode != 0 && m_pos_before_skipmode > 0) {
+				struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+				int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+				int64_t elapsed_ms = now_ms - m_skipmode_entry_ms;
+				cur = m_pos_before_skipmode + (pts_t)elapsed_ms * 90 * m_skipmode;
+			} else {
+				getPlayPosition(cur);
+			}
+			if (cur > 0) {
+				m_pos_before_skipmode = cur;
+				struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+				m_skipmode_entry_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+				eDebug("[eDVBServicePlay] skipmode anchor: pos=%lld rate=%d", m_pos_before_skipmode, skipmode);
+			}
+		}
+#endif
 		if (m_cue)
 		{
 			long long _skipmode = skipmode;
@@ -2269,13 +2305,23 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		}
 	}
 
-	m_skipmode = skipmode;
-
 	if (final_seek)
 	{
+		/* IMPORTANT: read position BEFORE updating m_skipmode below.
+		 * getPlayPosition uses m_skipmode != 0 to return the frozen
+		 * pre-trickmode position; once we reset m_skipmode to 0 below it
+		 * would fall back to the garbage live audio PTS. */
 		RESULT r = getPlayPosition(pos);
 		eDebug("[eDVBServicePlay] setFastForward trickplay stopped .. ret %d, pos %lld", r, pos);
 	}
+
+	m_skipmode = skipmode;
+#ifdef DREAMNEXTGEN
+	/* Skipmode fully exited — clear the frozen anchor so future getPlayPosition
+	 * reads return live PTS again. */
+	if (skipmode == 0)
+		m_pos_before_skipmode = 0;
+#endif
 
 	m_fastforward = ffratio;
 
@@ -2336,7 +2382,13 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("[eDVBServicePlay] pause");
-	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
+#ifdef DREAMNEXTGEN
+	/* Hold ALSA writer (drain + park, FIFO preserved) before decoder
+	 * freezes its kernel state. */
+	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+		a->pauseWriter();
+#endif
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
 	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active)
@@ -2344,6 +2396,9 @@ RESULT eDVBServicePlay::pause()
 		m_pause_position = -1;
 		m_slowmotion = 0;
 		m_is_paused = 1;
+#ifdef DREAMNEXTGEN
+		m_soft_decoder->setUserPauseActive(true);
+#endif
 		return m_soft_decoder->pause();
 	}
 	if (m_decoder)
@@ -2351,6 +2406,9 @@ RESULT eDVBServicePlay::pause()
 		m_pause_position = -1;
 		m_slowmotion = 0;
 		m_is_paused = 1;
+#ifdef DREAMNEXTGEN
+		m_decoder->setUserPauseActive(true);
+#endif
 		return m_decoder->pause();
 	} else
 		return -1;
@@ -2359,7 +2417,11 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("[eDVBServicePlay] unpause");
-	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
+#ifdef DREAMNEXTGEN
+	/* Writer wakes AFTER decoder kernel state has resumed. First writei
+	 * hits EBADFD → handler runs snd_pcm_prepare + re-anchor. */
+#endif
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
 	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active)
@@ -2371,7 +2433,13 @@ RESULT eDVBServicePlay::unpause()
 			eTrace("[PreciseRecovery] User resumed playback. Resetting recovery state.");
 			resetRecoveryState();
 		}
-		return m_soft_decoder->play();
+		RESULT r = m_soft_decoder->play();
+#ifdef DREAMNEXTGEN
+		m_soft_decoder->setUserPauseActive(false);
+		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+			a->resumeWriter();
+#endif
+		return r;
 	}
 	if (m_decoder)
 	{
@@ -2387,7 +2455,13 @@ RESULT eDVBServicePlay::unpause()
             resetRecoveryState();
         }
 
-		return m_decoder->play();
+		RESULT r = m_decoder->play();
+#ifdef DREAMNEXTGEN
+		m_decoder->setUserPauseActive(false);
+		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+			a->resumeWriter();
+#endif
+		return r;
 	} else
 		return -1;
 }
@@ -2410,6 +2484,14 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 	m_cue->seekTo(0, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
+#ifdef DREAMNEXTGEN
+	/* Drop FIFO + re-arm anchor + signal kernel discontinuity so the new
+	 * post-seek PCR epoch becomes the next anchor target. Without this the
+	 * old in-flight chunks keep playing while pts_video jumps to the new
+	 * file offset (audio "wo ganz anders"). */
+	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+		a->flushOnSeek();
+#endif
 
 	return 0;
 }
@@ -2440,6 +2522,10 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	m_cue->seekTo(mode, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
+#ifdef DREAMNEXTGEN
+	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+		a->flushOnSeek();
+#endif
 	return 0;
 }
 
@@ -2452,6 +2538,27 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 
 	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
+
+#ifdef DREAMNEXTGEN
+	/* During skipmode (FF>=16) audio PTS is unreliable — extrapolate
+	 * position from entry anchor + elapsed*rate. Clamped to length-1s. */
+	if (m_skipmode != 0 && m_pos_before_skipmode > 0 && m_skipmode_entry_ms > 0) {
+		struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+		int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+		int64_t elapsed_ms = now_ms - m_skipmode_entry_ms;
+		pts_t advance = (pts_t)elapsed_ms * 90 * m_skipmode;  /* 90khz pts/ms * rate (signed for rewind) */
+		pos = m_pos_before_skipmode + advance;
+		if (pos < 0) pos = 0;
+		/* clamp to length-1s so EOF action does not trigger immediately */
+		pts_t len = 0;
+		ePtr<iDVBPVRChannel> pvr;
+		if (m_service_handler.getPVRChannel(pvr) == 0 && pvr->getLength(len) == 0 && len > 90000) {
+			pts_t cap = len - 90000;
+			if (pos > cap) pos = cap;
+		}
+		return 0;
+	}
+#endif
 
 	int r = 0;
 
@@ -2469,7 +2576,14 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	}
 	// Case 2: Normal hardware decoder
 	else if (m_decoder) {
-		if (m_noaudio && m_have_video_pid)
+		bool use_video_pts = (m_noaudio && m_have_video_pid);
+#ifdef DREAMNEXTGEN
+		/* HW FF (2/4/8x): audio stopped, use video PTS so UI progresses.
+		 * Not for skipmode (m_fastforward==1) — video PTS races past EOF. */
+		if (m_fastforward > 1 && m_have_video_pid)
+			use_video_pts = true;
+#endif
+		if (use_video_pts)
 			r = m_decoder->getPTS(1, pos); // Video PTS
 		else
 			r = m_decoder->getPTS(0, pos); // Auto (original behavior)
@@ -4097,6 +4211,19 @@ void eDVBServicePlay::switchToTimeshift()
 	eDebug("[eDVBServicePlay] switchToTimeshift, in pause mode now.");
 	pause();
 	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
+
+#ifdef DREAMNEXTGEN
+	/* Re-point eAlsaOutput's PCR demux fd to the timeshift demux. Live
+	 * and timeshift often share the same demux ID — force a close+reopen
+	 * so setPcrDemux doesn't early-return on the matching id. */
+	if (m_decode_demux) {
+		uint8_t did = 0;
+		m_decode_demux->getCADemuxID(did);
+		eAlsaOutput::instance()->setPcrDemux(0, -1);   /* force close cached fd */
+		eAlsaOutput::instance()->setPcrDemux(0, did);  /* re-open on timeshift demux */
+		eDebug("[eDVBServicePlay] timeshift entry: re-opened PCR fd on adapter0/demux%d", did);
+	}
+#endif
 }
 
 void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
@@ -4209,10 +4336,16 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			selectAudioStream();
 		}
 
+#ifdef DREAMNEXTGEN
+		/* Kernel AV-sync needs the real PCR-PID for DMX_GET_STC. 0x1FFF
+		 * works in steady state but breaks anchor convergence after seek. */
+		m_decoder->setSyncPCR(pcrpid);
+#else
 		if (!(m_is_pvr || m_is_stream || m_timeshift_active))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
+#endif
 
 		if (m_decoder_index == 0)
 		{

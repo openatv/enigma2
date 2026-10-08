@@ -1,8 +1,6 @@
 #ifndef __LIB_DVB_TSPARSER_H
 #define __LIB_DVB_TSPARSER_H
 
-
-
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavdevice/avdevice.h>
@@ -13,33 +11,38 @@ extern "C" {
 #include <libavutil/samplefmt.h>
 #include <libavutil/mem.h>
 }
+
+class eAudioDecoder;        /* defined in lib/dvb/decoder.h */
 #if defined(__CYGWIN__) || defined(CUSTUM)
-#include "../dvb/decoders.h"
 #include "../base/thread.h"
+#include "../base/cfile.h"
 #else
-#include <lib/dvb/decoders.h>
+#include <lib/dvb/iec61937.h>
 #include <lib/base/thread.h>
 #include <lib/base/object.h>
 #include <lib/dvb/demux.h>
 #endif
 
+#define BYTES_PER_SAMPLE 2
+#define INBUF_SIZE 188 * 256
 
 enum
 {
-    PES_INIT,				///< unknown codec
-    PES_SKIP,				///< skip packet
-    PES_SYNC,				///< search packet sync byte
-    PES_HEADER,				///< copy header
-    PES_START,				///< pes packet start found
-    PES_PAYLOAD,			///< copy payload
+    PES_INIT,               ///< unknown codec
+    PES_SKIP,               ///< skip packet
+    PES_SYNC,               ///< search packet sync byte
+    PES_HEADER,             ///< copy header
+    PES_START,              ///< pes packet start found
 };
+
+#define INPUT_BUFFER_PADDING_SIZE   64
 
 #define PES_START_CODE_SIZE 6
 #define PES_HEADER_SIZE 9
 #define PES_MAX_HEADER_SIZE (PES_HEADER_SIZE + 256)
-#define PES_MAX_PAYLOAD	(512 * 1024)
-#define TS_PACKET_SIZE	188
-#define TS_PACKET_SYNC	0x47
+#define PES_MAX_PAYLOAD (512 * 1024)
+#define TS_PACKET_SIZE  188
+#define TS_PACKET_SYNC  0x47
 
 typedef struct _pes_demux_
 {
@@ -52,8 +55,8 @@ typedef struct _pes_demux_
     int Skip;
     int Size;
     uint8_t StartCode;
-    uint64_t PTS;
-    uint64_t DTS;
+    int64_t PTS;
+    int64_t DTS;
     enum AVCodecID codec_id;
 } pes_demux;
 
@@ -115,42 +118,18 @@ const uint32_t DtsSampleRateTable[16] =
 
 /* ------------------------------------------------------------------------- */
 
-#define AV_CH_LAYOUT(ch) ( \
-		ch == 1 ? AV_CH_LAYOUT_MONO    : \
-		ch == 2 ? AV_CH_LAYOUT_STEREO  : \
-		ch == 3 ? AV_CH_LAYOUT_2POINT1 : \
-		ch == 6 ? AV_CH_LAYOUT_5POINT1 : 0)
-
-#define AV_SAMPLE_STR(fmt) ( \
-		fmt == AV_SAMPLE_FMT_U8   ? "U8"             : \
-		fmt == AV_SAMPLE_FMT_S16  ? "S16"            : \
-		fmt == AV_SAMPLE_FMT_S32  ? "S32"            : \
-		fmt == AV_SAMPLE_FMT_FLT  ? "float"          : \
-		fmt == AV_SAMPLE_FMT_DBL  ? "double"         : \
-		fmt == AV_SAMPLE_FMT_U8P  ? "U8, planar"     : \
-		fmt == AV_SAMPLE_FMT_S16P ? "S16, planar"    : \
-		fmt == AV_SAMPLE_FMT_S32P ? "S32, planar"    : \
-		fmt == AV_SAMPLE_FMT_FLTP ? "float, planar"  : \
-		fmt == AV_SAMPLE_FMT_DBLP ? "double, planar" : "unknown")
-
-/* ------------------------------------------------------------------------- */
-
-#if defined(__CYGWIN__) || defined(CUSTUM)
-typedef uint64_t pts_t;
-#endif
 
 class eTsParser: public eThread
 {
-    pes_demux m_pes_demux;
+    pes_demux m_pes;
 
 public:
     eTsParser();
     ~eTsParser();
     void thread();
 
-    eAudioDecoder *m_eAudioDecoder;
-    void set_pts();
-    void set_latency();
+    eAudioDecoder *m_eAudioDecoder;       /* FFmpeg + ALSA PCM (MP2/AAC) */
+    eIec61937Passthrough *m_ePassthrough; /* AC3/EAC3/DTS bitstream to HDMI */
     void parse(const uint8_t * data, int size,  int is_start);
     int play(const uint8_t * data, int size);
 
@@ -162,12 +141,21 @@ public:
     void unfreeze();
     void setChannel(int channel);
     int getPTS(pts_t &now);
-    
+
 private:
     int m_stop;
     int m_fd_demux;
     bool m_pause;
 
+    /* TrueHD frame splitter — feed raw bytes, get back complete access
+     * units with sample_rate / channels from the parser context. Lazy-
+     * initialised; freed in dtor / stop(). */
+    struct AVCodecParserContext *m_truehd_parser;
+    struct AVCodecContext       *m_truehd_pctx;
+    bool trueHdCheck(const uint8_t *p, unsigned int size,
+                     unsigned int &frameSize, unsigned int &channels,
+                     unsigned int &samplingRate);
+    void freeTrueHdParser();
 };
 
 #endif //__LIB_DVB_TSPARSER_H

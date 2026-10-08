@@ -112,12 +112,12 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, cancelMsg),
 			"red": (self.keyCancel, cancelMsg),
-			"top": (self["list"].goTop, _("Move to first line / screen")),
+			"top": (self["list"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["list"].goPageUp, _("Move up a page / screen")),
 			"up": (self["list"].goLineUp, _("Move up a line")),
 			"down": (self["list"].goLineDown, _("Move down a line")),
 			"pageDown": (self["list"].goPageDown, _("Move down a page / screen")),
-			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["list"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		updateMsg = _("Proceed with the update")
 		self["updateActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
@@ -394,12 +394,12 @@ class RunSoftwareUpdate(Screen, ProtectedScreen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Stop the update, if running, then exit")),
 			"ok": (self.keyCancel, _("Stop the update, if running, then exit")),
-			"top": (self["update"].goTop, _("Move to first line / screen")),
+			"top": (self["update"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["update"].goPageUp, _("Move up a page / screen")),
 			"up": (self["update"].goLineUp, _("Move up a page / screen")),
 			"down": (self["update"].goLineDown, _("Move down a page / screen")),
 			"pageDown": (self["update"].goPageDown, _("Move down a page / screen")),
-			"bottom": (self["update"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["update"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		self.activity = 0
 		self.packageTotal = 0

@@ -121,12 +121,16 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			}
 
 			serviceEvent(eventTuned);
+			if (eDVBCIInterfaces::getInstance())
+				eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 		}
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
 		eDebug("[eDVBServicePMTHandler] tune failed.");
 		serviceEvent(eventTuneFailed);
+		if (eDVBCIInterfaces::getInstance())
+			eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 	}
 }
 
@@ -546,6 +550,16 @@ void eDVBServicePMTHandler::AITready(int error)
 	}
 	/* for now, do not keep listening for table updates */
 	m_AIT.stop();
+}
+
+
+void eDVBServicePMTHandler::getHbbTVApplicationInfos(std::vector<HbbTVApplicationInfo> &applications) const
+{
+	applications.clear();
+	for (HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin(); infoiter != m_HbbTVApplications.end(); ++infoiter)
+	{
+		applications.push_back(**infoiter);
+	}
 }
 
 void eDVBServicePMTHandler::OCready(int error)

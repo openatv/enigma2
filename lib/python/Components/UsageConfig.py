@@ -59,8 +59,6 @@ def refreshChannelSelectionStyleChoices():
 			setattr(config.channelSelection, name, ConfigSelection(default=default, choices=choices))
 		else:
 			setting.setChoices(choices, default=default)
-			# Refresh the cached label even when the new skin uses the same selection key.
-			setting.value = setting.value
 
 
 def InitUsageConfig():
@@ -585,6 +583,7 @@ def InitUsageConfig():
 	config.usage.instantrec_path.save()
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
+	config.usage.movielistTrashcanConfirm = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
@@ -1668,6 +1667,12 @@ def InitUsageConfig():
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[
 		("beginning", _("At beginning")),
 		("end", _("At end"))
+	])
+	config.usage.timerListSortOrder = ConfigSelection(default="dateAscending", choices=[
+		("dateAscending", _("Start Time (Earliest First)")),
+		("dateDescending", _("Start Time (Latest First)")),
+		("nameAscending", _("Name (A-Z)")),
+		("nameDescending", _("Name (Z-A)"))
 	])
 	config.usage.timerlist_show_epg = ConfigYesNo(default=True)
 

@@ -89,12 +89,12 @@ class InformationBase(Screen):
 			"close": (self.keyCloseRecursive, _("Close the screen and exit all menus")),
 			"save": (self.refreshInformation, _("Refresh the screen")),
 			"ok": (self.refreshInformation, _("Refresh the screen")),
-			"top": (self["information"].goTop, _("Move to first line / screen")),
+			"top": (self["information"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["information"].goPageUp, _("Move up a screen")),
 			"up": (self["information"].goLineUp, _("Move up a line")),
 			"down": (self["information"].goLineDown, _("Move down a line")),
 			"pageDown": (self["information"].goPageDown, _("Move down a screen")),
-			"bottom": (self["information"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["information"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
 		self.informationColors = ["H", "S", "P", "V", "M", "F"]
 		self.informationColor = {
@@ -615,7 +615,9 @@ class InformationDistribution(InformationBase):
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 		if MultiBoot.canMultiBoot():
 			device = MultiBoot.getBootDevice()
-			if BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
+			if slotCode not in MultiBoot.getBootSlots() or not device:
+				device = _("Unknown")
+			elif BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
 				slotCode = int(slotCode)
 				image = slotCode - 4 if slotCode > 4 else slotCode - 1
 				device = _("SDcard slot %s%s") % (image, f"  -  {device}" if device else "")
@@ -633,7 +635,7 @@ class InformationDistribution(InformationBase):
 				else:
 					device = _("USB slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 			info.append(self.formatLine("P1", _("Hardware MultiBoot device"), device))
-			info.append(self.formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
+			info.append(self.formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile() or _("Unknown")))
 		if bootCode:
 			info.append(self.formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
 		info.append(self.formatLine("P1", _("Software MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
@@ -741,13 +743,26 @@ class InformationGeolocation(InformationBase):
 		self.setTitle(_("Geolocation Information"))
 		self.skinName.insert(0, "InformationGeolocation")
 		self.skinName.insert(1, "GeolocationInformation")
+		self.geolocationData = None
+
+	def fetchInformation(self):
+		self.informationTimer.stop()
+		geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
+
+	def fetchGeolocationCallback(self, geolocationData):
+		self.geolocationData = geolocationData
+		for callback in self.onInformationUpdated:
+			if callable(callback):
+				callback()
 
 	def displayInformation(self):
 		info = []
 		info.append(self.formatLine("H", _("Geolocation information for %s %s") % getBoxDisplayName()))
 		info.append("")
-		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
-		if geolocationData.get("status", None) == "success":
+		geolocationData = self.geolocationData
+		if geolocationData is None:
+			info.append(self.formatLine("P1", _("Retrieving geolocation information...")))
+		elif geolocationData.get("status", None) == "success":
 			info.append(self.formatLine("S", _("Location information")))
 			if self.extraSpacing:
 				info.append("")
@@ -974,7 +989,9 @@ class InformationNetwork(InformationBase):
 		self.geolocationData = []
 
 	def keyUseGeolocation(self):
-		geolocationData = geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False)
+		geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
+
+	def fetchGeolocationCallback(self, geolocationData):
 		info = []
 		if geolocationData.get("status", None) == "success":
 			info.append("")

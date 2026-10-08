@@ -494,7 +494,7 @@ class MultiBootClass():
 
 	def getStartupFile(self, slotCode=None):
 		slotCode = slotCode if slotCode in self.bootSlots else self.bootSlot
-		return self.bootSlots[slotCode]["startupfile"][self.bootCode]
+		return self.bootSlots.get(slotCode, {}).get("startupfile", {}).get(self.bootCode)
 
 	def hasRootSubdir(self, slotCode=None):
 		if slotCode is None:

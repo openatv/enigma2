@@ -117,12 +117,12 @@ class Opkg(Screen, ProtectedScreen):
 		self.callLater(self.protectedCallback(self.runNextCmd))
 
 		self["logactions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self["log"].moveTop, _("Move to first line / screen")),
+			"top": (self["log"].moveTop, _("Move to the first line / screen")),
 			"pageUp": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			"down": (self["log"].moveDown, _("Move down a line")),
 			"pageDown": (self["log"].pageDown, _("Move down a screen")),
-			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
+			"bottom": (self["log"].moveBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Opkg Log Actions"))
 		self["logactions"].setEnabled(False)
 

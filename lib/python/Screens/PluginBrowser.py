@@ -306,6 +306,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	def doClose(self):
 		if self.internetCheckThread:
 			Processing.instance.hideProgress()
+			self.internetCheckThread.callback.get().clear()
 			self.internetCheckThread = None
 
 	def selectionChanged(self):
@@ -392,9 +393,9 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		self.internetCheckThread.startThread(FEED_SERVER, INTERNET_TIMEOUT, True)
 
 	def internetCheckCallback(self, result, mode):  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
+		# Keep the native check alive until doClose or the next check, after its signal has finished dispatching.
 		Processing.instance.hideProgress()
 		self.updateButtons()
-		self.internetCheckThread = None
 		if result == 0:
 			self.internetCheckedTime = time()
 			self.openDownloadScreen(mode)
@@ -1441,7 +1442,7 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 						self.searchLoading = False
 						self.searchText = ""
 						self.displayPluginList(self.pluginList, False)
-						self.session.open(MessageBox, _("Unable to load package information."), type=MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox, _("Unable to load package information!"), type=MessageBox.TYPE_ERROR)
 					self.setWaiting(None)
 					haveLogs = self.logData != ""
 					self["logAction"].setEnabled(haveLogs)
@@ -1715,10 +1716,10 @@ class PackageActionLog(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.close, _("Close the screen")),
-			"top": (self["log"].moveTop, _("Move to first line / screen")),
+			"top": (self["log"].moveTop, _("Move to the first line / screen")),
 			"pageUp": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			"down": (self["log"].moveDown, _("Move down a line")),
 			"pageDown": (self["log"].pageDown, _("Move down a screen")),
-			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
+			"bottom": (self["log"].moveBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Plugin Action Log Actions"))

@@ -54,12 +54,12 @@ class TaskList(Screen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close Task List")),
 			"red": (self.keyCancel, _("Close Task List")),
-			"top": (self["tasklist"].goTop, _("Move to first line / screen")),
+			"top": (self["tasklist"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["tasklist"].goPageUp, _("Move up a screen")),
 			"up": (self["tasklist"].goLineUp, _("Move up a line")),
 			"down": (self["tasklist"].goLineDown, _("Move down a line")),
 			"pageDown": (self["tasklist"].goPageDown, _("Move down a screen")),
-			"bottom": (self["tasklist"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["tasklist"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Task List Actions"))
 		self["detailAction"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"ok": (self.keyOK, _("Show details of highlighted task")),

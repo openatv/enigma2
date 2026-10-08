@@ -29,6 +29,14 @@ Licensed under GPLv2.
 #include <lib/service/servicemp3.h>
 #include <lib/service/servicemp3record.h>
 #include <lib/service/servicedvb.h>
+#ifdef DREAMNEXTGEN
+#include <lib/dvb/alsa.h>
+#include <lib/dvb/volume.h>
+#include <gst/app/gstappsink.h>
+#include <libavcodec/avcodec.h>
+#include <libavcodec/codec_id.h>
+#include <libavutil/avutil.h>
+#endif
 
 #include <lib/base/cfile.h>
 
@@ -595,20 +603,27 @@ DEFINE_REF(eServiceFactoryMP3)
 static void create_gstreamer_sinks() {
 	dvb_subsink = dvb_audiosink = dvb_videosink = NULL;
 	dvb_subsink_ok = dvb_audiosink_ok = dvb_videosink_ok = false;
+#ifdef DREAMNEXTGEN
+	dvb_audiosink = gst_element_factory_make("dreamaudiosink", NULL);
+#else
 	dvb_audiosink = gst_element_factory_make("dvbaudiosink", NULL);
+#endif
 	if (dvb_audiosink) {
 		gst_object_ref_sink(dvb_audiosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_audiosink created ***");
 		dvb_audiosink_ok = true;
 	} else
-		eDebug("[eServiceFactoryMP3] **** audio_sink NOT created missing plugin dvbaudiosink ****");
+		eDebug("[eServiceFactoryMP3] **** audio_sink NOT created missing plugin ****");
+#ifdef DREAMNEXTGEN
+	/* per-service vsink — see eServiceMP3 ctor */
+#else
 	dvb_videosink = gst_element_factory_make("dvbvideosink", NULL);
 	if (dvb_videosink) {
 		gst_object_ref_sink(dvb_videosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink created ***");
-		dvb_videosink_ok = true;
 	} else
-		eDebug("[eServiceFactoryMP3] **** dvb_videosink NOT created missing plugin dvbvideosink ****");
+		eDebug("[eServiceFactoryMP3] **** dvb_videosink NOT created missing plugin ****");
+#endif
 	dvb_subsink = gst_element_factory_make("subsink", NULL);
 	if (dvb_subsink) {
 		gst_object_ref_sink(dvb_subsink);
@@ -1320,6 +1335,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_sourceinfo.is_video = !m_sourceinfo.is_audio;
 	}
 
+	/* extension-less URLs: detect audio-only via bouquet service type or URL path */
+	if (!m_sourceinfo.is_audio && !m_sourceinfo.is_video) {
+		if (m_ref.getData(0) == 2
+		    || strcasestr(filename, "/mp3/")
+		    || strcasestr(filename, "/aac/")
+		    || strcasestr(filename, "/audio/"))
+			m_sourceinfo.is_audio = TRUE;
+	}
+
 	gchar* uri;
 
 	if (m_sourceinfo.is_streaming) {
@@ -1397,6 +1421,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_gst_playbin = gst_element_factory_make("playbin", "playbin");
 	if (m_gst_playbin) {
 		if (dvb_audiosink) {
+#ifdef DREAMNEXTGEN
+			/* audio-only sources (mp3 radio) keep playbin autoplug. */
+			if (!m_sourceinfo.is_audio)
+				g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
+#else
 			if (m_sourceinfo.is_audio) {
 				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
 				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
@@ -1405,18 +1434,48 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
 			}
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
+#endif
 		}
+#ifdef DREAMNEXTGEN
+		/* sync=FALSE: amvideo HW pacing via kernel tsync; sync=TRUE drops
+		 * 46% frames on 1080p H.264. dream_alsa anchor handles A/V sync. */
+		if (!m_sourceinfo.is_audio) {
+			GstElement *vsink = gst_element_factory_make("dreamvideosink", NULL);
+			if (vsink) {
+				g_object_set(vsink, "sync", FALSE, NULL);
+				g_object_set(m_gst_playbin, "video-sink", vsink, NULL);
+				dvb_videosink = vsink;
+			}
+		}
+#else
 		if (dvb_videosink && !m_sourceinfo.is_audio) {
 			g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
 			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
+#endif
 
-		/*
-		 * avoid video conversion, let the dvbmediasink handle that using native video flag
-		 * volume control is done by hardware, do not use soft volume flag
-		 */
+		/* native video flag = no GStreamer video conversion. DREAMNEXTGEN
+		 * adds SOFT_VOLUME because Master mixer doesn't propagate on hw:0,X. */
 		guint flags = GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_TEXT | GST_PLAY_FLAG_NATIVE_VIDEO;
+#ifdef DREAMNEXTGEN
+		flags |= GST_PLAY_FLAG_SOFT_VOLUME;
+		/* Inherit system volume to dreamaudiosink; playbin pinned to 1.0. */
+		{
+			eDVBVolumecontrol *vc = eDVBVolumecontrol::getInstance();
+			if (vc) {
+				int v = vc->getVolume();
+				if (v < 0) v = 0;
+				if (v > 100) v = 100;
+				if (dvb_audiosink)
+					g_object_set(dvb_audiosink, "volume", (gdouble)v / 100.0, NULL);
+				g_object_set(m_gst_playbin, "volume", (gdouble)1.0, NULL);
+			}
+		}
+		/* dreamaudiosink and eAlsaOutput share the dmix slave on
+		 * dreamhdmi; only the first writer's bytes get forwarded. */
+		eAlsaOutput::instance()->releaseHandle();
+#endif
 
 		if (m_sourceinfo.is_streaming) {
 			m_notify_source_handler_id =
@@ -1554,6 +1613,9 @@ eServiceMP3::~eServiceMP3() {
 		gst_tag_list_free(m_stream_tags);
 
 	if (m_gst_playbin) {
+#ifdef DREAMNEXTGEN
+		dvb_videosink = NULL;     /* per-service vsink dies with the playbin */
+#endif
 		gst_object_unref(GST_OBJECT(m_gst_playbin));
 		m_ref.path.clear();
 		m_ref.name.clear();
@@ -1978,6 +2040,8 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		return 0;
 	}
 	m_last_trickseek_ms = now_ms_k;
+#ifdef DREAMNEXTGEN
+#endif
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -2087,6 +2151,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		}
 		m_last_trickseek_ms = now_ms;
 	}
+#ifdef DREAMNEXTGEN
+	/* dreamaudiosink handles trick-mode via GstBaseSink TRICKMODE_NO_AUDIO. */
+#endif
 	GstState state, pending;
 	GstStateChangeReturn ret;
 	int pos_ret = -1;
@@ -2318,13 +2385,25 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused) {
 		// eDebug("[eServiceMP3] getPlayPosition Check dvb_audiosink or dvb_videosink");
 		if (m_sourceinfo.is_audio && dvb_audiosink) {
+#ifdef DREAMNEXTGEN
+			/* dreamaudiosink has no get-decoder-time; fall through to query_position. */
+#else
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 			if (GST_CLOCK_TIME_IS_VALID(pos))
 				got_decoder_time = true;
+#endif
 		} else if (!m_sourceinfo.is_audio) {
 			/* most stb's work better when pts is taken by audio but some video must be taken cause
 			 * audio is 0 or invalid */
 			/* avoid taking the audio play position if audio sink is in state NULL */
+#ifdef DREAMNEXTGEN
+			/* dreamvideosink keeps get-decoder-time; ask it instead. */
+			if (dvb_videosink) {
+				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
+				if (GST_CLOCK_TIME_IS_VALID(pos))
+					got_decoder_time = true;
+			}
+#else
 			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos) && dvb_videosink)
@@ -2336,6 +2415,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 				if (GST_CLOCK_TIME_IS_VALID(pos))
 				got_decoder_time = true;
 			}
+#endif
 		}
 	}
 
@@ -5285,3 +5365,4 @@ void eServiceMP3::saveCuesheet() {
 	}
 	m_cuesheet_changed = 0;
 }
+

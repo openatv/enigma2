@@ -83,12 +83,12 @@ class ServiceScan(Screen):
 			"close": (self.keyCloseRecursive, _("Select the previous service and close the scanner and exit all menus")),
 			"ok": (self.keySave, _("Select the currently highlighted service and exit")),
 			"save": (self.keySave, _("Select the currently highlighted service and exit")),
-			"top": (self["servicelist"].goTop, _("Move to first line / screen")),
+			"top": (self["servicelist"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["servicelist"].goPageUp, _("Move up a screen")),
 			"up": (self["servicelist"].goLineUp, _("Move up a line")),
 			"down": (self["servicelist"].goLineDown, _("Move down a line")),
 			"pageDown": (self["servicelist"].goPageDown, _("Move down a screen")),
-			"bottom": (self["servicelist"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["servicelist"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Service Scan Actions"))
 		self["doneActions"].setEnabled(False)
 		self.lcnScanner = LCNScanner() if LCNScanner else None
@@ -329,6 +329,7 @@ class ServiceScan(Screen):
 					self.timer.startLongTimer(2)  # Delay the next step by 2 seconds to give eComponentScan time to finish.
 				else:
 					self.finishBouquetRepair()
+
 					def delayNext2():
 						self.timer.stop()
 						self.timer.callback.remove(delayNext2)

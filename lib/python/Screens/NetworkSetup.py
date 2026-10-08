@@ -230,7 +230,7 @@ class NetworkOverview(Screen, ProtectedScreen):
 			"green": (self.keyGreen, greenHelp),
 			"yellow": (self.keyYellow, _("Add a new Saved Wi-Fi Network")),
 			"blue": (self.keyBlue, _("Connect to the selected Saved Wi-Fi Network")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			"first": (self.keyLeft, _("Move to the Adapter list")),
@@ -239,7 +239,7 @@ class NetworkOverview(Screen, ProtectedScreen):
 			"last": (self.keyRight, _("Move to the Saved Wi-Fi Networks list")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Network Overview Actions"))
 		self.overviewTemplateHeader = 0
 		self.overviewTemplateRow = 1
@@ -1125,12 +1125,12 @@ class NetworkWiFiScan(Screen):
 			"red": (self.keyClose, _("Close the screen")),
 			"green": (self.keySelect, _("Configure the selected Wi-Fi network")),
 			"yellow": (self.keyStartScan, _("Rescan for available Wi-Fi networks")),
-			"top": (self["list"].goTop, _("Move to first line / screen")),
+			"top": (self["list"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["list"].goPageUp, _("Move up a screen")),
 			"up": (self["list"].goLineUp, _("Move up a line")),
 			"down": (self["list"].goLineDown, _("Move down a line")),
 			"pageDown": (self["list"].goPageDown, _("Move down a screen")),
-			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["list"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Wi-Fi Scan Actions"))
 		# AKM suite types under the 00-0F-AC organisation identifier (IEEE 802.11).
 		self.akmPSKTypes = {2, 4, 6, 19, 20}  # PSK, FT-PSK, PSK-SHA256, FT-PSK-SHA384, PSK-SHA384.
@@ -1888,7 +1888,7 @@ class DNSSettings(Setup):
 		if networkManager.save():
 			Setup.keySave(self)
 		else:
-			self.session.showError(_("Unable to save network configuration."))
+			self.session.showError(_("Unable to save network configuration!"))
 
 	def writeDnsCryptToml(self):  # DNSCrypt TOML helpers.
 		def replaceKeyLine(line, key, value, foundSet):

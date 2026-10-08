@@ -435,7 +435,8 @@ int main(int argc, char **argv)
 	// the previous Enigma2 instance. PiP configures decoder 1 when it is used.
 	eVideoWidget::setFullsize(true, true);
 
-	python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str());
+	if (python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str()))
+		exit_code = 5; /* An exception at its top level, e.g. a missing module. */
 
 	/* Do not touch the video destinations while Enigma2 is shutting down.
 	 * The next instance restores the main decoder before Python starts. */

@@ -612,6 +612,7 @@
 	<setup key="MovieSelection" title="Movie Selection Settings" showOpenWebif="yes">
 		<item level="0" text="Trash And Deletion" />
 		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately." indent="1">config.usage.movielist_trashcan</item>
+		<item level="0" text="Confirm moving files to the trashcan" description="Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged." requires="config.usage.movielist_trashcan" indent="1">config.usage.movielistTrashcanConfirm</item>
 		<item level="0" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan." indent="1">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning." indent="1">config.usage.movielist_trashcan_network_clean</item>
 		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan." indent="1">config.usage.movielist_trashcan_reserve</item>
@@ -786,6 +787,42 @@
 			<item level="0" text="Web browser base visibility" description="Base transparency for OpenOpera web browser.">config.osd.alpha_webbrowser</item>
 		</if>
 	</setup>
+	<setup key="ParentalControlChangePin" title="Change pin code">
+		<item level="0" text="New PIN" description="Enter the new four-digit PIN code.">self.pin1</item>
+		<item level="0" text="Re-enter new PIN" description="Enter the same PIN code again to confirm it.">self.pin2</item>
+	</setup>
+	<setup key="ParentalControlSetup" title="Parental control setup">
+		<item level="0" text="Protect services" description="Require a PIN code to watch protected services or programmes covered by the selected age limit.">config.ParentalControl.servicepinactive</item>
+		<if conditional="config.ParentalControl.servicepinactive.value">
+			<item level="0" text="Change PIN" description="Press OK to change the PIN used for service and screen protection.">self.changePin</item>
+			<item level="0" text="Remember service PIN" description="Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions.">config.ParentalControl.storeservicepin</item>
+			<item level="0" text="Hide parental locked services" description="Hide protected services while the service PIN is not remembered." conditional="config.ParentalControl.storeservicepin.value != 'never'">config.ParentalControl.hideBlacklist</item>
+			<item level="0" text="Protect on epg age" description="Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster.">config.ParentalControl.age</item>
+			<item level="0" text="Reload blacklists" description="Press OK to reload the list of protected services from disk.">self.reloadLists</item>
+		</if>
+		<item level="0" text="Protect Screens" description="Require a PIN code to access the selected menus and system functions, including their protected shortcuts.">config.ParentalControl.setuppinactive</item>
+		<if conditional="config.ParentalControl.setuppinactive.value">
+			<item level="0" text="Change PIN" description="Press OK to change the PIN used for service and screen protection." conditional="not config.ParentalControl.servicepinactive.value">self.changePin</item>
+			<item level="0" text="Protect main menu" description="Protect the main menu and the system functions covered by screen protection, including access through shortcuts.">config.ParentalControl.config_sections.main_menu</item>
+			<if conditional="not config.ParentalControl.config_sections.main_menu.value">
+				<item level="0" text="Protect timer menu" description="Require a PIN code to open the timer menu.">config.ParentalControl.config_sections.timer_menu</item>
+				<item level="0" text="Protect plugin browser" description="Require a PIN code to open the plugin browser and launch plugins through protected entry points.">config.ParentalControl.config_sections.plugin_browser</item>
+				<item level="0" text="Protect configuration" description="Require a PIN code to open settings and protected system configuration screens.">config.ParentalControl.config_sections.configuration</item>
+				<item level="0" text="Protect standby menu" description="Require a PIN code to open the standby and shutdown menu.">config.ParentalControl.config_sections.standby_menu</item>
+				<item level="0" text="Protect software update screen" description="Require a PIN code to access software updates.">config.ParentalControl.config_sections.software_update</item>
+			</if>
+			<item level="0" text="Protect movie list" description="Require a PIN code to open the movie list.">config.ParentalControl.config_sections.movie_list</item>
+			<item level="0" text="Protect context menus" description="Require a PIN code to open protected context menus.">config.ParentalControl.config_sections.context_menus</item>
+			<item level="0" text="Protect Quickmenu" description="Require a PIN code to open the Quickmenu.">config.ParentalControl.config_sections.quickmenu</item>
+			<item level="0" text="Protect extensions menu" description="Require a PIN code to open the extensions menu.">config.ParentalControl.config_sections.extensions_menu</item>
+			<item level="0" text="Protect MultiBoot" description="Require a PIN code to manage MultiBoot images and slots.">config.ParentalControl.config_sections.multiboot</item>
+			<item level="0" text="Protect image flashing and restoring backups" description="Require a PIN code to flash images or restore backups.">config.ParentalControl.config_sections.flash_restore</item>
+			<item level="0" text="Protect storage device management" description="Require a PIN code to access protected storage management, swap and flash expansion screens.">config.ParentalControl.config_sections.storage</item>
+			<item level="0" text="Protect package installation and removal" description="Require a PIN code to install or remove packages, including IPK files found on removable media.">config.ParentalControl.config_sections.packages</item>
+			<item level="0" text="Protect script execution" description="Require a PIN code to open the script runner.">config.ParentalControl.config_sections.scripts</item>
+			<item level="0" text="Protect factory reset" description="Require a PIN code before resetting the receiver configuration.">config.ParentalControl.config_sections.manufacturer_reset</item>
+		</if>
+	</setup>
 	<setup key="Password" title="Password Settings">
 		<item level="0" text="New password" description="Setting a password is strongly advised if your receiver is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
 	</setup>
@@ -876,6 +913,7 @@
 		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames." indent="1">config.seek.withjumps_avoid_zero</item>
 		<item level="1" text="Trash And Deletion" />
 		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately." indent="1">config.usage.movielist_trashcan</item>
+		<item level="1" text="Confirm moving files to the trashcan" description="Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged." requires="config.usage.movielist_trashcan" indent="1">config.usage.movielistTrashcanConfirm</item>
 		<item level="1" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan." indent="1">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning." indent="1">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan." indent="1">config.usage.movielist_trashcan_reserve</item>
@@ -918,7 +956,7 @@
 		<item level="2" text="Instant recording location" description="Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations." indent="1">config.usage.instantrec_path</item>
 		<item level="2" text="Time shift save location" description="Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations." indent="1">config.timeshift.recordingPath</item>
 		<item level="1" text="Tuner Allocation And Conflicts" />
-		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner for recordings will be preferred, when more than one tuner is available." indent="1">config.usage.recording_frontend_priority</item>
+		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen." indent="1">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')" indent="1">config.usage.recording_frontend_priority_multiselect</item>
 		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'" indent="1">config.usage.recording_frontend_priority_strictly</item>
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live TV, when there are no free tuners." indent="1">config.recording.asktozap</item>
@@ -1319,7 +1357,7 @@
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed." indent="1">config.usage.showScreenPath</item>
 		<item level="1" text="Sort Extension Menu" description="Select the sort order of the Extension Menu entries." indent="1">config.usage.sortExtensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen." indent="1">config.usage.show_restart_network_extensionslist</item>
-		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden." indent="1">config.usage.plugins_sort_mode</item>
+		<item level="1" text="Sort Plugin Browser entries" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden." indent="1">config.usage.plugins_sort_mode</item>
 		<!--<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically." indent="1">config.usage.sort_settings</item>-->
 		<item level="0" text="Show Movie Selection in Main Menu" description="Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control." restart="gui" indent="1">config.usage.movieSelectionInMenu</item>
 		<item level="1" text="File sorting mode" description="Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case." indent="1">config.usage.fileSortCaseMode</item>

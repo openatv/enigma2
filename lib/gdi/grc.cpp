@@ -799,6 +799,104 @@ gDC::~gDC()
 	delete[] m_spinner_pic;
 }
 
+void gDC::discardOpcode(const gOpcode *o)
+{
+	switch (o->opcode)
+	{
+	case gOpcode::renderText:
+		if (o->parm.renderText->text)
+			free(o->parm.renderText->text);
+		delete o->parm.renderText;
+		break;
+	case gOpcode::renderPara:
+		o->parm.renderPara->textpara->Release();
+		delete o->parm.renderPara;
+		break;
+	case gOpcode::setFont:
+		o->parm.setFont->font->Release();
+		delete o->parm.setFont;
+		break;
+	case gOpcode::fill:
+	case gOpcode::clear:
+		delete o->parm.fill;
+		break;
+	case gOpcode::fillRegion:
+		delete o->parm.fillRegion;
+		break;
+	case gOpcode::blit:
+		if (o->parm.blit->pixmap)
+			o->parm.blit->pixmap->Release();
+		delete o->parm.blit;
+		break;
+	case gOpcode::gradient:
+	case gOpcode::setGradient:
+		delete o->parm.gradient;
+		break;
+	case gOpcode::rectangle:
+		delete o->parm.rectangle;
+		break;
+	case gOpcode::setPalette:
+		delete[] o->parm.setPalette->palette->data;
+		delete o->parm.setPalette->palette;
+		delete o->parm.setPalette;
+		break;
+	case gOpcode::mergePalette:
+		o->parm.mergePalette->target->Release();
+		delete o->parm.mergePalette;
+		break;
+	case gOpcode::line:
+		delete o->parm.line;
+		break;
+	case gOpcode::setBackgroundColor:
+	case gOpcode::setForegroundColor:
+		delete o->parm.setColor;
+		break;
+	case gOpcode::setBackgroundColorRGB:
+	case gOpcode::setForegroundColorRGB:
+		delete o->parm.setColorRGB;
+		break;
+	case gOpcode::setRadius:
+		delete o->parm.radius;
+		break;
+	case gOpcode::setBorder:
+		delete o->parm.border;
+		break;
+	case gOpcode::setOffset:
+		delete o->parm.setOffset;
+		break;
+	case gOpcode::setClip:
+	case gOpcode::addClip:
+		delete o->parm.clip;
+		break;
+	case gOpcode::sendShow:
+	case gOpcode::sendHide:
+		delete o->parm.setShowHideInfo;
+		break;
+#ifdef USE_LIBVUGLES2
+	case gOpcode::sendShowItem:
+		delete o->parm.setShowItemInfo;
+		break;
+	case gOpcode::setFlush:
+		delete o->parm.setFlush;
+		break;
+	case gOpcode::setView:
+		delete o->parm.setViewInfo;
+		break;
+#endif
+	case gOpcode::popClip:
+	case gOpcode::flush:
+	case gOpcode::waitVSync:
+	case gOpcode::flip:
+	case gOpcode::notify:
+	case gOpcode::enableSpinner:
+	case gOpcode::disableSpinner:
+	case gOpcode::incrementSpinner:
+	case gOpcode::shutdown:
+	case gOpcode::setCompositing:
+		break;
+	}
+}
+
 // Start of the UTF-8 character at pos, so a cut never splits a character.
 static size_t utf8CharStart(const std::string &str, size_t pos)
 {

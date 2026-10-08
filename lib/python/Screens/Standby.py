@@ -254,6 +254,7 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
+		self.session.isStandby = False
 		self.standbyStopServiceTimer.stop()
 		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.paused_service:
@@ -279,6 +280,7 @@ class Standby2(Screen):
 	def __onFirstExecBegin(self):
 		global inStandby
 		inStandby = self
+		self.session.isStandby = True
 		self.session.screen["Standby"].boolean = True
 		config.misc.standbyCounter.value += 1
 		if BoxInfo.getItem("AmlogicFamily"):

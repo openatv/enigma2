@@ -43,6 +43,7 @@ class OCSection : public LongCrcSection
 
 #include <list>
 #include <string>
+#include <vector>
 class HbbTVApplicationInfo
 {
 public:
@@ -50,11 +51,12 @@ public:
 	int m_AppId;
 	int m_ControlCode;
 	short m_ProfileCode;
+	int m_UsageType;
 	std::string m_HbbTVUrl;
 	std::string m_ApplicationName;
 public:
-	HbbTVApplicationInfo(int controlCode, int orgid, int appid, std::string hbbtvUrl, std::string applicationName,int profileCode)
-		: m_OrgId(orgid), m_AppId(appid), m_ControlCode(controlCode), m_ProfileCode(profileCode),
+	HbbTVApplicationInfo(int controlCode, int orgid, int appid, std::string hbbtvUrl, std::string applicationName, int profileCode, int usageType = 0)
+		: m_OrgId(orgid), m_AppId(appid), m_ControlCode(controlCode), m_ProfileCode(profileCode), m_UsageType(usageType),
 		m_HbbTVUrl(hbbtvUrl), m_ApplicationName(applicationName)
 	{}
 };
@@ -156,6 +158,7 @@ public:
 	void getAITApplications(std::map<int, std::string> &aitlist);
 	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 	PyObject *getHbbTVApplications();
+	void getHbbTVApplicationInfos(std::vector<HbbTVApplicationInfo> &applications) const;
 
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	int getServiceReference(eServiceReferenceDVB &service) { service = m_reference; return 0; }

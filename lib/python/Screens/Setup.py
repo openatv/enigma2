@@ -7,8 +7,8 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
-from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary
+from Screens.ScreenProtection import ProtectedScreen
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename  # noqa F401
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -86,6 +86,7 @@ class Setup(ConfigListScreen, Screen, ProtectedScreen):
 	def changedEntry(self):
 		if isinstance(self["config"].getCurrent()[1], (ConfigBoolean, ConfigSelection)):
 			self.createSetup()
+		ConfigListScreen.changedEntry(self)
 
 	def createSetup(self, appendItems=None, prependItems=None):
 		oldList = self.list

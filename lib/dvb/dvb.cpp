@@ -25,6 +25,7 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <sstream>
 
 #define MIN(a,b) (a < b ? a : b)
 #define MAX(a,b) (a > b ? a : b)
@@ -1214,6 +1215,39 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	eDebug("[eDVBResourceManager] no free demux found");
 	return -1;
+}
+
+void eDVBResourceManager::refreshNonCIDemuxSources()
+{
+	// Called in the mainloop after a CI routing change. Keep file playback and
+	// CI-routed sources untouched, including another active CAM or CI chain.
+	for (eSmartPtrList<eDVBRegisteredDemux>::iterator demux(m_demux.begin()); demux != m_demux.end(); ++demux)
+	{
+		const int source = demux->m_demux->getSource();
+		if (!demux->m_inuse || source < 0)
+			continue;
+		for (eSmartPtrList<eDVBRegisteredFrontend>::iterator frontend(m_frontend.begin()); frontend != m_frontend.end(); ++frontend)
+		{
+			if (!frontend->m_inuse || frontend->m_adapter != demux->m_adapter || frontend->m_frontend->getDVBID() != source)
+				continue;
+			const int tuner = frontend->m_frontend->getSlotID();
+			int state = iDVBFrontend::stateIdle;
+			if (tuner < 0 || tuner >= 26 || frontend->m_frontend->getState(state) || state != iDVBFrontend::stateLock)
+				break;
+			char path[64];
+			snprintf(path, sizeof(path), "/proc/stb/tsmux/input%d", tuner);
+			std::string route;
+			std::istringstream input(CFile::read(path));
+			if (!(input >> route) || route != std::string(1, 'A' + tuner))
+				break;
+			uint8_t adapterId, demuxId;
+			demux->m_demux->getCAAdapterID(adapterId);
+			demux->m_demux->getCADemuxID(demuxId);
+			if (!demux->m_demux->setSourceFrontend(source))
+				eDebug("[eDVBResourceManager] CI routing refresh: adapter=%d demux=%d frontend=%d", adapterId, demuxId, source);
+			break;
+		}
+	}
 }
 
 RESULT eDVBResourceManager::setChannelList(iDVBChannelList *list)

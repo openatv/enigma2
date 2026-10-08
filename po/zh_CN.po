@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-04 16:43+0000\n"
-"PO-Revision-Date: 2026-10-04 11:54+0000\n"
+"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"PO-Revision-Date: 2026-10-06 10:36+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1056,7 +1056,7 @@ msgstr[1] "找到 %d 个频道。"
 
 #, python-format
 msgid "%d slots have been created on the device.\n"
-msgstr "已在设备上创建 %d 个插槽。\n"
+msgstr "已在设备上创建 %d 个插槽位。\n"
 
 #, python-format
 msgid "%d times"
@@ -1424,6 +1424,21 @@ msgstr "-24 小时"
 msgid "-24h/+24 Hours"
 msgstr "-24小时/+24 小时"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/秒"
 
@@ -1688,9 +1703,6 @@ msgid ""
 msgstr ""
 "正在进行录制。\n"
 "您需要做什么？"
-
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "正在进行录制。扫描前请先停止录制。"
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "正在进行录制。 开始寻星前请先停止录制。"
@@ -2126,7 +2138,7 @@ msgid "Add services to this bouquet?"
 msgstr "添加频道到此频道分组吗?"
 
 msgid "Add slots"
-msgstr "添加更多插槽"
+msgstr "添加更多槽位"
 
 msgid "Add the current directory as a bookmark"
 msgstr "将当前目录添加为书签"
@@ -2246,6 +2258,9 @@ msgstr "南非荷兰语"
 msgid "After Event"
 msgstr "事件后"
 
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr ""
+
 msgid "After event"
 msgstr "事件后"
 
@@ -2320,7 +2335,7 @@ msgid "All files"
 msgstr "所有文件"
 
 msgid "All packages"
-msgstr ""
+msgstr "全部软件包"
 
 msgid "All regions"
 msgstr "所有区域"
@@ -2721,6 +2736,9 @@ msgstr "作为插件在扩展栏中"
 msgid "Ascending"
 msgstr "升序"
 
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
+
 msgid "Ask user"
 msgstr "询问用户"
 
@@ -2957,6 +2975,9 @@ msgstr "频道自动扫描"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "每当接收机进入待机或深度待机时，自动将电视置于待机状态。"
+
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
 
 msgid "Automatically start time shift after"
 msgstr "在？之后自动开始时移"
@@ -3390,6 +3411,10 @@ msgstr "频道分组选择器操作"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "频道分组选择器导航操作"
+
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
 
 msgid "Bouquets"
 msgstr "频道分组"
@@ -4082,7 +4107,7 @@ msgid "Change repeat and delay settings?"
 msgstr "更改重复和延迟的设置？"
 
 msgid "Change search"
-msgstr ""
+msgstr "更改搜索"
 
 msgid "Change skin"
 msgstr "更改皮肤"
@@ -4481,7 +4506,7 @@ msgid "Clear play list"
 msgstr "清除播放列表"
 
 msgid "Clear search"
-msgstr ""
+msgstr "清除搜索"
 
 msgid "Clear the logs for this timer"
 msgstr "清除此定时器的日志"
@@ -4545,9 +4570,6 @@ msgstr "关闭网络测试"
 msgid "Close network test and exit all menus"
 msgstr "关闭网络测试并退出所有菜单"
 
-msgid "Close screen"
-msgstr "关闭屏幕"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "关闭 Chkroot 多系统启动管理器"
 
@@ -4569,26 +4591,26 @@ msgstr "返回起始点后关闭进度条"
 msgid "Close the choice box"
 msgstr "关闭选择框"
 
-msgid "Close the current screen"
-msgstr "关闭当前屏幕"
-
 msgid "Close the documentation screen"
 msgstr "关闭文档屏幕"
 
 msgid "Close the screen"
 msgstr "关闭屏幕"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "关闭屏幕并退出所有菜单"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "关闭屏幕，不保存任何更改"
 
 msgid "Close the window"
 msgstr "关闭此窗口"
-
-msgid "Close this screen"
-msgstr "关闭此屏幕"
 
 msgid "Close title selection"
 msgstr "关闭标题选择"
@@ -5088,9 +5110,6 @@ msgstr "配置“录制”符号（在显示皮肤和 LCD 皮肤中）是仅对�
 msgid "Configure which color format should be used on the SCART output."
 msgstr "配置SCART输出使用的色彩格式。"
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "当有多个调谐器可用时，配置首选哪个调谐器进行录制。"
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "配置哪种调谐器类型将是首选，当相同的频道可用于不同类型的调谐器时。"
 
@@ -5117,6 +5136,9 @@ msgstr "配置频道"
 
 msgid "Confirm Zap"
 msgstr "确认切换"
+
+msgid "Confirm moving files to the trashcan"
+msgstr ""
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
@@ -5485,8 +5507,17 @@ msgstr "创建一个目录"
 msgid "Create a randomly generated password"
 msgstr "创建一个随机生成的密码"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
 msgstr "创建符号链接"
+
+msgid "Create an image backup"
+msgstr ""
 
 msgid "Create application loader dump."
 msgstr "创建应用程序加载器转储。"
@@ -5794,8 +5825,8 @@ msgstr "DAB+ USB支持组件已安装。您现在可以在接收设置中启用�
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB：无法写入频道分组"
 
-msgid "DAB+ audio decoding"
-msgstr ""
+msgid "Audio decoding"
+msgstr "DAB+ 音频解码"
 
 msgid "DAB+ channel"
 msgstr "DAB+ 频道"
@@ -6655,6 +6686,15 @@ msgstr "DiSEqC 模式"
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC 端口 %s： %s"
 
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
+
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-测试器设置"
 
@@ -7247,6 +7287,9 @@ msgstr "驱动程序和内核信息"
 msgid "Drivers version"
 msgstr "驱动程序版本"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "双工模式"
 
@@ -7656,7 +7699,7 @@ msgid "Enable auto fast scan"
 msgstr "启用自动快速扫描"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "为 %s 启用自动快速扫描"
 
 msgid "Enable automatic shares"
@@ -8038,6 +8081,9 @@ msgstr "定义 DNS 后缀。"
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "输入用于标识此接收机的网络主机名。"
 
+msgid "Enter the new four-digit PIN code."
+msgstr ""
+
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "输入要分配 / 使用的 NFS 服务器线程数量。数值越高，多客户端并发时性能越好，但会占用更多内存。"
 
@@ -8061,6 +8107,9 @@ msgstr "输入此网卡的主 IPv6 DNS 服务器地址。（选填）"
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "输入服务器上的远程共享名称（SMB）或导出路径（NFS）。"
+
+msgid "Enter the same PIN code again to confirm it."
+msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "输入此网卡的备用 IPv4 DNS 服务器地址。（选填）"
@@ -8234,12 +8283,18 @@ msgstr "错误重试延迟"
 msgid "Error code"
 msgstr "错误代码"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "下载镜像“%s”时出错！"
 
 msgid "Error executing plugin"
 msgstr "执行插件时出错"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8255,11 +8310,17 @@ msgstr "将“epg.dat”移动到目标时出错！"
 msgid "Error opening recording file"
 msgstr "打开录制文件时出错"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "读取网页时出错！"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "从远程接收机检索“epg.dat”时出错！"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "错误文本："
@@ -8276,9 +8337,6 @@ msgstr ""
 "检索备用定时器信息时出错\n"
 "%s"
 
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "在远程接收机上写入“/etc/enigma2/epg.dat”时出错！"
-
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "在远程接收机上写入“epg.dat”时出错！"
 
@@ -8289,6 +8347,9 @@ msgid ""
 msgstr ""
 "错误： %s\n"
 "重试?"
+
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "正在进行录制。扫描前请先停止录制。"
 
 msgid "Error: An empty filename is illegal!"
 msgstr "错误：空文件名是非法的！"
@@ -8362,6 +8423,9 @@ msgstr "错误：删除目录“%s”失败！（可能目录不是空的。）"
 msgid "Error: Rescan failed!"
 msgstr "错误：重新扫描失败！"
 
+msgid "Error: Scan failed!"
+msgstr "扫描失败！"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "错误：脚本“%s”必须具有读取权限才能运行！"
@@ -8399,12 +8463,27 @@ msgstr "错误：写入“%s”时出现问题！"
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "错误：重置订阅源时出现问题！ 请重新启动 %s %s 并检查文件系统是否有任何错误，然后再尝试此命令。"
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr "无法创建额外的 STARTUP 文件。"
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr "无法创建新的厂商 STARTUP 文件。"
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "错误：无法在目标设备（如 U 盘或硬盘）上创建所需目录！请验证设备，然后重试。"
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr "无法读取新的多系统启动分区的 UUID。STARTUP 文件未被更改。"
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "错误：无法将目录“%s”重命名为“%s”！"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr "无法选择音频声道。"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8862,6 +8941,15 @@ msgstr "快进与快退"
 msgid "Fast Scan"
 msgstr "快速扫描"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr "快速皮肤重载"
 
@@ -8873,6 +8961,9 @@ msgstr "快进"
 
 msgid "Fast forward speeds"
 msgstr "快进速度"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "编辑收藏夹"
@@ -9820,7 +9911,7 @@ msgid "Harddisk Setup"
 msgstr "硬盘设置"
 
 msgid "Hardware AAC"
-msgstr ""
+msgstr "硬件 AAC"
 
 msgid "Hardware MultiBoot device"
 msgstr "硬件多系统启动设备"
@@ -9950,6 +10041,9 @@ msgstr "隐藏家长锁定的频道"
 
 msgid "Hide player"
 msgstr "隐藏播放器"
+
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
 
 msgid "Hide softcam servername"
 msgstr "隐藏 softcam 服务器名称"
@@ -10382,6 +10476,9 @@ msgstr "忽略 DVB-T 名称空间子网络"
 
 msgid "Ignore Standby"
 msgstr "忽略待机"
+
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "忽略意外唤醒并保持待机状态"
@@ -11489,12 +11586,6 @@ msgstr "存贮设备列表"
 msgid "List of storage devices"
 msgstr "存贮设备列表"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "列表版本 %d，找到 %d 个频道"
-msgstr[1] "列表版本 %d，找到 %d 个频道"
-
 msgid "List/Fav"
 msgstr "列表/收藏"
 
@@ -12469,9 +12560,6 @@ msgstr "移到第一项 / 首屏"
 msgid "Move to first line"
 msgstr "移到首行"
 
-msgid "Move to first line / screen"
-msgstr "移到第 1 行/屏幕"
-
 msgid "Move to first line / screen in the panel"
 msgstr "移动到面板中的首行/屏幕"
 
@@ -12483,9 +12571,6 @@ msgstr "移到末项 / 末屏"
 
 msgid "Move to last line"
 msgstr "移到末行"
-
-msgid "Move to last line / screen"
-msgstr "移到末行/屏幕"
 
 msgid "Move to last line / screen in the panel"
 msgstr "移动到面板中的末行/屏幕"
@@ -12782,6 +12867,12 @@ msgstr "NTSC"
 
 msgid "Name"
 msgstr "名称"
+
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
 
 msgid "Name ascending"
 msgstr "名称升序"
@@ -13216,6 +13307,9 @@ msgstr "无类别"
 msgid "No channel"
 msgstr "没有频道"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "没有频道列表"
 
@@ -13265,6 +13359,9 @@ msgstr "未检测到硬盘。"
 msgid "No hosts found yet - still scanning..."
 msgstr "尚未找到主机 - 仍在扫描中..."
 
+msgid "No local images found."
+msgstr ""
+
 msgid "No log files found so debug logs are unavailable!"
 msgstr "未找到日志文件，因此调试日志不可用！"
 
@@ -13284,7 +13381,7 @@ msgid "No of items switch (increase or reduced)"
 msgstr "项目数量切换（增加或减少）"
 
 msgid "No packages found."
-msgstr ""
+msgstr "未找到软件包。"
 
 msgid "No pictures available"
 msgstr "没有可用的图片"
@@ -13542,6 +13639,9 @@ msgstr "不需要"
 msgid "Not running"
 msgstr "未运行"
 
+msgid "Not set"
+msgstr ""
+
 msgid "Not tested:"
 msgstr "未测试："
 
@@ -13791,6 +13891,9 @@ msgstr "在这小时之前仅快速移动天线。"
 
 msgid "Only on startup"
 msgstr "仅在启动时"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "仅使用实施 DNS-over-HTTPS 协议的DNS服务器。这将使 DNS 查询通过加密的 HTTPS 协议进行。"
@@ -14351,12 +14454,6 @@ msgstr "进度 %d/%d"
 
 msgid "Pass-through"
 msgstr "直通"
-
-msgid "Passthrough audio handling delay AC3"
-msgstr "直通音频处理延迟 AC3"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "直通音频处理延迟 AC3+"
 
 msgid "Password"
 msgstr "密码"
@@ -15130,6 +15227,9 @@ msgstr "录制首选调谐器，允许多选"
 msgid "Preparation time for recording"
 msgstr "录制准备时间"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "正在准备，请稍等"
 
@@ -15154,11 +15254,17 @@ msgstr "按 EXIT 键返回帮助屏幕。"
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "按绿键启用多系统启动！"
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "请按 OK 键进行多系统启动选择。"
 
 msgid "Press OK on your remote control to continue."
 msgstr "按遥控器上的 OK 键继续。"
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr "请按 OK 键继续。"
@@ -15187,6 +15293,9 @@ msgstr "按“确定”安装并使用此区域设置。[%s]"
 msgid "Press OK to open module info"
 msgstr "按 OK 键来打开模块信息"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr "按 OK 键来重置密码"
 
@@ -15207,6 +15316,9 @@ msgstr "请按 OK 键来选择频道。"
 
 msgid "Press OK to select satellites"
 msgstr "请按 OK 键来选择卫星"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "请按 OK 键来选择/反选 CAId。"
@@ -15239,9 +15351,6 @@ msgstr "按上/下键选择槽位，然后按 OK 或绿色键重启进入该槽�
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按下此按钮以模拟之后按下的按钮的长按操作（此操作还会覆盖分配给模拟按钮的任何其他功能）。"
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "按下紧急键，可将频道号切换为首个频道分组中的频道号。"
 
 msgid "Prev quad PiP channel"
 msgstr "上一个四路画中画频道"
@@ -15394,6 +15503,9 @@ msgstr "进度信息字体大小"
 msgid "Properties of current title"
 msgstr "当前标题属性"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "保护快捷菜单"
 
@@ -15406,6 +15518,15 @@ msgstr "保护配置"
 msgid "Protect context menus"
 msgstr "保护上下文菜单"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "保护主菜单"
 
@@ -15415,8 +15536,14 @@ msgstr "保护影片列表"
 msgid "Protect on epg age"
 msgstr "EPG 年龄保护"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "保护插件浏览器"
+
+msgid "Protect script execution"
+msgstr ""
 
 msgid "Protect services"
 msgstr "保护频道"
@@ -15426,6 +15553,12 @@ msgstr "保护软件更新屏幕"
 
 msgid "Protect standby menu"
 msgstr "保护待机菜单"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "保护定时器菜单"
@@ -16317,8 +16450,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr "用当前 DAB+ 电台传输的图片替换静态广播背景。"
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "http 串流需要身份认证"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 msgid "Required medium type:"
 msgstr "所需介质类型："
@@ -16536,6 +16723,9 @@ msgstr "正在检索“%s”日志，请稍候..."
 msgid "Retrieving boot slot information..."
 msgstr "正在检索引导槽位信息..."
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr "正在检索镜像列表，请稍候..."
 
@@ -16553,6 +16743,9 @@ msgstr "返回当前选择响应"
 
 msgid "Return to movie list"
 msgstr "返回到影片列表"
+
+msgid "Return to previous channel"
+msgstr ""
 
 msgid "Return to previous service"
 msgstr "返回到上一频道"
@@ -17051,7 +17244,7 @@ msgid "Scanning"
 msgstr "正在扫描"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "正在扫描 %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17075,9 +17268,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "扫描完成，找到 %d 个频道。"
 msgstr[1] "扫描完成，找到 %d 个频道。"
-
-msgid "Scanning failed!"
-msgstr "扫描失败！"
 
 msgid "Scanning for shares..."
 msgstr "正在扫描共享..."
@@ -17172,7 +17362,7 @@ msgid "Search Sats, check signal and lock"
 msgstr "搜索卫星，检查信号和锁定"
 
 msgid "Search all packages"
-msgstr ""
+msgstr "搜索所有软件包"
 
 msgid "Search east"
 msgstr "搜索东面"
@@ -17184,10 +17374,10 @@ msgid "Search for similar events"
 msgstr "搜索相似的事件"
 
 msgid "Search in the current view"
-msgstr ""
+msgstr "在当前视图中搜索"
 
 msgid "Search packages by name or description"
-msgstr ""
+msgstr "按名称或描述搜索软件包"
 
 msgid "Search weather location ID"
 msgstr "搜索天气位置 ID"
@@ -17203,6 +17393,9 @@ msgstr "正在搜索"
 
 msgid "Searching east ..."
 msgstr "正在搜索东面..."
+
+msgid "Searching for local images, please wait..."
+msgstr ""
 
 msgid "Searching west ..."
 msgstr "正在搜索西面..."
@@ -17691,6 +17884,9 @@ msgstr "选择要查看的存储库提交日志："
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本："
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr "选择特定的 NFS 版本，以强制使用指定的 NFS 协议版本，而非允许自动协商。"
 
@@ -17767,6 +17963,9 @@ msgstr "选择要从备份中排除的文件"
 msgid "Select files/folders to backup"
 msgstr "选择 文件/文件夹 来备份"
 
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
+
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "选择屏幕保护图像在屏幕上保持同一位置的时间，之后它将移动。"
 
@@ -17808,6 +18007,9 @@ msgstr "选择如何在待机模式下处理计划任务。"
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "选择如何激活快速 EPG 模式。"
+
+msgid "Select how to sort the timer list."
+msgstr ""
 
 msgid "Select how your receiver will upgrade."
 msgstr "选择您的机顶盒如何升级。"
@@ -17880,6 +18082,9 @@ msgstr "选择供应商添加..."
 
 msgid "Select refresh rate"
 msgstr "选择刷新率"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr "选择要查看的频道信息："
@@ -18016,6 +18221,12 @@ msgstr "选择接收机在待机状态下前面板电源 LED 的颜色。此选�
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "选择用于人工智能翻译文本的颜色。"
 
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr ""
+
 msgid "Select the current bookmarked location and exit"
 msgstr "选择当前添加书签的位置并退出"
 
@@ -18099,6 +18310,9 @@ msgstr "配置屏幕保护程序显示前的持续时间（分钟）。"
 
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最晚截止时间。超过此时限后，即使满足其他所有条件，定时器也不再启动。"
+
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
 
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
@@ -18277,9 +18491,6 @@ msgstr "选择文件行的排序顺序："
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "选择扩展菜单条目的排序顺序。"
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐藏菜单项。"
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐藏插件条目。"
 
@@ -18325,8 +18536,14 @@ msgstr "选择区域或区域内的时区。"
 msgid "Select the timer from the fallback tuner by default"
 msgstr "默认情况下，从备用调谐器选择定时器"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "选择控制电动天线的调谐器。"
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "选择与 SCR 设备的信号线连接的调谐器。"
@@ -18456,9 +18673,6 @@ msgstr "选择您的国家/地区。如果不可用，请选择“全部”。"
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "选择您的供应商和地区。如果不在此列表中，则需要选择其他“频道扫描类型”之一。"
-
-msgid "Select your provider, and press OK to start the scan"
-msgstr "选择供应商，并按 OK 键开始扫描"
 
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "选择您所在的地区。如果不可用，请将“国家/地区”更改为“全部”，然后选择一个默认的备选方案。"
@@ -18654,6 +18868,9 @@ msgstr "频道名称"
 
 msgid "Service name font size"
 msgstr "频道名称字体大小"
+
+msgid "Service not found"
+msgstr ""
 
 msgid ""
 "Service not found!\n"
@@ -20379,7 +20596,7 @@ msgid "Software MultiBoot"
 msgstr "软件多系统启动"
 
 msgid "Software PCM"
-msgstr ""
+msgstr "软件 PCM"
 
 msgid "Software Update"
 msgstr "软件更新"
@@ -20414,6 +20631,9 @@ msgstr "索马里"
 
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "部分电视在另一个 HDMI 端口处于活动状态时可能无法切换到正确输入。此设置会在切换前将电视置于待机状态。若电视未能重新启动，可能需要调整更慢的传输间隔或重复发送唤醒命令。"
+
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
 
 msgid "Sorbian"
 msgstr "索布人"
@@ -20471,11 +20691,11 @@ msgstr "排序 EPG 列表"
 msgid "Sort Extension Menu"
 msgstr "排序扩展菜单"
 
-msgid "Sort Plugin Browser"
-msgstr "插件浏览器排序"
-
 msgid "Sort Plugin Browser entries"
 msgstr "对插件浏览器条目进行排序"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "排序方式"
@@ -20651,6 +20871,12 @@ msgstr "开始引导频率"
 msgid "Start RDS interactive"
 msgstr "启动 RDS 交互"
 
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
+
 msgid "Start Wizard"
 msgstr "开始向导"
 
@@ -20707,6 +20933,9 @@ msgstr "开始 Kexec 初始化"
 
 msgid "Start the backup of the selected image"
 msgstr "开始备份所选镜像"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "启动突出显示的插件"
@@ -21821,6 +22050,12 @@ msgstr "录制的帧速率。 理想情况下，这将匹配源的帧速率或�
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "图片的高度。 输入将被缩放以匹配此值。"
 
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
+
 msgid "The loopthrough setting is wrong."
 msgstr "环通设置错误。"
 
@@ -21840,6 +22075,13 @@ msgstr "厂商 STARTUP 文件“%s”已变更。请重启界面后重试。"
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
 msgstr "厂商 STARTUP 文件名“%s”无法安全扩展。"
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
+msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "频道图标目录已存在，必须删除。是否要继续？"
@@ -23084,57 +23326,68 @@ msgstr "乌克兰"
 msgid "Ukrainian"
 msgstr "乌克兰语"
 
-msgid "Unable to create the additional STARTUP files."
-msgstr "无法创建额外的 STARTUP 文件。"
+#, python-format
+msgid "Unable to check HDD replacement: %s"
+msgstr ""
 
-msgid "Unable to create the new manufacturer STARTUP files."
-msgstr "无法创建新的厂商 STARTUP 文件。"
+msgid "Unable to complete the bouquet update. Please check your bouquets."
+msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr "无法继承高频头 %d 的用户频段：%s。"
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr "无法继承高频头 %d的用户频段：高频头 1 %s。"
 
-msgid "Unable to initialize Kexec MultiBoot."
-msgstr "无法初始化 Kexec 多系统启动！"
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "无法初始化 Kexec 多系统启动。"
 
-msgid "Unable to load package information."
-msgstr ""
+msgid "Unable to load package information!"
+msgstr "无法加载软件包信息。"
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "无法打开调谐器（%d）"
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
-msgstr "无法读取新的多系统启动分区的 UUID。STARTUP 文件未被更改。"
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "无法读取厂商 STARTUP 文件“%s”。"
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
+msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "无法注册 DAB+ 转发器"
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
 msgstr "无法移除过时的额外 STARTUP 文件。"
 
-msgid "Unable to save network configuration."
-msgstr "无法保存网络配置！"
+msgid "Unable to save network configuration!"
+msgstr "无法保存网络配置。"
 
-msgid "Unable to select the audio channel."
-msgstr "无法选择音频声道。"
+msgid "Unable to save network mount configuration!"
+msgstr ""
 
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
+
+msgid "Unable to start the local image search. Please try again later."
+msgstr ""
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr "无法调谐 DAB+ 卫星传送源"
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "无法验证高频头 %d的 Unicable 位置：%s。"
 
 msgid "Unattended upgrade without GUI"
@@ -23155,6 +23408,9 @@ msgstr "不确定"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "访问 WebIF 时发生意外错误：%s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "检索备用调谐器的定时器信息时出现意外错误"
@@ -23309,6 +23565,9 @@ msgstr "更新失败！"
 
 msgid "Update finished!"
 msgstr "更新完成！"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -23499,7 +23758,7 @@ msgid "Use as HDD replacement"
 msgstr "作为硬盘替代"
 
 msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
-msgstr ""
+msgstr "使用自动硬件检测、请求硬件 AAC 解码，或强制使用软件 PCM 兼容路径。"
 
 msgid "Use automatic mode detection"
 msgstr "使用自动模式检测"
@@ -23528,10 +23787,10 @@ msgstr "使用描述行"
 msgid "Use extended List"
 msgstr "使用扩展列表"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "使用快速扫描频道名称"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "使用快速扫描频道编号"
 
 msgid "Use for load only x days in EPG."
@@ -23591,6 +23850,9 @@ msgstr "使用间隔线"
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "使用间隔线填充频道分组，使 #频道 行号与 LCN 匹配。"
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "使用遥控器上的向左/向右按钮调整 OSD 的高度。左按钮降低高度，右按钮增加高度。"
 
@@ -23627,6 +23889,9 @@ msgstr "使用向上/向下按钮选择要备份的已安装镜像。按“开�
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备用模式或传统收音机模式。"
 
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
+
 msgid "Use the current selection and exit"
 msgstr "使用当前选择并退出"
 
@@ -23638,6 +23903,9 @@ msgstr "使用向导设置基本功能"
 
 msgid "Use these input device settings?"
 msgstr "使用这些输入设备设置？"
+
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
 
 msgid "Use this video enhancement settings?"
 msgstr "使用此视频增强功能设置？"
@@ -23662,12 +23930,6 @@ msgstr "已使用闪存"
 
 msgid "Used service scan type"
 msgstr "使用的频道扫描类型"
-
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "用于在启用 AC3 直通时，指定频道切换之间的延迟。"
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "用于在启用 AC3+/Atmos 直通时，指定频道切换之间的延迟。"
 
 msgid "Used:"
 msgstr "使用："
@@ -24446,8 +24708,8 @@ msgstr "启用时，数字标记将会被隐藏。"
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr "启用后，通过 DHCP 自动获取 IP 地址、子网掩码、网关以及 DNS 服务器配置。"
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "启用后，按“0”将会切换到第一个频道分组中的第一个频道，并删除您的换台历史记录。"
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "启用后，重新格式化字幕以匹配屏幕宽度。"
@@ -24526,9 +24788,6 @@ msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "启用时，此设置的权重大于“首选调谐器”。"
-
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
-msgstr "启用后，此共享将挂载到 /media/hdd，而非其自身的 /media/net 路径。仅当该共享可靠可用时才使用此选项。"
 
 msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "启用后，时移会在指定时间后在后台自动启动。"
@@ -25477,9 +25736,6 @@ msgstr "月"
 msgid "move"
 msgstr "移动"
 
-msgid "multi"
-msgstr "多个"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -25790,6 +26046,66 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close screen"
+#~ msgstr "关闭屏幕"
+
+#~ msgid "Close the current screen"
+#~ msgstr "关闭当前屏幕"
+
+#~ msgid "Close this screen"
+#~ msgstr "关闭此屏幕"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "当有多个调谐器可用时，配置首选哪个调谐器进行录制。"
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "列表版本 %d，找到 %d 个频道"
+#~ msgstr[1] "列表版本 %d，找到 %d 个频道"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "移到第 1 行/屏幕"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "移到末行/屏幕"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐藏菜单项。"
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "选择供应商，并按 OK 键开始扫描"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "插件浏览器排序"
+
+#~ msgid "multi"
+#~ msgstr "多个"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "在远程接收机上写入“/etc/enigma2/epg.dat”时出错！"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "直通音频处理延迟 AC3"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "直通音频处理延迟 AC3+"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "按下紧急键，可将频道号切换为首个频道分组中的频道号。"
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "用于在启用 AC3 直通时，指定频道切换之间的延迟。"
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "用于在启用 AC3+/Atmos 直通时，指定频道切换之间的延迟。"
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "启用后，按“0”将会切换到第一个频道分组中的第一个频道，并删除您的换台历史记录。"
+
+#~ msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+#~ msgstr "启用后，此共享将挂载到 /media/hdd，而非其自身的 /media/net 路径。仅当该共享可靠可用时才使用此选项。"
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

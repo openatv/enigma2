@@ -26,8 +26,10 @@ EXTRA_DIST += \
 	python/python_dvb.i \
 	python/python_base.i \
 	python/python_console.i \
+	python/python_inputdevicemanager.i \
 	python/python_pmt.i \
-	python/python/pcore.i
+	python/python/pcore.i \
+	python/python_hbbtv.i
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/python/enigma_python.Pcpp@am__quote@
 
