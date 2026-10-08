@@ -212,9 +212,11 @@ private:
 	ePtr<eTimer> m_runTimer;					 // workaround to interrupt thread mainloop as some ci drivers don't implement poll properly
 	ePtr<eTimer> m_ciReleaseTimer;
 	bool m_needs_ci_release_refresh;
+	bool m_needs_ci_demux_refresh;
 	std::set<int> m_pending_ci_releases;
 	void refreshReleasedRouting();
 	static pthread_mutex_t m_pmt_handler_lock;
+	enum { messageRecheckPMTHandlers = 1, messageRefreshDemuxSources };
 
 	int sendCAPMT(int slot);
 

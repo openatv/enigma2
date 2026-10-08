@@ -113,6 +113,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	m_stream_finish_mode = finish_none;
 	const std::string machine = eModelInformation::getInstance().getValue("machinebuild");
 	m_needs_ci_release_refresh = machine == "gbquad4kpro" || machine == "vuduo4klite";
+	m_needs_ci_demux_refresh = machine == "gbquad4kpro" || machine == "vuduo4klite";
 	CONNECT(m_ciReleaseTimer->timeout, eDVBCIInterfaces::refreshReleasedRouting);
 
 	CONNECT(m_messagepump_thread.recv_msg, eDVBCIInterfaces::gotMessageThread);
@@ -230,7 +231,18 @@ void eDVBCIInterfaces::gotMessageThread(const int &message)
 // runs in the e2 mainloop
 void eDVBCIInterfaces::gotMessageMain(const int &message)
 {
-	recheckPMTHandlers();
+	if (message == messageRefreshDemuxSources)
+	{
+		// Finish both input and CAM routing before touching the resource manager.
+		// CI authentication can request routing from the CI thread.
+		singleLock s1(m_pmt_handler_lock);
+		singleLock s2(m_slot_lock);
+		ePtr<eDVBResourceManager> manager;
+		if (!eDVBResourceManager::getInstance(manager) && manager)
+			manager->refreshNonCIDemuxSources();
+	}
+	else
+		recheckPMTHandlers();
 }
 
 eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
@@ -432,7 +444,7 @@ bool eDVBCIInterfaces::canDescrambleMultipleServices(eDVBCISlot *slot)
 // executes recheckPMTHandlers in the e2 mainloop
 void eDVBCIInterfaces::executeRecheckPMTHandlersInMainloop()
 {
-	m_messagepump_main.send(1);
+	m_messagepump_main.send(messageRecheckPMTHandlers);
 }
 
 // has to run in the e2 mainloop to be able to access the pmt handler
@@ -1053,6 +1065,11 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 		}
 
 		eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+		// On the Quad 4K Pro / Duo 4K Lite driver family, routing through a CAM
+		// can drop another active demux's frontend source. Refresh it once in
+		// the mainloop, never by polling.
+		if (m_needs_ci_demux_refresh && source.compare(0, 2, "CI") == 0)
+			m_messagepump_main.send(messageRefreshDemuxSources);
 	}
 	return 0;
 }
