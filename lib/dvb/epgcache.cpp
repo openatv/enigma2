@@ -1763,19 +1763,32 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 	}
 }
 
-int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
+struct EventTupleContext
+{
+	const char *argstring;
+	int argcount;
+	ePyObject service;
+	ePyObject service_name;
+	ePyObject nowTime;
+};
+
+int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const EventTupleContext &ctx, ePyObject convertFunc)
 {
 	if (convertFunc)
 	{
-		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, service_name, nowTime, 0);
+		// fresh tuple per call, PyTuple_SET_ITEM does not release previous items
+		ePyObject convertFuncArgs = PyTuple_New(ctx.argcount);
+		fillTuple(convertFuncArgs, ctx.argstring, ctx.argcount, ctx.service, ptr, ctx.service_name, ctx.nowTime, nullptr);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
+		Py_DECREF(convertFuncArgs);
 		if (!result)
 		{
+			ePyObject service_name = ctx.service_name;
+			ePyObject nowTime = ctx.nowTime;
 			if (service_name)
 				Py_DECREF(service_name);
 			if (nowTime)
 				Py_DECREF(nowTime);
-			Py_DECREF(convertFuncArgs);
 			Py_DECREF(dest_list);
 			PyErr_SetString(PyExc_Exception, "[eEPGCache] handleEvent: Error in convertFunc execute!");
 			//eDebug("[eEPGCache] handleEvent: Error in convertFunc execute!");
@@ -1786,8 +1799,8 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 	}
 	else
 	{
-		ePyObject tuple = PyTuple_New(argcount);
-		fillTuple(tuple, argstring, argcount, service, ptr, service_name, nowTime, 0);
+		ePyObject tuple = PyTuple_New(ctx.argcount);
+		fillTuple(tuple, ctx.argstring, ctx.argcount, ctx.service, ptr, ctx.service_name, ctx.nowTime, nullptr);
 		PyList_Append(dest_list, tuple);
 		Py_DECREF(tuple);
 	}
@@ -1829,7 +1842,6 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 
 PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 {
-	ePyObject convertFuncArgs;
 	int argcount = 0;
 	const char *argstring = NULL;
 	if (!PyList_Check(list))
@@ -1882,15 +1894,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	}
 	int returnMaxItemsCount = 1;
 
-	if (convertFunc)
+	if (convertFunc && !PyCallable_Check(convertFunc))
 	{
-		if (!PyCallable_Check(convertFunc))
-		{
-			PyErr_SetString(PyExc_TypeError, "[eEPGCache] The convertFunc is not callable!");
-			// eDebug("[eEPGCache] The convertFunc is not callable!");
-			return NULL;
-		}
-		convertFuncArgs = PyTuple_New(argcount);
+		PyErr_SetString(PyExc_TypeError, "[eEPGCache] The convertFunc is not callable!");
+		// eDebug("[eEPGCache] The convertFunc is not callable!");
+		return NULL;
 	}
 
 	ePyObject nowTime = strchr(argstring, 'C') ? PyLong_FromLong(::time(0)) : ePyObject();
@@ -2003,6 +2011,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				if (!service_name)
 					service_name = PyUnicode_FromString("<n/a>");
 			}
+			const EventTupleContext ctx = {argstring, argcount, service, service_name, nowTime};
 			if (minutes)
 			{
 				if (!startTimeQuery(ref, stime, minutes))
@@ -2019,11 +2028,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 							}
 							returnMaxItemsCount++;
 						}
-						if (handleEvent(evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+						if (handleEvent(evt, dest_list, ctx, convertFunc))
 							return 0; // error
 					}
 				}
-				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				else if (forceReturnOne && handleEvent(nullptr, dest_list, ctx, convertFunc))
 					return 0; // error
 			}
 			else
@@ -2060,10 +2069,10 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				}
 				if (ev_data)
 				{
-					if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+					if (handleEvent(&evt, dest_list, ctx, convertFunc))
 						return 0; // error
 				}
-				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				else if (forceReturnOne && handleEvent(nullptr, dest_list, ctx, convertFunc))
 					return 0; // error
 			}
 			if (service_changed)
@@ -2074,8 +2083,6 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 skip_entry:
 		;
 	}
-	if (convertFuncArgs)
-		Py_DECREF(convertFuncArgs);
 	if (nowTime)
 		Py_DECREF(nowTime);
 	return dest_list;
