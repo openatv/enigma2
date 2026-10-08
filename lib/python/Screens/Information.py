@@ -746,14 +746,14 @@ class InformationGeolocation(InformationBase):
 		self.geolocationData = None
 
 	def fetchInformation(self):
-		self.informationTimer.stop()
-		geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
+		def fetchInformationCallback(geolocationData):
+			self.geolocationData = geolocationData
+			for callback in self.onInformationUpdated:
+				if callable(callback):
+					callback()
 
-	def fetchGeolocationCallback(self, geolocationData):
-		self.geolocationData = geolocationData
-		for callback in self.onInformationUpdated:
-			if callable(callback):
-				callback()
+		self.informationTimer.stop()
+		geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self, callback=fetchInformationCallback)
 
 	def displayInformation(self):
 		info = []
@@ -2273,28 +2273,6 @@ class InformationTuner(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Tuner Information"
-
-
-class InformationTesting(InformationBase):
-	def __init__(self, session):
-		InformationBase.__init__(self, session)
-		self.setTitle(_("Testing Information"))
-		self.skinName.insert(0, "InformationTesting")
-		self.skinName.insert(1, "TestingInformation")
-		self.slotImages = None
-
-	def displayInformation(self):
-		html = remoteControl.getOpenWebifHTML()
-		if html is None:
-			html = "OpenWebif HTML file isn't available."
-		self["information"].setText(html)
-		# info = []
-		# for index in range(1, 24):
-		# 	info.append("This is test line %d." % index)
-		# self["information"].setText("\n".join(info))
-
-	def getSummaryInformation(self):
-		return "Testing Information Data"
 
 
 class InformationSummary(ScreenSummary):
