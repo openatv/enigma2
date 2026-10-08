@@ -679,13 +679,16 @@ class EPGSelection(Screen):
 			self["list"].moveTo(self["list"].instance.pageUp)
 
 	def toTop(self):
-		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):  # Dirty workaround for #3006. (Pressing '0' no longer goes to first channel in bouquet.)
-			self.BouquetOK()
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			self["list"].toTop()
 		else:
 			self["list"].moveTo(self["list"].instance.moveTop)
 
 	def toEnd(self):
-		self["list"].moveTo(self["list"].instance.moveEnd)
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			self["list"].toEnd()
+		else:
+			self["list"].moveTo(self["list"].instance.moveEnd)
 
 	def leftPressed(self):
 		if self.type == EPG_TYPE_VERTICAL:
@@ -1985,10 +1988,9 @@ class EPGSelection(Screen):
 				self["list"].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 			elif number == 0:
-				self.toTop()
 				self.ask_time = now - now % (int(roundto.value) * 60)
 				self["list"].resetOffset()
-				self["list"].fillGraphEPG(None, self.ask_time, True)
+				self["list"].toTop(self.ask_time, True)
 				self.moveTimeLines()
 		elif self.type == EPG_TYPE_VERTICAL:
 			if number == 1:
