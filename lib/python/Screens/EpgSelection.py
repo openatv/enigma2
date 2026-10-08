@@ -1450,6 +1450,9 @@ class EPGSelection(Screen):
 		self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
+	def isPastEvent(self, event):  # Event has already ended.
+		return event.getBeginTime() + event.getDuration() <= time()
+
 	def RecordTimerQuestion(self, manual=False):
 		cur = self[f"list{self.activeList}"].getCurrent()
 		event = cur[0]
@@ -1482,6 +1485,10 @@ class EPGSelection(Screen):
 				else:
 					menu.append((_("Disable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func3))
 			title = _("Select action for timer %s:") % event.getEventName()
+		elif self.isPastEvent(event):
+			if not manual:
+				menu = [(_("Add AutoTimer"), "CALLFUNC", self.ChoiceBoxCB, self.addAutoTimerSilent)]
+				title = f"{event.getEventName()}?"
 		else:
 			if not manual:
 				cb_func1 = lambda ret: self.doRecordTimer(True)  # noqa E731
@@ -1584,7 +1591,7 @@ class EPGSelection(Screen):
 		cur = self[f"list{self.activeList}"].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
-		if event is None:
+		if event is None or self.isPastEvent(event):
 			return
 		eventid = event.getEventId()  # noqa F841
 		refstr = serviceref.ref.toString()  # noqa F841
@@ -1789,6 +1796,10 @@ class EPGSelection(Screen):
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
 			self.setTimerButtonText(_("Change Timer"))
 			self.key_green_choice = self.REMOVE_TIMER
+		elif not isRecordEvent and self.isPastEvent(event):
+			if self.key_green_choice != self.EMPTY:
+				self.setTimerButtonText("")
+				self.key_green_choice = self.EMPTY
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self.setTimerButtonText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
