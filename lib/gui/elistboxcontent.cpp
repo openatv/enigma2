@@ -18,11 +18,33 @@ Licensed under GPLv2.
 #include <lib/python/python.h>
 #include <lib/gdi/epng.h>
 #include <lib/base/esimpleconfig.h>
+#include <lib/base/estring.h>
 #include <lib/gui/ewindowstyleskinned.h>
 #include <sstream>
 
 // Width used for unbounded text measurement (wider than any real screen)
 static constexpr int TEXT_MEASURE_MAX_WIDTH = 8000;
+
+// PyUnicode_AsUTF8 fails on lone surrogates (undecodable file names)
+static std::string fromPyUnicode(PyObject *obj, const char *fallback = "<not-a-string>")
+{
+	if (!obj || !PyUnicode_Check(obj))
+		return fallback;
+	Py_ssize_t size;
+	const char *str = PyUnicode_AsUTF8AndSize(obj, &size);
+	if (str)
+		return std::string(str, size);
+	PyErr_Clear();
+	ePyObject raw = PyUnicode_AsEncodedString(obj, "utf-8", "surrogateescape");
+	if (!raw)
+	{
+		PyErr_Clear();
+		return fallback;
+	}
+	std::string ret = repairUTF8(PyBytes_AS_STRING(raw), PyBytes_GET_SIZE(raw));
+	Py_DECREF(raw);
+	return ret;
+}
 
 // Maximum pixmap size in pixels for scroll cache (protects low-memory devices)
 static constexpr int MAX_SCROLL_PIXMAP_PIXELS = 1'000'000;
@@ -180,12 +202,12 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 			item = PyTuple_GET_ITEM(item, 0);
 		}
 		if (item != Py_None) {
-			const char* string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
+			std::string string = fromPyUnicode(item);
 			eRect textRect = eRect(0, 0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 			ePtr<eTextPara> para = new eTextPara(textRect);
 			para->setFont(fnt);
-			para->renderString(string);
+			para->renderString(string.c_str());
 			int textWidth = para->getBoundBox().width();
 			if (textWidth > max_width) {
 				max_width = textWidth;
@@ -426,7 +448,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 		else
 		{
-			const char *string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
+			std::string string = fromPyUnicode(item);
 			ePoint text_offset = zoomoffs;
 			if (gray)
 				painter.setForegroundColor(gRGB(0x808080));
@@ -503,7 +525,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				}
 			}
 			{
-				ePtr<gFont> scaledFnt = makeFontScale(fnt, string, position.width(), local_style);
+				ePtr<gFont> scaledFnt = makeFontScale(fnt, string.c_str(), position.width(), local_style);
 				if (scaledFnt)
 					painter.setFont(scaledFnt);
 				painter.renderText(position, string, flags, border_color, border_size);
@@ -996,7 +1018,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		{
 			/* handle left part. get item from tuple, convert to string, display. */
 			text = PyTuple_GET_ITEM(item, 0);
-			const char *string;
+			std::string string;
 			int indent = 0;
 
 			if (PyTuple_Check(text))
@@ -1013,18 +1035,18 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 				text = PyTuple_GET_ITEM(text, 0);
 				text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
-				string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
+				string = fromPyUnicode(text);
 				Py_XDECREF(text);
 			}
 			else
 			{
 				text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
-				string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
+				string = fromPyUnicode(text);
 				Py_XDECREF(text);
 			}
 
 			// when we have no label, align value to the left. (FIXME: don't we want to specifiy this individually?)
-			int value_alignment_left = !*string;
+			int value_alignment_left = string.empty();
 
 			/* now, handle the value. get 2nd part from tuple*/
 			if (PyTuple_Size(item) >= 2) // when no 2nd entry is in tuple this is a non selectable entry without config part
@@ -1071,7 +1093,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			}
 
 			// Separator
-			if (!strcmp(string,"---") && PyTuple_Size(item) == 1 && local_style) 
+			if (string == "---" && PyTuple_Size(item) == 1 && local_style) 
 			{
 
 				if (local_style->is_set.separator_color)
@@ -1111,12 +1133,12 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				if (preAtype && (!strcmp(preAtype, "text") || !strcmp(preAtype, "mtext")))
 				{
 					ePyObject preVal = PyTuple_GET_ITEM(value, 1);
-					const char *valStr = (preVal && PyUnicode_Check(preVal)) ? PyUnicode_AsUTF8(preVal) : "";
-					if (*valStr)
+					std::string valStr = fromPyUnicode(preVal, "");
+					if (!valStr.empty())
 					{
 						ePtr<eTextPara> para = new eTextPara(eRect(0, 0, m_itemsize.width(), m_itemsize.height()));
 						para->setFont(fnt2);
-						para->renderString(valStr, 0);
+						para->renderString(valStr.c_str(), 0);
 						valueAreaWidth = para->getBoundBox().width() + leftOffset;
 					}
 				}
@@ -1156,7 +1178,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				}
 				else
 				{
-					ePtr<gFont> scaledFnt = makeFontScale(fnt, string, labelrect.width(), local_style);
+					ePtr<gFont> scaledFnt = makeFontScale(fnt, string.c_str(), labelrect.width(), local_style);
 					if (scaledFnt) painter.setFont(scaledFnt);
 					painter.renderText(labelrect, string, labelflags, border_color, border_size);
 					if (scaledFnt) painter.setFont(fnt);
@@ -1164,7 +1186,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			}
 			else
 			{
-				ePtr<gFont> scaledFnt = makeFontScale(fnt, string, labelrect.width(), local_style);
+				ePtr<gFont> scaledFnt = makeFontScale(fnt, string.c_str(), labelrect.width(), local_style);
 				if (scaledFnt) painter.setFont(scaledFnt);
 				painter.renderText(labelrect, string, labelflags, border_color, border_size);
 				if (scaledFnt) painter.setFont(fnt);
@@ -1182,7 +1204,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					if (!strcmp(atype, "text") || !strcmp(atype, "mtext"))
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
-						const char *text = (pvalue && PyUnicode_Check(pvalue)) ? PyUnicode_AsUTF8(pvalue) : "<not-a-string>";
+						std::string text = fromPyUnicode(pvalue);
 						painter.setFont(fnt2);
 						int flags = value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT;
 						int markedpos = -1;
@@ -1292,7 +1314,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						if (SwigFromPython(pixmap, ppixmap))
 						{
 							eDebug("[eListboxPythonMultiContent] (Pixmap) get pixmap failed");
-							const char *value = (ppixmap && PyUnicode_Check(ppixmap)) ? PyUnicode_AsUTF8(ppixmap) : "<not-a-string>";
+							std::string value = fromPyUnicode(ppixmap);
 							painter.setFont(fnt2);
 							if (value_alignment_left)
 								painter.renderText(eRect(ePoint(offset.x() - leftOffset, offset.y()), m_itemsize), value, alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
@@ -1681,12 +1703,12 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 						if (pstring == Py_None)
 							continue;
 
-						const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
+						std::string string = fromPyUnicode(pstring);
 						eRect textRect = eRect(0,0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 						ePtr<eTextPara> para = new eTextPara(textRect);
 						para->setFont(fnt);
-						para->renderString(string);
+						para->renderString(string.c_str());
 						int textWidth = para->getBoundBox().width() + PyLong_AsLong(px);
 						if (textWidth > max_width) {
 							max_width = textWidth;
@@ -2142,7 +2164,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (!pstring || pstring == Py_None)
 					continue;
 
-				const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
+				std::string string = fromPyUnicode(pstring);
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 
