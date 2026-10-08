@@ -27,7 +27,7 @@ from Tools.Notifications import AddNotification
 MODULE_NAME = __name__.split(".")[-1]
 
 
-class _TimeshiftContinuation:
+class TimeshiftContinuation:
 	def __init__(self, timer):
 		self.timer = timer
 		self.path = None
@@ -152,23 +152,23 @@ class InfoBarTimeshift:
 		self.ptsCleanupError = None
 		self.ptsStorageError = None
 		self.ptsStorage = None
-		self._timeshiftRegistry = TimeshiftRegistry()
-		self._saveJournal = TimeshiftSaveJournal(resolveFilename(SCOPE_CONFIG, "timeshift-saves"))
-		self._cleanupRunning = False
-		self._pendingMerges = set()
-		self._continuationRecordings = {}
-		self._mergeOwners = {}
-		self._mergeWarnings = set()
-		self._pendingSaveIntents = 0
-		self._mergeScanRunning = False
-		self._mergeCleanupSources = {}
-		self._playbackLeases = {}
-		self._pendingPlaybackIdentifier = ""
-		self._storagePreparing = False
-		self._startGeneration = 0
-		self._pauseAfterStart = False
-		self._notifyAfterStart = False
-		self._requestedStartGeneration = None
+		self.timeshiftRegistry = TimeshiftRegistry()
+		self.saveJournal = TimeshiftSaveJournal(resolveFilename(SCOPE_CONFIG, "timeshift-saves"))
+		self.cleanupRunning = False
+		self.pendingMerges = set()
+		self.continuationRecordings = {}
+		self.mergeOwners = {}
+		self.mergeWarnings = set()
+		self.pendingSaveIntents = 0
+		self.mergeScanRunning = False
+		self.mergeCleanupSources = {}
+		self.playbackLeases = {}
+		self.pendingPlaybackIdentifier = ""
+		self.storagePreparing = False
+		self.startGeneration = 0
+		self.pauseAfterStart = False
+		self.notifyAfterStart = False
+		self.requestedStartGeneration = None
 		self.checkEvents_value = config.timeshift.checkEvents.value
 		self.pts_starttime = time()
 		self.ptsAskUser_wait = False
@@ -219,22 +219,22 @@ class InfoBarTimeshift:
 	def ptsCurrentEventDescription(self):
 		return self.pts_curevent_description.replace("\n", " ") if self.pts_curevent_description else ""
 
-	def _resolveTimeshiftFile(self, identifier):
-		entry = self._timeshiftRegistry.buffers.get(identifier)
+	def resolveTimeshiftFile(self, identifier):
+		entry = self.timeshiftRegistry.buffers.get(identifier)
 		return entry.path if entry else identifier if isabs(identifier) else join(config.timeshift.path.value, identifier)
 
-	def _hasTimeshiftFile(self, identifier):
-		entry = self._timeshiftRegistry.buffers.get(identifier)
+	def hasTimeshiftFile(self, identifier):
+		entry = self.timeshiftRegistry.buffers.get(identifier)
 		if entry is None:
-			path = self._resolveTimeshiftFile(identifier)
-			entry = next((x for x in self._timeshiftRegistry.buffers.values() if x.path == path), None)
+			path = self.resolveTimeshiftFile(identifier)
+			entry = next((x for x in self.timeshiftRegistry.buffers.values() if x.path == path), None)
 		return entry is not None and not entry.deleting
 
-	def _finishTimeshiftBuffer(self):
-		entry = self._timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}")
+	def finishTimeshiftBuffer(self):
+		entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}")
 		if entry and entry.active:
 			if entry.autosave:
-				self._timeshiftRegistry.acquire(entry)
+				self.timeshiftRegistry.acquire(entry)
 			entry.active = False
 			if entry.autosave:
 				entry.autosave = False
@@ -243,20 +243,23 @@ class InfoBarTimeshift:
 					self.SaveTimeshift(f"pts_livebuffer_{self.pts_eventcount}")
 				finally:
 					self.save_current_timeshift = saveCurrent
-					self._timeshiftRegistry.release(entry)
+					self.timeshiftRegistry.release(entry)
 
-	def _releaseTimeshiftPlayback(self):
-		for entry in self._playbackLeases.values():
-			self._timeshiftRegistry.release(entry)
-		self._playbackLeases.clear()
-		self._pendingPlaybackIdentifier = ""
+	def releaseTimeshiftPlayback(self):
+		for entry in self.playbackLeases.values():
+			self.timeshiftRegistry.release(entry)
+		self.playbackLeases.clear()
+		self.pendingPlaybackIdentifier = ""
 
 	def __seekableStatusChanged(self):
 		# print(f"[Timeshift] PTS_currplaying {self.pts_currplaying}, pts_nextplaying {self.pts_nextplaying}, pts_eventcount {self.pts_eventcount}, pts_firstplayable {self.pts_firstplayable}.")
 		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled())
 		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActionsPTS"].setEnabled(state)
-		self["TimeshiftFileActions"].setEnabled(state)
+		self["TimeshiftFileActions"].setEnabled(state and not self.isRamTimeshift())
+		if self.isRamTimeshift():
+			self.restartSubtitle()
+			return
 		if not state and self.pts_currplaying == self.pts_eventcount and self.timeshiftEnabled() and not self.event_changed:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			if hasattr(self, "pvrStateDialog"):
@@ -273,7 +276,7 @@ class InfoBarTimeshift:
 			self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_eventcount}")
 
 	def __serviceStarted(self):
-		self._startGeneration += 1
+		self.startGeneration += 1
 		self.service_changed = 1
 		self.pts_service_changed = True
 		if self.pts_delay_timer.isActive():
@@ -284,15 +287,15 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"].setEnabled(True)
 
 	def __serviceEnd(self):
-		priorityHandoff = getattr(self, "_recordingPriorityHandoff", None) is not None
-		self._startGeneration += 1
-		entry = self._timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}") if self.save_current_timeshift else None
+		priorityHandoff = getattr(self, "recordingPriorityHandoff", None) is not None
+		self.startGeneration += 1
+		entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}") if self.save_current_timeshift else None
 		if entry:
-			self._timeshiftRegistry.acquire(entry)
+			self.timeshiftRegistry.acquire(entry)
 			if priorityHandoff and entry.active and entry.autosave:
 				self.save_current_timeshift = False  # Finalization already saves this buffer.
-		self._releaseTimeshiftPlayback()
-		self._finishTimeshiftBuffer()
+		self.releaseTimeshiftPlayback()
+		self.finishTimeshiftBuffer()
 		if self.save_current_timeshift:
 			try:
 				if self.pts_curevent_end > time() and not priorityHandoff:
@@ -306,7 +309,7 @@ class InfoBarTimeshift:
 				if priorityHandoff:
 					self.save_current_timeshift = False
 		if entry:
-			self._timeshiftRegistry.release(entry)
+			self.timeshiftRegistry.release(entry)
 		self.service_changed = 0
 		# if not config.timeshift.isRecording.value:
 		# 	self.__seekableStatusChanged()
@@ -354,7 +357,7 @@ class InfoBarTimeshift:
 					self.pts_FileJump_timer.start(5000, True)
 				return
 			# Switch to previous TS file by seeking backwards to the previous file.
-			if self._hasTimeshiftFile(f"pts_livebuffer_{self.pts_currplaying}"):
+			if self.hasTimeshiftFile(f"pts_livebuffer_{self.pts_currplaying}"):
 				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_currplaying}")
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				self.doSeek(3600 * 24 * 90000)
@@ -389,7 +392,7 @@ class InfoBarTimeshift:
 			self.pts_nextplaying = 0
 			self.pts_currplaying += 1
 			# Switch to next TS file by seeking forward to the next file.
-			if self._hasTimeshiftFile(f"pts_livebuffer_{self.pts_currplaying}"):
+			if self.hasTimeshiftFile(f"pts_livebuffer_{self.pts_currplaying}"):
 				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_currplaying}")
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				self.doSeek(3600 * 24 * 90000)
@@ -423,6 +426,8 @@ class InfoBarTimeshift:
 				self.pts_cleanUp_timer.start(1000, True)
 
 	def __evEventInfoChanged(self):
+		if self.isRamTimeshift():
+			return  # A RAM ring spans EPG events; it has no separate event files.
 		service = self.session.nav.getCurrentService()  # Get current event info.
 		old_begin_time = self.pts_begintime
 		info = service and service.info()
@@ -434,7 +439,7 @@ class InfoBarTimeshift:
 				if config.recording.margin_after.value > 0 and len(self.recording) == 0:
 					task = self.SaveTimeshift(mergelater=True)
 					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time() + (config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredTimeShiftRecordingPath())
-					self._recordTimeshiftContinuation(recording, task)
+					self.recordTimeshiftContinuation(recording, task)
 				else:
 					self.SaveTimeshift()
 				if not config.timeshift.fileSplitting.value:
@@ -490,17 +495,23 @@ class InfoBarTimeshift:
 			print("[Timeshift] Time shift already enabled.")
 			self.activateTimeshiftEndAndPause()
 		elif self.ptsLiveTVStatus():
-			self._pauseAfterStart = True
+			self.pauseAfterStart = True
 			self.activatePermanentTimeshift()
 		else:
 			return self.playpauseService2()
 
 	def stopTimeshift(self):
-		preparing = self._storagePreparing
+		if self.isRamTimeshift():
+			ts = self.getTimeshift()
+			if ts.isTimeshiftEnabled():
+				ts.stopTimeshift(True)
+				self.__seekableStatusChanged()
+			return
+		preparing = self.storagePreparing
 		if preparing:
-			self._startGeneration += 1
-			self._requestedStartGeneration = None
-			self._pauseAfterStart = self._notifyAfterStart = False
+			self.startGeneration += 1
+			self.requestedStartGeneration = None
+			self.pauseAfterStart = self.notifyAfterStart = False
 			self.event_changed = False
 			self.pts_delay_timer.stop()
 		ts = self.getTimeshift()
@@ -517,6 +528,10 @@ class InfoBarTimeshift:
 			return 1 if preparing else 0
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
+		if answer and self.isRamTimeshift():
+			self.getTimeshift().stopTimeshift(True)
+			self.__seekableStatusChanged()
+			return
 		if answer and config.timeshift.startDelay.value and self.switchToLive and self.isSeekable():
 			self.posDiff = 0
 			self.pts_lastposition = 0
@@ -536,18 +551,18 @@ class InfoBarTimeshift:
 			return 0
 		ts = self.getTimeshift()
 		if answer and ts:
-			generation = self._startGeneration
+			generation = self.startGeneration
 			wasEnabled = ts.isTimeshiftEnabled()
 			result = ts.stopTimeshift(self.switchToLive if config.timeshift.startDelay.value else not self.event_changed)
 			if wasEnabled and result:
-				if generation == self._startGeneration:
+				if generation == self.startGeneration:
 					self.ptsTimeshiftWriteError()
 				return False
-			if generation != self._startGeneration:
+			if generation != self.startGeneration:
 				return False
-			self._finishTimeshiftBuffer()
+			self.finishTimeshiftBuffer()
 			if self.switchToLive:
-				self._releaseTimeshiftPlayback()
+				self.releaseTimeshiftPlayback()
 			self.__seekableStatusChanged()
 
 	def activateTimeshiftEnd(self, back=True):  # Activates time shift, and seeks to (almost) the end.
@@ -571,7 +586,7 @@ class InfoBarTimeshift:
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
 	def callServiceStarted(self):
-		from Screens.InfoBarGenerics import isStandardInfoBar
+		from Screens.InfoBarGenerics import isStandardInfoBar  # Avoid circular import.
 		if isStandardInfoBar(self):
 			ServiceEventTracker.setActiveInfoBar(self, None, None)
 			self.__serviceStarted()
@@ -580,6 +595,9 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def checkTimeshiftRunning(self, returnFunction):
+		if self.isRamTimeshift():
+			returnFunction(True)  # No disk buffer can be offered for export.
+			return
 		def checkTimeshiftRunningCallback(returnFunction, answer):
 			match answer:
 				case "savetimeshift" | "savetimeshiftandrecord":
@@ -654,31 +672,42 @@ class InfoBarTimeshift:
 	def activatePermanentTimeshift(self):
 		if self.session.screen["Standby"].boolean or not self.ptsLiveTVStatus() or (config.timeshift.stopWhileRecording.value and self.pts_record_running):
 			return False
-		self._requestedStartGeneration = self._startGeneration
-		if not self._storagePreparing:
-			self._storagePreparing = True
+		if self.isRamTimeshift():
+			ts = self.getTimeshift()
+			if not ts.isTimeshiftEnabled() and ts.startTimeshift():
+				self.pauseAfterStart = self.notifyAfterStart = False
+				self.session.showError(_("Unable to start RAM time shift."))
+				return False
+			self.event_changed = False
+			if self.pauseAfterStart:
+				self.activateTimeshiftEndAndPause()
+			self.pauseAfterStart = self.notifyAfterStart = False
+			return True
+		self.requestedStartGeneration = self.startGeneration
+		if not self.storagePreparing:
+			self.storagePreparing = True
 			path = config.timeshift.path.value
-			deferToThread(self._prepareTimeshiftFolder, path).addBoth(self._timeshiftStoragePrepared, self._startGeneration, path)
+			deferToThread(self.prepareTimeshiftFolder, path).addBoth(self.timeshiftStoragePrepared, self.startGeneration, path)
 		return True
 
-	def _timeshiftStoragePrepared(self, result, generation, path):
-		self._storagePreparing = False
-		if generation != self._startGeneration or path != config.timeshift.path.value:
-			if self._requestedStartGeneration == self._startGeneration:
+	def timeshiftStoragePrepared(self, result, generation, path):
+		self.storagePreparing = False
+		if generation != self.startGeneration or path != config.timeshift.path.value:
+			if self.requestedStartGeneration == self.startGeneration:
 				self.activatePermanentTimeshift()
 			return
 		if isinstance(result, Failure):
 			self.ptsAbortTimeshift(_("Unable to prepare the time shift storage device."), str(result.value))
 			return
 		self.ptsStorage = result
-		if self._activatePreparedTimeshift():
-			if self._pauseAfterStart:
+		if self.activatePreparedTimeshift():
+			if self.pauseAfterStart:
 				self.activateTimeshiftEndAndPause()
-			if self._notifyAfterStart:
+			if self.notifyAfterStart:
 				self.session.showInfo(_("[Timeshift] Restarting time shift!"))
-		self._pauseAfterStart = self._notifyAfterStart = False
+		self.pauseAfterStart = self.notifyAfterStart = False
 
-	def _activatePreparedTimeshift(self):
+	def activatePreparedTimeshift(self):
 		if self.session.screen["Standby"].boolean or not self.ptsLiveTVStatus() or (config.timeshift.stopWhileRecording.value and self.pts_record_running):
 			return False
 		if self.pts_justzapped:  # Only cleanup folder after switching channels with 'deleteAfterZap', not after a fresh GUI/box restart.
@@ -690,7 +719,7 @@ class InfoBarTimeshift:
 				return
 		# (Re)start time shift now.
 		if config.timeshift.fileSplitting.value:
-			generation = self._startGeneration
+			generation = self.startGeneration
 			# setNextPlaybackFile() on event change while time shifting.
 			if self.isSeekable():
 				self.pts_nextplaying = self.pts_currplaying + 1
@@ -699,7 +728,7 @@ class InfoBarTimeshift:
 			else:
 				self.switchToLive = True
 			result = self.stopTimeshiftcheckTimeshiftRunningCallback(True)
-			if result is False or generation != self._startGeneration:
+			if result is False or generation != self.startGeneration:
 				return False
 		else:
 			if self.pts_currplaying < self.pts_eventcount:
@@ -728,16 +757,16 @@ class InfoBarTimeshift:
 			self.pts_starttime = time()
 			self.save_timeshift_postaction = None
 			self.ptsGetEventInfo()
-			if not self.ptsCreateHardlink():
+			if not self.ptsRegisterTimeshiftBuffer():
 				return False
 			self.__seekableStatusChanged()
 			self.ptsEventCleanTimerSTART()
 		else:
 			self.ptsGetEventInfo()
-			entry = self._timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}")
+			entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}")
 			if entry:
 				entry.metadata.update(name=self.ptsCurrentEventName, description=self.ptsCurrentEventDescription)
-				self._persistTimeshiftMetadata(entry)
+				self.persistTimeshiftMetadata(entry)
 				self.ptsCreateEITFile(entry.path)
 			self.ptsEventCleanTimerSTART()
 		if self.pts_eventcount < self.pts_firstplayable:
@@ -747,18 +776,18 @@ class InfoBarTimeshift:
 
 	def createTimeshiftFolder(self):
 		try:
-			self.ptsStorage = self._prepareTimeshiftFolder(config.timeshift.path.value)
+			self.ptsStorage = self.prepareTimeshiftFolder(config.timeshift.path.value)
 			return True
 		except OSError as err:
 			self.ptsAbortTimeshift(_("Unable to prepare the time shift storage device."), str(err))
 			return False
 
-	def _prepareTimeshiftFolder(self, path):
+	def prepareTimeshiftFolder(self, path):
 		# Runs in a worker: autofs activation and NAS path checks may block.
 		path = realpath(path)
 
 		def containingMount():
-			mounts = [x for x in getProcMounts() if len(x) >= 4 and (path == x[1] or path.startswith(x[1].rstrip("/") + "/"))]
+			mounts = [x for x in getProcMounts() if len(x) >= 4 and (path == x[1] or path.startswith(join(x[1], "")))]
 			return max(reversed(mounts), key=lambda x: len(x[1])) if mounts else None
 
 		mount = containingMount()
@@ -773,9 +802,9 @@ class InfoBarTimeshift:
 		return (mount[0], mount[1])
 
 	def ptsAbortTimeshift(self, message, detail=None, stop=True):
-		self._startGeneration += 1
-		self._requestedStartGeneration = None
-		self._pauseAfterStart = self._notifyAfterStart = False
+		self.startGeneration += 1
+		self.requestedStartGeneration = None
+		self.pauseAfterStart = self.notifyAfterStart = False
 		# Do not stop independent copy/merge jobs or delete previously saved buffers.
 		for timer in (self.pts_delay_timer, self.pts_cleanUp_timer, self.pts_cleanEvent_timer, self.ts_rewind_timer,
 			self.pts_SeekBack_timer, self.pts_StartSeekBackTimer, self.pts_SeekToPos_timer, self.pts_CheckFileChanged_timer,
@@ -788,18 +817,18 @@ class InfoBarTimeshift:
 		self.switchToLive = True
 		self.pts_nextplaying = self.pts_lastposition = self.posDiff = 0
 		self.pts_firstplayable = self.pts_currplaying = self.pts_lastplaying = self.pts_eventcount + 1
-		self._releaseTimeshiftPlayback()
+		self.releaseTimeshiftPlayback()
 		if stop:
 			ts = self.getTimeshift()
 			if ts and ts.isTimeshiftEnabled():
 				ts.setNextPlaybackFile("")
-				generation = self._startGeneration
+				generation = self.startGeneration
 				result = ts.stopTimeshift(True)
 				if result:
-					if generation == self._startGeneration:
+					if generation == self.startGeneration:
 						self.ptsTimeshiftWriteError()
-				elif generation == self._startGeneration:
-					self._finishTimeshiftBuffer()
+				elif generation == self.startGeneration:
+					self.finishTimeshiftBuffer()
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.__seekableStatusChanged()
 		if hasattr(self, "pvrStateDialog"):
@@ -812,17 +841,17 @@ class InfoBarTimeshift:
 
 	def ptsTimeshiftWriteError(self):
 		# The native recorder has already stopped and returned to live TV.
-		entry = self._timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}")
+		entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_eventcount}")
 		if entry:
 			entry.retained = True
 			entry.autosave = False
-		self._finishTimeshiftBuffer()
+		self.finishTimeshiftBuffer()
 		self.ptsAbortTimeshift(_("Writing to the time shift storage device failed. Time shift has been stopped."), stop=False)
 
 	def ptsPartitionChanged(self, action, partition):
-		if action == "remove" and self.ptsStorage:
+		if action == "remove" and self.ptsStorage and not self.isRamTimeshift():
 			source, mountpoint = self.ptsStorage
-			if (partition.device and source == f"/dev/{partition.device}") or (partition.mountpoint and mountpoint.rstrip("/") == partition.mountpoint.rstrip("/")):
+			if (partition.device and source == join("/dev", partition.device)) or (partition.mountpoint and mountpoint.rstrip("/") == partition.mountpoint.rstrip("/")):
 				self.ptsStorage = None
 				if self.timeshiftEnabled() or self.save_current_timeshift:
 					self.ptsAbortTimeshift(_("The time shift storage device was removed. Time shift has been stopped."))
@@ -832,19 +861,19 @@ class InfoBarTimeshift:
 					self.ptsEventCleanTimerSTOP(justStop=True)
 
 	def ptsStorageClosed(self):
-		self._startGeneration += 1
-		self._releaseTimeshiftPlayback()
+		self.startGeneration += 1
+		self.releaseTimeshiftPlayback()
 		if self.ptsPartitionChanged in harddiskmanager.on_partition_list_change:
 			harddiskmanager.on_partition_list_change.remove(self.ptsPartitionChanged)
 
 	def restartTimeshift(self):
-		self._notifyAfterStart = True
+		self.notifyAfterStart = True
 		self.activatePermanentTimeshift()
 
 	def saveTimeshiftEventPopup(self):
 		self.saveTimeshiftEventPopupActive = True
 		entrylist = [(f'{_("Current Event:")} {self.pts_curevent_name}', "savetimeshift")]
-		for identifier, entry in sorted(tuple(self._timeshiftRegistry.buffers.items()), key=lambda x: x[1].created):
+		for identifier, entry in sorted(tuple(self.timeshiftRegistry.buffers.items()), key=lambda x: x[1].created):
 			if entry.deleting or entry.active or entry.metadata.get("cleanupOnly"):
 				continue
 			metadata = entry.metadata
@@ -877,12 +906,15 @@ class InfoBarTimeshift:
 
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
 		identifier = timeshiftfile or f"pts_livebuffer_{self.pts_eventcount}"
-		entry = self._timeshiftRegistry.buffers.get(identifier)
+		entry = self.timeshiftRegistry.buffers.get(identifier)
 		if entry is None:
-			path = self._resolveTimeshiftFile(identifier)
-			entry = next((x for x in self._timeshiftRegistry.buffers.values() if x.path == path), None)
+			path = self.resolveTimeshiftFile(identifier)
+			entry = next((x for x in self.timeshiftRegistry.buffers.values() if x.path == path), None)
 		if entry is None:
-			self.session.showError(_("No time shift buffer found to save as recording!"))
+			if self.isRamTimeshift():
+				self.session.showInfo(_("RAM time shift cannot be saved as a recording."))
+			else:
+				self.session.showError(_("No time shift buffer found to save as recording!"))
 			return
 		try:
 			limit = None
@@ -910,7 +942,7 @@ class InfoBarTimeshift:
 					ptsfilename = f"{eventname} - {eventstarttime}"
 			if config.recording.ascii_filenames.value:
 				ptsfilename = legacyEncode(ptsfilename)
-			self._timeshiftRegistry.acquire(entry)
+			self.timeshiftRegistry.acquire(entry)
 			job = CopyTimeshiftJob(self, None, entry.path, (preferredTimeShiftRecordingPath(), ptsfilename), eventname)
 			task = job.tasks[0]
 			task.entry = entry
@@ -920,7 +952,7 @@ class InfoBarTimeshift:
 			task.metadata = formatTimeshiftMetadata(dict(metadata, name=eventname, description=description, begin=begin), tags=tag)
 			config.timeshift.isRecording.value = True
 			self.save_current_timeshift = False
-			self._queueTimeshiftSave(job, entry)
+			self.queueTimeshiftSave(job, entry)
 			if mergelater:
 				self.pts_mergeRecords_timer.start(120000, True)
 			return task
@@ -928,18 +960,18 @@ class InfoBarTimeshift:
 			entry.retained = True
 			self.ptsSaveTimeshiftFailed(str(err))
 
-	def _queueTimeshiftSave(self, job, entry=None):
+	def queueTimeshiftSave(self, job, entry=None):
 		task = job.tasks[0]
 		sources = ((task.destfile, None), (task.srcfile, None)) if isinstance(task, AddMergeTimeshiftTask) else ((task.srcfile, task.limit),)
 		intent = {"version": 1, "phase": "queued", "sources": sources, "destination": task.destfile, "metadata": task.metadata}
-		self._pendingSaveIntents += 1
-		deferToThread(self._saveJournal.create, intent).addBoth(self._timeshiftSaveIntentReady, job, entry)
+		self.pendingSaveIntents += 1
+		deferToThread(self.saveJournal.create, intent).addBoth(self.timeshiftSaveIntentReady, job, entry)
 
-	def _timeshiftSaveIntentReady(self, result, job, entry):
-		self._pendingSaveIntents -= 1
+	def timeshiftSaveIntentReady(self, result, job, entry):
+		self.pendingSaveIntents -= 1
 		if isinstance(result, Failure):
 			if entry:
-				self._timeshiftRegistry.release(entry, failed=True)
+				self.timeshiftRegistry.release(entry, failed=True)
 			self.ptsSaveTimeshiftFailed(str(result.value))
 		else:
 			job.tasks[0].journalPath = result
@@ -1018,17 +1050,17 @@ class InfoBarTimeshift:
 	def stopTimeshiftAskUserCallback(self, answer):
 		ts = self.getTimeshift()
 		if answer and ts:
-			generation = self._startGeneration
+			generation = self.startGeneration
 			wasEnabled = ts.isTimeshiftEnabled()
 			result = ts.stopTimeshift(True)
 			if wasEnabled and result:
-				if generation == self._startGeneration:
+				if generation == self.startGeneration:
 					self.ptsTimeshiftWriteError()
 				return False
-			if generation != self._startGeneration:
+			if generation != self.startGeneration:
 				return False
-			self._finishTimeshiftBuffer()
-			self._releaseTimeshiftPlayback()
+			self.finishTimeshiftBuffer()
+			self.releaseTimeshiftPlayback()
 			self.__seekableStatusChanged()
 
 	def ptsEventCleanTimerSTOP(self, justStop=False):
@@ -1050,26 +1082,26 @@ class InfoBarTimeshift:
 		self.ptsCleanTimeshiftFolder(justZapped=False)
 
 	def ptsCleanTimeshiftFolder(self, justZapped=True):
-		if self._cleanupRunning or self.session.screen["Standby"].boolean:
+		if self.isRamTimeshift() or self.cleanupRunning or self.session.screen["Standby"].boolean:
 			return True
-		self._cleanupRunning = True
-		self._cleanupProtected = []
+		self.cleanupRunning = True
+		self.cleanupProtected = []
 		if self.timeshiftEnabled():
 			first = self.pts_currplaying if self.isSeekable() else self.pts_eventcount
 			for index in range(first, self.pts_eventcount + 1):
-				entry = self._timeshiftRegistry.buffers.get(f"pts_livebuffer_{index}")
+				entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{index}")
 				if entry:
-					self._cleanupProtected.append(entry.path)
-		deferToThread(self.ptsCleanTimeshiftFiles, justZapped).addBoth(self._timeshiftCleanupFinished)
+					self.cleanupProtected.append(entry.path)
+		deferToThread(self.ptsCleanTimeshiftFiles, justZapped).addBoth(self.timeshiftCleanupFinished)
 		return True
 
-	def _timeshiftCleanupFinished(self, result):
-		self._cleanupRunning = False
+	def timeshiftCleanupFinished(self, result):
+		self.cleanupRunning = False
 		if isinstance(result, Failure):
 			self.ptsHandleCleanupError(result.value)
 		else:
 			self.ptsCleanupError = None
-			if not self._timeshiftRegistry.buffers:
+			if not self.timeshiftRegistry.buffers:
 				self.ptsEventCleanTimerSTOP(justStop=True)
 			elif result < config.timeshift.checkFreeSpace.value:
 				self.ptsAskUser("space_and_save" if self.isSeekable() else "space")
@@ -1095,12 +1127,12 @@ class InfoBarTimeshift:
 			return 0  # The background eraser may already have removed this file.
 
 	def ptsCleanTimeshiftFiles(self, justZapped):
-		registry = self._timeshiftRegistry
-		retainedPaths = self._saveJournal.retainedPaths()
+		registry = self.timeshiftRegistry
+		retainedPaths = self.saveJournal.retainedPaths()
 		registry.recover(config.timeshift.path.value, retainedPaths)
 		status = statvfs(config.timeshift.path.value)
 		freespace = status.f_bavail * status.f_bsize // 1024 // 1024
-		protected = self._cleanupProtected + list(retainedPaths)
+		protected = self.cleanupProtected + list(retainedPaths)
 		entries = sorted(tuple(registry.buffers.items()), key=lambda x: x[1].created)
 		maximumEvents = config.timeshift.maxEvents.value
 		for index, (identifier, entry) in enumerate(entries):
@@ -1149,8 +1181,10 @@ class InfoBarTimeshift:
 			elif exists("/proc/stb/fp/led0_pattern"):
 				fileWriteLine("/proc/stb/fp/led0_pattern", "0", source=MODULE_NAME)
 
-	def ptsCreateHardlink(self):
-		# Public legacy entry point: ownership replaces the former hard-link alias.
+	def ptsRegisterTimeshiftBuffer(self):
+		# Keep recorder/playback/export ownership without a hard-link alias.
+		if self.isRamTimeshift():
+			return True
 		ts = self.getTimeshift()
 		filename = ts.getTimeshiftFilename() if ts else ""
 		if not filename:
@@ -1166,33 +1200,33 @@ class InfoBarTimeshift:
 			"serviceData": ts.getTimeshiftServiceData() if hasattr(ts, "getTimeshiftServiceData") else "",
 			"autosave": config.timeshift.autorecord.value
 		}
-		entry = self._timeshiftRegistry.register(f"pts_livebuffer_{self.pts_eventcount}", filename, metadata)
+		entry = self.timeshiftRegistry.register(f"pts_livebuffer_{self.pts_eventcount}", filename, metadata)
 		entry.autosave = config.timeshift.autorecord.value
-		if self._pendingPlaybackIdentifier:
-			self.ptsSetNextPlaybackFile(self._pendingPlaybackIdentifier)
-		self._persistTimeshiftMetadata(entry)
+		if self.pendingPlaybackIdentifier:
+			self.ptsSetNextPlaybackFile(self.pendingPlaybackIdentifier)
+		self.persistTimeshiftMetadata(entry)
 		self.ptsCreateEITFile(filename)
 		return True
 
-	def _persistTimeshiftMetadata(self, entry):
+	def persistTimeshiftMetadata(self, entry):
 		metadata = entry.metadata
 		content = formatTimeshiftMetadata(dict(metadata, begin=int(metadata.get("begin", entry.created))))
-		self._timeshiftRegistry.acquire(entry)
+		self.timeshiftRegistry.acquire(entry)
 		entry.pendingWrites += 1
 		entry.sidecarsReady.clear()
-		deferToThread(self._writeTimeshiftMetadata, entry, content).addBoth(self._timeshiftMetadataWritten, entry)
+		deferToThread(self.writeTimeshiftMetadata, entry, content).addBoth(self.timeshiftMetadataWritten, entry)
 
-	def _writeTimeshiftMetadata(self, entry, content):
-		self._timeshiftRegistry.writeMetadata(entry, content)
+	def writeTimeshiftMetadata(self, entry, content):
+		self.timeshiftRegistry.writeMetadata(entry, content)
 
-	def _timeshiftMetadataWritten(self, result, entry):
+	def timeshiftMetadataWritten(self, result, entry):
 		if isinstance(result, int) and result != 0:
 			result = Failure(OSError(_("Unable to write the time shift event information.")))
 		failed = isinstance(result, Failure)
 		entry.pendingWrites -= 1
 		if not entry.pendingWrites:
 			entry.sidecarsReady.set()
-		self._timeshiftRegistry.release(entry, failed=failed)
+		self.timeshiftRegistry.release(entry, failed=failed)
 		if failed:
 			if entry.active:
 				entry.autosave = False
@@ -1202,15 +1236,15 @@ class InfoBarTimeshift:
 
 	def ptsRecordCurrentEvent(self, task=None):
 		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredTimeShiftRecordingPath())
-		self._recordTimeshiftContinuation(recording, task)
+		self.recordTimeshiftContinuation(recording, task)
 		return recording
 
-	def _recordTimeshiftContinuation(self, recording, task):
+	def recordTimeshiftContinuation(self, recording, task):
 		owner = None
 		if task is not None and task.mergelater:
-			owner = _TimeshiftContinuation(recording)
+			owner = TimeshiftContinuation(recording)
 			task.continuation = owner
-			self._continuationRecordings[id(recording)] = owner
+			self.continuationRecordings[id(recording)] = owner
 		recording.dontSave = True
 		timers = self.session.nav.RecordTimer
 		conflicts = timers.record(recording)
@@ -1221,38 +1255,38 @@ class InfoBarTimeshift:
 		if accepted:
 			self.recording.append(recording)
 
-	def _registerTimeshiftMerge(self, destination, owner):
-		self._pendingMerges.add(destination)
+	def registerTimeshiftMerge(self, destination, owner):
+		self.pendingMerges.add(destination)
 		if owner is not None and owner.destination is None:
 			owner.destination = destination
-			self._mergeOwners[destination] = owner
+			self.mergeOwners[destination] = owner
 		self.pts_mergeRecords_timer.start(15000, True)
 
 	def ptsMergeRecords(self):
-		if self._mergeScanRunning:
+		if self.mergeScanRunning:
 			return
-		if self.session.nav.RecordTimer.isRecording() or JobManager.getPendingJobs() or self._pendingSaveIntents:
+		if self.session.nav.RecordTimer.isRecording() or JobManager.getPendingJobs() or self.pendingSaveIntents:
 			self.pts_mergeRecords_timer.start(120000, True)
 			return
-		if self._pendingMerges:
+		if self.pendingMerges:
 			candidates = []
-			for destination in self._pendingMerges:
-				owner = self._mergeOwners.get(destination)
+			for destination in self.pendingMerges:
+				owner = self.mergeOwners.get(destination)
 				if owner:
 					owner.capture()
 					if not owner.invalid and owner.timer.state < TimerEntry.StateEnded:
 						self.pts_mergeRecords_timer.start(120000, True)
 						continue
-				if owner and not owner.invalid and owner.path and owner.path != destination and owner.path not in self._pendingMerges and owner.timer.state == TimerEntry.StateEnded:
+				if owner and not owner.invalid and owner.path and owner.path != destination and owner.path not in self.pendingMerges and owner.timer.state == TimerEntry.StateEnded:
 					candidates.append((owner.path, destination, owner.timer.name))
 				else:
-					self._notifyUnownedTimeshiftMerge(destination)
+					self.notifyUnownedTimeshiftMerge(destination)
 			if not candidates:
 				return
-			self._mergeScanRunning = True
-			deferToThread(self._findTimeshiftMerges, tuple(candidates)).addBoth(self._timeshiftMergesFound, tuple(x[1] for x in candidates))
+			self.mergeScanRunning = True
+			deferToThread(self.findTimeshiftMerges, tuple(candidates)).addBoth(self.timeshiftMergesFound, tuple(x[1] for x in candidates))
 
-	def _findTimeshiftMerges(self, candidates):
+	def findTimeshiftMerges(self, candidates):
 		results = []
 		for source, destination, eventname in candidates:
 			try:
@@ -1263,30 +1297,30 @@ class InfoBarTimeshift:
 				pass
 		return results
 
-	def _notifyUnownedTimeshiftMerge(self, destination):
-		if destination not in self._mergeWarnings:
-			self._mergeWarnings.add(destination)
+	def notifyUnownedTimeshiftMerge(self, destination):
+		if destination not in self.mergeWarnings:
+			self.mergeWarnings.add(destination)
 			self.session.showInfo(_("The continuation recording could not be identified safely. Both recordings and the merge information have been retained.") + f"\n{destination}", timeout=30)
 
-	def _timeshiftMergesFound(self, result, destinations=()):
-		self._mergeScanRunning = False
+	def timeshiftMergesFound(self, result, destinations=()):
+		self.mergeScanRunning = False
 		if isinstance(result, Failure):
 			self.ptsSaveTimeshiftFailed(str(result.value))
 		elif self.session.nav.RecordTimer.isRecording():
 			self.pts_mergeRecords_timer.start(120000, True)
 		else:
 			for srcfile, destfile, eventname in result:
-				owner = self._mergeOwners.get(destfile)
+				owner = self.mergeOwners.get(destfile)
 				if owner:
 					owner.capture()
 				if owner and not owner.invalid and owner.path == srcfile and owner.timer.state == TimerEntry.StateEnded:
-					self._queueTimeshiftSave(MergeTimeshiftJob(self, None, srcfile, destfile, eventname))
+					self.queueTimeshiftSave(MergeTimeshiftJob(self, None, srcfile, destfile, eventname))
 				else:
-					self._notifyUnownedTimeshiftMerge(destfile)
+					self.notifyUnownedTimeshiftMerge(destfile)
 			found = {x[1] for x in result}
 			for destination in destinations:
 				if destination not in found:
-					self._notifyUnownedTimeshiftMerge(destination)
+					self.notifyUnownedTimeshiftMerge(destination)
 
 	def ptsCreateAPSCFiles(self, filename):
 		JobManager.AddJob(CreateAPSCFilesJob(self, ("/usr/lib/enigma2/python/Components/createapscfiles", filename), _("Timeshift")))
@@ -1295,18 +1329,18 @@ class InfoBarTimeshift:
 		if self.pts_curevent_eventid is not None:
 			try:
 				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref
-				entry = next((x for x in self._timeshiftRegistry.buffers.values() if x.path == filename), None)
+				entry = next((x for x in self.timeshiftRegistry.buffers.values() if x.path == filename), None)
 				if entry:
-					self._timeshiftRegistry.acquire(entry)
+					self.timeshiftRegistry.acquire(entry)
 					entry.pendingWrites += 1
 					entry.sidecarsReady.clear()
-					deferToThread(self._timeshiftRegistry.writeEvent, entry, eEPGCache.getInstance().saveEventToFile, serviceref, self.pts_curevent_eventid, -1, -1).addBoth(self._timeshiftMetadataWritten, entry)
+					deferToThread(self.timeshiftRegistry.writeEvent, entry, eEPGCache.getInstance().saveEventToFile, serviceref, self.pts_curevent_eventid, -1, -1).addBoth(self.timeshiftMetadataWritten, entry)
 			except Exception as err:
 				print(f"[Timeshift] Error: {str(err)}")
 
 	def ptsCopyFilefinished(self, srcfile, destfile):
 		# The source remains registry-owned until ordinary retention cleanup.
-		if destfile in self._pendingMerges:
+		if destfile in self.pendingMerges:
 			self.pts_mergeRecords_timer.start(15000, True)
 		else:
 			self.ptsCreateAPSCFiles(destfile)
@@ -1318,19 +1352,19 @@ class InfoBarTimeshift:
 		AddNotification(MessageBox, _("Time shift save failed! The source buffer has been retained.") + f"\n\n{message}", MessageBox.TYPE_ERROR, timeout=30)
 
 	def ptsMergeFilefinished(self, srcfile, destfile, sourceIdentity=None):
-		self._pendingMerges.discard(destfile)
-		owner = self._mergeOwners.get(destfile)
+		self.pendingMerges.discard(destfile)
+		owner = self.mergeOwners.get(destfile)
 		if owner:
 			owner.capture()
 		if owner and not owner.invalid and owner.path == srcfile and owner.timer.state == TimerEntry.StateEnded and sourceIdentity is not None:
-			self._mergeCleanupSources[srcfile] = sourceIdentity
+			self.mergeCleanupSources[srcfile] = sourceIdentity
 			self.pts_mergeCleanUp_timer.start(1000, True)
-			self._continuationRecordings.pop(id(owner.timer), None)
-			self._mergeOwners.pop(destfile, None)
+			self.continuationRecordings.pop(id(owner.timer), None)
+			self.mergeOwners.pop(destfile, None)
 		else:
-			self._notifyUnownedTimeshiftMerge(destfile)
+			self.notifyUnownedTimeshiftMerge(destfile)
 		self.ptsCreateAPSCFiles(destfile)
-		if self._pendingMerges:
+		if self.pendingMerges:
 			self.pts_mergeRecords_timer.start(10000, True)
 
 	def ptsSaveTimeshiftFinished(self):
@@ -1346,23 +1380,23 @@ class InfoBarTimeshift:
 		if self.session.nav.RecordTimer.isRecording() or JobManager.getPendingJobs():
 			self.pts_mergeCleanUp_timer.start(120000, True)
 			return
-		if self._mergeCleanupSources:
-			sources = tuple(self._mergeCleanupSources.items())
-			self._mergeCleanupSources.clear()
-			deferToThread(self._removeMergedTimeshiftSources, sources).addBoth(self._mergedTimeshiftSourcesRemoved)
+		if self.mergeCleanupSources:
+			sources = tuple(self.mergeCleanupSources.items())
+			self.mergeCleanupSources.clear()
+			deferToThread(self.removeMergedTimeshiftSources, sources).addBoth(self.mergedTimeshiftSourcesRemoved)
 
-	def _removeMergedTimeshiftSources(self, sources):
+	def removeMergedTimeshiftSources(self, sources):
 		for source, identity in sources:
 			removeTimeshiftRecording(source, identity)
 
-	def _mergedTimeshiftSourcesRemoved(self, result):
+	def mergedTimeshiftSourcesRemoved(self, result):
 		if isinstance(result, Failure):
 			AddNotification(MessageBox, _("The time shift recording was saved, but a temporary recording could not be removed.") + f"\n{result.value}", MessageBox.TYPE_ERROR, timeout=30)
 		self.ptsFrontpanelActions("stop")
 		config.timeshift.isRecording.value = False
 
 	def ptsTryQuitMainloop(self):
-		if Standby.inTryQuitMainloop and (self._pendingSaveIntents or len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeCleanUp_timer.isActive()):
+		if Standby.inTryQuitMainloop and (self.pendingSaveIntents or len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeCleanUp_timer.isActive()):
 			self.pts_QuitMainloop_timer.start(60000, True)
 			return
 		if Standby.inTryQuitMainloop and self.session.ptsmainloopvalue:
@@ -1487,9 +1521,9 @@ class InfoBarTimeshift:
 		keep = {f"pts_livebuffer_{self.pts_currplaying}", f"pts_livebuffer_{self.pts_nextplaying}"}
 		if self.pts_switchtolive:
 			keep.clear()
-		for identifier in tuple(self._playbackLeases):
+		for identifier in tuple(self.playbackLeases):
 			if identifier not in keep:
-				self._timeshiftRegistry.release(self._playbackLeases.pop(identifier))
+				self.timeshiftRegistry.release(self.playbackLeases.pop(identifier))
 		self.pts_file_changed = True
 		self.ptsSeekPointerReset()  # Reset seek pointer.
 		if self.pts_switchtolive:
@@ -1500,7 +1534,7 @@ class InfoBarTimeshift:
 			if self.pts_nextplaying:
 				self.pts_currplaying = self.pts_nextplaying
 			self.pts_nextplaying = self.pts_currplaying + 1
-			if self._hasTimeshiftFile(f"pts_livebuffer_{self.pts_nextplaying}"):  # Get next PTS file.
+			if self.hasTimeshiftFile(f"pts_livebuffer_{self.pts_nextplaying}"):  # Get next PTS file.
 				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_nextplaying}")
 				self.pts_switchtolive = False
 			else:
@@ -1511,22 +1545,22 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts:
 			if nexttsfile:
-				entry = self._timeshiftRegistry.buffers.get(nexttsfile)
+				entry = self.timeshiftRegistry.buffers.get(nexttsfile)
 				if entry is None:
-					path = self._resolveTimeshiftFile(nexttsfile)
-					entry = next((x for x in self._timeshiftRegistry.buffers.values() if x.path == path), None)
+					path = self.resolveTimeshiftFile(nexttsfile)
+					entry = next((x for x in self.timeshiftRegistry.buffers.values() if x.path == path), None)
 				if entry is None:
-					self._pendingPlaybackIdentifier = nexttsfile
+					self.pendingPlaybackIdentifier = nexttsfile
 					return
-				if nexttsfile not in self._playbackLeases:
+				if nexttsfile not in self.playbackLeases:
 					try:
-						self._timeshiftRegistry.acquire(entry)
+						self.timeshiftRegistry.acquire(entry)
 					except OSError as err:
 						self.session.showWarning(str(err))
 						return
-					self._playbackLeases[nexttsfile] = entry
-			self._pendingPlaybackIdentifier = ""
-			ts.setNextPlaybackFile(self._resolveTimeshiftFile(nexttsfile) if nexttsfile else "")
+					self.playbackLeases[nexttsfile] = entry
+			self.pendingPlaybackIdentifier = ""
+			ts.setNextPlaybackFile(self.resolveTimeshiftFile(nexttsfile) if nexttsfile else "")
 
 	def ptsSeekToPos(self):
 		length = self.ptsGetLength()
@@ -1553,7 +1587,13 @@ class InfoBarTimeshift:
 	def ptsStartSeekBackTimer(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value) if self.pts_lastseekspeed == 0 else -self.pts_lastseekspeed))
 
+	def isRamTimeshift(self):
+		ts = self.getTimeshift()
+		return bool(ts and hasattr(ts, "isTimeshiftMemory") and ts.isTimeshiftMemory())
+
 	def ptsCheckTimeshiftPath(self):
+		if self.isRamTimeshift():
+			return True
 		if fileExists(config.timeshift.path.value, "w"):
 			return True
 		else:
@@ -1564,7 +1604,7 @@ class InfoBarTimeshift:
 			return False
 
 	def ptsTimerEntryStateChange(self, timer):
-		owner = self._continuationRecordings.get(id(timer))
+		owner = self.continuationRecordings.get(id(timer))
 		if owner is not None and owner.timer is timer:
 			owner.capture()
 			if timer.state >= TimerEntry.StateEnded and owner.destination:
@@ -1623,31 +1663,31 @@ class AddCopyTimeshiftTask(Task):
 		self.mergelater = False
 		self.continuation = None
 		self.journalPath = None
-		self._export = None
-		self._aborted = False
-		self._completed = False
+		self.export = None
+		self.aborted = False
+		self.completed = False
 		self.ProgressTimer = eTimer()
 		self.ProgressTimer.callback.append(self.ProgressUpdate)
 
 	def ProgressUpdate(self):
-		if self._export and self._export.total:
-			self.setProgress(min(99, self._export.copied * 100 // self._export.total))
+		if self.export and self.export.total:
+			self.setProgress(min(99, self.export.copied * 100 // self.export.total))
 
 	def prepare(self):
-		self._completed = False
-		self._aborted = False
+		self.completed = False
+		self.aborted = False
 		self.postconditions = []
 		self.ProgressTimer.start(1000)
 		self.toolbox.ptsFrontpanelActions("start")
 
 	def _run(self):
-		deferToThread(self._work).addBoth(self._workFinished)
+		deferToThread(self.work).addBoth(self.workFinished)
 
-	def _work(self):
-		if self._aborted:
+	def work(self):
+		if self.aborted:
 			raise InterruptedError("Saving time shift was cancelled")
 		while self.entry and not self.entry.sidecarsReady.wait(0.5):
-			if self._aborted:
+			if self.aborted:
 				raise InterruptedError("Saving time shift was cancelled")
 		if isinstance(self.destfile, tuple):
 			recordingPath, recordingName = self.destfile
@@ -1655,60 +1695,60 @@ class AddCopyTimeshiftTask(Task):
 		elif not self.destfile.endswith(".ts"):
 			self.destfile = f"{self.destfile}.ts"
 		immutable = self.entry is not None and not self.entry.active and self.limit is None
-		partSize = self._getExportPartSize()
+		partSize = self.getExportPartSize()
 		if immutable:
 			parts = getTimeshiftParts(self.srcfile)
 			if len(parts) > 1 and all(x[1] == parts[0][1] for x in parts[:-1]) and parts[-1][1] <= parts[0][1] <= partSize:
 				partSize = parts[0][1]
-		self._export = TimeshiftExport(((self.srcfile, self.limit),), self.destfile, self.metadata, immutable=immutable, partSize=partSize, intentPath=self.journalPath)
-		if self._aborted:
-			self._export.cancelled.set()
-		result = self._export.run()
-		self._completeSaveIntent()
+		self.export = TimeshiftExport(((self.srcfile, self.limit),), self.destfile, self.metadata, immutable=immutable, partSize=partSize, intentPath=self.journalPath)
+		if self.aborted:
+			self.export.cancelled.set()
+		result = self.export.run()
+		self.completeSaveIntent()
 		return result
 
-	def _completeSaveIntent(self):
+	def completeSaveIntent(self):
 		if self.journalPath:
 			try:
-				self.toolbox._saveJournal.complete(self.journalPath)
-				if self.entry and self.limit is None and self.entry.path not in self.toolbox._saveJournal.retainedPaths():
+				self.toolbox.saveJournal.complete(self.journalPath)
+				if self.entry and self.limit is None and self.entry.path not in self.toolbox.saveJournal.retainedPaths():
 					self.entry.retained = False
 			except OSError as err:
 				if self.entry:
 					self.entry.retained = True
 				print(f"[Timeshift] Saved recording; retained local save intent: {err}")
 
-	def _getExportPartSize(self):
+	def getExportPartSize(self):
 		path = realpath(dirname(self.destfile))
-		mounts = [x for x in getProcMounts() if len(x) >= 3 and (path == x[1] or path.startswith(x[1].rstrip("/") + "/"))]
+		mounts = [x for x in getProcMounts() if len(x) >= 3 and (path == x[1] or path.startswith(join(x[1], "")))]
 		mount = max(mounts, key=lambda x: len(x[1])) if mounts else None
 		unlimited = {"ext2", "ext3", "ext4", "xfs", "btrfs", "f2fs", "exfat", "ntfs", "ntfs3"}
 		return ((1 << 63) - 1) // 188 * 188 if mount and mount[2] in unlimited else EXPORT_PART_SIZE
 
-	def _workFinished(self, result):
-		if self._completed:
+	def workFinished(self, result):
+		if self.completed:
 			return
-		self._completed = True
+		self.completed = True
 		self.ProgressTimer.stop()
 		if isinstance(result, Failure):
 			self.postconditions.append(FailedPostcondition(result.value))
-		self.finish(aborted=self._aborted)
+		self.finish(aborted=self.aborted)
 
 	def abort(self):
-		self._aborted = True
-		if self._export:
-			self._export.cancelled.set()
+		self.aborted = True
+		if self.export:
+			self.export.cancelled.set()
 		# Completion waits for the worker to close its files and roll back.
 
 	def cleanup(self, failed):
 		if self.entry:
-			self.toolbox._timeshiftRegistry.release(self.entry, failed=bool(failed))
+			self.toolbox.timeshiftRegistry.release(self.entry, failed=bool(failed))
 		if failed:
 			self.toolbox.ptsSaveTimeshiftFailed("\n".join(x.getErrorMessage(self) for x in failed))
 		else:
 			self.setProgress(100)
 			if self.mergelater:
-				self.toolbox._registerTimeshiftMerge(self.destfile, self.continuation)
+				self.toolbox.registerTimeshiftMerge(self.destfile, self.continuation)
 			self.toolbox.ptsCopyFilefinished(self.srcfile, self.destfile)
 
 
@@ -1724,17 +1764,17 @@ class AddMergeTimeshiftTask(AddCopyTimeshiftTask):
 		AddCopyTimeshiftTask.__init__(self, job, None, join(preferredTimeShiftRecordingPath(), srcfile), join(preferredTimeShiftRecordingPath(), destfile), eventname)
 		self.sourceIdentity = None
 
-	def _work(self):
+	def work(self):
 		with open(f"{self.destfile}.meta", encoding="utf-8") as metadataFile:
 			metadata = parseTimeshiftMetadata(metadataFile.read())
 		tags = " ".join(x for x in metadata.get("tags", "").split() if x != "pts_merge")
 		self.metadata = formatTimeshiftMetadata(metadata, tags=tags)
-		self._export = TimeshiftExport(((self.destfile, None), (self.srcfile, None)), self.destfile, metadata=self.metadata, immutable=True, partSize=self._getExportPartSize(), merge=True, intentPath=self.journalPath)
-		if self._aborted:
-			self._export.cancelled.set()
-		result = self._export.run()
-		self.sourceIdentity = self._export.sourceIdentities.get(self.srcfile)
-		self._completeSaveIntent()
+		self.export = TimeshiftExport(((self.destfile, None), (self.srcfile, None)), self.destfile, metadata=self.metadata, immutable=True, partSize=self.getExportPartSize(), merge=True, intentPath=self.journalPath)
+		if self.aborted:
+			self.export.cancelled.set()
+		result = self.export.run()
+		self.sourceIdentity = self.export.sourceIdentities.get(self.srcfile)
+		self.completeSaveIntent()
 		return result
 
 	def cleanup(self, failed):
@@ -1756,13 +1796,13 @@ class CreateAPSCFilesTask(Task):
 	def __init__(self, job, cmdline, eventname):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
-		self._finished = False
+		self.finished = False
 		arguments = splitCommand(cmdline) if isinstance(cmdline, str) else list(cmdline)
 		self.setTool(arguments[0])
 		self.args += arguments[1:arguments.index(">")] if ">" in arguments else arguments[1:]
 
 	def prepare(self):
-		self._finished = False
+		self.finished = False
 		self.toolbox.ptsFrontpanelActions("start")
 		config.timeshift.isRecording.value = True
 
@@ -1775,8 +1815,8 @@ class CreateAPSCFilesTask(Task):
 			self.processFinished(-1)
 
 	def finish(self, aborted=False):
-		if not self._finished:
-			self._finished = True
+		if not self.finished:
+			self.finished = True
 			Task.finish(self, aborted=aborted)
 
 	def cleanup(self, failed):

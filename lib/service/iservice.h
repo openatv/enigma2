@@ -701,6 +701,8 @@ public:
 	virtual long long getTimeshiftFileSize() { return -1; }
 	// Immutable decoder PID cache for the current native buffer; empty if unavailable.
 	virtual std::string getTimeshiftServiceData() { return ""; }
+	// RAM sources have no recording file and must bypass disk PTS bookkeeping.
+	virtual bool isTimeshiftMemory() { return false; }
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 

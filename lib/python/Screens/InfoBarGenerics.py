@@ -3699,7 +3699,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
-		entry = self._timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_currplaying}") if self.timeshiftEnabled() else None
+		entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_currplaying}") if self.timeshiftEnabled() else None
 		self.pvrStateDialog["eventname"].setText(entry.metadata.get("name", "") if entry else "")
 
 
@@ -4005,7 +4005,7 @@ class InfoBarInstantRecord:
 				case "savetimeshiftEvent":
 					InfoBarTimeshift.saveTimeshiftEventPopup(self)
 				case _:
-					if answer[1] in self._timeshiftRegistry.buffers or answer[1].startswith("pts_livebuffer"):
+					if answer[1] in self.timeshiftRegistry.buffers or answer[1].startswith("pts_livebuffer"):
 						InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 			if answer[1] != "savetimeshiftEvent":
 				self.saveTimeshiftEventPopupActive = False

@@ -11,9 +11,9 @@ class TimeshiftSettings(Setup):
 	def __init__(self, session):
 		self.pathItem = None
 		self.status = None
-		self._checkedPath = None
-		self._savePending = False
-		self._pathCheck = StoragePathCheck(checkStorageDirectory, self._pathChecked)
+		self.checkedPath = None
+		self.savePending = False
+		self.pathCheck = StoragePathCheck(checkStorageDirectory, self.pathChecked)
 		self.buildChoices(config.timeshift.path, None)
 		Setup.__init__(self, session=session, setup="Timeshift")
 		for index, item in enumerate(self["config"].getList()):
@@ -23,7 +23,7 @@ class TimeshiftSettings(Setup):
 		else:
 			print("[Timeshift] Error: ConfigList time shift path entry not found!")
 			self.pathItem = None
-		self.onClose.append(self._pathCheck.cancel)
+		self.onClose.append(self.pathCheck.cancel)
 
 	def buildChoices(self, configEntry, path):
 		configList = config.timeshift.allowedPaths.value[:]
@@ -49,34 +49,34 @@ class TimeshiftSettings(Setup):
 	def pathStatus(self):
 		if self.getCurrentItem() == config.timeshift.path:
 			path = config.timeshift.path.value
-			if path != self._checkedPath:
-				self._checkPath()
+			if path != self.checkedPath:
+				self.checkPath()
 			else:
 				self.setFootnote(self.status or "")
 
-	def _checkPath(self, save=False):
+	def checkPath(self, save=False):
 		path = config.timeshift.path.value
-		if self._savePending:
+		if self.savePending:
 			return
-		if self._pathCheck.start((path,)):
-			self._checkedPath = path
-			self._savePending = save
+		if self.pathCheck.start((path,)):
+			self.checkedPath = path
+			self.savePending = save
 			self.status = _("Checking storage directory...")
 			self.setFootnote(self.status)
 		elif save:
 			self.session.showInfo(_("A storage check is still running. Please try again shortly."))
 
-	def _pathChecked(self, errors):
-		save = self._savePending
-		self._savePending = False
-		if self._checkedPath != config.timeshift.path.value:
-			self._checkedPath = None
+	def pathChecked(self, errors):
+		save = self.savePending
+		self.savePending = False
+		if self.checkedPath != config.timeshift.path.value:
+			self.checkedPath = None
 			self.pathStatus()
 			return
 		if errors is None:
 			self.status = _("The storage check did not finish. Please check the device or network and try again.")
 		else:
-			self.status = errors.get(self._checkedPath, "")
+			self.status = errors.get(self.checkedPath, "")
 		if save or self.getCurrentItem() == config.timeshift.path:
 			self.setFootnote(self.status)
 		if save:
@@ -88,7 +88,7 @@ class TimeshiftSettings(Setup):
 				Setup.keySave(self)
 
 	def keySelect(self):
-		if self._savePending:
+		if self.savePending:
 			return
 		if self.getCurrentItem() == config.timeshift.path:
 			self.session.openWithCallback(self.keySelectCallback, TimeshiftLocationBox)
@@ -103,15 +103,15 @@ class TimeshiftSettings(Setup):
 		self.changedEntry()
 
 	def keySave(self):
-		self._checkPath(save=True)
+		self.checkPath(save=True)
 
 	def keySaveCallback(self, result):
-		if result and self._checkedPath == config.timeshift.path.value:
+		if result and self.checkedPath == config.timeshift.path.value:
 			Setup.keySave(self)
 
 	def closeConfigList(self, closeParameters=()):
 		# Cancel before the discard-changes question opens, not only onClose.
-		self._pathCheck.cancel()
-		self._savePending = False
-		self._checkedPath = None
+		self.pathCheck.cancel()
+		self.savePending = False
+		self.checkedPath = None
 		Setup.closeConfigList(self, closeParameters)
