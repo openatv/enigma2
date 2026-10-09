@@ -192,6 +192,27 @@ def getRAMTemperature():
 	return ""
 
 
+def getCPUCurrentSpeed():
+	speeds = []
+	for policy in sorted(glob("/sys/devices/system/cpu/cpufreq/policy*")):
+		khz = fileReadLine(f"{policy}/scaling_cur_freq", default="", source=MODULE_NAME)
+		if khz.isdigit():
+			speeds.append(int(khz) / 1000)  # MHz, one entry per cluster
+	if not speeds:
+		return ""
+	if max(speeds) >= 1000:
+		result = _("%s GHz") % " / ".join(format_string("%.1f", mhz / 1000) for mhz in speeds)
+	else:
+		result = _("%s MHz") % " / ".join(str(int(mhz)) for mhz in speeds)
+	for device in glob("/sys/class/thermal/cooling_device*"):
+		if fileReadLine(f"{device}/type", default="", source=MODULE_NAME).startswith("thermal-cpufreq"):
+			state = fileReadLine(f"{device}/cur_state", default="0", source=MODULE_NAME)
+			if state.isdigit() and int(state) > 0:
+				result = f"{result} ({_("throttled")})"
+				break
+	return result
+
+
 def getCPUBrand():
 	socFamily = BoxInfo.getItem("socfamily")
 	if BoxInfo.getItem("AmlogicFamily"):

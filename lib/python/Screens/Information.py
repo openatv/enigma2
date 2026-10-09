@@ -1279,6 +1279,9 @@ class InformationReceiver(InformationBase):
 		cpu = about.getCPUInfoString()
 		info.append(self.formatLine("P1", _("CPU"), cpu[0]))
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
+		currentSpeed = about.getCPUCurrentSpeed()
+		if currentSpeed:
+			info.append(self.formatLine("P1", _("Current CPU speed"), currentSpeed))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
 		ramTemp = about.getRAMTemperature()
