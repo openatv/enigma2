@@ -64,6 +64,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 	m_tuned = 0;
 	m_target_fd = -1;
 	m_error = 0;
+	m_write_error = false;
 	m_streaming = 0;
 	m_simulate = false;
 	m_last_event_id = -1;
@@ -297,7 +298,9 @@ RESULT eDVBServiceRecord::stop()
 			m_target_fd = -1;
 		}
 
-		saveCutlist();
+		// .sc may be unreadable after a write error, mmap access would crash
+		if (!m_write_error)
+			saveCutlist();
 
 		m_state = statePrepared;
 	} else if (!m_simulate)
@@ -904,6 +907,7 @@ void eDVBServiceRecord::recordEvent(int event)
 	{
 	case iDVBTSRecorder::eventWriteError:
 		eWarning("[eDVBServiceRecord] record write error");
+		m_write_error = true;
 		stop();
 		m_event((iRecordableService*)this, evRecordWriteError);
 		return;
