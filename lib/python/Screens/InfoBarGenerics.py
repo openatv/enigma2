@@ -71,6 +71,7 @@ from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, fileReadLines, fileWriteLines, isPluginInstalled, pathExists, resolveFilename
+from Tools.HybridService import HybridService
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -4458,6 +4459,7 @@ class InfoBarRedButton:
 		self.onHBBTVActivation = []
 		self.onRedButtonActivation = []
 		self.onReadyForAIT = []
+		self.hybridService = HybridService(self) if isStandardInfoBar(self) else None
 		self.__et = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evHBBTVInfo: self.detectedHbbtvApplication,
 			iPlayableService.evUpdatedInfo: self.updateInfomation

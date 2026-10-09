@@ -1,3 +1,4 @@
+from urllib.parse import urlsplit
 import NavigationInstance
 from skin import parseColor
 from Components.config import config
@@ -115,11 +116,20 @@ class FrontendInfo(Converter):
 		prefix = "SNR: " if self.type == self.SNR_STREAM else ""
 		if self.type == self.SNR_STREAM:
 			nav = NavigationInstance.instance
-			ref = nav.getCurrentlyPlayingServiceReference() if nav and getattr(nav, "isCurrentServiceDVBI", False) else None
+			ref = nav.getCurrentlyPlayingServiceReference() if nav else None
 			if ref:
-				# The importer already verified the format; never probe URLs from the UI.
-				streamType = {0x100: "DASH", 0x200: "HLS"}.get(ref.getUnsignedData(7) & 0x300, "DVB-I")
-				return f"IP: {streamType}"
+				# DVB-I supplies verified format hints. Other IPTV services can only
+				# be labelled by their URL; never probe a stream from the UI.
+				if getattr(nav, "isCurrentServiceDVBI", False):
+					streamType = {0x100: "DASH", 0x200: "HLS"}.get(ref.getUnsignedData(7) & 0x300, "DVB-I")
+					return f"IP: {streamType}"
+				try:
+					address = urlsplit(ref.getPath())
+				except ValueError:
+					address = None
+				if address and address.scheme.lower() in ("http", "https", "rtsp", "rtsps", "rtmp", "rtmps", "rtp", "udp", "srt", "mms", "mmsh", "mmst"):
+					streamType = "DASH" if address.path.lower().endswith(".mpd") else "HLS" if address.path.lower().endswith(".m3u8") else "Stream"
+					return f"IP: {streamType}"
 		percent = None
 		snrSwap = config.usage.swap_snr_on_osd.value
 		match self.type:
