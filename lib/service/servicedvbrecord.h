@@ -66,6 +66,7 @@ private:
 	ePtr<eConnection> m_con_record_event;
 
 	int m_recording, m_tuned, m_error;
+	bool m_write_error;
 	std::set<int> m_pids_active;
 	std::string m_filename;
 

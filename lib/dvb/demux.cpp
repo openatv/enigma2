@@ -551,9 +551,13 @@ int eDVBRecordFileThread::AsyncIO::wait(const volatile int* stop_flag, int* shor
 			}
 		}
 
+		int err = aio_error(&aio);
 		int r = aio_return(&aio);
 		if (r < 0)
 		{
+			// aio_return() does not set errno, the error is in aio_error()
+			if (err > 0)
+				errno = err;
 			eDebug("[eDVBRecordFileThread] wait: aio_return failed: %m");
 			aio.aio_buf = NULL;
 			return -1;
@@ -627,6 +631,8 @@ int eDVBRecordFileThread::AsyncIO::poll(int* short_write_count)
 			return 0;
 		}
 		eDebug("[eDVBRecordFileThread] poll: aio failed (error=%d): %s", err, strerror(err));
+		// aio_return() does not set errno, callers check it
+		errno = err;
 		return -1;
 	}
 	return 0;
@@ -790,6 +796,11 @@ int eDVBRecordFileThread::writeData(int len)
 					return -1;
 				usleep(1000);
 				continue;
+			}
+			if (w == 0)
+			{
+				eWarning("[eDVBRecordFileThread] sync write returned 0");
+				return -1;
 			}
 			eWarning("[eDVBRecordFileThread] sync write error: %m");
 			return -1;
