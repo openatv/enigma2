@@ -1,96 +1,91 @@
 from os.path import basename, normpath
-from enigma import iServiceInformation, eServiceReference
+
+from enigma import eServiceReference, iServiceInformation
 
 from Components.Converter.Converter import Converter
-from Components.Element import cached, ElementError
+from Components.Element import ElementError, cached
 from ServiceReference import ServiceReference
 
 
 class MovieInfo(Converter):
-	MOVIE_SHORT_DESCRIPTION = 0  # meta description when available.. when not .eit short description
-	MOVIE_META_DESCRIPTION = 1  # just meta description when available
-	MOVIE_REC_SERVICE_NAME = 2  # name of recording service
-	MOVIE_REC_SERVICE_REF = 3  # referance of recording service
-	MOVIE_REC_FILESIZE = 4  # filesize of recording
-	MOVIE_NAME = 5  # recording name or directory name
-	MOVIE_FULL_DESCRIPTION = 6  # full description of the movie
+	MOVIE_SHORT_DESCRIPTION = 0  # Meta description when available, otherwise the .eit short description.
+	MOVIE_META_DESCRIPTION = 1  # Just the meta description when available.
+	MOVIE_REC_SERVICE_NAME = 2  # Name of the recording service.
+	MOVIE_REC_SERVICE_REF = 3  # Reference of the recording service.
+	MOVIE_REC_FILESIZE = 4  # File size of the recording.
+	MOVIE_NAME = 5  # Recording name or directory name.
+	MOVIE_FULL_DESCRIPTION = 6  # Full description of the movie.
 
-	def __init__(self, type):
-		if type == "ShortDescription":
-			self.type = self.MOVIE_SHORT_DESCRIPTION
-		elif type == "MetaDescription":
-			self.type = self.MOVIE_META_DESCRIPTION
-		elif type == "FullDescription":
-			self.type = self.MOVIE_FULL_DESCRIPTION
-		elif type == "RecordServiceName":
-			self.type = self.MOVIE_REC_SERVICE_NAME
-		elif type == "FileSize":
-			self.type = self.MOVIE_REC_FILESIZE
-		elif type in ("RecordServiceRef", "Reference"):
-			self.type = self.MOVIE_REC_SERVICE_REF
-		elif type == "Name":
-			self.type = self.MOVIE_NAME
-		else:
-			raise ElementError("'%s' is not <ShortDescription|MetaDescription|FullDescription|RecordServiceName|FileSize> for MovieInfo converter" % type)
-		Converter.__init__(self, type)
+	def __init__(self, tokens):
+		self.type = {
+			"FileSize": self.MOVIE_REC_FILESIZE,
+			"FullDescription": self.MOVIE_FULL_DESCRIPTION,
+			"MetaDescription": self.MOVIE_META_DESCRIPTION,
+			"Name": self.MOVIE_NAME,
+			"RecordServiceName": self.MOVIE_REC_SERVICE_NAME,
+			"RecordServiceRef": self.MOVIE_REC_SERVICE_REF,
+			"Reference": self.MOVIE_REC_SERVICE_REF,
+			"ShortDescription": self.MOVIE_SHORT_DESCRIPTION
+		}.get(tokens)
+		if self.type is None:
+			raise ElementError(f"'{tokens}' is not <ShortDescription|MetaDescription|FullDescription|RecordServiceName|FileSize> for MovieInfo converter")
+		Converter.__init__(self, tokens)
 
 	@cached
 	def getText(self):
-
 		def formatDescription(description, extended):
 			if description[:20] == extended[:20]:
-				return extended
-			if description and extended:
-				description = f"{description}\n"
-			return f"{description}{extended}"
+				result = extended
+			elif description and extended:
+				result = f"{description}\n{extended}"
+			else:
+				result = f"{description}{extended}"
+			return result
 
+		text = ""
 		service = self.source.service
 		info = self.source.info
 		event = self.source.event
 		if info and service:
 			isDirectory = (service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory
-			if self.type == self.MOVIE_SHORT_DESCRIPTION:
-				if isDirectory:
-					# Short description for Directory is the full path
-					return service.getPath()
-				return (info.getInfoString(service, iServiceInformation.sDescription)
-						or (event and event.getShortDescription())
-						or service.getPath())
-			elif self.type == self.MOVIE_META_DESCRIPTION:
-				return ((event and (event.getExtendedDescription() or event.getShortDescription()))
+			match self.type:
+				case self.MOVIE_FULL_DESCRIPTION:
+					shortDesc = formatDescription(event.getShortDescription(), event.getExtendedDescription()) if event else ""
+					if not shortDesc:
+						shortDesc = info.getInfoString(service, iServiceInformation.sDescription)
+						extendedDesc = info.getInfoString(service, iServiceInformation.sExtendedDescription)
+						if shortDesc or extendedDesc:
+							shortDesc = formatDescription(shortDesc, extendedDesc)
+					text = shortDesc or service.getPath()
+				case self.MOVIE_META_DESCRIPTION:
+					text = ((event and (event.getExtendedDescription() or event.getShortDescription()))
 						or info.getInfoString(service, iServiceInformation.sDescription)
 						or service.getPath())
-			elif self.type == self.MOVIE_FULL_DESCRIPTION:
-				shortDesc = ""
-				if event:
-					shortDesc = formatDescription(event.getShortDescription(), event.getExtendedDescription())
-				if not shortDesc:
-					shortDesc = info.getInfoString(service, iServiceInformation.sDescription)
-					extendetDesc = info.getInfoString(service, iServiceInformation.sExtendedDescription)
-					if shortDesc or extendetDesc:
-						shortDesc = formatDescription(shortDesc, extendetDesc)
-				return shortDesc or service.getPath()
-			elif self.type == self.MOVIE_REC_SERVICE_NAME:
-				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
-				return ServiceReference(rec_ref_str).getServiceName()
-			elif self.type == self.MOVIE_NAME:
-				if isDirectory:
-					return basename(normpath(service.getPath()))
-				return event and event.getEventName() or info and info.getName(service)
-			elif self.type == self.MOVIE_REC_SERVICE_REF:
-				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
-				return str(ServiceReference(rec_ref_str))
-			elif self.type == self.MOVIE_REC_FILESIZE:
-				if isDirectory:
-					return _("Directory")
-				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
-				if filesize is not None:
-					if filesize >= 100000 * 1024 * 1024:
-						return _("%.0f GB") % (filesize / (1024.0 * 1024.0 * 1024.0))
-					elif filesize >= 100000 * 1024:
-						return _("%.2f GB") % (filesize / (1024.0 * 1024.0 * 1024.0))
+				case self.MOVIE_NAME:
+					text = basename(normpath(service.getPath())) if isDirectory else event and event.getEventName() or info and info.getName(service)
+				case self.MOVIE_REC_FILESIZE:
+					if isDirectory:
+						text = _("Directory")
 					else:
-						return _("%.0f MB") % (filesize / (1024.0 * 1024.0))
-		return ""
+						fileSize = info.getInfoObject(service, iServiceInformation.sFileSize)
+						if fileSize is not None:
+							if fileSize >= 100000 * 1024 * 1024:
+								text = _("%.0f GB") % (fileSize / (1024.0 * 1024.0 * 1024.0))
+							elif fileSize >= 100000 * 1024:
+								text = _("%.2f GB") % (fileSize / (1024.0 * 1024.0 * 1024.0))
+							else:
+								text = _("%.0f MB") % (fileSize / (1024.0 * 1024.0))
+				case self.MOVIE_REC_SERVICE_NAME:
+					text = ServiceReference(info.getInfoString(service, iServiceInformation.sServiceref)).getServiceName()
+				case self.MOVIE_REC_SERVICE_REF:
+					text = str(ServiceReference(info.getInfoString(service, iServiceInformation.sServiceref)))
+				case self.MOVIE_SHORT_DESCRIPTION:
+					if isDirectory:  # Short description for a directory is the full path.
+						text = service.getPath()
+					else:
+						text = (info.getInfoString(service, iServiceInformation.sDescription)
+							or (event and event.getShortDescription())
+							or service.getPath())
+		return text
 
 	text = property(getText)

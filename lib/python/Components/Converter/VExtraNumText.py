@@ -15,9 +15,9 @@
 #
 #######################################################################
 
+from time import localtime
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from time import localtime
 
 
 class VExtraNumText(Converter):
@@ -33,105 +33,62 @@ class VExtraNumText(Converter):
 	MINHAND = 9
 	HOURHAND = 10
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		if type == "SnrNum":
-			self.type = self.SNRNUM
-		elif type == "AgcNum":
-			self.type = self.AGCNUM
-		elif type == "BerNum":
-			self.type = self.BERNUM
-		elif type == "Step":
-			self.type = self.STEP
-		elif type == "SnrText":
-			self.type = self.SNRTEXT
-		elif type == "AgcText":
-			self.type = self.AGCTEXT
-		elif type == "NUMBER":
-			self.type = self.SLOT_NUMBER
-		elif type == "secHand":
-			self.type = self.SECHAND
-		elif type == "minHand":
-			self.type = self.MINHAND
-		elif type == "hourHand":
-			self.type = self.HOURHAND
-		else:
-			self.type = self.LOCK
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		self.type = {
+			"AgcNum": self.AGCNUM,
+			"AgcText": self.AGCTEXT,
+			"BerNum": self.BERNUM,
+			"NUMBER": self.SLOT_NUMBER,
+			"SnrNum": self.SNRNUM,
+			"SnrText": self.SNRTEXT,
+			"Step": self.STEP,
+			"hourHand": self.HOURHAND,
+			"minHand": self.MINHAND,
+			"secHand": self.SECHAND
+		}.get(tokens, self.LOCK)
 
 	@cached
 	def getText(self):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "error"
-		percent = None
-		if self.type == self.SNRTEXT:
-			percent = self.source.snr
-		elif self.type == self.AGCTEXT:
-			percent = self.source.agc
-		if percent is None:
-			return "N/A"
-		return "%d" % (percent * 100 / 65536)
+		match self.type:
+			case self.AGCTEXT:
+				percent = self.source.agc
+			case self.SNRTEXT:
+				percent = self.source.snr
+			case _:
+				percent = None
+		return "N/A" if percent is None else f"{int(percent * 100 / 65536)}"
 
 	text = property(getText)
 
 	@cached
 	def getValue(self):
-		if self.type == self.SNRNUM:
-			count = self.source.snr
-			if count is None:
-				return 0
-			return (count * 100 / 65536)
-		elif self.type == self.AGCNUM:
-			count = self.source.agc
-			if count is None:
-				return 0
-			return (count * 100 / 65536)
-		elif self.type == self.BERNUM:
-			count = self.source.ber
-			if count < 320000:
-				return count
-			return 320000
-		elif self.type == self.STEP:
-			time = self.source.time
-			if time is None:
-				return 0
-			t = localtime(time)
-			c = t.tm_sec
-
-			if c < 10:
-				return c
-			elif c < 20:
-				return (c - 10)
-			elif c < 30:
-				return (c - 20)
-			elif c < 40:
-				return (c - 30)
-			elif c < 50:
-				return (c - 40)
-			return (c - 50)
-		elif self.type == self.SECHAND:
-			time = self.source.time
-			if time is None:
-				return 0
-			t = localtime(time)
-			c = t.tm_sec
-			return c
-		elif self.type == self.MINHAND:
-			time = self.source.time
-			if time is None:
-				return 0
-			t = localtime(time)
-			c = t.tm_min
-			return c
-		elif self.type == self.HOURHAND:
-			time = self.source.time
-			if time is None:
-				return 0
-			t = localtime(time)
-			c = t.tm_hour
-			m = t.tm_min
-			if c > 11:
-				c = c - 12
-			val = (c * 5) + (m / 12)
-			return val
-		return 0
+		value = 0
+		match self.type:
+			case self.AGCNUM:
+				agc = self.source.agc
+				if agc is not None:
+					value = agc * 100 / 65536
+			case self.BERNUM:
+				value = min(self.source.ber, 320000)
+			case self.HOURHAND | self.MINHAND | self.SECHAND | self.STEP:
+				sourceTime = self.source.time
+				if sourceTime is not None:
+					timeStruct = localtime(sourceTime)
+					match self.type:
+						case self.HOURHAND:
+							value = ((timeStruct.tm_hour % 12) * 5) + (timeStruct.tm_min / 12)
+						case self.MINHAND:
+							value = timeStruct.tm_min
+						case self.SECHAND:
+							value = timeStruct.tm_sec
+						case self.STEP:
+							value = timeStruct.tm_sec % 10
+			case self.SNRNUM:
+				snr = self.source.snr
+				if snr is not None:
+					value = snr * 100 / 65536
+		return value
 
 	value = property(getValue)

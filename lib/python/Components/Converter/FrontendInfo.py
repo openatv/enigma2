@@ -1,10 +1,10 @@
 from urllib.parse import urlsplit
-import NavigationInstance
 from skin import parseColor
-from Components.config import config
+from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.NimManager import nimmanager
-from Components.Converter.Converter import Converter
+from Components.config import config
+import NavigationInstance
 
 
 class FrontendInfo(Converter):
@@ -22,21 +22,21 @@ class FrontendInfo(Converter):
 
 	range = 65536
 
-	def __init__(self, type):
+	def __init__(self, tokens):
 		def checkColor(color, default):
 			if color in ("", "Default"):
 				color = default
 			return None if color == "None" else rf"\c{parseColor(color, default).argb():08X}"
 
-		Converter.__init__(self, type)
-		if type.startswith("STRING"):  # "STRING[,spaceForTuners[,spaceForTunersWithSpaces]]"
+		Converter.__init__(self, tokens)
+		if tokens.startswith("STRING"):  # "STRING[,spaceForTuners[,spaceForTunersWithSpaces]]"
 			self.type = self.STRING
-			data = [x.strip() for x in type.split(",")]
+			data = [x.strip() for x in tokens.split(",")]
 			self.spaceForTuners = len(data) > 1 and int(data[1]) or 10
 			self.spaceForTunersWithSpaces = len(data) > 2 and int(data[2]) or 6
-		elif type.startswith("TUNERS"):  # "TUNERS[,idleColor[,activeColor[,recordingColor[,disabledColor[,spacer]]]]]"
+		elif tokens.startswith("TUNERS"):  # "TUNERS[,idleColor[,activeColor[,recordingColor[,disabledColor[,spacer]]]]]"
 			self.type = self.TUNERS
-			data = [x.strip() for x in type.split(",", 5)]
+			data = [x.strip() for x in tokens.split(",", 5)]
 			self.idleColor = checkColor(data[1], "#00CFCFCF") if len(data) > 1 and data[1] else r"\c00CFCFCF"
 			self.activeColor = checkColor(data[2], "#0000FF00") if len(data) > 2 and data[2] else r"\c0000FF00"
 			self.recordingColor = checkColor(data[3], "#00FF0000") if len(data) > 3 and data[3] else r"\c00FF0000"
@@ -46,26 +46,23 @@ class FrontendInfo(Converter):
 				self.spacer = spacer[1:-1] if len(spacer) > 1 and spacer[0] == spacer[-1] else spacer
 			else:
 				self.spacer = " "
-		elif type.split("_")[0] == "REC":
+		elif tokens.split("_")[0] == "REC":
 			self.type = self.REC_TUNER
-			self.tunerNum = int(type.split("_")[1])
+			self.tunerNum = int(tokens.split("_")[1])
 		else:
 			self.type = {
-				"BER": self.BER,
-				"SNR": self.SNR,
-				"SNRdB": self.SNRdB,
-				"SNRStream": self.SNR_STREAM,
 				"AGC": self.AGC,
+				"BER": self.BER,
 				"NUMBER": self.SLOT_NUMBER,
+				"SNR": self.SNR,
+				"SNRStream": self.SNR_STREAM,
+				"SNRdB": self.SNRdB,
 				"TYPE": self.TUNER_TYPE
-			}.get(type, self.LOCK)
+			}.get(tokens, self.LOCK)
 		self.recordTimer = None
 		if self.type in (self.TUNERS, self.REC_TUNER) and NavigationInstance.instance:
 			self.recordTimer = NavigationInstance.instance.RecordTimer
 			self.recordTimer.on_state_change.append(self.recordTimerStateChanged)
-
-	def recordTimerStateChanged(self, timer):
-		self.changed((self.CHANGED_ALL,))
 
 	def destroy(self):
 		if self.recordTimer:
@@ -74,26 +71,35 @@ class FrontendInfo(Converter):
 
 	def getAGC(self):
 		agc = self.source.agc
-		# Si2166D/Si2169D frontends report a small bogus non-zero AGC
-		# value (seen: 89-124) instead of None, ignore it and fall
-		# through to the SNR-based estimate below.
-		if agc and agc > 255:
-			return agc
-		# Some frontends do not expose signal strength through either
-		# DTV_STAT_SIGNAL_STRENGTH or FE_READ_SIGNAL_STRENGTH.  Keep
-		# using the driver's value when available and estimate a
-		# display value from signal quality only as a fallback.
-		snr = self.source.snr
-		if not snr:
-			return agc
-		snrPercent = snr * 100.0 / 65535.0
-		if snrPercent < 35:
-			agcPercent = snrPercent * 1.8
-		elif snrPercent < 70:
-			agcPercent = 63 + ((snrPercent - 35) * 0.8)
-		else:
-			agcPercent = 91 + ((snrPercent - 70) * 0.3)
-		return round(min(100, agcPercent) * self.range / 100.0)  # In this case round() returns an integer.
+		result = agc
+		# Si2166D/Si2169D frontends report a small bogus non-zero AGC value (seen: 89-124) instead of None.
+		# Ignore it and estimate a display value from the signal quality, also when the frontend has no AGC.
+		if not (agc and agc > 255):
+			snr = self.source.snr
+			if snr:
+				snrPercent = snr * 100.0 / 65535.0
+				if snrPercent < 35:
+					agcPercent = snrPercent * 1.8
+				elif snrPercent < 70:
+					agcPercent = 63 + ((snrPercent - 35) * 0.8)
+				else:
+					agcPercent = 91 + ((snrPercent - 70) * 0.3)
+				result = round(min(100, agcPercent) * self.range / 100.0)  # In this case round() returns an integer.
+		return result
+
+	@cached
+	def getBool(self):
+		assert self.type in (self.LOCK, self.BER, self.REC_TUNER), "the boolean output of FrontendInfo can only be used for lock or BER info or Tuner-Rec"
+		match self.type:
+			case self.LOCK:
+				result = self.source.lock or False
+			case self.REC_TUNER:
+				result = self.tunerNum in self.getRecordingTuners()
+			case _:
+				result = (self.source.ber or 0) > 0
+		return result
+
+	boolean = property(getBool)
 
 	@cached
 	def getRecordingTuners(self):
@@ -112,6 +118,7 @@ class FrontendInfo(Converter):
 	@cached
 	def getText(self):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
+		text = None
 		# Opt-in InfoBar display; ordinary SNR widgets (e.g. Satfinder) stay unchanged.
 		prefix = "SNR: " if self.type == self.SNR_STREAM else ""
 		if self.type == self.SNR_STREAM:
@@ -119,80 +126,74 @@ class FrontendInfo(Converter):
 			ref = nav.getCurrentlyPlayingServiceReference() if nav else None
 			if ref:
 				# DVB-I supplies verified format hints. Other IPTV services can only
-				# be labelled by their URL; never probe a stream from the UI.
+				# be labeled by their URL; never probe a stream from the UI.
 				if getattr(nav, "isCurrentServiceDVBI", False):
 					streamType = {0x100: "DASH", 0x200: "HLS"}.get(ref.getUnsignedData(7) & 0x300, "DVB-I")
-					return f"IP: {streamType}"
-				try:
-					address = urlsplit(ref.getPath())
-				except ValueError:
-					address = None
-				if address and address.scheme.lower() in ("http", "https", "rtsp", "rtsps", "rtmp", "rtmps", "rtp", "udp", "srt", "mms", "mmsh", "mmst"):
-					streamType = "DASH" if address.path.lower().endswith(".mpd") else "HLS" if address.path.lower().endswith(".m3u8") else "Stream"
-					return f"IP: {streamType}"
-		percent = None
-		snrSwap = config.usage.swap_snr_on_osd.value
-		match self.type:
-			case self.AGC:
-				percent = self.getAGC()
-			case self.BER:  # As count.
-				count = self.source.ber
-				return _("N/A") if count is None else str(count)
-			case self.SNR | self.SNR_STREAM if not snrSwap:
-				percent = self.source.snr
-			case self.SNRdB if snrSwap:
-				percent = self.source.snr
-			case self.SNR | self.SNRdB | self.SNR_STREAM if self.source.snr_db is not None:
-				return prefix + "%3.01f dB" % (self.source.snr_db / 100.0)
-			case self.SNR | self.SNRdB | self.SNR_STREAM:  # Fallback to normal SNR.
-				percent = self.source.snr
-			case self.STRING:
-				tuners = []
-				slots = [x for x in nimmanager.nim_slots if x.type]
-				count = len(nimmanager.nim_slots)
-				for slot in slots:
-					if slot.slot == self.source.slot_number:
-						color = r"\c0000FF00"
-					elif self.source.tuner_mask & 1 << slot.slot:
-						color = r"\c00FFFFFF"
-					elif count <= self.spaceForTuners:
-						color = r"\c007F7F7F"
-					else:
-						continue
-					tuners.append(f"{color}{chr(ord("A") + slot.slot)}")
-				return " ".join(tuners) if tuners and count <= self.spaceForTunersWithSpaces else "".join(tuners)
-			case self.TUNERS:
-				recordingTuners = self.getRecordingTuners() if self.recordingColor and self.recordingColor != self.activeColor else ()
-				tuners = []
-				for slot in nimmanager.nim_slots:
-					if self.recordingColor and slot.slot in recordingTuners:
-						color = self.recordingColor
-					elif self.activeColor and self.source.tuner_mask & 1 << slot.slot:
-						color = self.activeColor
-					elif self.idleColor and slot.isEnabled():
-						color = self.idleColor
-					elif self.disabledColor and not slot.isEnabled():
-						color = self.disabledColor
-					else:
-						color = None
-					if color:
-						tuners.append(rf"{color}{chr(ord("A") + slot.slot)}\C")
-				return self.spacer.join(tuners)
-			case self.TUNER_TYPE:
-				return self.source.frontend_type or _("Unknown")
-		return prefix + (_("N/A") if percent is None else f"{percent * 100 // 65536}%")
+					text = f"IP: {streamType}"
+				else:
+					try:
+						address = urlsplit(ref.getPath())
+					except ValueError:
+						address = None
+					if address and address.scheme.lower() in ("http", "https", "rtsp", "rtsps", "rtmp", "rtmps", "rtp", "udp", "srt", "mms", "mmsh", "mmst"):
+						path = address.path.lower()
+						streamType = "DASH" if path.endswith(".mpd") else "HLS" if path.endswith(".m3u8") else "Stream"
+						text = f"IP: {streamType}"
+		if text is None:
+			percent = None
+			snrSwap = config.usage.swap_snr_on_osd.value
+			match self.type:
+				case self.AGC:
+					percent = self.getAGC()
+				case self.BER:  # As count.
+					count = self.source.ber
+					text = _("N/A") if count is None else str(count)
+				case self.SNR | self.SNR_STREAM if not snrSwap:
+					percent = self.source.snr
+				case self.SNRdB if snrSwap:
+					percent = self.source.snr
+				case self.SNR | self.SNRdB | self.SNR_STREAM if self.source.snr_db is not None:
+					text = f"{prefix}{self.source.snr_db / 100.0:3.1f} dB"
+				case self.SNR | self.SNRdB | self.SNR_STREAM:  # Fallback to normal SNR.
+					percent = self.source.snr
+				case self.STRING:
+					tuners = []
+					count = len(nimmanager.nim_slots)
+					for slot in [x for x in nimmanager.nim_slots if x.type]:
+						if slot.slot == self.source.slot_number:
+							color = r"\c0000FF00"
+						elif self.source.tuner_mask & 1 << slot.slot:
+							color = r"\c00FFFFFF"
+						elif count <= self.spaceForTuners:
+							color = r"\c007F7F7F"
+						else:
+							continue
+						tuners.append(f"{color}{chr(ord('A') + slot.slot)}")
+					text = " ".join(tuners) if tuners and count <= self.spaceForTunersWithSpaces else "".join(tuners)
+				case self.TUNERS:
+					recordingTuners = self.getRecordingTuners() if self.recordingColor and self.recordingColor != self.activeColor else ()
+					tuners = []
+					for slot in nimmanager.nim_slots:
+						if self.recordingColor and slot.slot in recordingTuners:
+							color = self.recordingColor
+						elif self.activeColor and self.source.tuner_mask & 1 << slot.slot:
+							color = self.activeColor
+						elif self.idleColor and slot.isEnabled():
+							color = self.idleColor
+						elif self.disabledColor and not slot.isEnabled():
+							color = self.disabledColor
+						else:
+							color = None
+						if color:
+							tuners.append(rf"{color}{chr(ord('A') + slot.slot)}\C")
+					text = self.spacer.join(tuners)
+				case self.TUNER_TYPE:
+					text = self.source.frontend_type or _("Unknown")
+			if text is None:
+				text = f"{prefix}{_('N/A') if percent is None else f'{percent * 100 // 65536}%'}"
+		return text
 
-	@cached
-	def getBool(self):
-		assert self.type in (self.LOCK, self.BER, self.REC_TUNER), "the boolean output of FrontendInfo can only be used for lock or BER info or Tuner-Rec"
-		match self.type:
-			case self.LOCK:
-				result = self.source.lock or False
-			case self.REC_TUNER:
-				result = self.tunerNum in self.getRecordingTuners()
-			case _:
-				result = (self.source.ber or 0) > 0
-		return result
+	text = property(getText)
 
 	@cached
 	def getValue(self):
@@ -205,20 +206,21 @@ class FrontendInfo(Converter):
 				result = self.range if ber > self.range else ber
 			case self.SLOT_NUMBER:
 				num = self.source.slot_number
-				result = num is None and -1 or num
+				result = -1 if num is None else num
 			case self.SNR:
 				result = self.source.snr or 0
 			case self.TUNER_TYPE:
 				result = {
-					"DVB-S": 0,
+					"ATSC": 3,
 					"DVB-C": 1,
-					"DVB-T": 2,
-					"ATSC": 3
+					"DVB-S": 0,
+					"DVB-T": 2
 				}.get(self.source.frontend_type, -1)
 			case _:
 				result = None
 		return result
 
-	text = property(getText)
-	boolean = property(getBool)
 	value = property(getValue)
+
+	def recordTimerStateChanged(self, timer):
+		self.changed((self.CHANGED_ALL,))

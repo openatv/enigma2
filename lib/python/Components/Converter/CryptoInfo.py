@@ -6,11 +6,10 @@ from Tools.GetEcmInfo import GetEcmInfo
 
 
 class CryptoInfo(Poll, Converter):
-	def __init__(self, type):
-		Converter.__init__(self, type)
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
 		Poll.__init__(self)
-
-		self.type = type
+		self.type = tokens
 		self.active = False  # TODO what's this
 		self.visible = config.usage.show_cryptoinfo.value > 0
 		self.textvalue = ""  # TODO what's this
@@ -32,9 +31,7 @@ class CryptoInfo(Poll, Converter):
 			data = ""
 		else:
 			self.visible = True
-			if self.type == "VerboseInfo":
-				data = self.ecmdata.getEcmData()[0]
-			else:
-				data = self.ecmdata.getInfo(self.type)
+			data = self.ecmdata.getEcmData()[0] if self.type == "VerboseInfo" else self.ecmdata.getInfo(self.type)
 		return data
+
 	text = property(getText)

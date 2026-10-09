@@ -1,17 +1,17 @@
 from enigma import iPlayableService
+
 from Components.Converter.Converter import Converter
-from Components.Element import cached
 from Components.Converter.Poll import Poll
+from Components.Element import cached
 
 
 class VAudioInfo(Poll, Converter):
 	GET_AUDIO_ICON = 0
 	GET_AUDIO_CODEC = 1
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
 		Poll.__init__(self)
-		self.type = type
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.lang_strings = ("ger", "german", "deu")
@@ -43,74 +43,68 @@ class VAudioInfo(Poll, Converter):
 			"wma": ("8", "9"),
 		}
 		self.type, self.interesting_events = {
-				"AudioIcon": (self.GET_AUDIO_ICON, (iPlayableService.evUpdatedInfo,)),
-				"AudioCodec": (self.GET_AUDIO_CODEC, (iPlayableService.evUpdatedInfo,)),
-			}[type]
+			"AudioCodec": (self.GET_AUDIO_CODEC, (iPlayableService.evUpdatedInfo,)),
+			"AudioIcon": (self.GET_AUDIO_ICON, (iPlayableService.evUpdatedInfo,)),
+		}[tokens]
+
+	def changed(self, what):
+		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
+			Converter.changed(self, what)
+
+	def get_short(self, audioName):
+		result = audioName
+		for returnCodec, codecs in sorted(self.codecs.items()):
+			if any(x in audioName for x in codecs):
+				result = returnCodec.split("_")[1]
+				extension = next((x for x in self.codec_info.get(result, ()) if x in audioName), "")
+				result = f"{result}{extension}"
+				break
+		return result
 
 	def getAudio(self):
-		service = self.source.service
-		audio = service.audioTracks()
+		result = False
+		audio = self.source.service.audioTracks()
 		if audio:
 			self.current_track = audio.getCurrentTrack()
 			self.number_of_tracks = audio.getNumberOfTracks()
 			if self.number_of_tracks > 0 and self.current_track > -1:
 				self.audio_info = audio.getTrackInfo(self.current_track)
-				return True
-		return False
-
-	def getLanguage(self):
-		languages = self.audio_info.getLanguage()
-		for lang in self.lang_strings:
-			if lang in languages:
-				languages = "Deutsch"
-				break
-		languages = languages.replace("und ", "")
-		return languages
+				result = True
+		return result
 
 	def getAudioCodec(self, info):
-		description_str = _("unknown")
+		result = _("unknown")
 		if self.getAudio():
 			languages = self.getLanguage()
 			description = self.audio_info.getDescription() or ""
-			description_str = description.split(" ")
-			if len(description_str) and description_str[0] in languages:
-				return languages
-			if description.lower() in languages.lower():
-				languages = ""
-			description_str = description + " " + languages
-		return description_str
+			if description.split(" ")[0] in languages:
+				result = languages
+			else:
+				if description.lower() in languages.lower():
+					languages = ""
+				result = f"{description} {languages}"
+		return result
 
 	def getAudioIcon(self, info):
-		description_str = self.get_short(self.getAudioCodec(info).translate(str.maketrans("", "", ' .')).lower())
-		return description_str
+		return self.get_short(self.getAudioCodec(info).translate(str.maketrans("", "", " .")).lower())
 
-	def get_short(self, audioName):
-		for return_codec, codecs in sorted(iter(self.codecs.items())):
-			for codec in codecs:
-				if codec in audioName:
-					codec = return_codec.split('_')[1]
-					if codec in self.codec_info:
-						for ex_codec in self.codec_info[codec]:
-							if ex_codec in audioName:
-								codec += ex_codec
-								break
-					return codec
-		return audioName
+	def getLanguage(self):
+		languages = self.audio_info.getLanguage()
+		if any(x in languages for x in self.lang_strings):
+			languages = "Deutsch"
+		return languages.replace("und ", "")
 
 	@cached
 	def getText(self):
+		text = _("Invalid type")
 		service = self.source.service
-		if service:
-			info = service and service.info()
-			if info:
-				if self.type == self.GET_AUDIO_CODEC:
-					return self.getAudioCodec(info)
-				if self.type == self.GET_AUDIO_ICON:
-					return self.getAudioIcon(info)
-		return _("Invalid type")
+		info = service and service.info()
+		if info:
+			match self.type:
+				case self.GET_AUDIO_CODEC:
+					text = self.getAudioCodec(info)
+				case self.GET_AUDIO_ICON:
+					text = self.getAudioIcon(info)
+		return text
 
 	text = property(getText)
-
-	def changed(self, what):
-		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
-			Converter.changed(self, what)

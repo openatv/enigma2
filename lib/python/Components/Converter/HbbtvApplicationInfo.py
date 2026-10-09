@@ -5,11 +5,9 @@ from Components.Element import cached
 class HbbtvApplicationInfo(Converter):
 	NAME = 0
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		self.type = ""
-		if type == "Name":
-			self.type = self.NAME
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		self.type = self.NAME if tokens == "Name" else ""
 
 	@cached
 	def getText(self):
