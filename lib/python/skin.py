@@ -4,7 +4,7 @@ from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, DEFAULT_READONLY_COLOR, config, setReadOnlyColor
 from Components.SystemInfo import BoxInfo
@@ -511,6 +511,16 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 			if value < 0:
 				value = 0
 	return value
+
+
+def parseErrorCorrection(value):
+	options = {
+		"low": eQRCode.ecLow,
+		"medium": eQRCode.ecMedium,
+		"quartile": eQRCode.ecQuartile,
+		"high": eQRCode.ecHigh
+	}
+	return parseOptions(options, "errorCorrection", value, eQRCode.ecMedium)
 
 
 def parseFont(value, scale=((1, 1), (1, 1))):
@@ -1111,6 +1121,9 @@ class AttributeParser:
 	def entryFont(self, value):
 		self.guiObject.setEntryFont(parseFont(value, self.scaleTuple))
 
+	def errorCorrection(self, value):
+		self.guiObject.setErrorCorrection(parseErrorCorrection(value))
+
 	def excludes(self, value):
 		pass
 
@@ -1259,6 +1272,9 @@ class AttributeParser:
 
 	def position(self, value):
 		self.guiObject.move(ePoint(*value) if isinstance(value, tuple) else parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
+
+	def quietZone(self, value):
+		self.guiObject.setQuietZone(parseInteger(value, 4))
 
 	def resolution(self, value):  # This is a dummy method for the parser.
 		pass

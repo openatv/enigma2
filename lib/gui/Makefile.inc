@@ -10,6 +10,8 @@ gui_libenigma_gui_a_SOURCES = \
 	gui/epixmap.cpp \
 	gui/erectangle.cpp \
 	gui/epositiongauge.cpp \
+	gui/eqrcode.cpp \
+	gui/qrcodegen.c \
 	gui/eslider.cpp \
 	gui/estack.cpp \
 	gui/esubtitle.cpp \
@@ -32,6 +34,8 @@ guiinclude_HEADERS = \
 	gui/epixmap.h \
 	gui/erectangle.h \
 	gui/epositiongauge.h \
+	gui/eqrcode.h \
+	gui/qrcodegen.h \
 	gui/eslider.h \
 	gui/estack.h \
 	gui/esubtitle.h \
