@@ -1327,8 +1327,14 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if (strstr(filename, "://"))
 		m_sourceinfo.is_streaming = TRUE;
 	const int mediaHint = m_ref.getData(7) & DVB_I_MEDIA_MASK;
-	m_is_adaptive_stream = (!strncmp(filename, "http://", 7) || !strncmp(filename, "https://", 8))
-		&& (mediaHint == DVB_I_DASH || mediaHint == DVB_I_HLS);
+	const bool isHttp = !strncmp(filename, "http://", 7) || !strncmp(filename, "https://", 8);
+	m_is_adaptive_stream = isHttp && (mediaHint == DVB_I_DASH || mediaHint == DVB_I_HLS);
+#ifndef DREAMNEXTGEN
+	// Use caps discovery on DVB hardware, also for broadcast Internet links.
+	// The Dream-specific fixed DASH pipeline forces AVC instead of byte-stream
+	// and only exposes one audio track; it must not replace normal playbin here.
+	m_is_adaptive_stream = m_is_adaptive_stream || (isHttp && isDashUri(filename));
+#endif
 	if (m_is_adaptive_stream) {
 		m_sourceinfo.is_hls = mediaHint == DVB_I_HLS;
 		m_sourceinfo.is_audio = m_ref.getData(0) == 2;
