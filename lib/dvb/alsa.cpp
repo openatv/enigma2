@@ -258,6 +258,7 @@ static void forceMuteSwitchOn()
 int eAlsaOutput::openAlsa()
 {
     int err = 0;
+    bool config_reloaded = false;
     for (int i = 0; i < ALSA_OPEN_MAX_RETRIES; ++i)
     {
         err = snd_pcm_open(&m_handle, m_device.c_str(),
@@ -265,6 +266,14 @@ int eAlsaOutput::openAlsa()
         if (err == 0) break;
         if (err == -EBUSY && i < ALSA_OPEN_MAX_RETRIES - 1) {
             usleep(ALSA_OPEN_RETRY_DELAY_MS * 1000);
+            m_handle = nullptr;
+            continue;
+        }
+        /* PCM may be defined after startup (e.g. Bluetooth sink written
+         * on connect); the cached config does not see it. */
+        if (!config_reloaded) {
+            config_reloaded = true;
+            snd_config_update_free_global();
             m_handle = nullptr;
             continue;
         }
