@@ -114,6 +114,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	const std::string machine = eModelInformation::getInstance().getValue("machinebuild");
 	m_needs_ci_release_refresh = machine == "gbquad4kpro" || machine == "vuduo4klite";
 	m_needs_ci_demux_refresh = machine == "gbquad4kpro" || machine == "vuduo4klite";
+	m_needs_ci_decoder_refresh = machine == "gbquad4kpro";
 	CONNECT(m_ciReleaseTimer->timeout, eDVBCIInterfaces::refreshReleasedRouting);
 
 	CONNECT(m_messagepump_thread.recv_msg, eDVBCIInterfaces::gotMessageThread);
@@ -241,8 +242,16 @@ void eDVBCIInterfaces::gotMessageMain(const int &message)
 		if (!eDVBResourceManager::getInstance(manager) && manager)
 			manager->refreshNonCIDemuxSources();
 	}
+	else if (message >= messageRoutingChanged && message < messageRoutingChanged + 26)
+		m_routing_changed(message - messageRoutingChanged);
 	else
 		recheckPMTHandlers();
+}
+
+RESULT eDVBCIInterfaces::connectRoutingChanged(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(nullptr, m_routing_changed.connect(event));
+	return 0;
 }
 
 eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
@@ -1057,6 +1066,9 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 	{
 		char buf[64];
 		snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
+		std::string previous_source;
+		if (m_needs_ci_decoder_refresh && tuner_no < 26)
+			std::istringstream(CFile::read(buf)) >> previous_source;
 
 		if (CFile::write(buf, source.c_str()) == -1)
 		{
@@ -1070,6 +1082,12 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 		// the mainloop, never by polling.
 		if (m_needs_ci_demux_refresh && source.compare(0, 2, "CI") == 0)
 			m_messagepump_main.send(messageRefreshDemuxSources);
+		// Notify live decoders in the mainloop after an actual CI path change.
+		// Do not emit while holding CI locks or from the CI authentication thread.
+		if (m_needs_ci_decoder_refresh && tuner_no < 26 && !previous_source.empty()
+			&& previous_source != source
+			&& (previous_source.compare(0, 2, "CI") == 0 || source.compare(0, 2, "CI") == 0))
+			m_messagepump_main.send(messageRoutingChanged + tuner_no);
 	}
 	return 0;
 }
