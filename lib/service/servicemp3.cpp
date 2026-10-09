@@ -1478,6 +1478,12 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 				g_object_set(m_gst_playbin, "volume", (gdouble)1.0, NULL);
 			}
 		}
+		/* Follow eAudioDecoder to the Bluetooth sink (audio_source 2). */
+		if (dvb_audiosink) {
+			int port = 0;
+			CFile::parseInt(&port, "/sys/class/amhdmitx/amhdmitx0/audio_source");
+			g_object_set(dvb_audiosink, "device", port == 2 ? "dreambt" : "dreamhdmi", NULL);
+		}
 		/* dreamaudiosink and eAlsaOutput share the dmix slave on
 		 * dreamhdmi; only the first writer's bytes get forwarded. */
 		eAlsaOutput::instance()->releaseHandle();
