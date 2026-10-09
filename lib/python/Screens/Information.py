@@ -1281,6 +1281,9 @@ class InformationReceiver(InformationBase):
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
+		ramTemp = about.getRAMTemperature()
+		if ramTemp:
+			info.append(self.formatLine("P1", _("RAM temperature"), ramTemp))
 		info.append(self.formatLine("P1", _("CPU brand"), about.getCPUBrand()))
 		socFamily = BoxInfo.getItem("socfamily")
 		if socFamily:
