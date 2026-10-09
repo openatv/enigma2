@@ -1425,12 +1425,18 @@
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch" indent="1">config.usage.show_vcr_scart</item>
 		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner." indent="1">config.misc.spinnerPosition</item>
 	</setup>
-	<setup key="video_setup" title="Video Settings">
+	<setup key="Video" title="Video Settings">
 		<!-- VideoSetup in Screens/VideoMode.py prepends the dynamic items. -->
 		<item level="0" text="HDMI color space" description="This option allows you to config the Colorspace from Auto to RGB." requires="havecolorspace">config.av.hdmicolorspace</item>
 		<item level="0" text="HDMI Colorimetry" description="This option allows you to config the Colorimetry for HDR." requires="havecolorimetry">config.av.hdmicolorimetry</item>
 		<item level="0" text="HDMI color depth" description="This option allows you to config the Colordepth for UHD." requires="havehdmicolordepth">config.av.hdmicolordepth</item>
-		<item level="0" text="HDMI HDR Type" description="This option allows you to force the HDR Modes for UHD." requires="havehdmihdrtype">config.av.hdmihdrtype</item>
+		<if requires="havehdmihdrtype">
+			<item level="0" text="HDMI HDR Type" description="This option allows you to force the HDR Modes for UHD.">config.av.hdmihdrtype</item>
+			<if conditional="config.av.hdmihdrtype.value == 'auto'">
+				<item level="1" text="Switch HDR type by content" description="Select 'Yes' to switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video." indent="1">config.av.hdmihdrtype_switch</item>
+				<item level="1" text="Colorimetry for HDR content" description="Select the HDMI colorimetry used while HDR content is shown. This option is only used if 'HDMI Colorimetry' is set to 'Auto'." requires="havecolorimetry;config.av.hdmihdrtype_switch" conditional="config.av.hdmicolorimetry.value == 'auto'" indent="1">config.av.hdmicolorimetry_hdr</item>
+			</if>
+		</if>
 		<item level="0" text="HDR OSD adjustment" description="This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode." requires="havehdmihdrosd">config.av.hdmihdrosd</item>
 		<item level="0" text="Bypass HDMI EDID Check" description="This option allows you to bypass HDMI EDID check." requires="Canedidchecking">config.av.bypass_edid_checking</item>
 		<item level="0" text="Change Boxmode to control Hardware Chip Modes*" description="Switch Mode to enable HDR Modes or PiP Functions" requires="haveboxmode">config.av.boxmode</item>
@@ -1441,6 +1447,8 @@
 			<item level="0" text="Allow 10bit" description="This option allows you to enable or disable the 10 Bit Color Mode.">config.av.allow_10bit</item>
 		</if>
 		<item level="0" text="Sync mode" description="Setup how to control the channel changing." requires="havesyncmode">config.av.sync_mode</item>
+		<item level="1" text="Deinterlacer mode" description="Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
+		<item level="1" text="Show 'Manual resolution' in extensions menu" description="Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
 		<if requires="haveamlhdrsupport">
 			<item level="0" text="HLG Support" description="This option allows you to force the HLG Modes for UHD.">config.av.amlhlg_support</item>
 			<item level="0" text="HDR10 Support" description="This option allows you to force the HDR10 Modes for UHD.">config.av.amlhdr10_support</item>
