@@ -560,33 +560,33 @@ def parseFontScale(value, scale=((1, 1), (1, 1))):
 
 def parseGradient(value):
 	def validColor(value):
-		if value[0] == "#" and len(value) in (9, 7):
-			isColor = True
-		elif value in colors:
-			isColor = True
-		else:
-			isColor = False
-		return isColor
+		return (value.startswith("#") and len(value) in (9, 7)) or value in colors
 
 	value = gradients.get(value, value)
 	data = [x.strip() for x in value.split(",")]
 	gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]  # Start color, center color, end color.
-	for index, color in enumerate(data):
-		if not validColor(color) or index > 2:
+	colorCount = 0
+	for color in data[:3]:
+		if not validColor(color):
 			break
-		gradientColors[index] = parseColor(color)
-	if index == 2:
+		gradientColors[colorCount] = parseColor(color)
+		colorCount += 1
+	if colorCount == 2:  # Two colors means start and end, drawRectangle treats center == end as a two color gradient.
 		gradientColors[2] = gradientColors[1]
-	argCount = len(data) - index
-	if index > 1 and argCount:
+	argCount = len(data) - colorCount
+	if colorCount > 1 and argCount:
 		options = {
 			"horizontal": eWidget.GRADIENT_HORIZONTAL,
 			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
-		direction = parseOptions(options, "gradient", data[index], eWidget.GRADIENT_VERTICAL)
-		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[index + 1]) else 0
+		direction = parseOptions(options, "gradient", data[colorCount], eWidget.GRADIENT_VERTICAL)
+		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[colorCount + 1]) else 0
 	else:
-		skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+		if colorCount > 1:
+			skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using direction 'vertical'")
+		else:
+			skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+			gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]
 		direction = eWidget.GRADIENT_VERTICAL
 		alphaBlend = 0
 	return (gradientColors[0], gradientColors[1], gradientColors[2], direction, alphaBlend)
