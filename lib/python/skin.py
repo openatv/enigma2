@@ -193,8 +193,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 				case "screen":  # Process all screen elements.
 					name = element.attrib.get("name")
 					if name:  # Without a name, it's useless!
-						scrnID = element.attrib.get("id")
-						if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
+						if parseInteger(element.attrib.get("id", screenID), screenID) == screenID:  # If there is a screen ID is it for this display.
 							res = element.attrib.get("resolution", f"{resolution[0]},{resolution[1]}")
 							if res != "0,0":
 								element.attrib["resolution"] = res
@@ -2438,7 +2437,7 @@ def readSkin(screen, skin, names, desktop):
 					print(f"[Skin] OBSOLETE SOURCE WILL BE REMOVED {source.removalDate}, PLEASE UPDATE!")
 					if source.description:
 						print(f"[Skin] Source description: '{source.description}'.")
-					widgetSource = source.new_source
+					widgetSource = source.newSource
 				else:
 					break  # Otherwise, use the source.
 			if source is None:
