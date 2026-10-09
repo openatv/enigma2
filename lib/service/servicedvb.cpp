@@ -1487,6 +1487,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	CONNECT(m_subtitle_sync_timer->timeout, eDVBServicePlay::checkSubtitleTiming);
 	CONNECT(m_nownext_timer->timeout, eDVBServicePlay::updateEpgCacheNowNext);
 	CONNECT(m_precise_recovery_timer->timeout, eDVBServicePlay::startPreciseRecoveryCheck);
+	eDVBCIInterfaces::getInstance()->connectRoutingChanged(sigc::mem_fun(*this, &eDVBServicePlay::ciRoutingChanged), m_ci_routing_connection);
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -4224,6 +4225,69 @@ void eDVBServicePlay::switchToTimeshift()
 		eDebug("[eDVBServicePlay] timeshift entry: re-opened PCR fd on adapter0/demux%d", did);
 	}
 #endif
+}
+
+void eDVBServicePlay::ciRoutingChanged(int tuner)
+{
+	if (!m_is_primary || m_decoder_index != 0 || m_is_pvr || m_is_stream || m_timeshift_active)
+		return;
+	eUsePtr<iDVBChannel> channel;
+	ePtr<iDVBFrontend> frontend;
+	if (m_service_handler.getChannel(channel) || !channel || channel->getFrontend(frontend)
+		|| !frontend || static_cast<eDVBFrontend *>(&*frontend)->getSlotID() != tuner)
+		return;
+	m_ci_changed_tuner = tuner;
+	m_ci_decoder_retries = 10;
+	if (!m_ci_decoder_timer)
+	{
+		m_ci_decoder_timer = eTimer::create(eApp);
+		CONNECT(m_ci_decoder_timer->timeout, eDVBServicePlay::refreshCIDecoder);
+	}
+	m_ci_decoder_timer->start(300, true);
+}
+
+void eDVBServicePlay::refreshCIDecoder()
+{
+	// Recheck after the routing settles: a zap or entry into timeshift playback
+	// during the grace period must not restart a different decoder.
+	if (!m_is_primary || m_decoder_index != 0 || m_is_pvr || m_is_stream
+		|| m_timeshift_active || (m_is_paused && !m_stream_corruption_detected) || !m_decoder || m_soft_decoder
+		|| m_service_handler.isCiConnected())
+		return;
+	eUsePtr<iDVBChannel> channel;
+	ePtr<iDVBFrontend> frontend;
+	int state;
+	if (m_service_handler.getChannel(channel) || !channel || channel->getState(state)
+		|| channel->getFrontend(frontend) || !frontend
+		|| static_cast<eDVBFrontend *>(&*frontend)->getSlotID() != m_ci_changed_tuner)
+		return;
+	if (state != iDVBChannel::state_ok)
+	{
+		if (m_ci_decoder_retries-- > 0)
+			m_ci_decoder_timer->start(300, true);
+		return;
+	}
+	eDVBServicePMTHandler::program program;
+	if (!m_service_handler.isPmtReady() || m_service_handler.getProgramInfo(program)
+		|| !program.caids.empty() || program.videoStreams.empty())
+		return;
+	eDebug("[eDVBServicePlay] CI routing decoder refresh: tuner=%d", m_ci_changed_tuner);
+	// Recreate only decoder PID filters. Keep the PMT handler, data demux and
+	// timeshift recorder alive, including the current timeshift buffer.
+	m_decoder->setVideoPID(-1, -1);
+	m_decoder->setAudioPID(-1, -1);
+	m_decoder->setSyncPCR(-1);
+	m_decoder->setTextPID(-1);
+	m_decoder->set();
+	if (m_stream_corruption_detected)
+	{
+		// Live viewing has no playback delay to recover. A CI path switch can
+		// report a transient lost lock; clear that pause after lock returns.
+		resetRecoveryState();
+		m_is_paused = 0;
+		m_decoder->play();
+	}
+	updateDecoder();
 }
 
 void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)

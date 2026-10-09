@@ -12,7 +12,7 @@ class Time(Setup):
 		self.addSaveNotifier(self.updateNetworkTime)
 		self["key_yellow"] = StaticText("")
 		self["geolocationActions"] = HelpableActionMap(self, "ColorActions", {
-			"yellow": (self.useGeolocation, _("Use geolocation to set the current time zone location"))
+			"yellow": (self.keyUseGeolocation, _("Use geolocation to set the current time zone location"))
 		}, prio=0, description=_("Time Setup Actions"))
 		self.selectionChanged()
 
@@ -29,34 +29,34 @@ class Time(Setup):
 			self["geolocationActions"].setEnabled(False)
 		Setup.selectionChanged(self)
 
-	def useGeolocation(self):
-		geolocation.getGeolocationData(fields="status,message,timezone,proxy", screen=self, callback=self.setGeolocationTimezone)
+	def keyUseGeolocation(self):
+		def keyUseGeolocationCallback(geolocationData):
+			if geolocationData.get("proxy", True):
+				self.setFootnote(_("Geolocation data is not available."))
+				return
+			tz = geolocationData.get("timezone", None)
+			if tz is None:
+				self.setFootnote(_("Geolocation data does not contain time zone information."))
+			else:
+				areaItem = None
+				valItem = None
+				for item in self["config"].list:
+					if item[1] is config.timezone.area:
+						areaItem = item
+					if item[1] is config.timezone.val:
+						valItem = item
+				area, zone = tz.split("/", 1)
+				config.timezone.area.value = area
+				if areaItem is not None:
+					areaItem[1].changed()
+				self["config"].invalidate(areaItem)
+				config.timezone.val.value = zone
+				if valItem is not None:
+					valItem[1].changed()
+				self["config"].invalidate(valItem)
+				self.setFootnote(_("Geolocation data has been used to set the time zone."))
 
-	def setGeolocationTimezone(self, geolocationData):
-		if geolocationData.get("proxy", True):
-			self.setFootnote(_("Geolocation data is not available."))
-			return
-		tz = geolocationData.get("timezone", None)
-		if tz is None:
-			self.setFootnote(_("Geolocation data does not contain time zone information."))
-		else:
-			areaItem = None
-			valItem = None
-			for item in self["config"].list:
-				if item[1] is config.timezone.area:
-					areaItem = item
-				if item[1] is config.timezone.val:
-					valItem = item
-			area, zone = tz.split("/", 1)
-			config.timezone.area.value = area
-			if areaItem is not None:
-				areaItem[1].changed()
-			self["config"].invalidate(areaItem)
-			config.timezone.val.value = zone
-			if valItem is not None:
-				valItem[1].changed()
-			self["config"].invalidate(valItem)
-			self.setFootnote(_("Geolocation data has been used to set the time zone."))
+		geolocation.getGeolocationData(fields="status,message,timezone,proxy", screen=self, callback=keyUseGeolocationCallback)
 
 	def yellow(self):  # Invoked from the Wizard.
-		self.useGeolocation()
+		self.keyUseGeolocation()

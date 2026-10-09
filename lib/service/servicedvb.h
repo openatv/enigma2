@@ -296,6 +296,12 @@ protected:
 	void switchToTimeshift();
 
 	void updateDecoder(bool sendSeekableStateChanged = false);
+	ePtr<eConnection> m_ci_routing_connection;
+	ePtr<eTimer> m_ci_decoder_timer;
+	int m_ci_changed_tuner = -1;
+	int m_ci_decoder_retries = 0;
+	void ciRoutingChanged(int tuner);
+	void refreshCIDecoder();
 
 	int m_skipmode;
 	int m_fastforward;
