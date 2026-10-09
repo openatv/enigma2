@@ -213,10 +213,12 @@ private:
 	ePtr<eTimer> m_ciReleaseTimer;
 	bool m_needs_ci_release_refresh;
 	bool m_needs_ci_demux_refresh;
+	bool m_needs_ci_decoder_refresh;
+	sigc::signal<void(int)> m_routing_changed;
 	std::set<int> m_pending_ci_releases;
 	void refreshReleasedRouting();
 	static pthread_mutex_t m_pmt_handler_lock;
-	enum { messageRecheckPMTHandlers = 1, messageRefreshDemuxSources };
+	enum { messageRecheckPMTHandlers = 1, messageRefreshDemuxSources, messageRoutingChanged = 1000 };
 
 	int sendCAPMT(int slot);
 
@@ -240,6 +242,9 @@ public:
 	bool isCiConnected(eDVBServicePMTHandler *pmthandler);
 	bool hasActiveCiRouting();
 	void retryReleasedRouting();
+#ifndef SWIG
+	RESULT connectRoutingChanged(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection);
+#endif
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
 
