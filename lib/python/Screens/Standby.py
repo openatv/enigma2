@@ -46,6 +46,7 @@ class TVstate:  # load in Navigation
 		if TVinStandby is not None:
 			print("[Standby] only one TVstate instance is allowed!")
 		TVinStandby = self
+		self.hdmicec_instance = None
 
 		try:
 			import Components.HdmiCec
@@ -97,11 +98,15 @@ class TVstate:  # load in Navigation
 		return False
 
 	def setTVstate(self, value):
+		if self.hdmicec_instance and value in ('on', 'power'):
+			self.hdmicec_instance.startupPending = False
 		if self.hdmicec_ok:
 			if value == 'on' or (value == 'power' and config.hdmicec.handle_deepstandby_events.value and not self.hdmicec_instance.handleTimer.isActive()):
 				self.hdmicec_instance.wakeupMessages()
 			elif value == 'standby':
 				self.hdmicec_instance.standbyMessages()
+			elif value == 'power' and not config.hdmicec.handle_deepstandby_events.value:
+				self.hdmicec_instance.scheduleSystemAudioModeRequest()
 
 
 def setLCDModeMinitTV(value):

@@ -118,6 +118,7 @@ protected:
 	unsigned char deviceType, logicalAddress;
 	int hdmiFd;
 	ePtr<eSocketNotifier> messageNotifier;
+	void initializeCEC();
 	void addressPoll();
 	void reportPhysicalAddress();
 	void getAddressInfo();

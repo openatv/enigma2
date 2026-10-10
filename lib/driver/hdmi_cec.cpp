@@ -143,13 +143,16 @@ eHdmiCEC::eHdmiCEC()
 	eventsSuspended = false;
 	hdmiFd = -1;
 	fixedAddress = false;
-	cecEnabled = true;
-	reportActiveMenu = true;
+	cecEnabled = false;
+	reportActiveMenu = false;
 	physicalAddress[0] = 0x10;
 	physicalAddress[1] = 0x00;
 	logicalAddress = CEC_LOG_ADDR_TUNER_1;
 	deviceType = CEC_LOG_ADDR_TUNER_1; /* default: tuner / set-top box */
+}
 
+void eHdmiCEC::initializeCEC()
+{
 	hdmiFd = ::open("/dev/cec0", O_RDWR | O_CLOEXEC);
 	if (hdmiFd >= 0)
 	{
@@ -531,6 +534,8 @@ int eHdmiCEC::getDeviceType()
 void eHdmiCEC::setEnabled(bool enabled)
 {
 	cecEnabled = enabled;
+	if (cecEnabled && hdmiFd < 0)
+		initializeCEC();
 }
 
 void eHdmiCEC::setReportActiveMenu(bool enabled)
@@ -826,7 +831,7 @@ long eHdmiCEC::translateKey(unsigned char code)
 
 void eHdmiCEC::sendMessage(struct cec_message &message)
 {
-	if (hdmiFd >= 0)
+	if (cecEnabled && hdmiFd >= 0)
 	{
 		eDebugNoNewLineStart("[eHdmiCEC] send message");
 		eDebugNoNewLine(" %02X", message.address);
