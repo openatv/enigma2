@@ -75,6 +75,8 @@ def InitAVSwitch():
 	config.av.autores_label_timeout = ConfigSelection(default=5, choices=[(0, _("Not Shown"))] + choiceList)
 	config.av.autores_delay = ConfigSelectionNumber(min=0, max=3000, stepwidth=50, default=400, wraparound=True)
 	config.av.autores_deinterlace = ConfigYesNo(default=False)
+	config.av.autores_force_progressive = ConfigYesNo(default=False)
+	config.av.manual_resolution_extmenu = ConfigYesNo(default=False)
 	hertz = _("Hz")
 	config.av.autores_sd = ConfigSelection(default="720p50", choices=[
 		("720p50", f"720p50{hertz}"),
@@ -363,8 +365,14 @@ def InitAVSwitch():
 			("bt709", "BT.709")
 		])
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
+		config.av.hdmicolorimetry_hdr = ConfigSelection(default="auto", choices=[
+			("auto", _("Auto")),
+			("bt2020ncl", "BT.2020 NCL"),
+			("bt2020cl", "BT.2020 CL")
+		])
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
+		config.av.hdmicolorimetry_hdr = ConfigNothing()
 	boxMode = fileReadLine("/proc/stb/info/boxmode", default=None, source=MODULE_NAME)
 	boxMode = boxMode.split() if boxMode else False
 	BoxInfo.setItem("haveboxmode", boxMode)
@@ -395,6 +403,27 @@ def InitAVSwitch():
 		config.av.hdmicolordepth.addNotifier(setColorDepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
+
+	deinterlace = fileReadLine("/proc/stb/vmpeg/deinterlace", default=None, source=MODULE_NAME)
+	BoxInfo.setItem("havedeinterlace", deinterlace is not None)
+	if deinterlace is not None:
+		def setDeinterlace(configElement):
+			fileWriteLine("/proc/stb/vmpeg/deinterlace", configElement.value, source=MODULE_NAME)
+
+		deinterlaceLabels = {
+			"off": _("Off"),
+			"auto": _("Auto"),
+			"on": _("On"),
+			"bob": "Bob"
+		}
+		deinterlaceChoices = fileReadLine("/proc/stb/vmpeg/deinterlace_choices", default=None, source=MODULE_NAME)
+		deinterlaceChoices = deinterlaceChoices.split() if deinterlaceChoices else list(deinterlaceLabels)
+		config.av.deinterlace = ConfigSelection(default="auto" if "auto" in deinterlaceChoices else deinterlaceChoices[0], choices=[
+			(value, deinterlaceLabels.get(value, value)) for value in deinterlaceChoices
+		])
+		config.av.deinterlace.addNotifier(setDeinterlace)
+	else:
+		config.av.deinterlace = ConfigNothing()
 
 	syncMode = fileReadLine("/proc/stb/video/sync_mode_choices", default=None, source=MODULE_NAME)
 	syncMode = syncMode.split() if syncMode else False
@@ -456,8 +485,10 @@ def InitAVSwitch():
 			(value, hdrTypeLabels.get(value, value.upper())) for value in hdrTypeChoices
 		])
 		config.av.hdmihdrtype.addNotifier(setHDRType)
+		config.av.hdmihdrtype_switch = ConfigYesNo(default=False)
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
+		config.av.hdmihdrtype_switch = ConfigNothing()
 	hdrOsd = fileReadLine("/proc/stb/video/hdmi_hdr_osd", default=None, source=MODULE_NAME)
 	BoxInfo.setItem("havehdmihdrosd", bool(hdrOsd))
 	if hdrOsd:

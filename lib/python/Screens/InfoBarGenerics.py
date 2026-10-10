@@ -376,6 +376,7 @@ class InfoBarExtensions:
 			"blue": (self.keyQuickMenu, quickMenuHelp)
 		}, prio=1, description=_("Extension Actions"))  # Lower priority.
 		self.addExtension((lambda: _("Manually import from fallback tuner"), self.extImportChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
+		self.addExtension((lambda: _("Manual resolution"), self.extManualResolution, lambda: config.av.manual_resolution_extmenu.value and config.av.videoport.value != "Scart"))
 		self.addExtension(extension=self.extLogManager, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.extOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.extCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
@@ -425,6 +426,10 @@ class InfoBarExtensions:
 	def extImportChannels(self):
 		from Components.ImportChannels import ImportChannels
 		ImportChannels()
+
+	def extManualResolution(self):
+		from Screens.VideoMode import manualResolution
+		manualResolution(self.session)
 
 	def extLogManager(self):
 		def logManagerName():
