@@ -1,6 +1,7 @@
+from os.path import join
 from Components.Converter.Converter import Converter
-from Components.Element import cached, ElementError
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
+from Components.Element import ElementError, cached
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -8,36 +9,32 @@ class ValueToPixmap(Converter):
 	LANGUAGE_CODE = 0
 	PATH = 1
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		if type == "LanguageCode":
-			self.type = self.LANGUAGE_CODE
-		elif type == "Path":
-			self.type = self.PATH
-		else:
-			raise ElementError("'%s' is not <LanguageCode|Path> for ValueToPixmap converter" % type)
-
-	@cached
-	def getPixmap(self):
-		if self.source:
-			val = self.source.text
-			if val in (None, ""):
-				return None
-		if self.type == self.PATH:
-			return LoadPixmap(val)
-		if self.type == self.LANGUAGE_CODE:
-			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "countries/" + val[3:].lower() + ".png"))
-			if png is None:
-				png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "countries/" + val + ".png"))
-				if png is None:
-					png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
-					if png is None:
-						png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKINS, "countries/missing.png"))
-			return png
-		return None
-
-	pixmap = property(getPixmap)
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		self.type = {
+			"LanguageCode": self.LANGUAGE_CODE,
+			"Path": self.PATH
+		}.get(tokens)
+		if self.type is None:
+			raise ElementError(f"'{tokens}' is not <LanguageCode|Path> for ValueToPixmap converter")
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
 			Converter.changed(self, what)
+
+	@cached
+	def getPixmap(self):
+		pixmap = None
+		value = self.source.text if self.source else None
+		if value:
+			match self.type:
+				case self.LANGUAGE_CODE:
+					for scope, fileName in ((SCOPE_GUISKIN, f"{value[3:].lower()}.png"), (SCOPE_GUISKIN, f"{value}.png"), (SCOPE_GUISKIN, "missing.png"), (SCOPE_SKINS, "missing.png")):
+						pixmap = LoadPixmap(cached=True, path=resolveFilename(scope, join("countries", fileName)))
+						if pixmap is not None:
+							break
+				case self.PATH:
+					pixmap = LoadPixmap(value)
+		return pixmap
+
+	pixmap = property(getPixmap)

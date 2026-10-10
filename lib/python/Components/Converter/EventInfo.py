@@ -2,38 +2,41 @@ from time import localtime, mktime, strftime, time
 
 from enigma import eEPGCache, eServiceEventEnums, eServiceReference, iServiceInformation
 
-from ServiceReference import ServiceReference
-from Components.config import config
-from Components.Element import cached
-from Components.Genres import genres
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from Components.Element import cached
+from Components.Genres import genres
+from Components.config import config
+from ServiceReference import ServiceReference
 from Tools.Conversions import UnitScaler
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 
 
 class ETSIClassifications(dict):
 	def __init__(self):
-		def shortRating(age):
+		def imageRating(age):
+			result = None
 			if age == 0:
-				return _("All ages")
+				result = "ratings/ETSI-ALL.png"
 			elif age <= 15:
-				age += 3
-				return f"{age}+"
+				result = f"ratings/ETSI-{age + 3}.png"
+			return result
 
 		def longRating(age):
+			result = None
 			if age == 0:
-				return _("Rating undefined")
+				result = _("Rating undefined")
 			elif age <= 15:
-				age += 3
-				return _("Minimum age %d years") % age
+				result = _("Minimum age %d years") % (age + 3)
+			return result
 
-		def imageRating(age):
+		def shortRating(age):
+			result = None
 			if age == 0:
-				return "ratings/ETSI-ALL.png"
+				result = _("All ages")
 			elif age <= 15:
-				age += 3
-				return "ratings/ETSI-%d.png" % age
+				result = f"{age + 3}+"
+			return result
 
 		#         0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15
 		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
@@ -287,7 +290,7 @@ class EventInfo(Converter, Poll):
 		self.separator = None
 		self.trim = False
 		parse = ","
-		tokens.replace(";", parse)  # Some builds use ";" as a separator, most use ",".
+		tokens = tokens.replace(";", parse)  # Some builds use ";" as a separator, most use ",".
 		tokens = [x.strip() for x in tokens.split(parse)]
 		for token in tokens:
 			variable, value, poll = tokenDictionary.get(token, (None, None, 0))
@@ -303,6 +306,14 @@ class EventInfo(Converter, Poll):
 		self.epgCache = eEPGCache.getInstance()
 		# self.tokenText = tokens  # DEBUG: This is only for testing purposes.
 
+	def changed(self, what):
+		Converter.changed(self, what)
+		if self.token == self.PROGRESS and len(self.downstream_elements):
+			if not self.source.event and self.downstream_elements[0].visible:
+				self.downstream_elements[0].visible = False
+			elif self.source.event and not self.downstream_elements[0].visible:
+				self.downstream_elements[0].visible = True
+
 	@cached
 	def getBoolean(self):
 		result = False
@@ -316,22 +327,21 @@ class EventInfo(Converter, Poll):
 
 	@cached
 	def getText(self):
-		def trimText(text):
-			return str(text).strip() if self.trim else str(text)
+		def formatDescription(description, extended):
+			description = trimText(description)
+			extended = trimText(extended)
+			if description[:20] == extended[:20]:
+				result = extended
+			elif description and extended:
+				result = f"{description}{self.separator}{extended}"
+			else:
+				result = f"{description}{extended}"
+			return result
 
 		def getCRID(event, types):
 			CRIDs = event.getCridData(types)
 			# print(f"[EventInfo] getCRID DEBUG: Type='{types}', CRIDs='{CRIDs}'.")
 			return CRIDs and CRIDs[0][2] or ""
-
-		def formatDescription(description, extended):
-			description = trimText(description)
-			extended = trimText(extended)
-			if description[:20] == extended[:20]:
-				return extended
-			if description and extended:
-				description = f"{description}{self.separator}"
-			return f"{description}{extended}"
 
 		def getEPGData():
 			epgData = []
@@ -341,6 +351,9 @@ class EventInfo(Converter, Poll):
 				if self.epgCache:
 					epgData = self.epgCache.lookupEvent(search)
 			return epgData
+
+		def trimText(text):
+			return str(text).strip() if self.trim else str(text)
 
 		result = ""
 		event = self.source.event
@@ -380,11 +393,9 @@ class EventInfo(Converter, Poll):
 							country = rating.getCountryCode().upper() if rating else "ETSI"
 							if country in OPENTV_COUNTRIES:
 								country = f"{OPENTV_COUNTRIES[country]}OpenTV"
-								result = self.separator.join((genreText for genreText in (trimText(genres.getGenreLevelTwoText(genre[0], genre[1], country=country)) for genre in genreList) if genreText))
-							else:
-								if config.misc.epggenrecountry.value:
-									country = config.misc.epggenrecountry.value
-								result = self.separator.join((genreText for genreText in (trimText(genres.getGenreLevelTwoText(genre[0], genre[1], country=country)) for genre in genreList) if genreText))
+							elif config.misc.epggenrecountry.value:
+								country = config.misc.epggenrecountry.value
+							result = self.separator.join(x for x in (trimText(genres.getGenreLevelTwoText(x[0], x[1], country=country)) for x in genreList) if x)
 				case self.ID:
 					result = trimText(event.getEventId())
 				case self.MEDIA_PATH:
@@ -468,7 +479,7 @@ class EventInfo(Converter, Poll):
 						rating = country[self.RATING_NORMAL].get(age, country[self.RATING_DEFAULT](age))
 						ageText = rating[self.RATING_SHORT].strip().replace("+", "")
 						color = rating[self.RATING_COLOR]
-						return f"{ageText};#{color:08X}"
+						result = f"{ageText};#{color:08X}"
 				case self.RUNNING_STATUS:
 					if event.getPdcPil():
 						result = {
@@ -607,12 +618,5 @@ class EventInfo(Converter, Poll):
 		return result
 
 	value = property(getValue)
-	range = 1000
 
-	def changed(self, what):
-		Converter.changed(self, what)
-		if self.token == self.PROGRESS and len(self.downstream_elements):
-			if not self.source.event and self.downstream_elements[0].visible:
-				self.downstream_elements[0].visible = False
-			elif self.source.event and not self.downstream_elements[0].visible:
-				self.downstream_elements[0].visible = True
+	range = 1000

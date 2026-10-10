@@ -1,5 +1,7 @@
 from socket import gethostbyaddr
+
 from enigma import eStreamServer
+
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from Components.Element import cached
@@ -21,111 +23,93 @@ class ClientsStreaming(Converter, Poll):
 	EXTRA_INFO = 10
 	DATA = 11
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
 		Poll.__init__(self)
 		self.poll_interval = 30000
 		self.poll_enabled = True
-
 		self.type = {
-			"REF": self.REF,
-			"IP": self.IP,
-			"NAME": self.NAME,
-			"ENCODER": self.ENCODER,
-			"NUMBER": self.NUMBER,
-			"SHORT_ALL": self.SHORT_ALL,
 			"ALL": self.ALL,
+			"DATA": self.DATA,
+			"ENCODER": self.ENCODER,
+			"EXTRA_INFO": self.EXTRA_INFO,
 			"INFO": self.INFO,
 			"INFO_RESOLVE": self.INFO_RESOLVE,
 			"INFO_RESOLVE_SHORT": self.INFO_RESOLVE_SHORT,
-			"EXTRA_INFO": self.EXTRA_INFO,
-			"DATA": self.DATA,
-		}.get(type, self.UNKNOWN)
-
+			"IP": self.IP,
+			"NAME": self.NAME,
+			"NUMBER": self.NUMBER,
+			"REF": self.REF,
+			"SHORT_ALL": self.SHORT_ALL
+		}.get(tokens, self.UNKNOWN)
 		self.streamServer = eStreamServer.getInstance()
-
-	@cached
-	def getText(self):
-		if self.streamServer is None:
-			return ""
-
-		clients = []
-		refs = []
-		ips = []
-		names = []
-		encoders = []
-		extrainfo = f'{_("ClientIP")}\t\t{_("Transcode")}\t{_("Channel")}\n\n'
-		info = ""
-
-		for x in self.streamServer.getConnectedClients():
-			refs.append((x[1]))
-			servicename = ServiceReference(x[1]).getServiceName() or "(unknown service)"
-			service_name = servicename
-			names.append((service_name))
-			ip = x[0]
-
-			ips.append((ip))
-
-			if int(x[2]) == 0:
-				strtype = "S"
-				encoder = _("No")
-			else:
-				strtype = "T"
-				encoder = _("Yes")
-
-			encoders.append((encoder))
-
-			if self.type == self.INFO_RESOLVE or self.type == self.INFO_RESOLVE_SHORT:
-				try:
-					raw = gethostbyaddr(ip)
-					ip = raw[0]
-				except Exception:
-					pass
-
-				if self.type == self.INFO_RESOLVE_SHORT:
-					ip, sep, tail = ip.partition(".")
-
-			info = f"{info}{strtype} {ip:8s} {service_name}\n"
-
-			clients.append((ip, service_name, encoder))
-
-			extrainfo = f"{extrainfo}{ip:8s}\t{encoder}\t{service_name}\n"
-
-		if self.type == self.REF:
-			return " ".join(refs)
-		elif self.type == self.IP:
-			return " ".join(ips)
-		elif self.type == self.NAME:
-			return " ".join(names)
-		elif self.type == self.ENCODER:
-			return f"{_("Transcoding")}: {" ".join(encoders)}"
-		elif self.type == self.NUMBER:
-			return str(len(clients))
-		elif self.type == self.EXTRA_INFO:
-			return extrainfo
-		elif self.type == self.SHORT_ALL:
-			return _("Total clients streaming: %d ( %s )") % (len(clients), " ".join(names))
-		elif self.type == self.ALL:
-			return "\n".join(" ".join(elems) for elems in clients)
-		elif self.type == self.INFO or self.type == self.INFO_RESOLVE or self.type == self.INFO_RESOLVE_SHORT:
-			return info
-		elif self.type == self.DATA:
-			return clients
-		else:
-			return "(unknown)"
-
-	text = property(getText)
-
-	@cached
-	def getBoolean(self):
-		if self.streamServer is None:
-			return False
-		return self.streamServer.getConnectedClients() and True or False
-
-	boolean = property(getBoolean)
 
 	def changed(self, what):
 		Converter.changed(self, (self.CHANGED_POLL,))
 
 	def doSuspend(self, suspended):
 		pass
+
+	@cached
+	def getBoolean(self):
+		return bool(self.streamServer and self.streamServer.getConnectedClients())
+
+	boolean = property(getBoolean)
+
+	@cached
+	def getText(self):
+		text = ""
+		if self.streamServer is not None:
+			clients = []
+			refs = []
+			ips = []
+			names = []
+			encoders = []
+			extraInfo = f"{_('ClientIP')}\t\t{_('Transcode')}\t{_('Channel')}\n\n"
+			info = ""
+			for client in self.streamServer.getConnectedClients():
+				refs.append(client[1])
+				serviceName = ServiceReference(client[1]).getServiceName() or "(unknown service)"
+				names.append(serviceName)
+				ip = client[0]
+				ips.append(ip)
+				transcoding = int(client[2]) != 0
+				streamType = "T" if transcoding else "S"
+				encoder = _("Yes") if transcoding else _("No")
+				encoders.append(encoder)
+				if self.type in (self.INFO_RESOLVE, self.INFO_RESOLVE_SHORT):
+					try:
+						ip = gethostbyaddr(ip)[0]
+					except Exception:
+						pass
+					if self.type == self.INFO_RESOLVE_SHORT:
+						ip = ip.partition(".")[0]
+				info = f"{info}{streamType} {ip:8s} {serviceName}\n"
+				clients.append((ip, serviceName, encoder))
+				extraInfo = f"{extraInfo}{ip:8s}\t{encoder}\t{serviceName}\n"
+			match self.type:
+				case self.ALL:
+					text = "\n".join(" ".join(x) for x in clients)
+				case self.DATA:
+					text = clients
+				case self.ENCODER:
+					text = f"{_('Transcoding')}: {' '.join(encoders)}"
+				case self.EXTRA_INFO:
+					text = extraInfo
+				case self.INFO | self.INFO_RESOLVE | self.INFO_RESOLVE_SHORT:
+					text = info
+				case self.IP:
+					text = " ".join(ips)
+				case self.NAME:
+					text = " ".join(names)
+				case self.NUMBER:
+					text = str(len(clients))
+				case self.REF:
+					text = " ".join(refs)
+				case self.SHORT_ALL:
+					text = _("Total clients streaming: %d ( %s )") % (len(clients), " ".join(names))
+				case _:
+					text = "(unknown)"
+		return text
+
+	text = property(getText)

@@ -1,11 +1,10 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
-# the protocol works as the following:
-
-# lines starting with '-' are fatal errors (no recovery possible),
-# lines starting with '=' are progress notices,
-# lines starting with '+' are PIDs to record:
+# The protocol works as follows:
+# Lines starting with '-' are fatal errors (no recovery possible).
+# Lines starting with '=' are progress notices.
+# Lines starting with '+' are PIDs to record:
 # 	"+d:[p:t[,p:t...]]" with d=demux nr, p: pid, t: type
 
 
@@ -14,25 +13,19 @@ class Streaming2(Converter):
 	def getText(self):
 		service = self.source.service
 		if service is None:
-			return "-NO SERVICE\n"
-
-		streaming = service.stream()
-		s = streaming and streaming.getStreamingData()
-
-		if s is None or not any(s):
-			err = hasattr(service, 'getError') and service.getError()
-			if err:
-				return "-SERVICE ERROR:%d\n" % err
+			text = "-NO SERVICE\n"
+		else:
+			streaming = service.stream()
+			streamData = streaming and streaming.getStreamingData()
+			if streamData is None or not any(streamData):
+				error = hasattr(service, "getError") and service.getError()
+				text = f"-SERVICE ERROR:{int(error)}\n" if error else "=NO STREAM\n"
 			else:
-				return "=NO STREAM\n"
-
-		retval = "+%d:%s" % (s["demux"], ','.join(["%x:%s" % (x[0], x[1]) for x in s["pids"]]))
-
-		if "default_audio_pid" in s:
-			retval += ",%x:%s" % (s["default_audio_pid"], "default_audio_pid")
-
-		retval += "\n"
-
-		return (retval)
+				pids = ",".join(f"{x[0]:x}:{x[1]}" for x in streamData["pids"])
+				text = f"+{int(streamData['demux'])}:{pids}"
+				if "default_audio_pid" in streamData:
+					text = f"{text},{streamData['default_audio_pid']:x}:default_audio_pid"
+				text = f"{text}\n"
+		return text
 
 	text = property(getText)

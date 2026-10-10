@@ -1,118 +1,77 @@
-from enigma import iServiceInformation
-from Components.Converter.Converter import Converter
-from Components.Element import cached
 from xml.etree.ElementTree import parse
+
+from enigma import iServiceInformation
+
+from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from Components.Element import cached
 
 
 class SmartInfo(Poll, Converter):
-    EXPERTINFO = 0
+	EXPERTINFO = 0
 
-    def __init__(self, type):
-        Converter.__init__(self, type)
-        Poll.__init__(self)
-        self.type = self.EXPERTINFO
-        self.poll_interval = 30000
-        self.poll_enabled = True
-        self.ar_fec = ['Auto',
-         '1/2',
-         '2/3',
-         '3/4',
-         '5/6',
-         '7/8',
-         '3/5',
-         '4/5',
-         '8/9',
-         '9/10',
-         'None',
-         'None',
-         'None',
-         'None',
-         'None']
-        self.ar_pol = ['H',
-         'V',
-         'CL',
-         'CR',
-         'na',
-         'na',
-         'na',
-         'na',
-         'na',
-         'na',
-         'na',
-         'na']
-        self.satNames = {}
-        self.readSatXml()
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		Poll.__init__(self)
+		self.type = self.EXPERTINFO
+		self.poll_interval = 30000
+		self.poll_enabled = True
+		self.ar_fec = ("Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "3/5", "4/5", "8/9", "9/10", "None", "None", "None", "None", "None")
+		self.ar_pol = ("H", "V", "CL", "CR", "na", "na", "na", "na", "na", "na", "na", "na")
+		self.satNames = {}
+		self.readSatXml()
 
-    @cached
-    def getText(self):
-        service = self.source.service
-        info = service and service.info()
-        if not info:
-            return ''
-        Ret_Text = ''
-        orbital = self.getOrbitalPosition(info)
-        satName = self.satNames.get(orbital, orbital)
-        if self.type == self.EXPERTINFO:
-            feinfo = service and service.frontendInfo()
-            if feinfo is not None:
-                frontendData = feinfo and feinfo.getAll(True)
-                if frontendData is not None:
-                    if frontendData.get('tuner_type') == 'DVB-S' or frontendData.get('tuner_type') == 'DVB-C':
-                        frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
-                        symbolrate = str(frontendData.get('symbol_rate') / 1000)
-                        try:
-                            if frontendData.get('tuner_type') == 'DVB-S':
-                                polarisation_i = frontendData.get('polarization')
-                            else:
-                                polarisation_i = 0
-                            fec_i = frontendData.get('fec_inner')
-                            Ret_Text = Ret_Text + frequency + ' ' + self.ar_pol[polarisation_i] + ' ' + self.ar_fec[fec_i] + ' ' + symbolrate + ' '
-                        except Exception:
-                            Ret_Text = Ret_Text + frequency + ' ' + symbolrate + ' '
+	def changed(self, what):
+		Converter.changed(self, what)
 
-                        # orb_pos = ''
-                    elif frontendData.get('tuner_type') == 'DVB-T':
-                        frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
-                        Ret_Text = Ret_Text + _('Frequency: ') + frequency
-                Ret_Text = Ret_Text + ' ' + satName
-            return Ret_Text
-        return 'n/a'
+	def getOrbitalPosition(self, info):
+		orbital = ""
+		transponderData = info.getInfoObject(iServiceInformation.sTransponderData)
+		if transponderData is not None and not isinstance(transponderData, float) and transponderData.get("tuner_type") in ("DVB-S", "DVB-S2"):
+			position = int(transponderData["orbital_position"])
+			orbital = f"{float(3600 - position) / 10.0}W" if position > 1800 else f"{float(position) / 10.0}E"
+		return orbital
 
-    text = property(getText)
+	@cached
+	def getText(self):
+		text = ""
+		service = self.source.service
+		info = service and service.info()
+		if info:
+			if self.type == self.EXPERTINFO:
+				orbital = self.getOrbitalPosition(info)
+				satName = self.satNames.get(orbital, orbital)
+				frontendInfo = service and service.frontendInfo()
+				if frontendInfo is not None:
+					frontendData = frontendInfo and frontendInfo.getAll(True)
+					if frontendData is not None:
+						tunerType = frontendData.get("tuner_type")
+						if tunerType in ("DVB-C", "DVB-S"):
+							frequency = f"{frontendData.get('frequency') / 1000} MHz"
+							symbolRate = f"{frontendData.get('symbol_rate') / 1000}"
+							try:
+								polarization = frontendData.get("polarization") if tunerType == "DVB-S" else 0
+								text = f"{frequency} {self.ar_pol[polarization]} {self.ar_fec[frontendData.get('fec_inner')]} {symbolRate} "
+							except Exception:
+								text = f"{frequency} {symbolRate} "
+						elif tunerType == "DVB-T":
+							text = f"{_('Frequency: ')}{frontendData.get('frequency') / 1000} MHz"
+					text = f"{text} {satName}"
+			else:
+				text = "n/a"
+		return text
 
-    def changed(self, what):
-        Converter.changed(self, what)
+	text = property(getText)
 
-    def readSatXml(self):
-        satXml = parse('/etc/tuxbox/satellites.xml').getroot()
-        if satXml is not None:
-            for sat in satXml.findall('sat'):
-                name = sat.get('name') or None
-                position = sat.get('position') or None
-                if name is not None and position is not None:
-                    position = '%s.%s' % (position[:-1], position[-1:])
-                    if position.startswith('-'):
-                        position = '%sW' % position[1:]
-                    else:
-                        position = '%sE' % position
-                    if position.startswith('.'):
-                        position = '0%s' % position
-                    self.satNames[position] = name.encode('utf-8')
-
-    def getOrbitalPosition(self, info):
-        transponderData = info.getInfoObject(iServiceInformation.sTransponderData)
-        orbital = 0
-        if transponderData is not None:
-            if isinstance(transponderData, float):
-                return ''
-            if 'tuner_type' in transponderData:
-                if transponderData['tuner_type'] == 'DVB-S' or transponderData['tuner_type'] == 'DVB-S2':
-                    orbital = transponderData['orbital_position']
-                    orbital = int(orbital)
-                    if orbital > 1800:
-                        orbital = str(float(3600 - orbital) / 10.0) + 'W'
-                    else:
-                        orbital = str(float(orbital) / 10.0) + 'E'
-                    return orbital
-        return ''
+	def readSatXml(self):
+		satXml = parse("/etc/tuxbox/satellites.xml").getroot()
+		if satXml is not None:
+			for sat in satXml.findall("sat"):
+				name = sat.get("name") or None
+				position = sat.get("position") or None
+				if name is not None and position is not None:
+					position = f"{position[:-1]}.{position[-1:]}"
+					position = f"{position[1:]}W" if position.startswith("-") else f"{position}E"
+					if position.startswith("."):
+						position = f"0{position}"
+					self.satNames[position] = name

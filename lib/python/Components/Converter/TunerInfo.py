@@ -1,40 +1,41 @@
-from Components.Sources.TunerInfo import TunerInfo as TunerInfoSource
 from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Sources.TunerInfo import TunerInfo as TunerInfoSource
 
 
 class TunerInfo(Converter):
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		self.type = {
+			"TunerAvailable": TunerInfoSource.TUNER_AVAILABLE,
+			"TunerUseMask": TunerInfoSource.FE_USE_MASK
+		}[tokens]
 
-    def __init__(self, type):
-        Converter.__init__(self, type)
-        self.type = {'TunerUseMask': TunerInfoSource.FE_USE_MASK,
-         'TunerAvailable': TunerInfoSource.TUNER_AVAILABLE}[type]
+	def changed(self, what):
+		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
+			Converter.changed(self, what)
 
-    @cached
-    def getBoolean(self):
-        if self.type == TunerInfoSource.FE_USE_MASK:
-            return self.source.getTunerUseMask() and True or False
+	@cached
+	def getBoolean(self):
+		return bool(self.source.getTunerUseMask()) if self.type == TunerInfoSource.FE_USE_MASK else None
 
-    boolean = property(getBoolean)
+	boolean = property(getBoolean)
 
-    @cached
-    def getText(self):
-        if self.type == TunerInfoSource.FE_USE_MASK:
-            return str(self.source.getTunerUseMask())
-        return ''
+	@cached
+	def getText(self):
+		return str(self.source.getTunerUseMask()) if self.type == TunerInfoSource.FE_USE_MASK else ""
 
-    text = property(getText)
+	text = property(getText)
 
-    @cached
-    def getValue(self):
-        if self.type == TunerInfoSource.FE_USE_MASK:
-            return self.source.getTunerUseMask()
-        if self.type == TunerInfoSource.TUNER_AVAILABLE:
-            return self.source.getTunerAmount()
-        return -1
+	@cached
+	def getValue(self):
+		match self.type:
+			case TunerInfoSource.FE_USE_MASK:
+				value = self.source.getTunerUseMask()
+			case TunerInfoSource.TUNER_AVAILABLE:
+				value = self.source.getTunerAmount()
+			case _:
+				value = -1
+		return value
 
-    value = property(getValue)
-
-    def changed(self, what):
-        if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
-            Converter.changed(self, what)
+	value = property(getValue)

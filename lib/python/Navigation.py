@@ -71,6 +71,7 @@ class Navigation:
 		self.isRecordTimerImageStandard = False
 		self.isCurrentServiceStreamRelay = False
 		self.isCurrentServiceDVBI = False
+		self.hybridPlaybackService = None
 		self.dvbiFailureTimer = None
 		self.dvbiFailureService = None
 		self.dvbiPlaybackService = None
@@ -307,6 +308,7 @@ class Navigation:
 		for x in self.event:
 			x(i)
 		if i == iPlayableService.evEnd:
+			self.hybridPlaybackService = None
 			if not self.skipServiceReferenceReset:
 				self.currentlyPlayingServiceReference = None
 				self.currentlyPlayingServiceOrGroup = None
@@ -322,10 +324,11 @@ class Navigation:
 	def getStreamRetryService(self):
 		bar = InfoBar.instance
 		ref = self.currentlyPlayingServiceOrGroup
+		streamRef = self.hybridPlaybackService or ref
 		if (not bar or ServiceEventTracker.getActiveInfoBar() is not bar or Screens.Standby.inStandby
 				or self.isCurrentServiceDVBI or self.isCurrentServiceStreamRelay
-				or not ref or ref.flags & eServiceReference.isGroup or ref.type != 4097
-				or not ref.getPath().lower().startswith(("http://", "https://"))
+				or not ref or ref.flags & eServiceReference.isGroup or streamRef.type != 4097
+				or not streamRef.getPath().lower().startswith(("http://", "https://"))
 				or bar.seekstate != bar.SEEK_STATE_PLAY):
 			return None
 		service = self.getCurrentService()

@@ -1812,7 +1812,7 @@ bool eServiceDABRecord::startTap()
 	const int pid = m_reference.getUnsignedData(5) & 0x1fff;
 	m_worker.reset(new eDABWorker(m_socket[0], pid, transport, destinationIp, destinationPort,
 		m_reference.getUnsignedData(6), m_reference.getUnsignedData(7) & 0xffff,
-		[this](const uint8_t *, size_t, const uint8_t *data, size_t length, uint64_t, uint8_t) {
+		[this](const uint8_t *, size_t, const uint8_t *data, size_t length, uint64_t, uint8_t, bool) {
 			writeAudio(data, length);
 		},
 		eDABWorker::ImageCallback(), eDABWorker::MOTCallback(), m_worker_pump));
@@ -2313,10 +2313,28 @@ bool eServiceDAB::startTap()
 	m_worker.reset(new eDABWorker(m_socket[0], pid, transport, destinationIp, destinationPort,
 		m_reference.getUnsignedData(6), m_reference.getUnsignedData(7) & 0xffff,
 		[this](const uint8_t *data, size_t length, const uint8_t *framed, size_t framedLength,
-			uint64_t durationNs, uint8_t config) {
+			uint64_t durationNs, uint8_t config, bool dabplus) {
+			if (!dabplus && !m_audio_input_mp2)
+			{
+				stopAudioPipeline();
+				if (!startAudioPipeline(false, false, true))
+					return;
+				m_radio_picture_decoder = nullptr;
+				showRadioPicture();
+				eDABDebug("[eServiceDAB] codec auto-detected: DAB MPEG Layer II");
+			}
+			else if (dabplus && m_audio_input_mp2)
+			{
+				stopAudioPipeline();
+				if (!startAudioPipeline())
+					return;
+				eDABDebug("[eServiceDAB] codec auto-detected: DAB+ AAC");
+			}
 			if (m_audio_capture)
 				fwrite(framed, 1, framedLength, m_audio_capture);
-			if (m_audio_loas)
+			if (!dabplus)
+				pushMP2(data, length, durationNs);
+			else if (m_audio_loas)
 				pushAudio(framed, framedLength, durationNs, config);
 			else
 				pushAudio(data, length, durationNs, config);
@@ -2627,12 +2645,12 @@ bool eServiceDAB::sinkAcceptsLOAS(const char *factoryName)
 	return accepted;
 }
 
-bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
+bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Input)
 {
 	if (m_audio_pipeline)
 		return true;
 	eDABDebug("[eServiceDAB] starting audio pipeline input=%s",
-		pcmInput ? "PCM" : (loasInput ? "LOAS" : "raw AAC"));
+		pcmInput ? "PCM" : (mp2Input ? "MPEG Layer II" : (loasInput ? "LOAS" : "raw AAC")));
 #ifdef DREAMNEXTGEN
 	const char *hardwareSink = "dreamaudiosink";
 #else
@@ -2643,15 +2661,19 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 	 * FAAD2 PCM from the RTL-SDR backend because FFmpeg cannot decode SBR with
 	 * DAB's 960-sample transform. */
 	const DABAudioMode audioMode = dabAudioMode();
-	const bool pcmCompatibility = pcmInput || useDABPCMCompatibility();
-	m_audio_input_loas = loasInput && !pcmInput;
+	const bool pcmCompatibility = pcmInput || (!mp2Input && useDABPCMCompatibility());
+	m_audio_input_loas = loasInput && !pcmInput && !mp2Input;
 	m_audio_input_pcm = pcmInput;
-	m_audio_loas = !pcmCompatibility && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
-	eDABDebug("[eServiceDAB] selected %s decode via '%s' (mode=%s, pcmCompatibility=%d)",
-		m_audio_loas ? "hardware" : "software", hardwareSink,
-		audioMode == DABAudioMode::HardwareAAC ? "aac" :
-			audioMode == DABAudioMode::SoftwarePCM ? "pcm" : "auto",
-		pcmCompatibility);
+	m_audio_input_mp2 = mp2Input;
+	m_audio_loas = !mp2Input && !pcmCompatibility && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
+	if (mp2Input)
+		eDABDebug("[eServiceDAB] selected MPEG Layer II hardware decode via '%s'", hardwareSink);
+	else
+		eDABDebug("[eServiceDAB] selected %s AAC decode via '%s' (mode=%s, pcmCompatibility=%d)",
+			m_audio_loas ? "hardware" : "software", hardwareSink,
+			audioMode == DABAudioMode::HardwareAAC ? "aac" :
+				audioMode == DABAudioMode::SoftwarePCM ? "pcm" : "auto",
+			pcmCompatibility);
 	std::string description = "appsrc name=dabsource is-live=";
 	description += pcmInput ? "false " : "true ";
 	description +=
@@ -2663,6 +2685,8 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 		/* The backend already supplies the exact S16LE format accepted by the
 		 * Dreambox sink. Keep this path identical to direct PCM playback. */
 	}
+	else if (mp2Input)
+		description += "mpegaudioparse ! ";
 	else if (loasInput)
 	{
 		description += "aacparse ! ";
@@ -2683,6 +2707,10 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 		eWarning("[eServiceDAB] unable to create audio pipeline: %s", error ? error->message : "unknown error");
 		if (error)
 			g_error_free(error);
+		m_audio_input_loas = false;
+		m_audio_input_pcm = false;
+		m_audio_input_mp2 = false;
+		m_audio_loas = false;
 		return false;
 	}
 	if (error)
@@ -2698,7 +2726,22 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 		stopAudioPipeline();
 		return false;
 	}
-	if (loasInput && !pcmInput)
+	if (mp2Input)
+	{
+		GstCaps *caps = gst_caps_new_simple("audio/mpeg",
+			"mpegversion", G_TYPE_INT, 1,
+			"layer", G_TYPE_INT, 2,
+			"framed", G_TYPE_BOOLEAN, TRUE, nullptr);
+		if (!caps)
+		{
+			stopAudioPipeline();
+			return false;
+		}
+		g_object_set(m_audio_source, "caps", caps, nullptr);
+		gst_caps_unref(caps);
+		eDABDebug("[eServiceDAB] MPEG Layer II appsrc caps configured");
+	}
+	else if (loasInput && !pcmInput)
 	{
 		GstCaps *caps = gst_caps_new_simple("audio/mpeg",
 			"mpegversion", G_TYPE_INT, 4,
@@ -2742,15 +2785,16 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput)
 	eDABDebug("[eServiceDAB] audio pipeline is starting in PLAYING state");
 	m_audio_next_pts = 0;
 	m_audio_format = 0;
-	m_audio_caps_set = loasInput && !pcmInput;
+	m_audio_caps_set = mp2Input || (loasInput && !pcmInput);
 	m_pcm_sample_rate = 0;
 	m_audio_queue_overruns = 0;
 	m_reported_audio_queue_overruns = 0;
 	if (!access("/tmp/dab-capture", F_OK))
 	{
-		m_audio_capture = fopen("/tmp/dab-audio.aac", "wb");
+		m_audio_capture = fopen(mp2Input ? "/tmp/dab-audio.mp2" : "/tmp/dab-audio.aac", "wb");
 		if (m_audio_capture)
-			eDABDebug("[eServiceDAB] diagnostic AAC capture enabled: /tmp/dab-audio.aac");
+			eDABDebug("[eServiceDAB] diagnostic audio capture enabled: %s",
+				mp2Input ? "/tmp/dab-audio.mp2" : "/tmp/dab-audio.aac");
 	}
 	return true;
 }
@@ -2785,6 +2829,7 @@ void eServiceDAB::stopAudioPipeline()
 	m_audio_caps_set = false;
 	m_audio_input_loas = false;
 	m_audio_input_pcm = false;
+	m_audio_input_mp2 = false;
 	m_pcm_sample_rate = 0;
 }
 
@@ -2884,6 +2929,25 @@ void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t duratio
 		eWarning("[eServiceDAB] unable to push audio buffer: %s", gst_flow_get_name(flow));
 }
 
+void eServiceDAB::pushMP2(const uint8_t *data, size_t length, uint64_t durationNs)
+{
+	if (!data || !length || !durationNs || !m_audio_source || !m_audio_input_mp2 || !m_audio_caps_set)
+		return;
+	GstBuffer *buffer = gst_buffer_new_allocate(nullptr, length, nullptr);
+	if (!buffer)
+		return;
+	gst_buffer_fill(buffer, 0, data, length);
+	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DURATION(buffer) = durationNs;
+	m_audio_next_pts += durationNs;
+	GstFlowReturn flow = GST_FLOW_OK;
+	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
+	gst_buffer_unref(buffer);
+	if (flow != GST_FLOW_OK)
+		eWarning("[eServiceDAB] unable to push MPEG Layer II audio buffer: %s", gst_flow_get_name(flow));
+}
+
 void eServiceDAB::pushLOAS(const uint8_t *data, size_t length)
 {
 	if (!data || !length)
@@ -2948,7 +3012,7 @@ void eServiceDAB::audioQueueOverrun(GstElement *, void *userData)
 
 void eServiceDAB::showRadioPicture()
 {
-	if (useDABPCMCompatibility())
+	if (useDABPCMCompatibility() && !m_audio_input_mp2)
 	{
 		/* Some drivers share decoder state between video0 and audio0. Starting
 		 * the MPEG still-picture decoder can disturb DAB PCM sent through audio0.

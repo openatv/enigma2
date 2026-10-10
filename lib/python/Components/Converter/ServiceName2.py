@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Extended ServiceName Converter for Enigma2 Dreamboxes (ServiceName2.py)
 # Coded by vlamo (c) 2011
@@ -17,9 +16,11 @@
 # Version: 1.5 (04.07.2014) fix iptv reference cosmetic - 2boom
 # Support: http://dream.altmaster.net/ & http://gisclub.tv
 
+from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, iPlayableServicePtr, iServiceInformation
+
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference, eServiceCenter, eTimer, getBestPlayableServiceReference
 from Components.Element import cached
+from Components.NimManager import nimmanager
 from Components.config import config
 import NavigationInstance
 try:
@@ -41,613 +42,40 @@ class ServiceName2(Converter):
 	ALLREF = 8
 	FORMAT = 9
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		if type == "Name" or not len(str(type)):
-			self.type = self.NAME
-		elif type == "Number":
-			self.type = self.NUMBER
-		elif type == "Bouquet":
-			self.type = self.BOUQUET
-		elif type == "Provider":
-			self.type = self.PROVIDER
-		elif type == "Reference":
-			self.type = self.REFERENCE
-		elif type == "OrbitalPos":
-			self.type = self.ORBPOS
-		elif type == "TpansponderInfo":
-			self.type = self.TPRDATA
-		elif type == "Satellite":
-			self.type = self.SATELLITE
-		elif type == "AllRef":
-			self.type = self.ALLREF
-		else:
-			self.type = self.FORMAT
-			self.sfmt = type[:]
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		self.type = {
+			"AllRef": self.ALLREF,
+			"Bouquet": self.BOUQUET,
+			"Name": self.NAME,
+			"Number": self.NUMBER,
+			"OrbitalPos": self.ORBPOS,
+			"Provider": self.PROVIDER,
+			"Reference": self.REFERENCE,
+			"Satellite": self.SATELLITE,
+			"TpansponderInfo": self.TPRDATA
+		}.get(tokens, self.FORMAT if tokens else self.NAME)
+		if self.type == self.FORMAT:
+			self.sfmt = tokens[:]
 		try:
-			if (self.type == 1 or (self.type == 9 and "%n" in self.sfmt)) and correctChannelNumber:
+			if (self.type == self.NUMBER or (self.type == self.FORMAT and "%n" in self.sfmt)) and correctChannelNumber:
 				ChannelNumberClasses.append(self.forceChanged)
 		except Exception:
 			pass
 		self.refstr = self.isStream = self.ref = self.info = self.what = self.tpdata = None
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.neededChange)
-		self.IPTVcontrol = self.isAdditionalService(type=0)
-		self.AlternativeControl = self.isAdditionalService(type=1)
+		self.IPTVcontrol = self.isAdditionalService(group=False)
+		self.AlternativeControl = self.isAdditionalService(group=True)
 
-	def isAdditionalService(self, type=0):
-		def searchService(serviceHandler, bouquet):
-			istype = False
-			servicelist = serviceHandler.list(bouquet)
-			if servicelist is not None:
-				while True:
-					s = servicelist.getNext()
-					if not s.valid():
-						break
-					if not (s.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
-						if type:
-							if s.flags & eServiceReference.isGroup:
-								istype = True
-								return istype
-						else:
-							if "%3a//" in s.toString().lower():
-								istype = True
-								return istype
-			return istype
-
-		isService = False
-		serviceHandler = eServiceCenter.getInstance()
-		if not config.usage.multibouquet.value:
-			service_types_tv = "1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)"
-			rootstr = f"{service_types_tv} FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet"
-		else:
-			rootstr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
-		bouquet = eServiceReference(rootstr)
-		if not config.usage.multibouquet.value:
-			isService = searchService(serviceHandler, bouquet)
-		else:
-			bouquetlist = serviceHandler.list(bouquet)
-			if bouquetlist is not None:
-				while True:
-					bouquet = bouquetlist.getNext()
-					if not bouquet.valid():
-						break
-					if bouquet.flags & eServiceReference.isDirectory:
-						isService = searchService(serviceHandler, bouquet)
-						if isService:
-							break
-		return isService
-
-	def getServiceNumber(self, ref):
-		def searchHelper(serviceHandler, num, bouquet):
-			servicelist = serviceHandler.list(bouquet)
-			if servicelist is not None:
-				while True:
-					s = servicelist.getNext()
-					if not s.valid():
-						break
-					if not (s.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
-						num += 1
-						if s == ref:
-							return s, num
-			return None, num
-
-		if isinstance(ref, eServiceReference):
-			isRadioService = ref.getData(0) in (2, 10)
-			lastpath = isRadioService and config.radio.lastroot.value or config.tv.lastroot.value
-			if "FROM BOUQUET" not in lastpath:
-				if "FROM PROVIDERS" in lastpath:
-					return "P", _("Provider")
-				if "FROM SATELLITES" in lastpath:
-					return "S", _("Satellites")
-				if ") ORDER BY name" in lastpath:
-					return "A", _("All Services")
-				return 0, "N/A"
-			try:
-				acount = config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value or config.usage.alternative_number_mode.value
-			except Exception:
-				acount = False
-			rootstr = ""
-			for x in lastpath.split(";"):
-				if x != "":
-					rootstr = x
-			serviceHandler = eServiceCenter.getInstance()
-			if acount is True or not config.usage.multibouquet.value:
-				bouquet = eServiceReference(rootstr)
-				service, number = searchHelper(serviceHandler, 0, bouquet)
+	def changed(self, what):
+		if what[0] != self.CHANGED_SPECIFIC or what[1] == iPlayableService.evStart:
+			self.refstr = self.isStream = self.ref = self.info = self.tpdata = None
+			if self.type in (self.NUMBER, self.BOUQUET) or (self.type == self.FORMAT and ("%n" in self.sfmt or "%B" in self.sfmt)):
+				self.what = what
+				self.Timer.start(200, True)
 			else:
-				if isRadioService:
-					bqrootstr = "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
-				else:
-					bqrootstr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
-				number = 0
-				cur = eServiceReference(rootstr)
-				bouquet = eServiceReference(bqrootstr)
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist is not None:
-					while True:
-						bouquet = bouquetlist.getNext()
-						if not bouquet.valid():
-							break
-						if bouquet.flags & eServiceReference.isDirectory:
-							service, number = searchHelper(serviceHandler, number, bouquet)
-							if service is not None and cur == bouquet:
-								break
-			if service is not None:
-				info = serviceHandler.info(bouquet)
-				name = info and info.getName(bouquet) or ""
-				return number, name
-		return 0, ""
-
-	def getProviderName(self, ref):
-		if isinstance(ref, eServiceReference):
-			from Screens.ChannelSelection import service_types_radio, service_types_tv
-			typestr = ref.getData(0) in (2, 10) and service_types_radio or service_types_tv
-			pos = typestr.rfind(":")
-			rootstr = f"{typestr[:pos + 1]} (channelID == {ref.getUnsignedData(4):08x}{ref.getUnsignedData(2):04x}{ref.getUnsignedData(3):04x}) && {typestr[pos + 1:]} FROM PROVIDERS ORDER BY name"
-			provider_root = eServiceReference(rootstr)
-			serviceHandler = eServiceCenter.getInstance()
-			providerlist = serviceHandler.list(provider_root)
-			if providerlist is not None:
-				while True:
-					provider = providerlist.getNext()
-					if not provider.valid():
-						break
-					if provider.flags & eServiceReference.isDirectory:
-						servicelist = serviceHandler.list(provider)
-						if servicelist is not None:
-							while True:
-								service = servicelist.getNext()
-								if not service.valid():
-									break
-								if service == ref:
-									info = serviceHandler.info(provider)
-									return info and info.getName(provider) or "Unknown"
-		return ""
-
-	def getTransponderInfo(self, info, ref, fmt):
-		result = ""
-		if self.tpdata is None:
-			if ref:
-				self.tpdata = ref and info.getInfoObject(ref, iServiceInformation.sTransponderData)
-			else:
-				self.tpdata = info.getInfoObject(iServiceInformation.sTransponderData)
-			if not isinstance(self.tpdata, dict):
-				self.tpdata = None
-				return result
-		if self.isStream:
-			type = "IP-TV"
-		else:
-			type = self.tpdata.get("tuner_type", "")
-		if not fmt or fmt == "T":
-			if type == "DVB-C":
-				fmt = ["t ", "F ", "Y ", "i ", "f ", "M"]  # (type frequency symbol_rate inversion fec modulation)
-			elif type == "DVB-T":
-				if ref:
-					fmt = ["O ", "F ", "c ", "l ", "h ", "m ", "g "]  # (orbital_position code_rate_hp transmission_mode guard_interval constellation)
-				else:
-					fmt = ["t ", "F ", "c ", "l ", "h ", "m ", "g "]  # (type frequency code_rate_hp transmission_mode guard_interval constellation)
-			elif type == "IP-TV":
-				return _("Streaming")
-			else:
-				fmt = ["O ", "s ", "M ", "F ", "p ", "Y ", "f"]  # (orbital_position frequency polarization symbol_rate fec)
-		for line in fmt:
-			match line[:1]:
-				case "t":  # Tuner_type (dvb-s/s2/c/t).
-					if type == "DVB-S":
-						result += _("Satellite")
-					elif type == "DVB-C":
-						result += _("Cable")
-					elif type == "DVB-T":
-						result += _("Terrestrial")
-					elif type == "IP-TV":
-						result += _("Stream-tv")
-					else:
-						result += "N/A"
-				case "s":  # System (dvb-s/s2/c/t).
-					if type == "DVB-S":
-						x = self.tpdata.get("system", 0)
-						result += x in list(range(2)) and {0: "DVB-S", 1: "DVB-S2"}[x] or ""
-					else:
-						result += type
-				case "F":  # Frequency (dvb-s/s2/c/t) in KHz.
-					if type in ("DVB-S", "DVB-C") and self.tpdata.get("frequency", 0) > 0:
-						result += f"{self.tpdata.get("frequency", 0) // 1000} MHz"
-					if type == "DVB-T":
-						result += f"{(self.tpdata.get("frequency", 0) + 500) / 1000 / 1000.0:.3f} MHz"
-						# result += "%.3f"%(((self.tpdata.get("frequency", 0) / 1000) +1) / 1000.0) + " MHz "
-				case "f":  # FEC_inner (dvb-s/s2/c/t).
-					if type in ("DVB-S", "DVB-C"):
-						x = self.tpdata.get("fec_inner", 15)
-						result += x in list(range(10)) + [15] and {0: "Auto", 1: "1/2", 2: "2/3", 3: "3/4", 4: "5/6", 5: "7/8", 6: "8/9", 7: "3/5", 8: "4/5", 9: "9/10", 15: "None"}[x] or ""
-					elif type == "DVB-T":
-						x = self.tpdata.get("code_rate_lp", 5)
-						result += x in list(range(6)) and {0: "1/2", 1: "2/3", 2: "3/4", 3: "5/6", 4: "7/8", 5: "Auto"}[x] or ""
-				case "i":  # Inversion (dvb-s/s2/c/t).
-					if type in ("DVB-S", "DVB-C", "DVB-T"):
-						x = self.tpdata.get("inversion", 2)
-						result += x in list(range(3)) and {0: "On", 1: "Off", 2: "Auto"}[x] or ""
-				case "O":  # Orbital_position (dvb-s/s2).
-					if type == "DVB-S":
-						x = self.tpdata.get("orbital_position", 0)
-						result += x > 1800 and f"{(3600 - x) // 10}.{(3600 - x) % 10}°W" or f"{x // 10}.{x % 10}°E"
-					elif type == "DVB-T":
-						result += "DVB-T"
-					elif type == "DVB-C":
-						result += "DVB-C"
-					elif type == "Iptv":
-						result += "Stream"
-				case "M":  # Modulation (dvb-s/s2/c).
-					x = self.tpdata.get("modulation", 1)
-					if type == "DVB-S":
-						result += x in list(range(4)) and {0: "Auto", 1: "QPSK", 2: "8PSK", 3: "QAM16"}[x] or ""
-					elif type == "DVB-C":
-						result += x in list(range(6)) and {0: "Auto", 1: "QAM16", 2: "QAM32", 3: "QAM64", 4: "QAM128", 5: "QAM256"}[x] or ""
-				case "p":  # Polarization (dvb-s/s2).
-					if type == "DVB-S":
-						x = self.tpdata.get("polarization", 0)
-						result += x in list(range(4)) and {0: "H", 1: "V", 2: "LHC", 3: "RHC"}[x] or "?"
-				case "Y":  # Symbol_rate (dvb-s/s2/c).
-					if type in ("DVB-S", "DVB-C"):
-						result += f"{self.tpdata.get("symbol_rate", 0) // 1000}"
-				case "r":  # Rolloff (dvb-s2).
-					if not self.isStream:
-						x = self.tpdata.get("rolloff")
-						if x is not None:
-							result += x in list(range(3)) and {0: "0.35", 1: "0.25", 2: "0.20"}[x] or ""
-				case "o":  # Pilot (dvb-s2).
-					if not self.isStream:
-						x = self.tpdata.get("pilot")
-						if x is not None:
-							result += x in list(range(3)) and {0: "Off", 1: "On", 2: "Auto"}[x] or ""
-				case "c":  # Constellation (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("constellation", 3)
-						result += x in list(range(4)) and {0: "QPSK", 1: "QAM16", 2: "QAM64", 3: "Auto"}[x] or ""
-				case "l":  # Code_rate_lp (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("code_rate_lp", 5)
-						result += x in list(range(6)) and {0: "1/2", 1: "2/3", 2: "3/4", 3: "5/6", 4: "7/8", 5: "Auto"}[x] or ""
-				case "h":  # Code_rate_hp (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("code_rate_hp", 5)
-						result += x in list(range(6)) and {0: "1/2", 1: "2/3", 2: "3/4", 3: "5/6", 4: "7/8", 5: "Auto"}[x] or ""
-				case "m":  # Transmission_mode (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("transmission_mode", 2)
-						result += x in list(range(3)) and {0: "2k", 1: "8k", 2: "Auto"}[x] or ""
-				case "g":  # Guard_interval (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("guard_interval", 4)
-						result += x in list(range(5)) and {0: "1/32", 1: "1/16", 2: "1/8", 3: "1/4", 4: "Auto"}[x] or ""
-				case "b":  # Bandwidth (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("bandwidth", 1)
-						result += x in list(range(4)) and {0: "8 MHz", 1: "7 MHz", 2: "6 MHz", 3: "Auto"}[x] or ""
-				case "e":  # Hierarchy_information (dvb-t).
-					if type == "DVB-T":
-						x = self.tpdata.get("hierarchy_information", 4)
-						result += x in list(range(5)) and {0: "None", 1: "1", 2: "2", 3: "4", 4: "Auto"}[x] or ""
-			result += line[1:]
-		return result
-
-	def getSatelliteName(self, ref):
-		if isinstance(ref, eServiceReference):
-			orbpos = ref.getUnsignedData(4) >> 16
-			if orbpos == 0xFFFF:  # Cable
-				return _("Cable")
-			elif orbpos == 0xEEEE:  # Terrestrial
-				return _("Terrestrial")
-			else:  # Satellite
-				orbpos = ref.getData(4) >> 16
-				if orbpos < 0:
-					orbpos += 3600
-				try:
-					from Components.NimManager import nimmanager
-					return str(nimmanager.getSatDescription(orbpos))
-				except Exception:
-					dir = ref.flags & (eServiceReference.isDirectory | eServiceReference.isMarker)
-					if not dir:
-						refString = ref.toString().lower()
-						if refString.startswith("-1"):
-							return ""
-						elif refString.startswith("1:134:"):
-							return _("Alternative")
-						elif refString.startswith("4097:"):
-							return _("Internet")
-						else:
-							return orbpos > 1800 and f"{(3600 - orbpos) // 10}.{(3600 - orbpos) % 10}°W" or f"{orbpos // 10}.{orbpos % 10}°E"
-		return ""
-
-	def getIPTVProvider(self, refstr):
-		if "tvshka" in refstr:
-			return "SCHURA"
-		elif "udp/239.0.1" in refstr:
-			return "Lanet"
-		elif "3a7777" in refstr:
-			return "IPTVNTV"
-		elif "KartinaTV" in refstr:
-			return "KartinaTV"
-		elif "Megaimpuls" in refstr:
-			return "MEGAIMPULSTV"
-		elif "Newrus" in refstr:
-			return "NEWRUSTV"
-		elif "Sovok" in refstr:
-			return "SOVOKTV"
-		elif "Rodnoe" in refstr:
-			return "RODNOETV"
-		elif "238.1.1.181%3a1234" in refstr:
-			return "VIASAT"
-		elif "cdnet" in refstr:
-			return "NonameTV"
-		elif "unicast" in refstr:
-			return "StarLink"
-		elif "udp/239.255.2." in refstr:
-			return "Planeta"
-		elif "udp/233.7.70." in refstr:
-			return "Rostelecom"
-		elif "udp/239.1.1." in refstr:
-			return "Real"
-		elif "udp/238.0." in refstr or "udp/233.191." in refstr:
-			return "Triolan"
-		elif "%3a8208" in refstr:
-			return "MOVISTAR+"
-		elif "udp/239.0.0." in refstr:
-			return "Trinity"
-		elif ".cn.ru" in refstr or "novotelecom" in refstr:
-			return "Novotelecom"
-		elif "www.youtube.com" in refstr:
-			return "www.youtube.com"
-		elif ".torrent-tv.ru" in refstr:
-			return "torrent-tv.ru"
-		elif "web.tvbox.md" in refstr:
-			return "web.tvbox.md"
-		elif "live-p12" in refstr:
-			return "PAC12"
-		elif ".ottg." in refstr:
-			return "Glanc"
-		elif "/iptv/" in refstr:
-			return "Edem"
-		elif "only4" in refstr or "1ce" in refstr:
-			return "Only4"
-		elif "wisp.cat" in refstr:
-			return "TvoeTV"
-		elif "4097" in refstr:
-			return "StreamTV"
-		elif "%3a1234" in refstr:
-			return "IPTV1"
-		return ""
-
-	def getPlayingref(self, ref):
-		playingref = None
-		if NavigationInstance.instance:
-			playingref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-		if not playingref:
-			playingref = eServiceReference()
-		return playingref
-
-	def resolveAlternate(self, ref):
-		nref = getBestPlayableServiceReference(ref, self.getPlayingref(ref))
-		if not nref:
-			nref = getBestPlayableServiceReference(ref, eServiceReference(), True)
-		return nref
-
-	def getReferenceType(self, refstr, ref):
-		if ref is None:
-			if NavigationInstance.instance:
-				playref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-				if playref:
-					refstr = playref.toString() or ""
-					prefix = ""
-					if refstr.startswith("4097:"):
-						prefix += "GStreamer "
-					if "%3a//" in refstr:
-						sref = " ".join(refstr.split(":")[10:])
-						refstr = prefix + sref
-					else:
-						sref = ":".join(refstr.split(":")[:10])
-						refstr = prefix + sref
-		else:
-			if refstr != "":
-				prefix = ""
-				if refstr.startswith("1:7:"):
-					if "FROM BOUQUET" in refstr:
-						prefix += "Bouquet "
-					elif "(provider == " in refstr:
-						prefix += "Provider "
-					elif "(satellitePosition == " in refstr:
-						prefix += "Satellit "
-					elif "(channelID == " in refstr:
-						prefix += "Current tr "
-				elif refstr.startswith("1:134:"):
-					prefix += "Alter "
-				elif refstr.startswith("1:64:"):
-					prefix += "Marker "
-				elif refstr.startswith("4097:"):
-					prefix += "GStreamer "
-				if self.isStream:
-					if self.refstr:
-						sref = " ".join(self.refstr.split(":")[10:]) if "%3a//" in self.refstr else ":".join(self.refstr.split(":")[:10])
-					else:
-						sref = " ".join(refstr.split(":")[10:])
-					return prefix + sref
-				else:
-					sref = ":".join(self.refstr.split(":")[:10]) if self.refstr else ":".join(refstr.split(":")[:10])
-					return prefix + sref
-		return refstr
-
-	@cached
-	def getText(self):
-		service = self.source.service
-		if isinstance(service, iPlayableServicePtr):
-			info = service and service.info()
-			ref = None
-		else:  # reference
-			info = service and self.source.info
-			ref = service
-		if not info:
-			return ""
-		if ref:
-			refstr = ref.toString()
-		else:
-			refstr = info.getInfoString(iServiceInformation.sServiceref)
-		if refstr is None:
-			refstr = ""
-		if self.AlternativeControl:
-			if ref and refstr.startswith("1:134:") and self.ref is None:
-				nref = self.resolveAlternate(ref)
-				if nref:
-					self.ref = nref
-					self.info = eServiceCenter.getInstance().info(self.ref)
-					self.refstr = self.ref.toString()
-					if not self.info:
-						return ""
-		if self.IPTVcontrol:
-			if "%3a//" in refstr or (self.refstr and "%3a//" in self.refstr) or refstr.startswith("4097:"):
-				self.isStream = True
-		match self.type:
-			case self.NAME:
-				name = ref and (info.getName(ref) or "N/A") or (info.getName() or "N/A")
-				prefix = ""
-				if self.ref:
-					prefix = " (alter)"
-				name += prefix
-				return name.replace("\xc2\x86", "").replace("\xc2\x87", "")
-			case self.NUMBER:
-				try:
-					service = self.source.service if self.source and self.source.__class__.__name__ == "ServiceEvent" else self.source.serviceref
-					num = service and service.getChannelNum() or ""
-					return str(num)
-				except Exception:
-					num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-					return num and str(num) or ""
-			case self.BOUQUET:
-				num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-				return bouq
-			case self.PROVIDER:
-				if self.isStream:
-					if self.refstr and ("%3a//" in self.refstr):
-						return self.getIPTVProvider(self.refstr)
-					return self.getIPTVProvider(refstr)
-				else:
-					if self.ref:
-						return self.getProviderName(self.ref)
-					if ref:
-						return self.getProviderName(ref)
-					else:
-						return info.getInfoString(iServiceInformation.sProvider) or ""
-			case self.REFERENCE:
-				if self.refstr:
-					return self.refstr
-				return refstr
-			case self.ORBPOS:
-				if self.isStream:
-					return "Stream"
-				else:
-					if self.ref and self.info:
-						return self.getTransponderInfo(self.info, self.ref, "O")
-					return self.getTransponderInfo(info, ref, "O")
-			case self.TPRDATA:
-				if self.isStream:
-					return _("Streaming")
-				else:
-					if self.ref and self.info:
-						return self.getTransponderInfo(self.info, self.ref, "T")
-					return self.getTransponderInfo(info, ref, "T")
-			case self.SATELLITE:
-				if self.isStream:
-					return _("Internet")
-				else:
-					if self.ref:
-						return self.getSatelliteName(self.ref)
-				# test #
-					return self.getSatelliteName(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-			case self.ALLREF:
-				tmpref = self.getReferenceType(refstr, ref)
-				if "Bouquet" in tmpref or "Satellit" in tmpref or "Provider" in tmpref:
-					return " "
-				elif "%3a" in tmpref:
-					return ":".join(refstr.split(":")[:10])
-				return tmpref
-			case self.FORMAT:
-				num = bouq = ""
-				tmp = self.sfmt[:].split("%")
-				if tmp:
-					ret = tmp[0]
-					tmp.remove(ret)
-				else:
-					return ""
-				for line in tmp:
-					f = line[:1]
-					match f:
-						case "N":  # Name.
-							name = ref and (info.getName(ref) or "N/A") or (info.getName() or "N/A")
-							postfix = ""
-							if self.ref:
-								postfix = " (alter)"
-							name += postfix
-							ret += name.replace("\xc2\x86", "").replace("\xc2\x87", "")
-						case "n":  # Number.
-							try:
-								service = self.source.serviceref
-								num = service and service.getChannelNum() or None
-							except Exception:
-								num = None
-							if num:
-								ret += str(num)
-							else:
-								num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-								ret += num and str(num) or ""
-						case "B":  # Bouquet.
-							num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-							ret += bouq
-						case "P":  # Provider.
-							if self.isStream:
-								if self.refstr and "%3a//" in self.refstr:
-									ret += self.getIPTVProvider(self.refstr)
-								else:
-									ret += self.getIPTVProvider(refstr)
-							else:
-								if self.ref:
-									ret += self.getProviderName(self.ref)
-								else:
-									if ref:
-										ret += self.getProviderName(ref)
-									else:
-										ret += info.getInfoString(iServiceInformation.sProvider) or ""
-						case "R":  # Reference.
-							if self.refstr:
-								ret += self.refstr
-							else:
-								ret += refstr
-						case "S":  # Satellite.
-							if self.isStream:
-								ret += _("Internet")
-							else:
-								if self.ref:
-									ret += self.getSatelliteName(self.ref)
-								else:
-									ret += self.getSatelliteName(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-						case "A":  # AllRef.
-							tmpref = self.getReferenceType(refstr, ref)
-							if "Bouquet" in tmpref or "Satellit" in tmpref or "Provider" in tmpref:
-								ret += " "
-							elif "%3a" in tmpref:
-								ret += ":".join(refstr.split(":")[:10])
-							else:
-								ret += tmpref
-						case _:
-							if f in "TtsFfiOMpYroclhmgbe":
-								ret += self.getTransponderInfo(self.info, self.ref, f) if self.ref else self.getTransponderInfo(info, ref, f)
-					ret += line[1:]
-				return ret.replace("N/A", "").strip()
-
-	text = property(getText)
-
-	def neededChange(self):
-		if self.what:
-			Converter.changed(self, self.what)
-			self.what = None
+				Converter.changed(self, what)
 
 	def forceChanged(self, what):
 		if what is True:
@@ -655,12 +83,448 @@ class ServiceName2(Converter):
 			Converter.changed(self, (self.CHANGED_ALL,))
 			self.what = None
 
-	def changed(self, what):
-		if what[0] != self.CHANGED_SPECIFIC or what[1] in (iPlayableService.evStart,):
-			self.refstr = self.isStream = self.ref = self.info = self.tpdata = None
-			if self.type in (self.NUMBER, self.BOUQUET) or \
-				(self.type == self.FORMAT and ("%n" in self.sfmt or "%B" in self.sfmt)):
-				self.what = what
-				self.Timer.start(200, True)
+	def getIPTVProvider(self, refstr):
+		providers = (  # The order is important, the first match wins.
+			(("tvshka",), "SCHURA"),
+			(("udp/239.0.1",), "Lanet"),
+			(("3a7777",), "IPTVNTV"),
+			(("KartinaTV",), "KartinaTV"),
+			(("Megaimpuls",), "MEGAIMPULSTV"),
+			(("Newrus",), "NEWRUSTV"),
+			(("Sovok",), "SOVOKTV"),
+			(("Rodnoe",), "RODNOETV"),
+			(("238.1.1.181%3a1234",), "VIASAT"),
+			(("cdnet",), "NonameTV"),
+			(("unicast",), "StarLink"),
+			(("udp/239.255.2.",), "Planeta"),
+			(("udp/233.7.70.",), "Rostelecom"),
+			(("udp/239.1.1.",), "Real"),
+			(("udp/238.0.", "udp/233.191."), "Triolan"),
+			(("%3a8208",), "MOVISTAR+"),
+			(("udp/239.0.0.",), "Trinity"),
+			((".cn.ru", "novotelecom"), "Novotelecom"),
+			(("www.youtube.com",), "www.youtube.com"),
+			((".torrent-tv.ru",), "torrent-tv.ru"),
+			(("web.tvbox.md",), "web.tvbox.md"),
+			(("live-p12",), "PAC12"),
+			((".ottg.",), "Glanc"),
+			(("/iptv/",), "Edem"),
+			(("only4", "1ce"), "Only4"),
+			(("wisp.cat",), "TvoeTV"),
+			(("4097",), "StreamTV"),
+			(("%3a1234",), "IPTV1")
+		)
+		return next((name for keys, name in providers if any(x in refstr for x in keys)), "")
+
+	def getPlayingref(self, ref):
+		playingRef = NavigationInstance.instance and NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+		return playingRef or eServiceReference()
+
+	def getProviderName(self, ref):
+		providerName = ""
+		if isinstance(ref, eServiceReference):
+			from Screens.ChannelSelection import service_types_radio, service_types_tv  # Prevent circular import.
+			typeString = service_types_radio if ref.getData(0) in (2, 10) else service_types_tv
+			pos = typeString.rfind(":")
+			rootString = f"{typeString[:pos + 1]} (channelID == {ref.getUnsignedData(4):08x}{ref.getUnsignedData(2):04x}{ref.getUnsignedData(3):04x}) && {typeString[pos + 1:]} FROM PROVIDERS ORDER BY name"
+			serviceHandler = eServiceCenter.getInstance()
+			providerList = serviceHandler.list(eServiceReference(rootString))
+			if providerList is not None:
+				while not providerName:
+					provider = providerList.getNext()
+					if not provider.valid():
+						break
+					if provider.flags & eServiceReference.isDirectory:
+						serviceList = serviceHandler.list(provider)
+						if serviceList is not None:
+							while True:
+								service = serviceList.getNext()
+								if not service.valid():
+									break
+								if service == ref:
+									info = serviceHandler.info(provider)
+									providerName = info and info.getName(provider) or "Unknown"
+									break
+		return providerName
+
+	def getReferenceType(self, refstr, ref):
+		if ref is None:
+			if NavigationInstance.instance:
+				playRef = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+				if playRef:
+					refstr = playRef.toString() or ""
+					prefix = "GStreamer " if refstr.startswith("4097:") else ""
+					refstr = f"{prefix}{' '.join(refstr.split(':')[10:])}" if "%3a//" in refstr else f"{prefix}{':'.join(refstr.split(':')[:10])}"
+		elif refstr != "":
+			prefix = ""
+			if refstr.startswith("1:7:"):
+				if "FROM BOUQUET" in refstr:
+					prefix = "Bouquet "
+				elif "(provider == " in refstr:
+					prefix = "Provider "
+				elif "(satellitePosition == " in refstr:
+					prefix = "Satellit "
+				elif "(channelID == " in refstr:
+					prefix = "Current tr "
+			elif refstr.startswith("1:134:"):
+				prefix = "Alter "
+			elif refstr.startswith("1:64:"):
+				prefix = "Marker "
+			elif refstr.startswith("4097:"):
+				prefix = "GStreamer "
+			if self.isStream:
+				if self.refstr:
+					serviceRef = " ".join(self.refstr.split(":")[10:]) if "%3a//" in self.refstr else ":".join(self.refstr.split(":")[:10])
+				else:
+					serviceRef = " ".join(refstr.split(":")[10:])
 			else:
-				Converter.changed(self, what)
+				serviceRef = ":".join((self.refstr or refstr).split(":")[:10])
+			refstr = f"{prefix}{serviceRef}"
+		return refstr
+
+	def getSatelliteName(self, ref):
+		result = ""
+		if isinstance(ref, eServiceReference):
+			orbpos = ref.getUnsignedData(4) >> 16
+			if orbpos == 0xFFFF:  # Cable.
+				result = _("Cable")
+			elif orbpos == 0xEEEE:  # Terrestrial.
+				result = _("Terrestrial")
+			else:  # Satellite.
+				orbpos = ref.getData(4) >> 16
+				if orbpos < 0:
+					orbpos += 3600
+				try:
+					result = str(nimmanager.getSatDescription(orbpos))
+				except Exception:
+					if not (ref.flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
+						refString = ref.toString().lower()
+						if refString.startswith("-1"):
+							result = ""
+						elif refString.startswith("1:134:"):
+							result = _("Alternative")
+						elif refString.startswith("4097:"):
+							result = _("Internet")
+						else:
+							result = f"{(3600 - orbpos) // 10}.{(3600 - orbpos) % 10}°W" if orbpos > 1800 else f"{orbpos // 10}.{orbpos % 10}°E"
+		return result
+
+	def getServiceNumber(self, ref):
+		def searchHelper(serviceHandler, num, bouquet):
+			found = None
+			serviceList = serviceHandler.list(bouquet)
+			if serviceList is not None:
+				while found is None:
+					service = serviceList.getNext()
+					if not service.valid():
+						break
+					if not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
+						num += 1
+						if service == ref:
+							found = service
+			return found, num
+
+		result = (0, "")
+		if isinstance(ref, eServiceReference):
+			isRadioService = ref.getData(0) in (2, 10)
+			lastPath = config.radio.lastroot.value if isRadioService else config.tv.lastroot.value
+			if "FROM BOUQUET" not in lastPath:
+				if "FROM PROVIDERS" in lastPath:
+					result = ("P", _("Provider"))
+				elif "FROM SATELLITES" in lastPath:
+					result = ("S", _("Satellites"))
+				elif ") ORDER BY name" in lastPath:
+					result = ("A", _("All Services"))
+				else:
+					result = (0, "N/A")
+			else:
+				try:
+					acount = config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value or config.usage.alternative_number_mode.value
+				except Exception:
+					acount = False
+				rootString = next((x for x in reversed(lastPath.split(";")) if x != ""), "")
+				serviceHandler = eServiceCenter.getInstance()
+				service = None
+				number = 0
+				if acount is True or not config.usage.multibouquet.value:
+					bouquet = eServiceReference(rootString)
+					service, number = searchHelper(serviceHandler, 0, bouquet)
+				else:
+					bouquetRootString = "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet" if isRadioService else "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
+					current = eServiceReference(rootString)
+					bouquet = eServiceReference(bouquetRootString)
+					bouquetList = serviceHandler.list(bouquet)
+					if bouquetList is not None:
+						while True:
+							bouquet = bouquetList.getNext()
+							if not bouquet.valid():
+								break
+							if bouquet.flags & eServiceReference.isDirectory:
+								service, number = searchHelper(serviceHandler, number, bouquet)
+								if service is not None and current == bouquet:
+									break
+				if service is not None:
+					info = serviceHandler.info(bouquet)
+					result = (number, info and info.getName(bouquet) or "")
+		return result
+
+	@cached
+	def getText(self):
+		def getAllRef():
+			referenceType = self.getReferenceType(refstr, ref)
+			if any(x in referenceType for x in ("Bouquet", "Satellit", "Provider")):
+				result = " "
+			elif "%3a" in referenceType:
+				result = ":".join(refstr.split(":")[:10])
+			else:
+				result = referenceType
+			return result
+
+		def getName():
+			name = ref and (info.getName(ref) or "N/A") or (info.getName() or "N/A")
+			if self.ref:
+				name = f"{name} (alter)"
+			return name.replace("\xc2\x86", "").replace("\xc2\x87", "")
+
+		def getNumberAndBouquet():
+			return self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+
+		def getProvider():
+			if self.isStream:
+				result = self.getIPTVProvider(self.refstr if self.refstr and "%3a//" in self.refstr else refstr)
+			elif self.ref:
+				result = self.getProviderName(self.ref)
+			elif ref:
+				result = self.getProviderName(ref)
+			else:
+				result = info.getInfoString(iServiceInformation.sProvider) or ""
+			return result
+
+		def getSatellite():
+			if self.isStream:
+				result = _("Internet")
+			elif self.ref:
+				result = self.getSatelliteName(self.ref)
+			else:
+				result = self.getSatelliteName(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+			return result
+
+		text = ""
+		service = self.source.service
+		if isinstance(service, iPlayableServicePtr):
+			info = service and service.info()
+			ref = None
+		else:  # Reference.
+			info = service and self.source.info
+			ref = service
+		if info:
+			refstr = (ref.toString() if ref else info.getInfoString(iServiceInformation.sServiceref)) or ""
+			if self.AlternativeControl and ref and refstr.startswith("1:134:") and self.ref is None:
+				alternativeRef = self.resolveAlternate(ref)
+				if alternativeRef:
+					self.ref = alternativeRef
+					self.info = eServiceCenter.getInstance().info(self.ref)
+					self.refstr = self.ref.toString()
+					if not self.info:
+						info = None
+		if info:
+			if self.IPTVcontrol and ("%3a//" in refstr or (self.refstr and "%3a//" in self.refstr) or refstr.startswith("4097:")):
+				self.isStream = True
+			match self.type:
+				case self.ALLREF:
+					text = getAllRef()
+				case self.BOUQUET:
+					text = getNumberAndBouquet()[1]
+				case self.FORMAT:
+					parts = self.sfmt.split("%")
+					text = parts[0]
+					for part in parts[1:]:
+						code = part[:1]
+						match code:
+							case "A":  # AllRef.
+								text += getAllRef()
+							case "B":  # Bouquet.
+								text += getNumberAndBouquet()[1]
+							case "N":  # Name.
+								text += getName()
+							case "P":  # Provider.
+								text += getProvider()
+							case "R":  # Reference.
+								text += self.refstr or refstr
+							case "S":  # Satellite.
+								text += getSatellite()
+							case "n":  # Number.
+								try:
+									service = self.source.serviceref
+									number = service and service.getChannelNum() or None
+								except Exception:
+									number = None
+								if not number:
+									number = getNumberAndBouquet()[0]
+								text += str(number) if number else ""
+							case _ if code in "TtsFfiOMpYroclhmgbe":
+								text += self.getTransponderInfo(self.info, self.ref, code) if self.ref else self.getTransponderInfo(info, ref, code)
+						text += part[1:]
+					text = text.replace("N/A", "").strip()
+				case self.NAME:
+					text = getName()
+				case self.NUMBER:
+					try:
+						service = self.source.service if self.source and self.source.__class__.__name__ == "ServiceEvent" else self.source.serviceref
+						text = str(service and service.getChannelNum() or "")
+					except Exception:
+						number = getNumberAndBouquet()[0]
+						text = str(number) if number else ""
+				case self.ORBPOS:
+					if self.isStream:
+						text = "Stream"
+					else:
+						text = self.getTransponderInfo(self.info, self.ref, "O") if self.ref and self.info else self.getTransponderInfo(info, ref, "O")
+				case self.PROVIDER:
+					text = getProvider()
+				case self.REFERENCE:
+					text = self.refstr or refstr
+				case self.SATELLITE:
+					text = getSatellite()
+				case self.TPRDATA:
+					if self.isStream:
+						text = _("Streaming")
+					else:
+						text = self.getTransponderInfo(self.info, self.ref, "T") if self.ref and self.info else self.getTransponderInfo(info, ref, "T")
+		return text
+
+	text = property(getText)
+
+	def getTransponderInfo(self, info, ref, fmt):
+		result = ""
+		if self.tpdata is None:
+			self.tpdata = info.getInfoObject(ref, iServiceInformation.sTransponderData) if ref else info.getInfoObject(iServiceInformation.sTransponderData)
+			if not isinstance(self.tpdata, dict):
+				self.tpdata = None
+		if self.tpdata is not None:
+			tunerType = "IP-TV" if self.isStream else self.tpdata.get("tuner_type", "")
+			if (not fmt or fmt == "T") and tunerType == "IP-TV":
+				result = _("Streaming")
+			else:
+				if not fmt or fmt == "T":
+					match tunerType:
+						case "DVB-C":
+							fmt = ["t ", "F ", "Y ", "i ", "f ", "M"]  # (type frequency symbol_rate inversion fec modulation)
+						case "DVB-T":
+							if ref:
+								fmt = ["O ", "F ", "c ", "l ", "h ", "m ", "g "]  # (orbital_position code_rate_hp transmission_mode guard_interval constellation)
+							else:
+								fmt = ["t ", "F ", "c ", "l ", "h ", "m ", "g "]  # (type frequency code_rate_hp transmission_mode guard_interval constellation)
+						case _:
+							fmt = ["O ", "s ", "M ", "F ", "p ", "Y ", "f"]  # (orbital_position frequency polarization symbol_rate fec)
+				codeRates = {0: "1/2", 1: "2/3", 2: "3/4", 3: "5/6", 4: "7/8", 5: "Auto"}
+				for line in fmt:
+					match line[:1]:
+						case "F":  # Frequency (dvb-s/s2/c/t) in KHz.
+							if tunerType in ("DVB-S", "DVB-C") and self.tpdata.get("frequency", 0) > 0:
+								result += f"{self.tpdata.get('frequency', 0) // 1000} MHz"
+							if tunerType == "DVB-T":
+								result += f"{(self.tpdata.get('frequency', 0) + 500) / 1000 / 1000.0:.3f} MHz"
+						case "M":  # Modulation (dvb-s/s2/c).
+							value = self.tpdata.get("modulation", 1)
+							if tunerType == "DVB-S":
+								result += {0: "Auto", 1: "QPSK", 2: "8PSK", 3: "QAM16"}.get(value, "")
+							elif tunerType == "DVB-C":
+								result += {0: "Auto", 1: "QAM16", 2: "QAM32", 3: "QAM64", 4: "QAM128", 5: "QAM256"}.get(value, "")
+						case "O":  # Orbital_position (dvb-s/s2).
+							if tunerType == "DVB-S":
+								value = self.tpdata.get("orbital_position", 0)
+								result += f"{(3600 - value) // 10}.{(3600 - value) % 10}°W" if value > 1800 else f"{value // 10}.{value % 10}°E"
+							else:
+								result += {"DVB-C": "DVB-C", "DVB-T": "DVB-T", "Iptv": "Stream"}.get(tunerType, "")
+						case "Y":  # Symbol_rate (dvb-s/s2/c).
+							if tunerType in ("DVB-S", "DVB-C"):
+								result += f"{self.tpdata.get('symbol_rate', 0) // 1000}"
+						case "b":  # Bandwidth (dvb-t).
+							if tunerType == "DVB-T":
+								result += {0: "8 MHz", 1: "7 MHz", 2: "6 MHz", 3: "Auto"}.get(self.tpdata.get("bandwidth", 1), "")
+						case "c":  # Constellation (dvb-t).
+							if tunerType == "DVB-T":
+								result += {0: "QPSK", 1: "QAM16", 2: "QAM64", 3: "Auto"}.get(self.tpdata.get("constellation", 3), "")
+						case "e":  # Hierarchy_information (dvb-t).
+							if tunerType == "DVB-T":
+								result += {0: "None", 1: "1", 2: "2", 3: "4", 4: "Auto"}.get(self.tpdata.get("hierarchy_information", 4), "")
+						case "f":  # FEC_inner (dvb-s/s2/c/t).
+							if tunerType in ("DVB-S", "DVB-C"):
+								result += {0: "Auto", 1: "1/2", 2: "2/3", 3: "3/4", 4: "5/6", 5: "7/8", 6: "8/9", 7: "3/5", 8: "4/5", 9: "9/10", 15: "None"}.get(self.tpdata.get("fec_inner", 15), "")
+							elif tunerType == "DVB-T":
+								result += codeRates.get(self.tpdata.get("code_rate_lp", 5), "")
+						case "g":  # Guard_interval (dvb-t).
+							if tunerType == "DVB-T":
+								result += {0: "1/32", 1: "1/16", 2: "1/8", 3: "1/4", 4: "Auto"}.get(self.tpdata.get("guard_interval", 4), "")
+						case "h":  # Code_rate_hp (dvb-t).
+							if tunerType == "DVB-T":
+								result += codeRates.get(self.tpdata.get("code_rate_hp", 5), "")
+						case "i":  # Inversion (dvb-s/s2/c/t).
+							if tunerType in ("DVB-S", "DVB-C", "DVB-T"):
+								result += {0: "On", 1: "Off", 2: "Auto"}.get(self.tpdata.get("inversion", 2), "")
+						case "l":  # Code_rate_lp (dvb-t).
+							if tunerType == "DVB-T":
+								result += codeRates.get(self.tpdata.get("code_rate_lp", 5), "")
+						case "m":  # Transmission_mode (dvb-t).
+							if tunerType == "DVB-T":
+								result += {0: "2k", 1: "8k", 2: "Auto"}.get(self.tpdata.get("transmission_mode", 2), "")
+						case "o":  # Pilot (dvb-s2).
+							if not self.isStream:
+								value = self.tpdata.get("pilot")
+								if value is not None:
+									result += {0: "Off", 1: "On", 2: "Auto"}.get(value, "")
+						case "p":  # Polarization (dvb-s/s2).
+							if tunerType == "DVB-S":
+								result += {0: "H", 1: "V", 2: "LHC", 3: "RHC"}.get(self.tpdata.get("polarization", 0), "?")
+						case "r":  # Rolloff (dvb-s2).
+							if not self.isStream:
+								value = self.tpdata.get("rolloff")
+								if value is not None:
+									result += {0: "0.35", 1: "0.25", 2: "0.20"}.get(value, "")
+						case "s":  # System (dvb-s/s2/c/t).
+							result += {0: "DVB-S", 1: "DVB-S2"}.get(self.tpdata.get("system", 0), "") if tunerType == "DVB-S" else tunerType
+						case "t":  # Tuner_type (dvb-s/s2/c/t).
+							result += {"DVB-S": _("Satellite"), "DVB-C": _("Cable"), "DVB-T": _("Terrestrial"), "IP-TV": _("Stream-tv")}.get(tunerType, "N/A")
+					result += line[1:]
+		return result
+
+	def isAdditionalService(self, group=False):
+		def searchService(serviceHandler, bouquet):
+			found = False
+			serviceList = serviceHandler.list(bouquet)
+			if serviceList is not None:
+				while not found:
+					service = serviceList.getNext()
+					if not service.valid():
+						break
+					if not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
+						found = bool(service.flags & eServiceReference.isGroup) if group else "%3a//" in service.toString().lower()
+			return found
+
+		isService = False
+		serviceHandler = eServiceCenter.getInstance()
+		if config.usage.multibouquet.value:
+			bouquetList = serviceHandler.list(eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"))
+			if bouquetList is not None:
+				while not isService:
+					bouquet = bouquetList.getNext()
+					if not bouquet.valid():
+						break
+					if bouquet.flags & eServiceReference.isDirectory:
+						isService = searchService(serviceHandler, bouquet)
+		else:
+			serviceTypesTv = "1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)"
+			isService = searchService(serviceHandler, eServiceReference(f"{serviceTypesTv} FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet"))
+		return isService
+
+	def neededChange(self):
+		if self.what:
+			Converter.changed(self, self.what)
+			self.what = None
+
+	def resolveAlternate(self, ref):
+		alternativeRef = getBestPlayableServiceReference(ref, self.getPlayingref(ref))
+		if not alternativeRef:
+			alternativeRef = getBestPlayableServiceReference(ref, eServiceReference(), True)
+		return alternativeRef

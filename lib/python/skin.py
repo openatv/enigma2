@@ -4,7 +4,7 @@ from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, DEFAULT_READONLY_COLOR, config, setReadOnlyColor
 from Components.SystemInfo import BoxInfo
@@ -193,8 +193,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 				case "screen":  # Process all screen elements.
 					name = element.attrib.get("name")
 					if name:  # Without a name, it's useless!
-						scrnID = element.attrib.get("id")
-						if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
+						if parseInteger(element.attrib.get("id", screenID), screenID) == screenID:  # If there is a screen ID is it for this display.
 							res = element.attrib.get("resolution", f"{resolution[0]},{resolution[1]}")
 							if res != "0,0":
 								element.attrib["resolution"] = res
@@ -513,6 +512,16 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 	return value
 
 
+def parseErrorCorrection(value):
+	options = {
+		"low": eQRCode.ecLow,
+		"medium": eQRCode.ecMedium,
+		"quartile": eQRCode.ecQuartile,
+		"high": eQRCode.ecHigh
+	}
+	return parseOptions(options, "errorCorrection", value, eQRCode.ecMedium)
+
+
 def parseFont(value, scale=((1, 1), (1, 1))):
 	if ";" in value:
 		(name, size) = value.split(";")
@@ -560,33 +569,33 @@ def parseFontScale(value, scale=((1, 1), (1, 1))):
 
 def parseGradient(value):
 	def validColor(value):
-		if value[0] == "#" and len(value) in (9, 7):
-			isColor = True
-		elif value in colors:
-			isColor = True
-		else:
-			isColor = False
-		return isColor
+		return (value.startswith("#") and len(value) in (9, 7)) or value in colors
 
 	value = gradients.get(value, value)
 	data = [x.strip() for x in value.split(",")]
 	gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]  # Start color, center color, end color.
-	for index, color in enumerate(data):
-		if not validColor(color) or index > 2:
+	colorCount = 0
+	for color in data[:3]:
+		if not validColor(color):
 			break
-		gradientColors[index] = parseColor(color)
-	if index == 2:
+		gradientColors[colorCount] = parseColor(color)
+		colorCount += 1
+	if colorCount == 2:  # Two colors means start and end, drawRectangle treats center == end as a two color gradient.
 		gradientColors[2] = gradientColors[1]
-	argCount = len(data) - index
-	if index > 1 and argCount:
+	argCount = len(data) - colorCount
+	if colorCount > 1 and argCount:
 		options = {
 			"horizontal": eWidget.GRADIENT_HORIZONTAL,
 			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
-		direction = parseOptions(options, "gradient", data[index], eWidget.GRADIENT_VERTICAL)
-		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[index + 1]) else 0
+		direction = parseOptions(options, "gradient", data[colorCount], eWidget.GRADIENT_VERTICAL)
+		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[colorCount + 1]) else 0
 	else:
-		skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+		if colorCount > 1:
+			skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using direction 'vertical'")
+		else:
+			skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+			gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]
 		direction = eWidget.GRADIENT_VERTICAL
 		alphaBlend = 0
 	return (gradientColors[0], gradientColors[1], gradientColors[2], direction, alphaBlend)
@@ -1111,6 +1120,9 @@ class AttributeParser:
 	def entryFont(self, value):
 		self.guiObject.setEntryFont(parseFont(value, self.scaleTuple))
 
+	def errorCorrection(self, value):
+		self.guiObject.setErrorCorrection(parseErrorCorrection(value))
+
 	def excludes(self, value):
 		pass
 
@@ -1259,6 +1271,9 @@ class AttributeParser:
 
 	def position(self, value):
 		self.guiObject.move(ePoint(*value) if isinstance(value, tuple) else parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
+
+	def quietZone(self, value):
+		self.guiObject.setQuietZone(parseInteger(value, 4))
 
 	def resolution(self, value):  # This is a dummy method for the parser.
 		pass
@@ -2438,7 +2453,7 @@ def readSkin(screen, skin, names, desktop):
 					print(f"[Skin] OBSOLETE SOURCE WILL BE REMOVED {source.removalDate}, PLEASE UPDATE!")
 					if source.description:
 						print(f"[Skin] Source description: '{source.description}'.")
-					widgetSource = source.new_source
+					widgetSource = source.newSource
 				else:
 					break  # Otherwise, use the source.
 			if source is None:

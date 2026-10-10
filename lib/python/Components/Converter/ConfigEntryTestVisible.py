@@ -1,13 +1,10 @@
-from Components.Converter.Converter import Converter
 from Components.Converter.ConfigEntryTest import ConfigEntryTest
+from Components.Converter.Converter import Converter
 
 
 class ConfigEntryTestVisible(ConfigEntryTest):
-	def __init__(self, args):
-		ConfigEntryTest.__init__(self, args)
-
-	def __getattr__(self, name):  # Make ConfigEntryTestVisible transparent to upstream attribute requests.
-		return getattr(self.source, name)
+	def __init__(self, tokens):
+		ConfigEntryTest.__init__(self, tokens)
 
 	def changed(self, what):
 		visibility = self.getBoolean()
@@ -18,3 +15,6 @@ class ConfigEntryTestVisible(ConfigEntryTest):
 	def connectDownstream(self, downstream):
 		Converter.connectDownstream(self, downstream)
 		downstream.visible = self.getBoolean()
+
+	def __getattr__(self, name):  # Make ConfigEntryTestVisible transparent to upstream attribute requests.
+		return getattr(self.source, name)

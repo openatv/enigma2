@@ -6,17 +6,18 @@ from Components.Converter.StringList import StringList
 class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""
 
-	def __init__(self, args):
-		StringList.__init__(self, args)
-		from enigma import BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, RADIUS_TOP_LEFT, RADIUS_TOP_RIGHT, RADIUS_TOP, RADIUS_BOTTOM_LEFT, RADIUS_BOTTOM_RIGHT, RADIUS_BOTTOM, RADIUS_LEFT, RADIUS_RIGHT, RADIUS_ALL, RT_BLEND, RT_ELLIPSIS, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, gFont  # noqa: F401
+	def __init__(self, tokens):
+		StringList.__init__(self, tokens)
+		# These imports are needed as locals for the template eval.
+		from enigma import BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, RADIUS_ALL, RADIUS_BOTTOM, RADIUS_BOTTOM_LEFT, RADIUS_BOTTOM_RIGHT, RADIUS_LEFT, RADIUS_RIGHT, RADIUS_TOP, RADIUS_TOP_LEFT, RADIUS_TOP_RIGHT, RT_BLEND, RT_ELLIPSIS, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, gFont  # noqa: F401
 		from skin import getSkinFactor, parseFont  # noqa: F401
 		from Components.MultiContent import MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryProgressPixmap, MultiContentEntryRectangle, MultiContentEntryText, MultiContentTemplateColor  # noqa: F401
 		f = getSkinFactor()  # This is needed for special OpenViX skins using f in the template.
 		loc = locals()
 		del loc["self"]  # Cleanup locals a bit.
-		del loc["args"]
+		del loc["tokens"]
 		self.activeStyle = None
-		self.template = eval(args, {}, loc)
+		self.template = eval(tokens, {}, loc)
 		self.scale = None
 		if "template" in self.template or "templates" in self.template:
 			if "template" in self.template or "default" in self.template["templates"]:
@@ -39,10 +40,8 @@ class TemplatedMultiContent(StringList):
 				scaleFactorHorizontal = self.scale[0][0] / self.scale[0][1]
 				itemWidth = int(itemWidth * scaleFactorHorizontal)
 				itemHeight = int(itemHeight * scaleFactorVertical)
+				fonts = [gFont(x.family, int(x.pointSize * scaleFactorVertical)) for x in self.template["fonts"]]
 				scaledTemplate = []
-				fonts = []
-				for font in self.template["fonts"]:
-					fonts.append(gFont(font.family, int(font.pointSize * scaleFactorVertical)))
 				for content in template:
 					elements = list(content)
 					elements[1] = int(elements[1] * scaleFactorVertical)
@@ -52,10 +51,8 @@ class TemplatedMultiContent(StringList):
 					scaledTemplate.append(tuple(elements))
 				return scaledTemplate, itemWidth, itemHeight, fonts
 
-			if self.source:
+			if self.source and self.source.style != self.activeStyle:
 				style = self.source.style
-				if style == self.activeStyle:
-					return
 				templates = self.template.get("templates")  # If skin defined "templates", that means that it defines multiple styles in a dictionary but template should still be a default.
 				template = self.template.get("template")
 				if "itemHeight" in self.template:
@@ -109,13 +106,7 @@ class TemplatedMultiContent(StringList):
 							self.scale = scale
 							self.activeStyle = None
 			try:
-				contentList = []
-				sourceList = self.source.list
-				for item in range(len(sourceList)):
-					if not isinstance(sourceList[item], (list, tuple)):
-						contentList.append((sourceList[item],))
-					else:
-						contentList.append(sourceList[item])
+				contentList = [x if isinstance(x, (list, tuple)) else (x,) for x in self.source.list]
 			except Exception as error:
 				print(f"[TemplatedMultiContent] Error: {error}.")
 				contentList = self.source.list

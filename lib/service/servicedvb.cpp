@@ -1823,6 +1823,12 @@ void eDVBServicePlay::resetRecoveryState() {
 }
 
 void eDVBServicePlay::handleEofRecovery() {
+	// Background PTS has no playback position or delay to recover. Pausing
+	// live TV here would wait forever for a PVR position that does not exist.
+	if (!m_timeshift_active) {
+		resetRecoveryState();
+		return;
+	}
 	if (m_is_paused)
 		return;
 

@@ -8,7 +8,7 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eInputDeviceManager, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.About import about
@@ -1279,8 +1279,14 @@ class InformationReceiver(InformationBase):
 		cpu = about.getCPUInfoString()
 		info.append(self.formatLine("P1", _("CPU"), cpu[0]))
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
+		currentSpeed = about.getCPUCurrentSpeed()
+		if currentSpeed:
+			info.append(self.formatLine("P1", _("Current CPU speed"), currentSpeed))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
+		ramTemp = about.getRAMTemperature()
+		if ramTemp:
+			info.append(self.formatLine("P1", _("RAM temperature"), ramTemp))
 		info.append(self.formatLine("P1", _("CPU brand"), about.getCPUBrand()))
 		socFamily = BoxInfo.getItem("socfamily")
 		if socFamily:
@@ -1318,6 +1324,14 @@ class InformationReceiver(InformationBase):
 		customCode = fileReadLine("/proc/stb/ir/rc/customcode", source=MODULE_NAME)
 		if customCode:
 			info.append(self.formatLine("P1", _("RC custom code"), customCode))
+		manager = eInputDeviceManager.getInstance()
+		if manager and manager.available():
+			for device in manager.getConnectedDevices():
+				info.append(self.formatLine("P1", _("Bluetooth remote"), f"{device.name()}  ({device.address()})"))
+				if device.batteryLevel() > 0:
+					info.append(self.formatLine("P2", _("Battery"), f"{device.batteryLevel()}%"))
+				if device.rssi():
+					info.append(self.formatLine("P2", _("Signal strength"), f"{device.rssi()} dBm"))
 		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
 			info.append("")
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("N/A")
