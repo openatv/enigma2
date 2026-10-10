@@ -32,8 +32,12 @@ void eStack::show() {
 }
 
 void eStack::addChild(eWidget* child) {
-	if (!child)
+	if (!child || child->m_stack == this)
 		return;
+
+	// a widget belongs to one stack only
+	if (child->m_stack)
+		static_cast<eStack*>(child->m_stack)->removeChild(child);
 
 	child->setStack(this);
 	m_stackchilds.push_back(child);
@@ -75,6 +79,10 @@ void eStack::recalcLayout() {
 		return;
 	if (!isVisible())
 		return;
+	// child->move() calls back into invalidateChilds()
+	if (m_inLayout)
+		return;
+	m_inLayout = true;
 
 	int x = 0, y = 0;
 	int xr = stack_w;
@@ -139,4 +147,6 @@ void eStack::recalcLayout() {
 			child->move(ePoint(child->position().x(), cy + position().y()));
 		}
 	}
+
+	m_inLayout = false;
 }
