@@ -1,13 +1,12 @@
 from enigma import eAVControl, iPlayableService, iServiceInformation
 
 from skin import parameters, parseColor
-from Components.config import config
-from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from Components.Element import cached
+from Components.config import config
 from Tools.GetEcmInfo import GetEcmInfo, getCaidData
 from Tools.Transponder import ConvertToHumanReadable
-
 
 CODEC_NAMES = {  # Stream type to codec mapping.
 	-1: "N/A",
@@ -176,14 +175,14 @@ class PliExtraInfo(Converter, Poll):
 		"CryptoPowerVU": ("0xe00", "0xeff", "P")
 	}
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
 		Poll.__init__(self)
-		self.type = type
+		self.type = tokens
 		self.cryptoColors = parameters.get("PliExtraInfoCryptoColors", ("#004C7D3F", "#009F9F9F", "#00EEEE00", "#00FFFFFF"))
-		self.cryptoColors = [r"\c%08X" % parseColor(x).argb() for x in self.cryptoColors]
+		self.cryptoColors = [rf"\c{parseColor(x).argb():08X}" for x in self.cryptoColors]
 		self.infoColors = parameters.get("PliExtraInfoColors", ("#0000FF00", "#00FFFF00", "#007F7F7F", "#00FFFFFF"))  # "Found", "Not found", "Available", "Default" colors.
-		self.infoColors = [r"\c%08X" % parseColor(x).argb() for x in self.infoColors]
+		self.infoColors = [rf"\c{parseColor(x).argb():08X}" for x in self.infoColors]
 		self.poll_interval = 1000  # This is a shared variable!
 		self.poll_enabled = True  # This is a shared variable!
 		self.ecmData = GetEcmInfo()
@@ -191,16 +190,35 @@ class PliExtraInfo(Converter, Poll):
 		self.feData = None
 		self.feDataUpdate = None
 
-	def getCryptoInfo(self, info):
-		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
-			data = self.ecmData.getEcmData()
-			self.currentSource = data[0]
-			self.currentCAID = data[1]
-			self.currentProvID = data[2]
+	def changed(self, what):
+		if what[0] == self.CHANGED_SPECIFIC:
+			self.feDataUpdate = False
+			if what[1] == iPlayableService.evNewProgramInfo:
+				self.feDataUpdate = True
+			if what[1] == iPlayableService.evEnd:
+				self.feRaw = None
+				self.feData = None
+			Converter.changed(self, what)
+		elif what[0] == self.CHANGED_POLL and self.feDataUpdate is not None:
+			self.feDataUpdate = False
+			Converter.changed(self, what)
+
+	def createChannelNumber(self, feData, feRaw):
+		return "DVB-T" in feRaw.get("tuner_type") and feData.get("channel") or ""
+
+	def createCrypto(self, info, start, end, crypto):
+		availableCAIDs = info.getInfoObject(iServiceInformation.sCAIDs)
+		if int(start, 16) <= int(self.currentCAID, 16) <= int(end, 16):
+			color = self.cryptoColors[0]
 		else:
-			self.currentSource = ""
-			self.currentCAID = "0"
-			self.currentProvID = "0"
+			color = self.cryptoColors[1]
+			try:
+				for caid in availableCAIDs:
+					if int(start, 16) <= caid <= int(end, 16):
+						color = self.cryptoColors[2]
+			except Exception:
+				pass
+		return f"{color}{crypto}{self.cryptoColors[3]}"
 
 	def createCryptoBar(self, info):
 		data = []
@@ -220,32 +238,6 @@ class PliExtraInfo(Converter, Poll):
 				data.append(f"{color}{caidData[3]}")
 		return f"{' '.join(data)}{self.infoColors[3]}"
 
-	def createCrypto(self, info, start, end, crypto):
-		availableCAIDs = info.getInfoObject(iServiceInformation.sCAIDs)
-		if int(start, 16) <= int(self.currentCAID, 16) <= int(end, 16):
-			color = self.cryptoColors[0]
-		else:
-			color = self.cryptoColors[1]
-			try:
-				for caid in availableCAIDs:
-					if int(start, 16) <= caid <= int(end, 16):
-						color = self.cryptoColors[2]
-			except Exception:
-				pass
-		return f"{color}{crypto}{self.cryptoColors[3]}"
-
-	def createCryptoSpecial(self, info):
-		caidName = "FTA"
-		try:
-			for caidData in getCaidData():
-				if int(caidData[0], 16) <= int(self.currentCAID, 16) <= int(caidData[1], 16):
-					caidName = caidData[2]
-					break
-			caidName = f"{caidName}:{int(self.currentCAID, 16):04X}:{int(self.currentProvID, 16):04X}:{info.getInfo(iServiceInformation.sSID):04X}"
-		except Exception:
-			caidName = ""
-		return caidName
-
 	def createCryptoNameCaid(self, info):
 		caidName = "FTA"
 		if int(self.currentCAID, 16):
@@ -259,82 +251,17 @@ class PliExtraInfo(Converter, Poll):
 				caidName = ""
 		return caidName
 
-	def createResolution(self, info):
-		avControl = eAVControl.getInstance()
-		gamma = {
-			0: "SDR",
-			1: "HDR",
-			2: "HDR10",
-			3: "HLG"
-		}.get(info.getInfo(iServiceInformation.sGamma), "")
-		gamma = f"  {gamma}" if gamma else ""
-		return f"{avControl.getResolutionX(0)}x{avControl.getResolutionY(0)}{'p' if avControl.getProgressive() else 'i'}{(avControl.getFrameRate(0) + 500) // 1000}{gamma}"
-
-	def createVideoCodec(self, info):
-		return CODEC_NAMES.get(info.getInfo(iServiceInformation.sVideoType), _("N/A"))
-
-	def createServiceRef(self, info):
-		return info.getInfoString(iServiceInformation.sServiceref)
-
-	def createPIDInfo(self, info):
-		originalNetworkID = info.getInfo(iServiceInformation.sONID)
-		if originalNetworkID < 0:
-			originalNetworkID = 0
-		transportStreamID = info.getInfo(iServiceInformation.sTSID)
-		if transportStreamID < 0:
-			transportStreamID = 0
-		serviceIDPID = info.getInfo(iServiceInformation.sSID)
-		if serviceIDPID < 0:
-			serviceIDPID = 0
-		videoPID = info.getInfo(iServiceInformation.sVideoPID)
-		if videoPID < 0:
-			videoPID = 0
-		audioPID = info.getInfo(iServiceInformation.sAudioPID)
-		if audioPID < 0:
-			audioPID = 0
-		programClockReferencePID = info.getInfo(iServiceInformation.sPCRPID)
-		if programClockReferencePID < 0:
-			programClockReferencePID = 0
-		return f"{originalNetworkID}-{transportStreamID}:{serviceIDPID:05d}:{videoPID:04d}:{audioPID:04d}:{programClockReferencePID:04d}"
-
-	def createTransponderInfo(self, feData, feRaw, info):
-		if not feRaw:
-			refstr = info.getInfoString(iServiceInformation.sServiceref)
-			if "%3a//" in refstr.lower():
-				return refstr.split(":")[10].replace("%3a", ":").replace("%3A", ":")
-			return ""
-		elif "DVB-T" in feRaw.get("tuner_type"):
-			data = [
-				self.createChannelNumber(feData, feRaw),
-				self.createFrequency(feData),
-				self.createPolarization(feData)
-			]
-		else:
-			data = [
-				self.createFrequency(feData),
-				self.createPolarization(feData)
-			]
-		return "  ".join([
-			self.createTunerSystem(feData)
-		] + data + [
-			self.createSymbolRate(feData, feRaw),
-			self.createFEC(feData, feRaw),
-			self.createModulation(feData),
-			self.createOrbPos(feRaw),
-			self.createMisPls(feData)
-		])
-
-	def createFrequency(self, feData):
-		return str(feData.get("frequency", ""))
-
-	def createChannelNumber(self, feData, feRaw):
-		return "DVB-T" in feRaw.get("tuner_type") and feData.get("channel") or ""
-
-	def createSymbolRate(self, feData, feRaw):
-		return str(feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", ""))
-
-	def createPolarization(self, feData):
-		return feData.get("polarization_abbreviation") or ""
+	def createCryptoSpecial(self, info):
+		caidName = "FTA"
+		try:
+			for caidData in getCaidData():
+				if int(caidData[0], 16) <= int(self.currentCAID, 16) <= int(caidData[1], 16):
+					caidName = caidData[2]
+					break
+			caidName = f"{caidName}:{int(self.currentCAID, 16):04X}:{int(self.currentProvID, 16):04X}:{info.getInfo(iServiceInformation.sSID):04X}"
+		except Exception:
+			caidName = ""
+		return caidName
 
 	def createFEC(self, feData, feRaw):
 		if "DVB-T" in feRaw.get("tuner_type"):
@@ -346,14 +273,21 @@ class PliExtraInfo(Converter, Poll):
 			fec = feData.get("fec_inner", "")
 		return fec
 
+	def createFrequency(self, feData):
+		return str(feData.get("frequency", ""))
+
+	def createMisPls(self, feData):
+		data = []
+		if feData.get("is_id") and feData.get("is_id") > -1:
+			data.append(f"MIS {feData.get('is_id')}")
+		if feData.get("pls_code") and feData.get("pls_code") > 0:
+			data.append(f"{feData.get('pls_mode')} {feData.get('pls_code')}")
+		if feData.get("t2mi_plp_id") and feData.get("t2mi_plp_id") > -1:
+			data.append(f"T2MI {feData.get('t2mi_plp_id')} PID {feData.get('t2mi_pid')}")
+		return "  ".join(data)
+
 	def createModulation(self, feData):
 		return feData.get("constellation" if "DVB-T" in feData.get("tuner_type") else "modulation", "")
-
-	def createTunerType(self, feRaw):
-		return feRaw.get("tuner_type") or ""
-
-	def createTunerSystem(self, feData):
-		return feData.get("system") or ""
 
 	def createOrbPos(self, feRaw):
 		orbPos = feRaw.get("orbital_position")
@@ -367,6 +301,53 @@ class PliExtraInfo(Converter, Poll):
 	def createOrbPosOrTunerSystem(self, feData, feRaw):
 		orbPos = self.createOrbPos(feRaw)
 		return orbPos if orbPos else self.createTunerSystem(feData)
+
+	def createPIDInfo(self, info):
+		originalNetworkID, transportStreamID, serviceIDPID, videoPID, audioPID, programClockReferencePID = (max(info.getInfo(x), 0) for x in (iServiceInformation.sONID, iServiceInformation.sTSID, iServiceInformation.sSID, iServiceInformation.sVideoPID, iServiceInformation.sAudioPID, iServiceInformation.sPCRPID))
+		return f"{originalNetworkID}-{transportStreamID}:{serviceIDPID:05d}:{videoPID:04d}:{audioPID:04d}:{programClockReferencePID:04d}"
+
+	def createPolarization(self, feData):
+		return feData.get("polarization_abbreviation") or ""
+
+	def createProviderName(self, info):
+		return info.getInfoString(iServiceInformation.sProvider)
+
+	def createResolution(self, info):
+		avControl = eAVControl.getInstance()
+		gamma = {
+			0: "SDR",
+			1: "HDR",
+			2: "HDR10",
+			3: "HLG"
+		}.get(info.getInfo(iServiceInformation.sGamma), "")
+		gamma = f"  {gamma}" if gamma else ""
+		return f"{avControl.getResolutionX(0)}x{avControl.getResolutionY(0)}{'p' if avControl.getProgressive() else 'i'}{(avControl.getFrameRate(0) + 500) // 1000}{gamma}"
+
+	def createServiceRef(self, info):
+		return info.getInfoString(iServiceInformation.sServiceref)
+
+	def createSymbolRate(self, feData, feRaw):
+		return str(feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", ""))
+
+	def createTransponderInfo(self, feData, feRaw, info):
+		if feRaw:
+			data = [self.createTunerSystem(feData)]
+			if "DVB-T" in feRaw.get("tuner_type"):
+				data.append(self.createChannelNumber(feData, feRaw))
+			data += [
+				self.createFrequency(feData),
+				self.createPolarization(feData),
+				self.createSymbolRate(feData, feRaw),
+				self.createFEC(feData, feRaw),
+				self.createModulation(feData),
+				self.createOrbPos(feRaw),
+				self.createMisPls(feData)
+			]
+			result = "  ".join(data)
+		else:
+			refstr = info.getInfoString(iServiceInformation.sServiceref)
+			result = refstr.split(":")[10].replace("%3a", ":").replace("%3A", ":") if "%3a//" in refstr.lower() else ""
+		return result
 
 	def createTransponderName(self, feRaw):
 		orbPos = feRaw.get("orbital_position")
@@ -385,160 +366,14 @@ class PliExtraInfo(Converter, Poll):
 				orbPos = f"{float(orbPos) / 10.0}\u00B0{_('E')}"
 		return orbPos or ""
 
-	def createProviderName(self, info):
-		return info.getInfoString(iServiceInformation.sProvider)
+	def createTunerSystem(self, feData):
+		return feData.get("system") or ""
 
-	def createMisPls(self, feData):
-		data = []
-		if feData.get("is_id") and feData.get("is_id") > -1:
-			data.append(f"MIS {feData.get('is_id')}")
-		if feData.get("pls_code") and feData.get("pls_code") > 0:
-			data.append(f"{feData.get('pls_mode')} {feData.get('pls_code')}")
-		if feData.get("t2mi_plp_id") and feData.get("t2mi_plp_id") > -1:
-			data.append(f"T2MI {feData.get('t2mi_plp_id')} PID {feData.get('t2mi_pid')}")
-		return "  ".join(data)
+	def createTunerType(self, feRaw):
+		return feRaw.get("tuner_type") or ""
 
-	@cached
-	def getText(self):
-		service = self.source.service
-		if service is None:
-			return ""
-		info = service and service.info()
-		if not info:
-			return ""
-		if self.type == "CryptoInfo":
-			self.getCryptoInfo(info)
-			if config.usage.show_cryptoinfo.value > 0:
-				return "  ".join([self.createCryptoBar(info), self.createCryptoSpecial(info)])
-			else:
-				return "  ".join([self.createCryptoBar(info), self.currentSource, self.createCryptoSpecial(info)])
-		if self.type == "CryptoBar":
-			if config.usage.show_cryptoinfo.value > 0:
-				self.getCryptoInfo(info)
-				return self.createCryptoBar(info)
-			else:
-				return ""
-		crypto = self.cryptoData.get(self.type, None)
-		if crypto:
-			if config.usage.show_cryptoinfo.value > 0:
-				self.getCryptoInfo(info)
-				return self.createCrypto(info, crypto[0], crypto[1], crypto[2])
-			else:
-				return ""
-		if self.type == "CryptoSpecial":
-			if config.usage.show_cryptoinfo.value > 0:
-				self.getCryptoInfo(info)
-				return self.createCryptoSpecial(info)
-			else:
-				return ""
-		if self.type == "CryptoNameCaid":
-			if config.usage.show_cryptoinfo.value > 0:
-				self.getCryptoInfo(info)
-				return self.createCryptoNameCaid(info)
-			else:
-				return ""
-		if self.type == "ResolutionString":
-			return self.createResolution(info)
-		if self.type == "VideoCodec":
-			return self.createVideoCodec(info)
-		if self.feDataUpdate:
-			feinfo = service.frontendInfo()
-			if feinfo:
-				self.feRaw = feinfo.getAll(config.usage.infobar_frontend_source.value == "settings")
-				if self.feRaw:
-					self.feData = ConvertToHumanReadable(self.feRaw)
-		feRaw = self.feRaw
-		if not feRaw:
-			feRaw = info.getInfoObject(iServiceInformation.sTransponderData)
-			if not feRaw:
-				return ""
-			feData = ConvertToHumanReadable(feRaw)
-		else:
-			feData = self.feData
-		if self.type == "All":
-			self.getCryptoInfo(info)
-			if config.usage.show_cryptoinfo.value > 0:
-				return "  ".join([
-					self.createProviderName(info),
-					self.createTransponderInfo(feData, feRaw, info),
-					self.createTransponderName(feRaw)]) + \
-					"\n" + "  ".join([
-					self.createCryptoBar(info),
-					self.createCryptoSpecial(info)]) + \
-					"\n" + "  ".join([
-					self.createPIDInfo(info),
-					self.createVideoCodec(info),
-					self.createResolution(info)
-				])
-			else:
-				return "  ".join([
-					self.createProviderName(info),
-					self.createTransponderInfo(feData, feRaw, info),
-					self.createTransponderName(feRaw)]) + \
-					"\n" + "  ".join([
-					self.createCryptoBar(info),
-					self.currentSource]) + \
-					"\n" + "  ".join([
-					self.createCryptoSpecial(info),
-					self.createVideoCodec(info),
-					self.createResolution(info)
-				])
-		if self.type == "ServiceInfo":
-			return "  ".join([
-				self.createProviderName(info),
-				self.createTunerSystem(feData),
-				self.createFrequency(feRaw),
-				self.createPolarization(feData),
-				self.createSymbolRate(feData, feRaw),
-				self.createFEC(feData, feRaw),
-				self.createModulation(feData),
-				self.createOrbPos(feRaw),
-				self.createTransponderName(feRaw),
-				self.createVideoCodec(info),
-				self.createResolution(info)
-			])
-		if self.type == "TransponderInfo2line":
-			return "  ".join([
-				self.createProviderName(info),
-				self.createTunerSystem(feData),
-				self.createTransponderName(feRaw)]) + \
-				"\n" + "  ".join([
-				self.createFrequency(feData),
-				self.createPolarization(feData),
-				self.createSymbolRate(feData, feRaw),
-				f"{self.createModulation(feData)}-{self.createFEC(feData, feRaw)}"
-			])
-		if self.type == "PIDInfo":
-			return self.createPIDInfo(info)
-		if self.type == "ServiceRef":
-			return self.createServiceRef(info)
-		if not feRaw:
-			return ""
-		if self.type == "TransponderInfo":
-			return self.createTransponderInfo(feData, feRaw, info)
-		if self.type == "TransponderFrequency":
-			return self.createFrequency(feRaw)
-		if self.type == "TransponderSymbolRate":
-			return self.createSymbolRate(feData, feRaw)
-		if self.type == "TransponderPolarization":
-			return self.createPolarization(feData)
-		if self.type == "TransponderFEC":
-			return self.createFEC(feData, feRaw)
-		if self.type == "TransponderModulation":
-			return self.createModulation(feData)
-		if self.type == "OrbitalPosition":
-			return self.createOrbPos(feRaw)
-		if self.type == "TunerType":
-			return self.createTunerType(feRaw)
-		if self.type == "TunerSystem":
-			return self.createTunerSystem(feData)
-		if self.type == "OrbitalPositionOrTunerSystem":
-			return self.createOrbPosOrTunerSystem(feData, feRaw)
-		if self.type == "TerrestrialChannelNumber":
-			return self.createChannelNumber(feData, feRaw)
-		return _("Invalid type")
-
-	text = property(getText)
+	def createVideoCodec(self, info):
+		return CODEC_NAMES.get(info.getInfo(iServiceInformation.sVideoType), _("N/A"))
 
 	@cached
 	def getBool(self):
@@ -578,15 +413,120 @@ class PliExtraInfo(Converter, Poll):
 
 	boolean = property(getBool)
 
-	def changed(self, what):
-		if what[0] == self.CHANGED_SPECIFIC:
-			self.feDataUpdate = False
-			if what[1] == iPlayableService.evNewProgramInfo:
-				self.feDataUpdate = True
-			if what[1] == iPlayableService.evEnd:
-				self.feRaw = None
-				self.feData = None
-			Converter.changed(self, what)
-		elif what[0] == self.CHANGED_POLL and self.feDataUpdate is not None:
-			self.feDataUpdate = False
-			Converter.changed(self, what)
+	def getCryptoInfo(self, info):
+		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
+			data = self.ecmData.getEcmData()
+			self.currentSource = data[0]
+			self.currentCAID = data[1]
+			self.currentProvID = data[2]
+		else:
+			self.currentSource = ""
+			self.currentCAID = "0"
+			self.currentProvID = "0"
+
+	@cached
+	def getText(self):
+		text = ""
+		service = self.source.service
+		info = service and service.info()
+		if info:
+			showCryptoInfo = config.usage.show_cryptoinfo.value > 0
+			match self.type:
+				case "CryptoBar" | "CryptoNameCaid" | "CryptoSpecial":
+					if showCryptoInfo:
+						self.getCryptoInfo(info)
+						match self.type:
+							case "CryptoBar":
+								text = self.createCryptoBar(info)
+							case "CryptoNameCaid":
+								text = self.createCryptoNameCaid(info)
+							case "CryptoSpecial":
+								text = self.createCryptoSpecial(info)
+				case "CryptoInfo":
+					self.getCryptoInfo(info)
+					if showCryptoInfo:
+						text = "  ".join((self.createCryptoBar(info), self.createCryptoSpecial(info)))
+					else:
+						text = "  ".join((self.createCryptoBar(info), self.currentSource, self.createCryptoSpecial(info)))
+				case "ResolutionString":
+					text = self.createResolution(info)
+				case "VideoCodec":
+					text = self.createVideoCodec(info)
+				case _ if self.type in self.cryptoData:
+					if showCryptoInfo:
+						self.getCryptoInfo(info)
+						text = self.createCrypto(info, *self.cryptoData[self.type])
+				case _:
+					if self.feDataUpdate:
+						feInfo = service.frontendInfo()
+						if feInfo:
+							self.feRaw = feInfo.getAll(config.usage.infobar_frontend_source.value == "settings")
+							if self.feRaw:
+								self.feData = ConvertToHumanReadable(self.feRaw)
+					feRaw = self.feRaw
+					if feRaw:
+						feData = self.feData
+					else:
+						feRaw = info.getInfoObject(iServiceInformation.sTransponderData)
+						feData = ConvertToHumanReadable(feRaw) if feRaw else None
+					if feRaw:
+						match self.type:
+							case "All":
+								self.getCryptoInfo(info)
+								lines = ["  ".join((self.createProviderName(info), self.createTransponderInfo(feData, feRaw, info), self.createTransponderName(feRaw)))]
+								if showCryptoInfo:
+									lines.append("  ".join((self.createCryptoBar(info), self.createCryptoSpecial(info))))
+									lines.append("  ".join((self.createPIDInfo(info), self.createVideoCodec(info), self.createResolution(info))))
+								else:
+									lines.append("  ".join((self.createCryptoBar(info), self.currentSource)))
+									lines.append("  ".join((self.createCryptoSpecial(info), self.createVideoCodec(info), self.createResolution(info))))
+								text = "\n".join(lines)
+							case "OrbitalPosition":
+								text = self.createOrbPos(feRaw)
+							case "OrbitalPositionOrTunerSystem":
+								text = self.createOrbPosOrTunerSystem(feData, feRaw)
+							case "PIDInfo":
+								text = self.createPIDInfo(info)
+							case "ServiceInfo":
+								text = "  ".join((
+									self.createProviderName(info),
+									self.createTunerSystem(feData),
+									self.createFrequency(feRaw),
+									self.createPolarization(feData),
+									self.createSymbolRate(feData, feRaw),
+									self.createFEC(feData, feRaw),
+									self.createModulation(feData),
+									self.createOrbPos(feRaw),
+									self.createTransponderName(feRaw),
+									self.createVideoCodec(info),
+									self.createResolution(info)
+								))
+							case "ServiceRef":
+								text = self.createServiceRef(info)
+							case "TerrestrialChannelNumber":
+								text = self.createChannelNumber(feData, feRaw)
+							case "TransponderFEC":
+								text = self.createFEC(feData, feRaw)
+							case "TransponderFrequency":
+								text = self.createFrequency(feRaw)
+							case "TransponderInfo":
+								text = self.createTransponderInfo(feData, feRaw, info)
+							case "TransponderInfo2line":
+								line1 = "  ".join((self.createProviderName(info), self.createTunerSystem(feData), self.createTransponderName(feRaw)))
+								line2 = "  ".join((self.createFrequency(feData), self.createPolarization(feData), self.createSymbolRate(feData, feRaw), f"{self.createModulation(feData)}-{self.createFEC(feData, feRaw)}"))
+								text = f"{line1}\n{line2}"
+							case "TransponderModulation":
+								text = self.createModulation(feData)
+							case "TransponderPolarization":
+								text = self.createPolarization(feData)
+							case "TransponderSymbolRate":
+								text = self.createSymbolRate(feData, feRaw)
+							case "TunerSystem":
+								text = self.createTunerSystem(feData)
+							case "TunerType":
+								text = self.createTunerType(feRaw)
+							case _:
+								text = _("Invalid type")
+		return text
+
+	text = property(getText)

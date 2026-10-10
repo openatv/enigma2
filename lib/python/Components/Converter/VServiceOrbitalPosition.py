@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
+from enigma import iPlayableService, iPlayableServicePtr, iServiceInformation
+
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from Components.Element import cached
 
 
@@ -8,43 +8,33 @@ class VServiceOrbitalPosition(Converter):
 	FULL = 0
 	SHORT = 1
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		if type == "Short":
-			self.type = self.SHORT
-		else:
-			self.type = self.FULL
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
+		self.type = self.SHORT if tokens == "Short" else self.FULL
+
+	def changed(self, what):
+		if what[0] != self.CHANGED_SPECIFIC or what[1] == iPlayableService.evStart:
+			Converter.changed(self, what)
 
 	@cached
 	def getText(self):
+		text = ""
 		service = self.source.service
 		if isinstance(service, iPlayableServicePtr):
 			info = service and service.info()
 			ref = None
-		else: # reference
+		else:  # Reference.
 			info = service and self.source.info
 			ref = service
-		if info is None:
-			return ""
-		if ref:
-			transponder_info = info.getInfoObject(ref, iServiceInformation.sTransponderData)
-		else:
-			transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
-		if transponder_info and "orbital_position" in list(transponder_info.keys()):
-			pos = int(transponder_info["orbital_position"])
-			direction = 'E'
-			if pos > 1800:
-				pos = 3600 - pos
-				direction = 'W'
-			if self.type == self.SHORT:
-				return "%d.%d%s" % (pos / 10, pos % 10, direction)
-			else:
-				return "%d.%d %s %s" % (pos / 10, pos % 10, "\u00B0", direction)
-		else:
-			return ""
+		if info is not None:
+			transponderInfo = info.getInfoObject(ref, iServiceInformation.sTransponderData) if ref else info.getInfoObject(iServiceInformation.sTransponderData)
+			if transponderInfo and "orbital_position" in transponderInfo:
+				position = int(transponderInfo["orbital_position"])
+				direction = "E"
+				if position > 1800:
+					position = 3600 - position
+					direction = "W"
+				text = f"{position // 10}.{position % 10}{direction}" if self.type == self.SHORT else f"{position // 10}.{position % 10} ° {direction}"
+		return text
 
 	text = property(getText)
-
-	def changed(self, what):
-		if what[0] != self.CHANGED_SPECIFIC or what[1] in [iPlayableService.evStart]:
-			Converter.changed(self, what)
