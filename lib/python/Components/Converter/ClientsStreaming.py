@@ -2,10 +2,10 @@ from socket import gethostbyaddr
 
 from enigma import eStreamServer
 
+from ServiceReference import ServiceReference
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
-from ServiceReference import ServiceReference
 
 
 class ClientsStreaming(Converter, Poll):
@@ -23,8 +23,8 @@ class ClientsStreaming(Converter, Poll):
 	EXTRA_INFO = 10
 	DATA = 11
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		Poll.__init__(self)
 		self.poll_interval = 30000
 		self.poll_enabled = True
@@ -41,7 +41,7 @@ class ClientsStreaming(Converter, Poll):
 			"NUMBER": self.NUMBER,
 			"REF": self.REF,
 			"SHORT_ALL": self.SHORT_ALL
-		}.get(tokens, self.UNKNOWN)
+		}.get(token, self.UNKNOWN)
 		self.streamServer = eStreamServer.getInstance()
 
 	def changed(self, what):

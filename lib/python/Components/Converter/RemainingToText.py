@@ -1,8 +1,9 @@
 from time import localtime, strftime
+
+from Components.config import config
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
-from Components.config import config
 
 
 class RemainingToText(Converter, Poll):
@@ -19,8 +20,8 @@ class RemainingToText(Converter, Poll):
 	WITH_SECONDS = 11
 	WITH_SECONDS_VFD = 10
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		Poll.__init__(self)
 		self.token, self.poll_interval = {
 			"Default": (self.DEFAULT, 0),
@@ -35,9 +36,9 @@ class RemainingToText(Converter, Poll):
 			"VFDPercentage": (self.PERCENTAGE_VFD, 60000),
 			"VFDWithSeconds": (self.WITH_SECONDS_VFD, 1000),
 			"WithSeconds": (self.WITH_SECONDS, 1000)
-		}.get(tokens, (None, 0))
-		if tokens and self.token is None:
-			print(f"[RemainingToText] Error: Converter argument '{tokens}' is invalid!")
+		}.get(token, (None, 0))
+		if token and self.token is None:
+			print(f"[RemainingToText] Error: Converter argument '{token}' is invalid!")
 		if self.token is None:
 			self.token = self.DEFAULT
 		if config.usage.swap_time_display_on_osd.value in ("1", "3", "5") or config.usage.swap_time_display_on_vfd.value in ("1", "3", "5"):
@@ -46,7 +47,7 @@ class RemainingToText(Converter, Poll):
 			self.poll_interval = 1000
 		if self.poll_interval:
 			self.poll_enabled = True
-		# self.tokenText = tokens  # DEBUG: This is only for testing purposes.
+		# self.tokenText = token  # DEBUG: This is only for testing purposes.
 
 	@cached
 	def getText(self):

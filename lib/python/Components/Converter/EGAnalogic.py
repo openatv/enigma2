@@ -1,18 +1,19 @@
 # Shamelessly copied from BP Project.
 
 from time import localtime
-from Components.Converter.Converter import Converter
+
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class EGAnalogic(Converter):
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"Hours": 3,
 			"Minutes": 2,
 			"Seconds": 1
-		}.get(tokens, -1)
+		}.get(token, -1)
 
 	@cached
 	def getValue(self):

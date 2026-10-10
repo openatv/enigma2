@@ -1,16 +1,16 @@
 from enigma import iPlayableService, iPlayableServicePtr, iServiceInformation
 
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class VServiceOrbitalPosition(Converter):
 	FULL = 0
 	SHORT = 1
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
-		self.type = self.SHORT if tokens == "Short" else self.FULL
+	def __init__(self, token):
+		Converter.__init__(self, token)
+		self.type = self.SHORT if token == "Short" else self.FULL
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == iPlayableService.evStart:

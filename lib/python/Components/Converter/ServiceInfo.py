@@ -69,12 +69,12 @@ class ServiceInfo(Converter):
 	VIDEO_INFO_ASPECT = 4
 	VIDEO_INFO_GAMMA = 5
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		# Poll.__init__(self)
 		# self.poll_interval = 10000
 		# self.poll_enabled = True
-		self.argument = tokens
+		self.argument = token
 		self.token, self.interestingEvents = {
 			"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
@@ -131,7 +131,7 @@ class ServiceInfo(Converter):
 			"VideoPid": (self.VPID, (iPlayableService.evUpdatedInfo,)),
 			# "VideoSize": (self.VIDEO_SIZE, (iPlayableService.evVideoSizeChanged,)),
 			"VideoWidth": (self.XRES, (iPlayableService.evVideoSizeChanged,)),
-		}.get(tokens)
+		}.get(token)
 		self.instanceInfoBarSubserviceSelection = None
 
 	def changed(self, what):

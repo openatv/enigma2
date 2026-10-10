@@ -2,9 +2,9 @@ from time import localtime, time
 
 from enigma import iPlayableService
 
+from Components.Element import ElementError, cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import ElementError, cached
 
 
 class SCServicePosition(Poll, Converter):

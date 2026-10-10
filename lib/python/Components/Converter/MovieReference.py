@@ -9,8 +9,8 @@
 
 from enigma import eServiceReference, iPlayableServicePtr, iServiceInformation
 
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class MovieReference(Converter):

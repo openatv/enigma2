@@ -6,14 +6,15 @@ from os.path import isdir
 from re import fullmatch, search, sub
 from urllib.parse import urlencode
 from urllib.request import urlopen
-from Components.Converter.Converter import Converter
+
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class pstrCnvrt(Converter):
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
-		self.type = tokens
+	def __init__(self, token):
+		Converter.__init__(self, token)
+		self.type = token
 
 	@cached
 	def getText(self):

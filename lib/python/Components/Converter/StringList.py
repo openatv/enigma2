@@ -1,7 +1,7 @@
 from enigma import eListboxPythonStringContent
 
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class StringList(Converter):
