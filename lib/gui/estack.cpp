@@ -5,20 +5,39 @@ eStack::eStack(eWidget* parent, LayoutDirection dir) : eWidget(parent), m_direct
 	setTransparent(1);
 }
 
+eStack::~eStack() {
+	// children must not call back into a destroyed stack
+	for (auto child : m_stackchilds)
+		child->setStack(nullptr);
+}
+
+void eStack::setSpacing(int spacing) {
+	m_spacing = spacing;
+	recalcLayout();
+}
+
+void eStack::forgetStackChild(eWidget* child) {
+	if (auto it = std::ranges::find(m_stackchilds, child); it != m_stackchilds.end())
+		m_stackchilds.erase(it);
+}
+
 void eStack::setLayoutDirection(LayoutDirection dir) {
 	m_direction = dir;
 	recalcLayout();
 }
 
-void eStack::show()
-{
+void eStack::show() {
 	eWidget::show();
 	recalcLayout();
 }
 
 void eStack::addChild(eWidget* child) {
-	if (!child)
+	if (!child || child->m_stack == this)
 		return;
+
+	// a widget belongs to one stack only
+	if (child->m_stack)
+		static_cast<eStack*>(child->m_stack)->removeChild(child);
 
 	child->setStack(this);
 	m_stackchilds.push_back(child);
@@ -31,6 +50,7 @@ void eStack::removeChild(eWidget* child) {
 
 	if (auto it = std::ranges::find(m_stackchilds, child); it != m_stackchilds.end()) {
 		m_stackchilds.erase(it);
+		child->setStack(nullptr);
 	}
 
 	recalcLayout();
@@ -45,7 +65,10 @@ int eStack::event(int event, void* data, void* data2) {
 	if (event == evtPaint)
 		return 0;
 
-	return eWidget::event(event, data, data2);
+	int ret = eWidget::event(event, data, data2);
+	if (event == evtChangedSize)
+		recalcLayout();
+	return ret;
 }
 
 void eStack::recalcLayout() {
@@ -56,6 +79,10 @@ void eStack::recalcLayout() {
 		return;
 	if (!isVisible())
 		return;
+	// child->move() calls back into invalidateChilds()
+	if (m_inLayout)
+		return;
+	m_inLayout = true;
 
 	int x = 0, y = 0;
 	int xr = stack_w;
@@ -120,4 +147,6 @@ void eStack::recalcLayout() {
 			child->move(ePoint(child->position().x(), cy + position().y()));
 		}
 	}
+
+	m_inLayout = false;
 }
