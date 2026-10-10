@@ -19,6 +19,7 @@ public:
 	void setForegroundColor(const gRGB& color);
 	void setBackgroundColor(const gRGB& color) override;
 	bool isValid() const { return m_valid; }
+	static std::string getModules(const std::string& text, int level = ecMedium);
 
 protected:
 	int event(int event, void* data = nullptr, void* data2 = nullptr) override;

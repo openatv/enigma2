@@ -47,6 +47,24 @@ void eQRCode::encode() {
 	invalidate();
 }
 
+std::string eQRCode::getModules(const std::string& text, int level) {
+	if (level < ecLow || level > ecHigh)
+		level = ecMedium;
+	std::array<uint8_t, qrcodegen_BUFFER_LEN_MAX> qrcode;
+	if (std::array<uint8_t, qrcodegen_BUFFER_LEN_MAX> temp; text.empty() || !qrcodegen_encodeText(text.c_str(), temp.data(), qrcode.data(), (enum qrcodegen_Ecc)level, qrcodegen_VERSION_MIN, qrcodegen_VERSION_MAX, qrcodegen_Mask_AUTO, true))
+		return "";
+	const int count = qrcodegen_getSize(qrcode.data());
+	std::string modules;
+	modules.reserve(count * (count + 1));
+	for (int y = 0; y < count; y++) {
+		if (y)
+			modules += '\n';
+		for (int x = 0; x < count; x++)
+			modules += qrcodegen_getModule(qrcode.data(), x, y) ? '1' : '0';
+	}
+	return modules;
+}
+
 int eQRCode::event(int event, void* data, void* data2) { // NOSONAR - signature of eWidget::event
 	switch (event) {
 		case evtPaint: {
