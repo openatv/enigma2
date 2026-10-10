@@ -17,9 +17,9 @@ import requests
 
 from enigma import eTimer
 
-from Components.Converter.Converter import Converter
-from Components.Element import cached
 from Components.config import ConfigNumber, ConfigSelection, ConfigSubsection, config
+from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 config.plugins.AtileHD = ConfigSubsection()
 config.plugins.AtileHD.refreshInterval = ConfigNumber(default="10")
@@ -30,12 +30,12 @@ weather_data = None
 
 
 class VWeather(Converter):
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		global weather_data
 		if weather_data is None:
 			weather_data = WeatherData()
-		self.type = tokens
+		self.type = token
 
 	def getCF(self):
 		return "°F" if config.plugins.AtileHD.tempUnit.value == "Fahrenheit" else "°C"

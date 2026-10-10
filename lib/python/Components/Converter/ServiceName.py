@@ -1,11 +1,11 @@
 from enigma import eEPGCache, eServiceCenter, eServiceReference, iPlayableService, iPlayableServicePtr, iServiceInformation
 
-from Components.Converter.Converter import Converter
+from ServiceReference import ServiceReference, resolveAlternate
+from Components.config import config
 from Components.Element import cached
 from Components.NimManager import nimmanager
-from Components.config import config
+from Components.Converter.Converter import Converter
 import Screens.InfoBar
-from ServiceReference import ServiceReference, resolveAlternate
 from Tools.Directories import fileExists
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 

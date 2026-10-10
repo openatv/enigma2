@@ -2,9 +2,9 @@ from xml.etree.ElementTree import parse
 
 from enigma import iServiceInformation
 
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 
 
 class SmartInfo(Poll, Converter):

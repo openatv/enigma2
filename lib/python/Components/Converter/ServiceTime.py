@@ -1,7 +1,7 @@
 from enigma import iServiceInformation
 
-from Components.Converter.Converter import Converter
 from Components.Element import ElementError, cached
+from Components.Converter.Converter import Converter
 
 
 class ServiceTime(Converter):
@@ -9,15 +9,15 @@ class ServiceTime(Converter):
 	ENDTIME = 1
 	DURATION = 2
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"Duration": self.DURATION,
 			"EndTime": self.ENDTIME,
 			"StartTime": self.STARTTIME
-		}.get(tokens)
+		}.get(token)
 		if self.type is None:
-			raise ElementError(f"'{tokens}' is not <StartTime|EndTime|Duration> for ServiceTime converter")
+			raise ElementError(f"'{token}' is not <StartTime|EndTime|Duration> for ServiceTime converter")
 
 	@cached
 	def getTime(self):

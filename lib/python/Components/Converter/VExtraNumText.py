@@ -16,8 +16,9 @@
 #######################################################################
 
 from time import localtime
-from Components.Converter.Converter import Converter
+
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class VExtraNumText(Converter):
@@ -33,8 +34,8 @@ class VExtraNumText(Converter):
 	MINHAND = 9
 	HOURHAND = 10
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"AgcNum": self.AGCNUM,
 			"AgcText": self.AGCTEXT,
@@ -46,7 +47,7 @@ class VExtraNumText(Converter):
 			"hourHand": self.HOURHAND,
 			"minHand": self.MINHAND,
 			"secHand": self.SECHAND
-		}.get(tokens, self.LOCK)
+		}.get(token, self.LOCK)
 
 	@cached
 	def getText(self):

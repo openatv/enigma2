@@ -1,6 +1,6 @@
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 from Tools.Directories import isPluginInstalled
 from Tools.ISO639 import LanguageCodes
 
@@ -13,8 +13,8 @@ class TrackInfo(Poll, Converter):
 	SUBTITLE_TYPE = 4
 	SUBTITLE_LANG = 5
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		Poll.__init__(self)
 		self.poll_interval = 1500
 		self.poll_enabled = True
@@ -25,7 +25,7 @@ class TrackInfo(Poll, Converter):
 			"Subtitle": self.SUBTITLE,
 			"SubtitleLang": self.SUBTITLE_LANG,
 			"SubtitleType": self.SUBTITLE_TYPE
-		}.get(tokens, self.AUDIO)
+		}.get(token, self.AUDIO)
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:

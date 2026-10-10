@@ -1,10 +1,11 @@
 from urllib.parse import urlsplit
+
+import NavigationInstance
 from skin import parseColor
-from Components.Converter.Converter import Converter
+from Components.config import config
 from Components.Element import cached
 from Components.NimManager import nimmanager
-from Components.config import config
-import NavigationInstance
+from Components.Converter.Converter import Converter
 
 
 class FrontendInfo(Converter):
