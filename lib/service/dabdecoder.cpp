@@ -746,6 +746,8 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 			++m_msc_frames;
 			if (m_selected_dabplus)
 				feedDABPlus(streams[i].data.data(), streams[i].data.size());
+			else
+				feedDAB(streams[i].data.data(), streams[i].data.size());
 		}
 		for (std::map<uint16_t, std::unique_ptr<eDABPacketDecoder> >::iterator decoder =
 			m_packet_decoders.begin(); decoder != m_packet_decoders.end(); ++decoder)
@@ -755,6 +757,56 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 				decoder->second->feed(streams[i].data.data(), streams[i].data.size());
 		}
 	}
+}
+
+void eDABDecoder::feedDAB(const uint8_t *data, size_t length)
+{
+	/* One ETI MSC block of a legacy DAB audio subchannel is one complete
+	 * MPEG-1/2 Layer II frame.  Keep it compressed for the normal Enigma2
+	 * hardware audio sink, but inspect the embedded PAD before forwarding it. */
+	if (!data || length < 10 || !m_audio_callback)
+		return;
+	const uint32_t header = read32(data);
+	if ((header >> 21) != 0x7ff || ((header >> 17) & 3) != 2)
+		return;
+	const int version = (header >> 19) & 3;
+	const int bitrateIndex = (header >> 12) & 0x0f;
+	const int sampleRateIndex = (header >> 10) & 3;
+	if (version == 1 || !bitrateIndex || bitrateIndex == 15 || sampleRateIndex == 3)
+		return;
+
+	static const int mpeg1Layer2Bitrates[16] = {
+		0, 32, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 0
+	};
+	static const int mpeg2Layer2Bitrates[16] = {
+		0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 0
+	};
+	static const int mpeg1SampleRates[3] = {44100, 48000, 32000};
+	const bool mpeg1 = version == 3;
+	const int bitrate = mpeg1 ? mpeg1Layer2Bitrates[bitrateIndex] : mpeg2Layer2Bitrates[bitrateIndex];
+	int sampleRate = mpeg1SampleRates[sampleRateIndex];
+	if (!mpeg1)
+		sampleRate /= version == 2 ? 2 : 4;
+	if (!bitrate || !sampleRate)
+		return;
+
+	const bool mono = ((header >> 6) & 3) == 3;
+	const size_t scaleFactorCRCLength = mpeg1 && bitrate < (mono ? 56 : 112) ? 2 : 4;
+	const size_t bodyLength = length - 4;
+	if (bodyLength > scaleFactorCRCLength + 2)
+	{
+		const uint8_t *body = data + 4;
+		const uint8_t *fpad = body + bodyLength - 2;
+		if (fpad[0] & 0x30)
+		{
+			++m_pad_packets;
+			m_pad_decoder.Process(body, bodyLength - scaleFactorCRCLength - 2, false, fpad);
+		}
+	}
+
+	const uint64_t durationNs = 1152000000000ULL / static_cast<uint64_t>(sampleRate);
+	++m_audio_frames;
+	m_audio_callback(data, length, data, length, durationNs, 0, false);
 }
 
 void eDABDecoder::feedDABPlus(const uint8_t *data, size_t length)
@@ -991,5 +1043,5 @@ void eDABDecoder::emitLOAS(const uint8_t *data, size_t length, uint8_t config, u
 	if (frame.empty())
 		return;
 	++m_audio_frames;
-	m_audio_callback(data, length, frame.data(), frame.size(), durationNs, config);
+	m_audio_callback(data, length, frame.data(), frame.size(), durationNs, config, true);
 }

@@ -14,7 +14,10 @@
 class eDABDecoder : private DABlinPAD::PADDecoderObserver
 {
 public:
-	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
+	/* raw/framed carry AAC/LOAS for DAB+ and the same complete MPEG Layer II
+	 * frame for legacy DAB.  The final flag makes the codec decision explicit
+	 * for consumers; FIG 0/2 already signals it before the first MSC frame. */
+	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t, bool)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 	typedef std::function<void(const uint8_t *, size_t, int, int,
 		const std::string &, uint16_t)> MOTCallback;
@@ -127,6 +130,7 @@ private:
 	void reportPacketComponent(uint16_t componentId);
 	void resolveService();
 	void feedMSC(const std::vector<Stream> &streams);
+	void feedDAB(const uint8_t *data, size_t length);
 	void feedDABPlus(const uint8_t *data, size_t length);
 	void processSuperframe();
 	void inspectPAD(const uint8_t *data, size_t length);
