@@ -98,6 +98,8 @@ int eDVBPMTParser::getProgramInfo(program &program)
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
 				int isaudio = 0, isvideo = 0, issubtitle = 0, forced_video = 0, forced_audio = 0, isteletext = 0;
+				int supp_editorial = -1;
+				std::string supp_language;
 				int streamtype = (*es)->getType();
 				videoStream video;
 				audioStream audio;
@@ -381,8 +383,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 										audio.type = audioStream::atAC4;
 									}
 									break;
-								case 0x06: /* supplementary_audio_descriptor */
-									// TODO
+								case 0x06: /* supplementary_audio_descriptor, handled below */
 									break;
 								default:
 									eDebug("[eDVBPMTParser] TODO: Fix parsing for Extension descriptor with tag: %d", d->getExtensionTag());
@@ -423,9 +424,32 @@ int eDVBPMTParser::getProgramInfo(program &program)
 							processCaDescriptor(program, (CaDescriptor*)(*desc));
 							break;
 						}
+						case EXTENSION_DESCRIPTOR:
+						{
+							ExtensionDescriptor *d = (ExtensionDescriptor*)(*desc);
+							if (d->getExtensionTag() == 0x06) /* supplementary_audio_descriptor */
+							{
+								const SelectorByteVector *data = d->getSelectorBytes();
+								if (!data->empty())
+								{
+									supp_editorial = ((*data)[0] >> 2) & 0x1f;
+									if (((*data)[0] & 0x01) && data->size() >= 4)
+										supp_language.assign(data->begin() + 1, data->begin() + 4);
+								}
+							}
+							break;
+						}
 						default:
 							break;
 						}
+					}
+					/* applied after the loop, independent of descriptor order */
+					if (isaudio && supp_editorial != -1)
+					{
+						if (supp_editorial == 0x01) /* audio description */
+							audio.language_code = "NAR";
+						else if (audio.language_code.empty())
+							audio.language_code = supp_language;
 					}
 					if (!num_descriptors && streamtype == 0x06 && prev_audio)
 					{
