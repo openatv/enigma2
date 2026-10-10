@@ -26,7 +26,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
 # from Components.Storage import storageManager
-from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
+from Components.SystemInfo import BoxInfo, getBoxDisplayName, getCPUCurrentSpeed, getDemodVersion, getRAMTemperature
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
@@ -1279,12 +1279,12 @@ class InformationReceiver(InformationBase):
 		cpu = about.getCPUInfoString()
 		info.append(self.formatLine("P1", _("CPU"), cpu[0]))
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
-		currentSpeed = about.getCPUCurrentSpeed()
+		currentSpeed = getCPUCurrentSpeed()
 		if currentSpeed:
 			info.append(self.formatLine("P1", _("Current CPU speed"), currentSpeed))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
-		ramTemp = about.getRAMTemperature()
+		ramTemp = getRAMTemperature()
 		if ramTemp:
 			info.append(self.formatLine("P1", _("RAM temperature"), ramTemp))
 		info.append(self.formatLine("P1", _("CPU brand"), about.getCPUBrand()))
