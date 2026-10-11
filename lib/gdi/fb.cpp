@@ -336,7 +336,11 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	lfb=(unsigned char*)mmap(0, stride * screeninfo.yres_virtual, PROT_WRITE|PROT_READ, MAP_SHARED, fbFd, 0);
 #endif
 
-	memset(lfb, 0, stride*yRes);
+	// Clear all pages, a page left over from the previous run shows up on the first page flip.
+	int clearSize = stride * screeninfo.yres_virtual;
+	if (clearSize > available)
+		clearSize = available;
+	memset(lfb, 0, clearSize);
 	blit();
 	return 0;
 }
