@@ -69,6 +69,8 @@ class DABScan(ServiceScan):
 		self.registeredParents = set()
 		self.saveRegisteredParents = False
 		ServiceScan.__init__(self, session, [])
+		self["FrontendInfo"].frontend_type_override = "DAB"
+		self["FrontendInfo"].updateFrontendData()
 		self.serviceEventTracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evTunedIn: self.serviceTunedIn,
 			iPlayableService.evTuneFailed: self.serviceTuneFailed

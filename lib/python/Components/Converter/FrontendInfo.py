@@ -213,7 +213,8 @@ class FrontendInfo(Converter):
 					"DVB-S": 0,
 					"DVB-C": 1,
 					"DVB-T": 2,
-					"ATSC": 3
+					"ATSC": 3,
+					"DAB": 4
 				}.get(self.source.frontend_type, -1)
 			case _:
 				result = None

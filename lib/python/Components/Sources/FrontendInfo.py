@@ -8,6 +8,7 @@ from Components.Sources.Source import Source
 
 class FrontendInfo(Source, PerServiceBase):
 	def __init__(self, service_source=None, frontend_source=None, navcore=None):
+		self.frontend_type_override = None
 		self.navcore = None
 		Source.__init__(self)
 		if navcore:
@@ -43,6 +44,8 @@ class FrontendInfo(Source, PerServiceBase):
 				self.frontend_type = self.getFrontendTransponderType()
 			if not self.frontend_type:
 				self.frontend_type = data.get("tuner_type")
+		if self.frontend_type_override is not None:
+			self.frontend_type = self.frontend_type_override
 		self.changed((self.CHANGED_ALL, ))
 
 	def updateTunerMask(self, mask):

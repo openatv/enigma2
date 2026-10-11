@@ -1224,6 +1224,11 @@ self.autoResize()
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
+		<widget source="FrontendInfo" render="Pixmap" pixmap="icons/ico_dab-plus.png" position="5,5" size="64,64" scale="1" transparent="1" alphatest="on">
+			<convert type="FrontendInfo">TYPE</convert>
+			<convert type="ValueRange">4,4</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget name="network" position="80,15" size="330,20" font="Regular;20" />
 		<widget name="transponder" position="80,40" size="330,20" font="Regular;20" />
 		<widget name="scan_state" position="10,80" zPosition="2" size="400,20" font="Regular;18" />
