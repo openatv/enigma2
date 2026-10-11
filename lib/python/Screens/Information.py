@@ -31,6 +31,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Tools.Conversions import formatDate, scaleNumber
+from Tools.DAB import getDABLanguageName
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
@@ -1448,8 +1449,16 @@ class InformationService(InformationBase):
 		if serviceRef:
 			self.serviceCommandsIndex = 1
 		else:
-			self.eventTracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evEnd: self.fetchInformationDelayed})
+			self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evEnd: self.fetchInformationDelayed,
+				iPlayableService.evUpdatedInfo: self.serviceInformationUpdated
+			})
 			self.serviceCommandsIndex = 0
+
+	def serviceInformationUpdated(self):
+		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if serviceRef and serviceRef.type == eServiceReference.idServiceDAB:
+			self.informationTimer.start(25, True)
 
 	def fetchInformationDelayed(self):  # This allows the newly selected service to stabilize before updating the service data.
 		self.informationTimer.startLongTimer(3)
@@ -1626,10 +1635,11 @@ class InformationService(InformationBase):
 			elif serviceRef:
 				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
 			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
-			addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
+			addIfAvailable(info, _("Language"), getDABLanguageName(getServiceInfoValue(iServiceInformation.sTagLanguageCode)))
 			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
 			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
-			addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))
+			protection = getServiceInfoValue(iServiceInformation.sDABProtection)
+			addIfAvailable(info, _("Protection"), "" if protection == "Unknown" else protection)
 			addIfAvailable(info, _("Dynamic label"), getServiceInfoValue(iServiceInformation.sDABDynamicLabel))
 			addIfAvailable(info, _("RTL-SDR tuner"), getServiceInfoValue(iServiceInformation.sDABReceiverName))
 			frontendInfo = self.service and self.service.frontendInfo()

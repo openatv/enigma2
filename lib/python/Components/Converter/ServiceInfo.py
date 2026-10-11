@@ -4,6 +4,7 @@ from enigma import eAVControl, eServiceReference, iPlayableService, iServiceInfo
 from Components.Element import cached
 from Components.Converter.Converter import Converter
 # from Components.Converter.Poll import Poll
+from Tools.DAB import getDABLanguageName
 from Tools.Transponder import ConvertToHumanReadable
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -61,6 +62,8 @@ class ServiceInfo(Converter):
 	IS_SOFTCSA = 47
 	IS_DAB = 48
 	IS_DVBI = 49
+	DAB_LANGUAGE = 50
+	DAB_PROTECTION = 51
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -76,6 +79,8 @@ class ServiceInfo(Converter):
 		# self.poll_enabled = True
 		self.argument = argument
 		self.token, self.interestingEvents = {
+			"DABLanguage": (self.DAB_LANGUAGE, (iPlayableService.evUpdatedInfo,)),
+			"DABProtection": (self.DAB_PROTECTION, (iPlayableService.evUpdatedInfo,)),
 			"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 			"EditMode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
@@ -246,6 +251,14 @@ class ServiceInfo(Converter):
 		service = self.source.service
 		info = service and service.info()
 		if info:
+			if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION):
+				ref = info.getInfoString(iServiceInformation.sServiceref)
+				if not ref or eServiceReference(ref).type != eServiceReference.idServiceDAB:
+					return ""
+				if self.token == self.DAB_LANGUAGE:
+					return getDABLanguageName(info.getInfoString(iServiceInformation.sTagLanguageCode))
+				protection = info.getInfoString(iServiceInformation.sDABProtection)
+				return "" if protection == "Unknown" else protection
 			videoData = info.getInfoString(iServiceInformation.sVideoInfo) or "-1|-1|-1|-1|-1|-1"
 			videoData = [int(x) for x in videoData.split("|")]
 			videoWidth = videoData[self.VIDEO_INFO_WIDTH] if videoData[self.VIDEO_INFO_WIDTH] != -1 else eAVControl.getInstance().getResolutionX(0)

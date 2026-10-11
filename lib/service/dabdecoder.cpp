@@ -1,6 +1,7 @@
 #include <lib/service/dabdecoder.h>
 
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <cstring>
 
@@ -32,6 +33,11 @@ struct EEPProfile
 	uint8_t sizeMultiplier;
 	uint8_t rateMultiplier;
 };
+
+/* EN 300 401 short-form table: UEP levels are not consecutive at all bitrates. */
+const std::array<uint8_t, 64> uepLevels = {{
+	5,4,3,2,1,5,4,3,2,1,5,4,3,2,5,4,3,2,1,5,4,3,2,1,5,4,3,2,1,5,4,3,2,5,4,3,2,1,5,4,3,2,1,5,4,3,2,1,5,4,3,2,1,5,4,3,2,1,5,4,2,5,3,1
+}};
 
 const EEPProfile eepProfiles[8] = {
 	{12,8},{8,8},{6,8},{4,8},{27,32},{21,32},{18,32},{15,32}
@@ -487,7 +493,7 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 	const bool otherEnsemble = data[0] & 0x40;
 	const bool longSid = data[0] & 0x20;
 	const int extension = data[0] & 0x1f;
-	if (otherEnsemble)
+	if (otherEnsemble || (data[0] & 0x80))
 		return;
 	size_t position = 1;
 	if (extension == 0 && position + 2 <= length)
@@ -517,7 +523,10 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				const int profile = option * 4 + protection;
 				subchannel.size = ((form & 3) << 8) | data[position + 3];
 				if (profile >= 0 && profile < 8 && subchannel.size % eepProfiles[profile].sizeMultiplier == 0)
+				{
 					subchannel.bitrate = subchannel.size / eepProfiles[profile].sizeMultiplier * eepProfiles[profile].rateMultiplier;
+					subchannel.protection = "EEP " + std::to_string(protection + 1) + (option ? "-B" : "-A");
+				}
 				position += 4;
 			}
 			else
@@ -525,11 +534,13 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				const int tableIndex = form & 0x3f;
 				subchannel.size = uepProfiles[tableIndex].size;
 				subchannel.bitrate = uepProfiles[tableIndex].bitrate;
+				subchannel.protection = "UEP " + std::to_string(uepLevels[tableIndex]);
 				position += 3;
 			}
 			std::map<int, Subchannel>::const_iterator previous = m_subchannels.find(subchannelId);
 			if (previous == m_subchannels.end() || previous->second.startAddress != subchannel.startAddress ||
-				previous->second.size != subchannel.size || previous->second.bitrate != subchannel.bitrate)
+				previous->second.size != subchannel.size || previous->second.bitrate != subchannel.bitrate ||
+				previous->second.protection != subchannel.protection)
 			{
 				m_subchannels[subchannelId] = subchannel;
 				++m_service_revision;
@@ -603,6 +614,33 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 			reportPacketComponent(componentId);
 		}
 	}
+	else if (extension == 5)
+	{
+		while (position < length)
+		{
+			const uint8_t first = data[position];
+			if (first & 0x80)
+			{
+				/* Long form addresses a packet-mode SCId, not an audio SubChId. */
+				if (position + 3 > length)
+					break;
+				position += 3;
+			}
+			else
+			{
+				if (position + 2 > length)
+					break;
+				if (!(first & 0x40))
+				{
+					const int subchannel = first & 0x3f;
+					const int language = data[position + 1];
+					/* Keep language independently: FIG 0/5 may precede FIG 0/1. */
+					m_subchannel_languages[subchannel] = language;
+				}
+				position += 2;
+			}
+		}
+	}
 	else if (extension == 13)
 	{
 		while (position + (longSid ? 5 : 3) <= length)
@@ -635,6 +673,20 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				}
 				position += applicationLength;
 			}
+		}
+	}
+	else if (extension == 17 && !longSid)
+	{
+		while (position + 4 <= length)
+		{
+			const uint16_t sid = read16(data + position);
+			const uint8_t flags = data[position + 2];
+			const size_t recordLength = 4 + ((flags & 0x20) ? 1 : 0) + ((flags & 0x10) ? 1 : 0);
+			if (position + recordLength > length)
+				break;
+			if (flags & 0x20)
+				m_services[sid].language = data[position + 3];
+			position += recordLength;
 		}
 	}
 }
@@ -709,6 +761,26 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 			++m_service_revision;
 		}
 	}
+}
+
+int eDABDecoder::language() const
+{
+	const auto service = m_services.find(m_service_id);
+	if (service == m_services.end())
+		return -1;
+	const auto language = m_subchannel_languages.find(service->second.subchannel);
+	if (language != m_subchannel_languages.end() && language->second != 0)
+		return language->second;
+	return service->second.language;
+}
+
+std::string eDABDecoder::protection() const
+{
+	const auto service = m_services.find(m_service_id);
+	if (service == m_services.end())
+		return std::string();
+	const auto subchannel = m_subchannels.find(service->second.subchannel);
+	return subchannel == m_subchannels.end() ? std::string() : subchannel->second.protection;
 }
 
 void eDABDecoder::resolveService()
