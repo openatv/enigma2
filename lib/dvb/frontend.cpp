@@ -710,18 +710,6 @@ int eDVBFrontend::openFrontend()
 	if (!m_simulate)
 	{
 		m_need_delivery_system_workaround = eSimpleConfig::getBool("config.usage.enable_delivery_system_workaround", false);
-		FILE *boxtype_file;
-		char boxtype_name[20];
-		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
-		{
-			[[maybe_unused]] char* ret = fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-			fclose(boxtype_file);
-
-			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega") || !strcmp(boxtype_name, "spycat4kmini"))
-			{
-				m_need_delivery_system_workaround = false;
-			}
-		}
 		eDebug("[eDVBFrontend] m_need_delivery_system_workaround = %d", m_need_delivery_system_workaround);
 
 		eDebug("[eDVBFrontend] opening frontend %d", m_dvbid);

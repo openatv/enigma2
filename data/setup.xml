@@ -1300,7 +1300,7 @@
 		<item level="2" text="Ignore DVB-S namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork</item>
 		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
 		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
-		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
+		<item level="1" text="Reopen tuner when changing delivery system" description="Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers.">config.usage.enable_delivery_system_workaround</item>
 	</setup>
 	<setup key="UBISlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
