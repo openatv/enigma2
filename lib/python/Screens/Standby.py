@@ -1,7 +1,9 @@
 from os.path import exists
 from time import time
-from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer, quitMainloop, iRecordableService, eDBoxLCD
 
+from enigma import eDBoxLCD, eDVBLocalTimeHandler, eDVBVolumecontrol, eServiceReference, eStreamServer, eTimer, iRecordableService, quitMainloop
+
+from GlobalActions import globalActionMap
 from Components.ActionMap import HelpableActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config
@@ -11,14 +13,12 @@ from Components.ImportChannels import ImportChannels
 from Components.Label import Label
 import Components.RecordingConfig
 from Components.ScrambledRecordings import ScrambledRecordings
-from Components.Sources.StreamService import StreamServiceList
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Task import job_manager
-from GlobalActions import globalActionMap
+from Components.Sources.StreamService import StreamServiceList
 import Screens.InfoBar
 from Screens.MessageBox import MessageBox, MessageBoxSummary
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import mediaFilesInUse
 import Tools.Notifications
 
 
@@ -411,10 +411,6 @@ class TryQuitMainloop(MessageBox):
 			clients = eStreamServer.getInstance().getConnectedClients()
 			if len(clients) == 1 and len(clients[0]) == 3 and clients[0][0] == "::ffff:127.0.0.1":  # ignore internal streams
 				reason = ""
-		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI, QUIT_RETROGAMING, QUIT_RESTART, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
-			reason = _("A file from media is in use!")
-			default_yes = False
-			timeout = 30
 		elif jobs and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI, QUIT_RETROGAMING):
 			reason = _('%d jobs are running in the background!') % jobs
 			default_yes = False
