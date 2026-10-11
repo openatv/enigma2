@@ -505,6 +505,12 @@ int eDVBRecordFileThread::getFirstPTS(pts_t &pts)
 	return m_ts_parser.getFirstPTS(pts);
 }
 
+// Transient resource shortage: drop the chunk instead of aborting the thread.
+static bool isTransientAioError(int err)
+{
+	return err == ENOMEM || err == EAGAIN;
+}
+
 int eDVBRecordFileThread::AsyncIO::wait(int* short_write_count, bool allowCancelled)
 {
 	int result;
@@ -547,6 +553,11 @@ int eDVBRecordFileThread::AsyncIO::poll(int* short_write_count, bool allowCancel
 		aio.aio_buf = NULL;
 		if (allowCancelled && (err == ECANCELED || (err == 0 && r < 0)))
 			return 0;
+		if (isTransientAioError(err))
+		{
+			eWarning("[eDVBRecordFileThread] aio failed (error=%d): %s - dropping %zu bytes", err, strerror(err), aio.aio_nbytes);
+			return 0;
+		}
 		errno = err > 0 ? err : EIO;
 		return -1;
 	}
@@ -626,6 +637,11 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	int r = m_current_buffer->start(m_fd_dest, m_current_offset - _partStart, len, m_buffer);
 	if (r < 0)
 	{
+		if (isTransientAioError(errno))
+		{
+			eWarning("[eDVBRecordFileThread] aio_write failed: %m - dropping %d bytes", len);
+			return len;
+		}
 		int error = errno;
 		eDebug("[eDVBRecordFileThread] aio_write failed: %m");
 		errno = error;
