@@ -1,10 +1,10 @@
 from enigma import eAVControl, iPlayableService, iServiceInformation
 
 from skin import parameters, parseColor
+from Components.config import config
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
-from Components.config import config
 from Tools.GetEcmInfo import GetEcmInfo, getCaidData
 from Tools.Transponder import ConvertToHumanReadable
 
@@ -175,10 +175,10 @@ class PliExtraInfo(Converter, Poll):
 		"CryptoPowerVU": ("0xe00", "0xeff", "P")
 	}
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		Poll.__init__(self)
-		self.type = tokens
+		self.type = token
 		self.cryptoColors = parameters.get("PliExtraInfoCryptoColors", ("#004C7D3F", "#009F9F9F", "#00EEEE00", "#00FFFFFF"))
 		self.cryptoColors = [rf"\c{parseColor(x).argb():08X}" for x in self.cryptoColors]
 		self.infoColors = parameters.get("PliExtraInfoColors", ("#0000FF00", "#00FFFF00", "#007F7F7F", "#00FFFFFF"))  # "Found", "Not found", "Available", "Default" colors.

@@ -1,7 +1,7 @@
 from enigma import eInputDeviceManager
 
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 BATTERY_LOW_LEVEL = 20  # Same threshold as DFU_BATTERY_MIN in inputdevicemanager.h.
 
@@ -23,15 +23,15 @@ class RemoteControlInfo(Converter):
 	NAME = 3
 	CONNECTED = 4
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"Battery": self.BATTERY,
 			"BatteryLow": self.BATTERY_LOW,
 			"Signal": self.SIGNAL,
 			"Name": self.NAME,
 			"Connected": self.CONNECTED
-		}.get(type, self.BATTERY)
+		}.get(token, self.BATTERY)
 		self.manager = eInputDeviceManager.getInstance()
 		if self.manager:
 			self.manager.getDeviceListChanged().append(self.deviceListChanged)
@@ -59,17 +59,18 @@ class RemoteControlInfo(Converter):
 
 	@cached
 	def getText(self):
-		device = self.getDevice()
-		if device:
-			if self.type == self.BATTERY:
-				level = device.batteryLevel()
-				return f"{level}%" if level > 0 else ""
-			if self.type == self.SIGNAL:
-				rssi = device.rssi()
-				return f"{rssi} dBm" if rssi else ""
-			if self.type == self.NAME:
-				return device.name()
-		return ""
+		result = ""
+		if device := self.getDevice():
+			match self.type:
+				case self.BATTERY:
+					level = device.batteryLevel()
+					result = f"{level}%" if level > 0 else ""
+				case self.SIGNAL:
+					rssi = device.rssi()
+					result = f"{rssi} dBm" if rssi else ""
+				case self.NAME:
+					result = device.name()
+		return result
 
 	text = property(getText)
 
@@ -84,12 +85,13 @@ class RemoteControlInfo(Converter):
 
 	@cached
 	def getBoolean(self):
-		device = self.getDevice()
-		if device:
-			if self.type == self.CONNECTED:
-				return True
-			if self.type == self.BATTERY_LOW:
-				return 0 < device.batteryLevel() < BATTERY_LOW_LEVEL
-		return False
+		result = False
+		if device := self.getDevice():
+			match self.type:
+				case self.CONNECTED:
+					result = True
+				case self.BATTERY_LOW:
+					result = 0 < device.batteryLevel() < BATTERY_LOW_LEVEL
+		return result
 
 	boolean = property(getBoolean)

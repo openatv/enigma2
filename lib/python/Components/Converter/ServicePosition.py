@@ -2,10 +2,10 @@ from time import localtime, strftime, time as getTime
 
 from enigma import iPlayableService
 
+from Components.config import config
+from Components.Element import ElementError, cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import ElementError, cached
-from Components.config import config
 
 
 class ServicePosition(Poll, Converter):

@@ -1,5 +1,5 @@
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class TextCase(Converter):
@@ -7,9 +7,9 @@ class TextCase(Converter):
 	UPPER = 0
 	LOWER = 1
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
-		self.type = self.LOWER if tokens == "ToLower" else self.UPPER
+	def __init__(self, token):
+		Converter.__init__(self, token)
+		self.type = self.LOWER if token == "ToLower" else self.UPPER
 
 	@cached
 	def getText(self):

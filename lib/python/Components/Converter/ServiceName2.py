@@ -18,11 +18,11 @@
 
 from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, iPlayableServicePtr, iServiceInformation
 
-from Components.Converter.Converter import Converter
+import NavigationInstance
+from Components.config import config
 from Components.Element import cached
 from Components.NimManager import nimmanager
-from Components.config import config
-import NavigationInstance
+from Components.Converter.Converter import Converter
 try:
 	from Components.Renderer.ChannelNumber import ChannelNumberClasses
 	correctChannelNumber = True
@@ -42,8 +42,8 @@ class ServiceName2(Converter):
 	ALLREF = 8
 	FORMAT = 9
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"AllRef": self.ALLREF,
 			"Bouquet": self.BOUQUET,
@@ -54,9 +54,9 @@ class ServiceName2(Converter):
 			"Reference": self.REFERENCE,
 			"Satellite": self.SATELLITE,
 			"TpansponderInfo": self.TPRDATA
-		}.get(tokens, self.FORMAT if tokens else self.NAME)
+		}.get(token, self.FORMAT if token else self.NAME)
 		if self.type == self.FORMAT:
-			self.sfmt = tokens[:]
+			self.sfmt = token[:]
 		try:
 			if (self.type == self.NUMBER or (self.type == self.FORMAT and "%n" in self.sfmt)) and correctChannelNumber:
 				ChannelNumberClasses.append(self.forceChanged)

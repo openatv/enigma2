@@ -2,8 +2,9 @@
 # Thx to arn354.
 
 from time import localtime
-from Components.Converter.Converter import Converter
+
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class AnalogClock(Converter):
@@ -12,13 +13,13 @@ class AnalogClock(Converter):
 	OMA_MIN = 2
 	OMA_HOUR = 3
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"Hours": self.OMA_HOUR,
 			"Minutes": self.OMA_MIN,
 			"Seconds": self.OMA_SEC
-		}.get(tokens, self.DEFAULT)
+		}.get(token, self.DEFAULT)
 
 	@cached
 	def getText(self):

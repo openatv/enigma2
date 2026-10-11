@@ -1,9 +1,9 @@
 from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eServiceCenter, eServiceReference, iServiceInformation
 
+from ServiceReference import isRadioServiceReference
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
-from ServiceReference import isRadioServiceReference
 
 
 class ExtremeInfo(Poll, Converter):
@@ -151,9 +151,9 @@ class ExtremeInfo(Poll, Converter):
 		30: "Telecom 2 (3.0E)"
 	}
 
-	def __init__(self, tokens):
+	def __init__(self, token):
 		Poll.__init__(self)
-		Converter.__init__(self, tokens)
+		Converter.__init__(self, token)
 		self.list = []
 		self.getLists()
 		self.type = {
@@ -198,7 +198,7 @@ class ExtremeInfo(Poll, Converter):
 			# "Mbox": self.MBOX,
 			# "Oscam": self.OSCAM,
 			# "Wicardd": self.WICARDD
-		}.get(tokens, self.TUNERINFO)
+		}.get(token, self.TUNERINFO)
 
 	def changed(self, what):
 		Converter.changed(self, what)

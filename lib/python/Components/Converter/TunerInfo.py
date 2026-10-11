@@ -1,15 +1,15 @@
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 from Components.Sources.TunerInfo import TunerInfo as TunerInfoSource
 
 
 class TunerInfo(Converter):
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"TunerAvailable": TunerInfoSource.TUNER_AVAILABLE,
 			"TunerUseMask": TunerInfoSource.FE_USE_MASK
-		}[tokens]
+		}[token]
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:

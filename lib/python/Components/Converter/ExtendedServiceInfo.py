@@ -2,10 +2,10 @@ from xml.etree.ElementTree import parse
 
 from enigma import eServiceCenter, eServiceReference, iServiceInformation
 
-from Components.Converter.Converter import Converter
-from Components.Element import cached
-from Components.config import config
 from ServiceReference import isRadioServiceReference
+from Components.config import config
+from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class ExtendedServiceInfo(Converter):
@@ -17,8 +17,8 @@ class ExtendedServiceInfo(Converter):
 	FROMCONFIG = 5
 	ALL = 6
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.satNames = {}
 		self.readSatXml()
 		self.getLists()
@@ -29,7 +29,7 @@ class ExtendedServiceInfo(Converter):
 			"SatName": self.SATNAME,
 			"ServiceName": self.SERVICENAME,
 			"ServiceNumber": self.SERVICENUMBER
-		}.get(tokens, self.ALL)
+		}.get(token, self.ALL)
 
 	def changed(self, what):
 		Converter.changed(self, what)

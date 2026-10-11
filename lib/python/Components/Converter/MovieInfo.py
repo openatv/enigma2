@@ -2,9 +2,9 @@ from os.path import basename, normpath
 
 from enigma import eServiceReference, iServiceInformation
 
-from Components.Converter.Converter import Converter
-from Components.Element import ElementError, cached
 from ServiceReference import ServiceReference
+from Components.Element import ElementError, cached
+from Components.Converter.Converter import Converter
 
 
 class MovieInfo(Converter):
@@ -16,7 +16,7 @@ class MovieInfo(Converter):
 	MOVIE_NAME = 5  # Recording name or directory name.
 	MOVIE_FULL_DESCRIPTION = 6  # Full description of the movie.
 
-	def __init__(self, tokens):
+	def __init__(self, token):
 		self.type = {
 			"FileSize": self.MOVIE_REC_FILESIZE,
 			"FullDescription": self.MOVIE_FULL_DESCRIPTION,
@@ -26,10 +26,10 @@ class MovieInfo(Converter):
 			"RecordServiceRef": self.MOVIE_REC_SERVICE_REF,
 			"Reference": self.MOVIE_REC_SERVICE_REF,
 			"ShortDescription": self.MOVIE_SHORT_DESCRIPTION
-		}.get(tokens)
+		}.get(token)
 		if self.type is None:
-			raise ElementError(f"'{tokens}' is not <ShortDescription|MetaDescription|FullDescription|RecordServiceName|FileSize> for MovieInfo converter")
-		Converter.__init__(self, tokens)
+			raise ElementError(f"'{token}' is not <ShortDescription|MetaDescription|FullDescription|RecordServiceName|FileSize> for MovieInfo converter")
+		Converter.__init__(self, token)
 
 	@cached
 	def getText(self):

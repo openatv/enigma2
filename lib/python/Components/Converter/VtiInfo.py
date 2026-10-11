@@ -1,9 +1,9 @@
 from enigma import iPlayableService, iServiceInformation
 
+from Components.config import config
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
-from Components.config import config
 
 
 class VtiInfo(Poll, Converter):
@@ -13,9 +13,9 @@ class VtiInfo(Poll, Converter):
 	FANINFO = 23
 	ALL = 24
 
-	def __init__(self, tokens):
+	def __init__(self, token):
 		Poll.__init__(self)
-		Converter.__init__(self, tokens)
+		Converter.__init__(self, token)
 		self.poll_interval = 2000
 		self.poll_enabled = True
 		self.type = {
@@ -23,7 +23,7 @@ class VtiInfo(Poll, Converter):
 			"FanInfo": self.FANINFO,
 			"OnlineTest": self.ONLINETEST,
 			"TempInfo": self.TEMPINFO
-		}.get(tokens, self.ALL)
+		}.get(token, self.ALL)
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_SPECIFIC and what[1] == iPlayableService.evUpdatedInfo or what[0] == self.CHANGED_POLL:

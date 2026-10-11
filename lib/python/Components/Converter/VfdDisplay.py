@@ -2,10 +2,10 @@ from datetime import datetime
 
 from enigma import iPlayableService
 
+from Components.config import configfile
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
-from Components.config import configfile
 
 
 class VfdDisplay(Poll, Converter):

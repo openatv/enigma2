@@ -14,9 +14,9 @@
 #
 #######################################################################
 
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 
 
 class VNetSpeedInfo(Poll, Converter):
@@ -48,7 +48,7 @@ class VNetSpeedInfo(Poll, Converter):
 	DRO_RCW = 25  # WLAN receive drops.
 	DRO_TMW = 26  # WLAN transmit drops.
 
-	def __init__(self, tokens, update_interval=1000):
+	def __init__(self, token, update_interval=1000):
 		Poll.__init__(self)
 		self.poll_interval = 1000
 		self.poll_enabled = True
@@ -85,7 +85,7 @@ class VNetSpeedInfo(Poll, Converter):
 		self.drop_wlanreceive = 0
 		self.error_wlantransmite = 0
 		self.drop_wlantransmite = 0
-		Converter.__init__(self, tokens)
+		Converter.__init__(self, token)
 		self.type = {
 			"DRO_RCL": self.DRO_RCL,
 			"DRO_RCW": self.DRO_RCW,
@@ -114,7 +114,7 @@ class VNetSpeedInfo(Poll, Converter):
 			"TMWT": self.TMWT,
 			"TMW_MB": self.TMW_MB,
 			"TM_MB": self.TM_MB
-		}.get(tokens, tokens)
+		}.get(token, token)
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_POLL:

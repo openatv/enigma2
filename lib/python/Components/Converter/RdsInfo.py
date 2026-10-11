@@ -1,7 +1,7 @@
 from enigma import iPlayableService, iRdsDecoder
 
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class RdsInfo(Converter):
@@ -11,15 +11,15 @@ class RdsInfo(Converter):
 	RTP_TEXT_WITHOUT_EVENT = 3
 	RADIO_TEXT_WITHOUT_CURRENT_EVENT = 4
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type, self.interesting_events = {
 			"RadioText": (self.RADIO_TEXT_CHANGED, (iPlayableService.evUpdatedRadioText,)),
 			"RadioTextIfNoEvent": (self.RADIO_TEXT_WITHOUT_CURRENT_EVENT, (iPlayableService.evUpdatedRadioText, iPlayableService.evUpdatedEventInfo)),
 			"RasInteractiveAvailable": (self.RASS_INTERACTIVE_AVAILABLE, (iPlayableService.evUpdatedRassInteractivePicMask,)),
 			"RtpText": (self.RTP_TEXT_CHANGED, (iPlayableService.evUpdatedRtpText,)),
 			"RtpTextIfNoEvent": (self.RTP_TEXT_WITHOUT_EVENT, (iPlayableService.evUpdatedRtpText, iPlayableService.evUpdatedEventInfo))
-		}[tokens]
+		}[token]
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:

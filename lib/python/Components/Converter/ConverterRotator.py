@@ -5,22 +5,22 @@
 # Version: 0.1 (26.01.2012 04:05)
 # Support: http://dream.altmaster.net/
 #
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 
 
 class ConverterRotator(Poll, Converter):
 	"""Static Text Converter Rotator"""
 
-	def __init__(self, tokens):
+	def __init__(self, token):
 		Poll.__init__(self)
-		Converter.__init__(self, tokens)
+		Converter.__init__(self, token)
 		self.mainstream = None
 		self.sourceList = []
 		self.sourceIndex = -1
-		if tokens and tokens.isdigit():
-			self.poll_interval = int(tokens) * 1000
+		if token and token.isdigit():
+			self.poll_interval = int(token) * 1000
 
 	def changed(self, what, parent=None):
 		if what[0] == self.CHANGED_DEFAULT and not len(self.sourceList):

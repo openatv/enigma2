@@ -1,11 +1,11 @@
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class ValueBitTest(Converter):
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
-		self.value = int(tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
+		self.value = int(token)
 
 	@cached
 	def getBoolean(self):

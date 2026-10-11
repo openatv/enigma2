@@ -1,6 +1,7 @@
 from os.path import join
-from Components.Converter.Converter import Converter
+
 from Components.Element import ElementError, cached
+from Components.Converter.Converter import Converter
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
@@ -9,14 +10,14 @@ class ValueToPixmap(Converter):
 	LANGUAGE_CODE = 0
 	PATH = 1
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		self.type = {
 			"LanguageCode": self.LANGUAGE_CODE,
 			"Path": self.PATH
-		}.get(tokens)
+		}.get(token)
 		if self.type is None:
-			raise ElementError(f"'{tokens}' is not <LanguageCode|Path> for ValueToPixmap converter")
+			raise ElementError(f"'{token}' is not <LanguageCode|Path> for ValueToPixmap converter")
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:

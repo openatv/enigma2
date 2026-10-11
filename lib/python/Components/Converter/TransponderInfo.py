@@ -1,8 +1,8 @@
 from enigma import eServiceCenter, iPlayableService, iPlayableServicePtr, iServiceInformation
 
-from Components.Converter.Converter import Converter
-from Components.Element import cached
 from ServiceReference import resolveAlternate
+from Components.Element import cached
+from Components.Converter.Converter import Converter
 from Tools.Transponder import ConvertToHumanReadable
 
 

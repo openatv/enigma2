@@ -1,16 +1,16 @@
 from enigma import iPlayableService
 
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 
 
 class VAudioInfo(Poll, Converter):
 	GET_AUDIO_ICON = 0
 	GET_AUDIO_CODEC = 1
 
-	def __init__(self, tokens):
-		Converter.__init__(self, tokens)
+	def __init__(self, token):
+		Converter.__init__(self, token)
 		Poll.__init__(self)
 		self.poll_interval = 1000
 		self.poll_enabled = True
@@ -45,7 +45,7 @@ class VAudioInfo(Poll, Converter):
 		self.type, self.interesting_events = {
 			"AudioCodec": (self.GET_AUDIO_CODEC, (iPlayableService.evUpdatedInfo,)),
 			"AudioIcon": (self.GET_AUDIO_ICON, (iPlayableService.evUpdatedInfo,)),
-		}[tokens]
+		}[token]
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:

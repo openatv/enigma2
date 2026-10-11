@@ -1,6 +1,6 @@
+from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Components.Element import cached
 
 
 class VtiTempFan(Poll, Converter):
@@ -8,15 +8,15 @@ class VtiTempFan(Poll, Converter):
 	FANINFO = 2
 	ALL = 5
 
-	def __init__(self, tokens):
+	def __init__(self, token):
 		Poll.__init__(self)
-		Converter.__init__(self, tokens)
+		Converter.__init__(self, token)
 		self.poll_interval = 30000
 		self.poll_enabled = True
 		self.type = {
 			"FanInfo": self.FANINFO,
 			"TempInfo": self.TEMPINFO
-		}.get(tokens, self.ALL)
+		}.get(token, self.ALL)
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_POLL:
