@@ -1,4 +1,5 @@
 from re import search
+
 from enigma import eLabel, gRGB
 
 from skin import parseColor

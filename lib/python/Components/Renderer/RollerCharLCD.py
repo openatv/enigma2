@@ -1,8 +1,9 @@
 from enigma import eLabel, eTimer
+
 from Components.config import config
-from Components.Renderer.Renderer import Renderer
 from Components.SystemInfo import BoxInfo
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 
 
 class RollerCharLCD(VariableText, Renderer):

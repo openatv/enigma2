@@ -1,10 +1,12 @@
 # original code is from openmips gb Team: [OMaClockLcd] Renderer #
 # Thx to arn354 #
 
-from math import sin, cos, pi
-from enigma import eCanvas, eSize, gRGB, eRect
-from Components.Renderer.Renderer import Renderer
+from math import cos, pi, sin
+
+from enigma import eCanvas, eRect, eSize, gRGB
+
 from skin import parseColor
+from Components.Renderer.Renderer import Renderer
 
 
 class AnalogClockLCD(Renderer):

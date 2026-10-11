@@ -1,10 +1,12 @@
 from os import popen
+
 from enigma import eDVBCI_UI, eLabel, iPlayableService
-from Components.Renderer.Renderer import Renderer
+
+from skin import parameters
 from Components.SystemInfo import BoxInfo
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 from Tools.Hex2strColor import Hex2strColor
-from skin import parameters
 
 
 class CiModuleControl(Renderer, VariableText):

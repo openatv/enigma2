@@ -1,14 +1,16 @@
 from os import listdir
 from os.path import exists, getsize, isdir, join
 from re import sub
-from enigma import ePixmap, ePicLoad
+
+from enigma import ePicLoad, ePixmap
+
+from ServiceReference import ServiceReference
 from Components.config import config
 from Components.Harddisk import harddiskmanager
-from Components.Renderer.Renderer import Renderer
 from Components.SystemInfo import BoxInfo
-from ServiceReference import ServiceReference
+from Components.Renderer.Renderer import Renderer
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename, sanitizeFilename
 
 searchPaths = []
 lastLcdPiconPath = None

@@ -1,5 +1,6 @@
-from Components.Element import Element
 from os import path
+
+from Components.Element import Element
 # this is not a GUI renderer.
 
 

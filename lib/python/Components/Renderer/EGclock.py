@@ -1,6 +1,7 @@
 from enigma import eGauge
-from Components.Renderer.Renderer import Renderer
+
 from Components.VariableValue import VariableValue
+from Components.Renderer.Renderer import Renderer
 
 
 class EGclock(VariableValue, Renderer):

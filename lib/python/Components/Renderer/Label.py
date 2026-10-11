@@ -1,6 +1,7 @@
 from enigma import eLabel
-from Components.Renderer.Renderer import Renderer
+
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 
 
 class Label(VariableText, Renderer):

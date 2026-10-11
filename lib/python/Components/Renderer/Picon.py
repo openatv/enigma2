@@ -1,14 +1,16 @@
 from os import listdir
 from os.path import exists, getmtime, getsize, isdir, join, normpath
 from re import sub
-from enigma import ePixmap, eServiceReference, iServiceInformation  # , ePicLoad
+
+from enigma import ePixmap, eServiceReference, iServiceInformation
+
+import NavigationInstance
+from ServiceReference import ServiceReference
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
-import NavigationInstance
-from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename, sanitizeFilename
 
 searchPaths = []
 lastPiconPath = None  # default/infobar path as plain string for plugins
@@ -150,8 +152,6 @@ class Picon(Renderer):
 
 	def __init__(self):
 		Renderer.__init__(self)
-		# self.PicLoad = ePicLoad()
-		# self.PicLoad.PictureData.get().append(self.updatePicon)
 		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
@@ -199,12 +199,6 @@ class Picon(Renderer):
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
 
-	#def updatePicon(self, picInfo=None):
-	#	ptr = self.PicLoad.getData()
-	#	if ptr is not None:
-	#		self.instance.setPixmap(ptr.__deref__())
-	#		self.instance.show()
-
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
@@ -220,8 +214,6 @@ class Picon(Renderer):
 						self.instance.setScale(1)
 						self.instance.setPixmapFromFile(pngname)
 						self.instance.show()
-#						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
-#						self.PicLoad.startDecode(pngname)
 					else:
 						self.instance.hide()
 					self.pngname = pngkey

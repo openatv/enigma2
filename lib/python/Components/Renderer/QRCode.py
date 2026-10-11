@@ -1,7 +1,7 @@
 from enigma import eQRCode
 
-from Components.Renderer.Renderer import Renderer
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 
 
 class QRCode(VariableText, Renderer):

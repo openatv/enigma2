@@ -2,7 +2,9 @@
 # by digiteng...12-2019
 # v1.1a 01-2020
 from os.path import exists
+
 from enigma import ePixmap, loadJPG
+
 from Components.Renderer.Renderer import Renderer
 
 

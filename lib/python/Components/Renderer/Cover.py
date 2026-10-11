@@ -1,5 +1,7 @@
 from os.path import basename, dirname, exists, isdir, isfile, join, split, splitext
-from enigma import ePixmap, ePicLoad
+
+from enigma import ePicLoad, ePixmap
+
 from Components.config import config
 from Components.Renderer.Renderer import Renderer
 from Components.Sources.CurrentService import CurrentService

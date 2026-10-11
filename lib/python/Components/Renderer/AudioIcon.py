@@ -1,5 +1,7 @@
 from os.path import exists, join
+
 from enigma import ePixmap
+
 from Components.Renderer.Renderer import Renderer
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 

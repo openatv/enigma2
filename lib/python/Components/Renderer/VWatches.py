@@ -16,9 +16,11 @@
 #######################################################################
 
 import math
+
 from enigma import eCanvas, eRect, eSize, gRGB
-from Components.Renderer.Renderer import Renderer
+
 from skin import parseColor
+from Components.Renderer.Renderer import Renderer
 
 
 class VWatches(Renderer):

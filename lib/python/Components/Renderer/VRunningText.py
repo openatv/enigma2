@@ -6,9 +6,10 @@
 # Support: http://dream.altmaster.net/
 #
 
-from enigma import eCanvas, eLabel, ePoint, eRect, eSize, eTimer, gFont, gRGB, RT_WRAP, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM
-from Components.Renderer.Renderer import Renderer
+from enigma import RT_HALIGN_BLOCK, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, eCanvas, eLabel, ePoint, eRect, eSize, eTimer, gFont, gRGB
+
 from skin import parseColor, parseFont
+from Components.Renderer.Renderer import Renderer
 
 # scroll type:
 NONE = 0

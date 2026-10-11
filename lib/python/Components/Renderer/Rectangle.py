@@ -1,4 +1,5 @@
 from enigma import eRectangle
+
 from Components.Renderer.Renderer import Renderer
 
 
