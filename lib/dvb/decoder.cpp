@@ -6,6 +6,9 @@
 #include <lib/base/wrappers.h>
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/hevc_hdr_detector.h>
+#ifdef DREAMNEXTGEN
+#include <lib/dvb/videoswdemux.h>
+#endif
 #include <lib/components/tuxtxtapp.h>
 #include <linux/dvb/audio.h>
 #include <linux/dvb/video.h>
@@ -455,6 +458,15 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	{
 		::ioctl(m_fd, VIDEO_SELECT_SOURCE, demux ? VIDEO_SOURCE_DEMUX : VIDEO_SOURCE_HDMI);
 	}
+#else
+	/* the hardware demux only feeds the first decoder (as DreamOS) */
+	if (demux && m_dev > 0 && m_fd >= 0)
+	{
+		if (m_fd_demux >= 0)
+			::close(m_fd_demux);
+		m_fd_demux = -1;
+		m_sw_demux = new eDVBVideoSwDemux(demux, m_fd, m_dev == 1 ? DMX_PES_VIDEO1 : DMX_PES_VIDEO2);
+	}
 #endif
 
 	if (m_close_invalidates_attributes < 0)
@@ -522,6 +534,20 @@ int eDVBVideo::startPid(int pid, int type)
 			m_hdr_detector->start(pid);
 		return 0;
 	}
+
+#ifdef DREAMNEXTGEN
+	/*
+	 * The PiP layer cannot line skip compressed 4K frames: the PiP decoder
+	 * gets a quarter size double write buffer. The decoder reads the module
+	 * parameter when it is created.
+	 */
+	static const char *doubleWriteMode = "/sys/module/amvdec_h265/parameters/double_write_mode";
+	int doubleWriteRestore = -1;
+	if (m_dev > 0 && type == H265_HEVC && m_fd >= 0 && CFile::parseInt(&doubleWriteRestore, doubleWriteMode) == 0)
+		CFile::writeInt(doubleWriteMode, 2);
+	else
+		doubleWriteRestore = -1;
+#endif
 
 	if (m_fd >= 0)
 	{
@@ -648,6 +674,22 @@ int eDVBVideo::startPid(int pid, int type)
 #endif
 
 	}
+#ifdef DREAMNEXTGEN
+	if (doubleWriteRestore >= 0)
+		CFile::writeInt(doubleWriteMode, doubleWriteRestore);
+	if (m_sw_demux)
+	{
+		eDVBVideoSwDemux::Codec codec = eDVBVideoSwDemux::OTHER;
+		if (type == MPEG2 || type == MPEG1)
+			codec = eDVBVideoSwDemux::MPEG2;
+		else if (type == MPEG4_H264)
+			codec = eDVBVideoSwDemux::H264;
+		else if (type == H265_HEVC)
+			codec = eDVBVideoSwDemux::HEVC;
+		if (m_sw_demux->start(pid, codec) < 0)
+			return -1;
+	}
+#endif
 	if (type == H265_HEVC && m_hdr_detector)
 		m_hdr_detector->start(pid);
 	return 0;
@@ -661,6 +703,10 @@ void eDVBVideo::stop()
 	if (m_fcc_enable)
 		return;
 
+#ifdef DREAMNEXTGEN
+	if (m_sw_demux)
+		m_sw_demux->stop();
+#endif
 	if (m_fd_demux >= 0)
 	{
 		if(eDVBVideo::m_debug)
@@ -875,6 +921,8 @@ eDVBVideo::~eDVBVideo()
 #ifdef DREAMNEXTGEN
 	if (m_sysfs_poll_timer)
 		m_sysfs_poll_timer->stop();
+	delete m_sw_demux;
+	m_sw_demux = nullptr;
 #endif
 	if (m_fd >= 0)
 		::close(m_fd);
@@ -1523,8 +1571,9 @@ int eTSMPEGDecoder::setState()
 
 #ifdef DREAMNEXTGEN
 	/* Kernel-tsync PCRMASTER bootstrap: STOP_TSYNC_PCR (clear previous
-	 * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid. */
-	if (changed & (changeState|changeVideo|changePCR))
+	 * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid.
+	 * The sync belongs to the main decoder; PiP has none. */
+	if (m_decoder == 0 && (changed & (changeState|changeVideo|changePCR)))
 	{
 		eAVSyncCore *avsync = eAVSyncCore::getInstance();
 		bool stopping = (m_state != statePlay && m_state != statePause);
@@ -1579,7 +1628,12 @@ int eTSMPEGDecoder::setState()
 
 	if (m_changed & changePCR)
 	{
+#ifdef DREAMNEXTGEN
+		/* no PCR decoder for PiP, the PiP layer paces itself */
+		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF) && m_decoder == 0)
+#else
 		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
+#endif
 		{
 			m_pcr = new eDVBPCR(m_demux, m_decoder);
 			if (m_pcr->startPid(m_pcrpid))
@@ -1647,7 +1701,9 @@ int eTSMPEGDecoder::setState()
 		/* trick/FF/slowmotion → play: FREEZE+PLAY pair to flush the AML
 		 * video pacer's stuck-iframe state before resuming normal play. */
 		static int s_dnxt_prev_state = stateStop;
-		bool dnxt_recovery = m_video
+		/* trick and pause state is tracked for the main decoder only */
+		const bool dnxt_main = m_decoder == 0;
+		bool dnxt_recovery = dnxt_main && m_video
 			&& m_state == statePlay
 			&& (s_dnxt_prev_state == stateDecoderFastForward
 				|| s_dnxt_prev_state == stateTrickmode
@@ -1687,7 +1743,7 @@ int eTSMPEGDecoder::setState()
 		/* PVR/Timeshift pause: AMSTREAM_IOC_VPAUSE freezes STC via vsync
 		 * ISR gate; DMX_STOP halts the PCR feed. DVB VIDEO_FREEZE alone
 		 * doesn't reach timestamp_pcrscr_enable() on our kernel build. */
-		if (m_user_pause_active) {
+		if (dnxt_main && m_user_pause_active) {
 			auto aml_vpause = [](int arg) {
 				int fd = ::open("/dev/amvideo", O_RDWR | O_CLOEXEC);
 				if (fd < 0) return;
@@ -1704,7 +1760,8 @@ int eTSMPEGDecoder::setState()
 				eDebug("[eTSMPEGDecoder] unpause: DMX_START PCR demux + VPAUSE(0)");
 			}
 		}
-		s_dnxt_prev_state = m_state;
+		if (dnxt_main)
+			s_dnxt_prev_state = m_state;
 #endif
 		if (changed & (changeState|changeAudio) && m_audio)
 		{

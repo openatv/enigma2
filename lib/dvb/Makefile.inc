@@ -54,7 +54,8 @@ dvb_libenigma_dvb_a_SOURCES += 	\
 	dvb/audiomanager.cpp \
 	dvb/avsync_core.cpp \
 	dvb/iec61937.cpp \
-	dvb/tsparser.cpp
+	dvb/tsparser.cpp \
+	dvb/videoswdemux.cpp
 endif
 
 dvbincludedir = $(pkgincludedir)/lib/dvb
@@ -118,5 +119,6 @@ dvbinclude_HEADERS += \
 	dvb/audiomanager.h \
 	dvb/avsync_core.h \
 	dvb/iec61937.h \
-	dvb/tsparser.h
+	dvb/tsparser.h \
+	dvb/videoswdemux.h
 endif

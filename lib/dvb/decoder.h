@@ -35,6 +35,8 @@ public:
 	virtual ~eDVBAudio();
 };
 
+class eDVBVideoSwDemux;
+
 class eDVBVideo: public iObject, public sigc::trackable
 {
 	DECLARE_REF(eDVBVideo);
@@ -59,6 +61,8 @@ private:
 	void publish_gamma(int gamma);
 	int read_driver_gamma();
 #ifdef DREAMNEXTGEN
+	/* decoders beyond the first take memory input */
+	eDVBVideoSwDemux *m_sw_demux = nullptr;
 	ePtr<eTimer> m_sysfs_poll_timer;
 	bool m_sysfs_size_event_sent;
 	unsigned int m_sysfs_poll_attempts;
