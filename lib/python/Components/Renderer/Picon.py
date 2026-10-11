@@ -161,7 +161,7 @@ class Picon(Renderer):
 
 	def setDefaultPicon(self, mode=None):
 		defaultName = "picon_default"
-		pngname = findPicon(defaultName)
+		pngname = findPicon(defaultName)  # No mode on purpose, the default picon always comes from the infobar path.
 		self.defaultpngname = None
 		if not pngname:
 			tmp = resolveFilename(SCOPE_GUISKIN, f"{defaultName}.png")

@@ -33,7 +33,7 @@ class Canvas(Renderer):
 				case 4:
 					self.instance.drawRotatedLine(item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8], gRGB(item[9]))
 				case _:
-					print(f"[Canvas] drawlist entry: {str(item)}")
+					print(f"[Canvas] drawlist entry: {item}")
 					raise RuntimeError("invalid drawlist entry")
 
 	def changed(self, what):

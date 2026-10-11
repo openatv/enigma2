@@ -7,20 +7,20 @@ from Components.Renderer.Renderer import Renderer
 
 class VtiImageVersion(VariableText, Renderer):
 
-    GUI_WIDGET = eLabel
+	GUI_WIDGET = eLabel
 
-    def __init__(self):
-        Renderer.__init__(self)
-        VariableText.__init__(self)
+	def __init__(self):
+		Renderer.__init__(self)
+		VariableText.__init__(self)
 
-    def connect(self, source):
-        Renderer.connect(self, source)
-        self.changed((self.CHANGED_DEFAULT,))
+	def connect(self, source):
+		Renderer.connect(self, source)
+		self.changed((self.CHANGED_DEFAULT,))
 
-    def changed(self, what):
-        if what[0] != self.CHANGED_CLEAR:
-            self.text = self.ATVImageVersion()
+	def changed(self, what):
+		if what[0] != self.CHANGED_CLEAR:
+			self.text = self.ATVImageVersion()
 
-    def ATVImageVersion(self):
-        atvversion = BoxInfo.getItem("imageversion")
-        return f"OpenATV Image Release v. {atvversion}"
+	def ATVImageVersion(self):
+		atvversion = BoxInfo.getItem("imageversion")
+		return f"OpenATV Image Release v. {atvversion}"

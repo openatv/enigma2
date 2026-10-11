@@ -62,7 +62,10 @@ class RatingIconLabel(Renderer):
 							self.hideLabel()
 							return
 					else:
-						age = int(search(r"\d+", self.source.text.replace("+", "")).group())
+						if not (ageMatch := search(r"\d+", self.source.text.replace("+", ""))):
+							self.hideLabel()
+							return
+						age = int(ageMatch.group())
 						if age <= 15:
 							age += 3
 						ageText = str(age)

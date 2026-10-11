@@ -35,10 +35,10 @@ class VReference(VariableText, Renderer):
 
 	def changed(self, what):
 		if self.instance:
-			if what[0] == self.CHANGED_CLEAR:
+			service = self.source.service
+			if what[0] == self.CHANGED_CLEAR or not service:
 				self.text = "Reference not found!"
 			else:
-				service = self.source.service
 				sname = service.toString()
 				pos = sname.rfind(":")
 				self.text = f"Reference: {sname[:-1]}" if pos != -1 else "Reference reading error!"
