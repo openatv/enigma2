@@ -1388,6 +1388,10 @@
 		</if>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg" indent="1">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="General OSD Behavior" />
+		<if requires="CanChangeOsdAlpha">
+			<item level="0" text="Automatically hide OSD" description="Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume." indent="1">config.osd.autoHide</item>
+			<item level="0" text="Hide OSD after" description="Time without key presses before hiding the OSD." conditional="config.osd.autoHide.value" indent="2">config.osd.autoHideDelay</item>
+		</if>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait before executing the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc." indent="1">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)." indent="1">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Select whether or not to show an icon when a motorized dish is moving." indent="1">config.usage.showdish</item>

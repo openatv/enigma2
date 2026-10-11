@@ -14,12 +14,14 @@ Licensed under GPLv2.
 #include <regex>
 
 #include <lib/base/cfile.h>
+#include <lib/actions/action.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
 #include <lib/base/ebase.h>
 #include <lib/base/modelinformation.h>
 #include <lib/driver/avcontrol.h>
+#include <lib/driver/rc.h>
 
 const char *__MODULE__ = "eAVControl"; // NOSONAR
 
@@ -263,6 +265,9 @@ void eAVControl::fp_event(int what)
 
 eAVControl::~eAVControl()
 {
+	if (m_osdHideTimer)
+		m_osdHideTimer->stop();
+	restoreOSD();
 	m_instance = nullptr;
 	if (m_fp_fd >= 0)
 		close(m_fp_fd);
@@ -879,11 +884,159 @@ void eAVControl::setVideoSize(int top, int left, int width, int height, int flag
 
 void eAVControl::setOSDAlpha(int alpha, int flags) const
 {
+	m_osdAlpha = std::max(0, std::min(255, alpha));
+	writeOSDAlpha(m_osdHidden ? 0 : m_osdAlpha, flags);
+}
+
+int eAVControl::writeOSDAlpha(int alpha, int flags) const
+{
 #ifdef DREAMNEXTGEN
-	CFile::writeIntHex(proc_osd_alpha, alpha, __MODULE__, flags);
+	return CFile::writeIntHex(proc_osd_alpha, alpha, __MODULE__, flags);
 #else
-	CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
+	return CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
 #endif
+}
+
+void eAVControl::setOSDAutoHideTimeout(int seconds)
+{
+	m_osdHideTimeout = hasOSDAlpha() ? std::max(0, std::min(3600, seconds)) : 0;
+	if (!m_osdHideTimeout)
+		m_osdHidePaused = false;
+	if (m_osdHideTimeout && !m_osdHideTimer)
+	{
+		m_osdHideTimer = eTimer::create(eApp);
+		CONNECT(m_osdHideTimer->timeout, eAVControl::hideOSD);
+		m_osdFadeTimer = eTimer::create(eApp);
+		CONNECT(m_osdFadeTimer->timeout, eAVControl::fadeOSD);
+	}
+	restoreOSD();
+	restartOSDTimer();
+}
+
+void eAVControl::restartOSDTimer()
+{
+	if (!m_osdHideTimer)
+		return;
+	m_osdHideTimer->stop();
+	if (m_osdHideTimeout && !m_osdHidePaused && !m_osdWindows.empty() && m_osdWakeKeys.empty() && m_osdZeroKeys.empty())
+		m_osdHideTimer->startLongTimer(m_osdHideTimeout);
+}
+
+void eAVControl::hideOSD()
+{
+	if (m_osdHideTimeout && !m_osdHidePaused && !m_osdWindows.empty() && m_osdWakeKeys.empty() && m_osdZeroKeys.empty() && m_osdAlpha > 0)
+	{
+		m_osdFadeStep = 0;
+		fadeOSD();
+	}
+}
+
+void eAVControl::fadeOSD()
+{
+	// Fade out over one second; restoring the OSD always happens immediately.
+	const int steps = 20;
+	++m_osdFadeStep;
+	if (writeOSDAlpha(m_osdAlpha * (steps - m_osdFadeStep) / steps) < 0)
+	{
+		restoreOSD();
+		return;
+	}
+	m_osdHidden = true;
+	if (m_osdFadeStep < steps)
+		m_osdFadeTimer->start(50, true);
+}
+
+void eAVControl::restoreOSD()
+{
+	if (m_osdFadeTimer)
+		m_osdFadeTimer->stop();
+	if (m_osdHidden && writeOSDAlpha(m_osdAlpha) >= 0)
+		m_osdHidden = false;
+}
+
+void eAVControl::setOSDWindowVisible(const void *window, bool visible)
+{
+	if (visible)
+	{
+		if (!m_osdWindows.insert(window).second)
+			return;
+		// Newly opened dialogs must be visible, even while another screen waits.
+		restoreOSD();
+	}
+	else
+	{
+		if (!m_osdWindows.erase(window))
+			return;
+		if (m_osdWindows.empty())
+			restoreOSD();
+	}
+	restartOSDTimer();
+}
+
+bool eAVControl::handleOSDKey(const std::string &device, int key, int flags)
+{
+	if (m_osdReplayZero)
+		return false;
+	const std::pair<std::string, int> pressed(device, key);
+	if (key == KEY_0 && (m_osdHideTimeout || m_osdZeroKeys.count(pressed)))
+	{
+		// Defer a short zero until release, so holding it cannot zap or enter a digit.
+		if (flags == eRCKey::flagMake)
+		{
+			m_osdZeroKeys[pressed] = m_osdHidden ? 1 : 0;
+			restoreOSD();
+		}
+		auto zero = m_osdZeroKeys.find(pressed);
+		if (zero != m_osdZeroKeys.end())
+		{
+			if (flags == eRCKey::flagLong && zero->second != 2 && m_osdHideTimeout)
+			{
+				zero->second = 2;
+				m_osdHidePaused = !m_osdHidePaused;
+				restoreOSD();
+				osdAutoHidePauseChanged(m_osdHidePaused ? 1 : 0);
+			}
+			else if (flags == eRCKey::flagBreak)
+			{
+				const bool replay = zero->second == 0;
+				m_osdZeroKeys.erase(zero);
+				if (replay)
+				{
+					ePtr<eActionMap> actionMap;
+					eActionMap::getInstance(actionMap);
+					if (actionMap)
+					{
+						m_osdReplayZero = true;
+						actionMap->keyPressed(device, key, eRCKey::flagMake);
+						actionMap->keyPressed(device, key, eRCKey::flagBreak);
+						m_osdReplayZero = false;
+					}
+				}
+			}
+			restartOSDTimer();
+			return true;
+		}
+	}
+	if (m_osdWakeKeys.count(pressed))
+	{
+		// A wake press also owns its repeat, long and release events.
+		if (flags == eRCKey::flagBreak)
+		{
+			m_osdWakeKeys.erase(pressed);
+			restartOSDTimer();
+		}
+		return true;
+	}
+	if (m_osdHidden)
+	{
+		restoreOSD();
+		if (flags != eRCKey::flagBreak)
+			m_osdWakeKeys.insert(pressed);
+		restartOSDTimer();
+		return true;
+	}
+	restartOSDTimer();
+	return false;
 }
 
 /// @brief getEDIDPath

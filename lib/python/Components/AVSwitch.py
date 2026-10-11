@@ -1,5 +1,5 @@
-from os.path import exists
 from os import W_OK, access
+from os.path import exists
 from time import sleep
 
 from enigma import eAVControl, getDesktop
@@ -271,6 +271,22 @@ def InitAVSwitch():
 		config.osd.dst_width = ConfigSelectionInteger(default=720, first=0, last=720, step=1, wrap=False)
 		config.osd.dst_height = ConfigSelectionInteger(default=576, first=0, last=576, step=1, wrap=False)
 	config.osd.alpha = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
+	config.osd.autoHide = ConfigYesNo(default=False)
+	config.osd.autoHideDelay = ConfigSelectionInteger(default=30, first=10, last=300, step=10, wrap=False, units=_("seconds"))
+
+	def setOSDAutoHide(configElement):
+		eAVControl.getInstance().setOSDAutoHideTimeout(config.osd.autoHideDelay.value if config.osd.autoHide.value else 0)
+
+	config.osd.autoHide.addNotifier(setOSDAutoHide)
+	config.osd.autoHideDelay.addNotifier(setOSDAutoHide)
+
+	def osdAutoHidePauseChanged(paused):
+		from Screens.Toast import Toast  # Import after screen initialization to avoid circular imports.
+		if Toast.instance:
+			text = _("OSD auto-hide paused until the next GUI restart. Hold 0 to resume.") if paused else _("OSD auto-hide enabled.")
+			Toast.instance.showToast(text, Toast.TYPE_INFO, 3)
+
+	eAVControl.getInstance().osdAutoHidePauseChanged.get().append(osdAutoHidePauseChanged)
 	config.osd.alpha_teletext = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
 	config.osd.alpha_webbrowser = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
 	config.osd.threeDmode = ConfigSelection(default="auto", choices=[

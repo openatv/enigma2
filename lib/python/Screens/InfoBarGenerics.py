@@ -2411,10 +2411,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.doWriteAlpha(config.av.osd_alpha.value)
 
 	def doWriteAlpha(self, value):
-		if exists("/proc/stb/video/alpha"):
-			f = open("/proc/stb/video/alpha", "w")
-			f.write("%i" % (value))
-			f.close()
+		if eAVControl.getInstance().hasOSDAlpha():
+			eAVControl.getInstance().setOSDAlpha(int(value))
 			if value == config.av.osd_alpha.value:
 				self.lastResetAlpha = True
 			else:
