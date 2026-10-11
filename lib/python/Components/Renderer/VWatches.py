@@ -36,14 +36,32 @@ class VWatches(Renderer):
 		attribs = []
 		for (attrib, what) in self.skinAttributes:
 			match attrib:
-				case "foregroundColor":
-					self.fColor = parseColor(what)
 				case "backgroundColor":
 					self.bColor = parseColor(what)
+				case "foregroundColor":
+					self.fColor = parseColor(what)
 				case _:
 					attribs.append((attrib, what))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
+
+	def postWidgetCreate(self, instance):
+		def parseSize(str):
+			(x, y,) = str.split(",")
+			return eSize(int(x), int(y))
+
+		for (attrib, value,) in self.skinAttributes:
+			if ((attrib == "size") and self.instance.setSize(parseSize(value))):
+				pass
+		self.instance.clear(self.bColor)
+
+	def changed(self, what):
+		if what[0] != self.CHANGED_CLEAR:
+			value = self.source.value
+			if self.instance and self.numval != value:
+				self.numval = value
+				self.instance.clear(self.bColor)
+				self.hand()
 
 	def calculate(self, w, r, m):
 		a = (w * 6)
@@ -81,21 +99,3 @@ class VWatches(Renderer):
 			if error > 0:
 				y = y + ystep
 				error = error - deltax
-
-	def changed(self, what):
-		if what[0] != self.CHANGED_CLEAR:
-			value = self.source.value
-			if self.instance and self.numval != value:
-				self.numval = value
-				self.instance.clear(self.bColor)
-				self.hand()
-
-	def postWidgetCreate(self, instance):
-		def parseSize(str):
-			(x, y,) = str.split(",")
-			return eSize(int(x), int(y))
-
-		for (attrib, value,) in self.skinAttributes:
-			if ((attrib == "size") and self.instance.setSize(parseSize(value))):
-				pass
-		self.instance.clear(self.bColor)

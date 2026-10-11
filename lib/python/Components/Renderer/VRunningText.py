@@ -33,6 +33,8 @@ def RGB(r, g, b):
 
 
 class VRunningText(Renderer):
+	GUI_WIDGET = eCanvas
+
 	def __init__(self):
 		Renderer.__init__(self)
 		self.type = NONE
@@ -52,25 +54,6 @@ class VRunningText(Renderer):
 		self.mLoopTimeout = self.mOneShot = 0
 		self.mRepeat = 0
 
-	GUI_WIDGET = eCanvas
-
-	def postWidgetCreate(self, instance):
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "size":
-				x, y = value.split(",")
-				self.W, self.H = int(x), int(y)
-
-		self.instance.setSize(eSize(self.W, self.H))
-		self.test_label = eLabel(instance)
-		self.mTimer = eTimer()
-		self.mTimer.callback.append(self.movingLoop)
-
-	def preWidgetRemove(self, instance):
-		self.mTimer.stop()
-		self.mTimer.callback.remove(self.movingLoop)
-		self.mTimer = None
-		self.test_label = None
-
 	def applySkin(self, desktop, screen):
 		def retValue(val, limit, default, Min=False):
 			try:
@@ -87,20 +70,12 @@ class VRunningText(Renderer):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				match attrib:
+					case "backgroundColor":
+						self.bcolor = parseColor(value)
 					case "font":
 						self.txfont = parseFont(value, screen.scale)
 					case "foregroundColor":
 						self.fcolor = parseColor(value)
-					case "backgroundColor":
-						self.bcolor = parseColor(value)
-					case "shadowColor":
-						self.scolor = parseColor(value)
-					case "shadowOffset":
-						x, y = value.split(",")
-						self.soffset = (int(x), int(y))
-					case "valign" if value in ("top", "center", "bottom"):
-						valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
-						self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
 					case "halign" if value in ("left", "center", "right", "block"):
 						self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
 						self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
@@ -118,37 +93,45 @@ class VRunningText(Renderer):
 								val = opt[pos + 1:].strip()
 								opt = opt[:pos].strip()
 							match opt:
-								case "wrap":
-									if val == "0":
-										self.txtflags &= ~RT_WRAP
-									else:
-										self.txtflags |= RT_WRAP
+								case "always" if val:
+									self.mAlways = retValue(val, 0, self.mAlways)
+								case "direction" if val in ("left", "right", "top", "bottom"):
+									self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
+								case "movetype" if val in ("none", "running", "swimming"):
+									self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
 								case "nowrap":
 									if val == "0":
 										self.txtflags |= RT_WRAP
 									else:
 										self.txtflags &= ~RT_WRAP
-								case "movetype" if val in ("none", "running", "swimming"):
-									self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-								case "direction" if val in ("left", "right", "top", "bottom"):
-									self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
+								case "oneshot" if val:
+									self.mOneShot = retValue(val, 0, self.mOneShot)
+								case "pause" if val:
+									self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
+								case "repeat" if val:
+									self.mRepeat = retValue(val, 0, self.mRepeat)
+								case "startdelay" if val:
+									self.mStartDelay = retValue(val, 0, self.mStartDelay)
+								case "startpoint" if val:
+									self.mStartPoint = int(val)
 								case "step" if val:
 									#retValue(val, limit, default, Min=False)
 									self.mStep = retValue(val, 1, self.mStep)
 								case "steptime" if val:
 									self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
-								case "startdelay" if val:
-									self.mStartDelay = retValue(val, 0, self.mStartDelay)
-								case "pause" if val:
-									self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
-								case "oneshot" if val:
-									self.mOneShot = retValue(val, 0, self.mOneShot)
-								case "repeat" if val:
-									self.mRepeat = retValue(val, 0, self.mRepeat)
-								case "always" if val:
-									self.mAlways = retValue(val, 0, self.mAlways)
-								case "startpoint" if val:
-									self.mStartPoint = int(val)
+								case "wrap":
+									if val == "0":
+										self.txtflags &= ~RT_WRAP
+									else:
+										self.txtflags |= RT_WRAP
+					case "shadowColor":
+						self.scolor = parseColor(value)
+					case "shadowOffset":
+						x, y = value.split(",")
+						self.soffset = (int(x), int(y))
+					case "valign" if value in ("top", "center", "bottom"):
+						valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
+						self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
 					case _:
 						attribs.append((attrib, value))
 			self.skinAttributes = attribs
@@ -177,11 +160,22 @@ class VRunningText(Renderer):
 		#self.changed((self.CHANGED_DEFAULT,))
 		return ret
 
-	def doSuspend(self, suspended):
-		if suspended:
-			self.changed((self.CHANGED_CLEAR,))
-		else:
-			self.changed((self.CHANGED_DEFAULT,))
+	def postWidgetCreate(self, instance):
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "size":
+				x, y = value.split(",")
+				self.W, self.H = int(x), int(y)
+
+		self.instance.setSize(eSize(self.W, self.H))
+		self.test_label = eLabel(instance)
+		self.mTimer = eTimer()
+		self.mTimer.callback.append(self.movingLoop)
+
+	def preWidgetRemove(self, instance):
+		self.mTimer.stop()
+		self.mTimer.callback.remove(self.movingLoop)
+		self.mTimer = None
+		self.test_label = None
 
 	def connect(self, source):
 		Renderer.connect(self, source)
@@ -199,6 +193,12 @@ class VRunningText(Renderer):
 			self.txtext = self.source.text or ""
 			if self.instance and not self.calcMoving():
 				self.drawText(self.X, self.Y)
+
+	def doSuspend(self, suspended):
+		if suspended:
+			self.changed((self.CHANGED_CLEAR,))
+		else:
+			self.changed((self.CHANGED_DEFAULT,))
 
 	def drawText(self, X, Y):
 		#self.instance.fillRect( eRect(0, 0, self.W, self.H), self.bcolor )

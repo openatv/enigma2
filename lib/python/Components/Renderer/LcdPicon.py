@@ -145,13 +145,6 @@ class LcdPicon(Renderer):
 		if getsize(pngname):
 			self.defaultpngname = pngname
 
-	def addPath(self, value):
-		if exists(value):
-			global searchPaths
-			value = join(value, "")
-			if value not in searchPaths:
-				searchPaths.append(value)
-
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
 		for (attrib, value) in self.skinAttributes:
@@ -166,12 +159,6 @@ class LcdPicon(Renderer):
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
-
-	def updatePicon(self, picInfo=None):
-		ptr = self.PicLoad.getData()
-		if ptr is not None:
-			self.instance.setPixmap(ptr.__deref__())
-			self.instance.show()
 
 	def changed(self, what):
 		if self.instance:
@@ -192,6 +179,19 @@ class LcdPicon(Renderer):
 				case 2:
 					self.pngname = ""
 					self.instance.hide()
+
+	def addPath(self, value):
+		if exists(value):
+			global searchPaths
+			value = join(value, "")
+			if value not in searchPaths:
+				searchPaths.append(value)
+
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr is not None:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
 
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)

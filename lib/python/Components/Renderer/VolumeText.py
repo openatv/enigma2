@@ -41,9 +41,6 @@ class VolumeText(Renderer, VariableText):
 		if not self.suspended:
 			self.text = str(eDVBVolumecontrol.getInstance().getVolume())
 
-	def pollme(self):
-		self.changed(None)
-
 	def onShow(self):
 		self.suspended = False
 		self.vol_timer.start(200)
@@ -51,3 +48,6 @@ class VolumeText(Renderer, VariableText):
 	def onHide(self):
 		self.suspended = True
 		self.vol_timer.stop()
+
+	def pollme(self):
+		self.changed(None)

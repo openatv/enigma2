@@ -32,9 +32,6 @@ class CiModuleControl(Renderer, VariableText):
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
-	def ciModuleStateChanged(self, slot):
-		self.changed(True)
-
 	def changed(self, what):
 		if what is True or what[0] == self.CHANGED_SPECIFIC and what[1] == iPlayableService.evStart:
 			string = ""
@@ -70,3 +67,6 @@ class CiModuleControl(Renderer, VariableText):
 				if string:
 					string = _("CI slot: ") + string
 			self.text = string
+
+	def ciModuleStateChanged(self, slot):
+		self.changed(True)

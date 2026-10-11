@@ -20,11 +20,11 @@ class NextEvents(VariableText, Renderer):
 		attribs = []
 		for (attrib, value) in self.skinAttributes:
 			match attrib:
-				case "number":
-					self.number = int(value)
 				case "lines":
 					self.number = int(value) + 1
 					self.lines = True
+				case "number":
+					self.number = int(value)
 				case _:
 					attribs.append((attrib, value))
 		self.skinAttributes = attribs

@@ -11,6 +11,22 @@ class Canvas(Renderer):
 		self.sequence = None
 		self.drawCount = 0
 
+	def postWidgetCreate(self, instance):
+		self.sequence = None
+
+		def parseSize(val):
+			x, y = val.split(',')
+			return eSize(int(x), int(y))
+
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "size":
+				self.instance.setSize(parseSize(value))
+
+		self.pullUpdates()
+
+	def changed(self, what):
+		self.pullUpdates()
+
 	def pullUpdates(self):
 		if self.instance is not None:  # do an incremental update
 			items = self.source.drawlist
@@ -35,19 +51,3 @@ class Canvas(Renderer):
 				case _:
 					print(f"[Canvas] drawlist entry: {item}")
 					raise RuntimeError("invalid drawlist entry")
-
-	def changed(self, what):
-		self.pullUpdates()
-
-	def postWidgetCreate(self, instance):
-		self.sequence = None
-
-		def parseSize(val):
-			x, y = val.split(',')
-			return eSize(int(x), int(y))
-
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "size":
-				self.instance.setSize(parseSize(value))
-
-		self.pullUpdates()

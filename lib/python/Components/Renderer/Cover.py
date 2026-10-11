@@ -9,8 +9,8 @@ from Components.Sources.ServiceEvent import ServiceEvent
 
 
 class Cover(Renderer):
-	EXTENSIONS = (".jpg", ".png", ".jpeg")
 	GUI_WIDGET = ePixmap
+	EXTENSIONS = (".jpg", ".png", ".jpeg")
 
 	def __init__(self):
 		Renderer.__init__(self)

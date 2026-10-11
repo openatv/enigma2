@@ -73,23 +73,6 @@ class RunningText(Renderer):
 		self.lineHeight = 0		# for text height auto correction on dmm-enigma2
 		self.mShown = 0
 
-	def postWidgetCreate(self, instance):
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "size":
-				x, y = value.split(",")
-				self.W, self.H = int(x), int(y)
-		self.instance.move(ePoint(0, 0))
-		self.instance.resize(eSize(self.W, self.H))
-		self.scroll_label = eLabel(instance)
-		self.mTimer = eTimer()
-		self.mTimer.callback.append(self.movingLoop)
-
-	def preWidgetRemove(self, instance):
-		self.mTimer.stop()
-		self.mTimer.callback.remove(self.movingLoop)
-		self.mTimer = None
-		self.scroll_label = None
-
 	def applySkin(self, desktop, screen):
 		def retValue(val, limit, default, Min=False):
 			try:
@@ -112,21 +95,14 @@ class RunningText(Renderer):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				match attrib:
+					case "borderColor" | "shadowColor":  # fake for openpli-enigma2
+						self.scroll_label.setShadowColor(parseColor(value))
+					case "borderWidth":  # fake for openpli-enigma2
+						self.soffset = (-int(value), -int(value))
 					case "font":
 						self.txfont = parseFont(value, screen.scale)
 					case "foregroundColor":
 						self.scroll_label.setForegroundColor(parseColor(value))
-					case "shadowColor" | "borderColor":  # fake for openpli-enigma2
-						self.scroll_label.setShadowColor(parseColor(value))
-					case "shadowOffset":
-						x, y = value.split(",")
-						self.soffset = (int(x), int(y))
-						self.scroll_label.setShadowOffset(ePoint(self.soffset))
-					case "borderWidth":  # fake for openpli-enigma2
-						self.soffset = (-int(value), -int(value))
-					case "valign" if value in ("top", "center", "bottom"):
-						valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
-						self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
 					case "halign" if value in ("left", "center", "right", "block"):
 						self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
 						self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
@@ -143,32 +119,39 @@ class RunningText(Renderer):
 							match opt:
 								case "":
 									continue
-								case "wrap" | "nowrap":
-									setWrapFlag(opt, val)
-								case "movetype" if val in ("none", "running", "swimming"):
-									self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-								case "direction" if val in ("left", "right", "top", "bottom"):
-									self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
-								case "step" if val:
-									self.mStep = retValue(val, 1, self.mStep)
-								case "steptime" if val:
-									self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
-								case "startdelay" if val:
-									self.mStartDelay = retValue(val, 0, self.mStartDelay)
-								case "pause" if val:
-									self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
-								case "oneshot" if val:
-									self.mOneShot = retValue(val, 0, self.mOneShot)
-								case "repeat" if val:
-									self.mRepeat = retValue(val, 0, self.mRepeat)
 								case "always" if val:
 									self.mAlways = retValue(val, 0, self.mAlways)
-								case "startpoint" if val:
-									self.mStartPoint = int(val)
+								case "direction" if val in ("left", "right", "top", "bottom"):
+									self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
+								case "movetype" if val in ("none", "running", "swimming"):
+									self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
+								case "nowrap" | "wrap":
+									setWrapFlag(opt, val)
+								case "oneshot" if val:
+									self.mOneShot = retValue(val, 0, self.mOneShot)
 								case "pagedelay" if val:
 									self.mPageDelay = retValue(val, 0, self.mPageDelay)
 								case "pagelength" if val:
 									self.mPageLength = retValue(val, 0, self.mPageLength)
+								case "pause" if val:
+									self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
+								case "repeat" if val:
+									self.mRepeat = retValue(val, 0, self.mRepeat)
+								case "startdelay" if val:
+									self.mStartDelay = retValue(val, 0, self.mStartDelay)
+								case "startpoint" if val:
+									self.mStartPoint = int(val)
+								case "step" if val:
+									self.mStep = retValue(val, 1, self.mStep)
+								case "steptime" if val:
+									self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
+					case "shadowOffset":
+						x, y = value.split(",")
+						self.soffset = (int(x), int(y))
+						self.scroll_label.setShadowOffset(ePoint(self.soffset))
+					case "valign" if value in ("top", "center", "bottom"):
+						valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
+						self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
 					case _:
 						attribs.append((attrib, value))
 						match attrib:
@@ -204,12 +187,22 @@ class RunningText(Renderer):
 			self.scroll_label.setText("")
 		return ret
 
-	def doSuspend(self, suspended):
-		self.mShown = 1 - suspended
-		if suspended:
-			self.changed((self.CHANGED_CLEAR,))
-		else:
-			self.changed((self.CHANGED_DEFAULT,))
+	def postWidgetCreate(self, instance):
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "size":
+				x, y = value.split(",")
+				self.W, self.H = int(x), int(y)
+		self.instance.move(ePoint(0, 0))
+		self.instance.resize(eSize(self.W, self.H))
+		self.scroll_label = eLabel(instance)
+		self.mTimer = eTimer()
+		self.mTimer.callback.append(self.movingLoop)
+
+	def preWidgetRemove(self, instance):
+		self.mTimer.stop()
+		self.mTimer.callback.remove(self.movingLoop)
+		self.mTimer = None
+		self.scroll_label = None
 
 	def connect(self, source):
 		Renderer.connect(self, source)
@@ -227,6 +220,13 @@ class RunningText(Renderer):
 				if self.instance and not self.calcMoving():
 					self.scroll_label.resize(eSize(self.W, self.H))
 					self.moveLabel(self.X, self.Y)
+
+	def doSuspend(self, suspended):
+		self.mShown = 1 - suspended
+		if suspended:
+			self.changed((self.CHANGED_CLEAR,))
+		else:
+			self.changed((self.CHANGED_DEFAULT,))
 
 	def moveLabel(self, X, Y):
 		self.scroll_label.move(ePoint(X - self.soffset[0], Y - self.soffset[1]))

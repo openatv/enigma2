@@ -159,39 +159,17 @@ class Picon(Renderer):
 		self.mode = None
 		self.setDefaultPicon()
 
-	def setDefaultPicon(self, mode=None):
-		defaultName = "picon_default"
-		pngname = findPicon(defaultName)  # No mode on purpose, the default picon always comes from the infobar path.
-		self.defaultpngname = None
-		if not pngname:
-			tmp = resolveFilename(SCOPE_GUISKIN, f"{defaultName}.png")
-			if exists(tmp):
-				pngname = tmp
-			else:
-				pngname = resolveFilename(SCOPE_SKINS, f"skin_default/{defaultName}.png")
-		self.nopicon = resolveFilename(SCOPE_SKINS, f"skin_default/{defaultName}.png")
-		if getsize(pngname):
-			self.defaultpngname = pngname
-			self.nopicon = pngname
-
-	def addPath(self, value):
-		if exists(value):
-			global searchPaths
-			value = join(value, "")
-			if value not in searchPaths:
-				searchPaths.append(value)
-
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
 		for (attrib, value) in self.skinAttributes:
 			match attrib:
-				case "path":
-					self.addPath(value)
-					attribs.remove((attrib, value))
 				case "mode":
 					if value in ("infobar", "channelselection"):
 						self.mode = value
 						self.setDefaultPicon(value)
+					attribs.remove((attrib, value))
+				case "path":
+					self.addPath(value)
 					attribs.remove((attrib, value))
 				case "size":
 					self.piconsize = value
@@ -223,6 +201,28 @@ class Picon(Renderer):
 				case 2:
 					self.pngname = ""
 					self.instance.hide()
+
+	def setDefaultPicon(self, mode=None):
+		defaultName = "picon_default"
+		pngname = findPicon(defaultName)  # No mode on purpose, the default picon always comes from the infobar path.
+		self.defaultpngname = None
+		if not pngname:
+			tmp = resolveFilename(SCOPE_GUISKIN, f"{defaultName}.png")
+			if exists(tmp):
+				pngname = tmp
+			else:
+				pngname = resolveFilename(SCOPE_SKINS, f"skin_default/{defaultName}.png")
+		self.nopicon = resolveFilename(SCOPE_SKINS, f"skin_default/{defaultName}.png")
+		if getsize(pngname):
+			self.defaultpngname = pngname
+			self.nopicon = pngname
+
+	def addPath(self, value):
+		if exists(value):
+			global searchPaths
+			value = join(value, "")
+			if value not in searchPaths:
+				searchPaths.append(value)
 
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)

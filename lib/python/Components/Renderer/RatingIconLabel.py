@@ -17,9 +17,6 @@ class RatingIconLabel(Renderer):
 		self.initialWidth = 0
 		self.initialXPos = 0
 
-	def postWidgetCreate(self, instance):
-		self.changed((self.CHANGED_DEFAULT,))
-
 	def applySkin(self, desktop, parent):
 		attribs = []
 		for (attrib, value) in self.skinAttributes:
@@ -39,10 +36,8 @@ class RatingIconLabel(Renderer):
 		self.changed((self.CHANGED_DEFAULT,))
 		return result
 
-	def hideLabel(self):
-		if self.instance:
-			self.instance.setText("")
-			self.instance.hide()
+	def postWidgetCreate(self, instance):
+		self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
 		self.hideLabel()  # initially hide the label
@@ -88,3 +83,8 @@ class RatingIconLabel(Renderer):
 					self.instance.show()
 				else:
 					self.hideLabel()
+
+	def hideLabel(self):
+		if self.instance:
+			self.instance.setText("")
+			self.instance.hide()
