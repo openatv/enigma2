@@ -1,307 +1,257 @@
-from Screens.Screen import Screen
-from Plugins.Plugin import PluginDescriptor
-from Components.Button import Button
-from Components.ActionMap import ActionMap
-from Components.config import config, configfile, ConfigSubsection, getConfigListEntry, ConfigSelection
-from Components.ConfigList import ConfigListScreen
+from glob import glob
+from os.path import exists, join
+from re import search
+
+from enigma import eTimer
+
+from Screens import Standby
+from Components.ActionMap import HelpableActionMap
+from Components.config import ConfigSelection, ConfigSubsection, config
 from Components.Label import Label
-from enigma import eTimer, getDesktop
+from Components.Sources.StaticText import StaticText
+from Plugins.Plugin import PluginDescriptor
+from Screens.Setup import Setup
+
+
+class CpuControl:
+	CPUFREQ_PATH = "/sys/devices/system/cpu/cpufreq"
+	DDR_PATH = "/sys/class/aml_ddr"
+	GPU_PATH = "/sys/class/mpgpu"
+	GPU_POWER_PATH = "/sys/class/misc/mali0/device/power/runtime_status"
+	POLICIES = ("policy0", "policy2")
+	FALLBACK_FREQUENCIES = ("500000", "667000", "1000000", "1200000", "1398000", "1512000", "1608000", "1704000")
+	FALLBACK_GOVERNORS = ("interactive", "performance", "schedutil")
+	DEFAULT_GOVERNOR = "performance"
+
+	def __init__(self):
+		self.governors = {
+			"conservative": ("Conservative", _("Raise and lower the CPU frequency gradually depending on the load.")),
+			"interactive": ("Interactive", _("Raise the CPU frequency quickly on load and lower it when the CPU is idle.")),
+			"ondemand": ("On demand", _("Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle.")),
+			"performance": ("Performance", _("Always run the CPU at the maximum frequency.")),
+			"powersave": ("Power save", _("Always run the CPU at the minimum frequency.")),
+			"schedutil": (_("Schedutil (recommended)"), _("Adjust the CPU frequency to the load reported by the kernel scheduler.")),
+			"userspace": ("User space", _("Let other programs set the CPU frequency."))
+		}
+		self.cpus = {}
+		self.cpuTimes = {}
+		self.frequencies = {}
+		self.ramMonitorStarted = False
+		self.regulators = {}
+		self.thermalZones = {self.readValue(join(x, "type")): x for x in glob("/sys/class/thermal/thermal_zone*")}
+		for policy in self.POLICIES:
+			cpus = self.readValue(join(self.CPUFREQ_PATH, policy, "affected_cpus")).split() or [policy[-1]]
+			self.cpus[policy] = {f"cpu{x}" for x in cpus}
+			self.frequencies[policy] = tuple(self.readValue(join(self.CPUFREQ_PATH, policy, "scaling_available_frequencies")).split()) or self.FALLBACK_FREQUENCIES
+			self.regulators[policy] = next((x for x in glob("/sys/class/regulator/regulator.*") if exists(join(x, f"cpu{cpus[0]}-cpu"))), None)
+
+	def readValue(self, path):
+		try:
+			with open(path) as fd:
+				value = fd.read().strip()
+		except OSError:
+			value = ""
+		return value
+
+	def writeValue(self, path, value):
+		try:
+			with open(path, "w") as fd:
+				fd.write(value)
+		except OSError as err:
+			print(f"[AmlFRQ] Error {err.errno}: Unable to write '{value}' to '{path}'!  ({err.strerror})")
+
+	def getFrequencyChoices(self, policy):
+		return [(x, f"{int(x) // 1000} MHz") for x in self.frequencies[policy]]
+
+	def getGovernorChoices(self):
+		governors = self.readValue(join(self.CPUFREQ_PATH, self.POLICIES[0], "scaling_available_governors")).split() or self.FALLBACK_GOVERNORS
+		return [(x, self.governors.get(x, (x,))[0]) for x in governors]
+
+	def getGovernorDescription(self, governor):
+		return self.governors.get(governor, ("", ""))[1]
+
+	def applySettings(self, standby=False):
+		print(f"[AmlFRQ] Apply {'standby' if standby else 'normal'} settings.")
+		for policy, minConfig, maxConfig in (("policy0", config.plugins.aml.minfrq, config.plugins.aml.maxfrq), ("policy2", config.plugins.aml.minfrq2, config.plugins.aml.maxfrq2)):
+			path = join(self.CPUFREQ_PATH, policy)
+			minimum = min(int(minConfig.value), int(maxConfig.value))
+			maximum = minimum if standby else int(maxConfig.value)
+			currentMaximum = int(self.readValue(join(path, "scaling_max_freq")) or 0)
+			order = ("scaling_max_freq", "scaling_min_freq") if minimum > currentMaximum else ("scaling_min_freq", "scaling_max_freq")  # The kernel rejects a minimum above the maximum.
+			for fileName in order:
+				self.writeValue(join(path, fileName), str(minimum if fileName == "scaling_min_freq" else maximum))
+			self.writeValue(join(path, "scaling_governor"), config.plugins.aml.governor.value)
+
+	def getStatus(self, policy, text):
+		frequency = self.readValue(join(self.CPUFREQ_PATH, policy, "scaling_cur_freq"))
+		text = text % (str(int(frequency) // 1000) if frequency.isdigit() else _("N/A"))
+		voltage = self.readValue(join(self.regulators[policy], "microvolts")) if self.regulators[policy] else ""
+		if voltage.isdigit():
+			text = f"{text}, {int(voltage) / 1000000:.3f} V"
+		return self.addLoad(text, self.getLoad(policy))
+
+	def addLoad(self, text, load):
+		return text if load is None else f"{text}, {_('Load: %s %%') % load}"
+
+	def getLoad(self, policy):  # Load since the previous call from the busy and total times in /proc/stat.
+		busy = total = 0
+		for line in self.readValue("/proc/stat").splitlines():
+			fields = line.split()
+			if fields and fields[0] in self.cpus[policy]:
+				times = [int(x) for x in fields[1:9]]  # user, nice, system, idle, iowait, irq, softirq, steal
+				total += sum(times)
+				busy += sum(times) - times[3] - times[4]
+		lastBusy, lastTotal = self.cpuTimes.get(policy, (0, 0))
+		self.cpuTimes[policy] = (busy, total)
+		return round((busy - lastBusy) * 100 / (total - lastTotal)) if lastTotal and total > lastTotal else None
+
+	def getGpuStatus(self, text):
+		frequency = self.readValue(join(self.GPU_PATH, "cur_freq"))
+		load = self.readValue(join(self.GPU_PATH, "utilization"))
+		text = self.addLoad(text % (frequency if frequency.isdigit() else _("N/A")), int(load) if load.isdigit() else None)
+		state = self.readValue(self.GPU_POWER_PATH)
+		if state == "suspended":
+			text = f"{text}, {_('suspended (GLES disabled)')}"
+		elif state == "active":
+			text = f"{text}, {_('active (GLES enabled)')}"
+		return text
+
+	def getRamStatus(self, text):
+		frequency = self.readValue(join(self.DDR_PATH, "freq")).split()
+		usage = search(r"usage:\s*([\d.]+)%", self.readValue(join(self.DDR_PATH, "bandwidth")))
+		return self.addLoad(text % (frequency[0] if frequency else _("N/A")), round(float(usage.group(1))) if usage else None)
+
+	def startRamMonitor(self):  # The DDR bandwidth is only measured while the monitor is enabled.
+		self.ramMonitorStarted = self.readValue(join(self.DDR_PATH, "mode")).startswith("0")
+		if self.ramMonitorStarted:
+			self.writeValue(join(self.DDR_PATH, "mode"), "1")
+
+	def stopRamMonitor(self):
+		if self.ramMonitorStarted:
+			self.writeValue(join(self.DDR_PATH, "mode"), "0")
+			self.ramMonitorStarted = False
+
+	def getTemperature(self, zoneType):
+		temperature = self.readValue("/proc/stb/fp/temp_sensor_avs") if zoneType == "soc_thermal" else ""
+		if not temperature and zoneType in self.thermalZones:
+			temperature = self.readValue(join(self.thermalZones[zoneType], "temp"))
+			temperature = f"{int(temperature) / 1000:.1f}" if temperature.isdigit() else ""
+		return temperature or _("N/A")
+
+	def standbyCounterChanged(self, configElement):
+		self.applySettings(standby=True)
+		Standby.inStandby.onClose.append(self.applySettings)
+
+
+cpuControl = CpuControl()
 
 config.plugins.aml = ConfigSubsection()
-config.plugins.aml.governor = ConfigSelection(default="performance", choices=[("interactive", "Interactive - responsive and savvy"), ("schedutil", "schedutil - scheduler-driven (suggested)"), ("performance", "Performance -max full time (default)")])
-config.plugins.aml.maxfrq = ConfigSelection(default="1800000", choices=[("500000", "500 MHz"),
-	("667000", "667 MHz"),
-	("1000000", "1 GHz"),
-	("1200000", "1.2 GHz"),
-	("1398000", "1.4 GHz"),
-	("1512000", "1.5 GHz"),
-	("1608000", "1.6 GHz"),
-	("1704000", "1.7 GHz"),
-	("1800000", "1.8 GHz (default)")])
-config.plugins.aml.minfrq = ConfigSelection(default="500000", choices=[("500000", "500 MHz (default)"),
-	("667000", "667 MHz"),
-	("1000000", "1 GHz"),
-	("1200000", "1.2 GHz"),
-	("1398000", "1.4 GHz"),
-	("1512000", "1.5 GHz"),
-	("1608000", "1.6 GHz"),
-	("1704000", "1.7 GHz"),
-	("1800000", "1.8 GHz")])
-config.plugins.aml.maxfrq2 = ConfigSelection(default="1704000", choices=[("500000", "500 MHz"),
-	("667000", "667 MHz"),
-	("1000000", "1 GHz"),
-	("1200000", "1.2 GHz"),
-	("1398000", "1.4 GHz"),
-	("1512000", "1.5 GHz"),
-	("1608000", "1.6 GHz"),
-	("1704000", "1.7 GHz (default)")])
-config.plugins.aml.minfrq2 = ConfigSelection(default="500000", choices=[("500000", "500 MHz (default)"),
-	("667000", "667 MHz"),
-	("1000000", "1 GHz"),
-	("1200000", "1.2 GHz"),
-	("1398000", "1.4 GHz"),
-	("1512000", "1.5 GHz"),
-	("1608000", "1.6 GHz"),
-	("1704000", "1.7 GHz")])
+config.plugins.aml.governor = ConfigSelection(default=CpuControl.DEFAULT_GOVERNOR, choices=cpuControl.getGovernorChoices())
+config.plugins.aml.minfrq = ConfigSelection(default=cpuControl.frequencies["policy0"][0], choices=cpuControl.getFrequencyChoices("policy0"))
+config.plugins.aml.maxfrq = ConfigSelection(default=cpuControl.frequencies["policy0"][-1], choices=cpuControl.getFrequencyChoices("policy0"))
+config.plugins.aml.minfrq2 = ConfigSelection(default=cpuControl.frequencies["policy2"][0], choices=cpuControl.getFrequencyChoices("policy2"))
+config.plugins.aml.maxfrq2 = ConfigSelection(default=cpuControl.frequencies["policy2"][-1], choices=cpuControl.getFrequencyChoices("policy2"))
 
 
-def leaveStandby():
-	print("[AmlFRQ] Leave Standby")
-	initBooster()
-
-
-def standbyCounterChanged(configElement):
-	print("[AmlFRQ] In Standby")
-	initStandbyBooster()
-	from Screens.Standby import inStandby
-	inStandby.onClose.append(leaveStandby)
-
-
-def initBooster():
-	print("[AmlFRQ] initBooster")
-	try:
-		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", "w") as fd:
-			fd.write(config.plugins.aml.maxfrq.getValue())
-		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq", "w") as fd:
-			fd.write(config.plugins.aml.minfrq.getValue())
-		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq", "w") as fd:
-			fd.write(config.plugins.aml.maxfrq2.getValue())
-		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq", "w") as fd:
-			fd.write(config.plugins.aml.minfrq2.getValue())
-		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", "w") as fd:
-			fd.write(config.plugins.aml.governor.getValue())
-		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_governor", "w") as fd:
-			fd.write(config.plugins.aml.governor.getValue())
-	except OSError:
-		pass
-
-
-def initStandbyBooster():
-	print("[AmlFRQ] initStandbyBooster")
-	try:
-		with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", "w") as fd:
-			fd.write(config.plugins.aml.minfrq.getValue())
-		with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq", "w") as fd:
-			fd.write(config.plugins.aml.minfrq2.getValue())
-	except OSError:
-		pass
-
-
-class AmlFRQ(ConfigListScreen, Screen):
-
-	def __init__(self, session, args=None):
-		DESKHEIGHT = getDesktop(0).size().height()
-		if DESKHEIGHT == 720:
-			self.skin = """
-			<screen  position="0,0" size="1280,720" title="CPU Frequency Setup" flags="wfNoBorder" backgroundColor="#25062748">
-			<widget source="Title" render="Label" position="140,93" size="1000,45" zPosition="2" halign="center" font="Regular; 24" backgroundColor="#25062748" transparent="1" valign="center" />
-			<ePixmap name="" position="140,100" size="1000,546" pixmap="MetrixHD/ibts/background.png" zPosition="-10" />
-			<eLabel name="" position="156,151" size="855,432" zPosition="-5" />
-			<ePixmap pixmap="enigma2/icon/default.png" position="1044,189" size="60,46" zPosition="1" />
-			<eLabel name="" position="1028,290" size="96,33" font="Regular; 18" valign="center" halign="center" text="Exit" />
-			<ePixmap pixmap="MetrixHD/buttons/buttons.png" position="142,595" size="733,37" alphatest="blend" zPosition="100" />
-
-			<widget name="key_red" position="156,595" size="236,37" zPosition="1" font="Regular; 18" halign="center" valign="center" backgroundColor="#9f1313" transparent="0" foregroundColor="#cccccc" />
-			<widget name="key_green" position="401,595" size="236,37" zPosition="1" font="Regular; 18" halign="center" valign="center" backgroundColor="#1f771f" transparent="0" foregroundColor="#cccccc" />
-			<widget name="key_yellow" position="646,595" size="236,37" zPosition="1" font="Regular; 18" halign="center" valign="center" backgroundColor="#a08500" transparent="0" foregroundColor="#cccccc" />
-
-			<widget name="config" position="166,160" size="840,169" scrollbarMode="showOnDemand" font="Regular; 18" itemHeight="32" selectionPixmap="MetrixHD/SkinDesign/CoolNow.png" transparent="1" scrollbarSliderforegroundColor="#cccccc" scrollbarSliderBorderColor="#25062748" />
-			<widget name="tempc"  position="166,366"  size="486,33" font="Regular; 18" valign="center" halign="left" />
-			<widget name="voltc"  position="166,406"  size="486,33" font="Regular; 18" valign="center" halign="left" />
-			<widget name="frqc"   position="166,446"  size="486,33" font="Regular; 18" valign="center" halign="left" />
-			<widget name="frqc"   position="166,486"  size="486,33" font="Regular; 18" valign="center" halign="left" />
-
-			<eLabel name="" position="1028,248" size="96,33" font="Regular; 18" valign="center" halign="center" text="OK" />
-			</screen>"""
-		else:
-			self.skin = """
-			<screen  position="0,0" size="1920,1080" title="CPU Frequency Setup" flags="wfNoBorder" backgroundColor="#25062748">
-			<widget source="Title" render="Label" position="210,140" size="1500,68" zPosition="2" halign="center" font="Regular; 36" backgroundColor="#25062748" transparent="1" valign="center" />
-			<ePixmap name="" position="210,150" size="1500,820" pixmap="MetrixHD/ibts/background.png" zPosition="-10" />
-			<eLabel name="" position="235,227" size="1283,648" zPosition="-5" />
-			<ePixmap pixmap="enigma2/icon/default.png" position="1567,284" size="90,70" zPosition="1" />
-			<eLabel name="" position="1542,435" size="145,50" font="Regular; 28" valign="center" halign="center" text="Exit" />
-			<ePixmap pixmap="MetrixHD/buttons/buttons.png" position="214,893" size="1100,56" alphatest="blend" zPosition="100" />
-			<widget name="key_red" position="235,893" size="354,56" zPosition="1" font="Regular; 28" halign="center" valign="center" backgroundColor="#9f1313" transparent="0" foregroundColor="#cccccc" />
-			<widget name="key_green" position="602,893" size="354,56" zPosition="1" font="Regular; 28" halign="center" valign="center" backgroundColor="#1f771f" transparent="0" foregroundColor="#cccccc" />
-			<widget name="key_yellow" position="969,893" size="354,56" zPosition="1" font="Regular; 28" halign="center" valign="center" backgroundColor="#a08500" transparent="0" foregroundColor="#cccccc" />
-			<widget name="config" position="250,240" size="1260,244" scrollbarMode="showOnDemand" font="Regular; 28" itemHeight="48" selectionPixmap="MetrixHD/SkinDesign/CoolNow.png" transparent="1" scrollbarSliderforegroundColor="#cccccc" scrollbarSliderBorderColor="#25062748" />
-			<widget name="tempc"  position="250,550"  size="680,50" font="Regular; 28" valign="center" halign="left" />
-			<widget name="voltc"  position="250,610"  size="680,50" font="Regular; 28" valign="center" halign="left" />
-			<widget name="frqc"   position="250,670"  size="680,50" font="Regular; 28" valign="center" halign="left" />
-			<widget name="frqc2"   position="250,730"  size="680,50" font="Regular; 28" valign="center" halign="left" />
-
-			<eLabel name="" position="1542,372" size="145,50" font="Regular; 28" valign="center" halign="center" text="OK" />
-			</screen>"""
-
-		Screen.__init__(self, session)
-		self.onClose.append(self.abort)
-		self.onChangedEntry = []
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
-		self.createSetup()
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("Save"))
-		self["key_yellow"] = Button(_("Test"))
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"], {"save": self.save,
-		"cancel": self.cancel,
-		"ok": self.save,
-		"yellow": self.Test}, -2)
-
-	def createSetup(self):
-		print("[AmlFRQ] createSetup initializing")
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Set MAX CPU frequency for cores 0 and 1"), config.plugins.aml.maxfrq))
-		self.list.append(getConfigListEntry(_("Set MIN CPU frequency for cores 0 and 1"), config.plugins.aml.minfrq))
-		self.list.append(getConfigListEntry(_("Set MAX CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.maxfrq2))
-		self.list.append(getConfigListEntry(_("Set MIN CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.minfrq2))
-		self.list.append(getConfigListEntry(_("Set Scaling governor"), config.plugins.aml.governor))
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-		self["tempc"] = Label()
-		self["voltc"] = Label()
-		self["frqc"] = Label()
-		self["frqc2"] = Label()
-		self.timer = eTimer()
-		if self.getcurrentData not in self.timer.callback:
-			print("[AmlFRQ] createSetup in Timer")
-			self.timer.callback.append(self.getcurrentData)
-			self.timer.start(2000, True)
-
-	def getcurrentData(self):
-		self.temp = "N/A"
-		self.voltage = "N/A"
-		self.cfrq = "N/A"
-		self.cfrq2 = "N/A"
-		try:
-			with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq") as fd:
-				self.cfrq = fd.read().strip()
-			with open("/sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq") as fd:
-				self.cfrq2 = fd.read().strip()
-			with open("/proc/stb/fp/temp_sensor_avs") as fd:
-				self.temp = fd.read().strip()
-			with open("/sys/devices/system/cpu/cpufreq/policy0/brcm_avs_voltage") as fd:
-				self.voltage = fd.read().strip()
-		except Exception:
-			pass
-		try:
-			self.cfrq = str(int(self.cfrq) / 1000)
-			self.cfrq2 = str(int(self.cfrq2) / 1000)
-			self.voltage = str(int(self.voltage, 16))
-		except Exception:
-			pass
-
-		self["tempc"].setText(_("Current Temperature (SoC): %s °C") % self.temp)
-		self.icfrq = int(float(self.cfrq))
-		if self.icfrq >= 500 and self.icfrq <= 1200:
-			self.voltage = "0.731"
-		elif self.icfrq == 1398:
-			self.voltage = "0.761"
-		elif self.icfrq == 1512:
-			self.voltage = "0.791"
-		elif self.icfrq == 1608:
-			self.voltage = "0.831"
-		elif self.icfrq == 1704:
-			self.voltage = "0.961"
-		elif self.icfrq == 1800:
-			self.voltage = "0.981"
-		self["voltc"].setText(_("Current CPU cores 0 and 1 Voltage: %s V") % self.voltage)
-		self["frqc"].setText(_("Current CPU Frequency cores 0 and 1: %s MHz") % self.cfrq)
-		self["frqc2"].setText(_("Current CPU Frequency other cores: %s MHz") % self.cfrq2)
-		self.timer.start(1000, True)
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.newConfig()
-
-	def newConfig(self):
-		print(self["config"].getCurrent()[0])
-		if self["config"].getCurrent()[0] == _("Start Boot Frequency"):
-			self.createSetup()
-
-	def abort(self):
-		self.timer.stop()
-		if self.getcurrentData in self.timer.callback:
-			self.timer.callback.remove(self.getcurrentData)
-		print("[AmlFRQ] aborting")
-
-	def save(self):
-		for x in self["config"].list:
-			x[1].save()
-
-		configfile.save()
-		initBooster()
-		self.close()
-
-	def cancel(self):
-		initBooster()
-		for x in self["config"].list:
-			x[1].cancel()
-
-		self.close()
-
-	def Test(self):
-		initBooster()
-
-
-class U5_Booster:
+class AmlFRQ(Setup):
+	skin = """
+	<screen name="AmlFRQ" position="center,center" size="980,570" resolution="1280,720">
+		<widget name="config" position="10,10" size="e-20,175" enableWrapAround="1" font="Regular;25" itemHeight="35" scrollbarMode="showOnDemand" />
+		<widget name="tempc" position="10,205" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="ramtempc" position="10,235" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="frqc" position="10,265" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="frqc2" position="10,295" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="gpuc" position="10,325" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="ramc" position="10,355" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="footnote" position="10,e-185" size="e-20,25" font="Regular;20" verticalAlignment="center" />
+		<widget name="description" position="10,e-160" size="e-20,100" font="Regular;20" verticalAlignment="center" />
+		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="200,e-50" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_menu" render="Label" position="e-200,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" wrap="off" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
 
 	def __init__(self, session):
-		print("[AmlFRQ] Booster initializing")
-		self.session = session
-		self.service = None
-		self.onClose = []
-		initBooster()
+		Setup.__init__(self, session, setup=None)
+		self.mandatoryWidgets = ["config", "footnote", "description", "tempc", "ramtempc", "frqc", "frqc2", "gpuc", "ramc"]  # Skip skin screens without the status widgets.
+		self["key_yellow"] = StaticText(_("Test"))
+		self["tempc"] = Label()
+		self["ramtempc"] = Label()
+		self["frqc"] = Label()
+		self["frqc2"] = Label()
+		self["gpuc"] = Label()
+		self["ramc"] = Label()
+		self["testAction"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.keyTest, _("Apply the settings without saving them"))
+		}, prio=0, description=_("CPU Control Actions"))
+		self.statusTimer = eTimer()
+		self.statusTimer.callback.append(self.updateStatus)
+		self.onLayoutFinish.append(cpuControl.startRamMonitor)
+		self.onLayoutFinish.append(self.updateStatus)
+		self.onClose.append(self.screenClosed)
 
-	def shutdown(self):
-		self.abort()
+	def createSetup(self):
+		governor = config.plugins.aml.governor
+		items = (
+			(_("Set MAX CPU frequency for cores 0 and 1"), config.plugins.aml.maxfrq, _("Select the highest frequency these CPU cores may run at.")),
+			(_("Set MIN CPU frequency for cores 0 and 1"), config.plugins.aml.minfrq, _("Select the lowest frequency these CPU cores may run at. This frequency is also used in standby.")),
+			(_("Set MAX CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.maxfrq2, _("Select the highest frequency these CPU cores may run at.")),
+			(_("Set MIN CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.minfrq2, _("Select the lowest frequency these CPU cores may run at. This frequency is also used in standby.")),
+			(_("Set Scaling governor"), governor, cpuControl.getGovernorDescription(governor.value))
+		)
+		Setup.createSetup(self, appendItems=[(x[0], x[1], self.formatItemDescription(x[1], x[2])) for x in items])
+		self.setTitle(_("CPU Control"))
 
-	def abort(self):
-		self.timer.stop()
-		if self.getcurrentData in self.timer.callback:
-			self.timer.callback.remove(self.getcurrentData)
-		print("[AmlFRQ] Booster aborting")
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		self.selectionChanged()  # Update the governor description.
 
-	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
+	def updateStatus(self):
+		self["tempc"].setText(_("Current Temperature (SoC): %s °C") % cpuControl.getTemperature("soc_thermal"))
+		self["ramtempc"].setText(_("Current Temperature (RAM): %s °C") % cpuControl.getTemperature("ddr_thermal"))
+		self["frqc"].setText(cpuControl.getStatus("policy0", _("Current CPU Frequency cores 0 and 1: %s MHz")))
+		self["frqc2"].setText(cpuControl.getStatus("policy2", _("Current CPU Frequency other cores: %s MHz")))
+		self["gpuc"].setText(cpuControl.getGpuStatus(_("Current GPU Frequency: %s MHz")))
+		self["ramc"].setText(cpuControl.getRamStatus(_("Current RAM Frequency: %s MHz")))
+		self.statusTimer.start(1000, True)
+
+	def keyTest(self):
+		cpuControl.applySettings()
+
+	def screenClosed(self):
+		self.statusTimer.stop()
+		cpuControl.cpuTimes.clear()
+		cpuControl.stopRamMonitor()
+		cpuControl.applySettings()  # Apply the saved settings, also after a cancelled test.
 
 
-def main(menuid):
-	return [(_("CPU Control"), startBooster, "CPU Control", None)] if menuid == "system" else []
+def main(menuid, **kwargs):
+	return [(_("CPU Control"), startSetup, "CPU Control", None)] if menuid == "system" else []
 
 
-def startBooster(session, **kwargs):
+def startSetup(session, **kwargs):
 	session.open(AmlFRQ)
 
 
-wbooster = None
-gReason = -1
-mySession = None
-
-
-def dinobotbooster():
-	global wbooster
-	global mySession
-	global gReason
-	if gReason == 0 and mySession is not None and wbooster is None:
-		print("[AmlFRQ] booster Starting !!")
-		wbooster = U5_Booster(mySession)
-	elif gReason == 1 and wbooster is not None:
-		print("[AmlFRQ] booster Stopping !!")
-		wbooster = None
-
-
 def sessionstart(reason, **kwargs):
-	global mySession
-	global gReason
-	print("[AmlFRQ] sessionstart")
-	if "session" in kwargs:
-		mySession = kwargs["session"]
-	else:
-		gReason = reason
-	dinobotbooster()
+	if reason == 0:
+		cpuControl.applySettings()
+		config.misc.standbyCounter.addNotifier(cpuControl.standbyCounterChanged, initial_call=False)
 
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where=[PluginDescriptor.WHERE_AUTOSTART, PluginDescriptor.WHERE_SESSIONSTART], fnc=sessionstart), PluginDescriptor(name="FRQ Setup", description="Set CPU speed settings", where=PluginDescriptor.WHERE_MENU, fnc=main)]
+	return [
+		PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart),
+		PluginDescriptor(name=_("CPU Control"), description=_("Set the CPU frequencies and the governor"), where=PluginDescriptor.WHERE_MENU, fnc=main)
+	]
