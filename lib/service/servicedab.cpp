@@ -2194,7 +2194,7 @@ bool eServiceDAB::startRTLSDR()
 	eDABSDRWorker::PCMCallback pcmCallback;
 	if (pcmOutput)
 		pcmCallback = [this](const uint8_t *data, size_t length, unsigned sampleRate) {
-			std::lock_guard<std::mutex> lock(m_sdr_audio_mutex);
+			std::lock_guard<std::mutex> lock(m_audio_mutex);
 			pushPCM(data, length, sampleRate);
 		};
 	m_sdr_worker.reset(new eDABSDRWorker(channel, serviceId, motCachePrefix,
@@ -2239,7 +2239,7 @@ void eServiceDAB::stopRTLSDR(bool force)
 	m_audio_probe_deadline = 0;
 	if (!force && hasRTLSDRConsumers())
 	{
-		std::lock_guard<std::mutex> lock(m_sdr_audio_mutex);
+		std::lock_guard<std::mutex> lock(m_audio_mutex);
 		stopAudioPipeline();
 		return;
 	}
@@ -2341,22 +2341,11 @@ bool eServiceDAB::startTap()
 		m_reference.getUnsignedData(6), m_reference.getUnsignedData(7) & 0xffff,
 		[this](const uint8_t *data, size_t length, const uint8_t *framed, size_t framedLength,
 			uint64_t durationNs, uint8_t config, bool dabplus) {
-			if (!dabplus && !m_audio_input_mp2)
-			{
-				stopAudioPipeline();
-				if (!startAudioPipeline(false, false, true))
-					return;
-				m_radio_picture_decoder = nullptr;
-				showRadioPicture();
-				eDABDebug("[eServiceDAB] codec auto-detected: DAB MPEG Layer II");
-			}
-			else if (dabplus && m_audio_input_mp2)
-			{
-				stopAudioPipeline();
-				if (!startAudioPipeline())
-					return;
-				eDABDebug("[eServiceDAB] codec auto-detected: DAB+ AAC");
-			}
+			/* Pipeline changes query Python configuration and belong to the main
+			 * thread. Drop mismatched frames until workerMessage selects the codec. */
+			std::lock_guard<std::mutex> lock(m_audio_mutex);
+			if (!m_audio_source || dabplus == m_audio_input_mp2)
+				return;
 			if (m_audio_capture)
 				fwrite(framed, 1, framedLength, m_audio_capture);
 			if (!dabplus)
@@ -2410,7 +2399,12 @@ void eServiceDAB::stopTap()
 		m_worker->stop();
 		m_worker.reset();
 	}
-	stopAudioPipeline();
+	{
+		/* Join the DVB worker before locking; a retained SDR recording source
+		 * can still deliver audio when stop() also calls this cleanup path. */
+		std::lock_guard<std::mutex> lock(m_audio_mutex);
+		stopAudioPipeline();
+	}
 	for (int &fd : m_socket)
 	{
 		if (fd >= 0)
@@ -2463,22 +2457,23 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 	}
 	/* Select the sink in the main thread; pipe parsing and audio delivery stay
 	 * in the worker. Never reopen playback for a retained recording source. */
-	if (m_sdr_worker && stats.audioFrames &&
-		((!stats.dabplus && !m_audio_input_mp2) || (stats.dabplus && m_audio_input_mp2)))
+	if ((m_worker || m_sdr_worker) && stats.audioFrames &&
+		(!m_audio_pipeline || (!stats.dabplus && !m_audio_input_mp2) || (stats.dabplus && m_audio_input_mp2)))
 	{
 		bool started;
 		{
-			std::lock_guard<std::mutex> lock(m_sdr_audio_mutex);
+			std::lock_guard<std::mutex> lock(m_audio_mutex);
 			stopAudioPipeline();
-			started = startAudioPipeline(stats.dabplus && !m_sdr_pcm_requested,
-				stats.dabplus && m_sdr_pcm_requested, !stats.dabplus);
+			started = startAudioPipeline(m_sdr_worker && stats.dabplus && !m_sdr_pcm_requested,
+				m_sdr_worker && stats.dabplus && m_sdr_pcm_requested, !stats.dabplus);
 		}
 		m_audio_probe_deadline = started && m_audio_loas ? monotonicMilliseconds() + LOAS_PROBE_MS : 0;
 		if (started)
 		{
 			m_radio_picture_decoder = nullptr;
 			showRadioPicture();
-			eDABDebug("[eServiceDAB] RTL-SDR codec auto-detected: %s", stats.dabplus ? "DAB+ AAC" : "DAB MPEG Layer II");
+			eDABDebug("[eServiceDAB] %s codec auto-detected: %s",
+				m_sdr_worker ? "RTL-SDR" : "DVB", stats.dabplus ? "DAB+ AAC" : "DAB MPEG Layer II");
 		}
 	}
 	const bool dlsChanged = strcmp(m_stats.dynamicLabel, stats.dynamicLabel) != 0;
@@ -3002,7 +2997,7 @@ void eServiceDAB::pushSDRAudio(const uint8_t *data, size_t length, uint64_t dura
 	/* Recordings and streams always receive the original compressed frames,
 	 * including while local playback uses PCM or has already stopped. */
 	dispatchRTLSDRAudio(data, length);
-	std::lock_guard<std::mutex> lock(m_sdr_audio_mutex);
+	std::lock_guard<std::mutex> lock(m_audio_mutex);
 	if (dabplus)
 		pushLOAS(data, length);
 	else if (m_audio_input_mp2)

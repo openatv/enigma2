@@ -314,7 +314,7 @@ private:
 	bool m_audio_input_loas = false;
 	bool m_audio_input_pcm = false;
 	bool m_audio_input_mp2 = false;
-	std::mutex m_sdr_audio_mutex;
+	std::mutex m_audio_mutex;
 	bool m_sdr_pcm_requested = false;
 	bool m_audio_loas = false;
 	unsigned m_pcm_sample_rate = 0;
