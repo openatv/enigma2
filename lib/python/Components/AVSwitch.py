@@ -397,8 +397,8 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/info/boxmode", configElement.value, source=MODULE_NAME)
 
 		config.av.boxmode = ConfigSelection(default="12", choices=[
-			("12", _("Enable PiP no HDR")),
-			("1", _("12bit 4:2:0/4:2:2 no PiP"))
+			("12", _("PiP (no HDR)")),
+			("1", _("12-bit HDR (no PiP)"))
 		])
 		config.av.boxmode.addNotifier(setBoxMode)
 	else:

@@ -1443,7 +1443,7 @@
 		</if>
 		<item level="0" text="HDR OSD adjustment" description="This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode." requires="havehdmihdrosd">config.av.hdmihdrosd</item>
 		<item level="0" text="Bypass HDMI EDID Check" description="This option allows you to bypass HDMI EDID check." requires="Canedidchecking">config.av.bypass_edid_checking</item>
-		<item level="0" text="Change Boxmode to control Hardware Chip Modes*" description="Switch Mode to enable HDR Modes or PiP Functions" requires="haveboxmode">config.av.boxmode</item>
+		<item level="0" text="Hardware video mode" description="Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output." requires="haveboxmode">config.av.boxmode</item>
 		<if requires="HDRSupport">
 			<item level="0" text="HLG Support" description="This option allows you to force the HLG Modes for UHD.">config.av.hlg_support</item>
 			<item level="0" text="HDR10 Support" description="This option allows you to force the HDR10 Modes for UHD.">config.av.hdr10_support</item>
