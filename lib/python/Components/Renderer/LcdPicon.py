@@ -75,10 +75,11 @@ def onMountpointRemoved(mountpoint):
 
 
 def onPartitionChange(why, part):
-	if why == "add":
-		onMountpointAdded(part.mountpoint)
-	elif why == "remove":
-		onMountpointRemoved(part.mountpoint)
+	match why:
+		case "add":
+			onMountpointAdded(part.mountpoint)
+		case "remove":
+			onMountpointRemoved(part.mountpoint)
 
 
 def findLcdPicon(serviceName):
@@ -154,11 +155,12 @@ class LcdPicon(Renderer):
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
 		for (attrib, value) in self.skinAttributes:
-			if attrib == "path":
-				self.addPath(value)
-				attribs.remove((attrib, value))
-			elif attrib == "size":
-				self.piconsize = value
+			match attrib:
+				case "path":
+					self.addPath(value)
+					attribs.remove((attrib, value))
+				case "size":
+					self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -174,21 +176,22 @@ class LcdPicon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if (what[0] == 1 or what[0] == 3) and self.source.text:
-				pngname = getLcdPiconName(self.source.text)
-				if not exists(pngname):  # No picon for service found
-					pngname = self.defaultpngname
-				if self.pngname != pngname:
-					if pngname:  # We need to used ePicLoad to support 32Bit Picons for all Display types
-						# Note: 1 + 100 is for 16 Bit LCD to force RGB
-						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 101, "#FF000000"))
-						self.PicLoad.startDecode(pngname)
-					else:
-						self.instance.hide()
-					self.pngname = pngname
-			elif what[0] == 2:
-				self.pngname = ""
-				self.instance.hide()
+			match what[0]:
+				case 1 | 3 if self.source.text:
+					pngname = getLcdPiconName(self.source.text)
+					if not exists(pngname):  # No picon for service found
+						pngname = self.defaultpngname
+					if self.pngname != pngname:
+						if pngname:  # We need to used ePicLoad to support 32Bit Picons for all Display types
+							# Note: 1 + 100 is for 16 Bit LCD to force RGB
+							self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 101, "#FF000000"))
+							self.PicLoad.startDecode(pngname)
+						else:
+							self.instance.hide()
+						self.pngname = pngname
+				case 2:
+					self.pngname = ""
+					self.instance.hide()
 
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)

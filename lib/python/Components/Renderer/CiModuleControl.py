@@ -48,16 +48,17 @@ class CiModuleControl(Renderer, VariableText):
 					if string:
 						string += " "
 					if state not in (-1, 3):
-						if state == 0:
-							if not self.allVisible:
-								string += ""
-								add_num = False
-							else:
-								string += Hex2strColor(self.colors[0])  # no module
-						elif state == 1:
-							string += Hex2strColor(self.colors[1])  # init module
-						elif state == 2:
-							string += Hex2strColor(self.colors[2])  # module ready
+						match state:
+							case 0:
+								if not self.allVisible:
+									string += ""
+									add_num = False
+								else:
+									string += Hex2strColor(self.colors[0])  # no module
+							case 1:
+								string += Hex2strColor(self.colors[1])  # init module
+							case 2:
+								string += Hex2strColor(self.colors[2])  # module ready
 					else:
 						if not self.allVisible:
 							string += ""

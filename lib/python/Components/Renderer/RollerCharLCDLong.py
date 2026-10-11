@@ -20,10 +20,11 @@ class RollerCharLCDLong(VariableText, Renderer):
 		width = None
 		fontsize = None
 		for attrib, value in self.skinAttributes:
-			if attrib == "size":
-				width = float(value.split(",")[0])
-			elif attrib == "font":
-				fontsize = float(value.split(";")[1])
+			match attrib:
+				case "size":
+					width = float(value.split(",")[0])
+				case "font":
+					fontsize = float(value.split(";")[1])
 			attribs.append((attrib, value))
 
 		self.skinAttributes = attribs

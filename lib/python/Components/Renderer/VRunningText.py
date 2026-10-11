@@ -86,69 +86,71 @@ class VRunningText(Renderer):
 		if self.skinAttributes:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
-				if attrib == "font":
-					self.txfont = parseFont(value, screen.scale)
-				elif attrib == "foregroundColor":
-					self.fcolor = parseColor(value)
-				elif attrib == "backgroundColor":
-					self.bcolor = parseColor(value)
-				elif attrib == "shadowColor":
-					self.scolor = parseColor(value)
-				elif attrib == "shadowOffset":
-					x, y = value.split(",")
-					self.soffset = (int(x), int(y))
-				elif attrib == "valign" and value in ("top", "center", "bottom"):
-					valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
-					self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
-				elif attrib == "halign" and value in ("left", "center", "right", "block"):
-					self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
-					self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
-				elif attrib == "noWrap":
-					if value == "0":
-						self.txtflags |= RT_WRAP
-					else:
-						self.txtflags &= ~RT_WRAP
-				elif attrib == "options":
-					options = value.split(",")
-					for opt in options:
-						val = ""
-						pos = opt.find("=")
-						if pos != -1:
-							val = opt[pos + 1:].strip()
-							opt = opt[:pos].strip()
-						if opt == "wrap":
-							if val == "0":
-								self.txtflags &= ~RT_WRAP
-							else:
-								self.txtflags |= RT_WRAP
-						elif opt == "nowrap":
-							if val == "0":
-								self.txtflags |= RT_WRAP
-							else:
-								self.txtflags &= ~RT_WRAP
-						elif opt == "movetype" and val in ("none", "running", "swimming"):
-							self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-						elif opt == "direction" and val in ("left", "right", "top", "bottom"):
-							self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
-						elif opt == "step" and val:
-							#retValue(val, limit, default, Min=False)
-							self.mStep = retValue(val, 1, self.mStep)
-						elif opt == "steptime" and val:
-							self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
-						elif opt == "startdelay" and val:
-							self.mStartDelay = retValue(val, 0, self.mStartDelay)
-						elif opt == "pause" and val:
-							self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
-						elif opt == "oneshot" and val:
-							self.mOneShot = retValue(val, 0, self.mOneShot)
-						elif opt == "repeat" and val:
-							self.mRepeat = retValue(val, 0, self.mRepeat)
-						elif opt == "always" and val:
-							self.mAlways = retValue(val, 0, self.mAlways)
-						elif opt == "startpoint" and val:
-							self.mStartPoint = int(val)
-				else:
-					attribs.append((attrib, value))
+				match attrib:
+					case "font":
+						self.txfont = parseFont(value, screen.scale)
+					case "foregroundColor":
+						self.fcolor = parseColor(value)
+					case "backgroundColor":
+						self.bcolor = parseColor(value)
+					case "shadowColor":
+						self.scolor = parseColor(value)
+					case "shadowOffset":
+						x, y = value.split(",")
+						self.soffset = (int(x), int(y))
+					case "valign" if value in ("top", "center", "bottom"):
+						valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
+						self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
+					case "halign" if value in ("left", "center", "right", "block"):
+						self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
+						self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
+					case "noWrap":
+						if value == "0":
+							self.txtflags |= RT_WRAP
+						else:
+							self.txtflags &= ~RT_WRAP
+					case "options":
+						options = value.split(",")
+						for opt in options:
+							val = ""
+							pos = opt.find("=")
+							if pos != -1:
+								val = opt[pos + 1:].strip()
+								opt = opt[:pos].strip()
+							match opt:
+								case "wrap":
+									if val == "0":
+										self.txtflags &= ~RT_WRAP
+									else:
+										self.txtflags |= RT_WRAP
+								case "nowrap":
+									if val == "0":
+										self.txtflags |= RT_WRAP
+									else:
+										self.txtflags &= ~RT_WRAP
+								case "movetype" if val in ("none", "running", "swimming"):
+									self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
+								case "direction" if val in ("left", "right", "top", "bottom"):
+									self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
+								case "step" if val:
+									#retValue(val, limit, default, Min=False)
+									self.mStep = retValue(val, 1, self.mStep)
+								case "steptime" if val:
+									self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
+								case "startdelay" if val:
+									self.mStartDelay = retValue(val, 0, self.mStartDelay)
+								case "pause" if val:
+									self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
+								case "oneshot" if val:
+									self.mOneShot = retValue(val, 0, self.mOneShot)
+								case "repeat" if val:
+									self.mRepeat = retValue(val, 0, self.mRepeat)
+								case "always" if val:
+									self.mAlways = retValue(val, 0, self.mAlways)
+								case "startpoint" if val:
+									self.mStartPoint = int(val)
+					case _:
+						attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
 		#if self.type == RUNNING and self.direction in (LEFT,RIGHT):

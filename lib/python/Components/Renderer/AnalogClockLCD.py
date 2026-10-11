@@ -25,20 +25,21 @@ class AnalogClockLCD(Renderer):
 	def applySkin(self, desktop, parent):  # HINT: clock center = position="(x + linesize / 2), (y + linesize / 2)"
 		attribs = []
 		for attrib, what in self.skinAttributes:
-			if attrib in ["fColor", "hColor", "mColor", "sColor"]:  # hand foregroundColor (compatible to old attribs 'h/m/sColor')
-				self.fColor = parseColor(what)
-			elif attrib == "bColor":  # hand backgroundColor
-				self.bColor = parseColor(what)
-			elif attrib == "linesize":  # hand length
-				self.linesize = int(what)
-			elif attrib == "linewidth":  # hand thickness
-				self.linewidth = int(what)
-			elif attrib == "positionwidth":  # oval dial width, typically >= 2 * linesize
-				self.positionwidth = int(what)
-			elif attrib == "positionheight":  # oval dial height, typically >= 2 * linesize
-				self.positionheight = int(what)
-			else:
-				attribs.append((attrib, what))
+			match attrib:
+				case "fColor" | "hColor" | "mColor" | "sColor":  # hand foregroundColor (compatible to old attribs 'h/m/sColor')
+					self.fColor = parseColor(what)
+				case "bColor":  # hand backgroundColor
+					self.bColor = parseColor(what)
+				case "linesize":  # hand length
+					self.linesize = int(what)
+				case "linewidth":  # hand thickness
+					self.linewidth = int(what)
+				case "positionwidth":  # oval dial width, typically >= 2 * linesize
+					self.positionwidth = int(what)
+				case "positionheight":  # oval dial height, typically >= 2 * linesize
+					self.positionheight = int(what)
+				case _:
+					attribs.append((attrib, what))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 

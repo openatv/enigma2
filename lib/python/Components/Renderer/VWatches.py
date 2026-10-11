@@ -35,12 +35,13 @@ class VWatches(Renderer):
 	def applySkin(self, desktop, parent):
 		attribs = []
 		for (attrib, what) in self.skinAttributes:
-			if (attrib == "foregroundColor"):
-				self.fColor = parseColor(what)
-			elif (attrib == "backgroundColor"):
-				self.bColor = parseColor(what)
-			else:
-				attribs.append((attrib, what))
+			match attrib:
+				case "foregroundColor":
+					self.fColor = parseColor(what)
+				case "backgroundColor":
+					self.bColor = parseColor(what)
+				case _:
+					attribs.append((attrib, what))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 

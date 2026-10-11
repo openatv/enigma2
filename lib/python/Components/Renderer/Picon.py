@@ -82,10 +82,11 @@ def onMountpointRemoved(mountpoint):
 
 
 def onPartitionChange(why, part):
-	if why == "add":
-		onMountpointAdded(part.mountpoint)
-	elif why == "remove":
-		onMountpointRemoved(part.mountpoint)
+	match why:
+		case "add":
+			onMountpointAdded(part.mountpoint)
+		case "remove":
+			onMountpointRemoved(part.mountpoint)
 
 
 def findPicon(serviceName, mode=None):
@@ -183,16 +184,17 @@ class Picon(Renderer):
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
 		for (attrib, value) in self.skinAttributes:
-			if attrib == "path":
-				self.addPath(value)
-				attribs.remove((attrib, value))
-			elif attrib == "mode":
-				if value in ("infobar", "channelselection"):
-					self.mode = value
-					self.setDefaultPicon(value)
-				attribs.remove((attrib, value))
-			elif attrib == "size":
-				self.piconsize = value
+			match attrib:
+				case "path":
+					self.addPath(value)
+					attribs.remove((attrib, value))
+				case "mode":
+					if value in ("infobar", "channelselection"):
+						self.mode = value
+						self.setDefaultPicon(value)
+					attribs.remove((attrib, value))
+				case "size":
+					self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -202,24 +204,25 @@ class Picon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] == 1 or what[0] == 3:
-				pngname = getDABImage(self.source.text) or getPiconName(self.source.text, self.mode)
-				if not exists(pngname):  # No picon for service found
-					pngname = self.defaultpngname
-				if not config.usage.showpicon.value:
-					pngname = self.nopicon
-				pngkey = (pngname, getmtime(pngname), getsize(pngname)) if pngname and exists(pngname) else pngname
-				if self.pngname != pngkey:
-					if pngname:
-						self.instance.setScale(1)
-						self.instance.setPixmapFromFile(pngname)
-						self.instance.show()
-					else:
-						self.instance.hide()
-					self.pngname = pngkey
-			elif what[0] == 2:
-				self.pngname = ""
-				self.instance.hide()
+			match what[0]:
+				case 1 | 3:
+					pngname = getDABImage(self.source.text) or getPiconName(self.source.text, self.mode)
+					if not exists(pngname):  # No picon for service found
+						pngname = self.defaultpngname
+					if not config.usage.showpicon.value:
+						pngname = self.nopicon
+					pngkey = (pngname, getmtime(pngname), getsize(pngname)) if pngname and exists(pngname) else pngname
+					if self.pngname != pngkey:
+						if pngname:
+							self.instance.setScale(1)
+							self.instance.setPixmapFromFile(pngname)
+							self.instance.show()
+						else:
+							self.instance.hide()
+						self.pngname = pngkey
+				case 2:
+					self.pngname = ""
+					self.instance.hide()
 
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)

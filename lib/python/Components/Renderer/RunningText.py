@@ -111,68 +111,71 @@ class RunningText(Renderer):
 		if self.skinAttributes:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
-				if attrib == "font":
-					self.txfont = parseFont(value, screen.scale)
-				elif attrib == "foregroundColor":
-					self.scroll_label.setForegroundColor(parseColor(value))
-				elif attrib in ("shadowColor", "borderColor"):  # fake for openpli-enigma2
-					self.scroll_label.setShadowColor(parseColor(value))
-				elif attrib == "shadowOffset":
-					x, y = value.split(",")
-					self.soffset = (int(x), int(y))
-					self.scroll_label.setShadowOffset(ePoint(self.soffset))
-				elif attrib == "borderWidth":			# fake for openpli-enigma2
-					self.soffset = (-int(value), -int(value))
-				elif attrib == "valign" and value in ("top", "center", "bottom"):
-					valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
-					self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
-				elif attrib == "halign" and value in ("left", "center", "right", "block"):
-					self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
-					self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
-				elif attrib == "noWrap":
-					setWrapFlag(attrib, value)
-				elif attrib == "options":
-					options = value.split(",")
-					for o in options:
-						if "=" in o:
-							opt, val = (x.strip() for x in o.split("=", 1))
-						else:
-							opt, val = o.strip(), ""
+				match attrib:
+					case "font":
+						self.txfont = parseFont(value, screen.scale)
+					case "foregroundColor":
+						self.scroll_label.setForegroundColor(parseColor(value))
+					case "shadowColor" | "borderColor":  # fake for openpli-enigma2
+						self.scroll_label.setShadowColor(parseColor(value))
+					case "shadowOffset":
+						x, y = value.split(",")
+						self.soffset = (int(x), int(y))
+						self.scroll_label.setShadowOffset(ePoint(self.soffset))
+					case "borderWidth":  # fake for openpli-enigma2
+						self.soffset = (-int(value), -int(value))
+					case "valign" if value in ("top", "center", "bottom"):
+						valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
+						self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
+					case "halign" if value in ("left", "center", "right", "block"):
+						self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
+						self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
+					case "noWrap":
+						setWrapFlag(attrib, value)
+					case "options":
+						options = value.split(",")
+						for o in options:
+							if "=" in o:
+								opt, val = (x.strip() for x in o.split("=", 1))
+							else:
+								opt, val = o.strip(), ""
 
-						if opt == "":
-							continue
-						elif opt in ("wrap", "nowrap"):
-							setWrapFlag(opt, val)
-						elif opt == "movetype" and val in ("none", "running", "swimming"):
-							self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-						elif opt == "direction" and val in ("left", "right", "top", "bottom"):
-							self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
-						elif opt == "step" and val:
-							self.mStep = retValue(val, 1, self.mStep)
-						elif opt == "steptime" and val:
-							self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
-						elif opt == "startdelay" and val:
-							self.mStartDelay = retValue(val, 0, self.mStartDelay)
-						elif opt == "pause" and val:
-							self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
-						elif opt == "oneshot" and val:
-							self.mOneShot = retValue(val, 0, self.mOneShot)
-						elif opt == "repeat" and val:
-							self.mRepeat = retValue(val, 0, self.mRepeat)
-						elif opt == "always" and val:
-							self.mAlways = retValue(val, 0, self.mAlways)
-						elif opt == "startpoint" and val:
-							self.mStartPoint = int(val)
-						elif opt == "pagedelay" and val:
-							self.mPageDelay = retValue(val, 0, self.mPageDelay)
-						elif opt == "pagelength" and val:
-							self.mPageLength = retValue(val, 0, self.mPageLength)
-				else:
-					attribs.append((attrib, value))
-					if attrib == "backgroundColor":
-						self.scroll_label.setBackgroundColor(parseColor(value))
-					elif attrib == "transparent":
-						self.scroll_label.setTransparent(int(value))
+							match opt:
+								case "":
+									continue
+								case "wrap" | "nowrap":
+									setWrapFlag(opt, val)
+								case "movetype" if val in ("none", "running", "swimming"):
+									self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
+								case "direction" if val in ("left", "right", "top", "bottom"):
+									self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
+								case "step" if val:
+									self.mStep = retValue(val, 1, self.mStep)
+								case "steptime" if val:
+									self.mStepTimeout = retValue(val, 25, self.mStepTimeout)
+								case "startdelay" if val:
+									self.mStartDelay = retValue(val, 0, self.mStartDelay)
+								case "pause" if val:
+									self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
+								case "oneshot" if val:
+									self.mOneShot = retValue(val, 0, self.mOneShot)
+								case "repeat" if val:
+									self.mRepeat = retValue(val, 0, self.mRepeat)
+								case "always" if val:
+									self.mAlways = retValue(val, 0, self.mAlways)
+								case "startpoint" if val:
+									self.mStartPoint = int(val)
+								case "pagedelay" if val:
+									self.mPageDelay = retValue(val, 0, self.mPageDelay)
+								case "pagelength" if val:
+									self.mPageLength = retValue(val, 0, self.mPageLength)
+					case _:
+						attribs.append((attrib, value))
+						match attrib:
+							case "backgroundColor":
+								self.scroll_label.setBackgroundColor(parseColor(value))
+							case "transparent":
+								self.scroll_label.setTransparent(int(value))
 
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)

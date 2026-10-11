@@ -19,13 +19,14 @@ class NextEvents(VariableText, Renderer):
 		self.number = 0
 		attribs = []
 		for (attrib, value) in self.skinAttributes:
-			if attrib == "number":
-				self.number = int(value)
-			elif attrib == "lines":
-				self.number = int(value) + 1
-				self.lines = True
-			else:
-				attribs.append((attrib, value))
+			match attrib:
+				case "number":
+					self.number = int(value)
+				case "lines":
+					self.number = int(value) + 1
+					self.lines = True
+				case _:
+					attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
