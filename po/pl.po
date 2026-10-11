@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-07 16:16+0000\n"
-"PO-Revision-Date: 2026-10-07 23:35+0000\n"
-"Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
+"PO-Revision-Date: 2026-10-11 14:02+0000\n"
+"Last-Translator: Mat <mathew87@poczta.fm>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1404,7 +1404,7 @@ msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV
 msgstr "Opcja 'Obsługa trybu czuwania z telewizora' ma wyższy priorytet niż opcja 'Obsługa sygnału wejściowego z telewizora'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "Dekodowanie i nagrywanie ECM' daje możliwość późniejszego deszyfrowania, jeśli deszyfrowanie przy nagrywaniu zakończyło się niepowodzeniem. 'Nie dekoduj, nagrywaj ECM', zapisz nagranie, które można odszyfrować podczas odtwarzania. \"Normalny\" oznacza deszyfrowanie nagrania i nie rejestruje ECM."
+msgstr "'Dekodowanie i nagrywanie ECM' daje możliwość późniejszego deszyfrowania, jeśli deszyfrowanie przy nagrywaniu zakończyło się niepowodzeniem. 'Nie dekoduj, nagrywaj ECM', zapisz nagranie, które można odszyfrować podczas odtwarzania. 'Normalny' oznacza deszyfrowanie nagrania i nie rejestruje ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'WeatherPlugin' nie jest zainstalowany!"
@@ -1693,7 +1693,7 @@ msgstr "Ukończone zadanie chce wyłączyć %s %s. Wyłącz teraz?"
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
-msgstr "Plik crashlog został utworzony %s w '%s'"
+msgstr "Log awarii %s został utworzony w ‘%s’"
 
 msgid "A file from media is in use!"
 msgstr "Plik z nośnika jest w użyciu!"
@@ -2067,7 +2067,7 @@ msgid "Add Wi-Fi"
 msgstr "Dodaj Wi-Fi"
 
 msgid "Add Wi-Fi Manually"
-msgstr "Dodaj Wi-Fi ręcznie"
+msgstr "Dodaj ręcznie Wi-Fi"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Dodaj timer przełącz + nagrywanie"
@@ -2696,13 +2696,13 @@ msgstr ""
 "następującą kopie zapasową:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
-msgstr "Czy chcesz usunąć wszystkie crash logi:\n"
+msgstr "Czy na pewno chcesz usunąć wszystkie zaznaczone logi:\n"
 
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Czy na pewno chcesz usunąć dane EPG z:\n"
 
 msgid "Are you sure you want to delete this log:\n"
-msgstr "Czy chcesz usunąć ten crash log:\n"
+msgstr "Czy na pewno chcesz usunąć ten log:\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "Czy na pewno chcesz to usunąć?"
@@ -4441,7 +4441,7 @@ msgid "Choose the front panel display formatting style for times. 'H'/'HH' is th
 msgstr "Wybierz styl formatowania i wyświetlania na przednim wyświetlaczu dla czasów. 'H' / 'HH' to godzina dla zegara 24-godzinnego, 'h' / 'hh' to godzina dla zegara 12-godzinnego, 'mm' to minuty. ('HH' i 'hh' mają zera wiodące dla wartości jednocyfrowych.) Wyświetlacz na panelu przednim będzie zależał od twojego wyboru, ale może mieć wpływ na dowolną odpowiednią skórkę."
 
 msgid "Choose the location for crash and debug logs."
-msgstr "Wybierz lokalizację crash logów i debugowania."
+msgstr "Wybierz lokalizację logów awarii i debugowania."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Wybierz lokalizację, w której będą przechowywane dane EPG po wyłączeniu %s %s. Lokalizacja musi być dostępna w momencie uruchomienia."
@@ -5442,7 +5442,7 @@ msgid "Copying files"
 msgstr "Kopiowanie plików"
 
 msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
-msgstr "Zrzuty pamięci są pomocne dla programistów w przypadku awarii FATAL SIGNAL w kodzie C++. Typowy rozmiar zrzutu pamięci wynosi 110 MB, więc dostosuj maksymalną używaną przestrzeń i wybierz odpowiednią lokalizację."
+msgstr "Zrzuty pamięci są pomocne dla programistów w przypadku awarii typu FATAL SIGNAL w kodzie C++. Typowy zrzut pamięci zajmuje około 110 MB, więc dostosuj maksymalne wykorzystywane miejsce i wybierz odpowiednią lokalizację."
 
 msgid "Cornish"
 msgstr "Kornwalijski"
@@ -5524,10 +5524,10 @@ msgid "Crash Handling"
 msgstr "Obsługa Awarii"
 
 msgid "Crash Logs"
-msgstr "Ustawienia logów"
+msgstr "Ustawienia logów awarii"
 
 msgid "Crash at skin error for debug reasons"
-msgstr "Awaria przy błędzie skórki z powodów debugowania"
+msgstr "Awaria przy błędzie skórki (debugowanie)"
 
 msgid "Create"
 msgstr "Utwórz"
@@ -5723,7 +5723,7 @@ msgid "Current affairs"
 msgstr "Sprawy bieżące"
 
 msgid "Current crash log"
-msgstr "Aktualny log awarii"
+msgstr "Bieżący log awarii"
 
 msgid "Current directory"
 msgstr "Aktualny katalog"
@@ -5875,7 +5875,7 @@ msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: nie udało się zapisać listy kanałów"
 
 msgid "Audio decoding"
-msgstr "Dekodowanie dźwięku DAB+"
+msgstr "Dekodowanie dźwięku"
 
 msgid "DAB+ channel"
 msgstr "Kanał DAB+"
@@ -7157,7 +7157,7 @@ msgstr "Chcesz wykonać kolejne ręczne skanowanie kanałów?"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
-msgstr "Czy chcesz flashować system \"%s\"?"
+msgstr "Czy chcesz flashować system '%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Czy chcesz zainstalować listę kanałów?"
@@ -7463,9 +7463,9 @@ msgid ""
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
 msgstr ""
-"Przycisk EPG : Przejście do wpisu quad PiP\n"
-"Przycisk Ok : Dodaj do nowego wpisu\n"
-"Przycisk PVR : Wprowadzanie nazwy kanału\n"
+"Przycisk EPG : Przełącz na pozycję Quad PiP\n"
+"Przycisk Ok : Dodaj do nowej pozycji\n"
+"Przycisk PVR : Wprowadź nazwę kanału\n"
 "Przycisk Exit : Zakończ edycję kanału"
 
 msgid "EPG language selection 1"
@@ -7831,7 +7831,7 @@ msgid "Enable or disable using HDMI-CEC."
 msgstr "Włącz lub wyłącz obsługę HDMI CEC."
 
 msgid "Enable panic button"
-msgstr "Włącz przycisk alarmowy"
+msgstr "Włącz przycisk awaryjny"
 
 msgid "Enable preview"
 msgstr "Włącz podgląd"
@@ -8297,7 +8297,7 @@ msgstr "Błąd %d: Nie można odczytać '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
-msgstr "Błąd %d: Nie można zmienić nazwy katalogu/pliku \"%s\" na \"%s\"!  (%s)"
+msgstr "Błąd %d: Nie można zmienić nazwy katalogu/pliku '%s' na '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
@@ -8532,7 +8532,7 @@ msgstr "Błąd: nie można odczytać UUID nowej partycji MultiBoot, więc pliki 
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
-msgstr "Błąd: Nie można zmienić nazwy katalogu \"%s\" na \"%s\"!"
+msgstr "Błąd: Nie można zmienić nazwy katalogu '%s' na '%s'!"
 
 msgid "Error: Unable to select the nominated audio channel!"
 msgstr "Błąd: nie można wybrać wskazanej ścieżki dźwiękowej!"
@@ -9940,7 +9940,7 @@ msgid "Handicraft"
 msgstr "Rękodzieło"
 
 msgid "Handle Python crashes"
-msgstr "Awaria obsługi Pythona"
+msgstr "Obsługuj awarie Pythona"
 
 msgid "Handle Standby from TV"
 msgstr "Obsługa trybu czuwania z telewizora"
@@ -10431,10 +10431,10 @@ msgid "Ido"
 msgstr "Ido"
 
 msgid "If 'never', will force restart despite that after 100 crashes."
-msgstr "Jeśli 'nigdy', wymusi restart pomimo tego po 100 awariach."
+msgstr "Przy wartości ‘Nigdy’ restart i tak zostanie wymuszony po 100 awariach."
 
 msgid "If 'never', will write crash log despite that for the first crash."
-msgstr "Jeśli 'nigdy', mimo to zapisze dziennik awarii dla pierwszej awarii."
+msgstr "Przy wartości ‘Nigdy’ log awarii i tak zostanie zapisany przy pierwszej awarii."
 
 msgid "If EPG available"
 msgstr "Jeśli EPG jest dostępne"
@@ -10488,7 +10488,7 @@ msgid "If you are using a DiSEqC uncommitted switch enter the port number requir
 msgstr "Jeśli używasz niezaangażowanego przełącznika DiSEqC wpisz numer portu wymagany do uzyskania dostępu do LNB używanego dla tego satelity."
 
 msgid "If you are using a circular polarized LNB select 'Yes', otherwise select 'No'."
-msgstr "Jeśli używasz konwertera LNB o polaryzacji kołowej, wybierz \"tak\", w przeciwnym razie wybierz \"nie\"."
+msgstr "Jeśli używasz konwertera LNB o polaryzacji kołowej, wybierz 'Tak', w przeciwnym razie wybierz 'Nie'."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -10503,10 +10503,10 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Jeśli TV posiada poprawę jasności i kontrastu, wyłącz to. Jeśli masz opcje ustawioną na \"Dynamiczne\", zmień ją na Standardową. Dostosuj poziom podświetlania do własnych preferencji. Zmniejsz kontrast w TV do najniższej wartości.\n"
+"Jeśli TV posiada poprawę jasności i kontrastu, wyłącz to. Jeśli masz opcje ustawioną na 'Dynamiczne', zmień ją na Standardową. Dostosuj poziom podświetlania do własnych preferencji. Zmniejsz kontrast w TV do najniższej wartości.\n"
 "Następnie zmniejszaj poziom jasności, tak długo jak dwa najniższe odcienie szarości są widoczne.\n"
 "Na razie nie troszcz się o odcienie jasności. Zostaną one ustawione w kolejnym kroku.\n"
-"Jeśli jesteś zadowolony z rezultatu wciśnij 'OK'."
+"Jeśli jesteś zadowolony z rezultatu, naciśnij OK."
 
 msgid "Igbo"
 msgstr "Igbo"
@@ -11564,7 +11564,7 @@ msgid "Limit character set for recording filenames"
 msgstr "Limit znaków w nazwie nagrania"
 
 msgid "Limit debug log size (MB)"
-msgstr "Limit rozmiaru crash loga (MB)"
+msgstr "Ogranicz rozmiar logu debugowania (MB)"
 
 msgid "Limit east"
 msgstr "Limit wschodni"
@@ -11785,7 +11785,7 @@ msgid "Log file: '%s'  (%s)"
 msgstr "Plik log: '%s' (%s)"
 
 msgid "Log python stack trace on spinner"
-msgstr "Debuguj główną przyczynę błędu"
+msgstr "Zapisuj ślad stosu Pythona przy zawieszeniu"
 
 msgid "Log results to harddisk"
 msgstr "Zapisuj log na dysku twardym"
@@ -11809,7 +11809,7 @@ msgid "Logs Settings"
 msgstr "Ustawienia logów"
 
 msgid "Logs location"
-msgstr "Lokalizacja crash logów"
+msgstr "Lokalizacja logów"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Logi starsze niż dzień zostaną usunięte."
@@ -12939,7 +12939,7 @@ msgid "Nameserver setup"
 msgstr "Ustawienia dns"
 
 msgid "Namespace & Orbital position"
-msgstr "Przestrzeń i poz. orbit"
+msgstr "Namespace i pozycja orbitalna"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -14226,7 +14226,7 @@ msgid "Original"
 msgstr "Oryginalny"
 
 msgid "Original Network ID (ONID)"
-msgstr "Oryginale ID sieci (ONID)"
+msgstr "Oryginalne ID sieci (ONID)"
 
 msgid "Original language"
 msgstr "Język oryginalny"
@@ -14897,7 +14897,7 @@ msgid "Please select a distribution from which you would like to flash an image:
 msgstr "Proszę wybrać dystrybucję, z której chcesz zainstalować system:"
 
 msgid "Please select a line to edit or select add to create new line."
-msgstr "Wybierz wiersz, który chcesz edytować lub wybierz opcję Dodaj, aby utworzyć nowy wiersz."
+msgstr "Wybierz wiersz, który chcesz edytować lub wybierz opcję 'Dodaj', aby utworzyć nowy wiersz."
 
 msgid "Please select a play list to delete..."
 msgstr "Wybierz listę odtwarzania, którą chcesz usunąć..."
@@ -16655,7 +16655,7 @@ msgid "Restart GUI"
 msgstr "Restart interfejsu"
 
 msgid "Restart GUI after x crashes"
-msgstr "Uruchom ponownie interfejs po x błędach"
+msgstr "Uruchom ponownie interfejs po x awariach"
 
 msgid "Restart GUI now to start using the new locale/language?"
 msgstr "Czy zrestartować interfejs teraz, aby rozpocząć korzystanie z nowych ustawień regionalnych/języka?"
@@ -17511,10 +17511,10 @@ msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switc
 msgstr "Wybierz '1.0' dla standardowych zatwierdzonych przełączeń, '1.1”'dla niezatwierdzonych przełączeń i '1.2' dla systemów wykorzystujących pozycjoner."
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'None'. If you are unsure select 'None'."
-msgstr "Wybierz \"A\" lub \"B\", jeśli wymaga tego system antenowy, w przeciwnym razie wybierz \"brak\". Jeśli nie masz pewności, wybierz \"brak\"."
+msgstr "Wybierz 'A' lub 'B', jeśli wymaga tego system antenowy, w przeciwnym razie wybierz 'Brak'. Jeśli nie masz pewności, wybierz 'Brak'."
 
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Wybierz \"pasmo\", jeśli używasz \"uniwersalnego\" konwertera, w przeciwnym razie zapoznaj się z arkuszem specyfikacji konwertera."
+msgstr "Wybierz ‘Pasmo’, jeśli używasz konwertera LNB typu ‘Uniwersalny’. W przeciwnym razie sprawdź specyfikację swojego LNB."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
 msgstr "Wybierz 'Wyłączony', aby wyłączyć wszystkie automatyczne regulacje głośności. Wybierz 'Zdefiniowane przesunięcie głośności', aby przypisać określone przesunięcie do poziomu głośności kanału. Wybierz 'Ostatnio używana/ustawiona głośność', aby zapamiętać poziom głośności ostatnio używany dla każdego kanału."
@@ -17526,16 +17526,16 @@ msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise se
 msgstr "Wybierz opcję 'Włączone', jeśli tuner ma podłączony kabel sygnałowy, w przeciwnym razie wybierz opcję 'Nic nie jest podłączone'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Jeśli ustawione na \"nie\", timeshift użyje tylko jednego pliku do zapisu kolejnych programów na danym kanale. Zalecane jest dostosowanie opcji \"Sprawdzanie plików starszych [w min.]\" i \"Sprawdź wolne miejsce\"."
+msgstr "Wybierz ‘Nie’, aby timeshift używał jednego pliku bufora. Rozmiarem pliku bufora sterujesz opcjami ‘Sprawdzanie starszych plików timeshift [w minutach]’ i ‘Sprawdzanie wolnego miejsca dla timeshift?’."
 
 msgid "Select 'No' to only write a log message to the debug log file."
-msgstr "Wybierz opcję \"Nie\", aby zapisać komunikat dziennika tylko do pliku dziennika debugowania."
+msgstr "Wybierz ‘Nie’, aby błąd skórki był tylko zapisywany w logu debugowania."
 
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Wybierz 'Nie', aby zapisać starsze wydarzenia nawet po przełączeniu kanału lub przerwaniu timeshift."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
-msgstr "Wybierz opcję \"polaryzacja\", jeśli używasz \"uniwersalnego\" konwertera LNB, w przeciwnym razie zapoznaj się z arkuszem danych technicznych konwertera LNB."
+msgstr "Wybierz ‘Polaryzacja’, jeśli używasz konwertera LNB typu ‘Uniwersalny’. W przeciwnym razie sprawdź specyfikację swojego LNB."
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Wybierz 'Dostawca', aby skanować z predefiniowanej listy multipleksów kablowych. Wybierz 'Pasma', aby skanować tylko wybrane części pasma częstotliwości. Wybierz 'Kroki', aby skanować z określonym krokiem częstotliwości."
@@ -17550,7 +17550,7 @@ msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Wybierz opcję 'Tak', jeśli dla tego timera wymagana jest godzina zakończenia."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
-msgstr "Wybierz \"Tak\", jeśli ruch sieciowy powinien być sprawdzony przed aktywacją timera."
+msgstr "Wybierz 'Tak', jeśli ruch sieciowy powinien być sprawdzony przed aktywacją timera."
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Wybierz 'Tak', jeśli tuner jest podłączony do urządzenia SCR za pośrednictwem innego tunera, w przeciwnym wypadku wybierz 'Nie'."
@@ -18242,7 +18242,7 @@ msgid "Select the amount of time to wait, after a task error, before trying to r
 msgstr "Wybierz czas oczekiwania po wystąpieniu błędu zadania, zanim spróbujesz ponownie uruchomić zadanie."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr "Steruj szybkością animacji wskaźników przycisków na ekranie Pomocy. \"Wyłączone\" wyłącza animację, aby wskaźniki przeskakiwały między przyciskami."
+msgstr "Steruj szybkością animacji wskaźników przycisków na ekranie Pomocy. 'Wyłączone' wyłącza animację, aby wskaźniki przeskakiwały między przyciskami."
 
 msgid "Select the brightness of the front panel LED when the receiver is Running."
 msgstr "Wybierz jasność diody LED na przednim panelu, gdy odbiornik jest uruchomiony."
@@ -18584,7 +18584,7 @@ msgid "Select the time when this timer should end."
 msgstr "Wybierz czas, w którym ten timer ma się zakończyć."
 
 msgid "Select the time when this timer will start."
-msgstr "Wybierz godzinę, o której rozpocznie się działanie tego timera."
+msgstr "Wybierz godzinę, o której ten timer się rozpocznie."
 
 msgid "Select the time zone within the area or region."
 msgstr "Wybierz strefę czasową w obszarze lub regionie."
@@ -18787,7 +18787,7 @@ msgid ""
 "\n"
 "Are you sure you want to continue with the factory reset?"
 msgstr ""
-"Wybranie opcji \"Tak\" spowoduje usunięcie aktualnie wybranych danych użytkownika. Tej akcji nie można cofnąć. Przed kontynuowaniem można utworzyć kopię zapasową.\n"
+"Wybranie opcji 'Tak' spowoduje usunięcie aktualnie wybranych danych użytkownika. Tej akcji nie można cofnąć. Przed kontynuowaniem można utworzyć kopię zapasową.\n"
 "\n"
 "Czy na pewno chcesz kontynuować przywracanie ustawień fabrycznych?"
 
@@ -19245,7 +19245,7 @@ msgid "Set to what you want the button to do."
 msgstr "Ustaw wymagane działanie danego przycisku."
 
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Ustaw na tak dla debugowania głównej przyczyny błędu."
+msgstr "Ustaw na Tak, aby znaleźć przyczynę zawieszania się (kręcącego się kółka)."
 
 msgid "Set up network"
 msgstr "Skonfiguruj sieć"
@@ -19472,7 +19472,7 @@ msgid "Short film"
 msgstr "Krótki film"
 
 msgid "Should the crash counter be reset to prevent a restart?"
-msgstr "Czy licznik awarii powinien zostać zresetowany, aby zapobiec ponownemu uruchomieniu?"
+msgstr "Czy wyzerować licznik awarii, aby zapobiec ponownemu uruchomieniu?"
 
 msgid "Show"
 msgstr "Pokaż"
@@ -19788,7 +19788,7 @@ msgid "Show commit log information"
 msgstr "Pokaż informacje z logów commitów"
 
 msgid "Show crash info on screen and write crash log for x times"
-msgstr "Pokaż informacje o awarii na ekranie i zapisz crash log dla x razy"
+msgstr "Pokazuj informację o awarii na ekranie i zapisuj log awarii x razy"
 
 msgid "Show crypto icons"
 msgstr "Pokaż ikony kodowania"
@@ -21901,7 +21901,7 @@ msgstr "Log %s nie zawiera żadnych informacji."
 
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
-msgstr "Nie można odzyskać pliku \"%s\", spróbuj ponownie później."
+msgstr "Nie można odzyskać pliku '%s', spróbuj ponownie później."
 
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
 msgstr "Tryb AI używany do tłumaczenia języków. Możesz wybrać ten, który daje najdokładniejsze tłumaczenie dla Twojego języka docelowego."
@@ -23114,7 +23114,7 @@ msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr "Spróbuj odnaleźć używane transpondery w sieci kablowej... Proszę czekaj..."
 
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
-msgstr "Staraj się unikać ponownego uruchamiania w przypadku błędów systemu i utrzymuj dostępność odbiornika."
+msgstr "Próbuje zapobiegać restartom przy błędach oprogramowania i utrzymać działanie odbiornika."
 
 msgid "Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input)."
 msgstr "Spróbuj wysłać powtórzone polecenia, jeśli nie wszystkie zostały wykonane (np. wybudzenie telewizora bez przełączenia na właściwe wejście)."
@@ -24115,7 +24115,7 @@ msgstr ""
 "\n"
 "Jeśli włączysz VPS, nagrywanie rozpocznie się dopiero wtedy, gdy kanał oznaczy program jako trwający.\n"
 "\n"
-"Jeśli wybierzesz \"tak (tryb bezpieczny)\", nagrywanie na pewno rozpocznie się najpóźniej o zdefiniowanym przez Ciebie czasie rozpoczęcia. Nagranie może rozpocząć się wcześniej lub trwać dłużej.\n"
+"Jeśli wybierzesz 'Tak (tryb bezpieczny)', nagrywanie na pewno rozpocznie się najpóźniej o zdefiniowanym przez Ciebie czasie rozpoczęcia. Nagranie może rozpocząć się wcześniej lub trwać dłużej.\n"
 "\n"
 "\n"
 "Obsługiwane kanały\n"
@@ -24488,7 +24488,7 @@ msgid "Wake up TV from Standby"
 msgstr "Wybudzaj TV ze stanu czuwania"
 
 msgid "Wake up time before a timer begins"
-msgstr "Czas wybudzenia przed rozpoczęciem timera [min]"
+msgstr "Czas wybudzenia przed rozpoczęciem timera"
 
 msgid "Wake up to standby"
 msgstr "Wybudzaj ze stanu czuwania"
@@ -24544,7 +24544,7 @@ msgid "Warning: This FBC-C V1 tuner should be installed in the first slot. In th
 msgstr "Ostrzeżenie: Ten tuner FBC-C V1 powinien być zainstalowany w pierwszym slocie. W drugim slocie mogą być dostępne tylko 2 z 8 demodulatorów. "
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
-msgstr "Ostrzeżenie: To jest ostatnia awaria przed automatycznym ponownym uruchomieniem.\n"
+msgstr "Ostrzeżenie: to ostatnia awaria przed automatycznym ponownym uruchomieniem.\n"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Ostrzeżenie: brak LNB; używaj ustawień fabrycznych."

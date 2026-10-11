@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-07 16:16+0000\n"
-"PO-Revision-Date: 2026-10-06 10:36+0000\n"
+"PO-Revision-Date: 2026-10-10 11:51+0000\n"
 "Last-Translator: mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -1419,19 +1419,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Saat"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd zaten mevcut ve bir dizin değil. Üzerine yazılmayacaktır."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr ""
+msgstr "/media/hdd dosyaları veya diğer dizinleri içerir. HDD değişimini etkinleştirmeden önce bunları taşıyın; hiçbir şey silinmedi."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd başka bir konuma giden mevcut sembolik bir bağlantıdır. Üzerine yazılmayacaktır."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr ""
+msgstr "/media/hdd kullanımda. HDD değişimini değiştirmeden önce mevcut cihazın bağlantısını kesin veya paylaşın."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr ""
+msgstr "/media/hdd, /etc/fstab içinde başka bir aygıt tarafından ayrılmış durumda. Öncelikle o aygıtın bağlantı noktasını değiştirin."
 
 msgid "/s"
 msgstr "/s"
@@ -2308,7 +2308,7 @@ msgid "After Event"
 msgstr "Etkinlikten sonra"
 
 msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
-msgstr ""
+msgstr "Başarılı bir taramanın ardından, eksik buket kanallarını aynı alım tipine ve uydu konumuna sahip benzersiz olarak adlandırılmış kanallarla değiştirin. Belirsiz eşleşmeler değişmeden kalır. Buket düzeni ve özel adlar korunur."
 
 #
 msgid "After event"
@@ -2804,7 +2804,7 @@ msgid "Ascending"
 msgstr "Yükselen"
 
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
-msgstr ""
+msgstr "Tek tek dosyaları çöp kutusuna taşımadan önce onay isteyin. Klasör ve kalıcı silme onayları değişmeden kalır."
 
 #
 msgid "Ask user"
@@ -3060,7 +3060,7 @@ msgid "Automatically put the TV in Standby whenever the receiver goes into Stand
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
 
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
-msgstr ""
+msgstr "Bekleme moduna her geçişten 90 saniye sonra ve bekleme modunda kalındığı sürece her 24 saatte bir hızlı taramayı otomatik olarak çalıştırın. Kayıt işlemi devam ediyorsa, bir saat sonra yeniden deneyin. Birden fazla sağlayıcıyı taramak için 'Multi' (Çoklu) seçeneğini belirleyin."
 
 msgid "Automatically start time shift after"
 msgstr "Zaman kaydırma işlemi otomatik olarak şu süreden sonra başlatılır"
@@ -3518,7 +3518,7 @@ msgstr "Buket Seçici Navigasyon İşlemleri"
 
 #, python-format
 msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
-msgstr ""
+msgstr "Buket güncellemesi: %(updated)d tanesi güncellendi, %(unresolved)d tanesi çözülmedi, %(failed)d tanesi başarısız oldu."
 
 msgid "Bouquets"
 msgstr "Buketler"
@@ -4738,13 +4738,13 @@ msgid "Close the screen"
 msgstr "Ekranı kapat"
 
 msgid "Close the screen after the scan has finished"
-msgstr ""
+msgstr "Tarama tamamlandıktan sonra ekranı kapatın"
 
 msgid "Close the screen and exit all menus"
 msgstr "Ekranı kapat ve tüm menülerden çık"
 
 msgid "Close the screen and stop a running scan"
-msgstr ""
+msgstr "Ekranı kapatın ve devam eden taramayı durdurun"
 
 msgid "Close the screen without saving any changes"
 msgstr "Herhangi bir değişiklik kaydetmeden ekranı kapatın"
@@ -5292,7 +5292,7 @@ msgid "Confirm Zap"
 msgstr "Kanal Değiştirmeyi Onayla"
 
 msgid "Confirm moving files to the trashcan"
-msgstr ""
+msgstr "Dosyaların çöp kutusuna taşınmasını onayla"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
@@ -5674,16 +5674,16 @@ msgid "Create a randomly generated password"
 msgstr "Rastgele üretilmiş bir şifre oluştur"
 
 msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
-msgstr ""
+msgstr "Radyo kanalları için ayrı bir buket oluşturun. Devre dışı bırakıldığında radyo kanalları TV buketine dahil edilir."
 
 msgid "Create a settings backup"
-msgstr ""
+msgstr "Ayarların yedeğini oluşturun"
 
 msgid "Create a symbolic link"
 msgstr "Sembolik bağlantı oluştur"
 
 msgid "Create an image backup"
-msgstr ""
+msgstr "Yazılımın yedeğini oluşturun"
 
 msgid "Create application loader dump."
 msgstr "Uygulama yükleyici dökümü oluşturun."
@@ -6004,7 +6004,7 @@ msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: buket yazılamadı"
 
 msgid "Audio decoding"
-msgstr "DAB+ ses kod çözme"
+msgstr "Ses kod çözme"
 
 msgid "DAB+ channel"
 msgstr "DAB+ kanalı"
@@ -6896,13 +6896,13 @@ msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC girişi %s: %s"
 
 msgid "DiSEqC port by polarization"
-msgstr ""
+msgstr "Polarizasyona göre DiSEqC portu"
 
 msgid "DiSEqC port for horizontal"
-msgstr ""
+msgstr "Yatay yön için DiSEqC bağlantı noktası"
 
 msgid "DiSEqC port for vertical"
-msgstr ""
+msgstr "Dikey yön için DiSEqC bağlantı noktası"
 
 #
 msgid "DiSEqC-tester settings"
@@ -7528,7 +7528,7 @@ msgid "Drivers version"
 msgstr "Sürücü sürümü"
 
 msgid "Drop unconfigured satellites"
-msgstr ""
+msgstr "Yapılandırılmamış uyduları kaldır"
 
 msgid "Duplex"
 msgstr "Dubleks"
@@ -8347,7 +8347,7 @@ msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Bu alıcıyı tanımlamak için kullanılacak ağ sunucusu adını girin."
 
 msgid "Enter the new four-digit PIN code."
-msgstr ""
+msgstr "Yeni dört haneli PIN kodunu girin."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Tahsis edilecek/kullanılacak NFS sunucusu iş parçacıklarının sayısını girin. Daha yüksek değerler, birden çok istemciyle performansı artırır ancak daha fazla bellek kullanır."
@@ -8374,7 +8374,7 @@ msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Sunucudaki uzak paylaşım adını (SMB) veya dışa aktarılan yolu (NFS) girin."
 
 msgid "Enter the same PIN code again to confirm it."
-msgstr ""
+msgstr "Onaylamak için aynı PIN kodunu tekrar girin."
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Bu ağ bağdaştırıcı için ikincil IPv4 DNS ayarını girin. (İsteğe bağlı)"
@@ -8553,7 +8553,7 @@ msgid "Error code"
 msgstr "Hata kodu"
 
 msgid "Error creating the channel backup on the remote receiver!"
-msgstr ""
+msgstr "Uzak alıcıda kanal yedeği oluşturulurken hata oluştu!"
 
 #, python-format
 msgid "Error downloading image '%s'!"
@@ -8564,7 +8564,7 @@ msgid "Error executing plugin"
 msgstr "Eklentinin çalıştırılması sırasında hata oluştu"
 
 msgid "Error extracting the channel backup!"
-msgstr ""
+msgstr "Kanal yedeklemesinin çıkarılması sırasında hata oluştu!"
 
 #, python-format
 msgid ""
@@ -8581,7 +8581,7 @@ msgid "Error opening recording file"
 msgstr "Kayıt dosyası açılırken hata oluştu"
 
 msgid "Error overwriting the channel files on the local receiver!"
-msgstr ""
+msgstr "Yerel alıcıdaki kanal dosyalarının üzerine yazma hatası!"
 
 msgid "Error reading webpage!"
 msgstr "Web sayfası okuma hatası!"
@@ -8590,7 +8590,7 @@ msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Yedek uzak alıcıdan ‘epg.dat’ dosyası alınırken hata oluştu!"
 
 msgid "Error retrieving the channel backup from the remote receiver!"
-msgstr ""
+msgstr "Uzak alıcıdan kanal yedeği alınırken hata oluştu!"
 
 msgid "Error text:"
 msgstr "Hata metni:"
@@ -8741,26 +8741,26 @@ msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s
 msgstr "Hata: Kaynakların sıfırlanmasında bir sorun oluştu! Lütfen %s %s cihazını yeniden başlatın ve bu komutu tekrar denemeden önce dosya sisteminde herhangi bir hata olup olmadığını kontrol edin."
 
 msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
+msgstr "Hata: Mevcut bağlantılar kontrol edilemediğinden, HDD değişimi gerçekleştirilemedi!"
 
 msgid "Error: Unable to create the additional STARTUP files!"
-msgstr "Ek STARTUP dosyaları oluşturulamadı."
+msgstr "Hata: Ek STARTUP dosyaları oluşturulamadı!"
 
 msgid "Error: Unable to create the new manufacturer STARTUP files!"
-msgstr "Yeni üretici STARTUP dosyaları oluşturulamadı."
+msgstr "Hata: Yeni üretici STARTUP dosyaları oluşturulamadı!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Hata: Hedef cihazda (örneğin USB bellek veya sabit disk) gerekli dizinler oluşturulamadı! Lütfen cihazı doğrulayın ve tekrar deneyin."
 
 msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr "Yeni MultiBoot bölümünün UUID'si okunamıyor. STARTUP dosyalarında herhangi bir değişiklik yapılmamıştır."
+msgstr "Hata: Yeni MultiBoot bölümünün UUID'si okunamıyor. STARTUP dosyalarında herhangi bir değişiklik yapılmamıştır!"
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Hata: '%s' dizini '%s' olarak yeniden adlandırılamıyor!"
 
 msgid "Error: Unable to select the nominated audio channel!"
-msgstr "Ses kanalı seçilemiyor."
+msgstr "Hata: Belirtilen ses kanalı seçilemiyor!"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -9242,12 +9242,12 @@ msgid "Fast Scan"
 msgstr "Hızlı Tarama"
 
 msgid "Fast Scan Actions"
-msgstr ""
+msgstr "Hızlı Tarama Eylemleri"
 
 #, python-format
 msgid "Fast Scan version %d: Found %d channel."
 msgid_plural "Fast Scan version %d: Found %d channels."
-msgstr[0] ""
+msgstr[0] "Hızlı Tarama sürümü %d: %d kanal bulundu."
 
 msgid "Fast Skin Reload"
 msgstr "Hızlı Arayüz Yenileme"
@@ -9263,7 +9263,7 @@ msgid "Fast forward speeds"
 msgstr "Hızlı ileri sarma hızları"
 
 msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
-msgstr ""
+msgstr "Hızlı tarama, mevcut kanalları yeniden adlandırabilir ve bunların düzenli bir taramayla güncellenmesini engelleyebilir. Hızlı tarama güncellemeleri hala çalışıyor. Bu seçeneğin devre dışı bırakılması orijinal adları veya düzenli tarama güncellemelerini geri yüklemez. Bunları geri yüklemek için, 'Taramadan önce temizle' seçeneğini 'Evet' olarak ayarlayarak kanalları tekrar tarayın."
 
 #
 msgid "Favorite Edit"
@@ -10387,7 +10387,7 @@ msgid "Hide player"
 msgstr "Oynatıcıyı gizle"
 
 msgid "Hide protected services while the service PIN is not remembered."
-msgstr ""
+msgstr "Kanal PIN'i hatırlanmadığı sürece korumalı kanalları gizleyin."
 
 msgid "Hide softcam servername"
 msgstr "Softcam sunucu adını gizle"
@@ -10834,7 +10834,7 @@ msgid "Ignore Standby"
 msgstr "Bekleme modunu yok say"
 
 msgid "Ignore services on satellites that are not configured in the tuner settings."
-msgstr ""
+msgstr "Tuner ayarlarında yapılandırılmamış uydulardaki kanalları göz ardı edin."
 
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Beklenmedik şekilde uyanmayı yok say ve bekleme modunda kal"
@@ -13345,10 +13345,10 @@ msgid "Name"
 msgstr "İsim"
 
 msgid "Name (A-Z)"
-msgstr ""
+msgstr "İsim (A-Z)"
 
 msgid "Name (Z-A)"
-msgstr ""
+msgstr "İsim (Z-A)"
 
 msgid "Name ascending"
 msgstr "İsim artan"
@@ -13798,7 +13798,7 @@ msgid "No channel"
 msgstr "Kanal yok"
 
 msgid "No channel backup found on the remote receiver!"
-msgstr ""
+msgstr "Uzak alıcıda kanal yedeği bulunamadı!"
 
 msgid "No channel list"
 msgstr "Kanal listesi yok"
@@ -13858,7 +13858,7 @@ msgid "No hosts found yet - still scanning..."
 msgstr "Henüz hiçbir sunucu bulunamadı - tarama devam ediyor..."
 
 msgid "No local images found."
-msgstr ""
+msgstr "Yerel yazılım bulunamadı."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Hiçbir günlük dosyası bulunamadı, bu nedenle hata ayıklama günlükleri kullanılamıyor!"
@@ -14158,7 +14158,7 @@ msgid "Not running"
 msgstr "Çalışmıyor"
 
 msgid "Not set"
-msgstr ""
+msgstr "Ayarlanmadı"
 
 msgid "Not tested:"
 msgstr "Test edilmedi:"
@@ -14419,7 +14419,7 @@ msgid "Only on startup"
 msgstr "Yalnızca başlangıçta"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
-msgstr ""
+msgstr "HDD yerine kullanılmak üzere yalnızca tek bir ağ paylaşımı seçilebilir. Öncelikle diğer paylaşımdaki 'HDD yerine kullan' seçeneğini devre dışı bırakın."
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Yalnızca DNS-over-HTTPS protokolünü uygulayan DNS sunucularını kullanın. Bu DNS sorgularının şifrelenmiş HTTPS protokolü üzerinden yapılmasını sağlar."
@@ -15818,7 +15818,7 @@ msgid "Preparation time for recording"
 msgstr "Kayıt için hazırlık süresi"
 
 msgid "Preparing recording, please wait..."
-msgstr ""
+msgstr "Kayıt hazırlanıyor, lütfen bekleyin..."
 
 #
 msgid "Preparing... Please wait"
@@ -15847,7 +15847,7 @@ msgid "Press GREEN to enable MultiBoot!"
 msgstr "Çoklu Önyüklemeyi etkinleştirmek için YEŞİL tuşa basın!"
 
 msgid "Press OK"
-msgstr ""
+msgstr "OK tuşuna basın"
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Çoklu Önyükleme seçimi için OK tuşuna basın."
@@ -15857,7 +15857,7 @@ msgid "Press OK on your remote control to continue."
 msgstr "Devam etmek için kumandanızın OK tuşuna basın."
 
 msgid "Press OK to change the PIN used for service and screen protection."
-msgstr ""
+msgstr "Kanal ve ekran koruması için kullanılan PIN'i değiştirmek için OK tuşuna basın."
 
 msgid "Press OK to continue."
 msgstr "Devam etmek için lütfen OK tuşuna basın."
@@ -15889,7 +15889,7 @@ msgid "Press OK to open module info"
 msgstr "Modül bilgisini açmak için OK tuşuna basın"
 
 msgid "Press OK to reload the list of protected services from disk."
-msgstr ""
+msgstr "Korunan kanallar listesini diskten yeniden yüklemek için OK tuşuna basın."
 
 msgid "Press OK to reset PIN code"
 msgstr "PIN kodunu sıfırlamak için OK tuşuna basın"
@@ -15915,7 +15915,7 @@ msgid "Press OK to select satellites"
 msgstr "Uyduları seçmek için OK tuşuna basın"
 
 msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
-msgstr ""
+msgstr "Panik kanalını seçmek için OK tuşuna basın. Kanallar veya kanal grupları yeniden sıralandığında, seçilen kanal korunur."
 
 #
 msgid "Press OK to select/deselect a CAId."
@@ -16108,7 +16108,7 @@ msgid "Properties of current title"
 msgstr "Geçerli başlığın özellikleri"
 
 msgid "Protect MultiBoot"
-msgstr ""
+msgstr "MultiBoot'u Koru"
 
 msgid "Protect Quickmenu"
 msgstr "Hızlı Menüyü Koru"
@@ -16123,13 +16123,13 @@ msgid "Protect context menus"
 msgstr "Bağlam menülerini koru"
 
 msgid "Protect extensions menu"
-msgstr ""
+msgstr "Eklentiler menüsünü koru"
 
 msgid "Protect factory reset"
-msgstr ""
+msgstr "Fabrika ayarlarına sıfırlamayı koru"
 
 msgid "Protect image flashing and restoring backups"
-msgstr ""
+msgstr "Yazılım yükleme ve yedek geri yükleme işlemlerini koru"
 
 msgid "Protect main menu"
 msgstr "Ana menüyü koru"
@@ -16141,13 +16141,13 @@ msgid "Protect on epg age"
 msgstr "Epg yaşına göre koruma"
 
 msgid "Protect package installation and removal"
-msgstr ""
+msgstr "Paket yükleme ve kaldırma işlemlerini koru"
 
 msgid "Protect plugin browser"
 msgstr "Eklentiler listesini koru"
 
 msgid "Protect script execution"
-msgstr ""
+msgstr "Komut dosyası yürütülmesini koru"
 
 #
 msgid "Protect services"
@@ -16160,10 +16160,10 @@ msgid "Protect standby menu"
 msgstr "Bekleme menüsünü koru"
 
 msgid "Protect storage device management"
-msgstr ""
+msgstr "Depolama cihazı yönetimini koru"
 
 msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
-msgstr ""
+msgstr "Ana menüyü ve kısayollar aracılığıyla erişim de dahil olmak üzere ekran koruması kapsamındaki sistem işlevlerini koruyun."
 
 msgid "Protect timer menu"
 msgstr "Zamanlayıcı menüsünü koru"
@@ -17107,61 +17107,61 @@ msgid "Replace the static radio background with pictures transmitted by the curr
 msgstr "Statik radyo arka planını, mevcut DAB+ istasyonu tarafından iletilen resimlerle değiştirin."
 
 msgid "Require a PIN code before resetting the receiver configuration."
-msgstr ""
+msgstr "Alıcının yapılandırmasını sıfırlamadan önce bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
-msgstr ""
+msgstr "Korumalı depolama yönetimi, takas alanı ve flash bellek genişletme ekranlarına erişim için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to access software updates."
-msgstr ""
+msgstr "Yazılım güncellemelerine erişim için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
-msgstr ""
+msgstr "Seçilen menülere ve sistem işlevlerine (korumalı kısayollar dahil) erişim için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to flash images or restore backups."
-msgstr ""
+msgstr "Yazılımları yüklemek veya yedeklemeleri geri yüklemek için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
-msgstr ""
+msgstr "Çıkarılabilir ortamlarda bulunan IPK dosyaları da dahil olmak üzere, paketleri yüklemek veya kaldırmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to manage MultiBoot images and slots."
-msgstr ""
+msgstr "MultiBoot yazılımlarını ve yuvalarını yönetmek için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to open protected context menus."
-msgstr ""
+msgstr "Korunan içerik menülerini açmak için PIN kodu gerektir."
 
 msgid "Require a PIN code to open settings and protected system configuration screens."
-msgstr ""
+msgstr "Ayarlar ve korumalı sistem yapılandırma ekranlarını açmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to open the Quickmenu."
-msgstr ""
+msgstr "Hızlı Menü’yü açmak için bir PIN kodu gerektir."
 
 msgid "Require a PIN code to open the extensions menu."
-msgstr ""
+msgstr "Eklentiler menüsünü açmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to open the movie list."
-msgstr ""
+msgstr "Film listesini açmak için bir PIN kodu gerektir."
 
 msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
-msgstr ""
+msgstr "Eklenti tarayıcısını açmak ve korumalı giriş noktaları üzerinden eklentileri başlatmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to open the script runner."
-msgstr ""
+msgstr "Komut dosyası çalıştırıcısını açmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to open the standby and shutdown menu."
-msgstr ""
+msgstr "Bekleme ve kapatma menüsünü açmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to open the timer menu."
-msgstr ""
+msgstr "Zamanlayıcı menüsünü açmak için bir PIN kodu gerektirir."
 
 msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
-msgstr ""
+msgstr "Seçilen yaş sınırına tabi olan korumalı kanalları veya programları izlemek için bir PIN kodu gerektirir."
 
 msgid "Require authentication for http streams"
 msgstr "Http akışları için kimlik doğrulaması iste"
 
 msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
-msgstr ""
+msgstr "Yayıncı tarafından sağlanan yaş bilgilerini kullanarak, bu yaş ve üzeri programlar için kanal PIN’i gerektirir."
 
 msgid "Required medium type:"
 msgstr "İstenen ortam tipi:"
@@ -17397,7 +17397,7 @@ msgid "Retrieving boot slot information..."
 msgstr "Önyükleme yuvası bilgileri alınıyor..."
 
 msgid "Retrieving geolocation information..."
-msgstr ""
+msgstr "Coğrafi konum bilgisi alınıyor..."
 
 msgid "Retrieving image list, please wait..."
 msgstr "Yazılım listesi alınıyor, lütfen bekleyin..."
@@ -17419,7 +17419,7 @@ msgid "Return to movie list"
 msgstr "Film listesine geri dön"
 
 msgid "Return to previous channel"
-msgstr ""
+msgstr "Önceki kanala dön"
 
 #
 msgid "Return to previous service"
@@ -18099,7 +18099,7 @@ msgid "Searching east ..."
 msgstr "Doğu aranıyor..."
 
 msgid "Searching for local images, please wait..."
-msgstr ""
+msgstr "Yerel yazılımlar aranıyor, lütfen bekleyin..."
 
 #
 msgid "Searching west ..."
@@ -18597,7 +18597,7 @@ msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
 msgid "Select a service"
-msgstr ""
+msgstr "Bir kanal seç"
 
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr "Otomatik iletişime izin vermek yerine belirli bir NFS protokol sürümünü zorlamak için belirli bir NFS sürümünü seçin."
@@ -18679,7 +18679,7 @@ msgid "Select files/folders to backup"
 msgstr "Yedeklenecek dosya/klasörleri seçin"
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
-msgstr ""
+msgstr "Doğru girilen bir kanal PIN'inin ne kadar süreyle hatırlanacağını seçin. Bu, korumalı ayarların veya sistem eylemlerinin kilidini açmaz."
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Ekran koruyucu resminin ekranda aynı konumda ne kadar süre kalacağını ve ardından ne zaman hareket edeceğini seçin."
@@ -18724,7 +18724,7 @@ msgid "Select how to activate the Quick EPG mode."
 msgstr "Hızlı EPG modunu nasıl etkinleştireceğinizi seçin."
 
 msgid "Select how to sort the timer list."
-msgstr ""
+msgstr "Zamanlayıcı listesinin nasıl sıralanacağını seçin."
 
 msgid "Select how your receiver will upgrade."
 msgstr "Alıcınızın nasıl yükseltileceğini seçin."
@@ -18802,7 +18802,7 @@ msgid "Select refresh rate"
 msgstr "Yenileme hızı seçin"
 
 msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
-msgstr ""
+msgstr "Aynı uydudaki OMT kurulumunun yatay ve dikey LNB'leri için ayrı DiSEqC 1.0 bağlantı noktaları seçin. Gerilim modu bağımsız kalır. Harici kör tarama yardımcı programları bu yapılandırmayı desteklemeyebilir."
 
 msgid "Select service information to view:"
 msgstr "Görüntülemek için kanal bilgilerini seçin:"
@@ -18941,10 +18941,10 @@ msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Yapay zeka destekli çeviri metni için kullanılacak rengi seçin."
 
 msgid "Select the committed switch port connected to the horizontal LNB."
-msgstr ""
+msgstr "Yatay LNB'ye bağlı olan anahtar bağlantı noktasını seçin."
 
 msgid "Select the committed switch port connected to the vertical LNB."
-msgstr ""
+msgstr "Dikey LNB'ye bağlı olan anahtar bağlantı noktasını seçin."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Geçerli yer imi konumunu seçin ve çıkın"
@@ -19031,7 +19031,7 @@ msgid "Select the end time before which this timer can be activated. After this 
 msgstr "Bu zamanlayıcının etkinleştirilebileceği bitiş zamanını seçin. Bu zamandan sonra, diğer koşullar sağlansa bile zamanlayıcı etkinleştirilmeyecektir."
 
 msgid "Select the fast scan provider and press BLUE to start the scan."
-msgstr ""
+msgstr "Hızlı tarama sağlayıcısını seçin ve taramayı başlatmak için MAVİ tuşa basın."
 
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
@@ -19257,13 +19257,13 @@ msgid "Select the timer from the fallback tuner by default"
 msgstr "Yedek uzak alıcıdan varsayılan olarak zamanlayıcı seçin"
 
 msgid "Select the timer list sort order"
-msgstr ""
+msgstr "Zamanlayıcı listesi sıralama düzenini seçin"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Motorlu anteni kontrol eden tuneri seçin."
 
 msgid "Select the tuner to use for the fast scan."
-msgstr ""
+msgstr "Hızlı tarama için kullanılacak tuneri seçin."
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "SCR cihazının sinyal kablosunun bağlı olduğu tuneri seçin."
@@ -19602,7 +19602,7 @@ msgid "Service name font size"
 msgstr "Kanal ismi yazı tipi boyutu"
 
 msgid "Service not found"
-msgstr ""
+msgstr "Kanal bulunamadı"
 
 #
 msgid ""
@@ -21420,7 +21420,7 @@ msgid "Some TVs can't switch to the correct input if another HDMI port is active
 msgstr "Bazı TV'ler, başka bir HDMI bağlantı noktası etkin olduğunda doğru girişe geçemez. Bu ayar, geçiş yapmadan önce TV'yi Bekleme moduna geçirir. TV tekrar açılmazsa, daha yavaş bir iletim aralığı veya uyandırma komutunun tekrarlanması gerekebilir."
 
 msgid "Some image locations could not be read. Check your storage devices."
-msgstr ""
+msgstr "Bazı yazılım konumları okunamadı. Depolama cihazlarınızı kontrol edin."
 
 #
 msgid "Sorbian"
@@ -21483,7 +21483,7 @@ msgid "Sort Plugin Browser entries"
 msgstr "Eklentiler Listesi girişlerini sırala"
 
 msgid "Sort Timers"
-msgstr ""
+msgstr "Zamanlayıcıları Sırala"
 
 msgid "Sort by"
 msgstr "Göre sırala"
@@ -21669,10 +21669,10 @@ msgid "Start RDS interactive"
 msgstr "RDS etkileşimini başlat"
 
 msgid "Start Time (Earliest First)"
-msgstr ""
+msgstr "Başlangıç Zamanı (En Erken Olan İlk Sırada)"
 
 msgid "Start Time (Latest First)"
-msgstr ""
+msgstr "Başlangıç Zamanı (En Geç Olan İlk Sırada)"
 
 msgid "Start Wizard"
 msgstr "Başlatma Sihirbazı"
@@ -21733,7 +21733,7 @@ msgid "Start the backup of the selected image"
 msgstr "Seçilen yazılımın yedeklemesini başlatın"
 
 msgid "Start the fast scan"
-msgstr ""
+msgstr "Hızlı taramayı başlat"
 
 msgid "Start the highlighted plugin"
 msgstr "Vurgulanan eklentiyi başlatın"
@@ -22898,10 +22898,10 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Resmin yüksekliği. Girdi, bu değere uyacak şekilde ölçeklendirilecektir."
 
 msgid "The local image search timed out. Check your storage devices."
-msgstr ""
+msgstr "Yerel yazılım arama zaman aşımına uğradı. Depolama aygıtlarınızı kontrol edin."
 
 msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
-msgstr ""
+msgstr "Yerel paylaşım adı boşluk, eğik çizgi veya '#' karakterlerini içermemeli; ayrıca '.' veya '..' olmamalıdır."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Döngüsel geçiş ayarı yanlış."
@@ -22925,10 +22925,10 @@ msgstr "'%s' üretici STARTUP dosya adı güvenli bir şekilde genişletilemiyor
 
 #, python-format
 msgid "The mount point '%s' is used by more than one share."
-msgstr ""
+msgstr "'%s' bağlantı noktası birden fazla paylaşım tarafından kullanılıyor."
 
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
-msgstr ""
+msgstr "Panik kanalı bulunamadı. Lütfen Kanal Seçimi Ayarlarını kullanarak kanalı yeniden seçin."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Pikon dizini zaten mevcut ve silinmesi gerekiyor. Devam etmek istiyor musunuz?"
@@ -24228,67 +24228,67 @@ msgstr "Ukraynaca"
 
 #, python-format
 msgid "Unable to check HDD replacement: %s"
-msgstr ""
+msgstr "HDD değişimi kontrol edilemiyor: %s"
 
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
+msgstr "Buket güncellemesi tamamlanamadı. Lütfen buketlerinizi kontrol edin."
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s!"
-msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: %s."
+msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: %s!"
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
-msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: LNB 1 %s."
+msgstr "%d numaralı LNB için Kullanıcı Bandı devralınamadı: LNB 1 %s!"
 
 msgid "Unable to initialize Kexec MultiBoot!"
-msgstr "Kexec Çoklu Ön Yükleme başlatılamadı."
+msgstr "Kexec Çoklu Ön Yükleme başlatılamadı!"
 
 msgid "Unable to load package information!"
-msgstr "Paket bilgileri yüklenemedi."
+msgstr "Paket bilgileri yüklenemedi!"
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Tuner (%d) açılamadı"
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
-msgstr ""
+msgstr "Buket güncellemesi hazırlanamadı. Tarama, buketleri güncellemeden devam edecek."
 
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
-msgstr "Üreticiye ait '%s' STARTUP dosyasını okuyamadı."
+msgstr "Üreticiye ait '%s' STARTUP dosyasını okunamadı!"
 
 msgid "Unable to reconnect to the stream. Please try the channel again later."
-msgstr ""
+msgstr "Akışa yeniden bağlanılamıyor. Lütfen kanalı daha sonra tekrar deneyin."
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "DAB+ aktarıcı kaydı yapılamadı"
 
 msgid "Unable to remove the obsolete additional STARTUP files!"
-msgstr "Kullanım dışı ek STARTUP dosyaları kaldırılamıyor."
+msgstr "Kullanım dışı ek STARTUP dosyaları kaldırılamıyor!"
 
 msgid "Unable to save network configuration!"
-msgstr "Ağ yapılandırması kaydedilemiyor."
+msgstr "Ağ yapılandırması kaydedilemiyor!"
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
+msgstr "Ağa bağlantı yapılandırması kaydedilemiyor!"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ kaynağı başlatılamıyor"
 
 msgid "Unable to start the local image search. Please try again later."
-msgstr ""
+msgstr "Yerel yazılım araması başlatılamadı. Lütfen daha sonra tekrar deneyin."
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr "DAB+ uydu yayını ayarlanamıyor"
 
 #, python-format
 msgid "Unable to update HDD replacement: %s"
-msgstr ""
+msgstr "HDD değişimi güncellenemedi: %s"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
-msgstr "LNB %d için Unicable konumunu doğrulayamadı: %s."
+msgstr "LNB %d için Unicable konumunu doğrulayamadı: %s!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Kullanıcı Arayüzü olmadan gözetimsiz yükseltme"
@@ -24311,7 +24311,7 @@ msgid "Unexpected error accessing WebIF: %s"
 msgstr "WebIF'e erişimde beklenmeyen hata: %s"
 
 msgid "Unexpected error while importing from the remote receiver!"
-msgstr ""
+msgstr "Uzak alıcıdan içe aktarılırken beklenmedik bir hata oluştu!"
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Yedek uzak alıcıdan zamanlayıcı bilgileri alınırken beklenmedik bir hata oluştu"
@@ -24477,7 +24477,7 @@ msgid "Update finished!"
 msgstr "Güncelleme tamamlandı!"
 
 msgid "Update outdated bouquet entries"
-msgstr ""
+msgstr "Güncelliğini yitirmiş buket girişlerini güncelle"
 
 msgid ""
 "Update succeeded!\n"
@@ -24766,7 +24766,7 @@ msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers mat
 msgstr "#KANAL satır numaralarının LCN ile eşleşmesini sağlamak için, buketi doldurmak üzere ayırıcı çizgiler kullanın."
 
 msgid "Use the HD channel list provided by the fast scan."
-msgstr ""
+msgstr "Hızlı tarama ile sağlanan HD kanal listesini kullanın."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Ekranda gösterim yüksekliğini ayarlamak için uzaktan kumandanızdaki SOL/SAĞ tuşlarını kullanın. SOL tuş yüksekliği azaltır, SAĞ tuş ise yüksekliği artırır."
@@ -24805,7 +24805,7 @@ msgid "Use the alternative or the conventional radio mode."
 msgstr "Alternatif veya klasik radyo modunu kullanın."
 
 msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
-msgstr ""
+msgstr "Boşluklar da dahil olmak üzere, hızlı tarama ile sağlanan kanal numaralandırmasını kullanın. Bu özellik devre dışı bırakıldığında, kanallar boşluk olmaksızın ardışık olarak numaralandırılır."
 
 msgid "Use the current selection and exit"
 msgstr "Geçerli seçimi kullan ve çık"
@@ -24820,7 +24820,7 @@ msgid "Use these input device settings?"
 msgstr "Bu giriş cihazı ayarlarını mı kullanacaksınız?"
 
 msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
-msgstr ""
+msgstr "Bu paylaşımı /media/hdd olarak kullanın. Autofs ile yalnızca /media/hdd mevcut olduğunda bir bağlantı oluşturulur; aksi takdirde paylaşıma /media/autofs altından erişilebilir durumda kalır. Fstab ile paylaşım doğrudan bağlanır. Yalnızca bir paylaşım seçilebilir. Mevcut bağlantıların ve dosyaların üzerine yazılmaz."
 
 #
 msgid "Use this video enhancement settings?"
@@ -25656,7 +25656,7 @@ msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settin
 msgstr "Bu özellik etkinleştirildiğinde, IP adresi, alt ağ maskesi, ağ geçidi ve DNS ayarları DHCP aracılığıyla otomatik olarak alınır."
 
 msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
-msgstr ""
+msgstr "Etkinleştirildiğinde, '0'a basmak sizi seçilen panik kanalına yönlendirecek ve kanal değiştirme geçmişinizi silecektir."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Bu özellik etkinleştirildiğinde, altyazılar ekran genişliğine uyacak şekilde yeniden biçimlendirilir."

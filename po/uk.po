@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-07 16:16+0000\n"
-"PO-Revision-Date: 2026-09-27 08:51+0000\n"
+"PO-Revision-Date: 2026-10-10 11:51+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1324,7 +1324,7 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%s: bouquet could not be cleared"
-msgstr ""
+msgstr "%s: не вдалося очистити букет"
 
 #, python-format
 msgid "%s: bouquet could not be written"
@@ -1463,19 +1463,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24/+24 Години"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd вже існує і не є каталогом. Його не буде перезаписано."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr ""
+msgstr "У каталозі /media/hdd містяться файли або інші каталоги. Перемістіть їх перед тим, як розпочати заміну жорсткого диска; нічого не було видалено."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd — це наявне символьне посилання на інше розташування. Воно не буде перезаписане."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr ""
+msgstr "/media/hdd використовується. Відмонтуйте наявний пристрій або спільний ресурс, перш ніж замінювати жорсткий диск."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr ""
+msgstr "Точка монтування /media/hdd вже закріплена за іншим пристроєм у файлі /etc/fstab. Спочатку змініть точку монтування для того пристрою."
 
 msgid "/s"
 msgstr "/сек"
@@ -2297,7 +2297,7 @@ msgid "After Event"
 msgstr "Після передачі"
 
 msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
-msgstr ""
+msgstr "Після успішного сканування замініть відсутні сервіси букета на сервіси з унікальними назвами, що мають той самий тип прийому та супутникову позицію. Неоднозначні відповідності залишаються без змін. Порядок сервісів у букеті та власні назви зберігаються."
 
 msgid "After event"
 msgstr "Після події"
@@ -2373,7 +2373,7 @@ msgid "All files"
 msgstr "Всі файли"
 
 msgid "All packages"
-msgstr ""
+msgstr "Усі пакети"
 
 msgid "All regions"
 msgstr "Усі регіони"
@@ -2563,10 +2563,10 @@ msgid "An attempt is made to capture the current TV status. If status messages a
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
 
 msgid "An existing timer already records this service during the requested time."
-msgstr ""
+msgstr "Наявний таймер уже фіксує цю послугу протягом запитаного часу."
 
 msgid "An instant recording is already running on this service."
-msgstr ""
+msgstr "У цій службі вже триває миттєвий запис."
 
 msgid "An unknown error occurred!"
 msgstr "Виникла невідома помилка!"
@@ -2775,7 +2775,7 @@ msgid "Ascending"
 msgstr "Висхідний"
 
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
-msgstr ""
+msgstr "Запитувати підтвердження перед переміщенням окремих файлів до кошика. Налаштування підтвердження для папок і остаточного видалення залишаються без змін."
 
 msgid "Ask user"
 msgstr "Запитати користувача"
@@ -3015,7 +3015,7 @@ msgid "Automatically put the TV in Standby whenever the receiver goes into Stand
 msgstr "Автоматично переводьте телевізор у режим очікування, коли приймач переходить у режим очікування, або глибокого очікування."
 
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
-msgstr ""
+msgstr "Автоматично запускати швидке сканування через 90 секунд після кожного переходу в режим очікування та кожні 24 години під час перебування в цьому режимі. Якщо в цей час триває запис, повторити спробу через годину. Виберіть 'Multi' для сканування кількох провайдерів."
 
 msgid "Automatically start time shift after"
 msgstr "Автозапуск таймшифта після"
@@ -3452,7 +3452,7 @@ msgstr "Дії кнопок при виборі Фаворитів"
 
 #, python-format
 msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
-msgstr ""
+msgstr "Оновлення букета: %(updated)d оновлено, %(unresolved)d не вирішено, %(failed)d помилок."
 
 msgid "Bouquets"
 msgstr "Фаворити"
@@ -4145,7 +4145,7 @@ msgid "Change repeat and delay settings?"
 msgstr "Змінити налаштування повтору і затримки?"
 
 msgid "Change search"
-msgstr ""
+msgstr "Змінити пошук"
 
 msgid "Change skin"
 msgstr "Змінити скін"
@@ -4544,7 +4544,7 @@ msgid "Clear play list"
 msgstr "Очистити список відтворення"
 
 msgid "Clear search"
-msgstr ""
+msgstr "Очистити пошук"
 
 msgid "Clear the logs for this timer"
 msgstr "Очистити журнали для цього таймера"
@@ -4637,13 +4637,13 @@ msgid "Close the screen"
 msgstr "Закрити екран"
 
 msgid "Close the screen after the scan has finished"
-msgstr ""
+msgstr "Закрийте екран після завершення сканування"
 
 msgid "Close the screen and exit all menus"
 msgstr "Закрити вікно і вийти з усіх меню"
 
 msgid "Close the screen and stop a running scan"
-msgstr ""
+msgstr "Закрийте екран і зупиніть поточне сканування"
 
 msgid "Close the screen without saving any changes"
 msgstr "Закрити екран без збереження змін"
@@ -5178,7 +5178,7 @@ msgid "Confirm Zap"
 msgstr "Підтвердити Zap"
 
 msgid "Confirm moving files to the trashcan"
-msgstr ""
+msgstr "Підтвердьте переміщення файлів до кошика"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
@@ -5548,16 +5548,16 @@ msgid "Create a randomly generated password"
 msgstr "Створити випадково згенерований пароль"
 
 msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
-msgstr ""
+msgstr "Створіть окремий букет для радіоканалів. Якщо цю опцію вимкнено, радіоканали включаються до телевізійного букета."
 
 msgid "Create a settings backup"
-msgstr ""
+msgstr "Створити резервну копію налаштувань"
 
 msgid "Create a symbolic link"
 msgstr "Створити символічне посилання"
 
 msgid "Create an image backup"
-msgstr ""
+msgstr "Створити резервну копію образу"
 
 msgid "Create application loader dump."
 msgstr "Створення дампу завантажувача додатків."
@@ -5866,7 +5866,7 @@ msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: не вдалося записати букет"
 
 msgid "Audio decoding"
-msgstr ""
+msgstr "Декодування аудіо"
 
 msgid "DAB+ channel"
 msgstr "Канал DAB+"
@@ -5886,7 +5886,7 @@ msgid "DAB+ service information for '%s'"
 msgstr "Інформація про службу DAB+ для '%s'"
 
 msgid "DAB+ signal detected; waiting for FIC service data..."
-msgstr ""
+msgstr "Виявлено сигнал DAB+; очікування даних служби FIC..."
 
 msgid "DAC"
 msgstr "DAC"
@@ -6727,13 +6727,13 @@ msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC порт %s: %s"
 
 msgid "DiSEqC port by polarization"
-msgstr ""
+msgstr "Порт DiSEqC за поляризацією"
 
 msgid "DiSEqC port for horizontal"
-msgstr ""
+msgstr "Порт DiSEqC для горизонтального"
 
 msgid "DiSEqC port for vertical"
-msgstr ""
+msgstr "Порт DiSEqC для вертикального"
 
 msgid "DiSEqC-tester settings"
 msgstr "Налаштування DiSEqC-тестер"
@@ -21610,7 +21610,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - Monja 27.09.2026"
+msgstr "Переклад: kvinto - Monja 10.10.2026"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
