@@ -2908,11 +2908,7 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 		return true;
 	eDABDebug("[eServiceDAB] starting audio pipeline input=%s",
 		pcmInput ? "PCM" : (mp2Input ? "MPEG Layer II" : (loasInput ? "LOAS" : "raw AAC")));
-#ifdef DREAMNEXTGEN
-	const char *hardwareSink = "dreamaudiosink";
-#else
 	const char *hardwareSink = "dvbaudiosink";
-#endif
 	/* A sink that takes LOAS decodes in hardware. Fall back to the software
 	 * decoder when it does not. Legacy Dreambox hardware receives DAB-aware
 	 * FAAD2 PCM from the RTL-SDR backend because FFmpeg cannot decode SBR with

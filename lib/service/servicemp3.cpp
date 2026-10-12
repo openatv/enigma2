@@ -30,7 +30,6 @@ Licensed under GPLv2.
 #include <lib/service/servicemp3record.h>
 #include <lib/service/servicedvb.h>
 #ifdef DREAMNEXTGEN
-#include <lib/dvb/volume.h>
 #include <gst/app/gstappsink.h>
 #include <libavcodec/avcodec.h>
 #include <libavcodec/codec_id.h>
@@ -157,11 +156,10 @@ static GstElement* createDashPlaybackPipeline(const std::string& uri, const std:
 	/* HW audio sink expects stream-format=raw post-aacparse. */
 #ifdef DREAMNEXTGEN
 	const char *vsink_factory = "dreamvideosink";
-	const char *asink_factory = "dreamaudiosink";
 #else
 	const char *vsink_factory = "dvbvideosink";
-	const char *asink_factory = "dvbaudiosink";
 #endif
+	const char *asink_factory = "dvbaudiosink";
 	std::string pipeline =
 		"souphttpsrc name=dashsrc location=" + gstLaunchQuote(uri) + " timeout=60 retries=20 "
 		"! dashdemux name=d connection-speed=4000 max-bitrate=3200000 "
@@ -602,11 +600,7 @@ DEFINE_REF(eServiceFactoryMP3)
 static void create_gstreamer_sinks() {
 	dvb_subsink = dvb_audiosink = dvb_videosink = NULL;
 	dvb_subsink_ok = dvb_audiosink_ok = dvb_videosink_ok = false;
-#ifdef DREAMNEXTGEN
-	dvb_audiosink = gst_element_factory_make("dreamaudiosink", NULL);
-#else
 	dvb_audiosink = gst_element_factory_make("dvbaudiosink", NULL);
-#endif
 	if (dvb_audiosink) {
 		gst_object_ref_sink(dvb_audiosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_audiosink created ***");
@@ -1426,11 +1420,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_gst_playbin = gst_element_factory_make("playbin", "playbin");
 	if (m_gst_playbin) {
 		if (dvb_audiosink) {
-#ifdef DREAMNEXTGEN
-			/* audio-only sources (mp3 radio) keep playbin autoplug. */
-			if (!m_sourceinfo.is_audio)
-				g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
-#else
 			if (m_sourceinfo.is_audio) {
 				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
 				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
@@ -1439,15 +1428,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
 			}
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
-#endif
 		}
 #ifdef DREAMNEXTGEN
-		/* sync=FALSE: amvideo HW pacing via kernel tsync; sync=TRUE drops
-		 * 46% frames on 1080p H.264. dream_alsa anchor handles A/V sync. */
+		/* sync=TRUE: dvbaudiosink runs on the pipeline clock and the kernel
+		 * syncs the audio to the system clock of the video only within 2 s;
+		 * an unsynced video fills the decoder and runs seconds ahead. */
 		if (!m_sourceinfo.is_audio) {
 			GstElement *vsink = gst_element_factory_make("dreamvideosink", NULL);
 			if (vsink) {
-				g_object_set(vsink, "sync", FALSE, NULL);
+				g_object_set(vsink, "sync", TRUE, NULL);
 				g_object_set(m_gst_playbin, "video-sink", vsink, NULL);
 				dvb_videosink = vsink;
 			}
@@ -1460,30 +1449,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		}
 #endif
 
-		/* native video flag = no GStreamer video conversion. DREAMNEXTGEN
-		 * adds SOFT_VOLUME because Master mixer doesn't propagate on hw:0,X. */
+		/* native video flag = no GStreamer video conversion */
 		guint flags = GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_TEXT | GST_PLAY_FLAG_NATIVE_VIDEO;
-#ifdef DREAMNEXTGEN
-		flags |= GST_PLAY_FLAG_SOFT_VOLUME;
-		/* Inherit system volume to dreamaudiosink; playbin pinned to 1.0. */
-		{
-			eDVBVolumecontrol *vc = eDVBVolumecontrol::getInstance();
-			if (vc) {
-				int v = vc->getVolume();
-				if (v < 0) v = 0;
-				if (v > 100) v = 100;
-				if (dvb_audiosink)
-					g_object_set(dvb_audiosink, "volume", (gdouble)v / 100.0, NULL);
-				g_object_set(m_gst_playbin, "volume", (gdouble)1.0, NULL);
-			}
-		}
-		/* Follow the audio output to the Bluetooth sink (audio_source 2). */
-		if (dvb_audiosink) {
-			int port = 0;
-			CFile::parseInt(&port, "/sys/class/amhdmitx/amhdmitx0/audio_source");
-			g_object_set(dvb_audiosink, "device", port == 2 ? "dreambt" : "dreamhdmi", NULL);
-		}
-#endif
 
 		if (m_sourceinfo.is_streaming) {
 			m_notify_source_handler_id =
@@ -2048,8 +2015,6 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		return 0;
 	}
 	m_last_trickseek_ms = now_ms_k;
-#ifdef DREAMNEXTGEN
-#endif
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -2159,9 +2124,6 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		}
 		m_last_trickseek_ms = now_ms;
 	}
-#ifdef DREAMNEXTGEN
-	/* dreamaudiosink handles trick-mode via GstBaseSink TRICKMODE_NO_AUDIO. */
-#endif
 	GstState state, pending;
 	GstStateChangeReturn ret;
 	int pos_ret = -1;
@@ -2173,8 +2135,11 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		m_to_paused = true;
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 		// m_paused = true;
+#ifndef DREAMNEXTGEN
+		/* the DREAMNEXTGEN sinks pause in place; a seek jumps to a keyframe */
 		if (pos_ret >= 0)
 			seekTo(pts);
+#endif
 		/* pipeline sometimes block due to audio track issue off gstreamer.
 		If the pipeline is blocked up on pending state change to paused ,
 		this issue is solved by seek to playposition*/
@@ -2393,27 +2358,15 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused) {
 		// eDebug("[eServiceMP3] getPlayPosition Check dvb_audiosink or dvb_videosink");
 		if (m_sourceinfo.is_audio && dvb_audiosink) {
-#ifdef DREAMNEXTGEN
-			/* dreamaudiosink has no get-decoder-time; fall through to query_position. */
-#else
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 			/* Some audio decoders keep reporting zero during playback. Use the
 			 * synchronized playbin position instead of resetting the cache to zero. */
 			if (GST_CLOCK_TIME_IS_VALID(pos) && pos > 0)
 				got_decoder_time = true;
-#endif
 		} else if (!m_sourceinfo.is_audio) {
 			/* most stb's work better when pts is taken by audio but some video must be taken cause
 			 * audio is 0 or invalid */
 			/* avoid taking the audio play position if audio sink is in state NULL */
-#ifdef DREAMNEXTGEN
-			/* dreamvideosink keeps get-decoder-time; ask it instead. */
-			if (dvb_videosink) {
-				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
-				if (GST_CLOCK_TIME_IS_VALID(pos))
-					got_decoder_time = true;
-			}
-#else
 			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos) && dvb_videosink)
@@ -2425,7 +2378,6 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 				if (GST_CLOCK_TIME_IS_VALID(pos))
 				got_decoder_time = true;
 			}
-#endif
 		}
 	}
 
