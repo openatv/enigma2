@@ -152,6 +152,7 @@ protected:
 	std::vector<int> m_buffer_use_histogram;
 	ePtr<iServiceScrambled> m_serviceDescrambler;
 	int m_aio_short_write_count = 0;
+	unsigned int m_busy_discard_count = 0;
 	std::string _targetFilename;
 	bool _fileOutput = false;
 	bool m_syncOnStop = true;

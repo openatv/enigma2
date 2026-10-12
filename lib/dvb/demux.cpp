@@ -984,7 +984,12 @@ int eDVBRecordFileThread::writeData(int len)
 			next_it = m_aio.begin();
 		int result = next_it->poll(nullptr, true);
 		if (result > 0)
+		{
+			++m_busy_discard_count;
+			if (m_busy_discard_count <= 20 || m_busy_discard_count % 100 == 0)
+				eWarning("[eDVBRecordFileThread] DVR busy - discarded %d bytes (#%u)", len, m_busy_discard_count);
 			return len;
+		}
 		if (result < 0)
 			return -1;
 	}
