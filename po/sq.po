@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"POT-Creation-Date: 2026-10-11 14:55+0000\n"
 "PO-Revision-Date: 2026-08-16 16:20+0000\n"
 "Last-Translator: Denis Çerri <deniscerri3@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -747,12 +747,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1206,6 +1200,10 @@ msgid "%s Information Actions"
 msgstr "%s Veprimet e informacionit"
 
 #, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s - Konfigurimi"
 
@@ -1461,6 +1459,9 @@ msgstr "12 karaktere"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12. Shfaq shkronjat latine-1 me përjashtim të greqishtes dhe cirilikes, kaloni në 8 nëse është e nevojshme."
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 msgid "12V output"
 msgstr "Dalje 12 V"
 
@@ -1469,9 +1470,6 @@ msgstr "12V dalje."
 
 msgid "12bit"
 msgstr "12 bit"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12 bit 4:2:0/4:2:2 pa PIP"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Kuti letrash"
@@ -1646,9 +1644,6 @@ msgstr ""
 #, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Një regjim aksidentesh u krijua %s në \"%s\""
-
-msgid "A file from media is in use!"
-msgstr "Një skedar nga media është në përdorim!"
 
 #, python-format
 msgid ""
@@ -2194,6 +2189,9 @@ msgstr ""
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Rregulloni cilësimet e ngjyrave në mënyrë që të gjitha nuancat e ngjyrave të dallohen, por të shfaqen sa më të ngopura. Nëse jeni të kënaqur me rezultatin, shtypni OK për të mbyllur rregullimin e saktë të videos ose përdorni tastet numerike për të zgjedhur ekranet e tjera të testimit."
 
@@ -2495,6 +2493,12 @@ msgstr "Përfshi gjithmonë ECM në regjistrime"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Përfshini gjithmonë mesazhet ECM në regjistrime. Kjo anashkalon cilësimet individuale të kohëmatësit globalisht. Ai lejon që regjistrimet të deshifrohen gjithmonë më pas (nganjëherë quhet deshifrim offline), nëse mbështetet nga marrësi juaj. Parazgjedhja: joaktive."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "Gjithmonë shfaq buqetë"
 
@@ -2594,6 +2598,9 @@ msgstr "Apliko çdo ndryshim në lokale/gjuhë aktive dhe dalje"
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Apliko lokale/gjuhë dhe dalje të theksuara"
+
+msgid "Apply the settings without saving them"
+msgstr ""
 
 msgid "Aqua"
 msgstr ""
@@ -2849,6 +2856,9 @@ msgstr ""
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio decoding"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Përzgjedhja e gjuhës audio 1"
 
@@ -2974,6 +2984,9 @@ msgstr "Etiketa automatike e rezolucionit"
 
 msgid "Automatic scan for services"
 msgstr "Skanim automatik për shërbime"
+
+msgid "Automatically hide OSD"
+msgstr ""
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Vendoseni automatikisht televizorin në gatishmëri sa herë që marrësi kalon në gatishmëri ose në një qëndrim të thellë."
@@ -3215,6 +3228,9 @@ msgstr "Basketboll"
 msgid "Basque"
 msgstr "Baskisht"
 
+msgid "Battery"
+msgstr ""
+
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
 
@@ -3337,6 +3353,9 @@ msgstr ""
 
 msgid "Bluetooth Setup"
 msgstr "Konfigurimi i Bluetooth"
+
+msgid "Bluetooth remote"
+msgstr ""
 
 msgid "Bolivia"
 msgstr "Bolivia"
@@ -3696,6 +3715,9 @@ msgid "CPU / Core %d type"
 msgstr "Lloji CPU / Core %d"
 
 msgid "CPU Control"
+msgstr ""
+
+msgid "CPU Control Actions"
 msgstr ""
 
 msgid "CPU architecture"
@@ -4071,9 +4093,6 @@ msgstr "Çad"
 
 msgid "Chamorro"
 msgstr "Çamëro"
-
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Ndrysho modalitetin e kutisë për të kontrolluar modalitetet e çipit të harduerit*"
 
 msgid "Change Language"
 msgstr "Ndrysho gjuhën"
@@ -4657,6 +4676,9 @@ msgid "Color space"
 msgstr "Hapësira e ngjyrave"
 
 msgid "Colored text"
+msgstr ""
+
+msgid "Colorimetry for HDR content"
 msgstr ""
 
 msgid "Combined"
@@ -5638,8 +5660,7 @@ msgstr ""
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr ""
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgid "Current CPU speed"
 msgstr ""
 
 msgid "Current Directory"
@@ -5648,8 +5669,20 @@ msgstr ""
 msgid "Current Event:"
 msgstr "Ngjarja aktuale:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "Statusi aktual:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5806,9 +5839,6 @@ msgid "DAB+ USB support was installed. You can now enable the receiver in Recept
 msgstr ""
 
 msgid "DAB+ USB: bouquet could not be written"
-msgstr ""
-
-msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -6292,6 +6322,9 @@ msgstr "Përcakton distancën e kërcimit për kërcimet përpara. Vlera shumëz
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Përcakton se cilat shpejtësi të shpejta përpara po përdorin sinjalizimin normal. Të gjitha shpejtësitë e tjera përpara dhe të gjitha shpejtësitë e kthimit prapa përdorin kërcime në kohë."
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Vonesa pas komandës së ndezjes periferike diseqc"
 
@@ -6525,9 +6558,6 @@ msgstr "Po fshihet %s (%s)..."
 
 msgid "Deleting files"
 msgstr "Fshirja e skedarëve"
-
-msgid "Delivery system workaround"
-msgstr "Zgjidhja e sistemit të dorëzimit"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Republika Demokratike e Kongos"
@@ -7642,9 +7672,6 @@ msgstr "Aktivizo kontrollin e adresës IP të rrjetit"
 
 msgid "Enable OpenTV EPG"
 msgstr "Aktivizo OpenTV EPG"
-
-msgid "Enable PiP no HDR"
-msgstr ""
 
 msgid "Enable Quad PiP"
 msgstr "Aktivizo Quad PIP"
@@ -9318,6 +9345,9 @@ msgstr ""
 msgid "Force enabled"
 msgstr ""
 
+msgid "Force progressive for streams and files"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr ""
 
@@ -9793,7 +9823,7 @@ msgstr "Lista HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
+msgid "HDMI colorimetry"
 msgstr "Ngjyra HDMI"
 
 msgid "HDMI HDR Type"
@@ -9907,6 +9937,9 @@ msgstr "Seriali harduerik"
 msgid "Hardware type"
 msgstr "Lloji i harduerit"
 
+msgid "Hardware video mode"
+msgstr ""
+
 msgid "Hausa"
 msgstr "Hausa"
 
@@ -9997,6 +10030,9 @@ msgstr ""
 msgid "Hide InfoBar"
 msgstr "Fshihe Infobar"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "Fshih linjën VBI për këtë shërbim"
 
@@ -10029,6 +10065,9 @@ msgstr ""
 
 msgid "Hide the InfoBar"
 msgstr "Fshih shiritin e informacionit"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Fshih gabimet zap"
@@ -11438,6 +11477,9 @@ msgstr ""
 msgid "Lesotho"
 msgstr ""
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -11597,6 +11639,10 @@ msgstr ""
 msgid "Load unlinked user bouquets"
 msgstr ""
 
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11669,9 +11715,6 @@ msgid "Location Selection Actions"
 msgstr ""
 
 msgid "Location information"
-msgstr ""
-
-msgid "Location list"
 msgstr ""
 
 #, python-format
@@ -11948,6 +11991,9 @@ msgid "Manual Scan"
 msgstr ""
 
 msgid "Manual Service Searching"
+msgstr ""
+
+msgid "Manual resolution"
 msgstr ""
 
 msgid "Manual scan for services"
@@ -13741,6 +13787,12 @@ msgstr ""
 msgid "OSD Setup"
 msgstr ""
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr ""
 
@@ -14030,6 +14082,9 @@ msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the additional screens"
 msgstr ""
 
 msgid "Open the context menu"
@@ -14510,6 +14565,9 @@ msgstr ""
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr ""
+
 msgid "PiP with OSD"
 msgstr ""
 
@@ -14748,9 +14806,6 @@ msgid "Please enter name of the new symbolic link:"
 msgstr ""
 
 msgid "Please enter new name:"
-msgstr ""
-
-msgid "Please enter search string for your location"
 msgstr ""
 
 msgid "Please enter the correct pin code"
@@ -15632,6 +15687,9 @@ msgstr "RAM (Përmbledhje)"
 msgid "RAM benchmark"
 msgstr ""
 
+msgid "RAM temperature"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "Kodi i personalizuar RC"
 
@@ -15711,6 +15769,15 @@ msgid "Radio Channel Selection"
 msgstr "Përzgjedhja e kanaleve radiofonik"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
 msgstr ""
 
 msgid "Random"
@@ -16342,6 +16409,9 @@ msgstr ""
 
 msgid "Renovation"
 msgstr "Renovim"
+
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Rifillo"
@@ -17251,6 +17321,9 @@ msgstr ""
 msgid "Scheduler standby"
 msgstr ""
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr ""
 
@@ -17312,9 +17385,6 @@ msgid "Search in the current view"
 msgstr ""
 
 msgid "Search packages by name or description"
-msgstr ""
-
-msgid "Search weather location ID"
 msgstr ""
 
 msgid "Search west"
@@ -17425,6 +17495,9 @@ msgstr ""
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr ""
 
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -17448,6 +17521,9 @@ msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Nëse vendoset në 'po; shiriti i informacionit do të mbetet i shfaqur përgjithmonë në gjendje \"të ndërprerë\" (pa afat kohor)."
+
+msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
+msgstr ""
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
@@ -17663,6 +17739,12 @@ msgid "Select 'Yes' to shut down immediately instead of starting the descramble.
 msgstr ""
 
 msgid "Select 'Yes' to split tasks into separate actions."
+msgstr ""
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
+
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
 msgstr ""
 
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
@@ -18052,6 +18134,9 @@ msgstr ""
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr ""
 
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -18201,6 +18286,9 @@ msgstr ""
 msgid "Select the day of the week that this timer will activate."
 msgstr ""
 
+msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
+msgstr ""
+
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr ""
 
@@ -18266,6 +18354,9 @@ msgstr ""
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
@@ -18300,6 +18391,9 @@ msgid "Select the location in which to store the recording:"
 msgstr ""
 
 msgid "Select the location where the picon files will be installed."
+msgstr ""
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18496,6 +18590,9 @@ msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV."
@@ -18941,6 +19038,9 @@ msgstr ""
 msgid "Set system"
 msgstr ""
 
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
@@ -19327,6 +19427,9 @@ msgid "Should the crash counter be reset to prevent a restart?"
 msgstr ""
 
 msgid "Show"
+msgstr ""
+
+msgid "Add 'Manual resolution' to Extensions"
 msgstr ""
 
 msgid "Show 1080p 24fps as"
@@ -19976,6 +20079,9 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr ""
 
@@ -20174,6 +20280,9 @@ msgstr ""
 
 msgid "Skin Settings"
 msgstr "Vendosja e lëkurës"
+
+msgid "Skin Setup Actions"
+msgstr ""
 
 msgid "Skin setting"
 msgstr "Vendosja e lëkurës"
@@ -20575,9 +20684,6 @@ msgstr ""
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr ""
 
-msgid "Sorry, there was a problem:"
-msgstr ""
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20767,9 +20873,6 @@ msgid "Start %s"
 msgstr ""
 
 msgid "Start Auto Refresh"
-msgstr ""
-
-msgid "Start Boot Frequency"
 msgstr ""
 
 msgid "Start RDS interactive"
@@ -21301,7 +21404,7 @@ msgstr ""
 msgid "Switch EPG Page Up"
 msgstr ""
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
+msgid "Switch HDR type by content"
 msgstr ""
 
 msgid "Switch TV to correct input"
@@ -21675,9 +21778,6 @@ msgstr "Mënyra e testimit"
 msgid "Test type"
 msgstr "Lloji i testit"
 
-msgid "Testing Information"
-msgstr ""
-
 msgid "Testscreens"
 msgstr "Ekranet e testimit"
 
@@ -21686,6 +21786,9 @@ msgstr "Ekranet testuese që janë të dobishme për të rregulluar mirë ekrani
 
 msgid "Text"
 msgstr "Teksti"
+
+msgid "Text Box"
+msgstr ""
 
 msgid "Text color"
 msgstr "Ngjyra e tekstit"
@@ -22151,6 +22254,9 @@ msgstr ""
 msgid "This channel is currently off air."
 msgstr ""
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
@@ -22545,6 +22651,9 @@ msgid "Time update in minutes"
 msgstr ""
 
 msgid "Time window for detection of the wake up by a timer [mins]"
+msgstr ""
+
+msgid "Time without key presses before hiding the OSD."
 msgstr ""
 
 msgid "Time zone"
@@ -23255,6 +23364,9 @@ msgstr ""
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
+msgid "Unable to start the HbbTV application."
+msgstr ""
+
 msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
@@ -23820,6 +23932,9 @@ msgstr ""
 msgid "User Manual"
 msgstr ""
 
+msgid "User Manual Actions"
+msgstr ""
+
 msgid "User comments"
 msgstr ""
 
@@ -24339,6 +24454,9 @@ msgstr ""
 msgid "Weather"
 msgstr "Moti"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr "Ndërfaqe Web"
 
@@ -24782,9 +24900,6 @@ msgstr ""
 
 msgid "Wolof"
 msgstr "Wolof"
-
-msgid "Workaround for old tuner driver."
-msgstr "Zgjidhje për drejtuesin e vjetër të sintonizuesit"
 
 msgid "Workgroup name"
 msgstr ""
@@ -25250,6 +25365,9 @@ msgstr ""
 msgid "activatePiP"
 msgstr ""
 
+msgid "active (GLES enabled)"
+msgstr ""
+
 msgid "address:"
 msgstr ""
 
@@ -25697,6 +25815,9 @@ msgstr ""
 msgid "search EPG..."
 msgstr ""
 
+msgid "seconds"
+msgstr ""
+
 msgid "select CAId's"
 msgstr ""
 
@@ -25751,6 +25872,9 @@ msgstr ""
 msgid "successful"
 msgstr ""
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr ""
 
@@ -25791,6 +25915,9 @@ msgid "the target LNB is not configured"
 msgstr ""
 
 msgid "this recording"
+msgstr ""
+
+msgid "throttled"
 msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
@@ -25879,6 +26006,27 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12 bit 4:2:0/4:2:2 pa PIP"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "Ndrysho modalitetin e kutisë për të kontrolluar modalitetet e çipit të harduerit*"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "Zgjidhja e sistemit të dorëzimit"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Zgjidhje për drejtuesin e vjetër të sintonizuesit"
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Një skedar nga media është në përdorim!"
 
 #~ msgid "Close screen"
 #~ msgstr "Mbyll ekranin"
@@ -27036,10 +27184,6 @@ msgstr "®"
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #~ msgid "(FTA Service)"
 #~ msgstr "(Shërbimi FTA)"

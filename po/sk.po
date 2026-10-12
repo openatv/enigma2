@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
-"PO-Revision-Date: 2026-10-09 09:51+0000\n"
+"POT-Creation-Date: 2026-10-11 14:55+0000\n"
+"PO-Revision-Date: 2026-10-12 10:44+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -749,13 +749,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-msgstr[2] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1243,6 +1236,10 @@ msgid "%s Information Actions"
 msgstr "%s Informácie – akcie"
 
 #, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s Nastavenie"
 
@@ -1501,6 +1498,9 @@ msgstr "12 znakov"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, zobrazuje znaky Latin-1 s výnimkou gréčtiny a cyriliky, v prípade potreby prepnite na 8."
 
+msgid "12-bit HDR (no PiP)"
+msgstr "12-bitové HDR (bez funkcie PiP)"
+
 msgid "12V output"
 msgstr "12 V výstup"
 
@@ -1509,9 +1509,6 @@ msgstr "12 V výstup."
 
 msgid "12bit"
 msgstr "12 bitov"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12 bitov 4:2:0/4:2:2 bez PiP"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 letterbox"
@@ -1686,9 +1683,6 @@ msgstr "Dokončená úloha chce vypnúť zariadenie %s %s. Chcete ho vypnúť hn
 #, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Denník o zlyhaní bol %s vytvorený v '%s'"
-
-msgid "A file from media is in use!"
-msgstr "Súbor z daného média sa práve používa!"
 
 #, python-format
 msgid ""
@@ -2230,6 +2224,9 @@ msgstr "Prídavný kábel rotora z %s"
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr "Prídavné sloty nemožno meniť, pokiaľ je prijímač spustený z niektorého z nich."
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr "Prispôsobiť frekvenciu CPU podľa zaťaženia udávaného plánovačom jadra."
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Upravte farby tak, aby sa dali jednotlivé odtiene dobre rozlíšiť, ale súčasne boli čo najsýtejšie. Ak ste s výsledkom spokojní, tlačidlom OK ukončite nastavovanie obrazu alebo číslicovými tlačidlami zvoľte iný testovací obrazec."
 
@@ -2531,6 +2528,12 @@ msgstr "Vždy zahrnúť ECM do nahrávok"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Vždy zahrnúť správy ECM do nahrávok. Tým sa globálne prepíšu nastavenia individuálneho časovača. Umožňuje to dekódovať nahrávky dodatočne (v procese offline-dekódovania), ak to váš prijímač podporuje."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr "Vždy prevádzkovať CPU s maximálnou frekvenciou."
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr "Vždy prevádzkovať CPU s minimálnou frekvenciou."
+
 msgid "Always show bouquets"
 msgstr "Vždy zobraziť prehľady"
 
@@ -2630,6 +2633,9 @@ msgstr "Aplikovať všetky zmeny do aktívneho miestneho nastavenia/jazyka a uko
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Použiť aktuálne zvýraznené miestne nastavenie/jazyk a ukončiť"
+
+msgid "Apply the settings without saving them"
+msgstr "Použiť nastavenia bez ich uloženia"
 
 msgid "Aqua"
 msgstr "modrá (aqua)"
@@ -2885,6 +2891,9 @@ msgstr "Synchronizácia zvuku"
 msgid "Audio bit rate"
 msgstr "Dátový tok zvuku"
 
+msgid "Audio decoding"
+msgstr "Dekódovanie zvuku"
+
 msgid "Audio language selection 1"
 msgstr "Voľba jazyka zvuku 1"
 
@@ -3010,6 +3019,9 @@ msgstr "Štítok autom. rozlíšenia"
 
 msgid "Automatic scan for services"
 msgstr "Automatické vyhľadávanie staníc"
+
+msgid "Automatically hide OSD"
+msgstr "Automaticky skryť OSD"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy, keď sa prijímač vypne alebo prepne do pohotovostného režimu."
@@ -3251,6 +3263,9 @@ msgstr "Basketbal"
 msgid "Basque"
 msgstr "baskičtina"
 
+msgid "Battery"
+msgstr "Batéria"
+
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr "Pred zmenou týchto nastavení sa pokúste zakázať všetky nastavenia overscanu na obrazovke TV/displeja. Na kalibráciu OSD upravte hodnoty pozície a veľkosti tak, aby bol červený rámček *práve* viditeľný a nedotýkal sa okrajov obrazovky."
 
@@ -3373,6 +3388,9 @@ msgstr "Bluetooth audio"
 
 msgid "Bluetooth Setup"
 msgstr "Nastavenie Bluetooth"
+
+msgid "Bluetooth remote"
+msgstr "Diaľ. ovládanie s Bluetooth"
 
 msgid "Bolivia"
 msgstr "Bolívia"
@@ -3733,6 +3751,9 @@ msgstr "CPU/jadro %d typ"
 
 msgid "CPU Control"
 msgstr "Riadenie CPU"
+
+msgid "CPU Control Actions"
+msgstr "Akcie ovládania CPU"
 
 msgid "CPU architecture"
 msgstr "Architektúra CPU"
@@ -4107,9 +4128,6 @@ msgstr "Čad"
 
 msgid "Chamorro"
 msgstr "čamorčina (chamorro)"
-
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Zmeniť režim prijímača na kontrolu hardvérových režimov čipu*"
 
 msgid "Change Language"
 msgstr "Zmeniť jazyk"
@@ -4695,6 +4713,9 @@ msgstr "Farebný priestor"
 
 msgid "Colored text"
 msgstr "Farebný text"
+
+msgid "Colorimetry for HDR content"
+msgstr "Kolorimetria pre obsah v HDR"
 
 msgid "Combined"
 msgstr "Kombinované"
@@ -5693,9 +5714,8 @@ msgstr "Aktuálna frekvencia jadier 0 a 1 procesora je: %s MHz"
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr "Aktuálna frekvencia ostatných jadier procesora %s MHz"
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
-msgstr "Aktuálne napätie jadier 0 a 1 procesora: %s V"
+msgid "Current CPU speed"
+msgstr "Aktuálna rýchlosť CPU"
 
 msgid "Current Directory"
 msgstr "Aktuálny priečinok"
@@ -5703,8 +5723,20 @@ msgstr "Aktuálny priečinok"
 msgid "Current Event:"
 msgstr "Aktuálna udalosť:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr "Aktuálna frekvencia GPU: %s MHz"
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr "Aktuálna frekvencia RAM: %s MHz"
+
 msgid "Current Status:"
 msgstr "Aktuálny stav:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr "Aktuálna teplota (RAM): %s °C"
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5864,9 +5896,6 @@ msgstr "Podpora DAB+ USB bola nainštalovaná. Teraz ju môžete zapnúť v prij
 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: nepodarilo sa zapísať prehľad"
-
-msgid "Audio decoding"
-msgstr "Dekódovanie zvuku"
 
 msgid "DAB+ channel"
 msgstr "Kanál DAB+"
@@ -6349,6 +6378,9 @@ msgstr "Určuje vzdialenosť skoku pri preskakovaní dopredu. Táto hodnota je n
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Určuje, aké rýchlosti rýchleho prevíjania dopredu sa používajú pri normálnom strihaní. Všetky ostatné rýchlosti dopredu a dozadu používajú časové skoky."
 
+msgid "Deinterlacer mode"
+msgstr "Režim odstraňovača prekladania"
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Oneskorenie po príkaze DiSEqC na napájanie periférie"
 
@@ -6582,9 +6614,6 @@ msgstr "Odstraňuje sa %s ( %s) ..."
 
 msgid "Deleting files"
 msgstr "Vymazanie súborov"
-
-msgid "Delivery system workaround"
-msgstr "Dočasné riešenie pre systém doručovania"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Demokratická republika Kongo"
@@ -7705,9 +7734,6 @@ msgstr "Povoliť kontrolu sieťovej IP adresy"
 
 msgid "Enable OpenTV EPG"
 msgstr "Povoliť OpenTV EPG"
-
-msgid "Enable PiP no HDR"
-msgstr "Zapnúť PIP, žiadne HDR"
 
 msgid "Enable Quad PiP"
 msgstr "Zapnúť Quad PiP"
@@ -9386,6 +9412,9 @@ msgstr "Vynútiť vypnutie"
 msgid "Force enabled"
 msgstr "Vynútiť zapnutie"
 
+msgid "Force progressive for streams and files"
+msgstr "Vynútiť progresivitu pre streamy a súbory"
+
 msgid "Foreign countries/Expeditions"
 msgstr "cudzie krajiny/expedície"
 
@@ -9861,7 +9890,7 @@ msgstr "Zoznam HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
+msgid "HDMI colorimetry"
 msgstr "HDMI kolorimetria"
 
 msgid "HDMI HDR Type"
@@ -9975,6 +10004,9 @@ msgstr "Sériové číslo hardvéru"
 msgid "Hardware type"
 msgstr "Typ hardvéru"
 
+msgid "Hardware video mode"
+msgstr "Hardvérový režim videa"
+
 msgid "Hausa"
 msgstr "hauština"
 
@@ -10065,6 +10097,9 @@ msgstr "Nezobrazovať hlásenia CI"
 msgid "Hide InfoBar"
 msgstr "Skryť infolištu"
 
+msgid "Hide OSD after"
+msgstr "Skryť OSD po"
+
 msgid "Hide VBI Line For This Service"
 msgstr "Skryť VBI riadok pre túto stanicu"
 
@@ -10097,6 +10132,9 @@ msgstr "Skryť podradené menu"
 
 msgid "Hide the InfoBar"
 msgstr "Nezobrazovať infolištu"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr "Skryť OSD po uplynutí určitého času bez stlačenia tlačidla. Obrazovky a úkony na pozadí zostanú v činnosti. Prvým stlačením sa len obnoví OSD a opäť sa zobrazia nové otvorené dialógy. Stlačenie tlačidla 0 spôsobí pozastavenie do ďalšieho reštartu GUI, podržaním tlač. 0 je možné pokračovať."
 
 msgid "Hide zap errors"
 msgstr "Nezobrazovať chyby pri prepínaní"
@@ -11507,6 +11545,9 @@ msgstr "Voľný čas, koníčky"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let other programs set the CPU frequency."
+msgstr "Umožniť iným programom nastavovať frekvenciu CPU."
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr "Ponechať výber RF zosilnenia na tuner."
 
@@ -11666,6 +11707,10 @@ msgstr "Načítať tagy z časovača a nahrávok"
 msgid "Load unlinked user bouquets"
 msgstr "Načítať neprepojené používateľské prehľady"
 
+#, python-format
+msgid "Load: %s %%"
+msgstr "Vyťaženie: %s %%"
+
 msgid "Loading information, please wait..."
 msgstr "Informácie sa načítavavajú, čakajte, prosím…"
 
@@ -11739,9 +11784,6 @@ msgstr "Akcie pre výber umiestnenia"
 
 msgid "Location information"
 msgstr "Informácie o lokalite"
-
-msgid "Location list"
-msgstr "Zoznam lokalít"
 
 #, python-format
 msgid "Location: %s"
@@ -12018,6 +12060,9 @@ msgstr "Manuálne vyhľadávanie"
 
 msgid "Manual Service Searching"
 msgstr "Ručné vyhľadávanie staníc"
+
+msgid "Manual resolution"
+msgstr "Manuálne rozlíšenie"
 
 msgid "Manual scan for services"
 msgstr "Ručné vyhľadávanie staníc"
@@ -13837,6 +13882,12 @@ msgstr "Nastavenia OSD"
 msgid "OSD Setup"
 msgstr "Nastavenie OSD"
 
+msgid "OSD auto-hide enabled."
+msgstr "Automatické skrývanie OSD je aktivované."
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr "Automatické skrývanie OSD je pozastavené do ďalšieho reštartu GUI. Na pokračovanie stlačte tlačidlo 0."
+
 msgid "OSD name request"
 msgstr "Požadovaný názov OSD"
 
@@ -14127,6 +14178,9 @@ msgstr "Otvoriť informácie o úložnom zariadení"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Otvoriť virtuálnu klávesnicu pre zadanie textu"
+
+msgid "Open the additional screens"
+msgstr "Otvoriť dodatočné obrazovky"
 
 msgid "Open the context menu"
 msgstr "Otvoriť kontextové menu"
@@ -14606,6 +14660,9 @@ msgstr "Filipíny"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr "PiP (bez HDR)"
+
 msgid "PiP with OSD"
 msgstr "PIP s OSD"
 
@@ -14845,9 +14902,6 @@ msgstr "Prosím, zadajte názov nového symbolického odkazu:"
 
 msgid "Please enter new name:"
 msgstr "Prosím, zadajte nové meno:"
-
-msgid "Please enter search string for your location"
-msgstr "Prosím, zadajte hľadaný reťazec pre vašu polohu"
 
 msgid "Please enter the correct pin code"
 msgstr "Prosím, zadajte správny PIN kód"
@@ -15738,6 +15792,9 @@ msgstr "RAM (súhrn)"
 msgid "RAM benchmark"
 msgstr "RAM benchmark"
 
+msgid "RAM temperature"
+msgstr "Teplota RAM"
+
 msgid "RC custom code"
 msgstr "Používateľský RC kód"
 
@@ -15818,6 +15875,15 @@ msgstr "Výber rádiového kanála"
 
 msgid "Radio Channel Selection Actions"
 msgstr "Akcie pre výber rádiového kanála"
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr "Postupne zvyšovať a znižovať frekvenciu CPU podľa vyťaženia."
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr "Rýchlo zvýšiť frekvenciu CPU pri načítavaní a znížiť ju pri malom vyťažení CPU."
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
+msgstr "Zvýšiť frekvenciu CPU na maximum pri načítavaní a postupne ju znižovať pri malom vyťažení CPU."
 
 msgid "Random"
 msgstr "Náhodne"
@@ -16448,6 +16514,9 @@ msgstr "Premenovaný %s!"
 
 msgid "Renovation"
 msgstr "Renovácia"
+
+msgid "Reopen tuner when changing delivery system"
+msgstr "Znovu otvoriť tuner pri zmene systému doručovania"
 
 msgid "Repeat"
 msgstr "Opakovať"
@@ -17362,6 +17431,9 @@ msgstr "Denník časovača napájania"
 msgid "Scheduler standby"
 msgstr "Časovač napájania – pohotovostný režim"
 
+msgid "Schedutil (recommended)"
+msgstr "Schedutil (odporúča sa)"
+
 msgid "Science"
 msgstr "Veda"
 
@@ -17424,9 +17496,6 @@ msgstr "Hľadať v aktuálnom zobrazení"
 
 msgid "Search packages by name or description"
 msgstr "Hľadať balíčky podľa názvu alebo opisu"
-
-msgid "Search weather location ID"
-msgstr "Vybrať ID lokality pre počasie"
 
 msgid "Search west"
 msgstr "Hľadať západne"
@@ -17536,6 +17605,9 @@ msgstr "Ak chcete zobraziť chybu pri prístupe k súboru, keď server neodpoved
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Ak sa má každej stanici alebo službe vo všetkých prehľadoch priradiť jedinečné číslo, vyberte možnosť 'Jedinečné číslovanie'. Ak sa má číslovanie začínať v každom prehľade od 1, použite 'Prehľady začínajú od 1. 'LCN číslovanie použite vtedy, ak sa majú používať konzistentné LCN staníc alebo služieb bez ohľadu na výskyt."
 
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
+msgstr "Ak zlyhá ladenie tunera s viacerými štandardmi po prepnutí medzi satelitným, káblovým a terestriálnym príjmom, vyberte možnosť 'Áno'. Potom sa tuner po každom prepnutí zatvorí a opäť otvorí. Je to však potrebné len pri niektorých starších ovládačoch tunera."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Ak je pre tento časovač potrebné zadať aj čas ukončenia, vyberte možnosť 'Áno'."
 
@@ -17559,6 +17631,9 @@ msgstr "Ak chcete prebudiť TV pri spúšťaní časovača pre 'Prebudenie', vyb
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Ak je nastavené na 'Áno', pri pozastavení prehrávania médií zostane infolišta zobrazená bez časového limitu."
+
+msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
+msgstr "Vyberte voľbu 'Áno' ak chcete pridať záznam do menu pre rozšírenia. Pomocou neho bude potom možná zmena režimu pre aktuálne video."
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Vyberte voľbu 'Áno', ak chcete povoliť systému VPS úpravu časovačov nahrávania na základe údajov PDC. Stanica/služba však musí poskytovať spoľahlivé PDC údaje pre jednotlivé udalosti."
@@ -17775,6 +17850,12 @@ msgstr "Pre okamžité vypnutie (namiesto spustenia dekódovania), vyberte možn
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr "Na prepnutie typu HDMI HDR (HDR10, HLG alebo SDR) tak, aby zodpovedalo informácii HDR pre aktuálne video, vyberte možnosť 'Áno'."
+
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr "Ak chcete streamy a mediálne súbory s prekladaním považovať za progresívne, vyberte možnosť 'Áno'. DVB stanice, služby a nahrávky tým nebudú dotknuté. Toto nastavenie je užitočné pre streamy, ktoré sú chybne označené ako prekladané."
 
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Ak je nastavené na 'Áno', použijú sa údaje PDC (ak sú dostupné pri aktuálnej stanici), na presné zastavenie okamžitého nahrávania na konci udalosti."
@@ -18163,6 +18244,9 @@ msgstr "Vyberte cieľový jazyk prekladu pomocou umelej inteligencie."
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Vyberte DNS server(y) na vyhľadanie názvov hostiteľa pre rozlišovanie IP adries."
 
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr "Vyberte HDMI kolorimetriu počas zobrazovania obsahu v HDR. Táto voľba sa používa len vtedy, keď je 'HDMI kolorimetria' nastavená na 'Auto'."
+
 msgid "Select the No / False response"
 msgstr "Vyberte odozvu Nie/Nesprávne"
 
@@ -18312,6 +18396,9 @@ msgstr "Vyberte dátum, kedy sa tento časovač spustí."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Vyberte deň v týždni, kedy sa tento časovač aktivuje."
 
+msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
+msgstr "Nastavte režim odstraňovania prekladania pre dekodér videa. Voľbou 'Auto' ponecháte rozhodovanie na ovládači."
+
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Vyberte predvolený priečinok, ktorý sa použije, ak nebude uložený priečinok v ľavom stĺpci."
 
@@ -18377,6 +18464,9 @@ msgstr "Vyberte prvú položku v zozname"
 msgid "Select the function to be assigned to this button."
 msgstr "Vyberte funkciu, ktorá sa priradí tomuto tlačidlu."
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr "Vyberte najvyššiu povolenú frekvenciu pre jadrá CPU."
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Vybrať zvýraznený image a pokračovať na výber slotu"
 
@@ -18412,6 +18502,9 @@ msgstr "Vyberte umiestnenie, do ktorého na má uložiť nahrávka:"
 
 msgid "Select the location where the picon files will be installed."
 msgstr "Vyberte cieľové umiestnenie, kam sa nainštalujú súbory pikon."
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
+msgstr "Vyberte najnižšiu povolenú frekvenciu pre jadrá CPU. Tá sa použije aj pri pohotovostnom režime."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vyberte výrobcu vášho zariadenia SCR. Ak nie je výrobca uvedený v zozname, nastavte 'SCR' na voľbu 'definované používateľom' a zadajte parametre zariadenia manuálne podľa jeho špecifikácií."
@@ -18608,6 +18701,9 @@ msgstr "Vyberte typ klávesnice pripojenej k %s %s."
 
 msgid "Select the type of this timer."
 msgstr "Vyberte typ tohto časovača."
+
+msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
+msgstr "Vyberte video-režim hardvérového čipu. PiP a 12-bitový výstup v HDR nemožno používať súčasne, takže vyberte či chcete aktivovať PiP alebo 12-bitový HDR."
 
 msgid "Select the video mode to be used on the TV."
 msgstr "Vyberte režim videa, ktorý sa použije na TV."
@@ -19073,6 +19169,9 @@ msgstr "Vybrať ako stanicu/službu pri spustení"
 msgid "Set system"
 msgstr "Nastavenie systému"
 
+msgid "Set the CPU frequencies and the governor"
+msgstr "Nastaviť frekvencie CPU a regulátor"
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Nastavte časový interval preskočenia pre tlačidlá '%s'/'%s' v editore zoznamu strihov."
 
@@ -19466,6 +19565,9 @@ msgstr "Malo sa vynulovať počítadlo pádov, aby sa zabránilo reštartu?"
 
 msgid "Show"
 msgstr "Zobraziť"
+
+msgid "Add 'Manual resolution' to Extensions"
+msgstr "Zobraziť 'Manuálne rozlíšenie' v menu pre rozšírenia"
 
 msgid "Show 1080p 24fps as"
 msgstr "Zobraziť 1080p 24 fps ako"
@@ -20114,6 +20216,9 @@ msgstr "Zobraziť sieťovú informáciu pre vybraný adaptér"
 msgid "Show the OSCam information screen"
 msgstr "Zobraziť obrazovku informácií OScamu"
 
+msgid "Show the about screen"
+msgstr "Zobraziť obrazovku s informáciami"
+
 msgid "Show the last opkg command's output"
 msgstr "Zobraziť výstup posledného príkazu opkg"
 
@@ -20312,6 +20417,9 @@ msgstr "Balíčky vzhľadu"
 
 msgid "Skin Settings"
 msgstr "Nastavenie vzhľadu"
+
+msgid "Skin Setup Actions"
+msgstr "Akcie pre nastavenie vzhľadu"
 
 msgid "Skin setting"
 msgstr "Nastavenie vzhľadu"
@@ -20719,9 +20827,6 @@ msgstr "Žiaľ, nenašli sa žiadne zálohy!"
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Prepáčte, nie sú pripojené žiadne zariadenia podporujúce odkladanie. Odkladací (swap) súbor nie je možné vytvoriť v sieti alebo v súborových systémoch FAT32"
 
-msgid "Sorry, there was a problem:"
-msgstr "Prepáčte, vyskytol sa problém:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20914,9 +21019,6 @@ msgstr "Spustenie %s"
 
 msgid "Start Auto Refresh"
 msgstr "Spustiť automatické obnovenie"
-
-msgid "Start Boot Frequency"
-msgstr "Počiatočná bootovacia frekvencia"
 
 msgid "Start RDS interactive"
 msgstr "Spustiť interaktívne RDS"
@@ -21447,8 +21549,8 @@ msgstr "Prepnúť EPG o stránku nadol"
 msgid "Switch EPG Page Up"
 msgstr "Prepnúť EPG o stránku nahor"
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "Zmena režimu na aktiváciu režimu HDR alebo funkcie obraz v obraze"
+msgid "Switch HDR type by content"
+msgstr "Prepínať typ HDR podľa obsahu"
 
 msgid "Switch TV to correct input"
 msgstr "Prepínať TV na správny vstup"
@@ -21821,9 +21923,6 @@ msgstr "Testovací režim"
 msgid "Test type"
 msgstr "Typ testu"
 
-msgid "Testing Information"
-msgstr "Informácie o testovaní"
-
 msgid "Testscreens"
 msgstr "Testovacie obrazovky"
 
@@ -21832,6 +21931,9 @@ msgstr "Testovacie obrazovky sú užitočné na jemné doladenie vášho zobrazo
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Text Box"
+msgstr "Textové pole"
 
 msgid "Text color"
 msgstr "Farba textu"
@@ -22319,6 +22421,9 @@ msgstr "Tento prehľad je chránený PIN kódom rodičovskej kontroly!"
 msgid "This channel is currently off air."
 msgstr "Tento kanál aktuálne nevysiela."
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr "Tento kanál vyžaduje plugin HbbTV. Prosím nainštalujte kompatibilný plugin HbbTV."
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Toto pole umožňuje vyhľadať ďalšie symbolové rýchlosti až do %s."
@@ -22716,6 +22821,9 @@ msgstr "Čas aktualizácie v minútach"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Časové okno na detekciu prebudenia časovačom (min.)"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr "Čas bez stlačenia tlačidla predtým, než sa skryje OSD."
 
 msgid "Time zone"
 msgstr "Časová zóna"
@@ -23427,6 +23535,9 @@ msgstr "Nemožno uložiť konfiguráciu pripojenia siete!"
 msgid "Unable to start the DAB+ feed"
 msgstr "Nemožno spustiť zdroj DAB+"
 
+msgid "Unable to start the HbbTV application."
+msgstr "Nemožno spustiť aplikáciu HbbTV."
+
 msgid "Unable to start the local image search. Please try again later."
 msgstr "Nemožno spustiť vyhľadávanie lokálneho image. Skúste to neskôr, prosím."
 
@@ -24000,6 +24111,9 @@ msgstr "Užívateľské ID"
 msgid "User Manual"
 msgstr "Používateľský manuál"
 
+msgid "User Manual Actions"
+msgstr "Akcie pre návod pre používateľov"
+
 msgid "User comments"
 msgstr "Komentáre používateľa"
 
@@ -24550,6 +24664,9 @@ msgstr "Vodné športy"
 msgid "Weather"
 msgstr "Počasie"
 
+msgid "Weather settings"
+msgstr "Nastavenia počasia"
+
 msgid "Web Interface"
 msgstr "Webové rozhranie"
 
@@ -24996,9 +25113,6 @@ msgstr "Len WoW"
 
 msgid "Wolof"
 msgstr "wolof"
-
-msgid "Workaround for old tuner driver."
-msgstr "Riešenie pre starý ovládač tunera."
 
 msgid "Workgroup name"
 msgstr "Názov pracovnej skupiny"
@@ -25464,6 +25578,9 @@ msgstr "rozhranie GUI na priradenie staníc, poskytovateľov, CAID k modulom CI"
 msgid "activatePiP"
 msgstr "aktivovaťPiP"
 
+msgid "active (GLES enabled)"
+msgstr "aktívne (GLES aktivované)"
+
 msgid "address:"
 msgstr "adresa:"
 
@@ -25915,6 +26032,9 @@ msgstr "stav vyhľadávania"
 msgid "search EPG..."
 msgstr "hľadanie v EPG…"
 
+msgid "seconds"
+msgstr "sekundy"
+
 msgid "select CAId's"
 msgstr "vyberte CAID"
 
@@ -25969,6 +26089,9 @@ msgstr "stereo"
 msgid "successful"
 msgstr "úspešné"
 
+msgid "suspended (GLES disabled)"
+msgstr "pozastavené (GLES deaktivované)"
+
 msgid "switch 12 to 8 character display mode"
 msgstr "prepnúť z 12- na 8-znakový režim zobrazenia"
 
@@ -26010,6 +26133,9 @@ msgstr "cieľové LNB nie je nakonfigurované"
 
 msgid "this recording"
 msgstr "táto nahrávka"
+
+msgid "throttled"
+msgstr "spomalené"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "prepínať medzi časom, kapitolou, zvukom a titulkami"
@@ -26098,6 +26224,56 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12 bitov 4:2:0/4:2:2 bez PiP"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "Zmeniť režim prijímača na kontrolu hardvérových režimov čipu*"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "Dočasné riešenie pre systém doručovania"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "Zapnúť PIP, žiadne HDR"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "Zmena režimu na aktiváciu režimu HDR alebo funkcie obraz v obraze"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Riešenie pre starý ovládač tunera."
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+#~ msgstr[2] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Súbor z daného média sa práve používa!"
+
+#, python-format
+#~ msgid "Current CPU cores 0 and 1 Voltage: %s V"
+#~ msgstr "Aktuálne napätie jadier 0 a 1 procesora: %s V"
+
+#~ msgid "Location list"
+#~ msgstr "Zoznam lokalít"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "Prosím, zadajte hľadaný reťazec pre vašu polohu"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "Vybrať ID lokality pre počasie"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "Prepáčte, vyskytol sa problém:"
+
+#~ msgid "Start Boot Frequency"
+#~ msgstr "Počiatočná bootovacia frekvencia"
+
+#~ msgid "Testing Information"
+#~ msgstr "Informácie o testovaní"
 
 #~ msgid "Close screen"
 #~ msgstr "Zatvoriť obrazovku"
@@ -29290,10 +29466,6 @@ msgstr "®"
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #~ msgid "(FTA Service)"
 #~ msgstr "(Nekódovaná stanica)"

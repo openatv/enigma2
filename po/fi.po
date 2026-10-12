@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"POT-Creation-Date: 2026-10-11 14:55+0000\n"
 "PO-Revision-Date: 2026-09-15 16:51+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -741,12 +741,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1200,6 +1194,10 @@ msgid "%s Information Actions"
 msgstr "%s Tiedotustoiminnot"
 
 #, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s Asetukset"
 
@@ -1458,6 +1456,9 @@ msgstr "12 merkki"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, näyttää Latin-1 merkistön paitsi kreikan ja kyrillisen, vaihda tarvittaessa 8:een."
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 msgid "12V output"
 msgstr "12V ulostulo"
 
@@ -1466,9 +1467,6 @@ msgstr "12V ulostulo."
 
 msgid "12bit"
 msgstr "12bit"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12bit 4:2:0/4:2:2 ei PiP"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -1643,9 +1641,6 @@ msgstr "Suoritettu tehtävä haluaa sammuttaa %s %s. Sammutetaanko nyt?"
 #, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Kaatumisloki luotiin\" %s '%s'"
-
-msgid "A file from media is in use!"
-msgstr "Mediatiedosto on käytössä!"
 
 #, python-format
 msgid ""
@@ -2195,6 +2190,9 @@ msgstr "Kääntyvän antennin kaapeli%s"
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr ""
 "Säädä värikylläisyys siten, että kaikki sävyt erottuvat ja ovat mahdollisimman\n"
@@ -2500,6 +2498,12 @@ msgstr "Sisällytä aina ECM tallennuksiin"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Sisällytä aina ECM tiedot tallenteisiin. Tallennukset tallennetaan salatussa muodossa ja puretaan jälkikäteen, jos vastaanottimesi tukee sitä. Oletus: Ei."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "Näytä suosikkilistat aina"
 
@@ -2599,6 +2603,9 @@ msgstr "Hyväksy mikä tahansa muutos ja aktivoi kieli ja poistu"
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Ota korostettu alue/kieli käyttöön ja poistu"
+
+msgid "Apply the settings without saving them"
+msgstr ""
 
 msgid "Aqua"
 msgstr "meren sininen"
@@ -2854,6 +2861,9 @@ msgstr "Audio synkronointi"
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio decoding"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Äänen kielivalinta 1"
 
@@ -2979,6 +2989,9 @@ msgstr "Resoluution vaihtumisen ilmoitus"
 
 msgid "Automatic scan for services"
 msgstr "Automaattinen kanavahaku"
+
+msgid "Automatically hide OSD"
+msgstr ""
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Laittaa television automaattisesti valmiustilaan, kun vastaanotin siirtyy valmiustilaan tai virransäästötilaan."
@@ -3220,6 +3233,9 @@ msgstr "Koripallo"
 msgid "Basque"
 msgstr "Baski"
 
+msgid "Battery"
+msgstr ""
+
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr "Ennen näiden asetusten muuttamista yritä poistaa käytöstä kaikki zoomaus asetukset televisiosta. Kalibroidaksesi kuvaruudun (OSD) säädä sijainti ja koko arvoja, kunnes punainen laatikko on juuri ja juuri näkyvissä ja koskettaa ruudun reunoja."
 
@@ -3342,6 +3358,9 @@ msgstr "Bluetooth Ääni"
 
 msgid "Bluetooth Setup"
 msgstr "Bluetooth asetukset"
+
+msgid "Bluetooth remote"
+msgstr ""
 
 msgid "Bolivia"
 msgstr "Bolivia"
@@ -3702,6 +3721,9 @@ msgstr "CPU / Ydin %d tyyppi"
 
 msgid "CPU Control"
 msgstr "CPU Hallinta"
+
+msgid "CPU Control Actions"
+msgstr ""
 
 msgid "CPU architecture"
 msgstr "CPU arkkitehtuuri"
@@ -4077,9 +4099,6 @@ msgstr "Chad"
 
 msgid "Chamorro"
 msgstr "Chamorro"
-
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Video sirun tila*"
 
 msgid "Change Language"
 msgstr "Kielivalinta"
@@ -4664,6 +4683,9 @@ msgstr "Väriavaruus"
 
 msgid "Colored text"
 msgstr "Värillinen teksti"
+
+msgid "Colorimetry for HDR content"
+msgstr ""
 
 msgid "Combined"
 msgstr "Yhdistetty"
@@ -5661,9 +5683,8 @@ msgstr "Suorittimen ytimien 0 ja 1 : %s MHz"
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr "Suorittimen muiden ytimien taajuus %s MHz"
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
-msgstr "Suorittimen ydinten 0 ja 1 Jännite %s V"
+msgid "Current CPU speed"
+msgstr ""
 
 msgid "Current Directory"
 msgstr "Nykyinen hakemisto"
@@ -5671,8 +5692,20 @@ msgstr "Nykyinen hakemisto"
 msgid "Current Event:"
 msgstr "Nykyinen ohjelma:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "Nykyinen tila:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5831,9 +5864,6 @@ msgid "DAB+ USB support was installed. You can now enable the receiver in Recept
 msgstr ""
 
 msgid "DAB+ USB: bouquet could not be written"
-msgstr ""
-
-msgid "Audio decoding"
 msgstr ""
 
 msgid "DAB+ channel"
@@ -6317,6 +6347,9 @@ msgstr "Määrittää aikahypyn pituuden eteenpäinkelauksessa. Tämä arvo kerr
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Määrittää, mitkä kelausnopeudet eteenpäin käyttävät normaalia kelausta. Kaikki muut kelausnopeudet eteenpäin sekä kaikki kelausnopeudet taaksepäin käyttävät aikahyppyjä."
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Viive diseqc-komennon jälkeen ennen virta päälle komentoa"
 
@@ -6550,9 +6583,6 @@ msgstr "Poistetaan %s (%s)..."
 
 msgid "Deleting files"
 msgstr "Poistetaan tiedostoja"
-
-msgid "Delivery system workaround"
-msgstr "Virittimen erikoistoiminto"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Kongon demokraattinen tasavalta"
@@ -7672,9 +7702,6 @@ msgstr "Ota käyttöön IP osoitteen tarkistus"
 
 msgid "Enable OpenTV EPG"
 msgstr "Ota käyttöön OpenTV ohjelmaopas"
-
-msgid "Enable PiP no HDR"
-msgstr "Aktivoi PIP ilman HDR:ää"
 
 msgid "Enable Quad PiP"
 msgstr "Aktivoi 4 Kanavan PIP"
@@ -9350,6 +9377,9 @@ msgstr "pois päältä"
 msgid "Force enabled"
 msgstr "päällä"
 
+msgid "Force progressive for streams and files"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "ulkomaat/tutkimusmatkat"
 
@@ -9825,7 +9855,7 @@ msgstr "HD lista"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
+msgid "HDMI colorimetry"
 msgstr "HDMI Väriavaruus"
 
 msgid "HDMI HDR Type"
@@ -9939,6 +9969,9 @@ msgstr "Laitteen sarjanumero"
 msgid "Hardware type"
 msgstr "Laitteen tyyppi"
 
+msgid "Hardware video mode"
+msgstr ""
+
 msgid "Hausa"
 msgstr "Hausa"
 
@@ -10029,6 +10062,9 @@ msgstr "Piilota CI viestit"
 msgid "Hide InfoBar"
 msgstr "Piilota tietopalkki aina"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
@@ -10061,6 +10097,9 @@ msgstr "Piilota alivalikko"
 
 msgid "Hide the InfoBar"
 msgstr "Piilota Tietopalkki"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Piilota kanavanvaihdon virheilmoitukset"
@@ -11475,6 +11514,9 @@ msgstr "Vapaa-ajan harrastukset"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -11634,6 +11676,10 @@ msgstr "Lataa tunnisteita ajastimesta ja tallenteista"
 msgid "Load unlinked user bouquets"
 msgstr "Lataa linkittämättömät suosikkilistat"
 
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr "Ladataan tietoja, odota..."
 
@@ -11707,9 +11753,6 @@ msgstr "Sijainnin valinta toiminnot"
 
 msgid "Location information"
 msgstr "Sijaintitiedot"
-
-msgid "Location list"
-msgstr "Kohdehakemisto lista"
 
 #, python-format
 msgid "Location: %s"
@@ -11986,6 +12029,9 @@ msgstr "Manuaalinen haku"
 
 msgid "Manual Service Searching"
 msgstr "Manuaalinen kanavahaku"
+
+msgid "Manual resolution"
+msgstr ""
 
 msgid "Manual scan for services"
 msgstr "Manuaalinen kanavahaku"
@@ -13813,6 +13859,12 @@ msgstr "Kuvaruudun asetukset"
 msgid "OSD Setup"
 msgstr "Kuvaruudun Asetukset"
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr "Kuvaruudun nimipyyntö"
 
@@ -14103,6 +14155,9 @@ msgstr "Avaa tallennus laitteen tiedot"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Avaa Virtuaalinen näppäimistö tekstin syöttämistä varten"
+
+msgid "Open the additional screens"
+msgstr ""
 
 msgid "Open the context menu"
 msgstr "Avaa kontekstivalikko"
@@ -14582,6 +14637,9 @@ msgstr "Filippiinit"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr ""
+
 msgid "PiP with OSD"
 msgstr "PiP ja kuvaruutu"
 
@@ -14821,9 +14879,6 @@ msgstr "Kirjoita uuden symbolisen linkin nimi:"
 
 msgid "Please enter new name:"
 msgstr "Syötä uusi nimi:"
-
-msgid "Please enter search string for your location"
-msgstr "Anna haettava sijainti"
 
 msgid "Please enter the correct pin code"
 msgstr "Syötä oikea tunnusluku"
@@ -15712,6 +15767,9 @@ msgstr "RAM (yhteenveto)"
 msgid "RAM benchmark"
 msgstr "RAM Suorituskyky"
 
+msgid "RAM temperature"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "Mukautettu RC koodi"
 
@@ -15792,6 +15850,15 @@ msgstr "Radiokanavan valinta"
 
 msgid "Radio Channel Selection Actions"
 msgstr "Radiokanavan valinta"
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
+msgstr ""
 
 msgid "Random"
 msgstr "Satunnainen"
@@ -16422,6 +16489,9 @@ msgstr "Uudelleennimettiin %s!"
 
 msgid "Renovation"
 msgstr "Peruskorjaus"
+
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Toistokerrat"
@@ -17333,6 +17403,9 @@ msgstr "PowerTimer-loki"
 msgid "Scheduler standby"
 msgstr "Virta ajastukset Valmistila"
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr "Tiede"
 
@@ -17395,9 +17468,6 @@ msgstr ""
 
 msgid "Search packages by name or description"
 msgstr ""
-
-msgid "Search weather location ID"
-msgstr "Hae sää sijainti tiedot ID:llä"
 
 msgid "Search west"
 msgstr "Etsintä länteen"
@@ -17511,6 +17581,9 @@ msgstr "Valitse ”Soft mount”, jos haluat virheen palvelimen lakatessa vastaa
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Valitse 'Yksilöllinen numerointi' antaaksesi jokaiselle kanavalle yksilöllinen numero jokaisessa kanavalistassa. Käytä 'Kanavalistat alkavat numerosta 1 jokaisessa kanavalistassa' Käytä operaattorin tarjoavaa LCN \"Loogiset kanavanumerot\"esim Yle tv1 on kanavanumero 1 jne."
 
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Valitse \"Kyllä\", jos tälle ajastimelle tarvitaan päättymisaika."
 
@@ -17538,6 +17611,9 @@ msgstr "Valitse \"Kyllä\", jos haluat herätää television kun Virta ajastus k
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa (ei aikakatkaisua)."
+
+msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
+msgstr ""
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Tämä lisäosa voi määrittää, alkaako ohjelma aikaisemmin vai kestääkö se pidempään. Kanavan on toimitettava luotettavat tiedot."
@@ -17754,6 +17830,12 @@ msgstr "Valitse 'Kyllä' sammuttaaksesi välittömästi sen sijaan, että aloita
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Valitse ”Kyllä” jakaaksesi tehtävät eri toimintoihin."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
+
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr ""
 
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Kun kyllä, VPS otetaan käyttöön pikatallenteissa (pysäytetään nykyisen ohjelman jälkeen), jos kanava tukee VPS:ää."
@@ -18146,6 +18228,9 @@ msgstr "Valitse tekoälyn tekstityksen käännöksen kieli."
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Valitse lähde oletus DNS asetuksille."
 
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Valitse Ei / Väärä vastaus"
 
@@ -18295,6 +18380,9 @@ msgstr "Valitse päivämäärä, jolloin ajastus käynnistyy."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Valitse viikonpäivä, jolloin ajastus aktivoituu."
 
+msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
+msgstr ""
+
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Valitse oletushakemisto, jota käytetään, jos vasemman sarakkeen hakemistoa ei tallenneta."
 
@@ -18360,6 +18448,9 @@ msgstr "Valitse listan ensimmäinen kohde"
 msgid "Select the function to be assigned to this button."
 msgstr "Voit määrittää valitun toiminnon tällä painikkeelle."
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Valitse korostettu ohjelmisto ja siirry paikka valintaan"
 
@@ -18395,6 +18486,9 @@ msgstr "Valitse paikka, johon tallennus tallennetaan:"
 
 msgid "Select the location where the picon files will be installed."
 msgstr "Valitse sijainti, minne kanavalogot asennetaan."
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
+msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -18591,6 +18685,9 @@ msgstr "Valitse näppäimistön tyyppi mikä on liitetty %s %s laitteeseen."
 
 msgid "Select the type of this timer."
 msgstr "Valitse ajastimen tyyppi."
+
+msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
+msgstr ""
 
 msgid "Select the video mode to be used on the TV."
 msgstr "Valitse videotila, jota käytetään televisiossa."
@@ -19058,6 +19155,9 @@ msgstr "Määritä aloituskanavaksi"
 msgid "Set system"
 msgstr "Aseta järjestelmä"
 
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Aseta Leikkauskohtien ohitusaikaväli '%s'/'%s' näppäimille."
 
@@ -19451,6 +19551,9 @@ msgstr "Pitäisikö kaatumislaskuri nollata uudelleenkäynnistyksen estämiseksi
 
 msgid "Show"
 msgstr "Näytä"
+
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
 
 msgid "Show 1080p 24fps as"
 msgstr "Näytä 1080p 24fps näin"
@@ -20099,6 +20202,9 @@ msgstr "Näytä valitun verkko sovittimen verkkotiedot"
 msgid "Show the OSCam information screen"
 msgstr "Näytä OSCam tietonäytössä"
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr "Näytä viimeinen opkg komento"
 
@@ -20297,6 +20403,9 @@ msgstr "Teemat"
 
 msgid "Skin Settings"
 msgstr "Teema asetukset"
+
+msgid "Skin Setup Actions"
+msgstr ""
 
 msgid "Skin setting"
 msgstr "Teeman asetus"
@@ -20700,9 +20809,6 @@ msgstr "Varmuuskopioita ei löydy!"
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Valitettavasti mitään fyysisiä laitteita, jotka tukevat SWAP liitäntää, ei ole liitetty. Swapfile tiedostoa ei voi luoda verkko- tai fat32-tiedostojärjestelmiin"
 
-msgid "Sorry, there was a problem:"
-msgstr "Valitettavasti tapahtui ongelma:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20895,9 +21001,6 @@ msgstr "Aloita %s"
 
 msgid "Start Auto Refresh"
 msgstr "Käynnistä automaattinen virkistäminen"
-
-msgid "Start Boot Frequency"
-msgstr "Aloita käynnistys taajuus"
 
 msgid "Start RDS interactive"
 msgstr "Avaa interaktiivinen tv (HbbTV)"
@@ -21428,8 +21531,8 @@ msgstr "Vaihda EPG Sivu Alas"
 msgid "Switch EPG Page Up"
 msgstr "Vaihda EPG Sivu Ylös"
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "Valitse joko HDR (High Dynamic Range) tai PIP (Picture in Picture). Molemmat eivät voi olla päällä yhtaikaa. Vaatii laitteen uudelleenkäynnistyksen*"
+msgid "Switch HDR type by content"
+msgstr ""
 
 msgid "Switch TV to correct input"
 msgstr "Vaihda TV oikealle sisäänmenolle"
@@ -21804,9 +21907,6 @@ msgstr "Virityskuvan lähetys"
 msgid "Test type"
 msgstr "Testin tyyppi"
 
-msgid "Testing Information"
-msgstr "Testaus tiedot"
-
 msgid "Testscreens"
 msgstr "Testikuvat"
 
@@ -21815,6 +21915,9 @@ msgstr "Testikuvat ovat avuksi näytön virityksessä"
 
 msgid "Text"
 msgstr "Teksti"
+
+msgid "Text Box"
+msgstr ""
 
 msgid "Text color"
 msgstr "Tekstin väri"
@@ -22296,6 +22399,9 @@ msgstr "Tämä kanava on suojattu lapsilukolla!"
 msgid "This channel is currently off air."
 msgstr ""
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Tämä kenttä sallii etsiä ylimääräisen symbolinopeuden %s asti."
@@ -22695,6 +22801,9 @@ msgstr "Ajanpäivitys minuutteina"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Aikaikkuna herätyksen havaitsemiseksi ajastimella [mins]"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr ""
 
 msgid "Time zone"
 msgstr "Aikavyöhyke"
@@ -23407,6 +23516,9 @@ msgstr ""
 msgid "Unable to start the DAB+ feed"
 msgstr "DAB+ syötettä ei voitu käynnistää"
 
+msgid "Unable to start the HbbTV application."
+msgstr ""
+
 msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
@@ -23980,6 +24092,9 @@ msgstr "Käyttäjä"
 msgid "User Manual"
 msgstr ""
 
+msgid "User Manual Actions"
+msgstr ""
+
 msgid "User comments"
 msgstr "Käyttäjän kommentit"
 
@@ -24530,6 +24645,9 @@ msgstr "Vesiurheilua"
 msgid "Weather"
 msgstr "Sää"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr "Web Liittymä"
 
@@ -24976,9 +25094,6 @@ msgstr "WOW vain"
 
 msgid "Wolof"
 msgstr "Wolof"
-
-msgid "Workaround for old tuner driver."
-msgstr "Aseta Kyllä asetukseksi vain, jos vanhassa viritin ajurissa on ongelmia"
 
 msgid "Workgroup name"
 msgstr "Työryhmän nimi"
@@ -25448,6 +25563,9 @@ msgstr "käyttöliittymä kanavien/palvelutarjoajien/CAId:en määrittämiseen C
 msgid "activatePiP"
 msgstr "aktivoi PiP"
 
+msgid "active (GLES enabled)"
+msgstr ""
+
 msgid "address:"
 msgstr "osoite:"
 
@@ -25899,6 +26017,9 @@ msgstr "haun tila"
 msgid "search EPG..."
 msgstr "hae EPG:stä."
 
+msgid "seconds"
+msgstr ""
+
 msgid "select CAId's"
 msgstr "valitse CAId:t"
 
@@ -25953,6 +26074,9 @@ msgstr "stereo"
 msgid "successful"
 msgstr "onnistui"
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr "vaihtaminen 12 merkistä 8 merkkiin näyttötila"
 
@@ -25994,6 +26118,9 @@ msgstr "kohde LNB:tä ei ole määritetty"
 
 msgid "this recording"
 msgstr "tämä tallennus"
+
+msgid "throttled"
+msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "valitse aika, kappale, ääni, tekstitys"
@@ -26081,6 +26208,55 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12bit 4:2:0/4:2:2 ei PiP"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "Video sirun tila*"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "Virittimen erikoistoiminto"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "Aktivoi PIP ilman HDR:ää"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "Valitse joko HDR (High Dynamic Range) tai PIP (Picture in Picture). Molemmat eivät voi olla päällä yhtaikaa. Vaatii laitteen uudelleenkäynnistyksen*"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Aseta Kyllä asetukseksi vain, jos vanhassa viritin ajurissa on ongelmia"
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Mediatiedosto on käytössä!"
+
+#, python-format
+#~ msgid "Current CPU cores 0 and 1 Voltage: %s V"
+#~ msgstr "Suorittimen ydinten 0 ja 1 Jännite %s V"
+
+#~ msgid "Location list"
+#~ msgstr "Kohdehakemisto lista"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "Anna haettava sijainti"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "Hae sää sijainti tiedot ID:llä"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "Valitettavasti tapahtui ongelma:"
+
+#~ msgid "Start Boot Frequency"
+#~ msgstr "Aloita käynnistys taajuus"
+
+#~ msgid "Testing Information"
+#~ msgstr "Testaus tiedot"
 
 #~ msgid "Close screen"
 #~ msgstr "Sulje näyttö"
@@ -29069,10 +29245,6 @@ msgstr "®"
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #~ msgid "(FTA Service)"
 #~ msgstr "(FTA Palvelu)"
