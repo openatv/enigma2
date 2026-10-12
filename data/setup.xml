@@ -1454,8 +1454,8 @@
 		<item level="1" text="Deinterlacer mode" description="Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
 		<item level="1" text="Add 'Manual resolution' to Extensions" description="When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
 		<if requires="haveamlhdrsupport">
-			<item level="0" text="HLG Support" description="Select the HLG mode to be used with the HDMI connected UHD capable TV/monitor.">config.av.amlhlg_support</item>
-			<item level="0" text="HDR10 Support" description="Select the HDR10 mode to be used with the HDMI connected UHD capable TV/monitor.">config.av.amlhdr10_support</item>
+			<item level="0" text="HLG support" description="Select the HLG mode to be used with the HDMI connected UHD capable TV/monitor.">config.av.amlhlg_support</item>
+			<item level="0" text="HDR10 support" description="Select the HDR10 mode to be used with the HDMI connected UHD capable TV/monitor.">config.av.amlhdr10_support</item>
 		</if>
 	</setup>
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">
