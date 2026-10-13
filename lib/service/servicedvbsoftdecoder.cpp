@@ -485,12 +485,14 @@ void eDVBSoftDecoder::streamHealthCheck()
 			m_recovery_attempts++;
 			if (m_recovery_attempts >= 5)
 			{
-				// Full pipeline flush (same pattern as eDVBChannel::flushPVR):
-				// flush DVR kernel buffer first, then decoder buffers.
-				// Without flushing the DVR, the decoder immediately refills
-				// with old garbage data after VIDEO/AUDIO_CLEAR_BUFFER.
+				// Full pipeline flush (same buffers as eDVBChannel::flushPVR).
+				// Unlike there, the writer keeps running: a DVR write blocked
+				// on the full decoder holds the DVR mutex, so the DVR flush
+				// ioctl must not come first. Clear the decoder buffers so the
+				// write completes, flush the DVR, then clear what slipped in.
 				eWarning("[eDVBSoftDecoder] Recovery failed %d times - full pipeline flush", m_recovery_attempts);
 				m_decoder->pause();
+				m_decode_demux->flush();
 				if (m_dvr_fd >= 0)
 					::ioctl(m_dvr_fd, 0);
 				m_decode_demux->flush();
