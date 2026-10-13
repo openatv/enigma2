@@ -1,6 +1,14 @@
 #ifndef _hdmi_cec_h
 #define _hdmi_cec_h
 
+#ifndef SWIG
+#include <condition_variable>
+#include <deque>
+#include <mutex>
+#include <thread>
+#include <utility>
+#endif
+
 #include <lib/driver/rc.h>
 #include <lib/python/connections.h>
 
@@ -107,6 +115,19 @@ public:
 	void sendMessage(struct cec_message &message);
 #endif
 protected:
+#ifndef SWIG
+	/* drivers whose transmit blocks until the follower answers send from a thread */
+	std::jthread sendThread;
+	std::mutex sendMutex;
+	std::condition_variable sendCondition;
+	/* with the logical address it was sent from */
+	std::deque<std::pair<struct cec_message, unsigned char>> sendQueue;
+	bool sendStop;
+	void startSendThread();
+	void stopSendThread();
+	void sendThreadLoop();
+	void transmitMessage(const struct cec_message &message, unsigned char source) const;
+#endif
 	static eHdmiCEC *instance;
 	bool linuxCEC;
 	bool amlogicCEC;
