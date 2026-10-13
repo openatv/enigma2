@@ -12,20 +12,21 @@
 # n4d01 <artur.nadolski@gmail.com>, 2025.
 # pololoko111 <pololoko111@o2.pl>, 2026.
 # Mat <mathew87@poczta.fm>, 2026.
+# Mat <mathew87@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 14:55+0000\n"
-"PO-Revision-Date: 2026-10-11 14:02+0000\n"
-"Last-Translator: Mat <mathew87@poczta.fm>\n"
+"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"PO-Revision-Date: 2026-10-13 15:52+0000\n"
+"Last-Translator: Mat <mathew87@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.1.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1302,6 +1303,9 @@ msgstr "%s długo"
 msgid "%s not available."
 msgstr "%s niedostępne."
 
+msgid "%s support"
+msgstr "Obsługa %s"
+
 #, python-format
 msgid "%s version"
 msgstr "Wersja %s"
@@ -1508,7 +1512,7 @@ msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if
 msgstr "12, wyświetla znaki alfabetu łacińskiego-1 z wyjątkiem greckiego i cyrylicy, w razie potrzeby przełącz na 8."
 
 msgid "12-bit HDR (no PiP)"
-msgstr ""
+msgstr "12-bitowy HDR (bez PiP)"
 
 msgid "12V output"
 msgstr "Wyjście 12V"
@@ -1995,6 +1999,9 @@ msgstr "Ustawienia adaptera"
 msgid "Add"
 msgstr "Dodaj"
 
+msgid "Add 'Manual resolution' to Extensions"
+msgstr "Dodaj 'Ręczny wybór rozdzielczości' do rozszerzeń"
+
 msgid "Add Alternatives"
 msgstr "Dodaj alternatywy"
 
@@ -2234,7 +2241,7 @@ msgid "Additional slots cannot be changed while the receiver is running from one
 msgstr "Dodatkowych slotów nie można zmienić, jeśli odbiornik korzysta z jednego z nich."
 
 msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
-msgstr ""
+msgstr "Dostosowuj częstotliwość procesora do obciążenia zgłaszanego przez harmonogram jądra."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Dostosuj ustawienia koloru, tak aby wszystkie odcienie były rozpoznawalne, ale jak najbardziej nasycone. Jeśli jesteś zadowolony z rezultatu wciśnij 'OK', aby wyjść z tego menu lub użyj przycisków numerycznych aby zobaczyć inne ekrany testowe."
@@ -2414,11 +2421,8 @@ msgstr "Przydzielanie"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Przydziel numer fizycznemu konwerterowi LNB, który konfigurujesz. Będziesz mógł wybrać ten konwerter ponownie dla innych satelitów (np. anten zmotoryzowanych), aby uniknąć wielokrotnego ustawiania tego samego konwertera."
 
-msgid "Allow 10bit"
-msgstr "Pozwól 10bit"
-
-msgid "Allow 12bit"
-msgstr "Pozwól 12bit"
+msgid "Allow %s-bit"
+msgstr "Zezwalaj na tryb %s-bitowy"
 
 msgid "Allow guest access"
 msgstr "Zezwalaj na dostęp gościnny"
@@ -2538,10 +2542,10 @@ msgid "Always include ECM messages in recordings. This overrides the individual 
 msgstr "Zawsze uwzględniaj komunikaty ECM w nagraniach. Zastępuje to globalnie indywidualne ustawienia timera. Umożliwia to późniejsze odszyfrowanie nagrań (czasami nazywane dekodowaniem offline), jeśli odbiornik obsługuje tę funkcję. Domyślnie: wyłączone."
 
 msgid "Always run the CPU at the maximum frequency."
-msgstr ""
+msgstr "Zawsze utrzymuj maksymalną częstotliwość procesora."
 
 msgid "Always run the CPU at the minimum frequency."
-msgstr ""
+msgstr "Zawsze utrzymuj minimalną częstotliwość procesora."
 
 msgid "Always show bouquets"
 msgstr "Zawsze pokazuj 'listy kanałów'"
@@ -2644,7 +2648,7 @@ msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Zastosuj aktualny region/języ i wyjdź"
 
 msgid "Apply the settings without saving them"
-msgstr ""
+msgstr "Zastosuj ustawienia bez ich zapisywania"
 
 msgid "Aqua"
 msgstr "Morski"
@@ -3030,7 +3034,7 @@ msgid "Automatic scan for services"
 msgstr "Automatyczne skanowanie kanałów"
 
 msgid "Automatically hide OSD"
-msgstr ""
+msgstr "Automatycznie ukrywaj OSD"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatyczne przełączanie telewizora w tryb czuwania za każdym razem, gdy odbiornik przejdzie w tryb czuwania lub wyłączenia."
@@ -3165,6 +3169,9 @@ msgstr "Szybkość usuwania w tle"
 msgid "Background selected:"
 msgstr "Wybrane w tle:"
 
+msgid "Background sound/clean feed"
+msgstr "Dźwięk tła / ścieżka bez komentarza"
+
 msgid "Background:"
 msgstr "Tło:"
 
@@ -3273,7 +3280,7 @@ msgid "Basque"
 msgstr "Baskijski"
 
 msgid "Battery"
-msgstr ""
+msgstr "Bateria"
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr "Przed zmianą tych ustawień spróbuj wyłączyć wszelkie ustawienia overscan na ekranie telewizora/wyświetlacza. Aby skalibrować menu ekranowe (OSD), dostosuj wartości położenia i rozmiaru, aż czerwone pole będzie *tylko* widoczne i dotknie krawędzi ekranu."
@@ -3399,7 +3406,7 @@ msgid "Bluetooth Setup"
 msgstr "Konfiguracja Bluetooth"
 
 msgid "Bluetooth remote"
-msgstr ""
+msgstr "Pilot Bluetooth"
 
 msgid "Bolivia"
 msgstr "Boliwia"
@@ -3630,7 +3637,7 @@ msgstr "Limit czasu błędu przycisku"
 msgid "ButtonSetup"
 msgstr "Ustawienia przycisków"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "Pomiń sprawdzanie HDMI EDID"
 
 msgid "Bytes received"
@@ -3762,7 +3769,7 @@ msgid "CPU Control"
 msgstr "Kontrola CPU"
 
 msgid "CPU Control Actions"
-msgstr ""
+msgstr "Akcje sterowania procesorem"
 
 msgid "CPU architecture"
 msgstr "Architektura CPU"
@@ -4725,7 +4732,7 @@ msgid "Colored text"
 msgstr "Kolorowy tekst"
 
 msgid "Colorimetry for HDR content"
-msgstr ""
+msgstr "Przestrzeń barw treści HDR"
 
 msgid "Combined"
 msgstr "Łączny"
@@ -5725,7 +5732,7 @@ msgid "Current CPU Frequency other cores: %s MHz"
 msgstr "Aktualna częstotliwość pozostałych rdzeni CPU: %s MHz"
 
 msgid "Current CPU speed"
-msgstr ""
+msgstr "Aktualna częstotliwość procesora"
 
 msgid "Current Directory"
 msgstr "Aktualny katalog"
@@ -5735,18 +5742,18 @@ msgstr "Aktualne Wydarzenie:"
 
 #, python-format
 msgid "Current GPU Frequency: %s MHz"
-msgstr ""
+msgstr "Aktualna częstotliwość GPU: %s MHz"
 
 #, python-format
 msgid "Current RAM Frequency: %s MHz"
-msgstr ""
+msgstr "Aktualna częstotliwość RAM: %s MHz"
 
 msgid "Current Status:"
 msgstr "Aktualny status:"
 
 #, python-format
 msgid "Current Temperature (RAM): %s °C"
-msgstr ""
+msgstr "Aktualna temperatura (RAM): %s °C"
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -6041,6 +6048,9 @@ msgstr "Taniec"
 
 msgid "Danish"
 msgstr "Duński"
+
+msgid "Dari"
+msgstr "Dari"
 
 msgid "Darts"
 msgstr "Rzutki"
@@ -6389,7 +6399,7 @@ msgid "Defines which fast forward speeds are using normal cueing. All other forw
 msgstr "Definiuje, które prędkości szybkiego przewijania do przodu używają normalnego podpowiadania. Wszystkie inne prędkości przewijania do przodu i wszystkie prędkości przewijania do tyłu używają przeskoków czasowych."
 
 msgid "Deinterlacer mode"
-msgstr ""
+msgstr "Tryb usuwania przeplotu"
 
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Opóźnienie po komendzie DiSEqC peryferyjny powerON"
@@ -9423,7 +9433,7 @@ msgid "Force enabled"
 msgstr "Wymuszanie włączone"
 
 msgid "Force progressive for streams and files"
-msgstr ""
+msgstr "Wymuś tryb progresywny dla strumieni i plików"
 
 msgid "Foreign countries/Expeditions"
 msgstr "Kraje obce/Wyprawy"
@@ -9900,9 +9910,6 @@ msgstr "Lista HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI colorimetry"
-msgstr "Kolorymetria HDMI"
-
 msgid "HDMI HDR Type"
 msgstr "Rodzaj HDMI HDR"
 
@@ -9914,6 +9921,9 @@ msgstr "Głębia kolorów"
 
 msgid "HDMI color space"
 msgstr "Przestrzeń kolorów"
+
+msgid "HDMI colorimetry"
+msgstr "Kolorymetria HDMI"
 
 msgid "HDMI-CEC Settings"
 msgstr "Ustawienia HDMI CEC"
@@ -9936,9 +9946,6 @@ msgstr "Wejście HDMI"
 msgid "HDR OSD adjustment"
 msgstr "Regulacja HDR OSD"
 
-msgid "HDR10 Support"
-msgstr "HDR10 wsparcie"
-
 msgid "HELP"
 msgstr "HELP"
 
@@ -9953,9 +9960,6 @@ msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "HI-oczyszczanie zewnętrznych napisów"
-
-msgid "HLG Support"
-msgstr "HLG Wsparcie"
 
 msgid "Haiti"
 msgstr "Haiti"
@@ -10015,7 +10019,7 @@ msgid "Hardware type"
 msgstr "Typ sprzętu"
 
 msgid "Hardware video mode"
-msgstr ""
+msgstr "Sprzętowy tryb wideo"
 
 msgid "Hausa"
 msgstr "Hausa"
@@ -10108,7 +10112,7 @@ msgid "Hide InfoBar"
 msgstr "Ukryj pasek informacyjny"
 
 msgid "Hide OSD after"
-msgstr ""
+msgstr "Ukryj OSD po"
 
 msgid "Hide VBI Line For This Service"
 msgstr "Ukryj linię VBI dla tego kanału"
@@ -10144,7 +10148,7 @@ msgid "Hide the InfoBar"
 msgstr "Ukryj pasek informacyjny"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
-msgstr ""
+msgstr "Ukryj OSD po określonym czasie bez naciskania przycisków. Ekrany i zadania w tle nadal działają. Pierwsze naciśnięcie przycisku jedynie przywraca OSD, a otwarcie nowego okna dialogowego również powoduje jego wyświetlenie. Przytrzymaj 0, aby wstrzymać automatyczne ukrywanie do następnego restartu GUI, lub przytrzymaj 0 ponownie, aby je wznowić."
 
 msgid "Hide zap errors"
 msgstr "Ukryj komunikaty błędów przy przełączaniu"
@@ -10215,7 +10219,7 @@ msgstr "Hmong"
 msgid "Hockey"
 msgstr "Hokej"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr "Wstrzymaj pierwszą ramkę"
 
 msgid "Hold screen"
@@ -11557,7 +11561,7 @@ msgid "Lesotho"
 msgstr "Lesoto"
 
 msgid "Let other programs set the CPU frequency."
-msgstr ""
+msgstr "Pozwól innym programom ustawiać częstotliwość procesora."
 
 msgid "Let the tuner select its RF gain automatically."
 msgstr "Pozwól tunerowi automatycznie dobrać wzmocnienie RF."
@@ -11720,7 +11724,7 @@ msgstr "Załaduj niepowiązane listy kanałów"
 
 #, python-format
 msgid "Load: %s %%"
-msgstr ""
+msgstr "Obciążenie: %s %%"
 
 msgid "Loading information, please wait..."
 msgstr "Ładowanie informacji, proszę czekać..."
@@ -12073,7 +12077,7 @@ msgid "Manual Service Searching"
 msgstr "Ręczne wyszukiwanie kanałów"
 
 msgid "Manual resolution"
-msgstr ""
+msgstr "Ręczny wybór rozdzielczości"
 
 msgid "Manual scan for services"
 msgstr "Ręczne skanowanie kanałów"
@@ -13029,6 +13033,9 @@ msgstr "Nawigacja i Przypisanie Przycisków"
 msgid "Navigation And Time Range"
 msgstr "Nawigacja i Zakres Czasu"
 
+msgid "Ndebele"
+msgstr "Ndebele"
+
 msgid "Ndonga"
 msgstr "Ndonga"
 
@@ -13894,10 +13901,10 @@ msgid "OSD Setup"
 msgstr "Ustawienia OSD"
 
 msgid "OSD auto-hide enabled."
-msgstr ""
+msgstr "Automatyczne ukrywanie OSD włączone."
 
 msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
-msgstr ""
+msgstr "Automatyczne ukrywanie OSD wstrzymane do następnego restartu interfejsu graficznego. Przytrzymaj 0, aby je wznowić."
 
 msgid "OSD name request"
 msgstr "Żądanie nazwy OSD"
@@ -14191,7 +14198,7 @@ msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Otwórz wirtualną klawiaturę, aby wpisać tekst"
 
 msgid "Open the additional screens"
-msgstr ""
+msgstr "Otwórz dodatkowe ekrany"
 
 msgid "Open the context menu"
 msgstr "Otwórz menu kontekstowe"
@@ -14672,7 +14679,7 @@ msgid "PiP"
 msgstr "PiP"
 
 msgid "PiP (no HDR)"
-msgstr ""
+msgstr "PiP (bez HDR)"
 
 msgid "PiP with OSD"
 msgstr "PiP z OSD"
@@ -15804,7 +15811,7 @@ msgid "RAM benchmark"
 msgstr "Test wydajności pamięci RAM"
 
 msgid "RAM temperature"
-msgstr ""
+msgstr "Temperatura RAM"
 
 msgid "RC custom code"
 msgstr "Niestandardowy kod RC"
@@ -15888,13 +15895,13 @@ msgid "Radio Channel Selection Actions"
 msgstr "Akcje związane z wyborem kanału radiowego"
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
-msgstr ""
+msgstr "Stopniowo zwiększaj i zmniejszaj częstotliwość procesora w zależności od obciążenia."
 
 msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
-msgstr ""
+msgstr "Szybko zwiększaj częstotliwość procesora pod obciążeniem i zmniejszaj ją, gdy procesor jest bezczynny."
 
 msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
-msgstr ""
+msgstr "Zwiększaj częstotliwość procesora do maksymalnej pod obciążeniem i stopniowo zmniejszaj ją, gdy procesor jest bezczynny."
 
 msgid "Random"
 msgstr "Losowo"
@@ -16527,7 +16534,7 @@ msgid "Renovation"
 msgstr "Renowacja"
 
 msgid "Reopen tuner when changing delivery system"
-msgstr ""
+msgstr "Otwieraj ponownie tuner przy zmianie systemu odbioru"
 
 msgid "Repeat"
 msgstr "Powtórz"
@@ -17026,6 +17033,9 @@ msgstr "Rosyjski"
 msgid "Russian Federation"
 msgstr "Rosja"
 
+msgid "Rusyn"
+msgstr "Rusiński"
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -17443,7 +17453,7 @@ msgid "Scheduler standby"
 msgstr "Programator czuwania"
 
 msgid "Schedutil (recommended)"
-msgstr ""
+msgstr "Schedutil (zalecany)"
 
 msgid "Science"
 msgstr "Nauka"
@@ -17535,9 +17545,6 @@ msgstr "Pomocniczy DNS (IPv4)"
 msgid "Secondary DNS (IPv6)"
 msgstr "Pomocniczy DNS (IPv6)"
 
-msgid "Seconds"
-msgstr "Sekundy"
-
 msgid "Security Packages"
 msgstr "Pakiety bezpieczeństwa"
 
@@ -17617,7 +17624,7 @@ msgid "Select 'Unique numbering' to assign unique numbers for every service in e
 msgstr "Wybierz opcję 'Unikalna numeracja', aby przypisać unikalne numery do każdego kanału w każdej liście kanałów. Użyj opcji 'Listy kanałów zaczynają się od 1', aby rozpocząć numerację każdej listy od 1. Użyj opcji 'Numerowanie LCN', aby używać spójnych numerów LCN kanałów wszędzie tam, gdzie używany jest ten kanał."
 
 msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
-msgstr ""
+msgstr "Wybierz 'Tak', jeśli tuner obsługujący wiele standardów nie może dostroić kanału po przełączeniu między odbiorem satelitarnym, kablowym i naziemnym. Tuner zostanie zamknięty i ponownie otwarty po każdym przełączeniu. Jest to potrzebne tylko w przypadku niektórych starszych sterowników tunera."
 
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Wybierz opcję 'Tak', jeśli dla tego timera wymagana jest godzina zakończenia."
@@ -17642,9 +17649,6 @@ msgstr "Wybierz 'Tak', jeśli chcesz, aby telewizor wybudzał się po uruchomien
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeśli jest ustawione na 'tak' pasek informacyjny pozostanie wyświetlany na stałe w stanie 'pauzy' (bez timeoutu)."
-
-msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
-msgstr ""
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Wybierz 'Tak', aby umożliwić serwerowi VPS dostosowywanie timerów nagrywania na podstawie danych z kontroli dostarczania programów (PDC) transmisji. Aby to działało, usługa musi dostarczać wiarygodne dane PDC zdarzeń."
@@ -17862,11 +17866,8 @@ msgstr "Wybierz 'Tak', aby natychmiast wyłączyć urządzenie zamiast rozpoczyn
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
 
-msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
-msgstr ""
-
 msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
-msgstr ""
+msgstr "Wybierz 'Tak', aby traktować strumienie i pliki multimedialne z przeplotem jako progresywne. Ustawienie nie wpływa na kanały DVB ani nagrania. Pomaga w przypadku strumieni błędnie oznaczonych jako materiał z przeplotem."
 
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Wybierz 'Tak', aby użyć danych PDC, jeśli są dostępne w bieżącej usłudze, w celu dokładnego zatrzymania natychmiastowego nagrywania po zakończeniu zdarzenia."
@@ -18146,6 +18147,9 @@ msgstr "Wybierz sposób obsługi harmonogramu w odniesieniu do trybu czuwania."
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Wybierz sposób aktywacji trybu szybkiego EPG."
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr "Wybierz sposób synchronizacji sygnału po zmianie kanału."
+
 msgid "Select how to sort the timer list."
 msgstr "Wybierz sposób sortowania listy timerów."
 
@@ -18249,6 +18253,9 @@ msgstr "Wybierz kolejność sortowania plików tymczasowych dla bieżącej kolum
 msgid "Select the %s entry"
 msgstr "Wybierz wpis %s"
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr "Wybierz tryb %s używany z telewizorem lub monitorem obsługującym HDR, podłączonym przez HDMI."
+
 msgid "Select the AI-Powered Translation target language."
 msgstr "Wybierz język docelowy tłumaczenia AI."
 
@@ -18256,7 +18263,10 @@ msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve
 msgstr "Wybierz serwer(y) DNS, które będą używane do wyszukiwania nazw hostów w celu rozwiązywania adresów IP."
 
 msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
-msgstr ""
+msgstr "Wybierz przestrzeń barw HDMI używaną podczas wyświetlania treści HDR. Ta opcja jest stosowana tylko wtedy, gdy ustawienie 'Przestrzeń barw HDMI' ma wartość 'Auto'."
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
+msgstr "Wybierz tryb HDR używany z telewizorem lub monitorem obsługującym UHD, podłączonym przez HDMI."
 
 msgid "Select the No / False response"
 msgstr "Wybierz odpowiedź jako Nie/Fałsz"
@@ -18350,6 +18360,9 @@ msgstr "Wybierz znak lub akcję pod kursorem klawiatury"
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr "Wybierz zestaw znaków (iocharset), który będzie używany do dopasowywania/tłumaczenia zdalnych nazw plików."
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr "Wybierz głębię kolorów używaną z telewizorem lub monitorem obsługującym UHD, podłączonym przez HDMI."
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Wybierz kolor diody LED zasilania na panelu przednim, gdy odbiornik jest włączony. Ta opcja umożliwia również dezaktywację/wyłączenie diody LED."
 
@@ -18359,8 +18372,14 @@ msgstr "Wybierz kolor diody LED zasilania na przednim panelu, gdy odbiornik znaj
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr "Wybierz kolor diody LED zasilania na panelu przednim, gdy odbiornik jest w trybie czuwania. Ta opcja umożliwia również dezaktywację/wyłączenie diody LED."
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr "Wybierz przestrzeń barw używaną z telewizorem lub monitorem podłączonym przez HDMI."
+
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Wybierz kolor, który będzie używany dla tekstu tłumaczenia AI."
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
+msgstr "Wybierz przestrzeń barw używaną z telewizorem lub monitorem obsługującym HDR, podłączonym przez HDMI."
 
 msgid "Select the committed switch port connected to the horizontal LNB."
 msgstr "Wybierz port przełącznika DiSEqC (committed) podłączony do konwertera LNB polaryzacji poziomej."
@@ -18407,14 +18426,14 @@ msgstr "Wybierz datę rozpoczęcia tego timera."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Wybierz dzień tygodnia, w którym ten timer będzie aktywowany."
 
-msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
-msgstr ""
-
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Wybierz domyślny katalog, który będzie używany, jeśli katalog w lewej kolumnie nie został zapisany."
 
 msgid "Select the default directory to be used if the right column directory is not saved."
 msgstr "Wybierz domyślny katalog, który będzie używany, jeśli katalog w prawej kolumnie nie został zapisany."
+
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
+msgstr "Wybierz tryb usuwania przeplotu używany przez dekoder wideo. Opcja 'Auto' pozwala sterownikowi zdecydować o wyborze trybu."
 
 msgid "Select the delay before the timer activates."
 msgstr "Wybierz opóźnienie przed aktywacją timera."
@@ -18476,7 +18495,7 @@ msgid "Select the function to be assigned to this button."
 msgstr "Zezwól na przypisanie wybranej funkcji do tego przycisku."
 
 msgid "Select the highest frequency these CPU cores may run at."
-msgstr ""
+msgstr "Wybierz maksymalną częstotliwość pracy tych rdzeni procesora."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Wybierz podświetlony systemu i kontynuuj z wyborem slotu"
@@ -18515,7 +18534,7 @@ msgid "Select the location where the picon files will be installed."
 msgstr "Wybierz lokalizację, w której zostaną zainstalowane pliki pikon."
 
 msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
-msgstr ""
+msgstr "Wybierz minimalną częstotliwość pracy tych rdzeni procesora. Ta częstotliwość jest również używana w trybie czuwania."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Wybierz producenta urządzenia SCR. Jeśli producent nie znajduje się na liście, ustaw opcję 'SCR' na 'Własne' i wprowadź parametry urządzenia ręcznie zgodnie z jego specyfikacją."
@@ -18713,8 +18732,8 @@ msgstr "Wybierz typ klawiatury aktualnie podłączonej do %s %s."
 msgid "Select the type of this timer."
 msgstr "Wybierz typ tego timera."
 
-msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
-msgstr ""
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
+msgstr "Wybierz tryb wideo układu sprzętowego. Obraz w obrazie (PiP) i 12-bitowe wyjście HDR nie mogą działać jednocześnie — wybierz, co włączyć."
 
 msgid "Select the video mode to be used on the TV."
 msgstr "Wybierz tryb wideo dla TV."
@@ -18920,6 +18939,9 @@ msgstr "Serbia"
 
 msgid "Serbian"
 msgstr "Serbski"
+
+msgid "Serbo-Croatian"
+msgstr "Serbsko-chorwacki"
 
 msgid "Serial No"
 msgstr "Nr seryjny"
@@ -19181,7 +19203,7 @@ msgid "Set system"
 msgstr "Ustaw system"
 
 msgid "Set the CPU frequencies and the governor"
-msgstr ""
+msgstr "Ustaw częstotliwości procesora i tryb zarządzania nimi"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Ustaw interwał czasowy przewijania w Edytorze listy cięć dla przycisków '%s'/'%s'."
@@ -19576,9 +19598,6 @@ msgstr "Czy wyzerować licznik awarii, aby zapobiec ponownemu uruchomieniu?"
 
 msgid "Show"
 msgstr "Pokaż"
-
-msgid "Add 'Manual resolution' to Extensions"
-msgstr ""
 
 msgid "Show 1080p 24fps as"
 msgstr "Pokaż 1080p 24fps jako"
@@ -20228,7 +20247,7 @@ msgid "Show the OSCam information screen"
 msgstr "Pokaż ekran informacyjny OSCam"
 
 msgid "Show the about screen"
-msgstr ""
+msgstr "Pokaż ekran informacji"
 
 msgid "Show the last opkg command's output"
 msgstr "Pokaż dane wyjściowe ostatniego polecenia opkg"
@@ -20430,7 +20449,7 @@ msgid "Skin Settings"
 msgstr "Ustawienia skórki"
 
 msgid "Skin Setup Actions"
-msgstr ""
+msgstr "Akcje ustawień skórki"
 
 msgid "Skin setting"
 msgstr "Ustawienia skórki"
@@ -20659,7 +20678,7 @@ msgstr "Słoweński"
 msgid "Slow"
 msgstr "Wolno"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr "Zwolnione tempo"
 
 msgid "Slow motion speeds"
@@ -20997,6 +21016,9 @@ msgstr "Sporty"
 
 msgid "Sports magazines"
 msgstr "Magazyn sportowy"
+
+msgid "Sranan Tongo"
+msgstr "Sranan Tongo"
 
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
@@ -21562,7 +21584,7 @@ msgid "Switch EPG Page Up"
 msgstr "Przełącz stronę EPG w górę"
 
 msgid "Switch HDR type by content"
-msgstr ""
+msgstr "Przełączaj typ HDR według treści"
 
 msgid "Switch TV to correct input"
 msgstr "Przełącz TV na właściwe wejście"
@@ -21945,7 +21967,7 @@ msgid "Text"
 msgstr "Tekst"
 
 msgid "Text Box"
-msgstr ""
+msgstr "Pole tekstowe"
 
 msgid "Text color"
 msgstr "Kolor tekstu"
@@ -22434,7 +22456,7 @@ msgid "This channel is currently off air."
 msgstr "Ten kanał obecnie nie nadaje."
 
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
-msgstr ""
+msgstr "Ten kanał wymaga wtyczki HbbTV. Zainstaluj zgodną wtyczkę HbbTV."
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -22492,9 +22514,6 @@ msgstr "Ta opcja pozwala na zwiększenie niebieskiego tonu w obrazie."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Ta opcja pozwala na zwiększenie zielonego tonu w obrazie."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Opcja ta umożliwia pominięcie sprawdzania HDMI EDID."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Ta opcja pozwala na zmianę położenia/obciążenia głośników."
@@ -22559,32 +22578,8 @@ msgstr "Opcja ta umożliwia wybranie, do którego przycisku na ekranie listy kan
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Opcja ta umożliwia wybranie, czy wyświetlać informacje o gatunku wydarzenia."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Opcja ta umożliwia skonfigurowanie głębi kolorów dla rozdzielczości UHD."
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Opcja ta umożliwia konfigurację kolorymetrii dla HDR."
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Opcja ta umożliwia skonfigurowanie przestrzeni kolorów z Auto na RGB."
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ta opcja umożliwia włączenie dźwięku przestrzennego 3D."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Opcja ta umożliwia włączenie lub wyłączenie 10-bitowego trybu koloru."
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Opcja ta umożliwia włączenie lub wyłączenie 12-bitowego trybu koloru."
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Opcja ta umożliwia wymuszenie trybów HDR dla rozdzielczości UHD."
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Opcja ta umożliwia wymuszenie trybów HDR10 dla rozdzielczości UHD."
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Opcja ta umożliwia wymuszenie trybów HLG dla UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Ta opcja umożliwia ustawienie wartości przesunięcia dla różnych rozdzielczości Letterbox."
@@ -22835,7 +22830,7 @@ msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Okno czasowe wykrywania budzenia przez timer [min]"
 
 msgid "Time without key presses before hiding the OSD."
-msgstr ""
+msgstr "Czas bez naciskania klawiszy, po którym OSD zostanie ukryte."
 
 msgid "Time zone"
 msgstr "Strefa czasowa"
@@ -23548,7 +23543,7 @@ msgid "Unable to start the DAB+ feed"
 msgstr "Nie można nastroić sygnału DAB+"
 
 msgid "Unable to start the HbbTV application."
-msgstr ""
+msgstr "Nie można uruchomić aplikacji HbbTV."
 
 msgid "Unable to start the local image search. Please try again later."
 msgstr "Nie można uruchomić wyszukiwania lokalnych obrazów systemu. Spróbuj ponownie później."
@@ -24124,7 +24119,7 @@ msgid "User Manual"
 msgstr "Instrukcja obsługi"
 
 msgid "User Manual Actions"
-msgstr ""
+msgstr "Akcje instrukcji obsługi"
 
 msgid "User comments"
 msgstr "Komentarze użytkownika"
@@ -24677,7 +24672,7 @@ msgid "Weather"
 msgstr "Pogoda"
 
 msgid "Weather settings"
-msgstr ""
+msgstr "Ustawienia pogody"
 
 msgid "Web Interface"
 msgstr "Interfejs Web"
@@ -24837,14 +24832,23 @@ msgstr "Po włączeniu tej opcji każde wykryte urządzenie pamięci masowej bę
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr "Po włączeniu odbiornik będzie można włączyć zdalnie za pomocą sygnału Wake-on-LAN (Magic Packet)."
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr "Po włączeniu umożliwia korzystanie z %s-bitowego trybu kolorów."
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 3."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 4."
 
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr "Po włączeniu do menu rozszerzeń zostanie dodana opcja 'Ręczna rozdzielczość', umożliwiająca szybką zmianę trybu wideo dla aktualnie odtwarzanego materiału."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Jeśli włączone, będzie wymagana autoryzacja do oglądania strumieni http."
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr "Po włączeniu pomija sprawdzanie danych EDID HDMI."
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr "Po włączeniu podczas nawiązywania połączenia przez adapter Wi-Fi będzie podejmowana próba połączenia z zapisaną siecią."
@@ -24908,6 +24912,9 @@ msgstr "Po włączeniu tej opcji możliwe będzie korzystanie z napisów dla os�
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Po włączeniu tej opcji napisy dla osób niedosłyszących będą preferowane w stosunku do napisów normalnych, o ile dostępne są oba typy napisów."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr "Po włączeniu automatycznie dostosowuje tryb HDMI (HDR10, HLG lub SDR) do informacji HDR aktualnie odtwarzanego materiału."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Po włączeniu, strony telegazety będą buforowane, co spowoduje ich szybsze ładowanie."
@@ -25591,7 +25598,7 @@ msgid "activatePiP"
 msgstr "Włącz PiP"
 
 msgid "active (GLES enabled)"
-msgstr ""
+msgstr "aktywny (GLES włączone)"
 
 msgid "address:"
 msgstr "adres:"
@@ -26045,7 +26052,7 @@ msgid "search EPG..."
 msgstr "szukaj w EPG..."
 
 msgid "seconds"
-msgstr ""
+msgstr "sekundy"
 
 msgid "select CAId's"
 msgstr "Wybierz CAId'y"
@@ -26102,7 +26109,7 @@ msgid "successful"
 msgstr "pomyślnie"
 
 msgid "suspended (GLES disabled)"
-msgstr ""
+msgstr "wstrzymany (GLES wyłączone)"
 
 msgid "switch 12 to 8 character display mode"
 msgstr "przełącz tryb wyświetlania z 12 do 8 znaków"
@@ -26147,7 +26154,7 @@ msgid "this recording"
 msgstr "to nagranie"
 
 msgid "throttled"
-msgstr ""
+msgstr "ograniczony"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "czas odtwarzania, rozdział, audio, informacje o napisach"
@@ -26236,6 +26243,48 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "Pozwól 10bit"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "Pozwól 12bit"
+
+#~ msgid "HDR10 support"
+#~ msgstr "HDR10 wsparcie"
+
+#~ msgid "HLG support"
+#~ msgstr "HLG Wsparcie"
+
+#~ msgid "Seconds"
+#~ msgstr "Sekundy"
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "Opcja ta umożliwia pominięcie sprawdzania HDMI EDID."
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Opcja ta umożliwia skonfigurowanie głębi kolorów dla rozdzielczości UHD."
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Opcja ta umożliwia konfigurację kolorymetrii dla HDR."
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "Opcja ta umożliwia skonfigurowanie przestrzeni kolorów z Auto na RGB."
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Opcja ta umożliwia włączenie lub wyłączenie 10-bitowego trybu koloru."
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Opcja ta umożliwia włączenie lub wyłączenie 12-bitowego trybu koloru."
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Opcja ta umożliwia wymuszenie trybów HDR dla rozdzielczości UHD."
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Opcja ta umożliwia wymuszenie trybów HDR10 dla rozdzielczości UHD."
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Opcja ta umożliwia wymuszenie trybów HLG dla UHD."
 
 #~ msgid "12bit 4:2:0/4:2:2 no PiP"
 #~ msgstr "12-bit 4:2:0/4:2:2 bez PiP"

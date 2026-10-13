@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 14:55+0000\n"
+"POT-Creation-Date: 2026-10-12 19:03+0000\n"
 "PO-Revision-Date: 2026-08-17 05:14+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1290,6 +1290,9 @@ msgstr "%s длинный"
 msgid "%s not available."
 msgstr "%s недоступно."
 
+msgid "%s support"
+msgstr ""
+
 #, python-format
 msgid "%s version"
 msgstr "%s версия"
@@ -1978,6 +1981,9 @@ msgstr "Настройка адаптера"
 msgid "Add"
 msgstr "Добавить"
 
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
+
 msgid "Add Alternatives"
 msgstr "Добавить альтернативы"
 
@@ -2397,11 +2403,8 @@ msgstr "Выделить"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Присвойте номер физическому LNB, который настраиваете. Вы сможете повторно выбрать этот конвертер для других спутников (например, при использовании моторизованных антенн), чтобы не настраивать один и тот же LNB несколько раз."
 
-msgid "Allow 10bit"
-msgstr "Разрешить 10 бит"
-
-msgid "Allow 12bit"
-msgstr "Разрешить 12 бит"
+msgid "Allow %s-bit"
+msgstr ""
 
 msgid "Allow guest access"
 msgstr ""
@@ -3148,6 +3151,9 @@ msgstr "Скорость удаления в фоновом режиме"
 msgid "Background selected:"
 msgstr "Фон выбран:"
 
+msgid "Background sound/clean feed"
+msgstr ""
+
 msgid "Background:"
 msgstr "Фон:"
 
@@ -3613,7 +3619,7 @@ msgstr "Тайм-аут ошибки кнопки"
 msgid "ButtonSetup"
 msgstr "Кнопки"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "Пропустить проверку HDMI EDID"
 
 msgid "Bytes received"
@@ -6006,6 +6012,9 @@ msgstr "Танец"
 
 msgid "Danish"
 msgstr "Датский"
+
+msgid "Dari"
+msgstr ""
 
 msgid "Darts"
 msgstr ""
@@ -9862,9 +9871,6 @@ msgstr "Список HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI colorimetry"
-msgstr "Цветовое пространство HDMI"
-
 msgid "HDMI HDR Type"
 msgstr "Тип HDMI HDR"
 
@@ -9875,6 +9881,9 @@ msgid "HDMI color depth"
 msgstr "Глубина цвета HDMI"
 
 msgid "HDMI color space"
+msgstr "Цветовое пространство HDMI"
+
+msgid "HDMI colorimetry"
 msgstr "Цветовое пространство HDMI"
 
 msgid "HDMI-CEC Settings"
@@ -9898,9 +9907,6 @@ msgstr "Вход HDMI"
 msgid "HDR OSD adjustment"
 msgstr ""
 
-msgid "HDR10 Support"
-msgstr "Поддержка HDR10"
-
 msgid "HELP"
 msgstr "ПОМОЩЬ"
 
@@ -9915,9 +9921,6 @@ msgstr "ЧЧ:мм:сс"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "Очистка внешних субтитров"
-
-msgid "HLG Support"
-msgstr "Поддержка HLG"
 
 msgid "Haiti"
 msgstr "Гаити"
@@ -10177,7 +10180,7 @@ msgstr "Хмонг"
 msgid "Hockey"
 msgstr "Хоккей"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr "Удержание первого кадра"
 
 msgid "Hold screen"
@@ -12988,6 +12991,9 @@ msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
+msgstr ""
+
+msgid "Ndebele"
 msgstr ""
 
 msgid "Ndonga"
@@ -16980,6 +16986,9 @@ msgstr "Русский"
 msgid "Russian Federation"
 msgstr "Российская Федерация"
 
+msgid "Rusyn"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Руанда"
 
@@ -17489,9 +17498,6 @@ msgstr ""
 msgid "Secondary DNS (IPv6)"
 msgstr ""
 
-msgid "Seconds"
-msgstr "Секунд"
-
 msgid "Security Packages"
 msgstr "Пакеты безопасности"
 
@@ -17596,9 +17602,6 @@ msgstr "Выберите 'Да', если хотите вывести телев
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Если выберете 'Да', то во время паузы инфопанель будет отображаться постоянно без ограничения времени видимости."
-
-msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
-msgstr ""
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Этот плагин может определить, начинается ли программа раньше или длится дольше. Канал должен предоставлять надёжные данные."
@@ -17815,9 +17818,6 @@ msgstr "Выберите 'Да', чтобы немедленно заверши�
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Выберите 'Да', чтобы разделить задачи на отдельные действия."
-
-msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
-msgstr ""
 
 msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
 msgstr ""
@@ -18100,6 +18100,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Выбор активации режима быстрого ТВ-гида."
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr ""
+
 msgid "Select how to sort the timer list."
 msgstr ""
 
@@ -18203,6 +18206,9 @@ msgstr "Выберите временный порядок сортировки 
 msgid "Select the %s entry"
 msgstr "Выберите элемент %s"
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr ""
+
 msgid "Select the AI-Powered Translation target language."
 msgstr "Настройте язык перевода на основе искусственного интеллекта."
 
@@ -18210,6 +18216,9 @@ msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve
 msgstr "Выберите источник настроек DNS по умолчанию."
 
 msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -18304,6 +18313,9 @@ msgstr "Выберите символ или действие под курсо�
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
@@ -18313,8 +18325,14 @@ msgstr ""
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr ""
+
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Настройте цвет переводов с помощью искусственного интеллекта."
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
+msgstr ""
 
 msgid "Select the committed switch port connected to the horizontal LNB."
 msgstr ""
@@ -18361,14 +18379,14 @@ msgstr "Выберите дату запуска этого таймера."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Выберите день недели, в который будет активироваться этот таймер."
 
-msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
-msgstr ""
-
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Выберите каталог по умолчанию, который будет использоваться, если каталог левого столбца не сохранён."
 
 msgid "Select the default directory to be used if the right column directory is not saved."
 msgstr "Выберите каталог по умолчанию, который будет использоваться, если каталог правого столбца не сохранён."
+
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
+msgstr ""
 
 msgid "Select the delay before the timer activates."
 msgstr "Выберите задержку перед активацией таймера."
@@ -18667,7 +18685,7 @@ msgstr "Выберите тип клавиатуры, подключённой �
 msgid "Select the type of this timer."
 msgstr "Выберите тип этого таймера."
 
-msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV."
@@ -18874,6 +18892,9 @@ msgstr "Сербия"
 
 msgid "Serbian"
 msgstr "Сербский"
+
+msgid "Serbo-Croatian"
+msgstr ""
 
 msgid "Serial No"
 msgstr "Сериал номер"
@@ -19527,9 +19548,6 @@ msgstr "Следует ли сбросить счётчик сбоев, чтоб
 
 msgid "Show"
 msgstr "Показать"
-
-msgid "Add 'Manual resolution' to Extensions"
-msgstr ""
 
 msgid "Show 1080p 24fps as"
 msgstr "Показывать 1080p 24fps как"
@@ -20610,7 +20628,7 @@ msgstr "Словенский"
 msgid "Slow"
 msgstr "Медленно"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr "Замедленная съёмка"
 
 msgid "Slow motion speeds"
@@ -20947,6 +20965,9 @@ msgstr "Спорт"
 
 msgid "Sports magazines"
 msgstr "Спортивный журнал"
+
+msgid "Sranan Tongo"
+msgstr ""
 
 msgid "Sri Lanka"
 msgstr "Шри-Ланка"
@@ -22436,9 +22457,6 @@ msgstr "Эта опция позволяет усилить синие тона 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Эта опция позволяет усилить зелёные тона в картинке."
 
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Эта опция позволяет пропускать проверку HDMI EDID"
-
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Эта опция позволяет изменять положение виртуального динамика."
 
@@ -22502,32 +22520,8 @@ msgstr "Этот параметр определяет, куда будет пр
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Эта опция позволяет Вам выбрать, отображать ли информацию о жанре для события."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Эта опция позволяет изменять глубину цвета в режиме UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Эта опция позволяет настроить цветопередачу для HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Эта опция позволяет настроить цветовое пространство от Авто до RGB"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Позволяет включить поддержку объемного звука 3D."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Этот параметр позволяет включить или выключить 10-битный цветовой режим"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Эта опция позволяет включить или отключить 12-битный цветовой режим"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Эта опция позволяет принудительно установить режимы HDR для UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Эта опция позволяет принудительно установить режимы HDR10 для UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Эта опция позволяет принудительно установить режимы HLG для UHD"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Этот параметр позволяет задать значения компенсации масштаба для различных разрешений в режиме ящика."
@@ -24780,14 +24774,23 @@ msgstr "Выберите 'Да', чтобы разрешить автомати�
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr ""
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Если включено, требуется аутентификация для просмотра HTTP потока."
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr ""
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr ""
@@ -24851,6 +24854,9 @@ msgstr "Включение субтитров для людей с наруше�
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Отдавать предпочтение субтитрам для людей с нарушениями слуха вместо обычных, когда доступны оба типа субтитров."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Когда функция включена, страницы телетекста будут храниться в кэше для быстрого доступа."
@@ -26179,6 +26185,48 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "Разрешить 10 бит"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "Разрешить 12 бит"
+
+#~ msgid "HDR10 support"
+#~ msgstr "Поддержка HDR10"
+
+#~ msgid "HLG support"
+#~ msgstr "Поддержка HLG"
+
+#~ msgid "Seconds"
+#~ msgstr "Секунд"
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "Эта опция позволяет пропускать проверку HDMI EDID"
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Эта опция позволяет изменять глубину цвета в режиме UHD"
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Эта опция позволяет настроить цветопередачу для HDR"
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "Эта опция позволяет настроить цветовое пространство от Авто до RGB"
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Этот параметр позволяет включить или выключить 10-битный цветовой режим"
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Эта опция позволяет включить или отключить 12-битный цветовой режим"
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Эта опция позволяет принудительно установить режимы HDR для UHD"
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Эта опция позволяет принудительно установить режимы HDR10 для UHD"
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Эта опция позволяет принудительно установить режимы HLG для UHD"
 
 #~ msgid "12bit 4:2:0/4:2:2 no PiP"
 #~ msgstr "12bit 4:2:0/4:2:2 без PIP"

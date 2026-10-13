@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 14:55+0000\n"
-"PO-Revision-Date: 2026-10-12 14:44+0000\n"
+"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"PO-Revision-Date: 2026-10-13 15:52+0000\n"
 "Last-Translator: mcilo <mcilo@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -1249,6 +1249,9 @@ msgstr "%s uzun"
 msgid "%s not available."
 msgstr "%s mevcut değil."
 
+msgid "%s support"
+msgstr "%s desteği"
+
 #, python-format
 msgid "%s version"
 msgstr "%s versiyon"
@@ -1978,6 +1981,9 @@ msgstr "Bağdaştırıcı Ayarları"
 msgid "Add"
 msgstr "Ekle"
 
+msgid "Add 'Manual resolution' to Extensions"
+msgstr "Uzantılar menüsünde 'Manuel çözünürlük'ü göster"
+
 #
 msgid "Add Alternatives"
 msgstr "Alternatif Kanal Ekle"
@@ -2426,11 +2432,8 @@ msgstr "Atamak"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Yapılandırdığınız fiziksel LNB'ye bir numara atayın. Bu sayede, aynı LNB'yi birden fazla kez kurmaktan tasarruf etmek için diğer uydular (örneğin motorlu çanak antenler) için de bu LNB'yi tekrar seçebileceksiniz."
 
-msgid "Allow 10bit"
-msgstr "10 bit'e izin ver"
-
-msgid "Allow 12bit"
-msgstr "12 bit'e izin ver"
+msgid "Allow %s-bit"
+msgstr "%s-bite izin ver"
 
 msgid "Allow guest access"
 msgstr "Konuk erişimine izin ver"
@@ -3208,6 +3211,9 @@ msgstr "Arka plan silme hızı"
 msgid "Background selected:"
 msgstr "Seçilen arka plan:"
 
+msgid "Background sound/clean feed"
+msgstr "Arka plan sesi / temiz yayın sinyali"
+
 #
 msgid "Background:"
 msgstr "Arka plan:"
@@ -3692,7 +3698,7 @@ msgstr "Tuş basma hatası zaman aşımı"
 msgid "ButtonSetup"
 msgstr "Tuş Kurulumu"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "HDMI EDID Kontrolünü atla"
 
 msgid "Bytes received"
@@ -4768,7 +4774,7 @@ msgid "Close the screen and stop a running scan"
 msgstr "Ekranı kapatın ve devam eden taramayı durdurun"
 
 msgid "Close the screen without saving any changes"
-msgstr "Herhangi bir değişiklik kaydetmeden ekranı kapatın"
+msgstr "Herhangi bir değişiklik kaydetmeden ekranı kapat"
 
 msgid "Close the window"
 msgstr "Pencereyi kapat"
@@ -5439,7 +5445,7 @@ msgid "Content does not fit on DVD!"
 msgstr "İçerik DVD'ye sığmıyor!"
 
 msgid "Context"
-msgstr "Bağlam"
+msgstr "İçerik"
 
 msgid "Continent"
 msgstr "Kıta"
@@ -6180,6 +6186,9 @@ msgstr "Dans"
 msgid "Danish"
 msgstr "Danca"
 
+msgid "Dari"
+msgstr "Dari"
+
 msgid "Darts"
 msgstr "Dartlar"
 
@@ -6505,7 +6514,7 @@ msgid "Define path %s for picons."
 msgstr "Pikonlar için %s yolunu tanımlayın."
 
 msgid "Define the custom mountpoint for the device."
-msgstr "Cihaz için özel bağlama noktasını tanımlayın."
+msgstr "Cihaz için özel bağlantı noktasını tanımlayın."
 
 msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr "Varsayılan yedekleme hedef konumunu tanımlayın. Yedekleme çalıştırıldığında kullanıcıdan hedef konumu istemek için 'Kullanıcıya sor' seçeneğini işaretleyin."
@@ -8808,7 +8817,7 @@ msgid "Error: You can't run '%s' on a directory!"
 msgstr "Hata: '%s' komutunu bir dizin üzerinde çalıştıramazsınız!"
 
 msgid "Error: mount not successful!"
-msgstr "Hata: Bağlama işlemi başarılı olmadı!"
+msgstr "Hata: Bağlantı işlemi başarılı olmadı!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -10186,9 +10195,6 @@ msgstr "HD listesi"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI colorimetry"
-msgstr "HDMI Kolorimetresi"
-
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR Türü"
 
@@ -10201,6 +10207,9 @@ msgstr "HDMI Renk Derinliği"
 
 msgid "HDMI color space"
 msgstr "HDMI Renk Alanı"
+
+msgid "HDMI colorimetry"
+msgstr "HDMI Kolorimetresi"
 
 msgid "HDMI-CEC Settings"
 msgstr "HDMI-CEC Ayarları"
@@ -10223,14 +10232,11 @@ msgstr "HDMI-IN"
 msgid "HDR OSD adjustment"
 msgstr "HDR OSD ayarı"
 
-msgid "HDR10 Support"
-msgstr "HDR10 Desteği"
-
 msgid "HELP"
 msgstr "YARDIM"
 
 msgid "HELP provides brief information for buttons in your current context."
-msgstr "YARDIM bulunduğunuz bağlamdaki tuşlar hakkında kısa bilgiler sağlar."
+msgstr "YARDIM, mevcut içeriğinizdeki tuşlar hakkında kısa bilgiler sunar."
 
 msgid "HH:mm"
 msgstr "SS: dd"
@@ -10240,9 +10246,6 @@ msgstr "SS: dd: ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "Harici altyazılarda işitme engelliler için metin temizleme"
-
-msgid "HLG Support"
-msgstr "HLG Desteği"
 
 #
 msgid "Haiti"
@@ -10511,7 +10514,7 @@ msgstr "Hmong"
 msgid "Hockey"
 msgstr "Hokey"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr "İlk Kareyi Tutun"
 
 msgid "Hold screen"
@@ -12952,7 +12955,7 @@ msgid "Move down a screen"
 msgstr "Ekranda aşağı hareket et"
 
 msgid "Move down a screen / Move to next item"
-msgstr "Bir ekran aşağı inin / Sonraki öğeye geçin"
+msgstr "Bir ekran aşağı in / Sonraki öğeye geç"
 
 msgid "Move down a screen in the panel"
 msgstr "Panelde bir ekran aşağı git"
@@ -13454,6 +13457,9 @@ msgstr "Gezinme ve Tuş Atamaları"
 
 msgid "Navigation And Time Range"
 msgstr "Gezinme ve Zaman Aralığı"
+
+msgid "Ndebele"
+msgstr "Ndebele"
 
 msgid "Ndonga"
 msgstr "Ndonga, Gürcistan Dili"
@@ -14612,10 +14618,10 @@ msgid "Open VideoMode"
 msgstr "Görüntü modunu aç"
 
 msgid "Open context menu"
-msgstr "Bağlam menüsünü aç"
+msgstr "İçerik menüsünü aç"
 
 msgid "Open context menu (contains settings menu)"
-msgstr "Bağlam menüsünü aç (ayarlar menüsünü içerir)"
+msgstr "İçerik menüsünü aç (ayarlar menüsünü içerir)"
 
 msgid "Open event information"
 msgstr "Etkinlik bilgisini aç"
@@ -14675,7 +14681,7 @@ msgid "Open the additional screens"
 msgstr "Ek ekranları aç"
 
 msgid "Open the context menu"
-msgstr "Bağlam menüsünü aç"
+msgstr "İçerik menüsünü aç"
 
 msgid "Open the multi service EPG view"
 msgstr "Çoklu kanal EPG görünümünü aç"
@@ -16176,7 +16182,7 @@ msgid "Protect configuration"
 msgstr "Yapılandırma koruması"
 
 msgid "Protect context menus"
-msgstr "Bağlam menülerini koru"
+msgstr "İçerik menülerini koru"
 
 msgid "Protect extensions menu"
 msgstr "Eklentiler menüsünü koru"
@@ -16993,7 +16999,7 @@ msgid "Remove all cuts and marks"
 msgstr "Tüm kesimleri ve işaretleri kaldırın"
 
 msgid "Remove all network mount data"
-msgstr "Tüm ağ bağlama verilerini kaldır"
+msgstr "Tüm ağ bağlantı verilerini kaldır"
 
 msgid "Remove all other data"
 msgstr "Diğer tüm verileri kaldır"
@@ -17653,6 +17659,9 @@ msgstr "Rusça"
 msgid "Russian Federation"
 msgstr "Rusya Federasyonu"
 
+msgid "Rusyn"
+msgstr "Rusyn"
+
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -18184,10 +18193,6 @@ msgstr "İkincil DNS (IPv4)"
 msgid "Secondary DNS (IPv6)"
 msgstr "İkincil DNS (IPv6)"
 
-#
-msgid "Seconds"
-msgstr "Saniye"
-
 msgid "Security Packages"
 msgstr "Güvenlik Paketleri"
 
@@ -18296,9 +18301,6 @@ msgstr "'Uyandırma' zamanlanmış görevi başladığında TV açılsın istiyo
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Medya oynatımı duraklatıldığında Bilgi Çubuğunun zaman aşımı olmaksızın görüntülenmeye devam etmesi için 'Evet'i seçin."
 
-msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
-msgstr "Geçerli videonun video modunu değiştirmek amacıyla uzantılar menüsüne bir giriş eklemek için 'Evet'i seçin."
-
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "VPS'nin yayın Program Teslim Kontrolü (PDC) verilerine göre kayıt zamanlayıcılarını ayarlamasına izin vermek için 'Evet'i seçin. Bunun çalışması için kanalın güvenilir etkinlik PDC verileri sağlaması gerekir."
 
@@ -18390,7 +18392,7 @@ msgid "Select 'Yes' to remove all media player resume data. Selecting this optio
 msgstr "Tüm medya oynatıcı devam ettirme verilerini kaldırmak için 'Evet'i seçin. Bu seçeneği belirlemek, medya dosyalarının oynatımının en son durdurulduğu yerden devam etmesini sağlayan verileri kaldıracaktır. Kayıtların oynatma konumu etkilenmez."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr "Tüm ağ bağlama verilerini kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi, otomatik bağlamalar dahil tüm ağ verilerini ve bağlantı hesapları ve parolalar dahil ağ bağlantısı verilerini kaldıracaktır. Bu, bu ağ kaynaklarını kullanacak şekilde yapılandırılmışlarsa, bazı Enigma2 işlevlerinin başarısız olmasına neden olabilir."
+msgstr "Tüm ağ bağlantı verilerini kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi, otomatik bağlantılar dahil tüm ağ verilerini ve bağlantı hesapları ve parolalar dahil ağ bağlantısı verilerini kaldıracaktır. Bu, bu ağ kaynaklarını kullanacak şekilde yapılandırılmışlarsa, bazı Enigma2 işlevlerinin başarısız olmasına neden olabilir."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
 msgstr "Yukarıdaki seçenekler kapsamında olmayan tüm diğer dosya ve dizinleri kaldırmak için 'Evet'i seçin."
@@ -18514,9 +18516,6 @@ msgstr "Şifre çözme işlemine başlamak yerine hemen kapatmak için 'Evet'i s
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Görevleri ayrı işlemlere bölmek için 'Evet' seçin."
-
-msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
-msgstr "Geçerli videonun HDR bilgileriyle eşleşecek şekilde HDMI HDR türünü (HDR10, HLG veya SDR) değiştirmek için 'Evet'i seçin."
 
 msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
 msgstr "Gecikmeli akışları ve medya dosyalarını aşamalı olarak işlemek için 'Evet'i seçin. DVB hizmetleri ve kayıtları etkilenmez. Bu, yanlışlıkla gecikmeli olarak işaretlenen akışlar için yardımcı olur."
@@ -18667,10 +18666,10 @@ msgid "Select a network interface to configure, or skip to configure the network
 msgstr "Yapılandırmak istediğiniz ağ arayüzünü seçin veya ağ yapılandırmasını daha sonra sistem ayarlarında yapmak üzere bu adımı atlayın."
 
 msgid "Select a permanent mount point for all devices"
-msgstr "Tüm cihazlar için kalıcı bir bağlama noktası seçin"
+msgstr "Tüm cihazlar için kalıcı bir bağlantı noktası seçin"
 
 msgid "Select a permanent mount point for the current device"
-msgstr "Geçerli cihaz için kalıcı bir bağlama noktası seçin"
+msgstr "Geçerli cihaz için kalıcı bir bağlantı noktası seçin"
 
 msgid "Select a repository commit log to view:"
 msgstr "Görüntülemek istediğiniz depo taahhüt günlüğünü seçin:"
@@ -18805,6 +18804,9 @@ msgstr "Bekleme durumuna ilişkin planlamanın nasıl ele alınacağını seçin
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Hızlı EPG modunu nasıl etkinleştireceğinizi seçin."
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr "Bir kanal değişikliğinden sonra sinyal senkronizasyonunun nasıl ele alınacağını seçin."
+
 msgid "Select how to sort the timer list."
 msgstr "Zamanlayıcı listesinin nasıl sıralanacağını seçin."
 
@@ -18912,6 +18914,9 @@ msgstr "Geçerli sütun için geçici dosya sıralama düzenini seçin"
 msgid "Select the %s entry"
 msgstr "%s girişini seçin"
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr "HDMI bağlantılı HDR özellikli TV/monitörle kullanılacak %s modunu seçin."
+
 msgid "Select the AI-Powered Translation target language."
 msgstr "Yapay zeka destekli çeviri için hedef dili seçin."
 
@@ -18920,6 +18925,9 @@ msgstr "IP adresini çözümlemek için kullanılacak DNS sunucularını seçin.
 
 msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
 msgstr "HDR içeriği gösterilirken kullanılan HDMI renk ölçümünü seçin. Bu seçenek yalnızca 'HDMI Renk Ölçümü' 'Otomatik' olarak ayarlandığında kullanılır."
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
+msgstr "HDMI bağlantılı UHD özellikli TV/monitör için kullanılacak HDR modunu seçin."
 
 msgid "Select the No / False response"
 msgstr "Hayır / Yanlış yanıtını seçin"
@@ -19013,6 +19021,9 @@ msgstr "Klavye imlecinin altındaki karakteri veya işlemi seçin"
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr "Uzak dosya adlarını eşleştirmek/çevirmek için kullanılacak karakter setini (iocharset) seçin."
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr "HDMI ile bağlanan UHD özellikli TV/monitörde kullanılacak renk derinliğini seçin."
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Alıcı çalışırken ön paneldeki güç LED'inin rengini seçin. Bu seçenek ayrıca LED'in devre dışı bırakılmasına/kapatılmasına da olanak tanır."
 
@@ -19022,8 +19033,14 @@ msgstr "Derin Bekleme modunda LED rengi."
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr "Alıcı bekleme modundayken ön paneldeki güç LED'inin rengini seçin. Bu seçenek ayrıca LED'in devre dışı bırakılmasına/kapatılmasına da olanak tanır."
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr "HDMI ile bağlanan TV/monitörde kullanılacak renk alanını seçin."
+
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Yapay zeka destekli çeviri metni için kullanılacak rengi seçin."
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
+msgstr "HDMI ile bağlanan HDR özellikli TV/monitörle kullanılacak renk ölçüm sistemini seçin."
 
 msgid "Select the committed switch port connected to the horizontal LNB."
 msgstr "Yatay LNB'ye bağlı olan anahtar bağlantı noktasını seçin."
@@ -19070,14 +19087,14 @@ msgstr "Bu zamanlayıcının başlayacağı tarihi seçin."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Bu zamanlayıcının etkinleştirileceği haftanın gününü seçin."
 
-msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
-msgstr "Video kod çözücünün Taramasızlaştırma (de-interlacing) modunu seçin. 'Otomatik' seçeneği, kararı sürücüye bırakır."
-
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Sol sütun dizini kaydedilmemişse kullanılacak varsayılan dizini seçin."
 
 msgid "Select the default directory to be used if the right column directory is not saved."
 msgstr "Sağ sütun dizini kaydedilmemişse kullanılacak varsayılan dizini seçin."
+
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
+msgstr "Video kod çözücü tarafından kullanılacak tarama satırı birleştirme (deinterlacing) modunu seçin. 'Otomatik' seçeneği, kararı sürücüye bırakır."
 
 msgid "Select the delay before the timer activates."
 msgstr "Zamanlayıcı etkinleşmeden önceki gecikmeyi seçin."
@@ -19377,8 +19394,8 @@ msgstr "%s %s alıcınız için bağlı klavyenin türünü seçin."
 msgid "Select the type of this timer."
 msgstr "Bu zamanlayıcının türünü seçin."
 
-msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
-msgstr "Donanım çipinin video modunu seçin. PiP ve 12 bit HDR çıkışı aynı anda kullanılamaz; bu nedenle PiP'i veya 12 bit HDR çıkışını etkinleştirmeyi seçin."
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
+msgstr "Donanım çipinin video modu özelliğini seçin. Görüntü İçinde Görüntü (PiP) ve 12 bit HDR çıkışı aynı anda kullanılamaz; bu nedenle PiP veya 12 bit HDR çıkışını etkinleştirmeyi seçin."
 
 msgid "Select the video mode to be used on the TV."
 msgstr "TV'de kullanılacak görüntü modunu seçin."
@@ -19593,6 +19610,9 @@ msgstr "Sırbistan"
 #
 msgid "Serbian"
 msgstr "Sırpça"
+
+msgid "Serbo-Croatian"
+msgstr "Sırp-Hırvatça"
 
 msgid "Serial No"
 msgstr "Seri No"
@@ -20263,9 +20283,6 @@ msgstr "Yeniden başlatmayı önlemek için çökme sayacı sıfırlansın mı?"
 
 msgid "Show"
 msgstr "Göster"
-
-msgid "Add 'Manual resolution' to Extensions"
-msgstr "Uzantılar menüsünde 'Manuel çözünürlük'ü göster"
 
 msgid "Show 1080p 24fps as"
 msgstr "1080p 24fps olarak göster"
@@ -21382,7 +21399,7 @@ msgstr "Slovence"
 msgid "Slow"
 msgstr "Yavaş"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr "Ağır Çekim"
 
 msgid "Slow motion speeds"
@@ -21731,6 +21748,9 @@ msgstr "Sporlar"
 
 msgid "Sports magazines"
 msgstr "Spor dergisi"
+
+msgid "Sranan Tongo"
+msgstr "Sranan Tongo"
 
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
@@ -23282,9 +23302,6 @@ msgstr "Bu seçenek görüntüdeki mavi tonlarını güçlendirmenizi sağlar."
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Bu seçenek görüntüdeki yeşil tonlarını güçlendirmenizi sağlar."
 
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Bu seçenek HDMI EDID kontrolünü atlamanıza olanak tanır."
-
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Bu seçenek sanal hoparlörün konumunu değiştirmenize olanak tanır."
 
@@ -23348,32 +23365,8 @@ msgstr "Bu seçenek “Hızlı İşlemler” önceden ayarlanmış işlemleri ge
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Bu seçenek etkinlik için tür bilgilerinin görüntülenip görüntülenmeyeceğini seçmenizi sağlar."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Bu seçenek UHD için renk derinliğini yapılandırmanıza olanak tanır."
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Bu seçenek HDR için renk ölçümünü yapılandırmanıza olanak tanır."
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Bu seçenek renk alanını Otomatik'ten RGB'ye ayarlamanıza olanak tanır."
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Bu seçenek 3D Surround Ses özelliğini etkinleştirmenizi sağlar."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Bu seçenek 10 Bit Renk Modunu etkinleştirmenizi veya devre dışı bırakmanıza olanak tanır."
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Bu seçenek 12 Bit Renk Modunu etkinleştirmenizi veya devre dışı bırakmanıza olanak tanır."
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Bu seçenek UHD için HDR modlarını zorlamanıza olanak tanır."
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Bu seçenek UHD için HDR10 Modlarını zorlamanıza olanak tanır."
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Bu seçenek UHD için HLG Modlarını zorlamanıza olanak tanır."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Bu seçenek farklı Sinemaskop çözünürlükleri için dengeleme değerleri ayarlamanıza olanak tanır."
@@ -23800,7 +23793,7 @@ msgid "Toggle a cut mark at the current position"
 msgstr "Geçerli konumda bir kesme işareti belirle"
 
 msgid "Toggle a temporary mount for the current device"
-msgstr "Geçerli cihaz için geçici bir bağlama noktası etkinleştirip devre dışı bırak"
+msgstr "Geçerli cihaz için geçici bir bağlantı noktası etkinleştirip devre dışı bırak"
 
 msgid "Toggle all related files"
 msgstr "İlgili tüm dosyaları değiştir"
@@ -25722,14 +25715,23 @@ msgstr "Bu seçenek etkinleştirildiğinde, algılanan her depolama aygıtının
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr "Bu özellik etkinleştirildiğinde, alıcının uzaktan bir Kablolu Ağ Üzerinden ağ sinyali (Magic Packet) ile açılmasına izin verilir."
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr "Bu özellik etkinleştirildiğinde, %s-bit renk modunun kullanımına izin verilir."
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Bu özellik etkinleştirildiğinde, NFS sürüm 3 protokollerinin kullanımına izin verilir."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Bu özellik etkinleştirildiğinde, NFS sürüm 4 protokollerinin kullanımına izin verilir."
 
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr "Bu özellik etkinleştirildiğinde, 'Manuel çözünürlük' seçeneği 'Uzantılar' menüsüne eklenir; bu sayede mevcut videonun video modu hızlı bir şekilde değiştirilebilir."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bu özellik etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr "Bu özellik etkinleştirildiğinde, HDMI EDID kontrolü atlanır."
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr "Bu özellik etkinleştirildiğinde, Wi-Fi bağdaştırıcısı bağlandığında kaydedilmiş ağ üzerinden bağlantı kurulmaya çalışılır."
@@ -25793,6 +25795,9 @@ msgstr "Bu özellik etkinleştirildiğinde, işitme engelliler için altyazılar
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Bu özellik etkinleştirildiğinde, her iki altyazı türü de mevcut olduğunda, işitme engelliler için altyazılar normal altyazılara tercih edilecektir."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr "Geçerli videonun HDR bilgileriyle eşleşecek şekilde HDMI HDR türünü (HDR10, HLG veya SDR) değiştirmek için 'Evet'i seçin."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Bu özellik etkinleştirildiğinde, teletext sayfaları önbelleğe alınacak ve daha hızlı erişim sağlanacaktır."
@@ -27219,6 +27224,58 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "10 bit'e izin ver"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "12 bit'e izin ver"
+
+#~ msgid "HDR10 support"
+#~ msgstr "HDR10 Desteği"
+
+#~ msgid "HLG support"
+#~ msgstr "HLG Desteği"
+
+#
+#~ msgid "Seconds"
+#~ msgstr "Saniye"
+
+#~ msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
+#~ msgstr "Geçerli videonun video modunu değiştirmek amacıyla uzantılar menüsüne bir giriş eklemek için 'Evet'i seçin."
+
+#~ msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
+#~ msgstr "Video kod çözücünün Taramasızlaştırma (de-interlacing) modunu seçin. 'Otomatik' seçeneği, kararı sürücüye bırakır."
+
+#~ msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
+#~ msgstr "Donanım çipinin video modunu seçin. PiP ve 12 bit HDR çıkışı aynı anda kullanılamaz; bu nedenle PiP'i veya 12 bit HDR çıkışını etkinleştirmeyi seçin."
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "Bu seçenek HDMI EDID kontrolünü atlamanıza olanak tanır."
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Bu seçenek UHD için renk derinliğini yapılandırmanıza olanak tanır."
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Bu seçenek HDR için renk ölçümünü yapılandırmanıza olanak tanır."
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "Bu seçenek renk alanını Otomatik'ten RGB'ye ayarlamanıza olanak tanır."
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Bu seçenek 10 Bit Renk Modunu etkinleştirmenizi veya devre dışı bırakmanıza olanak tanır."
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Bu seçenek 12 Bit Renk Modunu etkinleştirmenizi veya devre dışı bırakmanıza olanak tanır."
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Bu seçenek UHD için HDR modlarını zorlamanıza olanak tanır."
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Bu seçenek UHD için HDR10 Modlarını zorlamanıza olanak tanır."
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Bu seçenek UHD için HLG Modlarını zorlamanıza olanak tanır."
 
 #~ msgid "12bit 4:2:0/4:2:2 no PiP"
 #~ msgstr "12bit 4:2:0/4:2:2 PiP yok"
