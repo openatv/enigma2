@@ -631,7 +631,10 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 //			if(m_debug)
 //				eDebug("[eEPGCache] Created event %04X at %ld.", new_evt->getEventID(), new_start);
 
-			// Clip the new event against overlapping events from a higher-priority source
+			// Clip the new event against overlapping events from a higher-priority source.
+			// Cached PRIVATE events don't take part: imported events are stored as PRIVATE
+			// (eventData keeps only the lower 16 bits, EPG_IMPORT is lost) and would otherwise
+			// block live EIT now/next updates, so the newest event wins as before.
 			{
 				time_t clip_start = new_start;
 				time_t clip_end = new_end;
@@ -640,7 +643,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 					--hp;
 				for (; hp != timemap.end() && hp->first < clip_end && clip_start < clip_end; ++hp)
 				{
-					if (hp->second->getEventID() == event_id || (source & ~EPG_IMPORT) <= (hp->second->type & ~EPG_IMPORT))
+					if (hp->second->getEventID() == event_id || hp->second->type == PRIVATE || (source & ~EPG_IMPORT) <= (hp->second->type & ~EPG_IMPORT))
 						continue;
 					time_t hp_start = hp->first;
 					time_t hp_end = hp_start + hp->second->getDuration();
