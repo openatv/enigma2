@@ -59,6 +59,8 @@ private:
 #ifdef DREAMNEXTGEN
 	/* decoders beyond the first take memory input */
 	eDVBVideoSwDemux *m_sw_demux = nullptr;
+	/* the PCR of the service for the clock of a mosaic decoder */
+	int m_pcrpid = -1;
 	ePtr<eTimer> m_sysfs_poll_timer;
 	bool m_sysfs_size_event_sent;
 	unsigned int m_sysfs_poll_attempts;
@@ -75,6 +77,7 @@ public:
 	int setFastForward(int skip);
 	void unfreeze();
 #ifdef DREAMNEXTGEN
+	void setPcrPid(int pid) { m_pcrpid = pid; }
 	/* Explicit VIDEO_PLAY ioctl used by trick→play recovery dance.
 	 * Distinct from startPid() which also opens demux + sets stream type. */
 	void playRecovery();
@@ -154,6 +157,8 @@ private:
 	int m_state;
 	int m_ff_sm_ratio;
 	bool m_has_audio;
+	/* audio without a PCR of its own: the mosaic decoders of DreamNextGen */
+	bool m_mosaic_audio;
 #ifdef DREAMNEXTGEN
 	bool m_user_pause_active = false;
 #endif

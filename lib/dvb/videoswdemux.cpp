@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 
 #include <cerrno>
+#include <ctime>
 #include <fcntl.h>
 #include <poll.h>
 #include <sys/ioctl.h>
@@ -23,14 +24,24 @@ struct video_frame
 
 static_assert(sizeof(video_frame) == 168, "video_frame must match the driver");
 
+/* reserved[0] of a mosaic decoder frame: the PCR of the service (90 kHz) */
+#define VIDEO_FRAME_PCR (1ULL << 63)
+
+static int64_t monotonicUs()
+{
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return (int64_t)ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
+}
+
 #define VIDEO_SET_FRAME _IOWR('o', 64, struct video_frame)
 
 /* the decoder starts the PiP PTS at 0 with the first frame it outputs, which
  * is the first random access point; the PiP pacing needs the stream PTS */
 #define PIP_PTS_STREAM_BASE "/sys/module/amvideo/parameters/pip_pts_stream_base"
 
-eDVBVideoSwDemux::eDVBVideoSwDemux(eDVBDemux *demux, int fd_video, int pes_type)
-	: m_demux(demux), m_fd_video(fd_video), m_pes_type(pes_type)
+eDVBVideoSwDemux::eDVBVideoSwDemux(eDVBDemux *demux, int fd_video, int pes_type, bool with_pcr)
+	: m_demux(demux), m_fd_video(fd_video), m_pes_type(pes_type), m_with_pcr(with_pcr)
 {
 }
 
@@ -39,7 +50,7 @@ eDVBVideoSwDemux::~eDVBVideoSwDemux()
 	stop();
 }
 
-int eDVBVideoSwDemux::start(int pid, Codec codec)
+int eDVBVideoSwDemux::start(int pid, Codec codec, int pcr_pid)
 {
 	stop();
 	if (!m_demux || m_fd_video < 0 || pid <= 0 || pid >= 0x1FFF)
@@ -72,6 +83,19 @@ int eDVBVideoSwDemux::start(int pid, Codec codec)
 	m_pid = pid;
 	m_codec = codec;
 	m_cc = -1;
+	/* the mosaic decoders run the clock of the service from its PCR */
+	m_pcr = -1;
+	m_pcr_pid = -1;
+	if (m_with_pcr)
+	{
+		m_pcr_pid = (pcr_pid > 0 && pcr_pid < 0x1FFF) ? pcr_pid : pid;
+		uint16_t add = m_pcr_pid;
+		if (m_pcr_pid != pid && ::ioctl(m_fd_demux, DMX_ADD_PID, &add) < 0)
+		{
+			eDebug("[eDVBVideoSwDemux] unable to tap PCR PID %04x: %m", m_pcr_pid);
+			m_pcr_pid = -1;
+		}
+	}
 	/* the data up to the first PES start belongs to no PES */
 	m_pes_broken = true;
 	m_synced = codec == OTHER;
@@ -147,10 +171,18 @@ void eDVBVideoSwDemux::feed(const uint8_t *data, size_t length)
 			continue;
 		}
 		pos += TSPacketSize;
-		/* skip transport errors and other PIDs; the hardware descrambler keeps the scrambling bits */
-		if ((packet[1] & 0x80) || ((((packet[1] & 0x1f) << 8) | packet[2]) != m_pid))
+		/* skip transport errors; the hardware descrambler keeps the scrambling bits */
+		if (packet[1] & 0x80)
 			continue;
+		int pid = ((packet[1] & 0x1f) << 8) | packet[2];
 		int afc = (packet[3] >> 4) & 3;
+		if (pid == m_pcr_pid && (afc & 2) && packet[4] >= 7 && (packet[5] & 0x10))
+		{
+			m_pcr = ((int64_t)packet[6] << 25) | (packet[7] << 17) | (packet[8] << 9) | (packet[9] << 1) | (packet[10] >> 7);
+			m_pcr_time = monotonicUs();
+		}
+		if (pid != m_pid)
+			continue;
 		if (!(afc & 1))
 			continue;
 		/* a missing packet breaks its PES (null packets of the soft
@@ -205,15 +237,24 @@ void eDVBVideoSwDemux::writeFrame()
 	if (!m_base_reported && m_random_access && frame.pts >= 0)
 		reportStreamBase(frame.pts);
 
+	/* the clock of the service now: the last PCR and the time since */
+	if (m_pcr >= 0)
+		frame.reserved[0] = (int64_t)(VIDEO_FRAME_PCR | ((uint64_t)(m_pcr + (monotonicUs() - m_pcr_time) * 9 / 100) & ((1ULL << 33) - 1)));
+
 	const uint8_t *es = &m_pes[header];
 	size_t left = m_pes.size() - header;
-	/* the decoder starts with an entry point, not in the middle of a GOP */
+	/* the decoder starts with an entry point, not in the middle of a GOP;
+	 * the mosaic driver waits for it itself and takes the clock of the
+	 * service from the frames before, ahead of the audio */
 	if (!m_synced)
 	{
-		if (!entryPoint(es, left))
+		if (entryPoint(es, left))
+		{
+			m_synced = true;
+			eDebug("[eDVBVideoSwDemux] video PID %04x entry point", m_pid);
+		}
+		else if (!m_with_pcr)
 			return;
-		m_synced = true;
-		eDebug("[eDVBVideoSwDemux] video PID %04x entry point", m_pid);
 	}
 	/* the driver takes what fits into its buffer; wait for the rest */
 	while (left && !m_stop)

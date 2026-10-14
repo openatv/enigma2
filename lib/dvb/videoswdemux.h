@@ -22,10 +22,11 @@ public:
 	/* codecs with an entry point the input waits for */
 	enum Codec { OTHER, MPEG2, H264, HEVC };
 
-	eDVBVideoSwDemux(eDVBDemux *demux, int fd_video, int pes_type);
+	/* with_pcr: the frames carry the PCR of the service (mosaic decoders) */
+	eDVBVideoSwDemux(eDVBDemux *demux, int fd_video, int pes_type, bool with_pcr = false);
 	~eDVBVideoSwDemux();
 
-	int start(int pid, Codec codec);
+	int start(int pid, Codec codec, int pcr_pid = -1);
 	void stop();
 
 private:
@@ -44,8 +45,13 @@ private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd_video;
 	int m_pes_type;
+	bool m_with_pcr;
 	int m_fd_demux = -1;
 	int m_pid = -1;
+	/* the PCR of the service (90 kHz) and when it was read, us */
+	int m_pcr_pid = -1;
+	int64_t m_pcr = -1;
+	int64_t m_pcr_time = 0;
 	Codec m_codec = OTHER;
 	/* continuity counter of the last packet, -1 = none */
 	int m_cc = -1;

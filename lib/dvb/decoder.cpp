@@ -415,7 +415,10 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		if (m_fd_demux >= 0)
 			::close(m_fd_demux);
 		m_fd_demux = -1;
-		m_sw_demux = new eDVBVideoSwDemux(demux, m_fd, m_dev == 1 ? DMX_PES_VIDEO1 : DMX_PES_VIDEO2);
+		/* a demux takes one tap per type; the mosaic decoders 2..5 run
+		 * without the main and PiP decoder and use all four types */
+		static const dmx_pes_type_t tapType[] = { DMX_PES_VIDEO0, DMX_PES_VIDEO1, DMX_PES_VIDEO2, DMX_PES_VIDEO3 };
+		m_sw_demux = new eDVBVideoSwDemux(demux, m_fd, tapType[m_dev & 3], m_dev >= 2);
 	}
 #endif
 
@@ -636,7 +639,7 @@ int eDVBVideo::startPid(int pid, int type)
 			codec = eDVBVideoSwDemux::H264;
 		else if (type == H265_HEVC)
 			codec = eDVBVideoSwDemux::HEVC;
-		if (m_sw_demux->start(pid, codec) < 0)
+		if (m_sw_demux->start(pid, codec, m_pcrpid) < 0)
 			return -1;
 	}
 #endif
@@ -1519,6 +1522,9 @@ int eTSMPEGDecoder::setState()
 	}
 
 #ifdef DREAMNEXTGEN
+	/* a mosaic window ran the system clock since the main sync was set up */
+	static bool s_mosaic_clock = false;
+
 	/* Kernel-tsync PCRMASTER bootstrap: STOP_TSYNC_PCR (clear previous
 	 * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid.
 	 * The sync belongs to the main decoder; PiP has none. */
@@ -1540,7 +1546,7 @@ int eTSMPEGDecoder::setState()
 			new_demux = did;
 		}
 
-		bool video_unchanged = !stopping
+		bool video_unchanged = !stopping && !s_mosaic_clock
 			&& s_last_vpid   == new_vpid
 			&& s_last_pcrpid == new_pcr
 			&& s_last_demux  == new_demux
@@ -1566,6 +1572,7 @@ int eTSMPEGDecoder::setState()
 			s_last_vpid   = new_vpid;
 			s_last_pcrpid = new_pcr;
 			s_last_demux  = new_demux;
+			s_mosaic_clock = false;
 		}
 	}
 #endif
@@ -1593,6 +1600,16 @@ int eTSMPEGDecoder::setState()
 			if (m_audio->startPid(m_apid, m_atype))
 				res = -1;
 		}
+#ifdef DREAMNEXTGEN
+		/* the mosaic window playing the audio runs the system clock */
+		if (m_mosaic_audio)
+		{
+			CFile::writeInt(("/proc/stb/vmpeg/" + std::to_string(m_decoder) + "/clock").c_str(), m_audio ? 1 : 0);
+			/* the main decoder sets its sync up again afterwards */
+			if (m_audio)
+				s_mosaic_clock = true;
+		}
+#endif
 		m_changed &= ~changeAudio;
 	}
 	if (m_changed & changeVideo)
@@ -1601,6 +1618,9 @@ int eTSMPEGDecoder::setState()
 		{
 			m_video = new eDVBVideo(m_demux, m_decoder, m_fcc_enable);
 			m_video->connectEvent(sigc::mem_fun(*this, &eTSMPEGDecoder::video_event), m_video_event_conn);
+#ifdef DREAMNEXTGEN
+			m_video->setPcrPid(m_pcrpid);
+#endif
 			if (m_video->startPid(m_vpid, m_vtype))
 				res = -1;
 		}
@@ -1776,6 +1796,14 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	char filename[128] = {};
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", m_demux ? m_demux->adapter : 0, m_decoder);
 	m_has_audio = !access(filename, W_OK);
+	m_mosaic_audio = false;
+#ifdef DREAMNEXTGEN
+	if (m_decoder >= 2)
+	{
+		sprintf(filename, "/dev/dvb/adapter%d/dreamaudio%d", m_demux ? m_demux->adapter : 0, m_decoder);
+		m_mosaic_audio = !access(filename, W_OK);
+	}
+#endif
 
 	if (eTSMPEGDecoder::m_debugTXT < 0)
 		eTSMPEGDecoder::m_debugTXT = eSimpleConfig::getBool("config.crash.debugTeletext", false) ? 1 : 0;
@@ -1823,7 +1851,7 @@ RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
 RESULT eTSMPEGDecoder::setAudioPID(int apid, int type)
 {
 	/* do not set an audio pid on decoders without audio support */
-	if (!m_has_audio) apid = -1;
+	if (!m_has_audio && !m_mosaic_audio) apid = -1;
 
 	if ((m_apid != apid) || (m_atype != type))
 	{
