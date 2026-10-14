@@ -2,14 +2,18 @@ from Components.Converter.Converter import Converter
 
 
 class SensorToText(Converter):
-	def __init__(self, arguments):
-		Converter.__init__(self, arguments)
+	def __init__(self, tokens):
+		Converter.__init__(self, tokens)
 
 	def getText(self):
-		if self.source.getValue() is None:
-			return ""
-		unit = self.source.getUnit()
-		if unit in ('C', 'F'):
-			return "%d%s%s" % (self.source.getValue(), "\u00B0", unit)
+		text = None
+		value = self.source.getValue()
+		if value is None:
+			text = ""
+		else:
+			unit = self.source.getUnit()
+			if unit in ("C", "F"):
+				text = f"{int(value)}°{unit}"
+		return text
 
 	text = property(getText)

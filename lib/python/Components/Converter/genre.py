@@ -788,59 +788,53 @@ class GenresETSIOpenTV:
 
 
 def __getGenreStringMain(hn, ln, genres):
-	# if hn == 0:
-	# 	return _("Undefined content")
+	result = ""
 	if hn == 15:
-		return _("User defined")
-	if 0 < hn < len(genres.maintype):
-		return genres.maintype[hn]
-	# return _("Reserved") + " " + str(hn)
-	return ""
-
-
-def __getGenreStringSub(hn, ln, genres):
-	# if hn == 0:
-	# 	return _("Undefined content") + " " + str(ln)
-	if hn == 15:
-		return _("User defined") + " " + str(ln)
-	if 0 < hn < len(genres.maintype):
-		if ln == 15:
-			return _("User defined")
-		if ln < len(genres.subtype[hn]):
-			return genres.subtype[hn][ln]
-	# 	return _("Reserved") " " + str(ln)
-	# return _("Reserved") + " " + str(hn) + "," + str(ln)
-	return ""
+		result = _("User defined")
+	elif 0 < hn < len(genres.maintype):
+		result = genres.maintype[hn]
+	return result
 
 
 def __getGenreStringMainIceTV(hn, ln, genres):
+	result = ""
 	if hn < len(genres.maintype):
-		return genres.maintype[hn]
-	if hn == 15:
-		return _("User defined 0x%02x" % ((hn << 4) | ln))
-	return ""
-
-
-def __getGenreStringSubIceTV(hn, ln, genres):
-	if hn in genres.subtype and ln < len(genres.subtype[hn]):
-		return genres.subtype[hn][ln]
-	if hn == 15 or ln == 15:
-		return _("User defined 0x%02x" % ((hn << 4) | ln))
-	return ""
+		result = genres.maintype[hn]
+	elif hn == 15:
+		result = _("User defined 0x%02x") % ((hn << 4) | ln)
+	return result
 
 
 def __getGenreStringMainOpenTV(hn, ln, genres):
-	if hn < len(genres.maintype):
-		return genres.maintype[hn]
-	return ""
+	return genres.maintype[hn] if hn < len(genres.maintype) else ""
+
+
+def __getGenreStringSub(hn, ln, genres):
+	result = ""
+	if hn == 15:
+		result = f"{_('User defined')} {ln}"
+	elif 0 < hn < len(genres.maintype):
+		if ln == 15:
+			result = _("User defined")
+		elif ln < len(genres.subtype[hn]):
+			result = genres.subtype[hn][ln]
+	return result
+
+
+def __getGenreStringSubIceTV(hn, ln, genres):
+	result = ""
+	if hn in genres.subtype and ln < len(genres.subtype[hn]):
+		result = genres.subtype[hn][ln]
+	elif hn == 15 or ln == 15:
+		result = _("User defined 0x%02x") % ((hn << 4) | ln)
+	return result
 
 
 def __getGenreStringSubOpenTV(hn, ln, genres):
+	result = ""
 	if hn in genres.subtype:
-		if ln < len(genres.subtype[hn]):
-			return genres.subtype[hn][ln]
-		return _("User defined 0x%02x" % ((hn << 4) | ln))
-	return ""
+		result = genres.subtype[hn][ln] if ln < len(genres.subtype[hn]) else _("User defined 0x%02x") % ((hn << 4) | ln)
+	return result
 
 
 countries = {
@@ -861,14 +855,14 @@ maintype = defaultGenre.maintype
 subtype = defaultGenre.subtype
 
 
-def __remapCountry(country):
-	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
-		if not country:
-			country = config.plugins.icetv.member.country.value
-		iceTVCountry = f"{country}IceTV"
-		if iceTVCountry in countries:
-			return iceTVCountry
-	return country
+def getGenreStringLong(hn, ln, country=None):
+	if hn == 15 and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
+		result = f"{_('User defined')} {ln}"
+	else:
+		main = getGenreStringMain(hn, ln, country=country)
+		sub = getGenreStringSub(hn, ln, country=country)
+		result = f"{main}: {sub}" if main and main != sub else main
+	return result
 
 
 def getGenreStringMain(hn, ln, country=None):
@@ -881,18 +875,14 @@ def getGenreStringSub(hn, ln, country=None):
 	return countryInfo[1](hn, ln, countryInfo[2])
 
 
-def getGenreStringLong(hn, ln, country=None):
-	# if hn == 0:
-	# 	return _("Undefined content") + " " + str(ln)
-	if hn == 15 and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
-		return f'{_("User defined")} {str(ln)}'
-	main = getGenreStringMain(hn, ln, country=country)
-	sub = getGenreStringSub(hn, ln, country=country)
-	if main and main != sub:
-		return f"{main}: {sub}"
-	else:
-		return main
-# 	return _("Reserved") + " " + str(hn) + "," + str(ln)
+def __remapCountry(country):
+	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
+		if not country:
+			country = config.plugins.icetv.member.country.value
+		iceTVCountry = f"{country}IceTV"
+		if iceTVCountry in countries:
+			country = iceTVCountry
+	return country
 
 #
 # The End

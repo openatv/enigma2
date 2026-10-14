@@ -3,6 +3,7 @@
 
 void eGTable::sectionRead(const uint8_t *d)
 {
+	ePtr<eGTable> self = this;
 	unsigned int last_section_number = d[7];
 	m_table.flags &= ~eDVBTableSpec::tfAnyVersion;
 	m_table.flags |= eDVBTableSpec::tfThisVersion;

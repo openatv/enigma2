@@ -294,7 +294,12 @@ if [ "$ret" -ne "1" ]; then
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
 		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "og2s4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
-			killall -9 libreader; sleep 5
+			# Native Kodi DVB audio still needs the vendor service. Without
+			# it, hi_dvb audio proc reads can dereference freed shared state.
+			# Older/ALSA-only Kodi builds retain the previous shutdown path.
+			if [ "$ret" -ne "15" ] || [ ! -x /usr/lib/kodi/kodi-hisi-reader ]; then
+				killall -9 libreader; sleep 5
+			fi
 		fi
 	fi
 fi

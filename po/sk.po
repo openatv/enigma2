@@ -7,20 +7,21 @@
 # Marian Turba <puki247@gmail.com>, 2024, 2026.
 # Marcel <inigo0@centrum.sk>, 2024.
 # Warder <ciksa@seznam.cz>, 2025.
+# Marián Hikaník <marian-sk@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
-"PO-Revision-Date: 2026-10-04 23:36+0000\n"
-"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
+"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"PO-Revision-Date: 2026-10-14 08:06+0000\n"
+"Last-Translator: Marián Hikaník <marian-sk@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.10.1.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 msgid ""
 "\n"
@@ -749,13 +750,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-msgstr[2] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1243,6 +1237,10 @@ msgid "%s Information Actions"
 msgstr "%s Informácie – akcie"
 
 #, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s Nastavenie"
 
@@ -1296,6 +1294,9 @@ msgstr "%s dlhé"
 #, python-format
 msgid "%s not available."
 msgstr "%s nie je dostupné."
+
+msgid "%s support"
+msgstr "Podpora %s"
 
 #, python-format
 msgid "%s version"
@@ -1463,19 +1464,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24h/+24 hodín"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd už existuje a nie je to priečinok. Nebude prepísaný."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr ""
+msgstr "/media/hdd obsahuje súbory alebo iné priečinky. Pred povolením náhrady HDD ho presuňte; nič nebolo vymazané."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr ""
+msgstr "/media/hdd je existujúcim symbolickým odkazom na iné umiestnenie. Neprepíše sa."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr ""
+msgstr "/media/hdd sa používa. Odpojte existujúce zariadenie alebo zdieľanie skôr pred zmenou na náhradu HDD."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr ""
+msgstr "/media/hdd je rezervované iným zariadením v /etc/fstab. Najskôr zmeňte bod pripojenia zariadenia."
 
 msgid "/s"
 msgstr "/s"
@@ -1501,6 +1502,9 @@ msgstr "12 znakov"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, zobrazuje znaky Latin-1 s výnimkou gréčtiny a cyriliky, v prípade potreby prepnite na 8."
 
+msgid "12-bit HDR (no PiP)"
+msgstr "12-bitové HDR (bez funkcie PiP)"
+
 msgid "12V output"
 msgstr "12 V výstup"
 
@@ -1509,9 +1513,6 @@ msgstr "12 V výstup."
 
 msgid "12bit"
 msgstr "12 bitov"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12 bitov 4:2:0/4:2:2 bez PiP"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 letterbox"
@@ -1686,9 +1687,6 @@ msgstr "Dokončená úloha chce vypnúť zariadenie %s %s. Chcete ho vypnúť hn
 #, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Denník o zlyhaní bol %s vytvorený v '%s'"
-
-msgid "A file from media is in use!"
-msgstr "Súbor z daného média sa práve používa!"
 
 #, python-format
 msgid ""
@@ -1992,6 +1990,9 @@ msgstr "Nastavenia adaptéra"
 msgid "Add"
 msgstr "Pridať"
 
+msgid "Add 'Manual resolution' to Extensions"
+msgstr "Pridať 'Manuálne rozlíšenie' do rozšírení"
+
 msgid "Add Alternatives"
 msgstr "Pridať alternatívy"
 
@@ -2230,6 +2231,9 @@ msgstr "Prídavný kábel rotora z %s"
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr "Prídavné sloty nemožno meniť, pokiaľ je prijímač spustený z niektorého z nich."
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr "Prispôsobiť frekvenciu CPU podľa zaťaženia udávaného plánovačom jadra."
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Upravte farby tak, aby sa dali jednotlivé odtiene dobre rozlíšiť, ale súčasne boli čo najsýtejšie. Ak ste s výsledkom spokojní, tlačidlom OK ukončite nastavovanie obrazu alebo číslicovými tlačidlami zvoľte iný testovací obrazec."
 
@@ -2297,7 +2301,7 @@ msgid "After Event"
 msgstr "Po udalosti"
 
 msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
-msgstr ""
+msgstr "Po úspešnom vyhľadávaní, nahraďte chýbajúce stanice/služby v prehľade stanicami/službami, ktoré majú rovnaký názov, typ príjmu a satelitnú pozíciu. Nejednoznačné zhody sa nezmenia. Poradie v prehľade a používateľom určené názvy sa zachovajú."
 
 msgid "After event"
 msgstr "Po udalosti"
@@ -2408,11 +2412,8 @@ msgstr "Prideliť"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Pidelenie čísla pre fyzické LNB, ktoré konfigurujete. Budete môcť vybrať rovnaké LNB pre iné družice (napr. paraboly s motorom) a nebude potrebné nastavovať rovnaké LNB viackrát."
 
-msgid "Allow 10bit"
-msgstr "Povoliť 10 bitov"
-
-msgid "Allow 12bit"
-msgstr "Povoliť 12 bitov"
+msgid "Allow %s-bit"
+msgstr "Povoliť %s-bit."
 
 msgid "Allow guest access"
 msgstr "Povoliť hosťovský prístup"
@@ -2531,6 +2532,12 @@ msgstr "Vždy zahrnúť ECM do nahrávok"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Vždy zahrnúť správy ECM do nahrávok. Tým sa globálne prepíšu nastavenia individuálneho časovača. Umožňuje to dekódovať nahrávky dodatočne (v procese offline-dekódovania), ak to váš prijímač podporuje."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr "Vždy prevádzkovať CPU s maximálnou frekvenciou."
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr "Vždy prevádzkovať CPU s minimálnou frekvenciou."
+
 msgid "Always show bouquets"
 msgstr "Vždy zobraziť prehľady"
 
@@ -2630,6 +2637,9 @@ msgstr "Aplikovať všetky zmeny do aktívneho miestneho nastavenia/jazyka a uko
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Použiť aktuálne zvýraznené miestne nastavenie/jazyk a ukončiť"
+
+msgid "Apply the settings without saving them"
+msgstr "Použiť nastavenia bez ich uloženia"
 
 msgid "Aqua"
 msgstr "modrá (aqua)"
@@ -2775,7 +2785,7 @@ msgid "Ascending"
 msgstr "Vzostupne"
 
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
-msgstr ""
+msgstr "Vyžadovať potvrdenie pred presunutím individuálnych súborov to koša. Priečinky a vymazanie natrvalo sa nezmenia."
 
 msgid "Ask user"
 msgstr "Opýtať sa používateľa"
@@ -2884,6 +2894,9 @@ msgstr "Synchronizácia zvuku"
 
 msgid "Audio bit rate"
 msgstr "Dátový tok zvuku"
+
+msgid "Audio decoding"
+msgstr "Dekódovanie zvuku"
 
 msgid "Audio language selection 1"
 msgstr "Voľba jazyka zvuku 1"
@@ -3011,11 +3024,14 @@ msgstr "Štítok autom. rozlíšenia"
 msgid "Automatic scan for services"
 msgstr "Automatické vyhľadávanie staníc"
 
+msgid "Automatically hide OSD"
+msgstr "Automaticky skryť OSD"
+
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy, keď sa prijímač vypne alebo prepne do pohotovostného režimu."
 
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
-msgstr ""
+msgstr "Automaticky spustiť rýchle vyhľadávanie (fast scan) 90 sekúnd po každom prepnutí do pohotovostného režimu a každých 24 hodín v pohotovostnom režime. Ak prebieha nahrávanie, opakovať po hodine. Ak chcete prehľadať viacerých poskytovateľov, vyberte voľbu 'Multi'."
 
 msgid "Automatically start time shift after"
 msgstr "Automatické spustenie timeshiftu po"
@@ -3144,6 +3160,9 @@ msgstr "Rýchlosť mazania na pozadí"
 msgid "Background selected:"
 msgstr "Vybrané pozadie:"
 
+msgid "Background sound/clean feed"
+msgstr "Zvuk na pozadí/čistý zdroj"
+
 msgid "Background:"
 msgstr "Pozadie:"
 
@@ -3250,6 +3269,9 @@ msgstr "Basketbal"
 
 msgid "Basque"
 msgstr "baskičtina"
+
+msgid "Battery"
+msgstr "Batéria"
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr "Pred zmenou týchto nastavení sa pokúste zakázať všetky nastavenia overscanu na obrazovke TV/displeja. Na kalibráciu OSD upravte hodnoty pozície a veľkosti tak, aby bol červený rámček *práve* viditeľný a nedotýkal sa okrajov obrazovky."
@@ -3374,6 +3396,9 @@ msgstr "Bluetooth audio"
 msgid "Bluetooth Setup"
 msgstr "Nastavenie Bluetooth"
 
+msgid "Bluetooth remote"
+msgstr "Diaľ. ovládanie s Bluetooth"
+
 msgid "Bolivia"
 msgstr "Bolívia"
 
@@ -3452,7 +3477,7 @@ msgstr "Akcie pre navigovanie nástroja na výber prehľadu"
 
 #, python-format
 msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
-msgstr ""
+msgstr "Aktualizácia prehľadu: aktualizovalo sa: %(updated)d, nepriradilo sa: %(unresolved)d, počet zlyhaní: %(failed)d."
 
 msgid "Bouquets"
 msgstr "Prehľady"
@@ -3603,8 +3628,8 @@ msgstr "Vypršal časový limit pre chybu tlačidla"
 msgid "ButtonSetup"
 msgstr "Nastavenie tlačidiel"
 
-msgid "Bypass HDMI EDID Check"
-msgstr "Preskočiť test HDMI EDID"
+msgid "Bypass HDMI EDID check"
+msgstr "Vynechať kontrolu HDMI EDID"
 
 msgid "Bytes received"
 msgstr "Prijaté bajty"
@@ -3733,6 +3758,9 @@ msgstr "CPU/jadro %d typ"
 
 msgid "CPU Control"
 msgstr "Riadenie CPU"
+
+msgid "CPU Control Actions"
+msgstr "Akcie ovládania CPU"
 
 msgid "CPU architecture"
 msgstr "Architektúra CPU"
@@ -4107,9 +4135,6 @@ msgstr "Čad"
 
 msgid "Chamorro"
 msgstr "čamorčina (chamorro)"
-
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Zmeniť režim prijímača na kontrolu hardvérových režimov čipu*"
 
 msgid "Change Language"
 msgstr "Zmeniť jazyk"
@@ -4637,13 +4662,13 @@ msgid "Close the screen"
 msgstr "Zatvoriť obrazovku"
 
 msgid "Close the screen after the scan has finished"
-msgstr ""
+msgstr "Zatvoriť obrazovku po dokončení vyhľadávania"
 
 msgid "Close the screen and exit all menus"
 msgstr "Zatvoriť obrazovku a opustiť všetky menu"
 
 msgid "Close the screen and stop a running scan"
-msgstr ""
+msgstr "Zatvoriť obrazovku a zastaviť prebiehajúce vyhľadávanie"
 
 msgid "Close the screen without saving any changes"
 msgstr "Zatvoriť obrazovku bez uloženia zmien"
@@ -4695,6 +4720,9 @@ msgstr "Farebný priestor"
 
 msgid "Colored text"
 msgstr "Farebný text"
+
+msgid "Colorimetry for HDR content"
+msgstr "Kolorimetria pre obsah v HDR"
 
 msgid "Combined"
 msgstr "Kombinované"
@@ -5178,7 +5206,7 @@ msgid "Confirm Zap"
 msgstr "Potvrdiť prepnutie"
 
 msgid "Confirm moving files to the trashcan"
-msgstr ""
+msgstr "Potvrdiť presunutie súborov do koša"
 
 #, python-format
 msgid "Confirm the deletion of '%s'?"
@@ -5548,16 +5576,16 @@ msgid "Create a randomly generated password"
 msgstr "Vytvoriť náhodne vygenerované heslo"
 
 msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
-msgstr ""
+msgstr "Vytvoriť separátny prehľad pre rozhlasové stanice. Ak je vypnuté, rozhlasové stanice sa zahrnú do prehľadu TV."
 
 msgid "Create a settings backup"
-msgstr ""
+msgstr "Vytvoriť zálohu nastavení"
 
 msgid "Create a symbolic link"
 msgstr "Vytvoriť symbolický odkaz"
 
 msgid "Create an image backup"
-msgstr ""
+msgstr "Vytvoriť zálohu image"
 
 msgid "Create application loader dump."
 msgstr "Vytvoriť výpis zavádzača aplikácie."
@@ -5693,9 +5721,8 @@ msgstr "Aktuálna frekvencia jadier 0 a 1 procesora je: %s MHz"
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr "Aktuálna frekvencia ostatných jadier procesora %s MHz"
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
-msgstr "Aktuálne napätie jadier 0 a 1 procesora: %s V"
+msgid "Current CPU speed"
+msgstr "Aktuálna rýchlosť CPU"
 
 msgid "Current Directory"
 msgstr "Aktuálny priečinok"
@@ -5703,8 +5730,20 @@ msgstr "Aktuálny priečinok"
 msgid "Current Event:"
 msgstr "Aktuálna udalosť:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr "Aktuálna frekvencia GPU: %s MHz"
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr "Aktuálna frekvencia RAM: %s MHz"
+
 msgid "Current Status:"
 msgstr "Aktuálny stav:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr "Aktuálna teplota (RAM): %s °C"
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5848,7 +5887,7 @@ msgid "D"
 msgstr "D"
 
 msgid "DAB+ Scan"
-msgstr "Sken DAB+"
+msgstr "Vyhľadávanie DAB+"
 
 msgid "DAB+ Settings"
 msgstr "Nastavenia DAB+"
@@ -5865,9 +5904,6 @@ msgstr "Podpora DAB+ USB bola nainštalovaná. Teraz ju môžete zapnúť v prij
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "DAB+ USB: nepodarilo sa zapísať prehľad"
 
-msgid "Audio decoding"
-msgstr "Dekódovanie DAB+ audio"
-
 msgid "DAB+ channel"
 msgstr "Kanál DAB+"
 
@@ -5879,7 +5915,7 @@ msgid "DAB+ decoder back end not installed"
 msgstr "Nie je nainštalovaný backend dekodéra DAB+"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
-msgstr "Sken DAB+ bol neúspešný; existujúce prehľady zostali zachované."
+msgstr "Vyhľadávanie DAB+ bolo neúspešné; existujúce prehľady zostali zachované."
 
 #, python-format
 msgid "DAB+ service information for '%s'"
@@ -6002,6 +6038,9 @@ msgstr "Tanec"
 
 msgid "Danish"
 msgstr "dánčina"
+
+msgid "Dari"
+msgstr "Dari"
 
 msgid "Darts"
 msgstr "Šípky"
@@ -6349,6 +6388,9 @@ msgstr "Určuje vzdialenosť skoku pri preskakovaní dopredu. Táto hodnota je n
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Určuje, aké rýchlosti rýchleho prevíjania dopredu sa používajú pri normálnom strihaní. Všetky ostatné rýchlosti dopredu a dozadu používajú časové skoky."
 
+msgid "Deinterlacer mode"
+msgstr "Režim odstraňovača prekladania"
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Oneskorenie po príkaze DiSEqC na napájanie periférie"
 
@@ -6583,9 +6625,6 @@ msgstr "Odstraňuje sa %s ( %s) ..."
 msgid "Deleting files"
 msgstr "Vymazanie súborov"
 
-msgid "Delivery system workaround"
-msgstr "Dočasné riešenie pre systém doručovania"
-
 msgid "Democratic Republic of the Congo"
 msgstr "Demokratická republika Kongo"
 
@@ -6727,13 +6766,13 @@ msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC port %s: %s"
 
 msgid "DiSEqC port by polarization"
-msgstr ""
+msgstr "Port DiSEqC podľa polarizácie"
 
 msgid "DiSEqC port for horizontal"
-msgstr ""
+msgstr "Port DiSEqC pre horizontálne"
 
 msgid "DiSEqC port for vertical"
-msgstr ""
+msgstr "Port DiSEqC pre vertikálne"
 
 msgid "DiSEqC-tester settings"
 msgstr "Nastavenie testera DiSEqC"
@@ -7329,7 +7368,7 @@ msgid "Drivers version"
 msgstr "Verzia ovládačov"
 
 msgid "Drop unconfigured satellites"
-msgstr ""
+msgstr "Preskočiť nenakonfigurované satelity"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -7706,9 +7745,6 @@ msgstr "Povoliť kontrolu sieťovej IP adresy"
 msgid "Enable OpenTV EPG"
 msgstr "Povoliť OpenTV EPG"
 
-msgid "Enable PiP no HDR"
-msgstr "Zapnúť PIP, žiadne HDR"
-
 msgid "Enable Quad PiP"
 msgstr "Zapnúť Quad PiP"
 
@@ -7737,11 +7773,11 @@ msgid "Enable auto cable scan"
 msgstr "Povoliť automatické káblové vyhľadávanie"
 
 msgid "Enable auto fast scan"
-msgstr "Povoliť automatické rýchle vyhľadávanie (Fast Scan)"
+msgstr "Povoliť automatické rýchle vyhľadávanie (fast scan)"
 
 #, python-format
 msgid "Enable auto fast scan for '%s'"
-msgstr "Povoliť automatické rýchle vyhľadávanie (Fast Scan) pre %s"
+msgstr "Povoliť automatické rýchle vyhľadávanie (fast scan) pre %s"
 
 msgid "Enable automatic shares"
 msgstr "Povoliť automatické zdieľania"
@@ -8125,7 +8161,7 @@ msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Zadajte názov sieť. hostiteľa, ktorý sa použije na identifikovanie tohto prijímača."
 
 msgid "Enter the new four-digit PIN code."
-msgstr ""
+msgstr "Zadajte nový štvorčíselný PIN kód."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Zadajte počet vlákien NFS servera, ktoré sa majú alokovať/použiť. Vyššie hodnoty zlepšujú výkon s viacerými klientmi, ale vyžadujú viac pamäte."
@@ -8152,7 +8188,7 @@ msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Zadajte názov vzdialeného zdieľania (SMB) alebo exportovanú cestu (NFS) na tomto serveri."
 
 msgid "Enter the same PIN code again to confirm it."
-msgstr ""
+msgstr "Pre potvrdenie zadajte rovnaký PIN kód ešte raz."
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Zadajte sekundárny IPv4 DNS server pre tento adaptér. (Voliteľne)"
@@ -8327,7 +8363,7 @@ msgid "Error code"
 msgstr "Kód chyby"
 
 msgid "Error creating the channel backup on the remote receiver!"
-msgstr ""
+msgstr "Chyba pri vytváraní zálohy kanálov na vzdialenom prijímači!"
 
 #, python-format
 msgid "Error downloading image '%s'!"
@@ -8337,7 +8373,7 @@ msgid "Error executing plugin"
 msgstr "Chyba pri spustení pluginu"
 
 msgid "Error extracting the channel backup!"
-msgstr ""
+msgstr "Chyba pri extrahovaní zálohy kanálov!"
 
 #, python-format
 msgid ""
@@ -8354,7 +8390,7 @@ msgid "Error opening recording file"
 msgstr "Chyba pri otváraní súboru s nahrávkou"
 
 msgid "Error overwriting the channel files on the local receiver!"
-msgstr ""
+msgstr "Chyba pri prepisovaní súborov pre kanály na lokálnom prijímači!"
 
 msgid "Error reading webpage!"
 msgstr "Chyba pri načítaní webovej stránky!"
@@ -8363,7 +8399,7 @@ msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Chyba pri získavaní 'epg.dat' zo vzdialeného prijímača!"
 
 msgid "Error retrieving the channel backup from the remote receiver!"
-msgstr ""
+msgstr "Chyba pri preberaní zálohy kanálov zo vzdialeného prijímača!"
 
 msgid "Error text:"
 msgstr "Text chyby:"
@@ -8464,7 +8500,7 @@ msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.
 msgstr "Odstraňovanie priečinka %s bolo neúspešné. (Možno nie je prázdny.)"
 
 msgid "Error: Rescan failed!"
-msgstr "Chyba: zlyhalo opätovné skenovanie!"
+msgstr "Chyba: zlyhalo opätovné vyhľadávanie!"
 
 msgid "Error: Scan failed!"
 msgstr "Prehľadávanie neúspešné!"
@@ -8496,37 +8532,37 @@ msgid "Error: The root file system and system directories can't be renamed!"
 msgstr "Chyba: koreňový systém súborov a systémové priečinky nie je možné premenovať!"
 
 msgid "Error: The selected service can't be recorded!"
-msgstr "Error: Vybranú stanicu nie je možné nahrávať!"
+msgstr "Chyba: na vybranej stanici/službe nie je možné nahrávať!"
 
 #, python-format
 msgid "Error: There was a problem writing '%s'!"
-msgstr "Chyba: Problém pri zápise '%s'!"
+msgstr "Chyba: problém pri zápise '%s'!"
 
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
-msgstr "Chyba: Pri resetovaní zdrojov sa objavil problém! Reštartujte %s %s a otestujte systém súborov, či neobsahuje chyby. Potom to skúste znova."
+msgstr "Chyba: pri resetovaní zdrojov sa objavil problém! Reštartujte %s %s a otestujte systém súborov, či neobsahuje chyby. Potom to skúste znova."
 
 msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
-msgstr ""
+msgstr "Chyba: nemožno skontrolovať existujúce pripojenia, takže náhrada HDD nebola zmenená!"
 
 msgid "Error: Unable to create the additional STARTUP files!"
-msgstr "Nemožno vytvoriť prídavné SPÚŠŤACIE súbory."
+msgstr "Chyba: nemožno vytvoriť prídavné SPÚŠŤACIE súbory!"
 
 msgid "Error: Unable to create the new manufacturer STARTUP files!"
-msgstr "Nemožno vytvoriť nové SPÚŠŤACIE súbory výrobcu."
+msgstr "Chyba: nemožno vytvoriť nové SPÚŠŤACIE súbory výrobcu!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Na cieľovom médiu (USB disku, či pevnom disku) nie je možné vytvoriť požadované priečinky. Prosím, skontrolujte médium a skúste to znovu."
 
 msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
-msgstr "Nemožno prečítať UUID novej partície MultiBoot. SPÚŠŤACIE súbory neboli zmenené."
+msgstr "Chyba: nemožno prečítať UUID novej partície MultiBoot. SPÚŠŤACIE súbory neboli zmenené!"
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Chyba: Nie je možné premenovať priečinok '%s' na '%s'!"
 
 msgid "Error: Unable to select the nominated audio channel!"
-msgstr "Nemožno vybrať zvukový kanál."
+msgstr "Chyba: nemožno vybrať zvolený zvukový kanál!"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8982,17 +9018,17 @@ msgid "Fast Forward And Rewind"
 msgstr "Prevíjanie rýchlo dopredu a dozadu"
 
 msgid "Fast Scan"
-msgstr "Fast Scan"
+msgstr "Rýchle vyhľadávanie (Fast Scan)"
 
 msgid "Fast Scan Actions"
-msgstr ""
+msgstr "Akcie pre rýchle vyhľadávanie (Fast Scan)"
 
 #, python-format
 msgid "Fast Scan version %d: Found %d channel."
 msgid_plural "Fast Scan version %d: Found %d channels."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Verzia funkcie Fast Scan: %d. Našiel sa %d kanál."
+msgstr[1] "Verzia funkcie Fast Scan: %d. Našli sa %d kanály."
+msgstr[2] "Verzia funkcie Fast Scan: %d. Našlo sa %d kanálov."
 
 msgid "Fast Skin Reload"
 msgstr "Rýchle opätovné načítanie vzhľadu"
@@ -9007,7 +9043,7 @@ msgid "Fast forward speeds"
 msgstr "Rýchlosti pretáčania vpred"
 
 msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
-msgstr ""
+msgstr "Funkcia Fast Scan (rýchle vyhľadávanie) môže premenovať existujúce stanice a zabrániť tak ich aktualizovaniu pri bežnom vyhľadávaní. Aktualizácie cez Fast Scan budú stále fungovať. Vypnutím tejto možnosti sa neobnovia pôvodné názvy alebo aktualizácie pri bežnom vyhľadávaní. Ak ich chcete obnoviť, prehľadajte stanice znovu s nastavením voľby 'Vyčistiť pred vyhľadávaním' na možnosť 'Áno'."
 
 msgid "Favorite Edit"
 msgstr "[úprava obľúbených]"
@@ -9330,7 +9366,7 @@ msgid "Flat by position on remote"
 msgstr "Podľa pozície na diaľkovom ovládaní"
 
 msgid "Flush Cache and Rescan"
-msgstr "Vyprázdniť vyrovnávaciu pamäť a skenovať znovu"
+msgstr "Vyprázdniť vyrovnávaciu pamäť a prehľadať znovu"
 
 msgid "Folk and Country"
 msgstr "Folk a country"
@@ -9385,6 +9421,9 @@ msgstr "Vynútiť vypnutie"
 
 msgid "Force enabled"
 msgstr "Vynútiť zapnutie"
+
+msgid "Force progressive for streams and files"
+msgstr "Vynútiť progresivitu pre streamy a súbory"
 
 msgid "Foreign countries/Expeditions"
 msgstr "cudzie krajiny/expedície"
@@ -9861,9 +9900,6 @@ msgstr "Zoznam HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
-msgstr "HDMI kolorimetria"
-
 msgid "HDMI HDR Type"
 msgstr "Typ HDMI HDR"
 
@@ -9875,6 +9911,9 @@ msgstr "Farebná hĺbka HDMI"
 
 msgid "HDMI color space"
 msgstr "Farebný priestor HDMI"
+
+msgid "HDMI colorimetry"
+msgstr "HDMI kolorimetria"
 
 msgid "HDMI-CEC Settings"
 msgstr "Nastavenie HDMI-CEC"
@@ -9897,9 +9936,6 @@ msgstr "Vstup HDMI"
 msgid "HDR OSD adjustment"
 msgstr "nastavenie HDR OSD"
 
-msgid "HDR10 Support"
-msgstr "Podpora HDR10"
-
 msgid "HELP"
 msgstr "POMOC"
 
@@ -9914,9 +9950,6 @@ msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "Odstrániť z titulkov texty pre sluchovo postihnutých"
-
-msgid "HLG Support"
-msgstr "Podpora HLG"
 
 msgid "Haiti"
 msgstr "Haiti"
@@ -9974,6 +10007,9 @@ msgstr "Sériové číslo hardvéru"
 
 msgid "Hardware type"
 msgstr "Typ hardvéru"
+
+msgid "Hardware video mode"
+msgstr "Hardvérový režim videa"
 
 msgid "Hausa"
 msgstr "hauština"
@@ -10065,6 +10101,9 @@ msgstr "Nezobrazovať hlásenia CI"
 msgid "Hide InfoBar"
 msgstr "Skryť infolištu"
 
+msgid "Hide OSD after"
+msgstr "Skryť OSD po"
+
 msgid "Hide VBI Line For This Service"
 msgstr "Skryť VBI riadok pre túto stanicu"
 
@@ -10087,7 +10126,7 @@ msgid "Hide player"
 msgstr "Nezobrazovať prehrávač"
 
 msgid "Hide protected services while the service PIN is not remembered."
-msgstr ""
+msgstr "Skryť chránené stanice/služby, pokiaľ nie je PIN pre stanicu/službu uložený v pamäti."
 
 msgid "Hide softcam servername"
 msgstr "Skryť názov servera softcamu"
@@ -10097,6 +10136,9 @@ msgstr "Skryť podradené menu"
 
 msgid "Hide the InfoBar"
 msgstr "Nezobrazovať infolištu"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr "Skryť OSD po uplynutí určitého času bez stlačenia tlačidla. Obrazovky a úkony na pozadí zostanú v činnosti. Prvým stlačením sa len obnoví OSD a opäť sa zobrazia nové otvorené dialógy. Stlačenie tlačidla 0 spôsobí pozastavenie do ďalšieho reštartu GUI, podržaním tlač. 0 je možné pokračovať."
 
 msgid "Hide zap errors"
 msgstr "Nezobrazovať chyby pri prepínaní"
@@ -10167,7 +10209,7 @@ msgstr "hmongčina"
 msgid "Hockey"
 msgstr "Hokej"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr "Podržať prvú snímku"
 
 msgid "Hold screen"
@@ -10518,7 +10560,7 @@ msgid "Ignore Standby"
 msgstr "Ignorovať pohotovostný režim"
 
 msgid "Ignore services on satellites that are not configured in the tuner settings."
-msgstr ""
+msgstr "Ignorovať stanice/služby na družiciach, ktoré nie je sú nakonfigurované v nastaveniach tunera."
 
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignorovať neočakávané prebudenie a zostať v pohotovostnom režime"
@@ -10691,7 +10733,7 @@ msgid "Include text encoding data"
 msgstr "Zahrnúť údaje o kódovaní textu"
 
 msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
-msgstr "Zahrnúť túto nakonfigurovanú sat. pozíciu do skenovania DAB+. Pre preskočenie pozície ju deaktivujte."
+msgstr "Zahrnúť túto nakonfigurovanú sat. pozíciu do vyhľadávania DAB+. Pre preskočenie pozície ju deaktivujte."
 
 msgid "Include timer data"
 msgstr "Zahrnúť údaje časovača"
@@ -11507,6 +11549,9 @@ msgstr "Voľný čas, koníčky"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let other programs set the CPU frequency."
+msgstr "Umožniť iným programom nastavovať frekvenciu CPU."
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr "Ponechať výber RF zosilnenia na tuner."
 
@@ -11548,7 +11593,7 @@ msgid "Lime"
 msgstr "limetková"
 
 msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
-msgstr "Obmedziť skenovanie DAB+ USB na frekvenčné bloky definované pre tento región v súbore 'dab.xml'."
+msgstr "Obmedziť vyhľadávanie v DAB+ USB na frekvenčné bloky definované pre tento región v súbore 'dab.xml'."
 
 msgid "Limit character set for recording filenames"
 msgstr "Obmedzená znaková sada pre názvy súborov s nahrávkami"
@@ -11666,6 +11711,10 @@ msgstr "Načítať tagy z časovača a nahrávok"
 msgid "Load unlinked user bouquets"
 msgstr "Načítať neprepojené používateľské prehľady"
 
+#, python-format
+msgid "Load: %s %%"
+msgstr "Vyťaženie: %s %%"
+
 msgid "Loading information, please wait..."
 msgstr "Informácie sa načítavavajú, čakajte, prosím…"
 
@@ -11739,9 +11788,6 @@ msgstr "Akcie pre výber umiestnenia"
 
 msgid "Location information"
 msgstr "Informácie o lokalite"
-
-msgid "Location list"
-msgstr "Zoznam lokalít"
 
 #, python-format
 msgid "Location: %s"
@@ -12018,6 +12064,9 @@ msgstr "Manuálne vyhľadávanie"
 
 msgid "Manual Service Searching"
 msgstr "Ručné vyhľadávanie staníc"
+
+msgid "Manual resolution"
+msgstr "Manuálne rozlíšenie"
 
 msgid "Manual scan for services"
 msgstr "Ručné vyhľadávanie staníc"
@@ -12910,10 +12959,10 @@ msgid "Name"
 msgstr "Názov"
 
 msgid "Name (A-Z)"
-msgstr ""
+msgstr "Názov (A-Z)"
 
 msgid "Name (Z-A)"
-msgstr ""
+msgstr "Názov (Z-A)"
 
 msgid "Name ascending"
 msgstr "Názov, vzostupne"
@@ -12972,6 +13021,9 @@ msgstr "Navigovanie a pridelenia tlačidiel"
 
 msgid "Navigation And Time Range"
 msgstr "Navigovanie a časový rozsah"
+
+msgid "Ndebele"
+msgstr "Ndebele"
 
 msgid "Ndonga"
 msgstr "ndonga"
@@ -13349,7 +13401,7 @@ msgid "No channel"
 msgstr "Žiadny kanál"
 
 msgid "No channel backup found on the remote receiver!"
-msgstr ""
+msgstr "Na vzdialenom prijímači sa nenašla žiadna záloha kanálov!"
 
 msgid "No channel list"
 msgstr "Žiadny zoznam kanálov"
@@ -13398,10 +13450,10 @@ msgid "No hard disks detected."
 msgstr "Neboli zistené žiadne pevné disky."
 
 msgid "No hosts found yet - still scanning..."
-msgstr "Nenašli sa žiadni hostitelia - skenovanie stále prebieha..."
+msgstr "Nenašli sa žiadni hostitelia - vyhľadávanie stále prebieha..."
 
 msgid "No local images found."
-msgstr ""
+msgstr "Nenašli sa žiadne lokálne image."
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nenašli sa žiadne súbory denníkov, takže denníky ladenia nie sú k dispozícii!"
@@ -13681,7 +13733,7 @@ msgid "Not running"
 msgstr "Nespustené"
 
 msgid "Not set"
-msgstr ""
+msgstr "Nenastavené"
 
 msgid "Not tested:"
 msgstr "Netestované:"
@@ -13837,6 +13889,12 @@ msgstr "Nastavenia OSD"
 msgid "OSD Setup"
 msgstr "Nastavenie OSD"
 
+msgid "OSD auto-hide enabled."
+msgstr "Automatické skrývanie OSD je aktivované."
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr "Automatické skrývanie OSD je pozastavené do ďalšieho reštartu GUI. Na pokračovanie stlačte tlačidlo 0."
+
 msgid "OSD name request"
 msgstr "Požadovaný názov OSD"
 
@@ -13934,7 +13992,7 @@ msgid "Only on startup"
 msgstr "Len pri spustení"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
-msgstr ""
+msgstr "Ako náhradu HDD je možné použiť iba jedno sieťové zdieľanie. Pri inom zdieľaní najskôr deaktivujte voľbu 'Použiť ako náhradu HDD'."
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Používať len DNS servery s implementovaným protokolom DNS-over-HTTPS. Vyhľadávania DNS tak prebiehajú cez šifrovaný protokol HTTPS."
@@ -14127,6 +14185,9 @@ msgstr "Otvoriť informácie o úložnom zariadení"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Otvoriť virtuálnu klávesnicu pre zadanie textu"
+
+msgid "Open the additional screens"
+msgstr "Otvoriť dodatočné obrazovky"
 
 msgid "Open the context menu"
 msgstr "Otvoriť kontextové menu"
@@ -14606,6 +14667,9 @@ msgstr "Filipíny"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr "PiP (bez HDR)"
+
 msgid "PiP with OSD"
 msgstr "PIP s OSD"
 
@@ -14845,9 +14909,6 @@ msgstr "Prosím, zadajte názov nového symbolického odkazu:"
 
 msgid "Please enter new name:"
 msgstr "Prosím, zadajte nové meno:"
-
-msgid "Please enter search string for your location"
-msgstr "Prosím, zadajte hľadaný reťazec pre vašu polohu"
 
 msgid "Please enter the correct pin code"
 msgstr "Prosím, zadajte správny PIN kód"
@@ -15271,7 +15332,7 @@ msgid "Preparation time for recording"
 msgstr "Čas prípravy na nahrávanie (v sekundách)"
 
 msgid "Preparing recording, please wait..."
-msgstr ""
+msgstr "Pripravuje sa nahrávanie, prosím čakajte..."
 
 msgid "Preparing... Please wait"
 msgstr "Pripravuje sa… Čakajte, prosím"
@@ -15298,7 +15359,7 @@ msgid "Press GREEN to enable MultiBoot!"
 msgstr "MultiBoot sa aktivuje stlačením ZELENÉHO tlačidla!"
 
 msgid "Press OK"
-msgstr ""
+msgstr "Stlačte OK"
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Pre výber MultiBoot stlačte OK."
@@ -15307,7 +15368,7 @@ msgid "Press OK on your remote control to continue."
 msgstr "Ak chcete pokračovať, stlačte OK na diaľkovom ovládači."
 
 msgid "Press OK to change the PIN used for service and screen protection."
-msgstr ""
+msgstr "Stlačte OK na zmenu PIN kódu používaného pre stanicu/službu a ochranu obrazovky."
 
 msgid "Press OK to continue."
 msgstr "Stlačením OK môžete pokračovať."
@@ -15337,7 +15398,7 @@ msgid "Press OK to open module info"
 msgstr "Stlačením tlačidla OK otvoríte informácie o module"
 
 msgid "Press OK to reload the list of protected services from disk."
-msgstr ""
+msgstr "Stlačením OK znovu načítate zoznam chránených staníc/služieb z disku."
 
 msgid "Press OK to reset PIN code"
 msgstr "Stlačením tlačidla OK resetujete kód PIN"
@@ -15361,7 +15422,7 @@ msgid "Press OK to select satellites"
 msgstr "Družice vyberiete stlačením OK"
 
 msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
-msgstr ""
+msgstr "Stlačením OK vyberiete stanicu/službu pre prípad paniky. Tá sa zachová aj pri zmene usporiadania kanálov alebo prehľadov."
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "Stlačením OK vyberiete/zrušíte výber CAID."
@@ -15387,7 +15448,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Stlačte OK pre použitie týchto miestnych nastavení:  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
-msgstr "Stlačením tlačidiel HORE/DOLU vyberte slot a stlačte OK alebo ZELENÉ tlačidlo pre reštart do tohto slotu. ŽLTÝM tlačidla vymažete zvolený image, podržaním ŽLTÉHO tlačidla sa vymaže natrvalo. Vymazaný image môžete obnoviť MODRÝM tlačidlom, ale natrvalo vymazaný image nemožno obnoviť. Prázdne sloty zobrazíte/skryjete stlačením tlačidla INFO."
+msgstr "Stlačením tlačidiel HORE/DOLU vyberte slot a stlačte OK alebo ZELENÉ tlačidlo pre reštart do tohto slotu. ŽLTÝM tlačidlom vymažete zvolený image, podržaním ŽLTÉHO tlačidla sa vymaže natrvalo. Vymazaný image môžete obnoviť MODRÝM tlačidlom, ale natrvalo vymazaný image nemožno obnoviť. Prázdne sloty zobrazíte/skryjete stlačením tlačidla INFO."
 
 msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
 msgstr "Vyberte slot stlačením tlačidla HORE/DOLU. Potom stlačte OK alebo ZELENÉ tlačidlo a reštartujte do tohto slotu. Ak je to možné, ŽLTÝM tlačidlom deaktivujete MultiBoot, vymažete alebo vyčistíte vybraný slot."
@@ -15547,7 +15608,7 @@ msgid "Properties of current title"
 msgstr "Vlastnosti aktuálneho titulu"
 
 msgid "Protect MultiBoot"
-msgstr ""
+msgstr "Chrániť MultiBoot"
 
 msgid "Protect Quickmenu"
 msgstr "Ochrana rýchleho menu"
@@ -15562,13 +15623,13 @@ msgid "Protect context menus"
 msgstr "Ochrana kontextového menu"
 
 msgid "Protect extensions menu"
-msgstr ""
+msgstr "Ochrana menu pre rozšírenia"
 
 msgid "Protect factory reset"
-msgstr ""
+msgstr "Ochrana resetu na výrobné nastavenia"
 
 msgid "Protect image flashing and restoring backups"
-msgstr ""
+msgstr "Ochrana flashovania image a obnovovania záloh"
 
 msgid "Protect main menu"
 msgstr "Ochrana Hlavného menu"
@@ -15580,13 +15641,13 @@ msgid "Protect on epg age"
 msgstr "Ochrana v EPG podľa veku"
 
 msgid "Protect package installation and removal"
-msgstr ""
+msgstr "Ochrana možnosti inštalácie a odstraňovania balíčkov"
 
 msgid "Protect plugin browser"
 msgstr "Ochrana Prehliadača pluginov"
 
 msgid "Protect script execution"
-msgstr ""
+msgstr "Ochrana spúšťania skriptov"
 
 msgid "Protect services"
 msgstr "Ochrana staníc"
@@ -15598,10 +15659,10 @@ msgid "Protect standby menu"
 msgstr "Ochrana menu pohotovostného režimu"
 
 msgid "Protect storage device management"
-msgstr ""
+msgstr "Ochrana spravovania úložných zariadení"
 
 msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
-msgstr ""
+msgstr "Ochrana hlavného menu a systémových funkcií pokrývaných ochranou obrazovky, vrátane prístupu cez odkazy."
 
 msgid "Protect timer menu"
 msgstr "Ochrana menu časovačov"
@@ -15738,6 +15799,9 @@ msgstr "RAM (súhrn)"
 msgid "RAM benchmark"
 msgstr "RAM benchmark"
 
+msgid "RAM temperature"
+msgstr "Teplota RAM"
+
 msgid "RC custom code"
 msgstr "Používateľský RC kód"
 
@@ -15818,6 +15882,15 @@ msgstr "Výber rádiového kanála"
 
 msgid "Radio Channel Selection Actions"
 msgstr "Akcie pre výber rádiového kanála"
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr "Postupne zvyšovať a znižovať frekvenciu CPU podľa vyťaženia."
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr "Rýchlo zvýšiť frekvenciu CPU pri načítavaní a znížiť ju pri malom vyťažení CPU."
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
+msgstr "Zvýšiť frekvenciu CPU na maximum pri načítavaní a postupne ju znižovať pri malom vyťažení CPU."
 
 msgid "Random"
 msgstr "Náhodne"
@@ -15965,7 +16038,7 @@ msgid "Reception source"
 msgstr "Zdroj príjmu"
 
 msgid "Reception sources to scan"
-msgstr "Skenované zdroje príjmu"
+msgstr "Prehľadávané zdroje príjmu"
 
 msgid "Record"
 msgstr "Nahrávanie"
@@ -16361,7 +16434,7 @@ msgid "Remove highlighted directory from bookmarks"
 msgstr "Odstrániť vybraný priečinok zo záložiek"
 
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
-msgstr "Odstrániť stanice/služby, ktoré boli predtým uložené zo skenovaných multiplexov DAB+. Vypnutím tento voľby sa stanice zachovajú, ak je multiplex dočasne nedostupný."
+msgstr "Odstrániť stanice/služby, ktoré boli predtým uložené z prehľadaných multiplexov DAB+. Vypnutím tento voľby sa stanice zachovajú, ak je multiplex dočasne nedostupný."
 
 msgid "Remove service from AutoCam"
 msgstr "Odstrániť stanicu z AutoCamu"
@@ -16449,6 +16522,9 @@ msgstr "Premenovaný %s!"
 msgid "Renovation"
 msgstr "Renovácia"
 
+msgid "Reopen tuner when changing delivery system"
+msgstr "Znovu otvoriť tuner pri zmene systému doručovania"
+
 msgid "Repeat"
 msgstr "Opakovať"
 
@@ -16494,61 +16570,61 @@ msgid "Replace the static radio background with pictures transmitted by the curr
 msgstr "Nahradiť statické pozadie pre rádio obrázkami prenášanými aktuálnou stanicou DAB+."
 
 msgid "Require a PIN code before resetting the receiver configuration."
-msgstr ""
+msgstr "Vyžadovať PIN kód pred resetom konfigurácie prijímača."
 
 msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
-msgstr ""
+msgstr "Vyžadovať PIN kód na prístup k spravovaniu chráneného úložiska, swapu a obrazoviek pre rozšírenie flash."
 
 msgid "Require a PIN code to access software updates."
-msgstr ""
+msgstr "Vyžadovať PIN kód na prístup k aktualizáciám softvéru."
 
 msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
-msgstr ""
+msgstr "Vyžadovať PIN kód na prístup k vybraným menu a systémovým funkciám, vrátane chránených odkazov na ne."
 
 msgid "Require a PIN code to flash images or restore backups."
-msgstr ""
+msgstr "Vyžadovať PIN kód na flashovanie image a obnovovanie záloh."
 
 msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
-msgstr ""
+msgstr "Vyžadovať PIN kód na inštalovanie alebo odstraňovanie balíčkov, vrátane súborov IPK na vymeniteľnom médiu."
 
 msgid "Require a PIN code to manage MultiBoot images and slots."
-msgstr ""
+msgstr "Vyžadovať PIN kód na spravovanie image typu MultiBoot a slotov."
 
 msgid "Require a PIN code to open protected context menus."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie chránených kontextových menu."
 
 msgid "Require a PIN code to open settings and protected system configuration screens."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie nastavení a chránených obrazoviek pre konfigurovanie systému."
 
 msgid "Require a PIN code to open the Quickmenu."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie rýchleho menu."
 
 msgid "Require a PIN code to open the extensions menu."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie menu pre rozšírenia."
 
 msgid "Require a PIN code to open the movie list."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie zoznamu filmov."
 
 msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie prehliadača pluginov a ich spúšťanie cez chránené vstupné body."
 
 msgid "Require a PIN code to open the script runner."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie spúšťača skriptov."
 
 msgid "Require a PIN code to open the standby and shutdown menu."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie menu pre pohotovostný režim a vypnutie."
 
 msgid "Require a PIN code to open the timer menu."
-msgstr ""
+msgstr "Vyžadovať PIN kód na otvorenie menu pre časovače."
 
 msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
-msgstr ""
+msgstr "Vyžadovať PIN kód na sledovanie chránených staníc, služieb alebo programov s vybraným vekovým limitom."
 
 msgid "Require authentication for http streams"
 msgstr "Vyžadovať prihlásenie pre http stream"
 
 msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
-msgstr ""
+msgstr "Vyžadovať PIN kód pre programy určené pre tento alebo vyšší vek, s použitím informácie o veku poskytovanej vysielateľom."
 
 msgid "Required medium type:"
 msgstr "Požadovaný druh média:"
@@ -16557,13 +16633,13 @@ msgid "Rereading partition table"
 msgstr "Opakované načítanie tabuľky partícií"
 
 msgid "Rescan"
-msgstr "Skenovať znovu"
+msgstr "Prehľadať znovu"
 
 msgid "Rescan for available Wi-Fi networks"
-msgstr "Znovu skenovať dostupné siete Wi-Fi"
+msgstr "Znovu vyhľadať dostupné siete Wi-Fi"
 
 msgid "Rescan for available network shares"
-msgstr "Znovu skenovať dostupné sieťové zdieľania"
+msgstr "Znovu vyhľadať dostupné sieťové zdieľania"
 
 msgid "Reserved"
 msgstr "Rezervované"
@@ -16767,7 +16843,7 @@ msgid "Retrieving boot slot information..."
 msgstr "Získavajú sa informácie o bootovacom slote…"
 
 msgid "Retrieving geolocation information..."
-msgstr ""
+msgstr "Získavanie informácií o geografickej polohe..."
 
 msgid "Retrieving image list, please wait..."
 msgstr "Získava sa zoznam image súborov. Čakajte, prosím…"
@@ -16788,7 +16864,7 @@ msgid "Return to movie list"
 msgstr "Návrat do zoznamu filmov"
 
 msgid "Return to previous channel"
-msgstr ""
+msgstr "Návrat na predchádzajúci kanál"
 
 msgid "Return to previous service"
 msgstr "Návrat na predchádzajúcu stanicu"
@@ -16946,6 +17022,9 @@ msgstr "ruština"
 msgid "Russian Federation"
 msgstr "Ruská federácia"
 
+msgid "Rusyn"
+msgstr "Rusínsky"
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -17089,7 +17168,7 @@ msgid "Satellite"
 msgstr "Družica"
 
 msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
-msgstr "Sat. zdroje DAB+ nemožno skenovať počas prebiehajúceho nahrávania. Nie je dostupný žiadny USB prijímač."
+msgstr "Sat. zdroje DAB+ nemožno vyhľadať počas prebiehajúceho nahrávania. Nie je dostupný žiadny USB prijímač."
 
 msgid "Satellite Dish Settings"
 msgstr "Nastavenie paraboly"
@@ -17101,7 +17180,7 @@ msgid "Satellite equipment setup"
 msgstr "Nastavenie satelitného zariadenia"
 
 msgid "Satellite feeds to scan"
-msgstr "Sat. zdroje určené na skenovanie"
+msgstr "Sat. zdroje určené na prehľadanie"
 
 msgid "Satellite only"
 msgstr "Len satelit"
@@ -17159,7 +17238,7 @@ msgstr "Uložiť každých"
 
 #, python-format
 msgid "Save image as '%s'"
-msgstr "Uložiť obrázok ako '%s'"
+msgstr "Uložiť obraz ako '%s'"
 
 msgid "Save left directory on exit"
 msgstr "Pri ukončení uložiť priečinok vľavo"
@@ -17257,7 +17336,7 @@ msgid "Scan %s band"
 msgstr "Prehľadať %s pásmo"
 
 msgid "Scan Wi-Fi Networks"
-msgstr "Sken sietí Wi-Fi"
+msgstr "Hľadanie sietí Wi-Fi"
 
 msgid "Scan additional SR"
 msgstr "Prehľadať ďalšie SR"
@@ -17275,7 +17354,7 @@ msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Vyhľadanie pozemných LCN a vytvorenie prehľadov LCN"
 
 msgid "Scan region"
-msgstr "Región skenovania"
+msgstr "Región vyhľadávania"
 
 msgid "Scan the QR code to open the manual:"
 msgstr "Na otvorenie manuálu naskenujte QR kód:"
@@ -17291,14 +17370,14 @@ msgid "Scanning '%s'..."
 msgstr "Prehľadávanie %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
-msgstr "Skenovanie zdroja DAB+; čaká sa na živé dáta FIC..."
+msgstr "Prehľadávanie zdroja DAB+; čaká sa na živé dáta FIC..."
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Vyhľadávanie nemožno vykonať vtedy, keď je spustené nahrávanie."
 
 #, python-format
 msgid "Scanning completed, %d DAB+ services found."
-msgstr "Skenovanie dokončené, počet nájdených služieb DAB+: %d."
+msgstr "Vyhľadávanie dokončené, počet nájdených služieb DAB+: %d."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -17315,14 +17394,14 @@ msgstr[1] "Vyhľadávanie dokončené, našli sa %d stanice alebo služby."
 msgstr[2] "Vyhľadávanie dokončené, našlo sa %d staníc alebo služieb."
 
 msgid "Scanning for shares..."
-msgstr "Prebieha skenovanie zdieľaní..."
+msgstr "Prebieha vyhľadávanie zdieľaní..."
 
 msgid "Scanning..."
 msgstr "Prehľadávanie…"
 
 #, python-format
 msgid "Scanning: %d services found; validating live result (%d/%d)..."
-msgstr "Skenovanie: počet nájdených služieb %d; overuje sa živý výsledok (%d/%d)..."
+msgstr "Vyhľadávanie: počet nájdených služieb %d; overuje sa živý výsledok (%d/%d)..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -17361,6 +17440,9 @@ msgstr "Denník časovača napájania"
 
 msgid "Scheduler standby"
 msgstr "Časovač napájania – pohotovostný režim"
+
+msgid "Schedutil (recommended)"
+msgstr "Schedutil (odporúča sa)"
 
 msgid "Science"
 msgstr "Veda"
@@ -17425,9 +17507,6 @@ msgstr "Hľadať v aktuálnom zobrazení"
 msgid "Search packages by name or description"
 msgstr "Hľadať balíčky podľa názvu alebo opisu"
 
-msgid "Search weather location ID"
-msgstr "Vybrať ID lokality pre počasie"
-
 msgid "Search west"
 msgstr "Hľadať západne"
 
@@ -17441,7 +17520,7 @@ msgid "Searching east ..."
 msgstr "Hľadanie východne…"
 
 msgid "Searching for local images, please wait..."
-msgstr ""
+msgstr "Vyhľadávajú sa lokálne prítomné image, prosím čakajte..."
 
 msgid "Searching west ..."
 msgstr "Hľadanie západne…"
@@ -17454,9 +17533,6 @@ msgstr "Sekundárne DNS (IPv4)"
 
 msgid "Secondary DNS (IPv6)"
 msgstr "Sekundárne DNS (IPv6)"
-
-msgid "Seconds"
-msgstr "sekúnd"
 
 msgid "Security Packages"
 msgstr "Bezpečnostné balíčky"
@@ -17528,13 +17604,16 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr "Ak sa používa 'univerzálny' LNB, vyberte možnosť 'polarizácia', v opačnom prípade si pozrite špecifikácie vášho LNB."
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
-msgstr "Možnosť 'poskytovateľ' (provider) umožní skenovať preddefinovaný zoznam káblových multiplexov. Možnosť 'pásma' umožní prehľadávať len určité časti spektra. Na prehľadávanie po jednotlivých krokoch určitej šírky frekvenčného pásma, vyberte možnosť 'kroky'."
+msgstr "Možnosť 'poskytovateľ' (provider) umožní prehľadať preddefinovaný zoznam káblových multiplexov. Možnosť 'pásma' umožní prehľadávať len určité časti spektra. Na prehľadávanie po jednotlivých krokoch určitej šírky frekvenčného pásma, vyberte možnosť 'kroky'."
 
 msgid "Select 'Soft mount' to make file access return an error once the server stops responding instead of retrying forever. The 'Hard mount' option, the default, protects against silent data loss but can hang programs accessing this share while the server is unreachable."
 msgstr "Ak chcete zobraziť chybu pri prístupe k súboru, keď server neodpovedá (a zastaviť opätovné pokusy o odpoveď), vyberte možnosť 'Mäkké pripojenie'. Možnosť 'Tvrdé pripojenie' (štandardne nastavená) chráni pred nepozorovanou stratou údajov, môže však viesť k zamrznutiu programov pristupujúcich k tomuto zdieľaniu vtedy, keď nie je server dostupný."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "Ak sa má každej stanici alebo službe vo všetkých prehľadoch priradiť jedinečné číslo, vyberte možnosť 'Jedinečné číslovanie'. Ak sa má číslovanie začínať v každom prehľade od 1, použite 'Prehľady začínajú od 1. 'LCN číslovanie použite vtedy, ak sa majú používať konzistentné LCN staníc alebo služieb bez ohľadu na výskyt."
+
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
+msgstr "Ak zlyhá ladenie tunera s viacerými štandardmi po prepnutí medzi satelitným, káblovým a terestriálnym príjmom, vyberte možnosť 'Áno'. Potom sa tuner po každom prepnutí zatvorí a opäť otvorí. Je to však potrebné len pri niektorých starších ovládačoch tunera."
 
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Ak je pre tento časovač potrebné zadať aj čas ukončenia, vyberte možnosť 'Áno'."
@@ -17776,6 +17855,9 @@ msgstr "Pre okamžité vypnutie (namiesto spustenia dekódovania), vyberte možn
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
 
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr "Ak chcete streamy a mediálne súbory s prekladaním považovať za progresívne, vyberte možnosť 'Áno'. DVB stanice, služby a nahrávky tým nebudú dotknuté. Toto nastavenie je užitočné pre streamy, ktoré sú chybne označené ako prekladané."
+
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Ak je nastavené na 'Áno', použijú sa údaje PDC (ak sú dostupné pri aktuálnej stanici), na presné zastavenie okamžitého nahrávania na konci udalosti."
 
@@ -17931,7 +18013,7 @@ msgid "Select a script to run:"
 msgstr "Vyberte skript na spustenie:"
 
 msgid "Select a service"
-msgstr ""
+msgstr "Vyberte stanicu/službu"
 
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr "Vyberte špecifickú verziu NFS, pre vynútenie špecifickej verzie protokolu NFS, namiesto automatického vyjednávania."
@@ -18010,7 +18092,7 @@ msgid "Select files/folders to backup"
 msgstr "Vyberte súbory/priečinky na zálohovanie"
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
-msgstr ""
+msgstr "Vyberte, ako dlho bude správne zadaný PIN kód pre stanicu/službu uložený v pamäti. Tým sa však neodomknú chránené nastavenia alebo systémové akcie."
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Vyberte, ako dlho zostane obrázok šetriča na rovnakom mieste predtým, než sa presunie."
@@ -18054,8 +18136,11 @@ msgstr "Vyberte, ako sa má spracovávať plán vzhľadom na pohotovostný reži
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vyberte spôsob aktivácie režimu Quick EPG."
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr "Vyberte spôsob synchronizácie signálu po zmene stanice/služby."
+
 msgid "Select how to sort the timer list."
-msgstr ""
+msgstr "Vyberte spôsob zoraďovania zoznamu časovačov."
 
 msgid "Select how your receiver will upgrade."
 msgstr "Vyberte spôsob aktualizácie vášho prijímača."
@@ -18130,7 +18215,7 @@ msgid "Select refresh rate"
 msgstr "Vyberte obnovovaciu frekvenciu"
 
 msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
-msgstr ""
+msgstr "Vyberte separáte porty DiSEqC 1.0 pre horizontálne a vertikálne konvertory (LNB) inštalácie typu OMT na jednej družici. Napäťový režim zostáva nezávislý. Externé pomôcky pre blindscan nemusia podporovať takúto konfiguráciu."
 
 msgid "Select service information to view:"
 msgstr "Vyberte servisnú informáciu, ktorá sa má zobraziť:"
@@ -18157,11 +18242,20 @@ msgstr "Vyberte poradie dočasného zoraďovania súborov pre aktuálny stĺpec"
 msgid "Select the %s entry"
 msgstr "Vyberte záznam %s"
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr "Vyberte režim %s, ktorý sa použije s TV/monitorom kompatibilným s HDR, pripojeným cez HDMI."
+
 msgid "Select the AI-Powered Translation target language."
 msgstr "Vyberte cieľový jazyk prekladu pomocou umelej inteligencie."
 
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Vyberte DNS server(y) na vyhľadanie názvov hostiteľa pre rozlišovanie IP adries."
+
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr "Vyberte HDMI kolorimetriu počas zobrazovania obsahu v HDR. Táto voľba sa používa len vtedy, keď je 'HDMI kolorimetria' nastavená na 'Auto'."
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
+msgstr "Vyberte režim HDR použitý pre UHD TV/monitor pripojený cez HDMI."
 
 msgid "Select the No / False response"
 msgstr "Vyberte odozvu Nie/Nesprávne"
@@ -18255,6 +18349,9 @@ msgstr "Vyberte znak alebo akciu pod kurzorom klávesnice"
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr "Vyberte znakovú sadu (iocharset), ktorá sa použije na porovnávanie/preklad názvov vzdialených súborov."
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr "Vyberte používanú hĺbku farieb s UHD TV/monitorom pripojeným cez HDMI."
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Vyberte farbu LED pre napájanie na prednom paneli, keď je prijímač v činnosti. Touto voľbou môžete LED aj deaktivovať/vypnúť."
 
@@ -18264,14 +18361,20 @@ msgstr "Vyberte farbu LED pre napájanie na prednom paneli, počas vypnutia prij
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr "Vyberte farbu LED pre napájanie na prednom paneli, keď je prijímač v pohotovostnom režime. Touto voľbou môžete LED aj deaktivovať/vypnúť."
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr "Vyberte farebný priestor používaný s TV/monitorom pripojeným cez HDMI."
+
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Vyberte farbu pre texty preložené umelou inteligenciou."
 
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
+msgstr "Vyberte kolorimetriu používanú s HDR TV/monitorom pripojeným cez HDMI."
+
 msgid "Select the committed switch port connected to the horizontal LNB."
-msgstr ""
+msgstr "Vyberte oznámený prepínací port, pripojený k horizontálnemu LNB."
 
 msgid "Select the committed switch port connected to the vertical LNB."
-msgstr ""
+msgstr "Vyberte oznámený prepínací port, pripojený k vertikálnemu LNB."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Vybrať umiestnenie aktuálnej záložky a ukončiť"
@@ -18318,6 +18421,9 @@ msgstr "Vyberte predvolený priečinok, ktorý sa použije, ak nebude uložený 
 msgid "Select the default directory to be used if the right column directory is not saved."
 msgstr "Vyberte predvolený priečinok, ktorý sa použije, ak nebude uložený priečinok v pravom stĺpci."
 
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
+msgstr "Vyberte režim odstraňovania prekladania používaný dekodérom videa. Voľbou možnosti 'Auto' prenecháte rozhodnutie na ovládač."
+
 msgid "Select the delay before the timer activates."
 msgstr "Vyberte oneskorenie pred aktiváciou časovača."
 
@@ -18358,7 +18464,7 @@ msgid "Select the end time before which this timer can be activated. After this 
 msgstr "Vyberte čas ukončenia, pred ktorým sa môže časovač aktivovať. Po tomto čase sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
 
 msgid "Select the fast scan provider and press BLUE to start the scan."
-msgstr ""
+msgstr "Vyberte poskytovateľa pre rýchle vyhľadávanie (fast scan) a MODRÝM tlačidlom spustite vyhľadávanie."
 
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
@@ -18376,6 +18482,9 @@ msgstr "Vyberte prvú položku v zozname"
 
 msgid "Select the function to be assigned to this button."
 msgstr "Vyberte funkciu, ktorá sa priradí tomuto tlačidlu."
+
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr "Vyberte najvyššiu povolenú frekvenciu pre jadrá CPU."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Vybrať zvýraznený image a pokračovať na výber slotu"
@@ -18412,6 +18521,9 @@ msgstr "Vyberte umiestnenie, do ktorého na má uložiť nahrávka:"
 
 msgid "Select the location where the picon files will be installed."
 msgstr "Vyberte cieľové umiestnenie, kam sa nainštalujú súbory pikon."
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
+msgstr "Vyberte najnižšiu povolenú frekvenciu pre jadrá CPU. Tá sa použije aj pri pohotovostnom režime."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Vyberte výrobcu vášho zariadenia SCR. Ak nie je výrobca uvedený v zozname, nastavte 'SCR' na voľbu 'definované používateľom' a zadajte parametre zariadenia manuálne podľa jeho špecifikácií."
@@ -18583,13 +18695,13 @@ msgid "Select the timer from the fallback tuner by default"
 msgstr "Ak je povolené, bude importovaný časovač zo záložného tuneru"
 
 msgid "Select the timer list sort order"
-msgstr ""
+msgstr "Vyberte poradie zoraďovania v zozname časovačov"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Vyberte tuner, ktorý ovláda parabolu vybavenú motorom."
 
 msgid "Select the tuner to use for the fast scan."
-msgstr ""
+msgstr "Vyberte tuner používaný pre rýchle vyhľadávanie (fast scan)."
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Vyberte tuner, ku ktorému je pripojený kábel so signálom SCR zariadenia."
@@ -18608,6 +18720,9 @@ msgstr "Vyberte typ klávesnice pripojenej k %s %s."
 
 msgid "Select the type of this timer."
 msgstr "Vyberte typ tohto časovača."
+
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
+msgstr "Vyberte schopnosti video-režimu hardvérového čipu. Obraz v obraze (PiP) a 12-bitový HDR výstup nemožno používať súčasne, takže si vyberte, či chcete zapnúť PiP alebo 12-bitový HDR výstup."
 
 msgid "Select the video mode to be used on the TV."
 msgstr "Vyberte režim videa, ktorý sa použije na TV."
@@ -18814,6 +18929,9 @@ msgstr "Srbsko"
 msgid "Serbian"
 msgstr "srbčina"
 
+msgid "Serbo-Croatian"
+msgstr "Srbo-chorvátčina"
+
 msgid "Serial No"
 msgstr "S/N"
 
@@ -18916,7 +19034,7 @@ msgid "Service name font size"
 msgstr "Veľkosť písma názvu stanice"
 
 msgid "Service not found"
-msgstr ""
+msgstr "Stanica/služba sa nenašla"
 
 msgid ""
 "Service not found!\n"
@@ -19072,6 +19190,9 @@ msgstr "Vybrať ako stanicu/službu pri spustení"
 
 msgid "Set system"
 msgstr "Nastavenie systému"
+
+msgid "Set the CPU frequencies and the governor"
+msgstr "Nastaviť frekvencie CPU a regulátor"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "Nastavte časový interval preskočenia pre tlačidlá '%s'/'%s' v editore zoznamu strihov."
@@ -20114,6 +20235,9 @@ msgstr "Zobraziť sieťovú informáciu pre vybraný adaptér"
 msgid "Show the OSCam information screen"
 msgstr "Zobraziť obrazovku informácií OScamu"
 
+msgid "Show the about screen"
+msgstr "Zobraziť obrazovku s informáciami"
+
 msgid "Show the last opkg command's output"
 msgstr "Zobraziť výstup posledného príkazu opkg"
 
@@ -20312,6 +20436,9 @@ msgstr "Balíčky vzhľadu"
 
 msgid "Skin Settings"
 msgstr "Nastavenie vzhľadu"
+
+msgid "Skin Setup Actions"
+msgstr "Akcie pre nastavenie vzhľadu"
 
 msgid "Skin setting"
 msgstr "Nastavenie vzhľadu"
@@ -20540,7 +20667,7 @@ msgstr "slovinčina"
 msgid "Slow"
 msgstr "Pomaly"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr "Spomalený pohyb (Slow Motion)"
 
 msgid "Slow motion speeds"
@@ -20683,7 +20810,7 @@ msgid "Some TVs can't switch to the correct input if another HDMI port is active
 msgstr "Niektoré televízory nedokážu prepnúť na správny vstup, ak je aktívny iný port HDMI. Týmto nastavením sa televízor pred prepnutím uvedie do pohotovostného režimu. Ak sa televízor opäť nezapne, môže byť potrebný pomalší interval prenosu alebo zopakovanie príkazu na prebudenie."
 
 msgid "Some image locations could not be read. Check your storage devices."
-msgstr ""
+msgstr "Nie je možné čítať z niektorých umiestnení pre image. Skontrolujte úložné zariadenia."
 
 msgid "Sorbian"
 msgstr "srbčina"
@@ -20719,9 +20846,6 @@ msgstr "Žiaľ, nenašli sa žiadne zálohy!"
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Prepáčte, nie sú pripojené žiadne zariadenia podporujúce odkladanie. Odkladací (swap) súbor nie je možné vytvoriť v sieti alebo v súborových systémoch FAT32"
 
-msgid "Sorry, there was a problem:"
-msgstr "Prepáčte, vyskytol sa problém:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20745,7 +20869,7 @@ msgid "Sort Plugin Browser entries"
 msgstr "Zoradiť položky v prehliadači pluginov"
 
 msgid "Sort Timers"
-msgstr ""
+msgstr "Zoradiť časovače"
 
 msgid "Sort by"
 msgstr "Zoradiť podľa"
@@ -20881,6 +21005,9 @@ msgstr "Športy"
 msgid "Sports magazines"
 msgstr "športový magazín"
 
+msgid "Sranan Tongo"
+msgstr "Sranan Tongo"
+
 msgid "Sri Lanka"
 msgstr "Srí Lanka"
 
@@ -20915,17 +21042,14 @@ msgstr "Spustenie %s"
 msgid "Start Auto Refresh"
 msgstr "Spustiť automatické obnovenie"
 
-msgid "Start Boot Frequency"
-msgstr "Počiatočná bootovacia frekvencia"
-
 msgid "Start RDS interactive"
 msgstr "Spustiť interaktívne RDS"
 
 msgid "Start Time (Earliest First)"
-msgstr ""
+msgstr "Čas spustenia (najskorší je prvý)"
 
 msgid "Start Time (Latest First)"
-msgstr ""
+msgstr "Čas spustenia (najneskorší je prvý)"
 
 msgid "Start Wizard"
 msgstr "Spustiť sprievodcu"
@@ -20985,7 +21109,7 @@ msgid "Start the backup of the selected image"
 msgstr "Spustiť zálohovanie vybraného image"
 
 msgid "Start the fast scan"
-msgstr ""
+msgstr "Spustiť rýchle vyhľadávanie (fast scan)"
 
 msgid "Start the highlighted plugin"
 msgstr "Spustiť označený plugin"
@@ -21010,7 +21134,7 @@ msgid "Starting %s failed (exit code %s)"
 msgstr "Spustenie %s bolo neúspešné (kód ukončenia %s)"
 
 msgid "Starting DAB+ scan..."
-msgstr "Spúšťa sa skenovanie DAB+..."
+msgstr "Spúšťa sa vyhľadávanie v DAB+..."
 
 msgid "Starting Softcam"
 msgstr "Spustenie softcamu"
@@ -21447,8 +21571,8 @@ msgstr "Prepnúť EPG o stránku nadol"
 msgid "Switch EPG Page Up"
 msgstr "Prepnúť EPG o stránku nahor"
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "Zmena režimu na aktiváciu režimu HDR alebo funkcie obraz v obraze"
+msgid "Switch HDR type by content"
+msgstr "Prepínať typ HDR podľa obsahu"
 
 msgid "Switch TV to correct input"
 msgstr "Prepínať TV na správny vstup"
@@ -21821,9 +21945,6 @@ msgstr "Testovací režim"
 msgid "Test type"
 msgstr "Typ testu"
 
-msgid "Testing Information"
-msgstr "Informácie o testovaní"
-
 msgid "Testscreens"
 msgstr "Testovacie obrazovky"
 
@@ -21832,6 +21953,9 @@ msgstr "Testovacie obrazovky sú užitočné na jemné doladenie vášho zobrazo
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Text Box"
+msgstr "Textové pole"
 
 msgid "Text color"
 msgstr "Farba textu"
@@ -22101,10 +22225,10 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Výška obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hodnote."
 
 msgid "The local image search timed out. Check your storage devices."
-msgstr ""
+msgstr "Uplynul časový limit pre hľadanie lokálneho image. Skontrolujte úložné zariadenia."
 
 msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
-msgstr ""
+msgstr "Lokálny názov pre zdieľanie nesmie obsahovať medzery, lomky alebo '#' a nesmie to byť '.' alebo '..'."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Nastavenie slučky (loopthrough) je nesprávne."
@@ -22128,10 +22252,10 @@ msgstr "Názov SPÚŠŤACIEHO súboru výrobcu '%s' nemožno rozšíriť bezpeč
 
 #, python-format
 msgid "The mount point '%s' is used by more than one share."
-msgstr ""
+msgstr "Bod pripojenia '%s' sa používa pre viac ako jedno zdieľanie."
 
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
-msgstr ""
+msgstr "Nenašiel sa kanál pre prípad paniky. Vyberte ho ešte raz v nastaveniach pre výber kanála."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Priečiok pre picony už existuje a musí sa odstrániť. Má sa pokračovať?"
@@ -22319,6 +22443,9 @@ msgstr "Tento prehľad je chránený PIN kódom rodičovskej kontroly!"
 msgid "This channel is currently off air."
 msgstr "Tento kanál aktuálne nevysiela."
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr "Tento kanál vyžaduje plugin HbbTV. Prosím nainštalujte kompatibilný plugin HbbTV."
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Toto pole umožňuje vyhľadať ďalšie symbolové rýchlosti až do %s."
@@ -22375,9 +22502,6 @@ msgstr "Zvýraznenie modrých tónov v obraze."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Zvýraznenie zelených tónov v obraze."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Nastavenie možnosti obídenia kontroly HDMI EDID."
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Zmena pozície virtuálneho reproduktora."
@@ -22442,32 +22566,8 @@ msgstr "Nastavenie reakcie na prvé stlačenie tlačidla na obrazovke so zoznamo
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Nastavenie, či sa pre udalosť zobrazí informácia o žánri."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Konfigurácia farebnej hĺbky pre UHD."
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Konfigurácia kolorimetrie pre HDR."
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Zmena farebného priestoru z Auto na RGB."
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Zapnutie zvuku 3D Surround."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Zapnutie/vypnutie režimu 10 bitových farieb."
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Zapnutie/vypnutie režimu 12 bitových farieb."
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Vynútenie režimov HDR pre UHD."
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Vynútenie režimov HDR10 pre UHD."
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Vynútenie režimov HLG pre UHD."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Nastavenie hodnoty odsadenia pre rôzne rozlíšenia letterboxu."
@@ -22716,6 +22816,9 @@ msgstr "Čas aktualizácie v minútach"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Časové okno na detekciu prebudenia časovačom (min.)"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr "Čas bez stlačenia tlačidla predtým, než sa skryje OSD."
 
 msgid "Time zone"
 msgstr "Časová zóna"
@@ -23379,67 +23482,70 @@ msgstr "ukrajinčina"
 
 #, python-format
 msgid "Unable to check HDD replacement: %s"
-msgstr ""
+msgstr "Nemožno skontrolovať náhradu HDD: %s"
 
 msgid "Unable to complete the bouquet update. Please check your bouquets."
-msgstr ""
+msgstr "Nemožno dokončiť aktualizáciu prehľadu. Prosím skontrolujte prehľady."
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: %s!"
-msgstr "Nie je možné dedenie používateľského pásma z LNB %d: %s."
+msgstr "Nie je možné dedenie používateľského pásma pre LNB %d: %s!"
 
 #, python-format
 msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
-msgstr "Nie je možné dedenie používateľského pásma pre LNB %d: LNB 1 %s."
+msgstr "Nie je možné dedenie používateľského pásma pre LNB %d: LNB 1 %s!"
 
 msgid "Unable to initialize Kexec MultiBoot!"
-msgstr "Nie je možné inicializovať Kexec MultiBoot."
+msgstr "Nie je možné inicializovať Kexec MultiBoot!"
 
 msgid "Unable to load package information!"
-msgstr "Nemožno načítať informáciu o balíčku."
+msgstr "Nemožno načítať informáciu o balíčku!"
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Nemožno otvoriť tuner (%d)"
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
-msgstr ""
+msgstr "Nemožno pripraviť aktualizáciu prehľadu. Vyhľadávanie bude pokračovať bez aktualizovania prehľadov."
 
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
-msgstr "Nemožno prečítať SPÚŠŤACÍ súbor výrobcu '%s'."
+msgstr "Nemožno prečítať SPÚŠŤACÍ súbor výrobcu '%s'!"
 
 msgid "Unable to reconnect to the stream. Please try the channel again later."
-msgstr ""
+msgstr "Nemožno sa opätovne pripojiť k streamu. Prosím vyskúšajte tento kanál neskôr."
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "Nemožno zaregistrovať transpondér DAB+"
 
 msgid "Unable to remove the obsolete additional STARTUP files!"
-msgstr "Nemožno odstrániť nepoužívané prídavné SPÚŠŤACIE súbory."
+msgstr "Nemožno odstrániť nepoužívané prídavné SPÚŠŤACIE súbory!"
 
 msgid "Unable to save network configuration!"
-msgstr "Nemožno uložiť konfiguráciu siete."
+msgstr "Nemožno uložiť konfiguráciu siete!"
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
+msgstr "Nemožno uložiť konfiguráciu pripojenia siete!"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Nemožno spustiť zdroj DAB+"
 
+msgid "Unable to start the HbbTV application."
+msgstr "Nemožno spustiť aplikáciu HbbTV."
+
 msgid "Unable to start the local image search. Please try again later."
-msgstr ""
+msgstr "Nemožno spustiť vyhľadávanie lokálneho image. Skúste to neskôr, prosím."
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr "Nemožno naladiť sat. zdroj DAB+"
 
 #, python-format
 msgid "Unable to update HDD replacement: %s"
-msgstr ""
+msgstr "Nemožno aktualizovať náhradu HDD: %s"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
-msgstr "Nemožno overiť pozíciu Unicable pre LNB %d: %s."
+msgstr "Nemožno overiť pozíciu Unicable pre LNB %d: %s!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužná aktualizácia bez GUI"
@@ -23461,7 +23567,7 @@ msgid "Unexpected error accessing WebIF: %s"
 msgstr "Neočakávaná chyba pri prístupe na WebIF: %s"
 
 msgid "Unexpected error while importing from the remote receiver!"
-msgstr ""
+msgstr "Neočakávaná chyba počas importovania zo vzdialeného prijímača!"
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "Neočakávaná chyba počas načítavania informácie časovača záložného tuneru"
@@ -23618,7 +23724,7 @@ msgid "Update finished!"
 msgstr "Aktualizácia je dokončená!"
 
 msgid "Update outdated bouquet entries"
-msgstr ""
+msgstr "Aktualizovať neaktuálne záznamy v prehľade"
 
 msgid ""
 "Update succeeded!\n"
@@ -23806,7 +23912,7 @@ msgid "Use an alternative smaller screen."
 msgstr "Použiť alternatívne, menšie zobrazenie."
 
 msgid "Use as HDD replacement"
-msgstr "Použiť ako náhradu pevného disku (HDD)"
+msgstr "Použiť ako náhradu HDD"
 
 msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
 msgstr "Použiť automatickú hardvérovú detekciu, vyžadovať hardvérové dekódovanie AAC, alebo vynútiť cestu softvérovej PCM kompatibility."
@@ -23839,10 +23945,10 @@ msgid "Use extended List"
 msgstr "Použiť rozšírený zoznam"
 
 msgid "Use fast scan channel names"
-msgstr "Použiť názvy kanálov podľa 'FastScan'"
+msgstr "Použiť názvy kanálov podľa rýchleho vyhľadávania 'fast scan'"
 
 msgid "Use fast scan channel numbering"
-msgstr "Použiť číslovanie kanálov podľa 'FastScan'"
+msgstr "Použiť číslovanie kanálov podľa rýchleho vyhľadávania 'fast scan'"
 
 msgid "Use for load only x days in EPG."
 msgstr "Na načítanie použiť iba x dní v EPG."
@@ -23902,7 +24008,7 @@ msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers mat
 msgstr "Použite oddeľovacie riadky tak, aby v zozname zodpovedali čísla riadkov #SERVICE s LCN."
 
 msgid "Use the HD channel list provided by the fast scan."
-msgstr ""
+msgstr "Použiť zoznam HD kanálov, poskytovaný cez rýchle vyhľadávanie (fast scan)."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Na úpravu výšky OSD použite tlačidlá DOĽAVA/DOPRAVA na diaľkovom ovládači. Tlačidlom DOĽAVA sa dá výška zmenšiť, tlačidlom DOPRAVA sa dá zväčšiť."
@@ -23941,7 +24047,7 @@ msgid "Use the alternative or the conventional radio mode."
 msgstr "Použitie alternatívneho alebo bežného režimu rádia."
 
 msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
-msgstr ""
+msgstr "Použiť číslovanie kanálov poskytované cez rýchle vyhľadávanie (fast scan), vrátane vynechaní. Ak je táto voľba vypnutá, kanály sa číslujú postupne, bez vynechania."
 
 msgid "Use the current selection and exit"
 msgstr "Použiť aktuálny výber a ukončiť"
@@ -23956,7 +24062,7 @@ msgid "Use these input device settings?"
 msgstr "Použiť nastavenie tohto vstupného zariadenia?"
 
 msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
-msgstr ""
+msgstr "Použiť toto zdieľanie ako /media/hdd. S funkciou autofs sa odkaz vytvorí iba v prípade, že je cesta /media/hdd dostupná. V opačnom prípade bude zdieľanie dostupné na ceste /media/autofs. S funkciou fstab je zdieľanie pripojené priamo. Je možné vybrať iba jedno zdieľanie. Existujúce pripojenia a súbory sa neprepíšu."
 
 msgid "Use this video enhancement settings?"
 msgstr "Použiť toto rozšírené nastavenie obrazu?"
@@ -23999,6 +24105,9 @@ msgstr "Užívateľské ID"
 
 msgid "User Manual"
 msgstr "Používateľský manuál"
+
+msgid "User Manual Actions"
+msgstr "Akcie pre návod pre používateľov"
 
 msgid "User comments"
 msgstr "Komentáre používateľa"
@@ -24550,6 +24659,9 @@ msgstr "Vodné športy"
 msgid "Weather"
 msgstr "Počasie"
 
+msgid "Weather settings"
+msgstr "Nastavenia počasia"
+
 msgid "Web Interface"
 msgstr "Webové rozhranie"
 
@@ -24708,14 +24820,23 @@ msgstr "Ak je povolené, povoliť automatické exportovanie každého zisteného
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr "Ak je povolené, umožniť zapnutie prijímača pri vzdialenom signále Wake-on-LAN (pomocou Magic Packet)."
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr "Ak je povolené, umožňuje použitie %s-bitového režimu farieb."
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Ak je povolené, povoliť používanie protokolov NFS verzie 3."
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Ak je povolené, povoliť používanie protokolov NFS verzie 4."
 
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr "Ak je povolené, do menu pre rozšírenia sa pridá položka 'Manuálne rozlíšenie', aby bola možná rýchla zmena video-režimu pre aktuálne video."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Ak je povolené, na sledovanie http streamov sa vyžaduje prihlásenie."
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr "Ak je povolené, kontrola HDMI EDID sa vynechá."
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr "Ak je povolené, tak pri pripájaní Wi-Fi adaptéra prebehne pokus o pripojenie cez uloženú sieť."
@@ -24760,7 +24881,7 @@ msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settin
 msgstr "Ak je povolené, získať IP adresu, masku podsiete, bránu a nastavenia DNS automaticky cez DHCP."
 
 msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
-msgstr ""
+msgstr "Ak je povolené, stlačením tlačidla '0' sa prepne na kanál vybraný pre prípad paniky a vymaže sa história prepínania."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ak je povolené, titulky sa preformátujú tak, aby zodpovedali šírke obrazovky."
@@ -24779,6 +24900,9 @@ msgstr "Ak je povolené, použijú sa titulky pre sluchovo postihnutých."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Ak je povolené, titulky pre sluchovo postihnutých sa uprednostnia pred normálnymi titulkami, ak budú dostupné obidva typy."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr "Na prepnutie typu HDMI HDR (HDR10, HLG alebo SDR) tak, aby zodpovedalo informácii HDR pre aktuálne video, vyberte možnosť 'Áno'."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Ak je povolené, budú sa teletextové stránky ukladať do vyrovnávacej pamäte, čo umožňí rýchlejší prístup."
@@ -24913,11 +25037,11 @@ msgid "Wi-Fi Adapter"
 msgstr "Wi-Fi adaptér"
 
 msgid "Wi-Fi Scan Actions"
-msgstr "Akcie pre skenovanie Wi-Fi"
+msgstr "Akcie pre hľadanie Wi-Fi"
 
 #, python-format
 msgid "Wi-Fi Scan On '%s'"
-msgstr "Skenovanie Wi-Fi na '%s'"
+msgstr "Hľadanie Wi-Fi na '%s'"
 
 msgid "Wi-Fi connection"
 msgstr "Pripojenie cez Wi-Fi"
@@ -24996,9 +25120,6 @@ msgstr "Len WoW"
 
 msgid "Wolof"
 msgstr "wolof"
-
-msgid "Workaround for old tuner driver."
-msgstr "Riešenie pre starý ovládač tunera."
 
 msgid "Workgroup name"
 msgstr "Názov pracovnej skupiny"
@@ -25464,6 +25585,9 @@ msgstr "rozhranie GUI na priradenie staníc, poskytovateľov, CAID k modulom CI"
 msgid "activatePiP"
 msgstr "aktivovaťPiP"
 
+msgid "active (GLES enabled)"
+msgstr "aktívne (GLES aktivované)"
+
 msgid "address:"
 msgstr "adresa:"
 
@@ -25915,6 +26039,9 @@ msgstr "stav vyhľadávania"
 msgid "search EPG..."
 msgstr "hľadanie v EPG…"
 
+msgid "seconds"
+msgstr "sekundy"
+
 msgid "select CAId's"
 msgstr "vyberte CAID"
 
@@ -25969,6 +26096,9 @@ msgstr "stereo"
 msgid "successful"
 msgstr "úspešné"
 
+msgid "suspended (GLES disabled)"
+msgstr "pozastavené (GLES deaktivované)"
+
 msgid "switch 12 to 8 character display mode"
 msgstr "prepnúť z 12- na 8-znakový režim zobrazenia"
 
@@ -26010,6 +26140,9 @@ msgstr "cieľové LNB nie je nakonfigurované"
 
 msgid "this recording"
 msgstr "táto nahrávka"
+
+msgid "throttled"
+msgstr "spomalené"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "prepínať medzi časom, kapitolou, zvukom a titulkami"
@@ -26098,6 +26231,107 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "Povoliť 10 bitov"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "Povoliť 12 bitov"
+
+#~ msgid "HDR10 support"
+#~ msgstr "Podpora HDR10"
+
+#~ msgid "HLG support"
+#~ msgstr "Podpora HLG"
+
+#~ msgid "Seconds"
+#~ msgstr "sekúnd"
+
+#~ msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
+#~ msgstr "Vyberte voľbu 'Áno' ak chcete pridať záznam do menu pre rozšírenia. Pomocou neho bude potom možná zmena režimu pre aktuálne video."
+
+#~ msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
+#~ msgstr "Nastavte režim odstraňovania prekladania pre dekodér videa. Voľbou 'Auto' ponecháte rozhodovanie na ovládači."
+
+#~ msgid "Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output."
+#~ msgstr "Vyberte video-režim hardvérového čipu. PiP a 12-bitový výstup v HDR nemožno používať súčasne, takže vyberte či chcete aktivovať PiP alebo 12-bitový HDR."
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "Nastavenie možnosti obídenia kontroly HDMI EDID."
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Konfigurácia farebnej hĺbky pre UHD."
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Konfigurácia kolorimetrie pre HDR."
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "Zmena farebného priestoru z Auto na RGB."
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Zapnutie/vypnutie režimu 10 bitových farieb."
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Zapnutie/vypnutie režimu 12 bitových farieb."
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Vynútenie režimov HDR pre UHD."
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Vynútenie režimov HDR10 pre UHD."
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Vynútenie režimov HLG pre UHD."
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12 bitov 4:2:0/4:2:2 bez PiP"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "Zmeniť režim prijímača na kontrolu hardvérových režimov čipu*"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "Dočasné riešenie pre systém doručovania"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "Zapnúť PIP, žiadne HDR"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "Zmena režimu na aktiváciu režimu HDR alebo funkcie obraz v obraze"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Riešenie pre starý ovládač tunera."
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+#~ msgstr[2] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Súbor z daného média sa práve používa!"
+
+#, python-format
+#~ msgid "Current CPU cores 0 and 1 Voltage: %s V"
+#~ msgstr "Aktuálne napätie jadier 0 a 1 procesora: %s V"
+
+#~ msgid "Location list"
+#~ msgstr "Zoznam lokalít"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "Prosím, zadajte hľadaný reťazec pre vašu polohu"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "Vybrať ID lokality pre počasie"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "Prepáčte, vyskytol sa problém:"
+
+#~ msgid "Start Boot Frequency"
+#~ msgstr "Počiatočná bootovacia frekvencia"
+
+#~ msgid "Testing Information"
+#~ msgstr "Informácie o testovaní"
 
 #~ msgid "Close screen"
 #~ msgstr "Zatvoriť obrazovku"
@@ -29290,10 +29524,6 @@ msgstr "®"
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #~ msgid "(FTA Service)"
 #~ msgstr "(Nekódovaná stanica)"

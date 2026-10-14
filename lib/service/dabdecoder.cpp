@@ -13,18 +13,19 @@ struct UEPProfile
 {
 	uint16_t bitrate;
 	uint16_t size;
+	uint8_t protection;
 };
 
 /* EN 300 401, table of the 64 short-form UEP profiles. */
 const UEPProfile uepProfiles[64] = {
-	{32,16},{32,21},{32,24},{32,29},{32,35},{48,24},{48,29},{48,35},
-	{48,42},{48,52},{56,29},{56,35},{56,42},{56,52},{64,32},{64,42},
-	{64,48},{64,58},{64,70},{80,40},{80,52},{80,58},{80,70},{80,84},
-	{96,48},{96,58},{96,70},{96,84},{96,104},{112,58},{112,70},{112,84},
-	{112,104},{128,64},{128,84},{128,96},{128,116},{128,140},{160,80},{160,104},
-	{160,116},{160,140},{160,168},{192,96},{192,116},{192,140},{192,168},{192,208},
-	{224,116},{224,140},{224,168},{224,208},{224,232},{256,128},{256,168},{256,192},
-	{256,232},{256,280},{320,160},{320,208},{320,280},{384,192},{384,280},{384,416}
+	{32,16,5},{32,21,4},{32,24,3},{32,29,2},{32,35,1},{48,24,5},{48,29,4},{48,35,3},
+	{48,42,2},{48,52,1},{56,29,5},{56,35,4},{56,42,3},{56,52,2},{64,32,5},{64,42,4},
+	{64,48,3},{64,58,2},{64,70,1},{80,40,5},{80,52,4},{80,58,3},{80,70,2},{80,84,1},
+	{96,48,5},{96,58,4},{96,70,3},{96,84,2},{96,104,1},{112,58,5},{112,70,4},{112,84,3},
+	{112,104,2},{128,64,5},{128,84,4},{128,96,3},{128,116,2},{128,140,1},{160,80,5},{160,104,4},
+	{160,116,3},{160,140,2},{160,168,1},{192,96,5},{192,116,4},{192,140,3},{192,168,2},{192,208,1},
+	{224,116,5},{224,140,4},{224,168,3},{224,208,2},{224,232,1},{256,128,5},{256,168,4},{256,192,3},
+	{256,232,2},{256,280,1},{320,160,5},{320,208,4},{320,280,2},{384,192,5},{384,280,3},{384,416,1}
 };
 
 struct EEPProfile
@@ -487,7 +488,7 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 	const bool otherEnsemble = data[0] & 0x40;
 	const bool longSid = data[0] & 0x20;
 	const int extension = data[0] & 0x1f;
-	if (otherEnsemble)
+	if (otherEnsemble || (data[0] & 0x80))
 		return;
 	size_t position = 1;
 	if (extension == 0 && position + 2 <= length)
@@ -517,7 +518,10 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				const int profile = option * 4 + protection;
 				subchannel.size = ((form & 3) << 8) | data[position + 3];
 				if (profile >= 0 && profile < 8 && subchannel.size % eepProfiles[profile].sizeMultiplier == 0)
+				{
 					subchannel.bitrate = subchannel.size / eepProfiles[profile].sizeMultiplier * eepProfiles[profile].rateMultiplier;
+					subchannel.protection = "EEP " + std::to_string(protection + 1) + (option ? "-B" : "-A");
+				}
 				position += 4;
 			}
 			else
@@ -525,11 +529,13 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				const int tableIndex = form & 0x3f;
 				subchannel.size = uepProfiles[tableIndex].size;
 				subchannel.bitrate = uepProfiles[tableIndex].bitrate;
+				subchannel.protection = "UEP " + std::to_string(uepProfiles[tableIndex].protection);
 				position += 3;
 			}
 			std::map<int, Subchannel>::const_iterator previous = m_subchannels.find(subchannelId);
 			if (previous == m_subchannels.end() || previous->second.startAddress != subchannel.startAddress ||
-				previous->second.size != subchannel.size || previous->second.bitrate != subchannel.bitrate)
+				previous->second.size != subchannel.size || previous->second.bitrate != subchannel.bitrate ||
+				previous->second.protection != subchannel.protection)
 			{
 				m_subchannels[subchannelId] = subchannel;
 				++m_service_revision;
@@ -603,6 +609,33 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 			reportPacketComponent(componentId);
 		}
 	}
+	else if (extension == 5)
+	{
+		while (position < length)
+		{
+			const uint8_t first = data[position];
+			if (first & 0x80)
+			{
+				/* Long form addresses a packet-mode SCId, not an audio SubChId. */
+				if (position + 3 > length)
+					break;
+				position += 3;
+			}
+			else
+			{
+				if (position + 2 > length)
+					break;
+				if (!(first & 0x40))
+				{
+					const int subchannel = first & 0x3f;
+					const int language = data[position + 1];
+					/* Keep language independently: FIG 0/5 may precede FIG 0/1. */
+					m_subchannel_languages[subchannel] = language;
+				}
+				position += 2;
+			}
+		}
+	}
 	else if (extension == 13)
 	{
 		while (position + (longSid ? 5 : 3) <= length)
@@ -635,6 +668,20 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				}
 				position += applicationLength;
 			}
+		}
+	}
+	else if (extension == 17 && !longSid)
+	{
+		while (position + 4 <= length)
+		{
+			const uint16_t sid = read16(data + position);
+			const uint8_t flags = data[position + 2];
+			const size_t recordLength = 4 + ((flags & 0x20) ? 1 : 0) + ((flags & 0x10) ? 1 : 0);
+			if (position + recordLength > length)
+				break;
+			if (flags & 0x20)
+				m_services[sid].language = data[position + 3];
+			position += recordLength;
 		}
 	}
 }
@@ -709,6 +756,26 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 			++m_service_revision;
 		}
 	}
+}
+
+int eDABDecoder::language() const
+{
+	const auto service = m_services.find(m_service_id);
+	if (service == m_services.end())
+		return -1;
+	const auto language = m_subchannel_languages.find(service->second.subchannel);
+	if (language != m_subchannel_languages.end() && language->second != 0)
+		return language->second;
+	return service->second.language;
+}
+
+std::string eDABDecoder::protection() const
+{
+	const auto service = m_services.find(m_service_id);
+	if (service == m_services.end())
+		return std::string();
+	const auto subchannel = m_subchannels.find(service->second.subchannel);
+	return subchannel == m_subchannels.end() ? std::string() : subchannel->second.protection;
 }
 
 void eDABDecoder::resolveService()

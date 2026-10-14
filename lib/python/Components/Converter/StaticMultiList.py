@@ -1,4 +1,5 @@
 from enigma import eListboxPythonMultiContent
+
 from Components.Converter.StringList import StringList
 
 
@@ -8,19 +9,12 @@ class StaticMultiList(StringList):
 	def changed(self, what):
 		if not self.content:
 			self.content = eListboxPythonMultiContent()
-
 			if self.source:
-				# setup the required item height, as given by the source.
+				# Setup the required item height and fonts, as given by the source.
 				self.content.setItemHeight(self.source.item_height)
-
-				# also setup fonts (also given by source)
-				index = 0
-				for f in self.source.fonts:
-					self.content.setFont(index, f)
-					index += 1
-
+				for index, font in enumerate(self.source.fonts):
+					self.content.setFont(index, font)
 		if self.source:
 			self.content.setList(self.source.list)
-
-		print("[StaticMultiList] downstream_elements:", self.downstream_elements)
+		print(f"[StaticMultiList] downstream_elements: {self.downstream_elements}")
 		self.downstream_elements.changed(what)

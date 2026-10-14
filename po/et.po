@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"POT-Creation-Date: 2026-10-12 19:03+0000\n"
 "PO-Revision-Date: 2026-08-16 15:55+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -741,12 +741,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1200,6 +1194,10 @@ msgid "%s Information Actions"
 msgstr ""
 
 #, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s seaded"
 
@@ -1250,6 +1248,9 @@ msgstr ""
 #, python-format
 msgid "%s not available."
 msgstr "%s pole saadaval."
+
+msgid "%s support"
+msgstr ""
 
 #, python-format
 msgid "%s version"
@@ -1457,6 +1458,9 @@ msgstr "12 tähemärki"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 msgid "12V output"
 msgstr "12V väljund"
 
@@ -1465,9 +1469,6 @@ msgstr "12V output."
 
 msgid "12bit"
 msgstr "12bit"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12bit 4:2:0/4:2:2, PIP puudub"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 letterbox"
@@ -1652,9 +1653,6 @@ msgstr ""
 #, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Krahhilogi %s loodi '%s'"
-
-msgid "A file from media is in use!"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -1963,6 +1961,9 @@ msgstr "Võrgukaardi seaded"
 msgid "Add"
 msgstr "Lisa"
 
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
+
 msgid "Add Alternatives"
 msgstr "Lisa asenduskanaleid"
 
@@ -2203,6 +2204,9 @@ msgstr ""
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Seadista värve nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testpiltide valikuks."
 
@@ -2384,11 +2388,8 @@ msgstr "Jaota"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Määra seadistatava reaalse LNB number. Sama LNB saab määrata uuesti teistele satelliitidele (nt. ajamiga antenn), et salvestada sätted sama LNB jaoks mitu korda."
 
-msgid "Allow 10bit"
-msgstr "Luba 10bit"
-
-msgid "Allow 12bit"
-msgstr "Luba 12bit"
+msgid "Allow %s-bit"
+msgstr ""
 
 msgid "Allow guest access"
 msgstr ""
@@ -2509,6 +2510,12 @@ msgstr "Kaasa alati salvestistele ECM"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Salvestised sisaldavad alati ka ECM sõnumeid. See valik alistab üksiku taimeri seadistused globaalselt ja võimaldab salvestisi hiljem dekrüptida (võrguta dekodeerimine), kui vastuvõtja seda toetab. Vaikimisi: välja lülitatud."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "Avamisel kuvatakse lemmiknimekirjad"
 
@@ -2608,6 +2615,9 @@ msgid "Apply any changes to the active locale/language and exit"
 msgstr "Rakenda muudatused aktiivsele keelele ja välju"
 
 msgid "Apply the currently highlighted locale/language and exit"
+msgstr ""
+
+msgid "Apply the settings without saving them"
 msgstr ""
 
 msgid "Aqua"
@@ -2871,6 +2881,9 @@ msgstr ""
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio decoding"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Heli keelevalik 1"
 
@@ -3000,6 +3013,9 @@ msgstr "Lahutuse teavitamine"
 
 msgid "Automatic scan for services"
 msgstr "Kanalite automaatotsing"
+
+msgid "Automatically hide OSD"
+msgstr ""
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
@@ -3136,6 +3152,9 @@ msgstr "Taustal kustutamise kiirus"
 msgid "Background selected:"
 msgstr "Valitud taust:"
 
+msgid "Background sound/clean feed"
+msgstr ""
+
 msgid "Background:"
 msgstr "Taust:"
 
@@ -3247,6 +3266,9 @@ msgstr "Korvpall"
 
 msgid "Basque"
 msgstr "Baski"
+
+msgid "Battery"
+msgstr ""
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
@@ -3371,6 +3393,9 @@ msgstr ""
 
 msgid "Bluetooth Setup"
 msgstr "Bluetooth seaded"
+
+msgid "Bluetooth remote"
+msgstr ""
 
 msgid "Bolivia"
 msgstr ""
@@ -3604,7 +3629,7 @@ msgstr ""
 msgid "ButtonSetup"
 msgstr "Nuppude seadistus"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "HDMI EDID kontrollist möödaminek"
 
 msgid "Bytes received"
@@ -3731,6 +3756,9 @@ msgid "CPU / Core %d type"
 msgstr ""
 
 msgid "CPU Control"
+msgstr ""
+
+msgid "CPU Control Actions"
 msgstr ""
 
 msgid "CPU architecture"
@@ -4108,9 +4136,6 @@ msgid "Chad"
 msgstr "Tšaad"
 
 msgid "Chamorro"
-msgstr ""
-
-msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 
 #, fuzzy
@@ -4702,6 +4727,9 @@ msgid "Color space"
 msgstr "Värviruum"
 
 msgid "Colored text"
+msgstr ""
+
+msgid "Colorimetry for HDR content"
 msgstr ""
 
 msgid "Combined"
@@ -5707,8 +5735,7 @@ msgstr ""
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr ""
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgid "Current CPU speed"
 msgstr ""
 
 msgid "Current Directory"
@@ -5717,8 +5744,20 @@ msgstr ""
 msgid "Current Event:"
 msgstr "Käesolev saade:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "Praegune olek:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5882,9 +5921,6 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "Audio decoding"
-msgstr ""
-
 msgid "DAB+ channel"
 msgstr ""
 
@@ -6022,6 +6058,9 @@ msgstr "Tühista"
 
 msgid "Danish"
 msgstr "Taani"
+
+msgid "Dari"
+msgstr ""
 
 msgid "Darts"
 msgstr ""
@@ -6376,6 +6415,9 @@ msgstr "Määrab edasihüppe pikkuse. Väärtus korrutatakse tagasikerimise kiir
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Määrab, milliseid kiirusi kasutatakse tavalisel kerimisel. Kõik muud edasi/tagasikerimise kiirused kasutavad ajahüppeid."
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Viiteaeg pärast diseqc perifeerset sisselülituskäsku"
 
@@ -6613,9 +6655,6 @@ msgstr "Failide kustutamine"
 
 msgid "Deleting files"
 msgstr "Failide kustutamine"
-
-msgid "Delivery system workaround"
-msgstr "Jaotussüsteemi erilahendus"
 
 #, fuzzy
 msgid "Democratic Republic of the Congo"
@@ -7754,9 +7793,6 @@ msgstr "Võrgu IP kontroll lubatud"
 #, fuzzy
 msgid "Enable OpenTV EPG"
 msgstr "EIT EPG lubatud"
-
-msgid "Enable PiP no HDR"
-msgstr "PIP lubatud, HDR puudub"
 
 msgid "Enable Quad PiP"
 msgstr "Luba Quad PiP"
@@ -9448,6 +9484,9 @@ msgstr "keela jõuga"
 msgid "Force enabled"
 msgstr "luba jõuga"
 
+msgid "Force progressive for streams and files"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "välisriigid/ekspeditsioonid"
 
@@ -9936,9 +9975,6 @@ msgstr "HD kanalid"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
-msgstr "HDMI värviprofiil"
-
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR tüüp"
 
@@ -9950,6 +9986,9 @@ msgstr "HDMI värvisügavus"
 
 msgid "HDMI color space"
 msgstr "HDMI värviruum"
+
+msgid "HDMI colorimetry"
+msgstr "HDMI värviprofiil"
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -9973,9 +10012,6 @@ msgstr "HDMIin"
 msgid "HDR OSD adjustment"
 msgstr ""
 
-msgid "HDR10 Support"
-msgstr "HDR10 tugi"
-
 msgid "HELP"
 msgstr "HELP"
 
@@ -9990,9 +10026,6 @@ msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "Vaegkuuljate abiteksti eemaldamine"
-
-msgid "HLG Support"
-msgstr "HLG tugi"
 
 msgid "Haiti"
 msgstr "Haiiti"
@@ -10050,6 +10083,9 @@ msgid "Hardware serial"
 msgstr ""
 
 msgid "Hardware type"
+msgstr ""
+
+msgid "Hardware video mode"
 msgstr ""
 
 msgid "Hausa"
@@ -10143,6 +10179,9 @@ msgstr ""
 msgid "Hide InfoBar"
 msgstr "Inforiba alati varjatud"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "Peida punktiirjoon ekraani ülaservas"
 
@@ -10177,6 +10216,9 @@ msgstr ""
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Luba inforiba hajumine"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Peida kanalivahetuse veateated"
@@ -10249,7 +10291,7 @@ msgstr ""
 msgid "Hockey"
 msgstr "Pesa"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr ""
 
 msgid "Hold screen"
@@ -11622,6 +11664,9 @@ msgstr "Vaba aeg ja hobid"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -11785,6 +11830,10 @@ msgstr ""
 msgid "Load unlinked user bouquets"
 msgstr "Sidumata lemmiknimekirjad kuvatakse"
 
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11863,9 +11912,6 @@ msgstr ""
 
 msgid "Location information"
 msgstr ""
-
-msgid "Location list"
-msgstr "Asukohaloend"
 
 #, python-format
 msgid "Location: %s"
@@ -12157,6 +12203,9 @@ msgstr "Käsiotsing"
 
 msgid "Manual Service Searching"
 msgstr "Käsitsi kanaliotsing"
+
+msgid "Manual resolution"
+msgstr ""
 
 msgid "Manual scan for services"
 msgstr "Kanalite käsiotsing"
@@ -13159,6 +13208,9 @@ msgstr ""
 msgid "Navigation And Time Range"
 msgstr ""
 
+msgid "Ndebele"
+msgstr ""
+
 #, fuzzy
 msgid "Ndonga"
 msgstr "Tonga"
@@ -14049,6 +14101,12 @@ msgstr "Ekraanigraafika seaded"
 msgid "OSD Setup"
 msgstr "Ekraanigraafika seadistamine"
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr "OSD nime päring"
 
@@ -14359,6 +14417,9 @@ msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the additional screens"
 msgstr ""
 
 msgid "Open the context menu"
@@ -14863,6 +14924,9 @@ msgstr "Filipiinid"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr ""
+
 msgid "PiP with OSD"
 msgstr "PiP ja OSD"
 
@@ -15109,9 +15173,6 @@ msgstr ""
 
 msgid "Please enter new name:"
 msgstr "Sisesta uus nimi:"
-
-msgid "Please enter search string for your location"
-msgstr "Sisesta otsisõna asukoha otsinguks"
 
 msgid "Please enter the correct pin code"
 msgstr "Sisesta õige kood"
@@ -16016,6 +16077,9 @@ msgstr ""
 msgid "RAM benchmark"
 msgstr ""
 
+msgid "RAM temperature"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -16096,6 +16160,15 @@ msgid "Radio Channel Selection"
 msgstr "Raadiokanalid"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
 msgstr ""
 
 msgid "Random"
@@ -16747,6 +16820,9 @@ msgstr "Ümber nimetatud %s!"
 msgid "Renovation"
 msgstr "Lahutus"
 
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Korda"
 
@@ -17253,6 +17329,9 @@ msgstr "Vene"
 msgid "Russian Federation"
 msgstr "Venemaa"
 
+msgid "Rusyn"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -17678,6 +17757,9 @@ msgstr "Toitetaimeri logi"
 msgid "Scheduler standby"
 msgstr "Ooteeseisundi toitetaimer"
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr ""
 
@@ -17741,9 +17823,6 @@ msgstr ""
 msgid "Search packages by name or description"
 msgstr ""
 
-msgid "Search weather location ID"
-msgstr "Asukoha ID otsing"
-
 msgid "Search west"
 msgstr "Otsi läänest"
 
@@ -17770,9 +17849,6 @@ msgstr ""
 
 msgid "Secondary DNS (IPv6)"
 msgstr ""
-
-msgid "Seconds"
-msgstr "sekundit"
 
 msgid "Security Packages"
 msgstr ""
@@ -17852,6 +17928,9 @@ msgid "Select 'Soft mount' to make file access return an error once the server s
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
 msgstr ""
 
 msgid "Select 'Yes' if an end time is required for this timer."
@@ -18093,6 +18172,9 @@ msgid "Select 'Yes' to shut down immediately instead of starting the descramble.
 msgstr ""
 
 msgid "Select 'Yes' to split tasks into separate actions."
+msgstr ""
+
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
 msgstr ""
 
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
@@ -18378,6 +18460,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vali, kuidas käivitada Inforiba EPG:"
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr ""
+
 msgid "Select how to sort the timer list."
 msgstr ""
 
@@ -18482,10 +18567,19 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr ""
+
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
+msgstr ""
+
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -18582,6 +18676,9 @@ msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
@@ -18591,7 +18688,13 @@ msgstr ""
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr ""
+
 msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
 msgstr ""
 
 msgid "Select the committed switch port connected to the horizontal LNB."
@@ -18643,6 +18746,9 @@ msgid "Select the default directory to be used if the left column directory is n
 msgstr ""
 
 msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr ""
+
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
 msgstr ""
 
 msgid "Select the delay before the timer activates."
@@ -18704,6 +18810,9 @@ msgstr ""
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
@@ -18739,6 +18848,9 @@ msgid "Select the location in which to store the recording:"
 msgstr ""
 
 msgid "Select the location where the picon files will be installed."
+msgstr ""
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18938,6 +19050,9 @@ msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV."
@@ -19144,6 +19259,9 @@ msgstr "Serbia"
 
 msgid "Serbian"
 msgstr "Serbia"
+
+msgid "Serbo-Croatian"
+msgstr ""
 
 msgid "Serial No"
 msgstr "Seerianumber"
@@ -19408,6 +19526,9 @@ msgstr "Määra käivituskanal"
 
 msgid "Set system"
 msgstr "Määra süsteem"
+
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
@@ -20469,6 +20590,9 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr ""
 
@@ -20670,6 +20794,9 @@ msgstr ""
 
 msgid "Skin Settings"
 msgstr "Kujunduse valik"
+
+msgid "Skin Setup Actions"
+msgstr ""
 
 msgid "Skin setting"
 msgstr "Kujunduse seaded"
@@ -20897,7 +21024,7 @@ msgstr "Sloveeni"
 msgid "Slow"
 msgstr "Aeglane"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr ""
 
 msgid "Slow motion speeds"
@@ -21081,9 +21208,6 @@ msgstr "Varukoopiat ei leitud!"
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Saalet toetav andmekandja ei ole ühendatud. Saalefaili loomine võrgus või fat32 süsteemis ei ole võimalik"
 
-msgid "Sorry, there was a problem:"
-msgstr "Tekkis probleem:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -21249,6 +21373,9 @@ msgstr "Sport"
 msgid "Sports magazines"
 msgstr "spordimagasin"
 
+msgid "Sranan Tongo"
+msgstr ""
+
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
@@ -21281,9 +21408,6 @@ msgid "Start %s"
 msgstr ""
 
 msgid "Start Auto Refresh"
-msgstr ""
-
-msgid "Start Boot Frequency"
 msgstr ""
 
 #, fuzzy
@@ -21828,8 +21952,8 @@ msgstr ""
 msgid "Switch EPG Page Up"
 msgstr ""
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "Vaheta režiimi HDR või PiP lubamiseks"
+msgid "Switch HDR type by content"
+msgstr ""
 
 msgid "Switch TV to correct input"
 msgstr "Lülita teler õigele sisendile"
@@ -22218,9 +22342,6 @@ msgstr "Testpilt"
 msgid "Test type"
 msgstr "Testi tüüp"
 
-msgid "Testing Information"
-msgstr ""
-
 msgid "Testscreens"
 msgstr "Testtabelid"
 
@@ -22229,6 +22350,9 @@ msgstr "Testtabelid on abiks pildi peenhäälestusel"
 
 msgid "Text"
 msgstr "Tekst"
+
+msgid "Text Box"
+msgstr ""
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Text color"
@@ -22696,6 +22820,9 @@ msgstr "see lemmiknimekiri on kaitstud lapselukuga"
 msgid "This channel is currently off air."
 msgstr ""
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "See väli võimaldab otsida täiendavalt sümbolikiirusi kuni %s."
@@ -22753,9 +22880,6 @@ msgstr "Siin saab võimendada pildi siniseid toone."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Siin saab võimendada pildi rohelisi toone."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Siin valikus saad keelata HDMI EDID kontrolli"
 
 # A/V Settings
 msgid "This option allows you to change the virtual loudspeaker position."
@@ -22822,33 +22946,9 @@ msgstr "See valik määrab, kuhu kursor esimesel nupuvajutusel liigub 'Kiirtegev
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "See valik määrab, kuidas näidatakse kulunud ja allesolevat aega telesaadete esitusel."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Siin saab seadistada UHD värvisügavust"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Siin saab seadistada HDR värviprofiili"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "See valik võimaldab muuta värviruumi automaatne > RGB"
-
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Selles valikus saad lubada väljundile 3D ruumheli."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "See valik võimaldab 10-bit värvirežiimi lubada või keelata"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "See valik võimaldab 12-bit värvirežiimi lubada või keelata"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "See valik võimaldab HDR režiimide jõuga kasutamise UHD jaoks"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "See valik võimaldab HDR10 režiimide jõuga kasutamise UHD jaoks"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "See valik võimaldab HLG režiimide jõuga kasutamise UHD jaoks"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
@@ -23105,6 +23205,9 @@ msgstr "Kellaaja uuendamine (min)"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Ajaaken taimeri poolt käivitamise tuvastamiseks (min)"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr ""
 
 #, fuzzy
 msgid "Time zone"
@@ -23835,6 +23938,9 @@ msgstr ""
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
+msgid "Unable to start the HbbTV application."
+msgstr ""
+
 msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
@@ -24419,6 +24525,9 @@ msgstr "Kasutaja režiim"
 msgid "User Manual"
 msgstr ""
 
+msgid "User Manual Actions"
+msgstr ""
+
 msgid "User comments"
 msgstr ""
 
@@ -24958,6 +25067,9 @@ msgstr ""
 msgid "Weather"
 msgstr "---Ilm---"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr "Veebiliides"
 
@@ -25121,14 +25233,23 @@ msgstr ""
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr ""
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kui lubatud, on http voogude vaatamiseks vajalik autentimine."
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr ""
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr ""
@@ -25194,6 +25315,9 @@ msgstr "Määrates 'jah', lubatakse vaegkuuljate subtiitrite kasutamine."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Kui lubatud, eelistatakse võimalusel vaegkuuljate subtiitreid."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Kui lubatud, puhverdatakse teleteksti lehed, võimaldamaks kiiremat ligipääsu."
@@ -25412,9 +25536,6 @@ msgstr ""
 
 msgid "Wolof"
 msgstr ""
-
-msgid "Workaround for old tuner driver."
-msgstr "Erilahendus vana tuuneri ajuri tarbeks"
 
 msgid "Workgroup name"
 msgstr ""
@@ -25893,6 +26014,9 @@ msgstr "Kasutajaliides kanalite/levitajate/CAIde CI-moodulile määramiseks"
 msgid "activatePiP"
 msgstr "PiP käivitamine"
 
+msgid "active (GLES enabled)"
+msgstr ""
+
 msgid "address:"
 msgstr "aadress:"
 
@@ -26353,6 +26477,9 @@ msgstr "otsingu seis"
 msgid "search EPG..."
 msgstr "EPG otsing"
 
+msgid "seconds"
+msgstr ""
+
 msgid "select CAId's"
 msgstr "Vali CAIDid"
 
@@ -26407,6 +26534,9 @@ msgstr "Stereo"
 msgid "successful"
 msgstr "edukas"
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr "Vaheta 12 > 8 tähemärgi kuvamisele"
 
@@ -26449,6 +26579,9 @@ msgstr ""
 
 msgid "this recording"
 msgstr "see salvestus"
+
+msgid "throttled"
+msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "aja, salvestuse, heli, subtiitri info vahetamine"
@@ -26536,6 +26669,81 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Allow 10bit"
+#~ msgstr "Luba 10bit"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "Luba 12bit"
+
+#~ msgid "HDR10 support"
+#~ msgstr "HDR10 tugi"
+
+#~ msgid "HLG support"
+#~ msgstr "HLG tugi"
+
+#~ msgid "Seconds"
+#~ msgstr "sekundit"
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "Siin valikus saad keelata HDMI EDID kontrolli"
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Siin saab seadistada UHD värvisügavust"
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Siin saab seadistada HDR värviprofiili"
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "See valik võimaldab muuta värviruumi automaatne > RGB"
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "See valik võimaldab 10-bit värvirežiimi lubada või keelata"
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "See valik võimaldab 12-bit värvirežiimi lubada või keelata"
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "See valik võimaldab HDR režiimide jõuga kasutamise UHD jaoks"
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "See valik võimaldab HDR10 režiimide jõuga kasutamise UHD jaoks"
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "See valik võimaldab HLG režiimide jõuga kasutamise UHD jaoks"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12bit 4:2:0/4:2:2, PIP puudub"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "Jaotussüsteemi erilahendus"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "PIP lubatud, HDR puudub"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "Vaheta režiimi HDR või PiP lubamiseks"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Erilahendus vana tuuneri ajuri tarbeks"
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+
+#~ msgid "Location list"
+#~ msgstr "Asukohaloend"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "Sisesta otsisõna asukoha otsinguks"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "Asukoha ID otsing"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "Tekkis probleem:"
 
 #~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 #~ msgstr "Määra, millist tuunerit eelistatakse salvestamisel, kui saadaval on rohkem kui üks tuuner."
@@ -28652,10 +28860,6 @@ msgstr ""
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #~ msgid "(FTA Service)"
 #~ msgstr "(FTA kanalid)"

@@ -13,6 +13,8 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <sstream>
+#include <thread>
+#include <chrono>
 
 #include "absdiff.h"
 #ifndef I2C_SLAVE_FORCE
@@ -613,7 +615,9 @@ void eDVBFrontend::reopenFrontend()
 {
 	sleep(1);
 	m_delsys.clear();
-	openFrontend();
+	// driver may still be re-registering the device after a mode change
+	for (int retry = 0; openFrontend() && m_state == stateClosed && retry < 20; ++retry)
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
 
 int eDVBFrontend::initModeList()
@@ -706,18 +710,6 @@ int eDVBFrontend::openFrontend()
 	if (!m_simulate)
 	{
 		m_need_delivery_system_workaround = eSimpleConfig::getBool("config.usage.enable_delivery_system_workaround", false);
-		FILE *boxtype_file;
-		char boxtype_name[20];
-		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
-		{
-			[[maybe_unused]] char* ret = fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-			fclose(boxtype_file);
-
-			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega") || !strcmp(boxtype_name, "spycat4kmini"))
-			{
-				m_need_delivery_system_workaround = false;
-			}
-		}
 		eDebug("[eDVBFrontend] m_need_delivery_system_workaround = %d", m_need_delivery_system_workaround);
 
 		eDebug("[eDVBFrontend] opening frontend %d", m_dvbid);
@@ -727,6 +719,7 @@ int eDVBFrontend::openFrontend()
 			if (m_fd < 0)
 			{
 				eWarning("[eDVBFrontend] failed! (%s) %m", m_filename.c_str());
+				m_state = stateClosed;
 				return -1;
 			}
 		}
@@ -759,6 +752,7 @@ int eDVBFrontend::openFrontend()
 				eWarning("[eDVBFrontend] ioctl FE_GET_INFO failed: %m");
 				::close(m_fd);
 				m_fd = -1;
+				m_state = stateClosed;
 				return -1;
 			}
 #pragma GCC diagnostic push
@@ -985,7 +979,7 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 		{
 			eDebugNoSimulate("[eDVBFrontend] dont close frontend %d until the linked frontend %d in slot %d is still in use",
 				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
-			if (!m_simulate)
+			if (!m_simulate && m_sn)
 				m_sn->stop();
 			m_state = stateIdle;
 			return -1;
@@ -2039,7 +2033,8 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			int state = sec_fe->m_state;
 			if (!m_fbc && state != eDVBFrontend::stateIdle && state != stateClosed)
 			{
-				sec_fe->m_sn->stop();
+				if (sec_fe->m_sn)
+					sec_fe->m_sn->stop();
 				state = sec_fe->m_state = stateIdle;
 			}
 			// sec_fe is closed... we must reopen it here..
@@ -2627,6 +2622,12 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		int type = -1;
 		oparm.getSystem(type);
 		eDebug("setting frontend %d events: %s", m_dvbid, recvEvents?"on":"off");
+		if (!m_sn)
+		{
+			eWarning("[eDVBFrontend] frontend %d not opened, tune failed", m_dvbid);
+			retune();
+			return;
+		}
 		if (recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events

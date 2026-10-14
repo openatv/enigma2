@@ -17,6 +17,7 @@ public:
 	eWidget *child() { return m_child; }
 	void show();
 	void hide();
+	void setOSDAutoHideActive(bool active);
 
 	enum {
 		wfNoBorder = 1,
@@ -41,6 +42,7 @@ private:
 	std::string m_title;
 	eWidget *m_child;
 	int m_flags;
+	bool m_osdAutoHideActive = false;
 	eWidgetDesktop *m_desktop;
 	int m_animation_mode;
 	static int m_has_animation_mode;

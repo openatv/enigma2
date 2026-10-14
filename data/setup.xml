@@ -1300,7 +1300,7 @@
 		<item level="2" text="Ignore DVB-S namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork</item>
 		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
 		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
-		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
+		<item level="1" text="Reopen tuner when changing delivery system" description="Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers.">config.usage.enable_delivery_system_workaround</item>
 	</setup>
 	<setup key="UBISlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
@@ -1388,6 +1388,10 @@
 		</if>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg" indent="1">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="General OSD Behavior" />
+		<if requires="CanChangeOsdAlpha">
+			<item level="0" text="Automatically hide OSD" description="Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume." indent="1">config.osd.autoHide</item>
+			<item level="0" text="Hide OSD after" description="Time without key presses before hiding the OSD." conditional="config.osd.autoHide.value" indent="2">config.osd.autoHideDelay</item>
+		</if>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait before executing the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc." indent="1">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)." indent="1">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Select whether or not to show an icon when a motorized dish is moving." indent="1">config.usage.showdish</item>
@@ -1425,8 +1429,34 @@
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch" indent="1">config.usage.show_vcr_scart</item>
 		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner." indent="1">config.misc.spinnerPosition</item>
 	</setup>
-	<setup key="video_setup" title="Video Settings">
-		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
+	<setup key="Video" title="Video Settings">
+		<!-- VideoSetup in Screens/VideoMode.py prepends the dynamic items. -->
+		<item level="0" text="HDMI color space" description="Select the color space to be used with the HDMI attached TV/monitor." requires="havecolorspace">config.av.hdmicolorspace</item>
+		<item level="0" text="HDMI colorimetry" description="Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor." requires="havecolorimetry">config.av.hdmicolorimetry</item>
+		<item level="0" text="HDMI color depth" description="Select the color depth to be used with the HDMI attached UHD capable TV/monitor." requires="havehdmicolordepth">config.av.hdmicolordepth</item>
+		<if requires="havehdmihdrtype">
+			<item level="0" text="HDMI HDR Type" description="Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor.">config.av.hdmihdrtype</item>
+			<if conditional="config.av.hdmihdrtype.value == 'auto'">
+				<item level="1" text="Switch HDR type by content" description="When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video." indent="1">config.av.hdmihdrtype_switch</item>
+				<item level="1" text="Colorimetry for HDR content" description="Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'." requires="havecolorimetry;config.av.hdmihdrtype_switch" conditional="config.av.hdmicolorimetry.value == 'auto'" indent="1">config.av.hdmicolorimetry_hdr</item>
+			</if>
+		</if>
+		<item level="0" text="HDR OSD adjustment" description="This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode." requires="havehdmihdrosd">config.av.hdmihdrosd</item>
+		<item level="0" text="Bypass HDMI EDID check" description="When enabled, bypass HDMI EDID checking." requires="Canedidchecking">config.av.bypass_edid_checking</item>
+		<item level="0" text="Hardware video mode" description="Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output." requires="haveboxmode">config.av.boxmode</item>
+		<if requires="HDRSupport">
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.hlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.hdr10_support</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="10">config.av.allow_10bit</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="12">config.av.allow_12bit</item>
+		</if>
+		<item level="0" text="Sync mode" description="Select how to handle the synchronization of the signal after a service change." requires="havesyncmode">config.av.sync_mode</item>
+		<item level="1" text="Deinterlacer mode" description="Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
+		<item level="1" text="Add 'Manual resolution' to Extensions" description="When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
+		<if requires="haveamlhdrsupport">
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.amlhlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.amlhdr10_support</item>
+		</if>
 	</setup>
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">
 		<item level="0" text="Volume adjustment mode" description="Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service.">config.volumeAdjust.adjustMode</item>

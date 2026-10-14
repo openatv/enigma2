@@ -59,6 +59,8 @@ class EPGSelection(Screen):
 		self.setTitle(_("EPG Selection"))
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
+		from Screens.InfoBar import MoviePlayer  # Local import, InfoBarGenerics imports this module.
+		self.moviePlayer = MoviePlayer.instance is not None  # EPG opened from MoviePlayer.
 		self.bouquets = bouquets
 		graphic = ((config.epgselection.infobar_type_mode.value == "graphics" and "infobargraph" == EPGtype)
 			or (config.epgselection.graph_type_mode.value == "graphics" and "graph" == EPGtype))
@@ -677,13 +679,16 @@ class EPGSelection(Screen):
 			self["list"].moveTo(self["list"].instance.pageUp)
 
 	def toTop(self):
-		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):  # Dirty workaround for #3006. (Pressing '0' no longer goes to first channel in bouquet.)
-			self.BouquetOK()
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			self["list"].toTop()
 		else:
 			self["list"].moveTo(self["list"].instance.moveTop)
 
 	def toEnd(self):
-		self["list"].moveTo(self["list"].instance.moveEnd)
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			self["list"].toEnd()
+		else:
+			self["list"].moveTo(self["list"].instance.moveEnd)
 
 	def leftPressed(self):
 		if self.type == EPG_TYPE_VERTICAL:
@@ -1832,9 +1837,9 @@ class EPGSelection(Screen):
 					(self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.value in ("1", "2")) or
 					(self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.value) or
 					(self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_preview_mode.value)):
-					if "0:0:0:0:0:0:0:0:0" not in self.StartRef.toString():
+					if not self.moviePlayer:
 						self.zapFunc(None, zapback=True)
-				elif "0:0:0:0:0:0:0:0:0" in self.StartRef.toString():
+				elif self.moviePlayer:
 					self.session.nav.playService(self.StartRef)
 				else:
 					self.zapFunc(None, False)
@@ -1852,7 +1857,7 @@ class EPGSelection(Screen):
 			self.session.pipshown = True
 
 	def zap(self):
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and "0:0:0:0:0:0:0:0:0" in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
+		if self.moviePlayer:
 			return
 		if self.zapFunc:
 			self.zapSelectedService()
@@ -1906,7 +1911,7 @@ class EPGSelection(Screen):
 				self[f"list{self.activeList}"].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def zapTo(self):
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and "0:0:0:0:0:0:0:0:0" in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
+		if self.moviePlayer:
 			# from Screens.InfoBarGenerics import setResumePoint
 			# setResumePoint(self.session)
 			return
@@ -1983,10 +1988,9 @@ class EPGSelection(Screen):
 				self["list"].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 			elif number == 0:
-				self.toTop()
 				self.ask_time = now - now % (int(roundto.value) * 60)
 				self["list"].resetOffset()
-				self["list"].fillGraphEPG(None, self.ask_time, True)
+				self["list"].toTop(self.ask_time, True)
 				self.moveTimeLines()
 		elif self.type == EPG_TYPE_VERTICAL:
 			if number == 1:

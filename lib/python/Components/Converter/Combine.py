@@ -1,12 +1,12 @@
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class Combine(Converter):
 	SINGLE_SOURCE = False
 
-	def __init__(self, arg=None, func=None):
-		Converter.__init__(self, arg)
+	def __init__(self, tokens=None, func=None):
+		Converter.__init__(self, tokens)
 		assert func is not None
 		self.func = func
 

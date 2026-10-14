@@ -3,6 +3,7 @@
 #include <lib/base/init_num.h>
 #include <lib/actions/actionids.h>
 #include <lib/driver/rc.h>
+#include <lib/driver/avcontrol.h>
 
 /*
 
@@ -217,6 +218,9 @@ struct call_entry
 
 void eActionMap::keyPressed(const std::string &device, int key, int flags)
 {
+	eAVControl *avControl = eAVControl::getInstance();
+	if (avControl && avControl->handleOSDKey(device, key, flags))
+		return;
 	// eDebug("[eActionMap] key from %s: %d %d", device.c_str(), key, flags);
 
 	// Check for remotes that need key translations

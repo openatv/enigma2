@@ -24,13 +24,14 @@ from Components.Pixmap import Pixmap
 from Components.RTLSDR import getRTLSDRChannelFrequency
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.StaticText import StaticText
 # from Components.Storage import storageManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Tools.Conversions import formatDate, scaleNumber
+from Tools.DAB import dabMetadata
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
@@ -1279,6 +1280,9 @@ class InformationReceiver(InformationBase):
 		cpu = about.getCPUInfoString()
 		info.append(self.formatLine("P1", _("CPU"), cpu[0]))
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
+		currentSpeed = about.getCPUCurrentSpeed()
+		if currentSpeed:
+			info.append(self.formatLine("P1", _("Current CPU speed"), currentSpeed))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
 		ramTemp = about.getRAMTemperature()
@@ -1448,8 +1452,16 @@ class InformationService(InformationBase):
 		if serviceRef:
 			self.serviceCommandsIndex = 1
 		else:
-			self.eventTracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evEnd: self.fetchInformationDelayed})
+			self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evEnd: self.fetchInformationDelayed,
+				iPlayableService.evUpdatedInfo: self.dabInformationUpdated
+			})
 			self.serviceCommandsIndex = 0
+
+	def dabInformationUpdated(self):
+		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if serviceRef and serviceRef.type == eServiceReference.idServiceDAB and self.serviceCommandsIndex == 0:
+			self.informationTimer.start(100, True)
 
 	def fetchInformationDelayed(self):  # This allows the newly selected service to stabilize before updating the service data.
 		self.informationTimer.startLongTimer(3)
@@ -1626,7 +1638,7 @@ class InformationService(InformationBase):
 			elif serviceRef:
 				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
 			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
-			addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
+			addIfAvailable(info, _("Language"), dabMetadata.languageName(getServiceInfoValue(iServiceInformation.sTagLanguageCode)))
 			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
 			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
 			addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))

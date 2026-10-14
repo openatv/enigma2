@@ -218,7 +218,7 @@ private:
 	std::set<int> m_pending_ci_releases;
 	void refreshReleasedRouting();
 	static pthread_mutex_t m_pmt_handler_lock;
-	enum { messageRecheckPMTHandlers = 1, messageRefreshDemuxSources, messageRoutingChanged = 1000 };
+	enum { messageRecheckPMTHandlers = 1, messageRefreshDemuxSources, messageRetryReleasedRouting, messageRoutingChanged = 1000 };
 
 	int sendCAPMT(int slot);
 

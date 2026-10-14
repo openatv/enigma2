@@ -56,6 +56,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		self.protectContextMenu = True
 
 		ConfigListScreen.__init__(self, [])
+		self["charConfigActions"].setEnabled(False)  # Number keys are used for stream selection.
 		self.infobar = infobar or self.session.infobar
 		if not hasattr(self.infobar, "selected_subtitle"):
 			self.infobar.selected_subtitle = None
@@ -66,7 +67,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
 
-		self["actions"] = NumberActionMap(["ColorActions", "OkCancelActions", "DirectionActions", "MenuActions", "InfobarAudioSelectionActions", "InfobarSubtitleSelectionActions"],
+		self["actions"] = NumberActionMap(["ColorActions", "OkCancelActions", "DirectionActions", "MenuActions", "NumberActions", "InfobarAudioSelectionActions", "InfobarSubtitleSelectionActions"],
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
@@ -662,7 +663,8 @@ class AudioSelection(ConfigListScreen, Screen):
 			self["streams"].selectNext()
 
 	def keyNumberGlobal(self, number):
-		if number <= len(self["streams"].list):
+		if 0 < number <= len(self["streams"].list):
+			self.focus = FOCUS_STREAMS
 			self["streams"].setIndex(number - 1)
 			self.keyOk()
 
