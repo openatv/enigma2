@@ -898,6 +898,9 @@ class FlashImage(Screen, ProtectedScreen):
 
 	def flashImageDone(self, data, retVal, extraArgs):
 		fbClass.getInstance().unlock()
+		# The unlock resets the framebuffer, draw the whole screen again.
+		self.hide()
+		self.show()
 		self.containerOFGWrite = None
 		if retVal == 0:
 			slotCode = getattr(self, "slotCode", None)
