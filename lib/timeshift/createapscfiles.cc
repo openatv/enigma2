@@ -31,12 +31,12 @@
 
 using namespace std;
 
-static std::string _inputName;
-static int _inputPart;
+static std::string inputName;
+static int inputPart;
 
-static std::string _inputFilename(int part)
+static std::string inputFilename(int part)
 {
-	std::string name = _inputName;
+	std::string name = inputName;
 	if (part)
 	{
 		char suffix[16];
@@ -48,7 +48,7 @@ static std::string _inputFilename(int part)
 
 // Keep the parser's descriptor interface and fill its existing packet-aligned
 // buffer across physical parts. Its offsets remain relative to the whole stream.
-static ssize_t _readInput(int fd, void *buffer, size_t count)
+static ssize_t readInput(int fd, void *buffer, size_t count)
 {
 	size_t done = 0;
 	while (done < count)
@@ -65,9 +65,9 @@ static ssize_t _readInput(int fd, void *buffer, size_t count)
 			done += amount;
 			continue;
 		}
-		if (_inputPart == 999)
+		if (inputPart == 999)
 			break;
-		int next = open(_inputFilename(_inputPart + 1).c_str(), O_RDONLY | O_LARGEFILE | O_NOFOLLOW | O_CLOEXEC);
+		int next = open(inputFilename(inputPart + 1).c_str(), O_RDONLY | O_LARGEFILE | O_NOFOLLOW | O_CLOEXEC);
 		if (next < 0)
 		{
 			if (errno == ENOENT)
@@ -78,14 +78,14 @@ static ssize_t _readInput(int fd, void *buffer, size_t count)
 		do
 			result = dup2(next, fd);
 		while (result < 0 && errno == EINTR);
-		int saved_errno = errno;
+		int savedErrno = errno;
 		close(next);
 		if (result < 0)
 		{
-			errno = saved_errno;
+			errno = savedErrno;
 			return -1;
 		}
-		++_inputPart;
+		++inputPart;
 	}
 	return done;
 }
@@ -124,7 +124,7 @@ int writebufinternal(int f, off64_t sz, off64_t tm)
 	return 0;
 }
 
-static int _finishOutput(int &descriptor)
+static int finishOutput(int &descriptor)
 {
 	int result;
 	do
@@ -137,7 +137,7 @@ static int _finishOutput(int &descriptor)
 	return result;
 }
 
-static void _removeOutput(const std::string &filename, const struct stat &identity)
+static void removeOutput(const std::string &filename, const struct stat &identity)
 {
 	struct stat current = {};
 	// Keep ownership after close(), but never adopt a replacement pathname.
@@ -183,7 +183,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
 	static int sdflag = 0;
 	unsigned char* p;
 	if (pos == -1 || first) {
-		num = _readInput(fts, buf, LEN);
+		num = readInput(fts, buf, LEN);
 		if (num < 0)
 			return -2;
 		ind = 0;
@@ -251,7 +251,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
 		sdflag = 0; // reset to get some fault tolerance
 		if (num == LEN) {
 			pos += num;
-			num = _readInput(fts, buf, LEN);
+			num = readInput(fts, buf, LEN);
 			if (num < 0)
 				return -2;
 			ind = 0;
@@ -308,24 +308,24 @@ int do_movie(char* inname)
 	const char *innameext = getext(inname);
 
 	std::string tmpname = makefilename(inname, innameext, 0);
-	f_ts = open(tmpname.c_str(), O_RDONLY | O_LARGEFILE | O_NOFOLLOW | O_CLOEXEC);
+	f_ts = open(tmpname.c_str(), O_RDONLY | O_LARGEFILE | O_CLOEXEC);
 
 	if (f_ts == -1) {
 		printf("Failed to open input stream file \"%s\"\n", tmpname.c_str());
 		return 1;
 	}
-	_inputName = tmpname;
-	_inputPart = 0;
+	inputName = tmpname;
+	inputPart = 0;
 	for (int part = 0; part < 1000; ++part) {
-		if (stat(_inputFilename(part).c_str(), &fp) < 0) {
+		if (stat(inputFilename(part).c_str(), &fp) < 0) {
 			if (part && errno == ENOENT)
 				break;
-			printf("Failed to inspect input stream file \"%s\"\n", _inputFilename(part).c_str());
+			printf("Failed to inspect input stream file \"%s\"\n", inputFilename(part).c_str());
 			close(f_ts);
 			return 1;
 		}
 		if (!S_ISREG(fp.st_mode) || fp.st_size < 0) {
-			printf("Invalid input stream file \"%s\"\n", _inputFilename(part).c_str());
+			printf("Invalid input stream file \"%s\"\n", inputFilename(part).c_str());
 			close(f_ts);
 			return 1;
 		}
@@ -339,7 +339,7 @@ int do_movie(char* inname)
 	}
 	if (fstat(f_tmp, &tmpOutput) < 0)
 		goto failure;
-	if (_finishOutput(f_tmp) < 0)
+	if (finishOutput(f_tmp) < 0)
 		goto failure;
 	tmpname = makefilename(inname, innameext, ".ap");
 	f_ap = open(tmpname.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW | O_CLOEXEC, 0x1a4);
@@ -366,7 +366,7 @@ int do_movie(char* inname)
 		goto failure;
 	}
 
-	if (_finishOutput(f_ap) < 0 || _finishOutput(f_sc) < 0)
+	if (finishOutput(f_ap) < 0 || finishOutput(f_sc) < 0)
 		goto failure;
 
 	cout << "\rcreating ap&sc files: ";
@@ -374,7 +374,7 @@ int do_movie(char* inname)
 	cout << "100" << "%\n";
 
 	close(f_ts);
-	_removeOutput(makefilename(inname, innameext, ".reconstruct_apsc"), tmpOutput);
+	removeOutput(makefilename(inname, innameext, ".reconstruct_apsc"), tmpOutput);
 	return 0;
 	failure:
 	if (f_tmp != -1)
@@ -385,9 +385,9 @@ int do_movie(char* inname)
 		close(f_ap);
 	if (f_sc != -1)
 		close(f_sc);
-	_removeOutput(makefilename(inname, innameext, ".ap"), apOutput);
-	_removeOutput(makefilename(inname, innameext, ".sc"), scOutput);
-	_removeOutput(makefilename(inname, innameext, ".reconstruct_apsc"), tmpOutput);
+	removeOutput(makefilename(inname, innameext, ".ap"), apOutput);
+	removeOutput(makefilename(inname, innameext, ".sc"), scOutput);
+	removeOutput(makefilename(inname, innameext, ".reconstruct_apsc"), tmpOutput);
 	return 1;
 }
 

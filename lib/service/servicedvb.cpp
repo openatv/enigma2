@@ -950,7 +950,7 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 	// Legacy recordings and native time shift exports share the same suffixes.
 	for (unsigned int slice = 1; slice < 1000; ++slice)
 	{
-		char suffix[5];
+		char suffix[16];
 		snprintf(suffix, sizeof(suffix), ".%03u", slice);
 		std::string part = m_ref.path + suffix;
 		struct stat status = {};
@@ -2281,7 +2281,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		 * getPlayPosition can extrapolate while audio PTS is unreliable. */
 		if (skipmode != 0) {
 			pts_t cur = 0;
-			/* Already in skipmode → use running estimate; else live pos. */
+			/* Already in skipmode â†’ use running estimate; else live pos. */
 			if (m_skipmode != 0 && m_pos_before_skipmode > 0) {
 				struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
 				int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
@@ -2324,7 +2324,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 
 	m_skipmode = skipmode;
 #ifdef DREAMNEXTGEN
-	/* Skipmode fully exited — clear the frozen anchor so future getPlayPosition
+	/* Skipmode fully exited â€” clear the frozen anchor so future getPlayPosition
 	 * reads return live PTS again. */
 	if (skipmode == 0)
 		m_pos_before_skipmode = 0;
@@ -2426,7 +2426,7 @@ RESULT eDVBServicePlay::unpause()
 	eDebug("[eDVBServicePlay] unpause");
 #ifdef DREAMNEXTGEN
 	/* Writer wakes AFTER decoder kernel state has resumed. First writei
-	 * hits EBADFD → handler runs snd_pcm_prepare + re-anchor. */
+	 * hits EBADFD â†’ handler runs snd_pcm_prepare + re-anchor. */
 #endif
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
@@ -2547,7 +2547,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 		return -1;
 
 #ifdef DREAMNEXTGEN
-	/* During skipmode (FF>=16) audio PTS is unreliable — extrapolate
+	/* During skipmode (FF>=16) audio PTS is unreliable â€” extrapolate
 	 * position from entry anchor + elapsed*rate. Clamped to length-1s. */
 	if (m_skipmode != 0 && m_pos_before_skipmode > 0 && m_skipmode_entry_ms > 0) {
 		struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -2586,7 +2586,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 		bool use_video_pts = (m_noaudio && m_have_video_pid);
 #ifdef DREAMNEXTGEN
 		/* HW FF (2/4/8x): audio stopped, use video PTS so UI progresses.
-		 * Not for skipmode (m_fastforward==1) — video PTS races past EOF. */
+		 * Not for skipmode (m_fastforward==1) â€” video PTS races past EOF. */
 		if (m_fastforward > 1 && m_have_video_pid)
 			use_video_pts = true;
 #endif
@@ -3631,6 +3631,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	m_record->setTargetFilename(m_timeshift_file);
 	// Packet-aligned parts also work on FAT and servers with a 2 GiB file limit.
 	// Event boundaries remain independent of these physical storage parts.
+	m_record->setSyncOnStop(false);
 	if (m_record->setSplitSize(((1LL << 31) - 1) / 188 * 188))
 	{
 		close(m_timeshift_fd);
@@ -3674,7 +3675,16 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (m_record->start())
 	{
 		eWarning("[eDVBServicePlay] unable to start time shift recorder");
-		stopTimeshift();
+		m_record->setDescrambler(nullptr);
+		m_timeshift_csa_session = nullptr;
+		m_record = 0;
+		m_timeshift_enabled = 0;
+		if (m_timeshift_fd >= 0)
+		{
+			close(m_timeshift_fd);
+			m_timeshift_fd = -1;
+		}
+		_releaseTimeshiftDirectory(true);
 		return -6;
 	}
 	for (const char *path : {"/proc/stb/lcd/symbol_timeshift", "/proc/stb/lcd/symbol_record"})
@@ -3746,16 +3756,15 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 
 	m_timeshift_enabled = 0;
 
-	// NOW switch to live (SoftDecoder can safely allocate resources)
-	if (swToLive || result)
-		switchToLive();
-
 	if (m_timeshift_fd >= 0)
 	{
 		if (close(m_timeshift_fd) < 0)
 			result = -1;
 		m_timeshift_fd = -1;
 	}
+	// A close failure also requires live playback before leases are released.
+	if (swToLive || result)
+		switchToLive();
 
 	ofstream fileout;
 	fileout.open("/proc/stb/lcd/symbol_timeshift");
@@ -3983,7 +3992,7 @@ void eDVBServicePlay::setCutListEnable(int enable)
 	cutlistToCuesheet();
 }
 
-static std::string _buildTimeshiftServiceData(const eDVBServicePMTHandler::program &program)
+static std::string buildTimeshiftServiceData(const eDVBServicePMTHandler::program &program)
 {
 	// Build only from the program being recorded, never the channel-list cache
 	// or an older buffer currently being played. Keep the normal PMT path enabled.
@@ -4037,7 +4046,7 @@ void eDVBServicePlay::updateTimeshiftPids(bool captureServiceData) {
 	if (m_service_handler.getProgramInfo(program))
 		return;
 	if (captureServiceData)
-		_timeshiftServiceData = _buildTimeshiftServiceData(program);
+		_timeshiftServiceData = buildTimeshiftServiceData(program);
 
 	int timing_pid = -1;
 	int timing_stream_type = -1;
@@ -4221,7 +4230,7 @@ void eDVBServicePlay::switchToTimeshift()
 
 #ifdef DREAMNEXTGEN
 	/* Re-point eAlsaOutput's PCR demux fd to the timeshift demux. Live
-	 * and timeshift often share the same demux ID — force a close+reopen
+	 * and timeshift often share the same demux ID â€” force a close+reopen
 	 * so setPcrDemux doesn't early-return on the matching id. */
 	if (m_decode_demux) {
 		uint8_t did = 0;

@@ -1,6 +1,7 @@
 #ifndef __dvb_idemux_h
 #define __dvb_idemux_h
 
+#include <cerrno>
 #include <lib/dvb/idvb.h>
 #include <lib/service/iservicescrambled.h>
 
@@ -41,10 +42,6 @@ public:
 		/* for saving additional meta data. */
 	virtual RESULT setTargetFilename(const std::string& filename) = 0;
 	virtual RESULT setBoundary(off_t max) = 0;
-	// Optional fixed-size file parts (basename, basename.001, ...). Zero disables splitting.
-	virtual RESULT setSplitSize(off_t bytes) { return -1; }
-	// Confirmed contiguous data, rounded down to complete transport packets.
-	virtual long long getWrittenBytes() { return -1; }
 	virtual RESULT enableAccessPoints(bool enable) = 0;
 
 	virtual RESULT stop() = 0;
@@ -77,6 +74,10 @@ public:
 		eventStreamCorrupt
 	};
 	virtual RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)=0;
+	// Append optional methods so existing recorder vtable slots stay unchanged.
+	virtual RESULT setSplitSize(off_t bytes) { errno = ENOSYS; return -1; }
+	virtual long long getWrittenBytes() { errno = ENOSYS; return -1; }
+	virtual void setSyncOnStop(bool enabled) { }
 };
 
 #endif

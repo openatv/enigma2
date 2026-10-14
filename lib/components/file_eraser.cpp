@@ -153,6 +153,9 @@ void eBackgroundFileEraser::_eraseTimeshift(const Message &msg)
 	struct DirectoryCloser
 	{
 		int fd;
+		explicit DirectoryCloser(int descriptor) : fd(descriptor) { }
+		DirectoryCloser(const DirectoryCloser &) = delete;
+		DirectoryCloser &operator=(const DirectoryCloser &) = delete;
 		~DirectoryCloser()
 		{
 			if (fd >= 0 && close(fd) < 0)
@@ -221,6 +224,22 @@ void eBackgroundFileEraser::_eraseTimeshift(const Message &msg)
 			return;
 	if (matchesBase() && unlinkat(msg.directoryFd, name.c_str(), 0) < 0)
 		eWarning("[eBackgroundFileEraser] removing time shift %s failed: %m", msg.filename.c_str());
+	// Remove only an empty session directory whose entry still names our FD.
+	const std::string path = msg.filename.substr(0, msg.filename.find_last_of('/'));
+	const std::string session = path.substr(path.find_last_of('/') + 1);
+	if (session.size() == 16 && session.compare(0, 10, "timeshift.") == 0)
+	{
+		int parent = openat(msg.directoryFd, "..", O_RDONLY | O_DIRECTORY | O_CLOEXEC);
+		if (parent >= 0)
+		{
+			struct stat pinned = {}, entry = {};
+			if (fstat(msg.directoryFd, &pinned) == 0
+				&& fstatat(parent, session.c_str(), &entry, AT_SYMLINK_NOFOLLOW) == 0
+				&& S_ISDIR(entry.st_mode) && entry.st_dev == pinned.st_dev && entry.st_ino == pinned.st_ino)
+				unlinkat(parent, session.c_str(), AT_REMOVEDIR); // ENOTEMPTY is expected for retained buffers.
+			close(parent);
+		}
+	}
 }
 
 void eBackgroundFileEraser::eraseTimeshift(const std::string& filename, int directoryFd, dev_t device, ino_t inode)

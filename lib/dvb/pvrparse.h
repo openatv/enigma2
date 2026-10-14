@@ -18,6 +18,7 @@ public:
 	~eMPEGStreamInformation();
 
 	int load(const char *filename);
+	void reset();
 
 		/* fixup timestamp near offset, i.e. convert to zero-based */
 	int fixupPTS(const off_t &offset, pts_t &ts, bool debug = false);
@@ -80,6 +81,7 @@ public:
 	/* Used by parser */
 	int startSave(const std::string& filename);
 	int stopSave(void);
+	void setSyncOnStop(bool enabled) { m_syncOnStop = enabled; }
 	virtual void addAccessPoint(off_t offset, pts_t pts, bool streamtime);
 	void writeStructureEntry(off_t offset, unsigned long long data);
 	void commit();
@@ -103,6 +105,8 @@ private:
 	{
 		PendingWrite();
 		~PendingWrite();
+		PendingWrite(const PendingWrite &) = delete;
+		PendingWrite &operator=(const PendingWrite &) = delete;
 		int start(int fd, off_t where, void* buffer, size_t buffer_size);
 		int poll(); // 1 pending, 0 complete, -1 failed; releases only completed requests
 		int wait();
@@ -118,6 +122,7 @@ private:
 	void* m_write_buffer;
 	size_t m_buffer_filled;
 	int _writeError;
+	bool m_syncOnStop = true;
 };
 
 

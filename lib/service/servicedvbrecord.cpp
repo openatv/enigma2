@@ -741,7 +741,18 @@ int eDVBServiceRecord::doRecord()
 
 			if (m_state != stateRecording)
 			{
-				m_record->start();
+				if (m_record->start())
+				{
+					m_record = 0;
+					if (m_target_fd >= 0)
+					{
+						::close(m_target_fd);
+						m_target_fd = -1;
+					}
+					m_error = errOpenRecordFile;
+					m_event((iRecordableService*)this, evRecordFailed);
+					return m_error;
+				}
 				m_state = stateRecording;
 			}
 		}

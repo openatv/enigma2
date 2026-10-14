@@ -1,4 +1,5 @@
 from os.path import join
+
 from Components.config import config
 from Components.TimeshiftStorage import checkStorageDirectory
 from Screens.LocationBox import TimeshiftLocationBox
@@ -13,7 +14,7 @@ class TimeshiftSettings(Setup):
 		self.status = None
 		self.checkedPath = None
 		self.savePending = False
-		self.pathCheck = StoragePathCheck(checkStorageDirectory, self.pathChecked)
+		self.pathCheck = StoragePathCheck(self.checkStoragePath, self.pathChecked)
 		self.buildChoices(config.timeshift.path, None)
 		Setup.__init__(self, session=session, setup="Timeshift")
 		for index, item in enumerate(self["config"].getList()):
@@ -24,6 +25,9 @@ class TimeshiftSettings(Setup):
 			print("[Timeshift] Error: ConfigList time shift path entry not found!")
 			self.pathItem = None
 		self.onClose.append(self.pathCheck.cancel)
+
+	def checkStoragePath(self, path):
+		checkStorageDirectory(path, create=True)
 
 	def buildChoices(self, configEntry, path):
 		configList = config.timeshift.allowedPaths.value[:]
@@ -64,7 +68,8 @@ class TimeshiftSettings(Setup):
 			self.status = _("Checking storage directory...")
 			self.setFootnote(self.status)
 		elif save:
-			self.session.showInfo(_("A storage check is still running. Please try again shortly."))
+			self.checkedPath = path
+			self.session.openWithCallback(self.keySaveCallback, MessageBox, _("A storage check is still running. Save these settings without waiting for it?"), type=MessageBox.TYPE_YESNO, default=False)
 
 	def pathChecked(self, errors):
 		save = self.savePending
@@ -80,9 +85,7 @@ class TimeshiftSettings(Setup):
 		if save or self.getCurrentItem() == config.timeshift.path:
 			self.setFootnote(self.status)
 		if save:
-			if errors is None:
-				self.session.showError(self.status)
-			elif self.status:
+			if self.status:
 				self.session.openWithCallback(self.keySaveCallback, MessageBox, "%s\n\n%s\n%s" % (self.status, _("Time shift may not work correctly without an acceptable directory."), _("Save these settings anyway?")), type=MessageBox.TYPE_YESNO, default=False)
 			else:
 				Setup.keySave(self)

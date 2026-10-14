@@ -765,7 +765,7 @@ void eFilePushThreadRecorder::thread()
 	if (m_buffer_fill > 0 && !_writeError)
 	{
 		int result = writeBuffer();
-		if (result <= 0)
+		if (result < 0 || (result == 0 && (!m_serviceFilter.active() || m_buffer_fill >= static_cast<size_t>(m_packetSize))))
 			_setWriteError(result < 0 ? errno : EIO);
 		m_buffer_fill = 0;
 	}

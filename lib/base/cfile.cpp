@@ -15,11 +15,9 @@ off_t CFile::getRecordingSplitSize(int fd, unsigned int packetSize)
 	struct statfs fs = {};
 	if (!packetSize || fstatfs(fd, &fs) < 0)
 		return -1;
-	// CIFS and SMB2 values are also needed with older receiver kernel headers.
 	const unsigned int type = static_cast<unsigned int>(fs.f_type);
-	if (type == MSDOS_SUPER_MAGIC || type == NFS_SUPER_MAGIC || type == FUSE_SUPER_MAGIC
-		|| type == 0xff534d42U || type == 0xfe534d42U || type == SMB_SUPER_MAGIC)
-		return ((1LL << 31) - 1) / packetSize * packetSize;
+	if (type == MSDOS_SUPER_MAGIC)
+		return ((1LL << 32) - 1) / packetSize * packetSize;
 	return 0;
 }
 

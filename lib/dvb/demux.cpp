@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <sys/socket.h>
 #include <errno.h>
 #include <unistd.h>
 #include <signal.h>
@@ -484,14 +485,14 @@ int eDVBRecordFileThread::startSaveMetaInformation(const std::string &filename)
 {
 	int result = m_ts_parser.startSave(filename);
 	if (result < 0)
-		_setWriteError(m_ts_parser.getWriteError());
-	return result;
+		eWarning("[eDVBRecordFileThread] unable to create recording indexes: %m");
+	return 0; // Index failure must not prevent transport stream recording.
 }
 
 void eDVBRecordFileThread::stopSaveMetaInformation()
 {
 	if (m_ts_parser.stopSave() < 0)
-		_setWriteError(m_ts_parser.getWriteError());
+		eWarning("[eDVBRecordFileThread] recording indexes could not be completed: %m");
 }
 
 int eDVBRecordFileThread::getLastPTS(pts_t &pts)
@@ -608,11 +609,6 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	if (!getProtocol() && !m_serviceDescrambler)
 	{
 		int parse_result = m_ts_parser.parseData(m_current_offset, m_buffer, len);
-		if (m_ts_parser.getWriteError())
-		{
-			errno = m_ts_parser.getWriteError();
-			return -1;
-		}
 		if (parse_result == -2)
 		{
 			m_event(eFilePushThreadRecorder::evtStreamCorrupt);
@@ -766,7 +762,7 @@ int eDVBRecordFileThread::_cacheFileTarget()
 			errno = EINVAL;
 			return -1;
 		}
-		int directoryFd = ::open(directory.c_str(), O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+		int directoryFd = ::open(directory.c_str(), O_RDONLY | O_DIRECTORY | O_CLOEXEC);
 		if (directoryFd < 0)
 			return -1;
 		struct stat target = {};
@@ -811,12 +807,6 @@ int eDVBRecordFileThread::_nextPart()
 	}
 	if (_drainWrites() < 0)
 		return -1;
-	int result;
-	do
-		result = fdatasync(m_fd_dest);
-	while (result < 0 && errno == EINTR);
-	if (result < 0)
-		return -1;
 	if (_checkTargetBase() < 0)
 		return -1;
 	if (_ownsTarget)
@@ -827,7 +817,7 @@ int eDVBRecordFileThread::_nextPart()
 		if (::close(oldFd) < 0)
 			return -1;
 	}
-	char suffix[5];
+	char suffix[16];
 	snprintf(suffix, sizeof(suffix), ".%03u", _partNumber + 1);
 	std::string filename = _targetBasename + suffix;
 	int nextFd = ::openat(_targetDirectoryFd, filename.c_str(), O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW | O_LARGEFILE | O_CLOEXEC, _targetMode);
@@ -904,11 +894,6 @@ int eDVBRecordFileThread::_syncWrite(int len, bool parse)
 	int parseResult = 0;
 	if (parse && !getProtocol() && !m_serviceDescrambler)
 		parseResult = m_ts_parser.parseData(m_current_offset, m_buffer, len);
-	if (m_ts_parser.getWriteError())
-	{
-		errno = m_ts_parser.getWriteError();
-		return -1;
-	}
 	if (parseResult == -2)
 	{
 		m_event(eFilePushThreadRecorder::evtStreamCorrupt);
@@ -996,7 +981,8 @@ int eDVBRecordFileThread::writeData(int len)
 		{
 			if (_drainWrites(!_fileOutput) < 0)
 				return -1;
-			s_aio_state = 0;
+			if (s_aio_state != 1)
+				s_aio_state = 0;
 			m_sync_mode = true;
 			return _syncWrite(len, false);
 		}
@@ -1020,7 +1006,7 @@ void eDVBRecordFileThread::flush()
 	eDebug("[eDVBRecordFileThread] waiting for aio to complete");
 	if (_drainWrites(!_fileOutput) < 0)
 		_setWriteError(errno);
-	if (_fileOutput && m_fd_dest >= 0)
+	if (_fileOutput && m_syncOnStop && m_fd_dest >= 0)
 	{
 		int result;
 		do
@@ -1081,7 +1067,8 @@ int eDVBRecordStreamThread::writeData(int len)
 		{
 			pfd.fd = m_fd_dest;
 			pfd.events = POLLOUT;
-			poll(&pfd, 1, -1);
+			if (poll(&pfd, 1, 1000) <= 0)
+				return pos;
 
 			w = write(m_fd_dest, m_buffer + pos, len - pos);
 
@@ -1239,11 +1226,6 @@ int eDVBRecordScrambledThread::writeData(int len)
 		// Parse AFTER descrambling for correct Access Points (.ap files)
 		if (!getProtocol())
 			m_ts_parser.parseData(m_current_offset, m_buffer, len);
-		if (m_ts_parser.getWriteError())
-		{
-			errno = m_ts_parser.getWriteError();
-			return -1;
-		}
 	}
 
 	// Call the appropriate parent writeData based on target type:
@@ -1450,6 +1432,9 @@ void eDVBTSRecorder::setServiceFilter(int serviceId, int pmtPid, bool shared)
 
 RESULT eDVBTSRecorder::setTargetFD(int fd)
 {
+	// Limit socket writes even when a stream consumer stops reading.
+	struct timeval timeout = {2, 0};
+	setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
 	m_target_fd = fd;
 	m_thread->setTargetFD(fd);
 	return 0;
@@ -1502,6 +1487,8 @@ RESULT eDVBTSRecorder::stop()
 			eWarning("[eDVBTSRecorder] DMX_STOP: %m");
 	}
 
+	if (m_target_filename.empty() && m_target_fd >= 0)
+		shutdown(m_target_fd, SHUT_WR);
 	m_thread->stop();
 
 	if (m_source_fd >= 0)

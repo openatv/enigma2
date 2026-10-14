@@ -3,7 +3,9 @@
 from threading import Lock
 from twisted.internet.threads import deferToThread
 from twisted.python.failure import Failure
+
 from enigma import eTimer
+
 
 class StoragePathCheck:
 	storageCheckLock = Lock()

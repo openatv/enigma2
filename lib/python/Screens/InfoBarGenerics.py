@@ -4013,7 +4013,8 @@ class InfoBarInstantRecord:
 				case "savetimeshiftEvent":
 					InfoBarTimeshift.saveTimeshiftEventPopup(self)
 				case _:
-					if answer[1] in self.timeshiftRegistry.buffers or answer[1].startswith("pts_livebuffer"):
+					registry = getattr(self, "timeshiftRegistry", None)
+					if registry and (answer[1] in registry.buffers or answer[1].startswith("pts_livebuffer")):
 						InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 			if answer[1] != "savetimeshiftEvent":
 				self.saveTimeshiftEventPopupActive = False

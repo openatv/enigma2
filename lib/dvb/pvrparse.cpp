@@ -34,6 +34,16 @@ eMPEGStreamInformation::~eMPEGStreamInformation()
 	close();
 }
 
+void eMPEGStreamInformation::reset()
+{
+	close();
+	m_access_points.clear();
+	m_timestamp_deltas.clear();
+	m_pts_to_offset.clear();
+	m_current_entry = -1;
+	m_streamtime_accesspoints = false;
+}
+
 void eMPEGStreamInformation::close()
 {
 	if (m_structure_read_fd >= 0)
@@ -794,7 +804,7 @@ int eMPEGStreamInformationWriter::stopSave(void)
 		}
 		int result;
 		do
-			result = fsync(fileno(f));
+			result = m_syncOnStop ? fsync(fileno(f)) : 0;
 		while (result < 0 && errno == EINTR);
 		if (result < 0)
 		{
@@ -984,7 +994,7 @@ void eMPEGStreamInformationWriter::close()
 		}
 		int result;
 		do
-			result = fsync(m_structure_write_fd);
+			result = m_syncOnStop ? fsync(m_structure_write_fd) : 0;
 		while (result < 0 && errno == EINTR);
 		if (result < 0)
 			_setWriteError(errno);

@@ -101,6 +101,7 @@ public:
 	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	int startSaveMetaInformation(const std::string &filename);
 	void stopSaveMetaInformation();
+	void setSyncOnStop(bool enabled) { m_syncOnStop = enabled; m_ts_parser.setSyncOnStop(enabled); }
 	int getLastPTS(pts_t &pts);
 	virtual int getFirstPTS(pts_t &pts);
 	void setTargetFD(int fd) { m_fd_dest = fd; _targetCached = false; }
@@ -153,6 +154,7 @@ protected:
 	int m_aio_short_write_count = 0;
 	std::string _targetFilename;
 	bool _fileOutput = false;
+	bool m_syncOnStop = true;
 	bool _ownsTarget = false;
 	off_t _splitSize = 0;
 	off_t _partStart = 0;
@@ -223,6 +225,7 @@ public:
 	RESULT setTargetFilename(const std::string& filename);
 	RESULT setBoundary(off_t max);
 	RESULT setSplitSize(off_t bytes) override;
+	void setSyncOnStop(bool enabled) override { m_thread->setSyncOnStop(enabled); }
 	long long getWrittenBytes() override { return m_thread->getWrittenBytes(); }
 	RESULT enableAccessPoints(bool enable);
 
