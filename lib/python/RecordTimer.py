@@ -946,6 +946,7 @@ class RecordTimerEntry(TimerEntry):
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) is True:
 					if config.recording.ask_to_abort_pip.value == "ask":
+						self.messageBoxAnswerPending = True
 						self.log(8, "Asking user to disable PiP.")
 						message = _("A timer failed to record!\nDisable PiP and try again?\n")
 						if InfoBar and InfoBar.instance:
@@ -964,6 +965,7 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isPseudoRecording)) > 0:
 					if config.recording.ask_to_abort_pseudo_rec.value == "ask":
+						self.messageBoxAnswerPending = True
 						self.log(8, "Asking user to abort pseudo recordings.")
 						message = _("A timer failed to record!\nAbort pseudo recordings (e.g. EPG refresh) and try again?\n")
 						if InfoBar and InfoBar.instance:
@@ -982,6 +984,7 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isStreaming)) > 0:
 					if config.recording.ask_to_abort_streaming.value == "ask":
+						self.messageBoxAnswerPending = True
 						self.log(8, "Asking user to abort streaming.")
 						message = _("A timer failed to record!\nAbort streaming and try again?\n")
 						if InfoBar and InfoBar.instance:

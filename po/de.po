@@ -31763,3 +31763,87 @@ msgstr "Eine Aufnahme hat Vorrang. Timeshift wird beendet."
 
 msgid "A storage check is still running. Save these settings without waiting for it?"
 msgstr "Eine Speicherprüfung läuft noch. Diese Einstellungen speichern, ohne auf das Ergebnis zu warten?"
+
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr "Die Fortsetzungsaufnahme konnte nicht sicher zugeordnet werden. Beide Aufnahmen bleiben erhalten und werden nicht zusammengeführt."
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr "Wählen Sie ein beschreibbares Verzeichnis auf einem eingehängten Speichergerät oder einer Netzwerkfreigabe. Interner Flash und RAM sind nicht zulässig. Hardlinks sind nicht erforderlich. Drücken Sie 'OK', um ein Verzeichnis auszuwählen."
+
+msgid "Automatically start time shift"
+msgstr "Timeshift automatisch starten"
+
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr "Wenn aktiviert, startet Timeshift nach der gewählten Zeit automatisch im Hintergrund."
+
+msgid "Enable auto record"
+msgstr "Automatisches Speichern aktivieren"
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr "Wenn aktiviert, werden abgeschlossene Timeshift-Puffer automatisch als Aufnahmen gespeichert. Dies gilt für neu gestartete Puffer. Bei deaktivierter Aufteilung nach Sendungen beginnt das Speichern beim Beenden des Puffers. Gespeicherte Aufnahmen werden beim Aufräumen der Timeshift-Puffer nicht gelöscht."
+
+msgid "Show warning when time shift stopped"
+msgstr "Warnung beim Beenden von Timeshift anzeigen"
+
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr "Wenn aktiviert, wird eine Warnung angezeigt, wenn ein Befehl Timeshift beenden würde. Sie können dann wählen, ob Timeshift beendet oder fortgesetzt werden soll."
+
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr "Wählen Sie die Aktion beim Verlassen von Timeshift durch einen Senderwechsel. Diese Option wird verwendet, wenn die Warnung beim Beenden von Timeshift aktiviert ist."
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr "Wenn aktiviert, wird Timeshift während einer laufenden Aufnahme beendet. Dies wird für USB-Sticks und andere langsame Speichermedien empfohlen."
+
+msgid "Allow skip to live with plugins"
+msgstr "Wechsel zu Live-TV mit Plugins erlauben"
+
+msgid "When enabled, allow the use of time shift with alternative audio plugins."
+msgstr "Wenn aktiviert, kann Timeshift mit alternativen Audio-Plugins verwendet werden."
+
+msgid "Use SeekBar while time shifting"
+msgstr "Suchleiste während Timeshift verwenden"
+
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr "Wenn aktiviert, kann mit der Suchleiste zu einer gewählten Stelle im Timeshift-Puffer gesprungen werden."
+
+msgid "Buffer limit"
+msgstr "Zeitlimit für Puffer"
+
+msgid "Select the maximum time length of the time shift buffer.  Buffers older than the duration specified will be removed during cleanup. Buffers still being recorded, played or saved are protected. This limit does not apply to the current event."
+msgstr "Wählen Sie die maximale Dauer des Timeshift-Puffers. Puffer, die älter als die angegebene Dauer sind, werden beim Aufräumen entfernt. Puffer, die noch aufgezeichnet, wiedergegeben oder gespeichert werden, sind geschützt. Dieses Limit gilt nicht für die aktuelle Sendung."
+
+msgid "Event limit"
+msgstr "Maximale Anzahl von Sendungen"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr "Wählen Sie die Anzahl der Sendungen, die im Timeshift-Puffer aufbewahrt werden sollen. Überzählige Sendungen werden beim Aufräumen entfernt. Ein Puffer kann aus mehreren Dateiteilen bestehen, die zusammen als ein Puffer zählen. Noch verwendete Puffer bleiben geschützt, daher kann das Limit vorübergehend überschritten werden."
+
+msgid "Check for older files"
+msgstr "Auf ältere Dateien prüfen"
+
+msgid "Select the frequency for free space checks in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr "Wählen Sie, wie häufig der freie Speicherplatz zusätzlich zu den Prüfungen bei Sendungswechseln geprüft werden soll. Bei deaktivierter Einstellung erfolgt keine regelmäßige Prüfung. Beim Aufräumen werden unbenutzte temporäre Puffer entfernt; ein aktiver Puffer wird nicht gekürzt."
+
+msgid "Check for free space"
+msgstr "Freien Speicherplatz prüfen"
+
+msgid "Select a minimum amount free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr "Wählen Sie einen Mindestwert für den freien Speicherplatz. Wird dieser Wert unterschritten, versucht die Bereinigung, alte unbenutzte Timeshift-Puffer zu entfernen. Puffer, die wiedergegeben oder gespeichert werden, bleiben geschützt. Der angegebene freie Speicherplatz kann daher nicht garantiert werden."
+
+msgid "Delete after zap"
+msgstr "Nach Senderwechsel löschen"
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr "Wenn aktiviert, werden unbenutzte Timeshift-Puffer beim Senderwechsel gelöscht. Wenn deaktiviert, werden die Puffer wie gewohnt verwaltet. Das Aufbewahren temporärer Puffer erzeugt keine dauerhaften Aufnahmen. Gespeicherte Aufnahmen sind davon nicht betroffen."
+
+msgid "Event based file splitting"
+msgstr "Dateien nach Sendungen aufteilen"
+
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr "Wenn aktiviert, wird für jede Sendung ein neuer Puffer gestartet. Wenn deaktiviert, wird ein durchgehender Puffer über mehrere Sendungen hinweg verwendet. Dateisysteme wie FAT32 benötigen weiterhin einzelne Dateiteile, die als ein Puffer wiedergegeben werden. Das Aufräumen begrenzt nicht die Größe eines aktiven Puffers."
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Wählen Sie die zusätzliche Pufferdauer nach einem Streaming-Fehler. Dieser zusätzliche Puffer kann helfen, weitere Streaming-Probleme durch zu wenig Pufferplatz zu vermeiden."
+
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "Wählen Sie die Dauer zum Ausgleich der Hardware-Pufferverzögerung bei DM9x0."

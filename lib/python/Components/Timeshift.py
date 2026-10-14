@@ -157,6 +157,7 @@ class InfoBarTimeshift:
 		self.timeshiftRegistry = TimeshiftRegistry()
 		self.saveJournal = TimeshiftSaveJournal(resolveFilename(SCOPE_CONFIG, "timeshift-saves"))
 		self.cleanupRunning = False
+		self.cleanupRetryZapped = False
 		self.cleanupStartRequest = None
 		self.pendingMerges = set()
 		self.continuationRecordings = {}
@@ -1101,7 +1102,10 @@ class InfoBarTimeshift:
 		self.ptsCleanTimeshiftFolder(justZapped=False)
 
 	def ptsCleanTimeshiftFolder(self, justZapped=True):
-		if self.isRamTimeshift() or self.cleanupRunning or self.session.screen["Standby"].boolean:
+		if self.isRamTimeshift() or self.session.screen["Standby"].boolean:
+			return True
+		if self.cleanupRunning:
+			self.cleanupRetryZapped |= justZapped
 			return True
 		self.cleanupRunning = True
 		self.cleanupProtected = []
@@ -1116,10 +1120,16 @@ class InfoBarTimeshift:
 
 	def timeshiftCleanupFinished(self, result):
 		self.cleanupRunning = False
+		retryZapped = self.cleanupRetryZapped
+		self.cleanupRetryZapped = False
 		if isinstance(result, Failure):
 			self.ptsHandleCleanupError(result.value)
 		else:
 			self.ptsCleanupError = None
+			if retryZapped:
+				self.ptsCleanTimeshiftFolder(justZapped=True)
+				if self.cleanupRunning:
+					return
 			if not self.timeshiftRegistry.buffers:
 				self.ptsEventCleanTimerSTOP(justStop=True)
 			elif self.timeshiftEnabled() and result < config.timeshift.checkFreeSpace.value:
@@ -1327,7 +1337,7 @@ class InfoBarTimeshift:
 	def notifyUnownedTimeshiftMerge(self, destination):
 		if destination not in self.mergeWarnings:
 			self.mergeWarnings.add(destination)
-			self.session.showInfo(_("The continuation recording could not be identified safely. Both recordings and the merge information have been retained.") + f"\n{destination}", timeout=30)
+			self.session.showInfo(_("The continuation recording could not be identified safely. Both recordings have been kept and will not be merged.") + f"\n{destination}", timeout=30)
 			self.pendingMerges.discard(destination)
 			self.finalizeUnownedTimeshiftMerge(destination)
 

@@ -2281,7 +2281,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		 * getPlayPosition can extrapolate while audio PTS is unreliable. */
 		if (skipmode != 0) {
 			pts_t cur = 0;
-			/* Already in skipmode â†’ use running estimate; else live pos. */
+			/* Already in skipmode → use running estimate; else live pos. */
 			if (m_skipmode != 0 && m_pos_before_skipmode > 0) {
 				struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
 				int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
@@ -2324,7 +2324,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 
 	m_skipmode = skipmode;
 #ifdef DREAMNEXTGEN
-	/* Skipmode fully exited â€” clear the frozen anchor so future getPlayPosition
+	/* Skipmode fully exited — clear the frozen anchor so future getPlayPosition
 	 * reads return live PTS again. */
 	if (skipmode == 0)
 		m_pos_before_skipmode = 0;
@@ -2426,7 +2426,7 @@ RESULT eDVBServicePlay::unpause()
 	eDebug("[eDVBServicePlay] unpause");
 #ifdef DREAMNEXTGEN
 	/* Writer wakes AFTER decoder kernel state has resumed. First writei
-	 * hits EBADFD â†’ handler runs snd_pcm_prepare + re-anchor. */
+	 * hits EBADFD → handler runs snd_pcm_prepare + re-anchor. */
 #endif
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
@@ -2547,7 +2547,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 		return -1;
 
 #ifdef DREAMNEXTGEN
-	/* During skipmode (FF>=16) audio PTS is unreliable â€” extrapolate
+	/* During skipmode (FF>=16) audio PTS is unreliable — extrapolate
 	 * position from entry anchor + elapsed*rate. Clamped to length-1s. */
 	if (m_skipmode != 0 && m_pos_before_skipmode > 0 && m_skipmode_entry_ms > 0) {
 		struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -2586,7 +2586,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 		bool use_video_pts = (m_noaudio && m_have_video_pid);
 #ifdef DREAMNEXTGEN
 		/* HW FF (2/4/8x): audio stopped, use video PTS so UI progresses.
-		 * Not for skipmode (m_fastforward==1) â€” video PTS races past EOF. */
+		 * Not for skipmode (m_fastforward==1) — video PTS races past EOF. */
 		if (m_fastforward > 1 && m_have_video_pid)
 			use_video_pts = true;
 #endif
@@ -4230,7 +4230,7 @@ void eDVBServicePlay::switchToTimeshift()
 
 #ifdef DREAMNEXTGEN
 	/* Re-point eAlsaOutput's PCR demux fd to the timeshift demux. Live
-	 * and timeshift often share the same demux ID â€” force a close+reopen
+	 * and timeshift often share the same demux ID — force a close+reopen
 	 * so setPcrDemux doesn't early-return on the matching id. */
 	if (m_decode_demux) {
 		uint8_t did = 0;

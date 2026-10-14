@@ -1434,7 +1434,9 @@ RESULT eDVBTSRecorder::setTargetFD(int fd)
 {
 	// Limit socket writes even when a stream consumer stops reading.
 	struct timeval timeout = {2, 0};
-	setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
+	struct stat status = {};
+	if (!fstat(fd, &status) && S_ISSOCK(status.st_mode))
+		setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
 	m_target_fd = fd;
 	m_thread->setTargetFD(fd);
 	return 0;
