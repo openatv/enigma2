@@ -509,10 +509,10 @@ class DeviceManager(Screen, ProtectedScreen):
 		self["description"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"ok": (self.keyMountPoint, _("Select a permanent mount point for the current device")),
-			"cancel": (self.close, _("Close the Device Manager screen")),
+			"cancel": (self.keyCancel, _("Close the Device Manager screen")),
 			"close": (self.keyClose, _("Close the Device Manager screen and exit all menus")),
 			"menu": (self.keyMenu, _("Hard Disk Settings")),
-			"red": (self.close, _("Close the Device Manager screen")),
+			"red": (self.keyCancel, _("Close the Device Manager screen")),
 			"green": (self.keyActions, _("Select an action for the current device")),
 			"yellow": (self.keyMountPoints, _("Select a permanent mount point for all devices"))
 		}, prio=0, description=_("Device Manager Actions"))
@@ -610,10 +610,14 @@ class DeviceManager(Screen, ProtectedScreen):
 	def keyMenu(self):
 		self.session.open(DeviceManagerSetup)
 
+	def keyCancel(self):
+		if not self.console.appContainers:
+			self.close()
+
 	def keyClose(self):
 		if self.needReboot:
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)
-		else:
+		elif not self.console.appContainers:
 			self.close((True, ))
 
 	def keyMountPoints(self):
