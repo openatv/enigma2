@@ -18,6 +18,7 @@ public:
 	~eMPEGStreamInformation();
 
 	int load(const char *filename);
+	void reset();
 
 		/* fixup timestamp near offset, i.e. convert to zero-based */
 	int fixupPTS(const off_t &offset, pts_t &ts, bool debug = false);
@@ -80,9 +81,11 @@ public:
 	/* Used by parser */
 	int startSave(const std::string& filename);
 	int stopSave(void);
+	void setSyncOnStop(bool enabled) { m_syncOnStop = enabled; }
 	virtual void addAccessPoint(off_t offset, pts_t pts, bool streamtime);
 	void writeStructureEntry(off_t offset, unsigned long long data);
 	void commit();
+	int getWriteError() const { return _writeError; }
 	size_t getAccessPointCount() const
 	{
 		return m_access_points.size()
@@ -90,6 +93,7 @@ public:
 	}
 private:
 	void close();
+	void _setWriteError(int error);
 	struct AccessPoint
 	{
 		off_t off;
@@ -101,11 +105,15 @@ private:
 	{
 		PendingWrite();
 		~PendingWrite();
+		PendingWrite(const PendingWrite &) = delete;
+		PendingWrite &operator=(const PendingWrite &) = delete;
 		int start(int fd, off_t where, void* buffer, size_t buffer_size);
-		bool poll(); // releases resources when ready, returns true if released
+		int poll(); // 1 pending, 0 complete, -1 failed; releases only completed requests
 		int wait();
 		void* m_buffer;
 		struct aiocb m_aio;
+		bool _pending;
+		int _error;
 	};
 	std::deque<PendingWrite> m_pending_writes;
 	std::string m_filename;
@@ -113,6 +121,8 @@ private:
 	off_t m_structure_pos;
 	void* m_write_buffer;
 	size_t m_buffer_filled;
+	int _writeError;
+	bool m_syncOnStop = true;
 };
 
 

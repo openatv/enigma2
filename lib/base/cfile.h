@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <string>
+#include <stdint.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 typedef long long pts_t;
@@ -40,6 +42,8 @@ struct CFile
 	static int write(const char *fileName, const char *value);
 	static std::string read(const char *fileName);
 	static bool contains_word(const char *fileName, const std::string &word);
+	// Packet-aligned safe parts for FAT and network/FUSE recording targets.
+	static off_t getRecordingSplitSize(int fd, unsigned int packetSize);
 
 	/* debug versions */
 	static int parseIntHex(int *result, const char *fileName, const char *moduleName, int flags = 0);

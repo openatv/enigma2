@@ -86,6 +86,7 @@ eDVBTSTools::eDVBTSTools():
 void eDVBTSTools::closeSource()
 {
 	m_source = NULL;
+	m_streaminfo.reset(); // Release the index FD when returning from time shift to live TV.
 	m_packet_size = 188;
 }
 
