@@ -152,7 +152,7 @@ eManagedInputDevice::eManagedInputDevice(eInputDeviceManager *manager, const std
 	: m_address(address), m_name("DM Remote"), m_shortName("DM Remote"),
 	  m_versionMajor(0), m_versionMinor(0), m_batteryLevel(0), m_rssi(0),
 	  m_state(STATE_DISCONNECTED), m_encrypted(false), m_connected(false),
-	  m_bound(false), m_ready(false), m_isDfu(false), m_manager(manager)
+	  m_bound(false), m_ready(false), m_isDfu(false), m_identified(false), m_manager(manager)
 {
 }
 
@@ -173,13 +173,19 @@ void eManagedInputDevice::setAddress(const std::string &address)
 void eManagedInputDevice::setName(const std::string &name)
 {
 	if (!name.empty())
+	{
 		m_name = name;
+		m_identified = true;
+	}
 }
 
 void eManagedInputDevice::setShortName(const std::string &shortName)
 {
 	if (!shortName.empty())
+	{
 		m_shortName = shortName;
+		m_identified = true;
+	}
 }
 
 void eManagedInputDevice::setVersion(int major, int minor)
@@ -200,31 +206,31 @@ void eManagedInputDevice::setRssi(int rssi)
 
 void eManagedInputDevice::setStateFlags(int rawState)
 {
-	m_state = rawState;
-
-	/* Observed DreamBLE states:
-	 *   0x01 -> connected, not bound
-	 *   0x82 -> connected + bound/ready
-	 * Further state bits still need focused traces. Keep decoding conservative.
+	/* 0x6D encodes the connection state in bits 0..4, encryption in bit 6
+	 * and the stored bond in bit 7. A bonded device can be disconnected
+	 * (0x80/0x84), connecting (0x81) or ready (0x82/0xC2).
 	 */
-	m_connected = (rawState & 0x01) || (rawState & 0x80);
-	m_bound = (rawState & 0x02) != 0;
+	const int state = rawState & 0x1F;
+	m_state = state == STATE_CONNECTING || state == STATE_CONNECTED ? state : STATE_DISCONNECTED;
+	m_connected = m_state != STATE_DISCONNECTED;
+	m_bound = (rawState & 0x80) != 0;
 	m_encrypted = (rawState & 0x40) != 0;
-	m_ready = m_connected && m_bound;
+	m_ready = m_state == STATE_CONNECTED && m_bound;
+	if (m_connected || m_bound)
+		m_identified = true;
 
 	if (!m_connected)
 	{
 		/* Require fresh version and battery reports after the DFU reboot. */
 		m_versionMajor = m_versionMinor = m_batteryLevel = 0;
-		m_bound = false;
-		m_encrypted = false;
-		m_ready = false;
 	}
 }
 
 void eManagedInputDevice::setDfu(bool isDfu)
 {
 	m_isDfu = isDfu;
+	if (isDfu)
+		m_identified = true;
 }
 
 std::string eManagedInputDevice::version() const
@@ -349,7 +355,7 @@ eInputDeviceManager::~eInputDeviceManager()
 
 void eInputDeviceManager::start()
 {
-#if defined(DREAMNEXTGEN) || defined(HWDM900) || defined(HWDM920)
+#if defined(DREAMNEXTGEN) || defined(HWDM7080) || defined(HWDM900) || defined(HWDM920)
 	if (m_fd >= 0)
 		return;
 
@@ -405,8 +411,8 @@ bool eInputDeviceManager::hasFeature(int feature) const
 #if defined(DREAMNEXTGEN)
 			return m_responding && (m_versionMajor > 1 || (m_versionMajor == 1 && m_versionMinor >= 13));
 #else
-			/* The DM9x0 adapter firmware uses a separate version series.
-			 * Its DFU transport still needs validation before being enabled.
+			/* DM7080 and DM9x0 need separate firmware and transport validation
+			 * before RCU DFU updates can be enabled.
 			 */
 			return false;
 #endif
@@ -443,7 +449,11 @@ std::vector<eManagedInputDevice*> eInputDeviceManager::getAvailableDevicesRaw()
 {
 	std::vector<eManagedInputDevice*> ret;
 	for (std::map<std::string, eManagedInputDevice*>::iterator it = m_devices.begin(); it != m_devices.end(); ++it)
-		ret.push_back(it->second);
+		/* A scan list also includes unnamed nearby devices. Wait for a name or
+		 * connection report before offering a device as a Dream remote.
+		 */
+		if (it->second->m_identified)
+			ret.push_back(it->second);
 	return ret;
 }
 
@@ -697,8 +707,8 @@ int eInputDeviceManager::sendCommand(uint8_t command, const uint8_t *payload, si
 		memcpy(buf + 1, payload, payloadLen);
 
 	ssize_t written = ::write(m_fd, buf, payloadLen + 1);
-#if defined(HWDM900) || defined(HWDM920)
-	/* The DM9x0 driver returns the payload byte count, excluding the command. */
+#if defined(HWDM7080) || defined(HWDM900) || defined(HWDM920)
+	/* The DM7080/DM9x0 drivers return the payload byte count, excluding the command. */
 	if (written == (ssize_t)payloadLen)
 		return 0;
 #endif
@@ -835,8 +845,12 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 				{
 					eManagedInputDevice *device = findDeviceByProtocolAddress(data + offset);
 					connected.push_back(device->address());
-					device->setStateFlags(data[offset + 6]);
-					if (device->connected() && !device->isDfu() && (device->batteryLevel() <= 0 || device->version() == "0.0"))
+					/* 0x62 lists connected devices, with bond/encryption bits
+					 * reversed compared with the 0x6D state event.
+					 */
+					const int flags = data[offset + 6];
+					device->setStateFlags(eManagedInputDevice::STATE_CONNECTED | ((flags & 0x40) << 1) | ((flags & 0x80) >> 1));
+					if (device->ready() && !device->isDfu() && (device->batteryLevel() <= 0 || device->version() == "0.0"))
 					{
 						sendDeviceCommand(0xD6, device);
 						sendDeviceCommand(0xE1, device);
@@ -874,9 +888,13 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 			break;
 
 		case 0x6A:
-			if (len >= 7)
+			if ((len - 1) % 7 == 0)
 			{
-				findDeviceByProtocolAddress(data + 1);
+				if (m_scanTimer)
+					m_scanTimer->stop();
+				/* Scan completion contains a list of six-byte addresses and flags. */
+				for (size_t offset = 1; offset + 7 <= len; offset += 7)
+					findDeviceByProtocolAddress(data + offset);
 				updateDeviceList();
 			}
 			break;
@@ -913,7 +931,7 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 				}
 				eManagedInputDevice *device = findDeviceByProtocolAddress(data + 1);
 				device->setStateFlags(data[7]);
-				if (device->connected() && !device->isDfu())
+				if (device->ready() && !device->isDfu())
 				{
 					sendDeviceCommand(0xD6, device);
 					sendDeviceCommand(0xE1, device);

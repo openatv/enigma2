@@ -1,19 +1,24 @@
-from Screens.Screen import Screen
+from subprocess import DEVNULL, SubprocessError, check_output as checkOutput
+
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
+from Screens.Screen import Screen
+from Tools.StbHardware import getFPVersion
 
 
 def getUpgradeVersion():
-	import os
+	version = None
 	try:
-		r = os.popen("fpupgrade --version").read()
-	except OSError:
-		return None
-	if r[:16] != "FP update tool v":
-		return None
-	else:
-		return int(r[16:17])
+		output = checkOutput(("/usr/sbin/fpupgrade", "--version"), stderr=DEVNULL, text=True, timeout=5)
+		if output.startswith("FP update tool v"):
+			versionText = output[16:].strip()
+			if versionText.isdecimal():
+				version = int(versionText)
+	except (OSError, SubprocessError, UnicodeError):
+		pass
+	return version
 
 
 class FPUpgrade(Screen):
@@ -30,16 +35,15 @@ class FPUpgrade(Screen):
 		self.skin = FPUpgrade.skin
 		Screen.__init__(self, session)
 
-		from Tools.StbHardware import getFPVersion
 		version = str(getFPVersion() or "N/A")
-		newversion = str(getUpgradeVersion() or "N/A")
+		newVersion = str(getUpgradeVersion() or "N/A")
 
 		self["text"] = Label(_("Your front panel processor firmware must be upgraded.\nPress OK to start upgrade."))
 		self["oldversion_label"] = Label(_("Current version:"))
 		self["newversion_label"] = Label(_("New version:"))
 
 		self["oldversion"] = Label(version)
-		self["newversion"] = Label(newversion)
+		self["newversion"] = Label(newVersion)
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -59,8 +63,6 @@ class SystemMessage(Screen):
 		</screen>"""
 
 	def __init__(self, session, message):
-		from Components.Sources.StaticText import StaticText
-
 		Screen.__init__(self, session)
 
 		self["text"] = StaticText(message)
@@ -75,18 +77,24 @@ class SystemMessage(Screen):
 
 
 def Plugins(**kwargs):
-	from Tools.StbHardware import getFPVersion
-
 	version = getFPVersion()
-	newversion = getUpgradeVersion() or 0
-	list = []
-	if version is not None and version < newversion:
-		list.append(PluginDescriptor(name=_("FP Upgrade"), where=PluginDescriptor.WHERE_WIZARD, needsRestart=True, fnc=(8, FPUpgrade)))
+	newVersion = getUpgradeVersion()
+	pluginList = []
+	if newVersion is not None:
+		# The legacy fpupgrade tool uses integer revisions; newer Dreamboxes
+		# report dotted versions and use a different firmware update path.
+		try:
+			version = int(version)
+		except (TypeError, ValueError):
+			version = None
+		if version is not None and version < newVersion:
+			pluginList.append(PluginDescriptor(name=_("FP Upgrade"), where=PluginDescriptor.WHERE_WIZARD, needsRestart=True, fnc=(8, FPUpgrade)))
 
 	try:
-		msg = open("/proc/stb/message").read()
-		list.append(PluginDescriptor(name=_("System Message Check"), where=PluginDescriptor.WHERE_WIZARD, needsRestart=True, fnc=(9, SystemMessage, msg)))
+		with open("/proc/stb/message") as messageFile:
+			message = messageFile.read()
+		pluginList.append(PluginDescriptor(name=_("System Message Check"), where=PluginDescriptor.WHERE_WIZARD, needsRestart=True, fnc=(9, SystemMessage, message)))
 	except OSError:
 		pass
 
-	return list
+	return pluginList

@@ -136,6 +136,7 @@ class eManagedInputDevice: public iObject
 	bool m_bound;
 	bool m_ready;
 	bool m_isDfu;
+	bool m_identified;
 	eInputDeviceManager *m_manager;
 
 	void setManager(eInputDeviceManager *manager);
