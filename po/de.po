@@ -31794,11 +31794,11 @@ msgstr "Wählen Sie die Aktion beim Verlassen von Timeshift durch einen Senderwe
 msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr "Wenn aktiviert, wird Timeshift während einer laufenden Aufnahme beendet. Dies wird für USB-Sticks und andere langsame Speichermedien empfohlen."
 
-msgid "Allow skip to live with plugins"
-msgstr "Wechsel zu Live-TV mit Plugins erlauben"
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr "Am Pufferende im Timeshift bleiben (Plugins)"
 
-msgid "When enabled, allow the use of time shift with alternative audio plugins."
-msgstr "Wenn aktiviert, kann Timeshift mit alternativen Audio-Plugins verwendet werden."
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr "Wenn aktiviert, wird am Ende des Timeshift-Puffers nicht automatisch zu Live-TV gewechselt. Aktivieren Sie dies nur für Plugins, die eine fortgesetzte Timeshift-Wiedergabe benötigen, zum Beispiel alternative Audio-Plugins."
 
 msgid "Use SeekBar while time shifting"
 msgstr "Suchleiste während Timeshift verwenden"
@@ -31806,11 +31806,11 @@ msgstr "Suchleiste während Timeshift verwenden"
 msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
 msgstr "Wenn aktiviert, kann mit der Suchleiste zu einer gewählten Stelle im Timeshift-Puffer gesprungen werden."
 
-msgid "Buffer limit"
-msgstr "Zeitlimit für Puffer"
+msgid "Buffer age limit"
+msgstr "Altersgrenze für Puffer"
 
-msgid "Select the maximum time length of the time shift buffer.  Buffers older than the duration specified will be removed during cleanup. Buffers still being recorded, played or saved are protected. This limit does not apply to the current event."
-msgstr "Wählen Sie die maximale Dauer des Timeshift-Puffers. Puffer, die älter als die angegebene Dauer sind, werden beim Aufräumen entfernt. Puffer, die noch aufgezeichnet, wiedergegeben oder gespeichert werden, sind geschützt. Dieses Limit gilt nicht für die aktuelle Sendung."
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr "Wählen Sie, ab welchem Alter unbenutzte Timeshift-Puffer beim Aufräumen entfernt werden dürfen. Puffer, die noch aufgezeichnet, wiedergegeben oder gespeichert werden, bleiben geschützt. Diese Einstellung begrenzt nicht die Länge eines aktiven Puffers."
 
 msgid "Event limit"
 msgstr "Maximale Anzahl von Sendungen"
@@ -31821,13 +31821,13 @@ msgstr "Wählen Sie die Anzahl der Sendungen, die im Timeshift-Puffer aufbewahrt
 msgid "Check for older files"
 msgstr "Auf ältere Dateien prüfen"
 
-msgid "Select the frequency for free space checks in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
-msgstr "Wählen Sie, wie häufig der freie Speicherplatz zusätzlich zu den Prüfungen bei Sendungswechseln geprüft werden soll. Bei deaktivierter Einstellung erfolgt keine regelmäßige Prüfung. Beim Aufräumen werden unbenutzte temporäre Puffer entfernt; ein aktiver Puffer wird nicht gekürzt."
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr "Wählen Sie, wie häufig das Pufferalter und der freie Speicherplatz zusätzlich zu den Prüfungen bei Sendungswechseln geprüft werden sollen. Bei deaktivierter Einstellung erfolgt keine regelmäßige Prüfung. Beim Aufräumen werden unbenutzte temporäre Puffer entfernt; ein aktiver Puffer wird nicht gekürzt."
 
 msgid "Check for free space"
 msgstr "Freien Speicherplatz prüfen"
 
-msgid "Select a minimum amount free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr "Wählen Sie einen Mindestwert für den freien Speicherplatz. Wird dieser Wert unterschritten, versucht die Bereinigung, alte unbenutzte Timeshift-Puffer zu entfernen. Puffer, die wiedergegeben oder gespeichert werden, bleiben geschützt. Der angegebene freie Speicherplatz kann daher nicht garantiert werden."
 
 msgid "Delete after zap"
