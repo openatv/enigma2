@@ -326,7 +326,7 @@ eInputDeviceManager::~eInputDeviceManager()
 
 void eInputDeviceManager::start()
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HWDM900) || defined(HWDM920)
 	if (m_fd >= 0)
 		return;
 
@@ -349,7 +349,7 @@ void eInputDeviceManager::start()
 	sendCommand(0x05);
 	refresh();
 #else
-	eDebug("[eInputDeviceManager] DreamBLE backend disabled: DREAMNEXTGEN not defined");
+	eDebug("[eInputDeviceManager] DreamBLE backend disabled for this hardware");
 #endif
 }
 
@@ -624,6 +624,11 @@ int eInputDeviceManager::sendCommand(uint8_t command, const uint8_t *payload, si
 		memcpy(buf + 1, payload, payloadLen);
 
 	ssize_t written = ::write(m_fd, buf, payloadLen + 1);
+#if defined(HWDM900) || defined(HWDM920)
+	/* The DM9x0 driver returns the payload byte count, excluding the command. */
+	if (written == (ssize_t)payloadLen)
+		return 0;
+#endif
 	if (written != (ssize_t)(payloadLen + 1))
 	{
 		eDebug("[eInputDeviceManager] write command 0x%02x failed: %m", command);
