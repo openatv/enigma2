@@ -1,6 +1,7 @@
 #ifndef __inputdevicemanager_h
 #define __inputdevicemanager_h
 
+#include <lib/driver/inputdevicedfu.h>
 #include <lib/base/ebase.h>
 #include <lib/base/object.h>
 #include <lib/base/smartptr.h>
@@ -11,7 +12,7 @@
 #include <vector>
 #include <map>
 
-#define DFU_BATTERY_MIN 20
+#define DFU_BATTERY_MIN 50
 
 class eInputDeviceManager;
 class IrProtocol;
@@ -116,41 +117,6 @@ public:
 		int makeLength = 0, uint32_t repeatMessage = 0, int repeatLength = 0);
 };
 
-class eInputDeviceDfuFlasher
-{
-public:
-	enum
-	{
-		DFU_CMD_NONE = 0,
-		DFU_CMD_CREATE_OBJECT = 1,
-		DFU_CMD_SELECT_OBJECT = 2,
-		DFU_CMD_CHECKSUM = 3,
-		DFU_CMD_EXECUTE = 4,
-		DFU_CMD_READ_OBJECT = 5,
-		DFU_TAG_RESPONSE = 0x60,
-		DFU_LOWBAT = -2,
-		DFU_ERROR = -1,
-		DFU_SUCCESS = 0,
-		DFU_EVT_BATTERY_LOW = 1,
-		DFU_EVT_ENABLE_NOTIFY_ERROR = 2,
-		DFU_EVT_FILE_INVALID = 3,
-		DFU_EVT_FILE_READ_ERROR = 4,
-		DFU_EVT_COMMAND_ERROR = 5,
-		DFU_EVT_CHECKSUM_INVALID = 6,
-		DFU_EVT_CHECKSUM_VALID = 7,
-		DFU_EVT_OBJECT_READ_SUCCESS = 8,
-		DFU_EVT_OBJECT_READ_ERROR = 9,
-		DFU_EVT_OBJECT_CREATE_SUCCESS = 10,
-		DFU_EVT_OBJECT_CREATE_ERROR = 11,
-		DFU_EVT_EXECUTE_SUCCESS = 12,
-		DFU_EVT_EXECUTE_ERROR = 13,
-		DFU_EVT_UPLOAD_ERROR = 14,
-		DFU_EVT_WRITE_CONTROL_ERROR = 15,
-		DFU_FIRMWARE_TYPE_DAT = 1,
-		DFU_FIRMWARE_TYPE_BIN = 2
-	};
-};
-
 class eManagedInputDevice: public iObject
 {
 	DECLARE_REF(eManagedInputDevice);
@@ -242,12 +208,16 @@ class eInputDeviceManager
 	int m_versionMinor;
 	ePtr<eSocketNotifier> m_notifier;
 	ePtr<eTimer> m_scanTimer;
+	ePtr<eTimer> m_dfuTimer;
+	eDreamBleDfuSession m_dfuSession;
+	std::string m_dfuAddress;
 	std::map<std::string, eManagedInputDevice*> m_devices;
 
 	int sendCommand(uint8_t command, const uint8_t *payload = 0, size_t payloadLen = 0);
 	int sendDeviceCommand(uint8_t command, eManagedInputDevice *device, const uint8_t *payload = 0, size_t payloadLen = 0);
 	void socketActivated(int what);
 	void scanTimeout();
+	void dfuTimeout();
 	void processFrame(const uint8_t *data, size_t len);
 	eManagedInputDevice *findOrCreateDevice(const std::string &address);
 	eManagedInputDevice *findDeviceByProtocolAddress(const uint8_t *addr);
@@ -301,6 +271,8 @@ public:
 	int getIrKeyCount(eManagedInputDevice *device);
 	int dfu(eManagedInputDevice *device);
 	int dfuFlash(eManagedInputDevice *device, const char *datFile, const char *binFile);
+	bool dfuActive() const;
+	void dfuCancel();
 };
 
 #endif // __inputdevicemanager_h
