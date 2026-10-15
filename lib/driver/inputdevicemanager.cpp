@@ -4,7 +4,9 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
+#include <algorithm>
 #include <errno.h>
+#include <fstream>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -205,13 +207,15 @@ void eManagedInputDevice::setStateFlags(int rawState)
 	 *   0x82 -> connected + bound/ready
 	 * Further state bits still need focused traces. Keep decoding conservative.
 	 */
-	m_connected = (rawState == 0x01) || (rawState & 0x80);
+	m_connected = (rawState & 0x01) || (rawState & 0x80);
 	m_bound = (rawState & 0x02) != 0;
 	m_encrypted = (rawState & 0x40) != 0;
 	m_ready = m_connected && m_bound;
 
 	if (!m_connected)
 	{
+		/* Require fresh version and battery reports after the DFU reboot. */
+		m_versionMajor = m_versionMinor = m_batteryLevel = 0;
 		m_bound = false;
 		m_encrypted = false;
 		m_ready = false;
@@ -308,7 +312,26 @@ eInputDeviceManager *eInputDeviceManager::getInstance()
 
 eInputDeviceManager::eInputDeviceManager()
 	: m_fd(-1), m_available(false), m_responding(false),
-	  m_versionMajor(0), m_versionMinor(0)
+	  m_versionMajor(0), m_versionMinor(0),
+	  m_dfuSession(
+		[this](uint8_t command, const uint8_t *data, size_t size) {
+			std::map<std::string, eManagedInputDevice*>::iterator device = m_devices.find(m_dfuAddress);
+			return device != m_devices.end() && !sendDeviceCommand(command, device->second, data, size);
+		},
+		[this](int event, int value) {
+			eDebug("[eInputDeviceManager] DFU event %d value %d", event, value);
+			dfuEvent(event, value);
+		},
+		[this](int current, int total) { dfuProgress(current, total); },
+		[this](int delay) {
+			if (m_dfuTimer)
+			{
+				if (delay)
+					m_dfuTimer->start(delay, true);
+				else
+					m_dfuTimer->stop();
+			}
+		})
 {
 	ASSERT(!instance);
 	instance = this;
@@ -344,6 +367,8 @@ void eInputDeviceManager::start()
 	CONNECT(m_notifier->activated, eInputDeviceManager::socketActivated);
 	m_scanTimer = eTimer::create(eApp);
 	CONNECT(m_scanTimer->timeout, eInputDeviceManager::scanTimeout);
+	m_dfuTimer = eTimer::create(eApp);
+	CONNECT(m_dfuTimer->timeout, eInputDeviceManager::dfuTimeout);
 	eDebug("[eInputDeviceManager] DreamBLE module opened: %s", DREAMBLE_DEVICE);
 
 	sendCommand(0x05);
@@ -355,6 +380,8 @@ void eInputDeviceManager::start()
 
 void eInputDeviceManager::stop()
 {
+	m_dfuSession.stop();
+	m_dfuTimer = 0;
 	if (m_scanTimer)
 		m_scanTimer->stop();
 	m_notifier = 0;
@@ -375,7 +402,14 @@ bool eInputDeviceManager::hasFeature(int feature) const
 		case FEATURE_UNCONNECTED_KEYPRESS:
 			return true;
 		case FEATURE_DFU_UPDATE:
+#if defined(DREAMNEXTGEN)
+			return m_responding && (m_versionMajor > 1 || (m_versionMajor == 1 && m_versionMinor >= 13));
+#else
+			/* The DM9x0 adapter firmware uses a separate version series.
+			 * Its DFU transport still needs validation before being enabled.
+			 */
 			return false;
+#endif
 		default:
 			return false;
 	}
@@ -466,7 +500,7 @@ int eInputDeviceManager::vibrate(eManagedInputDevice *device)
 	uint8_t payload = 0x01;
 
 	if (device)
-		return sendDeviceCommand(0xC0, device, &payload, 1);
+		return device->isDfu() ? -1 : sendDeviceCommand(0xC0, device, &payload, 1);
 
 	/* OpenATV global listbox haptic feedback calls vibrate() without a
 	 * specific device. In that case vibrate all connected DreamBLE remotes.
@@ -475,7 +509,7 @@ int eInputDeviceManager::vibrate(eManagedInputDevice *device)
 	for (std::map<std::string, eManagedInputDevice*>::iterator it = m_devices.begin(); it != m_devices.end(); ++it)
 	{
 		eManagedInputDevice *current = it->second;
-		if (!current || !current->connected())
+		if (!current || !current->connected() || current->isDfu())
 			continue;
 
 		int ret = sendDeviceCommand(0xC0, current, &payload, 1);
@@ -579,21 +613,60 @@ int eInputDeviceManager::getIrKeyCount(eManagedInputDevice *device)
 
 int eInputDeviceManager::dfu(eManagedInputDevice *device)
 {
-	(void)device;
-	return eInputDeviceDfuFlasher::DFU_ERROR;
+	if (!hasFeature(FEATURE_DFU_UPDATE) || !device || !device->connected() || m_dfuSession.active())
+		return eInputDeviceDfuFlasher::DFU_ERROR;
+	if (device->batteryLevel() < DFU_BATTERY_MIN)
+		return eInputDeviceDfuFlasher::DFU_LOWBAT;
+	const uint8_t magic[] = { 0xb1, 0x4d, 0xf0, 0x60 };
+	return sendDeviceCommand(0xd5, device, magic, sizeof(magic)) ?
+		eInputDeviceDfuFlasher::DFU_ERROR : eInputDeviceDfuFlasher::DFU_SUCCESS;
+}
+
+static bool readDfuFile(const char *path, std::vector<uint8_t> &data, size_t limit)
+{
+	if (!path || !*path)
+		return false;
+	std::ifstream file(path, std::ios::binary | std::ios::ate);
+	if (!file)
+		return false;
+	std::streamoff size = file.tellg();
+	if (size <= 0 || size > static_cast<std::streamoff>(limit))
+		return false;
+	data.resize(static_cast<size_t>(size));
+	file.seekg(0);
+	return bool(file.read(reinterpret_cast<char*>(data.data()), size));
 }
 
 int eInputDeviceManager::dfuFlash(eManagedInputDevice *device, const char *datFile, const char *binFile)
 {
-	(void)device;
-	(void)datFile;
-	(void)binFile;
-	return eInputDeviceDfuFlasher::DFU_ERROR;
+	if (!hasFeature(FEATURE_DFU_UPDATE) || !device || !device->isDfu() ||
+		!device->connected() || m_dfuSession.active())
+		return eInputDeviceDfuFlasher::DFU_ERROR;
+	std::vector<uint8_t> dat, bin;
+	if (!readDfuFile(datFile, dat, 4096) || !readDfuFile(binFile, bin, 1024 * 1024))
+		return eInputDeviceDfuFlasher::DFU_ERROR;
+	m_dfuAddress = device->address();
+	return m_dfuSession.start(dat, bin) ? eInputDeviceDfuFlasher::DFU_SUCCESS : eInputDeviceDfuFlasher::DFU_ERROR;
+}
+
+bool eInputDeviceManager::dfuActive() const
+{
+	return m_dfuSession.active();
+}
+
+void eInputDeviceManager::dfuCancel()
+{
+	m_dfuSession.stop();
+}
+
+void eInputDeviceManager::dfuTimeout()
+{
+	m_dfuSession.timeout();
 }
 
 int eInputDeviceManager::sendRgbCommand(uint8_t command, eManagedInputDevice *device, int rgb)
 {
-	if (!device)
+	if (!device || device->isDfu())
 		return -1;
 	/* The public Python/API value is RGB (0xRRGGBB), matching the UI labels.
 	 * The DreamBLE adapter expects the payload in BGR byte order.
@@ -730,6 +803,8 @@ void eInputDeviceManager::updateDeviceState(eManagedInputDevice *device)
 {
 	if (!device)
 		return;
+	if (device->address() == m_dfuAddress && !device->connected())
+		m_dfuSession.disconnected();
 	deviceStateChanged(device->address().c_str(), device->state());
 }
 
@@ -753,16 +828,29 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 			break;
 
 		case 0x62:
-			if (len >= 9 && data[1] == 0x01)
+			if (len >= 2 && data[1] == 0x01 && (len - 2) % 7 == 0)
 			{
-				eManagedInputDevice *device = findDeviceByProtocolAddress(data + 2);
-				device->setStateFlags(data[8]);
-				if (device->connected() && (device->batteryLevel() <= 0 || device->version() == "0.0"))
+				std::vector<std::string> connected;
+				for (size_t offset = 2; offset + 7 <= len; offset += 7)
 				{
-					sendDeviceCommand(0xD6, device);
-					sendDeviceCommand(0xE1, device);
+					eManagedInputDevice *device = findDeviceByProtocolAddress(data + offset);
+					connected.push_back(device->address());
+					device->setStateFlags(data[offset + 6]);
+					if (device->connected() && !device->isDfu() && (device->batteryLevel() <= 0 || device->version() == "0.0"))
+					{
+						sendDeviceCommand(0xD6, device);
+						sendDeviceCommand(0xE1, device);
+					}
+					updateDeviceState(device);
 				}
-				updateDeviceState(device);
+				for (std::map<std::string, eManagedInputDevice*>::iterator it = m_devices.begin(); it != m_devices.end(); ++it)
+				{
+					if (it->second->connected() && std::find(connected.begin(), connected.end(), it->first) == connected.end())
+					{
+						it->second->setStateFlags(0);
+						updateDeviceState(it->second);
+					}
+				}
 				updateDeviceList();
 			}
 			break;
@@ -776,8 +864,10 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 				if (len > 8)
 				{
 					std::string name((const char*)data + 8, len - 8);
+					name.resize(name.find('\0') == std::string::npos ? name.size() : name.find('\0'));
 					device->setName(name);
 					device->setShortName(name);
+					device->setDfu(name == "DMDfuTarg");
 				}
 				updateDeviceList();
 			}
@@ -805,7 +895,8 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 			{
 				eManagedInputDevice *device = findDeviceByProtocolAddress(data + 1);
 				device->setBatteryLevel(data[7]);
-				if (data[7] && data[7] < DFU_BATTERY_MIN)
+				/* Routine low-battery notifications have a lower threshold than DFU. */
+				if (data[7] && data[7] < 20)
 					batteryLow(device->address().c_str());
 				updateDeviceState(device);
 			}
@@ -814,9 +905,15 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 		case 0x6D:
 			if (len >= 8)
 			{
+				const uint8_t emptyAddress[6] = { 0 };
+				if (!memcmp(data + 1, emptyAddress, sizeof(emptyAddress)))
+				{
+					refresh();
+					break;
+				}
 				eManagedInputDevice *device = findDeviceByProtocolAddress(data + 1);
 				device->setStateFlags(data[7]);
-				if (device->connected())
+				if (device->connected() && !device->isDfu())
 				{
 					sendDeviceCommand(0xD6, device);
 					sendDeviceCommand(0xE1, device);
@@ -847,6 +944,14 @@ void eInputDeviceManager::processFrame(const uint8_t *data, size_t len)
 				device->setVersion(data[8], data[7]);
 				updateDeviceState(device);
 			}
+			break;
+
+		case 0xD0:
+		case 0xD1:
+		case 0xD2:
+		case 0xD3:
+		case 0xD4:
+			m_dfuSession.receive(data, len);
 			break;
 
 		case 0xE7:

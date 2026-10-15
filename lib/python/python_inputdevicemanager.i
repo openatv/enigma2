@@ -15,6 +15,7 @@
 %ignore eInputDeviceManager::getAvailableDevicesRaw;
 %ignore eInputDeviceManager::getConnectedDevicesRaw;
 
+%include <lib/driver/inputdevicedfu.h>
 %include <lib/driver/inputdevicemanager.h>
 
 %extend eInputDeviceManager {
