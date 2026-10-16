@@ -154,11 +154,7 @@ static void forceSelectorCommit(GstElement*, gpointer user_data)
 static GstElement* createDashPlaybackPipeline(const std::string& uri, const std::string& useragent)
 {
 	/* HW audio sink expects stream-format=raw post-aacparse. */
-#ifdef DREAMNEXTGEN
-	const char *vsink_factory = "dreamvideosink";
-#else
 	const char *vsink_factory = "dvbvideosink";
-#endif
 	const char *asink_factory = "dvbaudiosink";
 	std::string pipeline =
 		"souphttpsrc name=dashsrc location=" + gstLaunchQuote(uri) + " timeout=60 retries=20 "
@@ -607,16 +603,12 @@ static void create_gstreamer_sinks() {
 		dvb_audiosink_ok = true;
 	} else
 		eDebug("[eServiceFactoryMP3] **** audio_sink NOT created missing plugin ****");
-#ifdef DREAMNEXTGEN
-	/* per-service vsink — see eServiceMP3 ctor */
-#else
 	dvb_videosink = gst_element_factory_make("dvbvideosink", NULL);
 	if (dvb_videosink) {
 		gst_object_ref_sink(dvb_videosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink created ***");
 	} else
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink NOT created missing plugin ****");
-#endif
 	dvb_subsink = gst_element_factory_make("subsink", NULL);
 	if (dvb_subsink) {
 		gst_object_ref_sink(dvb_subsink);
@@ -1431,24 +1423,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			}
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
 		}
-#ifdef DREAMNEXTGEN
-		/* the decoder paces the video on the system clock, the kernel syncs
-		 * the audio to it: the sink stays unsynced, a pipeline-synced sink
-		 * holds the frames back after a pause and at the start */
-		if (!m_sourceinfo.is_audio) {
-			GstElement *vsink = gst_element_factory_make("dreamvideosink", NULL);
-			if (vsink) {
-				g_object_set(m_gst_playbin, "video-sink", vsink, NULL);
-				dvb_videosink = vsink;
-			}
-		}
-#else
 		if (dvb_videosink && !m_sourceinfo.is_audio) {
 			g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
 			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
-#endif
 
 		/* native video flag = no GStreamer video conversion */
 		guint flags = GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_TEXT | GST_PLAY_FLAG_NATIVE_VIDEO;
@@ -1589,9 +1568,6 @@ eServiceMP3::~eServiceMP3() {
 		gst_tag_list_free(m_stream_tags);
 
 	if (m_gst_playbin) {
-#ifdef DREAMNEXTGEN
-		dvb_videosink = NULL;     /* per-service vsink dies with the playbin */
-#endif
 		gst_object_unref(GST_OBJECT(m_gst_playbin));
 		m_ref.path.clear();
 		m_ref.name.clear();
