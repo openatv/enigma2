@@ -2393,10 +2393,15 @@ def readSkin(screen, skin, names, desktop):
 	def processNone(widget, context, stack=None):  # This is a dummy method for the parser.
 		pass
 
+	stackOrder = 0
+
 	def proccesStackAddition(widget, stack, target):
+		nonlocal stackOrder
 		if stack:
 			target.stackIndex = stack.index
-			pos = widget.attrib.get("position")
+			target.stackOrder = stackOrder  # Children must be stacked in skin (XML) order.
+			stackOrder += 1
+			pos = widget.attrib.get("position", "")
 			align = eWidget.eStackAlignNone
 			if stack.layout == 0:  # horizontal
 				if "left" in pos:
