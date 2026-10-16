@@ -545,7 +545,12 @@ bool gFBDC::suspendGraphics()
 
 	if (m_graphics_suspended)
 		return true;
-	if (!fb || !fb->Available())
+	if (!fb || fb->Available() <= 0 || !fb->lfb || surface.stride <= 0 || surface.y <= 0)
+		return false;
+	const size_t pageBytes = static_cast<size_t>(surface.stride) * surface.y;
+	const size_t pages = std::min(static_cast<size_t>(std::max(1, m_number_of_pages)),
+		static_cast<size_t>(fb->Available()) / pageBytes);
+	if (!pages)
 		return false;
 	if (!fb->islocked())
 		eDebug("[gFBDC] suspending graphics without fbClass lock; callers should lock painting first");
@@ -556,7 +561,18 @@ bool gFBDC::suspendGraphics()
 	 * the framebuffer while an external graphics client owns the display.
 	 */
 	m_graphics_suspended = true;
-	eDebug("[gFBDC] framebuffer graphics suspended");
+	/*
+	 * Locking drawing does not remove the last displayed menu.  In particular,
+	 * setResolution() does nothing when the browser and skin have the same
+	 * size.  Drain in-flight acceleration, then clear every display page, not
+	 * just the current draw page.  Do not touch the acceleration heap following
+	 * these pages or pan/remap the framebuffer during the ownership handover.
+	 */
+	if (gAccel::getInstance())
+		gAccel::getInstance()->sync();
+	std::memset(fb->lfb, 0, pageBytes * pages);
+	fb->blit();
+	eDebug("[gFBDC] framebuffer graphics suspended; cleared %zu OSD page(s) at %dx%d", pages, surface.x, surface.y);
 	return true;
 }
 
