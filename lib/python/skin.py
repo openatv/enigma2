@@ -2358,6 +2358,7 @@ def readSkin(screen, skin, names, desktop):
 	screen.renderer = []
 	screen.stacks = []
 	usedComponents = set()
+	usedSources = set()
 
 	def processConstant(constant_widget, context, target=None):
 		widgetName = constant_widget.attrib.get("name")
@@ -2436,6 +2437,7 @@ def readSkin(screen, skin, names, desktop):
 			screen[widgetName] = proccesStackAddition(widget, stack, screen[widgetName])
 		elif widgetSource:
 			# print(f"[Skin] DEBUG: Widget source='{widgetSource}'.")
+			usedSources.add(widgetSource)
 			while True:  # Get corresponding source until we found a non-obsolete source.
 				# Parse our current "widgetSource", which might specify a "related screen" before the dot,
 				# for example to reference a parent, global or session-global screen.
@@ -2732,14 +2734,23 @@ def readSkin(screen, skin, names, desktop):
 	except Exception as err:
 		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
 		print_exc()
-	from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
-	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]
-	assert not unusedComponents, f"[Skin] The following components in '{myName}' don't have a skin entry: {', '.join(unusedComponents)}"
+	if config.crash.debugScreens.value:
+		from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
+		from Components.Sources.Source import Source  # This must be here to avoid a boot loop.
+		screenKeys = sorted(x for x in screen.keys() if not x.endswith(("Action", "Actions")))
+		# print(f"[Skin] Screen '{myName}' in module '{screen.__class__.__name__}' has widgets including '{"', '".join(screenKeys)}'.")
+		print(f"[Skin] Screen '{myName}' has widgets including '{"', '".join(screenKeys)}'.")
+		screenKeys = set(screenKeys)
+		if unusedComponents := sorted(x for x in screenKeys - usedComponents if isinstance(screen[x], GUIComponent)):
+			print(f"[Skin] Unused components: '{"', '".join(unusedComponents)}'.")
+		if unusedSources := sorted(x for x in screenKeys - usedSources if isinstance(screen[x], Source)):
+			print(f"[Skin] Unused sources: '{"', '".join(unusedSources)}'.")
 	# This may look pointless, but it unbinds "screen" from the nested scope. A better
 	# solution is to avoid the nested scope above and use the context object to pass
 	# things around.
 	screen = None
 	usedComponents = None
+	usedSources = None
 
 
 # Search the domScreens dictionary to see if any of the screen names provided
