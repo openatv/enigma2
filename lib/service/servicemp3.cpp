@@ -1926,7 +1926,7 @@ RESULT eServiceMP3::unpause() {
 	m_decoder_time_valid_state = 0;
 	m_subtitle_sync_timer->start(1, true);
 	/* no need to unpase if we are not paused already */
-	if (m_currentTrickRatio == 1.0 && !m_paused) {
+	if (m_currentTrickRatio == 1.0 && !m_paused && !m_to_paused) {
 		eDebug("[eServiceMP3] trickSeek no need to unpause!");
 		return 0;
 	}
