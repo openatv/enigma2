@@ -1,4 +1,4 @@
-from enigma import eLabel, eEPGCache
+from enigma import eEPGCache, eLabel
 
 from Components.VariableText import VariableText
 from Components.Renderer.Renderer import Renderer

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-08-16 18:13+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -746,13 +746,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-msgstr[2] "%d"
-
 msgid "%d %B %Y"
 msgstr "%Y %B %e"
 
@@ -1240,6 +1233,10 @@ msgid "%s Information Actions"
 msgstr "%s informaciniai veiksmai"
 
 #, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s Sąranka"
 
@@ -1290,6 +1287,9 @@ msgstr "%s ilgas"
 #, python-format
 msgid "%s not available."
 msgstr "%s: nėra."
+
+msgid "%s support"
+msgstr ""
 
 #, python-format
 msgid "%s version"
@@ -1385,9 +1385,6 @@ msgstr ""
 #, python-format
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
-
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "\"Kaupimas valandomis\" arba \"paskutinių įvykių skaičius\". Ištrinant senesnius laiko poslinkio failus, sąlygos, esančios pirmoje eilėje, turi pirmenybę."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Rankenėlės budėjimo režimas iš televizoriaus' turi didesnį prioritetą nei 'Rankenėlė iš televizoriaus'."
@@ -1497,6 +1494,9 @@ msgstr "12 simbolių"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, rodyti lotyniškus-1 simbolius, išskyrus graikų ir kirilicos simbolius, jei reikia, pereikite prie 8."
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 msgid "12V output"
 msgstr "12V išvestis"
 
@@ -1505,9 +1505,6 @@ msgstr "12V išvestis."
 
 msgid "12bit"
 msgstr "12 bitų"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12bitų 4:2:0/4:2:2 be PIP"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 įterpiant juodas juostas"
@@ -1683,9 +1680,6 @@ msgstr "Atlikta užduotis nori išjungti jūsų %s %s. Išjungti dabar?"
 msgid "A crash log was %s created in '%s'"
 msgstr "Gedimų žurnalų %s buvo sukurta į '%s'"
 
-msgid "A file from media is in use!"
-msgstr "Medijos failas yra naudojamas!"
-
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1739,6 +1733,9 @@ msgstr ""
 "Prasidėjo įrašymas:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1768,6 +1765,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Reikalingo įrankio (%s) nėra."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -1991,6 +1991,9 @@ msgstr "Adapterio parametrai"
 
 msgid "Add"
 msgstr "Pridėti"
+
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
 
 msgid "Add Alternatives"
 msgstr "pridėti alternatyvas"
@@ -2230,6 +2233,9 @@ msgstr ""
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Koreguokite spalvas taip, kad visos spalvos ir atspalviai būtų atskiriami, bet atrodytų taip prisotinti, kiek galima. Jei jūs esate patenkinti rezultatu, spauskite OK, kad užvertumėte vaizdo tikslų suderinimą, ar pasinaudokite skaičių mygtukais, kad išrinktumėte kitus bandomuosius ekranus."
 
@@ -2241,9 +2247,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Koreguokite vertikalią raidžių poziciją, naudojamą teletekstui."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Suaugusiems"
@@ -2408,11 +2411,8 @@ msgstr "Paskirti"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Skirkite numerį fiziniam LNB, kurį konfigūruojate. Galėsite šį LNB dar kartą pasirinkti kituose palydovuose (pvz., motorizuotuose antenose), kad išsaugotumėte tą patį LNB nustatymą keletą kartų."
 
-msgid "Allow 10bit"
-msgstr "Leisti 10 bitų"
-
-msgid "Allow 12bit"
-msgstr "Leisti 12 bitų"
+msgid "Allow %s-bit"
+msgstr ""
 
 msgid "Allow guest access"
 msgstr ""
@@ -2531,6 +2531,12 @@ msgstr "Į įrašus visada įtraukti ECM"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Į įrašus visada įtraukti ECM pranešimus. Tai atšaukia bendruosius visų laikmačių nustatymus. Tai leidžia įrašus visada vėliau iššifruoti (tai kartais vadinama iškodavimu atsijungus), jei tą palaiko jūsų imtuvas. Numatytasis: 'Ne'."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "Visada rodyti paketus"
 
@@ -2632,6 +2638,9 @@ msgstr "Taikyti bet kokius pakeitimus aktyviai lokalei / kalbai ir išeiti"
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Taikyti šiuo metu paryškintą lokalę / kalbą ir išeiti"
+
+msgid "Apply the settings without saving them"
+msgstr ""
 
 msgid "Aqua"
 msgstr ""
@@ -2887,6 +2896,9 @@ msgstr ""
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio decoding"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "1-a pasirinkta garso kalba"
 
@@ -3013,13 +3025,16 @@ msgstr "Automatinės raiškos etiketė"
 msgid "Automatic scan for services"
 msgstr "Automatinė kanalų paieška"
 
+msgid "Automatically hide OSD"
+msgstr ""
+
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatiškai nustatykite televizorių į budėjimo režimą, kai imtuvas pereina į budėjimo režimą arba gilų budėjimo režimą."
 
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Automatiškai paleisti laiko poslinkį po"
 
 msgid "Automatically turn on external subtitles"
@@ -3146,6 +3161,9 @@ msgstr "Šalinimo fone greitis"
 msgid "Background selected:"
 msgstr "Pažymėtas fonas:"
 
+msgid "Background sound/clean feed"
+msgstr ""
+
 msgid "Background:"
 msgstr "Fonas:"
 
@@ -3252,6 +3270,9 @@ msgstr "Krepšinis"
 
 msgid "Basque"
 msgstr "Baskų"
+
+msgid "Battery"
+msgstr ""
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
@@ -3375,6 +3396,9 @@ msgstr ""
 
 msgid "Bluetooth Setup"
 msgstr "Bluetooth sąranka"
+
+msgid "Bluetooth remote"
+msgstr ""
 
 msgid "Bolivia"
 msgstr "Bolivija"
@@ -3531,6 +3555,9 @@ msgstr "Brunėjus"
 msgid "Buffer Management"
 msgstr ""
 
+msgid "Buffer age limit"
+msgstr "Laiko poslinkio atmintinės riba [val]"
+
 #, python-format
 msgid "Buffering %d%%"
 msgstr "Buferizuojama %d%%"
@@ -3605,7 +3632,7 @@ msgstr "Mygtuko klaidos skirtasis laikas"
 msgid "ButtonSetup"
 msgstr "Mygtukų sąranka"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "Praleisti HDMI EDID tikrinimą"
 
 msgid "Bytes received"
@@ -3734,6 +3761,9 @@ msgid "CPU / Core %d type"
 msgstr "CPU / Branduolio %d tipas"
 
 msgid "CPU Control"
+msgstr ""
+
+msgid "CPU Control Actions"
 msgstr ""
 
 msgid "CPU architecture"
@@ -4110,9 +4140,6 @@ msgstr "Čadas"
 msgid "Chamorro"
 msgstr "Chamorro"
 
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Pakeiskite imtuvo režimą, kad kontroliuoti techninės įrangos lusto režimus*"
-
 msgid "Change Language"
 msgstr "Pakeisti kalbą"
 
@@ -4317,6 +4344,12 @@ msgstr "Patikrinkite, ar nėra PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Patikrinkite, ar kiekvienoje paslaugoje nėra PDC prieinamumo"
 
+msgid "Check for free space"
+msgstr "Laiko poslinkio tikrinimas laisvai vietai"
+
+msgid "Check for older files"
+msgstr "Laiko poslinkis tikrins failų senumą [min]"
+
 msgid "Check power and input state from TV"
 msgstr "Patikrinti maitinimo ir įvesties būseną iš TV"
 
@@ -4337,6 +4370,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Failų sistemos tikrinimas..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4696,6 +4732,9 @@ msgid "Color space"
 msgstr "Spalvų erdvė"
 
 msgid "Colored text"
+msgstr ""
+
+msgid "Colorimetry for HDR content"
 msgstr ""
 
 msgid "Combined"
@@ -5615,9 +5654,6 @@ msgstr "Kuriami AP ir SC failai"
 msgid "Creating file system"
 msgstr "Kuriama failų sistema"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5685,8 +5721,7 @@ msgstr ""
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr ""
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgid "Current CPU speed"
 msgstr ""
 
 msgid "Current Directory"
@@ -5695,8 +5730,20 @@ msgstr "Dabartinis katalogas"
 msgid "Current Event:"
 msgstr "Dabartinis įvykis:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "Dabartinė būsena:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5857,9 +5904,6 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "Audio decoding"
-msgstr ""
-
 msgid "DAB+ channel"
 msgstr ""
 
@@ -5994,6 +6038,9 @@ msgstr "Šokių"
 
 msgid "Danish"
 msgstr "Danų"
+
+msgid "Dari"
+msgstr ""
 
 msgid "Darts"
 msgstr ""
@@ -6341,6 +6388,9 @@ msgstr "Apibrėžia šuolio atstumą dėl šuolių į priekį. Reikšmė padaugi
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Apibrėžia, kurie persukimo pirmyn greičiai naudojami įprastai. Visi kiti greičiai pirmyn ir atgal, naudoja laiko šuolius."
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Delsa po DiSEqC periferinio maitinimo įjungimo komandos"
 
@@ -6447,6 +6497,9 @@ msgstr "Ištrinti priedus"
 
 msgid "Delete Timer"
 msgstr "Šalinti laikmatį"
+
+msgid "Delete after zap"
+msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
 
 msgid "Delete all duplicated lines"
 msgstr "Naikinti visas pasikartojančias eilutes"
@@ -6574,9 +6627,6 @@ msgstr "Naikinama %s (%s)..."
 
 msgid "Deleting files"
 msgstr "Trinami failai"
-
-msgid "Delivery system workaround"
-msgstr "Pristatymo sistemos problemos sprendimas"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Kongo Demokratinė Respublika"
@@ -6764,10 +6814,6 @@ msgstr "Katalogai"
 
 msgid "Directory"
 msgstr "Katalogas"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Katalogas \"%s\" negali būti susietas su įrašais!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7624,9 +7670,6 @@ msgstr "Įjungti %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
-msgid "Enable Autorecord"
-msgstr "Įjungti auto įrašymą"
-
 msgid "Enable BT audio"
 msgstr "Įjungti BT garsą"
 
@@ -7693,9 +7736,6 @@ msgstr "Įjungti tinklo IP adreso tikrinimą"
 msgid "Enable OpenTV EPG"
 msgstr "Įjungti OpenTV EPG"
 
-msgid "Enable PiP no HDR"
-msgstr "įjungti PIP be HDR"
-
 msgid "Enable Quad PiP"
 msgstr "Įjungti Quad PIP"
 
@@ -7729,6 +7769,9 @@ msgstr "Įjungti automatinę greitą paiešką"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Įjungti automatinę greitą paiešką %s"
+
+msgid "Enable auto record"
+msgstr "Įjungti auto įrašymą"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -8085,9 +8128,6 @@ msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer o
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr ""
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
@@ -8584,8 +8624,14 @@ msgstr "Įvykio rodinio veiksmai"
 msgid "Event View Context Menu"
 msgstr "Įvykio rodinio kontekstinis meniu"
 
+msgid "Event based file splitting"
+msgstr "Laiko poslinkio įvykio pagrindu, įvykio failų skaidymas"
+
 msgid "Event font size"
 msgstr "Įvykio šrifto dydis"
+
+msgid "Event limit"
+msgstr "Laiko poslinkio įvykių limitas [įvykių skaičius]"
 
 msgid "Event name only"
 msgstr "Tik įvykio pavadinimas"
@@ -9375,6 +9421,9 @@ msgstr "priverstinai išjungtas"
 msgid "Force enabled"
 msgstr "priverstinai įjungtas"
 
+msgid "Force progressive for streams and files"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "užsienio šalys/ekspedicijos"
 
@@ -9850,9 +9899,6 @@ msgstr "HD sąrašas"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
-msgstr "HDMI kolorimetrija"
-
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR tipas"
 
@@ -9864,6 +9910,9 @@ msgstr "HDMI spalvų gylis"
 
 msgid "HDMI color space"
 msgstr "HDMI spalvų erdvė"
+
+msgid "HDMI colorimetry"
+msgstr "HDMI kolorimetrija"
 
 msgid "HDMI-CEC Settings"
 msgstr "HDMI-CEC parametrai"
@@ -9886,9 +9935,6 @@ msgstr "HDMI įvestis"
 msgid "HDR OSD adjustment"
 msgstr ""
 
-msgid "HDR10 Support"
-msgstr "HDR10 palaikymas"
-
 msgid "HELP"
 msgstr "Pagalba"
 
@@ -9903,9 +9949,6 @@ msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "Išorinių subtitrų valymas"
-
-msgid "HLG Support"
-msgstr "HLG palaikymas"
 
 msgid "Haiti"
 msgstr "Haitis"
@@ -9963,6 +10006,9 @@ msgstr "Aparatūros serijos nr"
 
 msgid "Hardware type"
 msgstr "Aparatūros tipas"
+
+msgid "Hardware video mode"
+msgstr ""
 
 msgid "Hausa"
 msgstr "Hausų"
@@ -10054,6 +10100,9 @@ msgstr ""
 msgid "Hide InfoBar"
 msgstr "Slėpti informacijos juostą"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "Slėpti VBI liniją šiam kanalui"
 
@@ -10086,6 +10135,9 @@ msgstr ""
 
 msgid "Hide the InfoBar"
 msgstr "Nustatykite laiką, kad paslėpti info juostą."
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Paslėpti perjungimo klaidas"
@@ -10156,7 +10208,7 @@ msgstr ""
 msgid "Hockey"
 msgstr "Ledo ritulys"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr ""
 
 msgid "Hold screen"
@@ -10446,14 +10498,8 @@ msgstr "Jei įjungta, bus naudojamas naujas GStreamer atkūrimo variklis."
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, seniausias bus ištrintas."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jei įjungtas gilus pristabdymo sprendimas, palaukite, kol bus sinchronizuojamas sistemos laikas. Priklausomai nuo reikalavimo, prietaisas pabus po 2 minučių."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Jei laisvos vietos yra mažiau, nei nustatyta reikšmė, tada bus bandoma ištrinti senus laiko poslinkio failus."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Jei tekstas per ilgas ir netelpa į priekinį imtuvo ekraną, jis bus kartojamas (kartų):"
@@ -10557,9 +10603,6 @@ msgstr "Importuoti epg iš nuotolinio imtuvo URL"
 
 msgid "Import remote receiver URL"
 msgstr "Importuoti nuotolinio imtuvo URL"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Be to, šalia tikrinimo įvykio pradžioje, gali būti naudojamas pakartotinis patikrinimas, kad sąlygų \"kaupimo riba valandomis\", arba \"tikrinti laisvą vietą\" neatitikimas būtų aptiktas anksčiau."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Eksperimentiniame režime nustatykite, kuris imtuvas turės įrašymo pirmenybę, kai galimas daugiau, nei vienas imtuvas."
@@ -11496,6 +11539,9 @@ msgstr "Laisvalaikio pomėgiai"
 msgid "Lesotho"
 msgstr "Lesotas"
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -11655,6 +11701,10 @@ msgstr "Įkelti žymes iš laikmačio ir įrašų"
 msgid "Load unlinked user bouquets"
 msgstr "Įjungti daugiau vartotojo paketų"
 
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr "Įkeliama informacija, palaukite..."
 
@@ -11728,9 +11778,6 @@ msgstr "Vietos pasirinkimo veiksmai"
 
 msgid "Location information"
 msgstr "Vietos informacija"
-
-msgid "Location list"
-msgstr "Vietovių sąrašas"
 
 #, python-format
 msgid "Location: %s"
@@ -12007,6 +12054,9 @@ msgstr "Rankinė paieška"
 
 msgid "Manual Service Searching"
 msgstr "Rankinė kanalų paieška"
+
+msgid "Manual resolution"
+msgstr ""
 
 msgid "Manual scan for services"
 msgstr "Rankinė kanalų paieška"
@@ -12962,6 +13012,9 @@ msgstr ""
 msgid "Navigation And Time Range"
 msgstr ""
 
+msgid "Ndebele"
+msgstr ""
+
 msgid "Ndonga"
 msgstr "Ndonga"
 
@@ -13633,20 +13686,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Diske nepakanka vietos. Atlaisvinkite vietos diske ir bandykite dar kartą (reikia %d MB, laisva %d MB)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Diske nepakanka laisvos vietos!\n"
-"\n"
-"Failo dydis: %sMB\n"
-"Laisvos vietos: %sMB\n"
-"Kelias: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13819,6 +13858,12 @@ msgstr "OSD nustatymai"
 msgid "OSD Setup"
 msgstr "OSD valdymas"
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr "OSD pavadinimo užklausa"
 
@@ -13851,9 +13896,6 @@ msgstr ""
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Senesni failai iš laiko poslinkio katalogo pašalinami kiekvienam įvykiui pasikeitus."
 
 msgid "Olympic blue"
 msgstr "olimpinė mėlyna"
@@ -14108,6 +14150,9 @@ msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the additional screens"
 msgstr ""
 
 msgid "Open the context menu"
@@ -14588,6 +14633,9 @@ msgstr "Filipinai"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr ""
+
 msgid "PiP with OSD"
 msgstr "PiP su OSD"
 
@@ -14827,9 +14875,6 @@ msgstr "Įveskite naujos simbolinės nuorodos pavadinimą:"
 
 msgid "Please enter new name:"
 msgstr "Įrašykite naują pavadinimą:"
-
-msgid "Please enter search string for your location"
-msgstr "Įrašykite savo vietovės paieškos eilutę"
 
 msgid "Please enter the correct pin code"
 msgstr "Įrašykite teisingą PIN kodą"
@@ -15720,6 +15765,12 @@ msgstr "RAM (santrauka)"
 msgid "RAM benchmark"
 msgstr "RAM etalonas"
 
+msgid "RAM temperature"
+msgstr ""
+
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "RC pasirinktinis kodas"
 
@@ -15799,6 +15850,15 @@ msgid "Radio Channel Selection"
 msgstr "Radijo kanalo pasirinkimas"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
 msgstr ""
 
 msgid "Random"
@@ -16431,6 +16491,9 @@ msgstr "Pervadinta %s!"
 msgid "Renovation"
 msgstr "Renovacija"
 
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Pakartoti"
 
@@ -16928,6 +16991,9 @@ msgstr "Rusų"
 msgid "Russian Federation"
 msgstr "Rusijos Federacija"
 
+msgid "Rusyn"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -17173,6 +17239,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr "Išsaugokite dešiniojo stulpelio katalogo vietą išeidami."
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
 
@@ -17207,9 +17276,6 @@ msgstr "Išsaugotos eilutės scenarijaus pranešimuose"
 
 msgid "Saving EPG Cache..."
 msgstr "Išsaugoma EPG talpykla..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Laiko poslinkis išsaugomas, kaip filmas. Tai gali šiek tiek užtrukti!"
 
 msgid "Saving time shift files"
 msgstr "Išsaugomi laiko poslinkio failai"
@@ -17344,6 +17410,9 @@ msgstr "Maitinimo laikmačio žurnalas"
 msgid "Scheduler standby"
 msgstr "Įjungimo laikmatis. Budėjimo režimas"
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr "Mokslas"
 
@@ -17407,9 +17476,6 @@ msgstr ""
 msgid "Search packages by name or description"
 msgstr ""
 
-msgid "Search weather location ID"
-msgstr "Orų prognozės vietovės ID"
-
 msgid "Search west"
 msgstr "Ieškoti vakarų"
 
@@ -17436,9 +17502,6 @@ msgstr ""
 
 msgid "Secondary DNS (IPv6)"
 msgstr ""
-
-msgid "Seconds"
-msgstr "sekundžių"
 
 msgid "Security Packages"
 msgstr ""
@@ -17497,14 +17560,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Pasirinkite 'įjungta', jei šis imtuvas turi prijungtą signalinį kabelį, kitaip pasirinkite 'nieko neprijungta'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Jei nustatyta 'ne', laiko poslinkis naudos tik vieną kaupimo failą. Todėl rekomenduojama koreguoti \"Laiko poslinkis tikrins failų senumą (min.)\" ir \"Laiko poslinkis tikrins laisvą vietą?\"."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo žurnalą "
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Jei nustatyta 'ne', galėsite išsaugoti senesnius įvykius, net ir po perjungimo, ar nutrauktus dėl laiko poslinkio."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'polarizacija', kitaip kreipkitės į savo LNB specifikacijų lapą."
@@ -17516,6 +17573,9 @@ msgid "Select 'Soft mount' to make file access return an error once the server s
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
 msgstr ""
 
 msgid "Select 'Yes' if an end time is required for this timer."
@@ -17544,9 +17604,6 @@ msgstr "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" b
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Jei nustatyta 'taip', leidžia jums paieškos lange naudotis paieška ir dabartinio įvykio viduje."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Jei čia pasirinkta 'taip', kanalų sąrašas visada pirmiausiai atsidarys paketų langu. Jei pasirinkta 'ne', bus atidarytas paskutinis žiūrėtas paketas."
@@ -17758,6 +17815,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr ""
+
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams įrašams (išjungiant po šio įvykio)."
 
@@ -17884,11 +17944,20 @@ msgstr "Pasirinkite katalogą iš žymių"
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Pasirinkite platintoją, iš kurio turi būti gaunami atvaizdai"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Pasirinkite vietą, į kurią norite išskleisti \"%s\":"
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -17932,6 +18001,9 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Pasirinkite imtuvą"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "Pasirinkite veiksmą"
@@ -18036,6 +18108,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Pasirinkite, kaip suaktyvinti sparčiojo EPG režimą."
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr ""
+
 msgid "Select how to sort the timer list."
 msgstr ""
 
@@ -18087,9 +18162,6 @@ msgstr "Pasirinkite, ar šis laikmatis aktyvuojamas trečiadienį."
 msgid "Select if this timer is to be repeated."
 msgstr "Pasirinkite, ar šį laikmatį reikia kartoti."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Pasirinkite, ar laiko poslinkis bus tęsiamas, kai nustatytas įrašymas."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Pasirinkite, ar norite aktyvuoti subkanalų režimą."
 
@@ -18139,11 +18211,20 @@ msgstr "Pasirinkite dabartinio stulpelio laikiną failų rikiavimo tvarką"
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr ""
+
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "Pasirinkite numatytųjų DNS parametrų šaltinį."
+
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
+msgstr ""
 
 msgid "Select the No / False response"
 msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
@@ -18204,11 +18285,17 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr "Pasirinkite veiksmą, kurį atliksite pasibaigus laikmačiui."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmatis."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
@@ -18237,6 +18324,9 @@ msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
@@ -18246,7 +18336,13 @@ msgstr ""
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr ""
+
 msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
 msgstr ""
 
 msgid "Select the committed switch port connected to the horizontal LNB."
@@ -18298,6 +18394,9 @@ msgid "Select the default directory to be used if the left column directory is n
 msgstr ""
 
 msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr ""
+
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
 msgstr ""
 
 msgid "Select the delay before the timer activates."
@@ -18359,6 +18458,9 @@ msgstr ""
 msgid "Select the function to be assigned to this button."
 msgstr "Pasirinkite funkciją, kuri bus priskirta šiam mygtukui."
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Pasirinkite paryškintą atvaizdą ir pereikite prie laiko tarpsnio pasirinkimo"
 
@@ -18369,6 +18471,9 @@ msgid "Select the initial position of the timeline marker. The marker is the ver
 msgstr ""
 
 msgid "Select the input connector you want to use."
+msgstr ""
+
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
 msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
@@ -18393,6 +18498,9 @@ msgid "Select the location in which to store the recording:"
 msgstr ""
 
 msgid "Select the location where the picon files will be installed."
+msgstr ""
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18439,6 +18547,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -18589,6 +18700,9 @@ msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV."
@@ -18795,6 +18909,9 @@ msgstr "Serbija"
 
 msgid "Serbian"
 msgstr "Serbų"
+
+msgid "Serbo-Croatian"
+msgstr ""
 
 msgid "Serial No"
 msgstr "Serijinis Nr"
@@ -19055,6 +19172,9 @@ msgstr "Nustatykite kaip paleidimo kanalą"
 msgid "Set system"
 msgstr "Nustatyti sistemą"
 
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
@@ -19072,9 +19192,6 @@ msgstr "Nustatykite numatytąją neplaninių įrašų vietą. Kad pridėti nauja
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
-
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
@@ -19200,9 +19317,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios komandos gilaus budėjimo režimo įvykiams, kaip ir įprastų laukimo režimo įvykių metu."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam fono laiko poslinkiui"
 
 msgid "Set to the desired primetime hour."
 msgstr "Nustatykite norimą žiūrimiausią laiką (valanda)."
@@ -20090,6 +20204,9 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr ""
 
@@ -20132,7 +20249,7 @@ msgstr "Rodyti vertikalų programos vadovą"
 msgid "Show warning before restart"
 msgstr "Rodyti įspėjimą prieš paleidimą iš naujo"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Rodyti perspėjimą, sustojus laiko poslinkiui"
 
 msgid "Show watch status"
@@ -20289,6 +20406,9 @@ msgstr ""
 msgid "Skin Settings"
 msgstr "Temos parametrai"
 
+msgid "Skin Setup Actions"
+msgstr ""
+
 msgid "Skin setting"
 msgstr "Temos nustatyme"
 
@@ -20341,9 +20461,6 @@ msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "praleisti į priekį (įrašykite laiką)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
 
 msgid "Skip network setup"
 msgstr ""
@@ -20516,7 +20633,7 @@ msgstr "Slovėnų"
 msgid "Slow"
 msgstr "Lėtas"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr ""
 
 msgid "Slow motion speeds"
@@ -20695,9 +20812,6 @@ msgstr "Atsiprašome, jokių atsarginių kopijų nerasta!"
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Atsiprašome, jokių fizinių įrenginių, palaikančių mainus (SWAP) nepridėta. Negalima kurti keitimo failo tinklo arba fat32 failų sistemos"
 
-msgid "Sorry, there was a problem:"
-msgstr "Deja, iškilo problema:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20857,6 +20971,9 @@ msgstr "Sportas"
 msgid "Sports magazines"
 msgstr "sporto žurnalas"
 
+msgid "Sranan Tongo"
+msgstr ""
+
 msgid "Sri Lanka"
 msgstr "Šri Lanka"
 
@@ -20889,9 +21006,6 @@ msgid "Start %s"
 msgstr ""
 
 msgid "Start Auto Refresh"
-msgstr ""
-
-msgid "Start Boot Frequency"
 msgstr ""
 
 msgid "Start RDS interactive"
@@ -21046,6 +21160,9 @@ msgstr "Būsena nepasiekiama!"
 msgid "Status:"
 msgstr "Būsena:"
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr ""
 
@@ -21144,9 +21261,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Stabdomas emuliatorius"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21174,6 +21288,10 @@ msgstr "Diskas nerastas!"
 
 msgid "Storage device not writable!"
 msgstr "Disko negalima rašyti!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Išsaugoti padėtį"
@@ -21423,8 +21541,8 @@ msgstr "Perjungti EPG puslapį žemyn"
 msgid "Switch EPG Page Up"
 msgstr "Perjungti EPG puslapį aukštyn"
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "Perjungimo režimas, kad įjungti HDR režimus arba PIP funkcijas"
+msgid "Switch HDR type by content"
+msgstr ""
 
 msgid "Switch TV to correct input"
 msgstr "Perjungti TV į teisingą įvestį"
@@ -21797,9 +21915,6 @@ msgstr "Testuoti"
 msgid "Test type"
 msgstr "Testo tipas"
 
-msgid "Testing Information"
-msgstr ""
-
 msgid "Testscreens"
 msgstr "Testiniai vaizdai"
 
@@ -21808,6 +21923,9 @@ msgstr "Testiniai vaizdai, kurie yra naudingi norint tiksliai sureguliuoti ekran
 
 msgid "Text"
 msgstr "Tekstas"
+
+msgid "Text Box"
+msgstr ""
 
 msgid "Text color"
 msgstr "Teksto spalva"
@@ -22006,6 +22124,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Komanda, pažadinama iš laukimo režimo, bus išsiųsta kelis kartus."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22043,13 +22167,6 @@ msgstr ""
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Įrenginio, kur saugomas laiko poslinkis, failų sistema nepalaiko tiesioginių nuorodų.\n"
-"Įsitikinkite, kad jis formatuotas EXT2, EXT3 arba EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22126,6 +22243,9 @@ msgstr "Rezultatai įrašyti į %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Išsaugotas PIN išvalytas."
 
@@ -22158,6 +22278,9 @@ msgstr ""
 "\n"
 "Ar tai padaryti dabar, ar pratęsti laikmatį?"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Laikas padauginamas iš dabartinio pakartojimo skaitiklio."
 
@@ -22168,9 +22291,16 @@ msgstr ""
 "Įsiminimo laikas, skirtas laiko poslinkiui, didesnis, negu nurodyt nustatymuose.\n"
 "Ką jūs norite daryti ?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -22280,6 +22410,9 @@ msgstr "šis paketas apsaugotas tėvų kontrolės PIN kodu"
 msgid "This channel is currently off air."
 msgstr ""
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Šis laukas leidžia jums ieškoti papildomų simbolių spartos iki %s."
@@ -22336,9 +22469,6 @@ msgstr "Ši parinktis leidžia padidinti mėlyno atspalvio kiekį."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Ši parinktis leidžia padidinti žalio atspalvio kiekį."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "Ši parinktis leidžia išvengti HDMI EDID patikrinimo"
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Ši parinktis leidžia pakeisti virtualią garsiakalbių padėtį."
@@ -22403,32 +22533,8 @@ msgstr "Ši parinktis leidžia pasirinkti, kur pirmu mygtuko paspaudimu peršoka
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ši pasirinktis leidžia pasirinkti, rodyti, ar ne įvykio žanro informaciją."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Ši parinktis leidžia nustatyti HDMI naudojamą spalvų gylį"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Ši parinktis leidžia konfigūruoti HDR kolorimetriją"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Ši parinktis leidžia pasirinkti spalvų atvaizdavimo erdvę iš 'Auto' į RGB"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ši parinktis leidžia įjungti 3D erdvinį garsą."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Ši parinktis leidžia jums įjungti arba išjungti 10 bitų spalvų režimą"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Ši parinktis leidžia jums įjungti arba išjungti 12 bitų spalvų režimą"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Ši parinktis leidžia priverstinai naudoti HDR režimą dėl UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Ši parinktis leidžia priverstinai naudoti HDR10 režimą dėl UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Ši parinktis leidžia priverstinai naudoti HLG režimą dėl UHD"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
@@ -22615,38 +22721,20 @@ msgstr "Laiko šuolio kartojimo intervalas greitam persukimui pirmyn/atgal"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Laiko šuolis: naudoti įprastą greitą prasukimą greičiams"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
-
-msgid "Time shift buffer limit"
-msgstr "Laiko poslinkio atmintinės riba [val]"
-
 msgid "Time shift buffer location"
 msgstr "Laiko poslinkio vieta"
 
-msgid "Time shift checking for free space"
-msgstr "Laiko poslinkio tikrinimas laisvai vietai"
-
-msgid "Time shift checking for older files"
-msgstr "Laiko poslinkis tikrins failų senumą [min]"
-
-msgid "Time shift event based file splitting"
-msgstr "Laiko poslinkio įvykio pagrindu, įvykio failų skaidymas"
-
-msgid "Time shift event limit"
-msgstr "Laiko poslinkio įvykių limitas [įvykių skaičius]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr "Laiko poslinkis negalimas!"
-
 msgid "Time shift save action on zap"
 msgstr "Išsaugoti laiko poslinkį, perjungiant kanalą"
 
-msgid "Time shift save failed!"
-msgstr "Išsaugoti laiko poslinkio nepavyko!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -22657,8 +22745,8 @@ msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
@@ -22677,6 +22765,9 @@ msgstr "Atnaujinimas minutėmis"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Laikinas langas budinimo laikmačių aptikimui [min]"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr ""
 
 msgid "Time zone"
 msgstr "Laiko juosta"
@@ -23364,6 +23455,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23383,7 +23477,13 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to start the HbbTV application."
 msgstr ""
 
 msgid "Unable to start the local image search. Please try again later."
@@ -23396,8 +23496,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23737,6 +23843,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Naudoti TV nuotolinio valdymo pultelį"
 
@@ -23920,9 +24029,6 @@ msgstr "Naudoti šiuos vaizdo stiprinimo nustatymus?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Naudoti laiko šuolius greitam persukimui pirmyn/atgal"
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Naudokite laiko juostą, kai laikas keičiasi"
-
 msgid "Use viewer for unknown files"
 msgstr ""
 
@@ -23954,6 +24060,9 @@ msgid "User ID"
 msgstr "Vartotojo ID"
 
 msgid "User Manual"
+msgstr ""
+
+msgid "User Manual Actions"
 msgstr ""
 
 msgid "User comments"
@@ -24501,6 +24610,9 @@ msgstr ""
 msgid "Weather"
 msgstr "Orų prognozė"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr "Internetinė sąsaja"
 
@@ -24623,6 +24735,9 @@ msgstr "Kai čia įjungta, http sraute bus įtraukti ir EIT duomenys. Tai leis k
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "Kai įjungta, SDT, BAT duomenys bus įtraukti į http srautus."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Įjungus, iššokantis pranešimas bus rodomas, kai filmas bus baigtas ir bus pradėtas kitas."
 
@@ -24641,8 +24756,8 @@ msgstr "Kai čia įjungta, įrašymui leidžiama nutraukti vaizdo transliaciją,
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Įjungus įrašą leidžiama nutraukti tiesioginę televiziją, kai nėra laisvų imtuvų."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirinkti - sustabdyti, ar tęsti laiko poslinkį."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24656,14 +24771,29 @@ msgstr ""
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr ""
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo autentifikacijos duomenis."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr ""
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr ""
@@ -24676,6 +24806,9 @@ msgstr "Kai čia įjungta, pasiekus paskutinį šio paketo kanalą ir jungiant s
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kai čia įjungta, pašalinti vaizdo įrašai bus perkelti į šiukšlinę, užuot juos galutinai ištrynus."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Kai čia įjungta, filmų peržiūros metu visada bus įjungti išoriniai subtitrai."
@@ -24722,11 +24855,17 @@ msgstr "Kai čia įjungta, bus rodoma būsena, arba klaidos pranešimai."
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
+
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Kai čia įjungta, gali būti rodomi subtitrai turintiems klausos sutrikimų."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Kai čia įjungta, jei galimi abiejų tipų subtitrai, vietoje įprastų subtitrų bus rodomi subtitrai turintiems klausos sutrikimų."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Kai čia įjungta,  teleteksto puslapiai bus išsaugojami atminties podėlyje, taip paspartinant jų naudojimą."
@@ -24788,8 +24927,11 @@ msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidaut
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automatiškai."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Kai įjungta, galite pritaikyti OpenWebIf nustatymus atsarginiam imtuvui"
@@ -24945,9 +25087,6 @@ msgstr ""
 msgid "Wolof"
 msgstr "Volofų"
 
-msgid "Workaround for old tuner driver."
-msgstr "Problemos dėl senų imtuvo tvarkyklių"
-
 msgid "Workgroup name"
 msgstr ""
 
@@ -24981,6 +25120,9 @@ msgstr "Rašymo klaida įrašymo metu. %s"
 
 msgid "Write failed!"
 msgstr "Įrašymas klaidingas!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25397,9 +25539,6 @@ msgstr "Padidinti iš dešinės"
 msgid "Zulu"
 msgstr "Zulu"
 
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
-
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
 
@@ -25411,6 +25550,9 @@ msgstr "pasirinkite kanalus/teikėjus/programas, kurias norite įtraukti į CI m
 
 msgid "activatePiP"
 msgstr "aktyvuoti PiP"
+
+msgid "active (GLES enabled)"
+msgstr ""
 
 msgid "address:"
 msgstr "adresas:"
@@ -25863,6 +26005,9 @@ msgstr "skenavimo eiga"
 msgid "search EPG..."
 msgstr "ieškoti EPG..."
 
+msgid "seconds"
+msgstr ""
+
 msgid "select CAId's"
 msgstr "išsirinkite CAId's"
 
@@ -25917,6 +26062,9 @@ msgstr "stereo"
 msgid "successful"
 msgstr "sėkmingai"
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr "perjunkite rodymo režimą nuo 12 iki 8 simbolių"
 
@@ -25958,6 +26106,9 @@ msgstr ""
 
 msgid "this recording"
 msgstr "šis įrašas"
+
+msgid "throttled"
+msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "perjungti laiką, skyrių, garsą, subtitrų informaciją"
@@ -26046,6 +26197,176 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "\"Kaupimas valandomis\" arba \"paskutinių įvykių skaičius\". Ištrinant senesnius laiko poslinkio failus, sąlygos, esančios pirmoje eilėje, turi pirmenybę."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Katalogas \"%s\" negali būti susietas su įrašais!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Jei laisvos vietos yra mažiau, nei nustatyta reikšmė, tada bus bandoma ištrinti senus laiko poslinkio failus."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Be to, šalia tikrinimo įvykio pradžioje, gali būti naudojamas pakartotinis patikrinimas, kad sąlygų \"kaupimo riba valandomis\", arba \"tikrinti laisvą vietą\" neatitikimas būtų aptiktas anksčiau."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Diske nepakanka laisvos vietos!\n"
+#~ "\n"
+#~ "Failo dydis: %sMB\n"
+#~ "Laisvos vietos: %sMB\n"
+#~ "Kelias: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Senesni failai iš laiko poslinkio katalogo pašalinami kiekvienam įvykiui pasikeitus."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Laiko poslinkis išsaugomas, kaip filmas. Tai gali šiek tiek užtrukti!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Jei nustatyta 'ne', laiko poslinkis naudos tik vieną kaupimo failą. Todėl rekomenduojama koreguoti \"Laiko poslinkis tikrins failų senumą (min.)\" ir \"Laiko poslinkis tikrins laisvą vietą?\"."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Jei nustatyta 'ne', galėsite išsaugoti senesnius įvykius, net ir po perjungimo, ar nutrauktus dėl laiko poslinkio."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Jei nustatyta 'taip', leidžia jums paieškos lange naudotis paieška ir dabartinio įvykio viduje."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Pasirinkite, ar laiko poslinkis bus tęsiamas, kai nustatytas įrašymas."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam fono laiko poslinkiui"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Įrenginio, kur saugomas laiko poslinkis, failų sistema nepalaiko tiesioginių nuorodų.\n"
+#~ "Įsitikinkite, kad jis formatuotas EXT2, EXT3 arba EXT4!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Laiko poslinkis negalimas!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Išsaugoti laiko poslinkio nepavyko!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Naudokite laiko juostą, kai laikas keičiasi"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirinkti - sustabdyti, ar tęsti laiko poslinkį."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automatiškai."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "Leisti 10 bitų"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "Leisti 12 bitų"
+
+#~ msgid "HDR10 support"
+#~ msgstr "HDR10 palaikymas"
+
+#~ msgid "HLG support"
+#~ msgstr "HLG palaikymas"
+
+#~ msgid "Seconds"
+#~ msgstr "sekundžių"
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "Ši parinktis leidžia išvengti HDMI EDID patikrinimo"
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Ši parinktis leidžia nustatyti HDMI naudojamą spalvų gylį"
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Ši parinktis leidžia konfigūruoti HDR kolorimetriją"
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "Ši parinktis leidžia pasirinkti spalvų atvaizdavimo erdvę iš 'Auto' į RGB"
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Ši parinktis leidžia jums įjungti arba išjungti 10 bitų spalvų režimą"
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Ši parinktis leidžia jums įjungti arba išjungti 12 bitų spalvų režimą"
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Ši parinktis leidžia priverstinai naudoti HDR režimą dėl UHD"
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Ši parinktis leidžia priverstinai naudoti HDR10 režimą dėl UHD"
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Ši parinktis leidžia priverstinai naudoti HLG režimą dėl UHD"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12bitų 4:2:0/4:2:2 be PIP"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "Pakeiskite imtuvo režimą, kad kontroliuoti techninės įrangos lusto režimus*"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "Pristatymo sistemos problemos sprendimas"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "įjungti PIP be HDR"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "Perjungimo režimas, kad įjungti HDR režimus arba PIP funkcijas"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Problemos dėl senų imtuvo tvarkyklių"
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+#~ msgstr[2] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Medijos failas yra naudojamas!"
+
+#~ msgid "Location list"
+#~ msgstr "Vietovių sąrašas"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "Įrašykite savo vietovės paieškos eilutę"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "Orų prognozės vietovės ID"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "Deja, iškilo problema:"
 
 #~ msgid "Close screen"
 #~ msgstr "Uždaryti ekraną"
@@ -28390,10 +28711,6 @@ msgstr "®"
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #~ msgid "(FTA Service)"
 #~ msgstr "(Nekoduoti kanalai)"

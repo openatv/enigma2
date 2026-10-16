@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:16+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-08-17 05:12+0000\n"
 "Last-Translator: DrAlves <dralves@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -754,12 +754,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1220,6 +1214,10 @@ msgstr "%s Informação"
 msgid "%s Information Actions"
 msgstr "%s Acções de informação"
 
+#, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
+
 #
 #, python-format
 msgid "%s Setup"
@@ -1273,6 +1271,9 @@ msgstr "%s longo"
 #, python-format
 msgid "%s not available."
 msgstr "%s não disponível."
+
+msgid "%s support"
+msgstr ""
 
 #, python-format
 msgid "%s version"
@@ -1367,9 +1368,6 @@ msgstr ""
 #, python-format
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
-
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "Buffer em horas\" ou \"número dos últimos eventos\". Os ficheiros mais antigos serão eliminados primeiro."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "Gerir o modo de espera da TV\" tem uma prioridade mais elevada do que \"Gerir a entrada da TV\"."
@@ -1483,6 +1481,9 @@ msgstr "12 caracteres"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, mostrar caracteres latinos-1 excepto para grego e cirílico, mudar para 8 se necessário."
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 #
 msgid "12V output"
 msgstr "saída 12V"
@@ -1493,9 +1494,6 @@ msgstr "Saída de 12V."
 
 msgid "12bit"
 msgstr "12bit"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12bit 4:2:0/4:2:2 sem PiP"
 
 #
 msgid "16:10 Letterbox"
@@ -1684,9 +1682,6 @@ msgstr "Uma tarefa concluída pretende desligar o seu %s %s. Desligar agora?"
 msgid "A crash log was %s created in '%s'"
 msgstr "Um log de falhas foi %s criado em '%s'"
 
-msgid "A file from media is in use!"
-msgstr "Está a ser utilizado um ficheiro multimédia!"
-
 #
 #, python-format
 msgid ""
@@ -1738,6 +1733,9 @@ msgstr ""
 "Uma gravação foi iniciada:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 #
 msgid ""
 "A recording is currently running.\n"
@@ -1770,6 +1768,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Uma ferramenta necessária (%s) não foi encontrada."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2006,6 +2007,9 @@ msgstr "Opções de adaptador"
 #
 msgid "Add"
 msgstr "Adicionar"
+
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
 
 #
 msgid "Add Alternatives"
@@ -2265,6 +2269,9 @@ msgstr ""
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Ajuste as cores para que as sombras fiquem visíveis, mas apareçam o mais saturado possível. Se estiver satisfeito com o resultado, pressione OK para sair, ou use os botões com números para seleccionar outros ecrãs."
@@ -2277,9 +2284,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Ajustar a posição vertical das letras utilizadas no teletexto."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Adulto"
@@ -2455,11 +2459,8 @@ msgstr "Alocar"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Atribua um número ao LNB físico que está a configurar. Poderá voltar a seleccionar este LNB para outros satélites (por exemplo, antenas parabólicas motorizadas) para evitar configurar o mesmo LNB várias vezes."
 
-msgid "Allow 10bit"
-msgstr "Permitir 10 bits"
-
-msgid "Allow 12bit"
-msgstr "Permitir 12 bits"
+msgid "Allow %s-bit"
+msgstr ""
 
 msgid "Allow guest access"
 msgstr ""
@@ -2584,6 +2585,12 @@ msgstr "Sempre inclua ECM nas gravações"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr ""
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "Mostrar sempre bouquets"
 
@@ -2684,6 +2691,9 @@ msgstr "Aplicar as alterações à localidade/idioma ativo e sair"
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Aplicar a localidade/idioma atualmente realçado e sair"
+
+msgid "Apply the settings without saving them"
+msgstr ""
 
 msgid "Aqua"
 msgstr ""
@@ -2948,6 +2958,9 @@ msgstr ""
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio decoding"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Idioma de áudio 1"
 
@@ -3089,13 +3102,16 @@ msgstr "Nome resolução automática"
 msgid "Automatic scan for services"
 msgstr "Pesquisa automática de canais"
 
+msgid "Automatically hide OSD"
+msgstr ""
+
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
 
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Ligar automaticamente o time shift após"
 
 msgid "Automatically turn on external subtitles"
@@ -3225,6 +3241,9 @@ msgstr "Velocidade ao apagar em segundo plano"
 msgid "Background selected:"
 msgstr "Fundo seleccionado:"
 
+msgid "Background sound/clean feed"
+msgstr ""
+
 #
 msgid "Background:"
 msgstr "Fundo:"
@@ -3338,6 +3357,9 @@ msgstr ""
 
 msgid "Basque"
 msgstr "Basco"
+
+msgid "Battery"
+msgstr ""
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
@@ -3469,6 +3491,9 @@ msgstr ""
 
 msgid "Bluetooth Setup"
 msgstr "Configuração do Bluetooth"
+
+msgid "Bluetooth remote"
+msgstr ""
 
 msgid "Bolivia"
 msgstr "Bolivia"
@@ -3629,6 +3654,9 @@ msgstr ""
 msgid "Buffer Management"
 msgstr ""
 
+msgid "Buffer age limit"
+msgstr ""
+
 #, python-format
 msgid "Buffering %d%%"
 msgstr "Armazenamento em buffer %d%%"
@@ -3704,7 +3732,7 @@ msgstr "Tempo limite para erro do botão"
 msgid "ButtonSetup"
 msgstr "Configuração de Teclas"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "Ignorar verificação HDMI EDID"
 
 msgid "Bytes received"
@@ -3837,6 +3865,9 @@ msgstr "Tipo CPU / Core %d"
 
 msgid "CPU Control"
 msgstr "Controle do CPU"
+
+msgid "CPU Control Actions"
+msgstr ""
 
 msgid "CPU architecture"
 msgstr "Arquitetura do CPU"
@@ -4209,9 +4240,6 @@ msgstr ""
 msgid "Chamorro"
 msgstr ""
 
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Alterar o modo da Box para controlar os modos de chips de hardware*"
-
 #
 msgid "Change Language"
 msgstr "Alterar idioma"
@@ -4434,6 +4462,12 @@ msgstr "Verificar se há PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Verificar a disponibilidade do PDC em cada serviço"
 
+msgid "Check for free space"
+msgstr ""
+
+msgid "Check for older files"
+msgstr ""
+
 msgid "Check power and input state from TV"
 msgstr "Verifique a energia e o estado da entrada TV"
 
@@ -4455,6 +4489,9 @@ msgstr ""
 #
 msgid "Checking file system..."
 msgstr "A verificar o sistema de ficheiros..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4828,6 +4865,9 @@ msgid "Color space"
 msgstr "Espaço da cor"
 
 msgid "Colored text"
+msgstr ""
+
+msgid "Colorimetry for HDR content"
 msgstr ""
 
 msgid "Combined"
@@ -5762,9 +5802,6 @@ msgstr "A criar ficheiros AP e SC"
 msgid "Creating file system"
 msgstr "A criar sistema de ficheiros"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr ""
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5835,8 +5872,7 @@ msgstr ""
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr ""
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgid "Current CPU speed"
 msgstr ""
 
 msgid "Current Directory"
@@ -5845,8 +5881,20 @@ msgstr ""
 msgid "Current Event:"
 msgstr ""
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "Estado actual:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -6016,9 +6064,6 @@ msgstr ""
 msgid "DAB+ USB: bouquet could not be written"
 msgstr ""
 
-msgid "Audio decoding"
-msgstr ""
-
 msgid "DAB+ channel"
 msgstr ""
 
@@ -6159,6 +6204,9 @@ msgstr "Dança"
 #
 msgid "Danish"
 msgstr "Dinamarquês"
+
+msgid "Dari"
+msgstr ""
 
 msgid "Darts"
 msgstr ""
@@ -6514,6 +6562,9 @@ msgstr ""
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr ""
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr ""
 
@@ -6623,6 +6674,9 @@ msgstr "Eliminar plugins"
 #
 msgid "Delete Timer"
 msgstr "Eliminar agendamento"
+
+msgid "Delete after zap"
+msgstr ""
 
 msgid "Delete all duplicated lines"
 msgstr ""
@@ -6758,9 +6812,6 @@ msgstr "Eliminação de %s (%s)..."
 #
 msgid "Deleting files"
 msgstr "A eliminar ficheiros"
-
-msgid "Delivery system workaround"
-msgstr ""
 
 msgid "Democratic Republic of the Congo"
 msgstr ""
@@ -6953,10 +7004,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Directório"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7848,9 +7895,6 @@ msgstr "Activar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Activar saída de 5V para a antena"
 
-msgid "Enable Autorecord"
-msgstr ""
-
 #
 msgid "Enable BT audio"
 msgstr "Activar áudio BT"
@@ -7921,9 +7965,6 @@ msgstr "Activar verificação do IP de rede"
 msgid "Enable OpenTV EPG"
 msgstr "Activar OpenTV EPG"
 
-msgid "Enable PiP no HDR"
-msgstr ""
-
 #
 msgid "Enable Quad PiP"
 msgstr "Activar Quad PiP"
@@ -7957,6 +7998,9 @@ msgstr ""
 
 #, python-format
 msgid "Enable auto fast scan for '%s'"
+msgstr ""
+
+msgid "Enable auto record"
 msgstr ""
 
 msgid "Enable automatic shares"
@@ -8321,9 +8365,6 @@ msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer o
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr ""
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
@@ -8828,7 +8869,13 @@ msgstr ""
 msgid "Event View Context Menu"
 msgstr ""
 
+msgid "Event based file splitting"
+msgstr ""
+
 msgid "Event font size"
+msgstr ""
+
+msgid "Event limit"
 msgstr ""
 
 msgid "Event name only"
@@ -9643,6 +9690,9 @@ msgstr "Força desativada"
 msgid "Force enabled"
 msgstr "Força ativada"
 
+msgid "Force progressive for streams and files"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "países estrangeiros/expedições"
 
@@ -10145,9 +10195,6 @@ msgstr "Lista HD"
 msgid "HDMI"
 msgstr ""
 
-msgid "HDMI Colorimetry"
-msgstr ""
-
 msgid "HDMI HDR Type"
 msgstr ""
 
@@ -10159,6 +10206,9 @@ msgid "HDMI color depth"
 msgstr ""
 
 msgid "HDMI color space"
+msgstr ""
+
+msgid "HDMI colorimetry"
 msgstr ""
 
 msgid "HDMI-CEC Settings"
@@ -10182,9 +10232,6 @@ msgstr ""
 msgid "HDR OSD adjustment"
 msgstr ""
 
-msgid "HDR10 Support"
-msgstr "Suporte HDR10"
-
 msgid "HELP"
 msgstr ""
 
@@ -10199,9 +10246,6 @@ msgstr ""
 
 msgid "HI-cleanup for external subtitles"
 msgstr ""
-
-msgid "HLG Support"
-msgstr "Suporte HLG"
 
 #
 msgid "Haiti"
@@ -10261,6 +10305,9 @@ msgid "Hardware serial"
 msgstr ""
 
 msgid "Hardware type"
+msgstr ""
+
+msgid "Hardware video mode"
 msgstr ""
 
 msgid "Hausa"
@@ -10353,6 +10400,9 @@ msgstr ""
 msgid "Hide InfoBar"
 msgstr "Ocultar barra de informações"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "Ocultar linha VBI para este serviço"
 
@@ -10388,6 +10438,9 @@ msgstr ""
 
 msgid "Hide the InfoBar"
 msgstr "Ocultar a barra de informações"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Ocultar erros no zapping"
@@ -10461,7 +10514,7 @@ msgstr ""
 msgid "Hockey"
 msgstr "Hockey"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr ""
 
 msgid "Hold screen"
@@ -10765,13 +10818,7 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Se definido como 'sim', permite que você use timeshift com plugins de áudio alternativos."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
-msgstr ""
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr ""
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -10878,9 +10925,6 @@ msgid "Import from remote receiver URL"
 msgstr ""
 
 msgid "Import remote receiver URL"
-msgstr ""
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr ""
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
@@ -11859,6 +11903,9 @@ msgstr "Passatempos"
 msgid "Lesotho"
 msgstr ""
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -12032,6 +12079,10 @@ msgstr ""
 msgid "Load unlinked user bouquets"
 msgstr "Carregar userbouquets desassociados"
 
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -12108,10 +12159,6 @@ msgstr ""
 
 msgid "Location information"
 msgstr ""
-
-#
-msgid "Location list"
-msgstr "Lista de localização"
 
 #, python-format
 msgid "Location: %s"
@@ -12398,6 +12445,9 @@ msgstr "Pesquisa manual"
 
 msgid "Manual Service Searching"
 msgstr "Pesquisa manual de serviços"
+
+msgid "Manual resolution"
+msgstr ""
 
 msgid "Manual scan for services"
 msgstr "Pesquisa manual de canais"
@@ -13403,6 +13453,9 @@ msgstr ""
 msgid "Navigation And Time Range"
 msgstr ""
 
+msgid "Ndebele"
+msgstr ""
+
 msgid "Ndonga"
 msgstr ""
 
@@ -14117,15 +14170,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Não existe espaço suficiente no disco. Por favor liberte algum espaço e tente de novo. (%d MB necessário, %d MB disponível)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-
 msgid "Not found"
 msgstr ""
 
@@ -14301,6 +14345,12 @@ msgstr "Definições OSD"
 msgid "OSD Setup"
 msgstr "Configuração do OSD"
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr "Solicitação do nome de OSD"
 
@@ -14333,9 +14383,6 @@ msgid "Offset and close CA device"
 msgstr ""
 
 msgid "Ojibwa"
-msgstr ""
-
-msgid "Older files in the time shift directory are removed on every event change."
 msgstr ""
 
 msgid "Olympic blue"
@@ -14607,6 +14654,9 @@ msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Open the additional screens"
 msgstr ""
 
 msgid "Open the context menu"
@@ -15101,6 +15151,9 @@ msgstr ""
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP (no HDR)"
+msgstr ""
+
 msgid "PiP with OSD"
 msgstr "PiP com OSD"
 
@@ -15363,9 +15416,6 @@ msgstr ""
 #
 msgid "Please enter new name:"
 msgstr "Por favor introduza o novo nome:"
-
-msgid "Please enter search string for your location"
-msgstr ""
 
 #
 msgid "Please enter the correct pin code"
@@ -16306,6 +16356,12 @@ msgstr ""
 msgid "RAM benchmark"
 msgstr ""
 
+msgid "RAM temperature"
+msgstr ""
+
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -16388,6 +16444,15 @@ msgid "Radio Channel Selection"
 msgstr "Seleção do Canal de Rádio"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
 msgstr ""
 
 #
@@ -17055,6 +17120,9 @@ msgstr ""
 msgid "Renovation"
 msgstr "Renovação"
 
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
+
 #
 msgid "Repeat"
 msgstr "Repetir"
@@ -17581,6 +17649,9 @@ msgstr "Russo"
 msgid "Russian Federation"
 msgstr ""
 
+msgid "Rusyn"
+msgstr ""
+
 msgid "Rwanda"
 msgstr ""
 
@@ -17844,6 +17915,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr ""
 
@@ -17877,9 +17951,6 @@ msgid "Saved lines in script messages"
 msgstr ""
 
 msgid "Saving EPG Cache..."
-msgstr ""
-
-msgid "Saving time shift buffer, this might take a while."
 msgstr ""
 
 msgid "Saving time shift files"
@@ -18019,6 +18090,9 @@ msgstr ""
 msgid "Scheduler standby"
 msgstr ""
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr ""
 
@@ -18084,10 +18158,6 @@ msgid "Search packages by name or description"
 msgstr ""
 
 #
-msgid "Search weather location ID"
-msgstr "Pesquisar ID do local meteorológico"
-
-#
 msgid "Search west"
 msgstr "Pesquisa oeste"
 
@@ -18116,10 +18186,6 @@ msgstr ""
 
 msgid "Secondary DNS (IPv6)"
 msgstr ""
-
-#
-msgid "Seconds"
-msgstr "segundos"
 
 msgid "Security Packages"
 msgstr ""
@@ -18182,13 +18248,7 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Selecione 'ativado' se este sintonizador tiver um cabo de sinal conectado, caso contrário, selecione 'nada conectado'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Seleccione \"Não\" para que a mudança de hora utilize um único ficheiro de memória intermédia. Utilize 'Verificação da mudança de hora para ficheiros mais antigos [em minutos]' e 'Verificação da mudança de hora para espaço livre?"
-
 msgid "Select 'No' to only write a log message to the debug log file."
-msgstr ""
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr ""
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
@@ -18201,6 +18261,9 @@ msgid "Select 'Soft mount' to make file access return an error once the server s
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
 msgstr ""
 
 msgid "Select 'Yes' if an end time is required for this timer."
@@ -18229,9 +18292,6 @@ msgstr ""
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Selecione 'Sim' para permitir o uso da barra de busca para saltar para um ponto selecionado dentro do evento."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr ""
@@ -18443,6 +18503,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr ""
+
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr ""
 
@@ -18572,11 +18635,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Selecionar uma distribuição a partir da qual as imagens devem ser obtidas"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -18620,6 +18692,9 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Selecione um sintonizador"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 #
 msgid "Select action"
@@ -18728,6 +18803,9 @@ msgstr ""
 msgid "Select how to activate the Quick EPG mode."
 msgstr ""
 
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr ""
+
 msgid "Select how to sort the timer list."
 msgstr ""
 
@@ -18777,9 +18855,6 @@ msgid "Select if this timer activates on a Wednesday."
 msgstr ""
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
-
-msgid "Select if time shift must continue when set to record."
 msgstr ""
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -18835,10 +18910,19 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr ""
+
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
+msgstr ""
+
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -18900,10 +18984,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18933,6 +19023,9 @@ msgstr ""
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
@@ -18942,7 +19035,13 @@ msgstr ""
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr ""
+
 msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
 msgstr ""
 
 msgid "Select the committed switch port connected to the horizontal LNB."
@@ -18994,6 +19093,9 @@ msgid "Select the default directory to be used if the left column directory is n
 msgstr ""
 
 msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr ""
+
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
 msgstr ""
 
 msgid "Select the delay before the timer activates."
@@ -19055,6 +19157,9 @@ msgstr ""
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
@@ -19065,6 +19170,9 @@ msgid "Select the initial position of the timeline marker. The marker is the ver
 msgstr ""
 
 msgid "Select the input connector you want to use."
+msgstr ""
+
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
 msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
@@ -19089,6 +19197,9 @@ msgid "Select the location in which to store the recording:"
 msgstr ""
 
 msgid "Select the location where the picon files will be installed."
+msgstr ""
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -19136,6 +19247,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -19286,6 +19400,9 @@ msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV."
@@ -19489,6 +19606,9 @@ msgstr "Serbia"
 #
 msgid "Serbian"
 msgstr "Sérvio"
+
+msgid "Serbo-Croatian"
+msgstr ""
 
 msgid "Serial No"
 msgstr ""
@@ -19760,6 +19880,9 @@ msgstr ""
 msgid "Set system"
 msgstr ""
 
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
@@ -19776,9 +19899,6 @@ msgid "Set the default location for your instant recordings. Press 'OK' to add n
 msgstr ""
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
-msgstr ""
-
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
@@ -19904,9 +20024,6 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr ""
 
 msgid "Set to the desired primetime hour."
@@ -20830,6 +20947,9 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr ""
 
@@ -20874,7 +20994,7 @@ msgid "Show warning before restart"
 msgstr ""
 
 #
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Mostrar aviso quando o time shift parar"
 
 msgid "Show watch status"
@@ -21045,6 +21165,9 @@ msgstr ""
 msgid "Skin Settings"
 msgstr "Definições de Skin"
 
+msgid "Skin Setup Actions"
+msgstr ""
+
 msgid "Skin setting"
 msgstr "Definições de skin"
 
@@ -21097,9 +21220,6 @@ msgstr ""
 #
 msgid "Skip forward (enter time)"
 msgstr "avançar (inserir tempo)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
 
 msgid "Skip network setup"
 msgstr ""
@@ -21276,7 +21396,7 @@ msgstr "Esloveno"
 msgid "Slow"
 msgstr "Lento"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr ""
 
 msgid "Slow motion speeds"
@@ -21459,9 +21579,6 @@ msgstr ""
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr ""
 
-msgid "Sorry, there was a problem:"
-msgstr ""
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -21626,6 +21743,9 @@ msgstr "Desporto"
 msgid "Sports magazines"
 msgstr "notícias de desporto"
 
+msgid "Sranan Tongo"
+msgstr ""
+
 msgid "Sri Lanka"
 msgstr ""
 
@@ -21661,9 +21781,6 @@ msgstr ""
 
 msgid "Start Auto Refresh"
 msgstr "Iniciar a atualização automática"
-
-msgid "Start Boot Frequency"
-msgstr ""
 
 #
 msgid "Start RDS interactive"
@@ -21821,6 +21938,9 @@ msgstr ""
 msgid "Status:"
 msgstr ""
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr ""
 
@@ -21932,9 +22052,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "A parar a Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr ""
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21965,6 +22082,10 @@ msgstr "O disco não foi encontrado!"
 #
 msgid "Storage device not writable!"
 msgstr "O disco não é gravável!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 #
 msgid "Store position"
@@ -22228,7 +22349,7 @@ msgstr ""
 msgid "Switch EPG Page Up"
 msgstr ""
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
+msgid "Switch HDR type by content"
 msgstr ""
 
 msgid "Switch TV to correct input"
@@ -22618,9 +22739,6 @@ msgstr "Modo de teste"
 msgid "Test type"
 msgstr "Tipo de teste"
 
-msgid "Testing Information"
-msgstr ""
-
 msgid "Testscreens"
 msgstr "Imagens de Teste"
 
@@ -22628,6 +22746,9 @@ msgid "Testscreens that are helpful to fine-tune your display"
 msgstr ""
 
 msgid "Text"
+msgstr ""
+
+msgid "Text Box"
 msgstr ""
 
 #
@@ -22812,6 +22933,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22843,11 +22970,6 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
-msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 
 #, python-format
@@ -22927,6 +23049,9 @@ msgstr "Os resultados foram escritos em %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr ""
 
@@ -22954,6 +23079,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
@@ -22962,9 +23090,16 @@ msgid ""
 "What do you want to do?"
 msgstr ""
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -23073,6 +23208,9 @@ msgstr "Este bouquet é protegido por um PIN do Controle Parental!"
 msgid "This channel is currently off air."
 msgstr ""
 
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
@@ -23129,9 +23267,6 @@ msgstr "Esta opção permite aumentar os tons azuis da imagem."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Esta opção permite aumentar os tons verdes da imagem."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr ""
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr ""
@@ -23196,32 +23331,8 @@ msgstr ""
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Essa opção permite que você escolha se deseja ou não exibir informações de gênero para o evento."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Esta opção permite-lhe configurar a profundidade de cor para UHD"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Esta opção permite-lhe configurar a Colorimetria para HDR"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr ""
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr ""
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Esta opção permite-lhe activar ou desactivar o modo de cor de 10 bits"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Esta opção permite-lhe activar ou desactivar o modo de cor de 12 bits"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Esta opção permite-lhe forçar os modos HDR para UHD"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Esta opção permite-lhe forçar os modos HDR10 para UHD"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Esta opção permite-lhe forçar os modos HLG para UHD"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
@@ -23414,39 +23525,20 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
-msgid "Time shift buffer delete after zap"
-msgstr ""
-
-msgid "Time shift buffer limit"
-msgstr ""
-
 #
 msgid "Time shift buffer location"
 msgstr "Localização para Time Shift"
 
-msgid "Time shift checking for free space"
-msgstr ""
-
-msgid "Time shift checking for older files"
-msgstr ""
-
-msgid "Time shift event based file splitting"
-msgstr ""
-
-msgid "Time shift event limit"
+msgid "Time shift could not be started. Please check the storage device and available space."
 msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-#
-msgid "Time shift not possible!"
-msgstr "Time Shift não permitido!"
-
 msgid "Time shift save action on zap"
 msgstr ""
 
-msgid "Time shift save failed!"
+msgid "Time shift save failed! The source buffer has been retained."
 msgstr ""
 
 msgid "Time shift save location"
@@ -23458,7 +23550,7 @@ msgstr ""
 msgid "Time shift save recording (Stop after current event)"
 msgstr ""
 
-msgid "Time shift saved to your hard disk drive!"
+msgid "Time shift saved!"
 msgstr ""
 
 msgid "Time shift will get saved at end of event."
@@ -23477,6 +23569,9 @@ msgid "Time update in minutes"
 msgstr "Atualização do tempo em minutos"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
+msgstr ""
+
+msgid "Time without key presses before hiding the OSD."
 msgstr ""
 
 #
@@ -24213,6 +24308,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -24232,7 +24330,13 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to start the HbbTV application."
 msgstr ""
 
 msgid "Unable to start the local image search. Please try again later."
@@ -24245,8 +24349,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -24601,6 +24711,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Usar o comando remoto da TV"
 
@@ -24786,9 +24899,6 @@ msgstr "Usar estas opções de imagem?"
 msgid "Use time jumps for fast forward/backward"
 msgstr ""
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Utilizar a barra de procura de mudança de hora durante a mudança de hora"
-
 msgid "Use viewer for unknown files"
 msgstr ""
 
@@ -24821,6 +24931,9 @@ msgid "User ID"
 msgstr "Definido pelo utilizador"
 
 msgid "User Manual"
+msgstr ""
+
+msgid "User Manual Actions"
 msgstr ""
 
 msgid "User comments"
@@ -25367,6 +25480,9 @@ msgstr ""
 msgid "Weather"
 msgstr "Tempo"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr ""
 
@@ -25496,6 +25612,9 @@ msgstr "Quando activado, os dados do EIT serão incluídos em Streams HTTP. Isto
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Quando activado, será mostrada uma mensagem pop-up no fim de um filme e o próximo será iniciado."
 
@@ -25514,8 +25633,8 @@ msgstr "Quando habilitada, uma gravação tem permissão para abortar o streamin
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Quando activado, e não existem sintonizadores livres uma gravação está permitida de interromper a emissão."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Quando activado, um aviso será exibido e o utilizador terá a opção de parar ou continuar o time shift."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -25529,14 +25648,29 @@ msgstr ""
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr ""
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Quando activado, é necessária autenticação para assistir a Streams HTTP."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr ""
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr ""
@@ -25549,6 +25683,9 @@ msgstr "Quando activado, continue para o próximo Bouquet ao atingir o último c
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Quando activado, gravações apagadas são movidas para a reciclagem, em vez de serem imediatamente apagadas."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Quando activado, durante a reprodução de vídeos as legendas externas serão sempre ligadas."
@@ -25595,11 +25732,17 @@ msgstr ""
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
+
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Quando activado, as legendas para os deficientes auditivos podem ser usadas."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Quando activado, as legendas para deficientes auditivos serão preferidos sobre as legendas normais, quando ambos os tipos estão disponíveis."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Quando activado, as páginas de teletexto serão armazenadas em cache, permitindo um acesso mais rápido."
@@ -25661,7 +25804,10 @@ msgstr ""
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
 msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
@@ -25820,9 +25966,6 @@ msgstr ""
 msgid "Wolof"
 msgstr ""
 
-msgid "Workaround for old tuner driver."
-msgstr "Solução alternativa para o driver de sintonizador antigo"
-
 msgid "Workgroup name"
 msgstr ""
 
@@ -25860,6 +26003,9 @@ msgstr "Erro ao gravar. %s"
 #
 msgid "Write failed!"
 msgstr "Escrita falhou!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "WWW"
@@ -26292,9 +26438,6 @@ msgstr ""
 msgid "Zulu"
 msgstr ""
 
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] A fusão de registos falhou!"
-
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Timeshift] Reiniciando o time shift!"
 
@@ -26307,6 +26450,9 @@ msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "um interface gráfico para atribuir canais/operadores/caids a um módulo CI"
 
 msgid "activatePiP"
+msgstr ""
+
+msgid "active (GLES enabled)"
 msgstr ""
 
 msgid "address:"
@@ -26817,6 +26963,9 @@ msgstr "estado da pesquisa"
 msgid "search EPG..."
 msgstr "pesquisar EPG..."
 
+msgid "seconds"
+msgstr ""
+
 #
 msgid "select CAId's"
 msgstr "seleccionar CAId's"
@@ -26878,6 +27027,9 @@ msgstr "estéreo"
 msgid "successful"
 msgstr ""
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr ""
 
@@ -26924,6 +27076,9 @@ msgstr ""
 #
 msgid "this recording"
 msgstr "esta gravação"
+
+msgid "throttled"
+msgstr ""
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -27021,6 +27176,94 @@ msgstr "sim (mantenha os feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "Buffer em horas\" ou \"número dos últimos eventos\". Os ficheiros mais antigos serão eliminados primeiro."
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Se definido como 'sim', permite que você use timeshift com plugins de áudio alternativos."
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Seleccione \"Não\" para que a mudança de hora utilize um único ficheiro de memória intermédia. Utilize 'Verificação da mudança de hora para ficheiros mais antigos [em minutos]' e 'Verificação da mudança de hora para espaço livre?"
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Selecione 'Sim' para permitir o uso da barra de busca para saltar para um ponto selecionado dentro do evento."
+
+#
+#~ msgid "Time shift not possible!"
+#~ msgstr "Time Shift não permitido!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Utilizar a barra de procura de mudança de hora durante a mudança de hora"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Quando activado, um aviso será exibido e o utilizador terá a opção de parar ou continuar o time shift."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] A fusão de registos falhou!"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "Permitir 10 bits"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "Permitir 12 bits"
+
+#~ msgid "HDR10 support"
+#~ msgstr "Suporte HDR10"
+
+#~ msgid "HLG support"
+#~ msgstr "Suporte HLG"
+
+#
+#~ msgid "Seconds"
+#~ msgstr "segundos"
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Esta opção permite-lhe configurar a profundidade de cor para UHD"
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Esta opção permite-lhe configurar a Colorimetria para HDR"
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Esta opção permite-lhe activar ou desactivar o modo de cor de 10 bits"
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Esta opção permite-lhe activar ou desactivar o modo de cor de 12 bits"
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Esta opção permite-lhe forçar os modos HDR para UHD"
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Esta opção permite-lhe forçar os modos HDR10 para UHD"
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Esta opção permite-lhe forçar os modos HLG para UHD"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12bit 4:2:0/4:2:2 sem PiP"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "Alterar o modo da Box para controlar os modos de chips de hardware*"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "Solução alternativa para o driver de sintonizador antigo"
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Está a ser utilizado um ficheiro multimédia!"
+
+#
+#~ msgid "Location list"
+#~ msgstr "Lista de localização"
+
+#
+#~ msgid "Search weather location ID"
+#~ msgstr "Pesquisar ID do local meteorológico"
 
 #~ msgid "Close screen"
 #~ msgstr "Fechar ecrã"
@@ -28730,10 +28973,6 @@ msgstr ""
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/s"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "%s MHz"
 
 #
 #~ msgid "(FTA Service)"

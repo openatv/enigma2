@@ -72,6 +72,9 @@ public:
 	bool isEcmAnalyzed() const { return m_ecm_analyzed; }  // true once ECM was analyzed
 	bool isCsaAlt() const { return m_csa_alt; }            // true if CSA-ALT was detected
 
+	// Cached CSA-ALT state of a service: -1 = unknown, 0 = no, 1 = CSA-ALT
+	static int cachedCsaAlt(const eServiceReferenceDVB& ref);
+
 	/**
 	 * Force activation for recording sessions
 	 * Recording sessions don't do ECM analysis - they trust that

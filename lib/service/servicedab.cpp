@@ -528,6 +528,12 @@ void eDABWorker::updateDecoderStats()
 	m_stats.bitrate = m_decoder->bitrate();
 	m_stats.serviceFound = m_decoder->serviceFound();
 	m_stats.dabplus = m_decoder->isDABPlus();
+	const int language = m_decoder->language();
+	if (language > 0)
+		snprintf(m_stats.language, sizeof(m_stats.language), "%d", language);
+	else
+		m_stats.language[0] = 0;
+	snprintf(m_stats.protection, sizeof(m_stats.protection), "%s", m_decoder->protection().c_str());
 	strncpy(m_stats.serviceLabel, m_decoder->serviceLabel().c_str(), sizeof(m_stats.serviceLabel) - 1);
 	m_stats.serviceLabel[sizeof(m_stats.serviceLabel) - 1] = 0;
 	strncpy(m_stats.ensembleLabel, m_decoder->ensembleLabel().c_str(), sizeof(m_stats.ensembleLabel) - 1);
@@ -2575,7 +2581,7 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 		m_event(this, evUpdatedRadioText);
 	if (radioMetaChanged || dlPlusChanged)
 		m_event(this, evUpdatedRtpText);
-	if (slideChanged || logoChanged || servicesChanged || receiverChanged)
+	if (radioMetaChanged || slideChanged || logoChanged || servicesChanged || receiverChanged)
 		m_event(this, evUpdatedInfo);
 	if (epgChanged)
 		m_event(this, evUpdatedEventInfo);

@@ -23,9 +23,11 @@
 #######################################################################
 
 from time import localtime
-from enigma import eLabel, eEPGCache
-from Components.Renderer.Renderer import Renderer
+
+from enigma import eEPGCache, eLabel
+
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 
 
 class NextEvent(Renderer, VariableText):
@@ -47,5 +49,5 @@ class NextEvent(Renderer, VariableText):
 		if eventNext and eventNext[0][4]:
 			t = localtime(eventNext[0][1])
 			duration = "%d min" % (eventNext[0][2] / 60)
-			ENext = _("It follows:") + " " + "%s %02d:%02d  %s\n%s" % (_("It follows:"), t[3], t[4], duration, eventNext[0][4])
+			ENext = "%s %02d:%02d  %s\n%s" % (_("It follows:"), t[3], t[4], duration, eventNext[0][4])
 		self.text = ENext

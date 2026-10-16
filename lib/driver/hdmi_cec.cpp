@@ -141,6 +141,7 @@ eHdmiCEC::eHdmiCEC()
 	linuxCEC = false;
 	amlogicCEC = false;
 	eventsSuspended = false;
+	sendStop = false;
 	hdmiFd = -1;
 	fixedAddress = false;
 	cecEnabled = false;
@@ -296,6 +297,9 @@ void eHdmiCEC::initializeCEC()
 	{
 		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read | eSocketNotifier::Priority);
 		CONNECT(messageNotifier->activated, eHdmiCEC::hdmiEvent);
+		/* AOCEC write() waits for the follower's answer, up to half a second without one */
+		if (amlogicCEC)
+			startSendThread();
 	}
 	else
 	{
@@ -309,6 +313,7 @@ eHdmiCEC::~eHdmiCEC()
 {
 	if (messageNotifier)
 		messageNotifier->stop();
+	stopSendThread();
 	if (amlogicCEC && hdmiFd >= 0)
 	{
 		uint32_t enable = 0;
@@ -840,73 +845,124 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 			eDebugNoNewLine(" %02X", message.data[i]);
 		}
 		eDebugNoNewLine("\n");
-		if (linuxCEC)
+		if (sendThread.joinable())
 		{
-			struct cec_msg msg;
-			int payloadLength = message.length;
-			if (payloadLength > CEC_MAX_MSG_SIZE - 1)
-			{
-				eDebug("[eHdmiCEC] truncating oversized CEC payload from %d to %d bytes", payloadLength, CEC_MAX_MSG_SIZE - 1);
-				payloadLength = CEC_MAX_MSG_SIZE - 1;
-			}
-			cec_msg_init(&msg, logicalAddress, message.address);
-			memcpy(&msg.msg[1], message.data, payloadLength);
-			msg.len = payloadLength + 1;
-			int result;
-			do
-			{
-				result = ::ioctl(hdmiFd, CEC_TRANSMIT, &msg);
-			}
-			while (result < 0 && errno == EINTR);
-			if (result < 0)
-			{
-				if (errno == EBUSY)
-					eDebug("[eHdmiCEC] CEC transmit queue is busy");
-				else
-					eDebug("[eHdmiCEC] CEC_TRANSMIT failed: %m");
-			}
-			else if (msg.tx_status && !(msg.tx_status & CEC_TX_STATUS_OK))
-			{
-				eDebug("[eHdmiCEC] transmit to %X failed immediately (status %02X)", (unsigned int)message.address, (unsigned int)msg.tx_status);
-			}
-		}
-		else if (amlogicCEC)
-		{
-			unsigned char frame[CEC_MAX_MSG_SIZE] = {};
-			int payloadLength = message.length;
-			if (payloadLength > CEC_MAX_MSG_SIZE - 1)
-				payloadLength = CEC_MAX_MSG_SIZE - 1;
-			frame[0] = ((logicalAddress & 0x0f) << 4) | (message.address & 0x0f);
-			memcpy(&frame[1], message.data, payloadLength);
-
-			ssize_t status = -1;
-			for (int attempt = 0; attempt < 3; ++attempt)
-			{
-				do
-				{
-					status = ::write(hdmiFd, frame, payloadLength + 1);
-				}
-				while (status < 0 && errno == EINTR);
-				if (status == 0 || status == payloadLength + 1)
-					break;
-				if (attempt < 2)
-					usleep(10000);
-			}
-			if (status < 0)
-				eDebug("[eHdmiCEC] Amlogic AOCEC transmit failed: %m");
-			else if (status != 0 && status != payloadLength + 1)
-				eDebug("[eHdmiCEC] Amlogic AOCEC transmit failed, status %d", (int)status);
+			std::scoped_lock lock(sendMutex);
+			sendQueue.emplace_back(message, logicalAddress);
+			sendCondition.notify_one();
 		}
 		else
+			transmitMessage(message, logicalAddress);
+	}
+}
+
+void eHdmiCEC::startSendThread()
+{
+	if (sendThread.joinable())
+		return;
+	sendStop = false;
+	sendThread = std::jthread(&eHdmiCEC::sendThreadLoop, this);
+}
+
+/* sends what is still queued, e.g. the standby of the TV, then ends the thread */
+void eHdmiCEC::stopSendThread()
+{
+	if (!sendThread.joinable())
+		return;
+	{
+		std::scoped_lock lock(sendMutex);
+		sendStop = true;
+	}
+	sendCondition.notify_one();
+	sendThread.join();
+}
+
+void eHdmiCEC::sendThreadLoop()
+{
+	std::unique_lock lock(sendMutex);
+	while (true)
+	{
+		sendCondition.wait(lock, [this] { return sendStop || !sendQueue.empty(); });
+		if (sendQueue.empty())
+			break;
+		struct cec_message message = sendQueue.front().first;
+		unsigned char source = sendQueue.front().second;
+		sendQueue.pop_front();
+		lock.unlock();
+		transmitMessage(message, source);
+		lock.lock();
+	}
+}
+
+void eHdmiCEC::transmitMessage(const struct cec_message &message, unsigned char source) const
+{
+	if (linuxCEC)
+	{
+		struct cec_msg msg;
+		int payloadLength = message.length;
+		if (payloadLength > CEC_MAX_MSG_SIZE - 1)
 		{
-#ifdef DREAMBOX
-			message.flag = 1;
-			::ioctl(hdmiFd, 3, &message);
-#else
-			ssize_t ret = ::write(hdmiFd, &message, 2 + message.length);
-			if (ret < 0) eDebug("[eHdmiCEC] write failed: %m");
-#endif
+			eDebug("[eHdmiCEC] truncating oversized CEC payload from %d to %d bytes", payloadLength, CEC_MAX_MSG_SIZE - 1);
+			payloadLength = CEC_MAX_MSG_SIZE - 1;
 		}
+		cec_msg_init(&msg, source, message.address);
+		memcpy(&msg.msg[1], message.data, payloadLength);
+		msg.len = payloadLength + 1;
+		int result;
+		do
+		{
+			result = ::ioctl(hdmiFd, CEC_TRANSMIT, &msg);
+		}
+		while (result < 0 && errno == EINTR);
+		if (result < 0)
+		{
+			if (errno == EBUSY)
+				eDebug("[eHdmiCEC] CEC transmit queue is busy");
+			else
+				eDebug("[eHdmiCEC] CEC_TRANSMIT failed: %m");
+		}
+		else if (msg.tx_status && !(msg.tx_status & CEC_TX_STATUS_OK))
+		{
+			eDebug("[eHdmiCEC] transmit to %X failed immediately (status %02X)", (unsigned int)message.address, (unsigned int)msg.tx_status);
+		}
+	}
+	else if (amlogicCEC)
+	{
+		unsigned char frame[CEC_MAX_MSG_SIZE] = {};
+		int payloadLength = message.length;
+		if (payloadLength > CEC_MAX_MSG_SIZE - 1)
+			payloadLength = CEC_MAX_MSG_SIZE - 1;
+		frame[0] = ((source & 0x0f) << 4) | (message.address & 0x0f);
+		memcpy(&frame[1], message.data, payloadLength);
+
+		ssize_t status = -1;
+		for (int attempt = 0; attempt < 3; ++attempt)
+		{
+			do
+			{
+				status = ::write(hdmiFd, frame, payloadLength + 1);
+			}
+			while (status < 0 && errno == EINTR);
+			if (status == 0 || status == payloadLength + 1)
+				break;
+			if (attempt < 2)
+				usleep(10000);
+		}
+		if (status < 0)
+			eDebug("[eHdmiCEC] Amlogic AOCEC transmit failed: %m");
+		else if (status != 0 && status != payloadLength + 1)
+			eDebug("[eHdmiCEC] Amlogic AOCEC transmit failed, status %d", (int)status);
+	}
+	else
+	{
+#ifdef DREAMBOX
+		struct cec_message legacyMessage = message;
+		legacyMessage.flag = 1;
+		::ioctl(hdmiFd, 3, &legacyMessage);
+#else
+		ssize_t ret = ::write(hdmiFd, &message, 2 + message.length);
+		if (ret < 0) eDebug("[eHdmiCEC] write failed: %m");
+#endif
 	}
 }
 

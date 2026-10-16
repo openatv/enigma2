@@ -334,9 +334,17 @@ void eFilePushThread::stop()
 		return;
 	m_stop = 1;
 	eDebug("[eFilePushThread] stopping thread");
-	m_run_cond.signal(); /* Break out of pause if needed */
-	sendSignal(SIGUSR1);
-	kill(); /* Kill means join actually */
+	/* A signal arriving between the m_stop check and a blocking
+	 * syscall is lost, so repeat it until the thread has exited. */
+	for (int attempt = 0;; ++attempt)
+	{
+		m_run_cond.signal(); /* Break out of pause if needed */
+		sendSignal(SIGUSR1);
+		if (join(100))
+			break;
+		if (attempt % 50 == 0)
+			eDebug("[eFilePushThread] thread still running, resending signal");
+	}
 }
 
 void eFilePushThread::pause()
@@ -672,8 +680,9 @@ void eFilePushThreadRecorder::thread()
 				int w = writeBuffer();
 				if (w < 0)
 				{
+					int error = errno;
 					eDebug("[eFilePushThreadRecorder] WRITE ERROR on timeout flush: %m");
-					sendEvent(evtWriteError);
+					_setWriteError(error);
 					break;
 				}
 			}
@@ -708,8 +717,9 @@ void eFilePushThreadRecorder::thread()
 					int w = writeBuffer();
 					if (w < 0)
 					{
+						int error = errno;
 						eDebug("[eFilePushThreadRecorder] WRITE ERROR on EAGAIN flush: %m");
-						sendEvent(evtWriteError);
+						_setWriteError(error);
 						break;
 					}
 				}
@@ -745,8 +755,9 @@ void eFilePushThreadRecorder::thread()
 #endif
 			if (w < 0)
 			{
+				int error = errno;
 				eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
-				sendEvent(evtWriteError);
+				_setWriteError(error);
 				break;
 			}
 			if (w == 0)
@@ -759,9 +770,11 @@ void eFilePushThreadRecorder::thread()
 	}
 
 	/* Flush remaining data. */
-	if (m_buffer_fill > 0)
+	if (m_buffer_fill > 0 && !_writeError)
 	{
-		writeBuffer();
+		int result = writeBuffer();
+		if (result < 0 || (result == 0 && (!m_serviceFilter.active() || m_buffer_fill >= static_cast<size_t>(m_packetSize))))
+			_setWriteError(result < 0 ? errno : EIO);
 		m_buffer_fill = 0;
 	}
 
@@ -773,6 +786,7 @@ void eFilePushThreadRecorder::thread()
 void eFilePushThreadRecorder::start(int fd)
 {
 	m_fd_source = fd;
+	_writeError = 0;
 	m_stop = 0;
 	run();
 }
@@ -783,14 +797,31 @@ void eFilePushThreadRecorder::stop()
 	if (m_stop == 1)
 		return;
 	m_stop = 1;
-	eDebug("[eFilePushThreadRecorder] stopping thread."); /* Do it ONCE — won't help more than once. */
-	sendSignal(SIGUSR1);
-	kill();
+	eDebug("[eFilePushThreadRecorder] stopping thread.");
+	/* A signal arriving between the m_stop check and a blocking
+	 * read() is lost, so repeat it until the thread has exited. */
+	for (int attempt = 0;; ++attempt)
+	{
+		sendSignal(SIGUSR1);
+		if (join(100))
+			break;
+		if (attempt % 50 == 0)
+			eDebug("[eFilePushThreadRecorder] thread still running, resending signal");
+	}
 }
 
 void eFilePushThreadRecorder::sendEvent(int evt)
 {
 	m_messagepump.send(evt);
+}
+
+void eFilePushThreadRecorder::_setWriteError(int error)
+{
+	if (!_writeError)
+	{
+		_writeError = error ? error : EIO;
+		sendEvent(evtWriteError);
+	}
 }
 
 void eFilePushThreadRecorder::recvEvent(const int &evt)

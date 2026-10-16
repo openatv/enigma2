@@ -1,9 +1,9 @@
 
 from enigma import eAVControl, eServiceReference, iPlayableService, iServiceInformation
 
-from Components.Converter.Converter import Converter
-# from Components.Converter.Poll import Poll
 from Components.Element import cached
+from Components.Converter.Converter import Converter
+from Tools.DAB import dabMetadata
 from Tools.Transponder import ConvertToHumanReadable
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -61,6 +61,8 @@ class ServiceInfo(Converter):
 	IS_SOFTCSA = 47
 	IS_DAB = 48
 	IS_DVBI = 49
+	DAB_LANGUAGE = 50
+	DAB_PROTECTION = 51
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -78,6 +80,8 @@ class ServiceInfo(Converter):
 		self.token, self.interestingEvents = {
 			"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
+			"DABLanguage": (self.DAB_LANGUAGE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
+			"DABProtection": (self.DAB_PROTECTION, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"EditMode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 			"Editmode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 			"FrameRate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
@@ -249,6 +253,15 @@ class ServiceInfo(Converter):
 		result = ""
 		service = self.source.service
 		info = service and service.info()
+		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION):
+			if info:
+				serviceRef = info.getInfoString(iServiceInformation.sServiceref)
+				if serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB:
+					if self.token == self.DAB_LANGUAGE:
+						result = dabMetadata.languageName(info.getInfoString(iServiceInformation.sTagLanguageCode))
+					else:
+						result = info.getInfoString(iServiceInformation.sDABProtection)
+			return result
 		if info:
 			videoData = info.getInfoString(iServiceInformation.sVideoInfo) or "-1|-1|-1|-1|-1|-1"
 			videoData = [int(x) for x in videoData.split("|")]

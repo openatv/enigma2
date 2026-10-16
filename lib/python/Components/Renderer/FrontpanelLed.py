@@ -1,5 +1,6 @@
+from os.path import exists
+
 from Components.Element import Element
-from os import path
 # this is not a GUI renderer.
 
 
@@ -13,27 +14,15 @@ class FrontpanelLed(Element):
 		Element.__init__(self)
 
 	def changed(self, *args, **kwargs):
-		if self.boolean:
-			val = self.source.boolean and 0 or 1
-		else:
-			val = self.source.value
+		def writeProc(fileName, value):
+			if exists(fileName):
+				with open(fileName, "w") as fd:
+					fd.write(value)
 
-		(speed, pattern, pattern_4bit) = self.patterns[val]
-
-		if path.exists("/proc/stb/fp/led%d_pattern" % self.which):
-			f = open("/proc/stb/fp/led%d_pattern" % self.which, "w")
-			f.write("%08x" % pattern)
-			f.close()
+		val = (0 if self.source.boolean else 1) if self.boolean else self.source.value
+		speed, pattern, pattern4Bit = self.patterns[val]
+		writeProc(f"/proc/stb/fp/led{self.which}_pattern", f"{pattern:08x}")
 		if self.which == 0:
-			if path.exists("/proc/stb/fp/led_set_pattern"):
-				f = open("/proc/stb/fp/led_set_pattern", "w")
-				f.write("%08x" % pattern_4bit)
-				f.close()
-			if path.exists("/proc/stb/fp/led_set_speed"):
-				f = open("/proc/stb/fp/led_set_speed", "w")
-				f.write("%d" % speed)
-				f.close()
-			if path.exists("/proc/stb/fp/led_pattern_speed"):
-				f = open("/proc/stb/fp/led_pattern_speed", "w")
-				f.write("%d" % speed)
-				f.close()
+			writeProc("/proc/stb/fp/led_set_pattern", f"{pattern4Bit:08x}")
+			writeProc("/proc/stb/fp/led_set_speed", str(speed))
+			writeProc("/proc/stb/fp/led_pattern_speed", str(speed))

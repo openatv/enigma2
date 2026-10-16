@@ -1,8 +1,9 @@
 from enigma import eLabel
+
 from Components.config import config
-from Components.Renderer.Renderer import Renderer
 from Components.VariableText import VariableText
-from Tools.Directories import resolveFilename, SCOPE_SYSETC
+from Components.Renderer.Renderer import Renderer
+from Tools.Directories import SCOPE_SYSETC, resolveFilename
 
 
 class VtiEmuInfo(VariableText, Renderer):

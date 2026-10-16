@@ -1,6 +1,8 @@
 #include <lib/base/thread.h>
 
+#include <errno.h>
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 #include <lib/base/eerror.h>
 
@@ -130,6 +132,30 @@ void eThread::kill()
 	the_thread = 0;
 	if (ret)
 		eWarning("[eThread] pthread_join failed, code: %d", ret);
+}
+
+bool eThread::join(int timeout_ms)
+{
+	if (!the_thread) /* already joined */
+		return true;
+
+	struct timespec ts = {};
+	clock_gettime(CLOCK_REALTIME, &ts);
+	ts.tv_sec += timeout_ms / 1000;
+	ts.tv_nsec += (timeout_ms % 1000) * 1000000L;
+	if (ts.tv_nsec >= 1000000000L)
+	{
+		ts.tv_sec++;
+		ts.tv_nsec -= 1000000000L;
+	}
+
+	int ret = pthread_timedjoin_np(the_thread, nullptr, &ts);
+	if (ret == ETIMEDOUT)
+		return false;
+	the_thread = 0;
+	if (ret)
+		eWarning("[eThread] pthread_timedjoin_np failed, code: %d", ret);
+	return true;
 }
 
 void eThread::hasStarted()

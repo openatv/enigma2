@@ -1,15 +1,18 @@
 from os.path import exists, join
+
 from enigma import ePixmap
+
 from Components.Renderer.Renderer import Renderer
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 
 
 class AudioIcon(Renderer):
+	GUI_WIDGET = ePixmap
 	searchPaths = (resolveFilename(SCOPE_GUISKIN), "/usr/share/enigma2/skin_default/")
 
 	def __init__(self):
 		Renderer.__init__(self)
-		self.size = None
+		self.size = None  # Not used here, but kept for plugins that read it.
 		self.nameAudioCache = {}
 		self.pngname = ""
 		self.path = ""
@@ -27,8 +30,6 @@ class AudioIcon(Renderer):
 					self.size = f"{value[0]}x{value[1]}"
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
-
-	GUI_WIDGET = ePixmap
 
 	def changed(self, what):
 		if self.instance:

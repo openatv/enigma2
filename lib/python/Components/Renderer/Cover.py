@@ -1,5 +1,7 @@
 from os.path import basename, dirname, exists, isdir, isfile, join, split, splitext
-from enigma import ePixmap, ePicLoad
+
+from enigma import ePicLoad, ePixmap
+
 from Components.config import config
 from Components.Renderer.Renderer import Renderer
 from Components.Sources.CurrentService import CurrentService
@@ -7,13 +9,14 @@ from Components.Sources.ServiceEvent import ServiceEvent
 
 
 class Cover(Renderer):
-	EXTENSIONS = (".jpg", ".png", ".jpeg")
 	GUI_WIDGET = ePixmap
+	EXTENSIONS = (".jpg", ".png", ".jpeg")
 
 	def __init__(self):
 		Renderer.__init__(self)
 		self.nameCache = {}
 		self.picname = ""
+		self.picload = None
 
 	def changed(self, what):
 		if self.instance:
@@ -34,13 +37,10 @@ class Cover(Renderer):
 					picname = self.findCover(sname)[1]
 				if picname == "":
 					path = sname
-					if service.toString().endswith == "..":
+					if service.toString().endswith(".."):
 						path = config.movielist.last_videodir.value
-					for ext in self.EXTENSIONS:
-						p = dirname(path) + "/folder" + ext
-						picname = exists(p) and p or ""
-						if picname:
-							break
+					folder = join(dirname(path), "folder")
+					picname = next((f"{folder}{x}" for x in self.EXTENSIONS if exists(f"{folder}{x}")), "")
 
 				if picname != "":
 					self.nameCache[sname] = picname
@@ -51,10 +51,9 @@ class Cover(Renderer):
 					size = self.instance.size()
 					self.picload = ePicLoad()
 					self.picload.PictureData.get().append(self.showCoverCallback)
-					if self.picload:
-						self.picload.setPara((size.width(), size.height(), 1, 1, False, 1, "#00000000"))
-						if self.picload.startDecode(picname) != 0:
-							del self.picload
+					self.picload.setPara((size.width(), size.height(), 1, 1, False, 1, "#00000000"))
+					if self.picload.startDecode(picname) != 0:
+						self.picload = None
 				else:
 					self.instance.hide()
 
@@ -64,12 +63,11 @@ class Cover(Renderer):
 			if ptr is not None:
 				self.instance.setPixmap(ptr)
 				self.instance.show()
-			del self.picload
+			self.picload = None
 
 	def findCover(self, path):
-		fpath = p1 = p2 = p3 = ""
-		name, ext = splitext(path)
-		ext = ext.lower()
+		p1 = p2 = p3 = ""
+		name = splitext(path)[0]
 		if isfile(path):
 			directory = dirname(path)
 			p1 = name
@@ -89,14 +87,5 @@ class Cover(Renderer):
 			prtdir, directoryName = split(directory)
 			p1 = join(directory, directoryName)
 			p3 = join(prtdir, directoryName)
-		pathes = (p1, p2, p3)
-		for p in pathes:
-			for ext in self.EXTENSIONS:
-				path = p + ext
-				if exists(path):
-					break
-			if exists(path):
-				fpath = path
-				break
-
+		fpath = next((f"{base}{x}" for base in (p1, p2, p3) if base for x in self.EXTENSIONS if exists(f"{base}{x}")), "")
 		return (p1, fpath)

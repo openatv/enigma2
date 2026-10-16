@@ -449,8 +449,8 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/video/sync_mode", configElement.value, source=MODULE_NAME)
 
 		config.av.sync_mode = ConfigSelection(default="slow", choices=[
-			("slow", _("Slow Motion")),
-			("hold", _("Hold First Frame")),
+			("slow", _("Slow motion")),
+			("hold", _("Hold first frame")),
 			("black", _("Black screen")),
 		])
 		config.av.sync_mode.addNotifier(setSyncMode)

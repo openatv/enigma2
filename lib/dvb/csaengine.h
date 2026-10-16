@@ -97,6 +97,7 @@ private:
 	std::atomic<bool> m_key_even_set{false};
 	std::atomic<bool> m_key_odd_set{false};
 	int m_batch_size;
+	unsigned int m_bad_packets{0};  // Log rate limit only, races are harmless
 
 	// Pre-allocated batch arrays
 	std::vector<dvbcsa_bs_batch_s> m_batch_even;
@@ -105,8 +106,10 @@ private:
 	// TS Packet Helpers
 	static bool isPacketValid(const unsigned char* pkt);
 	static unsigned char getScrambledBits(const unsigned char* pkt);
-	static unsigned char getPayloadOffset(const unsigned char* pkt);
+	static int getPayloadOffset(const unsigned char* pkt);
 	static void clearTSC(unsigned char* pkt);
+	static void setNullPacket(unsigned char* pkt);
+	void logBadPacket(const char* reason, const unsigned char* pkt, int offset, int len);
 };
 
 #endif // __dvbcsaengine_h

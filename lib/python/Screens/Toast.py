@@ -1,4 +1,4 @@
-from enigma import ePoint, gRGB, eSize, eTimer
+from enigma import ePoint, eSize, eTimer, gRGB
 
 from Components.Label import Label
 from Screens.Screen import Screen
@@ -89,10 +89,13 @@ class ToastScreen(Screen):
 		self["text"].instance.resize(eSize(textW, textH))
 		self["text"].instance.move(ePoint(BORDER_PAD + iconW + GAP, BORDER_PAD + (contentH - textH) // 2))
 
-		self._fadeIn = True
-		self._alpha = 255
+		# Updating a visible status must not restart the fade from transparent.
+		self._fadeTimer.stop()
+		self._fadeIn = not self.shown
+		self._alpha = 255 if self._fadeIn else 0
 		self._applyColors()
-		self._fadeTimer.start(FADESPEED)
+		if self._fadeIn:
+			self._fadeTimer.start(FADESPEED)
 		self.show()
 
 	def _applyColors(self):
@@ -144,6 +147,7 @@ class Toast:
 			Toast.instance = self
 			self._dialog = None
 			self._queue = []
+			self.activeToastId = None
 
 	def setup(self, session):
 		self._dialog = session.instantiateDialog(ToastScreen)
@@ -154,20 +158,38 @@ class Toast:
 		if self._queue:
 			self._showNext()
 
-	def showToast(self, text, toasttype, timeout, customIcon=None):
+	def showToast(self, text, toasttype, timeout, customIcon=None, replaceId=None):
 		timeout = max(3, min(timeout, 10))  # Minimum 3 maximum 10
-		self._queue.append((text, toasttype, timeout, customIcon))
+		toast = (text, toasttype, timeout, customIcon, replaceId)
+		if replaceId is not None:
+			if self._dialog and self._dialog.shown and self.activeToastId == replaceId:
+				self._dialog.showToast(text, toasttype, timeout, customIcon)
+				return
+			for index, queuedToast in enumerate(self._queue):
+				if queuedToast[4] == replaceId:
+					self._queue[index] = toast
+					return
+		self._queue.append(toast)
 		if self._dialog and not self._dialog.shown and not self._nextTimer.isActive():
 			self._showNext()
 
+	def removeToast(self, replaceId):
+		if replaceId is not None:
+			self._queue = [x for x in self._queue if x[4] != replaceId]
+			if self._dialog and self._dialog.shown and self.activeToastId == replaceId:
+				self._dialog.forceHide()
+			if self._dialog and not self._queue:
+				self._nextTimer.stop()
+
 	def _scheduleNext(self):
+		self.activeToastId = None
 		if self._queue:
 			self._nextTimer.start(1000, True)  # 1000 ms Pause
 
 	def _showNext(self):
 		self._nextTimer.stop()
 		if not self._dialog.shown and self._queue:
-			text, toasttype, timeout, customIcon = self._queue.pop(0)
+			text, toasttype, timeout, customIcon, self.activeToastId = self._queue.pop(0)
 			self._dialog.showToast(text, toasttype, timeout, customIcon)
 
 	def doShutdown(self):

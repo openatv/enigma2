@@ -1267,26 +1267,26 @@
 	</setup>
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="yes">
 		<item level="1" text="General Time Shift Behavior" />
-		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations." indent="1">config.timeshift.path</item>
-		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time." indent="1">config.timeshift.startDelay</item>
-		<item level="2" text="Enable Autorecord" description="Set to 'Yes', to enable automatic recording of the background time shift buffer." indent="1">config.timeshift.autorecord</item>
-		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift." indent="1">config.timeshift.check</item>
+		<item level="2" text="Time shift buffer location" description="Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory." indent="1">config.timeshift.path</item>
+		<item level="1" text="Automatically start time shift" description="When enabled, time shift starts automatically in background after the selected time." indent="1">config.timeshift.startDelay</item>
+		<item level="2" text="Enable auto record" description="When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup." indent="1">config.timeshift.autorecord</item>
+		<item level="1" text="Show warning when time shift stopped" description="When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed." indent="1">config.timeshift.check</item>
 		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages." indent="1">config.timeshift.showLiveTVMsg</item>
 		<item level="2" text="Playback And Saving" />
-		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record." indent="1">config.timeshift.favoriteSaveAction</item>
-		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. This is advisable for USB sticks." indent="1">config.timeshift.stopWhileRecording</item>
-		<item level="2" text="Skip jumping to live while timeshifting with plugins" description="If set to 'Yes', allows the use of time shift with alternative audio plugins." indent="1">config.timeshift.skipReturnToLive</item>
-		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event." indent="1">config.timeshift.showInfoBar</item>
+		<item level="2" text="Time shift save action on zap" description="Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled." indent="1">config.timeshift.favoriteSaveAction</item>
+		<item level="2" text="Stop time shift while recording" description="When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media." indent="1">config.timeshift.stopWhileRecording</item>
+		<item level="2" text="Stay in time shift at buffer end (for plugins)" description="When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins." indent="1">config.timeshift.skipReturnToLive</item>
+		<item level="2" text="Use SeekBar while time shifting" description="When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer." indent="1">config.timeshift.showInfoBar</item>
 		<item level="2" text="Buffer Management" />
-		<item level="2" text="Time shift buffer limit" description="Older files in the time shift directory are removed on every event change." indent="1">config.timeshift.maxHours</item>
-		<item level="2" text="Time shift event limit" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority." indent="1">config.timeshift.maxEvents</item>
-		<item level="2" text="Time shift checking for older files" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier." indent="1">config.timeshift.checkEvents</item>
-		<item level="2" text="Time shift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old time shift files." indent="1">config.timeshift.checkFreeSpace</item>
-		<item level="2" text="Time shift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting." indent="1">config.timeshift.deleteAfterZap</item>
-		<item level="2" text="Time shift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file." indent="1">config.timeshift.fileSplitting</item>
+		<item level="2" text="Buffer age limit" description="Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer." indent="1">config.timeshift.maxHours</item>
+		<item level="2" text="Event limit" description="Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded." indent="1">config.timeshift.maxEvents</item>
+		<item level="2" text="Check for older files" description="Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer." indent="1">config.timeshift.checkEvents</item>
+		<item level="2" text="Check for free space" description="Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve." indent="1">config.timeshift.checkFreeSpace</item>
+		<item level="2" text="Delete after zap" description="When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected." indent="1">config.timeshift.deleteAfterZap</item>
+		<item level="2" text="Event based file splitting" description="When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer." indent="1">config.timeshift.fileSplitting</item>
 		<item level="2" text="Recovery And Hardware" />
-		<item level="2" text="Streaming recovery delay" description="Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space." indent="1">config.timeshift.recoveryBufferDelay</item>
-		<item level="2" text="Hardware latency correction" description="Adjusts compensation for hardware buffer latency for DM9x0." requires="DM9X0" indent="1">config.timeshift.hwLatencyCorrection</item>
+		<item level="2" text="Streaming recovery delay" description="Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space." indent="1">config.timeshift.recoveryBufferDelay</item>
+		<item level="2" text="Hardware latency correction" description="Select a duration compensation for hardware buffer latency for DM9x0." requires="DM9X0" indent="1">config.timeshift.hwLatencyCorrection</item>
 	</setup>
 	<setup key="Tuner" title="Tuner Settings" level="1">
 		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>
@@ -1431,31 +1431,31 @@
 	</setup>
 	<setup key="Video" title="Video Settings">
 		<!-- VideoSetup in Screens/VideoMode.py prepends the dynamic items. -->
-		<item level="0" text="HDMI color space" description="This option allows you to config the Colorspace from Auto to RGB." requires="havecolorspace">config.av.hdmicolorspace</item>
-		<item level="0" text="HDMI Colorimetry" description="This option allows you to config the Colorimetry for HDR." requires="havecolorimetry">config.av.hdmicolorimetry</item>
-		<item level="0" text="HDMI color depth" description="This option allows you to config the Colordepth for UHD." requires="havehdmicolordepth">config.av.hdmicolordepth</item>
+		<item level="0" text="HDMI color space" description="Select the color space to be used with the HDMI attached TV/monitor." requires="havecolorspace">config.av.hdmicolorspace</item>
+		<item level="0" text="HDMI colorimetry" description="Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor." requires="havecolorimetry">config.av.hdmicolorimetry</item>
+		<item level="0" text="HDMI color depth" description="Select the color depth to be used with the HDMI attached UHD capable TV/monitor." requires="havehdmicolordepth">config.av.hdmicolordepth</item>
 		<if requires="havehdmihdrtype">
-			<item level="0" text="HDMI HDR Type" description="This option allows you to force the HDR Modes for UHD.">config.av.hdmihdrtype</item>
+			<item level="0" text="HDMI HDR Type" description="Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor.">config.av.hdmihdrtype</item>
 			<if conditional="config.av.hdmihdrtype.value == 'auto'">
-				<item level="1" text="Switch HDR type by content" description="Select 'Yes' to switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video." indent="1">config.av.hdmihdrtype_switch</item>
-				<item level="1" text="Colorimetry for HDR content" description="Select the HDMI colorimetry used while HDR content is shown. This option is only used if 'HDMI Colorimetry' is set to 'Auto'." requires="havecolorimetry;config.av.hdmihdrtype_switch" conditional="config.av.hdmicolorimetry.value == 'auto'" indent="1">config.av.hdmicolorimetry_hdr</item>
+				<item level="1" text="Switch HDR type by content" description="When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video." indent="1">config.av.hdmihdrtype_switch</item>
+				<item level="1" text="Colorimetry for HDR content" description="Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'." requires="havecolorimetry;config.av.hdmihdrtype_switch" conditional="config.av.hdmicolorimetry.value == 'auto'" indent="1">config.av.hdmicolorimetry_hdr</item>
 			</if>
 		</if>
 		<item level="0" text="HDR OSD adjustment" description="This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode." requires="havehdmihdrosd">config.av.hdmihdrosd</item>
-		<item level="0" text="Bypass HDMI EDID Check" description="This option allows you to bypass HDMI EDID check." requires="Canedidchecking">config.av.bypass_edid_checking</item>
-		<item level="0" text="Hardware video mode" description="Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output." requires="haveboxmode">config.av.boxmode</item>
+		<item level="0" text="Bypass HDMI EDID check" description="When enabled, bypass HDMI EDID checking." requires="Canedidchecking">config.av.bypass_edid_checking</item>
+		<item level="0" text="Hardware video mode" description="Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output." requires="haveboxmode">config.av.boxmode</item>
 		<if requires="HDRSupport">
-			<item level="0" text="HLG Support" description="This option allows you to force the HLG Modes for UHD.">config.av.hlg_support</item>
-			<item level="0" text="HDR10 Support" description="This option allows you to force the HDR10 Modes for UHD.">config.av.hdr10_support</item>
-			<item level="0" text="Allow 12bit" description="This option allows you to enable or disable the 12 Bit Color Mode.">config.av.allow_12bit</item>
-			<item level="0" text="Allow 10bit" description="This option allows you to enable or disable the 10 Bit Color Mode.">config.av.allow_10bit</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.hlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.hdr10_support</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="10">config.av.allow_10bit</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="12">config.av.allow_12bit</item>
 		</if>
-		<item level="0" text="Sync mode" description="Setup how to control the channel changing." requires="havesyncmode">config.av.sync_mode</item>
-		<item level="1" text="Deinterlacer mode" description="Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
-		<item level="1" text="Show 'Manual resolution' in extensions menu" description="Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
+		<item level="0" text="Sync mode" description="Select how to handle the synchronization of the signal after a service change." requires="havesyncmode">config.av.sync_mode</item>
+		<item level="1" text="Deinterlacer mode" description="Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
+		<item level="1" text="Add 'Manual resolution' to Extensions" description="When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
 		<if requires="haveamlhdrsupport">
-			<item level="0" text="HLG Support" description="This option allows you to force the HLG Modes for UHD.">config.av.amlhlg_support</item>
-			<item level="0" text="HDR10 Support" description="This option allows you to force the HDR10 Modes for UHD.">config.av.amlhdr10_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.amlhlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.amlhdr10_support</item>
 		</if>
 	</setup>
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">

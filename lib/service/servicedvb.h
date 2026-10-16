@@ -10,6 +10,7 @@
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <atomic> // FIXED: Added for thread-safe stream corruption flag
+#include <sys/types.h>
 
 class eStaticServiceDVBInformation;
 class eStaticServiceDVBBouquetInformation;
@@ -194,6 +195,8 @@ public:
 	RESULT setNextPlaybackFile(const char* fn);
 	RESULT saveTimeshiftFile();
 	std::string getTimeshiftFilename();
+	long long getTimeshiftFileSize();
+	std::string getTimeshiftServiceData();
 	virtual void switchToLive();
 
 	// iTapService
@@ -268,7 +271,14 @@ protected:
 	int m_first_program_info;
 
 	std::string m_timeshift_file, m_timeshift_file_next;
+	std::string _timeshiftServiceData;
+	std::string m_timeshift_directory, m_timeshift_base;
+	unsigned long long m_timeshift_sequence = 0;
 	int m_timeshift_fd;
+	int _timeshiftDirectoryFd = -1;
+	dev_t _timeshiftDevice = 0;
+	ino_t _timeshiftInode = 0;
+	void _releaseTimeshiftDirectory(bool eraseFiles);
 	ePtr<iDVBDemux> m_decode_demux;
 
 	int m_current_audio_stream;
@@ -280,7 +290,7 @@ protected:
 	ePtr<eDVBCSASession> m_timeshift_csa_session;
 	std::set<int> m_pids_active;
 
-	void updateTimeshiftPids();
+	void updateTimeshiftPids(bool captureServiceData = false);
 
 	void resetTimeshift(int start);
 	void switchToTimeshift();

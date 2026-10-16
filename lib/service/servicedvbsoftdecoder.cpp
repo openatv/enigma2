@@ -26,9 +26,12 @@ eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
 	, m_stream_stalled(false)
 	, m_paused(false)
 	, m_last_health_check(0)
+	, m_writer_restarts(0)
 {
 	m_buffer_timer = eTimer::create(eApp);
 	CONNECT(m_buffer_timer->timeout, eDVBSoftDecoder::onBufferTimerExpired);
+	m_writer_restart_timer = eTimer::create(eApp);
+	CONNECT(m_writer_restart_timer->timeout, eDVBSoftDecoder::restartWriter);
 	eDebug("[eDVBSoftDecoder] Created for decoder %d", decoder_index);
 }
 
@@ -41,6 +44,8 @@ eDVBSoftDecoder::~eDVBSoftDecoder()
 		m_health_timer->stop();
 	if (m_buffer_timer)
 		m_buffer_timer->stop();
+	if (m_writer_restart_timer)
+		m_writer_restart_timer->stop();
 	if (m_first_cw_conn.connected())
 		m_first_cw_conn.disconnect();
 
@@ -195,6 +200,8 @@ void eDVBSoftDecoder::stop()
 		m_health_timer->stop();
 		m_health_timer = nullptr;
 	}
+	m_writer_restart_timer->stop();
+	m_writer_restarts = 0;
 	if (m_first_cw_conn.connected())
 		m_first_cw_conn.disconnect();
 
@@ -388,12 +395,39 @@ void eDVBSoftDecoder::recordEvent(int event)
 	switch (event)
 	{
 	case iDVBTSRecorder::eventWriteError:
-		eDebug("[eDVBSoftDecoder] TS write error");
+		// The record thread has exited, nothing reaches the decoder anymore
+		if (m_writer_restarts < MAX_WRITER_RESTARTS)
+		{
+			eWarning("[eDVBSoftDecoder] TS write error - restarting writer in %dms", WRITER_RESTART_DELAY);
+			m_writer_restart_timer->start(WRITER_RESTART_DELAY, true);
+		}
+		else
+			eWarning("[eDVBSoftDecoder] TS write error - giving up after %d writer restarts", m_writer_restarts);
 		break;
 	default:
 		eDebug("[eDVBSoftDecoder] Unhandled record event %d", event);
 		break;
 	}
+}
+
+void eDVBSoftDecoder::restartWriter()
+{
+	if (!m_running || m_stopping || !m_record)
+		return;
+
+	m_writer_restarts++;
+	eWarning("[eDVBSoftDecoder] Restarting writer (%d/%d)", m_writer_restarts, MAX_WRITER_RESTARTS);
+	m_record->stop();
+	if (int ret = m_record->start(); ret < 0)
+	{
+		eWarning("[eDVBSoftDecoder] Writer restart failed (%d)", ret);
+		if (m_writer_restarts < MAX_WRITER_RESTARTS)
+			m_writer_restart_timer->start(WRITER_RESTART_DELAY, true);
+		return;
+	}
+	m_stall_count = 0;
+	m_recovery_attempts = 0;
+	m_stream_stalled = false;
 }
 
 void eDVBSoftDecoder::streamHealthCheck()
@@ -451,12 +485,14 @@ void eDVBSoftDecoder::streamHealthCheck()
 			m_recovery_attempts++;
 			if (m_recovery_attempts >= 5)
 			{
-				// Full pipeline flush (same pattern as eDVBChannel::flushPVR):
-				// flush DVR kernel buffer first, then decoder buffers.
-				// Without flushing the DVR, the decoder immediately refills
-				// with old garbage data after VIDEO/AUDIO_CLEAR_BUFFER.
+				// Full pipeline flush (same buffers as eDVBChannel::flushPVR).
+				// Unlike there, the writer keeps running: a DVR write blocked
+				// on the full decoder holds the DVR mutex, so the DVR flush
+				// ioctl must not come first. Clear the decoder buffers so the
+				// write completes, flush the DVR, then clear what slipped in.
 				eWarning("[eDVBSoftDecoder] Recovery failed %d times - full pipeline flush", m_recovery_attempts);
 				m_decoder->pause();
+				m_decode_demux->flush();
 				if (m_dvr_fd >= 0)
 					::ioctl(m_dvr_fd, 0);
 				m_decode_demux->flush();
@@ -478,6 +514,7 @@ void eDVBSoftDecoder::streamHealthCheck()
 		if (m_stream_stalled)
 			eDebug("[eDVBSoftDecoder] Stream recovered (PTS: %lld -> %lld)", m_last_pts, current_pts);
 		m_stall_count = 0;
+		m_writer_restarts = 0;
 		m_stream_stalled = false;
 		m_recovery_attempts = 0;
 	}

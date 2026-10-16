@@ -890,11 +890,7 @@ void eAVControl::setOSDAlpha(int alpha, int flags) const
 
 int eAVControl::writeOSDAlpha(int alpha, int flags) const
 {
-#ifdef DREAMNEXTGEN
-	return CFile::writeIntHex(proc_osd_alpha, alpha, __MODULE__, flags);
-#else
 	return CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
-#endif
 }
 
 void eAVControl::setOSDAutoHideTimeout(int seconds)
