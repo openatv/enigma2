@@ -15,6 +15,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.ChannelSelection import ChannelSelectionBase
 from Screens.ChoiceBox import ChoiceBox
+from Screens.InfoBarGenerics import streamrelay
 from Screens.MessageBox import MessageBox
 from Screens.QuadPiP import QuadPiP
 from Screens.Screen import Screen
@@ -718,6 +719,12 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self.forceToExitTimer = eTimer()
 		self.forceToExitTimer.callback.append(self.forceToExitTimerCB)
 
+		# The own stream server frees its tuners on the next main loop run.
+		self.localStreams = False
+		self.pendingChannel = None
+		self.startTimer = eTimer()
+		self.startTimer.callback.append(self.startTimerCB)
+
 	def layoutButtons(self):  # The background only behind the key and its text.
 		def textWidth(source):
 			renderer = source.downstream_elements[0] if source.downstream_elements else None
@@ -936,6 +943,9 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 			self.session.qPips = None
 			self.curPlayAudio = -1
+		self.localStreams = False
+		self.pendingChannel = None
+		self.startTimer.stop()
 
 		self.updateChannelName(None)
 
@@ -964,18 +974,33 @@ class QuadPipScreen(Screen, FocusShowHide):
 		if self.curChannel and self.curChannel == channel.channel:
 			return
 
+		localStreams = self.localStreams or self.pendingChannel is not None
 		self.disableQuadPip()
 		self.selectPosition(1)
 
 		self.curChannel = channel.channel.copy()
 
 		self.session.qPips = []
+		if localStreams:
+			self.pendingChannel = channel
+			self.startTimer.start(300, True)
+		else:
+			self.startChannel(channel)
+
+	def startTimerCB(self):
+		if self.pendingChannel and self.session.qPips is not None:
+			self.startChannel(self.pendingChannel)
+		self.pendingChannel = None
+
+	def startChannel(self, channel):
 		for idx in list(range(1, 5)):
 			chInfo = channel.getChannel(str(idx))
 			if chInfo is None:
 				continue
 
 			(sname, sref) = chInfo
+			if "%3a//127.0.0.1" in sref or "%3a//localhost" in sref or streamrelay.checkService(eServiceReference(sref)):
+				self.localStreams = True
 
 			qPipShown = False  # noqa F841
 
