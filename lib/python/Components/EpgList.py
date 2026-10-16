@@ -423,6 +423,7 @@ class EPGListGrid(EPGListBase):
 		self.showServiceNumber = False
 		self.listRows = 8
 		self.listFirstServiceIndex = 0
+		self.pageRow = 0
 		self.serviceList = ()
 		self.listHeight = 0
 		self.listWidth = 0
@@ -1090,26 +1091,31 @@ class EPGListGrid(EPGListBase):
 		self.selectionChanged()
 		return False
 
+	def pageRows(self):  # Number of rows on the current page.
+		return max(min(self.listRows, len(self.serviceList) - self.listFirstServiceIndex), 1)
+
+	def storePageRow(self):  # Keep the row when a shorter page has moved the selection up.
+		idx = self.getCurrentIndex()
+		if idx < self.pageRows() - 1 or self.pageRow < idx:
+			self.pageRow = idx
+
 	def nextPage(self, selectFirstService=False):
+		self.storePageRow()
 		if self.listFirstServiceIndex + self.listRows < len(self.serviceList):
 			self.listFirstServiceIndex += self.listRows
 		else:
 			self.listFirstServiceIndex = 0
 		self.fillGraphEPG(None)
-		if selectFirstService:
-			self.setCurrentIndex(0)
+		self.setCurrentIndex(0 if selectFirstService else min(self.pageRow, self.pageRows() - 1))
 
 	def prevPage(self, selectLastService=False):
+		self.storePageRow()
 		if self.listFirstServiceIndex - self.listRows >= 0:
 			self.listFirstServiceIndex -= self.listRows
 		else:
-			self.listFirstServiceIndex = int(len(self.serviceList) / self.listRows) * self.listRows
+			self.listFirstServiceIndex = max(len(self.serviceList) - 1, 0) // self.listRows * self.listRows
 		self.fillGraphEPG(None)
-		if selectLastService:
-			if self.listFirstServiceIndex + self.listRows <= len(self.serviceList):
-				self.setCurrentIndex(self.listRows - 1)
-			else:
-				self.setCurrentIndex(len(self.serviceList) - self.listFirstServiceIndex - 1)
+		self.setCurrentIndex(self.pageRows() - 1 if selectLastService else min(self.pageRow, self.pageRows() - 1))
 
 	def moveUp(self):
 		idx = self.getCurrentIndex() - 1
@@ -1117,6 +1123,7 @@ class EPGListGrid(EPGListBase):
 			self.prevPage(True)
 		else:
 			self.setCurrentIndex(idx)
+		self.pageRow = self.getCurrentIndex()
 
 	def moveDown(self):
 		idx = self.getCurrentIndex() + 1
@@ -1124,6 +1131,19 @@ class EPGListGrid(EPGListBase):
 			self.nextPage(True)
 		else:
 			self.setCurrentIndex(idx)
+		self.pageRow = self.getCurrentIndex()
+
+	def toTop(self, stime=None, getnow=False):  # Select first row before filling, findBestEvent uses it.
+		self.listFirstServiceIndex = 0
+		self.pageRow = 0
+		self.setCurrentIndex(0)
+		self.fillGraphEPG(None, stime, getnow)
+
+	def toEnd(self):
+		self.listFirstServiceIndex = max(len(self.serviceList) - 1, 0) // self.listRows * self.listRows
+		self.fillGraphEPG(None)
+		self.pageRow = self.pageRows() - 1
+		self.setCurrentIndex(self.pageRow)
 
 
 	def fillGraphEPG(self, services, stime=None, getnow=False, current_service=None):
@@ -1167,6 +1187,7 @@ class EPGListGrid(EPGListBase):
 			self.cur_event = None
 			self.cur_service = None
 			self.listFirstServiceIndex = 0
+			self.pageRow = 0
 			self.serviceList = services
 			if current_service is not None:
 				for i in range(len(self.serviceList)):

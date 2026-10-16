@@ -58,6 +58,8 @@ class EPGSelectionBase(Screen):
 		self.servicelist = servicelist if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_VERTICAL) else None
 		self.startBouquet = startBouquet
 		self.startRef = startRef
+		from Screens.InfoBar import MoviePlayer  # Local import, InfoBarGenerics imports this module.
+		self.moviePlayer = MoviePlayer.instance is not None  # EPG opened from MoviePlayer.
 
 		self.closeRecursive = False
 		self.eventviewDialog = None
@@ -786,9 +788,9 @@ class EPGSelectionBase(Screen):
 					(self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical.preview_mode.value)
 				)
 				if preview:
-					if "0:0:0:0:0:0:0:0:0" not in self.startRef.toString():
+					if not self.moviePlayer:
 						self.zapFunc(None, zapback=True)
-				elif "0:0:0:0:0:0:0:0:0" in self.startRef.toString():
+				elif self.moviePlayer:
 					self.session.nav.playService(self.startRef)
 				else:
 					self.zapFunc(None, False)
@@ -812,9 +814,7 @@ class EPGSelectionBase(Screen):
 
 	def zap(self):
 		# Zap to the currently selected service and close the EPG.
-		if (self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				and "0:0:0:0:0:0:0:0:0" in
-				self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()):
+		if self.moviePlayer:
 			return
 		if self.zapFunc:
 			self.zapSelectedService()
@@ -827,9 +827,7 @@ class EPGSelectionBase(Screen):
 	def zapTo(self):
 		# Preview zap: zaps the service but stays in the EPG (for preview mode).
 		# If the same service is selected twice, exits the EPG.
-		if (self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				and "0:0:0:0:0:0:0:0:0" in
-				self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()):
+		if self.moviePlayer:
 			return
 		if self.zapFunc:
 			self.zapSelectedService(prev=True)
@@ -1613,6 +1611,12 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 		self["list"].moveDown()
 		self.moveTimeLines(True)
 
+	def toTop(self):
+		self["list"].toTop()
+
+	def toEnd(self):
+		self["list"].toEnd()
+
 	def nextPage(self):
 		self["list"].nextPage()
 
@@ -1727,9 +1731,8 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 
 		elif number == 0:
 			self.ask_time = now - now % (cfg.roundto.value * 60)
-			self["list"].instance.moveSelectionTo(0)
 			self["list"].resetOffset()
-			self["list"].fillGraphEPG(None, self.ask_time, True)
+			self["list"].toTop(self.ask_time, True)
 			self.moveTimeLines()
 
 
