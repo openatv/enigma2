@@ -1,4 +1,5 @@
 from enigma import ePixmap
+
 from Components.config import config
 from Components.Renderer.Renderer import Renderer
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename

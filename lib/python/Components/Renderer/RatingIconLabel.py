@@ -1,4 +1,5 @@
 from re import search
+
 from enigma import eLabel, gRGB
 
 from skin import parseColor
@@ -15,9 +16,6 @@ class RatingIconLabel(Renderer):
 		self.sidesMargin = 20
 		self.initialWidth = 0
 		self.initialXPos = 0
-
-	def postWidgetCreate(self, instance):
-		self.changed((self.CHANGED_DEFAULT,))
 
 	def applySkin(self, desktop, parent):
 		attribs = []
@@ -38,10 +36,8 @@ class RatingIconLabel(Renderer):
 		self.changed((self.CHANGED_DEFAULT,))
 		return result
 
-	def hideLabel(self):
-		if self.instance:
-			self.instance.setText("")
-			self.instance.hide()
+	def postWidgetCreate(self, instance):
+		self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
 		self.hideLabel()  # initially hide the label
@@ -61,7 +57,10 @@ class RatingIconLabel(Renderer):
 							self.hideLabel()
 							return
 					else:
-						age = int(search(r"\d+", self.source.text.replace("+", "")).group())
+						if not (ageMatch := search(r"\d+", self.source.text.replace("+", ""))):
+							self.hideLabel()
+							return
+						age = int(ageMatch.group())
 						if age <= 15:
 							age += 3
 						ageText = str(age)
@@ -84,3 +83,8 @@ class RatingIconLabel(Renderer):
 					self.instance.show()
 				else:
 					self.hideLabel()
+
+	def hideLabel(self):
+		if self.instance:
+			self.instance.setText("")
+			self.instance.hide()

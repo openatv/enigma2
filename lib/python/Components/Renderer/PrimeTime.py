@@ -1,11 +1,11 @@
 from datetime import datetime
 from time import localtime, mktime
 
-from enigma import eLabel, eEPGCache
+from enigma import eEPGCache, eLabel
 
 from Components.config import config
-from Components.Renderer.Renderer import Renderer
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 
 
 class PrimeTime(Renderer, VariableText):

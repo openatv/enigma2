@@ -1,7 +1,8 @@
 from enigma import ePixmap
+
 from Components.Renderer.Renderer import Renderer
-from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 
 class Pixmap(Renderer):

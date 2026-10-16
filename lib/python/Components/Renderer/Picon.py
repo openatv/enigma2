@@ -1,14 +1,16 @@
 from os import listdir
 from os.path import exists, getmtime, getsize, isdir, join, normpath
 from re import sub
-from enigma import ePixmap, eServiceReference, iServiceInformation  # , ePicLoad
+
+from enigma import ePixmap, eServiceReference, iServiceInformation
+
+import NavigationInstance
+from ServiceReference import ServiceReference
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
-import NavigationInstance
-from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename, sanitizeFilename
 
 searchPaths = []
 lastPiconPath = None  # default/infobar path as plain string for plugins
@@ -80,10 +82,11 @@ def onMountpointRemoved(mountpoint):
 
 
 def onPartitionChange(why, part):
-	if why == "add":
-		onMountpointAdded(part.mountpoint)
-	elif why == "remove":
-		onMountpointRemoved(part.mountpoint)
+	match why:
+		case "add":
+			onMountpointAdded(part.mountpoint)
+		case "remove":
+			onMountpointRemoved(part.mountpoint)
 
 
 def findPicon(serviceName, mode=None):
@@ -150,17 +153,58 @@ class Picon(Renderer):
 
 	def __init__(self):
 		Renderer.__init__(self)
-		# self.PicLoad = ePicLoad()
-		# self.PicLoad.PictureData.get().append(self.updatePicon)
 		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
 		self.mode = None
 		self.setDefaultPicon()
 
+	def applySkin(self, desktop, parent):
+		attribs = self.skinAttributes[:]
+		for (attrib, value) in self.skinAttributes:
+			match attrib:
+				case "mode":
+					if value in ("infobar", "channelselection"):
+						self.mode = value
+						self.setDefaultPicon(value)
+					attribs.remove((attrib, value))
+				case "path":
+					self.addPath(value)
+					attribs.remove((attrib, value))
+				case "size":
+					self.piconsize = value
+		self.skinAttributes = attribs
+		return Renderer.applySkin(self, desktop, parent)
+
+	def postWidgetCreate(self, instance):
+		self.changed((self.CHANGED_DEFAULT,))
+
+	def changed(self, what):
+		if self.instance:
+			pngname = ""
+			match what[0]:
+				case 1 | 3:
+					pngname = getDABImage(self.source.text) or getPiconName(self.source.text, self.mode)
+					if not exists(pngname):  # No picon for service found
+						pngname = self.defaultpngname
+					if not config.usage.showpicon.value:
+						pngname = self.nopicon
+					pngkey = (pngname, getmtime(pngname), getsize(pngname)) if pngname and exists(pngname) else pngname
+					if self.pngname != pngkey:
+						if pngname:
+							self.instance.setScale(1)
+							self.instance.setPixmapFromFile(pngname)
+							self.instance.show()
+						else:
+							self.instance.hide()
+						self.pngname = pngkey
+				case 2:
+					self.pngname = ""
+					self.instance.hide()
+
 	def setDefaultPicon(self, mode=None):
 		defaultName = "picon_default"
-		pngname = findPicon(defaultName)
+		pngname = findPicon(defaultName)  # No mode on purpose, the default picon always comes from the infobar path.
 		self.defaultpngname = None
 		if not pngname:
 			tmp = resolveFilename(SCOPE_GUISKIN, f"{defaultName}.png")
@@ -179,55 +223,6 @@ class Picon(Renderer):
 			value = join(value, "")
 			if value not in searchPaths:
 				searchPaths.append(value)
-
-	def applySkin(self, desktop, parent):
-		attribs = self.skinAttributes[:]
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "path":
-				self.addPath(value)
-				attribs.remove((attrib, value))
-			elif attrib == "mode":
-				if value in ("infobar", "channelselection"):
-					self.mode = value
-					self.setDefaultPicon(value)
-				attribs.remove((attrib, value))
-			elif attrib == "size":
-				self.piconsize = value
-		self.skinAttributes = attribs
-		return Renderer.applySkin(self, desktop, parent)
-
-	def postWidgetCreate(self, instance):
-		self.changed((self.CHANGED_DEFAULT,))
-
-	#def updatePicon(self, picInfo=None):
-	#	ptr = self.PicLoad.getData()
-	#	if ptr is not None:
-	#		self.instance.setPixmap(ptr.__deref__())
-	#		self.instance.show()
-
-	def changed(self, what):
-		if self.instance:
-			pngname = ""
-			if what[0] == 1 or what[0] == 3:
-				pngname = getDABImage(self.source.text) or getPiconName(self.source.text, self.mode)
-				if not exists(pngname):  # No picon for service found
-					pngname = self.defaultpngname
-				if not config.usage.showpicon.value:
-					pngname = self.nopicon
-				pngkey = (pngname, getmtime(pngname), getsize(pngname)) if pngname and exists(pngname) else pngname
-				if self.pngname != pngkey:
-					if pngname:
-						self.instance.setScale(1)
-						self.instance.setPixmapFromFile(pngname)
-						self.instance.show()
-#						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
-#						self.PicLoad.startDecode(pngname)
-					else:
-						self.instance.hide()
-					self.pngname = pngkey
-			elif what[0] == 2:
-				self.pngname = ""
-				self.instance.hide()
 
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
