@@ -79,29 +79,32 @@ void eTuxtxtApp::initCache(bool debug)
 		tuxtxt_enabledebug();
 }
 
-void eTuxtxtApp::freeCache()
+// With FCC several primary decoders exist, only the caching one may stop or free the cache.
+void eTuxtxtApp::freeCache(const eTSMPEGDecoder *owner)
 {
 	pthread_mutex_lock( &cacheChangeLock );
-	if ( !uiRunning )
+	if (!uiRunning && (!owner || owner == cacheOwner))
 	{
 		tuxtxt_close();
 		pid = 0;
+		cacheOwner = nullptr;
 	}
 	pthread_mutex_unlock( &cacheChangeLock );
 }
 
-void eTuxtxtApp::startCaching( int tpid, int tdemux)
+void eTuxtxtApp::startCaching(int tpid, int tdemux, const eTSMPEGDecoder *owner)
 {
 	pid = tpid;
 	demux = tdemux;
+	cacheOwner = owner;
 	if (enableTtCaching)
 		tuxtxt_start(pid, demux);
 }
 
-void eTuxtxtApp::stopCaching()
+void eTuxtxtApp::stopCaching(const eTSMPEGDecoder *owner)
 {
 	pthread_mutex_lock( &cacheChangeLock );
-	if ( !uiRunning )
+	if (!uiRunning && (!owner || owner == cacheOwner))
 		tuxtxt_stop();
 
 	pthread_mutex_unlock( &cacheChangeLock );
@@ -116,7 +119,7 @@ void eTuxtxtApp::setEnableTtCachingOnOff( int onoff )
 		if (pid)
 		{
 			initCache();
-			startCaching(pid, demux);
+			startCaching(pid, demux, cacheOwner);
 		}
 	}
 	else if (!onoff && enableTtCaching)	// Switch caching off
