@@ -58,7 +58,7 @@ from Screens.ParentalControlSetup import ProtectedScreen, runWithScreenProtectio
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
 from Screens.PVRState import PVRState, TimeshiftState
-from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay
+from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay, RdsInfoDisplaySummary
 from Screens.Screen import Screen
 from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
@@ -3551,7 +3551,6 @@ class InfoBarRdsDecoder:
 		self.dab_slide_display = self.session.instantiateDialog(DABSlideDisplay)
 		self.dab_slide_display.setAnimationMode(0)
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
-		self.session.instantiateSummaryDialog(self.rds_display)
 		self.rds_display.setAnimationMode(0)
 		self.dab_slide_display.reserveRadioTextArea(self.rds_display)
 		self.rass_interactive = None
@@ -3583,6 +3582,7 @@ class InfoBarRdsDecoder:
 			rass_interactive.close()
 
 	def startRassInteractive(self):
+		self.dab_slide_display.rassPictureAvailable()
 		self.rds_display.hide()
 		self.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
 
@@ -4972,6 +4972,21 @@ class InfoBarCueSheetSupport:
 
 
 class InfoBarSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self.radioSummary = None
+		if session.summaryDesktop is not None and BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("displaytype") != "7segment":
+			self.radioSummary = session.doInstantiateDialog(RdsInfoDisplaySummary, (self,), {}, session.summaryDesktop)
+			# Follow the normal summary lifecycle, not the TV infobar's hide timer.
+			# RDS updates must never show over menus, movie playback or standby.
+			self.onShow.append(self.radioSummary.updateDisplay)
+			self.onHide.append(self.radioSummary.hide)
+			self.onClose.append(self.closeRadioSummary)
+
+	def closeRadioSummary(self):
+		self.session.deleteDialog(self.radioSummary)
+		self.radioSummary = None
+
 	skin = """
 	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="82,18" font="Regular;16" >

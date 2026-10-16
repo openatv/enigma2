@@ -1,23 +1,31 @@
 from os import stat
-from os.path import exists
-
+from os.path import isfile
 from struct import unpack
 
-from enigma import ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
-from Screens.Screen import Screen
+from enigma import ePicLoad, ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
+
+from ServiceReference import isRadioServiceReference
+from skin import applyAllAttributes
 from Components.ActionMap import NumberActionMap
-from Components.SystemInfo import BoxInfo
-from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Pixmap import Pixmap
 from Components.config import config
+from Components.Element import Element
 from Components.Label import Label
+from Components.Pixmap import Pixmap
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.SystemInfo import BoxInfo
+from Components.Converter.ServiceInfo import ServiceInfo
 from Components.Sources.StaticText import StaticText
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN, SCOPE_SKINS
+from Screens.Screen import Screen
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
 class DABSlideDisplay(Screen):
-	"""Display triggered DAB SLS images behind the existing radio UI."""
+	"""Shared GUI radio background and DAB slideshow (public skin name retained)."""
+	# Geometry of the bundled artwork, not HD/FHD screen coordinates. Fit the
+	# cabinet and its display together so neither can move independently.
+	RADIO_IMAGE_SIZE = (1672, 941)
+	RADIO_DISPLAY = (400, 140, 868, 632)
 
 	def __init__(self, session):
 		desktopSize = getDesktop(0).size()
@@ -25,45 +33,140 @@ class DABSlideDisplay(Screen):
 		self.desktopWidth = width
 		self.desktopHeight = height
 		self.pictureAreaHeight = height
-		self.legacyDreamGUIRadioPicture = BoxInfo.getItem("machinebuild") in ("dm7080", "dm820", "dm900", "dm920")
-		self.defaultRadioImage = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
-		if not exists(self.defaultRadioImage):
+		self.radioDisplay = None
+		self.rassActive = False
+		self.radioFramePath = resolveFilename(SCOPE_SKINS, "icons/dab_radio.png")
+		self.hasRadioFrame = isfile(self.radioFramePath)
+		self.radioFrameLoader = None
+		self.radioFrameLoading = None
+		self.radioFrameLoaded = None
+		self.radioFrameFailed = None
+		self.radioFrameSize = None
+		self.radioFrameKey = None
+		self.radioFrameWidget = "radioFrame"
+		self.radioPictureArea = None
+		self.technicalInfoHeight = max(20, height * 32 // 720)
+		self.technicalConverter = None
+		self.technicalFrontend = None
+		self.technicalFrontendFresh = False
+		self.defaultRadioImage = resolveFilename(SCOPE_GUISKIN, "icons/default_dab.png")
+		if not isfile(self.defaultRadioImage):
+			self.defaultRadioImage = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
+		if not isfile(self.defaultRadioImage):
 			self.defaultRadioImage = resolveFilename(SCOPE_SKINS, "skin_default/picon_default.png")
+		self.defaultDVBImage = resolveFilename(SCOPE_GUISKIN, "icons/default_radio.png")
 		self.skin = """
 			<screen name="DABSlideDisplay" position="0,0" size="%d,%d" zPosition="-20" backgroundColor="black" flags="wfNoBorder">
-				<widget name="picture" position="0,0" size="%d,%d" zPosition="0" alphatest="blend" scaleFlags="centerScaled" />
-			</screen>""" % (width, height, width, height)
+				<widget name="radioFrame" position="0,0" size="%d,%d" zPosition="0" alphatest="off" />
+				<widget name="picture" position="0,0" size="%d,%d" zPosition="1" alphatest="blend" scaleFlags="centerScaled" />
+				<widget name="technicalInfo" position="0,0" size="%d,%d" zPosition="2" font="Regular;%d" halign="center" valign="center" noWrap="1" foregroundColor="#00c0c0c0" backgroundColor="#00000000" />
+			</screen>""" % (width, height, width, height, width, height, width, self.technicalInfoHeight, max(14, height * 20 // 720))
 		Screen.__init__(self, session)
+		self["radioFrame"] = Pixmap()
+		self["radioFrame"].hide()
+		self.ignoreWidgets.append("radioFrame")
 		self["picture"] = Pixmap()
+		self["technicalInfo"] = Label()
+		self["technicalInfo"].hide()
+		self.ignoreWidgets.append("technicalInfo")
 		self.slidePath = ""
 		self.slideSignature = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-			iPlayableService.evStart: self.updateSlide,
+			iPlayableService.evStart: self.serviceStarted,
 			iPlayableService.evUpdatedInfo: self.updateSlide,
+			iPlayableService.evUpdatedRassSlidePic: self.rassPictureAvailable,
 			iPlayableService.evEnd: self.hideSlide
 		})
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.removeNotifier)
 		config.dab.slideshow.addNotifier(self.slideshowChanged, initial_call=False)
+		config.misc.showradiopic.addNotifier(self.slideshowChanged, initial_call=False)
+		config.dab.technicalInfo.addNotifier(self.slideshowChanged, initial_call=False)
+
+	def serviceStarted(self):
+		self.rassActive = False
+		self.technicalFrontendFresh = False
+		self.slideSignature = None
+		self.updateSlide()
+
+	def rassPictureAvailable(self):
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if reference and reference.type != eServiceReference.idServiceDAB:
+			# RASS contains broadcast MPEG still frames, not PNG/JPEG slides.
+			self.rassActive = True
+			self.hideSlide()
 
 	def layoutFinished(self):
 		self.hide()
 		self.updateSlide()
 
 	def slideshowChanged(self, configElement=None):
+		# Background changes also change the available area for the same slide.
+		self.slideSignature = None
 		self.updateSlide()
+
+	def updateTechnicalInfo(self, reference):
+		widget = self["technicalInfo"]
+		if config.dab.technicalInfo.value and reference and reference.type == eServiceReference.idServiceDAB and widget.instance is not None:
+			if self.technicalConverter is None:
+				# Read the existing converter on service events; no extra poller.
+				self.technicalConverter = ServiceInfo("DABTechnical")
+				self.technicalConverter.source = self.session.screen["CurrentService"]
+				# Share the existing frontend poller, keeping it active even when
+				# the InfoBar's own signal widgets are hidden.
+				self.technicalFrontend = Element()
+				self.technicalFrontend.connect(self.session.screen["FrontendStatus"])
+				self.technicalFrontendFresh = False
+				self.technicalFrontend.onChanged.append(self.technicalFrontendChanged)
+				self.technicalFrontend.suspended = False
+			widget.instance.move(ePoint(0, max(0, self.pictureAreaHeight - self.technicalInfoHeight)))
+			widget.instance.resize(eSize(self.desktopWidth, self.technicalInfoHeight))
+			self.updateTechnicalText()
+			widget.show()
+		else:
+			self.hideTechnicalInfo()
+
+	def technicalFrontendChanged(self):
+		self.technicalFrontendFresh = True
+		self.updateTechnicalText()
+
+	def updateTechnicalText(self):
+		if self.technicalConverter is None:
+			return
+		text = self.technicalConverter.text
+		# FrontendStatus already polls for the InfoBar. Read its cached value,
+		# and wait for its first update after a zap to avoid the previous tuner.
+		if text and self.technicalFrontendFresh:
+			snr = self.technicalFrontend.source.snr_db
+			if snr is not None and snr >= 0:
+				text = f"{text} | SNR {snr / 100.0:.1f} dB"
+		if self["technicalInfo"].getText() != text:
+			self["technicalInfo"].setText(text)
+
+	def hideTechnicalInfo(self):
+		self["technicalInfo"].hide()
+		if self.technicalFrontend is not None:
+			self.technicalFrontend.onChanged.remove(self.technicalFrontendChanged)
+			self.technicalFrontend.suspended = True
+			self.technicalFrontend.disconnectAll()
+			self.technicalFrontend = None
+		if self.technicalConverter is not None:
+			self.technicalConverter.source = None
+			self.technicalConverter = None
+
+	def imageAreaHeight(self):
+		return max(1, self.pictureAreaHeight - (self.technicalInfoHeight if self["technicalInfo"].visible else 0))
 
 	def reserveRadioTextArea(self, radioDisplay):
 		"""Keep the complete 4:3 slide above the skin's RDS text band."""
+		self.radioDisplay = radioDisplay
 		try:
 			displayTop = radioDisplay.instance.position().y()
-			textTop = radioDisplay["RadioText"].instance.position().y()
-			pictureHeight = displayTop + textTop
+			textTops = [displayTop + radioDisplay[x].instance.position().y() for x in ("RadioText", "RtpText") if radioDisplay[x].instance is not None]
+			pictureHeight = min((x for x in textTops if x > 0), default=self.desktopHeight)
 		except (AttributeError, KeyError):
-			return
-		if pictureHeight <= 0 or pictureHeight >= self.desktopHeight:
-			return
-		self.pictureAreaHeight = pictureHeight
+			pictureHeight = self.desktopHeight
+		self.pictureAreaHeight = min(pictureHeight, self.desktopHeight)
 		if self["picture"].instance is not None:
 			self.slideSignature = None
 			self.updateSlide()
@@ -108,34 +211,122 @@ class DABSlideDisplay(Screen):
 		width, height = self.imageSize(path)
 		if width <= 0 or height <= 0:
 			width, height = 320, 240
-		# Avoid turning a typical 320x240 SLS bitmap into a visibly pixelated
-		# full-screen image. Higher-resolution slides may use more of the area.
-		scale = min(2.0, float(self.desktopWidth) / width, float(self.pictureAreaHeight) / height)
+		if self.radioPictureArea is not None:
+			areaLeft, areaTop, areaWidth, areaHeight = self.radioPictureArea
+			scale = min(areaWidth / width, areaHeight / height)
+		else:
+			areaLeft, areaTop, areaWidth, areaHeight = 0, 0, self.desktopWidth, self.imageAreaHeight()
+			# Keep the legacy layout if the artwork is absent or skin-owned.
+			scale = min(2.0, areaWidth / width, areaHeight / height)
 		targetWidth = max(1, int(width * scale))
 		targetHeight = max(1, int(height * scale))
-		left = (self.desktopWidth - targetWidth) // 2
-		top = (self.pictureAreaHeight - targetHeight) // 2
+		left = areaLeft + (areaWidth - targetWidth) // 2
+		top = areaTop + (areaHeight - targetHeight) // 2
 		self["picture"].instance.move(ePoint(left, top))
 		self["picture"].instance.resize(eSize(targetWidth, targetHeight))
+
+	def layoutRadioFrame(self, isDAB=True):
+		if isDAB:
+			width, height = self.RADIO_IMAGE_SIZE
+			pictureHeight = self.imageAreaHeight()
+			scale = min(self.desktopWidth * 0.90 / width, pictureHeight * 0.94 / height)
+			frameWidth, frameHeight = max(1, int(width * scale)), max(1, int(height * scale))
+			left, top = (self.desktopWidth - frameWidth) // 2, (pictureHeight - frameHeight) // 2
+			xPos, yPos, areaWidth, areaHeight = self.RADIO_DISPLAY
+			self.radioPictureArea = (left + xPos * frameWidth // width, top + yPos * frameHeight // height, max(1, areaWidth * frameWidth // width), max(1, areaHeight * frameHeight // height))
+			path = self.radioFramePath
+		else:
+			# Preserve the full-screen DVB radio artwork, without a video decoder.
+			frameWidth, frameHeight = self.desktopWidth, self.desktopHeight
+			left, top = 0, 0
+			self.radioPictureArea = None
+			path = self.defaultDVBImage
+		self.radioFrameSize = (frameWidth, frameHeight)
+		self.radioFrameKey = (path, self.radioFrameSize)
+		# Older custom DABSlideDisplay skins only provide the picture widget.
+		self.radioFrameWidget = "radioFrame" if self["radioFrame"].instance is not None else "picture"
+		frameWidget = self[self.radioFrameWidget]
+		frame = frameWidget.instance
+		frame.move(ePoint(left, top))
+		frame.resize(eSize(frameWidth, frameHeight))
+		if self.radioFrameKey == self.radioFrameLoaded:
+			frameWidget.show()
+		else:
+			frameWidget.hide()
+		if self.radioFrameKey != self.radioFrameLoaded and self.radioFrameLoading is None and self.radioFrameKey != self.radioFrameFailed:
+			if self.radioFrameLoader is None:
+				self.radioFrameLoader = ePicLoad()
+				self.radioFrameLoader.PictureData.get().append(self.radioFrameDecoded)
+			self.radioFrameLoading = self.radioFrameKey
+			# The aspect fit is already done above. Fill the exact integer size;
+			# a second aspect calculation can leave an unpainted one-pixel edge.
+			self.radioFrameLoader.setPara((frameWidth, frameHeight, 0, 1, False, 1, "#00000000"))
+			if self.radioFrameLoader.startDecode(path):
+				self.radioFrameFailed = self.radioFrameLoading
+				self.radioFrameLoading = None
+
+	def radioFrameDecoded(self, pictureInfo=None):
+		pixmap = self.radioFrameLoader.getData()
+		loadedKey = self.radioFrameLoading
+		self.radioFrameLoading = None
+		frameWidget = self[self.radioFrameWidget]
+		if loadedKey == self.radioFrameKey and frameWidget.instance is not None:
+			if pixmap is not None:
+				frameWidget.instance.setPixmap(pixmap.__deref__())
+				self.radioFrameLoaded = loadedKey
+			else:
+				self.radioFrameFailed = loadedKey
+		# Recheck the service: a completed decode must not reappear over TV.
+		self.updateSlide()
 
 	def isEnabled(self, reference):
 		return config.dab.slideshow.value
 
+	def useGUIRadioPicture(self, info):
+		# Keep the callable for skins/plugins; all audio modes now share the GUI.
+		return True
+
 	def updateSlide(self):
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
-		if not reference or reference.type != eServiceReference.idServiceDAB:
+		if self.radioDisplay is not None:
+			self.radioDisplay.setDABBackground(bool(reference and reference.type == eServiceReference.idServiceDAB))
+		if not reference or not isRadioServiceReference(reference) or self.rassActive:
 			self.hideSlide()
+			return
+		self.updateTechnicalInfo(reference)
+		isDAB = reference.type == eServiceReference.idServiceDAB
+		showBackground = config.misc.showradiopic.value
+		if not isDAB:
+			self["picture"].hide()
+			if self.radioDisplay is not None:
+				self.radioDisplay["DabImage"].hide()
+			self.slideSignature = None
+			if showBackground and isfile(self.defaultDVBImage) and (self["radioFrame"].instance is not None or self["picture"].instance is not None):
+				self.layoutRadioFrame(False)
+				self.slidePath = self.defaultDVBImage
+			else:
+				self.hideSlide()
+			self.show()
 			return
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		path = info and self.isEnabled(reference) and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
-		if self.legacyDreamGUIRadioPicture and (not path or not exists(path)):
-			# The legacy Dreambox DVB driver cannot keep its MPEG still-picture
-			# decoder open while DAB audio is playing. Render the station logo
-			# (or the skin's default picon) in the GUI until SLS is available.
-			path = info and info.getInfoString(iServiceInformation.sTagImage) or self.defaultRadioImage
-		if not path or not exists(path):
-			self.hideSlide()
+		guiBackground = self.useGUIRadioPicture(info)
+		embeddedImage = self.radioDisplay["DabImage"] if isDAB and self.radioDisplay is not None else None
+		if embeddedImage is not None and not embeddedImage.skinAttributes:
+			embeddedImage = None
+		useRadioFrame = showBackground and embeddedImage is None and self.hasRadioFrame and self["radioFrame"].instance is not None
+		if useRadioFrame:
+			self.layoutRadioFrame()
+		else:
+			self["radioFrame"].hide()
+			self.radioPictureArea = None
+		path = info and isDAB and self.isEnabled(reference) and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
+		if showBackground and not (path and isfile(path)):
+			path = self.defaultRadioImage
+		if not path or not isfile(path):
+			self.hideSlide(hideTechnicalInfo=False)
+			if guiBackground:
+				self.show()
 			return
 		try:
 			status = stat(path)
@@ -143,33 +334,183 @@ class DABSlideDisplay(Screen):
 		except OSError:
 			self.hideSlide()
 			return
-		if signature != self.slideSignature or not self.shown:
-			if self["picture"].instance is not None:
-				self.layoutPicture(path)
-				self["picture"].instance.setPixmapFromFile(path, True)
+		picture = embeddedImage if embeddedImage is not None else self["picture"]
+		if picture.instance is not None:
+			if signature != self.slideSignature:
+				if embeddedImage is None:
+					self.layoutPicture(path)
+				picture.instance.setPixmapFromFile(path, True)
 				self.slidePath = path
 				self.slideSignature = signature
+			picture.show()
+			if embeddedImage is not None:
+				self["picture"].hide()
+				self.radioDisplay.show()
+				if guiBackground:
+					self.show()
+				else:
+					self.hide()
+			else:
 				self.show()
 
-	def hideSlide(self):
+	def hideSlide(self, hideTechnicalInfo=True):
+		if hideTechnicalInfo:
+			self.hideTechnicalInfo()
+		self["picture"].hide()
+		self["radioFrame"].hide()
+		if self.radioDisplay is not None:
+			self.radioDisplay["DabImage"].hide()
+		self.slidePath = ""
+		self.slideSignature = None
 		self.hide()
 
 	def removeNotifier(self):
+		self.hideTechnicalInfo()
 		config.dab.slideshow.removeNotifier(self.slideshowChanged)
+		config.misc.showradiopic.removeNotifier(self.slideshowChanged)
+		config.dab.technicalInfo.removeNotifier(self.slideshowChanged)
+		if self.radioFrameLoader is not None:
+			self.radioFrameLoader.PictureData.get().remove(self.radioFrameDecoded)
 
 
 class RdsInfoDisplaySummary(Screen):
+	# Fallback for third-party display skins without an RDS summary.
+	skin = """
+		<screen position="0,0" size="132,64" zPosition="1" backgroundColor="#000000" flags="wfNoBorder">
+			<widget source="station" render="Label" position="0,0" size="132,20" font="Regular;16" noWrap="1" />
+			<widget source="message" render="RunningText" position="0,22" size="132,42" font="Regular;16" options="movetype=running,direction=top,wrap=1,always=0,startdelay=2000,steptime=80" />
+		</screen>"""
+
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
 		self["message"] = StaticText("")
-		self.parent.onText.append(self.onText)
+		self["station"] = StaticText("")
+		self["combined"] = StaticText("")
+		self["picture"] = Pixmap()
+		self["picture"].hide()
+		self.ignoreWidgets.append("picture")
+		self.slideSignature = None
+		self.slidePath = ""
+		self.colorDisplay = BoxInfo.getItem("ColorFrontpanelDisplay")
+		self.pictureLoader = None
+		self.loadingPicture = None
+		self.failedPicture = None
+		self.serviceGeneration = 0
+		self.defaultImage = resolveFilename(SCOPE_GUISKIN, "icons/default_dab.png")
+		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evStart: self.updateDisplay,
+			iPlayableService.evUpdatedInfo: self.updateDisplay,
+			iPlayableService.evUpdatedRadioText: self.updateDisplay,
+			iPlayableService.evUpdatedRtpText: self.updateDisplay,
+			iPlayableService.evEnd: self.clearDisplay
+		})
+		if hasattr(self.parent, "onText"):
+			self.parent.onText.append(self.onText)
+		self.onLayoutFinish.append(self.hide)
+		self.onClose.append(self.removeCallback)
+		config.dab.frontDisplay.addNotifier(self.updateDisplay, initial_call=False)
+
+	def removeCallback(self):
+		if hasattr(self.parent, "onText") and self.onText in self.parent.onText:
+			self.parent.onText.remove(self.onText)
+		config.dab.frontDisplay.removeNotifier(self.updateDisplay)
+		if self.pictureLoader is not None:
+			self.pictureLoader.PictureData.get().remove(self.pictureDecoded)
 
 	def onText(self, message):
-		self["message"].text = message
-		if message and len(message):
-			self.show()
-		else:
+		# Read both fields: a bitrate/RTP update must not replace the DLS text.
+		self.updateDisplay()
+
+	def updateDisplay(self, configElement=None):
+		if not self.parent.shown or not self.parent.alreadyShown:
 			self.hide()
+			return
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if not reference or not isRadioServiceReference(reference):
+			self.clearDisplay()
+			return
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		decoder = service and service.rdsDecoder()
+		message = decoder and (decoder.getText(iRdsDecoder.RadioText) or decoder.getText(iRdsDecoder.RtpText)) or ""
+		isDAB = reference.type == eServiceReference.idServiceDAB
+		if not isDAB and not message:
+			# Ordinary radio without RDS retains its usual EPG display.
+			self.clearDisplay()
+			return
+		station = info and info.getName() or reference.getName() or ""
+		station = station.replace("\x86", "").replace("\x87", "")
+		showPicture = self.updatePicture(info) if isDAB else False
+		if not showPicture:
+			self["picture"].hide()
+		# Do not restart a running-text animation on every metadata event.
+		for name, text in (("station", station), ("message", "" if showPicture else message), ("combined", f"{station} - {message}" if message else station)):
+			if self[name].text != text:
+				self[name].text = text
+		self.show()
+
+	def updatePicture(self, info):
+		picture = self["picture"]
+		displayMode = config.dab.frontDisplay.value
+		if not (self.colorDisplay and displayMode in ("slideshow", "logo") and picture.skinAttributes and picture.instance is not None):
+			return False
+		path = info and displayMode == "slideshow" and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
+		if not (path and isfile(path)):
+			path = info and info.getInfoString(iServiceInformation.sTagImage) or ""
+		if not (path and isfile(path)):
+			path = self.defaultImage
+		try:
+			status = stat(path)
+		except OSError:
+			return False
+		signature = (path, status.st_mtime_ns, status.st_size)
+		if signature != self.slideSignature:
+			if self.loadingPicture is None and signature != self.failedPicture:
+				if self.pictureLoader is None:
+					self.pictureLoader = ePicLoad()
+					self.pictureLoader.PictureData.get().append(self.pictureDecoded)
+				reference = self.session.nav.getCurrentlyPlayingServiceReference()
+				self.loadingPicture = (signature, reference.toString(), self.serviceGeneration)
+				pictureSize = picture.instance.size()
+				# Like LcdPicon: 101 forces RGB for 16-bit LCDs. Decode and fit in
+				# the worker thread; scaled blits are not supported on every LCD.
+				self.pictureLoader.setPara((pictureSize.width(), pictureSize.height(), 1, 1, False, 101, "#FF000000"))
+				if self.pictureLoader.startDecode(path):
+					self.failedPicture = signature
+					self.loadingPicture = None
+			return False
+		picture.show()
+		return True
+
+	def pictureDecoded(self, pictureInfo=None):
+		pixmap = self.pictureLoader.getData()
+		pending = self.loadingPicture
+		self.loadingPicture = None
+		if pending is None:
+			return
+		signature, referenceString, generation = pending
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if generation == self.serviceGeneration and reference and reference.toString() == referenceString:
+			picture = self["picture"]
+			if pixmap is not None and picture.instance is not None:
+				picture.instance.setScale(0)
+				picture.instance.setPixmap(pixmap.__deref__())
+				self.slideSignature = signature
+				self.slidePath = signature[0]
+			else:
+				self.failedPicture = signature
+		self.updateDisplay()
+
+	def clearDisplay(self):
+		self.serviceGeneration += 1
+		self.failedPicture = None
+		for name in ("message", "station", "combined"):
+			if self[name].text:
+				self[name].text = ""
+		self["picture"].hide()
+		self.slideSignature = None
+		self.slidePath = ""
+		self.hide()
 
 
 class RdsInfoDisplay(Screen):
@@ -187,6 +528,13 @@ class RdsInfoDisplay(Screen):
 		self["RadioText"] = Label()
 		self["RtpText"] = Label()
 		self["RassLogo"] = Pixmap()
+		# Optional: existing skins keep DABSlideDisplay; new skins may place
+		# this image inside their existing RdsInfoDisplay screen instead.
+		self["DabImage"] = Pixmap()
+		self["DabImage"].hide()
+		self.ignoreWidgets.append("DabImage")
+		self.dabBackground = False
+		self.backgroundAttributes = []
 
 		self.onLayoutFinish.append(self.hideWidgets)
 		self.rassInteractivePossible = False
@@ -195,6 +543,25 @@ class RdsInfoDisplay(Screen):
 
 	def createSummary(self):
 		return RdsInfoDisplaySummary
+
+	def setDABBackground(self, enabled):
+		if enabled == self.dabBackground or self.instance is None:
+			return
+		if enabled:
+			self.backgroundAttributes = []
+			for widget in (self, self["RadioText"], self["RtpText"]):
+				if widget.instance is not None:
+					attributes = [x for x in widget.skinAttributes or [] if x[0] in ("backgroundColor", "backgroundGradient", "transparent")]
+					self.backgroundAttributes.append((widget.instance, attributes, widget.instance.isTransparent()))
+					applyAllAttributes(widget.instance, getDesktop(0), [("backgroundColor", "#00000000"), ("transparent", "0")])
+		else:
+			# Restore the skin's original DVB-radio styling when leaving DAB.
+			for instance, attributes, transparent in self.backgroundAttributes:
+				instance.clearBackgroundColor()
+				instance.setTransparent(transparent)
+				applyAllAttributes(instance, getDesktop(0), attributes)
+			self.backgroundAttributes = []
+		self.dabBackground = enabled
 
 	def hideWidgets(self):
 		for x in (self["RadioText"], self["RtpText"], self["RassLogo"]):
@@ -233,7 +600,7 @@ class RdsInfoDisplay(Screen):
 			service = self.session.nav.getCurrentService()
 			decoder = service and service.rdsDecoder()
 			mask = decoder and decoder.getRassInteractiveMask()
-			if mask[0] & 1:  # rass interactive index page available
+			if mask and mask[0] & 1:  # RASS interactive index page available.
 				self["RassLogo"].show()
 				self.rassInteractivePossible = True
 				for x in self.onRassInteractivePossibilityChanged:
@@ -349,15 +716,13 @@ class RassInteractive(Screen):
 				self["Marker"].setPosition(current_pos[0], y)
 
 	def getMaskForPage(self, page, masks=None):
-		if not masks:
+		if masks is None:
 			service = self.session.nav.getCurrentService()
 			decoder = service and service.rdsDecoder()
-			if not decoder:  # this should never happen
-				print("NO RDS DECODER in getMaskForPage")
-			masks = decoder.getRassInteractiveMask()
+			masks = decoder and decoder.getRassInteractiveMask()
 		mask = 0
-		if masks:
-			mask = masks[(page * 4) / 8]
+		if masks and 0 <= page < 10 and page // 2 < len(masks):
+			mask = masks[page // 2]
 			if page % 2:
 				mask >>= 4
 			else:
@@ -374,25 +739,18 @@ class RassInteractive(Screen):
 		return cnt
 
 	def nextPage(self):
-		mask = 0
-		page = self.current_page
-		while mask == 0:
-			page += 1
-			if page > 9:
-				page = 0
-			mask = self.getMaskForPage(page)
-		self.numPressed(page)
+		for offset in range(1, 11):
+			page = (self.current_page + offset) % 10
+			if self.getMaskForPage(page):
+				self.numPressed(page)
+				break
 
 	def prevPage(self):
-		mask = 0
-		page = self.current_page
-		while mask == 0:
-			if page > 0:
-				page -= 1
-			else:
-				page = 9
-			mask = self.getMaskForPage(page)
-		self.numPressed(page)
+		for offset in range(1, 11):
+			page = (self.current_page - offset) % 10
+			if self.getMaskForPage(page):
+				self.numPressed(page)
+				break
 
 	def nextSubPage(self):
 		self.numPressed(self.current_page)

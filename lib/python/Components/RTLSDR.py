@@ -1,6 +1,6 @@
 from ctypes import ArgumentError, CDLL, POINTER, byref, c_char, c_char_p, c_int, c_uint32, c_void_p, create_string_buffer
 from glob import glob
-from os import makedirs, replace, unlink, uname
+from os import makedirs, replace, uname, unlink
 from os.path import basename, exists, join, realpath
 from re import fullmatch, split
 from threading import Thread
@@ -678,6 +678,14 @@ if not hasattr(config.dab, "scanSource"):
 	])
 if not hasattr(config.dab, "slideshow"):
 	config.dab.slideshow = ConfigYesNo(default=True)
+if not hasattr(config.dab, "technicalInfo"):
+	config.dab.technicalInfo = ConfigYesNo(default=False)
+if not hasattr(config.dab, "frontDisplay"):
+	config.dab.frontDisplay = ConfigSelection(default="text", choices=[
+		("text", _("Radio text")),
+		("slideshow", _("Slideshow / station logo")),
+		("logo", _("Station logo only"))
+	])
 if not hasattr(config.dab, "audioMode"):
 	config.dab.audioMode = ConfigSelection(default="auto", choices=[
 		("auto", _("Automatic")),

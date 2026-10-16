@@ -3306,6 +3306,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
+		self.infobar.dab_slide_display.rassPictureAvailable()
 		self.info.hide()
 		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
 

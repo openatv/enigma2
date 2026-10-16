@@ -286,8 +286,16 @@
 		<widget source="description" render="Label" position="0,104" size="220,72" font="FdLcD;20" valign="center" halign="left" />
 	</screen>
 	<!-- RDS info -->
-	<screen name="RdsInfoDisplaySummary" position="0,0" size="220,176">
-		<widget source="message" render="Label" position="0,0" size="220,176" font="FdLcD;24" halign="center" valign="center" />
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="220,176" zPosition="1" backgroundColor="#000000" flags="wfNoBorder">
+		<widget source="station" render="RunningText" position="0,0" size="220,28" font="Regular;24" halign="center" options="movetype=running,direction=left,wrap=0,always=0,startdelay=3000,steptime=80" />
+		<widget source="message" render="RunningText" position="0,30" size="220,126" font="Regular;22" halign="center" valign="center" options="movetype=running,direction=top,wrap=1,always=0,startdelay=2000,steptime=80" />
+		<widget name="picture" position="0,30" size="220,126" zPosition="1" alphatest="blend" scaleFlags="centerScaled" />
+		<widget source="global.CurrentTime" render="Label" position="110,156" size="110,20" font="Regular;18" halign="right" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="REC" position="0,156" size="110,20" font="Regular;18" noWrap="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>
 	<!-- softwaremanagment -->
 	<!-- new_template -->

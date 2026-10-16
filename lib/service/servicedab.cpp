@@ -31,8 +31,6 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/nconfig.h>
-#include <lib/base/esimpleconfig.h>
-#include <lib/dvb/decoder.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
@@ -2165,7 +2163,6 @@ RESULT eServiceDAB::stop()
 	stopTap();
 	if (m_parent)
 		m_parent->stop();
-	m_radio_picture_decoder = nullptr;
 	m_parent_event_connection = nullptr;
 	m_parent = nullptr;
 	m_event(this, evStopped);
@@ -2226,8 +2223,6 @@ bool eServiceDAB::startRTLSDR()
 	}
 	eDABDebug("[eServiceDAB] RTL-SDR receiver started channel=%s dabSid=%08x",
 		channel.c_str(), serviceId);
-	if (serviceId)
-		showRadioPicture();
 	const std::string cachedSlide = slidePath();
 	if (!cachedSlide.empty())
 	{
@@ -2380,8 +2375,6 @@ bool eServiceDAB::startTap()
 		return false;
 	}
 	m_tap_running = true;
-	if (m_reference.getUnsignedData(6))
-		showRadioPicture();
 	const std::string cachedSlide = slidePath();
 	if (!cachedSlide.empty())
 	{
@@ -2434,16 +2427,6 @@ void eServiceDAB::parentEvent(iPlayableService *, int event)
 	case evNewProgramInfo:
 		if (!m_tap_running)
 			startTap();
-		else if (m_reference.getUnsignedData(6))
-		{
-			/* The parent DVB service updates decoder 0 once more after the tap
-			 * has started.  On some Broadcom drivers that clears the radio still
-			 * picture which was just written by startTap().  Re-apply it after
-			 * the parent's decoder update so radio.mvi remains visible until an
-			 * SLS image arrives. */
-			m_radio_picture_decoder = nullptr;
-			showRadioPicture();
-		}
 		break;
 	case evTuneFailed:
 		m_event(this, evTuneFailed);
@@ -2476,8 +2459,6 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 		m_audio_probe_deadline = started && m_audio_loas ? monotonicMilliseconds() + LOAS_PROBE_MS : 0;
 		if (started)
 		{
-			m_radio_picture_decoder = nullptr;
-			showRadioPicture();
 			eDABDebug("[eServiceDAB] %s codec auto-detected: %s",
 				m_sdr_worker ? "RTL-SDR" : "DVB", stats.dabplus ? "DAB+ AAC" : "DAB MPEG Layer II");
 		}
@@ -2486,10 +2467,12 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 	const bool dlPlusChanged = m_stats.dlPlusRevision != stats.dlPlusRevision ||
 		strcmp(m_stats.dlPlusItemTitle, stats.dlPlusItemTitle) != 0 ||
 		strcmp(m_stats.dlPlusItemArtist, stats.dlPlusItemArtist) != 0 ||
+		strcmp(m_stats.dlPlusItemGenre, stats.dlPlusItemGenre) != 0 ||
 		strcmp(m_stats.dlPlusProgrammeNow, stats.dlPlusProgrammeNow) != 0;
 	const bool slideChanged = m_stats.slides != stats.slides;
 	const bool servicesChanged = m_stats.serviceRevision != stats.serviceRevision;
 	const bool receiverChanged = strcmp(m_stats.tunerName, stats.tunerName) != 0;
+	const bool qualityChanged = m_stats.ficQuality != stats.ficQuality || m_stats.mscQuality != stats.mscQuality;
 	const bool epgChanged = m_stats.spiRevision != stats.spiRevision;
 	const bool logoChanged = m_stats.logoRevision != stats.logoRevision;
 	const bool radioMetaChanged = m_stats.serviceFound != stats.serviceFound ||
@@ -2581,7 +2564,7 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 		m_event(this, evUpdatedRadioText);
 	if (radioMetaChanged || dlPlusChanged)
 		m_event(this, evUpdatedRtpText);
-	if (radioMetaChanged || slideChanged || logoChanged || servicesChanged || receiverChanged)
+	if (radioMetaChanged || dlsChanged || dlPlusChanged || slideChanged || logoChanged || servicesChanged || receiverChanged || qualityChanged)
 		m_event(this, evUpdatedInfo);
 	if (epgChanged)
 		m_event(this, evUpdatedEventInfo);
@@ -3073,31 +3056,6 @@ void eServiceDAB::audioQueueOverrun(GstElement *, void *userData)
 	static_cast<eServiceDAB *>(userData)->m_audio_queue_overruns.fetch_add(1);
 }
 
-void eServiceDAB::showRadioPicture()
-{
-	if (useDABPCMCompatibility() && !m_audio_input_mp2)
-	{
-		/* Some drivers share decoder state between video0 and audio0. Starting
-		 * the MPEG still-picture decoder can disturb DAB PCM sent through audio0.
-		 * DABSlideDisplay supplies a GUI-rendered logo/SLS background instead. */
-		return;
-	}
-	if (m_radio_picture_decoder)
-		return;
-	const bool showRadioBackground = eSimpleConfig::getBool("config.misc.showradiopic", true);
-	const std::string radioPicture = eConfigManager::getConfigValue(
-		showRadioBackground ? "config.misc.radiopic" : "config.misc.blackradiopic");
-	if (radioPicture.empty())
-		return;
-	m_radio_picture_decoder = new eTSMPEGDecoder(nullptr, 0);
-	/* Unlike a normal DVB radio service, DAB owns a separate parent service
-	 * whose decoder remains stopped. Returning the video device to that demux
-	 * after the usual 150 ms still-picture timeout clears the frame on Broadcom
-	 * drivers. Keep the memory-source frame until this DAB service stops; SLS is
-	 * displayed as a GUI layer above it. */
-	m_radio_picture_decoder->showSinglePic(radioPicture.c_str(), true);
-}
-
 void eServiceDAB::storeSlide(const uint8_t *data, size_t length, int format)
 {
 	static const uint8_t pngSignature[] = { 0x89, 'P', 'N', 'G', 0x0d, 0x0a, 0x1a, 0x0a };
@@ -3552,15 +3510,11 @@ std::string eServiceDAB::getInfoString(int w)
 	case sServiceref:
 		return m_reference.toString();
 	case sTagTitle:
-		if (m_stats.dlPlusItemTitle[0])
-			return m_stats.dlPlusItemTitle;
-		if (m_stats.dlPlusProgrammeNow[0])
-			return m_stats.dlPlusProgrammeNow;
-		return m_stats.serviceLabel[0] ? m_stats.serviceLabel : dabName(m_reference);
+		// Item tags describe music, not the station or the scheduled programme.
+		// Keep absent tags empty so skins can hide them without guessing.
+		return m_stats.dlPlusItemTitle;
 	case sTagArtist:
-		if (m_stats.dlPlusItemArtist[0])
-			return m_stats.dlPlusItemArtist;
-		return m_stats.serviceLabel[0] ? m_stats.serviceLabel : dabName(m_reference);
+		return m_stats.dlPlusItemArtist;
 	case sTagCodec:
 		return m_stats.serviceFound ? (m_stats.dabplus ? "DAB+ HE-AAC" : "DAB MPEG Audio Layer II") : "DAB (probing)";
 	case sTagBitrate:
