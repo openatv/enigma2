@@ -5486,7 +5486,8 @@ class InfoBarHandleBsod:
 			self.bsodLastWarning = False
 
 		self.bsodTimer.start(1000, True)
-		if not Screens.Standby.inStandby and not self.bsodIsShown:
+		isModal = self.session.in_exec or not self.session.dialog_stack  # Same condition as session.open().
+		if not Screens.Standby.inStandby and not self.bsodIsShown and isModal:
 			bsodOccurences = getBsodCounter()
 			if config.crash.bsodpython.value and self.bsodCount < bsodOccurences:
 				bsodMax = int(config.crash.bsodmax.value) or 100
@@ -5509,5 +5510,5 @@ class InfoBarHandleBsod:
 					self.bsodTimer.stop()
 					self.bsodTimer.start(5000, True)
 					bsodTimeoutCallback(False)
-					raise
+					return  # Raising here would be counted as a new crash.
 			self.bsodCount = bsodOccurences
