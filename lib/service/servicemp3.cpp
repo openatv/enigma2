@@ -1064,6 +1064,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	  m_pump(eApp, 1, "eServiceMP3") {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_dvb_subtitle_sync_timer = eTimer::create(eApp);
+	m_audio_switch_timer = eTimer::create(eApp);
 	m_dvb_subtitle_parser = new eDVBSubtitleParser();
 	m_dvb_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
 										  m_new_dvb_subtitle_page_connection);
@@ -1131,6 +1132,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_dvb_subtitle_sync_timer->timeout, eServiceMP3::pushDVBSubtitles);
+	CONNECT(m_audio_switch_timer->timeout, eServiceMP3::retryAudioSwitch);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
@@ -2992,6 +2994,33 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
 	return result;
 }
 
+/**
+ * @brief Applies a deferred audio stream switch once the pipeline settled.
+ *
+ * A flushing seek on a source that cannot seek may leave the pipeline short
+ * of the PAUSED->PLAYING transition the deferred switch waits for. Switch
+ * without the flush after two seconds.
+ */
+void eServiceMP3::retryAudioSwitch() {
+	if (m_audio_switch_deferred < 0)
+		return;
+	if (++m_audio_switch_retries < 8) {
+		if (pipelineSettledInPlaying(m_gst_playbin)) {
+			m_audio_switch_retrying = true;
+			applyAudioSelection();
+			m_audio_switch_retrying = false;
+		} else
+			m_audio_switch_timer->start(250, true);
+		return;
+	}
+	int i = m_audio_switch_deferred;
+	m_audio_switch_deferred = -1;
+	if (selectAudioStream(i, true, false) == 0) {
+		eDebug("[eServiceMP3] switched to audio stream %d without a flush, the pipeline did not settle", i);
+		setCacheEntry(true, i);
+	}
+}
+
 void eServiceMP3::applyAudioSelection() {
 	if (m_is_dash_pipeline || m_audioStreams.empty() || !pipelineSettledInPlaying(m_gst_playbin))
 		return;
@@ -3093,8 +3122,14 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix, bool remember) {
 	   clearBuffers() would deadlock on the audio selector. Applied on the next
 	   PAUSED->PLAYING transition instead. */
 	if (!skipAudioFix && i != m_currentAudioStream && !pipelineSettledInPlaying(m_gst_playbin)) {
-		// eDebug("[eServiceMP3] pipeline not settled in PLAYING, deferring switch to audio stream %d", i);
+		GstState state = GST_STATE_NULL, pending = GST_STATE_VOID_PENDING;
+		gst_element_get_state(m_gst_playbin, &state, &pending, 0);
+		eDebug("[eServiceMP3] pipeline %s, pending %s: deferring the switch to audio stream %d",
+			gst_element_state_get_name(state), gst_element_state_get_name(pending), i);
 		m_audio_switch_deferred = i;
+		if (!m_audio_switch_retrying)
+			m_audio_switch_retries = 0;
+		m_audio_switch_timer->start(250, true);
 		return 0;
 	}
 	if (!skipAudioFix)
@@ -3106,10 +3141,29 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix, bool remember) {
 		m_currentAudioStream = i;
 		if (!skipAudioFix) {
 			eDebug("[eServiceMP3] switched to audio stream %d", current_audio);
-			clearBuffers();
+			/* the flushing seek drops the queued audio of the previous stream; a
+			   source that cannot seek restarts at a wrong position after it */
+			GstQuery* query = gst_query_new_seeking(GST_FORMAT_TIME);
+			gboolean seekable = FALSE;
+			if (gst_element_query(m_gst_playbin, query))
+				gst_query_parse_seeking(query, NULL, &seekable, NULL, NULL);
+			gst_query_unref(query);
+			if (seekable)
+				clearBuffers();
+			else
+				eDebug("[eServiceMP3] the source cannot seek, the queued audio plays out");
 			if (remember)
 				setCacheEntry(true, i);
 		}
+		return 0;
+	}
+	if (!skipAudioFix) {
+		/* playbin may refuse the switch while the flush of the previous one is still running */
+		eDebug("[eServiceMP3] current-audio stays %d, retrying the switch to audio stream %d", current_audio, i);
+		m_audio_switch_deferred = i;
+		if (!m_audio_switch_retrying)
+			m_audio_switch_retries = 0;
+		m_audio_switch_timer->start(250, true);
 		return 0;
 	}
 	return -1;
