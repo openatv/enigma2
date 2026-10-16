@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-10-13 01:39+0000\n"
 "Last-Translator: Mark Stone <mstone@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1354,9 +1354,6 @@ msgstr "“%s”未挂载。"
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr "“%s”使用企业级认证（802.1X）。此类网络无法在此设置，需在 wpa_supplicant.conf 中手动配置。"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "“缓冲时间（小时）”或“最后事件的数量”。对于删除较旧的时移文件，首先发生的条件具有优先级。"
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "“处理来自电视的待机”比“处理来自电视的输入”具有更高的优先级。"
 
@@ -1696,6 +1693,9 @@ msgstr ""
 "已开始录制：\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1725,6 +1725,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "所需的工具 （%s）没有找到。"
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2208,9 +2211,6 @@ msgstr "调整调谐器本振偏移，优化 DAB+ 信号接收。"
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "调整用于图文电视的文字的垂直位置。"
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr "调整 DM9x0 的硬件缓冲延迟补偿。"
 
 msgid "Adult"
 msgstr "成人"
@@ -2996,7 +2996,7 @@ msgstr "每当接收机进入待机或深度待机时，自动将电视置于待
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr "每次进入待机 90 秒后自动运行快速扫描，并在待机期间每 24 小时运行一次。如果正在进行录制，则一小时后重试。选择“Multi”可扫描多个提供商。"
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "在？之后自动开始时移"
 
 msgid "Automatically turn on external subtitles"
@@ -3516,6 +3516,9 @@ msgstr "文莱达鲁萨兰国"
 
 msgid "Buffer Management"
 msgstr "缓冲区管理"
+
+msgid "Buffer age limit"
+msgstr "时移缓冲区限制"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4303,6 +4306,12 @@ msgstr "检查 PDC"
 msgid "Check for PDC availability on each service."
 msgstr "检查每个服务的 PDC 可用性。"
 
+msgid "Check for free space"
+msgstr "时移可用空间检查"
+
+msgid "Check for older files"
+msgstr "时移旧文件检查"
+
 msgid "Check power and input state from TV"
 msgstr "检查电视的电源和输入状态"
 
@@ -4323,6 +4332,9 @@ msgstr "正在检查 ONID/TSID..."
 
 msgid "Checking file system..."
 msgstr "正在检查文件系统..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5609,9 +5621,6 @@ msgstr "正在创建.ap和.sc文件"
 msgid "Creating file system"
 msgstr "正在创建文件系统"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "创建硬链到时移文件时失败！"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -6459,6 +6468,9 @@ msgstr "删除插件"
 msgid "Delete Timer"
 msgstr "删除定时器"
 
+msgid "Delete after zap"
+msgstr "换台后删除时移缓冲区"
+
 msgid "Delete all duplicated lines"
 msgstr "删除所有重复行"
 
@@ -6772,10 +6784,6 @@ msgstr "目录"
 
 msgid "Directory"
 msgstr "目录"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "目录“%s”无法链接到录像！"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7636,9 +7644,6 @@ msgstr "启用 %s pro："
 msgid "Enable 5V for active antenna"
 msgstr "为有源天线启用 5V"
 
-msgid "Enable Autorecord"
-msgstr "启用自动录制"
-
 msgid "Enable BT audio"
 msgstr "启用蓝牙音频"
 
@@ -7738,6 +7743,9 @@ msgstr "启用自动快速扫描"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "为 %s 启用自动快速扫描"
+
+msgid "Enable auto record"
+msgstr "启用自动录制"
 
 msgid "Enable automatic shares"
 msgstr "启用自动共享"
@@ -8093,9 +8101,6 @@ msgstr "输入安装人员或楼宇运营商分配给该用户频段的 PIN 码�
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字符。"
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr "为此网卡输入固定 / 静态 IPv4 地址。"
@@ -8589,8 +8594,14 @@ msgstr "事件视图操作"
 msgid "Event View Context Menu"
 msgstr "事件视图上下文菜单"
 
+msgid "Event based file splitting"
+msgstr "基于时移事件的文件分割"
+
 msgid "Event font size"
 msgstr "事件字体大小"
+
+msgid "Event limit"
+msgstr "时移事件限制"
 
 msgid "Event name only"
 msgstr "仅事件名称"
@@ -10460,14 +10471,8 @@ msgstr "如果启用，将使用新的 GStreamer 播放引擎。"
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "当所有日志达到最大空间时，最旧的将被删除。"
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "如果设置为“是”，则允许您将时移与备用音频插件一起使用。"
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方案，请等待系统时间同步。根据需要，设备将在最多2分钟后继续唤醒。"
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "如果可用空间小于设置值，则尝试删除旧的时移文件。"
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "如果文本太长，无法在前面板上显示，则会重复（次数）。"
@@ -10571,9 +10576,6 @@ msgstr "从远程接收机 URL 导入"
 
 msgid "Import remote receiver URL"
 msgstr "导入远程接收机 URL"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "除了在事件开始处的检查之外，可以使用重复检查，使得更早地检测条件“以小时为单位的缓冲器限制”或“检查可用空间”。"
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "在专家模式下，当有多个调谐器可用时，配置哪些调谐器会被用来录制。"
@@ -13663,20 +13665,6 @@ msgstr "未定义"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "没有足够的磁盘空间。请释放一些空间后重试。（需要 %d MB，可用 %d MB）"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"没有足够的磁盘空间！\n"
-"\n"
-"文件大小： %sMB\n"
-"剩余空间：%sMB\n"
-"路径： %s"
-
 msgid "Not found"
 msgstr "未发现"
 
@@ -13887,9 +13875,6 @@ msgstr "偏移并关闭 CA 设备"
 
 msgid "Ojibwa"
 msgstr "奥吉布瓦"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "每次事件更改时，都会删除时移目录中较旧的文件。"
 
 msgid "Olympic blue"
 msgstr "奥运蓝"
@@ -15760,6 +15745,9 @@ msgstr "内存基准"
 msgid "RAM temperature"
 msgstr "内存温度"
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "遥控器自定义代码"
 
@@ -17228,6 +17216,9 @@ msgstr "将控制台消息的日志保存到文件中"
 msgid "Save the right column directory location on exit."
 msgstr "退出时保存右列目录位置。"
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "保存时移为影片并继续录制"
 
@@ -17262,9 +17253,6 @@ msgstr "脚本消息中保存的行"
 
 msgid "Saving EPG Cache..."
 msgstr "正在保存 EPG 缓存..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "保存时移缓冲区，这可能需要一段时间。"
 
 msgid "Saving time shift files"
 msgstr "正在保存时移文件"
@@ -17546,14 +17534,8 @@ msgstr "选择“启用”以启动 CI+ 助手。"
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "如果此调谐器已连接信号电缆，请选择“已启用”，否则选择“未连接”。"
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "选择“否”以使时移使用单个缓冲区文件。使用“时移检查旧文件 [以分钟为单位]”和“时移检查可用空间？” 控制缓冲区文件的大小。"
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "选择“否”仅将日志消息写入调试日志文件。"
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "选择“否”以保存较早的事件，即使在换台或中断时移后也是如此。"
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "如果使用“通用”高频头，请选择“极化”，否则请查看高频头规格。"
@@ -17596,9 +17578,6 @@ msgstr "选择“是”，在暂停媒体播放时，信息栏保持显示，不
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "这个插件可以确定一个节目是更早开始还是持续更长时间。 频道必须提供可靠的数据。"
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "选择“是”以允许使用进度条跳转到事件中的选定点。"
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "选择“是”在打开频道列表时始终首先显示频道分组屏幕。选择“否”以使用当前频道分组打开频道列表。"
@@ -17939,12 +17918,21 @@ msgstr "从书签中选择目录"
 msgid "Select a distribution from where images are to be obtained"
 msgstr "选择要从中获取镜像的分布"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "调整 DM9x0 的硬件缓冲延迟补偿。"
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "选择要将“%s”提取到的位置："
 
 msgid "Select a menu item"
 msgstr "选择一个菜单项"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr ""
 
 msgid "Select a movie"
 msgstr "选择一部影片"
@@ -17987,6 +17975,9 @@ msgstr "设定待机状态下解扰任务执行的截止时间。"
 
 msgid "Select a tuner"
 msgstr "选择调谐器"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "选择动作"
@@ -18145,9 +18136,6 @@ msgstr "选择此定时器是否在星期三激活。"
 msgid "Select if this timer is to be repeated."
 msgstr "选择是否重复此定时器。"
 
-msgid "Select if time shift must continue when set to record."
-msgstr "选择设置为录制时是否必须继续时移。"
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "选择是否激活子频道模式。"
 
@@ -18271,11 +18259,17 @@ msgstr "选择“%s”的操作"
 msgid "Select the action to perform when the timer ends."
 msgstr "选择定时器结束时要执行的操作。"
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "选择节能器定时器激活时所需的关机类型。"
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "选择睡眠定时器激活时所需的关机类型。"
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "选择任务出错后、再次尝试运行前需要等待的时间。"
@@ -18453,6 +18447,9 @@ msgstr "选择时间线标记的初始位置。 标记是在 EPG 上绘制的显
 msgid "Select the input connector you want to use."
 msgstr "选择要使用的输入连接器。"
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "选择列表中的最后一项或移至文本末尾"
 
@@ -18525,6 +18522,9 @@ msgstr "选择列表中的下一项或向右移动光标"
 
 msgid "Select the next item in the list"
 msgstr "选择列表中的下一项"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "选择任务运行出错时的重试次数。"
@@ -19167,9 +19167,6 @@ msgstr "设置即时录制的默认位置。按 “OK” 添加新位置，按�
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "设置保存时移录像文件的默认位置。按“确定”添加新位置，按向左/向右从先前定义的位置中进行选择。"
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "设置存储时移缓冲区文件的默认位置。按 “OK” 添加新位置，按“左”/“右”从先前定义的位置中选择。"
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置媒体文件的默认电影选择位置。按 “OK” 添加新位置，按“左”/“右”从先前定义的位置中选择。"
 
@@ -19297,9 +19294,6 @@ msgstr "设为'启用'，可在待机模式下对已排队的加扰内容执行�
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "设置为“是”，以启用后台分时缓冲区的自动录制。"
 
 msgid "Set to the desired primetime hour."
 msgstr "设置为所需的黄金时段（小时）。"
@@ -20235,7 +20229,7 @@ msgstr "显示纵向节目指南"
 msgid "Show warning before restart"
 msgstr "重启前显示警告"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "时移停止时显示警告"
 
 msgid "Show watch status"
@@ -20445,9 +20439,6 @@ msgstr "快进 %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "快进（输入时间）"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "使用插件进行时移时跳过跳转到直播"
 
 msgid "Skip network setup"
 msgstr "跳过网络设置"
@@ -21145,6 +21136,9 @@ msgstr "状态不可用！"
 msgid "Status:"
 msgstr "状态："
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr "步"
 
@@ -21243,9 +21237,6 @@ msgstr "停止 %s 失败（退出代码 %s）"
 msgid "Stopping Softcam"
 msgstr "正在停止 Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
-
 msgid "Storage / Disk Information"
 msgstr "存储 / 磁盘信息"
 
@@ -21273,6 +21264,10 @@ msgstr "未找到存储设备！"
 
 msgid "Storage device not writable!"
 msgstr "存储设备不可写！"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "存储位置"
@@ -22117,6 +22112,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "从待机状态唤醒的命令将被发送多次。"
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr "“%s”的自定义挂载点为空！"
@@ -22154,13 +22155,6 @@ msgstr "文件“%s”已更改。 是否要放弃更改？"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "文件“%s”已更改。 是否要保存？"
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"时移设备上的文件系统不支持硬链。\n"
-"请确定已格式化为 EXT2、 EXT3 或 EXT4 格式！"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22240,6 +22234,9 @@ msgstr "结果已写入 %s。"
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr "厂商 STARTUP 文件中的根子目录无法安全扩展。"
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "已清除保存的 PIN 码。"
 
@@ -22272,6 +22269,9 @@ msgstr ""
 "\n"
 "现在这样做还是延长定时器？"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "时间乘以重复计数器并添加到最小发送间隔。"
 
@@ -22282,12 +22282,17 @@ msgstr ""
 "时移的缓冲时间超过设置中指定的限制。\n"
 "你想让我做什么 ？"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
 msgstr ""
-"时移存储设备不可用。\n"
-"请检查设备和时移路径。"
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22704,38 +22709,20 @@ msgstr "快进/快退时的时间跳跃重复间隔"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "时间跳跃：对某些速度使用正常快进模式"
 
-msgid "Time shift buffer delete after zap"
-msgstr "换台后删除时移缓冲区"
-
-msgid "Time shift buffer limit"
-msgstr "时移缓冲区限制"
-
 msgid "Time shift buffer location"
 msgstr "时移缓冲区位置"
 
-msgid "Time shift checking for free space"
-msgstr "时移可用空间检查"
-
-msgid "Time shift checking for older files"
-msgstr "时移旧文件检查"
-
-msgid "Time shift event based file splitting"
-msgstr "基于时移事件的文件分割"
-
-msgid "Time shift event limit"
-msgstr "时移事件限制"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "如果没有可接受的目录，时移可能无法正常工作。"
 
-msgid "Time shift not possible!"
-msgstr "不能时移！"
-
 msgid "Time shift save action on zap"
 msgstr "换台时的时移保存操作"
 
-msgid "Time shift save failed!"
-msgstr "时移保存失败！"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr "时移保存位置"
@@ -22746,8 +22733,8 @@ msgstr "时移保存录制（选择事件）"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "时移保存录制（当前事件后停止）"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "时移已保存到硬盘！"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "时移将在事件结束时保存。"
@@ -23458,6 +23445,9 @@ msgstr "无法打开调谐器（%d）"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "无法准备频道分组更新。扫描将继续，但不会更新频道分组。"
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "无法读取厂商 STARTUP 文件“%s”！"
@@ -23477,6 +23467,9 @@ msgstr "无法保存网络配置！"
 msgid "Unable to save network mount configuration!"
 msgstr "无法保存网络挂载配置！"
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
 
@@ -23493,9 +23486,15 @@ msgstr "无法调谐 DAB+ 卫星传送源"
 msgid "Unable to update HDD replacement: %s"
 msgstr "无法更新硬盘替代：%s"
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "无法验证高频头 %d的 Unicable 位置：%s！"
+
+msgid "Unable to write the time shift event information."
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级，没有图形界面"
@@ -23834,6 +23833,9 @@ msgstr "使用 PIN"
 msgid "Use QuickSelect"
 msgstr "使用快速选择"
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "使用电视遥控器"
 
@@ -24019,9 +24021,6 @@ msgstr "使用此视频增强功能设置？"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "使用时间跳跃进行快进/快退"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "时移时使用时移进度条"
 
 msgid "Use viewer for unknown files"
 msgstr "使用查看器查看未知文件"
@@ -24737,6 +24736,9 @@ msgstr "启用时，EIT（事件信息表）数据将包含在 http 流中。 �
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "启用后，SDT、BAT 数据将包含在 http 流中。"
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "启用后，当一部电影结束并开始下一部电影时，将显示一条弹出消息。"
 
@@ -24755,8 +24757,8 @@ msgstr "启用时，当没有空闲调谐器，允许录制中止串流。"
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "启用时，当没有空闲的调谐器，允许录制中断直播电视。"
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "启用后，将显示警告，用户将获得停止或继续时移的选项。"
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "启用后，允许无需密码通过 Samba 访问网络。"
@@ -24779,11 +24781,17 @@ msgstr "启用后，允许使用 NFS v3 协议。"
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "启用后，允许使用 NFS v4 协议。"
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr "启用后，扩展菜单中将添加“手动分辨率”条目，以便快速更改当前视频的视频模式。"
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用时，需要进行身份验证才能观看http流。"
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr "启用后，绕过 HDMI EDID 检查。"
@@ -24799,6 +24807,9 @@ msgstr "启用后，换台到当前频道分组的最后一个频道时，继续
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "启用后，已删除的录像会移至回收站，而不是立即删除。"
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "启用后，播放影片将始终打开外挂字幕。"
@@ -24844,6 +24855,9 @@ msgstr "启用时，显示状态或错误消息。"
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "启用后，为此适配器指定自定义DNS设置，而非使用全局DNS设置。"
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "启用时，可以使用听力受损者的字幕。"
@@ -24914,8 +24928,11 @@ msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "启用时，此设置的权重大于“首选调谐器”。"
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "启用后，时移会在指定时间后在后台自动启动。"
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "启用后，您可以自定义备用调谐器的 OpenWebIf 设置。"
@@ -25104,6 +25121,9 @@ msgstr "录制时写入出错。%s"
 
 msgid "Write failed!"
 msgstr "写入失败！"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25519,9 +25539,6 @@ msgstr "从右放大"
 
 msgid "Zulu"
 msgstr "祖鲁语"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[时光平移]合并录制失败!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[时移] 正在重启时移!"
@@ -26180,6 +26197,104 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "“缓冲时间（小时）”或“最后事件的数量”。对于删除较旧的时移文件，首先发生的条件具有优先级。"
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "创建硬链到时移文件时失败！"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "目录“%s”无法链接到录像！"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "如果设置为“是”，则允许您将时移与备用音频插件一起使用。"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "如果可用空间小于设置值，则尝试删除旧的时移文件。"
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "除了在事件开始处的检查之外，可以使用重复检查，使得更早地检测条件“以小时为单位的缓冲器限制”或“检查可用空间”。"
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "没有足够的磁盘空间！\n"
+#~ "\n"
+#~ "文件大小： %sMB\n"
+#~ "剩余空间：%sMB\n"
+#~ "路径： %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "每次事件更改时，都会删除时移目录中较旧的文件。"
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "保存时移缓冲区，这可能需要一段时间。"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "选择“否”以使时移使用单个缓冲区文件。使用“时移检查旧文件 [以分钟为单位]”和“时移检查可用空间？” 控制缓冲区文件的大小。"
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "选择“否”以保存较早的事件，即使在换台或中断时移后也是如此。"
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "选择“是”以允许使用进度条跳转到事件中的选定点。"
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "选择设置为录制时是否必须继续时移。"
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "设置存储时移缓冲区文件的默认位置。按 “OK” 添加新位置，按“左”/“右”从先前定义的位置中选择。"
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "设置为“是”，以启用后台分时缓冲区的自动录制。"
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "使用插件进行时移时跳过跳转到直播"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "时移设备上的文件系统不支持硬链。\n"
+#~ "请确定已格式化为 EXT2、 EXT3 或 EXT4 格式！"
+
+#~ msgid ""
+#~ "The time shift storage device is not available.\n"
+#~ "Please check the device and the time shift path."
+#~ msgstr ""
+#~ "时移存储设备不可用。\n"
+#~ "请检查设备和时移路径。"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "不能时移！"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "时移保存失败！"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "时移已保存到硬盘！"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "时移时使用时移进度条"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "启用后，将显示警告，用户将获得停止或继续时移的选项。"
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "启用后，时移会在指定时间后在后台自动启动。"
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[时光平移]合并录制失败!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "允许10bit"

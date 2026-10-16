@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
-"PO-Revision-Date: 2026-10-13 05:08+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
+"PO-Revision-Date: 2026-10-16 00:39+0000\n"
 "Last-Translator: Milan Koljanin <milan58@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -1388,9 +1388,6 @@ msgstr "'%s' je odspojen."
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr "'%s' koristi autentifikaciju za poduzeća (802.1X). Mreže poput ove se ovdje ne mogu postaviti, one se moraju ručno konfigurirati u wpa_supplicant.conf."
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Međuspremnik u satima\" ili \"broj posljednjih događaja\". Za brisanje starijih datoteka s vremenskim pomakom, stanje koje se prvo dogodilo ima prioritet."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Rukovati stanjem pripravnosti sa TV-a' ima veći prioritet od 'Rukovanje ulazom sa TV-a'."
 
@@ -1730,6 +1727,9 @@ msgstr ""
 "Snimanje je počelo:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr "Snimanje ima prednost. Pomak vremena se zaustavlja."
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1759,6 +1759,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Traženi alat (%s) nije pronađen."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr "Provjera prostora za pohranu je još uvijek u tijeku. Hoćeš li spremiti ove postavke bez čekanja?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2242,9 +2245,6 @@ msgstr "Podesi pomak oscilatora tunera da poboljša prijem DAB+ signala."
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Podesite položaj slova teleteksta okomito."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr "Prilagođava kompenzaciju za kašnjenje hardverskog međuspremnika za DM9x0."
 
 msgid "Adult"
 msgstr "Odrasli"
@@ -3030,7 +3030,7 @@ msgstr "Automatski stavite TV u stanje pripravnosti, kada tuner uđe u stanje pr
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr "Automatski pokreni brzo skeniranje 90 sekundi nakon svakog ulaska u stanje mirovanja i svakih 24 sata dok ostaješ u stanju mirovanja. Ako je snimanje u tijeku, pokušaj ponovno nakon jedan sat. Odaberi 'Više' za skeniranje više pružatelja."
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Auto započni timeshift poslije"
 
 msgid "Automatically turn on external subtitles"
@@ -3550,6 +3550,9 @@ msgstr "Brunei Darussalam"
 
 msgid "Buffer Management"
 msgstr "Upravljanje međuspremnikom"
+
+msgid "Buffer age limit"
+msgstr "Ograničenje međuspremnika vremenskog pomaka"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4337,6 +4340,12 @@ msgstr "Provjerite PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Provjerite dostupnost PDC za svaku uslugu."
 
+msgid "Check for free space"
+msgstr "Provjera slobodnog prostora s vremenskim pomakom"
+
+msgid "Check for older files"
+msgstr "Provjera vremenskog pomaka za starije datoteke"
+
 msgid "Check power and input state from TV"
 msgstr "Provjerite napajanje i ulazno stanje s TV"
 
@@ -4357,6 +4366,9 @@ msgstr "Provjera ONID/TSID ..."
 
 msgid "Checking file system..."
 msgstr "Provjera datotečnog sustava..."
+
+msgid "Checking storage directory..."
+msgstr "Provjeravam direktorij za pohranu..."
 
 #, python-format
 msgid ""
@@ -5645,9 +5657,6 @@ msgstr "Stvaranje .ap i .sc datoteka"
 msgid "Creating file system"
 msgstr "Stvaranje datotečnog sustava"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Stvaranje čvrste veze na datoteku s vremenskim pomakom nije uspjelo!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -6495,6 +6504,9 @@ msgstr "Izbrišite dodatke"
 msgid "Delete Timer"
 msgstr "Izbriši Tajmer"
 
+msgid "Delete after zap"
+msgstr "Brisanje međuspremnika vremenskog pomaka nakon zapa"
+
 msgid "Delete all duplicated lines"
 msgstr "Izbriši sve duple redove"
 
@@ -6808,10 +6820,6 @@ msgstr "Direktorijumi"
 
 msgid "Directory"
 msgstr "Direktorij"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Direktorij '%s' nemože se povezati sa snimcima!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7673,9 +7681,6 @@ msgstr "Omogući %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Uključi 5V za zemaljsku antenu"
 
-msgid "Enable Autorecord"
-msgstr "Omogući Auto snimanje"
-
 msgid "Enable BT audio"
 msgstr "Omogući BT Audio"
 
@@ -7775,6 +7780,9 @@ msgstr "Omogući auto brzo skeniranje"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Omogući auto brzo skeniranje za %s"
+
+msgid "Enable auto record"
+msgstr "Omogući Auto snimanje"
 
 msgid "Enable automatic shares"
 msgstr "Omogući automatski shares"
@@ -8132,9 +8140,6 @@ msgstr "Unesi PIN od 0 do 255 dodijeljen ovom korisničkom opsegu od strane inst
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Unesite ZeroTier ID mreže. ID bi trebao imati točno 16 znakova."
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr "Unesite trajanje koje će se dodati predmemoriji streaminga nakon pogreške streaminga. Ova dodatna predmemorija može pomoći u izbjegavanju daljnjih problema sa streamingom zbog nedostatka prostora u predmemoriji."
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr "Unesi fiksnu/statističku IPv4 adresu koja će se koristiti za ovaj mrežni adapter."
@@ -8628,8 +8633,14 @@ msgstr "Radnja Prikaza Događaja"
 msgid "Event View Context Menu"
 msgstr "Kontekstualni Meni Prikaza Događaja"
 
+msgid "Event based file splitting"
+msgstr "Dijeljenje datoteka na temelju događaja vremenskog pomaka"
+
 msgid "Event font size"
 msgstr "Veličina slova događaja"
+
+msgid "Event limit"
+msgstr "Ograničenje događaja vremenskog pomaka"
 
 msgid "Event name only"
 msgstr "Samo naziv događaja"
@@ -10496,14 +10507,8 @@ msgstr "Ako je omogućeno, koristit će se novi GStreamer mehanizam za reprodukc
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ako evidencije koriste postavljeni maksimalni korišteni prostor, najstariji će biti izbrisan."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Ako je postavljeno na 'Da' omogućava korišćenje tajmšifta sa alternativnim audio pluginom."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Ako je zaobilazno rješenje u dubokom stanju pripravnosti omogućeno, pričekajte dok se vrijeme sustava ne sinkronizira. Ovisno o zahtjevu, buđenje uređaja nastavit će se nakon najviše 2 minute."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Ako je slobodni prostor manji od vrijednosti postavke, tada se pokušava izbrisati stare datoteke vremenskog pomaka."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Ako je tekst predugačak da bi se prikazao na prednjoj ploči, ponovit će se (broj puta)."
@@ -10607,9 +10612,6 @@ msgstr "Uvoz s URL-a iz udaljenog tunera"
 
 msgid "Import remote receiver URL"
 msgstr "Uvoz URL-a udaljenog tunera"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Osim provjere na početku događaja, može se koristiti i ponavljajuća provjera, tako da se ranije otkriju uvjeti \"međuspremnik u satima\" ili \"provjera slobodnog prostora\"."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "U stručnom načinu rada konfigurirajte koji će se tuneri preferirati za snimke, kada je dostupno više od jednog tunera."
@@ -13700,20 +13702,6 @@ msgstr "Nije definisano"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nema dovoljno prostora na disku. Oslobodite malo prostora na disku i pokušajte ponovno. (%d MB potrebno, %d MB dostupno)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Nema dovoljno slobodnog prostora na disku!\n"
-"\n"
-"Veličina fajla: %sMB\n"
-"Slobodni prostor: %sMB\n"
-"Putanja : %s"
-
 msgid "Not found"
 msgstr "Nije pronađeno"
 
@@ -13924,9 +13912,6 @@ msgstr "Pomakni i zatvori CA uređaj"
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Starije datoteke u direktoriju vremenskog pomaka uklanjaju se pri svakoj promjeni događaja."
 
 msgid "Olympic blue"
 msgstr "Olimpijsko plavo"
@@ -15799,6 +15784,9 @@ msgstr "RAM odrednica"
 msgid "RAM temperature"
 msgstr "RAM temperatura"
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr "Vrijeme pomaka RAM-a ne može se spremiti kao snimka."
+
 msgid "RC custom code"
 msgstr "RC prilagođeni kod"
 
@@ -17267,6 +17255,9 @@ msgstr "Spremi evidenciju poruka konzole u datoteku"
 msgid "Save the right column directory location on exit."
 msgstr "Spremi lokaciju direktorijuma desne kolone pri izlasku."
 
+msgid "Save these settings anyway?"
+msgstr "Svejedno spremiti ove postavke?"
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Spremi timeshift kao film i nastavi sa snimanjem"
 
@@ -17301,9 +17292,6 @@ msgstr "Spremi redove u porukama skripti"
 
 msgid "Saving EPG Cache..."
 msgstr "Spremi EPG keš..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Čuvanje bafera za pomeranje vremena, ovo može potrajati."
 
 msgid "Saving time shift files"
 msgstr "Spremi timeshift datoteku"
@@ -17588,14 +17576,8 @@ msgstr "Odaberi 'Omogući' da bi pokrenuli CI+ helper."
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Odaberi 'omogućeno' ako ovaj tuner ima povezan signalni kabel, u suprotnom odaberite 'ništa nije povezano'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Odaberi 'Ne' da bi promijenili vrijeme koristeći jedan buffer datoteke. Koristite 'Provjera timeshift ' za stare datoteke [u minutama]' i 'Provjera slobodnog prostora u timeshift ?' da bi kontrolisali veličinu buffer datoteke."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Odaberi 'Ne' da bi napisali poruku evidencije u datoteku log otklanjanja grešaka."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Odaberi 'Ne' da bi sačuvali starije događaje čak i nakon pomjeranja ili prekidanja vremena."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Odaberi 'Polarizacija' ako koristite 'Univerzalni' LNB, u suprotnom pogledajte specifikaciju vašeg LNB."
@@ -17638,9 +17620,6 @@ msgstr "Odaberi 'Da' zadržite prikazanu info traku bez vremenskog razmaka, dok 
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Odaberite 'Da' kako biste omogućili VPS-u da prilagodi tajmere snimanja na temelju podataka o Program Delivery Control (PDC) emitiranja. Za rad ove funkcije, usluga mora pružiti pouzdane PDC podatke o događajima."
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Odaberite 'Da' kako biste omogućili korištenje trake za traženje za preskakanje na odabranu točku unutar događaja."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Odaberi 'Da' da bi uvijek prvo pokazali zaslon sa buketom prilikom otvaranja spiska kanala. Odaberite 'Ne' da bi otvorili spisak kanala koristeći trenutni buket."
@@ -17981,12 +17960,21 @@ msgstr "Odaberi direkrorij iz obeleživača"
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Odaberi raspodijelu odakle treba da se dobije slika"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "Prilagođava kompenzaciju za kašnjenje hardverskog međuspremnika za DM9x0."
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Unesite trajanje koje će se dodati predmemoriji streaminga nakon pogreške streaminga. Ova dodatna predmemorija može pomoći u izbjegavanju daljnjih problema sa streamingom zbog nedostatka prostora u predmemoriji."
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Odaberi lokaciju na koju želite izdvojiti '%s':"
 
 msgid "Select a menu item"
 msgstr "Odaberi stavke menu"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr "Odaberite minimalnu količinu slobodnog prostora. Kada slobodni prostor padne ispod ove vrijednosti, čišćenje pokušava ukloniti stare, neiskorištene vremenske pomake spremnika. Spremnici koji se trenutno reproduciraju ili spremaju ostaju zaštićeni, pa ovo nije zajamčeno oslobađanje prostora."
 
 msgid "Select a movie"
 msgstr "Odaberi film"
@@ -18029,6 +18017,9 @@ msgstr "Odaberi vrijeme, kada je u stanju pripravnosti, prije kojeg dešifrovanj
 
 msgid "Select a tuner"
 msgstr "Odaberi tuner"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr "Odaberi direktorij u koji se može pisati na priključenom uređaju za pohranu ili mrežnoj dijeljenoj lokaciji. Interna flash memorija i RAM nisu dopušteni. Hard linkovi nisu potrebni. Pritisni 'OK' za odabir direktorija."
 
 msgid "Select action"
 msgstr "Odabir akcije"
@@ -18187,9 +18178,6 @@ msgstr "Odaberi da li će se ovaj tajmer aktivirati Srijedom."
 msgid "Select if this timer is to be repeated."
 msgstr "Odaberi da li će se ovaj tajmer ponoviti."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Potvrdite odabir u opciji timeshift da li mora da se nastavi kada je podešeno za snimanje."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Odaberi ovu opciju ako želite da se aktivira način podservisa."
 
@@ -18313,11 +18301,17 @@ msgstr "Odaberi akciju za '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Odaberi radnju koju želite izvršiti kada se tajmer završi."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr "Odaberi radnju koju ćeš poduzeti kada napuštaš pomak vremena zbog promjene usluge. Ova opcija se koristi kada je upozorenje za zaustavljanje pomaka vremena uključeno."
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Odaberi željenu vrstu isključivanja kada se aktivira tajmer Ušteda Energije."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "Odaberi željenu vrstu isključivanja kada se aktivira Tajmer Spavanja."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr "Odaberi koliko dugo neiskorišteni privremeni spremnici za vremensku pomak mogu ukloniti tijekom čišćenja. Spremnici koji se još snimaju, reproduciraju ili spremaju ostaju zaštićeni. Ova postavka ne ograničava duljinu aktivnog spremnika."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Odaberite vrijeme čekanja nakon pogreške zadatka prije nego što pokušate ponovno pokrenuti zadatak."
@@ -18495,6 +18489,9 @@ msgstr "Odaberi početnu poziciju označivača vremenske ose. Označavač je ver
 msgid "Select the input connector you want to use."
 msgstr "Odaberi ulazni konektor koji želite da koristite."
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr "Odaberi interval za provjeru starosti i slobodnog prostora buffera, osim provjera promjena događaja. Onemogućeno znači da nema periodične provjere. Čišćenje uklanja neiskorištene privremene buffere i ne skraćuje aktivni buffer."
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "Odaberi poslednje stavke na spisku ili premještanje na kraj teksta"
 
@@ -18567,6 +18564,9 @@ msgstr "Odaberi sljedeće stavke na spisku ili pomjeranje kursora nadesno"
 
 msgid "Select the next item in the list"
 msgstr "Odaberi sljedeće stavke na spisku"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr "Odaberite broj događaja koji će se čuvati u vremenskom pomaku u memoriji. Događaji preko ovog ograničenja bit će uklonjeni tijekom čišćenja. Memorija može sadržavati nekoliko fizičkih dijelova datoteke, koji se računaju kao jedan. Memorije koje se još koriste ostaju zaštićene, pa se ograničenje može privremeno premašiti."
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Odaberite broj puta koliko će se zadatak ponoviti ako dođe do pogreške prilikom izvršavanja zadatka."
@@ -19209,9 +19209,6 @@ msgstr "Podešavanje zadane lokacije za trenutne snimke. Pritisni 'OK' da bi dod
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "Postavite zadanu lokaciju za čuvanje vaših snimaka vremenskog pomeranja. Pritisnite 'OK' da dodate nove lokacije, pritisnite LIJEVO/DEVO da odaberete iz prethodno definisanih lokacija."
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Podešavanje zadane lokacije za skladištenje datoteka buffera za pomjeranje vremena. Pritisni 'OK' da bi dodali nove lokacije, pritisni 'LIJEVO'/'DESNO' da bi izabrali sa predhodno zadanih lokacija."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Podešavanje zadane lokacije za odabir filma medijske datoteke. Pritisni 'OK' da bi dodali nove lokacije, pritisni 'LIJEVO'/'DESNO' da bi izabrali sa predhodno zadanih lokacija."
 
@@ -19339,9 +19336,6 @@ msgstr "Postavite na 'Omogućeno' za dešifriranje redom raspoređenih šifriran
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Postavite na 'Da' da omogućite slanje istih TV naredbi za Duboki pripravni način kao i za redovni pripravni način."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Postavite na 'Da' da omogućite automatsko snimanje međuspremnika vremenskog pomaka u pozadini."
 
 msgid "Set to the desired primetime hour."
 msgstr "Podesite na željeno udarno vrijeme."
@@ -20277,7 +20271,7 @@ msgstr "Pokaži vertikalni Programski Vodič"
 msgid "Show warning before restart"
 msgstr "Pokaži upozorenje pre ponovnog pokretanja"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Pokaži upozorenje kada je tajmšift zaustavljen"
 
 msgid "Show watch status"
@@ -20489,9 +20483,6 @@ msgstr "Preskoči unaprijed %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "Preskoči naprijed (unesi vrijeme)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Preskoči preskakanje uživo tajmeršifta sa pluginom"
 
 msgid "Skip network setup"
 msgstr "Preskoči postavljanje mreže"
@@ -21191,6 +21182,9 @@ msgstr "Status nije dostupan!"
 msgid "Status:"
 msgstr "Status:"
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr "Ostani u vremenskom pomaku na kraju bafera (za dodatke)"
+
 msgid "Step"
 msgstr "Korak"
 
@@ -21289,9 +21283,6 @@ msgstr "Zaustavljanje %s nije uspjelo (kod izlaza %s)"
 msgid "Stopping Softcam"
 msgstr "Zaustavi Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Onemogućava korištenje pomaka u vremenu ako je snimanje u tijeku. To se preporučuje za USB memorijske stickove."
-
 msgid "Storage / Disk Information"
 msgstr "Skladište / Disk Info"
 
@@ -21319,6 +21310,10 @@ msgstr "Uređaj za skladištenje nije pronađen!"
 
 msgid "Storage device not writable!"
 msgstr "Uređaj za skladištenje nije upisiv!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr "Direktorij za pohranu '%s' nije dostupan ili nije moguće pisati u njega."
 
 msgid "Store position"
 msgstr "Čuvanje pozicije"
@@ -22163,6 +22158,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Naredba za buđenje iz pripravnog načina bit će poslana više puta."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr "Nije se moglo sigurno identificirati nastavak snimke. Obje snimke su sačuvane i neće se spajati."
+
+msgid "The current time shift buffer is no longer available."
+msgstr "Trenutni međuspremnik za pomak vremena više nije dostupan."
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr "Prilagođena točka montiranja za '%s' je prazna!"
@@ -22200,13 +22201,6 @@ msgstr "Datoteka '%s' je promijenjena. Želite li odbaciti promjene?"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "Datoteka '%s' je promijenjena. Želite li ga spremiti?"
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Datotečni sustav na vašem uređaju s vremenskim pomakom ne podržava hard disk.\n"
-"Provjerite je li formatiran u EXT2, EXT3 ili EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22286,6 +22280,9 @@ msgstr "Rezultati su zapisani na %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr "Glavni poddirektorij u STARTUP datoteci proizvođača ne može se sigurno proširiti."
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr "Trenutna verzija Enigma2 ne može sigurno spremiti aktivni buffer vremenskog pomaka."
+
 msgid "The saved PIN was cleared."
 msgstr "Spremljeni PIN je izbrisan."
 
@@ -22318,6 +22315,9 @@ msgstr ""
 "\n"
 "Učinite to sada ili produžite mjerač vremena?"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr "Provjera pohrane nije završila. Molimo provjerite uređaj ili mrežu i pokušajte ponovo."
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Vrijeme se množi s trenutnim brojačem ponavljanja."
 
@@ -22328,12 +22328,17 @@ msgstr ""
 "Bafer timešift prelazi ograničenje navedeno u podešavanjima.\n"
 "Šta želite da uradite?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
-msgstr ""
-"Uređaj za pohranu vremenske promjene nije dostupan.\n"
-"Molim te provjeri uređaj i put za pomak vremena."
+msgid "The time shift buffer is not available."
+msgstr "Predmemorija vremenskog pomaka nije dostupna."
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr "Snimka vremenskog pomaka je spremljena, ali privremena snimka se nije mogla ukloniti."
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr "Uređaj za pohranu za vremenski pomak nije dostupan. Molimo provjeri uređaj i putanju za vremenski pomak."
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr "Uređaj za pohranu vremenskog pomaka je uklonjen. Vremenski pomak je zaustavljen."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22751,38 +22756,20 @@ msgstr "Interval ponavljanja vremenskog skoka za brzo kretanje naprijed/natrag"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Vremenski skok: koristite normalno premotavanje unaprijed za brzine"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Brisanje međuspremnika vremenskog pomaka nakon zapa"
-
-msgid "Time shift buffer limit"
-msgstr "Ograničenje međuspremnika vremenskog pomaka"
-
 msgid "Time shift buffer location"
 msgstr "Lokacija međuspremnika vremenskog pomaka"
 
-msgid "Time shift checking for free space"
-msgstr "Provjera slobodnog prostora s vremenskim pomakom"
-
-msgid "Time shift checking for older files"
-msgstr "Provjera vremenskog pomaka za starije datoteke"
-
-msgid "Time shift event based file splitting"
-msgstr "Dijeljenje datoteka na temelju događaja vremenskog pomaka"
-
-msgid "Time shift event limit"
-msgstr "Ograničenje događaja vremenskog pomaka"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr "Pomak vremena nije mogao biti pokrenut. Molimo provjerite uređaj za pohranu i dostupni prostor."
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Timeshift možda neće raditi ispravno bez prihvatljivog direktorija."
 
-msgid "Time shift not possible!"
-msgstr "Timeshift nije moguć!"
-
 msgid "Time shift save action on zap"
 msgstr "Akcija spremanja vremenskog pomaka na zap"
 
-msgid "Time shift save failed!"
-msgstr "Spremanje vremenskog pomaka nije uspjelo!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr "Spremanje vremenskog pomaka nije uspjelo! Izvorni spremnik je sačuvan."
 
 msgid "Time shift save location"
 msgstr "Lokacija za čuvanje timešift"
@@ -22793,8 +22780,8 @@ msgstr "Snimanje spremanja vremenskog pomaka (Odaberi događaj)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Snimanje spremanja pomaka u timeshift (zaustavljanje nakon trenutnog događaja)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift je spremljen na vaš tvrdi disk!"
+msgid "Time shift saved!"
+msgstr "Pomak vremena spremljen!"
 
 msgid "Time shift will get saved at end of event."
 msgstr "Timeshift bit će spremljen na kraju događaja."
@@ -23505,6 +23492,9 @@ msgstr "Ne mogu otvoriti tuner (%d)"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "Nije moguće pripremiti ažuriranje buketa. Skeniranje će se nastaviti bez ažuriranja buketa."
 
+msgid "Unable to prepare the time shift storage device."
+msgstr "Nije moguće pripremiti uređaj za pohranu vremenskog pomaka."
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Nije moguće pročitati proizvođačevu STARTUP datoteku '%s'!"
@@ -23524,6 +23514,9 @@ msgstr "Ne mogu spremiti mrežnu konfiguraciju!"
 msgid "Unable to save network mount configuration!"
 msgstr "Ne mogu spremiti konfiguraciju mrežnog montažnog mjesta!"
 
+msgid "Unable to start RAM time shift."
+msgstr "Ne mogu pokrenuti RAM vremenski pomak."
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Ne mogu pokrenuti DAB+ prijenos"
 
@@ -23540,9 +23533,15 @@ msgstr "Ne mogu pronaći DAB+ satelitski signal"
 msgid "Unable to update HDD replacement: %s"
 msgstr "Nije moguće ažurirati zamjenu HDD-a: %s"
 
+msgid "Unable to update the time shift buffer."
+msgstr "Ne mogu ažurirati međuspremnik vremenske pomake."
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Nije moguće potvrditi Unicable poziciju za LNB %d: %s!"
+
+msgid "Unable to write the time shift event information."
+msgstr "Ne mogu zapisati informacije o događaju pomaka vremena."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Nadogradnja bez nadzora GUI"
@@ -23881,6 +23880,9 @@ msgstr "Koristi PIN"
 msgid "Use QuickSelect"
 msgstr "Korištenje brzog odabira"
 
+msgid "Use SeekBar while time shifting"
+msgstr "Koristi traku za pomicanje vremena"
+
 msgid "Use TV remote control"
 msgstr "Koristite daljinski upravljač TV"
 
@@ -24066,9 +24068,6 @@ msgstr "Koristite ove postavke poboljšanja videozapisa?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Koristite vremenske skokove za brzo naprijed/natrag"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Korištenje trake traženja vremenskog pomaka tijekom pomicanja vremena"
 
 msgid "Use viewer for unknown files"
 msgstr "Koristite preglednik za nepoznate datoteke"
@@ -24784,6 +24783,9 @@ msgstr "Kada je omogućeno, EIT podaci bit će uključeni u http stream. To omog
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "Kada je omogućeno, podaci SDT-a i BAT-a bit će uključeni u HTTP streamove."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr "Kada je omogućeno, za svaki događaj se pokreće novi buffer. Kada je onemogućeno, održava se kontinuirani buffer preko različitih događaja. Datotečni sustavi poput FAT32 i dalje zahtijevaju fizičke dijelove datoteka, koji se reproduciraju kao jedan buffer. Čišćenje ne ograničava veličinu aktivnog buffera."
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kada je omogućeno, skočni prozor će se prikazati kada se film završi i započet će sljedeći."
 
@@ -24802,8 +24804,8 @@ msgstr "Kada je omogućeno, snimanju je dopušteno prekinuti streaming, kada nem
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Kada je omogućeno, snimanje može prekinuti TV uživo, kada nema slobodnih tunera."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Kada je omogućeno, prikazat će se upozorenje i korisnik će dobiti opciju zaustavljanja ili nastavka vremenskog pomaka."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr "Kada je omogućeno, bit će prikazano upozorenje ako će neka naredba zaustaviti pomak vremena. Pojavit će se opcija da se pomak vremena zaustavi ili nastavi."
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "Kad je omogućeno, dopusti pristup Samba mreži bez lozinke."
@@ -24826,11 +24828,17 @@ msgstr "Kad je omogućeno, dopušta korištenje NFS protokola verzije 3."
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Kad je omogućeno, dopušta korištenje NFS protokola verzije 4."
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr "Kad je uključeno, možeš koristiti traku za traženje da skočiš na odabranu točku u vremenskom pomaku."
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr "Kada je omogućeno, u izborniku Proširenja dodaje se stavka 'Ručno podešavanje rezolucije' kako bi se omogućila brza promjena video načina za trenutni video."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kada je omogućeno, provjera autentičnosti potrebna je za gledanje http streams."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr "Kad je omogućeno, automatski spremaj dovršene vremenske pomake kao snimke. Ovo se odnosi na novostvorene pomake. Kada je dijeljenje događaja isključeno, spremanje počinje kada se pomak zaustavi. Spremljene snimke se ne brišu čišćenjem vremenskog pomaka."
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr "Kad je omogućeno, preskoči provjeru HDMI EDID-a."
@@ -24846,6 +24854,9 @@ msgstr "Kada je omogućeno, nastavite do sljedećeg buketa kada se dosegne poslj
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kada je omogućeno, izbrisani snimci se premeštaju u smeće, umesto da se odmah brišu."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr "Kad je uključeno, nemoj automatski prelaziti na TV uživo kad reprodukcija dođe do kraja vremenskog pomaka. Uključi ovo samo za dodatke koji zahtijevaju nastavak reprodukcije vremenskog pomaka, poput dodataka za alternativni zvuk."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Kada je omogućeno, vanjski titlovi uvijek će biti uključeni za reprodukciju videozapisa."
@@ -24891,6 +24902,9 @@ msgstr "Kada je omogućeno, prikažite poruke o statusu ili pogrešci."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Kad je omogućeno, postavite prilagođene DNS postavke za ovaj adapter umjesto globalnih DNS postavki."
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr "Kada je omogućeno, sprečava korištenje vremenskog pomaka ako je snimanje u tijeku. To je preporučljivo za USB memorije ili druge spore medije."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Kada je omogućeno, mogu se koristiti titlovi za osobe s oštećenjem sluha."
@@ -24961,8 +24975,11 @@ msgstr "Kada je omogućena, ova postavka ima veću težinu od \"Preferirani tune
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Kada je omogućena, ova postavka ima veću težinu od 'Preferirani tuner'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Kada je omogućeno, timeshift automatski počinje u pozadini nakon određenog vremena."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr "Kad je omogućeno, pomak vremena automatski počinje u pozadini nakon odabranog vremena."
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr "Kada je uključeno, neiskorišteni međuspremnici za pomak vremena brišu se pri promjeni usluga. Kada je isključeno, međuspremnici se upravljaju normalno. Zadržavanje privremenih međuspremnika ne stvara trajne snimke. Spremljeni snimci nisu pogođeni."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Kada je omogućeno, možete prilagoditi postavke OpenWebIf za rezervni tuner."
@@ -25151,6 +25168,9 @@ msgstr "Greška pri pisanju tokom snimanja. %s"
 
 msgid "Write failed!"
 msgstr "Pisanje nije uspjelo!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr "Pisanje na uređaj za pohranu vremenskog pomaka nije uspjelo. Vremenski pomak je zaustavljen."
 
 msgid "Www"
 msgstr "Www"
@@ -25566,9 +25586,6 @@ msgstr "Zumiranje sdesna"
 
 msgid "Zulu"
 msgstr "Zulu"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Spajanje zapisa nije uspjelo!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Vremenski pomak] Ponovno pokretanje vremenskog pomaka!"
@@ -26228,6 +26245,104 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'Međuspremnik u satima\" ili \"broj posljednjih događaja\". Za brisanje starijih datoteka s vremenskim pomakom, stanje koje se prvo dogodilo ima prioritet."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Stvaranje čvrste veze na datoteku s vremenskim pomakom nije uspjelo!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Direktorij '%s' nemože se povezati sa snimcima!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Ako je postavljeno na 'Da' omogućava korišćenje tajmšifta sa alternativnim audio pluginom."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Ako je slobodni prostor manji od vrijednosti postavke, tada se pokušava izbrisati stare datoteke vremenskog pomaka."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Osim provjere na početku događaja, može se koristiti i ponavljajuća provjera, tako da se ranije otkriju uvjeti \"međuspremnik u satima\" ili \"provjera slobodnog prostora\"."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Nema dovoljno slobodnog prostora na disku!\n"
+#~ "\n"
+#~ "Veličina fajla: %sMB\n"
+#~ "Slobodni prostor: %sMB\n"
+#~ "Putanja : %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Starije datoteke u direktoriju vremenskog pomaka uklanjaju se pri svakoj promjeni događaja."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Čuvanje bafera za pomeranje vremena, ovo može potrajati."
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Odaberi 'Ne' da bi promijenili vrijeme koristeći jedan buffer datoteke. Koristite 'Provjera timeshift ' za stare datoteke [u minutama]' i 'Provjera slobodnog prostora u timeshift ?' da bi kontrolisali veličinu buffer datoteke."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Odaberi 'Ne' da bi sačuvali starije događaje čak i nakon pomjeranja ili prekidanja vremena."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Odaberite 'Da' kako biste omogućili korištenje trake za traženje za preskakanje na odabranu točku unutar događaja."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Potvrdite odabir u opciji timeshift da li mora da se nastavi kada je podešeno za snimanje."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Podešavanje zadane lokacije za skladištenje datoteka buffera za pomjeranje vremena. Pritisni 'OK' da bi dodali nove lokacije, pritisni 'LIJEVO'/'DESNO' da bi izabrali sa predhodno zadanih lokacija."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Postavite na 'Da' da omogućite automatsko snimanje međuspremnika vremenskog pomaka u pozadini."
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "Preskoči preskakanje uživo tajmeršifta sa pluginom"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Onemogućava korištenje pomaka u vremenu ako je snimanje u tijeku. To se preporučuje za USB memorijske stickove."
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Datotečni sustav na vašem uređaju s vremenskim pomakom ne podržava hard disk.\n"
+#~ "Provjerite je li formatiran u EXT2, EXT3 ili EXT4!"
+
+#~ msgid ""
+#~ "The time shift storage device is not available.\n"
+#~ "Please check the device and the time shift path."
+#~ msgstr ""
+#~ "Uređaj za pohranu vremenske promjene nije dostupan.\n"
+#~ "Molim te provjeri uređaj i put za pomak vremena."
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift nije moguć!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Spremanje vremenskog pomaka nije uspjelo!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift je spremljen na vaš tvrdi disk!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Korištenje trake traženja vremenskog pomaka tijekom pomicanja vremena"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Kada je omogućeno, prikazat će se upozorenje i korisnik će dobiti opciju zaustavljanja ili nastavka vremenskog pomaka."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Kada je omogućeno, timeshift automatski počinje u pozadini nakon određenog vremena."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] Spajanje zapisa nije uspjelo!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Omogući 10bit"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-10-13 01:39+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1354,9 +1354,6 @@ msgstr "Το '%s' αποπροσαρτήθηκε."
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr "Το '%s' χρησιμοποιεί επιχειρησιακή αυθεντικοποίηση (802.1X). Τέτοιου είδους δίκτυα δεν μπορούν να ρυθμιστούν εδώ, πρέπει να ρυθμιστούν χειροκίνητα στο wpa_supplicant.conf."
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Προφόρτωση σε ώρες' ή 'αριθμός τελευταίων προγραμμάτων'. Για τη διαγραφή των παλαιότερων χρονομετατοπίσεων, η συνθήκη που προέκυψε πρώτη έχει προτεραιότητα."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "Ο 'χειρισμός αναμονής από την TV' έχει μεγαλύτερη προτεραιότητα από τον 'χειρισμό εισόδου από την TV'."
 
@@ -1696,6 +1693,9 @@ msgstr ""
 "Μία εγγραφή έχει ξεκινήσει:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1725,6 +1725,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Ένα απαιτούμενο εργαλείο (%s) δεν βρέθηκε."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2208,9 +2211,6 @@ msgstr "Ρυθμίστε την ολίσθηση του tuner για να βελ
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Προσαρμογή της κάθετης θέσης των γραμμάτων που χρησιμοποιούνται για το τηλεκείμενο."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr "Ρύθμιση αντιστάθμισης για την καθυστέρηση προσωρινής αποθήκευσης υλικού του DM9x0."
 
 msgid "Adult"
 msgstr "Για ενήλικες"
@@ -2996,7 +2996,7 @@ msgstr "Θέστε αυτόματα την TV σε αναμονή κάθε φο�
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr "Αυτόματη εκτέλεση της γρήγορης ανίχνευσης 90 δευτερολέπτων μετά από κάθε μετάβαση σε αναμονή και κάθε 24 ώρες, ενώ παραμένει σε αναμονή. Εάν μια εγγραφή είναι σε εξέλιξη, δοκιμάστε μετά από μία ώρα. Επιλέξτε 'Πολλαπλό' για να γίνει ανίχνευση σε πολλαπλούς παρόχους."
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Αυτόματη εκκίνηση της χρονομετατόπισης μετά από"
 
 msgid "Automatically turn on external subtitles"
@@ -3516,6 +3516,9 @@ msgstr "Μπρουνέι Νταρουσαλάμ"
 
 msgid "Buffer Management"
 msgstr "Διαχείριση buffer"
+
+msgid "Buffer age limit"
+msgstr "Όριο προφόρτωσης χρονομετατόπισης"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4303,6 +4306,12 @@ msgstr "Έλεγχος για PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Έλεγχος για διαθεσιμότητα PDC σε κάθε υπηρεσία."
 
+msgid "Check for free space"
+msgstr "Έλεγχος ελεύθερου χώρου για χρονομετατόπιση"
+
+msgid "Check for older files"
+msgstr "Έλεγχος για παλιότερα αρχεία χρονομετατόπισης"
+
 msgid "Check power and input state from TV"
 msgstr "Έλεγχος της ισχύος και της κατάστασης εισόδου από την TV"
 
@@ -4323,6 +4332,9 @@ msgstr "Γίνεται έλεγχος ONID/TSID ..."
 
 msgid "Checking file system..."
 msgstr "Έλεγχος συστήματος αρχείων..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5609,9 +5621,6 @@ msgstr "Δημιουργία αρχείων .ap και .sc"
 msgid "Creating file system"
 msgstr "Δημιουργίας συστήματος αρχείων"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Αποτυχία δημιουργίας συντόμευσης στο αρχείο χρονομετατόπισης!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -6459,6 +6468,9 @@ msgstr "Διαγραφή προσθέτων"
 msgid "Delete Timer"
 msgstr "Διαγραφή χρονοδιακόπτη"
 
+msgid "Delete after zap"
+msgstr "Διαγραφή προφόρτωσης χρονομετατόπισης μετά το ζάπινγκ"
+
 msgid "Delete all duplicated lines"
 msgstr "Διαγραφή όλων των διπλότυπων γραμμών"
 
@@ -6772,10 +6784,6 @@ msgstr "Φάκελοι"
 
 msgid "Directory"
 msgstr "Φάκελος"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Αδυναμία σύνδεσης του φακέλου '%s' με τις εγγραφές!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7636,9 +7644,6 @@ msgstr "Ενεργοποίηση του %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Ενεργοποίηση των 5V για την ενεργή κεραία"
 
-msgid "Enable Autorecord"
-msgstr "Ενεργοποίηση αυτόματης εγγραφής"
-
 msgid "Enable BT audio"
 msgstr "Ενεργοποίηση ήχου BT"
 
@@ -7738,6 +7743,9 @@ msgstr "Ενεργοποίηση της αυτόματης γρήγορης αν
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Ενεργοποίηση αυτόματης γρήγορης ανίχνευσης για το %s"
+
+msgid "Enable auto record"
+msgstr "Ενεργοποίηση αυτόματης εγγραφής"
 
 msgid "Enable automatic shares"
 msgstr "Ενεργοποίηση αυτόματων κοινόχρηστων στοιχείων"
@@ -8093,9 +8101,6 @@ msgstr "Εισαγωγή του PIN από 0 έως 255 που έχει κατα
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Εισάγετε το αναγνωριστικό δικτύου ZeroTier. Το ID πρέπει να είναι ακριβώς 16 χαρακτήρες σε μήκος."
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr "Εισάγετε τη διάρκεια που θα προστεθεί στην προσωρινή αποθήκευση της ροής μετά από σφάλμα της. Αυτή η πρόσθετη αποθήκευση μπορεί να βοηθήσει στην αποφυγή περαιτέρω λαθών ροής λόγω έλλειψης αποθηκευτικού χώρου."
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr "Εισαγωγή της σταθερής/στατικής διεύθυνσης IPv4 για χρήση σε αυτόν τον προσαρμογέα δικτύου."
@@ -8589,8 +8594,14 @@ msgstr "Ενέργειες επισκόπησης προγραμμάτων"
 msgid "Event View Context Menu"
 msgstr "Μενού περιεχομένων επισκόπησης καναλιών"
 
+msgid "Event based file splitting"
+msgstr "Διαχωρισμός αρχείων χρονομετατόπισης ανά πρόγραμμα"
+
 msgid "Event font size"
 msgstr "Μέγεθος γραμματοσειράς εκπομπής"
+
+msgid "Event limit"
+msgstr "Όριο προγραμμάτων χρονομετατόπισης"
 
 msgid "Event name only"
 msgstr "Όνομα προγράμματος μόνο"
@@ -10456,14 +10467,8 @@ msgstr "Αν ενεργοποιηθεί, θα χρησιμοποιηθεί ο ν
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Αν οι καταγραφές χρησιμοποιούν το μέγιστο ορισμένο χώρο χρήσης, θα διαγράφονται οι παλαιότερες."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Αν επιλεγεί το 'ναι', επιτρέπεται η χρήση της χρονομετατόπισης με εναλλακτικά πρόσθετα ήχου."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Αν o εναλλακτικός τρόπος βαθιάς αναμονής είναι ενεργός, γίνεται αναμονή μέχρι να συγχρονιστεί το σύστημα. Ανάλογα με τις απαιτήσεις, οι συσκευές θα συνεχίζουν να αφυπνίζονται έως το πολύ 2 λεπτά."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Αν ο ελεύθερος χώρος είναι μικρότερος της ορισμένης τιμής, τότε θα γίνεται προσπάθεια διαγραφής των παλαιών αρχείων χρονομετατόπισης."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Αν το κείμενο είναι πολύ μεγάλο για να εμφανιστεί στον μπροστινό πίνακα, θα επαναληφθεί (αριθμός φορών)."
@@ -10567,9 +10572,6 @@ msgstr "Εισαγωγή από διεύθυνση URL απομακρυσμέν�
 
 msgid "Import remote receiver URL"
 msgstr "Εισαγωγή διεύθυνσης URL απομακρυσμένου δέκτη"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Επιπρόσθετα με τον έλεγχο στην αρχή του προγράμματος, μπορεί να γίνει ένας επαναληπτικός έλεγχος, έτσι ώστε οι καταστάσεις 'όριο προφόρτωσης σε ώρες' ή 'έλεγχος ελεύθερου χώρου' να εντοπίζονται νωρίτερα."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Στην προχωρημένη λειτουργία, ρυθμίστε ποια tuners θα προτιμώνται για εγγραφές, όταν περισσότερα του ενός είναι διαθέσιμα."
@@ -13659,20 +13661,6 @@ msgstr "Απροσδιόριστο"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Μη επαρκής χώρος δίσκου. Παρακαλώ ελευθερώστε χώρο και προσπαθήστε ξανά. (%d MB απαιτούνται, %d MB διαθέσιμα)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Μη επαρκής ελεύθερος χώρος δίσκου!\n"
-"\n"
-"Μέγεθος αρχείου: %sMB\n"
-"Ελεύθερος χώρος: %sMB\n"
-"Διαδρομή: %s"
-
 msgid "Not found"
 msgstr "Δεν βρέθηκε"
 
@@ -13883,9 +13871,6 @@ msgstr "Ολίσθηση και κλείσιμο συσκευής CA"
 
 msgid "Ojibwa"
 msgstr "Οτζίμπουα"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Τα παλαιότερα αρχεία στον φάκελο χρονομετατόπισης αφαιρούνται σε κάθε αλλαγή εκπομπής."
 
 msgid "Olympic blue"
 msgstr "ολυμπιακό μπλε"
@@ -15756,6 +15741,9 @@ msgstr "Σύγκριση επιδόσεων RAM"
 msgid "RAM temperature"
 msgstr "Θερμοκρασία RAM"
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "Προσαρμοσμένος κώδικας TX"
 
@@ -17224,6 +17212,9 @@ msgstr "Αποθήκευση καταγραφής μηνυμάτων κονσό�
 msgid "Save the right column directory location on exit."
 msgstr "Αποθήκευση τοποθεσίας φακέλου δεξιάς στήλης κατά την έξοδο."
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Αποθήκευση χρονομετατόπισης ως ταινία και συνέχιση εγγραφής"
 
@@ -17258,9 +17249,6 @@ msgstr "Αποθηκευμένες γραμμές στα μηνύματα δέσ
 
 msgid "Saving EPG Cache..."
 msgstr "Αποθήκευση προσωρινής μνήμης EPG..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Αποθήκευση της χρονομετατόπισης ως ταινία, αυτό μπορεί να διαρκέσει λίγο."
 
 msgid "Saving time shift files"
 msgstr "Αποθήκευση αρχείων χρονομετατόπισης"
@@ -17542,14 +17530,8 @@ msgstr "Επιλέξτε 'Ενεργό' για εκκίνηση του βοηθ�
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Επιλέξτε 'ενεργό' αν αυτό το tuner διαθέτει σήμα, αλλιώς επιλέξτε 'δεν έχει συνδεθεί τίποτα'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Επιλέξτε 'όχι' για χρήση ενός μονού αρχείου προφόρτωσης χρονομετατόπισης. Με τα 'έλεγχος χρονομετατόπισης για παλαιότερα αρχεία [σε λεπτά]' και 'έλεγχος χρονομετατόπισης για ελεύθερο χώρο;] θα ελέγχετε το μέγεθος του αρχείου προφόρτωσης."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Επιλέξτε 'όχι' για εγγραφή μόνο ενός μηνύματος καταγραφής στο αρχείο αποσφαλμάτωσης."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Επιλέξτε 'όχι' για αποθήκευση των παλιότερων προγραμμάτων ακόμα και μετά το ζάπινγκ ή τη διακοπή της χρονομετατόπισης."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Επιλέξτε 'πόλωση' αν χρησιμοποιείτε ένα LNB τύπου 'universal', αλλιώς ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
@@ -17592,9 +17574,6 @@ msgstr "Επιλέξτε 'ναι' για να διατηρηθεί η εμφάν
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Αυτό το πρόγραμμα καθορίζει αν ένα πρόγραμμα ξεκινά νωρίτερα ή διαρκεί περισσότερο. Το κανάλι πρέπει να παρέχει έγκυρα δεδομένα."
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Επιλέξτε 'ναι' για να επιτραπεί η χρήση της μπάρας αναζήτησης για μεταπήδηση σε επιλεγμένο σημείο εντός του προγράμματος."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Επιλέξτε 'ναι' για να εμφανίζεται πάντα η οθόνη μπουκέτων πρώτα, όταν ανοίγει η λίστα καναλιών. Επιλέξτε 'όχι' για άνοιγμα της λίστας καναλιών με τη χρήση του τρέχοντος μπουκέτου."
@@ -17935,12 +17914,21 @@ msgstr "Επιλογή φακέλου από τους σελιδοδείκτες
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Επιλογή διανομής από την οποία θα αντλούνται τα images"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "Ρύθμιση αντιστάθμισης για την καθυστέρηση προσωρινής αποθήκευσης υλικού του DM9x0."
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Εισάγετε τη διάρκεια που θα προστεθεί στην προσωρινή αποθήκευση της ροής μετά από σφάλμα της. Αυτή η πρόσθετη αποθήκευση μπορεί να βοηθήσει στην αποφυγή περαιτέρω λαθών ροής λόγω έλλειψης αποθηκευτικού χώρου."
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Επιλογή τοποθεσίας για εξαγωγή του '%s':"
 
 msgid "Select a menu item"
 msgstr "Επιλέξτε ένα στοιχείο μενού"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Επιλογή ταινίας"
@@ -17983,6 +17971,9 @@ msgstr "Επιλογή χρόνου κατά την αναμονή πριν τη
 
 msgid "Select a tuner"
 msgstr "Επιλογή tuner"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "Επιλογή ενέργειας"
@@ -18141,9 +18132,6 @@ msgstr "Επιλέξτε αν αυτός ο χρονοδιακόπτης ενε�
 msgid "Select if this timer is to be repeated."
 msgstr "Επιλογή, αν πρόκειται να γίνει επανάληψη του χρονοδιακόπτη."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Επιλέξτε αν η χρονομετατόπιση θα πρέπει να συνεχίζει όταν ορίζεται μία εγγραφή."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Επιλέξτε αν θέλετε να ενεργοποιηθεί η λειτουργία υπο-υπηρεσιών."
 
@@ -18267,11 +18255,17 @@ msgstr "Επιλογή ενέργειας για το '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Επιλογή ενέργειας όταν ένας χρονοδιακόπτης τελειώνει."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Επιλογή του είδους τερματισμού λειτουργίας κατά την ενεργοποίηση του χρονοδιακόπτη εξοικονόμησης ενέργειας."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "Επιλογή του είδους τερματισμού λειτουργίας κατά την ενεργοποίηση του χρονοδιακόπτη ύπνου."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Επιλογή του χρόνου αναμονής μετά το σφάλμα στην εργασία, πριν την προσπάθεια εκτέλεσής της εκ νέου."
@@ -18449,6 +18443,9 @@ msgstr "Επιλογή της αρχικής θέσης του δείκτη γρ
 msgid "Select the input connector you want to use."
 msgstr "Επιλέξτε την υποδοχή εισόδου που θέλετε να χρησιμοποιήσετε."
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "Επιλογή του τελευταίου στοιχείου της λίστας ή μετάβαση στο τέλος του κειμένου"
 
@@ -18521,6 +18518,9 @@ msgstr "Επιλογή του επόμενου στοιχείου στη λίσ�
 
 msgid "Select the next item in the list"
 msgstr "Επιλογή του επόμενου στοιχείου στη λίστα"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Επιλογή του αριθμού επαναπροσπαθειών εκτέλεσης μίας εργασίας αν προκύψει κάποιο σφάλμα κατά την εκτέλεσή της."
@@ -19163,9 +19163,6 @@ msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "Ρυθμίστε την προεπιλεγμένη θέση για να αποθηκεύσετε τα αρχεία εγγραφής της χρονομετατόπισης. Πιέστε 'OK' για να προσθέσετε νέες τοποθεσίες, πατήστε ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ για να επιλέξετε από παλαιότερα καθορισμένες τοποθεσίες."
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των αρχείων χρονομετατόπισης. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των αρχείων χρονομετατόπισης. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
 
@@ -19293,9 +19290,6 @@ msgstr "Επιλέξτε 'Ενεργό' για να γίνει η αποκρυπ
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Αν επιλεγεί το 'ναι', οι ίδιες εντολές που στέλνονται στην TV για την κοινή αναμονή, θα αποστέλλονται και για τη βαθιά αναμονή."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Αν επιλεγεί το 'ναι', θα ενεργοποιηθεί η αυτόματη εγγραφή της χρονομετατόπισης στο παρασκήνιο."
 
 msgid "Set to the desired primetime hour."
 msgstr "Ορισμός επιθυμητής ζώνης αιχμής (ώρα)."
@@ -20231,7 +20225,7 @@ msgstr "Εμφάνιση κάθετου οδηγού προγράμματος"
 msgid "Show warning before restart"
 msgstr "Προειδοποίηση πριν την επανεκκίνηση"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Εμφάνιση προειδοποίησης όταν η χρονομετατόπιση έχει σταματήσει"
 
 msgid "Show watch status"
@@ -20441,9 +20435,6 @@ msgstr "Μεταπήδηση προς τα εμπρός %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "υπερπήδηση προς τα πίσω (εισαγωγή χρόνου)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Παράκαμψη μετάβασης σε ζωντανή tv κατά την χρονομετατόπιση με πρόσθετα"
 
 msgid "Skip network setup"
 msgstr "Παράκαμψη ρύθμισης δικτύου"
@@ -21141,6 +21132,9 @@ msgstr "Κατάσταση μη διαθέσιμη!"
 msgid "Status:"
 msgstr "Κατάσταση:"
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr "Βήμα"
 
@@ -21239,9 +21233,6 @@ msgstr "Η διακοπή του %s απέτυχε (κωδικός εξόδου 
 msgid "Stopping Softcam"
 msgstr "Σταμάτημα softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Διακοπή της χρήσης του χρονοδιακόπτη αν εκτελείται εγγραφή. Αυτό προτείνεται κυρίως για τα USB στικ."
-
 msgid "Storage / Disk Information"
 msgstr "Χώρος αποθήκευσης / πληροφορίες δίσκου"
 
@@ -21269,6 +21260,10 @@ msgstr "Ο δίσκος δεν βρέθηκε!"
 
 msgid "Storage device not writable!"
 msgstr "Ο δίσκος δεν είναι εγγράψιμος!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Αποθήκευση θέσης"
@@ -22113,6 +22108,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Η εντολή επαναφοράς από την αναμονή θα σταλεί πολλές φορές."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr "Η προσάρτηση χρήστη '%s' είναι άδεια!"
@@ -22150,13 +22151,6 @@ msgstr "Το αρχείο '%s' έχει αλλάξει. Θέλετε να απο
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "Το αρχείο '%s' έχει αλλάξει. Θέλετε να το αποθηκεύσετε;"
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Το σύστημα αρχείων στη συσκευή χρονομετατόπισης δεν υποστηρίζει συντομεύσεις.\n"
-"Σιγουρευτείτε ότι έχει μορφοποιηθεί σε EXT2, EXT3 ή EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22236,6 +22230,9 @@ msgstr "Τα αποτελέσματα έχουν γραφεί στο %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr "Ο υποφάκελος ρίζας στο αρχείο κατασκευαστή STARTUP δεν δύναται να επεκταθεί με ασφάλεια."
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Έγινε εκκαθάριση του αποθηκευμένου PIN."
 
@@ -22268,6 +22265,9 @@ msgstr ""
 "\n"
 "Να γίνει τώρα ή να επεκταθεί ο χρονοδιακόπτης;"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Ο χρόνος πολλαπλασιάζεται με τον τρέχοντα μετρητή επανάληψης."
 
@@ -22278,12 +22278,17 @@ msgstr ""
 "Ο χρόνος προφόρτωσης για τη χρονομετατόπιση υπερβαίνει το ρυθμισμένο όριο.\n"
 "Τι θέλετε να γίνει ;"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
 msgstr ""
-"Ο χώρος αποθήκευσης της χρονομετατόπισης δεν είναι διαθέσιμος.\n"
-"Παρακαλώ ελέγξτε τη συσκευή και τη διαδρομή της χρονομετατόπισης."
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22700,38 +22705,20 @@ msgstr "Μεσοδιάστημα επανάληψης για την προώθη
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Υπερπήδηση χρόνου: Χρήση κανονικής προώθησης για ταχύτητες"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Διαγραφή προφόρτωσης χρονομετατόπισης μετά το ζάπινγκ"
-
-msgid "Time shift buffer limit"
-msgstr "Όριο προφόρτωσης χρονομετατόπισης"
-
 msgid "Time shift buffer location"
 msgstr "Τοποθεσία προφόρτωσης χρονομετατόπισης"
 
-msgid "Time shift checking for free space"
-msgstr "Έλεγχος ελεύθερου χώρου για χρονομετατόπιση"
-
-msgid "Time shift checking for older files"
-msgstr "Έλεγχος για παλιότερα αρχεία χρονομετατόπισης"
-
-msgid "Time shift event based file splitting"
-msgstr "Διαχωρισμός αρχείων χρονομετατόπισης ανά πρόγραμμα"
-
-msgid "Time shift event limit"
-msgstr "Όριο προγραμμάτων χρονομετατόπισης"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Η χρονομετατόπιση μπορεί να μην λειτουργήσει σωστά χωρίς έναν έγκυρο φάκελο."
 
-msgid "Time shift not possible!"
-msgstr "Αδυναμία χρονομετατόπισης!"
-
 msgid "Time shift save action on zap"
 msgstr "Ενέργεια αποθήκευσης χρονομετατόπισης κατά το ζάπινγκ"
 
-msgid "Time shift save failed!"
-msgstr "Αποτυχία αποθήκευσης χρονομετατόπισης!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr "Θέση αποθήκευσης της χρονομετατόπισης"
@@ -22742,8 +22729,8 @@ msgstr "Αποθήκευση εγγραφής χρονομετατόπισης (
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Αποθήκευση εγγραφής χρονομετατόπισης (διακοπή μετά το τρέχον πρόγραμμα)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Η χρονομετατόπιση αποθηκεύτηκε στον σκληρό δίσκο!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Η χρονομετατόπιση θα αποθηκευτεί στο τέλος του προγράμματος."
@@ -23454,6 +23441,9 @@ msgstr "Αδυναμία ανοίγματος tuner (%d)"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "Αδύνατη η προετοιμασία ενημέρωσης μπουκέτου. Η ανίχνευση θα συνεχιστεί χωρίς την ενημέρωση μπουκέτων."
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Αδυναμία ανάγνωσης του αρχείου κατασκευαστή STARTUP '%s'!"
@@ -23473,6 +23463,9 @@ msgstr "Αδυναμία αποθήκευσης των ρυθμίσεων δικ
 msgid "Unable to save network mount configuration!"
 msgstr "Αδυναμία αποθήκευσης των ρυθμίσεων προσάρτησης δικτύου!"
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Αδυναμία εκκίνησης της πηγής DAB+"
 
@@ -23489,9 +23482,15 @@ msgstr "Αδυναμία συντονισμού στη δορυφορική πη
 msgid "Unable to update HDD replacement: %s"
 msgstr "Αδυναμία ενημέρωσης της αντικατάστασης σκληρού δίσκου: %s"
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Αδυναμία επικύρωσης της θέσης Unicable για το LNB %d: %s!"
+
+msgid "Unable to write the time shift event information."
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Ανεπιτήρητη αναβάθμιση χωρίς γραφικό περιβάλλον"
@@ -23830,6 +23829,9 @@ msgstr "Χρήση PIN"
 msgid "Use QuickSelect"
 msgstr "Χρήση της γρήγορης επιλογής"
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Χρήση τηλεχειριστηρίου TV"
 
@@ -24015,9 +24017,6 @@ msgstr "Χρήση αυτών των ρυθμίσεων βελτίωσης τη�
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Χρήση υπερπηδήσεων χρόνου για την προώθηση εμπρός/πίσω"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Χρήση της μπάρας αναζήτησης κατά τη χρονομετατόπιση"
 
 msgid "Use viewer for unknown files"
 msgstr "Χρήση της προβολής για άγνωστα αρχεία"
@@ -24733,6 +24732,9 @@ msgstr "Όταν είναι ενεργό, τα ΕΙΤ δεδομένα θα πε
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "Όταν είναι ενεργό, τα δεδομένα SDT, BAT θα συμπεριλαμβάνονται στις ροές http."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Όταν είναι ενεργό, ένα αναδυόμενο μήνυμα θα εμφανίζεται όταν μια ταινία έχει τελειώσει και αρχίζει η επόμενη."
 
@@ -24751,8 +24753,8 @@ msgstr "Όταν είναι ενεργό, επιτρέπεται σε μία ε�
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Όταν είναι ενεργό, μία εγγραφή θα επιτρέπεται να διακόψει την TV, όταν δεν υπάρχουν ελεύθερα tuners."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Όταν είναι ενεργό, θα εμφανίζεται μία προειδοποίηση και ο χρήστης θα έχει την επιλογή να σταματήσει ή να συνεχίσει τη χρονομετατόπιση."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "Όταν είναι ενεργό, να επιτρέπεται η πρόσβαση στο δίκτυο Samba χωρίς κωδικό χρήστη."
@@ -24775,11 +24777,17 @@ msgstr "Όταν είναι ενεργό, θα επιτρέπεται η χρή�
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Όταν είναι ενεργό, θα επιτρέπεται η χρήση των πρωτοκόλλων NFS έκδοσης 4."
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr "Όταν είναι ενεργό, το στοιχείο 'Χειροκίνητη ανάλυση' θα προστεθεί στο μενού επεκτάσεων για να επιτρέπεται η γρήγορη αλλαγή της λειτουργίας εικόνας για το τρέχον βίντεο."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Όταν είναι ενεργό, απαιτείται πιστοποίηση για την παρακολούθηση ροών http."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr "Όταν είναι ενεργό, να παρακάμπτεται ο έλεγχος HDMI EDID."
@@ -24795,6 +24803,9 @@ msgstr "Όταν είναι ενεργό, θα μεταβείτε στο επό�
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Όταν είναι ενεργό, οι διαγραμμένες εγγραφές μετακινούνται στον κάδο αχρήστων, αντί να διαγράφονται άμεσα."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Όταν είναι ενεργό, οι εξωτερικοί υπότιτλοι θα εμφανίζονται πάντα κατά την αναπαραγωγή."
@@ -24840,6 +24851,9 @@ msgstr "Όταν είναι ενεργό, γίνεται εμφάνιση της
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Όταν είναι ενεργό, ορίστε συγκεκριμένες ρυθμίσεις DNS για τον συγκεκριμένο προσαρμογέα, αντί των καθολικών ρυθμίσεων."
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Όταν είναι ενεργό, μπορεί να χρησιμοποιηθούν υπότιτλοι για άτομα με προβλήματα ακοής."
@@ -24910,8 +24924,11 @@ msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει π
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Όταν είναι ενεργό, αυτή η ρύθμιση έχει προτεραιότητα αντί του 'Προτιμώμενο tuner'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Όταν είναι ενεργό, η χρονομετατόπιση θα ξεκινά αυτόματα στο παρασκήνιο μετά από ορισμένο χρόνο."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Όταν είναι ενεργό, μπορείτε να παραμετροποιήσετε τις ρυθμίσεις OpenWebIf για το εφεδρικό tuner."
@@ -25100,6 +25117,9 @@ msgstr "Σφάλμα αποθήκευσης κατά την εγγραφή. %s"
 
 msgid "Write failed!"
 msgstr "Η εγγραφή απέτυχε!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25515,9 +25535,6 @@ msgstr "Ζουμάρισμα από τα δεξιά"
 
 msgid "Zulu"
 msgstr "Ζουλού"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Χρονομετατόπιση] Αποτυχία συγχώνευσης εγγραφών!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Χρονομετατόπιση] Επανεκκίνηση χρονομετατόπισης!"
@@ -26176,6 +26193,104 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'Προφόρτωση σε ώρες' ή 'αριθμός τελευταίων προγραμμάτων'. Για τη διαγραφή των παλαιότερων χρονομετατοπίσεων, η συνθήκη που προέκυψε πρώτη έχει προτεραιότητα."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Αποτυχία δημιουργίας συντόμευσης στο αρχείο χρονομετατόπισης!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Αδυναμία σύνδεσης του φακέλου '%s' με τις εγγραφές!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Αν επιλεγεί το 'ναι', επιτρέπεται η χρήση της χρονομετατόπισης με εναλλακτικά πρόσθετα ήχου."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Αν ο ελεύθερος χώρος είναι μικρότερος της ορισμένης τιμής, τότε θα γίνεται προσπάθεια διαγραφής των παλαιών αρχείων χρονομετατόπισης."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Επιπρόσθετα με τον έλεγχο στην αρχή του προγράμματος, μπορεί να γίνει ένας επαναληπτικός έλεγχος, έτσι ώστε οι καταστάσεις 'όριο προφόρτωσης σε ώρες' ή 'έλεγχος ελεύθερου χώρου' να εντοπίζονται νωρίτερα."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Μη επαρκής ελεύθερος χώρος δίσκου!\n"
+#~ "\n"
+#~ "Μέγεθος αρχείου: %sMB\n"
+#~ "Ελεύθερος χώρος: %sMB\n"
+#~ "Διαδρομή: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Τα παλαιότερα αρχεία στον φάκελο χρονομετατόπισης αφαιρούνται σε κάθε αλλαγή εκπομπής."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Αποθήκευση της χρονομετατόπισης ως ταινία, αυτό μπορεί να διαρκέσει λίγο."
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Επιλέξτε 'όχι' για χρήση ενός μονού αρχείου προφόρτωσης χρονομετατόπισης. Με τα 'έλεγχος χρονομετατόπισης για παλαιότερα αρχεία [σε λεπτά]' και 'έλεγχος χρονομετατόπισης για ελεύθερο χώρο;] θα ελέγχετε το μέγεθος του αρχείου προφόρτωσης."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Επιλέξτε 'όχι' για αποθήκευση των παλιότερων προγραμμάτων ακόμα και μετά το ζάπινγκ ή τη διακοπή της χρονομετατόπισης."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Επιλέξτε 'ναι' για να επιτραπεί η χρήση της μπάρας αναζήτησης για μεταπήδηση σε επιλεγμένο σημείο εντός του προγράμματος."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Επιλέξτε αν η χρονομετατόπιση θα πρέπει να συνεχίζει όταν ορίζεται μία εγγραφή."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των αρχείων χρονομετατόπισης. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Αν επιλεγεί το 'ναι', θα ενεργοποιηθεί η αυτόματη εγγραφή της χρονομετατόπισης στο παρασκήνιο."
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "Παράκαμψη μετάβασης σε ζωντανή tv κατά την χρονομετατόπιση με πρόσθετα"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Διακοπή της χρήσης του χρονοδιακόπτη αν εκτελείται εγγραφή. Αυτό προτείνεται κυρίως για τα USB στικ."
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Το σύστημα αρχείων στη συσκευή χρονομετατόπισης δεν υποστηρίζει συντομεύσεις.\n"
+#~ "Σιγουρευτείτε ότι έχει μορφοποιηθεί σε EXT2, EXT3 ή EXT4!"
+
+#~ msgid ""
+#~ "The time shift storage device is not available.\n"
+#~ "Please check the device and the time shift path."
+#~ msgstr ""
+#~ "Ο χώρος αποθήκευσης της χρονομετατόπισης δεν είναι διαθέσιμος.\n"
+#~ "Παρακαλώ ελέγξτε τη συσκευή και τη διαδρομή της χρονομετατόπισης."
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Αδυναμία χρονομετατόπισης!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Αποτυχία αποθήκευσης χρονομετατόπισης!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Η χρονομετατόπιση αποθηκεύτηκε στον σκληρό δίσκο!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Χρήση της μπάρας αναζήτησης κατά τη χρονομετατόπιση"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Όταν είναι ενεργό, θα εμφανίζεται μία προειδοποίηση και ο χρήστης θα έχει την επιλογή να σταματήσει ή να συνεχίσει τη χρονομετατόπιση."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Όταν είναι ενεργό, η χρονομετατόπιση θα ξεκινά αυτόματα στο παρασκήνιο μετά από ορισμένο χρόνο."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Χρονομετατόπιση] Αποτυχία συγχώνευσης εγγραφών!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Να επιτρέπονται τα 10bit"

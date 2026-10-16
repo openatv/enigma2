@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-08-16 15:55+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1345,9 +1345,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Ajavaru tundides' või 'viimaste saadete arv'. Vanemate ajanihke failide kustutamisel saab eelise esimesena täidetud tingimus."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1707,6 +1704,9 @@ msgstr ""
 "Algas salvestamine:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1733,6 +1733,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Vajaliku tööriista (%s) ei leitud."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 # RecordTimer.py
 msgid ""
@@ -2218,9 +2221,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Kohanda teleteksti vertikaalset asukohta."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Täikasvanutele"
@@ -3023,7 +3023,7 @@ msgstr ""
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Ajanihke automaatne käivitus"
 
 msgid "Automatically turn on external subtitles"
@@ -3553,6 +3553,9 @@ msgstr "Brunei Darussalam"
 
 msgid "Buffer Management"
 msgstr ""
+
+msgid "Buffer age limit"
+msgstr "Ajanihke puhvri piirsuurus (tundides)"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4345,6 +4348,12 @@ msgstr ""
 msgid "Check for PDC availability on each service."
 msgstr ""
 
+msgid "Check for free space"
+msgstr "Vaba kettaruumi kontroll ajanihke ajal"
+
+msgid "Check for older files"
+msgstr "Vanemate failide kontroll ajanihke ajal (minutites)"
+
 msgid "Check power and input state from TV"
 msgstr "Kontrolli teleri toidet ja sisendit"
 
@@ -4365,6 +4374,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Failisüsteemi kontroll."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5664,9 +5676,6 @@ msgstr "AP ja SC failide loomine"
 msgid "Creating file system"
 msgstr "Failisüsteemi loomine"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Ajanihke failile püsiviida loomine nurjus!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -6527,6 +6536,9 @@ msgstr "Kustuta pluginaid"
 msgid "Delete Timer"
 msgstr "Kustuta taimer"
 
+msgid "Delete after zap"
+msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
+
 msgid "Delete all duplicated lines"
 msgstr ""
 
@@ -6847,10 +6859,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Kataloog"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7722,9 +7730,6 @@ msgstr "Luba %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
 
-msgid "Enable Autorecord"
-msgstr "Autosalvestus lubatud"
-
 msgid "Enable BT audio"
 msgstr "Luba BT heli"
 
@@ -7829,6 +7834,9 @@ msgstr "Luba automaatne kiirotsing"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Kiire automaatotsing %s jaoks"
+
+msgid "Enable auto record"
+msgstr "Autosalvestus lubatud"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -8185,9 +8193,6 @@ msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer o
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr ""
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
@@ -8683,8 +8688,14 @@ msgstr ""
 msgid "Event View Context Menu"
 msgstr "Saateinfo menüü"
 
+msgid "Event based file splitting"
+msgstr "Ajanihkefaili tükeldamine saadete järgi"
+
 msgid "Event font size"
 msgstr "Saatenime tähesuurus"
+
+msgid "Event limit"
+msgstr "Ajanihke saadete piirarv (saadete arv)"
 
 msgid "Event name only"
 msgstr "Ainult saate nimi"
@@ -10592,14 +10603,8 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Kui logidele määratud kettaruumi ülempiir on saavutatud, siis vanimad kustutatakse."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr ""
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Kui vaba kettaruumi on määratud väärtusest vähem, üritatakse kustutada vanu ajanihke faile."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
@@ -10703,9 +10708,6 @@ msgstr "Impordi kaugvastuvõtja URL-ist"
 
 msgid "Import remote receiver URL"
 msgstr "Impordi kaugvastuvõtja URL"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Lisaks kontrollile saate algusel, on võimalik kasutada korduvat kontrolli, et tingimuste 'Ajavaru tundides' või 'Kontrolli vaba kettaruumi' täitmine avastataks varem."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Määra, millist tuunerit eelistatakse salvestamisel, kui saadaval on rohkem kui üks tuuner."
@@ -13912,20 +13914,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Kõvakettal pole piisavalt ruumi. Kustuta ebavajalik ja proovi uuesti. (vajalik %d MB, vaba %d MB)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Kettaruumi napib!\n"
-"\n"
-"Faili suurus: %sMB\n"
-"Vaba ruumi: %sMB\n"
-"Asukoht: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -14139,9 +14127,6 @@ msgstr ""
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Vanemad failid ajanihke kataloogis eemaldatakse päras iga kanalivahetust."
 
 msgid "Olympic blue"
 msgstr ""
@@ -16080,6 +16065,9 @@ msgstr ""
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -17586,6 +17574,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Talleta ajanihe ja jätka salvestamist"
 
@@ -17620,9 +17611,6 @@ msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "EPG talletamine..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Ajanihke salvestuseks muutmine. Võib minna veidi aega!"
 
 msgid "Saving time shift files"
 msgstr "Ajanihke failide talletamine"
@@ -17909,14 +17897,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Määra 'lubatud', kui tuuner on kaabliga ühendatud, muudel juhtudel vali 'midagi pole ühendatud'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Määrates 'ei', kasutab ajanihe ainult ühte puhverfaili. Kohandamiseks võib kasutada valikuid 'Vanemate failide kontroll ajanihke ajal' ja 'Vaba kettaruumi kontroll ajanihke ajal'."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Kui keelatud, kirjutatakse silumislogisse ainult silumise sõnum "
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Määrates 'ei', saad talletada ajanihke failid ka pärast kanalivahetust või ajanihke lõppu."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Vali 'polarisatsioon', kui kasutuses on universaalne LNB. Muudel juhtudel uuri LNB spetsifikatsiooni."
@@ -17959,9 +17941,6 @@ msgstr "Kui lubatud, kuvatakse pausil olles inforiba pidevalt."
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Määrates 'jah', avatakse esmalt lemmiknimekirjade valik. Määrates 'ei' avatakse konkreetne kanalinimekiri."
@@ -18306,11 +18285,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 #
@@ -18356,6 +18344,9 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Vali tuuner"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "Vali tegevus"
@@ -18515,9 +18506,6 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Määra, kas ajanihe jätkub pärast selle salvestuseks määramist."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Määrates 'jah', aktiveeritakse alamkanalite režiim."
 
@@ -18642,10 +18630,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18825,6 +18819,9 @@ msgstr ""
 msgid "Select the input connector you want to use."
 msgstr ""
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
 
@@ -18897,6 +18894,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -19548,9 +19548,6 @@ msgstr "Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta '
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
@@ -19676,9 +19673,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
 
 msgid "Set to the desired primetime hour."
 msgstr "Määra tippajaks (tunnid)."
@@ -20636,7 +20630,7 @@ msgstr "Vertikaalne EPG"
 msgid "Show warning before restart"
 msgstr "Hoiatus enne taaskäivitamist"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Teavitus ajanihke lõppemisest"
 
 msgid "Show watch status"
@@ -20848,9 +20842,6 @@ msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "Hüppa edasi (sisesta aeg)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
 
 msgid "Skip network setup"
 msgstr ""
@@ -21564,6 +21555,9 @@ msgstr ""
 msgid "Status:"
 msgstr "Olek:"
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr ""
 
@@ -21663,9 +21657,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "EMU peatamine"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21695,6 +21686,10 @@ msgstr "ei leitud!"
 #, fuzzy
 msgid "Storage device not writable!"
 msgstr "pole kirjutatav!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Salvesta asukoht"
@@ -22547,6 +22542,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22581,13 +22582,6 @@ msgstr ""
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
-"Vorminda see EXT2, EXT3 või EXT4 failisüsteemi!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22664,6 +22658,9 @@ msgstr "Tulemused on salvestatud %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Salvestatud PIN eemaldati."
 
@@ -22692,6 +22689,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Aeg korrutatakse praeguse kordusloenduriga."
 
@@ -22702,9 +22702,16 @@ msgstr ""
 "Ajanihke puhver ületab sätetes määratud piiri.\n"
 "Mida soovid teha?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -23143,38 +23150,20 @@ msgstr "Ajahüppe korduse vahemik edasi/tagasikerimisel"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Ajahüpe: Kasuta tavakerimist kiirustel"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
-
-msgid "Time shift buffer limit"
-msgstr "Ajanihke puhvri piirsuurus (tundides)"
-
 msgid "Time shift buffer location"
 msgstr "Ajanihke failide asukoht"
 
-msgid "Time shift checking for free space"
-msgstr "Vaba kettaruumi kontroll ajanihke ajal"
-
-msgid "Time shift checking for older files"
-msgstr "Vanemate failide kontroll ajanihke ajal (minutites)"
-
-msgid "Time shift event based file splitting"
-msgstr "Ajanihkefaili tükeldamine saadete järgi"
-
-msgid "Time shift event limit"
-msgstr "Ajanihke saadete piirarv (saadete arv)"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr "Ajanihke kasutamine pole võimalik!"
-
 msgid "Time shift save action on zap"
 msgstr "Ajanihke talletamine kanalivahetusel"
 
-msgid "Time shift save failed!"
-msgstr "Ajanihke talletamine nurjus!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -23185,8 +23174,8 @@ msgstr "Ajanihke talletamine (vali saade)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Ajanihe talletati kõvakettale!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Ajanihe talletatakse saate lõppedes!"
@@ -23916,6 +23905,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23935,6 +23927,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -23951,8 +23946,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 #
@@ -24302,6 +24303,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Kasuta teleri pulti"
 
@@ -24487,9 +24491,6 @@ msgstr "Kas kasutada neid pildiparanduse seadeid?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Kasuta edasi/tagasikerimisel ajahüpet"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Otsiriba kasutamine ajanihke ajal"
 
 msgid "Use viewer for unknown files"
 msgstr ""
@@ -25198,6 +25199,9 @@ msgstr "Kui lubatud, kaasatakse EIT andmed http voogudesse. See võimaldab klien
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kui lubatud, teavitatakse filmi lõppemisest ja uue alustamisest hüpikaknaga."
 
@@ -25218,8 +25222,8 @@ msgstr "Kui lubatud, katkestab algav salvestus voogesituse juhul, kui ei leidu v
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Kui lubatud, võivad salvestused vaba tuuneri puudumisel saate vaatamise katkestada."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Kui lubatud, kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -25242,11 +25246,17 @@ msgstr ""
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kui lubatud, on http voogude vaatamiseks vajalik autentimine."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -25262,6 +25272,9 @@ msgstr "Kui lubatud, liigutakse kanalivahetusel käesoleva lemmiknimekirja lõpp
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kui lubatud, ei kustutata salvestisi silmapilkselt, vaid liigutatakse prügikasti."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Kui lubatud, käivitatakse välised subtiitrid alati koos filmiga."
@@ -25308,6 +25321,9 @@ msgid "When enabled, show status or error messages."
 msgstr "Kui lubatud, näidatakse oleku- ja veateateid."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr ""
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -25380,8 +25396,11 @@ msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner salv
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Määrates 'jah' on see seadistus eelistatum kui 'Eelistatud tuuner'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Kui lubatud, algab ajanihe taustal automaatselt pärast määratud aega."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr ""
@@ -25571,6 +25590,9 @@ msgstr "Viga salvestamise käigus. Ketas %s"
 
 msgid "Write failed!"
 msgstr "Kirjutamine nurjus!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25998,9 +26020,6 @@ msgstr "Paremalt kasvav"
 
 msgid "Zulu"
 msgstr ""
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Ajanihe] Salvestiste liitmine nurjus!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
@@ -26669,6 +26688,87 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'Ajavaru tundides' või 'viimaste saadete arv'. Vanemate ajanihke failide kustutamisel saab eelise esimesena täidetud tingimus."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Ajanihke failile püsiviida loomine nurjus!"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Kui vaba kettaruumi on määratud väärtusest vähem, üritatakse kustutada vanu ajanihke faile."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Lisaks kontrollile saate algusel, on võimalik kasutada korduvat kontrolli, et tingimuste 'Ajavaru tundides' või 'Kontrolli vaba kettaruumi' täitmine avastataks varem."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Kettaruumi napib!\n"
+#~ "\n"
+#~ "Faili suurus: %sMB\n"
+#~ "Vaba ruumi: %sMB\n"
+#~ "Asukoht: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Vanemad failid ajanihke kataloogis eemaldatakse päras iga kanalivahetust."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Ajanihke salvestuseks muutmine. Võib minna veidi aega!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Määrates 'ei', kasutab ajanihe ainult ühte puhverfaili. Kohandamiseks võib kasutada valikuid 'Vanemate failide kontroll ajanihke ajal' ja 'Vaba kettaruumi kontroll ajanihke ajal'."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Määrates 'ei', saad talletada ajanihke failid ka pärast kanalivahetust või ajanihke lõppu."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Määra, kas ajanihe jätkub pärast selle salvestuseks määramist."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
+#~ "Vorminda see EXT2, EXT3 või EXT4 failisüsteemi!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Ajanihke kasutamine pole võimalik!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Ajanihke talletamine nurjus!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Ajanihe talletati kõvakettale!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Otsiriba kasutamine ajanihke ajal"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Kui lubatud, kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Kui lubatud, algab ajanihe taustal automaatselt pärast määratud aega."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Ajanihe] Salvestiste liitmine nurjus!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Luba 10bit"

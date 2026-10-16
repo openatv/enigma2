@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1382,9 +1382,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a rendszer Timeshift fájlt törölni."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Készenlét fogadása a TV-től' magasabb prioritású mint a 'Bemenet fogadása a TV-től'."
 
@@ -1735,6 +1732,9 @@ msgstr ""
 "A felvétel elindul:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1761,6 +1761,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "A keresett eszköz (%s) nem található."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2242,9 +2245,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Állítsa be a használt teletext betűinek függőleges pozícióját."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Felnőtt"
@@ -3035,7 +3035,7 @@ msgstr ""
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Timeshift automatikus indítása ennyi idő múlva"
 
 msgid "Automatically turn on external subtitles"
@@ -3560,6 +3560,9 @@ msgstr "Brunei"
 
 msgid "Buffer Management"
 msgstr ""
+
+msgid "Buffer age limit"
+msgstr "Timeshift puffer határa [órákban]"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4339,6 +4342,12 @@ msgstr ""
 msgid "Check for PDC availability on each service."
 msgstr ""
 
+msgid "Check for free space"
+msgstr "Timeshift ellenőrizze a szabad helyet?"
+
+msgid "Check for older files"
+msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
+
 msgid "Check power and input state from TV"
 msgstr "Áramellátás és bemeneti állapot ellenőrzése a TV-készüléken"
 
@@ -4359,6 +4368,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Fájlrendszer ellenőrzése..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5637,9 +5649,6 @@ msgstr "AP és SC fájlok létrehozása"
 msgid "Creating file system"
 msgstr "Fájlrendszer létrehozása"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -6491,6 +6500,9 @@ msgstr "Bővítmények törlése"
 msgid "Delete Timer"
 msgstr "Időzítő törlése"
 
+msgid "Delete after zap"
+msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
+
 msgid "Delete all duplicated lines"
 msgstr ""
 
@@ -6808,10 +6820,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Mappa"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7664,9 +7672,6 @@ msgstr "Engedélyezve a(z) %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
-msgid "Enable Autorecord"
-msgstr "Automatikus Timeshift felvétel engedélyezése"
-
 msgid "Enable BT audio"
 msgstr "BT Audió engedélyezve"
 
@@ -7766,6 +7771,9 @@ msgstr "Automatikus gyorskeresés engedélyezése"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Automatikus gyorskeresés engedélyezése ehhez: %s"
+
+msgid "Enable auto record"
+msgstr "Automatikus Timeshift felvétel engedélyezése"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -8120,9 +8128,6 @@ msgid "Enter the PIN from 0 to 255 assigned to this User Band by the installer o
 msgstr ""
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr ""
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
@@ -8616,8 +8621,14 @@ msgstr ""
 msgid "Event View Context Menu"
 msgstr "Eseménynézet menü"
 
+msgid "Event based file splitting"
+msgstr "Minden Timeshift külön felvételi pufferben legyen"
+
 msgid "Event font size"
 msgstr "Esemény betűmérete"
+
+msgid "Event limit"
+msgstr "Timeshift felvételek korlátozása [felvételek száma]"
 
 msgid "Event name only"
 msgstr "Csak eseménynév"
@@ -10494,14 +10505,8 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ha a naplók a beállított maximális hely értékét túllépik, akkor a legidősebb napló törlődik."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr ""
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Ha be van állítva az érték, s ha a szabad terület kisebb, mint a beállított érték, akkor a rendszer megpróbálja törölni a régi Timeshift fájlokat."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
@@ -10605,9 +10610,6 @@ msgstr "Importálás a távoli vevő URL címéből"
 
 msgid "Import remote receiver URL"
 msgstr "Távoli vevő URL címének importálása"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Ha meg van határozva az érték, akkor a Timeshift az értéknek megfelelően ellenőrzi a régebbi fájlokat (puffer határ, esemény határ, szabad hely beállítást figyelembe véve)."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Az előnyben részesített tunereket lehet itt beállítani a felvételekhez, több tuner is kiválasztható amennyiben azokkal rendelkezik a készülék."
@@ -13750,20 +13752,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nincs elég tárhely. Kérem, szabadítson fel némi helyet és próbálja meg újra. (%d MB területre lenne szükség, %d MB hely szabad jelenleg)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Nincs elég szabad lemezterület!\n"
-"\n"
-"Fájlméret: %s MB\n"
-"Szabad terület: %s MB\n"
-"Útvonal: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13974,9 +13962,6 @@ msgstr ""
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "A Timeshift könyvtárban lévő régebbi fájlok a megadott időhatárt túllépve eltávolításra kerülnek."
 
 msgid "Olympic blue"
 msgstr ""
@@ -15868,6 +15853,9 @@ msgstr ""
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -17342,6 +17330,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Timeshift mentése és a felvétel folytatása"
 
@@ -17376,9 +17367,6 @@ msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "EPG gyorsítótár mentése..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Timeshift mentése most. Ez hosszabb időt is igénybe vehet!"
 
 msgid "Saving time shift files"
 msgstr "Timeshift fájljának mentése"
@@ -17661,14 +17649,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Válassza az 'engedélyezve' lehetőséget, ha a tunerhez van egy jelkábel, különben válassza a 'semmi csatlakoztatva' lehetőséget."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Ha a 'nem'-t választja, a Timeshift csak egy pufferfájlt használ. Ajánljuk, hogy a 'Timeshift a régebbi fájlokat ellenőrizze' és a 'Timeshift ellenőrizze a szabad helyet' állítsa be."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "a kinézet (Skin) összeomlási hibái is a naplóba kerüljenek rögzítésre "
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Csatorna váltás, vagy ugrás után a Timeshift puffer törlésre kerüljön-e vagy nem."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Ha 'univerzális' LNB-t használ, válassza a 'polarizáció' lehetőséget, máskülönben forduljon az LNB specifikációs lapjához."
@@ -17711,9 +17693,6 @@ msgstr "Ha az 'igen'-t választja, az Információs sáv folyamatosan 'szünetel
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Ha az 'igen'-t választja, akkor a keresősáv segítségével átugorhat egy adott pontra az eseményen belül."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Ha az érték 'igen'-re van állítva, akkor a csatornacsomag lista fog először megjelenni. Ha 'nem', akkor az aktuális csatorna lista jelenik meg a képernyőn."
@@ -18054,11 +18033,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -18102,6 +18090,9 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Tuner kiválasztása"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "Művelet kiválasztása"
@@ -18260,9 +18251,6 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közben."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Válassza ki, hogy aktiválja-e a Subservice módot."
 
@@ -18386,10 +18374,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18569,6 +18563,9 @@ msgstr ""
 msgid "Select the input connector you want to use."
 msgstr ""
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
 
@@ -18641,6 +18638,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -19286,9 +19286,6 @@ msgstr "Állítsa be az azonnali felvételek alapértelmezett helyét. Új helye
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
@@ -19413,9 +19410,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
 
 msgid "Set to the desired primetime hour."
 msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
@@ -20351,7 +20345,7 @@ msgstr "Függőleges Műsorújság megjelenítése"
 msgid "Show warning before restart"
 msgstr "Figyelmeztetés mutatása újraindítás előtt"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Figyelmeztetés Timeshift megállításakor"
 
 msgid "Show watch status"
@@ -20562,9 +20556,6 @@ msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "előre kihagyása (adja meg az időt)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
 
 msgid "Skip network setup"
 msgstr ""
@@ -21266,6 +21257,9 @@ msgstr ""
 msgid "Status:"
 msgstr "Állapot:"
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr ""
 
@@ -21364,9 +21358,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Softcam leállítása"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21394,6 +21385,10 @@ msgstr "A lemez nem található!"
 
 msgid "Storage device not writable!"
 msgstr "A lemez nem írható!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Pozíció tárolása"
@@ -22239,6 +22234,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22273,13 +22274,6 @@ msgstr ""
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
-"Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22356,6 +22350,9 @@ msgstr "Az eredmények ide lettek kiírva: %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Mentett PIN törölve."
 
@@ -22383,6 +22380,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Az időt megszorozzuk az aktuális ismétlési számlálóval."
 
@@ -22393,9 +22393,16 @@ msgstr ""
 "A Timeshift pufferidő meghaladja a beállított határértéket.\n"
 "Mit akar csinálni ?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -22815,38 +22822,20 @@ msgstr "Időugrás a megismételt intervalluma a gyors előre/vissza lépéshez"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Időugrás: Normál sebesség használata az előrelépéshez"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift puffer határa [órákban]"
-
 msgid "Time shift buffer location"
 msgstr "Timeshift helye"
 
-msgid "Time shift checking for free space"
-msgstr "Timeshift ellenőrizze a szabad helyet?"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
-
-msgid "Time shift event based file splitting"
-msgstr "Minden Timeshift külön felvételi pufferben legyen"
-
-msgid "Time shift event limit"
-msgstr "Timeshift felvételek korlátozása [felvételek száma]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr "Timeshift nem lehetséges!"
-
 msgid "Time shift save action on zap"
 msgstr "Timeshift mentése csatornaváltáskor"
 
-msgid "Time shift save failed!"
-msgstr "Timeshift felvétel mentése sikertelen!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -22857,8 +22846,8 @@ msgstr "Timeshift folyamatban. Válasszon egy opciót."
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift felvétel (leállítás az aktuális műsor után)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift felvétel mentése a háttértárra!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Az esemény végén lesz a Timeshift mentve!"
@@ -23577,6 +23566,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23596,6 +23588,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -23612,8 +23607,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23953,6 +23954,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "TV-távvezérlő használata"
 
@@ -24135,9 +24139,6 @@ msgstr "Alkalmazhatók a Videó-beállítások?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Az idő ugrással gyors Előre/Hátra ugrik"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Használja a Timeshift keresősávot a Timeshift közben?"
 
 msgid "Use viewer for unknown files"
 msgstr ""
@@ -24828,6 +24829,9 @@ msgstr "A HTTP jelfolyamba kerüljön bele a DVB-ből származó EIT adatcsomag 
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Egy felugró üzenet jelenjen meg a képernyőn amikor egy fájl a végéhez ért és a következő elindul."
 
@@ -24846,8 +24850,8 @@ msgstr "Ha engedélyezve van, a felvétel megszakíthatja az adatfolyamot (Strea
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Egy felvétel megszakíthatja a TV-nézést, ha nem áll rendelkezésre másik szabad tuner a felvételhez."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24870,11 +24874,17 @@ msgstr ""
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Ha engedélyezi, HTTP streamek (adatfolyamok) megtekintéséhez azonosításra lesz szükség."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -24890,6 +24900,9 @@ msgstr "Ha engedélyezi, akkor a csatornaváltás közben, ha a csatornacsomag u
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "A törölt fájlok kukába kerüljenek, azonnali megsemmisítés helyett."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "A külön fájlban lévő feliratok automatikusan jelenjenek meg film lejátszás esetén."
@@ -24934,6 +24947,9 @@ msgid "When enabled, show status or error messages."
 msgstr "Ha engedélyezi, akkor állapot és hiba üzenetek jelenhetnek meg."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr ""
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -25005,8 +25021,11 @@ msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesíte
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner'-t."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Ha engedélyezi, testreszabhatja az OpenWebIf beállításait a tartalék tunerhez."
@@ -25195,6 +25214,9 @@ msgstr "Írási hiba felvétel közben. %s"
 
 msgid "Write failed!"
 msgstr "Az írás sikertelen!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25614,9 +25636,6 @@ msgstr "Nagyítás jobbról"
 
 msgid "Zulu"
 msgstr ""
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] az egyesítés sikertelen!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "a Timeshift újraindult!"
@@ -26277,6 +26296,87 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a rendszer Timeshift fájlt törölni."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Ha be van állítva az érték, s ha a szabad terület kisebb, mint a beállított érték, akkor a rendszer megpróbálja törölni a régi Timeshift fájlokat."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Ha meg van határozva az érték, akkor a Timeshift az értéknek megfelelően ellenőrzi a régebbi fájlokat (puffer határ, esemény határ, szabad hely beállítást figyelembe véve)."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Nincs elég szabad lemezterület!\n"
+#~ "\n"
+#~ "Fájlméret: %s MB\n"
+#~ "Szabad terület: %s MB\n"
+#~ "Útvonal: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "A Timeshift könyvtárban lévő régebbi fájlok a megadott időhatárt túllépve eltávolításra kerülnek."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Timeshift mentése most. Ez hosszabb időt is igénybe vehet!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Ha a 'nem'-t választja, a Timeshift csak egy pufferfájlt használ. Ajánljuk, hogy a 'Timeshift a régebbi fájlokat ellenőrizze' és a 'Timeshift ellenőrizze a szabad helyet' állítsa be."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Csatorna váltás, vagy ugrás után a Timeshift puffer törlésre kerüljön-e vagy nem."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Ha az 'igen'-t választja, akkor a keresősáv segítségével átugorhat egy adott pontra az eseményen belül."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közben."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
+#~ "Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift nem lehetséges!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Timeshift felvétel mentése sikertelen!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift felvétel mentése a háttértárra!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Használja a Timeshift keresősávot a Timeshift közben?"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] az egyesítés sikertelen!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "A 10bit engedélyezése"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-09-10 19:24+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1367,9 +1367,6 @@ msgstr "”%s” avmonterades."
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "\"Buffert i timmar\" eller \"antal senaste händelser\". Vid radering av äldre time shift-filer prioriteras det tillstånd som inträffade först."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "\"Hantera standby från TV\" har högre prioritet än \"Hantera inmatning från TV\"."
 
@@ -1730,6 +1727,9 @@ msgstr ""
 "En inspelning har påbörjats:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 #
 msgid ""
 "A recording is currently running.\n"
@@ -1762,6 +1762,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Ett nödvändigt verktyg (%s) hittades inte."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2279,9 +2282,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Justera den vertikala positionen för de bokstäver som används för text-tv."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr "Justerar kompensationen för maskinvarubuffertens latens för DM9x0."
 
 msgid "Adult"
 msgstr "Vuxen"
@@ -3111,7 +3111,7 @@ msgstr "Sätt automatiskt TV:n i standby när mottagaren går in i standby eller
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Starta automatiskt tidsomställningen efter"
 
 msgid "Automatically turn on external subtitles"
@@ -3655,6 +3655,9 @@ msgstr "Brunei Darussalam"
 
 msgid "Buffer Management"
 msgstr "Buffert­hantering"
+
+msgid "Buffer age limit"
+msgstr "Tidsförskjutning buffertgräns"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4473,6 +4476,12 @@ msgstr "Kontrollera för PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Kontrollera om PDC är tillgängligt för varje tjänst."
 
+msgid "Check for free space"
+msgstr "Tidsförskjutning för kontroll av ledigt utrymme"
+
+msgid "Check for older files"
+msgstr "Tidsförskjutningskontroll för äldre filer"
+
 msgid "Check power and input state from TV"
 msgstr "Kontrollera strömförsörjning och ingångsläge från TV:n"
 
@@ -4494,6 +4503,9 @@ msgstr "Kontrollerar ONID/TSID …"
 #
 msgid "Checking file system..."
 msgstr "Kontrollerar filsystemet..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5820,9 +5832,6 @@ msgstr "Skapa .ap- och .sc-filer"
 msgid "Creating file system"
 msgstr "Skapa filsystem"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Skapande av hård länk till tidsskiftfil misslyckades!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -6704,6 +6713,9 @@ msgstr "Ta bort insticksprogram"
 msgid "Delete Timer"
 msgstr "Radera timer"
 
+msgid "Delete after zap"
+msgstr "Tidsförskjutning buffert radera efter zap"
+
 msgid "Delete all duplicated lines"
 msgstr "Ta bort alla dubblerade rader"
 
@@ -7038,10 +7050,6 @@ msgstr "Kataloger"
 
 msgid "Directory"
 msgstr "Katalog"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Katalog '%s' kan inte kopplas till inspelningar!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7959,9 +7967,6 @@ msgstr "Aktivera %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Aktivera 5V för aktiv antenn"
 
-msgid "Enable Autorecord"
-msgstr "Aktivera Autorecord"
-
 #
 msgid "Enable BT audio"
 msgstr "Aktivera BT Audio"
@@ -8067,6 +8072,9 @@ msgstr "Aktivera automatisk snabbskanning"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Aktivera automatisk snabbscanning för %s"
+
+msgid "Enable auto record"
+msgstr "Aktivera Autorecord"
 
 msgid "Enable automatic shares"
 msgstr "Aktivera automatiska delningar"
@@ -8431,9 +8439,6 @@ msgstr "Ange PIN-koden från 0 till 255 som har tilldelats detta användarband a
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Ange ZeroTier-nätverkets ID. ID:t måste bestå av exakt 16 tecken."
-
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr "Ange den tid som ska läggas till i streamingbufferten efter ett streamingfel. Denna extra buffert kan bidra till att undvika ytterligare streamingproblem på grund av brist på buffertutrymme."
 
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr "Ange den fasta/statiska IPv4-adress som ska användas för denna nätverksadapter."
@@ -8942,8 +8947,14 @@ msgstr "Åtgärder i händelsevyn"
 msgid "Event View Context Menu"
 msgstr "Kontextmeny för händelsevy"
 
+msgid "Event based file splitting"
+msgstr "Time shift-händelsebaserad fildelning"
+
 msgid "Event font size"
 msgstr "Händelsens teckenstorlek"
+
+msgid "Event limit"
+msgstr "Tidsförskjutning händelsegräns"
 
 msgid "Event name only"
 msgstr "Endast evenemangets namn"
@@ -10895,14 +10906,8 @@ msgstr "Om den är aktiverad kommer den nya GStreamer-uppspelningsmotorn att anv
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Om loggarna använder det inställda maximala utrymmet raderas den äldsta loggen."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Om inställningen är \"yes\" kan du använda timeshift med alternativa ljudplugins."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Om lösningen för djup standby är aktiverad väntar du tills systemtiden har synkroniserats. Beroende på vad som krävs fortsätter uppvaknandet av enheten efter högst 2 minuter."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Om det lediga utrymmet är mindre än inställningsvärdet görs ett försök att radera de gamla Time Shift-filerna."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Om texten är för lång för att kunna visas på frontpanelen, upprepas den (antal gånger)."
@@ -11008,9 +11013,6 @@ msgstr "Importera från fjärrmottagarens URL"
 
 msgid "Import remote receiver URL"
 msgstr "Importera URL för fjärrmottagare"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Förutom kontrollen vid en händelsestart kan en repetitiv kontroll användas, så att villkoren \"buffertgräns i timmar\" eller \"kontrollera ledigt utrymme\" upptäcks tidigare."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "I expertläget kan du konfigurera vilka tuners som ska föredras för inspelningar när mer än en tuner är tillgänglig."
@@ -14284,20 +14286,6 @@ msgstr "Inte definierad"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Inte tillräckligt med diskutrymme. Frigör lite diskutrymme och försök igen. (%d MB krävs, %d MB tillgängligt)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Inte tillräckligt med ledigt diskutrymme!\n"
-"\n"
-"Filstorlek: %sMB\n"
-"Fritt utrymme: %s MB\n"
-"Sökväg: %s"
-
 msgid "Not found"
 msgstr "Hittades inte"
 
@@ -14513,9 +14501,6 @@ msgstr "Avräkning och stängning av CA-enhet"
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Äldre filer i Time Shift-katalogen tas bort vid varje händelseändring."
 
 msgid "Olympic blue"
 msgstr "olympisk blå"
@@ -16495,6 +16480,9 @@ msgstr "RAM-benchmark"
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "RC anpassad kod"
 
@@ -18062,6 +18050,9 @@ msgstr "Spara loggen över konsolmeddelanden i en fil"
 msgid "Save the right column directory location on exit."
 msgstr "Spara den högra kolumnens katalogplats vid utmatning."
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Spara tidsförskjutningen som film och fortsätt inspelningen"
 
@@ -18096,9 +18087,6 @@ msgstr "Sparade rader i skriptmeddelanden"
 
 msgid "Saving EPG Cache..."
 msgstr "Sparar EPG-cache..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Spara tid skiftbuffert, detta kan ta ett tag."
 
 msgid "Saving time shift files"
 msgstr "Spara filer för tidsförskjutning"
@@ -18395,14 +18383,8 @@ msgstr "Välj \"Aktivera\" för att starta CI+-hjälpen."
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Välj \"Enabled\" om tunern har en signalkabel ansluten, annars väljer du \"Nothing connected\"."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Välj \"Nej\" om du vill att time shift ska använda en enda buffertfil. Använd \"Time shift kontrollerar äldre filer [i minuter]\" och \"Time shift kontrollerar ledigt utrymme?\" för att styra storleken på buffertfilen."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Välj \"No\" om du bara vill skriva ett loggmeddelande till debug-loggfilen."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Välj \"Nej\" för att spara äldre händelser även efter zapping eller avbruten tidsförskjutning."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Välj \"Polarization\" om du använder en \"Universal\" LNB, annars kan du läsa specifikationerna för din LNB."
@@ -18445,9 +18427,6 @@ msgstr "Välj \"Ja\" om InfoBar ska fortsätta att visas, utan tidsgräns, när 
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Denna plugin kan avgöra om ett program börjar tidigare eller varar längre. Kanalen måste tillhandahålla tillförlitliga data."
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Välj \"Yes\" för att tillåta användning av SeekBar för att hoppa till en vald punkt i evenemanget."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Välj \"Yes\" för att alltid visa bukettskärmen först när du öppnar kanallistan. Välj \"Nej\" för att öppna kanallistan med den aktuella buketten."
@@ -18793,12 +18772,21 @@ msgstr "Välj en katalog från bokmärkena"
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Välj en distribution varifrån bilderna ska hämtas"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "Justerar kompensationen för maskinvarubuffertens latens för DM9x0."
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Ange den tid som ska läggas till i streamingbufferten efter ett streamingfel. Denna extra buffert kan bidra till att undvika ytterligare streamingproblem på grund av brist på buffertutrymme."
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Välj en plats som du vill extrahera '%s' till:"
 
 msgid "Select a menu item"
 msgstr "Välj ett menyalternativ"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Välj en film"
@@ -18841,6 +18829,9 @@ msgstr "Välj en tid, i standby-läge, innan vilken avtrappning kan fortsätta."
 
 msgid "Select a tuner"
 msgstr "Välj en tuner"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 #
 msgid "Select action"
@@ -19003,9 +18994,6 @@ msgstr "Välj om timern ska aktiveras på en onsdag."
 msgid "Select if this timer is to be repeated."
 msgstr "Välj om denna timer ska upprepas."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Välj om tidsförskjutningen måste fortsätta när den är inställd på inspelning."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Välj om du vill aktivera underserviceläget."
 
@@ -19134,11 +19122,17 @@ msgstr "Välj åtgärd för '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Välj den åtgärd som ska utföras när timern går ut."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Välj vilken typ av avstängning som önskas när EnergySaver-timern aktiveras."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "Välj vilken typ av avstängning som önskas när SleepTimer aktiveras."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Välj hur länge systemet ska vänta efter ett uppgiftsfel innan ett nytt körningsförsök görs."
@@ -19316,6 +19310,9 @@ msgstr "Välj startposition för tidslinjemarkören. Markören är den vertikala
 msgid "Select the input connector you want to use."
 msgstr "Välj den ingångskontakt som du vill använda."
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "Välj det sista objektet i listan eller gå till slutet av texten"
 
@@ -19390,6 +19387,9 @@ msgstr "Välj nästa objekt i listan eller flytta markören åt höger"
 
 msgid "Select the next item in the list"
 msgstr "Välj nästa objekt i listan"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Välj hur många gånger en uppgift ska köras igen om ett fel uppstår under körningen."
@@ -20056,9 +20056,6 @@ msgstr "Ställ in standardplatsen för dina direktinspelningar. Tryck på \"OK\"
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "Ställ in standardplatsen för att spara dina inspelningsfiler för tidsomställningen. Tryck på \"OK\" för att lägga till nya platser, tryck på VÄNSTER/RIGHT för att välja bland tidigare definierade platser."
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Ställ in standardplatsen för lagring av buffertfiler för tidsförskjutning. Tryck på \"OK\" för att lägga till nya platser, tryck på \"LEFT\"/\"RIGHT\" för att välja bland tidigare definierade platser."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ställ in standardplatsen för filmval för dina mediefiler. Tryck på 'OK' för att lägga till nya platser, tryck på 'LEFT'/'RIGHT' för att välja bland tidigare definierade platser."
 
@@ -20186,9 +20183,6 @@ msgstr "Ställ in på 'Aktiverad' för att avkoda köade krypterade inspelningar
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Om inställningen är \"Yes\" kommer samma kommandon att skickas till TV:n vid djup standby som vid vanlig standby."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Ställ in på \"Ja\" för att aktivera automatisk registrering av tidsförskjutningsbufferten i bakgrunden."
 
 msgid "Set to the desired primetime hour."
 msgstr "Ställ in önskad primetime (timme)."
@@ -21166,7 +21160,7 @@ msgstr "Visa vertikal programguide"
 msgid "Show warning before restart"
 msgstr "Visa varning före omstart"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Visa varning när tidsomställningen stoppas"
 
 msgid "Show watch status"
@@ -21395,9 +21389,6 @@ msgstr "Hoppa framåt %s%%"
 #
 msgid "Skip forward (enter time)"
 msgstr "Hoppa framåt (ange tid)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Hoppa till direktsändning när du tidsförskjuter med plugins"
 
 msgid "Skip network setup"
 msgstr "Hoppa över nätverkskonfiguration"
@@ -22124,6 +22115,9 @@ msgstr "Status ej tillgänglig!"
 msgid "Status:"
 msgstr "Status:"
 
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
+
 msgid "Step"
 msgstr "Steg"
 
@@ -22236,9 +22230,6 @@ msgstr "Det gick inte att stoppa %s (slutkod %s)"
 msgid "Stopping Softcam"
 msgstr "Stoppa Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Stoppar användningen av tidsförskjutning om en inspelning pågår. (Rekommenderas för USB-minnen.)."
-
 msgid "Storage / Disk Information"
 msgstr "Lagring / Diskinformation"
 
@@ -22269,6 +22260,10 @@ msgstr "Lagringsenheten hittades inte!"
 #
 msgid "Storage device not writable!"
 msgstr "Lagringsenheten är inte skrivbar!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 #
 msgid "Store position"
@@ -23144,6 +23139,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Kommandot att väcka från standby kommer att skickas flera gånger."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -23181,13 +23182,6 @@ msgstr "Filen '%s' har ändrats. Vill du förkasta ändringarna?"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "Filen '%s' har ändrats. Vill du spara den?"
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Filsystemet på din Time Shift-enhet stöder inte hårda länkar.\n"
-"Se till att den är formaterad i EXT2, EXT3 eller EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -23266,6 +23260,9 @@ msgstr "Resultaten har skrivits till %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Den sparade PIN-koden har raderats."
 
@@ -23298,6 +23295,9 @@ msgstr ""
 "\n"
 "Gör du det nu eller förlänger du timern?"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Tiden multipliceras med den aktuella repetitionsräknaren."
 
@@ -23308,9 +23308,16 @@ msgstr ""
 "Time shift-bufferten överskrider den gräns som anges i inställningarna.\n"
 "Vad är det du vill göra?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -23740,40 +23747,21 @@ msgstr "Upprepningsintervall för tidshopp för snabbspolning framåt/bakåt"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Tidshopp: Använd normal snabbspolning för hastigheter"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Tidsförskjutning buffert radera efter zap"
-
-msgid "Time shift buffer limit"
-msgstr "Tidsförskjutning buffertgräns"
-
 #
 msgid "Time shift buffer location"
 msgstr "Tidsförskjutning buffertplats"
 
-msgid "Time shift checking for free space"
-msgstr "Tidsförskjutning för kontroll av ledigt utrymme"
-
-msgid "Time shift checking for older files"
-msgstr "Tidsförskjutningskontroll för äldre filer"
-
-msgid "Time shift event based file splitting"
-msgstr "Time shift-händelsebaserad fildelning"
-
-msgid "Time shift event limit"
-msgstr "Tidsförskjutning händelsegräns"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Time shift kanske inte fungerar korrekt utan en godtagbar katalog."
 
-#
-msgid "Time shift not possible!"
-msgstr "Tidsförskjutning inte möjlig!"
-
 msgid "Time shift save action on zap"
 msgstr "Time shift spara action på zap"
 
-msgid "Time shift save failed!"
-msgstr "Time shift save misslyckades!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr "Tidsförskjutning spara plats"
@@ -23784,8 +23772,8 @@ msgstr "Tidsförskjuten sparinspelning (Välj händelse)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Time shift save recording (Stopp efter aktuell händelse)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Tidsförskjutning sparad på din hårddisk!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Tidsförskjutningen kommer att sparas i slutet av evenemanget."
@@ -24545,6 +24533,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -24564,6 +24555,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Det gick inte att starta DAB+-flödet"
 
@@ -24580,9 +24574,15 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Det gick inte att validera Unicable-positionen för LNB %d: %s."
+
+msgid "Unable to write the time shift event information."
+msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr "Obevakad uppgradering utan GUI"
@@ -24936,6 +24936,9 @@ msgstr "Använd PIN-kod"
 msgid "Use QuickSelect"
 msgstr "Använd QuickSelect"
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Använd TV-fjärrkontroll"
 
@@ -25124,9 +25127,6 @@ msgstr "Använda denna videoförbättringsinställningar?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Använd tidshopp för snabbspolning framåt/bakåt"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Använd tidsförskjutning SeekBar vid tidsförskjutning"
 
 msgid "Use viewer for unknown files"
 msgstr "Använd visningsprogram för okända filer"
@@ -25875,6 +25875,9 @@ msgstr "När den är aktiverad kommer EIT-data att inkluderas i http-strömmar. 
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "När SDT är aktiverat kommer BAT-data att inkluderas i http-strömmar."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "När den är aktiverad visas ett popup-meddelande när en film har avslutats och nästa film börjar."
 
@@ -25893,8 +25896,8 @@ msgstr "När den är aktiverad tillåts en inspelning att avbryta streamingen n�
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "När den är aktiverad tillåts en inspelning att avbryta direktsänd TV när det inte finns några lediga tuners."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "När den är aktiverad visas en varning och användaren får möjlighet att stoppa eller fortsätta tidsomställningen."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "När detta är aktiverat tillåts Samba-nätverksåtkomst utan lösenord."
@@ -25917,11 +25920,17 @@ msgstr "När detta är aktiverat tillåts användning av NFS version 3-protokoll
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "När detta är aktiverat tillåts användning av NFS version 4-protokollen."
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "När den är aktiverad krävs autentisering för att titta på http-strömmar."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -25937,6 +25946,9 @@ msgstr "När den är aktiverad fortsätter du till nästa bukett när den sista 
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "När den är aktiverad flyttas raderade inspelningar till papperskorgen i stället för att raderas omedelbart."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "När den är aktiverad kommer externa undertexter alltid att aktiveras för uppspelning av film."
@@ -25982,6 +25994,9 @@ msgstr "När den är aktiverad visas status- eller felmeddelanden."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "När detta är aktiverat anges egna DNS-inställningar för adaptern i stället för de globala DNS-inställningarna."
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "När den är aktiverad kan undertexter för hörselskadade användas."
@@ -26052,8 +26067,11 @@ msgstr "När den här inställningen är aktiverad har den större betydelse än
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "När den här inställningen är aktiverad har den större betydelse än \"Preferred tuner\"."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "När den är aktiverad startar tidsomställningen automatiskt i bakgrunden efter angiven tid."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "När den är aktiverad kan du anpassa OpenWebIf-inställningarna för reservtunern."
@@ -26245,6 +26263,9 @@ msgstr "Skrivfel under inspelning. %s"
 #
 msgid "Write failed!"
 msgstr "Skrivningen misslyckades!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -26681,9 +26702,6 @@ msgstr "Zoom från höger"
 
 msgid "Zulu"
 msgstr "Zulu"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Sammanslagning av poster misslyckades!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[Timeshift] Återstart av time shift!"
@@ -27427,6 +27445,98 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "\"Buffert i timmar\" eller \"antal senaste händelser\". Vid radering av äldre time shift-filer prioriteras det tillstånd som inträffade först."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Skapande av hård länk till tidsskiftfil misslyckades!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Katalog '%s' kan inte kopplas till inspelningar!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Om inställningen är \"yes\" kan du använda timeshift med alternativa ljudplugins."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Om det lediga utrymmet är mindre än inställningsvärdet görs ett försök att radera de gamla Time Shift-filerna."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Förutom kontrollen vid en händelsestart kan en repetitiv kontroll användas, så att villkoren \"buffertgräns i timmar\" eller \"kontrollera ledigt utrymme\" upptäcks tidigare."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Inte tillräckligt med ledigt diskutrymme!\n"
+#~ "\n"
+#~ "Filstorlek: %sMB\n"
+#~ "Fritt utrymme: %s MB\n"
+#~ "Sökväg: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Äldre filer i Time Shift-katalogen tas bort vid varje händelseändring."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Spara tid skiftbuffert, detta kan ta ett tag."
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Välj \"Nej\" om du vill att time shift ska använda en enda buffertfil. Använd \"Time shift kontrollerar äldre filer [i minuter]\" och \"Time shift kontrollerar ledigt utrymme?\" för att styra storleken på buffertfilen."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Välj \"Nej\" för att spara äldre händelser även efter zapping eller avbruten tidsförskjutning."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Välj \"Yes\" för att tillåta användning av SeekBar för att hoppa till en vald punkt i evenemanget."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Välj om tidsförskjutningen måste fortsätta när den är inställd på inspelning."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Ställ in standardplatsen för lagring av buffertfiler för tidsförskjutning. Tryck på \"OK\" för att lägga till nya platser, tryck på \"LEFT\"/\"RIGHT\" för att välja bland tidigare definierade platser."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Ställ in på \"Ja\" för att aktivera automatisk registrering av tidsförskjutningsbufferten i bakgrunden."
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "Hoppa till direktsändning när du tidsförskjuter med plugins"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Stoppar användningen av tidsförskjutning om en inspelning pågår. (Rekommenderas för USB-minnen.)."
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Filsystemet på din Time Shift-enhet stöder inte hårda länkar.\n"
+#~ "Se till att den är formaterad i EXT2, EXT3 eller EXT4!"
+
+#
+#~ msgid "Time shift not possible!"
+#~ msgstr "Tidsförskjutning inte möjlig!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Time shift save misslyckades!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Tidsförskjutning sparad på din hårddisk!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Använd tidsförskjutning SeekBar vid tidsförskjutning"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "När den är aktiverad visas en varning och användaren får möjlighet att stoppa eller fortsätta tidsomställningen."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "När den är aktiverad startar tidsomställningen automatiskt i bakgrunden efter angiven tid."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] Sammanslagning av poster misslyckades!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Tillåt 10bit"
