@@ -3,6 +3,7 @@
 #include <lib/dvb/volume.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <math.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -19,12 +20,6 @@
 #include <linux/dvb/video.h>
 #endif
 
-#ifdef DREAMNEXTGEN
-#ifdef HAVE_ALSA
-#undef HAVE_ALSA
-#endif
-#endif
-
 #ifdef HAVE_ALSA
 #ifndef ALSA_VOLUME_MIXER
 #define ALSA_VOLUME_MIXER "Master"
@@ -35,6 +30,14 @@
 #endif
 
 eDVBVolumecontrol *eDVBVolumecontrol::instance = NULL;
+
+#ifdef DREAMNEXTGEN
+eDVBVolumecontrol::VolumeChangeCb eDVBVolumecontrol::s_volume_change_cb = nullptr;
+void eDVBVolumecontrol::registerVolumeChangeCb(VolumeChangeCb cb)
+{
+	s_volume_change_cb = cb;
+}
+#endif
 
 eDVBVolumecontrol *eDVBVolumecontrol::getInstance()
 {
@@ -48,8 +51,21 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 {
 #ifdef HAVE_ALSA
 	mainVolume = NULL;
+	alsaMixerHandle = NULL;
+#ifdef DREAMNEXTGEN
+	// AMLogic-specific ALSA mixer init
+	alsa_card    = ALSA_CARD;   // default device
+	alsa_has_db  = false;
+	alsa_min_raw = 0;
+	alsa_max_raw = 100;
+	alsa_min_db  = 0;
+	alsa_max_db  = 0;
+	// Mixer is opened lazily in ensureMixer()
+#else
+	// Other boxes: open eagerly
 	openMixer();
-#endif
+#endif // DREAMNEXTGEN
+#endif // HAVE_ALSA
 	mute_zero = false;
 	m_VolumeOffset = 0;
 	volumeUnMute();
@@ -59,6 +75,10 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 int eDVBVolumecontrol::openMixer()
 {
 #ifdef HAVE_ALSA
+#ifdef DREAMNEXTGEN
+	// AMLogic uses the robust lazy mixer init
+	return ensureMixer() ? 0 : -1;
+#else
 	if (!mainVolume)
 	{
 		int err;
@@ -105,10 +125,176 @@ int eDVBVolumecontrol::openMixer()
 		mainVolume = snd_mixer_find_selem(alsaMixerHandle, sid);
 	}
 	return mainVolume ? 0 : -1;
+#endif // DREAMNEXTGEN
 #else
 	return open(AUDIO_DEV, O_RDWR);
 #endif
 }
+
+#ifdef HAVE_ALSA
+#ifdef DREAMNEXTGEN
+
+/* Linear-amplitude curve dB = 20·log10(level/100) on the HW Master. */
+static void da_set_master(snd_mixer_elem_t *elem, int level,
+                          bool has_db, long min_db, long max_db)
+{
+    if (!elem) return;
+    if (has_db) {
+        long target_db;
+        if (level <= 0)        target_db = min_db;
+        else if (level >= 100) target_db = max_db;
+        else {
+            target_db = (long)(2000.0 * log10((double)level / 100.0));
+            if (target_db < min_db) target_db = min_db;
+            if (target_db > max_db) target_db = max_db;
+        }
+        snd_mixer_selem_set_playback_dB_all(elem, target_db, 0);
+    } else {
+        long rmin = 0, rmax = 100;
+        snd_mixer_selem_get_playback_volume_range(elem, &rmin, &rmax);
+        snd_mixer_selem_set_playback_volume_all(elem,
+            rmin + (rmax - rmin) * level / 100);
+    }
+}
+
+bool eDVBVolumecontrol::ensureMixer()
+{
+	if (alsaMixerHandle && mainVolume)
+		return true;
+
+	int err;
+
+	if (!alsaMixerHandle)
+	{
+		if ((err = snd_mixer_open(&alsaMixerHandle, 0)) < 0)
+		{
+			eDebug("[eDVBVolumecontrol] mixer open failed: %s", snd_strerror(err));
+			alsaMixerHandle = NULL;
+			return false;
+		}
+		if ((err = snd_mixer_attach(alsaMixerHandle, alsa_card)) < 0)
+		{
+			eDebug("[eDVBVolumecontrol] attach '%s' failed: %s", alsa_card, snd_strerror(err));
+			snd_mixer_close(alsaMixerHandle);
+			alsaMixerHandle = NULL;
+			return false;
+		}
+		if ((err = snd_mixer_selem_register(alsaMixerHandle, NULL, NULL)) < 0)
+		{
+			eDebug("[eDVBVolumecontrol] selem_register failed: %s", snd_strerror(err));
+			snd_mixer_close(alsaMixerHandle);
+			alsaMixerHandle = NULL;
+			return false;
+		}
+		if ((err = snd_mixer_load(alsaMixerHandle)) < 0)
+		{
+			eDebug("[eDVBVolumecontrol] mixer_load failed: %s", snd_strerror(err));
+			snd_mixer_close(alsaMixerHandle);
+			alsaMixerHandle = NULL;
+			return false;
+		}
+	}
+
+	if (!mainVolume)
+	{
+		// Try common control names (first match wins)
+		const char *candidates[] = {
+			"Master",
+			"PCM Playback Volume",
+			"LPCM Playback Volume",
+			"PCM"
+		};
+
+		snd_mixer_selem_id_t *sid = 0;
+		snd_mixer_selem_id_alloca(&sid);
+		snd_mixer_selem_id_set_index(sid, 0);
+
+		for (unsigned i = 0; i < sizeof(candidates)/sizeof(candidates[0]); ++i)
+		{
+			snd_mixer_selem_id_set_name(sid, candidates[i]);
+			snd_mixer_elem_t *e = snd_mixer_find_selem(alsaMixerHandle, sid);
+			if (e && snd_mixer_selem_has_playback_volume(e))
+			{
+				mainVolume = e;
+				break;
+			}
+		}
+
+		if (!mainVolume)
+		{
+			eDebug("[eDVBVolumecontrol] no suitable mixer element found");
+			return false;
+		}
+
+		// Decide whether to use dB or raw scaling
+		if (snd_mixer_selem_get_playback_dB_range(mainVolume, &alsa_min_db, &alsa_max_db) == 0
+		    && alsa_max_db > alsa_min_db)
+		{
+			alsa_has_db = true;
+		}
+		else
+		{
+			alsa_has_db = false;
+			long rmin = 0, rmax = 0;
+			snd_mixer_selem_get_playback_volume_range(mainVolume, &rmin, &rmax);
+			alsa_min_raw = rmin;
+			alsa_max_raw = rmax;
+		}
+	}
+
+	return true;
+}
+
+long eDVBVolumecontrol::uiToHw(int ui) const
+{
+	if (ui < 0) ui = 0;
+	if (ui > 100) ui = 100;
+
+	if (alsa_has_db)
+	{
+		// Map 0..100 to millibels [alsa_min_db..alsa_max_db]
+		const long span = alsa_max_db - alsa_min_db;
+		long val = alsa_min_db + (span * ui + 50) / 100;
+		if (val < alsa_min_db) val = alsa_min_db;
+		if (val > alsa_max_db) val = alsa_max_db;
+		return val;
+	}
+	else
+	{
+		// Map 0..100 to raw [alsa_min_raw..alsa_max_raw]
+		const long span = alsa_max_raw - alsa_min_raw;
+		long val = alsa_min_raw + (span * ui + 50) / 100;
+		if (val < alsa_min_raw) val = alsa_min_raw;
+		if (val > alsa_max_raw) val = alsa_max_raw;
+		return val;
+	}
+}
+
+int eDVBVolumecontrol::hwToUi(long hw) const
+{
+	if (alsa_has_db)
+	{
+		const long span = alsa_max_db - alsa_min_db;
+		if (span <= 0) return 0;
+		long ui = ((hw - alsa_min_db) * 100 + span / 2) / span;
+		if (ui < 0) ui = 0;
+		if (ui > 100) ui = 100;
+		return (int)ui;
+	}
+	else
+	{
+		const long span = alsa_max_raw - alsa_min_raw;
+		if (span <= 0) return 0;
+		long ui = ((hw - alsa_min_raw) * 100 + span / 2) / span;
+		if (ui < 0) ui = 0;
+		if (ui > 100) ui = 100;
+		return (int)ui;
+	}
+}
+
+#endif // DREAMNEXTGEN
+#endif // HAVE_ALSA
+
 
 void eDVBVolumecontrol::closeMixer(int fd)
 {
@@ -191,8 +377,21 @@ int eDVBVolumecontrol::setVolume(int left, int right)
 
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Setvolume: ALSA leftVol=%d", leftVol);
+#ifdef DREAMNEXTGEN
+	/* HW Master applies to all paths going through default→softvol→dmix. */
+	if (ensureMixer() && mainVolume)
+	{
+		da_set_master(mainVolume, muted ? 0 : leftVol,
+		              alsa_has_db, alsa_min_db, alsa_max_db);
+		if (snd_mixer_selem_has_playback_switch(mainVolume))
+			snd_mixer_selem_set_playback_switch_all(mainVolume, muted ? 0 : 1);
+	}
+	if (s_volume_change_cb)
+		s_volume_change_cb(muted ? 0 : leftVol);
+#else
 	if (mainVolume)
 		snd_mixer_selem_set_playback_volume_all(mainVolume, muted ? 0 : leftVol);
+#endif // DREAMNEXTGEN
 #else
 	/* convert to -1dB steps */
 
@@ -267,9 +466,22 @@ void eDVBVolumecontrol::volumeMute()
 {
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Set volume ALSA Mute.");
+#ifdef DREAMNEXTGEN
+	muted = true;
+	if (ensureMixer() && mainVolume)
+	{
+		da_set_master(mainVolume, 0,
+		              alsa_has_db, alsa_min_db, alsa_max_db);
+		if (snd_mixer_selem_has_playback_switch(mainVolume))
+			snd_mixer_selem_set_playback_switch_all(mainVolume, 0);
+	}
+	if (s_volume_change_cb)
+		s_volume_change_cb(0);
+#else
 	if (mainVolume)
 		snd_mixer_selem_set_playback_volume_all(mainVolume, 0);
 	muted = true;
+#endif
 #else
 	int fd = openMixer();
 	if (fd >= 0)
@@ -306,9 +518,22 @@ void eDVBVolumecontrol::volumeUnMute()
 {
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Set volume ALSA unMute to L=%d.", leftVol);
+#ifdef DREAMNEXTGEN
+	muted = false;
+	if (ensureMixer() && mainVolume)
+	{
+		da_set_master(mainVolume, leftVol,
+		              alsa_has_db, alsa_min_db, alsa_max_db);
+		if (snd_mixer_selem_has_playback_switch(mainVolume))
+			snd_mixer_selem_set_playback_switch_all(mainVolume, 1);
+	}
+	if (s_volume_change_cb)
+		s_volume_change_cb(leftVol);
+#else
 	if (mainVolume)
 		snd_mixer_selem_set_playback_volume_all(mainVolume, leftVol);
 	muted = false;
+#endif
 #else
 	int fd = openMixer();
 	if (fd >= 0)

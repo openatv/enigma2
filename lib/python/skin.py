@@ -4,7 +4,7 @@ from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, DEFAULT_READONLY_COLOR, config, setReadOnlyColor
 from Components.SystemInfo import BoxInfo
@@ -15,7 +15,7 @@ from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1].capitalize()
 
-DEFAULT_SKIN = "MetrixHD/skin.xml"
+DEFAULT_SKIN = "Umbra/skin.xml" if BoxInfo.getItem("SmallFlash") else "MetrixHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"
@@ -193,8 +193,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 				case "screen":  # Process all screen elements.
 					name = element.attrib.get("name")
 					if name:  # Without a name, it's useless!
-						scrnID = element.attrib.get("id")
-						if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
+						if parseInteger(element.attrib.get("id", screenID), screenID) == screenID:  # If there is a screen ID is it for this display.
 							res = element.attrib.get("resolution", f"{resolution[0]},{resolution[1]}")
 							if res != "0,0":
 								element.attrib["resolution"] = res
@@ -255,7 +254,10 @@ def reloadSkins():
 	clearResolveLists()
 	clearFonts()
 	clearPixmapCache()
+	componentTemplates.clear()
 	InitSkins()
+	from Components.UsageConfig import refreshChannelSelectionStyleChoices
+	refreshChannelSelectionStyleChoices()
 
 
 # Method to load a skinTemplates.xml if one exists or load the templates from the screens.
@@ -510,6 +512,16 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 	return value
 
 
+def parseErrorCorrection(value):
+	options = {
+		"low": eQRCode.ecLow,
+		"medium": eQRCode.ecMedium,
+		"quartile": eQRCode.ecQuartile,
+		"high": eQRCode.ecHigh
+	}
+	return parseOptions(options, "errorCorrection", value, eQRCode.ecMedium)
+
+
 def parseFont(value, scale=((1, 1), (1, 1))):
 	if ";" in value:
 		(name, size) = value.split(";")
@@ -557,33 +569,33 @@ def parseFontScale(value, scale=((1, 1), (1, 1))):
 
 def parseGradient(value):
 	def validColor(value):
-		if value[0] == "#" and len(value) in (9, 7):
-			isColor = True
-		elif value in colors:
-			isColor = True
-		else:
-			isColor = False
-		return isColor
+		return (value.startswith("#") and len(value) in (9, 7)) or value in colors
 
 	value = gradients.get(value, value)
 	data = [x.strip() for x in value.split(",")]
 	gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]  # Start color, center color, end color.
-	for index, color in enumerate(data):
-		if not validColor(color) or index > 2:
+	colorCount = 0
+	for color in data[:3]:
+		if not validColor(color):
 			break
-		gradientColors[index] = parseColor(color)
-	if index == 2:
+		gradientColors[colorCount] = parseColor(color)
+		colorCount += 1
+	if colorCount == 2:  # Two colors means start and end, drawRectangle treats center == end as a two color gradient.
 		gradientColors[2] = gradientColors[1]
-	argCount = len(data) - index
-	if index > 1 and argCount:
+	argCount = len(data) - colorCount
+	if colorCount > 1 and argCount:
 		options = {
 			"horizontal": eWidget.GRADIENT_HORIZONTAL,
 			"vertical": eWidget.GRADIENT_VERTICAL,
 		}
-		direction = parseOptions(options, "gradient", data[index], eWidget.GRADIENT_VERTICAL)
-		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[index + 1]) else 0
+		direction = parseOptions(options, "gradient", data[colorCount], eWidget.GRADIENT_VERTICAL)
+		alphaBlend = 1 if argCount > 1 and parseBoolean("alphablend", data[colorCount + 1]) else 0
 	else:
-		skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+		if colorCount > 1:
+			skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using direction 'vertical'")
+		else:
+			skinError(f"The gradient '{value}' must be 'startColor[,centerColor],endColor,direction[,alphaBlend]', using '#00000000,#00FFFFFF,vertical' (Black,White,vertical)")
+			gradientColors = [gRGB(0x00000000), gRGB(0x00FFFFFF), gRGB(0x00FFFFFF)]
 		direction = eWidget.GRADIENT_VERTICAL
 		alphaBlend = 0
 	return (gradientColors[0], gradientColors[1], gradientColors[2], direction, alphaBlend)
@@ -1108,6 +1120,9 @@ class AttributeParser:
 	def entryFont(self, value):
 		self.guiObject.setEntryFont(parseFont(value, self.scaleTuple))
 
+	def errorCorrection(self, value):
+		self.guiObject.setErrorCorrection(parseErrorCorrection(value))
+
 	def excludes(self, value):
 		pass
 
@@ -1256,6 +1271,9 @@ class AttributeParser:
 
 	def position(self, value):
 		self.guiObject.move(ePoint(*value) if isinstance(value, tuple) else parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
+
+	def quietZone(self, value):
+		self.guiObject.setQuietZone(parseInteger(value, 4))
 
 	def resolution(self, value):  # This is a dummy method for the parser.
 		pass
@@ -1799,11 +1817,10 @@ class ComponentTemplates:
 	def clear(self):
 		self.templates = {}
 		self.changedTimes = {}
+		BoxInfo.setMutableItem("CanRefreshTemplates", False)
 
 	def get(self, component, name):
-		if component in self.templates and self.templates[component][name] is not None:
-			return self.templates[component][name]
-		return None
+		return self.templates.get(component, {}).get(name)
 
 	def names(self, component):
 		if component in self.templates:
@@ -2341,6 +2358,7 @@ def readSkin(screen, skin, names, desktop):
 	screen.renderer = []
 	screen.stacks = []
 	usedComponents = set()
+	usedSources = set()
 
 	def processConstant(constant_widget, context, target=None):
 		widgetName = constant_widget.attrib.get("name")
@@ -2419,6 +2437,7 @@ def readSkin(screen, skin, names, desktop):
 			screen[widgetName] = proccesStackAddition(widget, stack, screen[widgetName])
 		elif widgetSource:
 			# print(f"[Skin] DEBUG: Widget source='{widgetSource}'.")
+			usedSources.add(widgetSource)
 			while True:  # Get corresponding source until we found a non-obsolete source.
 				# Parse our current "widgetSource", which might specify a "related screen" before the dot,
 				# for example to reference a parent, global or session-global screen.
@@ -2436,7 +2455,7 @@ def readSkin(screen, skin, names, desktop):
 					print(f"[Skin] OBSOLETE SOURCE WILL BE REMOVED {source.removalDate}, PLEASE UPDATE!")
 					if source.description:
 						print(f"[Skin] Source description: '{source.description}'.")
-					widgetSource = source.new_source
+					widgetSource = source.newSource
 				else:
 					break  # Otherwise, use the source.
 			if source is None:
@@ -2715,14 +2734,23 @@ def readSkin(screen, skin, names, desktop):
 	except Exception as err:
 		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
 		print_exc()
-	from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
-	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]
-	assert not unusedComponents, f"[Skin] The following components in '{myName}' don't have a skin entry: {', '.join(unusedComponents)}"
+	if config.crash.debugScreens.value:
+		from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
+		from Components.Sources.Source import Source  # This must be here to avoid a boot loop.
+		screenKeys = sorted(x for x in screen.keys() if not x.endswith(("Action", "Actions")))
+		# print(f"[Skin] Screen '{myName}' in module '{screen.__class__.__name__}' has widgets including '{"', '".join(screenKeys)}'.")
+		print(f"[Skin] Screen '{myName}' has widgets including '{"', '".join(screenKeys)}'.")
+		screenKeys = set(screenKeys)
+		if unusedComponents := sorted(x for x in screenKeys - usedComponents if isinstance(screen[x], GUIComponent)):
+			print(f"[Skin] Unused components: '{"', '".join(unusedComponents)}'.")
+		if unusedSources := sorted(x for x in screenKeys - usedSources if isinstance(screen[x], Source)):
+			print(f"[Skin] Unused sources: '{"', '".join(unusedSources)}'.")
 	# This may look pointless, but it unbinds "screen" from the nested scope. A better
 	# solution is to avoid the nested scope above and use the context object to pass
 	# things around.
 	screen = None
 	usedComponents = None
+	usedSources = None
 
 
 # Search the domScreens dictionary to see if any of the screen names provided

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
 <skin>
+	<!-- Display skin: display240 / Picon / OpenATV -->
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
 		<color color="#ffffff" name="LabelForeground"/>
@@ -28,25 +29,25 @@
 	</screen>
 
 <!-- main-->
-	<screen name="InfoBarSummary" position="fill" >
-		<widget source="session.CurrentService" render="LcdPicon" zPosition="1" position="center,10" size="133,80" alphatest="blend" >
+	<screen name="InfoBarSummary" position="0,0" size="240,80">
+		<widget source="session.CurrentService" render="LcdPicon" zPosition="1" position="0,0" size="120,60" alphatest="blend" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,90" size="220,55" font="FdLcD;22" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="124,0" size="116,44" font="FdLcD;18" halign="center" valign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,145" size="110,25" font="Regular; 25" foregroundColor="#F78181" >
+		<widget source="session.Event_Now" render="Label" position="124,60" size="116,20" font="Regular;18" foregroundColor="#F78181" halign="center" noWrap="1" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="115,150" size="105,24" borderWidth="2" >
+		<widget source="session.Event_Now" render="Progress" position="124,48" size="116,8" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="left" position="0,145" foregroundColor="#ff0000" size="100,25" font="FdLcD;20" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="center" position="0,60" foregroundColor="#ff0000" size="120,20" font="FdLcD;18" zPosition="2" noWrap="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="left" position="0,145" foregroundColor="#ff0000" size="100,25" font="FdLcD;20" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="center" position="0,60" foregroundColor="#ff0000" size="120,20" font="FdLcD;18" zPosition="2" noWrap="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>

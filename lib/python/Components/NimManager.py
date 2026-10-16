@@ -53,6 +53,13 @@ def orbitalPositionInList(orbitalPosition, orbitalPositionList):
 	return str(orbitalPosition) in positions
 
 
+def isPolarizationDependentDiseqc(lnb):
+	"""Capability/configuration check shared with optional scan plugins."""
+	return (hasattr(secClass, "setCommittedCommandByPolarization")
+		and lnb.lof.value != "unicable" and lnb.diseqcMode.value != "none"
+		and bool(getattr(getattr(lnb, "diseqcPortByPolarization", None), "value", False)))
+
+
 def inputPowerSlotForNim(slotid, nimmgr=None):
 	if nimmgr is None:
 		nimmgr = nimManager
@@ -70,6 +77,33 @@ def inputPowerSlotForNim(slotid, nimmgr=None):
 def canMeasureInputPowerForNim(slotid, nimmgr=None):
 	resourceManager = eDVBResourceManager.getInstance()
 	return bool(resourceManager and resourceManager.canMeasureFrontendInputPower(inputPowerSlotForNim(slotid, nimmgr)))
+
+
+class UnicableSubDict(ConfigSubDict):  # Creates the settings of a Unicable manufacturer on first use.
+	def __init__(self, products, create):
+		ConfigSubDict.__init__(self)
+		self.products = products
+		self.create = create
+
+	def __missing__(self, manufacturer):
+		if manufacturer not in self.products:
+			raise KeyError(manufacturer)
+		self[manufacturer] = self.create(manufacturer)
+		return dict.__getitem__(self, manufacturer)
+
+	def __contains__(self, manufacturer):
+		return dict.__contains__(self, manufacturer) or manufacturer in self.products
+
+	def get(self, manufacturer, default=None):
+		return self[manufacturer] if manufacturer in self else default
+
+	def getSavedValue(self):
+		values = {key: value for key, value in self.stored_values.items() if not dict.__contains__(self, key)}
+		values.update(ConfigSubDict.getSavedValue(self))
+		return values
+
+	savedValue = property(getSavedValue, ConfigSubDict.setSavedValue)
+	saved_value = property(getSavedValue, ConfigSubDict.setSavedValue)
 
 
 class SecConfigure:
@@ -551,6 +585,8 @@ class SecConfigure:
 						"BB": diseqcParam.BB
 					}
 					sec.setCommittedCommand(c[cdc] if cdc in c else int(cdc))
+					if isPolarizationDependentDiseqc(currLnb):
+						sec.setCommittedCommandByPolarization(c[currLnb.diseqcPortHorizontal.value], c[currLnb.diseqcPortVertical.value])
 					sec.setFastDiSEqC(currLnb.fastDiseqc.value)
 					sec.setSeqRepeat(currLnb.sequenceRepeat.value)
 					if currLnb.diseqcMode.value == "1_0":
@@ -640,7 +676,7 @@ class SecConfigure:
 		PN = PDict.get("product", None)  # Product name.
 		if PN is None:
 			return
-		if ManufacturerName in list(ProductDict.keys()):  # Manufacturer is listed, use its ConfigSubsection.
+		if ManufacturerName in ProductDict:  # Manufacturer is listed, use its ConfigSubsection.
 			tmp = ProductDict[ManufacturerName]
 			if PN in tmp.product.choices.choices:
 				return
@@ -1974,8 +2010,8 @@ def InitNimManager(nimmgr, update_slots=None):
 				# A template is only used for new LNBs, so persist its selected type explicitly.
 				section.unicable.save_forced = True
 
-			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check, defaultProduct=None, defaultSlot=0):
-				for manufacturer in unicableproducts:
+			def fillUnicableConf(unicableproducts, vco_null_check, defaultProduct=None, defaultSlot=0):
+				def createManufacturer(manufacturer):
 					products = list(unicableproducts[manufacturer].keys())
 					products.sort()
 					products_valide = []
@@ -2036,29 +2072,29 @@ def InitNimManager(nimmgr, update_slots=None):
 						products_valide_append("None")
 					productDefault = defaultProduct if defaultProduct in products_valide else products_valide[0]
 					tmp.product = ConfigSelection(choices=products_valide, default=productDefault)
-					sectionDict[manufacturer] = tmp
 					# Default 'scr' needs to be fixed.
 					# if defaultSlot and len(tmp.vco[productDefault]) >= int(defaultSlot):
 					# 	tmp.scr[productDefault].value = str(defaultSlot)
+					return tmp
+
+				return UnicableSubDict(unicableproducts, createManufacturer)
 
 			print("[NimManager] MATRIX.")
-			section.unicableMatrix = ConfigSubDict()
 			defaultSlot = rootDefaults.get("slotnr", None)
 			default = rootDefaults.get("unicable_matrix_manufacturer_default", UnicableMatrixManufacturers[0]) if defaultSlot else lnbTemplateValue(template, "unicableMatrixManufacturer", UnicableMatrixManufacturers[0])
 			if default not in UnicableMatrixManufacturers:
 				default = UnicableMatrixManufacturers[0]
 			defaultProduct = rootDefaults.get("unicable_matrix_product", None) if defaultSlot else lnbTemplateProduct(template, "unicableMatrix", default)
 			section.unicableMatrixManufacturer = ConfigSelection(UnicableMatrixManufacturers, default)
-			fillUnicableConf(section.unicableMatrix, unicablematrixproducts, True, defaultProduct, defaultSlot)
+			section.unicableMatrix = fillUnicableConf(unicablematrixproducts, True, defaultProduct, defaultSlot)
 			print("[NimManager] LNB.")
-			section.unicableLnb = ConfigSubDict()
 			defaultSlot = rootDefaults.get("slotnr", None)
 			default = rootDefaults.get("unicable_lnb_manufacturer_default", UnicableLnbManufacturers[0]) if defaultSlot else lnbTemplateValue(template, "unicableLnbManufacturer", UnicableLnbManufacturers[0])
 			if default not in UnicableLnbManufacturers:
 				default = UnicableLnbManufacturers[0]
 			defaultProduct = rootDefaults.get("unicable_lnb_product", None) if defaultSlot else lnbTemplateProduct(template, "unicableLnb", default)
 			section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, default)
-			fillUnicableConf(section.unicableLnb, unicablelnbproducts, False, defaultProduct, defaultSlot)
+			section.unicableLnb = fillUnicableConf(unicablelnbproducts, False, defaultProduct, defaultSlot)
 			# TODO satpositions for satcruser.
 			section.bootuptimeuser = ConfigInteger(default=lnbTemplateValue(template, "bootuptimeuser", 2700), limits=(0, 15000))
 			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default=lnbTemplateValue(template, "dictionuser", "EN50494"))
@@ -2143,6 +2179,9 @@ def InitNimManager(nimmgr, update_slots=None):
 				tmp.addNotifier(configDiSEqCModeChanged)
 			section.diseqcMode = tmp
 			section.commitedDiseqcCommand = ConfigSelection(advanced_lnb_csw_choices)
+			section.diseqcPortByPolarization = ConfigYesNo(default=False)
+			section.diseqcPortHorizontal = ConfigSelection(["AA", "AB", "BA", "BB"], default="AA")
+			section.diseqcPortVertical = ConfigSelection(["AA", "AB", "BA", "BB"], default="AB")
 			section.fastDiseqc = ConfigYesNo(default=lnbTemplateValue(template, "fastDiseqc", False))
 			section.sequenceRepeat = ConfigYesNo(default=lnbTemplateValue(template, "sequenceRepeat", False))
 			section.commandOrder1_0 = ConfigSelection(advanced_lnb_commandOrder1_0_choices, lnbTemplateValue(template, "commandOrder1_0", "ct"))

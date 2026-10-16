@@ -41,13 +41,13 @@ class Console(Screen):
 			"ok": (self.keyCancel, _("Close the screen")),
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.keyCloseRecursive, _("Close the screen and exit all menus")),
-			"red": (self.keyCancel, _("Close this screen")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"red": (self.keyCancel, _("Close the screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyLineUp, _("Move up a line")),
 			"down": (self.keyLineDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Console Actions"))
 		self["hideAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyToggleHideShow, _("Hide/Show the console screen"), _("NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned.")),

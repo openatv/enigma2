@@ -14,6 +14,8 @@
 
 #include <linux/dvb/ca.h>
 #include <sys/socket.h>
+#include <lib/dvb/csaengine.h>
+#include <lib/dvb/csasession.h>
 #include <lib/dvb/cwhandler.h>
 #include <map>
 #include <vector>
@@ -568,7 +570,11 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 		// the same service, the PMT is unchanged so buildCAPMT() would skip
 		// sending ("don't build the same CA PMT twice"). Force the softcam to
 		// restart descrambling so it resends CWs for the new CSA session.
-		if (service_already_registered && (servicetype == 0 || servicetype == 12))
+		// Not needed without libdvbcsa or when the service is known to be hardware
+		// descrambled: the restart would only unbind the PIDs briefly and the main
+		// picture stutters.
+		if (service_already_registered && (servicetype == 0 || servicetype == 12)
+			&& eDVBCSAEngine::isAvailable() && eDVBCSASession::cachedCsaAlt(ref) != 0)
 		{
 			// PiP/swap (livetv=0, scrambled_livetv=12): DEFER the CW resend
 			// to handlePMT() so the new CSA session is already activated and

@@ -15,6 +15,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import runWithScreenProtection
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import isPluginInstalled
@@ -609,6 +610,18 @@ class InfoBarButtonSetup():
 				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, f"{_('Hotkey')}: {key}", selected)
 
 	def execButtonSetup(self, selected):
+		if selected:
+			action = selected[1].split("/", 1)[0]
+			sections = None
+			if action in ("Plugins", "MenuPlugin", "Kodi", "Bluetooth", "EMC"):
+				sections = ("plugin_browser", "extensions_menu")
+			elif action in ("PPanel", "Shellscript"):
+				sections = ("configuration", "scripts")
+			if sections is not None:
+				return runWithScreenProtection(self.session, sections, lambda: self.execButtonSetupProtected(selected))
+			return self.execButtonSetupProtected(selected)
+
+	def execButtonSetupProtected(self, selected):
 		if selected:
 			selected = selected[1].split("/")
 			if selected[0] == "Plugins":

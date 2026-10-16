@@ -170,6 +170,16 @@ public:
 	enum t_toneburst_param { NO=0, A=1, B=2 };
 #ifndef SWIG
 	uint8_t m_committed_cmd;
+	int m_committed_cmd_horizontal = -1;
+	int m_committed_cmd_vertical = -1;
+	int getCommittedCommand(int polarization) const
+	{
+		// Select by transponder polarization, not by the configured supply voltage.
+		if (m_committed_cmd_horizontal >= AA && m_committed_cmd_horizontal <= BB
+			&& m_committed_cmd_vertical >= AA && m_committed_cmd_vertical <= BB)
+			return (polarization & 1) ? m_committed_cmd_vertical : m_committed_cmd_horizontal;
+		return m_committed_cmd;
+	}
 	t_diseqc_mode m_diseqc_mode;
 	t_toneburst_param m_toneburst_param;
 
@@ -373,6 +383,7 @@ public:
 	RESULT setToneburst(int toneburst);
 	RESULT setRepeats(int repeats);
 	RESULT setCommittedCommand(int command);
+	RESULT setCommittedCommandByPolarization(int horizontal, int vertical);
 	RESULT setUncommittedCommand(int command);
 	RESULT setCommandOrder(int order);
 	RESULT setFastDiSEqC(bool onoff);

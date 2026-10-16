@@ -1,15 +1,13 @@
-from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.Converter.Converter import Converter
 
 
 class HbbtvApplicationInfo(Converter):
 	NAME = 0
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		self.type = ""
-		if type == "Name":
-			self.type = self.NAME
+	def __init__(self, token):
+		Converter.__init__(self, token)
+		self.type = self.NAME if token == "Name" else ""
 
 	@cached
 	def getText(self):

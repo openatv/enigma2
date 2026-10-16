@@ -18,6 +18,7 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.RestartNetwork import RestartNetwork
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.Directories import fileWriteLines, resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -292,7 +293,9 @@ class BackupSelection(Screen):
 			self.filelist.descent()
 
 
-class RestoreMenu(Screen):
+class RestoreMenu(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "flash_restore")
+
 	skin = """
 		<screen name="RestoreMenu" position="center,center" size="560,400" title="Restore backups" resolution="1280,720">
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -306,6 +309,7 @@ class RestoreMenu(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Restore backups"))
 
 		self["key_red"] = StaticText(_("Cancel"))
@@ -408,7 +412,9 @@ class RestoreMenu(Screen):
 		self["summary_description"].text = cur
 
 
-class RestoreScreen(ConfigListScreen, Screen):
+class RestoreScreen(ConfigListScreen, Screen, ProtectedScreen):
+	protectionSections = ("configuration", "flash_restore")
+
 	skin = """
 		<screen position="0,0" size="0,0" title="" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
@@ -416,6 +422,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session, runRestore=False):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Restoring..."))
 		self.runRestore = runRestore
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
@@ -431,7 +438,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)  # Used in ImageWizard
 		if runRestore:
-			self.callLater(self.doRestore)
+			self.callLater(self.protectedCallback(self.doRestore))
 
 	def doRestore(self):
 		fullbackupfilename = join(self.backuppath, self.backupfile)
@@ -508,7 +515,9 @@ class RestoreScreen(ConfigListScreen, Screen):
 		self.doRestore()
 
 
-class installedPlugins(Screen):
+class installedPlugins(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "packages", "plugin_browser", "flash_restore")
+
 	UPDATE = 0
 	LIST = 1
 
@@ -519,6 +528,7 @@ class installedPlugins(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Install Plugins"))
 		self["label"] = Label(_("Please wait while we check your installed plugins..."))
 		self["summary_description"] = StaticText(_("Please wait while we check your installed plugins..."))
@@ -528,7 +538,7 @@ class installedPlugins(Screen):
 		self.container.dataAvail.append(self.dataAvail)
 		self.remainingdata = ""
 		self.pluginsInstalled = []
-		self.doUpdate()
+		self.callLater(self.protectedCallback(self.doUpdate))
 
 	def doUpdate(self):
 		print("[SOFTWARE MANAGER] update package list")
@@ -598,7 +608,9 @@ class installedPlugins(Screen):
 		self.close()
 
 
-class RestorePlugins(Screen):
+class RestorePlugins(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "packages", "plugin_browser", "flash_restore")
+
 	skin = """
 	<screen name="RestorePlugins" position="center,center" size="720,600" resolution="1280,720">
 		<widget source="menu" render="Listbox" position="10,10" size="700,490" scrollbarMode="showOnDemand">
@@ -623,6 +635,7 @@ class RestorePlugins(Screen):
 
 	def __init__(self, session, menulist, removelist=None):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Restore Plugins"))
 		self.index = 0
 		self.list = menulist
@@ -654,7 +667,7 @@ class RestorePlugins(Screen):
 		self.onShown.remove(self.runOnce)
 		self.selectionChanged()
 		if len(self.list) == 0 or (config.misc.firstrun.value and any(isfile(f"/media/{d}/images/config/plugins") for d in listdir("/media") if d not in MEDIA_BLACKLIST)):
-			self.green()
+			self.protectedCallback(self.green)()
 
 	def green(self):
 		def searchIPKs():

@@ -8,10 +8,6 @@
 		<item level="1" text="PCM Multichannel" description="Select whether multichannel audio tracks should be output as PCM." requires="CanPcmMultichannel" indent="1">config.av.pcm_multichannel</item>
 		<if requires="CanDownmixAC3" indent="1">
 			<item level="1" text="AC3 downmix" description="Select whether AC3 audio tracks should be downmixed to stereo.">config.av.downmix_ac3</item>
-			<if requires="VuEAC3Fix" conditional="not config.av.downmix_ac3.value" indent="2">
-				<item level="1" text="Passthrough audio handling delay AC3" description="Used to specify delay when switching between services and AC3 passthrough is enabled.">config.av.passthrough_fix_short</item>
-				<item level="1" text="Passthrough audio handling delay AC3+" description="Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled.">config.av.passthrough_fix_long</item>
-			</if>
 		</if>
 		<item level="1" text="AC3 plus transcoding" description="Select whether AC3 Plus audio tracks should be transcoded to AC3." requires="CanAC3plusTranscode" indent="1">config.av.transcodeac3plus</item>
 		<item level="1" text="AC4" description="Select whether AC4 (Dolby Atmos) audio tracks should be passed through to the AVR, downmixed to stereo, or auto-routed based on HDMI sink capability." requires="CanAC4" indent="1">config.av.ac4</item>
@@ -100,8 +96,8 @@
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet." indent="1">config.usage.multibouquet</item>
 		<item level="2" text="Load unlinked user bouquets" description="Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages." indent="1">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Hide number markers" description="When enabled, number markers will be hidden." indent="1">config.usage.hide_number_markers</item>
-		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history." indent="1">config.usage.panicbutton</item>
-		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet." indent="2">config.usage.panicchannel</item>
+		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history." indent="1">config.usage.panicbutton</item>
+		<item level="1" text="Panic channel" description="Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered." indent="2">config.usage.panicsref</item>
 		<item level="2" text="Show picons in quickzap" description="Configure if service picons will be shown in quickzap." indent="1">config.usage.numzappicon</item>
 		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed." indent="1">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Service List Appearance" />
@@ -726,6 +722,7 @@
 	<setup key="MovieSelection" title="Movie Selection Settings" showOpenWebif="yes">
 		<item level="0" text="Trash And Deletion" />
 		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately." indent="1">config.usage.movielist_trashcan</item>
+		<item level="0" text="Confirm moving files to the trashcan" description="Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged." requires="config.usage.movielist_trashcan" indent="1">config.usage.movielistTrashcanConfirm</item>
 		<item level="0" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan." indent="1">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning." indent="1">config.usage.movielist_trashcan_network_clean</item>
 		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan." indent="1">config.usage.movielist_trashcan_reserve</item>
@@ -819,7 +816,7 @@
 		<item level="0" text="Remote path" description="Enter the remote share name (SMB) or exported path (NFS) on the server.">self.remotePath</item>
 		<item level="0" text="Local share" description="Enter the local directory name to be used as the local mount for the remote share.">self.shareName</item>
 		<item level="0" text="Mount mode" description="Select when, and how, the remote share will be mounted. For most purposes autofs is recommended.">self.mode</item>
-		<item level="0" text="Use as HDD replacement" description="When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available.">self.hddReplacement</item>
+		<item level="0" text="Use as HDD replacement" description="Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten.">self.hddReplacement</item>
 		<item level="0" text="Access mode" description="Select the mode of access, Read/Write or Read-Only, for this share mount.">self.accessMode</item>
 		<if conditional="self.protocol.value == 'nfs'">
 			<item level="0" text="NFS version" description="Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation.">self.nfsVersion</item>
@@ -898,6 +895,42 @@
 			<item level="0" text="OSD visibility" description="This option lets you adjust the transparency of the OSD.">config.osd.alpha</item>
 			<item level="0" text="Teletext base visibility" description="Base transparency for teletext, more options are available within teletext screen.">config.osd.alpha_teletext</item>
 			<item level="0" text="Web browser base visibility" description="Base transparency for OpenOpera web browser.">config.osd.alpha_webbrowser</item>
+		</if>
+	</setup>
+	<setup key="ParentalControlChangePin" title="Change pin code">
+		<item level="0" text="New PIN" description="Enter the new four-digit PIN code.">self.pin1</item>
+		<item level="0" text="Re-enter new PIN" description="Enter the same PIN code again to confirm it.">self.pin2</item>
+	</setup>
+	<setup key="ParentalControlSetup" title="Parental control setup">
+		<item level="0" text="Protect services" description="Require a PIN code to watch protected services or programmes covered by the selected age limit.">config.ParentalControl.servicepinactive</item>
+		<if conditional="config.ParentalControl.servicepinactive.value">
+			<item level="0" text="Change PIN" description="Press OK to change the PIN used for service and screen protection.">self.changePin</item>
+			<item level="0" text="Remember service PIN" description="Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions.">config.ParentalControl.storeservicepin</item>
+			<item level="0" text="Hide parental locked services" description="Hide protected services while the service PIN is not remembered." conditional="config.ParentalControl.storeservicepin.value != 'never'">config.ParentalControl.hideBlacklist</item>
+			<item level="0" text="Protect on epg age" description="Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster.">config.ParentalControl.age</item>
+			<item level="0" text="Reload blacklists" description="Press OK to reload the list of protected services from disk.">self.reloadLists</item>
+		</if>
+		<item level="0" text="Protect Screens" description="Require a PIN code to access the selected menus and system functions, including their protected shortcuts.">config.ParentalControl.setuppinactive</item>
+		<if conditional="config.ParentalControl.setuppinactive.value">
+			<item level="0" text="Change PIN" description="Press OK to change the PIN used for service and screen protection." conditional="not config.ParentalControl.servicepinactive.value">self.changePin</item>
+			<item level="0" text="Protect main menu" description="Protect the main menu and the system functions covered by screen protection, including access through shortcuts.">config.ParentalControl.config_sections.main_menu</item>
+			<if conditional="not config.ParentalControl.config_sections.main_menu.value">
+				<item level="0" text="Protect timer menu" description="Require a PIN code to open the timer menu.">config.ParentalControl.config_sections.timer_menu</item>
+				<item level="0" text="Protect plugin browser" description="Require a PIN code to open the plugin browser and launch plugins through protected entry points.">config.ParentalControl.config_sections.plugin_browser</item>
+				<item level="0" text="Protect configuration" description="Require a PIN code to open settings and protected system configuration screens.">config.ParentalControl.config_sections.configuration</item>
+				<item level="0" text="Protect standby menu" description="Require a PIN code to open the standby and shutdown menu.">config.ParentalControl.config_sections.standby_menu</item>
+				<item level="0" text="Protect software update screen" description="Require a PIN code to access software updates.">config.ParentalControl.config_sections.software_update</item>
+			</if>
+			<item level="0" text="Protect movie list" description="Require a PIN code to open the movie list.">config.ParentalControl.config_sections.movie_list</item>
+			<item level="0" text="Protect context menus" description="Require a PIN code to open protected context menus.">config.ParentalControl.config_sections.context_menus</item>
+			<item level="0" text="Protect Quickmenu" description="Require a PIN code to open the Quickmenu.">config.ParentalControl.config_sections.quickmenu</item>
+			<item level="0" text="Protect extensions menu" description="Require a PIN code to open the extensions menu.">config.ParentalControl.config_sections.extensions_menu</item>
+			<item level="0" text="Protect MultiBoot" description="Require a PIN code to manage MultiBoot images and slots.">config.ParentalControl.config_sections.multiboot</item>
+			<item level="0" text="Protect image flashing and restoring backups" description="Require a PIN code to flash images or restore backups.">config.ParentalControl.config_sections.flash_restore</item>
+			<item level="0" text="Protect storage device management" description="Require a PIN code to access protected storage management, swap and flash expansion screens.">config.ParentalControl.config_sections.storage</item>
+			<item level="0" text="Protect package installation and removal" description="Require a PIN code to install or remove packages, including IPK files found on removable media.">config.ParentalControl.config_sections.packages</item>
+			<item level="0" text="Protect script execution" description="Require a PIN code to open the script runner.">config.ParentalControl.config_sections.scripts</item>
+			<item level="0" text="Protect factory reset" description="Require a PIN code before resetting the receiver configuration.">config.ParentalControl.config_sections.manufacturer_reset</item>
 		</if>
 	</setup>
 	<setup key="Password" title="Password Settings">
@@ -990,6 +1023,7 @@
 		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames." indent="1">config.seek.withjumps_avoid_zero</item>
 		<item level="1" text="Trash And Deletion" />
 		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately." indent="1">config.usage.movielist_trashcan</item>
+		<item level="1" text="Confirm moving files to the trashcan" description="Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged." requires="config.usage.movielist_trashcan" indent="1">config.usage.movielistTrashcanConfirm</item>
 		<item level="1" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan." indent="1">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning." indent="1">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan." indent="1">config.usage.movielist_trashcan_reserve</item>
@@ -1032,7 +1066,7 @@
 		<item level="2" text="Instant recording location" description="Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations." indent="1">config.usage.instantrec_path</item>
 		<item level="2" text="Time shift save location" description="Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations." indent="1">config.timeshift.recordingPath</item>
 		<item level="1" text="Tuner Allocation And Conflicts" />
-		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner for recordings will be preferred, when more than one tuner is available." indent="1">config.usage.recording_frontend_priority</item>
+		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen." indent="1">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')" indent="1">config.usage.recording_frontend_priority_multiselect</item>
 		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'" indent="1">config.usage.recording_frontend_priority_strictly</item>
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live TV, when there are no free tuners." indent="1">config.recording.asktozap</item>
@@ -1343,26 +1377,26 @@
 	</setup>
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="yes">
 		<item level="1" text="General Time Shift Behavior" />
-		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations." indent="1">config.timeshift.path</item>
-		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time." indent="1">config.timeshift.startDelay</item>
-		<item level="2" text="Enable Autorecord" description="Set to 'Yes', to enable automatic recording of the background time shift buffer." indent="1">config.timeshift.autorecord</item>
-		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift." indent="1">config.timeshift.check</item>
+		<item level="2" text="Time shift buffer location" description="Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory." indent="1">config.timeshift.path</item>
+		<item level="1" text="Automatically start time shift" description="When enabled, time shift starts automatically in background after the selected time." indent="1">config.timeshift.startDelay</item>
+		<item level="2" text="Enable auto record" description="When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup." indent="1">config.timeshift.autorecord</item>
+		<item level="1" text="Show warning when time shift stopped" description="When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed." indent="1">config.timeshift.check</item>
 		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages." indent="1">config.timeshift.showLiveTVMsg</item>
 		<item level="2" text="Playback And Saving" />
-		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record." indent="1">config.timeshift.favoriteSaveAction</item>
-		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. This is advisable for USB sticks." indent="1">config.timeshift.stopWhileRecording</item>
-		<item level="2" text="Skip jumping to live while timeshifting with plugins" description="If set to 'Yes', allows the use of time shift with alternative audio plugins." indent="1">config.timeshift.skipReturnToLive</item>
-		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event." indent="1">config.timeshift.showInfoBar</item>
+		<item level="2" text="Time shift save action on zap" description="Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled." indent="1">config.timeshift.favoriteSaveAction</item>
+		<item level="2" text="Stop time shift while recording" description="When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media." indent="1">config.timeshift.stopWhileRecording</item>
+		<item level="2" text="Stay in time shift at buffer end (for plugins)" description="When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins." indent="1">config.timeshift.skipReturnToLive</item>
+		<item level="2" text="Use SeekBar while time shifting" description="When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer." indent="1">config.timeshift.showInfoBar</item>
 		<item level="2" text="Buffer Management" />
-		<item level="2" text="Time shift buffer limit" description="Older files in the time shift directory are removed on every event change." indent="1">config.timeshift.maxHours</item>
-		<item level="2" text="Time shift event limit" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority." indent="1">config.timeshift.maxEvents</item>
-		<item level="2" text="Time shift checking for older files" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier." indent="1">config.timeshift.checkEvents</item>
-		<item level="2" text="Time shift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old time shift files." indent="1">config.timeshift.checkFreeSpace</item>
-		<item level="2" text="Time shift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting." indent="1">config.timeshift.deleteAfterZap</item>
-		<item level="2" text="Time shift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file." indent="1">config.timeshift.fileSplitting</item>
+		<item level="2" text="Buffer age limit" description="Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer." indent="1">config.timeshift.maxHours</item>
+		<item level="2" text="Event limit" description="Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded." indent="1">config.timeshift.maxEvents</item>
+		<item level="2" text="Check for older files" description="Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer." indent="1">config.timeshift.checkEvents</item>
+		<item level="2" text="Check for free space" description="Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve." indent="1">config.timeshift.checkFreeSpace</item>
+		<item level="2" text="Delete after zap" description="When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected." indent="1">config.timeshift.deleteAfterZap</item>
+		<item level="2" text="Event based file splitting" description="When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer." indent="1">config.timeshift.fileSplitting</item>
 		<item level="2" text="Recovery And Hardware" />
-		<item level="2" text="Streaming recovery delay" description="Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space." indent="1">config.timeshift.recoveryBufferDelay</item>
-		<item level="2" text="Hardware latency correction" description="Adjusts compensation for hardware buffer latency for DM9x0." requires="DM9X0" indent="1">config.timeshift.hwLatencyCorrection</item>
+		<item level="2" text="Streaming recovery delay" description="Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space." indent="1">config.timeshift.recoveryBufferDelay</item>
+		<item level="2" text="Hardware latency correction" description="Select a duration compensation for hardware buffer latency for DM9x0." requires="DM9X0" indent="1">config.timeshift.hwLatencyCorrection</item>
 	</setup>
 	<setup key="Tuner" title="Tuner Settings" level="1">
 		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>
@@ -1376,7 +1410,7 @@
 		<item level="2" text="Ignore DVB-S namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork</item>
 		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
 		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
-		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
+		<item level="1" text="Reopen tuner when changing delivery system" description="Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers.">config.usage.enable_delivery_system_workaround</item>
 	</setup>
 	<setup key="UBISlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
@@ -1433,7 +1467,7 @@
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed." indent="1">config.usage.showScreenPath</item>
 		<item level="1" text="Sort Extension Menu" description="Select the sort order of the Extension Menu entries." indent="1">config.usage.sortExtensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen." indent="1">config.usage.show_restart_network_extensionslist</item>
-		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden." indent="1">config.usage.plugins_sort_mode</item>
+		<item level="1" text="Sort Plugin Browser entries" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden." indent="1">config.usage.plugins_sort_mode</item>
 		<!--<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically." indent="1">config.usage.sort_settings</item>-->
 		<item level="0" text="Show Movie Selection in Main Menu" description="Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control." restart="gui" indent="1">config.usage.movieSelectionInMenu</item>
 		<item level="1" text="File sorting mode" description="Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case." indent="1">config.usage.fileSortCaseMode</item>
@@ -1464,6 +1498,10 @@
 		</if>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg" indent="1">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="General OSD Behavior" />
+		<if requires="CanChangeOsdAlpha">
+			<item level="0" text="Automatically hide OSD" description="Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume." indent="1">config.osd.autoHide</item>
+			<item level="0" text="Hide OSD after" description="Time without key presses before hiding the OSD." conditional="config.osd.autoHide.value" indent="2">config.osd.autoHideDelay</item>
+		</if>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait before executing the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc." indent="1">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)." indent="1">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Select whether or not to show an icon when a motorized dish is moving." indent="1">config.usage.showdish</item>
@@ -1501,8 +1539,34 @@
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch" indent="1">config.usage.show_vcr_scart</item>
 		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner." indent="1">config.misc.spinnerPosition</item>
 	</setup>
-	<setup key="video_setup" title="Video Settings">
-		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
+	<setup key="Video" title="Video Settings">
+		<!-- VideoSetup in Screens/VideoMode.py prepends the dynamic items. -->
+		<item level="0" text="HDMI color space" description="Select the color space to be used with the HDMI attached TV/monitor." requires="havecolorspace">config.av.hdmicolorspace</item>
+		<item level="0" text="HDMI colorimetry" description="Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor." requires="havecolorimetry">config.av.hdmicolorimetry</item>
+		<item level="0" text="HDMI color depth" description="Select the color depth to be used with the HDMI attached UHD capable TV/monitor." requires="havehdmicolordepth">config.av.hdmicolordepth</item>
+		<if requires="havehdmihdrtype">
+			<item level="0" text="HDMI HDR Type" description="Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor.">config.av.hdmihdrtype</item>
+			<if conditional="config.av.hdmihdrtype.value == 'auto'">
+				<item level="1" text="Switch HDR type by content" description="When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video." indent="1">config.av.hdmihdrtype_switch</item>
+				<item level="1" text="Colorimetry for HDR content" description="Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'." requires="havecolorimetry;config.av.hdmihdrtype_switch" conditional="config.av.hdmicolorimetry.value == 'auto'" indent="1">config.av.hdmicolorimetry_hdr</item>
+			</if>
+		</if>
+		<item level="0" text="HDR OSD adjustment" description="This option adjusts SDR graphics and OSD colors while the HDMI output is in HDR mode." requires="havehdmihdrosd">config.av.hdmihdrosd</item>
+		<item level="0" text="Bypass HDMI EDID check" description="When enabled, bypass HDMI EDID checking." requires="Canedidchecking">config.av.bypass_edid_checking</item>
+		<item level="0" text="Hardware video mode" description="Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output." requires="haveboxmode">config.av.boxmode</item>
+		<if requires="HDRSupport">
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.hlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.hdr10_support</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="10">config.av.allow_10bit</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="12">config.av.allow_12bit</item>
+		</if>
+		<item level="0" text="Sync mode" description="Select how to handle the synchronization of the signal after a service change." requires="havesyncmode">config.av.sync_mode</item>
+		<item level="1" text="Deinterlacer mode" description="Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
+		<item level="1" text="Add 'Manual resolution' to Extensions" description="When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
+		<if requires="haveamlhdrsupport">
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.amlhlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.amlhdr10_support</item>
+		</if>
 	</setup>
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">
 		<item level="0" text="Volume adjustment mode" description="Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service.">config.volumeAdjust.adjustMode</item>

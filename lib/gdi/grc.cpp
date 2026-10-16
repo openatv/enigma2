@@ -799,6 +799,138 @@ gDC::~gDC()
 	delete[] m_spinner_pic;
 }
 
+void gDC::discardOpcode(const gOpcode *o)
+{
+	switch (o->opcode)
+	{
+	case gOpcode::renderText:
+		if (o->parm.renderText->text)
+			free(o->parm.renderText->text);
+		delete o->parm.renderText;
+		break;
+	case gOpcode::renderPara:
+		o->parm.renderPara->textpara->Release();
+		delete o->parm.renderPara;
+		break;
+	case gOpcode::setFont:
+		o->parm.setFont->font->Release();
+		delete o->parm.setFont;
+		break;
+	case gOpcode::fill:
+	case gOpcode::clear:
+		delete o->parm.fill;
+		break;
+	case gOpcode::fillRegion:
+		delete o->parm.fillRegion;
+		break;
+	case gOpcode::blit:
+		if (o->parm.blit->pixmap)
+			o->parm.blit->pixmap->Release();
+		delete o->parm.blit;
+		break;
+	case gOpcode::gradient:
+	case gOpcode::setGradient:
+		delete o->parm.gradient;
+		break;
+	case gOpcode::rectangle:
+		delete o->parm.rectangle;
+		break;
+	case gOpcode::setPalette:
+		delete[] o->parm.setPalette->palette->data;
+		delete o->parm.setPalette->palette;
+		delete o->parm.setPalette;
+		break;
+	case gOpcode::mergePalette:
+		o->parm.mergePalette->target->Release();
+		delete o->parm.mergePalette;
+		break;
+	case gOpcode::line:
+		delete o->parm.line;
+		break;
+	case gOpcode::setBackgroundColor:
+	case gOpcode::setForegroundColor:
+		delete o->parm.setColor;
+		break;
+	case gOpcode::setBackgroundColorRGB:
+	case gOpcode::setForegroundColorRGB:
+		delete o->parm.setColorRGB;
+		break;
+	case gOpcode::setRadius:
+		delete o->parm.radius;
+		break;
+	case gOpcode::setBorder:
+		delete o->parm.border;
+		break;
+	case gOpcode::setOffset:
+		delete o->parm.setOffset;
+		break;
+	case gOpcode::setClip:
+	case gOpcode::addClip:
+		delete o->parm.clip;
+		break;
+	case gOpcode::sendShow:
+	case gOpcode::sendHide:
+		delete o->parm.setShowHideInfo;
+		break;
+#ifdef USE_LIBVUGLES2
+	case gOpcode::sendShowItem:
+		delete o->parm.setShowItemInfo;
+		break;
+	case gOpcode::setFlush:
+		delete o->parm.setFlush;
+		break;
+	case gOpcode::setView:
+		delete o->parm.setViewInfo;
+		break;
+#endif
+	case gOpcode::popClip:
+	case gOpcode::flush:
+	case gOpcode::waitVSync:
+	case gOpcode::flip:
+	case gOpcode::notify:
+	case gOpcode::enableSpinner:
+	case gOpcode::disableSpinner:
+	case gOpcode::incrementSpinner:
+	case gOpcode::shutdown:
+	case gOpcode::setCompositing:
+		break;
+	}
+}
+
+// Start of the UTF-8 character at pos, so a cut never splits a character.
+static size_t utf8CharStart(const std::string &str, size_t pos)
+{
+	while (pos > 0 && (str[pos] & 0xC0) == 0x80)
+		pos--;
+	return pos;
+}
+
+static int measureTextWidth(const std::string &str, const gFont *textFont, const eRect &area)
+{
+	eTextPara para(area);
+	para.setFont(textFont);
+	para.renderString(str.c_str(), 0);
+	return para.getBoundBox().width();
+}
+
+// Shorten the text until it fits into the area with the ellipsis.
+static std::string shortenWithEllipsis(const std::string &text, const gFont *textFont, const eRect &area)
+{
+	const char *ellipsis = reinterpret_cast<const char *>(u8"…");
+	int w = area.width();
+	int bw = measureTextWidth(text, textFont, area);
+	if (bw <= w)
+		return text;
+	size_t len = utf8CharStart(text, text.size() * w / bw); // Estimate, then shorten one character at a time.
+	std::string shortened = text.substr(0, len) + ellipsis;
+	while (len > 0 && measureTextWidth(shortened, textFont, area) > w)
+	{
+		len = utf8CharStart(text, len - 1);
+		shortened = text.substr(0, len) + ellipsis;
+	}
+	return shortened;
+}
+
 void gDC::exec(const gOpcode *o)
 {
 	switch (o->opcode)
@@ -849,7 +981,6 @@ void gDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::renderText:
 	{
-		const char *ellipsis = reinterpret_cast<const char *>(u8"…");
 		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
 		int flags = o->parm.renderText->flags;
 		int border = o->parm.renderText->border;
@@ -865,26 +996,11 @@ void gDC::exec(const gOpcode *o)
 			if (flags & gPainter::RT_WRAP) // Remove wrap
 				flags -= gPainter::RT_WRAP;
 			std::string text = o->parm.renderText->text;
-			text += ellipsis;
-
-			eTextPara testpara(o->parm.renderText->area);
-			testpara.setFont(m_current_font);
-			testpara.renderString(text.c_str(), 0);
-			int bw = testpara.getBoundBox().width();
-			int w = o->parm.renderText->area.width();
-			if (bw > w) // Available space not fit
+			std::string shortened = shortenWithEllipsis(text, m_current_font, o->parm.renderText->area);
+			if (shortened != text)
 			{
-				float pers = (float)w / (float)bw;
-				text = o->parm.renderText->text;
-				int ns = text.size() * pers;
-				if ((int)text.size() > ns)
-				{
-					text.resize(ns);
-					text += ellipsis;
-				}
-				if (o->parm.renderText->text)
-					free(o->parm.renderText->text);
-				o->parm.renderText->text = strdup(text.c_str());
+				free(o->parm.renderText->text);
+				o->parm.renderText->text = strdup(shortened.c_str());
 			}
 		}
 		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, border, markedpos);

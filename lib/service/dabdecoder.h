@@ -14,7 +14,10 @@
 class eDABDecoder : private DABlinPAD::PADDecoderObserver
 {
 public:
-	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
+	/* raw/framed carry AAC/LOAS for DAB+ and the same complete MPEG Layer II
+	 * frame for legacy DAB.  The final flag makes the codec decision explicit
+	 * for consumers; FIG 0/2 already signals it before the first MSC frame. */
+	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t, bool)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 	typedef std::function<void(const uint8_t *, size_t, int, int,
 		const std::string &, uint16_t)> MOTCallback;
@@ -46,6 +49,8 @@ public:
 	uint64_t slides() const { return m_slides; }
 	int slideFormat() const { return m_slide_format; }
 	int bitrate() const { return m_selected_bitrate; }
+	int language() const;
+	std::string protection() const;
 	bool serviceFound() const { return m_selected_subchannel >= 0; }
 	bool isDABPlus() const { return m_selected_dabplus; }
 	const std::string &serviceLabel() const { return m_service_label; }
@@ -76,6 +81,7 @@ private:
 		int startAddress;
 		int size;
 		int bitrate;
+		std::string protection;
 		Subchannel() : startAddress(-1), size(0), bitrate(0) { }
 	};
 
@@ -84,7 +90,8 @@ private:
 		int subchannel;
 		bool dabplus;
 		std::string label;
-		Service() : subchannel(-1), dabplus(false) { }
+		int language;
+		Service() : subchannel(-1), dabplus(false), language(-1) { }
 	};
 
 	struct PacketComponent
@@ -127,6 +134,7 @@ private:
 	void reportPacketComponent(uint16_t componentId);
 	void resolveService();
 	void feedMSC(const std::vector<Stream> &streams);
+	void feedDAB(const uint8_t *data, size_t length);
 	void feedDABPlus(const uint8_t *data, size_t length);
 	void processSuperframe();
 	void inspectPAD(const uint8_t *data, size_t length);
@@ -153,6 +161,7 @@ private:
 	std::map<uint16_t, PFCollection> m_pf_collectors;
 	uint64_t m_pf_arrival = 0;
 	std::map<int, Subchannel> m_subchannels;
+	std::map<int, int> m_subchannel_languages;
 	std::map<uint32_t, Service> m_services;
 	std::map<uint16_t, PacketComponent> m_packet_components;
 	std::map<uint16_t, std::unique_ptr<class eDABPacketDecoder> > m_packet_decoders;

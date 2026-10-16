@@ -108,7 +108,7 @@ struct eDABWorkerStats
 class eDABWorker : private eThread
 {
 public:
-	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
+	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t, bool)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 	typedef std::function<int(const uint8_t *, size_t, int, int,
 		const std::string &, uint16_t)> MOTCallback;
@@ -254,9 +254,11 @@ private:
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
 	static bool sinkAcceptsLOAS(const char *factoryName);
-	bool startAudioPipeline(bool loasInput = false, bool pcmInput = false);
+	bool startAudioPipeline(bool loasInput = false, bool pcmInput = false, bool mp2Input = false);
 	void stopAudioPipeline();
 	void pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config);
+	void pushMP2(const uint8_t *data, size_t length, uint64_t durationNs);
+	void pushSDRAudio(const uint8_t *data, size_t length, uint64_t durationNs, bool dabplus);
 	void pushLOAS(const uint8_t *data, size_t length);
 	void pushPCM(const uint8_t *data, size_t length, unsigned sampleRate);
 	void setAudioCaps(uint8_t config);
@@ -311,6 +313,9 @@ private:
 	bool m_audio_caps_set;
 	bool m_audio_input_loas = false;
 	bool m_audio_input_pcm = false;
+	bool m_audio_input_mp2 = false;
+	std::mutex m_audio_mutex;
+	bool m_sdr_pcm_requested = false;
 	bool m_audio_loas = false;
 	unsigned m_pcm_sample_rate = 0;
 	uint64_t m_audio_probe_deadline = 0;
@@ -340,7 +345,7 @@ public:
 		const char *name, const char *description, const char *tags,
 		bool descramble, bool recordEcm, int packetSize) override;
 	RESULT prepareStreaming(bool descramble, bool includeEcm) override;
-	RESULT prepareStreamingToFD(int fd);
+	RESULT prepareStreamingToFD(int fd, bool sendHTTPHeader = false);
 	RESULT start(bool simulate = false) override;
 	RESULT stop() override;
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) override;
@@ -363,6 +368,7 @@ private:
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
 	void writeAudio(const uint8_t *data, size_t length);
+	void writeData(const uint8_t *data, size_t length);
 	void reportFailure(int error, int event);
 
 	eServiceReference m_reference;
@@ -380,6 +386,7 @@ private:
 	State m_state;
 	bool m_simulate;
 	bool m_streaming;
+	bool m_send_http_header = false;
 	bool m_tuned;
 	bool m_tap_running;
 	bool m_running_event_sent;

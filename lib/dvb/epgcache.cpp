@@ -631,7 +631,10 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 //			if(m_debug)
 //				eDebug("[eEPGCache] Created event %04X at %ld.", new_evt->getEventID(), new_start);
 
-			// Clip the new event against overlapping events from a higher-priority source
+			// Clip the new event against overlapping events from a higher-priority source.
+			// Cached PRIVATE events don't take part: imported events are stored as PRIVATE
+			// (eventData keeps only the lower 16 bits, EPG_IMPORT is lost) and would otherwise
+			// block live EIT now/next updates, so the newest event wins as before.
 			{
 				time_t clip_start = new_start;
 				time_t clip_end = new_end;
@@ -640,7 +643,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 					--hp;
 				for (; hp != timemap.end() && hp->first < clip_end && clip_start < clip_end; ++hp)
 				{
-					if (hp->second->getEventID() == event_id || (source & ~EPG_IMPORT) <= (hp->second->type & ~EPG_IMPORT))
+					if (hp->second->getEventID() == event_id || hp->second->type == PRIVATE || (source & ~EPG_IMPORT) <= (hp->second->type & ~EPG_IMPORT))
 						continue;
 					time_t hp_start = hp->first;
 					time_t hp_end = hp_start + hp->second->getDuration();
@@ -1460,37 +1463,79 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 RESULT eEPGCache::saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime)
 {
 	RESULT ret = -1;
-	singleLock s(cache_lock);
-	const eventData *data = NULL;
-	if ( eit_event_id != -1 )
+	// The descriptor loop has a 12-bit length. Copy the shared scratch buffer
+	// while holding the cache lock, then release it before touching storage.
+	uint8_t eventBytes[4096 + 12];
+	size_t eventLength = 0;
 	{
-		eDebug("[eEPGCache] %s EPG event id %X.", __func__, eit_event_id);
-		ret = lookupEventId(service, eit_event_id, data);
-	}
-	if ( (ret != 0) && (begTime != -1) )
-	{
-		time_t queryTime = begTime;
-		if (endTime != -1)
-			queryTime += (endTime - begTime) / 2;
-		ret = lookupEventTime(service, queryTime, data);
+		singleLock lock(cache_lock);
+		const eventData *data = NULL;
+		if (eit_event_id != -1)
+		{
+			eDebug("[eEPGCache] %s EPG event id %X.", __func__, eit_event_id);
+			ret = lookupEventId(service, eit_event_id, data);
+		}
+		if (ret != 0 && begTime != -1)
+		{
+			time_t queryTime = begTime;
+			if (endTime != -1)
+				queryTime += (endTime - begTime) / 2;
+			ret = lookupEventTime(service, queryTime, data);
+		}
+		if (ret == 0 && data)
+		{
+			const eit_event_struct *event = data->get();
+			eventLength = event->getDescriptorsLoopLength() + 12;
+			if (eventLength <= sizeof(eventBytes))
+				memcpy(eventBytes, event, eventLength);
+			else
+				ret = -1;
+		}
+		else
+			ret = -1;
 	}
 	if (ret == 0)
 	{
-		int fd = open(filename, O_CREAT|O_WRONLY, 0666);
+		std::string path(filename);
+		PyThreadState *threadState = NULL;
+		if (Py_IsInitialized() && PyGILState_Check())
+			threadState = PyEval_SaveThread();
+		// No Python API or borrowed cache data is used until the GIL is restored.
+		int error = 0;
+		int fd;
+		do
+			fd = ::open(path.c_str(), O_CREAT | O_WRONLY | O_TRUNC | O_CLOEXEC, 0666);
+		while (fd < 0 && errno == EINTR);
 		if (fd < 0)
+			error = errno;
+		else
 		{
-			eDebug("[eEPGCache] Failed to create file '%s'!", filename);
-			return fd;
+			size_t written = 0;
+			while (written < eventLength)
+			{
+				ssize_t count = ::write(fd, eventBytes + written, eventLength - written);
+				if (count > 0)
+					written += count;
+				else if (count < 0 && errno == EINTR)
+					continue;
+				else
+				{
+					error = count < 0 ? errno : EIO;
+					break;
+				}
+			}
+			if (::close(fd) < 0 && !error)
+				error = errno;
+			if (error)
+				::unlink(path.c_str());
 		}
-		const eit_event_struct *event = data->get();
-		int evLen = event->getDescriptorsLoopLength() + 12/*EIT_LOOP_SIZE*/;
-		int wr = ::write( fd, event, evLen );
-		::close(fd);
-		if ( wr != evLen )
+		if (threadState)
+			PyEval_RestoreThread(threadState);
+		if (error)
 		{
-			::unlink(filename); /* Remove faulty file */
-			eDebug("[eEPGCache] EIT write error on '%s'!  (%m)", filename);
-			ret = (wr < 0) ? wr : -1;
+			eDebug("[eEPGCache] EIT write error on '%s': %s", path.c_str(), strerror(error));
+			errno = error;
+			ret = -1;
 		}
 	}
 	return ret;
@@ -1662,6 +1707,29 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 	return -1;
 }
 
+std::vector< ePtr<eServiceEvent> > eEPGCache::lookupEvents(const eServiceReference &service, int startTime, int minutes)
+{
+	std::vector< ePtr<eServiceEvent> > events;
+
+	if (startTime < 0)
+		startTime = ::time(0);
+
+	if (startTimeQuery(service, (time_t)startTime, minutes))
+		return events;
+
+	while (true)
+	{
+		ePtr<eServiceEvent> event;
+		if (getNextTimeEntry(event) == -1)
+			break;
+		if (event)
+			events.push_back(event);
+	}
+
+	return events;
+}
+
+
 void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject service_reference, eServiceEvent *ptr, ePyObject service_name, ePyObject nowTime, eventData *evData)
 {
 	// eDebug("[eEPGCache] fillTuple arg=%s argcnt=%d, ptr=%d evData=%d", argstring, argcount, ptr ? 1 : 0, evData ? 1 : 0);
@@ -1740,19 +1808,32 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 	}
 }
 
-int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
+struct EventTupleContext
+{
+	const char *argstring;
+	int argcount;
+	ePyObject service;
+	ePyObject service_name;
+	ePyObject nowTime;
+};
+
+int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const EventTupleContext &ctx, ePyObject convertFunc)
 {
 	if (convertFunc)
 	{
-		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, service_name, nowTime, 0);
+		// fresh tuple per call, PyTuple_SET_ITEM does not release previous items
+		ePyObject convertFuncArgs = PyTuple_New(ctx.argcount);
+		fillTuple(convertFuncArgs, ctx.argstring, ctx.argcount, ctx.service, ptr, ctx.service_name, ctx.nowTime, nullptr);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
+		Py_DECREF(convertFuncArgs);
 		if (!result)
 		{
+			ePyObject service_name = ctx.service_name;
+			ePyObject nowTime = ctx.nowTime;
 			if (service_name)
 				Py_DECREF(service_name);
 			if (nowTime)
 				Py_DECREF(nowTime);
-			Py_DECREF(convertFuncArgs);
 			Py_DECREF(dest_list);
 			PyErr_SetString(PyExc_Exception, "[eEPGCache] handleEvent: Error in convertFunc execute!");
 			//eDebug("[eEPGCache] handleEvent: Error in convertFunc execute!");
@@ -1763,8 +1844,8 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 	}
 	else
 	{
-		ePyObject tuple = PyTuple_New(argcount);
-		fillTuple(tuple, argstring, argcount, service, ptr, service_name, nowTime, 0);
+		ePyObject tuple = PyTuple_New(ctx.argcount);
+		fillTuple(tuple, ctx.argstring, ctx.argcount, ctx.service, ptr, ctx.service_name, ctx.nowTime, nullptr);
 		PyList_Append(dest_list, tuple);
 		Py_DECREF(tuple);
 	}
@@ -1806,7 +1887,6 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 
 PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 {
-	ePyObject convertFuncArgs;
 	int argcount = 0;
 	const char *argstring = NULL;
 	if (!PyList_Check(list))
@@ -1859,15 +1939,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	}
 	int returnMaxItemsCount = 1;
 
-	if (convertFunc)
+	if (convertFunc && !PyCallable_Check(convertFunc))
 	{
-		if (!PyCallable_Check(convertFunc))
-		{
-			PyErr_SetString(PyExc_TypeError, "[eEPGCache] The convertFunc is not callable!");
-			// eDebug("[eEPGCache] The convertFunc is not callable!");
-			return NULL;
-		}
-		convertFuncArgs = PyTuple_New(argcount);
+		PyErr_SetString(PyExc_TypeError, "[eEPGCache] The convertFunc is not callable!");
+		// eDebug("[eEPGCache] The convertFunc is not callable!");
+		return NULL;
 	}
 
 	ePyObject nowTime = strchr(argstring, 'C') ? PyLong_FromLong(::time(0)) : ePyObject();
@@ -1980,6 +2056,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				if (!service_name)
 					service_name = PyUnicode_FromString("<n/a>");
 			}
+			const EventTupleContext ctx = {argstring, argcount, service, service_name, nowTime};
 			if (minutes)
 			{
 				if (!startTimeQuery(ref, stime, minutes))
@@ -1996,11 +2073,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 							}
 							returnMaxItemsCount++;
 						}
-						if (handleEvent(evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+						if (handleEvent(evt, dest_list, ctx, convertFunc))
 							return 0; // error
 					}
 				}
-				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				else if (forceReturnOne && handleEvent(nullptr, dest_list, ctx, convertFunc))
 					return 0; // error
 			}
 			else
@@ -2037,10 +2114,10 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				}
 				if (ev_data)
 				{
-					if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+					if (handleEvent(&evt, dest_list, ctx, convertFunc))
 						return 0; // error
 				}
-				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				else if (forceReturnOne && handleEvent(nullptr, dest_list, ctx, convertFunc))
 					return 0; // error
 			}
 			if (service_changed)
@@ -2051,8 +2128,6 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 skip_entry:
 		;
 	}
-	if (convertFuncArgs)
-		Py_DECREF(convertFuncArgs);
 	if (nowTime)
 		Py_DECREF(nowTime);
 	return dest_list;

@@ -1,5 +1,5 @@
-from os.path import exists
 from os import W_OK, access
+from os.path import exists
 from time import sleep
 
 from enigma import eAVControl, getDesktop
@@ -22,10 +22,6 @@ def InitAVSwitch():
 		avSwitch.readPreferredModes()
 		avSwitch.createConfig()
 		print(f"[AVSwitch] Setting EDID override to '{configElement.value}'.")
-
-	delayChoices = [(i, _("%d ms") % i) for i in list(range(0, 3000, 100))]  # noqa: F821
-	config.av.passthrough_fix_long = ConfigSelection(choices=delayChoices, default=1200)
-	config.av.passthrough_fix_short = ConfigSelection(choices=delayChoices, default=100)
 
 	config.av.edid_override.addNotifier(setUnsupportModes)
 	config.av.yuvenabled = ConfigBoolean(default=MACHINEBUILD != "vuduo")
@@ -79,6 +75,8 @@ def InitAVSwitch():
 	config.av.autores_label_timeout = ConfigSelection(default=5, choices=[(0, _("Not Shown"))] + choiceList)
 	config.av.autores_delay = ConfigSelectionNumber(min=0, max=3000, stepwidth=50, default=400, wraparound=True)
 	config.av.autores_deinterlace = ConfigYesNo(default=False)
+	config.av.autores_force_progressive = ConfigYesNo(default=False)
+	config.av.manual_resolution_extmenu = ConfigYesNo(default=False)
 	hertz = _("Hz")
 	config.av.autores_sd = ConfigSelection(default="720p50", choices=[
 		("720p50", f"720p50{hertz}"),
@@ -273,6 +271,22 @@ def InitAVSwitch():
 		config.osd.dst_width = ConfigSelectionInteger(default=720, first=0, last=720, step=1, wrap=False)
 		config.osd.dst_height = ConfigSelectionInteger(default=576, first=0, last=576, step=1, wrap=False)
 	config.osd.alpha = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
+	config.osd.autoHide = ConfigYesNo(default=False)
+	config.osd.autoHideDelay = ConfigSelectionInteger(default=30, first=10, last=300, step=10, wrap=False, units=_("seconds"))
+
+	def setOSDAutoHide(configElement):
+		eAVControl.getInstance().setOSDAutoHideTimeout(config.osd.autoHideDelay.value if config.osd.autoHide.value else 0)
+
+	config.osd.autoHide.addNotifier(setOSDAutoHide)
+	config.osd.autoHideDelay.addNotifier(setOSDAutoHide)
+
+	def osdAutoHidePauseChanged(paused):
+		from Screens.Toast import Toast  # Import after screen initialization to avoid circular imports.
+		if Toast.instance:
+			text = _("OSD auto-hide paused until the next GUI restart. Hold 0 to resume.") if paused else _("OSD auto-hide enabled.")
+			Toast.instance.showToast(text, Toast.TYPE_INFO, 3)
+
+	eAVControl.getInstance().osdAutoHidePauseChanged.get().append(osdAutoHidePauseChanged)
 	config.osd.alpha_teletext = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
 	config.osd.alpha_webbrowser = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
 	config.osd.threeDmode = ConfigSelection(default="auto", choices=[
@@ -367,8 +381,14 @@ def InitAVSwitch():
 			("bt709", "BT.709")
 		])
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
+		config.av.hdmicolorimetry_hdr = ConfigSelection(default="auto", choices=[
+			("auto", _("Auto")),
+			("bt2020ncl", "BT.2020 NCL"),
+			("bt2020cl", "BT.2020 CL")
+		])
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
+		config.av.hdmicolorimetry_hdr = ConfigNothing()
 	boxMode = fileReadLine("/proc/stb/info/boxmode", default=None, source=MODULE_NAME)
 	boxMode = boxMode.split() if boxMode else False
 	BoxInfo.setItem("haveboxmode", boxMode)
@@ -377,8 +397,8 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/info/boxmode", configElement.value, source=MODULE_NAME)
 
 		config.av.boxmode = ConfigSelection(default="12", choices=[
-			("12", _("Enable PiP no HDR")),
-			("1", _("12bit 4:2:0/4:2:2 no PiP"))
+			("12", _("PiP (no HDR)")),
+			("1", _("12-bit HDR (no PiP)"))
 		])
 		config.av.boxmode.addNotifier(setBoxMode)
 	else:
@@ -400,6 +420,27 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 
+	deinterlace = fileReadLine("/proc/stb/vmpeg/deinterlace", default=None, source=MODULE_NAME)
+	BoxInfo.setItem("havedeinterlace", deinterlace is not None)
+	if deinterlace is not None:
+		def setDeinterlace(configElement):
+			fileWriteLine("/proc/stb/vmpeg/deinterlace", configElement.value, source=MODULE_NAME)
+
+		deinterlaceLabels = {
+			"off": _("Off"),
+			"auto": _("Auto"),
+			"on": _("On"),
+			"bob": "Bob"
+		}
+		deinterlaceChoices = fileReadLine("/proc/stb/vmpeg/deinterlace_choices", default=None, source=MODULE_NAME)
+		deinterlaceChoices = deinterlaceChoices.split() if deinterlaceChoices else list(deinterlaceLabels)
+		config.av.deinterlace = ConfigSelection(default="auto" if "auto" in deinterlaceChoices else deinterlaceChoices[0], choices=[
+			(value, deinterlaceLabels.get(value, value)) for value in deinterlaceChoices
+		])
+		config.av.deinterlace.addNotifier(setDeinterlace)
+	else:
+		config.av.deinterlace = ConfigNothing()
+
 	syncMode = fileReadLine("/proc/stb/video/sync_mode_choices", default=None, source=MODULE_NAME)
 	syncMode = syncMode.split() if syncMode else False
 	BoxInfo.setItem("havesyncmode", syncMode)
@@ -408,8 +449,8 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/video/sync_mode", configElement.value, source=MODULE_NAME)
 
 		config.av.sync_mode = ConfigSelection(default="slow", choices=[
-			("slow", _("Slow Motion")),
-			("hold", _("Hold First Frame")),
+			("slow", _("Slow motion")),
+			("hold", _("Hold first frame")),
 			("black", _("Black screen")),
 		])
 		config.av.sync_mode.addNotifier(setSyncMode)
@@ -460,8 +501,10 @@ def InitAVSwitch():
 			(value, hdrTypeLabels.get(value, value.upper())) for value in hdrTypeChoices
 		])
 		config.av.hdmihdrtype.addNotifier(setHDRType)
+		config.av.hdmihdrtype_switch = ConfigYesNo(default=False)
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
+		config.av.hdmihdrtype_switch = ConfigNothing()
 	hdrOsd = fileReadLine("/proc/stb/video/hdmi_hdr_osd", default=None, source=MODULE_NAME)
 	BoxInfo.setItem("havehdmihdrosd", bool(hdrOsd))
 	if hdrOsd:

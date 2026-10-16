@@ -302,7 +302,7 @@ const FastScanTransportStreamList *FastScanNetworkSection::getTransportStreams(v
 
 DEFINE_REF(eFastScan);
 
-eFastScan::eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering, bool fixedserviceinfo, bool createradiobouquet)
+eFastScan::eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering, bool fixedserviceinfo, bool createradiobouquet, bool dropunconfigured)
 {
 	m_pid = pid;
 	providerName = providername;
@@ -311,6 +311,7 @@ eFastScan::eFastScan(int pid, const char *providername, eDVBFrontendParametersSa
 	originalNumbering = originalnumbering;
 	useFixedServiceInfo = fixedserviceinfo;
 	createRadioBouquet = createradiobouquet;
+	dropUnconfigured = dropunconfigured;
 	versionNumber = -1;
 }
 
@@ -494,7 +495,7 @@ void eFastScan::parseResult()
 			if (orbitalpos && !westeastflag)
 				orbitalpos = 3600 - orbitalpos;
 
-			if (transponderParameters.orbital_position != orbitalpos &&
+			if (dropUnconfigured && transponderParameters.orbital_position != orbitalpos &&
 				!eDVBSatelliteEquipmentControl::getInstance()->isOrbitalPositionConfigured(orbitalpos))
 			{
 				eDebug("[eFastScan] dropping this transponder, it's on another satellite %d not configured.", orbitalpos);

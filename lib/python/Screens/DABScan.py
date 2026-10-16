@@ -592,6 +592,11 @@ class DABScan(ServiceScan):
 		return tuple(reference.getUnsignedData(index) for index in range(1, 8)) + (reference.getPath(),)
 
 	def readBouquetEntries(self, bouquetFile):
+		# Match eDVBDB::loadBouquet's search paths. Listing a missing bouquet
+		# creates an uninitialised DB entry, preventing addOrUpdateBouquet from
+		# creating its file and adding the link to bouquets.radio.
+		if not any(exists(resolveFilename(SCOPE_CONFIG, prefix + bouquetFile)) for prefix in ("alternatives/", "bouquets/", "")):
+			return []
 		reference = eServiceReference(f'1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "{bouquetFile}" ORDER BY bouquet')
 		serviceList = eServiceCenter.getInstance().list(reference)
 		entries = []

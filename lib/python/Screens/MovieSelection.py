@@ -149,6 +149,15 @@ def createMoveList(serviceref, dest):
 		raise Exception("Refusing to move to the same directory")
 	moveList = [(src, join(dest, srcName))]  # Make a list of items to move.
 	if not serviceref.flags & eServiceReference.mustDescent:  # Real movie, add extra files.
+		if src.endswith(".ts"):
+			for index in range(1, 1000):
+				partName = f"{srcName}.{index:03d}"
+				partPath = join(srcPath, partName)
+				try:
+					stat(partPath)
+				except FileNotFoundError:
+					break
+				moveList.append((partPath, join(dest, partName)))
 		srcBase = splitext(src)[0]
 		baseName = split(srcBase)[1]
 		eitName = f"{srcBase}.eit"
@@ -1606,6 +1615,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					self.session.openWithCallback(self.delete, MessageBox, f"{_("File appears to be busy!\n")}\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
 					return
 			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
+				if not args and config.usage.movielistTrashcanConfirm.value:
+					self.session.openWithCallback(self.delete, MessageBox, _("Do you really want to move '%s' to the trashcan?") % name, type=MessageBox.TYPE_YESNO, default=False, windowTitle=self.getTitle())
+					return
 				trash = createTrashcan(currentPath)
 				if trash:
 					moveServiceFiles(current, trash, name, allowCopy=True)

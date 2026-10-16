@@ -1,5 +1,6 @@
 # keep it for compatibility, please note this renderer is deprecated --> remove it from your skins
 from enigma import eLabel
+
 from Components.Renderer.Renderer import Renderer
 
 

@@ -1,17 +1,19 @@
 from os import remove
 from os.path import exists
-from enigma import eTimer, eDVBCI_UI
+
+from enigma import eDVBCI_UI, eTimer
 
 from Components.ActionMap import NumberActionMap
-from Components.Label import Label
-from Components.config import config, ConfigEnableDisable, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, ActionKeys, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
+from Components.config import ActionKeys, ConfigEnableDisable, ConfigNothing, ConfigPIN, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
 from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.Label import Label
 from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 import Screens.Standby
+from Screens.Toast import Toast
 from Tools.BoundFunction import boundFunction
 
 forceNotShowCiMessages = False
@@ -75,6 +77,39 @@ def InitCiConfig():
 		config.cimisc.bootDelay = ConfigSelection(default=5, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(16)])
 
 
+class CiMmiStatus:
+	@staticmethod
+	def isAuthScreen(screen):
+		if not screen or screen[0][0] not in ("MENU", "LIST") or any(x[0] == "PIN" for x in screen):
+			return False
+		if any(x[0] == "BOTTOM" and x[1].strip() for x in screen):
+			return False
+		# Some CAMs send authentication progress as selectable MENU text.
+		# Only recognize known status lines, not menus containing an auth option.
+		lines = [x[1].strip().casefold() for x in screen if x[0] == "TEXT" and x[1].strip()]
+		if not lines:
+			return False
+		status = lines[0].removeprefix("ci plus ").removeprefix("ci+ ")
+		return status.startswith(("authentifizierung läuft", "authentifizierung erfolgreich", "authentifizierung fehlgeschlagen", "authentication in progress", "authentication successful", "authentication failed", "authentication complete")) and all(x.startswith(("schritt ", "step ", "dies kann ", "this may ", "this can ")) for x in lines[1:])
+
+	@classmethod
+	def getText(cls, screen):
+		if not screen or screen[0][0] not in ("MENU", "LIST") or any(x[0] == "PIN" for x in screen):
+			return ""
+		# A bottom prompt may require acknowledgement even for a read-only LIST.
+		if any(x[0] == "BOTTOM" and x[1].strip() for x in screen):
+			return ""
+		if screen[0][0] == "MENU" and any(x[0] == "TEXT" and x[1].strip() for x in screen) and not cls.isAuthScreen(screen):
+			return ""
+		if cls.isAuthScreen(screen):
+			# Keep one readable status instead of flashing through the CAM's steps.
+			return next(x[1].strip() for x in screen if x[0] == "TEXT" and x[1].strip())
+		lines = [x[1].strip() for x in screen if x[0] in ("TITLE", "SUBTITLE", "TEXT") and x[1].strip()]
+		text = "\n".join(dict.fromkeys(lines))
+		# Long information pages remain readable and scrollable in the MMI dialog.
+		return text if len(text) <= 512 else ""
+
+
 class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="", screen_data=None):
 		Screen.__init__(self, session)
@@ -87,6 +122,10 @@ class MMIDialog(Screen):
 
 		self.timer = eTimer()
 		self.timer.callback.append(self.keyCancel)
+		self.menuRetryPending = action == 2
+		self.menuRetryTimer = eTimer()
+		self.menuRetryTimer.callback.append(self.retryMenu)
+		self.onClose.append(self.stopMenuRetry)
 
 		# else the skins fails
 		self["title"] = Label("")
@@ -126,29 +165,29 @@ class MMIDialog(Screen):
 			self.wait_text = wait_text
 
 		if action == 2:  # start MMI
-			handler.startMMI(self.slotid)
 			self.showWait()
+			self.menuRetryTimer.start(5000, True)
+			handler.startMMI(self.slotid)
 		elif action == 3:  # mmi already there (called from infobar)
 			self.showScreen()
 
+	def stopMenuRetry(self):
+		self.menuRetryPending = False
+		self.menuRetryTimer.stop()
+
+	def retryMenu(self):
+		if self.menuRetryPending:
+			self.stopMenuRetry()
+			# Retry only the initial request, never a menu selection or PIN reply.
+			if self.action == 2 and self.tag == "WAIT" and not self.mmiclosed and self.handler.getState(self.slotid) == 2:
+				if self.handler.availableMMI(self.slotid) == 1:
+					self.showScreen()
+				else:
+					print(f"[CI] Slot {self.slotid}: no menu response, retrying once")
+					self.handler.startMMI(self.slotid)
+
 	def isAuthStatusScreen(self, screen):
-		if not screen or screen[0][0] not in ("MENU", "LIST"):
-			return False
-		if any(entry[0] == "PIN" for entry in screen):
-			return False
-
-		visible_text = []
-		for entry in screen[1:]:
-			if entry[0] in ("TITLE", "SUBTITLE", "BOTTOM", "TEXT") and len(entry) > 1:
-				text = entry[1].strip()
-				if text:
-					visible_text.append(text)
-
-		if not visible_text:
-			return False
-
-		status_text = "\n".join(visible_text).lower()
-		return "authentifiz" in status_text or "authenticat" in status_text
+		return CiMmiStatus.isAuthScreen(screen)
 
 	def addEntry(self, list, entry):
 		if entry[0] == "TEXT":  # handle every item (text / pin only?)
@@ -204,18 +243,21 @@ class MMIDialog(Screen):
 		self.showWait()
 
 	def closeMmi(self):
+		self.stopMenuRetry()
 		self.timer.stop()
 		self.close(self.slotid)
 
 	def forceExit(self):
 		self.timer.stop()
 		if self.tag == "WAIT":
+			self.stopMenuRetry()
 			self.handler.stopMMI(self.slotid)
 			global forceNotShowCiMessages
 			forceNotShowCiMessages = True
 			self.close(self.slotid)
 
 	def keyCancel(self):
+		self.stopMenuRetry()
 		self.timer.stop()
 		if not self.tag or self.mmiclosed:
 			self.closeMmi()
@@ -287,6 +329,16 @@ class MMIDialog(Screen):
 		list = []
 
 		self.timer.stop()
+		if not screen:
+			return
+		self.stopMenuRetry()
+		if self.action == 3 and CiHandler.showStatus(self.slotid, screen, self.handler):
+			# An automatic dialog may change from a PIN enquiry to status updates.
+			# Close only the UI; never answer or stop the CAM's authentication.
+			self.tag = None
+			self.mmiclosed = True
+			self.closeMmi()
+			return
 		if len(screen) > 0 and screen[0][0] == "CLOSE":
 			timeout = screen[0][1]
 			self.mmiclosed = True
@@ -321,12 +373,6 @@ class MMIDialog(Screen):
 					elif entry[0] == "TEXT":
 						self.addEntry(list, entry)
 			self.updateList(list)
-			if self.isAuthStatusScreen(screen):
-				# This is only an informational CI+ authentication screen.
-				# Close it shortly after display so it cannot keep the RC focus.
-				self.tag = None
-				self.mmiclosed = True
-				self.timer.start(1500, True)
 
 	def ciStateChanged(self):
 		do_close = False
@@ -362,11 +408,31 @@ class CiMessageHandler:
 	def setSession(self, session):
 		self.session = session
 
+	def showStatus(self, slot, screen, handler):
+		text = CiMmiStatus.getText(screen)
+		if not text or not Toast.instance:
+			return False
+		if config.ci[slot].show_ci_messages.value and not forceNotShowCiMessages and not Screens.Standby.inStandby and not config.misc.firstrun.value:
+			name = handler.getAppName(slot).strip()
+			title = _("Slot %d") % (slot + 1)
+			if name:
+				title = f"{title}: {name}"
+			Toast.instance.showToast(f"{title}\n{text}", Toast.TYPE_INFO, 5, replaceId=f"ci-status-{slot}")
+		else:
+			self.clearStatus(slot)
+		return True
+
+	def clearStatus(self, slot):
+		if Toast.instance:
+			Toast.instance.removeToast(f"ci-status-{slot}")
+
 	def ciStateChanged(self, slot):
+		handler = eDVBCI_UI.getInstance()
+		if handler.getState(slot) != 2:
+			self.clearStatus(slot)
 		if slot in self.ci:
 			self.ci[slot](slot)
 		else:
-			handler = eDVBCI_UI.getInstance()
 			if slot in self.dlgs:
 				self.dlgs[slot].ciStateChanged()
 			elif handler.availableMMI(slot) == 1 and self.session:
@@ -395,6 +461,9 @@ class CiMessageHandler:
 								show_ui = False
 								self.auto_close = True
 				if show_ui and not forceNotShowCiMessages and not Screens.Standby.inStandby and not config.misc.firstrun.value:
+					if self.showStatus(slot, screen_data, handler):
+						return
+					self.clearStatus(slot)
 					try:
 						self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, screen_data=screen_data)
 					except Exception:
@@ -405,6 +474,7 @@ class CiMessageHandler:
 			del self.dlgs[slot]
 
 	def registerCIMessageHandler(self, slot, func):
+		self.clearStatus(slot)
 		self.unregisterCIMessageHandler(slot)
 		self.ci[slot] = func
 

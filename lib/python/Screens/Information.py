@@ -8,7 +8,7 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eInputDeviceManager, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.About import about
@@ -24,13 +24,14 @@ from Components.Pixmap import Pixmap
 from Components.RTLSDR import getRTLSDRChannelFrequency
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.StaticText import StaticText
 # from Components.Storage import storageManager
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Tools.Conversions import formatDate, scaleNumber
+from Tools.DAB import dabMetadata
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
@@ -89,12 +90,12 @@ class InformationBase(Screen):
 			"close": (self.keyCloseRecursive, _("Close the screen and exit all menus")),
 			"save": (self.refreshInformation, _("Refresh the screen")),
 			"ok": (self.refreshInformation, _("Refresh the screen")),
-			"top": (self["information"].goTop, _("Move to first line / screen")),
+			"top": (self["information"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["information"].goPageUp, _("Move up a screen")),
 			"up": (self["information"].goLineUp, _("Move up a line")),
 			"down": (self["information"].goLineDown, _("Move down a line")),
 			"pageDown": (self["information"].goPageDown, _("Move down a screen")),
-			"bottom": (self["information"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["information"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
 		self.informationColors = ["H", "S", "P", "V", "M", "F"]
 		self.informationColor = {
@@ -615,7 +616,9 @@ class InformationDistribution(InformationBase):
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 		if MultiBoot.canMultiBoot():
 			device = MultiBoot.getBootDevice()
-			if BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
+			if slotCode not in MultiBoot.getBootSlots() or not device:
+				device = _("Unknown")
+			elif BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
 				slotCode = int(slotCode)
 				image = slotCode - 4 if slotCode > 4 else slotCode - 1
 				device = _("SDcard slot %s%s") % (image, f"  -  {device}" if device else "")
@@ -633,7 +636,7 @@ class InformationDistribution(InformationBase):
 				else:
 					device = _("USB slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 			info.append(self.formatLine("P1", _("Hardware MultiBoot device"), device))
-			info.append(self.formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
+			info.append(self.formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile() or _("Unknown")))
 		if bootCode:
 			info.append(self.formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
 		info.append(self.formatLine("P1", _("Software MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
@@ -741,13 +744,26 @@ class InformationGeolocation(InformationBase):
 		self.setTitle(_("Geolocation Information"))
 		self.skinName.insert(0, "InformationGeolocation")
 		self.skinName.insert(1, "GeolocationInformation")
+		self.geolocationData = None
+
+	def fetchInformation(self):
+		def fetchInformationCallback(geolocationData):
+			self.geolocationData = geolocationData
+			for callback in self.onInformationUpdated:
+				if callable(callback):
+					callback()
+
+		self.informationTimer.stop()
+		geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False, screen=self, callback=fetchInformationCallback)
 
 	def displayInformation(self):
 		info = []
 		info.append(self.formatLine("H", _("Geolocation information for %s %s") % getBoxDisplayName()))
 		info.append("")
-		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
-		if geolocationData.get("status", None) == "success":
+		geolocationData = self.geolocationData
+		if geolocationData is None:
+			info.append(self.formatLine("P1", _("Retrieving geolocation information...")))
+		elif geolocationData.get("status", None) == "success":
 			info.append(self.formatLine("S", _("Location information")))
 			if self.extraSpacing:
 				info.append("")
@@ -974,7 +990,9 @@ class InformationNetwork(InformationBase):
 		self.geolocationData = []
 
 	def keyUseGeolocation(self):
-		geolocationData = geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False)
+		geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False, screen=self, callback=self.fetchGeolocationCallback)
+
+	def fetchGeolocationCallback(self, geolocationData):
 		info = []
 		if geolocationData.get("status", None) == "success":
 			info.append("")
@@ -1262,8 +1280,14 @@ class InformationReceiver(InformationBase):
 		cpu = about.getCPUInfoString()
 		info.append(self.formatLine("P1", _("CPU"), cpu[0]))
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
+		currentSpeed = about.getCPUCurrentSpeed()
+		if currentSpeed:
+			info.append(self.formatLine("P1", _("Current CPU speed"), currentSpeed))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
+		ramTemp = about.getRAMTemperature()
+		if ramTemp:
+			info.append(self.formatLine("P1", _("RAM temperature"), ramTemp))
 		info.append(self.formatLine("P1", _("CPU brand"), about.getCPUBrand()))
 		socFamily = BoxInfo.getItem("socfamily")
 		if socFamily:
@@ -1301,6 +1325,14 @@ class InformationReceiver(InformationBase):
 		customCode = fileReadLine("/proc/stb/ir/rc/customcode", source=MODULE_NAME)
 		if customCode:
 			info.append(self.formatLine("P1", _("RC custom code"), customCode))
+		manager = eInputDeviceManager.getInstance()
+		if manager and manager.available():
+			for device in manager.getConnectedDevices():
+				info.append(self.formatLine("P1", _("Bluetooth remote"), f"{device.name()}  ({device.address()})"))
+				if device.batteryLevel() > 0:
+					info.append(self.formatLine("P2", _("Battery"), f"{device.batteryLevel()}%"))
+				if device.rssi():
+					info.append(self.formatLine("P2", _("Signal strength"), f"{device.rssi()} dBm"))
 		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
 			info.append("")
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("N/A")
@@ -1420,8 +1452,16 @@ class InformationService(InformationBase):
 		if serviceRef:
 			self.serviceCommandsIndex = 1
 		else:
-			self.eventTracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evEnd: self.fetchInformationDelayed})
+			self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evEnd: self.fetchInformationDelayed,
+				iPlayableService.evUpdatedInfo: self.dabInformationUpdated
+			})
 			self.serviceCommandsIndex = 0
+
+	def dabInformationUpdated(self):
+		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if serviceRef and serviceRef.type == eServiceReference.idServiceDAB and self.serviceCommandsIndex == 0:
+			self.informationTimer.start(100, True)
 
 	def fetchInformationDelayed(self):  # This allows the newly selected service to stabilize before updating the service data.
 		self.informationTimer.startLongTimer(3)
@@ -1598,7 +1638,7 @@ class InformationService(InformationBase):
 			elif serviceRef:
 				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
 			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
-			addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
+			addIfAvailable(info, _("Language"), dabMetadata.languageName(getServiceInfoValue(iServiceInformation.sTagLanguageCode)))
 			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
 			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
 			addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))
@@ -2256,28 +2296,6 @@ class InformationTuner(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Tuner Information"
-
-
-class InformationTesting(InformationBase):
-	def __init__(self, session):
-		InformationBase.__init__(self, session)
-		self.setTitle(_("Testing Information"))
-		self.skinName.insert(0, "InformationTesting")
-		self.skinName.insert(1, "TestingInformation")
-		self.slotImages = None
-
-	def displayInformation(self):
-		html = remoteControl.getOpenWebifHTML()
-		if html is None:
-			html = "OpenWebif HTML file isn't available."
-		self["information"].setText(html)
-		# info = []
-		# for index in range(1, 24):
-		# 	info.append("This is test line %d." % index)
-		# self["information"].setText("\n".join(info))
-
-	def getSummaryInformation(self):
-		return "Testing Information Data"
 
 
 class InformationSummary(ScreenSummary):

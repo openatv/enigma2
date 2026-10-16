@@ -2,7 +2,7 @@ from Components.Task import PythonTask, Task, Job, job_manager as JobManager
 from Tools.Directories import fileExists
 from enigma import eTimer
 from os import path
-from shutil import rmtree, copy2, move
+from shutil import rmtree
 
 
 class DeleteFolderTask(PythonTask):
@@ -23,23 +23,24 @@ class DeleteFolderTask(PythonTask):
 class CopyFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Copying files"))
-		cmdline = 'cp -Rf "%s" "%s"' % (srcfile, destfile)
-		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
+		AddFileProcessTask(self, "cp", ["-Rf", "--", srcfile, destfile], srcfile, destfile, name)
 
 
 class MoveFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Moving files"))
-		cmdline = 'mv -f "%s" "%s"' % (srcfile, destfile)
-		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
+		AddFileProcessTask(self, "mv", ["-f", "--", srcfile, destfile], srcfile, destfile, name)
 
 
 class AddFileProcessTask(Task):
-	def __init__(self, job, cmdline, srcfile, destfile, name):
+	def __init__(self, job, tool, args, srcfile, destfile, name):
 		Task.__init__(self, job, name)
-		self.setCmdline(cmdline)
+		# Pass paths literally, without shell expansion of quotes, '$' or backticks.
+		self.setTool(tool)
+		self.args.extend(args)
 		self.srcfile = srcfile
 		self.destfile = destfile
+		self.srcsize = 0
 
 		self.ProgressTimer = eTimer()
 		self.ProgressTimer.callback.append(self.ProgressUpdate)
@@ -57,24 +58,20 @@ class AddFileProcessTask(Task):
 			self.ProgressTimer.start(5000, True)
 
 	def afterRun(self):
-		self.setProgress(100)
+		if self.returncode == 0:
+			self.setProgress(100)
 		self.ProgressTimer.stop()
 
 
 def copyFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
-			JobManager.AddJob(CopyFileJob(src, dst, name))
-		else:
-			copy2(src, dst)
+		# Even a small file can block the GUI when the destination is a slow mount.
+		JobManager.AddJob(CopyFileJob(src, dst, name))
 
 
 def moveFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
-			JobManager.AddJob(MoveFileJob(src, dst, name))
-		else:
-			move(src, dst)
+		JobManager.AddJob(MoveFileJob(src, dst, name))
 
 
 def deleteFiles(fileList, name):

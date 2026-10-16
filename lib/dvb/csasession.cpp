@@ -5,10 +5,6 @@
 #include <lib/base/eerror.h>
 #include <lib/base/esimpleconfig.h>
 
-#ifdef DREAMNEXTGEN
-#include <lib/dvb/alsa.h>
-#endif
-
 DEFINE_REF(eDVBCSASession);
 
 static const uint8_t DEFAULT_ECM_MODE = 0x04;
@@ -59,6 +55,14 @@ static bool dvbTripletMatch(const eServiceReferenceDVB& ref1, const eServiceRefe
 	       ref1.getOriginalNetworkID() == ref2.getOriginalNetworkID();
 }
 
+int eDVBCSASession::cachedCsaAlt(const eServiceReferenceDVB& ref)
+{
+	auto it = s_csa_cache.find(makeServiceKey(ref));
+	if (it == s_csa_cache.end() || !it->second.valid)
+		return -1;
+	return it->second.is_csa_alt ? 1 : 0;
+}
+
 eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	: m_service_ref(ref)
 	, m_active(false)
@@ -90,11 +94,6 @@ eDVBCSASession::~eDVBCSASession()
 	}
 
 	stopECMMonitor();
-
-#ifdef DREAMNEXTGEN
-	// Reset audio delay flag when session is destroyed
-	eAlsaOutput::setSoftDecoderActive(0);
-#endif
 }
 
 bool eDVBCSASession::init()
@@ -298,9 +297,6 @@ void eDVBCSASession::setActive(bool active)
 	if (m_active)
 	{
 		eDebug("[eDVBCSASession] ACTIVATED - CSA-ALT detected, SW-Descrambling active");
-#ifdef DREAMNEXTGEN
-		eAlsaOutput::setSoftDecoderActive(1);
-#endif
 		// Pre-register engine at CWHandler using cached serviceId.
 		// This closes the CW gap during PiP swap: when the old session is
 		// destroyed (unregistering its engine), the new session's engine is
@@ -330,9 +326,6 @@ void eDVBCSASession::setActive(bool active)
 	else
 	{
 		eDebug("[eDVBCSASession] DEACTIVATED - HW-Descrambling (passthrough)");
-#ifdef DREAMNEXTGEN
-		eAlsaOutput::setSoftDecoderActive(0);
-#endif
 		if (m_cw_handler_registered)
 		{
 			eDVBCWHandler::getInstance()->unregisterEngine(m_cw_service_id, m_engine);

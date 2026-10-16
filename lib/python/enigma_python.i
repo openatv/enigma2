@@ -54,6 +54,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/driver/rcinput_swig.h>
 #include <lib/driver/ehotplug_socket.h>
 #include <lib/driver/inputhotplug.h>
+#include <lib/driver/inputdevicemanager.h>
 #include <lib/service/event.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
@@ -82,6 +83,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/egauge.h>
 #include <lib/gui/evideo.h>
 #include <lib/gui/ecanvas.h>
+#include <lib/gui/eqrcode.h>
 #include <lib/python/connections.h>
 #include <lib/python/pythonconfig.h>
 #include <lib/gui/elistbox.h>
@@ -106,6 +108,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/csaengine.h>
+#include <lib/hbbtv/oipfapplication.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
@@ -195,6 +199,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/python/python_service.i>
 %include <lib/python/python_pmt.i>
 %include <lib/python/python_pcore.i>
+%include <lib/python/python_hbbtv.i>
 
 %immutable eSocketNotifier::activated;
 %immutable eHotplugSocket::dataReceived;
@@ -251,6 +256,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
 %include <lib/driver/rcinput_swig.h>
+%include <lib/python/python_inputdevicemanager.i>
 %include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
@@ -265,6 +271,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/gui/erectangle.h>
 %include <lib/gui/estack.h>
 %include <lib/gui/ecanvas.h>
+%include <lib/gui/eqrcode.h>
 %include <lib/gui/ebutton.h>
 %include <lib/gui/ewindow.h>
 %include <lib/gui/eslider.h>
@@ -396,6 +403,18 @@ public:
 %template(PSignal3VISS) PSignal3<void,int,const char *,const char *>;
 
 %typemap(out) PSignal3VISS {
+	$1 = $input->get();
+}
+
+template<class R, class P0, class P1, class P2, class P3> class PSignal4
+{
+public:
+	PyObject *get();
+};
+
+%template(PSignal4VIIII) PSignal4<void,int,int,int,int>;
+
+%typemap(out) PSignal4VIIII {
 	$1 = $input->get();
 }
 

@@ -678,6 +678,12 @@ if not hasattr(config.dab, "scanSource"):
 	])
 if not hasattr(config.dab, "slideshow"):
 	config.dab.slideshow = ConfigYesNo(default=True)
+if not hasattr(config.dab, "audioMode"):
+	config.dab.audioMode = ConfigSelection(default="auto", choices=[
+		("auto", _("Automatic")),
+		("aac", _("Hardware AAC")),
+		("pcm", _("Software PCM"))
+	])
 if not hasattr(config.dab, "clearBeforeScan"):
 	config.dab.clearBeforeScan = ConfigYesNo(default=False)
 if not hasattr(config.dab, "rtlsdr"):

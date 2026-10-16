@@ -416,6 +416,7 @@ protected:
 	eRect m_spinner_pos_HD;
 	eRect m_spinner_pos_FHD;
 	int m_spinner_num, m_spinner_i;
+	void discardOpcode(const gOpcode *opcode);
 
 public:
 	virtual void exec(const gOpcode *opcode);

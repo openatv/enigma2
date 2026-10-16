@@ -831,6 +831,11 @@ public:
 	virtual RESULT play()=0;
 		/** Freeze frame. */
 	virtual RESULT pause()=0;
+#ifdef DREAMNEXTGEN
+		/** Hint: user PVR/Timeshift pause (not stream-stall recovery /
+		 * trick handover). Gates the kernel STC-freeze ioctl chain. */
+	virtual void setUserPauseActive(bool /*active*/) {}
+#endif
 
 		/** fast forward by skipping frames. 0 is disabled, 2 is twice-the-speed, ... */
 	virtual RESULT setFastForward(int skip=0)=0;

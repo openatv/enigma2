@@ -55,11 +55,11 @@ while not stop:
 	if target.upper() in ("X", ""):
 		stop = True
 	else:
-		target = int(target) - 1
-		if whereList[target] not in targetList:
-			targetList.append(whereList[target])
+		where = whereList[int(target) - 1]
+		if where not in targetList:
+			targetList.append(where)
 		else:
-			targetList.remove(whereList[target])
+			targetList.remove(where)
 pluginPath = "%s/%s" % (category, internalName)
 try:
 	mkdir(pluginPath)

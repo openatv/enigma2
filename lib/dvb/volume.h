@@ -1,12 +1,6 @@
 #ifndef __volume_h
 #define __volume_h
 
-#ifdef DREAMNEXTGEN
-#ifdef HAVE_ALSA
-#undef HAVE_ALSA
-#endif
-#endif
-
 #ifdef HAVE_ALSA
 #include <alsa/asoundlib.h>
 #endif
@@ -19,7 +13,17 @@ private:
 #ifdef HAVE_ALSA
 	snd_mixer_elem_t *mainVolume;
 	snd_mixer_t *alsaMixerHandle;
-#endif
+#ifdef DREAMNEXTGEN
+	const char *alsa_card;
+	bool  alsa_has_db;
+	long  alsa_min_raw, alsa_max_raw;   // raw range
+	long  alsa_min_db,  alsa_max_db;    // millibels (1/100 dB)
+
+	bool ensureMixer();          // open and locate the master mixer lazily
+	long uiToHw(int ui) const;   // 0..100 -> raw or dB
+	int  hwToUi(long hw) const;  // raw or dB -> 0..100
+#endif // DREAMNEXTGEN
+#endif // HAVE_ALSA
 	static eDVBVolumecontrol *instance;
 	eDVBVolumecontrol();
 #ifdef SWIG
@@ -57,6 +61,13 @@ public:
 	int getVolumeLeft() { return leftVol; }
 	int getVolumeRight() { return rightVol; }
 	bool isMuted(bool force=false) { return muted || (force && mute_zero); }
+
+#ifdef DREAMNEXTGEN
+	/* Fired on every setVolume (0..100, mute already applied). */
+	typedef void (*VolumeChangeCb)(int level);
+	static void registerVolumeChangeCb(VolumeChangeCb cb);
+	static VolumeChangeCb s_volume_change_cb;
+#endif
 };
 
 #endif //__volume_h

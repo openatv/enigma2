@@ -118,7 +118,7 @@ public:
 	}
 
 	/*
-	 * Feed arbitrary chunks returned by iDVBPESReader.  Video PES packets are
+	 * Feed arbitrary chunks of a video PES stream.  Video PES packets are
 	 * stripped before the Annex-B scanner sees the payload.  This matters for
 	 * PES_packet_length == 0, where a NAL unit may span several PES packets.
 	 */

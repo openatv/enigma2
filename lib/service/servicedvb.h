@@ -10,6 +10,7 @@
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <atomic> // FIXED: Added for thread-safe stream corruption flag
+#include <sys/types.h>
 
 class eStaticServiceDVBInformation;
 class eStaticServiceDVBBouquetInformation;
@@ -194,6 +195,8 @@ public:
 	RESULT setNextPlaybackFile(const char* fn);
 	RESULT saveTimeshiftFile();
 	std::string getTimeshiftFilename();
+	long long getTimeshiftFileSize();
+	std::string getTimeshiftServiceData();
 	virtual void switchToLive();
 
 	// iTapService
@@ -268,7 +271,14 @@ protected:
 	int m_first_program_info;
 
 	std::string m_timeshift_file, m_timeshift_file_next;
+	std::string _timeshiftServiceData;
+	std::string m_timeshift_directory, m_timeshift_base;
+	unsigned long long m_timeshift_sequence = 0;
 	int m_timeshift_fd;
+	int _timeshiftDirectoryFd = -1;
+	dev_t _timeshiftDevice = 0;
+	ino_t _timeshiftInode = 0;
+	void _releaseTimeshiftDirectory(bool eraseFiles);
 	ePtr<iDVBDemux> m_decode_demux;
 
 	int m_current_audio_stream;
@@ -280,16 +290,31 @@ protected:
 	ePtr<eDVBCSASession> m_timeshift_csa_session;
 	std::set<int> m_pids_active;
 
-	void updateTimeshiftPids();
+	void updateTimeshiftPids(bool captureServiceData = false);
 
 	void resetTimeshift(int start);
 	void switchToTimeshift();
 
 	void updateDecoder(bool sendSeekableStateChanged = false);
+	ePtr<eConnection> m_ci_routing_connection;
+	ePtr<eTimer> m_ci_decoder_timer;
+	int m_ci_changed_tuner = -1;
+	int m_ci_decoder_retries = 0;
+	void ciRoutingChanged(int tuner);
+	void refreshCIDecoder();
 
 	int m_skipmode;
 	int m_fastforward;
 	int m_slowmotion;
+#ifdef DREAMNEXTGEN
+	/* Wallclock-based position estimate during skipmode trickmode (FF>=16).
+	 * During trickmode the cue advances the file cursor at skipmode rate;
+	 * audio decoder consumes PES from skipped positions and PTS becomes
+	 * garbage / past file-end. We compute pos = entry_pos + elapsed * rate
+	 * instead, clamped to movie length, so UI fortschritt + seekTo stay sane. */
+	pts_t m_pos_before_skipmode;
+	int64_t m_skipmode_entry_ms;
+#endif
 
 	/* tap */
 
@@ -336,11 +361,6 @@ protected:
 
 	ePtr<eTimer> m_nownext_timer;
 	void updateEpgCacheNowNext();
-
-#ifdef PASSTHROUGH_FIX
-	ePtr<eTimer> m_passthrough_fix_timer;
-	void forcePassthrough();
-#endif
 
 	/* radiotext */
 	ePtr<eDVBRdsDecoder> m_rds_decoder;

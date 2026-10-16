@@ -1,3 +1,4 @@
+from functools import total_ordering
 from glob import glob
 from os import listdir, lstat, mkdir, remove, statvfs, system, walk
 from os.path import abspath, dirname, exists, isfile, islink, ismount, join, realpath
@@ -109,6 +110,7 @@ def Freespace(dev):
 	return space
 
 
+@total_ordering
 class Harddisk:
 	def __init__(self, device, removable=False, model=None):
 		self.device = device

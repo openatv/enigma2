@@ -5,8 +5,16 @@
 
 #include <lib/gdi/accel.h>
 
+#ifdef DREAMNEXTGEN
+#include <lib/gdi/dreamge2d.h>
+#endif
+
 #include <algorithm>
 #include <cstring>
+
+#if defined(DREAMBCM_ION_ACCEL)
+#include <cstdlib>
+#endif
 
 #include <time.h>
 #include <sys/time.h>
@@ -146,8 +154,25 @@ void gFBDC::rotateSurfaces()
 	}
 }
 
+#if defined(DREAMBCM_ION_ACCEL)
+static bool dreambcm_env_enabled(const char *name, bool default_value)
+{
+	const char *value = getenv(name);
+	if (!value || !*value)
+		return default_value;
+	return atoi(value) != 0;
+}
+#endif
+
 void gFBDC::exec(const gOpcode *o)
 {
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+	if (m_graphics_suspended)
+	{
+		discardOpcode(o);
+		return;
+	}
+
 	switch (o->opcode)
 	{
 	case gOpcode::setPalette:
@@ -213,17 +238,62 @@ void gFBDC::exec(const gOpcode *o)
 #if defined(CONFIG_ION)
 		if (surface_back.data_phys)
 		{
-		fb->waitVSync();
-		fb->setOffset(getSurfaceOffset(surface));
+#if defined(DREAMBCM_ION_ACCEL)
+			const bool pagecopy_enabled = dreambcm_env_enabled("DREAMBCM_PAGECOPY", true);
+			const bool prepan_pagecopy = pagecopy_enabled && dreambcm_env_enabled("DREAMBCM_PREPAN_PAGECOPY", true) && (m_number_of_pages > 2) && surface_third.data_phys;
 
-		rotateSurfaces();
+			if (prepan_pagecopy)
+			{
+				/*
+				 * Triple-buffer Dreambox Broadcom path:
+				 * copy the fully rendered draw page into the next draw page before
+				 * switching the displayed framebuffer page.  The old OpenATV order
+				 * panned first and copied afterwards; DreamOS traces show the Broadcom
+				 * acceleration work before FBIOPAN_DISPLAY.
+				 */
+				bcm_accel_blit(
+					surface.data_phys, surface.x, surface.y, surface.stride, 0,
+					surface_third.data_phys, surface_third.x, surface_third.y, surface_third.stride,
+					0, 0, surface.x, surface.y,
+					0, 0, surface.x, surface.y,
+					0, 0);
+				if (gAccel::getInstance())
+				{
+					gAccel::getInstance()->dreamBCMPagecopyStat();
+					gAccel::getInstance()->sync();
+				}
 
-		bcm_accel_blit(
-		surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride, 0,
-		surface.data_phys, surface.x, surface.y, surface.stride,
-		0, 0, surface.x, surface.y,
-		0, 0, surface.x, surface.y,
-		0, 0);
+				fb->waitVSync();
+				fb->setOffset(getSurfaceOffset(surface));
+				rotateSurfaces();
+			}
+			else
+#endif
+			{
+				fb->waitVSync();
+				fb->setOffset(getSurfaceOffset(surface));
+
+				rotateSurfaces();
+
+#if defined(DREAMBCM_ION_ACCEL)
+				if (pagecopy_enabled)
+				{
+#endif
+				bcm_accel_blit(
+					surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride, 0,
+					surface.data_phys, surface.x, surface.y, surface.stride,
+					0, 0, surface.x, surface.y,
+					0, 0, surface.x, surface.y,
+					0, 0);
+#if defined(DREAMBCM_ION_ACCEL)
+					if (gAccel::getInstance())
+					{
+						gAccel::getInstance()->dreamBCMPagecopyStat();
+						gAccel::getInstance()->sync();
+					}
+				}
+#endif
+			}
 		}
 #elif defined(DREAMNEXTGEN)
 		if (surface_back.data_phys && surface.data)
@@ -233,9 +303,20 @@ void gFBDC::exec(const gOpcode *o)
 
 			rotateSurfaces();
 
-			const int copy_bytes = surface.stride * surface.y;
-			if (copy_bytes > 0)
-			std::memcpy(surface.data, surface_back.data, copy_bytes);
+			bool ge2d_copied = dreamGE2DCopySurface(&surface, &surface_back, surface.x, surface.y);
+			if (!ge2d_copied)
+			{
+				const int virtual_height = surface.y * m_number_of_pages;
+				const int src_y = getSurfaceOffset(surface_back);
+				const int dst_y = getSurfaceOffset(surface);
+				ge2d_copied = dreamGE2DCopyOSD(src_y, dst_y, surface.x, surface.y, virtual_height);
+			}
+			if (!ge2d_copied)
+			{
+				const int copy_bytes = surface.stride * surface.y;
+				if (copy_bytes > 0)
+					std::memcpy(surface.data, surface_back.data, copy_bytes);
+			}
 		}
 #endif
 #if defined(CONFIG_HISILICON_FB)
@@ -330,6 +411,7 @@ void gFBDC::setGamma(int g)
 
 void gFBDC::setResolution(int xres, int yres, int bpp)
 {
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
 	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp)
 	#if defined(CONFIG_HISILICON_FB)
 		&& islocked()==0
@@ -436,6 +518,10 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	surface_back.clut = surface.clut;
 	surface_third.clut = surface.clut;
 
+#ifdef DREAMNEXTGEN
+	dreamGE2DRegisterFramebuffer(fb->lfb, base_phys, surface.x, surface.y, surface.stride, m_number_of_pages);
+#endif
+
 #if defined(CONFIG_HISILICON_FB)
 	if(islocked()==0)
 	{
@@ -451,6 +537,63 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	if (grc)
 		grc->unlock();
 #endif
+}
+
+bool gFBDC::suspendGraphics()
+{
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+
+	if (m_graphics_suspended)
+		return true;
+	if (!fb || !fb->Available())
+		return false;
+	if (!fb->islocked())
+		eDebug("[gFBDC] suspending graphics without fbClass lock; callers should lock painting first");
+
+	/*
+	 * fbClass::lock() prevents new gPainter commands.  The suspended flag also
+	 * makes exec() dispose commands which were already queued without touching
+	 * the framebuffer while an external graphics client owns the display.
+	 */
+	m_graphics_suspended = true;
+	eDebug("[gFBDC] framebuffer graphics suspended");
+	return true;
+}
+
+bool gFBDC::resumeGraphics()
+{
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+
+	if (!m_graphics_suspended)
+		return true;
+	if (!fb || !fb->Available())
+		return false;
+	if (fb->islocked())
+	{
+		eDebug("[gFBDC] graphics resume deferred while fbClass is still locked");
+		return false;
+	}
+
+	/*
+	 * fbClass::unlock() calls SetMode().  On ION targets this unmaps and maps
+	 * the framebuffer again, so the unmanaged surfaces and m_pixmap must be
+	 * rebound before drawing is allowed to continue.
+	 */
+	const int xres = surface.x;
+	const int yres = surface.y;
+	const int bpp = surface.bpp;
+	m_pixmap = 0;
+	m_graphics_suspended = false;
+	setResolution(xres, yres, bpp);
+
+	eDebug("[gFBDC] framebuffer graphics resumed at %dx%dx%d", xres, yres, bpp);
+	return true;
+}
+
+bool gFBDC::isGraphicsSuspended() const
+{
+	std::lock_guard<std::recursive_mutex> lock(m_graphics_mutex);
+	return m_graphics_suspended;
 }
 
 void gFBDC::saveSettings()

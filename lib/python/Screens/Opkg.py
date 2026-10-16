@@ -12,6 +12,7 @@ from Components.SelectionList import SelectionList
 from Components.Slider import Slider
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyboard
 from Tools.Directories import fileReadLines, fileWriteLines
@@ -19,7 +20,9 @@ from Tools.Directories import fileReadLines, fileWriteLines
 MODULE_NAME = __name__.split(".")[-1]
 
 
-class IpkgInstaller(Screen):
+class IpkgInstaller(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "packages", "plugin_browser")
+
 	skin = """
 		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -37,6 +40,7 @@ class IpkgInstaller(Screen):
 
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.selectionList = SelectionList()
 		self["list"] = self.selectionList
 		p = 0
@@ -68,11 +72,14 @@ class IpkgInstaller(Screen):
 		self.session.open(Opkg, cmdList=cmdList)
 
 
-class Opkg(Screen):
+class Opkg(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "packages", "plugin_browser")
+
 	def __init__(self, session, cmdList=None):
 		if not cmdList:
 			cmdList = []
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Installing Software..."))
 
 		self.cmdList = cmdList
@@ -107,15 +114,15 @@ class Opkg(Screen):
 		self.runningCmd = None
 		self.commandOutput = ""
 		self.showStatus = True
-		self.runNextCmd()
+		self.callLater(self.protectedCallback(self.runNextCmd))
 
 		self["logactions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self["log"].moveTop, _("Move to first line / screen")),
+			"top": (self["log"].moveTop, _("Move to the first line / screen")),
 			"pageUp": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			"down": (self["log"].moveDown, _("Move down a line")),
 			"pageDown": (self["log"].pageDown, _("Move down a screen")),
-			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
+			"bottom": (self["log"].moveBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Opkg Log Actions"))
 		self["logactions"].setEnabled(False)
 
@@ -235,7 +242,9 @@ class Opkg(Screen):
 			self["status"].show()
 
 
-class PackageFeedSelection(Screen):
+class PackageFeedSelection(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "packages", "plugin_browser")
+
 	PACKAGE_PATH = "/etc/opkg/"
 	skin = """
 	<screen name="PackageFeedSelection" title="Package Feed Selection" position="center,center" size="700,400" resolution="1280,720">
@@ -253,6 +262,7 @@ class PackageFeedSelection(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True, mandatoryWidgets=["feeds"])
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Select Upgrade Source To Edit"))
 		feedList = []
 		if isdir(self.PACKAGE_PATH):

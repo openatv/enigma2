@@ -1,5 +1,6 @@
 #include <lib/gui/ewindow.h>
 #include <lib/gui/ewidgetdesktop.h>
+#include <lib/driver/avcontrol.h>
 
 #include <lib/gui/ewindowstyle.h>
 #include <lib/gui/ewindowstyleskinned.h>
@@ -53,6 +54,8 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 
 eWindow::~eWindow()
 {
+	if (m_desktop->getStyleID() == 0 && eAVControl::getInstance())
+		eAVControl::getInstance()->setOSDWindowVisible(this, false);
 	m_desktop->removeRootWidget(this);
 	m_child->destruct();
 }
@@ -138,6 +141,8 @@ int eWindow::event(int event, void *data, void *data2)
 
 void eWindow::show()
 {
+	if (m_osdAutoHideActive && m_desktop->getStyleID() == 0 && eAVControl::getInstance())
+		eAVControl::getInstance()->setOSDWindowVisible(this, true);
 	if (m_animation_mode & 0x01)
 		m_desktop->sendShow(position(), size());
 	eWidget::show();
@@ -145,9 +150,18 @@ void eWindow::show()
 
 void eWindow::hide()
 {
+	if (m_desktop->getStyleID() == 0 && eAVControl::getInstance())
+		eAVControl::getInstance()->setOSDWindowVisible(this, false);
 	if (m_animation_mode & 0x10)
 		m_desktop->sendHide(position(), size());
 	eWidget::hide();
+}
+
+void eWindow::setOSDAutoHideActive(bool active)
+{
+	m_osdAutoHideActive = active;
+	if (m_desktop->getStyleID() == 0 && eAVControl::getInstance())
+		eAVControl::getInstance()->setOSDWindowVisible(this, active && isVisible());
 }
 
 void eWindow::setAnimationMode(int mode)

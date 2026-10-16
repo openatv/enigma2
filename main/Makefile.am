@@ -27,6 +27,7 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/dvb_ci/libenigma_dvb_ci.a \
 	$(top_builddir)/lib/gdi/libenigma_gdi.a \
 	$(top_builddir)/lib/gui/libenigma_gui.a \
+	$(top_builddir)/lib/hbbtv/libenigma_hbbtv.a \
 	$(top_builddir)/lib/python/libenigma_python.a \
 	$(top_builddir)/lib/nav/libenigma_nav.a \
 	$(top_builddir)/lib/network/libenigma_network.a \
@@ -51,7 +52,7 @@ enigma2_LDADD = \
 	@LIBATOMIC_LIBS@ \
 	-ltuxtxt32bpp -lcrypt -lrt -ldl
 
-enigma2_LDFLAGS = -Wl,--export-dynamic
+enigma2_LDFLAGS = -rdynamic -Wl,--export-dynamic
 
 if HAVE_GIT_DIR
 GIT_DIR = $(top_srcdir)/.git

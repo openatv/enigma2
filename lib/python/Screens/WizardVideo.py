@@ -21,6 +21,7 @@ class WizardVideo(Wizard, ShowRemoteControl):
 		self.port = None
 		self.mode = None
 		self.rate = None
+		self.lastVideoMode = None
 
 	def listPorts(self):  # Called by wizardvideo.xml.
 		ports = []
@@ -106,17 +107,18 @@ class WizardVideo(Wizard, ShowRemoteControl):
 		self.portSelect(self.selection)
 
 	def portSelect(self, port):
-		modeList = avSwitch.getModeList(self.selection)
+		modeList = avSwitch.getModeList(port)
 		# print("[WizardVideo] inputSelect DEBUG: port='%s', modeList=%s." % (port, modeList))
 		self.port = port
 		if modeList:
 			ratesList = self.listRates(modeList[0][0])
-			avSwitch.setMode(port=port, mode=modeList[0][0], rate=ratesList[0][0])
+			if ratesList:
+				self.setVideoMode(port, modeList[0][0], ratesList[0][0])
 
 	def modeSelectionMade(self, index):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] modeSelectionMade DEBUG: index='%s'." % index)
-		self.mode = index
-		self.modeSelect(index)
+		if self.modeSelect(index):
+			self.mode = index
 
 	def modeSelectionMoved(self):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] modeSelectionMoved DEBUG: self.selection='%s'." % self.selection)
@@ -125,27 +127,38 @@ class WizardVideo(Wizard, ShowRemoteControl):
 	def modeSelect(self, mode):
 		rates = self.listRates(mode)
 		# print("[WizardVideo] modeSelect DEBUG: rates=%s." % rates)
-		if self.port == "HDMI" and mode in ("720p", "1080i", "1080p") and not BoxInfo.getItem("AmlogicFamily"):
-			self.rate = "multi"
-			avSwitch.setMode(port=self.port, mode=mode, rate="multi")
-		else:
-			avSwitch.setMode(port=self.port, mode=mode, rate=rates[0][0])
+		if not rates:
+			return False
+		# listRates already prefers multi, but only if all required rates are available.
+		self.rate = rates[0][0]
+		self.setVideoMode(self.port, mode, self.rate)
 
 		if BoxInfo.getItem("machinebuild") == "gbquad4kpro" and mode.startswith("2160p"):  # Hack for GB QUAD 4K Pro
 			config.av.hdmicolordepth.value = "10bit"
 			config.av.hdmicolordepth.save()
+		return True
 
 	def rateSelectionMade(self, index):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] rateSelectionMade DEBUG: index='%s'." % index)
-		self.rate = index
-		self.rateSelect(index)
+		if self.rateSelect(index):
+			self.rate = index
 
 	def rateSelectionMoved(self):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] rateSelectionMade DEBUG: self.selection='%s'." % self.selection)
 		self.rateSelect(self.selection)
 
 	def rateSelect(self, rate):
-		avSwitch.setMode(port=self.port, mode=self.mode, rate=rate)
+		if any(item[0] == rate for item in self.listRates()):
+			self.setVideoMode(self.port, self.mode, rate)
+			return True
+		return False
+
+	def setVideoMode(self, port, mode, rate):
+		# Selection changes, OK and entry into the next step can request the same mode.
+		videoMode = (port, mode, rate)
+		if videoMode != self.lastVideoMode:
+			avSwitch.setMode(port=port, mode=mode, rate=rate)
+			self.lastVideoMode = videoMode
 
 	def keyNumberGlobal(self, number):
 		if number in (1, 2, 3):

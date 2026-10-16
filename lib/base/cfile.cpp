@@ -1,5 +1,7 @@
 #include <fstream>
 #include <sstream>
+#include <sys/vfs.h>
+#include <linux/magic.h>
 #include <lib/base/eerror.h>
 
 #include "cfile.h"
@@ -8,12 +10,33 @@
 #define eDebugErrorReadFile(MODULE, FILENAME) eDebug("[%s] Error %d: Unable to read from file '%s'!  (%m)", MODULE, errno, FILENAME)
 #define eDebugErrorWriteFile(MODULE, FILENAME) eDebug("[%s] Error %d: Unable to write to file '%s'!  (%m)", MODULE, errno, FILENAME)
 
+off_t CFile::getRecordingSplitSize(int fd, unsigned int packetSize)
+{
+	struct statfs fs = {};
+	if (!packetSize || fstatfs(fd, &fs) < 0)
+		return -1;
+	const unsigned int type = static_cast<unsigned int>(fs.f_type);
+	if (type == MSDOS_SUPER_MAGIC)
+		return ((1LL << 32) - 1) / packetSize * packetSize;
+	return 0;
+}
+
 int CFile::parseIntHex(int *result, const char *fileName)
 {
 	CFile f(fileName, "r");
 	if (!f)
 		return -1;
 	if (fscanf(f, "%x", result) != 1)
+		return -2;
+	return 0;
+}
+
+int CFile::parseUint32Hex(uint32_t *result, const char *filename)
+{
+	CFile f(filename, "r");
+	if (!f)
+		return -1;
+	if (fscanf(f, "0x%x", result) != 1)
 		return -2;
 	return 0;
 }
@@ -44,6 +67,14 @@ int CFile::writeIntHex(const char *fileName, int value)
 	if (!f)
 		return -1;
 	return fprintf(f, "%x", value);
+}
+
+int CFile::writeUint32Hex(const char *filename, uint32_t value)
+{
+	CFile f(filename, "w");
+	if (!f)
+		return -1;
+	return fprintf(f, "0x%x", value);
 }
 
 int CFile::writeInt(const char *fileName, int value)

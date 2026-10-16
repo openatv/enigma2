@@ -1,6 +1,7 @@
 #ifndef __lib_base_httpsstream_h
 #define __lib_base_httpsstream_h
 
+#include <atomic>
 #include <string>
 #include <lib/base/ebase.h>
 #include <lib/base/itssource.h>
@@ -14,7 +15,8 @@ class eHttpsStream: public iTsSource, public sigc::trackable, public eThread
 	DECLARE_REF(eHttpsStream);
 
 	int streamSocket;
-	enum { BUSY, CONNECTED, FAILED } connectionStatus;
+	enum ConnectionStatus { BUSY, CONNECTED, FAILED };
+	std::atomic<ConnectionStatus> connectionStatus;
 	bool isChunked;
 	size_t currentChunkSize;
 	std::string streamUrl;
@@ -36,6 +38,7 @@ class eHttpsStream: public iTsSource, public sigc::trackable, public eThread
 	off_t offset();
 	int valid();
 	bool isStream() { return true; };
+	bool isConnecting() { return connectionStatus == BUSY; }
 
 	/* OpenSSL More Info https://wiki.openssl.org/index.php/SSL/TLS_Client */
 	SSL_CTX *ctx;

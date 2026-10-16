@@ -20,7 +20,7 @@ eVideoWidget::eVideoWidget(eWidget *parent)
 	if (!fullsizeTimer)
 	{
 		fullsizeTimer = eTimer::create(eApp);
-		fullsizeTimer->timeout.connect(sigc::bind(sigc::ptr_fun(&eVideoWidget::setFullsize), false));
+		fullsizeTimer->timeout.connect(sigc::bind(sigc::ptr_fun(&eVideoWidget::setFullsize), false, false));
 	}
 	parent->setPositionNotifyChild(1);
 }
@@ -212,7 +212,7 @@ void eVideoWidget::setPosition(int index, int left, int top, int width, int heig
 	writeProc(filename + std::string("apply"), 1);
 }
 
-void eVideoWidget::setFullsize(bool force)
+void eVideoWidget::setFullsize(bool force, bool mainOnly)
 {
 	// AML: only make MAIN fullscreen, don't touch PiP here
 	if (aml_has_axis())
@@ -227,14 +227,14 @@ void eVideoWidget::setFullsize(bool force)
 		}
 
 		// PiP: clear pending without resizing (UI controls it explicitly)
-		if (force || (pendingFullsize & (1 << 1)))
+		if (!mainOnly && (force || (pendingFullsize & (1 << 1))))
 			pendingFullsize &= ~(1 << 1);
 
 		return;
 	}
 
 	// Legacy path unchanged
-	for (int decoder = 0; decoder < 2; ++decoder)
+	for (int decoder = 0; decoder < (mainOnly ? 1 : 2); ++decoder)
 	{
 		if (force || (pendingFullsize & (1 << decoder)))
 		{

@@ -1,21 +1,22 @@
+from gettext import bindtextdomain, dgettext
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
 from os import makedirs, remove, unlink
-from os.path import exists, isfile, join as pathjoin, normpath, splitext
+from os.path import dirname, exists, isdir, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 
 from enigma import Misc_Options, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, eSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.EpgConfig import initEPGConfig
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_HDD, SCOPE_PLUGINS, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
@@ -28,6 +29,36 @@ visuallyImpairedCommentary = "NAR qad"
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
 	return [] if resolve == path else resolve.split()
+
+
+def refreshChannelSelectionStyleChoices():
+	def translateSkinString(text):
+		return dgettext(skinDir, text)
+
+	skinDir = dirname(config.skin.primary_skin.value).replace("MetrixHD", "MyMetrixLite")
+	localePath = resolveFilename(SCOPE_PLUGINS, pathjoin("Extensions", skinDir, "locale"))
+
+	if skinDir and isdir(localePath):
+		bindtextdomain(skinDir, localePath)
+	else:
+		translateSkinString = _
+
+	screenChoiceList = [("", _("Legacy mode"))]
+	styles = getcomponentTemplateNames("serviceList") or []
+	if styles:
+		for screen, (element, path) in domScreens.items():
+			if element.get("base") == "ChannelSelection":
+				screenChoiceList.append((screen, translateSkinString(element.get("label", screen))))
+	widgetChoiceList = [(style, translateSkinString(style)) for style in styles]
+	for name, choices, default in (
+		("screenStyle", screenChoiceList, ""),
+		("widgetStyle", widgetChoiceList, styles[0] if styles else "")
+	):
+		setting = getattr(config.channelSelection, name, None)
+		if setting is None:
+			setattr(config.channelSelection, name, ConfigSelection(default=default, choices=choices))
+		else:
+			setting.setChoices(choices, default=default)
 
 
 def InitUsageConfig():
@@ -342,23 +373,7 @@ def InitUsageConfig():
 
 	config.channelSelection.showTimers = ConfigYesNo(default=False)
 
-	screenChoiceList = [("", _("Legacy mode"))]
-	widgetChoiceList = []
-	styles = getcomponentTemplateNames("serviceList")
-	default = ""
-	if styles:
-		for screen in domScreens:
-			element, path = domScreens.get(screen, (None, None))
-			if element.get("base") == "ChannelSelection":
-				label = element.get("label", screen)
-				screenChoiceList.append((screen, label))
-
-		default = styles[0]
-		for style in styles:
-			widgetChoiceList.append((style, style))
-
-	config.channelSelection.screenStyle = ConfigSelection(default="", choices=screenChoiceList)
-	config.channelSelection.widgetStyle = ConfigSelection(default=default, choices=widgetChoiceList)
+	refreshChannelSelectionStyleChoices()
 
 	# ########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
@@ -371,7 +386,11 @@ def InitUsageConfig():
 	# ####################################################
 
 	config.usage.panicbutton = ConfigYesNo(default=False)
-	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))
+	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))  # Legacy setting, migrated to a service reference.
+	config.usage.panicsref = ConfigService()
+	if not config.usage.panicsref.value and (config.usage.panicbutton.value or config.usage.panicchannel.saved_value is not None):
+		from ServiceReference import getPanicService
+		getPanicService()
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 
@@ -519,6 +538,15 @@ def InitUsageConfig():
 	] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 30, 45, 60)]
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choiceList)
 
+	def createConfiguredDirectory(configElement):
+		if configElement.isChanged():  # Final notifiers also run when leaving an unsaved setup entry.
+			return
+		path = configElement.value
+		try:
+			makedirs(path, 0o755, exist_ok=True)
+		except OSError as err:
+			print(f"[UsageConfig] Error {err.errno}: Unable to create configured directory '{path}'!  ({err.strerror})")
+
 	defaultPath = resolveFilename(SCOPE_HDD)
 	config.usage.default_path = ConfigSelection(default=defaultPath, choices=[(defaultPath, defaultPath)])
 	config.usage.default_path.load()
@@ -529,18 +557,7 @@ def InitUsageConfig():
 			config.usage.default_path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.usage.default_path.value = savedPath
 	config.usage.default_path.save()
-	currentPath = config.usage.default_path.value
-	print(f"[UsageConfig] Checking/Creating current movie directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current movie directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default movie directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default movie directory '{defaultPath}'!  ({err.strerror})")
+	config.usage.default_path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	choiceList = [
 		("<default>", "<Default>"),
@@ -566,6 +583,7 @@ def InitUsageConfig():
 	config.usage.instantrec_path.save()
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
+	config.usage.movielistTrashcanConfirm = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
@@ -1650,6 +1668,12 @@ def InitUsageConfig():
 		("beginning", _("At beginning")),
 		("end", _("At end"))
 	])
+	config.usage.timerListSortOrder = ConfigSelection(default="dateAscending", choices=[
+		("dateAscending", _("Start Time (Earliest First)")),
+		("dateDescending", _("Start Time (Latest First)")),
+		("nameAscending", _("Name (A-Z)")),
+		("nameDescending", _("Name (Z-A)"))
+	])
 	config.usage.timerlist_show_epg = ConfigYesNo(default=True)
 
 	def updateEnterForward(configElement):
@@ -2399,18 +2423,8 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
-	currentPath = config.timeshift.path.value
-	print(f"[UsageConfig] Checking/Creating current time shift directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current time shift directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default time shift directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default time shift directory '{defaultPath}'!  ({err.strerror})")
+	# The Timeshift storage worker creates missing directories after checking
+	# the mount. A settings notifier must not create them on fallback RAM/flash.
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
@@ -2421,13 +2435,14 @@ def InitUsageConfig():
 
 	config.timeshift.path.addNotifier(setTimeshiftPath)
 
+	choiceList = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movie list location>")), ("<timer>", _("<Last timer location>"))]
 	config.timeshift.recordingPath = ConfigSelection(default="<default>", choices=choiceList)
 	config.timeshift.recordingPath.load()
 	if config.timeshift.recordingPath.saved_value:
 		savedValue = config.timeshift.recordingPath.saved_value if config.timeshift.recordingPath.saved_value.startswith("<") else pathjoin(config.timeshift.recordingPath.saved_value, "")
-		if savedValue and savedValue not in choiceList:
+		if savedValue and savedValue not in [x[0] for x in choiceList]:
 			config.timeshift.recordingPath.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
-			config.timeshift.recordingPath.value = savedValue
+		config.timeshift.recordingPath.value = savedValue
 	config.timeshift.recordingPath.save()
 
 

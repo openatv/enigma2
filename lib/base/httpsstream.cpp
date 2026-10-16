@@ -1,4 +1,6 @@
 #include <cstdio>
+#include <cerrno>
+#include <time.h>
 
 #include <lib/base/httpsstream.h>
 #include <lib/base/eerror.h>
@@ -50,6 +52,7 @@ int eHttpsStream::openUrl(const std::string &url, std::string &newurl)
 	size_t buflen = 1024;
 	char *linebuf = NULL;
 	int result;
+	int failure = -1;
 	char proto[100];
 	int statuscode = 0;
 	char statusmsg[100];
@@ -124,6 +127,7 @@ int eHttpsStream::openUrl(const std::string &url, std::string &newurl)
 	if (streamSocket < 0)
 	{
 		eDebug("[eHttpsStream] Connect failed on %s", hostname.c_str());
+		failure = -EAGAIN; // The network (including DNS) may not be ready at boot.
 		goto error;
 	}
 
@@ -298,7 +302,7 @@ error:
 	eDebug("[eHttpsStream] %s failed", __func__);
 	free(linebuf);
 	close();
-	return -1;
+	return failure;
 }
 
 int eHttpsStream::open(const char *url)
@@ -321,10 +325,24 @@ void eHttpsStream::thread()
 	usleep(startDelay); // wait up to half a second
 	std::string currenturl, newurl;
 	currenturl = streamUrl;
-	for (unsigned int i = 0; i < 5; i++)
+	unsigned int retries = 0;
+	for (unsigned int redirects = 0; redirects < 5;)
 	{
-		if (openUrl(currenturl, newurl) < 0)
+		int result = openUrl(currenturl, newurl);
+		if (result < 0)
 		{
+			if (result == -EAGAIN && retries < 4)
+			{
+				// Retry only connection failures, not HTTP or TLS errors.
+				// Stay BUSY so the existing stream can receive data when WiFi is ready.
+				unsigned int delay = 2U << retries++;
+				eDebug("[eHttpsStream] Connection not ready, retry %u/4 in %u seconds", retries, delay);
+				struct timespec remaining = { (time_t)delay, 0 };
+				// Runs only in this worker; destruction cancels this wait on zap/stop.
+				while (nanosleep(&remaining, &remaining) < 0 && errno == EINTR)
+					;
+				continue;
+			}
 			/* connection failed */
 			eDebug("[eHttpsStream] Thread end NO connection");
 			connectionStatus = FAILED;
@@ -341,6 +359,7 @@ void eHttpsStream::thread()
 		close();
 		currenturl = newurl;
 		newurl = "";
+		++redirects;
 	}
 	/* too many redirect / playlist levels */
 	eDebug("[eHttpsStream] thread end NO connection");
@@ -475,15 +494,16 @@ ssize_t eHttpsStream::read(off_t offset, void *buf, size_t count)
 	if (connectionStatus == BUSY)
 		return 0;
 	else if (connectionStatus == FAILED)
+	{
+		errno = EIO; // Do not reuse a previous EAGAIN in the reader thread.
 		return -1;
+	}
 	return httpChunkedRead(buf, count);
 }
 
 int eHttpsStream::valid()
 {
-	if (connectionStatus == BUSY)
-		return 0;
-	return streamSocket >= 0;
+	return connectionStatus == CONNECTED && streamSocket >= 0;
 }
 
 off_t eHttpsStream::length()

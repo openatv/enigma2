@@ -34,6 +34,8 @@ public:
 	// Timeshift management
 	RESULT activateTimeshift() override;
 	RESULT saveTimeshiftFile() override; // no-op: nothing on disk
+	bool isTimeshiftMemory() override { return true; }
+	long long getTimeshiftFileSize() override { return -1; }
 	void serviceEventTimeshift(int event) override;
 
 	RESULT timeshift(ePtr<iTimeshiftService>& ptr) override { ptr = this; return 0; }

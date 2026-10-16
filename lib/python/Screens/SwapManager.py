@@ -13,6 +13,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 
 config.usage.swapautostart = ConfigYesNo(default=False)
@@ -71,7 +72,9 @@ class StartSwap:
 #######################################################################
 
 
-class Swap(Screen):
+class Swap(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "storage")
+
 	skin = """
 	<screen name="Swap" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" resolution="1280,720">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -94,6 +97,7 @@ class Swap(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Swap Manager"))
 		self["lab1"] = Label()
 		self["autostart_on"] = Pixmap()
@@ -137,7 +141,7 @@ class Swap(Screen):
 		self["swapactive_summary"].setText(_("Current Status:"))
 		scanning = _("Wait please while scanning...")
 		self["lab1"].setText(scanning)
-		self.activityTimer.start(10)
+		self.callLater(self.protectedCallback(self.getSwapDevice))
 
 	def getSwapDevice(self):
 		self.activityTimer.stop()

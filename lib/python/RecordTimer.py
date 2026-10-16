@@ -1,11 +1,11 @@
 from bisect import insort
 from datetime import datetime
-from os import access, fsync, makedirs, remove, rename, statvfs, W_OK
-from os.path import exists, isdir, realpath, ismount
+from os import W_OK, access, fsync, makedirs, remove, rename, statvfs
+from os.path import exists, isdir, ismount, realpath
 from threading import Thread, Timer as ThreadTimer
 from time import ctime, localtime, strftime, time
 
-from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iRecordableService, quitMainloop, pNavigation, setPreferredTuner
+from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iRecordableService, pNavigation, quitMainloop, setPreferredTuner
 
 import NavigationInstance
 from timer import Timer, TimerEntry
@@ -20,7 +20,7 @@ from Components.Task import job_manager
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.ASCIItranslit import legacyEncode
 from Tools.CIHelper import cihelper
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
@@ -66,6 +66,76 @@ class TIMERTYPE:
 
 	def __init__(self):
 		pass
+
+
+class RecordingTunerHandoff:
+	"""One prepare attempt may release live TV, never a later or cancelled timer."""
+
+	def __init__(self, entry, priority):
+		self.entry = entry
+		self.priority = priority
+		self.nav = NavigationInstance.instance
+		self.reference = entry.service_ref.ref
+		self.begin = entry.begin
+		self.previousReference = self.nav.getCurrentlyPlayingServiceOrGroup()
+		self.previousService = self.nav.getCurrentService()
+		self.confirmed = False
+
+	def timerIsValid(self):
+		entry = self.entry
+		return entry.tunerHandoff is self and entry.state == entry.StateWaiting and not (entry.cancelled or entry.failed or entry.disabled) and entry.begin == self.begin and entry.end > time() and entry.service_ref.ref == self.reference and any(x is entry for x in self.nav.RecordTimer.timer_list)
+
+	def isValid(self):
+		return self.timerIsValid() and self.nav.getCurrentlyPlayingServiceOrGroup() == self.previousReference and self.nav.getCurrentService() is self.previousService
+
+	def confirm(self, answer):
+		if not self.confirmed:
+			self.confirmed = True
+			self.entry.requestTunerHandoff(answer, self)
+
+	def stopService(self):
+		if not self.isValid():
+			self.finish(False)
+			return False
+		infobar = InfoBar and InfoBar.instance
+		try:
+			if self.priority and infobar:
+				if getattr(infobar, "recordingPriorityHandoff", None) is not None:
+					self.finish(False)
+					return False
+				infobar.recordingPriorityHandoff = self
+				if infobar.timeshiftEnabled():
+					infobar.session.showInfo(_("A recording has priority. Time shift is being stopped."), timeout=10)
+			# Unlike a generic evEnd (notably FCC), this returns after the old
+			# native service has stopped. A pending PIN/PTS choice is not completion.
+			self.nav.stopService()
+		except Exception as err:
+			self.finish(False)
+			self.entry.log(14, f"Unable to stop live TV for recording: {err}")
+			return False
+		finally:
+			if infobar and getattr(infobar, "recordingPriorityHandoff", None) is self:
+				infobar.recordingPriorityHandoff = None
+		# Native stop dispatches callbacks synchronously. They may cancel this
+		# attempt or start another service, which this request must not replace.
+		if not self.timerIsValid() or self.nav.getCurrentService() is not None:
+			self.finish(False)
+			return False
+		return True
+
+	def finish(self, released):
+		entry = self.entry
+		if entry.tunerHandoff is not self:
+			return
+		valid = self.timerIsValid()
+		entry.tunerHandoff = None
+		self.previousService = None
+		entry.messageBoxAnswerPending = False
+		if valid and released:
+			entry.log(13, "Live TV released for recording; retrying prepare.")
+			entry.justTriedFreeingTuner = True
+		elif valid:
+			entry.log(14, "Live TV was not released; recording may fail.")
 
 
 # Parses an event, and gives out a basic event data tuple.  The tuple provided
@@ -168,6 +238,8 @@ class RecordTimer(Timer):
 			}[timer.afterEvent]))
 			timerEntry.append(f"disabled=\"{int(timer.disabled)}\"")
 			timerEntry.append(f"justplay=\"{int(timer.justplay)}\"")
+			if timer.justplay and timer.hasEndTime and timer.zapBack:
+				timerEntry.append('zapBack="1"')
 			timerEntry.append(f"always_zap=\"{int(timer.always_zap)}\"")
 			if timer.justplay and timer.precondition:
 				timerEntry.append(f"precondition=\"{timer.precondition}\"")
@@ -269,6 +341,7 @@ class RecordTimer(Timer):
 		timer.eventEnd = eventEnd
 		timer.marginAfter = marginAfter
 		timer.hasEndTime = hasEndTime
+		timer.zapBack = bool(justplay and hasEndTime and timerDom.get("zapBack", "0").lower() in ("1", "true", "yes"))
 		timer.cridSeries = cridSeries
 		timer.cridEpisode = cridEpisode
 		timer.cridRecommendation = cridRecommendation
@@ -298,6 +371,7 @@ class RecordTimer(Timer):
 	#
 	def doActivate(self, timer):
 		if timer.shouldSkip():
+			timer.clearZapBack()
 			timer.state = RecordTimerEntry.StateEnded
 		else:
 			# When active returns True this means "accepted", otherwise, the current
@@ -311,6 +385,8 @@ class RecordTimer(Timer):
 		if timer.state < RecordTimerEntry.StateEnded:  # Did this timer reach the last state?
 			insort(self.timer_list, timer)  # No, sort it into active list.
 		else:  # Yes, process repeated, and re-add.
+			if getattr(timer, "tunerHandoff", None):
+				timer.tunerHandoff.finish(False)
 			if timer.repeated:
 				timer.processRepeated()
 				timer.state = RecordTimerEntry.StateWaiting
@@ -335,6 +411,10 @@ class RecordTimer(Timer):
 		self.saveTimers()
 
 	def shutdown(self):
+		for timer in self.timer_list:
+			timer.clearZapBack()
+			if getattr(timer, "tunerHandoff", None):
+				timer.tunerHandoff.finish(False)
 		self.saveTimers()
 
 	def getNextRecordingTimeOld(self, getNextStbPowerOn=False):
@@ -630,11 +710,14 @@ def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 
 
 def createRecordTimerEntry(timer):
-	return RecordTimerEntry(
+	entry = RecordTimerEntry(
 		timer.service_ref, timer.begin, timer.end, timer.name, timer.description, timer.eit, timer.disabled,
 		timer.justplay, timer.afterEvent, dirname=timer.dirname, tags=timer.tags, descramble=timer.descramble,
 		record_ecm=timer.record_ecm, always_zap=timer.always_zap, rename_repeat=timer.rename_repeat
 	)
+	entry.hasEndTime = timer.hasEndTime
+	entry.zapBack = getattr(timer, "zapBack", False)
+	return entry
 
 
 class RecordTimerEntry(TimerEntry):
@@ -693,6 +776,9 @@ class RecordTimerEntry(TimerEntry):
 		self.always_zap = always_zap
 		self.precondition = precondition
 		self.afterEvent = afterEvent
+		self.zapBack = False
+		self.zapBackService = None
+		self.zapBackActive = False
 		self.forceDeepStandby = False
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
@@ -704,6 +790,7 @@ class RecordTimerEntry(TimerEntry):
 		self.messageString = ""
 		self.messageStringShow = False
 		self.messageBoxAnswerPending = False
+		self.tunerHandoff = None
 		self.justTriedFreeingTuner = False
 		self.mountPathRetryCounter = 0
 		self.mountPathErrorNumber = 0
@@ -780,6 +867,8 @@ class RecordTimerEntry(TimerEntry):
 			self.log(5, f"Activating state {nextState}.")
 		# print("[RecordTimer] Activate called", time(), nextState, self.first_try_prepare, " pending ", self.messageBoxAnswerPending, " justTried ", self.justTriedFreeingTuner, " show ", self.messageStringShow, self.messageString)  # DEBUG: remove.
 		if nextState == self.StatePrepared:
+			if getattr(self, "tunerHandoff", None) and not self.tunerHandoff.isValid():
+				self.tunerHandoff.finish(False)
 			if self.messageBoxAnswerPending:
 				self.start_prepare = int(time()) + 1  # Call again in 1 second.
 				return False
@@ -857,8 +946,8 @@ class RecordTimerEntry(TimerEntry):
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) is True:
 					if config.recording.ask_to_abort_pip.value == "ask":
-						self.log(8, "Asking user to disable PiP.")
 						self.messageBoxAnswerPending = True
+						self.log(8, "Asking user to disable PiP.")
 						message = _("A timer failed to record!\nDisable PiP and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB_pip, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
@@ -876,8 +965,8 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isPseudoRecording)) > 0:
 					if config.recording.ask_to_abort_pseudo_rec.value == "ask":
-						self.log(8, "Asking user to abort pseudo recordings.")
 						self.messageBoxAnswerPending = True
+						self.log(8, "Asking user to abort pseudo recordings.")
 						message = _("A timer failed to record!\nAbort pseudo recordings (e.g. EPG refresh) and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB_pseudo_rec, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
@@ -895,8 +984,8 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isStreaming)) > 0:
 					if config.recording.ask_to_abort_streaming.value == "ask":
-						self.log(8, "Asking user to abort streaming.")
 						self.messageBoxAnswerPending = True
+						self.log(8, "Asking user to abort streaming.")
 						message = _("A timer failed to record!\nAbort streaming and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB_streaming, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
@@ -914,21 +1003,23 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				currentReference = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if currentReference and not currentReference.getPath():
+					handoff = RecordingTunerHandoff(self, config.recording.asktozap.value)
+					self.tunerHandoff = handoff
+					self.messageBoxAnswerPending = True
 					if Screens.Standby.inStandby:
 						self.setRecordingPreferredTuner()
-						self.failureCB(True)
+						handoff.confirm(True)
 					elif not config.recording.asktozap.value:
 						self.log(8, "Asking user to zap.")
-						self.messageBoxAnswerPending = True
 						message = _("A timer failed to record!\nDisable TV and try again?\n")
 						if InfoBar and InfoBar.instance:
-							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
+							InfoBar.instance.openInfoBarMessageWithCallback(handoff.confirm, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
 						else:
-							AddNotificationWithCallback(self.failureCB, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
+							AddNotificationWithCallback(handoff.confirm, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
 					else:  # Zap without asking.
 						self.log(9, "Zap without asking.")
 						self.setRecordingPreferredTuner()
-						self.failureCB(True)
+						handoff.confirm(True)
 					return False
 				elif currentReference:
 					self.log(8, "Running service is not a live service so stopping it makes no sense.")
@@ -953,6 +1044,7 @@ class RecordTimerEntry(TimerEntry):
 			if self.failed:
 				return True
 			if self.justplay:
+				self.clearZapBack()
 				if Screens.Standby.inStandby:
 					if self.precondition == 1:
 						self.log(11, "In standby, zap timer ignored (running only).")
@@ -974,12 +1066,7 @@ class RecordTimerEntry(TimerEntry):
 					AddModalNotification(text=message, timeout=config.recording.confirmZapDelay.value, default=True, windowTitle=_("Zap"), callback=self.zapTimerCB)
 				else:
 					self.log(11, "Zapping.")
-					Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
-					NavigationInstance.instance.isMovieplayerActive()
-					if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
-						InfoBar.instance.servicelist.performZap(self.service_ref.ref)
-					else:
-						NavigationInstance.instance.playService(self.service_ref.ref)
+					self.startZapTimer()
 				return True
 			else:
 				self.log(11, "Start recording.")
@@ -998,6 +1085,7 @@ class RecordTimerEntry(TimerEntry):
 				self.log(12, f"Auto increase recording length {int((self.end - oldEnd) / 60)} minute(s).")
 				self.state -= 1
 				return True
+			self.returnFromZapTimer()
 			if self.justplay:
 				self.log(12, "End zapping.")
 			else:
@@ -1135,6 +1223,8 @@ class RecordTimerEntry(TimerEntry):
 		}[nextState]
 
 	def timeChanged(self):
+		if getattr(self, "tunerHandoff", None):
+			self.tunerHandoff.finish(False)
 		oldPrepare = self.start_prepare
 		self.start_prepare = int(self.begin) - config.recording.prepare_time.value  # self.prepare_time
 		self.backoff = 0
@@ -1439,6 +1529,22 @@ class RecordTimerEntry(TimerEntry):
 			self.log(14, "User didn't want to abort streaming, try other methods of freeing a tuner.")
 		self.messageBoxAnswerPending = False
 
+	def requestTunerHandoff(self, answer, handoff):
+		if not answer or not handoff.isValid():
+			handoff.finish(False)
+			return
+		try:
+			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+				InfoBar.instance.servicelist.performZap(self.service_ref.ref, recordingHandoff=handoff)
+			elif handoff.stopService():
+				try:
+					NavigationInstance.instance.playService(self.service_ref.ref)
+				finally:
+					handoff.finish(True)
+		except Exception as err:
+			handoff.finish(False)
+			self.log(14, f"Unable to release live TV for recording: {err}")
+
 	def failureCB(self, answer):
 		if answer:
 			self.log(13, "Okay, zapped away.")
@@ -1455,16 +1561,93 @@ class RecordTimerEntry(TimerEntry):
 		self.messageBoxAnswerPending = False
 
 	def zapTimerCB(self, answer):
-		if answer:
+		if answer and not self.cancelled and not self.failed and (not self.hasEndTime or time() < self.end):
 			self.log(11, "User confirmed zap timer.")
-			Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
-			NavigationInstance.instance.isMovieplayerActive()
-			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
-				InfoBar.instance.servicelist.performZap(self.service_ref.ref)
-			else:
-				NavigationInstance.instance.playService(self.service_ref.ref)
+			self.startZapTimer()
 		else:
 			self.log(11, "User cancelled zap timer.")
+
+	def clearZapBack(self):
+		self.zapBackService = None
+		self.zapBackActive = False
+		nav = NavigationInstance.instance
+		if nav and self.zapBackServiceChanged in nav.event:
+			nav.event.remove(self.zapBackServiceChanged)
+
+	def zapBackServiceChanged(self, event):
+		# Keep the callback registered until cleanup: Navigation iterates the live event list.
+		if self.zapBackService is None:
+			return
+		if event == iPlayableService.evStart:
+			current = NavigationInstance.instance.getCurrentlyPlayingServiceOrGroup()
+			if not self.zapBackActive and current == self.service_ref.ref:
+				self.zapBackActive = True
+			else:
+				self.zapBackService = None
+		elif (event == iPlayableService.evEnd and self.zapBackActive) or event == iPlayableService.evTuneFailed:
+			self.zapBackService = None
+
+	def startZapTimer(self):
+		nav = NavigationInstance.instance
+		self.clearZapBack()
+		current = nav.getCurrentlyPlayingServiceOrGroup()
+		serviceList = InfoBar.instance.servicelist if InfoBar and InfoBar.instance else None
+		if (self.zapBack and self.hasEndTime and self.afterEvent == AFTEREVENT.NONE
+			and not Screens.Standby.inStandby and current and current != self.service_ref.ref
+			and not current.getPath().startswith("/") and not (serviceList and serviceList.dopipzap)):
+			self.zapBackService = current
+			nav.event.append(self.zapBackServiceChanged)
+		Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
+		nav.isMovieplayerActive()
+		if serviceList:
+			serviceList.performZap(self.service_ref.ref)
+		else:
+			nav.playService(self.service_ref.ref)
+
+	def returnFromZapTimer(self):
+		previous = self.zapBackService if self.zapBackActive else None
+		self.clearZapBack()
+		if (not previous or not self.justplay or not self.zapBack or not self.hasEndTime or self.afterEvent != AFTEREVENT.NONE
+			or self.cancelled or self.failed or self.disabled or Screens.Standby.inStandby or Screens.Standby.inTryQuitMainloop):
+			return
+		nav = NavigationInstance.instance
+		if nav.getCurrentlyPlayingServiceOrGroup() != self.service_ref.ref:
+			return
+		# Do not compete with another zap timer, including one due in this timer tick.
+		now = int(time())
+		if any(timer is not self and not timer.disabled and not timer.cancelled and not timer.failed
+			and (timer.justplay or timer.always_zap) and timer.begin <= now + 1 and now < timer.end
+			for timer in nav.RecordTimer.timer_list):
+			self.log(12, "Not returning to previous service: another zap timer has priority.")
+			return
+		service = nav.getCurrentService()
+		timeshift = service and service.timeshift()
+		if timeshift and timeshift.isTimeshiftActive():
+			self.log(12, "Not returning to previous service: timeshift playback is active.")
+			return
+		if not isPlayableForCur(previous):
+			self.log(12, "Not returning to previous service: no free tuner or service unavailable.")
+			return
+		serviceList = InfoBar.instance.servicelist if InfoBar and InfoBar.instance else None
+		if serviceList and serviceList.dopipzap:
+			return
+		self.log(12, "Returning to service watched before zap timer.")
+		if serviceList:
+			serviceList.performZap(previous)
+		else:
+			nav.playService(previous)
+
+	def abort(self):
+		self.clearZapBack()
+		TimerEntry.abort(self)
+		if getattr(self, "tunerHandoff", None):
+			self.tunerHandoff.finish(False)
+
+	def disable(self):
+		self.clearZapBack()
+		TimerEntry.disable(self)
+		if getattr(self, "tunerHandoff", None):
+			self.tunerHandoff.finish(False)
 
 	def check_justplay(self):
 		if self.justplay:

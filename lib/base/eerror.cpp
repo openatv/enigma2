@@ -1,6 +1,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/elock.h>
+#include <cerrno>
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
@@ -175,11 +176,14 @@ int formatTime(char *buf, int bufferSize, int flags)
 
 void eDebugImpl(int flags, const char* fmt, ...)
 {
+	// Time calls can leave a stale errno (time64 fallback on older kernels), keep the caller's for %m
+	int saved_errno = errno;
 	char * buf = new char[eDEBUG_BUFLEN];
 
 	int pos = formatTime(buf, eDEBUG_BUFLEN, flags);
 
 	va_list ap;
+	errno = saved_errno;
 	va_start(ap, fmt);
 	int vsize = vsnprintf(buf + pos, eDEBUG_BUFLEN - pos, fmt, ap);
 	va_end(ap);
@@ -197,6 +201,7 @@ void eDebugImpl(int flags, const char* fmt, ...)
 		buf = new char[pos + vsize + 2];
 		pos = formatTime(buf, pos + vsize, flags);
 
+		errno = saved_errno;
 		va_start(ap, fmt);
 		vsize = vsnprintf(buf + pos, vsize + 1, fmt, ap);
 		va_end(ap);
@@ -217,6 +222,7 @@ void eDebugImpl(int flags, const char* fmt, ...)
 	if (ret < 0) (void)ret;
 
 	delete[] buf;
+	errno = saved_errno;
 	if (flags & _DBGFLG_FATAL)
 		bsodFatal("enigma2");
 }

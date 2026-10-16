@@ -58,6 +58,9 @@ public:
 	int setSlowMotion(int ratio);
 	int setFastForward(int ratio);
 	int setTrickmode();
+#ifdef DREAMNEXTGEN
+	void setUserPauseActive(bool b);
+#endif
 
 	// Audio Control
 	int setAudioPID(int pid, int type);
@@ -132,6 +135,13 @@ private:
 	bool m_paused;
 	int64_t m_last_health_check;
 	void streamHealthCheck();
+
+	// Writer restart: the record thread exits on write errors
+	static const int MAX_WRITER_RESTARTS = 5;
+	static const int WRITER_RESTART_DELAY = 1000;  // ms
+	ePtr<eTimer> m_writer_restart_timer;
+	int m_writer_restarts;
+	void restartWriter();
 
 	// Event Handlers
 	void onSessionActivated(bool active);

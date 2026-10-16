@@ -158,6 +158,7 @@ protected:
 	bool m_alphaBlend = false;
 	uint8_t m_align = eStackAlignNone;
 	virtual void invalidateChilds() {} // This will be overwritten in subclass
+	virtual void forgetStackChild(eWidget*) { /* only eStack keeps a child list */ }
 
 public:
 	// all in local space!

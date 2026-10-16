@@ -1,15 +1,20 @@
-from os import stat
-from os.path import isdir, join as pathjoin
+from os.path import join
 
 from Components.config import config
-from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES, TimeshiftLocationBox
+from Components.TimeshiftStorage import checkStorageDirectory
+from Screens.LocationBox import TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
-from Tools.Directories import fileAccess, hasHardLinks
+from Tools.StorageCheck import StoragePathCheck
 
 
 class TimeshiftSettings(Setup):
 	def __init__(self, session):
+		self.pathItem = None
+		self.status = None
+		self.checkedPath = None
+		self.savePending = False
+		self.pathCheck = StoragePathCheck(self.checkStoragePath, self.pathChecked)
 		self.buildChoices(config.timeshift.path, None)
 		Setup.__init__(self, session=session, setup="Timeshift")
 		for index, item in enumerate(self["config"].getList()):
@@ -19,7 +24,10 @@ class TimeshiftSettings(Setup):
 		else:
 			print("[Timeshift] Error: ConfigList time shift path entry not found!")
 			self.pathItem = None
-		self.status = None
+		self.onClose.append(self.pathCheck.cancel)
+
+	def checkStoragePath(self, path):
+		checkStorageDirectory(path, create=True)
 
 	def buildChoices(self, configEntry, path):
 		configList = config.timeshift.allowedPaths.value[:]
@@ -43,22 +51,48 @@ class TimeshiftSettings(Setup):
 		self.pathStatus()
 
 	def pathStatus(self):
-		if self["config"].getCurrentIndex() == self.pathItem:
-			path = self.getCurrentValue()
-			if not isdir(path):
-				footnote = _("Directory '%s' does not exist!") % path
-			elif stat(path).st_dev in DEFAULT_INHIBIT_DEVICES and config.timeshift.skipReturnToLive.value is False:  # allow timeshift on flash for audio plugins and no other volume availabe
-				footnote = _("Flash directory '%s' not allowed!") % path
-			elif not fileAccess(path, "w"):
-				footnote = _("Directory '%s' not writable!") % path
-			elif not hasHardLinks(path):
-				footnote = _("Directory '%s' can't be linked to recordings!") % path
+		if self.getCurrentItem() == config.timeshift.path:
+			path = config.timeshift.path.value
+			if path != self.checkedPath:
+				self.checkPath()
 			else:
-				footnote = ""
-			self.setFootnote(footnote)
-			self.status = footnote
+				self.setFootnote(self.status or "")
+
+	def checkPath(self, save=False):
+		path = config.timeshift.path.value
+		if self.savePending:
+			return
+		if self.pathCheck.start((path,)):
+			self.checkedPath = path
+			self.savePending = save
+			self.status = _("Checking storage directory...")
+			self.setFootnote(self.status)
+		elif save:
+			self.checkedPath = path
+			self.session.openWithCallback(self.keySaveCallback, MessageBox, _("A storage check is still running. Save these settings without waiting for it?"), type=MessageBox.TYPE_YESNO, default=False)
+
+	def pathChecked(self, errors):
+		save = self.savePending
+		self.savePending = False
+		if self.checkedPath != config.timeshift.path.value:
+			self.checkedPath = None
+			self.pathStatus()
+			return
+		if errors is None:
+			self.status = _("The storage check did not finish. Please check the device or network and try again.")
+		else:
+			self.status = errors.get(self.checkedPath, "")
+		if save or self.getCurrentItem() == config.timeshift.path:
+			self.setFootnote(self.status)
+		if save:
+			if self.status:
+				self.session.openWithCallback(self.keySaveCallback, MessageBox, "%s\n\n%s\n%s" % (self.status, _("Time shift may not work correctly without an acceptable directory."), _("Save these settings anyway?")), type=MessageBox.TYPE_YESNO, default=False)
+			else:
+				Setup.keySave(self)
 
 	def keySelect(self):
+		if self.savePending:
+			return
 		if self.getCurrentItem() == config.timeshift.path:
 			self.session.openWithCallback(self.keySelectCallback, TimeshiftLocationBox)
 		else:
@@ -66,16 +100,21 @@ class TimeshiftSettings(Setup):
 
 	def keySelectCallback(self, path):
 		if path is not None:
-			path = pathjoin(path, "")
+			path = join(path, "")
 			self.buildChoices(config.timeshift.path, path)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 
 	def keySave(self):
-		if self.status:
-			self.session.openWithCallback(self.keySaveCallback, MessageBox, "%s\n\n%s" % (self.status, _("Time shift may not work correctly without an acceptable directory.")), type=MessageBox.TYPE_WARNING)
-		else:
-			Setup.keySave(self)
+		self.checkPath(save=True)
 
 	def keySaveCallback(self, result):
-		Setup.keySave(self)
+		if result and self.checkedPath == config.timeshift.path.value:
+			Setup.keySave(self)
+
+	def closeConfigList(self, closeParameters=()):
+		# Cancel before the discard-changes question opens, not only onClose.
+		self.pathCheck.cancel()
+		self.savePending = False
+		self.checkedPath = None
+		Setup.closeConfigList(self, closeParameters)

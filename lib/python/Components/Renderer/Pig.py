@@ -14,13 +14,6 @@ class Pig(Renderer):
 		self.Size = None
 		self.hidePip = True
 
-	def postWidgetCreate(self, instance):
-		instance.setDecoder(0)
-		instance.setFBSize(getDesktop(0).size())
-
-	def preWidgetRemove(self, instance):
-		pass
-
 	def applySkin(self, desktop, parent):
 		attribs = list(self.skinAttributes or [])
 		for attrib, value in list(attribs):
@@ -35,13 +28,12 @@ class Pig(Renderer):
 			self.Size = self.instance.size()
 		return ret
 
-	def _applyPosition(self):
-		if not self.instance:
-			return
-		if self.Size:
-			self.instance.resize(self.Size)
-		if self.Position:
-			self.instance.move(self.Position)
+	def postWidgetCreate(self, instance):
+		instance.setDecoder(0)
+		instance.setFBSize(getDesktop(0).size())
+
+	def preWidgetRemove(self, instance):
+		pass
 
 	def onShow(self):
 		if self.instance:
@@ -55,3 +47,11 @@ class Pig(Renderer):
 			self.preWidgetRemove(self.instance)
 			if self.hidePip:
 				PipPigMode(False)
+
+	def _applyPosition(self):
+		if not self.instance:
+			return
+		if self.Size:
+			self.instance.resize(self.Size)
+		if self.Position:
+			self.instance.move(self.Position)

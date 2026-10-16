@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Hybrid TV service mappings. All DVB identity fields are hexadecimal.
+  namespace + onid + tsid + sid must match exactly; names are documentation only.
+  No changes to lamedb or bouquets are needed. Normal DVB services are untouched.
+
+  stream: Play the HTTP(S) media URL directly with the native GStreamer player.
+  hbbtv:  Tune the service and open its AUTOSTART AIT application using Red Button.
+           Requires an installed HbbTV engine; never treats a web page as video.
+  disabled: Keep normal DVB/Red Button behaviour for this service.
+
+  Local entries in /etc/enigma2/hybridservices.xml override these defaults.
+  Use the same root/version and only list your changes. Changes are read on zap;
+  removing the local entry restores the packaged mapping. Invalid edits retain
+  the last valid data until corrected. Stream addresses need maintenance when
+  broadcasters change their URLs. No online address search is performed.
+
+  This mapping currently controls live TV, not recording timers or PiP.
+-->
+<hybridservices version="1">
+	<!-- DVB-T2 ARD Internet Link Services; verified against ARD's ILS configuration. -->
+	<service name="BR Süd HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="622" mode="stream" url="https://mcdn.br.de/br/fs/bfs_sued/replay/de/manifest.mpd" />
+	<service name="hr HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="641" mode="stream" url="https://hr-live.ard-mcdn.de/hr/live/dash/de/manifest.mpd" />
+	<service name="MDR Sachsen-Anhalt HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="662" mode="stream" url="https://mdrtvsadash.akamaized.net/dash/live/2094116/mdrtvsa/dash.mpd" />
+	<service name="Radio Bremen TV HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="6A1" mode="stream" url="https://rbdashlive.akamaized.net/dash/live/2020436/rbfs/dash.mpd" />
+	<service name="rbb Brandenburg HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="6B2" mode="stream" url="https://rbb-live.ard-mcdn.de/rbb/brandenburg/hbbtv/de/manifest.mpd" />
+	<service name="SR HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="6D1" mode="stream" url="https://swrsrfs-dash.akamaized.net/dash/live/2018687/srfsgeo/dash.mpd" />
+	<service name="SWR BW HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="6E1" mode="stream" url="https://mcdn.swr.de/swr/dash/swrbwd/manifest.mpd" />
+	<service name="WDR HD Köln (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="806" mode="stream" url="https://wdr-live.ard-mcdn.de/wdr/replay/dash/de/manifest.mpd" />
+	<service name="ARD alpha HD (Internet)" namespace="EEEE0000" onid="2114" tsid="A02" sid="623" mode="stream" url="https://mcdn.br.de/br/fs/ard_alpha/replay/de/manifest.mpd" />
+	<!-- freenet TV connect linear services, Hamburg DVB-T2 on PLP 1.
+	     Sources: connect.media-broadcast.com/api/1/epg/lineups/freenettv/channels.json
+	     and its linked live.json responses; ANIXE uses hbbtv.anixe.net/js/app_index.js.
+	     Only public, unencrypted live manifests are mapped, not app or VOD playlists. -->
+	<service name="Bloomberg Europe TV (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4281" mode="stream" url="http://cdn-srv06.cdn.media-broadcast.com/egress/chandler/mb/srv06/index.mpd" />
+	<service name="Euronews HD (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4283" mode="stream" url="http://cdn-srv12.cdn.media-broadcast.com/egress/chandler/mb/srv12/index.mpd" />
+	<service name="RiC (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4285" mode="stream" url="http://cdn-srv04.cdn.media-broadcast.com/egress/chandler/mb/srv04/index.mpd" />
+	<service name="INPLUS. (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4286" mode="stream" url="http://cdn-srv10.cdn.media-broadcast.com/egress/chandler/mb/srv10/index.mpd" />
+	<service name="ANIXE HD Serie (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="428B" mode="stream" url="http://wow.anixa.tv/live/anixehd2/manifest_mvnumber.mpd" />
+	<service name="HOPE TV (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="428E" mode="stream" url="http://cdn-srv05.cdn.media-broadcast.com/egress/chandler/mb/srv05/index.mpd" />
+	<service name="QVC STYLE HD (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4291" mode="stream" url="http://cdn-srv03.cdn.media-broadcast.com/egress/chandler/mb/srv03/index.mpd" />
+	<service name="Welt der Wunder TV (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4292" mode="stream" url="http://cdn-srv02.cdn.media-broadcast.com/egress/chandler/mb/srv02/index.mpd" />
+	<service name="sonnenklar.TV HD (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4294" mode="stream" url="http://cdn-srv01.cdn.media-broadcast.com/egress/chandler/mb/srv01/index.mpd" />
+	<service name="N24 DOKU (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4295" mode="stream" url="http://cdn-srv16.cdn.media-broadcast.com/egress/chandler/mb/srv16/index.mpd" />
+	<service name="TLC (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4296" mode="stream" url="http://cdn-srv15.cdn.media-broadcast.com/egress/chandler/mb/srv15/index.mpd" />
+	<service name="MTV HD (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4297" mode="stream" url="http://cdn-srv17.cdn.media-broadcast.com/egress/chandler/mb/srv17/index.mpd" />
+	<service name="Comedy Central (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4298" mode="stream" url="http://cdn-srv18.cdn.media-broadcast.com/egress/chandler/mb/srv18/index.mpd" />
+	<service name="DELUXE MUSIK TV (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="4299" mode="stream" url="http://cdn-srv19.cdn.media-broadcast.com/egress/chandler/mb/srv19/index.mpd" />
+	<service name="kabel eins Doku (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="429A" mode="stream" url="http://cdn-srv20.cdn.media-broadcast.com/egress/chandler/mb/srv20/index.mpd" />
+	<service name="ShopLC HD (connect)" namespace="EEEE0000" onid="2114" tsid="4072" sid="429B" mode="stream" url="http://cdn-srv07.cdn.media-broadcast.com/egress/chandler/mb/srv07/index.mpd" />
+	<!-- freenet TV connect remains a portal, not a single linear channel. -->
+	<service name="freenet TV connect" namespace="EEEE0000" onid="2114" tsid="4072" sid="4280" mode="hbbtv" />
+	<!-- Dedicated satellite portals. Their application URL is read from the AIT. -->
+	<service name="Lokal-TV-Portal HD" namespace="00C00000" onid="1" tsid="3FF" sid="16AD" mode="hbbtv" />
+	<service name="WDR Mediathek (Internet)" namespace="00C00000" onid="1" tsid="3FD" sid="6ED2" mode="hbbtv" />
+	<service name="arte Mediathek (Internet)" namespace="00C00000" onid="1" tsid="3FD" sid="6ED3" mode="hbbtv" />
+</hybridservices>

@@ -45,7 +45,7 @@ class CableScan:
 	def scanCompleted(self, result):
 		self.done = True
 		if result < 0:
-			self.text.setText(_("Scanning failed!"))
+			self.text.setText(_("Error: Scan failed!"))
 		else:
 			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", result) % result)
 
@@ -232,7 +232,7 @@ def CableScanMain(session, **kwargs):
 		session.open(MessageBox, _("No cable tuner found!"), MessageBox.TYPE_ERROR)
 	else:
 		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to scan."), MessageBox.TYPE_ERROR)
+			session.open(MessageBox, _("Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."), MessageBox.TYPE_ERROR)
 		else:
 			session.open(CableScanScreen)
 

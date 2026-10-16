@@ -1,4 +1,5 @@
 from Screens.Processing import Processing
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.ServiceAction import ServiceAction
 
@@ -17,14 +18,17 @@ class RestartNetworkNew:
 		ServiceAction.netrestart(_done, timeout=10000)
 
 
-class RestartNetwork(Screen):
+class RestartNetwork(Screen, ProtectedScreen):
+	protectionSections = ("configuration",)
+
 	skin = """
 		<screen name="RestartNetwork" position="center,center" size="0,0" flags="wfNoBorder" />"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		self.skinName = "DUMMY"
-		self.onLayoutFinish.append(self._restart)
+		self.onLayoutFinish.append(self.protectedCallback(self._restart))
 
 	def _restart(self):
 		RestartNetworkNew.start(callback=self.close)

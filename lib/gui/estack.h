@@ -1,5 +1,5 @@
-#ifndef __lib_gui_epanel_h
-#define __lib_gui_epanel_h
+#ifndef __lib_gui_estack_h
+#define __lib_gui_estack_h
 
 #include <algorithm>
 #include <cstdint>
@@ -14,6 +14,9 @@ public:
 	};
 
 	eStack(eWidget* parent = nullptr, LayoutDirection dir = Vertical);
+	~eStack();
+	eStack(const eStack&) = delete;
+	eStack& operator=(const eStack&) = delete;
 
 	void setLayoutDirection(LayoutDirection dir);
 	LayoutDirection layoutDirection() const { return m_direction; }
@@ -22,7 +25,7 @@ public:
 	void removeChild(eWidget* child);
 
 	int getSpacing() const { return m_spacing; }
-	void setSpacing(int spacing) { m_spacing = spacing; }
+	void setSpacing(int spacing);
 
 	std::string dumpObject() const override {
 		std::ostringstream oss;
@@ -41,11 +44,13 @@ protected:
 	int event(int event, void* data = 0, void* data2 = 0) override;
 	void recalcLayout();
 	void invalidateChilds() override;
+	void forgetStackChild(eWidget* child) override;
 
 private:
 	LayoutDirection m_direction;
 	std::vector<eWidget*> m_stackchilds;
 	int m_spacing;
+	bool m_inLayout = false;
 };
 
 #endif

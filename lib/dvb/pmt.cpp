@@ -121,12 +121,16 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			}
 
 			serviceEvent(eventTuned);
+			if (eDVBCIInterfaces::getInstance())
+				eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 		}
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
 		eDebug("[eDVBServicePMTHandler] tune failed.");
 		serviceEvent(eventTuneFailed);
+		if (eDVBCIInterfaces::getInstance())
+			eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 	}
 }
 
@@ -232,6 +236,24 @@ void eDVBServicePMTHandler::sendEventNoPatEntry()
 		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
 		frontend->checkRetune();
 	}
+}
+
+bool eDVBServicePMTHandler::hasSharedPmtPid(int pmtPid)
+{
+	ePtr<eTable<ProgramAssociationSection>> pat;
+	if (pmtPid <= 0 || m_PAT.getCurrent(pat))
+		return false;
+	bool own = false, other = false;
+	for (const auto &section : pat->getSections())
+		for (const auto &program : *section->getPrograms())
+			if (program->getProgramNumber() && program->getProgramMapPid() == pmtPid)
+			{
+				if (program->getProgramNumber() == m_reference.getServiceID().get())
+					own = true;
+				else
+					other = true;
+			}
+	return own && other;
 }
 
 void eDVBServicePMTHandler::PATready(int)
@@ -528,6 +550,16 @@ void eDVBServicePMTHandler::AITready(int error)
 	}
 	/* for now, do not keep listening for table updates */
 	m_AIT.stop();
+}
+
+
+void eDVBServicePMTHandler::getHbbTVApplicationInfos(std::vector<HbbTVApplicationInfo> &applications) const
+{
+	applications.clear();
+	for (HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin(); infoiter != m_HbbTVApplications.end(); ++infoiter)
+	{
+		applications.push_back(**infoiter);
+	}
 }
 
 void eDVBServicePMTHandler::OCready(int error)

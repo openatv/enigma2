@@ -28,6 +28,7 @@ include dvb_ci/Makefile.inc
 include gdi/Makefile.inc
 include service/Makefile.inc
 include driver/Makefile.inc
+include hbbtv/Makefile.inc
 include nav/Makefile.inc
 include gui/Makefile.inc
 include mmi/Makefile.inc

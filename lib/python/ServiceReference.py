@@ -1,5 +1,5 @@
 from enigma import eServiceReference, eServiceReferenceDVB, eServiceCenter, getBestPlayableServiceReference
-from Components.config import config
+from Components.config import config, configfile
 import NavigationInstance
 
 
@@ -137,6 +137,55 @@ def serviceRefAppendPath(sref, path):
 	nsref = eServiceReference(sref)
 	nsref.setPath(nsref.getPath() + path)
 	return nsref
+
+
+def getPanicService():
+	"""Resolve the saved service in today's bouquets; only migrate numbers once."""
+	reference = config.usage.panicsref.value
+	wanted = eServiceReference(reference) if reference else None
+	if wanted is not None and not wanted.valid():
+		return None, None
+	radio = wanted is not None and isRadioServiceReference(wanted)
+	mode = "radio" if radio else "tv"
+	serviceTypes = service_types_radio_ref if radio else service_types_tv_ref
+	if config.usage.multibouquet.value:
+		root = eServiceReference(serviceTypes)
+		root.setPath(f'FROM BOUQUET "bouquets.{mode}" ORDER BY bouquet')
+	else:
+		root = serviceRefAppendPath(serviceTypes, f' FROM BOUQUET "userbouquet.favourites.{mode}" ORDER BY bouquet')
+	serviceHandler = eServiceCenter.getInstance()
+	visited = set()
+
+	def findService(bouquet, path):
+		key = bouquet.toString()
+		if key in visited:
+			return None, None
+		visited.add(key)
+		services = serviceHandler.list(bouquet)
+		if services is not None:
+			service = services.getNext()
+			while service.valid():
+				if service.flags & eServiceReference.isDirectory and not service.flags & eServiceReference.isGroup:
+					found, foundPath = findService(service, path + [service])
+					if found is not None:
+						return found, foundPath
+				elif not service.flags & eServiceReference.isMarker:
+					matches = service == wanted if wanted is not None else service.getChannelNum() == config.usage.panicchannel.value
+					if matches:
+						return service, path
+				service = services.getNext()
+		return None, None
+
+	service, path = findService(root, [root])
+	if service is None and wanted is not None:
+		# A service removed from a bouquet can still exist in the service database.
+		root = serviceRefAppendPath(serviceTypes, " ORDER BY name")
+		service, path = findService(root, [root])
+	if service is not None and not reference:
+		config.usage.panicsref.value = service.toString()
+		config.usage.panicsref.save()
+		configfile.save()
+	return service, path
 
 
 def hdmiInServiceRef():

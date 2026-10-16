@@ -198,6 +198,11 @@ class Menu(Screen, ProtectedScreen):
 		self.selectedEntry = None
 		self.subMenuSort = None
 		self.createMenuList()
+		self.protectionSections = {
+			"setup": ("configuration",),
+			"timermenu": ("timer_menu",),
+			"shutdown": ("standby_menu",)
+		}.get(self.menuID, ())
 		ProtectedScreen.__init__(self)  # ProtectedScreen needs self.menuID
 		# For the skin: first try a menu_<menuID>, then Menu.
 		self.skinName = []
@@ -225,14 +230,14 @@ class Menu(Screen, ProtectedScreen):
 			"textlong": (self.keyText, _("Switch to 720p video"))
 		}, prio=0, description=_("Menu Common Actions"))
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			# "first": (self.keyFirst, _("Jump to first item in list or the start of text")),
 			# "last": (self.keyLast, _("Jump to last item in list or the end of text")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Menu Navigation Actions"))
 		if config.usage.menuSortOrder.value == "user":
 			self["editActions"] = HelpableActionMap(self, ["ColorActions"], {
@@ -249,7 +254,8 @@ class Menu(Screen, ProtectedScreen):
 		self.nextNumberTimer = eTimer()
 		self.nextNumberTimer.callback.append(self.okbuttonClick)
 		if len(self.menuList) == 1:  # Does this menu have only one item, if so just run that item.
-			self.onExecBegin.append(self.singleItemMenu)
+			self.singleItemMenuAction = self.protectedCallback(self.singleItemMenu)
+			self.onExecBegin.append(self.singleItemMenuAction)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def createMenuList(self, showNumericHelp=False):
@@ -369,8 +375,10 @@ class Menu(Screen, ProtectedScreen):
 					return
 			elif not BoxInfo.getItem(requires, False):
 				return
-		text = self.processDisplayedText(menu.get("text"))
 		key = menu.get("key", "undefined")
+		if not any(child.tag in ("item", "menu") for child in menu) and not plugins.getPluginsForMenu(key):  # Hide empty menus.
+			return
+		text = self.processDisplayedText(menu.get("text"))
 		weight = menu.get("weight", 50)
 		description = self.processDisplayedText(menu.get("description"))
 		image = self.getMenuEntryImage(key, lastKey)
@@ -378,7 +386,6 @@ class Menu(Screen, ProtectedScreen):
 			module = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, self.__class__, menu)
 		else:
 			module = boundFunction(self.session.openWithCallback, self.menuClosed, self.__class__, menu)
-		# TODO: Add check if !empty(menu.childNodes).
 		return (text, module, key, weight, description, image)
 
 	def processDisplayedText(self, text):
@@ -493,7 +500,7 @@ class Menu(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
 	def singleItemMenu(self):
-		self.onExecBegin.remove(self.singleItemMenu)
+		self.onExecBegin.remove(self.singleItemMenuAction)
 		self.okbuttonClick()
 
 	def closeRecursive(self):
@@ -502,17 +509,6 @@ class Menu(Screen, ProtectedScreen):
 
 	def createSummary(self):
 		return MenuSummary
-
-	def isProtected(self):
-		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value and not (hasattr(self.session, "infobar") and self.session.infobar is None):
-				return self.menuID == "mainmenu"
-			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
-				return True
-			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
-				return True
-			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
-				return True
 
 	def keyOk(self):
 		if self.sortMode and len(self.menuList):

@@ -24,6 +24,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 import Screens.InfoBar
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
@@ -36,6 +37,8 @@ MODULE_NAME = __name__.split(".")[-1]
 
 
 class StorageDeviceAction(Setup):
+	protectionSections = ("configuration", "storage")
+
 	ACTION_INITIALIZE = 1
 	ACTION_CHECK = 2
 	ACTION_EXT4CONVERSION = 3
@@ -418,7 +421,9 @@ class StorageDeviceManager():
 		return result
 
 
-class DeviceManager(Screen):
+class DeviceManager(Screen, ProtectedScreen):
+	protectionSections = ("configuration", "storage")
+
 	MOUNT = "/bin/mount"
 	UMOUNT = "/bin/umount"
 	SWAPON = "/sbin/swapon"
@@ -481,6 +486,7 @@ class DeviceManager(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session, mandatoryWidgets=["devicelist"], enableHelp=True)
+		ProtectedScreen.__init__(self)
 		self.setTitle(_("Device Manager"))
 		self.onChangedEntry = []
 		self.deviceList = []
@@ -503,10 +509,10 @@ class DeviceManager(Screen):
 		self["description"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"ok": (self.keyMountPoint, _("Select a permanent mount point for the current device")),
-			"cancel": (self.close, _("Close the Device Manager screen")),
+			"cancel": (self.keyCancel, _("Close the Device Manager screen")),
 			"close": (self.keyClose, _("Close the Device Manager screen and exit all menus")),
 			"menu": (self.keyMenu, _("Hard Disk Settings")),
-			"red": (self.close, _("Close the Device Manager screen")),
+			"red": (self.keyCancel, _("Close the Device Manager screen")),
 			"green": (self.keyActions, _("Select an action for the current device")),
 			"yellow": (self.keyMountPoints, _("Select a permanent mount point for all devices"))
 		}, prio=0, description=_("Device Manager Actions"))
@@ -604,10 +610,14 @@ class DeviceManager(Screen):
 	def keyMenu(self):
 		self.session.open(DeviceManagerSetup)
 
+	def keyCancel(self):
+		if not self.console.appContainers:
+			self.close()
+
 	def keyClose(self):
 		if self.needReboot:
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)
-		else:
+		elif not self.console.appContainers:
 			self.close((True, ))
 
 	def keyMountPoints(self):
@@ -879,6 +889,8 @@ class DeviceManager(Screen):
 
 
 class DeviceManagerMountPoints(Setup):
+	protectionSections = ("configuration", "storage")
+
 	UMOUNT = "/bin/umount"
 	MOUNT = "/bin/mount"
 	defaultOptions = {
@@ -1113,6 +1125,8 @@ class DeviceManagerMountPoints(Setup):
 
 
 class DeviceManagerSetup(Setup):
+	protectionSections = ("configuration", "storage")
+
 	def __init__(self, session):
 		Setup.__init__(self, session, "HardDisk")
 

@@ -71,7 +71,7 @@ self.selectKey("OK")
 
 	<step id="flashexpander" nextstep="swap">
 		<condition>
-self.condition = self.smallFlashSize
+self.condition = self.smallFlashSize and not self.smallBoxPrepared
 		</condition>
 		<config screen="FlashExpander" module="FlashExpander" type="standalone" />
 		<code pos="after" async="yes">
@@ -122,7 +122,7 @@ self.condition = self.hasPartitions()
 
 	<step id="network">
 		<condition>
-self.condition = self.smallFlashSize or self.isFlashExpanderActive()
+self.condition = not self.smallBoxPrepared and (self.smallFlashSize or self.isFlashExpanderActive())
 		</condition>
 		<buttons enable="OK,UP,DOWN" />
 		<text value="To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now." />
@@ -136,7 +136,7 @@ self.condition = self.smallFlashSize or self.isFlashExpanderActive()
 	<step id="update">
 		<condition>
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash")
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
 		</condition>
 		<config screen="WizardInstallSmallBox" module="WizardInstall" type="standalone" />
 	</step>
@@ -144,7 +144,7 @@ self.condition = BoxInfo.getItem("SmallFlash")
 	<step id="networkfailed" >
 		<condition>
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash") and not config.misc.installwizard.ipkgloaded.value
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared and not config.misc.installwizard.ipkgloaded.value
 		</condition>
 		<buttons enable="OK,UP,DOWN" />
 		<text value="The %s %s does not have an Internet connection." />
@@ -427,7 +427,8 @@ config.ParentalControl.setuppin.save()
 	<step id="reboot">
 		<condition>
 from Components.International import international
-self.condition = bool(international.getPurgablePackages())
+from Components.SystemInfo import BoxInfo
+self.condition = not BoxInfo.getItem("SmallFlash") and bool(international.getPurgablePackages())
 		</condition>
 		<buttons enable="" />
 		<text value="Please wait while unused locales/languages are purged..." />
@@ -440,7 +441,7 @@ self.purgeLocales()
 	<step id="restartdevice" nextstep="end">
 		<condition>
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash")
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
 		</condition>
 		<buttons enable="OK" />
 		<text value="Thank you for using and completing the wizard. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />

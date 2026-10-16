@@ -169,10 +169,10 @@ class NetworkMountsOverview(Screen):
 			if retVal:
 				print(f"[{MODULE_NAME}] applyMountChange Error: The 'mount -a' failed, retVal='{retVal}', output='{data!r}'!")
 
-		if mount and mount.get("enabled"):
+		if mount:
 			if mount.get("mode") == "autofs":
 				ServiceAction("autofs").restart(autofsRestarted)
-			else:
+			elif mount.get("enabled"):
 				self.console.ePopen((self.MOUNT, self.MOUNT, "-a"), mountAllDone)
 
 	def mountSaved(self, mount):
@@ -207,8 +207,12 @@ class NetworkMountsOverview(Screen):
 
 			def deleteMountCallback(answer):
 				if answer:
-					self.mounts = [x for x in self.mounts if x is not mount]
-					self.repository.save(self.mounts)
+					mounts = [x for x in self.mounts if x is not mount]
+					error = self.repository.save(mounts)
+					if error:
+						self.session.showError(error)
+						return
+					self.mounts = mounts
 					if mount.get("mode") == "autofs":
 						ServiceAction("autofs").restart(autofsRestarted)
 					else:
@@ -416,7 +420,10 @@ class NetworkMountSetup(Setup):
 		}
 		mounts = [x for x in self.repository.load() if x.get("id") != mount["id"]]
 		mounts.append(mount)
-		self.repository.save(mounts)
+		error = self.repository.save(mounts)
+		if error:
+			self.session.showError(error)
+			return
 		if self.enabled.value and self.mode.value == "fstab":
 			self.repository.ensureMountPoint(mount)
 		if self.onSaved:

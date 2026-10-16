@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 20:19+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -773,12 +773,6 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
 msgid "%d %B %Y"
 msgstr "%Y. %B %d."
 
@@ -1237,6 +1231,10 @@ msgid "%s Information Actions"
 msgstr "%s Információ műveletek"
 
 #, python-format
+msgid "%s MHz"
+msgstr "(%s MHz)"
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s - beállítás"
 
@@ -1288,6 +1286,9 @@ msgstr ""
 msgid "%s not available."
 msgstr "%s nem elérhető."
 
+msgid "%s support"
+msgstr ""
+
 #, python-format
 msgid "%s version"
 msgstr ""
@@ -1300,6 +1301,7 @@ msgstr ""
 msgid "%s%d min"
 msgstr "%s%d perc"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s%s(Alapértelmezett: %s)"
@@ -1380,9 +1382,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a rendszer Timeshift fájlt törölni."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Készenlét fogadása a TV-től' magasabb prioritású mint a 'Bemenet fogadása a TV-től'."
 
@@ -1454,6 +1453,21 @@ msgstr ""
 msgid "-24h/+24 Hours"
 msgstr "-1 nap/+1 nap"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/s"
 
@@ -1478,6 +1492,9 @@ msgstr "12 karakter"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 msgid "12V output"
 msgstr "12V kimenet"
 
@@ -1486,9 +1503,6 @@ msgstr "12V kimenet."
 
 msgid "12bit"
 msgstr "12 bit"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12bit 4:2:0/4:2:2 nincs Kép-a-Képben"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -1665,9 +1679,6 @@ msgstr ""
 msgid "A crash log was %s created in '%s'"
 msgstr "Összeomlási napló %s létrehozva a '%s'"
 
-msgid "A file from media is in use!"
-msgstr "Egy fájl még használatban van a hordozón!"
-
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1721,15 +1732,15 @@ msgstr ""
 "A felvétel elindul:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 "Egy felvétel folyamatban van. \n"
 "Mit szeretne tenni?"
-
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Egy felvétel folyamatban van. A keresés elindítása előtt állítsa meg a felvételt."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, mielőtt megpróbálná elindítani a műhold keresést."
@@ -1750,6 +1761,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "A keresett eszköz (%s) nem található."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -1975,6 +1989,9 @@ msgstr "Adapter beállításai"
 
 msgid "Add"
 msgstr "Hozzáadás"
+
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
 
 msgid "Add Alternatives"
 msgstr "alternatívák hozzáadása"
@@ -2214,6 +2231,9 @@ msgstr ""
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Állítsa be úgy a színeket, hogy a színcsíkok megkülönböztethetők legyenek, de a telítettség a lehető legmegfelelőbb legyen. Ha az eredménnyel elégedett, akkor nyomja meg az OK gombot a video finombeállítások bezárásához, vagy a számgombok segítségével válasszon másik teszt ábrát."
 
@@ -2225,9 +2245,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Állítsa be a használt teletext betűinek függőleges pozícióját."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Felnőtt"
@@ -2278,6 +2295,9 @@ msgid "Afrikaans"
 msgstr ""
 
 msgid "After Event"
+msgstr ""
+
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
 msgstr ""
 
 msgid "After event"
@@ -2354,6 +2374,9 @@ msgstr "minden esemény fel"
 msgid "All files"
 msgstr ""
 
+msgid "All packages"
+msgstr ""
+
 msgid "All regions"
 msgstr ""
 
@@ -2388,11 +2411,8 @@ msgstr "Hozzárendelés"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Jelöljön ki egy számot a beállított fizikai LNB-hez. Ezt az LNB-t újra kiválaszthatja más műholdak számára (például motoros dishezhez), hogy elmenthesse ugyanazon LNB beállítását többször."
 
-msgid "Allow 10bit"
-msgstr "A 10bit engedélyezése"
-
-msgid "Allow 12bit"
-msgstr "A 12bit engedélyezése"
+msgid "Allow %s-bit"
+msgstr ""
 
 msgid "Allow guest access"
 msgstr ""
@@ -2511,6 +2531,12 @@ msgstr "A felvételek mindig tartalmazzák az ECM-et"
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "A felvételek mindig tartalmazzák az ECM üzeneteket. Ez felülírja az egyéni időzítő beállításokat. Ez az opció lehetővé teszi, hogy a felvételeket később offline dekódolhassuk. Alapértelmezett: kikapcsolva."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "Csatornacsomagok állandó mutatása"
 
@@ -2610,6 +2636,9 @@ msgstr "Alkalmazza a változtatásokat az aktív területi beállításon/nyelve
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Alkalmazza az aktuálisan kiemelt terület/nyelvet, és lépjen ki"
+
+msgid "Apply the settings without saving them"
+msgstr ""
 
 msgid "Aqua"
 msgstr ""
@@ -2755,6 +2784,9 @@ msgstr "bővítményként a kiterjesztett sávban"
 msgid "Ascending"
 msgstr ""
 
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
+
 msgid "Ask user"
 msgstr "Felhasználó kérdezése"
 
@@ -2863,6 +2895,9 @@ msgid "Audio Synchronization"
 msgstr ""
 
 msgid "Audio bit rate"
+msgstr ""
+
+msgid "Audio decoding"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2991,10 +3026,16 @@ msgstr "Automatikus felbontás címke"
 msgid "Automatic scan for services"
 msgstr "Automatikus keresése a csatornáknak"
 
+msgid "Automatically hide OSD"
+msgstr ""
+
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
+
+msgid "Automatically start time shift"
 msgstr "Timeshift automatikus indítása ennyi idő múlva"
 
 msgid "Automatically turn on external subtitles"
@@ -3122,6 +3163,9 @@ msgstr "Törlés sebessége"
 msgid "Background selected:"
 msgstr "Háttér bejelölve:"
 
+msgid "Background sound/clean feed"
+msgstr ""
+
 msgid "Background:"
 msgstr "Háttér:"
 
@@ -3229,6 +3273,9 @@ msgstr "Kosárlabda"
 
 msgid "Basque"
 msgstr "Baszk"
+
+msgid "Battery"
+msgstr ""
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
@@ -3355,6 +3402,9 @@ msgstr ""
 msgid "Bluetooth Setup"
 msgstr "Bluetooth eszköz beállítása"
 
+msgid "Bluetooth remote"
+msgstr ""
+
 msgid "Bolivia"
 msgstr ""
 
@@ -3432,6 +3482,10 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
+
 msgid "Bouquets"
 msgstr ""
 
@@ -3507,6 +3561,9 @@ msgstr "Brunei"
 msgid "Buffer Management"
 msgstr ""
 
+msgid "Buffer age limit"
+msgstr "Timeshift puffer határa [órákban]"
+
 #, python-format
 msgid "Buffering %d%%"
 msgstr "Pufferelés %d%%"
@@ -3581,7 +3638,7 @@ msgstr ""
 msgid "ButtonSetup"
 msgstr "Távirányító gomb beállítás"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "HDMI EDID ellenőrzés kihagyása"
 
 msgid "Bytes received"
@@ -3707,6 +3764,9 @@ msgid "CPU / Core %d type"
 msgstr ""
 
 msgid "CPU Control"
+msgstr ""
+
+msgid "CPU Control Actions"
 msgstr ""
 
 msgid "CPU architecture"
@@ -4076,9 +4136,6 @@ msgstr "Csád"
 msgid "Chamorro"
 msgstr ""
 
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "A Boxmode megváltoztatása a Hardware Chip Modes vezérléséhez *"
-
 #, fuzzy
 msgid "Change Language"
 msgstr "Kezelő felület nyelve"
@@ -4112,6 +4169,9 @@ msgstr "Felvétel módosítása (befejezés időpontja)"
 
 msgid "Change repeat and delay settings?"
 msgstr "Billentyű ismétlést/késletletést megváltoztatja?"
+
+msgid "Change search"
+msgstr ""
 
 msgid "Change skin"
 msgstr "Kinézet (Skin) váltása"
@@ -4282,6 +4342,12 @@ msgstr ""
 msgid "Check for PDC availability on each service."
 msgstr ""
 
+msgid "Check for free space"
+msgstr "Timeshift ellenőrizze a szabad helyet?"
+
+msgid "Check for older files"
+msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
+
 msgid "Check power and input state from TV"
 msgstr "Áramellátás és bemeneti állapot ellenőrzése a TV-készüléken"
 
@@ -4302,6 +4368,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Fájlrendszer ellenőrzése..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4511,6 +4580,9 @@ msgstr "Rögzítettek törlése"
 msgid "Clear play list"
 msgstr "Lejátszási lista törlése"
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear the logs for this timer"
 msgstr ""
 
@@ -4573,9 +4645,6 @@ msgstr ""
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr ""
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr ""
 
@@ -4597,25 +4666,25 @@ msgstr ""
 msgid "Close the choice box"
 msgstr ""
 
-msgid "Close the current screen"
-msgstr ""
-
 msgid "Close the documentation screen"
 msgstr ""
 
 msgid "Close the screen"
 msgstr ""
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
+msgstr ""
+
+msgid "Close the screen and stop a running scan"
 msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr ""
 
 msgid "Close the window"
-msgstr ""
-
-msgid "Close this screen"
 msgstr ""
 
 msgid "Close title selection"
@@ -4661,6 +4730,9 @@ msgid "Color space"
 msgstr "Színtér"
 
 msgid "Colored text"
+msgstr ""
+
+msgid "Colorimetry for HDR content"
 msgstr ""
 
 msgid "Combined"
@@ -5115,9 +5187,6 @@ msgstr "Állítsa be, hogy a felvételi szimbólum milyen esemény esetén láth
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Milyen típusú videó jel jelenjen meg a SCART kimeneten."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Több tuner esetén melyik tuner legyen előnyben a felvételekhez."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Állítsa be, hogy melyik tuner legyen elsődleges, ha a műsor több tuneren elérhető."
 
@@ -5143,6 +5212,9 @@ msgid "Configuring Service"
 msgstr ""
 
 msgid "Confirm Zap"
+msgstr ""
+
+msgid "Confirm moving files to the trashcan"
 msgstr ""
 
 #, python-format
@@ -5504,7 +5576,16 @@ msgstr ""
 msgid "Create a randomly generated password"
 msgstr ""
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
+msgstr ""
+
+msgid "Create an image backup"
 msgstr ""
 
 msgid "Create application loader dump."
@@ -5567,9 +5648,6 @@ msgstr "AP és SC fájlok létrehozása"
 
 msgid "Creating file system"
 msgstr "Fájlrendszer létrehozása"
-
-msgid "Creating hard link to time shift file failed!"
-msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
 
 #, python-format
 msgid ""
@@ -5638,8 +5716,7 @@ msgstr ""
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr ""
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
+msgid "Current CPU speed"
 msgstr ""
 
 msgid "Current Directory"
@@ -5648,8 +5725,20 @@ msgstr ""
 msgid "Current Event:"
 msgstr "Aktuális műsor:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "Jelenlegi állapot:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5851,9 +5940,6 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
-msgid "Override DNS"
-msgstr ""
-
 msgid "DNS protocol mode"
 msgstr ""
 
@@ -5948,6 +6034,9 @@ msgstr "Tánc"
 
 msgid "Danish"
 msgstr "Dán"
+
+msgid "Dari"
+msgstr ""
 
 msgid "Darts"
 msgstr ""
@@ -6301,6 +6390,9 @@ msgstr "Megadja az ugrás távolságát a előre ugrásnál. Az értéket meg ke
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Meghatározza, hogy mely gyors előre tekerés sebességet használják a normál értékként. Minden más sebességek és az összes visszatekerési sebességek vannak használva az ugrási időnél."
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Késleltetés a diseqc periféria bekapcsolási parancsa után"
 
@@ -6407,6 +6499,9 @@ msgstr "Bővítmények törlése"
 
 msgid "Delete Timer"
 msgstr "Időzítő törlése"
+
+msgid "Delete after zap"
+msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
 
 msgid "Delete all duplicated lines"
 msgstr ""
@@ -6536,9 +6631,6 @@ msgstr "Fájlok törlése"
 
 msgid "Deleting files"
 msgstr "Fájlok törlése"
-
-msgid "Delivery system workaround"
-msgstr "A szállított rendszer használata"
 
 #, fuzzy
 msgid "Democratic Republic of the Congo"
@@ -6681,6 +6773,15 @@ msgstr "DiSEqC mód"
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC port %s: %s"
 
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
+
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-Teszter beállításai"
 
@@ -6719,10 +6820,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Mappa"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7265,6 +7362,9 @@ msgstr ""
 msgid "Drivers version"
 msgstr ""
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7572,9 +7672,6 @@ msgstr "Engedélyezve a(z) %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
-msgid "Enable Autorecord"
-msgstr "Automatikus Timeshift felvétel engedélyezése"
-
 msgid "Enable BT audio"
 msgstr "BT Audió engedélyezve"
 
@@ -7641,9 +7738,6 @@ msgstr "Engedélyezze a hálózati IP-cím ellenőrzését"
 msgid "Enable OpenTV EPG"
 msgstr "OpenTV EPG engedélyezése"
 
-msgid "Enable PiP no HDR"
-msgstr "engedélyezze a Kép-a-Képben funkciót mikor nincs HDR"
-
 msgid "Enable Quad PiP"
 msgstr "Négy csatornás Kép-a-Képben engedélyezése"
 
@@ -7675,8 +7769,11 @@ msgid "Enable auto fast scan"
 msgstr "Automatikus gyorskeresés engedélyezése"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "Automatikus gyorskeresés engedélyezése ehhez: %s"
+
+msgid "Enable auto record"
+msgstr "Automatikus Timeshift felvétel engedélyezése"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -8033,9 +8130,6 @@ msgstr ""
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr ""
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr ""
 
@@ -8055,6 +8149,9 @@ msgid "Enter the network domain name suffix to be added to the hostname above. T
 msgstr ""
 
 msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
+msgid "Enter the new four-digit PIN code."
 msgstr ""
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
@@ -8079,6 +8176,9 @@ msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr ""
+
+msgid "Enter the same PIN code again to confirm it."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -8253,12 +8353,18 @@ msgstr ""
 msgid "Error code"
 msgstr "Hibakód"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
 
 msgid "Error executing plugin"
 msgstr "Bővítmény indítási hiba"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8272,10 +8378,16 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Hiba a felvett fájl megnyitásakor"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "Hiba történt a weboldal olvasásakor!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving the channel backup from the remote receiver!"
 msgstr ""
 
 msgid "Error text:"
@@ -8293,9 +8405,6 @@ msgstr ""
 "Hiba történt a tartalék tuner időzítők letöltésekor\n"
 "%s"
 
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
@@ -8306,6 +8415,9 @@ msgid ""
 msgstr ""
 "Hiba: %s\n"
 "Próbáljam újra?"
+
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Egy felvétel folyamatban van. A keresés elindítása előtt állítsa meg a felvételt."
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Egy üres fájlnév érvénytelen."
@@ -8379,6 +8491,9 @@ msgstr "%s mappák eltávolítása sikertelen. (Lehet nem üres)"
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "A keresés sikertelen!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr ""
@@ -8416,11 +8531,26 @@ msgstr ""
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr ""
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Nem lehet létrehozni a szükséges könyvtárakat az adathordozón (pl. USB drive vagy Merevlemez) - Ellenőrizze az adathordozót, és próbálja újra!"
 
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
+
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
+
+msgid "Error: Unable to select the nominated audio channel!"
 msgstr ""
 
 #, python-format
@@ -8491,8 +8621,14 @@ msgstr ""
 msgid "Event View Context Menu"
 msgstr "Eseménynézet menü"
 
+msgid "Event based file splitting"
+msgstr "Minden Timeshift külön felvételi pufferben legyen"
+
 msgid "Event font size"
 msgstr "Esemény betűmérete"
+
+msgid "Event limit"
+msgstr "Timeshift felvételek korlátozása [felvételek száma]"
 
 msgid "Event name only"
 msgstr "Csak eseménynév"
@@ -8879,6 +9015,15 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "Szolgáltatói keresés"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -8890,6 +9035,9 @@ msgstr "Előre tekerési sebességek"
 
 msgid "Fast forward speeds"
 msgstr "Előre tekerési sebességek"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "[kedvencek módosítása]"
@@ -9271,6 +9419,9 @@ msgstr "kényszerített letiltás"
 
 msgid "Force enabled"
 msgstr "kényszerített engedélyezés"
+
+msgid "Force progressive for streams and files"
+msgstr ""
 
 msgid "Foreign countries/Expeditions"
 msgstr "külföldi országok/kirándulás"
@@ -9751,9 +9902,6 @@ msgstr "HD csatornák"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
-msgstr "HDMI színmérés"
-
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR típus"
 
@@ -9765,6 +9913,9 @@ msgstr "HDMI színmélység"
 
 msgid "HDMI color space"
 msgstr "HDMI színtér"
+
+msgid "HDMI colorimetry"
+msgstr "HDMI színmérés"
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -9788,9 +9939,6 @@ msgstr "HDMI bemenet"
 msgid "HDR OSD adjustment"
 msgstr ""
 
-msgid "HDR10 Support"
-msgstr "HDR10 támogatás"
-
 msgid "HELP"
 msgstr "SEGÍTSÉG"
 
@@ -9805,9 +9953,6 @@ msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "HI-cleanup külső feliratokhoz"
-
-msgid "HLG Support"
-msgstr "HLG támogatás"
 
 msgid "Haiti"
 msgstr "Haiti"
@@ -9845,6 +9990,9 @@ msgstr "Háttértár"
 msgid "Harddisk Setup"
 msgstr "Háttértár beállítás"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr ""
 
@@ -9861,6 +10009,9 @@ msgid "Hardware serial"
 msgstr ""
 
 msgid "Hardware type"
+msgstr ""
+
+msgid "Hardware video mode"
 msgstr ""
 
 msgid "Hausa"
@@ -9890,6 +10041,9 @@ msgstr ""
 #, fuzzy
 msgid "Help Screen Information"
 msgstr "Eszközinformáció"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr "Súgó ikonok animáció-sebessége"
@@ -9951,6 +10105,9 @@ msgstr ""
 msgid "Hide InfoBar"
 msgstr "Mindig rejtse el az infobart"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "A VBI vonal elrejtése ennél a csatornánál"
 
@@ -9972,6 +10129,9 @@ msgstr "Gyermekzárral védett csatornák elrejtése"
 msgid "Hide player"
 msgstr "Lejátszó elrejtése"
 
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
+
 msgid "Hide softcam servername"
 msgstr ""
 
@@ -9981,6 +10141,9 @@ msgstr ""
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Az információs sáv elhalványodása az eltünésekor engedélyezett-e vagy nem"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Csatornaváltási hibák elrejtése"
@@ -10051,7 +10214,7 @@ msgstr ""
 msgid "Hockey"
 msgstr "Jégkorong"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr ""
 
 msgid "Hold screen"
@@ -10342,14 +10505,8 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ha a naplók a beállított maximális hely értékét túllépik, akkor a legidősebb napló törlődik."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr ""
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Ha be van állítva az érték, s ha a szabad terület kisebb, mint a beállított érték, akkor a rendszer megpróbálja törölni a régi Timeshift fájlokat."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
@@ -10402,6 +10559,9 @@ msgstr "A DVB-T névtér alhálózatának figyelmen kívül hagyása"
 msgid "Ignore Standby"
 msgstr ""
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Hagyja figyelmen kívül a váratlan ébredést és maradjon készenléti állapotban"
 
@@ -10450,9 +10610,6 @@ msgstr "Importálás a távoli vevő URL címéből"
 
 msgid "Import remote receiver URL"
 msgstr "Távoli vevő URL címének importálása"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Ha meg van határozva az érték, akkor a Timeshift az értéknek megfelelően ellenőrzi a régebbi fájlokat (puffer határ, esemény határ, szabad hely beállítást figyelembe véve)."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Az előnyben részesített tunereket lehet itt beállítani a felvételekhez, több tuner is kiválasztható amennyiben azokkal rendelkezik a készülék."
@@ -11404,6 +11561,9 @@ msgstr "Pihenés/Hobby"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -11524,12 +11684,6 @@ msgstr ""
 msgid "List of storage devices"
 msgstr "Tárolóeszközök listája"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "%d lista verzió, %d csatornát találtam"
-msgstr[1] "%d lista verzió, %d csatornát találtam"
-
 msgid "List/Fav"
 msgstr "Lista/Kedvencek"
 
@@ -11569,6 +11723,10 @@ msgstr ""
 
 msgid "Load unlinked user bouquets"
 msgstr "Leválasztott felhasználói csatornacsomagok betöltése"
+
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
 
 msgid "Loading information, please wait..."
 msgstr ""
@@ -11646,9 +11804,6 @@ msgstr ""
 
 msgid "Location information"
 msgstr ""
-
-msgid "Location list"
-msgstr "Helylista"
 
 #, python-format
 msgid "Location: %s"
@@ -11932,6 +12087,9 @@ msgstr "Kézi keresés"
 
 msgid "Manual Service Searching"
 msgstr "Kézi csatornakeresés"
+
+msgid "Manual resolution"
+msgstr ""
 
 msgid "Manual scan for services"
 msgstr "Kézi keresése a csatornáknak"
@@ -12535,9 +12693,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr ""
 
-msgid "Move to first line / screen"
-msgstr ""
-
 msgid "Move to first line / screen in the panel"
 msgstr ""
 
@@ -12548,9 +12703,6 @@ msgid "Move to last item / screen"
 msgstr ""
 
 msgid "Move to last line"
-msgstr ""
-
-msgid "Move to last line / screen"
 msgstr ""
 
 msgid "Move to last line / screen in the panel"
@@ -12855,6 +13007,12 @@ msgstr "NTSC"
 msgid "Name"
 msgstr "Név"
 
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
+
 msgid "Name ascending"
 msgstr ""
 
@@ -12911,6 +13069,9 @@ msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
+msgstr ""
+
+msgid "Ndebele"
 msgstr ""
 
 #, fuzzy
@@ -13285,6 +13446,9 @@ msgstr ""
 msgid "No channel"
 msgstr "Nincs csatorna"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "nincs csatornalista"
 
@@ -13322,6 +13486,9 @@ msgstr "Nincs szabad index"
 msgid "No free tuner!"
 msgstr "Nincs szabad tuner!"
 
+msgid "No further DVB-I alternative is available."
+msgstr ""
+
 msgid "No gateway"
 msgstr ""
 
@@ -13329,6 +13496,9 @@ msgid "No hard disks detected."
 msgstr ""
 
 msgid "No hosts found yet - still scanning..."
+msgstr ""
+
+msgid "No local images found."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13348,6 +13518,9 @@ msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nincs kapcsoló (növelés vagy csökkentés)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr ""
@@ -13579,20 +13752,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nincs elég tárhely. Kérem, szabadítson fel némi helyet és próbálja meg újra. (%d MB területre lenne szükség, %d MB hely szabad jelenleg)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Nincs elég szabad lemezterület!\n"
-"\n"
-"Fájlméret: %s MB\n"
-"Szabad terület: %s MB\n"
-"Útvonal: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13607,6 +13766,9 @@ msgstr ""
 
 msgid "Not running"
 msgstr "Nem fut"
+
+msgid "Not set"
+msgstr ""
 
 msgid "Not tested:"
 msgstr "Nincs tesztelve:"
@@ -13762,6 +13924,12 @@ msgstr "OSD beállítások"
 msgid "OSD Setup"
 msgstr "OSD beállítás"
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr "OSD név kérés"
 
@@ -13795,9 +13963,6 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "A Timeshift könyvtárban lévő régebbi fájlok a megadott időhatárt túllépve eltávolításra kerülnek."
-
 msgid "Olympic blue"
 msgstr ""
 
@@ -13824,6 +13989,9 @@ msgstr "egyszeri"
 
 msgid "One line"
 msgstr "Egy sor"
+
+msgid "Online manual"
+msgstr ""
 
 msgid "Online software update"
 msgstr "Online szoftverfrissítés"
@@ -13854,6 +14022,9 @@ msgstr "Csak gyorsan mozgassa a dish-t ezen óra előtt."
 
 msgid "Only on startup"
 msgstr "Csak indításkor"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr ""
@@ -14063,6 +14234,9 @@ msgstr ""
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
+msgid "Open the additional screens"
+msgstr ""
+
 msgid "Open the context menu"
 msgstr ""
 
@@ -14070,6 +14244,9 @@ msgid "Open the multi service EPG view"
 msgstr ""
 
 msgid "Open the single service EPG view"
+msgstr ""
+
+msgid "Open the user manual and tools to get help or report problems"
 msgstr ""
 
 msgid "Open tuner setup"
@@ -14194,6 +14371,9 @@ msgstr ""
 
 msgid "Overall progress:"
 msgstr "Összes folyamat:"
+
+msgid "Override DNS"
+msgstr ""
 
 msgid "Overscan Test"
 msgstr "Overscan teszt"
@@ -14429,12 +14609,6 @@ msgstr ""
 msgid "Pass-through"
 msgstr "Pass-through"
 
-msgid "Passthrough audio handling delay AC3"
-msgstr ""
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr ""
-
 msgid "Password"
 msgstr "Jelszó"
 
@@ -14544,6 +14718,9 @@ msgstr "Fülöp-szigetek"
 
 msgid "PiP"
 msgstr "Kép-a-Képben"
+
+msgid "PiP (no HDR)"
+msgstr ""
 
 msgid "PiP with OSD"
 msgstr "Kép-a-Képben OSD-vel"
@@ -14785,9 +14962,6 @@ msgstr ""
 
 msgid "Please enter new name:"
 msgstr "Kérem, adja meg az új nevet:"
-
-msgid "Please enter search string for your location"
-msgstr "Kérjük, adja meg a keresési szöveget a tartózkodási helyéhez"
 
 msgid "Please enter the correct pin code"
 msgstr "Kérem, adja meg a helyes PIN kódot"
@@ -15205,6 +15379,9 @@ msgstr "Tuner(ek) kiválasztása"
 msgid "Preparation time for recording"
 msgstr "A felvétel előkészítésének ideje (másodperc)"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "Előkészítés... Kérem, várjon"
 
@@ -15231,11 +15408,17 @@ msgstr "Az OK gombbal indíthatja a keresést"
 msgid "Press GREEN to enable MultiBoot!"
 msgstr ""
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Nyomja le az OK gombot a távirányítón a folytatáshoz."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr ""
@@ -15264,6 +15447,9 @@ msgstr ""
 msgid "Press OK to open module info"
 msgstr ""
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr ""
 
@@ -15284,6 +15470,9 @@ msgstr "Nyomja le az OK gombot egy csatorna kiválasztásához."
 
 msgid "Press OK to select satellites"
 msgstr "Nyomja le az OK gombot a műholdak kiválasztásához"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "Nyomja le az OK gombot a CAId ki/bejelöléséhez."
@@ -15316,9 +15505,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Nyomja meg ezt a gombot, hogy kipróbálja a nyomógomb hosszú nyomását a gomb lenyomása után (ez felülbírálja az emuláció gombhoz rendelt bármely más műveletet is)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "A pánik gomb megnyomásával erre a csatorna számra fog ugrani a csatornacsomagban."
 
 msgid "Prev quad PiP channel"
 msgstr "Az előző Quad Kép-a-Képben csatorna"
@@ -15471,6 +15657,9 @@ msgstr "A folyamat adatainak betűmérete"
 msgid "Properties of current title"
 msgstr "Az aktuális tétel tulajdonságai"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "Gyors Menü védelme"
 
@@ -15483,6 +15672,15 @@ msgstr "Beállítások védelme"
 msgid "Protect context menus"
 msgstr "Menük védelme"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "Főmenü védelme"
 
@@ -15492,8 +15690,14 @@ msgstr "Felvett adások védelme"
 msgid "Protect on epg age"
 msgstr "Korhatár védelem"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "Bővítménykezelő védelme"
+
+msgid "Protect script execution"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Csatornák védelme"
@@ -15503,6 +15707,12 @@ msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Készenléti menü védelme"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "Időzítő menü védelme"
@@ -15640,6 +15850,12 @@ msgstr ""
 msgid "RAM benchmark"
 msgstr ""
 
+msgid "RAM temperature"
+msgstr ""
+
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -15720,6 +15936,15 @@ msgid "Radio Channel Selection"
 msgstr "Rádió csatorna választás"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
 msgstr ""
 
 msgid "Random"
@@ -16352,6 +16577,9 @@ msgstr "%s átnevezve!"
 msgid "Renovation"
 msgstr "Felújítás"
 
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Ismétlés"
 
@@ -16394,8 +16622,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr ""
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "Azonosítás megkövetelése HTTP streamek esetén"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 msgid "Required medium type:"
 msgstr "Szükséges hordozó típusa:"
@@ -16613,6 +16895,9 @@ msgstr ""
 msgid "Retrieving boot slot information..."
 msgstr ""
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr "Képlista beolvasása - Várjon..."
 
@@ -16630,6 +16915,9 @@ msgstr ""
 
 msgid "Return to movie list"
 msgstr "Visszatérés a felvételek listájához"
+
+msgid "Return to previous channel"
+msgstr ""
 
 msgid "Return to previous service"
 msgstr "Visszatérés az előző csatornához"
@@ -16788,6 +17076,9 @@ msgstr "Orosz"
 
 msgid "Russian Federation"
 msgstr "Oroszország"
+
+msgid "Rusyn"
+msgstr ""
 
 msgid "Rwanda"
 msgstr "Ruanda"
@@ -17039,6 +17330,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Timeshift mentése és a felvétel folytatása"
 
@@ -17073,9 +17367,6 @@ msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "EPG gyorsítótár mentése..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Timeshift mentése most. Ez hosszabb időt is igénybe vehet!"
 
 msgid "Saving time shift files"
 msgstr "Timeshift fájljának mentése"
@@ -17125,6 +17416,9 @@ msgstr ""
 msgid "Scan region"
 msgstr ""
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
@@ -17132,7 +17426,7 @@ msgid "Scanning"
 msgstr ""
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "%s keresés..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17156,9 +17450,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr "A keresés sikertelen!"
 
 msgid "Scanning for shares..."
 msgstr ""
@@ -17207,6 +17498,9 @@ msgstr "PowerTimer napló"
 msgid "Scheduler standby"
 msgstr "Kikapcsolás Időzítő Készenléti állapot"
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr "Tudomány"
 
@@ -17252,6 +17546,9 @@ msgstr "Műholdak keresése"
 msgid "Search Sats, check signal and lock"
 msgstr "Műholdak keresése, szignál ellenőrzés és zárolás"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "Léptetés kelet felé"
 
@@ -17261,8 +17558,11 @@ msgstr "Hálózati megosztások keresése"
 msgid "Search for similar events"
 msgstr "Hasonló események keresése"
 
-msgid "Search weather location ID"
-msgstr "Időjárás helyszín azonosítójának keresése"
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search west"
 msgstr "Léptetés nyugat felé"
@@ -17276,6 +17576,9 @@ msgstr "Keresés"
 msgid "Searching east ..."
 msgstr "Keresés keletre..."
 
+msgid "Searching for local images, please wait..."
+msgstr ""
+
 msgid "Searching west ..."
 msgstr "Keresés nyugatra..."
 
@@ -17287,9 +17590,6 @@ msgstr ""
 
 msgid "Secondary DNS (IPv6)"
 msgstr ""
-
-msgid "Seconds"
-msgstr "másodperc"
 
 msgid "Security Packages"
 msgstr ""
@@ -17349,14 +17649,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Válassza az 'engedélyezve' lehetőséget, ha a tunerhez van egy jelkábel, különben válassza a 'semmi csatlakoztatva' lehetőséget."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Ha a 'nem'-t választja, a Timeshift csak egy pufferfájlt használ. Ajánljuk, hogy a 'Timeshift a régebbi fájlokat ellenőrizze' és a 'Timeshift ellenőrizze a szabad helyet' állítsa be."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "a kinézet (Skin) összeomlási hibái is a naplóba kerüljenek rögzítésre "
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Csatorna váltás, vagy ugrás után a Timeshift puffer törlésre kerüljön-e vagy nem."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Ha 'univerzális' LNB-t használ, válassza a 'polarizáció' lehetőséget, máskülönben forduljon az LNB specifikációs lapjához."
@@ -17368,6 +17662,9 @@ msgid "Select 'Soft mount' to make file access return an error once the server s
 msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
 msgstr ""
 
 msgid "Select 'Yes' if an end time is required for this timer."
@@ -17396,9 +17693,6 @@ msgstr "Ha az 'igen'-t választja, az Információs sáv folyamatosan 'szünetel
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Ha az 'igen'-t választja, akkor a keresősáv segítségével átugorhat egy adott pontra az eseményen belül."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Ha az érték 'igen'-re van állítva, akkor a csatornacsomag lista fog először megjelenni. Ha 'nem', akkor az aktuális csatorna lista jelenik meg a képernyőn."
@@ -17610,6 +17904,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr ""
+
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr ""
 
@@ -17736,11 +18033,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -17764,6 +18070,9 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Válasszon egy scriptet a futtatáshoz:"
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr ""
 
@@ -17781,6 +18090,9 @@ msgstr ""
 
 msgid "Select a tuner"
 msgstr "Tuner kiválasztása"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "Művelet kiválasztása"
@@ -17840,6 +18152,9 @@ msgstr "Válassza ki a kizárandó fájlokat a mentésből"
 msgid "Select files/folders to backup"
 msgstr "Válasszon fájlokat/mappákat a biztonsági mentéshez"
 
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
+
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr ""
 
@@ -17881,6 +18196,12 @@ msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Válassza ki, hogyan aktiválja a Gyors EPG módot:"
+
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr ""
+
+msgid "Select how to sort the timer list."
+msgstr ""
 
 msgid "Select how your receiver will upgrade."
 msgstr "Válassza ki, hogy a készüléke miként lesz frissítve."
@@ -17930,9 +18251,6 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közben."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Válassza ki, hogy aktiválja-e a Subservice módot."
 
@@ -17953,6 +18271,9 @@ msgstr "Válasszon hozzáadandó szolgáltatót..."
 
 msgid "Select refresh rate"
 msgstr "Válassza ki a frissítési arányt"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr ""
@@ -17979,10 +18300,19 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr ""
+
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
+msgstr ""
+
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -18044,10 +18374,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18078,6 +18414,9 @@ msgstr "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
@@ -18087,7 +18426,19 @@ msgstr ""
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr ""
+
 msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
+msgstr ""
+
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
@@ -18135,6 +18486,9 @@ msgstr ""
 msgid "Select the default directory to be used if the right column directory is not saved."
 msgstr ""
 
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
+msgstr ""
+
 msgid "Select the delay before the timer activates."
 msgstr ""
 
@@ -18174,6 +18528,9 @@ msgstr "Állítsa be a képernyővédő időtartamát percekben."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18191,6 +18548,9 @@ msgstr ""
 msgid "Select the function to be assigned to this button."
 msgstr "Lehetővé teszi a kiválasztott funkció hozzárendelését ehhez a gombhoz."
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
@@ -18201,6 +18561,9 @@ msgid "Select the initial position of the timeline marker. The marker is the ver
 msgstr ""
 
 msgid "Select the input connector you want to use."
+msgstr ""
+
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
 msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
@@ -18226,6 +18589,9 @@ msgid "Select the location in which to store the recording:"
 msgstr ""
 
 msgid "Select the location where the picon files will be installed."
+msgstr ""
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -18272,6 +18638,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -18354,9 +18723,6 @@ msgstr ""
 msgid "Select the sort order of the Extension Menu entries."
 msgstr ""
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr ""
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr ""
 
@@ -18402,8 +18768,14 @@ msgstr "Válassza ki az időzónát a területen vagy a régióban."
 msgid "Select the timer from the fallback tuner by default"
 msgstr "Ezzel engedélyezheti az időzítők importálását a tartalék tunerből"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Válassza ki a motorizált disht vezérlő tunert."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "Válassza ki azt a tunert, amelyhez az SCR-eszköz jelkábele csatlakozik."
@@ -18421,6 +18793,9 @@ msgid "Select the type of keyboard connected to the %s %s."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV."
@@ -18534,9 +18909,6 @@ msgstr "Válassza ki az országot. Ha nem áll rendelkezésre, válassza az 'ös
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "Válassza ki a szolgáltatót és a régiót. Ha nem szerepel ebben a listában, akkor ki kell választania a másik 'szolgáltatási szkennelés típusok'-t."
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Válassza ki a szolgáltatóját, majd nyomja le az OK-t a keresés indításához"
-
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "Válassza ki a régiót. Ha nem áll rendelkezésre, változtassa meg az 'Ország' értéket 'összes'-re, és válasszon egyet az alapértelmezett alternatívák közül."
 
@@ -18628,6 +19000,9 @@ msgstr "Szerbia"
 
 msgid "Serbian"
 msgstr "Szerb"
+
+msgid "Serbo-Croatian"
+msgstr ""
 
 msgid "Serial No"
 msgstr "Sorozatszám"
@@ -18731,6 +19106,9 @@ msgstr "Csatornanév"
 
 msgid "Service name font size"
 msgstr "Csatornanév betű neve"
+
+msgid "Service not found"
+msgstr ""
 
 msgid ""
 "Service not found!\n"
@@ -18887,6 +19265,9 @@ msgstr "Indítási csatorna beállítása"
 msgid "Set system"
 msgstr "Rendszer beállítása"
 
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
@@ -18904,9 +19285,6 @@ msgstr "Állítsa be az azonnali felvételek alapértelmezett helyét. Új helye
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
-
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
@@ -19032,9 +19410,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
 
 msgid "Set to the desired primetime hour."
 msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
@@ -19925,6 +20300,9 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr ""
 
@@ -19967,7 +20345,7 @@ msgstr "Függőleges Műsorújság megjelenítése"
 msgid "Show warning before restart"
 msgstr "Figyelmeztetés mutatása újraindítás előtt"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Figyelmeztetés Timeshift megállításakor"
 
 msgid "Show watch status"
@@ -19990,6 +20368,9 @@ msgstr ""
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Bővítménykezelő mutatása. Itt tudja beállítani a telepített bővítményeket"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Az elérhető bővítményeket mutatja meg. Itt le tudja tölteni és telepíteni őket"
@@ -20122,6 +20503,9 @@ msgstr ""
 msgid "Skin Settings"
 msgstr "Kinézet beállítása (Skin)"
 
+msgid "Skin Setup Actions"
+msgstr ""
+
 msgid "Skin setting"
 msgstr "Kinézet beállítása"
 
@@ -20172,9 +20556,6 @@ msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "előre kihagyása (adja meg az időt)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
 
 msgid "Skip network setup"
 msgstr ""
@@ -20345,7 +20726,7 @@ msgstr "Szolvén"
 msgid "Slow"
 msgstr "Lassú"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr ""
 
 msgid "Slow motion speeds"
@@ -20451,6 +20832,9 @@ msgstr "Szoftver karbantartó Beállításai"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
@@ -20482,6 +20866,9 @@ msgid "Somalia"
 msgstr "Szomália"
 
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgstr ""
+
+msgid "Some image locations could not be read. Check your storage devices."
 msgstr ""
 
 #, fuzzy
@@ -20519,9 +20906,6 @@ msgstr "Nincs rendszerbeállítás mentés!"
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Sajnáljuk, nincs olyan fizikai eszköz, amely támogatja a SWAP csatolását. Nem hozható létre Swapfile a hálózati vagy fat32 fájlrendszereken"
 
-msgid "Sorry, there was a problem:"
-msgstr "Sajnáljuk, probléma merült fel:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20541,10 +20925,10 @@ msgstr "EPG lista rendezése"
 msgid "Sort Extension Menu"
 msgstr "A bővítmények listájának rendezése betűrendben"
 
-msgid "Sort Plugin Browser"
-msgstr "A bővítmény böngésző bejegyzéseinek rendezése"
-
 msgid "Sort Plugin Browser entries"
+msgstr ""
+
+msgid "Sort Timers"
 msgstr ""
 
 msgid "Sort by"
@@ -20683,6 +21067,9 @@ msgstr "Sport"
 msgid "Sports magazines"
 msgstr "sportmagazin"
 
+msgid "Sranan Tongo"
+msgstr ""
+
 msgid "Sri Lanka"
 msgstr "Srí Lanka"
 
@@ -20717,12 +21104,15 @@ msgstr ""
 msgid "Start Auto Refresh"
 msgstr ""
 
-msgid "Start Boot Frequency"
-msgstr ""
-
 #, fuzzy
 msgid "Start RDS interactive"
 msgstr "Ugyanaz, mint az aktív"
+
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
 
 msgid "Start Wizard"
 msgstr ""
@@ -20779,6 +21169,9 @@ msgid "Start the Kexec initialization"
 msgstr ""
 
 msgid "Start the backup of the selected image"
+msgstr ""
+
+msgid "Start the fast scan"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -20863,6 +21256,9 @@ msgstr ""
 
 msgid "Status:"
 msgstr "Állapot:"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
 
 msgid "Step"
 msgstr ""
@@ -20962,9 +21358,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Softcam leállítása"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20992,6 +21385,10 @@ msgstr "A lemez nem található!"
 
 msgid "Storage device not writable!"
 msgstr "A lemez nem írható!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Pozíció tárolása"
@@ -21171,6 +21568,9 @@ msgstr "Vasárnap"
 msgid "Sunday"
 msgstr "Vasárnap"
 
+msgid "Support"
+msgstr ""
+
 msgid "Suriname"
 msgstr "Suriname"
 
@@ -21241,8 +21641,8 @@ msgstr ""
 msgid "Switch EPG Page Up"
 msgstr ""
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "Kapcsolási mód, hogy engedélyezze a HDR módokat vagy a Kép-a-Képben funkciókat"
+msgid "Switch HDR type by content"
+msgstr ""
 
 msgid "Switch TV to correct input"
 msgstr "TV-bemenet kiválasztása"
@@ -21629,9 +22029,6 @@ msgstr "Teszt mód"
 msgid "Test type"
 msgstr "Teszt típusa"
 
-msgid "Testing Information"
-msgstr ""
-
 msgid "Testscreens"
 msgstr "Fényerő"
 
@@ -21640,6 +22037,9 @@ msgstr "A tesztképernyők segítenek a kijelző finomhangolását elvégezni"
 
 msgid "Text"
 msgstr "Szöveg"
+
+msgid "Text Box"
+msgstr ""
 
 msgid "Text color"
 msgstr "Szöveg színe"
@@ -21834,6 +22234,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -21869,13 +22275,6 @@ msgstr ""
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
 
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
-"Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
-
 #, python-format
 msgid "The following files are related to '%s':"
 msgstr ""
@@ -21888,6 +22287,12 @@ msgstr "A felvétel rögzítésének képfrissítése. Ideális esetben ez egyez
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "A kép magassága. A bemenetet a fenti értékhez igazítva skálázzák."
+
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
 
 msgid "The loopthrough setting is wrong."
 msgstr "Az átfűzés beállítása hibás."
@@ -21907,6 +22312,13 @@ msgstr ""
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -21938,6 +22350,9 @@ msgstr "Az eredmények ide lettek kiírva: %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Mentett PIN törölve."
 
@@ -21965,6 +22380,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Az időt megszorozzuk az aktuális ismétlési számlálóval."
 
@@ -21974,6 +22392,18 @@ msgid ""
 msgstr ""
 "A Timeshift pufferidő meghaladja a beállított határértéket.\n"
 "Mit akar csinálni ?"
+
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22078,6 +22508,12 @@ msgstr "Ez lehetővé teszi, hogy a számjegyek számát 6-re állítsa be, ha t
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "ez a csatornacsomag gyermekzár PIN-kóddal védett"
 
+msgid "This channel is currently off air."
+msgstr ""
+
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ebben a mezőben további szimbólumsebességben kereshet %s-ig."
@@ -22134,9 +22570,6 @@ msgstr "Ez az opció lehetővé teszi, hogy növelje a kék színt a képen."
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Ez az opció lehetővé teszi a zöld tónusok növelését a képen."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "HDMI EDID ellenőrzés kihagyása"
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Ezzel az opcióval megváltoztathatja a virtuális hangszóró pozícióját."
@@ -22201,32 +22634,8 @@ msgstr "Ezzel az opcióval kiválaszthatja, hogy az első gomb megnyomásakor ho
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ezzel a beállítással megadhatja, hogy megjelenjenek-e az esemény műfajadatai."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Ezzel az opcióval beállíthatja az UHD színmélységét"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Ez az opció lehetővé teszi a Colorimetry for HDR konfigurálását"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Ezzel az opcióval beállíthatja a Colorspace módját az Auto-ról RGB-re"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ez az opció lehetővé teszi a 3D Surround hang használatát."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "Ezzel az opcióval beállíthatja vagy letilthatja a 10bit-es színes módot"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "Ezzel az opcióval beállíthatja vagy letilthatja a 12bit-es színes módot"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "Ezzel az opcióval ki tudja kényszeríteni a HDR módot az UHD felbontásnál"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "Ezzel az opcióval ki tudja kényszeríteni a HDR10 módot az UHD felbontásnál"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "Ezzel az opcióval ki tudja kényszeríteni a HLG módot az UHD felbontásnál"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
@@ -22413,38 +22822,20 @@ msgstr "Időugrás a megismételt intervalluma a gyors előre/vissza lépéshez"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Időugrás: Normál sebesség használata az előrelépéshez"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift puffer határa [órákban]"
-
 msgid "Time shift buffer location"
 msgstr "Timeshift helye"
 
-msgid "Time shift checking for free space"
-msgstr "Timeshift ellenőrizze a szabad helyet?"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
-
-msgid "Time shift event based file splitting"
-msgstr "Minden Timeshift külön felvételi pufferben legyen"
-
-msgid "Time shift event limit"
-msgstr "Timeshift felvételek korlátozása [felvételek száma]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr "Timeshift nem lehetséges!"
-
 msgid "Time shift save action on zap"
 msgstr "Timeshift mentése csatornaváltáskor"
 
-msgid "Time shift save failed!"
-msgstr "Timeshift felvétel mentése sikertelen!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -22455,8 +22846,8 @@ msgstr "Timeshift folyamatban. Válasszon egy opciót."
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift felvétel (leállítás az aktuális műsor után)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift felvétel mentése a háttértárra!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Az esemény végén lesz a Timeshift mentve!"
@@ -22475,6 +22866,9 @@ msgstr "Az idő frissítése percekben"
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Időintervalluma az ébresztés észlelésének az Időzítő által [perc]"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr ""
 
 msgid "Time zone"
 msgstr "Időzóna"
@@ -23144,48 +23538,83 @@ msgstr "Ukrajna"
 msgid "Ukrainian"
 msgstr "Ukrán"
 
-msgid "Unable to create the additional STARTUP files."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Unable to create the new manufacturer STARTUP files."
+msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
+msgstr ""
+
+msgid "Unable to load package information!"
 msgstr ""
 
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
+
+msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
+msgstr ""
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
 msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
+msgstr ""
+
+msgid "Unable to save network configuration!"
+msgstr ""
+
+msgid "Unable to save network mount configuration!"
+msgstr ""
+
+msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to start the HbbTV application."
+msgstr ""
+
+msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23205,6 +23634,9 @@ msgstr "Meghatározatlan"
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
+msgid "Unexpected error while importing from the remote receiver!"
 msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
@@ -23360,6 +23792,9 @@ msgstr "A frissítés sikertelen!"
 
 msgid "Update finished!"
 msgstr "Frissítés befejezve!"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -23519,6 +23954,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "TV-távvezérlő használata"
 
@@ -23549,6 +23987,9 @@ msgstr "Használja az alternatív képernyőt"
 msgid "Use as HDD replacement"
 msgstr ""
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr ""
 
@@ -23573,10 +24014,10 @@ msgstr ""
 msgid "Use extended List"
 msgstr "Használjon kiterjesztett listát"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Szolgáltató által megadott csatorna elnevezés"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Szolgáltató által megadott csatorna számozás"
 
 msgid "Use for load only x days in EPG."
@@ -23636,6 +24077,9 @@ msgstr ""
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
@@ -23672,6 +24116,9 @@ msgstr ""
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Használja az alternatív vagy a hagyományos rádió üzemmódot."
 
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
+
 msgid "Use the current selection and exit"
 msgstr ""
 
@@ -23684,14 +24131,14 @@ msgstr "Használja a varázslót az alapbeállításokhoz"
 msgid "Use these input device settings?"
 msgstr "Használhatók ezek a beviteli eszköz beállítások?"
 
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
+
 msgid "Use this video enhancement settings?"
 msgstr "Alkalmazhatók a Videó-beállítások?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Az idő ugrással gyors Előre/Hátra ugrik"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Használja a Timeshift keresősávot a Timeshift közben?"
 
 msgid "Use viewer for unknown files"
 msgstr ""
@@ -23708,12 +24155,6 @@ msgstr ""
 msgid "Used service scan type"
 msgstr "Csatornakeresés típusa"
 
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr ""
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr ""
-
 msgid "Used:"
 msgstr "Felhasználva:"
 
@@ -23728,6 +24169,12 @@ msgstr "felhasználó feed url-je"
 
 msgid "User ID"
 msgstr "Felhasználói azonosító"
+
+msgid "User Manual"
+msgstr ""
+
+msgid "User Manual Actions"
+msgstr ""
 
 msgid "User comments"
 msgstr ""
@@ -24256,6 +24703,9 @@ msgstr ""
 msgid "Weather"
 msgstr "Időjárás"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr "Webes felület"
 
@@ -24379,6 +24829,9 @@ msgstr "A HTTP jelfolyamba kerüljön bele a DVB-ből származó EIT adatcsomag 
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Egy felugró üzenet jelenjen meg a képernyőn amikor egy fájl a végéhez ért és a következő elindul."
 
@@ -24397,8 +24850,8 @@ msgstr "Ha engedélyezve van, a felvétel megszakíthatja az adatfolyamot (Strea
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Egy felvétel megszakíthatja a TV-nézést, ha nem áll rendelkezésre másik szabad tuner a felvételhez."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24412,14 +24865,29 @@ msgstr ""
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr ""
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Ha engedélyezi, HTTP streamek (adatfolyamok) megtekintéséhez azonosításra lesz szükség."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr ""
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr ""
@@ -24432,6 +24900,9 @@ msgstr "Ha engedélyezi, akkor a csatornaváltás közben, ha a csatornacsomag u
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "A törölt fájlok kukába kerüljenek, azonnali megsemmisítés helyett."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "A külön fájlban lévő feliratok automatikusan jelenjenek meg film lejátszás esetén."
@@ -24463,8 +24934,8 @@ msgstr "Ha engedélyezve van, a számjelölők rejtve maradnak."
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr ""
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Ha engedélyezve van, a '0' megnyomásával az első csatornacsomag első csatornájára ugrik, és törli a csatornaváltás ugrási előzményeket."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ha engedélyezi, a feliratok újra lesznek tördelve, hogy illeszkedjenek a képernyő széléhez."
@@ -24478,11 +24949,17 @@ msgstr "Ha engedélyezi, akkor állapot és hiba üzenetek jelenhetnek meg."
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
+
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "A hallássérülteknek szánt feliratok megjelenítése."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "A hallássérülteknek szánt feliratok megjelenítése a normál feliratok helyett, amennyiben mindkettő egyszerre elérhető egy csatornán."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "Ha engedélyezi, akkor a teletext oldalak gyorsítótárba kerülnek a gyorsabb elérés érdekében."
@@ -24544,11 +25021,11 @@ msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesíte
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Ha engedélyezi, ez a beállítás felülírja az 'Előnyben részesített tuner'-t."
 
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgid "When enabled, time shift starts automatically in background after the selected time."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Ha engedélyezi, testreszabhatja az OpenWebIf beállításait a tartalék tunerhez."
@@ -24704,9 +25181,6 @@ msgstr ""
 msgid "Wolof"
 msgstr ""
 
-msgid "Workaround for old tuner driver."
-msgstr "A szállított rendszert használja. Megoldás a régi tuner illesztőprogramjai számára"
-
 msgid "Workgroup name"
 msgstr ""
 
@@ -24740,6 +25214,9 @@ msgstr "Írási hiba felvétel közben. %s"
 
 msgid "Write failed!"
 msgstr "Az írás sikertelen!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25160,9 +25637,6 @@ msgstr "Nagyítás jobbról"
 msgid "Zulu"
 msgstr ""
 
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] az egyesítés sikertelen!"
-
 msgid "[Timeshift] Restarting time shift!"
 msgstr "a Timeshift újraindult!"
 
@@ -25174,6 +25648,9 @@ msgstr "egy felhasználói felület, mely lehetővé teszi szolgáltatók/csator
 
 msgid "activatePiP"
 msgstr "Kép-a-Képben bekapcsolása"
+
+msgid "active (GLES enabled)"
+msgstr ""
 
 msgid "address:"
 msgstr "cím:"
@@ -25499,9 +25976,6 @@ msgstr "hónap"
 msgid "move"
 msgstr "mozgatás"
 
-msgid "multi"
-msgstr "multi"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -25630,6 +26104,9 @@ msgstr "keresési állapot"
 msgid "search EPG..."
 msgstr "keresés EPG..."
 
+msgid "seconds"
+msgstr ""
+
 msgid "select CAId's"
 msgstr "a CAId-k kijelölése"
 
@@ -25684,6 +26161,9 @@ msgstr "sztereó"
 msgid "successful"
 msgstr "sikeres"
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr "kapcsoljon 12-esből 8 karakteres megjelenítési módra"
 
@@ -25726,6 +26206,9 @@ msgstr ""
 
 msgid "this recording"
 msgstr "ez a felvétel"
+
+msgid "throttled"
+msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "idő, chapter, hangsáv, feliratsáv választás"
@@ -25813,6 +26296,192 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a rendszer Timeshift fájlt törölni."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Ha be van állítva az érték, s ha a szabad terület kisebb, mint a beállított érték, akkor a rendszer megpróbálja törölni a régi Timeshift fájlokat."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Ha meg van határozva az érték, akkor a Timeshift az értéknek megfelelően ellenőrzi a régebbi fájlokat (puffer határ, esemény határ, szabad hely beállítást figyelembe véve)."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Nincs elég szabad lemezterület!\n"
+#~ "\n"
+#~ "Fájlméret: %s MB\n"
+#~ "Szabad terület: %s MB\n"
+#~ "Útvonal: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "A Timeshift könyvtárban lévő régebbi fájlok a megadott időhatárt túllépve eltávolításra kerülnek."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Timeshift mentése most. Ez hosszabb időt is igénybe vehet!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Ha a 'nem'-t választja, a Timeshift csak egy pufferfájlt használ. Ajánljuk, hogy a 'Timeshift a régebbi fájlokat ellenőrizze' és a 'Timeshift ellenőrizze a szabad helyet' állítsa be."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Csatorna váltás, vagy ugrás után a Timeshift puffer törlésre kerüljön-e vagy nem."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Ha az 'igen'-t választja, akkor a keresősáv segítségével átugorhat egy adott pontra az eseményen belül."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közben."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a háttérben"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
+#~ "Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift nem lehetséges!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Timeshift felvétel mentése sikertelen!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift felvétel mentése a háttértárra!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Használja a Timeshift keresősávot a Timeshift közben?"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] az egyesítés sikertelen!"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "A 10bit engedélyezése"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "A 12bit engedélyezése"
+
+#~ msgid "HDR10 support"
+#~ msgstr "HDR10 támogatás"
+
+#~ msgid "HLG support"
+#~ msgstr "HLG támogatás"
+
+#~ msgid "Seconds"
+#~ msgstr "másodperc"
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "HDMI EDID ellenőrzés kihagyása"
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "Ezzel az opcióval beállíthatja az UHD színmélységét"
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "Ez az opció lehetővé teszi a Colorimetry for HDR konfigurálását"
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "Ezzel az opcióval beállíthatja a Colorspace módját az Auto-ról RGB-re"
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "Ezzel az opcióval beállíthatja vagy letilthatja a 10bit-es színes módot"
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "Ezzel az opcióval beállíthatja vagy letilthatja a 12bit-es színes módot"
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "Ezzel az opcióval ki tudja kényszeríteni a HDR módot az UHD felbontásnál"
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "Ezzel az opcióval ki tudja kényszeríteni a HDR10 módot az UHD felbontásnál"
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "Ezzel az opcióval ki tudja kényszeríteni a HLG módot az UHD felbontásnál"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12bit 4:2:0/4:2:2 nincs Kép-a-Képben"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "A Boxmode megváltoztatása a Hardware Chip Modes vezérléséhez *"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "A szállított rendszer használata"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "engedélyezze a Kép-a-Képben funkciót mikor nincs HDR"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "Kapcsolási mód, hogy engedélyezze a HDR módokat vagy a Kép-a-Képben funkciókat"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "A szállított rendszert használja. Megoldás a régi tuner illesztőprogramjai számára"
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "Egy fájl még használatban van a hordozón!"
+
+#~ msgid "Location list"
+#~ msgstr "Helylista"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "Kérjük, adja meg a keresési szöveget a tartózkodási helyéhez"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "Időjárás helyszín azonosítójának keresése"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "Sajnáljuk, probléma merült fel:"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Több tuner esetén melyik tuner legyen előnyben a felvételekhez."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "%d lista verzió, %d csatornát találtam"
+#~ msgstr[1] "%d lista verzió, %d csatornát találtam"
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "Válassza ki a szolgáltatóját, majd nyomja le az OK-t a keresés indításához"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "A bővítmény böngésző bejegyzéseinek rendezése"
+
+#~ msgid "multi"
+#~ msgstr "multi"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "A pánik gomb megnyomásával erre a csatorna számra fog ugrani a csatornacsomagban."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "Ha engedélyezve van, a '0' megnyomásával az első csatornacsomag első csatornájára ugrik, és törli a csatornaváltás ugrási előzményeket."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"
@@ -27867,10 +28536,6 @@ msgstr "®"
 #, python-format
 #~ msgid "%s KSymb/s"
 #~ msgstr "%s KSymb/mp"
-
-#, python-format
-#~ msgid "%s MHz"
-#~ msgstr "(%s MHz)"
 
 #, fuzzy
 #~ msgid "(FTA Service)"

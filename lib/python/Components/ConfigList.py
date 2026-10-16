@@ -2,7 +2,7 @@ from enigma import eListbox, eListboxPythonConfigContent, ePoint, eRCInput, eTim
 
 from skin import parameters
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ActionKeys, ConfigBoolean, ConfigElement, ConfigInteger, ConfigMACText, ConfigNumber, ConfigSelection, ConfigSequence, ConfigText, config, configfile
+from Components.config import ActionKeys, ConfigBoolean, ConfigElement, ConfigInteger, ConfigMACText, ConfigNumber, ConfigSelection, ConfigSequence, ConfigService, ConfigText, config, configfile
 from Components.GUIComponent import GUIComponent
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
@@ -382,7 +382,16 @@ class ConfigListScreen:
 	def keySelect(self):
 		currentItem = self.getCurrentItem()
 		if currentItem and not currentItem.isReadOnly():
-			if isinstance(currentItem, ConfigBoolean):
+			if isinstance(currentItem, ConfigService):
+				def serviceSelected(service=None):
+					if service is not None and service.valid():
+						currentItem.value = service.toString()
+						self["config"].invalidateCurrent()
+						self.entryChanged()
+
+				from Screens.ChannelSelection import SimpleChannelSelection
+				self.session.openWithCallback(serviceSelected, SimpleChannelSelection, _("Select a service"))
+			elif isinstance(currentItem, ConfigBoolean):
 				self.keyToggle()
 			elif isinstance(currentItem, ConfigSelection):
 				self.keyMenu()

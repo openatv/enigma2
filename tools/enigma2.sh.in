@@ -54,10 +54,10 @@ if [ -x "@bindir@/showiframe" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 		if [ ! $stbcheck == "u5" ] && [ ! $stbcheck == "u4" ]; then
-			killall -9 showiframe; sleep 1
+			killall -9 showiframe && sleep 1
 		fi
 	else
-		killall -9 showiframe; sleep 1
+		killall -9 showiframe && sleep 1
 	fi
 	SKIN=`sed -En 's|^config\.skin\.primary_skin=(.+)/skin\.xml$|\1|p' "@sysconfdir@/enigma2/settings"`
 	if [ -n "${SKIN}" ]; then
@@ -71,11 +71,6 @@ if [ -x "@bindir@/showiframe" ]; then
 			break
 		fi
 	done
-fi
-
-# hook to execute dhcp wait script
-if [ -x @bindir@/enigma2_dhcp_wait.sh ]; then
-	@bindir@/enigma2_dhcp_wait.sh
 fi
 
 # hook to execute scripts always before enigma2 start
@@ -234,7 +229,7 @@ if [ -x $ORM ]; then
 	if [ -e @sysconfdir@/enigma2/.orm-once ]; then
 		# Once instead of enigma2, e.g. for later calls via enigma2 menu
 		rm -f @sysconfdir@/enigma2/.orm-once
-		enigma2bin="$ORM --manual"
+		enigma2bin=$ORM
 	else
 		[ -e $ORM_RESULT ] && mv -f $ORM_RESULT $ORM_RESULT.last
 		ormpid=$($ORM --watch $ORM_RESULT 2>/dev/null)
@@ -299,7 +294,12 @@ if [ "$ret" -ne "1" ]; then
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
 		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "ustym4ks2ottx" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "og2s4k" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
-			killall -9 libreader; sleep 5
+			# Native Kodi DVB audio still needs the vendor service. Without
+			# it, hi_dvb audio proc reads can dereference freed shared state.
+			# Older/ALSA-only Kodi builds retain the previous shutdown path.
+			if [ "$ret" -ne "15" ] || [ ! -x /usr/lib/kodi/kodi-hisi-reader ]; then
+				killall -9 libreader; sleep 5
+			fi
 		fi
 	fi
 fi

@@ -678,6 +678,11 @@ void eNetworkServiceBrowser::handleResolverEvent(int interfaceIndex, int protoco
 	changed();
 }
 
+/* mDNS data (TXT values in particular) is not guaranteed to be valid UTF-8. */
+static PyObject* toPyUnicode(const std::string& s) {
+	return PyUnicode_DecodeUTF8(s.data(), s.size(), "replace");
+}
+
 PyObject* eNetworkServiceBrowser::getServices() {
 	ePyObject ret = PyList_New(m_instances.size());
 	int idx = 0;
@@ -686,20 +691,23 @@ PyObject* eNetworkServiceBrowser::getServices() {
 
 		PyObject* addrs = PyList_New(s.addresses.size());
 		for (size_t i = 0; i < s.addresses.size(); i++)
-			PyList_SET_ITEM(addrs, i, PyUnicode_FromString(s.addresses[i].c_str()));
+			PyList_SET_ITEM(addrs, i, toPyUnicode(s.addresses[i]));
 
 		PyObject* txt = PyDict_New();
 		for (size_t i = 0; i < s.txt.size(); i++) {
-			PyObject* value = PyUnicode_FromString(s.txt[i].second.c_str());
-			PyDict_SetItemString(txt, s.txt[i].first.c_str(), value);
-			Py_DECREF(value);
+			PyObject* key = toPyUnicode(s.txt[i].first);
+			PyObject* value = toPyUnicode(s.txt[i].second);
+			if (key && value)
+				PyDict_SetItem(txt, key, value);
+			Py_XDECREF(key);
+			Py_XDECREF(value);
 		}
 
 		PyObject* d = PyDict_New();
-		PyObject* name = PyUnicode_FromString(s.serviceName.c_str());
-		PyObject* stype = PyUnicode_FromString(s.serviceType.c_str());
-		PyObject* domain = PyUnicode_FromString(s.domain.c_str());
-		PyObject* hostname = PyUnicode_FromString(s.hostname.c_str());
+		PyObject* name = toPyUnicode(s.serviceName);
+		PyObject* stype = toPyUnicode(s.serviceType);
+		PyObject* domain = toPyUnicode(s.domain);
+		PyObject* hostname = toPyUnicode(s.hostname);
 		PyObject* port = PyLong_FromLong(s.port);
 		PyObject* iface = PyLong_FromLong(s.interfaceIndex);
 		PyObject* proto = PyUnicode_FromString(s.protocol == AVAHI_PROTO_INET6 ? "inet6" : "inet");

@@ -18,6 +18,10 @@ if GB7252
 SUBDIRS += QuadPip
 endif
 
+if VUDUO4KLITE
+SUBDIRS += QuadPip
+endif
+
 if VUUNO4K
 SUBDIRS += QuadPip
 endif

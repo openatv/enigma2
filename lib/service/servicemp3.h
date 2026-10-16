@@ -346,6 +346,9 @@ private:
 	static int pcm_delay;
 	static int ac3_delay;
 	int m_currentAudioStream;
+	int m_initialAudioStream = -1;
+	bool m_initialAudioSelection = true;
+	void applyAudioSelection();
 	int m_currentSubtitleStream;
 	int m_cachedSubtitleStream;
 	/* bumped on every subtitle stream switch and on every seek; buffers stamped
@@ -358,7 +361,8 @@ private:
 	void applySubtitleStreamSwitch();
 	/* audio stream requested while the pipeline was not settled in PLAYING, -1 if none */
 	int m_audio_switch_deferred = -1;
-	int selectAudioStream(int i, bool skipAudioFix = false);
+	int selectAudioStream(int i, bool skipAudioFix = false, bool remember = true);
+	GstElement* getAudioChannelSink();
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
 	iSubtitleUser* m_subtitle_widget;
@@ -448,9 +452,6 @@ private:
 	subtitle_pages_map_t m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	ePtr<eTimer> m_dvb_subtitle_sync_timer;
-#ifdef PASSTHROUGH_FIX
-	ePtr<eTimer> m_passthrough_fix_timer;
-#endif
 	ePtr<eDVBSubtitleParser> m_dvb_subtitle_parser;
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
 	ePtr<ePGSSubtitleParser> m_pgs_subtitle_parser;
@@ -470,9 +471,6 @@ private:
 	void pullSubtitle(GstBuffer* buffer);
 	void sourceTimeout();
 	void clearBuffers(bool force = false);
-#ifdef PASSTHROUGH_FIX
-	void forcePassthrough();
-#endif
 	sourceStream m_sourceinfo;
 	gulong m_subs_to_pull_handler_id, m_notify_source_handler_id, m_notify_element_added_handler_id;
 

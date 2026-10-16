@@ -106,4 +106,24 @@ public:
 	}
 };
 
+template <class R, class V0, class V1, class V2, class V3>
+class PSignal4: public PSignal, public sigc::signal<R(V0, V1, V2, V3)>
+{
+public:
+	R operator()(V0 a0, V1 a1, V2 a2, V3 a3)
+	{
+		if (m_list)
+		{
+			PyObject *pArgs = PyTuple_New(4);
+			PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
+			PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
+			PyTuple_SET_ITEM(pArgs, 2, PyFrom(a2));
+			PyTuple_SET_ITEM(pArgs, 3, PyFrom(a3));
+			callPython(pArgs);
+			Org_Py_DECREF(pArgs);
+		}
+		return sigc::signal<R(V0,V1,V2,V3)>::operator()(a0, a1, a2, a3);
+	}
+};
+
 #endif

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 20:19+0000\n"
+"POT-Creation-Date: 2026-10-15 14:11+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -745,12 +745,6 @@ msgstr "%b =%-d"
 msgid "%b=%d "
 msgstr "%b =%d"
 
-#, python-format
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -1204,6 +1198,10 @@ msgid "%s Information Actions"
 msgstr "%s செய்தி நடவடிக்கைகள்"
 
 #, python-format
+msgid "%s MHz"
+msgstr ""
+
+#, python-format
 msgid "%s Setup"
 msgstr "%s அமைப்பு"
 
@@ -1255,6 +1253,9 @@ msgstr "%s நீண்டது"
 msgid "%s not available."
 msgstr "%s கிடைக்கவில்லை."
 
+msgid "%s support"
+msgstr ""
+
 #, python-format
 msgid "%s version"
 msgstr "%s பதிப்பு"
@@ -1267,6 +1268,7 @@ msgstr ""
 msgid "%s%d min"
 msgstr "%s%d min"
 
+#. TRANSLATORS: The second %s is a spacer.
 #, python-format
 msgid "%s%s(Default: %s)"
 msgstr "%s %s (இயல்புநிலை: %s)"
@@ -1347,9 +1349,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'மணிநேரத்தில் இடையக' அல்லது 'கடைசி நிகழ்வுகளின் எண்ணிக்கை'. பழைய நேர சிப்ட் கோப்புகளை நீக்குவதற்கு, முதலில் நிகழ்ந்த நிலைக்கு முன்னுரிமை உள்ளது."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'டிவியில் இருந்து காத்திருப்பு' 'டிவியில் இருந்து உள்ளீட்டைக் கையாள' விட அதிக முன்னுரிமை உள்ளது."
 
@@ -1419,6 +1418,21 @@ msgstr "-24 மணி நேரம்"
 msgid "-24h/+24 Hours"
 msgstr "-24H/+24 மணி நேரம்"
 
+msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
+msgstr ""
+
+msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
+msgstr ""
+
+msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
+msgstr ""
+
+msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
+msgstr ""
+
 msgid "/s"
 msgstr "/கள்"
 
@@ -1443,6 +1457,9 @@ msgstr "12 எழுத்து"
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, கிரேக்க மற்றும் சிரிலிக் தவிர லத்தீன் -1 எழுத்துக்களைக் காட்டுங்கள், தேவைப்பட்டால் 8 க்கு மாறவும்."
 
+msgid "12-bit HDR (no PiP)"
+msgstr ""
+
 msgid "12V output"
 msgstr "12 வி வெளியீடு"
 
@@ -1451,9 +1468,6 @@ msgstr "12 வி வெளியீடு."
 
 msgid "12bit"
 msgstr "12 பிட்"
-
-msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12 பிட் 4: 2: 0/4: 2: 2 பிப் இல்லை"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 லெட்டர்பாக்ச்"
@@ -1629,9 +1643,6 @@ msgstr "ஒரு நிறைவு செய்யப்பட்ட பணி
 msgid "A crash log was %s created in '%s'"
 msgstr "ஒரு செயலிழப்பு பதிவு ' %s' இல் %s உருவாக்கப்பட்டது"
 
-msgid "A file from media is in use!"
-msgstr "மீடியாவிலிருந்து ஒரு கோப்பு பயன்பாட்டில் உள்ளது!"
-
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1677,15 +1688,15 @@ msgstr ""
 "ஒரு பதிவு தொடங்கப்பட்டுள்ளது:\n"
 " %s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 "ஒரு பதிவு தற்போது இயங்குகிறது.\n"
 " நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?"
-
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "ஒரு பதிவு தற்போது இயங்குகிறது. ச்கேன் செய்ய முயற்சிக்கும் முன் பதிவை நிறுத்துங்கள்."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "ஒரு பதிவு தற்போது இயங்குகிறது. செயற்கைக்கோள் கண்டுபிடிப்பாளரைத் தொடங்க முயற்சிக்கும் முன் பதிவை நிறுத்துங்கள்."
@@ -1709,6 +1720,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "தேவையான கருவி (%s) காணப்படவில்லை."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -1932,6 +1946,9 @@ msgstr "தழுவல் அமைப்புகள்"
 
 msgid "Add"
 msgstr "கூட்டு"
+
+msgid "Add 'Manual resolution' to Extensions"
+msgstr ""
 
 msgid "Add Alternatives"
 msgstr "மாற்று வழிகளைச் சேர்க்கவும்"
@@ -2171,6 +2188,9 @@ msgstr ""
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
 msgstr ""
 
+msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
+msgstr ""
+
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "வண்ண அமைப்புகளை சரிசெய்யவும், இதனால் அனைத்து வண்ண நிழல்களும் வேறுபடுகின்றன, ஆனால் முடிந்தவரை நிறைவுற்றதாகத் தோன்றும். முடிவில் நீங்கள் மகிழ்ச்சியாக இருந்தால், வீடியோவை நன்றாகச் சரிசெய்ய சரி என்பதை அழுத்தவும் அல்லது பிற சோதனைத் திரைகளைத் தேர்ந்தெடுக்க எண் விசைகளைப் பயன்படுத்தவும்."
 
@@ -2182,9 +2202,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "டெலிடெக்ச்டுக்கு பயன்படுத்தப்படும் கடிதங்களின் செங்குத்து நிலையை சரிசெய்யவும்."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr "DM9x0 க்கான வன்பொருள் இடையக தாமதத்திற்கான இழப்பீட்டைச் சரிசெய்கிறது."
 
 msgid "Adult"
 msgstr "அகவை வந்தோர்"
@@ -2236,6 +2253,9 @@ msgstr "ஆப்பிரிக்கா"
 
 msgid "After Event"
 msgstr "நிகழ்வுக்குப் பிறகு"
+
+msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
+msgstr ""
 
 msgid "After event"
 msgstr "நிகழ்வுக்குப் பிறகு"
@@ -2310,6 +2330,9 @@ msgstr "அனைத்து நிகழ்வுகளும்"
 msgid "All files"
 msgstr "அனைத்து கோப்புகள்"
 
+msgid "All packages"
+msgstr ""
+
 msgid "All regions"
 msgstr ""
 
@@ -2343,11 +2366,8 @@ msgstr "ஒதுக்கவும்"
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "நீங்கள் உள்ளமைக்கும் உடல் எல்.என்.பி.க்கு ஒரு எண்ணை ஒதுக்கவும். அதே எல்.என்.பி அமைப்பை பல முறை சேமிக்க மற்ற செயற்கைக்கோள்களுக்கு (எ.கா. மின்னோடி பொருத்தப்பட்ட உணவுகள்) இந்த எல்.என்.பி."
 
-msgid "Allow 10bit"
-msgstr "10 பிட் அனுமதிக்கவும்"
-
-msgid "Allow 12bit"
-msgstr "12 பிட் அனுமதிக்கவும்"
+msgid "Allow %s-bit"
+msgstr ""
 
 msgid "Allow guest access"
 msgstr ""
@@ -2466,6 +2486,12 @@ msgstr "எப்போதும் ECM ஐ பதிவுகளில் ச�
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "எப்போதும் ECM செய்திகளை பதிவுகளில் சேர்க்கவும். இது உலகளவில் தனிப்பட்ட நேரங்குறிகருவி அமைப்புகளை மீறுகிறது. உங்கள் பெறுநரால் ஆதரிக்கப்பட்டால், பதிவுகளை எப்போதும் மறைகுறியாக்குவதற்கு (சில நேரங்களில் இணைப்பில்லாத டிகோடிங் என்று அழைக்கப்படுகிறது) இது அனுமதிக்கிறது."
 
+msgid "Always run the CPU at the maximum frequency."
+msgstr ""
+
+msgid "Always run the CPU at the minimum frequency."
+msgstr ""
+
 msgid "Always show bouquets"
 msgstr "எப்போதும் பூங்கொத்துகளைக் காட்டுங்கள்"
 
@@ -2565,6 +2591,9 @@ msgstr "செயலில் உள்ள இடம்/மொழியில்
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "தற்போது சிறப்பிக்கப்பட்டுள்ள இடம்/மொழியைப் பயன்படுத்துங்கள்"
+
+msgid "Apply the settings without saving them"
+msgstr ""
 
 msgid "Aqua"
 msgstr "அக்வா"
@@ -2709,6 +2738,9 @@ msgstr "நீட்டிக்கப்பட்ட பட்டியில�
 msgid "Ascending"
 msgstr "ஏறுதல்"
 
+msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
+msgstr ""
+
 msgid "Ask user"
 msgstr "பயனரிடம் கேளுங்கள்"
 
@@ -2815,6 +2847,9 @@ msgid "Audio Synchronization"
 msgstr ""
 
 msgid "Audio bit rate"
+msgstr ""
+
+msgid "Audio decoding"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2943,10 +2978,16 @@ msgstr "தானியங்கி தெளிவுத்திறன் ச�
 msgid "Automatic scan for services"
 msgstr "சேவைகளுக்கான தானியங்கி ச்கேன்"
 
+msgid "Automatically hide OSD"
+msgstr ""
+
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "ரிசீவர் காத்திருப்பு அல்லது ஆழமான காத்திருப்புக்குச் செல்லும்போதெல்லாம் தானாகவே டிவியை காத்திருப்பதில் வைக்கவும்."
 
-msgid "Automatically start time shift after"
+msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
+msgstr ""
+
+msgid "Automatically start time shift"
 msgstr "தானாகவே நேர மாற்றத்தைத் தொடங்கவும்"
 
 msgid "Automatically turn on external subtitles"
@@ -3073,6 +3114,9 @@ msgstr "பின்னணி வேகத்தை நீக்கு"
 msgid "Background selected:"
 msgstr "பின்னணி தேர்ந்தெடுக்கப்பட்டது:"
 
+msgid "Background sound/clean feed"
+msgstr ""
+
 msgid "Background:"
 msgstr "பின்னணி:"
 
@@ -3179,6 +3223,9 @@ msgstr "கூடைப்பந்து"
 
 msgid "Basque"
 msgstr "பாச்க்"
+
+msgid "Battery"
+msgstr ""
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr "இந்த அமைப்புகளை மாற்றுவதற்கு முன், டிவி / டிச்ப்ளே ச்கிரீனில் எந்த ஓவர்ச்கான் அமைப்புகளையும் முடக்க முயற்சிக்கவும். ஆன்-ச்கிரீன்-டிச்ப்ளே (ஓ.எச்.டி) அளவீடு செய்ய சிவப்பு பெட்டி * தெரியும் வரை நிலை மற்றும் அளவு மதிப்புகளை சரிசெய்யவும், திரையின் விளிம்புகளைத் தொடும் வரை சரிசெய்யவும்."
@@ -3303,6 +3350,9 @@ msgstr "ஊடலை ஆடியோ"
 msgid "Bluetooth Setup"
 msgstr "ஊடலை அமைப்பு"
 
+msgid "Bluetooth remote"
+msgstr ""
+
 msgid "Bolivia"
 msgstr "பொலிவியா"
 
@@ -3379,6 +3429,10 @@ msgstr "பூச்செண்டு தேர்வாளர் செயல�
 msgid "Bouquet Selector Navigation Actions"
 msgstr "பூச்செண்டு தேர்வாளர் வழிசெலுத்தல் நடவடிக்கைகள்"
 
+#, python-format
+msgid "Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed."
+msgstr ""
+
 msgid "Bouquets"
 msgstr "பூங்கொத்துகள்"
 
@@ -3454,6 +3508,9 @@ msgstr "ப்ரூனே தருசலம்"
 msgid "Buffer Management"
 msgstr ""
 
+msgid "Buffer age limit"
+msgstr "நேர சிப்ட் இடையக வரம்பு"
+
 #, python-format
 msgid "Buffering %d%%"
 msgstr "இடையக%d %%"
@@ -3528,7 +3585,7 @@ msgstr "பொத்தான் பிழை நேரம் முடிந்
 msgid "ButtonSetup"
 msgstr "பொத்தான்கள்"
 
-msgid "Bypass HDMI EDID Check"
+msgid "Bypass HDMI EDID check"
 msgstr "பைபாச் HDMI திருத்து காசோலை"
 
 msgid "Bytes received"
@@ -3658,6 +3715,9 @@ msgstr "சிபியு / வயிரம் %d வகை"
 
 msgid "CPU Control"
 msgstr "சிபியு கட்டுப்பாடு"
+
+msgid "CPU Control Actions"
+msgstr ""
 
 msgid "CPU architecture"
 msgstr "சிபியு கட்டிடக்கலை"
@@ -4033,9 +4093,6 @@ msgstr "சாட்"
 msgid "Chamorro"
 msgstr "சாமோரோ"
 
-msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "வன்பொருள் சிப் முறைகளைக் கட்டுப்படுத்த பாக்ச்மோடை மாற்றவும்*"
-
 msgid "Change Language"
 msgstr "மொழியை மாற்றவும்"
 
@@ -4068,6 +4125,9 @@ msgstr "பதிவை மாற்றவும் (இறுதி நேர�
 
 msgid "Change repeat and delay settings?"
 msgstr "மீண்டும் மீண்டும் மாற்றவும், அமைப்புகளை தாமதப்படுத்தவும்?"
+
+msgid "Change search"
+msgstr ""
 
 msgid "Change skin"
 msgstr "சருமத்தை மாற்றவும்"
@@ -4237,6 +4297,12 @@ msgstr "பி.டி.சி."
 msgid "Check for PDC availability on each service."
 msgstr "ஒவ்வொரு சேவையிலும் பி.டி.சி கிடைப்பதை சரிபார்க்கவும்"
 
+msgid "Check for free space"
+msgstr "இலவச இடத்திற்கான நேர சிப்ட் சோதனை"
+
+msgid "Check for older files"
+msgstr "பழைய கோப்புகளுக்கான நேர சிப்ட் சோதனை"
+
 msgid "Check power and input state from TV"
 msgstr "டிவியில் இருந்து ஆற்றல் மற்றும் உள்ளீட்டு நிலையை சரிபார்க்கவும்"
 
@@ -4257,6 +4323,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "கோப்பு முறைமையைச் சரிபார்க்கிறது ..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4465,6 +4534,9 @@ msgstr "தெளிவான நிலையான"
 msgid "Clear play list"
 msgstr "தெளிவான விளையாட்டு பட்டியல்"
 
+msgid "Clear search"
+msgstr ""
+
 msgid "Clear the logs for this timer"
 msgstr "இந்த டைமருக்கான பதிவுகளை அழிக்கவும்"
 
@@ -4527,9 +4599,6 @@ msgstr ""
 msgid "Close network test and exit all menus"
 msgstr ""
 
-msgid "Close screen"
-msgstr "திரை மூடு"
-
 msgid "Close the Chkroot MultiBoot Manager"
 msgstr "Chkroot மல்டிபூட் மேலாளரை மூடு"
 
@@ -4551,26 +4620,26 @@ msgstr "தொடக்கப் புள்ளிக்குத் திர�
 msgid "Close the choice box"
 msgstr "தேர்வு பெட்டியை மூடு"
 
-msgid "Close the current screen"
-msgstr "தற்போதைய திரையை மூடு"
-
 msgid "Close the documentation screen"
 msgstr "ஆவணத் திரையை மூடு"
 
 msgid "Close the screen"
 msgstr "திரையை மூடு"
 
+msgid "Close the screen after the scan has finished"
+msgstr ""
+
 msgid "Close the screen and exit all menus"
 msgstr "திரையை மூடி, அனைத்து மெனுக்களையும் விட்டு வெளியேறவும்"
+
+msgid "Close the screen and stop a running scan"
+msgstr ""
 
 msgid "Close the screen without saving any changes"
 msgstr "எந்த மாற்றங்களையும் சேமிக்காமல் திரையை மூடு"
 
 msgid "Close the window"
 msgstr "சாளரத்தை மூடு"
-
-msgid "Close this screen"
-msgstr "இந்த திரையை மூடு"
 
 msgid "Close title selection"
 msgstr "தலைப்பு தேர்வை மூடு"
@@ -4616,6 +4685,9 @@ msgstr "வண்ண இடம்"
 
 msgid "Colored text"
 msgstr "வண்ண உரை"
+
+msgid "Colorimetry for HDR content"
+msgstr ""
 
 msgid "Combined"
 msgstr "இணைக்கப்பட்டது"
@@ -5067,9 +5139,6 @@ msgstr "'ரெக்கார்டிங்' அடையாளம் (டி�
 msgid "Configure which color format should be used on the SCART output."
 msgstr "ச்கார்ட் வெளியீட்டில் எந்த வண்ண வடிவமைப்பைப் பயன்படுத்த வேண்டும் என்பதை உள்ளமைக்கவும்."
 
-msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "ஒன்றுக்கு மேற்பட்ட ட்யூனர்கள் கிடைக்கும்போது, பதிவுகளுக்கு எந்த ட்யூனர் விரும்பப்படும் என்பதை உள்ளமைக்கவும்."
-
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "வெவ்வேறு வகையான ட்யூனர்களில் ஒரே பணி கிடைக்கும்போது, எந்த ட்யூனர் வகை விரும்பப்படும் என்பதை உள்ளமைக்கவும்."
 
@@ -5095,6 +5164,9 @@ msgid "Configuring Service"
 msgstr "சேவையை உள்ளமைத்தல்"
 
 msgid "Confirm Zap"
+msgstr ""
+
+msgid "Confirm moving files to the trashcan"
 msgstr ""
 
 #, python-format
@@ -5453,8 +5525,17 @@ msgstr "ஒரு கோப்பகத்தை உருவாக்கவு�
 msgid "Create a randomly generated password"
 msgstr "தோராயமாக உருவாக்கப்பட்ட கடவுச்சொல்லை உருவாக்கவும்"
 
+msgid "Create a separate bouquet for radio services. When disabled, radio services are included in the TV bouquet."
+msgstr ""
+
+msgid "Create a settings backup"
+msgstr ""
+
 msgid "Create a symbolic link"
 msgstr "ஒரு குறியீட்டு இணைப்பை உருவாக்கவும்"
+
+msgid "Create an image backup"
+msgstr ""
 
 msgid "Create application loader dump."
 msgstr "பயன்பாட்டு ஏற்றி டம்பை உருவாக்கவும்."
@@ -5516,9 +5597,6 @@ msgstr ".Ap மற்றும் .sc கோப்புகளை உருவ�
 
 msgid "Creating file system"
 msgstr "கோப்பு முறைமையை உருவாக்குதல்"
-
-msgid "Creating hard link to time shift file failed!"
-msgstr "நேர சிப்ட் கோப்பிற்கு கடினமான இணைப்பை உருவாக்குவது தோல்வியடைந்தது!"
 
 #, python-format
 msgid ""
@@ -5587,9 +5665,8 @@ msgstr "தற்போதைய சிபியு அதிர்வெண் 
 msgid "Current CPU Frequency other cores: %s MHz"
 msgstr "தற்போதைய சிபியு அதிர்வெண் பிற கோர்கள்: %s MHZ"
 
-#, python-format
-msgid "Current CPU cores 0 and 1 Voltage: %s V"
-msgstr "தற்போதைய சிபியு கோர்கள் 0 மற்றும் 1 மின்னழுத்தம்: %s v"
+msgid "Current CPU speed"
+msgstr ""
 
 msgid "Current Directory"
 msgstr "தற்போதைய அடைவு"
@@ -5597,8 +5674,20 @@ msgstr "தற்போதைய அடைவு"
 msgid "Current Event:"
 msgstr "தற்போதைய நிகழ்வு:"
 
+#, python-format
+msgid "Current GPU Frequency: %s MHz"
+msgstr ""
+
+#, python-format
+msgid "Current RAM Frequency: %s MHz"
+msgstr ""
+
 msgid "Current Status:"
 msgstr "தற்போதைய நிலை:"
+
+#, python-format
+msgid "Current Temperature (RAM): %s °C"
+msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
@@ -5800,9 +5889,6 @@ msgstr ""
 msgid "DNS data source"
 msgstr "டிஎன்எச் தரவு மூல"
 
-msgid "Override DNS"
-msgstr ""
-
 msgid "DNS protocol mode"
 msgstr "டிஎன்எச் பயன்முறை"
 
@@ -5896,6 +5982,9 @@ msgstr "நடனம்"
 
 msgid "Danish"
 msgstr "டேனிச்"
+
+msgid "Dari"
+msgstr ""
 
 msgid "Darts"
 msgstr "ஈட்டிகள்"
@@ -6243,6 +6332,9 @@ msgstr "முன்னோக்கி தாவல்களுக்கான �
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "எந்த வேகமான முன்னோக்கி விரைவு சாதாரண குறிப்பைப் பயன்படுத்துகிறது என்பதை வரையறுக்கிறது. மற்ற அனைத்து முன்னோக்கி விரைவு மற்றும் அனைத்து முன்னாடி வேகங்களும் நேர தாவல்களைப் பயன்படுத்துகின்றன."
 
+msgid "Deinterlacer mode"
+msgstr ""
+
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "கட்டளையின் மீது diseqc புற சக்திக்குப் பிறகு நேரந்தவறுகை"
 
@@ -6349,6 +6441,9 @@ msgstr "செருகுநிரல்களை நீக்கு"
 
 msgid "Delete Timer"
 msgstr "டைமரை நீக்கு"
+
+msgid "Delete after zap"
+msgstr "ZAP க்குப் பிறகு நேர சிப்ட் பஃபர் நீக்குதல்"
 
 msgid "Delete all duplicated lines"
 msgstr "அனைத்து நகல் வரிகளையும் நீக்கவும்"
@@ -6476,9 +6571,6 @@ msgstr "%s ( %s) ஐ நீக்குதல் ..."
 
 msgid "Deleting files"
 msgstr "கோப்புகளை நீக்குதல்"
-
-msgid "Delivery system workaround"
-msgstr "டெலிவரி சிச்டம் பணித்தொகுப்பு"
 
 msgid "Democratic Republic of the Congo"
 msgstr "காங்கோ சனநாயக குடியரசு"
@@ -6620,6 +6712,15 @@ msgstr "Diseqc ஃபேசன்"
 msgid "DiSEqC port %s: %s"
 msgstr "Diseqc துறைமுகம் %s: %s"
 
+msgid "DiSEqC port by polarization"
+msgstr ""
+
+msgid "DiSEqC port for horizontal"
+msgstr ""
+
+msgid "DiSEqC port for vertical"
+msgstr ""
+
 msgid "DiSEqC-tester settings"
 msgstr "Diseqc- டெச்டர் அமைப்புகள்"
 
@@ -6657,10 +6758,6 @@ msgstr "கோப்பகங்கள்"
 
 msgid "Directory"
 msgstr "அடைவு"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "அடைவு '%s' பதிவுகளுடன் இணைக்க முடியாது!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7209,6 +7306,9 @@ msgstr "இயக்கி மற்றும் கர்னல் செய்
 msgid "Drivers version"
 msgstr "இயக்கிகள் பதிப்பு"
 
+msgid "Drop unconfigured satellites"
+msgstr ""
+
 msgid "Duplex"
 msgstr "டூப்ளக்ச்"
 
@@ -7515,9 +7615,6 @@ msgstr "%s PRO ஐ இயக்கு:"
 msgid "Enable 5V for active antenna"
 msgstr "செயலில் ஆண்டெனாவுக்கு 5V ஐ இயக்கவும்"
 
-msgid "Enable Autorecord"
-msgstr "தன்னியக்க ஆர்டரை இயக்கவும்"
-
 msgid "Enable BT audio"
 msgstr "BT ஆடியோவை இயக்கவும்"
 
@@ -7584,9 +7681,6 @@ msgstr "பிணையம் ஐபி முகவரி காசோலைய
 msgid "Enable OpenTV EPG"
 msgstr "OpentV EPG ஐ இயக்கவும்"
 
-msgid "Enable PiP no HDR"
-msgstr "பிஐபி இல்லை எச்.டி.ஆர்"
-
 msgid "Enable Quad PiP"
 msgstr "குவாட் பிப் இயக்கவும்"
 
@@ -7618,8 +7712,11 @@ msgid "Enable auto fast scan"
 msgstr "ஆட்டோ ஃபாச்ட் ச்கேன் இயக்கவும்"
 
 #, python-format
-msgid "Enable auto fast scan for %s"
+msgid "Enable auto fast scan for '%s'"
 msgstr "%s க்கு ஆட்டோ ஃபாச்ட் ச்கேன் இயக்கவும்"
+
+msgid "Enable auto record"
+msgstr "தன்னியக்க ஆர்டரை இயக்கவும்"
 
 msgid "Enable automatic shares"
 msgstr "தானியங்கி பங்குகளை இயக்கவும்"
@@ -7976,9 +8073,6 @@ msgstr ""
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "ZeroTier பிணையம் ஐடியை உள்ளிடவும். அடையாளம் சரியாக 16 எழுத்துகள் நீளமாக இருக்க வேண்டும்."
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr "ச்ட்ரீமிங் பிழைக்குப் பிறகு ச்ட்ரீமிங் பஃபரில் சேர்க்க வேண்டிய கால அளவை உள்ளிடவும். இந்த கூடுதல் இடையகமானது இடையக இடம் இல்லாததால் மேலும் ச்ட்ரீமிங் சிக்கல்களைத் தவிர்க்க உதவும்."
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr ""
 
@@ -7998,6 +8092,9 @@ msgid "Enter the network domain name suffix to be added to the hostname above. T
 msgstr "டிஎன்எச் பின்னொட்டை வரையறுக்கவும்."
 
 msgid "Enter the network hostname to be used to identify this receiver."
+msgstr ""
+
+msgid "Enter the new four-digit PIN code."
 msgstr ""
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
@@ -8022,6 +8119,9 @@ msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
 msgstr ""
 
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
+msgstr ""
+
+msgid "Enter the same PIN code again to confirm it."
 msgstr ""
 
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
@@ -8196,12 +8296,18 @@ msgstr "பிழை மீண்டும் முயல நேரந்தவ
 msgid "Error code"
 msgstr "பிழைக் குறியீடு"
 
+msgid "Error creating the channel backup on the remote receiver!"
+msgstr ""
+
 #, python-format
 msgid "Error downloading image '%s'!"
 msgstr "படத்தைப் பதிவிறக்குவதில் பிழை '%s'!"
 
 msgid "Error executing plugin"
 msgstr "சொருகி செயல்படுத்துவதில் பிழை"
+
+msgid "Error extracting the channel backup!"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -8217,11 +8323,17 @@ msgstr "'Epg.dat' ஐ அதன் இலக்குக்கு நகர்�
 msgid "Error opening recording file"
 msgstr "பதிவுசெய்தல் கோப்பைத் திறப்பதில் பிழை"
 
+msgid "Error overwriting the channel files on the local receiver!"
+msgstr ""
+
 msgid "Error reading webpage!"
 msgstr "வலைப்பக்கத்தைப் படிப்பதில் பிழை!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "தொலைநிலை பெறுநரிடமிருந்து 'epg.dat' ஐ மீட்டெடுப்பதில் பிழை!"
+
+msgid "Error retrieving the channel backup from the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "பிழை உரை:"
@@ -8238,9 +8350,6 @@ msgstr ""
 "குறைவடையும் நேரங்குறிகருவி தகவலை மீட்டெடுக்கும் போது பிழை\n"
 " %s"
 
-msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "தொலைநிலை ரிசீவரில் '/etc/enigma2/epg.dat' எழுதுவது பிழை!"
-
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "தொலைநிலை ரிசீவரில் 'epg.dat' எழுதுவது பிழை!"
 
@@ -8251,6 +8360,9 @@ msgid ""
 msgstr ""
 "பிழை: %s\n"
 " மீண்டும் முயற்சிக்கிறீர்களா?"
+
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "ஒரு பதிவு தற்போது இயங்குகிறது. ச்கேன் செய்ய முயற்சிக்கும் முன் பதிவை நிறுத்துங்கள்."
 
 msgid "Error: An empty filename is illegal!"
 msgstr "பிழை: வெற்று கோப்பு பெயர் சட்டவிரோதமானது!"
@@ -8324,6 +8436,9 @@ msgstr "பிழை: கோப்பகத்தை அகற்றுவது
 msgid "Error: Rescan failed!"
 msgstr ""
 
+msgid "Error: Scan failed!"
+msgstr "ச்கேனிங் தோல்வியுற்றது!"
+
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
 msgstr "பிழை: ச்கிரிப்ட் '%s' இயக்க வாசிப்பு இசைவு இருக்க வேண்டும்!"
@@ -8361,12 +8476,27 @@ msgstr "பிழை: '%s' எழுதுவதில் சிக்கல் 
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr "பிழை: ஊட்டங்களின் மீட்டமைப்பில் ஒரு சிக்கல் இருந்தது! தயவுசெய்து %s %s ஐ மறுதொடக்கம் செய்து, இந்த கட்டளையை மீண்டும் முயற்சிக்கும் முன் எந்த பிழைகளுக்கும் கோப்பு முறைமையை சரிபார்க்கவும்."
 
+msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
+msgstr ""
+
+msgid "Error: Unable to create the additional STARTUP files!"
+msgstr ""
+
+msgid "Error: Unable to create the new manufacturer STARTUP files!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "பிழை: இலக்கு சாதனத்தில் தேவையான கோப்பகங்களை உருவாக்க முடியவில்லை (எ.கா. யூ.எச்.பி ச்டிக் அல்லது ஆர்ட் டிச்க்)! சாதனத்தை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."
+
+msgid "Error: Unable to read the UUID of the new MultiBoot partition so the STARTUP files has not been changed!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "பிழை: கோப்பகத்தை '%s' என மறுபெயரிட முடியவில்லை '%s'!"
+
+msgid "Error: Unable to select the nominated audio channel!"
+msgstr ""
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
@@ -8435,8 +8565,14 @@ msgstr "நிகழ்வு பார்வை செயல்கள்"
 msgid "Event View Context Menu"
 msgstr "நிகழ்வு பார்வை சூழல் பட்டியல்"
 
+msgid "Event based file splitting"
+msgstr "நேர சிப்ட் நிகழ்வு அடிப்படையிலான கோப்பு பிரித்தல்"
+
 msgid "Event font size"
 msgstr "நிகழ்வு எழுத்துரு அளவு"
+
+msgid "Event limit"
+msgstr "நேர சிப்ட் நிகழ்வு வரம்பு"
 
 msgid "Event name only"
 msgstr "நிகழ்வு பெயர் மட்டுமே"
@@ -8824,6 +8960,15 @@ msgstr ""
 msgid "Fast Scan"
 msgstr "விரைவான ச்கேன்"
 
+msgid "Fast Scan Actions"
+msgstr ""
+
+#, python-format
+msgid "Fast Scan version %d: Found %d channel."
+msgid_plural "Fast Scan version %d: Found %d channels."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Fast Skin Reload"
 msgstr ""
 
@@ -8835,6 +8980,9 @@ msgstr "வேகமாக முன்னோக்கி"
 
 msgid "Fast forward speeds"
 msgstr "வேகமாக முன்னோக்கி விரைவு"
+
+msgid "Fast scan may rename existing services and prevent them from being updated by a regular scan. Fast scan updates still work. Disabling this option will not restore the original names or regular scan updates. To restore them, scan the services again with 'Clear before scan' set to 'Yes'."
+msgstr ""
 
 msgid "Favorite Edit"
 msgstr "பிடித்த திருத்து"
@@ -9212,6 +9360,9 @@ msgstr "படை முடக்கப்பட்டது"
 
 msgid "Force enabled"
 msgstr "படை இயக்கப்பட்டது"
+
+msgid "Force progressive for streams and files"
+msgstr ""
 
 msgid "Foreign countries/Expeditions"
 msgstr "வெளிநாட்டு நாடுகள்/பயணங்கள்"
@@ -9688,9 +9839,6 @@ msgstr "எச்டி பட்டியல்"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colorimetry"
-msgstr "HDMI வண்ணமயமாக்கல்"
-
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR வகை"
 
@@ -9702,6 +9850,9 @@ msgstr "HDMI வண்ண ஆழம்"
 
 msgid "HDMI color space"
 msgstr "HDMI வண்ண இடம்"
+
+msgid "HDMI colorimetry"
+msgstr "HDMI வண்ணமயமாக்கல்"
 
 msgid "HDMI-CEC Settings"
 msgstr "HDMI-CEC அமைப்புகள்"
@@ -9724,9 +9875,6 @@ msgstr "Hdmiin"
 msgid "HDR OSD adjustment"
 msgstr ""
 
-msgid "HDR10 Support"
-msgstr "HDR10 உதவி"
-
 msgid "HELP"
 msgstr "உதவி"
 
@@ -9741,9 +9889,6 @@ msgstr "HH: மிமீ: எச்.எச்"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "வெளிப்புற வசனங்களுக்கான ஐ-கிளீனப்"
-
-msgid "HLG Support"
-msgstr "எச்.எல்.சி உதவி"
 
 msgid "Haiti"
 msgstr "கையிட்டி"
@@ -9781,6 +9926,9 @@ msgstr "வன்"
 msgid "Harddisk Setup"
 msgstr "வன் அமைப்பு"
 
+msgid "Hardware AAC"
+msgstr ""
+
 msgid "Hardware MultiBoot device"
 msgstr "வன்பொருள் மல்டிபூட் சாதனம்"
 
@@ -9798,6 +9946,9 @@ msgstr "வன்பொருள் சீரியல்"
 
 msgid "Hardware type"
 msgstr "வன்பொருள் வகை"
+
+msgid "Hardware video mode"
+msgstr ""
 
 msgid "Hausa"
 msgstr "ஔசா"
@@ -9825,6 +9976,9 @@ msgstr ""
 
 msgid "Help Screen Information"
 msgstr "திரை தகவலுக்கு உதவுங்கள்"
+
+msgid "Help and support"
+msgstr ""
 
 msgid "Help animation speed"
 msgstr "அனிமேசன் வேகத்திற்கு உதவுங்கள்"
@@ -9886,6 +10040,9 @@ msgstr "தொஒ செய்திகளை மறைக்கவும்"
 msgid "Hide InfoBar"
 msgstr "இன்போபரை மறைக்கவும்"
 
+msgid "Hide OSD after"
+msgstr ""
+
 msgid "Hide VBI Line For This Service"
 msgstr "இந்த சேவைக்கு விபிஐ வரியை மறைக்கவும்"
 
@@ -9907,6 +10064,9 @@ msgstr "பெற்றோர் பூட்டப்பட்ட சேவை�
 msgid "Hide player"
 msgstr "பிளேயரை மறைக்க"
 
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr ""
+
 msgid "Hide softcam servername"
 msgstr "சாப்ட்காம் சேவையகத்தை மறைக்கவும்"
 
@@ -9915,6 +10075,9 @@ msgstr ""
 
 msgid "Hide the InfoBar"
 msgstr "இன்போபரை மறைக்கவும்"
+
+msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "சாப் பிழைகளை மறைக்கவும்"
@@ -9985,7 +10148,7 @@ msgstr "அமோங்"
 msgid "Hockey"
 msgstr "ஆக்கி"
 
-msgid "Hold First Frame"
+msgid "Hold first frame"
 msgstr "முதல் சட்டத்தை வைத்திருங்கள்"
 
 msgid "Hold screen"
@@ -10275,14 +10438,8 @@ msgstr "இயக்கப்பட்டால், புதிய சிச்
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "பதிவுகள் செட் அதிகபட்ச இடத்தைப் பயன்படுத்தினால், மூத்தவர் நீக்கப்படும்."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "'ஆம்' என அமைக்கப்பட்டால், மாற்று ஆடியோ செருகுநிரல்களுடன் டைம்சிஃப்ட்டைப் பயன்படுத்த உங்களை அனுமதிக்கிறது."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "கணினி நேரம் ஒத்திசைக்கப்படும் வரை ஆழ்ந்த காத்திருப்பு பணித்தொகுப்பு இயக்கப்பட்டால் காத்திருங்கள். சாதனம் எழுந்திருக்கும் தேவையைப் பொறுத்து அதிகபட்சம் 2 நிமிடங்களுக்குப் பிறகு தொடரும்."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "இலவச இடம் மதிப்பை அமைப்பதை விட குறைவாக இருந்தால், பழைய நேர சிப்ட் கோப்புகளை நீக்க முயற்சி செய்யப்படுகிறது."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "முன் பேனலில் உரை காண்பிக்கப்படுவதற்கு மிக நீளமாக இருந்தால், அது மீண்டும் மீண்டும் செய்யப்படும் (எத்தனை முறை)."
@@ -10335,6 +10492,9 @@ msgstr "டி.வி.பி-டி பெயர்வெளி துணை ந
 msgid "Ignore Standby"
 msgstr "காத்திருப்பைப் புறக்கணிக்கவும்"
 
+msgid "Ignore services on satellites that are not configured in the tuner settings."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "எதிர்பாராத விதமாக எழுந்து காத்திருப்புடன் இருங்கள்"
 
@@ -10383,9 +10543,6 @@ msgstr "தொலைநிலை ரிசீவர் முகவரி இல
 
 msgid "Import remote receiver URL"
 msgstr "தொலைநிலை ரிசீவர் முகவரி ஐ இறக்குமதி செய்க"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "ஒரு நிகழ்வு தொடக்கத்தில் காசோலைக்கு கூடுதலாக, மீண்டும் மீண்டும் காசோலை பயன்படுத்தப்படலாம், இதனால் 'மணிநேரங்களில் இடையக வரம்பு' அல்லது 'இலவச இடத்தை சரிபார்க்க' நிபந்தனைகள் முன்பு கண்டறியப்படுகின்றன."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "வல்லுநர் பயன்முறையில், ஒன்றுக்கு மேற்பட்ட ட்யூனர்கள் கிடைக்கும்போது, பதிவுகளுக்கு எந்த ட்யூனர்கள் விரும்பப்படும் என்பதை உள்ளமைக்கவும்."
@@ -11321,6 +11478,9 @@ msgstr "ஓய்வு நேர பொழுதுபோக்குகள்"
 msgid "Lesotho"
 msgstr "லெசோதோ"
 
+msgid "Let other programs set the CPU frequency."
+msgstr ""
+
 msgid "Let the tuner select its RF gain automatically."
 msgstr ""
 
@@ -11441,12 +11601,6 @@ msgstr "சேமிப்பக சாதனங்களின் பட்ட�
 msgid "List of storage devices"
 msgstr "சேமிப்பக சாதனங்களின் பட்டியல்"
 
-#, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "பட்டியல் %d, %d சேனல் காணப்படுகிறது"
-msgstr[1] "பட்டியல் %d, %d சேனல்கள் காணப்படுகின்றன"
-
 msgid "List/Fav"
 msgstr "பட்டியல்/fav"
 
@@ -11485,6 +11639,10 @@ msgstr "நேரங்குறிகருவி மற்றும் பத�
 
 msgid "Load unlinked user bouquets"
 msgstr "இணைக்கப்படாத பயனர் பூங்கொத்துகளை ஏற்றவும்"
+
+#, python-format
+msgid "Load: %s %%"
+msgstr ""
 
 msgid "Loading information, please wait..."
 msgstr "தகவலை ஏற்றுகிறது, தயவுசெய்து காத்திருங்கள் ..."
@@ -11559,9 +11717,6 @@ msgstr "இருப்பிட தேர்வு நடவடிக்கை�
 
 msgid "Location information"
 msgstr "இருப்பிட செய்தி"
-
-msgid "Location list"
-msgstr "இருப்பிட பட்டியல்"
 
 #, python-format
 msgid "Location: %s"
@@ -11838,6 +11993,9 @@ msgstr "கையேடு ச்கேன்"
 
 msgid "Manual Service Searching"
 msgstr "கையேடு பணி தேடல்"
+
+msgid "Manual resolution"
+msgstr ""
 
 msgid "Manual scan for services"
 msgstr "சேவைகளுக்கான கையேடு ச்கேன்"
@@ -12421,9 +12579,6 @@ msgstr ""
 msgid "Move to first line"
 msgstr "முதல் வரிக்கு நகர்த்தவும்"
 
-msgid "Move to first line / screen"
-msgstr "முதல் வரி / திரைக்கு நகர்த்தவும்"
-
 msgid "Move to first line / screen in the panel"
 msgstr "பேனலில் முதல் வரி / திரைக்கு நகர்த்தவும்"
 
@@ -12435,9 +12590,6 @@ msgstr ""
 
 msgid "Move to last line"
 msgstr "கடைசி வரிக்கு நகர்த்தவும்"
-
-msgid "Move to last line / screen"
-msgstr "கடைசி வரி / திரைக்கு நகர்த்தவும்"
 
 msgid "Move to last line / screen in the panel"
 msgstr "பேனலில் கடைசி வரி / திரைக்கு நகர்த்தவும்"
@@ -12735,6 +12887,12 @@ msgstr "Ntsc"
 msgid "Name"
 msgstr "பெயர்"
 
+msgid "Name (A-Z)"
+msgstr ""
+
+msgid "Name (Z-A)"
+msgstr ""
+
 msgid "Name ascending"
 msgstr "பெயர் ஏறுதல்"
 
@@ -12791,6 +12949,9 @@ msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
+msgstr ""
+
+msgid "Ndebele"
 msgstr ""
 
 msgid "Ndonga"
@@ -13161,6 +13322,9 @@ msgstr "வகை இல்லை"
 msgid "No channel"
 msgstr "சேனல் இல்லை"
 
+msgid "No channel backup found on the remote receiver!"
+msgstr ""
+
 msgid "No channel list"
 msgstr "சேனல் பட்டியல் இல்லை"
 
@@ -13198,6 +13362,9 @@ msgstr "இலவச குறியீடு எதுவும் கிடை
 msgid "No free tuner!"
 msgstr "இலவச ட்யூனர் இல்லை!"
 
+msgid "No further DVB-I alternative is available."
+msgstr ""
+
 msgid "No gateway"
 msgstr ""
 
@@ -13205,6 +13372,9 @@ msgid "No hard disks detected."
 msgstr "கடினமான வட்டுகள் கண்டறியப்படவில்லை."
 
 msgid "No hosts found yet - still scanning..."
+msgstr ""
+
+msgid "No local images found."
 msgstr ""
 
 msgid "No log files found so debug logs are unavailable!"
@@ -13224,6 +13394,9 @@ msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr "உருப்படிகள் சுவிட்ச் இல்லை (அதிகரிப்பு அல்லது குறைக்கப்பட்ட)"
+
+msgid "No packages found."
+msgstr ""
 
 msgid "No pictures available"
 msgstr "படங்கள் எதுவும் கிடைக்கவில்லை"
@@ -13452,20 +13625,6 @@ msgstr "வரையறுக்கப்படவில்லை"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "போதுமான வட்டு இடம் இல்லை. தயவுசெய்து சில வட்டு இடத்தை விடுவித்து மீண்டும் முயற்சிக்கவும். ( %d Mb தேவை, %d Mb கிடைக்கிறது)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"போதுமான இலவச வட்டு இடம் இல்லை!\n"
-"\n"
-"கோப்பு அளவு: %sMB\n"
-"இலவச இடம்: %sMB\n"
-"பாதை: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13480,6 +13639,9 @@ msgstr "தேவையில்லை"
 
 msgid "Not running"
 msgstr "ஓடவில்லை"
+
+msgid "Not set"
+msgstr ""
 
 msgid "Not tested:"
 msgstr "சோதிக்கப்படவில்லை:"
@@ -13635,6 +13797,12 @@ msgstr "OSD அமைப்புகள்"
 msgid "OSD Setup"
 msgstr "OSD அமைப்பு"
 
+msgid "OSD auto-hide enabled."
+msgstr ""
+
+msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
+msgstr ""
+
 msgid "OSD name request"
 msgstr "OSD பெயர் கோரிக்கை"
 
@@ -13668,9 +13836,6 @@ msgstr "ஆஃப்செட் மற்றும் CA சாதனத்த�
 msgid "Ojibwa"
 msgstr "ஒசிப்வா"
 
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "ஒவ்வொரு நிகழ்வு மாற்றத்திலும் நேர சிப்ட் கோப்பகத்தில் உள்ள பழைய கோப்புகள் அகற்றப்படுகின்றன."
-
 msgid "Olympic blue"
 msgstr "ஒலிம்பிக் நீலம்"
 
@@ -13697,6 +13862,9 @@ msgstr "ஒருமுறை"
 
 msgid "One line"
 msgstr "ஒரு வரி"
+
+msgid "Online manual"
+msgstr ""
 
 msgid "Online software update"
 msgstr "நிகழ்நிலை மென்பொருள் புதுப்பிப்பு"
@@ -13727,6 +13895,9 @@ msgstr "இந்த மணி நேரத்திற்கு முன்ப
 
 msgid "Only on startup"
 msgstr "தொடக்கத்தில் மட்டுமே"
+
+msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "DNS-over-HTTPS நெறிமுறையை செயல்படுத்தும் DNS சேவையகங்களை மட்டும் பயன்படுத்தவும். இது மறைகுறியாக்கப்பட்ட HTTPS நெறிமுறை வழியாக DNS தேடல்களை உருவாக்குகிறது."
@@ -13920,6 +14091,9 @@ msgstr "சேமிப்பக சாதன தகவல்களைத் த
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "உரை நுழைவுக்கு மெய்நிகர் கப்பலைத் திறக்கவும்"
 
+msgid "Open the additional screens"
+msgstr ""
+
 msgid "Open the context menu"
 msgstr "சூழல் மெனுவைத் திறக்கவும்"
 
@@ -13928,6 +14102,9 @@ msgstr "பல பணி ஈபிசி பார்வையைத் தி�
 
 msgid "Open the single service EPG view"
 msgstr "ஒற்றை பணி EPG பார்வையைத் திறக்கவும்"
+
+msgid "Open the user manual and tools to get help or report problems"
+msgstr ""
 
 msgid "Open tuner setup"
 msgstr ""
@@ -14049,6 +14226,9 @@ msgstr "வெளியீட்டு உரை:"
 
 msgid "Overall progress:"
 msgstr "ஒட்டுமொத்த முன்னேற்றம்:"
+
+msgid "Override DNS"
+msgstr ""
 
 msgid "Overscan Test"
 msgstr "அதிகப்படியான சோதனை"
@@ -14282,12 +14462,6 @@ msgstr ""
 msgid "Pass-through"
 msgstr "பாச்-த்ரூ"
 
-msgid "Passthrough audio handling delay AC3"
-msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3"
-
-msgid "Passthrough audio handling delay AC3+"
-msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3+"
-
 msgid "Password"
 msgstr "கடவுச்சொல்"
 
@@ -14397,6 +14571,9 @@ msgstr "பிலிப்பைன்ச்"
 
 msgid "PiP"
 msgstr "பிப்"
+
+msgid "PiP (no HDR)"
+msgstr ""
 
 msgid "PiP with OSD"
 msgstr "OSD உடன் PIP"
@@ -14637,9 +14814,6 @@ msgstr "புதிய குறியீட்டு இணைப்பின�
 
 msgid "Please enter new name:"
 msgstr "புதிய பெயரை உள்ளிடவும்:"
-
-msgid "Please enter search string for your location"
-msgstr "உங்கள் இருப்பிடத்திற்கான தேடல் சரத்தை உள்ளிடவும்"
 
 msgid "Please enter the correct pin code"
 msgstr "சரியான முள் குறியீட்டை உள்ளிடவும்"
@@ -15060,6 +15234,9 @@ msgstr "பதிவுகளுக்கான விருப்பமான �
 msgid "Preparation time for recording"
 msgstr "பதிவு செய்வதற்கான தயாரிப்பு நேரம்"
 
+msgid "Preparing recording, please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr "ஆயத்தம் ... தயவுசெய்து காத்திருங்கள்"
 
@@ -15084,11 +15261,17 @@ msgstr "உதவித் திரைக்குத் திரும்ப 
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "மல்டிபூட்டை இயக்க பச்சை அழுத்தவும்!"
 
+msgid "Press OK"
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr "மல்டிபூட் தேர்வுக்கு சரி என்பதை அழுத்தவும்."
 
 msgid "Press OK on your remote control to continue."
 msgstr "தொடர உங்கள் ரிமோட் கண்ட்ரோலில் சரி என்பதை அழுத்தவும்."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr ""
 
 msgid "Press OK to continue."
 msgstr "தொடர சரி என்பதை அழுத்தவும்."
@@ -15117,6 +15300,9 @@ msgstr "இந்த இடத்தை நிறுவ மற்றும் �
 msgid "Press OK to open module info"
 msgstr "தொகுதி தகவலைத் திறக்க சரி என்பதை அழுத்தவும்"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr ""
+
 msgid "Press OK to reset PIN code"
 msgstr "முள் குறியீட்டை மீட்டமைக்க சரி என்பதை அழுத்தவும்"
 
@@ -15137,6 +15323,9 @@ msgstr "ஒரு சேவையைத் தேர்ந்தெடுக்�
 
 msgid "Press OK to select satellites"
 msgstr "செயற்கைக்கோள்களைத் தேர்ந்தெடுக்க சரி என்பதை அழுத்தவும்"
+
+msgid "Press OK to select the panic channel. The selected service is retained when channels or bouquets are reordered."
+msgstr ""
 
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAID ஐத் தேர்ந்தெடுக்க/தேர்வுநீக்க சரி என்பதை அழுத்தவும்."
@@ -15169,9 +15358,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "பின்னர் அழுத்தப்பட்ட ஒரு பொத்தானை நீண்ட நேரம் அழுத்துவதற்கு இந்த பொத்தானை அழுத்தவும் (இது எமுலேசன் பொத்தானுக்கு ஒதுக்கப்பட்ட வேறு எந்த செயலையும் மீறுகிறது)."
-
-msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "அச்சம் பொத்தானை அழுத்தினால் உங்கள் முதல் பூச்செடியில் இந்த சேனல் எண்ணுக்கு உங்களைத் தூண்டிவிடும்."
 
 msgid "Prev quad PiP channel"
 msgstr "முந்தைய குவாட் பிப் சேனல்"
@@ -15324,6 +15510,9 @@ msgstr "முன்னேற்ற செய்தி எழுத்துர�
 msgid "Properties of current title"
 msgstr "தற்போதைய தலைப்பின் பண்புகள்"
 
+msgid "Protect MultiBoot"
+msgstr ""
+
 msgid "Protect Quickmenu"
 msgstr "குயிக்மெனுவைப் பாதுகாக்கவும்"
 
@@ -15336,6 +15525,15 @@ msgstr "உள்ளமைவைப் பாதுகாக்கவும்"
 msgid "Protect context menus"
 msgstr "சூழல் மெனுக்களைப் பாதுகாக்கவும்"
 
+msgid "Protect extensions menu"
+msgstr ""
+
+msgid "Protect factory reset"
+msgstr ""
+
+msgid "Protect image flashing and restoring backups"
+msgstr ""
+
 msgid "Protect main menu"
 msgstr "முதன்மையான மெனுவைப் பாதுகாக்கவும்"
 
@@ -15345,8 +15543,14 @@ msgstr "திரைப்பட பட்டியலைப் பாதுக�
 msgid "Protect on epg age"
 msgstr "ஈபிசி வயதில் பாதுகாக்கவும்"
 
+msgid "Protect package installation and removal"
+msgstr ""
+
 msgid "Protect plugin browser"
 msgstr "சொருகி உலாவியைப் பாதுகாக்கவும்"
+
+msgid "Protect script execution"
+msgstr ""
 
 msgid "Protect services"
 msgstr "சேவைகளைப் பாதுகாக்கவும்"
@@ -15356,6 +15560,12 @@ msgstr "மென்பொருள் புதுப்பிப்பு த�
 
 msgid "Protect standby menu"
 msgstr "காத்திருப்பு மெனுவைப் பாதுகாக்கவும்"
+
+msgid "Protect storage device management"
+msgstr ""
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr ""
 
 msgid "Protect timer menu"
 msgstr "நேரங்குறிகருவி மெனுவைப் பாதுகாக்கவும்"
@@ -15492,6 +15702,12 @@ msgstr "ரேம் (சுருக்கம்)"
 msgid "RAM benchmark"
 msgstr "ராம் பெஞ்ச்மார்க்"
 
+msgid "RAM temperature"
+msgstr ""
+
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "ஆர்.சி தனிப்பயன் குறியீடு"
 
@@ -15572,6 +15788,15 @@ msgstr "ரேடியோ சேனல் தேர்வு"
 
 msgid "Radio Channel Selection Actions"
 msgstr "ரேடியோ சேனல் தேர்வு நடவடிக்கைகள்"
+
+msgid "Raise and lower the CPU frequency gradually depending on the load."
+msgstr ""
+
+msgid "Raise the CPU frequency quickly on load and lower it when the CPU is idle."
+msgstr ""
+
+msgid "Raise the CPU frequency to the maximum on load and lower it gradually when the CPU is idle."
+msgstr ""
 
 msgid "Random"
 msgstr "சீரற்ற"
@@ -16203,6 +16428,9 @@ msgstr "மறுபெயரிடப்பட்டது %s!"
 msgid "Renovation"
 msgstr "புதுப்பித்தல்"
 
+msgid "Reopen tuner when changing delivery system"
+msgstr ""
+
 msgid "Repeat"
 msgstr "மீண்டும்"
 
@@ -16247,8 +16475,62 @@ msgstr ""
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
 msgstr ""
 
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr ""
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr ""
+
+msgid "Require a PIN code to access software updates."
+msgstr ""
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr ""
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr ""
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr ""
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr ""
+
+msgid "Require a PIN code to open protected context menus."
+msgstr ""
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr ""
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr ""
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr ""
+
+msgid "Require a PIN code to open the movie list."
+msgstr ""
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr ""
+
+msgid "Require a PIN code to open the script runner."
+msgstr ""
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr ""
+
+msgid "Require a PIN code to open the timer menu."
+msgstr ""
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr "HTTP ச்ட்ரீம்களுக்கு ஏற்பு தேவை"
+
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr ""
 
 msgid "Required medium type:"
 msgstr "தேவையான நடுத்தர வகை:"
@@ -16466,6 +16748,9 @@ msgstr "'%s' பதிவை மீட்டெடுப்பது, தயவ�
 msgid "Retrieving boot slot information..."
 msgstr "துவக்க ச்லாட் தகவல்களை மீட்டெடுப்பது ..."
 
+msgid "Retrieving geolocation information..."
+msgstr ""
+
 msgid "Retrieving image list, please wait..."
 msgstr "பட பட்டியலை மீட்டெடுப்பது, தயவுசெய்து காத்திருங்கள் ..."
 
@@ -16483,6 +16768,9 @@ msgstr "தற்போதைய தேர்வு பதிலைத் தர
 
 msgid "Return to movie list"
 msgstr "திரைப்பட பட்டியலுக்குத் திரும்பு"
+
+msgid "Return to previous channel"
+msgstr ""
 
 msgid "Return to previous service"
 msgstr "முந்தைய சேவைக்குத் திரும்பு"
@@ -16639,6 +16927,9 @@ msgstr "ரச்ய"
 
 msgid "Russian Federation"
 msgstr "ரச்யன் கூட்டமைப்பு"
+
+msgid "Rusyn"
+msgstr ""
 
 msgid "Rwanda"
 msgstr "ருவாண்டா"
@@ -16885,6 +17176,9 @@ msgstr "கன்சோல் செய்திகளின் பதிவை 
 msgid "Save the right column directory location on exit."
 msgstr "வெளியேறும்போது வலது நெடுவரிசை அடைவு இருப்பிடத்தை சேமிக்கவும்."
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "நேர மாற்றத்தை திரைப்படமாக சேமித்து பதிவு செய்வதைத் தொடரவும்"
 
@@ -16919,9 +17213,6 @@ msgstr "ச்கிரிப்ட் செய்திகளில் சே�
 
 msgid "Saving EPG Cache..."
 msgstr "ஈபிசி கேச் சேமிக்கிறது ..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "இப்போது திரைப்படமாக நேர மாற்றத்தைச் சேமிக்கிறது. இதற்குச் சிறிது நேரம் ஆகலாம்."
 
 msgid "Saving time shift files"
 msgstr "நேர சிப்ட் கோப்புகளை சேமிக்கிறது"
@@ -16971,6 +17262,9 @@ msgstr "நிலப்பரப்பு எல்.சி.என் -க்க�
 msgid "Scan region"
 msgstr ""
 
+msgid "Scan the QR code to open the manual:"
+msgstr ""
+
 msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr ""
 
@@ -16978,7 +17272,7 @@ msgid "Scanning"
 msgstr "ச்கேனிங்"
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "ச்கேனிங் %s ..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -17002,9 +17296,6 @@ msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "ச்கேனிங் முடிந்தது, %d பணி கண்டறியப்பட்டது."
 msgstr[1] "ச்கேனிங் முடிந்தது, %d சேவைகள் காணப்பட்டன."
-
-msgid "Scanning failed!"
-msgstr "ச்கேனிங் தோல்வியுற்றது!"
 
 msgid "Scanning for shares..."
 msgstr ""
@@ -17053,6 +17344,9 @@ msgstr "திட்டமிடல் பதிவு"
 msgid "Scheduler standby"
 msgstr "திட்டமிடல் காத்திருப்பு"
 
+msgid "Schedutil (recommended)"
+msgstr ""
+
 msgid "Science"
 msgstr "அறிவியல்"
 
@@ -17098,6 +17392,9 @@ msgstr "சாட்சைத் தேடுங்கள்"
 msgid "Search Sats, check signal and lock"
 msgstr "SATS ஐத் தேடுங்கள், சமிக்ஞை மற்றும் பூட்டை சரிபார்க்கவும்"
 
+msgid "Search all packages"
+msgstr ""
+
 msgid "Search east"
 msgstr "கிழக்கு நோக்கி தேடுங்கள்"
 
@@ -17107,8 +17404,11 @@ msgstr "பிணைய பங்குகளைத் தேடுங்கள�
 msgid "Search for similar events"
 msgstr "ஒத்த நிகழ்வுகளைத் தேடுங்கள்"
 
-msgid "Search weather location ID"
-msgstr "வானிலை இருப்பிட ஐடியைத் தேடுங்கள்"
+msgid "Search in the current view"
+msgstr ""
+
+msgid "Search packages by name or description"
+msgstr ""
 
 msgid "Search west"
 msgstr "மேற்கு நோக்கி தேடுங்கள்"
@@ -17122,6 +17422,9 @@ msgstr "தேடுகிறது"
 msgid "Searching east ..."
 msgstr "கிழக்கைத் தேடுகிறது ..."
 
+msgid "Searching for local images, please wait..."
+msgstr ""
+
 msgid "Searching west ..."
 msgstr "மேற்கு தேடுகிறது ..."
 
@@ -17133,9 +17436,6 @@ msgstr ""
 
 msgid "Secondary DNS (IPv6)"
 msgstr ""
-
-msgid "Seconds"
-msgstr "நொடிகள்"
 
 msgid "Security Packages"
 msgstr "பாதுகாப்பு தொகுப்புகள்"
@@ -17194,14 +17494,8 @@ msgstr "CI+ உதவியாளரைத் தொடங்க 'இயக்�
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "இந்த ட்யூனரில் சிக்னல் கேபிள் இணைக்கப்பட்டிருந்தால் 'இயக்கப்பட்டது' என்பதைத் தேர்ந்தெடுக்கவும், இல்லையெனில் 'இணைக்கப்படவில்லை' என்பதைத் தேர்ந்தெடுக்கவும்."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "நேர சிப்ட் செய்ய 'இல்லை' என்பதைத் தேர்ந்தெடுக்கவும் ஒற்றை இடையக கோப்பைப் பயன்படுத்தவும். பழைய கோப்புகளுக்கான நேர சிப்ட் சரிபார்ப்பைப் பயன்படுத்தவும் [நிமிடங்களில்] 'மற்றும்' இலவச இடத்திற்கான நேர சிப்ட் சரிபார்ப்பு? ' இடையக கோப்பின் அளவைக் கட்டுப்படுத்த."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "பிழைத்திருத்த பதிவு கோப்பில் ஒரு பதிவு செய்தியை மட்டும் எழுத 'இல்லை' என்பதைத் தேர்ந்தெடுக்கவும்."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "நேரத்தை மாற்றுவதற்கு அல்லது குறுக்கிட்ட பின்னரும் பழைய நிகழ்வுகளைச் சேமிக்க 'இல்லை' என்பதைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "'யுனிவர்சல்' எல்.என்.பி.யைப் பயன்படுத்தினால் 'துருவமுனைப்பு' என்பதைத் தேர்ந்தெடுக்கவும், இல்லையெனில் உங்கள் எல்.என்.பி விவரக்குறிப்புகளை அணுகவும்."
@@ -17214,6 +17508,9 @@ msgstr ""
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr "ஒவ்வொரு பூச்செட்டிலும் ஒவ்வொரு சேவைக்கும் தனித்துவமான எண்களை ஒதுக்க 'தனித்துவமான எண்' என்பதைத் தேர்ந்தெடுக்கவும். ஒவ்வொரு பூச்செண்டையும் 1 இலிருந்து எண்ணத் தொடங்க 'பூங்கொத்துகள் 1' ஐப் பயன்படுத்தவும். அந்த பணி பயன்படுத்தப்பட்ட இடங்களில் நிலையான பணி எல்.சி.என் -களைப் பயன்படுத்த 'எல்.சி.என் எண்' ஐப் பயன்படுத்தவும்."
+
+msgid "Select 'Yes' if a multi-standard tuner fails to tune after switching between satellite, cable and terrestrial reception. The tuner will be closed and reopened after each switch. This is only needed for some older tuner drivers."
+msgstr ""
 
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "இந்த டைமருக்கு இறுதி நேரம் தேவைப்பட்டால் 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -17241,9 +17538,6 @@ msgstr "மீடியா பிளேபேக் இடைநிறுத்�
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "இந்த சொருகி ஒரு நிரல் முன்பே தொடங்குகிறது அல்லது நீண்ட காலம் நீடிக்கும் என்பதை தீர்மானிக்க முடியும். சேனல் நம்பகமான தரவை வழங்க வேண்டும்."
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "நிகழ்வுக்குள் தேர்ந்தெடுக்கப்பட்ட இடத்திற்கு செல்ல சீக் பட்டியைப் பயன்படுத்த அனுமதிக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "சேனல் பட்டியலைத் திறக்கும்போது முதலில் பூச்செண்டு திரையை எப்போதும் காண்பிக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும். தற்போதைய பூச்செண்டைப் பயன்படுத்தி சேனல் பட்டியலைத் திறக்க 'இல்லை' என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -17455,6 +17749,9 @@ msgstr "டெச்கிராம்பிள் தொடங்குவத�
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "பணிகளை தனி செயல்களாகப் பிரிக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
 
+msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
+msgstr ""
+
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "ஆம் போது, வி.பி."
 
@@ -17581,12 +17878,21 @@ msgstr "புக்மார்க்குகளிலிருந்து �
 msgid "Select a distribution from where images are to be obtained"
 msgstr "படங்கள் பெற வேண்டிய இடத்திலிருந்து ஒரு விநியோகத்தைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "DM9x0 க்கான வன்பொருள் இடையக தாமதத்திற்கான இழப்பீட்டைச் சரிசெய்கிறது."
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "ச்ட்ரீமிங் பிழைக்குப் பிறகு ச்ட்ரீமிங் பஃபரில் சேர்க்க வேண்டிய கால அளவை உள்ளிடவும். இந்த கூடுதல் இடையகமானது இடையக இடம் இல்லாததால் மேலும் ச்ட்ரீமிங் சிக்கல்களைத் தவிர்க்க உதவும்."
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "'%s' பிரித்தெடுக்க ஒரு இடத்தைத் தேர்ந்தெடுக்கவும்:"
 
 msgid "Select a menu item"
 msgstr "பட்டியல் உருப்படியைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr ""
 
 msgid "Select a movie"
 msgstr "ஒரு திரைப்படத்தைத் தேர்ந்தெடுக்கவும்"
@@ -17609,6 +17915,9 @@ msgstr "பார்வைக்கு ஒரு களஞ்சியத்த�
 msgid "Select a script to run:"
 msgstr "இயக்க ஒரு ச்கிரிப்டைத் தேர்ந்தெடுக்கவும்:"
 
+msgid "Select a service"
+msgstr ""
+
 msgid "Select a specific NFS version to force a specific NFS protocol version instead of allowing an automatic negotiation."
 msgstr ""
 
@@ -17626,6 +17935,9 @@ msgstr "ஒரு நேரத்தை தேர்ந்தெடுக்க�
 
 msgid "Select a tuner"
 msgstr "ஒரு ட்யூனரைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
 
 msgid "Select action"
 msgstr "செயலைத் தேர்ந்தெடுக்கவும்"
@@ -17685,6 +17997,9 @@ msgstr "காப்புப்பிரதியிலிருந்து �
 msgid "Select files/folders to backup"
 msgstr "காப்புப்பிரதிக்கு கோப்புகள்/கோப்புறைகளைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr ""
+
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "திரை சேவர் படம் நகர்த்தப்படுவதற்கு முன்பு திரையில் அதே இடத்தில் எவ்வளவு நேரம் இருக்கும் என்பதைத் தேர்ந்தெடுக்கவும்."
 
@@ -17726,6 +18041,12 @@ msgstr "காத்திருப்பு தொடர்பாக அட்�
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "விரைவான ஈபிசி பயன்முறையை எவ்வாறு செயல்படுத்துவது என்பதைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select how to handle the synchronization of the signal after a service change."
+msgstr ""
+
+msgid "Select how to sort the timer list."
+msgstr ""
 
 msgid "Select how your receiver will upgrade."
 msgstr "உங்கள் பெட்டி எவ்வாறு மேம்படுத்தப்படும் என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -17775,9 +18096,6 @@ msgstr "இந்த நேரங்குறிகருவி புதன்�
 msgid "Select if this timer is to be repeated."
 msgstr "இந்த நேரங்குறிகருவி மீண்டும் செய்யப்பட வேண்டுமா என்பதைத் தேர்ந்தெடுக்கவும்."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "பதிவு செய்ய அமைக்கப்பட்டால் நேர மாற்றம் தொடர வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "துணை பயன்முறை செயல்படுத்தப்பட வேண்டுமா என்பதைத் தேர்ந்தெடுக்கவும்."
 
@@ -17798,6 +18116,9 @@ msgstr "சேர்க்க வழங்குநரைத் தேர்ந�
 
 msgid "Select refresh rate"
 msgstr "புதுப்பிப்பு வீதத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select separate DiSEqC 1.0 ports for the horizontal and vertical LNBs of an OMT installation on the same satellite. Voltage mode remains independent. External blindscan utilities may not support this configuration."
+msgstr ""
 
 msgid "Select service information to view:"
 msgstr "பார்க்க பணி தகவல்களைத் தேர்ந்தெடுக்கவும்:"
@@ -17824,11 +18145,20 @@ msgstr "தற்போதைய நெடுவரிசைக்கு தற�
 msgid "Select the %s entry"
 msgstr "%s உள்ளீட்டைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr ""
+
 msgid "Select the AI-Powered Translation target language."
 msgstr "AI- இயங்கும் மொழிபெயர்ப்பு இலக்கு மொழியைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr "இயல்புநிலை DNS அமைப்புகளின் மூலத்தைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
+msgstr ""
+
+msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
+msgstr ""
 
 msgid "Select the No / False response"
 msgstr "இல்லை / தவறான பதிலைத் தேர்ந்தெடுக்கவும்"
@@ -17889,11 +18219,17 @@ msgstr "'%s' க்கான செயலைத் தேர்ந்தெட�
 msgid "Select the action to perform when the timer ends."
 msgstr "நேரங்குறிகருவி முடிவடையும் போது செய்ய செயலைத் தேர்ந்தெடுக்கவும்."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "எனர்சிசேவர் நேரங்குறிகருவி செயல்படுத்தும்போது விரும்பிய பணிநிறுத்தம் வகையைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "ச்லீப் நேரங்குறிகருவி செயல்படுத்தும்போது விரும்பிய பணிநிறுத்தம் வகையைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "பணிப் பிழைக்குப் பிறகு, பணியை மீண்டும் இயக்க முயற்சிக்கும் முன், காத்திருக்க வேண்டிய நேரத்தைத் தேர்ந்தெடுக்கவும்."
@@ -17922,6 +18258,9 @@ msgstr "விசைப்பலகை கர்சரின் கீழ் எ
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
+msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
@@ -17931,8 +18270,20 @@ msgstr "டீப் காத்திருப்பின் போது LED
 msgid "Select the color of the front panel power LED when the receiver is in Standby. This option also allows the LED to be deactivated/turned off."
 msgstr ""
 
+msgid "Select the color space to be used with the HDMI attached TV/monitor."
+msgstr ""
+
 msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "AI- இயங்கும் மொழிபெயர்ப்பு உரைக்கு பயன்படுத்த வேண்டிய வண்ணத்தைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
+msgstr ""
+
+msgid "Select the committed switch port connected to the horizontal LNB."
+msgstr ""
+
+msgid "Select the committed switch port connected to the vertical LNB."
+msgstr ""
 
 msgid "Select the current bookmarked location and exit"
 msgstr "தற்போதைய புக்மார்க்கு செய்யப்பட்ட இருப்பிடத்தைத் தேர்ந்தெடுத்து வெளியேறவும்"
@@ -17979,6 +18330,9 @@ msgstr "இடது நெடுவரிசை அடைவு சேமிக
 msgid "Select the default directory to be used if the right column directory is not saved."
 msgstr "வலது நெடுவரிசை அடைவு சேமிக்கப்படாவிட்டால் பயன்படுத்த வேண்டிய இயல்புநிலை கோப்பகத்தைத் தேர்ந்தெடுக்கவும்."
 
+msgid "Select the deinterlacing mode to be used by the video decoder. 'Auto' lets the driver decide."
+msgstr ""
+
 msgid "Select the delay before the timer activates."
 msgstr "நேரங்குறிகருவி செயல்படுத்தும் முன் தாமதத்தைத் தேர்ந்தெடுக்கவும்."
 
@@ -18018,6 +18372,9 @@ msgstr "திரை சேவர் காண்பிக்கப்படு�
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "இந்த டைமரைச் செயல்படுத்தக்கூடிய இறுதி நேரத்தைத் தேர்ந்தெடுக்கவும். இந்த நேரத்திற்குப் பிறகு மற்ற நிபந்தனைகள் நிறைவு செய்யப்பட்டாலும் நேரங்குறிகருவி இயக்கப்படாது."
 
+msgid "Select the fast scan provider and press BLUE to start the scan."
+msgstr ""
+
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
@@ -18035,6 +18392,9 @@ msgstr "பட்டியலில் முதல் உருப்படி�
 msgid "Select the function to be assigned to this button."
 msgstr "இந்த பொத்தானுக்கு ஒதுக்கப்பட வேண்டிய செயல்பாட்டைத் தேர்ந்தெடுக்கவும்."
 
+msgid "Select the highest frequency these CPU cores may run at."
+msgstr ""
+
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "சிறப்பிக்கப்பட்ட படத்தைத் தேர்ந்தெடுத்து ச்லாட் தேர்வுக்குச் செல்லுங்கள்"
 
@@ -18046,6 +18406,9 @@ msgstr "காலவரிசை குறிப்பானின் ஆரம�
 
 msgid "Select the input connector you want to use."
 msgstr "நீங்கள் பயன்படுத்த விரும்பும் உள்ளீட்டு இணைப்பியைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "பட்டியலில் கடைசி உருப்படியைத் தேர்ந்தெடுக்கவும் அல்லது உரையின் முடிவுக்கு செல்லவும்"
@@ -18070,6 +18433,9 @@ msgstr "பதிவை சேமிக்க வேண்டிய இடத்
 
 msgid "Select the location where the picon files will be installed."
 msgstr "பிகான் கோப்புகள் நிறுவப்படும் இடத்தைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."
+msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "உங்கள் எச்.சி.ஆர் சாதனத்தின் உற்பத்தியாளரைத் தேர்ந்தெடுக்கவும். உற்பத்தியாளர் பட்டியலிடப்படாவிட்டால், 'SCR' ஐ 'பயனர் வரையறுக்கப்பட்டதாக' அமைத்து, அதன் விவரக்குறிப்புகளின்படி சாதன அளவுருக்களை கைமுறையாக உள்ளிடவும்."
@@ -18116,6 +18482,9 @@ msgstr "பட்டியலில் அடுத்த உருப்பட�
 
 msgid "Select the next item in the list"
 msgstr "பட்டியலில் அடுத்த உருப்படியைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "பணியை இயக்கும்போது பிழை ஏற்பட்டால், ஒரு பணியை மீண்டும் முயற்சிக்க எத்தனை முறை என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -18195,9 +18564,6 @@ msgstr "கோப்பு வரிகளுக்கான வரிசை வ
 msgid "Select the sort order of the Extension Menu entries."
 msgstr "நீட்டிப்பு பட்டியல் உள்ளீடுகளின் வரிசை வரிசையைத் தேர்ந்தெடுக்கவும்."
 
-msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "சொருகி உலாவி பட்டியல் உள்ளீடுகளின் வரிசை வரிசையைத் தேர்ந்தெடுக்கவும். பயனர் வரையறுக்கப்பட்ட பட்டியல் உள்ளீடுகளை மறைக்க அனுமதிக்கிறது."
-
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "சொருகி உலாவி பட்டியல் உள்ளீடுகளின் வரிசை வரிசையைத் தேர்ந்தெடுக்கவும். பயனர் வரையறுக்கப்பட்ட சொருகி உள்ளீடுகளை மறைக்க அனுமதிக்கிறது."
 
@@ -18243,8 +18609,14 @@ msgstr "பகுதி அல்லது பிராந்தியத்த�
 msgid "Select the timer from the fallback tuner by default"
 msgstr "முன்னிருப்பாக ஃபிள்பேக் ட்யூனரிலிருந்து டைமரைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select the timer list sort order"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "மின்னோடி பொருத்தப்பட்ட டிச் கட்டுப்படுத்தும் ட்யூனரைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the tuner to use for the fast scan."
+msgstr ""
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
 msgstr "எச்.சி.ஆர் சாதனத்தின் சமிக்ஞை கேபிள் இணைக்கப்பட்ட ட்யூனரைத் தேர்ந்தெடுக்கவும்."
@@ -18263,6 +18635,9 @@ msgstr "%s %s உடன் இணைக்கப்பட்ட விசைப�
 
 msgid "Select the type of this timer."
 msgstr "இந்த டைமரின் வகையைத் தேர்ந்தெடுக்கவும்."
+
+msgid "Select the video mode capability of the hardware chip. Picture in Picture (PiP) and 12-bit HDR output cannot be used at the same time, so choose whether to enable PiP or 12-bit HDR output."
+msgstr ""
 
 msgid "Select the video mode to be used on the TV."
 msgstr "டிவியில் பயன்படுத்த வேண்டிய வீடியோ பயன்முறையைத் தேர்ந்தெடுக்கவும்."
@@ -18375,9 +18750,6 @@ msgstr "உங்கள் நாட்டைத் தேர்ந்தெட�
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'Service scan types'."
 msgstr "உங்கள் வழங்குநர் மற்றும் பிராந்தியத்தைத் தேர்ந்தெடுக்கவும். இந்த பட்டியலில் இல்லாவிட்டால், நீங்கள் மற்ற 'பணி ச்கேன் வகைகளில்' ஒன்றைத் தேர்ந்தெடுக்க வேண்டும்."
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "உங்கள் வழங்குநரைத் தேர்ந்தெடுத்து, ச்கேன் தொடங்க சரி என்பதை அழுத்தவும்"
-
 msgid "Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."
 msgstr "உங்கள் பிராந்தியத்தைத் தேர்ந்தெடுக்கவும். இது கிடைக்கவில்லை என்றால் 'அனைவருக்கும்' 'நாட்டை' மாற்றி இயல்புநிலை மாற்றுகளில் ஒன்றைத் தேர்ந்தெடுக்கவும்."
 
@@ -18471,6 +18843,9 @@ msgstr "செர்பியா"
 
 msgid "Serbian"
 msgstr "செர்பிய"
+
+msgid "Serbo-Croatian"
+msgstr ""
 
 msgid "Serial No"
 msgstr "சீரியல் எண்"
@@ -18572,6 +18947,9 @@ msgstr "பணி பெயர்"
 
 msgid "Service name font size"
 msgstr "பணி பெயர் எழுத்துரு அளவு"
+
+msgid "Service not found"
+msgstr ""
 
 msgid ""
 "Service not found!\n"
@@ -18728,6 +19106,9 @@ msgstr "தொடக்க சேவையை அமைக்கவும்"
 msgid "Set system"
 msgstr "அமைப்பை அமைக்கவும்"
 
+msgid "Set the CPU frequencies and the governor"
+msgstr ""
+
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr "'%s'/'%s' பொத்தான்களுக்கு கட்லிச்ட் எடிட்டர் ச்கிப் நேர இடைவெளியை அமைக்கவும்."
 
@@ -18745,9 +19126,6 @@ msgstr "உங்கள் உடனடி பதிவுகளுக்கா�
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "உங்கள் நேர சிப்ட் ரெக்கார்டிங் கோப்புகளைச் சேமிக்க இயல்புநிலை இருப்பிடத்தை அமைக்கவும். புதிய இடங்களைச் சேர்க்க 'சரி' என்பதை அழுத்தவும், முன்னர் வரையறுக்கப்பட்ட இடங்களிலிருந்து தேர்ந்தெடுக்க இடது/வலதுபுறத்தை அழுத்தவும்."
-
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "உங்கள் நேர சிப்ட் இடையக கோப்புகளை சேமிக்க இயல்புநிலை இருப்பிடத்தை அமைக்கவும். புதிய இடங்களைச் சேர்க்க 'சரி' என்பதை அழுத்தவும், முன்னர் வரையறுக்கப்பட்ட இடங்களிலிருந்து தேர்ந்தெடுக்க 'இடது'/'வலது' அழுத்தவும்."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "உங்கள் மீடியா கோப்புகளுக்கான இயல்புநிலை திரைப்படத் தேர்வு இருப்பிடத்தை அமைக்கவும். புதிய இடங்களைச் சேர்க்க 'சரி' என்பதை அழுத்தவும், முன்னர் வரையறுக்கப்பட்ட இடங்களிலிருந்து தேர்ந்தெடுக்க 'இடது'/'வலது' அழுத்தவும்."
@@ -18876,9 +19254,6 @@ msgstr "காத்திருப்புடன் வரிசைப்ப�
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "'ஆம்' என அமைக்கப்பட்டால், அதே கட்டளைகள் வழக்கமான காத்திருப்பு நிகழ்வுகளின் போது அனுப்பப்படும் ஆழமான காத்திருப்பு நிகழ்வுகளுக்காக டிவிக்கு அனுப்பப்படும்."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "பின்னணி டைம்சிஃப்ட் பஃப்பரின் தானியங்கி பதிவை இயக்க, 'ஆம்' என அமைக்கவும்."
 
 msgid "Set to the desired primetime hour."
 msgstr "விரும்பிய பிரைம் டைம் (மணிநேரம்) க்கு அமைக்கவும்."
@@ -19766,6 +20141,9 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr "OSCAM செய்தி திரையைக் காட்டு"
 
+msgid "Show the about screen"
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr "கடைசி OPKG கட்டளையின் வெளியீட்டைக் காட்டு"
 
@@ -19808,7 +20186,7 @@ msgstr "செங்குத்து நிரல் வழிகாட்ட�
 msgid "Show warning before restart"
 msgstr "மறுதொடக்கம் செய்வதற்கு முன் எச்சரிக்கையைக் காட்டு"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "நேர மாற்றத்தை நிறுத்தும்போது எச்சரிக்கையைக் காட்டு"
 
 msgid "Show watch status"
@@ -19831,6 +20209,9 @@ msgstr "சோஃப்ரேம்"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "செருகுநிரல்கள் உலாவியைக் காட்டுகிறது. நிறுவப்பட்ட சொருகி இங்கே அமைக்கலாம்"
+
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr ""
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "கிடைக்கக்கூடிய செருகுநிரல்களைக் காட்டுகிறது. இங்கே நீங்கள் அவற்றை பதிவிறக்கம் செய்து நிறுவலாம்"
@@ -19962,6 +20343,9 @@ msgstr "தோல் தொகுப்புகள்"
 msgid "Skin Settings"
 msgstr "தோல் அமைப்புகள்"
 
+msgid "Skin Setup Actions"
+msgstr ""
+
 msgid "Skin setting"
 msgstr "தோல் அமைப்பு"
 
@@ -20012,9 +20396,6 @@ msgstr "முன்னோக்கி %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "முன்னோக்கி தவிர்க்கவும் (நேரத்தை உள்ளிடவும்)"
-
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "செருகுநிரல்களுடன் டைம் சிஃப்டிங் போது வாழ சம்பிங் தவிர்க்கவும்"
 
 msgid "Skip network setup"
 msgstr ""
@@ -20185,7 +20566,7 @@ msgstr "ச்லோவேனியன்"
 msgid "Slow"
 msgstr "மெதுவாக"
 
-msgid "Slow Motion"
+msgid "Slow motion"
 msgstr "மெதுவான இயக்கம்"
 
 msgid "Slow motion speeds"
@@ -20290,6 +20671,9 @@ msgstr "மென்பொருள் மேலாளர் அமைப்ப�
 msgid "Software MultiBoot"
 msgstr "மென்பொருள் மல்டிபூட்"
 
+msgid "Software PCM"
+msgstr ""
+
 msgid "Software Update"
 msgstr "மென்பொருள் புதுப்பிப்பு"
 
@@ -20323,6 +20707,9 @@ msgstr "சோமாலியா"
 
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "மற்றொரு HDMI துறைமுகம் செயலில் இருந்தால் சில தொலைக்காட்சிகள் சரியான உள்ளீட்டிற்கு மாற முடியாது. இந்த அமைப்பு சுவிட்சுக்கு முன் டிவியை காத்திருப்புக்கு அமைக்கிறது. (டிவியைத் திரும்பப் பெறாவிட்டால், அதை மெதுவான பரிமாற்ற இடைவெளி அல்லது விழித்தெழுந்த கட்டளையின் மறுபடியும் தேவைப்படலாம்.)"
+
+msgid "Some image locations could not be read. Check your storage devices."
+msgstr ""
 
 msgid "Sorbian"
 msgstr "சோர்பியன்"
@@ -20358,9 +20745,6 @@ msgstr "மன்னிக்கவும், காப்புப்பிர�
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "மன்னிக்கவும், இடமாற்றத்தை ஆதரிக்கும் உடல் சாதனங்கள் எதுவும் இணைக்கப்படவில்லை. பிணையம் அல்லது FAT32 கோப்பு முறைமைகளில் இடமாற்று கோப்பை உருவாக்க முடியாது"
 
-msgid "Sorry, there was a problem:"
-msgstr "மன்னிக்கவும், ஒரு சிக்கல் இருந்தது:"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20380,11 +20764,11 @@ msgstr "EPG பட்டியலை வரிசைப்படுத்து�
 msgid "Sort Extension Menu"
 msgstr "நீட்டிப்பு மெனுவை வரிசைப்படுத்துங்கள்"
 
-msgid "Sort Plugin Browser"
-msgstr "சொருகி உலாவியை வரிசைப்படுத்தவும்"
-
 msgid "Sort Plugin Browser entries"
 msgstr "சொருகி உலாவி உள்ளீடுகளை வரிசைப்படுத்தவும்"
+
+msgid "Sort Timers"
+msgstr ""
 
 msgid "Sort by"
 msgstr "வரிசைப்படுத்தவும்"
@@ -20520,6 +20904,9 @@ msgstr "விளையாட்டு"
 msgid "Sports magazines"
 msgstr "விளையாட்டு இதழ்"
 
+msgid "Sranan Tongo"
+msgstr ""
+
 msgid "Sri Lanka"
 msgstr "இலங்கை"
 
@@ -20554,11 +20941,14 @@ msgstr ""
 msgid "Start Auto Refresh"
 msgstr "ஆட்டோ புதுப்பிப்பைத் தொடங்குங்கள்"
 
-msgid "Start Boot Frequency"
-msgstr "துவக்க அதிர்வெண் தொடங்கவும்"
-
 msgid "Start RDS interactive"
 msgstr "ஆர்.டி.எச் ஊடாடும்"
+
+msgid "Start Time (Earliest First)"
+msgstr ""
+
+msgid "Start Time (Latest First)"
+msgstr ""
 
 msgid "Start Wizard"
 msgstr "மந்திரவாதியைத் தொடங்குங்கள்"
@@ -20616,6 +21006,9 @@ msgstr "KEXEC துவக்கத்தைத் தொடங்கவும�
 
 msgid "Start the backup of the selected image"
 msgstr "தேர்ந்தெடுக்கப்பட்ட படத்தின் காப்புப்பிரதியைத் தொடங்கவும்"
+
+msgid "Start the fast scan"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "சிறப்பிக்கப்பட்ட சொருகி தொடங்கவும்"
@@ -20699,6 +21092,9 @@ msgstr "நிலை கிடைக்கவில்லை!"
 
 msgid "Status:"
 msgstr "நிலை:"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
 
 msgid "Step"
 msgstr "படி"
@@ -20798,9 +21194,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "சாப்ட்கேமை நிறுத்துகிறது"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "ஒரு பதிவு நடந்து கொண்டால் நேர மாற்றத்தை நிறுத்துகிறது. (யூ.எச்.பி குச்சிகளுக்கு அறிவுறுத்தப்படுகிறது.)"
-
 msgid "Storage / Disk Information"
 msgstr "சேமிப்பு / வட்டு செய்தி"
 
@@ -20828,6 +21221,10 @@ msgstr "சேமிப்பக சாதனம் கிடைக்கவி�
 
 msgid "Storage device not writable!"
 msgstr "சேமிப்பக சாதனம் எழுத முடியாது!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "கடை நிலை"
@@ -21005,6 +21402,9 @@ msgstr "சுந்தானியர்கள்"
 msgid "Sunday"
 msgstr "ஞாயிற்றுக்கிழமை"
 
+msgid "Support"
+msgstr ""
+
 msgid "Suriname"
 msgstr "சூரினாம்"
 
@@ -21074,8 +21474,8 @@ msgstr "ஈபிசி பக்கத்தை கீழே மாற்றவ
 msgid "Switch EPG Page Up"
 msgstr "EPG பக்கத்தை மேலே மாற்றவும்"
 
-msgid "Switch Mode to enable HDR Modes or PiP Functions"
-msgstr "எச்டிஆர் முறைகள் அல்லது பிஐபி செயல்பாடுகளை இயக்க சுவிட்ச் பயன்முறை"
+msgid "Switch HDR type by content"
+msgstr ""
 
 msgid "Switch TV to correct input"
 msgstr "உள்ளீட்டை சரிசெய்ய டிவியை மாற்றவும்"
@@ -21448,9 +21848,6 @@ msgstr "சோதனை முறை"
 msgid "Test type"
 msgstr "சோதனை வகை"
 
-msgid "Testing Information"
-msgstr "சோதனை செய்தி"
-
 msgid "Testscreens"
 msgstr "டெச்ட்ச்கிரீன்கள்"
 
@@ -21459,6 +21856,9 @@ msgstr "உங்கள் காட்சியை நன்றாக மாற
 
 msgid "Text"
 msgstr "உரை"
+
+msgid "Text Box"
+msgstr ""
 
 msgid "Text color"
 msgstr "உரை நிறம்"
@@ -21667,6 +22067,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "காத்திருப்பிலிருந்து எழுந்திருக்க கட்டளை பல முறை அனுப்பப்படும்."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -21705,13 +22111,6 @@ msgstr "'%s' கோப்பு மாற்றப்பட்டுள்ளத
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "'%s' கோப்பு மாற்றப்பட்டுள்ளது. நீங்கள் அதை சேமிக்க விரும்புகிறீர்களா?"
 
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"உங்கள் நேர சிப்ட் சாதனத்தில் உள்ள கோப்பு முறைமை கடின இணைப்புகளை ஆதரிக்காது.\n"
-" இது ext2, ext3 அல்லது ext4 இல் வடிவமைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்!"
-
 #, python-format
 msgid "The following files are related to '%s':"
 msgstr "பின்வரும் கோப்புகள் '%s' உடன் தொடர்புடையவை:"
@@ -21724,6 +22123,12 @@ msgstr "பதிவின் பிரேம் வீதம். வெறு�
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "படத்தின் உயரம். இந்த மதிப்புடன் பொருந்தக்கூடிய உள்ளீடு அளவிடப்படும்."
+
+msgid "The local image search timed out. Check your storage devices."
+msgstr ""
+
+msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
+msgstr ""
 
 msgid "The loopthrough setting is wrong."
 msgstr "லூப் த்ரோ அமைப்பு தவறு."
@@ -21743,6 +22148,13 @@ msgstr ""
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr ""
+
+#, python-format
+msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -21772,6 +22184,9 @@ msgid "The results have been written to %s."
 msgstr "முடிவுகள் %s க்கு எழுதப்பட்டுள்ளன."
 
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr ""
+
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
 msgid "The saved PIN was cleared."
@@ -21806,6 +22221,9 @@ msgstr ""
 "\n"
 " இப்போது அதைச் செய்கிறதா அல்லது டைமரை நீட்டிக்கவா?"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "தற்போதைய மீண்டும் மீண்டும் கவுண்டரால் நேரம் பெருக்கப்படுகிறது."
 
@@ -21815,6 +22233,18 @@ msgid ""
 msgstr ""
 "நேர மாற்றத்திற்கான இடையக நேரம் அமைப்புகளில் குறிப்பிட்ட வரம்பை மீறுகிறது.\n"
 " நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?"
+
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21917,6 +22347,12 @@ msgstr "உங்களிடம் 99999 க்கும் மேற்பட�
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "இந்த பூச்செண்டு பெற்றோரின் கட்டுப்பாட்டு முள் மூலம் பாதுகாக்கப்படுகிறது!"
 
+msgid "This channel is currently off air."
+msgstr ""
+
+msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "இந்த புலம் %s வரை கூடுதல் குறியீட்டு விகிதத்தைத் தேட உங்களை அனுமதிக்கிறது."
@@ -21973,9 +22409,6 @@ msgstr "இந்த விருப்பம் படத்தில் உள
 
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "இந்த விருப்பம் படத்தில் உள்ள பச்சை டோன்களை அதிகரிக்க உங்களை அனுமதிக்கிறது."
-
-msgid "This option allows you to bypass HDMI EDID check."
-msgstr "இந்த விருப்பம் HDMI திருத்து காசோலையைத் தவிர்ப்பதற்கு உங்களை அனுமதிக்கிறது"
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "மெய்நிகர் ஒலிபெருக்கி நிலையை மாற்ற இந்த விருப்பம் உங்களை அனுமதிக்கிறது."
@@ -22040,32 +22473,8 @@ msgstr "சேனல் பட்டியல் திரையில் மு
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "நிகழ்விற்கான வகை தகவல்களைக் காண்பிக்கலாமா வேண்டாமா என்பதைத் தேர்வுசெய்ய இந்த விருப்பம் உங்களை அனுமதிக்கிறது."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "இந்த விருப்பம் UHD க்கான கொலார்டெப்ட்டை உள்ளமைக்க உங்களை அனுமதிக்கிறது"
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "இந்த விருப்பம் HDR க்கான வண்ணமயமாக்கலை உள்ளமைக்க உங்களை அனுமதிக்கிறது"
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "இந்த விருப்பம் உங்களை ஆட்டோவிலிருந்து RGB க்கு வண்ணங்களை உள்ளமைக்க அனுமதிக்கிறது"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "இந்த விருப்பம் 3D சரவுண்ட் ஒலியை இயக்க உங்களை அனுமதிக்கிறது."
-
-msgid "This option allows you to enable or disable the 10 Bit Color Mode."
-msgstr "இந்த விருப்பம் 10 பிட் வண்ண பயன்முறையை இயக்க அல்லது முடக்க அனுமதிக்கிறது"
-
-msgid "This option allows you to enable or disable the 12 Bit Color Mode."
-msgstr "இந்த விருப்பம் 12 பிட் வண்ண பயன்முறையை இயக்க அல்லது முடக்க அனுமதிக்கிறது"
-
-msgid "This option allows you to force the HDR Modes for UHD."
-msgstr "இந்த விருப்பம் UHD க்கான HDR முறைகளை கட்டாயப்படுத்த உங்களை அனுமதிக்கிறது"
-
-msgid "This option allows you to force the HDR10 Modes for UHD."
-msgstr "இந்த விருப்பம் UHD க்கான HDR10 முறைகளை கட்டாயப்படுத்த உங்களை அனுமதிக்கிறது"
-
-msgid "This option allows you to force the HLG Modes for UHD."
-msgstr "இந்த விருப்பம் UHD க்கான HLG முறைகளை கட்டாயப்படுத்த உங்களை அனுமதிக்கிறது"
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "வெவ்வேறு லெட்டர்பாக்ச் தீர்மானங்களுக்கான ஆஃப்செட் மதிப்புகளை அமைக்க இந்த விருப்பம் உங்களை அனுமதிக்கிறது."
@@ -22252,38 +22661,20 @@ msgstr "நேர சம்ப் ஃபாச்ட் ஃபார்வர்
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "நேர சம்ப்: வேகத்திற்கு சாதாரண வேகத்தை முன்னோக்கி பயன்படுத்தவும்"
 
-msgid "Time shift buffer delete after zap"
-msgstr "ZAP க்குப் பிறகு நேர சிப்ட் பஃபர் நீக்குதல்"
-
-msgid "Time shift buffer limit"
-msgstr "நேர சிப்ட் இடையக வரம்பு"
-
 msgid "Time shift buffer location"
 msgstr "நேர சிப்ட் இடையக இருப்பிடம்"
 
-msgid "Time shift checking for free space"
-msgstr "இலவச இடத்திற்கான நேர சிப்ட் சோதனை"
-
-msgid "Time shift checking for older files"
-msgstr "பழைய கோப்புகளுக்கான நேர சிப்ட் சோதனை"
-
-msgid "Time shift event based file splitting"
-msgstr "நேர சிப்ட் நிகழ்வு அடிப்படையிலான கோப்பு பிரித்தல்"
-
-msgid "Time shift event limit"
-msgstr "நேர சிப்ட் நிகழ்வு வரம்பு"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "ஏற்றுக்கொள்ளக்கூடிய அடைவு இல்லாமல் நேர மாற்றம் சரியாக வேலை செய்யாது."
 
-msgid "Time shift not possible!"
-msgstr "நேர மாற்றம் சாத்தியமில்லை!"
-
 msgid "Time shift save action on zap"
 msgstr "நேர சிப்ட் ZAP இல் செயலைச் சேமிக்கவும்"
 
-msgid "Time shift save failed!"
-msgstr "நேர சிப்ட் சேமிப்பு தோல்வியுற்றது!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr "நேர சிப்ட் சேமிப்பு இருப்பிடத்தை சேமிக்கவும்"
@@ -22294,8 +22685,8 @@ msgstr "நேர சிப்ட் சேமிப்பு பதிவு (�
 msgid "Time shift save recording (Stop after current event)"
 msgstr "நேர சிப்ட் சேமிப்பு பதிவு (தற்போதைய நிகழ்வுக்குப் பிறகு நிறுத்துங்கள்)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "உங்கள் வன் வட்டு இயக்ககத்தில் நேர சிப்ட் சேமிக்கப்பட்டது!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "நிகழ்வின் முடிவில் நேர மாற்றம் சேமிக்கப்படும்."
@@ -22314,6 +22705,9 @@ msgstr "நிமிடங்களில் நேர புதுப்பி�
 
 msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "ஒரு டைமரால் எழுந்ததைக் கண்டறிவதற்கான நேர சாளரம் [நிமிடங்கள்]"
+
+msgid "Time without key presses before hiding the OSD."
+msgstr ""
 
 msgid "Time zone"
 msgstr "நேர மண்டலம்"
@@ -22975,48 +23369,83 @@ msgstr "உக்ரெயின்"
 msgid "Ukrainian"
 msgstr "உக்ரேனிய"
 
-msgid "Unable to create the additional STARTUP files."
+#, python-format
+msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
-msgid "Unable to create the new manufacturer STARTUP files."
+msgid "Unable to complete the bouquet update. Please check your bouquets."
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: %s."
+msgid "Unable to inherit the User Band for LNB %d: %s!"
 msgstr ""
 
 #, python-format
-msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s."
+msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "KEXEC மல்டிபூட்டை துவக்க முடியவில்லை!"
 
+msgid "Unable to load package information!"
+msgstr ""
+
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr ""
 
-msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
+msgstr ""
+
+msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
 #, python-format
-msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgid "Unable to read the manufacturer STARTUP file '%s'!"
+msgstr ""
+
+msgid "Unable to reconnect to the stream. Please try the channel again later."
 msgstr ""
 
 msgid "Unable to register the DAB+ transponder"
 msgstr ""
 
-msgid "Unable to remove the obsolete additional STARTUP files."
+msgid "Unable to remove the obsolete additional STARTUP files!"
+msgstr ""
+
+msgid "Unable to save network configuration!"
+msgstr ""
+
+msgid "Unable to save network mount configuration!"
+msgstr ""
+
+msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
+msgstr ""
+
+msgid "Unable to start the HbbTV application."
+msgstr ""
+
+msgid "Unable to start the local image search. Please try again later."
 msgstr ""
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr ""
 
 #, python-format
-msgid "Unable to validate the Unicable position for LNB %d: %s."
+msgid "Unable to update HDD replacement: %s"
+msgstr ""
+
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
+#, python-format
+msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23037,6 +23466,9 @@ msgstr "வரையறுக்கப்பட்டாத"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Webif ஐ அணுகும் எதிர்பாராத பிழை: %s"
+
+msgid "Unexpected error while importing from the remote receiver!"
+msgstr ""
 
 msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr "ஃபிள்பேக் ட்யூனரின் நேரங்குறிகருவி தகவலை மீட்டெடுக்கும் போது எதிர்பாராத பிழை"
@@ -23191,6 +23623,9 @@ msgstr "புதுப்பிப்பு தோல்வியடைந்�
 
 msgid "Update finished!"
 msgstr "புதுப்பிப்பு முடிந்தது!"
+
+msgid "Update outdated bouquet entries"
+msgstr ""
 
 msgid ""
 "Update succeeded!\n"
@@ -23350,6 +23785,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr "QuickSelect ஐப் பயன்படுத்தவும்"
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "டிவி ரிமோட் கண்ட்ரோல் பயன்படுத்தவும்"
 
@@ -23380,6 +23818,9 @@ msgstr "மாற்று சிறிய திரையைப் பயன்
 msgid "Use as HDD replacement"
 msgstr ""
 
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "தானியங்கி பயன்முறை கண்டறிதலைப் பயன்படுத்தவும்"
 
@@ -23407,10 +23848,10 @@ msgstr "விளக்க வரிகளைப் பயன்படுத்�
 msgid "Use extended List"
 msgstr "நீட்டிக்கப்பட்ட பட்டியலைப் பயன்படுத்தவும்"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "ஃபாச்ட்ச்கான் சேனல் பெயர்களைப் பயன்படுத்தவும்"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "ஃபாச்ட்ச்கான் சேனல் எண்ணைப் பயன்படுத்தவும்"
 
 msgid "Use for load only x days in EPG."
@@ -23470,6 +23911,9 @@ msgstr "ச்பேசர் கோடுகளைப் பயன்படு�
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr "#சேவை வரி எண்கள் எல்.சி.என் உடன் பொருந்தக்கூடிய வகையில் பூச்செண்டு அணிய ச்பேசர் கோடுகளைப் பயன்படுத்தவும்."
 
+msgid "Use the HD channel list provided by the fast scan."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "OSD இன் உயரத்தை சரிசெய்ய உங்கள் ரிமோட்டில் இடது/வலது பொத்தான்களைப் பயன்படுத்தவும். இடது பொத்தான் உயரத்தை குறைக்கிறது, வலது உயரத்தை அதிகரிக்கிறது."
 
@@ -23506,6 +23950,9 @@ msgstr "காப்புப் பிரதி எடுக்க நிறு
 msgid "Use the alternative or the conventional radio mode."
 msgstr "மாற்று அல்லது வழக்கமான ரேடியோ பயன்முறையைப் பயன்படுத்தவும்."
 
+msgid "Use the channel numbering provided by the fast scan, including gaps. When disabled, channels are numbered consecutively without gaps."
+msgstr ""
+
 msgid "Use the current selection and exit"
 msgstr "தற்போதைய தேர்வு மற்றும் வெளியேறுதல் பயன்படுத்தவும்"
 
@@ -23518,14 +23965,14 @@ msgstr "அடிப்படை அம்சங்களை அமைக்க 
 msgid "Use these input device settings?"
 msgstr "இந்த உள்ளீட்டு சாதன அமைப்புகளைப் பயன்படுத்தவா?"
 
+msgid "Use this share as /media/hdd. With autofs, a link is created only when /media/hdd is available; otherwise the share remains accessible under /media/autofs. With fstab, the share is mounted directly. Only one share can be selected. Existing mounts and files are not overwritten."
+msgstr ""
+
 msgid "Use this video enhancement settings?"
 msgstr "இந்த வீடியோ மேம்பாட்டு அமைப்புகளைப் பயன்படுத்தவா?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "வேகமாக முன்னோக்கி/பின்னோக்கி நேர தாவல்களைப் பயன்படுத்தவும்"
-
-msgid "Use time shift SeekBar while time shifting"
-msgstr "நேரத்தை மாற்றும் போது நேர சிப்ட் சீக்பரைப் பயன்படுத்தவும்"
 
 msgid "Use viewer for unknown files"
 msgstr "அறியப்படாத கோப்புகளுக்கு பார்வையாளரைப் பயன்படுத்தவும்"
@@ -23542,12 +23989,6 @@ msgstr "ஃபிளாச் பயன்படுத்தப்பட்ட�
 msgid "Used service scan type"
 msgstr "பயன்படுத்தப்பட்ட பணி ச்கேன் வகை"
 
-msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3 பாச்ட்ரூ இயக்கப்பட்டிருக்கும்."
-
-msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3+/ATMOS PASSTHROUGH இயக்கப்பட்டது."
-
 msgid "Used:"
 msgstr "பயன்படுத்தப்பட்டது:"
 
@@ -23562,6 +24003,12 @@ msgstr "பயனர் ஊட்ட முகவரி"
 
 msgid "User ID"
 msgstr "பயனர் ஐடி"
+
+msgid "User Manual"
+msgstr ""
+
+msgid "User Manual Actions"
+msgstr ""
 
 msgid "User comments"
 msgstr "பயனர் கருத்துகள்"
@@ -24113,6 +24560,9 @@ msgstr "நீர் விளையாட்டு"
 msgid "Weather"
 msgstr "வானிலை"
 
+msgid "Weather settings"
+msgstr ""
+
 msgid "Web Interface"
 msgstr "வலை இடைமுகம்"
 
@@ -24238,6 +24688,9 @@ msgstr "இயக்கப்பட்டால், HTTP ச்ட்ரீம�
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "இயக்கப்பட்டால், SDT, BAT தரவு HTTP ச்ட்ரீம்களில் சேர்க்கப்படும்."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "இயக்கப்பட்டால், ஒரு திரைப்படம் முடிந்ததும், அடுத்தது தொடங்கும் போது ஒரு பாப் அப் செய்தி காண்பிக்கப்படும்."
 
@@ -24256,8 +24709,8 @@ msgstr "இயக்கப்பட்டால், இலவச ட்யூன
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "இயக்கப்பட்டால், இலவச ட்யூனர்கள் இல்லாதபோது, நேரடி டிவியை குறுக்கிட ஒரு பதிவு அனுமதிக்கப்படுகிறது."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "இயக்கப்பட்டால், ஒரு எச்சரிக்கை காண்பிக்கப்படும் மற்றும் பயனருக்கு நிறுத்த அல்லது நேர மாற்றத்தைத் தொடர ஒரு விருப்பம் கிடைக்கும்."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24271,14 +24724,29 @@ msgstr "கண்டறியப்பட்ட ஒவ்வொரு சேம�
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr ""
 
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr ""
+
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr ""
 
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
+msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
+msgstr ""
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "இயக்கப்பட்டால், HTTP ச்ட்ரீம்களைப் பார்க்க ஏற்பு தேவை."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
+
+msgid "When enabled, bypass HDMI EDID checking."
+msgstr ""
 
 msgid "When enabled, connection via saved network is attempted when the Wi-Fi adapter connects."
 msgstr ""
@@ -24291,6 +24759,9 @@ msgstr "இயக்கப்பட்டால், சேனல்களை ம
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "இயக்கப்பட்டால், நீக்கப்பட்ட பதிவுகள் உடனடியாக நீக்கப்படுவதற்கு பதிலாக, குப்பைத்தொட்டிக்கு நகர்த்தப்படும்."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "இயக்கப்பட்டால், பிளேபேக் திரைப்படத்திற்காக வெளிப்புற வசன வரிகள் எப்போதும் இயக்கப்படும்."
@@ -24322,8 +24793,8 @@ msgstr "இயக்கப்பட்டால், எண் குறிப்
 msgid "When enabled, obtain the IP address, subnet mask, gateway, and DNS settings automatically via DHCP."
 msgstr ""
 
-msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "இயக்கப்பட்டால், '0' ஐ அழுத்தினால் உங்கள் முதல் பூச்செடியில் முதல் சேனலுக்கு உங்களைச் சேர்த்து, உங்கள் சாப்-வரலாற்றை நீக்கிவிடும்."
+msgid "When enabled, pressing '0' will zap you to the selected panic channel and delete your zap-history."
+msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "இயக்கப்பட்டால், திரையின் அகலத்துடன் பொருந்தக்கூடிய வகையில் வசன வரிகள்."
@@ -24337,11 +24808,17 @@ msgstr "இயக்கப்பட்டால், நிலை அல்லத
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr ""
 
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr ""
+
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "இயக்கப்பட்டால், செவித்திறன் குறைபாட்டிற்கான வசன வரிகள் பயன்படுத்தப்படலாம்."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "இயக்கப்பட்டால், இரண்டு வகைகளும் கிடைக்கும்போது, செவித்திறன் குறைபாடுள்ள வசன வரிகள் சாதாரண வசன வரிகளை விட விரும்பப்படும்."
+
+msgid "When enabled, switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr "இயக்கப்பட்டால், டெலிடெக்ச்ட் பக்கங்கள் தற்காலிக சேமிப்பு செய்யப்படும், இது விரைவான அணுகலை அனுமதிக்கிறது."
@@ -24403,11 +24880,11 @@ msgstr "இயக்கப்பட்டால், இந்த அமைப்
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "இயக்கப்பட்டால், இந்த அமைப்பு 'விருப்பமான ட்யூனரை' விட அதிக எடையைக் கொண்டுள்ளது."
 
-msgid "When enabled, this share is mounted to /media/hdd instead of its own /media/net path. Only use this if the share is reliably available."
+msgid "When enabled, time shift starts automatically in background after the selected time."
 msgstr ""
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "இயக்கப்பட்டால், குறிப்பிட்ட நேரத்திற்குப் பிறகு நேர மாற்றம் தானாக பின்னணியில் தொடங்குகிறது."
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "இயக்கப்பட்டால், குறைவடைக்கும் ட்யூனருக்கான OpenWebif அமைப்புகளைத் தனிப்பயனாக்கலாம்"
@@ -24563,9 +25040,6 @@ msgstr ""
 msgid "Wolof"
 msgstr "ஓலோஃப்"
 
-msgid "Workaround for old tuner driver."
-msgstr "பழைய ட்யூனர் டிரைவருக்கான பணித்தொகுப்பு."
-
 msgid "Workgroup name"
 msgstr ""
 
@@ -24599,6 +25073,9 @@ msgstr "பதிவு செய்யும் போது பிழை எ�
 
 msgid "Write failed!"
 msgstr "எழுத்து தோல்வியுற்றது!"
+
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "Www"
 msgstr "Www"
@@ -25015,9 +25492,6 @@ msgstr "வலதுபுறத்திலிருந்து பெரி�
 msgid "Zulu"
 msgstr "சுலு"
 
-msgid "[Timeshift] Merging records failed!"
-msgstr "[டைம்சிஃப்ட்] பதிவுகளை ஒன்றிணைக்கும் தோல்வியுற்றது!"
-
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[டைம்சிஃப்ட்] நேர மாற்றத்தை மறுதொடக்கம் செய்தல்!"
 
@@ -25029,6 +25503,9 @@ msgstr "பொதுவான இடைமுக தொகுதிகளுக�
 
 msgid "activatePiP"
 msgstr "செயல்படுத்தவும்"
+
+msgid "active (GLES enabled)"
+msgstr ""
 
 msgid "address:"
 msgstr "முகவரி:"
@@ -25353,9 +25830,6 @@ msgstr "மாதம்"
 msgid "move"
 msgstr "நகர்த்தவும்"
 
-msgid "multi"
-msgstr "பல"
-
 msgid "n/a"
 msgstr "இதற்கில்லை"
 
@@ -25484,6 +25958,9 @@ msgstr "ச்கேன் நிலை"
 msgid "search EPG..."
 msgstr "EPG ஐத் தேடுங்கள் ..."
 
+msgid "seconds"
+msgstr ""
+
 msgid "select CAId's"
 msgstr "கெய்ட்சைத் தேர்ந்தெடுக்கவும்"
 
@@ -25538,6 +26015,9 @@ msgstr "ச்டீரியோ"
 msgid "successful"
 msgstr "செய்"
 
+msgid "suspended (GLES disabled)"
+msgstr ""
+
 msgid "switch 12 to 8 character display mode"
 msgstr "12 முதல் 8 எழுத்து காட்சி பயன்முறையை மாற்றவும்"
 
@@ -25579,6 +26059,9 @@ msgstr ""
 
 msgid "this recording"
 msgstr "இந்த பதிவு"
+
+msgid "throttled"
+msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "நேரம், அத்தியாயம், ஆடியோ, வசன வரிகளை மாற்றவும்"
@@ -25666,6 +26149,245 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'மணிநேரத்தில் இடையக' அல்லது 'கடைசி நிகழ்வுகளின் எண்ணிக்கை'. பழைய நேர சிப்ட் கோப்புகளை நீக்குவதற்கு, முதலில் நிகழ்ந்த நிலைக்கு முன்னுரிமை உள்ளது."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "நேர சிப்ட் கோப்பிற்கு கடினமான இணைப்பை உருவாக்குவது தோல்வியடைந்தது!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "அடைவு '%s' பதிவுகளுடன் இணைக்க முடியாது!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "'ஆம்' என அமைக்கப்பட்டால், மாற்று ஆடியோ செருகுநிரல்களுடன் டைம்சிஃப்ட்டைப் பயன்படுத்த உங்களை அனுமதிக்கிறது."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "இலவச இடம் மதிப்பை அமைப்பதை விட குறைவாக இருந்தால், பழைய நேர சிப்ட் கோப்புகளை நீக்க முயற்சி செய்யப்படுகிறது."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "ஒரு நிகழ்வு தொடக்கத்தில் காசோலைக்கு கூடுதலாக, மீண்டும் மீண்டும் காசோலை பயன்படுத்தப்படலாம், இதனால் 'மணிநேரங்களில் இடையக வரம்பு' அல்லது 'இலவச இடத்தை சரிபார்க்க' நிபந்தனைகள் முன்பு கண்டறியப்படுகின்றன."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "போதுமான இலவச வட்டு இடம் இல்லை!\n"
+#~ "\n"
+#~ "கோப்பு அளவு: %sMB\n"
+#~ "இலவச இடம்: %sMB\n"
+#~ "பாதை: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "ஒவ்வொரு நிகழ்வு மாற்றத்திலும் நேர சிப்ட் கோப்பகத்தில் உள்ள பழைய கோப்புகள் அகற்றப்படுகின்றன."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "இப்போது திரைப்படமாக நேர மாற்றத்தைச் சேமிக்கிறது. இதற்குச் சிறிது நேரம் ஆகலாம்."
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "நேர சிப்ட் செய்ய 'இல்லை' என்பதைத் தேர்ந்தெடுக்கவும் ஒற்றை இடையக கோப்பைப் பயன்படுத்தவும். பழைய கோப்புகளுக்கான நேர சிப்ட் சரிபார்ப்பைப் பயன்படுத்தவும் [நிமிடங்களில்] 'மற்றும்' இலவச இடத்திற்கான நேர சிப்ட் சரிபார்ப்பு? ' இடையக கோப்பின் அளவைக் கட்டுப்படுத்த."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "நேரத்தை மாற்றுவதற்கு அல்லது குறுக்கிட்ட பின்னரும் பழைய நிகழ்வுகளைச் சேமிக்க 'இல்லை' என்பதைத் தேர்ந்தெடுக்கவும்."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "நிகழ்வுக்குள் தேர்ந்தெடுக்கப்பட்ட இடத்திற்கு செல்ல சீக் பட்டியைப் பயன்படுத்த அனுமதிக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "பதிவு செய்ய அமைக்கப்பட்டால் நேர மாற்றம் தொடர வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "உங்கள் நேர சிப்ட் இடையக கோப்புகளை சேமிக்க இயல்புநிலை இருப்பிடத்தை அமைக்கவும். புதிய இடங்களைச் சேர்க்க 'சரி' என்பதை அழுத்தவும், முன்னர் வரையறுக்கப்பட்ட இடங்களிலிருந்து தேர்ந்தெடுக்க 'இடது'/'வலது' அழுத்தவும்."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "பின்னணி டைம்சிஃப்ட் பஃப்பரின் தானியங்கி பதிவை இயக்க, 'ஆம்' என அமைக்கவும்."
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "செருகுநிரல்களுடன் டைம் சிஃப்டிங் போது வாழ சம்பிங் தவிர்க்கவும்"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "ஒரு பதிவு நடந்து கொண்டால் நேர மாற்றத்தை நிறுத்துகிறது. (யூ.எச்.பி குச்சிகளுக்கு அறிவுறுத்தப்படுகிறது.)"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "உங்கள் நேர சிப்ட் சாதனத்தில் உள்ள கோப்பு முறைமை கடின இணைப்புகளை ஆதரிக்காது.\n"
+#~ " இது ext2, ext3 அல்லது ext4 இல் வடிவமைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "நேர மாற்றம் சாத்தியமில்லை!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "நேர சிப்ட் சேமிப்பு தோல்வியுற்றது!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "உங்கள் வன் வட்டு இயக்ககத்தில் நேர சிப்ட் சேமிக்கப்பட்டது!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "நேரத்தை மாற்றும் போது நேர சிப்ட் சீக்பரைப் பயன்படுத்தவும்"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "இயக்கப்பட்டால், ஒரு எச்சரிக்கை காண்பிக்கப்படும் மற்றும் பயனருக்கு நிறுத்த அல்லது நேர மாற்றத்தைத் தொடர ஒரு விருப்பம் கிடைக்கும்."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "இயக்கப்பட்டால், குறிப்பிட்ட நேரத்திற்குப் பிறகு நேர மாற்றம் தானாக பின்னணியில் தொடங்குகிறது."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[டைம்சிஃப்ட்] பதிவுகளை ஒன்றிணைக்கும் தோல்வியுற்றது!"
+
+#~ msgid "Allow 10bit"
+#~ msgstr "10 பிட் அனுமதிக்கவும்"
+
+#~ msgid "Allow 12bit"
+#~ msgstr "12 பிட் அனுமதிக்கவும்"
+
+#~ msgid "HDR10 support"
+#~ msgstr "HDR10 உதவி"
+
+#~ msgid "HLG support"
+#~ msgstr "எச்.எல்.சி உதவி"
+
+#~ msgid "Seconds"
+#~ msgstr "நொடிகள்"
+
+#~ msgid "This option allows you to bypass HDMI EDID check."
+#~ msgstr "இந்த விருப்பம் HDMI திருத்து காசோலையைத் தவிர்ப்பதற்கு உங்களை அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to config the Colordepth for UHD."
+#~ msgstr "இந்த விருப்பம் UHD க்கான கொலார்டெப்ட்டை உள்ளமைக்க உங்களை அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to config the Colorimetry for HDR."
+#~ msgstr "இந்த விருப்பம் HDR க்கான வண்ணமயமாக்கலை உள்ளமைக்க உங்களை அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to config the Colorspace from Auto to RGB."
+#~ msgstr "இந்த விருப்பம் உங்களை ஆட்டோவிலிருந்து RGB க்கு வண்ணங்களை உள்ளமைக்க அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+#~ msgstr "இந்த விருப்பம் 10 பிட் வண்ண பயன்முறையை இயக்க அல்லது முடக்க அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+#~ msgstr "இந்த விருப்பம் 12 பிட் வண்ண பயன்முறையை இயக்க அல்லது முடக்க அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to force the HDR Modes for UHD."
+#~ msgstr "இந்த விருப்பம் UHD க்கான HDR முறைகளை கட்டாயப்படுத்த உங்களை அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to force the HDR10 Modes for UHD."
+#~ msgstr "இந்த விருப்பம் UHD க்கான HDR10 முறைகளை கட்டாயப்படுத்த உங்களை அனுமதிக்கிறது"
+
+#~ msgid "This option allows you to force the HLG Modes for UHD."
+#~ msgstr "இந்த விருப்பம் UHD க்கான HLG முறைகளை கட்டாயப்படுத்த உங்களை அனுமதிக்கிறது"
+
+#~ msgid "12bit 4:2:0/4:2:2 no PiP"
+#~ msgstr "12 பிட் 4: 2: 0/4: 2: 2 பிப் இல்லை"
+
+#~ msgid "Change Boxmode to control Hardware Chip Modes*"
+#~ msgstr "வன்பொருள் சிப் முறைகளைக் கட்டுப்படுத்த பாக்ச்மோடை மாற்றவும்*"
+
+#~ msgid "Delivery system workaround"
+#~ msgstr "டெலிவரி சிச்டம் பணித்தொகுப்பு"
+
+#~ msgid "Enable PiP no HDR"
+#~ msgstr "பிஐபி இல்லை எச்.டி.ஆர்"
+
+#~ msgid "Switch Mode to enable HDR Modes or PiP Functions"
+#~ msgstr "எச்டிஆர் முறைகள் அல்லது பிஐபி செயல்பாடுகளை இயக்க சுவிட்ச் பயன்முறை"
+
+#~ msgid "Workaround for old tuner driver."
+#~ msgstr "பழைய ட்யூனர் டிரைவருக்கான பணித்தொகுப்பு."
+
+#, python-format
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+
+#~ msgid "A file from media is in use!"
+#~ msgstr "மீடியாவிலிருந்து ஒரு கோப்பு பயன்பாட்டில் உள்ளது!"
+
+#, python-format
+#~ msgid "Current CPU cores 0 and 1 Voltage: %s V"
+#~ msgstr "தற்போதைய சிபியு கோர்கள் 0 மற்றும் 1 மின்னழுத்தம்: %s v"
+
+#~ msgid "Location list"
+#~ msgstr "இருப்பிட பட்டியல்"
+
+#~ msgid "Please enter search string for your location"
+#~ msgstr "உங்கள் இருப்பிடத்திற்கான தேடல் சரத்தை உள்ளிடவும்"
+
+#~ msgid "Search weather location ID"
+#~ msgstr "வானிலை இருப்பிட ஐடியைத் தேடுங்கள்"
+
+#~ msgid "Sorry, there was a problem:"
+#~ msgstr "மன்னிக்கவும், ஒரு சிக்கல் இருந்தது:"
+
+#~ msgid "Start Boot Frequency"
+#~ msgstr "துவக்க அதிர்வெண் தொடங்கவும்"
+
+#~ msgid "Testing Information"
+#~ msgstr "சோதனை செய்தி"
+
+#~ msgid "Close screen"
+#~ msgstr "திரை மூடு"
+
+#~ msgid "Close the current screen"
+#~ msgstr "தற்போதைய திரையை மூடு"
+
+#~ msgid "Close this screen"
+#~ msgstr "இந்த திரையை மூடு"
+
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "ஒன்றுக்கு மேற்பட்ட ட்யூனர்கள் கிடைக்கும்போது, பதிவுகளுக்கு எந்த ட்யூனர் விரும்பப்படும் என்பதை உள்ளமைக்கவும்."
+
+#, python-format
+#~ msgid "List version %d, found %d channel"
+#~ msgid_plural "List version %d, found %d channels"
+#~ msgstr[0] "பட்டியல் %d, %d சேனல் காணப்படுகிறது"
+#~ msgstr[1] "பட்டியல் %d, %d சேனல்கள் காணப்படுகின்றன"
+
+#~ msgid "Move to first line / screen"
+#~ msgstr "முதல் வரி / திரைக்கு நகர்த்தவும்"
+
+#~ msgid "Move to last line / screen"
+#~ msgstr "கடைசி வரி / திரைக்கு நகர்த்தவும்"
+
+#~ msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
+#~ msgstr "சொருகி உலாவி பட்டியல் உள்ளீடுகளின் வரிசை வரிசையைத் தேர்ந்தெடுக்கவும். பயனர் வரையறுக்கப்பட்ட பட்டியல் உள்ளீடுகளை மறைக்க அனுமதிக்கிறது."
+
+#~ msgid "Select your provider, and press OK to start the scan"
+#~ msgstr "உங்கள் வழங்குநரைத் தேர்ந்தெடுத்து, ச்கேன் தொடங்க சரி என்பதை அழுத்தவும்"
+
+#~ msgid "Sort Plugin Browser"
+#~ msgstr "சொருகி உலாவியை வரிசைப்படுத்தவும்"
+
+#~ msgid "multi"
+#~ msgstr "பல"
+
+#~ msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+#~ msgstr "தொலைநிலை ரிசீவரில் '/etc/enigma2/epg.dat' எழுதுவது பிழை!"
+
+#~ msgid "Passthrough audio handling delay AC3"
+#~ msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3"
+
+#~ msgid "Passthrough audio handling delay AC3+"
+#~ msgstr "பாச்ட்ரூ ஆடியோ கையாளுதல் நேரந்தவறுகை AC3+"
+
+#~ msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
+#~ msgstr "அச்சம் பொத்தானை அழுத்தினால் உங்கள் முதல் பூச்செடியில் இந்த சேனல் எண்ணுக்கு உங்களைத் தூண்டிவிடும்."
+
+#~ msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+#~ msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3 பாச்ட்ரூ இயக்கப்பட்டிருக்கும்."
+
+#~ msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+#~ msgstr "சேவைகளுக்கு இடையில் மாறும்போது தாமதத்தைக் குறிப்பிடவும், AC3+/ATMOS PASSTHROUGH இயக்கப்பட்டது."
+
+#~ msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
+#~ msgstr "இயக்கப்பட்டால், '0' ஐ அழுத்தினால் உங்கள் முதல் பூச்செடியில் முதல் சேனலுக்கு உங்களைச் சேர்த்து, உங்கள் சாப்-வரலாற்றை நீக்கிவிடும்."
 
 #, python-format
 #~ msgid "Could not record due to conflicting timer:%s"

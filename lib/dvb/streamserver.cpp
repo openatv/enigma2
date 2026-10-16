@@ -522,7 +522,7 @@ bool eStreamClient::startDABStream(const std::string &serviceref)
 	if (!reference || reference.type != eServiceReference::idServiceDAB)
 		return false;
 	ePtr<eServiceDABRecord> record = new eServiceDABRecord(reference);
-	if (!record || record->prepareStreamingToFD(streamFd))
+	if (!record || record->prepareStreamingToFD(streamFd, true))
 		return false;
 	if (record->start())
 	{
@@ -665,10 +665,13 @@ void eStreamClient::notifier(int what)
 			if (!serviceref.empty())
 			{
 				const bool dabRequest = eServiceReference(serviceref).type == eServiceReference::idServiceDAB;
-				const char *reply = dabRequest ?
-					"HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: audio/aac\r\nServer: streamserver\r\n\r\n" :
-					"HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
-				writeAll(streamFd, reply, strlen(reply));
+				if (!dabRequest)
+				{
+					const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
+					writeAll(streamFd, reply, strlen(reply));
+				}
+				/* DAB sends its header with the first audio frame so AAC and MP2
+				 * can advertise their actual format after asynchronous tuning. */
 				/* We don't expect any incoming data, so set a tiny buffer */
 				set_socket_option(streamFd, SO_RCVBUF, 1 * 1024);
 				 /* We like 188k packets, so set the TCP window size to that */

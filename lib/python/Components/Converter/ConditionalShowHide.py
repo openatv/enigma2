@@ -14,7 +14,7 @@ class ConditionalShowHide(Converter):
 		self.invert = False
 		self.blinkTime = 500
 		parse = ","
-		tokens.replace(";", parse)  # Some builds use ";" as a separator, most use ",".
+		tokens = tokens.replace(";", parse)  # Some builds use ";" as a separator, most use ",".
 		tokens = [x.strip() for x in tokens.split(parse)]
 		for token in tokens:
 			if token.isdigit():
@@ -32,24 +32,10 @@ class ConditionalShowHide(Converter):
 			self.timer = None
 		# print(f"[ConditionalShowHide] DEBUG: Converter init {tokens} result is blink={self.blink}, invert={self.invert}, blinkTime={self.blinkTime}.")
 
-	def __getattr__(self, name):  # Make ConditionalShowHide transparent to upstream attribute requests.
-		return getattr(self.source, name)
-
 	def blinker(self):
 		if self.blinking:
 			for element in self.downstream_elements:
 				element.visible = not element.visible
-
-	def startBlinking(self):
-		self.blinking = True
-		self.timer.start(self.blinkTime)
-
-	def stopBlinking(self):
-		self.blinking = False
-		self.timer.stop()
-		for element in self.downstream_elements:
-			if element.visible:
-				element.hide()
 
 	def calcVisibility(self):
 		visibility = self.source.boolean
@@ -79,8 +65,22 @@ class ConditionalShowHide(Converter):
 			else:
 				self.stopBlinking()
 		else:
-			downstream.visible = self.calcVisibility()
+			downstream.visible = visibility
 
 	def destroy(self):
 		if self.timer:
 			self.timer.callback.remove(self.blinker)
+
+	def __getattr__(self, name):  # Make ConditionalShowHide transparent to upstream attribute requests.
+		return getattr(self.source, name)
+
+	def startBlinking(self):
+		self.blinking = True
+		self.timer.start(self.blinkTime)
+
+	def stopBlinking(self):
+		self.blinking = False
+		self.timer.stop()
+		for element in self.downstream_elements:
+			if element.visible:
+				element.hide()

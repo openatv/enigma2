@@ -331,9 +331,12 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 				content = fd.readlines()
 				line, column = err.position
 				print(f"[{source}] XML Parse Error: '{err}' in '{filename}'!")
-				data = content[line - 1].replace("\t", " ").rstrip()
-				print(f"[{source}] XML Parse Error: '{data}'")
-				print(f"[{source}] XML Parse Error: '{'-' * column}^{' ' * (len(data) - column - 1)}'")
+				if 0 < line <= len(content):
+					data = content[line - 1].replace("\t", " ").rstrip()
+					print(f"[{source}] XML Parse Error: '{data}'")
+					print(f"[{source}] XML Parse Error: '{'-' * column}^{' ' * max(len(data) - column - 1, 0)}'")
+				else:
+					print(f"[{source}] XML Parse Error: The file is empty.")
 			except Exception as err:
 				print(f"[{source}] Error: Unable to parse data in '{filename}' - '{err}'!")
 	except OSError as err:
