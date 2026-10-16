@@ -1430,13 +1430,12 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
 		}
 #ifdef DREAMNEXTGEN
-		/* sync=TRUE: dvbaudiosink runs on the pipeline clock and the kernel
-		 * syncs the audio to the system clock of the video only within 2 s;
-		 * an unsynced video fills the decoder and runs seconds ahead. */
+		/* the decoder paces the video on the system clock, the kernel syncs
+		 * the audio to it: the sink stays unsynced, a pipeline-synced sink
+		 * holds the frames back after a pause and at the start */
 		if (!m_sourceinfo.is_audio) {
 			GstElement *vsink = gst_element_factory_make("dreamvideosink", NULL);
 			if (vsink) {
-				g_object_set(vsink, "sync", TRUE, NULL);
 				g_object_set(m_gst_playbin, "video-sink", vsink, NULL);
 				dvb_videosink = vsink;
 			}
@@ -2135,8 +2134,11 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		m_to_paused = true;
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 		// m_paused = true;
-#ifndef DREAMNEXTGEN
-		/* the DREAMNEXTGEN sinks pause in place; a seek jumps to a keyframe */
+#ifdef DREAMNEXTGEN
+		/* the sinks pause in place at once; the state completes with the
+		 * next buffer the unsynced video sink gets, a seek would jump */
+		return 0;
+#else
 		if (pos_ret >= 0)
 			seekTo(pts);
 #endif
