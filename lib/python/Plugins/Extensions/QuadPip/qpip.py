@@ -1,23 +1,25 @@
 from functools import total_ordering
+from os import F_OK, R_OK, access
 from pickle import dump, load
-from os import access, F_OK, R_OK
+
 from enigma import eServiceReference, eTimer
 
+from ServiceReference import ServiceReference
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.config import config, ConfigSubsection, ConfigNumber
+from Components.config import ConfigNumber, ConfigSubsection, config
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Slider import Slider
-from Components.Sources.List import List
 from Components.SystemInfo import BoxInfo
-
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Screens.ChannelSelection import ChannelSelectionBase
 from Screens.ChoiceBox import ChoiceBox
+from Screens.InfoBarGenerics import streamrelay
 from Screens.MessageBox import MessageBox
 from Screens.QuadPiP import QuadPiP
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from ServiceReference import ServiceReference
 
 
 config.plugins.quadpip = ConfigSubsection()
@@ -596,6 +598,7 @@ class FocusShowHide:
 
 	def __init__(self):
 		self.__state = self.STATE_SHOWN
+		self.permanent = False
 		self.hideTimer = eTimer()
 		self.hideTimer.callback.append(self.hideTimerCB)
 		self.onLayoutFinish.append(self.startHideTimer)
@@ -610,32 +613,42 @@ class FocusShowHide:
 	def isShown(self):
 		return self.__state == self.STATE_SHOWN
 
-	def showFocus(self):
+	def showFocus(self, permanent=False):
 		self.show()
 		self.__state = self.STATE_SHOWN
-		self.startHideTimer()
+		if permanent:
+			self.permanent = True
+		if self.permanent:
+			self.hideTimer.stop()
+		else:
+			self.startHideTimer()
 
 	def hideFocus(self):
 		self.hideTimer.stop()
 		self.hide()
 		self.__state = self.STATE_HIDDEN
+		self.permanent = False
 
-	def toggleShow(self):
-		if self.__state == self.STATE_SHOWN:
+	def togglePermanent(self):
+		if self.permanent:
 			self.hideFocus()
-		elif self.__state == self.STATE_HIDDEN:
-			self.showFocus()
+		else:
+			self.showFocus(permanent=True)
 
 
 class QuadPipScreen(Screen, FocusShowHide):
 	skin = """
 		<screen position="0,0" size="%d,%d" backgroundColor="transparent" flags="wfNoBorder">
-			<widget name="ch1" position="240,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" borderWidth="2"/>
-			<widget name="ch2" position="1200,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" borderWidth="2"/>
-			<widget name="ch3" position="240,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" borderWidth="2"/>
-			<widget name="ch4" position="1200,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" borderWidth="2"/>
-			<widget name="text1" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" borderWidth="2"/>
-			<widget name="text2" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" borderWidth="2"/>
+			<widget name="ch1" position="240,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ff000000" transparent="1" borderWidth="2" borderColor="#000000"/>
+			<widget name="ch2" position="1200,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ff000000" transparent="1" borderWidth="2" borderColor="#000000"/>
+			<widget name="ch3" position="240,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ff000000" transparent="1" borderWidth="2" borderColor="#000000"/>
+			<widget name="ch4" position="1200,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ff000000" transparent="1" borderWidth="2" borderColor="#000000"/>
+			<widget name="keyRedBackground" position="%d,%d" size="%d,%d" zPosition="1" backgroundColor="#30000000"/>
+			<widget name="keyMenuBackground" position="%d,%d" size="%d,%d" zPosition="1" backgroundColor="#30000000"/>
+			<ePixmap pixmap="buttons/key_red.png" position="%d,%d" zPosition="3" size="%d,%d" alphatest="blend" scale="1"/>
+			<widget source="key_red" render="Label" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" foregroundColor="white" backgroundColor="#ff000000" transparent="1" borderWidth="2" borderColor="#000000"/>
+			<ePixmap pixmap="buttons/key_menu.png" position="%d,%d" zPosition="3" size="%d,%d" alphatest="blend" scale="1"/>
+			<widget source="key_menu" render="Label" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="right" valign="center" foregroundColor="white" backgroundColor="#ff000000" transparent="1" borderWidth="2" borderColor="#000000"/>
 			<widget name="focus" position="0,0" zPosition="-1" size="960,540" backgroundColor="#ffffffff" borderWidth="5" borderColor="#e61616" alphatest="on" />
 		</screen>
 		"""
@@ -667,8 +680,13 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self["ch2"] = Label(" ")
 		self["ch3"] = Label(" ")
 		self["ch4"] = Label(" ")
+		# Skins with their own QuadPipScreen show text1 and text2.
 		self["text1"] = Label(_("  Red key : Show/Hide channel name"))
 		self["text2"] = Label(_("  Menu key : Select quad channel"))
+		self["key_red"] = StaticText(_("Show/Hide channel name"))
+		self["key_menu"] = StaticText(_("Select channel set"))
+		self["keyRedBackground"] = Label()
+		self["keyMenuBackground"] = Label()
 		self["focus"] = Slider(-1, -1)
 
 		self.currentPosition = 1  # 1~4
@@ -676,8 +694,9 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 		self.skin = QuadPipScreen.skin % (self.session.desktop.size().width(), self.session.desktop.size().height(),
 												self.fontSize, self.fontSize, self.fontSize, self.fontSize,
-												self.text1Pos[0], self.text1Pos[1], self.text1Pos[2], self.text1Pos[3], self.fontSize,
-												self.text2Pos[0], self.text2Pos[1], self.text2Pos[2], self.text2Pos[3], self.fontSize)
+												*self.bar1Pos, *self.bar2Pos,
+												*self.key1Pos, *self.text1Pos, self.fontSize,
+												*self.key2Pos, *self.text2Pos, self.fontSize)
 		self.oldService = None
 		self.curChannel = None
 		self.curPlayAudio = -1
@@ -688,6 +707,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self.oldFccEnable = False
 		self.oldMinitvEanble = False
 
+		self.onLayoutFinish.append(self.layoutButtons)
 		self.onLayoutFinish.append(self.layoutFinishedCB)
 
 		self.notSupportTimer = eTimer()
@@ -698,6 +718,29 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 		self.forceToExitTimer = eTimer()
 		self.forceToExitTimer.callback.append(self.forceToExitTimerCB)
+
+		# The own stream server frees its tuners on the next main loop run.
+		self.localStreams = False
+		self.pendingChannel = None
+		self.startTimer = eTimer()
+		self.startTimer.callback.append(self.startTimerCB)
+
+	def layoutButtons(self):  # The background only behind the key and its text.
+		def textWidth(source):
+			renderer = source.downstream_elements[0] if source.downstream_elements else None
+			return renderer.instance.calculateSize().width() if renderer and renderer.instance else 0
+
+		pad = 10
+		width = textWidth(self["key_red"])
+		if width and self["keyRedBackground"].instance:
+			x = self.key1Pos[0] - pad
+			self["keyRedBackground"].resize(self.text1Pos[0] + width + pad - x, self.text1Pos[3])
+			self["keyRedBackground"].move(x, self.text1Pos[1])
+		width = textWidth(self["key_menu"])
+		if width and self["keyMenuBackground"].instance:
+			x = self.text2Pos[0] + self.text2Pos[2] - width - pad
+			self["keyMenuBackground"].resize(self.key2Pos[0] + self.key2Pos[2] + pad - x, self.text2Pos[3])
+			self["keyMenuBackground"].move(x, self.text2Pos[1])
 
 	def forceToExitTimerCB(self):
 		self.session.openWithCallback(self.close, MessageBox, _("Quad PiP is not available."), MessageBox.TYPE_ERROR)
@@ -782,13 +825,24 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self.labelPositionMap["ch3"] = (w / 8, h / 4 - h / 36 + h / 2, w / 4, h18)
 		self.labelPositionMap["ch4"] = (w / 8 + w / 2, h / 4 - h / 36 + h / 2, w / 4, h18)
 
-		self.decoderIdxMap = [None, 0, 1, 2, 3]
+		# DreamOne/DreamTwo: the mosaic decoders follow the main and PiP decoders
+		self.decoderIdxMap = [None, 2, 3, 4, 5] if BoxInfo.getItem("model") in ("dreamone", "dreamtwo") else [None, 0, 1, 2, 3]
 
 		self.fontSize = {1080: 40, 720: 28, 576: 18}.get(h, 40)
-		ww = int(w / 2 - 10)
-		x = int(w / 2 + 5)
-		self.text1Pos = (x, h - h18 - h18, ww, h18)
-		self.text2Pos = (x, h - h18, ww, h18)
+		# The buttons in one row at the bottom, on a bar inside the focus frame
+		# of each bottom window: red on the left, menu on the right.
+		keyW = int(self.fontSize * 1.25)
+		keyH = int(keyW * 5 / 7)
+		y = h - h18 - 15
+		keyY = y + (h18 - keyH) // 2
+		barW = int(w / 2 - 30)
+		textW = barW - keyW - 30
+		self.bar1Pos = (15, y, barW, h18)
+		self.bar2Pos = (int(w / 2 + 15), y, barW, h18)
+		self.key1Pos = (25, keyY, keyW, keyH)
+		self.text1Pos = (25 + keyW + 10, y, textW, h18)
+		self.key2Pos = (w - 25 - keyW, keyY, keyW, keyH)
+		self.text2Pos = (w - 35 - keyW - textW, y, textW, h18)
 
 	def moveFrame(self):
 		self.showFocus()
@@ -866,7 +920,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self.playLastChannel()
 
 	def KeyRed(self):
-		self.toggleShow()
+		self.togglePermanent()
 
 	def selectPosition(self, pos):
 		self.currentPosition = pos
@@ -889,6 +943,9 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 			self.session.qPips = None
 			self.curPlayAudio = -1
+		self.localStreams = False
+		self.pendingChannel = None
+		self.startTimer.stop()
 
 		self.updateChannelName(None)
 
@@ -917,18 +974,33 @@ class QuadPipScreen(Screen, FocusShowHide):
 		if self.curChannel and self.curChannel == channel.channel:
 			return
 
+		localStreams = self.localStreams or self.pendingChannel is not None
 		self.disableQuadPip()
 		self.selectPosition(1)
 
 		self.curChannel = channel.channel.copy()
 
 		self.session.qPips = []
+		if localStreams:
+			self.pendingChannel = channel
+			self.startTimer.start(300, True)
+		else:
+			self.startChannel(channel)
+
+	def startTimerCB(self):
+		if self.pendingChannel and self.session.qPips is not None:
+			self.startChannel(self.pendingChannel)
+		self.pendingChannel = None
+
+	def startChannel(self, channel):
 		for idx in list(range(1, 5)):
 			chInfo = channel.getChannel(str(idx))
 			if chInfo is None:
 				continue
 
 			(sname, sref) = chInfo
+			if "%3a//127.0.0.1" in sref or "%3a//localhost" in sref or streamrelay.checkService(eServiceReference(sref)):
+				self.localStreams = True
 
 			qPipShown = False  # noqa F841
 
