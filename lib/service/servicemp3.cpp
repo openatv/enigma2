@@ -2176,6 +2176,10 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		GstElement* source = NULL;
 		GstElementFactory* factory = NULL;
 		const gchar* name = NULL;
+		/* the DASH pipeline has no playbin source; a seek in a live
+		 * manifest breaks dashdemux, it resumes where it paused */
+		if (m_is_dash_pipeline)
+			goto resume;
 		g_object_get(m_gst_playbin, "source", &source, NULL);
 		if (!source) {
 			eDebugNoNewLineStart("[eServiceMP3] trickSeek - cannot get source");
@@ -2197,6 +2201,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		 * If there are other sources which will not timeout, add them here
 		 */
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc")) {
+		resume:
 			/* previous state was already ok if we come here just give all elements time to unpause */
 			m_to_paused = false;
 			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
