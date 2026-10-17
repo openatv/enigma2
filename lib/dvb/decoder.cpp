@@ -1516,7 +1516,7 @@ int eTSMPEGDecoder::setState()
 		{
 			m_text->stop();
 			if (m_demux && m_decoder == 0)	// Tuxtxt caching actions only on primary decoder
-				eTuxtxtApp::getInstance()->stopCaching();
+				eTuxtxtApp::getInstance()->stopCaching(this);
 		}
 		m_text = 0;
 	}
@@ -1620,7 +1620,8 @@ int eTSMPEGDecoder::setState()
 			{
 				uint8_t demux = 0;
 				m_demux->getCADemuxID(demux);
-				eTuxtxtApp::getInstance()->startCaching(m_textpid, demux);
+				eTuxtxtApp::getInstance()->initCache(eTSMPEGDecoder::m_debugTXT == 1);
+				eTuxtxtApp::getInstance()->startCaching(m_textpid, demux, this);
 			}
 		}
 		else if (m_demux && m_decoder == 0)	// Tuxtxt caching actions only on primary decoder
@@ -1785,10 +1786,6 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 
 	if (eTSMPEGDecoder::m_debugTXT < 0)
 		eTSMPEGDecoder::m_debugTXT = eSimpleConfig::getBool("config.crash.debugTeletext", false) ? 1 : 0;
-
-
-	if (m_demux && m_decoder == 0)	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->initCache(eTSMPEGDecoder::m_debugTXT == 1);
 }
 
 void eTSMPEGDecoder::freeDecoder()
@@ -1816,7 +1813,7 @@ eTSMPEGDecoder::~eTSMPEGDecoder()
 	fccFreeFD();
 
 	if (m_demux && m_decoder == 0)	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->freeCache();
+		eTuxtxtApp::getInstance()->freeCache(this);
 }
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
