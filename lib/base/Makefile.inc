@@ -14,6 +14,7 @@ base_libenigma_base_a_SOURCES = \
 	base/encoding.cpp \
 	base/estring.cpp \
 	base/etpm.cpp \
+	base/externalvideo.cpp \
 	base/freesatv2.cpp \
 	base/huffman.cpp \
 	base/init.cpp \
@@ -49,6 +50,7 @@ baseinclude_HEADERS = \
 	base/eptrlist.h \
 	base/estring.h \
 	base/etpm.h \
+	base/externalvideo.h \
 	base/freesatv2.h \
 	base/huffman.h \
 	base/i18n.h \
