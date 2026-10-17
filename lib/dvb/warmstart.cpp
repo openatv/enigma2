@@ -2,6 +2,7 @@
 #include <lib/dvb/frontend.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 
 #include <algorithm>
 #include <chrono>
@@ -32,19 +33,6 @@ std::chrono::steady_clock::time_point poweredAt;
 std::string cachePath()
 {
 	return eEnv::resolve("${sysconfdir}/enigma2/dvb-warmstart");
-}
-
-bool readSettings(std::map<std::string, std::string> &settings)
-{
-	std::ifstream input(eEnv::resolve("${sysconfdir}/enigma2/settings"));
-	std::string line;
-	while (std::getline(input, line))
-	{
-		auto equal = line.find('=');
-		if (equal != std::string::npos)
-			settings[line.substr(0, equal)] = line.substr(equal + 1);
-	}
-	return input.eof() && !settings.empty();
 }
 
 std::string startService(std::map<std::string, std::string> &settings)
@@ -80,18 +68,16 @@ std::string nimIdentity(const std::string &sockets)
 	return result;
 }
 
-bool signature(std::string &result)
+bool signature(std::string &result, std::map<std::string, std::string> &settings)
 {
-	std::map<std::string, std::string> settings;
-	if (!readSettings(settings))
+	if (!eSimpleConfig::getValues(settings) || settings.empty())
 		return false;
-	// Include a cache generation and compilation stamp along with the saved
-	// configuration to invalidate profiles when their interpretation changes.
-	std::string data = "DVB pre-power 2 " __DATE__ " " __TIME__ "\n";
+	// Bump the cache generation when the saved configuration's interpretation changes.
+	std::string data = "DVB pre-power 2\n";
 	for (const auto &entry : settings)
 		if (entry.first.compare(0, 12, "config.Nims.") == 0 || entry.first.compare(0, 11, "config.sec.") == 0)
 			data += entry.first + "=" + entry.second + "\n";
-	for (const char *path : {"/proc/bus/nim_sockets", "/proc/stb/info/model", "/proc/version"})
+	for (const char *path : {"/proc/bus/nim_sockets", "/proc/version"})
 	{
 		std::ifstream input(eEnv::resolve(path));
 		if (!input)
@@ -127,7 +113,7 @@ bool eDVBWarmStart::load(std::string &device, int &voltage)
 	if (!(input >> magic >> std::quoted(profile.device) >> profile.voltage >> profile.bootTime >> profile.signature >> std::quoted(profile.service))
 		|| (input >> trailing) || magic != "E2DVBPOWER1" || profile.bootTime <= 0 || profile.bootTime > 15000
 		|| (profile.voltage != iDVBFrontend::voltage13 && profile.voltage != iDVBFrontend::voltage13_5)
-		|| !signature(currentSignature) || profile.signature != currentSignature || !readSettings(settings)
+		|| !signature(currentSignature, settings) || profile.signature != currentSignature
 		|| (!settings["config.usage.shutdownOK"].empty() && settings["config.usage.shutdownOK"] != "True") || settings["config.misc.firstrun"] != "False"
 		|| (!settings["config.usage.boot_action"].empty() && settings["config.usage.boot_action"] != "normal")
 		|| profile.service.empty() || profile.service != startService(settings))
@@ -183,8 +169,9 @@ void eDVBWarmStart::prepare(eDVBFrontend &frontend, eDVBFrontend &secFrontend, b
 		return;
 	Profile profile;
 	profile.device = secFrontend.getDeviceName();
+	std::map<std::string, std::string> settings;
 	// USB/remote tuners need their own hotplug and power handling.
-	if (profile.device.compare(0, 26, "/dev/dvb/adapter0/frontend") != 0 || !signature(profile.signature))
+	if (profile.device.compare(0, 26, "/dev/dvb/adapter0/frontend") != 0 || !signature(profile.signature, settings))
 		return;
 	profile.voltage = voltage;
 	profile.bootTime = bootTime;
@@ -204,7 +191,7 @@ void eDVBWarmStart::save(int exitCode)
 	std::string currentSignature;
 	std::map<std::string, std::string> settings;
 	if ((exitCode != 1 && exitCode != 2 && exitCode != 3 && exitCode != 45) || lastTuned.device.empty()
-		|| !signature(currentSignature) || lastTuned.signature != currentSignature || !readSettings(settings)
+		|| !signature(currentSignature, settings) || lastTuned.signature != currentSignature
 		|| (!settings["config.usage.shutdownOK"].empty() && settings["config.usage.shutdownOK"] != "True") || lastTuned.service != startService(settings))
 	{
 		::unlink(path.c_str());
