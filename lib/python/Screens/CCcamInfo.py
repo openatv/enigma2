@@ -3,20 +3,19 @@
 # CCcam Line Editor by egami and OpenATV
 from base64 import b64encode
 from glob import glob
-import requests
 from os import listdir, remove, rename, system
 from os.path import dirname, exists, isfile
 from urllib.parse import urlparse, urlunparse
-from skin import parameters, getSkinFactor
 
-from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_HALIGN_LEFT
+from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListboxPythonMultiContent, gFont, loadPNG
 
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigText, ConfigNumber, NoSave
+from skin import getSkinFactor, parameters
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
+from Components.config import ConfigNumber, ConfigSelection, ConfigSubsection, ConfigText, NoSave, config
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 # from Screens.InfoBar import InfoBar
@@ -25,7 +24,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename, fileReadLines, fileWriteLines
+from Tools.Directories import SCOPE_GUISKIN, fileExists, fileReadLines, fileWriteLines, resolveFilename
 
 # TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -84,14 +83,17 @@ def _parse(url):
 
 
 def getPage(url, callback, errback):
+	from requests import get  # Load HTTP support only when fetching CCcam information.
+	from requests.exceptions import RequestException
+
 	global Counter
 	errormsg = ""
 	url, AuthHeaders = _parse(url)
 	print("[CCcamInfo]2 url=%s" % url)
 	try:
-		response = requests.get(url, headers=AuthHeaders)  # to get content after redirection
+		response = get(url, headers=AuthHeaders)  # to get content after redirection
 		response.raise_for_status()
-	except requests.exceptions.RequestException as error:
+	except RequestException as error:
 		print("[CCcamInfo][getPage] incorrect response: %s" % error)
 		if Counter == 0:
 			Counter += 1
