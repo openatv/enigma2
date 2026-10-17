@@ -1669,9 +1669,10 @@ class InformationService(InformationBase):
 				height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
 					videoData.append(f"{width}x{height}")
-					videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{("i", "p", "")[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
+					progressive = {0: "i", 1: "p"}.get(self.serviceInfo.getInfo(iServiceInformation.sProgressive), "")
+					videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{progressive}")
 					videoData.append(f"[{"4:3" if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else "16:9"}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
-				gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.serviceInfo.getInfo(iServiceInformation.sGamma)]  # This should be in SystemInfo maybe as a BoxInfo variable.
+				gamma = {0: "SDR", 1: "HDR", 2: "HDR10", 3: "HLG"}.get(self.serviceInfo.getInfo(iServiceInformation.sGamma), "")  # This should be in SystemInfo maybe as a BoxInfo variable.
 				if gamma:
 					videoData.append(gamma)
 				videoData = "  -  ".join(videoData)
