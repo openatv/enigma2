@@ -166,14 +166,13 @@ def _orbitalPositionName(position):
 def getDABSatelliteDefinitions(availableOnly=False):
 	"""Return DAB satellite positions which have at least one enabled feed.
 
-	Availability is derived from the configured Enigma2 tuner topology.  This
-	also covers USALS/positioner tuners because NimManager expands their
-	configured satellite list before getNimListForSat() is queried.
+	Availability is derived from the configured Enigma2 tuner topology. This
+	also covers USALS/positioner tuners through NimManager's satellite lists.
 	"""
 	root = _dabXMLRoot()
 	if root is None:
 		return ()
-	from Components.NimManager import nimmanager
+	from Components.NimManager import nimmanager  # Tuner configuration must be initialized first.
 	positions = {}
 	for satellite in root.findall("satellite"):
 		try:
@@ -206,11 +205,20 @@ def getDABSatelliteDefinitions(availableOnly=False):
 		name = (feed.get("satellite") or "").strip()
 		if name and name not in entry["names"]:
 			entry["names"].append(name)
+	# Build one snapshot per query; tuner changes are visible on the next query.
+	availablePositions = set()
+	motorizedPositions = set()
+	if positions:
+		for nim in nimmanager.nim_slots:
+			if nim.canBeCompatible("DVB-S") and not nim.isFBCLink():
+				satellitePositions = {x[0] for x in nimmanager.getSatListForNim(nim.slot)}
+				availablePositions.update(satellitePositions)
+				if satellitePositions.intersection(positions):
+					motorizedPositions.update(x[0] for x in nimmanager.getRotorSatListForNim(nim.slot) if x[0] in satellitePositions)
 	definitions = []
 	for entry in positions.values():
-		nimSlots = nimmanager.getNimListForSat(entry["position"])
-		entry["available"] = bool(nimSlots)
-		entry["motorized"] = any(entry["position"] in (satellite[0] for satellite in nimmanager.getRotorSatListForNim(slot)) for slot in nimSlots)
+		entry["available"] = entry["position"] in availablePositions
+		entry["motorized"] = entry["position"] in motorizedPositions
 		if availableOnly and not entry["available"]:
 			continue
 		positionName = _orbitalPositionName(entry["position"])

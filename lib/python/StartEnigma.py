@@ -497,7 +497,10 @@ def runScreenTest():
 	ormTimer = enigma.eTimer()  # ORM, started by enigma2.sh, learns that the main loop runs.
 	ormTimer.callback.append(lambda: enigma.eProfileNotify("ready"))
 	ormTimer.start(0, True)
+	from Tools.StartupTasks import startupTasks  # Enigma's timer bindings and the session must exist first.
+	startupTasks.start()
 	runReactor()
+	startupTasks.stop()
 	session.shutdown = True
 	frontPanelLed.shutdown()
 	print("[StartEnigma] Normal shutdown.")
