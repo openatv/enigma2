@@ -13,7 +13,7 @@ from Tools.Alternatives import CompareWithAlternatives
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
-from skin import getSkinFactor, parameters as skinparameter, parseColor, parseFont, parseScale
+from skin import getSkinFactor, parameters as skinparameter, parseColor, parseFont
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -46,7 +46,7 @@ class EPGListBase(GUIComponent):
 	skinFonts = {}
 	skinValues = {
 		"NumberOfRows": ("numberOfRows", int),
-		"itemHeight": ("skinItemHeight", parseScale),
+		"itemHeight": ("skinItemHeight", lambda value: max(0, int(value))),
 		"MinimumItemHeight": ("minimumItemHeight", lambda value: max(0, int(value))),
 	}
 	defaultItemHeight = 32  # Unscaled default row height.
@@ -131,6 +131,9 @@ class EPGListBase(GUIComponent):
 			for (attrib, value) in self.skinAttributes:
 				if not self.applySkinAttribute(attrib, value):
 					attribs.append((attrib, value))
+				elif attrib == "itemHeight":
+					# Scale like AttributeParser.itemHeight does.
+					self.skinItemHeight = self.skinItemHeight * screen.scale[1][0] // screen.scale[1][1]
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.skinListHeight = self.listHeight = self.instance.size().height()

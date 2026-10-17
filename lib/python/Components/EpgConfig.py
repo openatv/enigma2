@@ -15,6 +15,7 @@ epgActions = [
 	("openTMDb", _("TMDB Search")),
 	("sortEPG", _("Sort")),
 	("addEditTimer", _("Add Timer")),
+	("addEditTimerMenu", _("Timer Menu")),
 	("openTimerList", _("Show Timer List")),
 	("openEPGSearch", _("EPG Search")),
 	("addEditAutoTimer", _("Add AutoTimer")),
@@ -156,6 +157,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.infobar.roundto, "epgselection.infobar_roundto")
 		upgrade(config.epgselection.infobar.histminutes, "epgselection.infobar_histminutes")
 		upgrade(config.epgselection.infobar.prevtimeperiod, "epgselection.infobar_prevtimeperiod")
+		upgrade(config.epgselection.infobar.prevtime, "epgselection.infobar_prevtime")
 		upgradePrimetime(config.epgselection.infobar.primetime, "infobar")
 		upgrade(config.epgselection.infobar.servicetitle_mode, "epgselection.infobar_servicetitle_mode", titleModeMap)
 		upgrade(config.epgselection.infobar.servfs, "epgselection.infobar_servfs")
@@ -193,6 +195,7 @@ def upgradeConfig():
 		upgrade(config.epgselection.grid.roundto, "epgselection.graph_roundto")
 		upgrade(config.epgselection.grid.histminutes, "epgselection.graph_histminutes")
 		upgrade(config.epgselection.grid.prevtimeperiod, "epgselection.graph_prevtimeperiod")
+		upgrade(config.epgselection.grid.prevtime, "epgselection.graph_prevtime")
 		upgradePrimetime(config.epgselection.grid.primetime, "graph")
 		upgrade(config.epgselection.grid.servicetitle_mode, "epgselection.graph_servicetitle_mode", titleModeMap)
 		upgrade(config.epgselection.grid.servicename_alignment, "epgselection.graph_servicename_alignment")
@@ -218,6 +221,7 @@ def upgradeConfig():
 
 		# vertical
 		upgradePrimetime(config.epgselection.vertical.primetime, "vertical")
+		upgrade(config.epgselection.vertical.prevtime, "epgselection.vertical_prevtime")
 		upgrade(config.epgselection.vertical.itemsperpage, "epgselection.vertical_itemsperpage")
 		upgrade(config.epgselection.vertical.eventfs, "epgselection.vertical_eventfs")
 		upgrade(config.epgselection.vertical.preview_mode, "epgselection.vertical_preview_mode")

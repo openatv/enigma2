@@ -740,7 +740,7 @@ class EPGSelectionBase(Screen):
 			"addEditZapTimerSilent": self.addEditZapTimerSilent,
 			"openIMDb": self.openIMDb,
 			"openTMDb": self.openTMDb,
-			"addEditAutoTimer": self.addAutoTimer,
+			"addEditAutoTimer": self.addEditAutoTimer,
 			"openEPGSearch": self.openEPGSearch,
 			"showMovies": self.showMovies,
 			"sortEPG": self.sortEPG,
@@ -912,6 +912,8 @@ class EPGSelectionBase(Screen):
 			self.dozumberzap()
 			return
 		action = self._cfg.ok
+		if action in ("zap", "zapExit") and not self.zapFunc and self.type in (EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR):
+			return  # Nothing to zap to, as before the refactor.
 		if action == "openEventView":
 			self.openEventView()
 		elif action == "zap":
@@ -927,6 +929,8 @@ class EPGSelectionBase(Screen):
 			self.dozumberzap()
 			return
 		action = self._cfg.oklong
+		if action in ("zap", "zapExit") and not self.zapFunc and self.type in (EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR):
+			return  # Nothing to zap to, as before the refactor.
 		if action == "openEventView":
 			self.openEventView()
 		elif action == "zap":
@@ -939,18 +943,20 @@ class EPGSelectionBase(Screen):
 		from Screens.InfoBar import InfoBar
 		if InfoBar.instance.LongButtonPressed:
 			return
-		if self._cfg.info == "openSingleEPG":
+		action = self._cfg.info
+		if action == "openSingleEPG":
 			self.openSingleEPG()
-		else:
+		elif action == "openEventView":
 			self.openEventView()
 
 	def InfoLong(self):
 		from Screens.InfoBar import InfoBar
 		if not InfoBar.instance.LongButtonPressed:
 			return
-		if self._cfg.infolong == "openEventView":
+		action = self._cfg.infolong
+		if action == "openEventView":
 			self.openEventView()
-		else:
+		elif action == "openSingleEPG":
 			self.openSingleEPG()
 
 	def epgButtonPressed(self):
@@ -1487,8 +1493,8 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 		epgConfig = config.epgselection.infobar if epgType == EPG_TYPE_INFOBARGRAPH else config.epgselection.grid
 
 		# Initial start time aligned to roundto boundary.
-		now = time() - epgConfig.histminutes.value * 60
-		self.ask_time = now - now % (epgConfig.roundto.value * 60)
+		now = time() - int(epgConfig.histminutes.value) * 60
+		self.ask_time = now - now % (int(epgConfig.roundto.value) * 60)
 
 		EPGSelectionBase.__init__(self, session, epgConfig, startBouquet, startRef, bouquets)
 		if epgType == EPG_TYPE_INFOBARGRAPH:
@@ -1532,18 +1538,18 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 		# Number keys 0-9 drive graph navigation (epoch, time-jump, primetime).
 		# No channel-number zap in graph mode.
 		numberActions = {
-			"1": (lambda: self._numberKeyPressed(1), _("Reduce time scale")),
-			"2": (lambda: self._numberKeyPressed(2), _("Page up")),
-			"3": (lambda: self._numberKeyPressed(3), _("Increase time scale")),
-			"4": (lambda: self._numberKeyPressed(4), _("Page left")),
-			"5": (lambda: self._numberKeyPressed(5), _("Jump to current time")),
-			"6": (lambda: self._numberKeyPressed(6), _("Page right")),
-			"8": (lambda: self._numberKeyPressed(8), _("Page down")),
-			"9": (lambda: self._numberKeyPressed(9), _("Jump to prime time")),
-			"0": (lambda: self._numberKeyPressed(0), _("Goto first channel")),
+			"1": (self._numberKeyPressed, _("Reduce time scale")),
+			"2": (self._numberKeyPressed, _("Page up")),
+			"3": (self._numberKeyPressed, _("Increase time scale")),
+			"4": (self._numberKeyPressed, _("Page left")),
+			"5": (self._numberKeyPressed, _("Jump to current time")),
+			"6": (self._numberKeyPressed, _("Page right")),
+			"8": (self._numberKeyPressed, _("Page down")),
+			"9": (self._numberKeyPressed, _("Jump to prime time")),
+			"0": (self._numberKeyPressed, _("Goto first channel")),
 		}
 		if epgType == EPG_TYPE_GRAPH:
-			numberActions["7"] = (lambda: self._numberKeyPressed(7), _("No of items switch (increase or reduced)"))
+			numberActions["7"] = (self._numberKeyPressed, _("No of items switch (increase or reduced)"))
 		self["input_actions"] = HelpableNumberActionMap(self, "NumberActions", numberActions, prio=-1, description=_("EPG Navigation Actions"))
 
 		self.addEpgActions({
@@ -1569,8 +1575,8 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 	def onCreate(self):
 		if self.type == EPG_TYPE_GRAPH and "primetime" in self.epgConfig.startmode.value:
 			pt = self.epgConfig.primetime.value
-			now = time() - self.epgConfig.histminutes.value * 60
-			base = localtime(now - now % (self.epgConfig.roundto.value * 60))
+			now = time() - int(self.epgConfig.histminutes.value) * 60
+			base = localtime(now - now % (int(self.epgConfig.roundto.value) * 60))
 			self.ask_time = mktime((base[0], base[1], base[2], pt[0], pt[1], 0,
 									base[6], base[7], base[8]))
 			if self.ask_time + 3600 < time():
@@ -1645,8 +1651,8 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 		self.selectedBouquetIndex = (self.selectedBouquetIndex + direction) % n
 		self.services = self._getBouquetServices(self.getCurrentBouquet())
 		cfg = self.epgConfig
-		now = time() - cfg.histminutes.value * 60
-		self.ask_time = now - now % (cfg.roundto.value * 60)
+		now = time() - int(cfg.histminutes.value) * 60
+		self.ask_time = now - now % (int(cfg.roundto.value) * 60)
 		if self.type == EPG_TYPE_GRAPH and "primetime" in cfg.startmode.value:
 			pt = cfg.primetime.value
 			base = localtime(self.ask_time)
@@ -1666,7 +1672,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 
 	def _onDateTimeEntered(self, jumpTime):
 		cfg = self.epgConfig
-		jumpTime -= jumpTime % (cfg.roundto.value * 60)
+		jumpTime -= jumpTime % (int(cfg.roundto.value) * 60)
 		self["list"].resetOffset()
 		self["list"].fillGraphEPG(None, jumpTime)
 		self.moveTimeLines(True)
@@ -1675,7 +1681,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 
 	def _numberKeyPressed(self, number):
 		cfg = self.epgConfig
-		now = time() - cfg.histminutes.value * 60
+		now = time() - int(cfg.histminutes.value) * 60
 
 		if number == 1:
 			period = int(cfg.prevtimeperiod.value)
@@ -1700,7 +1706,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 			self.updEvent(-2)
 
 		elif number == 5:
-			self.ask_time = now - now % (cfg.roundto.value * 60)
+			self.ask_time = now - now % (int(cfg.roundto.value) * 60)
 			self["list"].resetOffset()
 			self["list"].fillGraphEPG(None, self.ask_time, True)
 			self.moveTimeLines(True)
@@ -1730,7 +1736,7 @@ class EPGSelectionGrid(EPGSelectionBase, EPGBouquetSelection, EPGServiceZap, EPG
 			self.moveTimeLines(True)
 
 		elif number == 0:
-			self.ask_time = now - now % (cfg.roundto.value * 60)
+			self.ask_time = now - now % (int(cfg.roundto.value) * 60)
 			self["list"].resetOffset()
 			self["list"].toTop(self.ask_time, True)
 			self.moveTimeLines()
@@ -2100,16 +2106,16 @@ class EPGSelectionVertical(EPGSelectionBase, EPGBouquetSelection,
 
 		from Components.ActionMap import HelpableNumberActionMap
 		self["input_actions"] = HelpableNumberActionMap(self, "NumberActions", {
-			"1": (lambda: self._numberKeyPressed(1), _("Goto first channel")),
-			"2": (lambda: self._numberKeyPressed(2), _("All events up")),
-			"3": (lambda: self._numberKeyPressed(3), _("Goto last channel")),
-			"4": (lambda: self._numberKeyPressed(4), _("Previous channel page")),
-			"0": (lambda: self._numberKeyPressed(0), _("Goto current channel and now")),
-			"6": (lambda: self._numberKeyPressed(6), _("Next channel page")),
-			"7": (lambda: self._numberKeyPressed(7), _("Goto now")),
-			"8": (lambda: self._numberKeyPressed(8), _("All events down")),
-			"9": (lambda: self._numberKeyPressed(9), _("Jump to prime time")),
-			"5": (lambda: self._numberKeyPressed(5), _("Set Base Time")),
+			"1": (self._numberKeyPressed, _("Goto first channel")),
+			"2": (self._numberKeyPressed, _("All events up")),
+			"3": (self._numberKeyPressed, _("Goto last channel")),
+			"4": (self._numberKeyPressed, _("Previous channel page")),
+			"0": (self._numberKeyPressed, _("Goto current channel and now")),
+			"6": (self._numberKeyPressed, _("Next channel page")),
+			"7": (self._numberKeyPressed, _("Goto now")),
+			"8": (self._numberKeyPressed, _("All events down")),
+			"9": (self._numberKeyPressed, _("Jump to prime time")),
+			"5": (self._numberKeyPressed, _("Set Base Time")),
 		}, prio=-1, description=_("EPG Navigation Actions"))
 
 		self.addEpgActions({
