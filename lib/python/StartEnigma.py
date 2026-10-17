@@ -241,8 +241,8 @@ class Session:
 			if hasattr(dialog, "desktop"):
 				dialog.reloadSkin()
 
-	def showInfo(self, text, timeout=4):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
+	def showInfo(self, text, timeout=4, replaceId=None):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout, replaceId=replaceId)
 
 	def showWarning(self, text, timeout=5):
 		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)

@@ -4338,7 +4338,7 @@ class InfoBarAudioSelection:
 				message = _("enabled")
 			print(f"[InfoBarGenerics] InfoBarAudioSelection: Dolby Digital down mix is now {status}.")
 			if popup:
-				Notifications.AddPopup(text=_("Dolby Digital downmix is now") + " " + message, type=MessageBox.TYPE_INFO, timeout=5, id="DDdownmixToggle")
+				self.session.showInfo(_("Dolby Digital downmix is now") + " " + message, replaceId="DDdownmixToggle")
 
 	def audioDownmixOn(self):
 		if not config.av.downmix_ac3.value:
@@ -5369,7 +5369,7 @@ class InfoBarSleepTimer:
 			delay = 0
 		if showMessage and delay != previous:
 			print("[InfoBarGenerics] InfoBarSleepTimer: %s set to %d minutes." % (name, minutes))
-			Notifications.AddPopup(message, type=MessageBox.TYPE_INFO, timeout=5)
+			self.session.showInfo(message)
 		return delay
 
 	def sleepTimerTimeout(self):
