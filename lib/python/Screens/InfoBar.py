@@ -424,24 +424,13 @@ def setAudioTrack(service):
 		else:
 			audiolang = syslang
 			caudiolang = False
+		# Without a match keep the track chosen by the service (saved, preferred or default track).
 		useAc3 = config.autolanguage.audio_defaultac3.value
 		if useAc3:
-			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
-			if matchedAc3:
-				return
-			matchedMpeg = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
-			if matchedMpeg:
-				return
-			tracks.selectTrack(0)    # fallback to track 1(0)
-			return
+			if not tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
+				tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
 		else:
-			matchedMpeg = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
-			if matchedMpeg:
-				return
-			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
-			if matchedAc3:
-				return
-			tracks.selectTrack(0)    # fallback to track 1(0)
+			tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
 	except Exception as e:
 		print("[MoviePlayer] audioTrack exception:\n" + str(e))
 
