@@ -20,6 +20,7 @@ from Tools.Directories import fileReadLine, fileWriteLine, isPluginInstalled
 MODULE_NAME = __name__.split(".")[-1]
 
 resolutionlabel = None
+autoVideoMode = None  # Players outside the service events call VideoChanged() of it.
 
 
 def getAutoresPluginEnabled():
@@ -821,7 +822,7 @@ def manualResolution(session):  # Ad hoc video mode selection from the extension
 
 
 def autostart(session):
-	global resolutionlabel
+	global resolutionlabel, autoVideoMode
 	if getAutoresPluginEnabled():
 		config.av.autores.value = False
 		config.av.autores.save()
@@ -829,4 +830,4 @@ def autostart(session):
 	else:
 		if resolutionlabel is None:
 			resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
-		AutoVideoMode(session)
+		autoVideoMode = AutoVideoMode(session)
