@@ -28,6 +28,11 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 	else if (pid == 0) /* child process */
 	{
 		setsid();
+		/* enigma2 runs in the background of enigma2.sh, which ignores these;
+		 * an ignored signal stays ignored across exec and sendCtrlC would not
+		 * reach the child */
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if ( close(0) == -1 || close(1) == -1 || close(2) == -1 )
 			_exit(0);
 
