@@ -39,11 +39,11 @@ from Screens.MovieSelection import defaultMoviePath
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.TaskList import TaskListScreen
+from Screens.Toast import Toast
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
 from Tools.Conversions import NumberScaler
 from Tools.Directories import SCOPE_PLUGINS, copyFile, fileReadLines, fileWriteLines, resolveFilename
-from Tools.Notifications import AddNotification, AddPopup
 from Tools.NumericalTextInput import NumericalTextInput
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -644,12 +644,9 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 		self.displayStatusTimer.stop()
 		self["status"].visible = False
 
-	def displayPopUp(self, message, messageType, timeout=config.plugins.FileCommander.completeMessageTimeout.value):
+	def displayPopUp(self, message, toastType, timeout=config.plugins.FileCommander.completeMessageTimeout.value):
 		if config.plugins.FileCommander.showTaskCompletedMessage.value:
-			if InfoBar and InfoBar.instance:
-				InfoBar.instance.openInfoBarMessage(message, messageType, timeout=timeout)
-			else:
-				AddPopup(message, messageType, timeout=timeout)  # , id="FileCommander"
+			Toast.instance.showToast(message, toastType, timeout)
 
 	def keyChangeMode(self):
 		def changeModeCallback(answer):
@@ -745,7 +742,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				currentDirectory = self.targetColumn.getCurrentDirectory()
 				self.targetColumn.refresh(join(currentDirectory, newPath) if currentDirectory else None)
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Copy job completed.')}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Copy job completed.')}", Toast.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			problem = "\n".join([x.getErrorMessage(task) for x in problems])
@@ -758,7 +755,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				currentDirectory = self.targetColumn.getCurrentDirectory()
 				self.targetColumn.refresh(join(currentDirectory, newPath) if currentDirectory else None)
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Copy job failed!')}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Copy job failed!')}", Toast.TYPE_ERROR)
 
 		windowTitle = f"{self.baseTitle} - {_('Copy')}"
 		path = self.sourceColumn.getPath()
@@ -832,7 +829,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				self.displayStatus(_("Delete job completed."))
 				self.sourceColumn.refresh()
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Delete job completed.')}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Delete job completed.')}", Toast.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			problem = "\n".join([x.getErrorMessage(task) for x in problems])
@@ -841,7 +838,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				self.displayStatus(_("Delete job failed!"))
 				self.sourceColumn.refresh()
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Delete job failed!')}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Delete job failed!')}", Toast.TYPE_ERROR)
 
 		windowTitle = f"{self.baseTitle} - {_('Delete')}"
 		path = self.sourceColumn.getPath()
@@ -975,7 +972,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Test job completed."))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Test job completed.')}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Test job completed.')}", Toast.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			task.setProgress(100)
@@ -984,7 +981,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Test job failed!"))
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Test job failed!')}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Test job failed!')}", Toast.TYPE_ERROR)
 
 		windowTitle = f"{self.baseTitle} - {_('Test')}"
 		job = Job(_("Sleep test"))
@@ -1198,7 +1195,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				# else:
 				# 	self.sourceColumn.goBottom()
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Move job completed.')}", MessageBox.TYPE_INFO)
+				self.displayPopUp(f"{windowTitle}: {_('Move job completed.')}", Toast.TYPE_INFO)
 
 		def failCallback(job, task, problems):
 			problem = "\n".join([x.getErrorMessage(task) for x in problems])
@@ -1209,7 +1206,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				currentDirectory = self.targetColumn.getCurrentDirectory()
 				self.targetColumn.refresh(join(currentDirectory, basename(normpath(path))) if currentDirectory else None)
 			else:
-				self.displayPopUp(f"{windowTitle}: {_('Move job failed!')}", MessageBox.TYPE_ERROR)
+				self.displayPopUp(f"{windowTitle}: {_('Move job failed!')}", Toast.TYPE_ERROR)
 
 		windowTitle = f"{self.baseTitle} - {_('Move')}"
 		path = self.sourceColumn.getPath()
@@ -1304,21 +1301,11 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 		def scriptCallback(answer):
 			def successCallback(job):
 				if running and config.plugins.FileCommander.showTaskCompletedMessage.value:
-					from Screens.Standby import inStandby
-					message = _("File Commander - All tasks are complete.")
-					if InfoBar.instance and not inStandby:
-						InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_INFO, timeout=config.plugins.FileCommander.completeMessageTimeout.value)
-					else:
-						AddNotification(MessageBox, message, MessageBox.TYPE_INFO, timeout=config.plugins.FileCommander.completeMessageTimeout.value)
+					Toast.instance.showToast(_("File Commander - All tasks are complete."), Toast.TYPE_INFO, config.plugins.FileCommander.completeMessageTimeout.value)
 
 			def failCallback(job, task, problems):
 				task.setProgress(100)
-				from Screens.Standby import inStandby
-				message = f"{job.name}\n{_('Error')}: {problems[0].getErrorMessage(task)}"
-				if InfoBar.instance and not inStandby:
-					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_ERROR, timeout=0)
-				else:
-					AddNotification(MessageBox, message, MessageBox.TYPE_ERROR, timeout=0, windowTitle=self.baseTitle)
+				Toast.instance.showToast(f"{job.name}\n{_('Error')}: {problems[0].getErrorMessage(task)}", Toast.TYPE_ERROR, 10)
 				return False
 
 			if answer:
@@ -2978,7 +2965,7 @@ class FileTransferTask(Task):
 		self.afterRun()
 		notMet = []
 		if aborted:
-			AddNotification(MessageBox, _("File transfer was canceled by user!"), MessageBox.TYPE_INFO)
+			Toast.instance.showToast(_("File transfer was canceled by user!"), Toast.TYPE_INFO, 5)
 		else:
 			for postCondition in self.postconditions:
 				if not postCondition.check(self):
@@ -3051,13 +3038,9 @@ class TaskPostConditions(Condition):
 		taskSTDErr = []
 		return result
 
-	def showMessage(self, message, messageType, timeout=config.plugins.FileCommander.completeMessageTimeout.value):
+	def showMessage(self, message, toastType, timeout=config.plugins.FileCommander.completeMessageTimeout.value):
 		if not running:
-			from Screens.Standby import inStandby
-			if InfoBar.instance and not inStandby:
-				InfoBar.instance.openInfoBarMessage(message, messageType, timeout=timeout)
-			else:
-				AddNotification(MessageBox, message, messageType, timeout=timeout)
+			Toast.instance.showToast(message, toastType, timeout)
 
 	def getErrorMessage(self, task):
 		return self.errorMessage
