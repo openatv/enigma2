@@ -1,6 +1,6 @@
 from os.path import exists
 
-from enigma import eAVControl, eDVBDB, eServiceCenter, eServiceReference, eTimer, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBDB, eExternalVideo, eServiceCenter, eServiceReference, eTimer, iPlayableService, iServiceInformation
 
 import NavigationInstance
 from Components.AVSwitch import avSwitch
@@ -371,6 +371,8 @@ class AutoVideoMode(Screen):
 		self.bufferfull = True
 		self.detecttimer = eTimer()
 		self.detecttimer.callback.append(self.VideoChangeDetect)
+		if session is not None:
+			eExternalVideo.getInstance().videoChanged.get().append(self.externalVideoChanged)
 
 	def checkIfDedicated3D(self):
 		service = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -428,6 +430,12 @@ class AutoVideoMode(Screen):
 	def BufferInfoStop(self):
 		self.bufferfull = True
 		# print(f"[VideoMode] {"-" * 30} BufferInfoStop.")
+
+	def externalVideoChanged(self, width, height, framerate, progressive):  # A player outside the services (e.g. exteplayer3 of a plugin) shows a new video.
+		service = self.session and self.session.nav.getCurrentService()
+		info = service and service.info()
+		if not info or info.getInfo(iServiceInformation.sVideoWidth) <= 0:  # A service with video sends its own events.
+			self.VideoChanged()
 
 	def VideoChanged(self):
 		if config.av.autores.value == "disabled" or getAutoresPluginEnabled():
