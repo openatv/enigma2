@@ -536,13 +536,23 @@ class RdsInfoDisplay(Screen):
 		self.dabBackground = False
 		self.backgroundAttributes = []
 
-		self.onLayoutFinish.append(self.hideWidgets)
+		self.onLayoutFinish.append(self.layoutFinished)
 		self.rassInteractivePossible = False
 		self.onRassInteractivePossibilityChanged = []
 		self.onText = []
 
 	def createSummary(self):
 		return RdsInfoDisplaySummary
+
+	def layoutFinished(self):
+		for name in ("RadioText", "RtpText"):
+			widget = self[name]
+			attributes = dict(widget.skinAttributes or [])
+			if widget.instance is not None and not widget.instance.getWrap() and not any(x in attributes for x in ("fontScale", "scrollText")):
+				# Use native font fitting for single-line radio text. Keep the
+				# skin's font and HD/FHD scale, with a readable half-size floor.
+				widget.instance.setFontScale(1, max(1, widget.instance.getFont().pointSize // 2))
+		self.hideWidgets()
 
 	def setDABBackground(self, enabled):
 		if enabled == self.dabBackground or self.instance is None:
