@@ -16,6 +16,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
+#include <lib/dvb/warmstart.h>
 #ifdef DREAMNEXTGEN
 #include <lib/dvb/alsa.h>
 #endif
@@ -1650,6 +1651,13 @@ void eDVBServicePlay::serviceEvent(int event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
+		if (m_is_primary && m_reference.path.empty())
+		{
+			eUsePtr<iDVBChannel> channel;
+			ePtr<iDVBFrontend> frontend;
+			if (!m_service_handler.getChannel(channel) && channel && !channel->getFrontend(frontend) && frontend)
+				eDVBWarmStart::tuned(*static_cast<eDVBFrontend *>(&*frontend), m_reference.toString());
+		}
 		if (m_dvbi_signal_timer)
 			m_dvbi_signal_timer->stop();
 		/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */

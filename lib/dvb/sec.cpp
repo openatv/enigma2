@@ -4,6 +4,7 @@
 #include <lib/dvb/sec.h>
 #include <lib/dvb/rotor_calc.h>
 #include <lib/dvb/dvbtime.h>
+#include <lib/dvb/warmstart.h>
 
 #include <set>
 
@@ -562,6 +563,20 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 			sec_fe->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
 			//with simulate we don't want to move the dish and spam the log with useless messages
 			bool useExternalRotorCmd = !simulate && has_external_rotor(slot_id_to_fe_id(slot_id));
+
+			if (!simulate)
+			{
+				int bootTime = std::max(m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS], lnb_param.BootUpTime);
+				eDVBFrontend &physicalFrontend = *static_cast<eDVBFrontend *>(sec_fe);
+				eDVBWarmStart::prepare(*static_cast<eDVBFrontend *>(&frontend), physicalFrontend,
+					is_unicable && lnb_param.BootUpTime > 0 && sec_fe == &frontend && (m_not_linked_slot_mask & slot_id)
+					&& diseqc_mode != eDVBSatelliteDiseqcParameters::V1_2 && !useExternalRotorCmd
+					&& satposDependPtr == -1 && lnb_param.m_advanced_satposdepends == -1,
+					VOLTAGE(13), bootTime);
+				int remaining = eDVBWarmStart::remaining(physicalFrontend, bootTime);
+				if (remaining)
+					sec_sequence.push_back(eSecCommand(eSecCommand::SLEEP, remaining));
+			}
 
 			if (lastcsw == lastucsw && lastToneburst == lastucsw && lastucsw == -1)
 				needDiSEqCReset = true;

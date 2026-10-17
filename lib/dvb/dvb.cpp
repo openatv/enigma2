@@ -11,6 +11,7 @@
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
+#include <lib/dvb/warmstart.h>
 #include <lib/dvb/fbc.h>
 #include <lib/dvb/fcc.h>
 #include <lib/dvb/specs.h>
@@ -37,6 +38,11 @@ DEFINE_REF(eDVBAllocatedFrontend);
 
 void eDVBRegisteredFrontend::closeFrontend()
 {
+	if (!m_inuse && eDVBWarmStart::deferClose(*m_frontend))
+	{
+		disable->start(3000, true);
+		return;
+	}
 	if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
 		disable->start(60000, true);  // retry close in 60secs
 }
@@ -123,6 +129,23 @@ eDVBResourceManager::eDVBResourceManager()
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size());
 
 	m_fbcmng = new eFBCTunerManager(instance);
+
+	std::string warmDevice;
+	int warmVoltage;
+	if (eDVBWarmStart::load(warmDevice, warmVoltage))
+		for (auto &frontend : m_frontend)
+			if (frontend->m_frontend->getDeviceName() == warmDevice)
+			{
+				frontend->inc_use();
+				if (!frontend->m_frontend->setVoltage(warmVoltage))
+					eDVBWarmStart::powered(*frontend->m_frontend);
+				else
+					frontend->m_frontend->setVoltage(iDVBFrontend::voltageOff);
+				// Normal allocation may claim it before the main loop starts.
+				// Otherwise the existing idle timer closes the unused frontend.
+				frontend->dec_use();
+				break;
+			}
 
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }

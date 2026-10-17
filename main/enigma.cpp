@@ -129,6 +129,7 @@ void keyEvent(const eRCKey &key)
 #include <lib/components/scan.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
+#include <lib/dvb/warmstart.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/epgcache.h>
@@ -437,6 +438,7 @@ int main(int argc, char **argv)
 
 	if (python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str()))
 		exit_code = 5; /* An exception at its top level, e.g. a missing module. */
+	eDVBWarmStart::save(exit_code);
 
 	/* Do not touch the video destinations while Enigma2 is shutting down.
 	 * The next instance restores the main decoder before Python starts. */
