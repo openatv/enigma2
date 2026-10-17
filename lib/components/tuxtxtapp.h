@@ -8,12 +8,15 @@
 #include <lib/python/python.h>
 #include <lib/python/connections.h>
 
+class eTSMPEGDecoder;
+
 class eTuxtxtApp: private eThread, public sigc::trackable
 {
 #ifndef SWIG
 	int pid;
 	int demux;
 	bool enableTtCaching, uiRunning;
+	const eTSMPEGDecoder *cacheOwner = nullptr;
 	static eTuxtxtApp *instance;
 	pthread_mutex_t cacheChangeLock;
 
@@ -29,9 +32,9 @@ public:
 	static eTuxtxtApp *getInstance() { return instance; }
 	int startUi();
 	void initCache(bool debug=false);
-	void freeCache();
-	void startCaching( int tpid, int tdemux );
-	void stopCaching();
+	void freeCache(const eTSMPEGDecoder *owner = nullptr);
+	void startCaching(int tpid, int tdemux, const eTSMPEGDecoder *owner = nullptr);
+	void stopCaching(const eTSMPEGDecoder *owner = nullptr);
 	void resetPid() { pid = 0; demux = 0; }
 	void setEnableTtCachingOnOff( int onoff );
 	void handleKey( int key );
