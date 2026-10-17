@@ -1,14 +1,14 @@
 from time import localtime, strftime
 
-from enigma import eEPGCache, eTimer, eServiceReference
+from enigma import eEPGCache, eServiceReference, eTimer
 
 from RecordTimer import RecordTimerEntry, parseEvent
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Label import Label
-from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Event import Event
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -96,7 +96,12 @@ class EventViewBase:
 		self["channel"].setText("%s%s" % (serviceName if serviceName else _("Unknown Service"), " - %s" % _("Recording") if self.isRecording else ""))
 
 	def setEvent(self, event):
+		self["key_red"].setText("")
+		self["similarActions"].setEnabled(False)
+		if self.similarBroadcastTimer:
+			self.similarBroadcastTimer.stop()
 		if event is None or not hasattr(event, "getEventName"):
+			self.event = None
 			return
 		self["Event"].newEvent(event)
 		self.event = event
@@ -217,28 +222,28 @@ class EventViewBase:
 		return isRecordEvent
 
 	def getSimilarEvents(self):
-		if not self.event:
+		self["key_red"].setText("")
+		self["similarActions"].setEnabled(False)
+		if self.event is None or self.similarEPGCB is None:
 			return
 		serviceRef = str(self.serviceRef)
-		id = self.event.getEventId()
-		epgcache = eEPGCache.getInstance()
-		results = epgcache.search(("NB", 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, serviceRef, id))
+		eventId = self.event.getEventId()
+		epgCache = eEPGCache.getInstance()
+		results = epgCache.search(("NB", 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, serviceRef, eventId))
 		if results:
 			similar = [_("Similar broadcasts:")]
-			timeFormat = "%s, %s" % (config.usage.date.dayshort.value, config.usage.time.short.value)
+			timeFormat = f"{config.usage.date.dayshort.value}, {config.usage.time.short.value}"
 			for result in sorted(results, key=lambda x: x[1]):
-				similar.append("%s  -  %s" % (strftime(timeFormat, localtime(result[1])), result[0]))
-			self["epg_description"].setText("%s\n\n%s" % (self["epg_description"].getText(), "\n".join(similar)))
-			self["FullDescription"].setText("%s\n\n%s" % (self["FullDescription"].getText(), "\n".join(similar)))
-			if self.similarEPGCB:
-				self["key_red"].setText(_("Similar"))
-				self["similarActions"].setEnabled(True)
+				similar.append(f"{strftime(timeFormat, localtime(result[1]))}  -  {result[0]}")
+			description = "\n".join(similar)
+			for component in ("epg_description", "FullDescription"):
+				self[component].setText(f"{self[component].getText()}\n\n{description}")
+			self["key_red"].setText(_("Similar"))
+			self["similarActions"].setEnabled(True)
 
 	def openSimilarList(self):
-		id = self.event and self.event.getEventId()
-		serviceRef = str(self.serviceRef)
-		if id:
-			self.similarEPGCB(id, serviceRef)
+		if self.event is not None and self.similarEPGCB and self["similarActions"].getEnabled():
+			self.similarEPGCB(self.event.getEventId(), str(self.serviceRef))
 
 	def doContext(self):
 		if self.event:
@@ -278,8 +283,7 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		self["yellow"] = Pixmap()
 		self["blue"] = Pixmap()
 		self["epgActions1"] = HelpableActionMap(self, ["EventViewActions"], {
-			"timerAdd": (self.timerAdd, _("Add a timer for the current event")),
-			"openSimilarList": (self.openSimilarList, _("Find similar events in the EPG"))
+			"timerAdd": (self.timerAdd, _("Add a timer for the current event"))
 		}, prio=0, description=_("Event View Actions"))
 		self["key_green"] = StaticText("" if self.isRecording else _("Add Timer"))
 		if singleEPGCB:

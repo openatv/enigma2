@@ -56,12 +56,12 @@ void ePositionGauge::setPointer(int which, gPixmap *pixmap, const ePoint &center
 	{
 		m_point_center = center;
 		m_point_widget->setPixmap(pixmap);
-		m_point_widget->resize(pixmap->size());
+		m_point_widget->resize(pixmap ? pixmap->size() : eSize(0, 0));
 	} else
 	{
 		m_seek_point_center = center;
 		m_seek_point_widget->setPixmap(pixmap);
-		m_seek_point_widget->resize(pixmap->size());
+		m_seek_point_widget->resize(pixmap ? pixmap->size() : eSize(0, 0));
 	}
 	updatePosition();
 }

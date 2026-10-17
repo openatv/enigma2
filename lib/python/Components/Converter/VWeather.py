@@ -13,7 +13,6 @@
 #######################################################################
 
 from xml.dom.minidom import parseString
-import requests
 
 from enigma import eTimer
 
@@ -138,13 +137,16 @@ class WeatherData:
 	def GetWeather(self):
 		timeout = config.plugins.AtileHD.refreshInterval.value * 1000 * 60
 		if timeout > 0:
+			from requests import get  # Load HTTP support only while weather updates are enabled.
+			from requests.exceptions import RequestException
+
 			self.timer.start(timeout, True)
 			woeid = config.plugins.AtileHD.woeid.value
 			print(f"[VWeather] lookup for ID {woeid}")
 			try:
-				response = requests.get(f"http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22{woeid}%22&format=xml")
+				response = get(f"http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22{woeid}%22&format=xml")
 				response.raise_for_status()
-			except requests.exceptions.RequestException as error:
+			except RequestException as error:
 				self.downloadError(error)
 			else:
 				self.GotWeatherData(response.content)

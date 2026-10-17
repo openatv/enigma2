@@ -440,8 +440,9 @@
 		<widget name="scan_progress" render="Progress" position="0,26" size="128,6"  borderWidth="1" />
 	</screen>
 
-	<screen name="RdsInfoDisplaySummary" position="0,0" size="128,32">
-		<widget source="message" render="RunningText" position="0,0"  size="128,32" options="movetype=running,direction=top,startpoint=0,startdelay=2000,repeat=3,always=0,wrap=1,oneshot=1" font="FdLcD;16" halign="center" valign="center" />
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="128,32" zPosition="1" backgroundColor="#000000" flags="wfNoBorder">
+		<widget source="station" render="RunningText" position="0,0" size="128,14" font="Regular;10" halign="center" options="movetype=running,direction=left,wrap=0,always=0,startdelay=3000,steptime=80" />
+		<widget source="message" render="RunningText" position="0,16" size="128,16" font="Regular;14" halign="center" valign="center" options="movetype=running,direction=left,wrap=0,always=0,startdelay=2000,steptime=80" />
 	</screen>
 	<!-- Metrix-Menu -->
 	<screen name="MainSettingsViewSummary" position="0,0" size="128,32">

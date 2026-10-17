@@ -19,7 +19,6 @@
 
 class eDABDecoder;
 class eDABSDRWorker;
-class eTSMPEGDecoder;
 typedef struct _GstElement GstElement;
 
 enum { DAB_MAX_SCANNED_SERVICES = 64 };
@@ -263,7 +262,6 @@ private:
 	void pushPCM(const uint8_t *data, size_t length, unsigned sampleRate);
 	void setAudioCaps(uint8_t config);
 	static void audioQueueOverrun(GstElement *queue, void *userData);
-	void showRadioPicture();
 	void storeSlide(const uint8_t *data, size_t length, int format);
 	bool cacheSPIImage(const std::string &path, const std::string &contentName);
 	bool cacheSPIImageData(const uint8_t *data, size_t length, const std::string &contentName);
@@ -306,7 +304,6 @@ private:
 	GstElement *m_audio_pipeline;
 	GstElement *m_audio_source;
 	GstElement *m_audio_queue;
-	ePtr<eTSMPEGDecoder> m_radio_picture_decoder;
 	FILE *m_audio_capture;
 	uint64_t m_audio_next_pts;
 	uint8_t m_audio_format;

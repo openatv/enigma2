@@ -1103,10 +1103,10 @@ class InfoBarTimeshift:
 
 	def ptsCleanTimeshiftFolder(self, justZapped=True):
 		if self.isRamTimeshift() or self.session.screen["Standby"].boolean:
-			return True
+			return
 		if self.cleanupRunning:
 			self.cleanupRetryZapped |= justZapped
-			return True
+			return
 		self.cleanupRunning = True
 		self.cleanupProtected = []
 		if self.timeshiftEnabled():
@@ -1116,7 +1116,6 @@ class InfoBarTimeshift:
 				if entry:
 					self.cleanupProtected.append(entry.path)
 		deferToThread(self.ptsCleanTimeshiftFiles, justZapped).addBoth(self.timeshiftCleanupFinished)
-		return True
 
 	def timeshiftCleanupFinished(self, result):
 		self.cleanupRunning = False

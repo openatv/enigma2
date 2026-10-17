@@ -52,6 +52,7 @@ class Session:
 		self.nav = navigation
 		self.delay_timer = enigma.eTimer()
 		self.delay_timer.callback.append(self.processDelay)
+		self.pendingCallbacks = []
 		self.current_dialog = None
 		self.dialog_stack = []
 		self.summary_stack = []
@@ -85,6 +86,10 @@ class Session:
 			del self.current_dialog.callback
 		self.popCurrent()
 		if callback is not None:
+			self.pendingCallbacks.append((callback, retVal))
+		# A dialog that closed itself on exec begin leaves the session out of exec until its own processDelay.
+		while self.pendingCallbacks and (self.in_exec or self.current_dialog is None):
+			callback, retVal = self.pendingCallbacks.pop(0)
 			callback(*retVal)
 
 	def execBegin(self, first=True, do_show=True):
@@ -236,8 +241,8 @@ class Session:
 			if hasattr(dialog, "desktop"):
 				dialog.reloadSkin()
 
-	def showInfo(self, text, timeout=4):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
+	def showInfo(self, text, timeout=4, replaceId=None):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout, replaceId=replaceId)
 
 	def showWarning(self, text, timeout=5):
 		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
@@ -492,7 +497,10 @@ def runScreenTest():
 	ormTimer = enigma.eTimer()  # ORM, started by enigma2.sh, learns that the main loop runs.
 	ormTimer.callback.append(lambda: enigma.eProfileNotify("ready"))
 	ormTimer.start(0, True)
+	from Tools.StartupTasks import startupTasks  # Enigma's timer bindings and the session must exist first.
+	startupTasks.start()
 	runReactor()
+	startupTasks.stop()
 	session.shutdown = True
 	frontPanelLed.shutdown()
 	print("[StartEnigma] Normal shutdown.")
@@ -772,7 +780,7 @@ config.crash.debugSeek = ConfigYesNo(default=False)
 config.crash.debugTeletext = ConfigYesNo(default=False)
 config.crash.debugStorage = ConfigYesNo(default=False)
 config.crash.debugTextEncoding = ConfigYesNo(default=False)
-config.crash.debugNetwork = ConfigYesNo(default=True)
+config.crash.debugNetwork = ConfigYesNo(default=False)
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
 config.plugins = ConfigSubsection()

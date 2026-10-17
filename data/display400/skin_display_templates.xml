@@ -506,4 +506,16 @@
 		<widget name="text2" position="10,91" size="380,140" font="FdLcD;30" halign="center" valign="center"/>
 		<panel name="SummaryClockPanel"/>
 	</screen>
+	<!-- Radio text / optional color-display DAB slideshow -->
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="400,240" zPosition="1" backgroundColor="#000000" flags="wfNoBorder">
+		<widget source="station" render="RunningText" position="0,0" size="400,38" font="Regular;34" halign="center" options="movetype=running,direction=left,wrap=0,always=0,startdelay=3000,steptime=80" />
+		<widget source="message" render="RunningText" position="0,40" size="400,174" font="Regular;30" halign="center" valign="center" options="movetype=running,direction=top,wrap=1,always=0,startdelay=2000,steptime=80" />
+		<widget name="picture" position="0,40" size="400,174" zPosition="1" alphatest="blend" scaleFlags="centerScaled" />
+		<widget source="global.CurrentTime" render="Label" position="200,214" size="200,26" font="Regular;24" halign="right" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="REC" position="0,214" size="200,26" font="Regular;24" noWrap="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
 </skin>

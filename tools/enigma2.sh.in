@@ -218,8 +218,7 @@ if [ "$(grep -i config.crash.coredump=true /etc/enigma2/settings)" != "" ]; then
 fi
 
 ulimit -n 16384 2>/dev/null || ulimit -n 8192
-# Clear page cache and dentries/inodes
-echo 3 > /proc/sys/vm/drop_caches
+# Keep filesystem caches warm for startup; the kernel reclaims them when needed.
 # ORM follows the start of enigma2 and steps in when it fails.
 ORM=@bindir@/recovery-manager
 ORM_RESULT=/tmp/orm.result

@@ -16,6 +16,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
+#include <lib/dvb/warmstart.h>
 #ifdef DREAMNEXTGEN
 #include <lib/dvb/alsa.h>
 #endif
@@ -1176,12 +1177,19 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 			eServiceCenter::getPrivInstance(service_center);
 
 		ret = PyList_New(services);
+		if (!ret)
+			return NULL;
 		std::list<eServiceReference>::iterator it(tmplist.begin());
 
 		for (int cnt=0; cnt < services; ++cnt)
 		{
 			eServiceReference &ref=*it++;
 			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : ePyObject();
+			if (retcount > 1 && !tuple)
+			{
+				Py_DECREF(ret);
+				return NULL;
+			}
 			for (int i=0; i < retcount; ++i)
 			{
 				ePyObject tmp;
@@ -1215,11 +1223,12 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 							while((pos = name.find("\xc2\x87")) != std::string::npos)
 								name.erase(pos,2);
 
+							// Imported service names may contain invalid UTF-8 bytes.
 							if (name.length())
-								tmp = PyUnicode_FromString(name.c_str());
+								tmp = PyUnicode_DecodeUTF8(name.data(), name.size(), "replace");
 						}
 					}
-					if (!tmp)
+					if (!tmp && !PyErr_Occurred())
 						tmp = PyUnicode_FromString("<n/a>");
 					break;
 				case 'n':  // short service name
@@ -1232,10 +1241,10 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 							sptr->getName(ref, name);
 							name = buildShortName(name);
 							if (name.length())
-								tmp = PyUnicode_FromString(name.c_str());
+								tmp = PyUnicode_DecodeUTF8(name.data(), name.size(), "replace");
 						}
 					}
-					if (!tmp)
+					if (!tmp && !PyErr_Occurred())
 						tmp = PyUnicode_FromString("<n/a>");
 					break;
 				default:
@@ -1245,6 +1254,13 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 						Py_INCREF(Py_None);
 					}
 					break;
+				}
+				if (PyErr_Occurred())
+				{
+					Py_XDECREF(tmp);
+					Py_XDECREF(tuple);
+					Py_DECREF(ret);
+					return NULL;
 				}
 				if (tmp)
 				{
@@ -1635,6 +1651,13 @@ void eDVBServicePlay::serviceEvent(int event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
+		if (m_is_primary && m_reference.path.empty())
+		{
+			eUsePtr<iDVBChannel> channel;
+			ePtr<iDVBFrontend> frontend;
+			if (!m_service_handler.getChannel(channel) && channel && !channel->getFrontend(frontend) && frontend)
+				eDVBWarmStart::tuned(*static_cast<eDVBFrontend *>(&*frontend), m_reference.toString());
+		}
 		if (m_dvbi_signal_timer)
 			m_dvbi_signal_timer->stop();
 		/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */
@@ -4430,9 +4453,11 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		{
 			m_decoder->setTextPID(tpid);
 		}
-		if (vpid <= 0 || vpid >= 0x2000)
+		// Radio backgrounds are GUI pictures; keep MPEG still pictures for
+		// non-radio audio playback. Broadcast RASS images retain their decoder.
+		const unsigned int serviceType = m_reference.getUnsignedData(0);
+		if ((vpid <= 0 || vpid >= 0x2000) && serviceType != eServiceReferenceDVB::dRadio && serviceType != eServiceReferenceDVB::dRadioAvc)
 		{
-			std::string value;
 			bool showRadioBackground = eSimpleConfig::getBool("config.misc.showradiopic", true);
 			std::string radio_pic = eConfigManager::getConfigValue( showRadioBackground ? "config.misc.radiopic" : "config.misc.blackradiopic" );
 			m_decoder->setRadioPic(radio_pic);

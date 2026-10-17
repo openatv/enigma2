@@ -11,6 +11,7 @@ from sys import version as pyversion
 from time import localtime, strftime
 
 from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev
+
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename
 from Tools.MultiBoot import MultiBoot
 
@@ -620,6 +621,13 @@ BoxInfo.setItem("ForceToneBurstChanged", fileCheck("/proc/stb/frontend/fbc/force
 BoxInfo.setItem("FrontpanelDisplay", fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0"))
 BoxInfo.setItem("GBWOL", fileExists("/usr/bin/gigablue_wol"))
 BoxInfo.setItem("grautec", fileExists("/tmp/usbtft"))
+try:
+	# The driver reports hexadecimal bpp. Legacy colorlcd128 branding also
+	# includes monochrome OLEDs, so the build flag alone is not sufficient.
+	colorFrontpanel = int(fileReadLine("/proc/stb/lcd/bpp", default="0"), 16) > 8
+except ValueError:
+	colorFrontpanel = False
+BoxInfo.setItem("ColorFrontpanelDisplay", bool(BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment", "textlcd") and (colorFrontpanel or BoxInfo.getItem("grautec") or DISPLAYTYPE in ("colorlcd220", "colorlcd240", "colorlcd390", "colorlcd400", "colorlcd480", "colorlcd720", "colorlcd800"))))
 BoxInfo.setItem("GraphicLCD", MACHINEBUILD in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus"))
 BoxInfo.setItem("HasExternalPIP", MODEL not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external"))
 BoxInfo.setItem("HasFullHDSkinSupport", MACHINEBUILD not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc"))
