@@ -574,36 +574,36 @@ class RdsInfoDisplay(Screen):
 		self.dabBackground = enabled
 
 	def hideWidgets(self):
-		for x in (self["RadioText"], self["RtpText"], self["RassLogo"]):
-			x.hide()
-		for x in self.onText:
-			x('')
+		for name in ("RadioText", "RtpText", "RassLogo"):
+			self[name].hide()
+		for callback in self.onText:
+			callback("")
 
 	def RadioTextChanged(self):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
-		rdsText = decoder and decoder.getText(iRdsDecoder.RadioText)
-		if rdsText and len(rdsText):
+		radioText = decoder and decoder.getText(iRdsDecoder.RadioText)
+		if radioText:
 			self.show()
-			self["RadioText"].setText(rdsText)
+			self["RadioText"].setText(radioText)
 			self["RadioText"].show()
 		else:
 			self["RadioText"].hide()
-		for x in self.onText:
-			x(rdsText)
+		for callback in self.onText:
+			callback(radioText)
 
 	def RtpTextChanged(self):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
 		rtpText = decoder and decoder.getText(iRdsDecoder.RtpText)
-		if rtpText and len(rtpText):
+		if rtpText:
 			self.show()
 			self["RtpText"].setText(rtpText)
 			self["RtpText"].show()
 		else:
 			self["RtpText"].hide()
-		for x in self.onText:
-			x(rtpText)
+		for callback in self.onText:
+			callback(rtpText)
 
 	def RassInteractivePicMaskChanged(self):
 		if not self.rassInteractivePossible:
@@ -687,25 +687,23 @@ class RassInteractive(Screen):
 	def updateSubPagePixmaps(self):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
-		if not decoder:  # this should never happen
-			print("NO RDS DECODER in showRassPage")
-		else:
+		if decoder:
 			mask = decoder.getRassInteractiveMask()
-			page = 1
-			while page < 10:
-				subpage_cnt = self.countAvailSubpages(page, mask)
-				subpage = self.subpage[page]
-				if subpage_cnt > 0:
-					if subpage.instance:
-						png = self.subpage_png[subpage_cnt]
-						if png:
-							subpage.instance.setPixmap(png)
-							subpage.show()
+			for page in range(1, 10):
+				subPageCount = self.countAvailSubpages(page, mask)
+				subPage = self.subpage[page]
+				if subPageCount:
+					if subPage.instance:
+						pixmap = self.subpage_png[subPageCount]
+						if pixmap:
+							subPage.instance.setPixmap(pixmap)
+							subPage.show()
 						else:
-							print("rass png missing")
+							print("[RdsDisplay] Error: RASS pixmap missing!")
 				else:
-					subpage.hide()
-				page += 1
+					subPage.hide()
+		else:
+			print("[RdsDisplay] Error: No RDS decoder in updateSubPagePixmaps!")
 
 	def recvRassInteractivePicMaskChanged(self):
 		self.updateSubPagePixmaps()
@@ -713,17 +711,16 @@ class RassInteractive(Screen):
 	def showRassPage(self, page, subpage):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
-		if not decoder:  # this should never happen
-			print("NO RDS DECODER in showRassPage")
-		else:
+		if decoder:
 			decoder.showRassInteractivePic(page, subpage)
-			page_diff = page - self.current_page
+			pageDifference = page - self.current_page
 			self.current_page = page
-			if page_diff:
-				current_pos = self["Marker"].getPosition()
-				y = current_pos[1]
-				y += page_diff * 25
-				self["Marker"].setPosition(current_pos[0], y)
+			if pageDifference:
+				currentPosition = self["Marker"].getPosition()
+				yPos = currentPosition[1] + pageDifference * 25
+				self["Marker"].setPosition(currentPosition[0], yPos)
+		else:
+			print("[RdsDisplay] Error: No RDS decoder in showRassPage!")
 
 	def getMaskForPage(self, page, masks=None):
 		if masks is None:
