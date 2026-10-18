@@ -994,6 +994,8 @@ class RecordTimerOverview(TimerOverviewBase):
 
 	def doCleanupTimers(self):
 		self.session.nav.RecordTimer.cleanup()
+		if any(x.state == TimerEntry.StateEnded for x in self.fallbackTimer.list):
+			self.fallbackTimer.cleanupTimers(self.fallbackRefresh)
 
 	def deleteTimer(self):
 		timer = self["timerlist"].getCurrent()
