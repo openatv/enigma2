@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Optional DAB-only layout for skin authors. Copy the screen into your skin XML.
+This example is not loaded automatically and does not change the default UI.
+
+DabRdsDisplay is used only for DAB services (4115), both satellite and SDR.
+DVB radio continues to use RdsDisplay or the existing RdsInfoDisplay layout.
+Without DabRdsDisplay, DAB also uses that common radio fallback. Use the name
+RdsDisplay instead if you intentionally want the same layout for all radio.
+No Python class or callback is renamed. The layout changes on service start,
+not on each metadata update. Both optional names opt into skin-owned colors
+and transparency even without DabImage.
+Custom layouts are hidden on TV/service stop and shown again on radio.
+
+Adding DabImage opts into a skin-owned DAB image layout: Enigma2 preserves
+the widget position/size and the RDS screen/text colors and transparency.
+The built-in DAB radio cabinet is not drawn in this mode. Place your own
+artwork with normal ePixmap elements if desired. A black GUI background
+remains underneath, so no video decoder is needed for PCM radio playback.
+
+DabImage shows the received slideshow, or the default DAB logo when no
+slide is available or the slideshow is disabled (if radio backgrounds are
+enabled). A skin may provide icons/default_dab.png to replace that logo.
+Without DabImage, the existing default radio/slideshow layout is retained.
+
+Keep RadioText, RtpText and RassLogo in the screen. Image coordinates are
+relative to the screen; the complete image must fit inside its bounds.
+The resolution attribute lets the skin engine scale this HD example to
+FHD. Use a 4:3 image area and centerScaled to preserve slide proportions.
+RadioText/RtpText support explicit fontScale or scrollText attributes.
+
+The optional technical status line and front-panel display mode remain
+controlled by DAB settings. Disable the automatic technical line if your
+skin provides its own ServiceInfo/DABTechnical widget.
+Broadcast RASS, DVB radio and audio decoding are not changed by this skin.
+-->
+<skin>
+	<screen name="DabRdsDisplay" position="0,0" size="1280,720" resolution="1280,720" zPosition="-2" backgroundColor="#FF000000" flags="wfNoBorder">
+		<widget source="session.CurrentService" render="Label" position="60,25" size="1160,45" font="Regular;32" foregroundColor="#00ffffff" backgroundColor="#00121922" transparent="1" halign="center" noWrap="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget name="DabImage" position="320,90" size="640,480" alphatest="blend" scaleFlags="centerScaled" />
+		<widget name="RadioText" position="60,590" size="1160,45" font="Regular;30" foregroundColor="#00ffffff" backgroundColor="#00121922" transparent="1" halign="center" valign="center" noWrap="1" />
+		<widget name="RtpText" position="60,645" size="1160,35" font="Regular;23" foregroundColor="#00a8c6d8" backgroundColor="#00121922" transparent="1" halign="center" valign="center" noWrap="1" />
+		<widget name="RassLogo" pixmap="icons/rass_logo.png" position="60,90" size="50,21" alphatest="blend" />
+	</screen>
+</skin>

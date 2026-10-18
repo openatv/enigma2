@@ -3553,6 +3553,7 @@ class InfoBarRdsDecoder:
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
 		self.rds_display.setAnimationMode(0)
 		self.dab_slide_display.reserveRadioTextArea(self.rds_display)
+		self.rds_display.onLayoutFinish.append(self.dab_slide_display.reserveRadioTextArea)
 		self.rass_interactive = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evEnd: self.__serviceStopped,
@@ -3562,7 +3563,7 @@ class InfoBarRdsDecoder:
 			"startRassInteractive": (self.startRassInteractive, _("Start RDS interactive"))
 		}, prio=-1, description=_("RDS Actions"))
 		self["RdsActions"].setEnabled(False)
-		self.onLayoutFinish.append(self.rds_display.show)
+		self.onLayoutFinish.append(self.rds_display.updateVisibility)
 		self.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 
 	def RassInteractivePossibilityChanged(self, state):
@@ -3590,7 +3591,7 @@ class InfoBarRdsDecoder:
 		if self.rass_interactive is not None:
 			self.rass_interactive = None
 			self.RassSlidePicChanged()
-		self.rds_display.show()
+		self.rds_display.updateVisibility()
 
 
 class InfoBarPVRState:

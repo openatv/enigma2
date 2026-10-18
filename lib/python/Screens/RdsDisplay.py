@@ -5,7 +5,7 @@ from struct import unpack
 from enigma import ePicLoad, ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
 
 from ServiceReference import isRadioServiceReference
-from skin import applyAllAttributes
+from skin import applyAllAttributes, findSkinScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config
 from Components.Element import Element
@@ -157,9 +157,11 @@ class DABSlideDisplay(Screen):
 	def imageAreaHeight(self):
 		return max(1, self.pictureAreaHeight - (self.technicalInfoHeight if self["technicalInfo"].visible else 0))
 
-	def reserveRadioTextArea(self, radioDisplay):
+	def reserveRadioTextArea(self, radioDisplay=None):
 		"""Keep the complete 4:3 slide above the skin's RDS text band."""
-		self.radioDisplay = radioDisplay
+		if radioDisplay is not None:
+			self.radioDisplay = radioDisplay
+		radioDisplay = self.radioDisplay
 		try:
 			displayTop = radioDisplay.instance.position().y()
 			textTops = [displayTop + radioDisplay[x].instance.position().y() for x in ("RadioText", "RtpText") if radioDisplay[x].instance is not None]
@@ -517,8 +519,10 @@ class RdsInfoDisplay(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = self.getSkinNames()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evStart: self.updateVisibility,
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedRadioText: self.RadioTextChanged,
 				iPlayableService.evUpdatedRtpText: self.RtpTextChanged,
@@ -544,6 +548,33 @@ class RdsInfoDisplay(Screen):
 	def createSummary(self):
 		return RdsInfoDisplaySummary
 
+	def getSkinNames(self):
+		names = ["RdsDisplay", "RdsInfoDisplay"]
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if reference and reference.type == eServiceReference.idServiceDAB and findSkinScreen("DabRdsDisplay") == "DabRdsDisplay":
+			names.insert(0, "DabRdsDisplay")
+		return names
+
+	def hasCustomLayout(self):
+		return findSkinScreen(self.skinName) in ("DabRdsDisplay", "RdsDisplay") or bool(self["DabImage"].skinAttributes)
+
+	def updateVisibility(self):
+		names = self.getSkinNames()
+		if self.skinName != names:
+			# Rebuild only when entering/leaving a skin's DAB-only layout, not
+			# on metadata updates or for skins using the common radio layout.
+			self.hide()
+			self.setDABBackground(False)
+			self.skinName = names
+			self.reloadSkin()
+			self.RadioTextChanged()
+			self.RtpTextChanged()
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if self.hasCustomLayout() and not (reference and isRadioServiceReference(reference)):
+			self.hide()
+		else:
+			self.show()
+
 	def layoutFinished(self):
 		for name in ("RadioText", "RtpText"):
 			widget = self[name]
@@ -553,8 +584,12 @@ class RdsInfoDisplay(Screen):
 				# skin's font and HD/FHD scale, with a readable half-size floor.
 				widget.instance.setFontScale(1, max(1, widget.instance.getFont().pointSize // 2))
 		self.hideWidgets()
+		self.updateVisibility()
 
 	def setDABBackground(self, enabled):
+		# An explicit RDS layout or embedded DAB image owns its styling. Keep
+		# colors and transparency instead of applying the default black band.
+		enabled = enabled and not self.hasCustomLayout()
 		if enabled == self.dabBackground or self.instance is None:
 			return
 		if enabled:
@@ -618,6 +653,8 @@ class RdsInfoDisplay(Screen):
 
 	def __serviceStopped(self):
 		self.hideWidgets()
+		if self.hasCustomLayout():
+			self.hide()
 		if self.rassInteractivePossible:
 			self.rassInteractivePossible = False
 			for x in self.onRassInteractivePossibilityChanged:
