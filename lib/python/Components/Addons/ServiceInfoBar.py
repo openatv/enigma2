@@ -54,7 +54,7 @@ class ServiceInfoBar(GUIAddon):
 		self.__event_tracker = None
 		self.currentCrypto = ""
 		self.tuner_string = ""
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 		self.permanentIcons = []
 		self.records_running = 0
 		self.streamServer = eStreamServer.getInstance()

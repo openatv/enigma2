@@ -17,9 +17,9 @@ lastpath = ""
 class DVDSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self["Title"] = Label("")
-		self["Time"] = Label("")
-		self["Chapter"] = Label("")
+		self["Title"] = Label()
+		self["Time"] = Label()
+		self["Chapter"] = Label()
 
 	def updateChapter(self, chapter):
 		self["Chapter"].setText(chapter)
@@ -157,9 +157,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.dvdScreen = None
 		self.session.nav.stopService()
 		self["audioLabel"] = Label("n/a")
-		self["subtitleLabel"] = Label("")
-		self["angleLabel"] = Label("")
-		self["chapterLabel"] = Label("")
+		self["subtitleLabel"] = Label()
+		self["angleLabel"] = Label()
+		self["chapterLabel"] = Label()
 		self["anglePix"] = Pixmap()
 		self["anglePix"].hide()
 		self.last_audioTuple = None

@@ -146,18 +146,18 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
 
-		self["currenttext"] = Label("")
+		self["currenttext"] = Label()
 
 		self["artisttext"] = Label(_("Artist") + ':')
-		self["artist"] = Label("")
+		self["artist"] = Label()
 		self["titletext"] = Label(_("Title") + ':')
-		self["title"] = Label("")
+		self["title"] = Label()
 		self["albumtext"] = Label(_("Album") + ':')
-		self["album"] = Label("")
+		self["album"] = Label()
 		self["yeartext"] = Label(_("Year") + ':')
-		self["year"] = Label("")
+		self["year"] = Label()
 		self["genretext"] = Label(_("Genre") + ':')
-		self["genre"] = Label("")
+		self["genre"] = Label()
 		self["coverArt"] = MediaPixmap()
 		self["repeat"] = MultiPixmap()
 
@@ -1104,8 +1104,8 @@ class MediaPlayerLCDScreen(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		self["text1"] = Label("Media Player")
-		self["text3"] = Label("")
-		self["text4"] = Label("")
+		self["text3"] = Label()
+		self["text4"] = Label()
 
 	def setText(self, text, line):
 		if len(text) > 10:

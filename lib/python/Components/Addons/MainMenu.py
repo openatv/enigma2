@@ -35,7 +35,7 @@ class MainMenu(GUIAddon):
 		self.foregroundColor = 0xffffff
 		self.foregroundColorSelected = 0xffffff
 		self.backgroundColor = 0x000000
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 		self.longestMenuTextWidth = 0
 		self.minWidth = 100
 		self.maxWidth = 700

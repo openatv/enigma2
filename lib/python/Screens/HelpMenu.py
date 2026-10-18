@@ -168,8 +168,8 @@ class HelpMenu(Screen, ShowRemoteControl):
 		self.setTitle(_("Help"))
 		self["list"] = HelpMenuList(helpList, self.close)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
-		self["buttonlist"] = Label("")
-		self["description"] = Label("")
+		self["buttonlist"] = Label()
+		self["description"] = Label()
 		self["key_help"] = StaticText(_("HELP"))
 		self["helpActions"] = ActionMap(["HelpActions"], {
 			"cancel": self.close,

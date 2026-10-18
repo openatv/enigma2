@@ -31,7 +31,7 @@ class ColorButtonsSequence(GUIAddon):
 		self.cornerRadius = 0
 		self.pixmaps = {}
 		self.colors = {}
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 
 	def onContainerShown(self):
 		for x, val in self.sources.items():

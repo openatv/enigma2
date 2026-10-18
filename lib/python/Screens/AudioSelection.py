@@ -734,7 +734,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		self.resume = eTimer()
 		self.resume.timeout.get().append(self.resyncSubtitlesResume)
 
-		self["videofps"] = Label("")
+		self["videofps"] = Label()
 
 		sub = self.infobar.selected_subtitle
 		menu = []

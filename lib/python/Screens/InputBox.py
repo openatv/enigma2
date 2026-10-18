@@ -117,7 +117,7 @@ class PinInput(InputBox):
 			else:
 				self.setTries(3)
 
-		self["tries"] = Label("")
+		self["tries"] = Label()
 		self.onShown.append(self.showTries)
 
 	def gotAsciiCode(self):

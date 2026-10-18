@@ -33,7 +33,7 @@ class Pager(GUIAddon):
 		self.orientation = eListbox.orHorizontal
 		self.maxPages = 10
 		self.currentPageStyle = "bubbletext"  # possible is bubbletext and graphic
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 		self.bubbletextCornerRadius = 12
 		self.bubbletextBkColor = 0x02444444
 		self.bubbletextPadding = 10

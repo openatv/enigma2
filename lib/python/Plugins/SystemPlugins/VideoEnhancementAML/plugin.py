@@ -21,7 +21,7 @@ class VideoEnhancementSetup(ConfigListScreen, Screen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
-		self["description"] = Label("")
+		self["description"] = Label()
 		self["introduction"] = StaticText()
 
 		self.list = []

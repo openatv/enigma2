@@ -508,7 +508,7 @@ class TimerOverviewBase(Screen):
 		self["key_red"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["description"] = Label("")
+		self["description"] = Label()
 		self["actions"] = HelpableActionMap(self, ["TimerActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.keyClose, _("Close the screen and exit all menus")),

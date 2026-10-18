@@ -266,7 +266,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.feedbackTimer = None
 		self.pathselectEnabled = False
 		self.numericalTextInput = NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
-		self["chosenletter"] = Label("")
+		self["chosenletter"] = Label()
 		self["chosenletter"].visible = False
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 		self.LivePlayTimer = eTimer()
@@ -1854,8 +1854,8 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self["footnote"] = Label("")
-		self["description"] = Label("")
+		self["footnote"] = Label()
+		self["description"] = Label()
 		self["status"] = StaticText()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"], {
 			"red": self.cancelClick,

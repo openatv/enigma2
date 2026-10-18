@@ -33,7 +33,7 @@ class ScreenButtonsBar(GUIAddon):
 		self.cornerRadius = 0
 		self.pixmaps = {}
 		self.colors = {}
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 		self.colorButtonSources = {}
 		self.actionButtonSources = {}
 		self.spacing = applySkinFactor(10)
