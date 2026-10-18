@@ -457,15 +457,26 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 #define VIDEO_STREAMTYPE_MPEG4_H264 1
 #define VIDEO_STREAMTYPE_VC1 3
 #define VIDEO_STREAMTYPE_MPEG4_Part2 4
+#ifdef DREAMNEXTGEN
+/* meson64 passes a stream type it does not map on as the decoder format */
+#define VIDEO_STREAMTYPE_VC1_SM 17
+#define VIDEO_STREAMTYPE_MPEG1 0
+#else
 #define VIDEO_STREAMTYPE_VC1_SM 5
 #define VIDEO_STREAMTYPE_MPEG1 6
+#endif
 #ifdef DREAMBOX
 #define VIDEO_STREAMTYPE_H265_HEVC 22
 #else
 #define VIDEO_STREAMTYPE_H265_HEVC 7
 #endif
+#ifdef DREAMNEXTGEN
+#define VIDEO_STREAMTYPE_AVS 7
+#define VIDEO_STREAMTYPE_AVS2 15
+#else
 #define VIDEO_STREAMTYPE_AVS 16
 #define VIDEO_STREAMTYPE_AVS2 40
+#endif
 
 int eDVBVideo::startPid(int pid, int type)
 {
