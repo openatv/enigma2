@@ -1,6 +1,5 @@
 from os import stat
 from os.path import isfile
-from struct import unpack
 
 from enigma import ePicLoad, ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
 
@@ -71,7 +70,7 @@ class DABSlideDisplay(Screen):
 		self.ignoreWidgets.append("technicalInfo")
 		self.slidePath = ""
 		self.slideSignature = None
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evStart: self.serviceStarted,
 			iPlayableService.evUpdatedInfo: self.updateSlide,
 			iPlayableService.evUpdatedRassSlidePic: self.rassPictureAvailable,
@@ -173,44 +172,12 @@ class DABSlideDisplay(Screen):
 			self.slideSignature = None
 			self.updateSlide()
 
-	def imageSize(self, path):
-		try:
-			with open(path, "rb") as image:
-				header = image.read(24)
-				if header.startswith(b"\x89PNG\r\n\x1a\n") and len(header) >= 24:
-					return unpack(">II", header[16:24])
-				if not header.startswith(b"\xff\xd8"):
-					return 0, 0
-				image.seek(2)
-				while True:
-					marker = image.read(1)
-					if not marker:
-						break
-					if marker != b"\xff":
-						continue
-					while marker == b"\xff":
-						marker = image.read(1)
-					if not marker or marker in (b"\xd8", b"\xd9"):
-						continue
-					lengthData = image.read(2)
-					if len(lengthData) != 2:
-						break
-					length = unpack(">H", lengthData)[0]
-					if length < 2:
-						break
-					if marker[0] in (0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf):
-						frame = image.read(5)
-						if len(frame) == 5:
-							height, width = unpack(">HH", frame[1:5])
-							return width, height
-						break
-					image.seek(length - 2, 1)
-		except (OSError, ValueError):
-			pass
-		return 0, 0
-
 	def layoutPicture(self, path):
-		width, height = self.imageSize(path)
+		picture = self["picture"].instance
+		picture.setPixmapFromFile(path, True)
+		# Read the decoded image size from E2 instead of parsing PNG/JPEG headers.
+		size = picture.getPixmapSize()
+		width, height = size.width(), size.height()
 		if width <= 0 or height <= 0:
 			width, height = 320, 240
 		if self.radioPictureArea is not None:
@@ -224,8 +191,8 @@ class DABSlideDisplay(Screen):
 		targetHeight = max(1, int(height * scale))
 		left = areaLeft + (areaWidth - targetWidth) // 2
 		top = areaTop + (areaHeight - targetHeight) // 2
-		self["picture"].instance.move(ePoint(left, top))
-		self["picture"].instance.resize(eSize(targetWidth, targetHeight))
+		picture.move(ePoint(left, top))
+		picture.resize(eSize(targetWidth, targetHeight))
 
 	def layoutRadioFrame(self, isDAB=True):
 		if isDAB:
@@ -341,7 +308,8 @@ class DABSlideDisplay(Screen):
 			if signature != self.slideSignature:
 				if embeddedImage is None:
 					self.layoutPicture(path)
-				picture.instance.setPixmapFromFile(path, True)
+				else:
+					picture.instance.setPixmapFromFile(path, True)
 				self.slidePath = path
 				self.slideSignature = signature
 			picture.show()
@@ -521,13 +489,13 @@ class RdsInfoDisplay(Screen):
 		Screen.__init__(self, session)
 		self.skinName = self.getSkinNames()
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				iPlayableService.evStart: self.updateVisibility,
-				iPlayableService.evEnd: self.__serviceStopped,
-				iPlayableService.evUpdatedRadioText: self.RadioTextChanged,
-				iPlayableService.evUpdatedRtpText: self.RtpTextChanged,
-				iPlayableService.evUpdatedRassInteractivePicMask: self.RassInteractivePicMaskChanged,
-			})
+		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evStart: self.updateVisibility,
+			iPlayableService.evEnd: self.__serviceStopped,
+			iPlayableService.evUpdatedRadioText: self.RadioTextChanged,
+			iPlayableService.evUpdatedRtpText: self.RtpTextChanged,
+			iPlayableService.evUpdatedRassInteractivePicMask: self.RassInteractivePicMaskChanged
+		})
 
 		self["RadioText"] = Label()
 		self["RtpText"] = Label()
@@ -590,23 +558,22 @@ class RdsInfoDisplay(Screen):
 		# An explicit RDS layout or embedded DAB image owns its styling. Keep
 		# colors and transparency instead of applying the default black band.
 		enabled = enabled and not self.hasCustomLayout()
-		if enabled == self.dabBackground or self.instance is None:
-			return
-		if enabled:
-			self.backgroundAttributes = []
-			for widget in (self, self["RadioText"], self["RtpText"]):
-				if widget.instance is not None:
-					attributes = [x for x in widget.skinAttributes or [] if x[0] in ("backgroundColor", "backgroundGradient", "transparent")]
-					self.backgroundAttributes.append((widget.instance, attributes, widget.instance.isTransparent()))
-					applyAllAttributes(widget.instance, getDesktop(0), [("backgroundColor", "#00000000"), ("transparent", "0")])
-		else:
-			# Restore the skin's original DVB-radio styling when leaving DAB.
-			for instance, attributes, transparent in self.backgroundAttributes:
-				instance.clearBackgroundColor()
-				instance.setTransparent(transparent)
-				applyAllAttributes(instance, getDesktop(0), attributes)
-			self.backgroundAttributes = []
-		self.dabBackground = enabled
+		if enabled != self.dabBackground and self.instance is not None:
+			if enabled:
+				self.backgroundAttributes = []
+				for widget in (self, self["RadioText"], self["RtpText"]):
+					if widget.instance is not None:
+						attributes = [x for x in widget.skinAttributes or [] if x[0] in ("backgroundColor", "backgroundGradient", "transparent")]
+						self.backgroundAttributes.append((widget.instance, attributes, widget.instance.isTransparent()))
+						applyAllAttributes(widget.instance, getDesktop(0), [("backgroundColor", "#00000000"), ("transparent", "0")])
+			else:
+				# Restore the skin's original DVB-radio styling when leaving DAB.
+				for instance, attributes, transparent in self.backgroundAttributes:
+					instance.clearBackgroundColor()
+					instance.setTransparent(transparent)
+					applyAllAttributes(instance, getDesktop(0), attributes)
+				self.backgroundAttributes = []
+			self.dabBackground = enabled
 
 	def hideWidgets(self):
 		for name in ("RadioText", "RtpText", "RassLogo"):
@@ -614,31 +581,24 @@ class RdsInfoDisplay(Screen):
 		for callback in self.onText:
 			callback("")
 
-	def RadioTextChanged(self):
+	def updateText(self, widgetName, textType):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
-		radioText = decoder and decoder.getText(iRdsDecoder.RadioText)
-		if radioText:
+		text = decoder and decoder.getText(textType)
+		if text:
 			self.show()
-			self["RadioText"].setText(radioText)
-			self["RadioText"].show()
+			self[widgetName].setText(text)
+			self[widgetName].show()
 		else:
-			self["RadioText"].hide()
+			self[widgetName].hide()
 		for callback in self.onText:
-			callback(radioText)
+			callback(text)
+
+	def RadioTextChanged(self):
+		self.updateText("RadioText", iRdsDecoder.RadioText)
 
 	def RtpTextChanged(self):
-		service = self.session.nav.getCurrentService()
-		decoder = service and service.rdsDecoder()
-		rtpText = decoder and decoder.getText(iRdsDecoder.RtpText)
-		if rtpText:
-			self.show()
-			self["RtpText"].setText(rtpText)
-			self["RtpText"].show()
-		else:
-			self["RtpText"].hide()
-		for callback in self.onText:
-			callback(rtpText)
+		self.updateText("RtpText", iRdsDecoder.RtpText)
 
 	def RassInteractivePicMaskChanged(self):
 		if not self.rassInteractivePossible:
@@ -648,8 +608,8 @@ class RdsInfoDisplay(Screen):
 			if mask and mask[0] & 1:  # RASS interactive index page available.
 				self["RassLogo"].show()
 				self.rassInteractivePossible = True
-				for x in self.onRassInteractivePossibilityChanged:
-					x(True)
+				for callback in self.onRassInteractivePossibilityChanged:
+					callback(True)
 
 	def __serviceStopped(self):
 		self.hideWidgets()
@@ -657,65 +617,38 @@ class RdsInfoDisplay(Screen):
 			self.hide()
 		if self.rassInteractivePossible:
 			self.rassInteractivePossible = False
-			for x in self.onRassInteractivePossibilityChanged:
-				x(False)
+			for callback in self.onRassInteractivePossibilityChanged:
+				callback(False)
 
 
 class RassInteractive(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
-		self["actions"] = NumberActionMap(["NumberActions", "RassInteractiveActions"],
-			{
-				"exit": self.close,
-				"0": lambda x: self.numPressed(0),
-				"1": lambda x: self.numPressed(1),
-				"2": lambda x: self.numPressed(2),
-				"3": lambda x: self.numPressed(3),
-				"4": lambda x: self.numPressed(4),
-				"5": lambda x: self.numPressed(5),
-				"6": lambda x: self.numPressed(6),
-				"7": lambda x: self.numPressed(7),
-				"8": lambda x: self.numPressed(8),
-				"9": lambda x: self.numPressed(9),
-				"nextPage": self.nextPage,
-				"prevPage": self.prevPage,
-				"nextSubPage": self.nextSubPage,
-				"prevSubPage": self.prevSubPage
-			})
-
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				iPlayableService.evUpdatedRassInteractivePicMask: self.recvRassInteractivePicMaskChanged
-			})
-
-		self["subpages_1"] = Pixmap()
-		self["subpages_2"] = Pixmap()
-		self["subpages_3"] = Pixmap()
-		self["subpages_4"] = Pixmap()
-		self["subpages_5"] = Pixmap()
-		self["subpages_6"] = Pixmap()
-		self["subpages_7"] = Pixmap()
-		self["subpages_8"] = Pixmap()
-		self["subpages_9"] = Pixmap()
+		self["actions"] = NumberActionMap(["NumberActions", "RassInteractiveActions"], {
+			"exit": self.close,
+			"0": lambda x: self.numPressed(0),
+			"1": lambda x: self.numPressed(1),
+			"2": lambda x: self.numPressed(2),
+			"3": lambda x: self.numPressed(3),
+			"4": lambda x: self.numPressed(4),
+			"5": lambda x: self.numPressed(5),
+			"6": lambda x: self.numPressed(6),
+			"7": lambda x: self.numPressed(7),
+			"8": lambda x: self.numPressed(8),
+			"9": lambda x: self.numPressed(9),
+			"nextPage": self.nextPage,
+			"prevPage": self.prevPage,
+			"nextSubPage": self.nextSubPage,
+			"prevSubPage": self.prevSubPage
+		})
+		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evUpdatedRassInteractivePicMask: self.recvRassInteractivePicMaskChanged
+		})
+		for page in range(1, 10):
+			self[f"subpages_{page}"] = Pixmap()
 		self["Marker"] = Label(">")
-
-		self.subpage = {
-			1: self["subpages_1"],
-			2: self["subpages_2"],
-			3: self["subpages_3"],
-			4: self["subpages_4"],
-			5: self["subpages_5"],
-			6: self["subpages_6"],
-			7: self["subpages_7"],
-			8: self["subpages_8"],
-			9: self["subpages_9"]}
-
-		self.subpage_png = {
-			1: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page1.png")),
-			2: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page2.png")),
-			3: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page3.png")),
-			4: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page4.png"))}
-
+		self.subpage = {x: self[f"subpages_{x}"] for x in range(1, 10)}
+		self.subpage_png = {x: LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"icons/rass_page{x}.png")) for x in range(1, 5)}
 		self.current_page = 0
 		self.current_subpage = 0
 		self.showRassPage(0, 0)
@@ -774,77 +707,60 @@ class RassInteractive(Screen):
 		return mask
 
 	def countAvailSubpages(self, page, masks):
-		mask = self.getMaskForPage(page, masks)
-		cnt = 0
-		while mask:
-			if mask & 1:
-				cnt += 1
-			mask >>= 1
-		return cnt
+		return bin(self.getMaskForPage(page, masks)).count("1")
+
+	def findPage(self, step):
+		for offset in range(1, 11):
+			page = (self.current_page + step * offset) % 10
+			if self.getMaskForPage(page):
+				self.numPressed(page)
+				break
 
 	def nextPage(self):
-		for offset in range(1, 11):
-			page = (self.current_page + offset) % 10
-			if self.getMaskForPage(page):
-				self.numPressed(page)
-				break
+		self.findPage(1)
 
 	def prevPage(self):
-		for offset in range(1, 11):
-			page = (self.current_page - offset) % 10
-			if self.getMaskForPage(page):
-				self.numPressed(page)
-				break
+		self.findPage(-1)
 
 	def nextSubPage(self):
 		self.numPressed(self.current_page)
 
 	def prevSubPage(self):
-		num = self.current_page
-		mask = self.getMaskForPage(num)
-		cur_bit = 1 << self.current_subpage
-		tmp = cur_bit
+		page = self.current_page
+		mask = self.getMaskForPage(page)
+		currentBit = 1 << self.current_subpage
+		tempBit = currentBit
 		while True:
-			if tmp == 1:
-				tmp = 8
-			else:
-				tmp >>= 1
-			if tmp == cur_bit:  # no other subpage avail
-				return
-			if mask & tmp:  # next subpage found
-				subpage = 0
-				while tmp > 1:  # convert bit to subpage
-					subpage += 1
-					tmp >>= 1
-				self.current_subpage = subpage
-				self.showRassPage(num, subpage)
-				return
+			tempBit = 8 if tempBit == 1 else tempBit >> 1
+			if tempBit == currentBit:  # No other sub page available.
+				break
+			if mask & tempBit:  # Previous sub page found.
+				self.switchSubPage(page, tempBit)
+				break
 
 	def numPressed(self, num):
 		mask = self.getMaskForPage(num)
 		if self.current_page == num:
 			self.skip = 0
-			cur_bit = 1 << self.current_subpage
-			tmp = cur_bit
+			currentBit = 1 << self.current_subpage
+			tempBit = currentBit
 		else:
 			self.skip = 1
-			cur_bit = 16
-			tmp = 1
+			currentBit = 16
+			tempBit = 1
 		while True:
-			if not self.skip:
-				if tmp == 8 and cur_bit < 16:
-					tmp = 1
-				else:
-					tmp <<= 1
-			else:
+			if self.skip:
 				self.skip = 0
-			if tmp == cur_bit:  # no other subpage avail
-				return
-			if mask & tmp:  # next subpage found
-				subpage = 0
-				while tmp > 1:  # convert bit to subpage
-					subpage += 1
-					tmp >>= 1
-				self.current_subpage = subpage
-				self.showRassPage(num, subpage)
-				return
+			elif tempBit == 8 and currentBit < 16:
+				tempBit = 1
+			else:
+				tempBit <<= 1
+			if tempBit == currentBit:  # No other sub page available.
+				break
+			if mask & tempBit:  # Next sub page found.
+				self.switchSubPage(num, tempBit)
+				break
+
+	def switchSubPage(self, page, bit):
+		self.current_subpage = bit.bit_length() - 1  # Convert bit to sub page.
+		self.showRassPage(page, self.current_subpage)
