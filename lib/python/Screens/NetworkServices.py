@@ -1,22 +1,21 @@
 from errno import ETIMEDOUT
-from json import dumps, loads
 from glob import glob
+from json import dumps, loads
 from os import listdir, rename, strerror
 from os.path import exists
-from process import ProcessList
 from random import Random
 from urllib.request import Request, urlopen
+from process import ProcessList
 
 from enigma import eConsoleAppContainer, eTimer
 
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigNumber, ConfigPassword, ConfigSelection, ConfigText, ConfigYesNo, NoSave, ReadOnly, config, getConfigListEntry
 from Components.Console import Console
-
-from Components.ScrollLabel import ScrollLabel
-from Components.SystemInfo import BoxInfo
 from Components.FileList import MultiFileSelectList
 from Components.Opkg import OpkgComponent
+from Components.ScrollLabel import ScrollLabel
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing

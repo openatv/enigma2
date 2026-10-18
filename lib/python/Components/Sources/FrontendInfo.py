@@ -1,4 +1,4 @@
-from enigma import iPlayableService, eDVBResourceManager, eDVBSatelliteEquipmentControl, iServiceInformation
+from enigma import eDVBResourceManager, eDVBSatelliteEquipmentControl, iPlayableService, iServiceInformation
 
 from Components.config import config
 from Components.NimManager import nimmanager

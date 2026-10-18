@@ -1,9 +1,9 @@
-from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
+from enigma import ePoint, eRect, eServiceCenter, eServiceReference, eSize, eTimer, getBestPlayableServiceReference
 
-from Components.config import config, ConfigPosition, ConfigSelection
-from Components.Sources.StreamService import StreamServiceList
+from Components.config import ConfigPosition, ConfigSelection, config
 from Components.SystemInfo import BoxInfo
 from Components.VideoWindow import VideoWindow
+from Components.Sources.StreamService import StreamServiceList
 from Screens.Dish import Dishpip
 from Screens.Screen import Screen
 from Screens.Toast import Toast

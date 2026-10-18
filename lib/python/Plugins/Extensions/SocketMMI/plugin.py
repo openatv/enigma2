@@ -1,4 +1,5 @@
 from Plugins.Plugin import PluginDescriptor
+
 from .SocketMMI import SocketMMIMessageHandler
 
 socketHandler = None

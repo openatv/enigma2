@@ -5,9 +5,9 @@
 # print>>log, "Some text"
 # because the log unit looks enough like a file!
 
+from io import StringIO
 import sys
 import threading
-from io import StringIO
 
 logfile = None
 # Need to make our operations thread-safe.

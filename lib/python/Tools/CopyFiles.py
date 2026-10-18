@@ -1,8 +1,10 @@
-from Components.Task import PythonTask, Task, Job, job_manager as JobManager
-from Tools.Directories import fileExists
-from enigma import eTimer
 from os import path
 from shutil import rmtree
+
+from enigma import eTimer
+
+from Components.Task import Job, PythonTask, Task, job_manager as JobManager
+from Tools.Directories import fileExists
 
 
 class DeleteFolderTask(PythonTask):

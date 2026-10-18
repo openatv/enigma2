@@ -1,4 +1,5 @@
-from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
+from enigma import ePoint, eServiceCenter, eServiceReference, eSize, getBestPlayableServiceReference
+
 from Components.VideoWindow import VideoWindow
 from Screens.InfoBarGenerics import streamrelay
 from Screens.Screen import Screen

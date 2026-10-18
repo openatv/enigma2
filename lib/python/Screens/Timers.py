@@ -30,7 +30,7 @@ from Tools.Alternatives import GetWithAlternative
 from Tools.BoundFunction import boundFunction
 from Tools.Conversions import fuzzyDate, scaleNumber
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
-from Tools.FallbackTimer import FallbackTimerList, FallbackTimerDirs
+from Tools.FallbackTimer import FallbackTimerDirs, FallbackTimerList
 from Tools.LoadPixmap import LoadPixmap
 
 # Timer modes.

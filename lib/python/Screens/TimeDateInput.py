@@ -1,12 +1,13 @@
 # Note. Do not delete because this is used by 3rd party plugins
 
-from Screens.Screen import Screen
-from Components.config import config, ConfigClock, ConfigDateTime, getConfigListEntry
+import datetime
+import time
+
 from Components.ActionMap import NumberActionMap
+from Components.config import ConfigClock, ConfigDateTime, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
-import time
-import datetime
+from Screens.Screen import Screen
 
 
 class TimeDateInput(ConfigListScreen, Screen):

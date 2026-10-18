@@ -1,9 +1,9 @@
-from pickle import dump, load
 from os import W_OK, access, listdir, mkdir, rename, stat
 from os.path import abspath, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
+from pickle import dump, load
 from time import time
 
-from enigma import eRCInput, eServiceCenter, eServiceReference, eServiceReferenceFS, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, pNavigation
+from enigma import eRCInput, eServiceCenter, eServiceReference, eServiceReferenceFS, eSize, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, pNavigation
 
 import NavigationInstance
 from RecordTimer import AFTEREVENT, RecordTimerEntry
@@ -11,17 +11,17 @@ from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.config import ConfigLocations, ConfigSelection, ConfigSelectionNumber, ConfigSet, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.DiskInfo import DiskInfo
 from Components.Harddisk import harddiskmanager
+from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, MovieList, resetMoviePlayState
 from Components.Pixmap import MultiPixmap, Pixmap
-from Components.Label import Label
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 import Screens.InfoBar

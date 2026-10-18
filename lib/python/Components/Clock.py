@@ -1,9 +1,9 @@
+import time
+
+from enigma import eLabel, eTimer
+
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
-
-from enigma import eTimer, eLabel
-
-import time
 # now some "real" components:
 
 

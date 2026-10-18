@@ -1,8 +1,8 @@
-from Screens.Setup import Setup
-from Components.config import config, configfile, ConfigSelection, ConfigIP, ConfigInteger
-from Components.ImportChannels import ImportChannels
-
 from enigma import getPeerStreamingBoxes
+
+from Components.config import ConfigIP, ConfigInteger, ConfigSelection, config, configfile
+from Components.ImportChannels import ImportChannels
+from Screens.Setup import Setup
 
 
 class SetupFallbacktuner(Setup):

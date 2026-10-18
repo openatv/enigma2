@@ -5,12 +5,12 @@ from os.path import abspath, dirname, exists, isfile, islink, ismount, join, rea
 from re import search, sub
 from time import sleep, time
 
-from enigma import getDeviceDB, eTimer
+from enigma import eTimer, getDeviceDB
 
-from Components.SystemInfo import BoxInfo
 from Components.Console import Console
-from Tools.Directories import fileReadLines, fileReadLine, fileWriteLines
+from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
+from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines
 
 MODEL = BoxInfo.getItem("model")
 MODULE_NAME = __name__.split(".")[-1]

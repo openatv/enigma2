@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSelection, ConfigSubsection
+from Components.config import ConfigSelection, ConfigSubsection, config
 from Components.SystemInfo import BoxInfo
 
 

@@ -1,11 +1,14 @@
 from time import time
-from enigma import getBestPlayableServiceReference, eServiceReference
-from Components.config import config, ConfigSelection, ConfigDateTime, ConfigClock, getConfigListEntry
+
+from enigma import eServiceReference, getBestPlayableServiceReference
+
+from Components.config import ConfigClock, ConfigDateTime, ConfigSelection, config, getConfigListEntry
 from Screens.InfoBarGenerics import InfoBarInstantRecord
-from Screens.Timers import onRecordTimerCreate, onRecordTimerSetup, onRecordTimerSave, onRecordTimerChannelChange
-from .Vps_setup import VPS_Screen_Info
-from .Vps_check import Check_PDC, VPS_check_PDC_Screen, VPS_check_on_instanttimer
+from Screens.Timers import onRecordTimerChannelChange, onRecordTimerCreate, onRecordTimerSave, onRecordTimerSetup
+
 from .Vps import vps_timers
+from .Vps_check import Check_PDC, VPS_check_PDC_Screen, VPS_check_on_instanttimer
+from .Vps_setup import VPS_Screen_Info
 
 timerentry_vpsplugin_enabled_index = 0
 

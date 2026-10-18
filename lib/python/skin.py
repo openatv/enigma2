@@ -1,15 +1,15 @@
 from glob import glob
-from os.path import dirname, getmtime, isfile, join as pathjoin, splitext
 from os import listdir, unlink
+from os.path import dirname, getmtime, isfile, join as pathjoin, splitext
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eStack, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, gFont, gMainDC, gRGB, getDesktop, getFontFaces
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, DEFAULT_READONLY_COLOR, config, setReadOnlyColor
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML, clearResolveLists
+from Tools.Directories import SCOPE_FONTS, SCOPE_GUISKIN, SCOPE_LCDSKIN, SCOPE_SKINS, clearResolveLists, fileReadXML, pathExists, resolveFilename
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 

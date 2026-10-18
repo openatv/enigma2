@@ -1,7 +1,7 @@
 from os import mkdir, remove
 from os.path import exists, isfile
 
-from enigma import eHotplugSocket, getDeviceDB, eTimer
+from enigma import eHotplugSocket, eTimer, getDeviceDB
 
 from Components.config import config
 from Components.Console import Console
@@ -10,8 +10,8 @@ from Components.RTLSDR import dabHotplugNotifier
 from Components.Storage import EXPANDER_MOUNT, cleanMediaDirs
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import ModalMessageBox
-from Tools.Directories import fileReadLines, fileWriteLines
 from Tools.Conversions import scaleNumber
+from Tools.Directories import fileReadLines, fileWriteLines
 
 # globals
 hotplugNotifier = []

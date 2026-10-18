@@ -1,8 +1,10 @@
 from os.path import exists
 from xml.etree.ElementTree import parse
+
 from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference
-from timer import TimerEntry
+
 import NavigationInstance
+from timer import TimerEntry
 
 
 class CIHelper:

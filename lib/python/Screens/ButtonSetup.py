@@ -3,20 +3,20 @@ from os.path import isdir, isfile
 
 from enigma import eActionMap, eServiceReference
 
-from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.config import ConfigYesNo, ConfigSubsection, ConfigText, config
-from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
-from Components.Label import Label
-from Components.SystemInfo import BoxInfo
-from Components.PluginComponent import plugins
-from Components.Sources.StaticText import StaticText
 from GlobalActions import globalActionMap
+from ServiceReference import ServiceReference
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config
+from Components.Label import Label
+from Components.PluginComponent import plugins
+from Components.SystemInfo import BoxInfo
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
-from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import runWithScreenProtection
-from ServiceReference import ServiceReference
+from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import isPluginInstalled
 

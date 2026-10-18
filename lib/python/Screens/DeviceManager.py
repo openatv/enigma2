@@ -14,9 +14,9 @@ from enigma import eTimer, getDeviceDB
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigText, NoSave, config
 from Components.Console import Console
-from Components.Storage import EXPANDER_MOUNT, StorageDevice, cleanMediaDirs, getProcMountsNew
-from Components.Label import Label
 from Components.Harddisk import harddiskmanager
+from Components.Label import Label
+from Components.Storage import EXPANDER_MOUNT, StorageDevice, cleanMediaDirs, getProcMountsNew
 from Components.SystemInfo import BoxInfo
 from Components.Task import job_manager
 from Components.Sources.List import List
@@ -30,8 +30,8 @@ from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Conversions import scaleNumber
-from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, fileReadLine, fileReadLines, fileWriteLines, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 

@@ -1,22 +1,22 @@
 import random
 
-from Screens.Satconfig import NimSelection
-from Screens.Screen import Screen
-from Screens.TextBox import TextBox
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import ConfigSelection, ConfigYesNo, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
+from Components.Harddisk import harddiskmanager
+from Components.Label import Label
 from Components.NimManager import nimmanager
 from Components.ResourceManager import resourcemanager
 from Components.TuneTest import TuneTest
-from Components.Label import Label
+from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
-from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, ConfigSelection, ConfigYesNo
-from Components.Harddisk import harddiskmanager
-from Components.Sources.FrontendStatus import FrontendStatus
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Satconfig import NimSelection
+from Screens.Screen import Screen
+from Screens.TextBox import TextBox
 
 
 # always use:

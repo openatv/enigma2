@@ -1,6 +1,8 @@
 from os import listdir
 from os.path import basename, getsize, isdir, isfile, join, splitext
+
 from enigma import eTimer
+
 from Components.MovieList import MOVIE_EXTENSIONS
 from Components.Task import Job, Task
 from Tools.Directories import fileExists, shellquote

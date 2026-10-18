@@ -1,4 +1,5 @@
-from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigText
+
 from . import TitleCutter
 
 

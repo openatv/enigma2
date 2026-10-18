@@ -1,12 +1,13 @@
-from Screens.ParentalControlSetup import ProtectedScreen
-from Screens.Screen import Screen
+from os import X_OK, access, chmod, listdir, mkdir, path
+
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.Label import Label
+from Components.MenuList import MenuList
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
-from Components.ActionMap import ActionMap
-from Components.Label import Label
-from Components.Button import Button
-from Components.MenuList import MenuList
-from os import listdir, mkdir, path, access, X_OK, chmod
+from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.Screen import Screen
 
 
 class ScriptRunner(Screen, ProtectedScreen):

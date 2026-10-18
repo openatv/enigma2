@@ -1,16 +1,16 @@
 from enigma import eCableScan, eDVBFrontendParametersCable, eTimer
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-from Components.Label import Label
 from Components.ActionMap import ActionMap
-from Components.NimManager import nimmanager
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.ProgressBar import ProgressBar
+from Components.Label import Label
+from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
+from Components.ProgressBar import ProgressBar
 from Components.ServiceList import refreshServiceList
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class CableScan:

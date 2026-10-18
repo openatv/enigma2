@@ -1,7 +1,7 @@
+from enigma import eSlider
+
 from Components.GUIComponent import GUIComponent
 from Components.VariableValue import VariableValue
-
-from enigma import eSlider
 
 
 class Slider(VariableValue, GUIComponent):

@@ -1,8 +1,9 @@
-from enigma import getDesktop, gRGB
+from enigma import gRGB, getDesktop
+
+from skin import getSkinFactor, parseFont, subtitleFonts
 from Components.config import config
 from Components.Label import Label
 from Screens.Screen import Screen
-from skin import subtitleFonts, parseFont, getSkinFactor
 
 
 class SubtitleDisplay(Screen):

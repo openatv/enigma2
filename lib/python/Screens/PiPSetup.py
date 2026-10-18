@@ -1,8 +1,8 @@
-from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.SystemInfo import BoxInfo
-from Components.Label import Label
 from Components.config import config
+from Components.Label import Label
+from Components.SystemInfo import BoxInfo
+from Screens.Screen import Screen
 
 # this is not so great.
 MAX_X = 720

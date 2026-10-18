@@ -1,14 +1,11 @@
-from Components.Addons.GUIAddon import GUIAddon
-
-from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER
+from enigma import BT_ALIGN_CENTER, eListbox, eListboxPythonMultiContent
 
 from skin import applySkinFactor
-
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend
+from Components.Addons.GUIAddon import GUIAddon
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 

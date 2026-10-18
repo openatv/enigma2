@@ -1,23 +1,23 @@
 from time import localtime, mktime, strftime, time
 
 from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
-from skin import parameters
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
+from skin import parameters
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import ConfigClock, config, configfile
-from Components.EpgList import EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SIMILAR, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL, EPGBouquetList, EPGList, MAX_TIMELINES, TimelineText
+from Components.EpgList import EPGBouquetList, EPGList, EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_MULTI, EPG_TYPE_SIMILAR, EPG_TYPE_SINGLE, EPG_TYPE_VERTICAL, MAX_TIMELINES, TimelineText
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
+from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Event import Event
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.UsageConfig import preferredTimerPath
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
-from Screens.EventView import showEventViewCallback, getEventViewInstance
+from Screens.EventView import getEventViewInstance, showEventViewCallback
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen

@@ -1,12 +1,10 @@
-from Components.Addons.GUIAddon import GUIAddon
+from enigma import RT_BLEND, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListbox, eListboxPythonMultiContent, gFont
 
-from enigma import eListbox, eListboxPythonMultiContent, gFont, RT_BLEND, RT_HALIGN_LEFT, RT_VALIGN_CENTER
-
-from skin import applySkinFactor, parseFont, parseColor
-
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
-from Components.Sources.StaticText import StaticText
+from skin import applySkinFactor, parseColor, parseFont
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Pixmap import Pixmap
+from Components.Addons.GUIAddon import GUIAddon
+from Components.Sources.StaticText import StaticText
 
 
 class ScreenHeader(GUIAddon):

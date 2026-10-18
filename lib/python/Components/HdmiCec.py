@@ -7,7 +7,7 @@ from time import monotonic, sleep, time
 
 from enigma import eActionMap, eHdmiCEC, eTimer
 
-from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
+from Components.config import ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Console import Console
 import Screens.Standby
 from Tools.Directories import fileExists, fileReadLine, pathExists

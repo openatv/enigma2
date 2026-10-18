@@ -1,17 +1,18 @@
-from enigma import eTimer
 from os import listdir, readlink
 from os.path import exists, isfile, islink, join, split as pathsplit
 
+from enigma import eTimer
+
+from ServiceReference import ServiceReference
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigNothing, ConfigSelection, NoSave, config
 from Components.ScrollLabel import ScrollLabel
+from Components.SystemInfo import BoxInfo, updateSysSoftCam
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import updateSysSoftCam, BoxInfo
 from Screens.InfoBarGenerics import autocam, streamrelay
 from Screens.OScamInfo import OSCamInfo
 from Screens.Processing import Processing
 from Screens.Setup import Setup
-from ServiceReference import ServiceReference
 from Tools.Directories import isPluginInstalled
 from Tools.GetEcmInfo import GetEcmInfo
 from Tools.ServiceAction import ServiceAction

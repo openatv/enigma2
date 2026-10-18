@@ -1,18 +1,18 @@
 from datetime import timedelta
 from re import search
-from time import localtime, time, strftime, mktime
+from time import localtime, mktime, strftime, time
 
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceReference, loadPNG, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eEPGCache, eListbox, eListboxPythonMultiContent, eRect, eServiceReference, eSize, gFont, loadPNG
 
-from Components.GUIComponent import GUIComponent
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getChannelSelectionPiconName
-from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
-from Tools.Alternatives import CompareWithAlternatives
-from Tools.LoadPixmap import LoadPixmap
-from Components.config import config
 from ServiceReference import ServiceReference
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from skin import getSkinFactor, parameters as skinparameter, parseColor, parseFont
+from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryText
+from Components.Renderer.Picon import getChannelSelectionPiconName
+from Tools.Alternatives import CompareWithAlternatives
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 
 EPG_TYPE_SINGLE = 0

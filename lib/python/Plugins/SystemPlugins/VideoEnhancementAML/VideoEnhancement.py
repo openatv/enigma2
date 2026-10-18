@@ -1,5 +1,6 @@
 from os.path import exists
-from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigNothing, NoSave
+
+from Components.config import ConfigNothing, ConfigSelection, ConfigSlider, ConfigSubsection, NoSave, config
 
 # The "VideoEnhancement" is the interface to /sys/class/amvecm.
 #

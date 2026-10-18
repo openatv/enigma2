@@ -1,5 +1,6 @@
-from Components.Console import Console
 import os
+
+from Components.Console import Console
 
 swapdevice = None
 

@@ -1,7 +1,7 @@
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, config
-from Components.Label import Label
 from Components.International import international
+from Components.Label import Label
 from Components.Opkg import OpkgComponent
 from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List

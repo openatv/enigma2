@@ -1,22 +1,21 @@
 from enigma import eDVBDB, eSize, eTimer, iPlayableService, iServiceInformation
+
 from Components.ActionMap import NumberActionMap
+from Components.config import ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSlider, ConfigSubsection, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSlider, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.Boolean import Boolean
-from Components.Sources.StaticText import StaticText
-from Components.Sources.List import List
 from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import originalAudioTracks, visuallyImpairedCommentary
 from Components.VolumeControl import VolumeControl
-
+from Components.Sources.Boolean import Boolean
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup, setupDom
-
 from Tools.ISO639 import LanguageCodes
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]

@@ -1,7 +1,7 @@
+from Components.ActionMap import ActionMap
+from Components.config import ConfigDirectory, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.FileList import FileList
 from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo, ConfigDirectory, NoSave
-from Components.ActionMap import ActionMap
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 

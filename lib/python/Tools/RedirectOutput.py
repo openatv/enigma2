@@ -1,4 +1,5 @@
 import sys
+
 from enigma import ePythonOutput
 
 

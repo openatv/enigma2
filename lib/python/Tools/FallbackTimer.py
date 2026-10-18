@@ -1,9 +1,10 @@
-from ServiceReference import ServiceReference
-from Components.config import config
-from Screens.MessageBox import MessageBox
-from timer import TimerEntry as TimerObject
 from base64 import b64encode
 from urllib.parse import quote
+
+from ServiceReference import ServiceReference
+from timer import TimerEntry as TimerObject
+from Components.config import config
+from Screens.MessageBox import MessageBox
 from Tools.Downloader import formatError, getJson
 
 

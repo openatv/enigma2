@@ -1,9 +1,9 @@
 from os.path import exists, join
 
 from Components.Harddisk import harddiskmanager
-from Components.Scanner import Scanner, ScanPath
+from Components.Scanner import ScanPath, Scanner
 from Plugins.Plugin import PluginDescriptor
-from Screens.DVD import DVDPlayer as _DVDPlayer, DVDOverlay as _DVDOverlay
+from Screens.DVD import DVDOverlay as _DVDOverlay, DVDPlayer as _DVDPlayer
 from Tools.Directories import fileExists
 
 detected_DVD = None

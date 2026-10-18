@@ -1,5 +1,5 @@
-from Components.GUIComponent import GUIComponent
 from skin import getSkinFactor
+from Components.GUIComponent import GUIComponent
 
 
 class GUIAddon(GUIComponent):

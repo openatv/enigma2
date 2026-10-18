@@ -1,5 +1,6 @@
 from os import path as os_path
-from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
+
+from Components.config import ConfigBoolean, ConfigNothing, ConfigSelection, ConfigSlider, ConfigSubsection, NoSave, config
 from Components.SystemInfo import BoxInfo
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.

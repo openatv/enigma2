@@ -1,15 +1,16 @@
-from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
-from Screens.Screen import Screen
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.Label import MultiColorLabel
+from Components.Task import job_manager
+from Components.Sources.List import List
+from Components.Sources.Progress import Progress
+from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Screens.TaskView import JobView
-from Components.Task import job_manager
-from Components.ActionMap import HelpableActionMap, ActionMap
-from Components.Sources.List import List
-from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
-from Components.Label import MultiColorLabel
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
+
+from . import Bludisc, MediumToolbox, Process, Project, ProjectSettings, TitleCutter, TitleProperties
 
 MODE_DVD, MODE_BLUDISC = list(range(2))
 

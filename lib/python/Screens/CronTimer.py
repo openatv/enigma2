@@ -8,10 +8,10 @@ from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.SystemInfo import getBoxDisplayName
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import getBoxDisplayName
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.Directories import fileExists

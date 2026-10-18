@@ -1,8 +1,8 @@
 from enigma import eTimer
 
+from Components.config import config
 import Components.Task
 from Screens.MessageBox import MessageBox
-from Components.config import config
 
 
 def EpgCacheLoadCheck(session=None, **kwargs):

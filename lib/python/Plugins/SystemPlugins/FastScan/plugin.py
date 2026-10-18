@@ -5,7 +5,7 @@ from os.path import join
 from enigma import eDVBFrontendParametersSatellite, eFastScan, eTimer
 
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigInteger, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, config
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.Label import Label
 from Components.NimManager import nimManager
 from Components.Pixmap import Pixmap

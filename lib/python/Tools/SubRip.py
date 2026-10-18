@@ -1,6 +1,6 @@
 import re
 
-from .BaseSubsParser import BaseParser, ParseError, HEX_COLORS
+from .BaseSubsParser import BaseParser, HEX_COLORS, ParseError
 
 
 class SubRipParser(BaseParser):

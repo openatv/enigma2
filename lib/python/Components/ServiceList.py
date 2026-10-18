@@ -7,18 +7,19 @@
 
 from datetime import datetime
 from os.path import exists
-from time import time, localtime, mktime
-from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eServiceCenter, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eEPGCache, getDesktop, eTimer, loadPNG, getDVBIFallbackService
+from time import localtime, mktime, time
 
-from Components.GUIComponent import GUIComponent
-from Components.config import config
-from Components.MultiContent import MultiContentEntryProgress, MultiContentEntryText, MultiContentEntryRectangle, MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend
-from Components.Renderer.Picon import getChannelSelectionPiconName
+from enigma import eEPGCache, eLabel, eListbox, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eRect, eServiceCenter, eServiceReference, eSize, eTimer, gFont, getDVBIFallbackService, getDesktop, loadPNG
+
 import NavigationInstance
 from ServiceReference import ServiceReference, isRadioServiceReference
-from skin import componentTemplates, getcomponentTemplate, parseColor, parseFont, parseListOrientation, reloadSkinTemplates, SizeTuple, SkinContext, SkinContextStack, TemplateParser
+from skin import SizeTuple, SkinContext, SkinContextStack, TemplateParser, componentTemplates, getcomponentTemplate, parseColor, parseFont, parseListOrientation, reloadSkinTemplates
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.MultiContent import MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend, MultiContentEntryProgress, MultiContentEntryRectangle, MultiContentEntryText
+from Components.Renderer.Picon import getChannelSelectionPiconName
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 

@@ -1,7 +1,9 @@
 from os import stat
 from urllib.parse import urlsplit
 from xml.etree.ElementTree import ParseError, fromstring
+
 from enigma import eEnv, eServiceCenter, eServiceReference, eTimer, iPlayableService, iServiceInformation
+
 from Components.ServiceEventTracker import ServiceEventTracker
 from Tools.Directories import SCOPE_CONFIG, resolveFilename
 

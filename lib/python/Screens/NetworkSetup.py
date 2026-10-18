@@ -12,14 +12,14 @@ from Components.config import ConfigIP, ConfigNumber, ConfigPassword, ConfigSele
 from Components.Console import Console
 from Components.Label import Label
 from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, iwListBin, networkManager, wlBin, wpaCliBin
+from Components.SystemInfo import BoxInfo
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Information import InformationNetwork
 from Screens.MessageBox import MessageBox
-from Screens.Processing import Processing
 from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.Conversions import formatNetworkSpeed

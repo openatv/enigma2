@@ -1,6 +1,6 @@
 from fnmatch import fnmatchcase
 from os import makedirs, symlink, unlink
-from os.path import exists, join, islink
+from os.path import exists, islink, join
 from re import compile
 from shutil import rmtree
 from time import time

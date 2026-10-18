@@ -1,6 +1,6 @@
 from json import load
 from os import W_OK, access, listdir, major, makedirs, minor, mkdir, remove, sep, stat, statvfs, unlink, walk
-from os.path import basename, dirname, exists, isdir, isfile, islink, ismount, join, getsize, realpath
+from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, ismount, join, realpath
 from queue import Empty, Queue
 from shutil import rmtree
 from threading import BoundedSemaphore, Event, Thread

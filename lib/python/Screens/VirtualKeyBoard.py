@@ -1,12 +1,12 @@
 from copy import copy, deepcopy
 
-from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, eListboxPythonMultiContent, getPrevAsciiCode, gFont
+from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, eListboxPythonMultiContent, gFont, getPrevAsciiCode
 
 from skin import fonts, parameters
 from Components.ActionMap import HelpableNumberActionMap
 from Components.Input import Input
-from Components.Label import Label
 from Components.International import international
+from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryRectangle, MultiContentEntryText
 from Components.Sources.StaticText import StaticText

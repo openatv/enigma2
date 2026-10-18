@@ -5,7 +5,7 @@ from Components.config import config
 from Components.Renderer.LcdPicon import resetLcdPiconPath
 from Components.Renderer.Picon import resetPiconPath
 from Components.Sources.StaticText import StaticText
-from Screens.LocationBox import LocationBox, DEFAULT_INHIBIT_DIRECTORIES
+from Screens.LocationBox import DEFAULT_INHIBIT_DIRECTORIES, LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
 

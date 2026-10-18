@@ -1,9 +1,11 @@
 from os import remove
-from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
+
 from Components.Harddisk import harddiskmanager
+from Components.Task import Condition, DiskspacePrecondition, Job, Task, ToolExistsPrecondition
 from Screens.MessageBox import MessageBox
-from .Project import iso639language
 import Tools.Notifications
+
+from .Project import iso639language
 
 
 class png2yuvTask(Task):

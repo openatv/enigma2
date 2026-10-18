@@ -1,7 +1,7 @@
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Label import Label
-from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary

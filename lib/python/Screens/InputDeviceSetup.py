@@ -1,13 +1,13 @@
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigYesNo, config, getConfigListEntry
-from Components.InputDevice import inputDevices, keyboard, iRcTypeControl
+from Components.InputDevice import iRcTypeControl, inputDevices, keyboard
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 

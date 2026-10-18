@@ -1,13 +1,11 @@
-from Components.Addons.GUIAddon import GUIAddon
+from enigma import RT_BLEND, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListbox, eListboxPythonMultiContent, eSize, gFont, getDesktop
 
-from enigma import eListbox, eListboxPythonMultiContent, gFont, RT_BLEND, RT_HALIGN_LEFT, RT_VALIGN_CENTER, getDesktop, eSize
-
-from skin import applySkinFactor, parseFont, parseColor, parameters, menuicons
-
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
+from skin import applySkinFactor, menuicons, parameters, parseColor, parseFont
 from Components.Label import Label
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
+from Components.Addons.GUIAddon import GUIAddon
+from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 
 
 def MenuEntryPixmap(key):

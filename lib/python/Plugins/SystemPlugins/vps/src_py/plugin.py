@@ -1,8 +1,9 @@
-from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigSelection
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigYesNo, config
 from Plugins.Plugin import PluginDescriptor
+
+from .Modifications import register_vps
 from .Vps import vps_timers
 from .Vps_setup import VPS_Setup
-from .Modifications import register_vps
 
 config.plugins.vps = ConfigSubsection()
 config.plugins.vps.enabled = ConfigYesNo(default=True)

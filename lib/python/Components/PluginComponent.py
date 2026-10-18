@@ -3,6 +3,7 @@ from os import listdir
 from os.path import exists, isdir, join
 from shutil import rmtree
 from traceback import print_exc
+
 from enigma import eProfileWrite
 
 from Components.ActionMap import loadKeymap

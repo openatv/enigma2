@@ -1,6 +1,6 @@
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.AVSwitch import AVSwitch
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 import Tools.Notifications
 
 

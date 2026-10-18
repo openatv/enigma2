@@ -1,11 +1,13 @@
+from os import unlink
+
+from enigma import eDVBDB, eTimer
+
 from Components.NimManager import nimmanager
 from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
-from Screens.MessageBox import MessageBox
-from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
-from os import unlink
-from enigma import eTimer, eDVBDB
+from Tools.Directories import SCOPE_CONFIG, copyfile, resolveFilename
 
 
 class DefaultServiceScan(ServiceScan):

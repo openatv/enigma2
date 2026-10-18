@@ -1,14 +1,14 @@
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
+from enigma import setAnimation_current, setAnimation_speed
+
 from Components.ActionMap import ActionMap
+from Components.config import ConfigNumber, ConfigSelection, ConfigSelectionNumber, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
-from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigNumber, ConfigSelection, ConfigSelectionNumber, getConfigListEntry
 from Components.SystemInfo import BoxInfo
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-
-from enigma import setAnimation_current, setAnimation_speed
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 GIGABLUE = BoxInfo.getItem("brand") == 'gigablue'
 

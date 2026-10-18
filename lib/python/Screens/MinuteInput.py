@@ -1,7 +1,7 @@
-from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Input import Input
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class MinuteInput(Screen):

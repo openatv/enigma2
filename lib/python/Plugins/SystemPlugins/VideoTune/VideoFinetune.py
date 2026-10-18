@@ -1,12 +1,13 @@
 import math
 
-from Screens.Screen import Screen
-from Components.config import config
-from Components.Sources.CanvasSource import CanvasSource
+from enigma import RT_HALIGN_RIGHT, RT_WRAP, eSize, gFont, gMainDC, getDesktop
+
 from Components.ActionMap import NumberActionMap
+from Components.config import config
 from Components.SystemInfo import BoxInfo
+from Components.Sources.CanvasSource import CanvasSource
+from Screens.Screen import Screen
 from Tools.Directories import fileExists
-from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 
 def RGB(r, g, b):

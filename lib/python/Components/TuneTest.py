@@ -1,4 +1,4 @@
-from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eDVBFrontendParameters, eDVBResourceManager, eTimer
+from enigma import eDVBFrontendParameters, eDVBFrontendParametersATSC, eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBResourceManager, eTimer
 
 
 class Tuner:

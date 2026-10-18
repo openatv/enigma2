@@ -1,7 +1,7 @@
-from Components.GUIComponent import GUIComponent
 from skin import applyAllAttributes
-from Tools.CList import CList
+from Components.GUIComponent import GUIComponent
 from Components.Sources.StaticText import StaticText
+from Tools.CList import CList
 
 
 class GUISkin:

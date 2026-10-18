@@ -11,8 +11,8 @@ from Components.config import ConfigInteger, ConfigSelection
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.Sources.StaticText import StaticText
 from Screens.Console import Console as ConsoleScreen
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
@@ -21,7 +21,7 @@ from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import fileReadLines, fileReadLine, fileWriteLine, fileWriteLines
+from Tools.Directories import fileReadLine, fileReadLines, fileWriteLine, fileWriteLines
 from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]

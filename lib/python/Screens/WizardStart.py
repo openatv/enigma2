@@ -1,5 +1,5 @@
 from os import listdir, makedirs, stat, statvfs
-from os.path import join, isdir, isfile
+from os.path import isdir, isfile, join
 from re import search
 
 from enigma import eTimer
@@ -11,18 +11,18 @@ from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NetworkManager import networkManager
 from Components.Opkg import OpkgComponent
+from Components.Pixmap import Pixmap
 from Components.Storage import EXPANDER_MOUNT
 from Components.SystemInfo import BoxInfo
-from Components.Pixmap import Pixmap
-from Screens.FlashExpander import MOUNT_DEVICE, MOUNT_MOUNTPOINT, MOUNT_FILESYSTEM
+from Screens.FlashExpander import MOUNT_DEVICE, MOUNT_FILESYSTEM, MOUNT_MOUNTPOINT
 from Screens.HarddiskSetup import HarddiskSelection
 from Screens.HelpMenu import ShowRemoteControl
 from Screens.MessageBox import MessageBox
 from Screens.NetworkSetup import NetworkAdapterSetup, NetworkWiFiAddFlow
 from Screens.Processing import Processing
-from Screens.Standby import TryQuitMainloop, QUIT_RESTART
+from Screens.Standby import QUIT_RESTART, TryQuitMainloop
+from Screens.Wizard import Wizard, wizardManager
 from Screens.WizardVideo import WizardVideo
-from Screens.Wizard import wizardManager, Wizard
 from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines
 
 MODULE_NAME = __name__.split(".")[-1]

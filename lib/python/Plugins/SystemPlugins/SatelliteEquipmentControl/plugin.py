@@ -1,8 +1,7 @@
+from Components.NimManager import nimmanager as nimmgr
+from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
-from Plugins.Plugin import PluginDescriptor
-
-from Components.NimManager import nimmanager as nimmgr
 
 
 class SecParameterSettings(Setup):

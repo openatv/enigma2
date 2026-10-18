@@ -1,6 +1,8 @@
-from ServiceReference import ServiceReference
-from enigma import eServiceReference
 import os
+
+from enigma import eServiceReference
+
+from ServiceReference import ServiceReference
 
 
 class PlaylistIO:

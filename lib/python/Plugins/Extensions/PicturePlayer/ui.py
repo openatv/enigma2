@@ -1,17 +1,17 @@
 from os.path import isfile
 
-from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
+from enigma import ePicLoad, eSize, eTimer, gMainDC, getDesktop
 
-from Components.Pixmap import Pixmap, MovingPixmap
+import skin
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.FileList import FileList
+from Components.Pixmap import MovingPixmap, Pixmap
 from Components.Sources.List import List
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo
+from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_GUISKIN
-import skin
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_MEDIA, pathExists, resolveFilename
 
 
 config.pic = ConfigSubsection()

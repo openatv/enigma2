@@ -6,10 +6,10 @@ import NavigationInstance
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigNothing, config, configfile
 from Components.ConfigList import ConfigListScreen
-from Components.Converter.PliExtraInfo import CODEC_NAMES
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
+from Components.Converter.PliExtraInfo import CODEC_NAMES
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

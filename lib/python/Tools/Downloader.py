@@ -10,7 +10,7 @@ from twisted.internet.protocol import Protocol
 from twisted.internet.ssl import CertificateOptions
 from twisted.internet.threads import deferToThread
 from twisted.python.failure import Failure
-from twisted.web.client import Agent, RedirectAgent, BrowserLikeRedirectAgent, BrowserLikePolicyForHTTPS, FileBodyProducer, PartialDownloadError, ResponseDone, ResponseFailed, PotentialDataLoss, readBody
+from twisted.web.client import Agent, BrowserLikePolicyForHTTPS, BrowserLikeRedirectAgent, FileBodyProducer, PartialDownloadError, PotentialDataLoss, RedirectAgent, ResponseDone, ResponseFailed, readBody
 from twisted.web.error import Error
 from twisted.web.http_headers import Headers
 from twisted.web.iweb import IPolicyForHTTPS

@@ -1,6 +1,7 @@
-from enigma import eServiceReference, eServiceReferenceDVB, eServiceCenter, getBestPlayableServiceReference
-from Components.config import config, configfile
+from enigma import eServiceCenter, eServiceReference, eServiceReferenceDVB, getBestPlayableServiceReference
+
 import NavigationInstance
+from Components.config import config, configfile
 
 
 class ServiceReference(eServiceReference):
