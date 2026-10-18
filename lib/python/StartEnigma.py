@@ -270,6 +270,8 @@ class PowerKey:
 		self.session.infobar = None
 
 	def shutdown(self):
+		if not self.session.in_exec:  # Global keys can arrive while a dialog is closing.
+			return
 		recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 		if recordings:
 			from Screens.MessageBox import MessageBox
@@ -288,6 +290,8 @@ class PowerKey:
 			return
 
 		self.standbyblocked = 1
+		if not self.session.in_exec:
+			return
 		if action == "shutdown":
 			self.shutdown()
 		elif action == "show_menu":
@@ -328,6 +332,8 @@ class PowerKey:
 			self.session.open(Screens.Standby.Standby)
 
 	def openSleepTimer(self):
+		if not self.session.in_exec:
+			return
 		from Screens.SleepTimer import SleepTimerButton
 		self.session.open(SleepTimerButton)
 
@@ -997,9 +1003,9 @@ try:
 	from Components.ParentalControl import parentalControl
 	parentalControl.save()  # Save parental control settings.
 except Exception:
-	print("Error: Exception in Python StartEnigma startup code:")
-	print("=" * 52)
-	print_exc(file=sys.stdout)
-	print("[StartEnigma] Exiting via quitMainloop #4.")
+	print("Error: Exception in Python StartEnigma startup code:", file=sys.stderr)
+	print("=" * 52, file=sys.stderr)
+	print_exc(file=sys.stderr)  # Keep startup errors visible when debug output is disabled.
+	print("[StartEnigma] Exiting via quitMainloop #4.", file=sys.stderr)
 	enigma.quitMainloop(5)  # QUIT_ERROR_RESTART
-	print("-" * 52)
+	print("-" * 52, file=sys.stderr)
