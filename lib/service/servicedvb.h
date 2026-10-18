@@ -397,10 +397,14 @@ protected:
 	std::atomic<bool> m_stream_corruption_detected; // FIXED: Changed to std::atomic<bool> to prevent Race Conditions
 
 	bool m_delay_calculated = false; // Flag to ensure delay is calculated only once.
+	enum class RecoveryPhase { Waiting, Playing, Refilling };
+	RecoveryPhase m_recovery_phase = RecoveryPhase::Waiting;
+	pts_t m_recovery_check_position = 0;
 
 	virtual void handleEofRecovery();
 	virtual void startPreciseRecoveryCheck();
 	void resetRecoveryState(); // Resets all recovery state variables.
+	bool getTimeshiftRecoveryDelay(pts_t &delay, pts_t &position);
 	virtual void onRecoveryPaused() {} // Hook after playback is actually paused
 	// -- END: Precise Recovery System --
 };

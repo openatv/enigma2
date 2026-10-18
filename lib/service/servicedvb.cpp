@@ -1841,8 +1841,21 @@ void eDVBServicePlay::resetRecoveryState() {
 	m_original_timeshift_delay = 0;
 	m_delay_calculated = false;
 	m_stream_corruption_detected = false;
+	m_recovery_phase = RecoveryPhase::Waiting;
+	m_recovery_check_position = 0;
 	if (m_precise_recovery_timer->isActive())
 		m_precise_recovery_timer->stop();
+}
+
+bool eDVBServicePlay::getTimeshiftRecoveryDelay(pts_t &delay, pts_t &position)
+{
+	pts_t length = 0;
+	// Both values use the recording timeline. getCurrentPCR() returns a raw
+	// stream timestamp and must not be compared with a relative play position.
+	if (getLength(length) != 0 || getPlayPosition(position) != 0 || length <= 0 || position < 0 || position > length)
+		return false;
+	delay = length - position;
+	return true;
 }
 
 void eDVBServicePlay::handleEofRecovery() {
@@ -1857,16 +1870,17 @@ void eDVBServicePlay::handleEofRecovery() {
 
 	eTrace("[PreciseRecovery] Corruption detected. Pausing playback, recording continues.");
 
+	m_delay_calculated = false;
+	m_original_timeshift_delay = 0;
+	m_recovery_phase = RecoveryPhase::Waiting;
+	m_recovery_check_position = 0;
 	/* Take the delay fingerprint BEFORE pausing: pause() freezes the decoder
 	 * clock, and a getPlayPosition() taken after it would read a stale or
 	 * zero PTS, corrupting the fingerprint. */
-	if (m_record) {
-		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
-			m_original_timeshift_delay = live_pts - playback_pts;
-			m_delay_calculated = true;
-			eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
-		}
+	pts_t position = 0;
+	if (m_record && getTimeshiftRecoveryDelay(m_original_timeshift_delay, position)) {
+		m_delay_calculated = true;
+		eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
 	}
 
 	if (m_decoder) {
@@ -1879,8 +1893,13 @@ void eDVBServicePlay::handleEofRecovery() {
 }
 
 void eDVBServicePlay::startPreciseRecoveryCheck() {
-	if (!m_stream_corruption_detected || !m_record) {
-		m_precise_recovery_timer->stop();
+	if ((!m_stream_corruption_detected && m_recovery_phase != RecoveryPhase::Playing) || !m_record || !m_timeshift_active) {
+		resetRecoveryState();
+		return;
+	}
+	// A manual pause or trick mode takes precedence over the delay check.
+	if (m_recovery_phase == RecoveryPhase::Playing && (m_is_paused || m_skipmode || m_fastforward || m_slowmotion)) {
+		resetRecoveryState();
 		return;
 	}
 
@@ -1889,9 +1908,8 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 	 * is not (reads failed), keep retrying once per tick rather than stopping
 	 * the recovery outright. */
 	if (!m_delay_calculated) {
-		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
-			m_original_timeshift_delay = live_pts - playback_pts;
+		pts_t position = 0;
+		if (getTimeshiftRecoveryDelay(m_original_timeshift_delay, position)) {
 			m_delay_calculated = true;
 			eTrace("[PreciseRecovery] Delayed fingerprint set: %lld PTS", m_original_timeshift_delay);
 		}
@@ -1901,30 +1919,17 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 		}
 	}
 
-	pts_t live_pts = 0;
-
-	if (m_record->getCurrentPCR(live_pts) != 0 || live_pts == 0) {
-		m_precise_recovery_timer->start(100, false);
-		return;
-	}
-
 	int recovery_delay_ms = eSimpleConfig::getInt("config.timeshift.recoveryBufferDelay", 300);
 	const pts_t safety_buffer_pts = recovery_delay_ms * 90;
 
 	bool recovery_complete = false;
+	pts_t position = 0, current_delay = 0;
 
 	{
-		pts_t playback_pts = 0;
-		if (getPlayPosition(playback_pts) != 0) {
+		if (!getTimeshiftRecoveryDelay(current_delay, position)) {
 			m_precise_recovery_timer->start(100, false);
 			return;
 		}
-
-		pts_t current_delay;
-		if (live_pts >= playback_pts)
-			current_delay = live_pts - playback_pts;
-		else
-			current_delay = (live_pts + 0x200000000LL) - playback_pts;
 
 		pts_t final_target_delay = m_original_timeshift_delay + safety_buffer_pts;
 
@@ -1941,16 +1946,45 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 			final_target_delay = 9000;
 #endif
 
-		if (current_delay >= final_target_delay)
+		if (m_recovery_phase == RecoveryPhase::Playing) {
+			// The first recovered timestamp can jump across missing video. Wait
+			// until the decoder reaches it before checking the remaining buffer.
+			if (position < m_recovery_check_position)
+				return;
+			if (current_delay >= final_target_delay) {
+				eTrace("[PreciseRecovery] Delay preserved after discontinuity: %lld PTS", current_delay);
+				resetRecoveryState();
+				return;
+			}
+			if (!m_decoder) {
+				resetRecoveryState();
+				return;
+			}
+			eTrace("[PreciseRecovery] Refilling after discontinuity: delay=%lld PTS, target=%lld PTS", current_delay, final_target_delay);
+			m_recovery_phase = RecoveryPhase::Refilling;
+			m_stream_corruption_detected = true;
+			m_decoder->pause();
+			m_is_paused = 1;
+			onRecoveryPaused();
+		}
+
+		if (current_delay >= final_target_delay) {
+			eTrace("[PreciseRecovery] Buffer ready: delay=%lld PTS, target=%lld PTS", current_delay, final_target_delay);
 			recovery_complete = true;
+		}
 	}
 
 	if (recovery_complete) {
-		m_precise_recovery_timer->stop();
+		const bool check_discontinuity = m_recovery_phase == RecoveryPhase::Waiting;
+		m_recovery_check_position = position + current_delay;
 		m_stream_corruption_detected = false;
 
 		if (m_is_paused)
 			unpause();
+		if (check_discontinuity)
+			m_recovery_phase = RecoveryPhase::Playing;
+		else
+			resetRecoveryState();
 
 		m_event((iPlayableService*)this, evSeekableStatusChanged);
 	} else {
@@ -2021,7 +2055,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event) {
 		break;
 	case eDVBServicePMTHandler::eventEOF:
 		// Ignore EOF event if we are in the middle of a recovery process.
-		if (m_stream_corruption_detected)
+		if (m_stream_corruption_detected || m_recovery_phase == RecoveryPhase::Playing)
 		{
 			eTrace("[eDVBServicePlay] Ignoring EOF during stream corruption recovery.");
 			break;
@@ -2458,7 +2492,7 @@ RESULT eDVBServicePlay::unpause()
 	{
 		m_slowmotion = 0;
 		m_is_paused = 0;
-		if (m_stream_corruption_detected)
+		if (m_stream_corruption_detected || m_recovery_phase == RecoveryPhase::Playing)
 		{
 			eTrace("[PreciseRecovery] User resumed playback. Resetting recovery state.");
 			resetRecoveryState();
@@ -2479,7 +2513,7 @@ RESULT eDVBServicePlay::unpause()
         // If a stream corruption event occurred while the user was paused,
         // its state will be stale. Reset the recovery state machine
         // so that new corruption events can be handled correctly.
-        if (m_stream_corruption_detected)
+        if (m_stream_corruption_detected || m_recovery_phase == RecoveryPhase::Playing)
         {
             eTrace("[PreciseRecovery] User resumed playback. Resetting recovery state.");
             resetRecoveryState();
@@ -2499,6 +2533,8 @@ RESULT eDVBServicePlay::unpause()
 RESULT eDVBServicePlay::seekTo(pts_t to)
 {
 	eDebug("[eDVBServicePlay] seekTo %lld", to);
+	if (m_recovery_phase == RecoveryPhase::Playing)
+		resetRecoveryState();
 
 	if (!m_decode_demux)
 		return -1;
@@ -2529,6 +2565,8 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 {
 	eDebug("[eDVBServicePlay] seekRelative %d, %lld", direction, to);
+	if (m_recovery_phase == RecoveryPhase::Playing)
+		resetRecoveryState();
 
 	if (!m_decode_demux)
 		return -1;
