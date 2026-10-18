@@ -495,7 +495,7 @@ class XMLHelp(Screen):
 		if additionalSkin:
 			self.skinName.insert(0, additionalSkin)
 		self["key_red"] = StaticText(_("Close"))
-		self["key_yellow"] = StaticText("")
+		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(">>" if pages else "")
 		self["heading"] = Label()
 		self["detailtext"] = ScrollLabel()

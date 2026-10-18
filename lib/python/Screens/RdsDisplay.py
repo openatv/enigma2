@@ -383,9 +383,9 @@ class RdsInfoDisplaySummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["message"] = StaticText("")
-		self["station"] = StaticText("")
-		self["combined"] = StaticText("")
+		self["message"] = StaticText()
+		self["station"] = StaticText()
+		self["combined"] = StaticText()
 		self["picture"] = Pixmap()
 		self["picture"].hide()
 		self.ignoreWidgets.append("picture")

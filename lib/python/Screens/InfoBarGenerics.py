@@ -615,7 +615,7 @@ class NumberZap(Screen):
 		self["servicenumber"] = Label(self.numberString)
 		self["number_summary"] = StaticText(self.numberString)
 		self["servicename"] = Label()
-		self["service_summary"] = StaticText("")
+		self["service_summary"] = StaticText()
 		self["Service"] = ServiceEvent()
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
@@ -5038,8 +5038,8 @@ class InfoBarMoviePlayerSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["state_summary"] = StaticText("")
-		self["speed_summary"] = StaticText("")
+		self["state_summary"] = StaticText()
+		self["speed_summary"] = StaticText()
 		self["statusicon_summary"] = MultiPixmap()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)

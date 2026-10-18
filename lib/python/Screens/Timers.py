@@ -504,10 +504,10 @@ class TimerOverviewBase(Screen):
 		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = [MODE_DATA[mode][MODE_DATA_SKIN], "TimerOverview", "TimerEditList"]  # TimerEditList is deprecated but kept for older skin compatibility.
 		self.setTitle(MODE_DATA[mode][MODE_DATA_TITLE])
-		self["key_info"] = StaticText("")
-		self["key_red"] = StaticText("")
-		self["key_yellow"] = StaticText("")
-		self["key_blue"] = StaticText("")
+		self["key_info"] = StaticText()
+		self["key_red"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["description"] = Label("")
 		self["actions"] = HelpableActionMap(self, ["TimerActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
@@ -644,11 +644,11 @@ class TimerOverviewBase(Screen):
 class TimerOverviewSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["name"] = StaticText("")
-		self["service"] = StaticText("")
-		self["time"] = StaticText("")
-		self["duration"] = StaticText("")
-		self["state"] = StaticText("")
+		self["name"] = StaticText()
+		self["service"] = StaticText()
+		self["time"] = StaticText()
+		self["duration"] = StaticText()
+		self["state"] = StaticText()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 
@@ -1971,7 +1971,7 @@ class TimerLog(Screen):
 		self.timer = timer
 		self["log"] = ScrollLabel()
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText("")
+		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText(_("Refresh"))
 		self["key_blue"] = StaticText(_("Clear Log"))
 		self["actions"] = HelpableActionMap(self, ["CancelSaveActions", "OkActions", "ColorActions", "NavigationActions"], {

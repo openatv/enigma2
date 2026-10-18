@@ -215,7 +215,7 @@ class MessageBoxSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
 		self["text"] = StaticText(parent.text)
-		self["option"] = StaticText("")
+		self["option"] = StaticText()
 		if parent.list:
 			if self.addWatcher not in self.onShow:
 				self.onShow.append(self.addWatcher)

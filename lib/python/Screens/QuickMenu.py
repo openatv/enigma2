@@ -80,7 +80,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["key_green"] = StaticText(_("System Info"))
 		self["key_yellow"] = StaticText(_("Devices"))
 		self["description"] = Label()
-		self["summary_description"] = StaticText("")
+		self["summary_description"] = StaticText()
 		indexNames = {
 			"Name": 0,
 			"Summary": 1,

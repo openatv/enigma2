@@ -315,7 +315,7 @@ class RestoreMenu(Screen, ProtectedScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Restore"))
 		self["key_yellow"] = StaticText(_("Delete"))
-		self["summary_description"] = StaticText("")
+		self["summary_description"] = StaticText()
 
 		self.sel = []
 		self.val = []
@@ -649,7 +649,7 @@ class RestorePlugins(Screen, ProtectedScreen):
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
 		self["key_green"] = StaticText(_("Install"))
 		self["key_red"] = StaticText(_("Cancel"))
-		self["summary_description"] = StaticText("")
+		self["summary_description"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{

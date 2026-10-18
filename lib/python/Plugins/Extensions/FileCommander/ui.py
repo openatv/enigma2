@@ -2462,8 +2462,8 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 		numberScaler = NumberScaler()
 		self.path = normpath(path)
 		self.target = target
-		self["key_green"] = StaticText("")
-		self["key_yellow"] = StaticText("")
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
 		self["detailAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"green": (self.keyDetails, _("Display more information about this file"))
 		}, prio=0, description=_("Directory/File Status Actions"))

@@ -83,7 +83,7 @@ class NetworkMountsOverview(Screen):
 		self["mountList"].onSelectionChanged.append(self.selectionChanged)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Browse"))
-		self["key_yellow"] = StaticText("")
+		self["key_yellow"] = StaticText()
 		self["key_menu"] = StaticText("MENU")
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "MenuActions", "ColorActions"], {
 			"ok": (self.keyEdit, _("Edit the selected network mount")),
@@ -296,8 +296,8 @@ class NetworkMountsSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
 		self.skinName = "SetupSummary"
-		self["entry"] = StaticText("")
-		self["value"] = StaticText("")
+		self["entry"] = StaticText()
+		self["value"] = StaticText()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 

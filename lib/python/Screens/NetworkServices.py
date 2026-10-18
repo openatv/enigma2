@@ -879,7 +879,7 @@ class NetworkZeroTierSetup(Setup):
 		self.lastInfo = None
 		self.joined = False
 		Setup.__init__(self, session=session, setup="NetworkZeroTier")
-		self["key_yellow"] = StaticText("")
+		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Refresh"))
 		self["zerotierActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.toggleJoinLeave, _("Join or leave the configured ZeroTier network")),
