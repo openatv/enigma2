@@ -408,6 +408,20 @@ private:
 	// "&e2subtitletrack=" given, ignore pango_autoturnon
 	bool m_subtitle_requested;
 	int64_t m_last_trickseek_ms;   /* CLOCK_MONOTONIC, throttle 500ms */
+#ifdef DREAMNEXTGEN
+	/* winding by key frame seeks at the target position, the decoder has
+	 * no usable trick mode */
+	ePtr<eTimer> m_wind_timer;
+	int m_wind_ratio; /* 0: not winding */
+	pts_t m_wind_start;
+	int64_t m_wind_start_ms;
+	int64_t m_wind_seek_ms; /* a seek waits for its picture, 0: none */
+	unsigned int m_wind_vpts; /* the picture on screen at that seek */
+	void windTick();
+	void windStop();
+	pts_t windTarget(int64_t now_ms);
+	bool canWind();
+#endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;

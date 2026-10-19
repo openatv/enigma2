@@ -1092,6 +1092,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
 	m_last_trickseek_ms = 0;
+#ifdef DREAMNEXTGEN
+	m_wind_timer = eTimer::create(eApp);
+	CONNECT(m_wind_timer->timeout, eServiceMP3::windTick);
+	m_wind_ratio = 0;
+	m_wind_start = 0;
+	m_wind_start_ms = 0;
+	m_wind_seek_ms = 0;
+	m_wind_vpts = 0;
+#endif
 	m_to_paused = false;
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
@@ -1763,6 +1772,9 @@ RESULT eServiceMP3::stop() {
 
 	eDebug("[eServiceMP3] stop %s", m_ref.path.c_str());
 	m_state = stStopped;
+#ifdef DREAMNEXTGEN
+	windStop();
+#endif
 
 	GstStateChangeReturn ret;
 	GstState state, pending;
@@ -1858,8 +1870,112 @@ RESULT eServiceMP3::setSlowMotion(int ratio) {
  */
 RESULT eServiceMP3::setFastForward(int ratio) {
 	eDebug("[eServiceMP3] setFastForward ratio=%.1f", (gdouble)ratio);
+#ifdef DREAMNEXTGEN
+	if (m_state != stRunning || !ratio || !canWind())
+		return -1;
+	/* files wind forward by rate, dvbvideosink scales the PTS; a rate seek
+	 * blocks an adaptive demuxer and many demuxers cannot play backwards,
+	 * those wind by key frame seeks */
+	if (ratio > 0 && !m_is_adaptive_stream && !m_sourceinfo.is_hls) {
+		windStop();
+		return trickSeek(ratio);
+	}
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+	pts_t start;
+	if (m_wind_ratio)
+		start = windTarget(now_ms); /* a new speed winds on from here */
+	else if (getPlayPosition(start) < 0)
+		return -1;
+	m_wind_start = start;
+	m_wind_start_ms = now_ms;
+	m_wind_ratio = ratio;
+	/* the sink writes nothing while paused, the picture plays on between
+	 * the seeks */
+	if (m_paused) {
+		m_to_paused = false;
+		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+	}
+	m_wind_timer->start(0, true);
+	return 0;
+#else
 	return trickSeek(ratio);
+#endif
 }
+
+#ifdef DREAMNEXTGEN
+bool eServiceMP3::canWind() {
+	if (!m_gst_playbin || m_is_live)
+		return false;
+	/* a live playlist prerolls like a file but has no length to wind in */
+	gboolean seekable = FALSE;
+	gint64 duration = 0;
+	GstQuery* query = gst_query_new_seeking(GST_FORMAT_TIME);
+	if (gst_element_query(m_gst_playbin, query))
+		gst_query_parse_seeking(query, NULL, &seekable, NULL, NULL);
+	gst_query_unref(query);
+	return seekable && gst_element_query_duration(m_gst_playbin, GST_FORMAT_TIME, &duration) && duration > 0;
+}
+
+pts_t eServiceMP3::windTarget(int64_t now_ms) {
+	pts_t target = m_wind_start + (pts_t)m_wind_ratio * (now_ms - m_wind_start_ms) * 90;
+	pts_t length = 0;
+	if (target < 0)
+		target = 0;
+	/* hold short of the end, an EOS would end the playback */
+	if (getLength(length) == 0 && length > 90000 && target > length - 90000)
+		target = length - 90000;
+	return target;
+}
+
+static unsigned int windVideoPts() {
+	unsigned int vpts = 0;
+	FILE* f = fopen("/sys/class/tsync/pts_video", "r");
+	if (f) {
+		if (fscanf(f, "%x", &vpts) != 1)
+			vpts = 0;
+		fclose(f);
+	}
+	return vpts;
+}
+
+void eServiceMP3::windTick() {
+	if (!m_wind_ratio || !m_gst_playbin)
+		return;
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+	/* the next seek waits for the picture of the last one, a seek before
+	 * would flush it unseen and a network source would pile them up */
+	if (m_wind_seek_ms && now_ms - m_wind_seek_ms < 2000 && windVideoPts() == m_wind_vpts) {
+		m_wind_timer->start(50, true);
+		return;
+	}
+	pts_t target = windTarget(now_ms);
+	if (target != m_last_seek_pos) {
+		m_wind_seek_ms = now_ms;
+		m_wind_vpts = windVideoPts();
+		m_last_seek_pos = target;
+		gst_element_seek(m_gst_playbin, 1.0, GST_FORMAT_TIME,
+						 (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
+						 GST_SEEK_TYPE_SET, (gint64)(target * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE);
+	}
+	m_wind_timer->start(400, true);
+}
+
+void eServiceMP3::windStop() {
+	if (!m_wind_ratio)
+		return;
+	m_wind_timer->stop();
+	m_wind_ratio = 0;
+	m_wind_seek_ms = 0;
+	/* back to a plain segment with sound at the last target */
+	if (m_state == stRunning)
+		gst_element_seek(m_gst_playbin, 1.0, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+						 GST_SEEK_TYPE_SET, (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE);
+}
+#endif
 
 // iPausableService
 
@@ -1879,6 +1995,9 @@ RESULT eServiceMP3::pause() {
 	m_subtitles_paused = true;
 	m_subtitle_sync_timer->start(1, true);
 	eDebug("[eServiceMP3] pause");
+#ifdef DREAMNEXTGEN
+	windStop();
+#endif
 	if (!m_paused)
 		trickSeek(0.0);
 	else
@@ -1903,6 +2022,9 @@ RESULT eServiceMP3::unpause() {
 	m_subtitles_paused = false;
 	m_decoder_time_valid_state = 0;
 	m_subtitle_sync_timer->start(1, true);
+#ifdef DREAMNEXTGEN
+	windStop();
+#endif
 	/* no need to unpase if we are not paused already */
 	if (m_currentTrickRatio == 1.0 && !m_paused && !m_to_paused) {
 		eDebug("[eServiceMP3] trickSeek no need to unpause!");
@@ -2200,6 +2322,13 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 
 	bool validposition = false;
 	gint64 pos = 0;
+#ifdef DREAMNEXTGEN
+	/* wind on from the picture on screen, the last seek may be long ago */
+	if (getPlayPosition(pts) >= 0) {
+		validposition = true;
+		pos = pts * 11111LL;
+	} else
+#endif
 	if (m_last_seek_pos > 0) {
 		validposition = true;
 		pos = m_last_seek_pos * 11111LL;
@@ -2220,17 +2349,24 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 	}
 
 	if (validposition) {
+		GstSeekFlags flags = (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO);
+#ifdef DREAMNEXTGEN
+		if (ratio == 1.0) {
+			/* back to normal play with sound */
+			flags = (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT);
+		} else {
+			/* the decoder takes every frame up to about 60 per second, beyond
+			 * and backwards it gets the key frames only */
+			int fps = m_framerate > 1000 ? m_framerate / 1000 : 25;
+			if (ratio < 0.0 || ratio * fps > 60.0)
+				flags = (GstSeekFlags)(flags | GST_SEEK_FLAG_TRICKMODE_KEY_UNITS);
+		}
+#endif
 		if (ratio >= 0.0) {
-			gst_element_seek(
-				m_gst_playbin, ratio, GST_FORMAT_TIME,
-				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
-				GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 		} else {
 			/* note that most elements will not support negative speed */
-			gst_element_seek(
-				m_gst_playbin, ratio, GST_FORMAT_TIME,
-				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
-				GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, flags, GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
 		}
 	}
 
@@ -2439,6 +2575,11 @@ RESULT eServiceMP3::isCurrentlySeekable() {
 
 	if (!m_gst_playbin)
 		return 0;
+#ifdef DREAMNEXTGEN
+	/* 4: winds at every speed and backwards itself, InfoBarSeek needs no jumps; with jumps on, it jumps from 8x and backwards */
+	if (m_state == stRunning && m_prerolled)
+		return canWind() ? (eConfigManager::getConfigBoolValue("config.seek.withjumps", true) ? 3 : 7) : 0;
+#endif
 
 	return ret;
 }
