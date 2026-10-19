@@ -1215,6 +1215,7 @@ class InfoBarSeek:
 		self.lastseekstate = self.SEEK_STATE_PLAY
 		self.seekAction = 0
 		self.LastseekAction = False
+		self.seekJumpSpeed = 0  # Speed of a state the service cannot wind at, DoSeekAction jumps instead.
 		self.onPlayStateChanged = []
 		self.lockedBecauseOfSkipping = False
 		self.__seekableStatusChanged()
@@ -1356,6 +1357,11 @@ class InfoBarSeek:
 			# print("not pauseable.")
 			state = self.SEEK_STATE_PLAY
 		self.seekstate = state
+		if self.seekJumpSpeed and not state[1]:  # Winding with jumps ends.
+			if self.seekAction == self.seekJumpSpeed:
+				self.seekAction = 0
+				self.LastseekAction = False
+			self.seekJumpSpeed = 0
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == "||":
 				# print("resolved to PAUSE")
@@ -1366,8 +1372,12 @@ class InfoBarSeek:
 				self.activityTimer.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
-					pass
+					self.seekJumpSpeed = 0
 					# print("resolved to FAST FORWARD")
+				elif self.getSeek() and self.getSeek().isCurrentlySeekable() & 1:  # The service cannot wind, wind with jumps at the speed of the state.
+					self.seekJumpSpeed = self.seekAction = self.seekstate[1]
+					self.LastseekAction = True
+					self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 				else:
 					self.seekstate = self.SEEK_STATE_PLAY
 					# print("FAST FORWARD not possible: resolved to PLAY")
@@ -1533,12 +1543,13 @@ class InfoBarSeek:
 			self.showAfterSeek()
 
 	def DoSeekAction(self):
-		if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):
+		jumpForward = self.seekAction > (0 if self.seekJumpSpeed else int(config.seek.withjumps_after_ff_speed.getValue()))
+		if jumpForward:
 			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_forwards_ms.getValue()) * 90)
 		elif self.seekAction < 0:
 			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_backwards_ms.getValue()) * 90)
 		for c in self.onPlayStateChanged:
-			if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):  # Forward.
+			if jumpForward:  # Forward.
 				c((0, self.seekAction, 0, ">> %dx" % self.seekAction))
 			elif self.seekAction < 0:  # Backward.
 				c((0, self.seekAction, 0, "<< %dx" % abs(self.seekAction)))
@@ -1653,16 +1664,21 @@ class InfoBarSeek:
 		return pts
 
 	def seekFwd(self):
-		if config.seek.withjumps.value and not self.isServiceTypeTS():
+		if config.seek.withjumps.value and not self.isServiceTypeTS() and self.windsWithJumps():
 			self.seekFwd_new()
 		else:
 			self.seekFwd_old()
 
 	def seekBack(self):
-		if config.seek.withjumps.value and not self.isServiceTypeTS():
+		if config.seek.withjumps.value and not self.isServiceTypeTS() and self.windsWithJumps():
 			self.seekBack_new()
 		else:
 			self.seekBack_old()
+
+	def windsWithJumps(self):  # A service that winds at every speed itself (4) or cannot seek (no 1) gets no jumps.
+		seek = self.getSeek()
+		seekable = seek.isCurrentlySeekable() if seek else 0
+		return bool(seekable & 1) and not seekable & 4
 
 	def seekFwd_new(self):
 		self.LastseekAction = True
