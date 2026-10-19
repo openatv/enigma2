@@ -3,20 +3,21 @@
 # Snoete <snoete@hotmail.com>, 2022, 2023, 2024, 2025, 2026.
 # Walter <info@wt-electronic.nl>, 2021.
 # jbleyel <jbleyel@gmx.net>, 2023, 2026.
+# Snoete <snoete@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-15 14:11+0000\n"
-"PO-Revision-Date: 2026-08-16 15:58+0000\n"
-"Last-Translator: Snoete <snoete@hotmail.com>\n"
+"PO-Revision-Date: 2026-10-19 19:15+0000\n"
+"Last-Translator: Snoete <snoete@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -43,8 +44,9 @@ msgstr "  REC  "
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Rode kop : Toon/verberg zender naam"
 
+#, fuzzy
 msgid " (+5 volt terrestrial)"
-msgstr ""
+msgstr " (+5 Volt, terrestrisch)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -795,7 +797,7 @@ msgstr[1] "%d uren"
 
 #, python-format
 msgid "%d Hz"
-msgstr ""
+msgstr "%d Hz"
 
 #, python-format
 msgid "%d MB"
@@ -880,7 +882,7 @@ msgstr[1] "%d jaren"
 
 #, python-format
 msgid "%d additional slots have been created.\n"
-msgstr ""
+msgstr "%d er zijn extra slots gecreëerd.\n"
 
 #, python-format
 msgid "%d core"
@@ -897,8 +899,8 @@ msgstr[1] "%d feed catalogus pakketten zijn bijgewerkt."
 #, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Host gevonden."
+msgstr[1] "%d Hosts gevonden."
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -923,20 +925,20 @@ msgstr "%d ms"
 #, python-format
 msgid "%d network found."
 msgid_plural "%d networks found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d netwerk gevonden."
+msgstr[1] "%d netwerken gevonden."
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
-msgstr ""
+msgstr "Er worden %d verouderde STARTUP bestanden van de fabrikant vervangen of verwijderd."
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
-msgstr ""
+msgstr "%d van %d zenders bevatten een DAB+ ensemble"
 
 #, python-format
 msgid "%d of %d feeds completed"
-msgstr ""
+msgstr "%d van %d feeds voltooid"
 
 #, python-format
 msgid "%d package found."
@@ -1036,7 +1038,7 @@ msgstr[1] "%d Plugins zijn niet beschikbaar:"
 
 #, python-format
 msgid "%d radio bouquets created"
-msgstr ""
+msgstr "%d Radiobouquets aangemaakt"
 
 #, python-format
 msgid "%d sec"
@@ -1050,7 +1052,7 @@ msgstr[1] "%d zenders gevonden."
 
 #, python-format
 msgid "%d slots have been created on the device.\n"
-msgstr ""
+msgstr "%d slots zijn op het gekozen apparaat aangemaakt.\n"
 
 #, python-format
 msgid "%d times"
@@ -1168,11 +1170,11 @@ msgstr "%s %sB"
 
 #, python-format
 msgid "%s (cached)"
-msgstr ""
+msgstr "%s (in cache opgeslagen)"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%s (motor)"
-msgstr ""
+msgstr "%s (motor)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1184,7 +1186,7 @@ msgstr "%s Plugin Browser beheren"
 
 #, python-format
 msgid "%s DMIPS per core"
-msgstr ""
+msgstr "%s DMIPS per core"
 
 #, python-format
 msgid "%s GHz"
@@ -1212,7 +1214,7 @@ msgstr "%s View"
 
 #, python-format
 msgid "%s action failed (exit code %s)"
-msgstr ""
+msgstr "%s actie mislukt (exitcode %s)"
 
 #, python-format
 msgid "%s additional screens"
@@ -1236,10 +1238,13 @@ msgid ""
 "\n"
 "Do you want to start it?"
 msgstr ""
+"%s wordt momenteel niet uitgevoerd.\n"
+"\n"
+"Wilt u die starten?"
 
 #, python-format
 msgid "%s is currently stopped or unreachable. Press GREEN to start it."
-msgstr ""
+msgstr "%s is op dit moment gestopt of onbereikbaar. Druk op GROEN, om die te starten."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1255,15 +1260,15 @@ msgid "%s not available."
 msgstr "%s niet beschikbaar."
 
 msgid "%s support"
-msgstr ""
+msgstr "%s support"
 
 #, python-format
 msgid "%s version"
-msgstr ""
+msgstr "%s versie"
 
 #, python-format
 msgid "%s webif disabled"
-msgstr ""
+msgstr "%s webif uitgeschakeld"
 
 #, python-format
 msgid "%s%d min"
@@ -1276,7 +1281,7 @@ msgstr "%s%s(Default: %s)"
 
 #, python-format
 msgid "%s. (Lowest)"
-msgstr ""
+msgstr "%s. (Laagste)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1284,11 +1289,11 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%s: bouquet could not be cleared"
-msgstr ""
+msgstr "%s: Bouquet kon niet verwijderd worden"
 
 #, python-format
 msgid "%s: bouquet could not be written"
-msgstr ""
+msgstr "%s: Bouquet kon niet worden aangemaakt"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1332,26 +1337,26 @@ msgstr "'%s' bevat %d bestand(en) en %d sub-mappen.\n"
 
 #, python-format
 msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
-msgstr ""
+msgstr "'%s' is al door een andere instelling hierboven vastgelegd, daarom deze a.u.b. uit de 'Mount opties' verwijderen."
 
 #, python-format
 msgid "'%s' is listed more than once in 'Mount options'."
-msgstr ""
+msgstr "'%s' is al meerdere keren vermeld in de 'Mount opties'."
 
 #, python-format
 msgid "'%s' mounted."
-msgstr ""
+msgstr "'%s' gemount."
 
 #, python-format
 msgid "'%s' unmounted."
-msgstr ""
+msgstr "'%s' geünmount."
 
 #, python-format
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
-msgstr ""
+msgstr "'%s' gebruikt de enterprise authentificatie (802.1X). Dit soort netwerken kunnen hier niet ingesteld worden, maar moeten handmatig in het bestand 'wpa_supplicant.conf' worden geconfigureerd."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
-msgstr "Geef 'Standby van de TV' een hogere prioriteit dan 'input van de TV'."
+msgstr "Geef 'Stand-by van de TV' een hogere prioriteit dan 'input van de TV'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "`Decodeer & en ECM opnemen' geeft de optie om achteraf te decoderen indien dit niet lukt tijdens de opname. 'Niet Decoderen & en neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opslaan."
@@ -1368,7 +1373,7 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Opgelet: Na %d crashes vind een herstart plaats.)"
 
 msgid "(Deep) Standby only"
-msgstr ""
+msgstr "Alleen (Deep) Stand-by"
 
 msgid "(PiP)"
 msgstr "(PiP)"
@@ -1420,19 +1425,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24/+24 Uur"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr ""
+msgstr "'/media/hdd' bestaat al en is geen map. Deze wordt niet overschreven."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr ""
+msgstr "'/media/hdd' bevat bestanden of andere mappen. Deze voor het activeren van de harde schijf vervanger verplaatsen; er werd niets verwijderd."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr ""
+msgstr "'/media/hdd' is een bestaande snelkoppeling naar een andere locatie. Er word niets overschreven."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr ""
+msgstr "'/media/hdd' word al gebruikt. A.u.b. het bestaande apparaat of Share unmounten voordat u de harde schijf vervangt."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr ""
+msgstr "'/media/hdd' is al in '/etc/fstab' voor een ander apparaat gereserveerd. A.u.b. eerst het mountpoint van dat apparaat wijzigen."
 
 msgid "/s"
 msgstr "/s"
@@ -1447,7 +1452,7 @@ msgid "1"
 msgstr "1"
 
 msgid "1. (Highest)"
-msgstr ""
+msgstr "1. (Hoogste)"
 
 msgid "10bit"
 msgstr "10bit"
@@ -1459,7 +1464,7 @@ msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if
 msgstr "12, toon Latin-1 letters behalve bij grieks en cyrillisch, wanneer nodig dan naar 8 wisselen."
 
 msgid "12-bit HDR (no PiP)"
-msgstr ""
+msgstr "12-bit HDR (geen PiP)"
 
 msgid "12V output"
 msgstr "12V uitgang"
@@ -1615,7 +1620,7 @@ msgid "<Select a device>"
 msgstr "<Selecteer een apparaat>"
 
 msgid "<no capabilities found>"
-msgstr ""
+msgstr "<geen mogelijkheden gevonden>"
 
 msgid "<no log found>"
 msgstr "<geen log gevonden"
@@ -1627,7 +1632,7 @@ msgid "A backup is now being created."
 msgstr "Er wordt nu een back-up gemaakt."
 
 msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
-msgstr ""
+msgstr "Er is een back-up van vorige instellingen gevonden. Wilt u deze herstellen, voordat u verder gaat met de configuratie?"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Een door komma's gescheiden lijst van extensies, die voor de instelling van \"Mijn extensies\" in \"Extensies filteren\" gebruikt gaan worden. Geef de naam van de extensie op zonder leidende punt (.)."
@@ -1698,7 +1703,7 @@ msgstr ""
 "%s"
 
 msgid "A recording has priority. Time shift is being stopped."
-msgstr ""
+msgstr "Een opname heeft nu voorrang. Timeshift wordt beëindigd."
 
 msgid ""
 "A recording is currently running.\n"
@@ -1711,10 +1716,10 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
 
 msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
-msgstr ""
+msgstr "Een opname loopt of zal binnen zes minuten starten. Het wijzigen van de Tuner configuratie kan deze opname onderbreken. Toch opslaan?"
 
 msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
-msgstr ""
+msgstr "Een opname loopt of zal binnen zes minuten starten. Daarom a.u.b. de Rotor instellingen op een later moment wijzigen."
 
 #, python-format
 msgid ""
@@ -1731,7 +1736,7 @@ msgid "A required tool (%s) was not found."
 msgstr "Het benodigde hulpmiddel (%s) is niet gevonden."
 
 msgid "A storage check is still running. Save these settings without waiting for it?"
-msgstr ""
+msgstr "Er loopt nog een opslagcontrole. Deze instellingen opslaan, zonder op het resultaat te wachten?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -1765,6 +1770,8 @@ msgid ""
 "A zap timer wants to switch the channel.\n"
 "Do you want to zap now?\n"
 msgstr ""
+"Een ZapTimer wil naar een andere zender wisselen. \n"
+"Wilt u nu omschakelen?"
 
 msgid "AAC downmix"
 msgstr "AAC downmix"
@@ -1785,13 +1792,13 @@ msgid "AC3plus transcoding"
 msgstr "AC3plus transcodering"
 
 msgid "AC4"
-msgstr ""
+msgstr "AC4"
 
 msgid "AFL"
 msgstr "AFL"
 
 msgid "AI Subtitles"
-msgstr ""
+msgstr "AI-Ondertiteling"
 
 msgid "AI Translation color"
 msgstr "Kleur van de door AI vertaalde ondertiteling"
@@ -1827,7 +1834,7 @@ msgid "ATSC provider"
 msgstr "ATSC provider"
 
 msgid "AV Receiver, Soundbar And Remote"
-msgstr ""
+msgstr "AV-Receiver, Soundbar en afstandsbediening"
 
 msgid "AV Setup"
 msgstr "Audio / Video"
@@ -1866,7 +1873,7 @@ msgid "Above 200 Mbps"
 msgstr "Boven 200 Mbps"
 
 msgid "Access mode"
-msgstr ""
+msgstr "Toegangsmodus"
 
 msgid "Access point"
 msgstr "Access point"
@@ -1875,6 +1882,8 @@ msgid ""
 "Access point not found.\n"
 "Check it is in range and the SSID is correct."
 msgstr ""
+"Access point niet gevonden.\n"
+"Controleren of die in de buurt is en of de SSID correct is."
 
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Voor toegang tot geolocatie informatie is een internetverbinding noodzakelijk."
@@ -1916,7 +1925,7 @@ msgid "Activate a way to send individual or specific internal HDMI-CEC commands 
 msgstr "Activeer een manier om individuele of specifieke interne HDMI-CEC commando's via de command-line te sturen."
 
 msgid "Activate network adapter"
-msgstr ""
+msgstr "De netwerkadapter activeren"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "De Flash-Expander inschakelen, alle wijzigen opslaan en afsluiten"
@@ -1940,15 +1949,15 @@ msgid "Active only"
 msgstr "Alleen actieve"
 
 msgid "Adapter"
-msgstr ""
+msgstr "Adapter"
 
 #, python-format
 msgid "Adapter '%s'"
-msgstr ""
+msgstr "Adapter '%s'"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
-msgstr ""
+msgstr "Adapter '%s' Contextmenu"
 
 msgid "Adapter Settings"
 msgstr "Adapter instellingen"
@@ -1957,7 +1966,7 @@ msgid "Add"
 msgstr "Toevoegen"
 
 msgid "Add 'Manual resolution' to Extensions"
-msgstr ""
+msgstr "Voeg 'Handmatige resolutie' toe aan het Extensies-menu (BLAUW-Lang)"
 
 msgid "Add Alternatives"
 msgstr "Alternatieven toevoegen"
@@ -1996,13 +2005,13 @@ msgid "Add Marker To Bouquet"
 msgstr "Marker toevoegen"
 
 msgid "Add Mount Manually"
-msgstr ""
+msgstr "Een Mountpoint handmatig toevoegen"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Nieuwe Quad zender toevoegen"
 
 msgid "Add Path"
-msgstr ""
+msgstr "Pad toevoegen"
 
 msgid "Add RecordTimer"
 msgstr "Timer voor een opname toevoegen"
@@ -2023,10 +2032,10 @@ msgid "Add To Parental Protection"
 msgstr "Zender op kinderslot zetten"
 
 msgid "Add Wi-Fi"
-msgstr ""
+msgstr "Wifi toevoegen"
 
 msgid "Add Wi-Fi Manually"
-msgstr ""
+msgstr "Wifi handmatig toevoegen"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Timer voor 'Zappen + Opnemen' toevoegen"
@@ -2056,7 +2065,7 @@ msgid "Add a mark"
 msgstr "Plaats een markering"
 
 msgid "Add a new Saved Wi-Fi Network"
-msgstr ""
+msgstr "Een nieuw opgeslagen wifi netwerk toevoegen"
 
 msgid "Add a new bouquet"
 msgstr "Een favorietenlijst toevoegen"
@@ -2110,7 +2119,7 @@ msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
 
 msgid "Add or change additional slots"
-msgstr ""
+msgstr "Extra slots toevoegen of wijzigen"
 
 msgid "Add provider"
 msgstr "Provider toevoegen"
@@ -2179,7 +2188,7 @@ msgid "Adding schedule..."
 msgstr "Voegt schema toe..."
 
 msgid "Additional cable of motorized LNB"
-msgstr ""
+msgstr "Extra kabel voor een gemotoriseerde LNB"
 
 msgid "Additional files/folders to backup"
 msgstr "Extra back-up bestanden"
@@ -2192,13 +2201,13 @@ msgstr "Aanvullende motoropties geven de mogelijkheid de specifieke eigenschappe
 
 #, python-format
 msgid "Additional rotor cable from %s"
-msgstr ""
+msgstr "Extra Rotorkabel van %s"
 
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
-msgstr ""
+msgstr "Extra slots kunnen niet gewijzigd worden, zolang de ontvanger op één van deze slots loopt."
 
 msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
-msgstr ""
+msgstr "De CPU-frequentie aan de door de kernel scheduler gelezen waarde aanpassen."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden zijn, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op OK om dit menu af te sluiten of selecteert u een ander testscherm d.m.v. de nummerknoppen."
@@ -2207,7 +2216,7 @@ msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Pas de horizontale positie van de letters aan die worden gebruikt voor Teletekst."
 
 msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
-msgstr ""
+msgstr "De oscillator offset van de tuner wijzigen om de DAB+ ontvangst te verbeteren."
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Pas de verticale positie van de letters aan die worden gebruikt in Teletekst."
@@ -2225,7 +2234,7 @@ msgid "Advanced"
 msgstr "Geavanceerd"
 
 msgid "Advanced Diagnostics"
-msgstr ""
+msgstr "Geavanceerde diagnose"
 
 msgid "Advanced Options"
 msgstr "Geavanceerde opties"
@@ -2264,7 +2273,7 @@ msgid "After Event"
 msgstr "Na de taak"
 
 msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
-msgstr ""
+msgstr "Na een succesvolle scan, worden ontbrekende zenders in Favorietenlijsten vervangen door zenders van hetzelfde ontvangsttype en satellietpositie. Gelijknamige treffers worden niet gewijzigd. De volgorde van Favorietenlijsten en de eigen benamingen blijven ongewijzigd."
 
 msgid "After event"
 msgstr "Na deze taak"
@@ -2279,10 +2288,10 @@ msgid "After zap"
 msgstr "Na het zappen"
 
 msgid "Aggregate data only"
-msgstr ""
+msgstr "Alleen gegevens verzamelen"
 
 msgid "Aggressive"
-msgstr ""
+msgstr "Agressief"
 
 msgid "Akan"
 msgstr "Akan"

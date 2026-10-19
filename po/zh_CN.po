@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-15 14:11+0000\n"
-"PO-Revision-Date: 2026-10-13 01:39+0000\n"
+"PO-Revision-Date: 2026-10-19 11:51+0000\n"
 "Last-Translator: Mark Stone <mstone@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1694,7 +1694,7 @@ msgstr ""
 "%s"
 
 msgid "A recording has priority. Time shift is being stopped."
-msgstr ""
+msgstr "录制优先。时移正在停止。"
 
 msgid ""
 "A recording is currently running.\n"
@@ -1727,7 +1727,7 @@ msgid "A required tool (%s) was not found."
 msgstr "所需的工具 （%s）没有找到。"
 
 msgid "A storage check is still running. Save these settings without waiting for it?"
-msgstr ""
+msgstr "存储检查仍在运行。是否不等待检查完成就保存这些设置？"
 
 msgid ""
 "A timer failed to record!\n"
@@ -4334,7 +4334,7 @@ msgid "Checking file system..."
 msgstr "正在检查文件系统..."
 
 msgid "Checking storage directory..."
-msgstr ""
+msgstr "正在检查存储目录..."
 
 #, python-format
 msgid ""
@@ -15746,7 +15746,7 @@ msgid "RAM temperature"
 msgstr "内存温度"
 
 msgid "RAM time shift cannot be saved as a recording."
-msgstr ""
+msgstr "内存时移内容无法保存为录像。"
 
 msgid "RC custom code"
 msgstr "遥控器自定义代码"
@@ -17217,7 +17217,7 @@ msgid "Save the right column directory location on exit."
 msgstr "退出时保存右列目录位置。"
 
 msgid "Save these settings anyway?"
-msgstr ""
+msgstr "仍要保存这些设置吗？"
 
 msgid "Save time shift as movie and continue recording"
 msgstr "保存时移为影片并继续录制"
@@ -17932,7 +17932,7 @@ msgid "Select a menu item"
 msgstr "选择一个菜单项"
 
 msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
-msgstr ""
+msgstr "选择最小可用空间。当可用空间低于此值时，清理功能会尝试移除旧的未使用时移缓冲。正在播放或保存的缓冲受保护，因此这并非有保证的可用空间保留量。"
 
 msgid "Select a movie"
 msgstr "选择一部影片"
@@ -22722,7 +22722,7 @@ msgid "Time shift save action on zap"
 msgstr "换台时的时移保存操作"
 
 msgid "Time shift save failed! The source buffer has been retained."
-msgstr ""
+msgstr "时移保存失败！源缓冲已保留。"
 
 msgid "Time shift save location"
 msgstr "时移保存位置"
@@ -22734,7 +22734,7 @@ msgid "Time shift save recording (Stop after current event)"
 msgstr "时移保存录制（当前事件后停止）"
 
 msgid "Time shift saved!"
-msgstr ""
+msgstr "时移已保存！"
 
 msgid "Time shift will get saved at end of event."
 msgstr "时移将在事件结束时保存。"
@@ -23446,7 +23446,7 @@ msgid "Unable to prepare the bouquet update. The scan will continue without upda
 msgstr "无法准备频道分组更新。扫描将继续，但不会更新频道分组。"
 
 msgid "Unable to prepare the time shift storage device."
-msgstr ""
+msgstr "无法准备时移存储设备。"
 
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
@@ -23468,7 +23468,7 @@ msgid "Unable to save network mount configuration!"
 msgstr "无法保存网络挂载配置！"
 
 msgid "Unable to start RAM time shift."
-msgstr ""
+msgstr "无法启动内存时移。"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
@@ -23487,14 +23487,14 @@ msgid "Unable to update HDD replacement: %s"
 msgstr "无法更新硬盘替代：%s"
 
 msgid "Unable to update the time shift buffer."
-msgstr ""
+msgstr "无法更新时移缓冲。"
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "无法验证高频头 %d的 Unicable 位置：%s！"
 
 msgid "Unable to write the time shift event information."
-msgstr ""
+msgstr "无法写入时移事件信息。"
 
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级，没有图形界面"
@@ -23834,7 +23834,7 @@ msgid "Use QuickSelect"
 msgstr "使用快速选择"
 
 msgid "Use SeekBar while time shifting"
-msgstr ""
+msgstr "时移时使用进度条"
 
 msgid "Use TV remote control"
 msgstr "使用电视遥控器"
@@ -24782,7 +24782,7 @@ msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "启用后，允许使用 NFS v4 协议。"
 
 msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
-msgstr ""
+msgstr "启用后，允许使用进度条跳转到时移缓冲中的选定位置。"
 
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr "启用后，扩展菜单中将添加“手动分辨率”条目，以便快速更改当前视频的视频模式。"
@@ -24929,7 +24929,7 @@ msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "启用时，此设置的权重大于“首选调谐器”。"
 
 msgid "When enabled, time shift starts automatically in background after the selected time."
-msgstr ""
+msgstr "启用后，时移将在所选时间过后自动在后台启动。"
 
 msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
 msgstr ""
@@ -25123,7 +25123,7 @@ msgid "Write failed!"
 msgstr "写入失败！"
 
 msgid "Writing to the time shift storage device failed. Time shift has been stopped."
-msgstr ""
+msgstr "写入时移存储设备失败。时移已停止。"
 
 msgid "Www"
 msgstr "Www"

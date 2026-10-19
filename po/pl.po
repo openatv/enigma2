@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-15 14:11+0000\n"
-"PO-Revision-Date: 2026-10-16 00:39+0000\n"
-"Last-Translator: Mat <mathew87@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-10-19 18:42+0000\n"
+"Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1773,7 +1773,7 @@ msgid "A required tool (%s) was not found."
 msgstr "Wymagane narzędzie (%s) nie zostało znalezione."
 
 msgid "A storage check is still running. Save these settings without waiting for it?"
-msgstr "Sprawdzanie nośnika nadal trwa. Czy zapisać ustawienia bez oczekiwania na zakończenie?"
+msgstr "Sprawdzanie miejsca przechowywania wciąż trwa. Zapisać te ustawienia bez czekania na jego zakończenie?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2422,7 +2422,7 @@ msgid "Allocate a number to the physical LNB you are configuring. You will be ab
 msgstr "Przydziel numer fizycznemu konwerterowi LNB, który konfigurujesz. Będziesz mógł wybrać ten konwerter ponownie dla innych satelitów (np. anten zmotoryzowanych), aby uniknąć wielokrotnego ustawiania tego samego konwertera."
 
 msgid "Allow %s-bit"
-msgstr "Zezwalaj na tryb %s-bitowy"
+msgstr "Zezwalaj na %s bitów"
 
 msgid "Allow guest access"
 msgstr "Zezwalaj na dostęp gościnny"
@@ -3043,7 +3043,7 @@ msgid "Automatically run the fast scan 90 seconds after each entry into standby 
 msgstr "Automatycznie uruchamia szybkie skanowanie 90 sekund po każdym przejściu w tryb czuwania oraz co 24 godziny, dopóki odbiornik pozostaje w trybie czuwania. Jeśli trwa nagrywanie, ponawia próbę po godzinie. Wybierz 'Multi', aby skanować wielu dostawców."
 
 msgid "Automatically start time shift"
-msgstr "Czas, po którym ma zostać uruchomiony timeshift"
+msgstr "Automatycznie uruchamiaj timeshift"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Automatyczne włączenie napisów zewnętrznych"
@@ -3170,7 +3170,7 @@ msgid "Background selected:"
 msgstr "Wybrane w tle:"
 
 msgid "Background sound/clean feed"
-msgstr "Dźwięk tła / ścieżka bez komentarza"
+msgstr "Dźwięk tła/czysty sygnał"
 
 msgid "Background:"
 msgstr "Tło:"
@@ -3564,7 +3564,7 @@ msgid "Buffer Management"
 msgstr "Zarządzanie Buforem"
 
 msgid "Buffer age limit"
-msgstr "Limit bufora timeshift"
+msgstr "Limit wieku bufora"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4353,10 +4353,10 @@ msgid "Check for PDC availability on each service."
 msgstr "Sprawdź dostępność PDC w każdej usłudze."
 
 msgid "Check for free space"
-msgstr "Timeshift sprawdzanie wolnego miejsca"
+msgstr "Sprawdzaj wolne miejsce"
 
 msgid "Check for older files"
-msgstr "Sprawdzanie timeshift w przypadku starszych plików"
+msgstr "Sprawdzaj starsze pliki"
 
 msgid "Check power and input state from TV"
 msgstr "Sprawdź stan zasilania i wejścia z telewizora"
@@ -4380,7 +4380,7 @@ msgid "Checking file system..."
 msgstr "Sprawdzanie plików systemowych..."
 
 msgid "Checking storage directory..."
-msgstr "Sprawdzanie katalogu na nośniku..."
+msgstr "Sprawdzanie katalogu przechowywania..."
 
 #, python-format
 msgid ""
@@ -6518,7 +6518,7 @@ msgid "Delete Timer"
 msgstr "Usuń timer"
 
 msgid "Delete after zap"
-msgstr "Usuń bufor timeshift po przełączeniu"
+msgstr "Usuń po przełączeniu kanału"
 
 msgid "Delete all duplicated lines"
 msgstr "Usuń wszystkie zduplikowane linie"
@@ -7795,7 +7795,7 @@ msgid "Enable auto fast scan for '%s'"
 msgstr "Włącz automatyczne szybkie skanowanie dla '%s'"
 
 msgid "Enable auto record"
-msgstr "Włącz nagrywanie automatyczne"
+msgstr "Włącz automatyczne nagrywanie"
 
 msgid "Enable automatic shares"
 msgstr "Włącz automatyczne udostępnianie"
@@ -8647,13 +8647,13 @@ msgid "Event View Context Menu"
 msgstr "Menu kontekstowe widoku zdarzenia"
 
 msgid "Event based file splitting"
-msgstr "Podział plików na podstawie zdarzeń timeshift"
+msgstr "Podział plików według zdarzeń"
 
 msgid "Event font size"
 msgstr "Rozmiar czcionki wydarzenia"
 
 msgid "Event limit"
-msgstr "Limit zdarzeń timeshiftu"
+msgstr "Limit zdarzeń"
 
 msgid "Event name only"
 msgstr "Tylko nazwa wydarzenia"
@@ -9934,7 +9934,7 @@ msgid "HDMI color space"
 msgstr "Przestrzeń kolorów"
 
 msgid "HDMI colorimetry"
-msgstr "Przestrzeń barw HDMI"
+msgstr "Kolorymetria HDMI"
 
 msgid "HDMI-CEC Settings"
 msgstr "Ustawienia HDMI CEC"
@@ -10159,7 +10159,7 @@ msgid "Hide the InfoBar"
 msgstr "Ukryj pasek informacyjny"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
-msgstr "Ukryj OSD po określonym czasie bez naciskania przycisków. Ekrany i zadania w tle nadal działają. Pierwsze naciśnięcie przycisku jedynie przywraca OSD, a otwarcie nowego okna dialogowego również powoduje jego wyświetlenie. Przytrzymaj 0, aby wstrzymać automatyczne ukrywanie do następnego restartu GUI, lub przytrzymaj 0 ponownie, aby je wznowić."
+msgstr "Ukryj OSD po określonym czasie bez naciskania przycisków. Ekrany i zadania w tle nadal działają. Pierwsze naciśnięcie przycisku jedynie przywraca OSD, a otwarcie nowego okna dialogowego również powoduje jego wyświetlenie. Przytrzymaj 0, aby wstrzymać automatyczne ukrywanie do następnego restartu interfejsu, lub przytrzymaj 0 ponownie, aby je wznowić."
 
 msgid "Hide zap errors"
 msgstr "Ukryj komunikaty błędów przy przełączaniu"
@@ -10234,10 +10234,10 @@ msgid "Hold first frame"
 msgstr "Zatrzymaj pierwszą klatkę"
 
 msgid "Hold screen"
-msgstr "Trzymaj ekran"
+msgstr "Zatrzymaj obraz"
 
 msgid "Hold till locked"
-msgstr "Trzymaj aż do zablokowania"
+msgstr "Zatrzymaj obraz do złapania sygnału"
 
 msgid "Holy See (Vatican City State)"
 msgstr "Stolica Apostolska (Państwo Watykańskie)"
@@ -12991,7 +12991,7 @@ msgid "Nameserver setup"
 msgstr "Ustawienia dns"
 
 msgid "Namespace & Orbital position"
-msgstr "Namespace i pozycja orbitalna"
+msgstr "Przestrzeń nazw i pozycja orbitalna"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -13892,7 +13892,7 @@ msgid "OSD auto-hide enabled."
 msgstr "Automatyczne ukrywanie OSD włączone."
 
 msgid "OSD auto-hide paused until the next GUI restart. Hold 0 to resume."
-msgstr "Automatyczne ukrywanie OSD wstrzymane do następnego restartu interfejsu graficznego. Przytrzymaj 0, aby je wznowić."
+msgstr "Automatyczne ukrywanie OSD wstrzymane do następnego restartu interfejsu. Przytrzymaj 0, aby je wznowić."
 
 msgid "OSD name request"
 msgstr "Żądanie nazwy OSD"
@@ -17988,7 +17988,7 @@ msgid "Select a menu item"
 msgstr "Wybierz element menu"
 
 msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
-msgstr "Wybierz minimalną ilość wolnego miejsca. Gdy ilość wolnego miejsca spadnie poniżej tej wartości, system spróbuje usunąć stare, nieużywane pliki Timeshift. Pliki aktualnie odtwarzane lub zapisywane są chronione przed usunięciem, dlatego nie ma gwarancji utrzymania określonej ilości wolnego miejsca."
+msgstr "Wybierz minimalną ilość wolnego miejsca. Gdy ilość wolnego miejsca spadnie poniżej tej wartości, system spróbuje usunąć stare, nieużywane pliki timeshift. Pliki aktualnie odtwarzane lub zapisywane są chronione przed usunięciem, dlatego nie ma gwarancji utrzymania określonej ilości wolnego miejsca."
 
 msgid "Select a movie"
 msgstr "Wybierz nagranie"
@@ -18251,7 +18251,7 @@ msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve
 msgstr "Wybierz serwer(y) DNS, które będą używane do wyszukiwania nazw hostów w celu rozwiązywania adresów IP."
 
 msgid "Select the HDMI colorimetry to be used while HDR content is shown. This option is only used if 'HDMI colorimetry' is set to 'Auto'."
-msgstr "Wybierz przestrzeń barw HDMI używaną podczas wyświetlania treści HDR. Ta opcja jest stosowana tylko wtedy, gdy ustawienie 'Przestrzeń barw HDMI' ma wartość 'Auto'."
+msgstr "Wybierz kolorymetrię HDMI używaną podczas wyświetlania treści HDR. Ta opcja działa tylko wtedy, gdy ‘Kolorymetria HDMI’ jest ustawiona na ‘Auto’."
 
 msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
 msgstr "Wybierz tryb HDR używany z telewizorem lub monitorem obsługującym UHD, podłączonym przez HDMI."
@@ -18316,7 +18316,7 @@ msgid "Select the action to perform when the timer ends."
 msgstr "Wybierz działanie, które ma być wykonane po zakończeniu timera."
 
 msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
-msgstr "Wybierz działanie, które ma zostać wykonane po zakończeniu Timeshift podczas zmiany kanału. Opcja ta jest używana, gdy włączone jest ostrzeżenie o zatrzymaniu Timeshift."
+msgstr "Wybierz działanie, które ma zostać wykonane po zakończeniu timeshift podczas zmiany kanału. Opcja ta jest używana, gdy włączone jest ostrzeżenie o zatrzymaniu timeshift."
 
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Wybierz akcję, która ma zostać wykonana po uruchomieniu się licznika czasu oszczędzania energii."
@@ -18325,7 +18325,7 @@ msgid "Select the action to take when the SleepTimer activates."
 msgstr "Wybierz czynność, która zostanie wykonana po aktywacji wyłącznika czasowego."
 
 msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
-msgstr "Wybierz czas, po którym nieużywane pliki Timeshift mogą zostać usunięte podczas czyszczenia. Pliki aktualnie nagrywane, odtwarzane lub zapisywane są chronione przed usunięciem. To ustawienie nie ogranicza długości aktywnego nagrania Timeshift."
+msgstr "Wybierz czas, po którym nieużywane pliki timeshift mogą zostać usunięte podczas czyszczenia. Pliki aktualnie nagrywane, odtwarzane lub zapisywane są chronione przed usunięciem. To ustawienie nie ogranicza długości aktywnego nagrania timeshift."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Wybierz czas oczekiwania po wystąpieniu błędu zadania, zanim spróbujesz ponownie uruchomić zadanie."
@@ -18373,7 +18373,7 @@ msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Wybierz kolor, który będzie używany dla tekstu tłumaczenia AI."
 
 msgid "Select the colorimetry to be used with the HDMI attached HDR capable TV/monitor."
-msgstr "Wybierz przestrzeń barw używaną z telewizorem lub monitorem obsługującym HDR, podłączonym przez HDMI."
+msgstr "Wybierz kolorymetrię używaną z telewizorem/monitorem z obsługą HDR podłączonym przez HDMI."
 
 msgid "Select the committed switch port connected to the horizontal LNB."
 msgstr "Wybierz port przełącznika DiSEqC (committed) podłączony do konwertera LNB polaryzacji poziomej."
@@ -18504,7 +18504,7 @@ msgid "Select the input connector you want to use."
 msgstr "Wybierz złącze wejściowe, którego chcesz użyć."
 
 msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
-msgstr "Wybierz odstęp między sprawdzaniem wieku plików Timeshift i ilości wolnego miejsca, niezależnie od kontroli przy zmianie audycji. Wyłączenie tej opcji oznacza brak okresowego sprawdzania. Czyszczenie usuwa nieużywane pliki tymczasowe Timeshift i nie skraca aktywnego bufora."
+msgstr "Wybierz odstęp między sprawdzaniem wieku plików timeshift i ilości wolnego miejsca, niezależnie od kontroli przy zmianie audycji. Wyłączenie tej opcji oznacza brak okresowego sprawdzania. Czyszczenie usuwa nieużywane pliki tymczasowe timeshift i nie skraca aktywnego bufora."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Wybierz ostatnią pozycję na liście lub przejdź na koniec tekstu"
@@ -18580,7 +18580,7 @@ msgid "Select the next item in the list"
 msgstr "Wybierz następną pozycję na liście"
 
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
-msgstr "Wybierz liczbę audycji przechowywanych w buforze Timeshift. Audycje przekraczające ten limit będą usuwane podczas czyszczenia. Bufor może składać się z kilku plików, które są liczone jako jeden. Bufory nadal używane są chronione przed usunięciem, dlatego limit może zostać tymczasowo przekroczony."
+msgstr "Wybierz liczbę audycji przechowywanych w buforze timeshift. Audycje przekraczające ten limit będą usuwane podczas czyszczenia. Bufor może składać się z kilku plików, które są liczone jako jeden. Bufory nadal używane są chronione przed usunięciem, dlatego limit może zostać tymczasowo przekroczony."
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Wybierz liczbę ponownych prób wykonania zadania, jeśli podczas jego wykonywania wystąpi błąd."
@@ -21198,7 +21198,7 @@ msgid "Status:"
 msgstr "Status:"
 
 msgid "Stay in time shift at buffer end (for plugins)"
-msgstr "Pozostań w trybie Timeshift po osiągnięciu końca bufora (dla wtyczek)"
+msgstr "Pozostań w trybie timeshift po osiągnięciu końca bufora (dla wtyczek)"
 
 msgid "Step"
 msgstr "Krok"
@@ -21328,7 +21328,7 @@ msgstr "Dysk nie jest zapisywalny!"
 
 #, python-format
 msgid "Storage directory '%s' is unavailable or not writable."
-msgstr "Katalog zapisu „%s” jest niedostępny lub nie można w nim zapisywać."
+msgstr "Katalog zapisu '%s' jest niedostępny lub nie można w nim zapisywać."
 
 msgid "Store position"
 msgstr "Zapamiętaj pozycję"
@@ -22177,7 +22177,7 @@ msgid "The continuation recording could not be identified safely. Both recording
 msgstr "Nie udało się jednoznacznie zidentyfikować kontynuacji nagrania. Oba nagrania zostały zachowane i nie zostaną połączone."
 
 msgid "The current time shift buffer is no longer available."
-msgstr "Bieżący bufor Timeshift nie jest już dostępny."
+msgstr "Bieżący bufor timeshift nie jest już dostępny."
 
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
@@ -22296,7 +22296,7 @@ msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely e
 msgstr "Podkatalogu root w pliku STARTUP producenta nie można bezpiecznie rozszerzyć."
 
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
-msgstr "Aktualna wersja Enigma2 nie pozwala na bezpieczne zapisanie aktywnego bufora Timeshift."
+msgstr "Aktualna wersja Enigma2 nie pozwala na bezpieczne zapisanie aktywnego bufora timeshift."
 
 msgid "The saved PIN was cleared."
 msgstr "Zapisany PIN został wyczyszczony."
@@ -22344,16 +22344,16 @@ msgstr ""
 "Co chcesz robić?"
 
 msgid "The time shift buffer is not available."
-msgstr "Bufor Timeshift jest niedostępny."
+msgstr "Bufor timeshift jest niedostępny."
 
 msgid "The time shift recording was saved, but a temporary recording could not be removed."
-msgstr "Nagranie Timeshift zostało zapisane, ale nie udało się usunąć nagrania tymczasowego."
+msgstr "Nagranie timeshift zostało zapisane, ale nie udało się usunąć nagrania tymczasowego."
 
 msgid "The time shift storage device is not available. Please check the device and the time shift path."
-msgstr "Nośnik danych Timeshift jest niedostępny. Sprawdź nośnik i ścieżkę zapisu Timeshift."
+msgstr "Nośnik danych timeshift jest niedostępny. Sprawdź nośnik i ścieżkę zapisu timeshift."
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
-msgstr "Nośnik danych Timeshift został odłączony. Timeshift został zatrzymany."
+msgstr "Nośnik danych timeshift został odłączony. Timeshift został zatrzymany."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22775,7 +22775,7 @@ msgid "Time shift buffer location"
 msgstr "Lokalizacja bufora timeshiftu"
 
 msgid "Time shift could not be started. Please check the storage device and available space."
-msgstr "Nie udało się uruchomić Timeshift. Sprawdź nośnik danych i ilość wolnego miejsca."
+msgstr "Nie udało się uruchomić timeshift. Sprawdź nośnik danych i ilość wolnego miejsca."
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Timeshift może nie działać poprawnie bez akceptowalnego katalogu."
@@ -22784,16 +22784,16 @@ msgid "Time shift save action on zap"
 msgstr "Działanie przy zapisie timeshift po przełączeniu"
 
 msgid "Time shift save failed! The source buffer has been retained."
-msgstr "Nie udało się zapisać Timeshift! Bufor źródłowy został zachowany."
+msgstr "Nie udało się zapisać timeshift! Bufor źródłowy został zachowany."
 
 msgid "Time shift save location"
 msgstr "Lokalizacja zapisu timeshift"
 
 msgid "Time shift save recording (Select event)"
-msgstr "Timeshift zapisz nagranie (wybierz wydarzenie)"
+msgstr "Zapisz nagranie z timeshift (wybierz wydarzenie)"
 
 msgid "Time shift save recording (Stop after current event)"
-msgstr "Nagrywanie z timeshift (zatrzymaj po bieżącym wydarzeniu)"
+msgstr "Zapisz nagranie z timeshift (zatrzymaj po bieżącym wydarzeniu)"
 
 msgid "Time shift saved!"
 msgstr "Timeshift został zapisany!"
@@ -23508,7 +23508,7 @@ msgid "Unable to prepare the bouquet update. The scan will continue without upda
 msgstr "Nie można przygotować aktualizacji list. Skanowanie będzie kontynuowane bez aktualizacji list."
 
 msgid "Unable to prepare the time shift storage device."
-msgstr "Nie udało się przygotować nośnika danych dla Timeshift."
+msgstr "Nie udało się przygotować nośnika danych dla timeshift."
 
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
@@ -23530,7 +23530,7 @@ msgid "Unable to save network mount configuration!"
 msgstr "Nie można zapisać konfiguracji montowania udziałów sieciowych!"
 
 msgid "Unable to start RAM time shift."
-msgstr "Nie udało się uruchomić Timeshift w pamięci RAM."
+msgstr "Nie udało się uruchomić timeshift w pamięci RAM."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Nie można nastroić sygnału DAB+"
@@ -23549,14 +23549,14 @@ msgid "Unable to update HDD replacement: %s"
 msgstr "Nie można zaktualizować zamiennika HDD: %s"
 
 msgid "Unable to update the time shift buffer."
-msgstr "Nie udało się zaktualizować bufora Timeshift."
+msgstr "Nie udało się zaktualizować bufora timeshift."
 
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Nie można zweryfikować pozycji Unicable dla LNB %d: %s!"
 
 msgid "Unable to write the time shift event information."
-msgstr "Nie udało się zapisać informacji o audycji Timeshift."
+msgstr "Nie udało się zapisać informacji o audycji timeshift."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Nienadzorowana aktualizacja bez interfejsu graficznego"
@@ -23896,7 +23896,7 @@ msgid "Use QuickSelect"
 msgstr "Użyj szybkiego wyboru"
 
 msgid "Use SeekBar while time shifting"
-msgstr "Używaj paska przewijania podczas korzystania z Timeshift"
+msgstr "Używaj paska przewijania podczas korzystania z timeshift"
 
 msgid "Use TV remote control"
 msgstr "Używaj pilota telewizora"
@@ -24820,7 +24820,7 @@ msgid "When enabled, a recording is allowed to interrupt live TV, when there are
 msgstr "Po włączeniu tej opcji nagrywanie może przerywać transmisję telewizyjną, jeśli nie ma wolnych tunerów."
 
 msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
-msgstr "Po włączeniu tej opcji przed wykonaniem polecenia, które spowoduje zatrzymanie Timeshift, zostanie wyświetlone ostrzeżenie z możliwością zatrzymania lub kontynuowania Timeshift."
+msgstr "Po włączeniu tej opcji przed wykonaniem polecenia, które spowoduje zatrzymanie timeshift, zostanie wyświetlone ostrzeżenie z możliwością zatrzymania lub kontynuowania timeshift."
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "Po włączeniu dostęp do zasobów Samba będzie możliwy bez podawania hasła."
@@ -24835,7 +24835,7 @@ msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN
 msgstr "Po włączeniu odbiornik będzie można włączyć zdalnie za pomocą sygnału Wake-on-LAN (Magic Packet)."
 
 msgid "When enabled, allow the use of %s-bit color mode."
-msgstr "Po włączeniu umożliwia korzystanie z %s-bitowego trybu kolorów."
+msgstr "Po włączeniu można używać %s-bitowego trybu kolorów."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 3."
@@ -24844,7 +24844,7 @@ msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Po włączeniu umożliwia korzystanie z protokołu NFS w wersji 4."
 
 msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
-msgstr "Po włączeniu tej opcji pasek przewijania umożliwia przejście do wybranego miejsca w buforze Timeshift."
+msgstr "Po włączeniu tej opcji pasek przewijania umożliwia przejście do wybranego miejsca w buforze timeshift."
 
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr "Po włączeniu do menu rozszerzeń zostanie dodana opcja 'Ręczna rozdzielczość', umożliwiająca szybką zmianę trybu wideo dla aktualnie odtwarzanego materiału."
@@ -24853,7 +24853,7 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr "Jeśli włączone, będzie wymagana autoryzacja do oglądania strumieni http."
 
 msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
-msgstr "Po włączeniu tej opcji zakończone bufory Timeshift są automatycznie zapisywane jako nagrania. Dotyczy to nowo utworzonych buforów. Jeśli podział według audycji jest wyłączony, zapis następuje po zatrzymaniu bufora. Zapisane nagrania nie są usuwane podczas czyszczenia Timeshift."
+msgstr "Po włączeniu tej opcji zakończone bufory timeshift są automatycznie zapisywane jako nagrania. Dotyczy to nowo utworzonych buforów. Jeśli podział według audycji jest wyłączony, zapis następuje po zatrzymaniu bufora. Zapisane nagrania nie są usuwane podczas czyszczenia timeshift."
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr "Po włączeniu pomija sprawdzanie danych EDID HDMI."
@@ -24871,7 +24871,7 @@ msgid "When enabled, deleted recordings are moved to the trashcan, instead of be
 msgstr "Po włączeniu tej opcji usunięte nagrania zostaną przeniesione do kosza, zamiast zostać natychmiast usunięte."
 
 msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
-msgstr "Po włączeniu tej opcji odtwarzanie nie przełączy się automatycznie na telewizję na żywo po osiągnięciu końca bufora Timeshift. Włącz tę opcję tylko w przypadku wtyczek wymagających kontynuowania odtwarzania Timeshift, np. wtyczek alternatywnego dźwięku."
+msgstr "Po włączeniu tej opcji odtwarzanie nie przełączy się automatycznie na telewizję na żywo po osiągnięciu końca bufora timeshift. Włącz tę opcję tylko w przypadku wtyczek wymagających kontynuowania odtwarzania timeshift, np. wtyczek alternatywnego dźwięku."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Po włączeniu tej opcji zewnętrzne napisy będą zawsze włączane podczas odtwarzania nagrań."
@@ -24919,7 +24919,7 @@ msgid "When enabled, specify custom DNS settings for this adapter instead of usi
 msgstr "Po włączeniu można określić własne serwery DNS dla tego adaptera sieciowego zamiast używać globalnych ustawień DNS."
 
 msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
-msgstr "Po włączeniu tej opcji Timeshift zostanie wyłączony na czas nagrywania. Jest to zalecane w przypadku pamięci USB i innych wolnych nośników danych."
+msgstr "Po włączeniu tej opcji timeshift zostanie wyłączony na czas nagrywania. Jest to zalecane w przypadku pamięci USB i innych wolnych nośników danych."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Po włączeniu tej opcji możliwe będzie korzystanie z napisów dla osób niedosłyszących."
@@ -24991,10 +24991,10 @@ msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Po włączeniu to ustawienie ma większą wagę niż 'Preferowany tuner'."
 
 msgid "When enabled, time shift starts automatically in background after the selected time."
-msgstr "Po włączeniu tej opcji Timeshift uruchamia się automatycznie w tle po upływie wybranego czasu."
+msgstr "Po włączeniu tej opcji timeshift uruchamia się automatycznie w tle po upływie wybranego czasu."
 
 msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
-msgstr "Po włączeniu tej opcji nieużywane bufory Timeshift są usuwane podczas zmiany kanału. Po wyłączeniu bufory są zarządzane w standardowy sposób. Zachowanie buforów tymczasowych nie oznacza ich trwałego zapisania jako nagrań. Zapisane nagrania pozostają nienaruszone."
+msgstr "Po włączeniu tej opcji nieużywane bufory timeshift są usuwane podczas zmiany kanału. Po wyłączeniu bufory są zarządzane w standardowy sposób. Zachowanie buforów tymczasowych nie oznacza ich trwałego zapisania jako nagrań. Zapisane nagrania pozostają nienaruszone."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Po włączeniu możesz dostosować ustawienia OpenWebIf dla zdalnego odbiornika."
@@ -25185,7 +25185,7 @@ msgid "Write failed!"
 msgstr "Błąd zapisu!"
 
 msgid "Writing to the time shift storage device failed. Time shift has been stopped."
-msgstr "Nie udało się zapisać danych na nośniku Timeshift. Timeshift został zatrzymany."
+msgstr "Nie udało się zapisać danych na nośniku timeshift. Timeshift został zatrzymany."
 
 msgid "Www"
 msgstr "Www"
@@ -25603,7 +25603,7 @@ msgid "Zulu"
 msgstr "Zulu"
 
 msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Uruchamianie ponowne timeshiftu!"
+msgstr "[TimeShift] Uruchamianie ponowne timeshift!"
 
 msgid "a gui to assign services/providers to common interface modules"
 msgstr "interfejs graficzny do przypisywania kanałów/dostawców do modułów wspólnego interfejsu"
