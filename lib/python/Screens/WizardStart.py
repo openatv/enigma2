@@ -304,7 +304,10 @@ class WizardStart(Wizard, ShowRemoteControl):
 
 	def nwListInterfaces(self):
 		result = []
-		for interface, adapter in networkManager.getAdapters().items():
+		networkManager.applyNetinfo()
+		# The connected adapter first, then LAN before Wi-Fi: the list starts on the first entry.
+		adapters = sorted(networkManager.getAdapters().items(), key=lambda x: (not x[1].netInfo.link, x[1].isWiFi, x[0]))
+		for interface, adapter in adapters:
 			result.append((f"{_("Wi-Fi") if adapter.isWiFi else _("LAN")}  ({interface})  –  {networkManager.getFriendlyAdapterDescription(interface)}", interface))
 		result.append((_("Skip network setup"), "skip"))
 		return result

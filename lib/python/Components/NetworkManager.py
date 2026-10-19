@@ -516,7 +516,7 @@ class NetworkManager:
 		if adapter is None:
 			return interface
 		if adapter.isWiFi:
-			return f"{adapter.module or 'Unknown'} {_('wireless network interface')}"
+			return _("wireless network interface")
 		return _("Ethernet network interface")
 
 	def notifyNetworkPlugins(self, reason: bool, interface: str = ""):
