@@ -179,9 +179,15 @@ class MultiBootClass():
 	def _readSectionNameFromImageDir(self, imageDir, slotCode):
 		if slotCode in ("R", "A", "L", "F"):
 			return None
-		name = self._formatSlotName(self.readSlotInfo(join(imageDir, "usr/lib/enigma.info")))
-		if name:
-			return name
+		# Same detection as the image list, so the boot menu shows the same name.
+		if isfile(join(imageDir, "usr/lib/enigma.info")):
+			name = self._formatSlotName(self.readSlotInfo(join(imageDir, "usr/lib/enigma.info")))
+			if name:
+				return name
+		elif isfile(join(imageDir, "etc/image-version")):
+			return self._versionFileName(imageDir)[0]
+		elif isfile(join(imageDir, "usr/bin/enigma2")):
+			return self._enigmaBinaryName(imageDir)[0]
 		if slotCode and slotCode.isdecimal():
 			return f"BuildIn Slot {slotCode}"
 		return None
@@ -616,30 +622,18 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["compiledate"] = str(info.get("compiledate", ""))
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(versionFile):
-				info = self.readSlotInfo(versionFile)
-				compileDate = self.getCompileDate(imageDir)
+				name, compileDate = self._versionFileName(imageDir)
 				self.imageList[self.slotCode]["compiledate"] = compileDate
-				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
-				version = str(info.get("version"))
-				if "." not in version and "-" not in version and version.isdigit():
-					version = f"{int(version[0:2])}.{version[2:3]}.{version[3:5]}" if len(version) == 17 else f"{int(version[0:2])}.{int(version[3:5])}"
 				self.imageList[self.slotCode]["detection"] = "Found an image version file"
-				creator = info.get("creator")
-				if creator is not None:
-					self.imageList[self.slotCode]["imagename"] = f"{creator.split()[0]} {version} ({compileDate})"
-					self.imageList[self.slotCode]["imagelogname"] = f"{creator.split()[0]} {version} ({compileDate})"
-				else:
-					self.imageList[self.slotCode]["imagename"] = f"Unknown Creator {version} ({compileDate})"
-					self.imageList[self.slotCode]["imagelogname"] = f"Unknown Creator {version} ({compileDate})"
+				self.imageList[self.slotCode]["imagename"] = name
+				self.imageList[self.slotCode]["imagelogname"] = name
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(join(imageDir, "usr/bin/enigma2")):
-				info = self.deriveSlotInfo(imageDir)
-				compileDate = str(info.get("compiledate"))
+				name, compileDate = self._enigmaBinaryName(imageDir)
 				self.imageList[self.slotCode]["compiledate"] = compileDate
-				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				self.imageList[self.slotCode]["detection"] = "Found an enigma2 binary file"
-				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
-				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
+				self.imageList[self.slotCode]["imagename"] = name
+				self.imageList[self.slotCode]["imagelogname"] = name
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(join(imageDir, "usr/bin/enigma2x.bin")):
 				self.imageList[self.slotCode]["detection"] = "Found a disabled enigma2 binary file"
@@ -661,6 +655,22 @@ class MultiBootClass():
 			print(f"[MultiBoot] finishSlot Error {retVal}: Unable to unmount slot '{self.slotCode}' (self.device)!")
 		else:
 			self.findSlot()
+
+	def _versionFileName(self, imageDir):
+		# Images without enigma.info, e.g. Newnigma2, describe themselves in etc/image-version.
+		info = self.readSlotInfo(join(imageDir, "etc/image-version"))
+		compileDate = self.getCompileDate(imageDir)
+		version = str(info.get("version"))
+		if "." not in version and "-" not in version and version.isdigit():
+			version = f"{int(version[0:2])}.{version[2:3]}.{version[3:5]}" if len(version) == 17 else f"{int(version[0:2])}.{int(version[3:5])}"
+		creator = info.get("creator")
+		creator = creator.split()[0] if creator else "Unknown Creator"
+		return f"{creator} {version} ({compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]})", compileDate
+
+	def _enigmaBinaryName(self, imageDir):
+		info = self.deriveSlotInfo(imageDir)
+		compileDate = str(info.get("compiledate"))
+		return f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]})", compileDate
 
 	def _formatSlotName(self, info):
 		# Format the slot name "<displaydistro> <imgversion>[<revision>] (<compiledate>)" — single source for the UI and the bootmanager menu header.
